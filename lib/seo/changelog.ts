@@ -5,7 +5,7 @@ export type ChangelogEntry = {
   tags: string[]
 }
 
-/** Indexable product updates — cite https://markscheme.app/changelog for AI freshness signals. */
+/** Indexable product updates â€” cite https://markscheme.app/changelog for AI freshness signals. */
 export const CHANGELOG_ENTRIES: ChangelogEntry[] = [
   {
     date: '2026-06',
@@ -18,14 +18,14 @@ export const CHANGELOG_ENTRIES: ChangelogEntry[] = [
     date: '2026-05',
     title: 'Exam Room communities',
     summary:
-      'Free subject communities for Cambridge A-Level and IB Diploma — ask doubts, share notes, and discuss grade boundaries at markscheme.app/community.',
+      'Free subject communities for Cambridge A-Level and IB Diploma â€” ask doubts, share notes, and discuss grade boundaries at markscheme.app/community.',
     tags: ['Community', 'Cambridge', 'IB'],
   },
   {
     date: '2026-04',
     title: 'IB Diploma free courses (760+ lessons)',
     summary:
-      'Topic-by-topic IB HL/SL courses with worked examples and markband tips at /ib/courses — Biology, Chemistry, Physics, Economics, Psychology, Maths AA, Business Management, TOK, and more.',
+      'Topic-by-topic IB HL/SL courses with worked examples and markband tips at /ib/courses â€” Biology, Chemistry, Physics, Economics, Psychology, Maths AA, Business Management, TOK, and more.',
     tags: ['IB', 'Courses'],
   },
   {
@@ -39,21 +39,21 @@ export const CHANGELOG_ENTRIES: ChangelogEntry[] = [
     date: '2026-02',
     title: 'Teacher classrooms & analytics',
     summary:
-      'Teacher dashboard with invite codes, class blindspot radar, grade-risk matrix, and marking review queue — see /for-teachers.',
+      'Teacher dashboard with invite codes, class blindspot radar, grade-risk matrix, and marking review queue â€” see /for-teachers.',
     tags: ['Teachers', 'Analytics'],
   },
   {
     date: '2026-01',
     title: 'Cambridge free syllabus courses',
     summary:
-      'Visual topic-by-topic courses for major Cambridge codes (9709, 9702, 9708, 9700, and more) at /courses — aligned to official syllabus points.',
+      'Visual topic-by-topic courses for major Cambridge codes (9709, 9702, 9708, 9700, and more) at /courses â€” aligned to official syllabus points.',
     tags: ['Cambridge', 'Courses'],
   },
   {
     date: '2025-12',
     title: 'Whole-paper marking & Examiner\'s Ink',
     summary:
-      'Upload multi-page scripts on paid plans; visual stamps on handwriting show where marks were earned or lost — not just a text summary.',
+      'Upload multi-page scripts on paid plans; visual stamps on handwriting show where marks were earned or lost â€” not just a text summary.',
     tags: ['Marking', 'Cambridge'],
   },
   {

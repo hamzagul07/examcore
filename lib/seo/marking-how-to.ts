@@ -12,7 +12,7 @@ export const MARKING_HOW_TO = {
     },
     {
       name: 'Self-mark strictly',
-      text: 'Mark against the official PDF mark scheme or markband column. Log every lost mark ÿ do not give yourself the benefit of the doubt.',
+      text: 'Mark against the official PDF mark scheme or markband column. Log every lost mark Ã¿ do not give yourself the benefit of the doubt.',
     },
     {
       name: 'Upload to MarkScheme',

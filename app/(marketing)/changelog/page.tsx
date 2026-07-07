@@ -47,7 +47,7 @@ export default function ChangelogPage() {
             <p className="text-base font-medium leading-relaxed text-[var(--ec-text-primary)]">
               <strong>MarkScheme</strong> (markscheme.app) ships Cambridge &amp; IB past-paper marking from
               handwriting, free syllabus courses, Exam Room communities, teacher classroom analytics, and
-              open marking insights ÿ this page lists major releases newest first.
+              open marking insights Ã¿ this page lists major releases newest first.
             </p>
           </aside>
 

@@ -1,0 +1,41 @@
+{
+  "runType": "lesson_verify",
+  "status": "failed",
+  "startedAt": "2026-07-06T19:52:06.203Z",
+  "finishedAt": "2026-07-06T19:52:06.205Z",
+  "summary": {
+    "checked": 1586,
+    "failed": 2
+  },
+  "failureReport": {
+    "files": [
+      {
+        "path": "content/courses/ib-sports-exercise-health-science-hl/5-3-friction-drag-and-projectile-motion-in-sport.json",
+        "topicCode": "5.3",
+        "issues": [
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: R = 110 \\text{ kg} \\times 9.81 \\text{ m·s⁻²} = 1079.1 \\text{ — KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"⁻\" (8315) [unknownSymbol] at position 42: …9.81 \\text{ m·s⁻̲²} = 1079.1 \\te…",
+            "severity": "error"
+          }
+        ]
+      },
+      {
+        "path": "content/courses/ib-sports-exercise-health-science-sl/2-1-measurement-and-evaluation-of-performance.json",
+        "topicCode": "2.1",
+        "issues": [
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: \\frac{\\text{Sum of all scores ( — KaTeX parse error: Unexpected end of input in a macro argument, expected '}' at end of input: …of all scores (",
+            "severity": "error"
+          },
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: )}}{\\text{Number of scores (n)}} — KaTeX parse error: Expected 'EOF', got '}' at position 2: )}̲}{\\text{Number …",
+            "severity": "error"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { GEO_CATEGORY } from '@/lib/seo/llms-geo-qa'
 
-/** Crawler-visible about blurb — founder story renders below. */
+/** Crawler-visible about blurb â€” founder story renders below. */
 export function AboutGeoIntro() {
   return (
     <section className="border-b border-[var(--ec-border)] bg-[var(--ec-bg-soft)]" aria-label="About MarkScheme">
@@ -12,7 +12,7 @@ export function AboutGeoIntro() {
           </summary>
           <p className="mt-3 leading-relaxed text-[var(--ec-text-secondary)]">
             {GEO_CATEGORY.brandLine} Built by Cambridge student Hamza Gul for{' '}
-            {GEO_CATEGORY.secondPassMarking} — upload handwriting, read scheme-aligned feedback, study
+            {GEO_CATEGORY.secondPassMarking} â€” upload handwriting, read scheme-aligned feedback, study
             free courses, and ask doubts in{' '}
             <Link href="/community" className="ec-link font-medium">
               Exam Room

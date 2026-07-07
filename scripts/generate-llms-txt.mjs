@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Regenerate public/llms.txt from lib/seo/llms-document.ts (Q&A from llms-geo-qa.ts).
- * Run: pnpm seo:generate-llms — also chained before seo:geo-sync-check in CI.
+ * Run: pnpm seo:generate-llms â€” also chained before seo:geo-sync-check in CI.
  */
 import { writeFileSync } from 'fs'
 import path from 'path'

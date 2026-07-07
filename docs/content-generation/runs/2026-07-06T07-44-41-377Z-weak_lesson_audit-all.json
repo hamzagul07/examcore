@@ -1,0 +1,3707 @@
+{
+  "runAt": "2026-07-06T07:44:41.377Z",
+  "mode": "auditStrict",
+  "totalChecked": 1505,
+  "totalPassed": 1421,
+  "totalFailed": 84,
+  "overallFailPct": 5.6,
+  "subjects": [
+    {
+      "subjectCode": "2281",
+      "subjectName": "Economics",
+      "checked": 36,
+      "passed": 36,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "7115",
+      "subjectName": "Business Studies",
+      "checked": 25,
+      "passed": 23,
+      "failed": 2,
+      "failPct": 8,
+      "dominantWeakness": "min_worked_examples",
+      "weaknessCounts": {
+        "min_worked_examples": 2,
+        "min_heading_groups": 2
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/7115/2-4-internal-and-external-communication.json",
+          "topicCode": "2.4",
+          "title": "Internal and external communication",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_heading_groups"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 1)",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/7115/6-2-environmental-and-ethical-issues.json",
+          "topicCode": "6.2",
+          "title": "Environmental and ethical issues",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_heading_groups"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 1)",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "9084",
+      "subjectName": "Law",
+      "checked": 53,
+      "passed": 50,
+      "failed": 3,
+      "failPct": 5.7,
+      "dominantWeakness": "min_worked_examples",
+      "weaknessCounts": {
+        "min_worked_examples": 3,
+        "low_coverage_score": 3
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/9084/2-2-4-blackmail-as-defined-in-s21-theft-act-1968.json",
+          "topicCode": "2.2.4",
+          "title": "Blackmail as defined in s21 Theft Act 1968",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.17 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9084/2-2-5-handling-stolen-goods-as-defined-in-s22-theft-act-1968.json",
+          "topicCode": "2.2.5",
+          "title": "Handling stolen goods as defined in s22 Theft Act 1968",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.17 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9084/2-2-6-making-off-without-payment-as-defined-in-s3-theft-act-1978.json",
+          "topicCode": "2.2.6",
+          "title": "Making off without payment as defined in s3 Theft Act 1978",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.17 below 0.8",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "9231",
+      "subjectName": "Further Mathematics",
+      "checked": 24,
+      "passed": 24,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "9609",
+      "subjectName": "Business",
+      "checked": 116,
+      "passed": 104,
+      "failed": 12,
+      "failPct": 10.3,
+      "dominantWeakness": "min_worked_examples",
+      "weaknessCounts": {
+        "min_worked_examples": 10,
+        "hollow_worked_example": 4,
+        "no_substantive_worked_example": 4,
+        "missing_numeric_worked_example": 4,
+        "min_heading_groups": 6
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/9609/2-1-5-morale-and-welfare.json",
+          "topicCode": "2.1.5",
+          "title": "Morale and welfare",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9609/2-2-3-motivation-theories.json",
+          "topicCode": "2.2.3",
+          "title": "Motivation theories",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "hollow_worked_example",
+            "no_substantive_worked_example",
+            "missing_numeric_worked_example"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "hollow_worked_example",
+              "message": "workedExample 1 is a template/syllabus stub, not an exam-style problem",
+              "severity": "error"
+            },
+            {
+              "code": "no_substantive_worked_example",
+              "message": "No worked example with substantive question + solution depth",
+              "severity": "error"
+            },
+            {
+              "code": "missing_numeric_worked_example",
+              "message": "Technical subject requires at least one worked example with figures/calculation",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9609/3-3-1-the-elements-of-the-marketing-mix-the-4ps.json",
+          "topicCode": "3.3.1",
+          "title": "The elements of the marketing mix (the 4Ps)",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "hollow_worked_example",
+            "no_substantive_worked_example",
+            "missing_numeric_worked_example"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "hollow_worked_example",
+              "message": "workedExample 1 is a template/syllabus stub, not an exam-style problem",
+              "severity": "error"
+            },
+            {
+              "code": "no_substantive_worked_example",
+              "message": "No worked example with substantive question + solution depth",
+              "severity": "error"
+            },
+            {
+              "code": "missing_numeric_worked_example",
+              "message": "Technical subject requires at least one worked example with figures/calculation",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9609/3-3-5-promotion-methods.json",
+          "topicCode": "3.3.5",
+          "title": "Promotion methods",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "hollow_worked_example",
+            "no_substantive_worked_example",
+            "missing_numeric_worked_example"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "hollow_worked_example",
+              "message": "workedExample 1 is a template/syllabus stub, not an exam-style problem",
+              "severity": "error"
+            },
+            {
+              "code": "no_substantive_worked_example",
+              "message": "No worked example with substantive question + solution depth",
+              "severity": "error"
+            },
+            {
+              "code": "missing_numeric_worked_example",
+              "message": "Technical subject requires at least one worked example with figures/calculation",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9609/4-3-1-significance-and-measurement-of-capacity-utilisation.json",
+          "topicCode": "4.3.1",
+          "title": "Significance and measurement of capacity utilisation",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_heading_groups"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 1)",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9609/5-4-1-cost-information.json",
+          "topicCode": "5.4.1",
+          "title": "Cost information",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_heading_groups"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 2)",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9609/5-4-2-approaches-to-costing-full-contribution.json",
+          "topicCode": "5.4.2",
+          "title": "Approaches to costing: full, contribution",
+          "status": "premium",
+          "issueCodes": [
+            "min_heading_groups"
+          ],
+          "issues": [
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 2)",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9609/5-5-2-variances.json",
+          "topicCode": "5.5.2",
+          "title": "Variances",
+          "status": "premium",
+          "issueCodes": [
+            "min_heading_groups"
+          ],
+          "issues": [
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 1)",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9609/6-1-7-environmental.json",
+          "topicCode": "6.1.7",
+          "title": "Environmental",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_heading_groups"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 1)",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9609/7-2-1-purposes-of-communication.json",
+          "topicCode": "7.2.1",
+          "title": "Purposes of communication",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_heading_groups"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 1)",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9609/7-3-2-theories-of-leadership.json",
+          "topicCode": "7.3.2",
+          "title": "Theories of leadership",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "hollow_worked_example",
+            "no_substantive_worked_example",
+            "missing_numeric_worked_example"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "hollow_worked_example",
+              "message": "workedExample 1 is a template/syllabus stub, not an exam-style problem",
+              "severity": "error"
+            },
+            {
+              "code": "no_substantive_worked_example",
+              "message": "No worked example with substantive question + solution depth",
+              "severity": "error"
+            },
+            {
+              "code": "missing_numeric_worked_example",
+              "message": "Technical subject requires at least one worked example with figures/calculation",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9609/9-2-1-quality-control-and-quality-assurance.json",
+          "topicCode": "9.2.1",
+          "title": "Quality control and quality assurance",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "9618",
+      "subjectName": "Computer Science",
+      "checked": 45,
+      "passed": 44,
+      "failed": 1,
+      "failPct": 2.2,
+      "dominantWeakness": "min_heading_groups",
+      "weaknessCounts": {
+        "min_heading_groups": 1
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/9618/12-2-program-design.json",
+          "topicCode": "12.2",
+          "title": "Program Design",
+          "status": "premium",
+          "issueCodes": [
+            "min_heading_groups"
+          ],
+          "issues": [
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 2)",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "9699",
+      "subjectName": "Sociology",
+      "checked": 35,
+      "passed": 33,
+      "failed": 2,
+      "failPct": 5.7,
+      "dominantWeakness": "min_worked_examples",
+      "weaknessCounts": {
+        "min_worked_examples": 2,
+        "min_heading_groups": 1
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/9699/10-1-media-representations-of-class-gender-ethnicity-and-age-groups.json",
+          "topicCode": "10.1",
+          "title": "Media representations of class, gender, ethnicity, and age groups",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9699/12-3-religion-and-post-modernity.json",
+          "topicCode": "12.3",
+          "title": "Religion and post-modernity",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_heading_groups"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 1)",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "9700",
+      "subjectName": "Biology",
+      "checked": 44,
+      "passed": 34,
+      "failed": 10,
+      "failPct": 22.7,
+      "dominantWeakness": "min_worked_examples",
+      "weaknessCounts": {
+        "min_worked_examples": 10,
+        "min_flashcards": 10,
+        "hollow_worked_example": 1,
+        "no_substantive_worked_example": 1,
+        "missing_numeric_worked_example": 1,
+        "low_coverage_score": 10,
+        "min_heading_groups": 1
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/9700/11-2-antibodies-and-vaccination.json",
+          "topicCode": "11.2",
+          "title": "Antibodies and vaccination",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_flashcards",
+            "hollow_worked_example",
+            "no_substantive_worked_example",
+            "missing_numeric_worked_example",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_flashcards",
+              "message": "Need ?8 flashcards (found 0)",
+              "severity": "error"
+            },
+            {
+              "code": "hollow_worked_example",
+              "message": "workedExample 1 is a template/syllabus stub, not an exam-style problem",
+              "severity": "error"
+            },
+            {
+              "code": "no_substantive_worked_example",
+              "message": "No worked example with substantive question + solution depth",
+              "severity": "error"
+            },
+            {
+              "code": "missing_numeric_worked_example",
+              "message": "Technical subject requires at least one worked example with figures/calculation",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.50 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9700/12-2-respiration.json",
+          "topicCode": "12.2",
+          "title": "Respiration",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_flashcards",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_flashcards",
+              "message": "Need ?8 flashcards (found 0)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.50 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9700/14-2-homeostasis-in-plants.json",
+          "topicCode": "14.2",
+          "title": "Homeostasis in plants",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_flashcards",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_flashcards",
+              "message": "Need ?8 flashcards (found 0)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.50 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9700/17-1-variation.json",
+          "topicCode": "17.1",
+          "title": "Variation",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_flashcards",
+            "min_heading_groups",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_flashcards",
+              "message": "Need ?8 flashcards (found 0)",
+              "severity": "error"
+            },
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 2)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.50 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9700/19-2-genetic-technology-applied-to-medicine.json",
+          "topicCode": "19.2",
+          "title": "Genetic technology applied to medicine",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_flashcards",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_flashcards",
+              "message": "Need ?8 flashcards (found 0)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.50 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9700/2-4-water.json",
+          "topicCode": "2.4",
+          "title": "Water",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_flashcards",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_flashcards",
+              "message": "Need ?8 flashcards (found 0)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.50 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9700/4-1-fluid-mosaic-membranes.json",
+          "topicCode": "4.1",
+          "title": "Fluid mosaic membranes",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_flashcards",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_flashcards",
+              "message": "Need ?8 flashcards (found 0)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.50 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9700/7-1-structure-of-transport-tissues.json",
+          "topicCode": "7.1",
+          "title": "Structure of transport tissues",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_flashcards",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_flashcards",
+              "message": "Need ?8 flashcards (found 0)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.50 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9700/7-2-transport-mechanisms.json",
+          "topicCode": "7.2",
+          "title": "Transport mechanisms",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_flashcards",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_flashcards",
+              "message": "Need ?8 flashcards (found 0)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.44 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9700/8-2-transport-of-oxygen-and-carbon-dioxide.json",
+          "topicCode": "8.2",
+          "title": "Transport of oxygen and carbon dioxide",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_flashcards",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_flashcards",
+              "message": "Need ?8 flashcards (found 0)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.50 below 0.8",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "9701",
+      "subjectName": "Chemistry",
+      "checked": 90,
+      "passed": 84,
+      "failed": 6,
+      "failPct": 6.7,
+      "dominantWeakness": "min_heading_groups",
+      "weaknessCounts": {
+        "min_heading_groups": 4,
+        "katex_parse_error": 2,
+        "schema_invalid": 1
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/9701/19-1-primary-amines.json",
+          "topicCode": "19.1",
+          "title": "Primary amines",
+          "status": "premium",
+          "issueCodes": [
+            "min_heading_groups"
+          ],
+          "issues": [
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 2)",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9701/2-2-the-mole-and-the-avogadro-constant.json",
+          "topicCode": "2.2",
+          "title": "The mole and the Avogadro constant",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: n = \\frac{\\text{Volume in \\mathrm{dm}^{3}}}{24} � KaTeX parse error: Can't use function '\\mathrm' in text mode at position 27: …text{Volume in \\̲m̲a̲t̲h̲r̲m̲{dm}^{3}}}{24}",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: n = \\frac{\\text{Volume in \\mathrm{cm}^{3}}}{24000} � KaTeX parse error: Can't use function '\\mathrm' in text mode at position 27: …text{Volume in \\̲m̲a̲t̲h̲r̲m̲{cm}^{3}}}{2400…",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9701/28-1-general-physical-and-chemical-properties-of-the-first-row-of-transition-elements-titanium-to-copper.json",
+          "topicCode": "28.1",
+          "title": "General physical and chemical properties of the first row of transition elements, titanium to copper",
+          "status": "premium",
+          "issueCodes": [
+            "min_heading_groups"
+          ],
+          "issues": [
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 1)",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9701/3-2-ionic-bonding.json",
+          "topicCode": "3.2",
+          "title": "Ionic bonding",
+          "status": "premium",
+          "issueCodes": [
+            "min_heading_groups"
+          ],
+          "issues": [
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 2)",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9701/30-1-arenes.json",
+          "topicCode": "30.1",
+          "title": "Arenes",
+          "status": "premium",
+          "issueCodes": [
+            "min_heading_groups"
+          ],
+          "issues": [
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 2)",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9701/36-1-organic-synthesis.json",
+          "topicCode": null,
+          "title": "Organic synthesis",
+          "status": "premium",
+          "issueCodes": [
+            "schema_invalid"
+          ],
+          "issues": [
+            {
+              "code": "schema_invalid",
+              "message": "[\n  {\n    \"code\": \"invalid_union\",\n    \"errors\": [],\n    \"note\": \"No matching discriminator\",\n    \"discriminator\": \"type\",\n    \"options\": [\n      \"intro\",\n      \"heading\",\n      \"text\",\n      \"formula\",\n      \"keyPoints\",\n      \"examTip\",\n      \"workedExample\",\n      \"pastPaperPractice\",\n      \"practice\",\n      \"resources\",\n      \"interactive\"\n    ],\n    \"path\": [\n      \"sections\",\n      25,\n      \"type\"\n    ],\n    \"message\": \"Invalid discriminator value. Expected 'intro' | 'heading' | 'text' | 'formula' | 'keyPoints' | 'examTip' | 'workedExample' | 'pastPaperPractice' | 'practice' | 'resources' | 'interactive'\"\n  }\n]",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "9702",
+      "subjectName": "Physics",
+      "checked": 77,
+      "passed": 63,
+      "failed": 14,
+      "failPct": 18.2,
+      "dominantWeakness": "min_worked_examples",
+      "weaknessCounts": {
+        "min_flashcards": 1,
+        "missing_analogy": 1,
+        "min_worked_examples": 13,
+        "low_coverage_score": 13,
+        "min_heading_groups": 3,
+        "katex_parse_error": 12
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/9702/1-3-errors-and-uncertainties.json",
+          "topicCode": "1.3",
+          "title": "Errors and Uncertainties in Paper 5",
+          "status": "premium",
+          "issueCodes": [
+            "min_flashcards",
+            "missing_analogy"
+          ],
+          "issues": [
+            {
+              "code": "min_flashcards",
+              "message": "Need ?8 flashcards (found 0)",
+              "severity": "error"
+            },
+            {
+              "code": "missing_analogy",
+              "message": "STEM abstract topics require simpleExplanation.analogy",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9702/12-2-centripetal-acceleration.json",
+          "topicCode": "12.2",
+          "title": "Centripetal acceleration",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.25 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9702/13-2-gravitational-force-between-point-masses.json",
+          "topicCode": "13.2",
+          "title": "Gravitational force between point masses",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_heading_groups",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.50 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9702/16-1-internal-energy.json",
+          "topicCode": "16.1",
+          "title": "Internal energy",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_heading_groups",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 2)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.50 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9702/18-3-electric-force-between-point-charges.json",
+          "topicCode": "18.3",
+          "title": "Electric force between point charges",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "min_heading_groups",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 2)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.50 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9702/19-2-energy-stored-in-a-capacitor.json",
+          "topicCode": "19.2",
+          "title": "Energy stored in a capacitor",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.25 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9702/23-2-radioactive-decay.json",
+          "topicCode": "23.2",
+          "title": "Radioactive decay",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.42 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9702/4-3-density-and-pressure.json",
+          "topicCode": "4.3",
+          "title": "Density and pressure",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "min_worked_examples",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: g = 9.81 \\text{ m s⁻²} � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"⁻\" (8315) [unknownSymbol] at position 20: …9.81 \\text{ m s⁻̲²}",
+              "severity": "error"
+            },
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.42 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9702/5-2-gravitational-potential-energy-and-kinetic-energy.json",
+          "topicCode": "5.2",
+          "title": "Gravitational potential energy and kinetic energy",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "min_worked_examples",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: GPE_{initial} = mgh = (2.0 \\text{ kg}) \\times (9.81 \\text{ m � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 63: …9.81 \\text{ m s\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-2}}) \\times (…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: v = \\sqrt{294.3} \\approx 17.155 \\text{ m s\\textsuperscript{- � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 43: ….155 \\text{ m s\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-1}}",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 17.2 \\text{ m s\\textsuperscript{-1}} � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 16: 17.2 \\text{ m s\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-1}}",
+              "severity": "error"
+            },
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.38 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9702/7-1-progressive-waves.json",
+          "topicCode": "7.1",
+          "title": "Progressive waves",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "min_worked_examples",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: c = 3 \\times 10^8 \\text{ ms\\textsuperscript{-1}} � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 28: … 10^8 \\text{ ms\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-1}}",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 80 \\text{ W m\\textsuperscript{-2}} � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 14: 80 \\text{ W m\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-2}}",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: I_0 = 80 \\text{ W m\\textsuperscript{-2}} � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 20: …= 80 \\text{ W m\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-2}}",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: I = 80 \\text{ W m\\textsuperscript{-2}} \\times 0.75 � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 18: …= 80 \\text{ W m\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-2}} \\times 0.…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: I = 60 \\text{ W m\\textsuperscript{-2}} � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 18: …= 60 \\text{ W m\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-2}}",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 60 \\text{ W m\\textsuperscript{-2}} � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 14: 60 \\text{ W m\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-2}}",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: c = 3 \\times 10^8 \\text{ ms\\textsuperscript{-1}} � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 28: … 10^8 \\text{ ms\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-1}}",
+              "severity": "error"
+            },
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.50 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9702/7-2-transverse-and-longitudinal-waves.json",
+          "topicCode": "7.2",
+          "title": "Transverse and longitudinal waves",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 0)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.50 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9702/7-4-electromagnetic-spectrum.json",
+          "topicCode": "7.4",
+          "title": "Electromagnetic spectrum",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "min_worked_examples",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\lambda = \\frac{3.00 \\times 10^8 \\text{ m s⁻¹}}{1.5 \\times 1 � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"⁻\" (8315) [unknownSymbol] at position 44: …10^8 \\text{ m s⁻̲¹}}{1.5 \\times …",
+              "severity": "error"
+            },
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.50 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9702/8-2-diffraction.json",
+          "topicCode": "8.2",
+          "title": "Diffraction",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 0)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.50 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9702/9-2-potential-difference-and-power.json",
+          "topicCode": "9.2",
+          "title": "Potential difference and power",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.50 below 0.8",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "9706",
+      "subjectName": "Accounting",
+      "checked": 19,
+      "passed": 17,
+      "failed": 2,
+      "failPct": 10.5,
+      "dominantWeakness": "low_coverage_score",
+      "weaknessCounts": {
+        "katex_parse_error": 1,
+        "min_worked_examples": 1,
+        "low_coverage_score": 2,
+        "min_heading_groups": 1
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/9706/1-6-2-calculation-and-evaluation-of-ratios.json",
+          "topicCode": "1.6.2",
+          "title": "Calculation and evaluation of ratios",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "min_worked_examples",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\frac{\\text{Current assets − Inventory}}{\\text{Current liabi � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"−\" (8722) [unknownSymbol] at position 28: …Current assets −̲ Inventory}}{\\t…",
+              "severity": "error"
+            },
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.50 below 0.8",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9706/2-2-4-cost-volume-profit-analysis.json",
+          "topicCode": "2.2.4",
+          "title": "Cost-volume-profit analysis",
+          "status": "premium",
+          "issueCodes": [
+            "min_heading_groups",
+            "low_coverage_score"
+          ],
+          "issues": [
+            {
+              "code": "min_heading_groups",
+              "message": "Need ?3 heading groups with substantive body text (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "low_coverage_score",
+              "message": "Estimated syllabus coverage 0.38 below 0.8",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "9708",
+      "subjectName": "Economics",
+      "checked": 53,
+      "passed": 50,
+      "failed": 3,
+      "failPct": 5.7,
+      "dominantWeakness": "min_worked_examples",
+      "weaknessCounts": {
+        "min_worked_examples": 3,
+        "hollow_worked_example": 1,
+        "no_substantive_worked_example": 1,
+        "missing_numeric_worked_example": 1
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/9708/6-5-policies-to-correct-imbalances-in-the-current-account-of-the-balance-of-payments.json",
+          "topicCode": "6.5",
+          "title": "Policies to correct imbalances in the current account of the balance of payments",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples",
+            "hollow_worked_example",
+            "no_substantive_worked_example",
+            "missing_numeric_worked_example"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            },
+            {
+              "code": "hollow_worked_example",
+              "message": "workedExample 1 is a template/syllabus stub, not an exam-style problem",
+              "severity": "error"
+            },
+            {
+              "code": "no_substantive_worked_example",
+              "message": "No worked example with substantive question + solution depth",
+              "severity": "error"
+            },
+            {
+              "code": "missing_numeric_worked_example",
+              "message": "Technical subject requires at least one worked example with figures/calculation",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9708/8-1-government-policies-to-achieve-efficient-resource-allocation-and-correct-market-failure.json",
+          "topicCode": "8.1",
+          "title": "Government policies to achieve efficient resource allocation and correct market failure",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9708/9-4-money-and-banking.json",
+          "topicCode": "9.4",
+          "title": "Money and banking",
+          "status": "premium",
+          "issueCodes": [
+            "min_worked_examples"
+          ],
+          "issues": [
+            {
+              "code": "min_worked_examples",
+              "message": "Need ?2 workedExample sections (found 1)",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "9709",
+      "subjectName": "Mathematics",
+      "checked": 38,
+      "passed": 36,
+      "failed": 2,
+      "failPct": 5.3,
+      "dominantWeakness": "katex_parse_error",
+      "weaknessCounts": {
+        "katex_parse_error": 3
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/9709/2-2-logarithmic-and-exponential-functions.json",
+          "topicCode": "2.2",
+          "title": "Logarithmic and exponential functions",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: ​​\\log_e � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"​\" (8203) [unknownSymbol] at position 1: ​̲​\\log_e",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: ​​\\log_{10} � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"​\" (8203) [unknownSymbol] at position 1: ​̲​\\log_{10}",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/9709/6-1-the-poisson-distribution.json",
+          "topicCode": "6.1",
+          "title": "The Poisson distribution",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\\"lambda � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': LaTeX's accent \\\" works only in text mode [mathVsTextAccents]",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "9990",
+      "subjectName": "Psychology",
+      "checked": 60,
+      "passed": 60,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-biology-hl",
+      "subjectName": "Biology",
+      "checked": 40,
+      "passed": 38,
+      "failed": 2,
+      "failPct": 5,
+      "dominantWeakness": "katex_parse_error",
+      "weaknessCounts": {
+        "katex_parse_error": 6
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/ib-biology-hl/b2-1-membranes-and-membrane-transport.json",
+          "topicCode": "B2.1",
+          "title": "Membranes and membrane transport",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: = 6s^2 = 6 \\times 2^2 = 24\\ \\text{µm}^2 � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 35: …^2 = 24\\ \\text{µ̲m}^2",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: = s^3 = 2^3 = 8\\ \\text{µm}^3 � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 24: …2^3 = 8\\ \\text{µ̲m}^3",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: = 6 \\times 8^2 = 384\\ \\text{µm}^2 � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 29: …2 = 384\\ \\text{µ̲m}^2",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: = 8^3 = 512\\ \\text{µm}^3 � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 20: …3 = 512\\ \\text{µ̲m}^3",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/ib-biology-hl/b2-2-organelles-and-compartmentalization.json",
+          "topicCode": "B2.2",
+          "title": "Organelles and compartmentalization",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: M = \\dfrac{30\\,000\\ \\text{µm}}{1\\ \\text{µm}} = 30\\,000\\times � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 27: …30\\,000\\ \\text{µ̲m}}{1\\ \\text{µm…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: A = \\dfrac{45\\,000\\ \\text{µm}}{30\\,000} = 1.5\\ \\text{µm} � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 27: …45\\,000\\ \\text{µ̲m}}{30\\,000} = …",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "ib-biology-sl",
+      "subjectName": "Biology",
+      "checked": 36,
+      "passed": 34,
+      "failed": 2,
+      "failPct": 5.6,
+      "dominantWeakness": "katex_parse_error",
+      "weaknessCounts": {
+        "katex_parse_error": 6
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/ib-biology-sl/b2-1-membranes-and-membrane-transport.json",
+          "topicCode": "B2.1",
+          "title": "Membranes and membrane transport",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: = 6s^2 = 6 \\times 2^2 = 24\\ \\text{µm}^2 � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 35: …^2 = 24\\ \\text{µ̲m}^2",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: = s^3 = 2^3 = 8\\ \\text{µm}^3 � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 24: …2^3 = 8\\ \\text{µ̲m}^3",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: = 6 \\times 8^2 = 384\\ \\text{µm}^2 � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 29: …2 = 384\\ \\text{µ̲m}^2",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: = 8^3 = 512\\ \\text{µm}^3 � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 20: …3 = 512\\ \\text{µ̲m}^3",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/ib-biology-sl/b2-2-organelles-and-compartmentalization.json",
+          "topicCode": "B2.2",
+          "title": "Organelles and compartmentalization",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: M = \\dfrac{30\\,000\\ \\text{µm}}{1\\ \\text{µm}} = 30\\,000\\times � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 27: …30\\,000\\ \\text{µ̲m}}{1\\ \\text{µm…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: A = \\dfrac{45\\,000\\ \\text{µm}}{30\\,000} = 1.5\\ \\text{µm} � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 27: …45\\,000\\ \\text{µ̲m}}{30\\,000} = …",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "ib-business-management-hl",
+      "subjectName": "Business Management",
+      "checked": 36,
+      "passed": 35,
+      "failed": 1,
+      "failPct": 2.8,
+      "dominantWeakness": "schema_invalid",
+      "weaknessCounts": {
+        "schema_invalid": 1
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/ib-business-management-hl/1-6-multinational-companies-mncs.json",
+          "topicCode": null,
+          "title": "Multinational companies (MNCs)",
+          "status": "premium",
+          "issueCodes": [
+            "schema_invalid"
+          ],
+          "issues": [
+            {
+              "code": "schema_invalid",
+              "message": "[\n  {\n    \"origin\": \"string\",\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"sections\",\n      10,\n      \"items\",\n      7\n    ],\n    \"message\": \"Too small: expected string to have >=1 characters\"\n  }\n]",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "ib-business-management-sl",
+      "subjectName": "Business Management",
+      "checked": 25,
+      "passed": 24,
+      "failed": 1,
+      "failPct": 4,
+      "dominantWeakness": "schema_invalid",
+      "weaknessCounts": {
+        "schema_invalid": 1
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/ib-business-management-sl/1-6-multinational-companies-mncs.json",
+          "topicCode": null,
+          "title": "Multinational companies (MNCs)",
+          "status": "premium",
+          "issueCodes": [
+            "schema_invalid"
+          ],
+          "issues": [
+            {
+              "code": "schema_invalid",
+              "message": "[\n  {\n    \"origin\": \"string\",\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"sections\",\n      10,\n      \"items\",\n      7\n    ],\n    \"message\": \"Too small: expected string to have >=1 characters\"\n  }\n]",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "ib-cas",
+      "subjectName": "Creativity, Activity, Service",
+      "checked": 10,
+      "passed": 9,
+      "failed": 1,
+      "failPct": 10,
+      "dominantWeakness": "schema_invalid",
+      "weaknessCounts": {
+        "schema_invalid": 1
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/ib-cas/1-2-learning-outcome-1-strengths-and-growth.json",
+          "topicCode": null,
+          "title": "Learning outcome 1 — strengths and growth",
+          "status": "premium",
+          "issueCodes": [
+            "schema_invalid"
+          ],
+          "issues": [
+            {
+              "code": "schema_invalid",
+              "message": "[\n  {\n    \"code\": \"invalid_union\",\n    \"errors\": [],\n    \"note\": \"No matching discriminator\",\n    \"discriminator\": \"type\",\n    \"options\": [\n      \"intro\",\n      \"heading\",\n      \"text\",\n      \"formula\",\n      \"keyPoints\",\n      \"examTip\",\n      \"workedExample\",\n      \"pastPaperPractice\",\n      \"practice\",\n      \"resources\",\n      \"interactive\"\n    ],\n    \"path\": [\n      \"sections\",\n      14,\n      \"type\"\n    ],\n    \"message\": \"Invalid discriminator value. Expected 'intro' | 'heading' | 'text' | 'formula' | 'keyPoints' | 'examTip' | 'workedExample' | 'pastPaperPractice' | 'practice' | 'resources' | 'interactive'\"\n  }\n]",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "ib-chemistry-hl",
+      "subjectName": "Chemistry",
+      "checked": 22,
+      "passed": 22,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-chemistry-sl",
+      "subjectName": "Chemistry",
+      "checked": 21,
+      "passed": 21,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-computer-science-hl",
+      "subjectName": "Computer Science",
+      "checked": 22,
+      "passed": 22,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-computer-science-sl",
+      "subjectName": "Computer Science",
+      "checked": 11,
+      "passed": 11,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-dance-hl",
+      "subjectName": "Dance",
+      "checked": 10,
+      "passed": 10,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-dance-sl",
+      "subjectName": "Dance",
+      "checked": 10,
+      "passed": 10,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-economics-hl",
+      "subjectName": "Economics",
+      "checked": 32,
+      "passed": 29,
+      "failed": 3,
+      "failPct": 9.4,
+      "dominantWeakness": "katex_parse_error",
+      "weaknessCounts": {
+        "katex_parse_error": 23
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/ib-economics-hl/3-1-measuring-economic-activity-gdp-gni-and-the-business-cycle.json",
+          "topicCode": "3.1",
+          "title": "Measuring economic activity: GDP, GNI and the business cycle",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 815bn) exceeds GDP (\\ � KaTeX parse error: Unexpected character: '\\' at position 21: …) exceeds GDP (\\̲",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/ib-economics-hl/4-2-free-trade-and-protectionism.json",
+          "topicCode": "4.2",
+          "title": "Free trade and protectionism",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: P_w = \\ � KaTeX parse error: Unexpected character: '\\' at position 7: P_w = \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: = t \\times (Q_{D2} - Q_{S2}) = \\ � KaTeX parse error: Unexpected character: '\\' at position 32: …2} - Q_{S2}) = \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 0.5 \\times (40 - 20) \\times \\ � KaTeX parse error: Unexpected character: '\\' at position 29: …0 - 20) \\times \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 0.5 \\times (100 - 80) \\times \\ � KaTeX parse error: Unexpected character: '\\' at position 30: …0 - 80) \\times \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: = 1{,}000 + 1{,}000 = \\ � KaTeX parse error: Unexpected character: '\\' at position 23: …00 + 1{,}000 = \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: ** (i.e. \\ � KaTeX parse error: Unexpected character: '\\' at position 10: ** (i.e. \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 200 - 2P = 2P - 20 \\implies 220 = 4P \\implies P = \\ � KaTeX parse error: Unexpected character: '\\' at position 51: …P \\implies P = \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: . The domestic price rises from \\ � KaTeX parse error: Unexpected character: '\\' at position 33: …ice rises from \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: P = \\ � KaTeX parse error: Unexpected character: '\\' at position 5: P = \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: = 20 \\times (\\ � KaTeX parse error: Unexpected character: '\\' at position 14: = 20 \\times (\\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 50) = 20 \\times \\ � KaTeX parse error: Unexpected character: '\\' at position 17: …0) = 20 \\times \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 50 world price and resell at the \\ � KaTeX parse error: Unexpected character: '\\' at position 34: … resell at the \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 0.5 \\times (Q_{S2} - Q_{S1}) \\times \\ � KaTeX parse error: Unexpected character: '\\' at position 37: …Q_{S1}) \\times \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 0.5 \\times (100 - 90) \\times 5 = 0.5 \\times 10 \\times 5 = \\ � KaTeX parse error: Unexpected character: '\\' at position 59: … 10 \\times 5 = \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: = 25 + 25 = \\ � KaTeX parse error: Unexpected character: '\\' at position 13: = 25 + 25 = \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: ** (i.e. \\ � KaTeX parse error: Unexpected character: '\\' at position 10: ** (i.e. \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 55 would create the SAME deadweight loss (\\ � KaTeX parse error: Unexpected character: '\\' at position 43: …adweight loss (\\̲",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/ib-economics-hl/4-4-exchange-rates.json",
+          "topicCode": "4.4",
+          "title": "Exchange rates",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 1.10. A German machine is priced at €50,000 and is sold in t � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"€\" (8364) [unknownSymbol] at position 37: …e is priced at €̲50,000 and is s…",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "ib-economics-sl",
+      "subjectName": "Economics",
+      "checked": 21,
+      "passed": 20,
+      "failed": 1,
+      "failPct": 4.8,
+      "dominantWeakness": "katex_parse_error",
+      "weaknessCounts": {
+        "katex_parse_error": 21
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/ib-economics-sl/4-2-free-trade-and-protectionism.json",
+          "topicCode": "4.2",
+          "title": "Free trade and protectionism",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: P_w = \\ � KaTeX parse error: Unexpected character: '\\' at position 7: P_w = \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: = t \\times (Q_{D2} - Q_{S2}) = \\ � KaTeX parse error: Unexpected character: '\\' at position 32: …2} - Q_{S2}) = \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 0.5 \\times (40 - 20) \\times \\ � KaTeX parse error: Unexpected character: '\\' at position 29: …0 - 20) \\times \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 0.5 \\times (100 - 80) \\times \\ � KaTeX parse error: Unexpected character: '\\' at position 30: …0 - 80) \\times \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: = 1{,}000 + 1{,}000 = \\ � KaTeX parse error: Unexpected character: '\\' at position 23: …00 + 1{,}000 = \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: ** (i.e. \\ � KaTeX parse error: Unexpected character: '\\' at position 10: ** (i.e. \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 200 - 2P = 2P - 20 \\implies 220 = 4P \\implies P = \\ � KaTeX parse error: Unexpected character: '\\' at position 51: …P \\implies P = \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: . The domestic price rises from \\ � KaTeX parse error: Unexpected character: '\\' at position 33: …ice rises from \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: P = \\ � KaTeX parse error: Unexpected character: '\\' at position 5: P = \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: = 20 \\times (\\ � KaTeX parse error: Unexpected character: '\\' at position 14: = 20 \\times (\\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 50) = 20 \\times \\ � KaTeX parse error: Unexpected character: '\\' at position 17: …0) = 20 \\times \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 50 world price and resell at the \\ � KaTeX parse error: Unexpected character: '\\' at position 34: … resell at the \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 0.5 \\times (Q_{S2} - Q_{S1}) \\times \\ � KaTeX parse error: Unexpected character: '\\' at position 37: …Q_{S1}) \\times \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 0.5 \\times (100 - 90) \\times 5 = 0.5 \\times 10 \\times 5 = \\ � KaTeX parse error: Unexpected character: '\\' at position 59: … 10 \\times 5 = \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: = 25 + 25 = \\ � KaTeX parse error: Unexpected character: '\\' at position 13: = 25 + 25 = \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: ** (i.e. \\ � KaTeX parse error: Unexpected character: '\\' at position 10: ** (i.e. \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 55 would create the SAME deadweight loss (\\ � KaTeX parse error: Unexpected character: '\\' at position 43: …adweight loss (\\̲",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "ib-english-a-lang-lit-hl",
+      "subjectName": "English A: Language and Literature",
+      "checked": 10,
+      "passed": 10,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-english-a-lang-lit-sl",
+      "subjectName": "English A: Language and Literature",
+      "checked": 11,
+      "passed": 11,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-english-a-literature-hl",
+      "subjectName": "English A: Literature",
+      "checked": 11,
+      "passed": 11,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-english-a-literature-sl",
+      "subjectName": "English A: Literature",
+      "checked": 12,
+      "passed": 12,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-environmental-systems-and-societies-sl",
+      "subjectName": "Environmental Systems and Societies",
+      "checked": 11,
+      "passed": 11,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-extended-essay",
+      "subjectName": "Extended Essay",
+      "checked": 10,
+      "passed": 10,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-film-hl",
+      "subjectName": "Film",
+      "checked": 10,
+      "passed": 10,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-film-sl",
+      "subjectName": "Film",
+      "checked": 11,
+      "passed": 10,
+      "failed": 1,
+      "failPct": 9.1,
+      "dominantWeakness": "schema_invalid",
+      "weaknessCounts": {
+        "schema_invalid": 1
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/ib-film-sl/3-2-portfolio-development-and-reflective-rationale.json",
+          "topicCode": null,
+          "title": "Portfolio development and reflective rationale",
+          "status": "premium",
+          "issueCodes": [
+            "schema_invalid"
+          ],
+          "issues": [
+            {
+              "code": "schema_invalid",
+              "message": "[\n  {\n    \"code\": \"invalid_union\",\n    \"errors\": [],\n    \"note\": \"No matching discriminator\",\n    \"discriminator\": \"type\",\n    \"options\": [\n      \"intro\",\n      \"heading\",\n      \"text\",\n      \"formula\",\n      \"keyPoints\",\n      \"examTip\",\n      \"workedExample\",\n      \"pastPaperPractice\",\n      \"practice\",\n      \"resources\",\n      \"interactive\"\n    ],\n    \"path\": [\n      \"sections\",\n      16,\n      \"type\"\n    ],\n    \"message\": \"Invalid discriminator value. Expected 'intro' | 'heading' | 'text' | 'formula' | 'keyPoints' | 'examTip' | 'workedExample' | 'pastPaperPractice' | 'practice' | 'resources' | 'interactive'\"\n  }\n]",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "ib-french-b-hl",
+      "subjectName": "French B",
+      "checked": 10,
+      "passed": 10,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-french-b-sl",
+      "subjectName": "French B",
+      "checked": 9,
+      "passed": 8,
+      "failed": 1,
+      "failPct": 11.1,
+      "dominantWeakness": "schema_invalid",
+      "weaknessCounts": {
+        "schema_invalid": 1
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/ib-french-b-sl/4-2-paper-2-reading-comprehension-strategies.json",
+          "topicCode": null,
+          "title": "Paper 2 — reading comprehension strategies",
+          "status": "premium",
+          "issueCodes": [
+            "schema_invalid"
+          ],
+          "issues": [
+            {
+              "code": "schema_invalid",
+              "message": "[\n  {\n    \"code\": \"invalid_union\",\n    \"errors\": [],\n    \"note\": \"No matching discriminator\",\n    \"discriminator\": \"type\",\n    \"options\": [\n      \"intro\",\n      \"heading\",\n      \"text\",\n      \"formula\",\n      \"keyPoints\",\n      \"examTip\",\n      \"workedExample\",\n      \"pastPaperPractice\",\n      \"practice\",\n      \"resources\",\n      \"interactive\"\n    ],\n    \"path\": [\n      \"sections\",\n      19,\n      \"type\"\n    ],\n    \"message\": \"Invalid discriminator value. Expected 'intro' | 'heading' | 'text' | 'formula' | 'keyPoints' | 'examTip' | 'workedExample' | 'pastPaperPractice' | 'practice' | 'resources' | 'interactive'\"\n  }\n]",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "ib-geography-hl",
+      "subjectName": "Geography",
+      "checked": 14,
+      "passed": 14,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-geography-sl",
+      "subjectName": "Geography",
+      "checked": 10,
+      "passed": 10,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-history-hl",
+      "subjectName": "History",
+      "checked": 17,
+      "passed": 17,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-history-sl",
+      "subjectName": "History",
+      "checked": 11,
+      "passed": 10,
+      "failed": 1,
+      "failPct": 9.1,
+      "dominantWeakness": "schema_invalid",
+      "weaknessCounts": {
+        "schema_invalid": 1
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/ib-history-sl/2-3-societies-in-transition-1400-1700.json",
+          "topicCode": null,
+          "title": "Societies in transition (1400–1700)",
+          "status": "premium",
+          "issueCodes": [
+            "schema_invalid"
+          ],
+          "issues": [
+            {
+              "code": "schema_invalid",
+              "message": "[\n  {\n    \"code\": \"invalid_union\",\n    \"errors\": [],\n    \"note\": \"No matching discriminator\",\n    \"discriminator\": \"type\",\n    \"options\": [\n      \"intro\",\n      \"heading\",\n      \"text\",\n      \"formula\",\n      \"keyPoints\",\n      \"examTip\",\n      \"workedExample\",\n      \"pastPaperPractice\",\n      \"practice\",\n      \"resources\",\n      \"interactive\"\n    ],\n    \"path\": [\n      \"sections\",\n      13,\n      \"type\"\n    ],\n    \"message\": \"Invalid discriminator value. Expected 'intro' | 'heading' | 'text' | 'formula' | 'keyPoints' | 'examTip' | 'workedExample' | 'pastPaperPractice' | 'practice' | 'resources' | 'interactive'\"\n  }\n]",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "ib-maths-aa-hl",
+      "subjectName": "Mathematics: Analysis and Approaches",
+      "checked": 43,
+      "passed": 43,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-maths-aa-sl",
+      "subjectName": "Mathematics: Analysis and Approaches",
+      "checked": 29,
+      "passed": 29,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-maths-ai-hl",
+      "subjectName": "Mathematics: Applications and Interpretation",
+      "checked": 42,
+      "passed": 36,
+      "failed": 6,
+      "failPct": 14.3,
+      "dominantWeakness": "katex_parse_error",
+      "weaknessCounts": {
+        "katex_parse_error": 44
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/ib-maths-ai-hl/1-3-financial-mathematics-compound-interest-annuities-and-amortization.json",
+          "topicCode": "1.3",
+          "title": "Financial mathematics: compound interest, annuities and amortization",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: (the negative sign shows it is money paid out).  [A1]\\n\\n**( � KaTeX parse error: Undefined control sequence: \\n at position 54: …aid out).  [A1]\\̲n̲\\n**(b) Total r…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: (use the unrounded PMT).  [M1]\\nDavid repays about � KaTeX parse error: Undefined control sequence: \\nDavid at position 31: …ded PMT).  [M1]\\̲n̲D̲a̲v̲i̲d̲ ̲repays about",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: .\\n\\n*Method B — GDC finance (TVM) solver.* Enter\\n � KaTeX parse error: Undefined control sequence: \\n at position 2: .\\̲n̲\\n*Method B — G…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\nand solve for FV. The solver returns � KaTeX parse error: Undefined control sequence: \\nand at position 1: \\̲n̲a̲n̲d̲ ̲solve for FV. T…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: , rounded to 2 decimal places for currency and with the curr � KaTeX parse error: Undefined control sequence: \\n at position 225: …heir own value.\\̲n̲\\n**'Accept GDC…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/ib-maths-ai-hl/2-1-linear-models-and-equations-of-straight-lines.json",
+          "topicCode": "2.1",
+          "title": "Linear models and equations of straight lines",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 3.50 fixed fee plus \\ � KaTeX parse error: Unexpected character: '\\' at position 21: …fixed fee plus \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: .)\\n\\n**Predict the 9 km fare.** Substitute � KaTeX parse error: Undefined control sequence: \\n at position 3: .)\\̲n̲\\n**Predict the…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: :\\n � KaTeX parse error: Undefined control sequence: \\n at position 2: :\\̲n̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 1.20 is the cost per km, and a 9 km journey costs \\ � KaTeX parse error: Unexpected character: '\\' at position 51: … journey costs \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 1.20 per km. Crucially, this mark requires the UNITS: 'the c � KaTeX parse error: Undefined control sequence: \\n at position 139: …does not score.\\̲n̲- **M1 — substi…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: . This is FT — a candidate whose model was slightly wrong st � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"—\" (8212) [unknownSymbol] at position 14: . This is FT —̲ a candidate wh…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 1.20 for each extra km', and accepts \\ � KaTeX parse error: Unexpected character: '\\' at position 38: …', and accepts \\̲",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/ib-maths-ai-hl/2-6-modelling-with-logistic-piecewise-and-other-functions.json",
+          "topicCode": "2.6",
+          "title": "Modelling with logistic, piecewise and other functions",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 10.  [A1]\\n\\n**(b)** Here � KaTeX parse error: Undefined control sequence: \\n at position 10: 10.  [A1]\\̲n̲\\n**(b)** Here",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: , the second rule applies.  [M1: correct interval]\\n � KaTeX parse error: Undefined control sequence: \\n at position 51: …rrect interval]\\̲n̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: , so the cost is \\ � KaTeX parse error: Unexpected character: '\\' at position 18: …so the cost is \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 24 exceeds \\ � KaTeX parse error: Unexpected character: '\\' at position 12: 24 exceeds \\̲",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/ib-maths-ai-hl/3-7-graph-theory-adjacency-matrices-and-walks.json",
+          "topicCode": "3.7",
+          "title": "Graph theory: adjacency matrices and walks",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: M = \\\\begin{pmatrix} 0 & 1 & 1 & 0 & 0 \\\\\\\\ 1 & 0 & 1 & 1 &  � KaTeX parse error: Expected 'EOF', got '&' at position 24: …gin{pmatrix} 0 &̲ 1 & 1 & 0 & 0 …",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: A = \\\\begin{pmatrix} 0 & 1 & 0 & 0 \\\\\\\\ 0 & 0 & 1 & 0 \\\\\\\\ 1 � KaTeX parse error: Expected 'EOF', got '&' at position 24: …gin{pmatrix} 0 &̲ 1 & 0 & 0 \\\\\\\\…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: A^3 = \\\\begin{pmatrix} 1 & 0 & 0 & 1 \\\\\\\\ 0 & 2 & 0 & 0 \\\\\\\\ � KaTeX parse error: Expected 'EOF', got '&' at position 26: …gin{pmatrix} 1 &̲ 0 & 0 & 1 \\\\\\\\…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: C = \\\\begin{pmatrix} 0 & 4 & 6 & - \\\\\\\\ 4 & 0 & 2 & - \\\\\\\\ 6 � KaTeX parse error: Expected 'EOF', got '&' at position 24: …gin{pmatrix} 0 &̲ 4 & 6 & - \\\\\\\\…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: A = \\\\begin{pmatrix} 0 & 1 & 1 \\\\\\\\ 1 & 0 & 1 \\\\\\\\ 1 & 1 & 0 � KaTeX parse error: Expected 'EOF', got '&' at position 24: …gin{pmatrix} 0 &̲ 1 & 1 \\\\\\\\ 1 &…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: A^2 = A \\\\times A = \\\\begin{pmatrix} 0 & 1 & 1 \\\\\\\\ 1 & 0 &  � KaTeX parse error: Expected 'EOF', got '&' at position 40: …gin{pmatrix} 0 &̲ 1 & 1 \\\\\\\\ 1 &…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\\\begin{pmatrix} 2 & 1 & 1 \\\\\\\\ 1 & 2 & 1 \\\\\\\\ 1 & 1 & 2 \\\\e � KaTeX parse error: Expected 'EOF', got '&' at position 20: …gin{pmatrix} 2 &̲ 1 & 1 \\\\\\\\ 1 &…",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/ib-maths-ai-hl/4-3-correlation-and-regression-pearson-and-spearman.json",
+          "topicCode": "4.3",
+          "title": "Correlation and regression: Pearson and Spearman",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: ), of seven flats: \\n \\n | Area, � KaTeX parse error: Undefined control sequence: \\n at position 20: …f seven flats: \\̲n̲ ̲\\n | Area,",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: | 45 | 60 | 72 | 85 | 95 | 110 | 130 | \\n |---|---|---|---|- � KaTeX parse error: Undefined control sequence: \\n at position 40: … | 110 | 130 | \\̲n̲ ̲|---|---|---|--…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: | 120 | 150 | 175 | 190 | 230 | 260 | 900 | \\n \\n The larges � KaTeX parse error: Undefined control sequence: \\n at position 45: … | 260 | 900 | \\̲n̲ ̲\\n The largest …",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: for the raw data. \\n (b) By ranking the data, find Spearman' � KaTeX parse error: Undefined control sequence: \\n at position 19: … the raw data. \\̲n̲ ̲(b) By ranking …",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: down to a merely 'moderate/strong' value.\\n\\n**(b) Spearman' � KaTeX parse error: Undefined control sequence: \\n at position 42: …/strong' value.\\̲n̲\\n**(b) Spearma…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: ):\\nArea ranks: � KaTeX parse error: Undefined control sequence: \\nArea at position 3: ):\\̲n̲A̲r̲e̲a̲ ̲ranks:",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: . \\nPrice ranks: � KaTeX parse error: Undefined control sequence: \\nPrice at position 3: . \\̲n̲P̲r̲i̲c̲e̲ ̲ranks:",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: (the prices are already in increasing order). \\nEnter the tw � KaTeX parse error: Undefined control sequence: \\nEnter at position 47: …easing order). \\̲n̲E̲n̲t̲e̲r̲ ̲the two rank li…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: (3 s.f.).  [M1 for ranking both variables, A1 for the value] � KaTeX parse error: Undefined control sequence: \\n at position 61: … for the value]\\̲n̲\\n**(c) Which i…",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/ib-maths-ai-hl/4-5-discrete-random-variables-and-expected-value.json",
+          "topicCode": "4.5",
+          "title": "Discrete random variables and expected value",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 5 to roll a fair eight-sided die (faces 1 to 8). If the numb � KaTeX parse error: Unexpected character: '\\' at position 81: … even they win \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 10; if it is 5 or 7 they win nothing. \\n \\n (a) Find the exp � KaTeX parse error: Undefined control sequence: \\n at position 39: …y win nothing. \\̲n̲ ̲\\n (a) Find the…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: E(W) = 2 + 2.5 + 0 = \\ � KaTeX parse error: Unexpected character: '\\' at position 22: … 2 + 2.5 + 0 = \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: [A1]\\n\\n**(b) Subtract the stake.** Expected gain � KaTeX parse error: Undefined control sequence: \\n at position 5: [A1]\\̲n̲\\n**(b) Subtrac…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: -\\ � KaTeX parse error: Unexpected character: '\\' at position 2: -\\̲",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "ib-maths-ai-sl",
+      "subjectName": "Mathematics: Applications and Interpretation",
+      "checked": 28,
+      "passed": 23,
+      "failed": 5,
+      "failPct": 17.9,
+      "dominantWeakness": "katex_parse_error",
+      "weaknessCounts": {
+        "katex_parse_error": 37
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/ib-maths-ai-sl/1-3-financial-mathematics-compound-interest-annuities-and-amortization.json",
+          "topicCode": "1.3",
+          "title": "Financial mathematics: compound interest, annuities and amortization",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: (the negative sign shows it is money paid out).  [A1]\\n\\n**( � KaTeX parse error: Undefined control sequence: \\n at position 54: …aid out).  [A1]\\̲n̲\\n**(b) Total r…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: (use the unrounded PMT).  [M1]\\nDavid repays about � KaTeX parse error: Undefined control sequence: \\nDavid at position 31: …ded PMT).  [M1]\\̲n̲D̲a̲v̲i̲d̲ ̲repays about",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: .\\n\\n*Method B — GDC finance (TVM) solver.* Enter\\n � KaTeX parse error: Undefined control sequence: \\n at position 2: .\\̲n̲\\n*Method B — G…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\nand solve for FV. The solver returns � KaTeX parse error: Undefined control sequence: \\nand at position 1: \\̲n̲a̲n̲d̲ ̲solve for FV. T…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: , rounded to 2 decimal places for currency and with the curr � KaTeX parse error: Undefined control sequence: \\n at position 225: …heir own value.\\̲n̲\\n**'Accept GDC…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: \\ � KaTeX parse error: Unexpected character: '\\' at position 1: \\̲",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/ib-maths-ai-sl/2-1-linear-models-and-equations-of-straight-lines.json",
+          "topicCode": "2.1",
+          "title": "Linear models and equations of straight lines",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 3.50 fixed fee plus \\ � KaTeX parse error: Unexpected character: '\\' at position 21: …fixed fee plus \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: .)\\n\\n**Predict the 9 km fare.** Substitute � KaTeX parse error: Undefined control sequence: \\n at position 3: .)\\̲n̲\\n**Predict the…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: :\\n � KaTeX parse error: Undefined control sequence: \\n at position 2: :\\̲n̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 1.20 is the cost per km, and a 9 km journey costs \\ � KaTeX parse error: Unexpected character: '\\' at position 51: … journey costs \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 1.20 per km. Crucially, this mark requires the UNITS: 'the c � KaTeX parse error: Undefined control sequence: \\n at position 139: …does not score.\\̲n̲- **M1 — substi…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: . This is FT — a candidate whose model was slightly wrong st � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"—\" (8212) [unknownSymbol] at position 14: . This is FT —̲ a candidate wh…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 1.20 for each extra km', and accepts \\ � KaTeX parse error: Unexpected character: '\\' at position 38: …', and accepts \\̲",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/ib-maths-ai-sl/2-6-modelling-with-logistic-piecewise-and-other-functions.json",
+          "topicCode": "2.6",
+          "title": "Modelling with logistic, piecewise and other functions",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 10.  [A1]\\n\\n**(b)** Here � KaTeX parse error: Undefined control sequence: \\n at position 10: 10.  [A1]\\̲n̲\\n**(b)** Here",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: , the second rule applies.  [M1: correct interval]\\n � KaTeX parse error: Undefined control sequence: \\n at position 51: …rrect interval]\\̲n̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: , so the cost is \\ � KaTeX parse error: Unexpected character: '\\' at position 18: …so the cost is \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 24 exceeds \\ � KaTeX parse error: Unexpected character: '\\' at position 12: 24 exceeds \\̲",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/ib-maths-ai-sl/4-3-correlation-and-regression-pearson-and-spearman.json",
+          "topicCode": "4.3",
+          "title": "Correlation and regression: Pearson and Spearman",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: ), of seven flats: \\n \\n | Area, � KaTeX parse error: Undefined control sequence: \\n at position 20: …f seven flats: \\̲n̲ ̲\\n | Area,",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: | 45 | 60 | 72 | 85 | 95 | 110 | 130 | \\n |---|---|---|---|- � KaTeX parse error: Undefined control sequence: \\n at position 40: … | 110 | 130 | \\̲n̲ ̲|---|---|---|--…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: | 120 | 150 | 175 | 190 | 230 | 260 | 900 | \\n \\n The larges � KaTeX parse error: Undefined control sequence: \\n at position 45: … | 260 | 900 | \\̲n̲ ̲\\n The largest …",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: for the raw data. \\n (b) By ranking the data, find Spearman' � KaTeX parse error: Undefined control sequence: \\n at position 19: … the raw data. \\̲n̲ ̲(b) By ranking …",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: down to a merely 'moderate/strong' value.\\n\\n**(b) Spearman' � KaTeX parse error: Undefined control sequence: \\n at position 42: …/strong' value.\\̲n̲\\n**(b) Spearma…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: ):\\nArea ranks: � KaTeX parse error: Undefined control sequence: \\nArea at position 3: ):\\̲n̲A̲r̲e̲a̲ ̲ranks:",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: . \\nPrice ranks: � KaTeX parse error: Undefined control sequence: \\nPrice at position 3: . \\̲n̲P̲r̲i̲c̲e̲ ̲ranks:",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: (the prices are already in increasing order). \\nEnter the tw � KaTeX parse error: Undefined control sequence: \\nEnter at position 47: …easing order). \\̲n̲E̲n̲t̲e̲r̲ ̲the two rank li…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: (3 s.f.).  [M1 for ranking both variables, A1 for the value] � KaTeX parse error: Undefined control sequence: \\n at position 61: … for the value]\\̲n̲\\n**(c) Which i…",
+              "severity": "error"
+            }
+          ]
+        },
+        {
+          "filePath": "content/courses/ib-maths-ai-sl/4-5-discrete-random-variables-and-expected-value.json",
+          "topicCode": "4.5",
+          "title": "Discrete random variables and expected value",
+          "status": "premium",
+          "issueCodes": [
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error",
+            "katex_parse_error"
+          ],
+          "issues": [
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 5 to roll a fair eight-sided die (faces 1 to 8). If the numb � KaTeX parse error: Unexpected character: '\\' at position 81: … even they win \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: 10; if it is 5 or 7 they win nothing. \\n \\n (a) Find the exp � KaTeX parse error: Undefined control sequence: \\n at position 39: …y win nothing. \\̲n̲ ̲\\n (a) Find the…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: E(W) = 2 + 2.5 + 0 = \\ � KaTeX parse error: Unexpected character: '\\' at position 22: … 2 + 2.5 + 0 = \\̲",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: [A1]\\n\\n**(b) Subtract the stake.** Expected gain � KaTeX parse error: Undefined control sequence: \\n at position 5: [A1]\\̲n̲\\n**(b) Subtrac…",
+              "severity": "error"
+            },
+            {
+              "code": "katex_parse_error",
+              "message": "Unparseable KaTeX: -\\ � KaTeX parse error: Unexpected character: '\\' at position 2: -\\̲",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "ib-music-hl",
+      "subjectName": "Music",
+      "checked": 11,
+      "passed": 11,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-music-sl",
+      "subjectName": "Music",
+      "checked": 10,
+      "passed": 10,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-physics-hl",
+      "subjectName": "Physics",
+      "checked": 24,
+      "passed": 24,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-physics-sl",
+      "subjectName": "Physics",
+      "checked": 19,
+      "passed": 19,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-psychology-hl",
+      "subjectName": "Psychology",
+      "checked": 26,
+      "passed": 26,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-psychology-sl",
+      "subjectName": "Psychology",
+      "checked": 23,
+      "passed": 23,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-spanish-b-hl",
+      "subjectName": "Spanish B",
+      "checked": 10,
+      "passed": 10,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-spanish-b-sl",
+      "subjectName": "Spanish B",
+      "checked": 9,
+      "passed": 9,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-theatre-hl",
+      "subjectName": "Theatre",
+      "checked": 11,
+      "passed": 11,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-theatre-sl",
+      "subjectName": "Theatre",
+      "checked": 11,
+      "passed": 10,
+      "failed": 1,
+      "failPct": 9.1,
+      "dominantWeakness": "schema_invalid",
+      "weaknessCounts": {
+        "schema_invalid": 1
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/ib-theatre-sl/3-2-performance-skills-and-reflection.json",
+          "topicCode": null,
+          "title": "Performance skills and reflection",
+          "status": "premium",
+          "issueCodes": [
+            "schema_invalid"
+          ],
+          "issues": [
+            {
+              "code": "schema_invalid",
+              "message": "[\n  {\n    \"code\": \"invalid_union\",\n    \"errors\": [],\n    \"note\": \"No matching discriminator\",\n    \"discriminator\": \"type\",\n    \"options\": [\n      \"intro\",\n      \"heading\",\n      \"text\",\n      \"formula\",\n      \"keyPoints\",\n      \"examTip\",\n      \"workedExample\",\n      \"pastPaperPractice\",\n      \"practice\",\n      \"resources\",\n      \"interactive\"\n    ],\n    \"path\": [\n      \"sections\",\n      15,\n      \"type\"\n    ],\n    \"message\": \"Invalid discriminator value. Expected 'intro' | 'heading' | 'text' | 'formula' | 'keyPoints' | 'examTip' | 'workedExample' | 'pastPaperPractice' | 'practice' | 'resources' | 'interactive'\"\n  }\n]",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "ib-tok",
+      "subjectName": "Theory of Knowledge",
+      "checked": 15,
+      "passed": 15,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    },
+    {
+      "subjectCode": "ib-visual-arts-hl",
+      "subjectName": "Visual Arts",
+      "checked": 13,
+      "passed": 12,
+      "failed": 1,
+      "failPct": 7.7,
+      "dominantWeakness": "schema_invalid",
+      "weaknessCounts": {
+        "schema_invalid": 1
+      },
+      "failures": [
+        {
+          "filePath": "content/courses/ib-visual-arts-hl/1-1-visual-arts-inquiry-and-investigation.json",
+          "topicCode": null,
+          "title": "Visual arts inquiry and investigation",
+          "status": "premium",
+          "issueCodes": [
+            "schema_invalid"
+          ],
+          "issues": [
+            {
+              "code": "schema_invalid",
+              "message": "[\n  {\n    \"code\": \"invalid_union\",\n    \"errors\": [],\n    \"note\": \"No matching discriminator\",\n    \"discriminator\": \"type\",\n    \"options\": [\n      \"intro\",\n      \"heading\",\n      \"text\",\n      \"formula\",\n      \"keyPoints\",\n      \"examTip\",\n      \"workedExample\",\n      \"pastPaperPractice\",\n      \"practice\",\n      \"resources\",\n      \"interactive\"\n    ],\n    \"path\": [\n      \"sections\",\n      16,\n      \"type\"\n    ],\n    \"message\": \"Invalid discriminator value. Expected 'intro' | 'heading' | 'text' | 'formula' | 'keyPoints' | 'examTip' | 'workedExample' | 'pastPaperPractice' | 'practice' | 'resources' | 'interactive'\"\n  }\n]",
+              "severity": "error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subjectCode": "ib-visual-arts-sl",
+      "subjectName": "Visual Arts",
+      "checked": 13,
+      "passed": 13,
+      "failed": 0,
+      "failPct": 0,
+      "dominantWeakness": null,
+      "weaknessCounts": {},
+      "failures": []
+    }
+  ],
+  "rankedByNeed": [
+    {
+      "subjectCode": "9700",
+      "failPct": 22.7,
+      "failed": 10,
+      "checked": 44,
+      "dominantWeakness": "min_worked_examples"
+    },
+    {
+      "subjectCode": "9702",
+      "failPct": 18.2,
+      "failed": 14,
+      "checked": 77,
+      "dominantWeakness": "min_worked_examples"
+    },
+    {
+      "subjectCode": "ib-maths-ai-sl",
+      "failPct": 17.9,
+      "failed": 5,
+      "checked": 28,
+      "dominantWeakness": "katex_parse_error"
+    },
+    {
+      "subjectCode": "ib-maths-ai-hl",
+      "failPct": 14.3,
+      "failed": 6,
+      "checked": 42,
+      "dominantWeakness": "katex_parse_error"
+    },
+    {
+      "subjectCode": "ib-french-b-sl",
+      "failPct": 11.1,
+      "failed": 1,
+      "checked": 9,
+      "dominantWeakness": "schema_invalid"
+    },
+    {
+      "subjectCode": "9706",
+      "failPct": 10.5,
+      "failed": 2,
+      "checked": 19,
+      "dominantWeakness": "low_coverage_score"
+    },
+    {
+      "subjectCode": "9609",
+      "failPct": 10.3,
+      "failed": 12,
+      "checked": 116,
+      "dominantWeakness": "min_worked_examples"
+    },
+    {
+      "subjectCode": "ib-cas",
+      "failPct": 10,
+      "failed": 1,
+      "checked": 10,
+      "dominantWeakness": "schema_invalid"
+    },
+    {
+      "subjectCode": "ib-economics-hl",
+      "failPct": 9.4,
+      "failed": 3,
+      "checked": 32,
+      "dominantWeakness": "katex_parse_error"
+    },
+    {
+      "subjectCode": "ib-film-sl",
+      "failPct": 9.1,
+      "failed": 1,
+      "checked": 11,
+      "dominantWeakness": "schema_invalid"
+    },
+    {
+      "subjectCode": "ib-history-sl",
+      "failPct": 9.1,
+      "failed": 1,
+      "checked": 11,
+      "dominantWeakness": "schema_invalid"
+    },
+    {
+      "subjectCode": "ib-theatre-sl",
+      "failPct": 9.1,
+      "failed": 1,
+      "checked": 11,
+      "dominantWeakness": "schema_invalid"
+    },
+    {
+      "subjectCode": "7115",
+      "failPct": 8,
+      "failed": 2,
+      "checked": 25,
+      "dominantWeakness": "min_worked_examples"
+    },
+    {
+      "subjectCode": "ib-visual-arts-hl",
+      "failPct": 7.7,
+      "failed": 1,
+      "checked": 13,
+      "dominantWeakness": "schema_invalid"
+    },
+    {
+      "subjectCode": "9701",
+      "failPct": 6.7,
+      "failed": 6,
+      "checked": 90,
+      "dominantWeakness": "min_heading_groups"
+    },
+    {
+      "subjectCode": "9084",
+      "failPct": 5.7,
+      "failed": 3,
+      "checked": 53,
+      "dominantWeakness": "min_worked_examples"
+    },
+    {
+      "subjectCode": "9708",
+      "failPct": 5.7,
+      "failed": 3,
+      "checked": 53,
+      "dominantWeakness": "min_worked_examples"
+    },
+    {
+      "subjectCode": "9699",
+      "failPct": 5.7,
+      "failed": 2,
+      "checked": 35,
+      "dominantWeakness": "min_worked_examples"
+    },
+    {
+      "subjectCode": "ib-biology-sl",
+      "failPct": 5.6,
+      "failed": 2,
+      "checked": 36,
+      "dominantWeakness": "katex_parse_error"
+    },
+    {
+      "subjectCode": "9709",
+      "failPct": 5.3,
+      "failed": 2,
+      "checked": 38,
+      "dominantWeakness": "katex_parse_error"
+    },
+    {
+      "subjectCode": "ib-biology-hl",
+      "failPct": 5,
+      "failed": 2,
+      "checked": 40,
+      "dominantWeakness": "katex_parse_error"
+    },
+    {
+      "subjectCode": "ib-economics-sl",
+      "failPct": 4.8,
+      "failed": 1,
+      "checked": 21,
+      "dominantWeakness": "katex_parse_error"
+    },
+    {
+      "subjectCode": "ib-business-management-sl",
+      "failPct": 4,
+      "failed": 1,
+      "checked": 25,
+      "dominantWeakness": "schema_invalid"
+    },
+    {
+      "subjectCode": "ib-business-management-hl",
+      "failPct": 2.8,
+      "failed": 1,
+      "checked": 36,
+      "dominantWeakness": "schema_invalid"
+    },
+    {
+      "subjectCode": "9618",
+      "failPct": 2.2,
+      "failed": 1,
+      "checked": 45,
+      "dominantWeakness": "min_heading_groups"
+    },
+    {
+      "subjectCode": "2281",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 36,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "9231",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 24,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "9990",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 60,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-chemistry-hl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 22,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-chemistry-sl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 21,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-computer-science-hl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 22,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-computer-science-sl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 11,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-dance-hl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 10,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-dance-sl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 10,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-english-a-lang-lit-hl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 10,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-english-a-lang-lit-sl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 11,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-english-a-literature-hl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 11,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-english-a-literature-sl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 12,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-environmental-systems-and-societies-sl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 11,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-extended-essay",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 10,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-film-hl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 10,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-french-b-hl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 10,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-geography-hl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 14,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-geography-sl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 10,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-history-hl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 17,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-maths-aa-hl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 43,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-maths-aa-sl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 29,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-music-hl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 11,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-music-sl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 10,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-physics-hl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 24,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-physics-sl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 19,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-psychology-hl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 26,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-psychology-sl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 23,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-spanish-b-hl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 10,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-spanish-b-sl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 9,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-theatre-hl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 11,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-tok",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 15,
+      "dominantWeakness": null
+    },
+    {
+      "subjectCode": "ib-visual-arts-sl",
+      "failPct": 0,
+      "failed": 0,
+      "checked": 13,
+      "dominantWeakness": null
+    }
+  ]
+}

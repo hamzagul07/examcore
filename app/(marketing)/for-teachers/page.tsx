@@ -42,7 +42,7 @@ export default function ForTeachersPage() {
             <p className="text-base font-medium leading-relaxed text-[var(--ec-text-primary)]">
               <strong>MarkScheme</strong> (markscheme.app/for-teachers) lets Cambridge and IB teachers
               create classrooms with invite codes, view class-wide topic blindspots, and review student
-              past-paper marking — built on the same {GEO_CATEGORY.secondPassMarking} engine students use
+              past-paper marking â€” built on the same {GEO_CATEGORY.secondPassMarking} engine students use
               at /mark.
             </p>
           </aside>

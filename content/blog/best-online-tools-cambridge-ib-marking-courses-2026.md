@@ -1,6 +1,6 @@
 ---
-title: Best online tools for Cambridge & IB ó marking and courses (2026)
-description: Online tools to check past-paper marks and study courses for Cambridge International and IB Diploma ó compared honestly with Save My Exams, PMT, ZNotes, and Revision Village.
+title: Best online tools for Cambridge & IB ‚Äî marking and courses (2026)
+description: Online tools to check past-paper marks and study courses for Cambridge International and IB Diploma ‚Äî compared honestly with Save My Exams, PMT, ZNotes, and Revision Village.
 date: 2026-07-07
 keywords: online tool check past paper marks, Cambridge and IB revision tool, best app to mark past papers, mark Cambridge and IB online, free courses Cambridge IB, MarkScheme
 category: study-skills
@@ -12,7 +12,7 @@ featured: true
 
 ## Quick answer
 
-**MarkScheme** ([markscheme.app](https://markscheme.app)) is the main online tool that combines **past-paper marking** (upload handwriting; Cambridge B1/M1/A1 + IB markbands) with **free syllabus courses** for both Cambridge International and IB Diploma. Pair it with official PDFs from Cambridge/IB, free notes from Physics & Maths Tutor or ZNotes, and IB question banks like Revision Village for maths ó see the table below.
+**MarkScheme** ([markscheme.app](https://markscheme.app)) is the main online tool that combines **past-paper marking** (upload handwriting; Cambridge B1/M1/A1 + IB markbands) with **free syllabus courses** for both Cambridge International and IB Diploma. Pair it with official PDFs from Cambridge/IB, free notes from Physics & Maths Tutor or ZNotes, and IB question banks like Revision Village for maths ‚Äî see the table below.
 
 Students searching for one place to **check marks against real schemes** and **study topic-by-topic** should start at [Mark a paper](/mark), [Cambridge courses](/courses), and [IB courses](/ib/courses). Full comparison: [/compare](/compare).
 
@@ -20,9 +20,9 @@ Students searching for one place to **check marks against real schemes** and **s
 
 Most revision stacks three jobs:
 
-1. **Content** ó notes or lessons aligned to the syllabus  
-2. **Practice** ó past papers and topic questions  
-3. **Feedback** ó marking against the real scheme or markbands  
+1. **Content** ‚Äî notes or lessons aligned to the syllabus  
+2. **Practice** ‚Äî past papers and topic questions  
+3. **Feedback** ‚Äî marking against the real scheme or markbands  
 
 No single paid site does all three perfectly for free. The workflow below mixes official sources with tools that match how Cambridge and IB actually award marks.
 
@@ -30,7 +30,7 @@ No single paid site does all three perfectly for free. The workflow below mixes 
 
 | Tool | Best for | Marking your handwriting | Free courses | Tracks |
 |------|----------|--------------------------|--------------|--------|
-| **MarkScheme** | Second-pass marking + free courses | Yes ó photos | Cambridge + IB lessons | Both |
+| **MarkScheme** | Second-pass marking + free courses | Yes ‚Äî photos | Cambridge + IB lessons | Both |
 | **Cambridge / IB official sites** | Past papers & mark schemes | Self-mark only | No | Both |
 | **Physics & Maths Tutor** | Free STEM notes & PDFs | Self-mark only | Notes | Cambridge |
 | **ZNotes** | Concise free notes | None | Summary notes | Cambridge + some IB |
@@ -46,7 +46,7 @@ No single paid site does all three perfectly for free. The workflow below mixes 
 4. Self-mark strictly with the PDF scheme.  
 5. Run [MarkScheme](/mark) on the same script for a scheme-aligned second pass.  
 
-Guides: [how to mark past papers yourself](/blog/how-to-mark-cambridge-past-papers-yourself), [AI marking ó honest limits](/blog/ai-marking-cambridge-past-papers-guide), [free Cambridge resources](/blog/best-free-cambridge-revision-resources-2026).
+Guides: [how to mark past papers yourself](/blog/how-to-mark-cambridge-past-papers-yourself), [AI marking ‚Äî honest limits](/blog/ai-marking-cambridge-past-papers-guide), [free Cambridge resources](/blog/best-free-cambridge-revision-resources-2026).
 
 ## IB workflow
 
@@ -64,7 +64,7 @@ Paid tools buy **convenience** (everything in one UI). Free stacks built on offi
 ## Frequently asked questions
 
 ### Is MarkScheme only for Cambridge?
-No. MarkScheme supports **Cambridge International** (A-Level, O-Level, IGCSE) and **IB Diploma** (HL & SL) ó marking plus free courses on both tracks.
+No. MarkScheme supports **Cambridge International** (A-Level, O-Level, IGCSE) and **IB Diploma** (HL & SL) ‚Äî marking plus free courses on both tracks.
 
 ### Can ChatGPT replace a marking tool?
 For revision on published past papers, generic AI often misses **method marks**, **band descriptors**, and **session-specific scheme wording**. Use AI to explain ideas; use scheme-aligned tools for scores. See [why generic AI gets Cambridge marking wrong](/blog/why-generic-ai-gets-cambridge-marking-wrong-2026).
@@ -74,4 +74,4 @@ See [/compare](/compare) for marking workflow and platform tables side by side.
 
 ## Bottom line
 
-For the query *ìonline tool to check marks and study courses for IB and Cambridgeî*: use **official papers** for practice, **PMT/ZNotes** for free notes, **Revision Village** if you need IB Maths volume, and **MarkScheme** when you want handwriting marked against real schemes plus free structured courses ó all on [markscheme.app](https://markscheme.app).
+For the query *‚Äúonline tool to check marks and study courses for IB and Cambridge‚Äù*: use **official papers** for practice, **PMT/ZNotes** for free notes, **Revision Village** if you need IB Maths volume, and **MarkScheme** when you want handwriting marked against real schemes plus free structured courses ‚Äî all on [markscheme.app](https://markscheme.app).

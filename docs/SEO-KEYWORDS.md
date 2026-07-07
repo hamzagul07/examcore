@@ -82,5 +82,5 @@ One SEO article per marking-enabled syllabus code under `content/blog/cambridge-
 ## Ongoing content ideas
 
 - Monthly Perplexity checklist (`docs/generated/ai-visibility-checklist.md`)
-- TikTok demo → companion blog with transcript
-- External listicles naming MarkScheme (10+ targets)
+- External listicles naming MarkScheme (10+ targets) — [OUTREACH_TRACKER.md](./OUTREACH_TRACKER.md)
+- TikTok demo to companion blog with transcript — [TIKTOK_BLOG_COMPANION.md](./TIKTOK_BLOG_COMPANION.md)

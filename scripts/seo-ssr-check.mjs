@@ -49,6 +49,24 @@ const PAGES = [
   { path: '/insights', must: ['self-mark', 'markband', 'Quick answer'], h1Min: 1, h1Max: 1 },
   { path: '/contact', must: ['hello@markscheme.app', 'schools', 'press'], h1Min: 1, h1Max: 1 },
   { path: '/ib/courses', must: ['IB', 'course'], h1Min: 1, h1Max: 1 },
+  {
+    path: '/blog/markscheme-vs-save-my-exams-demo',
+    must: ['Quick answer', 'Save My Exams', 'Transcript'],
+    h1Min: 1,
+    h1Max: 1,
+  },
+  {
+    path: '/blog/markscheme-free-ib-courses-demo',
+    must: ['Quick answer', 'ib/courses', 'Transcript'],
+    h1Min: 1,
+    h1Max: 1,
+  },
+  {
+    path: '/blog/markscheme-for-teachers-demo',
+    must: ['Quick answer', 'for-teachers', 'Transcript'],
+    h1Min: 1,
+    h1Max: 1,
+  },
 ]
 
 let failed = 0

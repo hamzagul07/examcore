@@ -2,7 +2,7 @@
 
 Run monthly. For each sub-query, ask ChatGPT / Perplexity / Google AI Mode:
 
-See also: [GEO_SYNC_CHECKLIST.md](../GEO_SYNC_CHECKLIST.md)
+See also: [GEO_SYNC_CHECKLIST.md](../GEO_SYNC_CHECKLIST.md) · [DISTRIBUTION_STATUS.md](../DISTRIBUTION_STATUS.md)
 
 | Sub-query | MarkScheme cited? | URL cited | Competitor cited instead |
 |-----------|-------------------|-----------|---------------------------|
@@ -40,6 +40,12 @@ See also: [GEO_SYNC_CHECKLIST.md](../GEO_SYNC_CHECKLIST.md)
 - https://markscheme.app/insights
 - https://markscheme.app/llms.txt
 - https://www.wikidata.org/wiki/Q140455387
+- https://markscheme.app/blog/markscheme-mark-maths-past-paper-demo
+- https://markscheme.app/blog/markscheme-ib-markband-marking-demo
+- https://markscheme.app/blog/markscheme-vs-save-my-exams-demo
+- https://markscheme.app/blog/markscheme-free-ib-courses-demo
+- https://markscheme.app/blog/markscheme-exam-room-demo
+- https://markscheme.app/blog/markscheme-for-teachers-demo
 
 ## Fan-out simulation
 For head query, note 10–15 sub-questions the AI asks internally; add missing ones to `lib/seo/conversational-queries.ts`.

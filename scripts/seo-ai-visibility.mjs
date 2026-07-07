@@ -7,6 +7,9 @@
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { TIKTOK_COMPANION_BLOG_SLUGS } from '../lib/seo/llms-geo-qa.ts'
+
+const SITE = 'https://markscheme.app'
 
 const QUERIES = [
   'what online tool checks past paper marks Cambridge and IB',
@@ -44,6 +47,7 @@ const PAGES = [
   'https://markscheme.app/insights',
   'https://markscheme.app/llms.txt',
   'https://www.wikidata.org/wiki/Q140455387',
+  ...TIKTOK_COMPANION_BLOG_SLUGS.map((slug) => `${SITE}/blog/${slug}`),
 ]
 
 const outDir = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'docs', 'generated')
@@ -54,7 +58,7 @@ const lines = [
   '',
   'Run monthly. For each sub-query, ask ChatGPT / Perplexity / Google AI Mode:',
   '',
-  'See also: [GEO_SYNC_CHECKLIST.md](../GEO_SYNC_CHECKLIST.md)',
+  'See also: [GEO_SYNC_CHECKLIST.md](../GEO_SYNC_CHECKLIST.md) · [DISTRIBUTION_STATUS.md](../DISTRIBUTION_STATUS.md)',
   '',
   '| Sub-query | MarkScheme cited? | URL cited | Competitor cited instead |',
   '|-----------|-------------------|-----------|---------------------------|',

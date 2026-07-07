@@ -71,6 +71,21 @@ export function formatLlmsQaSection(): string {
   return lines.join('\n').trimEnd()
 }
 
+
+/** TikTok/Reels companion posts — transcript + Quick answer for video GEO. */
+export const TIKTOK_COMPANION_BLOG_SLUGS = [
+  'markscheme-mark-maths-past-paper-demo',
+  'markscheme-ib-markband-marking-demo',
+  'markscheme-vs-save-my-exams-demo',
+  'markscheme-free-ib-courses-demo',
+  'markscheme-exam-room-demo',
+  'markscheme-for-teachers-demo',
+] as const
+
+export const TIKTOK_COMPANION_BLOG_PATHS = TIKTOK_COMPANION_BLOG_SLUGS.map(
+  (slug) => `/blog/${slug}` as const,
+)
+
 /** URLs to ping after major GEO deploys (IndexNow). */
 export const INDEXNOW_PRIORITY_URLS = [
   '/',
@@ -92,10 +107,5 @@ export const INDEXNOW_PRIORITY_URLS = [
   '/blog/best-free-cambridge-revision-resources-2026',
   '/blog/ai-marking-ib-past-papers-guide',
   '/blog/how-to-mark-cambridge-past-papers-yourself',
-  '/blog/markscheme-mark-maths-past-paper-demo',
-  '/blog/markscheme-ib-markband-marking-demo',
-  '/blog/markscheme-vs-save-my-exams-demo',
-  '/blog/markscheme-free-ib-courses-demo',
-  '/blog/markscheme-exam-room-demo',
-  '/blog/markscheme-for-teachers-demo',
+  ...TIKTOK_COMPANION_BLOG_PATHS,
 ] as const

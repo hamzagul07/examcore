@@ -6,11 +6,20 @@
  *   BASE_URL=http://localhost:3098 node scripts/seo-sitemap-scan.mjs
  *   BASE_URL=https://markscheme.app node scripts/seo-sitemap-scan.mjs
  *   BASE_URL=... node scripts/seo-sitemap-scan.mjs --limit=400
+ *   SEO_SCAN_SKIP_PREFIXES=/community/,/dashboard/ BASE_URL=... node scripts/seo-sitemap-scan.mjs
  */
 const base = (process.env.BASE_URL || 'http://localhost:3000').replace(/\/$/, '')
 const limitArg = process.argv.find((a) => a.startsWith('--limit='))
 const limit = limitArg ? Number(limitArg.split('=')[1]) : Infinity
 const concurrency = Number(process.env.SEO_SCAN_CONCURRENCY || 12)
+const skipPrefixes = (process.env.SEO_SCAN_SKIP_PREFIXES || '')
+  .split(',')
+  .map((p) => p.trim())
+  .filter(Boolean)
+
+function shouldSkipPath(path) {
+  return skipPrefixes.some((prefix) => path.startsWith(prefix))
+}
 
 async function fetchSitemapPaths() {
   const xml = await fetch(`${base}/sitemap.xml`).then((r) => r.text())
@@ -60,9 +69,11 @@ async function mapPool(items, fn) {
 const disallows = await fetchRobotsDisallows()
 let paths = await fetchSitemapPaths()
 if (Number.isFinite(limit)) paths = paths.slice(0, limit)
+const skipped = paths.filter(shouldSkipPath).length
+paths = paths.filter((path) => !shouldSkipPath(path))
 
 console.log(`SEO sitemap scan - ${base}`)
-console.log(`URLs: ${paths.length}${Number.isFinite(limit) ? ` (limit ${limit})` : ''}`)
+console.log(`URLs: ${paths.length}${skipped ? ` (${skipped} skipped)` : ''}${Number.isFinite(limit) ? ` (limit ${limit})` : ''}`)
 
 const issues = {
   robots: [],

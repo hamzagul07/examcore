@@ -14,7 +14,7 @@ import { ibShortName } from '@/lib/seo/ib-seo'
 import { IB_GLOBAL_RESOURCES } from '@/lib/ib/resources'
 import { IbResources } from '@/components/ib/IbResources'
 import { getIbCourse, getIbCourseSlugs } from '@/lib/courses/ib'
-import { IB_COURSES_CATALOG_BLURB, IB_NEW_COURSE_SLUGS, ibCourseEntriesByTrack } from '@/lib/courses/ib-catalog-display'
+import { IB_NEW_COURSE_SLUGS, ibCourseEntriesByTrack } from '@/lib/courses/ib-catalog-display'
 import { getIbTopicPracticeSubjectSlugs } from '@/lib/seo/ib-topic-practice'
 import { IbResultsSpotlight } from '@/components/seo/IbResultsSpotlight'
 

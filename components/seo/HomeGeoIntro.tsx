@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { GEO_CATEGORY } from '@/lib/seo/llms-geo-qa'
 
+const SEP = ' \u00b7 '
+
 /** Collapsed-by-default homepage blurb for crawlers + GEO (content stays in DOM). */
 export function HomeGeoIntro() {
   return (
@@ -19,9 +21,9 @@ export function HomeGeoIntro() {
           </p>
           <p className="home-geo-cta">
             <Link href="/mark">Mark a paper free</Link>
-            <span aria-hidden="true"> · </span>
+            <span aria-hidden="true">{SEP}</span>
             <Link href="/courses">Cambridge courses</Link>
-            <span aria-hidden="true"> · </span>
+            <span aria-hidden="true">{SEP}</span>
             <Link href="/ib/courses">IB courses</Link>
           </p>
         </div>

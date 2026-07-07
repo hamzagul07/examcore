@@ -111,3 +111,16 @@ Mark free: markscheme.app/mark?utm_source=tiktok&utm_medium=video&utm_campaign=<
 - [ ] If `featured: true`, slug added to `seo-quick-answer-lint.mjs`
 
 See also: [SOCIAL_BIOS.md](./SOCIAL_BIOS.md), [GEO_SYNC_CHECKLIST.md](./GEO_SYNC_CHECKLIST.md)
+
+---
+
+## Series status (live companions)
+
+| Slug | Status |
+|------|--------|
+| `markscheme-mark-maths-past-paper-demo` | Live |
+| `markscheme-ib-markband-marking-demo` | Live |
+| `markscheme-vs-save-my-exams-demo` | Live |
+| `markscheme-free-ib-courses-demo` | Live |
+| `markscheme-exam-room-demo` | Live |
+| `markscheme-for-teachers-demo` | Live |

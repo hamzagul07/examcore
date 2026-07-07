@@ -94,4 +94,5 @@ export const INDEXNOW_PRIORITY_URLS = [
   '/blog/how-to-mark-cambridge-past-papers-yourself',
   '/blog/markscheme-mark-maths-past-paper-demo',
   '/blog/markscheme-ib-markband-marking-demo',
+  '/blog/markscheme-vs-save-my-exams-demo',
 ] as const

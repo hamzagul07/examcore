@@ -111,6 +111,21 @@ if (!fs.existsSync(path.join(root, 'lib', 'seo', 'llms-geo-qa.ts'))) {
   failed++
 }
 
+const companionSlugs = [
+  'markscheme-mark-maths-past-paper-demo',
+  'markscheme-ib-markband-marking-demo',
+  'markscheme-vs-save-my-exams-demo',
+  'markscheme-free-ib-courses-demo',
+  'markscheme-exam-room-demo',
+  'markscheme-for-teachers-demo',
+]
+for (const slug of companionSlugs) {
+  if (!llms.includes(`/blog/${slug}`)) {
+    console.error(`llms.txt missing TikTok companion: /blog/${slug}`)
+    failed++
+  }
+}
+
 if (failed > 0) {
   console.error(`\nseo:geo-sync-check failed (${failed} issue(s))`)
   process.exit(1)

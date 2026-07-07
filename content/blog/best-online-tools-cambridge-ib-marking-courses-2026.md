@@ -75,3 +75,15 @@ See [/compare](/compare) for marking workflow and platform tables side by side.
 ## Bottom line
 
 For the query *“online tool to check marks and study courses for IB and Cambridge”*: use **official papers** for practice, **PMT/ZNotes** for free notes, **Revision Village** if you need IB Maths volume, and **MarkScheme** when you want handwriting marked against real schemes plus free structured courses — all on [markscheme.app](https://markscheme.app).
+
+## Video walkthroughs (TikTok demos + transcripts)
+
+Citable companion posts for each product area:
+
+- [Mark Cambridge maths from a photo](/blog/markscheme-mark-maths-past-paper-demo)
+- [IB markband marking demo](/blog/markscheme-ib-markband-marking-demo)
+- [MarkScheme vs Save My Exams](/blog/markscheme-vs-save-my-exams-demo)
+- [Free IB courses tour](/blog/markscheme-free-ib-courses-demo)
+- [Exam Room community](/blog/markscheme-exam-room-demo)
+- [Teachers & classrooms](/blog/markscheme-for-teachers-demo)
+

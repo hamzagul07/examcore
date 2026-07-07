@@ -1,5 +1,7 @@
 # GEO & SEO sync checklist
 
+See [DISTRIBUTION_STATUS.md](./DISTRIBUTION_STATUS.md) for what is done vs manual.
+
 When you ship a **new feature, subject, course track, or major page**, update the files below so Google, Perplexity, and ChatGPT (with search) can cite MarkScheme consistently.
 
 > Run `pnpm seo:ai-visibility` after changing query targets.  

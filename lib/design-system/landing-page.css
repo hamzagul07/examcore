@@ -1438,6 +1438,89 @@
   max-width: 70ch;
 }
 
+/* Homepage GEO blurb (below hero — crawlers still get full text in DOM) */
+.home-geo-intro {
+  margin-top: -8px;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+}
+
+.home-geo-details {
+  border-top: 1px solid var(--ec-border);
+  border-bottom: 1px solid var(--ec-border);
+}
+
+.home-geo-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 4px;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ec-text-secondary);
+  min-height: 44px;
+}
+
+.home-geo-summary::-webkit-details-marker {
+  display: none;
+}
+
+.home-geo-summary:hover {
+  color: var(--ec-brand);
+}
+
+.home-geo-pm {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  color: var(--ec-brand);
+  flex-shrink: 0;
+}
+
+.home-geo-pm::before {
+  content: '+';
+}
+
+.home-geo-details[open] .home-geo-pm::before {
+  content: '−';
+}
+
+.home-geo-body {
+  padding: 0 4px 16px;
+  max-width: 72ch;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ec-text-secondary);
+}
+
+.home-geo-body p {
+  margin: 0;
+}
+
+.home-geo-body p + p {
+  margin-top: 12px;
+}
+
+.home-geo-cta a {
+  color: var(--ec-brand);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.home-geo-cta a:hover {
+  color: var(--ec-text-primary);
+}
+
+@media (min-width: 768px) {
+  .home-geo-summary {
+    font-size: 18px;
+  }
+}
+
 /* final cta */
 .ms-final-cta {
   text-align: center;

@@ -21,8 +21,8 @@ export default function Home() {
     <>
       <HomeJsonLd />
       <main>
-        <HomeGeoIntro />
         <LandingHero markHref={markHref} />
+        <HomeGeoIntro />
         <LandingEditorialSpotlight />
         <LandingPillars />
         <LandingMarkingSection />

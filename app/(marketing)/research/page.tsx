@@ -3,7 +3,7 @@ import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { organizationNode } from '@/lib/seo/structured-data'
-import { BRAND_ENTITY } from '@/lib/seo/entity'
+import { BRAND_ENTITY, getWikidataEntityUrl } from '@/lib/seo/entity'
 import { SITE_URL, CONTACT_EMAIL } from '@/lib/site-config'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 
@@ -26,6 +26,7 @@ const FACTS = [
   { term: 'Compare tools', value: 'https://markscheme.app/compare' },
   { term: 'Teachers & schools', value: 'https://markscheme.app/for-teachers' },
   { term: 'Changelog', value: 'https://markscheme.app/changelog' },
+  { term: 'Wikidata', value: getWikidataEntityUrl() ?? 'https://www.wikidata.org/wiki/Q140455387' },
   { term: 'Dataset / insights', value: 'https://markscheme.app/insights' },
   { term: 'Contact', value: CONTACT_EMAIL },
   { term: 'Category', value: 'Second-pass marking against official Cambridge mark schemes and IB markbands' },

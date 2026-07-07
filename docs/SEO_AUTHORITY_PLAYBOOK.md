@@ -21,7 +21,7 @@ Technical SEO in the repo is strong (sitemap, robots, JSON-LD, ~70+ blog URLs, R
 1. **Google Search Console** — add property `https://markscheme.app`, verify via DNS or HTML tag.
    - Env on Vercel: `GOOGLE_SITE_VERIFICATION=<meta content value>`
 2. Submit sitemap: `https://markscheme.app/sitemap.xml`
-3. **Bing Webmaster Tools** — same sitemap; env: `BING_SITE_VERIFICATION`
+3. **Bing Webmaster Tools** — same sitemap; env: `BING_SITE_VERIFICATION` — see [BING_WEBMASTER.md](./BING_WEBMASTER.md)
 4. Request indexing for: `/`, `/mark`, `/blog`, top 5 editorial posts (URL inspection → Request indexing)
 5. Confirm `NEXT_PUBLIC_SITE_URL=https://markscheme.app` on production
 

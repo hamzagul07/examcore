@@ -72,8 +72,8 @@ Implemented in `lib/seo/keywords.ts` and blog frontmatter `keywords:` fields.
 - [x] `public/llms.txt` auto-generated from `lib/seo/llms-geo-qa.ts`
 - [x] CI: `seo:quick-answer-lint`, `seo:geo-sync-check`, `seo:ssr-check`
 - [ ] Google Search Console — submit sitemap after domain live
-- [ ] Bing Webmaster Tools — same
-- [ ] IndexNow key on Vercel + `pnpm seo:indexnow` after deploy
+- [ ] Bing Webmaster Tools — see [BING_WEBMASTER.md](./BING_WEBMASTER.md)
+- [x] IndexNow key on Vercel + `pnpm seo:indexnow` after deploy
 
 ## Per-subject guides (live)
 

@@ -38,6 +38,7 @@ Open [DIRECTORY_SUBMISSIONS.md](./DIRECTORY_SUBMISSIONS.md). Paste fields, submi
 ## Minutes 25-30: Log + smoke test
 
 - [ ] Update dates in OUTREACH_TRACKER
+- [ ] Run `BASE_URL=https://markscheme.app pnpm seo:distribution-check`
 - [ ] Ask Bing Copilot: *"best app to mark ib past papers"* - note if MarkScheme appears
 - [ ] Ask Perplexity: *"markscheme vs save my exams"* - log in [ai-visibility-checklist.md](./generated/ai-visibility-checklist.md)
 

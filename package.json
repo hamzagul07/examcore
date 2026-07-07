@@ -41,6 +41,7 @@
     "seo:generate-llms": "tsx scripts/generate-llms-txt.mjs",
     "seo:geo-sync-check": "pnpm seo:generate-llms && node scripts/seo-geo-sync-check.mjs",
     "seo:indexnow": "tsx scripts/seo-indexnow.mjs",
+    "seo:distribution-check": "tsx scripts/seo-distribution-check.mjs",
     "seo:sitewide-quality": "node scripts/seo-sitewide-quality.mjs",
     "grade:thresholds:status": "node scripts/ingest-grade-threshold-session.mjs --status",
     "grade:thresholds:scaffold": "node scripts/scaffold-june-2026-session.mjs --all",

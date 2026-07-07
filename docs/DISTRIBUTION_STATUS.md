@@ -31,7 +31,7 @@ Last updated: 2026-07-07. Production: **https://markscheme.app**
 | Bing Webmaster + sitemap | [BING_WEBMASTER.md](./BING_WEBMASTER.md) | ? |
 | `BING_SITE_VERIFICATION` on Vercel | [BING_WEBMASTER.md](./BING_WEBMASTER.md) | ? |
 | IG/TikTok bios + link-in-bio | [SOCIAL_BIOS.md](./SOCIAL_BIOS.md) | ? |
-| 10 external listicle backlinks | [OUTREACH_TRACKER.md](./OUTREACH_TRACKER.md) Â· [DIRECTORY_SUBMISSIONS.md](./DIRECTORY_SUBMISSIONS.md) | 0/10 |
+| 10 external listicle backlinks | [OUTREACH_TRACKER.md](./OUTREACH_TRACKER.md) · [DIRECTORY_SUBMISSIONS.md](./DIRECTORY_SUBMISSIONS.md) | 0/10 |
 | Monthly Perplexity tests (17 queries) | [ai-visibility-checklist.md](./generated/ai-visibility-checklist.md) | ? |
 | Wikidata label polish (`MarkScheme`) | [WIKIDATA_ENTITY.md](./WIKIDATA_ENTITY.md) | Optional |
 
@@ -40,6 +40,7 @@ Last updated: 2026-07-07. Production: **https://markscheme.app**
 ## Commands after changes
 
 ```bash
+pnpm seo:distribution-check   # production readiness (after deploy)
 pnpm seo:generate-llms && pnpm seo:geo-sync-check
 INDEXNOW_KEY=38b35898-27c4-429b-a43e-b28fa420ffca pnpm seo:indexnow
 BASE_URL=https://markscheme.app node scripts/seo-ssr-check.mjs
@@ -50,9 +51,9 @@ pnpm seo:ai-visibility   # refresh monthly worksheet
 
 ## What moves citations next
 
-1. **Backlinks** â€” school resource pages mentioning MarkScheme by name
-2. **Branded search** â€” TikTok/IG bios pointing to `/mark`
-3. **Bing/Copilot** â€” Webmaster Tools + IndexNow
-4. **Time + consistency** â€” monthly Perplexity checks; refresh pillar posts each exam series
+1. **Backlinks** — school resource pages mentioning MarkScheme by name
+2. **Branded search** — TikTok/IG bios pointing to `/mark`
+3. **Bing/Copilot** — Webmaster Tools + IndexNow
+4. **Time + consistency** — monthly Perplexity checks; refresh pillar posts each exam series
 
 Code cannot substitute for (1) and (2). The repo is ready; distribution is the bottleneck.

@@ -61,7 +61,7 @@ const disallows = await fetchRobotsDisallows()
 let paths = await fetchSitemapPaths()
 if (Number.isFinite(limit)) paths = paths.slice(0, limit)
 
-console.log(`SEO sitemap scan — ${base}`)
+console.log(`SEO sitemap scan - ${base}`)
 console.log(`URLs: ${paths.length}${Number.isFinite(limit) ? ` (limit ${limit})` : ''}`)
 
 const issues = {
@@ -80,7 +80,19 @@ await mapPool(paths, async (path) => {
     return
   }
   try {
-    const res = await fetch(`${base}${path}`)
+    let res
+    let lastErr
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        res = await fetch(`${base}${path}`)
+        lastErr = null
+        break
+      } catch (err) {
+        lastErr = err
+        if (attempt < 2) await new Promise((r) => setTimeout(r, 250 * (attempt + 1)))
+      }
+    }
+    if (lastErr) throw lastErr
     const html = await res.text()
     if (!res.ok) {
       issues.fail.push({ path, status: res.status })
@@ -106,7 +118,7 @@ for (const [key, list] of Object.entries(issues)) {
   list.slice(0, 20).forEach((item) => {
     console.log(typeof item === 'object' ? JSON.stringify(item) : item)
   })
-  if (list.length > 20) console.log(`… and ${list.length - 20} more`)
+  if (list.length > 20) console.log(`... and ${list.length - 20} more`)
 }
 
 const failed = Object.entries(summary).some(([k, n]) => k !== 'robots' && n > 0)

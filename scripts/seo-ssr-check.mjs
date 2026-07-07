@@ -23,7 +23,7 @@ const PAGES = [
   { path: '/faq', must: ['Cambridge', 'IB', 'Quick answers'], h1Min: 1, h1Max: 2 },
   { path: '/for-teachers', must: ['teacher', 'classroom', 'markscheme.app'], h1Min: 1, h1Max: 1 },
   { path: '/changelog', must: ['MarkScheme', 'marking', 'Quick answer'], h1Min: 1, h1Max: 1 },
-  { path: '/llms.txt', must: ['Common questions', 'for-teachers', 'markscheme.app'], h1Min: 0, h1Max: 0 },
+  { path: '/llms.txt', must: ['Common questions', 'for-teachers', 'markscheme.app'], h1Min: 0, h1Max: 0, plainText: true },
   { path: '/subjects/9709', must: ['9709', 'Mathematics'], h1Min: 1, h1Max: 1 },
   {
     path: '/past-papers/9700/cells-as-the-basic-units-of-living-organisms',

@@ -15,6 +15,7 @@ const UTF8_GEO_FILES = [
   'lib/seo/entity.ts',
   'lib/seo/mark-seo.ts',
   'lib/seo/landing-faq.ts',
+  'components/seo/HomeGeoIntro.tsx',
 ]
 
 function assertValidUtf8(relPath) {

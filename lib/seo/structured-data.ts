@@ -1,7 +1,7 @@
 import { SITE_NAME, SITE_URL, CONTACT_EMAIL } from '@/lib/site-config'
 import type { SiteAuthor } from '@/lib/seo/authors'
 import { DEFAULT_BLOG_AUTHOR } from '@/lib/seo/authors'
-import { BRAND_ENTITY, getBrandSameAs, getFounderSameAs } from '@/lib/seo/entity'
+import { BRAND_ENTITY, getBrandSameAs, getFounderSameAs, getWikidataEntityUrl, WIKIDATA_QID } from '@/lib/seo/entity'
 
 export type JsonLd = Record<string, unknown>
 
@@ -11,6 +11,7 @@ export function jsonLdScript(data: JsonLd | JsonLd[]) {
 
 export function organizationNode(): JsonLd {
   const sameAs = getBrandSameAs()
+  const wikidataUrl = getWikidataEntityUrl()
 
   return {
     '@type': 'Organization',
@@ -20,6 +21,7 @@ export function organizationNode(): JsonLd {
     url: BRAND_ENTITY.url,
     email: BRAND_ENTITY.email,
     description: BRAND_ENTITY.description,
+    foundingDate: '2025',
     ...(BRAND_ENTITY.slogan ? { slogan: BRAND_ENTITY.slogan } : {}),
     areaServed: BRAND_ENTITY.areaServed,
     knowsAbout: [...BRAND_ENTITY.knowsAbout],
@@ -40,6 +42,17 @@ export function organizationNode(): JsonLd {
       '@id': `${SITE_URL}/about#${DEFAULT_BLOG_AUTHOR.id}`,
       name: DEFAULT_BLOG_AUTHOR.name,
     },
+    ...(wikidataUrl
+      ? {
+          identifier: {
+            '@type': 'PropertyValue',
+            propertyID: 'Wikidata',
+            name: 'Wikidata',
+            value: WIKIDATA_QID,
+            url: wikidataUrl,
+          },
+        }
+      : {}),
     ...(sameAs.length > 0 ? { sameAs } : {}),
   }
 }
@@ -270,6 +283,7 @@ export function softwareApplicationNode(): JsonLd {
       'IB Diploma markband-style criterion feedback',
       'Whole past paper marking',
       'Free Cambridge and IB syllabus courses',
+      'Progress dashboard with topic mastery and error patterns',
       'IB and Cambridge topic practice by syllabus point',
       'Exam Room subject communities',
       'Teacher classrooms with blindspot analytics',
@@ -281,6 +295,8 @@ export function softwareApplicationNode(): JsonLd {
       priceCurrency: 'USD',
       availability: 'https://schema.org/InStock',
     },
+    provider: { '@id': `${SITE_URL}/#organization` },
+    brand: { '@id': `${SITE_URL}/#brand` },
     audience: [
       {
         '@type': 'EducationalAudience',

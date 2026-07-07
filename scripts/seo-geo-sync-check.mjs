@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Lightweight GEO sync checks ÿ llms.txt mentions money pages & head terms.
+ * Lightweight GEO sync checks ? llms.txt mentions money pages & head terms.
  * See docs/GEO_SYNC_CHECKLIST.md
  */
 import fs from 'fs'
@@ -29,6 +29,7 @@ const REQUIRED_SUBSTRINGS = [
   'IB markbands',
   'Exam Room',
   'second-pass',
+  'wikidata.org/wiki/Q140455387',
   '## Common questions (GEO)',
 ]
 
@@ -55,8 +56,8 @@ for (const needle of REQUIRED_QA_SNIPPETS) {
 }
 
 const entity = fs.readFileSync(path.join(root, 'lib', 'seo', 'entity.ts'), 'utf8')
-if (!entity.includes('IB Diploma') || !entity.includes('Exam Room')) {
-  console.error('lib/seo/entity.ts BRAND_ENTITY missing IB Diploma or Exam Room')
+if (!entity.includes('IB Diploma') || !entity.includes('Exam Room') || !entity.includes('Q140455387')) {
+  console.error('lib/seo/entity.ts missing IB Diploma, Exam Room, or Wikidata default')
   failed++
 }
 
@@ -70,7 +71,7 @@ const geoQaSrc = fs.readFileSync(path.join(root, 'lib', 'seo', 'llms-geo-qa.ts')
 const geoQuestions = [...geoQaSrc.matchAll(/\bq: '([^']+)'/g)].map((m) => m[1])
 for (const q of geoQuestions) {
   if (!llms.includes(q)) {
-    console.error(`llms.txt missing GEO_QA question from llms-geo-qa.ts: ${q.slice(0, 60)}ÿ`)
+    console.error(`llms.txt missing GEO_QA question from llms-geo-qa.ts: ${q.slice(0, 60)}?`)
     failed++
   }
 }

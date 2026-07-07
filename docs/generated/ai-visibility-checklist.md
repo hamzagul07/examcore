@@ -22,6 +22,7 @@ See also: [GEO_SYNC_CHECKLIST.md](../GEO_SYNC_CHECKLIST.md)
 | markscheme exam room community | ☐ | | |
 | markscheme for teachers schools | ☐ | | |
 | markscheme press kit facts | ☐ | | |
+| markscheme wikidata | ☐ | | |
 
 ## Pages to verify in answers
 - https://markscheme.app/mark
@@ -38,6 +39,7 @@ See also: [GEO_SYNC_CHECKLIST.md](../GEO_SYNC_CHECKLIST.md)
 - https://markscheme.app/ib/courses
 - https://markscheme.app/insights
 - https://markscheme.app/llms.txt
+- https://www.wikidata.org/wiki/Q140455387
 
 ## Fan-out simulation
 For head query, note 10–15 sub-questions the AI asks internally; add missing ones to `lib/seo/conversational-queries.ts`.

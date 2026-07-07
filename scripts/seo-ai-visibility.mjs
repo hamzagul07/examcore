@@ -25,6 +25,7 @@ const QUERIES = [
   'markscheme exam room community',
   'markscheme for teachers schools',
   'markscheme press kit facts',
+  'markscheme wikidata',
 ]
 
 const PAGES = [
@@ -42,6 +43,7 @@ const PAGES = [
   'https://markscheme.app/ib/courses',
   'https://markscheme.app/insights',
   'https://markscheme.app/llms.txt',
+  'https://www.wikidata.org/wiki/Q140455387',
 ]
 
 const outDir = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'docs', 'generated')

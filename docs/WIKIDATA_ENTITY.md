@@ -1,3 +1,10 @@
+# MarkScheme — Wikidata entity (LIVE)
+
+**Item:** [Q140455387](https://www.wikidata.org/wiki/Q140455387)  
+**Wired in code:** `lib/seo/entity.ts` → `Organization.sameAs` + `identifier` (default; override with `NEXT_PUBLIC_WIKIDATA_ENTITY_URL`).
+
+---
+
 # MarkScheme — Wikidata entity draft & creation playbook
 
 Goal: a Wikidata item for **MarkScheme** so Google's Knowledge Graph and AI answer

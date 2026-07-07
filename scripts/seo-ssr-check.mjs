@@ -6,7 +6,7 @@
 const base = (process.env.BASE_URL || 'http://localhost:3000').replace(/\/$/, '')
 
 const PAGES = [
-  { path: '/', must: ['MarkScheme', 'second-pass', 'markscheme.app'], h1Min: 1, h1Max: 1 },
+  { path: '/', must: ['MarkScheme', 'second-pass', 'wikidata.org/wiki/Q140455387'], h1Min: 1, h1Max: 1 },
   {
     path: '/mark',
     must: ['IB', 'second pass', 'markscheme.app', 'Common questions'],
@@ -23,7 +23,7 @@ const PAGES = [
   { path: '/faq', must: ['Cambridge', 'IB', 'Quick answers'], h1Min: 1, h1Max: 2 },
   { path: '/for-teachers', must: ['teacher', 'classroom', 'markscheme.app'], h1Min: 1, h1Max: 1 },
   { path: '/changelog', must: ['MarkScheme', 'marking', 'Quick answer'], h1Min: 1, h1Max: 1 },
-  { path: '/llms.txt', must: ['Common questions', 'for-teachers', 'markscheme.app'], h1Min: 0, h1Max: 0, plainText: true },
+  { path: '/llms.txt', must: ['Common questions', 'for-teachers', 'wikidata.org/wiki/Q140455387'], h1Min: 0, h1Max: 0, plainText: true },
   { path: '/subjects/9709', must: ['9709', 'Mathematics'], h1Min: 1, h1Max: 1 },
   {
     path: '/past-papers/9700/cells-as-the-basic-units-of-living-organisms',
@@ -45,14 +45,14 @@ const PAGES = [
     h1Max: 1,
   },
   { path: '/compare', must: ['Save My Exams', 'MarkScheme', 'Frequently asked'], h1Min: 1, h1Max: 1 },
-  { path: '/research', must: ['Press', 'markscheme.app', 'second-pass'], h1Min: 1, h1Max: 1 },
+  { path: '/research', must: ['Press', 'markscheme.app', 'second-pass', 'wikidata.org/wiki/Q140455387'], h1Min: 1, h1Max: 1 },
   { path: '/insights', must: ['self-mark', 'markband', 'Quick answer'], h1Min: 1, h1Max: 1 },
   { path: '/contact', must: ['hello@markscheme.app', 'schools', 'press'], h1Min: 1, h1Max: 1 },
   { path: '/ib/courses', must: ['IB', 'course'], h1Min: 1, h1Max: 1 },
 ]
 
 let failed = 0
-for (const { path, must, h1Min = 1, h1Max = 1 } of PAGES) {
+for (const { path, must, h1Min = 1, h1Max = 1, plainText = false } of PAGES) {
   const url = `${base}${path}`
   try {
     const res = await fetch(url)
@@ -69,7 +69,7 @@ for (const { path, must, h1Min = 1, h1Max = 1 } of PAGES) {
     if (h1 < h1Min) problems.push(`h1=${h1} (need >=${h1Min})`)
     if (h1 > h1Max) problems.push(`h1=${h1} (need <=${h1Max})`)
     if (refresh) problems.push('meta refresh')
-    if (!hasDesc) problems.push('missing meta description')
+    if (!plainText && !hasDesc) problems.push('missing meta description')
     if (path === '/mark' && !hasFaqLd) problems.push('missing FAQPage JSON-LD')
 
     if (problems.length) {

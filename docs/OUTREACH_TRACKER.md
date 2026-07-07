@@ -2,7 +2,7 @@
 
 Goal: **10 live backlinks** from independent education sites (school resource pages, student blogs, newsletters, directories).
 
-Copy-paste blurbs: [OUTREACH_LISTICLE.md](./OUTREACH_LISTICLE.md)
+Copy-paste blurbs: [OUTREACH_LISTICLE.md](./OUTREACH_LISTICLE.md) · **Directory forms:** [DIRECTORY_SUBMISSIONS.md](./DIRECTORY_SUBMISSIONS.md)
 
 ---
 

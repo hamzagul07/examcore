@@ -14,6 +14,7 @@ Production: **https://markscheme.app**
 - [x] Smoke: 63/63 core routes (post-deploy Jul 2026 — calculators, signup redirect SSR, insights)
 - [x] GSC indexing batches: `pnpm seo:gsc-urls` (88 URLs, tiers 1–4 + IB + 9706 courses) — [SEO_MEASUREMENT.md](./SEO_MEASUREMENT.md)
 - [x] 9706 Accounting: 34/34 premium lessons (full A-Level syllabus)
+- [x] Course quality: **1520/1520** lessons pass weak-lesson audit (Jul 2026)
 - [x] UTF-8 cleanup: blog cross-links + all 32 grade-boundary guides (Jul 2026)
 
 ## You should do next

@@ -16,6 +16,7 @@ Production: **https://markscheme.app**
 - [x] 9706 Accounting: 34/34 premium lessons (full A-Level syllabus)
 - [x] Course quality: **1520/1520** lessons pass weak-lesson audit (Jul 2026)
 - [x] UTF-8 cleanup: blog cross-links + all 32 grade-boundary guides (Jul 2026)
+- [x] Technical SEO (Jul 2026): crawlable H1s, no meta-refresh, ESS slug fix, hub/blog payload trim — **3389/3389** URLs pass `pnpm seo:sitemap-scan` on production
 
 ## You should do next
 
@@ -57,9 +58,10 @@ Production: **https://markscheme.app**
 2. Vercel env: `GOOGLE_SITE_VERIFICATION`, `BING_SITE_VERIFICATION` (optional `NEXT_PUBLIC_TWITTER_HANDLE`, social `sameAs` URLs)
 3. Follow [SEO_TWELVE_PILLARS.md](./SEO_TWELVE_PILLARS.md) (in-site implementation) and [SEO_AUTHORITY_PLAYBOOK.md](./SEO_AUTHORITY_PLAYBOOK.md) (backlinks)
 4. Run `pnpm seo:audit` after content changes; track queries in [SEO_MEASUREMENT.md](./SEO_MEASUREMENT.md)
-5. Advanced stack: [SEO_ADVANCED_THIRTEEN.md](./SEO_ADVANCED_THIRTEEN.md) — entity env vars, `pnpm seo:ssr-check` on prod
-6. Information gain / AI retrieval: [SEO_INFORMATION_GAIN_TWELVE.md](./SEO_INFORMATION_GAIN_TWELVE.md) — `/insights`, `pnpm seo:fan-out-lint`, `pnpm seo:ai-visibility`
-7. Results season distribution: [BARNACLE_SEO_PLAYBOOK.md](./BARNACLE_SEO_PLAYBOOK.md) — Reddit templates, UTM links, Jul/Aug calendar
+5. Re-crawl in Semrush after deploy; confirm `pnpm seo:sitemap-scan` stays clean: `BASE_URL=https://markscheme.app pnpm seo:sitemap-scan`
+6. Advanced stack: [SEO_ADVANCED_THIRTEEN.md](./SEO_ADVANCED_THIRTEEN.md) — entity env vars, `pnpm seo:ssr-check` on prod
+7. Information gain / AI retrieval: [SEO_INFORMATION_GAIN_TWELVE.md](./SEO_INFORMATION_GAIN_TWELVE.md) — `/insights`, `pnpm seo:fan-out-lint`, `pnpm seo:ai-visibility`
+8. Results season distribution: [BARNACLE_SEO_PLAYBOOK.md](./BARNACLE_SEO_PLAYBOOK.md) — Reddit templates, UTM links, Jul/Aug calendar
 
 ### Optional
 - Uptime monitor on `GET https://markscheme.app/api/health`

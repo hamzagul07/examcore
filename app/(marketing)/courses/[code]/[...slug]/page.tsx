@@ -130,7 +130,7 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
   const course = getCourseSubject(code)
   if (!course) notFound()
 
-  const { lesson, lessonSlug } = resolved
+  const { lesson } = resolved
   // Surface official Cambridge sub-topics: prefer authored ones, else derive from
   // the extracted syllabus outcomes (server-only data — kept off the client).
   const lessonForClient: CourseLesson = lesson.subtopics?.length

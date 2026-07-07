@@ -6,7 +6,6 @@ import {
   getIbCourseLesson,
   getIbCourseLessons,
 } from '@/lib/courses/ib'
-import { getIbSubject } from '@/lib/ib/catalog'
 import { ibCatalogSlug, ibSubjectForSlug } from '@/lib/ib/slug-resolve'
 import { enrichLessonVisual } from '@/lib/courses/enrich-lesson-visual'
 import { buildIbCourseLessonSeo, buildIbCourseSubjectSeo } from '@/lib/seo/ib-course-seo'

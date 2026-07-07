@@ -9,6 +9,10 @@ updated: 2026-06-19
 informationGain: synthesis
 ---
 
+## Quick answer
+
+A free **Save My Exams alternative** for Cambridge: official past papers + mark schemes (Cambridge International), notes from **Physics & Maths Tutor** or **ZNotes**, and **MarkScheme** ([markscheme.app/mark](/mark)) to mark handwritten answers against the real scheme plus [free courses](/courses). Save My Exams is freemium — most detailed content is paid.
+
 While paid platforms like Save My Exams offer a convenient, all-in-one solution for Cambridge revision, they are not the only path to a top grade. By combining a few powerful and completely free resources, you can build a revision toolkit that is just as effective, if not more so, because it centres on the most authoritative materials available: those from Cambridge International itself.
 
 ## Start with the Source: Official Cambridge Resources

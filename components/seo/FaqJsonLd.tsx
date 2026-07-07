@@ -1,28 +1,17 @@
 import { FAQ_CATEGORIES } from '@/lib/faq-data'
+import { GEO_QA_PAIRS } from '@/lib/seo/llms-geo-qa'
+import { faqPageNode } from '@/lib/seo/structured-data'
+import { JsonLd } from '@/components/seo/JsonLd'
 
-/** FAQPage structured data for rich results on /faq. */
+/** FAQPage structured data for rich results on /faq (includes GEO Q&A). */
 export function FaqJsonLd() {
-  const mainEntity = FAQ_CATEGORIES.flatMap((cat) =>
-    cat.items.map((item) => ({
-      '@type': 'Question' as const,
-      name: item.q,
-      acceptedAnswer: {
-        '@type': 'Answer' as const,
-        text: item.a,
-      },
-    }))
-  )
-
-  const payload = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity,
-  }
+  const allItems = [...FAQ_CATEGORIES.flatMap((cat) => cat.items), ...GEO_QA_PAIRS]
 
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(payload) }}
+    <JsonLd
+      data={faqPageNode(allItems, {
+        speakableSelectors: ['.faq-geo dt', '.faq-geo dd'],
+      })}
     />
   )
 }

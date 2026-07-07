@@ -1,6 +1,7 @@
 import { capForTier, omniCapForTier } from '@/lib/billing/caps'
 import { WHOLE_PAPER_QUESTION_LIMIT } from '@/lib/billing/features'
 import { CONTACT_EMAIL } from '@/lib/site-config'
+import { LANDING_PAGE_FAQ } from '@/lib/seo/landing-faq'
 
 export type FaqItem = { q: string; a: string }
 export type FaqCategory = { id: string; title: string; items: FaqItem[] }
@@ -43,6 +44,14 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         q: 'Does it really mark like Cambridge?',
         a: 'It uses the official Cambridge mark scheme for each paper. Point-based questions follow B1/M1/A1 exactly. Essays are judged against the real band descriptors.',
+      },
+      {
+        q: 'Does MarkScheme mark IB past papers?',
+        a: 'Yes — IB Diploma HL, SL, and Core (TOK, Extended Essay) are supported at /mark. Feedback follows criterion-style IB markbands, not generic essay rubrics. Pair with free courses at /ib/courses.',
+      },
+      {
+        q: 'How are IB markbands used?',
+        a: 'For IB questions we apply the published band descriptors for that paper type — similar to how an examiner would justify marks. It is second-pass practice, not an official IB grade.',
       },
       {
         q: 'How does the marking engine work?',
@@ -151,12 +160,4 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
 ]
 
 /** Compact FAQ for the landing page section */
-export const LANDING_FAQ_ITEMS: FaqItem[] = [
-  FAQ_CATEGORIES[0].items[5],
-  FAQ_CATEGORIES[1].items[0],
-  FAQ_CATEGORIES[1].items[2],
-  FAQ_CATEGORIES[0].items[2],
-  FAQ_CATEGORIES[1].items[4],
-  FAQ_CATEGORIES[3].items[0],
-  FAQ_CATEGORIES[1].items[3],
-]
+export const LANDING_FAQ_ITEMS: FaqItem[] = LANDING_PAGE_FAQ.slice(0, 7)

@@ -7,7 +7,7 @@ import { SITE_URL } from '@/lib/site-config'
 export const COMMUNITY_FAQ = [
   {
     q: 'What is Exam Room?',
-    a: "Exam Room is MarkScheme's free student community for Cambridge A-Level and IB Diploma — ask doubts, share cheat sheets and PDFs, and discuss grade boundaries and past papers in subject-specific rooms.",
+    a: "Exam Room is MarkScheme's free student community at markscheme.app/community — ask Cambridge A-Level and IB Diploma doubts, share cheat sheets and PDFs, and discuss grade boundaries in subject-specific rooms.",
   },
   {
     q: 'Is the community for Cambridge A-Level or IB?',

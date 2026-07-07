@@ -17,12 +17,12 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     // " — MarkScheme" suffix is added, shipping a literal "…" in the tag.
     title: 'Cambridge & IB past paper marking, free courses',
     description:
-      'Mark Cambridge & IB past papers mark-by-mark, learn in free syllabus courses, and discuss in Exam Room subject communities. Upload handwriting — B1/M1/A1 feedback. Free tier.',
+      'Mark Cambridge & IB past papers mark-by-mark, learn in free syllabus courses, and discuss in Exam Room. Scheme-aligned second-pass marking from handwriting. Free tier.',
   },
   '/mark': {
-    title: 'Mark a Cambridge past paper online — free',
+    title: 'Mark Cambridge & IB past papers online — free',
     description:
-      'Upload handwritten answers or a full paper. MarkScheme scores against the official Cambridge mark scheme in ~30 seconds — maths, sciences, essays & MCQ.',
+      'Online tool to check past-paper marks: upload handwritten answers or a full paper. MarkScheme scores Cambridge papers against official mark schemes (B1/M1/A1, bands, MCQ) and IB work against markbands — ~30s per question. Free tier.',
   },
   '/subjects': {
     title: 'Cambridge subjects — 9709, 9702, 9708 & more',
@@ -30,9 +30,9 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'Every syllabus we mark: A-Level & O-Level codes, paper components, and links to past-paper guides. Point marks, essay bands, and MCQ from real schemes.',
   },
   '/how-it-works': {
-    title: 'How MarkScheme marks past papers',
+    title: 'How second-pass marking works — Cambridge & IB',
     description:
-      'Pick a paper, photograph your answers, get mark-by-mark feedback tied to Cambridge mark schemes — not a generic AI grade. Whole papers & Examiner\'s Ink.',
+      'Upload handwritten past-paper answers for scheme-aligned second-pass marking: Cambridge B1/M1/A1, essay bands, MCQ, and IB markbands. Honest limits explained.',
   },
   '/pricing': {
     title: 'Pricing — free & paid marking plans',
@@ -40,19 +40,49 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'Free plan forever with notes & formulas. Scholar & Max include a 7-day free trial when you subscribe from pricing.',
   },
   '/faq': {
-    title: 'FAQ — marking, privacy & accuracy',
+    title: 'FAQ — Cambridge & IB marking, privacy & pricing',
     description:
-      'Answers on handwritten uploads, mark scheme accuracy, AI limits, pricing, data privacy, and getting started with Cambridge A-Level and O-Level revision.',
+      'Answers on handwritten uploads, Cambridge mark schemes, IB markbands, AI limits, pricing, data privacy, Exam Room, and getting started with past-paper revision.',
+    keywords: [
+      'Cambridge marking FAQ',
+      'IB marking FAQ',
+      'AI marking A-Level',
+      'free past paper marking',
+      'MarkScheme questions',
+    ],
+  },
+  '/for-teachers': {
+    title: 'For teachers & schools — classroom marking analytics',
+    description:
+      'MarkScheme classrooms: invite codes, class blindspot radar, grade-risk matrix, and review queue on top of Cambridge & IB past-paper marking from handwriting.',
+    keywords: [
+      'Cambridge teacher marking tool',
+      'IB classroom analytics',
+      'past paper homework marking',
+      'school revision platform',
+    ],
+  },
+  '/changelog': {
+    title: 'Changelog — MarkScheme product updates',
+    description:
+      'Shipped features: Cambridge & IB marking, free courses, Exam Room communities, teacher dashboards, and marking insights — indexable release notes.',
+    keywords: ['MarkScheme updates', 'MarkScheme features', 'past paper marking app'],
   },
   '/about': {
-    title: 'About — built by a Cambridge student',
+    title: 'About — student-built marking & courses',
     description:
-      'MarkScheme was built for honest past-paper revision: real mark schemes, mark-by-mark feedback on your handwriting, and no inflated marketing claims.',
+      'MarkScheme was built by a Cambridge A-Level student for second-pass past-paper marking (Cambridge & IB), free syllabus courses, and Exam Room communities — honest about AI limits.',
   },
   '/contact': {
-    title: 'Contact — support & feedback',
+    title: 'Contact — support, schools & press',
     description:
-      'Get help with Cambridge past-paper marking, billing, or partnerships. We reply to students and schools at hello@markscheme.app.',
+      'Contact MarkScheme for Cambridge & IB marking help, school classroom enquiries, press facts, partnerships, and billing at hello@markscheme.app.',
+    keywords: [
+      'MarkScheme contact',
+      'school marking tool enquiry',
+      'MarkScheme press',
+      'Cambridge revision support',
+    ],
   },
   '/blog': {
     title: 'Blog — Cambridge & IB revision tips',
@@ -65,19 +95,26 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'Twelve topic hubs: Cambridge marking, mark schemes, grade boundaries, IB Diploma past papers & markbands, revision strategy, subject guides, and free resources.',
   },
   '/insights': {
-    title: 'Marking insights — self-mark gap data',
+    title: 'Marking insights — Cambridge & IB self-mark data',
     description:
-      'Original MarkScheme data on how students self-mark Cambridge papers vs a strict second pass — citable benchmarks for revision research.',
+      'Original MarkScheme dataset on self-marking gaps vs a strict second pass — Cambridge method marks, essay bands, and IB markbands. Citable CC BY 4.0 benchmarks.',
   },
   '/compare': {
-    title: 'Compare — self-mark, tutor, or MarkScheme',
+    title: 'Compare — marking & revision tools (Cambridge & IB)',
     description:
-      'Honest comparison of Cambridge marking options: strict self-mark with the official scheme, MarkScheme second pass, and private tutor feedback.',
+      'Honest comparison: self-marking, MarkScheme, tutors, Save My Exams, PMT, ZNotes, and IB platforms — handwriting upload, courses, cost, and scheme-aligned feedback.',
   },
   '/research': {
-    title: 'Marking methodology — for press & schools',
+    title: 'Press kit — MarkScheme facts & methodology',
     description:
-      'How MarkScheme applies Cambridge mark schemes to handwritten answers — cite this page for press, educators, and link-building.',
+      'Press and educator facts: Cambridge & IB marking from handwriting, free courses, Exam Room, stats, citation format, and second-pass marking methodology.',
+    keywords: [
+      'MarkScheme press',
+      'MarkScheme facts',
+      'Cambridge marking methodology',
+      'IB marking tool',
+      'past paper marking research',
+    ],
   },
   '/courses': {
     title: 'Free Cambridge & IB courses — A-Level, O-Level & Diploma',

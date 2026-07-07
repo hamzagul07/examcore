@@ -29,7 +29,7 @@ Technical SEO in the repo is strong (sitemap, robots, JSON-LD, ~70+ blog URLs, R
 
 - Add real **About** story (founder, why built) — already on `/about`; link from blog author blocks if you add them later
 - **Contact** page live with fast replies (builds trust signals)
-- Optional env for schema `sameAs`: `NEXT_PUBLIC_TWITTER_URL`, `NEXT_PUBLIC_LINKEDIN_URL`, `NEXT_PUBLIC_YOUTUBE_URL`
+- Optional env for schema `sameAs`: `NEXT_PUBLIC_TWITTER_URL`, `NEXT_PUBLIC_LINKEDIN_URL`, `NEXT_PUBLIC_YOUTUBE_URL`, `NEXT_PUBLIC_INSTAGRAM_URL`, `NEXT_PUBLIC_TIKTOK_URL` (defaults ship for [Instagram](https://www.instagram.com/markscheme.app) + [TikTok](https://www.tiktok.com/@markscheme))
 - **Privacy / Terms** accurate and dated
 - No fake reviews in schema; use honest FAQ content only
 
@@ -59,8 +59,10 @@ One link from a **relevant** education site beats fifty low-quality directory li
 ## Social & brand search
 
 - Consistent handle: **MarkScheme** everywhere
+- Live profiles: [Instagram](https://www.instagram.com/markscheme.app) (~110k), [TikTok](https://www.tiktok.com/@markscheme) (~120k) — linked in footer + `Organization.sameAs`
 - `NEXT_PUBLIC_TWITTER_HANDLE` for Twitter cards
 - Branded searches (“MarkScheme past papers”) help Google trust the entity — talk about the product in posts and bios
+- **When shipping features:** keep `public/llms.txt`, `lib/seo/page-meta.ts`, and pillar blogs in sync — [GEO_SYNC_CHECKLIST.md](./GEO_SYNC_CHECKLIST.md)
 
 ## Metrics to watch (Search Console)
 

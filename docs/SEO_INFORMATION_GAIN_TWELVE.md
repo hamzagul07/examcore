@@ -114,6 +114,8 @@ See `docs/BARNACLE_SEO_PLAYBOOK.md`.
 
 **Code:** `pnpm seo:ai-visibility` → `docs/generated/ai-visibility-checklist.md`
 
+**File sync when shipping features:** [GEO_SYNC_CHECKLIST.md](./GEO_SYNC_CHECKLIST.md)
+
 **You:** Monthly manual check — cite share in ChatGPT, Perplexity, AI Overviews.
 
 ---

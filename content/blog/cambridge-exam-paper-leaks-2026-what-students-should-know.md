@@ -8,6 +8,10 @@ keywords: Cambridge exam leaks 2026, exam malpractice, Cambridge integrity, leak
 author: hamza-gul
 ---
 
+## Quick answer
+
+If you see **Cambridge exam leak** rumours in 2026: do **not** buy, share, or revise from them — malpractice investigations can void grades. Prepare with **official past papers** and legitimate marking at [markscheme.app/mark](/mark). See [exam integrity guidance](/blog/cambridge-exam-paper-leaks-2026-what-students-should-know) and your school's rules.
+
 Every May–June season, social media fills with claims that Cambridge papers have “leaked.” Some posts are hoaxes; some describe real security breaches. Either way, **chasing leaks is one of the worst revision strategies you can choose** — and it can end your qualification.
 
 ## Why leak rumours spike before exams

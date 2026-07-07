@@ -4,7 +4,12 @@ description: Where to download papers, mark schemes, examiner reports, and marki
 date: 2026-04-22
 keywords: Cambridge past papers download, mark scheme PDF, A-Level resources 2026, revision tools
 author: hamza-gul
+informationGain: synthesis
 ---
+
+## Quick answer
+
+The best **Cambridge past-paper stack** in 2026: official papers + mark schemes (Cambridge International), free notes (PMT, ZNotes), and **MarkScheme** ([markscheme.app/mark](/mark)) for second-pass marking from handwriting plus [free courses](/courses). Full resource list: [best free Cambridge resources](/blog/best-free-cambridge-revision-resources-2026).
 
 The internet is full of half-uploaded papers and “model answers” that are not Cambridge. Here is a **clean stack** that actually supports marking discipline.
 

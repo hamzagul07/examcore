@@ -9,6 +9,10 @@ keywords: Cambridge A-Level subjects, subject choice 2026, A-Level combinations,
 author: hamza-gul
 ---
 
+## Quick answer
+
+Pick Cambridge A-Levels from **university requirements first**, then enjoyment and workload — not because friends chose the same combo. Use [subject guides](/subjects) and [free courses](/courses) to trial topics; mark past papers on [markscheme.app/mark](/mark) before committing to a fourth subject.
+
 The subject you pick in Year 11 echoes through **every personal statement line and every offer letter**. The goal is not the “hardest” trio — it is the **right** trio for where you are heading, what you can sustain, and what universities actually filter on.
 
 ## Start with the course, not the subject list

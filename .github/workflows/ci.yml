@@ -35,6 +35,9 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: GEO lint (quick answer + llms sync)
+        run: pnpm seo:quick-answer-lint && pnpm seo:geo-sync-check
+
       - name: Verify changed course lessons
         run: pnpm course:verify-changed -- --base origin/main
 

@@ -6,6 +6,8 @@ import { DEFAULT_BLOG_AUTHOR } from '@/lib/seo/authors'
 const DEFAULT_BRAND_LINKEDIN = 'https://www.linkedin.com/company/markscheme/'
 const DEFAULT_BRAND_TWITTER = 'https://twitter.com/MarkSchemeApp'
 const DEFAULT_BRAND_YOUTUBE = 'https://www.youtube.com/@MarkSchemeApp'
+const DEFAULT_BRAND_INSTAGRAM = 'https://www.instagram.com/markscheme.app'
+const DEFAULT_BRAND_TIKTOK = 'https://www.tiktok.com/@markscheme'
 const DEFAULT_BRAND_CRUNCHBASE = 'https://www.crunchbase.com/organization/markscheme'
 const DEFAULT_FOUNDER_LINKEDIN = 'https://www.linkedin.com/in/hamza-gul-hassan-0568b7367/'
 
@@ -16,7 +18,8 @@ export function getBrandSameAs(): string[] {
     process.env.NEXT_PUBLIC_TWITTER_URL ?? DEFAULT_BRAND_TWITTER,
     process.env.NEXT_PUBLIC_LINKEDIN_URL ?? DEFAULT_BRAND_LINKEDIN,
     process.env.NEXT_PUBLIC_CRUNCHBASE_URL ?? DEFAULT_BRAND_CRUNCHBASE,
-    process.env.NEXT_PUBLIC_INSTAGRAM_URL,
+    process.env.NEXT_PUBLIC_INSTAGRAM_URL ?? DEFAULT_BRAND_INSTAGRAM,
+    process.env.NEXT_PUBLIC_TIKTOK_URL ?? DEFAULT_BRAND_TIKTOK,
     process.env.NEXT_PUBLIC_YOUTUBE_URL ?? DEFAULT_BRAND_YOUTUBE,
     process.env.NEXT_PUBLIC_GITHUB_URL,
   ].filter((u): u is string => Boolean(u?.trim()))
@@ -36,16 +39,23 @@ export const BRAND_ENTITY = {
   url: SITE_URL,
   email: CONTACT_EMAIL,
   description:
-    'Cambridge International A-Level and O-Level past-paper marking against real mark schemes, plus IB Diploma (IBDP) past papers and mark-scheme guidance.',
+    'MarkScheme marks Cambridge International (A-Level, O-Level, IGCSE) and IB Diploma past papers from handwriting using real mark schemes and markbands — plus free syllabus courses and Exam Room student communities.',
   founder: DEFAULT_BLOG_AUTHOR.name,
   areaServed: 'Worldwide',
+  slogan: 'Second-pass marking against real schemes',
   knowsAbout: [
     'Cambridge International Examinations',
     'International Baccalaureate Diploma Programme',
     'A-Level past papers',
     'O-Level past papers',
+    'IGCSE past papers',
     'IB past papers',
     'Mark schemes',
+    'IB markbands',
     'Exam marking',
+    'Handwritten answer marking',
+    'Free online courses',
+    'Past paper revision',
+    'Exam preparation',
   ],
 } as const

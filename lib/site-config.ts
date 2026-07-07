@@ -16,7 +16,7 @@ export const SITE_NAME = 'MarkScheme'
 
 /** Short line for OG images, manifest, and hero subcopy. */
 export const SITE_TAGLINE =
-  'Mark past papers, learn free courses, join Exam Room'
+  'Second-pass marking, free courses, Exam Room'
 
 export const CONTACT_EMAIL = 'hello@markscheme.app'
 
@@ -28,7 +28,7 @@ export const SITE_TWITTER = '@MarkSchemeApp'
 
 /** Default meta description — marking, courses, and student community. */
 export const DEFAULT_SITE_DESCRIPTION =
-  'Mark Cambridge & IB past papers mark-by-mark, learn in free syllabus courses, and discuss in Exam Room — Reddit-style communities for every subject. Free tier to start.'
+  'Scheme-aligned second-pass marking for Cambridge & IB past papers — upload handwriting for B1/M1/A1 and markband feedback, study free syllabus courses, and join Exam Room communities. Free tier.'
 
 /** Shared SEO keywords — see lib/seo/keywords.ts for research clusters. */
 export { SEO_KEYWORDS } from '@/lib/seo/keywords'

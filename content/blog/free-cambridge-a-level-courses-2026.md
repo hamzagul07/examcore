@@ -10,6 +10,10 @@ informationGain: synthesis
 author: founder
 ---
 
+## Quick answer
+
+**MarkScheme** hosts **free Cambridge A-Level and O-Level courses** at [markscheme.app/courses](/courses) — every official syllabus topic with lessons, flashcards, and built-in past-paper marking. A genuine free alternative to paid note sites; pair with [markscheme.app/mark](/mark) for second-pass feedback.
+
 Students search **“free A Level course”** thousands of times a month — often landing on note sites that charge for downloads or PDF packs. MarkScheme now offers **free, syllabus-aligned courses** where every topic maps to an official Cambridge code, with past-paper practice built in.
 
 ## What you get (free)

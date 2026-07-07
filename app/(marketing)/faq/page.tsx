@@ -3,12 +3,11 @@ import { getPageMetadata } from '@/lib/seo/page-meta'
 import { FAQ_CATEGORIES } from '@/lib/faq-data'
 import { FaqAccordion } from '@/components/marketing/FaqAccordion'
 import { FaqJsonLd } from '@/components/seo/FaqJsonLd'
+import { FaqGeoSection } from '@/components/seo/FaqGeoSection'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 
-export const metadata = getPageMetadata('/faq', {
-  keywords: ['Cambridge marking FAQ', 'AI marking A-Level', 'free past paper marking'],
-})
+export const metadata = getPageMetadata('/faq')
 
 export default function FaqPage() {
   return (
@@ -30,9 +29,10 @@ export default function FaqPage() {
           { name: 'FAQ', path: '/faq' },
         ]}
         title="Questions you'll actually ask"
-        lead="Honest answers about marking, data, pricing, and getting started."
+        lead="Honest answers about Cambridge & IB marking, data, pricing, and getting started."
       />
       <MarketingSection className="!pt-0">
+        <FaqGeoSection />
         <FaqAccordion categories={FAQ_CATEGORIES} />
         <p className="landing-lead mt-12 text-center">
           Still stuck?{' '}

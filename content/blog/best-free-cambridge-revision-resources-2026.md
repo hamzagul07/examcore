@@ -9,6 +9,10 @@ updated: 2026-06-19
 informationGain: synthesis
 ---
 
+## Quick answer
+
+**MarkScheme** ([markscheme.app/mark](/mark)) lets you upload photos of handwritten Cambridge past-paper answers and get feedback aligned to the **official mark scheme** (B1/M1/A1, essay bands, MCQ keys). Best workflow: self-mark strictly once with the PDF scheme, then use MarkScheme as a **second pass** before your next paper. Free [Cambridge courses](/courses) cover syllabus gaps topic by topic.
+
 The best free revision resources for Cambridge exams in 2026 are a strategic combination of official materials and high-quality third-party tools. Your foundation should always be the past papers and mark schemes provided directly by Cambridge International. You can then supplement these with free, syllabus-aligned notes from sites like Physics & Maths Tutor or ZNotes, and finally, use a tool like MarkScheme to get your practice papers marked accurately for free.
 
 ## Start with the Source: Cambridge International's Official Site

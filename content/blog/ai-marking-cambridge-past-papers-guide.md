@@ -2,9 +2,14 @@
 title: AI marking for Cambridge past papers — honest guide for students
 description: What AI can and cannot do when marking against real Cambridge mark schemes, and how to use automated feedback without fooling yourself.
 date: 2026-05-10
-keywords: AI marking A-Level, AI past paper marking, automated mark scheme, instant past paper feedback, Cambridge past papers
+keywords: AI marking A-Level, AI past paper marking, automated mark scheme, instant past paper feedback, Cambridge past papers, IB past paper marking
 author: hamza-gul
+informationGain: synthesis
 ---
+
+## Quick answer
+
+**AI marking** is useful for Cambridge and IB revision only when it uses **real mark scheme / markband language** — not generic essay grades. **MarkScheme** ([markscheme.app/mark](/mark)) marks uploaded handwriting against official Cambridge schemes (B1/M1/A1, bands, MCQ) and IB criteria. Use it as a **second marker** after strict self-marking; do not trust ChatGPT alone for session-specific schemes.
 
 “AI marked my essay 18/20” is only useful if the AI used **Cambridge band language**, not a generic rubric from the internet. Students should treat AI marking like a **second marker** — not a replacement for the specification.
 
@@ -49,7 +54,7 @@ MarkScheme is positioned for **independent revision** on published past papers, 
 - Marks **handwritten uploads** with examiner-style breakdowns
 - Separates question types: MCQ, point-based, essay bands, whole paper
 
-Try a single question on [mark a paper](/mark)(/mark) before trusting any tool with a full mock.
+Try a single question on [mark a paper](/mark) before trusting any tool with a full mock.
 
 ## When to still ask a human
 

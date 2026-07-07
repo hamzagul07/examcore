@@ -10,6 +10,10 @@ featured: true
 informationGain: synthesis
 ---
 
+## Quick answer
+
+**IB Diploma past papers** are the fastest way to learn markband language and paper timing. Download official papers, revise with free [IB courses on MarkScheme](/ib/courses), practise [topic grids](/ib/past-papers/biology-hl#ib-topic-practice), then [mark handwritten answers](/mark) against IB-style criteria. Hub: [markscheme.app/ib](https://markscheme.app/ib).
+
 Mastering IB Diploma past papers is less about rote learning and more about strategic practice. This guide provides a complete workflow for using past papers to understand the exam's demands, diagnose your weaknesses, and systematically improve your grade. By moving beyond passive revision, you can turn these resources into a powerful tool for achieving your target score.
 
 New here? Read [IB command terms explained](/blog/ib-command-terms-explained), the [Internal Assessment guide](/blog/ib-internal-assessment-complete-guide), and [how to get a 7](/blog/ib-how-to-get-a-7-diploma) before diving into subject papers.

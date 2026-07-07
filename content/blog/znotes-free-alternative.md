@@ -9,6 +9,10 @@ updated: 2026-06-19
 informationGain: synthesis
 ---
 
+## Quick answer
+
+A free **ZNotes alternative** for active revision: pair ZNotes summaries with official Cambridge past papers and **MarkScheme** ([markscheme.app/mark](/mark)) to mark handwritten answers against real schemes, plus [free courses](/courses). ZNotes is excellent for condensed notes; it does not mark your work.
+
 ZNotes is an excellent and widely-used resource providing free, concise revision notes for Cambridge IGCSE, O Level, and A Level exams. While these notes are a brilliant starting point for reviewing content, a true alternative for comprehensive revision must go beyond passive reading. To secure top grades, you need to actively apply your knowledge and get feedback on your performance, which is where other free tools can complement and enhance your use of notes.
 
 ## Start with the Source: Official Cambridge Materials

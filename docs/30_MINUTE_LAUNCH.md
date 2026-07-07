@@ -44,9 +44,18 @@ Open [DIRECTORY_SUBMISSIONS.md](./DIRECTORY_SUBMISSIONS.md). Paste fields, submi
 
 ---
 
+## Week 1 (optional, 30 min/day)
+
+- [ ] Reddit barnacle comments — rows 4-6 in [REDDIT_BARNACLE_COMMENTS.md](./REDDIT_BARNACLE_COMMENTS.md)
+- [ ] School / tutor emails — rows 7-8 in [OUTREACH_DM_EMAILS.md](./OUTREACH_DM_EMAILS.md)
+- [ ] One influencer DM — row 9
+- [ ] One newsletter pitch — row 10
+
+---
+
 ## Done for today?
 
-Code and GEO are complete. Next wins: **backlinks** (school emails from OUTREACH_LISTICLE), **monthly** Perplexity tests, **TikTok** descriptions pointing to companion blogs.
+Code and GEO are complete. Next wins: **backlinks** (school emails from [OUTREACH_DM_EMAILS.md](./OUTREACH_DM_EMAILS.md)), **monthly** Perplexity tests, **TikTok** descriptions pointing to companion blogs.
 
 ```bash
 # After your next on-site content change:

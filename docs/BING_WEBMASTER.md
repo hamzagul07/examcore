@@ -104,3 +104,4 @@ Note whether markscheme.app appears. Log results in [ai-visibility-checklist.md]
 - [DISTRIBUTION_STATUS.md](./DISTRIBUTION_STATUS.md)
 - [GEO_SYNC_CHECKLIST.md](./GEO_SYNC_CHECKLIST.md)
 - [OUTREACH_TRACKER.md](./OUTREACH_TRACKER.md)
+- [OUTREACH_DM_EMAILS.md](./OUTREACH_DM_EMAILS.md)

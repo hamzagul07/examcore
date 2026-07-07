@@ -40,7 +40,7 @@ Canonical links to share:
 | Product directories | Indie Hackers, BetaList, EdTech roundups | Submit as education SaaS |
 | Wikipedia / Wikidata adjacency | Already on Wikidata Q140455387 | Do **not** spam Wikipedia; use press kit |
 
-Track progress in a spreadsheet: site URL, date contacted, live link Y/N.
+Track progress in a spreadsheet: site URL, date contacted, live link Y/N. Or use [OUTREACH_TRACKER.md](./OUTREACH_TRACKER.md) in the repo.
 
 ---
 

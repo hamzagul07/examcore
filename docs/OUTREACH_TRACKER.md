@@ -13,9 +13,9 @@ Copy-paste blurbs: [OUTREACH_LISTICLE.md](./OUTREACH_LISTICLE.md) · **Directory
 | 1 | [Indie Hackers](https://www.indiehackers.com/products) | Submit product | | ? | | EdTech / exam prep angle |
 | 2 | [BetaList](https://betalist.com/submit) | Submit startup | | ? | | Free IB + Cambridge courses hook |
 | 3 | [AlternativeTo — Save My Exams](https://alternativeto.net/software/save-my-exams/) | Suggest alternative | | ? | | Honest comparison, link /compare |
-| 4 | r/IBO resource / wiki thread | Helpful comment + link | | ? | | Use barnacle UTM from BARNACLE_SEO_PLAYBOOK |
-| 5 | r/alevel resources thread | Same | | ? | | Link /mark + maths demo blog |
-| 6 | r/igcse resources thread | Same | | ? | | |
+| 4 | r/IBO resource / wiki thread | [REDDIT_BARNACLE_COMMENTS.md](./REDDIT_BARNACLE_COMMENTS.md) | | ? | | Use barnacle UTM from BARNACLE_SEO_PLAYBOOK |
+| 5 | r/alevel resources thread | [REDDIT_BARNACLE_COMMENTS.md](./REDDIT_BARNACLE_COMMENTS.md) | | ? | | Link /mark + maths demo blog |
+| 6 | r/igcse resources thread | [REDDIT_BARNACLE_COMMENTS.md](./REDDIT_BARNACLE_COMMENTS.md) | | ? | | |
 | 7 | Local sixth-form / IB coordinator | Email from OUTREACH_LISTICLE | | ? | | 1 school you know |
 | 8 | Independent tutor (Cambridge) | Email offering blurb | | ? | | |
 | 9 | Student Notion template creator (IB/Cambridge) | DM to add under Tools | | ? | | Search Twitter/TikTok #ibdp |

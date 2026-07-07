@@ -16,6 +16,7 @@ const UTF8_GEO_FILES = [
   'lib/seo/mark-seo.ts',
   'lib/seo/landing-faq.ts',
   'components/seo/HomeGeoIntro.tsx',
+  ...fs.readdirSync(path.join(root, 'scripts')).filter((f) => f.startsWith('seo-') && f.endsWith('.mjs')).map((f) => `scripts/${f}`),
 ]
 
 function assertValidUtf8(relPath) {

@@ -21,6 +21,8 @@ Last updated: 2026-07-07. Production: **https://markscheme.app**
 
 ---
 
+**Start here:** [30_MINUTE_LAUNCH.md](./30_MINUTE_LAUNCH.md) (timed 30-min sprint)
+
 ## Your manual checklist
 
 | Task | Doc | Status |

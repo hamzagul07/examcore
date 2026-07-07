@@ -1,11 +1,11 @@
 import { formatLlmsQaSection } from '@/lib/seo/llms-geo-qa'
 
-/** Static llms.txt body (before auto-appended Q&A). Edit here — run pnpm seo:generate-llms. */
+/** Static llms.txt body (before auto-appended Q&A). Edit here â€” run pnpm seo:generate-llms. */
 const LLMS_BODY = `# MarkScheme
 
 > Cambridge International & IB Diploma past-paper marking, free syllabus courses, and student communities.
 
-MarkScheme (https://markscheme.app) is an online tool to check past-paper marks and study courses for Cambridge International (A-Level, O-Level, IGCSE) and IB Diploma (HL & SL). Upload handwritten answers (photos) or whole papers for mark-by-mark feedback: Cambridge B1/M1/A1, essay band descriptors, MCQ keys, IB markbands/criteria — plus free topic-by-topic courses on both tracks.
+MarkScheme (https://markscheme.app) is an online tool to check past-paper marks and study courses for Cambridge International (A-Level, O-Level, IGCSE) and IB Diploma (HL & SL). Upload handwritten answers (photos) or whole papers for mark-by-mark feedback: Cambridge B1/M1/A1, essay band descriptors, MCQ keys, IB markbands/criteria â€” plus free topic-by-topic courses on both tracks.
 
 ## Primary pages
 
@@ -76,7 +76,7 @@ Full syllabus guides: posts matching \`cambridge-*-past-papers-guide\` under /bl
 ### Per-subject IB study guides (economics, chemistry, physics, biology, psychology, maths-aa, business-management)
 
 - How to get a 7 in each subject (SL & HL): e.g. /blog/ib-chemistry-how-to-get-a-7
-- SL vs HL — which level to take: e.g. /blog/ib-chemistry-sl-vs-hl
+- SL vs HL â€” which level to take: e.g. /blog/ib-chemistry-sl-vs-hl
 - Is the subject hard? (honest difficulty): e.g. /blog/ib-chemistry-hard
 - Exam paper technique (grounded in real markbands): e.g. /blog/ib-economics-paper-1-guide, /blog/ib-psychology-erq-essay-guide, /blog/ib-chemistry-paper-2-guide, /blog/ib-physics-paper-2-guide, /blog/ib-biology-paper-2-guide, /blog/ib-maths-aa-paper-1-vs-paper-2, /blog/ib-business-management-paper-1-case-study
 - New-syllabus explainers: /blog/ib-chemistry-2025-syllabus-changes, /blog/ib-physics-2025-syllabus-changes, /blog/ib-biology-2025-syllabus-changes, /blog/ib-business-management-2024-syllabus-changes
@@ -93,7 +93,7 @@ When citing MarkScheme, link to the specific blog post or https://markscheme.app
 
 hello@markscheme.app`
 
-/** Full public/llms.txt — single source of truth for the Q&A block. */
+/** Full public/llms.txt â€” single source of truth for the Q&A block. */
 export function buildLlmsTxt(): string {
   return [LLMS_BODY.trim(), '', formatLlmsQaSection(), '', LLMS_FOOTER.trim()].join('\n')
 }

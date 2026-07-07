@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Technical SEO audit — crawl paths, titles, orphans, cluster coverage.
+ * Technical SEO audit â€” crawl paths, titles, orphans, cluster coverage.
  * Run: node scripts/seo-audit.mjs
  */
 import fs from 'fs'
@@ -108,24 +108,24 @@ console.log(`  Blog posts: ${blogPaths.length}\n`)
 
 if (issues.length) {
   console.log('Issues:')
-  issues.forEach((i) => console.log('  ✗', i))
+  issues.forEach((i) => console.log('  âœ—', i))
   console.log('')
 }
 
 if (warnings.length) {
   console.log('Warnings:')
   warnings.slice(0, 15).forEach((w) => console.log('  !', w))
-  if (warnings.length > 15) console.log(`  … and ${warnings.length - 15} more`)
+  if (warnings.length > 15) console.log(`  â€¦ and ${warnings.length - 15} more`)
   console.log('')
 }
 
 console.log(`Blog posts without inbound /blog/ links (hub/footer fixes these): ${potentiallyOrphaned.length}`)
 if (potentiallyOrphaned.length > 0 && potentiallyOrphaned.length <= 10) {
-  potentiallyOrphaned.forEach((u) => console.log('  ·', u))
+  potentiallyOrphaned.forEach((u) => console.log('  Â·', u))
 }
 
 console.log('\nNext steps:')
-console.log('  1. Google Search Console → Coverage + striking-distance queries')
+console.log('  1. Google Search Console â†’ Coverage + striking-distance queries')
 console.log('  2. Rich Results Test on /blog/how-to-mark-cambridge-past-papers-yourself')
 console.log('  3. docs/SEO_TWELVE_PILLARS.md + docs/SEO_MEASUREMENT.md')
 

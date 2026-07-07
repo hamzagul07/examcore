@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * SSR check — critical strings and crawl signals must appear in raw HTML (no JS).
+ * SSR check â€” critical strings and crawl signals must appear in raw HTML (no JS).
  * Usage: BASE_URL=https://markscheme.app node scripts/seo-ssr-check.mjs
  */
 const base = (process.env.BASE_URL || 'http://localhost:3000').replace(/\/$/, '')
@@ -92,14 +92,14 @@ for (const { path, must, h1Min = 1, h1Max = 1, plainText = false } of PAGES) {
 
     if (problems.length) {
       failed++
-      console.log(`✗ ${path}`)
+      console.log(`âœ— ${path}`)
       problems.forEach((p) => console.log(`  ${p}`))
     } else {
-      console.log(`✓ ${path} (h1=${h1}, ${Math.round(Buffer.byteLength(html) / 1024)}KB)`)
+      console.log(`âœ“ ${path} (h1=${h1}, ${Math.round(Buffer.byteLength(html) / 1024)}KB)`)
     }
   } catch (e) {
     failed++
-    console.log(`✗ ${path} — ${e.message}`)
+    console.log(`âœ— ${path} â€” ${e.message}`)
   }
 }
 process.exit(failed > 0 ? 1 : 0)

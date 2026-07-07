@@ -132,10 +132,10 @@ BASE_URL=https://markscheme.app pnpm seo:sitemap-scan
 
 ## Manual (you do after deploy)
 
-- [x] Wikidata item [Q140455387](https://www.wikidata.org/wiki/Q140455387) + `NEXT_PUBLIC_WIKIDATA_ENTITY_URL` (optional ÿ ships as code default)
-- [x] IndexNow key + `pnpm seo:indexnow` after deploy ÿ see [BING_WEBMASTER.md](./BING_WEBMASTER.md)
-- [ ] Bing Webmaster Tools ÿ verify site + submit sitemap ([BING_WEBMASTER.md](./BING_WEBMASTER.md))
-- [ ] IG/TikTok bio link tree to `/mark`, `/ib/courses`, `/compare` ÿ [SOCIAL_BIOS.md](./SOCIAL_BIOS.md)
-- [ ] 10 external listicle / school resource page mentions ÿ [OUTREACH_LISTICLE.md](./OUTREACH_LISTICLE.md) ÿ track in [OUTREACH_TRACKER.md](./OUTREACH_TRACKER.md)
+- [x] Wikidata item [Q140455387](https://www.wikidata.org/wiki/Q140455387) + `NEXT_PUBLIC_WIKIDATA_ENTITY_URL` (optional ï¿½ ships as code default)
+- [x] IndexNow key + `pnpm seo:indexnow` after deploy ï¿½ see [BING_WEBMASTER.md](./BING_WEBMASTER.md)
+- [ ] Bing Webmaster Tools ï¿½ verify site + submit sitemap ([BING_WEBMASTER.md](./BING_WEBMASTER.md))
+- [ ] IG/TikTok bio link tree to `/mark`, `/ib/courses`, `/compare` ï¿½ [SOCIAL_BIOS.md](./SOCIAL_BIOS.md)
+- [ ] 10 external listicle / school resource page mentions ï¿½ [OUTREACH_LISTICLE.md](./OUTREACH_LISTICLE.md) ï¿½ track in [OUTREACH_TRACKER.md](./OUTREACH_TRACKER.md)
 - [ ] Monthly Perplexity checklist (`docs/generated/ai-visibility-checklist.md`)
-- [ ] Companion blog + transcript for top TikTok demos — [TIKTOK_BLOG_COMPANION.md](./TIKTOK_BLOG_COMPANION.md)
+- [x] Companion blog + transcript for top TikTok demos â€” [TIKTOK_BLOG_COMPANION.md](./TIKTOK_BLOG_COMPANION.md) (6/6 live)

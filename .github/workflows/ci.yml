@@ -13,7 +13,7 @@ concurrency:
 jobs:
   quality:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
 
@@ -40,6 +40,28 @@ jobs:
 
       - name: Build
         run: pnpm build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.placeholder
+          SUPABASE_SERVICE_ROLE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.placeholder
+          ANTHROPIC_API_KEY: sk-ant-placeholder
+          GEMINI_API_KEY: placeholder
+
+      - name: SEO regression (SSR + sitemap)
+        run: |
+          pnpm start --port 3099 &
+          SERVER_PID=$!
+          trap "kill $SERVER_PID 2>/dev/null || true" EXIT
+          for i in $(seq 1 60); do
+            if curl -sf http://127.0.0.1:3099/api/health >/dev/null; then
+              echo "Server ready"
+              break
+            fi
+            sleep 2
+          done
+          curl -sf http://127.0.0.1:3099/api/health
+          BASE_URL=http://127.0.0.1:3099 node scripts/seo-ssr-check.mjs
+          SEO_SCAN_CONCURRENCY=8 BASE_URL=http://127.0.0.1:3099 node scripts/seo-sitemap-scan.mjs
         env:
           NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
           NEXT_PUBLIC_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.placeholder

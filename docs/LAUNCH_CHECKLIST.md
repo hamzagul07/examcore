@@ -58,7 +58,7 @@ Production: **https://markscheme.app**
 2. Vercel env: `GOOGLE_SITE_VERIFICATION`, `BING_SITE_VERIFICATION` (optional `NEXT_PUBLIC_TWITTER_HANDLE`, social `sameAs` URLs)
 3. Follow [SEO_TWELVE_PILLARS.md](./SEO_TWELVE_PILLARS.md) (in-site implementation) and [SEO_AUTHORITY_PLAYBOOK.md](./SEO_AUTHORITY_PLAYBOOK.md) (backlinks)
 4. Run `pnpm seo:audit` after content changes; track queries in [SEO_MEASUREMENT.md](./SEO_MEASUREMENT.md)
-5. Re-crawl in Semrush after deploy; confirm `pnpm seo:sitemap-scan` stays clean: `BASE_URL=https://markscheme.app pnpm seo:sitemap-scan`
+5. Re-crawl in Semrush after deploy; confirm `pnpm seo:sitemap-scan` stays clean: `BASE_URL=https://markscheme.app pnpm seo:sitemap-scan` (also runs in CI after every build)
 6. Advanced stack: [SEO_ADVANCED_THIRTEEN.md](./SEO_ADVANCED_THIRTEEN.md) — entity env vars, `pnpm seo:ssr-check` on prod
 7. Information gain / AI retrieval: [SEO_INFORMATION_GAIN_TWELVE.md](./SEO_INFORMATION_GAIN_TWELVE.md) — `/insights`, `pnpm seo:fan-out-lint`, `pnpm seo:ai-visibility`
 8. Results season distribution: [BARNACLE_SEO_PLAYBOOK.md](./BARNACLE_SEO_PLAYBOOK.md) — Reddit templates, UTM links, Jul/Aug calendar

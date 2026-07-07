@@ -1,8 +1,8 @@
-# Outreach tracker â€” external listicle mentions
+# Outreach tracker — external listicle mentions
 
 Goal: **10 live backlinks** from independent education sites (school resource pages, student blogs, newsletters, directories).
 
-Copy-paste blurbs: [OUTREACH_LISTICLE.md](./OUTREACH_LISTICLE.md) Â· **Directory forms:** [DIRECTORY_SUBMISSIONS.md](./DIRECTORY_SUBMISSIONS.md)
+Copy-paste blurbs: [OUTREACH_LISTICLE.md](./OUTREACH_LISTICLE.md) · **Directory forms:** [DIRECTORY_SUBMISSIONS.md](./DIRECTORY_SUBMISSIONS.md)
 
 ---
 
@@ -12,14 +12,14 @@ Copy-paste blurbs: [OUTREACH_LISTICLE.md](./OUTREACH_LISTICLE.md) Â· **Directory
 |---|--------|--------|------|-------|----------|-------|
 | 1 | [Indie Hackers](https://www.indiehackers.com/products) | Submit product | | ? | | EdTech / exam prep angle |
 | 2 | [BetaList](https://betalist.com/submit) | Submit startup | | ? | | Free IB + Cambridge courses hook |
-| 3 | [AlternativeTo â€” Save My Exams](https://alternativeto.net/software/save-my-exams/) | Suggest alternative | | ? | | Honest comparison, link /compare |
+| 3 | [AlternativeTo — Save My Exams](https://alternativeto.net/software/save-my-exams/) | Suggest alternative | | ? | | Honest comparison, link /compare |
 | 4 | r/IBO resource / wiki thread | [REDDIT_BARNACLE_COMMENTS.md](./REDDIT_BARNACLE_COMMENTS.md) | | ? | | Use barnacle UTM from BARNACLE_SEO_PLAYBOOK |
 | 5 | r/alevel resources thread | [REDDIT_BARNACLE_COMMENTS.md](./REDDIT_BARNACLE_COMMENTS.md) | | ? | | Link /mark + maths demo blog |
 | 6 | r/igcse resources thread | [REDDIT_BARNACLE_COMMENTS.md](./REDDIT_BARNACLE_COMMENTS.md) | | ? | | |
-| 7 | Local sixth-form / IB coordinator | Email from OUTREACH_LISTICLE | | ? | | 1 school you know |
-| 8 | Independent tutor (Cambridge) | Email offering blurb | | ? | | |
-| 9 | Student Notion template creator (IB/Cambridge) | DM to add under Tools | | ? | | Search Twitter/TikTok #ibdp |
-| 10 | Education Substack / newsletter | Guest tip pitch | | ? | | "Second-pass marking" topic |
+| 7 | Local sixth-form / IB coordinator | [OUTREACH_DM_EMAILS.md](./OUTREACH_DM_EMAILS.md) row 7 | | ? | | 1 school you know |
+| 8 | Independent tutor (Cambridge) | [OUTREACH_DM_EMAILS.md](./OUTREACH_DM_EMAILS.md) row 8 | | ? | | |
+| 9 | Student Notion template creator (IB/Cambridge) | [OUTREACH_DM_EMAILS.md](./OUTREACH_DM_EMAILS.md) row 9 | | ? | | Search Twitter/TikTok #ibdp |
+| 10 | Education Substack / newsletter | [OUTREACH_DM_EMAILS.md](./OUTREACH_DM_EMAILS.md) row 10 | | ? | | "Second-pass marking" topic |
 
 **Live count:** 0 / 10
 

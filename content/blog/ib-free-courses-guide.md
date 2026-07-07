@@ -10,7 +10,9 @@ featured: true
 informationGain: synthesis
 ---
 
-MarkScheme hosts **free, syllabus-aligned IB Diploma courses** — not static PDF dumps, but topic-by-topic lessons with worked examples, flashcards, and built-in **criterion practice marking** on every syllabus point. The catalog now covers **44 subjects** and **760+ lessons** at HL, SL, and Core.
+## Quick answer
+
+**MarkScheme** hosts **free IB Diploma courses** (44+ subjects, 760+ lessons) at [markscheme.app/ib/courses](/ib/courses) — topic-by-topic lessons, flashcards, and criterion practice marking on every syllabus point. Pair with [IB past papers](/ib/past-papers) and [mark uploaded answers](/mark) for markband-shaped feedback. Not static PDF dumps: worked examples and built-in criterion practice on every syllabus point.
 
 ## What is included
 - **Core:** [TOK](/ib/courses/tok), [Extended Essay](/ib/courses/extended-essay), [CAS](/ib/courses/cas)
@@ -22,7 +24,7 @@ MarkScheme hosts **free, syllabus-aligned IB Diploma courses** — not static PD
 
 **Group 6 arts (expanded):** [Dance](/ib/courses/dance-hl) · [Theatre](/ib/courses/theatre-hl) · [Music](/ib/courses/music-hl) · [Film](/ib/courses/film-hl) · [Visual Arts](/ib/courses/visual-arts-hl) — each with HL and SL courses and full topic practice grids.
 
-Each course follows official topic codes. Lessons link straight to [mark a paper](/mark)(/mark) practice with IB assessment criteria — band-by-band feedback, not a generic grade.
+Each course follows official topic codes. Lessons link straight to [mark a paper](/mark) practice with IB assessment criteria — band-by-band feedback, not a generic grade.
 
 ## How to use the courses
 1. Open the [IB courses catalog](/ib/courses) or browse from the [main courses page](/courses).

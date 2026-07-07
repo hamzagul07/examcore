@@ -85,6 +85,8 @@ NEXT_PUBLIC_LINKEDIN_URL=https://www.linkedin.com/company/<slug>/
 NEXT_PUBLIC_FOUNDER_LINKEDIN_URL=https://www.linkedin.com/in/<founder>/
 NEXT_PUBLIC_TWITTER_URL=https://x.com/<handle>          # if created
 NEXT_PUBLIC_YOUTUBE_URL=https://youtube.com/@<handle>   # if created
+NEXT_PUBLIC_INSTAGRAM_URL=https://www.instagram.com/markscheme.app
+NEXT_PUBLIC_TIKTOK_URL=https://www.tiktok.com/@markscheme
 NEXT_PUBLIC_WIKIDATA_ENTITY_URL=https://www.wikidata.org/wiki/Q…  # see WIKIDATA_ENTITY.md
 ```
 

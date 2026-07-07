@@ -1,5 +1,6 @@
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { HomeJsonLd } from '@/components/seo/HomeJsonLd'
+import { HomeGeoIntro } from '@/components/seo/HomeGeoIntro'
 import { LandingHero } from '@/components/landing/LandingHero'
 import { LandingPillars } from '@/components/landing/LandingPillars'
 import { LandingMarkingSection } from '@/components/landing/LandingMarkingSection'
@@ -20,6 +21,7 @@ export default function Home() {
     <>
       <HomeJsonLd />
       <main>
+        <HomeGeoIntro />
         <LandingHero markHref={markHref} />
         <LandingEditorialSpotlight />
         <LandingPillars />

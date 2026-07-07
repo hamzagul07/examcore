@@ -9,6 +9,10 @@ informationGain: dataset
 author: founder
 ---
 
+## Quick answer
+
+For **2026 IGCSE** revision, prioritise high-frequency topics: **0580** algebra/graphs, **0610/0620/0625** core science skills — then practise with official papers and second-pass mark on [markscheme.app/mark](/mark). Free [Cambridge courses](/courses) cover syllabus gaps topic by topic.
+
 IGCSE students search “what comes up most” every May. The honest answer: **algebra, electrolysis, electricity, and mole calculations** dominate year after year — but only **marked past papers** turn that into grades. Here are the highest-frequency topics for four core IGCSE syllabuses sitting in **2026**, plus a practice sequence that feeds straight into [MarkScheme](/mark).
 
 ## Mathematics 0580 (Extended)

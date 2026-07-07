@@ -172,7 +172,9 @@ export const FOOTER_SUBJECT_LINKS = [
 export const FOOTER_COMPANY_LINKS = [
   { href: '/about', label: 'The story' },
   { href: '/how-it-works', label: 'How it works' },
+  { href: '/for-teachers', label: 'For teachers' },
   { href: '/faq', label: 'FAQ' },
+  { href: '/changelog', label: 'Changelog' },
   { href: '/guides', label: 'Guides & blog' },
   { href: '/guides/ib', label: 'IB study guides' },
   { href: '/how-it-works#honest', label: 'Honest about AI' },
@@ -188,6 +190,8 @@ export const FOOTER_LEGAL_LINKS = [
 
 /** Public social profiles — keep in sync with Organization.sameAs (lib/seo/entity.ts). */
 export const FOOTER_SOCIAL_LINKS = [
+  { href: 'https://www.instagram.com/markscheme.app', label: 'Instagram', icon: 'instagram' as const },
+  { href: 'https://www.tiktok.com/@markscheme', label: 'TikTok', icon: 'tiktok' as const },
   { href: 'https://twitter.com/MarkSchemeApp', label: 'Twitter', icon: 'twitter' as const },
   { href: 'https://www.youtube.com/@MarkSchemeApp', label: 'YouTube', icon: 'youtube' as const },
   { href: 'https://www.linkedin.com/company/markscheme/', label: 'LinkedIn', icon: 'linkedin' as const },

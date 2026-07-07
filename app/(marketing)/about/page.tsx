@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { AboutPersonJsonLd } from '@/components/seo/AboutPersonJsonLd'
+import { AboutGeoIntro } from '@/components/seo/AboutGeoIntro'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 
@@ -55,9 +56,9 @@ export default function AboutPage() {
             Built by a student <em>who needed it.</em>
           </>
         }
-        lead="Cambridge past-paper revision with real mark schemes — mark-by-mark feedback on your handwriting, not a generic AI grade."
+        lead="Scheme-aligned second-pass marking for Cambridge & IB — mark-by-mark feedback on your handwriting, free courses, and Exam Room communities."
       />
-
+      <AboutGeoIntro />
       <MarketingSection className="!pt-0">
         <div className="mx-auto max-w-3xl">
           <div id="hamza-gul" className="ms-story-founder scroll-mt-24">

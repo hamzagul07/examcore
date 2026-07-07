@@ -1335,9 +1335,9 @@ export default function MarkPage() {
         {!result && (
           <header className="ms-mark-hero ms-fade-in">
             <p className="ms-overline ms-mark-hero-eyebrow">Mark a question</p>
-            <h1 className="ms-mark-hero-title">
+            <h2 className="ms-mark-hero-title">
               {selectedMarkBoard === 'ib' ? 'IB examiner-style feedback' : 'Cambridge examiner-style feedback'}
-            </h1>
+            </h2>
             <p className="ms-mark-hero-lead">
               Upload photos or PDFs — marked in about a minute with{' '}
               {selectedMarkBoard === 'ib' ? 'criterion bands' : 'official mark scheme logic'}.

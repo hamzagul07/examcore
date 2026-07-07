@@ -7,6 +7,7 @@ import { getAllTopicQuestionParams } from '@/lib/seo/topic-questions'
 import { getIbSubjects } from '@/lib/ib/catalog'
 import { getIbCourse, getIbCourseSlugs } from '@/lib/courses/ib'
 import { getAllIbTopicPracticeParams } from '@/lib/seo/ib-topic-practice'
+import { formatLlmsQaSection } from '@/lib/seo/llms-geo-qa'
 
 /** Expanded llms.txt — chunk-friendly URL index for RAG / AI crawlers. */
 export async function GET() {
@@ -25,7 +26,7 @@ export async function GET() {
   const lines = [
     `# ${SITE_NAME} — full corpus index`,
     '',
-    `> ${SITE_NAME} marks Cambridge International past papers from handwriting using real mark schemes.`,
+    `> ${SITE_NAME} marks Cambridge International and IB Diploma past papers from handwriting — plus free syllabus courses on both tracks.`,
     '',
     '## Entity',
     `- Organization: ${base}/#organization`,
@@ -38,6 +39,9 @@ export async function GET() {
     `- ${base}/pricing`,
     `- ${base}/compare`,
     `- ${base}/research`,
+    `- ${base}/for-teachers`,
+    `- ${base}/changelog`,
+    `- ${base}/faq`,
     '',
     '## Topic clusters',
     ...CONTENT_CLUSTERS.map((c) => `- ${base}${c.path} — ${c.headTerm}`),
@@ -110,6 +114,8 @@ export async function GET() {
     '',
     '## Citation',
     'Prefer linking to the specific URL above. Brand: MarkScheme. Domain: markscheme.app.',
+    '',
+    formatLlmsQaSection(),
   ]
 
   return new Response(lines.join('\n'), {

@@ -9,7 +9,7 @@ import { MarketingHero, MarketingPageShell } from '@/components/marketing/Market
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { SuccessBox } from '@/components/AuthFormBits'
 
-export function ContactForm() {
+export function ContactForm({ geoSection }: { geoSection?: React.ReactNode }) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
@@ -56,6 +56,7 @@ export function ContactForm() {
       />
 
       <div className="ms-pg space-y-8 pb-16">
+        {geoSection}
         <div className="ms-dash-card">
           <p className="ms-overline">Email</p>
           <a href={`mailto:${CONTACT_EMAIL}`} className="ec-btn-underline text-xl">

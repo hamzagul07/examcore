@@ -20,6 +20,7 @@ export function organizationNode(): JsonLd {
     url: BRAND_ENTITY.url,
     email: BRAND_ENTITY.email,
     description: BRAND_ENTITY.description,
+    ...(BRAND_ENTITY.slogan ? { slogan: BRAND_ENTITY.slogan } : {}),
     areaServed: BRAND_ENTITY.areaServed,
     knowsAbout: [...BRAND_ENTITY.knowsAbout],
     logo: {
@@ -94,11 +95,18 @@ export function websiteNode(): JsonLd {
     publisher: { '@id': `${SITE_URL}/#organization` },
     about: { '@id': `${SITE_URL}/#brand` },
     hasPart: [
-      { '@type': 'WebPage', url: `${SITE_URL}/mark`, name: 'Mark a past paper' },
-      { '@type': 'WebPage', url: `${SITE_URL}/subjects`, name: 'Cambridge subjects' },
+      { '@type': 'WebPage', url: `${SITE_URL}/mark`, name: 'Mark Cambridge & IB past papers' },
       { '@type': 'WebPage', url: `${SITE_URL}/courses`, name: 'Free Cambridge courses' },
+      { '@type': 'WebPage', url: `${SITE_URL}/ib/courses`, name: 'Free IB Diploma courses' },
       { '@type': 'WebPage', url: `${SITE_URL}/ib`, name: 'IB Diploma past papers' },
-      { '@type': 'WebPage', url: `${SITE_URL}/ib/courses`, name: 'Free IB courses' },
+      { '@type': 'WebPage', url: `${SITE_URL}/compare`, name: 'Compare revision tools' },
+      { '@type': 'WebPage', url: `${SITE_URL}/research`, name: 'Press kit & methodology' },
+      { '@type': 'WebPage', url: `${SITE_URL}/insights`, name: 'Marking insights dataset' },
+      { '@type': 'WebPage', url: `${SITE_URL}/community`, name: 'Exam Room communities' },
+      { '@type': 'WebPage', url: `${SITE_URL}/for-teachers`, name: 'Teachers & schools' },
+      { '@type': 'WebPage', url: `${SITE_URL}/changelog`, name: 'Product changelog' },
+      { '@type': 'WebPage', url: `${SITE_URL}/faq`, name: 'FAQ' },
+      { '@type': 'WebPage', url: `${SITE_URL}/subjects`, name: 'Cambridge subjects' },
       { '@type': 'WebPage', url: `${SITE_URL}/guides/ib`, name: 'IB study guides' },
       { '@type': 'WebPage', url: `${SITE_URL}/blog`, name: 'Revision guides & exam tips' },
     ],
@@ -250,18 +258,39 @@ export function softwareApplicationNode(): JsonLd {
     '@id': `${SITE_URL}/#app`,
     name: SITE_NAME,
     applicationCategory: 'EducationalApplication',
+    applicationSubCategory: 'Past paper marking and revision',
     operatingSystem: 'Web',
     url: `${SITE_URL}/mark`,
+    description:
+      'Upload handwritten Cambridge or IB past-paper answers for scheme-aligned marking, with free syllabus courses and student communities.',
+    featureList: [
+      'Scheme-aligned second-pass marking',
+      'Handwritten answer photo upload',
+      'Cambridge mark scheme marking (B1/M1/A1, essay bands, MCQ)',
+      'IB Diploma markband-style criterion feedback',
+      'Whole past paper marking',
+      'Free Cambridge and IB syllabus courses',
+      'IB and Cambridge topic practice by syllabus point',
+      'Exam Room subject communities',
+      'Teacher classrooms with blindspot analytics',
+      'Grade boundary and IB points calculators',
+    ],
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
       availability: 'https://schema.org/InStock',
     },
-    audience: {
-      '@type': 'EducationalAudience',
-      educationalRole: 'student',
-    },
+    audience: [
+      {
+        '@type': 'EducationalAudience',
+        educationalRole: 'student',
+      },
+      {
+        '@type': 'EducationalAudience',
+        educationalRole: 'teacher',
+      },
+    ],
   }
 }
 

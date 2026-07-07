@@ -8,6 +8,10 @@ keywords: May June 2026 exams, Cambridge exam countdown, 8 week revision plan, e
 author: hamza-gul
 ---
 
+## Quick answer
+
+**May/June 2026** Cambridge countdown: from 8 weeks out, map your exam calendar, close syllabus gaps with [free courses](/courses), run timed past papers weekly, and second-pass mark on [markscheme.app/mark](/mark). Structure beats raw hours in the final two months.
+
 The **May/June 2026** series is when most Cambridge International candidates sit their main papers. Eight weeks out is not early — it is the window where **structure** beats **hours**. This countdown assumes you are past-paper ready, not learning the syllabus from zero.
 
 ## Week 8 — map the battlefield

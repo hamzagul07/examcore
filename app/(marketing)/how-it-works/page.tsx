@@ -4,11 +4,14 @@ import { buildMarketingSignUpHref } from '@/lib/auth-redirect'
 import { createClient } from '@/lib/supabase-server'
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
-import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
+import { JsonLd } from '@/components/seo/JsonLd'
+import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
+import { markingHowToJsonLd } from '@/lib/seo/marking-how-to'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { Hero } from '@/components/marketing/Hero'
 import { LandingScreenshotSteps } from '@/components/landing/LandingScreenshotSteps'
 import { LandingSectionReveal } from '@/components/landing/LandingSectionReveal'
+import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 
 export const metadata = getPageMetadata('/how-it-works')
 
@@ -23,13 +26,26 @@ export default async function HowItWorksPage() {
     <MarketingPageShell>
       <PageJsonLd
         path="/how-it-works"
-        title="How MarkScheme marks Cambridge past papers"
-        description="Pick a past paper, upload handwritten working, and get mark-by-mark feedback from the real Cambridge mark scheme."
+        title="How MarkScheme marks Cambridge & IB past papers"
+        description="Second-pass marking workflow: upload handwritten working for scheme-aligned Cambridge and IB feedback from real mark schemes and markbands."
         breadcrumbs={[
           { name: 'Home', path: '/' },
           { name: 'How it works', path: '/how-it-works' },
         ]}
       />
+      <JsonLd data={markingHowToJsonLd()} />
+      <MarketingSection className="!pb-0">
+        <HubSeoIntro
+          headingLevel="h2"
+          heading="Second-pass marking — how it works"
+          paragraph="MarkScheme is built for scheme-aligned feedback after you self-mark: photograph handwritten Cambridge or IB answers, get B1/M1/A1 or markband breakdowns in ~30 seconds, then redo one skill before the next paper."
+          links={[
+            { href: '/mark', label: 'Mark a paper →', variant: 'primary' },
+            { href: '/compare', label: 'Compare tools', variant: 'ghost' },
+            { href: '/blog/how-to-mark-cambridge-past-papers-yourself', label: 'Self-marking guide', variant: 'muted' },
+          ]}
+        />
+      </MarketingSection>
       <MarketingHero
         label="How it works"
         breadcrumbs={[

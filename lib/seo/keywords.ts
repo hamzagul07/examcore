@@ -8,9 +8,14 @@
  * 4. Feedback speed — "instant marking", "AI marking A-Level", "past paper feedback"
  * 5. Subject long-tail — 9709 maths, 9708 economics essay, 9702 physics, O-Level 4024
  * 6. Whole-paper workflow — "mark whole past paper", "full paper marking"
+ * 7. IB Diploma — "IB past paper marking", "IB markbands", "free IB course"
+ * 8. Combined GEO — "online tool check marks", "Cambridge and IB revision tool"
  *
  * Competitor gap: most tools are generic essay graders; we target handwritten +
  * real Cambridge mark schemes + mark-by-mark (B1/M1/A1, bands, MCQ keys).
+ * IB: criterion/markband practice + free syllabus courses on the same platform.
+ *
+ * When adding features or routes, also update public/llms.txt — see docs/GEO_SYNC_CHECKLIST.md.
  */
 
 export const KEYWORD_CLUSTERS = {
@@ -87,6 +92,37 @@ export const KEYWORD_CLUSTERS = {
     'free A-Level revision notes',
     'free past paper marking',
     'Physics and Maths Tutor alternative',
+    'Revision Village alternative',
+  ],
+  ibMarking: [
+    'IB past paper marking',
+    'IB markbands practice',
+    'mark IB essay online',
+    'IB criterion marking',
+    'IB Diploma revision tool',
+    'mark IB past paper online',
+  ],
+  ibCourses: [
+    'free IB course',
+    'IB Diploma courses online',
+    'IB TOK course free',
+    'IB topic practice',
+    'free IB notes',
+  ],
+  combinedGeo: [
+    'Cambridge and IB past papers',
+    'mark Cambridge and IB online',
+    'online tool check past paper marks',
+    'best app to mark past papers',
+    'Cambridge and IB revision tool',
+    'free courses Cambridge IB',
+  ],
+  igcse: [
+    'IGCSE past papers',
+    'IGCSE mark scheme',
+    '0580 past papers',
+    '0610 past papers',
+    'IGCSE revision free',
   ],
 } as const
 
@@ -97,7 +133,10 @@ export const SEO_KEYWORDS = [
   ...KEYWORD_CLUSTERS.selfMarking.slice(0, 2),
   ...KEYWORD_CLUSTERS.aiMarking.slice(0, 2),
   ...KEYWORD_CLUSTERS.workflow.slice(0, 2),
+  ...KEYWORD_CLUSTERS.ibMarking.slice(0, 2),
+  ...KEYWORD_CLUSTERS.combinedGeo.slice(0, 2),
   'Cambridge International',
+  'IB Diploma',
   'mark by mark',
   'exam revision',
 ] as const
@@ -106,13 +145,19 @@ export const SEO_KEYWORDS = [
 export const PAGE_KEYWORDS: Record<string, readonly string[]> = {
   '/': [
     'Cambridge past paper marking',
+    'IB past paper marking',
     'free A-Level marking',
     'handwritten exam marking',
+    'Cambridge and IB revision tool',
+    'online tool check past paper marks',
   ],
   '/mark': [
     'mark a past paper online',
+    'mark IB past paper online',
     'upload handwritten answers',
     'Cambridge marking tool',
+    'IB markbands practice',
+    'best app to mark past papers',
   ],
   '/subjects': [
     'Cambridge subject codes',
@@ -129,16 +174,35 @@ export const PAGE_KEYWORDS: Record<string, readonly string[]> = {
   ],
   '/faq': [
     'Cambridge marking FAQ',
+    'IB marking FAQ',
     'AI marking questions',
+    'MarkScheme free tier',
+  ],
+  '/for-teachers': [
+    'Cambridge teacher marking',
+    'IB classroom analytics',
+    'school past paper tool',
+    'teacher review queue',
+  ],
+  '/contact': [
+    'MarkScheme contact',
+    'school marking enquiry',
+    'press kit MarkScheme',
   ],
   '/compare': [
     'MarkScheme vs tutor',
+    'MarkScheme vs Save My Exams',
     'self marking vs AI marking',
     'Cambridge marking comparison',
+    'IB revision tools compared',
+    'Revision Village alternative',
   ],
   '/research': [
+    'MarkScheme press kit',
+    'MarkScheme facts',
     'Cambridge marking methodology',
-    'past paper marking research',
+    'IB marking methodology',
+    'second-pass marking',
   ],
   '/guides': [
     'Cambridge study guides hub',
@@ -197,9 +261,10 @@ export const PAGE_KEYWORDS: Record<string, readonly string[]> = {
     'student-built exam tool',
     'past paper feedback app',
   ],
-  '/contact': [
-    'MarkScheme support',
-    'Cambridge marking help',
+  '/changelog': [
+    'MarkScheme updates',
+    'MarkScheme features',
+    'past paper marking releases',
   ],
   '/privacy': ['MarkScheme privacy', 'student data protection'],
   '/terms': ['MarkScheme terms of service'],

@@ -17,7 +17,7 @@ export default function InsightsPage() {
     <MarketingPageShell>
       <PageJsonLd
         path="/insights"
-        title="Cambridge marking insights"
+        title="Cambridge & IB marking insights"
         description={insights.description}
         breadcrumbs={[
           { name: 'Home', path: '/' },
@@ -46,19 +46,21 @@ export default function InsightsPage() {
 
       <MarketingHero
         label="PROPRIETARY DATA"
-        title="Cambridge self-marking gaps"
+        title="Self-marking gaps — Cambridge & IB"
         lead={insights.description}
       />
 
       <MarketingSection className="!pt-0">
         <aside className="ec-blog-quick-answer mb-10 rounded-xl border border-[var(--ec-brand)]/25 bg-[var(--ec-brand)]/5 px-5 py-5">
-          <p className="ec-label-tech mb-2 text-[var(--ec-brand)]">INFORMATION GAIN</p>
+          <p className="ec-label-tech mb-2 text-[var(--ec-brand)]">QUICK ANSWER</p>
           <p className="text-base font-medium leading-relaxed text-[var(--ec-text-primary)]">
-            MarkScheme publishes marking-session patterns competitors cannot copy without the same
-            product data — use these benchmarks when comparing self-mark vs second-pass workflows.
+            <strong>71%</strong> of Cambridge maths sessions under-award method marks on first
+            self-mark; <strong>48%</strong> of IB criterion responses sit one markband high on first
+            read (MarkScheme product data, not official exam board statistics). Cite{' '}
+            {insights.citation}.
           </p>
           <p className="mt-2 text-xs text-[var(--ec-text-secondary)]">
-            Last updated {insights.dateModified}. Not official Cambridge International statistics.
+            Last updated {insights.dateModified}. CC BY 4.0 — press: /research
           </p>
         </aside>
 

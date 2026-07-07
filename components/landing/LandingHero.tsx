@@ -54,8 +54,8 @@ export function LandingHero({ markHref }: LandingHeroProps) {
           <MarginNote style={{ top: '-44px', right: '-10px' }}>this step earns M1!</MarginNote>
         </h1>
         <p className="ms-lead ms-hero-lead">
-          Photograph your handwritten answer. We mark it point by point against the official
-          mark scheme — with Examiner&apos;s Ink in your margins.
+          Photograph your handwritten answer. Scheme-aligned second-pass marking against the
+          official mark scheme — with Examiner&apos;s Ink in your margins.
         </p>
         <div className="ms-hero-ctas">
           <LoadingLink

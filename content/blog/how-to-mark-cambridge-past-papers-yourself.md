@@ -4,7 +4,12 @@ description: A practical workflow for self-marking Cambridge A-Level and O-Level
 date: 2026-04-02
 keywords: Cambridge past papers, self marking past papers, mark my own past paper, Cambridge revision, past paper practice
 author: hamza-gul
+informationGain: synthesis
 ---
+
+## Quick answer
+
+To **mark Cambridge past papers yourself**: (1) attempt timed handwritten answers, (2) mark strictly with the official PDF scheme, (3) log every lost mark, (4) redo only weak skills. For a **second opinion** on the same script, upload photos to **MarkScheme** ([markscheme.app/mark](/mark)) — scheme-aligned B1/M1/A1 and band feedback in ~30 seconds per question.
 
 You already know past papers matter. The part that is quietly expensive is **how** you mark them — generous, tired, scheme-open-after-you-have-decided-you-were-right.
 

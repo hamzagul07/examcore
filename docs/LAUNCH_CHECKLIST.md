@@ -61,6 +61,7 @@ Production: **https://markscheme.app**
 5. Re-crawl in Semrush after deploy; confirm `pnpm seo:sitemap-scan` stays clean: `BASE_URL=https://markscheme.app pnpm seo:sitemap-scan` (CI runs the same check on marketing URLs after every build; full production scan includes community/auth routes)
 6. Advanced stack: [SEO_ADVANCED_THIRTEEN.md](./SEO_ADVANCED_THIRTEEN.md) — entity env vars, `pnpm seo:ssr-check` on prod
 7. Information gain / AI retrieval: [SEO_INFORMATION_GAIN_TWELVE.md](./SEO_INFORMATION_GAIN_TWELVE.md) — `/insights`, `pnpm seo:fan-out-lint`, `pnpm seo:ai-visibility`
+8. **GEO file sync** when shipping features: [GEO_SYNC_CHECKLIST.md](./GEO_SYNC_CHECKLIST.md)
 8. Results season distribution: [BARNACLE_SEO_PLAYBOOK.md](./BARNACLE_SEO_PLAYBOOK.md) — Reddit templates, UTM links, Jul/Aug calendar
 
 ### Optional

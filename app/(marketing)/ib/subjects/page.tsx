@@ -78,6 +78,7 @@ export default function IbSubjectsPage() {
         </p>
 
         <HubSeoIntro
+          headingLevel="h2"
           heading="Past papers, courses, and criterion marking"
           paragraph="Each subject page lists exam papers and markband guidance. Where we have a full course, you can revise topic-by-topic with worked examples and practise with IB criterion marking — all free."
           links={[

@@ -9,6 +9,7 @@ import { buildCourseSubjectSeo } from '@/lib/courses/seo'
 import { CourseSubjectJsonLd } from '@/components/seo/CourseSubjectJsonLd'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 import { buildCourseHubIntro } from '@/lib/seo/hub-intro'
+import { stripLessonsForNav } from '@/lib/courses/lesson-nav'
 import { CourseHubClient } from '@/components/courses/margin-notes/CourseHubClient'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 import { isCommunityEnabled } from '@/lib/community/enabled'
@@ -43,6 +44,7 @@ export default async function CourseSubjectPage({ params, searchParams }: Props)
   if (!course) notFound()
 
   const lessons = getCourseLessons(code)
+  const navLessons = stripLessonsForNav(lessons)
   const seo = buildCourseSubjectSeo(course, course.lessonCount)
   const intro = buildCourseHubIntro(course, course.lessonCount, course.publishedCount ?? 0)
   const communityOn = isCommunityEnabled()
@@ -59,6 +61,7 @@ export default async function CourseSubjectPage({ params, searchParams }: Props)
       />
       <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pt-6 sm:px-6">
         <HubSeoIntro
+          headingLevel="h1"
           heading={intro.heading}
           paragraph={intro.paragraph}
           links={[
@@ -74,7 +77,7 @@ export default async function CourseSubjectPage({ params, searchParams }: Props)
         code={code}
         name={course.name}
         level={course.level}
-        lessons={lessons}
+        lessons={navLessons}
         initialPaperNumber={paper ?? null}
         community={
           communityOn ? (

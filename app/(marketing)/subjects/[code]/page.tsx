@@ -168,6 +168,7 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
         </div>
 
         <HubSeoIntro
+          headingLevel="h2"
           heading={intro.heading}
           paragraph={intro.paragraph}
           links={[

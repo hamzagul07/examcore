@@ -178,6 +178,7 @@ export default async function PastPaperSubjectPage({ params }: Props) {
         </div>
 
         <HubSeoIntro
+          headingLevel="h2"
           heading={`${label} (${code}) past papers — marked, not just downloaded`}
           paragraph={`Below is every recent ${label} exam series we cover (${subject.yearRange}). Practise any paper, then upload photos of your handwriting and MarkScheme grades it against the real ${code} mark scheme — so you get feedback on method and accuracy marks, not just a model answer.`}
           links={[

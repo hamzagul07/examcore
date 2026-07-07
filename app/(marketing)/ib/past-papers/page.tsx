@@ -99,6 +99,7 @@ export default function IbPastPapersHubPage() {
         </p>
 
         <HubSeoIntro
+          headingLevel="h2"
           heading="Past papers, by session and paper"
           paragraph="Pick a subject to see its papers laid out by exam series. Work each under timed conditions, mark yourself against the band descriptors, and use the guidance to close the gap to a 7."
           links={[

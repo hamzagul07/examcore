@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import { CheckCircle2, Sparkles } from 'lucide-react'
-import type { CourseLesson } from '@/lib/courses/types'
+import type { CourseLessonNav } from '@/lib/courses/lesson-nav'
 
 type Props = {
   subjectCode: string
-  lessons: CourseLesson[]
+  lessons: CourseLessonNav[]
   activeSlug?: string
   completedSlugs?: string[]
   /** When set, topic links keep the active paper filter. */
@@ -31,7 +31,7 @@ export function CourseTopicList({
   paperQuery,
   paperGroupLabel,
 }: Props) {
-  const byPaper = lessons.reduce<Record<string, CourseLesson[]>>((acc, lesson) => {
+  const byPaper = lessons.reduce<Record<string, CourseLessonNav[]>>((acc, lesson) => {
     const key = paperGroupLabel ?? lesson.paperName
     if (!acc[key]) acc[key] = []
     acc[key].push(lesson)

@@ -1,5 +1,5 @@
 import { createServerClient } from '@supabase/ssr'
-import { NextResponse, type NextRequest } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { isOnboardingComplete } from '@/lib/onboarding'
 import { isAdminEmail } from '@/lib/admin-auth'
 import { requireTeacher } from '@/lib/teacher-auth'
@@ -20,6 +20,37 @@ const AUTH_ENTRY_PREFIXES = ['/auth/signin', '/auth/signup']
 const TEACHER_PREFIXES = ['/teacher']
 const ADMIN_PREFIXES = ['/admin']
 
+/** HTTP redirects for marketing URLs — avoids Next.js meta-refresh from `redirect()`. */
+function marketingSeoRedirect(request: NextRequest): NextResponse | null {
+  const { pathname, searchParams } = request.nextUrl
+
+  if (pathname === '/community') {
+    if (searchParams.get('ask') === '1') {
+      const url = request.nextUrl.clone()
+      url.pathname = '/community/submit'
+      url.searchParams.delete('ask')
+      if (!url.searchParams.has('kind')) url.searchParams.set('kind', 'question')
+      return NextResponse.redirect(url, 307)
+    }
+    const subject = searchParams.get('subject')?.trim()
+    if (subject) {
+      const url = request.nextUrl.clone()
+      url.pathname = `/community/s/${encodeURIComponent(subject)}`
+      url.searchParams.delete('subject')
+      return NextResponse.redirect(url, 307)
+    }
+  }
+
+  if (pathname === '/blog/browse' || pathname === '/blog/browse/') {
+    const url = request.nextUrl.clone()
+    url.pathname = '/blog'
+    url.search = ''
+    return NextResponse.redirect(url, 308)
+  }
+
+  return null
+}
+
 /** Preserve Supabase session cookies when issuing redirects. */
 function redirectWithCookies(url: URL | string, supabaseResponse: NextResponse) {
   const response = NextResponse.redirect(url)
@@ -32,7 +63,14 @@ function redirectWithCookies(url: URL | string, supabaseResponse: NextResponse) 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  let supabaseResponse = NextResponse.next({ request })
+  const seoRedirect = marketingSeoRedirect(request)
+  if (seoRedirect) return seoRedirect
+
+  const requestHeaders = new Headers(request.headers)
+  requestHeaders.set('x-pathname', pathname)
+  const forwardedRequest = new NextRequest(request.url, { headers: requestHeaders })
+
+  let supabaseResponse = NextResponse.next({ request: forwardedRequest })
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,

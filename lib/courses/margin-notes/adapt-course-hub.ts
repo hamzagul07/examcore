@@ -1,6 +1,6 @@
 import { filterLessonsByPaper, getPaperTracks, type PaperTrackWithStats } from '@/lib/courses/paper-tracks'
 import { getSyllabusTree } from '@/lib/syllabi'
-import type { CourseLesson } from '@/lib/courses/types'
+import type { CourseLessonNav } from '@/lib/courses/lesson-nav'
 import type { MarginNotesCourse, MarginNotesPaper, MarginNotesUnit } from '@/lib/courses/margin-notes/types'
 import { lessonToTopic } from '@/lib/courses/margin-notes/adapt-spine'
 
@@ -11,7 +11,7 @@ function paperTabId(track: PaperTrackWithStats): number {
 
 function buildSpineForTrack(
   subjectCode: string,
-  lessons: CourseLesson[],
+  lessons: CourseLessonNav[],
   track: PaperTrackWithStats,
   completedSlugs: Set<string>,
   activeSlug: string | null
@@ -73,7 +73,7 @@ function buildSpineForTrack(
 export function adaptCourseHub(
   subjectCode: string,
   subjectName: string,
-  lessons: CourseLesson[],
+  lessons: CourseLessonNav[],
   completedSlugs: Set<string>,
   activeSlug: string | null
 ): MarginNotesCourse {

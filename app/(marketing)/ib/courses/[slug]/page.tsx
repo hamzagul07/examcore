@@ -6,6 +6,7 @@ import { buildIbCourseHubIntro, buildIbCourseSubjectSeo } from '@/lib/seo/ib-cou
 import { getIbSubjectBlogLinks } from '@/lib/seo/ib-subject-blog'
 import { ibShortName } from '@/lib/seo/ib-seo'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
+import { stripLessonsForNav } from '@/lib/courses/lesson-nav'
 import { CourseHubClient } from '@/components/courses/margin-notes/CourseHubClient'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 import { isCommunityEnabled } from '@/lib/community/enabled'
@@ -45,6 +46,7 @@ export default async function IbCoursePage({ params }: Props) {
   const catalogSlug = ibCatalogSlug(slug)
 
   const lessons = getIbCourseLessons(slug)
+  const navLessons = stripLessonsForNav(lessons)
   const seo = buildIbCourseSubjectSeo(subject, course.lessonCount)
   const intro = buildIbCourseHubIntro(subject, course.lessonCount)
   const communityOn = isCommunityEnabled()
@@ -64,7 +66,11 @@ export default async function IbCoursePage({ params }: Props) {
         topics={seo.topics}
       />
       <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pt-6 sm:px-6">
+        <h1 className="sr-only">
+          {subject.name} ({short}) — free IB {subject.level} course
+        </h1>
         <HubSeoIntro
+          headingLevel="h2"
           heading={intro.heading}
           paragraph={intro.paragraph}
           links={[
@@ -114,7 +120,7 @@ export default async function IbCoursePage({ params }: Props) {
         code={slug}
         name={course.name}
         level={course.level}
-        lessons={lessons}
+        lessons={navLessons}
         initialPaperNumber={null}
         basePath="/ib/courses"
         coursesCrumb={{ label: 'IB courses', href: '/ib/courses' }}

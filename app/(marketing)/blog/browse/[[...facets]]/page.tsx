@@ -1,8 +1,10 @@
 import Link from 'next/link'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { getBlogPosts, getBlogPost } from '@/lib/blog'
-import { enrichPostMeta } from '@/lib/blog/meta'
+import { getBlogPosts } from '@/lib/blog'
+import { enrichPostsForIndex } from '@/lib/blog/meta'
+import { paginateArchive, parseArchivePage } from '@/lib/blog/archive'
+import { ArchivePagination } from '@/components/blog/ArchivePagination'
 import {
   BOARD_LABELS,
   LEVEL_LABELS,
@@ -26,7 +28,10 @@ import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { getSyllabusSubjectName } from '@/lib/syllabi'
 import { SITE_URL } from '@/lib/site-config'
 
-type Props = { params: Promise<{ facets?: string[] }> }
+type Props = {
+  params: Promise<{ facets?: string[] }>
+  searchParams: Promise<Record<string, string | string[] | undefined>>
+}
 
 function isBoard(v: string | undefined): v is Board {
   return v === 'cambridge' || v === 'ib'
@@ -71,7 +76,13 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { facets } = await params
   const board = facets?.[0]
-  if (!isBoard(board)) return { title: 'Browse guides by board' }
+  if (!isBoard(board)) {
+    return {
+      title: 'Browse guides by board',
+      description:
+        'Browse Cambridge and IB revision guides by board, subject, and level on MarkScheme.',
+    }
+  }
   const boardName = BOARD_LABELS[board]
   const subject = facets?.[1]
   const level = facets?.[2] as Level | undefined
@@ -86,9 +97,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function BlogBrowsePage({ params }: Props) {
+export default async function BlogBrowsePage({ params, searchParams }: Props) {
   const { facets } = await params
-  if (!facets || facets.length === 0) redirect('/blog')
+  const sp = await searchParams
+  if (!facets || facets.length === 0) notFound()
   if (facets.length > 3) notFound()
 
   const board = facets[0]
@@ -107,19 +119,21 @@ export default async function BlogBrowsePage({ params }: Props) {
   const subjectText = subject ? subjectLabel(board, subject) : null
   const levelText = level ? (LEVEL_LABELS[level] ?? level) : null
 
-  const matched = getBlogPosts().filter((p) => {
-    const m = resolveBoardMeta(p.slug, p)
-    if (m.board !== board) return false
-    if (subject && m.subject !== subject) return false
-    if (level && m.level !== level) return false
-    return true
-  })
+  const matched = enrichPostsForIndex(
+    getBlogPosts().filter((p) => {
+      const m = resolveBoardMeta(p.slug, p)
+      if (m.board !== board) return false
+      if (subject && m.subject !== subject) return false
+      if (level && m.level !== level) return false
+      return true
+    })
+  )
   if (matched.length === 0) notFound()
 
-  const enriched = matched.map((p) => {
-    const full = getBlogPost(p.slug)
-    return enrichPostMeta(p, full?.content ?? '')
-  })
+  const page = parseArchivePage(sp.page)
+  const archive = paginateArchive(matched, page)
+  if (page > archive.totalPages) notFound()
+  const enriched = archive.items
 
   const title = [boardName, subjectText, levelText].filter(Boolean).join(' ')
   const basePath = `/blog/browse/${facets.join('/')}`
@@ -158,9 +172,16 @@ export default async function BlogBrowsePage({ params }: Props) {
       <MarketingSection className="!pt-8">
         <div className="grid gap-5 md:grid-cols-2">
           {enriched.map((post) => (
-            <BlogPostCard key={post.slug} post={post} />
+            <BlogPostCard key={post.slug} post={post} variant="compact" />
           ))}
         </div>
+
+        <ArchivePagination
+          basePath={basePath}
+          page={archive.page}
+          totalPages={archive.totalPages}
+          total={archive.total}
+        />
 
         <div className="ms-hub-card ms-hub-cta" style={{ marginTop: 40 }}>
           <p className="ms-greennote" style={{ margin: 0, flex: 1, minWidth: 240 }}>

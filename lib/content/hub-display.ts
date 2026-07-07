@@ -1,5 +1,5 @@
-import { getBlogPost, getBlogPosts } from '@/lib/blog'
-import { enrichPostMeta, sortPostsForIndex, type EnrichedBlogMeta } from '@/lib/blog/meta'
+import { getBlogPosts } from '@/lib/blog'
+import { enrichPostsForIndex, sortPostsForIndex, type EnrichedBlogMeta } from '@/lib/blog/meta'
 import { isSubjectGuideSlug } from '@/lib/seo/subject-guides'
 import { getResultsDayPhase, CAMBRIDGE_RESULTS_DAY_SLUG } from '@/lib/seo/results-day'
 import { IB_MAY_2026_RESULTS_SLUG, IB_POST_EXAM_PREP_SLUG, isIbResultsSeason, getIbResultsSeasonPhase, daysUntilIbResults } from '@/lib/seo/ib-results-season'
@@ -8,10 +8,7 @@ import { IB_MAY_2026_RESULTS_SLUG, IB_POST_EXAM_PREP_SLUG, isIbResultsSeason, ge
 export const PRE_RESULTS_SPOTLIGHT_SLUG = 'cambridge-post-exam-results-prep-2026'
 
 function enrichAll() {
-  return getBlogPosts().map((p) => {
-    const full = getBlogPost(p.slug)
-    return enrichPostMeta(p, full?.content ?? '')
-  })
+  return enrichPostsForIndex(getBlogPosts())
 }
 
 export function getFeaturedHubPost(): EnrichedBlogMeta | null {

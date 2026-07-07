@@ -5,7 +5,7 @@ import { CourseProgressBar, useCourseProgress } from '@/components/courses/Cours
 import { CoursePaperPicker } from '@/components/courses/CoursePaperPicker'
 import { CourseTopicList } from '@/components/courses/CourseTopicList'
 import { useCoursePaperSelection } from '@/components/courses/useCoursePaperSelection'
-import type { CourseLesson } from '@/lib/courses/types'
+import type { CourseLessonNav } from '@/lib/courses/lesson-nav'
 
 export function CourseSidebar({
   subjectCode,
@@ -16,7 +16,7 @@ export function CourseSidebar({
   subjectCode: string
   subjectName: string
   level: string
-  lessons: CourseLesson[]
+  lessons: CourseLessonNav[]
   activeSlug?: string
 }) {
   const { done } = useCourseProgress(subjectCode)

@@ -1,8 +1,8 @@
-import type { CourseLesson } from '@/lib/courses/types'
+import type { CourseLessonNav } from '@/lib/courses/lesson-nav'
 import type { MarginNotesTopic } from '@/lib/courses/margin-notes/types'
 import { hasExplorable } from '@/lib/courses/explorables'
 
-export function lessonToTopic(lesson: CourseLesson, opts?: { done?: boolean; active?: boolean }): MarginNotesTopic {
+export function lessonToTopic(lesson: CourseLessonNav, opts?: { done?: boolean; active?: boolean }): MarginNotesTopic {
   return {
     n: lesson.topicCode,
     t: lesson.title,
@@ -14,7 +14,7 @@ export function lessonToTopic(lesson: CourseLesson, opts?: { done?: boolean; act
 }
 
 export function buildFlatTopics(
-  lessons: CourseLesson[],
+  lessons: CourseLessonNav[],
   completedSlugs: Set<string>,
   activeSlug?: string | null
 ): MarginNotesTopic[] {

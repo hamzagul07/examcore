@@ -12,6 +12,8 @@ import { enrichLessonVisual } from '@/lib/courses/enrich-lesson-visual'
 import { buildIbCourseLessonSeo, buildIbCourseSubjectSeo } from '@/lib/seo/ib-course-seo'
 import { CourseLessonClient } from '@/components/courses/margin-notes/CourseLessonClient'
 import { CourseLessonSeoIntro } from '@/components/courses/CourseLessonSeoIntro'
+import { GuestSignupGate } from '@/components/auth/GuestSignupGate'
+import { stripLessonsForNav } from '@/lib/courses/lesson-nav'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { IbCourseLessonJsonLd } from '@/components/seo/IbCourseLessonJsonLd'
@@ -86,27 +88,29 @@ export default async function IbLessonPage({ params }: Props) {
         />
       </div>
 
-      <CourseLessonClient
-        subjectCode={slug}
-        subjectName={subject.name}
-        lesson={l}
-        enriched={enriched}
-        pastPaperQuestions={[]}
-        lessons={lessons}
-        paperQuery={null}
-        basePath="/ib/courses"
-        coursesCrumb={{ label: 'IB courses', href: '/ib/courses' }}
-        community={
-          communityOn ? (
-            <div className="lesson-community">
-              <CommunityEntry
-                subjectCode={catalogSlug}
-                title={`Discuss ${l.title}`}
-              />
-            </div>
-          ) : null
-        }
-      />
+      <GuestSignupGate>
+        <CourseLessonClient
+          subjectCode={slug}
+          subjectName={subject.name}
+          lesson={l}
+          enriched={enriched}
+          pastPaperQuestions={[]}
+          lessons={stripLessonsForNav(lessons)}
+          paperQuery={null}
+          basePath="/ib/courses"
+          coursesCrumb={{ label: 'IB courses', href: '/ib/courses' }}
+          community={
+            communityOn ? (
+              <div className="lesson-community">
+                <CommunityEntry
+                  subjectCode={catalogSlug}
+                  title={`Discuss ${l.title}`}
+                />
+              </div>
+            ) : null
+          }
+        />
+      </GuestSignupGate>
     </>
   )
 }

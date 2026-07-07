@@ -149,9 +149,9 @@ export function CourseHubPage({
               <p className="overline">
                 {level} · {code} · Free premium course
               </p>
-              <h1 className="h-display hub-hero-title">
+              <h2 className="h-display hub-hero-title">
                 {name}
-              </h1>
+              </h2>
               <p className="lead hub-lead">
                 {course.blurb}
               </p>

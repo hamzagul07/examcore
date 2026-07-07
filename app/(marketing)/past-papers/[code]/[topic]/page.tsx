@@ -17,6 +17,7 @@ import {
 } from '@/lib/seo/topic-questions'
 import { getCatalogSubject } from '@/lib/subjects-catalog'
 import { getCourseSubject } from '@/lib/courses'
+import { GuestSignupGate } from '@/components/auth/GuestSignupGate'
 
 type Props = { params: Promise<{ code: string; topic: string }> }
 
@@ -127,6 +128,7 @@ export default async function TopicQuestionsPage({ params }: Props) {
         </div>
 
         <HubSeoIntro
+          headingLevel="h2"
           heading={`${page.title} (${code}) past-paper questions — marked instantly`}
           paragraph={`These are real Cambridge ${copy.label} past-paper questions on ${page.title}. Open one, attempt it, then upload your working — MarkScheme grades it against the official ${code} mark scheme so you see exactly where the marks are won and lost on this topic.`}
           links={[
@@ -136,6 +138,7 @@ export default async function TopicQuestionsPage({ params }: Props) {
           ]}
         />
 
+        <GuestSignupGate>
         <section aria-labelledby="tq-list" style={{ marginTop: 12 }}>
           <h2 id="tq-list" className="ms-overline" style={{ marginBottom: 12 }}>
             {page.questionCount} past-paper questions on {page.title}
@@ -197,6 +200,7 @@ export default async function TopicQuestionsPage({ params }: Props) {
             </Link>
           </nav>
         ) : null}
+        </GuestSignupGate>
       </div>
     </MarketingPageShell>
   )

@@ -9,5 +9,10 @@ export const metadata = createPageMetadata({
 })
 
 export default function SignInLayout({ children }: { children: ReactNode }) {
-  return children
+  return (
+    <>
+      <h1 className="sr-only">Sign in to MarkScheme</h1>
+      {children}
+    </>
+  )
 }

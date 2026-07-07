@@ -1,6 +1,7 @@
 'use client'
 
 import { Suspense, useMemo } from 'react'
+import type { CourseLessonNav } from '@/lib/courses/lesson-nav'
 import type { CourseLesson, PastPaperQuestionRef } from '@/lib/courses/types'
 import type { EnrichedVisualLesson } from '@/lib/courses/visual-types'
 import { adaptLesson } from '@/lib/courses/margin-notes/adapt-lesson'
@@ -20,7 +21,7 @@ type Props = {
   lesson: CourseLesson
   enriched: EnrichedVisualLesson
   pastPaperQuestions: PastPaperQuestionRef[]
-  lessons: CourseLesson[]
+  lessons: CourseLessonNav[]
   paperQuery?: string | null
   basePath?: string
   coursesCrumb?: { label: string; href: string }

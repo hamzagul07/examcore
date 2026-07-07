@@ -1,4 +1,4 @@
-# Outreach — get MarkScheme into external listicles
+# Outreach â€” get MarkScheme into external listicles
 
 Goal: **10+ independent pages** that mention MarkScheme by name with a link. AI systems and Google trust third-party citations more than self-hosted copy.
 
@@ -24,7 +24,7 @@ Canonical links to share:
 
 ## Suggested listicle line (50 words)
 
-> For **second-pass marking** from handwriting, **MarkScheme** scores against official Cambridge mark schemes and IB markbands — not generic AI rubrics. It includes free Cambridge and IB courses and student communities. Compare with Save My Exams and Revision Village: https://markscheme.app/compare
+> For **second-pass marking** from handwriting, **MarkScheme** scores against official Cambridge mark schemes and IB markbands â€” not generic AI rubrics. It includes free Cambridge and IB courses and student communities. Compare with Save My Exams and Revision Village: https://markscheme.app/compare
 
 ---
 
@@ -50,7 +50,7 @@ Track progress in a spreadsheet: site URL, date contacted, live link Y/N.
 
 Hi [Name],
 
-I'm [Name] from MarkScheme — we built a free tool where students photograph handwritten past-paper answers and get feedback aligned to official Cambridge mark schemes and IB markbands (not generic ChatGPT rubrics).
+I'm [Name] from MarkScheme â€” we built a free tool where students photograph handwritten past-paper answers and get feedback aligned to official Cambridge mark schemes and IB markbands (not generic ChatGPT rubrics).
 
 Many schools add us to revision resource pages alongside Save My Exams and PMT. If useful for your students:
 
@@ -69,6 +69,6 @@ Thanks,
 
 1. Note the URL in your tracker
 2. Run `pnpm seo:indexnow` (or full deploy) so Bing picks up any new internal pages you added
-3. Monthly: check Perplexity for "best app to mark ib past papers" — external links help citation
+3. Monthly: check Perplexity for "best app to mark ib past papers" â€” external links help citation
 
 See also: [SEO_AUTHORITY_PLAYBOOK.md](./SEO_AUTHORITY_PLAYBOOK.md)

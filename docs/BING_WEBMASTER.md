@@ -10,7 +10,7 @@ Bing powers Copilot retrieval alongside Google. IndexNow (already wired) notifie
 
 1. Open [Bing Webmaster Tools](https://www.bing.com/webmasters/)
 2. **Add a site** ? `https://markscheme.app`
-3. Verify ownership — pick one:
+3. Verify ownership â€” pick one:
    - **HTML meta tag** (recommended): copy the `content` value for `msvalidate.01`
    - **DNS CNAME** if you prefer DNS
 4. On Vercel ? Project ? Settings ? Environment Variables:

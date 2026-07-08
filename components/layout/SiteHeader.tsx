@@ -78,6 +78,15 @@ export function SiteHeader({ variant }: Props) {
   const { user, loading } = useAuthCheck()
   const initial = avatarInitial(user)
   const isGuest = !loading && !user
+  // Logged-in users already have the account avatar — never show them a
+  // "Sign up"/"Sign in" header CTA.
+  const isAuthCta = (cta?: HeaderCta | null): boolean =>
+    !!cta &&
+    (cta.href.startsWith('/auth/signup') || cta.href.startsWith('/auth/signin'))
+  const hideAuthCta = !loading && !!user
+  const showPrimaryCta = !(hideAuthCta && isAuthCta(config.primaryCta))
+  const visibleSecondaryCta =
+    hideAuthCta && isAuthCta(config.secondaryCta) ? undefined : config.secondaryCta
   const authenticatedChrome = useAuthenticatedAppChrome()
   const showTabBar = variant === 'app' && authenticatedChrome
 
@@ -287,32 +296,36 @@ export function SiteHeader({ variant }: Props) {
           </div>
           {showPageCtas ? (
             <>
-              {config.secondaryCta ? (
+              {visibleSecondaryCta ? (
                 <LoadingLink
-                  href={config.secondaryCta.href}
+                  href={visibleSecondaryCta.href}
                   className={cn(
-                    CTA_CLASS[config.secondaryCta.style],
+                    CTA_CLASS[visibleSecondaryCta.style],
                     'hidden min-[901px]:inline-flex'
                   )}
                   loadingText="Opening…"
                 >
-                  <CtaLabel cta={config.secondaryCta} />
+                  <CtaLabel cta={visibleSecondaryCta} />
                 </LoadingLink>
               ) : null}
-              {renderPrimaryCta(
-                cn(
-                  CTA_CLASS[config.primaryCta.style],
-                  'ec-nav-cta-compact inline-flex min-[901px]:hidden',
-                  config.primaryCta.style === 'primary' && 'brand-pulse'
-                )
-              )}
-              {renderPrimaryCta(
-                cn(
-                  CTA_CLASS[config.primaryCta.style],
-                  'ec-nav-mark-mobile hidden min-[901px]:inline-flex',
-                  config.primaryCta.style === 'primary' && 'brand-pulse'
-                )
-              )}
+              {showPrimaryCta
+                ? renderPrimaryCta(
+                    cn(
+                      CTA_CLASS[config.primaryCta.style],
+                      'ec-nav-cta-compact inline-flex min-[901px]:hidden',
+                      config.primaryCta.style === 'primary' && 'brand-pulse'
+                    )
+                  )
+                : null}
+              {showPrimaryCta
+                ? renderPrimaryCta(
+                    cn(
+                      CTA_CLASS[config.primaryCta.style],
+                      'ec-nav-mark-mobile hidden min-[901px]:inline-flex',
+                      config.primaryCta.style === 'primary' && 'brand-pulse'
+                    )
+                  )
+                : null}
             </>
           ) : null}
           {variant === 'app' &&
@@ -383,18 +396,20 @@ export function SiteHeader({ variant }: Props) {
                   role="navigation"
                   aria-label="Mobile"
                 >
-                  {renderPrimaryCta(
-                    cn('ec-nav-mobile-mark', CTA_CLASS[config.primaryCta.style]),
-                    navigateFromMenu
-                  )}
-                  {config.secondaryCta ? (
+                  {showPrimaryCta
+                    ? renderPrimaryCta(
+                        cn('ec-nav-mobile-mark', CTA_CLASS[config.primaryCta.style]),
+                        navigateFromMenu
+                      )
+                    : null}
+                  {visibleSecondaryCta ? (
                     <LoadingLink
-                      href={config.secondaryCta.href}
-                      className={cn('ec-nav-mobile-secondary', CTA_CLASS[config.secondaryCta.style])}
+                      href={visibleSecondaryCta.href}
+                      className={cn('ec-nav-mobile-secondary', CTA_CLASS[visibleSecondaryCta.style])}
                       loadingText="Opening…"
                       onNavigate={navigateFromMenu}
                     >
-                      <CtaLabel cta={config.secondaryCta} />
+                      <CtaLabel cta={visibleSecondaryCta} />
                     </LoadingLink>
                   ) : null}
                   <NavMobileMenu

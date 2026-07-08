@@ -900,6 +900,32 @@
 .checkpoint-title { font-size: 20px; margin: 0 0 8px; }
 .checkpoint-lead { font-size: 15px; line-height: 1.6; color: var(--muted); margin: 0 0 16px; }
 .checkpoint-foot { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+
+/* Adaptive mastery band — the student's standing on this topic + study-next. */
+.lesson-mastery { display: flex; flex-direction: column; gap: 10px; margin: 8px 0 4px; }
+.lesson-mastery-standing {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px; border-radius: 12px;
+  font-size: 14px; color: var(--ink);
+  background: var(--paper); border: 1px solid var(--ink-border);
+}
+.lesson-mastery-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; background: var(--muted); }
+.lm-critical .lesson-mastery-dot { background: #e0575b; }
+.lm-sampled .lesson-mastery-dot { background: #e0a13a; }
+.lm-proficient .lesson-mastery-dot { background: #3a86c8; }
+.lm-exam_ready .lesson-mastery-dot { background: #2f9e6b; }
+.lm-critical { border-color: color-mix(in srgb, #e0575b 35%, var(--ink-border)); background: color-mix(in srgb, #e0575b 7%, var(--surface)); }
+.lm-exam_ready { border-color: color-mix(in srgb, #2f9e6b 32%, var(--ink-border)); background: color-mix(in srgb, #2f9e6b 7%, var(--surface)); }
+.lesson-mastery-next {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 11px 16px; border-radius: 12px;
+  font-size: 14px; font-weight: 600; text-decoration: none;
+  color: var(--acc);
+  background: color-mix(in srgb, var(--acc) 8%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--acc) 30%, var(--ink-border));
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+.lesson-mastery-next:hover { transform: translateY(-1px); border-color: color-mix(in srgb, var(--acc) 55%, var(--ink-border)); }
 .ms-line {
   display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
   font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--text-2);

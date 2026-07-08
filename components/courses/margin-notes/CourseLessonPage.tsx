@@ -33,6 +33,7 @@ import {
   Faq,
   PracticeSection,
   LessonCheckpoint,
+  LessonMasteryBand,
 } from './lesson-blocks'
 
 type Props = {
@@ -822,6 +823,12 @@ export function CourseLessonPage({
                 </div>
               </section>
             ) : null}
+
+            <LessonMasteryBand
+              subjectCode={L.code}
+              topicCode={L.point}
+              signedIn={signedIn}
+            />
 
             {!locked ? (
               <section id="checkpoint" className="lsec">

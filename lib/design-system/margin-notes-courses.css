@@ -878,6 +878,28 @@
 .practice-scheme-toggle .practice-scheme-tag { margin-bottom: 0; }
 .practice-scheme-body { margin-top: 2px; }
 .practice-stack { display: flex; flex-direction: column; gap: 16px; }
+
+/* End-of-lesson checkpoint — the "prove it" exit ticket that closes the loop. */
+.checkpoint {
+  padding: 22px 24px;
+  border: 1.5px solid color-mix(in srgb, var(--acc) 42%, var(--ink-border));
+  background: linear-gradient(140deg, color-mix(in srgb, var(--acc) 11%, var(--surface)), var(--surface) 62%);
+  border-radius: 14px;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.checkpoint:hover { transform: translateY(-2px); box-shadow: var(--shadow-pop); }
+.checkpoint-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.checkpoint-tag {
+  display: inline-flex; align-items: center;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--acc);
+  background: color-mix(in srgb, var(--acc) 14%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--acc) 32%, transparent);
+  border-radius: 999px; padding: 4px 11px;
+}
+.checkpoint-title { font-size: 20px; margin: 0 0 8px; }
+.checkpoint-lead { font-size: 15px; line-height: 1.6; color: var(--muted); margin: 0 0 16px; }
+.checkpoint-foot { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
 .ms-line {
   display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
   font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--text-2);

@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import type { MarginNotesLesson } from '@/lib/courses/margin-notes/types'
+import { appendMarkReturn } from '@/lib/courses/format-session'
 import { CourseRichText } from '@/components/courses/CourseRichText'
 
 export function jumpTo(id: string) {
@@ -411,6 +412,7 @@ function PracticeBlock({
   collapseScheme,
   index = 0,
   total = 1,
+  returnPath,
 }: {
   practice: NonNullable<MarginNotesLesson['practice']>
   lesson: MarginNotesLesson
@@ -418,8 +420,11 @@ function PracticeBlock({
   collapseScheme?: boolean
   index?: number
   total?: number
+  /** When set, marking returns the student to this lesson (closes the loop). */
+  returnPath?: string | null
 }) {
   const p = practice
+  const markHref = appendMarkReturn(p.href, returnPath, lesson.point)
   const [schemeOpen, setSchemeOpen] = useState(!collapseScheme)
   return (
     <div className={`practice card${big ? ' big' : ''}`} data-screen-label="Lesson — practice question">
@@ -434,7 +439,7 @@ function PracticeBlock({
         <CourseRichText content={p.text} variant="prose" breakAnywhere={false} />
       </div>
       <div className="practice-foot">
-        <Link className="btn-primary" href={p.href}>
+        <Link className="btn-primary" href={markHref}>
           Do it on paper → mark it
         </Link>
         <span className="micro">MARKED MARK-BY-MARK · B1 / M1 / A1 · OFFICIAL SCHEME</span>
@@ -473,7 +478,16 @@ function PracticeBlock({
   )
 }
 
-export function PracticeSection({ lesson, big }: { lesson: MarginNotesLesson; big?: boolean }) {
+export function PracticeSection({
+  lesson,
+  big,
+  returnPath,
+}: {
+  lesson: MarginNotesLesson
+  big?: boolean
+  /** When set, marking returns the student to this lesson (closes the loop). */
+  returnPath?: string | null
+}) {
   const questions =
     lesson.practiceQuestions?.length
       ? lesson.practiceQuestions
@@ -495,8 +509,54 @@ export function PracticeSection({ lesson, big }: { lesson: MarginNotesLesson; bi
           collapseScheme={collapseScheme}
           index={i}
           total={questions.length}
+          returnPath={returnPath}
         />
       ))}
+    </div>
+  )
+}
+
+/**
+ * End-of-lesson "prove it" exit ticket — the closing action that turns a
+ * passive read into a marked attempt. Reuses the lesson's primary practice
+ * question and deep-links into the marking engine with a return path so the
+ * learn→practice→mark loop lands the student back on this lesson.
+ */
+export function LessonCheckpoint({
+  lesson,
+  returnPath,
+}: {
+  lesson: MarginNotesLesson
+  returnPath?: string | null
+}) {
+  const primary = lesson.practiceQuestions?.[0] ?? lesson.practice ?? null
+  if (!primary) return null
+
+  const markHref = appendMarkReturn(primary.href, returnPath, lesson.point)
+  const isIb = lesson.code.startsWith('ib-')
+
+  return (
+    <div className="checkpoint card" data-screen-label="Lesson — checkpoint">
+      <div className="checkpoint-head">
+        <span className="checkpoint-tag mono">Checkpoint</span>
+        {primary.marks ? <span className="practice-marks mono">[{primary.marks}]</span> : null}
+      </div>
+      <h3 className="h3 checkpoint-title serif">Reading it isn&rsquo;t knowing it — prove it.</h3>
+      <p className="body-2 checkpoint-lead">
+        Attempt <strong>{primary.ref}</strong> on paper, snap a photo, and get examiner-style
+        feedback on exactly where you win and lose marks. You&rsquo;ll come straight back to this
+        lesson.
+      </p>
+      <div className="checkpoint-foot">
+        <Link className="btn-primary" href={markHref}>
+          Attempt &amp; get marked →
+        </Link>
+        <span className="micro">
+          {isIb
+            ? 'MARKED BY IB CRITERIA · OFFICIAL BANDS · ~A MINUTE'
+            : 'MARKED B1 / M1 / A1 · OFFICIAL SCHEME · ~A MINUTE'}
+        </span>
+      </div>
     </div>
   )
 }

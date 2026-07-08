@@ -1,18 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getSyllabusTopicByCode } from '@/lib/syllabi'
-import { topicToLessonSlug } from '@/lib/courses/slug'
-import { getCourseLesson } from '@/lib/courses'
-import { isIbSubjectCode } from '@/lib/ib/marking-config'
+import { makeTopicLessonResolver } from '@/lib/courses/topic-lesson'
 
 export type MarkBackLesson = { code: string; name: string; href: string }
 
 /**
  * Resolves marking `syllabus_tags` to the course lessons that fix each weak
- * area — "mark-back". Only returns lessons that actually exist (verified via
- * getCourseLesson), so the client never renders a link that 404s.
- *
- * IB resolution is deferred; IB subjects return an empty list rather than
- * guessing (no broken links).
+ * area — "mark-back". Only returns lessons that actually exist, so the client
+ * never renders a link that 404s. Works for both Cambridge and IB.
  */
 export async function GET(request: NextRequest) {
   const params = new URL(request.url).searchParams
@@ -20,9 +14,6 @@ export async function GET(request: NextRequest) {
   const codesRaw = params.get('codes')?.trim()
 
   if (!subject || !codesRaw) {
-    return NextResponse.json({ lessons: [] })
-  }
-  if (isIbSubjectCode(subject)) {
     return NextResponse.json({ lessons: [] })
   }
 
@@ -35,22 +26,15 @@ export async function GET(request: NextRequest) {
     ),
   ].slice(0, 12)
 
+  const resolve = makeTopicLessonResolver(subject)
   const lessons: MarkBackLesson[] = []
   const seen = new Set<string>()
 
   for (const code of codes) {
-    const topic = getSyllabusTopicByCode(subject, code)
-    if (!topic) continue
-    const slug = topicToLessonSlug(topic.code, topic.name)
-    if (seen.has(slug)) continue
-    const lesson = getCourseLesson(subject, slug)
-    if (!lesson) continue
-    seen.add(slug)
-    lessons.push({
-      code: topic.code,
-      name: lesson.title || topic.name,
-      href: `/courses/${subject}/${slug}`,
-    })
+    const resolved = resolve(code)
+    if (!resolved || seen.has(resolved.href)) continue
+    seen.add(resolved.href)
+    lessons.push(resolved)
   }
 
   return NextResponse.json({ lessons })

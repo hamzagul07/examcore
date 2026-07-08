@@ -1,4 +1,4 @@
-type BlogContinuePopupAction = 'signup' | 'signin' | 'dismiss' | 'community'
+type BlogContinuePopupAction = 'signup' | 'dismiss' | 'community'
 
 declare global {
   interface Window {

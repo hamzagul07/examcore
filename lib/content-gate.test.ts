@@ -1,6 +1,8 @@
 import {
   buildContentReturnPath,
+  inferMinimalOnboardingForBlogPath,
   inferMinimalOnboardingForContentPath,
+  isBlogReturnPath,
   isContentGateReturnPath,
   pathnameFromReturnPath,
 } from './content-gate'
@@ -36,6 +38,13 @@ check('Cambridge browse skip uses default board', cambridge?.board === 'Cambridg
 const ib = inferMinimalOnboardingForContentPath('/ib/courses/maths-aa-hl/1-1')
 check('infers IB subject from slug', ib?.subjects?.[0] === 'ib-maths-aa-hl')
 check('IB browse skip uses IB board', ib?.board === 'IB')
+
+check('blog path is reader return', isBlogReturnPath('/blog/how-to-mark-cambridge-past-papers-yourself'))
+check('blog hub is not reader return', !isBlogReturnPath('/blog'))
+const blogOnboarding = inferMinimalOnboardingForBlogPath(
+  '/blog/cambridge-9702-physics-grade-boundaries-2026'
+)
+check('infers blog subject from slug', blogOnboarding?.subjects?.[0] === 'Physics')
 
 if (failed > 0) {
   console.error(`\n${failed} test(s) failed`)

@@ -22,7 +22,6 @@ export function SignUpPageClient({ intentDestination, signInHref, redirect }: Pr
         signupSubhead={signUpSubheadForRedirect(redirect)}
         showBlogReturnHint={Boolean(redirect?.startsWith('/blog/'))}
         showContentReturnHint={Boolean(contentGateRedirect)}
-        guestBrowseSkipPath={contentGateRedirect}
       />
     </AuthShell>
   )

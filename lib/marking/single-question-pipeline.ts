@@ -20,7 +20,7 @@ import { ocrPdfToPages, ocrPdfToPlainText } from '@/lib/marking/pdf-pages'
 import { buildDetectionPrompt } from '@/lib/marking/prompts'
 import { reconcileDetectionWithQuestion } from '@/lib/marking/subject-inference'
 import { resolveMarkResultSubjectCode } from '@/lib/syllabi/attempts'
-import { buildPerPageInk } from '@/lib/marking/ink-per-page'
+import { buildPerPageInk, type PageInkSource } from '@/lib/marking/ink-per-page'
 import { extractMarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
 import { toMarkingAIResult, aggregateWholePaperResults } from '@/lib/marking/whole-paper'
 import { extractPracticeQuestionFromScript } from '@/lib/marking/practice-question-extract'
@@ -200,6 +200,7 @@ async function markOneSplitQuestion(
     answerPhotoUrl: string | null
     startedAt: number
     fullScriptText: string
+    pageSources: PageInkSource[]
   }
 ): Promise<SplitQuestionOutcome> {
   // H1: never mark the question STEM as the answer. When the per-question answer
@@ -226,6 +227,10 @@ async function markOneSplitQuestion(
       })
 
     const ai = toMarkingAIResult(markingResult)
+    // Per-question examiner-ink: match this question's marks against every page's
+    // OCR lines — each mark's quoted working lands on the page it's actually on,
+    // so ink maps to the right pages without splitting the OCR lines per question.
+    const inkPages = buildPerPageInk(ai, ctx.pageSources)
     const timeSpent = Math.max(1, Math.round((Date.now() - ctx.startedAt) / 1000))
     const { data: attempt } = await supabaseAdmin
       .from('attempts')
@@ -259,6 +264,7 @@ async function markOneSplitQuestion(
         mark_scheme_id: null,
         line_references: lineReferences,
         answer_photo_url: ctx.answerPhotoUrl,
+        ink_pages: inkPages.length ? inkPages : undefined,
         syllabus_tags: resolvedTags,
       },
       attemptId: attempt?.id ?? null,
@@ -296,6 +302,7 @@ async function markSplitQuestions(params: {
   pagePhotoUrls: string[]
   startedAt: number
   fullScriptText: string
+  pageSources: PageInkSource[]
   onProgress?: SingleQuestionMarkInput['onProgress']
 }): Promise<Record<string, unknown>> {
   const {
@@ -307,6 +314,7 @@ async function markSplitQuestions(params: {
     pagePhotoUrls,
     startedAt,
     fullScriptText,
+    pageSources,
     onProgress,
   } = params
 
@@ -339,6 +347,7 @@ async function markSplitQuestions(params: {
       answerPhotoUrl,
       startedAt,
       fullScriptText,
+      pageSources,
     })
     completed += 1
     emit(onProgress, 'marking', Math.round(50 + (45 * completed) / capped.length))
@@ -482,14 +491,11 @@ export async function runSingleQuestionMark(
       })
     }
   } else if (pageFiles.length > 0) {
-    const first = await ocrOnePage(pageFiles[0])
-    pageOcrResults.push(first)
-
-    if (pageFiles.length > 1) {
-      for (const file of pageFiles.slice(1)) {
-        pageOcrResults.push(await ocrOnePage(file))
-      }
-    }
+    // OCR pages with bounded concurrency (was sequential) — a multi-page image
+    // upload is a big chunk of wall-clock, and with the verify pass the whole
+    // mark must stay well under the 300s function limit. Order is preserved.
+    const ocred = await mapWithConcurrency(pageFiles, 4, (file) => ocrOnePage(file))
+    pageOcrResults.push(...ocred)
   } else {
     throw new Error('Upload at least one page of your answer.')
   }
@@ -557,6 +563,11 @@ export async function runSingleQuestionMark(
           pagePhotoUrls,
           startedAt,
           fullScriptText: ocrText,
+          // Page images + their OCR lines (bboxes) for per-question examiner-ink.
+          // Empty for PDF uploads (no page photos), same as the single path.
+          pageSources: pageOcrResults
+            .filter((p) => p.photo_url)
+            .map((p) => ({ photo_url: p.photo_url!, ocr_lines: p.lines })),
           onProgress,
         })
       }

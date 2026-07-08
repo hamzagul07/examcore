@@ -28,8 +28,10 @@ import {
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
 import { postOnboardingHref, sanitizeNextPath } from '@/lib/auth-redirect'
 import {
+  inferMinimalOnboardingForBlogPath,
   inferMinimalOnboardingForContentPath,
-  isContentGateReturnPath,
+  isBlogReturnPath,
+  isReaderReturnPath,
 } from '@/lib/content-gate'
 import { suggestedExamDates } from '@/lib/dashboard/exam-date'
 import type { OnboardingInput } from '@/lib/onboarding/save-profile'
@@ -212,12 +214,18 @@ export function OnboardingWizard({
     setErrorMsg('')
   }
 
-  async function skipOnboardingForBrowse() {
-    if (!nextParam || !isContentGateReturnPath(nextParam)) return
+  async function skipOnboardingForReader() {
+    if (!nextParam || !isReaderReturnPath(nextParam)) return
 
-    const payload = inferMinimalOnboardingForContentPath(nextParam)
+    let payload: OnboardingInput | null = null
+    if (isBlogReturnPath(nextParam)) {
+      payload = inferMinimalOnboardingForBlogPath(nextParam)
+    } else {
+      payload = inferMinimalOnboardingForContentPath(nextParam)
+    }
+
     if (!payload) {
-      setErrorMsg('Could not open that topic yet. Pick a subject below to continue.')
+      setErrorMsg('Could not open that page yet. Pick a subject below to continue.')
       return
     }
 
@@ -233,7 +241,7 @@ export function OnboardingWizard({
       clearDraft()
       await navigateAfterOnboarding(postOnboardingHref(nextParam, nextParam))
     } catch (err) {
-      console.error('[onboarding wizard] browse skip failed:', err)
+      console.error('[onboarding wizard] reader skip failed:', err)
       setErrorMsg('Something went wrong. Try again or complete setup below.')
     } finally {
       setLoading(false)
@@ -335,6 +343,11 @@ export function OnboardingWizard({
   )}`
   const backHref = rerun ? sanitizeNextPath(nextParam, '/account/study') : '/auth/signout'
   const backLabel = rerun ? 'Back to settings' : 'Sign out'
+  const showReaderSkip = Boolean(nextParam && isReaderReturnPath(nextParam))
+  const readerSkipLabel =
+    nextParam && isBlogReturnPath(nextParam)
+      ? 'Just reading? Skip setup for now'
+      : 'Just browsing? Skip setup for now'
 
   return (
     <>
@@ -361,9 +374,10 @@ export function OnboardingWizard({
             {step === 1 && (
               <StepWelcome
                 onContinue={goNext}
-                showBrowseSkip={Boolean(nextParam && isContentGateReturnPath(nextParam))}
+                showBrowseSkip={showReaderSkip}
                 browseSkipLoading={loading}
-                onBrowseSkip={() => void skipOnboardingForBrowse()}
+                browseSkipLabel={readerSkipLabel}
+                onBrowseSkip={() => void skipOnboardingForReader()}
               />
             )}
             {step === 2 && (
@@ -377,6 +391,10 @@ export function OnboardingWizard({
                 errorMsg={errorMsg}
                 onContinue={goNext}
                 onBack={goBack}
+                showReaderSkip={showReaderSkip}
+                readerSkipLoading={loading}
+                readerSkipLabel={readerSkipLabel}
+                onReaderSkip={() => void skipOnboardingForReader()}
               />
             )}
             {step === 3 && (
@@ -389,6 +407,10 @@ export function OnboardingWizard({
                 errorMsg={errorMsg}
                 onContinue={goNext}
                 onBack={goBack}
+                showReaderSkip={showReaderSkip}
+                readerSkipLoading={loading}
+                readerSkipLabel={readerSkipLabel}
+                onReaderSkip={() => void skipOnboardingForReader()}
               />
             )}
             {step === 4 && (
@@ -398,6 +420,10 @@ export function OnboardingWizard({
                 errorMsg={errorMsg}
                 onContinue={goNext}
                 onBack={goBack}
+                showReaderSkip={showReaderSkip}
+                readerSkipLoading={loading}
+                readerSkipLabel={readerSkipLabel}
+                onReaderSkip={() => void skipOnboardingForReader()}
               />
             )}
             {step === 5 && (
@@ -462,11 +488,13 @@ function StepWelcome({
   onContinue,
   showBrowseSkip = false,
   browseSkipLoading = false,
+  browseSkipLabel = 'Just browsing? Skip setup for now',
   onBrowseSkip,
 }: {
   onContinue: () => void
   showBrowseSkip?: boolean
   browseSkipLoading?: boolean
+  browseSkipLabel?: string
   onBrowseSkip?: () => void
 }) {
   return (
@@ -515,7 +543,7 @@ function StepWelcome({
             disabled={browseSkipLoading}
             className="ec-guest-browse-skip mt-3 w-full"
           >
-            {browseSkipLoading ? 'Opening topic…' : 'Just browsing? Skip setup for now'}
+            {browseSkipLoading ? 'Opening…' : browseSkipLabel}
           </button>
         ) : null}
       </div>
@@ -533,6 +561,10 @@ function StepSubjects({
   errorMsg,
   onContinue,
   onBack,
+  showReaderSkip = false,
+  readerSkipLoading = false,
+  readerSkipLabel = 'Just browsing? Skip setup for now',
+  onReaderSkip,
 }: {
   board: string
   onBoardChange: (board: string) => void
@@ -543,6 +575,10 @@ function StepSubjects({
   errorMsg: string
   onContinue: () => void
   onBack: () => void
+  showReaderSkip?: boolean
+  readerSkipLoading?: boolean
+  readerSkipLabel?: string
+  onReaderSkip?: () => void
 }) {
   const ib = isIbBoard(board)
   const levelHeading =
@@ -658,7 +694,15 @@ function StepSubjects({
           <FormErrorAlert message={errorMsg} />
         </div>
       )}
-      <StepNav onBack={onBack} onContinue={onContinue} continueLabel="Continue" />
+      <StepNav
+        onBack={onBack}
+        onContinue={onContinue}
+        continueLabel="Continue"
+        showReaderSkip={showReaderSkip}
+        readerSkipLoading={readerSkipLoading}
+        readerSkipLabel={readerSkipLabel}
+        onReaderSkip={onReaderSkip}
+      />
     </div>
   )
 }
@@ -672,6 +716,10 @@ function StepStage({
   errorMsg,
   onContinue,
   onBack,
+  showReaderSkip = false,
+  readerSkipLoading = false,
+  readerSkipLabel = 'Just browsing? Skip setup for now',
+  onReaderSkip,
 }: {
   level: string
   selected: UserStage | null
@@ -681,6 +729,10 @@ function StepStage({
   errorMsg: string
   onContinue: () => void
   onBack: () => void
+  showReaderSkip?: boolean
+  readerSkipLoading?: boolean
+  readerSkipLabel?: string
+  onReaderSkip?: () => void
 }) {
   const suggestions = suggestedExamDates()
   const ib = level === IB_DIPLOMA_LEVEL
@@ -756,7 +808,15 @@ function StepStage({
       </div>
 
       {errorMsg && <div className="mt-4"><FormErrorAlert message={errorMsg} /></div>}
-      <StepNav onBack={onBack} onContinue={onContinue} continueLabel="Continue" />
+      <StepNav
+        onBack={onBack}
+        onContinue={onContinue}
+        continueLabel="Continue"
+        showReaderSkip={showReaderSkip}
+        readerSkipLoading={readerSkipLoading}
+        readerSkipLabel={readerSkipLabel}
+        onReaderSkip={onReaderSkip}
+      />
     </div>
   )
 }
@@ -767,12 +827,20 @@ function StepGoal({
   errorMsg,
   onContinue,
   onBack,
+  showReaderSkip = false,
+  readerSkipLoading = false,
+  readerSkipLabel = 'Just browsing? Skip setup for now',
+  onReaderSkip,
 }: {
   selected: PrimaryGoal | null
   onSelect: (g: PrimaryGoal) => void
   errorMsg: string
   onContinue: () => void
   onBack: () => void
+  showReaderSkip?: boolean
+  readerSkipLoading?: boolean
+  readerSkipLabel?: string
+  onReaderSkip?: () => void
 }) {
   return (
     <div>
@@ -797,7 +865,15 @@ function StepGoal({
         ))}
       </div>
       {errorMsg && <div className="mt-4"><FormErrorAlert message={errorMsg} /></div>}
-      <StepNav onBack={onBack} onContinue={onContinue} continueLabel="Continue" />
+      <StepNav
+        onBack={onBack}
+        onContinue={onContinue}
+        continueLabel="Continue"
+        showReaderSkip={showReaderSkip}
+        readerSkipLoading={readerSkipLoading}
+        readerSkipLabel={readerSkipLabel}
+        onReaderSkip={onReaderSkip}
+      />
     </div>
   )
 }
@@ -897,10 +973,18 @@ function StepNav({
   onBack,
   onContinue,
   continueLabel,
+  showReaderSkip = false,
+  readerSkipLoading = false,
+  readerSkipLabel = 'Just browsing? Skip setup for now',
+  onReaderSkip,
 }: {
   onBack: () => void
   onContinue: () => void
   continueLabel: string
+  showReaderSkip?: boolean
+  readerSkipLoading?: boolean
+  readerSkipLabel?: string
+  onReaderSkip?: () => void
 }) {
   return (
     <div className="ms-ob-nav">
@@ -910,6 +994,16 @@ function StepNav({
       <button type="button" onClick={onContinue} className="ec-btn-primary">
         {continueLabel} <ArrowRight className="h-4 w-4" />
       </button>
+      {showReaderSkip && onReaderSkip ? (
+        <button
+          type="button"
+          onClick={onReaderSkip}
+          disabled={readerSkipLoading}
+          className="ec-guest-browse-skip mt-3 w-full sm:col-span-2"
+        >
+          {readerSkipLoading ? 'Opening…' : readerSkipLabel}
+        </button>
+      ) : null}
     </div>
   )
 }

@@ -2,21 +2,15 @@
 
 import Link from 'next/link'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import {
-  ArrowRight,
-  BookOpen,
-  MessageCircle,
-  RotateCcw,
-} from 'lucide-react'
+import { ArrowRight, Check, Lock, MessageCircle } from 'lucide-react'
 import { Sheet } from '@/components/ui/Sheet'
 import { trackBlogContinuePopupClick } from '@/lib/analytics/blog-events'
-import { buildSignUpHref } from '@/lib/auth-redirect'
+import { buildSignInHref, buildSignUpHref } from '@/lib/auth-redirect'
 import {
   readSessionStorage,
   removeClientStorage,
   removeSessionStorage,
   STORAGE_KEYS,
-  writeSessionStorage,
 } from '@/lib/client-storage'
 import { useAuthCheck } from '@/lib/hooks/useAuthCheck'
 
@@ -36,10 +30,6 @@ function dismissKey(slug: string): string {
 
 function isDismissedThisSession(slug: string): boolean {
   return readSessionStorage(dismissKey(slug)) === '1'
-}
-
-function dismissPopup(slug: string): void {
-  writeSessionStorage(dismissKey(slug), '1')
 }
 
 /** Reliable scroll progress for window/document (0–1). */
@@ -62,14 +52,9 @@ function shouldOpenPopup(): boolean {
   return false
 }
 
-const PERKS = [
-  { icon: RotateCcw, label: 'Pick up where you left off' },
-  { icon: BookOpen, label: 'Guides for your subjects' },
-] as const
-
 /**
- * Guest-only scroll popup — signup first, then exam discussion.
- * Dismissible per article per session; full article stays in the DOM for SEO.
+ * Guest-only scroll popup — signup required to keep reading; skip is on the signup page.
+ * Full article stays in the DOM for SEO; body is visually gated while open.
  */
 export function BlogContinueSignupModal({
   slug,
@@ -136,14 +121,22 @@ export function BlogContinueSignupModal({
     }
   }, [hydrated, loading, slug, user, tryOpen])
 
+  useEffect(() => {
+    if (!open) {
+      document.documentElement.classList.remove('ec-blog-gate-active')
+      return
+    }
+    document.documentElement.classList.add('ec-blog-gate-active')
+    return () => document.documentElement.classList.remove('ec-blog-gate-active')
+  }, [open])
+
   const close = useCallback(() => {
-    dismissPopup(slug)
-    setOpen(false)
-    trackBlogContinuePopupClick('dismiss', slug)
-  }, [slug])
+    // Gate is not dismissible — readers use signup or skip on the signup page.
+  }, [])
 
   const closeForNavigation = useCallback(() => {
     setOpen(false)
+    document.documentElement.classList.remove('ec-blog-gate-active')
   }, [])
 
   if (!hydrated || loading || user || isDismissedThisSession(slug)) return null
@@ -151,12 +144,14 @@ export function BlogContinueSignupModal({
   const articleHref = `/blog/${slug}`
   const communityHref = subjectCode ? `/community/s/${subjectCode}` : '/community'
   const signupHref = buildSignUpHref(articleHref)
+  const signinHref = buildSignInHref(articleHref)
   const discussSignupHref = buildSignUpHref(communityHref)
 
   return (
     <Sheet
       open={open}
       onClose={close}
+      dismissible={false}
       labelledById={TITLE_ID}
       className="ec-blog-continue-sheet sm:max-w-[420px] sm:overflow-hidden"
       compactPadding
@@ -164,17 +159,17 @@ export function BlogContinueSignupModal({
     >
       <div className="ec-blog-continue-popup">
         <div className="ec-blog-continue-popup__body">
-          <div className="ec-blog-continue-popup__badge">
-            <BookOpen className="h-3.5 w-3.5" aria-hidden />
-            Keep going
-          </div>
+          <span className="ec-blog-continue-popup__icon" aria-hidden>
+            <Lock className="h-5 w-5" />
+          </span>
+          <p className="ec-blog-continue-popup__eyebrow">Free to keep reading</p>
 
           <h2 id={TITLE_ID} className="ec-blog-continue-popup__title">
-            Enjoying this guide?
+            Create a free account to keep reading
           </h2>
           <p className="ec-blog-continue-popup__lead">
-            Join free to save your place, get guides matched to your papers, and see what other
-            students are asking right now.
+            You&apos;re partway through this guide. Create a free account to unlock the
+            full article and pick up right where you left off.
           </p>
 
           <div className="ec-blog-continue-popup__signup">
@@ -186,21 +181,41 @@ export function BlogContinueSignupModal({
                 trackBlogContinuePopupClick('signup', slug)
               }}
             >
-              Create free account
+              Create free account &amp; keep reading
+              <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
             </Link>
-            <p className="ec-blog-continue-popup__trust">
-              No card required · ~60 sec setup · back to this article
-            </p>
+            <ul className="ec-blog-continue-popup__trust" aria-label="What's included">
+              <li>
+                <Check className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                Free forever
+              </li>
+              <li>
+                <Check className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                No card required
+              </li>
+              <li>
+                <Check className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                Back to this article
+              </li>
+            </ul>
           </div>
 
-          <ul className="ec-blog-continue-popup__perks" aria-label="Free account includes">
-            {PERKS.map(({ icon: Icon, label }) => (
-              <li key={label}>
-                <Icon className="h-3.5 w-3.5 shrink-0" aria-hidden />
-                {label}
-              </li>
-            ))}
-          </ul>
+          <p className="ec-blog-continue-popup__signin">
+            Already have an account?{' '}
+            <Link
+              href={signinHref}
+              onClick={() => {
+                closeForNavigation()
+                trackBlogContinuePopupClick('signin', slug)
+              }}
+            >
+              Sign in
+            </Link>
+          </p>
+
+          <div className="ec-blog-continue-popup__or" aria-hidden>
+            <span>or</span>
+          </div>
 
           <div className="ec-blog-continue-popup__discuss">
             <div className="ec-blog-continue-popup__discuss-meta">
@@ -232,14 +247,6 @@ export function BlogContinueSignupModal({
               <ArrowRight className="h-4 w-4 shrink-0 opacity-70" aria-hidden />
             </Link>
           </div>
-
-          <button
-            type="button"
-            className="ec-blog-continue-popup__skip"
-            onClick={close}
-          >
-            Continue reading without signing up
-          </button>
         </div>
       </div>
     </Sheet>

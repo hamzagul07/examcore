@@ -1,7 +1,8 @@
 'use client'
 
-import { useMemo, useState } from 'react'
-import { AlertCircle, CheckCircle2, Info } from 'lucide-react'
+import { useEffect, useMemo, useState } from 'react'
+import Link from 'next/link'
+import { AlertCircle, CheckCircle2, ChevronRight, Info } from 'lucide-react'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import { AskOmniAboutMark } from '@/components/omni-ai/AskOmniAboutMark'
 import { SyllabusTopicBadge } from '@/components/SyllabusTopicBadge'
@@ -411,6 +412,13 @@ export function MarkingResultView({
             </div>
           )}
 
+        {result.syllabus_tags && result.syllabus_tags.length > 0 && badgeSubjectCode ? (
+          <StudyLessonsBlock
+            subjectCode={badgeSubjectCode}
+            codes={result.syllabus_tags}
+          />
+        ) : null}
+
         {result.ai_marking.what_to_study_next && (
           <div className="ec-card p-6">
             <p className="ms-micro" style={{ marginBottom: 12 }}>
@@ -476,3 +484,69 @@ function ErrorClassificationPill({
 }
 
 export { ErrorClassificationPill }
+
+type MarkBackLesson = { code: string; name: string; href: string }
+
+/**
+ * Mark-back — turns the marked weak areas (syllabus_tags) into links to the
+ * exact course lessons that fix them. Resolution + existence check happen
+ * server-side (/api/courses/lessons-for-topics), so links never 404.
+ */
+function StudyLessonsBlock({
+  subjectCode,
+  codes,
+}: {
+  subjectCode: string
+  codes: SyllabusCode[]
+}) {
+  const key = useMemo(() => codes.join(','), [codes])
+  const [lessons, setLessons] = useState<MarkBackLesson[]>([])
+
+  useEffect(() => {
+    if (!subjectCode || !key) return
+    let active = true
+    fetch(
+      `/api/courses/lessons-for-topics?subject=${encodeURIComponent(
+        subjectCode
+      )}&codes=${encodeURIComponent(key)}`
+    )
+      .then((r) => (r.ok ? r.json() : { lessons: [] }))
+      .then((d) => {
+        if (active) setLessons(Array.isArray(d?.lessons) ? d.lessons : [])
+      })
+      .catch(() => {
+        // Non-fatal — the rest of the result still renders.
+      })
+    return () => {
+      active = false
+    }
+  }, [subjectCode, key])
+
+  if (!lessons.length) return null
+
+  return (
+    <div className="ec-card border-[var(--ec-brand)]/25 p-6">
+      <p className="ms-micro" style={{ marginBottom: 12 }}>
+        STUDY THE LESSONS THAT FIX THIS
+      </p>
+      <div className="space-y-2">
+        {lessons.map((l) => (
+          <Link
+            key={l.href}
+            href={l.href}
+            className="group flex items-center justify-between gap-3 rounded-lg border border-[var(--ec-border)] px-4 py-3 transition-colors hover:border-[var(--ec-brand)]/50"
+          >
+            <span className="text-sm font-medium text-[var(--ec-text-primary)]">
+              {l.name}{' '}
+              <span className="text-[var(--ec-text-faint)]">· {l.code}</span>
+            </span>
+            <span className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-[var(--ec-brand)]">
+              Study
+              <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </span>
+          </Link>
+        ))}
+      </div>
+    </div>
+  )
+}

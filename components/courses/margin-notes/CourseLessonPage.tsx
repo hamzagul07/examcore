@@ -32,6 +32,7 @@ import {
   SecHead,
   Faq,
   PracticeSection,
+  LessonCheckpoint,
 } from './lesson-blocks'
 
 type Props = {
@@ -443,7 +444,7 @@ export function CourseLessonPage({
           {locked ? (
             <LessonUpsell feature="practice" signedIn={signedIn} />
           ) : (
-            <PracticeSection lesson={L} big />
+            <PracticeSection lesson={L} big returnPath={pathname} />
           )}
           <div className="lesson-end lesson-papers-end">
             <LessonEndBlock
@@ -781,7 +782,7 @@ export function CourseLessonPage({
                 {locked ? (
                   <LessonUpsell feature="practice" signedIn={signedIn} />
                 ) : (
-                  <PracticeSection lesson={L} />
+                  <PracticeSection lesson={L} returnPath={pathname} />
                 )}
               </section>
             ) : null}
@@ -819,6 +820,17 @@ export function CourseLessonPage({
                     <Faq key={i} f={f} />
                   ))}
                 </div>
+              </section>
+            ) : null}
+
+            {!locked ? (
+              <section id="checkpoint" className="lsec">
+                <SecHead
+                  k="✓"
+                  title="Checkpoint"
+                  sub="One marked question is worth ten re-reads — close the loop before you move on."
+                />
+                <LessonCheckpoint lesson={L} returnPath={pathname} />
               </section>
             ) : null}
 

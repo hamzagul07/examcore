@@ -33,3 +33,22 @@ export function buildMarkHref(
   })
   return `/mark?${params.toString()}`
 }
+
+/**
+ * Closes the learn→practice→mark loop: appends a `return` path (and `topic`
+ * attribution) to a `/mark` href so the student lands back on the lesson after
+ * being marked. No-op for params that are already present.
+ */
+export function appendMarkReturn(
+  href: string,
+  returnPath: string | null | undefined,
+  topicCode?: string | null
+): string {
+  if (!href) return href
+  const [base, query = ''] = href.split('?')
+  const params = new URLSearchParams(query)
+  if (returnPath && !params.get('return')) params.set('return', returnPath)
+  if (topicCode && !params.get('topic')) params.set('topic', topicCode)
+  const qs = params.toString()
+  return qs ? `${base}?${qs}` : base
+}

@@ -18,6 +18,7 @@ import { formatAuthError } from '@/lib/auth-errors'
 import { GoogleAuthSection } from '@/components/auth/GoogleAuthSection'
 import { AuthDivider } from '@/components/auth/AuthDivider'
 import { UsernameField, type UsernameState } from '@/components/auth/UsernameField'
+import { GuestBrowseSkip } from '@/components/auth/GuestBrowseSkip'
 
 type SignUpFormProps = {
   redirectPath: string
@@ -25,6 +26,8 @@ type SignUpFormProps = {
   signupSubhead?: string
   showBlogReturnHint?: boolean
   showContentReturnHint?: boolean
+  /** When set, guests can skip signup and return to this topic for the session. */
+  guestBrowseSkipPath?: string | null
 }
 
 /** Shared signup form — used on /auth/signup. */
@@ -34,6 +37,7 @@ export function SignUpForm({
   signupSubhead = 'Free tier included — Cambridge or IB Diploma, pick your subjects in onboarding.',
   showBlogReturnHint = false,
   showContentReturnHint = false,
+  guestBrowseSkipPath = null,
 }: SignUpFormProps) {
   const router = useRouter()
   const intentDestination = redirectPath
@@ -199,7 +203,8 @@ export function SignUpForm({
           className="mb-6 rounded-xl border border-[color-mix(in_srgb,var(--ec-brand)_24%,var(--ec-border))] bg-[color-mix(in_srgb,var(--ec-brand)_6%,var(--ec-surface))] px-4 py-3 text-sm leading-relaxed text-[var(--ec-text-secondary)]"
           role="note"
         >
-          After a quick subject setup, you&apos;ll land back on the guide you were reading.
+          After a quick subject setup (~60 sec), you&apos;ll land back on the guide you were
+          reading.
         </p>
       ) : null}
 
@@ -208,7 +213,7 @@ export function SignUpForm({
           className="mb-6 rounded-xl border border-[color-mix(in_srgb,var(--ec-brand)_24%,var(--ec-border))] bg-[color-mix(in_srgb,var(--ec-brand)_6%,var(--ec-surface))] px-4 py-3 text-sm leading-relaxed text-[var(--ec-text-secondary)]"
           role="note"
         >
-          After a quick subject setup, you&apos;ll return to the topic you were viewing.
+          After a quick subject setup (~60 sec), you&apos;ll return to the topic you were viewing.
         </p>
       ) : null}
 
@@ -336,6 +341,10 @@ export function SignUpForm({
           />
         </form>
       )}
+
+      {guestBrowseSkipPath ? (
+        <GuestBrowseSkip returnPath={guestBrowseSkipPath} className="mt-5 w-full" />
+      ) : null}
 
       <p className="mt-6 text-center text-sm text-[var(--ec-text-secondary)]">
         Already have an account?{' '}

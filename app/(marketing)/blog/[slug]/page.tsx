@@ -24,7 +24,6 @@ import { BlogInContentLinks } from '@/components/blog/BlogInContentLinks'
 import { BlogSourcesBlock } from '@/components/blog/BlogSourcesBlock'
 import { BlogReadingProgress } from '@/components/blog/BlogReadingProgress'
 import { BlogChunkedArticle } from '@/components/blog/BlogChunkedArticle'
-import { BlogContinueSignupModal } from '@/components/blog/BlogContinueSignupModal'
 import { BlogTableOfContents } from '@/components/blog/BlogTableOfContents'
 import { BlogRelatedGrid } from '@/components/blog/BlogRelatedGrid'
 import { BlogBreadcrumbs } from '@/components/blog/BlogBreadcrumbs'
@@ -76,11 +75,6 @@ export default async function BlogPostPage({ params }: Props) {
     <MarketingPageShell className="ms-blog-post-shell">
       <BlogPostGraphJsonLd post={post} content={post.content} />
       <BlogReadingProgress />
-      <BlogContinueSignupModal
-        slug={slug}
-        subjectCode={subjectCode}
-        subjectName={subjectName}
-      />
       <article className="ms-pg py-12 sm:py-16">
         <BlogBreadcrumbs slug={slug} title={post.title} />
         <BlogArticleHero post={enriched} />

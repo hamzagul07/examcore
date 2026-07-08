@@ -20,8 +20,6 @@ export type SheetProps = {
   showHandle?: boolean
   /** Skip default bottom safe-area padding (custom inner layout) */
   compactPadding?: boolean
-  /** When false, backdrop, Escape, and close button do not dismiss. */
-  dismissible?: boolean
 }
 
 /**
@@ -37,7 +35,6 @@ export function Sheet({
   className,
   showHandle = true,
   compactPadding = false,
-  dismissible = true,
 }: SheetProps) {
   const titleId = useId()
   const [mounted, setMounted] = useState(false)
@@ -48,13 +45,13 @@ export function Sheet({
   }, [])
 
   useEffect(() => {
-    if (!open || !dismissible) return
+    if (!open) return
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [open, onClose, dismissible])
+  }, [open, onClose])
 
   const sheet = (
     <AnimatePresence>
@@ -68,7 +65,7 @@ export function Sheet({
         >
           <div
             className="absolute inset-0 ec-modal-backdrop"
-            onClick={dismissible ? onClose : undefined}
+            onClick={onClose}
             aria-hidden
           />
           <motion.div
@@ -103,16 +100,14 @@ export function Sheet({
                 {title}
               </h2>
             ) : null}
-            {dismissible ? (
-              <button
-                type="button"
-                onClick={onClose}
-                className="absolute right-3 top-3 z-20 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-brand-muted)] hover:text-[var(--ec-text-primary)] sm:right-4 sm:top-4"
-                aria-label="Close"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            ) : null}
+            <button
+              type="button"
+              onClick={onClose}
+              className="absolute right-3 top-3 z-20 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-brand-muted)] hover:text-[var(--ec-text-primary)] sm:right-4 sm:top-4"
+              aria-label="Close"
+            >
+              <X className="h-5 w-5" />
+            </button>
             {children}
           </motion.div>
         </motion.div>

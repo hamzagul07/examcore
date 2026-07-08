@@ -72,6 +72,47 @@ function QuestionDetail({
 }) {
   const ai = question.ai_marking
 
+  // IB multi-criterion breakdown (essays / IA) — render the per-criterion detail,
+  // not just the holistic band, matching the single-question view.
+  if (ai.criteria_results && ai.criteria_results.length > 0) {
+    return (
+      <div className="mt-4 space-y-3 border-t border-[var(--ec-border)] pt-4 text-sm">
+        <p className="ms-overline">IB criteria breakdown</p>
+        <div className="space-y-3">
+          {ai.criteria_results.map((c) => (
+            <div
+              key={c.criterion}
+              className="rounded-xl border border-[var(--ec-border)] p-3"
+            >
+              <div className="flex items-center justify-between gap-2">
+                <span className="font-mono text-xs font-semibold">
+                  {c.criterion} — {c.criterion_name}
+                </span>
+                <span className="ms-grade-pill">
+                  {c.marks_awarded}/{c.marks_available} · L{c.level}
+                </span>
+              </div>
+              {c.band_descriptor && (
+                <p className="mt-2 text-xs text-[var(--ec-text-secondary)]">
+                  {c.band_descriptor}
+                </p>
+              )}
+              <div className="mt-2">
+                <RichTextRenderer text={c.justification} />
+              </div>
+            </div>
+          ))}
+        </div>
+        {ai.summary && (
+          <RichTextRenderer
+            text={ai.summary}
+            className="text-[var(--ec-text-secondary)]"
+          />
+        )}
+      </div>
+    )
+  }
+
   if (question.marking_style === 'level_of_response' && ai.band_result) {
     return (
       <div className="mt-4 space-y-3 border-t border-[var(--ec-border)] pt-4 text-sm">

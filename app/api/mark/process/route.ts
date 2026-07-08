@@ -30,6 +30,7 @@ import {
   reserveMarkUsage,
   finalizeMarkReservation,
   releaseMarkReservation,
+  recordExtraMarkUsages,
   allowanceForResponse,
   quotaExceededBody,
   type MarkReservation,
@@ -114,6 +115,28 @@ export async function POST(request: NextRequest) {
         reservationSettled = true
         await releaseMarkReservation(reservation)
       }
+    }
+
+    // A scanned script can hold several questions marked separately. The upfront
+    // reservation + finalize covers the first question; this charges one extra
+    // mark per additional question so an N-question upload counts as N marks.
+    // Returns the total marks charged (for the header allowance chip).
+    const chargeMultiQuestion = async (payload: unknown): Promise<number> => {
+      const p = payload as {
+        multi_question?: boolean
+        question_attempt_ids?: unknown
+      }
+      if (!userId || !reservation || !p?.multi_question) return 1
+      const ids = Array.isArray(p.question_attempt_ids)
+        ? (p.question_attempt_ids as unknown[]).filter(
+            (x): x is string => typeof x === 'string'
+          )
+        : []
+      const extras = ids.slice(1) // first is settled by finalizeReservation
+      if (extras.length > 0) {
+        await recordExtraMarkUsages(userId, 'mark_single', reservation, extras)
+      }
+      return 1 + extras.length
     }
 
     const formData = await request.formData()
@@ -247,11 +270,14 @@ export async function POST(request: NextRequest) {
                 (payload as { attempt_id?: string })?.attempt_id ?? null,
                 'mark_single'
               )
+              const marksCharged = await chargeMultiQuestion(payload)
               send({
                 type: 'result',
                 payload: await signMarkPayloadForClient({
                   ...payload,
-                  _allowance: reservation ? allowanceForResponse(reservation.allowance) : undefined,
+                  _allowance: reservation
+                    ? allowanceForResponse(reservation.allowance, marksCharged)
+                    : undefined,
                 }),
               })
               controller.close()
@@ -281,10 +307,13 @@ export async function POST(request: NextRequest) {
           (payload as { attempt_id?: string })?.attempt_id ?? null,
           'mark_single'
         )
+        const marksCharged = await chargeMultiQuestion(payload)
         return NextResponse.json(
           await signMarkPayloadForClient({
             ...payload,
-            _allowance: reservation ? allowanceForResponse(reservation.allowance) : undefined,
+            _allowance: reservation
+              ? allowanceForResponse(reservation.allowance, marksCharged)
+              : undefined,
           })
         )
       } catch (err: unknown) {

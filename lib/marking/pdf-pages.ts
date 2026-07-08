@@ -44,6 +44,8 @@ export async function ocrPdfToPages(
             ],
           },
         ],
+        // Deterministic OCR — same scan should transcribe the same way each run.
+        config: { temperature: 0 },
       }),
     { label: 'pdf-pages-ocr' }
   )
@@ -96,6 +98,7 @@ export async function ocrPdfToPlainText(
             ],
           },
         ],
+        config: { temperature: 0 },
       }),
     { label: 'pdf-plain-ocr' }
   )

@@ -38,7 +38,7 @@ export async function extractPracticeQuestionFromScript(
   const subjectName = SUBJECT_CODE_MAP[subjectCode] || 'A-Level'
   const text = await generateGeminiText(
     buildPracticeQuestionExtractPrompt(ocrText, subjectName, subjectCode),
-    { task: 'structured-extraction', maxOutputTokens: 2000 }
+    { task: 'structured-extraction', maxOutputTokens: 2000, temperature: 0 }
   )
   const parsed = parsePracticeQuestionExtract(text)
   if (!parsed) {

@@ -41,6 +41,7 @@ import {
 import { getIbMarkableSubjectCodes, resolveSubjectLabel, isIbSubjectCode } from '@/lib/ib/marking-config'
 import { ibPracticeCriteriaSummary } from '@/lib/ib/practice-prompts'
 import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
+import { WholePaperResultView } from '@/components/WholePaperResultView'
 import { PostMarkNextSteps } from '@/components/mark/PostMarkNextSteps'
 import { PastPaperSelectorFields } from '@/components/mark/PastPaperSelectorFields'
 import {
@@ -109,6 +110,8 @@ type MarkingResult = MarkingResultData & {
   ink_pages?: Array<{ photo_url: string; line_references: LineReference[] }>
   upload_mode?: 'single_question' | 'whole_paper'
   whole_paper?: WholePaperResult
+  /** Set when a scanned script was split into several separately-marked questions. */
+  multi_question?: boolean
   _allowance?: AllowanceBlock
 }
 
@@ -262,7 +265,7 @@ export default function MarkPage() {
 
   const cinematicActive = loading && !!markProgress
   const markStage: 0 | 1 | 2 =
-    result && !result.whole_paper ? 2 : cinematicActive || loading ? 1 : 0
+    result ? 2 : cinematicActive || loading ? 1 : 0
 
   useEffect(() => {
     if (!cinematicActive || typeof window === 'undefined') return
@@ -1330,7 +1333,7 @@ export default function MarkPage() {
   return (
     <main className="app-shell app-shell-tabbed ms-mark-shell">
       <div
-        className={`ms-mark-pg min-w-0 ${result && !result.whole_paper ? '' : 'ms-mark-pg--narrow'}`}
+        className={`ms-mark-pg min-w-0 ${result ? '' : 'ms-mark-pg--narrow'}`}
       >
         {!result && (
           <header className="ms-mark-hero ms-fade-in">
@@ -2089,6 +2092,39 @@ export default function MarkPage() {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {result?.whole_paper && (
+          <div className="space-y-8">
+            {result.multi_question && (
+              <div className="ec-card flex items-start gap-3 border-[var(--ec-brand)]/30 p-4">
+                <Sparkles
+                  className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]"
+                  aria-hidden="true"
+                />
+                <p className="text-sm text-[var(--ec-text-secondary)]">
+                  We found{' '}
+                  <strong className="text-[var(--ec-text-primary)]">
+                    {result.whole_paper.questions.length} questions
+                  </strong>{' '}
+                  in your upload and marked each one separately below.
+                </p>
+              </div>
+            )}
+            <WholePaperResultView
+              result={result.whole_paper}
+              attemptId={result.attempt_id ?? null}
+            />
+            <div className="flex flex-wrap gap-3">
+              <button
+                type="button"
+                onClick={handleMarkNewQuestion}
+                className="ec-btn-primary"
+              >
+                Mark another
+              </button>
+            </div>
+          </div>
+        )}
 
         {result && !result.whole_paper && (
           <div className="space-y-8">

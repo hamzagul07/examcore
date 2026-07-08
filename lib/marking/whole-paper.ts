@@ -240,6 +240,9 @@ export function toMarkingAIResult(raw: Record<string, unknown>): MarkingAIResult
       raw.band_result && typeof raw.band_result === 'object'
         ? (raw.band_result as MarkingAIResult['band_result'])
         : undefined,
+    criteria_results: Array.isArray(raw.criteria_results)
+      ? (raw.criteria_results as MarkingAIResult['criteria_results'])
+      : undefined,
     mcq_breakdown: Array.isArray(raw.mcq_breakdown)
       ? (raw.mcq_breakdown as MarkingAIResult['mcq_breakdown'])
       : undefined,

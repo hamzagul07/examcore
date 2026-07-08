@@ -22,12 +22,16 @@ import { reconcileDetectionWithQuestion } from '@/lib/marking/subject-inference'
 import { resolveMarkResultSubjectCode } from '@/lib/syllabi/attempts'
 import { buildPerPageInk } from '@/lib/marking/ink-per-page'
 import { extractMarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
-import { toMarkingAIResult } from '@/lib/marking/whole-paper'
+import { toMarkingAIResult, aggregateWholePaperResults } from '@/lib/marking/whole-paper'
 import { extractPracticeQuestionFromScript } from '@/lib/marking/practice-question-extract'
+import { splitUploadIntoQuestions, type SplitQuestion } from '@/lib/marking/split-questions'
+import { extractStatedTotalMarks } from '@/lib/marking/question-marks'
 import type {
   MarkIntent,
   MarkingMode,
+  MarkingStyle,
   MarkSchemeRow,
+  QuestionMarkResult,
   ResolvedIbComponent,
 } from '@/lib/marking/types'
 import {
@@ -95,6 +99,298 @@ function emitContext(
   onProgress?.({ type: 'context', ...ctx })
 }
 
+/** Resolve an IB catalog component for a practice upload (shared by single + multi paths). */
+async function resolvePracticeIb(
+  practiceCode: string,
+  ibComponentKey: string | null | undefined,
+  ibLevel: string | null | undefined
+): Promise<ResolvedIbComponent | null> {
+  if (!practiceCode.startsWith('ib-') || !ibComponentKey) return null
+  const { subjectCode: catSubject, level: legacyLevel } =
+    splitLegacyIbCode(practiceCode)
+  const rawLevel = (ibLevel?.trim().toUpperCase() || legacyLevel) as
+    | IbSelectableLevel
+    | null
+  if (rawLevel !== 'HL' && rawLevel !== 'SL') return null
+  try {
+    return await resolveComponentForMarking(catSubject, rawLevel, ibComponentKey.trim())
+  } catch (err) {
+    console.warn('[mark] IB catalog resolve failed; using fallback', err)
+    return null
+  }
+}
+
+/** Cap on questions marked from one scanned script — bounds cost, latency, and
+ * the risk of blowing the 300s function timeout (each question is 2 Gemini Pro
+ * calls). Kept in line with the whole-paper path's 15-question cap. */
+const MAX_SPLIT_QUESTIONS = 15
+/** Tighter cap for signed-out users: a guest's whole upload only counts as one
+ * anonymous rate-limit tick, so bound the Pro spend it can trigger (L2). */
+const GUEST_MAX_SPLIT_QUESTIONS = 3
+/** Concurrent per-question marks. Each question fans out to derive + mark on Pro,
+ * so keep this modest to respect model rate limits while cutting wall-clock. */
+const SPLIT_CONCURRENCY = 3
+
+/** Run `fn` over `items` with a bounded number of concurrent workers, preserving
+ * input order in the results array. */
+async function mapWithConcurrency<T, R>(
+  items: T[],
+  limit: number,
+  fn: (item: T, index: number) => Promise<R>
+): Promise<R[]> {
+  const results: R[] = new Array(items.length)
+  let next = 0
+  const worker = async () => {
+    while (next < items.length) {
+      const i = next++
+      results[i] = await fn(items[i], i)
+    }
+  }
+  await Promise.all(
+    Array.from({ length: Math.min(limit, items.length) }, () => worker())
+  )
+  return results
+}
+
+type SplitQuestionOutcome = {
+  result: QuestionMarkResult
+  attemptId: string | null
+  tags: string[]
+}
+
+/** Build a zero-score placeholder result (unattempted / failed) that renders in
+ * the whole-paper view without a persisted attempt or a billed mark. */
+function placeholderQuestionResult(
+  q: SplitQuestion,
+  status: 'unattempted' | 'marking_failed',
+  summary: string,
+  answerPhotoUrl: string | null,
+  errorMessage?: string
+): QuestionMarkResult {
+  const total = q.total_marks && q.total_marks > 0 ? q.total_marks : 0
+  return {
+    question_number: q.question_number,
+    marks_earned: 0,
+    total_marks: total,
+    marking_style: 'point_based',
+    summary,
+    ai_marking: {
+      marks_earned: 0,
+      total_marks: total,
+      summary,
+      weak_topics: [],
+      what_to_study_next: '',
+    },
+    status,
+    error_message: errorMessage,
+    mark_scheme_id: null,
+    answer_photo_url: answerPhotoUrl,
+  }
+}
+
+/** Mark a single detected question in isolation: unanswered → "not attempted"
+ * (H1, never mark the stem as the answer); marking error → "marking_failed" (H2,
+ * one bad question never sinks the batch). */
+async function markOneSplitQuestion(
+  q: SplitQuestion,
+  ctx: {
+    practiceCode: string
+    resolvedIb: ResolvedIbComponent | null
+    userId: string | null
+    answerPhotoUrl: string | null
+    startedAt: number
+    fullScriptText: string
+  }
+): Promise<SplitQuestionOutcome> {
+  // H1: never mark the question STEM as the answer. When the per-question answer
+  // extraction comes back empty (it is unreliable), fall back to the FULL script
+  // and let the marker localise this question's working — far safer than scoring a
+  // correct answer 0. A genuinely blank question then simply earns ~0 (no working
+  // for it exists in the script).
+  const answerText =
+    q.answer_text && q.answer_text.trim().length >= 3
+      ? q.answer_text
+      : ctx.fullScriptText
+
+  try {
+    const { markingResult, lineReferences, errorClassifications, resolvedTags } =
+      await markSingleQuestion({
+        ocrText: answerText,
+        ocrLines: [],
+        questionText: q.question_text,
+        markScheme: null,
+        markingMode: 'general_criteria_practice',
+        paperCode: `${ctx.practiceCode}/00`,
+        resolvedIb: ctx.resolvedIb,
+        questionTotalMarks: q.total_marks,
+      })
+
+    const ai = toMarkingAIResult(markingResult)
+    const timeSpent = Math.max(1, Math.round((Date.now() - ctx.startedAt) / 1000))
+    const { data: attempt } = await supabaseAdmin
+      .from('attempts')
+      .insert({
+        mark_scheme_id: null,
+        source_type: 'other',
+        user_id: ctx.userId,
+        question_text: q.question_text || null,
+        ocr_text: answerText,
+        ai_marking: markingResult,
+        marks_earned: ai.marks_earned,
+        total_marks: ai.total_marks,
+        syllabus_tags: resolvedTags,
+        time_spent_seconds: timeSpent,
+        answer_photo_url: ctx.answerPhotoUrl,
+        error_classifications: errorClassifications,
+        line_references: lineReferences,
+      })
+      .select()
+      .single()
+
+    return {
+      result: {
+        question_number: q.question_number,
+        marks_earned: ai.marks_earned,
+        total_marks: ai.total_marks,
+        marking_style: (ai.marking_style as MarkingStyle) ?? 'point_based',
+        summary: ai.summary,
+        ai_marking: ai,
+        status: 'attempted',
+        mark_scheme_id: null,
+        line_references: lineReferences,
+        answer_photo_url: ctx.answerPhotoUrl,
+        syllabus_tags: resolvedTags,
+      },
+      attemptId: attempt?.id ?? null,
+      tags: resolvedTags,
+    }
+  } catch (err) {
+    // H2: isolate the failure so the other questions still return.
+    console.error(`[mark] split question ${q.question_number} failed:`, err)
+    return {
+      result: placeholderQuestionResult(
+        q,
+        'marking_failed',
+        'Marking failed for this question — please try re-uploading it on its own.',
+        ctx.answerPhotoUrl,
+        err instanceof Error ? err.message : 'Marking failed'
+      ),
+      attemptId: null,
+      tags: [],
+    }
+  }
+}
+
+/**
+ * Multi-question path: mark each detected question separately and return a
+ * whole-paper-shaped payload so the existing per-question UI renders it. Each
+ * question runs through the full single-question marker (derive-then-mark +
+ * deterministic reconciliation), and gets its own persisted attempt.
+ */
+async function markSplitQuestions(params: {
+  split: SplitQuestion[]
+  practiceCode: string
+  resolvedIb: ResolvedIbComponent | null
+  userId: string | null
+  answerPhotoUrl: string | null
+  pagePhotoUrls: string[]
+  startedAt: number
+  fullScriptText: string
+  onProgress?: SingleQuestionMarkInput['onProgress']
+}): Promise<Record<string, unknown>> {
+  const {
+    split,
+    practiceCode,
+    resolvedIb,
+    userId,
+    answerPhotoUrl,
+    pagePhotoUrls,
+    startedAt,
+    fullScriptText,
+    onProgress,
+  } = params
+
+  // H3/L2: cap the number of questions so one upload can't fan out into an
+  // unbounded run of Pro calls (timeout risk) — and a tighter cap for guests,
+  // whose whole upload is a single anonymous rate-limit tick.
+  const cap = userId ? MAX_SPLIT_QUESTIONS : GUEST_MAX_SPLIT_QUESTIONS
+  const capped = split.slice(0, cap)
+  const droppedCount = split.length - capped.length
+  if (droppedCount > 0) {
+    console.warn(
+      `[mark] scanned script had ${split.length} questions; marking first ${cap}`
+    )
+  }
+
+  // Tell the loading UI this is a multi-question script (drives "marking N
+  // questions…" copy) before the per-question work starts.
+  emitContext(onProgress, {
+    subject_code: practiceCode,
+    total_questions: capped.length,
+  })
+
+  // Mark each question in isolation, with bounded concurrency (H2 + H3).
+  let completed = 0
+  const outcomes = await mapWithConcurrency(capped, SPLIT_CONCURRENCY, async (q) => {
+    const outcome = await markOneSplitQuestion(q, {
+      practiceCode,
+      resolvedIb,
+      userId,
+      answerPhotoUrl,
+      startedAt,
+      fullScriptText,
+    })
+    completed += 1
+    emit(onProgress, 'marking', Math.round(50 + (45 * completed) / capped.length))
+    return outcome
+  })
+
+  const questionResults = outcomes.map((o) => o.result)
+  const attemptIds = outcomes
+    .map((o) => o.attemptId)
+    .filter((id): id is string => !!id)
+  const allTags = new Set<string>(outcomes.flatMap((o) => o.tags))
+
+  emit(onProgress, 'marking', 95)
+
+  const whole = aggregateWholePaperResults(undefined, undefined, questionResults)
+  if (droppedCount > 0) {
+    whole.summary += ` Note: only the first ${cap} of ${split.length} detected questions were marked — re-upload the rest separately.`
+  }
+  const subject_code = resolveMarkResultSubjectCode({
+    paper_code: `${practiceCode}/00`,
+    subject_code: practiceCode,
+    syllabus_tags: [...allTags],
+  })
+
+  if (userId && attemptIds.length > 0) {
+    const { isCommunityEnabled } = await import('@/lib/community/enabled')
+    if (isCommunityEnabled()) {
+      const { awardMarkingXp } = await import('@/lib/community/feed')
+      await awardMarkingXp(userId, subject_code, attemptIds[0])
+    }
+  }
+
+  return {
+    upload_mode: 'whole_paper',
+    multi_question: true,
+    whole_paper: whole,
+    marks_earned: whole.marks_earned,
+    total_marks: whole.total_marks,
+    subject_code,
+    attempt_id: attemptIds[0] ?? null,
+    // All persisted attempt ids (one per question) — the route charges one mark
+    // per question using these.
+    question_attempt_ids: attemptIds,
+    question_count: capped.length,
+    answer_photo_url: answerPhotoUrl,
+    page_photo_urls: pagePhotoUrls.length ? pagePhotoUrls : undefined,
+    marking_mode: 'general_criteria_practice',
+    syllabus_tags: [...allTags],
+    time_spent_seconds: Math.max(1, Math.round((Date.now() - startedAt) / 1000)),
+  }
+}
+
 async function runPaperDetection(
   ocrSnippet: string,
   questionText: string,
@@ -102,7 +398,7 @@ async function runPaperDetection(
 ): Promise<Record<string, unknown>> {
   const detectionText = await generateGeminiText(
     buildDetectionPrompt(ocrSnippet, questionText, subjectHint),
-    { task: 'structured-extraction', maxOutputTokens: 500 }
+    { task: 'structured-extraction', maxOutputTokens: 500, temperature: 0 }
   )
   try {
     return extractJSON(detectionText) as Record<string, unknown>
@@ -241,6 +537,31 @@ export async function runSingleQuestionMark(
     }
 
     emit(onProgress, 'finding_scheme', 40)
+
+    // Multi-question guard: a combined script can hold several distinct questions.
+    // Detect them and, if there's more than one, mark each separately.
+    if (isCombinedScript) {
+      const split = await splitUploadIntoQuestions(ocrText, practiceCode)
+      if (split.length > 1) {
+        const sharedIb = await resolvePracticeIb(
+          practiceCode,
+          ibComponentKey,
+          ibLevel
+        )
+        return await markSplitQuestions({
+          split,
+          practiceCode,
+          resolvedIb: sharedIb,
+          userId,
+          answerPhotoUrl,
+          pagePhotoUrls,
+          startedAt,
+          fullScriptText: ocrText,
+          onProgress,
+        })
+      }
+    }
+
     const extracted = await extractPracticeQuestionFromScript(
       ocrText,
       practiceCode
@@ -258,24 +579,7 @@ export async function runSingleQuestionMark(
 
     // M1: if the upload carries an IB component + level and the subject is
     // catalogued, resolve it. Non-catalogued subjects return null → unchanged path.
-    if (practiceCode.startsWith('ib-') && ibComponentKey) {
-      const { subjectCode: catSubject, level: legacyLevel } =
-        splitLegacyIbCode(practiceCode)
-      const rawLevel = (ibLevel?.trim().toUpperCase() || legacyLevel) as
-        | IbSelectableLevel
-        | null
-      if (rawLevel === 'HL' || rawLevel === 'SL') {
-        try {
-          resolvedIb = await resolveComponentForMarking(
-            catSubject,
-            rawLevel,
-            ibComponentKey.trim()
-          )
-        } catch (err) {
-          console.warn('[mark] IB catalog resolve failed; using fallback', err)
-        }
-      }
-    }
+    resolvedIb = await resolvePracticeIb(practiceCode, ibComponentKey, ibLevel)
 
     markingMode = 'general_criteria_practice'
     emitContext(onProgress, {
@@ -379,7 +683,9 @@ export async function runSingleQuestionMark(
     paperSession: detectedPaper?.paper_session,
     questionNumber: detectedPaper?.question_number,
     resolvedIb,
-    questionTotalMarks: questionMarks ?? null,
+    // User-entered marks win; otherwise read the total stated in the question
+    // text (deterministic) before falling back to model inference in the marker.
+    questionTotalMarks: questionMarks ?? extractStatedTotalMarks(questionText),
   })
 
   if (resolvedTags.length > 0 || detectedPaper || hasManualSelection) {

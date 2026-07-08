@@ -21,6 +21,7 @@ export type MarkStreamEvent = {
   question_number?: string | null
   subject_code?: string | null
   syllabus_tags?: string[] | null
+  total_questions?: number | null
   payload?: MarkingResultData
   error?: string
   retryable?: boolean
@@ -73,6 +74,7 @@ export function handleMarkStreamEvent(
       question_number: event.question_number ?? prev?.question_number,
       subject_code: event.subject_code ?? prev?.subject_code,
       syllabus_tags: event.syllabus_tags ?? prev?.syllabus_tags,
+      total_questions: event.total_questions ?? prev?.total_questions,
     }))
   }
   if (event.type === 'result' && event.payload) {

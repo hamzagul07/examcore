@@ -222,12 +222,21 @@ export function buildPointBasedMarkingPrompt(
     ? ',\n  "syllabus_tags": ["code"]'
     : ''
 
+  // A non-positive total means "unknown" — instruct the model to read the mark
+  // allocation from the question itself instead of marking out of a wrong fixed
+  // denominator. The code layer overrides this with an authoritative total when
+  // one is known (see reconcile-marks.ts).
+  const hasTotal = typeof totalMarks === 'number' && totalMarks > 0
+  const totalInstruction = hasTotal
+    ? `TOTAL MARKS AVAILABLE: ${totalMarks}`
+    : `TOTAL MARKS AVAILABLE: determine from the question itself (marks are usually shown as "[3]" or "(Total 8 marks)"); set "total_marks" to that number.`
+
   return `You are a Cambridge International A-Level ${subjectName} examiner. Mark this student's work against the official mark scheme using point-based Cambridge conventions (B1/M1/A1/C1 marks, "award 1 mark for...", ECF where stated).
 
 QUESTION:
 ${questionText}
 
-TOTAL MARKS AVAILABLE: ${totalMarks}
+${totalInstruction}
 
 OFFICIAL MARK SCHEME:
 ${markSchemeJson}
@@ -259,7 +268,7 @@ Return ONLY this JSON:
     }
   ],
   "marks_earned": 0,
-  "total_marks": ${totalMarks},
+  "total_marks": ${hasTotal ? totalMarks : 0},
   "summary": "...",
   "weak_topics": ["..."],
   "what_to_study_next": "...",
@@ -666,6 +675,59 @@ Return ONLY this JSON:
 }
 
 Set band_result.marks_awarded and marks_earned to the SUM of criteria_results marks. Include one criteria_results entry per criterion in the markscheme.`
+}
+
+/**
+ * Second-opinion / verify pass. Re-marks the student's answer to catch a first
+ * marker's errors — chiefly UNDER-marking on longer questions, the biggest driver
+ * of run-to-run score variance. Outputs the SAME JSON shape the first marker used
+ * (points or criteria), so downstream normalize + reconcile are unchanged.
+ */
+export function buildVerifyMarkingPrompt(params: {
+  subjectName: string
+  board: string
+  questionText: string
+  ocrText: string
+  schemeJson: string | null
+  priorResultJson: string
+  totalMarks: number | null
+}): string {
+  const {
+    subjectName,
+    board,
+    questionText,
+    ocrText,
+    schemeJson,
+    priorResultJson,
+    totalMarks,
+  } = params
+  const totalLine =
+    totalMarks && totalMarks > 0
+      ? `This question is worth EXACTLY ${totalMarks} marks — "total_marks" must equal ${totalMarks} and marks_earned must not exceed it.`
+      : ''
+
+  return `You are a SENIOR ${board} ${subjectName} examiner reviewing a first marker's marking and correcting its errors.
+
+A first (junior) marker frequently UNDER-marks: they withhold marks the student genuinely earned because the student's method or wording differs from the mark scheme. They occasionally OVER-mark too. Re-mark the student's work carefully and independently, then output a corrected result.
+
+QUESTION:
+${questionText}
+${schemeJson ? `\nMARK SCHEME:\n${schemeJson}\n` : ''}
+STUDENT'S ANSWER (transcribed):
+${ocrText}
+
+FIRST MARKER'S RESULT — verify and CORRECT this; it may be wrong:
+${priorResultJson}
+
+How to re-mark:
+- Check EVERY step of the student's working. Award every mark the student earned, accepting ANY mathematically/scientifically valid method and equivalent correct forms, and applying error-carried-forward.
+- Remove marks awarded for work the student did not actually do.
+- ${totalLine}
+- marks_earned must equal the sum of the individual marks (or criteria marks) you award.
+
+${JSON_RULES_BLOCK}
+
+Return the CORRECTED marking as JSON in EXACTLY the same shape and field names as the first marker's result above. Return ONLY the JSON object.`
 }
 
 const DETECTION_SUBJECT_CODES = `9084 Law, 9231 Further Math, 9488 Islamic Studies, 9489 History, 9607 Media Studies, 9609 Business, 9618 Computer Science, 9699 Sociology, 9700 Biology, 9701 Chemistry, 9702 Physics, 9706 Accounting, 9708 Economics, 9709 Math, 9990 Psychology`

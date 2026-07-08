@@ -267,6 +267,16 @@ function SingleQuestionWait({
           </AnimatePresence>
         </div>
 
+        {context?.total_questions && context.total_questions > 1 ? (
+          <p className="text-sm text-[var(--ec-text-secondary)]">
+            Scanned script — marking{' '}
+            <strong className="text-[var(--ec-text-primary)]">
+              {context.total_questions} questions
+            </strong>{' '}
+            separately.
+          </p>
+        ) : null}
+
         <AnimatePresence mode="wait">
           {showScan && (
             <motion.div

@@ -582,6 +582,45 @@ export async function finalizeMarkReservation(
   }
 }
 
+/**
+ * Charge additional marks for a multi-question scanned script. The FIRST question
+ * is settled by finalizeMarkReservation against the upfront reservation; this
+ * records one more mark (credit spend or metered usage row) per EXTRA question so
+ * an N-question upload counts as N marks. Mirrors the settle logic in
+ * finalizeMarkReservation and the row shape of insertUsageRow.
+ */
+export async function recordExtraMarkUsages(
+  userId: string,
+  eventType: MarkEventType,
+  reservation: MarkReservation,
+  attemptIds: Array<string | null>,
+  supabase: SupabaseClient = createServiceClient()
+): Promise<void> {
+  for (const attemptId of attemptIds) {
+    if (reservation.via_credit) {
+      const { data: spent, error } = await supabase.rpc('consume_credit', {
+        p_user_id: userId,
+        p_event_type: eventType,
+        p_attempt_id: attemptId,
+        p_metadata: { recorded_at: new Date().toISOString(), extra_question: true },
+      })
+      if (!error && spent === true) continue
+      // Credit drained mid-run — fall through and meter as a usage row.
+    }
+    const { error } = await supabase.from('usage_events').insert({
+      user_id: userId,
+      event_type: eventType,
+      attempt_id: attemptId,
+      credits_delta: -1,
+      source: reservation.source,
+      metadata: { recorded_at: new Date().toISOString(), extra_question: true },
+    })
+    if (error) {
+      console.error('[enforcement] extra mark usage insert failed:', error.message)
+    }
+  }
+}
+
 /** Failure path: delete the reserved usage row so a failed mark consumes nothing. */
 export async function releaseMarkReservation(
   reservation: MarkReservation,
@@ -592,8 +631,8 @@ export async function releaseMarkReservation(
   if (error) console.error('[enforcement] release reservation failed:', error.message)
 }
 
-export function allowanceForResponse(allowance: MarkAllowance) {
-  const remainingAfter = Math.max(0, allowance.remaining - 1)
+export function allowanceForResponse(allowance: MarkAllowance, marksCharged = 1) {
+  const remainingAfter = Math.max(0, allowance.remaining - marksCharged)
   return {
     warning: allowance.warning && shouldShowApproachingLimitBanner(),
     remaining_after: remainingAfter,

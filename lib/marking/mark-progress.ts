@@ -10,6 +10,8 @@ export type MarkContextPayload = {
   question_number?: string | null
   subject_code?: string | null
   syllabus_tags?: string[] | null
+  /** Scanned script split into several questions: how many were detected. */
+  total_questions?: number | null
 }
 
 export type MarkProgressEvent =

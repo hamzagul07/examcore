@@ -1,5 +1,19 @@
 import { createClient } from '@supabase/supabase-js'
-import { GEMINI_FLASH_MODEL, generateGeminiTextWithMeta, generateGeminiWithContents, getGeminiClient } from '@/lib/ai/gemini-text'
+import { GEMINI_FLASH_MODEL, GEMINI_PRO_MODEL, generateGeminiTextWithMeta, generateGeminiWithContents, getGeminiClient } from '@/lib/ai/gemini-text'
+
+/**
+ * Model tier for the marking JUDGEMENT call (which band, is a method valid).
+ * OCR/extraction stay on Flash; the mark itself runs on Pro for accuracy.
+ * Flip back to GEMINI_FLASH_MODEL here to revert the cost/latency change.
+ */
+const MARKING_MODEL = GEMINI_PRO_MODEL
+
+/**
+ * Second-opinion verify pass: re-mark point/criteria answers to catch under- and
+ * over-marking (the main driver of run-to-run score variance on long questions).
+ * Costs one extra Pro call per marked question. Set false here to disable.
+ */
+const VERIFY_MARKING = true
 import { normalizeSyllabusTagsForSubject, type SyllabusCode } from '@/lib/syllabi'
 import {
   buildLineReferences,
@@ -9,10 +23,12 @@ import { normalizeErrorClassification } from '@/lib/error-classifications'
 import { isMathSubjectCode } from '@/lib/marking/math-subjects'
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import { parsePaperCode } from '@/lib/marking/component-types'
-import { buildMarkingPrompt, maxTokensForStyle } from '@/lib/marking/build-marking-prompt'
+import { buildMarkingPrompt, maxTokensForStyle, looksLikeMcq } from '@/lib/marking/build-marking-prompt'
+import { deriveMarkScheme } from '@/lib/marking/derive-scheme'
 import { extractJSON } from '@/lib/marking/json'
 import { normalizeQuestionNumber } from '@/lib/marking/question-number'
 import { normalizeMarkingResult, coerceMarkingResult, isUsableMarkingResult } from '@/lib/marking/normalize-math'
+import { reconcileMarkResult, type CriterionMax } from '@/lib/marking/reconcile-marks'
 import {
   tryExtractFromStorage,
   resolveQuestionMarkingStyle,
@@ -24,7 +40,7 @@ import {
   parseOcrAnswer,
   questionPhotoOcrPrompt,
 } from '@/lib/marking/ocr'
-import { buildDetectionPrompt } from '@/lib/marking/prompts'
+import { buildDetectionPrompt, buildVerifyMarkingPrompt } from '@/lib/marking/prompts'
 import { inferSubjectFromQuestionText } from '@/lib/marking/subject-inference'
 import { toMarkingAIResult } from '@/lib/marking/whole-paper'
 import { buildPerPageInk } from '@/lib/marking/ink-per-page'
@@ -103,7 +119,7 @@ export async function ocrImage(file: File, prompt: string): Promise<string> {
         ],
       },
     ],
-    { task: 'ocr', model: GEMINI_FLASH_MODEL }
+    { task: 'ocr', model: GEMINI_FLASH_MODEL, temperature: 0 }
   )
   return response.text || ''
 }
@@ -152,7 +168,7 @@ export async function ocrTextFromBuffer(
         ],
       },
     ],
-    { task: 'ocr', model: GEMINI_FLASH_MODEL }
+    { task: 'ocr', model: GEMINI_FLASH_MODEL, temperature: 0 }
   )
   return parseOcrAnswer(response.text || '')
 }
@@ -301,9 +317,10 @@ async function runGeminiMarking(
 ): Promise<Record<string, unknown>> {
   const tokenBudgets = [
     maxTokens,
-    // Escalation headroom on a truncated/incomplete first attempt. Ceiling raised
-    // above 8192 so large criteria/markband (level_of_response) results can recover.
-    Math.min(Math.round(maxTokens * 1.5), 16384),
+    // Escalation headroom on a truncated/incomplete first attempt. Ceiling sized
+    // for large multi-part results marked on Pro (whose thinking tokens also draw
+    // from this budget), so summary/weak_topics don't get truncated away.
+    Math.min(Math.round(maxTokens * 2), 24576),
   ]
   let lastText = ''
   // A MAX_TOKENS finish that still parses (extractJSON salvages the braces)
@@ -316,6 +333,7 @@ async function runGeminiMarking(
   for (let attempt = 0; attempt < tokenBudgets.length; attempt++) {
     const { text, finishReason } = await generateGeminiTextWithMeta(prompt, {
       task: 'marking',
+      model: MARKING_MODEL,
       maxOutputTokens: tokenBudgets[attempt],
       temperature: 0,
     })
@@ -480,6 +498,39 @@ export async function markSingleQuestion(params: {
     markingStyle = 'level_of_response'
   }
 
+  // Derive-then-mark: for point-based questions with no real per-question scheme,
+  // first have the model produce the scheme (correct answer + M/A allocation, with
+  // a self-check), then mark the student against it. Skips MCQ and any question
+  // that already has an official/catalogued scheme.
+  let derivedScheme: string | null = null
+  let derivedTotal: number | null = null
+  const hasRealScheme =
+    (isOfficial && !!effectiveMarkScheme) || resolvedIb?.officialScheme != null
+  if (
+    markingStyle === 'point_based' &&
+    !hasRealScheme &&
+    !looksLikeMcq(questionText) &&
+    questionText.trim().length >= 8
+  ) {
+    const isIbBoard =
+      !!resolvedIb || isIbSubjectCode(subjectCode ?? '')
+    const derived = await deriveMarkScheme({
+      subjectName,
+      board: isIbBoard ? 'IB Diploma' : 'Cambridge',
+      questionText,
+      totalMarks:
+        typeof questionTotalMarks === 'number' && questionTotalMarks > 0
+          ? questionTotalMarks
+          : null,
+      mathConventions:
+        isMathSubjectCode(subjectCode ?? '') || /math/i.test(subjectName),
+    })
+    if (derived) {
+      derivedScheme = JSON.stringify(derived.scheme)
+      derivedTotal = derived.total
+    }
+  }
+
   const promptSubjectCode = subjectCode ?? inferredSubject
   const markingPrompt = buildMarkingPrompt({
     markScheme: effectiveMarkScheme,
@@ -490,12 +541,89 @@ export async function markSingleQuestion(params: {
     subjectCode: promptSubjectCode ?? '',
     isOfficial,
     resolvedIb,
-    questionTotalMarks,
+    questionTotalMarks: questionTotalMarks ?? derivedTotal,
+    derivedScheme,
   })
 
-  const markingResult = normalizeMarkingResult(
-    await runGeminiMarking(markingPrompt, maxTokensForStyle(markingStyle))
+  // Authoritative denominator — resolved in code, never trusted from the model.
+  // Priority: official scheme total → catalogued IB component/criteria max →
+  // student-supplied total. Null when genuinely unknown (falls back to breakdown).
+  const criterionMax: CriterionMax[] | null =
+    resolvedIb?.assessmentModel === 'criteria' && resolvedIb.criteria?.length
+      ? resolvedIb.criteria.map((c) => ({ letter: c.letter, maxMarks: c.maxMarks }))
+      : null
+
+  const schemeTotal =
+    effectiveMarkScheme &&
+    typeof effectiveMarkScheme.total_marks === 'number' &&
+    effectiveMarkScheme.total_marks > 0
+      ? effectiveMarkScheme.total_marks
+      : null
+  // Only a CRITERIA component carries a per-submission total (e.g. an IA out of
+  // 20). A POINTS component's maxMarks is the WHOLE PAPER (e.g. Paper 2 = 80) —
+  // never a single question's denominator — so we must not use it here. For a
+  // single points question the per-question total (student-supplied or detected)
+  // or the derived total is authoritative instead.
+  const catalogTotal = criterionMax
+    ? criterionMax.reduce((sum, c) => sum + c.maxMarks, 0)
+    : null
+  const studentTotal =
+    typeof questionTotalMarks === 'number' && questionTotalMarks > 0
+      ? questionTotalMarks
+      : null
+  const authoritativeTotal =
+    schemeTotal ?? catalogTotal ?? studentTotal ?? derivedTotal ?? null
+
+  let markingResult = reconcileMarkResult(
+    normalizeMarkingResult(
+      await runGeminiMarking(markingPrompt, maxTokensForStyle(markingStyle))
+    ),
+    { authoritativeTotal, criterionMax }
   )
+
+  // Second-opinion verify pass — re-mark to correct under/over-marking (the main
+  // cause of run-to-run score variance). Points + level_of_response only; MCQ is
+  // deterministic. Failures fall back to the first-pass result.
+  const hasBreakdown =
+    (Array.isArray(markingResult.marks_awarded) &&
+      markingResult.marks_awarded.length > 0) ||
+    Array.isArray(markingResult.criteria_results) ||
+    !!markingResult.band_result
+  if (
+    VERIFY_MARKING &&
+    (markingStyle === 'point_based' || markingStyle === 'level_of_response') &&
+    hasBreakdown
+  ) {
+    try {
+      const verifyBoard =
+        !!resolvedIb || isIbSubjectCode(subjectCode ?? '') ? 'IB Diploma' : 'Cambridge'
+      const verifySchemeJson =
+        derivedScheme ??
+        (effectiveMarkScheme
+          ? JSON.stringify(effectiveMarkScheme.mark_scheme)
+          : null)
+      const verifyPrompt = buildVerifyMarkingPrompt({
+        subjectName,
+        board: verifyBoard,
+        questionText: questionText || effectiveMarkScheme?.question_text || '',
+        ocrText,
+        schemeJson: verifySchemeJson,
+        priorResultJson: JSON.stringify(markingResult),
+        totalMarks: authoritativeTotal,
+      })
+      const verified = reconcileMarkResult(
+        normalizeMarkingResult(
+          await runGeminiMarking(verifyPrompt, maxTokensForStyle(markingStyle))
+        ),
+        { authoritativeTotal, criterionMax }
+      )
+      if (isUsableMarkingResult(verified)) {
+        markingResult = verified
+      }
+    } catch (err) {
+      console.warn('[mark] verify pass failed; keeping first-pass result', err)
+    }
+  }
 
   // The model echoes marking_style in its JSON, but a truncated response can
   // drop it. Fall back to the style we actually marked with so downstream UI

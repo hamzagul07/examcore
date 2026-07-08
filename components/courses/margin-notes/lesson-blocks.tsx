@@ -4,6 +4,8 @@ import { useEffect, useState, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import type { MarginNotesLesson } from '@/lib/courses/margin-notes/types'
 import { appendMarkReturn } from '@/lib/courses/format-session'
+import { useLessonMastery } from '@/lib/hooks/useLessonMastery'
+import type { MasteryLevel } from '@/lib/mastery'
 import { CourseRichText } from '@/components/courses/CourseRichText'
 
 export function jumpTo(id: string) {
@@ -557,6 +559,52 @@ export function LessonCheckpoint({
             : 'MARKED B1 / M1 / A1 · OFFICIAL SCHEME · ~A MINUTE'}
         </span>
       </div>
+    </div>
+  )
+}
+
+const MASTERY_LABEL: Record<MasteryLevel, string> = {
+  unattempted: 'Not started',
+  sampled: 'Getting started',
+  critical: 'Needs work',
+  proficient: 'Proficient',
+  exam_ready: 'Exam-ready',
+}
+
+/**
+ * Adaptive band — shows the signed-in student's mastery of THIS lesson's topic
+ * (from their marked attempts) and points them at their single weakest topic
+ * to study next. Renders nothing for guests or students with no attempts yet.
+ */
+export function LessonMasteryBand({
+  subjectCode,
+  topicCode,
+  signedIn,
+}: {
+  subjectCode: string
+  topicCode: string
+  signedIn?: boolean
+}) {
+  const { current, weakest } = useLessonMastery(subjectCode, topicCode, Boolean(signedIn))
+  if (!current && !weakest) return null
+
+  return (
+    <div className="lesson-mastery" data-screen-label="Lesson — your mastery">
+      {current ? (
+        <div className={`lesson-mastery-standing lm-${current.level}`}>
+          <span className="lesson-mastery-dot" aria-hidden />
+          <span>
+            Your standing on this topic:{' '}
+            <strong>{MASTERY_LABEL[current.level]}</strong> · {current.percentage}% over{' '}
+            {current.attemptsCount} marked {current.attemptsCount === 1 ? 'attempt' : 'attempts'}
+          </span>
+        </div>
+      ) : null}
+      {weakest?.href ? (
+        <Link className="lesson-mastery-next" href={weakest.href}>
+          Study next: <strong>{weakest.name}</strong> — your weakest topic in this subject →
+        </Link>
+      ) : null}
     </div>
   )
 }

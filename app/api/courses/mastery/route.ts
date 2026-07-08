@@ -2,9 +2,7 @@ import { NextRequest } from 'next/server'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { calculateMastery, type MasteryLevel } from '@/lib/mastery'
 import { filterAttemptsBySubject, type AttemptWithPaper } from '@/lib/syllabi/attempts'
-import { topicToLessonSlug } from '@/lib/courses/slug'
-import { getCourseLesson } from '@/lib/courses'
-import { isIbSubjectCode } from '@/lib/ib/marking-config'
+import { makeTopicLessonResolver } from '@/lib/courses/topic-lesson'
 
 export type MasteryTopic = {
   code: string
@@ -51,25 +49,18 @@ export async function GET(request: NextRequest) {
   }
 
   const attempts = filterAttemptsBySubject((data ?? []) as AttemptWithPaper[], subject)
-  const isIb = isIbSubjectCode(subject)
+  const resolve = makeTopicLessonResolver(subject)
 
   const topics: MasteryTopic[] = calculateMastery(attempts, subject)
     .filter((m) => m.attemptsCount > 0)
-    .map((m) => {
-      let href: string | null = null
-      if (!isIb) {
-        const slug = topicToLessonSlug(m.code, m.name)
-        if (getCourseLesson(subject, slug)) href = `/courses/${subject}/${slug}`
-      }
-      return {
-        code: m.code,
-        name: m.name,
-        level: m.level,
-        percentage: Math.round(m.percentage),
-        attemptsCount: m.attemptsCount,
-        href,
-      }
-    })
+    .map((m) => ({
+      code: m.code,
+      name: m.name,
+      level: m.level,
+      percentage: Math.round(m.percentage),
+      attemptsCount: m.attemptsCount,
+      href: resolve(m.code)?.href ?? null,
+    }))
 
   return jsonWithAuthCookies({ topics }, pendingCookies)
 }

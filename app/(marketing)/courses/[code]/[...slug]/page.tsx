@@ -16,6 +16,7 @@ import { enrichLessonVisual } from '@/lib/courses/enrich-lesson-visual'
 import { getSubtopicsForLesson } from '@/lib/courses/syllabus-outcomes'
 import { CourseLessonJsonLd } from '@/components/seo/CourseLessonJsonLd'
 import { CourseLessonSeoIntro } from '@/components/courses/CourseLessonSeoIntro'
+import { appendMarkReturn } from '@/lib/courses/format-session'
 import { CourseLessonClient } from '@/components/courses/margin-notes/CourseLessonClient'
 import { GuestSignupGate } from '@/components/auth/GuestSignupGate'
 import { stripLessonsForNav } from '@/lib/courses/lesson-nav'
@@ -130,7 +131,7 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
   const course = getCourseSubject(code)
   if (!course) notFound()
 
-  const { lesson } = resolved
+  const { lesson, lessonSlug } = resolved
   // Surface official Cambridge sub-topics: prefer authored ones, else derive from
   // the extracted syllabus outcomes (server-only data — kept off the client).
   const lessonForClient: CourseLesson = lesson.subtopics?.length
@@ -185,7 +186,11 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
             paragraph={seo.introParagraph}
             subjectCode={code}
             subjectName={course.name}
-            markPath={seo.markPath}
+            markPath={appendMarkReturn(
+              seo.markPath,
+              `/courses/${code}/${lessonSlug}`,
+              lesson.topicCode
+            )}
           />
         </div>
       ) : null}

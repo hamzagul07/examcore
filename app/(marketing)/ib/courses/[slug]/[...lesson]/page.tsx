@@ -11,6 +11,7 @@ import { enrichLessonVisual } from '@/lib/courses/enrich-lesson-visual'
 import { buildIbCourseLessonSeo, buildIbCourseSubjectSeo } from '@/lib/seo/ib-course-seo'
 import { CourseLessonClient } from '@/components/courses/margin-notes/CourseLessonClient'
 import { CourseLessonSeoIntro } from '@/components/courses/CourseLessonSeoIntro'
+import { appendMarkReturn } from '@/lib/courses/format-session'
 import { GuestSignupGate } from '@/components/auth/GuestSignupGate'
 import { stripLessonsForNav } from '@/lib/courses/lesson-nav'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
@@ -78,7 +79,11 @@ export default async function IbLessonPage({ params }: Props) {
           paragraph={seo.introParagraph}
           subjectCode={slug}
           subjectName={subject.name}
-          markPath={seo.markPath}
+          markPath={appendMarkReturn(
+            seo.markPath,
+            `/ib/courses/${slug}/${lessonSlug}`,
+            l.topicCode
+          )}
           courseHref={`/ib/courses/${slug}`}
           subjectHubHref={`/ib/subjects/${catalogSlug}`}
           markCtaLabel="IB criterion practice"

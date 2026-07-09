@@ -51,11 +51,11 @@ const OUT_DIR = join(
 
 // Cambridge point-based subjects (best for discrete per-mark breakdowns), with display names.
 const SUBJECTS = [
-  { prefix: '9709', name: 'A-Level Mathematics', take: 45 },
-  { prefix: '9700', name: 'A-Level Biology', take: 35 },
-  { prefix: '9702', name: 'A-Level Physics', take: 30 },
-  { prefix: '9701', name: 'A-Level Chemistry', take: 20 },
-  { prefix: '9708', name: 'A-Level Economics', take: 20 },
+  { prefix: '9709', name: 'A-Level Mathematics', take: 70 },
+  { prefix: '9700', name: 'A-Level Biology', take: 55 },
+  { prefix: '9702', name: 'A-Level Physics', take: 45 },
+  { prefix: '9701', name: 'A-Level Chemistry', take: 30 },
+  { prefix: '9708', name: 'A-Level Economics', take: 30 },
 ]
 
 // Fixed author for all seeded model answers — the MarkScheme Model Answers bot.
@@ -171,7 +171,7 @@ async function main() {
       .gte('total_marks', 4)
       .lte('total_marks', 10)
       .not('question_text', 'is', null)
-      .limit(160)
+      .limit(400)
     if (error) throw error
     // Skip questions that depend on a figure/diagram/table we can't include (not in question_text).
     const DIAGRAM_RE = /\b(figure|diagram|shown (above|below|in)|in the diagram|the shape [A-Z]{3,}|fig\.?\s*\d|the graph shows|the curve shown|table\s*\d|complete (the )?table|in the table|complete table|from the (table|graph))\b/i

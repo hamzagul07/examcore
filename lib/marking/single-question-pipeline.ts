@@ -582,6 +582,7 @@ export async function runSingleQuestionMark(
 
     // Multi-question guard: a combined script can hold several distinct questions.
     // Detect them and, if there's more than one, mark each separately.
+    let singleQuestionNumber: string | null = null
     if (isCombinedScript) {
       const split = await splitUploadIntoQuestions(ocrText, practiceCode)
       if (split.length > 1) {
@@ -607,6 +608,9 @@ export async function runSingleQuestionMark(
           onProgress,
         })
       }
+      // Exactly one question detected — keep its number so an ingested official
+      // scheme can still be matched on the single-question path below.
+      if (split.length === 1) singleQuestionNumber = split[0].question_number
     }
 
     const extracted = await extractPracticeQuestionFromScript(
@@ -627,6 +631,11 @@ export async function runSingleQuestionMark(
     // M1: if the upload carries an IB component + level and the subject is
     // catalogued, resolve it. Non-catalogued subjects return null → unchanged path.
     resolvedIb = await resolvePracticeIb(practiceCode, ibComponentKey, ibLevel)
+    // Attach the official points scheme for this single question when one is
+    // ingested (parity with the multi-question path); else derive-then-mark.
+    if (singleQuestionNumber) {
+      resolvedIb = resolvedIbForQuestion(resolvedIb, singleQuestionNumber)
+    }
 
     markingMode = 'general_criteria_practice'
     emitContext(onProgress, {

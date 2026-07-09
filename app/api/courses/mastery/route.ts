@@ -1,5 +1,9 @@
 import { NextRequest } from 'next/server'
-import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
+import {
+  authenticateRouteRequest,
+  createServiceClient,
+  jsonWithAuthCookies,
+} from '@/lib/supabase-server'
 import { calculateMastery, type MasteryLevel } from '@/lib/mastery'
 import { filterAttemptsBySubject, type AttemptWithPaper } from '@/lib/syllabi/attempts'
 import { makeTopicLessonResolver } from '@/lib/courses/topic-lesson'
@@ -20,7 +24,7 @@ export type MasteryTopic = {
  * each carries the verified lesson href (Cambridge; IB href deferred).
  */
 export async function GET(request: NextRequest) {
-  const { supabase, user, pendingCookies } = await authenticateRouteRequest(request)
+  const { user, pendingCookies } = await authenticateRouteRequest(request)
   if (!user) {
     return jsonWithAuthCookies({ topics: [] }, pendingCookies, { status: 401 })
   }
@@ -30,7 +34,9 @@ export async function GET(request: NextRequest) {
     return jsonWithAuthCookies({ topics: [] }, pendingCookies)
   }
 
-  const { data, error } = await supabase
+  // Service client + explicit user_id filter: the attempts RLS policy calls
+  // teacher_student_ids(), which the authenticated role can't execute.
+  const { data, error } = await createServiceClient()
     .from('attempts')
     .select(
       `

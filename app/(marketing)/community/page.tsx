@@ -3,6 +3,7 @@ import { isCommunityEnabled } from '@/lib/community/enabled'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { createClient } from '@/lib/supabase-server'
 import { listPosts, getUserPostVotes, type Board, type PostSort } from '@/lib/community/posts'
+import { listQuestions } from '@/lib/community/qa'
 import { CreatePostBar } from '@/components/community/reddit/CreatePostBar'
 import { CommunitySearchBar } from '@/components/community/reddit/CommunitySearchBar'
 import { SortTabs } from '@/components/community/reddit/SortTabs'
@@ -81,6 +82,11 @@ export default async function CommunityHomePage({ searchParams }: PageProps) {
   })
   const userVotes = user ? await getUserPostVotes(user.id, posts.map((p) => p.id)) : {}
 
+  const featuredQuestions = await listQuestions({
+    board: board === 'all' ? undefined : board,
+    limit: 8,
+  })
+
   const emptyLabel =
     board === 'cambridge'
       ? 'No Cambridge A-Level posts yet — start a discussion.'
@@ -94,6 +100,32 @@ export default async function CommunityHomePage({ searchParams }: PageProps) {
       <div className="rc-layout rc-layout--hub">
         <CommunityLeftRail board={board} />
         <main className="rc-main">
+          {featuredQuestions.length ? (
+            <section className="community-notes" style={{ marginBottom: 16 }} aria-labelledby="rc-model-answers-h">
+              <div className="community-head">
+                <div>
+                  <h2 id="rc-model-answers-h" className="ms-h3">Model answers</h2>
+                  <p className="ms-body-2 community-sub">
+                    Full-marks worked answers to real past-paper questions, each with a mark-by-mark examiner breakdown.
+                  </p>
+                </div>
+              </div>
+              <ul className="community-note-list">
+                {featuredQuestions.map((q) => (
+                  <li key={q.id} className="community-note-row">
+                    <Link href={`/community/questions/${q.id}`} className="community-note-main">
+                      <span className="community-note-title">
+                        {q.title} {q.acceptedAnswerId ? <span className="community-solved">solved ✓</span> : null}
+                      </span>
+                      <span className="community-note-meta">
+                        {q.subjectCode} · {q.answerCount} {q.answerCount === 1 ? 'answer' : 'answers'}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
           <div className="rc-feed-toolbar">
             <CommunitySearchBar />
             <CreatePostBar signedIn={!!user} board={board === 'all' ? undefined : board} />

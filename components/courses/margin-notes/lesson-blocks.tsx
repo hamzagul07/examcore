@@ -586,7 +586,9 @@ export function LessonMasteryBand({
   signedIn?: boolean
 }) {
   const { current, weakest } = useLessonMastery(subjectCode, topicCode, Boolean(signedIn))
-  if (!current && !weakest) return null
+  // Signed-in users always get the review entry point; standing / study-next
+  // fill in once they have marked attempts.
+  if (!signedIn) return null
 
   return (
     <div className="lesson-mastery" data-screen-label="Lesson — your mastery">

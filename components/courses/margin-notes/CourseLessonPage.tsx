@@ -830,7 +830,7 @@ export function CourseLessonPage({
               signedIn={signedIn}
             />
 
-            {!locked ? (
+            {L.practiceQuestions?.length || L.practice ? (
               <section id="checkpoint" className="lsec">
                 <SecHead
                   k="✓"

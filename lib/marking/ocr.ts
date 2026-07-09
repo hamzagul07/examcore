@@ -43,6 +43,32 @@ Rules:
 - If the image is blank or contains no handwritten work, output {"full_text": "", "lines": []}.
 - Output ONLY valid JSON. No surrounding commentary.`
 
+// Combined script (a photo/scan holding the printed QUESTION(S) *and* the
+// student's handwritten working). The answer-only prompts drop the printed
+// question, which breaks multi-question detection — so this one transcribes both.
+export const COMBINED_SCRIPT_OCR_PROMPT = `This image is a student's exam script: it contains the printed/typed QUESTION(S) and the student's HANDWRITTEN working. Transcribe BOTH, in reading order.
+
+Capture:
+1. The full QUESTION text exactly as printed — the stem, every sub-part like (a), (b)(i), any given function or data, and ALL marks notation such as "[2]", "(Total 6 marks)", or "[Maximum mark: 8]". Wrap maths in $...$.
+2. The student's HANDWRITTEN working, line by line, including every step (even incorrect ones).
+
+For each line give its text and bounding box as percentages of the image (top, left, width, height, each 0-100). Bounding boxes overlay examiner marks on the handwriting, so be precise for handwritten lines.
+
+Output ONLY this JSON, no prose, no markdown fences:
+{
+  "full_text": "the question text, then the student's working, line breaks preserved",
+  "lines": [
+    { "text": "(a) Find E[X]. [2]", "bbox": { "top": 8, "left": 5, "width": 40, "height": 3 } },
+    { "text": "E(X) = 6.5", "bbox": { "top": 35, "left": 12, "width": 30, "height": 4 } }
+  ]
+}
+
+Rules:
+- ALWAYS include the marks notation (e.g. [8]) — it sets the total the answer is marked out of.
+- One JSON object per line; don't merge lines.
+- If a question is present but has no working yet, still transcribe the question.
+- Output ONLY valid JSON.`
+
 export const WHOLE_PAPER_OCR_PROMPT = `Transcribe this ENTIRE handwritten Cambridge A-Level exam answer paper.
 
 Preserve question boundaries — start each new question's answer with a clear line like "Question 1" or "Q1" or "1." if visible.

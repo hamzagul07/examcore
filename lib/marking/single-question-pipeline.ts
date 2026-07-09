@@ -483,7 +483,8 @@ export async function runSingleQuestionMark(
       ocrAnswerBufferWithBoxes(
         buf,
         file.type || 'image/jpeg',
-        manualSubjectCode
+        isCombinedScript ? practiceCode ?? undefined : manualSubjectCode,
+        isCombinedScript
       ),
       uploadAnswerPhoto(buf, file.type || 'image/jpeg', userId),
     ])

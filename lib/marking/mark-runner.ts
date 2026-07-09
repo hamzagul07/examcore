@@ -37,6 +37,7 @@ import {
   ANSWER_OCR_PROMPT_MATH,
   ANSWER_OCR_PROMPT_GENERAL,
   WHOLE_PAPER_OCR_PROMPT,
+  COMBINED_SCRIPT_OCR_PROMPT,
   parseOcrAnswer,
   questionPhotoOcrPrompt,
 } from '@/lib/marking/ocr'
@@ -143,12 +144,17 @@ export async function ocrAnswerWithBoxes(
 export async function ocrAnswerBufferWithBoxes(
   buffer: Buffer,
   mimeType: string,
-  subjectCode?: string
+  subjectCode?: string,
+  /** Combined script (question + working in one image) — capture BOTH so
+   * multi-question detection has the question text to work with. */
+  combined?: boolean
 ): Promise<{ full_text: string; lines: OcrLine[] }> {
   const isMath = isMathSubjectCode(subjectCode)
-  const prompt = isMath
-    ? ANSWER_OCR_PROMPT_MATH
-    : ANSWER_OCR_PROMPT_GENERAL
+  const prompt = combined
+    ? COMBINED_SCRIPT_OCR_PROMPT
+    : isMath
+      ? ANSWER_OCR_PROMPT_MATH
+      : ANSWER_OCR_PROMPT_GENERAL
   return ocrTextFromBuffer(buffer, mimeType, prompt)
 }
 

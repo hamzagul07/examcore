@@ -14,6 +14,7 @@ import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
 import { buildContinueCatalog } from '@/lib/courses/margin-notes/continue-catalog'
 import { DashboardCoursesPanel } from '@/components/courses/margin-notes/DashboardCoursesPanel'
 import { DashboardEntry } from './dashboard.client'
+import { buildReviewQueue } from '@/lib/courses/review-queue'
 import { AppSupportStrip } from '@/components/marketing/AppSupportStrip'
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 import { HomeHero } from '@/components/dashboard/HomeHero'
@@ -178,6 +179,8 @@ export default async function DashboardPage() {
   const isEmpty = attemptsList.length === 0
   const continueCatalog = buildContinueCatalog()
 
+  const reviewItems = isEmpty ? [] : await buildReviewQueue(user.id)
+
   return (
     <main className="app-shell app-shell-tabbed ms-dash-home">
       <div className="mx-auto min-w-0 max-w-7xl rounded-none px-0 pb-8 pt-0 sm:rounded-2xl">
@@ -202,6 +205,43 @@ export default async function DashboardPage() {
               recommendations={recommendations}
               isEmpty={false}
             />
+          ) : null}
+
+          {reviewItems.length > 0 ? (
+            <section className="ec-card mb-6 p-5 sm:p-6">
+              <div className="mb-3 flex items-center justify-between gap-3">
+                <div>
+                  <p className="ec-eyebrow mb-1">Spaced review</p>
+                  <h2 className="text-lg font-bold text-[var(--ec-text-primary)]">
+                    Review your misses
+                  </h2>
+                </div>
+                <Link
+                  href="/dashboard/review"
+                  className="whitespace-nowrap text-sm font-semibold text-[var(--ec-brand)]"
+                >
+                  See all →
+                </Link>
+              </div>
+              <ul className="flex flex-col gap-2">
+                {reviewItems.slice(0, 3).map((it) => (
+                  <li key={`${it.subject}-${it.code}`}>
+                    <Link
+                      href={it.practiceHref}
+                      className="flex items-center justify-between gap-3 rounded-lg border border-[var(--ec-border)] px-3 py-2 transition-colors hover:border-[color-mix(in_srgb,var(--ec-brand)_50%,var(--ec-border))]"
+                    >
+                      <span className="min-w-0 truncate text-sm font-medium text-[var(--ec-text-primary)]">
+                        {it.name}{' '}
+                        <span className="text-[var(--ec-text-faint)]">· {it.subjectLabel}</span>
+                      </span>
+                      <span className="shrink-0 text-xs font-semibold text-[var(--ec-brand)]">
+                        Review →
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
           ) : null}
 
           {isEmpty ? (

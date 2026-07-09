@@ -82,8 +82,7 @@ export default async function ReviewPage() {
         <section className="ec-card mb-8 p-5 sm:p-6">
           <p className="ec-eyebrow mb-2">Your mark-losing pattern</p>
           <h2 className="mb-1 text-lg font-bold text-[var(--ec-text-primary)]">
-            <span aria-hidden>{profile.top.icon}</span> You lose most marks to{' '}
-            {profile.top.label.toLowerCase()}
+            You lose most marks to {profile.top.label.toLowerCase()}
           </h2>
           <p className="mb-4 text-sm text-[var(--ec-text-secondary)]">
             {profile.top.pct}% of your lost marks
@@ -94,7 +93,7 @@ export default async function ReviewPage() {
             {profile.breakdown.map((e) => (
               <div key={e.classification} className="flex items-center gap-3 text-xs">
                 <span className="w-36 shrink-0 text-[var(--ec-text-secondary)]">
-                  <span aria-hidden>{e.icon}</span> {e.label}
+                  {e.label}
                 </span>
                 <span
                   className="h-2 rounded-full bg-[var(--ec-brand)]"

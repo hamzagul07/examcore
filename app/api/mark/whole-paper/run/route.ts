@@ -28,7 +28,9 @@ import { signMarkPayloadForClient } from '@/lib/storage/answer-photos'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { requireTeacher } from '@/lib/teacher-auth'
 
-export const maxDuration = 300
+// Marks up to 15 questions; give headroom like /mark/process. Kept in sync with
+// vercel.json (which overrides this in production). 800s needs Fluid Compute.
+export const maxDuration = 800
 
 async function updateJob(attemptId: string, state: WholePaperJobState) {
   await supabaseAdmin

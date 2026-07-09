@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase-server'
 import { buildReviewQueue } from '@/lib/courses/review-queue'
 import { getErrorProfile } from '@/lib/review/error-profile'
+import { getExamReadiness } from '@/lib/review/exam-readiness'
 
 export const metadata: Metadata = {
   title: 'Review your misses',
@@ -22,9 +23,10 @@ export default async function ReviewPage() {
   } = await supabase.auth.getUser()
   if (!user) redirect('/auth/signin?next=%2Fdashboard%2Freview')
 
-  const [items, profile] = await Promise.all([
+  const [items, profile, readiness] = await Promise.all([
     buildReviewQueue(user.id),
     getErrorProfile(user.id),
+    getExamReadiness(user.id),
   ])
 
   return (
@@ -37,6 +39,36 @@ export default async function ReviewPage() {
         The topics you scored lowest on, ranked by how overdue they are. Re-practise
         one, get marked, and it drops down the list.
       </p>
+
+      {readiness.length > 0 ? (
+        <section className="mb-8">
+          <p className="ec-eyebrow mb-3">Exam readiness — if you sat it today</p>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {readiness.map((r) => (
+              <div key={r.subject} className="ec-card flex items-start gap-4 p-4 sm:p-5">
+                <div
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl text-2xl font-bold text-white"
+                  style={{ backgroundColor: r.color }}
+                  aria-hidden
+                >
+                  {r.predictedGrade}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-bold text-[var(--ec-text-primary)]">
+                    {r.subjectLabel}
+                    <span className="ml-1.5 font-medium text-[var(--ec-text-faint)]">
+                      · {r.coveragePct}% exam-ready · {r.confidence}% confidence
+                    </span>
+                  </p>
+                  <p className="mt-1 text-[13px] leading-relaxed text-[var(--ec-text-secondary)]">
+                    {r.nextLevelTip}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {profile.top ? (
         <section className="ec-card mb-8 p-5 sm:p-6">

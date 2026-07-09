@@ -29,7 +29,13 @@ export async function POST(req: NextRequest) {
     event = validateEvent(body, headers, secret)
   } catch (err) {
     if (err instanceof WebhookVerificationError) {
-      console.error('[polar-webhook] signature verification failed:', err.message)
+      // Unsigned requests (bots/scanners probing the public URL) are expected
+      // and benign — log at warn so they don't clutter error monitoring. A
+      // signature *mismatch* (headers present but invalid) keeps error level,
+      // since it can signal misconfiguration or tampering.
+      const unsigned = /missing required headers/i.test(err.message)
+      const log = unsigned ? console.warn : console.error
+      log('[polar-webhook] signature verification failed:', err.message)
       return new NextResponse('Invalid signature', { status: 403 })
     }
     console.error('[polar-webhook] failed to parse event:', err)

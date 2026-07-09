@@ -29,6 +29,7 @@ export type ReviewItem = {
 }
 
 const DAY_MS = 86_400_000
+const INTERVAL_CAP_DAYS = 7
 const ATTEMPT_SELECT = `
   marks_earned, total_marks, syllabus_tags, created_at, error_classifications,
   mark_schemes ( question_number, paper_code, paper_session )
@@ -80,6 +81,33 @@ export async function buildReviewQueue(
   const attempts = (data ?? []) as unknown as AttemptWithPaper[]
   if (!attempts.length) return []
 
+  // Persisted spaced-repetition state (service-role only).
+  type SchedRow = {
+    interval_days: number
+    due_at: string
+    last_reviewed_at: string
+  }
+  const { data: schedRows } = await admin
+    .from('review_schedule')
+    .select('subject_code, topic_code, interval_days, due_at, last_reviewed_at')
+    .eq('user_id', userId)
+  const scheduleMap = new Map<string, SchedRow>()
+  for (const r of (schedRows ?? []) as (SchedRow & {
+    subject_code: string
+    topic_code: string
+  })[]) {
+    scheduleMap.set(`${r.subject_code}::${r.topic_code}`, r)
+  }
+  const pendingUpserts: {
+    user_id: string
+    subject_code: string
+    topic_code: string
+    interval_days: number
+    due_at: string
+    last_reviewed_at: string
+    updated_at: string
+  }[] = []
+
   // Bucket attempts by resolved subject (only subjects with a syllabus tree).
   const bySubject = new Map<string, AttemptWithPaper[]>()
   for (const a of attempts) {
@@ -116,6 +144,40 @@ export async function buildReviewQueue(
       }, 0)
       const daysSince = lastAt ? Math.floor((now - lastAt) / DAY_MS) : 999
 
+      // Reconcile spaced schedule: new weak topic → due now; re-practised since
+      // last scheduled → grow the interval and snooze; else honour the due date.
+      const existing = scheduleMap.get(`${subject}::${m.code}`)
+      const lastReviewedMs = existing ? Date.parse(existing.last_reviewed_at) : 0
+      let dueNow: boolean
+      if (!existing) {
+        dueNow = true
+        pendingUpserts.push({
+          user_id: userId,
+          subject_code: subject,
+          topic_code: m.code,
+          interval_days: 1,
+          due_at: new Date(now).toISOString(),
+          last_reviewed_at: new Date(lastAt || now).toISOString(),
+          updated_at: new Date(now).toISOString(),
+        })
+      } else if (lastAt && lastAt > lastReviewedMs) {
+        const nextInterval = Math.min((existing.interval_days || 1) * 2, INTERVAL_CAP_DAYS)
+        const nextDue = lastAt + nextInterval * DAY_MS
+        dueNow = nextDue <= now
+        pendingUpserts.push({
+          user_id: userId,
+          subject_code: subject,
+          topic_code: m.code,
+          interval_days: nextInterval,
+          due_at: new Date(nextDue).toISOString(),
+          last_reviewed_at: new Date(lastAt).toISOString(),
+          updated_at: new Date(now).toISOString(),
+        })
+      } else {
+        dueNow = Date.parse(existing.due_at) <= now
+      }
+      if (!dueNow) continue
+
       items.push({
         subject,
         subjectLabel,
@@ -130,6 +192,13 @@ export async function buildReviewQueue(
         lessonHref: resolve(m.code)?.href ?? null,
       })
     }
+  }
+
+  // Persist reconciled schedule (bounded: only new or re-practised topics).
+  if (pendingUpserts.length) {
+    await admin
+      .from('review_schedule')
+      .upsert(pendingUpserts, { onConflict: 'user_id,subject_code,topic_code' })
   }
 
   // Due-first: critical before sampled, then stalest, then weakest score.

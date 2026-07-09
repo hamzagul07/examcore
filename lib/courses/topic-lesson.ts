@@ -8,6 +8,12 @@ import { isIbSubjectCode } from '@/lib/ib/marking-config'
 
 export type ResolvedLesson = { code: string; name: string; href: string }
 
+/** Deep-link "study this" straight to the worked examples (where the marks are
+ * shown) when the lesson has any, instead of the top of the page. */
+function workedAnchor(lesson: { sections?: { type: string }[] }): string {
+  return lesson.sections?.some((s) => s.type === 'workedExample') ? '#worked' : ''
+}
+
 /**
  * Builds a topic-code → course-lesson resolver for one subject, board-aware and
  * existence-verified (never returns a link that 404s).
@@ -34,7 +40,7 @@ export function makeTopicLessonResolver(
       return {
         code: topicCode,
         name: lesson.title,
-        href: `/ib/courses/${routeSlug}/${lesson.slug}`,
+        href: `/ib/courses/${routeSlug}/${lesson.slug}${workedAnchor(lesson)}`,
       }
     }
   }
@@ -48,7 +54,7 @@ export function makeTopicLessonResolver(
     return {
       code: topic.code,
       name: lesson.title || topic.name,
-      href: `/courses/${subjectCode}/${slug}`,
+      href: `/courses/${subjectCode}/${slug}${workedAnchor(lesson)}`,
     }
   }
 }

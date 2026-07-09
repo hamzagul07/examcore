@@ -65,7 +65,7 @@ export default async function ReviewPage() {
                   <p className="text-sm font-bold text-[var(--ec-text-primary)]">
                     {r.subjectLabel}
                     <span className="ml-1.5 font-medium text-[var(--ec-text-faint)]">
-                      · {r.coveragePct}% exam-ready · {r.confidence}% confidence
+                      · predicted on recent form · {r.coveragePct}% of topics mastered
                     </span>
                   </p>
                   <p className="mt-1 text-[13px] leading-relaxed text-[var(--ec-text-secondary)]">

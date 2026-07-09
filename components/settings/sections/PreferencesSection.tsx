@@ -12,6 +12,7 @@ type Props = {
   initialCommunityReplies: boolean
   initialCommunityDigest: boolean
   initialCommunityThreads: boolean
+  initialReviewDigest: boolean
 }
 
 export function PreferencesSection({
@@ -20,14 +21,22 @@ export function PreferencesSection({
   initialCommunityReplies,
   initialCommunityDigest,
   initialCommunityThreads,
+  initialReviewDigest,
 }: Props) {
   const [examReminders, setExamReminders] = useState(initialExamReminders)
   const [productUpdates, setProductUpdates] = useState(initialProductUpdates)
   const [communityReplies, setCommunityReplies] = useState(initialCommunityReplies)
   const [communityDigest, setCommunityDigest] = useState(initialCommunityDigest)
   const [communityThreads, setCommunityThreads] = useState(initialCommunityThreads)
+  const [reviewDigest, setReviewDigest] = useState(initialReviewDigest)
   const [saving, setSaving] = useState<
-    'exam' | 'product' | 'communityReplies' | 'communityDigest' | 'communityThreads' | null
+    | 'exam'
+    | 'product'
+    | 'communityReplies'
+    | 'communityDigest'
+    | 'communityThreads'
+    | 'reviewDigest'
+    | null
   >(null)
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
@@ -38,9 +47,16 @@ export function PreferencesSection({
       | 'email_product_updates'
       | 'email_community_replies'
       | 'email_community_digest'
-      | 'email_community_threads',
+      | 'email_community_threads'
+      | 'email_review_digest',
     value: boolean,
-    savingKey: 'exam' | 'product' | 'communityReplies' | 'communityDigest' | 'communityThreads'
+    savingKey:
+      | 'exam'
+      | 'product'
+      | 'communityReplies'
+      | 'communityDigest'
+      | 'communityThreads'
+      | 'reviewDigest'
   ) {
     setSaving(savingKey)
     setErrorMsg('')
@@ -60,7 +76,8 @@ export function PreferencesSection({
       else if (field === 'email_product_updates') setProductUpdates(!value)
       else if (field === 'email_community_replies') setCommunityReplies(!value)
       else if (field === 'email_community_digest') setCommunityDigest(!value)
-      else setCommunityThreads(!value)
+      else if (field === 'email_community_threads') setCommunityThreads(!value)
+      else setReviewDigest(!value)
       return
     }
 
@@ -318,6 +335,49 @@ export function PreferencesSection({
                 />
               </span>
               {saving === 'communityDigest' && (
+                <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />
+              )}
+            </span>
+          </label>
+
+          <label className="ms-pref-toggle flex min-h-[56px] cursor-pointer items-start justify-between gap-4">
+            <span>
+              <span className="block text-sm font-semibold text-[var(--ec-text-primary)]">
+                Review reminders
+              </span>
+              <span className="mt-0.5 block text-sm text-[var(--ec-text-secondary)]">
+                A weekly nudge when your spaced-review topics are due — keeps your weak
+                spots sharp.
+              </span>
+            </span>
+            <span className="relative inline-flex shrink-0 items-center">
+              <input
+                type="checkbox"
+                checked={reviewDigest}
+                onChange={(e) => {
+                  setReviewDigest(e.target.checked)
+                  void savePreference('email_review_digest', e.target.checked, 'reviewDigest')
+                }}
+                disabled={saving === 'reviewDigest'}
+                className="sr-only"
+                aria-label="Review reminders"
+              />
+              <span
+                className={`flex h-6 w-11 items-center rounded-full border px-0.5 transition-colors ${
+                  reviewDigest
+                    ? 'ec-select-active'
+                    : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)]'
+                }`}
+              >
+                <span
+                  className={`h-5 w-5 rounded-full transition-transform ${
+                    reviewDigest
+                      ? 'translate-x-5 bg-[var(--ec-brand)]'
+                      : 'translate-x-0 bg-[var(--ec-text-secondary)]'
+                  }`}
+                />
+              </span>
+              {saving === 'reviewDigest' && (
                 <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />
               )}
             </span>

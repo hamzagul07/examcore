@@ -7,6 +7,7 @@ type Body = {
   email_community_replies?: boolean
   email_community_digest?: boolean
   email_community_threads?: boolean
+  email_review_digest?: boolean
 }
 
 export async function PATCH(request: NextRequest) {
@@ -40,6 +41,9 @@ export async function PATCH(request: NextRequest) {
   }
   if (typeof body.email_community_threads === 'boolean') {
     patch.email_community_threads = body.email_community_threads
+  }
+  if (typeof body.email_review_digest === 'boolean') {
+    patch.email_review_digest = body.email_review_digest
   }
 
   if (Object.keys(patch).length === 0) {

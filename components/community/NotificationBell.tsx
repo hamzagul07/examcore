@@ -25,6 +25,7 @@ function notifIcon(type: string): string {
   if (type === 'mention') return '@'
   if (type === 'milestone') return '⭐'
   if (type === 'thread') return '🧵'
+  if (type === 'review-due') return '🎯'
   return '💬'
 }
 

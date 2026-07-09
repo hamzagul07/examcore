@@ -605,6 +605,9 @@ export function LessonMasteryBand({
           Study next: <strong>{weakest.name}</strong> — your weakest topic in this subject →
         </Link>
       ) : null}
+      <Link className="lesson-mastery-review" href="/dashboard/review">
+        Review all your weak topics →
+      </Link>
     </div>
   )
 }

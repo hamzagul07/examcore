@@ -419,6 +419,9 @@ export async function markSingleQuestion(params: {
   resolvedIb?: ResolvedIbComponent | null
   /** Optional student-supplied total marks for this question. */
   questionTotalMarks?: number | null
+  /** Run the second-opinion verify pass. Default true; large multi-question
+   * batches pass false to stay under the function timeout. */
+  verify?: boolean
 }): Promise<{
   markingResult: Record<string, unknown>
   lineReferences: ReturnType<typeof buildLineReferences>
@@ -435,6 +438,7 @@ export async function markSingleQuestion(params: {
     paperCode,
     resolvedIb,
     questionTotalMarks,
+    verify = true,
   } = params
 
   let markingMode = initialMode
@@ -591,6 +595,7 @@ export async function markSingleQuestion(params: {
     !!markingResult.band_result
   if (
     VERIFY_MARKING &&
+    verify &&
     (markingStyle === 'point_based' || markingStyle === 'level_of_response') &&
     hasBreakdown
   ) {

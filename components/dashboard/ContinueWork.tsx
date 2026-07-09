@@ -47,6 +47,10 @@ export function ContinueWork({ recommendations, subjectLabel }: Props) {
                     {rec.targetLabel}
                   </p>
                   <p className="text-caption mt-1 line-clamp-2">{rec.reason}</p>
+                  <p className="mt-1 font-mono text-[11px] font-medium text-[var(--ec-text-faint)]">
+                    {rec.paperCode} · Q{rec.questionNumber} · {rec.totalMarks}{' '}
+                    {rec.totalMarks === 1 ? 'mark' : 'marks'}
+                  </p>
                 </div>
                 <span className="ec-btn-secondary ms-continue-drill w-full justify-center text-sm sm:w-auto">
                   Drill

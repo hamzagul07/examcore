@@ -18,7 +18,8 @@ import {
 import { rateLimitJson } from '@/lib/http/rate-limit-response'
 import { computeAllowance, quotaExceededBody } from '@/lib/billing/enforcement'
 
-export const maxDuration = 120
+// Re-marks one question (derive → mark → verify); headroom for the verify pass.
+export const maxDuration = 800
 
 // Retries don't consume a quota slot (the paper already used one at run time),
 // but they do cost an AI call — cap them per attempt so the endpoint can't be

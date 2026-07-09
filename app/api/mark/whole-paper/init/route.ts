@@ -37,7 +37,8 @@ import {
   formatEstimatedTime,
 } from '@/lib/marking/whole-paper'
 
-export const maxDuration = 300
+// OCR + segmentation of a full paper can be heavy; match the marking routes.
+export const maxDuration = 800
 
 type PageAssignment = { index: number; question_number: string | null }
 

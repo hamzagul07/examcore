@@ -412,7 +412,11 @@ export function MarkingResultView({
             </div>
           )}
 
-        {result.syllabus_tags && result.syllabus_tags.length > 0 && badgeSubjectCode ? (
+        {result.syllabus_tags &&
+        result.syllabus_tags.length > 0 &&
+        badgeSubjectCode &&
+        result.total_marks > 0 &&
+        result.marks_earned < result.total_marks ? (
           <StudyLessonsBlock
             subjectCode={badgeSubjectCode}
             codes={result.syllabus_tags}

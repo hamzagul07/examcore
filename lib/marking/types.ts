@@ -37,7 +37,12 @@ export type ResolvedIbComponent = {
   maxMarks: number | null
   /** Points model: subject-level conventions + any matched per-question official scheme. */
   pointsConventions?: { accept?: string; ecf?: string }
+  /** Official markpoints for the specific question being marked (null until matched). */
   officialScheme?: unknown | null
+  /** All ingested official schemes for this component, keyed by normalised question
+   * number — lets a multi-question mark pick the right scheme per question. */
+  officialSchemesByQuestion?: Record<string, unknown>
+
   /** Criteria model (M3): not consumed yet. */
   criteria?: Array<{
     letter: string

@@ -205,10 +205,41 @@ function readGeneral(v: unknown): string | undefined {
  * (caller then falls back to existing behavior). M1 populates the `points`
  * shape; `criteria` is carried for M3.
  */
+/** Normalise a question label for matching: "Q1", "1 (a)", "1(a)(i)" → "1". */
+export function normalizeIbQuestionNumber(q: string): string {
+  const m = q.trim().toLowerCase().replace(/^q\s*/, '').match(/^\d+/)
+  return m ? m[0] : q.trim().toLowerCase().replace(/[^0-9a-z]/g, '')
+}
+
+/** The question a points-scheme row belongs to (from its `marks.question`). */
+function schemeQuestionNumber(marks: unknown): string | null {
+  if (marks && typeof marks === 'object' && 'question' in marks) {
+    const q = (marks as { question?: unknown }).question
+    return q == null ? null : String(q).trim()
+  }
+  return null
+}
+
+/** Build a { normalisedQuestion -> official markpoints } map for a points component. */
+function schemesByQuestion(
+  schemes: IbPointsSchemeRow[]
+): Record<string, unknown> {
+  const map: Record<string, unknown> = {}
+  for (const s of schemes) {
+    const q = schemeQuestionNumber(s.marks)
+    if (q) map[normalizeIbQuestionNumber(q)] = s.marks
+  }
+  return map
+}
+
 export async function resolveComponentForMarking(
   subjectCode: string,
   level: IbSelectableLevel,
-  componentKey: string
+  componentKey: string,
+  /** When given, the official scheme for THIS question (if ingested) is attached
+   * as `officialScheme`; the full per-question map is always attached so callers
+   * marking several questions can pick per question. */
+  questionNumber?: string | null
 ): Promise<ResolvedIbComponent | null> {
   const component = await getComponent(subjectCode, level, componentKey)
   if (!component) return null
@@ -224,14 +255,22 @@ export async function resolveComponentForMarking(
 
   if (component.assessment_model === 'points') {
     const schemes = await getPointsScheme(component.id)
+    const byQuestion = schemesByQuestion(schemes)
     const first = schemes[0]
+    // Only attach an official scheme for a question we actually matched — never a
+    // different question's markpoints (that would mark worse than the fallback).
+    const matched =
+      questionNumber != null
+        ? byQuestion[normalizeIbQuestionNumber(questionNumber)] ?? null
+        : null
     return {
       ...base,
       pointsConventions: {
         accept: readGeneral(first?.accept_alternatives),
         ecf: readGeneral(first?.ecf_rules),
       },
-      officialScheme: null,
+      officialScheme: matched,
+      officialSchemesByQuestion: byQuestion,
     }
   }
 

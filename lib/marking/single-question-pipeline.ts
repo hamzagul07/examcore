@@ -37,8 +37,26 @@ import type {
 import {
   resolveComponentForMarking,
   splitLegacyIbCode,
+  normalizeIbQuestionNumber,
   type IbSelectableLevel,
 } from '@/lib/ib/assessment-catalog'
+
+/** For a points component, attach the official markpoints for THIS question
+ * (if ingested) so the marker uses the real scheme instead of a derived one. */
+function resolvedIbForQuestion(
+  ib: ResolvedIbComponent | null,
+  questionNumber: string
+): ResolvedIbComponent | null {
+  if (
+    !ib ||
+    ib.assessmentModel !== 'points' ||
+    !ib.officialSchemesByQuestion
+  ) {
+    return ib
+  }
+  const scheme = ib.officialSchemesByQuestion[normalizeIbQuestionNumber(questionNumber)]
+  return scheme ? { ...ib, officialScheme: scheme } : ib
+}
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -229,7 +247,7 @@ async function markOneSplitQuestion(
         markScheme: null,
         markingMode: 'general_criteria_practice',
         paperCode: `${ctx.practiceCode}/00`,
-        resolvedIb: ctx.resolvedIb,
+        resolvedIb: resolvedIbForQuestion(ctx.resolvedIb, q.question_number),
         questionTotalMarks: q.total_marks,
         verify: ctx.verify,
       })

@@ -610,6 +610,9 @@ export async function markSingleQuestion(params: {
         !!resolvedIb || isIbSubjectCode(subjectCode ?? '') ? 'IB Diploma' : 'Cambridge'
       const verifySchemeJson =
         derivedScheme ??
+        (resolvedIb?.officialScheme != null
+          ? JSON.stringify(resolvedIb.officialScheme)
+          : null) ??
         (effectiveMarkScheme
           ? JSON.stringify(effectiveMarkScheme.mark_scheme)
           : null)

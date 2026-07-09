@@ -207,7 +207,7 @@ export default async function DashboardPage() {
             />
           ) : null}
 
-          {reviewItems.length > 0 ? (
+          {!isEmpty ? (
             <section className="ec-card mb-6 p-5 sm:p-6">
               <div className="mb-3 flex items-center justify-between gap-3">
                 <div>
@@ -220,9 +220,15 @@ export default async function DashboardPage() {
                   href="/dashboard/review"
                   className="whitespace-nowrap text-sm font-semibold text-[var(--ec-brand)]"
                 >
-                  See all →
+                  {reviewItems.length > 0 ? 'See all →' : 'Open →'}
                 </Link>
               </div>
+              {reviewItems.length === 0 ? (
+                <p className="text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+                  You&apos;re caught up — nothing due right now. Your predicted grade,
+                  mark-losing pattern and full review plan live here.
+                </p>
+              ) : (
               <ul className="flex flex-col gap-2">
                 {reviewItems.slice(0, 3).map((it) => (
                   <li key={`${it.subject}-${it.code}`}>
@@ -241,6 +247,7 @@ export default async function DashboardPage() {
                   </li>
                 ))}
               </ul>
+              )}
             </section>
           ) : null}
 

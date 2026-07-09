@@ -59,6 +59,7 @@ const STATIC_ROUTES = [
   { path: '/cookies', priority: 0.3, changeFrequency: 'yearly' as const },
   { path: '/community/guidelines', priority: 0.4, changeFrequency: 'yearly' as const },
   { path: '/community', priority: 0.88, changeFrequency: 'daily' as const },
+  { path: '/community/questions', priority: 0.85, changeFrequency: 'daily' as const },
   { path: '/community/subjects', priority: 0.82, changeFrequency: 'weekly' as const },
 ]
 

@@ -100,6 +100,18 @@ export async function getQuestion(id: string): Promise<{ question: Question; ans
   }
 }
 
+/** Lightweight list of published question refs for the sitemap (id + lastModified). */
+export async function listPublishedQuestionRefs(): Promise<{ id: string; updatedAt: string | null }[]> {
+  const admin = createServiceClient()
+  const { data } = await admin
+    .from('community_questions')
+    .select('id, updated_at')
+    .eq('status', 'published')
+    .order('updated_at', { ascending: false })
+    .limit(5000)
+  return (data ?? []).map((r) => ({ id: r.id as string, updatedAt: (r.updated_at as string) ?? null }))
+}
+
 export type CreateResult = { ok: true; id: string; status: string; reason?: string } | { ok: false; error: string }
 
 export async function createQuestion(input: {

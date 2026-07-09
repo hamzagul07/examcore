@@ -17,6 +17,7 @@ import { getAllIbTopicPracticeParams } from '@/lib/seo/ib-topic-practice'
 import { getCourseLessons, getCourseSubjectCodes } from '@/lib/courses'
 import { lessonLastModified } from '@/lib/courses/seo'
 import { getCommunitySubjects } from '@/lib/community/subjects'
+import { listPublishedQuestionRefs } from '@/lib/community/qa'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 
 const STATIC_ROUTES = [
@@ -61,7 +62,7 @@ const STATIC_ROUTES = [
   { path: '/community/subjects', priority: 0.82, changeFrequency: 'weekly' as const },
 ]
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
   const base = SITE_URL.replace(/\/$/, '')
 
@@ -217,6 +218,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       }))
     : []
 
+  // Individual Q&A threads (model-answer pages + user questions). Flag-gated: no DB
+  // query until the community launches, so the sitemap is unchanged while dark.
+  const communityQuestionEntries: MetadataRoute.Sitemap = isCommunityEnabled()
+    ? (await listPublishedQuestionRefs()).map((q) => ({
+        url: `${base}/community/questions/${q.id}`,
+        lastModified: q.updatedAt ? new Date(q.updatedAt) : now,
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
+      }))
+    : []
+
   const browseFacetEntries: MetadataRoute.Sitemap = getAllBlogBrowseFacets().map(
     (facets) => ({
       url: `${base}/blog/browse/${facets.join('/')}`,
@@ -240,6 +252,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...courseSubjectEntries,
     ...courseLessonEntries,
     ...communityEntries,
+    ...communityQuestionEntries,
     ...blogCategoryEntries,
     ...browseFacetEntries,
     ...blogEntries,

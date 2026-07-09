@@ -4,6 +4,7 @@ import type { CSSProperties } from 'react'
 import { getQuestion } from '@/lib/community/qa'
 import { QuestionThread } from '@/components/community/QuestionThread'
 import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
+import { CommunityQaJsonLd } from '@/components/seo/CommunityQaJsonLd'
 import { createPageMetadata } from '@/lib/seo/metadata'
 
 export const dynamic = 'force-dynamic'
@@ -32,6 +33,7 @@ export default async function QuestionPage({ params }: Props) {
 
   return (
     <MarketingPageShell narrow>
+      <CommunityQaJsonLd question={question} answers={answers} />
       <div className="ms-pg" style={{ paddingTop: 48, '--sc': 'var(--ec-brand)' } as CSSProperties}>
         <Link href={subjectHref} className="ec-btn-underline text-[15px]">
           ← {question.subjectCode}

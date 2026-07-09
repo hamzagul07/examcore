@@ -51,8 +51,12 @@ export default async function ReviewPage() {
             {readiness.map((r) => (
               <div key={r.subject} className="ec-card flex items-start gap-4 p-4 sm:p-5">
                 <div
-                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl text-2xl font-bold text-white"
-                  style={{ backgroundColor: r.color }}
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl text-2xl font-bold"
+                  style={{
+                    color: r.color,
+                    backgroundColor: `color-mix(in srgb, ${r.color} 14%, var(--ec-surface))`,
+                    border: `1.5px solid color-mix(in srgb, ${r.color} 32%, transparent)`,
+                  }}
                   aria-hidden
                 >
                   {r.predictedGrade}

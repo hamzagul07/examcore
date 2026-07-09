@@ -1,4 +1,4 @@
-import { normalizeMarkingText } from '@/lib/rich-text/normalize-marking-text'
+import { normalizeMarkingText, stripControlChars } from '@/lib/rich-text/normalize-marking-text'
 
 /**
  * Mark scheme rows in the DB often lack `$...$` delimiters (legacy extraction).
@@ -9,6 +9,7 @@ const STASH = '\x00S'
 
 export function normalizeMarkSchemeText(text: string): string {
   if (!text) return text
+  text = stripControlChars(text)
 
   const stashed: string[] = []
   const stash = (latex: string) => {
@@ -84,6 +85,11 @@ export function normalizeMarkSchemeText(text: string): string {
 
   // nCr shorthand
   out = out.replace(/\bnCr\b/g, () => stash('$_{n}C_{r}$'))
+
+  // Two abutting placeholders restore to `$a$$b$`; the middle `$$` is then
+  // misread as a display-math delimiter downstream, corrupting the text and
+  // leaking a stash sentinel. Separate adjacent spans with a space.
+  out = out.replace(/\x00(?=\x00S\d)/g, '\x00 ')
 
   out = out.replace(
     new RegExp(`${STASH}(\\d+)\\x00`, 'g'),

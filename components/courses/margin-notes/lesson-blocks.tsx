@@ -590,6 +590,8 @@ export function LessonMasteryBand({
   // fill in once they have marked attempts.
   if (!signedIn) return null
 
+  const hasData = Boolean(current || weakest)
+
   return (
     <div className="lesson-mastery" data-screen-label="Lesson — your mastery">
       {current ? (
@@ -607,9 +609,22 @@ export function LessonMasteryBand({
           Study next: <strong>{weakest.name}</strong> — your weakest topic in this subject →
         </Link>
       ) : null}
-      <Link className="lesson-mastery-review" href="/dashboard/review">
-        Review all your weak topics →
-      </Link>
+      {hasData ? (
+        <Link className="lesson-mastery-review" href="/dashboard/review">
+          Review all your weak topics →
+        </Link>
+      ) : (
+        <div className="lesson-mastery-standing lm-unattempted">
+          <span className="lesson-mastery-dot" aria-hidden />
+          <span>
+            Get marked on this topic to track your mastery — then it builds your{' '}
+            <Link className="lesson-mastery-inline" href="/dashboard/review">
+              spaced review list
+            </Link>
+            .
+          </span>
+        </div>
+      )}
     </div>
   )
 }

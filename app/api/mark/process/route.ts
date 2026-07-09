@@ -43,7 +43,11 @@ import {
 import { rateLimitJson } from '@/lib/http/rate-limit-response'
 import { signMarkPayloadForClient } from '@/lib/storage/answer-photos'
 
-export const maxDuration = 300
+// Multi-question scanned scripts (derive → mark → verify per question) can run
+// 200–300s+; give generous headroom. NOTE: vercel.json's functions config for
+// this route overrides this export in production, so keep the two in sync.
+// 800s requires Fluid Compute (Pro/Enterprise); Vercel clamps to the plan max.
+export const maxDuration = 800
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,

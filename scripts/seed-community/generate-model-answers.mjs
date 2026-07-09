@@ -44,17 +44,24 @@ const LIMIT = (() => {
   const i = args.indexOf('--limit')
   return i !== -1 && args[i + 1] ? Math.max(1, parseInt(args[i + 1], 10)) : 20
 })()
+// Optional --subjects 9702,9701 to target specific subject codes (e.g. balance runs).
+const SUBJECT_FILTER = (() => {
+  const i = args.indexOf('--subjects')
+  return i !== -1 && args[i + 1] ? new Set(args[i + 1].split(',').map((s) => s.trim())) : null
+})()
 const OUT_DIR = join(
   '/private/tmp/claude-501/-Users-hamzagul-Documents-examcore/9f5e3276-3584-4d37-88bd-bbbaf5d4dfb0/scratchpad',
   'model-answers'
 )
 
 // Cambridge point-based subjects (best for discrete per-mark breakdowns), with display names.
+// minMarks/maxMarks default to 4/10; Physics & Chemistry point-based questions are mostly
+// small sub-parts, so their floor is lowered to pull a usable pool (see docs/plan).
 const SUBJECTS = [
   { prefix: '9709', name: 'A-Level Mathematics', take: 70 },
   { prefix: '9700', name: 'A-Level Biology', take: 55 },
-  { prefix: '9702', name: 'A-Level Physics', take: 45 },
-  { prefix: '9701', name: 'A-Level Chemistry', take: 30 },
+  { prefix: '9702', name: 'A-Level Physics', take: 80, minMarks: 3, maxMarks: 12 },
+  { prefix: '9701', name: 'A-Level Chemistry', take: 80, minMarks: 2, maxMarks: 12 },
   { prefix: '9708', name: 'A-Level Economics', take: 30 },
 ]
 
@@ -162,14 +169,15 @@ async function main() {
   // 1) Select questions spread across subjects.
   const picked = []
   for (const s of SUBJECTS) {
+    if (SUBJECT_FILTER && !SUBJECT_FILTER.has(s.prefix)) continue
     if (picked.length >= LIMIT) break
     const { data, error } = await admin
       .from('mark_schemes')
       .select('id, board, subject, paper_code, paper_session, question_number, question_text, total_marks, mark_scheme, marking_type, syllabus_tags')
       .like('paper_code', `${s.prefix}%`)
       .eq('marking_type', 'point_based')
-      .gte('total_marks', 4)
-      .lte('total_marks', 10)
+      .gte('total_marks', s.minMarks ?? 4)
+      .lte('total_marks', s.maxMarks ?? 10)
       .not('question_text', 'is', null)
       .limit(400)
     if (error) throw error

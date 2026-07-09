@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase-server'
 import { buildReviewQueue } from '@/lib/courses/review-queue'
 import { getErrorProfile } from '@/lib/review/error-profile'
 import { getExamReadiness } from '@/lib/review/exam-readiness'
+import { getStartHereSubjects } from '@/lib/review/start-here'
 
 export const metadata: Metadata = {
   title: 'Review your misses',
@@ -28,6 +29,9 @@ export default async function ReviewPage() {
     getErrorProfile(user.id),
     getExamReadiness(user.id),
   ])
+  // Cold start = no marked attempts anywhere → guide them in instead of blanks.
+  const coldStart = readiness.length === 0
+  const startSubjects = coldStart ? await getStartHereSubjects(user.id) : []
 
   return (
     <div className="mx-auto max-w-[var(--ec-content-max,860px)] px-4 py-10 sm:px-6">
@@ -100,11 +104,40 @@ export default async function ReviewPage() {
         </section>
       ) : null}
 
-      {items.length === 0 ? (
+      {coldStart ? (
+        <section className="ec-card p-6">
+          <p className="ec-eyebrow mb-2">Start here</p>
+          <h2 className="mb-1 text-lg font-bold text-[var(--ec-text-primary)]">
+            Mark a question to unlock your study plan
+          </h2>
+          <p className="mb-5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+            Get marked on one question per subject and this page fills in with your
+            predicted grade, how you lose marks, and a spaced plan of exactly what to
+            fix.
+          </p>
+          {startSubjects.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {startSubjects.map((s) => (
+                <Link
+                  key={s.code}
+                  href={s.markHref}
+                  className="ec-btn-primary ec-btn-primary--sm whitespace-nowrap"
+                >
+                  Mark {s.label} →
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <Link href="/mark" className="ec-btn-primary">
+              Mark a question →
+            </Link>
+          )}
+        </section>
+      ) : items.length === 0 ? (
         <div className="ec-card p-6 text-center">
           <p className="mb-4 text-[var(--ec-text-secondary)]">
-            Nothing to review yet — mark a few questions and your weak topics will
-            surface here.
+            You&apos;re all caught up — nothing due for review right now. Keep marking
+            to surface new weak spots.
           </p>
           <Link href="/mark" className="ec-btn-primary">
             Mark a question →

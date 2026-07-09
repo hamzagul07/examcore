@@ -719,9 +719,11 @@ ${ocrText}
 FIRST MARKER'S RESULT — verify and CORRECT this; it may be wrong:
 ${priorResultJson}
 
-How to re-mark:
-- Check EVERY step of the student's working. Award every mark the student earned, accepting ANY mathematically/scientifically valid method and equivalent correct forms, and applying error-carried-forward.
-- Remove marks awarded for work the student did not actually do.
+How to re-mark — go through the mark scheme ONE MARK AT A TIME (do not mark holistically):
+1. For each individual mark in the scheme, state exactly what earns it.
+2. Find the specific line of the student's working that satisfies it and QUOTE that line as your evidence. Accept ANY mathematically/scientifically valid method and any equivalent correct form — never require the scheme's exact wording — and apply error-carried-forward from an earlier slip.
+3. Award the mark whenever you found genuine evidence for it. Withhold ONLY if the student truly did not do that step. If the evidence is present but imperfectly expressed, AWARD it — a student must never lose a mark they earned over presentation. Withholding earned marks is the single most common first-marker error, so scrutinise every mark the first marker did NOT award.
+Then set marks_earned to the number of marks you awarded.
 - ${totalLine}
 - marks_earned must equal the sum of the individual marks (or criteria marks) you award.
 

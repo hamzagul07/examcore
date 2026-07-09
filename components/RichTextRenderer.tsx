@@ -57,7 +57,9 @@ export function RichTextRenderer({
           remarkGfm,
           [remarkMath, { singleDollarTextMath: true }],
         ]}
-        rehypePlugins={[rehypeKatex]}
+        // Match CourseRichText / CommunityMarkdown: render best-effort instead of
+        // emitting red error markup when a fragment fails to parse.
+        rehypePlugins={[[rehypeKatex, { strict: 'ignore', throwOnError: false }]]}
         components={components}
       >
         {normalized}

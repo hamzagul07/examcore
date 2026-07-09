@@ -130,6 +130,12 @@ const GUEST_MAX_SPLIT_QUESTIONS = 3
 /** Concurrent per-question marks. Each question fans out to derive + mark on Pro,
  * so keep this modest to respect model rate limits while cutting wall-clock. */
 const SPLIT_CONCURRENCY = 3
+/** Run the (expensive) second-opinion verify pass per question only when the
+ * batch is small enough to finish within the function timeout. Larger scripts
+ * skip verify — a full batch of 3 Pro calls/question would risk a 300s timeout;
+ * completing every question reliably matters more than the last ~1 mark of
+ * precision on a big script. Single-question marks always verify (not a batch). */
+const VERIFY_MAX_BATCH = 3
 
 /** Run `fn` over `items` with a bounded number of concurrent workers, preserving
  * input order in the results array. */
@@ -201,6 +207,7 @@ async function markOneSplitQuestion(
     startedAt: number
     fullScriptText: string
     pageSources: PageInkSource[]
+    verify: boolean
   }
 ): Promise<SplitQuestionOutcome> {
   // H1: never mark the question STEM as the answer. When the per-question answer
@@ -224,6 +231,7 @@ async function markOneSplitQuestion(
         paperCode: `${ctx.practiceCode}/00`,
         resolvedIb: ctx.resolvedIb,
         questionTotalMarks: q.total_marks,
+        verify: ctx.verify,
       })
 
     const ai = toMarkingAIResult(markingResult)
@@ -337,6 +345,14 @@ async function markSplitQuestions(params: {
     total_questions: capped.length,
   })
 
+  // Verify pass only for small batches (timeout guard — see VERIFY_MAX_BATCH).
+  const verify = capped.length <= VERIFY_MAX_BATCH
+  if (!verify) {
+    console.warn(
+      `[mark] ${capped.length} questions > ${VERIFY_MAX_BATCH}; skipping verify pass to stay under the function timeout`
+    )
+  }
+
   // Mark each question in isolation, with bounded concurrency (H2 + H3).
   let completed = 0
   const outcomes = await mapWithConcurrency(capped, SPLIT_CONCURRENCY, async (q) => {
@@ -347,6 +363,7 @@ async function markSplitQuestions(params: {
       answerPhotoUrl,
       startedAt,
       fullScriptText,
+      verify,
       pageSources,
     })
     completed += 1

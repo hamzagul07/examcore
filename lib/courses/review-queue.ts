@@ -9,6 +9,7 @@ import {
 import { hasSyllabusTree } from '@/lib/syllabi'
 import { makeTopicLessonResolver } from '@/lib/courses/topic-lesson'
 import { getSubjectByCode } from '@/lib/profile-options'
+import { nextReviewInterval } from '@/lib/review/schedule'
 import {
   ERROR_LABELS,
   type ErrorClassificationDetail,
@@ -29,7 +30,6 @@ export type ReviewItem = {
 }
 
 const DAY_MS = 86_400_000
-const INTERVAL_CAP_DAYS = 7
 const ATTEMPT_SELECT = `
   marks_earned, total_marks, syllabus_tags, created_at, error_classifications,
   mark_schemes ( question_number, paper_code, paper_session )
@@ -161,7 +161,7 @@ export async function buildReviewQueue(
           updated_at: new Date(now).toISOString(),
         })
       } else if (lastAt && lastAt > lastReviewedMs) {
-        const nextInterval = Math.min((existing.interval_days || 1) * 2, INTERVAL_CAP_DAYS)
+        const nextInterval = nextReviewInterval(existing.interval_days, m.level, m.percentage)
         const nextDue = lastAt + nextInterval * DAY_MS
         dueNow = nextDue <= now
         pendingUpserts.push({

@@ -535,29 +535,20 @@ export function LessonCheckpoint({
   if (!primary) return null
 
   const markHref = appendMarkReturn(primary.href, returnPath, lesson.point)
-  const isIb = lesson.code.startsWith('ib-')
 
   return (
     <div className="checkpoint card" data-screen-label="Lesson — checkpoint">
-      <div className="checkpoint-head">
-        <span className="checkpoint-tag mono">Checkpoint</span>
-        {primary.marks ? <span className="practice-marks mono">[{primary.marks}]</span> : null}
-      </div>
+      <span className="checkpoint-tag mono">Checkpoint</span>
       <h3 className="h3 checkpoint-title serif">Reading it isn&rsquo;t knowing it — prove it.</h3>
       <p className="body-2 checkpoint-lead">
-        Attempt <strong>{primary.ref}</strong> on paper, snap a photo, and get examiner-style
-        feedback on exactly where you win and lose marks. You&rsquo;ll come straight back to this
-        lesson.
+        Before you move on: do <strong>{primary.ref}</strong> on paper, snap a photo, and
+        get examiner-style feedback on exactly where you win and lose marks.
       </p>
       <div className="checkpoint-foot">
         <Link className="btn-primary" href={markHref}>
           Attempt &amp; get marked →
         </Link>
-        <span className="micro">
-          {isIb
-            ? 'MARKED BY IB CRITERIA · OFFICIAL BANDS · ~A MINUTE'
-            : 'MARKED B1 / M1 / A1 · OFFICIAL SCHEME · ~A MINUTE'}
-        </span>
+        <span className="micro">Takes about a minute · you&rsquo;ll land back on this lesson</span>
       </div>
     </div>
   )

@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase-server'
 import { buildReviewQueue } from '@/lib/courses/review-queue'
+import { getErrorProfile } from '@/lib/review/error-profile'
 
 export const metadata: Metadata = {
   title: 'Review your misses',
@@ -21,7 +22,10 @@ export default async function ReviewPage() {
   } = await supabase.auth.getUser()
   if (!user) redirect('/auth/signin?next=%2Fdashboard%2Freview')
 
-  const items = await buildReviewQueue(user.id)
+  const [items, profile] = await Promise.all([
+    buildReviewQueue(user.id),
+    getErrorProfile(user.id),
+  ])
 
   return (
     <div className="mx-auto max-w-[var(--ec-content-max,860px)] px-4 py-10 sm:px-6">
@@ -33,6 +37,36 @@ export default async function ReviewPage() {
         The topics you scored lowest on, ranked by how overdue they are. Re-practise
         one, get marked, and it drops down the list.
       </p>
+
+      {profile.top ? (
+        <section className="ec-card mb-8 p-5 sm:p-6">
+          <p className="ec-eyebrow mb-2">Your mark-losing pattern</p>
+          <h2 className="mb-1 text-lg font-bold text-[var(--ec-text-primary)]">
+            <span aria-hidden>{profile.top.icon}</span> You lose most marks to{' '}
+            {profile.top.label.toLowerCase()}
+          </h2>
+          <p className="mb-4 text-sm text-[var(--ec-text-secondary)]">
+            {profile.top.pct}% of your lost marks
+            {profile.topMarkType ? `, most often on ${profile.topMarkType.label} marks` : ''}.{' '}
+            {profile.top.description}
+          </p>
+          <div className="flex flex-col gap-1.5">
+            {profile.breakdown.map((e) => (
+              <div key={e.classification} className="flex items-center gap-3 text-xs">
+                <span className="w-36 shrink-0 text-[var(--ec-text-secondary)]">
+                  <span aria-hidden>{e.icon}</span> {e.label}
+                </span>
+                <span
+                  className="h-2 rounded-full bg-[var(--ec-brand)]"
+                  style={{ width: `${Math.max(e.pct, 3)}%` }}
+                  aria-hidden
+                />
+                <span className="shrink-0 tabular-nums text-[var(--ec-text-faint)]">{e.pct}%</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {items.length === 0 ? (
         <div className="ec-card p-6 text-center">

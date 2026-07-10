@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient as createServerClient } from '@/lib/supabase-server'
+import { authenticateRouteRequest } from '@/lib/supabase-server'
 import {
   buildWholePaperSegmentPrompt,
   parseWholePaperSegment,
@@ -44,10 +44,10 @@ type PageAssignment = { index: number; question_number: string | null }
 
 export async function POST(request: NextRequest) {
   try {
-    const supabaseAuth = await createServerClient()
-    const {
-      data: { user },
-    } = await supabaseAuth.auth.getUser()
+    // Read auth from request.cookies (+ bearer) — cookies() from next/headers
+    // can come back empty on this streaming multipart POST, which silently
+    // saved logged-in users' whole-paper attempts with user_id = null.
+    const { user } = await authenticateRouteRequest(request)
     const userId = user?.id || null
 
     const ip = clientIp(request)

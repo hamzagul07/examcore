@@ -6,8 +6,10 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 const ROOT = '/Users/hamzagul/Documents/examcore'
-const REV = path.join(ROOT, 'docs/course-upgrade/reference-derived/qbank-review.json')
-const OUT = path.join(ROOT, 'docs/course-upgrade/reference-derived/math-flags-worksheet.md')
+// Subject key from argv (e.g. "maths-aa", "physics"); defaults to maths-aa.
+const SUBJ = process.argv[2] || 'maths-aa'
+const REV = path.join(ROOT, `docs/course-upgrade/reference-derived/qbank-review-${SUBJ}.json`)
+const OUT = path.join(ROOT, `docs/course-upgrade/reference-derived/${SUBJ}-flags-worksheet.md`)
 
 const verdicts = JSON.parse(fs.readFileSync(REV, 'utf8'))
 const flags = verdicts.filter((v) => v.verdict === 'flag' && v.severity === 'high'
@@ -17,7 +19,9 @@ const flags = verdicts.filter((v) => v.verdict === 'flag' && v.severity === 'hig
 // and the raw verdicts don't record the level, so we keep ALL matches and show
 // each so the reviewer can pick the variant matching the objection.
 const qById = new Map()
-for (const dir of ['ib-maths-aa-hl', 'ib-maths-aa-sl']) {
+const courseDirs = fs.readdirSync(path.join(ROOT, 'content/courses'))
+  .filter((d) => d.startsWith(`ib-${SUBJ}`) && fs.statSync(path.join(ROOT, 'content/courses', d)).isDirectory())
+for (const dir of courseDirs) {
   const full = path.join(ROOT, 'content/courses', dir)
   for (const f of fs.readdirSync(full)) {
     if (!f.endsWith('.pilot.json')) continue

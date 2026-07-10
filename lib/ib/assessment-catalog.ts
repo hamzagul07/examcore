@@ -75,6 +75,9 @@ export type IbPointsSchemeRow = {
   marking_guidance: unknown
   source_document_id: string | null
   source_pages: number[] | null
+  /** Only true schemes mark a student (human-QA gate). Optional: the column may
+   * not exist yet in some environments, in which case it reads as undefined. */
+  verified?: boolean
 }
 
 /** A component's level as stored ('both') matches a student's HL or SL selection. */
@@ -255,7 +258,11 @@ export async function resolveComponentForMarking(
 
   if (component.assessment_model === 'points') {
     const schemes = await getPointsScheme(component.id)
-    const byQuestion = schemesByQuestion(schemes)
+    // Only VERIFIED (human-QA'd) schemes may mark a student — an inaccurate
+    // ingested scheme marks worse than the derive fallback. A missing `verified`
+    // column (migration not yet applied) reads as unverified → derive fallback.
+    const verified = schemes.filter((s) => s.verified === true)
+    const byQuestion = schemesByQuestion(verified)
     const first = schemes[0]
     // Only attach an official scheme for a question we actually matched — never a
     // different question's markpoints (that would mark worse than the fallback).

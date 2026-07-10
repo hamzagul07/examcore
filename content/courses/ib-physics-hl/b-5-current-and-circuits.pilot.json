@@ -1,0 +1,556 @@
+{
+  "slug": "b-5-current-and-circuits",
+  "topicCode": "B.5",
+  "unit": {
+    "code": "B",
+    "title": "The particulate nature of matter"
+  },
+  "title": "Current and circuits",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "pilot",
+  "summary": "Direct-current circuits are where the abstract ideas of charge and energy become something you can measure with a meter. This lesson builds the whole quantitative toolkit of B.5: electric charge and current, potential difference and electromotive force, resistance and Ohm's law, resistivity, the difference between ohmic and non-ohmic behaviour, resistors in series and parallel, electrical power, internal resistance and terminal potential difference, and Kirchhoff's two laws. It is one of the most calculation-heavy topics in the course, so it is built around fully worked examples marked exactly the way our engine marks your own practice.",
+  "durationMin": 30,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Define electric charge and current ($I = \\Delta q / \\Delta t$), potential difference and electromotive force, and use them correctly.",
+    "Apply Ohm's law ($V = IR$) and the resistivity relation ($R = \\rho L / A$), and distinguish ohmic from non-ohmic behaviour using I–V characteristics.",
+    "Calculate the combined resistance of resistors in series and in parallel, and the current and potential difference in each.",
+    "Calculate electrical power using $P = VI = I^2R = V^2/R$, and analyse sources with internal resistance ($\\varepsilon = I(R+r)$).",
+    "Apply Kirchhoff's laws (conservation of charge and energy) and present working so that method marks and error-carried-forward (ECF) protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "B.5"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
+  "simpleExplanation": {
+    "title": "The Water Park of Circuits",
+    "summary": "A circuit moves charge the way a water park moves water. A pump lifts water and gives it energy; pipes and slides carry it and slow it down. Swap 'water' for 'charge' and you have a working mental model of every DC circuit.",
+    "analogy": "A pump (the battery) raises water to a height, giving each litre energy — that energy per unit of charge is the electromotive force. The litres passing a point each second are the current. Slides and narrow pipes (resistors) oppose the flow, and a long thin pipe opposes it more than a short fat one — exactly what resistivity describes. The height the water actually falls through in the external pipes is the terminal potential difference, and it is a little less than the full pump height because the pump itself wastes some energy internally (internal resistance).",
+    "steps": [
+      "Start from the two things you can measure directly: current $I$ (flow of charge) and potential difference $V$ (energy given up per unit charge).",
+      "Link them through resistance with Ohm's law, $V = IR$, for any component at a fixed temperature.",
+      "Combine components: resistances add in series, but in parallel the extra paths make the total resistance fall below the smallest branch.",
+      "Account for the real source: subtract the 'lost volts' $Ir$ inside the battery to get the terminal potential difference actually delivered to the circuit."
+    ]
+  },
+  "keyConcepts": [
+    "conservation of charge",
+    "conservation of energy",
+    "energy dissipation"
+  ],
+  "flashcards": [
+    {
+      "front": "Electric current ($I$)",
+      "back": "The rate of flow of electric charge: $I = \\dfrac{\\Delta q}{\\Delta t}$. Unit: ampere (A), where $1\\ \\text{A} = 1\\ \\text{C s}^{-1}$. Conventional current is the direction positive charge would move.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Potential difference ($V$)",
+      "back": "The energy transferred from electrical to other forms per unit charge passing through a component: $V = W/q$. Unit: volt (V), where $1\\ \\text{V} = 1\\ \\text{J C}^{-1}$.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Electromotive force ($\\varepsilon$)",
+      "back": "The energy supplied per unit charge by a source (e.g. a cell), converting chemical to electrical energy. Also measured in volts. It is NOT a force despite the name.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Resistance ($R$)",
+      "back": "The opposition to current, defined as $R = V/I$. Unit: ohm ($\\Omega$), where $1\\ \\Omega = 1\\ \\text{V A}^{-1}$.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Ohm's law",
+      "back": "For a conductor at constant temperature, current is proportional to potential difference: $V = IR$ with $R$ constant. It is a property of ohmic conductors, not a universal law.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Resistivity ($\\rho$)",
+      "back": "A material property: $R = \\dfrac{\\rho L}{A}$, so resistance rises with length and falls with cross-sectional area. Unit of $\\rho$: $\\Omega\\,\\text{m}$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Ohmic vs non-ohmic",
+      "back": "Ohmic: constant $R$, straight-line I–V graph through the origin (metal resistor). Non-ohmic: $R$ changes, so the I–V graph curves (filament lamp, diode).",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Resistors in series",
+      "back": "$R_{\\text{total}} = R_1 + R_2 + \\ldots$ Same current through each; the source p.d. is shared between them.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Resistors in parallel",
+      "back": "$\\dfrac{1}{R_{\\text{total}}} = \\dfrac{1}{R_1} + \\dfrac{1}{R_2} + \\ldots$ Same p.d. across each; the current splits between branches. The total is always LESS than the smallest branch.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Electrical power",
+      "back": "$P = VI = I^2R = \\dfrac{V^2}{R}$. Unit: watt (W). Choose the version that uses the two quantities you already know.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Internal resistance ($r$)",
+      "back": "The resistance inside a source itself. When current flows it dissipates energy as heat inside the cell, producing 'lost volts' equal to $Ir$.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Terminal potential difference",
+      "back": "The p.d. actually delivered across the source's terminals: $V_{\\text{terminal}} = \\varepsilon - Ir$. It equals the p.d. across the external load and is always less than $\\varepsilon$ when current flows.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "EMF and internal resistance",
+      "back": "For a source driving a single external resistor: $\\varepsilon = I(R + r)$. The EMF is shared between the load ($IR$) and the internal resistance ($Ir$).",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Kirchhoff's first law (junction)",
+      "back": "The sum of currents into a junction equals the sum out — a statement of conservation of CHARGE. This is why current splits in parallel and recombines.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Kirchhoff's second law (loop)",
+      "back": "Around any closed loop, the sum of EMFs equals the sum of the p.d. drops — a statement of conservation of ENERGY.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Exam Trap: parallel reciprocal",
+      "back": "After adding the reciprocals you have $1/R_{\\text{total}}$, NOT $R_{\\text{total}}$. You must invert the answer. Sanity check: the result must be smaller than the smallest branch.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Three resistors are connected in series. Compared with the current leaving the battery, the current in the middle resistor is:",
+      "options": [
+        "Larger, because charge builds up",
+        "Smaller, because the earlier resistor uses some current up",
+        "Exactly the same — current is identical everywhere in a series loop",
+        "It depends on the resistance values"
+      ],
+      "answer": "Exactly the same — current is identical everywhere in a series loop"
+    },
+    {
+      "prompt": "A current of 1.2 A reaches a junction and splits into two parallel branches. The currents in the branches must:",
+      "options": [
+        "Each equal 1.2 A",
+        "Add up to 1.2 A",
+        "Each equal 0.6 A regardless of the resistances",
+        "Multiply to give 1.2 A"
+      ],
+      "answer": "Add up to 1.2 A"
+    },
+    {
+      "prompt": "A 6.0 Ω and a 3.0 Ω resistor are connected in parallel. The total resistance of the combination is:",
+      "options": [
+        "9.0 Ω",
+        "4.5 Ω",
+        "2.0 Ω",
+        "18 Ω"
+      ],
+      "answer": "2.0 Ω"
+    },
+    {
+      "prompt": "A real cell drives a current through a resistor. Its terminal potential difference is:",
+      "options": [
+        "Greater than its EMF, because current adds energy",
+        "Equal to its EMF, because the cell is the energy source",
+        "Less than its EMF, because of the 'lost volts' $Ir$ across the internal resistance",
+        "Zero, because all the EMF is used inside the cell"
+      ],
+      "answer": "Less than its EMF, because of the 'lost volts' $Ir$ across the internal resistance"
+    },
+    {
+      "prompt": "As the current through a filament lamp increases, the filament heats up. Its I–V graph is a curve (not a straight line) because:",
+      "options": [
+        "It obeys Ohm's law perfectly",
+        "Its resistance stays constant but the voltage changes",
+        "Its resistance increases with temperature, so it is non-ohmic",
+        "The current is proportional to the square of the voltage"
+      ],
+      "answer": "Its resistance increases with temperature, so it is non-ohmic"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the real difference between EMF and potential difference?",
+      "a": "EMF is about energy being SUPPLIED. It is the chemical (or other) energy converted to electrical energy per unit charge inside a source. Potential difference is about energy being USED: the electrical energy converted to heat, light or other forms per unit charge in a component. For a battery driving a circuit, the EMF always exceeds the terminal p.d., because some energy is dissipated inside the cell's own internal resistance before the charge even leaves the terminals."
+    },
+    {
+      "q": "Why does adding a resistor in parallel DECREASE the total resistance?",
+      "a": "Each parallel resistor is an extra route for charge to flow. Opening another checkout lane at a shop lets more customers through per minute even if that lane is slow; likewise an extra branch lets more current flow for the same p.d., which by $R = V/I$ means a smaller total resistance. That is why the parallel total is always less than the smallest individual branch — a quick way to catch a wrong answer."
+    },
+    {
+      "q": "Is a filament lamp ohmic or non-ohmic, and what does its I–V graph look like?",
+      "a": "It is non-ohmic. As current increases, the thin metal filament gets hot, and the resistance of a metal rises with temperature. So the graph of current against voltage is not a straight line — it curves and flattens as the voltage climbs, showing the resistance ($V/I$) growing. A diode is also non-ohmic: it conducts freely one way above a threshold voltage and blocks current the other way."
+    },
+    {
+      "q": "When do I use $\\varepsilon = I(R+r)$ versus $V = IR$?",
+      "a": "Use $V = IR$ for any single resistor or external combination — it relates the p.d. across that part to the current through it. Use $\\varepsilon = I(R+r)$ for the whole loop when the source has internal resistance, because the EMF must drive the current through BOTH the external load $R$ and the internal resistance $r$. The terminal p.d. you would measure with a voltmeter across the cell is $V_{\\text{terminal}} = \\varepsilon - Ir = IR$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Almost every measurement you make in electricity comes back to two ideas: how much charge is flowing (current) and how much energy each unit of charge carries or gives up (potential difference). This lesson builds the model of the direct-current circuit from those foundations, adds resistance and Ohm's law, and then handles the situations exams love: resistors combined in series and parallel, real cells with internal resistance, and circuits analysed with Kirchhoff's laws. B.5 is heavily quantitative, so every worked example below is laid out exactly the way marks are awarded — because in this topic HOW you show your working decides how many marks you keep."
+    },
+    {
+      "type": "heading",
+      "content": "Charge, current and potential difference"
+    },
+    {
+      "type": "text",
+      "content": "Electric current is the rate at which charge flows past a point. If a charge $\\Delta q$ passes in a time $\\Delta t$, the current is $I = \\Delta q / \\Delta t$, measured in amperes (1 A = 1 C s⁻¹). By convention we take current as the direction positive charge would move, even though in a metal it is electrons that drift the other way. Potential difference is the partner idea: it measures energy, not flow. The p.d. across a component is the electrical energy converted to other forms per unit charge passing through it, $V = W/q$, measured in volts (1 V = 1 J C⁻¹)."
+    },
+    {
+      "type": "formula",
+      "content": "I = \\frac{\\Delta q}{\\Delta t}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Current $I$ is a flow of charge; potential difference $V$ is energy transferred per unit charge.",
+        "Electromotive force $\\varepsilon$ is energy SUPPLIED per unit charge by a source; p.d. is energy USED per unit charge in a component. Both are in volts.",
+        "Conventional current flows from + to − in the external circuit; electron flow is opposite.",
+        "Charge is conserved: it is neither created nor destroyed as it moves round a circuit."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Resistance, Ohm's law and resistivity"
+    },
+    {
+      "type": "text",
+      "content": "Resistance measures how strongly a component opposes current, defined as $R = V/I$ and measured in ohms ($\\Omega$). For many conductors at constant temperature the current is proportional to the p.d.: this is Ohm's law, written $V = IR$ with $R$ constant. Resistance also depends on the physical shape and material of a conductor. A longer wire has more resistance and a thicker wire has less, captured by the resistivity relation $R = \\rho L / A$, where $\\rho$ is the resistivity of the material (unit $\\Omega\\,$m), $L$ its length and $A$ its cross-sectional area."
+    },
+    {
+      "type": "formula",
+      "content": "V = IR \\qquad\\text{and}\\qquad R = \\frac{\\rho L}{A}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Ohm's law applies only to ohmic conductors at constant temperature — it is not universal.",
+        "Resistance $\\propto$ length and $\\propto 1/\\text{area}$: doubling the length doubles $R$; doubling the cross-sectional area halves $R$.",
+        "Resistivity $\\rho$ is a property of the MATERIAL; resistance $R$ is a property of a particular SAMPLE of it.",
+        "Rearrange Ohm's law freely: $I = V/R$ and $R = V/I$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Ohmic and non-ohmic behaviour: I–V characteristics"
+    },
+    {
+      "type": "text",
+      "content": "An I–V characteristic is a graph of current against potential difference for a component. Its shape tells you at a glance whether the component obeys Ohm's law. A metal resistor at constant temperature gives a straight line through the origin — its resistance ($V/I$) is constant, so it is ohmic. A filament lamp gives an S-shaped curve that flattens as the voltage rises: heating the filament raises its resistance, so it is non-ohmic. A diode is strongly non-ohmic — it conducts almost nothing until a threshold forward voltage, then the current rises steeply, and it blocks current in the reverse direction. For any point on any of these graphs the resistance is still $V/I$; only for the straight ohmic line is that ratio constant."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Resistor (ohmic): straight line through the origin; constant resistance.",
+        "Filament lamp (non-ohmic): curve that flattens; resistance increases as it heats up.",
+        "Diode (non-ohmic): negligible current below the threshold voltage, then a steep rise; blocks reverse current.",
+        "Resistance at any point is always $V/I$ (the reciprocal gradient of a line from the origin), not the gradient of the curve itself."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Resistors in series and parallel"
+    },
+    {
+      "type": "text",
+      "content": "In series, components form a single path, so the SAME current flows through each and the source p.d. is shared between them; resistances simply add. In parallel, components connect across the same two points, so each has the SAME p.d. across it and the current splits between the branches; here the reciprocals of the resistances add. Because extra parallel paths make it easier for charge to flow, the combined parallel resistance is always smaller than the smallest single branch — a fact worth using as a check on every parallel calculation."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Series: } R_{\\text{total}} = R_1 + R_2 + \\ldots \\qquad \\text{Parallel: } \\frac{1}{R_{\\text{total}}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\ldots"
+    },
+    {
+      "type": "workedExample",
+      "question": "A 12 V battery of negligible internal resistance is connected to a 4.0 Ω resistor in series with a parallel combination of a 12 Ω resistor and a 6.0 Ω resistor. Calculate (a) the total resistance of the circuit, (b) the current drawn from the battery, and (c) the current in the 6.0 Ω resistor. [6]",
+      "solution": "**Step 1 — combine the parallel pair.**\n$\\dfrac{1}{R_p} = \\dfrac{1}{12} + \\dfrac{1}{6.0} = \\dfrac{1}{12} + \\dfrac{2}{12} = \\dfrac{3}{12}$, so $R_p = \\dfrac{12}{3} = 4.0\\ \\Omega$.  [M1 method, A1 value]\n\n*Check: 4.0 Ω is smaller than the smaller branch (6.0 Ω), as it must be.*\n\n**Step 2 — add the series resistor for the total.**\n$R_{\\text{total}} = 4.0 + R_p = 4.0 + 4.0 = 8.0\\ \\Omega$.  [A1]\n\n**Step 3 — current from the battery (Ohm's law on the whole circuit).**\n$I = \\dfrac{V}{R_{\\text{total}}} = \\dfrac{12}{8.0} = 1.5\\ \\text{A}$.  [M1, A1]\n\n**Step 4 — current in the 6.0 Ω resistor.**\nThe p.d. across the parallel section is $V_p = I R_p = 1.5 \\times 4.0 = 6.0\\ \\text{V}$.\nEach branch has this same 6.0 V across it, so $I_{6} = \\dfrac{V_p}{6.0} = \\dfrac{6.0}{6.0} = 1.0\\ \\text{A}$.  [A1]\n\n*Check with Kirchhoff's first law: the 12 Ω branch carries $6.0/12 = 0.50$ A, and $1.0 + 0.50 = 1.5$ A — exactly the current drawn from the battery.*"
+    },
+    {
+      "type": "examTip",
+      "content": "For a parallel combination, always sanity-check that the combined resistance is smaller than the smallest branch. Here 4.0 Ω is below the 6.0 Ω branch, so it passes. If your 'total' ever comes out larger than one of the branches, you have almost certainly forgotten to take the final reciprocal — the single most common slip in this topic."
+    },
+    {
+      "type": "heading",
+      "content": "Electrical power"
+    },
+    {
+      "type": "text",
+      "content": "Power is the rate at which electrical energy is transferred. Combining $P = VI$ (energy per charge times charge per second) with Ohm's law gives three equivalent forms. Use whichever version fits the two quantities you already know: $P = VI$ when you have p.d. and current, $P = I^2R$ when you have current and resistance, and $P = V^2/R$ when you have p.d. and resistance. All give power in watts (W)."
+    },
+    {
+      "type": "formula",
+      "content": "P = VI = I^2 R = \\frac{V^2}{R}"
+    },
+    {
+      "type": "workedExample",
+      "question": "A resistor of resistance 15 Ω carries a steady current of 0.40 A. (a) Calculate the potential difference across it. (b) Calculate the power dissipated, and confirm your answer by a second method. [4]",
+      "solution": "**Step 1 — potential difference (Ohm's law).**\n$V = IR = 0.40 \\times 15 = 6.0\\ \\text{V}$.  [M1 method, A1 value]\n\n**Step 2 — power, first method.**\n$P = VI = 6.0 \\times 0.40 = 2.4\\ \\text{W}$.  [M1]\n\n**Step 3 — confirm with a second method.**\n$P = I^2 R = (0.40)^2 \\times 15 = 0.16 \\times 15 = 2.4\\ \\text{W}$ — the same value.  [A1]\n\n*A third route, $P = V^2/R = 6.0^2/15 = 36/15 = 2.4$ W, agrees, confirming the working.*"
+    },
+    {
+      "type": "heading",
+      "content": "EMF, internal resistance and terminal potential difference"
+    },
+    {
+      "type": "text",
+      "content": "A real cell is not a perfect source. It has an internal resistance $r$ in series with an ideal EMF $\\varepsilon$. When a current $I$ flows, some energy is dissipated inside the cell, producing 'lost volts' equal to $Ir$. The voltage actually available to the external circuit — the terminal potential difference — is therefore $V_{\\text{terminal}} = \\varepsilon - Ir$, which is also just the p.d. across the external load. For a single external resistor $R$ the EMF is shared between load and internal resistance, giving $\\varepsilon = I(R + r)$."
+    },
+    {
+      "type": "formula",
+      "content": "\\varepsilon = I(R + r) \\qquad V_{\\text{terminal}} = \\varepsilon - Ir = IR"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "EMF $\\varepsilon$ is the total energy per unit charge supplied by the source.",
+        "'Lost volts' $= Ir$ is the p.d. dropped across the internal resistance.",
+        "Terminal p.d. $= \\varepsilon - Ir$: always less than $\\varepsilon$ when current flows, and equal to $\\varepsilon$ only when $I = 0$ (open circuit).",
+        "A graph of $V_{\\text{terminal}}$ against $I$ is a straight line with intercept $\\varepsilon$ and gradient $-r$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A battery of EMF 9.0 V and internal resistance 1.5 Ω is connected to an external resistor of 6.0 Ω. Calculate (a) the current in the circuit, (b) the terminal potential difference, and (c) the power dissipated inside the battery. [5]",
+      "solution": "**Step 1 — current from the loop equation.**\n$\\varepsilon = I(R + r)$, so $I = \\dfrac{\\varepsilon}{R + r} = \\dfrac{9.0}{6.0 + 1.5} = \\dfrac{9.0}{7.5} = 1.2\\ \\text{A}$.  [M1, A1]\n\n**Step 2 — terminal potential difference.**\n$V_{\\text{terminal}} = \\varepsilon - Ir = 9.0 - (1.2 \\times 1.5) = 9.0 - 1.8 = 7.2\\ \\text{V}$.  [A1]\n\n*Check: this should equal the p.d. across the load, $IR = 1.2 \\times 6.0 = 7.2$ V. It does.*\n\n**Step 3 — power dissipated inside the battery.**\n$P = I^2 r = (1.2)^2 \\times 1.5 = 1.44 \\times 1.5 = 2.16 \\approx 2.2\\ \\text{W}$.  [M1, A1]\n\n*The 1.8 V of 'lost volts' is exactly the p.d. across the internal resistance, which is why the terminal p.d. falls short of the 9.0 V EMF.*"
+    },
+    {
+      "type": "heading",
+      "content": "Kirchhoff's laws"
+    },
+    {
+      "type": "text",
+      "content": "Kirchhoff's two laws are the bookkeeping rules that let you analyse any circuit, however it is wired. The first law (the junction rule) says the total current flowing into any junction equals the total current flowing out — nothing more than conservation of charge, and the reason series current is constant while parallel current splits. The second law (the loop rule) says that around any closed loop the sum of the EMFs equals the sum of the potential-difference drops — a statement of conservation of energy, since a unit charge returning to its start must have gained exactly as much energy as it lost."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "First law (junction / charge): $\\sum I_{\\text{in}} = \\sum I_{\\text{out}}$ at every junction.",
+        "Second law (loop / energy): $\\sum \\varepsilon = \\sum IR$ around every closed loop.",
+        "The junction rule explains why current is the same all round a series loop and why branch currents add up in parallel.",
+        "The loop rule explains why the shared p.d.s across series resistors add up to the source's terminal p.d."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Thinking current is 'used up' in series** — current is identical everywhere in a single loop (conservation of charge). It is ENERGY that is transferred at each resistor, not current.",
+        "**Forgetting to invert the parallel result** — adding reciprocals gives $1/R_{\\text{total}}$, not $R_{\\text{total}}$. Always take the final reciprocal, and check the total is below the smallest branch.",
+        "**Setting terminal p.d. equal to EMF** — whenever current flows there are 'lost volts' $Ir$, so $V_{\\text{terminal}} = \\varepsilon - Ir < \\varepsilon$. They are equal only on open circuit.",
+        "**Treating a filament lamp or diode as ohmic** — these are non-ohmic; their resistance changes, so you cannot use a single fixed $R$ and their I–V graphs are curved.",
+        "**Confusing EMF with potential difference** — EMF is energy supplied per unit charge by the source; p.d. is energy dissipated per unit charge in a component.",
+        "**Mixing up the power formula** — $P = I^2R$ and $P = V^2/R$ are not interchangeable inputs: use the current with $I^2R$ and the p.d. across THAT resistor with $V^2/R$.",
+        "**Confusing resistivity and resistance** — resistivity $\\rho$ is a material property (unit $\\Omega\\,$m); resistance $R$ depends on the sample's length and area through $R = \\rho L/A$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "This is the showcase for a calculation topic. In Paper 2 the marks are analytic: each is tied to a specific piece of working — a method mark (M) or an answer mark (A) — and, crucially, the method marks and error-carried-forward (ECF) mean a wrong number early on does not cost you every mark that follows. That protection only exists if your method is written down. Study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "A cell of EMF 6.0 V and internal resistance 0.50 Ω is connected to a 2.5 Ω resistor. Calculate the current in the circuit and the terminal potential difference. [3]",
+      "solution": "**Model answer — full working.**\n\nThe EMF drives the current through both the external resistor and the internal resistance:\n$\\varepsilon = I(R + r)$.\n\nRearrange for the current:\n$I = \\dfrac{\\varepsilon}{R + r} = \\dfrac{6.0}{2.5 + 0.50} = \\dfrac{6.0}{3.0} = 2.0\\ \\text{A}$.\n\nThe terminal potential difference equals the p.d. across the external resistor:\n$V_{\\text{terminal}} = IR = 2.0 \\times 2.5 = 5.0\\ \\text{V}$.\n\n*(Check: $V_{\\text{terminal}} = \\varepsilon - Ir = 6.0 - 2.0\\times0.50 = 5.0$ V — the two routes agree.)*\n\n---\n**How our marking engine awards the 3 marks:**\n\n- **M1 — correct method with $\\varepsilon = I(R+r)$.** Awarded for adding the internal resistance to the load and forming $I = \\varepsilon/(R+r) = 6.0/(2.5+0.50)$. This is a METHOD mark: it is credited for the correct process even if the arithmetic later slips. A student who forgets $r$ and writes $6.0/2.5$ loses this mark.\n- **A1 — correct current, 2.0 A.** Awarded for the evaluated current with its unit. This answer mark is protected by **error-carried-forward**: a student who used a slightly wrong total resistance but divided the EMF by it correctly still earns the mark on THEIR figures.\n- **A1 — correct terminal p.d., 5.0 V.** Awarded for $V_{\\text{terminal}} = IR$ (or equivalently $\\varepsilon - Ir$). ECF again applies: if the current from the previous step was wrong, multiplying THAT current by 2.5 Ω still earns this mark.\n\n**'Accept answers that round correctly.'** The engine accepts 2.0 A and 5.0 V however the intermediate lines are rounded, and it accepts either route to the terminal p.d. ($IR$ or $\\varepsilon - Ir$). It does not demand a fixed number of decimal places in the working — it credits the correct method and a correctly-rounded final answer.\n\n**Bottom line:** of the 3 marks, 1 is a method mark that survives an arithmetic slip and the two answer marks are protected by ECF. A student who writes only '2.0 A, 5.0 V' with no working risks losing 1–2 marks if a number is wrong; a student who shows $\\varepsilon = I(R+r)$ and $V_{\\text{terminal}} = IR$ keeps the method credit regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: write down $\\varepsilon = I(R+r)$, substitute the numbers, then compute the terminal p.d. as $IR$ or $\\varepsilon - Ir$. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The habits built here — track the current with Kirchhoff's junction rule, track the energy with the loop rule, and reach for the right form of the power equation — carry straight into the rest of electricity. Potential dividers are just series p.d.-sharing used deliberately; capacitor and RC work reuses charge, current and energy; and electromagnetic induction generates the very EMFs you have learned to handle here. Master the three-step circuit method — combine the resistances, find the current, then work out each p.d. — and the harder circuit questions become variations on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 2 circuit calculation marked: find the current and terminal potential difference with full working",
+      "href": "/mark?subject=ib-physics-hl&topic=B.5&component=paper_2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Circuit Construction Kit (DC)",
+          "href": "https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc"
+        },
+        {
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/dp-course-specific-resources/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "PhET Circuit Construction Kit (DC)",
+    "embedUrl": "https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc",
+    "hint": "Explore “PhET Circuit Construction Kit (DC)” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "B.5.1",
+      "title": "The diode bridge",
+      "detail": "Rectification of AC signals using a full-wave diode bridge circuit."
+    },
+    {
+      "code": "B.5.2",
+      "title": "The operational amplifier (op-amp)",
+      "detail": "Characteristics and circuit configurations of the ideal operational amplifier, including inverting and non-inverting amplifiers."
+    },
+    {
+      "code": "B.5.3",
+      "title": "Reshaping circuits",
+      "detail": "Clipping and clamping circuits using diodes and op-amps to modify signal waveforms."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "b-5-current-and-circuits-q1",
+      "prompt": "A diode bridge is used for full-wave rectification of an alternating voltage source. Outline the path of the current through the bridge and a load resistor for both the positive and negative half-cycles of the input.",
+      "marks": 3,
+      "commandTerm": "Outline",
+      "difficulty": "foundation",
+      "syllabusRef": "B.5.1",
+      "paper": "P2",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "For the positive half-cycle, current flows through a first pair of diodes and the load resistor.",
+          "marks": 1
+        },
+        {
+          "text": "For the negative half-cycle, current flows through the second pair of diodes and the load resistor.",
+          "marks": 1
+        },
+        {
+          "text": "The direction of current through the load resistor is the same for both half-cycles.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "During the positive half-cycle of the AC input, the top input terminal is positive. Current flows from this terminal, through one diode, through the load resistor, and then through a second diode to the negative terminal. During the negative half-cycle, the bottom input terminal becomes positive. Current flows from this terminal, through a third diode, through the same load resistor in the same direction, and then through a fourth diode to the now-negative top terminal. Because the current passes through the load resistor in the same direction during both half-cycles, the alternating input is converted to a direct, albeit pulsating, output."
+    },
+    {
+      "id": "b-5-current-and-circuits-q2",
+      "prompt": "An ideal operational amplifier is configured as an inverting amplifier. The input resistor $R_{in}$ has a resistance of $15 \\text{ k}\\Omega$ and the feedback resistor $R_f$ has a resistance of $75 \\text{ k}\\Omega$. \n\na) Determine the closed-loop voltage gain of the amplifier. [2]\nb) If a DC input voltage of $+0.50 \\text{ V}$ is applied, calculate the output voltage $V_{out}$. [2]",
+      "marks": 4,
+      "commandTerm": "Calculate",
+      "difficulty": "standard",
+      "syllabusRef": "B.5.2",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) States or uses the formula for the gain of an inverting amplifier: $G = -\\frac{R_f}{R_{in}}$.",
+          "marks": 1
+        },
+        {
+          "text": "(a) $G = -\\frac{75 \\text{ k}\\Omega}{15 \\text{ k}\\Omega} = -5.0$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) States or uses the relationship $V_{out} = G \\times V_{in}$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) $V_{out} = -5.0 \\times 0.50 \\text{ V} = -2.5 \\text{ V}$. (Unit required).",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "a) The closed-loop voltage gain $G$ for an inverting operational amplifier is given by the formula $G = -\\frac{R_f}{R_{in}}$.\nSubstituting the given values:\n$G = -\\frac{75 \\times 10^3 \\Omega}{15 \\times 10^3 \\Omega} = -5.0$.\nThe gain is dimensionless and the negative sign indicates inversion.\n\nb) The output voltage $V_{out}$ is the product of the gain $G$ and the input voltage $V_{in}$.\n$V_{out} = G \\times V_{in}$\n$V_{out} = -5.0 \\times 0.50 \\text{ V}$\n$V_{out} = -2.5 \\text{ V}$."
+    },
+    {
+      "id": "b-5-current-and-circuits-q3",
+      "prompt": "A clipping circuit consists of a resistor in series with an ideal diode and a DC voltage source. The input is a sinusoidal voltage $V_{in}$ with a peak amplitude of $6.0 \\text{ V}$. The diode is connected such that it will conduct when the input voltage exceeds the DC source voltage of $V_1 = +2.5 \\text{ V}$.\n\na) Describe the behaviour of the circuit when $V_{in}$ is greater than $2.5 \\text{ V}$. [2]\nb) Describe the behaviour of the circuit when $V_{in}$ is less than $2.5 \\text{ V}$. [1]\nc) Sketch the output voltage waveform $V_{out}$ for one full cycle of the input, labelling the key voltage values. [2]",
+      "marks": 5,
+      "commandTerm": "Describe",
+      "difficulty": "standard",
+      "syllabusRef": "B.5.3",
+      "paper": "P2",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) When $V_{in} > 2.5 \\text{ V}$, the ideal diode becomes forward-biased and conducts.",
+          "marks": 1
+        },
+        {
+          "text": "(a) The output is connected to the DC source, so $V_{out}$ is clipped/limited to $+2.5 \\text{ V}$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) When $V_{in} < 2.5 \\text{ V}$, the diode is reverse-biased and does not conduct, so $V_{out}$ follows $V_{in}$.",
+          "marks": 1
+        },
+        {
+          "text": "(c) Sketch shows a sine wave that is flattened at the top.",
+          "marks": 1
+        },
+        {
+          "text": "(c) The clipped level is correctly labelled at $+2.5 \\text{ V}$, and the negative peak is correctly labelled at $-6.0 \\text{ V}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "a) When the input voltage $V_{in}$ rises above $+2.5 \\text{ V}$, the voltage at the diode's anode exceeds the voltage at its cathode (held at $+2.5 \\text{ V}$ by the DC source). The ideal diode becomes forward-biased and acts like a closed switch. This connects the output terminal directly to the $2.5 \\text{ V}$ source, so the output voltage $V_{out}$ is held, or 'clipped', at a maximum of $+2.5 \\text{ V}$.\n\nb) When the input voltage $V_{in}$ is less than $+2.5 \\text{ V}$, the diode is reverse-biased and acts as an open switch. No current flows through the diode branch. The output terminal is effectively connected only to the input (via the resistor), so $V_{out}$ is equal to $V_{in}$.\n\nc) The output waveform will be a sine wave for all voltages below $+2.5 \\text{ V}$. The entire negative half-cycle is unaffected, reaching a minimum of $-6.0 \\text{ V}$. However, during the positive half-cycle, as soon as the input voltage reaches $+2.5 \\text{ V}$, the output is clipped and remains at $+2.5 \\text{ V}$ until the input drops back below this level. The sketch should show a sine wave with a flat top at the $+2.5 \\text{ V}$ level and a negative peak at the $-6.0 \\text{ V}$ level."
+    },
+    {
+      "id": "b-5-current-and-circuits-q4",
+      "prompt": "An ideal non-inverting operational amplifier has a closed-loop voltage gain of $+11$. The amplifier is powered by a dual supply of $\\pm 15 \\text{ V}$. The input signal is a sine wave with a root-mean-square (rms) voltage of $1.2 \\text{ V}$.\n\na) Determine the required ratio of the feedback resistor $R_f$ to the resistor $R_1$ connected to ground. [3]\nb) Determine the peak output voltage of the amplifier with this input signal. [3]",
+      "marks": 6,
+      "commandTerm": "Determine",
+      "difficulty": "challenge",
+      "syllabusRef": "B.5.2",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) States or uses the formula for the gain of a non-inverting amplifier: $G = 1 + \\frac{R_f}{R_1}$.",
+          "marks": 1
+        },
+        {
+          "text": "(a) Substitutes the gain: $11 = 1 + \\frac{R_f}{R_1}$.",
+          "marks": 1
+        },
+        {
+          "text": "(a) Rearranges to find the ratio $\\frac{R_f}{R_1} = 10$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) Calculates the peak input voltage: $V_{peak, in} = V_{rms} \\times \\sqrt{2} = 1.2 \\times \\sqrt{2} \\approx 1.70 \\text{ V}$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) Calculates the theoretical peak output voltage: $V_{peak, out} = G \\times V_{peak, in} = 11 \\times 1.70 \\text{ V} \\approx 18.7 \\text{ V}$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) Compares theoretical output with the saturation voltage and states the actual peak output is limited by the power supply, so $V_{peak, out} = +15 \\text{ V}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "a) The closed-loop voltage gain $G$ for a non-inverting operational amplifier is given by $G = 1 + \\frac{R_f}{R_1}$.\nGiven that the gain $G = 11$, we can write:\n$11 = 1 + \\frac{R_f}{R_1}$\n$11 - 1 = \\frac{R_f}{R_1}$\nTherefore, the ratio $\\frac{R_f}{R_1} = 10$.\n\nb) First, the peak input voltage ($V_{peak, in}$) must be found from the rms voltage ($V_{rms}$).\n$V_{peak, in} = V_{rms} \\times \\sqrt{2}$\n$V_{peak, in} = 1.2 \\text{ V} \\times \\sqrt{2} \\approx 1.697 \\text{ V}$.\n\nNext, the theoretical peak output voltage is calculated using the amplifier's gain.\n$V_{peak, out} = G \\times V_{peak, in}$\n$V_{peak, out} = 11 \\times 1.697 \\text{ V} \\approx 18.67 \\text{ V}$.\n\nHowever, an operational amplifier cannot produce an output voltage that exceeds its power supply rails. This effect is called saturation. The power supply is $\\pm 15 \\text{ V}$. Since the calculated theoretical peak output of $18.67 \\text{ V}$ is greater than the positive supply rail of $+15 \\text{ V}$, the output will be clipped.\nThus, the actual peak output voltage is limited by saturation to $+15 \\text{ V}$."
+    }
+  ]
+}

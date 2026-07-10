@@ -1,0 +1,553 @@
+{
+  "slug": "d-4-induction",
+  "topicCode": "D.4",
+  "unit": {
+    "code": "D",
+    "title": "Fields"
+  },
+  "title": "Induction",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "pilot",
+  "summary": "Electromagnetic induction is how a changing magnetic environment makes electricity. This HL lesson builds the full D.4 toolkit: magnetic flux $\\Phi = BA\\cos\\theta$ and flux linkage $N\\Phi$; Faraday's law $\\varepsilon = -N\\frac{\\Delta\\Phi}{\\Delta t}$ as the rate of change of flux linkage; Lenz's law and what the minus sign means for energy conservation; the motional emf $\\varepsilon = BvL$ of a straight conductor; the alternating-current generator as a rotating coil; and the ideal transformer with its turns-ratio $\\frac{V_s}{V_p}=\\frac{N_s}{N_p}$ and power conservation. Every worked example is laid out exactly the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Define magnetic flux $\\Phi = BA\\cos\\theta$ and flux linkage $N\\Phi$, and identify the three ways flux through a coil can change.",
+    "State and apply Faraday's law $\\varepsilon = -N\\frac{\\Delta\\Phi}{\\Delta t}$, treating induced emf as the rate of change of flux linkage.",
+    "Use Lenz's law to find the direction of an induced current and explain the minus sign as a statement of energy conservation.",
+    "Calculate the motional emf $\\varepsilon = BvL$ of a straight conductor and describe the operation of an alternating-current generator.",
+    "Apply the transformer turns-ratio and ideal-transformer power relation, and present working so method marks and error-carried-forward (ECF) protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "D.4"
+  ],
+  "levelNote": "HL only — Higher Level content.",
+  "simpleExplanation": {
+    "title": "Electricity from Movement",
+    "summary": "Move a magnet near a coil, or move a coil through a magnetic field, and a voltage appears across the coil that can push a current. Nothing has to touch and no battery is involved — it is the change in the magnetic field threading the coil that does the work. This one idea powers every generator in every power station and every transformer on the grid.",
+    "analogy": "Think of a wind turbine spinning a magnet past coils of wire. As the field through each coil sweeps up and down, electrons in the wire feel a repeated push, and that push is the induced voltage. Spin the magnet faster and the field changes more quickly, so the push — and the voltage — grows. Induction is simply this: the faster the magnetic flux through a coil changes, the larger the voltage it generates.",
+    "steps": [
+      "Identify what is changing: is a conductor moving through a field, or is the field (or area, or angle) through a fixed loop changing?",
+      "Work out the magnetic flux $\\Phi = BA\\cos\\theta$ at the start and at the end, then find the change $\\Delta\\Phi$.",
+      "Apply Faraday's law $\\varepsilon = -N\\frac{\\Delta\\Phi}{\\Delta t}$ to get the magnitude of the induced emf from the rate of change of flux linkage.",
+      "Use Lenz's law (the minus sign) to state the direction: the induced current opposes the change that produced it, so external work is needed and energy is conserved."
+    ]
+  },
+  "keyConcepts": [
+    "magnetic flux and flux linkage",
+    "rate of change of flux",
+    "Lenz's law and energy conservation"
+  ],
+  "flashcards": [
+    {
+      "front": "Magnetic flux ($\\Phi$)",
+      "back": "The amount of magnetic field passing through a surface: $\\Phi = BA\\cos\\theta$, where $\\theta$ is the angle between the field and the NORMAL to the area. A scalar measured in webers (Wb), with 1 Wb = 1 T m².",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Flux linkage ($N\\Phi$)",
+      "back": "For a coil of $N$ turns, the flux linkage is $N\\Phi$ — the flux through one turn multiplied by the number of turns. It is flux linkage, not flux, that appears in Faraday's law. Also measured in Wb (strictly weber-turns).",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Faraday's law",
+      "back": "The induced emf equals the rate of change of flux linkage: $\\varepsilon = -N\\frac{\\Delta\\Phi}{\\Delta t}$. A constant flux gives zero emf; a faster-changing flux gives a larger emf.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Lenz's law",
+      "back": "The induced current flows in the direction that opposes the change in flux producing it. This is the meaning of the minus sign in Faraday's law and follows directly from conservation of energy.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Why the minus sign?",
+      "back": "If the induced current reinforced the change, the flux would grow, inducing more current, and energy would appear from nothing. Instead the current opposes the change, so external work must be done to keep the flux changing — that work becomes the electrical energy.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Motional emf",
+      "back": "The emf induced across a straight conductor of length $L$ moving at speed $v$ through a field $B$, when $B$, $L$ and $v$ are mutually perpendicular: $\\varepsilon = BvL$. It arises from the magnetic force $qvB$ on the conductor's charge carriers.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Three ways to change flux",
+      "back": "Because $\\Phi = BA\\cos\\theta$, the flux through a loop changes if the field $B$ changes, the area $A$ changes, or the angle $\\theta$ between the field and the normal changes. Any one of these induces an emf.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "AC generator",
+      "back": "A coil rotating at steady angular speed in a uniform field. As $\\theta$ changes continuously, the flux linkage varies sinusoidally, so the induced emf is sinusoidal (alternating). Emf is maximum when the coil's plane is parallel to the field (flux changing fastest) and zero when the plane is perpendicular (flux at a maximum).",
+      "pillLabel": "Application"
+    },
+    {
+      "front": "Transformer turns ratio",
+      "back": "For an ideal transformer, $\\frac{V_s}{V_p} = \\frac{N_s}{N_p}$. More turns on the secondary than the primary steps the voltage up; fewer steps it down. Transformers work on AC only, because a steady DC current gives no changing flux.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Ideal transformer power",
+      "back": "An ideal transformer wastes no energy, so output power equals input power: $V_pI_p = V_sI_s$. Stepping the voltage UP therefore steps the current DOWN in the same ratio, and vice versa.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Exam Trap: coil fully inside a uniform field",
+      "back": "If a whole coil moves at constant velocity within a uniform field, the flux through it is CONSTANT, so no emf is induced. An emf appears only while the coil enters or leaves the field, when the flux is actually changing.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: flux is largest when emf is zero",
+      "back": "In a rotating coil the emf depends on the RATE of change of flux, not the flux itself. When the flux is at its maximum its rate of change is momentarily zero, so the emf there is zero — not a maximum.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A coil of 50 turns has a magnetic flux of $2.0 \\times 10^{-3}$ Wb through each turn. The magnetic flux linkage of the coil is:",
+      "options": [
+        "$2.0 \\times 10^{-3}$ Wb",
+        "$4.0 \\times 10^{-5}$ Wb",
+        "$0.10$ Wb",
+        "$25$ Wb"
+      ],
+      "answer": "$0.10$ Wb"
+    },
+    {
+      "prompt": "The magnitude of the emf induced in a coil is directly proportional to the:",
+      "options": [
+        "Magnetic flux through the coil",
+        "Rate of change of magnetic flux linkage",
+        "Magnetic field strength alone",
+        "Area of the coil alone"
+      ],
+      "answer": "Rate of change of magnetic flux linkage"
+    },
+    {
+      "prompt": "A bar magnet is pushed north-pole-first into a coil. According to Lenz's law, the induced current in the coil creates a magnetic field that, at the end facing the magnet, is a:",
+      "options": [
+        "North pole, to attract the magnet in",
+        "South pole, to attract the magnet in",
+        "North pole, to oppose the magnet's approach",
+        "There is no induced field"
+      ],
+      "answer": "North pole, to oppose the magnet's approach"
+    },
+    {
+      "prompt": "The minus sign in Faraday's law $\\varepsilon = -N\\frac{\\Delta\\Phi}{\\Delta t}$ is a direct expression of the principle of:",
+      "options": [
+        "Conservation of charge",
+        "Conservation of energy",
+        "Conservation of momentum",
+        "Superposition of fields"
+      ],
+      "answer": "Conservation of energy"
+    },
+    {
+      "prompt": "An ideal transformer has 200 turns on the primary and 1000 turns on the secondary. If the primary voltage is 12 V, the secondary voltage is:",
+      "options": [
+        "2.4 V (step-down)",
+        "12 V (unchanged)",
+        "60 V (step-up)",
+        "5.0 V (step-down)"
+      ],
+      "answer": "60 V (step-up)"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between magnetic flux and flux linkage?",
+      "a": "Magnetic flux $\\Phi = BA\\cos\\theta$ is the field passing through a single loop of area $A$. Flux linkage is that flux multiplied by the number of turns, $N\\Phi$, because in an $N$-turn coil the same flux threads $N$ loops in series. Faraday's law uses flux linkage, which is why the factor $N$ sits in front of $\\frac{\\Delta\\Phi}{\\Delta t}$. Forgetting to multiply by $N$ is one of the most common ways to lose a mark."
+    },
+    {
+      "q": "Why does Lenz's law have to be true?",
+      "a": "It is required by conservation of energy. Suppose the induced current instead reinforced the change in flux: that larger flux would induce a still larger current, which would increase the flux again, and electrical energy would keep growing with no source. That is impossible. So the induced current must oppose the change, which means you have to do work against a resisting force to keep the flux changing — and that work is exactly the electrical energy the induction delivers."
+    },
+    {
+      "q": "Why does the emf of a rotating coil peak when the flux is zero?",
+      "a": "The emf depends on the rate of change of flux, not the flux itself. When the coil's plane lies along the field the flux through it is momentarily zero, but it is changing at its fastest rate as the field lines sweep across, so the emf is maximum. A quarter-turn later the plane is perpendicular to the field: the flux is at its maximum, but for that instant it is not changing, so the emf is zero. Peak flux and peak emf are always a quarter-cycle apart."
+    },
+    {
+      "q": "Why do transformers only work with alternating current?",
+      "a": "A transformer induces a voltage in its secondary coil only when the flux through the shared iron core is changing. Alternating current in the primary produces a continuously changing flux, so it works. A steady direct current produces a constant flux, and a constant flux has zero rate of change, so no emf is induced in the secondary — apart from a brief pulse at the instant the DC is switched on or off."
+    },
+    {
+      "q": "If a transformer steps voltage up, where does the extra energy come from?",
+      "a": "It does not create energy. In an ideal transformer power is conserved, $V_pI_p = V_sI_s$, so raising the voltage by a factor of ten lowers the current by the same factor of ten. You get higher voltage but proportionally smaller current, and the power delivered is unchanged. This is exactly why the grid transmits at high voltage and low current — the low current means far less energy wasted heating the transmission cables."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Electromagnetic induction is the bridge between magnetism and electricity: whenever the magnetic flux through a circuit changes, a voltage is induced that can drive a current. Michael Faraday's discovery underlies almost all of the electricity we use — every generator turns motion into an induced emf, and every transformer on the grid uses induction to change voltages efficiently. This HL topic builds from a precise definition of magnetic flux up to working generators and transformers. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "Magnetic flux and flux linkage"
+    },
+    {
+      "type": "text",
+      "content": "To describe induction we first need to measure how much magnetic field passes through a surface. This quantity is the magnetic flux, written with the Greek letter $\\Phi$ (phi). It depends on the field strength $B$, the area $A$ of the surface, and how the surface is tilted relative to the field."
+    },
+    {
+      "type": "formula",
+      "content": "\\Phi = BA\\cos\\theta"
+    },
+    {
+      "type": "text",
+      "content": "Here $\\theta$ is the angle between the magnetic field lines and the normal — the line drawn perpendicular to the surface. When the field is perpendicular to the surface (so it is parallel to the normal), $\\theta = 0$ and the flux is a maximum, $\\Phi = BA$. When the field lies in the plane of the surface, $\\theta = 90^\\circ$ and the flux is zero. The unit of magnetic flux is the weber (Wb), where 1 Wb = 1 T m². For a coil of $N$ turns, each turn is threaded by the same flux $\\Phi$, so the total flux linkage is $N\\Phi$. It is the flux linkage, not the flux, that matters for induction."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Magnetic flux:** $\\Phi = BA\\cos\\theta$, measured in webers (Wb); $\\theta$ is measured from the NORMAL to the surface, not from the surface itself.",
+        "**Flux linkage:** $N\\Phi$ for an $N$-turn coil — the quantity whose rate of change gives the emf.",
+        "**Maximum flux** occurs when the field is perpendicular to the plane of the coil ($\\theta = 0$); **zero flux** when the field lies in the plane ($\\theta = 90^\\circ$).",
+        "Flux through a loop can change by changing $B$, changing $A$, or changing the angle $\\theta$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Faraday's law: the rate of change of flux linkage"
+    },
+    {
+      "type": "text",
+      "content": "Faraday's law states that an electromotive force (emf), $\\varepsilon$, is induced in a circuit whenever the magnetic flux linkage through it changes, and that the magnitude of the induced emf equals the rate of change of flux linkage."
+    },
+    {
+      "type": "formula",
+      "content": "\\varepsilon = -N\\frac{\\Delta\\Phi}{\\Delta t}"
+    },
+    {
+      "type": "text",
+      "content": "The key word is rate. A large flux sitting unchanged induces nothing; it is the change per unit time that generates an emf. Double the number of turns, or halve the time over which the same change happens, and you double the induced emf. Because the flux is $\\Phi = BA\\cos\\theta$, you can produce that change in three ways — by varying the field $B$, the area $A$, or the angle $\\theta$ — and every generator and transformer is just an engineered way of changing one of them."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A constant magnetic flux linkage induces no emf; the flux must be changing.",
+        "The induced emf is larger when the flux changes more rapidly (larger $\\frac{\\Delta\\Phi}{\\Delta t}$) and when there are more turns $N$.",
+        "The change in flux can come from a change in $B$, in $A$, or in $\\theta$.",
+        "The minus sign encodes the direction (Lenz's law); for magnitudes, drop the sign and use $\\varepsilon = N\\frac{\\Delta\\Phi}{\\Delta t}$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A coil of 200 turns experiences a change in magnetic flux from $8.0 \\times 10^{-3}$ Wb to $2.0 \\times 10^{-3}$ Wb in 0.030 s. Calculate the magnitude of the average induced emf. [3]",
+      "solution": "**Model answer — full working.**\n\nUse Faraday's law for the magnitude of the emf: $\\varepsilon = N\\dfrac{\\Delta\\Phi}{\\Delta t}$.\n\nThe change in flux through each turn is\n$\\Delta\\Phi = 8.0 \\times 10^{-3} - 2.0 \\times 10^{-3} = 6.0 \\times 10^{-3}$ Wb.\n\nSubstitute $N = 200$, $\\Delta\\Phi = 6.0 \\times 10^{-3}$ Wb and $\\Delta t = 0.030$ s:\n$\\varepsilon = 200 \\times \\dfrac{6.0 \\times 10^{-3}}{0.030}$.\n\n$\\varepsilon = 200 \\times 0.20 = 40$ V.\n\n**Final answer:** the average induced emf is $40$ V.\n\n---\n**How our marking engine awards the 3 marks:**\n\n- **M1 — Faraday's law.** Awarded for using $\\varepsilon = N\\frac{\\Delta\\Phi}{\\Delta t}$ (equivalently $\\varepsilon = -N\\frac{\\Delta\\Phi}{\\Delta t}$ for magnitude). This is a METHOD mark for the correct relationship, earned even if the arithmetic later slips.\n- **M1 — correct substitution of $\\Delta\\Phi$ and $\\Delta t$.** Awarded for putting $\\Delta\\Phi = 6.0 \\times 10^{-3}$ Wb (the difference of the two flux values) and $\\Delta t = 0.030$ s into the equation, with $N = 200$. The engine checks the right values reached the right places — in particular that you took the DIFFERENCE in flux, not one of the flux values on its own.\n- **A1 — $40$ V.** Awarded for the correctly evaluated answer with its unit. Here ECF protects you: a student who wrote Faraday's law and substituted correctly but mis-keyed the final division keeps both method marks, and if the final number follows correctly from THEIR substitution the answer mark is protected too.\n\n**'Accept answers that round correctly.'** The engine accepts $40$ V (and $40.0$ V) — it does not demand a fixed number of decimal places, only the correct value with the right unit.\n\n**Bottom line:** of the 3 marks, two are method marks that survive an arithmetic slip. A student who writes only '40 V' with no working risks losing 2 marks if the number is wrong; a student who shows Faraday's law, the flux difference and the substitution keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: write Faraday's law, show $\\Delta\\Phi$ as the difference of the two flux values, substitute with the number of turns, then give the answer with its unit. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Lenz's law and the meaning of the minus sign"
+    },
+    {
+      "type": "text",
+      "content": "The minus sign in Faraday's law is not decoration — it carries the physics of direction, and it is a statement in its own right known as Lenz's law: the induced current flows in whatever direction opposes the change in flux that produced it. Push a magnet north-pole-first towards a coil and the coil responds by inducing a current that makes the near face into a north pole, repelling the incoming magnet. Pull the magnet away and the induced current reverses, making the near face a south pole to attract it back. In both cases the coil opposes the change."
+    },
+    {
+      "type": "text",
+      "content": "This opposition is required by conservation of energy. If the induced current instead reinforced the change, the growing flux would drive an ever-larger current with no energy source — a perpetual-motion machine. Because the current opposes the change, you must do work against a resisting force to keep the flux changing, and that mechanical work is precisely the electrical energy that induction delivers. Lenz's law is conservation of energy written into the direction of the current."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Lenz's law:** the induced current opposes the change in flux that causes it.",
+        "**Approaching magnet** → coil's near face becomes the same pole, repelling it; **retreating magnet** → near face becomes the opposite pole, attracting it.",
+        "**The minus sign** in $\\varepsilon = -N\\frac{\\Delta\\Phi}{\\Delta t}$ is the mathematical form of this opposition.",
+        "**Energy conservation:** because the current opposes the change, external work is needed to sustain the change, and that work becomes electrical energy — nothing comes for free."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Motional emf: a conductor moving through a field"
+    },
+    {
+      "type": "text",
+      "content": "A particularly clean case of induction happens when a straight conductor slides through a constant magnetic field. The free charge carriers inside the conductor move with it, so each experiences a magnetic force $F = qvB$ that pushes it along the conductor. Charge piles up at one end, leaving the other end oppositely charged, and this separation is an emf across the conductor's ends — a motional emf."
+    },
+    {
+      "type": "formula",
+      "content": "\\varepsilon = BvL"
+    },
+    {
+      "type": "text",
+      "content": "This holds when the field $B$, the conductor's length $L$ and its velocity $v$ are all mutually perpendicular. You can see it agrees with Faraday's law: as a rod of length $L$ slides at speed $v$ along rails, it sweeps out area at a rate $Lv$, so the flux changes at a rate $B\\,Lv$, giving exactly $\\varepsilon = BvL$. If the velocity makes an angle to the field, use only the component of velocity perpendicular to the field."
+    },
+    {
+      "type": "workedExample",
+      "question": "A metal rod of length 0.25 m rests on two horizontal rails and is pushed at a constant 4.0 m s⁻¹ through a uniform magnetic field of 0.60 T directed vertically, perpendicular to both the rod and its velocity. Calculate the emf induced across the rod. [3]",
+      "solution": "**Model answer — full working.**\n\nThe field, the rod and the velocity are mutually perpendicular, so use the motional-emf relation $\\varepsilon = BvL$.  [M1: correct equation]\n\nList the data: $B = 0.60$ T, $v = 4.0$ m s⁻¹, $L = 0.25$ m.\n\nSubstitute:\n$\\varepsilon = 0.60 \\times 4.0 \\times 0.25$.  [M1: correct substitution]\n\n$\\varepsilon = 0.60$ V.  [A1: answer with unit]\n\n**Final answer:** the induced emf is $0.60$ V.\n\n**How the marks are earned:** M1 for selecting $\\varepsilon = BvL$ (justified because $B$, $v$ and $L$ are mutually perpendicular); M1 for substituting the three values correctly; A1 for the evaluated answer $0.60$ V with its unit. ECF applies — a correct method with a slipped final digit still keeps both method marks."
+    },
+    {
+      "type": "heading",
+      "content": "The alternating-current generator"
+    },
+    {
+      "type": "text",
+      "content": "A generator turns motion into electricity by rotating a coil in a magnetic field. As the coil of $N$ turns and area $A$ spins at a steady rate in a uniform field $B$, the angle $\\theta$ between the field and the coil's normal changes continuously, so the flux $\\Phi = BA\\cos\\theta$ rises and falls smoothly. By Faraday's law the induced emf follows the rate of change of this flux linkage, which is itself sinusoidal — so the output is an alternating emf that swings between a positive and a negative peak, reversing every half turn."
+    },
+    {
+      "type": "text",
+      "content": "The timing is the part students most often get wrong. The emf is greatest when the coil's plane lies along the field (the flux is momentarily zero but changing fastest as the field lines sweep across the turns) and the emf is zero when the coil's plane is perpendicular to the field (the flux is at its maximum but, for that instant, not changing). Peak emf and peak flux are always a quarter-cycle apart. Spinning the coil faster raises both the frequency and the peak emf, because the flux then changes more rapidly."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A coil rotating steadily in a uniform field produces a sinusoidal, alternating emf.",
+        "**Emf is maximum** when the coil's plane is parallel to the field (flux zero, but changing fastest).",
+        "**Emf is zero** when the coil's plane is perpendicular to the field (flux maximum, but momentarily not changing).",
+        "Rotating the coil faster increases both the frequency and the peak emf."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Transformers and the turns ratio"
+    },
+    {
+      "type": "text",
+      "content": "A transformer changes the voltage of an alternating supply. It has two coils wound on a shared iron core: a primary of $N_p$ turns fed by the input AC, and a secondary of $N_s$ turns delivering the output. The alternating primary current produces a continuously changing flux in the core; the core guides that same changing flux through the secondary, inducing an emf in it. Because both coils link the same changing flux per turn, the voltages are in the same ratio as the turns."
+    },
+    {
+      "type": "formula",
+      "content": "\\frac{V_s}{V_p} = \\frac{N_s}{N_p}"
+    },
+    {
+      "type": "text",
+      "content": "If the secondary has more turns than the primary the voltage is stepped up; if it has fewer, the voltage is stepped down. A transformer works only on alternating current, because a steady direct current gives a constant flux and hence no induced secondary emf."
+    },
+    {
+      "type": "text",
+      "content": "An ideal transformer transfers energy without loss, so the power delivered to the primary equals the power leaving the secondary. This links the currents to the voltages:"
+    },
+    {
+      "type": "formula",
+      "content": "V_p I_p = V_s I_s"
+    },
+    {
+      "type": "text",
+      "content": "Stepping the voltage up therefore steps the current down in the same ratio, and vice versa. This is why electricity is transmitted across the grid at very high voltage and low current: the power carried is the same, but the low current means far smaller heating losses ($P_{\\text{loss}} = I^2R$) in the transmission cables. Real transformers lose a little energy to resistance in the windings, to eddy currents and to repeatedly magnetising the core, but the ideal relations are an excellent first model."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Turns ratio:** $\\frac{V_s}{V_p} = \\frac{N_s}{N_p}$ — voltage scales with the number of turns.",
+        "**Step-up** ($N_s > N_p$) raises voltage; **step-down** ($N_s < N_p$) lowers it.",
+        "**Ideal power conservation:** $V_pI_p = V_sI_s$, so stepping voltage up steps current down in proportion.",
+        "Transformers operate on AC only; grid transmission uses high voltage and low current to cut $I^2R$ heating losses in the cables."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An ideal transformer steps a 230 V alternating mains supply down to 11.5 V for a low-voltage lamp. The primary coil has 2000 turns. (a) Calculate the number of turns on the secondary coil. (b) The lamp draws a current of 2.0 A. Calculate the current in the primary coil. [4]",
+      "solution": "**Model answer — full working.**\n\n**(a) Secondary turns.** Use the turns ratio $\\dfrac{V_s}{V_p} = \\dfrac{N_s}{N_p}$, rearranged for $N_s$:\n$N_s = N_p \\times \\dfrac{V_s}{V_p}$.  [M1: correct rearrangement]\n$N_s = 2000 \\times \\dfrac{11.5}{230} = 2000 \\times 0.050 = 100$ turns.  [A1: answer]\n\n**(b) Primary current.** For an ideal transformer power is conserved: $V_pI_p = V_sI_s$. Rearrange for $I_p$:\n$I_p = \\dfrac{V_sI_s}{V_p} = \\dfrac{11.5 \\times 2.0}{230}$.  [M1: power conservation with correct substitution]\n$I_p = \\dfrac{23}{230} = 0.10$ A.  [A1: answer with unit]\n\n**Final answer:** the secondary has $100$ turns and the primary current is $0.10$ A.\n\n**How the marks are earned:** part (a) — M1 for rearranging the turns ratio, A1 for $N_s = 100$. Part (b) — M1 for using $V_pI_p = V_sI_s$ with correct values, A1 for $I_p = 0.10$ A with its unit. ECF runs through part (b): a wrong $N_s$ does not affect it, and a correctly-followed calculation from a slipped earlier value still earns the answer mark on the student's own figure. Notice the sanity check: the voltage was stepped DOWN by a factor of 20, so the current is stepped UP by the same factor (from 0.10 A to 2.0 A)."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Confusing flux with flux linkage** — Faraday's law uses the flux linkage $N\\Phi$, so the factor $N$ must be included. Writing $\\varepsilon = \\frac{\\Delta\\Phi}{\\Delta t}$ without the number of turns loses marks.",
+        "**Using flux instead of the CHANGE in flux** — the emf depends on $\\Delta\\Phi = \\Phi_{\\text{final}} - \\Phi_{\\text{initial}}$ over $\\Delta t$, not on a single flux value. Always take the difference.",
+        "**Thinking a large steady flux induces an emf** — only the RATE of change of flux matters; a constant flux, however large, induces nothing.",
+        "**Measuring $\\theta$ from the wrong line** — in $\\Phi = BA\\cos\\theta$, $\\theta$ is the angle between the field and the NORMAL to the area, so flux is maximum when the field is perpendicular to the plane of the coil.",
+        "**Getting the generator timing backwards** — the emf is maximum when the flux is momentarily zero (changing fastest) and zero when the flux is maximum (momentarily not changing).",
+        "**Stating Lenz's law without the energy reason** — the induced current opposes the change BECAUSE energy is conserved; name the principle, do not just quote the rule.",
+        "**Inverting the transformer turns ratio** — keep the subscripts consistent, $\\frac{V_s}{V_p} = \\frac{N_s}{N_p}$; check whether the result is a sensible step-up or step-down.",
+        "**Forgetting that voltage up means current down** — for an ideal transformer $V_pI_p = V_sI_s$, so raising the voltage must lower the current in the same ratio."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Induction ties the fields you have already met into working technology. The magnetic flux defined here reappears wherever a circuit meets a changing field, and Faraday's and Lenz's laws govern inductors, eddy-current braking and the behaviour of AC circuits. The generator and transformer you have analysed are the two ends of the power grid — one making the alternating emf, the other reshaping its voltage for efficient transmission. Master the habit — identify what is changing, find $\\Delta\\Phi$, apply Faraday's law, then use Lenz's law and energy conservation to fix the direction — and the electromagnetism that follows becomes variations on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 2 calculation marked: solve an induction problem with full working",
+      "href": "/mark?subject=ib-physics-hl&topic=D.4&component=paper_2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/"
+        },
+        {
+          "label": "PhET Simulation: Faraday's Law",
+          "href": "https://phet.colorado.edu/en/simulations/faradays-law"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Faraday's Law",
+    "embedUrl": "https://phet.colorado.edu/sims/html/faradays-law/latest/faradays-law_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/faradays-law",
+    "hint": "Explore “Faraday's Law” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "D.4.1",
+      "title": "Lenz's law and Faraday's law",
+      "detail": "Describing induced e.m.f. using $\\varepsilon = -N \\frac{\\Delta \\Phi}{\\Delta t}$ and Lenz's law."
+    },
+    {
+      "code": "D.4.2",
+      "title": "Alternating current (ac) generators",
+      "detail": "Explaining the operation of ac generators and solving problems using $\\varepsilon = \\varepsilon_{max} \\sin(\\omega t)$."
+    },
+    {
+      "code": "D.4.3",
+      "title": "Transformers",
+      "detail": "Describing the structure and principle of ideal transformers, including power losses in real transformers."
+    },
+    {
+      "code": "D.4.4",
+      "title": "Diode bridges and rectification",
+      "detail": "Explaining the use of diode bridges for full-wave rectification and capacitor smoothing."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "d-4-induction-q1",
+      "prompt": "A small circular loop of wire is placed in a uniform magnetic field. The plane of the loop is initially perpendicular to the field lines. The loop is then rotated by $90^{\\circ}$ about an axis in the plane of the loop.\n\n(a) State Faraday's law of induction. [1]\n(b) Explain why an electromotive force (e.m.f.) is induced in the loop during the rotation. [2]",
+      "marks": 3,
+      "commandTerm": "State",
+      "difficulty": "foundation",
+      "syllabusRef": "D.4.1",
+      "paper": "P2",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) The magnitude of the induced e.m.f. is proportional to the rate of change of magnetic flux linkage.",
+          "marks": 1
+        },
+        {
+          "text": "(b) Rotating the loop changes the angle between the magnetic field and the area vector of the loop.",
+          "marks": 1
+        },
+        {
+          "text": "(b) This change in angle causes a change in magnetic flux (linkage), which induces an e.m.f. according to Faraday's law.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) Faraday's law of induction states that the magnitude of the induced electromotive force (e.m.f.) in a closed loop is directly proportional to the rate of change of magnetic flux linkage through the loop.\n\n(b) The magnetic flux $\\Phi$ through the loop is given by $\\Phi = BA \\cos \\theta$, where $\\theta$ is the angle between the magnetic field $\\vec{B}$ and the normal to the loop's area $\\vec{A}$. When the loop is rotated, the angle $\\theta$ changes. This causes the magnetic flux $\\Phi$ passing through the loop to change. According to Faraday's law, a changing magnetic flux induces an e.m.f. in the loop."
+    },
+    {
+      "id": "d-4-induction-q2",
+      "prompt": "A simple ac generator consists of a rectangular coil of 200 turns, each with an area of $5.0 \\times 10^{-3} \\text{ m}^2$. The coil rotates at a constant frequency of 50 Hz in a uniform magnetic field of strength 0.25 T.\n\n(a) Calculate the maximum magnetic flux linkage through the coil. [2]\n(b) Calculate the peak e.m.f. induced in the coil. [2]",
+      "marks": 4,
+      "commandTerm": "Calculate",
+      "difficulty": "standard",
+      "syllabusRef": "D.4.2",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) Use of formula for maximum flux linkage $\\Phi_{max} = NBA$.",
+          "marks": 1
+        },
+        {
+          "text": "(a) $\\Phi_{max} = 200 \\times 0.25 \\times 5.0 \\times 10^{-3} = 0.25 \\text{ Wb}$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) Use of formula for peak e.m.f. $\\varepsilon_{max} = 2\\pi f \\Phi_{max}$ or $\\varepsilon_{max} = 2\\pi f NBA$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) $\\varepsilon_{max} = 2\\pi(50) \\times 0.25 = 78.5 \\text{ V}$ (or 79 V).",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The maximum magnetic flux linkage occurs when the plane of the coil is perpendicular to the magnetic field. The formula is $\\Phi_{max} = NBA$.\n$\\Phi_{max} = (200) \\times (0.25 \\text{ T}) \\times (5.0 \\times 10^{-3} \\text{ m}^2)$\n$\\Phi_{max} = 0.25 \\text{ Wb}$.\n\n(b) The peak e.m.f. is related to the maximum flux linkage and the angular frequency $\\omega = 2\\pi f$. The formula is $\\varepsilon_{max} = \\omega \\Phi_{max} = 2\\pi f \\Phi_{max}$.\n$\\varepsilon_{max} = 2\\pi(50 \\text{ Hz}) \\times (0.25 \\text{ Wb})$\n$\\varepsilon_{max} = 78.539... \\text{ V} \\approx 79 \\text{ V}$ (to 2 s.f.)."
+    },
+    {
+      "id": "d-4-induction-q3",
+      "prompt": "An ideal step-down transformer is used to power a lamp rated at 12 V, 24 W from a 240 V mains supply.\n\n(a) Calculate the turns ratio, defined as the number of turns in the primary coil divided by the number of turns in the secondary coil ($N_p/N_s$). [2]\n(b) Determine the current in the primary coil when the lamp is operating at its rated power. [2]\n(c) Real transformers are not 100% efficient. Explain one mechanism of power loss in a real transformer and how its effect is minimised in the design. [2]",
+      "marks": 6,
+      "commandTerm": "Explain",
+      "difficulty": "standard",
+      "syllabusRef": "D.4.3",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) Correct use of ideal transformer voltage-turns relationship: $\\frac{N_p}{N_s} = \\frac{V_p}{V_s}$.",
+          "marks": 1
+        },
+        {
+          "text": "(a) $\\frac{N_p}{N_s} = \\frac{240 \\text{ V}}{12 \\text{ V}} = 20$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) For an ideal transformer, input power equals output power, so $P_p = P_s = 24 \\text{ W}$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) $I_p = \\frac{P_p}{V_p} = \\frac{24 \\text{ W}}{240 \\text{ V}} = 0.10 \\text{ A}$.",
+          "marks": 1
+        },
+        {
+          "text": "(c) Mechanism: Eddy currents are induced in the iron core due to the changing magnetic flux. Mitigation: The core is laminated (made of thin, insulated sheets) to increase its resistance and reduce the size of these currents.",
+          "marks": 2
+        }
+      ],
+      "modelAnswer": "(a) For an ideal transformer, the ratio of the voltages is equal to the ratio of the number of turns.\n$\\frac{N_p}{N_s} = \\frac{V_p}{V_s}$\n$\\frac{N_p}{N_s} = \\frac{240 \\text{ V}}{12 \\text{ V}} = 20$. The turns ratio is 20.\n\n(b) For an ideal transformer, the power is conserved, so the power in the primary coil equals the power in the secondary coil. The power of the lamp is $P_s = 24 \\text{ W}$.\nTherefore, $P_p = 24 \\text{ W}$.\nThe current in the primary coil is $I_p = \\frac{P_p}{V_p}$.\n$I_p = \\frac{24 \\text{ W}}{240 \\text{ V}} = 0.10 \\text{ A}$.\n\n(c) One mechanism of power loss is due to eddy currents. The changing magnetic flux in the transformer's core induces loops of current (eddy currents) within the core itself. These currents dissipate energy as heat due to the resistance of the core material ($P = I^2R$).\nTo minimise this loss, the core is constructed from thin layers of iron, called laminations, which are electrically insulated from each other. This construction increases the overall electrical resistance of the core perpendicular to the direction of the eddy currents, significantly reducing their magnitude and the associated power loss."
+    },
+    {
+      "id": "d-4-induction-q4",
+      "prompt": "The output of an ac generator is connected to the input of a full-wave diode bridge rectifier. A capacitor is then connected in parallel with a load resistor to smooth the output.\n\n(a) Sketch a graph showing the potential difference across the load resistor *without* the smoothing capacitor. Label the axes. [1]\n(b) On a new set of axes, sketch the potential difference across the load resistor *with* the smoothing capacitor, showing at least three cycles of the rectified input. [2]\n(c) The ac input has a root-mean-square (rms) voltage of 9.0 V and a frequency of 50 Hz. The load resistor is $1.0 \\text{ k}\\Omega$ and the smoothing capacitor has a capacitance of $100 \\text{ }\\mu\\text{F}$. Suggest, with calculations, why the smoothing is not perfect and results in a noticeable ripple voltage. [3]",
+      "marks": 6,
+      "commandTerm": "Suggest",
+      "difficulty": "challenge",
+      "syllabusRef": "D.4.4",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) Correctly shaped full-wave rectified sine curve (series of positive half-cycles). Axes labelled (e.g., Voltage / V vs Time / s).",
+          "marks": 1
+        },
+        {
+          "text": "(b) Sketch shows voltage rising to the peak and then decaying exponentially.",
+          "marks": 1
+        },
+        {
+          "text": "(b) The decay does not reach zero before the next peak, creating a 'ripple' effect. Axes are labelled.",
+          "marks": 1
+        },
+        {
+          "text": "(c) Calculation of the time constant of the RC circuit: $\\tau = RC = (1.0 \\times 10^3 \\Omega) \\times (100 \\times 10^{-6} \\text{ F}) = 0.10 \\text{ s}$.",
+          "marks": 1
+        },
+        {
+          "text": "(c) Calculation of the period of the *rectified* signal. Rectified frequency is $2 \\times 50 = 100 \\text{ Hz}$, so period $T_{rect} = 1/100 = 0.010 \\text{ s}$.",
+          "marks": 1
+        },
+        {
+          "text": "(c) The time constant $\\tau=0.10$ s is larger than, but not hugely larger than, the time between peaks ($T_{rect}=0.01$ s). This allows the capacitor to discharge noticeably in the interval between charging peaks, causing the ripple.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The graph should show a series of positive half-sine waves, with the negative half-cycles inverted to become positive. The potential difference repeatedly goes from 0 to a peak value and back to 0. The x-axis should be labelled 'Time' and the y-axis 'Potential Difference'.\n\n(b) The graph should show the potential difference rising to a peak value along with the rectified ac input. As the input voltage falls from its peak, the capacitor begins to discharge through the resistor, so the voltage across the load decreases exponentially. Before it can discharge completely, the input voltage from the next rectified half-cycle rises above the capacitor voltage and recharges it to the peak. This process repeats, creating a 'sawtooth'-like ripple on top of a DC voltage.\n\n(c) First, calculate the time constant of the capacitor-resistor circuit, which characterises the discharge time.\n$\\tau = RC = (1.0 \\times 10^3 \\Omega) \\times (100 \\times 10^{-6} \\text{ F}) = 0.10 \\text{ s}$.\nNext, determine the time between the peaks of the rectified voltage. A full-wave rectifier doubles the frequency of the ac input. \nInput frequency $f_{in} = 50 \\text{ Hz}$.\nRectified frequency $f_{rect} = 2 \\times 50 \\text{ Hz} = 100 \\text{ Hz}$.\nThe period between peaks is $T_{rect} = \\frac{1}{f_{rect}} = \\frac{1}{100 \\text{ Hz}} = 0.010 \\text{ s}$.\n\nSuggestion: Perfect smoothing would require the capacitor to hold its charge with very little drop between peaks. This would happen if the discharge time constant $\\tau$ was very much larger than the charging period $T_{rect}$. Here, $\\tau = 0.10 \\text{ s}$ and $T_{rect} = 0.010 \\text{ s}$. Since the time constant is only 10 times the period between peaks, the capacitor has a significant amount of time (relative to its discharge characteristics) to lose charge through the resistor before the next peak arrives to recharge it. This discharge is what causes the noticeable drop in voltage, known as the ripple voltage."
+    }
+  ]
+}

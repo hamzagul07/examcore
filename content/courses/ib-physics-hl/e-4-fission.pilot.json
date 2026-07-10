@@ -1,0 +1,525 @@
+{
+  "slug": "e-4-fission",
+  "topicCode": "E.4",
+  "unit": {
+    "code": "E",
+    "title": "Nuclear and quantum physics"
+  },
+  "title": "Fission",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "pilot",
+  "summary": "Fission is where the deep bookkeeping of the nucleus turns into usable energy. This lesson builds the full E.4 toolkit from the ground up: mass–energy equivalence ($E=mc^2$) and the mass defect, nuclear binding energy and binding energy per nucleon, and how the shape of the binding-energy curve — peaking near iron — explains why both fission and fusion release energy. It then works through induced fission of a heavy nucleus, the neutrons and energy released, the self-sustaining chain reaction, critical mass, and how a reactor is controlled with a moderator and control rods, before weighing the advantages and risks. Every worked example is laid out exactly the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "State mass–energy equivalence ($E=mc^2$) and use the mass defect of a nucleus to calculate its binding energy.",
+    "Define binding energy per nucleon and use the binding-energy curve to explain why iron is the most stable nucleus and why both fission and fusion can release energy.",
+    "Describe induced nuclear fission, including the role of a neutron and the release of further neutrons and energy, and balance a fission equation.",
+    "Explain the chain reaction, critical mass, and how the moderator and control rods control a reactor, and outline the advantages and risks of nuclear power.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "E.4"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
+  "simpleExplanation": {
+    "title": "Where the Energy Hides",
+    "summary": "The particles inside a nucleus are held together, and pulling them apart costs energy — the binding energy. A nucleus is actually slightly lighter than its separated parts, and that 'missing' mass is the binding energy in disguise, through $E=mc^2$. Fission rearranges nucleons into more tightly bound nuclei, and the leftover mass appears as a huge burst of energy.",
+    "analogy": "Think of the nucleons as marbles sitting in a valley. The deeper the valley, the more tightly they are held and the harder they are to lift out — that depth is the binding energy per nucleon. Iron sits at the very bottom of the valley, the most stable of all. A heavy uranium nucleus sits higher up one side; when it splits, its nucleons roll down towards the deep iron valley, and the drop in height is released as energy.",
+    "steps": [
+      "Add up the masses of all the separate protons and neutrons in a nucleus.",
+      "Compare with the actual mass of the nucleus — it is a little smaller. The difference is the mass defect $\\Delta m$.",
+      "Convert that missing mass to energy with $E = \\Delta m c^2$: this is the binding energy holding the nucleus together.",
+      "In fission, the products are more tightly bound than the original nucleus, so mass is lost overall and released as the kinetic energy of the fragments and neutrons."
+    ]
+  },
+  "keyConcepts": [
+    "mass–energy equivalence",
+    "binding energy per nucleon",
+    "chain reaction"
+  ],
+  "flashcards": [
+    {
+      "front": "Mass–energy equivalence",
+      "back": "Mass and energy are two forms of the same thing, linked by $E = mc^2$. A change in mass $\\Delta m$ corresponds to an energy $\\Delta E = \\Delta m c^2$. Because $c^2$ is enormous, a tiny mass change releases a huge energy.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Mass defect ($\\Delta m$)",
+      "back": "The difference between the total mass of the separated protons and neutrons and the actual (smaller) mass of the nucleus they form. This 'missing' mass is equivalent to the binding energy.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Nuclear binding energy",
+      "back": "The energy needed to completely separate a nucleus into its individual protons and neutrons — equivalently, the energy released when those nucleons come together to form the nucleus. Calculated as $E = \\Delta m c^2$.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Binding energy per nucleon",
+      "back": "Total binding energy divided by the number of nucleons ($A$). It measures how tightly, on average, each nucleon is held. A HIGHER value means a MORE stable nucleus.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "The binding-energy-per-nucleon curve",
+      "back": "Plotted against nucleon number, it rises steeply for light nuclei, peaks around iron ($^{56}$Fe, ≈ 8.8 MeV per nucleon), then falls slowly for heavy nuclei. The peak marks the most stable nuclei.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Why iron is the most stable nucleus",
+      "back": "Iron sits at the maximum of the binding-energy-per-nucleon curve, so its nucleons are the most tightly bound on average. Neither fission nor fusion of iron releases energy — it is the endpoint both processes move towards.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Why fission releases energy",
+      "back": "A heavy nucleus lies to the RIGHT of the peak. Splitting it gives medium-mass fragments with HIGHER binding energy per nucleon (more stable). The increased binding means mass is lost, released as energy via $E = \\Delta m c^2$.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Why fusion releases energy",
+      "back": "Very light nuclei lie to the LEFT of the peak. Joining them gives a nucleus with higher binding energy per nucleon, so again mass is lost and energy released. Both fission and fusion move nucleons towards the iron peak.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Induced fission",
+      "back": "Fission triggered when a heavy nucleus (e.g. $^{235}$U) absorbs a slow-moving (thermal) neutron, forming a highly excited nucleus that splits into two lighter fragments plus, typically, two or three neutrons and energy.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Chain reaction",
+      "back": "A self-sustaining sequence of fissions in which neutrons released by one fission trigger further fissions. Whether it grows, holds steady or dies out is set by how many of those neutrons go on to cause another fission.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Critical mass",
+      "back": "The minimum mass of fissile material needed to sustain a chain reaction. Below it, too many neutrons escape through the surface before causing a fission and the reaction dies out.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Moderator vs control rods",
+      "back": "A MODERATOR (water, graphite) SLOWS neutrons to thermal speeds so U-235 can capture them — it does not absorb them. CONTROL RODS (boron, cadmium) ABSORB neutrons to lower the fission rate. Never confuse the two.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: 'lower binding energy = more stable'",
+      "back": "The reverse is true. HIGHER binding energy per nucleon means MORE stable. Fission and fusion both go towards higher binding energy per nucleon (up the curve towards iron).",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: energy 'comes from the neutron'",
+      "back": "The neutron only triggers fission. The energy comes from the increase in nuclear binding energy — the products are more tightly bound than the reactants, so overall mass is lost and converted to energy.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Which nucleus is the most stable?",
+      "options": [
+        "The one with the largest total binding energy",
+        "The one with the largest binding energy per nucleon",
+        "The one with the smallest binding energy per nucleon",
+        "The one with the greatest number of nucleons"
+      ],
+      "answer": "The one with the largest binding energy per nucleon"
+    },
+    {
+      "prompt": "Fission of a heavy nucleus releases energy because the fission products have:",
+      "options": [
+        "A lower binding energy per nucleon than the original nucleus",
+        "A higher binding energy per nucleon than the original nucleus",
+        "The same binding energy per nucleon as the original nucleus",
+        "A greater total mass than the original nucleus"
+      ],
+      "answer": "A higher binding energy per nucleon than the original nucleus"
+    },
+    {
+      "prompt": "In an induced fission reaction, the role of the incident neutron is to:",
+      "options": [
+        "Supply most of the energy that is released",
+        "Increase the binding energy of the products",
+        "Be absorbed by a heavy nucleus and trigger it to split",
+        "Slow down so the reaction can stop"
+      ],
+      "answer": "Be absorbed by a heavy nucleus and trigger it to split"
+    },
+    {
+      "prompt": "The energy released in fission comes from:",
+      "options": [
+        "The kinetic energy the neutron brings in",
+        "A mass defect between reactants and products, via $E=mc^2$",
+        "Chemical bonds breaking inside the nucleus",
+        "The moderator slowing the neutrons"
+      ],
+      "answer": "A mass defect between reactants and products, via $E=mc^2$"
+    },
+    {
+      "prompt": "For a steady, controlled chain reaction in a reactor, on average each fission should cause:",
+      "options": [
+        "No further fissions",
+        "Exactly one further fission",
+        "Two or three further fissions",
+        "As many further fissions as possible"
+      ],
+      "answer": "Exactly one further fission"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is a nucleus lighter than its separate protons and neutrons?",
+      "a": "Because forming the nucleus releases binding energy, and by $E=mc^2$ releasing energy means losing mass. To pull the nucleons apart again you would have to put that same energy back in. So the assembled nucleus is always slightly lighter than the sum of its parts, and that difference — the mass defect — is exactly the binding energy divided by $c^2$."
+    },
+    {
+      "q": "If both fission and fusion release energy, why can't we get energy from iron?",
+      "a": "Iron sits at the very top of the binding-energy-per-nucleon curve, so its nucleons are already the most tightly bound. Fission and fusion both release energy only when they move nucleons UP the curve towards greater binding energy per nucleon. From iron there is nowhere higher to go: splitting it or fusing it would require energy input, not release it."
+    },
+    {
+      "q": "Why must the neutrons in a reactor be slowed down?",
+      "a": "The neutrons released by fission are fast, and a U-235 nucleus is far more likely to capture a slow (thermal) neutron than a fast one. The moderator slows the neutrons through repeated collisions, greatly increasing the chance that they are captured and cause a further fission — which is what keeps the chain reaction going."
+    },
+    {
+      "q": "What decides whether a chain reaction grows, holds steady, or dies?",
+      "a": "The average number of neutrons from each fission that go on to cause another fission. If that number is less than one the reaction dies out (sub-critical); if it is exactly one the reaction is steady (critical) — the operating state of a power reactor; if it is more than one the rate grows exponentially (super-critical). Control rods let operators tune this number by absorbing neutrons."
+    },
+    {
+      "q": "What are the main advantages and risks of nuclear fission power?",
+      "a": "Advantages: very high energy density (a small mass of fuel yields enormous energy), reliable large-scale output, and almost no carbon dioxide emitted during operation. Risks: highly radioactive waste that stays dangerous for thousands of years, the possibility of an accident releasing radioactive material, and the security concern that the technology overlaps with weapons material."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Nuclear fission turns a subtle piece of nuclear bookkeeping into one of the most concentrated energy sources we know. The key idea is that mass itself carries energy, and that the particles in a nucleus are bound together so tightly that rearranging them into a more stable configuration frees a spectacular amount of that energy. This lesson starts with mass–energy equivalence and binding energy, uses the binding-energy curve to explain why fission (and fusion) release energy at all, then follows the fission of a heavy nucleus through to a controlled chain reaction in a reactor. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "Mass–energy equivalence and the mass defect"
+    },
+    {
+      "type": "text",
+      "content": "Einstein's mass–energy equivalence states that mass and energy are interchangeable, related by $E = mc^2$. Because the speed of light $c \\approx 3.0 \\times 10^8$ m s⁻¹ is so large, $c^2$ is about $9 \\times 10^{16}$, so even a minute change in mass corresponds to a very large energy. This is why nuclear processes, which convert a tiny fraction of a percent of the mass, release millions of times more energy per event than chemical reactions."
+    },
+    {
+      "type": "text",
+      "content": "If you weigh a nucleus carefully, it is always slightly lighter than the sum of the masses of its separate protons and neutrons. This difference is the mass defect, $\\Delta m$. It is not that mass has vanished: forming the nucleus released energy, and by $E=mc^2$ that released energy shows up as reduced mass. Masses at this scale are usually quoted in unified atomic mass units (u), where $1\\text{ u} = 1.661 \\times 10^{-27}$ kg, and the handy conversion $1\\text{ u} = 931.5$ MeV$c^{-2}$ lets you turn a mass defect straight into an energy."
+    },
+    {
+      "type": "heading",
+      "content": "Binding energy and binding energy per nucleon"
+    },
+    {
+      "type": "text",
+      "content": "The binding energy of a nucleus is the energy that would be needed to pull it completely apart into free protons and neutrons — equivalently, the energy released when those nucleons come together. It is simply the mass defect expressed as energy: $E_\\text{binding} = \\Delta m\\,c^2$. A larger binding energy means a more tightly held nucleus, but total binding energy is not itself a fair measure of stability, because bigger nuclei naturally have more of it just by having more nucleons."
+    },
+    {
+      "type": "text",
+      "content": "The fair measure is the binding energy per nucleon: the total binding energy divided by the nucleon number $A$. This tells you how tightly, on average, each individual nucleon is bound, and it is the single most important quantity in this topic. The rule to memorise: the higher the binding energy per nucleon, the more stable the nucleus."
+    },
+    {
+      "type": "workedExample",
+      "question": "Helium-4 ($^{4}_{2}\\text{He}$) has a nucleus made of 2 protons and 2 neutrons. Using $m_\\text{proton} = 1.00728$ u, $m_\\text{neutron} = 1.00867$ u and a nuclear mass of $4.00151$ u, calculate (a) the mass defect, (b) the binding energy in MeV, and (c) the binding energy per nucleon. (Use $1\\text{ u} = 931.5$ MeV$c^{-2}$.) [4]",
+      "solution": "**(a) Mass defect.** Add the separate nucleon masses, then subtract the nuclear mass.\n$\\text{Sum} = 2(1.00728) + 2(1.00867) = 2.01456 + 2.01734 = 4.03190$ u.\n$\\Delta m = 4.03190 - 4.00151 = 0.03039$ u.  [M1: correct subtraction]\n\n**(b) Binding energy.** Convert the mass defect straight to energy.\n$E = 0.03039 \\times 931.5 = 28.3$ MeV.  [A1: energy in MeV]\n\n**(c) Binding energy per nucleon.** Divide by $A = 4$.\n$\\dfrac{28.3}{4} = 7.08$ MeV per nucleon.  [M1: divide by nucleon number]  [A1: value with unit]\n\n**Final answer:** $\\Delta m = 0.0304$ u; binding energy $\\approx 28.3$ MeV; about $7.1$ MeV per nucleon — close to the value for stable light nuclei."
+    },
+    {
+      "type": "heading",
+      "content": "The binding-energy curve: why iron is king"
+    },
+    {
+      "type": "text",
+      "content": "Plot binding energy per nucleon against nucleon number and you get the single most useful graph in nuclear physics. It rises steeply for the lightest nuclei, climbs to a broad maximum around iron ($^{56}\\text{Fe}$, at roughly 8.8 MeV per nucleon), then declines slowly for the heaviest nuclei such as uranium (around 7.6 MeV per nucleon). The peak marks the most tightly bound, most stable nuclei of all — which is why iron and nickel are so abundant as the end products of stellar nuclear burning."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**The peak (near iron):** highest binding energy per nucleon, so the most stable nuclei. There is nowhere 'more bound' to go, so iron releases energy in neither fission nor fusion.",
+        "**Right of the peak (heavy nuclei):** splitting a heavy nucleus into medium-mass fragments moves UP the curve — the products are more tightly bound, mass is lost, and energy is released. This is **fission**.",
+        "**Left of the peak (light nuclei):** joining light nuclei also moves UP the curve towards greater binding per nucleon, again releasing energy. This is **fusion**.",
+        "**The unifying idea:** both fission and fusion release energy by moving nucleons towards the iron peak — towards higher binding energy per nucleon."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The total binding energy of an iron-56 nucleus is about 492 MeV, and that of a uranium-235 nucleus is about 1784 MeV. Show, using binding energy per nucleon, why iron-56 is the more stable nucleus. [3]",
+      "solution": "**Compute binding energy per nucleon for each — total binding energy alone is misleading because uranium simply has more nucleons.**\n\nIron-56: $\\dfrac{492}{56} = 8.79$ MeV per nucleon.  [M1: divide by $A$ for iron]\n\nUranium-235: $\\dfrac{1784}{235} = 7.59$ MeV per nucleon.  [M1: divide by $A$ for uranium]\n\nIron-56 has the higher binding energy per nucleon (8.79 MeV vs 7.59 MeV), so each of its nucleons is held more tightly on average. A higher binding energy per nucleon means a more stable nucleus, so iron-56 is more stable than uranium-235.  [A1: correct comparison and conclusion]\n\n**Note:** uranium has the larger TOTAL binding energy (1784 MeV), which is exactly why you must divide by nucleon number before comparing stability."
+    },
+    {
+      "type": "heading",
+      "content": "Nuclear fission"
+    },
+    {
+      "type": "text",
+      "content": "Certain heavy nuclei can be made to split. For uranium-235, the fuel in most reactors, induced fission happens when the nucleus absorbs a slow-moving thermal neutron. The neutron's capture forms a highly excited uranium-236 nucleus that deforms, oscillates, and splits into two lighter fragments, releasing typically two or three further neutrons and a large amount of energy. The fragments are not fixed — many different pairs can form — and they emerge with enormous kinetic energy, which is ultimately the heat we harness."
+    },
+    {
+      "type": "formula",
+      "content": "A representative fission reaction is:\n$$^{1}_{0}n + {}^{235}_{92}\\text{U} \\rightarrow [{}^{236}_{92}\\text{U}]^* \\rightarrow {}^{141}_{56}\\text{Ba} + {}^{92}_{36}\\text{Kr} + 3\\,{}^{1}_{0}n + \\text{energy}$$"
+    },
+    {
+      "type": "text",
+      "content": "Notice how the reaction obeys two conservation rules that let you balance any fission equation. The top numbers (nucleon number $A$) must balance: $1 + 235 = 141 + 92 + 3(1) = 236$. The bottom numbers (proton number $Z$) must balance: $0 + 92 = 56 + 36 + 0 = 92$. The energy released comes not from the neutron but from the increase in binding energy: the fragments sit higher up the binding-energy curve than uranium, so overall a small mass is lost and converted to energy through $E = \\Delta m c^2$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Balance the fission reaction $^{1}_{0}n + {}^{235}_{92}\\text{U} \\rightarrow {}^{141}_{56}\\text{Ba} + {}^{A}_{Z}\\text{Kr} + 3\\,{}^{1}_{0}n$ by finding the nucleon number $A$ and proton number $Z$ of the krypton nucleus, and name the reaction's other products. [3]",
+      "solution": "**Conserve nucleon number (top numbers).**\n$1 + 235 = 141 + A + 3(1)$\n$236 = 144 + A$\n$A = 236 - 144 = 92$.  [M1: nucleon-number balance]\n\n**Conserve proton number (bottom numbers).**\n$0 + 92 = 56 + Z + 3(0)$\n$Z = 92 - 56 = 36$.  [A1: proton number]\n\nSo the krypton isotope is $^{92}_{36}\\text{Kr}$.  The reaction also releases 3 neutrons and a large amount of energy (mainly as kinetic energy of the fragments and neutrons).  [A1: complete, correct products]\n\n**Check:** top numbers $236 = 141 + 92 + 3$ ✓; bottom numbers $92 = 56 + 36$ ✓."
+    },
+    {
+      "type": "heading",
+      "content": "Chain reaction, critical mass and control"
+    },
+    {
+      "type": "text",
+      "content": "The reason fission can power a reactor is that each event releases more neutrons, which can trigger further fissions — a chain reaction. Whether it grows, holds steady or fades depends on the average number of neutrons per fission that go on to cause another fission."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Sub-critical (fewer than one further fission each):** the reaction dies out — too many neutrons escape or are absorbed without causing fission.",
+        "**Critical (exactly one further fission each):** the reaction is self-sustaining at a steady rate. This is the operating state of a nuclear power reactor.",
+        "**Super-critical (more than one further fission each):** the rate grows exponentially — an uncontrolled, runaway release of energy."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "To sustain a chain reaction there must be enough fissile material packed closely enough that neutrons find another nucleus before escaping through the surface. The minimum amount is the critical mass. Below it, too many neutrons leak out and the reaction cannot sustain itself; the critical mass depends on the material's purity, density and shape (a sphere, with the least surface area for its volume, needs the least mass)."
+    },
+    {
+      "type": "text",
+      "content": "A reactor is a machine for holding a chain reaction exactly at critical ($k=1$) so it produces heat at a steady rate. Two components make this possible. The moderator (water or graphite) slows the fast fission neutrons to thermal speeds, because U-235 captures slow neutrons far more readily than fast ones — the moderator does not absorb neutrons, it only slows them. The control rods (boron or cadmium) absorb neutrons, and operators raise or lower them to tune the fission rate precisely: pushed in, they soak up neutrons and slow the reaction; withdrawn, they let it speed up."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Fuel rods:** contain the fissile material — usually uranium enriched to raise its U-235 fraction.",
+        "**Moderator:** slows fast neutrons to thermal speeds so U-235 can capture them. Slows, does not absorb.",
+        "**Control rods:** absorb neutrons; raised or lowered to control the reaction rate and hold it at $k=1$.",
+        "**Coolant and heat exchanger:** carry the fission heat away to boil water into steam, which drives turbines; the heat exchanger keeps the radioactive primary coolant separate.",
+        "**Containment:** a thick concrete-and-steel shell to prevent the escape of radioactive material."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Be surgical about the moderator and the control rods — examiners penalise mixing them up more than almost anything else in this topic. Moderator = SLOWS neutrons (does not absorb them). Control rods = ABSORB neutrons (do not slow them). And remember the energy comes from the increase in binding energy, not from the neutron: the products are more tightly bound, so mass is lost."
+    },
+    {
+      "type": "heading",
+      "content": "Advantages and risks"
+    },
+    {
+      "type": "text",
+      "content": "Fission's appeal is its energy density: a few kilograms of uranium can release as much energy as thousands of tonnes of coal, with essentially no carbon dioxide emitted during operation, and it delivers steady large-scale output regardless of weather. Against that stand real risks: the fission fragments are intensely radioactive and some remain dangerous for thousands of years, demanding secure long-term storage; a serious accident can release radioactive material over a wide area; and the same technology and materials overlap with nuclear weapons, raising security and proliferation concerns. Weighing these trade-offs is exactly the kind of evaluation an exam question may ask you to make."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Thinking lower binding energy per nucleon means more stable** — it is the reverse. HIGHER binding energy per nucleon means MORE stable, and both fission and fusion move nucleons towards higher binding energy per nucleon (up towards iron).",
+        "**Comparing stability using total binding energy** — always divide by nucleon number first. Uranium has a larger total binding energy than iron yet is less stable, because per nucleon it is bound less tightly.",
+        "**Claiming the energy comes from the neutron** — the neutron only triggers the split. The energy comes from the increase in binding energy: the products are more tightly bound, so a small mass is lost and released via $E = \\Delta m c^2$.",
+        "**Forgetting that fission needs a neutron and produces more** — induced fission is started by an absorbed neutron and releases two or three, which is precisely what makes a chain reaction possible.",
+        "**Confusing the moderator with the control rods** — the moderator SLOWS neutrons; control rods ABSORB them. State the correct role explicitly.",
+        "**Not balancing a fission equation** — the nucleon numbers (top) and the proton numbers (bottom) must each balance separately; check both before quoting a product.",
+        "**Dropping units or over-rounding mid-calculation** — carry extra figures through the working, and quote the final energy with its unit (J or MeV) and a sensible number of significant figures."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an answer mark (A) — and error-carried-forward (ECF) means a wrong number early on does not have to cost you the marks that follow. But that protection only exists if your method is written down. Study how each mark below is earned by a specific line in a mass-defect calculation, where the substitution, the joules answer and the MeV conversion are each marked separately."
+    },
+    {
+      "type": "workedExample",
+      "question": "In a nuclear reaction the mass defect is $3.2 \\times 10^{-28}$ kg. Calculate the energy released, in joules and in MeV. (Take $c = 3.0 \\times 10^8$ m s⁻¹ and $1\\text{ MeV} = 1.6 \\times 10^{-13}$ J.) [3]",
+      "solution": "**Model answer — full working.**\n\n**Energy in joules — apply mass–energy equivalence.**\nUse $E = mc^2$ with the mass defect as $m$.\n$E = (3.2 \\times 10^{-28}) \\times (3.0 \\times 10^8)^2$\n$E = (3.2 \\times 10^{-28}) \\times (9.0 \\times 10^{16})$\n$E = 2.88 \\times 10^{-11}\\text{ J} \\approx 2.9 \\times 10^{-11}\\text{ J}$.\n\n**Energy in MeV — convert.**\n$E = \\dfrac{2.88 \\times 10^{-11}}{1.6 \\times 10^{-13}} = 180\\text{ MeV}$.\n\n**Final answer:** about $2.9 \\times 10^{-11}$ J, which is $180$ MeV.\n\n---\n**How our marking engine awards the 3 marks:**\n\n- **M1 — correct use of $E = mc^2$.** Awarded for substituting the mass defect and $c$ into $E = mc^2$: $E = (3.2 \\times 10^{-28}) \\times (3.0 \\times 10^8)^2$. This is a METHOD mark — earned for the correct approach even if the arithmetic later slips, and in particular for squaring $c$ rather than just multiplying by it.\n- **A1 — energy in joules.** Awarded for $E \\approx 2.9 \\times 10^{-11}$ J (accept $2.88 \\times 10^{-11}$ J). The engine accepts the answer whether or not you rounded, as long as it is correctly rounded with the unit.\n- **A1 — conversion to MeV.** Awarded for dividing the joules value by $1.6 \\times 10^{-13}$ to reach $180$ MeV. Here ECF protects you: if your joules figure in the previous step was wrong but you divide YOUR value by $1.6 \\times 10^{-13}$ correctly, this mark still stands on your own figure.\n\n**'Accept answers that round correctly.'** The engine accepts $2.9 \\times 10^{-11}$ J or $2.88 \\times 10^{-11}$ J, and $180$ MeV — it does not demand a fixed number of decimal places, only a correctly-rounded final value with the right unit.\n\n**Bottom line:** of the 3 marks, the method mark survives an arithmetic slip and the conversion mark is shielded by ECF. A student who writes only '180 MeV' with no working risks losing the method mark and the joules mark if any number is wrong; a student who shows $E = mc^2$, the substitution, the joules value and the conversion keeps the marks even when the final digit slips."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: write $E = mc^2$, show the substitution with $c$ squared, give the answer in joules with its unit, then show the division to convert to MeV. The method mark and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The single idea behind this whole topic — that stability is measured by binding energy per nucleon, and that moving up that curve releases energy — carries directly into fusion, the process that powers the Sun and the stars, where light nuclei on the left of the curve join to release even more energy per nucleon than fission. The mass–energy equivalence you used here reappears throughout modern physics, from particle production to the energy of the Sun. Master the habit — find the mass defect, convert with $E = mc^2$, compare stability per nucleon, balance every equation — and both fission and fusion become variations on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 2 calculation marked: solve a mass-defect energy problem with full working",
+      "href": "/mark?subject=ib-physics-hl&topic=E.4&component=paper_2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/"
+        },
+        {
+          "label": "PhET Simulation: Nuclear Fission",
+          "href": "https://phet.colorado.edu/en/simulations/nuclear-fission"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Nuclear Fission",
+    "embedUrl": "https://phet.colorado.edu/sims/html/nuclear-fission/latest/nuclear-fission_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/nuclear-fission",
+    "hint": "Explore “Nuclear Fission” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "E.4.1",
+      "title": "The fission process",
+      "detail": "Mechanism of induced fission, typically of $^{235}\\text{U}$ by a thermal neutron."
+    },
+    {
+      "code": "E.4.2",
+      "title": "Mass–energy equivalence in fission",
+      "detail": "Calculating the energy released in a fission reaction using mass defect and $E = \\Delta m c^2$."
+    },
+    {
+      "code": "E.4.3",
+      "title": "Fission chain reactions",
+      "detail": "The concept of criticality ($k$-factor) and the role of neutrons in sustaining a reaction."
+    },
+    {
+      "code": "E.4.4",
+      "title": "Fission power plants",
+      "detail": "The function of key components: fuel, moderator, control rods, heat exchanger, and shielding."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "e-4-fission-q1",
+      "prompt": "In a nuclear fission power plant, state the function of:\n(a) the moderator\n(b) the control rods\n(c) the heat exchanger",
+      "marks": 3,
+      "commandTerm": "State",
+      "difficulty": "foundation",
+      "syllabusRef": "E.4.4",
+      "paper": "P2",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) Slows down fast neutrons produced during fission to thermal energies/speeds.",
+          "marks": 1
+        },
+        {
+          "text": "(b) Absorb neutrons to control the rate of the chain reaction.",
+          "marks": 1
+        },
+        {
+          "text": "(c) Transfers thermal energy from the primary coolant (from the reactor core) to water, which turns into steam to drive a turbine.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The main components of a nuclear reactor have specific functions to control the fission process and harness its energy.\n(a) The moderator's function is to slow down the high-energy (fast) neutrons produced in fission events. By reducing their kinetic energy to thermal levels, it significantly increases the probability of them being captured by other U-235 nuclei, thus sustaining the chain reaction.\n(b) The control rods, typically made of neutron-absorbing materials like boron or cadmium, are used to regulate the rate of the fission reaction. By inserting them into the reactor core, more neutrons are absorbed, and the reaction rate decreases. By withdrawing them, the rate increases.\n(c) The heat exchanger is a device that transfers thermal energy from the very hot fluid (coolant) circulating through the reactor core to a separate circuit of water. This water boils, producing high-pressure steam, which is then used to spin a turbine and generate electricity."
+    },
+    {
+      "id": "e-4-fission-q2",
+      "prompt": "One possible fission reaction for uranium-235 is:\n$_{92}^{235}\\text{U} + _0^1\\text{n} \\rightarrow _{56}^{141}\\text{Ba} + _{36}^{92}\\text{Kr} + 3_0^1\\text{n}$\nGiven the following rest masses:\n- Uranium-235: 235.04393 u\n- Barium-141: 140.91441 u\n- Krypton-92: 91.92615 u\n- Neutron: 1.00866 u\n\nCalculate the energy released, in MeV, in this single fission event. (1 u = 931.5 MeV c⁻²)",
+      "marks": 4,
+      "commandTerm": "Calculate",
+      "difficulty": "standard",
+      "syllabusRef": "E.4.2",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) Correctly calculates the total mass of the reactants: $m_{reactants} = 235.04393\\text{ u} + 1.00866\\text{ u} = 236.05259\\text{ u}$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Correctly calculates the total mass of the products: $m_{products} = 140.91441\\text{ u} + 91.92615\\text{ u} + 3(1.00866\\text{ u}) = 235.86654\\text{ u}$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Correctly calculates the mass defect (mass difference): $\\Delta m = m_{reactants} - m_{products} = 236.05259 - 235.86654 = 0.18605\\text{ u}$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Correctly converts mass defect to energy in MeV: $E = 0.18605 \\times 931.5 = 173.29\\dots \\approx 173.3\\text{ MeV}$. (Answer must be to at least 3 s.f.)",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "To find the energy released, we first need to calculate the mass defect, $\\Delta m$, which is the difference between the total mass of the reactants and the total mass of the products. The energy released is then given by $E = \\Delta m c^2$.\n\n1.  **Calculate the mass of the reactants:**\n    The reactants are one uranium-235 nucleus and one neutron.\n    $m_{reactants} = m(^{235}\\text{U}) + m(\\text{n}) = 235.04393\\text{ u} + 1.00866\\text{ u} = 236.05259\\text{ u}$\n\n2.  **Calculate the mass of the products:**\n    The products are one barium-141 nucleus, one krypton-92 nucleus, and three neutrons.\n    $m_{products} = m(^{141}\\text{Ba}) + m(^{92}\\text{Kr}) + 3 \\times m(\\text{n})$\n    $m_{products} = 140.91441\\text{ u} + 91.92615\\text{ u} + 3(1.00866\\text{ u}) = 232.84056\\text{ u} + 3.02598\\text{ u} = 235.86654\\text{ u}$\n\n3.  **Calculate the mass defect, $\\Delta m$:**\n    $\\Delta m = m_{reactants} - m_{products} = 236.05259\\text{ u} - 235.86654\\text{ u} = 0.18605\\text{ u}$\n\n4.  **Convert mass defect to energy in MeV:**\n    Using the conversion factor 1 u = 931.5 MeV c⁻²:\n    $E = \\Delta m \\times 931.5\\text{ MeV/u} = 0.18605\\text{ u} \\times 931.5\\text{ MeV/u} = 173.294325\\text{ MeV}$\n\n    Rounding to four significant figures (consistent with the least precise mass data), the energy released is **173.3 MeV**."
+    },
+    {
+      "id": "e-4-fission-q3",
+      "prompt": "Explain the concept of a chain reaction in the context of uranium fission. Your explanation should refer to the multiplication factor, $k$, and distinguish between subcritical, critical, and supercritical conditions.",
+      "marks": 4,
+      "commandTerm": "Explain",
+      "difficulty": "standard",
+      "syllabusRef": "E.4.3",
+      "paper": "P2",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(M1) A chain reaction occurs because each fission event (e.g., of U-235) releases several neutrons.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) These released neutrons can then go on to induce further fission in other nuclei, releasing more neutrons in a self-propagating process.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) The multiplication factor, $k$, is defined as the average number of neutrons from one fission that cause a subsequent fission.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) If $k < 1$ the reaction is subcritical and dies out. If $k = 1$ the reaction is critical and self-sustaining at a constant rate. If $k > 1$ the reaction is supercritical and the rate of fission increases exponentially.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "A chain reaction in uranium fission is a self-sustaining process. It begins when a neutron is absorbed by a fissile nucleus, such as uranium-235, causing it to split. This single fission event releases a large amount of energy and, crucially, several new high-energy neutrons (typically 2 or 3).\n\nThese newly released neutrons can then be absorbed by other nearby uranium-235 nuclei, causing them to undergo fission as well. Each of these subsequent fissions also releases more neutrons, which can trigger even more fissions. This cascading effect is the chain reaction.\n\nThe progression of the chain reaction is described by the neutron multiplication factor, $k$. This factor is the average number of neutrons produced by one fission event that go on to cause another fission event.\n\nThere are three possible conditions based on the value of $k$:\n- **Subcritical ($k < 1$):** On average, less than one neutron from each fission causes another fission. The number of fissions per unit time decreases, and the chain reaction will eventually stop.\n- **Critical ($k = 1$):** On average, exactly one neutron from each fission causes another fission. The number of fissions per unit time is constant, leading to a steady, controlled release of energy. This is the desired state for a nuclear power reactor operating at constant power.\n- **Supercritical ($k > 1$):** On average, more than one neutron from each fission causes another fission. The number of fissions per unit time increases exponentially, leading to a rapid and massive release of energy, as required for a nuclear weapon."
+    },
+    {
+      "id": "e-4-fission-q4",
+      "prompt": "A nuclear reactor is designed to use Uranium-235 as fuel. The neutrons produced in fission events have an average kinetic energy of around 2 MeV. However, the probability of these fast neutrons inducing fission in other U-235 nuclei is very low. The probability is much higher for thermal neutrons (with energies around 0.025 eV).\n\n(a) Outline why a moderator is essential for a sustained chain reaction in this type of reactor. [2]\n(b) Suggest two properties of a material that would make it an effective moderator, justifying each property. [3]",
+      "marks": 5,
+      "commandTerm": "Suggest",
+      "difficulty": "challenge",
+      "syllabusRef": "E.4.1",
+      "paper": "P2",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) (M1) The fast neutrons produced by fission have a low probability of causing further fission in U-235.",
+          "marks": 1
+        },
+        {
+          "text": "(a) (A1) The moderator slows these neutrons down to thermal energies, where the probability of inducing fission is much higher, thus allowing a critical ($k=1$) chain reaction to be sustained.",
+          "marks": 1
+        },
+        {
+          "text": "(b) (M1) Property 1: Nuclei with low mass / similar mass to a neutron.",
+          "marks": 1
+        },
+        {
+          "text": "(b) (M1) Justification: In an elastic collision, the maximum transfer of kinetic energy occurs when the colliding particles have similar mass. Therefore, light nuclei slow down neutrons efficiently in fewer collisions.",
+          "marks": 1
+        },
+        {
+          "text": "(b) (M1) Property 2: Low neutron absorption cross-section / low probability of absorbing neutrons. Justification: The purpose is to slow neutrons down (moderate them), not remove them from the cycle, which would inhibit the chain reaction.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) A moderator is essential because the neutrons released during the fission of U-235 are 'fast' neutrons, with high kinetic energies (around 2 MeV). For U-235, the probability of a fast neutron being captured and inducing another fission event is very small. However, the probability of fission is hundreds of times greater for 'thermal' neutrons, which have very low kinetic energies (around 0.025 eV). The moderator's role is to slow down the fast neutrons through collisions, reducing their energy to thermal levels. This significant increase in fission probability allows the multiplication factor, $k$, to reach 1, enabling a self-sustaining chain reaction.\n\n(b) Two properties of an effective moderator are:\n\n1.  **Low-mass nuclei:** The moderator material should be composed of light atoms, such as hydrogen (in water) or carbon (in graphite). \n    *Justification:* From the principles of momentum and energy conservation in collisions, the transfer of kinetic energy is most efficient when the colliding particles have comparable mass. Since a neutron is a light particle, it will transfer a larger fraction of its kinetic energy in each collision with a light nucleus than with a heavy nucleus. This means fewer collisions are needed to thermalise the neutron, making the moderation process more efficient.\n\n2.  **Low neutron absorption cross-section:** The material must have a very low tendency to absorb neutrons.\n    *Justification:* The goal of the moderator is to slow neutrons down so they can cause further fission, not to remove them from the reactor core. If the moderator nuclei were to absorb a significant number of neutrons, this would reduce the number of neutrons available to sustain the chain reaction, making it difficult or impossible to achieve criticality ($k=1$). Materials like heavy water (D₂O) are excellent moderators because deuterium has a much lower neutron absorption cross-section than ordinary hydrogen."
+    }
+  ]
+}

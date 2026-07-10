@@ -1,0 +1,529 @@
+{
+  "slug": "b-1-thermal-energy-transfers",
+  "topicCode": "B.1",
+  "unit": {
+    "code": "B",
+    "title": "The particulate nature of matter"
+  },
+  "title": "Thermal energy transfers",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "pilot",
+  "summary": "Thermal physics is the study of how energy moves because of temperature differences. This lesson builds the whole quantitative and conceptual toolkit of B.1: temperature and the Kelvin scale, internal energy, thermal equilibrium and the direction of heat flow, specific heat capacity ($Q = mc\\Delta T$), specific latent heat of fusion and vaporisation ($Q = mL$), why temperature stays constant during a phase change, and the three modes of transfer — conduction, convection and radiation. It is a calculation-rich topic, so it is built around fully worked examples marked exactly the way our engine marks your own practice.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Distinguish temperature, internal energy and heat, and convert between the Celsius and Kelvin temperature scales ($T/\\text{K} = \\theta/^{\\circ}\\text{C} + 273$).",
+    "Explain thermal equilibrium and predict the direction of heat flow between bodies at different temperatures.",
+    "Use $Q = mc\\Delta T$ for temperature changes and $Q = mL$ for phase changes, including multi-stage heating problems.",
+    "Explain why temperature is constant during a phase change using the idea of potential energy of the particles, and interpret heating and cooling curves.",
+    "Describe qualitatively the mechanisms of conduction, convection and radiation, and present working so that method marks and error-carried-forward (ECF) protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "B.1"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
+  "simpleExplanation": {
+    "title": "Energy always rolls downhill",
+    "summary": "Temperature tells you how fast the particles in a substance are jiggling on average. Energy always flows from the hotter place to the colder place until both sit at the same temperature. Sometimes that energy raises the temperature; sometimes it is spent breaking the substance apart into a new state without the temperature changing at all.",
+    "analogy": "Think of temperature as the height of a hill and heat as water. Water only ever runs downhill — from high to low — never the other way on its own. Two connected reservoirs settle when their levels match: that is thermal equilibrium. And just as some water can be spent widening a channel rather than raising the level, some energy can be spent melting or boiling a substance rather than raising its temperature.",
+    "steps": [
+      "Identify what is happening: is the substance changing temperature, or changing state (melting/boiling)?",
+      "For a temperature change use $Q = mc\\Delta T$; for a state change use $Q = mL$.",
+      "For a problem that does both, split it into stages and add the energies: $Q_{\\text{total}} = Q_1 + Q_2 + \\dots$",
+      "Check units — mass in kg, temperature difference the same number in K or °C, and quote the final energy in joules."
+    ]
+  },
+  "keyConcepts": [
+    "internal energy",
+    "thermal equilibrium",
+    "phase change"
+  ],
+  "flashcards": [
+    {
+      "front": "Temperature",
+      "back": "A measure of the average random kinetic energy of the particles in a substance. Two objects at the same temperature are in thermal equilibrium and exchange no NET energy.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Kelvin scale",
+      "back": "The absolute temperature scale. $0$ K is absolute zero, the point of minimum particle energy. Convert with $T/\\text{K} = \\theta/^{\\circ}\\text{C} + 273$. A change of $1\\,^{\\circ}$C equals a change of $1$ K.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Internal energy",
+      "back": "The total of the random kinetic energy (from particle motion) AND the potential energy (from forces between particles) of all particles in a substance. Not the same as temperature.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Heat (thermal energy transfer)",
+      "back": "Energy transferred from a hotter body to a colder body because of the temperature difference between them. A body HAS internal energy; it TRANSFERS heat.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Thermal equilibrium",
+      "back": "The state reached when two bodies in thermal contact are at the same temperature, so there is no net flow of thermal energy between them.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Specific heat capacity ($c$)",
+      "back": "The energy needed to raise the temperature of 1 kg of a substance by 1 K (or 1 °C), in J kg⁻¹ K⁻¹. Used in $Q = mc\\Delta T$.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "$Q = mc\\Delta T$",
+      "back": "Energy for a TEMPERATURE change: mass × specific heat capacity × temperature change. No change of state occurs here.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Specific latent heat ($L$)",
+      "back": "The energy needed to change the state of 1 kg of a substance at constant temperature, in J kg⁻¹. Fusion ($L_f$) for melting/freezing; vaporisation ($L_v$) for boiling/condensing.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "$Q = mL$",
+      "back": "Energy for a CHANGE OF STATE: mass × specific latent heat. There is no $\\Delta T$ term because the temperature does not change during the phase change.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Why is temperature constant during melting/boiling?",
+      "back": "The supplied energy goes into the POTENTIAL energy of the particles — separating them and breaking bonds — not into their kinetic energy. Average kinetic energy is unchanged, so temperature is unchanged.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Conduction",
+      "back": "Transfer of thermal energy through a substance by particle collisions and, in metals, by free (delocalised) electrons. Needs a medium; dominant in solids. No bulk movement of the substance.",
+      "pillLabel": "Mechanism"
+    },
+    {
+      "front": "Convection",
+      "back": "Transfer of thermal energy in a FLUID by bulk movement: warmer, less dense fluid rises and cooler, denser fluid sinks, forming a convection current. Cannot occur in solids.",
+      "pillLabel": "Mechanism"
+    },
+    {
+      "front": "Radiation",
+      "back": "Transfer of thermal energy by electromagnetic (infrared) waves. Requires NO medium and travels through a vacuum. Every body above 0 K emits it; dark matt surfaces emit and absorb best.",
+      "pillLabel": "Mechanism"
+    },
+    {
+      "front": "Exam Trap: latent heat vs specific heat",
+      "back": "If the temperature is changing, use $Q = mc\\Delta T$. If the state is changing at constant temperature, use $Q = mL$. A problem that melts then warms needs BOTH, added together.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A pure solid is being heated steadily and is in the middle of melting. During this time its temperature:",
+      "options": [
+        "Rises steadily",
+        "Stays constant",
+        "Falls, because energy is used up",
+        "Rises then falls"
+      ],
+      "answer": "Stays constant"
+    },
+    {
+      "prompt": "A substance is heated from 20 °C to 60 °C. The correct value of $\\Delta T$ to use in $Q = mc\\Delta T$ is:",
+      "options": [
+        "40 K",
+        "333 K",
+        "313 K",
+        "80 K"
+      ],
+      "answer": "40 K"
+    },
+    {
+      "prompt": "Which quantity is measured in J kg⁻¹ (no temperature in the unit) and is used for a change of state?",
+      "options": [
+        "Specific heat capacity, $c$",
+        "Specific latent heat, $L$",
+        "Internal energy, $U$",
+        "Temperature, $T$"
+      ],
+      "answer": "Specific latent heat, $L$"
+    },
+    {
+      "prompt": "Energy from the Sun reaches the Earth across the vacuum of space. This transfer must be by:",
+      "options": [
+        "Conduction, through the air",
+        "Convection currents in space",
+        "Radiation, which needs no medium",
+        "Conduction and convection combined"
+      ],
+      "answer": "Radiation, which needs no medium"
+    },
+    {
+      "prompt": "Melting the same mass of ice needs much less energy than boiling the same mass of water because:",
+      "options": [
+        "Water is denser than ice",
+        "The specific latent heat of vaporisation is much larger than that of fusion",
+        "Boiling happens at a higher temperature",
+        "Ice has a higher specific heat capacity"
+      ],
+      "answer": "The specific latent heat of vaporisation is much larger than that of fusion"
+    }
+  ],
+  "faq": [
+    {
+      "q": "For $Q = mc\\Delta T$, does it matter whether I put $\\Delta T$ in Kelvin or Celsius?",
+      "a": "No — because it is a temperature DIFFERENCE. A change of 1 °C is exactly a change of 1 K, so $\\Delta T$ has the same number in both scales. The place you MUST use Kelvin is when a formula needs an absolute temperature $T$ (not a difference), such as the gas laws. For $Q = mc\\Delta T$ and $Q = mL$, a difference in either scale is fine, but never subtract a Kelvin value from a Celsius value in the same line."
+    },
+    {
+      "q": "What is the difference between temperature, heat and internal energy?",
+      "a": "Temperature measures the AVERAGE random kinetic energy of the particles. Internal energy is the TOTAL kinetic plus potential energy of all the particles — so a bathtub of warm water has more internal energy than a boiling cup, even though the cup is hotter. Heat is energy in transit from a hotter to a colder body. A body possesses internal energy; it transfers heat."
+    },
+    {
+      "q": "Why does the temperature stay flat while ice melts, even though I keep supplying energy?",
+      "a": "During melting the energy you supply is used to pull the particles apart and break the bonds holding the solid together — it becomes potential energy, not kinetic energy. Temperature depends only on the average kinetic energy, which is not rising, so the thermometer reading holds steady until every last bit of solid has become liquid. Only then does further energy start raising the temperature again."
+    },
+    {
+      "q": "Can conduction, convection and radiation all happen at once?",
+      "a": "Yes. Holding a hand near a fire, you receive radiation directly from the flames and convection from the rising hot air; a metal poker in the fire would deliver conduction. Usually one mode dominates for a given situation — conduction in solids, convection in fluids, radiation across a vacuum — but the others are often present too."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Thermal physics answers a simple-sounding question: what happens when things at different temperatures meet? Energy flows, always from hot to cold, until everything settles at one temperature. Along the way that energy sometimes raises a temperature and sometimes changes a substance's state entirely. This lesson develops the ideas and the two central equations — $Q = mc\\Delta T$ and $Q = mL$ — that let you calculate exactly how much energy is involved. Because B.1 is a calculation topic, every worked example is laid out the way marks are actually awarded, since HOW you show the working decides how many marks you keep."
+    },
+    {
+      "type": "heading",
+      "content": "Temperature, internal energy and the Kelvin scale"
+    },
+    {
+      "type": "text",
+      "content": "Temperature is a measure of the average random kinetic energy of the particles in a substance: the faster they jiggle, the higher the temperature. It is not the same as the total energy the substance holds. That total is the internal energy — the sum of the random kinetic energy of the particles (their motion) AND the potential energy stored in the forces between them (how far apart they are held). A large, cool object can have far more internal energy than a small, hot one, because internal energy depends on how MANY particles there are, while temperature only reflects their average energy."
+    },
+    {
+      "type": "text",
+      "content": "For quantitative work physicists use the Kelvin scale, an absolute scale whose zero point, $0$ K (absolute zero, about $-273\\,^{\\circ}$C), is the temperature at which particles have their minimum possible energy. To convert, use $T/\\text{K} = \\theta/^{\\circ}\\text{C} + 273$. A crucial fact: because the two scales rise in step, a CHANGE of $1\\,^{\\circ}$C is identical to a change of $1$ K. So a temperature difference $\\Delta T$ is the same number on either scale — but an absolute temperature (a single value of $T$) is not."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Temperature = average random kinetic energy of the particles.",
+        "Internal energy = total kinetic energy + total potential energy of all the particles.",
+        "Convert scales with $T/\\text{K} = \\theta/^{\\circ}\\text{C} + 273$; absolute zero is $0$ K.",
+        "A temperature DIFFERENCE $\\Delta T$ is the same number in K and °C; a single temperature is not."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Thermal equilibrium and the direction of heat flow"
+    },
+    {
+      "type": "text",
+      "content": "Put a hot object in contact with a cold one and energy is transferred from the hotter to the colder — never spontaneously the other way. This transferred energy is what we call heat (thermal energy transfer). The flow continues until both objects reach the same temperature, at which point there is no longer any net transfer between them: they are in thermal equilibrium. Equilibrium does not mean the particles have stopped exchanging energy — collisions still happen — but that the exchanges balance, so the NET flow is zero. The single rule to remember is that heat flows down a temperature gradient, from high temperature to low."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Heat always flows from higher temperature to lower temperature.",
+        "The flow stops (net) when both bodies reach the same temperature: thermal equilibrium.",
+        "Equilibrium is about temperature, not about which body holds more internal energy.",
+        "It is the temperature difference, not the amount of energy stored, that drives the transfer."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Specific heat capacity: warming without changing state"
+    },
+    {
+      "type": "text",
+      "content": "Different substances need different amounts of energy to warm up. The specific heat capacity $c$ of a substance is the energy required to raise the temperature of 1 kg of it by 1 K (equivalently 1 °C), measured in J kg⁻¹ K⁻¹. Water has an unusually large value, $c = 4180$ J kg⁻¹ K⁻¹, which is why it takes so long to heat and why it is used as a coolant. The energy needed for a given temperature change is:"
+    },
+    {
+      "type": "formula",
+      "content": "Q = mc\\Delta T"
+    },
+    {
+      "type": "text",
+      "content": "where $Q$ is the energy transferred (J), $m$ is the mass (kg), $c$ is the specific heat capacity (J kg⁻¹ K⁻¹) and $\\Delta T$ is the temperature change. Because $\\Delta T$ is a difference, you may keep it in °C or K — the value is the same. This equation applies ONLY while the substance stays in one state; the moment it starts to melt or boil, the temperature stops changing and this formula no longer describes what is happening."
+    },
+    {
+      "type": "workedExample",
+      "question": "A kettle transfers energy to 0.50 kg of water, raising its temperature from 20 °C to 80 °C. The specific heat capacity of water is 4180 J kg⁻¹ K⁻¹. Calculate the energy transferred to the water. [3]",
+      "solution": "**Step 1 — identify the quantities.**\n$m = 0.50$ kg, $c = 4180$ J kg⁻¹ K⁻¹, $\\Delta T = 80 - 20 = 60\\,^{\\circ}$C $= 60$ K.  [M1: correct $\\Delta T$]\n\n**Step 2 — apply $Q = mc\\Delta T$.**\n$Q = 0.50 \\times 4180 \\times 60$.  [M1: correct substitution]\n\n**Step 3 — evaluate.**\n$Q = 1.254 \\times 10^{5} \\approx 1.3 \\times 10^{5}$ J.  [A1: answer with unit, 2 s.f.]\n\n*A difference of 60 °C is a difference of 60 K, so no scale conversion is needed for $\\Delta T$.*"
+    },
+    {
+      "type": "examTip",
+      "content": "For $\\Delta T$, always subtract the two temperatures BEFORE worrying about scales — the difference is the same in K and °C. The mistake that costs marks is instead converting each temperature to Kelvin (adding 273 to both) and then subtracting; it wastes time and, if you add 273 to only one of them, gives a wildly wrong answer."
+    },
+    {
+      "type": "heading",
+      "content": "Specific latent heat: changing state at constant temperature"
+    },
+    {
+      "type": "text",
+      "content": "To melt a solid or boil a liquid you must supply energy, yet the temperature does not rise while it happens. The energy required to change the state of 1 kg of a substance at constant temperature is its specific latent heat $L$, in J kg⁻¹. There are two kinds: the specific latent heat of fusion $L_f$ (melting or freezing) and the specific latent heat of vaporisation $L_v$ (boiling or condensing). For water, $L_f = 3.34 \\times 10^{5}$ J kg⁻¹ and $L_v = 2.26 \\times 10^{6}$ J kg⁻¹ — vaporisation needs far more energy, because boiling separates the particles completely rather than merely loosening them. The energy for a phase change is:"
+    },
+    {
+      "type": "formula",
+      "content": "Q = mL"
+    },
+    {
+      "type": "text",
+      "content": "with $Q$ in joules, $m$ in kilograms and $L$ in J kg⁻¹. Notice there is no $\\Delta T$ term: because the temperature is constant during the change, the only variables are how much substance changes state and the latent heat of that substance. Use $L_f$ for melting or freezing, and $L_v$ for boiling or condensing."
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the energy required to completely melt 0.30 kg of ice at its melting point of 0 °C. The specific latent heat of fusion of water is $3.34 \\times 10^{5}$ J kg⁻¹. [2]",
+      "solution": "**Step 1 — choose the right relationship.** A change of state at constant temperature, so use $Q = mL$ with $L = L_f$.  [M1: correct formula and value of $L_f$]\n\n**Step 2 — substitute and evaluate.**\n$Q = mL_f = 0.30 \\times (3.34 \\times 10^{5}) = 1.002 \\times 10^{5} \\approx 1.0 \\times 10^{5}$ J.  [A1: answer with unit]\n\n*No $\\Delta T$ appears — the ice stays at 0 °C throughout, so all the energy goes into breaking the solid apart.*"
+    },
+    {
+      "type": "heading",
+      "content": "Phase changes and heating curves"
+    },
+    {
+      "type": "text",
+      "content": "Plot the temperature of a solid as it is heated steadily and you get a heating curve with two flat plateaus. The sloping parts are where $Q = mc\\Delta T$ applies — energy raises the kinetic energy of the particles, so the temperature climbs. The flat parts are the phase changes, at the melting point and the boiling point, where $Q = mL$ applies. Here the supplied energy goes entirely into the POTENTIAL energy of the particles: it pulls them apart and breaks the bonds holding the state together. Because the average kinetic energy is not increasing, the temperature stays constant — that is the key reason a plateau appears. A cooling curve is the mirror image: energy is released at each plateau as bonds reform, again at constant temperature."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Sloping sections of a heating curve: temperature changing, use $Q = mc\\Delta T$.",
+        "Flat sections (plateaus): change of state, use $Q = mL$; temperature is constant.",
+        "Temperature is constant during a phase change because energy raises the particles' POTENTIAL energy, not their kinetic energy.",
+        "The boiling plateau is longer than the melting plateau because $L_v > L_f$ for the same substance."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An electric heater supplies energy to 0.40 kg of ice initially at −20 °C, warming it up to its melting point and then melting it completely. Take $c_{\\text{ice}} = 2100$ J kg⁻¹ K⁻¹ and $L_f = 3.34 \\times 10^{5}$ J kg⁻¹. Calculate the total energy required. [4]",
+      "solution": "This is a two-stage problem: warm the ice to 0 °C, then melt it. Do each stage separately and add.\n\n**Stage 1 — warm the ice from −20 °C to 0 °C (temperature change, so $Q = mc\\Delta T$).**\n$\\Delta T = 0 - (-20) = 20$ K.\n$Q_1 = mc_{\\text{ice}}\\Delta T = 0.40 \\times 2100 \\times 20 = 1.68 \\times 10^{4}$ J.  [M1]\n\n**Stage 2 — melt the ice at 0 °C (change of state, so $Q = mL$).**\n$Q_2 = mL_f = 0.40 \\times (3.34 \\times 10^{5}) = 1.336 \\times 10^{5}$ J.  [M1]\n\n**Stage 3 — add the stages.**\n$Q_{\\text{total}} = Q_1 + Q_2 = 1.68 \\times 10^{4} + 1.336 \\times 10^{5} = 1.504 \\times 10^{5} \\approx 1.5 \\times 10^{5}$ J.  [A1: sum with unit]\n\n*The melting stage dominates: breaking the solid apart needs far more energy than the 20 K warm-up, which is why plateaus on a heating curve are so pronounced.* [A1: correct method throughout, ECF applies]"
+    },
+    {
+      "type": "heading",
+      "content": "The three modes of thermal energy transfer"
+    },
+    {
+      "type": "text",
+      "content": "**Conduction** is the transfer of thermal energy through a substance without any bulk movement of the substance itself. When one region is heated, its particles gain kinetic energy and vibrate more vigorously, colliding with their cooler neighbours and passing energy along — like a chain reaction through the material. In metals the process is far faster because a 'sea' of free (delocalised) electrons carries energy rapidly through the lattice, which is why metals feel cold to the touch (they conduct heat away from your hand quickly). Conduction requires a medium and is dominant in solids; gases, whose particles are far apart, conduct poorly and make good insulators."
+    },
+    {
+      "type": "text",
+      "content": "**Convection** is the transfer of thermal energy through the bulk movement of a fluid — a liquid or a gas. When part of a fluid is heated it expands, becomes less dense and rises; cooler, denser fluid sinks to take its place, is heated in turn, and the cycle repeats, setting up a circulating convection current that carries energy through the whole fluid. This is how a radiator warms a room and how water heats in a pan. Convection cannot occur in a solid, because the particles are locked in place and cannot flow."
+    },
+    {
+      "type": "text",
+      "content": "**Radiation** is the transfer of thermal energy by electromagnetic waves, chiefly in the infrared. Uniquely, it needs no medium at all and so travels through a vacuum — which is how energy from the Sun crosses empty space to reach the Earth. Every object above absolute zero emits thermal radiation, and the hotter it is the more it radiates. The surface matters: dark, matt surfaces are good emitters and good absorbers, while shiny, light-coloured surfaces are poor emitters and good reflectors, which is why survival blankets are silvered and why a black car heats up fastest in the Sun."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Conduction: particle collisions and free electrons; needs a medium; dominant in solids.",
+        "Convection: bulk movement of a fluid driven by density differences; fluids only, never solids.",
+        "Radiation: infrared electromagnetic waves; needs NO medium; works across a vacuum.",
+        "Only radiation can transfer energy through empty space — the mode by which the Sun warms the Earth."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Thinking the temperature rises during melting or boiling** — it stays CONSTANT; the energy goes into potential energy of the particles (breaking bonds), not kinetic energy.",
+        "**Adding 273 when you only need a difference** — for $\\Delta T$ in $Q = mc\\Delta T$, a change is the same number in K and °C; converting both temperatures wastes time and inviting a slip if you convert only one.",
+        "**Confusing $Q = mc\\Delta T$ with $Q = mL$** — use $mc\\Delta T$ when the temperature changes, $mL$ when the state changes at constant temperature; a melt-then-warm problem needs BOTH, added.",
+        "**Using $L_f$ when the substance is boiling (or $L_v$ when it is melting)** — fusion is for melting/freezing, vaporisation is for boiling/condensing; picking the wrong one is a large numerical error.",
+        "**Forgetting to convert mass to kilograms** — $c$ and $L$ are per kilogram; a mass given in grams must be divided by 1000 first.",
+        "**Saying radiation needs a medium, or that conduction/convection cross a vacuum** — only radiation transfers energy through empty space; conduction and convection both need matter.",
+        "**Confusing temperature with internal energy** — a bigger, cooler body can hold more internal energy than a small, hot one; temperature is only the AVERAGE particle energy."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "This is the showcase for a calculation topic. In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) for a correct step, or an answer mark (A) for the correct final value with its unit. Crucially, method marks and error-carried-forward (ECF) mean that a wrong number early on does not automatically cost you every mark that follows — but only if your method is written down. Study how each mark below is earned by a specific line of a two-stage calculation."
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the energy required to heat 0.20 kg of ice at 0 °C to water at 20 °C. ($L_f = 3.34 \\times 10^{5}$ J kg⁻¹; $c_{\\text{water}} = 4180$ J kg⁻¹ K⁻¹) [4]",
+      "solution": "**Model answer — full working.**\n\nThe substance first melts at 0 °C, then the resulting water warms from 0 °C to 20 °C. These are two separate stages that must be added.\n\n**Stage 1 — melt the ice at 0 °C (change of state).**\n$Q_1 = mL_f = 0.20 \\times (3.34 \\times 10^{5}) = 6.68 \\times 10^{4}$ J.\n\n**Stage 2 — warm the water from 0 °C to 20 °C (temperature change).**\n$\\Delta T = 20 - 0 = 20$ K.\n$Q_2 = mc_{\\text{water}}\\Delta T = 0.20 \\times 4180 \\times 20 = 1.672 \\times 10^{4}$ J.\n\n**Stage 3 — total.**\n$Q_{\\text{total}} = Q_1 + Q_2 = 6.68 \\times 10^{4} + 1.672 \\times 10^{4} = 8.35 \\times 10^{4}$ J $\\approx 84$ kJ.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — melting energy.** Awarded for using $Q = mL_f$ with the correct latent heat: $0.20 \\times 3.34 \\times 10^{5}$. A METHOD mark — earned for the correct process even if a later arithmetic slip changes the number.\n- **M1 — heating energy.** Awarded for using $Q = mc\\Delta T$ with $\\Delta T = 20$ K: $0.20 \\times 4180 \\times 20$. Independent of the first stage, so it is available even if Stage 1 went wrong.\n- **M1 — adding the two stages.** Awarded for recognising that the total is $Q_1 + Q_2$. Here is the key protection: **error-carried-forward** — if a student computed either stage slightly wrongly but then correctly ADDED their two values, the engine still credits this mark on THEIR figures. The method of summing the stages is what is being rewarded.\n- **A1 — final answer with unit.** Awarded for $8.35 \\times 10^{4}$ J (accept $8.4 \\times 10^{4}$ J or 84 kJ). The unit is required.\n\n**'Accept answers that round correctly.'** The engine accepts $8.35 \\times 10^{4}$, $8.4 \\times 10^{4}$ and 84 kJ, and does not demand a fixed number of decimal places in the intermediate lines — it credits the correct method and a correctly-rounded final value.\n\n**Bottom line:** three of the four marks are for method — splitting into the melt and the warm-up, and adding them. A student who writes only the final number risks losing 3 marks if it is wrong; a student who shows each stage keeps the method marks even when the final figure slips, because ECF carries their own numbers forward."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: write $Q = mL$ for the melt, write $Q = mc\\Delta T$ for the warm-up, then show the sum. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 2 calculation marked: heat a mass of ice to warm water with full multi-stage working",
+      "href": "/mark?subject=ib-physics-hl&topic=B.1&component=paper_2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Energy Forms and Changes",
+          "href": "https://phet.colorado.edu/en/simulations/energy-forms-and-changes"
+        },
+        {
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Energy Forms and Changes",
+    "embedUrl": "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/energy-forms-and-changes",
+    "hint": "Explore “Energy Forms and Changes” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "B.1.1",
+      "title": "Conduction, convection and thermal radiation",
+      "detail": "Mechanisms of thermal energy transfer and their atomic/molecular basis."
+    },
+    {
+      "code": "B.1.2",
+      "title": "The Stefan–Boltzmann law and the Wien displacement law",
+      "detail": "Black-body radiation, emissivity, and spectral characteristics, $P = e \\sigma A T^4$ and $\\lambda_{max} T = \\text{constant}$."
+    },
+    {
+      "code": "B.1.3",
+      "title": "Solar constant and the greenhouse effect",
+      "detail": "Energy balance of the Earth and its atmosphere, albedo, and the role of greenhouse gases."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "b-1-thermal-energy-transfers-q1",
+      "prompt": "A metal spoon is placed in a hot cup of tea. Outline the primary mechanism by which thermal energy is transferred from the tea to the handle of the spoon.",
+      "marks": 3,
+      "commandTerm": "Outline",
+      "difficulty": "foundation",
+      "syllabusRef": "B.1.1",
+      "paper": "P2",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(M1) Conduction is the primary mechanism.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Vibrating tea particles collide with spoon particles at the submerged end, transferring kinetic energy.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) This energy is then transferred along the spoon via collisions between adjacent spoon particles OR via movement of free electrons.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The primary mechanism is conduction. The fast-moving particles of the hot tea collide with the particles of the spoon that are submerged in the tea. This transfers kinetic energy to the spoon's particles, causing them to vibrate more vigorously. This increased vibration is then passed along the length of the metal spoon from particle to particle through intermolecular collisions. In a metal like the spoon, free electrons also play a crucial role by moving through the lattice and transferring energy more rapidly."
+    },
+    {
+      "id": "b-1-thermal-energy-transfers-q2",
+      "prompt": "The Sun has a surface temperature of approximately 5800 K and a radius of $6.96 \\times 10^8$ m. Assuming the Sun behaves as a perfect black body, calculate:\na) the wavelength of its peak emission.\nb) the total power it radiates.\n(Wien's displacement constant = $2.90 \\times 10^{-3}$ m K, Stefan-Boltzmann constant $\\sigma = 5.67 \\times 10^{-8}$ W m$^{-2}$ K$^{-4}$)",
+      "marks": 4,
+      "commandTerm": "Calculate",
+      "difficulty": "standard",
+      "syllabusRef": "B.1.2",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) For part (a), uses Wien's law: $\\lambda_{max} = \\frac{b}{T}$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Correct substitution and answer for (a): $\\lambda_{max} = \\frac{2.90 \\times 10^{-3}}{5800} = 5.00 \\times 10^{-7}$ m (or 500 nm).",
+          "marks": 1
+        },
+        {
+          "text": "(M1) For part (b), uses Stefan-Boltzmann law with surface area: $P = \\sigma A T^4 = \\sigma (4\\pi r^2) T^4$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Correct substitution and answer for (b): $P = (5.67 \\times 10^{-8}) \\times 4\\pi \\times (6.96 \\times 10^8)^2 \\times (5800)^4 = 3.90 \\times 10^{26}$ W.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "a) Using Wien's displacement law, $\\lambda_{max} = \\frac{b}{T}$.\nSubstituting the values:\n$\\lambda_{max} = \\frac{2.90 \\times 10^{-3} \\text{ m K}}{5800 \\text{ K}} = 5.00 \\times 10^{-7} \\text{ m}$.\nThis wavelength is 500 nm, which is in the visible part of the spectrum.\n\nb) Using the Stefan-Boltzmann law, the power radiated is given by $P = \\sigma A T^4$. The surface area of the Sun is $A = 4\\pi r^2$.\nSo, $P = \\sigma (4\\pi r^2) T^4$.\nSubstituting the values:\n$P = (5.67 \\times 10^{-8} \\text{ W m}^{-2} \\text{K}^{-4}) \\times 4\\pi \\times (6.96 \\times 10^8 \\text{ m})^2 \\times (5800 \\text{ K})^4$\n$P = 3.90 \\times 10^{26} \\text{ W}$."
+    },
+    {
+      "id": "b-1-thermal-energy-transfers-q3",
+      "prompt": "Explain the role of greenhouse gases in regulating the Earth's surface temperature. Your explanation should refer to the wavelengths of incoming and outgoing radiation.",
+      "marks": 5,
+      "commandTerm": "Explain",
+      "difficulty": "standard",
+      "syllabusRef": "B.1.3",
+      "paper": "P2",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(M1) Incoming solar radiation is primarily short-wavelength (UV and visible).",
+          "marks": 1
+        },
+        {
+          "text": "(M1) The Earth's atmosphere is largely transparent to this incoming short-wavelength radiation.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) The Earth's surface absorbs this radiation and re-radiates it as long-wavelength infrared (IR) radiation.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Greenhouse gases (like CO$_2$, H$_2$O, CH$_4$) in the atmosphere absorb this outgoing long-wavelength IR radiation.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) These gases then re-radiate the energy in all directions, including back towards the Earth's surface, trapping thermal energy and increasing the surface temperature.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The Sun emits short-wavelength radiation, mainly in the visible and ultraviolet parts of the spectrum. The Earth's atmosphere is mostly transparent to these wavelengths, allowing them to pass through and be absorbed by the Earth's surface. This absorption warms the surface. According to its temperature, the Earth then re-radiates this energy as long-wavelength infrared (IR) radiation. Greenhouse gases, such as carbon dioxide, water vapour, and methane, are present in the atmosphere. These gases have molecular structures that allow them to absorb specific frequencies of this outgoing IR radiation. After absorbing the energy, the greenhouse gas molecules re-radiate it in all directions. A significant portion of this re-radiated energy is directed back down towards the Earth's surface. This process effectively traps thermal energy within the atmosphere, leading to a higher equilibrium surface temperature than if there were no greenhouse gases. This is known as the greenhouse effect."
+    },
+    {
+      "id": "b-1-thermal-energy-transfers-q4",
+      "prompt": "A planet orbits a star. The planet has an albedo of 0.35 and can be modelled as a black body. The average intensity of the star's radiation at the planet's orbit (the 'solar constant' for this planet) is 1500 W m$^{-2}$. The planet has no atmosphere.\na) Determine the average power absorbed per unit area of the planet's surface.\nb) Hence, determine the equilibrium surface temperature of the planet.\nc) Suggest, with a reason, how the presence of an atmosphere with greenhouse gases would change the planet's surface temperature.\n(Stefan-Boltzmann constant $\\sigma = 5.67 \\times 10^{-8}$ W m$^{-2}$ K$^{-4}$)",
+      "marks": 6,
+      "commandTerm": "Determine",
+      "difficulty": "challenge",
+      "syllabusRef": "B.1.3",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) For (a), recognises that the planet absorbs power over its cross-sectional area but this is averaged over its surface area. The average intensity absorbed is $I_{in} = \\frac{S(1-\\alpha)}{4}$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Correct calculation for (a): $I_{in} = \\frac{1500 \\times (1-0.35)}{4} = 244$ W m$^{-2}$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) For (b), equates power absorbed per unit area to power radiated per unit area: $I_{in} = I_{out}$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Uses Stefan-Boltzmann law for radiated power: $I_{out} = \\sigma T^4$. So, $244 = \\sigma T^4$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Correct calculation for (b): $T = \\left( \\frac{243.75}{5.67 \\times 10^{-8}} \\right)^{1/4} = 256$ K.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) For (c), states temperature would increase because greenhouse gases trap outgoing long-wavelength radiation, re-radiating it back to the surface.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "a) The planet intercepts radiation over a disc of area $\\pi r^2$, so the total power intercepted is $P_{intercepted} = S \\times \\pi r^2$. The reflected power is $\\alpha S \\pi r^2$. Therefore, the absorbed power is $P_{absorbed} = S(1-\\alpha)\\pi r^2$. This power is distributed over the entire surface area of the planet, $A_{surface} = 4\\pi r^2$.\nThe average power absorbed per unit area is therefore $I_{absorbed} = \\frac{P_{absorbed}}{A_{surface}} = \\frac{S(1-\\alpha)\\pi r^2}{4\\pi r^2} = \\frac{S(1-\\alpha)}{4}$.\n$I_{absorbed} = \\frac{1500 \\text{ W m}^{-2} \\times (1 - 0.35)}{4} = \\frac{1500 \\times 0.65}{4} = 243.75 \\text{ W m}^{-2} \\approx 244 \\text{ W m}^{-2}$.\n\nb) At equilibrium, the power absorbed per unit area must equal the power radiated per unit area. The planet is modelled as a black body, so it radiates according to the Stefan-Boltzmann law: $P_{radiated} / A = \\sigma T^4$.\nEquating the absorbed and radiated power per unit area:\n$243.75 = \\sigma T^4$\n$243.75 = (5.67 \\times 10^{-8}) \\times T^4$\n$T^4 = \\frac{243.75}{5.67 \\times 10^{-8}} = 4.299 \\times 10^9 \\text{ K}^4$\n$T = (4.299 \\times 10^9)^{1/4} = 256 \\text{ K}$.\n\nc) The presence of an atmosphere containing greenhouse gases would increase the planet's surface temperature. The surface radiates long-wavelength infrared radiation. Greenhouse gases absorb this radiation and re-radiate it in all directions, including back towards the surface. This adds to the energy input at the surface, disrupting the equilibrium and causing the temperature to rise until a new, higher equilibrium temperature is reached where the outgoing radiation at the top of the atmosphere again balances the incoming solar radiation."
+    }
+  ]
+}

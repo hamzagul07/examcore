@@ -1,0 +1,560 @@
+{
+  "slug": "a-4-rigid-body-mechanics",
+  "topicCode": "A.4",
+  "unit": {
+    "code": "A",
+    "title": "Space, time and motion"
+  },
+  "title": "Rigid body mechanics",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "pilot",
+  "summary": "Rigid body mechanics rebuilds the whole of dynamics for objects that spin rather than merely slide. This HL lesson develops the full A.4 toolkit: torque as the turning effect of a force, the moment of inertia as the rotational analogue of mass, Newton's second law for rotation, the rotational SUVAT equations, rotational kinetic energy, angular momentum and its conservation, and rolling without slipping. Every rotational quantity is introduced as the exact parallel of a linear one you already know, so the mechanics you have mastered transfers directly. Each worked example is laid out the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Define and calculate torque using $\\tau = Fr\\sin\\theta$, identifying the perpendicular component of the force and the lever arm.",
+    "Interpret the moment of inertia $I = \\sum mr^2$ as resistance to angular acceleration and reason qualitatively about common shapes.",
+    "Apply Newton's second law for rotation $\\tau = I\\alpha$ and the rotational SUVAT equations to solve rigid-body problems.",
+    "Use rotational kinetic energy $E_k = \\tfrac{1}{2}I\\omega^2$, angular momentum $L = I\\omega$ and its conservation, and the rolling condition $v = \\omega r$.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "A.4"
+  ],
+  "levelNote": "HL only (AHL) — Higher Level content.",
+  "simpleExplanation": {
+    "title": "Linear mechanics, translated into spin",
+    "summary": "Everything you learned about forces making objects move in a line has a mirror image for objects that turn. Force becomes torque, mass becomes moment of inertia, velocity becomes angular velocity, and momentum becomes angular momentum. Learn the dictionary and the rotational laws almost write themselves.",
+    "analogy": "Think of opening a heavy door. Push right next to the hinge and almost nothing happens; push at the handle, far from the hinge, and it swings easily — same force, very different turning effect. That turning effect is torque, and it depends on how far from the pivot you push and at what angle. Rigid body mechanics takes that everyday intuition and gives it equations that parallel the ones you already trust for straight-line motion.",
+    "steps": [
+      "Translate the linear quantity into its rotational partner: force $\\to$ torque $\\tau$, mass $\\to$ moment of inertia $I$, velocity $\\to$ angular velocity $\\omega$, acceleration $\\to$ angular acceleration $\\alpha$, momentum $\\to$ angular momentum $L$.",
+      "Decide which law fits: net torque and spin-up use $\\tau = I\\alpha$; constant $\\alpha$ over time uses the rotational SUVAT equations; energy questions use $E_k = \\tfrac{1}{2}I\\omega^2$; a collision or a change of shape with no external torque uses conservation of $L$.",
+      "Watch the geometry of torque: only the perpendicular component of the force turns the object, so include the $\\sin\\theta$ or use the lever arm $r\\sin\\theta$.",
+      "Solve for the unknown and quote the answer with its unit and a sensible number of significant figures."
+    ]
+  },
+  "keyConcepts": [
+    "rotational analogues",
+    "moment of inertia",
+    "conservation of angular momentum",
+    "rolling without slipping"
+  ],
+  "flashcards": [
+    {
+      "front": "Torque, $\\tau$",
+      "back": "The turning effect of a force about an axis: $\\tau = Fr\\sin\\theta$, where $r$ is the distance from the axis to the point of application and $\\theta$ is the angle between $\\vec{r}$ and $\\vec{F}$. Measured in newton-metres (N m). The rotational analogue of force.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Why N m and not joules?",
+      "back": "Torque is dimensionally N m, the same as the joule, but the unit is written N m to flag it as a turning effect rather than energy or work. The distinction matters: torque and energy are physically different quantities.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Lever arm (moment arm)",
+      "back": "The perpendicular distance $r\\sin\\theta$ from the axis to the line of action of the force. Torque = force $\\times$ lever arm. A force whose line of action passes through the axis has zero lever arm and produces no torque.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Moment of inertia, $I$",
+      "back": "The rotational analogue of mass — an object's resistance to angular acceleration. For a set of point masses, $I = \\sum mr^2$. It depends on both the total mass AND how that mass is distributed relative to the axis.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Why distribution matters for $I$",
+      "back": "Because each mass element contributes $mr^2$, mass placed far from the axis counts much more heavily. The same rod is far harder to spin about one end than about its centre, even though its mass is unchanged.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "$\\tau = I\\alpha$",
+      "back": "Newton's second law for rotation: the net torque equals the moment of inertia times the angular acceleration. The exact rotational parallel of $F = ma$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Rotational SUVAT",
+      "back": "For constant angular acceleration: $\\omega = \\omega_0 + \\alpha t$, $\\theta = \\omega_0 t + \\tfrac{1}{2}\\alpha t^2$, $\\omega^2 = \\omega_0^2 + 2\\alpha\\theta$. Identical in form to the linear SUVAT equations with $s\\to\\theta$, $u\\to\\omega_0$, $v\\to\\omega$, $a\\to\\alpha$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Rotational kinetic energy",
+      "back": "$E_k = \\tfrac{1}{2}I\\omega^2$, the rotational analogue of $\\tfrac{1}{2}mv^2$. A rolling object has both: $E_k = \\tfrac{1}{2}mv^2 + \\tfrac{1}{2}I\\omega^2$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Angular momentum, $L$",
+      "back": "For a rigid body rotating about a fixed axis, $L = I\\omega$ — the rotational analogue of linear momentum $p = mv$. A vector; measured in kg m² s⁻¹ (equivalently N m s).",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Conservation of angular momentum",
+      "back": "If the net external torque on a system is zero, its total angular momentum is constant: $I_i\\omega_i = I_f\\omega_f$. This is why a skater pulling their arms in reduces $I$ and so spins faster.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Rolling without slipping",
+      "back": "The contact point is momentarily at rest, which links translation and rotation through $v = \\omega r$ (and $a = \\alpha r$). It lets you write the total kinetic energy in terms of $v$ alone or $\\omega$ alone.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Solid disc vs hoop down a ramp",
+      "back": "From the same height, the solid disc/cylinder ($I = \\tfrac{1}{2}mr^2$) beats the hoop ($I = mr^2$). The hoop stores a larger fraction of the energy as rotation, so less is left for translation and it arrives slower — independent of mass and radius.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Exam Trap: torque needs the perpendicular component",
+      "back": "Only the component of the force perpendicular to $\\vec{r}$ turns the object. A force applied at $\\theta = 0$ (straight along $\\vec{r}$, toward or away from the axis) produces zero torque no matter how large it is.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A force $F$ is applied at a distance $r$ from a pivot, at an angle $\\theta$ to the position vector $\\vec{r}$. The torque is greatest when $\\theta$ equals:",
+      "options": [
+        "$0^\\circ$",
+        "$45^\\circ$",
+        "$90^\\circ$",
+        "$180^\\circ$"
+      ],
+      "answer": "$90^\\circ$"
+    },
+    {
+      "prompt": "Which statement is the correct rotational analogue of Newton's second law $F = ma$?",
+      "options": [
+        "$\\tau = I\\omega$",
+        "$\\tau = I\\alpha$",
+        "$L = I\\omega$",
+        "$\\tau = \\tfrac{1}{2}I\\omega^2$"
+      ],
+      "answer": "$\\tau = I\\alpha$"
+    },
+    {
+      "prompt": "A spinning ice skater pulls their arms in so that their moment of inertia halves. With no external torque acting, their angular velocity:",
+      "options": [
+        "Halves",
+        "Stays the same",
+        "Doubles",
+        "Falls to zero"
+      ],
+      "answer": "Doubles"
+    },
+    {
+      "prompt": "A solid disc and a hoop of equal mass and radius are released from the same height and roll without slipping down identical ramps. At the bottom:",
+      "options": [
+        "The hoop is faster",
+        "The disc is faster",
+        "They have equal speed",
+        "The heavier one is faster"
+      ],
+      "answer": "The disc is faster"
+    },
+    {
+      "prompt": "A flywheel has moment of inertia $I$ and angular velocity $\\omega$. Its rotational kinetic energy is:",
+      "options": [
+        "$I\\omega$",
+        "$\\tfrac{1}{2}I\\omega$",
+        "$\\tfrac{1}{2}I\\omega^2$",
+        "$I\\omega^2$"
+      ],
+      "answer": "$\\tfrac{1}{2}I\\omega^2$"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why does the angle $\\theta$ appear in the torque equation?",
+      "a": "Because only the part of the force at right angles to the position vector actually turns the object. Splitting the force into a component along $\\vec{r}$ and a component perpendicular to it, the along-$\\vec{r}$ part just pushes toward or away from the axis and produces no rotation. The perpendicular part is $F\\sin\\theta$, so the torque is $Fr\\sin\\theta$. Equivalently, you can keep the whole force and use the lever arm $r\\sin\\theta$ — the two views give the same answer."
+    },
+    {
+      "q": "Is moment of inertia a fixed property of an object, like its mass?",
+      "a": "No — and this is a key difference from mass. The moment of inertia depends on the axis you choose. The same rod has a much larger moment of inertia about one end than about its centre, because more of its mass then sits far from the axis, and each element contributes $mr^2$. So you must always state or identify the axis before quoting a value of $I$."
+    },
+    {
+      "q": "How is conservation of angular momentum different from conservation of energy?",
+      "a": "They are separate conservation laws and both can be needed. Angular momentum $L = I\\omega$ is conserved whenever the net external torque is zero, and it is conserved even in inelastic events. Kinetic energy is generally NOT conserved in such events — when a skater pulls their arms in, $L$ stays constant but rotational kinetic energy actually increases, because the skater does work against the outward pull. Always ask which quantity the physics protects before writing an equation."
+    },
+    {
+      "q": "What exactly does 'rolling without slipping' let me do?",
+      "a": "It ties the translational speed of the centre of mass to the spin through $v = \\omega r$ (and $a = \\alpha r$). That single link lets you replace $\\omega$ with $v/r$ everywhere, so the total kinetic energy $\\tfrac{1}{2}mv^2 + \\tfrac{1}{2}I\\omega^2$ collapses into an expression in $v$ alone. Without it you would have two unknowns and not enough equations."
+    },
+    {
+      "q": "Can an object have a net force of zero but still start spinning?",
+      "a": "Yes. Two equal and opposite forces applied at different points — a 'couple' — give zero net force, so the centre of mass does not accelerate, but a non-zero net torque, so the object undergoes pure angular acceleration. Force and torque are genuinely independent conditions, which is why equilibrium requires both $\\sum F = 0$ and $\\sum \\tau = 0$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Until now, mechanics has largely treated objects as point masses that slide, fall and fly, but never turn. Real objects also rotate: wheels roll, flywheels store energy, skaters spin. Rigid body mechanics — the mechanics of objects that keep their shape — extends everything you know to rotation. The strategy is powerful and simple: every linear quantity has a rotational twin, and every linear law has a rotational parallel. Learn the dictionary once and the rest follows. As in every calculation topic, the worked examples here are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "Torque: the turning effect of a force"
+    },
+    {
+      "type": "text",
+      "content": "In linear motion a force causes acceleration. In rotation the cause of angular acceleration is torque — the turning effect of a force about an axis. Torque depends not only on how hard you push but on where and in which direction. Push far from the axis, at right angles, and the turning effect is large; push toward the axis, or close to it, and it is small."
+    },
+    {
+      "type": "formula",
+      "content": "\\tau = Fr\\sin\\theta"
+    },
+    {
+      "type": "text",
+      "content": "Here $F$ is the magnitude of the force, $r$ is the distance from the axis to the point where the force acts, and $\\theta$ is the angle between the position vector $\\vec{r}$ and the force $\\vec{F}$. Two equivalent readings help. First, $F\\sin\\theta$ is the component of the force perpendicular to $\\vec{r}$ — the only component that turns the object. Second, $r\\sin\\theta$ is the lever arm (moment arm): the perpendicular distance from the axis to the line of action of the force. Both give the same torque, measured in newton-metres (N m)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Only the perpendicular part turns things.** A force applied straight toward or away from the axis ($\\theta = 0$) has zero lever arm and produces no torque, however large it is.",
+        "**Maximum torque at $\\theta = 90^\\circ$**, where $\\sin\\theta = 1$ and the whole force is perpendicular to $\\vec{r}$.",
+        "**Sign convention:** by convention counter-clockwise torques are taken as positive and clockwise as negative; keep the choice consistent within a problem.",
+        "**Equilibrium needs both** $\\sum F = 0$ and $\\sum \\tau = 0$ — zero net force alone does not guarantee no rotation."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Moment of inertia: the rotational analogue of mass"
+    },
+    {
+      "type": "text",
+      "content": "If torque is the rotational analogue of force, what plays the role of mass? The answer is the moment of inertia, $I$ — a measure of how strongly an object resists being angularly accelerated. Unlike mass, it is not a single fixed number for an object: it depends on the axis of rotation and on how the mass is arranged around that axis."
+    },
+    {
+      "type": "formula",
+      "content": "I = \\sum m r^2"
+    },
+    {
+      "type": "text",
+      "content": "For a collection of point masses, add $mr^2$ for each one, where $r$ is that mass's distance from the axis. Because the distance is squared, mass placed far from the axis dominates. That single fact explains most of the qualitative results you need. A hoop or thin ring, with all its mass at the rim, has $I = mr^2$. A solid disc or cylinder of the same mass and radius spreads its mass inward, so it has a smaller $I = \\tfrac{1}{2}mr^2$. A solid sphere is smaller still at $I = \\tfrac{2}{5}mr^2$, and a rod is far easier to spin about its centre than about one end. You are not asked to derive these; you are asked to reason with them — more mass, or mass further out, means a larger $I$ and a more sluggish response to torque."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**$I$ depends on the axis** — the same object has different moments of inertia about different axes. Always identify the axis first.",
+        "**Distribution beats total mass** — mass far from the axis contributes as $r^2$, so a light rim can outweigh a heavy hub.",
+        "**Qualitative ranking (same $m$, $r$):** solid sphere $<$ solid disc/cylinder $<$ thin hoop, because the hoop concentrates mass furthest out."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Newton's second law for rotation"
+    },
+    {
+      "type": "text",
+      "content": "With torque and moment of inertia defined, the rotational form of Newton's second law follows immediately. A net torque produces an angular acceleration in direct proportion to the torque and in inverse proportion to the moment of inertia."
+    },
+    {
+      "type": "formula",
+      "content": "\\tau = I\\alpha"
+    },
+    {
+      "type": "text",
+      "content": "Compare this line by line with $F = ma$: torque $\\tau$ replaces force $F$, moment of inertia $I$ replaces mass $m$, and angular acceleration $\\alpha$ replaces linear acceleration $a$. The angular acceleration $\\alpha$ is the rate of change of angular velocity $\\omega$, measured in rad s⁻². The heavier the object spins (larger $I$), the smaller the angular acceleration a given torque produces — exactly as a larger mass gives a smaller linear acceleration."
+    },
+    {
+      "type": "workedExample",
+      "question": "A solid cylindrical grinding wheel (mass 2.5 kg, radius 0.20 m) has a tangential force of 10 N applied at its rim, opposed by a constant frictional torque of 0.50 N m. Determine its angular acceleration. (For a solid cylinder, $I = \\tfrac{1}{2}mr^2$.) [4]",
+      "solution": "**Applied torque.** The force is tangential, so $\\theta = 90^\\circ$ and $\\sin\\theta = 1$.\n$\\tau_{\\text{app}} = Fr\\sin\\theta = (10)(0.20)(1) = 2.0$ N m.  [M1: torque of applied force]\n\n**Net torque.** Friction opposes the applied torque:\n$\\sum\\tau = 2.0 - 0.50 = 1.5$ N m.  [A1: net torque]\n\n**Moment of inertia.**\n$I = \\tfrac{1}{2}mr^2 = \\tfrac{1}{2}(2.5)(0.20)^2 = 0.050$ kg m².  [M1: correct $I$]\n\n**Apply $\\tau = I\\alpha$.**\n$\\alpha = \\dfrac{\\sum\\tau}{I} = \\dfrac{1.5}{0.050} = 30$ rad s⁻².  [A1: answer with unit]\n\n**Final answer:** the angular acceleration is $30$ rad s⁻²."
+    },
+    {
+      "type": "heading",
+      "content": "Angular kinematics: the rotational SUVAT equations"
+    },
+    {
+      "type": "text",
+      "content": "When the angular acceleration is constant, the angular quantities obey equations identical in form to the SUVAT equations for linear motion. Replace displacement $s$ with angular displacement $\\theta$ (in radians), initial and final velocity $u$, $v$ with angular velocities $\\omega_0$, $\\omega$, and acceleration $a$ with angular acceleration $\\alpha$."
+    },
+    {
+      "type": "formula",
+      "content": "1. \\; \\omega = \\omega_0 + \\alpha t\n2. \\; \\theta = \\omega_0 t + \\tfrac{1}{2}\\alpha t^2\n3. \\; \\omega^2 = \\omega_0^2 + 2\\alpha\\theta"
+    },
+    {
+      "type": "text",
+      "content": "The strategy is exactly the one you already use for linear SUVAT: list the angular variables, identify the one that is neither given nor wanted, and pick the equation that omits it. These relations hold only while $\\alpha$ is constant, just as the linear versions require constant $a$."
+    },
+    {
+      "type": "workedExample",
+      "question": "A wheel starts from rest and reaches an angular velocity of 24 rad s⁻¹ after turning through 48 rad under constant angular acceleration. Calculate (a) the angular acceleration and (b) the time taken. [4]",
+      "solution": "**List the angular variables.**\n$\\omega_0 = 0$, $\\omega = 24$ rad s⁻¹, $\\theta = 48$ rad, $\\alpha = ?$, $t = ?$\n\n**(a) Angular acceleration.** Time is neither given nor wanted, so use the equation with no $t$: $\\omega^2 = \\omega_0^2 + 2\\alpha\\theta$.  [M1: correct equation]\n$24^2 = 0 + 2\\alpha(48)$\n$576 = 96\\alpha$\n$\\alpha = 6.0$ rad s⁻².  [A1: answer with unit]\n\n**(b) Time.** Use the equation with no $\\theta$ so any slip in (a) cannot spread: $\\omega = \\omega_0 + \\alpha t$.\n$24 = 0 + 6.0\\,t$  [M1: correct substitution]\n$t = 4.0$ s.  [A1: answer with unit]\n\n**Final answer:** $\\alpha = 6.0$ rad s⁻²; $t = 4.0$ s."
+    },
+    {
+      "type": "heading",
+      "content": "Rotational kinetic energy"
+    },
+    {
+      "type": "text",
+      "content": "A rotating object stores kinetic energy in its motion even if its centre of mass is stationary — a spinning flywheel is the obvious example. This rotational kinetic energy is the exact analogue of $\\tfrac{1}{2}mv^2$, with $I$ in place of $m$ and $\\omega$ in place of $v$."
+    },
+    {
+      "type": "formula",
+      "content": "E_k = \\tfrac{1}{2}I\\omega^2"
+    },
+    {
+      "type": "text",
+      "content": "An object that both moves and spins — a rolling ball, for instance — carries both forms at once, and its total kinetic energy is the sum: $E_k = \\tfrac{1}{2}mv^2 + \\tfrac{1}{2}I\\omega^2$. In energy-conservation problems this is the crucial idea: gravitational potential energy released as an object rolls downhill is shared between translation and rotation, not poured entirely into speed."
+    },
+    {
+      "type": "heading",
+      "content": "Angular momentum and its conservation"
+    },
+    {
+      "type": "text",
+      "content": "Just as linear momentum $p = mv$ measures 'quantity of motion' in a straight line, angular momentum measures quantity of rotational motion. For a rigid body turning about a fixed axis it is the product of moment of inertia and angular velocity."
+    },
+    {
+      "type": "formula",
+      "content": "L = I\\omega"
+    },
+    {
+      "type": "text",
+      "content": "Its real power is a conservation law. If the net external torque on a system is zero, its total angular momentum stays constant, so $I_i\\omega_i = I_f\\omega_f$. This is the physics behind a spinning skater: pulling their arms inward reduces $I$, so $\\omega$ must rise to keep $L$ fixed, and they spin faster. The same law governs a diver tucking to somersault faster and a collapsing star spinning up as it shrinks. Note carefully that angular momentum is conserved even when kinetic energy is not — the skater actually gains rotational kinetic energy by doing work to pull their arms in."
+    },
+    {
+      "type": "examTip",
+      "content": "Before writing an equation for a spinning system, ask which law the physics protects. If the net external torque is zero, angular momentum $L = I\\omega$ is conserved — use it, even for an inelastic 'sticking' event where kinetic energy is lost. Reach for energy conservation only when no external torque does work, as with rolling down a ramp. Choosing the wrong conservation law is a classic way to lose every mark on a question."
+    },
+    {
+      "type": "workedExample",
+      "question": "A turntable of moment of inertia 0.020 kg m² rotates freely at 15 rad s⁻¹. A small lump of clay is dropped onto it and sticks, increasing the total moment of inertia to 0.030 kg m². No external torque acts about the axis. Calculate the new angular velocity, and state whether rotational kinetic energy is conserved. [4]",
+      "solution": "**Choose the law.** No external torque acts, so angular momentum is conserved (the clay sticks, so this is inelastic and kinetic energy is not conserved).\n$I_i\\omega_i = I_f\\omega_f$  [M1: conservation of angular momentum]\n$(0.020)(15) = (0.030)\\,\\omega_f$  [M1: correct substitution]\n$\\omega_f = \\dfrac{0.30}{0.030} = 10$ rad s⁻¹.  [A1: answer with unit]\n\n**Kinetic energy check.**\n$E_i = \\tfrac{1}{2}(0.020)(15)^2 = 2.25$ J;  $E_f = \\tfrac{1}{2}(0.030)(10)^2 = 1.5$ J.\nRotational kinetic energy is NOT conserved — it falls from 2.25 J to 1.5 J, the loss going to heat and deformation as the clay sticks.  [A1: correct statement with support]\n\n**Final answer:** $\\omega_f = 10$ rad s⁻¹; kinetic energy is not conserved."
+    },
+    {
+      "type": "heading",
+      "content": "Rolling without slipping"
+    },
+    {
+      "type": "text",
+      "content": "An object that rolls without slipping both translates and rotates, and the two motions are locked together. Because the contact point is momentarily at rest against the surface, the speed of the centre of mass and the angular velocity are tied by a single relation."
+    },
+    {
+      "type": "formula",
+      "content": "v = \\omega r"
+    },
+    {
+      "type": "text",
+      "content": "Differentiating gives the companion relation $a = \\alpha r$ for the accelerations. This link is what makes rolling problems solvable: it lets you replace $\\omega$ by $v/r$ throughout, so the total kinetic energy $\\tfrac{1}{2}mv^2 + \\tfrac{1}{2}I\\omega^2$ becomes an expression in $v$ alone. When several shapes race down the same ramp, the one with the smallest $I$ (relative to $mr^2$) puts the least energy into spin and so arrives fastest — a solid sphere beats a disc, which beats a hoop, regardless of their masses and radii."
+    },
+    {
+      "type": "workedExample",
+      "question": "A solid sphere (mass 0.50 kg, radius 0.050 m) rolls without slipping from rest down a slope of vertical height 0.80 m. Calculate its linear speed at the bottom. (For a solid sphere, $I = \\tfrac{2}{5}mr^2$; take $g = 9.81$ m s⁻².) [4]",
+      "solution": "**Conserve energy.** The gravitational potential energy becomes translational plus rotational kinetic energy.\n$mgh = \\tfrac{1}{2}mv^2 + \\tfrac{1}{2}I\\omega^2$.  [M1: energy conservation with both KE terms]\n\n**Use the rolling condition and $I$.** Substitute $\\omega = v/r$ and $I = \\tfrac{2}{5}mr^2$:\n$mgh = \\tfrac{1}{2}mv^2 + \\tfrac{1}{2}\\left(\\tfrac{2}{5}mr^2\\right)\\left(\\dfrac{v}{r}\\right)^2$.  [M1: substitute $v = \\omega r$]\n\n**Simplify.** The mass $m$ and radius $r$ cancel:\n$gh = \\tfrac{1}{2}v^2 + \\tfrac{1}{5}v^2 = \\tfrac{7}{10}v^2$.  [A1: simplified expression]\n\n**Solve for $v$.**\n$v = \\sqrt{\\dfrac{10gh}{7}} = \\sqrt{\\dfrac{10(9.81)(0.80)}{7}} = 3.35$ m s⁻¹ $\\approx 3.4$ m s⁻¹.  [A1: answer with unit]\n\n**Final answer:** the sphere reaches $3.4$ m s⁻¹ (to 2 s.f.)."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Forgetting the perpendicular component or lever arm in torque** — using $\\tau = Fr$ when the force is not perpendicular. Include the $\\sin\\theta$, or use the lever arm $r\\sin\\theta$. A force directed straight at the axis ($\\theta = 0$) gives zero torque.",
+        "**Confusing the three rotational relations** — $\\tau = I\\alpha$ (the analogue of $F = ma$), $L = I\\omega$ (momentum), and $E_k = \\tfrac{1}{2}I\\omega^2$ (energy) are distinct. Writing $\\tau = I\\omega$ or $L = I\\alpha$ loses the mark.",
+        "**Choosing the wrong conservation law** — in an inelastic spin-up (clay sticking, skater pulling in) angular momentum is conserved but kinetic energy is not. Do not set $\\tfrac{1}{2}I_i\\omega_i^2 = \\tfrac{1}{2}I_f\\omega_f^2$ for such events.",
+        "**Omitting the rotational kinetic energy for a rolling object** — energy released going downhill splits as $\\tfrac{1}{2}mv^2 + \\tfrac{1}{2}I\\omega^2$. Using $mgh = \\tfrac{1}{2}mv^2$ alone overestimates the speed.",
+        "**Not applying $v = \\omega r$ when rolling without slipping** — without this link you cannot reduce the two unknowns to one, and the energy equation is unsolvable.",
+        "**Working in degrees instead of radians** — angular displacement in the rotational SUVAT equations, and in $v = \\omega r$, must be in radians.",
+        "**Treating $I$ as fixed regardless of axis** — the moment of inertia depends on the chosen axis; identify the axis before quoting a value.",
+        "**Dropping units or over-rounding mid-calculation** — carry extra figures through and round only the final answer; remember torque is in N m, $\\omega$ in rad s⁻¹, $\\alpha$ in rad s⁻²."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy/answer mark (A) — and error-carried-forward (ECF) means a wrong number early on need not cost you the marks that follow. But that protection exists only if the method is written down. An accuracy mark is dependent on the method mark before it: it is awarded for a value that follows correctly from your own working, and the engine accepts any correctly-rounded final value with the right unit. Study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "A disc of moment of inertia 0.40 kg m² experiences a constant torque of 6.0 N m from rest. Calculate its angular acceleration and its angular velocity after 3.0 s. [4]",
+      "solution": "**Model answer — full working.**\n\n**Angular acceleration — from $\\tau = I\\alpha$.**\n$\\alpha = \\dfrac{\\tau}{I} = \\dfrac{6.0}{0.40} = 15$ rad s⁻².\n\n**Angular velocity after 3.0 s — from rotational SUVAT.** The disc starts from rest, so $\\omega_0 = 0$, and $\\alpha$ is constant, so use $\\omega = \\omega_0 + \\alpha t$.\n$\\omega = 0 + (15)(3.0) = 45$ rad s⁻¹.\n\n**Final answer:** $\\alpha = 15$ rad s⁻² and $\\omega = 45$ rad s⁻¹.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — method for angular acceleration.** Awarded for using Newton's second law for rotation, $\\tau = I\\alpha$ (equivalently $\\alpha = \\tau/I$), with the given values. This is a METHOD mark: it is earned for the correct approach even if the arithmetic later slips.\n- **A1 — angular acceleration.** Awarded for $\\alpha = 15$ rad s⁻², with the correct unit. This ACCURACY mark depends on M1: it is the value that follows correctly from the method above.\n- **M1 — method for angular velocity.** Awarded for choosing the correct rotational kinematics equation with $\\omega_0 = 0$: $\\omega = \\omega_0 + \\alpha t$, substituting $t = 3.0$ s. Another method mark, independent of whether the earlier number was right.\n- **A1 — angular velocity.** Awarded for $\\omega = 45$ rad s⁻¹, with the correct unit. ECF applies: a student who found a wrong $\\alpha$ but then correctly computed $\\omega = (\\text{their }\\alpha)\\times 3.0$ still earns this mark on their own figure.\n\n**'Accept answers that round correctly.'** The engine does not demand a fixed number of decimal places — it accepts $15$ rad s⁻² and $45$ rad s⁻¹ (and, where a calculation gives them, correctly-rounded equivalents), provided the unit is present.\n\n**Bottom line:** of the 4 marks, two are method marks that survive an arithmetic slip, and the accuracy marks are shielded by ECF. A student who writes only '45 rad s⁻¹' with no working risks losing 2–3 marks if the final number is wrong; a student who shows $\\tau = I\\alpha$, the value of $\\alpha$, the chosen kinematics equation and the substitution keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: state $\\tau = I\\alpha$, write the value of $\\alpha$, name the rotational SUVAT equation you chose, show the substitution, then the answer with its unit. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Rigid body mechanics completes the parallel between straight-line and rotational dynamics, and that parallel keeps paying off. The conservation of angular momentum reappears in astrophysics, where collapsing clouds spin up into stars and discs, and in the quantised angular momentum of atoms. Rotational kinetic energy underlies flywheel energy storage and the dynamics of everything that turns. Master the dictionary — force to torque, mass to moment of inertia, momentum to angular momentum — decide which conservation law the physics protects, and apply $v = \\omega r$ whenever an object rolls, and the rotating world becomes variations on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 2 calculation marked: solve a rotational dynamics problem with full working",
+      "href": "/mark?subject=ib-physics-hl&topic=A.4&component=paper_2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/"
+        },
+        {
+          "label": "PhET Simulation: Torque",
+          "href": "https://phet.colorado.edu/en/simulations/torque"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Torque",
+    "embedUrl": "https://phet.colorado.edu/sims/html/torque/latest/torque_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/torque",
+    "hint": "Explore “Torque” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "A.4.1",
+      "title": "Torque",
+      "detail": "The rotational equivalent of force, defined as $\\Gamma = rF\\sin\\theta$."
+    },
+    {
+      "code": "A.4.2",
+      "title": "Rotational dynamics",
+      "detail": "Applying Newton's second law for rotation, $\\Gamma_{net} = I\\alpha$."
+    },
+    {
+      "code": "A.4.4",
+      "title": "Rotational equilibrium",
+      "detail": "Conditions for static equilibrium, where $\\sum F = 0$ and $\\sum \\Gamma = 0$."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "a-4-rigid-body-mechanics-q1",
+      "prompt": "A mechanic applies a force of 120 N to the end of a 0.45 m long spanner. The force is applied at an angle of $60^\\circ$ to the line connecting the pivot point (the nut) to the point of force application. Calculate the magnitude of the torque applied to the nut.",
+      "marks": 3,
+      "commandTerm": "Calculate",
+      "difficulty": "foundation",
+      "syllabusRef": "A.4.1",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) States or uses the correct formula for torque: $\\Gamma = rF\\sin\\theta$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Correct substitution of values: $\\Gamma = (0.45)(120)\\sin(60^\\circ)$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Correct answer with unit: 47 N m (or 46.8 N m).",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The formula for torque is $\\Gamma = rF\\sin\\theta$, where $r$ is the distance from the pivot, $F$ is the applied force, and $\\theta$ is the angle between the force vector and the lever arm.\\nSubstituting the given values: $\\Gamma = (0.45 \\text{ m}) \\times (120 \\text{ N}) \\times \\sin(60^\\circ)$.\\n$\\sin(60^\\circ) \\approx 0.866$.\\n$\\Gamma = 54 \\times 0.866... = 46.765... \\text{ N m}$.\\nTo two significant figures, the torque is 47 N m."
+    },
+    {
+      "id": "a-4-rigid-body-mechanics-q2",
+      "prompt": "A solid cylindrical flywheel with a mass of 50 kg and a radius of 0.20 m is initially at rest. A constant net torque of 10 N m is applied to it. The moment of inertia for a solid cylinder is given by $I = \\frac{1}{2}MR^2$. Determine the angular velocity of the flywheel after it has been accelerating for 5.0 s.",
+      "marks": 4,
+      "commandTerm": "Determine",
+      "difficulty": "standard",
+      "syllabusRef": "A.4.2",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) Calculates moment of inertia: $I = \\frac{1}{2}(50)(0.20)^2 = 1.0 \\text{ kg m}^2$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Uses rotational Newton's second law to find angular acceleration: $\\alpha = \\frac{\\Gamma}{I} = \\frac{10}{1.0} = 10 \\text{ rad s}^{-2}$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Selects appropriate kinematic equation: $\\omega_f = \\omega_i + \\alpha t$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Correct substitution and final answer with unit: $\\omega_f = 0 + (10)(5.0) = 50 \\text{ rad s}^{-1}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "First, calculate the moment of inertia, $I$, of the solid cylinder using the formula $I = \\frac{1}{2}MR^2$.\\n$I = \\frac{1}{2}(50 \\text{ kg})(0.20 \\text{ m})^2 = \\frac{1}{2}(50)(0.04) = 1.0 \\text{ kg m}^2$.\\nNext, use the rotational equivalent of Newton's second law, $\\Gamma_{net} = I\\alpha$, to find the angular acceleration, $\\alpha$.\\n$\\alpha = \\frac{\\Gamma_{net}}{I} = \\frac{10 \\text{ N m}}{1.0 \\text{ kg m}^2} = 10 \\text{ rad s}^{-2}$.\\nFinally, use a rotational kinematic equation to find the final angular velocity, $\\omega_f$. Since the flywheel starts from rest, the initial angular velocity $\\omega_i = 0$.\\n$\\omega_f = \\omega_i + \\alpha t$.\\n$\\omega_f = 0 + (10 \\text{ rad s}^{-2})(5.0 \\text{ s}) = 50 \\text{ rad s}^{-1}$."
+    },
+    {
+      "id": "a-4-rigid-body-mechanics-q3",
+      "prompt": "A uniform horizontal beam of length 3.0 m and mass 25 kg is supported by a pivot at a distance of 1.0 m from its left end. A box of mass 50 kg is placed on the right end of the beam. A vertical rope is attached to the left end of the beam to keep it in equilibrium. Explain, with calculations, the tension required in the rope. You may use $g = 9.8 \\text{ m s}^{-2}$.",
+      "marks": 5,
+      "commandTerm": "Explain",
+      "difficulty": "standard",
+      "syllabusRef": "A.4.4",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) States condition for rotational equilibrium: net torque about any point is zero ($\\sum \\Gamma = 0$).",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Correctly identifies lever arms from the pivot: rope at 1.0 m, beam's centre of mass at 0.5 m, box at 2.0 m.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Sets up torque equation correctly, balancing clockwise and anticlockwise torques. e.g. $T \\times 1.0 = (25g \\times 0.5) + (50g \\times 2.0)$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Substitutes values into the equation: $T = (12.5 \\times 9.8) + (100 \\times 9.8)$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Solves for T to get 1102.5 N. Answer given to 2 or 3 s.f. with unit: 1100 N.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "For the beam to be in rotational equilibrium, the sum of the torques about the pivot must be zero. This means the sum of clockwise torques must equal the sum of anticlockwise torques.\\nThe pivot is the reference point. The tension $T$ in the rope creates an anticlockwise torque. The weight of the beam and the weight of the box create clockwise torques.\\nThe lever arm for the rope is 1.0 m.\\nThe beam is uniform, so its weight ($25g$) acts at its centre, 1.5 m from the end. The distance from the pivot is $1.5 - 1.0 = 0.5$ m.\\nThe box's weight ($50g$) acts at the right end, 3.0 m from the left. The distance from the pivot is $3.0 - 1.0 = 2.0$ m.\\nSetting anticlockwise torques equal to clockwise torques:\\n$\\Gamma_{acw} = \\Gamma_{cw}$\\n$T \\times 1.0 = (W_{beam} \\times d_{beam}) + (W_{box} \\times d_{box})$\\n$T = (25 \\text{ kg} \\times 9.8 \\text{ m s}^{-2} \\times 0.5 \\text{ m}) + (50 \\text{ kg} \\times 9.8 \\text{ m s}^{-2} \\times 2.0 \\text{ m})$\\n$T = (122.5 \\text{ N}) + (980 \\text{ N}) = 1102.5 \\text{ N}$.\\nTherefore, the tension required in the rope is approximately 1100 N."
+    },
+    {
+      "id": "a-4-rigid-body-mechanics-q4",
+      "prompt": "A solid sphere of mass $M$ and radius $R$ is released from rest at the top of a ramp of vertical height $h$. It rolls without slipping down the ramp. The moment of inertia of a solid sphere is $I = \\frac{2}{5}MR^2$. Deduce, in terms of $g$ and $h$, the linear speed $v$ of the sphere's centre of mass at the bottom of the ramp. You may ignore frictional losses.",
+      "marks": 6,
+      "commandTerm": "Deduce",
+      "difficulty": "challenge",
+      "syllabusRef": "A.4.2",
+      "paper": "P2",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(M1) Applies conservation of energy: Initial GPE = Final KE. $E_{p,i} = E_{k,f}$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Expresses final kinetic energy as sum of translational and rotational parts: $E_{k,f} = \\frac{1}{2}Mv^2 + \\frac{1}{2}I\\omega^2$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Relates linear and angular velocity for rolling without slipping: $v = R\\omega$ (or $\\omega = v/R$).",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Substitutes for $I$ and $\\omega$ into the energy equation: $Mgh = \\frac{1}{2}Mv^2 + \\frac{1}{2}(\\frac{2}{5}MR^2)(\\frac{v}{R})^2$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Simplifies the equation by cancelling terms: $Mgh = \\frac{1}{2}Mv^2 + \\frac{1}{5}Mv^2$, leading to $gh = \\frac{7}{10}v^2$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Correctly rearranges to find the final expression for $v$: $v = \\sqrt{\\frac{10gh}{7}}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "We use the principle of conservation of mechanical energy. The initial gravitational potential energy ($E_p = Mgh$) at height $h$ is converted into final kinetic energy at the bottom.\\nSince the sphere rolls without slipping, the final kinetic energy is a sum of its translational kinetic energy ($E_{k,trans} = \\frac{1}{2}Mv^2$) and its rotational kinetic energy ($E_{k,rot} = \\frac{1}{2}I\\omega^2$).\\nBy conservation of energy: $E_{p,i} = E_{k,f}$\\n$Mgh = \\frac{1}{2}Mv^2 + \\frac{1}{2}I\\omega^2$.\\nWe are given $I = \\frac{2}{5}MR^2$. For rolling without slipping, the condition $v = R\\omega$ holds, so $\\omega = \\frac{v}{R}$.\\nSubstitute these into the energy equation:\\n$Mgh = \\frac{1}{2}Mv^2 + \\frac{1}{2}\\left(\\frac{2}{5}MR^2\\right)\\left(\\frac{v}{R}\\right)^2$\\n$Mgh = \\frac{1}{2}Mv^2 + \\frac{1}{2}\\left(\\frac{2}{5}MR^2\\right)\\frac{v^2}{R^2}$\\nCancel the $R^2$ terms in the rotational part:\\n$Mgh = \\frac{1}{2}Mv^2 + \\frac{1}{5}Mv^2$\\nMass $M$ is a common factor and can be cancelled from all terms:\\n$gh = \\frac{1}{2}v^2 + \\frac{1}{5}v^2$\\nCombine the terms on the right side: $gh = \\left(\\frac{5}{10} + \\frac{2}{10}\\right)v^2 = \\frac{7}{10}v^2$.\\nFinally, rearrange to solve for $v$:\\n$v^2 = \\frac{10gh}{7}$\\n$v = \\sqrt{\\frac{10gh}{7}}$."
+    }
+  ]
+}

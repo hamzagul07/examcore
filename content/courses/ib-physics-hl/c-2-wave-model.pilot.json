@@ -1,0 +1,540 @@
+{
+  "slug": "c-2-wave-model",
+  "topicCode": "C.2",
+  "unit": {
+    "code": "C",
+    "title": "Wave behaviour"
+  },
+  "title": "Wave model",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "pilot",
+  "summary": "The wave model is the shared language for everything that ripples, oscillates or travels as a disturbance — from sound and water waves to light and the whole electromagnetic spectrum. This lesson builds the full C.2 toolkit: the difference between transverse and longitudinal waves, the core wave terms (wavelength, frequency, period, amplitude and wave speed) and the two equations that tie them together, $v = f\\lambda$ and $T = 1/f$. It shows how to represent a wave with wavefronts and rays, and — the skill examiners test most — how to read a wavelength off a displacement–distance graph and a period off a displacement–time graph without confusing the two. It closes with the electromagnetic spectrum (its order and the fact that every part travels at $c$ in a vacuum) and why mechanical waves need a medium while electromagnetic waves do not. Every worked example is laid out exactly the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Distinguish transverse from longitudinal waves and describe how each transfers energy without transferring the medium.",
+    "Define wavelength, frequency, period, amplitude and wave speed, and apply $v = f\\lambda$ and $T = 1/f$ to solve problems.",
+    "Represent waves using wavefronts and rays, and read wavelength, period and amplitude correctly off displacement–distance and displacement–time graphs.",
+    "State the order of the electromagnetic spectrum, that all its parts travel at $c$ in a vacuum, and that mechanical waves require a medium.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "C.2"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
+  "simpleExplanation": {
+    "title": "A Wave Is a Travelling Disturbance, Not Travelling Stuff",
+    "summary": "A wave carries energy from one place to another without carrying the material along with it. The particles of the medium just wobble on the spot; it is the pattern of that wobble — the disturbance — that moves. Give a wave its speed, its wavelength and its frequency and the single equation $v = f\\lambda$ links all three.",
+    "analogy": "Picture a 'Mexican wave' running around a stadium. The wave sweeps right around the ground, but no single person leaves their seat — each just stands up and sits down in turn. The people are the medium; their up-and-down motion is the oscillation; the sweeping pattern is the wave. Sound, water ripples and light all work the same way: something oscillates, and the pattern of oscillation travels while the medium stays put.",
+    "steps": [
+      "Decide the type: if the oscillation is at right angles to the direction the wave travels it is transverse (light, waves on a string); if it is along the direction of travel it is longitudinal (sound).",
+      "Read the size of the wobble: the amplitude is the maximum displacement from the rest position — it sets how much energy the wave carries.",
+      "Read the repeat in space and time: the wavelength ($\\lambda$) is the length of one full cycle; the period ($T$) is the time for one full cycle; the frequency ($f = 1/T$) is how many cycles pass per second.",
+      "Link them with $v = f\\lambda$: the wave speed equals frequency times wavelength, so knowing any two gives the third."
+    ]
+  },
+  "keyConcepts": [
+    "transverse and longitudinal waves",
+    "the wave equation",
+    "reading wave graphs"
+  ],
+  "flashcards": [
+    {
+      "front": "Transverse wave",
+      "back": "A wave in which the oscillations are perpendicular (at right angles) to the direction of energy transfer. Examples: light and all electromagnetic waves, waves on a string, water surface ripples.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Longitudinal wave",
+      "back": "A wave in which the oscillations are parallel to the direction of energy transfer, forming compressions and rarefactions. The classic example is sound travelling through air.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Wavelength ($\\lambda$)",
+      "back": "The shortest distance between two points oscillating in phase — e.g. crest to crest, or compression to compression. Measured in metres (m). Read it off a displacement–DISTANCE graph.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Frequency ($f$)",
+      "back": "The number of complete oscillations passing a point per second, measured in hertz (Hz). It is set by the source of the wave, not by the medium.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Period ($T$)",
+      "back": "The time for one complete oscillation, measured in seconds (s). Read it off a displacement–TIME graph. Related to frequency by $T = 1/f$.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Amplitude ($A$)",
+      "back": "The maximum displacement of a particle from its equilibrium (rest) position. It sets the energy the wave carries; it is NOT the distance between a crest and a trough (that is twice the amplitude).",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "The wave equation $v = f\\lambda$",
+      "back": "Wave speed equals frequency multiplied by wavelength. Knowing any two of $v$, $f$, $\\lambda$ gives the third. Speed depends on the medium; frequency depends on the source.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Period–frequency relationship $T = 1/f$",
+      "back": "Period and frequency are reciprocals: $T = 1/f$ and $f = 1/T$. A 50 Hz wave has a period of $1/50 = 0.020$ s.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Wavefront",
+      "back": "A line or surface joining points that are all in phase (e.g. all at a crest). Wavefronts are spaced one wavelength apart. They show the shape of the wave — plane or circular.",
+      "pillLabel": "Representation"
+    },
+    {
+      "front": "Ray",
+      "back": "An arrow drawn perpendicular to the wavefronts showing the direction the wave travels (the direction of energy transfer). Rays and wavefronts always meet at right angles.",
+      "pillLabel": "Representation"
+    },
+    {
+      "front": "Displacement–distance vs displacement–time graph",
+      "back": "A displacement–DISTANCE graph is a snapshot of the whole wave at one instant — read the WAVELENGTH from it. A displacement–TIME graph tracks ONE particle over time — read the PERIOD from it. Both show amplitude.",
+      "pillLabel": "Graph"
+    },
+    {
+      "front": "The electromagnetic spectrum (order)",
+      "back": "From longest wavelength / lowest frequency to shortest / highest: radio, microwave, infrared, visible, ultraviolet, X-ray, gamma. All are transverse and all travel at $c = 3.0 \\times 10^8$ m s⁻¹ in a vacuum.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Mechanical vs electromagnetic waves",
+      "back": "Mechanical waves (sound, water, waves on a string) need a material medium to travel through and cannot cross a vacuum. Electromagnetic waves need no medium and travel through empty space.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Exam Trap: what changes when a wave enters a new medium",
+      "back": "When a wave passes into a different medium its SPEED changes and its WAVELENGTH changes to match, but its FREQUENCY stays the same — because frequency is fixed by the source. Use $v = f\\lambda$ with $f$ constant.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A wave has frequency 250 Hz and wavelength 1.4 m. Its speed is:",
+      "options": [
+        "0.0056 m s⁻¹",
+        "179 m s⁻¹",
+        "350 m s⁻¹",
+        "251 m s⁻¹"
+      ],
+      "answer": "350 m s⁻¹"
+    },
+    {
+      "prompt": "A sound wave passes from air into water, where it travels faster. What happens to its frequency and wavelength?",
+      "options": [
+        "Both increase",
+        "Frequency stays the same; wavelength increases",
+        "Frequency increases; wavelength stays the same",
+        "Frequency decreases; wavelength stays the same"
+      ],
+      "answer": "Frequency stays the same; wavelength increases"
+    },
+    {
+      "prompt": "In a longitudinal wave, the direction in which the particles oscillate is:",
+      "options": [
+        "Perpendicular to the direction the wave travels",
+        "Parallel to the direction the wave travels",
+        "In a circle around the rest position",
+        "Random in every direction"
+      ],
+      "answer": "Parallel to the direction the wave travels"
+    },
+    {
+      "prompt": "To read the WAVELENGTH of a wave directly, you should look at a graph of:",
+      "options": [
+        "Displacement against time",
+        "Displacement against distance",
+        "Velocity against time",
+        "Amplitude against frequency"
+      ],
+      "answer": "Displacement against distance"
+    },
+    {
+      "prompt": "Which statement about the electromagnetic spectrum is correct?",
+      "options": [
+        "Radio waves travel faster than gamma rays in a vacuum",
+        "All parts travel at the same speed c in a vacuum",
+        "X-rays require a medium to travel through",
+        "Visible light has the longest wavelength of all"
+      ],
+      "answer": "All parts travel at the same speed c in a vacuum"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a transverse and a longitudinal wave?",
+      "a": "It is the direction of the oscillation relative to the direction the wave travels. In a transverse wave the particles oscillate at right angles to the direction of energy transfer — think of a wave on a rope, or light. In a longitudinal wave the particles oscillate back and forth along the direction of travel, creating compressions (particles bunched together) and rarefactions (particles spread apart) — sound in air is the standard example. In both cases the medium only oscillates about a fixed point; it is the disturbance that travels."
+    },
+    {
+      "q": "How do I tell a displacement–distance graph from a displacement–time graph?",
+      "a": "Check the horizontal axis. If it is distance, the graph is a snapshot of the whole wave frozen at one instant, so the horizontal distance for one full cycle is the WAVELENGTH. If it is time, the graph follows a single particle as time passes, so the horizontal distance for one full cycle is the PERIOD. Both graphs look like a sine curve, and both let you read the amplitude off the vertical axis — but only one of them gives wavelength and only the other gives period, so always read the axis label first."
+    },
+    {
+      "q": "When a wave enters a new medium, what stays the same and what changes?",
+      "a": "The frequency stays the same, because frequency is set by the source producing the wave, not by the material it moves through. The speed changes because it depends on the medium. Since $v = f\\lambda$ and $f$ is fixed, the wavelength must change in step with the speed: if the wave speeds up, its wavelength increases; if it slows down, its wavelength decreases. This is the physics behind refraction."
+    },
+    {
+      "q": "Do all electromagnetic waves really travel at the same speed?",
+      "a": "In a vacuum, yes — radio waves, microwaves, infrared, visible light, ultraviolet, X-rays and gamma rays all travel at $c = 3.0 \\times 10^8$ m s⁻¹. They differ only in frequency and wavelength, which is why they interact with matter so differently. (In a material medium such as glass or water they slow down, and different frequencies can slow by different amounts, but the vacuum speed is the same for all.)"
+    },
+    {
+      "q": "Why can sound not travel through a vacuum but light can?",
+      "a": "Sound is a mechanical wave: it is a disturbance of the particles of a medium, so with no particles to pass the compression along there is no wave at all — which is why space is silent. Light is an electromagnetic wave: it is a self-propagating oscillation of electric and magnetic fields that needs no particles, so it crosses the empty vacuum of space freely. This is the key practical difference between mechanical and electromagnetic waves."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "A wave is a disturbance that transfers energy from one place to another without transferring matter. That single idea underlies sound, water ripples, seismic tremors, the light in your eyes and the signal reaching your phone. This lesson builds the vocabulary and the two equations that let you describe any wave, then trains the graph-reading skill that examiners test again and again. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "Two kinds of wave: transverse and longitudinal"
+    },
+    {
+      "type": "text",
+      "content": "Every wave carries energy through a repeating oscillation, but waves split into two families according to the direction of that oscillation. In a transverse wave the particles oscillate at right angles to the direction the wave travels — a wave sent along a rope, ripples on water, and every electromagnetic wave including light. In a longitudinal wave the particles oscillate back and forth along the direction of travel, squeezing the medium into regions of high density (compressions) and low density (rarefactions). Sound in air is the standard longitudinal wave. In both families the medium itself does not travel with the wave: each particle simply oscillates about its own fixed rest position while the disturbance moves on."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Transverse:** oscillation perpendicular to energy transfer; shows crests and troughs. Examples: light and all EM waves, waves on a string, water ripples.",
+        "**Longitudinal:** oscillation parallel to energy transfer; shows compressions and rarefactions. Example: sound.",
+        "**Both transfer energy, not matter:** particles oscillate about a fixed point; only the disturbance advances.",
+        "A longitudinal wave can still be drawn as a sine curve by plotting displacement (or pressure) against position — the sine shape does not make it transverse."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The language of waves"
+    },
+    {
+      "type": "text",
+      "content": "To describe a wave quantitatively we need five terms. The amplitude ($A$) is the maximum displacement of a particle from its rest position, and it sets how much energy the wave carries. The wavelength ($\\lambda$) is the shortest distance between two points oscillating in phase — crest to crest, or compression to compression — measured in metres. The period ($T$) is the time for one complete oscillation, measured in seconds. The frequency ($f$) is the number of complete oscillations per second, measured in hertz (Hz). Finally the wave speed ($v$) is the distance the disturbance travels each second, in m s⁻¹."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Amplitude ($A$):** maximum displacement from equilibrium — NOT crest-to-trough distance, which is $2A$.",
+        "**Wavelength ($\\lambda$):** length of one full cycle in space, in metres.",
+        "**Period ($T$):** time for one full cycle, in seconds.",
+        "**Frequency ($f$):** cycles per second, in hertz — set by the SOURCE.",
+        "**Wave speed ($v$):** distance advanced per second, in m s⁻¹ — set by the MEDIUM."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The two equations that tie it together"
+    },
+    {
+      "type": "text",
+      "content": "Frequency and period describe the same repetition — one in cycles-per-second, the other in seconds-per-cycle — so they are reciprocals of each other. This gives the first relationship. The second, the wave equation, follows from a simple idea: in one period the wave advances exactly one wavelength, so its speed is one wavelength divided by one period, which rearranges to speed = frequency × wavelength."
+    },
+    {
+      "type": "formula",
+      "content": "T = \\dfrac{1}{f} \\qquad\\qquad v = f\\lambda"
+    },
+    {
+      "type": "text",
+      "content": "Here $v$ is the wave speed in m s⁻¹, $f$ is the frequency in Hz, $\\lambda$ is the wavelength in m, and $T$ is the period in s. Because $v = f\\lambda$ links three quantities, knowing any two immediately gives the third. Keep firmly in mind which quantity is controlled by what: the frequency is fixed by the source, while the speed is fixed by the medium — so when a wave crosses into a new medium it is the wavelength that must change."
+    },
+    {
+      "type": "workedExample",
+      "question": "A wave travels along a stretched string at 12 m s⁻¹ with a wavelength of 0.40 m. Calculate (a) its frequency and (b) its period. [3]",
+      "solution": "**List what you know.**\n$v = 12$ m s⁻¹, $\\lambda = 0.40$ m, $f = ?$, $T = ?$\n\n**(a) Frequency.** Rearrange the wave equation $v = f\\lambda$ for $f$:\n$f = \\dfrac{v}{\\lambda}$.  [M1: correct rearrangement]\n$f = \\dfrac{12}{0.40} = 30$ Hz.  [A1: answer with unit]\n\n**(b) Period.** Use $T = \\dfrac{1}{f}$ so a slip in $f$ carries forward cleanly:\n$T = \\dfrac{1}{30} = 0.033$ s.  [A1: answer with unit]\n\n**Final answer:** frequency $= 30$ Hz; period $\\approx 0.033$ s."
+    },
+    {
+      "type": "examTip",
+      "content": "Before substituting into $v = f\\lambda$, make sure every quantity is in base SI units: wavelength in metres (convert nm and cm), frequency in hertz (convert kHz and MHz). A huge fraction of lost marks in this topic are pure unit-conversion slips, not physics errors."
+    },
+    {
+      "type": "heading",
+      "content": "Representing waves: wavefronts and rays"
+    },
+    {
+      "type": "text",
+      "content": "There are two complementary ways to draw a wave as it spreads out. A wavefront is a line (or surface) joining points that are all in phase — for instance the line running along the top of one crest. Successive wavefronts are therefore spaced exactly one wavelength apart. A ray is an arrow drawn at right angles to the wavefronts, pointing in the direction the wave travels — that is, the direction of energy transfer. A wave spreading out from a point source has circular wavefronts; a wave far from its source, or a beam, has straight (plane) wavefronts. Rays and wavefronts always cross at 90°, so a diagram with either one implies the other."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Wavefront:** joins points in phase; consecutive wavefronts are one wavelength apart.",
+        "**Ray:** an arrow perpendicular to the wavefronts, showing direction of travel / energy transfer.",
+        "**Point source:** circular (or spherical) wavefronts. **Distant source / beam:** plane (straight) wavefronts.",
+        "Rays and wavefronts are always mutually perpendicular."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Reading waves off graphs: distance vs time"
+    },
+    {
+      "type": "text",
+      "content": "The single most tested — and most confused — skill in this topic is reading a wave off a graph, because a displacement–distance graph and a displacement–time graph look identical yet mean different things. A displacement–DISTANCE graph is a snapshot: it freezes the whole wave at one instant and plots the displacement of every particle along the wave. The horizontal length of one full cycle is therefore the WAVELENGTH. A displacement–TIME graph is a movie of a single particle: it plots how that one particle's displacement changes as time passes. The horizontal length of one full cycle is therefore the PERIOD. Both graphs are sine curves and both show the amplitude on the vertical axis — so always read the horizontal axis label first to know whether you are getting a wavelength or a period."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Displacement–distance (horizontal axis = distance):** snapshot of the whole wave → one cycle gives the **wavelength** $\\lambda$.",
+        "**Displacement–time (horizontal axis = time):** history of one particle → one cycle gives the **period** $T$.",
+        "**Amplitude** is the peak height of EITHER graph, read off the vertical axis.",
+        "Get $f$ from a displacement–time graph via $f = 1/T$, then combine with $\\lambda$ from a displacement–distance graph to find $v = f\\lambda$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A single wave is described by two graphs. Its displacement–distance graph shows one complete cycle spanning 0.80 m, with a peak displacement of 3.0 cm. Its displacement–time graph shows one complete cycle spanning 0.20 s. Determine (a) the amplitude, (b) the wavelength, (c) the period and frequency, and (d) the wave speed. [4]",
+      "solution": "**Read each graph for what it uniquely gives.**\n\n**(a) Amplitude** — the peak displacement, read off the vertical axis (same on either graph):\n$A = 3.0$ cm $= 0.030$ m.  [A1]\n\n**(b) Wavelength** — one full cycle on the displacement–DISTANCE graph:\n$\\lambda = 0.80$ m.  [A1]\n\n**(c) Period and frequency** — one full cycle on the displacement–TIME graph:\n$T = 0.20$ s, so $f = \\dfrac{1}{T} = \\dfrac{1}{0.20} = 5.0$ Hz.  [M1: $f = 1/T$]\n\n**(d) Wave speed** — combine the wavelength and frequency with the wave equation:\n$v = f\\lambda = 5.0 \\times 0.80 = 4.0$ m s⁻¹.  [A1: answer with unit]\n\n**Final answer:** $A = 0.030$ m, $\\lambda = 0.80$ m, $T = 0.20$ s, $f = 5.0$ Hz, $v = 4.0$ m s⁻¹."
+    },
+    {
+      "type": "heading",
+      "content": "The electromagnetic spectrum"
+    },
+    {
+      "type": "text",
+      "content": "Visible light is one small band of a much larger family of transverse waves called the electromagnetic (EM) spectrum. In order of increasing frequency (and therefore decreasing wavelength) the regions are: radio waves, microwaves, infrared, visible light, ultraviolet, X-rays and gamma rays. Although they interact with matter in wildly different ways — radio waves pass through walls while gamma rays are ionising — they share one defining property: in a vacuum every one of them travels at the same speed, $c = 3.0 \\times 10^8$ m s⁻¹. Because $c = f\\lambda$ is fixed in a vacuum, the higher-frequency regions automatically have the shorter wavelengths."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Order (long $\\lambda$, low $f$ → short $\\lambda$, high $f$):** radio → microwave → infrared → visible → ultraviolet → X-ray → gamma.",
+        "**All EM waves are transverse** and require no medium.",
+        "**All travel at $c = 3.0 \\times 10^8$ m s⁻¹ in a vacuum**, so $c = f\\lambda$ links their frequency and wavelength.",
+        "Visible light runs from red (longest $\\lambda$) to violet (shortest $\\lambda$) within the spectrum."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Green light has a wavelength of $5.0 \\times 10^{-7}$ m in a vacuum. Taking $c = 3.0 \\times 10^8$ m s⁻¹, calculate (a) its frequency and (b) its period. [3]",
+      "solution": "**List what you know.**\n$\\lambda = 5.0 \\times 10^{-7}$ m, $v = c = 3.0 \\times 10^8$ m s⁻¹.\n\n**(a) Frequency.** For an EM wave in a vacuum $c = f\\lambda$, so rearrange for $f$:\n$f = \\dfrac{c}{\\lambda} = \\dfrac{3.0 \\times 10^8}{5.0 \\times 10^{-7}}$.  [M1: rearranged wave equation]\n$f = 6.0 \\times 10^{14}$ Hz.  [A1: answer with unit]\n\n**(b) Period.** Use $T = \\dfrac{1}{f}$:\n$T = \\dfrac{1}{6.0 \\times 10^{14}} = 1.7 \\times 10^{-15}$ s.  [A1: answer with unit]\n\n**Final answer:** $f = 6.0 \\times 10^{14}$ Hz; $T \\approx 1.7 \\times 10^{-15}$ s."
+    },
+    {
+      "type": "heading",
+      "content": "Mechanical waves need a medium"
+    },
+    {
+      "type": "text",
+      "content": "A mechanical wave is a disturbance passed from particle to particle through a material, so it cannot exist without that material. Sound, water waves, waves on a string and seismic waves are all mechanical — remove the medium and the wave disappears, which is why a bell ringing inside a jar goes silent as the air is pumped out and why space is soundless. Electromagnetic waves are the exception: they are oscillations of electric and magnetic fields that carry themselves along, needing no particles at all, so light from the Sun crosses the vacuum of space to reach us. This is the fundamental practical divide between the two categories of wave."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Misusing $v = f\\lambda$** — dividing when you should multiply, or forgetting to convert nm, cm, kHz or MHz to base SI units before substituting. Rearrange symbolically first, then put numbers in.",
+        "**Thinking the medium sets the frequency** — frequency is fixed by the source. When a wave changes medium the speed and wavelength change together but $f$ stays constant, so use $v = f\\lambda$ with $f$ held fixed.",
+        "**Confusing transverse and longitudinal** — the test is the direction of oscillation relative to travel: perpendicular = transverse, parallel = longitudinal. Sound is longitudinal even though it is often drawn as a sine curve.",
+        "**Reading wavelength off a displacement–time graph (or period off a displacement–distance graph)** — check the horizontal axis: distance gives wavelength, time gives period. They are not interchangeable.",
+        "**Calling the crest-to-trough height the amplitude** — the amplitude is measured from the rest position to a crest; crest-to-trough is twice the amplitude.",
+        "**Claiming some EM waves are faster than others in a vacuum** — every part of the EM spectrum travels at exactly $c$ in a vacuum; they differ only in frequency and wavelength.",
+        "**Saying sound can travel through space** — sound is mechanical and needs a medium; only electromagnetic waves cross a vacuum."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an answer mark (A) — and error-carried-forward (ECF) means a wrong number early on does not have to cost you the marks that follow. But that protection only exists if your method is written down. The question below deliberately mixes a calculation with a 'state and explain' part, because the explaining marks are earned by distinct physics statements, not by the number."
+    },
+    {
+      "type": "workedExample",
+      "question": "A sound wave has a frequency of 512 Hz and travels at 340 m s⁻¹ in air. Calculate its wavelength, then state and explain what happens to the wavelength if the wave passes into water, where it travels faster. [4]",
+      "solution": "**Model answer — full working.**\n\n**Wavelength in air.** Use the wave equation $v = f\\lambda$, rearranged for wavelength:\n$\\lambda = \\dfrac{v}{f} = \\dfrac{340}{512} = 0.664$ m $\\approx 0.66$ m.\n\n**What happens in water — state and explain.** The frequency of the wave is set by the source and does not change when the wave enters a new medium, so $f$ stays at 512 Hz. In water the wave travels faster, i.e. $v$ increases. Since $\\lambda = v/f$ with $f$ fixed, a larger $v$ means a larger $\\lambda$: the wavelength INCREASES.\n\n**Final answer:** $\\lambda \\approx 0.66$ m in air; on entering water the frequency is unchanged and, because the speed increases while $f$ is constant, the wavelength increases.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — wave equation rearranged.** Awarded for correctly rearranging $v = f\\lambda$ to $\\lambda = v/f$ (or substituting the numbers in the right places). This is a METHOD mark: it stands even if the arithmetic later slips.\n- **A1 — wavelength.** Awarded for $\\lambda \\approx 0.66$ m (accept $0.664$ m and any correct rounding). ECF applies: if the rearrangement is right but the division is mis-keyed, the M-mark is safe and a value that follows correctly from the student's own figures still scores.\n- **A1 — frequency unchanged.** A distinct mark, awarded for explicitly stating that the frequency stays the same because it is fixed by the source (not the medium). This mark is for the reasoning, not the number.\n- **A1 — wavelength increases, with reason.** A separate mark, awarded for concluding the wavelength increases AND justifying it via $\\lambda = v/f$ with $f$ constant and $v$ larger. Stating 'it increases' with no link to constant frequency does not earn the mark.\n\n**'Accept answers that round correctly.'** The engine accepts $0.66$ m and $0.664$ m — it does not demand a fixed number of decimal places, only a correctly-rounded value with the right unit.\n\n**Bottom line:** of the 4 marks, one is a method mark that survives an arithmetic slip and two of the answer marks are earned by explaining the physics (frequency fixed, wavelength grows), not by the calculation. A student who writes only '0.66 m, it gets bigger' can lose the two explanation marks; a student who names the constant frequency and links it to $\\lambda = v/f$ keeps them."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: rearrange $v = f\\lambda$ before substituting, then for any 'state and explain' part make each required point a separate sentence (frequency unchanged; speed increases; therefore wavelength increases). The method marks and error-carried-forward protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The wave model you have built here is the foundation for everything in wave behaviour that follows. The wave equation reappears whenever a wave changes medium — the physics of refraction is simply $v = f\\lambda$ with the frequency held constant. Wavefronts and rays become the tools for describing reflection, refraction and diffraction, and the amplitude you learned to read off a graph is what determines intensity when waves superpose and interfere. Master the habit — identify the wave type, read the right graph for the right quantity, rearrange before you substitute, and keep frequency and medium in their proper roles — and the rest of the topic becomes variations on a model you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 2 calculation marked: solve a wave-equation problem with full working",
+      "href": "/mark?subject=ib-physics-hl&topic=C.2&component=paper_2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/"
+        },
+        {
+          "label": "PhET Simulation: Wave on a String",
+          "href": "https://phet.colorado.edu/en/simulations/wave-on-a-string"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Blackbody Spectrum",
+    "embedUrl": "https://phet.colorado.edu/sims/html/blackbody-spectrum/latest/blackbody-spectrum_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/blackbody-spectrum",
+    "hint": "Explore “Blackbody Spectrum” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "C.2.1",
+      "title": "The nature of light",
+      "detail": "Historical models of light from Newton's corpuscular theory to Huygens' principle and Maxwell's electromagnetic theory."
+    },
+    {
+      "code": "C.2.2",
+      "title": "The nature of matter",
+      "detail": "The de Broglie hypothesis, $p = \\\\frac{h}{\\\\lambda}$, and evidence from electron diffraction."
+    },
+    {
+      "code": "C.2.3",
+      "title": "The quantum nature of radiation",
+      "detail": "Quantization of energy, $E = hf$, and the concept of the photon."
+    },
+    {
+      "code": "C.2.4",
+      "title": "The wave function",
+      "detail": "The probabilistic interpretation of the wave function $\\\\Psi$ and the meaning of $|\\\\Psi|^2$."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "c-2-wave-model-q1",
+      "prompt": "An electron is accelerated from rest through a potential difference of 150 V. Calculate its de Broglie wavelength.",
+      "marks": 3,
+      "commandTerm": "Calculate",
+      "difficulty": "foundation",
+      "syllabusRef": "C.2.2",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) Kinetic energy gained is $E_k = qV = 1.60 \\\\times 10^{-19} \\\\times 150 = 2.40 \\\\times 10^{-17}$ J.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Momentum $p = \\\\sqrt{2m_e E_k} = \\\\sqrt{2 \\\\times 9.11 \\\\times 10^{-31} \\\\times 2.40 \\\\times 10^{-17}} = 2.09 \\\\times 10^{-24} \\\\text{ kg m s}^{-1}$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Wavelength $\\\\lambda = \\\\frac{h}{p} = \\\\frac{6.63 \\\\times 10^{-34}}{2.09 \\\\times 10^{-24}} = 3.17 \\\\times 10^{-10}$ m. (Allow answer to 2 significant figures, 3.2 x 10⁻¹⁰ m).",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The kinetic energy gained by the electron is equal to the work done on it by the electric field: $E_k = qV$. \\\\n$E_k = (1.60 \\\\times 10^{-19} \\\\text{ C}) \\\\times (150 \\\\text{ V}) = 2.40 \\\\times 10^{-17} \\\\text{ J}$.\\\\nThe momentum $p$ of the electron can be found from its kinetic energy using $E_k = \\\\frac{p^2}{2m_e}$, so $p = \\\\sqrt{2m_e E_k}$.\\\\n$p = \\\\sqrt{2 \\\\times (9.11 \\\\times 10^{-31} \\\\text{ kg}) \\\\times (2.40 \\\\times 10^{-17} \\\\text{ J})} = 2.089... \\\\times 10^{-24} \\\\text{ kg m s}^{-1}$.\\\\nThe de Broglie wavelength is given by $\\\\lambda = \\\\frac{h}{p}$.\\\\n$\\\\lambda = \\\\frac{6.63 \\\\times 10^{-34} \\\\text{ J s}}{2.089... \\\\times 10^{-24} \\\\text{ kg m s}^{-1}} = 3.173... \\\\times 10^{-10} \\\\text{ m}$.\\\\nTo 3 significant figures, the wavelength is $3.17 \\\\times 10^{-10}$ m."
+    },
+    {
+      "id": "c-2-wave-model-q2",
+      "prompt": "Outline how the Davisson-Germer experiment provides evidence for the wave nature of electrons, and why this contradicted the classical view of particles.",
+      "marks": 4,
+      "commandTerm": "Outline",
+      "difficulty": "standard",
+      "syllabusRef": "C.2.2",
+      "paper": "P2",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(M1) A beam of electrons was directed at a nickel crystal lattice.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) The scattered electrons showed a diffraction pattern / maxima and minima in intensity were observed at specific angles.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Diffraction is a property of waves, so this demonstrated the wave-like nature of electrons.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Classical physics viewed electrons solely as particles which would scatter randomly/diffusely rather than forming an interference pattern.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The Davisson-Germer experiment involved firing a beam of electrons with a known kinetic energy at the surface of a nickel crystal. The electrons were scattered by the regular atomic structure of the crystal. It was observed that the intensity of the scattered electrons was not uniform in all directions; instead, there were distinct peaks (maxima) and troughs (minima) at specific angles. This pattern is characteristic of diffraction, a phenomenon exclusively associated with waves. The regular spacing of the atoms in the nickel crystal acted as a diffraction grating for the electron waves. This provided direct experimental evidence for de Broglie's hypothesis that particles, like electrons, exhibit wave-like properties. This contradicted the classical view, where electrons were considered purely as particles. According to classical mechanics, the electrons should have scattered randomly off the crystal surface, resulting in a smooth distribution of scattered electrons, not a distinct diffraction pattern."
+    },
+    {
+      "id": "c-2-wave-model-q3",
+      "prompt": "A particle is confined within a one-dimensional box of length $L$. The normalised wave function for the particle in its second energy state ($n=2$) is given by $\\\\Psi(x) = \\\\sqrt{\\\\frac{2}{L}} \\\\sin(\\\\frac{2\\\\pi x}{L})$.\\\\n(a) State the physical significance of $|\\\\Psi|^2$. [1]\\\\n(b) Sketch a graph of the probability density $|\\\\Psi|^2$ against position $x$ for this state, from $x=0$ to $x=L$. [2]\\\\n(c) Explain where the particle is most and least likely to be found within the box. [2]",
+      "marks": 5,
+      "commandTerm": "Explain",
+      "difficulty": "standard",
+      "syllabusRef": "C.2.4",
+      "paper": "P2",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) $|\\\\Psi|^2$ represents the probability density / probability per unit length of finding the particle at a particular position.",
+          "marks": 1
+        },
+        {
+          "text": "(b) [Graph sketch] Correct sinusoidal-squared shape (always positive). Two full humps. Zero at $x=0$, $x=L/2$, and $x=L$. Maxima at $x=L/4$ and $x=3L/4$. Axes correctly labelled.",
+          "marks": 2
+        },
+        {
+          "text": "(c) The particle is most likely to be found where the probability density is maximum. This occurs at $x = L/4$ and $x = 3L/4$.",
+          "marks": 1
+        },
+        {
+          "text": "(c) The particle is least likely to be found (zero probability) where the probability density is zero. This occurs at the walls ($x=0$, $x=L$) and at the centre of the box ($x=L/2$).",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The quantity $|\\\\Psi|^2$ is the probability density. This means that $|\\\\Psi|^2 dx$ gives the probability of finding the particle within a small interval $dx$ at position $x$.\\\\n(b) The probability density is $|\\\\Psi(x)|^2 = \\\\frac{2}{L} \\\\sin^2(\\\\frac{2\\\\pi x}{L})$. A sketch of this function from $x=0$ to $x=L$ would show a curve that is always positive, starting at zero at $x=0$, rising to a maximum at $x=L/4$, returning to zero at $x=L/2$, rising to a second identical maximum at $x=3L/4$, and returning to zero at $x=L$. The graph consists of two symmetrical 'humps'.\\\\n(c) The likelihood of finding the particle is directly related to the value of the probability density $|\\\\Psi|^2$.\\\\n- The particle is *most* likely to be found at the positions where $|\\\\Psi|^2$ is maximum. For the $n=2$ state, these positions are at $x = L/4$ and $x = 3L/4$.\\\\n- The particle is *least* likely to be found (in fact, has zero probability of being found) at the positions where $|\\\\Psi|^2$ is zero. These are the nodes of the wave function, which occur at the boundaries $x=0$ and $x=L$, and also at the centre of the box, $x=L/2$."
+    },
+    {
+      "id": "c-2-wave-model-q4",
+      "prompt": "A monochromatic laser beam with a wavelength of 450 nm is incident on a metal surface. The emitted photoelectrons are found to have a maximum kinetic energy of 1.25 eV. These photoelectrons are then passed through a pair of parallel plates separated by 1.0 cm, across which a magnetic field of strength $B$ is applied, perpendicular to their velocity.\\\\n(a) Calculate the work function of the metal in eV. [3]\\\\n(b) Determine the minimum magnetic field strength $B$ required to prevent any of the photoelectrons from reaching the far side of the plates, assuming they enter midway between them. [3]",
+      "marks": 6,
+      "commandTerm": "Determine",
+      "difficulty": "challenge",
+      "syllabusRef": "C.2.3",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) Energy of photon $E = \\\\frac{hc}{\\\\lambda} = \\\\frac{(6.63 \\\\times 10^{-34})(3.00 \\\\times 10^8)}{450 \\\\times 10^{-9}} = 4.42 \\\\times 10^{-19}$ J.",
+          "marks": 1
+        },
+        {
+          "text": "(a) Convert photon energy to eV: $E = \\\\frac{4.42 \\\\times 10^{-19}}{1.60 \\\\times 10^{-19}} = 2.76$ eV. Work function $\\\\phi = E - E_{k,max} = 2.76 - 1.25 = 1.51$ eV.",
+          "marks": 1
+        },
+        {
+          "text": "(a) Correct final answer with unit.",
+          "marks": 1
+        },
+        {
+          "text": "(b) From $E_{k,max} = \\\\frac{1}{2}mv^2$, find max speed $v = \\\\sqrt{\\\\frac{2E_{k,max}}{m_e}} = \\\\sqrt{\\\\frac{2 \\\\times (1.25 \\\\times 1.60 \\\\times 10^{-19})}{9.11 \\\\times 10^{-31}}} = 6.63 \\\\times 10^5 \\\\text{ m s}^{-1}$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) The magnetic force provides the centripetal force: $qvB = \\\\frac{mv^2}{r}$. To just be stopped, the radius of the circular path must be half the plate separation, $r = 0.5 \\\\text{ cm} = 0.005$ m.",
+          "marks": 1
+        },
+        {
+          "text": "(b) Rearranging for B: $B = \\\\frac{mv}{qr} = \\\\frac{(9.11 \\\\times 10^{-31})(6.63 \\\\times 10^5)}{(1.60 \\\\times 10^{-19})(0.005)} = 7.55 \\\\times 10^{-4}$ T.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) First, we calculate the energy of an incident photon using $E = hf = \\\\frac{hc}{\\\\lambda}$.\\\\n$E = \\\\frac{(6.63 \\\\times 10^{-34} \\\\text{ J s}) \\\\times (3.00 \\\\times 10^8 \\\\text{ m s}^{-1})}{450 \\\\times 10^{-9} \\\\text{ m}} = 4.42 \\\\times 10^{-19} \\\\text{ J}$.\\\\nTo work in electronvolts (eV), we convert this energy: $E (\\\\text{eV}) = \\\\frac{4.42 \\\\times 10^{-19} \\\\text{ J}}{1.60 \\\\times 10^{-19} \\\\text{ J/eV}} = 2.7625 \\\\text{ eV}$.\\\\nThe photoelectric effect equation is $E_{k,max} = hf - \\\\phi$. Rearranging for the work function $\\\\phi$:\\\\n$\\\\phi = hf - E_{k,max} = 2.7625 \\\\text{ eV} - 1.25 \\\\text{ eV} = 1.5125 \\\\text{ eV}$.\\\\nTo 3 significant figures, the work function is $1.51$ eV.\\\\n\\\\n(b) First, we need the maximum speed of the emitted photoelectrons. We use the maximum kinetic energy, $E_{k,max} = 1.25 \\\\text{ eV} = 1.25 \\\\times 1.60 \\\\times 10^{-19} \\\\text{ J} = 2.00 \\\\times 10^{-19} \\\\text{ J}$.\\\\nFrom $E_k = \\\\frac{1}{2}m_e v^2$, the speed is $v = \\\\sqrt{\\\\frac{2E_k}{m_e}}$.\\\\n$v = \\\\sqrt{\\\\frac{2 \\\\times (2.00 \\\\times 10^{-19} \\\\text{ J})}{9.11 \\\\times 10^{-31} \\\\text{ kg}}} = 6.626... \\\\times 10^5 \\\\text{ m s}^{-1}$.\\\\nWhen the electron enters the magnetic field, it experiences a magnetic force $F_B = qvB$ which acts as a centripetal force, causing it to move in a circular path. The radius of this path is given by $qvB = \\\\frac{m_e v^2}{r}$.\\\\nTo prevent the electron from reaching the far side, the radius of its circular path must be, at most, half the distance between the plates. The electrons enter midway, so they have 0.5 cm to travel before hitting a plate. Therefore, the critical radius is $r = \\\\frac{1.0 \\\\text{ cm}}{2} = 0.5 \\\\text{ cm} = 0.005 \\\\text{ m}$.\\\\nWe can rearrange the force equation for the magnetic field strength $B$: $B = \\\\frac{m_e v}{qr}$.\\\\n$B = \\\\frac{(9.11 \\\\times 10^{-31} \\\\text{ kg}) \\\\times (6.626... \\\\times 10^5 \\\\text{ m s}^{-1})}{(1.60 \\\\times 10^{-19} \\\\text{ C}) \\\\times (0.005 \\\\text{ m})} = 7.549... \\\\times 10^{-4} \\\\text{ T}$.\\\\nThe minimum magnetic field strength required is $7.55 \\\\times 10^{-4}$ T."
+    }
+  ]
+}

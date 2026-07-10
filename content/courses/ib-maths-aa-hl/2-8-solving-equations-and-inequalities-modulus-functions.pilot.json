@@ -1,0 +1,532 @@
+{
+  "slug": "2-8-solving-equations-and-inequalities-modulus-functions",
+  "topicCode": "2.8",
+  "unit": {
+    "code": "2",
+    "title": "Functions"
+  },
+  "title": "Solving equations and inequalities; modulus functions",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "pilot",
+  "summary": "This lesson builds the full 2.8 toolkit for solving equations and inequalities. You will learn to solve polynomial and rational inequalities with sign diagrams built from their critical values, meet the modulus (absolute-value) function $|x|$ and its V-shaped graph, and solve equations and inequalities involving modulus both analytically and graphically, including the standard forms $|ax+b|<c$ and $|ax+b|=|cx+d|$. A short look at systems of equations rounds it off. Because Paper 1 is marked line by line, every worked example is laid out exactly the way our marking engine awards the method (M) and accuracy (A) marks on your own practice.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Solve polynomial and rational inequalities using critical values and a sign diagram, and state the solution as an inequality or in interval notation.",
+    "Apply the formal definition of the modulus function $|x|$, sketch its graph and the graphs $y=|f(x)|$ and $y=f(|x|)$.",
+    "Solve modulus equations and inequalities analytically, including $|ax+b|=c$, $|ax+b|<c$, $|ax+b|>c$ and $|ax+b|=|cx+d|$.",
+    "Solve equations graphically by reading intersection points, and solve simple systems of equations.",
+    "Present working so that method marks and follow-through (FT) protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "2.8"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
+  "simpleExplanation": {
+    "title": "Distance, Never Direction",
+    "summary": "The modulus $|x|$ reports how far a number sits from zero and throws away the sign, so it is never negative. That single idea drives everything here: modulus equations split into two cases, $|x|<c$ traps $x$ between $-c$ and $c$, and inequalities in general are solved by finding the special 'critical values' where an expression changes sign.",
+    "analogy": "Picture a step counter clipped to your belt. Walk three steps forward or three steps back and it still reads 3 — it records the size of the journey, not the direction. The modulus function does exactly that to a number: it keeps the magnitude and drops the sign.",
+    "steps": [
+      "For an inequality, move everything to one side so you are comparing an expression with zero, then find its critical values (where it is zero or undefined).",
+      "For a modulus, isolate it first, then either split into cases or convert $|X|<c$ into the compound inequality $-c<X<c$.",
+      "Mark the critical values on a number line and test the sign of the expression in each interval to build a sign diagram.",
+      "Read the solution off the sign diagram, taking care over whether the endpoints are included, and write it as an inequality or in interval notation."
+    ]
+  },
+  "keyConcepts": [
+    "critical values and sign diagrams",
+    "the modulus function",
+    "graphical solving"
+  ],
+  "flashcards": [
+    {
+      "front": "Definition of $|x|$",
+      "back": "$|x| = x$ if $x \\ge 0$, and $|x| = -x$ if $x < 0$. It is the non-negative distance of $x$ from zero, so $|x| \\ge 0$ for every real $x$.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Graph of $y=|x|$",
+      "back": "A 'V' with its vertex at the origin. The right arm is $y=x$ ($x\\ge0$) and the left arm is $y=-x$ ($x<0$). The graph is symmetric in the $y$-axis.",
+      "pillLabel": "Graph"
+    },
+    {
+      "front": "Sketching $y=|f(x)|$",
+      "back": "Draw $y=f(x)$, keep every part on or above the $x$-axis, and reflect every part below the $x$-axis up into it. The graph never dips below the axis.",
+      "pillLabel": "Graph"
+    },
+    {
+      "front": "Sketching $y=f(|x|)$",
+      "back": "Draw $y=f(x)$, discard the part with $x<0$, then reflect the $x\\ge0$ part in the $y$-axis. The result is symmetric in the $y$-axis.",
+      "pillLabel": "Graph"
+    },
+    {
+      "front": "Solving $|ax+b|=c$ ($c>0$)",
+      "back": "Split into two linear equations: $ax+b=c$ and $ax+b=-c$. Solve each. If $c<0$ there is no solution, because a modulus cannot be negative.",
+      "pillLabel": "Method"
+    },
+    {
+      "front": "Solving $|X|<c$ ($c>0$)",
+      "back": "$|X|<c \\iff -c<X<c$. The values lie between $-c$ and $c$: a single connected interval.",
+      "pillLabel": "Method"
+    },
+    {
+      "front": "Solving $|X|>c$ ($c>0$)",
+      "back": "$|X|>c \\iff X<-c$ or $X>c$. The solution is two separate pieces, never a single interval.",
+      "pillLabel": "Method"
+    },
+    {
+      "front": "Solving $|A|=|B|$",
+      "back": "Solve $A=B$ and $A=-B$; these two cases capture every solution. Equivalently solve $A^2=B^2$, i.e. $(A-B)(A+B)=0$.",
+      "pillLabel": "Method"
+    },
+    {
+      "front": "Critical values of an inequality",
+      "back": "The values where the expression is zero (numerator $=0$) or undefined (denominator $=0$). They divide the number line into intervals on which the sign is constant.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Rational inequality caution",
+      "back": "Never multiply $\\frac{p(x)}{q(x)}<0$ by $q(x)$: its sign is unknown, so the inequality may flip. Instead move all terms to one side, combine into a single fraction, and use a sign diagram.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Multiplying by a negative",
+      "back": "Multiplying or dividing an inequality by a negative number reverses the inequality sign: from $-2x<6$ you get $x>-3$, not $x<-3$.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Modulus is never negative",
+      "back": "$|X|\\ge0$ always. So $|X|=-5$ and $|X|<-1$ have no solution, while $|X|>-1$ is true for every $x$.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Graphical solving",
+      "back": "To solve $f(x)=g(x)$, sketch both curves and read the $x$-coordinates of their intersections. For $f(x)>g(x)$, read the $x$-values where the $f$ graph lies above the $g$ graph.",
+      "pillLabel": "Method"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "The inequality $|x| < 3$ is equivalent to:",
+      "options": [
+        "$x < 3$ or $x > -3$",
+        "$-3 < x < 3$",
+        "$x < -3$ or $x > 3$",
+        "$x > 3$"
+      ],
+      "answer": "$-3 < x < 3$"
+    },
+    {
+      "prompt": "Solving $-2x < 8$ by dividing both sides by $-2$ gives:",
+      "options": [
+        "$x < -4$",
+        "$x > -4$",
+        "$x < 4$",
+        "$x > 4$"
+      ],
+      "answer": "$x > -4$"
+    },
+    {
+      "prompt": "To solve the rational inequality $\\dfrac{x-1}{x+2} \\ge 0$, the correct first step is to:",
+      "options": [
+        "Multiply both sides by $x+2$ and reverse the sign",
+        "Find the critical values $x=1$ and $x=-2$ and build a sign diagram",
+        "Cancel $x$ from top and bottom",
+        "Square both sides"
+      ],
+      "answer": "Find the critical values $x=1$ and $x=-2$ and build a sign diagram"
+    },
+    {
+      "prompt": "How many real solutions does the equation $|3x - 7| = -2$ have?",
+      "options": [
+        "Two",
+        "One",
+        "None",
+        "Infinitely many"
+      ],
+      "answer": "None"
+    },
+    {
+      "prompt": "The inequality $|2x + 1| > 5$ has solution:",
+      "options": [
+        "$-3 < x < 2$",
+        "$x < -3$ or $x > 2$",
+        "$x > 2$ only",
+        "$-2 < x < 3$"
+      ],
+      "answer": "$x < -3$ or $x > 2$"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can the modulus of a number ever be negative?",
+      "a": "No. The modulus measures distance from zero, which is always non-negative. So $|x-1|=-3$ has no solution, and $|x-1|>-3$ is satisfied by every real $x$ because a non-negative quantity always beats a negative one. Spotting these 'no work needed' cases quickly saves time in Paper 1."
+    },
+    {
+      "q": "Why can't I just multiply a rational inequality through by the denominator?",
+      "a": "Because the denominator's sign is unknown. If it happens to be negative you must reverse the inequality, and if you don't know its sign you cannot decide. The safe method is to move everything to one side, combine into a single fraction, find the critical values from the numerator and denominator, and read the sign off a sign diagram."
+    },
+    {
+      "q": "When solving $|A|=|B|$, why only the two cases $A=B$ and $A=-B$?",
+      "a": "The other apparent cases are duplicates. $-A=B$ is the same equation as $A=-B$, and $-A=-B$ is the same as $A=B$. So the two distinct cases $A=B$ and $A=-B$ already find every solution, and squaring both sides to get $A^2=B^2$ reproduces exactly these two cases."
+    },
+    {
+      "q": "When should I solve graphically rather than algebraically?",
+      "a": "Use a graph when the question says 'hence' after a sketch, or when the algebra would be messy — for instance comparing two different modulus graphs. Sketch both sides, mark the intersection points, and read off the $x$-values. On the calculator-free Paper 1 a clear sketch is a legitimate, fast method and is often exactly what the command term 'sketch, hence solve' is asking for."
+    },
+    {
+      "q": "Do the endpoints go in the solution or not?",
+      "a": "Match the strictness of the original inequality. A strict sign ($<$ or $>$) excludes the critical value, so use an open circle and round brackets. A non-strict sign ($\\le$ or $\\ge$) includes it — but for a rational inequality a value that makes the denominator zero is always excluded, no matter how the inequality is written, because the expression is undefined there."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Objective 2.8 pulls together the algebra you need to solve equations and inequalities cleanly on Paper 1. Three ideas do most of the work: critical values and sign diagrams for polynomial and rational inequalities; the modulus function $|x|$ and the two-case reasoning it demands; and the graphical view, which turns a hard inequality into a picture you can read. As in every algebra topic, the worked examples here are set out exactly the way our engine marks your own practice — method mark by method mark — because on Paper 1 how you show your working decides how many marks you keep."
+    },
+    {
+      "type": "heading",
+      "content": "Polynomial inequalities: critical values and sign diagrams"
+    },
+    {
+      "type": "text",
+      "content": "To solve an inequality such as $x^2 - x - 6 > 0$, never guess from a couple of test points. Instead, rearrange so one side is zero, find the critical values where the expression equals zero, and use them to split the number line into intervals. Across each interval the sign of the expression cannot change, so testing a single point in each interval tells you the sign everywhere in it. This picture is called a sign diagram."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Critical values:** where the expression is zero (or, for a fraction, undefined). They are the only points where the sign can switch.",
+        "**Between critical values the sign is constant**, so one test point per interval settles the whole interval.",
+        "**Read off the intervals** whose sign matches the inequality, then decide endpoints: strict ($<,>$) excludes them, non-strict ($\\le,\\ge$) includes them.",
+        "**State the answer** as an inequality or in interval notation — both are accepted."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the inequality $x^2 - x - 6 > 0$.",
+      "solution": "**Rearrange (already done) and factorise.**\n$x^2 - x - 6 = (x-3)(x+2)$.  [M1: factorise]\n\n**Critical values.** Set each factor to zero: $x = 3$ and $x = -2$.  [A1]\n\n**Sign diagram.** These split the line into three intervals. Test one point in each:\n- $x=-3$: $(-3-3)(-3+2) = (-6)(-1) = +$ (positive).\n- $x=0$: $(0-3)(0+2) = (-3)(2) = -$ (negative).\n- $x=4$: $(4-3)(4+2) = (1)(6) = +$ (positive).  [M1: test the sign of each interval]\n\n**Select.** We want $>0$, i.e. the positive intervals: $x<-2$ or $x>3$. The inequality is strict, so the critical values are excluded.  [A1]\n\n**Solution:** $x<-2$ or $x>3$, i.e. $x\\in(-\\infty,-2)\\cup(3,\\infty)$."
+    },
+    {
+      "type": "examTip",
+      "content": "A quadratic $y=ax^2+bx+c$ with $a>0$ is a positive parabola: it is below the axis only between its roots. So $x^2-x-6<0$ gives the single interval $-2<x<3$, while $>0$ gives the two outer pieces. Sketching the parabola is often faster than a full sign diagram and is fully acceptable working."
+    },
+    {
+      "type": "heading",
+      "content": "Rational inequalities"
+    },
+    {
+      "type": "text",
+      "content": "A rational inequality involves a fraction, such as $\\frac{x-1}{x+2}\\ge 0$. The dangerous temptation is to multiply through by the denominator — but its sign is unknown, so you cannot tell whether the inequality flips. The reliable method keeps the fraction intact: move everything to one side so you are comparing a single fraction with zero, then find the critical values from both the numerator (where the fraction is zero) and the denominator (where it is undefined). Build a sign diagram exactly as before, remembering that a value making the denominator zero can never be part of the solution."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the inequality $\\dfrac{x-1}{x+2} \\ge 0$.",
+      "solution": "**Compare with zero (already done).** The fraction is zero when the numerator is zero and undefined when the denominator is zero.  [M1: identify numerator and denominator critical values]\n\n**Critical values.** Numerator: $x-1=0 \\Rightarrow x=1$. Denominator: $x+2=0 \\Rightarrow x=-2$ (this value is excluded — the expression is undefined there).  [A1]\n\n**Sign diagram.** The two critical values split the line into three intervals. Test the sign of $\\frac{x-1}{x+2}$ in each:\n- $x=-3$: $\\frac{-4}{-1} = +$ (positive).\n- $x=0$: $\\frac{-1}{2} = -$ (negative).\n- $x=2$: $\\frac{1}{4} = +$ (positive).  [M1: sign of each interval]\n\n**Select.** We want $\\ge 0$, i.e. the positive intervals. Include $x=1$ (the fraction equals $0$ there, which satisfies $\\ge$), but exclude $x=-2$ (undefined).  [A1]\n\n**Solution:** $x<-2$ or $x\\ge 1$, i.e. $x\\in(-\\infty,-2)\\cup[1,\\infty)$. Note the square bracket at $1$ and the round bracket at $-2$."
+    },
+    {
+      "type": "heading",
+      "content": "The modulus function and its graph"
+    },
+    {
+      "type": "text",
+      "content": "The modulus (or absolute value) of a real number $x$, written $|x|$, is its size regardless of sign: $|5|=5$ and $|-5|=5$. Formally it is defined in two pieces."
+    },
+    {
+      "type": "formula",
+      "content": "|x| = \\begin{cases} x, & \\text{if } x \\ge 0 \\\\ -x, & \\text{if } x < 0 \\end{cases}"
+    },
+    {
+      "type": "text",
+      "content": "The graph of $y=|x|$ is a 'V' with its vertex at the origin, its right arm the line $y=x$ and its left arm the line $y=-x$. Two transformations follow from this. To sketch $y=|f(x)|$, draw $y=f(x)$ and reflect any part below the $x$-axis up into it — the graph can then never be negative. To sketch $y=f(|x|)$, keep only the part of $y=f(x)$ with $x\\ge0$ and reflect it in the $y$-axis, producing a graph symmetric about the $y$-axis."
+    },
+    {
+      "type": "workedExample",
+      "question": "Sketch the graph of $f(x) = |2x - 4|$, labelling the vertex and the axis intercepts.",
+      "solution": "**Inner line.** Start from $y=2x-4$, a line of gradient $2$ with $y$-intercept $(0,-4)$.\n\n**$x$-intercept of the inner line.** $2x-4=0 \\Rightarrow x=2$, so the line crosses at $(2,0)$.  [M1: find where the inner expression is zero]\n\n**Apply the modulus.** Keep the part with $y\\ge0$ (that is $x\\ge2$) and reflect the part with $y<0$ (that is $x<2$) up in the $x$-axis.  [M1: reflect the negative part]\n\n**Vertex.** The V touches the $x$-axis where the inner line was zero: vertex $(2,0)$.  [A1]\n\n**$y$-intercept.** The original $(0,-4)$ reflects to $(0,4)$.  [A1]\n\n**Sketch:** a V opening upwards, vertex $(2,0)$, passing through $(0,4)$."
+    },
+    {
+      "type": "heading",
+      "content": "Solving modulus equations analytically"
+    },
+    {
+      "type": "text",
+      "content": "Two standard methods solve modulus equations. The case method uses the definition directly: $|A|=c$ (with $c\\ge0$) means $A=c$ or $A=-c$. The squaring method uses $|A|^2=A^2$, so $|A|=|B|$ becomes $A^2=B^2$; this is tidy for equations of the form $|A|=|B|$ but can introduce extraneous solutions elsewhere, so check answers when you square. Always watch for equations like $|A|=-5$, which have no solution because a modulus is never negative."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$|A|=c$ (with $c\\ge0$): solve $A=c$ and $A=-c$.",
+        "$|A|=|B|$: solve $A=B$ and $A=-B$ — equivalently $A^2=B^2$.",
+        "$|A|=c$ with $c<0$: no solution.",
+        "If you square, substitute your answers back into the original equation to reject any extraneous roots."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the equation $|x - 5| = |2x + 1|$.",
+      "solution": "**Two cases from $|A|=|B|$.**\n\n**Case 1:** $A=B$.  [M1]\n$x-5 = 2x+1 \\Rightarrow -x = 6 \\Rightarrow x = -6$.  [A1]\n\n**Case 2:** $A=-B$.  [M1]\n$x-5 = -(2x+1) \\Rightarrow x-5 = -2x-1 \\Rightarrow 3x = 4 \\Rightarrow x = \\tfrac{4}{3}$.  [A1]\n\n**Check (optional but reassuring).**\n$x=-6$: $|-6-5| = 11$ and $|2(-6)+1| = |-11| = 11$. Valid.\n$x=\\tfrac{4}{3}$: $\\left|\\tfrac{4}{3}-5\\right| = \\tfrac{11}{3}$ and $\\left|2\\cdot\\tfrac{4}{3}+1\\right| = \\tfrac{11}{3}$. Valid.\n\n**Solutions:** $x=-6$ and $x=\\tfrac{4}{3}$."
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "On Paper 1 the marks are analytic: each is tied to a specific line of your working. A method mark (M) rewards a correct approach — a valid equation, the right rearrangement — even if the arithmetic later slips. An accuracy mark (A) rewards a correct result and is dependent on the method mark it follows: you cannot earn the A without the M being present. Two further conventions protect you: follow-through (FT) lets a correct step after an earlier error still score, and 'ISW' (ignore subsequent working) means that once you have shown the right answer, a clumsy final restatement will not cost you. The engine also accepts equivalent forms — an inequality or the same set in interval notation score equally. Study how each mark below is pinned to one line."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the inequality $|2x - 1| \\le 5$. [4]",
+      "solution": "**Model answer — full working.**\n\nThe form $|X|\\le c$ (with $c\\ge0$) is equivalent to the compound inequality $-c\\le X\\le c$. Here $X = 2x-1$ and $c=5$, so\n$$-5 \\le 2x - 1 \\le 5.$$\n\nAdd $1$ to all three parts:\n$$-5 + 1 \\le 2x \\le 5 + 1$$\n$$-4 \\le 2x \\le 6.$$\n\nDivide all three parts by $2$ (a positive number, so the inequalities do not reverse):\n$$-2 \\le x \\le 3.$$\n\n**Final answer:** $-2 \\le x \\le 3$, i.e. $x \\in [-2, 3]$.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — write the compound inequality.** Awarded for converting $|2x-1|\\le5$ into $-5\\le 2x-1\\le5$. This is a METHOD mark: it is earned for the correct approach even if the arithmetic later slips. (A candidate who instead solves the two cases $2x-1\\le5$ and $2x-1\\ge-5$ earns the same M1 — equivalent methods are accepted.)\n- **M1 — add 1 throughout.** Awarded for adding $1$ to all three parts, i.e. the correct rearrangement toward isolating $2x$. The engine checks the operation was applied to every part of the inequality.\n- **A1 — $-4 \\le 2x \\le 6$.** An ACCURACY mark, dependent on the two method marks above: it scores only once the compound inequality and the addition are in place, and it rewards the correct intermediate line. Follow-through applies — a candidate whose compound inequality was slightly off but who then rearranges it correctly can still be awarded on their own figures.\n- **A1 — $-2 \\le x \\le 3$.** The final accuracy mark, for dividing by $2$ correctly. **Accept equivalent forms:** $-2\\le x\\le3$ and the interval $[-2,3]$ score identically. ISW means that if the correct answer is shown, a redundant final line does not lose the mark.\n\n**Bottom line:** two of the four marks are method marks that survive an arithmetic slip, and follow-through shields the accuracy marks. A candidate who writes only '$-2\\le x\\le3$' with no working risks losing 2–3 marks if the final line is wrong; a candidate who shows the compound inequality, the addition and the division keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through and equivalent forms accepted. So always show the method: write the compound inequality (or the two cases), show each rearrangement applied to every part, then give the answer as an inequality or in interval notation. The method marks and follow-through are what protect your score when a final line slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Solving modulus inequalities"
+    },
+    {
+      "type": "text",
+      "content": "Modulus inequalities split by direction. $|X|<c$ means the distance of $X$ from zero is less than $c$, so $X$ lies between $-c$ and $c$: one connected interval. $|X|>c$ means the distance exceeds $c$, so $X$ is beyond $c$ or beyond $-c$: two separate pieces. Getting these two shapes the right way round — 'and' for less-than, 'or' for greater-than — is the single most examined point in this subtopic."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{For a positive constant } c:\\\\ |X| < c \\iff -c < X < c\\\\ |X| > c \\iff X < -c \\ \\text{ or }\\ X > c"
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the inequality $|3x + 2| > 7$.",
+      "solution": "**Split the greater-than form.** $|X|>c$ gives two separate inequalities: $X<-c$ or $X>c$.  [M1: correct two-piece split]\n\n$3x+2 < -7 \\quad\\text{or}\\quad 3x+2 > 7$.  [A1]\n\n**Solve each.**\nLeft: $3x < -9 \\Rightarrow x < -3$.\nRight: $3x > 5 \\Rightarrow x > \\tfrac{5}{3}$.  [M1: solve both]\n\n**Solution:** $x<-3$ or $x>\\tfrac{5}{3}$, i.e. $x\\in(-\\infty,-3)\\cup\\left(\\tfrac{5}{3},\\infty\\right)$. Because this is a greater-than modulus inequality, the answer is two pieces, not a single interval.  [A1]"
+    },
+    {
+      "type": "heading",
+      "content": "Solving graphically, and systems of equations"
+    },
+    {
+      "type": "text",
+      "content": "Every equation $f(x)=g(x)$ can be read off a graph: the solutions are the $x$-coordinates of the points where $y=f(x)$ and $y=g(x)$ cross. Inequalities follow the same picture — $f(x)>g(x)$ holds exactly where the $f$ graph sits above the $g$ graph. This is especially handy for modulus problems such as $|x-3|>|x+1|$: sketch both V-shapes, find where they meet, and read the interval where the first is higher. When a question says 'sketch, hence solve', it is inviting you to use exactly this method."
+    },
+    {
+      "type": "text",
+      "content": "A system of equations is two or more equations that must hold at once; its solution is every point common to all of them. Graphically, that is the intersection of the graphs. Two straight lines usually meet at one point (solved quickly by substitution or elimination); a line and a curve may meet at two points, one, or none. For example, solving $y=x^2$ together with $y=x+2$ by substitution gives $x^2=x+2$, so $x^2-x-2=0$, $(x-2)(x+1)=0$, giving the two intersection points $(2,4)$ and $(-1,1)$ — precisely where the line cuts the parabola."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Getting the modulus inequality shape backwards** — $|X|<c$ is the single interval $-c<X<c$ ('and'), while $|X|>c$ is the two pieces $X<-c$ or $X>c$ ('or'). Writing $|X|>c$ as a single interval is the most common error here.",
+        "**Forgetting to reverse the sign when multiplying or dividing by a negative** — from $-2x<6$ the answer is $x>-3$, not $x<-3$.",
+        "**Multiplying a rational inequality by its denominator** — the denominator's sign is unknown, so the inequality may flip. Move everything to one side and use a sign diagram instead.",
+        "**Treating a modulus as if it could be negative** — $|X|=-5$ and $|X|<-1$ have no solution; $|X|>-1$ is true for all $x$. Spot these before doing algebra.",
+        "**Only solving one case of $|A|=|B|$** — you must solve both $A=B$ and $A=-B$ to find every solution.",
+        "**Including a value that makes a denominator zero** — such a value is always excluded from a rational inequality, however the sign is written, because the expression is undefined there.",
+        "**Muddling strict and non-strict endpoints** — a strict inequality uses open circles and round brackets; a non-strict one includes the endpoint (except where the expression is undefined). Match the brackets to the original sign."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Sign diagrams reappear whenever calculus asks where a derivative is positive or negative — that is, where a function increases or decreases — so the critical-value habit you built here transfers straight into optimisation. Modulus reasoning underpins later work on distance, bounds and error, and the graphical view of intersections is the foundation for solving systems and for reading solutions off any pair of curves. Master the routine — rearrange to compare with zero, find the critical values, test the signs, and match your brackets to the inequality — and the harder equation-solving later in the course becomes variations on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 1 question marked: solve a modulus inequality with full working",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=2.8&component=paper_1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra Graphing Calculator",
+          "href": "https://www.geogebra.org/graphing"
+        },
+        {
+          "label": "Desmos Graphing Calculator",
+          "href": "https://www.desmos.com/calculator"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Modulus Function Grapher",
+    "embedUrl": "https://www.geogebra.org/classic?material=c53n4bpt",
+    "launchUrl": "https://www.geogebra.org/classic?material=c53n4bpt",
+    "hint": "Use “Modulus Function Grapher” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "SL 2.8",
+      "title": "The modulus function, $|x|$",
+      "detail": "Understanding the definition $|x| = \\sqrt{x^2}$ and its graphical representation."
+    },
+    {
+      "code": "SL 2.8",
+      "title": "Graphs of modulus functions",
+      "detail": "Sketching graphs of $y = |f(x)|$ and $y = f(|x|)$ from the graph of $y = f(x)$."
+    },
+    {
+      "code": "SL 2.8",
+      "title": "Solving equations and inequalities",
+      "detail": "Solving equations and inequalities involving the modulus function, both analytically and graphically."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "2-8-solving-equations-and-inequalities-modulus-functions-q1",
+      "prompt": "Solve the inequality $|2x - 1| \\ge 5$.",
+      "marks": 4,
+      "commandTerm": "Solve",
+      "difficulty": "foundation",
+      "syllabusRef": "SL 2.8",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Attempting to split the inequality into two separate cases.",
+          "marks": 1
+        },
+        {
+          "text": "$2x - 1 \\ge 5 \\implies 2x \\ge 6 \\implies x \\ge 3$",
+          "marks": 1
+        },
+        {
+          "text": "$2x - 1 \\le -5 \\implies 2x \\le -4 \\implies x \\le -2$",
+          "marks": 1
+        },
+        {
+          "text": "Correct final answer, $x \\le -2$ or $x \\ge 3$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The inequality $|2x - 1| \\ge 5$ can be split into two separate linear inequalities.\n\nCase 1: $2x - 1 \\ge 5$\nAdding 1 to both sides gives $2x \\ge 6$.\nDividing by 2 gives $x \\ge 3$.\n\nCase 2: $-(2x - 1) \\ge 5$, which is equivalent to $2x - 1 \\le -5$.\nAdding 1 to both sides gives $2x \\le -4$.\nDividing by 2 gives $x \\le -2$.\n\nCombining these two solutions, the final answer is $x \\le -2$ or $x \\ge 3$."
+    },
+    {
+      "id": "2-8-solving-equations-and-inequalities-modulus-functions-q2",
+      "prompt": "Find the solutions to the equation $|x - 4| = |2x + 1|$.",
+      "marks": 5,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "SL 2.8",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Attempting to solve by squaring both sides: $(x-4)^2 = (2x+1)^2$.",
+          "marks": 1
+        },
+        {
+          "text": "Correct expansion: $x^2 - 8x + 16 = 4x^2 + 4x + 1$.",
+          "marks": 1
+        },
+        {
+          "text": "Rearranging to form a quadratic equation $ax^2+bx+c=0$: $3x^2 + 12x - 15 = 0$ or equivalent.",
+          "marks": 1
+        },
+        {
+          "text": "Attempt to solve the quadratic, e.g., by factorizing: $3(x^2+4x-5)=0 \\implies 3(x+5)(x-1)=0$.",
+          "marks": 1
+        },
+        {
+          "text": "Both correct solutions $x=1$ and $x=-5$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "To solve $|x - 4| = |2x + 1|$, we can square both sides to remove the modulus signs.\n$(x - 4)^2 = (2x + 1)^2$\n$x^2 - 8x + 16 = 4x^2 + 4x + 1$\nNow, rearrange the terms to form a standard quadratic equation.\n$0 = (4x^2 - x^2) + (4x + 8x) + (1 - 16)$\n$0 = 3x^2 + 12x - 15$\nDivide the entire equation by 3 to simplify:\n$0 = x^2 + 4x - 5$\nFactorize the quadratic:\n$0 = (x+5)(x-1)$\nThe solutions are $x = -5$ and $x = 1$."
+    },
+    {
+      "id": "2-8-solving-equations-and-inequalities-modulus-functions-q3",
+      "prompt": "Let $f(x) = |2x-6|$ and $g(x) = |x+1|$.\n(a) On the same set of axes, sketch the graphs of $y=f(x)$ and $y=g(x)$, showing any axis intercepts. [3]\n(b) Hence, or otherwise, solve the inequality $|2x-6| > |x+1|$. [3]",
+      "marks": 6,
+      "commandTerm": "Sketch, Solve",
+      "difficulty": "standard",
+      "syllabusRef": "SL 2.8",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "[a] Correct V-shape for $y=|2x-6|$ with vertex at $(3,0)$ and y-intercept at $(0,6)$.",
+          "marks": 1
+        },
+        {
+          "text": "[a] Correct V-shape for $y=|x+1|$ with vertex at $(-1,0)$ and y-intercept at $(0,1)$.",
+          "marks": 1
+        },
+        {
+          "text": "[a] Graphs drawn on the same axes showing correct relative positions and intercepts.",
+          "marks": 1
+        },
+        {
+          "text": "[b] Identifying the need to find points of intersection by solving $|2x-6| = |x+1|$.",
+          "marks": 1
+        },
+        {
+          "text": "[b] Correct points of intersection $x=5/3$ and $x=7$.",
+          "marks": 1
+        },
+        {
+          "text": "[b] Correctly interpreting the graph or algebra to state the final inequality: $x < 5/3$ or $x > 7$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The graph of $y=|2x-6|$ is a V-shape with its vertex where $2x-6=0$, so $x=3$. The vertex is $(3,0)$. The y-intercept is $|2(0)-6|=6$. The x-intercept is $(3,0)$.\nThe graph of $y=|x+1|$ is a V-shape with its vertex where $x+1=0$, so $x=-1$. The vertex is $(-1,0)$. The y-intercept is $|0+1|=1$. The x-intercept is $(-1,0)$.\n[A sketch would show two V-shapes. $y=|2x-6|$ is steeper with its vertex at $(3,0)$. $y=|x+1|$ is less steep with its vertex at $(-1,0)$. The graphs intersect twice.]\n\n(b) To solve $|2x-6| > |x+1|$, we first find the points of intersection by solving $|2x-6| = |x+1|$.\nWe can solve this by squaring both sides:\n$(2x-6)^2 = (x+1)^2$\n$4x^2 - 24x + 36 = x^2 + 2x + 1$\n$3x^2 - 26x + 35 = 0$\nUsing a GDC or the quadratic formula, $x = \\frac{-(-26) \\pm \\sqrt{(-26)^2 - 4(3)(35)}}{2(3)} = \\frac{26 \\pm \\sqrt{256}}{6} = \\frac{26 \\pm 16}{6}$.\nThe two intersection points are $x_1 = \\frac{26+16}{6} = \\frac{42}{6} = 7$ and $x_2 = \\frac{26-16}{6} = \\frac{10}{6} = \\frac{5}{3}$.\nFrom the sketch in part (a), the graph of $y=|2x-6|$ is above the graph of $y=|x+1|$ when $x$ is to the left of the smaller intersection point or to the right of the larger intersection point.\nTherefore, the solution is $x < \\frac{5}{3}$ or $x > 7$."
+    },
+    {
+      "id": "2-8-solving-equations-and-inequalities-modulus-functions-q4",
+      "prompt": "Solve the inequality $|x-2| + |x+3| \\le 7$.",
+      "marks": 7,
+      "commandTerm": "Solve",
+      "difficulty": "challenge",
+      "syllabusRef": "SL 2.8",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Identifying critical points $x=2$ and $x=-3$ and setting up at least two distinct cases.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly solving for the case $x < -3$: $(-(x-2)) + (-(x+3)) \\le 7 \\implies -2x-1 \\le 7 \\implies x \\ge -4$. Solution for this case is $-4 \\le x < -3$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly setting up the case $-3 \\le x < 2$: $(-(x-2)) + (x+3) \\le 7 \\implies 5 \\le 7$.",
+          "marks": 1
+        },
+        {
+          "text": "Recognizing that $5 \\le 7$ is always true, so the solution for this case is the entire interval $-3 \\le x < 2$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly solving for the case $x \\ge 2$: $(x-2) + (x+3) \\le 7 \\implies 2x+1 \\le 7 \\implies x \\le 3$. Solution for this case is $2 \\le x \\le 3$.",
+          "marks": 1
+        },
+        {
+          "text": "Attempting to combine the solutions from the three cases.",
+          "marks": 1
+        },
+        {
+          "text": "Correct final combined interval: $-4 \\le x \\le 3$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "We solve the inequality by considering three cases based on the critical points where the expressions inside the modulus signs change sign, which are $x=2$ and $x=-3$.\n\n**Case 1: $x < -3$**\nIn this region, both $(x-2)$ and $(x+3)$ are negative.\nSo, $|x-2| = -(x-2) = 2-x$ and $|x+3| = -(x+3) = -x-3$.\nThe inequality becomes:\n$(2-x) + (-x-3) \\le 7$\n$-2x - 1 \\le 7$\n$-2x \\le 8$\n$x \\ge -4$\nThe solution for this case is the intersection of $x < -3$ and $x \\ge -4$, which is $-4 \\le x < -3$.\n\n**Case 2: $-3 \\le x < 2$**\nIn this region, $(x-2)$ is negative and $(x+3)$ is non-negative.\nSo, $|x-2| = -(x-2) = 2-x$ and $|x+3| = x+3$.\nThe inequality becomes:\n$(2-x) + (x+3) \\le 7$\n$5 \\le 7$\nThis statement is always true. Therefore, all values of $x$ in this interval are solutions.\nThe solution for this case is $-3 \\le x < 2$.\n\n**Case 3: $x \\ge 2$**\nIn this region, both $(x-2)$ and $(x+3)$ are non-negative.\nSo, $|x-2| = x-2$ and $|x+3| = x+3$.\nThe inequality becomes:\n$(x-2) + (x+3) \\le 7$\n$2x + 1 \\le 7$\n$2x \\le 6$\n$x \\le 3$\nThe solution for this case is the intersection of $x \\ge 2$ and $x \\le 3$, which is $2 \\le x \\le 3$.\n\n**Combining the solutions:**\nWe take the union of the solutions from the three cases:\n$(-4 \\le x < -3) \\cup (-3 \\le x < 2) \\cup (2 \\le x \\le 3)$\nThis gives the final solution interval: $-4 \\le x \\le 3$."
+    }
+  ]
+}

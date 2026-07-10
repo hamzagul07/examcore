@@ -1,0 +1,542 @@
+{
+  "slug": "5-3-tangents-normals-and-the-second-derivative",
+  "topicCode": "5.3",
+  "title": "Tangents, normals and the second derivative",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "pilot",
+  "unit": {
+    "code": "5",
+    "title": "Calculus"
+  },
+  "summary": "This lesson turns differentiation into geometry. It builds the full 5.3 toolkit: reading the gradient of a curve at a point as $f'(x)$, writing the equations of tangents and normals (with the normal gradient $-1/f'(x)$), deciding where a function is increasing or decreasing from the sign of $f'(x)$, and locating stationary points by solving $f'(x)=0$. It then classifies those points as maxima, minima or points of inflection, introduces the second derivative $f''(x)$ and concavity, and shows how the second-derivative test settles the classification quickly. Every worked example is laid out exactly the way our marking engine awards marks, because on Paper 1 how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Interpret the gradient of a curve at a point as the value of the derivative $f'(x)$ there.",
+    "Find the equation of a tangent and of a normal to a curve at a given point, using the normal gradient $m_N = -1/f'(x)$.",
+    "Use the sign of $f'(x)$ to decide where a function is increasing or decreasing, and solve $f'(x)=0$ to locate stationary points.",
+    "Classify stationary points as maxima, minima or points of inflection using the first- and second-derivative tests, and use $f''(x)$ to describe concavity and locate points of inflection.",
+    "Present working so that method marks (M) and follow-through (FT) protect the final accuracy mark (A)."
+  ],
+  "syllabusObjectivesCovered": [
+    "5.3"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
+  "simpleExplanation": {
+    "title": "Curve Whispering: Slopes, Perpendiculars and Bends",
+    "summary": "The first derivative $f'(x)$ tells you the steepness of a curve at any point — that is the gradient of the tangent line, and its sign tells you whether the curve is rising or falling. The second derivative $f''(x)$ tells you how the curve is bending: curving upwards like a smile (concave up) or downwards like a frown (concave down).",
+    "analogy": "Imagine a rollercoaster. The direction your cart points at any instant is the tangent. A support beam drilled into the ground at right angles to the track is the normal. Whether the track is scooping upwards into a peak or dishing downwards into a valley is set by the second derivative, and a point of inflection is the brief instant where the bend switches over — the transition from a dip to a hill.",
+    "steps": [
+      "Differentiate to get $f'(x)$, the formula for the gradient of the tangent at any point $x$.",
+      "For the gradient at a specific point $x=a$, substitute to get $m_T = f'(a)$; the normal gradient is $m_N = -1/m_T$.",
+      "Use the point–gradient form $y - y_1 = m(x - x_1)$ for the line, remembering to find $y_1 = f(a)$ first.",
+      "Solve $f'(x)=0$ for stationary points, then use the sign of $f''(x)$ to classify them and to describe concavity."
+    ]
+  },
+  "keyConcepts": [
+    "gradient at a point",
+    "tangents and normals",
+    "stationary points",
+    "second derivative and concavity"
+  ],
+  "flashcards": [
+    {
+      "front": "Gradient of a curve at a point",
+      "back": "The gradient of $y=f(x)$ at $x=a$ is the value of the derivative there, $f'(a)$. It equals the gradient of the tangent line at that point.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Equation of a tangent",
+      "back": "At the point $(a, f(a))$: differentiate to get $f'(x)$, evaluate $m_T = f'(a)$, then use $y - f(a) = f'(a)(x-a)$. Always find $f(a)$ first.",
+      "pillLabel": "Method"
+    },
+    {
+      "front": "Gradient of the normal",
+      "back": "The normal is perpendicular to the tangent, so $m_N = -\\dfrac{1}{f'(a)}$ and $m_T \\times m_N = -1$. A horizontal tangent (gradient $0$) gives a vertical normal $x = a$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Increasing / decreasing",
+      "back": "$f$ is increasing where $f'(x) > 0$ and decreasing where $f'(x) < 0$. The sign of the derivative, not its size, decides the direction.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Stationary point",
+      "back": "A point where $f'(x) = 0$: the tangent is horizontal. Stationary points are local maxima, local minima, or horizontal points of inflection.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Second derivative $f''(x)$",
+      "back": "The derivative of $f'(x)$, written $f''(x)$ or $\\dfrac{d^2y}{dx^2}$. It is the rate of change of the gradient and describes the concavity of the graph.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Concave up",
+      "back": "$f''(x) > 0$: the gradient is increasing and the curve lies above its tangents — shaped like a cup. A stationary point here is a local minimum.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Concave down",
+      "back": "$f''(x) < 0$: the gradient is decreasing and the curve lies below its tangents — shaped like a frown. A stationary point here is a local maximum.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Second-derivative test",
+      "back": "At a stationary point $x=a$ (so $f'(a)=0$): if $f''(a) > 0$ it is a minimum; if $f''(a) < 0$ it is a maximum; if $f''(a) = 0$ the test is inconclusive.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Point of inflection",
+      "back": "A point where concavity changes. This needs $f''(x)=0$ AND a sign change in $f''(x)$. It is not enough to solve $f''(x)=0$; you must show the sign changes.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Exam Trap: $f''(c)=0$ is not automatically an inflection",
+      "back": "For $f(x)=x^4$, $f''(x)=12x^2$ is zero at $x=0$ but never changes sign, so $x=0$ is a minimum, not an inflection point. Always test for the sign change.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: forgetting the $y$-coordinate",
+      "back": "To write a tangent or normal at $x=a$ you need the point $(a, f(a))$. Students routinely find $f'(a)$ but forget to substitute $x=a$ into the ORIGINAL $f(x)$ to get $y_1$.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "The tangent to a curve at a point has gradient $4$. The gradient of the normal at that same point is:",
+      "options": [
+        "$4$",
+        "$-4$",
+        "$\\tfrac{1}{4}$",
+        "$-\\tfrac{1}{4}$"
+      ],
+      "answer": "$-\\tfrac{1}{4}$"
+    },
+    {
+      "prompt": "At a stationary point of $y=f(x)$, the value of the first derivative is:",
+      "options": [
+        "$f'(x) = 0$",
+        "$f'(x) > 0$",
+        "$f'(x) < 0$",
+        "$f''(x) = 0$"
+      ],
+      "answer": "$f'(x) = 0$"
+    },
+    {
+      "prompt": "A curve has a stationary point at $x=3$ where $f''(3) = -6$. This stationary point is a:",
+      "options": [
+        "local minimum",
+        "local maximum",
+        "point of inflection",
+        "cannot be determined"
+      ],
+      "answer": "local maximum"
+    },
+    {
+      "prompt": "A function $f$ is increasing on exactly the interval where:",
+      "options": [
+        "$f'(x) > 0$",
+        "$f'(x) < 0$",
+        "$f''(x) > 0$",
+        "$f(x) > 0$"
+      ],
+      "answer": "$f'(x) > 0$"
+    },
+    {
+      "prompt": "A student solves $f''(x)=0$ and gets $x=2$. To conclude that $x=2$ is a point of inflection they must additionally show that:",
+      "options": [
+        "$f'(2) = 0$ as well",
+        "$f''(x)$ changes sign at $x=2$",
+        "$f(2) = 0$",
+        "$f'(2) > 0$"
+      ],
+      "answer": "$f''(x)$ changes sign at $x=2$"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can a tangent line cross the curve somewhere else?",
+      "a": "Yes. A tangent is a local idea — it only describes the curve right at the point of tangency. For cubics and higher polynomials, a tangent at one point commonly cuts the curve again elsewhere. That is not a contradiction; 'tangent' constrains the gradient at one point, not the whole line."
+    },
+    {
+      "q": "How do I tell a local minimum from a horizontal point of inflection?",
+      "a": "Both have $f'(x)=0$. At a local minimum the curve is concave up, so $f''>0$. At a horizontal point of inflection both $f'=0$ and $f''=0$, and the concavity changes sign. For example $y=x^2$ has a minimum at $x=0$, while $y=x^3$ has a horizontal point of inflection at $x=0$."
+    },
+    {
+      "q": "I found $f'(a)=0$. How do I know whether it is a maximum, minimum or inflection?",
+      "a": "Use the second-derivative test. If $f''(a)>0$ it is a local minimum; if $f''(a)<0$ it is a local maximum; if $f''(a)=0$ the test is inconclusive and you fall back on the first-derivative test — check the sign of $f'(x)$ just left and just right of $a$."
+    },
+    {
+      "q": "What is the difference between the sign of $f'$ and the sign of $f''$?",
+      "a": "The sign of $f'$ tells you direction: positive means rising, negative means falling. The sign of $f''$ tells you bend: positive means concave up, negative means concave down. A curve can be rising while concave down (rising but levelling off) — the two signs are independent."
+    },
+    {
+      "q": "Why does a horizontal tangent give a vertical normal?",
+      "a": "If the tangent gradient is $0$ the normal is perpendicular to a horizontal line, which is vertical. A vertical line has undefined gradient, so you cannot use $m_N = -1/m_T$; instead just write the equation $x = a$ through the point."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Differentiation gave us a rate of change; this lesson turns that rate into geometry. The derivative $f'(x)$ is the gradient of the curve at each point, and from it flows almost everything you can say about a graph's shape: the direction of the tangent, the perpendicular normal, whether the function is rising or falling, and where it turns. Adding the second derivative $f''(x)$ lets you describe how the curve bends and classify its turning points. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice — the method is on the page, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "The gradient of a curve at a point"
+    },
+    {
+      "type": "text",
+      "content": "The gradient of a straight line is constant, but the gradient of a curve changes from point to point. The derivative $f'(x)$ is precisely the rule that returns the gradient at each $x$. So to find how steep the curve $y=f(x)$ is at the point where $x=a$, you differentiate once to get $f'(x)$ and then substitute: the gradient there is $f'(a)$. This single value is the gradient of the tangent line at that point — the straight line that just touches the curve and heads in the same direction as the curve at that instant."
+    },
+    {
+      "type": "heading",
+      "content": "Tangents: the line that just touches"
+    },
+    {
+      "type": "text",
+      "content": "A tangent to a curve at a point is the straight line through that point whose gradient equals the derivative there. Finding its equation is a fixed three-step routine, and the step students most often drop is the very first one — the $y$-coordinate of the point."
+    },
+    {
+      "type": "formula",
+      "content": "To find the tangent to $y=f(x)$ at the point where $x=a$:\n1. Find $y_1 = f(a)$, so the point is $(a, f(a))$.\n2. Differentiate and evaluate the gradient $m_T = f'(a)$.\n3. Use the point–gradient form $y - f(a) = f'(a)(x - a)$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the equation of the tangent to the curve $f(x) = x^3 - 4x + 1$ at the point where $x=2$. [5]",
+      "solution": "**1. Find the $y$-coordinate.** Substitute $x=2$ into the ORIGINAL function.\n$f(2) = (2)^3 - 4(2) + 1 = 8 - 8 + 1 = 1$, so the point of tangency is $(2, 1)$. (A1)\n\n**2. Differentiate.**\n$f'(x) = 3x^2 - 4$. (M1)\n\n**3. Gradient at the point.**\n$m_T = f'(2) = 3(2)^2 - 4 = 12 - 4 = 8$. (A1)\n\n**4. Equation of the tangent.** Use $y - y_1 = m(x - x_1)$ with $(2,1)$ and $m = 8$.\n$y - 1 = 8(x - 2)$ (M1)\n$y = 8x - 15$. (A1)\n\n**Final answer:** $y = 8x - 15$."
+    },
+    {
+      "type": "heading",
+      "content": "Normals: the perpendicular partner"
+    },
+    {
+      "type": "text",
+      "content": "The normal to a curve at a point is the line perpendicular to the tangent there. Because perpendicular lines have gradients whose product is $-1$, once you know the tangent gradient $m_T = f'(a)$ the normal gradient follows immediately as $m_N = -1/f'(a)$. The point is the same $(a, f(a))$; only the gradient changes."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Perpendicular gradients are negative reciprocals: $m_N = -\\dfrac{1}{m_T}$, and $m_T \\times m_N = -1$.",
+        "Normal gradient at $x=a$: $m_N = -\\dfrac{1}{f'(a)}$, used with the same point $(a, f(a))$.",
+        "A horizontal tangent (gradient $0$) has a VERTICAL normal — write $x = a$, since $-1/0$ is undefined.",
+        "A vertical tangent (undefined gradient) has a horizontal normal $y = f(a)$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the equation of the normal to the curve $g(x) = 2x^2 - 3x + 1$ at the point where $x = 1$. [5]",
+      "solution": "**1. Find the point.** $g(1) = 2(1)^2 - 3(1) + 1 = 2 - 3 + 1 = 0$, so the point is $(1, 0)$. (A1)\n\n**2. Differentiate and find the tangent gradient.**\n$g'(x) = 4x - 3$, so $m_T = g'(1) = 4(1) - 3 = 1$. (M1)(A1)\n\n**3. Normal gradient.** $m_N = -\\dfrac{1}{m_T} = -\\dfrac{1}{1} = -1$. (M1)\n\n**4. Equation of the normal.** Use $y - 0 = -1(x - 1)$, giving $y = -x + 1$. (A1)\n\n**Final answer:** $y = -x + 1$ (equivalently $x + y = 1$)."
+    },
+    {
+      "type": "examTip",
+      "content": "A very common Paper 1 question asks for the point(s) where the tangent is horizontal — that is simply solving $f'(x)=0$. Always substitute the $x$-values you find back into the original $f(x)$ to recover the $y$-coordinates. And when a normal is wanted at a point where the tangent is horizontal, remember the normal is vertical, $x = a$ — do not try to compute $-1/0$."
+    },
+    {
+      "type": "heading",
+      "content": "Increasing and decreasing functions"
+    },
+    {
+      "type": "text",
+      "content": "The sign of the first derivative tells you the direction of the curve. Where $f'(x) > 0$ the gradient is positive and the function is increasing (rising left to right); where $f'(x) < 0$ the function is decreasing. To find the intervals, differentiate, then solve the inequality $f'(x) > 0$ or $f'(x) < 0$. The boundaries between increasing and decreasing behaviour are exactly the points where $f'(x) = 0$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Increasing:** $f'(x) > 0$ — the curve rises as $x$ increases.",
+        "**Decreasing:** $f'(x) < 0$ — the curve falls as $x$ increases.",
+        "It is the SIGN of $f'(x)$ that matters, not its magnitude; a tiny positive gradient still means increasing.",
+        "The changeover between increasing and decreasing happens where $f'(x) = 0$ — a stationary point."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Stationary points and classifying them"
+    },
+    {
+      "type": "text",
+      "content": "A stationary point is a point where $f'(x) = 0$: the tangent is momentarily horizontal. There are three kinds — a local maximum (the curve turns from rising to falling), a local minimum (falling to rising), and a horizontal point of inflection (the curve levels off but keeps going the same way). To find them, solve $f'(x)=0$; to classify them, examine how the curve behaves around each point using either the first- or the second-derivative test."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Local maximum:** $f'(a)=0$ and the gradient changes from $+$ to $-$; equivalently $f''(a) < 0$.",
+        "**Local minimum:** $f'(a)=0$ and the gradient changes from $-$ to $+$; equivalently $f''(a) > 0$.",
+        "**Horizontal point of inflection:** $f'(a)=0$ and the gradient does NOT change sign (e.g. $+$ to $+$); here $f''(a)=0$ and $f''$ changes sign."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The second derivative, concavity and the second-derivative test"
+    },
+    {
+      "type": "text",
+      "content": "Differentiating the derivative gives the second derivative $f''(x)$, also written $\\dfrac{d^2y}{dx^2}$. Where $f'$ describes the slope, $f''$ describes how the slope is changing — the concavity of the curve. If $f''(x) > 0$ the gradient is increasing and the curve is concave up (a cup); if $f''(x) < 0$ the gradient is decreasing and the curve is concave down (a frown). This gives the fast second-derivative test for a stationary point $x=a$: substitute $a$ into $f''$. A positive value means a minimum, a negative value means a maximum, and a zero value means the test is inconclusive — you must then fall back on the sign of $f'$ either side."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Concave up:** $f''(x) > 0$ — the curve lies above its tangents; a stationary point here is a minimum.",
+        "**Concave down:** $f''(x) < 0$ — the curve lies below its tangents; a stationary point here is a maximum.",
+        "**Second-derivative test:** at $f'(a)=0$, $f''(a)>0 \\Rightarrow$ min, $f''(a)<0 \\Rightarrow$ max, $f''(a)=0 \\Rightarrow$ inconclusive."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Consider $h(x) = 2x^3 - 9x^2 + 12x - 5$. Find and classify the stationary points, and find the interval on which the graph is concave down. [7]",
+      "solution": "**1. Differentiate and solve $h'(x)=0$.**\n$h'(x) = 6x^2 - 18x + 12$. (M1)\nSetting $h'(x)=0$: $6(x^2 - 3x + 2) = 0 \\Rightarrow 6(x-1)(x-2) = 0$, so $x = 1$ or $x = 2$. (A1)\n\n**2. Find the $y$-coordinates.**\n$h(1) = 2 - 9 + 12 - 5 = 0$ and $h(2) = 16 - 36 + 24 - 5 = -1$.\nStationary points: $(1, 0)$ and $(2, -1)$. (A1)\n\n**3. Classify using the second-derivative test.**\n$h''(x) = 12x - 18$. (M1)\n$h''(1) = 12 - 18 = -6 < 0$, so $(1, 0)$ is a local maximum.\n$h''(2) = 24 - 18 = 6 > 0$, so $(2, -1)$ is a local minimum. (A1)\n\n**4. Concave down.** The graph is concave down where $h''(x) < 0$:\n$12x - 18 < 0 \\Rightarrow x < \\tfrac{3}{2}$. (M1)(A1)\n\n**Final answer:** local maximum at $(1, 0)$, local minimum at $(2, -1)$; concave down for $x < 1.5$."
+    },
+    {
+      "type": "heading",
+      "content": "Points of inflection"
+    },
+    {
+      "type": "text",
+      "content": "A point of inflection is where the concavity changes — from concave up to concave down, or vice versa. For this the second derivative must be zero AND change sign. Solving $f''(x)=0$ finds the candidate; you then confirm the sign of $f''$ actually flips across it. In the example above, $h''(x) = 12x - 18 = 0$ at $x = \\tfrac{3}{2}$; for $x < 1.5$, $h''<0$ (concave down) and for $x > 1.5$, $h''>0$ (concave up), so the concavity changes and $x = 1.5$ is a point of inflection."
+    },
+    {
+      "type": "examTip",
+      "content": "When asked to find a point of inflection it is not enough to solve $f''(x)=0$ — you must justify the change of concavity. Show that the sign of $f''(x)$ differs just before and just after the point (a small sign table is ideal), or note that $f'''(x) \\neq 0$ there. Marks are routinely lost for stopping at $f''(x)=0$ without the sign-change justification."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Using the tangent gradient as the normal gradient** — the normal gradient is $-1/f'(a)$, the negative reciprocal, not $f'(a)$ itself.",
+        "**Forgetting the $y$-coordinate** — a tangent or normal at $x=a$ needs the point $(a, f(a))$; substitute $x=a$ into the ORIGINAL $f(x)$, not into $f'(x)$.",
+        "**Solving $f(x)=0$ instead of $f'(x)=0$ for stationary points** — stationary points come from the derivative being zero, not the function.",
+        "**Confusing the sign of $f'$ with the sign of $f''$** — $f'>0$ means increasing (direction); $f''>0$ means concave up (bend). They are independent.",
+        "**Misreading the second-derivative test** — $f''(a)>0$ is a MINIMUM and $f''(a)<0$ is a MAXIMUM (concave up holds a low point). When $f''(a)=0$ the test is inconclusive, so do not declare an inflection without checking the sign change.",
+        "**Claiming a point of inflection from $f''=0$ alone** — you must show $f''$ changes sign; $f(x)=x^4$ has $f''(0)=0$ but a minimum, not an inflection.",
+        "**Trying to compute $-1/0$ for a normal at a horizontal tangent** — the normal is vertical, so write $x = a$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "On Paper 1 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and the A-marks are dependent, meaning they are only awarded when the method they rest on is present. Follow-through (FT) means a correct method built on a wrong earlier value can still score the later marks, and 'in-symbolic-work' (ISW) means once you have a correct answer, a subsequent tidy-up slip is ignored. Equivalent forms are accepted. But that protection only exists if your method is written down. Study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the equation of the tangent to $y = x^3 - 4x$ at the point where $x = 2$. [5]",
+      "solution": "**Model answer — full working.**\n\n**Find the $y$-coordinate.** Substitute $x=2$ into the original curve:\n$y = (2)^3 - 4(2) = 8 - 8 = 0$, so the point is $(2, 0)$.\n\n**Differentiate.**\n$\\dfrac{dy}{dx} = f'(x) = 3x^2 - 4$.\n\n**Gradient at the point.**\n$m = f'(2) = 3(2)^2 - 4 = 12 - 4 = 8$.\n\n**Equation of the tangent.** Use $y - y_1 = m(x - x_1)$ with $(2, 0)$ and $m = 8$:\n$y - 0 = 8(x - 2)$\n$y = 8x - 16$.\n\n**Final answer:** $y = 8x - 16$.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — differentiate.** Awarded for differentiating the curve, i.e. reducing each power by one: attempting $\\dfrac{dy}{dx}$ from $y = x^3 - 4x$. This is a METHOD mark, earned for the correct approach even if a coefficient later slips.\n- **A1 — correct derivative.** Awarded for $f'(x) = 3x^2 - 4$ exactly. This accuracy mark depends on the M1 above.\n- **A1 — gradient $8$.** Awarded for substituting $x=2$ to get $m = 8$. Dependent on a correct (or FT) derivative.\n- **M1 — substitute into the line.** Awarded for using $y - y_1 = m(x - x_1)$ with the point $(2, 0)$ and THEIR gradient — this is where follow-through lives: a student who differentiated wrongly but then correctly forms the line with their own gradient still earns this method mark.\n- **A1 — final equation $y = 8x - 16$.** Awarded for the correct simplified line. Accept any equivalent form, e.g. $8x - y - 16 = 0$ or $y = 8(x-2)$ left un-expanded if clearly equivalent.\n\n**How FT protects a right-method / wrong-gradient answer.** Suppose a student slips and writes $f'(x) = 3x^2 - 2$, giving $m = 10$. They lose the derivative A1 and the gradient A1, but if they then correctly write $y - 0 = 10(x-2)$, i.e. $y = 10x - 20$, they still earn the final M1 (correct line method) and the final A1 on follow-through — the line is right for THEIR gradient. Two marks are saved purely because the method was on the page.\n\n**Bottom line:** of the 5 marks, two are method marks that survive an arithmetic slip, and follow-through shields the answer marks that depend on an earlier value. A student who writes only 'y = 8x - 16' with no working risks losing 3–4 marks if the final line is wrong; a student who shows the derivative, the gradient and the point–gradient step keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the method: find $f(a)$ for the point, write $f'(x)$, evaluate the gradient, then substitute into $y - y_1 = m(x - x_1)$ before simplifying. The method marks and FT are what protect your score when a coefficient slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Reading a curve through its derivatives is the engine behind optimisation, where you maximise or minimise a real quantity by finding and classifying a stationary point, and behind curve sketching, where increasing/decreasing intervals, turning points, concavity and inflections combine into a full picture of a graph. The same $f'$ and $f''$ reappear in kinematics as velocity and acceleration. Master the habit — point first, then gradient, then classify with $f''$, and always justify a sign change — and the applications that follow become variations on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 1 tangent-and-normal question marked with full working",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=5.3&component=paper_1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Tangent, Normal and Concavity",
+          "href": "https://www.geogebra.org/m/CAnS8yYc"
+        },
+        {
+          "label": "Khan Academy: Concavity and Inflection Points",
+          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-diff-analytical-applications-new/ab-5-6b/v/inflection-points"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Tangent, Normal and Concavity",
+    "embedUrl": "https://www.geogebra.org/classic?material=CAnS8yYc",
+    "launchUrl": "https://www.geogebra.org/classic?material=CAnS8yYc",
+    "hint": "Use “Tangent, Normal and Concavity” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "SL 5.3",
+      "title": "Tangents and normals at a given point, and their equations.",
+      "detail": "Finding the equation of the line tangent or normal to a curve $y=f(x)$ at a point $(a, f(a))$."
+    },
+    {
+      "code": "SL 5.4",
+      "title": "Introduction to the second derivative.",
+      "detail": "The second derivative is the derivative of the first derivative, denoted by $f''(x)$ or $\\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2}$."
+    },
+    {
+      "code": "SL 5.5",
+      "title": "Use of the second derivative to distinguish between maximum and minimum points.",
+      "detail": "If $f'(c)=0$ and $f''(c)>0$, there is a local minimum at $x=c$. If $f'(c)=0$ and $f''(c)<0$, there is a local maximum at $x=c$."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "5-3-tangents-normals-and-the-second-derivative-q1",
+      "prompt": "Consider the function $f(x) = x^2 - 3x + 5$. Find the equation of the tangent to the curve of $f$ at the point where $x=2$.",
+      "marks": 4,
+      "commandTerm": "Find",
+      "difficulty": "foundation",
+      "syllabusRef": "SL 5.3",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Correctly finds the derivative $f'(x) = 2x - 3$.",
+          "marks": 1
+        },
+        {
+          "text": "Evidence of substituting $x=2$ into the derivative, $f'(2) = 2(2) - 3 = 1$.",
+          "marks": 1
+        },
+        {
+          "text": "Finds the y-coordinate $f(2) = 2^2 - 3(2) + 5 = 3$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly substitutes into point-gradient form, e.g. $y - 3 = 1(x - 2)$, leading to $y = x + 1$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "To find the equation of the tangent, we first need its gradient, which is given by the derivative of the function at the given point.\nThe function is $f(x) = x^2 - 3x + 5$.\nIts derivative is $f'(x) = 2x - 3$.\nAt $x=2$, the gradient of the tangent is $m = f'(2) = 2(2) - 3 = 4 - 3 = 1$.\nNext, we find the y-coordinate of the point on the curve at $x=2$.\n$y = f(2) = (2)^2 - 3(2) + 5 = 4 - 6 + 5 = 3$.\nThe point of tangency is $(2, 3)$.\nUsing the point-gradient form of a line, $y - y_1 = m(x - x_1)$, we have:\n$y - 3 = 1(x - 2)$\n$y - 3 = x - 2$\n$y = x + 1$\nThe equation of the tangent is $y = x + 1$."
+    },
+    {
+      "id": "5-3-tangents-normals-and-the-second-derivative-q2",
+      "prompt": "Let $g(x) = \\frac{4}{x} + 2x^2$ for $x \\neq 0$.\n(a) Find $g'(x)$ and $g''(x)$. [3 marks]\n(b) Find the equation of the normal to the curve of $g$ at the point where $x=-1$. [3 marks]",
+      "marks": 6,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "SL 5.3",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) For rewriting $g(x) = 4x^{-1} + 2x^2$. $g'(x) = -4x^{-2} + 4x$. (A1)(A1)",
+          "marks": 2
+        },
+        {
+          "text": "$g''(x) = 8x^{-3} + 4$. (A1)",
+          "marks": 1
+        },
+        {
+          "text": "(b) Substitutes $x=-1$ into $g'(x)$ to find gradient of tangent, $m_T = g'(-1) = -4(-1)^{-2} + 4(-1) = -8$. (M1)",
+          "marks": 1
+        },
+        {
+          "text": "Correctly finds gradient of normal, $m_N = -\\frac{1}{-8} = \\frac{1}{8}$. (A1)",
+          "marks": 1
+        },
+        {
+          "text": "Finds y-coordinate $g(-1)=-2$ and forms correct equation, e.g. $y - (-2) = \\frac{1}{8}(x - (-1))$. (A1)",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) First, rewrite $g(x)$ using a negative exponent: $g(x) = 4x^{-1} + 2x^2$.\nUsing the power rule for differentiation, the first derivative is:\n$g'(x) = (-1) \\cdot 4x^{-2} + (2) \\cdot 2x^1 = -4x^{-2} + 4x$, which can be written as $g'(x) = -\\frac{4}{x^2} + 4x$.\nTo find the second derivative, we differentiate $g'(x)$:\n$g''(x) = (-2) \\cdot (-4)x^{-3} + 4 = 8x^{-3} + 4$, which can be written as $g''(x) = \\frac{8}{x^3} + 4$.\n\n(b) To find the equation of the normal, we first need the gradient of the tangent at $x=-1$. This is $m_T = g'(-1)$.\n$m_T = -4(-1)^{-2} + 4(-1) = -4(1) - 4 = -8$.\nThe gradient of the normal, $m_N$, is the negative reciprocal of the tangent's gradient.\n$m_N = -\\frac{1}{m_T} = -\\frac{1}{-8} = \\frac{1}{8}$.\nNext, we find the y-coordinate of the point on the curve at $x=-1$.\n$y = g(-1) = \\frac{4}{-1} + 2(-1)^2 = -4 + 2 = -2$. The point is $(-1, -2)$.\nUsing the point-gradient form $y - y_1 = m(x - x_1)$, the equation of the normal is:\n$y - (-2) = \\frac{1}{8}(x - (-1))$\n$y + 2 = \\frac{1}{8}(x + 1)$\nThis can be rearranged to $8y + 16 = x + 1$, or $x - 8y - 15 = 0$."
+    },
+    {
+      "id": "5-3-tangents-normals-and-the-second-derivative-q3",
+      "prompt": "The curve $C$ has equation $y = x^3 - 4x^2 - 3x + 10$.\n(a) Find the coordinates of the stationary points of $C$. [4 marks]\n(b) Using the second derivative, determine the nature of these stationary points. Justify your answer. [3 marks]",
+      "marks": 7,
+      "commandTerm": "Find, Determine",
+      "difficulty": "standard",
+      "syllabusRef": "SL 5.5",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) $\\frac{\\mathrm{d}y}{\\mathrm{d}x} = 3x^2 - 8x - 3$. (A1)",
+          "marks": 1
+        },
+        {
+          "text": "Sets $\\frac{\\mathrm{d}y}{\\mathrm{d}x} = 0$. (M1)",
+          "marks": 1
+        },
+        {
+          "text": "Solves $3x^2 - 8x - 3 = 0$ to find $x=3$ and $x = -\\frac{1}{3}$. (A1)",
+          "marks": 1
+        },
+        {
+          "text": "Finds correct y-coordinates, giving points $(3, -8)$ and $(-\\frac{1}{3}, \\frac{284}{27})$. (A1)",
+          "marks": 1
+        },
+        {
+          "text": "(b) $\\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2} = 6x - 8$. (A1)",
+          "marks": 1
+        },
+        {
+          "text": "At $x=3$, $\\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2} = 10$. Since $10 > 0$, $(3, -8)$ is a local minimum. (R1)",
+          "marks": 1
+        },
+        {
+          "text": "At $x = -\\frac{1}{3}$, $\\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2} = -10$. Since $-10 < 0$, $(-\\frac{1}{3}, \\frac{284}{27})$ is a local maximum. (R1)",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) To find the stationary points, we first find the derivative of $y = x^3 - 4x^2 - 3x + 10$.\n$\\frac{\\mathrm{d}y}{\\mathrm{d}x} = 3x^2 - 8x - 3$.\nStationary points occur when $\\frac{\\mathrm{d}y}{\\mathrm{d}x} = 0$. We solve the equation $3x^2 - 8x - 3 = 0$.\nUsing a calculator's polynomial solver (or by factoring $(3x+1)(x-3)=0$), we find the solutions $x=3$ and $x = -\\frac{1}{3}$.\nWe find the corresponding y-coordinates:\nFor $x=3$: $y = (3)^3 - 4(3)^2 - 3(3) + 10 = 27 - 36 - 9 + 10 = -8$.\nFor $x = -\\frac{1}{3}$: $y = (-\\frac{1}{3})^3 - 4(-\\frac{1}{3})^2 - 3(-\\frac{1}{3}) + 10 = -\\frac{1}{27} - \\frac{4}{9} + 1 + 10 = \\frac{-1 - 12 + 297}{27} = \\frac{284}{27}$.\nThe coordinates of the stationary points are $(3, -8)$ and $(-\\frac{1}{3}, \\frac{284}{27})$ (approx. $(-0.333, 10.5)$).\n\n(b) To determine the nature of these points, we use the second derivative test. First, find the second derivative:\n$\\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2} = \\frac{\\mathrm{d}}{\\mathrm{d}x}(3x^2 - 8x - 3) = 6x - 8$.\nNow, evaluate the second derivative at each stationary point's x-coordinate:\nAt $x=3$: $\\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2} = 6(3) - 8 = 18 - 8 = 10$.\nSince $\\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2} > 0$, the point $(3, -8)$ is a local minimum.\nAt $x = -\\frac{1}{3}$: $\\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2} = 6(-\\frac{1}{3}) - 8 = -2 - 8 = -10$.\nSince $\\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2} < 0$, the point $(-\\frac{1}{3}, \\frac{284}{27})$ is a local maximum."
+    },
+    {
+      "id": "5-3-tangents-normals-and-the-second-derivative-q4",
+      "prompt": "Let $f(x) = \\sin(x) + \\cos(x)$ for $0 \\le x \\le 2\\pi$. The line $L_1$ is the normal to the curve of $f$ at the point where $x=\\frac{\\pi}{2}$. The line $L_2$ is the tangent to the curve of $f$ at a local maximum. The lines $L_1$ and $L_2$ intersect at a point P. Find the coordinates of P.",
+      "marks": 8,
+      "commandTerm": "Find",
+      "difficulty": "challenge",
+      "syllabusRef": "SL 5.3",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "$f'(x) = \\cos(x) - \\sin(x)$. (A1)",
+          "marks": 1
+        },
+        {
+          "text": "At $x=\\frac{\\pi}{2}$, finds $f(\\frac{\\pi}{2})=1$ and gradient of tangent $f'(\\frac{\\pi}{2})=-1$. (M1)",
+          "marks": 1
+        },
+        {
+          "text": "Gradient of normal $L_1$ is 1. Equation is $y-1=1(x-\\frac{\\pi}{2})$. (A1)",
+          "marks": 1
+        },
+        {
+          "text": "For local maximum, sets $f'(x)=0 \\implies \\cos(x) = \\sin(x) \\implies \\tan(x)=1$. (M1)",
+          "marks": 1
+        },
+        {
+          "text": "Finds $x=\\frac{\\pi}{4}$ and uses second derivative $f''(x) = -\\sin(x)-\\cos(x)$ to justify it is a maximum ($f''(\\frac{\\pi}{4})=-\\sqrt{2}<0$). (R1)",
+          "marks": 1
+        },
+        {
+          "text": "Finds y-coordinate of maximum $f(\\frac{\\pi}{4})=\\sqrt{2}$. Equation of tangent $L_2$ is $y=\\sqrt{2}$. (A1)",
+          "marks": 1
+        },
+        {
+          "text": "Sets equations equal to find intersection: $\\sqrt{2} = x+1-\\frac{\\pi}{2}$. (M1)",
+          "marks": 1
+        },
+        {
+          "text": "Correct coordinates for P: $(\\sqrt{2}-1+\\frac{\\pi}{2}, \\sqrt{2})$. (A1)",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The function is $f(x) = \\sin(x) + \\cos(x)$. The first derivative is $f'(x) = \\cos(x) - \\sin(x)$.\n\nFirst, we find the equation of the normal $L_1$ at $x=\\frac{\\pi}{2}$.\nAt $x=\\frac{\\pi}{2}$, the y-coordinate is $f(\\frac{\\pi}{2}) = \\sin(\\frac{\\pi}{2}) + \\cos(\\frac{\\pi}{2}) = 1 + 0 = 1$. The point is $(\\frac{\\pi}{2}, 1)$.\nThe gradient of the tangent at this point is $m_T = f'(\\frac{\\pi}{2}) = \\cos(\\frac{\\pi}{2}) - \\sin(\\frac{\\pi}{2}) = 0 - 1 = -1$.\nThe gradient of the normal $L_1$ is $m_N = -\\frac{1}{-1} = 1$.\nThe equation of $L_1$ is $y - 1 = 1(x - \\frac{\\pi}{2})$, which simplifies to $y = x + 1 - \\frac{\\pi}{2}$.\n\nNext, we find the equation of the tangent $L_2$ at a local maximum.\nStationary points occur when $f'(x) = 0$, so $\\cos(x) - \\sin(x) = 0$, which means $\\tan(x) = 1$.\nIn the domain $0 \\le x \\le 2\\pi$, the solutions are $x=\\frac{\\pi}{4}$ and $x=\\frac{5\\pi}{4}$.\nTo determine which is a maximum, we use the second derivative test. $f''(x) = -\\sin(x) - \\cos(x)$.\nAt $x=\\frac{\\pi}{4}$, $f''(\\frac{\\pi}{4}) = -\\sin(\\frac{\\pi}{4}) - \\cos(\\frac{\\pi}{4}) = -\\frac{\\sqrt{2}}{2} - \\frac{\\sqrt{2}}{2} = -\\sqrt{2}$. Since $f''(x) < 0$, this is a local maximum.\nAt $x=\\frac{5\\pi}{4}$, $f''(\\frac{5\\pi}{4}) = -\\sin(\\frac{5\\pi}{4}) - \\cos(\\frac{5\\pi}{4}) = -(-\\frac{\\sqrt{2}}{2}) - (-\\frac{\\sqrt{2}}{2}) = \\sqrt{2}$. Since $f''(x) > 0$, this is a local minimum.\nThe local maximum is at $x=\\frac{\\pi}{4}$. The tangent $L_2$ at this point is horizontal.\nThe y-coordinate at the maximum is $y = f(\\frac{\\pi}{4}) = \\sin(\\frac{\\pi}{4}) + \\cos(\\frac{\\pi}{4}) = \\frac{\\sqrt{2}}{2} + \\frac{\\sqrt{2}}{2} = \\sqrt{2}$.\nThe equation of the tangent $L_2$ is $y = \\sqrt{2}$.\n\nFinally, we find the intersection point P of $L_1$ and $L_2$ by solving the system of equations:\n1) $y = x + 1 - \\frac{\\pi}{2}$\n2) $y = \\sqrt{2}$\nSubstitute (2) into (1): $\\sqrt{2} = x + 1 - \\frac{\\pi}{2}$.\nSolving for x gives $x = \\sqrt{2} - 1 + \\frac{\\pi}{2}$.\nThe y-coordinate is $y = \\sqrt{2}$.\nThe coordinates of P are $(\\sqrt{2} - 1 + \\frac{\\pi}{2}, \\sqrt{2})$.\nNumerically, this is approximately $(1.98, 1.41)$."
+    }
+  ]
+}

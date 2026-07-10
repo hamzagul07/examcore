@@ -1,0 +1,492 @@
+{
+  "slug": "1-7-complex-numbers-de-moivres-theorem-and-roots",
+  "topicCode": "1.7",
+  "unit": {
+    "code": "1",
+    "title": "Number and algebra"
+  },
+  "title": "Complex numbers: De Moivre's theorem and roots",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "pilot",
+  "summary": "Once a complex number is written in polar or Euler form, raising it to a power and extracting its roots become almost mechanical. This lesson builds De Moivre's theorem $[r(\\cos\\theta+i\\sin\\theta)]^n = r^n(\\cos n\\theta+i\\sin n\\theta)$, shows how it collapses awkward powers into a single line of arithmetic, and then turns the same idea around to find the $n$ distinct $n$th roots of any complex number — equally spaced on a circle of radius $r^{1/n}$. It covers the roots of unity and a short look at how De Moivre delivers multiple-angle trig identities. Every worked example is laid out exactly the way our marking engine awards marks, because in a Paper 1 method topic the way you show your working decides how many marks you keep.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "State and apply De Moivre's theorem in both polar and Euler form to compute integer powers of a complex number.",
+    "Find all $n$ distinct $n$th roots of a non-zero complex number and interpret them geometrically on the Argand diagram.",
+    "Identify the $n$th roots of unity and describe their symmetry.",
+    "Use De Moivre's theorem together with the binomial expansion to derive multiple-angle trigonometric identities.",
+    "Present working so that method marks (M) and accuracy marks (A) are each secured line by line."
+  ],
+  "syllabusObjectivesCovered": [
+    "1.7"
+  ],
+  "levelNote": "HL only — Higher Level content.",
+  "simpleExplanation": {
+    "title": "Spin and Stretch",
+    "summary": "In polar form a complex number is just a length (its modulus $r$) and a turn (its argument $\\theta$). De Moivre's theorem says that raising it to the power $n$ stretches the length to $r^n$ and multiplies the turn by $n$. Reversing the process to find roots shrinks the length to $r^{1/n}$ and shares the turn out into $n$ equal slices around a circle.",
+    "analogy": "Picture the number as an arrow pinned at the origin. Multiplying two complex numbers multiplies their lengths and adds their angles, so multiplying a number by itself $n$ times raises the length to the $n$th power and multiplies the angle by $n$ — that is De Moivre. Finding an $n$th root asks the reverse question: which arrows, spun $n$ times, land back on the target? There are exactly $n$ of them, spaced evenly like the numbers on a clock face.",
+    "steps": [
+      "Write the complex number in polar form $r(\\cos\\theta+i\\sin\\theta)$ or Euler form $re^{i\\theta}$; find the modulus $r$ and an argument $\\theta$.",
+      "To raise to a power $n$: apply De Moivre — new modulus $r^n$, new argument $n\\theta$.",
+      "To find $n$th roots: new modulus $r^{1/n}$, and arguments $\\dfrac{\\theta+2\\pi k}{n}$ for $k=0,1,\\dots,n-1$.",
+      "Simplify to the requested form (Euler, polar, or Cartesian) and, for roots, check they sit equally spaced on a circle."
+    ]
+  },
+  "keyConcepts": [
+    "polar and Euler form",
+    "De Moivre's theorem",
+    "roots of unity"
+  ],
+  "flashcards": [
+    {
+      "front": "De Moivre's theorem (polar form)",
+      "back": "For $z = r(\\cos\\theta + i\\sin\\theta)$ and integer $n$: $z^n = r^n(\\cos n\\theta + i\\sin n\\theta)$. The modulus is raised to the power $n$; the argument is multiplied by $n$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "De Moivre's theorem (Euler form)",
+      "back": "For $z = re^{i\\theta}$ and integer $n$: $(re^{i\\theta})^n = r^n e^{in\\theta}$. This is just the polar statement written with $e^{i\\theta} = \\cos\\theta + i\\sin\\theta$ (Euler's formula).",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "$n$th roots of a complex number",
+      "back": "The $n$ distinct $n$th roots of $w = re^{i\\theta}$ are $z_k = r^{1/n}\\,e^{i\\left(\\frac{\\theta+2\\pi k}{n}\\right)}$ for $k = 0,1,2,\\dots,n-1$. Every non-zero complex number has exactly $n$ of them.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Geometry of the $n$th roots",
+      "back": "All $n$ roots have the same modulus $r^{1/n}$, so they lie on a circle of that radius centred at the origin, equally spaced $\\frac{2\\pi}{n}$ apart. They form the vertices of a regular $n$-gon.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "$n$th roots of unity",
+      "back": "The solutions of $z^n = 1$ are $z_k = e^{i\\frac{2\\pi k}{n}}$ for $k = 0,1,\\dots,n-1$. They lie on the unit circle, one of them is always $z=1$, and (for $n\\ge 2$) they sum to zero.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Why $+2\\pi k$ appears in the root formula",
+      "back": "$\\theta$ and $\\theta + 2\\pi k$ point to the same number, but after dividing the argument by $n$ they become genuinely different angles $\\frac{\\theta}{n} + \\frac{2\\pi k}{n}$. That is what generates the $n$ distinct roots.",
+      "pillLabel": "Insight"
+    },
+    {
+      "front": "Euler's formula",
+      "back": "$e^{i\\theta} = \\cos\\theta + i\\sin\\theta$. It converts between Euler and polar form, so $re^{i\\theta} = r(\\cos\\theta + i\\sin\\theta)$. Setting $\\theta = \\pi$ gives $e^{i\\pi} + 1 = 0$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Deriving $\\cos 3\\theta$ with De Moivre",
+      "back": "Expand $(\\cos\\theta + i\\sin\\theta)^3$ with the binomial theorem, equate it to $\\cos 3\\theta + i\\sin 3\\theta$, then compare real parts: $\\cos 3\\theta = 4\\cos^3\\theta - 3\\cos\\theta$. Imaginary parts give $\\sin 3\\theta$.",
+      "pillLabel": "Technique"
+    },
+    {
+      "front": "Range for the arguments",
+      "back": "Using $k = 0,1,\\dots,n-1$ gives every distinct root exactly once. Taking $k=n$ just repeats $k=0$ (its argument differs by a full $2\\pi$). You may then shift any argument into $-\\pi < \\theta \\le \\pi$ if the principal argument is wanted.",
+      "pillLabel": "Method"
+    },
+    {
+      "front": "Exam Trap: raising the modulus wrongly",
+      "back": "For $z^n$ the modulus becomes $r^n$, NOT $nr$. And the argument is multiplied by $n$, not raised to a power. Mixing these up is the most common De Moivre slip.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "For $z = r(\\cos\\theta + i\\sin\\theta)$, De Moivre's theorem gives $z^n$ equal to:",
+      "options": [
+        "$nr(\\cos n\\theta + i\\sin n\\theta)$",
+        "$r^n(\\cos n\\theta + i\\sin n\\theta)$",
+        "$r^n(\\cos\\theta + i\\sin\\theta)$",
+        "$nr(\\cos\\theta^n + i\\sin\\theta^n)$"
+      ],
+      "answer": "$r^n(\\cos n\\theta + i\\sin n\\theta)$"
+    },
+    {
+      "prompt": "How many distinct fourth roots does the number $z = 16$ have in the complex plane?",
+      "options": [
+        "One",
+        "Two",
+        "Four",
+        "Infinitely many"
+      ],
+      "answer": "Four"
+    },
+    {
+      "prompt": "The $n$ distinct $n$th roots of a complex number, plotted on an Argand diagram, are:",
+      "options": [
+        "Equally spaced on a circle of radius $r^{1/n}$",
+        "All at the same point",
+        "Spread along the real axis",
+        "On a circle of radius $r^n$ but unevenly spaced"
+      ],
+      "answer": "Equally spaced on a circle of radius $r^{1/n}$"
+    },
+    {
+      "prompt": "When finding the $n$ roots of $w = re^{i\\theta}$, why must you add $2\\pi k$ to the argument before dividing by $n$?",
+      "options": [
+        "To convert the angle from degrees to radians",
+        "Because dividing the coterminal angles $\\theta + 2\\pi k$ by $n$ produces the $n$ different root arguments",
+        "It has no effect and is optional",
+        "To make the modulus come out correctly"
+      ],
+      "answer": "Because dividing the coterminal angles $\\theta + 2\\pi k$ by $n$ produces the $n$ different root arguments"
+    },
+    {
+      "prompt": "For $z = 2e^{i\\pi/5}$, the modulus and argument of $z^3$ are:",
+      "options": [
+        "Modulus $6$, argument $\\frac{\\pi}{5}$",
+        "Modulus $8$, argument $\\frac{3\\pi}{5}$",
+        "Modulus $6$, argument $\\frac{3\\pi}{5}$",
+        "Modulus $8$, argument $\\frac{\\pi}{5}$"
+      ],
+      "answer": "Modulus $8$, argument $\\frac{3\\pi}{5}$"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why do we need to add $2\\pi k$ to the argument when finding roots?",
+      "a": "The term $2\\pi k$ represents whole extra turns around the origin. $\\theta$ and $\\theta + 2\\pi k$ label the same complex number, but the root formula divides the argument by $n$, and $\\frac{\\theta}{n}$ and $\\frac{\\theta}{n} + \\frac{2\\pi k}{n}$ are genuinely different angles. Letting $k$ run from $0$ to $n-1$ visits each of the $n$ distinct roots exactly once."
+    },
+    {
+      "q": "Can I use degrees instead of radians?",
+      "a": "You can, but radians are the standard in AA HL and are essential once calculus is involved. In degrees the root formula reads $z_k = r^{1/n}\\bigl(\\cos\\frac{\\theta + 360k}{n} + i\\sin\\frac{\\theta + 360k}{n}\\bigr)$. Euler form $re^{i\\theta}$ only makes sense with $\\theta$ in radians, so it is worth becoming fluent in radians."
+    },
+    {
+      "q": "What happens if I use $k = n$ or $k = -1$?",
+      "a": "You simply recover a root you already have. For $k = n$ the argument is $\\frac{\\theta + 2\\pi n}{n} = \\frac{\\theta}{n} + 2\\pi$, which is coterminal with the $k = 0$ root. The set $k = 0,1,\\dots,n-1$ is the cleanest choice that produces all $n$ distinct roots without repetition."
+    },
+    {
+      "q": "Does De Moivre's theorem work for negative or fractional powers?",
+      "a": "It holds for every integer $n$, including negatives — $z^{-1}$ has modulus $r^{-1}$ and argument $-\\theta$. For a fractional power $p/q$ the expression becomes multi-valued, which is precisely the root-finding process: taking a $q$th root produces $q$ values. That is why 'a $1/n$ power' and 'the $n$th roots' describe the same thing."
+    },
+    {
+      "q": "How does De Moivre give trig identities?",
+      "a": "Write $(\\cos\\theta + i\\sin\\theta)^n$ two ways: as $\\cos n\\theta + i\\sin n\\theta$ (De Moivre) and as a binomial expansion in $\\cos\\theta$ and $\\sin\\theta$. Equating real parts gives a formula for $\\cos n\\theta$ and equating imaginary parts gives one for $\\sin n\\theta$, expressed entirely in powers of $\\cos\\theta$ and $\\sin\\theta$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "We already know how to add, subtract, multiply and divide complex numbers. But raising one to a high power by repeated multiplication — say $(1+i\\sqrt{3})^6$ — is slow and error-prone, and finding a cube root of $i$ by Cartesian algebra looks hopeless. De Moivre's theorem solves both problems at once by working in polar (or Euler) form, where a power is just a stretch and a turn. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "De Moivre's theorem for integer powers"
+    },
+    {
+      "type": "text",
+      "content": "In polar form a complex number carries a modulus $r$ (its distance from the origin) and an argument $\\theta$ (its angle). Multiplying two complex numbers multiplies their moduli and adds their arguments. Multiplying $z$ by itself $n$ times therefore raises the modulus to the power $n$ and multiplies the argument by $n$. That single observation is De Moivre's theorem."
+    },
+    {
+      "type": "formula",
+      "content": "If $z = r(\\cos\\theta + i\\sin\\theta)$ and $n$ is an integer, then\n$$z^n = \\big[r(\\cos\\theta + i\\sin\\theta)\\big]^n = r^n(\\cos n\\theta + i\\sin n\\theta).$$\nUsing Euler's formula $e^{i\\theta} = \\cos\\theta + i\\sin\\theta$, the same statement is\n$$\\big(re^{i\\theta}\\big)^n = r^n e^{in\\theta}.$$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Modulus:** raised to the power $n$, giving $r^n$ — never $nr$.",
+        "**Argument:** multiplied by $n$, giving $n\\theta$ — never $\\theta^n$.",
+        "**Any integer $n$:** the theorem holds for negatives too, so $z^{-1} = r^{-1}e^{-i\\theta}$.",
+        "**Euler form is quickest** for powers: $\\big(re^{i\\theta}\\big)^n = r^n e^{in\\theta}$ in one line."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate $(1 + i\\sqrt{3})^6$ using De Moivre's theorem.",
+      "solution": "Let $z = 1 + i\\sqrt{3}$ and convert to polar form.\n\n**Step 1: Modulus.**\n$r = |z| = \\sqrt{1^2 + (\\sqrt{3})^2} = \\sqrt{4} = 2$.\n\n**Step 2: Argument.**\nThe point $(1,\\sqrt{3})$ lies in the first quadrant, so $\\theta = \\arctan\\!\\left(\\dfrac{\\sqrt{3}}{1}\\right) = \\dfrac{\\pi}{3}$.\nHence $z = 2\\left(\\cos\\dfrac{\\pi}{3} + i\\sin\\dfrac{\\pi}{3}\\right) = 2e^{i\\pi/3}$.\n\n**Step 3: Apply De Moivre.**\n$z^6 = 2^6\\, e^{i\\,6\\cdot\\pi/3} = 64\\,e^{i\\,2\\pi}$.\n\n**Step 4: Simplify.**\n$e^{i\\,2\\pi} = \\cos 2\\pi + i\\sin 2\\pi = 1$, so $z^6 = 64(1) = 64$.\n\n**Answer:** $(1 + i\\sqrt{3})^6 = 64$."
+    },
+    {
+      "type": "examTip",
+      "content": "For Paper 1 you must know the exact values of $\\sin$ and $\\cos$ at the special angles $\\frac{\\pi}{6}, \\frac{\\pi}{4}, \\frac{\\pi}{3}$. Always show the conversion to polar or Euler form clearly — that line is where the method mark lives, even when the final answer turns out to be a plain real number like $64$."
+    },
+    {
+      "type": "heading",
+      "content": "Finding the $n$th roots of a complex number"
+    },
+    {
+      "type": "text",
+      "content": "To solve $z^n = w$ we run De Moivre in reverse. A real number such as $4$ has two square roots ($\\pm 2$); more generally every non-zero complex number has exactly $n$ distinct $n$th roots. The trick is to remember that an angle is only defined up to whole turns: $w = re^{i\\theta}$ is the same number as $re^{i(\\theta + 2\\pi k)}$ for any integer $k$. When we take the $n$th root and divide the argument by $n$, those extra turns become $n$ genuinely different angles."
+    },
+    {
+      "type": "formula",
+      "content": "The $n$ distinct $n$th roots of $w = re^{i\\theta}$ are\n$$z_k = r^{1/n}\\, e^{\\,i\\left(\\frac{\\theta + 2\\pi k}{n}\\right)}, \\qquad k = 0, 1, 2, \\dots, n-1.$$\nEquivalently, $z_k = r^{1/n}\\left(\\cos\\dfrac{\\theta + 2\\pi k}{n} + i\\sin\\dfrac{\\theta + 2\\pi k}{n}\\right)$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Write $w$ in polar or Euler form, $w = re^{i\\theta}$, and read off $r$ and $\\theta$.",
+        "Each root has the **same modulus** $r^{1/n}$ — so all roots lie on one circle.",
+        "The arguments are $\\dfrac{\\theta + 2\\pi k}{n}$; consecutive roots differ by exactly $\\dfrac{2\\pi}{n}$.",
+        "Let $k = 0, 1, \\dots, n-1$ to list all $n$ roots once each; going further just repeats them."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the three cube roots of $w = -8i$, giving your answers in Cartesian form $a + bi$.",
+      "solution": "We solve $z^3 = -8i$.\n\n**Step 1: Write $w$ in Euler form.**\n$-8i$ lies on the negative imaginary axis, so $r = |-8i| = 8$ and $\\theta = -\\dfrac{\\pi}{2}$.\nThus $w = 8\\,e^{i(-\\pi/2 + 2\\pi k)}$ (the $2\\pi k$ carries the extra turns).\n\n**Step 2: Apply the root formula.**\n$z_k = 8^{1/3}\\, e^{\\,i\\left(\\frac{-\\pi/2 + 2\\pi k}{3}\\right)} = 2\\,e^{\\,i\\left(-\\frac{\\pi}{6} + \\frac{2\\pi k}{3}\\right)}, \\quad k = 0,1,2.$\n\n**Step 3: Evaluate each root.**\n$k=0:\\; z_0 = 2e^{-i\\pi/6} = 2\\left(\\cos\\tfrac{\\pi}{6} - i\\sin\\tfrac{\\pi}{6}\\right) = 2\\left(\\tfrac{\\sqrt3}{2} - \\tfrac12 i\\right) = \\sqrt{3} - i.$\n\n$k=1:\\; z_1 = 2e^{\\,i(-\\pi/6 + 2\\pi/3)} = 2e^{\\,i\\pi/2} = 2(0 + i) = 2i.$\n\n$k=2:\\; z_2 = 2e^{\\,i(-\\pi/6 + 4\\pi/3)} = 2e^{\\,i\\,7\\pi/6} = 2\\left(-\\tfrac{\\sqrt3}{2} - \\tfrac12 i\\right) = -\\sqrt{3} - i.$\n\n**Answer:** the three cube roots are $\\sqrt{3} - i,\\; 2i,\\; -\\sqrt{3} - i$. They sit on a circle of radius $2$, forming an equilateral triangle — a quick visual check."
+    },
+    {
+      "type": "heading",
+      "content": "The roots of unity"
+    },
+    {
+      "type": "text",
+      "content": "A special and important case is $z^n = 1$, whose solutions are the $n$th roots of unity. Since $1 = e^{i\\cdot 0}$ with modulus $1$, the roots are $z_k = e^{i\\,2\\pi k/n}$ for $k = 0, 1, \\dots, n-1$. They all sit on the unit circle, equally spaced $\\frac{2\\pi}{n}$ apart, and one of them is always $z = 1$ (the case $k=0$). For $n \\ge 2$ the roots of unity sum to zero, because they are symmetrically placed around the origin. Writing $\\omega = e^{i\\,2\\pi/n}$, every root is a power of this one: $1, \\omega, \\omega^2, \\dots, \\omega^{n-1}$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the fourth roots of unity and plot them on an Argand diagram.",
+      "solution": "We solve $z^4 = 1 = e^{i\\cdot 0}$, so $r = 1$ and $\\theta = 0$.\n\n**Root formula.**\n$z_k = 1^{1/4}\\, e^{\\,i\\left(\\frac{0 + 2\\pi k}{4}\\right)} = e^{\\,i\\,\\pi k/2}, \\quad k = 0,1,2,3.$\n\n**Evaluate.**\n$k=0:\\; e^{0} = 1.$\n$k=1:\\; e^{\\,i\\pi/2} = i.$\n$k=2:\\; e^{\\,i\\pi} = -1.$\n$k=3:\\; e^{\\,i\\,3\\pi/2} = -i.$\n\n**Answer:** the fourth roots of unity are $1, i, -1, -i$. They lie on the unit circle at the four compass points, forming a square, and their sum is $1 + i - 1 - i = 0$, as expected."
+    },
+    {
+      "type": "heading",
+      "content": "Deriving multiple-angle identities"
+    },
+    {
+      "type": "text",
+      "content": "De Moivre's theorem is also a bridge to trigonometry. Expanding $(\\cos\\theta + i\\sin\\theta)^n$ with the binomial theorem and comparing it with $\\cos n\\theta + i\\sin n\\theta$ produces formulae for $\\cos n\\theta$ and $\\sin n\\theta$ in powers of $\\cos\\theta$ and $\\sin\\theta$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Use De Moivre's theorem to show that $\\cos 3\\theta = 4\\cos^3\\theta - 3\\cos\\theta$.",
+      "solution": "**Step 1: Two expressions for the same thing.**\nBy De Moivre, $(\\cos\\theta + i\\sin\\theta)^3 = \\cos 3\\theta + i\\sin 3\\theta$.\n\n**Step 2: Expand the left side (binomial theorem).**\n$(\\cos\\theta + i\\sin\\theta)^3 = \\cos^3\\theta + 3\\cos^2\\theta(i\\sin\\theta) + 3\\cos\\theta(i\\sin\\theta)^2 + (i\\sin\\theta)^3.$\nUsing $i^2 = -1$ and $i^3 = -i$:\n$= \\cos^3\\theta + 3i\\cos^2\\theta\\sin\\theta - 3\\cos\\theta\\sin^2\\theta - i\\sin^3\\theta.$\n\n**Step 3: Equate real parts.**\n$\\cos 3\\theta = \\cos^3\\theta - 3\\cos\\theta\\sin^2\\theta.$\n\n**Step 4: Replace $\\sin^2\\theta = 1 - \\cos^2\\theta$.**\n$\\cos 3\\theta = \\cos^3\\theta - 3\\cos\\theta(1 - \\cos^2\\theta) = \\cos^3\\theta - 3\\cos\\theta + 3\\cos^3\\theta = 4\\cos^3\\theta - 3\\cos\\theta.$\n\n**Answer:** $\\cos 3\\theta = 4\\cos^3\\theta - 3\\cos\\theta$. Equating imaginary parts similarly gives $\\sin 3\\theta = 3\\sin\\theta - 4\\sin^3\\theta$."
+    },
+    {
+      "type": "heading",
+      "content": "Geometric interpretation of roots"
+    },
+    {
+      "type": "text",
+      "content": "The $n$th roots of any complex number share one modulus, $r^{1/n}$, so they all lie on a circle of that radius centred at the origin. Their arguments increase in equal steps of $\\frac{2\\pi}{n}$, so they are evenly spaced and form the vertices of a regular $n$-sided polygon. This symmetry is a free checking tool: cube roots make an equilateral triangle, fourth roots make a square, fifth roots make a regular pentagon. If your plotted roots are not evenly spaced, you have made an arithmetic slip — almost always in an argument."
+    },
+    {
+      "type": "examTip",
+      "content": "After computing roots, sketch them on an Argand diagram. Equal spacing around a single circle is the signature of a correct answer. If one root sits at the wrong angle or the wrong radius, recheck that step before committing to the final answer."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Raising the modulus wrongly** — for $z^n$ the modulus is $r^n$, not $nr$, and the argument is $n\\theta$, not $\\theta^n$. This is the single most common De Moivre error.",
+        "**Finding only one root** — every non-zero complex number has $n$ distinct $n$th roots. Forgetting the $+2\\pi k$ term gives just the principal root and throws away marks.",
+        "**Using the wrong number of $k$ values** — use exactly $k = 0, 1, \\dots, n-1$. Stopping early misses roots; going to $k = n$ repeats one.",
+        "**Putting the argument in the wrong quadrant** — a calculator's $\\arctan$ returns a principal value; always check the signs of the real and imaginary parts and adjust $\\theta$ to the correct quadrant.",
+        "**Assuming the roots are unevenly spaced** — they always separate by exactly $\\frac{2\\pi}{n}$; unequal spacing signals an arithmetic mistake.",
+        "**Mixing degrees and radians** — Euler form $re^{i\\theta}$ requires $\\theta$ in radians; do not feed degrees into $e^{i\\theta}$.",
+        "**Giving the answer in the wrong form** — if the question asks for $re^{i\\theta}$, leave it in Euler form; if it asks for $a+bi$, finish the conversion. Read the required form before writing the final line."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "IB Mathematics marks Paper 1 analytically. Each mark is tied to a specific line of working: an **M** mark rewards a correct method, and an **A** mark rewards accuracy but is dependent on the method — you cannot earn the A without the M it hangs from. The engine accepts any exact or equivalent form, so $2e^{i\\,2\\pi/3}$ and $2e^{i\\,4\\pi/3}$ (or their negatives-argument or Cartesian equivalents) all score. Study how each mark below is earned by a single line."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the three cube roots of $8$, giving your answers in the form $re^{i\\theta}$. [5]",
+      "solution": "**Model answer — full working.**\n\n**Step 1: Write $8$ in Euler form.**\n$8$ is a positive real number, so its modulus is $8$ and its argument is $0$: $\\;8 = 8\\,e^{\\,i(0 + 2\\pi k)}$, including the extra turns $2\\pi k$.\n\n**Step 2: Apply the cube-root formula.**\n$z_k = 8^{1/3}\\, e^{\\,i\\left(\\frac{0 + 2\\pi k}{3}\\right)} = 2\\,e^{\\,i\\,2\\pi k/3}, \\qquad k = 0, 1, 2.$\n\n**Step 3: The modulus of every root.**\n$8^{1/3} = 2$, so each root has modulus $2$.\n\n**Step 4: The three arguments.**\n$k=0: \\;\\dfrac{2\\pi(0)}{3} = 0. \\qquad k=1: \\;\\dfrac{2\\pi}{3}. \\qquad k=2: \\;\\dfrac{4\\pi}{3}.$\n\n**Step 5: List the three roots.**\n$$z_0 = 2e^{\\,i\\cdot 0} = 2, \\qquad z_1 = 2e^{\\,i\\,2\\pi/3}, \\qquad z_2 = 2e^{\\,i\\,4\\pi/3}.$$\n\n**Answer:** the three cube roots of $8$ are $2,\\; 2e^{\\,i\\,2\\pi/3},\\; 2e^{\\,i\\,4\\pi/3}$. They lie on a circle of radius $2$, equally spaced $\\frac{2\\pi}{3}$ apart (an equilateral triangle).\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — write $8$ in Euler (or polar) form.** Awarded for expressing $8$ as $8e^{i\\cdot 0}$ (modulus $8$, argument $0$), ideally with the general $+2\\pi k$. This is a METHOD mark for the correct starting representation.\n- **M1 — apply the $n$th-root formula.** Awarded for using $z_k = 8^{1/3} e^{\\,i(0 + 2\\pi k)/3}$ with $k = 0,1,2$ — the correct method for generating all three roots, even if a later value slips.\n- **A1 — modulus $2$.** Awarded for $8^{1/3} = 2$ as the modulus of each root. This ACCURACY mark depends on the root-formula M1 above.\n- **A1 — the three arguments $0,\\ \\frac{2\\pi}{3},\\ \\frac{4\\pi}{3}$.** Awarded for all three correct arguments (accept equivalents such as $-\\frac{2\\pi}{3}$ for $\\frac{4\\pi}{3}$, or the degree forms $0^\\circ, 120^\\circ, 240^\\circ$).\n- **A1 — all three roots in the required form.** Awarded for stating $2,\\ 2e^{\\,i\\,2\\pi/3},\\ 2e^{\\,i\\,4\\pi/3}$ together in the form $re^{i\\theta}$ requested by the question.\n\n**'Accept exact or equivalent forms.'** The engine treats $2e^{\\,i\\,4\\pi/3}$ and $2e^{-\\,i\\,2\\pi/3}$ as the same root, and accepts the polar form $2(\\cos\\frac{2\\pi}{3} + i\\sin\\frac{2\\pi}{3})$ as equivalent to $2e^{\\,i\\,2\\pi/3}$. It does not insist on a particular argument representative, only a correct one.\n\n**Bottom line:** of the 5 marks, two are method marks that survive an arithmetic slip, and each accuracy mark is dependent on the method it rests on. A student who writes only the final roots with no working risks losing the method marks if a number is wrong; a student who shows the Euler form, the root formula, the modulus and the arguments keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with M and A marks and equivalent forms accepted. So always show the method: convert to Euler or polar form, write the root formula, state the modulus, then list every argument. The method marks are what protect your score when a final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "De Moivre's theorem is the engine behind much of the complex-number toolkit. Solving $z^n = w$ underlies polynomial factorisation over the complex numbers, since the roots of unity generate the factors of $z^n - 1$. The same power-and-turn picture reappears when complex numbers model oscillations and rotations, and the multiple-angle identities you derived here feed directly into trigonometry and calculus. Master the habit — convert to polar or Euler form, stretch the modulus, multiply or divide the argument, and for roots share the turn into $n$ equal slices — and these problems become variations on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 1 answer marked: find all the roots with full working",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=1.7&component=paper_1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: The Geometry of n-th Roots",
+          "href": "https://www.geogebra.org/m/C2b4y9H3"
+        },
+        {
+          "label": "Paul's Online Math Notes: Complex Numbers - Powers and Roots",
+          "href": "https://tutorial.math.lamar.edu/classes/de/complexnumbers.aspx"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "The Geometry of n-th Roots",
+    "embedUrl": "https://www.geogebra.org/classic?material=C2b4y9H3",
+    "launchUrl": "https://www.geogebra.org/classic?material=C2b4y9H3",
+    "hint": "Use “The Geometry of n-th Roots” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "AHL 1.12",
+      "title": "Modulus-argument (polar) form",
+      "detail": "Representation of complex numbers as $z = r(\\cos\\theta + i\\sin\\theta) = r\\text{cis}\\theta$."
+    },
+    {
+      "code": "AHL 1.13",
+      "title": "De Moivre’s theorem",
+      "detail": "Finding powers of complex numbers: $z^n = r^n(\\cos(n\\theta) + i\\sin(n\\theta)) = r^n\\text{cis}(n\\theta)$."
+    },
+    {
+      "code": "AHL 1.14",
+      "title": "$n^{th}$ roots of a complex number",
+      "detail": "Finding the $n$ distinct roots of a complex number, often represented on an Argand diagram."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "1-7-complex-numbers-de-moivres-theorem-and-roots-q1",
+      "prompt": "Let $z = 2(\\cos(\\frac{\\pi}{6}) + i\\sin(\\frac{\\pi}{6}))$. Find $z^4$, expressing your answer in Cartesian form $a+bi$.",
+      "marks": 4,
+      "commandTerm": "Find",
+      "difficulty": "foundation",
+      "syllabusRef": "AHL 1.13",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Applying De Moivre's theorem: $z^4 = 2^4 (\\cos(4 \\cdot \\frac{\\pi}{6}) + i\\sin(4 \\cdot \\frac{\\pi}{6}))$.",
+          "marks": 1
+        },
+        {
+          "text": "$z^4 = 16 (\\cos(\\frac{2\\pi}{3}) + i\\sin(\\frac{2\\pi}{3}))$.",
+          "marks": 1
+        },
+        {
+          "text": "Evaluating the trigonometric functions: $\\cos(\\frac{2\\pi}{3}) = -\\frac{1}{2}$ and $\\sin(\\frac{2\\pi}{3}) = \\frac{\\sqrt{3}}{2}$.",
+          "marks": 1
+        },
+        {
+          "text": "$z^4 = 16(-\\frac{1}{2} + i\\frac{\\sqrt{3}}{2}) = -8 + 8i\\sqrt{3}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "We use De Moivre's theorem, which states that $(r(\\cos\\theta + i\\sin\\theta))^n = r^n(\\cos(n\\theta) + i\\sin(n\\theta))$.\nIn this case, $r=2$, $\\theta = \\frac{\\pi}{6}$, and $n=4$.\n$z^4 = 2^4 (\\cos(4 \\cdot \\frac{\\pi}{6}) + i\\sin(4 \\cdot \\frac{\\pi}{6}))$\n$z^4 = 16 (\\cos(\\frac{4\\pi}{6}) + i\\sin(\\frac{4\\pi}{6})) = 16 (\\cos(\\frac{2\\pi}{3}) + i\\sin(\\frac{2\\pi}{3}))$.\nWe evaluate the trigonometric values for the angle $\\frac{2\\pi}{3}$.\n$\\cos(\\frac{2\\pi}{3}) = -\\frac{1}{2}$\n$\\sin(\\frac{2\\pi}{3}) = \\frac{\\sqrt{3}}{2}$\nSubstituting these values into the expression for $z^4$:\n$z^4 = 16(-\\frac{1}{2} + i\\frac{\\sqrt{3}}{2})$\n$z^4 = -8 + 8i\\sqrt{3}$."
+    },
+    {
+      "id": "1-7-complex-numbers-de-moivres-theorem-and-roots-q2",
+      "prompt": "Solve the equation $z^3 = -27i$ for $z \\in \\mathbb{C}$. Give your answers in the form $r\\text{cis}\\theta$, where $r>0$ and $-\\pi < \\theta \\le \\pi$.",
+      "marks": 6,
+      "commandTerm": "Solve",
+      "difficulty": "standard",
+      "syllabusRef": "AHL 1.14",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "Expressing $-27i$ in polar form: $r = 27$, $\\theta = -\\frac{\\pi}{2}$. So $-27i = 27\\text{cis}(-\\frac{\\pi}{2})$.",
+          "marks": 1
+        },
+        {
+          "text": "Setting up the general form for the roots: $z_k = (27)^{\\frac{1}{3}} \\text{cis}(\\frac{-\\frac{\\pi}{2} + 2k\\pi}{3})$ for $k=0, 1, 2$.",
+          "marks": 1
+        },
+        {
+          "text": "Simplifying the expression for the roots: $z_k = 3 \\text{cis}(\\frac{-\\pi + 4k\\pi}{6})$.",
+          "marks": 1
+        },
+        {
+          "text": "For $k=0$, $z_0 = 3\\text{cis}(-\\frac{\\pi}{6})$.",
+          "marks": 1
+        },
+        {
+          "text": "For $k=1$, $z_1 = 3\\text{cis}(\\frac{3\\pi}{6}) = 3\\text{cis}(\\frac{\\pi}{2})$.",
+          "marks": 1
+        },
+        {
+          "text": "For $k=2$, $z_2 = 3\\text{cis}(\\frac{7\\pi}{6})$. Adjusting argument to be in range $(-\\pi, \\pi]$: $3\\text{cis}(-\\frac{5\\pi}{6})$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "First, we express the complex number $w = -27i$ in modulus-argument form.\nThe modulus is $|w| = \\sqrt{0^2 + (-27)^2} = 27$.\nThe argument is $\\arg(w) = -\\frac{\\pi}{2}$ as the point lies on the negative imaginary axis.\nSo, $w = 27(\\cos(-\\frac{\\pi}{2}) + i\\sin(-\\frac{\\pi}{2})) = 27\\text{cis}(-\\frac{\\pi}{2})$.\nWe want to solve $z^3 = w$. The solutions are the cube roots of $w$, given by the formula:\n$z_k = r^{\\frac{1}{n}} \\text{cis}(\\frac{\\theta + 2k\\pi}{n})$ for $k = 0, 1, \\dots, n-1$.\nHere, $r=27$, $n=3$, $\\theta = -\\frac{\\pi}{2}$.\n$z_k = 27^{\\frac{1}{3}} \\text{cis}(\\frac{-\\frac{\\pi}{2} + 2k\\pi}{3}) = 3 \\text{cis}(\\frac{-\\pi + 4k\\pi}{6})$.\nFor $k=0$: $z_0 = 3\\text{cis}(-\\frac{\\pi}{6})$.\nFor $k=1$: $z_1 = 3\\text{cis}(\\frac{-\\pi + 4\\pi}{6}) = 3\\text{cis}(\\frac{3\\pi}{6}) = 3\\text{cis}(\\frac{\\pi}{2})$.\nFor $k=2$: $z_2 = 3\\text{cis}(\\frac{-\\pi + 8\\pi}{6}) = 3\\text{cis}(\\frac{7\\pi}{6})$.\nThe argument must be in the range $(-\\pi, \\pi]$. We subtract $2\\pi$ from the argument: $\\frac{7\\pi}{6} - 2\\pi = \\frac{7\\pi - 12\\pi}{6} = -\\frac{5\\pi}{6}$.\nSo, $z_2 = 3\\text{cis}(-\\frac{5\\pi}{6})$.\nThe three roots are $3\\text{cis}(-\\frac{\\pi}{6})$, $3\\text{cis}(\\frac{\\pi}{2})$, and $3\\text{cis}(-\\frac{5\\pi}{6})$."
+    },
+    {
+      "id": "1-7-complex-numbers-de-moivres-theorem-and-roots-q3",
+      "prompt": "Use De Moivre's theorem to show that $\\cos(4\\theta) = 8\\cos^4\\theta - 8\\cos^2\\theta + 1$.",
+      "marks": 7,
+      "commandTerm": "Show that",
+      "difficulty": "standard",
+      "syllabusRef": "AHL 1.13",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "By De Moivre's theorem, $(\\cos\\theta + i\\sin\\theta)^4 = \\cos(4\\theta) + i\\sin(4\\theta)$.",
+          "marks": 1
+        },
+        {
+          "text": "Binomial expansion of $(\\cos\\theta + i\\sin\\theta)^4$: $\\cos^4\\theta + 4\\cos^3\\theta(i\\sin\\theta) + 6\\cos^2\\theta(i\\sin\\theta)^2 + 4\\cos\\theta(i\\sin\\theta)^3 + (i\\sin\\theta)^4$.",
+          "marks": 1
+        },
+        {
+          "text": "Simplifying powers of $i$: $\\cos^4\\theta + 4i\\cos^3\\theta\\sin\\theta - 6\\cos^2\\theta\\sin^2\\theta - 4i\\cos\\theta\\sin^3\\theta + \\sin^4\\theta$.",
+          "marks": 1
+        },
+        {
+          "text": "Equating the real parts: $\\cos(4\\theta) = \\cos^4\\theta - 6\\cos^2\\theta\\sin^2\\theta + \\sin^4\\theta$.",
+          "marks": 1
+        },
+        {
+          "text": "Using $\\sin^2\\theta = 1 - \\cos^2\\theta$: $\\cos(4\\theta) = \\cos^4\\theta - 6\\cos^2\\theta(1-\\cos^2\\theta) + (1-\\cos^2\\theta)^2$.",
+          "marks": 1
+        },
+        {
+          "text": "Expanding the expression: $\\cos(4\\theta) = \\cos^4\\theta - 6\\cos^2\\theta + 6\\cos^4\\theta + (1 - 2\\cos^2\\theta + \\cos^4\\theta)$.",
+          "marks": 1
+        },
+        {
+          "text": "Collecting terms: $\\cos(4\\theta) = (1+6+1)\\cos^4\\theta + (-6-2)\\cos^2\\theta + 1 = 8\\cos^4\\theta - 8\\cos^2\\theta + 1$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "We start with De Moivre's theorem for $n=4$: $(\\cos\\theta + i\\sin\\theta)^4 = \\cos(4\\theta) + i\\sin(4\\theta)$.\nWe expand the left-hand side using the binomial theorem, $(a+b)^4 = a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4$, with $a = \\cos\\theta$ and $b = i\\sin\\theta$.\n$(\\cos\\theta + i\\sin\\theta)^4 = \\cos^4\\theta + 4(\\cos^3\\theta)(i\\sin\\theta) + 6(\\cos^2\\theta)(i\\sin\\theta)^2 + 4(\\cos\\theta)(i\\sin\\theta)^3 + (i\\sin\\theta)^4$.\nSimplifying the powers of $i$ ($i^2=-1, i^3=-i, i^4=1$):\n$= \\cos^4\\theta + 4i\\cos^3\\theta\\sin\\theta - 6\\cos^2\\theta\\sin^2\\theta - 4i\\cos\\theta\\sin^3\\theta + \\sin^4\\theta$.\nWe group the real and imaginary parts:\n$= (\\cos^4\\theta - 6\\cos^2\\theta\\sin^2\\theta + \\sin^4\\theta) + i(4\\cos^3\\theta\\sin\\theta - 4\\cos\\theta\\sin^3\\theta)$.\nBy equating the real parts with $\\cos(4\\theta)$, we get:\n$\\cos(4\\theta) = \\cos^4\\theta - 6\\cos^2\\theta\\sin^2\\theta + \\sin^4\\theta$.\nTo express this in terms of $\\cos\\theta$ only, we use the identity $\\sin^2\\theta = 1 - \\cos^2\\theta$.\n$\\cos(4\\theta) = \\cos^4\\theta - 6\\cos^2\\theta(1 - \\cos^2\\theta) + (1 - \\cos^2\\theta)^2$.\n$\\cos(4\\theta) = \\cos^4\\theta - 6\\cos^2\\theta + 6\\cos^4\\theta + (1 - 2\\cos^2\\theta + \\cos^4\\theta)$.\nCombine like terms:\n$\\cos(4\\theta) = (\\cos^4\\theta + 6\\cos^4\\theta + \\cos^4\\theta) + (-6\\cos^2\\theta - 2\\cos^2\\theta) + 1$.\n$\\cos(4\\theta) = 8\\cos^4\\theta - 8\\cos^2\\theta + 1$."
+    },
+    {
+      "id": "1-7-complex-numbers-de-moivres-theorem-and-roots-q4",
+      "prompt": "The equation $z^5 - 1 = 0$ has roots $1, \\omega, \\omega^2, \\omega^3, \\omega^4$, where $\\omega = \\text{cis}(\\frac{2\\pi}{5})$.\n(a) Show that $1 + \\omega + \\omega^2 + \\omega^3 + \\omega^4 = 0$. [2 marks]\n(b) Let $u = \\omega + \\omega^4$ and $v = \\omega^2 + \\omega^3$. Show that $u+v = -1$ and $uv = -1$. [3 marks]\n(c) Hence, find the exact value of $\\cos(\\frac{2\\pi}{5})$. [3 marks]",
+      "marks": 8,
+      "commandTerm": "Hence, find",
+      "difficulty": "challenge",
+      "syllabusRef": "AHL 1.14",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) The sum of the roots of $z^5+0z^4+...+(-1)=0$ is $-0/1=0$. (M1) So $1 + \\omega + \\omega^2 + \\omega^3 + \\omega^4 = 0$. (R1)(AG) Alternatively, sum of a geometric series $S_5 = \\frac{1(\\omega^5 - 1)}{\\omega - 1} = \\frac{1-1}{\\omega-1}=0$.",
+          "marks": 2
+        },
+        {
+          "text": "(b) $u+v = (\\omega + \\omega^4) + (\\omega^2 + \\omega^3) = \\omega + \\omega^2 + \\omega^3 + \\omega^4 = -1$ from part (a). (M1)(AG) $uv = (\\omega + \\omega^4)(\\omega^2 + \\omega^3) = \\omega^3 + \\omega^4 + \\omega^6 + \\omega^7$. (M1) Since $\\omega^5 = 1$, $\\omega^6 = \\omega$ and $\\omega^7 = \\omega^2$. So $uv = \\omega^3 + \\omega^4 + \\omega + \\omega^2 = -1$. (A1)(AG)",
+          "marks": 3
+        },
+        {
+          "text": "(c) $u$ and $v$ are roots of $x^2 - (u+v)x + uv = 0$, which is $x^2 + x - 1 = 0$. (M1) The solutions are $x = \\frac{-1 \\pm \\sqrt{1^2 - 4(1)(-1)}}{2} = \\frac{-1 \\pm \\sqrt{5}}{2}$. (A1) $u = \\omega + \\omega^4 = \\text{cis}(\\frac{2\\pi}{5}) + \\text{cis}(-\\frac{2\\pi}{5}) = 2\\cos(\\frac{2\\pi}{5})$. Since $\\cos(\\frac{2\\pi}{5}) > 0$, $u$ must be the positive root. $2\\cos(\\frac{2\\pi}{5}) = \\frac{-1 + \\sqrt{5}}{2}$, so $\\cos(\\frac{2\\pi}{5}) = \\frac{-1 + \\sqrt{5}}{4}$. (A1)",
+          "marks": 3
+        }
+      ],
+      "modelAnswer": "(a) The roots $1, \\omega, \\omega^2, \\omega^3, \\omega^4$ are the terms of a geometric progression with first term 1 and common ratio $\\omega$. The sum is given by $S_5 = \\frac{a(r^n-1)}{r-1} = \\frac{1(\\omega^5-1)}{\\omega-1}$. Since $\\omega$ is a root of $z^5-1=0$, we have $\\omega^5-1=0$. As $\\omega \\neq 1$, the sum is $S_5 = \\frac{0}{\\omega-1} = 0$. Thus, $1 + \\omega + \\omega^2 + \\omega^3 + \\omega^4 = 0$.\n\n(b) For the sum $u+v$: \n$u+v = (\\omega + \\omega^4) + (\\omega^2 + \\omega^3) = \\omega + \\omega^2 + \\omega^3 + \\omega^4$. \nFrom part (a), we know $1 + (\\omega + \\omega^2 + \\omega^3 + \\omega^4) = 0$, which implies $\\omega + \\omega^2 + \\omega^3 + \\omega^4 = -1$. So, $u+v = -1$.\nFor the product $uv$: \n$uv = (\\omega + \\omega^4)(\\omega^2 + \\omega^3) = \\omega^3 + \\omega^4 + \\omega^6 + \\omega^7$. \nSince $\\omega^5 = 1$, we have $\\omega^6 = \\omega^5 \\cdot \\omega = \\omega$ and $\\omega^7 = \\omega^5 \\cdot \\omega^2 = \\omega^2$. \nSubstituting these back gives $uv = \\omega^3 + \\omega^4 + \\omega + \\omega^2$. \nThis is the same sum as before, which equals $-1$. So, $uv = -1$.\n\n(c) Since $u$ and $v$ are two numbers such that their sum is $-1$ and their product is $-1$, they must be the roots of the quadratic equation $x^2 - (\\text{sum of roots})x + (\\text{product of roots}) = 0$. \nThis gives $x^2 - (-1)x + (-1) = 0$, i.e., $x^2 + x - 1 = 0$. \nUsing the quadratic formula, the roots are $x = \\frac{-1 \\pm \\sqrt{1^2 - 4(1)(-1)}}{2} = \\frac{-1 \\pm \\sqrt{5}}{2}$. \nNow we relate $u$ to $\\cos(\\frac{2\\pi}{5})$. \n$u = \\omega + \\omega^4 = \\text{cis}(\\frac{2\\pi}{5}) + \\text{cis}(\\frac{8\\pi}{5})$. \nNote that $\\text{cis}(\\frac{8\\pi}{5}) = \\text{cis}(\\frac{8\\pi}{5}-2\\pi) = \\text{cis}(-\\frac{2\\pi}{5})$. \nSo, $u = (\\cos(\\frac{2\\pi}{5}) + i\\sin(\\frac{2\\pi}{5})) + (\\cos(-\\frac{2\\pi}{5}) + i\\sin(-\\frac{2\\pi}{5}))$. \nUsing $\\cos(-x)=\\cos(x)$ and $\\sin(-x)=-\\sin(x)$, we get $u = 2\\cos(\\frac{2\\pi}{5})$. \nSince $0 < \\frac{2\\pi}{5} < \\frac{\\pi}{2}$, the angle is in the first quadrant, so $\\cos(\\frac{2\\pi}{5})$ is positive. This means $u$ must be positive. \nOf the two roots $\\frac{-1 \\pm \\sqrt{5}}{2}$, the positive one is $\\frac{-1 + \\sqrt{5}}{2}$. \nTherefore, $u = 2\\cos(\\frac{2\\pi}{5}) = \\frac{-1 + \\sqrt{5}}{2}$. \nDividing by 2 gives the exact value: $\\cos(\\frac{2\\pi}{5}) = \\frac{-1 + \\sqrt{5}}{4}$."
+    }
+  ]
+}

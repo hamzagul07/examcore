@@ -1,0 +1,508 @@
+{
+  "slug": "2-6-exponential-and-logarithmic-functions",
+  "topicCode": "2.6",
+  "title": "Exponential and logarithmic functions",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "pilot",
+  "unit": {
+    "code": "2",
+    "title": "Functions"
+  },
+  "summary": "This lesson builds the full 2.6 toolkit for exponential and logarithmic functions. It develops the exponential function $y=a^x$ and the natural exponential $y=e^x$ — their growth and decay behaviour, the point $(0,1)$ and the horizontal asymptote $y=0$ — before introducing the number $e$ itself. It then presents the logarithm $y=\\log_a x$ (and its special case $y=\\ln x$) as the exact inverse of the exponential, obtained by reflection in $y=x$, with the domains and ranges that swap when you invert. Finally it applies all of this to modelling growth and decay with functions of the form $y=Ae^{kt}+c$. Every worked example is laid out exactly the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Sketch and describe the exponential functions $y=a^x$ and $y=e^x$, identifying the y-intercept $(0,1)$, the horizontal asymptote $y=0$, and growth versus decay from the base or the sign of the exponent.",
+    "Explain the meaning of the number $e$ and recognise $y=e^x$ as the natural exponential function.",
+    "Understand $y=\\log_a x$ and $y=\\ln x$ as the inverse of the exponential function, and obtain the log graph by reflecting the exponential graph in the line $y=x$.",
+    "State the domain and range of exponential and logarithmic functions and see how they swap under inversion.",
+    "Model real-world growth and decay with functions of the form $y=Ae^{kt}+c$, and present working so that method marks, follow-through and 'accept equivalent forms' protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "2.6"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
+  "simpleExplanation": {
+    "title": "Growth, Decay, and the Undo Button",
+    "summary": "An exponential function multiplies by the same factor every step, so quantities explode upward (growth) or melt toward a floor (decay). A logarithm is the 'undo' button: it is the exact inverse that tells you which exponent produced a given value — which is how you find the time in a growth or decay model.",
+    "analogy": "Picture money in an account that grows by the same percentage each year. The exponential function $y=Ae^{kt}$ tells you how much you have after any time $t$. The logarithm runs the machine backwards: given a target balance, $\\ln$ finds the time $t$ needed to reach it. Exponential answers 'how much, after this long?'; log answers 'how long, to reach this much?'.",
+    "steps": [
+      "Recognise the exponential shape: $y=a^x$ (and $y=e^x$) passes through $(0,1)$, never touches the x-axis, and either grows ($a>1$ or $k>0$) or decays ($0<a<1$ or $k<0$).",
+      "Meet the number $e\\approx 2.718$: the natural base that makes $y=e^x$ the standard model for continuous growth and decay.",
+      "Invert to get the logarithm: reflect $y=e^x$ in the line $y=x$ to obtain $y=\\ln x$. Domain and range swap, so $\\ln x$ exists only for $x>0$.",
+      "Model and solve: build $y=Ae^{kt}+c$ from the situation, substitute a time to predict a value, or set a target value and take $\\ln$ to find the time."
+    ]
+  },
+  "keyConcepts": [
+    "exponential growth and decay",
+    "the number e",
+    "inverse functions and reflection in y = x"
+  ],
+  "flashcards": [
+    {
+      "front": "Exponential function $y=a^x$",
+      "back": "A function with the variable in the exponent, base $a>0$, $a\\neq 1$. It passes through $(0,1)$, has domain $x\\in\\mathbb{R}$ and range $y>0$, and has the x-axis $y=0$ as a horizontal asymptote.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Growth vs decay",
+      "back": "For $y=a^x$: growth when $a>1$, decay when $0<a<1$. For $y=Ae^{kt}$ (with $A>0$): growth when $k>0$, decay when $k<0$. The sign of $k$ decides the direction.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "The number $e$",
+      "back": "Euler's number, $e\\approx 2.718$, an irrational constant. It is the natural base of exponential growth, so $y=e^x$ is called the natural exponential function.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Horizontal asymptote of $y=e^x$",
+      "back": "The line $y=0$ (the x-axis). As $x\\to-\\infty$, $e^x\\to 0^{+}$; the curve approaches the axis but never reaches it. For $y=Ae^{kt}+c$ the asymptote shifts to $y=c$.",
+      "pillLabel": "Graph"
+    },
+    {
+      "front": "Natural logarithm $\\ln x$",
+      "back": "The logarithm to base $e$: $\\ln x = \\log_e x$. It is the inverse of $e^x$, so $\\ln(e^x)=x$ and $e^{\\ln x}=x$ (for $x>0$).",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Log as inverse of exponential",
+      "back": "$y=a^x \\iff x=\\log_a y$. The graph of $y=\\log_a x$ is the reflection of $y=a^x$ in the line $y=x$; likewise $y=\\ln x$ reflects $y=e^x$.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Domain and range of $\\ln x$",
+      "back": "Domain $x>0$, range $y\\in\\mathbb{R}$ — exactly the range and domain of $e^x$ swapped. You cannot take the log of zero or a negative number.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Key points that swap under inversion",
+      "back": "$y=e^x$ passes through $(0,1)$ with asymptote $y=0$; $y=\\ln x$ passes through $(1,0)$ with asymptote $x=0$. The coordinates simply exchange places.",
+      "pillLabel": "Graph"
+    },
+    {
+      "front": "Undoing an exponent",
+      "back": "To solve $e^{kt}=b$, take $\\ln$ of both sides: $kt=\\ln b$, so $t=\\dfrac{\\ln b}{k}$. Taking $\\ln$ is what brings the unknown down from the exponent.",
+      "pillLabel": "Method"
+    },
+    {
+      "front": "General exponential model",
+      "back": "$y=Ae^{kt}+c$: $A+c$ is the value at $t=0$, $c$ is the long-term limit (the horizontal asymptote), and $k$ sets the rate — positive for growth, negative for decay.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "$\\ln 1$ and $\\ln e$",
+      "back": "$\\ln 1 = 0$ (because $e^0=1$) and $\\ln e = 1$ (because $e^1=e$). These are the two anchor values to know without a calculator.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Exam Trap: log of a negative number",
+      "back": "$\\ln x$ and $\\log_a x$ are defined only for $x>0$. Any solution that forces the argument of a log to be zero or negative must be rejected.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "The functions $y=e^x$ and $y=\\ln x$ are related by:",
+      "options": [
+        "They are the same function written two ways",
+        "They are inverses — reflections of each other in the line $y=x$",
+        "They are reflections of each other in the y-axis",
+        "They are parallel curves a fixed distance apart"
+      ],
+      "answer": "They are inverses — reflections of each other in the line $y=x$"
+    },
+    {
+      "prompt": "As $x\\to-\\infty$, the graph of $y=e^x$:",
+      "options": [
+        "Approaches the horizontal asymptote $y=0$ but never reaches it",
+        "Crosses the x-axis at $x=0$",
+        "Approaches the asymptote $y=1$",
+        "Increases without bound"
+      ],
+      "answer": "Approaches the horizontal asymptote $y=0$ but never reaches it"
+    },
+    {
+      "prompt": "The domain of $f(x)=\\ln x$ is:",
+      "options": [
+        "All real numbers",
+        "$x\\ge 0$",
+        "$x>0$",
+        "$x\\neq 0$"
+      ],
+      "answer": "$x>0$"
+    },
+    {
+      "prompt": "A quantity is modelled by $y=Ae^{kt}$ with $A>0$. It represents decay when:",
+      "options": [
+        "$k>0$",
+        "$k<0$",
+        "$k=0$",
+        "$A<0$"
+      ],
+      "answer": "$k<0$"
+    },
+    {
+      "prompt": "Which point does the graph of $y=\\ln x$ pass through?",
+      "options": [
+        "$(0,1)$",
+        "$(1,0)$",
+        "$(0,0)$",
+        "$(e,e)$"
+      ],
+      "answer": "$(1,0)$"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What actually is the number $e$?",
+      "a": "It is a fixed irrational constant, $e\\approx 2.71828$, in the same family as $\\pi$. It arises naturally whenever something grows continuously in proportion to its current size — compound interest taken instant by instant heads toward $e$. Because of that, $y=e^x$ is the 'natural' model for continuous growth and decay, and its inverse $\\ln x$ is the natural logarithm. For most purposes you can treat $e$ as a specific number your calculator knows, just like $\\pi$."
+    },
+    {
+      "q": "Why is the domain of $\\ln x$ restricted to $x>0$?",
+      "a": "Because $\\ln$ is the inverse of $e^x$, and the range of $e^x$ is $y>0$ — $e^x$ only ever outputs positive numbers. Inverting swaps domain and range, so the inputs of $\\ln$ can only be the outputs $e^x$ produced, namely positive numbers. There is simply no exponent that makes $e^x$ equal to zero or a negative value, so $\\ln 0$ and $\\ln(\\text{negative})$ are undefined."
+    },
+    {
+      "q": "When should I use $\\ln$ rather than $\\log_{10}$ to solve an equation?",
+      "a": "For solving, either works as long as you are consistent on both sides. But if the base of the exponential is $e$ — as in every $y=Ae^{kt}$ model — use $\\ln$, because $\\ln(e^{kt})$ collapses straight to $kt$ with no leftover $\\ln e$ factor. Matching the logarithm to the base of the exponential keeps the algebra clean and is why science and calculus almost always use $\\ln$."
+    },
+    {
+      "q": "What do $A$, $k$ and $c$ each do in $y=Ae^{kt}+c$?",
+      "a": "$c$ is the horizontal asymptote — the value the model settles toward in the long run (a background level, or the surrounding temperature in a cooling problem). $A$ scales the curve: at $t=0$ the value is $A+c$. $k$ controls the rate and direction: $k>0$ gives growth, $k<0$ gives decay, and a larger $|k|$ means a faster change. Reading a model means identifying these three roles before you substitute anything."
+    },
+    {
+      "q": "How is the graph of $y=\\ln x$ obtained from $y=e^x$?",
+      "a": "Reflect $y=e^x$ in the line $y=x$. Every feature swaps its coordinates: the point $(0,1)$ on the exponential becomes $(1,0)$ on the logarithm; the horizontal asymptote $y=0$ becomes the vertical asymptote $x=0$; the domain (all reals) and range (positives) exchange roles. That single reflection is the whole relationship between the two functions."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Exponential and logarithmic functions describe an enormous range of real situations — populations, radioactive decay, cooling coffee, compound interest, drug concentrations. They are also a matched pair: the logarithm is nothing more than the exponential run backwards. This lesson develops the exponential functions $y=a^x$ and $y=e^x$, introduces the number $e$, builds the logarithm as their inverse, and then puts everything to work modelling growth and decay. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "Exponential functions: the shape of rapid change"
+    },
+    {
+      "type": "text",
+      "content": "An exponential function has the variable in the exponent. Its general form is $f(x)=a^x$ with base $a>0$, $a\\neq 1$. The base fixes the behaviour. If $a>1$ the function grows, rising ever more steeply as $x$ increases; if $0<a<1$ it decays, falling toward zero. Whatever the base, every such curve passes through $(0,1)$, because any positive base raised to the power $0$ equals $1$. And every such curve has the x-axis, $y=0$, as a horizontal asymptote: the graph sweeps toward the axis on one side without ever touching or crossing it."
+    },
+    {
+      "type": "formula",
+      "content": "$f(x)=a^x, \\quad a>0,\\; a\\neq 1$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Domain:** all real numbers, $x\\in\\mathbb{R}$.",
+        "**Range:** all positive real numbers, $y>0$ — an exponential output is never zero or negative.",
+        "**y-intercept:** always $(0,1)$.",
+        "**Horizontal asymptote:** the x-axis, $y=0$.",
+        "**Growth vs decay:** $a>1$ grows; $0<a<1$ decays."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The number $e$ and the natural exponential $y=e^x$"
+    },
+    {
+      "type": "text",
+      "content": "Among all possible bases, one is singled out as 'natural': the constant $e\\approx 2.718$, an irrational number like $\\pi$. It appears whenever a quantity grows continuously in proportion to its own size — interest compounded instant by instant tends toward $e$ — which makes $y=e^x$ the standard model for continuous growth and decay. Because $2<e<3$, the graph of $y=e^x$ sits between $y=2^x$ and $y=3^x$, but it shares every exponential feature: it passes through $(0,1)$, has range $y>0$, and hugs the horizontal asymptote $y=0$ as $x\\to-\\infty$. Its reflection $y=e^{-x}$ gives the matching natural decay curve."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$e\\approx 2.718$ is a fixed irrational constant — treat it like $\\pi$.",
+        "$y=e^x$ is the natural exponential function: growth, through $(0,1)$, asymptote $y=0$.",
+        "$y=e^{-x}$ is natural decay: still through $(0,1)$, still asymptote $y=0$, but falling.",
+        "In a model $y=Ae^{kt}+c$ the base is always $e$, which is why $\\ln$ is the natural tool for solving."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Logarithms: the exponential inverted"
+    },
+    {
+      "type": "text",
+      "content": "For every exponential function there is an inverse — the logarithm — which answers the question 'what exponent turns the base into this number?'. The statement $y=a^x$ is exactly equivalent to $x=\\log_a y$; the two say the same thing, one solved for the value and one solved for the exponent. When the base is $e$ the logarithm is written $\\ln$ (the natural logarithm), so $y=e^x \\iff x=\\ln y$. Being inverse functions, $\\ln$ and $e^x$ undo each other: $\\ln(e^x)=x$ and $e^{\\ln x}=x$."
+    },
+    {
+      "type": "formula",
+      "content": "$y=a^x \\iff x=\\log_a y, \\qquad y=e^x \\iff x=\\ln y$"
+    },
+    {
+      "type": "text",
+      "content": "Graphically, inverse functions are reflections in the line $y=x$, so the graph of $y=\\ln x$ is $y=e^x$ flipped across that line. Every feature swaps its coordinates. The point $(0,1)$ becomes $(1,0)$; the horizontal asymptote $y=0$ becomes the vertical asymptote $x=0$; the domain and range exchange. Consequently $y=\\ln x$ has domain $x>0$ and range $y\\in\\mathbb{R}$: you can take the log only of a positive number, and the curve climbs slowly without any upper bound."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$y=\\ln x$ is the reflection of $y=e^x$ in the line $y=x$.",
+        "**Domain:** $x>0$ (the log of $0$ or a negative number is undefined).",
+        "**Range:** all real numbers, $y\\in\\mathbb{R}$.",
+        "**x-intercept:** $(1,0)$, since $\\ln 1 = 0$.",
+        "**Vertical asymptote:** the y-axis, $x=0$.",
+        "Anchor values: $\\ln 1 = 0$ and $\\ln e = 1$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The function $f(x)=e^{x}-2$ is defined for $x\\in\\mathbb{R}$. State (a) the range of $f$ and the equation of its horizontal asymptote, and (b) find the inverse function $f^{-1}(x)$, stating its domain. [5]",
+      "solution": "**(a) Range and asymptote.** The natural exponential $e^{x}$ has range $e^{x}>0$. Subtracting $2$ shifts every output down by $2$, so $f(x)>-2$. **(M1: apply the shift to the range of $e^x$)** The range is $f(x)>-2$, and the horizontal asymptote moves down with it to $y=-2$. **(A1: range and asymptote)**\n\n**(b) Inverse.** Write $y=e^{x}-2$ and rearrange to make $x$ the subject. **(M1: set $y=f(x)$ and rearrange)**\n$y+2=e^{x}$\nTake the natural logarithm of both sides to undo the exponential:\n$x=\\ln(y+2)$ **(M1: take $\\ln$ of both sides)**\nSwapping variables, $f^{-1}(x)=\\ln(x+2)$. Its domain is the range of $f$, namely $x>-2$. **(A1: inverse with its domain)**\n\n**Final answer:** range $f(x)>-2$, asymptote $y=-2$; $f^{-1}(x)=\\ln(x+2)$ with domain $x>-2$."
+    },
+    {
+      "type": "examTip",
+      "content": "The domain of an inverse is always the range of the original function — that is why $f^{-1}(x)=\\ln(x+2)$ needs $x>-2$. Stating the domain is worth a mark on its own, and forgetting it is one of the most common ways to drop an easy A-mark in an inverse-function question."
+    },
+    {
+      "type": "heading",
+      "content": "Solving exponential equations with logarithms"
+    },
+    {
+      "type": "text",
+      "content": "When the unknown sits in the exponent and you cannot match the bases, the logarithm is the tool that brings it down. Take logs of both sides — using $\\ln$ when the base is $e$ — and the exponent drops to the front, turning an exponential equation into an ordinary linear one. This single move, $e^{kt}=b \\Rightarrow kt=\\ln b$, is the engine behind every growth-and-decay calculation in the next section."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve $5e^{0.2x}=40$, giving your answer in exact form and then to three significant figures. [4]",
+      "solution": "**Isolate the exponential first.** Divide both sides by $5$:\n$e^{0.2x}=8$ **(M1: isolate the exponential term)**\n**Take the natural logarithm of both sides**, because the base is $e$:\n$0.2x=\\ln 8$ **(M1: take $\\ln$, exponent comes down)**\n**Solve for $x$:**\n$x=\\dfrac{\\ln 8}{0.2}=5\\ln 8$ **(A1: exact form — accept $5\\ln 8$ or $\\tfrac{\\ln 8}{0.2}$)**\nEvaluating, $x=5\\times 2.0794\\ldots=10.397\\ldots\\approx 10.4$. **(A1: $10.4$ to 3 s.f.)**\n\n**Final answer:** $x=5\\ln 8$ (exact) $\\approx 10.4$."
+    },
+    {
+      "type": "heading",
+      "content": "Modelling growth and decay"
+    },
+    {
+      "type": "text",
+      "content": "Real growth and decay are captured by models of the form $y=Ae^{kt}+c$. Reading such a model means identifying three roles before touching the algebra. The constant $c$ is the horizontal asymptote — the level the quantity settles toward in the long run (a background amount, or the room temperature a hot drink cools toward). The coefficient $A$ scales the curve, so the starting value at $t=0$ is $A+c$. The exponent constant $k$ fixes the rate and direction: $k>0$ gives growth, $k<0$ gives decay, and a larger $|k|$ means faster change. To use a model you either substitute a time to predict a value, or set a target value and take $\\ln$ to find the time."
+    },
+    {
+      "type": "formula",
+      "content": "$y = Ae^{kt}+c \\qquad (k>0:\\text{ growth}, \\quad k<0:\\text{ decay}, \\quad y\\to c \\text{ as } t\\to\\infty)$"
+    },
+    {
+      "type": "workedExample",
+      "question": "The temperature of a cup of coffee, $T$ degrees Celsius, is modelled by $T=68e^{-0.04t}+20$, where $t$ is the time in minutes after it is poured. (a) State the temperature the coffee cools toward. (b) Find its temperature after 15 minutes. (c) Find, to the nearest minute, how long it takes to cool to 50 °C. [5]",
+      "solution": "**(a) Long-term temperature.** As $t\\to\\infty$, $e^{-0.04t}\\to 0$, so $T\\to 20$. The coffee cools toward $20$ °C (room temperature, the asymptote $c$). **(A1)**\n\n**(b) Temperature after 15 minutes.** Substitute $t=15$:\n$T=68e^{-0.04(15)}+20=68e^{-0.6}+20$ **(M1: substitute $t=15$)**\n$=68(0.5488\\ldots)+20=57.3$ °C (3 s.f.). **(A1)**\n\n**(c) Time to reach 50 °C.** Set $T=50$ and isolate the exponential:\n$50=68e^{-0.04t}+20 \\Rightarrow 30=68e^{-0.04t} \\Rightarrow e^{-0.04t}=\\dfrac{30}{68}$ **(M1: set $T=50$ and isolate)**\nTake $\\ln$ of both sides and solve:\n$-0.04t=\\ln\\!\\left(\\dfrac{30}{68}\\right) \\Rightarrow t=\\dfrac{\\ln(30/68)}{-0.04}=20.4\\ldots\\approx 20$ minutes. **(A1)**\n\n**Final answer:** (a) $20$ °C; (b) $57.3$ °C; (c) about $20$ minutes."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Treating $e^x$ and $\\ln x$ as anything other than exact inverses** — they reflect in $y=x$, and $\\ln(e^x)=x$, $e^{\\ln x}=x$. Mixing up which one undoes which wastes whole questions.",
+        "**Forgetting the horizontal asymptote** — $y=e^x$ approaches $y=0$ but never reaches it, and in $y=Ae^{kt}+c$ the asymptote shifts to $y=c$. A sketch that crosses the asymptote, or a long-term value read as $0$ instead of $c$, loses marks.",
+        "**Taking the log of zero or a negative number** — $\\ln x$ needs $x>0$. Any solution that makes the argument of a log non-positive must be rejected, and any inverse must state the restricted domain.",
+        "**Reading growth/decay from the wrong sign** — with $A>0$, growth needs $k>0$ and decay needs $k<0$. A misread sign flips the whole model.",
+        "**Not isolating the exponential before taking logs** — you must reach $e^{kt}=b$ on its own before applying $\\ln$; taking $\\ln$ of a sum such as $Ae^{kt}+c$ term by term is invalid.",
+        "**Rounding too early in a model** — carry extra figures through and round only the final value, or a time like $20$ minutes can drift to a wrong integer.",
+        "**Dropping the domain of an inverse function** — the domain of $f^{-1}$ is the range of $f$; leaving it out forfeits an easy accuracy mark."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 1 the marks are analytic: each is tied to a specific line of working — a method mark (M) for a correct approach or an accuracy mark (A) for a correct result — and follow-through (FT) means a wrong number early on need not cost you the marks that follow, provided the later work is correct on your own figure. 'ISW' (ignore subsequent working) means once a correct answer is seen the engine does not punish extra tidying, and equivalent exact forms are accepted. But that protection only exists if your method is written down. Study how each mark below is earned by a specific line of a modelling question."
+    },
+    {
+      "type": "workedExample",
+      "question": "A population is modelled by $P(t)=2000e^{0.03t}$, where $t$ is measured in years. (a) Find the population after 10 years. (b) Find the time for the population to reach 3000. [5]",
+      "solution": "**Model answer — full working.**\n\n**(a) Population after 10 years.** Substitute $t=10$ into the model:\n$P(10)=2000e^{0.03(10)}=2000e^{0.3}$\n$=2000(1.34986\\ldots)=2699.7\\ldots$\n$\\approx 2700$. Since a population is a whole number, $P\\approx 2700$.\n\n**(b) Time to reach 3000.** Set $P(t)=3000$ and isolate the exponential:\n$3000=2000e^{0.03t}$\n$e^{0.03t}=\\dfrac{3000}{2000}=1.5$\nTake the natural logarithm of both sides (the base is $e$):\n$0.03t=\\ln 1.5$\n$t=\\dfrac{\\ln 1.5}{0.03}=13.51\\ldots\\approx 13.5$ years.\n\n**Final answer:** after 10 years $P\\approx 2700$; the population reaches 3000 after about $13.5$ years.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — substitute $t=10$.** Awarded for correctly substituting into the model, i.e. writing $P=2000e^{0.03(10)}$ or $2000e^{0.3}$. This is a METHOD mark: it is earned for the correct approach even if the arithmetic later slips.\n- **A1 — value $\\approx 2700$.** Awarded for $P\\approx 2700$ (accept $2699.7\\ldots$, or $2700$ to the nearest whole population). The engine accepts any correctly-rounded equivalent and applies ISW, so extra rounding after a correct value is not penalised.\n- **M1 — set $3000=2000e^{0.03t}$ and take $\\ln$.** Awarded for forming the equation and applying $\\ln$ to both sides after isolating the exponential: $e^{0.03t}=1.5 \\Rightarrow 0.03t=\\ln 1.5$. The engine checks that the exponential was isolated before the log was taken.\n- **M1 — solve for $t$.** Awarded for rearranging to $t=\\dfrac{\\ln 1.5}{0.03}$. A method mark for the correct final step, independent of the arithmetic.\n- **A1 — $t\\approx 13.5$ years.** Awarded for the correct value (accept $13.5$ years or $\\dfrac{\\ln 1.5}{0.03}$ in exact form). Here follow-through applies: a student who isolated and took logs correctly but mis-keyed the final division still keeps the three method marks, and if the answer follows correctly from THEIR own earlier line the accuracy mark is protected too.\n\n**'Accept equivalent forms and correct rounding.'** The engine accepts the exact form $t=\\dfrac{\\ln 1.5}{0.03}$ and the rounded $13.5$ years equally, and it does not demand a fixed number of decimal places — only a correctly-rounded value (or an accepted exact equivalent).\n\n**Bottom line:** of the 5 marks, three are method marks that survive an arithmetic slip, and the answer marks are shielded by follow-through. A student who writes only '13.5 years' with no working risks losing 3–4 marks if the final number is wrong; a student who shows the substitution, the isolation, the $\\ln$ step and the rearrangement keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through and 'accept equivalent forms'. So always show the method: substitute the given time, isolate the exponential, take $\\ln$, then solve. The method marks and follow-through are what protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Exponentials and logarithms recur throughout the course. The same $y=Ae^{kt}+c$ family models compound interest, radioactive decay and cooling; the reflection-in-$y=x$ idea underlies every inverse function; and in calculus the natural exponential returns as the function equal to its own derivative, with $\\ln x$ as the integral of $1/x$. Master the habit here — read the model's $A$, $k$ and $c$, isolate the exponential, take $\\ln$, and show every line — and the later topics that build on it become variations on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 1 calculation marked: solve an exponential-model problem with full working",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=2.6&component=paper_1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Maths AA SL Questionbank",
+          "href": "/questions?subject=ib-maths-aa-sl"
+        },
+        {
+          "label": "Interactive Desmos Graph: Exponentials and Logs",
+          "href": "https://www.desmos.com/calculator/epg0b1s5u3"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "subtopics": [
+    {
+      "code": "SL 2.6",
+      "title": "Laws of exponents; laws of logarithms.",
+      "detail": "Includes $a^x a^y = a^{x+y}$, $(a^x)^y = a^{xy}$, $a^x/a^y = a^{x-y}$ and $\\log_a(xy) = \\log_a x + \\log_a y$, $\\log_a(x/y) = \\log_a x - \\log_a y$, $\\log_a x^n = n \\log_a x$."
+    },
+    {
+      "code": "SL 2.6",
+      "title": "Change of base of a logarithm.",
+      "detail": "The formula $\\log_b x = \\frac{\\log_a x}{\\log_a b}$."
+    },
+    {
+      "code": "SL 2.6",
+      "title": "Solving exponential equations.",
+      "detail": "Solving equations of the form $a^x = b$ and equations that can be reduced to quadratic form."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "2-6-exponential-and-logarithmic-functions-q1",
+      "prompt": "Given that $\\log_3 x = p$ and $\\log_3 y = q$, express $\\log_3 \\left(\\frac{x^2}{9y}\\right)$ in terms of $p$ and $q$.",
+      "marks": 4,
+      "commandTerm": "Express",
+      "difficulty": "foundation",
+      "syllabusRef": "SL 2.6",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Correct use of quotient rule: $\\log_3(x^2) - \\log_3(9y)$.",
+          "marks": 1
+        },
+        {
+          "text": "Correct use of power and product rules: $2\\log_3 x - (\\log_3 9 + \\log_3 y)$.",
+          "marks": 1
+        },
+        {
+          "text": "Recognising that $\\log_3 9 = 2$.",
+          "marks": 1
+        },
+        {
+          "text": "Correct final expression: $2p - 2 - q$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "We are asked to express $\\log_3 \\left(\\frac{x^2}{9y}\\right)$ in terms of $p = \\log_3 x$ and $q = \\log_3 y$.\n\nUsing the quotient rule for logarithms, $\\log_a (b/c) = \\log_a b - \\log_a c$, we have:\n$\\log_3 \\left(\\frac{x^2}{9y}\\right) = \\log_3(x^2) - \\log_3(9y)$\n\nNext, we use the power rule, $\\log_a (b^n) = n\\log_a b$, on the first term, and the product rule, $\\log_a(bc) = \\log_a b + \\log_a c$, on the second term:\n$= 2\\log_3 x - (\\log_3 9 + \\log_3 y)$\n\nDistribute the negative sign:\n$= 2\\log_3 x - \\log_3 9 - \\log_3 y$\n\nWe can evaluate $\\log_3 9$. Since $3^2 = 9$, $\\log_3 9 = 2$.\n\nNow substitute the given values, $\\log_3 x = p$ and $\\log_3 y = q$:\n$= 2p - 2 - q$\n\nThe final expression is $2p - 2 - q$."
+    },
+    {
+      "id": "2-6-exponential-and-logarithmic-functions-q2",
+      "prompt": "Solve the equation $5^{2x-1} = 3^{x+2}$, giving your answer correct to three significant figures.",
+      "marks": 5,
+      "commandTerm": "Solve",
+      "difficulty": "standard",
+      "syllabusRef": "SL 2.6",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) Taking logarithms on both sides (e.g., ln or log).",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Correct use of the power rule of logarithms: $(2x-1)\\ln 5 = (x+2)\\ln 3$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Expanding and attempting to collect terms in $x$: $2x\\ln 5 - \\ln 5 = x\\ln 3 + 2\\ln 3$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Isolating $x$: $x(2\\ln 5 - \\ln 3) = 2\\ln 3 + \\ln 5 \\implies x = \\frac{2\\ln 3 + \\ln 5}{2\\ln 5 - \\ln 3}$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) $x \\approx 1.80$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The equation to solve is $5^{2x-1} = 3^{x+2}$.\n\nSince the bases are different, we take the natural logarithm (ln) of both sides:\n$\\ln(5^{2x-1}) = \\ln(3^{x+2})$\n\nUsing the power rule for logarithms, $\\ln(a^b) = b\\ln a$, we can bring the exponents down:\n$(2x-1)\\ln 5 = (x+2)\\ln 3$\n\nNow, expand both sides of the equation:\n$2x\\ln 5 - \\ln 5 = x\\ln 3 + 2\\ln 3$\n\nTo solve for $x$, we need to collect all terms involving $x$ on one side and constant terms on the other:\n$2x\\ln 5 - x\\ln 3 = 2\\ln 3 + \\ln 5$\n\nFactor out $x$ from the left-hand side:\n$x(2\\ln 5 - \\ln 3) = 2\\ln 3 + \\ln 5$\n\nFinally, isolate $x$ by dividing:\n$x = \\frac{2\\ln 3 + \\ln 5}{2\\ln 5 - \\ln 3}$\n\nNow, we use a calculator to find the numerical value:\n$x \\approx \\frac{2(1.09861...) + 1.60943...}{2(1.60943...) - 1.09861...}$\n$x \\approx \\frac{2.19722... + 1.60943...}{3.21887... - 1.09861...}$\n$x \\approx \\frac{3.80666...}{2.12026...}$\n$x \\approx 1.79538...$\n\nRounding to three significant figures, we get $x \\approx 1.80$."
+    },
+    {
+      "id": "2-6-exponential-and-logarithmic-functions-q3",
+      "prompt": "Solve the equation $4^x - 5 \\cdot 2^x + 4 = 0$.",
+      "marks": 6,
+      "commandTerm": "Solve",
+      "difficulty": "standard",
+      "syllabusRef": "SL 2.6",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(M1) Recognising that $4^x = (2^x)^2$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Substituting $u = 2^x$ to form a quadratic equation: $u^2 - 5u + 4 = 0$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Correctly factorising the quadratic: $(u-4)(u-1) = 0$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Finding the solutions for $u$: $u=4$ or $u=1$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Substituting back $2^x$ for $u$: $2^x = 4$ or $2^x = 1$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Finding the correct values for $x$: $x=2$ or $x=0$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The given equation is $4^x - 5 \\cdot 2^x + 4 = 0$.\n\nThis equation can be rewritten in a quadratic form. We first note that $4^x = (2^2)^x = 2^{2x} = (2^x)^2$.\nSubstituting this into the equation gives:\n$(2^x)^2 - 5(2^x) + 4 = 0$\n\nLet $u = 2^x$. The equation becomes a standard quadratic equation in terms of $u$:\n$u^2 - 5u + 4 = 0$\n\nWe can solve this quadratic by factorising. We look for two numbers that multiply to 4 and add to -5. These numbers are -4 and -1.\n$(u-4)(u-1) = 0$\n\nThis gives two possible solutions for $u$:\n$u-4 = 0 \\implies u = 4$\n$u-1 = 0 \\implies u = 1$\n\nNow we must solve for $x$ by substituting back $u = 2^x$.\n\nCase 1: $u=4$\n$2^x = 4$\nSince $4 = 2^2$, we have $2^x = 2^2$. Therefore, $x=2$.\n\nCase 2: $u=1$\n$2^x = 1$\nAny non-zero number raised to the power of 0 is 1. So, $2^x = 2^0$. Therefore, $x=0$.\n\nThe solutions to the equation are $x=0$ and $x=2$."
+    },
+    {
+      "id": "2-6-exponential-and-logarithmic-functions-q4",
+      "prompt": "Given that $\\log_x y + 4\\log_y x = 4$, show that $y=x^2$. You may assume that $x, y > 0$ and $x, y \\neq 1$.",
+      "marks": 7,
+      "commandTerm": "Show that",
+      "difficulty": "challenge",
+      "syllabusRef": "SL 2.6",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(M1) Applying the change of base formula to one term, e.g., $\\log_y x = \\frac{\\log_x x}{\\log_x y}$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Correct substitution: $\\log_y x = \\frac{1}{\\log_x y}$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Let $u = \\log_x y$. The equation becomes $u + \\frac{4}{u} = 4$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Multiplying by $u$ to form a quadratic equation: $u^2 + 4 = 4u \\implies u^2 - 4u + 4 = 0$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Factorising the quadratic: $(u-2)^2 = 0$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Solving for $u$: $u=2$.",
+          "marks": 1
+        },
+        {
+          "text": "(R1) Substituting back $\\log_x y = 2$ and converting to exponential form $y=x^2$. (AG)",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "We are given the equation $\\log_x y + 4\\log_y x = 4$.\n\nTo solve this, we should express both logarithms in the same base. We can use the change of base formula, $\\log_b a = \\frac{\\log_c a}{\\log_c b}$. Let's change the base of $\\log_y x$ to base $x$.\n\n$\\log_y x = \\frac{\\log_x x}{\\log_x y}$\n\nSince $\\log_x x = 1$, this simplifies to:\n$\\log_y x = \\frac{1}{\\log_x y}$\n\nNow substitute this expression back into the original equation:\n$\\log_x y + 4\\left(\\frac{1}{\\log_x y}\\right) = 4$\n\nTo make the equation easier to work with, let $u = \\log_x y$. The equation becomes:\n$u + \\frac{4}{u} = 4$\n\nSince $y \\neq 1$, $\\log_x y \\neq 0$, so $u \\neq 0$. We can multiply the entire equation by $u$ to eliminate the fraction:\n$u(u) + u\\left(\\frac{4}{u}\\right) = 4(u)$\n$u^2 + 4 = 4u$\n\nRearrange this into a standard quadratic form:\n$u^2 - 4u + 4 = 0$\n\nThis is a perfect square trinomial, which can be factorised as:\n$(u-2)^2 = 0$\n\nThe only solution for $u$ is $u=2$.\n\nNow, we substitute back $u = \\log_x y$:\n$\\log_x y = 2$\n\nBy the definition of a logarithm, $\\log_a b = c$ is equivalent to $a^c = b$. Applying this to our result:\n$y = x^2$\n\nThus, we have shown that $y=x^2$."
+    }
+  ]
+}

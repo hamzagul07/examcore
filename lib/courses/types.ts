@@ -112,6 +112,37 @@ export type LessonSubtopic = {
   detail?: string
 }
 
+/**
+ * A practice question with a worked, mark-by-mark scheme — the "Practice" step
+ * of the Study Loop. Each item can be sent to the marking engine so a student's
+ * own answer is graded against the scheme. Original, authored content.
+ */
+export type CourseQuestionBankItem = {
+  /** Stable id (slug-scoped), e.g. "sl-4-8-q1". */
+  id: string
+  /** Question as shown to the student. Supports KaTeX ($…$, $$…$$). */
+  prompt: string
+  /** Total marks available. */
+  marks: number
+  /** IB command term, e.g. "Calculate", "Show that", "Hence find". */
+  commandTerm?: string
+  /** Difficulty tier for progressive practice. */
+  difficulty?: 'foundation' | 'standard' | 'challenge'
+  /** Official IB syllabus sub-topic drilled, e.g. "SL 4.8". */
+  syllabusRef?: string
+  /** Paper style this question models, e.g. "P1" (no calc) or "P2" (calc). */
+  paper?: string
+  /** Whether a calculator is permitted (IB P1 = false, P2 = true). */
+  calculator?: boolean
+  /**
+   * Mark-by-mark scheme (points model) — mirrors the shape used by
+   * pastPaperPractice.markPoints so it feeds the existing marker directly.
+   */
+  markScheme: Array<{ text: string; marks: number }>
+  /** Full worked model answer, revealed after an attempt. Supports KaTeX. */
+  modelAnswer: string
+}
+
 export type CourseLesson = {
   slug: string
   topicCode: string
@@ -151,6 +182,11 @@ export type CourseLesson = {
   generatorVersion?: string
   /** Optional MCQ-style quick checks (Paper 1); consumed by enrich-lesson-visual */
   quickCheck?: CourseQuickCheckItem[]
+  /**
+   * Integrated practice question bank (Study Loop "Practice" step). Rendered as
+   * its own tab; each item can be marked against its scheme by the marking engine.
+   */
+  questionBank?: CourseQuestionBankItem[]
 }
 
 export type CourseSubject = {

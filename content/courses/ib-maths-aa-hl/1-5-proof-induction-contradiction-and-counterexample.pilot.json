@@ -1,0 +1,480 @@
+{
+  "slug": "1-5-proof-induction-contradiction-and-counterexample",
+  "topicCode": "1.5",
+  "title": "Proof: induction, contradiction and counterexample",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "pilot",
+  "summary": "This lesson builds the full 1.5 HL proof toolkit. We start from what a mathematical proof actually is and why one worked case is never enough, then master the three techniques the syllabus names: proof by mathematical induction — base case, inductive hypothesis, inductive step and conclusion — for divisibility, summation and inequality statements; proof by contradiction, where you assume the negation and drive it to an impossibility (the classic being that $\\sqrt{2}$ is irrational); and disproof by a single counterexample. Because these are 'answer given' proofs, every line has to be shown, so each worked example is laid out exactly the way our marking engine awards the M, A and R marks — the way you keep the marks on Paper 1.",
+  "durationMin": 90,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Explain what a mathematical proof is and why a finite list of confirming cases can never establish a universal claim.",
+    "Structure a proof by mathematical induction correctly: state the proposition, prove the base case, state the inductive hypothesis for $n=k$, complete the inductive step to $n=k+1$, and write the concluding statement.",
+    "Apply induction to divisibility, summation and inequality statements for $n \\in \\mathbb{Z}^+$.",
+    "Construct a proof by contradiction by assuming the negation and deriving a logical impossibility, e.g. that $\\sqrt{2}$ is irrational.",
+    "Disprove a universal conjecture by producing a single explicit counterexample.",
+    "Present working so that method (M), accuracy (A) and reasoning (R) marks are earned line by line, as required for an 'answer given' (AG) proof."
+  ],
+  "syllabusObjectivesCovered": [
+    "1.5"
+  ],
+  "levelNote": "HL only — Higher Level content.",
+  "simpleExplanation": {
+    "title": "Certainty, Not Just Evidence",
+    "summary": "A proof is a chain of logic so tight that the conclusion cannot be false if the starting points are true. Checking examples builds a hunch; a proof settles the matter forever. This lesson gives you three ways to build that chain.",
+    "analogy": "Think of an infinite row of dominoes. Induction is the promise that they all fall: you show the first one topples (the base case) and you show that whichever one falls knocks over its neighbour (the inductive step) — so every domino, all the way to infinity, must fall. Contradiction is the opposite move: to prove a door is locked, you suppose it is open, walk through, and end up somewhere impossible — so it could never have been open. And a counterexample is the whistle-blower: one honest witness who was NOT at the library on Tuesday is enough to sink the claim that 'everyone is always at the library on Tuesdays'.",
+    "steps": [
+      "Read the claim precisely. Is it universal ('for all $n \\in \\mathbb{Z}^+$')? Is it about a property such as irrationality or infinitude? Or are you being asked to disprove something?",
+      "Choose the technique. Universal statements over the positive integers point to induction. Properties like irrationality, or 'there are infinitely many...', point to contradiction. A 'disprove' or 'is it always true?' invites a counterexample.",
+      "Build the argument in full. Induction needs base case, hypothesis, step and conclusion. Contradiction needs a clearly stated negation, a clean deduction, and the impossibility named. A counterexample needs the specific value and the check that it fails.",
+      "Close the loop. Every proof ends with a sentence that connects your working back to the original statement — for induction, the formal appeal to the principle of mathematical induction."
+    ]
+  },
+  "keyConcepts": [
+    "mathematical induction",
+    "proof by contradiction",
+    "counterexample"
+  ],
+  "flashcards": [
+    {
+      "front": "What are the four parts of a proof by mathematical induction?",
+      "back": "1. Base case: prove the statement is true for the first value (usually $n=1$). 2. Inductive hypothesis: assume it is true for $n=k$. 3. Inductive step: use that assumption to prove it for $n=k+1$. 4. Conclusion: appeal to the principle of mathematical induction.",
+      "pillLabel": "Structure"
+    },
+    {
+      "front": "What exactly is the 'inductive hypothesis'?",
+      "back": "The assumption that the proposition $P(n)$ is true for one arbitrary positive integer $n=k$. You write 'Assume $P(k)$ is true' — you assume it for $n=k$, not for all $n$, and not for $k+1$.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "How does a proof by contradiction begin?",
+      "back": "By assuming the negation of the statement you want to prove. If you must prove '$\\sqrt{2}$ is irrational', you begin 'Assume $\\sqrt{2}$ is rational.'",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "What is the goal in a proof by contradiction?",
+      "back": "To deduce, from the negation, a statement that is logically impossible — such as a fraction in lowest terms whose numerator and denominator share a factor, or a number that is both even and odd. That impossibility forces the assumption to be false, so the original statement is true.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "What is a counterexample, and what can it do?",
+      "back": "A single specific case that makes a general statement false. One counterexample DISPROVES a universal claim. It can never PROVE a universal claim — for that you need a general argument.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "In the inductive step, how should the algebra be organised?",
+      "back": "Start from one side of $P(k+1)$ — usually the left-hand side — and transform it, using the $P(k)$ assumption, until it becomes the other side. Do not begin by writing the full $P(k+1)$ equality as though it were already true.",
+      "pillLabel": "Method"
+    },
+    {
+      "front": "Divisibility induction: what is the standard algebraic trick in the step?",
+      "back": "Rewrite $f(k+1)$ so the assumed multiple $f(k)$ appears explicitly. For '$7^n-1$ divisible by 6', write $7^{k+1}-1 = 7(7^k-1)+6$, so both terms are visibly multiples of 6.",
+      "pillLabel": "Method"
+    },
+    {
+      "front": "What is the negation of '$\\sqrt{2}$ is irrational'?",
+      "back": "'$\\sqrt{2}$ is rational', i.e. $\\sqrt{2}=\\frac{p}{q}$ with $p,q\\in\\mathbb{Z}$, $q\\neq 0$, and $\\frac{p}{q}$ in lowest terms. This is the opening line of the proof by contradiction.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Why does '$p^2$ is even' force '$p$ is even'?",
+      "back": "The square of an odd number is odd: $(2m+1)^2=2(2m^2+2m)+1$ is odd. So if $p^2$ is even, $p$ cannot be odd, hence $p$ is even. This lemma is the engine of the $\\sqrt{2}$ proof.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "What is the final, mark-bearing sentence of an inductive proof?",
+      "back": "Something like: 'Since $P(1)$ is true, and $P(k)$ true implies $P(k+1)$ true, by the principle of mathematical induction $P(n)$ is true for all $n\\in\\mathbb{Z}^+$.' Omitting it costs the conclusion mark.",
+      "pillLabel": "Structure"
+    },
+    {
+      "front": "Common trap: can you skip the base case if the inductive step 'obviously' works?",
+      "back": "No. Without a true base case the chain has nothing to start it — you could 'prove' false statements. The base case is a separate, compulsory mark, usually the easiest one in the question.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "AG proof: what does 'answer given' mean for how you must write?",
+      "back": "The target result is printed in the question, so you cannot work back from it or merely state it. Every line of reasoning must be shown; marks are for the argument, not for reproducing the answer.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "In a proof by induction, before doing any algebra on $n=k+1$ you must first:",
+      "options": [
+        "show the base case is true and state the inductive hypothesis",
+        "assume the result holds for all $n$",
+        "differentiate both sides",
+        "find a counterexample"
+      ],
+      "answer": "show the base case is true and state the inductive hypothesis"
+    },
+    {
+      "prompt": "The inductive hypothesis is the assumption that the statement is true for:",
+      "options": [
+        "$n=k$, one arbitrary positive integer",
+        "all $n \\in \\mathbb{Z}^+$",
+        "$n=k+1$",
+        "$n=1$ only"
+      ],
+      "answer": "$n=k$, one arbitrary positive integer"
+    },
+    {
+      "prompt": "To disprove the claim 'every positive integer $n$ makes $n^2+n+41$ prime', it is enough to:",
+      "options": [
+        "give one value of $n$ for which it is not prime",
+        "test the first twenty values and see they are prime",
+        "prove it by induction",
+        "assume it is prime and reach a contradiction"
+      ],
+      "answer": "give one value of $n$ for which it is not prime"
+    },
+    {
+      "prompt": "A proof by contradiction that $\\sqrt{2}$ is irrational must begin by assuming that:",
+      "options": [
+        "$\\sqrt{2}$ is rational",
+        "$\\sqrt{2}$ is irrational",
+        "$2$ is a perfect square",
+        "$p$ and $q$ are both odd"
+      ],
+      "answer": "$\\sqrt{2}$ is rational"
+    },
+    {
+      "prompt": "An inductive proof is left without its final concluding sentence. In IB marking this typically means the candidate:",
+      "options": [
+        "loses the reasoning (R) mark for the conclusion",
+        "loses all the marks",
+        "loses nothing, as the algebra is complete",
+        "loses only the base-case mark"
+      ],
+      "answer": "loses the reasoning (R) mark for the conclusion"
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I decide which proof method a question wants?",
+      "a": "Read the wording. 'Prove that ... for all $n \\in \\mathbb{Z}^+$' with a formula, a divisibility claim or an inequality is almost always induction. 'Prove that $\\sqrt{5}$ is irrational' or 'Prove there are infinitely many primes' are classic contradiction questions. 'Disprove ...', 'Show this is not always true' or 'Is it true that ...?' invites a counterexample. The Practice button drills exactly this recognition."
+    },
+    {
+      "q": "Is there a difference between 'show that' and 'prove that' on the exam?",
+      "a": "In IB Mathematics they demand the same thing: a rigorous, fully shown argument. Both are usually 'answer given' (AG) tasks — the result is printed, so you cannot just quote it. You must produce every step of the reasoning."
+    },
+    {
+      "q": "In the inductive step, why can't I just start by writing the $n=k+1$ equation and rearranging both sides?",
+      "a": "Because writing the full $P(k+1)$ equality treats what you are trying to prove as already true — that is circular. The safe method is to take one side of $P(k+1)$, usually the left-hand side, and transform it using the $P(k)$ assumption until it equals the other side. Examiners reward this direction of working."
+    },
+    {
+      "q": "For proof by contradiction, does the contradiction have to be a particular thing?",
+      "a": "No — any genuine logical impossibility ends the proof. The commonest are contradicting a fact you set up yourself (a fraction assumed to be in lowest terms turning out to share a factor) or contradicting a known truth (a number being simultaneously even and odd). What matters is that it is impossible and follows validly from your assumption."
+    },
+    {
+      "q": "How does the marking engine handle a proof, where there is no single numerical answer?",
+      "a": "It marks analytically against the standard proof template: a method mark (M) for each structural move you make, an accuracy mark (A) for correct algebra, and reasoning marks (R) for the logical statements — the valid inductive step and the concluding sentence. Because the result is 'answer given', the marks live in the working, so the engine checks that each required line is present rather than just the final line."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Up to now most of your mathematics has been about getting an answer. This topic is about something stronger: showing, beyond any doubt, that a statement is true — or false — for infinitely many cases at once. Testing examples can make a claim look plausible, but plausibility is not proof: a pattern can hold for the first forty values and then fail. Here you meet the three techniques the HL syllabus names — mathematical induction, proof by contradiction, and disproof by counterexample. These proofs are 'answer given' (AG) tasks, so the marks are in the reasoning, not the final line. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice: mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "What a proof is — and why examples are not enough"
+    },
+    {
+      "type": "text",
+      "content": "A mathematical proof is a finite chain of logically valid steps that starts from things already accepted as true (definitions, axioms, earlier results) and ends at the statement you want to establish. If the steps are valid and the starting points are true, the conclusion cannot be false. This is a far higher standard than evidence. Checking that a formula works for $n=1,2,3,\\dots,100$ shows only that it works for those hundred values; a universal claim ranges over infinitely many, so no finite check can settle it. That gap is exactly why the three techniques of this lesson exist: induction to cover all positive integers in one argument, contradiction to pin down properties that resist direct attack, and the counterexample to demolish a false universal claim with a single case."
+    },
+    {
+      "type": "heading",
+      "content": "Disproof by counterexample"
+    },
+    {
+      "type": "text",
+      "content": "This is the quickest technique and it does exactly one job: it disproves. If a statement claims something holds for every value in a set, a single case where it fails — a counterexample — kills the claim. Crucially, the reverse is not true: no number of successful cases can prove a universal statement, so a counterexample can never be used to prove, only to disprove."
+    },
+    {
+      "type": "workedExample",
+      "question": "Disprove the conjecture that $f(n)=n^2+n+41$ is prime for every positive integer $n$. [3]",
+      "solution": "We need one value of $n\\in\\mathbb{Z}^+$ for which $f(n)$ is not prime.\n\nEarly values are all prime — $f(1)=43$, $f(2)=47$, $f(3)=53$ — so we look for structure rather than testing blindly. The constant term is $41$, so choosing $n$ to share a factor with it is promising.\n\nTry $n=41$:  [M1: choosing a value that forces a common factor]\n$$f(41)=41^2+41+41 = 41(41+1+1) = 41\\times 43.$$  [A1: correct factorisation showing a proper factor]\nSince $f(41)=41\\times 43$ has factors other than $1$ and itself, it is composite.\n\nTherefore $n=41$ is a counterexample, so the conjecture is false.  [R1: statement that this disproves the claim]\n\n**Note.** $n=40$ also works: $f(40)=40\\cdot 41+41=41^2$, again composite. Either single case is a complete disproof."
+    },
+    {
+      "type": "examTip",
+      "content": "A counterexample is only worth marks if you actually exhibit it and check it. Writing 'this fails for large $n$' earns nothing — name the value, substitute it, and state in words that the claim is therefore disproved. In Paper 2 you may hunt for the value with your GDC's table, but you must still write the specific counterexample down."
+    },
+    {
+      "type": "heading",
+      "content": "Proof by contradiction"
+    },
+    {
+      "type": "text",
+      "content": "To prove a statement by contradiction, you assume its negation — that it is false — and reason validly until you reach something logically impossible. Because your reasoning was sound, the only thing that can have gone wrong is the assumption, so the original statement must be true. This technique shines where a direct attack is awkward: proving a number is irrational, or that infinitely many objects exist. The set-piece example every HL student should know cold is the irrationality of $\\sqrt{2}$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Assume the negation.** State clearly the opposite of what you must prove — this line is worth a mark.",
+        "**Deduce validly.** Every step from the assumption must be logically watertight; a slip here invalidates the whole proof.",
+        "**Name the impossibility.** Arrive at a statement that cannot be true (a lowest-terms fraction whose parts share a factor; a number both even and odd).",
+        "**Conclude.** State that the assumption is therefore false, so the original statement is true."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Prove by contradiction that $\\sqrt{2}$ is irrational. [6]",
+      "solution": "**Assumption.** Suppose, for contradiction, that $\\sqrt{2}$ is rational.  [M1: assume the negation]\nThen $\\sqrt{2}=\\dfrac{p}{q}$ for integers $p,q$ with $q\\neq 0$, where the fraction is in lowest terms, so $p$ and $q$ have no common factor.  [R1: set-up in lowest terms]\n\n**Deduction.** Squaring, $2=\\dfrac{p^2}{q^2}$, hence\n$$p^2=2q^2.$$  [M1: obtain $p^2=2q^2$]\nSo $p^2$ is even, and therefore $p$ is even (an odd number squared is odd). Write $p=2m$ for some integer $m$.  [A1: deduce $p$ even, $p=2m$]\nSubstituting: $ (2m)^2=2q^2 \\Rightarrow 4m^2=2q^2 \\Rightarrow q^2=2m^2. $  [M1: substitute and simplify]\nSo $q^2$ is even, and therefore $q$ is even as well.\n\n**Contradiction.** Both $p$ and $q$ are even, so they share the factor $2$. This contradicts the assumption that $\\dfrac{p}{q}$ was in lowest terms.  [R1: state the contradiction]\n\n**Conclusion.** The assumption is false, so $\\sqrt{2}$ is irrational.  $\\blacksquare$"
+    },
+    {
+      "type": "examTip",
+      "content": "The same skeleton proves $\\sqrt{n}$ irrational for any non-square integer $n$, and underlies 'there are infinitely many primes' (assume finitely many, multiply them, add one). Learn the structure — assume the negation, force an impossibility, name it — rather than memorising one script. Questions phrased 'prove there are infinitely many...' are almost always contradiction."
+    },
+    {
+      "type": "heading",
+      "content": "Proof by mathematical induction"
+    },
+    {
+      "type": "text",
+      "content": "Induction proves that a proposition $P(n)$ holds for every positive integer $n$ from a starting value onward. The idea is the falling dominoes: if the first domino falls (the base case), and every fallen domino topples the next (the inductive step), then all of them fall. Formally there are four parts, and each carries marks: define $P(n)$, prove the base case, state the inductive hypothesis for $n=k$, complete the inductive step to $n=k+1$, and write the concluding statement. The syllabus applies this to three flavours of statement — summation formulae, divisibility results and inequalities — and the structure is identical in all three."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**The proposition $P(n)$.** State precisely what you are proving for a general $n$; every later line refers back to it.",
+        "**Base case.** Show $P(1)$ (or the stated first value) is true. This is a separate, compulsory mark and usually the easiest one.",
+        "**Inductive hypothesis.** Assume $P(k)$ is true for one arbitrary $k\\in\\mathbb{Z}^+$ — for $n=k$, not for all $n$, and not for $k+1$.",
+        "**Inductive step.** Using the hypothesis, prove $P(k+1)$. Work from one side of $P(k+1)$ to the other; do not assume the $P(k+1)$ equality.",
+        "**Conclusion.** Since $P(1)$ holds and $P(k)\\Rightarrow P(k+1)$, by the principle of mathematical induction $P(n)$ holds for all $n\\in\\mathbb{Z}^+$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Use mathematical induction to prove that $7^n-1$ is divisible by $6$ for all $n\\in\\mathbb{Z}^+$. [7]",
+      "solution": "Let $P(n)$ be the statement '$7^n-1$ is divisible by $6$'.\n\n**Base case.** For $n=1$: $7^1-1=6=6\\times 1$, which is divisible by $6$, so $P(1)$ is true.  [M1: base case shown]  [A1: verified true]\n\n**Inductive hypothesis.** Assume $P(k)$ is true for some $k\\in\\mathbb{Z}^+$; that is, $7^k-1=6m$ for some integer $m$, so $7^k=6m+1$.  [M1: state hypothesis]\n\n**Inductive step.** Consider $n=k+1$:\n$$7^{k+1}-1 = 7\\cdot 7^k - 1 = 7(6m+1)-1$$  [M1: use the hypothesis]\n$$=42m+7-1 = 42m+6 = 6(7m+1).$$  [A1: correct simplification to a multiple of 6]\nSince $7m+1$ is an integer, $6(7m+1)$ is divisible by $6$, so $P(k+1)$ is true.  [R1: valid step, $P(k)\\Rightarrow P(k+1)$]\n\n**Conclusion.** Since $P(1)$ is true and $P(k)$ true implies $P(k+1)$ true, by the principle of mathematical induction $7^n-1$ is divisible by $6$ for all $n\\in\\mathbb{Z}^+$.  [R1: conclusion]  $\\blacksquare$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Use mathematical induction to prove that $2^n > n^2$ for all integers $n \\ge 5$. [7]",
+      "solution": "Let $P(n)$ be the statement '$2^n>n^2$', for integers $n\\ge 5$.\n\n**Base case.** For $n=5$: $2^5=32$ and $5^2=25$, and $32>25$, so $P(5)$ is true.  [M1: base case at the stated start value]  [A1: verified true]\n\n**Inductive hypothesis.** Assume $P(k)$ holds for some integer $k\\ge 5$; that is, $2^k>k^2$.  [M1: state hypothesis]\n\n**Inductive step.** For $n=k+1$:\n$$2^{k+1}=2\\cdot 2^k > 2k^2,$$ using the hypothesis.  [M1: double the hypothesis]\nIt now suffices to show $2k^2\\ge (k+1)^2$. Since $2k^2-(k+1)^2 = k^2-2k-1 = (k-1)^2-2$, and for $k\\ge 5$ we have $(k-1)^2\\ge 16>2$, this difference is positive, so $2k^2>(k+1)^2$.  [A1: establish $2k^2>(k+1)^2$ for $k\\ge5$]\nHence $2^{k+1}>2k^2>(k+1)^2$, so $P(k+1)$ is true.  [R1: chain the inequalities validly]\n\n**Conclusion.** Since $P(5)$ is true and $P(k)\\Rightarrow P(k+1)$ for $k\\ge 5$, by the principle of mathematical induction $2^n>n^2$ for all integers $n\\ge 5$.  [R1: conclusion]  $\\blacksquare$"
+    },
+    {
+      "type": "practice",
+      "label": "Practise Proof Questions",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=1.5&component=paper_1"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Skipping or fudging the base case.** It is a separate mark and the whole chain depends on it. 'Clearly true for $n=1$' with no substitution usually scores nothing — actually evaluate both sides.",
+        "**Mis-stating the inductive hypothesis.** Assume $P(k)$ for one $k$. Writing 'assume true for all $n$' assumes the very thing you are proving; writing 'assume for $k+1$' is circular.",
+        "**Assuming the $P(k+1)$ equality.** Starting from the full $n=k+1$ equation and 'showing both sides are equal' is circular. Transform one side into the other using the hypothesis.",
+        "**Not using the hypothesis at all.** If your inductive step never invokes $P(k)$, it is not an inductive proof — the $P(k)$ substitution is where the method mark lives.",
+        "**Omitting the concluding statement.** The formal appeal to the principle of mathematical induction is a reasoning mark; a proof with perfect algebra but no conclusion loses it.",
+        "**Trying to prove with examples.** Verifying a universal claim for many values is not a proof; only a general argument is. Conversely, a single counterexample fully disproves — you never need a second.",
+        "**Weak contradiction set-up.** In the $\\sqrt{2}$ proof you must state that $\\frac{p}{q}$ is in lowest terms at the start, or the contradiction at the end has nothing to contradict.",
+        "**Treating an AG proof loosely.** Because the answer is given, working backwards from it or merely restating it earns nothing — every step must be shown forwards."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "A proof by induction has a standard mark allocation, and our engine mirrors it exactly. Because the result is 'answer given' (AG), the marks live in the structure: method marks (M) for each required move, an accuracy mark (A) for the key algebra, and reasoning marks (R) for the valid inductive step and the concluding statement. Study how each of the six marks below attaches to a specific line — that is precisely how the Practice button will mark your own attempt."
+    },
+    {
+      "type": "workedExample",
+      "question": "Prove by mathematical induction that $\\sum_{r=1}^{n} r = \\frac{n(n+1)}{2}$ for all positive integers $n$. [6]",
+      "solution": "**Model answer — full working.**\n\nLet $P(n)$ be the statement $\\displaystyle\\sum_{r=1}^{n} r = \\frac{n(n+1)}{2}$.\n\n**Base case ($n=1$).** Left-hand side $=\\sum_{r=1}^{1} r = 1$. Right-hand side $=\\dfrac{1(1+1)}{2}=\\dfrac{1\\cdot 2}{2}=1$. LHS $=$ RHS, so $P(1)$ is true.\n\n**Inductive hypothesis.** Assume $P(k)$ is true for some $k\\in\\mathbb{Z}^+$; that is,\n$$\\sum_{r=1}^{k} r = \\frac{k(k+1)}{2}.$$\n\n**Inductive step.** Consider $n=k+1$. Split off the last term and use the hypothesis:\n$$\\sum_{r=1}^{k+1} r = \\left(\\sum_{r=1}^{k} r\\right) + (k+1) = \\frac{k(k+1)}{2} + (k+1).$$\nTake out the common factor $(k+1)$:\n$$= (k+1)\\left(\\frac{k}{2}+1\\right) = (k+1)\\cdot\\frac{k+2}{2} = \\frac{(k+1)(k+2)}{2}.$$\nThis is exactly the formula $\\dfrac{n(n+1)}{2}$ with $n=k+1$, since $\\dfrac{(k+1)\\big((k+1)+1\\big)}{2}=\\dfrac{(k+1)(k+2)}{2}$. Hence $P(k+1)$ is true whenever $P(k)$ is true.\n\n**Conclusion.** Since $P(1)$ is true and $P(k)$ true implies $P(k+1)$ true, by the principle of mathematical induction $\\displaystyle\\sum_{r=1}^{n} r = \\frac{n(n+1)}{2}$ for all $n\\in\\mathbb{Z}^+$.  $\\blacksquare$\n\n---\n**How our marking engine awards the 6 marks:**\n\n- **M1 — base case shown true.** Awarded for evaluating both sides at $n=1$ and stating LHS $=$ RHS $=1$. A bare 'true for $n=1$' without the substitution does not earn it — the engine looks for the check on the page.\n- **M1 — state the assumption for $n=k$.** Awarded for writing 'assume $P(k)$ true', i.e. $\\sum_{r=1}^{k} r=\\frac{k(k+1)}{2}$. This is the hypothesis mark; assuming it for all $n$, or for $k+1$, does not score.\n- **M1 — add the $(k+1)$th term.** Awarded for forming $\\sum_{r=1}^{k+1} r = \\frac{k(k+1)}{2}+(k+1)$ — splitting off the last term and substituting the hypothesis. This is the method move that makes the step inductive.\n- **A1 — correct algebra to $\\frac{(k+1)(k+2)}{2}$.** Awarded for the accurate factorising and simplifying to $\\frac{(k+1)(k+2)}{2}$. This accuracy mark depends on the M1 above; the engine accepts any equivalent correct form, e.g. $\\frac{k^2+3k+2}{2}$.\n- **R1 — valid inductive step.** Awarded for the reasoning that this equals the formula with $n=k+1$, so $P(k)\\Rightarrow P(k+1)$. It is a reasoning mark: the logical link, stated in words, is what earns it.\n- **R1 — conclusion statement.** Awarded for the closing sentence invoking the principle of mathematical induction for all $n\\in\\mathbb{Z}^+$. Omit it and this mark is simply lost, however clean the algebra.\n\n**Bottom line.** Of the six marks, three are method marks for the structural moves, one is the accuracy mark for the algebra, and two are reasoning marks for the logic. A candidate who writes only the final formula scores nothing — this is an AG proof, so the marks are in the base case, the stated hypothesis, the $(k+1)$th-term step, the simplification and the two reasoning statements. Show all six and the marks are secure even if one line of algebra wobbles."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR proof exactly this way — analytically, mark by mark, checking for the base case, the stated hypothesis, the use of $P(k)$ in the step, the accurate algebra, the valid-step statement and the conclusion. So always lay out all four parts and write the concluding sentence: because these are 'answer given' proofs, the M and R marks live in your structure, and you only keep them if that structure is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The proof habits you build here recur across HL: induction reappears for de Moivre's theorem in complex numbers, for results about derivatives and sequences, and for many series identities; contradiction underlies uniqueness and irrationality arguments; and the counterexample remains your fastest tool for testing whether a tempting conjecture is actually true. More than any single result, what transfers is the discipline of the four techniques — state the proposition, cover the base case, use the hypothesis, name the impossibility, exhibit the witness, and always close the loop. Master that structure and proof questions become variations on a method you already own."
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Maths AA HL Questionbank",
+          "href": "/questionbank?subject=ib-maths-aa-hl"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "unit": {
+    "code": "1",
+    "title": "Number and algebra"
+  },
+  "subtopics": [
+    {
+      "code": "AHL 1.13",
+      "title": "Proof by mathematical induction.",
+      "detail": "Proving results for sums of series, divisibility, and matrices."
+    },
+    {
+      "code": "AHL 1.14",
+      "title": "Proof by contradiction.",
+      "detail": "Proving statements such as '$\\sqrt{3}$ is irrational' or 'there are infinitely many prime numbers'."
+    },
+    {
+      "code": "AHL 1.15",
+      "title": "Use of a counterexample to show that a statement is not true.",
+      "detail": "Disproving a general statement by finding a specific case where it fails."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "1-5-proof-induction-contradiction-and-counterexample-q1",
+      "prompt": "Show by counterexample that the statement \"if $n$ is a positive integer, then $n^2 + n + 41$ is a prime number\" is false.",
+      "marks": 3,
+      "commandTerm": "Show",
+      "difficulty": "foundation",
+      "syllabusRef": "AHL 1.15",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Attempts to substitute a value for $n$, e.g. $n=41$ or $n=40$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly calculates for $n=41$: $41^2 + 41 + 41 = 41(41+1+1) = 41 \\times 43$. OR for $n=40$: $40^2 + 40 + 41 = 1600 + 81 = 1681$.",
+          "marks": 1
+        },
+        {
+          "text": "States that since the result ($1763$ or $1681$) is a product of two integers greater than 1, it is composite, and therefore the statement is false.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "Let the statement be $P(n): n^2 + n + 41$ is a prime number for $n \\in \\mathbb{Z}^+$.\nWe need to find a positive integer $n$ for which $n^2 + n + 41$ is a composite number.\n\nConsider the case when $n=41$.\nSubstituting $n=41$ into the expression gives:\n$41^2 + 41 + 41$\nWe can factor out 41 from the expression:\n$= 41(41 + 1 + 1)$\n$= 41 \\times 43$\n\nSince $41 \\times 43$ is a product of two integers greater than 1, the result is a composite number.\nThis provides a counterexample to the statement that $n^2 + n + 41$ is prime for all positive integers $n$.\nTherefore, the statement is false."
+    },
+    {
+      "id": "1-5-proof-induction-contradiction-and-counterexample-q2",
+      "prompt": "Prove by mathematical induction that $f(n) = 7^n + 2$ is divisible by 3 for all integers $n \\ge 1$.",
+      "marks": 6,
+      "commandTerm": "Prove",
+      "difficulty": "standard",
+      "syllabusRef": "AHL 1.13",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Base case: Show true for $n=1$. $f(1) = 7^1 + 2 = 9$. 9 is divisible by 3. So the statement is true for $n=1$.",
+          "marks": 1
+        },
+        {
+          "text": "Inductive hypothesis: Assume the statement is true for $n=k$, i.e., $7^k + 2 = 3m$ for some integer $m$.",
+          "marks": 1
+        },
+        {
+          "text": "Inductive step: Consider $f(k+1) = 7^{k+1} + 2$.",
+          "marks": 1
+        },
+        {
+          "text": "Rewrite expression in terms of $f(k)$: $7^{k+1} + 2 = 7(7^k+2) - 14 + 2$.",
+          "marks": 1
+        },
+        {
+          "text": "$f(k+1) = 7(f(k)) - 12$.",
+          "marks": 1
+        },
+        {
+          "text": "By hypothesis, $f(k)$ is divisible by 3. Since 12 is also divisible by 3, $f(k+1)$ is divisible by 3. The statement is true for $n=k+1$ if it is true for $n=k$. Since it is true for $n=1$, it is true for all $n \\ge 1$ by mathematical induction.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "Let $P(n)$ be the statement \"$7^n + 2$ is divisible by 3\".\n\n**Base Case:** For $n=1$, we have $7^1 + 2 = 9$. Since $9 = 3 \\times 3$, $P(1)$ is true.\n\n**Inductive Hypothesis:** Assume $P(k)$ is true for some integer $k \\ge 1$.\nThis means $7^k + 2$ is divisible by 3. We can write $7^k + 2 = 3m$ for some integer $m$.\n\n**Inductive Step:** We want to prove that $P(k+1)$ is true, i.e., $7^{k+1} + 2$ is divisible by 3.\nConsider the expression for $n=k+1$:\n$7^{k+1} + 2 = 7 \\times 7^k + 2$\nWe can manipulate this expression to use the inductive hypothesis:\n$= 7(7^k + 2) - 14 + 2$\n$= 7(7^k + 2) - 12$\nBy the inductive hypothesis, $7^k + 2$ is divisible by 3. So, $7(7^k + 2)$ is also divisible by 3.\nAlso, 12 is divisible by 3.\nThe difference of two numbers divisible by 3 is also divisible by 3.\nTherefore, $7(7^k + 2) - 12$ is divisible by 3, which means $7^{k+1} + 2$ is divisible by 3.\nSo, $P(k+1)$ is true.\n\n**Conclusion:** Since $P(1)$ is true, and we have shown that if $P(k)$ is true then $P(k+1)$ is true, by the principle of mathematical induction, the statement is true for all integers $n \\ge 1$."
+    },
+    {
+      "id": "1-5-proof-induction-contradiction-and-counterexample-q3",
+      "prompt": "Prove by contradiction that for any integer $x$, if $x^2$ is odd, then $x$ must be odd.",
+      "marks": 5,
+      "commandTerm": "Prove",
+      "difficulty": "standard",
+      "syllabusRef": "AHL 1.14",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Assume the contrary: there exists an integer $x$ such that $x^2$ is odd and $x$ is an even integer.",
+          "marks": 1
+        },
+        {
+          "text": "Express $x$ in the form $2k$ for some integer $k$.",
+          "marks": 1
+        },
+        {
+          "text": "Then $x^2 = (2k)^2 = 4k^2$.",
+          "marks": 1
+        },
+        {
+          "text": "$x^2 = 2(2k^2)$. Since $k$ is an integer, $2k^2$ is an integer. Therefore, $x^2$ is an even integer.",
+          "marks": 1
+        },
+        {
+          "text": "This contradicts the initial premise that $x^2$ is odd. Therefore, the original assumption must be false, and if $x^2$ is odd, then $x$ must be odd.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "We will use proof by contradiction.\n\n**Assumption:** Assume the statement is false. This means we assume there exists an integer $x$ such that $x^2$ is odd, but $x$ is even.\n\nIf $x$ is an even integer, it can be written in the form $x = 2k$ for some integer $k$.\n\nNow, let's consider $x^2$:\n$x^2 = (2k)^2 = 4k^2$.\n\nWe can factor out a 2 from this expression:\n$x^2 = 2(2k^2)$.\n\nSince $k$ is an integer, $k^2$ is an integer, and $2k^2$ is also an integer.\nLet $m = 2k^2$, where $m$ is an integer. Then $x^2 = 2m$, which is the definition of an even integer.\n\nThis shows that $x^2$ is an even integer.\n\n**Contradiction:** This contradicts our initial premise that $x^2$ is an odd integer.\n\n**Conclusion:** Therefore, our initial assumption must be false. Hence, for any integer $x$, if $x^2$ is odd, then $x$ must be odd."
+    },
+    {
+      "id": "1-5-proof-induction-contradiction-and-counterexample-q4",
+      "prompt": "Let $\\mathbf{M} = \\begin{pmatrix} 3 & -4 \\\\ 1 & -1 \\end{pmatrix}$. Prove by mathematical induction that for all positive integers $n$, $\\mathbf{M}^n = \\begin{pmatrix} 2n+1 & -4n \\\\ n & 1-2n \\end{pmatrix}$.",
+      "marks": 8,
+      "commandTerm": "Prove",
+      "difficulty": "challenge",
+      "syllabusRef": "AHL 1.13",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "Base case: For $n=1$, RHS = $\\begin{pmatrix} 2(1)+1 & -4(1) \\\\ 1 & 1-2(1) \\end{pmatrix} = \\begin{pmatrix} 3 & -4 \\\\ 1 & -1 \\end{pmatrix} = \\mathbf{M}$. This is true.",
+          "marks": 1
+        },
+        {
+          "text": "Inductive hypothesis: Assume the formula is true for $n=k$, i.e., $\\mathbf{M}^k = \\begin{pmatrix} 2k+1 & -4k \\\\ k & 1-2k \\end{pmatrix}$.",
+          "marks": 1
+        },
+        {
+          "text": "Inductive step: Consider $\\mathbf{M}^{k+1} = \\mathbf{M}^k \\mathbf{M} = \\begin{pmatrix} 2k+1 & -4k \\\\ k & 1-2k \\end{pmatrix} \\begin{pmatrix} 3 & -4 \\\\ 1 & -1 \\end{pmatrix}$.",
+          "marks": 1
+        },
+        {
+          "text": "Top row calculation: $(2k+1)(3) + (-4k)(1) = 6k+3-4k = 2k+3$.",
+          "marks": 1
+        },
+        {
+          "text": "Top row calculation: $(2k+1)(-4) + (-4k)(-1) = -8k-4+4k = -4k-4$.",
+          "marks": 1
+        },
+        {
+          "text": "Bottom row calculation: $(k)(3) + (1-2k)(1) = 3k+1-2k = k+1$ and $(k)(-4) + (1-2k)(-1) = -4k-1+2k = -2k-1$.",
+          "marks": 1
+        },
+        {
+          "text": "Shows that the resulting matrix $\\begin{pmatrix} 2k+3 & -4k-4 \\\\ k+1 & -2k-1 \\end{pmatrix}$ is equal to the required formula for $n=k+1$: $\\begin{pmatrix} 2(k+1)+1 & -4(k+1) \\\\ k+1 & 1-2(k+1) \\end{pmatrix}$.",
+          "marks": 1
+        },
+        {
+          "text": "Final conclusion: Therefore, if the statement is true for $n=k$, it is true for $n=k+1$. Since it is true for $n=1$, it is true for all $n \\in \\mathbb{Z}^+$ by mathematical induction.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "Let $P(n)$ be the statement $\\mathbf{M}^n = \\begin{pmatrix} 2n+1 & -4n \\\\ n & 1-2n \\end{pmatrix}$.\n\n**Base Case:** For $n=1$, the formula gives $\\begin{pmatrix} 2(1)+1 & -4(1) \\\\ 1 & 1-2(1) \\end{pmatrix} = \\begin{pmatrix} 3 & -4 \\\\ 1 & -1 \\end{pmatrix}$. This is equal to $\\mathbf{M}$, so $P(1)$ is true.\n\n**Inductive Hypothesis:** Assume $P(k)$ is true for some positive integer $k$. That is, assume $\\mathbf{M}^k = \\begin{pmatrix} 2k+1 & -4k \\\\ k & 1-2k \\end{pmatrix}$.\n\n**Inductive Step:** We want to prove that $P(k+1)$ is true. Consider $\\mathbf{M}^{k+1} = \\mathbf{M}^k \\mathbf{M}$.\nUsing the inductive hypothesis:\n$\\mathbf{M}^{k+1} = \\begin{pmatrix} 2k+1 & -4k \\\\ k & 1-2k \\end{pmatrix} \\begin{pmatrix} 3 & -4 \\\\ 1 & -1 \\end{pmatrix}$\n$= \\begin{pmatrix} (2k+1)(3) + (-4k)(1) & (2k+1)(-4) + (-4k)(-1) \\\\ (k)(3) + (1-2k)(1) & (k)(-4) + (1-2k)(-1) \\end{pmatrix}$\n$= \\begin{pmatrix} 6k+3-4k & -8k-4+4k \\\\ 3k+1-2k & -4k-1+2k \\end{pmatrix}$\n$= \\begin{pmatrix} 2k+3 & -4k-4 \\\\ k+1 & -2k-1 \\end{pmatrix}$\n\nNow we rewrite this matrix in the form for $n=k+1$:\n$= \\begin{pmatrix} 2(k+1)+1 & -4(k+1) \\\\ k+1 & 1-2(k+1) \\end{pmatrix}$\nThis is the required formula for $n=k+1$. Thus, $P(k+1)$ is true.\n\n**Conclusion:** Since $P(1)$ is true, and we have shown that if $P(k)$ is true then $P(k+1)$ is true, by the principle of mathematical induction, the statement is true for all positive integers $n$."
+    }
+  ]
+}

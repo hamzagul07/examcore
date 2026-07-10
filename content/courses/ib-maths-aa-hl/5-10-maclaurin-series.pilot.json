@@ -1,0 +1,472 @@
+{
+  "slug": "5-10-maclaurin-series",
+  "topicCode": "5.10",
+  "unit": {
+    "code": "5",
+    "title": "Calculus"
+  },
+  "title": "Maclaurin series",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "pilot",
+  "summary": "A Maclaurin series rebuilds a function as an infinite polynomial whose coefficients come from the derivatives of the function at $x=0$. This lesson develops the full 5.10 toolkit: the Maclaurin formula itself; deriving the standard series for $e^x$, $\\sin x$, $\\cos x$, $\\ln(1+x)$ and $(1+x)^n$ from first principles; building new series from known ones by substitution, multiplication and term-by-term differentiation or integration; and using a Maclaurin polynomial to approximate a value. Every worked example is laid out exactly the way our marking engine awards marks under the IB Mathematics M/A conventions, because in a method-heavy topic how you show your working decides how many marks you keep.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "State and apply the Maclaurin series $f(x)=f(0)+f'(0)x+\\frac{f''(0)}{2!}x^2+\\frac{f'''(0)}{3!}x^3+\\dots$ as a power-series expansion of $f$ about $x=0$.",
+    "Derive the Maclaurin series for $e^x$, $\\sin x$, $\\cos x$, $\\ln(1+x)$ and $(1+x)^n$ from repeated differentiation.",
+    "Build new series from known ones by substitution, multiplication, and term-by-term differentiation or integration.",
+    "Use a truncated Maclaurin polynomial to approximate a function value or a definite integral.",
+    "Present working so that method (M) marks and accuracy (A) marks are earned line by line under the IB marking conventions."
+  ],
+  "syllabusObjectivesCovered": [
+    "5.10"
+  ],
+  "levelNote": "HL only — Higher Level content.",
+  "simpleExplanation": {
+    "title": "Function Blueprints: Building with Derivatives",
+    "summary": "A Maclaurin series rebuilds a smooth function as an infinite polynomial. The function's derivatives at $x=0$ are the building blocks: the value fixes the height, the first derivative fixes the slope, the second fixes the curvature, and so on.",
+    "analogy": "Think of a tailor taking a set of precise measurements at one point — your body at rest — and cutting cloth to match. The first measurement gives a rough shape; each further measurement refines the fit. A Maclaurin series does the same, using $f(0)$, $f'(0)$, $f''(0)$, $f'''(0)$, all evaluated at $x=0$, to build a polynomial that matches the function exactly at that point and closely nearby.",
+    "steps": [
+      "Choose the function $f(x)$ to expand, and check it is differentiable as many times as you need at $x=0$.",
+      "Differentiate repeatedly: find $f'(x)$, $f''(x)$, $f'''(x)$, and so on.",
+      "Evaluate the function and each derivative at $x=0$ to get $f(0)$, $f'(0)$, $f''(0)$, $\\dots$",
+      "Substitute into the Maclaurin formula $f(x)=f(0)+f'(0)x+\\frac{f''(0)}{2!}x^2+\\frac{f'''(0)}{3!}x^3+\\dots$ and simplify each coefficient."
+    ]
+  },
+  "keyConcepts": [
+    "power series about $x=0$",
+    "derivatives at a point",
+    "known-series manipulation"
+  ],
+  "flashcards": [
+    {
+      "front": "What is a Maclaurin series?",
+      "back": "The Taylor series of a function expanded about $x=0$. It represents $f(x)$ as an infinite polynomial whose coefficients are fixed by the derivatives of $f$ at zero: the coefficient of $x^n$ is $\\frac{f^{(n)}(0)}{n!}$.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "The Maclaurin formula",
+      "back": "$f(x)=f(0)+f'(0)x+\\frac{f''(0)}{2!}x^2+\\frac{f'''(0)}{3!}x^3+\\dots=\\sum_{n=0}^{\\infty}\\frac{f^{(n)}(0)}{n!}x^n$. The $n!$ in each denominator is essential — it comes from repeated differentiation.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Maclaurin series for $e^x$",
+      "back": "$e^x=1+x+\\frac{x^2}{2!}+\\frac{x^3}{3!}+\\dots=\\sum_{n=0}^{\\infty}\\frac{x^n}{n!}$, valid for all $x$. Every derivative of $e^x$ is $e^x$, which is $1$ at $x=0$.",
+      "pillLabel": "Standard series"
+    },
+    {
+      "front": "Maclaurin series for $\\sin x$",
+      "back": "$\\sin x=x-\\frac{x^3}{3!}+\\frac{x^5}{5!}-\\dots=\\sum_{n=0}^{\\infty}\\frac{(-1)^n x^{2n+1}}{(2n+1)!}$. Only ODD powers appear, because $\\sin$ is an odd function.",
+      "pillLabel": "Standard series"
+    },
+    {
+      "front": "Maclaurin series for $\\cos x$",
+      "back": "$\\cos x=1-\\frac{x^2}{2!}+\\frac{x^4}{4!}-\\dots=\\sum_{n=0}^{\\infty}\\frac{(-1)^n x^{2n}}{(2n)!}$. Only EVEN powers appear, because $\\cos$ is an even function.",
+      "pillLabel": "Standard series"
+    },
+    {
+      "front": "Maclaurin series for $\\ln(1+x)$",
+      "back": "$\\ln(1+x)=x-\\frac{x^2}{2}+\\frac{x^3}{3}-\\dots=\\sum_{n=1}^{\\infty}\\frac{(-1)^{n-1}x^n}{n}$, valid for $-1<x\\le 1$. Note the denominators are $n$, NOT $n!$ — there are no factorials here.",
+      "pillLabel": "Standard series"
+    },
+    {
+      "front": "Maclaurin (binomial) series for $(1+x)^n$",
+      "back": "$(1+x)^n=1+nx+\\frac{n(n-1)}{2!}x^2+\\frac{n(n-1)(n-2)}{3!}x^3+\\dots$, valid for $|x|<1$ when $n$ is not a non-negative integer. This is the binomial series extended to rational $n$.",
+      "pillLabel": "Standard series"
+    },
+    {
+      "front": "How do you find the series for $e^{x^2}$?",
+      "back": "Do NOT differentiate $e^{x^2}$ repeatedly. Substitute $u=x^2$ into $e^u=1+u+\\frac{u^2}{2!}+\\dots$, giving $e^{x^2}=1+x^2+\\frac{x^4}{2!}+\\dots$. Substitution into a known series is faster and safer.",
+      "pillLabel": "Technique"
+    },
+    {
+      "front": "Differentiating and integrating series term by term",
+      "back": "Within its interval of convergence a Maclaurin series may be differentiated or integrated term by term. Differentiating the series for $\\sin x$ gives the series for $\\cos x$; integrating $\\frac{1}{1+x}=1-x+x^2-\\dots$ gives $\\ln(1+x)$.",
+      "pillLabel": "Technique"
+    },
+    {
+      "front": "Exam Trap: the missing factorial",
+      "back": "The coefficient of $x^n$ is $\\frac{f^{(n)}(0)}{n!}$, not $f^{(n)}(0)$. Writing $f(x)=f(0)+f'(0)x+f''(0)x^2+\\dots$ (no factorials) is one of the most common and costly slips.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: the series for $\\ln(1-x)$",
+      "back": "Do not just flip signs of the $\\ln(1+x)$ series. Substitute $-x$ into $\\ln(1+u)$: $\\ln(1-x)=(-x)-\\frac{(-x)^2}{2}+\\frac{(-x)^3}{3}-\\dots=-x-\\frac{x^2}{2}-\\frac{x^3}{3}-\\dots$ — every term is negative.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "In the Maclaurin series, the coefficient of $x^n$ is:",
+      "options": [
+        "$f^{(n)}(0)$",
+        "$\\frac{f^{(n)}(0)}{n!}$",
+        "$\\frac{f^{(n)}(0)}{n}$",
+        "$n!\\,f^{(n)}(0)$"
+      ],
+      "answer": "$\\frac{f^{(n)}(0)}{n!}$"
+    },
+    {
+      "prompt": "To build the coefficients of a Maclaurin series you evaluate the function and its derivatives at:",
+      "options": [
+        "$x=1$",
+        "$x=0$",
+        "the value of $x$ you are approximating",
+        "any convenient point $x=a$"
+      ],
+      "answer": "$x=0$"
+    },
+    {
+      "prompt": "The quickest correct way to find the Maclaurin series for $\\cos(3x)$ is to:",
+      "options": [
+        "differentiate $\\cos(3x)$ five times from scratch",
+        "substitute $3x$ for $x$ in the known series for $\\cos x$",
+        "multiply the series for $\\cos x$ by $3$",
+        "replace every $x$ in the $\\sin x$ series with $3x$"
+      ],
+      "answer": "substitute $3x$ for $x$ in the known series for $\\cos x$"
+    },
+    {
+      "prompt": "The Maclaurin series for $\\sin x$ contains:",
+      "options": [
+        "only even powers of $x$",
+        "only odd powers of $x$",
+        "all powers of $x$",
+        "a constant term of $1$"
+      ],
+      "answer": "only odd powers of $x$"
+    },
+    {
+      "prompt": "Which denominators are correct in the series for $\\ln(1+x)=x-\\dfrac{x^2}{?}+\\dfrac{x^3}{?}-\\dots$?",
+      "options": [
+        "$2!$ and $3!$ (factorials)",
+        "$2$ and $3$ (no factorials)",
+        "$1$ and $1$",
+        "$2^2$ and $3^3$"
+      ],
+      "answer": "$2$ and $3$ (no factorials)"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a Taylor series and a Maclaurin series?",
+      "a": "A Maclaurin series is the special case of a Taylor series expanded about the point $x=0$. A Taylor series can be centred at any point $x=a$. Every Maclaurin series is a Taylor series, but not the reverse. In AA HL you work almost exclusively with Maclaurin series."
+    },
+    {
+      "q": "Why are there factorials in the denominators?",
+      "a": "They fall out of repeated differentiation. If the $x^n$ coefficient is $c_n$, then differentiating $c_n x^n$ exactly $n$ times gives $c_n\\cdot n!$, and setting $x=0$ makes every other term vanish. Matching this to $f^{(n)}(0)$ forces $c_n=\\frac{f^{(n)}(0)}{n!}$. The factorial is not optional."
+    },
+    {
+      "q": "How many terms do I need in an exam?",
+      "a": "The question tells you: 'up to and including the term in $x^3$', or 'the first three non-zero terms'. Read this carefully — 'first three non-zero terms' of $\\cos x$ reaches $x^4$, because the $x^1$ and $x^3$ terms are zero. When approximating a value, use exactly the terms the earlier part asked for unless told otherwise."
+    },
+    {
+      "q": "When can I differentiate or integrate a series term by term?",
+      "a": "Within the interval of convergence of the series, term-by-term differentiation and integration are valid and give the series of the derivative or integral. This is often far quicker than working from the definition — for example integrating the geometric series $\\frac{1}{1+x}=1-x+x^2-\\dots$ term by term produces the series for $\\ln(1+x)$."
+    },
+    {
+      "q": "Does every function have a Maclaurin series?",
+      "a": "No. The function must be infinitely differentiable at $x=0$. Functions such as $\\ln x$ (undefined at $0$) or $|x|$ (not differentiable at $0$) have no Maclaurin series. For those you would need a Taylor series about a different point, or a different tool entirely."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Suppose you had to compute $\\sin(0.1)$ or $e^{0.2}$ with nothing but arithmetic. Polynomials are easy to evaluate — just add, multiply and divide — but $\\sin$, $e^x$ and $\\ln$ are not. A Maclaurin series bridges the gap: it rewrites a smooth function as an infinite polynomial centred at the convenient point $x=0$, and truncating that polynomial gives a genuinely useful approximation. This lesson builds the whole 5.10 toolkit, and as in every calculation-heavy topic the worked examples are laid out exactly the way our engine marks your practice — method mark by method mark, under the IB Mathematics M/A conventions."
+    },
+    {
+      "type": "heading",
+      "content": "The Maclaurin series formula"
+    },
+    {
+      "type": "text",
+      "content": "A function $f(x)$ that is infinitely differentiable at $x=0$ can be represented by its Maclaurin series. The idea is to force a polynomial to agree with the function AND with all of its derivatives at the single point $x=0$. Matching the value fixes the constant term, matching the first derivative fixes the coefficient of $x$, matching the second derivative fixes the coefficient of $x^2$, and so on. This locks the polynomial to the function at $x=0$ and makes it an excellent approximation nearby."
+    },
+    {
+      "type": "formula",
+      "content": "f(x) = f(0) + f'(0)\\,x + \\frac{f''(0)}{2!}x^2 + \\frac{f'''(0)}{3!}x^3 + \\dots = \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(0)}{n!}x^n"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$f^{(n)}(0)$ means the $n$-th derivative of $f$, evaluated at $x=0$ — differentiate FIRST, substitute $x=0$ SECOND.",
+        "The coefficient of $x^n$ is $\\frac{f^{(n)}(0)}{n!}$. The factorial in the denominator is essential and comes from repeated differentiation.",
+        "The series is infinite, but in practice we truncate it to a Maclaurin polynomial to obtain an approximation.",
+        "A Maclaurin series is a Taylor series centred at $x=0$ — the special case $a=0$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the first three non-zero terms of the Maclaurin series for $f(x)=\\cos(2x)$. [4]",
+      "solution": "**Differentiate repeatedly.**\n$f(x)=\\cos(2x)$\n$f'(x)=-2\\sin(2x)$\n$f''(x)=-4\\cos(2x)$\n$f'''(x)=8\\sin(2x)$\n$f^{(4)}(x)=16\\cos(2x)$   [M1: successive derivatives]\n\n**Evaluate each at $x=0$.**\n$f(0)=1,\\quad f'(0)=0,\\quad f''(0)=-4,\\quad f'''(0)=0,\\quad f^{(4)}(0)=16$   [A1: values at $0$]\n\n**Apply the Maclaurin formula.**\n$f(x)=f(0)+f'(0)x+\\frac{f''(0)}{2!}x^2+\\frac{f'''(0)}{3!}x^3+\\frac{f^{(4)}(0)}{4!}x^4+\\dots$\n$\\cos(2x)=1+0-\\frac{4}{2!}x^2+0+\\frac{16}{4!}x^4+\\dots$   [M1: substitution into formula]\n\n**Simplify.**\n$\\cos(2x)=1-2x^2+\\frac{2}{3}x^4+\\dots$   [A1]\n\nThe first three non-zero terms are $1$, $-2x^2$ and $\\frac{2}{3}x^4$. (Equivalently, this is the known series for $\\cos u$ with $u=2x$ — a useful check.)"
+    },
+    {
+      "type": "heading",
+      "content": "Deriving the standard series"
+    },
+    {
+      "type": "text",
+      "content": "Five standard series appear again and again, and each can be derived by the same routine: differentiate, evaluate at $0$, substitute. Take $e^x$. Every derivative of $e^x$ is $e^x$, and $e^0=1$, so every coefficient $\\frac{f^{(n)}(0)}{n!}=\\frac{1}{n!}$, giving $e^x=1+x+\\frac{x^2}{2!}+\\frac{x^3}{3!}+\\dots$. For $\\sin x$, the derivatives cycle $\\cos x,-\\sin x,-\\cos x,\\sin x,\\dots$; at $x=0$ these are $1,0,-1,0,\\dots$, so only the odd powers survive and the signs alternate. The same cycle gives $\\cos x$ with only even powers. For $\\ln(1+x)$ the derivatives are $\\frac{1}{1+x},-\\frac{1}{(1+x)^2},\\frac{2}{(1+x)^3},\\dots$, which at $0$ give $1,-1,2,-6,\\dots=(-1)^{n-1}(n-1)!$; dividing by $n!$ leaves $\\frac{(-1)^{n-1}}{n}$ and hence no factorials in the final answer. And $(1+x)^n$ generates the binomial series."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$e^x = 1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\dots$  (all $x$).",
+        "$\\sin x = x - \\frac{x^3}{3!} + \\frac{x^5}{5!} - \\dots$  (all $x$; odd powers only).",
+        "$\\cos x = 1 - \\frac{x^2}{2!} + \\frac{x^4}{4!} - \\dots$  (all $x$; even powers only).",
+        "$\\ln(1+x) = x - \\frac{x^2}{2} + \\frac{x^3}{3} - \\dots$  ($-1<x\\le 1$; denominators $n$, not $n!$).",
+        "$(1+x)^n = 1 + nx + \\frac{n(n-1)}{2!}x^2 + \\frac{n(n-1)(n-2)}{3!}x^3 + \\dots$  ($|x|<1$)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Several of these series sit in the AA HL formula booklet, but 'derive from first principles' or 'show that' questions require the full method: list the derivatives, evaluate at $0$, substitute into the formula, and simplify. Quoting the booklet answer alone earns no method marks on a 'derive' or 'show that' question."
+    },
+    {
+      "type": "heading",
+      "content": "Building new series from known ones"
+    },
+    {
+      "type": "text",
+      "content": "The real power of Maclaurin series is that you rarely differentiate from scratch. Once you know the standard five, you can build a huge range of new series by (i) substitution — replace $x$ by an expression such as $2x$, $-x$ or $x^2$; (ii) multiplication — multiply two series and collect terms up to the required power; and (iii) term-by-term differentiation or integration within the interval of convergence. These techniques are faster and far less error-prone than repeated differentiation, and examiners expect you to use them."
+    },
+    {
+      "type": "workedExample",
+      "question": "Using the standard series for $e^x$ and $\\sin x$, find the Maclaurin series for $f(x)=e^x\\sin x$ up to and including the term in $x^3$. Hence estimate $\\int_0^{0.5} e^x\\sin x\\,dx$, giving your answer to 4 significant figures. [6]",
+      "solution": "**Write down the standard series (only terms up to $x^3$ are needed).**\n$e^x = 1 + x + \\frac{x^2}{2} + \\frac{x^3}{6} + \\dots$\n$\\sin x = x - \\frac{x^3}{6} + \\dots$\n\n**Multiply, keeping powers up to $x^3$.**\n$e^x\\sin x = \\left(1 + x + \\frac{x^2}{2} + \\dots\\right)\\left(x - \\frac{x^3}{6} + \\dots\\right)$   [M1: multiply the two series]\n$= x - \\frac{x^3}{6} + x^2 + \\frac{x^3}{2} + \\dots$\n$= x + x^2 + \\left(\\frac{1}{2}-\\frac{1}{6}\\right)x^3 + \\dots$   [A1: collect like terms]\n$= x + x^2 + \\frac{1}{3}x^3 + \\dots$   [A1]\n\n**Integrate the polynomial term by term.**\n$\\int_0^{0.5} e^x\\sin x\\,dx \\approx \\int_0^{0.5}\\left(x + x^2 + \\tfrac{1}{3}x^3\\right)dx$   [M1: integrate term by term]\n$= \\left[\\frac{x^2}{2} + \\frac{x^3}{3} + \\frac{x^4}{12}\\right]_0^{0.5}$   [A1: correct antiderivative]\n$= \\frac{0.25}{2} + \\frac{0.125}{3} + \\frac{0.0625}{12} = 0.125 + 0.04167 + 0.005208$\n$= 0.1719$ (4 s.f.).   [A1]"
+    },
+    {
+      "type": "heading",
+      "content": "Approximating a value with a Maclaurin polynomial"
+    },
+    {
+      "type": "text",
+      "content": "Truncating a Maclaurin series after a few terms gives a Maclaurin polynomial, and substituting a small value of $x$ produces a numerical approximation. The closer $x$ is to $0$, and the more terms you keep, the better the estimate. A short table of the powers of $x$ makes the substitution tidy and reduces arithmetic slips."
+    },
+    {
+      "type": "workedExample",
+      "question": "Use the first three terms of the Maclaurin series for $\\cos x$ to find an approximation to $\\cos(0.2)$, giving your answer to 5 decimal places. [3]",
+      "solution": "**State the polynomial.** The first three terms of $\\cos x$ are\n$\\cos x \\approx 1 - \\frac{x^2}{2!} + \\frac{x^4}{4!} = 1 - \\frac{x^2}{2} + \\frac{x^4}{24}$.   [M1: correct truncated series]\n\n**Substitute $x=0.2$.**\n$\\cos(0.2) \\approx 1 - \\frac{(0.2)^2}{2} + \\frac{(0.2)^4}{24} = 1 - \\frac{0.04}{2} + \\frac{0.0016}{24}$   [M1: substitution]\n$= 1 - 0.02 + 0.00006\\overline{6} = 0.98007$ (5 d.p.).   [A1]\n\n(The true value is $0.980067\\ldots$, so three terms already give five-decimal accuracy — because $0.2$ is close to $0$.)"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Dropping the factorial** — the coefficient of $x^n$ is $\\frac{f^{(n)}(0)}{n!}$, not $f^{(n)}(0)$. Writing $f(0)+f'(0)x+f''(0)x^2+\\dots$ loses every accuracy mark.",
+        "**Evaluating derivatives at the wrong place** — differentiate first, THEN put $x=0$. Substituting $x=0$ into $f(x)$ before differentiating collapses the whole series to a constant.",
+        "**Differentiating a composite function from scratch** — for $e^{x^2}$, $\\cos(3x)$ or $\\sqrt{1-x^2}$, substitute into a known series instead. Repeated differentiation here is slow and error-prone.",
+        "**Forgetting $\\sin x$ has only odd powers** (and $\\cos x$ only even powers) — including an $x^2$ term in $\\sin x$, or an $x$ term in $\\cos x$, signals a lost sign or a missed zero derivative.",
+        "**Putting factorials in the $\\ln(1+x)$ series** — its denominators are $2,3,4,\\dots$, not $2!,3!,4!$. Confusing it with the $e^x$ pattern is a frequent slip.",
+        "**Sign errors when substituting $-x$** — for $\\ln(1-x)$ substitute $-x$ into $\\ln(1+u)$ and simplify; do not merely alternate signs. Every term of $\\ln(1-x)$ is negative.",
+        "**Keeping too few terms after multiplying** — to reach the $x^3$ term of a product, you must include all cross-terms that reach $x^3$; stopping a factor too early silently drops a contribution."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 1 the marks are analytic and follow the IB Mathematics conventions: an M mark rewards a valid METHOD, an A mark rewards ACCURACY and is usually dependent on the method mark it follows, and correct equivalent forms are always accepted. That structure only protects you if the method is written down. Study how each mark below is tied to a specific line of working."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the Maclaurin series for $f(x)=e^{2x}$ up to and including the term in $x^3$. [5]",
+      "solution": "**Model answer — full working.**\n\n**Value at $0$.** $f(x)=e^{2x}$, so $f(0)=e^{0}=1$.\n\n**Successive derivatives.**\n$f'(x)=2e^{2x}$, so $f'(0)=2$.\n$f''(x)=4e^{2x}$, so $f''(0)=4$.\n$f'''(x)=8e^{2x}$, so $f'''(0)=8$.\n\n**Apply the Maclaurin formula.**\n$f(x)=f(0)+f'(0)x+\\frac{f''(0)}{2!}x^2+\\frac{f'''(0)}{3!}x^3+\\dots$\n$e^{2x}=1+2x+\\frac{4}{2!}x^2+\\frac{8}{3!}x^3+\\dots$\n\n**Simplify the coefficients.**\n$e^{2x}=1+2x+2x^2+\\frac{4}{3}x^3+\\dots$\n\n---\n**How our marking engine awards the 5 marks (IB M/A conventions):**\n\n- **M1 — find successive derivatives.** Awarded for differentiating $e^{2x}$ repeatedly, i.e. producing $f'(x)=2e^{2x}$, $f''(x)=4e^{2x}$, $f'''(x)=8e^{2x}$. This is a METHOD mark: it is earned for the correct approach even if a later coefficient slips.\n- **A1 — correct values at $0$.** Awarded for $f'(0)=2$, $f''(0)=4$, $f'''(0)=8$ (and $f(0)=1$). This ACCURACY mark depends on the M1 method being present.\n- **M1 — apply the Maclaurin formula.** Awarded for substituting into $f(0)+f'(0)x+\\frac{f''(0)}{2!}x^2+\\frac{f'''(0)}{3!}x^3$, i.e. showing the $2!$ and $3!$ denominators in place. Method, not arithmetic.\n- **A1 — correct coefficients.** Awarded for simplifying to $1,\\,2,\\,2,\\,\\frac{4}{3}$, dependent on the previous method mark.\n- **A1 — full series.** Awarded for the complete answer $e^{2x}=1+2x+2x^2+\\frac{4}{3}x^3+\\dots$.\n\n**Accept equivalent forms.** The engine accepts $\\frac{4}{3}x^3$ written as $1.33x^3$ (3 s.f.) or $1\\tfrac{1}{3}x^3$, and accepts the series obtained instantly by substituting $2x$ into the standard series for $e^x$ — that substitution route earns the same 5 marks provided the standard series is quoted and the substitution shown.\n\n**Bottom line:** of the 5 marks, two are method marks that survive an arithmetic slip in a coefficient. A student who writes only the final series with no derivatives risks the M and dependent A marks if any coefficient is wrong; a student who shows the derivatives, the values at $0$, the formula and the simplification keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, under the IB M/A conventions, accepting equivalent forms. So always show the method: list the successive derivatives, evaluate them at $x=0$, substitute into the Maclaurin formula with the factorials visible, then simplify. The method marks are what protect your score when a single coefficient slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Maclaurin series turn hard functions into polynomials, and that unlocks the rest of HL calculus. Truncated series evaluate limits that would otherwise need l'Hopital's rule, they approximate definite integrals with no elementary antiderivative, and separating the series for $e^{ix}$ into real and imaginary parts delivers Euler's formula $e^{ix}=\\cos x + i\\sin x$, tying calculus to complex numbers. Master the habit — differentiate, evaluate at $0$, substitute the factorials, or better still reach for a known series and manipulate it — and these later applications become variations on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 1 question marked: derive a Maclaurin series with full working",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=5.10&component=paper_1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "3Blue1Brown: Taylor series",
+          "href": "https://www.youtube.com/watch?v=3d6DsjIBzJ4"
+        },
+        {
+          "label": "Paul's Online Math Notes: Taylor Series",
+          "href": "https://tutorial.math.lamar.edu/classes/calcii/taylorseries.aspx"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "subtopics": [
+    {
+      "code": "SL 5.10",
+      "title": "Maclaurin series",
+      "detail": "Derivation and knowledge of the Maclaurin series for $e^x, \\sin x, \\cos x, \\ln(1+x), (1+x)^p$."
+    },
+    {
+      "code": "SL 5.10",
+      "title": "Finding new series",
+      "detail": "Use of substitution, products, integration and differentiation to find new series from known series."
+    },
+    {
+      "code": "SL 5.10",
+      "title": "Applications of Maclaurin series",
+      "detail": "Use of Maclaurin series to find limits and approximate values of functions and integrals."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "5-10-maclaurin-series-q1",
+      "prompt": "Let $f(x) = \\ln(1+2x)$. Find the first three non-zero terms of the Maclaurin series for $f(x)$.",
+      "marks": 4,
+      "commandTerm": "Find",
+      "difficulty": "foundation",
+      "syllabusRef": "SL 5.10",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Attempt to find derivatives: $f'(x) = \\frac{2}{1+2x}$, $f''(x) = -4(1+2x)^{-2}$, $f'''(x) = 16(1+2x)^{-3}$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly evaluate derivatives at $x=0$: $f(0)=0$, $f'(0)=2$, $f''(0)=-4$, $f'''(0)=16$.",
+          "marks": 1
+        },
+        {
+          "text": "Substitute into the Maclaurin series formula: $f(x) = f(0) + f'(0)x + \\frac{f''(0)}{2!}x^2 + \\frac{f'''(0)}{3!}x^3 + \\dots$",
+          "marks": 1
+        },
+        {
+          "text": "Correctly form the series: $2x - \\frac{4}{2}x^2 + \\frac{16}{6}x^3 = 2x - 2x^2 + \\frac{8}{3}x^3$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "To find the Maclaurin series, we need to compute the derivatives of $f(x) = \\ln(1+2x)$ and evaluate them at $x=0$.\n$f(x) = \\ln(1+2x) \\implies f(0) = \\ln(1) = 0$.\n$f'(x) = \\frac{1}{1+2x} \\cdot 2 = \\frac{2}{1+2x} \\implies f'(0) = 2$.\n$f''(x) = 2(-1)(1+2x)^{-2}(2) = -4(1+2x)^{-2} \\implies f''(0) = -4$.\n$f'''(x) = -4(-2)(1+2x)^{-3}(2) = 16(1+2x)^{-3} \\implies f'''(0) = 16$.\nThe Maclaurin series is given by the formula:\n$f(x) = f(0) + f'(0)x + \\frac{f''(0)}{2!}x^2 + \\frac{f'''(0)}{3!}x^3 + \\dots$\nSubstituting the values we found:\n$f(x) = 0 + 2x + \\frac{-4}{2}x^2 + \\frac{16}{6}x^3 + \\dots$\n$f(x) = 2x - 2x^2 + \\frac{8}{3}x^3 + \\dots$\nThe first three non-zero terms are $2x$, $-2x^2$, and $\\frac{8}{3}x^3$."
+    },
+    {
+      "id": "5-10-maclaurin-series-q2",
+      "prompt": "Determine the Maclaurin series for $f(x) = e^x \\cos x$ up to and including the term in $x^3$.",
+      "marks": 5,
+      "commandTerm": "Determine",
+      "difficulty": "standard",
+      "syllabusRef": "SL 5.10",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Recall the standard Maclaurin series for $e^x$ and $\\cos x$: $e^x = 1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\dots$ and $\\cos x = 1 - \\frac{x^2}{2!} + \\dots$.",
+          "marks": 1
+        },
+        {
+          "text": "Set up the product of the two series: $(1 + x + \\frac{x^2}{2} + \\frac{x^3}{6} + \\dots)(1 - \\frac{x^2}{2} + \\dots)$.",
+          "marks": 1
+        },
+        {
+          "text": "Attempt to expand the product, considering terms up to $x^3$: $1(1 - \\frac{x^2}{2}) + x(1 - \\frac{x^2}{2}) + \\frac{x^2}{2}(1) + \\frac{x^3}{6}(1) + \\dots$",
+          "marks": 1
+        },
+        {
+          "text": "Collect like terms: $1 + x + (\\frac{1}{2} - \\frac{1}{2})x^2 + (\\frac{1}{6} - \\frac{1}{2})x^3 + \\dots$",
+          "marks": 1
+        },
+        {
+          "text": "Simplify to obtain the final series: $1 + x - \\frac{1}{3}x^3$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "We use the standard Maclaurin series for $e^x$ and $\\cos x$.\n$e^x = 1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\dots = 1 + x + \\frac{x^2}{2} + \\frac{x^3}{6} + \\dots$\n$\\cos x = 1 - \\frac{x^2}{2!} + \\frac{x^4}{4!} - \\dots = 1 - \\frac{x^2}{2} + \\dots$\nNow, we multiply these two series together, collecting terms up to $x^3$.\n$e^x \\cos x = (1 + x + \\frac{x^2}{2} + \\frac{x^3}{6} + \\dots)(1 - \\frac{x^2}{2} + \\dots)$\nConstant term: $1 \\times 1 = 1$.\n$x$ term: $x \\times 1 = x$.\n$x^2$ term: $(1 \\times -\\frac{x^2}{2}) + (\\frac{x^2}{2} \\times 1) = -\\frac{x^2}{2} + \\frac{x^2}{2} = 0$.\n$x^3$ term: $(x \\times -\\frac{x^2}{2}) + (\\frac{x^3}{6} \\times 1) = -\\frac{x^3}{2} + \\frac{x^3}{6} = -\\frac{3x^3}{6} + \\frac{x^3}{6} = -\\frac{2x^3}{6} = -\\frac{x^3}{3}$.\nCombining these terms, the series is $1 + x - \\frac{1}{3}x^3 + \\dots$."
+    },
+    {
+      "id": "5-10-maclaurin-series-q3",
+      "prompt": "Consider the function $f(x) = \\arctan(x^2)$.\n(a) Find the first two non-zero terms of the Maclaurin series for $f(x)$.\n(b) Hence, find an approximation for $\\int_0^{0.5} \\arctan(x^2) \\, dx$.\n(c) By comparing your approximation to the value obtained from a calculator, calculate the percentage error of your approximation.",
+      "marks": 6,
+      "commandTerm": "Find, Hence, Calculate",
+      "difficulty": "standard",
+      "syllabusRef": "SL 5.10",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) Recall $\\arctan(u) = u - \\frac{u^3}{3} + \\dots$ and substitute $u=x^2$. (M1)",
+          "marks": 1
+        },
+        {
+          "text": "$\\arctan(x^2) = x^2 - \\frac{(x^2)^3}{3} + \\dots = x^2 - \\frac{x^6}{3} + \\dots$ (A1)",
+          "marks": 1
+        },
+        {
+          "text": "(b) Integrate the series from (a) term by term: $\\int_0^{0.5} (x^2 - \\frac{x^6}{3}) \\, dx = [\\frac{x^3}{3} - \\frac{x^7}{21}]_0^{0.5}$. (M1)",
+          "marks": 1
+        },
+        {
+          "text": "Substitute limits and evaluate: $\\frac{(0.5)^3}{3} - \\frac{(0.5)^7}{21} \\approx 0.0412946...$ (A1)",
+          "marks": 1
+        },
+        {
+          "text": "(c) Find the exact value using a calculator ($\\,\\approx 0.0412973...\\,$) and apply the percentage error formula. (M1)",
+          "marks": 1
+        },
+        {
+          "text": "Percentage error = $|\\frac{0.0412946... - 0.0412973...}{0.0412973...}| \\times 100\\% \\approx 0.00651\\%$. (A1)",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The standard Maclaurin series for $\\arctan(u)$ is $u - \\frac{u^3}{3} + \\frac{u^5}{5} - \\dots$.\nWe substitute $u=x^2$ into this series.\n$\\arctan(x^2) = (x^2) - \\frac{(x^2)^3}{3} + \\dots = x^2 - \\frac{x^6}{3} + \\dots$.\n\n(b) To approximate the integral, we integrate the series from part (a) term by term.\n$\\int_0^{0.5} \\arctan(x^2) \\, dx \\approx \\int_0^{0.5} (x^2 - \\frac{x^6}{3}) \\, dx$\n$= [\\frac{x^3}{3} - \\frac{x^7}{21}]_0^{0.5}$\n$= (\\frac{(0.5)^3}{3} - \\frac{(0.5)^7}{21}) - (0)$\n$= \\frac{0.125}{3} - \\frac{0.0078125}{21}$\n$\\approx 0.0416666... - 0.0003720... \\approx 0.0412946$.\n\n(c) First, we find the more accurate value of the integral using a calculator: $\\int_0^{0.5} \\arctan(x^2) \\, dx \\approx 0.04129731$.\nNext, we calculate the percentage error using the formula:\nPercentage Error = $|\\frac{\\text{Approximation} - \\text{Exact Value}}{\\text{Exact Value}}| \\times 100\\%$\nPercentage Error = $|\\frac{0.0412946 - 0.04129731}{0.04129731}| \\times 100\\%$\nPercentage Error = $|\\frac{-0.00000271}{0.04129731}| \\times 100\\% \\approx 0.00656\\%$. (Accept answers rounding to 0.0065 or 0.0066)."
+    },
+    {
+      "id": "5-10-maclaurin-series-q4",
+      "prompt": "By using Maclaurin series, evaluate the limit $\\lim_{x \\to 0} \\frac{x \\sin(x) - x^2}{\\cos(x^2) - 1}$.",
+      "marks": 7,
+      "commandTerm": "Evaluate",
+      "difficulty": "challenge",
+      "syllabusRef": "SL 5.10",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Recall the series for $\\sin(x) = x - \\frac{x^3}{3!} + \\dots$.",
+          "marks": 1
+        },
+        {
+          "text": "Substitute into the numerator: $x(x - \\frac{x^3}{6} + \\dots) - x^2$. (M1)",
+          "marks": 1
+        },
+        {
+          "text": "Simplify the numerator to find the leading term: $x^2 - \\frac{x^4}{6} - x^2 = -\\frac{x^4}{6} + \\dots$. (A1)",
+          "marks": 1
+        },
+        {
+          "text": "Recall the series for $\\cos(u) = 1 - \\frac{u^2}{2!} + \\dots$ and substitute $u=x^2$. (M1)",
+          "marks": 1
+        },
+        {
+          "text": "Simplify the denominator to find the leading term: $(1 - \\frac{(x^2)^2}{2} + \\dots) - 1 = -\\frac{x^4}{2} + \\dots$. (A1)",
+          "marks": 1
+        },
+        {
+          "text": "Set up the limit with the leading terms of the series: $\\lim_{x \\to 0} \\frac{-\\frac{x^4}{6}}{-\\frac{x^4}{2}}$. (M1)",
+          "marks": 1
+        },
+        {
+          "text": "Evaluate the limit: $\\frac{-1/6}{-1/2} = \\frac{1}{3}$. (A1)",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "We will replace the functions in the numerator and denominator with their Maclaurin series expansions.\nFirst, consider the numerator: $x \\sin(x) - x^2$.\nThe series for $\\sin(x)$ is $x - \\frac{x^3}{3!} + \\frac{x^5}{5!} - \\dots = x - \\frac{x^3}{6} + \\frac{x^{5}}{120} - \\dots$.\nSo, $x \\sin(x) - x^2 = x(x - \\frac{x^3}{6} + \\dots) - x^2 = (x^2 - \\frac{x^4}{6} + \\dots) - x^2 = -\\frac{x^4}{6} + O(x^6)$.\n\nNext, consider the denominator: $\\cos(x^2) - 1$.\nThe series for $\\cos(u)$ is $1 - \\frac{u^2}{2!} + \\frac{u^4}{4!} - \\dots = 1 - \\frac{u^2}{2} + \\frac{u^4}{24} - \\dots$.\nSubstitute $u = x^2$: $\\cos(x^2) = 1 - \\frac{(x^2)^2}{2} + \\frac{(x^2)^4}{24} - \\dots = 1 - \\frac{x^4}{2} + \\frac{x^8}{24} - \\dots$.\nSo, $\\cos(x^2) - 1 = (1 - \\frac{x^4}{2} + \\dots) - 1 = -\\frac{x^4}{2} + O(x^8)$.\n\nNow we can evaluate the limit by substituting these series expansions:\n$\\lim_{x \\to 0} \\frac{x \\sin(x) - x^2}{\\cos(x^2) - 1} = \\lim_{x \\to 0} \\frac{-\\frac{x^4}{6} + O(x^6)}{-\\frac{x^4}{2} + O(x^8)}$.\nFor the limit as $x \\to 0$, we only need to consider the ratio of the lowest power terms (the leading terms).\nLimit = $\\lim_{x \\to 0} \\frac{-\\frac{x^4}{6}}{-\\frac{x^4}{2}} = \\frac{-1/6}{-1/2} = \\frac{1}{6} \\times 2 = \\frac{1}{3}$."
+    }
+  ]
+}

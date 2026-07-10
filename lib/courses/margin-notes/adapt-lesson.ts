@@ -433,6 +433,7 @@ export function adaptLesson(
     faqs: lesson.faq,
     practice: practiceQuestions[0],
     practiceQuestions: practiceQuestions.length ? practiceQuestions : undefined,
+    questionBank: lesson.questionBank?.length ? lesson.questionBank : undefined,
     prev: prev ?? undefined,
     next: next ?? undefined,
     related: related.length ? related : undefined,

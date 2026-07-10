@@ -60,6 +60,9 @@ Output ONLY valid JSON matching this shape:
     "steps": ["exactly 4 strings aligned to live sim steps when provided"]
   },
   "flashcards": [{ "front": "...", "back": "..." }],
+  "subtopics": [
+    { "code": "SL 4.8", "title": "official sub-topic statement", "detail": "one-line elaboration (KaTeX ok)" }
+  ],
   "sections": [
     { "type": "intro", "content": "..." },
     { "type": "heading", "content": "..." },
@@ -71,6 +74,23 @@ Output ONLY valid JSON matching this shape:
     { "type": "practice", "label": "...", "href": "/mark?subject=CODE&topic=TOPIC" },
     { "type": "resources", "items": [{ "label": "...", "href": "..." }] }
   ],
+  "questionBank": [
+    {
+      "id": "slug-q1",
+      "prompt": "exam-style question (KaTeX $...$)",
+      "marks": 4,
+      "commandTerm": "Find",
+      "difficulty": "foundation | standard | challenge",
+      "syllabusRef": "SL 4.8",
+      "paper": "P1 | P2",
+      "calculator": false,
+      "markScheme": [
+        { "text": "(M1) method mark description", "marks": 1 },
+        { "text": "(A1) accuracy mark description", "marks": 1 }
+      ],
+      "modelAnswer": "full worked solution (KaTeX $...$)"
+    }
+  ],
   "faq": [{ "q": "...", "a": "..." }]
 }
 
@@ -79,6 +99,11 @@ Rules:
 - ≥2 workedExample sections with REAL numbers, units, and mark-scheme working.
 - ≥3 heading sections each followed by text, formula, or keyPoints (≥2 sentences in text).
 - Section types ONLY: intro, heading, text, formula, keyPoints, examTip, workedExample, practice, resources.
+- subtopics: list the official syllabus sub-topics this lesson covers, with their real codes.
+- questionBank: EXACTLY 4 original questions spanning foundation → challenge, mixing P1 (no calculator) and P2 (calculator).
+  - Every question's markScheme entry marks MUST sum to that question's "marks" total. Use ${markingConvention} mark labels (e.g. M1/A1).
+  - modelAnswer must reach the stated answer. Original wording only — never copy past-paper text.
+  - NEVER put an escaped dollar (\\$) inside $...$ math; avoid currency symbols in questions (use words like "points").
 - KaTeX inline $...$ where needed. Escape backslashes in JSON.
 - End with practice + resources sections.`
 }
@@ -108,6 +133,20 @@ function parseDeepSpec(raw: Record<string, unknown>): StemDeepSpec {
   const flashcards = raw.flashcards as StemDeepSpec['flashcards']
   if (!flashcards || flashcards.length < 10) throw new Error('need ≥10 flashcards')
 
+  const questionBank = raw.questionBank as StemDeepSpec['questionBank']
+  if (!questionBank || questionBank.length < 3) {
+    throw new Error('need ≥3 questionBank items')
+  }
+  for (const q of questionBank) {
+    if (!q.markScheme?.length) throw new Error(`question ${q.id} has no markScheme`)
+    const total = q.markScheme.reduce((s, m) => s + (m.marks ?? 0), 0)
+    if (total !== q.marks) {
+      throw new Error(
+        `question ${q.id}: markScheme sums to ${total} but marks=${q.marks}`
+      )
+    }
+  }
+
   return {
     summary: String(raw.summary ?? ''),
     durationMin: Number(raw.durationMin ?? 22),
@@ -116,6 +155,8 @@ function parseDeepSpec(raw: Record<string, unknown>): StemDeepSpec {
     flashcards,
     sections,
     faq: raw.faq as StemDeepSpec['faq'],
+    subtopics: raw.subtopics as StemDeepSpec['subtopics'],
+    questionBank,
   }
 }
 
@@ -143,7 +184,9 @@ export function deepSpecToLesson(
     flashcards: spec.flashcards,
     faq: spec.faq,
     sections: spec.sections,
-    generatorVersion: 'stem-deep-author-1',
+    subtopics: spec.subtopics,
+    questionBank: spec.questionBank,
+    generatorVersion: 'stem-deep-author-2',
   }
 }
 

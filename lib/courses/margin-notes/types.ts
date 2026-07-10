@@ -126,6 +126,8 @@ export type MarginNotesLesson = {
   faqs?: LessonFaq[]
   practice?: LessonPractice
   practiceQuestions?: LessonPractice[]
+  /** Study-Loop practice question bank (original, mark-by-mark). */
+  questionBank?: import('@/lib/courses/types').CourseQuestionBankItem[]
   prev?: MarginNotesTopic
   next?: MarginNotesTopic
   related?: MarginNotesTopic[]

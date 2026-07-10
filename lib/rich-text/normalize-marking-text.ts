@@ -62,15 +62,28 @@ export function formatPlainCurrency(inner: string): string {
 const STASH_OPEN = '\x00'
 const STASH_CLOSE = '\x01'
 
+/** Remove C0 control characters except tab/newline/carriage-return. */
+export function stripControlChars(text: string): string {
+  return text.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '')
+}
+
 export function normalizeMarkingText(text: string): string {
   if (!text) return text
+  // Strip C0 control chars (keep \t \n \r): they collide with the `\x00`/`\x01`
+  // stash sentinels below and are "Unexpected character" parse errors in KaTeX.
+  text = stripControlChars(text)
 
   const stash: string[] = []
   const stashMath = (latex: string, display: boolean): string => {
     // A literal `$` inside a `$...$` span would prematurely close it in
     // remark-math (it ignores the backslash escape). Render embedded currency
-    // dollars via KaTeX's `\textdollar`, which needs no `$` character.
-    const safe = latex.replace(/\\\$/g, '\\textdollar ').replace(/\$/g, '\\textdollar ')
+    // dollars via `\text{\textdollar}`, which needs no `$` character. NOTE:
+    // `\textdollar` is only defined in text mode, so it MUST be wrapped in
+    // `\text{}` — a bare `\textdollar` in math mode is an undefined control
+    // sequence and KaTeX renders it as a red error.
+    const safe = latex
+      .replace(/\\\$/g, '\\text{\\textdollar}')
+      .replace(/\$/g, '\\text{\\textdollar}')
     stash.push(display ? `$$${safe}$$` : `$${safe}$`)
     return `${STASH_OPEN}${stash.length - 1}${STASH_CLOSE}`
   }

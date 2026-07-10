@@ -17,4 +17,12 @@ const combo = 'Common error: C(6,2)=20 and nCr.'
 const comboOut = normalizeMarkSchemeText(combo)
 assert.ok(comboOut.includes('\\binom'), `binom: ${comboOut}`)
 
+// Chained fractions stash adjacent spans; restoring them must not leak the
+// `\x00`/`\x01` control sentinels (which break KaTeX as "Unexpected character").
+const chained = normalizeMarkSchemeText('Method: (1/4) + (1/4)(3/4) + (1/4)(3/4)^2')
+assert.ok(
+  !/[\x00-\x08\x0B\x0C\x0E-\x1F]/.test(chained),
+  `no sentinel leak: ${JSON.stringify(chained)}`
+)
+
 console.log('normalize-mark-scheme-text.test.ts: ok')

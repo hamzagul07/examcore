@@ -13,6 +13,15 @@ const GLOB = process.argv[2] || 'ib-maths-aa-*'
 const MODEL = 'gemini-2.5-pro'
 const CONCURRENCY = 5
 
+// Subject-aware framing derived from the glob (e.g. ib-physics-hl → Physics).
+const SUBJECT_NAMES = {
+  'maths-aa': 'Mathematics: Analysis and Approaches', 'maths-ai': 'Mathematics: Applications and Interpretation',
+  physics: 'Physics', biology: 'Biology', chemistry: 'Chemistry',
+}
+const subjKey = Object.keys(SUBJECT_NAMES).find((k) => GLOB.includes(k))
+const SUBJECT_NAME = SUBJECT_NAMES[subjKey] || 'Diploma'
+const IS_MATH = /maths/.test(subjKey || '')
+
 // Same string-aware repair the generator uses — LLM LaTeX breaks naive JSON.parse.
 function repairJson(s) {
   const valid = '"\\/bfnrtu'
@@ -33,7 +42,7 @@ function repairJson(s) {
   return out
 }
 const parseLenient = (raw) => { try { return JSON.parse(raw) } catch { return JSON.parse(repairJson(raw)) } }
-const OUT = path.join(ROOT, 'docs/course-upgrade/reference-derived/qbank-review.md')
+const OUT = path.join(ROOT, `docs/course-upgrade/reference-derived/qbank-review-${subjKey || 'all'}.md`)
 
 const env = (k) => (fs.readFileSync(path.join(ROOT, '.env.local'), 'utf8')
   .match(new RegExp(`^${k}=(.+)$`, 'm'))?.[1] ?? '').trim().replace(/^["']|["']$/g, '')
@@ -54,15 +63,15 @@ async function token() {
   return _tok
 }
 
-const SYS = `You are a meticulous, skeptical IB Mathematics: Analysis and Approaches examiner reviewing draft practice questions for correctness.
+const SYS = `You are a meticulous, skeptical IB ${SUBJECT_NAME} examiner reviewing draft practice questions for correctness.
 For EACH question you are given (prompt, its mark scheme, and its model answer):
-1. Solve the question YOURSELF from scratch, carefully.
-2. Decide if the model answer's FINAL result is mathematically CORRECT and actually follows from valid working.
+1. Solve the question YOURSELF from scratch, carefully${IS_MATH ? '' : ', checking units, significant figures and physical/chemical/biological reasoning'}.
+2. Decide if the model answer's FINAL result is CORRECT and actually follows from valid working.
 3. Decide if the mark-scheme steps are consistent with a correct solution.
-4. Judge whether "syllabusRef" is a plausible IB Maths AA sub-topic code for this question (e.g. binomial distribution is SL 4.8; sequences are SL 1.2/1.3). Flag clearly wrong labels (e.g. an SL topic tagged "AHL").
+4. Judge whether "syllabusRef" is a plausible IB ${SUBJECT_NAME} sub-topic code for this question. Flag clearly wrong labels.
 To avoid mistakes, for each question you MUST first copy the model answer's stated FINAL result verbatim into "stated_answer", then put your own independently-computed result into "your_answer", then compare them.
 Return ONLY JSON: {"verdicts":[{"id":"...","stated_answer":"final result copied from the model answer","your_answer":"your own computed result","verdict":"ok"|"flag","severity":"low"|"high","issue":"one concise sentence or null","correct_answer":"the right final answer if the model answer is wrong, else null"}]}
-Flag (verdict:"flag") ONLY when stated_answer and your_answer genuinely DISAGREE mathematically, or the syllabus code is clearly wrong (severity "low" for code-only issues, "high" for wrong maths). If they agree, verdict MUST be "ok". Do NOT flag wording or style. Only judge questions actually present in the input — never invent questions.`
+Flag (verdict:"flag") ONLY when stated_answer and your_answer genuinely DISAGREE, or the syllabus code is clearly wrong (severity "low" for code-only issues, "high" for wrong science/maths). If they agree, verdict MUST be "ok". Do NOT flag wording or style. Only judge questions actually present in the input — never invent questions.`
 
 async function verifyLesson(file) {
   const d = JSON.parse(fs.readFileSync(file, 'utf8'))
@@ -72,7 +81,7 @@ async function verifyLesson(file) {
   }))
   if (!qs.length) return []
   const user = `Topic ${d.topicCode} — ${d.title} (${path.basename(path.dirname(file))}).\nReview these ${qs.length} questions:\n${JSON.stringify(qs, null, 1)}`
-  const body = { systemInstruction: { parts: [{ text: SYS }] }, contents: [{ role: 'user', parts: [{ text: user }] }], generationConfig: { temperature: 0.1, maxOutputTokens: 20000, responseMimeType: 'application/json' } }
+  const body = { systemInstruction: { parts: [{ text: SYS }] }, contents: [{ role: 'user', parts: [{ text: user }] }], generationConfig: { temperature: 0.1, maxOutputTokens: 32000, responseMimeType: 'application/json' } }
   const url = `https://${LOCATION}-aiplatform.googleapis.com/v1/projects/${PROJECT}/locations/${LOCATION}/publishers/google/models/${MODEL}:generateContent`
   for (let attempt = 1; attempt <= 4; attempt++) {
     try {
@@ -83,7 +92,16 @@ async function verifyLesson(file) {
       }
       const txt = (await res.json()).candidates?.[0]?.content?.parts?.map((p) => p.text).join('') ?? ''
       const obj = parseLenient(txt.replace(/^```json\s*/i, '').replace(/```\s*$/, '').trim())
-      return (obj.verdicts || []).map((v) => ({ ...v, file: path.basename(file), topic: `${d.topicCode} ${d.title}` }))
+      const verdicts = Array.isArray(obj.verdicts) ? obj.verdicts : []
+      // Retry until every question is covered (the model sometimes returns a
+      // short or empty verdicts array); on the last attempt, mark any missing.
+      if (verdicts.length < qs.length && attempt < 4) continue
+      const topic = `${d.topicCode} ${d.title}`
+      return qs.map((q) => {
+        const v = verdicts.find((x) => x.id === q.id)
+        return v ? { ...v, file: path.basename(file), topic }
+          : { id: q.id, verdict: 'error', severity: 'high', issue: 'verifier returned no verdict for this question', file: path.basename(file), topic }
+      })
     } catch (e) { if (attempt === 4) return [{ id: path.basename(file), verdict: 'error', severity: 'high', issue: String(e).slice(0, 100), file: path.basename(file), topic: d.title }] }
   }
   return [{ id: path.basename(file), verdict: 'error', severity: 'high', issue: 'no response after retries', file: path.basename(file), topic: d.title }]

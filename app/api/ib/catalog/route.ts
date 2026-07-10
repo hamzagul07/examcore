@@ -1,5 +1,9 @@
 import { NextResponse } from 'next/server'
-import { listSubjects, listAllComponents } from '@/lib/ib/assessment-catalog'
+import {
+  listSubjects,
+  listAllComponents,
+  listVerifiedPapers,
+} from '@/lib/ib/assessment-catalog'
 
 /**
  * Catalogued IB subjects + components for the /mark selection UI.
@@ -12,19 +16,26 @@ export async function GET() {
     const withComponents = await Promise.all(
       subjects.map(async (s) => {
         const components = await listAllComponents(s.code)
+        const mapped = await Promise.all(
+          components.map(async (c) => ({
+            component_key: c.component_key,
+            label: c.label,
+            level: c.level,
+            assessment_model: c.assessment_model,
+            max_marks: c.max_marks,
+            // Ingested official papers (session/timezone) — only points components
+            // have any; drives the paper picker so we ground on the right paper.
+            papers:
+              c.assessment_model === 'points'
+                ? await listVerifiedPapers(c.id)
+                : [],
+          }))
+        )
         return {
           code: s.code,
           name: s.name,
           level_scope: s.level_scope,
-          components: components
-            .map((c) => ({
-              component_key: c.component_key,
-              label: c.label,
-              level: c.level,
-              assessment_model: c.assessment_model,
-              max_marks: c.max_marks,
-            }))
-            .sort((a, b) => a.label.localeCompare(b.label)),
+          components: mapped.sort((a, b) => a.label.localeCompare(b.label)),
         }
       })
     )

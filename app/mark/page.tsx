@@ -205,6 +205,9 @@ export default function MarkPage() {
     level: string
     assessment_model: string
     max_marks: number | null
+    /** Ingested official papers for this component (points only). When more than
+     * one exists, the user picks which paper their script is from. */
+    papers?: { ref: string; label: string }[]
   }
   type IbCatalogSubject = {
     code: string
@@ -216,6 +219,9 @@ export default function MarkPage() {
   const [ibLevel, setIbLevel] = useState<'HL' | 'SL'>('SL')
   const [ibComponentKey, setIbComponentKey] = useState('')
   const [ibMarksAvailable, setIbMarksAvailable] = useState('')
+  // Which ingested official paper (session/TZ) the script is from — only asked when
+  // the selected component has more than one paper, else the resolver auto-picks.
+  const [ibPaperRef, setIbPaperRef] = useState('')
 
   useEffect(() => {
     let cancelled = false
@@ -1107,6 +1113,7 @@ export default function MarkPage() {
           if (ibMarksAvailable.trim()) {
             formData.append('ib_marks_available', ibMarksAvailable.trim())
           }
+          if (ibPaperRef) formData.append('ib_paper_ref', ibPaperRef)
         }
       }
 
@@ -1118,6 +1125,7 @@ export default function MarkPage() {
           if (ibMarksAvailable.trim()) {
             formData.append('ib_marks_available', ibMarksAvailable.trim())
           }
+          if (ibPaperRef) formData.append('ib_paper_ref', ibPaperRef)
         }
       }
 
@@ -1684,6 +1692,7 @@ export default function MarkPage() {
                         handleSubjectChange(e.target.value)
                         setShowManualPaper(true)
                         setIbComponentKey('')
+                        setIbPaperRef('')
                       }}
                       disabled={profileLoading || papersLoading}
                       className="ec-input select-chevron appearance-none"
@@ -1725,6 +1734,7 @@ export default function MarkPage() {
                         onChange={(e) => {
                           setIbLevel(e.target.value as 'HL' | 'SL')
                           setIbComponentKey('')
+                          setIbPaperRef('')
                         }}
                         className="ec-input select-chevron appearance-none"
                       >
@@ -1746,6 +1756,7 @@ export default function MarkPage() {
                       onChange={(e) => {
                         setIbComponentKey(e.target.value)
                         setIbMarksAvailable('')
+                        setIbPaperRef('')
                       }}
                       className="ec-input select-chevron appearance-none"
                     >
@@ -1757,6 +1768,32 @@ export default function MarkPage() {
                       ))}
                     </select>
                   </div>
+                  {ibComponentKey &&
+                    (selectedCatalogComponent?.papers?.length ?? 0) > 1 && (
+                      <div>
+                        <Label htmlFor="ib-paper" className="label-overline mb-2 inline-block">
+                          Paper (session)
+                        </Label>
+                        <select
+                          id="ib-paper"
+                          value={ibPaperRef}
+                          onChange={(e) => setIbPaperRef(e.target.value)}
+                          className="ec-input select-chevron appearance-none"
+                        >
+                          <option value="">Auto (I&apos;m not sure)</option>
+                          {selectedCatalogComponent?.papers?.map((p) => (
+                            <option key={p.ref} value={p.ref}>
+                              {p.label}
+                            </option>
+                          ))}
+                        </select>
+                        <p className="mt-1 text-xs ec-text-secondary">
+                          Pick your exact paper so we mark against its official mark
+                          scheme. Not sure? Leave on Auto and we&apos;ll mark from a
+                          derived scheme instead.
+                        </p>
+                      </div>
+                    )}
                   {ibComponentKey && selectedCatalogComponent?.assessment_model === 'points' && (
                     <div>
                       <Label htmlFor="ib-marks" className="label-overline mb-2 inline-block">

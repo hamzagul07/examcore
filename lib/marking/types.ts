@@ -42,6 +42,10 @@ export type ResolvedIbComponent = {
   /** All ingested official schemes for this component, keyed by normalised question
    * number — lets a multi-question mark pick the right scheme per question. */
   officialSchemesByQuestion?: Record<string, unknown>
+  /** Distinct ingested papers (sessions/timezones) for this component. When more
+   * than one exists and no specific paper was identified, the official scheme is
+   * withheld (ambiguous) and the caller should let the user pick from this list. */
+  availablePapers?: Array<{ ref: string; label: string; session?: string; year?: number; timezone?: string }>
 
   /** Criteria model (M3): not consumed yet. */
   criteria?: Array<{

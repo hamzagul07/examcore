@@ -64,7 +64,6 @@ const STASH_CLOSE = '\x01'
 
 /** Remove C0 control characters except tab/newline/carriage-return. */
 export function stripControlChars(text: string): string {
-  // eslint-disable-next-line no-control-regex
   return text.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '')
 }
 

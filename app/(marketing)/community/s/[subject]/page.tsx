@@ -11,6 +11,7 @@ import { CreatePostBar } from '@/components/community/reddit/CreatePostBar'
 import { SortTabs } from '@/components/community/reddit/SortTabs'
 import { PostFeed } from '@/components/community/reddit/PostFeed'
 import { SubjectSidebar } from '@/components/community/reddit/Sidebar'
+import { QASection } from '@/components/community/QASection'
 
 export const dynamic = 'force-dynamic'
 
@@ -83,6 +84,12 @@ export default async function SubjectCommunityPage({ params, searchParams }: Pag
       </div>
       <div className="rc-layout">
         <main className="rc-main">
+          <QASection
+            board={subjectMeta.board}
+            subjectCode={subject}
+            subjectName={subjectMeta.name}
+            accent={subjectMeta.accent}
+          />
           <div className="rc-feed-toolbar">
             <CreatePostBar subjectCode={subject} board={subjectMeta.board} signedIn={!!user} />
             <SortTabs active={sort} basePath={`/community/s/${subject}`} />

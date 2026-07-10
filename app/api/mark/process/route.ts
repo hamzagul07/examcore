@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { GEMINI_FLASH_MODEL, generateGeminiText, generateGeminiWithContents } from '@/lib/ai/gemini-text'
 import { geminiBackendLabel } from '@/lib/ai/gemini-config'
-import { createClient as createServerClient } from '@/lib/supabase-server'
+import { authenticateRouteRequest } from '@/lib/supabase-server'
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import type { OcrLine } from '@/lib/examiner-ink-positioning'
 import { runSingleQuestionMark } from '@/lib/marking/single-question-pipeline'
@@ -89,10 +89,10 @@ export async function POST(request: NextRequest) {
   let reservationSettled = false // flips once on finalize OR release → exactly-once
 
   try {
-    const supabaseAuth = await createServerClient()
-    const {
-      data: { user },
-    } = await supabaseAuth.auth.getUser()
+    // Read auth from request.cookies (+ bearer) — cookies() from next/headers
+    // can come back empty on this streaming multipart POST, which was silently
+    // saving logged-in users' attempts with user_id = null (no progress).
+    const { user } = await authenticateRouteRequest(request)
     const userId = user?.id || null
 
     const ip = clientIp(request)

@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import type { MarginNotesLesson } from '@/lib/courses/margin-notes/types'
+import type { CourseQuestionBankItem } from '@/lib/courses/types'
 import { appendMarkReturn } from '@/lib/courses/format-session'
 import { useLessonMastery } from '@/lib/hooks/useLessonMastery'
 import type { MasteryLevel } from '@/lib/mastery'
@@ -513,6 +514,119 @@ export function PracticeSection({
           total={questions.length}
           returnPath={returnPath}
         />
+      ))}
+    </div>
+  )
+}
+
+function QuestionBankItem({
+  q,
+  index,
+  markHref,
+}: {
+  q: CourseQuestionBankItem
+  index: number
+  /** Deep-link into the marking engine for this topic (return path attached). */
+  markHref: string
+}) {
+  const [schemeOpen, setSchemeOpen] = useState(false)
+  const [answerOpen, setAnswerOpen] = useState(false)
+  const meta = [
+    q.paper,
+    q.calculator === false ? 'No calc' : q.calculator ? 'Calc' : null,
+    q.difficulty,
+  ].filter(Boolean)
+  return (
+    <div className="practice card" data-screen-label="Lesson — practice question">
+      <div className="practice-head">
+        <span className="practice-tag mono">
+          {q.commandTerm ? `${q.commandTerm} · ` : ''}Q{index + 1}
+          {meta.length ? ` · ${meta.join(' · ')}` : ''}
+        </span>
+        <span className="practice-marks mono">[{q.marks}]</span>
+      </div>
+      <div className="body-2 practice-text">
+        <CourseRichText content={q.prompt} variant="prose" breakAnywhere={false} />
+      </div>
+      <div className="practice-foot">
+        <Link className="btn-primary" href={markHref}>
+          Do it on paper → mark my working
+        </Link>
+        <span className="micro">MARKED MARK-BY-MARK · M1 / A1 · IB METHOD & ACCURACY</span>
+      </div>
+      <div className="practice-scheme">
+        <button
+          type="button"
+          className="practice-scheme-toggle"
+          onClick={() => setSchemeOpen((o) => !o)}
+          aria-expanded={schemeOpen}
+        >
+          <span className="practice-scheme-tag mono">
+            Mark scheme · {q.marks} {q.marks === 1 ? 'mark' : 'marks'}
+          </span>
+          <span className="faq-plus">{schemeOpen ? '−' : '+'}</span>
+        </button>
+        {schemeOpen ? (
+          <div className="practice-scheme-body">
+            {q.markScheme.map((mp, i) => (
+              <div key={i} className="ms-line">
+                <CourseRichText content={mp.text} variant="prose" className="ms-line-text" />
+                <span className="stamp ok">+{mp.marks}</span>
+              </div>
+            ))}
+          </div>
+        ) : null}
+      </div>
+      <div className="practice-scheme">
+        <button
+          type="button"
+          className="practice-scheme-toggle"
+          onClick={() => setAnswerOpen((o) => !o)}
+          aria-expanded={answerOpen}
+        >
+          <span className="practice-scheme-tag mono">Worked solution</span>
+          <span className="faq-plus">{answerOpen ? '−' : '+'}</span>
+        </button>
+        {answerOpen ? (
+          <div className="practice-scheme-body">
+            <CourseRichText content={q.modelAnswer} variant="prose" />
+          </div>
+        ) : null}
+      </div>
+    </div>
+  )
+}
+
+/**
+ * Study-Loop practice: an original, mark-by-mark question bank for the topic.
+ * Each question reveals its scheme + worked solution, and deep-links into the
+ * marking engine (return path attached) so a student's own working is graded.
+ */
+export function QuestionBankSection({
+  lesson,
+  returnPath,
+  markSubject,
+  limit,
+}: {
+  lesson: MarginNotesLesson
+  returnPath?: string | null
+  /** Marking-engine subject code (IB: `ib-…`; Cambridge: numeric). */
+  markSubject: string
+  /** When set, only the first `limit` questions render (free preview). */
+  limit?: number
+}) {
+  const all = lesson.questionBank ?? []
+  if (!all.length) return null
+  const items = typeof limit === 'number' ? all.slice(0, limit) : all
+  const markHref = appendMarkReturn(
+    `/mark?subject=${encodeURIComponent(markSubject)}`,
+    returnPath,
+    lesson.point
+  )
+  return (
+    <div className="practice-stack">
+      {items.map((q, i) => (
+        <QuestionBankItem key={q.id} q={q} index={i} markHref={markHref} />
       ))}
     </div>
   )

@@ -50,17 +50,26 @@ export function getIbCourseSlugs(): string[] {
 export function getIbCourseLessons(slug: string): CourseLesson[] {
   const dir = ibCourseDir(ibCourseContentSlug(slug))
   if (!fs.existsSync(dir)) return []
-  const lessons: CourseLesson[] = []
+  // A `<slug>.pilot.json` overrides the published `<slug>.json` (Study-Loop
+  // preview), mirroring the paper-scoped pilot convention on the Cambridge side.
+  const bySlug = new Map<string, { lesson: CourseLesson; pilot: boolean }>()
   for (const f of fs.readdirSync(dir)) {
     if (!f.endsWith('.json')) continue
+    const pilot = f.endsWith('.pilot.json')
     try {
       const raw = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) as CourseLesson
       if (!raw.slug || !raw.topicCode) continue
-      lessons.push({ ...raw, status: raw.status === 'premium' ? 'premium' : 'published' })
+      const existing = bySlug.get(raw.slug)
+      if (existing && existing.pilot && !pilot) continue // keep pilot over published
+      bySlug.set(raw.slug, {
+        lesson: { ...raw, status: raw.status === 'premium' ? 'premium' : 'published' },
+        pilot,
+      })
     } catch {
       /* skip malformed */
     }
   }
+  const lessons: CourseLesson[] = Array.from(bySlug.values(), (v) => v.lesson)
   const order = getSyllabusOrder(slug)
   return lessons.sort((a, b) => {
     if (order) {

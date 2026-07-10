@@ -1,0 +1,550 @@
+{
+  "slug": "3-3-the-unit-circle-and-radian-measure",
+  "topicCode": "3.3",
+  "title": "The unit circle and radian measure",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "pilot",
+  "unit": {
+    "code": "3",
+    "title": "Geometry and trigonometry"
+  },
+  "summary": "Radians are the angle measure the rest of mathematics is built on, and the unit circle is the picture that ties angle, coordinate and trigonometric ratio into one object. This lesson builds the full 3.3 toolkit: what a radian is and how to convert between degrees and radians, arc length and sector area with the angle in radians, the unit-circle definition of sine, cosine and tangent, the exact values for the special angles, the CAST rule for the sign of each ratio in every quadrant, and the symmetry that turns a first-quadrant fact into a value anywhere on the circle. Because 3.3 is a Paper 1 (non-calculator) topic, every worked example is set out exactly the way our marking engine awards marks — method and accuracy, line by line — so that showing the working protects your score.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Define a radian and convert fluently between degrees and radians using $\\pi$ rad $= 180^{\\circ}$.",
+    "Apply the arc length $s = r\\theta$ and sector area $A = \\tfrac{1}{2}r^2\\theta$ formulae, with the angle in radians.",
+    "Use the unit circle to define $\\sin\\theta$, $\\cos\\theta$ and $\\tan\\theta$ for any angle, and state the equation $x^2 + y^2 = 1$.",
+    "Recall the exact values of the trigonometric ratios for the special angles $0, \\tfrac{\\pi}{6}, \\tfrac{\\pi}{4}, \\tfrac{\\pi}{3}, \\tfrac{\\pi}{2}$.",
+    "Determine the sign of each ratio by quadrant (CAST) and use related-angle symmetry to evaluate ratios anywhere on the circle.",
+    "Present working so that method marks (M) and accuracy marks (A) protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "3.3"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
+  "simpleExplanation": {
+    "title": "The Circle's Natural Angle",
+    "summary": "Radians measure an angle by the length of arc it wraps around a circle, using the radius as the ruler. On the unit circle — radius exactly 1 — that idea becomes beautifully simple: the angle, the arc length and the coordinates of the point all read directly off one picture, and cosine and sine are literally the x- and y-coordinates.",
+    "analogy": "Imagine walking around a circular track whose radius is one metre. A radian is not an arbitrary slice of the pie; it is the angle you have turned through once you have walked exactly one metre of track. Walk the whole way round — a distance of $2\\pi$ metres — and you have turned through $2\\pi$ radians, a full circle. The angle is measured in the circle's own units, which is exactly why the formulae that follow are so clean.",
+    "steps": [
+      "Picture a circle of radius 1 centred at the origin — the unit circle, with equation $x^2 + y^2 = 1$.",
+      "Measure an angle $\\theta$ anticlockwise from the positive x-axis. One radian is the angle for which the arc length equals the radius; a full turn is $2\\pi$ radians $= 360^{\\circ}$, so $\\pi$ rad $= 180^{\\circ}$.",
+      "The point where that angle meets the circle has coordinates $(\\cos\\theta, \\sin\\theta)$: cosine is the x-coordinate, sine is the y-coordinate.",
+      "Because the circle is symmetric, a value you know in the first quadrant fixes the value at the matching angle in every other quadrant — only the sign changes, and CAST tells you which."
+    ]
+  },
+  "keyConcepts": [
+    "radian measure",
+    "unit circle definition",
+    "exact values",
+    "CAST and symmetry"
+  ],
+  "flashcards": [
+    {
+      "front": "Definition of one radian",
+      "back": "The angle subtended at the centre of a circle by an arc whose length equals the radius. A full circle is $2\\pi$ radians.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Degrees $\\leftrightarrow$ radians",
+      "back": "The master fact is $\\pi$ rad $= 180^{\\circ}$. Degrees to radians: multiply by $\\dfrac{\\pi}{180}$. Radians to degrees: multiply by $\\dfrac{180}{\\pi}$.",
+      "pillLabel": "Conversion"
+    },
+    {
+      "front": "Equation of the unit circle",
+      "back": "$x^2 + y^2 = 1$ — a circle of radius 1 centred at the origin, straight from Pythagoras.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Unit-circle definition of sin and cos",
+      "back": "For the point where angle $\\theta$ (measured anticlockwise from the positive x-axis) meets the unit circle, $x = \\cos\\theta$ and $y = \\sin\\theta$. This extends the ratios to any angle, not just acute ones.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Unit-circle definition of tan",
+      "back": "$\\tan\\theta = \\dfrac{\\sin\\theta}{\\cos\\theta} = \\dfrac{y}{x}$ — the gradient of the line $OP$. It is undefined wherever $\\cos\\theta = 0$ (at $\\tfrac{\\pi}{2}, \\tfrac{3\\pi}{2}, \\dots$).",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Arc length ($\\theta$ in radians)",
+      "back": "$s = r\\theta$. The angle MUST be in radians; in degrees the formula is wrong.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Sector area ($\\theta$ in radians)",
+      "back": "$A = \\tfrac{1}{2}r^2\\theta$. Again the angle MUST be in radians.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Exact values: $\\sin$",
+      "back": "$\\sin 0 = 0$, $\\sin\\tfrac{\\pi}{6} = \\tfrac{1}{2}$, $\\sin\\tfrac{\\pi}{4} = \\tfrac{\\sqrt{2}}{2}$, $\\sin\\tfrac{\\pi}{3} = \\tfrac{\\sqrt{3}}{2}$, $\\sin\\tfrac{\\pi}{2} = 1$.",
+      "pillLabel": "Exact value"
+    },
+    {
+      "front": "Exact values: $\\cos$",
+      "back": "$\\cos 0 = 1$, $\\cos\\tfrac{\\pi}{6} = \\tfrac{\\sqrt{3}}{2}$, $\\cos\\tfrac{\\pi}{4} = \\tfrac{\\sqrt{2}}{2}$, $\\cos\\tfrac{\\pi}{3} = \\tfrac{1}{2}$, $\\cos\\tfrac{\\pi}{2} = 0$. Cosine runs down as sine runs up.",
+      "pillLabel": "Exact value"
+    },
+    {
+      "front": "Exact values: $\\tan$",
+      "back": "$\\tan 0 = 0$, $\\tan\\tfrac{\\pi}{6} = \\tfrac{1}{\\sqrt{3}}$, $\\tan\\tfrac{\\pi}{4} = 1$, $\\tan\\tfrac{\\pi}{3} = \\sqrt{3}$, $\\tan\\tfrac{\\pi}{2}$ is undefined.",
+      "pillLabel": "Exact value"
+    },
+    {
+      "front": "CAST rule",
+      "back": "Which ratios are positive, going anticlockwise from Q1: Q1 All, Q2 Sine, Q3 Tangent, Q4 Cosine. Everywhere else that ratio is negative. It follows directly from the signs of $x$ and $y$ in each quadrant.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Related (reference) angle",
+      "back": "The acute angle between $OP$ and the x-axis. The ratio at $\\theta$ has the same magnitude as at the reference angle; CAST fixes the sign. Example: $\\cos\\tfrac{7\\pi}{6} = -\\cos\\tfrac{\\pi}{6}$.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Special coordinates",
+      "back": "$\\theta = 0 \\to (1,0)$, $\\tfrac{\\pi}{2} \\to (0,1)$, $\\pi \\to (-1,0)$, $\\tfrac{3\\pi}{2} \\to (0,-1)$. These four axis points are worth memorising.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Exam Trap: calculator/formula mode",
+      "back": "On Paper 1 there is no calculator, so exact values and radians are unavoidable. Whenever you meet $s = r\\theta$ or $A = \\tfrac{1}{2}r^2\\theta$, first check the angle is in radians — convert if it is given in degrees.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A sector of a circle has radius 5 cm and central angle $30^{\\circ}$. Which is the correct first step for the arc length using $s = r\\theta$?",
+      "options": [
+        "Use $s = 5 \\times 30$ directly",
+        "Convert $30^{\\circ}$ to $\\tfrac{\\pi}{6}$ radians first, then $s = 5 \\times \\tfrac{\\pi}{6}$",
+        "Use $s = \\tfrac{1}{2}(5)^2(30)$",
+        "Use $s = 5 \\times 30 \\times \\tfrac{180}{\\pi}$"
+      ],
+      "answer": "Convert $30^{\\circ}$ to $\\tfrac{\\pi}{6}$ radians first, then $s = 5 \\times \\tfrac{\\pi}{6}$"
+    },
+    {
+      "prompt": "Convert $\\dfrac{3\\pi}{4}$ radians to degrees.",
+      "options": [
+        "$135^{\\circ}$",
+        "$45^{\\circ}$",
+        "$120^{\\circ}$",
+        "$270^{\\circ}$"
+      ],
+      "answer": "$135^{\\circ}$"
+    },
+    {
+      "prompt": "What is the exact value of $\\cos\\dfrac{\\pi}{3}$?",
+      "options": [
+        "$\\tfrac{\\sqrt{3}}{2}$",
+        "$\\tfrac{1}{2}$",
+        "$\\tfrac{\\sqrt{2}}{2}$",
+        "$1$"
+      ],
+      "answer": "$\\tfrac{1}{2}$"
+    },
+    {
+      "prompt": "The angle $\\theta = \\dfrac{5\\pi}{6}$ lies in the second quadrant. Using CAST, the signs of $\\sin\\theta$ and $\\cos\\theta$ are:",
+      "options": [
+        "$\\sin\\theta > 0$, $\\cos\\theta < 0$",
+        "$\\sin\\theta < 0$, $\\cos\\theta > 0$",
+        "both positive",
+        "both negative"
+      ],
+      "answer": "$\\sin\\theta > 0$, $\\cos\\theta < 0$"
+    },
+    {
+      "prompt": "Using related angles, $\\sin\\dfrac{4\\pi}{3}$ equals:",
+      "options": [
+        "$-\\tfrac{\\sqrt{3}}{2}$",
+        "$\\tfrac{\\sqrt{3}}{2}$",
+        "$-\\tfrac{1}{2}$",
+        "$\\tfrac{1}{2}$"
+      ],
+      "answer": "$-\\tfrac{\\sqrt{3}}{2}$"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why do we need radians when degrees work perfectly fine?",
+      "a": "Degrees are fine for navigation and construction, but radians are the natural language of circles. The arc length ($s = r\\theta$) and sector area ($A = \\tfrac{1}{2}r^2\\theta$) formulae are clean only in radians. More importantly, the calculus of trigonometric functions is simple only in radians: the derivative of $\\sin x$ is $\\cos x$ precisely because $x$ is measured in radians. Using degrees would drag a messy conversion factor into every derivative and integral you meet later."
+    },
+    {
+      "q": "How do I remember the signs of sin, cos and tan in each quadrant?",
+      "a": "Use CAST. Reading the quadrants anticlockwise from the first: Q1 All positive, Q2 Sine positive, Q3 Tangent positive, Q4 Cosine positive; any ratio not named is negative there. If you would rather not memorise a mnemonic, just remember that $\\cos\\theta$ is the x-coordinate and $\\sin\\theta$ is the y-coordinate on the unit circle, then read off the signs of $x$ and $y$ in the quadrant. $\\tan\\theta = \\tfrac{y}{x}$ is positive wherever $x$ and $y$ share a sign — Q1 and Q3."
+    },
+    {
+      "q": "How do related angles let me find exact values outside the first quadrant?",
+      "a": "Every angle has a reference angle: the acute angle its radius makes with the x-axis. The magnitude of a ratio at your angle equals its value at the reference angle, and CAST supplies the sign. For $\\theta = \\tfrac{7\\pi}{6}$ the reference angle is $\\tfrac{7\\pi}{6} - \\pi = \\tfrac{\\pi}{6}$; the angle is in Q3 where cosine is negative, so $\\cos\\tfrac{7\\pi}{6} = -\\cos\\tfrac{\\pi}{6} = -\\tfrac{\\sqrt{3}}{2}$. One first-quadrant fact plus symmetry gives you the whole circle."
+    },
+    {
+      "q": "When exactly can I use $s = r\\theta$ and $A = \\tfrac{1}{2}r^2\\theta$?",
+      "a": "Only when $\\theta$ is measured in radians. These formulae are derived from the fact that a full turn ($2\\pi$ rad) gives circumference $2\\pi r$ and area $\\pi r^2$; a sector of angle $\\theta$ takes the fraction $\\tfrac{\\theta}{2\\pi}$ of each. If the angle is given in degrees, convert it first — substituting a degree value straight in is the single most common way marks are lost on this topic."
+    },
+    {
+      "q": "Why is $\\tan\\theta$ undefined at $\\tfrac{\\pi}{2}$?",
+      "a": "Because $\\tan\\theta = \\tfrac{\\sin\\theta}{\\cos\\theta}$, and at $\\theta = \\tfrac{\\pi}{2}$ the x-coordinate is $\\cos\\tfrac{\\pi}{2} = 0$, so you would be dividing by zero. Geometrically, the line $OP$ is vertical there and has no finite gradient. The same happens at every odd multiple of $\\tfrac{\\pi}{2}$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "You already measure angles in degrees, where a full turn is $360^{\\circ}$. But almost everything that follows in analysis — the shapes of trigonometric graphs, their identities and their calculus — is cleaner in a unit tied to the circle itself. That unit is the radian, and the picture that organises it all is the unit circle. This lesson is a foundation for the whole trigonometry strand, so it is worth mastering completely. Since 3.3 sits on Paper 1, where no calculator is allowed, the worked examples are laid out exactly the way our engine marks your own practice: method and accuracy, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "Radian measure and conversion"
+    },
+    {
+      "type": "text",
+      "content": "A radian is defined by arc length. One radian is the angle at the centre of a circle for which the arc on the circumference has the same length as the radius. Since the full circumference is $2\\pi r$, a complete turn wraps $2\\pi$ radii around the circle, so a full circle is $2\\pi$ radians. Setting that equal to $360^{\\circ}$ gives the one relationship everything else is built on."
+    },
+    {
+      "type": "formula",
+      "content": "$2\\pi \\text{ rad} = 360^{\\circ} \\quad\\Longrightarrow\\quad \\pi \\text{ rad} = 180^{\\circ}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Degrees to radians:** multiply by $\\dfrac{\\pi}{180}$. For example $60^{\\circ} = 60 \\times \\dfrac{\\pi}{180} = \\dfrac{\\pi}{3}$.",
+        "**Radians to degrees:** multiply by $\\dfrac{180}{\\pi}$. For example $\\dfrac{3\\pi}{4} = \\dfrac{3\\pi}{4} \\times \\dfrac{180}{\\pi} = 135^{\\circ}$.",
+        "Angles in radians are usually left as exact multiples of $\\pi$; a radian with no $\\pi$ (such as the $1.2$ in a sector problem) is a perfectly valid measure too."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "(a) Convert $150^{\\circ}$ to radians, giving your answer as an exact multiple of $\\pi$. (b) Convert $\\dfrac{5\\pi}{6}$ radians to degrees. [3]",
+      "solution": "**(a) Degrees to radians — multiply by $\\dfrac{\\pi}{180}$.**\n$150 \\times \\dfrac{\\pi}{180} = \\dfrac{150\\pi}{180}$  (M1)\n$= \\dfrac{5\\pi}{6}$ radians.  (A1)\n\n**(b) Radians to degrees — multiply by $\\dfrac{180}{\\pi}$.**\n$\\dfrac{5\\pi}{6} \\times \\dfrac{180}{\\pi} = \\dfrac{5 \\times 180}{6} = 150^{\\circ}$.  (A1)\n\nThe two parts are of course inverses — a useful check."
+    },
+    {
+      "type": "heading",
+      "content": "Arc length and sector area"
+    },
+    {
+      "type": "text",
+      "content": "A sector of angle $\\theta$ is the fraction $\\tfrac{\\theta}{2\\pi}$ of a full circle. Multiplying that fraction by the whole circumference $2\\pi r$ gives the arc length, and by the whole area $\\pi r^2$ gives the sector area. The $2\\pi$ cancels beautifully — but only because $\\theta$ is in radians."
+    },
+    {
+      "type": "formula",
+      "content": "Arc length: $\\; s = r\\theta \\qquad\\qquad$ Sector area: $\\; A = \\tfrac{1}{2}r^2\\theta \\qquad (\\theta \\text{ in radians})$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Both formulae REQUIRE the angle in radians. If the question states the angle in degrees, convert before substituting.",
+        "$s = r\\theta$ has units of length (same as $r$); $A = \\tfrac{1}{2}r^2\\theta$ has units of length squared.",
+        "A radian is dimensionless, so it does not appear in the final unit — an arc length in centimetres, an area in square centimetres."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "The very first thing to write on any sector question is a check of the angle's units. If it reads $\\theta = 1.2$ (no degree symbol, no $\\pi$) it is already in radians and you are ready to substitute. If it reads $\\theta = 72^{\\circ}$, convert to $\\tfrac{2\\pi}{5}$ first. Substituting a degree value straight into $s = r\\theta$ is the classic way this topic is thrown away."
+    },
+    {
+      "type": "heading",
+      "content": "The unit circle definition of sine, cosine and tangent"
+    },
+    {
+      "type": "text",
+      "content": "The unit circle is the circle of radius 1 centred at the origin. From Pythagoras its equation is $x^2 + y^2 = 1$. Take any point $P$ on it and let $\\theta$ be the angle measured anticlockwise from the positive x-axis to the radius $OP$. Then the coordinates of $P$ are defined to be the cosine and sine of that angle."
+    },
+    {
+      "type": "formula",
+      "content": "For $P(x, y)$ on the unit circle at angle $\\theta$: $\\quad x = \\cos\\theta, \\quad y = \\sin\\theta, \\quad \\tan\\theta = \\dfrac{\\sin\\theta}{\\cos\\theta} = \\dfrac{y}{x}$"
+    },
+    {
+      "type": "text",
+      "content": "This is a genuine extension of the right-angled-triangle definitions. For an acute angle it agrees with opposite-over-hypotenuse and so on, because the hypotenuse here is the radius 1. But the coordinate definition keeps working for angles beyond $90^{\\circ}$, for negative angles, and for full turns and more — the point simply keeps moving round the circle. The tangent is the gradient of $OP$, which is why it blows up to undefined whenever $OP$ is vertical and $\\cos\\theta = 0$."
+    },
+    {
+      "type": "workedExample",
+      "question": "The point $P$ lies on the unit circle where the radius $OP$ makes an angle $\\theta = \\dfrac{7\\pi}{6}$ with the positive x-axis. (a) State the quadrant in which $P$ lies. (b) Find the exact coordinates of $P$. [4]",
+      "solution": "**(a) Locate the quadrant.** Writing $\\pi = \\tfrac{6\\pi}{6}$ and $\\tfrac{3\\pi}{2} = \\tfrac{9\\pi}{6}$, we have $\\pi < \\tfrac{7\\pi}{6} < \\tfrac{3\\pi}{2}$, so $P$ is in the third quadrant.  (A1)\n\n**(b) Coordinates are $(\\cos\\theta, \\sin\\theta)$.** The reference angle is $\\tfrac{7\\pi}{6} - \\pi = \\tfrac{\\pi}{6}$.  (M1)\nThe first-quadrant exact values are $\\cos\\tfrac{\\pi}{6} = \\tfrac{\\sqrt{3}}{2}$ and $\\sin\\tfrac{\\pi}{6} = \\tfrac{1}{2}$.\nIn Q3 both $x$ (cosine) and $y$ (sine) are negative (CAST), so\n$\\cos\\tfrac{7\\pi}{6} = -\\tfrac{\\sqrt{3}}{2}$  (A1)  and  $\\sin\\tfrac{7\\pi}{6} = -\\tfrac{1}{2}$.  (A1)\n\n**Coordinates:** $P = \\left(-\\tfrac{\\sqrt{3}}{2},\\, -\\tfrac{1}{2}\\right)$."
+    },
+    {
+      "type": "heading",
+      "content": "Exact values for the special angles"
+    },
+    {
+      "type": "text",
+      "content": "On Paper 1 you cannot reach for a calculator, so the exact values for the special first-quadrant angles must be instant recall. They come from two triangles — the half-square (for $\\tfrac{\\pi}{4}$) and the half-equilateral triangle (for $\\tfrac{\\pi}{6}$ and $\\tfrac{\\pi}{3}$) — together with the axis cases $0$ and $\\tfrac{\\pi}{2}$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$\\theta = 0$: $\\;\\sin 0 = 0,\\; \\cos 0 = 1,\\; \\tan 0 = 0$. Point $(1, 0)$.",
+        "$\\theta = \\tfrac{\\pi}{6}$ ($30^{\\circ}$): $\\;\\sin = \\tfrac{1}{2},\\; \\cos = \\tfrac{\\sqrt{3}}{2},\\; \\tan = \\tfrac{1}{\\sqrt{3}}$.",
+        "$\\theta = \\tfrac{\\pi}{4}$ ($45^{\\circ}$): $\\;\\sin = \\cos = \\tfrac{\\sqrt{2}}{2},\\; \\tan = 1$.",
+        "$\\theta = \\tfrac{\\pi}{3}$ ($60^{\\circ}$): $\\;\\sin = \\tfrac{\\sqrt{3}}{2},\\; \\cos = \\tfrac{1}{2},\\; \\tan = \\sqrt{3}$.",
+        "$\\theta = \\tfrac{\\pi}{2}$ ($90^{\\circ}$): $\\;\\sin = 1,\\; \\cos = 0,\\; \\tan$ undefined. Point $(0, 1)$."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "A helpful memory aid: for $\\sin$ at $0, \\tfrac{\\pi}{6}, \\tfrac{\\pi}{4}, \\tfrac{\\pi}{3}, \\tfrac{\\pi}{2}$ write $\\tfrac{\\sqrt{0}}{2}, \\tfrac{\\sqrt{1}}{2}, \\tfrac{\\sqrt{2}}{2}, \\tfrac{\\sqrt{3}}{2}, \\tfrac{\\sqrt{4}}{2}$ — the numerators are just $\\sqrt{0}$ up to $\\sqrt{4}$. Cosine is the same list read backwards. Once you have $\\sin$ and $\\cos$, every $\\tan$ is their quotient."
+    },
+    {
+      "type": "examTip",
+      "content": "You must know the exact values of $\\sin$, $\\cos$ and $\\tan$ at $0, \\tfrac{\\pi}{6}, \\tfrac{\\pi}{4}, \\tfrac{\\pi}{3}, \\tfrac{\\pi}{2}$ and, via symmetry, their partners in the other quadrants. These are examined constantly on Paper 1, where a decimal from a remembered calculator value earns nothing — the mark scheme wants the exact surd form such as $\\tfrac{\\sqrt{3}}{2}$, not $0.866$."
+    },
+    {
+      "type": "heading",
+      "content": "Signs by quadrant (CAST) and symmetry"
+    },
+    {
+      "type": "text",
+      "content": "Because $\\cos\\theta$ is the x-coordinate and $\\sin\\theta$ the y-coordinate, the sign of each ratio is simply the sign of that coordinate in the quadrant. Collecting the results gives the CAST rule, read anticlockwise from the first quadrant."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Q1 — All** positive: $x > 0$ and $y > 0$, so $\\sin$, $\\cos$, $\\tan$ are all positive.",
+        "**Q2 — Sine** positive only: $x < 0$, $y > 0$, so $\\sin > 0$ but $\\cos < 0$ and $\\tan < 0$.",
+        "**Q3 — Tangent** positive only: $x < 0$, $y < 0$, so $\\sin < 0$ and $\\cos < 0$, but $\\tan = \\tfrac{y}{x} > 0$.",
+        "**Q4 — Cosine** positive only: $x > 0$, $y < 0$, so $\\cos > 0$ but $\\sin < 0$ and $\\tan < 0$."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "Symmetry turns one known value into four. If $\\alpha$ is the reference (acute) angle, then across the circle the magnitude of each ratio is the value at $\\alpha$, and CAST supplies the sign. For instance, knowing $\\sin\\tfrac{\\pi}{3} = \\tfrac{\\sqrt{3}}{2}$ immediately gives $\\sin\\tfrac{2\\pi}{3} = +\\tfrac{\\sqrt{3}}{2}$ (Q2, sine positive) and $\\sin\\tfrac{4\\pi}{3} = -\\tfrac{\\sqrt{3}}{2}$ (Q3, sine negative). You never learn more than the first quadrant."
+    },
+    {
+      "type": "workedExample",
+      "question": "Without a calculator, find the exact value of $\\cos\\dfrac{5\\pi}{4} + \\tan\\dfrac{2\\pi}{3}$. [4]",
+      "solution": "**First term, $\\cos\\tfrac{5\\pi}{4}$.** The angle $\\tfrac{5\\pi}{4}$ is in Q3 (between $\\pi$ and $\\tfrac{3\\pi}{2}$), with reference angle $\\tfrac{5\\pi}{4} - \\pi = \\tfrac{\\pi}{4}$.  (M1)\nIn Q3 cosine is negative, so $\\cos\\tfrac{5\\pi}{4} = -\\cos\\tfrac{\\pi}{4} = -\\tfrac{\\sqrt{2}}{2}$.  (A1)\n\n**Second term, $\\tan\\tfrac{2\\pi}{3}$.** The angle $\\tfrac{2\\pi}{3}$ is in Q2, reference angle $\\pi - \\tfrac{2\\pi}{3} = \\tfrac{\\pi}{3}$.\nIn Q2 tangent is negative, so $\\tan\\tfrac{2\\pi}{3} = -\\tan\\tfrac{\\pi}{3} = -\\sqrt{3}$.  (A1)\n\n**Combine.**\n$\\cos\\tfrac{5\\pi}{4} + \\tan\\tfrac{2\\pi}{3} = -\\tfrac{\\sqrt{2}}{2} - \\sqrt{3}$.  (A1)\n\nAny equivalent exact form, e.g. $-\\tfrac{1}{\\sqrt{2}} - \\sqrt{3}$, is accepted."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Using $s = r\\theta$ or $A = \\tfrac{1}{2}r^2\\theta$ with the angle in degrees** — both formulae demand radians. If the angle is given in degrees, convert with $\\times\\tfrac{\\pi}{180}$ before substituting.",
+        "**Converting the wrong way** — degrees to radians is $\\times\\tfrac{\\pi}{180}$, radians to degrees is $\\times\\tfrac{180}{\\pi}$. Sanity-check: a radian answer should carry a $\\pi$ or be a modest number, a degree answer should not.",
+        "**Giving a decimal instead of an exact value on Paper 1** — the mark scheme wants $\\tfrac{\\sqrt{3}}{2}$, not $0.866$. A rounded decimal for a special angle usually scores nothing.",
+        "**Getting the quadrant sign wrong** — apply CAST every time. In Q3, for example, $\\sin$ and $\\cos$ are both negative even though $\\tan$ is positive.",
+        "**Confusing $\\tfrac{1}{2}r^2\\theta$ with $\\tfrac{1}{2}r\\theta$ or squaring the wrong quantity** — the sector area squares the radius only, not the angle.",
+        "**Forgetting $\\tan\\theta$ is undefined where $\\cos\\theta = 0$** — at $\\tfrac{\\pi}{2}$, $\\tfrac{3\\pi}{2}$, etc. there is no finite value.",
+        "**Dropping units or the degree/radian symbol** — an arc length needs a length unit; leaving a bare number, or omitting $^{\\circ}$ after a degree answer, invites lost accuracy marks."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In IB Mathematics the marks are analytic. A method mark (M) is awarded for a correct approach — the right formula, correctly used — and is not lost to an arithmetic slip later. An accuracy mark (A) is for a correct answer, but many A-marks are dependent on the corresponding M: no valid method, no accuracy mark. Two more conventions matter here. Follow-through (FT) means that if you carry a wrong earlier value into a correct later step, the later mark can still be earned on your own figure. And 'accept equivalent or exact forms' means the engine takes any correct algebraic form — $5\\pi$ cm or $15.7$ cm, $\\tfrac{1}{\\sqrt{2}}$ or $\\tfrac{\\sqrt{2}}{2}$ — provided it is right. Study how each mark below is tied to one specific line of working."
+    },
+    {
+      "type": "workedExample",
+      "question": "A sector of a circle has radius 6 cm and central angle 1.2 radians. Find (a) the arc length and (b) the area of the sector. [4]",
+      "solution": "**Model answer — full working.**\n\nThe angle $1.2$ carries no degree symbol, so it is already in radians and both formulae apply directly.\n\n**(a) Arc length.** Use $s = r\\theta$ with $r = 6$, $\\theta = 1.2$.\n$s = 6 \\times 1.2 = 7.2$ cm.\n\n**(b) Sector area.** Use $A = \\tfrac{1}{2}r^2\\theta$ with $r = 6$, $\\theta = 1.2$.\n$A = \\tfrac{1}{2}(6^2)(1.2) = \\tfrac{1}{2}(36)(1.2) = 21.6$ cm$^2$.\n\n**Final answer:** arc length $7.2$ cm; sector area $21.6$ cm$^2$.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — correct arc-length method.** Awarded for $s = 6(1.2)$: the right formula with the radius and the radian angle substituted correctly. This is a METHOD mark, earned for the correct setup even if the multiplication later slips.\n- **A1 — arc length.** Awarded for $s = 7.2$ cm. This A-mark is dependent on the M1: it is available only once a valid $s = r\\theta$ substitution is on the page. An exact-form answer such as $\\tfrac{36}{5}$ cm is accepted as equivalent.\n- **M1 — correct sector-area method.** Awarded for $A = \\tfrac{1}{2}(6^2)(1.2)$: the right formula with the radius squared and the radian angle in place. Again a METHOD mark, independent of the final arithmetic.\n- **A1 — sector area.** Awarded for $A = 21.6$ cm$^2$. Here follow-through (FT) can apply: a student who mis-copied the radius but then applied $A = \\tfrac{1}{2}r^2\\theta$ correctly to THEIR radius still earns this mark on their own figure. Equivalent exact forms such as $\\tfrac{108}{5}$ cm$^2$ are accepted.\n\n**'Accept equivalent or exact forms.'** The engine does not insist on a fixed number of decimal places — it accepts $7.2$ cm and $21.6$ cm$^2$, or their exact fractional equivalents, as long as the value is correct and carries the right unit.\n\n**Bottom line:** of the 4 marks, two are method marks that survive a slip, and the answer marks are protected by dependency on the method and by follow-through. A student who writes only '21.6' with no formula risks the method marks entirely; a student who writes $s = 6(1.2)$ and $A = \\tfrac{1}{2}(6^2)(1.2)$ before the numbers keeps the method marks even if a final value is wrong."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: write $s = r\\theta$ and $A = \\tfrac{1}{2}r^2\\theta$ with the numbers substituted BEFORE you evaluate, confirm the angle is in radians, and give exact forms where Paper 1 asks for them. The method marks and follow-through are what protect your score when a final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The unit circle is the launch pad for the whole trigonometry strand. Reading $\\sin\\theta$ and $\\cos\\theta$ as coordinates as the point travels round the circle is exactly what generates the trigonometric graphs and their periods in 3.5, and the symmetry you used for related angles becomes the identities and equations of 3.6 and beyond. Radians, meanwhile, are non-negotiable for the calculus of trigonometric functions later in the course, where $\\tfrac{d}{dx}\\sin x = \\cos x$ holds only because $x$ is in radians. Master the habits here — check the angle's units, keep values exact, apply CAST every time, and show each line of method — and the trigonometry that follows becomes variations on a picture you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 1 answer marked: solve a radian and unit-circle problem with full working",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=3.3&component=paper_1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Interactive Unit Circle",
+          "href": "https://www.geogebra.org/m/X255T9E8"
+        },
+        {
+          "label": "Degrees to Radians Conversion",
+          "href": "https://www.mathsisfun.com/geometry/radians.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Interactive Unit Circle",
+    "embedUrl": "https://www.geogebra.org/classic?material=X255T9E8",
+    "launchUrl": "https://www.geogebra.org/classic?material=X255T9E8",
+    "hint": "Use “Interactive Unit Circle” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "SL 3.3",
+      "title": "The unit circle. Definition of $\\cos\\theta$ and $\\sin\\theta$ in terms of the coordinates of a point on the unit circle. The identity $\\cos^2\\theta + \\sin^2\\theta = 1$.",
+      "detail": "The unit circle and the Pythagorean identity $\\cos^2\\theta + \\sin^2\\theta = 1$."
+    },
+    {
+      "code": "SL 3.4",
+      "title": "Radian measure. The concept of a radian as a measure of angle. Conversion between degrees and radians. Length of an arc; area of a sector.",
+      "detail": "Radian measure, arc length $l=r\\theta$, and sector area $A=\\frac{1}{2}r^2\\theta$."
+    },
+    {
+      "code": "SL 3.5",
+      "title": "The values of $\\sin\\theta$, $\\cos\\theta$ and $\\tan\\theta$ for $\\theta = 0, \\frac{\\pi}{6}, \\frac{\\pi}{4}, \\frac{\\pi}{3}, \\frac{\\pi}{2}$ and their multiples.",
+      "detail": "Exact values of trigonometric ratios for special angles, e.g., $\\frac{\\pi}{6}, \\frac{\\pi}{4}, \\frac{\\pi}{3}$."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "3-3-the-unit-circle-and-radian-measure-q1",
+      "prompt": "A sector of a circle has a radius of $8$ cm and a central angle of $1.5$ radians. Find:\n(a) the length of the arc of the sector;\n(b) the area of the sector.",
+      "marks": 4,
+      "commandTerm": "Find",
+      "difficulty": "foundation",
+      "syllabusRef": "SL 3.4",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) Use of arc length formula $l = r\\theta$.",
+          "marks": 1
+        },
+        {
+          "text": "$l = 8 \\times 1.5 = 12$ cm.",
+          "marks": 1
+        },
+        {
+          "text": "(b) Use of sector area formula $A = \\frac{1}{2}r^2\\theta$.",
+          "marks": 1
+        },
+        {
+          "text": "$A = \\frac{1}{2}(8^2)(1.5) = 48$ cm$^2$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The formula for the length of an arc is $l = r\\theta$, where $r$ is the radius and $\\theta$ is the angle in radians.\nGiven $r=8$ cm and $\\theta=1.5$ radians.\n$l = 8 \\times 1.5 = 12$ cm.\n\n(b) The formula for the area of a sector is $A = \\frac{1}{2}r^2\\theta$.\n$A = \\frac{1}{2}(8^2)(1.5) = \\frac{1}{2} \\times 64 \\times 1.5 = 32 \\times 1.5 = 48$ cm$^2$."
+    },
+    {
+      "id": "3-3-the-unit-circle-and-radian-measure-q2",
+      "prompt": "A point P lies on the unit circle. The angle formed by the line segment OP and the positive x-axis is $\\theta$, where $\\pi < \\theta < \\frac{3\\pi}{2}$. Given that $\\cos\\theta = -\\frac{4}{5}$, find the value of $\\sin\\theta$.",
+      "marks": 5,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "SL 3.3",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Recognition of the identity $\\cos^2\\theta + \\sin^2\\theta = 1$.",
+          "marks": 1
+        },
+        {
+          "text": "$(-\\frac{4}{5})^2 + \\sin^2\\theta = 1 \\implies \\frac{16}{25} + \\sin^2\\theta = 1$.",
+          "marks": 1
+        },
+        {
+          "text": "$\\sin^2\\theta = 1 - \\frac{16}{25} = \\frac{9}{25}$.",
+          "marks": 1
+        },
+        {
+          "text": "$\\sin\\theta = \\pm\\frac{3}{5}$.",
+          "marks": 1
+        },
+        {
+          "text": "Since $\\pi < \\theta < \\frac{3\\pi}{2}$ (quadrant 3), $\\sin\\theta$ must be negative. So $\\sin\\theta = -\\frac{3}{5}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "We use the Pythagorean identity $\\cos^2\\theta + \\sin^2\\theta = 1$.\nWe are given $\\cos\\theta = -\\frac{4}{5}$.\nSubstituting this into the identity gives:\n$(-\\frac{4}{5})^2 + \\sin^2\\theta = 1$\n$\\frac{16}{25} + \\sin^2\\theta = 1$\n$\\sin^2\\theta = 1 - \\frac{16}{25}$\n$\\sin^2\\theta = \\frac{25}{25} - \\frac{16}{25} = \\frac{9}{25}$\nTaking the square root of both sides gives $\\sin\\theta = \\pm\\sqrt{\\frac{9}{25}} = \\pm\\frac{3}{5}$.\nThe angle $\\theta$ is in the interval $\\pi < \\theta < \\frac{3\\pi}{2}$, which corresponds to the third quadrant of the unit circle. In the third quadrant, the y-coordinate ($\\sin\\theta$) is negative.\nTherefore, we must choose the negative value.\n$\\sin\\theta = -\\frac{3}{5}$."
+    },
+    {
+      "id": "3-3-the-unit-circle-and-radian-measure-q3",
+      "prompt": "The diagram shows a circle with centre O and radius $r$. Points A and B lie on the circumference of the circle. The angle AOB is $\\frac{2\\pi}{3}$ radians. The length of the arc AB is $12\\pi$ cm.\n(a) Find the radius, $r$, of the circle.\n(b) Find the area of the shaded segment bounded by the arc AB and the chord AB. Give your answer in exact form.",
+      "marks": 6,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "SL 3.4",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) $12\\pi = r \\times \\frac{2\\pi}{3}$.",
+          "marks": 1
+        },
+        {
+          "text": "$r = \\frac{12\\pi \\times 3}{2\\pi} = 18$ cm.",
+          "marks": 1
+        },
+        {
+          "text": "(b) Area of sector = $\\frac{1}{2}(18^2)(\\frac{2\\pi}{3})$.",
+          "marks": 1
+        },
+        {
+          "text": "Area of triangle = $\\frac{1}{2}(18)(18)\\sin(\\frac{2\\pi}{3})$.",
+          "marks": 1
+        },
+        {
+          "text": "Correct values: Area of sector = $108\\pi$ and $\\sin(\\frac{2\\pi}{3}) = \\frac{\\sqrt{3}}{2}$.",
+          "marks": 1
+        },
+        {
+          "text": "Area of segment = $108\\pi - 81\\sqrt{3}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The formula for arc length is $l = r\\theta$.\nWe are given $l = 12\\pi$ and $\\theta = \\frac{2\\pi}{3}$.\n$12\\pi = r \\times \\frac{2\\pi}{3}$\nTo find $r$, we rearrange the equation: $r = \\frac{12\\pi}{\\frac{2\\pi}{3}} = 12\\pi \\times \\frac{3}{2\\pi} = 18$.\nThe radius is $18$ cm.\n\n(b) The area of the shaded segment is the area of the sector AOB minus the area of the triangle AOB.\nArea of sector AOB = $\\frac{1}{2}r^2\\theta = \\frac{1}{2}(18^2)(\\frac{2\\pi}{3}) = \\frac{1}{2}(324)(\\frac{2\\pi}{3}) = 108\\pi$ cm$^2$.\nArea of triangle AOB = $\\frac{1}{2}ab\\sin C = \\frac{1}{2}(18)(18)\\sin(\\frac{2\\pi}{3})$.\nThe exact value of $\\sin(\\frac{2\\pi}{3})$ is $\\frac{\\sqrt{3}}{2}$.\nArea of triangle AOB = $\\frac{1}{2}(324)(\\frac{\\sqrt{3}}{2}) = 81\\sqrt{3}$ cm$^2$.\nArea of segment = Area of sector - Area of triangle = $108\\pi - 81\\sqrt{3}$ cm$^2$."
+    },
+    {
+      "id": "3-3-the-unit-circle-and-radian-measure-q4",
+      "prompt": "A point P has coordinates $(\\cos\\theta, \\sin\\theta)$ and a point Q has coordinates $(\\cos\\phi, \\sin\\phi)$ on the unit circle, where $0 < \\theta < \\phi < \\pi$. The length of the chord PQ is $\\sqrt{3}$. Show that the area of the sector POQ is $\\frac{\\pi}{3}$.",
+      "marks": 7,
+      "commandTerm": "Show that",
+      "difficulty": "challenge",
+      "syllabusRef": "SL 3.4",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "Recognition of using the cosine rule on triangle POQ.",
+          "marks": 1
+        },
+        {
+          "text": "Let the angle POQ be $\\alpha$. $(\\text{PQ})^2 = \\text{OP}^2 + \\text{OQ}^2 - 2(\\text{OP})(\\text{OQ})\\cos\\alpha$.",
+          "marks": 1
+        },
+        {
+          "text": "$(\\sqrt{3})^2 = 1^2 + 1^2 - 2(1)(1)\\cos\\alpha$.",
+          "marks": 1
+        },
+        {
+          "text": "$3 = 2 - 2\\cos\\alpha$.",
+          "marks": 1
+        },
+        {
+          "text": "$\\cos\\alpha = -\\frac{1}{2}$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly identifying $\\alpha = \\frac{2\\pi}{3}$ as the only solution in the range $0 < \\alpha < \\pi$.",
+          "marks": 1
+        },
+        {
+          "text": "Area of sector = $\\frac{1}{2}r^2\\alpha = \\frac{1}{2}(1^2)(\\frac{2\\pi}{3}) = \\frac{\\pi}{3}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "Let O be the origin $(0,0)$. The points P and Q are on the unit circle, so the distance from the origin to each point is the radius, $r=1$. Thus, OP = OQ = 1.\nThe points P, Q, and O form a triangle POQ.\nThe length of the chord PQ is given as $\\sqrt{3}$.\nLet the angle POQ be $\\alpha$. In triangle POQ, we can use the cosine rule: \n$(\\text{PQ})^2 = \\text{OP}^2 + \\text{OQ}^2 - 2(\\text{OP})(\\text{OQ})\\cos\\alpha$\nSubstituting the known values:\n$(\\sqrt{3})^2 = 1^2 + 1^2 - 2(1)(1)\\cos\\alpha$\n$3 = 1 + 1 - 2\\cos\\alpha$\n$3 = 2 - 2\\cos\\alpha$\n$1 = -2\\cos\\alpha$\n$\\cos\\alpha = -\\frac{1}{2}$\nSince $0 < \\theta < \\phi < \\pi$, the angle $\\alpha = \\phi - \\theta$ must be in the range $0 < \\alpha < \\pi$. The angle in this range for which $\\cos\\alpha = -\\frac{1}{2}$ is $\\alpha = \\frac{2\\pi}{3}$ radians.\nThe area of a sector is given by the formula $A = \\frac{1}{2}r^2\\alpha$.\nUsing $r=1$ and $\\alpha = \\frac{2\\pi}{3}$:\nArea of sector POQ $= \\frac{1}{2}(1)^2(\\frac{2\\pi}{3}) = \\frac{2\\pi}{6} = \\frac{\\pi}{3}$.\nThus, we have shown that the area of the sector is $\\frac{\\pi}{3}$."
+    }
+  ]
+}

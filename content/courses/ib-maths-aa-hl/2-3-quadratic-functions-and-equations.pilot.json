@@ -1,0 +1,550 @@
+{
+  "slug": "2-3-quadratic-functions-and-equations",
+  "topicCode": "2.3",
+  "title": "Quadratic functions and equations",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "pilot",
+  "unit": {
+    "code": "2",
+    "title": "Functions"
+  },
+  "summary": "A quadratic is any function whose highest power of $x$ is two, and its graph is always a parabola. This lesson builds the full 2.3 toolkit: the three forms of a quadratic — standard $y=ax^2+bx+c$, factored $y=a(x-p)(x-q)$ and vertex/completed-square $y=a(x-h)^2+k$ — and exactly what each one reveals at a glance; the axis of symmetry $x=-\\frac{b}{2a}$ and the vertex; the three ways to solve a quadratic (factorising, completing the square and the quadratic formula); the discriminant $\\Delta=b^2-4ac$ and how its sign fixes the number and nature of the roots; and how all of this reads off the parabola and its intercepts. Because Paper 1 is non-calculator, every worked example is laid out exactly the way our marking engine awards marks — method by method — so you keep every mark your working has earned.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Move fluently between the standard, factored and vertex forms of a quadratic and state what each form reveals — the y-intercept, the x-intercepts, or the vertex.",
+    "Solve quadratic equations by factorising, by completing the square and by the quadratic formula, choosing the most efficient method for a non-calculator paper.",
+    "Use the discriminant $\\Delta=b^2-4ac$ to determine the number and nature of the roots and to solve problems where the number of roots is prescribed.",
+    "Sketch a parabola, identifying the direction of opening, the axis of symmetry $x=-\\frac{b}{2a}$, the vertex and the x- and y-intercepts.",
+    "Present working so that method marks (M) and the accuracy marks (A) that depend on them are secured, using ISW and exact-form conventions."
+  ],
+  "syllabusObjectivesCovered": [
+    "2.3"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
+  "simpleExplanation": {
+    "title": "Decoding the Parabola",
+    "summary": "Quadratic functions contain an $x^2$ term and always graph as a symmetrical U-shaped curve called a parabola. The clever part is that the same quadratic can be written in three different 'costumes', and each costume hands you a different feature of the graph for free.",
+    "analogy": "Think of one person photographed from three angles. The standard form $y=ax^2+bx+c$ is the front view — you instantly read the y-intercept $c$. The factored form $y=a(x-p)(x-q)$ is the view that shows the feet — you read the x-intercepts $p$ and $q$. The vertex form $y=a(x-h)^2+k$ is the view that shows the very top or bottom — you read the vertex $(h,k)$. It is the same person (the same curve) every time; you just choose the angle that shows what the question is asking for.",
+    "steps": [
+      "Read the sign of $a$: if $a>0$ the parabola opens upwards (a minimum); if $a<0$ it opens downwards (a maximum).",
+      "Find the y-intercept instantly from standard form — it is $c$, because $f(0)=c$.",
+      "Find the x-intercepts (roots) by solving $ax^2+bx+c=0$: factorise if you can, otherwise complete the square or use the quadratic formula.",
+      "Find the vertex: its x-coordinate is the axis of symmetry $x=-\\frac{b}{2a}$, and substituting that back gives the y-coordinate. Vertex form $a(x-h)^2+k$ hands you $(h,k)$ directly."
+    ]
+  },
+  "keyConcepts": [
+    "three forms of a quadratic",
+    "the discriminant",
+    "vertex and axis of symmetry"
+  ],
+  "flashcards": [
+    {
+      "front": "Standard (general) form",
+      "back": "$f(x)=ax^2+bx+c$ with $a\\neq 0$. Reveals the y-intercept immediately: $f(0)=c$, so the curve crosses the y-axis at $(0,c)$.",
+      "pillLabel": "Form"
+    },
+    {
+      "front": "Factored form",
+      "back": "$f(x)=a(x-p)(x-q)$. Reveals the x-intercepts (roots) directly: the curve crosses the x-axis at $x=p$ and $x=q$.",
+      "pillLabel": "Form"
+    },
+    {
+      "front": "Vertex (completed-square) form",
+      "back": "$f(x)=a(x-h)^2+k$. Reveals the vertex directly: the turning point is $(h,k)$ and the axis of symmetry is $x=h$.",
+      "pillLabel": "Form"
+    },
+    {
+      "front": "What does the sign of $a$ tell you?",
+      "back": "If $a>0$ the parabola opens upwards (concave up) and the vertex is a minimum. If $a<0$ it opens downwards and the vertex is a maximum. The larger $|a|$, the narrower the curve.",
+      "pillLabel": "Graph"
+    },
+    {
+      "front": "Axis of symmetry",
+      "back": "The vertical line $x=-\\dfrac{b}{2a}$. It passes through the vertex, and the two roots (when they exist) are symmetric about it — their average is $-\\dfrac{b}{2a}$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "The quadratic formula",
+      "back": "$x=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}$. It solves ANY quadratic and is in the formula booklet. The x-coordinate of the vertex is the $-\\dfrac{b}{2a}$ sitting outside the square root.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "The discriminant",
+      "back": "$\\Delta=b^2-4ac$, the quantity under the root sign. Its SIGN alone decides the number and nature of the roots — you do not have to solve the equation to use it.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "$\\Delta>0$",
+      "back": "Two distinct real roots. The parabola crosses the x-axis at two separate points.",
+      "pillLabel": "Roots"
+    },
+    {
+      "front": "$\\Delta=0$",
+      "back": "One repeated (double) real root. The parabola touches the x-axis at exactly one point — its vertex sits on the axis.",
+      "pillLabel": "Roots"
+    },
+    {
+      "front": "$\\Delta<0$",
+      "back": "No real roots. The parabola lies entirely above the x-axis (if $a>0$) or entirely below it (if $a<0$) and never crosses it.",
+      "pillLabel": "Roots"
+    },
+    {
+      "front": "Completing the square",
+      "back": "Rewrites $ax^2+bx+c$ as $a(x-h)^2+k$ so the vertex $(h,k)$ can be read off. For a monic quadratic, $x^2+bx+c=\\left(x+\\tfrac{b}{2}\\right)^2-\\tfrac{b^2}{4}+c$.",
+      "pillLabel": "Method"
+    },
+    {
+      "front": "Exam Trap: reading $h$ from vertex form",
+      "back": "For $f(x)=2(x+3)^2-5$ the vertex is $(-3,-5)$, NOT $(3,-5)$. The form is $(x-h)$, so $x+3=x-(-3)$ gives $h=-3$. The sign flips.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "The equation $ax^2+bx+c=0$ has discriminant $\\Delta=-9$. How many real roots does it have?",
+      "options": [
+        "Two distinct real roots",
+        "One repeated real root",
+        "No real roots",
+        "Cannot be determined without $a$"
+      ],
+      "answer": "No real roots"
+    },
+    {
+      "prompt": "A quadratic is written in vertex form as $f(x)=3(x-4)^2+7$. The coordinates of its vertex are:",
+      "options": [
+        "$(4,7)$",
+        "$(-4,7)$",
+        "$(4,-7)$",
+        "$(-4,-7)$"
+      ],
+      "answer": "$(4,7)$"
+    },
+    {
+      "prompt": "For the parabola $y=2x^2-12x+5$, the axis of symmetry is the line:",
+      "options": [
+        "$x=-3$",
+        "$x=3$",
+        "$x=6$",
+        "$x=-6$"
+      ],
+      "answer": "$x=3$"
+    },
+    {
+      "prompt": "The graph of $y=ax^2+bx+c$ opens downwards and never crosses the x-axis. Which pair of statements is correct?",
+      "options": [
+        "$a>0$ and $\\Delta>0$",
+        "$a<0$ and $\\Delta<0$",
+        "$a<0$ and $\\Delta>0$",
+        "$a>0$ and $\\Delta<0$"
+      ],
+      "answer": "$a<0$ and $\\Delta<0$"
+    },
+    {
+      "prompt": "A quadratic equation has exactly one solution. This tells you that:",
+      "options": [
+        "$\\Delta>0$, and the parabola crosses the x-axis twice",
+        "$\\Delta=0$, and the parabola touches the x-axis at its vertex",
+        "$\\Delta<0$, and the parabola misses the x-axis",
+        "$a=0$, so it is really a linear equation"
+      ],
+      "answer": "$\\Delta=0$, and the parabola touches the x-axis at its vertex"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a quadratic function and a quadratic equation?",
+      "a": "A quadratic function is an expression like $f(x)=ax^2+bx+c$ describing a relationship between $x$ and $y$; you graph it as a parabola. A quadratic equation is what you get when you set the function equal to a value — usually zero — as in $ax^2+bx+c=0$. Solving the equation gives specific x-values called the roots, which are the x-intercepts of the function's graph."
+    },
+    {
+      "q": "Which of the three forms should I use?",
+      "a": "Let the question decide. If it asks for the y-intercept, standard form gives it instantly ($c$). If it asks for the x-intercepts or roots, aim for factored form. If it asks for the vertex, the maximum/minimum value, or the axis of symmetry, aim for vertex form (completing the square). The three forms describe the same curve, so you convert between them as needed."
+    },
+    {
+      "q": "When should I factorise, complete the square, or use the formula?",
+      "a": "In Paper 1 always try to factorise first — it is fastest when the coefficients are small integers. Complete the square when you need the vertex, or when the question specifically asks for it. Use the quadratic formula when factorising is not obvious, when the coefficients are awkward, or when an exact surd answer is required. The formula always works, so it is your reliable fallback."
+    },
+    {
+      "q": "How do I find the vertex from standard form without completing the square?",
+      "a": "Use $x=-\\frac{b}{2a}$ for the x-coordinate of the vertex — it is also the axis of symmetry — then substitute that value back into $f(x)$ to get the y-coordinate. The pair $(x,y)$ is the vertex. Completing the square gives the same answer but also rewrites the whole function, which is handy if further parts need vertex form."
+    },
+    {
+      "q": "Why does the discriminant tell me the number of roots?",
+      "a": "The roots come from $x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}$. If $\\Delta>0$ the square root is a real positive number, so the $\\pm$ gives two different roots. If $\\Delta=0$ the root term vanishes and both branches collapse to the single value $-\\frac{b}{2a}$. If $\\Delta<0$ you would be square-rooting a negative number, which has no real value, so there are no real roots."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Quadratic functions are one of the most heavily examined ideas in the whole course, and they reward a very specific habit: recognising which of three forms best answers the question in front of you. The same curve can wear three costumes — standard, factored and vertex form — and each hands you a different feature for free. In this lesson we build that fluency, master the three solving methods, and learn to read the roots straight off the discriminant. Because Paper 1 is non-calculator, the worked examples are laid out exactly the way our engine marks your own practice: method mark by method mark."
+    },
+    {
+      "type": "heading",
+      "content": "The three forms of a quadratic"
+    },
+    {
+      "type": "text",
+      "content": "A quadratic function is any function that can be written with $x^2$ as its highest power. It always graphs as a parabola. What makes quadratics so workable is that the very same function can be written three ways, and each form is optimised to reveal a different feature of the graph."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Standard: } y=ax^2+bx+c \\qquad \\text{Factored: } y=a(x-p)(x-q) \\qquad \\text{Vertex: } y=a(x-h)^2+k"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Standard form $y=ax^2+bx+c$** ($a\\neq 0$) reveals the **y-intercept** at a glance: $f(0)=c$, so the curve meets the y-axis at $(0,c)$.",
+        "**Factored form $y=a(x-p)(x-q)$** reveals the **x-intercepts (roots)** directly: the curve meets the x-axis at $x=p$ and $x=q$.",
+        "**Vertex form $y=a(x-h)^2+k$** reveals the **vertex** directly: the turning point is $(h,k)$ and the axis of symmetry is $x=h$.",
+        "In every form the coefficient $a$ is the same number, and its sign fixes the shape: $a>0$ opens upwards (minimum), $a<0$ opens downwards (maximum)."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "The skill the exam tests is choosing the right form for the question and converting when needed. Multiplying out factored or vertex form returns you to standard form; factorising or completing the square takes you the other way. None of the three is 'more correct' — they are three views of one parabola."
+    },
+    {
+      "type": "heading",
+      "content": "The parabola: shape, intercepts, axis and vertex"
+    },
+    {
+      "type": "text",
+      "content": "The graph of a quadratic is a parabola, symmetric about a vertical line called the axis of symmetry. The point where the curve turns — its lowest point if $a>0$, its highest if $a<0$ — is the vertex, and it lies on the axis of symmetry. The y-intercept is always $(0,c)$; the x-intercepts, if any, are the roots of $ax^2+bx+c=0$."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Axis of symmetry: } x=-\\frac{b}{2a} \\qquad \\text{Vertex: } \\left(-\\frac{b}{2a},\\; f\\!\\left(-\\frac{b}{2a}\\right)\\right)"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The **axis of symmetry** is $x=-\\dfrac{b}{2a}$. When two roots exist, this line sits exactly halfway between them.",
+        "The **vertex** has x-coordinate $-\\dfrac{b}{2a}$; substitute it into $f(x)$ for the y-coordinate. In vertex form the vertex is simply $(h,k)$.",
+        "The **y-intercept** is $(0,c)$; the **x-intercepts** are the roots (there may be two, one, or none).",
+        "The **maximum or minimum value** of the function is the y-coordinate of the vertex — a single number, not a coordinate pair."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Read the question wording carefully: the 'minimum value' of a quadratic is a number (the y-coordinate of the vertex), whereas the 'coordinates of the minimum point' is the pair $(x,y)$. Losing a mark here is entirely avoidable — answer exactly what is asked."
+    },
+    {
+      "type": "heading",
+      "content": "Solving quadratics 1: factorising"
+    },
+    {
+      "type": "text",
+      "content": "Solving $ax^2+bx+c=0$ means finding the x-values that make the function zero — the roots, which are the x-intercepts. Factorising rewrites the quadratic as a product of two brackets; then the zero-product principle says that if a product is zero, at least one factor must be zero. It is the fastest method in Paper 1 whenever the numbers are friendly."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve $2x^2+5x-3=0$ by factorising. [3]",
+      "solution": "Look for two numbers that multiply to $a\\times c=2\\times(-3)=-6$ and add to $b=5$. They are $6$ and $-1$.\n\nSplit the middle term:\n$2x^2+6x-x-3=0$  [M1: correct split of the middle term]\n\nFactor by grouping:\n$2x(x+3)-1(x+3)=0$\n$(2x-1)(x+3)=0$  [A1: correct factorisation]\n\nApply the zero-product principle:\n$2x-1=0 \\;\\Rightarrow\\; x=\\tfrac{1}{2}$\n$x+3=0 \\;\\Rightarrow\\; x=-3$\n\n**Roots:** $x=\\tfrac{1}{2}$ and $x=-3$.  [A1: both solutions]"
+    },
+    {
+      "type": "heading",
+      "content": "Solving quadratics 2: completing the square"
+    },
+    {
+      "type": "text",
+      "content": "Completing the square rewrites a quadratic in vertex form $a(x-h)^2+k$. It does two jobs at once: it solves the equation (rearrange and take square roots) and it hands you the vertex $(h,k)$. For a monic quadratic, halve the coefficient of $x$, square it, and balance."
+    },
+    {
+      "type": "formula",
+      "content": "x^2+bx+c=\\left(x+\\frac{b}{2}\\right)^2-\\frac{b^2}{4}+c"
+    },
+    {
+      "type": "workedExample",
+      "question": "By completing the square, express $f(x)=x^2-6x+11$ in the form $(x-h)^2+k$, and hence state the coordinates of the vertex and the minimum value of $f$. [4]",
+      "solution": "Take half the coefficient of $x$: half of $-6$ is $-3$. So the completed square starts $(x-3)^2$.\n\n$(x-3)^2=x^2-6x+9$, which is $2$ short of the constant $11$.  [M1: correct half-coefficient / $(x-3)^2$]\n\nBalance the constant:\n$f(x)=(x-3)^2-9+11=(x-3)^2+2$.  [A1: correct completed-square form]\n\nComparing with $(x-h)^2+k$ gives $h=3$, $k=2$.\n\n**Vertex:** $(3,2)$.  [A1]\nSince $a=1>0$ the parabola opens upwards, so this vertex is a minimum.\n\n**Minimum value of $f$:** $2$ (the y-coordinate of the vertex).  [A1]"
+    },
+    {
+      "type": "text",
+      "content": "Notice the payoff: one process delivered the vertex form, the vertex coordinates and the minimum value together. If a later part of a question needs any of these, completing the square is often the most economical route."
+    },
+    {
+      "type": "heading",
+      "content": "Solving quadratics 3: the quadratic formula"
+    },
+    {
+      "type": "text",
+      "content": "When factorising is not obvious or the answer is an awkward surd, the quadratic formula solves any quadratic. It is in your formula booklet, so the marks are in the careful, correct substitution — especially with the signs."
+    },
+    {
+      "type": "formula",
+      "content": "x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}"
+    },
+    {
+      "type": "examTip",
+      "content": "Before you substitute, write down $a$, $b$ and $c$ with their signs. The most common lost mark is mishandling a negative $b$ or $c$ inside the formula. Note too that the quantity under the root is the discriminant $\\Delta=b^2-4ac$ — the same object we use next to count the roots."
+    },
+    {
+      "type": "heading",
+      "content": "The discriminant: counting the roots without solving"
+    },
+    {
+      "type": "text",
+      "content": "The expression under the square root in the formula, $\\Delta=b^2-4ac$, is the discriminant. Its sign alone tells you how many real roots the equation has and how the parabola meets the x-axis — all without solving anything. This is why so many exam questions are phrased in terms of the number of roots rather than the roots themselves."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**$\\Delta>0$:** two distinct real roots — the parabola crosses the x-axis at two separate points.",
+        "**$\\Delta=0$:** one repeated (double) real root — the parabola touches the x-axis at its vertex.",
+        "**$\\Delta<0$:** no real roots — the parabola lies wholly above the x-axis (if $a>0$) or wholly below it (if $a<0$) and never crosses it.",
+        "'Equal roots', 'a repeated root', 'the line is a tangent to the parabola' and 'exactly one solution' all translate to the single condition $\\Delta=0$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the values of the constant $p$ for which $x^2+px+(p+3)=0$ has one repeated real root. [4]",
+      "solution": "One repeated real root means the discriminant is zero: $\\Delta=0$.  [M1: set discriminant to zero]\n\nIdentify the coefficients in terms of $p$: $a=1$, $b=p$, $c=p+3$.\n\n$b^2-4ac=0$\n$p^2-4(1)(p+3)=0$  [A1: correct substitution]\n$p^2-4p-12=0$\n\nSolve this quadratic in $p$ by factorising:\n$(p-6)(p+2)=0$  [M1: valid method to solve for $p$]\n\n**Possible values:** $p=6$ and $p=-2$.  [A1: both values]"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Misreading the sign of the discriminant** — $\\Delta<0$ means NO real roots, not one. Two distinct roots need $\\Delta>0$; a single repeated root needs $\\Delta=0$. Fix the direction of the inequality before you write anything.",
+        "**Flipping the sign of $h$ in vertex form** — for $a(x-h)^2+k$ the vertex is $(h,k)$, so $2(x+3)^2-5$ has vertex $(-3,-5)$, not $(3,-5)$. The bracket $(x+3)$ means $h=-3$.",
+        "**Getting the axis of symmetry sign wrong** — it is $x=-\\dfrac{b}{2a}$, so for $y=2x^2-12x+5$ the axis is $x=+3$, not $x=-3$. Include the minus sign that belongs to the formula.",
+        "**Confusing the sign of $a$ with the shape** — $a>0$ opens upwards (minimum), $a<0$ opens downwards (maximum). A downward parabola that misses the x-axis needs $a<0$ AND $\\Delta<0$.",
+        "**Reporting a value when a point was asked (or vice versa)** — the minimum VALUE is the single number $k$; the minimum POINT is $(h,k)$. Read the wording.",
+        "**Solving only one bracket** — after factorising to $(2x-1)(x+3)=0$ you must set BOTH factors to zero. Stopping at one root loses the second solution.",
+        "**Mishandling signs in the quadratic formula** — write $a$, $b$, $c$ with their signs before substituting, and remember $-b$ becomes $+$ when $b$ is negative."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "Paper 1 is marked analytically: each mark is tied to a specific line of working. An **M** mark rewards a correct method — the right approach, even if the arithmetic later slips. An **A** mark rewards accuracy and is DEPENDENT on the method: you cannot earn the A without the M it hangs off. The engine also applies **ISW** (ignore subsequent working — once a correct answer appears, later tidying does not lose it), **FT/ECF** (follow-through — a correct step built on an earlier wrong value still scores), and it accepts any correct **exact or equivalent form**. Study how each mark below is earned by one specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "The equation $x^2+kx+9=0$ has equal roots. Find the possible values of $k$. [4]",
+      "solution": "**Model answer — full working.**\n\n'Equal roots' means one repeated real root, so the discriminant is zero:\n$\\Delta=b^2-4ac=0$.\n\nIdentify the coefficients: $a=1$, $b=k$, $c=9$.\n\n$k^2-4(1)(9)=0$\n$k^2-36=0$\n\nSolve for $k$:\n$k^2=36$\n$k=\\pm 6$.\n\n**Possible values:** $k=6$ and $k=-6$.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — set the discriminant to zero.** Awarded for recognising that equal roots require $\\Delta=0$ and writing $b^2-4ac=0$ (or the equivalent statement in words followed by the correct expression). This is a METHOD mark: it is earned for the right approach even if the algebra later slips.\n- **M1 — form the equation in $k$.** Awarded for substituting $a=1$, $b=k$, $c=9$ to reach $k^2-4(9)=0$, i.e. $k^2-36=0$. The engine checks that the correct values went into the correct places.\n- **A1 — solve for $k$.** Awarded for $k=\\pm 6$. This ACCURACY mark depends on the two method marks above; it cannot be earned without them.\n- **A1 — both values stated.** Awarded for giving BOTH $k=6$ and $k=-6$. A candidate who writes only $k=6$ scores the first A1 but not this one — the second root is what this mark is for.\n\n**Follow-through (FT/ECF).** If a candidate mis-stated a coefficient but then applied a fully correct method to THEIR equation, the method marks stand and the final A-marks can follow through on their own value, provided the work is shown.\n\n**Exact / equivalent forms and ISW.** The engine accepts any correct equivalent: $k=\\pm 6$, or the pair '$k=6$ or $k=-6$', or $\\{-6,6\\}$ all score. Exact forms are accepted rather than demanded — had the answer been a surd such as $k=\\pm 6\\sqrt{2}$ it would be accepted in exact form and would not need decimal conversion. And by ISW, once $k=\\pm 6$ is written, any further irrelevant tidying does not lose the mark.\n\n**Bottom line:** two of the four marks are method marks that survive an arithmetic slip, and the accuracy marks are protected by follow-through. A candidate who writes only '$k=6$' with no working risks 3 of the 4 marks; a candidate who states $\\Delta=0$, forms $k^2-36=0$ and gives both $\\pm 6$ banks all four."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: name the condition ($\\Delta=0$ for equal roots), write the equation you form, then solve and state EVERY value. The method marks and follow-through are what protect your score when the arithmetic slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Quadratics are a template for the rest of the functions unit. Completing the square reappears as the standard way to handle the vertex of any parabola and, later, to derive results by transformation; the discriminant returns whenever a question asks how many times two graphs meet or when a line is tangent to a curve. The three-forms habit — read the question, pick the form that reveals the wanted feature, convert if needed — carries directly into cubics, rational functions and the graph-sketching that dominates Paper 1. Master it here and much of what follows becomes variation on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 1 quadratic marked: solve a discriminant problem with full working",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=2.3&component=paper_1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Quadratic Function Grapher",
+          "href": "https://www.geogebra.org/m/V69G9TfC"
+        },
+        {
+          "label": "IB Formula Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/dp-in-practice/formula-booklet/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Quadratic Function Grapher",
+    "embedUrl": "https://www.geogebra.org/classic?material=V69G9TfC",
+    "launchUrl": "https://www.geogebra.org/classic?material=V69G9TfC",
+    "hint": "Use “Quadratic Function Grapher” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "SL 2.3",
+      "title": "The quadratic function $f(x) = ax^2 + bx + c$: its graph (parabola), its axis of symmetry $x = -\\frac{b}{2a}$, its vertex $(-\\frac{b}{2a}, f(-\\frac{b}{2a}))$, its $x$- and $y$-intercepts.",
+      "detail": "Analysing the key features of a parabola from its standard form."
+    },
+    {
+      "code": "SL 2.5",
+      "title": "The quadratic formula. The discriminant $\\Delta = b^2 - 4ac$ and the nature of the roots.",
+      "detail": "Using the discriminant to determine the number and type of roots of a quadratic equation."
+    },
+    {
+      "code": "SL 2.6",
+      "title": "Completing the square. Vertex form: $f(x) = a(x-h)^2 + k$.",
+      "detail": "Converting a quadratic from standard form to vertex form to find the vertex."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "2-3-quadratic-functions-and-equations-q1",
+      "prompt": "Consider the quadratic function $f(x) = 2x^2 - 8x + 5$. \\\\ (a) Express $f(x)$ in the form $a(x-h)^2 + k$. [2] \\\\ (b) Write down the coordinates of the vertex of the graph of $y=f(x)$. [1] \\\\ (c) Find the equation of the axis of symmetry of the graph. [1]",
+      "marks": 4,
+      "commandTerm": "Find",
+      "difficulty": "foundation",
+      "syllabusRef": "SL 2.6",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) Attempt to complete the square by factoring out 2. $f(x) = 2(x^2 - 4x) + 5$.",
+          "marks": 1
+        },
+        {
+          "text": "$f(x) = 2((x-2)^2 - 4) + 5 = 2(x-2)^2 - 8 + 5 = 2(x-2)^2 - 3$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) The coordinates of the vertex are $(2, -3)$.",
+          "marks": 1
+        },
+        {
+          "text": "(c) The equation of the axis of symmetry is $x=2$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) To express $f(x)$ in vertex form, we complete the square. \\\\ First, factor out the leading coefficient from the first two terms: \\\\ $f(x) = 2(x^2 - 4x) + 5$. \\\\ Next, complete the square inside the bracket. Take half of the coefficient of $x$ (which is -4), square it, and add and subtract it inside the bracket: half of -4 is -2, and $(-2)^2=4$. \\\\ $f(x) = 2((x^2 - 4x + 4) - 4) + 5$. \\\\ $f(x) = 2((x-2)^2 - 4) + 5$. \\\\ Now, distribute the 2 and simplify: \\\\ $f(x) = 2(x-2)^2 - 8 + 5$. \\\\ $f(x) = 2(x-2)^2 - 3$. \\\\ (b) The vertex form is $a(x-h)^2+k$, where the vertex is at $(h, k)$. Comparing this to $f(x) = 2(x-2)^2 - 3$, we can see that $h=2$ and $k=-3$. So, the vertex is $(2, -3)$. \\\\ (c) The axis of symmetry is a vertical line passing through the vertex, with the equation $x=h$. Therefore, the equation of the axis of symmetry is $x=2$."
+    },
+    {
+      "id": "2-3-quadratic-functions-and-equations-q2",
+      "prompt": "The equation $kx^2 + (k-2)x - 2 = 0$, where $k \\neq 0$, has two distinct real roots. Find the set of possible values for $k$.",
+      "marks": 6,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "SL 2.5",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "For two distinct real roots, the discriminant $\\Delta > 0$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly identifies $a=k, b=k-2, c=-2$ and substitutes into discriminant: $\\Delta = (k-2)^2 - 4(k)(-2)$.",
+          "marks": 1
+        },
+        {
+          "text": "Sets up the inequality and simplifies: $(k-2)^2 + 8k > 0 \\implies k^2 - 4k + 4 + 8k > 0$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly simplifies to $k^2 + 4k + 4 > 0$, which is $(k+2)^2 > 0$.",
+          "marks": 1
+        },
+        {
+          "text": "Recognises that a square is always non-negative, so the inequality is true for all real numbers except where it is equal to zero.",
+          "marks": 1
+        },
+        {
+          "text": "The expression equals zero when $k=-2$. The initial condition is $k \\neq 0$. So the solution is $k \\in \\mathbb{R}$, $k \\neq -2$ and $k \\neq 0$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "For a quadratic equation to have two distinct real roots, its discriminant, $\\Delta = b^2 - 4ac$, must be strictly greater than zero. \\\\ For the equation $kx^2 + (k-2)x - 2 = 0$, we have $a=k$, $b=k-2$, and $c=-2$. \\\\ The discriminant is: \\\\ $\\Delta = (k-2)^2 - 4(k)(-2)$ \\\\ $\\Delta = (k^2 - 4k + 4) + 8k$ \\\\ $\\Delta = k^2 + 4k + 4$. \\\\ We require $\\Delta > 0$, so we must solve the inequality: \\\\ $k^2 + 4k + 4 > 0$. \\\\ The left side is a perfect square: \\\\ $(k+2)^2 > 0$. \\\\ The square of any real number is always greater than or equal to zero. The inequality $(k+2)^2 > 0$ is therefore true for all real values of $k$, except for the value that makes the expression equal to zero. \\\\ $(k+2)^2 = 0 \\implies k+2 = 0 \\implies k = -2$. \\\\ So, the inequality holds for all $k \\in \\mathbb{R}$ such that $k \\neq -2$. \\\\ The question states this is a quadratic equation, which implies that the coefficient of $x^2$ is not zero, so $k \\neq 0$. \\\\ Combining these conditions, the set of possible values for $k$ is all real numbers except for 0 and -2."
+    },
+    {
+      "id": "2-3-quadratic-functions-and-equations-q3",
+      "prompt": "The path of a projectile is modelled by the function $h(t) = -4.9t^2 + 24.5t + 2$, where $h$ is the height in metres above the ground and $t$ is the time in seconds after launch. \\\\ (a) Find the initial height of the projectile. [1] \\\\ (b) Calculate the maximum height reached by the projectile. [3] \\\\ (c) Find the time it takes for the projectile to hit the ground. Give your answer correct to 3 significant figures. [3]",
+      "marks": 7,
+      "commandTerm": "Calculate",
+      "difficulty": "standard",
+      "syllabusRef": "SL 2.3",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) Initial height is $h(0) = 2$ metres.",
+          "marks": 1
+        },
+        {
+          "text": "(b) Attempts to find the time of maximum height using $t = -\\frac{b}{2a} = -\\frac{24.5}{2(-4.9)}$.",
+          "marks": 1
+        },
+        {
+          "text": "$t=2.5$ seconds.",
+          "marks": 1
+        },
+        {
+          "text": "Substitutes $t=2.5$ into $h(t)$ to find maximum height $h(2.5) = 32.625$. Max height is $32.6$ m.",
+          "marks": 1
+        },
+        {
+          "text": "(c) Sets $h(t)=0$: $-4.9t^2 + 24.5t + 2 = 0$.",
+          "marks": 1
+        },
+        {
+          "text": "Attempts to solve the quadratic equation (e.g., using calculator solver).",
+          "marks": 1
+        },
+        {
+          "text": "$t \\approx 5.08$ seconds (rejecting the negative solution $t \\approx -0.0808$).",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The initial height occurs at time $t=0$. \\\\ $h(0) = -4.9(0)^2 + 24.5(0) + 2 = 2$. \\\\ The initial height is 2 metres. \\\\ (b) The function is a downward-opening parabola. The maximum height occurs at the vertex. The time-coordinate of the vertex is given by $t = -\\frac{b}{2a}$. \\\\ Here, $a=-4.9$ and $b=24.5$. \\\\ $t = -\\frac{24.5}{2(-4.9)} = -\\frac{24.5}{-9.8} = 2.5$ seconds. \\\\ To find the maximum height, we substitute this time back into the function $h(t)$: \\\\ $h(2.5) = -4.9(2.5)^2 + 24.5(2.5) + 2$ \\\\ $h(2.5) = -4.9(6.25) + 61.25 + 2$ \\\\ $h(2.5) = -30.625 + 61.25 + 2 = 32.625$. \\\\ The maximum height reached is 32.6 metres (to 3 s.f.). \\\\ (c) The projectile hits the ground when its height $h(t)$ is 0. We need to solve the equation: \\\\ $-4.9t^2 + 24.5t + 2 = 0$. \\\\ Using a graphic display calculator's polynomial root finder, we get two solutions for $t$: \\\\ $t_1 \\approx 5.0803...$ and $t_2 \\approx -0.0803...$ \\\\ Since time must be positive, we discard the negative solution. \\\\ The time it takes for the projectile to hit the ground is $t \\approx 5.08$ seconds (to 3 s.f.)."
+    },
+    {
+      "id": "2-3-quadratic-functions-and-equations-q4",
+      "prompt": "Find the set of all real values of $m$ for which the quadratic equation $(m-1)x^2 + 2mx + (m+2) = 0$ has two distinct, negative real roots.",
+      "marks": 8,
+      "commandTerm": "Find",
+      "difficulty": "challenge",
+      "syllabusRef": "SL 2.5",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "For two distinct real roots, $\\Delta > 0$.",
+          "marks": 1
+        },
+        {
+          "text": "Calculates discriminant: $\\Delta = (2m)^2 - 4(m-1)(m+2) = 8 - 4m$.",
+          "marks": 1
+        },
+        {
+          "text": "Solves $\\Delta > 0 \\implies 8 - 4m > 0 \\implies m < 2$.",
+          "marks": 1
+        },
+        {
+          "text": "For two negative roots, sum of roots $< 0$ and product of roots $> 0$.",
+          "marks": 1
+        },
+        {
+          "text": "Sum of roots: $-\\frac{2m}{m-1} < 0 \\implies \\frac{m}{m-1} > 0$. This gives $m < 0$ or $m > 1$.",
+          "marks": 1
+        },
+        {
+          "text": "Product of roots: $\\frac{m+2}{m-1} > 0$. This gives $m < -2$ or $m > 1$.",
+          "marks": 1
+        },
+        {
+          "text": "Attempts to find the intersection of the three conditions: ($m < 2$) AND ($m < 0$ or $m > 1$) AND ($m < -2$ or $m > 1$).",
+          "marks": 1
+        },
+        {
+          "text": "Correct final set of values: $m < -2$ or $1 < m < 2$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "For the equation to have two distinct, negative real roots, three conditions must be satisfied: \\\\ 1. The roots must be real and distinct, which means the discriminant $\\Delta > 0$. \\\\ 2. The sum of the roots must be negative. \\\\ 3. The product of the roots must be positive. \\\\ Also note that for a quadratic equation, $m-1 \\neq 0$, so $m \\neq 1$. This is handled by the inequalities. \\\\ **Condition 1: Discriminant** \\\\ $\\Delta = b^2 - 4ac = (2m)^2 - 4(m-1)(m+2)$ \\\\ $\\Delta = 4m^2 - 4(m^2 + m - 2) = 4m^2 - 4m^2 - 4m + 8 = 8 - 4m$. \\\\ We require $\\Delta > 0$: \\\\ $8 - 4m > 0 \\implies 8 > 4m \\implies m < 2$. \\\\ **Condition 2: Sum of Roots** \\\\ Let the roots be $\\alpha$ and $\\beta$. $\\alpha + \\beta < 0$. \\\\ The sum of the roots is $-\\frac{b}{a} = -\\frac{2m}{m-1}$. \\\\ We require $-\\frac{2m}{m-1} < 0 \\implies \\frac{m}{m-1} > 0$. \\\\ The critical values are $m=0$ and $m=1$. Analysing the signs on a number line, this inequality holds when $m < 0$ or $m > 1$. \\\\ **Condition 3: Product of Roots** \\\\ $\\alpha \\beta > 0$. \\\\ The product of the roots is $\\frac{c}{a} = \\frac{m+2}{m-1}$. \\\\ We require $\\frac{m+2}{m-1} > 0$. \\\\ The critical values are $m=-2$ and $m=1$. Analysing the signs on a number line, this inequality holds when $m < -2$ or $m > 1$. \\\\ **Intersection of Conditions** \\\\ We need to find the values of $m$ that satisfy all three conditions simultaneously: \\\\ (1) $m < 2$ \\\\ (2) $m < 0$ or $m > 1$ \\\\ (3) $m < -2$ or $m > 1$ \\\\ First, let's find the intersection of (2) and (3). The common regions are $m < -2$ and $m > 1$. \\\\ Now, we must intersect this result, $(m < -2$ or $m > 1)$, with condition (1), $m < 2$. \\\\ - The region $m < -2$ is entirely contained within $m < 2$, so $m < -2$ is part of the solution. \\\\ - The region $m > 1$ must also satisfy $m < 2$. The intersection is $1 < m < 2$. \\\\ Combining these, the final set of values for $m$ is $m < -2$ or $1 < m < 2$."
+    }
+  ]
+}

@@ -96,6 +96,21 @@ const QuickCheckSchema = z.object({
   options: z.array(z.string().min(1)).min(2).max(5).optional(),
 })
 
+const QuestionBankItemSchema = z.object({
+  id: z.string().min(1),
+  prompt: z.string().min(1),
+  marks: z.number().int().positive(),
+  commandTerm: z.string().min(1).optional(),
+  difficulty: z.enum(['foundation', 'standard', 'challenge']).optional(),
+  syllabusRef: z.string().min(1).optional(),
+  paper: z.string().min(1).optional(),
+  calculator: z.boolean().optional(),
+  markScheme: z
+    .array(z.object({ text: z.string().min(1), marks: z.number() }))
+    .min(1),
+  modelAnswer: z.string().min(1),
+})
+
 const DiagramStepStateSchema = z.object({
   focus: z.array(z.string().min(1)).min(1),
   caption: z.string().optional(),
@@ -141,6 +156,7 @@ export const GeneratedLessonSchema = z.object({
   generatedAt: z.string().datetime().optional(),
   generatorVersion: z.string().optional(),
   quickCheck: z.array(QuickCheckSchema).optional(),
+  questionBank: z.array(QuestionBankItemSchema).optional(),
   interactiveEmbed: z
     .object({
       provider: z.enum(['phet', 'geogebra', 'custom']),

@@ -32,6 +32,7 @@ import {
   SecHead,
   Faq,
   PracticeSection,
+  QuestionBankSection,
   LessonCheckpoint,
   LessonMasteryBand,
 } from './lesson-blocks'
@@ -135,6 +136,7 @@ export function CourseLessonPage({
         { id: 'quiz', label: 'Quick check', on: !!L.quiz?.length && !locked },
         { id: 'cards', label: 'Flashcards', on: !!L.flashcards?.length && !locked },
         { id: 'takeaways', label: 'Key takeaways', on: !!L.takeaways?.length },
+        { id: 'question-bank', label: 'Practice questions', on: !!L.questionBank?.length },
         { id: 'practice', label: 'Practice', on: !!L.practice && !locked },
         { id: 'resources', label: 'Extra links', on: !!L.resources?.length },
         { id: 'faqs', label: 'FAQs', on: !!L.faqs?.length },
@@ -561,7 +563,9 @@ export function CourseLessonPage({
                 <SecHead
                   k="·"
                   title="What this topic covers"
-                  sub="The official Cambridge syllabus points this lesson works through."
+                  sub={`The official ${
+                    basePath?.startsWith('/ib') ? 'IB' : 'Cambridge'
+                  } syllabus points this lesson works through.`}
                 />
                 <ol className="subtopics">
                   {L.subtopics.map((st, i) => (
@@ -773,10 +777,37 @@ export function CourseLessonPage({
               </section>
             ) : null}
 
+            {L.questionBank?.length ? (
+              <section id="question-bank" className="lsec">
+                <SecHead
+                  k="11"
+                  title="Practice questions — then mark your working"
+                  sub={
+                    locked && L.questionBank.length > 1
+                      ? 'The first question is free. Unlock the full bank and mark your own working against the scheme.'
+                      : 'Original exam-style questions with a mark-by-mark scheme. Reveal the scheme and worked solution, or snap your working and get it marked.'
+                  }
+                />
+                <QuestionBankSection
+                  lesson={L}
+                  returnPath={pathname}
+                  markSubject={
+                    basePath?.startsWith('/ib') && !L.code.startsWith('ib-')
+                      ? `ib-${L.code}`
+                      : L.code
+                  }
+                  limit={locked ? 1 : undefined}
+                />
+                {locked && L.questionBank.length > 1 ? (
+                  <LessonUpsell feature="practice" signedIn={signedIn} />
+                ) : null}
+              </section>
+            ) : null}
+
             {L.practice ? (
               <section id="practice" className="lsec">
                 <SecHead
-                  k="11"
+                  k="12"
                   title="Practice — then mark it"
                   sub="The whole point: a real Cambridge question, marked mark-by-mark."
                 />

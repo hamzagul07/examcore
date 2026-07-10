@@ -1,0 +1,521 @@
+{
+  "slug": "2-4-transformations-of-graphs",
+  "topicCode": "2.4",
+  "unit": {
+    "code": "2",
+    "title": "Functions"
+  },
+  "title": "Transformations of graphs",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "pilot",
+  "summary": "Transformations let you build a whole family of graphs from a single parent function by moving, flipping and scaling it. This lesson covers the four transformation types on the syllabus — translations ($y=f(x)+k$ and $y=f(x-h)$), reflections ($y=-f(x)$ and $y=f(-x)$), the vertical stretch $y=af(x)$ and the horizontal stretch $y=f(bx)$ with scale factor $\\frac{1}{b}$ — and shows how each acts on key features such as the vertex, intercepts and asymptotes. It then tackles the part students lose most marks on: combining transformations and applying them in the correct order. Every worked example is laid out exactly the way our marking engine awards marks, because on Paper 1 how clearly you describe and apply each transformation decides how many of the method and accuracy marks you keep.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Identify and describe translations, reflections and stretches of a function $y=f(x)$ with full, precise wording.",
+    "Apply a single transformation, or a sequence of transformations, to a graph, to its equation, or to a point on the graph.",
+    "Determine the effect of a transformation on key features such as the vertex, intercepts and asymptotes.",
+    "Apply combined transformations in the correct order and explain why the order can change the result.",
+    "Present descriptions and working so that method (M) and accuracy (A) marks, with follow-through, protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "2.4"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
+  "simpleExplanation": {
+    "title": "Shape-Shifting Functions",
+    "summary": "Learn how to move, flip and stretch the graph of a function using simple algebraic rules. Each rule changes a graph's position or shape in a completely predictable way, so from one parent function you can build a whole family of related graphs.",
+    "analogy": "Think of the graph as a photo on a screen. You can drag it up, down, left or right (a translation); flip it in a mirror (a reflection); or pull it taller or wider (a stretch). Each drag, flip and pull corresponds to one specific change in the equation — and the trick is knowing which change does what.",
+    "steps": [
+      "Start with the parent function $y=f(x)$ and note its key features: intercepts, vertex or turning points, and any asymptotes.",
+      "Look at changes INSIDE the brackets, like $f(x-h)$ or $f(bx)$. These are horizontal, they act on the $x$-coordinates, and they behave in the opposite way to what you expect.",
+      "Look at changes OUTSIDE the brackets, like $af(x)$ or $f(x)+k$. These are vertical, they act on the $y$-coordinates, and they behave the way you expect.",
+      "When several transformations are combined, apply them in a sensible order — usually stretches and reflections first, then translations — and track a general point $(x,y)$ so nothing is lost."
+    ]
+  },
+  "keyConcepts": [
+    "translations",
+    "reflections",
+    "stretches",
+    "order of combined transformations"
+  ],
+  "flashcards": [
+    {
+      "front": "What is the transformation represented by $y = f(x) + k$?",
+      "back": "A vertical translation. The graph shifts up by $k$ units if $k>0$ and down by $|k|$ units if $k<0$ — a translation by the vector $\\begin{pmatrix} 0 \\\\ k \\end{pmatrix}$.",
+      "pillLabel": "Translation"
+    },
+    {
+      "front": "What is the transformation represented by $y = f(x - h)$?",
+      "back": "A horizontal translation. The graph shifts right by $h$ units if $h>0$ and left by $|h|$ units if $h<0$ — a translation by the vector $\\begin{pmatrix} h \\\\ 0 \\end{pmatrix}$.",
+      "pillLabel": "Translation"
+    },
+    {
+      "front": "Common Trap: which way does $y = f(x+4)$ move?",
+      "back": "It moves 4 units to the LEFT. Inside-bracket changes act on $x$ and go the OPPOSITE way to the sign. The feature that was at $x=0$ now occurs when $x+4=0$, i.e. at $x=-4$.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "What is the transformation represented by $y = af(x)$?",
+      "back": "A vertical stretch parallel to the $y$-axis with scale factor $a$. Every $y$-coordinate is multiplied by $a$. If $0<|a|<1$ it is a compression. The $x$-axis is invariant, so $x$-intercepts do not move.",
+      "pillLabel": "Stretch"
+    },
+    {
+      "front": "What is the transformation represented by $y = f(bx)$?",
+      "back": "A horizontal stretch parallel to the $x$-axis with scale factor $\\frac{1}{b}$. Every $x$-coordinate is multiplied by $\\frac{1}{b}$. The $y$-axis is invariant, so the $y$-intercept does not move.",
+      "pillLabel": "Stretch"
+    },
+    {
+      "front": "Common Trap: what is the stretch factor for $y = f(2x)$?",
+      "back": "The horizontal stretch factor is $\\frac{1}{2}$, NOT 2. So $y=f(2x)$ is a horizontal compression — every $x$-coordinate is halved.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "What is the transformation represented by $y = -f(x)$?",
+      "back": "A reflection in the $x$-axis. Every point $(x,y)$ maps to $(x,-y)$ — all $y$-coordinates change sign.",
+      "pillLabel": "Reflection"
+    },
+    {
+      "front": "What is the transformation represented by $y = f(-x)$?",
+      "back": "A reflection in the $y$-axis. Every point $(x,y)$ maps to $(-x,y)$ — all $x$-coordinates change sign.",
+      "pillLabel": "Reflection"
+    },
+    {
+      "front": "What is an invariant point?",
+      "back": "A point that does not move under a transformation. Under a vertical stretch $y=af(x)$ every point on the $x$-axis (the $x$-intercepts) is invariant; under a horizontal stretch $y=f(bx)$ the $y$-intercept is invariant.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Does the order of combined transformations matter?",
+      "back": "Usually yes. A stretch then a translation generally differs from a translation then a stretch. Order does NOT matter only when the two transformations act on different axes (e.g. a horizontal translation and a vertical stretch).",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "How does a point $(x,y)$ move under $y = af(b(x-h)) + k$?",
+      "back": "It maps to $\\left(\\dfrac{x}{b} + h,\\; ay + k\\right)$: divide the $x$-coordinate by $b$ then add $h$; multiply the $y$-coordinate by $a$ then add $k$.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Exam Trap: describing a stretch fully",
+      "back": "A description earns full marks only if it states the type, the scale factor AND the direction/axis. 'Stretch by 3' is incomplete; 'vertical stretch parallel to the $y$-axis, scale factor 3' is complete.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "The graph of $y=f(x)$ is transformed to $y=f(x-5)$. The graph moves:",
+      "options": [
+        "5 units to the left",
+        "5 units to the right",
+        "5 units up",
+        "5 units down"
+      ],
+      "answer": "5 units to the right"
+    },
+    {
+      "prompt": "The transformation $y=f(x+3)$ is a horizontal translation. In which direction, and why?",
+      "options": [
+        "Right, because $+3$ means add 3 to $x$",
+        "Left, because inside-bracket changes act in the opposite direction",
+        "Up, because it changes $y$",
+        "Down, because the sign is positive"
+      ],
+      "answer": "Left, because inside-bracket changes act in the opposite direction"
+    },
+    {
+      "prompt": "The graph of $y=f(x)$ is transformed to $y=f(3x)$. This is a horizontal stretch with scale factor:",
+      "options": [
+        "$3$",
+        "$\\frac{1}{3}$",
+        "$-3$",
+        "$9$"
+      ],
+      "answer": "$\\frac{1}{3}$"
+    },
+    {
+      "prompt": "Which transformation leaves the $x$-intercepts of a graph unchanged?",
+      "options": [
+        "A vertical stretch $y=af(x)$",
+        "A vertical translation $y=f(x)+k$",
+        "A horizontal translation $y=f(x-h)$",
+        "A reflection in the $y$-axis $y=f(-x)$"
+      ],
+      "answer": "A vertical stretch $y=af(x)$"
+    },
+    {
+      "prompt": "To obtain $y=2f(x)+5$ from $y=f(x)$ using the standard 'stretch before translate' order, you should:",
+      "options": [
+        "Translate up 5 first, then stretch vertically by 2",
+        "Stretch vertically by 2 first, then translate up 5",
+        "Translate up 5 first, then stretch horizontally by 2",
+        "The order makes no difference here"
+      ],
+      "answer": "Stretch vertically by 2 first, then translate up 5"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Does the order of transformations always matter?",
+      "a": "Not always, but often. Consider a vertical translation up by 2 then a vertical stretch by 3: that gives $3(f(x)+2)=3f(x)+6$. Reverse the order — stretch first, then translate — and you get $3f(x)+2$. Those are different graphs. Order does NOT matter only when the transformations act on different axes, such as a horizontal translation combined with a vertical stretch."
+    },
+    {
+      "q": "How do I remember whether $f(x+2)$ shifts left or right?",
+      "a": "Ask which input makes the bracket behave like the original. For $f(x+2)$ the bracket equals zero when $x+2=0$, i.e. at $x=-2$. So the feature that used to sit at $x=0$ now sits at $x=-2$ — the graph has moved 2 units LEFT. Inside-bracket changes always go the opposite way to the sign."
+    },
+    {
+      "q": "What's the difference between $y=2f(x)$ and $y=f(2x)$?",
+      "a": "$y=2f(x)$ is a vertical stretch, scale factor 2 — every $y$-coordinate is doubled. $y=f(2x)$ is a horizontal stretch, scale factor $\\frac{1}{2}$ — every $x$-coordinate is halved (a horizontal compression). The '2' outside acts vertically the obvious way; the '2' inside acts horizontally the reciprocal way."
+    },
+    {
+      "q": "How much detail does a 'describe the transformation' question need?",
+      "a": "Be precise and complete. For a translation, give the vector or the direction and number of units. For a reflection, name the line (the $x$-axis or the $y$-axis). For a stretch, give the scale factor AND the direction/axis. A description missing the scale factor or the axis will drop the accuracy mark even if the idea is right."
+    },
+    {
+      "q": "How do transformations affect an asymptote?",
+      "a": "Treat the asymptote like any other feature and move it with the graph. A vertical asymptote is horizontal-only information, so it is shifted by horizontal translations and horizontal stretches but is untouched by vertical ones; a horizontal asymptote is moved by vertical translations, vertical stretches and reflection in the $x$-axis. For example, applying $y=f(x)+k$ to a curve with horizontal asymptote $y=0$ moves that asymptote to $y=k$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Understanding how to transform the graph of a function is a core skill in Analysis and Approaches. It lets you take a simple parent function, such as $y=x^2$ or $y=\\sin x$, and reshape it to model something more complex. In this lesson we work through the four transformation types on the syllabus — translations, reflections, and vertical and horizontal stretches — see how each one acts on key features like the vertex, intercepts and asymptotes, and then combine them in the right order. As in every calculation-and-description topic, the worked examples are laid out exactly the way our engine marks your own practice: the method and the description are on the page, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "Translations: sliding the graph"
+    },
+    {
+      "type": "text",
+      "content": "A translation slides the whole graph to a new position without changing its shape, size or orientation. Vertical translations act outside the function and behave intuitively; horizontal translations act inside the brackets and behave in the opposite direction to the sign — the single most common source of error in this topic."
+    },
+    {
+      "type": "formula",
+      "content": "Vertical translation: $y = f(x) + k$\nShifts the graph by the vector $\\begin{pmatrix} 0 \\\\ k \\end{pmatrix}$.\n\nHorizontal translation: $y = f(x-h)$\nShifts the graph by the vector $\\begin{pmatrix} h \\\\ 0 \\end{pmatrix}$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "For vertical shifts $y=f(x)+k$: $k>0$ moves the graph UP, $k<0$ moves it DOWN.",
+        "For horizontal shifts the effect is reversed: $y=f(x-h)$ with $h>0$ (e.g. $f(x-3)$) moves the graph to the RIGHT.",
+        "Likewise $y=f(x+h)$ with $h>0$ (e.g. $f(x+3)$) moves the graph to the LEFT.",
+        "Translations move every key feature with the graph: the vertex, the intercepts and any asymptote all shift by the same vector."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Reflections: flipping the graph"
+    },
+    {
+      "type": "text",
+      "content": "A reflection flips the graph across a line to create a mirror image. On the SL syllabus we reflect in the $x$-axis and the $y$-axis. Reflecting in the $x$-axis negates the output; reflecting in the $y$-axis negates the input."
+    },
+    {
+      "type": "formula",
+      "content": "Reflection in the $x$-axis: $y = -f(x)$\nEvery point $(x, y)$ maps to $(x, -y)$.\n\nReflection in the $y$-axis: $y = f(-x)$\nEvery point $(x, y)$ maps to $(-x, y)$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$y=-f(x)$ negates every $y$-coordinate; the $x$-intercepts stay fixed because their $y$-value is already zero.",
+        "$y=f(-x)$ negates every $x$-coordinate; the $y$-intercept stays fixed because its $x$-value is already zero.",
+        "Any point that lies on the mirror line — the axis of reflection — is invariant."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The graph of $y = f(x)$ passes through the point $A(-2, 6)$. The graph is transformed by a reflection in the $x$-axis followed by a translation of $\\begin{pmatrix} 3 \\\\ -4 \\end{pmatrix}$. Find the coordinates of the image of point $A$. [4]",
+      "solution": "Track the single point $A(-2,6)$ through the two transformations in order.\n\n**Step 1 — Reflection in the $x$-axis.** This maps $(x,y)\\to(x,-y)$.\nSo $A(-2,6)\\to A'(-2,-6)$.  [M1: apply the reflection to the point]\n\n**Step 2 — Translation by $\\begin{pmatrix} 3 \\\\ -4 \\end{pmatrix}$.** This maps $(x,y)\\to(x+3,\\,y-4)$.\nNew $x$-coordinate: $-2+3 = 1$.  [A1]\nNew $y$-coordinate: $-6-4 = -10$.  [A1]\n\n**Final answer:** the image of $A$ is $(1,-10)$.  [A1]"
+    },
+    {
+      "type": "heading",
+      "content": "Stretches and compressions: scaling the graph"
+    },
+    {
+      "type": "text",
+      "content": "A stretch scales the graph away from an axis; a compression pushes it towards an axis. A change outside the function scales it vertically by exactly the factor shown; a change inside the brackets scales it horizontally by the RECIPROCAL of the factor shown — another reversal to watch for."
+    },
+    {
+      "type": "formula",
+      "content": "Vertical stretch: $y = af(x)$\nStretch parallel to the $y$-axis, scale factor $a$. The $x$-axis is invariant.\n\nHorizontal stretch: $y = f(bx)$\nStretch parallel to the $x$-axis, scale factor $\\frac{1}{b}$. The $y$-axis is invariant."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "For a vertical stretch $y=af(x)$: if $|a|>1$ it is a stretch, if $0<|a|<1$ it is a compression.",
+        "For a horizontal stretch $y=f(bx)$: the factor is $\\frac{1}{b}$, so $|b|>1$ compresses (factor $<1$) and $0<|b|<1$ stretches (factor $>1$) — the counter-intuitive case.",
+        "Points on the invariant line do not move: for a vertical stretch the $x$-intercepts are invariant; for a horizontal stretch the $y$-intercept is invariant.",
+        "A horizontal asymptote is unaffected by a horizontal stretch; a vertical asymptote is unaffected by a vertical stretch."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Let $f(x) = x^2$. The graph of $f$ is transformed to the graph of $g$ by a vertical stretch of scale factor 2, followed by a horizontal translation of 3 units to the right. \n(a) Find the equation of $g(x)$. \n(b) The point $P(1,1)$ lies on $y=f(x)$. Find the coordinates of its image on $y=g(x)$. [5]",
+      "solution": "**(a) Build the equation in the given order, starting from $f(x)=x^2$.**\n\nStep 1 — Vertical stretch, scale factor 2. This sends $f(x)\\to 2f(x)$, so the intermediate function is $y=2x^2$.  [M1: multiply the whole function by 2]\n\nStep 2 — Horizontal translation 3 units right. This replaces $x$ with $(x-3)$: $g(x)=2(x-3)^2$.  [A1]\n\n**(b) Apply the same two transformations, in the same order, to the point $P(1,1)$.**\n\nStep 1 — Vertical stretch maps $(x,y)\\to(x,2y)$: $P(1,1)\\to P'(1,2)$.  [M1]\n\nStep 2 — Translation 3 right maps $(x,y)\\to(x+3,y)$: $P'(1,2)\\to P''(4,2)$.  [A1]\n\n**Final answer:** $g(x)=2(x-3)^2$ and the image of $P$ is $(4,2)$.\n\n*Check (ISW — a correct check earns nothing extra but confirms the answer):* $g(4)=2(4-3)^2 = 2$, so $(4,2)$ does lie on $y=g(x)$."
+    },
+    {
+      "type": "examTip",
+      "content": "The order of combined transformations is a frequent mark-loser. Unless a question tells you otherwise, apply stretches and reflections FIRST, then translations. For a composite $y = af(b(x-h)) + k$, deal with $a$ and $b$ before $h$ and $k$. Whatever the order, write down the effect on a general point $(x,y)$ so every step is visible and independently markable."
+    },
+    {
+      "type": "heading",
+      "content": "Effect on key features: vertex, intercepts and asymptotes"
+    },
+    {
+      "type": "text",
+      "content": "You rarely need to redraw a whole curve — usually you just transform its key features and read off the result. Treat each feature (vertex, $x$- and $y$-intercepts, and asymptotes) as a point or line and move it by the same rule as the graph. The only subtlety is which features a given transformation actually touches."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Vertex / turning point:** transform it like any point, applying horizontal changes to its $x$-coordinate and vertical changes to its $y$-coordinate.",
+        "**$x$-intercepts:** moved by horizontal translations and horizontal stretches; unchanged by a vertical stretch or a reflection in the $x$-axis (their $y$-value is already 0).",
+        "**$y$-intercept:** moved by vertical translations, vertical stretches and reflection in the $x$-axis; unchanged by a horizontal stretch or reflection in the $y$-axis.",
+        "**Horizontal asymptote:** moved by vertical translations, vertical stretches and reflection in the $x$-axis. **Vertical asymptote:** moved by horizontal translations, horizontal stretches and reflection in the $y$-axis."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Shifting $f(x-h)$ the wrong way** — $f(x-3)$ moves the graph 3 units to the RIGHT, not left. Inside-bracket changes act on $x$ in the opposite direction to their sign.",
+        "**Getting the horizontal stretch factor wrong** — $y=f(bx)$ has scale factor $\\frac{1}{b}$, not $b$. So $y=f(2x)$ compresses horizontally by $\\frac{1}{2}$; it does not stretch by 2.",
+        "**Confusing $2f(x)$ with $f(2x)$** — the first is a vertical stretch (factor 2, acts on $y$); the second is a horizontal stretch (factor $\\frac{1}{2}$, acts on $x$).",
+        "**Applying combined transformations in the wrong order** — for $y=af(x)+k$ the stretch comes before the translation; reversing them changes the graph. State and follow a consistent order.",
+        "**Giving an incomplete description** — a stretch needs its scale factor AND its axis/direction; a translation needs its vector or direction-and-magnitude; a reflection needs the mirror line. Missing detail loses the accuracy mark.",
+        "**Forgetting to move an asymptote** — an asymptote is a feature of the graph and must be translated or stretched along with it; leaving it in place is a common slip in reciprocal and exponential questions."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "On Paper 1 the marks are analytic: each is tied to a specific line of working — a method mark (M) for a correct approach or an answer mark (A) for a correct result — and follow-through (FT) means a wrong value early on need not cost you the marks that depend on it, provided your later working is correct on your own figures. The engine also accepts any equivalent correct form and applies 'ignore subsequent working' (ISW) once a correct answer is seen. But that protection only exists if your description and method are written down. Study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "The graph of $y=f(x)$ is transformed to $y=2f(x-3)$. Describe the two transformations and find the image of the point $(1, 4)$. [5]",
+      "solution": "**Model answer — full working.**\n\nWrite $y=2f(x-3)$ in the form $y=af(x-h)$, so $a=2$ and $h=3$. There are two transformations. Using the standard order, apply the horizontal translation (inside the bracket) and the vertical stretch (outside the bracket).\n\n**Transformation 1 — horizontal translation.** The $x-3$ inside the bracket is a translation by $\\begin{pmatrix} 3 \\\\ 0 \\end{pmatrix}$, i.e. 3 units in the positive $x$-direction (to the right).\n\n**Transformation 2 — vertical stretch.** The factor 2 outside the function is a vertical stretch parallel to the $y$-axis, scale factor 2.\n\n**Image of $(1,4)$.** Apply the horizontal translation first: $(1,4)\\to(1+3,\\,4)=(4,4)$. Then apply the vertical stretch: $(4,4)\\to(4,\\,2\\times 4)=(4,8)$.\n\n**Final answer:** a translation 3 units to the right and a vertical stretch of scale factor 2; the image of $(1,4)$ is $(4,8)$.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — identify the horizontal translation.** Awarded for recognising the $x-3$ as a horizontal translation (a translation in the $x$-direction). This is a METHOD mark: it is earned for naming the correct type of transformation even before the magnitude is stated.\n- **A1 — 3 units to the right.** Awarded for the correct magnitude and direction: 3 units in the positive $x$-direction. The engine accepts equivalent forms — 'translation by $\\begin{pmatrix} 3 \\\\ 0 \\end{pmatrix}$' or '3 units right' both score.\n- **M1 — identify the vertical stretch.** Awarded for recognising the factor 2 as a vertical stretch parallel to the $y$-axis.\n- **A1 — scale factor 2.** Awarded for stating the scale factor is 2 (with the vertical/$y$-axis direction). A bare 'stretch by 2' with no direction would not secure this mark.\n- **A1 — image $(4,8)$.** Awarded for the correctly transformed point. FOLLOW-THROUGH applies: a student who mis-stated the translation as, say, 3 left but then correctly applied THEIR own transformations to $(1,4)$ still earns this final mark on their own figures.\n\n**'Accept equivalent forms.'** The engine accepts the description as a vector or in words, in either order of the two transformations (they act on different axes here, so order does not change the image), and it applies ISW once the correct point $(4,8)$ is seen.\n\n**Bottom line:** of the 5 marks, two are method marks for correctly identifying the transformation types and survive a slip in the magnitude, and the final image mark is shielded by follow-through. A student who writes only '$(4,8)$' with no description risks losing up to 4 marks; a student who names both transformations, gives each magnitude with its direction, and shows the point being transformed keeps the method and accuracy marks even if one number slips."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through and 'accept equivalent forms'. So always show the method: state each transformation with its type, magnitude AND direction, then show the point being moved one step at a time. The method marks and follow-through are what protect your score when a single number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Transformations run through the whole functions strand. The same rules reshape the reciprocal, exponential and logarithmic graphs you meet next, where moving the asymptote correctly is the difference between a right and a wrong sketch. In trigonometry, amplitude, period and phase shift are simply the vertical stretch, horizontal stretch and horizontal translation of $\\sin x$ and $\\cos x$. And composing transformations here is the graphical face of composing functions. Master the habit — identify inside versus outside, describe each transformation completely, fix an order, and track a general point — and every graph you meet later becomes a variation on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 1 transformations question marked: describe the transformations and find the image with full working",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=2.4&component=paper_1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra Graph Transformations",
+          "href": "https://www.geogebra.org/m/cvef8qg7"
+        },
+        {
+          "label": "IB Mathematics: Analysis and Approaches guide (Topic 2 — Functions)",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "GeoGebra Graph Transformations",
+    "embedUrl": "https://www.geogebra.org/classic?material=cvef8qg7",
+    "launchUrl": "https://www.geogebra.org/classic?material=cvef8qg7",
+    "hint": "Use “GeoGebra Graph Transformations” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "SL 2.4",
+      "title": "Transformations of graphs",
+      "detail": "Translations, reflections, stretches and compressions. The graph of $y=af(bx+c)+d$."
+    },
+    {
+      "code": "SL 2.4",
+      "title": "Composite transformations",
+      "detail": "Understanding the effect of the order of transformations."
+    },
+    {
+      "code": "SL 2.4",
+      "title": "Absolute value transformations",
+      "detail": "Sketching graphs of $y=|f(x)|$ and $y=f(|x|)$."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "2-4-transformations-of-graphs-q1",
+      "prompt": "Let the graph of $y = f(x)$ be a parabola with its vertex at $(2, -1)$. The graph of $y = g(x)$ is obtained by transforming the graph of $y = f(x)$ by a vertical stretch with scale factor 3, followed by a translation by the vector $\\begin{pmatrix} 0 \\\\ 5 \\end{pmatrix}$. Find the coordinates of the vertex of the graph of $y = g(x)$.",
+      "marks": 4,
+      "commandTerm": "Find",
+      "difficulty": "foundation",
+      "syllabusRef": "SL 2.4",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Applying the vertical stretch to the y-coordinate of the vertex $(x, y) \\to (x, 3y)$.",
+          "marks": 1
+        },
+        {
+          "text": "Intermediate vertex after stretch is $(2, 3 \\times -1) = (2, -3)$.",
+          "marks": 1
+        },
+        {
+          "text": "Applying the translation to the new vertex $(x, y) \\to (x+0, y+5)$.",
+          "marks": 1
+        },
+        {
+          "text": "Final vertex is $(2, -3+5) = (2, 2)$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The original vertex is $V(2, -1)$.\n\nFirst, a vertical stretch with scale factor 3 is applied. This transformation affects the y-coordinate. The new coordinates $(x', y')$ are given by $(x, 3y)$.\nSo, the vertex moves to $(2, 3 \\times (-1)) = (2, -3)$.\n\nNext, a translation by the vector $\\begin{pmatrix} 0 \\\\ 5 \\end{pmatrix}$ is applied. This transformation adds 0 to the x-coordinate and 5 to the y-coordinate. The new coordinates $(x'', y'')$ are given by $(x'+0, y'+5)$.\nSo, the vertex moves from $(2, -3)$ to $(2+0, -3+5) = (2, 2)$.\n\nThe coordinates of the vertex of the graph of $y=g(x)$ are $(2, 2)$."
+    },
+    {
+      "id": "2-4-transformations-of-graphs-q2",
+      "prompt": "The graph of the function $f(x) = \\sqrt{x}$ is transformed to the graph of the function $g(x)$ by a reflection in the y-axis, followed by a horizontal stretch with scale factor $\\frac{1}{2}$, and finally a translation by the vector $\\begin{pmatrix} 3 \\\\ -1 \\end{pmatrix}$. Find the expression for $g(x)$.",
+      "marks": 6,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "SL 2.4",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(M1) Reflection in y-axis replaces $x$ with $-x$. Gives $\\sqrt{-x}$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) For the correct expression $\\sqrt{-x}$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Horizontal stretch, scale factor $\\frac{1}{2}$, replaces $x$ with $2x$. Gives $\\sqrt{-(2x)}$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) For the correct expression $\\sqrt{-2x}$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Translation by $\\begin{pmatrix} 3 \\\\ -1 \\end{pmatrix}$ replaces $x$ with $x-3$ and subtracts 1 from function. Gives $\\sqrt{-2(x-3)} - 1$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) For the final correct expression $g(x) = \\sqrt{6-2x} - 1$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "Let's apply the transformations sequentially to $f(x) = \\sqrt{x}$.\n\n1.  **Reflection in the y-axis:** This transformation replaces $x$ with $-x$.\n    Let $y_1 = f(-x) = \\sqrt{-x}$.\n\n2.  **Horizontal stretch with scale factor $\\frac{1}{2}$:** This transformation replaces $x$ with $\\frac{x}{1/2} = 2x$ in the current expression.\n    Let $y_2 = y_1(2x) = \\sqrt{-(2x)} = \\sqrt{-2x}$.\n\n3.  **Translation by the vector $\\begin{pmatrix} 3 \\\\ -1 \\end{pmatrix}$:** This is a horizontal translation of 3 units to the right and a vertical translation of 1 unit down. This replaces $x$ with $(x-3)$ and subtracts 1 from the entire function.\n    $g(x) = y_2(x-3) - 1 = \\sqrt{-2(x-3)} - 1$.\n\nSimplifying the expression inside the square root:\n$g(x) = \\sqrt{-2x + 6} - 1 = \\sqrt{6-2x} - 1$.\n\nThe final expression is $g(x) = \\sqrt{6-2x} - 1$."
+    },
+    {
+      "id": "2-4-transformations-of-graphs-q3",
+      "prompt": "Let $f(x) = x^3 - 4x^2 + x + 6$.\n(a) Sketch the graph of $y = f(x)$ for $-2 \\le x \\le 4$, indicating the coordinates of any local extrema and axes intercepts.\n(b) On a new set of axes, sketch the graph of $y = f(|x|)$.\n(c) State the range of $y=f(|x|)$ for the domain $-4 \\le x \\le 4$.",
+      "marks": 7,
+      "commandTerm": "Sketch, State",
+      "difficulty": "standard",
+      "syllabusRef": "SL 2.4",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(A1) Correct general shape of the cubic for the given domain.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Axes intercepts correctly labelled: $(-1, 0), (2, 0), (3, 0)$ and $(0, 6)$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Local max at $(0.131, 6.06)$ and local min at $(2.54, -0.879)$ correctly labelled.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) For part (b), recognizing that for $x < 0$, the graph is a reflection of the $x > 0$ part of $y=f(x)$ in the y-axis.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Correct symmetric shape for $y=f(|x|)$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) For part (c), identifying the minimum value as the local minimum of $f(x)$ for $x>0$, and the maximum as the larger of $f(0)$ and $f(4)$. $f(4)=10$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Correct range is $[-0.879, 10]$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) Using a graphing calculator, we plot $f(x) = x^3 - 4x^2 + x + 6$.\n- The x-intercepts are found by solving $f(x)=0$. The roots are $x=-1, x=2, x=3$. Intercepts: $(-1, 0), (2, 0), (3, 0)$.\n- The y-intercept is $f(0) = 6$. Intercept: $(0, 6)$.\n- The local maximum is at $(0.131, 6.06)$.\n- The local minimum is at $(2.54, -0.879)$.\n[A sketch would show a cubic curve passing through these points.]\n\n(b) The transformation $y=f(|x|)$ is defined as:\n$f(|x|) = \\begin{cases} f(x) & \\text{if } x \\ge 0 \\\\ f(-x) & \\text{if } x < 0 \\end{cases}$\nThis means we keep the part of the graph of $y=f(x)$ for $x \\ge 0$ and replace the part for $x < 0$ with a reflection of the $x \\ge 0$ part in the y-axis. The resulting graph is symmetric about the y-axis.\n[The sketch would show the right-hand side of the original cubic, including the y-intercept at (0,6), the intercept at (2,0) and (3,0), and the minimum at (2.54, -0.879). This shape is then reflected in the y-axis to form the left-hand side, with intercepts at (-2,0) and (-3,0) and a minimum at (-2.54, -0.879).]\n\n(c) To find the range of $y=f(|x|)$ for $-4 \\le x \\le 4$, we need the minimum and maximum y-values on this new graph over the specified domain.\n- The graph is symmetric, so we only need to consider the interval $0 \\le x \\le 4$ for the function $y=f(x)$.\n- The minimum value on this interval is the local minimum at $x=2.54$, which is $y = -0.879$.\n- The maximum value is the larger of the local maximum at $x=0.131$ (which is 6.06) and the value at the endpoint $x=4$.\n- Calculate $f(4) = 4^3 - 4(4^2) + 4 + 6 = 64 - 64 + 4 + 6 = 10$.\n- The maximum value on $0 \\le x \\le 4$ is 10.\n- Due to symmetry, the range for $-4 \\le x \\le 4$ is the same.\n- The range is $[-0.879, 10]$."
+    },
+    {
+      "id": "2-4-transformations-of-graphs-q4",
+      "prompt": "The graph of $y = \\frac{1}{x}$ is transformed into the graph of $y = g(x)$ by a vertical stretch with scale factor $k$, followed by a translation of $\\begin{pmatrix} p \\\\ 0 \\end{pmatrix}$. The resulting graph $y=g(x)$ has asymptotes at $x=2$ and $y=0$, and it passes through the point $(4, 1)$. Find the values of $k$ and $p$.",
+      "marks": 8,
+      "commandTerm": "Find",
+      "difficulty": "challenge",
+      "syllabusRef": "SL 2.4",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(M1) Applying vertical stretch to $y = \\frac{1}{x}$ gives an intermediate function $y_1 = \\frac{k}{x}$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Correct intermediate function $\\frac{k}{x}$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Applying horizontal translation of $p$ units to $y_1$ gives $g(x) = \\frac{k}{x-p}$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Correct final form for $g(x)$.",
+          "marks": 1
+        },
+        {
+          "text": "(R1) Recognizing the vertical asymptote of $g(x)$ occurs when the denominator is zero, i.e., at $x=p$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Equating this to the given asymptote $x=2$ gives $p=2$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Substituting the point $(4, 1)$ and $p=2$ into the equation for $g(x)$: $1 = \\frac{k}{4-2}$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Solving for $k$ gives $k=2$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The initial function is $f(x) = \\frac{1}{x}$.\n\nThe first transformation is a vertical stretch with scale factor $k$. This transformation multiplies the function by $k$. The new function, let's call it $h(x)$, is:\n$h(x) = k \\cdot f(x) = \\frac{k}{x}$.\n\nThe second transformation is a translation of $\\begin{pmatrix} p \\\\ 0 \\end{pmatrix}$. This is a horizontal translation by $p$ units. This transformation replaces $x$ with $(x-p)$ in the function $h(x)$. The final function is $g(x)$:\n$g(x) = h(x-p) = \\frac{k}{x-p}$.\n\nThe graph of a rational function of the form $y = \\frac{k}{x-p} + q$ has a vertical asymptote at $x=p$ and a horizontal asymptote at $y=q$. In our case, $g(x) = \\frac{k}{x-p}$, so the horizontal asymptote is $y=0$. This matches the given information.\n\nThe vertical asymptote is at $x=p$. We are given that the vertical asymptote is at $x=2$. By comparing these, we find that $p=2$.\n\nSo the function is now $g(x) = \\frac{k}{x-2}$.\n\nWe are also given that the graph passes through the point $(4, 1)$. We can substitute $x=4$ and $y=1$ into the equation for $g(x)$ to find the value of $k$.\n$1 = \\frac{k}{4-2}$\n$1 = \\frac{k}{2}$\n$k = 2$.\n\nThus, the values are $k=2$ and $p=2$."
+    }
+  ]
+}

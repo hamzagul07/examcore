@@ -1,0 +1,463 @@
+{
+  "slug": "4-6-the-normal-distribution",
+  "topicCode": "4.6",
+  "unit": {
+    "code": "4",
+    "title": "Statistics and probability"
+  },
+  "title": "The normal distribution",
+  "paper": "P2",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "pilot",
+  "summary": "The normal distribution is the most important continuous model in the course: a bell-shaped, symmetric curve fixed entirely by its mean $\\mu$ and standard deviation $\\sigma$. This lesson builds the full 4.6 toolkit — the properties of the curve and the notation $X\\sim N(\\mu,\\sigma^2)$, finding probabilities $P(X<a)$ and $P(a<X<b)$ on the GDC, the standardised value (z-score) $z=\\frac{x-\\mu}{\\sigma}$, the inverse normal for finding a value from a probability or percentile, and the empirical 68–95–99.7 rule. Because 4.6 is a Paper 2 calculator topic, every worked example is written the way our marking engine actually awards the marks: method (M) marks for the correct approach, accuracy (A) marks for the correctly-rounded value, with follow-through so an early slip need not cost the marks that follow.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Describe the properties of the normal distribution — bell-shaped, symmetric about the mean $\\mu$, and fully determined by $\\mu$ and $\\sigma$ — and use the notation $X\\sim N(\\mu,\\sigma^2)$.",
+    "Find probabilities $P(X<a)$, $P(X>a)$ and $P(a<X<b)$ for a normal variable using the GDC.",
+    "Compute and interpret the standardised value (z-score) $z=\\frac{x-\\mu}{\\sigma}$.",
+    "Use the inverse normal to find a value $x$ given a probability or percentile, and apply the empirical 68–95–99.7 rule.",
+    "Present working so that method marks and follow-through (FT) protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "4.6"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
+  "simpleExplanation": {
+    "title": "Mastering the Bell Curve",
+    "summary": "The normal distribution describes data that clusters around a central average, with values becoming less frequent the further they are from the mean. It's often called the 'bell curve' and appears everywhere from exam scores to the heights of people.",
+    "analogy": "Imagine you are a barista pouring milk into lattes. Most of the time you pour a very similar amount, close to your average. Occasionally you pour a little less or a little more, and it would be very rare to half-fill the cup or overflow it. If you plotted the amount of milk across 1000 lattes, the graph would form a bell shape — the normal distribution.",
+    "steps": [
+      "Define your variable. Write $X \\sim N(\\mu, \\sigma^2)$, stating the mean $\\mu$ and standard deviation $\\sigma$ clearly.",
+      "Sketch a quick bell curve. Mark the mean and shade the area for the probability you need, such as $P(X < a)$ or $P(a < X < b)$.",
+      "Use your GDC's normal CDF. Enter the lower bound, upper bound, $\\mu$ and $\\sigma$ to find the probability (the shaded area).",
+      "For a reverse problem, use the inverse normal. Enter the area to the LEFT of the unknown value, with $\\mu$ and $\\sigma$, to find the value."
+    ]
+  },
+  "keyConcepts": [
+    "properties of the normal curve",
+    "standardisation and z-scores",
+    "inverse normal"
+  ],
+  "flashcards": [
+    {
+      "front": "Notation for a normal variable",
+      "back": "$X \\sim N(\\mu, \\sigma^2)$, where $\\mu$ is the mean and $\\sigma^2$ is the variance. The second parameter is the variance, not the standard deviation.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Properties of the normal curve",
+      "back": "Bell-shaped and symmetric about the mean $\\mu$; the total area under the curve is $1$; the curve approaches but never touches the horizontal axis. The distribution is fixed entirely by $\\mu$ and $\\sigma$.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Mean, median and mode",
+      "back": "For a normal distribution they are all equal and located at the centre (peak) of the curve, the line of symmetry $x=\\mu$.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Role of $\\sigma$",
+      "back": "The standard deviation $\\sigma$ controls the spread. A small $\\sigma$ gives a tall, narrow curve; a large $\\sigma$ gives a short, wide curve. Changing $\\mu$ shifts the whole curve left or right.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Standardised value (z-score)",
+      "back": "$z = \\dfrac{x - \\mu}{\\sigma}$. It measures how many standard deviations $x$ lies from the mean: positive above the mean, negative below.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Standard normal distribution",
+      "back": "$Z \\sim N(0, 1^2)$ — mean $0$, standard deviation $1$. Standardising any $X\\sim N(\\mu,\\sigma^2)$ with $z=\\frac{x-\\mu}{\\sigma}$ converts it to $Z$.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "GDC: finding a probability",
+      "back": "Use the normal CDF: enter lower bound, upper bound, $\\mu$, $\\sigma$. For $P(X<a)$ use a very small lower bound (e.g. $-10^{99}$); for $P(X>a)$ use a very large upper bound.",
+      "pillLabel": "Method"
+    },
+    {
+      "front": "GDC: inverse normal",
+      "back": "Use inverse normal with the area to the LEFT of the value, plus $\\mu$ and $\\sigma$. For a 'top $p$' question, the area to the left is $1-p$.",
+      "pillLabel": "Method"
+    },
+    {
+      "front": "Variance trap",
+      "back": "If $X\\sim N(100,225)$ then $\\sigma=\\sqrt{225}=15$, not $225$. The notation stores the variance $\\sigma^2$, but the GDC needs the standard deviation $\\sigma$.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Empirical (68–95–99.7) rule",
+      "back": "About $68\\%$ of data lies within $1\\sigma$ of the mean, about $95\\%$ within $2\\sigma$, and about $99.7\\%$ within $3\\sigma$. It is an approximation for reasoning, not a substitute for the GDC in a calculation.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Symmetry shortcut",
+      "back": "Because the curve is symmetric about $\\mu$, $P(X>\\mu)=P(X<\\mu)=0.5$, and $P(X<\\mu-k)=P(X>\\mu+k)$. Sketching the shaded region prevents most sign and tail errors.",
+      "pillLabel": "Concept"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between variance and standard deviation?",
+      "a": "The standard deviation $\\sigma$ is the square root of the variance $\\sigma^2$; it has the same units as the data. The notation $N(\\mu,\\sigma^2)$ records the variance, but your GDC's normal functions ask for $\\sigma$. So if a question gives $N(100,225)$, take $\\sigma=\\sqrt{225}=15$ before you enter anything."
+    },
+    {
+      "q": "Can I use the 68–95–99.7 rule to answer exam questions?",
+      "a": "Only for reasoning or a quick check. It is an approximation that applies at exactly $1$, $2$ or $3$ standard deviations from the mean. For any probability or value the question actually asks for, use the GDC's normal CDF or inverse normal and round to 3 significant figures. If a value sits at a whole number of standard deviations, the empirical rule is a good way to sanity-check your GDC answer."
+    },
+    {
+      "q": "My GDC gives an error on the inverse normal. Why?",
+      "a": "Usually one of two reasons. First, the area you entered must be strictly between $0$ and $1$ — you cannot find a value with $0\\%$ or $100\\%$ of the area to its left. Second, you may have entered a 'top percentage' as the area to the right instead of converting to the area to the left. For the top $10\\%$, enter $0.90$, not $0.10$."
+    },
+    {
+      "q": "When do I need the z-score if the GDC does everything?",
+      "a": "For a direct probability the GDC uses $\\mu$ and $\\sigma$ and you never need $z$. But the z-score is essential when $\\mu$ or $\\sigma$ is unknown: you standardise, read a z-value from the inverse normal of $Z\\sim N(0,1)$, then solve $z=\\frac{x-\\mu}{\\sigma}$ for the missing parameter. It also gives an instant feel for how extreme a value is."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "The normal distribution is the most important continuous model in the course. You have almost certainly seen its bell-shaped curve before — it describes heights, masses, measurement errors and countless natural quantities that pile up around a central average. In this lesson we learn to work with it mathematically: its properties and notation, how to read probabilities and values off the GDC, the standardised z-score, and the empirical rule. Because 4.6 lives on Paper 2, the worked examples are laid out exactly the way our engine marks your own practice — the method on the page, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "Properties of the normal distribution"
+    },
+    {
+      "type": "text",
+      "content": "The normal distribution models a continuous random variable. Its probability density function creates a smooth, symmetric, bell-shaped curve (you never need the formula itself). The whole curve — its position and its width — is fixed by just two parameters: the mean $\\mu$ and the standard deviation $\\sigma$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Bell-shaped and symmetric:** the curve is symmetric about its centre, the mean $\\mu$, which is the line of symmetry $x=\\mu$.",
+        "**Central tendency:** the mean, median and mode are all equal, at the peak of the curve.",
+        "**Total probability:** the total area under the curve is exactly $1$.",
+        "**Asymptotic tails:** the curve approaches the horizontal axis but never touches it, so even very extreme values remain theoretically possible."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "The mean $\\mu$ sets the location of the centre: change $\\mu$ and the whole curve slides left or right. The standard deviation $\\sigma$ sets the spread: a small $\\sigma$ clusters the data tightly, giving a tall, narrow curve, while a large $\\sigma$ spreads it out into a short, wide curve. Two normal curves with the same $\\mu$ but different $\\sigma$ have the same centre but different widths."
+    },
+    {
+      "type": "formula",
+      "content": "We write $X \\sim N(\\mu, \\sigma^2)$ to say that $X$ is normally distributed with mean $\\mu$ and variance $\\sigma^2$."
+    },
+    {
+      "type": "examTip",
+      "content": "Read the notation $N(\\mu, \\sigma^2)$ carefully: the second entry is the **variance** $\\sigma^2$, but your GDC needs the **standard deviation** $\\sigma$. If a question states $X\\sim N(100,225)$, use $\\sigma=\\sqrt{225}=15$. Forgetting the square root is one of the most common and most costly slips in this topic."
+    },
+    {
+      "type": "heading",
+      "content": "Finding probabilities with the GDC"
+    },
+    {
+      "type": "text",
+      "content": "A probability for a normal variable is the area under the curve over an interval. We never integrate this by hand — we use the normal cumulative distribution function (normal CDF) on the GDC, entering a lower bound, an upper bound, the mean $\\mu$ and the standard deviation $\\sigma$. For a lower tail $P(X<a)$ use a very small lower bound such as $-10^{99}$; for an upper tail $P(X>a)$ use a very large upper bound such as $10^{99}$. Always sketch and shade the region first — it stops you entering the wrong tail."
+    },
+    {
+      "type": "workedExample",
+      "question": "The masses of bags of sugar are normally distributed with mean $1005$ g and standard deviation $3$ g. A bag is chosen at random.\n\n(a) Find the probability that the bag has mass less than $1000$ g.\n(b) Find the probability that the bag has mass between $1002$ g and $1010$ g. [4]",
+      "solution": "Let $W$ be the mass of a bag in grams, so $W \\sim N(1005, 3^2)$.\n\n**(a)** We want $P(W < 1000)$. Use the normal CDF with lower bound $-10^{99}$, upper bound $1000$, $\\mu=1005$, $\\sigma=3$.  [M1: correct set-up]\n$P(W < 1000) = \\text{normalCdf}(-10^{99},\\,1000,\\,1005,\\,3) = 0.0478$ (3 s.f.).  [A1]\n\n**(b)** We want $P(1002 < W < 1010)$. Use the normal CDF with lower bound $1002$, upper bound $1010$, $\\mu=1005$, $\\sigma=3$.  [M1: correct set-up]\n$P(1002 < W < 1010) = \\text{normalCdf}(1002,\\,1010,\\,1005,\\,3) = 0.794$ (3 s.f.).  [A1]"
+    },
+    {
+      "type": "heading",
+      "content": "The standardised value (z-score)"
+    },
+    {
+      "type": "text",
+      "content": "The standard normal distribution is the special case with mean $0$ and standard deviation $1$, written $Z \\sim N(0, 1^2)$. Any normal variable $X\\sim N(\\mu,\\sigma^2)$ can be converted to $Z$ by standardising — replacing the value $x$ by its z-score, the number of standard deviations it lies from the mean."
+    },
+    {
+      "type": "formula",
+      "content": "z = \\dfrac{x - \\mu}{\\sigma}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A **positive** z-score means the value is above the mean; a **negative** z-score means it is below the mean.",
+        "A z-score of $0$ is exactly at the mean; $|z|=1,2,3$ correspond to $1,2,3$ standard deviations out.",
+        "Standardising is essential when $\\mu$ or $\\sigma$ is **unknown**: find $z$ from the inverse normal of $Z\\sim N(0,1)$, then solve $z=\\frac{x-\\mu}{\\sigma}$ for the missing quantity."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Finding a value from a probability: the inverse normal"
+    },
+    {
+      "type": "text",
+      "content": "Often we know a probability and need the value of the variable that produces it — for example the score needed to be in the top $10\\%$. This is the reverse process, done with the inverse normal function, which requires the area to the LEFT of the unknown value together with $\\mu$ and $\\sigma$. If a question gives an area to the right (a 'top' percentage), subtract from $1$ first."
+    },
+    {
+      "type": "examTip",
+      "content": "The inverse normal always wants the area to the **left**. For the top $15\\%$, the area to the left is $1-0.15=0.85$; enter $0.85$, not $0.15$. Sketching the curve and shading the correct tail before you touch the calculator prevents nearly every inverse-normal error."
+    },
+    {
+      "type": "workedExample",
+      "question": "The scores in a test, $X$, are normally distributed with mean $82$ and standard deviation $7$. The top $15\\%$ of students are awarded a distinction. Find the minimum score needed for a distinction. [3]",
+      "solution": "We have $X \\sim N(82, 7^2)$ and need $k$ with $P(X > k) = 0.15$.  [M1: correct probability statement]\nThe inverse normal needs the area to the LEFT: $P(X < k) = 1 - 0.15 = 0.85$.  [M1: converts to left area and applies inverse normal]\n$k = \\text{invNorm}(0.85,\\,82,\\,7) = 89.255\\ldots$\nThe minimum score for a distinction is $89.3$ (3 s.f.).  [A1]"
+    },
+    {
+      "type": "heading",
+      "content": "The empirical (68–95–99.7) rule"
+    },
+    {
+      "type": "text",
+      "content": "For any normal distribution the areas at whole numbers of standard deviations from the mean are fixed. About $68\\%$ of the data lies within $1\\sigma$ of the mean, about $95\\%$ within $2\\sigma$, and about $99.7\\%$ within $3\\sigma$. Because the curve is symmetric, these split evenly across the two tails — for instance, roughly $2.5\\%$ of the data lies beyond $2\\sigma$ above the mean."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$P(\\mu-\\sigma < X < \\mu+\\sigma) \\approx 0.68$.",
+        "$P(\\mu-2\\sigma < X < \\mu+2\\sigma) \\approx 0.95$, so about $2.5\\%$ lies in each tail beyond $2\\sigma$.",
+        "$P(\\mu-3\\sigma < X < \\mu+3\\sigma) \\approx 0.997$.",
+        "Use the rule to reason or to sanity-check a GDC answer — never as a substitute for the GDC when a precise probability or value is required."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Using the variance as $\\sigma$** — with $X\\sim N(100,225)$ the GDC needs $\\sigma=\\sqrt{225}=15$, not $225$. Always square-root the second parameter.",
+        "**Entering the wrong tail in the inverse normal** — for the 'top $10\\%$' the area to the left is $0.90$, not $0.10$. Sketch and shade before you calculate.",
+        "**Getting the z-score formula upside down** — it is $z=\\frac{x-\\mu}{\\sigma}$ (value minus mean, divided by $\\sigma$), not $\\frac{\\mu-x}{\\sigma}$ or $\\frac{x-\\mu}{\\sigma^2}$.",
+        "**Treating the 68–95–99.7 rule as exact** — it applies only at whole standard deviations and is an approximation; use the GDC for any value the question asks for.",
+        "**Ignoring symmetry** — $P(X>\\mu)=0.5$ and $P(X<\\mu-k)=P(X>\\mu+k)$; forgetting this leads to answers on the wrong side of the mean.",
+        "**Over-rounding mid-calculation** — carry full calculator accuracy through and round only the final answer to 3 significant figures.",
+        "**Quoting an answer with no working** — in a 'find $x$' question, showing the probability statement and the inverse-normal set-up earns the method marks even if the final value slips."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "On Paper 2 the marks are analytic: each is tied to a specific line — a method mark (M) for the correct approach or an accuracy mark (A) for the correctly-rounded value, with an A-mark dependent on the M-mark it follows. Follow-through (FT) means a wrong number early on need not cost the marks after it, and 'ignore subsequent working' (ISW) means a correct answer is not un-awarded by clumsy extra steps. Equivalent correct methods — a direct GDC probability or a z-score route — earn the same marks. Study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "The masses of apples are normally distributed with mean $150$ g and standard deviation $20$ g. Find the probability that an apple weighs more than $180$ g, and find the mass exceeded by only the heaviest $10\\%$ of apples. [5]",
+      "solution": "**Model answer — full working.**\n\nLet $X$ be the mass of an apple in grams, so $X \\sim N(150, 20^2)$.\n\n**Part 1 — $P(X > 180)$.**\nDirect GDC method: $P(X>180)=\\text{normalCdf}(180,\\,10^{99},\\,150,\\,20)$.\n$P(X > 180) = 0.0668$ (3 s.f.).\n\n*(Equivalent z-score method, same marks:* standardise $z=\\dfrac{180-150}{20}=1.5$, then $P(Z>1.5)=0.0668$.)\n\n**Part 2 — mass exceeded by only the heaviest $10\\%$.**\nWe need $k$ with $P(X > k) = 0.10$, i.e. the $90$th percentile. The inverse normal needs the area to the LEFT: $P(X<k)=1-0.10=0.90$.\n$k = \\text{invNorm}(0.90,\\,150,\\,20) = 175.63\\ldots$\n\n*(Equivalent z-score method:* $z=\\text{invNorm}(0.90)=1.2816$, then $x=\\mu+z\\sigma=150+1.2816(20)=175.6$.)\n\nThe heaviest $10\\%$ of apples exceed $175.6$ g (3 s.f.).\n\n**Final answer:** $P(X>180)\\approx 0.0668$; the mass exceeded by the heaviest $10\\%$ is $\\approx 175.6$ g.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — set up the probability.** Awarded for standardising or setting up $P(X>180)$ correctly, i.e. $\\text{normalCdf}(180,\\infty,150,20)$ or $z=\\frac{180-150}{20}=1.5$. A METHOD mark: earned for the correct approach even if the final value later slips.\n- **A1 — first probability.** Awarded for $P(X>180)\\approx 0.0668$ (accept $0.0668$; correct rounding of the same value is fine). This A-mark depends on the M1 above.\n- **M1 — inverse normal for the $90$th percentile.** Awarded for recognising the heaviest $10\\%$ means $P(X>k)=0.10$ and applying the inverse normal to the LEFT area $0.90$: $\\text{invNorm}(0.90,150,20)$, or $z=\\text{invNorm}(0.90)=1.2816$.\n- **M1 — convert z to a value.** Awarded for the correct structure $x=\\mu+z\\sigma=150+z(20)$ (only needed on the z-score route; the direct inverse-normal route earns this automatically by returning $k$ directly).\n- **A1 — final mass.** Awarded for $k\\approx 175.6$ g (accept $175.6$–$175.63$ g). FT applies: a student who used a wrong z-value but correctly computed $150+z(20)$ from THEIR $z$ still earns this on their own figure.\n\n**'Accept answers that round correctly.'** The engine accepts $0.0668$ and $175.6$ g (or $175.63$ g) — it does not demand a fixed number of decimal places, only a correctly-rounded value. Equivalent forms (direct GDC or z-score) score identically, and ISW means tidy extra working after a correct answer never removes a mark.\n\n**Bottom line:** of the 5 marks, three are method marks that survive an arithmetic slip, and the accuracy marks are shielded by follow-through. A student who writes only '$0.0668$' and '$175.6$' with no set-up risks losing the method marks if either number is wrong; showing the probability statement, the tail conversion and the inverse-normal set-up keeps them regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the method: state the distribution $X\\sim N(\\mu,\\sigma^2)$, write the probability you are finding, convert a 'top $p\\%$' to the left area $1-p$ before the inverse normal, then give the value to 3 s.f. with its unit. The method marks and FT are what protect your score when the final number slips — and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 2 calculation marked: find a probability and a percentile with full working",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=4.6&component=paper_2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Normal Distribution Grapher",
+          "href": "https://www.geogebra.org/m/V9B7dYgV"
+        },
+        {
+          "label": "Khan Academy: Normal Distribution Introduction",
+          "href": "https://www.khanacademy.org/math/statistics-probability/modeling-distributions-of-data/normal-distributions-library/v/introduction-to-the-normal-distribution"
+        }
+      ]
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A variable is distributed as $X\\sim N(100,225)$. The standard deviation $\\sigma$ that you enter into the GDC is:",
+      "options": [
+        "225",
+        "15",
+        "112.5",
+        "10"
+      ],
+      "answer": "15"
+    },
+    {
+      "prompt": "The correct formula for the standardised value (z-score) of a value $x$ is:",
+      "options": [
+        "$z=\\dfrac{x-\\mu}{\\sigma}$",
+        "$z=\\dfrac{\\mu-x}{\\sigma}$",
+        "$z=\\dfrac{x-\\mu}{\\sigma^2}$",
+        "$z=\\dfrac{x-\\sigma}{\\mu}$"
+      ],
+      "answer": "$z=\\dfrac{x-\\mu}{\\sigma}$"
+    },
+    {
+      "prompt": "To find the value exceeded by only the heaviest $10\\%$ using the inverse normal, the area to the LEFT that you enter is:",
+      "options": [
+        "0.10",
+        "0.90",
+        "0.05",
+        "0.95"
+      ],
+      "answer": "0.90"
+    },
+    {
+      "prompt": "For any normal distribution, $P(X>\\mu)$ equals:",
+      "options": [
+        "0.5",
+        "0.68",
+        "1",
+        "It depends on $\\sigma$"
+      ],
+      "answer": "0.5"
+    },
+    {
+      "prompt": "By the empirical rule, the approximate percentage of data within $2$ standard deviations of the mean is:",
+      "options": [
+        "68%",
+        "95%",
+        "99.7%",
+        "50%"
+      ],
+      "answer": "95%"
+    }
+  ],
+  "generatorVersion": "study-loop-pilot-v1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Normal Distribution Grapher",
+    "embedUrl": "https://www.geogebra.org/classic?material=V9B7dYgV",
+    "launchUrl": "https://www.geogebra.org/classic?material=V9B7dYgV",
+    "hint": "Use “Normal Distribution Grapher” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "SL 4.9",
+      "title": "The normal distribution",
+      "detail": "The normal curve and its properties; the mean, and diagrammatic representation of probabilities as areas."
+    },
+    {
+      "code": "SL 4.9",
+      "title": "Normal probability calculations",
+      "detail": "Finding $P(X<a)$ and $P(a<X<b)$ using technology."
+    },
+    {
+      "code": "SL 4.9",
+      "title": "Inverse normal",
+      "detail": "Finding a value from a given probability; finding an unknown mean or standard deviation."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "sl-4-6-q1",
+      "prompt": "The heights of adults are normally distributed with mean $170$ cm and standard deviation $8$ cm. Find the probability that a randomly chosen adult is (a) shorter than $180$ cm, (b) between $160$ cm and $175$ cm.",
+      "marks": 4,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "SL 4.9",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) (M1) $X\\sim N(170,8^2)$, $P(X<180)$",
+          "marks": 1
+        },
+        {
+          "text": "(a) (A1) $=0.894$ (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "text": "(b) (M1) $P(160<X<175)$",
+          "marks": 1
+        },
+        {
+          "text": "(b) (A1) $=0.628$ (3 s.f.)",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "Let $X\\sim N(170,8^2)$.\n\n(a) $P(X<180)=0.894$ (3 s.f.).\n\n(b) $P(160<X<175)=0.628$ (3 s.f.)."
+    },
+    {
+      "id": "sl-4-6-q2",
+      "prompt": "IQ scores are normally distributed with mean $100$ and standard deviation $15$. Find the score that is exceeded by only the top $10\\%$ of the population.",
+      "marks": 3,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "SL 4.9",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) $P(X<k)=0.90$ (inverse normal)",
+          "marks": 1
+        },
+        {
+          "text": "(A1) $z=1.28$",
+          "marks": 1
+        },
+        {
+          "text": "(A1) $k=100+15(1.28)=119$",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "Top $10\\%$ means $P(X>k)=0.10$, i.e. $P(X<k)=0.90$. The inverse normal gives $z=1.2816$, so $k=100+15(1.2816)=119$ (3 s.f.)."
+    },
+    {
+      "id": "sl-4-6-q3",
+      "prompt": "A random variable $X\\sim N(50,\\,4^2)$. Find (a) $P(X>50)$, (b) $P(46<X<54)$.",
+      "marks": 3,
+      "commandTerm": "Find",
+      "difficulty": "foundation",
+      "syllabusRef": "SL 4.9",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) (A1) by symmetry $P(X>50)=0.5$",
+          "marks": 1
+        },
+        {
+          "text": "(b) (M1) $46$ and $54$ are one s.d. either side of the mean",
+          "marks": 1
+        },
+        {
+          "text": "(b) (A1) $P(46<X<54)=0.683$ (3 s.f.)",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) $50$ is the mean, so $P(X>50)=0.5$.\n\n(b) $46$ and $54$ are $\\mu\\pm\\sigma$, so $P(46<X<54)\\approx 0.683$."
+    },
+    {
+      "id": "sl-4-6-q4",
+      "prompt": "A machine fills bottles so that the volume is normally distributed with unknown mean $\\mu$ and standard deviation $5$ ml. It is found that $2.5\\%$ of bottles contain more than $510$ ml. Find $\\mu$.",
+      "marks": 4,
+      "commandTerm": "Find",
+      "difficulty": "challenge",
+      "syllabusRef": "SL 4.9",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) $P(X<510)=0.975$",
+          "marks": 1
+        },
+        {
+          "text": "(A1) $z=1.96$",
+          "marks": 1
+        },
+        {
+          "text": "(M1) $510=\\mu+1.96(5)$",
+          "marks": 1
+        },
+        {
+          "text": "(A1) $\\mu=500$ ml (3 s.f.)",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "$P(X>510)=0.025\\Rightarrow P(X<510)=0.975$, so $z=1.96$. Then $510=\\mu+1.96(5)=\\mu+9.8\\Rightarrow\\mu=500$ ml (3 s.f.)."
+    }
+  ]
+}

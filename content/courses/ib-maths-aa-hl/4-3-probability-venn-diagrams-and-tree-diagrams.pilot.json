@@ -1,0 +1,486 @@
+{
+  "slug": "4-3-probability-venn-diagrams-and-tree-diagrams",
+  "topicCode": "4.3",
+  "unit": {
+    "code": "4",
+    "title": "Statistics and probability"
+  },
+  "title": "Probability, Venn diagrams and tree diagrams",
+  "paper": "P2",
+  "paperName": "Maths AA HL",
+  "status": "pilot",
+  "summary": "Probability is how mathematics measures uncertainty, and this lesson builds the full 4.3 toolkit for doing it accurately under exam conditions. We define the sample space and the probability of an event, combine events with the addition rule and the complement, and separate the two ideas students most often confuse: mutually exclusive events and independent events. We then turn to the two diagrams the syllabus rewards — Venn diagrams for overlapping groups and tree diagrams for events that happen in sequence, with and without replacement — and close with conditional probability. Every worked example is laid out exactly the way our marking engine awards marks, because in a Paper 2 probability question the fractions you show on the page are what protect your score when a final answer slips.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Describe a sample space and calculate the probability of an event, using the complement $P(A') = 1 - P(A)$ where it is quicker.",
+    "Combine events with the addition rule $P(A\\cup B) = P(A) + P(B) - P(A\\cap B)$ and recognise mutually exclusive events as the case $P(A\\cap B) = 0$.",
+    "Represent events on Venn diagrams and use them to read off unions, intersections, complements and conditional probabilities.",
+    "Test for independence with $P(A\\cap B) = P(A)P(B)$ and distinguish it clearly from mutual exclusivity.",
+    "Model successive events on tree diagrams, with and without replacement, and apply conditional probability $P(A|B) = \\dfrac{P(A\\cap B)}{P(B)}$.",
+    "Present working so that method marks (M) and the accuracy marks that depend on them (A) are earned line by line, with follow-through protecting the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "4.3"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
+  "simpleExplanation": {
+    "title": "Mapping the Maze of Chance",
+    "summary": "Probability problems feel tangled until you draw them. A Venn diagram sorts one group of things into overlapping piles — who does both, either, or neither. A tree diagram tracks events that happen one after another, so you can multiply along a path and add across paths. Pick the right picture and the arithmetic almost writes itself.",
+    "analogy": "Imagine a cafe. Whether a customer likes tea and whether they like croissants is a sorting question — a Venn diagram shows the overlap of people who like both. But if each customer first chooses a drink and then a pastry, that is a sequence — a tree diagram maps 'tea then muffin' as one branch you can follow and cost out. The trick is spotting whether you are sorting one group or following a sequence.",
+    "steps": [
+      "Read the problem and name the events clearly, e.g. $A$ = 'passes Maths', $B$ = 'passes Physics', and list every probability the question gives you.",
+      "Choose the picture: a Venn diagram when you are sorting one population into overlapping categories, a tree diagram when events happen in stages one after another.",
+      "Fill it in. For a Venn diagram, start with the intersection (the 'both' region) and work outwards. For a tree, label every branch and check the branches from each point sum to 1.",
+      "Extract the answer: for a Venn diagram add the relevant regions; for a tree multiply along a path, then add the paths that give the event you want."
+    ]
+  },
+  "keyConcepts": [
+    "sample space and events",
+    "addition rule and complement",
+    "independence vs mutual exclusivity",
+    "conditional probability",
+    "tree diagrams with and without replacement"
+  ],
+  "flashcards": [
+    {
+      "front": "Sample space $U$ (or $S$)",
+      "back": "The set of all possible outcomes of an experiment. On a Venn diagram it is the surrounding rectangle, and the probabilities of all outcomes in it sum to 1.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Probability of an event",
+      "back": "For equally likely outcomes, $P(A) = \\dfrac{\\text{number of outcomes in } A}{\\text{number of outcomes in } U} = \\dfrac{n(A)}{n(U)}$. Every probability satisfies $0 \\le P(A) \\le 1$.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Complement $A'$",
+      "back": "The event that $A$ does NOT occur: $P(A') = 1 - P(A)$. On a Venn diagram it is everything outside circle $A$. Often the fastest route to an 'at least one' probability.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Intersection $A \\cap B$",
+      "back": "'$A$ AND $B$' — the outcomes in both events. It is the overlap of the two circles on a Venn diagram.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Union $A \\cup B$",
+      "back": "'$A$ OR $B$ or both' — every outcome in at least one of the events. It is the whole of both circles combined.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Addition rule",
+      "back": "$P(A\\cup B) = P(A) + P(B) - P(A\\cap B)$. Subtract the intersection because outcomes in both were counted twice.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Mutually exclusive events",
+      "back": "Events that cannot both occur: $P(A\\cap B) = 0$. The addition rule then simplifies to $P(A\\cup B) = P(A) + P(B)$. The circles do not overlap.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Independent events",
+      "back": "The occurrence of one does not change the probability of the other. Test: $P(A\\cap B) = P(A)\\,P(B)$. Equivalently $P(A|B) = P(A)$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Conditional probability",
+      "back": "$P(A|B) = \\dfrac{P(A\\cap B)}{P(B)}$ — the probability of $A$ given that $B$ has happened. It shrinks the sample space down to $B$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Trap: mutually exclusive vs independent",
+      "back": "These are opposite ideas, not the same. Two events with non-zero probability that are mutually exclusive CANNOT be independent: if $B$ happening rules $A$ out, then $B$ has changed $A$'s probability.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Tree diagram — a single path",
+      "back": "Multiply the probabilities along the branches of one path to get the probability of that complete sequence, e.g. $P(R_1 \\cap R_2) = P(R_1)\\times P(R_2|R_1)$.",
+      "pillLabel": "Graph"
+    },
+    {
+      "front": "Tree diagram — several paths",
+      "back": "If an event can happen by more than one route, find each path's probability and ADD them, e.g. 'one of each' $= P(RB) + P(BR)$.",
+      "pillLabel": "Graph"
+    },
+    {
+      "front": "With vs without replacement",
+      "back": "With replacement: the item returns, so the second-stage branch probabilities are unchanged. Without replacement: the total (and one count) drop by one, so the second-stage probabilities change — this is where marks are lost.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Events $A$ and $B$ satisfy $P(A) = 0.4$, $P(B) = 0.5$ and $P(A\\cap B) = 0.2$. Since $P(A)\\times P(B) = 0.2 = P(A\\cap B)$, the events are:",
+      "options": [
+        "Mutually exclusive",
+        "Independent",
+        "Both mutually exclusive and independent",
+        "Neither"
+      ],
+      "answer": "Independent"
+    },
+    {
+      "prompt": "For two events with non-zero probability, 'mutually exclusive' and 'independent':",
+      "options": [
+        "Mean the same thing",
+        "Can never both hold at once",
+        "Always both hold together",
+        "Are unrelated and can freely coexist"
+      ],
+      "answer": "Can never both hold at once"
+    },
+    {
+      "prompt": "You need $P(A|B)$. The correct formula is:",
+      "options": [
+        "$P(A|B) = P(A\\cap B)\\times P(B)$",
+        "$P(A|B) = \\dfrac{P(A\\cap B)}{P(B)}$",
+        "$P(A|B) = \\dfrac{P(B)}{P(A\\cap B)}$",
+        "$P(A|B) = P(A) + P(B) - P(A\\cap B)$"
+      ],
+      "answer": "$P(A|B) = \\dfrac{P(A\\cap B)}{P(B)}$"
+    },
+    {
+      "prompt": "A bag has 6 counters. One is drawn, NOT replaced, then a second is drawn. On the second set of branches you should:",
+      "options": [
+        "Keep the same fractions as the first draw",
+        "Use fractions with denominator 5, adjusting the top for what was removed",
+        "Always use denominator 6",
+        "Multiply the first-draw fractions by 6"
+      ],
+      "answer": "Use fractions with denominator 5, adjusting the top for what was removed"
+    },
+    {
+      "prompt": "Given $P(A) = 0.6$, $P(B) = 0.5$, $P(A\\cap B) = 0.3$, a student writes $P(A\\cup B) = 0.6 + 0.5 = 1.1$. Their error is:",
+      "options": [
+        "They should have multiplied instead",
+        "A probability above 1 is impossible, and they forgot to subtract $P(A\\cap B)$",
+        "They should have used the complement",
+        "There is no error",
+        "They should have divided by 2"
+      ],
+      "answer": "A probability above 1 is impossible, and they forgot to subtract $P(A\\cap B)$"
+    }
+  ],
+  "faq": [
+    {
+      "q": "When should I use a Venn diagram versus a tree diagram?",
+      "a": "Use a Venn diagram when you are sorting a single population into categories that may overlap — students taking different subjects, people who own a cat and/or a dog. Use a tree diagram when events happen in a sequence and you want to track outcomes stage by stage — drawing two balls, testing two components, two successive matches. If the phrase 'and then' fits the scenario, reach for a tree."
+    },
+    {
+      "q": "What is the real difference between mutually exclusive and independent events?",
+      "a": "Mutually exclusive means 'if one happens the other CANNOT' — they are linked by exclusion, and $P(A\\cap B) = 0$. Independent means 'whether one happens has no bearing on the other' — they are unlinked, and $P(A\\cap B) = P(A)P(B)$. These are opposite relationships, which is why two events with non-zero probability cannot be both at once: exclusion is the strongest possible dependence."
+    },
+    {
+      "q": "How do I know if a problem is 'with' or 'without' replacement?",
+      "a": "The question usually says so. 'Without replacement' means the first item is not returned, so the totals change for the second draw and the second-stage branches carry different fractions. Any scenario where you physically keep or use up the item — eating sweets, selecting a committee, dealing cards — is without replacement even if it does not use those words."
+    },
+    {
+      "q": "Do I have to draw the diagram, or can I just calculate?",
+      "a": "If the question says 'draw a Venn/tree diagram', the diagram itself earns marks and you must draw it. Even when it does not, sketching one is worth the seconds: it exposes the paths you need to add and the fractions you need to change, and it is exactly the structured working our marking engine rewards with method marks."
+    },
+    {
+      "q": "When is the complement the smart move?",
+      "a": "Whenever the event you want is awkward but its opposite is simple — most often 'at least one'. Instead of adding many paths for 'at least one red', compute $1 - P(\\text{no red})$, a single product. It is fewer lines of working and fewer places to slip."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Probability is the language mathematics uses to measure uncertainty, and Paper 2 tests whether you can turn a wordy scenario into an accurate number. This lesson gives you the definitions (sample space, event, complement), the rules (the addition rule, independence, conditional probability), and the two diagrams the syllabus rewards most: Venn diagrams for overlapping groups and tree diagrams for events in sequence. As in every calculation topic, the worked examples are set out exactly the way our engine marks your own practice — method mark by method mark, accuracy mark by accuracy mark."
+    },
+    {
+      "type": "heading",
+      "content": "Sample space, events and the complement"
+    },
+    {
+      "type": "text",
+      "content": "An experiment's sample space $U$ is the set of all possible outcomes; an event is any collection of those outcomes. When the outcomes are equally likely, the probability of an event $A$ is the fraction of the sample space it occupies, $P(A) = \\dfrac{n(A)}{n(U)}$, and every probability lies between 0 and 1. The complement $A'$ is the event that $A$ does not occur, and because $A$ and $A'$ together fill the whole sample space, $P(A') = 1 - P(A)$. That single relationship is often the quickest route to an answer, especially for 'at least one' questions where computing the opposite ('none') takes just one line."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Sample space ($U$):** all possible outcomes; their probabilities sum to 1.",
+        "**Event:** a subset of the sample space; $P(A) = \\dfrac{n(A)}{n(U)}$ for equally likely outcomes.",
+        "**Complement ($A'$):** 'not $A$', with $P(A') = 1 - P(A)$ — the go-to shortcut for 'at least one'.",
+        "**Bounds:** every probability satisfies $0 \\le P(A) \\le 1$; an answer outside this range is a signal you have made an error."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Combining events: the addition rule and mutual exclusivity"
+    },
+    {
+      "type": "text",
+      "content": "To find the probability that at least one of two events happens — the union $A \\cup B$ — you cannot simply add $P(A)$ and $P(B)$, because any outcome living in both events would be counted twice. The addition rule corrects for this by subtracting the overlap once. When two events cannot happen together they are mutually exclusive, their overlap is empty, and the rule collapses to a plain sum."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Addition rule: } P(A\\cup B) = P(A) + P(B) - P(A\\cap B)\n\\text{Mutually exclusive } (P(A\\cap B)=0): \\; P(A\\cup B) = P(A) + P(B)"
+    },
+    {
+      "type": "workedExample",
+      "question": "In a group of 80 students, 50 study Biology, 35 study Chemistry and 18 study both. A student is chosen at random. (a) Draw a Venn diagram. (b) Find the probability the student studies Biology but not Chemistry. (c) Find the probability the student studies neither subject. (d) Given the student studies Chemistry, find the probability they also study Biology. [7]",
+      "solution": "Let $B$ = studies Biology and $C$ = studies Chemistry, with $n(U) = 80$.\n\n**(a) Venn diagram.** Start with the intersection: $n(B\\cap C) = 18$.\nBiology only: $50 - 18 = 32$. Chemistry only: $35 - 18 = 17$.\nAt least one subject: $32 + 18 + 17 = 67$, so neither: $80 - 67 = 13$.\nThe diagram is two overlapping circles $B$ and $C$ inside rectangle $U$, with 32 in $B$-only, 18 in the overlap, 17 in $C$-only, and 13 outside.  [M1: attempt to populate a Venn diagram]  [A1: all four regions correct]\n\n**(b)** Biology but not Chemistry is the $B$-only region, 32 students.\n$P(B\\cap C') = \\dfrac{32}{80} = \\dfrac{2}{5} = 0.4$.  [A1]\n\n**(c)** Neither is the 13 outside both circles.\n$P(B'\\cap C') = \\dfrac{13}{80} = 0.1625$.  [A1]\n\n**(d)** 'Given Chemistry' restricts the sample space to the 35 who study Chemistry; of these, 18 also study Biology.\n$P(B|C) = \\dfrac{n(B\\cap C)}{n(C)} = \\dfrac{18}{35}$  [M1: reduced sample space]  $\\approx 0.514$.  [A1]"
+    },
+    {
+      "type": "heading",
+      "content": "Conditional probability and independence"
+    },
+    {
+      "type": "text",
+      "content": "Conditional probability measures how one event's probability changes once we know another has occurred. We write $P(A|B)$ for 'the probability of $A$ given $B$', and the formula shrinks the sample space down to $B$. Independence is the special case where that knowledge changes nothing: knowing $B$ leaves $P(A)$ exactly as it was. Do not confuse independence with mutual exclusivity — they are opposite ideas. Mutually exclusive events with non-zero probability are as dependent as events can be, because one occurring forces the other's probability down to zero."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Conditional probability: } P(A|B) = \\frac{P(A\\cap B)}{P(B)}\n\\text{Independence test: } P(A\\cap B) = P(A)\\,P(B) \\;\\; (\\text{equivalently } P(A|B) = P(A))"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Mutually exclusive:** cannot co-occur; $P(A\\cap B) = 0$; circles do not overlap.",
+        "**Independent:** no influence either way; $P(A\\cap B) = P(A)\\,P(B)$; there is no 'no-overlap' picture — you must test with the formula.",
+        "**They are opposites, not synonyms.** Non-zero mutually exclusive events are always dependent.",
+        "**Keyword flag:** 'given that', 'if', 'of those who…' signal conditional probability — restrict the sample space to the event you are told has happened."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Independence is a claim you must justify, not assume. If a question says 'show that $A$ and $B$ are independent', compute $P(A)\\,P(B)$ and compare it with $P(A\\cap B)$ — equal means independent, and you should state that conclusion explicitly. Never argue independence just because two events 'seem unrelated'."
+    },
+    {
+      "type": "heading",
+      "content": "Tree diagrams: successive events, with and without replacement"
+    },
+    {
+      "type": "text",
+      "content": "When an experiment happens in stages — draw a ball, then another; test a part, then a second — a tree diagram maps every path. Each set of branches is one stage, the probabilities on the branches out of any point sum to 1, and you read the diagram with two moves: multiply along a path for one complete sequence, and add the paths for an event that can happen several ways. The critical distinction is replacement. With replacement, the second-stage branches carry the same fractions as the first. Without replacement, the total falls by one and so does the count of whatever you removed, so the second-stage fractions genuinely change — and that is exactly where marks are won or lost."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Multiply along a path:** the probability of one full sequence is the product of its branch probabilities.",
+        "**Add across paths:** if an event occurs by several routes, add those routes' probabilities.",
+        "**Branches sum to 1:** the probabilities leaving any single node must total 1 — a quick self-check.",
+        "**Without replacement:** reduce the denominator by 1 each stage, and reduce the numerator of the colour/type you removed."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A bag contains 7 red and 5 blue balls. A ball is drawn at random and not replaced; a second ball is then drawn. (a) Draw a tree diagram. (b) Find the probability both balls are red. (c) Find the probability the second ball is blue. (d) Given the second ball is blue, find the probability the first was red. [8]",
+      "solution": "Let $R$ and $B$ denote red and blue; total 12 balls.\n\n**(a)** First draw: $P(R_1) = \\dfrac{7}{12}$, $P(B_1) = \\dfrac{5}{12}$. Second draw (without replacement, 11 balls left):\nafter red — $P(R_2|R_1) = \\dfrac{6}{11}$, $P(B_2|R_1) = \\dfrac{5}{11}$; after blue — $P(R_2|B_1) = \\dfrac{7}{11}$, $P(B_2|B_1) = \\dfrac{4}{11}$.  [M1: structure]  [A1: all without-replacement probabilities correct]\n\n**(b)** Both red is the single path $R_1 R_2$:\n$P(R_1\\cap R_2) = \\dfrac{7}{12}\\times\\dfrac{6}{11} = \\dfrac{42}{132} = \\dfrac{7}{22}$  [M1] [A1] $\\; (\\approx 0.318)$.\n\n**(c)** The second ball is blue via $R_1 B_2$ or $B_1 B_2$:\n$P(R_1\\cap B_2) = \\dfrac{7}{12}\\times\\dfrac{5}{11} = \\dfrac{35}{132}$, $\\; P(B_1\\cap B_2) = \\dfrac{5}{12}\\times\\dfrac{4}{11} = \\dfrac{20}{132}$.\n$P(B_2) = \\dfrac{35}{132} + \\dfrac{20}{132} = \\dfrac{55}{132} = \\dfrac{5}{12}$  [M1: add both paths] [A1].\n\n**(d)** Conditional probability using the results above:\n$P(R_1|B_2) = \\dfrac{P(R_1\\cap B_2)}{P(B_2)} = \\dfrac{35/132}{55/132} = \\dfrac{35}{55} = \\dfrac{7}{11}$  [M1] [A1] $\\; (\\approx 0.636)$."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Confusing mutually exclusive with independent** — they are opposites. Mutually exclusive means $P(A\\cap B) = 0$; independent means $P(A\\cap B) = P(A)P(B)$. Never test one condition and quote the other's conclusion.",
+        "**Forgetting to subtract the intersection** in the addition rule — writing $P(A\\cup B) = P(A) + P(B)$ double-counts the overlap and can even push the answer above 1, which is impossible.",
+        "**Leaving the second-draw fractions unchanged when there is no replacement** — the denominator must drop by 1, and so must the numerator of whatever was removed. Reusing the first-stage fractions is the single most penalised tree-diagram slip.",
+        "**Inverting the conditional formula** — $P(A|B) = \\dfrac{P(A\\cap B)}{P(B)}$, dividing by the given event $B$. Dividing by the wrong probability (or by $P(A)$) loses the mark.",
+        "**Adding along a path or multiplying across paths** — it is multiply ALONG one path, then add the separate paths. Getting these two operations the wrong way round corrupts the whole answer.",
+        "**Not answering 'draw the diagram' when asked** — if the question demands a Venn or tree diagram, the diagram itself carries marks; a bare calculation cannot earn them.",
+        "**Giving a probability outside $0 \\le P \\le 1$** and not noticing — any such value is a guaranteed error; treat it as a prompt to recheck the working."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working. A method mark (M) rewards the correct approach; an accuracy mark (A) rewards the correct value and depends on the method being right first. Follow-through (FT) means a value carried correctly from an earlier slip can still earn later marks, 'ignore subsequent working' (ISW) means a correct answer is not un-done by extra scribble, and equivalent forms — $\\frac{15}{28}$, $0.536$, $53.6\\%$ — are all accepted. But this protection only exists if the method is written down. Study how each mark below is pinned to one line, especially the two mixed paths a tree diagram must add."
+    },
+    {
+      "type": "workedExample",
+      "question": "A bag contains 5 red and 3 blue balls. Two balls are drawn at random without replacement. Draw a tree diagram and find the probability that the two balls are different colours. [5]",
+      "solution": "**Model answer — full working.**\n\nLet $R$ = red and $B$ = blue; the bag holds $5 + 3 = 8$ balls.\n\n**Tree diagram.** First draw: $P(R_1) = \\dfrac{5}{8}$, $P(B_1) = \\dfrac{3}{8}$. After one ball is removed, 7 remain, so the second-draw branches are:\nafter red — $P(R_2|R_1) = \\dfrac{4}{7}$, $P(B_2|R_1) = \\dfrac{3}{7}$;\nafter blue — $P(R_2|B_1) = \\dfrac{5}{7}$, $P(B_2|B_1) = \\dfrac{2}{7}$.\n\n**Different colours** happens two ways: red then blue ($RB$), or blue then red ($BR$).\n$P(RB) = \\dfrac{5}{8}\\times\\dfrac{3}{7} = \\dfrac{15}{56}$\n$P(BR) = \\dfrac{3}{8}\\times\\dfrac{5}{7} = \\dfrac{15}{56}$\n$P(\\text{different}) = \\dfrac{15}{56} + \\dfrac{15}{56} = \\dfrac{30}{56} = \\dfrac{15}{28}$.\n\n**Final answer:** $P(\\text{different colours}) = \\dfrac{15}{28} \\approx 0.536$.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — correct tree with without-replacement probabilities.** Awarded for a tree whose second-stage branches use denominator 7 with the removed ball taken out, i.e. $\\frac47, \\frac37$ after red and $\\frac57, \\frac27$ after blue. This is a METHOD mark: it survives an arithmetic slip later, but is lost outright if the second-draw fractions are copied unchanged from the first draw.\n- **M1 — identify the two paths that give different colours.** Awarded for recognising that 'different colours' is $RB$ together with $BR$, not a single path. A student who considers only one order forfeits this mark.\n- **M1 — correct products for those paths.** Awarded for $\\dfrac{5}{8}\\cdot\\dfrac{3}{7} + \\dfrac{3}{8}\\cdot\\dfrac{5}{7}$, the two branch products written to be added. The engine checks the right fractions are multiplied along each path.\n- **A1 — $\\dfrac{30}{56}$.** The correct un-simplified value. This ACCURACY mark depends on the method marks above; with follow-through, a student who set up the right products but mis-multiplied still earns it if their value follows correctly from THEIR fractions.\n- **A1 — $= \\dfrac{15}{28}$.** The fully simplified final answer. Equivalent forms are accepted ($0.536$ to 3 s.f., or $53.6\\%$), and ISW means correct extra working after this does no harm.\n\n**Bottom line:** of the 5 marks, three are method marks earned by the tree and the two paths, and the two accuracy marks are shielded by follow-through. A student who writes only '$\\frac{15}{28}$' with no tree and no paths risks 3 method marks if anything in the final number is off; a student who shows the without-replacement tree, both paths, the sum and the simplified answer banks the method regardless of a late slip."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the method: draw the tree with the corrected without-replacement fractions, name the paths you are adding (here $RB$ and $BR$), write the products, then the answer in a simplified equivalent form. The method marks and follow-through are what protect your score when the final fraction slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "These tools recur throughout the statistics unit and beyond. Conditional probability and independence underpin the probability distributions that follow, where 'independent trials' is precisely the condition that lets you multiply. The habit of listing events, choosing the right diagram, and showing every path is the same discipline that earns method marks across all of Paper 2. Master the routine — name the events, pick Venn or tree, adjust for replacement, multiply along and add across, and write each line down — and the probability questions that follow become variations on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 2 calculation marked: solve a tree-diagram probability problem with full working",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=4.3&component=paper_2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Interactive Venn Diagram Tool",
+          "href": "https://www.geogebra.org/m/C3tSUW3X"
+        },
+        {
+          "label": "Khan Academy: Conditional Probability and Independence",
+          "href": "https://www.khanacademy.org/math/statistics-probability/probability-library/conditional-probability-independence"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "study-loop-pilot-v1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Interactive Venn Diagram Tool",
+    "embedUrl": "https://www.geogebra.org/classic?material=C3tSUW3X",
+    "launchUrl": "https://www.geogebra.org/classic?material=C3tSUW3X",
+    "hint": "Use “Interactive Venn Diagram Tool” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "SL 4.5",
+      "title": "Probability of an event",
+      "detail": "Trial, outcome, sample space and event; probability of an event and of its complement; expected number of occurrences."
+    },
+    {
+      "code": "SL 4.6",
+      "title": "Combined events",
+      "detail": "$P(A\\cup B)=P(A)+P(B)-P(A\\cap B)$; mutually exclusive events."
+    },
+    {
+      "code": "SL 4.6",
+      "title": "Conditional probability & independence",
+      "detail": "$P(A\\mid B)=\\dfrac{P(A\\cap B)}{P(B)}$; testing independence; Venn, tree and sample-space diagrams."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "sl-4-3-q1",
+      "prompt": "A fair six-sided die is rolled once. Find the probability of obtaining (a) an even number, (b) a number greater than $4$, (c) a prime number.",
+      "marks": 3,
+      "commandTerm": "Find",
+      "difficulty": "foundation",
+      "syllabusRef": "SL 4.5",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) (A1) $\\dfrac{3}{6}=\\dfrac{1}{2}$",
+          "marks": 1
+        },
+        {
+          "text": "(b) (A1) $\\dfrac{2}{6}=\\dfrac{1}{3}$",
+          "marks": 1
+        },
+        {
+          "text": "(c) (A1) $\\dfrac{3}{6}=\\dfrac{1}{2}$ (primes $2,3,5$)",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) Even $\\{2,4,6\\}$: $\\tfrac{3}{6}=\\tfrac{1}{2}$.\n\n(b) $>4$ is $\\{5,6\\}$: $\\tfrac{2}{6}=\\tfrac{1}{3}$.\n\n(c) Primes $\\{2,3,5\\}$: $\\tfrac{3}{6}=\\tfrac{1}{2}$."
+    },
+    {
+      "id": "sl-4-3-q2",
+      "prompt": "In a class of $30$ students, $18$ study Maths ($M$), $15$ study Physics ($P$), and $6$ study neither.\n(a) Find the number who study both subjects.\n(b) Find $P(M\\cap P)$.\n(c) Find $P(M\\mid P)$.",
+      "marks": 5,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "SL 4.6",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) (M1) $18+15-x=30-6$",
+          "marks": 1
+        },
+        {
+          "text": "(a) (A1) both $=9$",
+          "marks": 1
+        },
+        {
+          "text": "(b) (A1) $P(M\\cap P)=\\dfrac{9}{30}=0.3$",
+          "marks": 1
+        },
+        {
+          "text": "(c) (M1) $\\dfrac{9}{15}$",
+          "marks": 1
+        },
+        {
+          "text": "(c) (A1) $P(M\\mid P)=0.6$",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "At least one subject: $30-6=24$. Using $|M\\cup P|=|M|+|P|-|M\\cap P|$: $24=18+15-x\\Rightarrow x=9$.\n\n(b) $P(M\\cap P)=\\dfrac{9}{30}=0.3$.\n\n(c) $P(M\\mid P)=\\dfrac{|M\\cap P|}{|P|}=\\dfrac{9}{15}=0.6$."
+    },
+    {
+      "id": "sl-4-3-q3",
+      "prompt": "A bag contains $5$ red and $3$ blue balls. Two balls are drawn at random without replacement. Find the probability that (a) both are red, (b) the two balls are different colours.",
+      "marks": 4,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "SL 4.6",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) (M1) $\\dfrac{5}{8}\\times\\dfrac{4}{7}$",
+          "marks": 1
+        },
+        {
+          "text": "(a) (A1) $\\dfrac{20}{56}=\\dfrac{5}{14}$",
+          "marks": 1
+        },
+        {
+          "text": "(b) (M1) $\\dfrac{5}{8}\\cdot\\dfrac{3}{7}+\\dfrac{3}{8}\\cdot\\dfrac{5}{7}$",
+          "marks": 1
+        },
+        {
+          "text": "(b) (A1) $\\dfrac{30}{56}=\\dfrac{15}{28}$",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) $P(RR)=\\dfrac{5}{8}\\times\\dfrac{4}{7}=\\dfrac{20}{56}=\\dfrac{5}{14}\\approx 0.357$.\n\n(b) $P(\\text{different})=P(RB)+P(BR)=\\dfrac{5}{8}\\cdot\\dfrac{3}{7}+\\dfrac{3}{8}\\cdot\\dfrac{5}{7}=\\dfrac{30}{56}=\\dfrac{15}{28}\\approx 0.536$."
+    },
+    {
+      "id": "sl-4-3-q4",
+      "prompt": "For two events, $P(A)=0.6$, $P(B)=0.5$ and $P(A\\cup B)=0.8$.\n(a) Find $P(A\\cap B)$.\n(b) Determine, with a reason, whether $A$ and $B$ are independent.\n(c) Find $P(A\\mid B)$.",
+      "marks": 5,
+      "commandTerm": "Find",
+      "difficulty": "challenge",
+      "syllabusRef": "SL 4.6",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) (M1) $0.8=0.6+0.5-P(A\\cap B)$",
+          "marks": 1
+        },
+        {
+          "text": "(a) (A1) $P(A\\cap B)=0.3$",
+          "marks": 1
+        },
+        {
+          "text": "(b) (M1) compare with $P(A)\\,P(B)=0.6\\times 0.5=0.3$",
+          "marks": 1
+        },
+        {
+          "text": "(b) (A1) equal, so $A$ and $B$ are independent",
+          "marks": 1
+        },
+        {
+          "text": "(c) (A1) $P(A\\mid B)=\\dfrac{0.3}{0.5}=0.6$",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) $0.8=0.6+0.5-P(A\\cap B)\\Rightarrow P(A\\cap B)=0.3$.\n\n(b) $P(A)P(B)=0.6\\times 0.5=0.3=P(A\\cap B)$, so the events are independent.\n\n(c) $P(A\\mid B)=\\dfrac{P(A\\cap B)}{P(B)}=\\dfrac{0.3}{0.5}=0.6$."
+    }
+  ]
+}

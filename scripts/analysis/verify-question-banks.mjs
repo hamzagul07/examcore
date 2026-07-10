@@ -63,25 +63,24 @@ async function token() {
   return _tok
 }
 
-const SYS = `You are a meticulous, skeptical IB ${SUBJECT_NAME} examiner reviewing draft practice questions for correctness.
-For EACH question you are given (prompt, its mark scheme, and its model answer):
+const SYS = `You are a meticulous, skeptical IB ${SUBJECT_NAME} examiner checking ONE draft practice question for correctness.
+You are given the question prompt, its mark scheme, and its model answer.
 1. Solve the question YOURSELF from scratch, carefully${IS_MATH ? '' : ', checking units, significant figures and physical/chemical/biological reasoning'}.
-2. Decide if the model answer's FINAL result is CORRECT and actually follows from valid working.
-3. Decide if the mark-scheme steps are consistent with a correct solution.
-4. Judge whether "syllabusRef" is a plausible IB ${SUBJECT_NAME} sub-topic code for this question. Flag clearly wrong labels.
-To avoid mistakes, for each question you MUST first copy the model answer's stated FINAL result verbatim into "stated_answer", then put your own independently-computed result into "your_answer", then compare them.
-Return ONLY JSON: {"verdicts":[{"id":"...","stated_answer":"final result copied from the model answer","your_answer":"your own computed result","verdict":"ok"|"flag","severity":"low"|"high","issue":"one concise sentence or null","correct_answer":"the right final answer if the model answer is wrong, else null"}]}
-Flag (verdict:"flag") ONLY when stated_answer and your_answer genuinely DISAGREE, or the syllabus code is clearly wrong (severity "low" for code-only issues, "high" for wrong science/maths). If they agree, verdict MUST be "ok". Do NOT flag wording or style. Only judge questions actually present in the input — never invent questions.`
+2. Copy the model answer's stated FINAL result verbatim into "stated_answer".
+3. Put your own independently-computed result into "your_answer".
+4. Decide whether they agree, and whether "syllabusRef" is a plausible IB ${SUBJECT_NAME} sub-topic code.
+Return ONLY a single JSON object: {"stated_answer":"...","your_answer":"...","verdict":"ok"|"flag","severity":"low"|"high","issue":"one concise sentence or null","correct_answer":"the right final answer if the model answer is wrong, else null"}
+Flag (verdict:"flag") ONLY when stated_answer and your_answer genuinely DISAGREE (severity "high"), or the syllabus code is clearly wrong (severity "low"). If they agree, verdict MUST be "ok". Do NOT flag wording or style. Judge ONLY the question given.`
 
-async function verifyLesson(file) {
-  const d = JSON.parse(fs.readFileSync(file, 'utf8'))
-  const qs = (d.questionBank || []).map((q) => ({
-    id: q.id, syllabusRef: q.syllabusRef, marks: q.marks,
-    prompt: q.prompt, markScheme: q.markScheme.map((m) => `[${m.marks}] ${m.text}`), modelAnswer: q.modelAnswer,
-  }))
-  if (!qs.length) return []
-  const user = `Topic ${d.topicCode} — ${d.title} (${path.basename(path.dirname(file))}).\nReview these ${qs.length} questions:\n${JSON.stringify(qs, null, 1)}`
-  const body = { systemInstruction: { parts: [{ text: SYS }] }, contents: [{ role: 'user', parts: [{ text: user }] }], generationConfig: { temperature: 0.1, maxOutputTokens: 32000, responseMimeType: 'application/json' } }
+// Verify ONE question per call — small, reliable, no all-or-nothing batch failures.
+async function verifyQuestion(item) {
+  const { q, file, topic } = item
+  const payload = {
+    id: q.id, syllabusRef: q.syllabusRef, marks: q.marks, prompt: q.prompt,
+    markScheme: q.markScheme.map((m) => `[${m.marks}] ${m.text}`), modelAnswer: q.modelAnswer,
+  }
+  const user = `Topic: ${topic}. Check this single question:\n${JSON.stringify(payload, null, 1)}`
+  const body = { systemInstruction: { parts: [{ text: SYS }] }, contents: [{ role: 'user', parts: [{ text: user }] }], generationConfig: { temperature: 0.1, maxOutputTokens: 4000, responseMimeType: 'application/json' } }
   const url = `https://${LOCATION}-aiplatform.googleapis.com/v1/projects/${PROJECT}/locations/${LOCATION}/publishers/google/models/${MODEL}:generateContent`
   for (let attempt = 1; attempt <= 4; attempt++) {
     try {
@@ -91,43 +90,38 @@ async function verifyLesson(file) {
         if (attempt === 4) throw new Error(`${res.status}`); continue
       }
       const txt = (await res.json()).candidates?.[0]?.content?.parts?.map((p) => p.text).join('') ?? ''
-      const obj = parseLenient(txt.replace(/^```json\s*/i, '').replace(/```\s*$/, '').trim())
-      const verdicts = Array.isArray(obj.verdicts) ? obj.verdicts : []
-      // Retry until every question is covered (the model sometimes returns a
-      // short or empty verdicts array); on the last attempt, mark any missing.
-      if (verdicts.length < qs.length && attempt < 4) continue
-      const topic = `${d.topicCode} ${d.title}`
-      return qs.map((q) => {
-        const v = verdicts.find((x) => x.id === q.id)
-        return v ? { ...v, file: path.basename(file), topic }
-          : { id: q.id, verdict: 'error', severity: 'high', issue: 'verifier returned no verdict for this question', file: path.basename(file), topic }
-      })
-    } catch (e) { if (attempt === 4) return [{ id: path.basename(file), verdict: 'error', severity: 'high', issue: String(e).slice(0, 100), file: path.basename(file), topic: d.title }] }
+      const v = parseLenient(txt.replace(/^```json\s*/i, '').replace(/```\s*$/, '').trim())
+      if (!v || !v.verdict) { if (attempt < 4) continue; throw new Error('no verdict in response') }
+      return { id: q.id, ...v, file: path.basename(file), topic }
+    } catch (e) { if (attempt === 4) return { id: q.id, verdict: 'error', severity: 'high', issue: String(e).slice(0, 100), file: path.basename(file), topic } }
   }
-  return [{ id: path.basename(file), verdict: 'error', severity: 'high', issue: 'no response after retries', file: path.basename(file), topic: d.title }]
 }
 
-const files = []
+// Flatten every question across all matched lessons into one work queue.
+const items = []
 for (const dir of fs.readdirSync(path.join(ROOT, 'content/courses')).filter((n) => n.match(new RegExp(GLOB.replace('*', '.*'))))) {
   const full = path.join(ROOT, 'content/courses', dir)
   if (!fs.statSync(full).isDirectory()) continue
-  for (const f of fs.readdirSync(full)) if (f.endsWith('.pilot.json')) files.push(path.join(full, f))
+  for (const f of fs.readdirSync(full)) {
+    if (!f.endsWith('.pilot.json')) continue
+    const d = JSON.parse(fs.readFileSync(path.join(full, f), 'utf8'))
+    for (const q of d.questionBank ?? []) items.push({ q, file: path.join(full, f), topic: `${d.topicCode} ${d.title}` })
+  }
 }
-console.log(`Reviewing ${files.length} lessons with ${MODEL} (concurrency ${CONCURRENCY})…\n`)
+console.log(`Reviewing ${items.length} questions with ${MODEL} (concurrency ${CONCURRENCY}, per-question)…\n`)
 
 const all = []
 let done = 0
 async function worker(queue) {
   while (queue.length) {
-    const f = queue.shift()
-    const verdicts = (await verifyLesson(f)) || []
-    all.push(...verdicts)
+    const it = queue.shift()
+    const v = await verifyQuestion(it)
+    if (v) all.push(v)
     done++
-    const flags = verdicts.filter((v) => v.verdict !== 'ok').length
-    console.log(`  [${done}/${files.length}] ${path.basename(f)}${flags ? `  ⚠ ${flags}` : '  ✓'}`)
+    if (done % 20 === 0 || !queue.length) console.log(`  [${done}/${items.length}] reviewed`)
   }
 }
-const queue = [...files]
+const queue = [...items]
 await Promise.all(Array.from({ length: CONCURRENCY }, () => worker(queue)))
 
 // Dump raw verdicts first — a report-formatting bug must never lose the work.

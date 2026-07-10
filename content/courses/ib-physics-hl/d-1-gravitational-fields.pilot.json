@@ -1,0 +1,569 @@
+{
+  "slug": "d-1-gravitational-fields",
+  "topicCode": "D.1",
+  "unit": {
+    "code": "D",
+    "title": "Fields"
+  },
+  "title": "Gravitational fields",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "pilot",
+  "summary": "This lesson builds the full D.1 toolkit for gravitational fields. It starts with Newton's law of universal gravitation, $F = G\\frac{Mm}{r^2}$, then defines gravitational field strength as force per unit mass, $g = \\frac{F}{m} = G\\frac{M}{r^2}$, and draws the radial field of a point or spherical mass. It separates the two meanings of $g$ — field strength and acceleration of free fall — and then uses the idea that gravity supplies the centripetal force in orbit to derive orbital speed and period, $v = \\sqrt{GM/r}$. For HL it extends to gravitational potential, gravitational potential energy and escape speed. Every worked example is laid out exactly the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "State Newton's law of universal gravitation and apply $F = G\\frac{Mm}{r^2}$ to point and spherical masses.",
+    "Define gravitational field strength as force per unit mass and use both $g = \\frac{F}{m}$ and $g = G\\frac{M}{r^2}$, representing the field with radial field lines.",
+    "Distinguish $g$ as a field strength from $g$ as the acceleration of free fall.",
+    "Show that gravitation provides the centripetal force for a circular orbit and derive the orbital speed $v = \\sqrt{GM/r}$ and period $T$.",
+    "(HL) Define gravitational potential and gravitational potential energy and calculate escape speed.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "D.1"
+  ],
+  "levelNote": "Common to SL and HL; gravitational potential and escape speed are HL.",
+  "simpleExplanation": {
+    "title": "The Universe's Invisible Pull",
+    "summary": "Every object with mass reaches out through space and pulls on every other mass. We picture that reach as a gravitational field: a region where any mass feels a force directed towards the source. The pull weakens with the square of the distance, so moving twice as far away leaves you feeling only a quarter of the field.",
+    "analogy": "Imagine a heavy bowling ball resting on a stretched rubber sheet. It makes a dip, and a marble rolled nearby curves down into that dip rather than travelling straight. The dip is the gravitational field created by the ball's mass; the marble's curving path is the gravitational force acting on it. Roll the marble at just the right speed and it circles the dip forever — that is an orbit.",
+    "steps": [
+      "Identify the source mass $M$, the second mass $m$, and the distance $r$ between the two centres.",
+      "For the force between them use Newton's law, $F = G\\frac{Mm}{r^2}$.",
+      "For the field strength at a point use $g = \\frac{F}{m}$ if you know the force on a mass, or $g = G\\frac{M}{r^2}$ if you know the source mass and distance.",
+      "For a circular orbit, set the gravitational force equal to the required centripetal force to find the orbital speed $v = \\sqrt{GM/r}$ and then the period $T = \\frac{2\\pi r}{v}$."
+    ]
+  },
+  "keyConcepts": [
+    "field as force per unit mass",
+    "inverse-square law",
+    "gravity as centripetal force"
+  ],
+  "flashcards": [
+    {
+      "front": "Newton's law of universal gravitation (statement)",
+      "back": "Every point mass attracts every other point mass with a force that is directly proportional to the product of their masses and inversely proportional to the square of the distance between their centres. The force is always attractive.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "$F = G\\frac{Mm}{r^2}$",
+      "back": "The magnitude of the gravitational force between masses $M$ and $m$ whose centres are a distance $r$ apart. $G = 6.67 \\times 10^{-11}$ N m² kg⁻² is the universal gravitational constant, the same everywhere.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Gravitational field strength, $g$ (definition)",
+      "back": "The gravitational force per unit mass on a small test mass placed at a point: $g = \\frac{F}{m}$, a vector in N kg⁻¹ directed towards the source mass.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "$g = G\\frac{M}{r^2}$",
+      "back": "The field strength a distance $r$ from the centre of a point or spherical source mass $M$. It depends only on $M$ and $r$ — never on the test mass placed in the field.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "$G$ versus $g$",
+      "back": "$G$ is the universal constant, $6.67 \\times 10^{-11}$ N m² kg⁻², identical throughout the universe. $g$ is the field strength at a particular place and varies with the source mass and distance.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Units of $g$",
+      "back": "N kg⁻¹, which is dimensionally identical to m s⁻². That is why the field strength and the acceleration of free fall share the same symbol and value.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Inverse-square law",
+      "back": "Both $F$ and $g$ vary as $1/r^2$. Double the distance and the field drops to one quarter; triple it and the field drops to one ninth. $r$ is measured from the centre, not the surface.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Field lines of a spherical mass",
+      "back": "Radial and directed inwards towards the centre. Their spacing shows the field strength: lines crowd together near the surface where the field is strong and spread out far away where it is weak.",
+      "pillLabel": "Graph"
+    },
+    {
+      "front": "$g$ as field strength vs $g$ as acceleration",
+      "back": "$g = \\frac{F}{m}$ is a property of the field at a point. For a body in free fall the resultant force is its weight $W = mg$, so its acceleration equals $g$. They coincide only when gravity is the sole force; a supported object still sits in the field but does not accelerate.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Gravity provides the centripetal force",
+      "back": "For a satellite in a circular orbit the gravitational force is the centripetal force: $\\frac{GMm}{r^2} = \\frac{mv^2}{r}$. The satellite mass cancels.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Orbital speed and period",
+      "back": "$v = \\sqrt{\\dfrac{GM}{r}}$ and $T = \\dfrac{2\\pi r}{v} = 2\\pi\\sqrt{\\dfrac{r^3}{GM}}$. Both depend on the central mass $M$ and radius $r$, not on the orbiting mass.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Gravitational potential, $V$ (HL)",
+      "back": "The work done per unit mass in bringing a small test mass from infinity to a point: $V = -G\\frac{M}{r}$. It is a scalar and always negative because gravity is attractive.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Gravitational potential energy (HL)",
+      "back": "$E_p = mV = -G\\frac{Mm}{r}$, the energy of a mass $m$ in the field of $M$. It is zero at infinity and becomes more negative as $r$ decreases.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Escape speed, $v_{esc}$ (HL)",
+      "back": "The minimum launch speed for an object to reach infinity with no kinetic energy left: $v_{esc} = \\sqrt{\\dfrac{2GM}{r}}$. It is independent of the escaping object's mass and of launch direction.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Exam Trap: astronauts on the ISS",
+      "back": "They are not beyond gravity — at the ISS the field is still about 88% of its surface value. They feel weightless only because they and the station are in continuous free fall together.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A probe is moved from a distance $r$ to a distance $3r$ from the centre of a planet. The gravitational field strength it experiences becomes:",
+      "options": [
+        "3 times larger",
+        "9 times larger",
+        "1/3 of the original",
+        "1/9 of the original"
+      ],
+      "answer": "1/9 of the original"
+    },
+    {
+      "prompt": "Because gravitational field strength obeys $g = G\\frac{M}{r^2}$, moving away from a planet makes $g$:",
+      "options": [
+        "Increase in proportion to $r$",
+        "Decrease in proportion to $1/r$",
+        "Decrease in proportion to $1/r^2$",
+        "Stay constant until you leave the atmosphere"
+      ],
+      "answer": "Decrease in proportion to $1/r^2$"
+    },
+    {
+      "prompt": "Two satellites, one 200 kg and one 800 kg, travel in the SAME circular orbit around Earth. Their orbital speeds are:",
+      "options": [
+        "The heavier one is faster",
+        "The lighter one is faster",
+        "Equal, because $v = \\sqrt{GM/r}$ does not contain the satellite mass",
+        "Impossible to compare without their periods"
+      ],
+      "answer": "Equal, because $v = \\sqrt{GM/r}$ does not contain the satellite mass"
+    },
+    {
+      "prompt": "Which equation should you use to find the field strength created by a planet of known mass at a known distance, when no test mass is mentioned?",
+      "options": [
+        "$g = \\frac{F}{m}$",
+        "$g = G\\frac{M}{r^2}$",
+        "$F = G\\frac{Mm}{r^2}$",
+        "$v = \\sqrt{GM/r}$"
+      ],
+      "answer": "$g = G\\frac{M}{r^2}$"
+    },
+    {
+      "prompt": "The gravitational field lines around a single spherical planet are best described as:",
+      "options": [
+        "Straight lines pointing radially inwards towards the centre",
+        "Straight lines pointing radially outwards",
+        "Closed loops around the planet",
+        "Parallel, equally spaced horizontal lines"
+      ],
+      "answer": "Straight lines pointing radially inwards towards the centre"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What exactly does 'r' mean in these equations?",
+      "a": "It is the distance between the centres of the two masses, not the gap between their surfaces. For an object at height $h$ above a planet of radius $R$, use $r = R + h$. Treating a spherical planet as though all its mass sits at its centre is valid because a uniform sphere produces the same external field as a point mass at its centre."
+    },
+    {
+      "q": "Is 'g' a field strength or an acceleration?",
+      "a": "Both — they are numerically equal and share the unit, since N kg⁻¹ = m s⁻². $g = F/m$ defines the field strength at a point in space and exists whether or not anything is there to fall. If the only force on a mass is gravity, its weight $mg$ gives it an acceleration equal to $g$. A book resting on a table still sits in a field of $9.81$ N kg⁻¹ but does not accelerate, because the normal force balances its weight."
+    },
+    {
+      "q": "Why does the satellite's own mass not appear in the orbital-speed formula?",
+      "a": "Setting the gravitational force equal to the centripetal force gives $\\frac{GMm}{r^2} = \\frac{mv^2}{r}$. The orbiting mass $m$ appears on both sides and cancels, leaving $v = \\sqrt{GM/r}$. A bolt and the space station in the same orbit therefore travel at the same speed — exactly why they stay together."
+    },
+    {
+      "q": "If gravity is so weak, why does it dominate on astronomical scales?",
+      "a": "Gravity is by far the weakest fundamental force, but it has infinite range, is always attractive and cannot be shielded or cancelled. Electric forces come in both signs and mostly neutralise over large bodies, whereas every kilogram of a star or planet adds to its pull. Over planetary and stellar masses those contributions accumulate until gravity governs the motion."
+    },
+    {
+      "q": "(HL) Why are gravitational potential and potential energy negative?",
+      "a": "We define both to be zero at infinity, the natural reference where the masses no longer interact. Because gravity is attractive, you would have to do positive work to drag a mass from a point in the field all the way out to infinity. That means the mass started with less than zero energy relative to infinity, so $V = -GM/r$ and $E_p = -GMm/r$ are negative, becoming more negative as the masses draw closer."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Gravity keeps us on the ground and holds the Moon in its orbit, and Newton's great insight was that these are the same force obeying one law. This lesson develops that law, reframes it using the powerful idea of a field, and then puts it to work. We will calculate the force between masses, the field strength around a planet, and the speed and period of a satellite whose orbit is held together by gravity alone. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "Newton's law of universal gravitation"
+    },
+    {
+      "type": "text",
+      "content": "Newton proposed that every particle of matter attracts every other particle. The force is directly proportional to the product of the two masses and inversely proportional to the square of the distance between their centres. For point masses, or for spherical masses treated as points at their centres, this gives a single equation."
+    },
+    {
+      "type": "formula",
+      "content": "F = G \\frac{Mm}{r^2}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**$F$** is the magnitude of the attractive force each mass exerts on the other (equal and opposite, by Newton's third law).",
+        "**$M$ and $m$** are the two masses in kilograms.",
+        "**$r$** is the distance between the **centres** of the masses, not their surfaces.",
+        "**$G$** is the universal gravitational constant, $6.67 \\times 10^{-11}$ N m² kg⁻², given in the IB data booklet."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "Two features do most of the work in exam questions. First, the force is an inverse-square law: double the separation and the force falls to a quarter; triple it and it falls to a ninth. Second, because a uniform sphere produces the same external field as a point mass at its centre, we measure $r$ from the centre — so for an object at height $h$ above a planet of radius $R$, we must use $r = R + h$."
+    },
+    {
+      "type": "workedExample",
+      "question": "A satellite of mass 850 kg orbits the Earth ($M = 6.0 \\times 10^{24}$ kg) at a distance of $7.0 \\times 10^6$ m from the Earth's centre. Calculate the gravitational force the Earth exerts on the satellite. ($G = 6.67 \\times 10^{-11}$ N m² kg⁻²) [3]",
+      "solution": "**Choose the equation.** The force between two masses is Newton's law of gravitation: $F = G\\dfrac{Mm}{r^2}$.  [M1: correct equation]\n\n**Substitute.**\n$F = (6.67 \\times 10^{-11}) \\dfrac{(6.0 \\times 10^{24})(850)}{(7.0 \\times 10^6)^2}$  [M1: correct substitution]\n\n**Evaluate.**\nNumerator: $(6.67 \\times 10^{-11})(6.0 \\times 10^{24})(850) = 3.40 \\times 10^{17}$.\nDenominator: $(7.0 \\times 10^6)^2 = 4.9 \\times 10^{13}$.\n$F = \\dfrac{3.40 \\times 10^{17}}{4.9 \\times 10^{13}} \\approx 6.9 \\times 10^3$ N.  [A1: answer with unit]\n\n**Check:** dividing by the mass, $F/m = 6.9 \\times 10^3 / 850 \\approx 8.2$ N kg⁻¹ — the field strength at that radius, which we could also have found directly from $g = GM/r^2$."
+    },
+    {
+      "type": "heading",
+      "content": "Gravitational field strength"
+    },
+    {
+      "type": "text",
+      "content": "Rather than think of a force reaching mysteriously across empty space, we say a mass $M$ fills the space around it with a gravitational field. Any second mass placed in that field feels a force. We define the gravitational field strength $g$ at a point as the force per unit mass on a small test mass placed there."
+    },
+    {
+      "type": "formula",
+      "content": "g = \\frac{F}{m}"
+    },
+    {
+      "type": "text",
+      "content": "Its units are N kg⁻¹. To find the field due to a source mass, substitute Newton's law $F = G\\frac{Mm}{r^2}$ into $g = F/m$; the test mass $m$ cancels, leaving a formula for the field created by $M$ alone."
+    },
+    {
+      "type": "formula",
+      "content": "g = G \\frac{M}{r^2}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$g$ is a **vector**, directed towards the centre of the source mass $M$.",
+        "$g = G\\frac{M}{r^2}$ depends only on the source mass $M$ and the distance $r$ — **never** on the test mass placed in the field.",
+        "Near Earth's surface $g \\approx 9.81$ N kg⁻¹; it too obeys the inverse-square law as you rise."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Keep the two field-strength equations straight. Use $g = F/m$ when you are told the force on a specific mass. Use $g = G\\frac{M}{r^2}$ when you are given a source mass and a distance and no test mass is mentioned. Reaching for the wrong one is one of the most common D.1 errors."
+    },
+    {
+      "type": "workedExample",
+      "question": "Mars has mass $6.4 \\times 10^{23}$ kg and radius $3.4 \\times 10^6$ m. Calculate the gravitational field strength at its surface. ($G = 6.67 \\times 10^{-11}$ N m² kg⁻²) [3]",
+      "solution": "**Choose the equation.** We want the field of a source mass at a known distance, with no test mass mentioned, so use $g = G\\dfrac{M}{r^2}$.  [M1: correct equation]\n\n**Identify $r$.** At the surface, $r$ is the planet's radius, $r = 3.4 \\times 10^6$ m.\n\n**Substitute.**\n$g = (6.67 \\times 10^{-11}) \\dfrac{6.4 \\times 10^{23}}{(3.4 \\times 10^6)^2}$  [M1: correct substitution]\n\n**Evaluate.**\nNumerator: $(6.67 \\times 10^{-11})(6.4 \\times 10^{23}) = 4.27 \\times 10^{13}$.\nDenominator: $(3.4 \\times 10^6)^2 = 1.16 \\times 10^{13}$.\n$g = \\dfrac{4.27 \\times 10^{13}}{1.16 \\times 10^{13}} \\approx 3.7$ N kg⁻¹.  [A1: answer with unit]\n\n**Check:** about $0.38$ of Earth's $9.81$ N kg⁻¹ — consistent with the real surface gravity of Mars."
+    },
+    {
+      "type": "heading",
+      "content": "Field strength or acceleration? Two meanings of g"
+    },
+    {
+      "type": "text",
+      "content": "The symbol $g$ carries two ideas that happen to share a value. As a field strength, $g = F/m$ is a property of a point in space — it is defined there whether or not any mass sits at the point, and it is measured in N kg⁻¹. As an acceleration, $g$ is what a body actually experiences when gravity is the only force acting on it: its weight is $W = mg$, so by Newton's second law its acceleration is $a = W/m = g$, measured in m s⁻². The two are numerically identical because N kg⁻¹ and m s⁻² are the same combination of units. The distinction matters when other forces are present: a parachutist held back by drag, or a book resting on a table, still sits in a field of about $9.81$ N kg⁻¹, but neither accelerates at $9.81$ m s⁻² because gravity is not the only force. Field strength describes the field; acceleration of free fall describes the motion that field produces when nothing else interferes."
+    },
+    {
+      "type": "heading",
+      "content": "Field lines: the radial field of a spherical mass"
+    },
+    {
+      "type": "text",
+      "content": "We picture a field with field lines that show the direction of the force on a test mass. For a single point or uniform spherical mass the lines are radial, pointing straight inwards towards the centre, because that is the direction of the pull everywhere around it. The spacing of the lines encodes the strength: near the surface the lines are crowded together where the field is strong, and they fan out with distance as the field weakens according to the inverse-square law."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Field lines point in the direction of the force on a test mass — for gravity, always **inwards** towards the source.",
+        "For a spherical mass the lines are **radial** and meet the surface at right angles.",
+        "Where lines are **closer together the field is stronger**; where they spread out it is weaker.",
+        "Field lines never cross — the field has a single direction at each point."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Orbital motion: gravity as the centripetal force"
+    },
+    {
+      "type": "text",
+      "content": "A satellite in a circular orbit moves at constant speed but constantly changes direction, so it is accelerating towards the centre of the circle. Something must supply that centripetal force — and for a satellite the only force acting is gravity. The key step in every orbit problem is therefore to set the gravitational force equal to the required centripetal force."
+    },
+    {
+      "type": "formula",
+      "content": "\\frac{GMm}{r^2} = \\frac{mv^2}{r}"
+    },
+    {
+      "type": "text",
+      "content": "The orbiting mass $m$ cancels from both sides. Rearranging gives the orbital speed, and the period then follows because the satellite covers one circumference $2\\pi r$ in one period at speed $v$."
+    },
+    {
+      "type": "formula",
+      "content": "v = \\sqrt{\\frac{GM}{r}} \\qquad T = \\frac{2\\pi r}{v} = 2\\pi\\sqrt{\\frac{r^3}{GM}}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The orbital speed and period depend on the **central mass $M$ and the radius $r$**, not on the satellite's mass.",
+        "A **smaller orbit means a faster speed** (larger $v$) but a **shorter period** — low satellites race around; distant ones dawdle.",
+        "$T^2 \\propto r^3$ (Kepler's third law) falls straight out of $T = 2\\pi\\sqrt{r^3/GM}$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Gravitational potential and potential energy (HL)"
+    },
+    {
+      "type": "text",
+      "content": "Field strength tells you the force per unit mass; gravitational potential tells you the energy per unit mass. The gravitational potential $V$ at a point is the work done per unit mass in bringing a small test mass from infinity to that point. Taking infinity as the zero of energy and remembering that gravity is attractive, the potential is always negative."
+    },
+    {
+      "type": "formula",
+      "content": "V = -G\\frac{M}{r} \\qquad E_p = mV = -G\\frac{Mm}{r}"
+    },
+    {
+      "type": "text",
+      "content": "Here $V$ is a scalar in J kg⁻¹, and the gravitational potential energy $E_p$ of a mass $m$ in the field of $M$ is simply $mV$. Both are zero at infinity and become more negative as the masses approach, reflecting the fact that you must do positive work to pull them apart. Do not confuse this full-field expression $E_p = -GMm/r$ with the near-surface change $\\Delta E_p = mg\\,\\Delta h$, which is only its approximation for small height changes where $g$ is effectively constant."
+    },
+    {
+      "type": "heading",
+      "content": "Escape speed (HL)"
+    },
+    {
+      "type": "text",
+      "content": "Escape speed is the minimum speed at which an object must be launched from a mass's surface so that it just reaches infinity, arriving there with no kinetic energy to spare. Equating the launch kinetic energy to the magnitude of the gravitational potential energy at the surface, $\\tfrac{1}{2}mv_{esc}^2 = G\\frac{Mm}{r}$, the object's mass cancels and rearranging gives the escape speed."
+    },
+    {
+      "type": "formula",
+      "content": "v_{esc} = \\sqrt{\\frac{2GM}{r}}"
+    },
+    {
+      "type": "text",
+      "content": "For Earth ($M = 6.0 \\times 10^{24}$ kg, $r = 6.4 \\times 10^6$ m) this is about $1.1 \\times 10^4$ m s⁻¹, roughly 11 km s⁻¹. Notice it is independent of the escaping object's mass and of the direction of launch — only the speed matters."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Forgetting the square in the inverse-square law** — doubling $r$ divides $F$ and $g$ by **four**, not two; tripling $r$ divides them by nine. The exponent is on the distance, so it dominates the answer.",
+        "**Measuring $r$ from the surface instead of the centre** — for an object at height $h$ above a planet of radius $R$, use $r = R + h$. Using $h$ alone is a classic lost mark.",
+        "**Mixing up the two field-strength equations** — use $g = F/m$ when a force on a specific mass is given, and $g = G\\frac{M}{r^2}$ for the field of a source mass at a distance.",
+        "**Putting the satellite's mass into the orbital-speed formula** — it cancels, so $v = \\sqrt{GM/r}$ and the period depend only on the central mass and radius, not on the orbiting object.",
+        "**Confusing $g$ as a field strength with $g$ as an acceleration** — a supported or drag-limited object sits in the field but does not accelerate at $g$; the two coincide only in free fall.",
+        "**Thinking astronauts in orbit are beyond gravity** — the field there is still most of its surface value; they are weightless only because they are in continuous free fall.",
+        "**(HL) Dropping the minus sign or the reference at infinity** for $V$ and $E_p$ — both are negative and zero at infinity; and $E_p = -GMm/r$ is not the same as $mg\\,\\Delta h$.",
+        "**Over-rounding mid-calculation or omitting units** — carry extra figures through the working, round only at the end, and always attach the unit (N, N kg⁻¹, m s⁻¹)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an answer mark (A) — and error-carried-forward (ECF) means a wrong number early on need not cost you the marks that follow. But that protection only exists if the method is written down. Study how each mark below is earned by a specific line in a standard orbital-speed calculation."
+    },
+    {
+      "type": "workedExample",
+      "question": "A satellite orbits the Earth ($M = 6.0 \\times 10^{24}$ kg) in a circular orbit of radius $7.0 \\times 10^6$ m. Calculate its orbital speed. ($G = 6.67 \\times 10^{-11}$ N m² kg⁻²) [3]",
+      "solution": "**Model answer — full working.**\n\n**Set gravity equal to the centripetal force.** For a circular orbit the gravitational force provides the centripetal force:\n$\\dfrac{GMm}{r^2} = \\dfrac{mv^2}{r}$.\nThe satellite mass $m$ cancels, giving $v = \\sqrt{\\dfrac{GM}{r}}$.\n\n**Substitute.**\n$v = \\sqrt{\\dfrac{(6.67 \\times 10^{-11})(6.0 \\times 10^{24})}{7.0 \\times 10^6}}$\n\n**Evaluate.**\n$GM = (6.67 \\times 10^{-11})(6.0 \\times 10^{24}) = 4.0 \\times 10^{14}$.\n$\\dfrac{GM}{r} = \\dfrac{4.0 \\times 10^{14}}{7.0 \\times 10^6} = 5.72 \\times 10^7$.\n$v = \\sqrt{5.72 \\times 10^7} \\approx 7.6 \\times 10^3$ m s⁻¹.\n\n**Final answer:** the orbital speed is about $7.6 \\times 10^3$ m s⁻¹ (7.6 km s⁻¹).\n\n---\n**How our marking engine awards the 3 marks:**\n\n- **M1 — correct physics/method.** Awarded for equating the gravitational force to the centripetal force, $\\frac{GMm}{r^2} = \\frac{mv^2}{r}$, or for quoting the correct rearranged result $v = \\sqrt{GM/r}$. This METHOD mark is earned for the right approach even if the arithmetic later slips.\n- **M1 — correct substitution.** Awarded for putting the right numbers in the right places: $v = \\sqrt{(6.67 \\times 10^{-11})(6.0 \\times 10^{24}) / (7.0 \\times 10^6)}$. The engine checks the values, including $r$ measured from the centre.\n- **A1 — answer with unit.** Awarded for $v \\approx 7.6 \\times 10^3$ m s⁻¹. ECF applies: a student who set up and substituted correctly but mis-keyed the final root still keeps the two M-marks, and an answer that follows correctly from their own earlier figure keeps the A-mark too.\n\n**'Accept answers that round correctly.'** The engine accepts $7.6 \\times 10^3$ m s⁻¹ or $7.56 \\times 10^3$ m s⁻¹ — it does not demand a fixed number of decimal places, only a correctly-rounded value with the right unit.\n\n**Bottom line:** of the 3 marks, two are method marks that survive an arithmetic slip, and the answer mark is shielded by ECF. A student who writes only '7600 m/s' with no working risks losing 1–2 marks if the number is off; a student who shows the force-balance, the substitution and the final root keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: state the equation (for orbits, gravity = centripetal force), write the substitution with $r$ measured from the centre, then give the answer with its unit. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Gravitational fields are the template for the fields that follow. The same inverse-square structure reappears in electrostatics, where Coulomb's law mirrors Newton's law and electric field strength mirrors $g$; the field-line and potential ideas carry straight across, with the crucial difference that electric charges can repel as well as attract. The orbit analysis — setting the central force equal to the centripetal requirement — is exactly the reasoning used for charged particles in magnetic fields and for electrons in atoms. Master the habit here — pick the right equation, measure $r$ from the centre, balance the forces, show every line — and the rest of the fields topic becomes variations on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 2 calculation marked: solve an orbital-motion problem with full working",
+      "href": "/mark?subject=ib-physics-hl&topic=D.1&component=paper_2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/"
+        },
+        {
+          "label": "PhET Simulation: Gravity and Orbits",
+          "href": "https://phet.colorado.edu/en/simulations/gravity-and-orbits"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Gravity and Orbits",
+    "embedUrl": "https://phet.colorado.edu/sims/html/gravity-and-orbits/latest/gravity-and-orbits_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/gravity-and-orbits",
+    "hint": "Explore “Gravity and Orbits” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "D.1.1",
+      "title": "Newton's law of gravitation",
+      "detail": "Calculating the force between two point masses using $F = G\\frac{Mm}{r^2}$."
+    },
+    {
+      "code": "D.1.2",
+      "title": "Gravitational field and potential",
+      "detail": "Understanding gravitational field strength $g$ and gravitational potential $V_g$."
+    },
+    {
+      "code": "D.1.3",
+      "title": "Orbital motion",
+      "detail": "Analysing the mechanics of circular orbits, including orbital speed and period."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "d-1-gravitational-fields-q1",
+      "prompt": "Two spherical asteroids are in a stable orbit around each other in deep space, far from other gravitational influences. Asteroid A has a mass of $8.0 \\times 10^{14}$ kg and Asteroid B has a mass of $2.0 \\times 10^{14}$ kg. The distance between their centres is 5.0 km.\n\n(a) State Newton's universal law of gravitation. [1]\n\n(b) Calculate the magnitude of the gravitational force exerted by Asteroid A on Asteroid B. [2]",
+      "marks": 3,
+      "commandTerm": "State",
+      "difficulty": "foundation",
+      "syllabusRef": "D.1.1",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) The gravitational force between two point masses is directly proportional to the product of their masses and inversely proportional to the square of their separation. ✓",
+          "marks": 1
+        },
+        {
+          "text": "(b) (M1) Correct substitution into $F = G\\frac{Mm}{r^2}$: $F = (6.67 \\times 10^{-11}) \\frac{(8.0 \\times 10^{14})(2.0 \\times 10^{14})}{(5000)^2}$. ✓",
+          "marks": 1
+        },
+        {
+          "text": "(b) (A1) $F = 430$ N (or $4.3 \\times 10^2$ N). ✓",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) Newton's universal law of gravitation states that the attractive force between any two point masses is directly proportional to the product of the masses ($F \\propto Mm$) and inversely proportional to the square of the distance between their centres ($F \\propto \\frac{1}{r^2}$).\n\n(b) We use the formula $F = G\\frac{Mm}{r^2}$. The distance must be in metres, so $r = 5.0 \\text{ km} = 5000 \\text{ m}$.\n$F = (6.67 \\times 10^{-11} \\text{ N m}^2 \\text{ kg}^{-2}) \\frac{(8.0 \\times 10^{14} \\text{ kg}) \\times (2.0 \\times 10^{14} \\text{ kg})}{(5000 \\text{ m})^2}$\n$F = (6.67 \\times 10^{-11}) \\frac{1.6 \\times 10^{29}}{2.5 \\times 10^7}$\n$F = 426.88 \\text{ N}$\nTo 2 significant figures, the force is $F = 430$ N."
+    },
+    {
+      "id": "d-1-gravitational-fields-q2",
+      "prompt": "The planet Mars has a mass of $6.42 \\times 10^{23}$ kg and its moon Phobos has a mass of $1.06 \\times 10^{16}$ kg. The distance between their centres is $9.38 \\times 10^6$ m.\n\nA point P lies on the line connecting the centres of Mars and Phobos.\n\nDetermine the distance of point P from the centre of Mars at which the net gravitational field strength is zero.",
+      "marks": 4,
+      "commandTerm": "Determine",
+      "difficulty": "standard",
+      "syllabusRef": "D.1.2",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) Recognises that the magnitudes of the fields must be equal: $g_{Mars} = g_{Phobos}$. ✓",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Sets up the equation: $G\\frac{M_M}{x^2} = G\\frac{M_P}{(d-x)^2}$, where $x$ is the distance from Mars. ✓",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Correctly rearranges to $\\frac{x}{d-x} = \\sqrt{\\frac{M_M}{M_P}}$ and attempts to solve for $x$. ✓",
+          "marks": 1
+        },
+        {
+          "text": "(A1) $x = 9.37 \\times 10^6$ m. ✓",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "Let $x$ be the distance from the centre of Mars to point P. The distance from Phobos to point P is then $d-x$, where $d = 9.38 \\times 10^6$ m.\nThe net gravitational field strength is zero when the magnitude of the field due to Mars equals the magnitude of the field due to Phobos.\n$g_{Mars} = g_{Phobos}$\n$G\\frac{M_M}{x^2} = G\\frac{M_P}{(d-x)^2}$\nThe gravitational constant $G$ cancels out.\n$\\frac{M_M}{x^2} = \\frac{M_P}{(d-x)^2}$\nTaking the square root of both sides gives:\n$\\frac{\\sqrt{M_M}}{x} = \\frac{\\sqrt{M_P}}{d-x}$\nRearranging for $x$:\n$\\frac{x}{d-x} = \\frac{\\sqrt{M_M}}{\\sqrt{M_P}} = \\sqrt{\\frac{6.42 \\times 10^{23}}{1.06 \\times 10^{16}}} = \\sqrt{6.057 \\times 10^7} \\approx 7782$\n$x = 7782(d-x) = 7782d - 7782x$\n$7783x = 7782d$\n$x = d \\frac{7782}{7783} = (9.38 \\times 10^6 \\text{ m}) \\times 0.99987...$\n$x = 9.3787... \\times 10^6$ m\nTo 3 significant figures, the distance from the centre of Mars is $x = 9.37 \\times 10^6$ m. This is very close to Phobos, which is expected as Mars is much more massive."
+    },
+    {
+      "id": "d-1-gravitational-fields-q3",
+      "prompt": "A satellite is in a stable, circular orbit around the Earth at an altitude of 400 km above the Earth's surface.\n\n(a) Explain why the satellite has a constant speed but is accelerating. [2]\n\n(b) Calculate the orbital period of the satellite. [3]\n(Mass of Earth = $5.97 \\times 10^{24}$ kg; Radius of Earth = $6.37 \\times 10^6$ m)",
+      "marks": 5,
+      "commandTerm": "Explain",
+      "difficulty": "standard",
+      "syllabusRef": "D.1.3",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) (M1) Speed is a scalar and in a circular orbit the magnitude of velocity is constant as no work is done by the gravitational force. ✓",
+          "marks": 1
+        },
+        {
+          "text": "(a) (A1) Velocity is a vector and its direction is constantly changing, so there is an acceleration (the centripetal acceleration). ✓",
+          "marks": 1
+        },
+        {
+          "text": "(b) (M1) Equates gravitational force and centripetal force: $G\\frac{Mm}{r^2} = m\\frac{4\\pi^2 r}{T^2}$. ✓",
+          "marks": 1
+        },
+        {
+          "text": "(b) (M1) Correctly calculates orbital radius $r = (6.37 \\times 10^6 + 400 \\times 10^3) = 6.77 \\times 10^6$ m AND substitutes into a correct expression for the period, e.g., $T^2 = \\frac{4\\pi^2 r^3}{GM}$. ✓",
+          "marks": 1
+        },
+        {
+          "text": "(b) (A1) $T = 5550$ s (or 92.5 minutes). ✓",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The gravitational force providing the centripetal force is always perpendicular to the satellite's velocity. Therefore, no work is done on the satellite, and its kinetic energy remains constant. Since speed is the magnitude of velocity, the speed is constant.\nHowever, velocity is a vector quantity. As the satellite moves in a circle, the direction of its velocity is continuously changing. Acceleration is the rate of change of velocity, so a change in direction means the satellite is always accelerating. This is the centripetal acceleration, directed towards the centre of the Earth.\n\n(b) The gravitational force provides the centripetal force for the circular orbit.\n$F_g = F_c$\n$G\\frac{Mm}{r^2} = m\\frac{v^2}{r}$\nWe can also use the form with angular velocity, $F_c = m\\omega^2 r$, where $\\omega = \\frac{2\\pi}{T}$.\n$G\\frac{Mm}{r^2} = m(\\frac{2\\pi}{T})^2 r$\nRearranging for the period $T$:\n$T^2 = \\frac{4\\pi^2 r^3}{GM}$\nFirst, calculate the orbital radius $r$:\n$r = R_{Earth} + \\text{altitude} = 6.37 \\times 10^6 \\text{ m} + 400 \\times 10^3 \\text{ m} = 6.77 \\times 10^6$ m.\nNow substitute values:\n$T^2 = \\frac{4\\pi^2 (6.77 \\times 10^6 \\text{ m})^3}{(6.67 \\times 10^{-11} \\text{ N m}^2 \\text{ kg}^{-2})(5.97 \\times 10^{24} \\text{ kg})}$\n$T^2 = \\frac{4\\pi^2 (3.1055 \\times 10^{20})}{3.9820 \\times 10^{14}} = 3.0788 \\times 10^7 \\text{ s}^2$\n$T = \\sqrt{3.0788 \\times 10^7} = 5548.7$ s.\nTo 3 significant figures, the period is $T = 5550$ s."
+    },
+    {
+      "id": "d-1-gravitational-fields-q4",
+      "prompt": "A probe of mass $m=500$ kg is launched from the surface of the Earth. Ignore air resistance and the rotation of the Earth.\n\n(a) Define gravitational potential at a point. [1]\n\n(b) The probe is to be moved from a low Earth orbit (LEO) at an altitude of 300 km to a geostationary orbit (GEO). The total energy of the probe in a circular orbit of radius $r$ is given by $E = -\\frac{GMm}{2r}$. Deduce the minimum work that must be done by the probe's engines to move it from the LEO to the GEO. [5]\n\n(Mass of Earth $M = 5.97 \\times 10^{24}$ kg; Radius of Earth $R_E = 6.37 \\times 10^6$ m; Radius of GEO $r_{GEO} = 4.22 \\times 10^7$ m)",
+      "marks": 6,
+      "commandTerm": "Deduce",
+      "difficulty": "challenge",
+      "syllabusRef": "D.1.2",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) (A1) The work done per unit mass in bringing a small test mass from infinity to that point. ✓",
+          "marks": 1
+        },
+        {
+          "text": "(b) (M1) Calculates radius of LEO: $r_{LEO} = 6.37 \\times 10^6 + 300 \\times 10^3 = 6.67 \\times 10^6$ m. ✓",
+          "marks": 1
+        },
+        {
+          "text": "(b) (M1) Identifies work done as change in total energy: $W = E_{GEO} - E_{LEO}$. ✓",
+          "marks": 1
+        },
+        {
+          "text": "(b) (M1) Correctly substitutes into $E = -\\frac{GMm}{2r}$ for both orbits, e.g. $W = -\\frac{GMm}{2r_{GEO}} - (-\\frac{GMm}{2r_{LEO}})$. ✓",
+          "marks": 1
+        },
+        {
+          "text": "(b) (M1) Calculates the difference in energies, showing intermediate values for $E_{LEO}$ and $E_{GEO}$ or for the bracketed term $(\\frac{1}{r_{LEO}} - \\frac{1}{r_{GEO}})$. ✓",
+          "marks": 1
+        },
+        {
+          "text": "(b) (A1) $W = 1.26 \\times 10^{10}$ J. ✓",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) Gravitational potential at a point in a gravitational field is the work done per unit mass in bringing a small point mass from a position of zero potential (conventionally, at infinity) to that point.\n\n(b) The minimum work done by the engines is equal to the change in the total energy of the probe between the two orbits. The work done is $W = \\Delta E = E_{final} - E_{initial} = E_{GEO} - E_{LEO}$.\n\nFirst, calculate the radius of the low Earth orbit (LEO):\n$r_{LEO} = R_E + \\text{altitude} = 6.37 \\times 10^6 \\text{ m} + 300 \\times 10^3 \\text{ m} = 6.67 \\times 10^6$ m.\nThe radius of the geostationary orbit (GEO) is given as $r_{GEO} = 4.22 \\times 10^7$ m.\n\nThe work done can be expressed as:\n$W = E_{GEO} - E_{LEO} = \\left(-\\frac{GMm}{2r_{GEO}}\\right) - \\left(-\\frac{GMm}{2r_{LEO}}\\right)$\n$W = \\frac{GMm}{2} \\left( \\frac{1}{r_{LEO}} - \\frac{1}{r_{GEO}} \\right)$\n\nCalculate the term $GMm$:\n$GMm = (6.67 \\times 10^{-11})(5.97 \\times 10^{24})(500) = 1.991 \\times 10^{17} \\text{ J m}$.\n\nNow substitute the values into the work equation:\n$W = \\frac{1.991 \\times 10^{17}}{2} \\left( \\frac{1}{6.67 \\times 10^6} - \\frac{1}{4.22 \\times 10^7} \\right)$\n$W = (9.955 \\times 10^{16}) \\times (1.499 \\times 10^{-7} - 0.237 \\times 10^{-7})$\n$W = (9.955 \\times 10^{16}) \\times (1.262 \\times 10^{-7})$\n$W = 1.256 \\times 10^{10}$ J.\n\nTo 3 significant figures, the minimum work that must be done is $1.26 \\times 10^{10}$ J."
+    }
+  ]
+}

@@ -37,20 +37,34 @@ const OUT_DIR = join(
 
 // Prototype targets: self-contained exam-room essay components (no source/stimulus needed).
 // Questions are representative of the real exam format (not copied from a live paper).
+const ECON_CONV = 'Use economic theory, describe supply/demand or cost/revenue diagrams in words (curves, shifts, new equilibrium), and develop a specific real-world example in part (b).'
+const PSYCH_CONV = 'Use named psychological studies (aim, method, findings) and explicit critical thinking/evaluation, linked back to the question throughout.'
+
+// Representative exam-style questions (standard IB formats — NOT copied from live papers).
 const TARGETS = [
-  {
-    subjectCode: 'ib-economics', subjectName: 'IB Economics', component: 'paper_1', level: 'SL',
-    label: 'Paper 1 essay',
-    question:
-      'Part (a): Explain how the imposition of a specific (indirect) tax on cigarettes affects the market for cigarettes. [10 marks]\n\nPart (b): Using real-world examples, evaluate the view that indirect taxes are the most effective way for a government to reduce cigarette consumption. [15 marks]',
-    conventions: 'Use economic theory, describe supply/demand diagrams in words (shifts, new equilibrium), and develop a real-world example in part (b).',
-  },
-  {
-    subjectCode: 'ib-psychology', subjectName: 'IB Psychology', component: 'paper_1', level: 'SL',
-    label: 'Paper 1 essay (biological approach)',
-    question: 'Discuss the effects of one or more neurotransmitters on human behaviour. [22 marks]',
-    conventions: 'Use named psychological studies (aim, method, findings) and explicit critical thinking/evaluation, linked back to the question.',
-  },
+  // ---- IB Economics Paper 1 (Part a 10 + Part b 15) ----
+  { subjectCode: 'ib-economics', subjectName: 'IB Economics', component: 'paper_1', level: 'SL', label: 'Paper 1 — indirect taxes',
+    question: 'Part (a): Explain how the imposition of a specific (indirect) tax on cigarettes affects the market for cigarettes. [10 marks]\n\nPart (b): Using real-world examples, evaluate the view that indirect taxes are the most effective way for a government to reduce cigarette consumption. [15 marks]', conventions: ECON_CONV },
+  { subjectCode: 'ib-economics', subjectName: 'IB Economics', component: 'paper_1', level: 'SL', label: 'Paper 1 — subsidies',
+    question: 'Part (a): Explain how a government subsidy granted to producers of solar panels affects the market for solar panels. [10 marks]\n\nPart (b): Using real-world examples, evaluate the view that subsidies are the best way to increase the consumption of merit goods. [15 marks]', conventions: ECON_CONV },
+  { subjectCode: 'ib-economics', subjectName: 'IB Economics', component: 'paper_1', level: 'SL', label: 'Paper 1 — monopoly',
+    question: 'Part (a): Explain why a firm operating in a monopoly may be able to earn abnormal profit in the long run. [10 marks]\n\nPart (b): Using real-world examples, evaluate the view that monopoly is always against the interest of consumers. [15 marks]', conventions: ECON_CONV },
+  { subjectCode: 'ib-economics', subjectName: 'IB Economics', component: 'paper_1', level: 'SL', label: 'Paper 1 — exchange rates',
+    question: 'Part (a): Explain how a depreciation of a country’s currency might affect its balance of trade. [10 marks]\n\nPart (b): Using real-world examples, evaluate the view that a depreciation of the exchange rate is beneficial for an economy. [15 marks]', conventions: ECON_CONV },
+  { subjectCode: 'ib-economics', subjectName: 'IB Economics', component: 'paper_1', level: 'SL', label: 'Paper 1 — fiscal policy',
+    question: 'Part (a): Explain how expansionary fiscal policy could be used to increase real GDP. [10 marks]\n\nPart (b): Using real-world examples, evaluate the view that fiscal policy is more effective than monetary policy in promoting economic growth. [15 marks]', conventions: ECON_CONV },
+
+  // ---- IB Psychology Paper 1 essay (22 marks, criteria A–E) ----
+  { subjectCode: 'ib-psychology', subjectName: 'IB Psychology', component: 'paper_1', level: 'SL', label: 'Paper 1 — neurotransmitters',
+    question: 'Discuss the effects of one or more neurotransmitters on human behaviour. [22 marks]', conventions: PSYCH_CONV },
+  { subjectCode: 'ib-psychology', subjectName: 'IB Psychology', component: 'paper_1', level: 'SL', label: 'Paper 1 — localization',
+    question: 'Discuss localization of function in the brain, with reference to one or more studies. [22 marks]', conventions: PSYCH_CONV },
+  { subjectCode: 'ib-psychology', subjectName: 'IB Psychology', component: 'paper_1', level: 'SL', label: 'Paper 1 — hormones',
+    question: 'Discuss the effect of one hormone on human behaviour. [22 marks]', conventions: PSYCH_CONV },
+  { subjectCode: 'ib-psychology', subjectName: 'IB Psychology', component: 'paper_1', level: 'SL', label: 'Paper 1 — schema theory',
+    question: 'Evaluate schema theory, with reference to one or more studies. [22 marks]', conventions: PSYCH_CONV },
+  { subjectCode: 'ib-psychology', subjectName: 'IB Psychology', component: 'paper_1', level: 'SL', label: 'Paper 1 — social identity theory',
+    question: 'Discuss social identity theory, with reference to one or more studies. [22 marks]', conventions: PSYCH_CONV },
 ]
 
 async function fetchCriteria(admin, t) {
@@ -152,7 +166,8 @@ async function main() {
       const parsed = extractJSON(raw)
       if (!parsed || !parsed.modelAnswer) throw new Error('no usable modelAnswer')
       const md = renderMd(t, criteria, parsed)
-      const file = join(OUT_DIR, `${t.subjectCode}-${t.component}-${t.level}.md`)
+      const slug = t.label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+      const file = join(OUT_DIR, `${t.subjectCode}-${slug}.md`)
       writeFileSync(file, md)
       console.log(`  ✓ ${label} → ${file.split('/').pop()} (${criteria.criteria.length} criteria, ${md.length} chars)`)
     } catch (e) {

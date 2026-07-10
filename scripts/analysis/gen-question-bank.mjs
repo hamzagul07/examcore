@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Focused question-bank generator: authors questionBank + subtopics onto an
 // EXISTING lesson (keeps its prose) and writes <slug>.pilot.json.
-// Validates: 4 questions, mark schemes reconcile, no escaped-$ inside math.
+// Validates: 4 questions, mark schemes reconcile. (Escaped-$ in math is no
+// longer rejected — the course renderer handles currency in math.)
 // Usage: node scripts/analysis/gen-question-bank.mjs <courseSlug> [topicPrefix] [dry]
 //   e.g.  ib-maths-aa-hl 1        (Maths AA HL, topic group 1)
 //         ib-physics-hl d dry     (Physics HL, topic group D, dry run)
@@ -80,7 +81,7 @@ HARD RULES:
 - Each question's markScheme entry marks MUST sum EXACTLY to that question's "marks".
 ${familyGuide}
 - 3-4 subtopics using the REAL official IB sub-topic codes for this topic and level.
-- NEVER put an escaped dollar (\\$) inside $...$ math. Do NOT use currency symbols; use words like "points".
+- Currency is fine: write amounts as escaped \\$ (e.g. \\$50) — the renderer displays \\$ correctly inside and outside $...$ math.
 - Escape backslashes for JSON. KaTeX only inside $...$.`
 
 // Repair the two common LLM-JSON failures inside string values:
@@ -142,8 +143,9 @@ function validate(obj, slug) {
     const sum = (q.markScheme ?? []).reduce((s, m) => s + (m.marks || 0), 0)
     if (sum !== q.marks) errs.push(`${q.id}: scheme sums ${sum} ≠ marks ${q.marks}`)
     if (!q.modelAnswer) errs.push(`${q.id}: no modelAnswer`)
-    const blob = JSON.stringify(q)
-    if (/\\\$/.test(blob)) errs.push(`${q.id}: contains escaped \\$ inside math (forbidden)`)
+    // `\$` (escaped currency) is no longer rejected — normalizeCourseText now
+    // rewrites `\$` inside math to `\text{\textdollar}` and neutralises bare
+    // currency `$`, so currency renders correctly (see katex-rendering fix).
   }
   if (!Array.isArray(obj.subtopics) || obj.subtopics.length < 3) errs.push('need ≥3 subtopics')
   return errs

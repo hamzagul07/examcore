@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { GEMINI_FLASH_MODEL, generateGeminiText, generateGeminiWithContents } from '@/lib/ai/gemini-text'
 import { geminiBackendLabel } from '@/lib/ai/gemini-config'
-import { authenticateRouteRequest } from '@/lib/supabase-server'
+import {
+  authenticateRouteRequest,
+  warnIfAuthDropped,
+} from '@/lib/supabase-server'
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import type { OcrLine } from '@/lib/examiner-ink-positioning'
 import { runSingleQuestionMark } from '@/lib/marking/single-question-pipeline'
@@ -94,6 +97,7 @@ export async function POST(request: NextRequest) {
     // saving logged-in users' attempts with user_id = null (no progress).
     const { user } = await authenticateRouteRequest(request)
     const userId = user?.id || null
+    warnIfAuthDropped(request, userId, 'mark/process')
 
     const ip = clientIp(request)
     const rateCheck = await checkAnonymousMarkRateLimit(supabaseAdmin, ip, userId)

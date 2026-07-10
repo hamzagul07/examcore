@@ -4,6 +4,7 @@ import { createPageMetadata } from '@/lib/seo/metadata'
 import { getCourseSubject, getCourseLessons } from '@/lib/courses'
 import { SubjectChapters } from '@/components/subjects/SubjectChapters'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
+import { SubjectModelAnswers } from '@/components/community/SubjectModelAnswers'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import {
   buildSubjectPageCopy,
@@ -188,6 +189,7 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
 
         {communityOn ? (
           <div style={{ marginTop: 32 }}>
+            <SubjectModelAnswers subjectCode={code} subjectLabel={subject.label} accent={accent} />
             <CommunityEntry subjectCode={code} title={`${subject.label} community`} />
           </div>
         ) : null}

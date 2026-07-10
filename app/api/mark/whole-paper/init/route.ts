@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { authenticateRouteRequest } from '@/lib/supabase-server'
+import {
+  authenticateRouteRequest,
+  warnIfAuthDropped,
+} from '@/lib/supabase-server'
 import {
   buildWholePaperSegmentPrompt,
   parseWholePaperSegment,
@@ -49,6 +52,7 @@ export async function POST(request: NextRequest) {
     // saved logged-in users' whole-paper attempts with user_id = null.
     const { user } = await authenticateRouteRequest(request)
     const userId = user?.id || null
+    warnIfAuthDropped(request, userId, 'mark/whole-paper/init')
 
     const ip = clientIp(request)
     const rateCheck = await checkAnonymousMarkRateLimit(supabaseAdmin, ip, userId)

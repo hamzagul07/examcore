@@ -95,6 +95,8 @@ async function verifyQuestion(item) {
       return { id: q.id, ...v, file: path.basename(file), topic }
     } catch (e) { if (attempt === 4) return { id: q.id, verdict: 'error', severity: 'high', issue: String(e).slice(0, 100), file: path.basename(file), topic } }
   }
+  // Fallback: if the final attempt exhausted via a 429 `continue`, never drop it.
+  return { id: q.id, verdict: 'error', severity: 'high', issue: 'no response after retries (rate-limited)', file: path.basename(file), topic }
 }
 
 // Flatten every question across all matched lessons into one work queue.

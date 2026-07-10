@@ -37,7 +37,7 @@ import { reconcileMarkResult } from './reconcile-marks'
   const out = reconcileMarkResult(result, {
     criterionMax: [{ letter: 'A', maxMarks: 6 }],
   })
-  assert.equal((out.criteria_results as any)[0].marks_awarded, 6, 'award clamped to band max')
+  assert.equal((out.criteria_results as Record<string, unknown>[])[0].marks_awarded, 6, 'award clamped to band max')
   assert.equal(out.marks_earned, 6, 'earned clamped')
   assert.equal(out.total_marks, 6, 'total from catalog')
 }
@@ -57,8 +57,8 @@ import { reconcileMarkResult } from './reconcile-marks'
   })
   assert.equal(out.total_marks, 11, 'total from FULL catalog (6+5), not just returned criteria')
   assert.equal(out.marks_earned, 5, 'earned = A only; B zero-filled')
-  assert.equal((out.criteria_results as any).length, 2, 'omitted criterion surfaced')
-  assert.equal((out.criteria_results as any)[1].marks_awarded, 0, 'B zero-filled')
+  assert.equal((out.criteria_results as Record<string, unknown>[]).length, 2, 'omitted criterion surfaced')
+  assert.equal((out.criteria_results as Record<string, unknown>[])[1].marks_awarded, 0, 'B zero-filled')
 }
 
 // --- M4: model returns an EXTRA criterion not in the catalog → ignored ---
@@ -88,7 +88,7 @@ import { reconcileMarkResult } from './reconcile-marks'
   const out = reconcileMarkResult(result, { authoritativeTotal: 15 })
   assert.equal(out.total_marks, 15, 'total from authoritative scheme')
   assert.equal(out.marks_earned, 12, 'earned = band mark, within total')
-  assert.equal((out.band_result as any).marks_available, 15, 'band available synced')
+  assert.equal((out.band_result as Record<string, unknown>).marks_available, 15, 'band available synced')
 }
 
 // --- Points: authoritative total overrides model guess; earned scaled (M3) ---

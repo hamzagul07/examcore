@@ -396,12 +396,12 @@
       "marks": 6,
       "commandTerm": "Find, Hence, Calculate",
       "difficulty": "standard",
-      "syllabusRef": "SL 5.10",
+      "syllabusRef": "HL 5.19",
       "paper": "P2",
       "calculator": true,
       "markScheme": [
         {
-          "text": "(a) Recall $\\arctan(u) = u - \\frac{u^3}{3} + \\dots$ and substitute $u=x^2$. (M1)",
+          "text": "(a) Recall the Maclaurin series for $\\arctan(u) = u - \\frac{u^3}{3} + \\dots$ and substitute $u=x^2$. (M1)",
           "marks": 1
         },
         {
@@ -417,15 +417,15 @@
           "marks": 1
         },
         {
-          "text": "(c) Find the exact value using a calculator ($\\,\\approx 0.0412973...\\,$) and apply the percentage error formula. (M1)",
+          "text": "(c) Find the calculator value ($\\,\\approx 0.0412973...\\,$) and apply the percentage error formula. (M1)",
           "marks": 1
         },
         {
-          "text": "Percentage error = $|\\frac{0.0412946... - 0.0412973...}{0.0412973...}| \\times 100\\% \\approx 0.00651\\%$. (A1)",
+          "text": "Percentage error = $|\\frac{0.0412946... - 0.0412973...}{0.0412973...}| \\times 100\\% \\approx 0.00646\\%$. (A1)",
           "marks": 1
         }
       ],
-      "modelAnswer": "(a) The standard Maclaurin series for $\\arctan(u)$ is $u - \\frac{u^3}{3} + \\frac{u^5}{5} - \\dots$.\nWe substitute $u=x^2$ into this series.\n$\\arctan(x^2) = (x^2) - \\frac{(x^2)^3}{3} + \\dots = x^2 - \\frac{x^6}{3} + \\dots$.\n\n(b) To approximate the integral, we integrate the series from part (a) term by term.\n$\\int_0^{0.5} \\arctan(x^2) \\, dx \\approx \\int_0^{0.5} (x^2 - \\frac{x^6}{3}) \\, dx$\n$= [\\frac{x^3}{3} - \\frac{x^7}{21}]_0^{0.5}$\n$= (\\frac{(0.5)^3}{3} - \\frac{(0.5)^7}{21}) - (0)$\n$= \\frac{0.125}{3} - \\frac{0.0078125}{21}$\n$\\approx 0.0416666... - 0.0003720... \\approx 0.0412946$.\n\n(c) First, we find the more accurate value of the integral using a calculator: $\\int_0^{0.5} \\arctan(x^2) \\, dx \\approx 0.04129731$.\nNext, we calculate the percentage error using the formula:\nPercentage Error = $|\\frac{\\text{Approximation} - \\text{Exact Value}}{\\text{Exact Value}}| \\times 100\\%$\nPercentage Error = $|\\frac{0.0412946 - 0.04129731}{0.04129731}| \\times 100\\%$\nPercentage Error = $|\\frac{-0.00000271}{0.04129731}| \\times 100\\% \\approx 0.00656\\%$. (Accept answers rounding to 0.0065 or 0.0066)."
+      "modelAnswer": "(a) The standard Maclaurin series for $\\arctan(u)$ is $u - \\frac{u^3}{3} + \\frac{u^5}{5} - \\dots$.\nWe substitute $u=x^2$ into this series.\n$\\arctan(x^2) = (x^2) - \\frac{(x^2)^3}{3} + \\dots = x^2 - \\frac{x^6}{3} + \\dots$.\n\n(b) To approximate the integral, we integrate the series from part (a) term by term.\n$\\int_0^{0.5} \\arctan(x^2) \\, dx \\approx \\int_0^{0.5} (x^2 - \\frac{x^6}{3}) \\, dx$\n$= [\\frac{x^3}{3} - \\frac{x^7}{21}]_0^{0.5}$\n$= (\\frac{(0.5)^3}{3} - \\frac{(0.5)^7}{21}) - (0)$\n$= \\frac{0.125}{3} - \\frac{0.0078125}{21}$\nThis can be written as the exact fraction $\\frac{1}{24} - \\frac{1}{2688} = \\frac{111}{2688}$.\nAs a decimal, this is approximately $0.0412946428...$.\n\n(c) First, we find a more accurate value of the integral using a calculator: $\\int_0^{0.5} \\arctan(x^2) \\, dx \\approx 0.0412973104$.\nNext, we calculate the percentage error using the formula. It is important to use unrounded values for the approximation and the calculator value to ensure accuracy.\nPercentage Error = $|\\frac{\\text{Approximation} - \\text{Exact Value}}{\\text{Exact Value}}| \\times 100\\%$\nPercentage Error = $|\\frac{0.0412946428... - 0.0412973104...}{0.0412973104...}| \\times 100\\%$\nPercentage Error = $|\\frac{-0.0000026675...}{0.0412973104...}| \\times 100\\% \\approx 0.006459...\\%$\nRounding to three significant figures, the percentage error is $0.00646\\%$."
     },
     {
       "id": "5-10-maclaurin-series-q4",

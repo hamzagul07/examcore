@@ -1,0 +1,556 @@
+{
+  "slug": "d-2-electric-and-magnetic-fields",
+  "topicCode": "D.2",
+  "unit": {
+    "code": "D",
+    "title": "Fields"
+  },
+  "title": "Electric and magnetic fields",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "pilot",
+  "summary": "This lesson builds the full D.2 toolkit for electric and magnetic fields. It starts with electric charge and Coulomb's law for the force between point charges, then defines electric field strength and maps the field-line patterns of point charges, of the uniform field between parallel plates ($E = V/d$), and of the field around a bar magnet, a straight current-carrying wire and a solenoid. It sets electric, magnetic and gravitational fields side by side so their similarities and differences are clear, and it flags the HL-only ideas of electric potential and electric potential energy. Every worked example is laid out exactly the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Describe electric charge and use Coulomb's law to calculate the force between point charges, stating whether it is attractive or repulsive.",
+    "Define electric field strength and calculate it for a point charge and for the uniform field between parallel plates using $E = V/d$.",
+    "Draw and interpret electric field-line patterns and the magnetic field patterns of a bar magnet, a straight current-carrying wire and a solenoid, using the right-hand rule.",
+    "Compare gravitational, electric and magnetic fields, and (HL) relate electric potential to electric potential energy.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "D.2"
+  ],
+  "levelNote": "Common to SL and HL; electric potential and potential energy are HL.",
+  "simpleExplanation": {
+    "title": "Invisible Fields of Influence",
+    "summary": "A field is a region of space where an object feels a force without being touched. Electric charges set up electric fields, magnets and moving charges set up magnetic fields, and masses set up gravitational fields. Field lines are a map: their direction shows which way the force points and how crowded they are shows how strong the field is.",
+    "analogy": "Think of the field around a charge like the slope around a hill drawn on a contour map. You don't have to touch the hill to know a ball placed nearby will roll — the shape of the land already tells you which way and how strongly it will be pushed. Field lines are those contours for force: close together means steep (strong field), far apart means gentle (weak field).",
+    "steps": [
+      "Identify the source of the field: a charge (electric), a magnet or current (magnetic), or a mass (gravitational).",
+      "Draw the field lines outward from a positive charge and inward to a negative charge; from N to S outside a magnet; in circles around a current-carrying wire.",
+      "Read the force on a test object from the local field direction — for electric fields this is defined as the force on a POSITIVE test charge.",
+      "Put a number on it: Coulomb's law or $E = F/q$ for electric fields, $E = V/d$ between parallel plates."
+    ]
+  },
+  "keyConcepts": [
+    "fields and field lines",
+    "Coulomb's law and inverse-square",
+    "electric field strength",
+    "right-hand rule"
+  ],
+  "flashcards": [
+    {
+      "front": "Electric charge",
+      "back": "A fundamental property of matter, measured in coulombs (C), that comes in two kinds: positive and negative. Like charges repel; unlike charges attract. Charge is quantised in multiples of the elementary charge $e = 1.60 \\times 10^{-19}$ C and is always conserved.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Coulomb's law",
+      "back": "The electrostatic force between two point charges is $F = k\\dfrac{q_1 q_2}{r^2}$, where $k = \\dfrac{1}{4\\pi\\varepsilon_0} \\approx 8.99 \\times 10^9$ N m² C⁻². The force acts along the line joining the charges and obeys an inverse-square law with separation $r$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Coulomb constant $k$",
+      "back": "$k = \\dfrac{1}{4\\pi\\varepsilon_0} \\approx 8.99 \\times 10^9$ N m² C⁻², where $\\varepsilon_0 = 8.85 \\times 10^{-12}$ C² N⁻¹ m⁻² is the permittivity of free space.",
+      "pillLabel": "Constant"
+    },
+    {
+      "front": "Electric field strength ($E$)",
+      "back": "The force per unit positive charge: $E = \\dfrac{F}{q}$, a vector measured in N C⁻¹ (equivalently V m⁻¹). Its direction is the direction of the force on a POSITIVE test charge placed at that point.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Field of a point charge",
+      "back": "$E = k\\dfrac{Q}{r^2}$. The field points radially outward from a positive charge and radially inward toward a negative charge, weakening with the square of the distance.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Uniform field between parallel plates",
+      "back": "Between two oppositely charged parallel plates the field is uniform (evenly spaced parallel lines from + to −) with magnitude $E = \\dfrac{V}{d}$, where $V$ is the potential difference and $d$ the plate separation.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Electric field-line rules",
+      "back": "Lines start on positive charge and end on negative charge, never cross, and are drawn closer together where the field is stronger. The line's direction is the force on a positive test charge.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Magnetic field of a bar magnet",
+      "back": "Field lines emerge from the north pole and return to the south pole outside the magnet, forming closed loops. They are most crowded — the field is strongest — at the poles.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Field around a straight current-carrying wire",
+      "back": "Concentric circles around the wire. The right-hand grip rule gives the direction: point the thumb along the conventional current and the curled fingers show the circular field direction.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Field of a solenoid",
+      "back": "A solenoid produces a nearly uniform field inside, resembling a bar magnet outside. Curl the right hand's fingers along the conventional current and the thumb points to the solenoid's north pole.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Comparing the three fields",
+      "back": "Gravitational fields act on mass and are only attractive; electric fields act on charge and can attract or repel; magnetic fields act only on moving charge (or other magnets/currents). Both gravitational and electric fields between points obey an inverse-square law.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Electric potential ($V$) — HL",
+      "back": "The work done per unit positive charge in bringing a small test charge from infinity to a point: $V = k\\dfrac{Q}{r}$ for a point charge, measured in volts (J C⁻¹). This is an HL-only idea.",
+      "pillLabel": "HL"
+    },
+    {
+      "front": "Electric potential energy — HL",
+      "back": "The energy of a pair of point charges: $E_p = k\\dfrac{q_1 q_2}{r}$, equal to the work done to assemble them from infinity. Positive for like charges, negative for unlike charges. HL only.",
+      "pillLabel": "HL"
+    },
+    {
+      "front": "Exam Trap: field direction",
+      "back": "Electric field direction is always the force on a POSITIVE test charge. Near a negative charge the field points toward the charge, even though a negative test charge would be pushed the other way. Define the field by the positive test charge, every time.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Two point charges attract each other with force $F$. If the distance between them is doubled, the new force is:",
+      "options": [
+        "$2F$",
+        "$F/2$",
+        "$F/4$",
+        "$F/16$"
+      ],
+      "answer": "$F/4$"
+    },
+    {
+      "prompt": "Two small spheres carry charges of $+4$ nC and $+4$ nC. The electrostatic force between them is:",
+      "options": [
+        "Attractive, because both are charged",
+        "Repulsive, because the charges are alike",
+        "Zero, because the charges are equal",
+        "Attractive, because they are close together"
+      ],
+      "answer": "Repulsive, because the charges are alike"
+    },
+    {
+      "prompt": "Two parallel plates 5.0 mm apart have a potential difference of 200 V across them. The electric field strength between them is:",
+      "options": [
+        "1.0 V m⁻¹",
+        "40 V m⁻¹",
+        "$4.0 \\times 10^4$ V m⁻¹",
+        "$1.0 \\times 10^3$ V m⁻¹"
+      ],
+      "answer": "$4.0 \\times 10^4$ V m⁻¹"
+    },
+    {
+      "prompt": "At a point near a single negative point charge, the electric field points:",
+      "options": [
+        "Radially away from the charge",
+        "Radially toward the charge",
+        "In circles around the charge",
+        "There is no field near a negative charge"
+      ],
+      "answer": "Radially toward the charge"
+    },
+    {
+      "prompt": "A straight wire carries a current. The magnetic field it produces is best described as:",
+      "options": [
+        "Radial lines pointing away from the wire",
+        "Straight lines parallel to the wire",
+        "Concentric circles around the wire",
+        "A uniform field like that between two plates"
+      ],
+      "answer": "Concentric circles around the wire"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What exactly is a field, and why do physicists use the idea?",
+      "a": "A field is a region of space in which an object experiences a force without contact. Rather than saying charge A mysteriously reaches out and pushes charge B, we say A sets up an electric field everywhere around it, and B simply responds to the field at its own location. The field lets us describe the force at every point in space with a single map, and it carries energy in its own right."
+    },
+    {
+      "q": "How do I tell whether a Coulomb force is attractive or repulsive?",
+      "a": "Look at the signs of the two charges, not at the number Coulomb's law gives. Like charges (both + or both −) repel; unlike charges (one + and one −) attract. It is good practice to compute the magnitude using the sizes of the charges, then state the direction separately from the signs — that keeps the arithmetic and the physics from getting tangled."
+    },
+    {
+      "q": "Why is the field between parallel plates uniform but the field of a point charge is not?",
+      "a": "A point charge spreads its field over spheres of ever-increasing area, so the lines fan out and thin with distance — the field falls as $1/r^2$. Between two large, closely spaced plates the field lines run straight and evenly spaced from the positive to the negative plate, so the field has the same magnitude everywhere: $E = V/d$. The uniformity only breaks down near the edges of the plates, where the lines bulge out."
+    },
+    {
+      "q": "What is the right-hand rule and when do I use it?",
+      "a": "It links the direction of a current to the direction of the magnetic field it creates. For a straight wire, point your right thumb along the conventional current and your curled fingers show the circular field lines around the wire. For a solenoid or coil, curl your right-hand fingers in the direction the current flows around the loops and your thumb points to the north pole. Conventional current flows from + to −, opposite to electron flow."
+    },
+    {
+      "q": "How are gravitational, electric and magnetic fields alike and different?",
+      "a": "All three describe a non-contact force through a field map. Gravitational fields act on mass and are only ever attractive. Electric fields act on charge and can attract or repel; like the gravitational field of a point mass, the field of a point charge obeys an inverse-square law. Magnetic fields are different again: they act only on moving charges, magnets and currents, and their field lines always form closed loops with no isolated 'poles' to start or end on."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Some of the most important forces in physics act at a distance: charges push and pull on each other across empty space, magnets attract iron without touching it. We describe these non-contact forces using fields — maps of force that fill the space around a source. This lesson covers the electric field set up by charge, the magnetic field set up by magnets and currents, and how both compare with the gravitational field you already know. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "Electric charge and Coulomb's law"
+    },
+    {
+      "type": "text",
+      "content": "Electric charge is a fundamental property of matter that comes in two kinds, positive and negative, and is measured in coulombs (C). The rule is simple and worth stating out loud before every problem: like charges repel and unlike charges attract. Charge is quantised — it always comes in whole-number multiples of the elementary charge $e = 1.60 \\times 10^{-19}$ C — and it is conserved: it can be moved around but never created or destroyed."
+    },
+    {
+      "type": "text",
+      "content": "The force between two point charges is given by Coulomb's law. It is an inverse-square law: double the separation and the force falls to a quarter; treble it and the force falls to a ninth. The force acts along the straight line joining the two charges."
+    },
+    {
+      "type": "formula",
+      "content": "F = k\\,\\frac{q_1 q_2}{r^2}, \\qquad k = \\frac{1}{4\\pi\\varepsilon_0} \\approx 8.99 \\times 10^9 \\ \\text{N m}^2\\,\\text{C}^{-2}"
+    },
+    {
+      "type": "text",
+      "content": "Here $q_1$ and $q_2$ are the two charges, $r$ is their separation, and $\\varepsilon_0 = 8.85 \\times 10^{-12}$ C² N⁻¹ m⁻² is the permittivity of free space. In practice, compute the magnitude of the force from the sizes of the charges, then decide attractive or repulsive from their signs. Treating the sign as part of the arithmetic is where marks are lost."
+    },
+    {
+      "type": "workedExample",
+      "question": "A small sphere carries a charge of $+5.0$ nC. A second sphere carrying $-8.0$ nC is placed 3.0 cm away. Calculate the magnitude of the electrostatic force between them and state whether it is attractive or repulsive. (Take $k = 8.99 \\times 10^9$ N m² C⁻².) [3]",
+      "solution": "**List the quantities.**\n$q_1 = 5.0 \\times 10^{-9}$ C, $q_2 = 8.0 \\times 10^{-9}$ C (magnitudes), $r = 3.0 \\times 10^{-2}$ m.\n\n**Write Coulomb's law and substitute.**  [M1: correct law with values in place]\n$F = k\\dfrac{q_1 q_2}{r^2} = (8.99 \\times 10^9)\\dfrac{(5.0 \\times 10^{-9})(8.0 \\times 10^{-9})}{(3.0 \\times 10^{-2})^2}$\n\n**Evaluate.**  [A1: magnitude with unit]\n$F = (8.99 \\times 10^9)\\dfrac{4.0 \\times 10^{-17}}{9.0 \\times 10^{-4}} = 4.0 \\times 10^{-4}$ N.\n\n**State the direction from the signs.**  [A1: attractive, justified]\nOne charge is positive and the other negative, so the force is **attractive**.\n\n**Final answer:** $F \\approx 4.0 \\times 10^{-4}$ N, attractive (unlike charges)."
+    },
+    {
+      "type": "heading",
+      "content": "Electric field strength"
+    },
+    {
+      "type": "text",
+      "content": "Rather than talk about the force between two specific charges, we describe the influence of a single charge on the space around it using the electric field. The electric field strength $E$ at a point is defined as the force per unit charge that a small positive test charge would feel there."
+    },
+    {
+      "type": "formula",
+      "content": "E = \\frac{F}{q}, \\qquad \\text{and for a point charge } Q: \\quad E = k\\,\\frac{Q}{r^2}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Definition:** $E = F/q$ — the force per unit positive charge, a vector measured in N C⁻¹ (the same as V m⁻¹).",
+        "**Direction:** the direction of the force on a POSITIVE test charge — outward from a positive source charge, inward toward a negative source charge.",
+        "**Point charge:** $E = kQ/r^2$, so like Coulomb's law it obeys the inverse-square rule.",
+        "**Superposition:** if several charges are present, add their field vectors at the point (magnitude and direction), not just their magnitudes."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "The single most common conceptual error in this topic is getting the field direction wrong near a negative charge. The field is defined by the force on a positive test charge, so near a negative charge the field points toward the charge (the positive test charge is attracted), regardless of what a negative test charge would do."
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the electric field strength at a point 0.50 m from a small sphere carrying a charge of $+2.0 \\ \\mu$C, and state its direction. (Take $k = 8.99 \\times 10^9$ N m² C⁻².) [3]",
+      "solution": "**List the quantities.**\n$Q = 2.0 \\times 10^{-6}$ C, $r = 0.50$ m.\n\n**Write the point-charge field equation and substitute.**  [M1: correct equation with values]\n$E = k\\dfrac{Q}{r^2} = (8.99 \\times 10^9)\\dfrac{2.0 \\times 10^{-6}}{(0.50)^2}$\n\n**Evaluate.**  [A1: magnitude with unit]\n$E = (8.99 \\times 10^9)\\dfrac{2.0 \\times 10^{-6}}{0.25} = 7.2 \\times 10^{4}$ N C⁻¹.\n\n**State the direction.**  [A1: direction]\nThe source charge is positive, so the field points radially **away** from the sphere.\n\n**Final answer:** $E \\approx 7.2 \\times 10^{4}$ N C⁻¹, directed radially outward."
+    },
+    {
+      "type": "heading",
+      "content": "Field-line patterns"
+    },
+    {
+      "type": "text",
+      "content": "Field lines are a picture of the field. Their direction at any point is the direction of the force on a positive test charge, and their spacing shows the strength — lines packed close together mean a strong field. Electric field lines always start on positive charge and end on negative charge, and they never cross (if they did, the field would point in two directions at once)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Single positive charge:** straight lines radiating outward in all directions.",
+        "**Single negative charge:** straight lines pointing inward toward the charge.",
+        "**Two unlike charges (a dipole):** curved lines running from the positive to the negative charge.",
+        "**Two like charges:** lines that repel each other, with a neutral point between them where the fields cancel.",
+        "**Parallel plates:** evenly spaced parallel lines running straight from the positive plate to the negative plate — a uniform field (edges excepted)."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "The parallel-plate case is especially important because the field there is uniform: the same magnitude and direction everywhere between the plates. Its strength is set by the potential difference $V$ across the plates and their separation $d$:"
+    },
+    {
+      "type": "formula",
+      "content": "E = \\frac{V}{d} \\qquad (\\text{uniform field between parallel plates})"
+    },
+    {
+      "type": "examTip",
+      "content": "In $E = V/d$ the separation $d$ must be in metres. A separation quoted as '4.0 mm' is $4.0 \\times 10^{-3}$ m — forgetting the conversion multiplies the answer by a thousand. Convert every length to SI units before substituting, and the units N C⁻¹ and V m⁻¹ come out consistent automatically."
+    },
+    {
+      "type": "workedExample",
+      "question": "A student is shown three diagrams: (i) straight lines pointing radially inward toward a central dot, (ii) evenly spaced parallel arrows pointing from a top plate to a bottom plate, and (iii) concentric circles. Identify the field each represents, and for (ii) calculate the field strength if the plates are 8.0 mm apart with a potential difference of 120 V. [4]",
+      "solution": "**Identify each pattern.**  [M1: (i) and (iii) correct]  [A1: (ii) correct]\n(i) Radial lines pointing **inward** = the electric field of a single **negative point charge** (the field of a positive charge would point outward).\n(iii) Concentric circles = the **magnetic field around a straight current-carrying wire** (electric field lines never form closed loops around empty space, so this cannot be electrostatic).\n(ii) Evenly spaced parallel lines = the **uniform electric field between parallel charged plates**, pointing from the positive plate to the negative plate.\n\n**Calculate the field for (ii).**  [M1: correct equation and conversion]\nConvert the separation: $d = 8.0$ mm $= 8.0 \\times 10^{-3}$ m.\n$E = \\dfrac{V}{d} = \\dfrac{120}{8.0 \\times 10^{-3}}$  [A1: value with unit]\n$E = 1.5 \\times 10^{4}$ V m⁻¹.\n\n**Final answer:** (i) negative point charge; (ii) uniform field between parallel plates, $E = 1.5 \\times 10^{4}$ V m⁻¹; (iii) magnetic field of a current-carrying wire."
+    },
+    {
+      "type": "heading",
+      "content": "Magnetic fields: magnets, wires and solenoids"
+    },
+    {
+      "type": "text",
+      "content": "A magnetic field is a region where a moving charge, a current, or another magnet feels a magnetic force. Magnetic field lines run from north to south OUTSIDE a magnet, always forming closed loops — there are no isolated magnetic poles for a line to start or end on, which is a key structural difference from electric fields. As always, lines drawn closer together mean a stronger field, so the field is strongest at a magnet's poles."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Permanent magnet:** lines emerge from the north pole, curve around, and re-enter the south pole, forming closed loops; strongest at the poles.",
+        "**Straight current-carrying wire:** concentric circles around the wire. Right-hand grip rule — thumb along the conventional current, curled fingers give the field direction.",
+        "**Solenoid (coil):** a nearly uniform field inside and a bar-magnet-like field outside. Curl the right hand's fingers along the current in the loops; the thumb points to the north end.",
+        "**No monopoles:** magnetic field lines are always closed loops — unlike electric lines, they never simply begin or end."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "The right-hand rule is the tool that ties current direction to field direction. Remember that conventional current flows from the positive terminal to the negative terminal — the opposite direction to the flow of electrons — so always apply the rule to the conventional current, not to the electron drift."
+    },
+    {
+      "type": "heading",
+      "content": "Comparing gravitational, electric and magnetic fields"
+    },
+    {
+      "type": "text",
+      "content": "Bringing the three fields together sharpens what each one is. A gravitational field acts on any mass and is only ever attractive; the field of a point mass obeys an inverse-square law. An electric field acts on charge, can be attractive or repulsive, and the field of a point charge also obeys an inverse-square law — the parallel between $F = k q_1 q_2 / r^2$ and Newton's $F = G m_1 m_2 / r^2$ is exact in form. A magnetic field is the odd one out: it acts only on moving charges, currents and magnets, and its field lines always form closed loops."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Source:** gravitational ← mass; electric ← charge; magnetic ← moving charge / current / magnet.",
+        "**Sign of force:** gravity is always attractive; electric can attract or repel; magnetic force depends on the direction of motion.",
+        "**Field lines:** gravitational and electric lines begin and end on their sources; magnetic lines form closed loops (no monopoles).",
+        "**Distance dependence:** the fields of a point mass and a point charge both fall off as $1/r^2$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Electric potential and potential energy (HL)"
+    },
+    {
+      "type": "text",
+      "content": "The following ideas are HL only. The electric potential $V$ at a point is the work done per unit positive charge in bringing a small test charge from infinity to that point. For a point charge it is $V = kQ/r$, measured in volts (J C⁻¹). Notice it falls off as $1/r$, one power gentler than the field, which falls as $1/r^2$. Unlike the field, potential is a scalar, so contributions from several charges simply add as numbers."
+    },
+    {
+      "type": "formula",
+      "content": "V = k\\,\\frac{Q}{r} \\qquad\\text{and}\\qquad E_p = k\\,\\frac{q_1 q_2}{r} \\qquad (\\text{HL only})"
+    },
+    {
+      "type": "text",
+      "content": "The electric potential energy of a pair of point charges is $E_p = k q_1 q_2 / r$ — the work done to assemble them from infinity. It is positive for like charges (you must do work to push them together) and negative for unlike charges (they pull themselves together). SL students can safely skip this section; HL students should be able to move between potential, potential energy and field with confidence."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Forgetting the inverse-square law** — Coulomb's law and the point-charge field go as $1/r^2$, not $1/r$. Doubling the separation quarters the force, it does not halve it.",
+        "**Thinking like charges attract** — like charges REPEL, unlike charges attract. Compute the magnitude from the sizes of the charges, then read attractive/repulsive from the signs separately.",
+        "**Getting the field direction wrong near a negative charge** — electric field direction is the force on a POSITIVE test charge, so near a negative charge the field points TOWARD the charge.",
+        "**Leaving $d$ in millimetres in $E = V/d$** — convert every length to metres first; a millimetre slip changes the answer by a factor of a thousand.",
+        "**Confusing the uniform plate field with a point-charge field** — between parallel plates the field is uniform ($E = V/d$, evenly spaced parallel lines); around a point charge it is radial and falls as $1/r^2$.",
+        "**Applying the right-hand rule to electron flow** — use the CONVENTIONAL current (+ to −), which is opposite to the electron drift direction.",
+        "**Drawing electric field lines as closed loops or letting lines cross** — electric lines start on + and end on −, never cross; only magnetic lines form closed loops.",
+        "**Dropping units or over-rounding mid-calculation** — carry extra figures through the working and round only the final answer; N C⁻¹ and V m⁻¹ are equivalent units for $E$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an answer mark (A) — and error-carried-forward (ECF) means a wrong number early on does not have to cost you the marks that follow. But that protection only exists if your method is written down. Study how each mark below is earned by a specific line, especially the separation of the magnitude (from the sizes of the charges) from the direction (from their signs)."
+    },
+    {
+      "type": "workedExample",
+      "question": "Two point charges of $+3.0 \\ \\mu$C and $-2.0 \\ \\mu$C are 0.20 m apart. Calculate the magnitude of the force between them and state whether it is attractive or repulsive. (Take $k = 8.99 \\times 10^9$ N m² C⁻².) [3]",
+      "solution": "**Model answer — full working.**\n\nList the quantities. Use the magnitudes of the charges for the size of the force:\n$q_1 = 3.0 \\times 10^{-6}$ C, $q_2 = 2.0 \\times 10^{-6}$ C, $r = 0.20$ m.\n\n**Coulomb's law, set up.**\n$F = k\\dfrac{q_1 q_2}{r^2} = (8.99 \\times 10^9)\\dfrac{(3.0 \\times 10^{-6})(2.0 \\times 10^{-6})}{(0.20)^2}$\n\n**Evaluate the magnitude.**\n$F = (8.99 \\times 10^9)\\dfrac{6.0 \\times 10^{-12}}{0.040} = (8.99 \\times 10^9)(1.5 \\times 10^{-10}) = 1.3 \\ \\text{N}.$\n\n**State the direction.** One charge is positive and the other negative, so the charges are unlike and the force is **attractive**.\n\n**Final answer:** $F \\approx 1.3$ N, attractive.\n\n---\n**How our marking engine awards the 3 marks:**\n\n- **M1 — Coulomb's law set-up.** Awarded for writing $F = kq_1q_2/r^2$ with the charge magnitudes and $r = 0.20$ m substituted into the right places. This is a METHOD mark: it is earned for the correct approach even if the arithmetic later slips. Note $r$ must be squared — putting $0.20$ instead of $(0.20)^2$ forfeits this mark.\n- **A1 — magnitude.** Awarded for $F \\approx 1.3$ N (accept correctly-rounded values such as 1.35 N). ECF applies: a student who set the law up correctly but mis-keyed the calculator still keeps M1, and an answer that follows correctly from THEIR substitution can still earn this mark.\n- **A1 — attractive, with reasoning.** Awarded for stating the force is attractive BECAUSE the charges are unlike (opposite signs). The reasoning is what earns it — 'attractive' with no justification is not enough, and 'repulsive' loses the mark outright.\n\n**'Accept answers that round correctly.'** The engine accepts $1.3$ N and $1.35$ N — it does not demand a fixed number of decimal places, only a correctly-rounded final value with the right unit.\n\n**Bottom line:** of the 3 marks, one is a method mark that survives an arithmetic slip, one answer mark is shielded by ECF, and one is a physics mark for reading the direction off the signs. A student who writes only '1.3 N' with no working and no direction risks losing 2 of the 3 marks; a student who shows the law, the substitution, the magnitude and the sign-based reasoning banks all three."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: write Coulomb's law or $E = F/q$, substitute with $r$ squared and lengths in metres, give the magnitude with its unit, then state the direction from the signs. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Fields are the thread that runs through the rest of D. The inverse-square electric field here is the direct partner of the gravitational field, and the parallel-plate result $E = V/d$ reappears whenever charges are accelerated, from cathode-ray tubes to particle accelerators. The magnetic field patterns you have drawn become the stage on which moving charges feel the magnetic force $F = qvB$, and the right-hand rule carries straight into electromagnetic induction. HL students will build electric potential into a full energy picture that mirrors gravitational potential. Master the habit — identify the source, draw the field, put a number on it with the right equation, and read direction from signs and the right-hand rule — and the fields that follow become variations on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 2 calculation marked: solve a Coulomb's-law or field-strength problem with full working",
+      "href": "/mark?subject=ib-physics-hl&topic=D.2&component=paper_2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/"
+        },
+        {
+          "label": "PhET Simulation: Charges and Fields",
+          "href": "https://phet.colorado.edu/en/simulations/charges-and-fields"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Interactive: EM Wave Visualisation",
+    "embedUrl": "https://phet.colorado.edu/sims/html/radio-waves-and-electromagnetic-fields/latest/radio-waves-and-electromagnetic-fields_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/radio-waves-and-electromagnetic-fields",
+    "hint": "Explore “Interactive: EM Wave Visualisation” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "D.2.1",
+      "title": "Electric potential and electric potential energy",
+      "detail": "Work done, potential difference, potential, and potential energy. $W=q\\Delta V_e$, $V_e=\\frac{kq}{r}$"
+    },
+    {
+      "code": "D.2.2",
+      "title": "Electric and magnetic fields",
+      "detail": "Electric and magnetic force on a charge. $F=qE$, $F=qvB\\sin\\theta$"
+    },
+    {
+      "code": "D.2.3",
+      "title": "Motion in electromagnetic fields",
+      "detail": "Trajectory of charged particles in electric and magnetic fields, including velocity selectors."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "d-2-electric-and-magnetic-fields-q1",
+      "prompt": "An alpha particle (charge $+2e$) is moved from point A to point B in a uniform electric field. The potential difference between B and A, $\\Delta V = V_B - V_A$, is $+500$ V. Calculate the work done by the electric field on the alpha particle as it moves from A to B.",
+      "marks": 3,
+      "commandTerm": "Calculate",
+      "difficulty": "foundation",
+      "syllabusRef": "D.2.1",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) Selects the formula for work done by the field: $W = -q\\Delta V$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Substitutes correct values: $q = 2 \\times 1.60 \\times 10^{-19}$ C and $\\Delta V = +500$ V.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Calculates the final answer to be $-1.60 \\times 10^{-16}$ J. Unit is required.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The work done by the electric field in moving a charge $q$ through a potential difference $\\Delta V = V_{final} - V_{initial}$ is given by the negative of the change in electric potential energy: $W_{field} = -\\Delta U_E = -q\\Delta V$.\nHere, the charge is an alpha particle, so $q = +2e = 2 \\times 1.60 \\times 10^{-19} \\text{ C} = 3.20 \\times 10^{-19} \\text{ C}$.\nThe potential difference is $\\Delta V = V_B - V_A = +500 \\text{ V}$.\nTherefore, the work done is:\n$W_{field} = -q\\Delta V = -(3.20 \\times 10^{-19} \\text{ C}) \\times (500 \\text{ V})$\n$W_{field} = -1.60 \\times 10^{-16} \\text{ J}$.\nThe negative sign indicates that the field does negative work, meaning the particle is moving against the direction of the electric force."
+    },
+    {
+      "id": "d-2-electric-and-magnetic-fields-q2",
+      "prompt": "A velocity selector is designed to allow ions of a specific speed to pass through undeflected. It consists of a region with a uniform electric field and a uniform magnetic field.\n(a) State the required orientation of the electric field, the magnetic field, and the ion's velocity for the selector to work.\n(b) An ion with charge $+e$ and speed $2.5 \\times 10^5$ m s$^{-1}$ passes undeflected through a region where the electric field strength is $1.2 \\times 10^4$ N C$^{-1}$. Calculate the magnetic field strength required.",
+      "marks": 4,
+      "commandTerm": "State",
+      "difficulty": "standard",
+      "syllabusRef": "D.2.3",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) The electric field, magnetic field, and ion velocity must all be mutually perpendicular.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) For no deflection, the electric force must be equal in magnitude and opposite in direction to the magnetic force: $F_E = F_B$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Substitutes the formulae for the forces, $qE = qvB$, and rearranges for B: $B = \\frac{E}{v}$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) $B = \\frac{1.2 \\times 10^4 \\text{ N C}^{-1}}{2.5 \\times 10^5 \\text{ m s}^{-1}} = 0.048$ T. Unit is required.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) For a velocity selector to function, the electric field $\\vec{E}$, the magnetic field $\\vec{B}$, and the velocity of the ion $\\vec{v}$ must all be mutually perpendicular to each other.\n(b) For the ion to pass undeflected, the net force on it must be zero. This means the electric force $F_E$ and the magnetic force $F_B$ must be equal in magnitude and opposite in direction.\n$F_E = F_B$\nUsing the formulae for these forces:\n$qE = qvB$\nThe charge $q$ cancels out, showing the selection is independent of the charge magnitude.\nRearranging for the magnetic field strength $B$:\n$B = \\frac{E}{v}$\nSubstituting the given values:\n$B = \\frac{1.2 \\times 10^4 \\text{ N C}^{-1}}{2.5 \\times 10^5 \\text{ m s}^{-1}} = 0.048 \\text{ T}$."
+    },
+    {
+      "id": "d-2-electric-and-magnetic-fields-q3",
+      "prompt": "A proton (mass $1.67 \\times 10^{-27}$ kg, charge $+1.60 \\times 10^{-19}$ C) is accelerated from rest through a potential difference of 2.0 kV. It then enters a region of uniform magnetic field of strength 0.50 T, with its velocity perpendicular to the field lines.\n(a) Calculate the speed of the proton as it enters the magnetic field.\n(b) Determine the radius of the circular path it follows within the field.",
+      "marks": 5,
+      "commandTerm": "Calculate",
+      "difficulty": "standard",
+      "syllabusRef": "D.2.3",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) Equates the kinetic energy gained to the work done by the electric field: $\\frac{1}{2}mv^2 = qV$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Correctly calculates the speed: $v = \\sqrt{\\frac{2qV}{m}} = \\sqrt{\\frac{2(1.60 \\times 10^{-19})(2000)}{1.67 \\times 10^{-27}}} = 6.2 \\times 10^5$ m s$^{-1}$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Equates the magnetic force to the centripetal force: $qvB = \\frac{mv^2}{r}$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Rearranges for the radius: $r = \\frac{mv}{qB}$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Substitutes values to find the radius: $r = \\frac{(1.67 \\times 10^{-27})(6.19 \\times 10^5)}{(1.60 \\times 10^{-19})(0.50)} = 0.013$ m.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The kinetic energy ($E_k$) gained by the proton is equal to the work done on it by the potential difference ($V$).\n$E_k = qV$\n$\\frac{1}{2}mv^2 = qV$\nSolving for speed $v$:\n$v = \\sqrt{\\frac{2qV}{m}}$\nSubstituting the values:\n$v = \\sqrt{\\frac{2 \\times (1.60 \\times 10^{-19} \\text{ C}) \\times (2000 \\text{ V})}{1.67 \\times 10^{-27} \\text{ kg}}} = 6.188... \\times 10^5 \\text{ m s}^{-1} \\approx 6.2 \\times 10^5 \\text{ m s}^{-1}$.\n\n(b) Inside the magnetic field, the magnetic force provides the centripetal force required for circular motion.\n$F_{magnetic} = F_{centripetal}$\n$qvB = \\frac{mv^2}{r}$\nWe can rearrange this equation to solve for the radius $r$:\n$r = \\frac{mv}{qB}$\nSubstituting the values, including the speed calculated in part (a):\n$r = \\frac{(1.67 \\times 10^{-27} \\text{ kg}) \\times (6.19 \\times 10^5 \\text{ m s}^{-1})}{(1.60 \\times 10^{-19} \\text{ C}) \\times (0.50 \\text{ T})}$\n$r = 0.0129... \\text{ m} \\approx 0.013 \\text{ m}$ (or 1.3 cm)."
+    },
+    {
+      "id": "d-2-electric-and-magnetic-fields-q4",
+      "prompt": "Two point charges, $Q_1 = +4.0$ nC and $Q_2 = -1.0$ nC, are fixed on the x-axis. $Q_1$ is at $x=0$ and $Q_2$ is at $x=3.0$ m.\n(a) Determine a position on the x-axis, other than at infinity, where the net electric potential is zero.\n(b) Explain why the magnitude of the net electric field at this point is not zero.\n(c) Calculate the magnitude of the net electric field at the point identified in (a).",
+      "marks": 6,
+      "commandTerm": "Determine",
+      "difficulty": "challenge",
+      "syllabusRef": "D.2.1",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) Sets up the condition for zero potential: $V_{net} = V_1 + V_2 = 0$, so $k\\frac{Q_1}{r_1} + k\\frac{Q_2}{r_2} = 0$. Let the point be at position $x$. Then $\\frac{4.0}{x} + \\frac{-1.0}{3.0-x} = 0$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Solves the equation for $x$: $4.0(3.0-x) = x \\implies 12.0 - 4.0x = x$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) $5.0x = 12.0 \\implies x = 2.4$ m.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Explanation: Electric potential is a scalar, so signs can cancel. Electric field is a vector. At the point $x=2.4$ m, the field from $Q_1$ is to the right and the field from $Q_2$ is also to the right (towards the negative charge), so they add together.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Sets up the vector sum for the electric field: $E_{net} = E_1 + E_2 = k\\frac{|Q_1|}{r_1^2} + k\\frac{|Q_2|}{r_2^2} = (8.99 \\times 10^9) \\left( \\frac{4.0 \\times 10^{-9}}{2.4^2} + \\frac{1.0 \\times 10^{-9}}{(3.0-2.4)^2} \\right)$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) $E_{net} = (8.99 \\times 10^9) \\left( 6.94 \\times 10^{-10} + 2.78 \\times 10^{-9} \\right) = 31$ N C$^{-1}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The electric potential from a point charge is $V = \\frac{kQ}{r}$. Let the point where the potential is zero be at a distance $x$ from $Q_1$ (at $x=0$). The distance to $Q_2$ (at $x=3.0$ m) will be $|3.0-x|$. We look for a point between the charges, so $0 < x < 3.0$. The net potential is the scalar sum:\n$V_{net} = V_1 + V_2 = \\frac{kQ_1}{x} + \\frac{kQ_2}{3.0-x} = 0$\n$\\frac{k(4.0 \\times 10^{-9})}{x} + \\frac{k(-1.0 \\times 10^{-9})}{3.0-x} = 0$\nCancelling $k$ and $10^{-9}$ gives:\n$\\frac{4.0}{x} = \\frac{1.0}{3.0-x}$\n$4.0(3.0-x) = x \\implies 12.0 - 4.0x = x \\implies 12.0 = 5.0x$\n$x = \\frac{12.0}{5.0} = 2.4$ m.\n\n(b) Electric potential is a scalar quantity, so the positive potential from $Q_1$ can cancel the negative potential from $Q_2$. Electric field is a vector quantity. At $x=2.4$ m, the field from the positive charge $Q_1$ points to the right (away from $Q_1$). The field from the negative charge $Q_2$ also points to the right (towards $Q_2$). Since both field vectors point in the same direction, they add together and their sum is non-zero.\n\n(c) The magnitude of the net electric field is the sum of the magnitudes of the individual fields:\n$E_{net} = E_1 + E_2 = \\frac{k|Q_1|}{r_1^2} + \\frac{k|Q_2|}{r_2^2}$\n$r_1 = x = 2.4$ m\n$r_2 = 3.0 - x = 3.0 - 2.4 = 0.6$ m\n$E_{net} = (8.99 \\times 10^9 \\text{ N m}^2 \\text{ C}^{-2}) \\left( \\frac{4.0 \\times 10^{-9} \\text{ C}}{(2.4 \\text{ m})^2} + \\frac{1.0 \\times 10^{-9} \\text{ C}}{(0.6 \\text{ m})^2} \\right)$\n$E_{net} = (8.99 \\times 10^9) \\left( \\frac{4.0 \\times 10^{-9}}{5.76} + \\frac{1.0 \\times 10^{-9}}{0.36} \\right)$\n$E_{net} = (8.99 \\times 10^9) \\left( 6.944... \\times 10^{-10} + 2.777... \\times 10^{-9} \\right)$\n$E_{net} = (8.99 \\times 10^9) \\times (3.472... \\times 10^{-9}) = 31.21... \\text{ N C}^{-1} \\approx 31$ N C$^{-1}$."
+    }
+  ]
+}

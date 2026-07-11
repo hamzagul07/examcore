@@ -1,0 +1,514 @@
+{
+  "slug": "4-1-descriptive-statistics",
+  "topicCode": "4.1",
+  "unit": {
+    "code": "4",
+    "title": "Statistics and probability"
+  },
+  "title": "Descriptive statistics",
+  "paper": "P2",
+  "paperName": "Maths AA HL",
+  "status": "pilot",
+  "summary": "Descriptive statistics is the toolkit that turns a raw list of numbers into a short, honest summary of where the data sits and how far it spreads. This lesson builds the full 4.1 syllabus: measures of central tendency (mean, median, mode) for both raw and grouped frequency data; measures of dispersion (range, interquartile range, variance and standard deviation); quartiles and percentiles; box-and-whisker plots and the 1.5 times IQR rule for identifying outliers; and how each statistic responds when every value is shifted or scaled, or when a single outlier is added. Because 4.1 lives on Paper 2, the calculator does the arithmetic — so the emphasis is on choosing the right measure, showing the method the examiner needs to see, and reading a GDC screen correctly. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Calculate and interpret the mean, median and mode for raw data and for grouped frequency data, using mid-interval values where necessary.",
+    "Calculate and interpret the range, interquartile range, variance and standard deviation, and choose a measure of spread appropriate to the data.",
+    "Find quartiles and percentiles, construct box-and-whisker plots, and apply the 1.5 times IQR rule to identify outliers.",
+    "Predict the effect on each statistic of adding a constant to, or multiplying by a constant, every data value, and of introducing an outlier.",
+    "Use a GDC to obtain one-variable statistics efficiently, and present working so that method marks and follow-through protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "4.1"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
+  "simpleExplanation": {
+    "title": "Making Sense of Messy Data",
+    "summary": "Descriptive statistics squeezes a large pile of numbers into two honest headlines: a typical value (where the data centres) and a spread (how far the data scatters around that centre). Get those two ideas right and you can describe almost any data set in a single sentence.",
+    "analogy": "Imagine reviewing a chain of cafes. Instead of quoting the price of every item, you report a typical price — the mean or median coffee — and how much prices vary from one branch to the next. The first number tells a reader what to expect; the second tells them how reliable that expectation is. A low spread means every branch is similar; a high spread warns them that the 'typical' price hides big differences.",
+    "steps": [
+      "Organise the data. On Paper 2 that means typing values into a GDC list. For raw data use one list; for grouped or frequency data use one list of values (or mid-interval values) and a second list of frequencies.",
+      "Read off the centre. The one-variable statistics screen gives the mean (x-bar) and the median directly; the mode is simply the most frequent value, read by eye.",
+      "Read off the spread. The same screen gives the standard deviation, the minimum, maximum and quartiles. From these form the range and the interquartile range yourself, showing the subtraction.",
+      "Interpret in context. A small standard deviation means the data clusters tightly around the mean; a large one means it scatters. Then check for outliers before trusting the mean."
+    ]
+  },
+  "keyConcepts": [
+    "central tendency",
+    "dispersion",
+    "quartiles and outliers"
+  ],
+  "flashcards": [
+    {
+      "front": "Mean ($\\bar{x}$)",
+      "back": "The sum of the values divided by how many there are: $\\bar{x} = \\frac{\\sum f_i x_i}{n}$ with $n = \\sum f_i$. It uses every value, which makes it powerful but also sensitive to outliers — one extreme value drags it noticeably.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Median",
+      "back": "The middle value once the data is ordered. For $n$ values it sits at position $\\frac{n+1}{2}$; if that is halfway between two values, take their mean. It ignores how extreme the largest and smallest values are, so it resists outliers.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Mode / modal class",
+      "back": "The most frequent value. In a grouped frequency table there is no single mode, only a modal class — the interval with the highest frequency.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Range",
+      "back": "Maximum minus minimum. The crudest measure of spread: it uses only two values, so a single outlier can inflate it wildly.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Interquartile range (IQR)",
+      "back": "$\\text{IQR} = Q_3 - Q_1$, the spread of the middle 50% of the data. Because it discards the extreme quarters, it is resistant to outliers — the preferred spread when the data is skewed.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Quartiles and percentiles",
+      "back": "$Q_1$ (lower quartile) cuts off the bottom 25%, $Q_2$ is the median, $Q_3$ (upper quartile) cuts off the bottom 75%. The $p$th percentile is the value below which $p\\%$ of the data lies, so $Q_1$, $Q_2$, $Q_3$ are the 25th, 50th and 75th percentiles.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Standard deviation ($\\sigma_x$)",
+      "back": "The typical distance of a value from the mean. Small $\\sigma_x$: data clustered near the mean; large $\\sigma_x$: data widely scattered. Read it straight from the GDC — you are never asked to compute it by hand in AA SL.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Variance ($\\sigma_x^2$)",
+      "back": "The square of the standard deviation. Same information as $\\sigma_x$ but in squared units, so $\\sigma_x$ is usually the more natural quantity to quote. If a question gives variance, take its square root to get $\\sigma_x$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "The 1.5 x IQR outlier rule",
+      "back": "A value is an outlier if it lies below the lower fence $Q_1 - 1.5\\,\\text{IQR}$ or above the upper fence $Q_3 + 1.5\\,\\text{IQR}$. Always compute the fence and compare — do not label a value an outlier just because it 'looks' large.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Box-and-whisker plot",
+      "back": "A five-number summary drawn on a scale: minimum, $Q_1$, median, $Q_3$, maximum. The box spans the IQR; the whiskers reach the most extreme non-outlier values. Outliers are marked as separate points beyond the whiskers.",
+      "pillLabel": "Graph"
+    },
+    {
+      "front": "Effect of adding a constant $k$",
+      "back": "Add $k$ to every value: the mean, median, mode and all quartiles rise by $k$, but the range, IQR, variance and standard deviation are UNCHANGED — shifting the whole data set does not change how spread out it is.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Effect of multiplying by a constant $k$",
+      "back": "Multiply every value by $k$: the mean, median, mode and quartiles are multiplied by $k$; the range, IQR and standard deviation are multiplied by $|k|$; the variance is multiplied by $k^2$.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Mean vs median under an outlier",
+      "back": "Add one extreme value and the mean moves a long way towards it while the median barely shifts. That is why skewed data (incomes, house prices) is usually summarised by the median, not the mean.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "GDC trap: $\\sigma_x$ vs $s_x$",
+      "back": "The calculator lists two spreads: population $\\sigma_x$ and sample $s_x$. In AA SL take the population value $\\sigma_x$ unless the question explicitly says 'sample'. Picking the wrong one is a needless lost mark.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A data set has 8 values written in ascending order. The median is:",
+      "options": [
+        "The 4th value",
+        "The mean of the 4th and 5th values",
+        "The 5th value",
+        "The value at position 8/2 = 4, i.e. the 4th value only"
+      ],
+      "answer": "The mean of the 4th and 5th values"
+    },
+    {
+      "prompt": "The interquartile range of a data set is calculated as:",
+      "options": [
+        "$Q_3 - Q_1$",
+        "$Q_3 + Q_1$",
+        "$\\frac{Q_1 + Q_3}{2}$",
+        "maximum $-$ minimum"
+      ],
+      "answer": "$Q_3 - Q_1$"
+    },
+    {
+      "prompt": "By the standard rule, a data value is an outlier if it lies more than:",
+      "options": [
+        "$1.5 \\times \\text{IQR}$ above $Q_3$ or below $Q_1$",
+        "$1.5 \\times \\text{IQR}$ above or below the mean",
+        "$1.5 \\times \\sigma_x$ above $Q_3$ or below $Q_1$",
+        "one IQR above $Q_3$ or below $Q_1$"
+      ],
+      "answer": "$1.5 \\times \\text{IQR}$ above $Q_3$ or below $Q_1$"
+    },
+    {
+      "prompt": "One unusually large value is added to a data set. Compared with before, it will:",
+      "options": [
+        "Increase the mean much more than the median",
+        "Increase the median much more than the mean",
+        "Leave both the mean and the median unchanged",
+        "Decrease the mean"
+      ],
+      "answer": "Increase the mean much more than the median"
+    },
+    {
+      "prompt": "If 5 is added to every value in a data set, the standard deviation:",
+      "options": [
+        "Is unchanged",
+        "Increases by 5",
+        "Increases by 25",
+        "Is multiplied by 5"
+      ],
+      "answer": "Is unchanged"
+    }
+  ],
+  "faq": [
+    {
+      "q": "When should I report the median instead of the mean?",
+      "a": "Use the median whenever the data is skewed or contains outliers. The mean uses every value, so a single extreme value pulls it towards itself; the median only cares about the middle position, so it stays put. That is why 'average' house prices and incomes are almost always quoted as medians — a few very expensive properties would make the mean misleadingly high."
+    },
+    {
+      "q": "What is the difference between $\\sigma_x$ and $s_x$ on my calculator?",
+      "a": "$\\sigma_x$ is the population standard deviation (divide by $n$) and $s_x$ is the sample standard deviation (divide by $n-1$). The GDC shows both. In AA SL you take the population value $\\sigma_x$ unless a question explicitly describes the data as a sample. Quoting $s_x$ by mistake is a common, avoidable error."
+    },
+    {
+      "q": "Do I need the standard deviation formula for the exam?",
+      "a": "You are not asked to compute standard deviation by hand in AA SL — it is a Paper 2 skill, so you read it from the GDC. The formula is in the formula booklet if you want to see how it works, but the marks are for entering the data correctly and quoting $\\sigma_x$, not for grinding through the arithmetic."
+    },
+    {
+      "q": "How do quartiles and percentiles relate?",
+      "a": "Percentiles split ordered data into hundredths: the $p$th percentile is the value below which $p\\%$ of the data lies. Quartiles are just three particular percentiles — $Q_1$ is the 25th percentile, the median $Q_2$ is the 50th, and $Q_3$ is the 75th. You typically read percentiles off a cumulative frequency graph."
+    },
+    {
+      "q": "If I add the same amount to every value, why does the spread not change?",
+      "a": "Adding a constant slides the entire data set along the number line without stretching or squashing it. Every value moves by the same distance, so the gaps between values — and therefore the range, IQR, variance and standard deviation — stay exactly the same. Only the location statistics (mean, median, mode, quartiles) shift."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Every field that collects numbers — sport, biology, economics, medicine — quickly drowns in them. Descriptive statistics is the set of tools that rescues you, compressing a long list into two honest headlines: a typical value and a measure of spread. This lesson covers the full 4.1 syllabus, from mean, median and mode through quartiles, percentiles, box-and-whisker plots and outliers, to how each statistic behaves when the data is shifted, scaled or disturbed by an extreme value. Because 4.1 is examined on Paper 2, the GDC does the arithmetic — so the skill being marked is choosing the right measure and writing down the method the examiner needs. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice."
+    },
+    {
+      "type": "heading",
+      "content": "Measures of central tendency"
+    },
+    {
+      "type": "text",
+      "content": "A measure of central tendency is a single value that stands in for a whole data set — a typical value. The three you need are the mean, the median and the mode. The mean uses every value, so it carries the most information but is the most easily distorted by an extreme value. The median, the middle value once the data is ordered, ignores how extreme the ends are and so resists outliers. The mode is simply the most common value, and is the only one of the three that works for non-numerical data such as favourite colour."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Mean ($\\bar{x}$):** add all the values and divide by how many there are. Uses every value; sensitive to outliers.",
+        "**Median:** the middle value of the ordered data, at position $\\frac{n+1}{2}$. Resistant to outliers.",
+        "**Mode:** the most frequently occurring value. A data set may have one mode, several, or none."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "Mean of a data set: $\\bar{x} = \\dfrac{\\sum_{i=1}^{k} f_i x_i}{n}$, where $n = \\sum_{i=1}^{k} f_i$. \\n For raw data every $f_i = 1$; for grouped data $x_i$ is the mid-interval value of each class."
+    },
+    {
+      "type": "text",
+      "content": "The median sits at position $\\frac{n+1}{2}$ in the ordered list. If $n$ is odd this is a single value; if $n$ is even it falls between two values, and you average them. A frequent slip is to read the median off unordered data — always order first, or let the GDC do it."
+    },
+    {
+      "type": "workedExample",
+      "question": "The times, in seconds, for 12 athletes to run 100 m are: \\n 10.2, 10.4, 10.5, 10.8, 10.8, 11.1, 11.3, 11.4, 11.6, 12.0, 12.1, 13.5 \\n Find (a) the mean, (b) the median, (c) the mode, (d) the range, (e) the interquartile range and (f) the standard deviation of these times. [6]",
+      "solution": "This is a Paper 2 question, so enter the 12 values into a list on the GDC and run one-variable statistics; then read off and combine the results.\\n\\n**(a) Mean.** Read $\\bar{x}$ directly: $\\bar{x} = 11.3083\\ldots = 11.3$ s (3 s.f.).  [A1]\\n\\n**(b) Median.** The data is already ordered and $n = 12$, so the median is the mean of the 6th and 7th values: $\\dfrac{11.1 + 11.3}{2} = 11.2$ s. The GDC's 'Med' confirms this.  [A1]\\n\\n**(c) Mode.** The only value that repeats is $10.8$, so the mode is $10.8$ s.  [A1]\\n\\n**(d) Range.** Maximum minus minimum $= 13.5 - 10.2 = 3.3$ s.  [A1]\\n\\n**(e) Interquartile range.** The GDC gives $Q_1 = 10.65$ and $Q_3 = 11.8$, so $\\text{IQR} = Q_3 - Q_1 = 11.8 - 10.65 = 1.15$ s. (Show the subtraction to earn the mark.)  [A1]\\n\\n**(f) Standard deviation.** Read the population value: $\\sigma_x = 0.891\\ldots = 0.891$ s (3 s.f.).  [A1]\\n\\nNote how the outlier $13.5$ inflates the range but barely touches the IQR — a first hint that different spreads tell different stories."
+    },
+    {
+      "type": "heading",
+      "content": "Measures of dispersion"
+    },
+    {
+      "type": "text",
+      "content": "Knowing the centre is only half the story. Two classes can share a mean score of 60% while one is full of steady 55-to-65 marks and the other swings between 30 and 90. Dispersion measures how spread out the data is. The three you need are the range, the interquartile range and the standard deviation (with its square, the variance)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Range:** maximum $-$ minimum. Simple, but uses only two values, so a single outlier can blow it up.",
+        "**Interquartile range (IQR):** $Q_3 - Q_1$, the spread of the middle 50%. Resistant to outliers — the robust choice for skewed data.",
+        "**Standard deviation ($\\sigma_x$):** the typical distance of a value from the mean; uses every value. Small $\\sigma_x$ means tightly clustered data, large $\\sigma_x$ means widely scattered.",
+        "**Variance ($\\sigma_x^2$):** the square of the standard deviation — same information, squared units."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "On Paper 2, 'find', 'calculate' or 'determine' a statistic means 'use your GDC' — you need not show a formula. The one exception is the IQR: you must write the subtraction $Q_3 - Q_1$ to earn the method mark, even though the GDC supplies both quartiles."
+    },
+    {
+      "type": "heading",
+      "content": "Quartiles, percentiles and box-and-whisker plots"
+    },
+    {
+      "type": "text",
+      "content": "Quartiles cut ordered data into four equal parts. The lower quartile $Q_1$ has 25% of the data below it, the median $Q_2$ has 50%, and the upper quartile $Q_3$ has 75%. Percentiles generalise this to hundredths: the $p$th percentile is the value below which $p\\%$ of the data lies, so $Q_1$, $Q_2$ and $Q_3$ are just the 25th, 50th and 75th percentiles. Percentiles are usually read off a cumulative frequency graph — for the 60th percentile of 200 data points, go up to a cumulative frequency of 120 and read across."
+    },
+    {
+      "type": "text",
+      "content": "A box-and-whisker plot draws the five-number summary — minimum, $Q_1$, median, $Q_3$, maximum — on a common scale. The box stretches from $Q_1$ to $Q_3$ (its width is the IQR) with the median marked inside; the whiskers reach out to the most extreme values that are not outliers. Any genuine outliers are plotted as separate points beyond the whiskers. The picture reveals skew at a glance: a median sitting closer to $Q_1$ than to $Q_3$, or a long right whisker, signals data stretched towards the high end."
+    },
+    {
+      "type": "heading",
+      "content": "Identifying outliers: the 1.5 x IQR rule"
+    },
+    {
+      "type": "text",
+      "content": "An outlier is a value far enough from the bulk of the data to deserve suspicion. The IB uses a precise test rather than a hunch. Build two 'fences': the lower fence at $Q_1 - 1.5\\,\\text{IQR}$ and the upper fence at $Q_3 + 1.5\\,\\text{IQR}$. Any value beyond a fence is an outlier. The rule is deliberately mechanical — you must compute the fence and compare, never simply declare the largest value an outlier because it looks big."
+    },
+    {
+      "type": "formula",
+      "content": "Lower fence: $Q_1 - 1.5 \\times \\text{IQR}$ \\n Upper fence: $Q_3 + 1.5 \\times \\text{IQR}$ \\n A value is an outlier if it is below the lower fence or above the upper fence."
+    },
+    {
+      "type": "heading",
+      "content": "Analysing grouped frequency data"
+    },
+    {
+      "type": "text",
+      "content": "Data often arrives grouped into class intervals, where you know how many values fall in each class but not the exact values. To summarise it you make one assumption: treat every value in a class as sitting at the class's mid-interval value (the midpoint of its endpoints). With that, the GDC estimates the mean and standard deviation. Because you no longer have the individual values, the answers are estimates, and the question will usually signal this with the word 'estimate'."
+    },
+    {
+      "type": "workedExample",
+      "question": "The masses, $m$ grams, of 100 apples are recorded: \\n \\n | Mass, $m$ (g) | Frequency | \\n |---|---| \\n | $100 \\le m < 120$ | 12 | \\n | $120 \\le m < 140$ | 28 | \\n | $140 \\le m < 160$ | 36 | \\n | $160 \\le m < 180$ | 16 | \\n | $180 \\le m < 200$ | 8 | \\n \\n (a) Write down the modal class. \\n (b) Write down the mid-interval value of the $120 \\le m < 140$ class. \\n (c) Use your GDC to estimate the mean mass and the standard deviation. [5]",
+      "solution": "**(a) Modal class.** The highest frequency is 36, so the modal class is $140 \\le m < 160$.  [A1]\\n\\n**(b) Mid-interval value.** The midpoint of $120$ and $140$ is $\\dfrac{120 + 140}{2} = 130$ g.  [A1]\\n\\n**(c) Mean and standard deviation.** List the mid-interval values $110, 130, 150, 170, 190$ in one list and the frequencies $12, 28, 36, 16, 8$ in a second, then run one-variable statistics with the second list set as the frequencies.  [M1: mid-interval values with frequencies]\\nThe GDC returns:\\nEstimated mean $\\bar{x} = 147.8$ g.  [A1]\\nStandard deviation $\\sigma_x = 20.4\\ldots = 20.4$ g (3 s.f.).  [A1]\\n\\nBoth answers are estimates because every value was assumed to sit at its class midpoint."
+    },
+    {
+      "type": "heading",
+      "content": "The effect of changing the data"
+    },
+    {
+      "type": "text",
+      "content": "Examiners love to ask what happens to the statistics when the data is transformed — because you can answer instantly if you understand centre versus spread. Adding a constant slides the whole data set along the number line: every location statistic moves with it, but nothing is stretched, so the spread is untouched. Multiplying by a constant stretches the data about zero: locations scale by the factor, and so does the spread."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Add a constant $k$ to every value:** mean, median, mode and quartiles all increase by $k$; range, IQR, variance and standard deviation are UNCHANGED.",
+        "**Multiply every value by a constant $k$:** mean, median, mode and quartiles are multiplied by $k$; range, IQR and standard deviation are multiplied by $|k|$; variance is multiplied by $k^2$.",
+        "**Add one outlier:** the mean shifts strongly towards it and the range and standard deviation grow; the median and IQR barely move."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A data set has mean $\\bar{x} = 50$ and standard deviation $\\sigma_x = 8$. A teacher rescales every mark by first multiplying by 1.5 and then adding 10. Find the new mean and the new standard deviation. [4]",
+      "solution": "Write each mark's transformation as $y = 1.5x + 10$.\\n\\n**New mean.** The mean follows the whole transformation, both the multiply and the add:\\n$\\bar{y} = 1.5 \\times \\bar{x} + 10 = 1.5 \\times 50 + 10 = 85$.  [M1: apply both operations]  [A1]\\n\\n**New standard deviation.** Standard deviation scales with the multiplier only; adding 10 shifts the data without stretching it, so it has no effect:\\n$\\sigma_y = |1.5| \\times \\sigma_x = 1.5 \\times 8 = 12$.  [M1: multiplier only]  [A1]\\n\\n**Final answer:** new mean $85$, new standard deviation $12$. The '$+10$' moves the centre but leaves the spread alone."
+    },
+    {
+      "type": "heading",
+      "content": "Using the GDC efficiently"
+    },
+    {
+      "type": "text",
+      "content": "For raw data, enter the values in one list and run one-variable statistics; the screen gives you $\\bar{x}$, the median 'Med', $n$, the quartiles $Q_1$ and $Q_3$, the minimum, the maximum, and both standard deviations $\\sigma_x$ and $s_x$. For frequency or grouped data, put the values (or mid-interval values) in one list, the frequencies in a second, and tell the calculator to use the second list as frequencies. Two habits save marks: take the population standard deviation $\\sigma_x$ unless told 'sample', and read the quartiles for the IQR rather than trying to locate them by hand."
+    },
+    {
+      "type": "examTip",
+      "content": "Scroll the whole one-variable statistics screen before you start writing. Students routinely quote $s_x$ instead of $\\sigma_x$, or stop reading before they reach $Q_3$. Everything you need for central tendency and spread is on that one screen — capture it in a small table so you never re-run the calculation mid-question."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Reading the median off unordered data** — always order first (or use the GDC). For $n$ values the median is at position $\\frac{n+1}{2}$, and for even $n$ it is the mean of the two middle values, not just one of them.",
+        "**Writing IQR as $Q_3 + Q_1$ or $Q_1 - Q_3$** — the IQR is $Q_3 - Q_1$, and you must show that subtraction to earn the method mark even when the GDC gives both quartiles.",
+        "**Declaring the largest value an outlier by eye** — apply the rule: compute $Q_3 + 1.5\\,\\text{IQR}$ (or $Q_1 - 1.5\\,\\text{IQR}$) and compare. A big value inside the fence is NOT an outlier.",
+        "**Quoting $s_x$ instead of $\\sigma_x$** — in AA SL use the population standard deviation $\\sigma_x$ unless the question explicitly says 'sample'.",
+        "**Confusing standard deviation with variance** — variance is $\\sigma_x^2$. If the question gives the variance, square-root it before quoting a standard deviation.",
+        "**Claiming spread changes when a constant is added** — adding $k$ to every value leaves the range, IQR and standard deviation unchanged; only multiplying scales the spread.",
+        "**Forgetting grouped answers are estimates** — using mid-interval values makes the mean and standard deviation approximate; say so, and never treat a modal class as a single modal value.",
+        "**Over-rounding mid-calculation** — carry the GDC's full figures and round only the final answer, to 3 significant figures unless told otherwise."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and an accuracy mark depends on the method mark it follows. Follow-through (FT) means a value that is wrong earlier does not have to cost you the marks that depend on it, provided the later step is done correctly on your figure. The engine also ignores subsequent working (ISW) once a correct answer appears, and accepts any equivalent form and any correctly-rounded value. But that protection only exists if the method is on the page. Study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "For the data 4, 7, 8, 8, 10, 11, 12, 21: find the median and the interquartile range, and determine whether 21 is an outlier. [5]",
+      "solution": "**Model answer — full working.**\\n\\nThe data is already in ascending order and there are $n = 8$ values.\\n\\n**Median.** With $n = 8$ the median is the mean of the 4th and 5th values:\\n$\\text{median} = \\dfrac{8 + 10}{2} = 9.$\\n\\n**Quartiles and IQR.** Split the data at the median into a lower half $\\{4, 7, 8, 8\\}$ and an upper half $\\{10, 11, 12, 21\\}$.\\n$Q_1 = \\dfrac{7 + 8}{2} = 7.5, \\qquad Q_3 = \\dfrac{11 + 12}{2} = 11.5.$\\n(These match the GDC's one-variable statistics screen.)\\n$\\text{IQR} = Q_3 - Q_1 = 11.5 - 7.5 = 4.$\\n\\n**Outlier test.** Build the upper fence:\\n$Q_3 + 1.5 \\times \\text{IQR} = 11.5 + 1.5 \\times 4 = 11.5 + 6 = 17.5.$\\nSince $21 > 17.5$, the value 21 lies beyond the upper fence.\\n\\n**Conclusion:** 21 is an outlier.\\n\\n---\\n**How our marking engine awards the 5 marks:**\\n\\n- **A1 — median.** Awarded for $\\text{median} = 9$, correctly read as the mean of the two middle values. This accuracy mark stands on the correct ordered data.\\n- **M1 — quartiles.** A method mark for correctly locating both quartiles, $Q_1 = 7.5$ and $Q_3 = 11.5$ (from the GDC or by splitting the halves). It is the approach that is rewarded, so it survives an arithmetic slip further down.\\n- **A1 — IQR.** Awarded for $\\text{IQR} = Q_3 - Q_1 = 4$, with the subtraction shown. This A-mark depends on the M1 above: it is earned once the quartiles are in place and combined correctly. FT applies — a candidate with slightly different quartiles who subtracts them correctly still earns it on their own figures.\\n- **M1 — upper fence.** A method mark for forming $Q_3 + 1.5 \\times \\text{IQR}$, i.e. $11.5 + 1.5 \\times 4 = 17.5$. The engine checks that the $1.5 \\times \\text{IQR}$ rule was applied to the upper quartile, not to the mean or the maximum.\\n- **A1 — conclusion.** Awarded for the reasoned conclusion that $21 > 17.5$, so 21 is an outlier. This is FT on the candidate's own fence: a student whose IQR differed but who correctly compared 21 with THEIR fence and drew the matching conclusion keeps this mark.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts the IQR written as $11.5 - 7.5$ or as $4$ or $4.0$, and accepts the conclusion whether phrased as '21 is an outlier' or '21 lies above the upper fence, so it is an outlier'. Once a correct final statement appears, ISW means later restatements do not lose marks.\\n\\n**Bottom line:** of the 5 marks, two are method marks that survive an arithmetic slip, and the accuracy marks are shielded by follow-through. A student who writes only 'yes, 21 is an outlier' with no fence risks losing 3-4 marks; a student who shows the median, the quartiles, the IQR subtraction and the fence keeps the method regardless of a slip in the final number."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: order the data, write down $Q_1$ and $Q_3$, show the subtraction for the IQR, form the $1.5 \\times \\text{IQR}$ fence, then compare and conclude. The method marks and follow-through are what protect your score when a number slips — and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Descriptive statistics is the vocabulary the rest of the statistics course speaks. The mean and standard deviation you read here reappear as the parameters of the normal distribution, where the standard deviation sets the width of the bell; quartiles and percentiles return as probabilities you read off that curve. The idea of a robust versus a sensitive measure shapes how you interpret correlation and regression, and the habit of showing method, subtracting quartiles and testing before concluding is exactly the discipline every Paper 2 statistics question rewards. Master the two headlines — a centre and a spread, chosen to suit the data — and the statistics that follows becomes variations on a summary you already know how to write."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 2 calculation marked: find the quartiles, IQR and outliers with full working",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=4.1&component=paper_2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Mathematics Formula Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/"
+        },
+        {
+          "label": "Khan Academy: Standard Deviation",
+          "href": "https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/variance-standard-deviation-population/a/population-and-sample-standard-deviation-review"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "study-loop-pilot-v1",
+  "subtopics": [
+    {
+      "code": "SL 4.1",
+      "title": "Sampling",
+      "detail": "Populations, samples and reliability; sampling techniques (simple random, systematic, stratified, quota, convenience)."
+    },
+    {
+      "code": "SL 4.2",
+      "title": "Presenting data",
+      "detail": "Frequency tables, histograms, cumulative frequency graphs, and box-and-whisker plots."
+    },
+    {
+      "code": "SL 4.3",
+      "title": "Central tendency and spread",
+      "detail": "Mean, median, mode, grouped data, standard deviation, quartiles, IQR and outliers; the effect of constant changes on the data."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "sl-4-1-q1",
+      "prompt": "For the data set $4,\\ 7,\\ 7,\\ 9,\\ 13$, find (a) the mean, (b) the median, (c) the range.",
+      "marks": 4,
+      "commandTerm": "Find",
+      "difficulty": "foundation",
+      "syllabusRef": "SL 4.3",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) (M1) $\\dfrac{4+7+7+9+13}{5}$",
+          "marks": 1
+        },
+        {
+          "text": "(a) (A1) mean $=8$",
+          "marks": 1
+        },
+        {
+          "text": "(b) (A1) median $=7$",
+          "marks": 1
+        },
+        {
+          "text": "(c) (A1) range $=13-4=9$",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) Mean $=\\dfrac{4+7+7+9+13}{5}=\\dfrac{40}{5}=8$.\n\n(b) Ordered data, middle value (3rd of 5): median $=7$.\n\n(c) Range $=13-4=9$."
+    },
+    {
+      "id": "sl-4-1-q2",
+      "prompt": "The weights (kg) of $8$ dogs are $12,\\ 15,\\ 15,\\ 18,\\ 20,\\ 22,\\ 25,\\ 29$.\n(a) Find the median.\n(b) Find the lower quartile $Q_1$ and the upper quartile $Q_3$.\n(c) Find the interquartile range, and determine whether $29$ is an outlier using the $1.5\\times\\text{IQR}$ rule.",
+      "marks": 6,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "SL 4.3",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) (A1) median $=\\dfrac{18+20}{2}=19$",
+          "marks": 1
+        },
+        {
+          "text": "(b) (A1) $Q_1=15$",
+          "marks": 1
+        },
+        {
+          "text": "(b) (A1) $Q_3=23.5$",
+          "marks": 1
+        },
+        {
+          "text": "(c) (A1) $\\text{IQR}=23.5-15=8.5$",
+          "marks": 1
+        },
+        {
+          "text": "(c) (M1) upper boundary $Q_3+1.5\\,\\text{IQR}=23.5+12.75=36.25$",
+          "marks": 1
+        },
+        {
+          "text": "(c) (A1) $29<36.25$, so $29$ is not an outlier",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) Median $=\\dfrac{18+20}{2}=19$ kg.\n\n(b) Lower half $12,15,15,18$: $Q_1=\\dfrac{15+15}{2}=15$. Upper half $20,22,25,29$: $Q_3=\\dfrac{22+25}{2}=23.5$.\n\n(c) $\\text{IQR}=23.5-15=8.5$. Upper outlier boundary $=Q_3+1.5\\times\\text{IQR}=23.5+12.75=36.25$. Since $29<36.25$, $29$ is not an outlier."
+    },
+    {
+      "id": "sl-4-1-q3",
+      "prompt": "A data set has a mean of $50$ and a standard deviation of $8$. Each value in the data set is transformed using the formula $y=3x-5$. Find:\n(a) the new mean.\n(b) the new standard deviation.",
+      "marks": 4,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "SL 4.3",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) Correctly applies the transformation to the mean. (M1)\nE.g. $3 \\times 50 - 5$",
+          "marks": 1
+        },
+        {
+          "text": "New mean is $145$. (A1)",
+          "marks": 1
+        },
+        {
+          "text": "(b) Recognises that subtraction does not affect the standard deviation, but multiplication does. (M1)\nE.g. $3 \\times 8$",
+          "marks": 1
+        },
+        {
+          "text": "New standard deviation is $24$. (A1)",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) 145\n\n(b) 24"
+    },
+    {
+      "id": "sl-4-1-q4",
+      "prompt": "A discrete data set takes the values $3,6,9,k$ with frequencies $4,3,2,1$ respectively. The mean is $6$. Find the value of $k$.",
+      "marks": 3,
+      "commandTerm": "Find",
+      "difficulty": "challenge",
+      "syllabusRef": "SL 4.3",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(M1) $\\dfrac{3(4)+6(3)+9(2)+k(1)}{4+3+2+1}=6$",
+          "marks": 1
+        },
+        {
+          "text": "(M1) $48+k=60$",
+          "marks": 1
+        },
+        {
+          "text": "(A1) $k=12$",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "$\\dfrac{12+18+18+k}{10}=6\\;\\Rightarrow\\;48+k=60\\;\\Rightarrow\\;k=12$."
+    }
+  ]
+}

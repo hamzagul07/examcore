@@ -1,0 +1,481 @@
+{
+  "slug": "3-7-vectors-properties-and-operations",
+  "topicCode": "3.7",
+  "unit": {
+    "code": "3",
+    "title": "Geometry and trigonometry"
+  },
+  "title": "Vectors: properties and operations",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "pilot",
+  "summary": "A vector carries two pieces of information at once — how much and which way — and almost every mistake in this topic comes from losing track of one of them. This lesson builds the whole toolkit from the ground up: vectors as magnitude-and-direction quantities, component and column form, the base vectors $\\mathbf{i}$, $\\mathbf{j}$, $\\mathbf{k}$, position vectors, addition, subtraction and scalar multiplication (both algebraically and geometrically), the magnitude $|\\mathbf{v}|=\\sqrt{v_1^2+v_2^2+v_3^2}$, the unit vector $\\hat{\\mathbf{v}}=\\frac{\\mathbf{v}}{|\\mathbf{v}|}$, and the vector between two points $\\vec{AB}=\\vec{OB}-\\vec{OA}$. Every worked example is laid out exactly the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Describe a vector as a quantity with both magnitude and direction, and distinguish it from a scalar.",
+    "Represent vectors in component form, column form, and base-vector form using $\\mathbf{i}$, $\\mathbf{j}$, $\\mathbf{k}$, and use position vectors to locate points.",
+    "Add and subtract vectors and multiply by a scalar, both algebraically (component by component) and geometrically (triangle and parallelogram rules).",
+    "Compute the magnitude (modulus) of a vector with $|\\mathbf{v}|=\\sqrt{v_1^2+v_2^2+v_3^2}$ and find a unit vector with $\\hat{\\mathbf{v}}=\\frac{\\mathbf{v}}{|\\mathbf{v}|}$.",
+    "Find the vector between two points using $\\vec{AB}=\\vec{OB}-\\vec{OA}$, and present working so method marks and follow-through protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "3.7"
+  ],
+  "levelNote": "HL only — Higher Level content.",
+  "simpleExplanation": {
+    "title": "Two Facts in One Arrow",
+    "summary": "A vector is a single object that stores two facts at once: a size (its magnitude) and a heading (its direction). Numbers on their own — like $5$ or $-2$ — are scalars and carry only size. Every vector operation is really just bookkeeping that respects both facts at the same time.",
+    "analogy": "Think of a treasure-map instruction. 'Walk 30 paces' is a scalar — it tells you how far but not where to. 'Walk 30 paces north-east' is a vector — same size, but now with a direction, so it actually points to the treasure. Everything in this lesson is a way of combining, measuring or re-scaling those arrows without ever dropping the direction.",
+    "steps": [
+      "Write each vector in components — a column $\\begin{pmatrix} v_1 \\\\ v_2 \\\\ v_3 \\end{pmatrix}$ or the equivalent $v_1\\mathbf{i}+v_2\\mathbf{j}+v_3\\mathbf{k}$. Points are located by their position vectors from the origin $O$.",
+      "Decide the operation. To combine journeys, add. To scale a journey, multiply by a scalar. To go from point $A$ to point $B$, subtract position vectors: $\\vec{AB}=\\vec{OB}-\\vec{OA}$.",
+      "Work component by component. Add or subtract matching components; for a scalar, multiply every component; for magnitude, square-sum-root the components.",
+      "Match your answer to the question. A 'vector' answer stays in vector form; a 'magnitude', 'distance' or 'length' answer is a single non-negative scalar."
+    ]
+  },
+  "keyConcepts": [
+    "components and base vectors",
+    "position vs displacement vectors",
+    "magnitude and unit vectors"
+  ],
+  "flashcards": [
+    {
+      "front": "Vector vs scalar",
+      "back": "A vector has BOTH magnitude and direction (e.g. displacement, velocity, force). A scalar has magnitude only (e.g. distance, speed, mass). The magnitude of a vector is itself a scalar.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Column and base-vector form",
+      "back": "The same vector can be written $\\begin{pmatrix} v_1 \\\\ v_2 \\\\ v_3 \\end{pmatrix}$ or $v_1\\mathbf{i}+v_2\\mathbf{j}+v_3\\mathbf{k}$. Here $\\mathbf{i}$, $\\mathbf{j}$, $\\mathbf{k}$ are the base (unit) vectors along the $x$-, $y$- and $z$-axes.",
+      "pillLabel": "Notation"
+    },
+    {
+      "front": "Position vector",
+      "back": "$\\vec{OP}$ locates point $P$ relative to the origin $O$; its components ARE the coordinates of $P$. Often written $\\mathbf{p}$.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Vector between two points",
+      "back": "$\\vec{AB}=\\vec{OB}-\\vec{OA}$ = (position of end) $-$ (position of start). It is 'finish minus start'. Reversing it gives $\\vec{BA}=-\\vec{AB}$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Addition and subtraction",
+      "back": "Combine matching components: $\\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix}\\pm\\begin{pmatrix} b_1 \\\\ b_2 \\end{pmatrix}=\\begin{pmatrix} a_1\\pm b_1 \\\\ a_2\\pm b_2 \\end{pmatrix}$. Geometrically, addition is head-to-tail (triangle rule).",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Scalar multiplication",
+      "back": "$k\\mathbf{a}=\\begin{pmatrix} ka_1 \\\\ ka_2 \\end{pmatrix}$ multiplies EVERY component by $k$. It scales the length by $|k|$ and, if $k<0$, reverses the direction.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Magnitude (modulus)",
+      "back": "$|\\mathbf{v}|=\\sqrt{v_1^2+v_2^2+v_3^2}$ — 3D Pythagoras. It is a scalar, always $\\ge 0$. Square the components (so signs vanish) BEFORE adding.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Unit vector",
+      "back": "$\\hat{\\mathbf{v}}=\\dfrac{\\mathbf{v}}{|\\mathbf{v}|}=\\dfrac{1}{|\\mathbf{v}|}\\mathbf{v}$ has magnitude $1$ and the same direction as $\\mathbf{v}$. Divide EACH component by the magnitude.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Distance between two points",
+      "back": "The distance $AB$ is the magnitude of the vector between them: $AB=|\\vec{AB}|=|\\vec{OB}-\\vec{OA}|$. This is the 3D distance formula in disguise.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Parallel vectors",
+      "back": "Non-zero $\\mathbf{u}$ and $\\mathbf{v}$ are parallel exactly when $\\mathbf{u}=k\\mathbf{v}$ for some scalar $k\\ne 0$. Same direction if $k>0$, opposite if $k<0$.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "The zero vector",
+      "back": "$\\mathbf{0}=\\begin{pmatrix} 0 \\\\ 0 \\\\ 0 \\end{pmatrix}$ has magnitude $0$ and no defined direction. It is the identity for addition: $\\mathbf{a}+\\mathbf{0}=\\mathbf{a}$. You cannot form a unit vector from it.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Vector vs magnitude answers",
+      "back": "If the question says 'find the vector', answer in vector form. If it says 'magnitude', 'distance', 'length' or 'speed', answer with a single scalar. Confusing the two throws away marks.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Midpoint of [AB]",
+      "back": "$\\vec{OM}=\\tfrac{1}{2}(\\vec{OA}+\\vec{OB})$ — the average of the two position vectors. This is the vector version of the coordinate midpoint formula.",
+      "pillLabel": "Formula"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Points $A$ and $B$ have position vectors $\\vec{OA}$ and $\\vec{OB}$. Which expression gives the vector $\\vec{AB}$ from $A$ to $B$?",
+      "options": [
+        "$\\vec{OA} - \\vec{OB}$",
+        "$\\vec{OB} - \\vec{OA}$",
+        "$\\vec{OA} + \\vec{OB}$",
+        "$\\tfrac{1}{2}(\\vec{OA} + \\vec{OB})$"
+      ],
+      "answer": "$\\vec{OB} - \\vec{OA}$"
+    },
+    {
+      "prompt": "What is the magnitude of the vector $\\mathbf{v} = \\begin{pmatrix} 2 \\\\ -3 \\\\ 6 \\end{pmatrix}$?",
+      "options": [
+        "$5$",
+        "$7$",
+        "$11$",
+        "$\\sqrt{11}$"
+      ],
+      "answer": "$7$"
+    },
+    {
+      "prompt": "A vector $\\mathbf{v}$ has magnitude $|\\mathbf{v}| = 10$. Which is the unit vector in the direction of $\\mathbf{v}$?",
+      "options": [
+        "$10\\mathbf{v}$",
+        "$\\mathbf{v} - 10$",
+        "$\\dfrac{\\mathbf{v}}{10}$",
+        "$\\dfrac{10}{\\mathbf{v}}$"
+      ],
+      "answer": "$\\dfrac{\\mathbf{v}}{10}$"
+    },
+    {
+      "prompt": "If $\\mathbf{a} = \\begin{pmatrix} 3 \\\\ -1 \\end{pmatrix}$ and $\\mathbf{b} = \\begin{pmatrix} 2 \\\\ 5 \\end{pmatrix}$, what is $\\mathbf{a} + \\mathbf{b}$?",
+      "options": [
+        "$\\begin{pmatrix} 5 \\\\ 4 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 6 \\\\ -5 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 1 \\\\ -6 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 5 \\\\ -6 \\end{pmatrix}$"
+      ],
+      "answer": "$\\begin{pmatrix} 5 \\\\ 4 \\end{pmatrix}$"
+    },
+    {
+      "prompt": "A student computes $|\\mathbf{v}|$ for $\\mathbf{v} = \\begin{pmatrix} -4 \\\\ 3 \\end{pmatrix}$ and writes $-4 + 3 = -1$, so $|\\mathbf{v}| = -1$. What went wrong?",
+      "options": [
+        "Nothing — magnitude can be negative",
+        "The components should be squared before adding, then square-rooted: $|\\mathbf{v}| = \\sqrt{16+9} = 5$",
+        "They should have multiplied the components: $-4 \\times 3 = -12$",
+        "They should have used $\\sqrt{-4+3}$"
+      ],
+      "answer": "The components should be squared before adding, then square-rooted: $|\\mathbf{v}| = \\sqrt{16+9} = 5$"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a position vector and a displacement vector?",
+      "a": "A position vector such as $\\vec{OP}$ always starts at the origin $O$ and pins down WHERE a point is — its components are exactly the coordinates of the point. A displacement vector such as $\\vec{AB}$ describes the JOURNEY from one point to another; it is a change of position and does not care where the origin is. The same displacement can start anywhere on the plane and still be the same vector."
+    },
+    {
+      "q": "Why is $\\vec{AB} = \\vec{OB} - \\vec{OA}$ and not the other way round?",
+      "a": "Read it as a detour through the origin. To go from $A$ to $B$ you can first travel from $A$ back to $O$ (that is $-\\vec{OA}$) and then from $O$ out to $B$ (that is $\\vec{OB}$). Adding the two legs gives $\\vec{AB}=-\\vec{OA}+\\vec{OB}=\\vec{OB}-\\vec{OA}$. In words: finish minus start. Swapping them gives $\\vec{BA}$, which points the opposite way."
+    },
+    {
+      "q": "Can a vector or a magnitude be negative?",
+      "a": "The components of a vector can certainly be negative — a negative component just means the arrow points the negative way along that axis. Multiplying a whole vector by a negative scalar reverses its direction. But the magnitude is a length: because you square every component before adding, the signs disappear and the result is always zero or positive. A negative magnitude is always an error."
+    },
+    {
+      "q": "Do I have to rationalise or simplify a unit vector like $\\frac{1}{\\sqrt{17}}\\mathbf{v}$?",
+      "a": "No. The IB accepts exact equivalent forms, so $\\frac{1}{\\sqrt{17}}\\begin{pmatrix} 4 \\\\ -1 \\end{pmatrix}$, the rationalised $\\frac{\\sqrt{17}}{17}\\begin{pmatrix} 4 \\\\ -1 \\end{pmatrix}$, and a correctly-rounded decimal such as $\\begin{pmatrix} 0.970 \\\\ -0.243 \\end{pmatrix}$ all score. Keep an exact form where you can — it avoids rounding error and is never marked wrong."
+    },
+    {
+      "q": "Are $\\mathbf{i}$, $\\mathbf{j}$, $\\mathbf{k}$ different from column vectors?",
+      "a": "They are just two notations for the same thing. $\\mathbf{i}=\\begin{pmatrix} 1 \\\\ 0 \\\\ 0 \\end{pmatrix}$, $\\mathbf{j}=\\begin{pmatrix} 0 \\\\ 1 \\\\ 0 \\end{pmatrix}$, $\\mathbf{k}=\\begin{pmatrix} 0 \\\\ 0 \\\\ 1 \\end{pmatrix}$, so $v_1\\mathbf{i}+v_2\\mathbf{j}+v_3\\mathbf{k}$ is exactly the column $\\begin{pmatrix} v_1 \\\\ v_2 \\\\ v_3 \\end{pmatrix}$. Use whichever the question uses, and feel free to convert between them mid-solution."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Some quantities need only a size to describe them — the mass of a book, the temperature of a room, the length of a walk. These are scalars. Others make no sense without a direction attached: a displacement, a velocity, a force. These are vectors, and they are the language of geometry and mechanics. This lesson builds the complete foundation — how to write vectors, how to combine and scale them, how to measure their length, and how to find the vector joining two points. As in every calculation topic, the worked examples here are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "What a vector is, and how we write it"
+    },
+    {
+      "type": "text",
+      "content": "A vector is a quantity with both magnitude (size) and direction. In print it is a bold lowercase letter, $\\mathbf{v}$; by hand you underline it, $\\underline{v}$, or cap it with an arrow, $\\vec{v}$. The most useful description is by components — how far the vector reaches along each axis. You can write those components stacked as a column vector, or strung together using the base vectors $\\mathbf{i}$, $\\mathbf{j}$, $\\mathbf{k}$, which point one unit along the $x$-, $y$- and $z$-axes respectively. The two forms are interchangeable."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Handwritten: $\\underline{a}$ or $\\vec{a}$; printed: $\\mathbf{a}$.",
+        "2D column vector: $\\mathbf{a}=\\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix}$; 3D column vector: $\\mathbf{a}=\\begin{pmatrix} a_1 \\\\ a_2 \\\\ a_3 \\end{pmatrix}$.",
+        "Base-vector form: $\\mathbf{a}=a_1\\mathbf{i}+a_2\\mathbf{j}+a_3\\mathbf{k}$, where $\\mathbf{i}$, $\\mathbf{j}$, $\\mathbf{k}$ are the unit vectors along the axes.",
+        "The two forms say the same thing: $2\\mathbf{i}-5\\mathbf{j}+\\mathbf{k}=\\begin{pmatrix} 2 \\\\ -5 \\\\ 1 \\end{pmatrix}$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Position vectors and the vector between two points"
+    },
+    {
+      "type": "text",
+      "content": "A position vector fixes a point relative to the origin $O$: the position vector of $P$ is $\\vec{OP}$, and its components are simply the coordinates of $P$. A displacement vector, by contrast, records a journey between two points and does not depend on the origin. The single most important formula in this topic connects them: the vector from $A$ to $B$ is 'finish minus start'."
+    },
+    {
+      "type": "formula",
+      "content": "The vector between two points:\n$$\\vec{AB}=\\vec{OB}-\\vec{OA} \\quad (\\text{finish} - \\text{start}).$$\nIts length is the distance $AB=|\\vec{AB}|$, and reversing gives $\\vec{BA}=-\\vec{AB}$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Points $A$ and $B$ have position vectors $\\vec{OA} = 3\\mathbf{i} - 2\\mathbf{j} + \\mathbf{k}$ and $\\vec{OB} = \\mathbf{i} + 4\\mathbf{j} - 2\\mathbf{k}$ relative to an origin $O$. (a) Find $\\vec{AB}$. (b) Find the distance $AB$. (c) Find the position vector of $M$, the midpoint of $[AB]$. [6]",
+      "solution": "**(a) The vector $\\vec{AB}$.** Use finish minus start.\n$\\vec{AB}=\\vec{OB}-\\vec{OA}=(\\mathbf{i}+4\\mathbf{j}-2\\mathbf{k})-(3\\mathbf{i}-2\\mathbf{j}+\\mathbf{k})$  [M1: $\\vec{OB}-\\vec{OA}$]\n$\\vec{AB}=(1-3)\\mathbf{i}+(4-(-2))\\mathbf{j}+(-2-1)\\mathbf{k}=-2\\mathbf{i}+6\\mathbf{j}-3\\mathbf{k}$.  [A1]\n\n**(b) The distance $AB$.** This is the magnitude of $\\vec{AB}$ — square, sum, root.\n$AB=|\\vec{AB}|=\\sqrt{(-2)^2+6^2+(-3)^2}$  [M1: magnitude formula]\n$AB=\\sqrt{4+36+9}=\\sqrt{49}=7$.  [A1]\n\n**(c) The midpoint $M$.** Average the two position vectors.\n$\\vec{OM}=\\tfrac{1}{2}(\\vec{OA}+\\vec{OB})=\\tfrac{1}{2}\\big((3\\mathbf{i}-2\\mathbf{j}+\\mathbf{k})+(\\mathbf{i}+4\\mathbf{j}-2\\mathbf{k})\\big)$  [M1: midpoint as average]\n$\\vec{OM}=\\tfrac{1}{2}(4\\mathbf{i}+2\\mathbf{j}-\\mathbf{k})=2\\mathbf{i}+\\mathbf{j}-\\tfrac{1}{2}\\mathbf{k}$.  [A1]\n\n**Final answer:** $\\vec{AB}=-2\\mathbf{i}+6\\mathbf{j}-3\\mathbf{k}$; $AB=7$; $\\vec{OM}=2\\mathbf{i}+\\mathbf{j}-\\tfrac{1}{2}\\mathbf{k}$."
+    },
+    {
+      "type": "heading",
+      "content": "Adding, subtracting and scaling — algebra and geometry"
+    },
+    {
+      "type": "text",
+      "content": "Addition, subtraction and scalar multiplication all work component by component. Geometrically they have a clean picture too. Addition is head-to-tail: to form $\\mathbf{a}+\\mathbf{b}$, place the tail of $\\mathbf{b}$ at the head of $\\mathbf{a}$; the resultant runs from the tail of $\\mathbf{a}$ to the head of $\\mathbf{b}$ (the triangle rule, equivalently the diagonal of a parallelogram). Subtraction $\\mathbf{a}-\\mathbf{b}$ is $\\mathbf{a}+(-\\mathbf{b})$, adding the reversed vector. Scalar multiplication $k\\mathbf{a}$ stretches the length by $|k|$ and flips the direction when $k<0$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Addition:** $\\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix}+\\begin{pmatrix} b_1 \\\\ b_2 \\end{pmatrix}=\\begin{pmatrix} a_1+b_1 \\\\ a_2+b_2 \\end{pmatrix}$ — add matching components (triangle / parallelogram rule).",
+        "**Subtraction:** $\\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix}-\\begin{pmatrix} b_1 \\\\ b_2 \\end{pmatrix}=\\begin{pmatrix} a_1-b_1 \\\\ a_2-b_2 \\end{pmatrix}$ — the same as adding $-\\mathbf{b}$.",
+        "**Scalar multiplication:** $k\\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix}=\\begin{pmatrix} ka_1 \\\\ ka_2 \\end{pmatrix}$ — scale length by $|k|$, reverse direction if $k<0$.",
+        "**Parallel vectors:** non-zero $\\mathbf{u}$, $\\mathbf{v}$ are parallel iff $\\mathbf{u}=k\\mathbf{v}$ for some scalar $k\\ne 0$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Given $\\mathbf{p} = \\begin{pmatrix} 4 \\\\ -1 \\end{pmatrix}$ and $\\mathbf{q} = \\begin{pmatrix} -2 \\\\ 3 \\end{pmatrix}$: (a) find $2\\mathbf{p} - 3\\mathbf{q}$; (b) find a unit vector in the direction of $\\mathbf{p}$; (c) find the value of $k$ for which $\\mathbf{r} = \\begin{pmatrix} k \\\\ -6 \\end{pmatrix}$ is parallel to $\\mathbf{q}$. [6]",
+      "solution": "**(a) Combine with scalar multiplication.**\n$2\\mathbf{p}-3\\mathbf{q}=2\\begin{pmatrix} 4 \\\\ -1 \\end{pmatrix}-3\\begin{pmatrix} -2 \\\\ 3 \\end{pmatrix}$  [M1: scalar multiples]\n$=\\begin{pmatrix} 8 \\\\ -2 \\end{pmatrix}-\\begin{pmatrix} -6 \\\\ 9 \\end{pmatrix}=\\begin{pmatrix} 8-(-6) \\\\ -2-9 \\end{pmatrix}=\\begin{pmatrix} 14 \\\\ -11 \\end{pmatrix}$.  [A1]\n\n**(b) Unit vector: divide by the magnitude.**\n$|\\mathbf{p}|=\\sqrt{4^2+(-1)^2}=\\sqrt{16+1}=\\sqrt{17}$  [M1: magnitude]\n$\\hat{\\mathbf{p}}=\\dfrac{1}{|\\mathbf{p}|}\\mathbf{p}=\\dfrac{1}{\\sqrt{17}}\\begin{pmatrix} 4 \\\\ -1 \\end{pmatrix}$.  [A1: exact form accepted]\n\n**(c) Parallel means scalar multiple.** Require $\\mathbf{r}=c\\mathbf{q}$ for some scalar $c$.\n$\\begin{pmatrix} k \\\\ -6 \\end{pmatrix}=c\\begin{pmatrix} -2 \\\\ 3 \\end{pmatrix}$  [M1: parallel condition]\nSecond components: $-6=3c\\Rightarrow c=-2$. First components: $k=-2c=-2(-2)=4$.\n$k=4$.  [A1]\n\n**Final answer:** $2\\mathbf{p}-3\\mathbf{q}=\\begin{pmatrix} 14 \\\\ -11 \\end{pmatrix}$; $\\hat{\\mathbf{p}}=\\tfrac{1}{\\sqrt{17}}\\begin{pmatrix} 4 \\\\ -1 \\end{pmatrix}$; $k=4$."
+    },
+    {
+      "type": "heading",
+      "content": "Magnitude and unit vectors"
+    },
+    {
+      "type": "text",
+      "content": "The magnitude (or modulus) of a vector is its length — a scalar that is never negative. You find it with Pythagoras extended to three dimensions: square each component, add, then take the (positive) square root. A unit vector has magnitude exactly $1$; it captures a direction with the length divided out, and you get it by dividing a vector by its own magnitude. The base vectors $\\mathbf{i}$, $\\mathbf{j}$, $\\mathbf{k}$ are themselves unit vectors."
+    },
+    {
+      "type": "formula",
+      "content": "For $\\mathbf{v}=\\begin{pmatrix} v_1 \\\\ v_2 \\\\ v_3 \\end{pmatrix}$:\n$$|\\mathbf{v}|=\\sqrt{v_1^2+v_2^2+v_3^2}, \\qquad \\hat{\\mathbf{v}}=\\dfrac{\\mathbf{v}}{|\\mathbf{v}|}=\\dfrac{1}{|\\mathbf{v}|}\\mathbf{v}.$$\nThe unit vector $\\hat{\\mathbf{v}}$ has magnitude $1$ and the same direction as $\\mathbf{v}$."
+    },
+    {
+      "type": "examTip",
+      "content": "Square the components BEFORE you add. Because squaring destroys the sign, a negative component contributes exactly as much length as its positive twin — so $\\begin{pmatrix} -4 \\\\ 3 \\end{pmatrix}$ and $\\begin{pmatrix} 4 \\\\ 3 \\end{pmatrix}$ both have magnitude $5$. Never add the raw components first; that is the single most common magnitude error."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Reversing $\\vec{AB}$** — writing $\\vec{OA}-\\vec{OB}$ instead of $\\vec{OB}-\\vec{OA}$. It is finish minus start; the reversed version is $\\vec{BA}$ and points the wrong way.",
+        "**Adding components before squaring in the magnitude** — writing $\\sqrt{v_1+v_2+v_3}$ or even $v_1+v_2+v_3$. The formula is $\\sqrt{v_1^2+v_2^2+v_3^2}$: square each component first.",
+        "**Reporting a negative magnitude** — a length is never negative. If a magnitude comes out negative, a sign has been mishandled.",
+        "**Multiplying instead of dividing for a unit vector** — $\\hat{\\mathbf{v}}=\\frac{\\mathbf{v}}{|\\mathbf{v}|}$, NOT $|\\mathbf{v}|\\,\\mathbf{v}$. Divide each component by the magnitude.",
+        "**Dividing only one component by the magnitude** — the scalar $\\frac{1}{|\\mathbf{v}|}$ multiplies EVERY component, not just the first.",
+        "**Mismatching the answer type** — giving a scalar when a 'vector' is asked for, or a vector when 'magnitude', 'distance' or 'length' is asked for.",
+        "**Losing a sign in subtraction** — e.g. $4-(-2)=6$, not $2$. Bracket each vector before subtracting so no minus sign is dropped."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "On Paper 1 the marks are analytic: each is tied to a specific line of working — a method mark ($M$) for the correct approach, or an accuracy mark ($A$) for the right value, where an $A$ mark is dependent on the $M$ mark before it. Follow-through (FT) means that a right method applied to a wrong earlier number still earns the marks that depend on it, and the engine accepts any correct exact form. But that protection only exists if the method is on the page. Study how each of the five marks below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "Points $A(1, -2, 3)$ and $B(4, 2, 3)$ are given. Find the vector $\\vec{AB}$, its magnitude, and a unit vector in the direction of $\\vec{AB}$. [5]",
+      "solution": "**Model answer — full working.**\n\nWrite the coordinates as position vectors: $\\vec{OA}=\\begin{pmatrix} 1 \\\\ -2 \\\\ 3 \\end{pmatrix}$, $\\vec{OB}=\\begin{pmatrix} 4 \\\\ 2 \\\\ 3 \\end{pmatrix}$.\n\n**The vector $\\vec{AB}$ (finish minus start).**\n$\\vec{AB}=\\vec{OB}-\\vec{OA}=\\begin{pmatrix} 4-1 \\\\ 2-(-2) \\\\ 3-3 \\end{pmatrix}=\\begin{pmatrix} 3 \\\\ 4 \\\\ 0 \\end{pmatrix}$.\n\n**Its magnitude.**\n$|\\vec{AB}|=\\sqrt{3^2+4^2+0^2}=\\sqrt{9+16+0}=\\sqrt{25}=5$.\n\n**A unit vector in the direction of $\\vec{AB}$.**\n$\\widehat{AB}=\\dfrac{\\vec{AB}}{|\\vec{AB}|}=\\dfrac{1}{5}\\begin{pmatrix} 3 \\\\ 4 \\\\ 0 \\end{pmatrix}=\\begin{pmatrix} 3/5 \\\\ 4/5 \\\\ 0 \\end{pmatrix}$.\n\n**Final answer:** $\\vec{AB}=\\begin{pmatrix} 3 \\\\ 4 \\\\ 0 \\end{pmatrix}$, $|\\vec{AB}|=5$, $\\widehat{AB}=\\begin{pmatrix} 3/5 \\\\ 4/5 \\\\ 0 \\end{pmatrix}$.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — subtract the position vectors.** Awarded for setting up $\\vec{OB}-\\vec{OA}$ (finish minus start). This is a METHOD mark: it stands even if a subtraction later slips.\n- **A1 — the vector $\\vec{AB}$.** Awarded for $\\begin{pmatrix} 3 \\\\ 4 \\\\ 0 \\end{pmatrix}$. Equivalent forms such as $3\\mathbf{i}+4\\mathbf{j}$ (or $3\\mathbf{i}+4\\mathbf{j}+0\\mathbf{k}$) are accepted.\n- **M1 — apply the magnitude formula.** Awarded for $\\sqrt{3^2+4^2+0^2}$ — the right formula with the student's components substituted. This is independent method, and it earns on FOLLOW-THROUGH from a wrong $\\vec{AB}$.\n- **A1 — the magnitude.** Awarded for $|\\vec{AB}|=5$. The engine accepts any correctly-rounded or exact value, so an exact surd where one arises is fine.\n- **A1 — the unit vector.** Awarded for $\\begin{pmatrix} 3/5 \\\\ 4/5 \\\\ 0 \\end{pmatrix}$. Exact equivalents such as $\\frac{1}{5}\\begin{pmatrix} 3 \\\\ 4 \\\\ 0 \\end{pmatrix}$ or the decimal $\\begin{pmatrix} 0.6 \\\\ 0.8 \\\\ 0 \\end{pmatrix}$ all score; the engine does NOT force one particular form.\n\n**Bottom line:** of the 5 marks, two are method marks that survive an arithmetic slip, the magnitude step follows through from the student's own $\\vec{AB}$, and every accuracy mark accepts any correct exact form. A student who writes only '$5$' with no working risks the surrounding marks if a number is off; a student who shows the subtraction, the magnitude formula and the division keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through and exact forms accepted. So always show the method: write $\\vec{OB}-\\vec{OA}$, then the magnitude formula with your components substituted, then divide by the magnitude for the unit vector. The method marks and follow-through are what protect your score when a single number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 1 question marked: solve a full vector problem with working",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=3.7&component=paper_1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra 3D Vector Explorer",
+          "href": "https://www.geogebra.org/m/j35d2zsp"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "GeoGebra 3D Vector Explorer",
+    "embedUrl": "https://www.geogebra.org/classic?material=j35d2zsp",
+    "launchUrl": "https://www.geogebra.org/classic?material=j35d2zsp",
+    "hint": "Use “GeoGebra 3D Vector Explorer” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "SL 3.7",
+      "title": "Vector representation and magnitude",
+      "detail": "Representations of vectors using base vectors or column form; position vectors; magnitude $|\boldsymbol{v}| = \\sqrt{v_1^2 + v_2^2 + v_3^2}$."
+    },
+    {
+      "code": "SL 3.7",
+      "title": "The scalar product",
+      "detail": "Definition of the scalar product $\\boldsymbol{v} \\cdot \\boldsymbol{w} = v_1w_1 + v_2w_2 + v_3w_3 = |\\boldsymbol{v}||\\boldsymbol{w}|\\cos\\theta$. Perpendicular vectors have $\\boldsymbol{v} \\cdot \\boldsymbol{w} = 0$."
+    },
+    {
+      "code": "SL 3.7",
+      "title": "The vector product",
+      "detail": "Definition of the vector product $\\boldsymbol{v} \\times \\boldsymbol{w}$. Geometric interpretation as a vector perpendicular to a plane and its magnitude as the area of a parallelogram."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "3-7-vectors-properties-and-operations-q1",
+      "prompt": "Let $\\boldsymbol{a} = 2\\boldsymbol{i} - \\boldsymbol{j} + 2\\boldsymbol{k}$ and $\\boldsymbol{b} = 3\\boldsymbol{i} + 4\\boldsymbol{k}$.\n\n(a) Find the vector $2\\boldsymbol{a} - \\boldsymbol{b}$. [2]\n\n(b) Find the unit vector in the direction of $\\boldsymbol{a}$. [2]",
+      "marks": 4,
+      "commandTerm": "Find",
+      "difficulty": "foundation",
+      "syllabusRef": "SL 3.7",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Attempt to calculate $2\\boldsymbol{a}$. $2\\boldsymbol{a} = 4\\boldsymbol{i} - 2\\boldsymbol{j} + 4\\boldsymbol{k}$.",
+          "marks": 1
+        },
+        {
+          "text": "$2\\boldsymbol{a} - \\boldsymbol{b} = (4-3)\\boldsymbol{i} - 2\\boldsymbol{j} + (4-4)\\boldsymbol{k} = \\boldsymbol{i} - 2\\boldsymbol{j}$.",
+          "marks": 1
+        },
+        {
+          "text": "Attempt to find magnitude of $\\boldsymbol{a}$. $|\\boldsymbol{a}| = \\sqrt{2^2 + (-1)^2 + 2^2} = \\sqrt{9} = 3$.",
+          "marks": 1
+        },
+        {
+          "text": "Unit vector $\\hat{\\boldsymbol{a}} = \\frac{1}{3}(2\\boldsymbol{i} - \\boldsymbol{j} + 2\\boldsymbol{k})$ or $\\frac{2}{3}\\boldsymbol{i} - \\frac{1}{3}\\boldsymbol{j} + \\frac{2}{3}\\boldsymbol{k}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) First, calculate $2\\boldsymbol{a}$:\n$2\\boldsymbol{a} = 2(2\\boldsymbol{i} - \\boldsymbol{j} + 2\\boldsymbol{k}) = 4\\boldsymbol{i} - 2\\boldsymbol{j} + 4\\boldsymbol{k}$.\nNow, subtract $\\boldsymbol{b}$:\n$2\\boldsymbol{a} - \\boldsymbol{b} = (4\\boldsymbol{i} - 2\\boldsymbol{j} + 4\\boldsymbol{k}) - (3\\boldsymbol{i} + 4\\boldsymbol{k})$\n$= (4-3)\\boldsymbol{i} - 2\\boldsymbol{j} + (4-4)\\boldsymbol{k}$\n$= \\boldsymbol{i} - 2\\boldsymbol{j}$.\n\n(b) To find the unit vector, we first need the magnitude of $\\boldsymbol{a}$:\n$|\\boldsymbol{a}| = \\sqrt{2^2 + (-1)^2 + 2^2} = \\sqrt{4+1+4} = \\sqrt{9} = 3$.\nThe unit vector $\\hat{\\boldsymbol{a}}$ is found by dividing the vector $\\boldsymbol{a}$ by its magnitude:\n$\\hat{\\boldsymbol{a}} = \\frac{\\boldsymbol{a}}{|\\boldsymbol{a}|} = \\frac{1}{3}(2\\boldsymbol{i} - \\boldsymbol{j} + 2\\boldsymbol{k}) = \\frac{2}{3}\\boldsymbol{i} - \\frac{1}{3}\\boldsymbol{j} + \\frac{2}{3}\\boldsymbol{k}$."
+    },
+    {
+      "id": "3-7-vectors-properties-and-operations-q2",
+      "prompt": "The points A, B and C have position vectors $\\vec{OA} = \\begin{pmatrix} 1 \\\\ -2 \\\\ 4 \\end{pmatrix}$, $\\vec{OB} = \\begin{pmatrix} 3 \\\\ 1 \\\\ 0 \\end{pmatrix}$ and $\\vec{OC} = \\begin{pmatrix} -1 \\\\ 5 \\\\ 2 \\end{pmatrix}$ respectively, relative to an origin O.\n\n(a) Find the vector $\\vec{AB}$. [2]\n\n(b) Find the angle $\\text{C}\\hat{\\text{A}}\\text{B}$, giving your answer in degrees. [4]",
+      "marks": 6,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "SL 3.7",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "Recognising that $\\vec{AB} = \\vec{OB} - \\vec{OA}$.",
+          "marks": 1
+        },
+        {
+          "text": "$\\vec{AB} = \\begin{pmatrix} 3 \\\\ 1 \\\\ 0 \\end{pmatrix} - \\begin{pmatrix} 1 \\\\ -2 \\\\ 4 \\end{pmatrix} = \\begin{pmatrix} 2 \\\\ 3 \\\\ -4 \\end{pmatrix}$.",
+          "marks": 1
+        },
+        {
+          "text": "$\\vec{AC} = \\vec{OC} - \\vec{OA} = \\begin{pmatrix} -1 \\\\ 5 \\\\ 2 \\end{pmatrix} - \\begin{pmatrix} 1 \\\\ -2 \\\\ 4 \\end{pmatrix} = \\begin{pmatrix} -2 \\\\ 7 \\\\ -2 \\end{pmatrix}$.",
+          "marks": 1
+        },
+        {
+          "text": "Attempt to use scalar product formula. $\\vec{AB} \\cdot \\vec{AC} = (2)(-2) + (3)(7) + (-4)(-2) = 25$.",
+          "marks": 1
+        },
+        {
+          "text": "$|\\vec{AB}| = \\sqrt{2^2+3^2+(-4)^2} = \\sqrt{29}$ and $|\\vec{AC}| = \\sqrt{(-2)^2+7^2+(-2)^2} = \\sqrt{57}$.",
+          "marks": 1
+        },
+        {
+          "text": "$\\cos(\\text{C}\\hat{\\text{A}}\\text{B}) = \\frac{25}{\\sqrt{29}\\sqrt{57}}$. Angle is $52.1^\\circ$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The vector $\\vec{AB}$ is found by $\\vec{OB} - \\vec{OA}$.\n$\\vec{AB} = \\begin{pmatrix} 3 \\\\ 1 \\\\ 0 \\end{pmatrix} - \\begin{pmatrix} 1 \\\\ -2 \\\\ 4 \\end{pmatrix} = \\begin{pmatrix} 3-1 \\\\ 1-(-2) \\\\ 0-4 \\end{pmatrix} = \\begin{pmatrix} 2 \\\\ 3 \\\\ -4 \\end{pmatrix}$.\n\n(b) The angle $\\text{C}\\hat{\\text{A}}\\text{B}$ is the angle between the vectors $\\vec{AB}$ and $\\vec{AC}$.\nFirst, find the vector $\\vec{AC}$:\n$\\vec{AC} = \\vec{OC} - \\vec{OA} = \\begin{pmatrix} -1 \\\\ 5 \\\\ 2 \\end{pmatrix} - \\begin{pmatrix} 1 \\\\ -2 \\\\ 4 \\end{pmatrix} = \\begin{pmatrix} -1-1 \\\\ 5-(-2) \\\\ 2-4 \\end{pmatrix} = \\begin{pmatrix} -2 \\\\ 7 \\\\ -2 \\end{pmatrix}$.\nNow use the scalar product formula: $\\boldsymbol{u} \\cdot \\boldsymbol{v} = |\\boldsymbol{u}||\\boldsymbol{v}|\\cos\\theta$.\n$\\vec{AB} \\cdot \\vec{AC} = (2)(-2) + (3)(7) + (-4)(-2) = -4 + 21 + 8 = 25$.\n$|\\vec{AB}| = \\sqrt{2^2 + 3^2 + (-4)^2} = \\sqrt{4 + 9 + 16} = \\sqrt{29}$.\n$|\\vec{AC}| = \\sqrt{(-2)^2 + 7^2 + (-2)^2} = \\sqrt{4 + 49 + 4} = \\sqrt{57}$.\n$\\cos(\\text{C}\\hat{\\text{A}}\\text{B}) = \\frac{\\vec{AB} \\cdot \\vec{AC}}{|\\vec{AB}||\\vec{AC}|} = \\frac{25}{\\sqrt{29}\\sqrt{57}}$.\n$\\text{C}\\hat{\\text{A}}\\text{B} = \\arccos\\left(\\frac{25}{\\sqrt{29}\\sqrt{57}}\\right) \\approx 52.125...^\\circ$.\nThe angle is $52.1^\\circ$ (to 3 significant figures)."
+    },
+    {
+      "id": "3-7-vectors-properties-and-operations-q3",
+      "prompt": "Consider the vectors $\\boldsymbol{u} = \\boldsymbol{i} + 2\\boldsymbol{j} - \\boldsymbol{k}$ and $\\boldsymbol{v} = 3\\boldsymbol{i} - \\boldsymbol{j} + 2\\boldsymbol{k}$.\n\n(a) Find $\\boldsymbol{u} \\times \\boldsymbol{v}$. [3]\n\n(b) Hence, determine the area of the parallelogram with adjacent sides defined by the vectors $\\boldsymbol{u}$ and $\\boldsymbol{v}$. [2]",
+      "marks": 5,
+      "commandTerm": "Determine",
+      "difficulty": "standard",
+      "syllabusRef": "SL 3.7",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Attempt to calculate the vector product, e.g. using determinant form. $\\boldsymbol{u} \\times \\boldsymbol{v} = \\begin{vmatrix} \\boldsymbol{i} & \\boldsymbol{j} & \\boldsymbol{k} \\\\ 1 & 2 & -1 \\\\ 3 & -1 & 2 \\end{vmatrix}$.",
+          "marks": 1
+        },
+        {
+          "text": "Correct calculation of components. $= \\boldsymbol{i}(2 \\cdot 2 - (-1)(-1)) - \\boldsymbol{j}(1 \\cdot 2 - (-1)(3)) + \\boldsymbol{k}(1(-1) - 2 \\cdot 3)$.",
+          "marks": 1
+        },
+        {
+          "text": "$\\boldsymbol{u} \\times \\boldsymbol{v} = 3\\boldsymbol{i} - 5\\boldsymbol{j} - 7\\boldsymbol{k}$.",
+          "marks": 1
+        },
+        {
+          "text": "Recognising area is the magnitude of the vector product. Area $= |\\boldsymbol{u} \\times \\boldsymbol{v}| = \\sqrt{3^2 + (-5)^2 + (-7)^2}$.",
+          "marks": 1
+        },
+        {
+          "text": "Area $= \\sqrt{9 + 25 + 49} = \\sqrt{83}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The vector product $\\boldsymbol{u} \\times \\boldsymbol{v}$ can be calculated using the determinant of a matrix:\n$\\boldsymbol{u} \\times \\boldsymbol{v} = \\begin{vmatrix} \\boldsymbol{i} & \\boldsymbol{j} & \\boldsymbol{k} \\\\ 1 & 2 & -1 \\\\ 3 & -1 & 2 \\end{vmatrix}$\n$= \\boldsymbol{i} \\begin{vmatrix} 2 & -1 \\\\ -1 & 2 \\end{vmatrix} - \\boldsymbol{j} \\begin{vmatrix} 1 & -1 \\\\ 3 & 2 \\end{vmatrix} + \\boldsymbol{k} \\begin{vmatrix} 1 & 2 \\\\ 3 & -1 \\end{vmatrix}$\n$= \\boldsymbol{i}((2)(2) - (-1)(-1)) - \\boldsymbol{j}((1)(2) - (-1)(3)) + \\boldsymbol{k}((1)(-1) - (2)(3))$\n$= \\boldsymbol{i}(4 - 1) - \\boldsymbol{j}(2 + 3) + \\boldsymbol{k}(-1 - 6)$\n$= 3\\boldsymbol{i} - 5\\boldsymbol{j} - 7\\boldsymbol{k}$.\n\n(b) The area of the parallelogram is given by the magnitude of the vector product.\nArea $= |\\boldsymbol{u} \\times \\boldsymbol{v}| = |3\\boldsymbol{i} - 5\\boldsymbol{j} - 7\\boldsymbol{k}|$\n$= \\sqrt{3^2 + (-5)^2 + (-7)^2}$\n$= \\sqrt{9 + 25 + 49} = \\sqrt{83}$.\nThe area is $\\sqrt{83}$ square units."
+    },
+    {
+      "id": "3-7-vectors-properties-and-operations-q4",
+      "prompt": "Let $\\boldsymbol{a}$ and $\\boldsymbol{b}$ be non-zero vectors such that $|\\boldsymbol{a} + \\boldsymbol{b}| = |\\boldsymbol{a} - \\boldsymbol{b}|$.\n\n(a) Show that $\\boldsymbol{a}$ and $\\boldsymbol{b}$ are perpendicular. [4]\n\n(b) Let $\\boldsymbol{v} = \\boldsymbol{a} + \\boldsymbol{b}$ and $\\boldsymbol{w} = \\boldsymbol{a} - \\boldsymbol{b}$. Find the area of the parallelogram with adjacent sides $\\boldsymbol{v}$ and $\\boldsymbol{w}$ in terms of $|\\boldsymbol{a}|$ and $|\\boldsymbol{b}|$. [3]",
+      "marks": 7,
+      "commandTerm": "Show that",
+      "difficulty": "challenge",
+      "syllabusRef": "SL 3.7",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Squaring both sides of the given equation: $|\\boldsymbol{a} + \\boldsymbol{b}|^2 = |\\boldsymbol{a} - \\boldsymbol{b}|^2$.",
+          "marks": 1
+        },
+        {
+          "text": "Using $|\\boldsymbol{x}|^2 = \\boldsymbol{x} \\cdot \\boldsymbol{x}$ to get $(\\boldsymbol{a} + \\boldsymbol{b}) \\cdot (\\boldsymbol{a} + \\boldsymbol{b}) = (\\boldsymbol{a} - \\boldsymbol{b}) \\cdot (\\boldsymbol{a} - \\boldsymbol{b})$.",
+          "marks": 1
+        },
+        {
+          "text": "Correct expansion: $|\\boldsymbol{a}|^2 + 2\\boldsymbol{a} \\cdot \\boldsymbol{b} + |\\boldsymbol{b}|^2 = |\\boldsymbol{a}|^2 - 2\\boldsymbol{a} \\cdot \\boldsymbol{b} + |\\boldsymbol{b}|^2$.",
+          "marks": 1
+        },
+        {
+          "text": "$4\\boldsymbol{a} \\cdot \\boldsymbol{b} = 0 \\implies \\boldsymbol{a} \\cdot \\boldsymbol{b} = 0$. Since vectors are non-zero, they are perpendicular.",
+          "marks": 1
+        },
+        {
+          "text": "Area $= |\\boldsymbol{v} \\times \\boldsymbol{w}| = |(\\boldsymbol{a} + \\boldsymbol{b}) \\times (\\boldsymbol{a} - \\boldsymbol{b})|$.",
+          "marks": 1
+        },
+        {
+          "text": "Expanding the cross product: $|\\boldsymbol{a} \\times \\boldsymbol{a} - \\boldsymbol{a} \\times \\boldsymbol{b} + \\boldsymbol{b} \\times \\boldsymbol{a} - \\boldsymbol{b} \\times \\boldsymbol{b}| = |-2(\\boldsymbol{a} \\times \\boldsymbol{b})| = 2|\\boldsymbol{a} \\times \\boldsymbol{b}|$.",
+          "marks": 1
+        },
+        {
+          "text": "Using the result from (a), $\\theta=90^\\circ$, so $|\\boldsymbol{a} \\times \\boldsymbol{b}| = |\\boldsymbol{a}||\\boldsymbol{b}|\\sin(90^\\circ) = |\\boldsymbol{a}||\\boldsymbol{b}|$. Area $= 2|\\boldsymbol{a}||\\boldsymbol{b}|$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) Given $|\\boldsymbol{a} + \\boldsymbol{b}| = |\\boldsymbol{a} - \\boldsymbol{b}|$. Squaring both sides gives $|\\boldsymbol{a} + \\boldsymbol{b}|^2 = |\\boldsymbol{a} - \\boldsymbol{b}|^2$. We use the property that for any vector $\\boldsymbol{x}$, $|\\boldsymbol{x}|^2 = \\boldsymbol{x} \\cdot \\boldsymbol{x}$.\n$(\\boldsymbol{a} + \\boldsymbol{b}) \\cdot (\\boldsymbol{a} + \\boldsymbol{b}) = (\\boldsymbol{a} - \\boldsymbol{b}) \\cdot (\\boldsymbol{a} - \\boldsymbol{b})$\nExpanding both sides using the distributive property of the scalar product:\n$\\boldsymbol{a} \\cdot \\boldsymbol{a} + \\boldsymbol{a} \\cdot \\boldsymbol{b} + \\boldsymbol{b} \\cdot \\boldsymbol{a} + \\boldsymbol{b} \\cdot \\boldsymbol{b} = \\boldsymbol{a} \\cdot \\boldsymbol{a} - \\boldsymbol{a} \\cdot \\boldsymbol{b} - \\boldsymbol{b} \\cdot \\boldsymbol{a} + \\boldsymbol{b} \\cdot \\boldsymbol{b}$\n$|\\boldsymbol{a}|^2 + 2(\\boldsymbol{a} \\cdot \\boldsymbol{b}) + |\\boldsymbol{b}|^2 = |\\boldsymbol{a}|^2 - 2(\\boldsymbol{a} \\cdot \\boldsymbol{b}) + |\\boldsymbol{b}|^2$\nSubtracting $|\\boldsymbol{a}|^2$ and $|\\boldsymbol{b}|^2$ from both sides gives:\n$2(\\boldsymbol{a} \\cdot \\boldsymbol{b}) = -2(\\boldsymbol{a} \\cdot \\boldsymbol{b})$\n$4(\\boldsymbol{a} \\cdot \\boldsymbol{b}) = 0$, which implies $\\boldsymbol{a} \\cdot \\boldsymbol{b} = 0$.\nSince $\\boldsymbol{a}$ and $\\boldsymbol{b}$ are non-zero vectors, their scalar product being zero proves they are perpendicular.\n\n(b) The area of the parallelogram is the magnitude of the vector product of its adjacent sides, $\\boldsymbol{v}$ and $\\boldsymbol{w}$.\nArea $= |\\boldsymbol{v} \\times \\boldsymbol{w}| = |(\\boldsymbol{a} + \\boldsymbol{b}) \\times (\\boldsymbol{a} - \\boldsymbol{b})|$\nUsing the distributive property of the vector product:\n$\\boldsymbol{v} \\times \\boldsymbol{w} = \\boldsymbol{a} \\times \\boldsymbol{a} - \\boldsymbol{a} \\times \\boldsymbol{b} + \\boldsymbol{b} \\times \\boldsymbol{a} - \\boldsymbol{b} \\times \\boldsymbol{b}$\nSince $\\boldsymbol{x} \\times \\boldsymbol{x} = \\boldsymbol{0}$ and $\\boldsymbol{b} \\times \\boldsymbol{a} = -\\boldsymbol{a} \\times \\boldsymbol{b}$:\n$\\boldsymbol{v} \\times \\boldsymbol{w} = \\boldsymbol{0} - \\boldsymbol{a} \\times \\boldsymbol{b} - \\boldsymbol{a} \\times \\boldsymbol{b} - \\boldsymbol{0} = -2(\\boldsymbol{a} \\times \\boldsymbol{b})$\nArea $= |-2(\\boldsymbol{a} \\times \\boldsymbol{b})| = 2|\\boldsymbol{a} \\times \\boldsymbol{b}|$\nFrom part (a), we know that $\\boldsymbol{a}$ and $\\boldsymbol{b}$ are perpendicular, so the angle $\\theta$ between them is $90^\\circ$.\nThus, $|\\boldsymbol{a} \\times \\boldsymbol{b}| = |\\boldsymbol{a}||\\boldsymbol{b}|\\sin(90^\\circ) = |\\boldsymbol{a}||\\boldsymbol{b}|(1) = |\\boldsymbol{a}||\\boldsymbol{b}|$.\nSubstituting this into our expression for the area gives:\nArea $= 2|\\boldsymbol{a}||\\boldsymbol{b}|$"
+    }
+  ]
+}

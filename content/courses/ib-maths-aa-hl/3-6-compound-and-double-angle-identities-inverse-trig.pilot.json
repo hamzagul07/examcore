@@ -1,0 +1,502 @@
+{
+  "slug": "3-6-compound-and-double-angle-identities-inverse-trig",
+  "topicCode": "3.6",
+  "unit": {
+    "code": "3",
+    "title": "Geometry and trigonometry"
+  },
+  "title": "Compound and double angle identities; inverse trig",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "pilot",
+  "summary": "This lesson builds the full 3.6 toolkit. It develops the compound-angle (addition) formulae for $\\sin(A\\pm B)$, $\\cos(A\\pm B)$ and $\\tan(A\\pm B)$, derives the double-angle formulae from them, and uses both to find exact values, prove identities and solve equations without a calculator. It then defines the inverse trigonometric functions $\\arcsin$, $\\arccos$ and $\\arctan$ — their restricted domains, principal-value ranges and graphs. Every worked example is laid out exactly the way our marking engine awards marks, because in Paper 1 how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Recall and apply the compound-angle identities for $\\sin(A\\pm B)$, $\\cos(A\\pm B)$ and $\\tan(A\\pm B)$.",
+    "Derive the double-angle identities $\\sin 2\\theta=2\\sin\\theta\\cos\\theta$, $\\cos 2\\theta=\\cos^2\\theta-\\sin^2\\theta=1-2\\sin^2\\theta=2\\cos^2\\theta-1$ and $\\tan 2\\theta=\\dfrac{2\\tan\\theta}{1-\\tan^2\\theta}$ from the compound-angle formulae.",
+    "Use these identities to evaluate exact values, prove identities and solve trigonometric equations over a given interval.",
+    "Define $\\arcsin$, $\\arccos$ and $\\arctan$, stating their restricted domains, principal-value ranges and the shape of their graphs.",
+    "Present working so that method marks and follow-through (FT) protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "3.6"
+  ],
+  "levelNote": "HL only — Higher Level content.",
+  "simpleExplanation": {
+    "title": "The Plus-One and Times-Two Rules of Trigonometry",
+    "summary": "The compound-angle identities tell you the sine, cosine or tangent of a SUM or DIFFERENCE of two angles in terms of the angles separately. Set the two angles equal and they collapse into the double-angle identities. The inverse trig functions run the machinery backwards: given a ratio, they return the one principal angle that produced it.",
+    "analogy": "Think of an angle as a recipe and its sine as the finished dish. The compound-angle formula is the rule for combining two recipes into one; the double-angle formula is what happens when you cook the same recipe twice. The inverse functions are the food critic working in reverse — tasting the dish and naming the single 'principal' recipe behind it. Because many recipes can give the same taste, the critic is only allowed to name one, which is exactly why the ranges of $\\arcsin$, $\\arccos$ and $\\arctan$ are restricted.",
+    "steps": [
+      "Spot the structure: a sum/difference of angles ($A\\pm B$), a doubled angle ($2\\theta$), or an inverse function returning an angle.",
+      "Choose the matching identity from the formula booklet — for $\\cos 2\\theta$, pick the form that leaves the equation in a single function.",
+      "Substitute known exact values carefully, keeping surds and fractions rather than decimals in Paper 1.",
+      "For inverse functions, give the ONE angle inside the principal-value range; for equations, collect EVERY solution in the stated interval."
+    ]
+  },
+  "keyConcepts": [
+    "compound-angle identities",
+    "double-angle identities",
+    "inverse trigonometric functions"
+  ],
+  "flashcards": [
+    {
+      "front": "Compound angle: $\\sin(A\\pm B)$",
+      "back": "$\\sin(A\\pm B)=\\sin A\\cos B\\pm\\cos A\\sin B$. The sign inside is the SAME as the sign between the angles.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Compound angle: $\\cos(A\\pm B)$",
+      "back": "$\\cos(A\\pm B)=\\cos A\\cos B\\mp\\sin A\\sin B$. The sign inside is the OPPOSITE of the sign between the angles.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Compound angle: $\\tan(A\\pm B)$",
+      "back": "$\\tan(A\\pm B)=\\dfrac{\\tan A\\pm\\tan B}{1\\mp\\tan A\\tan B}$. Numerator takes the same sign as the angles; denominator takes the opposite sign.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Double-angle: sine",
+      "back": "$\\sin 2\\theta=2\\sin\\theta\\cos\\theta$, obtained from $\\sin(\\theta+\\theta)$. The $2$ multiplies the product $\\sin\\theta\\cos\\theta$; it is NOT $2\\sin\\theta$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Double-angle: cosine (three forms)",
+      "back": "$\\cos 2\\theta=\\cos^2\\theta-\\sin^2\\theta=1-2\\sin^2\\theta=2\\cos^2\\theta-1$. Use $1-2\\sin^2\\theta$ when the rest is in $\\sin$; use $2\\cos^2\\theta-1$ when it is in $\\cos$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Double-angle: tangent",
+      "back": "$\\tan 2\\theta=\\dfrac{2\\tan\\theta}{1-\\tan^2\\theta}$, from $\\tan(\\theta+\\theta)$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Definition of $\\arcsin x$",
+      "back": "$y=\\arcsin x$ means $\\sin y=x$ with $y$ restricted to $-\\tfrac{\\pi}{2}\\le y\\le\\tfrac{\\pi}{2}$. Domain $x\\in[-1,1]$, range $[-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}]$ (Quadrants 4 and 1).",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Domain and range of $\\arccos x$",
+      "back": "Domain $x\\in[-1,1]$; range $y\\in[0,\\pi]$ (Quadrants 1 and 2). $y=\\arccos x$ means $\\cos y=x$ with $0\\le y\\le\\pi$.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Domain and range of $\\arctan x$",
+      "back": "Domain $x\\in\\mathbb{R}$; range $y\\in\\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right)$ — STRICT inequalities, so $\\pm\\tfrac{\\pi}{2}$ are horizontal asymptotes, never reached.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Why are the inverse ranges restricted?",
+      "back": "$\\sin$, $\\cos$ and $\\tan$ are periodic, so they are many-to-one and have no inverse over their whole domain. Restricting each to an interval where it is one-to-one gives a genuine inverse; that interval becomes the range of principal values.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Exam Trap: $\\sin(A+B)=\\sin A+\\sin B$",
+      "back": "FALSE — trig functions do not distribute over addition. Check: $\\sin 90^\\circ=1$ but $\\sin 60^\\circ+\\sin 30^\\circ=\\tfrac{\\sqrt3}{2}+\\tfrac12\\neq 1$. Always expand with the compound-angle formula.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: forgetting the quadrant of an inverse output",
+      "back": "$\\arccos$ outputs Q1/Q2 only (so its value can be obtuse); $\\arcsin$ and $\\arctan$ output Q4/Q1 (so a negative input gives a negative angle). Give the angle in the correct principal range, not the calculator's stray value.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Which is the correct expansion of $\\sin(A+B)$?",
+      "options": [
+        "$\\sin A\\cos B - \\cos A\\sin B$",
+        "$\\sin A\\cos B + \\cos A\\sin B$",
+        "$\\cos A\\cos B + \\sin A\\sin B$",
+        "$\\sin A + \\sin B$"
+      ],
+      "answer": "$\\sin A\\cos B + \\cos A\\sin B$"
+    },
+    {
+      "prompt": "To solve $\\cos 2x = \\cos x$ as a quadratic in $\\cos x$, which form of $\\cos 2x$ should you substitute?",
+      "options": [
+        "$1 - 2\\sin^2 x$",
+        "$\\cos^2 x - \\sin^2 x$",
+        "$2\\cos^2 x - 1$",
+        "$2\\sin x\\cos x$"
+      ],
+      "answer": "$2\\cos^2 x - 1$"
+    },
+    {
+      "prompt": "What is the range (set of principal values) of $y = \\arcsin x$?",
+      "options": [
+        "$0 \\le y \\le \\pi$",
+        "$-\\tfrac{\\pi}{2} \\le y \\le \\tfrac{\\pi}{2}$",
+        "$-\\tfrac{\\pi}{2} < y < \\tfrac{\\pi}{2}$",
+        "$0 \\le y \\le 2\\pi$"
+      ],
+      "answer": "$-\\tfrac{\\pi}{2} \\le y \\le \\tfrac{\\pi}{2}$"
+    },
+    {
+      "prompt": "Solving $\\sin 2x = \\sin x$ for $0 \\le x \\le 2\\pi$, a student divides both sides by $\\sin x$ and writes only $2\\cos x = 1$. Which solutions are lost?",
+      "options": [
+        "None — the method is valid",
+        "The solutions where $\\sin x = 0$",
+        "The solutions where $\\cos x = \\tfrac12$",
+        "The solutions where $\\cos x = -1$"
+      ],
+      "answer": "The solutions where $\\sin x = 0$"
+    },
+    {
+      "prompt": "Given $\\cos\\theta = \\tfrac{4}{5}$ with $\\theta$ acute, the value of $\\sin 2\\theta$ is:",
+      "options": [
+        "$\\tfrac{8}{5}$",
+        "$\\tfrac{24}{25}$",
+        "$\\tfrac{7}{25}$",
+        "$\\tfrac{16}{25}$"
+      ],
+      "answer": "$\\tfrac{24}{25}$"
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I remember the signs in the compound-angle formulae?",
+      "a": "For $\\sin(A\\pm B)$ the sign inside the expansion is the SAME as the sign between the angles ($\\sin A\\cos B\\pm\\cos A\\sin B$). For $\\cos(A\\pm B)$ the sign FLIPS ($\\cos A\\cos B\\mp\\sin A\\sin B$): 'cosine changes the sign'. They are printed in the formula booklet, but recalling them instantly saves time in Paper 1."
+    },
+    {
+      "q": "Where do the double-angle formulae come from?",
+      "a": "Set $B=A$ in the compound-angle formulae. $\\sin 2\\theta=\\sin(\\theta+\\theta)=\\sin\\theta\\cos\\theta+\\cos\\theta\\sin\\theta=2\\sin\\theta\\cos\\theta$. Similarly $\\cos 2\\theta=\\cos\\theta\\cos\\theta-\\sin\\theta\\sin\\theta=\\cos^2\\theta-\\sin^2\\theta$, and substituting the Pythagorean identity gives the other two cosine forms. Knowing the derivation means you never need to memorise the doubles separately."
+    },
+    {
+      "q": "Which of the three $\\cos 2\\theta$ forms should I use?",
+      "a": "Match the form to the rest of the equation so everything ends up in ONE function. If the other terms are in $\\sin$, use $\\cos 2\\theta=1-2\\sin^2\\theta$. If they are in $\\cos$, use $\\cos 2\\theta=2\\cos^2\\theta-1$. When proving an identity, the raw form $\\cos^2\\theta-\\sin^2\\theta$ is often the most flexible."
+    },
+    {
+      "q": "Why are the ranges of the inverse trig functions restricted?",
+      "a": "$\\sin$, $\\cos$ and $\\tan$ are periodic, so infinitely many angles share the same value; a function must give exactly one output per input. We therefore restrict each trig function to an interval on which it is one-to-one — $[-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}]$ for sine, $[0,\\pi]$ for cosine, $\\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right)$ for tangent — and that interval becomes the range of principal values for the inverse."
+    },
+    {
+      "q": "Why is $\\arctan$'s range OPEN while $\\arcsin$ and $\\arccos$ are closed?",
+      "a": "$\\tan$ heads to $\\pm\\infty$ as the angle approaches $\\pm\\tfrac{\\pi}{2}$ but never actually reaches those angles, so $\\pm\\tfrac{\\pi}{2}$ are horizontal asymptotes of $y=\\arctan x$ and are excluded: the range is the OPEN interval $\\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right)$. Sine and cosine attain their extreme values at the ends of their restricted domains, so those endpoints are included and the ranges are closed."
+    },
+    {
+      "q": "How do I evaluate something like $\\cos(\\arctan 2)$?",
+      "a": "Let $\\theta=\\arctan 2$, so $\\tan\\theta=2$ with $\\theta$ in $\\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right)$. Draw a right triangle with opposite $2$ and adjacent $1$; the hypotenuse is $\\sqrt{2^2+1^2}=\\sqrt5$. Then $\\cos\\theta=\\dfrac{1}{\\sqrt5}=\\dfrac{\\sqrt5}{5}$. Because $\\arctan$ returns a Q1/Q4 angle, choose the sign of the cosine to match that quadrant (here positive)."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "You already know the exact ratios for $30^\\circ$, $45^\\circ$ and $60^\\circ$. But what about $75^\\circ$, or $\\sin 2\\theta$ when only $\\sin\\theta$ is known? It is tempting to write $\\cos(30^\\circ+45^\\circ)=\\cos 30^\\circ+\\cos 45^\\circ$, but that is simply false — trig functions do not distribute over addition. This lesson supplies the identities that govern how angles combine: the compound-angle formulae, the double-angle formulae they generate, and the inverse functions that recover an angle from a ratio. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "The compound-angle (addition) identities"
+    },
+    {
+      "type": "text",
+      "content": "The compound-angle identities express the sine, cosine or tangent of a SUM or DIFFERENCE of two angles in terms of the ratios of the angles separately. They are provided in the formula booklet, so the marks come not from recall but from fluent, accurate application — especially for exact values in Paper 1."
+    },
+    {
+      "type": "formula",
+      "content": "\\sin(A\\pm B)=\\sin A\\cos B\\pm\\cos A\\sin B\\\\ \\\\ \\cos(A\\pm B)=\\cos A\\cos B\\mp\\sin A\\sin B\\\\ \\\\ \\tan(A\\pm B)=\\frac{\\tan A\\pm\\tan B}{1\\mp\\tan A\\tan B}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Sign rule: for $\\sin$ the inside sign MATCHES the sign between the angles; for $\\cos$ it FLIPS ('cosine changes the sign').",
+        "Read the paired $\\pm$/$\\mp$ carefully: in $\\cos(A+B)$ the middle term is a MINUS, and in $\\tan$ the denominator sign is opposite to the numerator.",
+        "These formulae unlock exact values for non-standard angles built from standard ones: $15^\\circ=45^\\circ-30^\\circ$, $75^\\circ=45^\\circ+30^\\circ$, $105^\\circ=60^\\circ+45^\\circ$.",
+        "The tangent form follows by dividing $\\sin(A\\pm B)$ by $\\cos(A\\pm B)$ and then dividing numerator and denominator by $\\cos A\\cos B$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Without a calculator, find the exact value of $\\cos 75^\\circ$. [4]",
+      "solution": "Write $75^\\circ$ as a sum of standard angles: $75^\\circ=45^\\circ+30^\\circ$, and use $\\cos(A+B)=\\cos A\\cos B-\\sin A\\sin B$.\n\n$\\cos 75^\\circ=\\cos(45^\\circ+30^\\circ)=\\cos 45^\\circ\\cos 30^\\circ-\\sin 45^\\circ\\sin 30^\\circ$  (M1) for choosing the correct formula and angles.\n\nSubstitute exact values $\\cos 45^\\circ=\\sin 45^\\circ=\\dfrac{\\sqrt2}{2}$, $\\cos 30^\\circ=\\dfrac{\\sqrt3}{2}$, $\\sin 30^\\circ=\\dfrac12$:\n\n$=\\left(\\dfrac{\\sqrt2}{2}\\right)\\!\\left(\\dfrac{\\sqrt3}{2}\\right)-\\left(\\dfrac{\\sqrt2}{2}\\right)\\!\\left(\\dfrac12\\right)$  (A1) for correct substitution.\n\n$=\\dfrac{\\sqrt6}{4}-\\dfrac{\\sqrt2}{4}$  (A1) for simplifying each product.\n\n$=\\dfrac{\\sqrt6-\\sqrt2}{4}$  (A1) for the final exact value. $\\blacksquare$"
+    },
+    {
+      "type": "heading",
+      "content": "The double-angle identities"
+    },
+    {
+      "type": "text",
+      "content": "Setting $B=A$ in the compound-angle formulae produces the double-angle identities. They let you collapse a doubled angle into single-angle terms, which is essential for solving equations and reappears throughout calculus. The cosine version has three equivalent forms, obtained by substituting the Pythagorean identity $\\sin^2\\theta+\\cos^2\\theta=1$."
+    },
+    {
+      "type": "formula",
+      "content": "\\sin 2\\theta=2\\sin\\theta\\cos\\theta\\\\ \\\\ \\cos 2\\theta=\\cos^2\\theta-\\sin^2\\theta=1-2\\sin^2\\theta=2\\cos^2\\theta-1\\\\ \\\\ \\tan 2\\theta=\\frac{2\\tan\\theta}{1-\\tan^2\\theta}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Derivation: $\\sin 2\\theta=\\sin(\\theta+\\theta)=\\sin\\theta\\cos\\theta+\\cos\\theta\\sin\\theta=2\\sin\\theta\\cos\\theta$; likewise $\\cos 2\\theta=\\cos^2\\theta-\\sin^2\\theta$.",
+        "The three cosine forms are equal: replace $\\cos^2\\theta$ with $1-\\sin^2\\theta$ to get $1-2\\sin^2\\theta$; replace $\\sin^2\\theta$ with $1-\\cos^2\\theta$ to get $2\\cos^2\\theta-1$.",
+        "Choosing the RIGHT cosine form is the whole skill: pick the one matching the other terms so the equation reduces to a single function.",
+        "Common slip: $\\sin 2\\theta\\neq 2\\sin\\theta$ and $\\cos 2\\theta\\neq 2\\cos\\theta$. The identities involve products and squares, not simple doublings."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Prove the identity $\\dfrac{\\sin 2\\theta}{1+\\cos 2\\theta}\\equiv\\tan\\theta$. [4]",
+      "solution": "Start with the left-hand side and choose double-angle forms that expose a common factor. For $\\cos 2\\theta$ use $2\\cos^2\\theta-1$, so the denominator simplifies.\n\n$\\text{LHS}=\\dfrac{\\sin 2\\theta}{1+\\cos 2\\theta}=\\dfrac{2\\sin\\theta\\cos\\theta}{1+(2\\cos^2\\theta-1)}$  (M1) for substituting suitable double-angle forms.\n\n$=\\dfrac{2\\sin\\theta\\cos\\theta}{2\\cos^2\\theta}$  (A1) for simplifying the denominator to $2\\cos^2\\theta$.\n\nCancel the common factor $2\\cos\\theta$:\n\n$=\\dfrac{\\sin\\theta}{\\cos\\theta}$  (M1) for cancelling.\n\n$=\\tan\\theta=\\text{RHS}$  (A1) for reaching the right-hand side via the tangent identity. $\\blacksquare$"
+    },
+    {
+      "type": "examTip",
+      "content": "When proving an identity, work down ONE side and keep the other side untouched as your target. Writing 'LHS $=\\dots=$ RHS' with each step justified scores the method marks; rearranging both sides simultaneously (as if solving an equation) can lose them even when your algebra is correct."
+    },
+    {
+      "type": "heading",
+      "content": "The inverse trigonometric functions"
+    },
+    {
+      "type": "text",
+      "content": "The inverse functions $\\arcsin x$, $\\arccos x$ and $\\arctan x$ answer the question 'which angle has this ratio?'. Because $\\sin$, $\\cos$ and $\\tan$ are periodic and therefore many-to-one, they have no inverse over their whole domains. We restrict each to an interval on which it is one-to-one; that restricted domain becomes the RANGE of principal values for the inverse. These ranges are not printed in the formula booklet — you must know them."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$y=\\arcsin x$: domain $x\\in[-1,1]$, range $y\\in\\left[-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right]$ (Quadrants 4 and 1). The graph is increasing, passing through the origin.",
+        "$y=\\arccos x$: domain $x\\in[-1,1]$, range $y\\in[0,\\pi]$ (Quadrants 1 and 2). The graph is decreasing from $(-1,\\pi)$ to $(1,0)$.",
+        "$y=\\arctan x$: domain $x\\in\\mathbb{R}$, range $y\\in\\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right)$ — OPEN interval, with horizontal asymptotes $y=\\pm\\tfrac{\\pi}{2}$ that the increasing graph approaches but never meets.",
+        "Each inverse graph is the reflection of the (restricted) original in the line $y=x$; reflecting swaps domain and range."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the exact value of $\\sin\\left(\\arccos\\left(-\\tfrac{1}{3}\\right)\\right)$. [4]",
+      "solution": "Let $\\theta=\\arccos\\!\\left(-\\tfrac13\\right)$, so $\\cos\\theta=-\\tfrac13$ with $\\theta\\in[0,\\pi]$ by the range of $\\arccos$.  (M1) for setting up the angle and stating the range.\n\nUse the Pythagorean identity $\\sin^2\\theta=1-\\cos^2\\theta$:\n$\\sin^2\\theta=1-\\left(-\\tfrac13\\right)^2=1-\\tfrac19=\\tfrac89$.  (A1) for $\\sin^2\\theta=\\tfrac89$.\n\nSo $\\sin\\theta=\\pm\\dfrac{\\sqrt8}{3}=\\pm\\dfrac{2\\sqrt2}{3}$. Because $\\theta\\in[0,\\pi]$, sine is non-negative, so take the POSITIVE root.  (M1) for choosing the correct sign from the range.\n\n$\\sin\\left(\\arccos\\left(-\\tfrac13\\right)\\right)=\\dfrac{2\\sqrt2}{3}$.  (A1) for the exact value. $\\blacksquare$"
+    },
+    {
+      "type": "examTip",
+      "content": "Whenever a composite like $\\sin(\\arccos x)$ or $\\cos(\\arctan x)$ appears, name the inner value $\\theta$, write the ratio it fixes, and use the RANGE of that inverse to decide the sign of your answer. The range is what forces a single correct sign — miss it and you risk quoting $\\pm$ when only one value is valid."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Treating trig as distributive** — $\\sin(A+B)\\neq\\sin A+\\sin B$ and $\\cos(A+B)\\neq\\cos A+\\cos B$. Always expand with the compound-angle formula.",
+        "**Getting the compound signs backwards** — $\\cos(A+B)$ uses a MINUS ($\\cos A\\cos B-\\sin A\\sin B$) while $\\cos(A-B)$ uses a plus. For sine it is the other way round. 'Cosine changes the sign' is the rescue.",
+        "**Writing $\\sin 2\\theta=2\\sin\\theta$ or $\\cos 2\\theta=2\\cos\\theta$** — the double-angle identities are $\\sin 2\\theta=2\\sin\\theta\\cos\\theta$ and $\\cos 2\\theta=\\cos^2\\theta-\\sin^2\\theta$, not simple doublings.",
+        "**Choosing the wrong form of $\\cos 2\\theta$** — pick the form that leaves the equation in ONE function ($1-2\\sin^2\\theta$ when the rest is in $\\sin$; $2\\cos^2\\theta-1$ when it is in $\\cos$). The wrong choice leaves a mixture you cannot factorise.",
+        "**Dividing an equation by $\\sin x$ or $\\cos x$** — this assumes it is non-zero and silently LOSES the solutions where it is zero (e.g. dividing $\\sin 2x=\\sin x$ by $\\sin x$ drops $\\sin x=0$). Factorise instead.",
+        "**Confusing inverse ranges** — $\\arcsin$/$\\arctan$ return Q4/Q1 angles; $\\arccos$ returns Q1/Q2 (its value can be obtuse). Quoting the wrong-quadrant angle loses the accuracy mark.",
+        "**Using closed brackets for $\\arctan$** — its range is the OPEN interval $\\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right)$; the endpoints are asymptotes and are never attained."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 1 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and accuracy marks are DEPENDENT on the associated method mark. Follow-through (FT) means an early slip need not cost the marks that follow, provided your later work is correct on your own figures, and the engine accepts equivalent and exact forms ($\\tfrac{24}{25}$, $0.96$). But this protection only exists if your method is on the page. Study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "Given that $\\sin\\theta = \\dfrac{3}{5}$ and $\\theta$ is acute, find the exact values of $\\sin 2\\theta$ and $\\cos 2\\theta$. [5]",
+      "solution": "**Model answer — full working.**\n\nBecause $\\theta$ is acute, both $\\sin\\theta$ and $\\cos\\theta$ are positive. Find $\\cos\\theta$ from the Pythagorean identity (or a $3$–$4$–$5$ triangle with opposite $3$, hypotenuse $5$):\n$\\cos\\theta=\\sqrt{1-\\sin^2\\theta}=\\sqrt{1-\\tfrac{9}{25}}=\\sqrt{\\tfrac{16}{25}}=\\dfrac{4}{5}$.\n\nApply the double-angle formula for sine:\n$\\sin 2\\theta=2\\sin\\theta\\cos\\theta=2\\cdot\\dfrac{3}{5}\\cdot\\dfrac{4}{5}=\\dfrac{24}{25}$.\n\nApply a double-angle form for cosine — using $1-2\\sin^2\\theta$ keeps everything in the given $\\sin\\theta$:\n$\\cos 2\\theta=1-2\\sin^2\\theta=1-2\\cdot\\dfrac{9}{25}=1-\\dfrac{18}{25}=\\dfrac{7}{25}$.\n\n**Final answer:** $\\sin 2\\theta=\\dfrac{24}{25}$, $\\cos 2\\theta=\\dfrac{7}{25}$.\n\n(Check: $\\cos 2\\theta=2\\cos^2\\theta-1=2\\cdot\\tfrac{16}{25}-1=\\tfrac{32}{25}-1=\\tfrac{7}{25}$ — the same, as it must be.)\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — find $\\cos\\theta$ via Pythagoras.** Awarded for a valid method to get the cosine, e.g. $\\cos\\theta=\\sqrt{1-\\sin^2\\theta}$ or a labelled $3$–$4$–$5$ triangle. A METHOD mark: earned for the approach even if the arithmetic later slips.\n- **A1 — $\\cos\\theta=\\dfrac{4}{5}$.** Awarded for the correct positive value (positive because $\\theta$ is acute). This accuracy mark depends on the M1 above.\n- **M1 — use $\\sin 2\\theta=2\\sin\\theta\\cos\\theta$.** Awarded for substituting into the double-angle formula, e.g. $2\\cdot\\tfrac{3}{5}\\cdot\\tfrac{4}{5}$, regardless of the final figure.\n- **A1 — $\\sin 2\\theta=\\dfrac{24}{25}$.** Awarded for the correct exact value; $0.96$ is accepted as an equivalent form. Follow-through applies on a wrong $\\cos\\theta$.\n- **A1 — $\\cos 2\\theta=\\dfrac{7}{25}$.** Awarded for the correct exact value from ANY valid form of $\\cos 2\\theta$ ($1-2\\sin^2\\theta$, $2\\cos^2\\theta-1$ or $\\cos^2\\theta-\\sin^2\\theta$). Exact forms are expected; $0.28$ is accepted.\n\n**Exact forms accepted.** The engine treats $\\tfrac{24}{25}$ and $0.96$, or $\\tfrac{7}{25}$ and $0.28$, as equivalent, and applies 'ignore subsequent working' (ISW) once a correct exact answer is seen. But the two method marks only exist if the Pythagorean step and the double-angle substitutions are actually written down.\n\n**Bottom line:** of the 5 marks, two are method marks that survive an arithmetic slip, and follow-through shields the sine value — provided the working for $\\cos\\theta$ and both double-angle substitutions is on the page."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through and 'accept equivalent/exact forms'. So always show the method: state the Pythagorean step to get the missing ratio, choose the sign from the quadrant, write each double-angle substitution, then give the exact value. The method marks and follow-through are what protect your score when one line slips — and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The compound- and double-angle identities are the workhorses of the rest of trigonometry and calculus. The double-angle results let you rewrite $\\sin^2 x$ and $\\cos^2 x$ before integrating, and reappear when you differentiate trig functions or simplify expressions ahead of finding areas and volumes of revolution. The inverse functions define the antiderivatives that produce $\\arcsin$, $\\arccos$ and $\\arctan$, and underpin solving equations where you must recover the principal angle. Master the habit — pick the identity that reduces to a single function, keep exact forms, choose the sign from the quadrant, and show every line — and the harder trigonometry becomes variations on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 1 solution marked: find exact values with the double-angle identities",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=3.6&component=paper_1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Geogebra: Visualising Compound Angle Identities",
+          "href": "https://www.geogebra.org/m/jfrztq6s"
+        },
+        {
+          "label": "Khan Academy: Inverse Trigonometric Functions",
+          "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:trig/x9e81a4f98389efdf:inverse-trig-functions/a/inverse-trig-functions-review"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Visualising Compound Angle Identities",
+    "embedUrl": "https://www.geogebra.org/classic?material=jfrztq6s",
+    "launchUrl": "https://www.geogebra.org/classic?material=jfrztq6s",
+    "hint": "Use “Visualising Compound Angle Identities” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "SL 3.6",
+      "title": "Compound angle identities",
+      "detail": "Use of $\\sin(A \\pm B)$, $\\cos(A \\pm B)$, $\\tan(A \\pm B)$."
+    },
+    {
+      "code": "SL 3.7",
+      "title": "Double angle identities",
+      "detail": "Use of $\\sin(2A)$, $\\cos(2A)$, $\\tan(2A)$."
+    },
+    {
+      "code": "AHL 3.9",
+      "title": "Inverse trigonometric functions",
+      "detail": "The functions $\\arcsin x$, $\\arccos x$, $\\arctan x$; their domains, ranges, and graphs."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "3-6-compound-and-double-angle-identities-inverse-trig-q1",
+      "prompt": "Given that $\\sin A = \\frac{3}{5}$ and $\\cos B = \\frac{5}{13}$, where $A$ and $B$ are acute angles, show that $\\cos(A+B) = -\\frac{16}{65}$.",
+      "marks": 4,
+      "commandTerm": "Show that",
+      "difficulty": "foundation",
+      "syllabusRef": "SL 3.6",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Attempt to find $\\cos A$ and $\\sin B$ using $\\sin^2 x + \\cos^2 x = 1$ or right-angled triangles.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly find $\\cos A = \\frac{4}{5}$ and $\\sin B = \\frac{12}{13}$.",
+          "marks": 1
+        },
+        {
+          "text": "Correct substitution into the compound angle identity $\\cos(A+B) = \\cos A \\cos B - \\sin A \\sin B$.",
+          "marks": 1
+        },
+        {
+          "text": "$\\cos(A+B) = \\left(\\frac{4}{5}\\right)\\left(\\frac{5}{13}\\right) - \\left(\\frac{3}{5}\\right)\\left(\\frac{12}{13}\\right) = \\frac{20}{65} - \\frac{36}{65} = -\\frac{16}{65}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "Since angle $A$ is acute and $\\sin A = \\frac{3}{5}$, we can use the identity $\\sin^2 A + \\cos^2 A = 1$. \n$(\\frac{3}{5})^2 + \\cos^2 A = 1 \\implies \\cos^2 A = 1 - \\frac{9}{25} = \\frac{16}{25}$. Since $A$ is acute, $\\cos A = \\frac{4}{5}$.\nSimilarly, for angle $B$, $(\\frac{5}{13})^2 + \\sin^2 B = 1 \\implies \\sin^2 B = 1 - \\frac{25}{169} = \\frac{144}{169}$. Since $B$ is acute, $\\sin B = \\frac{12}{13}$.\nThe compound angle identity for cosine is $\\cos(A+B) = \\cos A \\cos B - \\sin A \\sin B$.\nSubstituting the values we found:\n$\\cos(A+B) = \\left(\\frac{4}{5}\\right)\\left(\\frac{5}{13}\\right) - \\left(\\frac{3}{5}\\right)\\left(\\frac{12}{13}\\right)$\n$= \\frac{20}{65} - \\frac{36}{65}$\n$= -\\frac{16}{65}$.\nThis is the required result."
+    },
+    {
+      "id": "3-6-compound-and-double-angle-identities-inverse-trig-q2",
+      "prompt": "Solve the equation $\\cos(2x) + 3\\cos x = 1$ for $0 \\le x \\le 2\\pi$.",
+      "marks": 6,
+      "commandTerm": "Solve",
+      "difficulty": "standard",
+      "syllabusRef": "SL 3.7",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Use of the double angle identity $\\cos(2x) = 2\\cos^2 x - 1$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly forms the quadratic equation $2\\cos^2 x + 3\\cos x - 2 = 0$.",
+          "marks": 1
+        },
+        {
+          "text": "Attempt to solve the quadratic in $\\cos x$, e.g., by factorising $(2\\cos x - 1)(\\cos x + 2) = 0$.",
+          "marks": 1
+        },
+        {
+          "text": "Finds the two possible values $\\cos x = \\frac{1}{2}$ and $\\cos x = -2$.",
+          "marks": 1
+        },
+        {
+          "text": "Rejects $\\cos x = -2$ as it has no real solutions.",
+          "marks": 1
+        },
+        {
+          "text": "Finds both solutions for $\\cos x = \\frac{1}{2}$ in the given domain: $x = \\frac{\\pi}{3}, \\frac{5\\pi}{3}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The equation is $\\cos(2x) + 3\\cos x = 1$.\nTo solve this, we express $\\cos(2x)$ in terms of $\\cos x$ using the double angle identity $\\cos(2x) = 2\\cos^2 x - 1$.\nSubstituting this into the equation gives:\n$(2\\cos^2 x - 1) + 3\\cos x = 1$\nRearranging gives a quadratic equation in $\\cos x$:\n$2\\cos^2 x + 3\\cos x - 2 = 0$\nLet $y = \\cos x$. The equation is $2y^2 + 3y - 2 = 0$.\nFactorising the quadratic:\n$(2y - 1)(y + 2) = 0$\nThis gives two possible solutions: $y = \\frac{1}{2}$ or $y = -2$.\nSo, we have $\\cos x = \\frac{1}{2}$ or $\\cos x = -2$.\nThe equation $\\cos x = -2$ has no solutions, since the range of $\\cos x$ is $[-1, 1]$.\nFor $\\cos x = \\frac{1}{2}$, we find the solutions in the interval $0 \\le x \\le 2\\pi$.\nThe principal value is $x = \\arccos(\\frac{1}{2}) = \\frac{\\pi}{3}$.\nThe cosine function is also positive in the fourth quadrant, so the other solution is $x = 2\\pi - \\frac{\\pi}{3} = \\frac{5\\pi}{3}$.\nThe solutions are $x = \\frac{\\pi}{3}$ and $x = \\frac{5\\pi}{3}$."
+    },
+    {
+      "id": "3-6-compound-and-double-angle-identities-inverse-trig-q3",
+      "prompt": "Let $f(x) = \\arcsin(x^2 - 1)$.\n(a) Find the domain of $f$.\n(b) Find the range of $f$.",
+      "marks": 5,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "AHL 3.9",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) For the domain of $\\arcsin(u)$, require $-1 \\le u \\le 1$. (M1)",
+          "marks": 1
+        },
+        {
+          "text": "So $-1 \\le x^2 - 1 \\le 1$. This implies $x^2 \\ge 0$ and $x^2 \\le 2$. (M1)",
+          "marks": 1
+        },
+        {
+          "text": "Domain is $[-\\sqrt{2}, \\sqrt{2}]$. (A1)",
+          "marks": 1
+        },
+        {
+          "text": "(b) The range of the argument $x^2-1$ on this domain is $[-1, 1]$. (M1)",
+          "marks": 1
+        },
+        {
+          "text": "The range of $f$ is the range of arcsin, which is $[-\\frac{\\pi}{2}, \\frac{\\pi}{2}]$. (A1)",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The function $\\arcsin(u)$ is defined for $-1 \\le u \\le 1$. For the function $f(x) = \\arcsin(x^2 - 1)$, the argument is $u = x^2 - 1$.\nWe must therefore have the condition $-1 \\le x^2 - 1 \\le 1$.\nWe can split this into two separate inequalities:\n1) $x^2 - 1 \\ge -1 \\implies x^2 \\ge 0$. This is true for all real numbers $x$.\n2) $x^2 - 1 \\le 1 \\implies x^2 \\le 2$. This is true for $-\\sqrt{2} \\le x \\le \\sqrt{2}$.\nThe domain of $f(x)$ is the intersection of these two conditions, which is $[-\\sqrt{2}, \\sqrt{2}]$.\n\n(b) To find the range of $f(x)$, we first find the range of the argument $u = x^2 - 1$ over the domain $x \\in [-\\sqrt{2}, \\sqrt{2}]$.\nThe minimum value of $x^2$ on this domain is $0$ (when $x=0$), and the maximum value is $2$ (when $x=\\pm\\sqrt{2}$).\nSo, the range of $u = x^2 - 1$ is $[0-1, 2-1] = [-1, 1]$.\nThe range of $f(x) = \\arcsin(u)$ is the set of output values for all inputs $u$ in the interval $[-1, 1]$. This corresponds to the principal value range of the arcsin function, which is $[-\\frac{\\pi}{2}, \\frac{\\pi}{2}]$.\nTherefore, the range of $f(x)$ is $[-\\frac{\\pi}{2}, \\frac{\\pi}{2}]$."
+    },
+    {
+      "id": "3-6-compound-and-double-angle-identities-inverse-trig-q4",
+      "prompt": "Show that $\\arctan\\left(\\frac{1}{2}\\right) + \\arctan\\left(\\frac{1}{3}\\right) = \\frac{\\pi}{4}$.",
+      "marks": 7,
+      "commandTerm": "Show that",
+      "difficulty": "challenge",
+      "syllabusRef": "SL 3.6",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Let $\\alpha = \\arctan(\\frac{1}{2})$ and $\\beta = \\arctan(\\frac{1}{3})$. This implies $\\tan \\alpha = \\frac{1}{2}$ and $\\tan \\beta = \\frac{1}{3}$.",
+          "marks": 1
+        },
+        {
+          "text": "Consider $\\tan(\\alpha + \\beta)$ and use the compound angle formula $\\tan(\\alpha + \\beta) = \\frac{\\tan \\alpha + \\tan \\beta}{1 - \\tan \\alpha \\tan \\beta}$.",
+          "marks": 1
+        },
+        {
+          "text": "Substitute the values: $\\tan(\\alpha + \\beta) = \\frac{\\frac{1}{2} + \\frac{1}{3}}{1 - (\\frac{1}{2})(\\frac{1}{3})}$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly simplifies the numerator to $\\frac{5}{6}$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly simplifies the denominator to $\\frac{5}{6}$.",
+          "marks": 1
+        },
+        {
+          "text": "Finds that $\\tan(\\alpha + \\beta) = 1$.",
+          "marks": 1
+        },
+        {
+          "text": "States that since $0 < \\alpha < \\frac{\\pi}{2}$ and $0 < \\beta < \\frac{\\pi}{2}$, then $0 < \\alpha + \\beta < \\pi$. The only solution to $\\tan(\\theta)=1$ in this interval is $\\theta = \\frac{\\pi}{4}$. Therefore $\\alpha + \\beta = \\frac{\\pi}{4}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "Let $\\alpha = \\arctan\\left(\\frac{1}{2}\\right)$ and $\\beta = \\arctan\\left(\\frac{1}{3}\\right)$.\nBy the definition of the inverse tangent function, this means that $\\tan \\alpha = \\frac{1}{2}$ and $\\tan \\beta = \\frac{1}{3}$.\nAlso, since the arguments of arctan are positive, both $\\alpha$ and $\\beta$ are in the first quadrant, i.e., $0 < \\alpha < \\frac{\\pi}{2}$ and $0 < \\beta < \\frac{\\pi}{2}$.\nWe use the compound angle identity for tangent to find $\\tan(\\alpha + \\beta)$:\n$\\tan(\\alpha + \\beta) = \\frac{\\tan \\alpha + \\tan \\beta}{1 - \\tan \\alpha \\tan \\beta}$\nSubstituting the known values:\n$\\tan(\\alpha + \\beta) = \\frac{\\frac{1}{2} + \\frac{1}{3}}{1 - \\left(\\frac{1}{2}\\right)\\left(\\frac{1}{3}\\right)} = \\frac{\\frac{3+2}{6}}{1 - \\frac{1}{6}} = \\frac{\\frac{5}{6}}{\\frac{5}{6}} = 1$.\nSo, we have $\\tan(\\alpha + \\beta) = 1$. This implies $\\alpha + \\beta = \\arctan(1) + n\\pi$ for some integer $n$.\nWe must determine the correct value by considering the range of $\\alpha + \\beta$. Since $0 < \\alpha < \\frac{\\pi}{2}$ and $0 < \\beta < \\frac{\\pi}{2}$, it follows that $0 < \\alpha + \\beta < \\pi$.\nThe principal value of $\\arctan(1)$ is $\\frac{\\pi}{4}$, which lies in the interval $(0, \\pi)$.\nTherefore, we must have $\\alpha + \\beta = \\frac{\\pi}{4}$.\nSubstituting back the original expressions for $\\alpha$ and $\\beta$, we have shown that $\\arctan\\left(\\frac{1}{2}\\right) + \\arctan\\left(\\frac{1}{3}\\right) = \\frac{\\pi}{4}$."
+    }
+  ]
+}

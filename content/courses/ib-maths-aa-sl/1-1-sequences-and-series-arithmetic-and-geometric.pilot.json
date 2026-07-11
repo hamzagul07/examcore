@@ -1,0 +1,528 @@
+{
+  "slug": "1-1-sequences-and-series-arithmetic-and-geometric",
+  "topicCode": "1.1",
+  "unit": {
+    "code": "1",
+    "title": "Number and algebra"
+  },
+  "title": "Sequences and series: arithmetic and geometric",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "pilot",
+  "summary": "This lesson builds the full syllabus 1.1 toolkit for sequences and series. It develops arithmetic sequences and their sums, geometric sequences and their sums, the sum to infinity of a convergent geometric series, sigma notation, and applications such as compound interest and exponential growth and decay. Every worked example is laid out exactly the way our marking engine awards Paper 1 marks — method mark by method mark, accuracy mark by accuracy mark — because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Identify arithmetic and geometric sequences and find the common difference $d$ or common ratio $r$ from given terms.",
+    "Apply the formulae for the $n$th term and the sum of the first $n$ terms of arithmetic and geometric sequences and series.",
+    "Determine whether an infinite geometric series converges and, when $|r|<1$, calculate its sum to infinity.",
+    "Read and write sums in sigma notation, and model compound interest and exponential growth or decay as geometric sequences.",
+    "Present working so that method (M) marks and follow-through (FT) protect the final answer under our marking engine."
+  ],
+  "syllabusObjectivesCovered": [
+    "1.1"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
+  "simpleExplanation": {
+    "title": "Building with Patterns",
+    "summary": "A sequence is an ordered list of numbers built by one repeated rule; a series is what you get when you add those numbers up. Two rules dominate the syllabus: add the same amount each step (arithmetic) or multiply by the same amount each step (geometric).",
+    "analogy": "Picture a piggy bank. Drop in a fixed $\\pounds 5$ every week and your weekly totals form an arithmetic sequence — you keep adding the same difference $d$. Instead let the balance grow by $10\\%$ each year and the yearly totals form a geometric sequence — you keep multiplying by the same ratio $r$. The series is the running total: how much has accumulated after $n$ steps.",
+    "steps": [
+      "Decide the type: is a fixed amount being ADDED each step (arithmetic, use $d$) or a fixed factor being MULTIPLIED each step (geometric, use $r$)?",
+      "Extract the key values: the first term $u_1$, the common difference $d$ or common ratio $r$, and the term count $n$.",
+      "Pick the matching formula from the booklet — $n$th term or sum — and, for a sum to infinity, first check that $|r|<1$.",
+      "Substitute carefully and solve, keeping full accuracy until the final line, then round to 3 significant figures unless told otherwise."
+    ]
+  },
+  "keyConcepts": [
+    "common difference and common ratio",
+    "convergence when |r|<1",
+    "sigma notation"
+  ],
+  "flashcards": [
+    {
+      "front": "Sequence vs series",
+      "back": "A sequence is an ordered list of terms (e.g. $2, 4, 6, 8, \\dots$). A series is the sum of those terms (e.g. $2+4+6+8+\\dots$). Terms belong to a sequence; a sum belongs to a series.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Arithmetic sequence",
+      "back": "A sequence where consecutive terms differ by a constant, the common difference $d = u_{n+1} - u_n$. Positive $d$ increases, negative $d$ decreases.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Geometric sequence",
+      "back": "A sequence where each term after the first is the previous term multiplied by a constant, the common ratio $r = \\dfrac{u_{n+1}}{u_n}$ (with $u_n \\neq 0$).",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Arithmetic $n$th term",
+      "back": "$u_n = u_1 + (n-1)d$. It takes $n-1$ steps of size $d$ to travel from the first term to the $n$th, which is why the multiplier is $n-1$, not $n$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Arithmetic sum",
+      "back": "$S_n = \\dfrac{n}{2}\\big(2u_1 + (n-1)d\\big) = \\dfrac{n}{2}(u_1 + u_n)$. Use the second form when you already know the last term $u_n$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Geometric $n$th term",
+      "back": "$u_n = u_1 r^{n-1}$, where $u_1$ is the first term and $r$ is the common ratio. The exponent is $n-1$ for the same step-counting reason as in the arithmetic case.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Geometric sum",
+      "back": "$S_n = \\dfrac{u_1(r^n - 1)}{r - 1} = \\dfrac{u_1(1 - r^n)}{1 - r}$ for $r \\neq 1$. The two forms are identical; pick the one that keeps the denominator positive.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Convergence condition",
+      "back": "An infinite geometric series has a finite sum only when $|r| < 1$, i.e. $-1 < r < 1$. If $|r| \\ge 1$ the terms do not shrink to zero and the series diverges.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Sum to infinity",
+      "back": "$S_\\infty = \\dfrac{u_1}{1 - r}$, valid ONLY when $|r| < 1$. Quoting it without checking $|r|<1$ is a guaranteed lost mark.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Sigma notation",
+      "back": "$\\displaystyle\\sum_{k=1}^{n} u_k$ means add the terms $u_k$ from $k=1$ to $k=n$. The number of terms added is (top) $-$ (bottom) $+\\,1$; watch the limits — they are a favourite off-by-one trap.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Compound interest",
+      "back": "A balance growing at rate $r\\%$ per period is geometric with ratio $1 + \\frac{r}{100}$: value after $n$ periods $= u_1\\left(1+\\frac{r}{100}\\right)^{n}$. Decay uses $1 - \\frac{r}{100}$ instead.",
+      "pillLabel": "Application"
+    },
+    {
+      "front": "Finding $d$ vs finding $r$",
+      "back": "Arithmetic: SUBTRACT consecutive terms, $d = u_2 - u_1$. Geometric: DIVIDE consecutive terms, $r = u_2 / u_1$. Mixing these two operations is the single most common error in the topic.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: which $n$?",
+      "back": "$n$ is the term number for a term question and the number of terms for a sum. 'The 10th term' and 'the sum of the first 10 terms' both use $n=10$, but one calls $u_n$ and the other calls $S_n$.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: arithmetic to infinity",
+      "back": "An arithmetic series has NO finite sum to infinity (unless every term is zero). Only geometric series with $|r|<1$ converge. Applying $S_\\infty$ to an arithmetic sequence earns nothing.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "The sequence $3, 7, 11, 15, \\dots$ is arithmetic. Its common difference $d$ is found by:",
+      "options": [
+        "Dividing consecutive terms, $7 \\div 3$",
+        "Subtracting consecutive terms, $7 - 3 = 4$",
+        "Adding the first two terms, $3 + 7$",
+        "Taking the square root of the first term"
+      ],
+      "answer": "Subtracting consecutive terms, $7 - 3 = 4$"
+    },
+    {
+      "prompt": "For which common ratio does an infinite geometric series have a finite sum to infinity?",
+      "options": [
+        "$r = 1$",
+        "$r = 2$",
+        "$r = 0.5$",
+        "$r = -3$"
+      ],
+      "answer": "$r = 0.5$"
+    },
+    {
+      "prompt": "For the geometric sequence $5, 10, 20, 40, \\dots$, the common ratio $r$ is:",
+      "options": [
+        "$5$, the first term",
+        "$2$, since $10 \\div 5 = 2$",
+        "$5$, since $10 - 5 = 5$",
+        "$20$, the third term"
+      ],
+      "answer": "$2$, since $10 \\div 5 = 2$"
+    },
+    {
+      "prompt": "How many terms are added in the sum $\\displaystyle\\sum_{k=1}^{12} (2k+1)$?",
+      "options": [
+        "11 terms",
+        "12 terms",
+        "13 terms",
+        "24 terms"
+      ],
+      "answer": "12 terms"
+    },
+    {
+      "prompt": "The 4th term of an arithmetic sequence uses $u_n = u_1 + (n-1)d$. The correct substitution for $n=4$ is:",
+      "options": [
+        "$u_1 + 4d$",
+        "$u_1 + 3d$",
+        "$4u_1 + d$",
+        "$u_1 + (4+1)d$"
+      ],
+      "answer": "$u_1 + 3d$"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between a sequence and a series?",
+      "a": "A sequence is a list of numbers (e.g. $3, 6, 9, 12$); a series is the sum of those numbers (e.g. $3 + 6 + 9 + 12 = 30$). A sequence has terms and you talk about $u_n$; a series has a total and you talk about $S_n$. Read the question carefully — 'find the 20th term' wants $u_{20}$, while 'find the sum of the first 20 terms' wants $S_{20}$."
+    },
+    {
+      "q": "How do I decide whether a sequence is arithmetic or geometric?",
+      "a": "Test the gaps between consecutive terms. If you get from one term to the next by ADDING a fixed number, it is arithmetic (use the common difference $d = u_2 - u_1$). If you get there by MULTIPLYING by a fixed number, it is geometric (use the common ratio $r = u_2/u_1$). Check the same operation works for at least two consecutive pairs before committing."
+    },
+    {
+      "q": "In $u_n = u_1 + (n-1)d$, why is it $n-1$ and not $n$?",
+      "a": "Because it takes $n-1$ steps of size $d$ to travel from the first term to the $n$th term. To reach the 3rd term you start at $u_1$ and add $d$ twice, i.e. $3-1 = 2$ times. The same logic gives the exponent $n-1$ in the geometric formula $u_n = u_1 r^{\\,n-1}$."
+    },
+    {
+      "q": "When can I use the sum to infinity $S_\\infty = \\frac{u_1}{1-r}$?",
+      "a": "Only for a geometric series whose common ratio satisfies $|r| < 1$ (that is, $-1 < r < 1$). When $|r|<1$ the terms shrink towards zero fast enough for the total to settle on a finite value. If $|r| \\ge 1$, or if the series is arithmetic, there is no finite sum to infinity and the formula does not apply — state the condition in your working to secure the reasoning mark."
+    },
+    {
+      "q": "How does compound interest connect to geometric sequences?",
+      "a": "A balance growing at a fixed percentage per period multiplies by the same factor each step, which is exactly a geometric sequence. Growth at $r\\%$ per period gives ratio $1 + \\frac{r}{100}$; decay at $r\\%$ per period gives ratio $1 - \\frac{r}{100}$. The value after $n$ periods is $u_1$ times that ratio raised to the power $n$, so every growth-and-decay question is a geometric-sequence question in disguise."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Sequences and series describe patterns that step forward by one repeated rule — savings that grow, populations that decay, payments that compound. Syllabus topic 1.1 asks you to recognise the two workhorse patterns, arithmetic and geometric, and to compute their terms and sums fluently. This lesson builds that toolkit from the ground up and finishes with the applications examiners love: compound interest and exponential growth and decay. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "Arithmetic sequences and series"
+    },
+    {
+      "type": "text",
+      "content": "An arithmetic sequence advances by ADDING a constant value, the common difference $d$, to reach each new term. You find it by subtracting any term from the one after it: $d = u_2 - u_1 = u_3 - u_2$. A positive $d$ gives an increasing sequence, a negative $d$ a decreasing one. Because you take equal-sized steps, the $n$th term is the first term plus $(n-1)$ of those steps."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{$n$th term: } \\; u_n = u_1 + (n-1)d\n\\\\[4pt]\n\\text{Sum of first $n$ terms: } \\; S_n = \\frac{n}{2}\\big(2u_1 + (n-1)d\\big) = \\frac{n}{2}(u_1 + u_n)"
+    },
+    {
+      "type": "workedExample",
+      "question": "A new theatre has 30 rows of seats. The first row has 20 seats, the second 22, the third 24, and so on. (a) Find the number of seats in the 30th row. (b) Find the total number of seats in the theatre. [4]",
+      "solution": "**Identify the sequence.** A constant $2$ seats are added each row, so this is arithmetic with $u_1 = 20$ and $d = 22 - 20 = 2$.\n\n**(a) Seats in the 30th row — the 30th term ($n=30$).** Use $u_n = u_1 + (n-1)d$.  [M1: correct formula with substitution]\n$u_{30} = 20 + (30-1)\\times 2 = 20 + 58 = 78$.  [A1]\nThere are $78$ seats in the 30th row.\n\n**(b) Total seats — the sum of 30 terms.** Use $S_n = \\dfrac{n}{2}(u_1 + u_n)$ with $u_{30}=78$.  [M1: valid sum formula with substitution]\n$S_{30} = \\dfrac{30}{2}(20 + 78) = 15 \\times 98 = 1470$.  [A1]\nThe theatre has $1470$ seats.\n\n**Final answer:** $78$ seats in row 30; $1470$ seats in total."
+    },
+    {
+      "type": "heading",
+      "content": "Geometric sequences and series"
+    },
+    {
+      "type": "text",
+      "content": "A geometric sequence advances by MULTIPLYING by a constant value, the common ratio $r$, to reach each new term. You find it by dividing any term by the one before it: $r = u_2/u_1 = u_3/u_2$. This is the pattern behind anything that changes in proportion to its current size — money earning compound interest, a substance decaying, a population multiplying."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{$n$th term: } \\; u_n = u_1 r^{\\,n-1}\n\\\\[4pt]\n\\text{Sum of first $n$ terms: } \\; S_n = \\frac{u_1(r^n - 1)}{r - 1} = \\frac{u_1(1 - r^n)}{1 - r}, \\quad r \\neq 1"
+    },
+    {
+      "type": "examTip",
+      "content": "Both forms of the geometric sum are in the formula booklet and give the same value. Choose the one that keeps the denominator positive: use $\\frac{r^n - 1}{r - 1}$ when $|r| > 1$, and $\\frac{1 - r^n}{1 - r}$ when $|r| < 1$. It only avoids arithmetic slips — it never changes the answer."
+    },
+    {
+      "type": "workedExample",
+      "question": "The first term of a geometric sequence is 24 and the common ratio is $\\tfrac{1}{2}$. (a) Find the 6th term. (b) Find the sum of the first 6 terms. [4]",
+      "solution": "**Identify the values.** $u_1 = 24$, $r = \\tfrac{1}{2}$.\n\n**(a) 6th term ($n=6$).** Use $u_n = u_1 r^{\\,n-1}$.  [M1: correct formula with substitution]\n$u_6 = 24 \\times \\left(\\tfrac{1}{2}\\right)^{5} = 24 \\times \\tfrac{1}{32} = \\tfrac{24}{32} = 0.75$.  [A1]\n\n**(b) Sum of 6 terms.** Since $|r|<1$, use $S_n = \\dfrac{u_1(1-r^n)}{1-r}$.  [M1: valid sum formula with substitution]\n$S_6 = \\dfrac{24\\left(1 - (\\tfrac{1}{2})^{6}\\right)}{1 - \\tfrac{1}{2}} = \\dfrac{24\\left(1 - \\tfrac{1}{64}\\right)}{\\tfrac{1}{2}} = 48 \\times \\tfrac{63}{64} = 47.25$.  [A1]\n\n**Final answer:** $u_6 = 0.75$; $S_6 = 47.25$ (accept exact forms $\\tfrac{3}{4}$ and $\\tfrac{189}{4}$)."
+    },
+    {
+      "type": "heading",
+      "content": "Sum to infinity of a convergent geometric series"
+    },
+    {
+      "type": "text",
+      "content": "Keep adding the terms of a geometric series forever and one of two things happens. If $|r| < 1$ each term is a fraction of the one before, the terms shrink towards zero, and the running total settles on a finite value — the series converges. If $|r| \\ge 1$ the terms do not shrink and the total grows without bound — the series diverges. The convergent case has a compact formula for its limit."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "An infinite geometric series has a finite sum ONLY when $|r| < 1$ (equivalently $-1 < r < 1$).",
+        "That limit is the 'sum to infinity', written $S_\\infty$, and equals $\\dfrac{u_1}{1-r}$.",
+        "Always state the condition $|r|<1$ in your working — it is often worth an explicit reasoning mark.",
+        "An arithmetic series never has a finite sum to infinity (unless every term is zero)."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Sum to infinity: } \\; S_\\infty = \\frac{u_1}{1 - r}, \\quad \\text{valid only when } |r| < 1."
+    },
+    {
+      "type": "workedExample",
+      "question": "A geometric series has first term 18 and common ratio $\\tfrac{2}{3}$. (a) Explain why the series converges. (b) Find its sum to infinity. [3]",
+      "solution": "**(a) Convergence.** The common ratio is $r = \\tfrac{2}{3}$, and $|r| = \\tfrac{2}{3} < 1$, so the terms shrink towards zero and the series converges.  [R1: states $|r|<1$]\n\n**(b) Sum to infinity.** Use $S_\\infty = \\dfrac{u_1}{1-r}$ with $u_1 = 18$, $r = \\tfrac{2}{3}$.  [M1: correct formula with substitution]\n$S_\\infty = \\dfrac{18}{1 - \\tfrac{2}{3}} = \\dfrac{18}{\\tfrac{1}{3}} = 54$.  [A1]\n\n**Final answer:** the series converges because $|r| = \\tfrac{2}{3} < 1$, and $S_\\infty = 54$."
+    },
+    {
+      "type": "heading",
+      "content": "Sigma notation"
+    },
+    {
+      "type": "text",
+      "content": "Sigma notation is a compact way to write a sum. The expression $\\displaystyle\\sum_{k=1}^{n} u_k$ means 'add the terms $u_k$ as the index $k$ runs from $1$ up to $n$'. The letter below the sigma is the starting value of the index, the number above is the final value, and the formula to its right generates each term. A common exam task is to recognise an arithmetic or geometric series hiding inside sigma notation and then apply the right sum formula."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The number of terms added is (top limit) $-$ (bottom limit) $+\\,1$. For $\\sum_{k=1}^{n}$ that is exactly $n$ terms; for $\\sum_{k=3}^{10}$ it is $10-3+1 = 8$ terms.",
+        "A linear rule such as $2k+1$ produces an ARITHMETIC series; an exponential rule such as $3\\times 2^{k}$ produces a GEOMETRIC series.",
+        "Read off $u_1$ by substituting the bottom limit, and find $d$ or $r$ from the structure of the rule, then use $S_n$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Evaluate $\\displaystyle\\sum_{k=1}^{20} (3k + 2)$. [4]",
+      "solution": "**Recognise the series.** Substituting $k = 1, 2, 3, \\dots$ gives $5, 8, 11, \\dots$ — arithmetic with $u_1 = 5$ and $d = 3$. The top and bottom limits give $20 - 1 + 1 = 20$ terms, so $n = 20$.  [M1: identifies $u_1$, $d$ and $n$]\n\n**Find the last term** (optional but tidy). $u_{20} = 5 + (20-1)\\times 3 = 5 + 57 = 62$.\n\n**Apply the arithmetic sum.** $S_{20} = \\dfrac{n}{2}(u_1 + u_n) = \\dfrac{20}{2}(5 + 62)$.  [M1: valid sum formula with substitution]\n$S_{20} = 10 \\times 67 = 670$.  [A1]\n\n**Final answer:** $\\displaystyle\\sum_{k=1}^{20}(3k+2) = 670$. (A1 also awarded for the correct evaluated total via $S_n = \\tfrac{n}{2}(2u_1+(n-1)d)$.)"
+    },
+    {
+      "type": "heading",
+      "content": "Applications: compound interest, growth and decay"
+    },
+    {
+      "type": "text",
+      "content": "Any quantity that changes by a fixed percentage each period is geometric. A balance earning $r\\%$ interest per year multiplies by $1 + \\frac{r}{100}$ each year; a quantity decaying by $r\\%$ per period multiplies by $1 - \\frac{r}{100}$. So the value after $n$ periods is $u_1$ times that ratio to the power $n$. Note the subtle indexing: if $u_1$ is the amount at the START (time zero), the value after $n$ full periods is $u_1 r^{n}$, one power higher than the sequence's $n$th term — read the wording carefully to decide whether the initial amount counts as term 1 or as term 0."
+    },
+    {
+      "type": "workedExample",
+      "question": "£2000 is invested in an account paying 4% interest per year, compounded annually. Find the value of the investment after 8 years, giving your answer to the nearest penny. [3]",
+      "solution": "**Model as geometric.** Each year the balance multiplies by $1 + \\tfrac{4}{100} = 1.04$, with starting amount $\\pounds 2000$ at time zero.  [M1: ratio $1.04$ identified]\n\n**Value after 8 years.** $V = 2000 \\times (1.04)^{8}$.  [M1: correct substitution, power $8$]\n$V = 2000 \\times 1.368569\\ldots = 2737.14$.  [A1]\n\n**Final answer:** the investment is worth $\\pounds 2737.14$ after 8 years. (Accept $\\pounds 2737$ to 3 s.f.; the mark scheme states the required accuracy.)"
+    },
+    {
+      "type": "examTip",
+      "content": "For growth-and-decay questions, write down the multiplier explicitly ($1.04$ for $+4\\%$, $0.85$ for $-15\\%$) before you touch the calculator. Most lost marks here come from using the raw percentage as the ratio or from being one power out — decide up front whether the starting amount is term 1 (use exponent $n-1$) or time zero (use exponent $n$)."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Mixing up $d$ and $r$** — subtracting consecutive terms in a geometric sequence, or dividing them in an arithmetic one. Always match the operation to the type: subtract for $d$, divide for $r$.",
+        "**Off-by-one on the exponent or the term count** — writing $r^{n}$ instead of $r^{\\,n-1}$ for the $n$th term, or forgetting the '$+1$' when counting terms between sigma limits.",
+        "**Applying $S_\\infty$ when $|r| \\ge 1$ or when the series is arithmetic** — the sum to infinity exists only for a geometric series with $|r|<1$; quoting it otherwise earns nothing and can lose the reasoning mark.",
+        "**Not checking or stating the convergence condition** — even with the right number, failing to write '$|r|<1$' can cost the reasoning mark in an 'explain why it converges' part.",
+        "**Rounding too early** — carry full accuracy (or exact fractions) through the working and round only the final answer, to 3 significant figures unless the question says otherwise.",
+        "**Confusing 'the $n$th term' with 'the sum of the first $n$ terms'** — one calls $u_n$, the other calls $S_n$; both use the same $n$ but answer different questions.",
+        "**Using the raw percentage as the ratio** — for $4\\%$ growth the ratio is $1.04$, not $0.04$ or $4$; for $15\\%$ decay it is $0.85$, not $15$ or $0.15$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 1 the marks are analytic: each one is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and follow-through (FT) means a wrong number early on need not cost you the marks that follow, provided your later method is correct and applied to your own figure. But that protection only exists if the method is written down. Study how each mark below is earned by a specific line in a classic 'find $u_1$ and $r$, then sum' question."
+    },
+    {
+      "type": "workedExample",
+      "question": "The 3rd term of a geometric sequence is 12 and the 6th term is 96. Find the first term and the common ratio, then find the sum of the first 10 terms. [6]",
+      "solution": "**Model answer — full working.**\n\n**Set up a ratio to eliminate $u_1$.** Write both terms with the $n$th-term formula: $u_3 = u_1 r^{2} = 12$ and $u_6 = u_1 r^{5} = 96$. Dividing the second equation by the first cancels $u_1$:\n$$\\frac{u_1 r^{5}}{u_1 r^{2}} = \\frac{96}{12} \\;\\Rightarrow\\; r^{3} = 8.$$\n\n**Solve for $r$.** $r = \\sqrt[3]{8} = 2$.\n\n**Back-substitute for $u_1$.** From $u_3 = u_1 r^{2} = 12$: $u_1 = \\dfrac{12}{r^{2}} = \\dfrac{12}{2^{2}} = \\dfrac{12}{4} = 3$.\n\n**Sum the first 10 terms.** Since $|r|>1$, use $S_n = \\dfrac{u_1(r^n - 1)}{r - 1}$ with $u_1 = 3$, $r = 2$, $n = 10$:\n$$S_{10} = \\frac{3\\,(2^{10} - 1)}{2 - 1} = \\frac{3\\,(1024 - 1)}{1} = 3 \\times 1023 = 3069.$$\n\n**Final answer:** $u_1 = 3$, $r = 2$, and $S_{10} = 3069$.\n\n---\n**How our marking engine awards the 6 marks:**\n\n- **M1 — set up the ratio.** Awarded for forming $\\dfrac{u_1 r^{5}}{u_1 r^{2}} = \\dfrac{96}{12}$, i.e. $r^{3} = \\dfrac{96}{12}$. This is a METHOD mark for a valid complete approach to eliminate $u_1$; it stands even if the arithmetic later slips.\n- **A1 — common ratio.** Awarded for $r = 2$, following correctly from $r^3 = 8$. This ACCURACY mark depends on the preceding M-mark.\n- **M1 — method for $u_1$.** Awarded for a correct route back to the first term, e.g. $u_1 = \\dfrac{u_3}{r^{2}}$ (equivalently $\\dfrac{12}{r^2}$). Method mark for the correct rearrangement and substitution.\n- **A1 — first term.** Awarded for $u_1 = 3$. FOLLOW-THROUGH protects you here: a student who found a wrong $r$ but then correctly computed $u_3 / r^2$ with THEIR value still earns this on their own figure.\n- **M1 — sum-formula substitution.** Awarded for substituting into a valid geometric sum, $S_{10} = \\dfrac{3(2^{10}-1)}{2-1}$. Method mark for the correct formula with the numbers in the right places.\n- **A1 — final sum.** Awarded for $S_{10} = 3069$. FT again applies: the correct sum-method applied to a candidate's own earlier $u_1$ and $r$ still scores, so a right-method / wrong-number answer keeps this mark.\n\n**'Accept exact or correctly-rounded forms.'** The engine accepts the exact integer $3069$ here; where an answer is non-terminating it accepts the value correctly rounded to 3 significant figures (the default), and applies ISW — ignore subsequent working — once a correct answer has been seen, so tidy-up steps after a correct value do not lose marks.\n\n**Bottom line:** of the 6 marks, three are method marks that survive an arithmetic slip, and every accuracy mark is shielded by follow-through. A student who writes only '$3069$' with no working risks losing up to 5 marks if the final number is wrong; a student who shows the ratio $r^3 = 8$, the back-substitution for $u_1$, and the sum substitution keeps the method marks regardless of a slip."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the method: write the equation you set up, show the substitution, then the answer to the required accuracy. The method marks and follow-through are what protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Sequences and series underpin far more of the syllabus than they first appear to. Geometric series reappear in financial mathematics and, at HL, in the binomial theorem and in proofs by induction; the idea of a convergent infinite sum previews limits and the foundations of calculus. Master the habit here — decide the type, extract $u_1$ and $d$ or $r$, pick the formula that omits the unknown you do not want, check $|r|<1$ before summing to infinity, and show every line — and the algebra that follows becomes variations on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 1 calculation marked: solve a sequences-and-series problem with full working",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=1.1&component=paper_1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Mathematics Formula Booklet",
+          "href": "https://www.ibdocuments.com/IB-Formula-Booklets.html"
+        },
+        {
+          "label": "In-depth guide to Sequences and Series",
+          "href": "https://www.mathsisfun.com/algebra/sequences-series.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "subtopics": [
+    {
+      "code": "SL 1.1",
+      "title": "Arithmetic sequences and series. Use of the formulae for the $n$-th term and the sum of the first $n$ terms of the sequence. Use of sigma notation for sums of arithmetic sequences.",
+      "detail": "Working with sequences with a common difference, $u_n = u_1 + (n-1)d$ and $S_n = \\frac{n}{2}(2u_1 + (n-1)d)$."
+    },
+    {
+      "code": "SL 1.2",
+      "title": "Geometric sequences and series. Use of the formulae for the $n$-th term and the sum of the first $n$ terms of the sequence. Use of sigma notation for sums of geometric sequences.",
+      "detail": "Working with sequences with a common ratio, $u_n = u_1 r^{n-1}$ and $S_n = \\frac{u_1(r^n-1)}{r-1}$."
+    },
+    {
+      "code": "SL 1.3",
+      "title": "Financial applications of geometric sequences and series: compound interest, annual depreciation.",
+      "detail": "Applying geometric sequence formulae to problems involving compound interest and depreciation."
+    },
+    {
+      "code": "SL 1.4",
+      "title": "Sum of infinite convergent geometric sequences.",
+      "detail": "Calculating the sum to infinity for $|r|<1$, using $S_\\infty = \\frac{u_1}{1-r}$."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "1-1-sequences-and-series-arithmetic-and-geometric-q1",
+      "prompt": "An arithmetic sequence has its first term $u_1 = 5$ and its fifth term $u_5 = 21$. Find the common difference, $d$, and the tenth term, $u_{10}$.",
+      "marks": 4,
+      "commandTerm": "Find",
+      "difficulty": "foundation",
+      "syllabusRef": "SL 1.1",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Correct substitution into $u_n = u_1 + (n-1)d$. $21 = 5 + (5-1)d$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly solving for $d$. $16 = 4d \\Rightarrow d=4$.",
+          "marks": 1
+        },
+        {
+          "text": "Attempt to find $u_{10}$ using a correct formula, e.g., $u_{10} = 5 + (10-1)(4)$.",
+          "marks": 1
+        },
+        {
+          "text": "$u_{10} = 41$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The formula for the $n$-th term of an arithmetic sequence is $u_n = u_1 + (n-1)d$. We are given $u_1 = 5$ and $u_5 = 21$. Substituting these values for the fifth term:\n$u_5 = u_1 + (5-1)d$\n$21 = 5 + 4d$\n$16 = 4d$\n$d = 4$\nThe common difference is 4.\n\nTo find the tenth term, $u_{10}$, we use the formula again with $n=10$:\n$u_{10} = u_1 + (10-1)d$\n$u_{10} = 5 + 9(4)$\n$u_{10} = 5 + 36$\n$u_{10} = 41$"
+    },
+    {
+      "id": "1-1-sequences-and-series-arithmetic-and-geometric-q2",
+      "prompt": "A geometric series has a first term of 18 and a common ratio of $\\frac{2}{3}$.\n(a) Find the sum of the first 8 terms, giving your answer in the form $k\\left(1 - (\\frac{2}{3})^8\\right)$ where $k$ is an integer. [3 marks]\n(b) Find the sum to infinity of the series. [3 marks]",
+      "marks": 6,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "SL 1.2",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) Correct substitution into $S_n = \\frac{u_1(1-r^n)}{1-r}$: $S_8 = \\frac{18(1 - (\\frac{2}{3})^8)}{1 - \\frac{2}{3}}$.",
+          "marks": 1
+        },
+        {
+          "text": "Simplifying denominator: $1 - \\frac{2}{3} = \\frac{1}{3}$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly finding $k$: $S_8 = \\frac{18}{1/3}(1 - (\\frac{2}{3})^8) = 54(1 - (\\frac{2}{3})^8)$, so $k=54$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) Recognition that sum to infinity exists as $|r| = |\\frac{2}{3}| < 1$.",
+          "marks": 1
+        },
+        {
+          "text": "Correct substitution into $S_\\infty = \\frac{u_1}{1-r}$: $S_\\infty = \\frac{18}{1 - \\frac{2}{3}}$.",
+          "marks": 1
+        },
+        {
+          "text": "$S_\\infty = \\frac{18}{1/3} = 54$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The formula for the sum of the first $n$ terms of a geometric series is $S_n = \\frac{u_1(1-r^n)}{1-r}$.\nWe have $u_1 = 18$, $r = \\frac{2}{3}$ and $n=8$.\n$S_8 = \\frac{18(1 - (\\frac{2}{3})^8)}{1 - \\frac{2}{3}}$\nThe denominator is $1 - \\frac{2}{3} = \\frac{1}{3}$.\n$S_8 = \\frac{18}{\\frac{1}{3}}\\left(1 - (\\frac{2}{3})^8\\right) = 54\\left(1 - (\\frac{2}{3})^8\\right)$.\nSo, $k=54$.\n\n(b) The sum to infinity of a geometric series exists if $|r|<1$. Here, $r=\\frac{2}{3}$, so $|r|<1$ and the sum converges.\nThe formula is $S_\\infty = \\frac{u_1}{1-r}$.\n$S_\\infty = \\frac{18}{1 - \\frac{2}{3}} = \\frac{18}{\\frac{1}{3}} = 18 \\times 3 = 54$."
+    },
+    {
+      "id": "1-1-sequences-and-series-arithmetic-and-geometric-q3",
+      "prompt": "Clara invests 15,000 US dollars (USD) in an account that pays a nominal annual interest rate of 4.2%, compounded monthly.\n(a) Find the value of her investment after 5 years, giving your answer to two decimal places. [3]\n(b) The rate of inflation is predicted to be 1.8% per year. Determine the real value of her investment after 5 years, to two decimal places. [2]\n(c) Find the minimum number of full years it will take for the real value of her investment to exceed 20,000 USD. [2]",
+      "marks": 7,
+      "commandTerm": "Find, Determine",
+      "difficulty": "standard",
+      "syllabusRef": "SL 1.3",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) For part (a), correct identification of parameters for compound interest: $n=5 \\times 12 = 60$ and monthly rate is $\\frac{4.2}{12} = 0.35\\%$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) For part (a), correct substitution into compound interest formula: $FV = 15000(1.0035)^{60}$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) For part (a), $FV = 18507.58$ USD.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) For part (b), correct method to find real value: $\\frac{\\text{Nominal Value}}{(1.018)^5}$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) For part (b), Real value = $16927.87$ USD.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) For part (c), sets up the correct inequality $\\frac{15000(1.0035)^{12t}}{(1.018)^t} > 20000$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) For part (c), finds $t > 12.35...$ leading to 13 years.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) Using the compound interest formula $FV = PV \\left(1 + \\frac{r}{100k}\\right)^{nk}$ with $PV=15000$, $r=4.2$, $n=5$, $k=12$. The number of compounding periods is $N = 5 \\times 12 = 60$. The monthly interest rate is $\\frac{4.2\\%}{12} = 0.35\\%$. Value after 5 years = $15000 \\left(1 + \\frac{0.042}{12}\\right)^{60} = 15000 (1.0035)^{60} \\approx 18507.581...$. The value is 18,507.58 USD.\n\n(b) To find the real value, we discount the future value by the rate of inflation over 5 years. Real Value = $\\frac{\\text{Future Value}}{(1 + \\text{inflation rate})^n} = \\frac{18507.581...}{(1 + 0.018)^5} \\approx 16927.865...$. The real value is 16,927.87 USD.\n\n(c) Let $t$ be the number of years. The real value after $t$ years is $R(t) = \\frac{15000(1.0035)^{12t}}{(1.018)^t}$. We need to solve $R(t) > 20000$. Using a calculator's solver or graphing function for $\\frac{15000(1.0035)^{12t}}{(1.018)^t} = 20000$, we find $t \\approx 12.35$. Since the question asks for the minimum number of full years, we must round up. It will take 13 years for the real value to exceed 20,000 USD."
+    },
+    {
+      "id": "1-1-sequences-and-series-arithmetic-and-geometric-q4",
+      "prompt": "The first, second, and fifth terms of an arithmetic sequence are the first three terms of a geometric sequence. The first term of the arithmetic sequence is 6. Find the common difference, $d$, of the arithmetic sequence, given that $d \\neq 0$.",
+      "marks": 7,
+      "commandTerm": "Find",
+      "difficulty": "challenge",
+      "syllabusRef": "SL 1.1",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Writing the arithmetic sequence terms: $u_1=6, u_2=6+d, u_5=6+4d$.",
+          "marks": 1
+        },
+        {
+          "text": "Identifying these as the first three terms of a geometric sequence.",
+          "marks": 1
+        },
+        {
+          "text": "Using the common ratio property: $\\frac{u_2}{u_1} = \\frac{u_5}{u_2}$.",
+          "marks": 1
+        },
+        {
+          "text": "Setting up the correct equation: $\\frac{6+d}{6} = \\frac{6+4d}{6+d}$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly expanding to form a quadratic equation: $(6+d)^2 = 6(6+4d) \\Rightarrow 36 + 12d + d^2 = 36 + 24d$.",
+          "marks": 1
+        },
+        {
+          "text": "Simplifying and factorising the quadratic: $d^2 - 12d = 0 \\Rightarrow d(d-12)=0$.",
+          "marks": 1
+        },
+        {
+          "text": "Stating $d=12$ as the only valid solution since $d \\neq 0$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "Let the arithmetic sequence be $u_n$ with first term $u_1=6$ and common difference $d$. The terms are:\n$u_1 = 6$\n$u_2 = 6+d$\n$u_5 = 6+4d$\n\nThese three terms form the first three terms of a geometric sequence, let's call them $v_1, v_2, v_3$.\n$v_1 = 6$\n$v_2 = 6+d$\n$v_3 = 6+4d$\n\nFor a geometric sequence, the ratio of consecutive terms is constant. So, $\\frac{v_2}{v_1} = \\frac{v_3}{v_2}$.\nSubstituting the expressions in terms of $d$:\n$\\frac{6+d}{6} = \\frac{6+4d}{6+d}$\n\nNow, we solve for $d$. Cross-multiply:\n$(6+d)(6+d) = 6(6+4d)$\n$36 + 12d + d^2 = 36 + 24d$\n\nRearrange into a standard quadratic form ($ax^2+bx+c=0$):\n$d^2 + 12d - 24d + 36 - 36 = 0$\n$d^2 - 12d = 0$\n\nFactorise the quadratic:\n$d(d-12) = 0$\n\nThis gives two possible solutions: $d=0$ or $d=12$.\nThe question specifies that $d \\neq 0$. Therefore, the only valid solution is $d=12$."
+    }
+  ]
+}

@@ -1,0 +1,512 @@
+{
+  "slug": "5-6-definite-integrals-areas-and-volumes-of-revolution",
+  "topicCode": "5.6",
+  "title": "Definite integrals: areas and volumes of revolution",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "pilot",
+  "unit": {
+    "code": "5",
+    "title": "Calculus"
+  },
+  "summary": "The definite integral turns an antiderivative into a number, and that number measures geometry. This lesson builds the full 5.6 toolkit: the definite integral $\\int_a^b f(x)\\,dx$ and the fundamental theorem of calculus that evaluates it as $F(b)-F(a)$; the area between a curve and the x-axis, including the trap of regions that dip below the axis; the area enclosed between two curves as $\\int_a^b (f-g)\\,dx$; and the volume of a solid of revolution about the x-axis, $V=\\pi\\int_a^b y^2\\,dx$. It also shows where the GDC is allowed and where a non-calculator paper wants exact working. Every worked example is laid out exactly the way our marking engine awards marks, because on Paper 1 how you show your working decides how many marks you keep.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Evaluate a definite integral $\\int_a^b f(x)\\,dx$ using the fundamental theorem of calculus, $F(b)-F(a)$.",
+    "Find the area between a curve and the x-axis, handling regions that lie below the axis by splitting at the roots and taking absolute values.",
+    "Find the area enclosed between two curves using $\\int_a^b (\\text{top}-\\text{bottom})\\,dx$ after locating the limits from the points of intersection.",
+    "Find the volume of a solid of revolution about the x-axis using $V=\\pi\\int_a^b y^2\\,dx$.",
+    "Present working so that method marks (M) and accuracy marks (A), with follow-through, protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "5.6"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
+  "keyConcepts": [
+    "fundamental theorem of calculus",
+    "signed area",
+    "area between curves",
+    "volume of revolution"
+  ],
+  "simpleExplanation": {
+    "title": "Slicing Up Shapes with Calculus",
+    "summary": "A definite integral adds up an infinite number of infinitesimally thin slices to give an exact area or volume. The fundamental theorem of calculus does the adding for you: find an antiderivative, then subtract its value at the two ends.",
+    "analogy": "Imagine finding the volume of a strangely shaped potato. It is not a sphere or a cube, so no single formula fits. Instead you could slice it into very thin, roughly circular discs, work out each disc's volume (area of the circle × thickness) and add them all up. Integration does exactly this, but with infinitely thin slices, so the sum becomes exact rather than an approximation.",
+    "steps": [
+      "Identify the function(s) bounding the region and the limits of integration $a$ and $b$ — if the limits are not given, find them from the roots or the points of intersection.",
+      "Set up the correct definite integral: $\\int_a^b f(x)\\,dx$ for area under a curve, $\\int_a^b (f-g)\\,dx$ for area between curves, or $\\pi\\int_a^b y^2\\,dx$ for a volume of revolution.",
+      "Find the antiderivative $F(x)$ of the expression inside the integral.",
+      "Apply the fundamental theorem of calculus: evaluate $F(b)-F(a)$, and take absolute values for any part of an area that lies below the x-axis."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Fundamental theorem of calculus",
+      "back": "If $F$ is an antiderivative of $f$, then $\\int_a^b f(x)\\,dx = F(b) - F(a)$. Evaluate the antiderivative at the top limit and subtract its value at the bottom limit.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Area under a curve (above the axis)",
+      "back": "For a continuous $f$ with $f(x)\\ge 0$ on $[a,b]$, the area between the curve, the x-axis and the lines $x=a$, $x=b$ is $A = \\int_a^b f(x)\\,dx$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "What does a negative definite integral mean?",
+      "back": "It is the 'signed' area: the region lies below the x-axis. The geometric area is the absolute value of the integral, $\\left|\\int_a^b f(x)\\,dx\\right|$.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Curve that crosses the x-axis inside $[a,b]$",
+      "back": "Split at the root(s). Total area $= \\left|\\int_a^c f\\,dx\\right| + \\left|\\int_c^b f\\,dx\\right|$. Never integrate straight across a root, or the parts partly cancel.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Area between two curves",
+      "back": "For $f(x)\\ge g(x)$ on $[a,b]$, $A = \\int_a^b \\big(f(x)-g(x)\\big)\\,dx$ = integral of (top − bottom). This is valid whether or not the curves dip below the x-axis.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Finding the limits for area between curves",
+      "back": "If $a$ and $b$ are not given, solve $f(x)=g(x)$. The solutions are the x-coordinates of the points of intersection and become the limits of integration.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Volume of revolution about the x-axis",
+      "back": "Rotating the region under $y=f(x)$ from $x=a$ to $x=b$ through $360^\\circ$ about the x-axis gives $V = \\pi\\int_a^b y^2\\,dx = \\pi\\int_a^b [f(x)]^2\\,dx$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Where does $\\pi\\int y^2\\,dx$ come from?",
+      "back": "Each thin slice is a disc of radius $r=y$ and thickness $dx$, with volume $\\pi r^2\\,dx = \\pi y^2\\,dx$. Integrating sums the discs. You must square $y$ BEFORE integrating.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Exam Trap: the volume formula",
+      "back": "It is $\\pi\\int y^2\\,dx$, not $\\pi\\int y\\,dx$ and not $\\left(\\pi\\int y\\,dx\\right)^2$. Square the function first, then integrate, then multiply by $\\pi$.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: order of the curves",
+      "back": "Integrating (bottom − top) gives the negative of the area. The magnitude is right but the sign is wrong — an area must be positive, so identify the top curve first or take the absolute value.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "$\\int_a^a f(x)\\,dx$",
+      "back": "Equals $0$: a region of zero width has zero area.",
+      "pillLabel": "Property"
+    },
+    {
+      "front": "Swapping the limits",
+      "back": "$\\int_a^b f(x)\\,dx = -\\int_b^a f(x)\\,dx$. Reversing the limits negates the value.",
+      "pillLabel": "Property"
+    },
+    {
+      "front": "When is the GDC allowed?",
+      "back": "On the calculator paper you may evaluate a definite integral or find intersections numerically. On the non-calculator Paper 1 you must integrate by hand and give exact answers (e.g. $\\tfrac{4}{3}$, not $1.33$).",
+      "pillLabel": "Framework"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "To find the area enclosed between $y=f(x)$ (upper) and $y=g(x)$ (lower) from $x=a$ to $x=b$, you integrate:",
+      "options": [
+        "$\\int_a^b (g-f)\\,dx$",
+        "$\\int_a^b (f-g)\\,dx$",
+        "$\\int_a^b (f+g)\\,dx$",
+        "$\\int_a^b f\\cdot g\\,dx$"
+      ],
+      "answer": "$\\int_a^b (f-g)\\,dx$"
+    },
+    {
+      "prompt": "A curve lies entirely below the x-axis on $[a,b]$. The definite integral $\\int_a^b f(x)\\,dx$ is:",
+      "options": [
+        "Zero",
+        "Negative, and its absolute value is the area",
+        "Positive and equal to the area",
+        "Undefined"
+      ],
+      "answer": "Negative, and its absolute value is the area"
+    },
+    {
+      "prompt": "The volume when the region under $y=f(x)$ from $x=a$ to $x=b$ is rotated $360^\\circ$ about the x-axis is:",
+      "options": [
+        "$\\pi\\int_a^b y\\,dx$",
+        "$\\left(\\pi\\int_a^b y\\,dx\\right)^2$",
+        "$\\pi\\int_a^b y^2\\,dx$",
+        "$2\\pi\\int_a^b y\\,dx$"
+      ],
+      "answer": "$\\pi\\int_a^b y^2\\,dx$"
+    },
+    {
+      "prompt": "The fundamental theorem of calculus evaluates $\\int_a^b f(x)\\,dx$, where $F'=f$, as:",
+      "options": [
+        "$F(a)-F(b)$",
+        "$F(b)-F(a)$",
+        "$F(b)+F(a)$",
+        "$F(b)\\cdot F(a)$"
+      ],
+      "answer": "$F(b)-F(a)$"
+    },
+    {
+      "prompt": "A curve crosses the x-axis at $x=c$, with $a<c<b$, dipping below the axis on $(c,b)$. The total geometric area between the curve and the axis on $[a,b]$ is:",
+      "options": [
+        "$\\int_a^b f\\,dx$",
+        "$\\int_a^c f\\,dx + \\int_c^b f\\,dx$",
+        "$\\left|\\int_a^c f\\,dx\\right| + \\left|\\int_c^b f\\,dx\\right|$",
+        "$\\int_a^b |x|\\,dx$"
+      ],
+      "answer": "$\\left|\\int_a^c f\\,dx\\right| + \\left|\\int_c^b f\\,dx\\right|$"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between $\\pi\\int [f(x)]^2\\,dx$ and $\\left(\\int f(x)\\,dx\\right)^2$?",
+      "a": "The first is the correct volume-of-revolution formula: square the function, integrate the result, then multiply by $\\pi$. The second squares the whole area after integrating — a completely different number that has nothing to do with volume. Square first, integrate second."
+    },
+    {
+      "q": "How do I find the area if part of the region is above the x-axis and part is below?",
+      "a": "Find the x-intercepts where the function crosses the axis, then split the integral at each crossing. The integral of a section below the axis comes out negative. Add the absolute values of the separate results to get the total geometric area — if you integrate straight across the root, the positive and negative parts partly cancel and you get too small an answer."
+    },
+    {
+      "q": "Is rotating about the y-axis part of the AA SL syllabus?",
+      "a": "No. For Mathematics: Analysis and Approaches SL you only find volumes of revolution about the x-axis, $V=\\pi\\int y^2\\,dx$. Rotation about the y-axis is an HL topic."
+    },
+    {
+      "q": "When can I just use my calculator to get the answer?",
+      "a": "On the calculator paper you may evaluate a definite integral directly and find intersection points numerically — quote the value to three significant figures and still name the integral you evaluated. On the non-calculator Paper 1 you must integrate by hand and give an exact answer such as $\\tfrac{4}{3}$ or $\\tfrac{104\\pi}{3}$; a rounded decimal there can lose the final accuracy mark."
+    },
+    {
+      "q": "What if I can't tell which curve is on top?",
+      "a": "Sketch the two curves, or test an x-value between the intersection points and see which function is larger there. If you integrate (top − bottom) the wrong way round you get a negative answer of the right size, so taking the absolute value still recovers the area — but showing the correct order first is cleaner and safer."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Integration reverses differentiation, but a definite integral does something more concrete: it produces a number, and that number measures geometry. In this lesson we use it to find exact areas of regions with curved boundaries and exact volumes of solids formed by spinning those regions about an axis. The engine that makes it all work is the fundamental theorem of calculus, which lets you evaluate an integral simply by subtracting an antiderivative at two points. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "The definite integral and the fundamental theorem"
+    },
+    {
+      "type": "text",
+      "content": "Approximate the area under a curve by drawing many thin vertical rectangles and summing their areas; make the rectangles infinitely thin and the sum becomes exact. That exact value is the definite integral $\\int_a^b f(x)\\,dx$, where $a$ and $b$ are the lower and upper limits. The remarkable fact — the fundamental theorem of calculus — is that you never have to add up slices by hand: if $F$ is any antiderivative of $f$, the whole sum collapses to a single subtraction."
+    },
+    {
+      "type": "formula",
+      "content": "\\int_a^b f(x)\\,dx = \\big[F(x)\\big]_a^b = F(b) - F(a), \\quad \\text{where } F'(x)=f(x)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Evaluate the antiderivative at the TOP limit and subtract its value at the BOTTOM limit — in that order.",
+        "No constant of integration is needed: the $+C$ cancels in the subtraction $F(b)-F(a)$.",
+        "Useful properties: $\\int_a^a f\\,dx = 0$, and $\\int_a^b f\\,dx = -\\int_b^a f\\,dx$ (swapping limits negates the value)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Area between a curve and the x-axis"
+    },
+    {
+      "type": "text",
+      "content": "When $f(x)\\ge 0$ on $[a,b]$, the definite integral is exactly the area between the curve, the x-axis and the lines $x=a$ and $x=b$. The subtlety is sign. The integral measures 'signed' area: any part of the region lying below the x-axis contributes a NEGATIVE amount. So if a curve dips below the axis, integrating straight across lets the positive and negative parts cancel, and you get less than the true geometric area."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Area } A = \\int_a^b f(x)\\,dx \\quad (f(x)\\ge 0), \\qquad \\text{Total area} = \\left|\\int_a^c f\\,dx\\right| + \\left|\\int_c^b f\\,dx\\right| \\text{ if the curve crosses at } x=c."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "If the curve is entirely below the axis, the integral is negative; the area is its absolute value.",
+        "If the curve crosses the axis inside $[a,b]$, find the root(s), split the integral there, and add the ABSOLUTE values of the parts.",
+        "A quick sketch tells you immediately whether any splitting is needed."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the exact area of the region enclosed by the curve $y = 4 - x^2$ and the x-axis. [5]",
+      "solution": "**Find the limits.** The region is bounded by the curve and the x-axis, so set $y=0$:\n$4 - x^2 = 0 \\implies x^2 = 4 \\implies x = \\pm 2$.  [M1: setting $y=0$ to find the limits]\nSo $a = -2$ and $b = 2$, and on this interval $4-x^2 \\ge 0$, so the region lies above the axis.  [A1]\n\n**Set up the integral.**\n$A = \\int_{-2}^{2} (4 - x^2)\\,dx$.  [M1: correct integral with correct limits]\n\n**Integrate.**\n$A = \\left[\\,4x - \\dfrac{x^3}{3}\\,\\right]_{-2}^{2}$.  [A1: correct antiderivative]\n\n**Apply $F(b)-F(a)$.**\n$A = \\left(8 - \\dfrac{8}{3}\\right) - \\left(-8 + \\dfrac{8}{3}\\right) = 16 - \\dfrac{16}{3} = \\dfrac{32}{3}$.\n\n**Final answer:** the exact area is $\\dfrac{32}{3}$ (units$^2$).  [A1: exact value]"
+    },
+    {
+      "type": "heading",
+      "content": "Area enclosed between two curves"
+    },
+    {
+      "type": "text",
+      "content": "The area of a region trapped between two curves $y=f(x)$ and $y=g(x)$ is the area under the top curve minus the area under the bottom curve. This collapses to a single integral of the difference. The crucial step is to identify which function is greater (the 'top' function) over the interval; a sketch or a test value settles it. This formula works even when both curves dip below the x-axis, because subtracting the lower from the upper always leaves a positive height."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Area } A = \\int_a^b \\big(\\underbrace{f(x)}_{\\text{top}} - \\underbrace{g(x)}_{\\text{bottom}}\\big)\\,dx, \\qquad f(x)\\ge g(x) \\text{ on } [a,b]."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "If $a$ and $b$ are not given, solve $f(x)=g(x)$; the solutions are the x-coordinates of the points of intersection and become the limits.",
+        "A quick sketch (or a test value between the intersections) tells you which curve is on top.",
+        "If the top and bottom curves swap over inside the interval, split the integral at the crossover point."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Volumes of revolution about the x-axis"
+    },
+    {
+      "type": "text",
+      "content": "Take the region under $y=f(x)$ between $x=a$ and $x=b$ and rotate it a full $360^\\circ$ about the x-axis: it sweeps out a 3D solid of revolution. Slice the solid into thin discs perpendicular to the x-axis. Each disc is a short cylinder of radius $r=y=f(x)$ and thickness $dx$, with volume $\\pi r^2\\,dx = \\pi y^2\\,dx$. Integrating sums every disc from $a$ to $b$."
+    },
+    {
+      "type": "formula",
+      "content": "V = \\pi\\int_a^b y^2\\,dx = \\pi\\int_a^b [f(x)]^2\\,dx."
+    },
+    {
+      "type": "examTip",
+      "content": "A very common error is to write $\\pi\\int y\\,dx$ or $\\left(\\pi\\int y\\,dx\\right)^2$. The formula comes from the volume of a cylinder, $\\pi r^2 h$, with radius $r=y$. You must square the function BEFORE integrating, not after. For a volume there is no 'below the axis' problem — $y^2$ is never negative, so no splitting or absolute values are needed."
+    },
+    {
+      "type": "workedExample",
+      "question": "The region $R$ is bounded by the curve $y = 2x$, the x-axis, and the lines $x=1$ and $x=3$. Find the exact volume of the solid formed when $R$ is rotated through $360^\\circ$ about the x-axis, giving your answer in terms of $\\pi$. [5]",
+      "solution": "**Choose the formula.** This is a volume of revolution about the x-axis: $V = \\pi\\int_a^b y^2\\,dx$.  [M1: correct formula]\n\n**Square the function.** With $y = 2x$, $\\;y^2 = (2x)^2 = 4x^2$, and $a=1$, $b=3$:\n$V = \\pi\\int_{1}^{3} 4x^2\\,dx = 4\\pi\\int_{1}^{3} x^2\\,dx$.  [A1: correct integral using $y^2$]\n\n**Integrate.**\n$V = 4\\pi\\left[\\dfrac{x^3}{3}\\right]_{1}^{3}$.  [A1: correct antiderivative]\n\n**Apply $F(b)-F(a)$.**\n$V = 4\\pi\\left(\\dfrac{27}{3} - \\dfrac{1}{3}\\right) = 4\\pi\\left(9 - \\dfrac{1}{3}\\right) = 4\\pi\\cdot\\dfrac{26}{3}$.  [M1: substituting the limits]\n\n**Final answer:** $V = \\dfrac{104\\pi}{3}$ (units$^3$).  [A1: exact value in terms of $\\pi$]"
+    },
+    {
+      "type": "heading",
+      "content": "Using the GDC where allowed"
+    },
+    {
+      "type": "text",
+      "content": "On the calculator paper the GDC can evaluate a definite integral directly and find intersection points numerically — ideal when the antiderivative is awkward. Still name the integral you are evaluating and quote the result to three significant figures. On the non-calculator Paper 1, however, you must integrate by hand and give an EXACT answer: a fraction such as $\\tfrac{4}{3}$, a surd, or a multiple of $\\pi$. A rounded decimal on Paper 1 typically forfeits the final accuracy mark, so keep everything exact until the very end."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Integrating (bottom − top) for area between curves** — this gives the negative of the area. Identify the top curve first; if in doubt, take the absolute value of the result.",
+        "**Treating area below the x-axis as positive** — a definite integral of a region below the axis is negative. Split at the roots and add the ABSOLUTE values, or you will under-count the area.",
+        "**Forgetting to square $y$ in a volume** — the formula is $\\pi\\int y^2\\,dx$, never $\\pi\\int y\\,dx$; square the function before integrating.",
+        "**Substituting the limits the wrong way round** — the theorem is $F(b)-F(a)$ (top limit minus bottom limit); reversing them negates the answer.",
+        "**Not finding the limits first** — for area between curves the limits come from solving $f(x)=g(x)$; skipping this loses the method marks.",
+        "**Giving a decimal on a non-calculator paper** — Paper 1 wants exact forms such as $\\tfrac{32}{3}$ or $\\tfrac{104\\pi}{3}$; a rounded decimal can cost the accuracy mark.",
+        "**Dropping the $\\pi$ or the units** — a volume needs the factor of $\\pi$ and units$^3$; an area needs units$^2$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "On Paper 1 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and an accuracy mark is dependent on the method mark it follows. Follow-through (FT) means a correct step built on an earlier slip can still score, and 'ignore subsequent working' (ISW) means a correct answer is not un-awarded if you then write something harmless afterwards. But that protection only exists if the method is written down. Study how each mark below is earned by a specific line in a classic 'area between two curves' question."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the area of the region enclosed by the curve $y = x^2$ and the line $y = 2x$. [6]",
+      "solution": "**Model answer — full working.**\n\n**Find the limits (points of intersection).** Set the curves equal:\n$x^2 = 2x \\implies x^2 - 2x = 0 \\implies x(x-2) = 0$.\nSo $x = 0$ and $x = 2$. These are the limits of integration.\n\n**Decide which curve is on top.** Test $x=1$ (between the intersections): the line gives $y=2$, the curve gives $y=1$, so the line $y=2x$ is above the curve $y=x^2$ on $[0,2]$.\n\n**Set up the integral of (top − bottom).**\n$A = \\int_{0}^{2} \\big(2x - x^2\\big)\\,dx$.\n\n**Integrate.**\n$A = \\left[\\,x^2 - \\dfrac{x^3}{3}\\,\\right]_{0}^{2}$.\n\n**Apply $F(b)-F(a)$.**\n$A = \\left(2^2 - \\dfrac{2^3}{3}\\right) - (0) = 4 - \\dfrac{8}{3} = \\dfrac{12-8}{3} = \\dfrac{4}{3}$.\n\n**Final answer:** the exact area is $\\dfrac{4}{3}$ (units$^2$).\n\n---\n**How our marking engine awards the 6 marks:**\n\n- **M1 — set $x^2 = 2x$ to find the limits.** A METHOD mark for equating the two functions to locate the intersection points. Earned for the correct approach even if the algebra later slips.\n- **A1 — $x = 0$ and $x = 2$.** An ACCURACY mark, dependent on that M1, for both correct limits. Getting only one, or a wrong second value, does not earn it.\n- **M1 — set up $\\int_0^2 (2x - x^2)\\,dx$ as (upper − lower).** A METHOD mark for the correct integral of top minus bottom with the right limits. Writing $(x^2 - 2x)$ the wrong way round does not earn this method mark.\n- **M1 — integrate.** A METHOD mark for attempting the integration (raising each power correctly), independent of the arithmetic that follows.\n- **A1 — $\\left[x^2 - \\dfrac{x^3}{3}\\right]_0^2$.** An ACCURACY mark for the correct antiderivative.\n- **A1 — $A = \\dfrac{4}{3}$.** The final ACCURACY mark for the correct EXACT value. Follow-through applies: a student who found, say, wrong limits at the first step but then correctly integrated and substituted THEIR limits can still earn later marks on their own figures.\n\n**Accept equivalent exact forms.** The engine accepts $\\dfrac{4}{3}$, $1\\tfrac{1}{3}$, or $\\dfrac{12-8}{3}$ — any correct exact form scores; a bare decimal like $1.33$ on this non-calculator paper does not earn the final A-mark. Under ISW, if you write the correct $\\tfrac{4}{3}$ and then add a harmless (wrong) remark, the mark stands.\n\n**Bottom line:** of the 6 marks, three are method marks tied to setting up the problem (limits, upper − lower, integrate) and three are accuracy marks that depend on them. A student who writes only '$\\tfrac{4}{3}$' with no working risks 4–5 lost marks if any number is off; a student who shows the intersection, the integral, the antiderivative and the substitution keeps the method marks even when the final value slips, and follow-through shields the rest."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through and 'accept equivalent exact forms'. So always show the method: find the limits, write the integral of (top − bottom) or $\\pi\\int y^2\\,dx$, show the antiderivative, then substitute $F(b)-F(a)$, and give an exact answer on Paper 1. The method and accuracy marks are what protect your score when the final number slips — and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The definite integral is the bridge from antiderivatives to measurable quantities. The same $F(b)-F(a)$ idea reappears whenever you accumulate a rate over an interval — a distance from a velocity, a change from a rate of change — which is why kinematics problems in this course lean on exactly these integrals. Master the habit here: find the limits, integrate the right expression, watch the sign of regions below the axis, square before you integrate for volumes, and keep answers exact on Paper 1. The applications that follow are variations on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 1 calculation marked: find an area or volume with full working",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=5.6&component=paper_1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Volume of Revolution",
+          "href": "https://www.geogebra.org/m/B5aZ2z3C"
+        },
+        {
+          "label": "Khan Academy: Volumes of revolution",
+          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-applications-of-integration/ab-disk-method/v/disk-method-around-x-axis"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Volume of Revolution",
+    "embedUrl": "https://www.geogebra.org/classic?material=B5aZ2z3C",
+    "launchUrl": "https://www.geogebra.org/classic?material=B5aZ2z3C",
+    "hint": "Use “Volume of Revolution” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "SL 5.6",
+      "title": "Definite integrals.",
+      "detail": "Calculating definite integrals of the form $\\int_a^b f(x) \\, dx$."
+    },
+    {
+      "code": "SL 5.7",
+      "title": "Areas.",
+      "detail": "Area of a region enclosed by a curve and the x-axis or y-axis in a given interval. Area between curves."
+    },
+    {
+      "code": "SL 5.8",
+      "title": "Volumes of revolution.",
+      "detail": "Volumes of revolution of a region enclosed by a curve and the x-axis, rotated $360^\\circ$ about the x-axis."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "5-6-definite-integrals-areas-and-volumes-of-revolution-q1",
+      "prompt": "Find the area of the region enclosed by the curve with equation $y = x^2 + 1$, the x-axis, and the lines $x=0$ and $x=2$.",
+      "marks": 4,
+      "commandTerm": "Find",
+      "difficulty": "foundation",
+      "syllabusRef": "SL 5.7",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Recognition that area is found by a definite integral.",
+          "marks": 0
+        },
+        {
+          "text": "Setting up the correct definite integral: Area $= \\int_0^2 (x^2+1) \\, dx$.",
+          "marks": 1
+        },
+        {
+          "text": "Correct integration: $\\frac{x^3}{3} + x$.",
+          "marks": 1
+        },
+        {
+          "text": "Correct substitution of limits: $(\\frac{2^3}{3} + 2) - (\\frac{0^3}{3} + 0)$.",
+          "marks": 1
+        },
+        {
+          "text": "Correct final answer: $\\frac{8}{3} + 2 = \\frac{14}{3}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The area of the region is given by the definite integral of the function from $x=0$ to $x=2$. \nArea $= \\int_0^2 (x^2+1) \\, dx$. \nFirst, we find the indefinite integral of the function: \n$\\int (x^2+1) \\, dx = \\frac{x^3}{3} + x + C$. \nNow, we evaluate the definite integral using the Fundamental Theorem of Calculus: \n$\\int_0^2 (x^2+1) \\, dx = [\\frac{x^3}{3} + x]_0^2$. \nSubstitute the upper limit $x=2$: \n$(\\frac{2^3}{3} + 2) = \\frac{8}{3} + 2 = \\frac{8}{3} + \\frac{6}{3} = \\frac{14}{3}$. \nSubstitute the lower limit $x=0$: \n$(\\frac{0^3}{3} + 0) = 0$. \nThe area is the difference: $\\frac{14}{3} - 0 = \\frac{14}{3}$. \nThe area of the region is $\\frac{14}{3}$ square units."
+    },
+    {
+      "id": "5-6-definite-integrals-areas-and-volumes-of-revolution-q2",
+      "prompt": "Let $f(x) = e^{0.5x}$ and $g(x) = 4 - x^2$. The graphs of $f$ and $g$ intersect at two points.\n\n(a) Find the x-coordinates of the points of intersection.\n\n(b) Hence, find the area of the region enclosed by the graphs of $f$ and $g$.",
+      "marks": 5,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "SL 5.7",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) Setting up the equation $f(x) = g(x)$ or $e^{0.5x} = 4 - x^2$.",
+          "marks": 1
+        },
+        {
+          "text": "Correct x-coordinates from GDC: $x = -2.18$ and $x = 1.63$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) Setting up the correct definite integral for the area, with $g(x)$ as the upper function: Area $= \\int_{-2.18}^{1.63} (4 - x^2 - e^{0.5x}) \\, dx$.",
+          "marks": 2
+        },
+        {
+          "text": "Correct final answer from GDC: $10.9$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) To find the points of intersection, we set $f(x) = g(x)$: \n$e^{0.5x} = 4 - x^2$. \nUsing a graphing calculator, we can graph both functions and find their intersection points, or use a numerical solver. \nThe x-coordinates of the intersection points are approximately $x_1 = -2.1816...$ and $x_2 = 1.6325...$. \nTo 3 significant figures, the x-coordinates are $x = -2.18$ and $x = 1.63$. \n\n(b) The area of the enclosed region is found by integrating the difference between the upper function and the lower function between their points of intersection. In the interval $[-2.18, 1.63]$, the graph of $g(x) = 4 - x^2$ is above the graph of $f(x) = e^{0.5x}$. \nArea $= \\int_{x_1}^{x_2} (g(x) - f(x)) \\, dx = \\int_{-2.1816...}^{1.6325...} (4 - x^2 - e^{0.5x}) \\, dx$. \nUsing the numerical integration feature of a graphing calculator: \nArea $\\approx 10.938...$ \nTo 3 significant figures, the area is $10.9$ square units."
+    },
+    {
+      "id": "5-6-definite-integrals-areas-and-volumes-of-revolution-q3",
+      "prompt": "The region R is bounded by the curve $y = e^x \\sin(x)$, the x-axis, and the lines $x=0$ and $x=\\pi$. Find the volume of the solid formed when R is rotated $2\\pi$ radians about the x-axis.",
+      "marks": 5,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "SL 5.8",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "Recognising the need to use the volume of revolution formula, $V = \\pi \\int_a^b y^2 \\, dx$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly setting up the integral: $V = \\pi \\int_0^\\pi (e^x \\sin(x))^2 \\, dx$.",
+          "marks": 1
+        },
+        {
+          "text": "Simplifying the integrand: $V = \\pi \\int_0^\\pi e^{2x} \\sin^2(x) \\, dx$.",
+          "marks": 1
+        },
+        {
+          "text": "Correct value for the definite integral from GDC: $\\int_0^\\pi e^{2x} \\sin^2(x) \\, dx \\approx 66.8115...$",
+          "marks": 1
+        },
+        {
+          "text": "Correct final answer, multiplying by $\\pi$ and rounding to 3 s.f. $V \\approx 210$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The volume of a solid formed by rotating a region bounded by a curve $y=f(x)$, the x-axis, and lines $x=a$ and $x=b$ about the x-axis is given by the formula:\n$V = \\pi \\int_a^b y^2 \\, dx$.\nIn this case, $y = e^x \\sin(x)$, $a=0$, and $b=\\pi$. Note that for $x \\in [0, \\pi]$, $\\sin(x) \\ge 0$ and $e^x > 0$, so the curve is on or above the x-axis.\nThe setup for the volume is:\n$V = \\pi \\int_0^\\pi (e^x \\sin(x))^2 \\, dx$\n$V = \\pi \\int_0^\\pi e^{2x} \\sin^2(x) \\, dx$.\nThis integral is difficult to compute by hand, so we use a calculator.\nUsing a graphic display calculator or other numerical integration tool:\n$\\int_0^\\pi e^{2x} \\sin^2(x) \\, dx \\approx 66.8115...$\nTherefore, the volume is:\n$V = \\pi \\times 66.8115... \\approx 209.895...$\nRounding to three significant figures, the volume is $210$ cubic units."
+    },
+    {
+      "id": "5-6-definite-integrals-areas-and-volumes-of-revolution-q4",
+      "prompt": "Consider the function $f(x) = kx \\cos(x)$ for $0 \\le x \\le \\frac{\\pi}{2}$, where $k$ is a positive constant.\n\n(a) The area of the region enclosed by the graph of $f$ and the x-axis is equal to 5. Find the value of $k$.\n\n(b) Using the value of $k$ found in part (a), find the volume of the solid formed when this region is rotated $360^\\circ$ about the x-axis.",
+      "marks": 7,
+      "commandTerm": "Find",
+      "difficulty": "challenge",
+      "syllabusRef": "SL 5.7",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) Setting up the area integral equation: $k \\int_0^{\\pi/2} x \\cos(x) \\, dx = 5$.",
+          "marks": 1
+        },
+        {
+          "text": "Evaluating the integral using GDC: $\\int_0^{\\pi/2} x \\cos(x) \\, dx = 0.57079...$ (or $\\frac{\\pi}{2}-1$).",
+          "marks": 1
+        },
+        {
+          "text": "Finding the value of $k$: $k = \\frac{5}{0.57079...} = 8.759... \\approx 8.76$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) Setting up the volume integral: $V = \\pi \\int_0^{\\pi/2} (kx \\cos(x))^2 \\, dx$.",
+          "marks": 1
+        },
+        {
+          "text": "Substituting $k$ and simplifying: $V = \\pi (8.759...)^2 \\int_0^{\\pi/2} (x \\cos(x))^2 \\, dx$.",
+          "marks": 1
+        },
+        {
+          "text": "Evaluating the integral part using GDC: $\\int_0^{\\pi/2} (x \\cos(x))^2 \\, dx = 0.1895...$.",
+          "marks": 1
+        },
+        {
+          "text": "Correct final volume: $V = 45.6$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The area is given by the integral of $f(x)$ from $0$ to $\\frac{\\pi}{2}$. We are given that this area is 5. \nArea $= \\int_0^{\\pi/2} kx \\cos(x) \\, dx = 5$. \nSince $k$ is a constant, we can write: \n$k \\int_0^{\\pi/2} x \\cos(x) \\, dx = 5$. \nWe use a graphing calculator to evaluate the definite integral: \n$\\int_0^{\\pi/2} x \\cos(x) \\, dx \\approx 0.570796...$ (Note: the exact value is $\\frac{\\pi}{2}-1$). \nNow, we solve for $k$: \n$k(0.570796...) = 5$. \n$k = \\frac{5}{0.570796...} \\approx 8.7596...$. \nSo, $k \\approx 8.76$ (to 3 s.f.).\n\n(b) The volume of revolution about the x-axis is given by $V = \\pi \\int_a^b (f(x))^2 \\, dx$. \nUsing the value of $k$ from part (a), $f(x) = 8.7596... \\times x \\cos(x)$. \n$V = \\pi \\int_0^{\\pi/2} (8.7596... \\times x \\cos(x))^2 \\, dx$. \n$V = \\pi \\times (8.7596...)^2 \\int_0^{\\pi/2} x^2 \\cos^2(x) \\, dx$. \nFirst, let's evaluate the integral part using a GDC: \n$\\int_0^{\\pi/2} x^2 \\cos^2(x) \\, dx \\approx 0.18950...$. \nNow, substitute this back into the volume equation: \n$V = \\pi \\times (8.7596...)^2 \\times 0.18950...$. \n$V \\approx \\pi \\times 76.731 \\times 0.18950... \\approx 45.63...$. \nThe volume is approximately $45.6$ cubic units (to 3 s.f.)."
+    }
+  ]
+}

@@ -1,0 +1,537 @@
+{
+  "slug": "b-2-greenhouse-effect",
+  "topicCode": "B.2",
+  "title": "Greenhouse effect",
+  "unit": {
+    "code": "B",
+    "title": "The particulate nature of matter"
+  },
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "pilot",
+  "summary": "The greenhouse effect is where thermal radiation physics meets climate. This lesson builds the whole quantitative toolkit of B.2: black-body radiation and emission spectra, Wien's displacement law, the Stefan–Boltzmann law, emissivity and albedo, the solar constant and the intensity a planet actually receives, the planetary energy balance that fixes an equilibrium temperature, and the molecular greenhouse mechanism together with its enhanced, human-driven version. Every worked example is laid out exactly the way our marking engine awards Paper 2 marks — method marks, answer marks and error-carried-forward — so you can see how showing your working protects your score.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Describe black-body radiation and use Wien's displacement law ($\\lambda_{max} \\propto 1/T$) to relate the peak wavelength of an emission spectrum to temperature.",
+    "Apply the Stefan–Boltzmann law $L = \\sigma A T^4$, and account for emissivity and albedo when a body is not a perfect emitter or reflects incoming radiation.",
+    "Calculate the solar constant and the intensity of radiation received by a planet, and set up a planetary energy balance to find the equilibrium temperature.",
+    "Explain the greenhouse mechanism — greenhouse gases absorbing and re-emitting infrared — and distinguish the natural greenhouse effect from the enhanced greenhouse effect.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "B.2"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
+  "simpleExplanation": {
+    "title": "Earth's Radiation Budget",
+    "summary": "Every warm object glows with thermal radiation, and how much it glows and at what wavelength depend only on its temperature. Earth sits in a balance: it soaks up short-wave sunlight and glows back long-wave infrared, and greenhouse gases tilt that balance by intercepting some of the outgoing infrared.",
+    "analogy": "Think of a bank account whose balance must stay steady. Sunlight is the income, paid in as short-wave visible radiation. Earth's own infrared glow is the spending, paid out to space. If the account is to hold a constant balance, income must equal spending — and that fixed balance point is the planet's temperature. Greenhouse gases act like a partial withdrawal fee on the outgoing side: some infrared that tried to leave is intercepted and sent back, so to spend enough to stay balanced the surface must run hotter.",
+    "steps": [
+      "A hot body radiates over a spread of wavelengths (a black-body spectrum); the hotter it is, the shorter its peak wavelength (Wien) and the greater its total power (Stefan–Boltzmann, $\\propto T^4$).",
+      "The Sun (about 5800 K) peaks in the visible; the cooler Earth (about 255–288 K) peaks in the infrared.",
+      "Earth absorbs incoming sunlight over its disc $\\pi R^2$ but radiates from its whole surface $4\\pi R^2$; setting absorbed power equal to emitted power gives an equilibrium temperature.",
+      "Greenhouse gases absorb outgoing infrared and re-emit it in all directions — some back down — reducing the net loss to space and raising the equilibrium surface temperature."
+    ]
+  },
+  "keyConcepts": [
+    "thermal radiation",
+    "energy balance",
+    "equilibrium temperature"
+  ],
+  "flashcards": [
+    {
+      "front": "Black body",
+      "back": "An idealised object that absorbs all radiation incident on it and, at a given temperature, is also the best possible emitter. Its emission spectrum (intensity against wavelength) depends only on temperature.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Wien's displacement law",
+      "back": "$\\lambda_{max} = \\dfrac{2.90 \\times 10^{-3}}{T}$ (m K). The peak wavelength is INVERSELY proportional to absolute temperature: hotter body → shorter peak wavelength. Constant is in the data booklet.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Stefan–Boltzmann law",
+      "back": "$L = \\sigma A T^4$, the total power radiated by a black body, with $\\sigma = 5.67 \\times 10^{-8}$ W m⁻² K⁻⁴. Power depends on the FOURTH power of the absolute temperature — $T$ must be in kelvin.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Emissivity ($e$)",
+      "back": "The ratio of power radiated by a real surface to that of a black body at the same temperature: $L = e\\sigma A T^4$. A black body has $e = 1$; real surfaces are lower.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Albedo ($\\alpha$)",
+      "back": "The fraction of incident radiation REFLECTED by a surface, $0 \\le \\alpha \\le 1$. Earth's average albedo is about 0.30, so about 70% of incoming sunlight is absorbed. Albedo reflects — it does not absorb.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Solar constant ($S$)",
+      "back": "The intensity of solar radiation arriving at the top of Earth's atmosphere on a surface perpendicular to the Sun: about $1.36 \\times 10^{3}$ W m⁻². Comes from $S = \\dfrac{L_{Sun}}{4\\pi d^2}$.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Intensity from a source",
+      "back": "$I = \\dfrac{P}{4\\pi d^2}$ — power spread over a sphere of radius $d$, so intensity falls off as the inverse square of distance from the source.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Planetary energy balance",
+      "back": "At a steady temperature, power absorbed = power radiated: $S(1-\\alpha)\\pi R^2 = e\\sigma(4\\pi R^2)T^4$. The $\\pi R^2$ cancels, leaving $T$ independent of planet size.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Why disc in, sphere out?",
+      "back": "A planet intercepts the parallel solar beam over its cross-sectional DISC ($\\pi R^2$) but emits infrared from its entire SPHERICAL surface ($4\\pi R^2$). The factor of 4 between them is central to the balance.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Greenhouse mechanism",
+      "back": "The surface emits infrared; greenhouse gases ABSORB it and RE-EMIT it in all directions, including back to the surface. This reduces net energy loss to space, so the surface settles at a higher temperature.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Why N₂ and O₂ are not greenhouse gases",
+      "back": "They are symmetric diatomic molecules; their vibrations produce no changing electric dipole moment, so they cannot absorb infrared. CO₂, H₂O, CH₄ and N₂O have vibrational modes that do change the dipole moment.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Natural vs enhanced greenhouse effect",
+      "back": "The natural greenhouse effect raises Earth from about −18°C to about +15°C and is essential for life. The ENHANCED greenhouse effect is the extra warming from human-added greenhouse gases (mainly CO₂).",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Exam Trap: T⁴ needs kelvin",
+      "back": "The Stefan–Boltzmann and Wien laws use ABSOLUTE temperature. Convert °C to K first ($T/\\text{K} = \\theta/\\degree\\text{C} + 273$). Using °C in a $T^4$ term is a catastrophic error.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: Wien is inverse",
+      "back": "$\\lambda_{max} \\propto 1/T$. Doubling the temperature HALVES the peak wavelength. Students who treat peak wavelength as increasing with temperature lose the mark.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Star A is hotter than star B. Compared with B, the peak wavelength of A's emission spectrum is:",
+      "options": [
+        "Longer, because a hotter body emits at longer wavelengths",
+        "Shorter, because $\\lambda_{max} \\propto 1/T$",
+        "The same, because both are black bodies",
+        "Longer, because it emits more total power"
+      ],
+      "answer": "Shorter, because $\\lambda_{max} \\propto 1/T$"
+    },
+    {
+      "prompt": "The absolute temperature of a black body is doubled. By what factor does the total power it radiates change?",
+      "options": [
+        "2",
+        "4",
+        "8",
+        "16"
+      ],
+      "answer": "16"
+    },
+    {
+      "prompt": "A planet has an albedo of 0.35. What fraction of the incident solar radiation is ABSORBED?",
+      "options": [
+        "0.35",
+        "0.65",
+        "1.35",
+        "It cannot be found without the temperature"
+      ],
+      "answer": "0.65"
+    },
+    {
+      "prompt": "Which statement best describes how greenhouse gases warm the surface?",
+      "options": [
+        "They trap heat like a blanket, stopping it escaping",
+        "They reflect incoming sunlight back to the surface",
+        "They absorb outgoing infrared and re-emit it in all directions, including back to the surface",
+        "They convert visible light directly into heat in the atmosphere"
+      ],
+      "answer": "They absorb outgoing infrared and re-emit it in all directions, including back to the surface"
+    },
+    {
+      "prompt": "When using $L = \\sigma A T^4$ for a surface at 25°C, the value of $T$ you substitute should be:",
+      "options": [
+        "25",
+        "−48",
+        "298",
+        "273"
+      ],
+      "answer": "298"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why does Earth absorb sunlight over a disc but radiate from a sphere?",
+      "a": "Sunlight arrives as an almost parallel beam, so the amount a planet intercepts depends only on the shadow it casts — its cross-sectional disc, area $\\pi R^2$. But the planet's own infrared glow leaves from every part of its surface, area $4\\pi R^2$. That geometric factor of 4 is why the equilibrium temperature comes out with a $\\tfrac{1}{4}$ inside the fourth root, and forgetting it is one of the most common errors in the energy-balance calculation."
+    },
+    {
+      "q": "What is the difference between emissivity and albedo?",
+      "a": "They describe different halves of the budget. Albedo ($\\alpha$) is about INCOMING radiation — the fraction of sunlight reflected away before it can be absorbed. Emissivity ($e$) is about OUTGOING radiation — how effective the surface is at radiating compared with a perfect black body. In the simplest model Earth is treated as a black-body emitter ($e = 1$) with albedo 0.30, but both can be adjusted for a more realistic planet."
+    },
+    {
+      "q": "If water vapour is the most abundant greenhouse gas, why focus on CO₂?",
+      "a": "Water vapour traps a great deal of infrared, but its concentration is set by temperature — warmer air simply holds more, so it acts as a feedback rather than a driver. CO₂ is a forcing: its concentration is not controlled by temperature and it persists for centuries, so human CO₂ emissions accumulate and push the whole balance, which then lets the air hold more water vapour and amplifies the warming."
+    },
+    {
+      "q": "Do I have to memorise the Wien and Stefan–Boltzmann constants?",
+      "a": "No. Wien's constant ($2.90 \\times 10^{-3}$ m K) and the Stefan–Boltzmann constant ($5.67 \\times 10^{-8}$ W m⁻² K⁻⁴) are both in the physics data booklet you use in the exam. What you must know cold is the method: which law to reach for, that temperatures go in as kelvin, and that the greenhouse mechanism is absorb-and-re-emit infrared, not vaguely 'trapping heat'."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Earth's average surface temperature is about 15°C (288 K), yet a bare rock at Earth's distance from the Sun should sit near −18°C (255 K). That 33-degree gap is the natural greenhouse effect, and closing it means doing real radiation physics: how hot bodies glow, how much power they radiate, how much sunlight a planet actually catches, and how the atmosphere intercepts the infrared going back out. This lesson works through each of those laws, then assembles them into the planetary energy balance and the greenhouse mechanism. Every worked example is set out the way marks are actually awarded, because in a calculation-and-explanation topic like this, HOW you show your working decides how many marks you keep."
+    },
+    {
+      "type": "heading",
+      "content": "Black-body radiation and emission spectra"
+    },
+    {
+      "type": "text",
+      "content": "A black body is an idealised object that absorbs all radiation falling on it and, being the perfect absorber, is also the best possible emitter at any given temperature. Its emission spectrum — a graph of radiated intensity against wavelength — has a characteristic humped shape that depends only on temperature, not on what the body is made of. The Sun, stars and planets are all modelled as black bodies to good approximation. As a body gets hotter two things happen at once: the peak of the spectrum shifts to shorter wavelengths, and the area under the whole curve (the total power radiated) grows rapidly. Those two behaviours are captured by Wien's displacement law and the Stefan–Boltzmann law respectively."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A black body absorbs all incident radiation and is the ideal emitter; its spectrum depends only on temperature.",
+        "**Peak shift (Wien):** the hotter the body, the shorter the wavelength of maximum intensity.",
+        "**Total power (Stefan–Boltzmann):** the hotter the body, the greater the area under the spectrum, rising as $T^4$.",
+        "The Sun (≈ 5800 K) peaks in the visible; the far cooler Earth peaks in the infrared — the key asymmetry behind the greenhouse effect."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Wien's displacement law"
+    },
+    {
+      "type": "text",
+      "content": "Wien's displacement law states that the wavelength at which the emission spectrum peaks is inversely proportional to the absolute temperature of the body."
+    },
+    {
+      "type": "formula",
+      "content": "\\lambda_{max} = \\frac{2.90 \\times 10^{-3}}{T}"
+    },
+    {
+      "type": "text",
+      "content": "where $\\lambda_{max}$ is the peak wavelength in metres, $T$ is the absolute temperature in kelvin, and $2.90 \\times 10^{-3}$ m K is Wien's constant (data booklet). Because the relationship is inverse, doubling the temperature halves the peak wavelength. This law is what lets astronomers read a star's surface temperature straight off the colour of its light, and it is why a warming filament glows first dull red, then orange, then white as its peak marches from long to short wavelengths."
+    },
+    {
+      "type": "heading",
+      "content": "The Stefan–Boltzmann law, emissivity and albedo"
+    },
+    {
+      "type": "text",
+      "content": "The Stefan–Boltzmann law gives the total power radiated by a black body across all wavelengths. For a body of surface area $A$ at absolute temperature $T$, the radiated power (often called luminosity $L$ for a star) is $L = \\sigma A T^4$, with $\\sigma = 5.67 \\times 10^{-8}$ W m⁻² K⁻⁴. The fourth-power dependence is dramatic: doubling the temperature multiplies the power by $2^4 = 16$. Real surfaces radiate a little less than a perfect black body, and this is accounted for by the emissivity $e$ (between 0 and 1), giving $L = e\\sigma A T^4$; a perfect black body has $e = 1$. On the incoming side, not all sunlight reaching a planet is absorbed — the albedo $\\alpha$ is the fraction reflected straight back to space, so only a fraction $(1-\\alpha)$ is available to warm the planet. Keep the two ideas distinct: albedo governs reflection of incoming radiation, emissivity governs emission of outgoing radiation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Stefan–Boltzmann:** $L = \\sigma A T^4$ — total power radiated, with $T$ in KELVIN.",
+        "**Emissivity ($e$):** real surface radiates $L = e\\sigma A T^4$; black body has $e = 1$.",
+        "**Albedo ($\\alpha$):** fraction of incoming radiation reflected; fraction $(1-\\alpha)$ is absorbed. Earth's average $\\alpha \\approx 0.30$.",
+        "Albedo and emissivity are different quantities on opposite sides of the budget — do not confuse them."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The Sun's emission spectrum peaks at a wavelength of $5.0 \\times 10^{-7}$ m, and the Sun's radius is $7.0 \\times 10^{8}$ m. (a) Estimate the Sun's surface temperature. (b) Hence estimate the Sun's luminosity, treating it as a black body. [5]",
+      "solution": "**(a) Surface temperature from Wien's law.**\nRearrange $\\lambda_{max} = \\dfrac{2.90 \\times 10^{-3}}{T}$ for $T$:\n$T = \\dfrac{2.90 \\times 10^{-3}}{\\lambda_{max}} = \\dfrac{2.90 \\times 10^{-3}}{5.0 \\times 10^{-7}} = 5800$ K.  [M1: correct rearrangement; A1: 5800 K]\n\n**(b) Luminosity from the Stefan–Boltzmann law.**\nSurface area of the Sun (a sphere): $A = 4\\pi R^2 = 4\\pi (7.0 \\times 10^{8})^2 = 6.16 \\times 10^{18}$ m².\n$L = \\sigma A T^4 = (5.67 \\times 10^{-8})(6.16 \\times 10^{18})(5800)^4$.  [M1: correct substitution, $T$ in K]\n$(5800)^4 = 1.13 \\times 10^{15}$, so\n$L = 5.67 \\times 10^{-8} \\times 6.16 \\times 10^{18} \\times 1.13 \\times 10^{15} \\approx 3.9 \\times 10^{26}$ W.  [A1]\n\n*This matches the Sun's accepted luminosity of about $3.8 \\times 10^{26}$ W — a good check that the black-body model works. Note $T$ went into the fourth power in KELVIN; using °C here would be meaningless.*"
+    },
+    {
+      "type": "heading",
+      "content": "The solar constant and the intensity received by a planet"
+    },
+    {
+      "type": "text",
+      "content": "The Sun's power spreads out over an ever-larger sphere as it travels, so the intensity (power per unit area) falls off as the inverse square of distance: $I = \\dfrac{P}{4\\pi d^2}$. Evaluated at Earth's orbital distance, this intensity is called the solar constant, $S \\approx 1.36 \\times 10^{3}$ W m⁻² — the power per square metre arriving at the top of the atmosphere on a surface facing the Sun. But a planet does not present its whole surface to this beam. It intercepts sunlight only over its cross-sectional disc of area $\\pi R^2$ (the shadow it casts), while it radiates its own infrared from its entire spherical surface $4\\pi R^2$. That mismatch — catch over a disc, emit over a sphere — introduces the crucial factor of 4 into the energy balance."
+    },
+    {
+      "type": "formula",
+      "content": "S = \\frac{L_{Sun}}{4\\pi d^2}"
+    },
+    {
+      "type": "heading",
+      "content": "Planetary energy balance and equilibrium temperature"
+    },
+    {
+      "type": "text",
+      "content": "If a planet's average temperature is steady, it must be in radiative equilibrium: the power it absorbs from the Sun equals the power it radiates back to space. The power absorbed is the solar constant times the intercepting disc, reduced by the reflected fraction: $P_{in} = S(1-\\alpha)\\pi R^2$. The power radiated, from the whole sphere, is $P_{out} = e\\sigma(4\\pi R^2)T^4$. Setting $P_{in} = P_{out}$, the $\\pi R^2$ cancels — so the equilibrium temperature does not depend on the planet's size, only on the incoming intensity, its albedo and its emissivity."
+    },
+    {
+      "type": "formula",
+      "content": "S(1-\\alpha)\\pi R^2 = e\\sigma (4\\pi R^2) T^4 \\quad\\Longrightarrow\\quad T = \\sqrt[4]{\\frac{S(1-\\alpha)}{4e\\sigma}}"
+    },
+    {
+      "type": "text",
+      "content": "For a black-body Earth ($e = 1$) this predicts about 255 K, some 33 K below the observed 288 K. The atmosphere makes up the difference, and that is the greenhouse effect."
+    },
+    {
+      "type": "workedExample",
+      "question": "Model the Earth as a black body with no atmosphere. Using the solar constant $S = 1.36 \\times 10^{3}$ W m⁻², albedo $\\alpha = 0.30$ and $\\sigma = 5.67 \\times 10^{-8}$ W m⁻² K⁻⁴, calculate the equilibrium surface temperature and comment on the result. [4]",
+      "solution": "**Step 1 — power absorbed over the intercepting disc.**\nA fraction $(1-\\alpha)$ of the incident beam is absorbed over the disc $\\pi R^2$:\n$P_{in} = S(1-\\alpha)\\pi R^2$.  [M1: uses disc area and $(1-\\alpha)$]\n\n**Step 2 — power radiated over the whole sphere.**\n$P_{out} = \\sigma (4\\pi R^2) T^4$.\n\n**Step 3 — set them equal and cancel $\\pi R^2$.**\n$S(1-\\alpha)\\pi R^2 = \\sigma (4\\pi R^2) T^4 \\;\\Rightarrow\\; T^4 = \\dfrac{S(1-\\alpha)}{4\\sigma}$.  [M1: correct balance, factor of 4]\n\n**Step 4 — substitute (in SI units, $T$ in K).**\n$T^4 = \\dfrac{(1.36 \\times 10^{3})(1 - 0.30)}{4 \\times 5.67 \\times 10^{-8}} = \\dfrac{952}{2.268 \\times 10^{-7}} = 4.20 \\times 10^{9}$ K⁴.\n$T = (4.20 \\times 10^{9})^{1/4} = 255$ K.  [A1: 255 K]\n\n**Comment.** 255 K is −18°C, about 33 K colder than the observed average of 288 K (15°C). The atmosphere must therefore provide substantial extra warming — the greenhouse effect. [A1: correct comparison and conclusion]\n\n*The answer is independent of Earth's radius because $\\pi R^2$ cancels — a common source of confusion when students try to look up a radius they do not need.*"
+    },
+    {
+      "type": "heading",
+      "content": "The greenhouse mechanism"
+    },
+    {
+      "type": "text",
+      "content": "The atmosphere is largely transparent to incoming short-wave sunlight, which passes through and is absorbed at the surface. The warmed surface then radiates long-wave infrared (its Wien peak lies in the IR because it is cool). Greenhouse gases — chiefly water vapour (H₂O), carbon dioxide (CO₂), methane (CH₄) and nitrous oxide (N₂O) — absorb this outgoing infrared. An absorbed IR photon raises a molecule to a higher vibrational energy state; the excited molecule then re-emits infrared in a random direction, so a significant fraction is radiated back down towards the surface. This returned radiation reduces the net rate of energy loss to space, and the surface must settle at a higher temperature before incoming and outgoing power balance once more. The molecular requirement is that the vibration changes the molecule's electric dipole moment; symmetric diatomic molecules like N₂ and O₂ cannot do this and so are not greenhouse gases, which is why the bulk of the atmosphere is IR-transparent."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Short-wave in:** atmosphere is transparent to incoming solar radiation, which is absorbed at the surface.",
+        "**Long-wave out:** the warmed surface emits infrared (its black-body peak is in the IR).",
+        "**Absorb and re-emit:** greenhouse gases absorb outgoing IR and re-emit it in all directions, some back to the surface.",
+        "**Net effect:** reduced energy loss to space raises the equilibrium surface temperature.",
+        "**Molecular basis:** absorption needs a vibration that changes the dipole moment — so N₂ and O₂ do not contribute."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners specifically reject vague answers like 'greenhouse gases trap heat like a blanket'. To earn the marks you must name the mechanism: the surface emits INFRARED, greenhouse gases ABSORB that infrared and RE-EMIT it (including back towards the surface). Those verbs — absorb and re-emit infrared — are what the mark scheme is looking for."
+    },
+    {
+      "type": "heading",
+      "content": "The enhanced greenhouse effect"
+    },
+    {
+      "type": "text",
+      "content": "The natural greenhouse effect described above is essential: without it Earth would sit near −18°C and be largely frozen. The enhanced greenhouse effect is the additional warming caused by human activities that raise greenhouse-gas concentrations — principally CO₂ from burning fossil fuels and deforestation, along with extra methane from agriculture and fossil-fuel extraction. Adding greenhouse gases increases the absorption of outgoing infrared, shifting the energy balance so that the surface warms until balance is restored at a higher temperature. Because CO₂ persists in the atmosphere for centuries and, unlike water vapour, is not controlled by temperature, it is treated as the primary driver of recent climate change even though water vapour is more abundant. Be precise with the terminology: the greenhouse effect is natural and beneficial, while the enhanced greenhouse effect is the human-driven intensification behind global warming."
+    },
+    {
+      "type": "examTip",
+      "content": "Keep 'natural' and 'enhanced' distinct in every answer — marks are awarded for using the terms correctly. The problem discussed in climate questions is the ENHANCED greenhouse effect; the plain greenhouse effect is the natural process that keeps the planet habitable."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Getting Wien's law the wrong way round** — $\\lambda_{max} \\propto 1/T$, so a hotter body peaks at a SHORTER wavelength. Treating peak wavelength as increasing with temperature loses the mark.",
+        "**Using °C in a $T^4$ (or Wien) calculation** — the Stefan–Boltzmann and Wien laws demand ABSOLUTE temperature; always convert to kelvin first.",
+        "**Saying albedo is absorbed** — albedo is the fraction REFLECTED; the fraction absorbed is $(1-\\alpha)$. Mixing these up flips the whole energy balance.",
+        "**Dropping the factor of 4** — a planet absorbs over a disc $\\pi R^2$ but radiates over a sphere $4\\pi R^2$; forgetting the 4 gives a temperature that is too high.",
+        "**Describing the mechanism as 'trapping heat like a blanket'** — you must state that the surface emits infrared and greenhouse gases absorb and re-emit it; a vague 'trapping' statement scores nothing.",
+        "**Confusing the greenhouse effect with the ozone hole** — the greenhouse effect is about infrared in the lower atmosphere; ozone depletion is about UV in the stratosphere. They are unrelated issues.",
+        "**Blurring natural and enhanced** — name which one you mean; the natural effect is essential, the enhanced effect is the human-caused problem."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "B.2 mixes calculation with explanation, and the explanation marks are awarded analytically — each distinct valid physics point is worth one mark. Method marks (M) credit correct reasoning, answer marks (A) credit a correct conclusion, and error-carried-forward (ECF) means a wrong value early on does not cost you the marks that follow, provided your method is written down. Study how each mark below is tied to a specific, named idea rather than to loose phrasing."
+    },
+    {
+      "type": "workedExample",
+      "question": "Explain, in terms of radiation, how greenhouse gases raise the surface temperature of a planet, and state one consequence of increasing their concentration. [4]",
+      "solution": "**Model answer.**\nThe planet's warmed surface emits long-wave infrared radiation towards space. Greenhouse gases in the atmosphere absorb some of this outgoing infrared radiation, raising the gas molecules to higher vibrational energy states. The molecules then re-emit infrared radiation in all directions, so a fraction is returned back down towards the surface. This reduces the net rate at which the planet loses energy to space, so the surface reaches equilibrium at a higher temperature than it otherwise would. Increasing the concentration of greenhouse gases increases this absorption and back-radiation, so the equilibrium surface temperature rises further (an enhanced greenhouse effect leading to global warming).\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (M):** the surface emits INFRARED / long-wave radiation.\n- **Point 2 (M):** greenhouse gases ABSORB this (outgoing) infrared radiation.\n- **Point 3 (M):** the gases RE-EMIT infrared in all directions, including back towards the surface.\n- **Point 4 (M):** this reduces the NET energy loss to space, so the surface is warmer / settles at a higher equilibrium temperature (A — the conclusion of the reasoning chain).\n- **Consequence mark (A):** a valid stated consequence of increasing concentration — e.g. further rise in surface temperature / global warming / more back-radiation. Awarded once, and only if it is a genuine consequence, not a restatement of the mechanism.\n\nBecause five creditable points are shown for a 4-mark question, the engine caps the award at 4 — there is deliberate room to miss one point and still score full marks. But the marks are for DISTINCT ideas: repeating 'the gases absorb radiation' in two forms scores once.\n\n**What the engine rejects.** An answer that says only 'the gases trap the heat' or 'the atmosphere acts like a blanket' scores ZERO for the mechanism, because it names neither infrared, nor absorption, nor re-emission. The mark scheme requires the physical process (absorb + re-emit infrared), not an analogy.\n\n**ECF and partial credit.** The points are independent, so a student who omits the emission step but correctly describes absorption and re-emission back to the surface still earns those points. There is no all-or-nothing penalty — each valid line stands on its own.\n\n**Bottom line:** to secure all 4 marks, hit three separate mechanism points (surface emits IR → gases absorb IR → gases re-emit IR back down → net loss reduced/warmer) and state one genuine consequence. An analogy alone scores nothing."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR answer this same way — point by point, with ECF and a cap at the marks available. So write in distinct, creditable statements: name infrared, name absorption, name re-emission back to the surface, then state a consequence. Analogies feel persuasive but earn nothing; the mark scheme rewards the named physical mechanism, and showing each step is what protects your score."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The radiation laws in this topic reach well beyond climate. Wien's law and the Stefan–Boltzmann law are the tools for reading a star's temperature and luminosity in astrophysics; the inverse-square intensity relation reappears wherever power spreads from a source, from sound to gravitation. Master the energy-balance habit — absorbed power in over the disc, radiated power out over the sphere, set them equal — and you have a template that solves planetary-temperature problems for any world, atmosphere or none."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 2 question marked: explain the greenhouse mechanism and calculate an equilibrium temperature with full working",
+      "href": "/mark?subject=ib-physics-hl&topic=B.2&component=paper_2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Physics Data Booklet (Wien and Stefan–Boltzmann constants)",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/"
+        },
+        {
+          "label": "NASA: The Causes of Climate Change",
+          "href": "https://climate.nasa.gov/causes/"
+        },
+        {
+          "label": "PhET Simulation: The Greenhouse Effect",
+          "href": "https://phet.colorado.edu/en/simulations/the-greenhouse-effect"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "The Greenhouse Effect",
+    "embedUrl": "https://phet.colorado.edu/sims/html/the-greenhouse-effect/latest/the-greenhouse-effect_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/the-greenhouse-effect",
+    "hint": "Explore “The Greenhouse Effect” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "B.2.1",
+      "title": "The greenhouse effect",
+      "detail": "Mechanism of photon absorption and re-radiation by greenhouse gases."
+    },
+    {
+      "code": "B.2.2",
+      "title": "The solar constant",
+      "detail": "Power per unit area from the Sun at Earth's mean orbital radius, $S \\approx 1360 \\, \\text{W m}^{-2}$."
+    },
+    {
+      "code": "B.2.3",
+      "title": "Albedo",
+      "detail": "Fraction of incident radiation reflected by a surface, $a = \\frac{\\text{total scattered power}}{\\text{total incident power}}$."
+    },
+    {
+      "code": "B.2.4",
+      "title": "The Stefan–Boltzmann law and Wien’s displacement law",
+      "detail": "Black-body radiation laws: $P = \\sigma A T^4$ and $\\lambda_{\\text{max}} T = \\text{constant}$."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "b-2-greenhouse-effect-q1",
+      "prompt": "Outline the role of greenhouse gases in the warming of the Earth's atmosphere.",
+      "marks": 3,
+      "commandTerm": "Outline",
+      "difficulty": "foundation",
+      "syllabusRef": "B.2.1",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) Earth's surface absorbs incoming short-wavelength solar radiation and re-radiates it as long-wavelength infrared (IR) radiation.",
+          "marks": 1
+        },
+        {
+          "text": "(M2) Greenhouse gases in the atmosphere (such as CO₂, H₂O, CH₄) absorb this outgoing IR radiation due to having resonant frequencies in the IR range.",
+          "marks": 1
+        },
+        {
+          "text": "(M3) The gases re-radiate this energy in all directions, with some returning to the Earth's surface, thus trapping thermal energy and increasing the surface temperature.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The Earth's surface is warmed by short-wavelength radiation from the Sun. It then re-radiates this energy as long-wavelength infrared (IR) radiation. Greenhouse gases, such as carbon dioxide and water vapour, have natural resonant frequencies that allow them to absorb this outgoing IR radiation. After absorption, they re-radiate the energy in all directions. A portion of this re-radiated energy travels back down to the Earth's surface, trapping thermal energy and increasing the average surface temperature above what it would be without these gases."
+    },
+    {
+      "id": "b-2-greenhouse-effect-q2",
+      "prompt": "A simplified model of the Earth assumes it is a perfect black body with no atmosphere. The solar constant is $1360 \\, \\text{W m}^{-2}$. The Stefan-Boltzmann constant is $\\sigma = 5.67 \\times 10^{-8} \\, \\text{W m}^{-2} \\text{K}^{-4}$. Calculate the expected surface temperature of this model Earth.",
+      "marks": 4,
+      "commandTerm": "Calculate",
+      "difficulty": "standard",
+      "syllabusRef": "B.2.4",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) Power absorbed by Earth = $S \\times \\pi r^2$. Power radiated = $\\sigma A T^4 = \\sigma (4\\pi r^2) T^4$.",
+          "marks": 1
+        },
+        {
+          "text": "(M2) Equates power absorbed and power radiated for thermal equilibrium: $S \\pi r^2 = \\sigma (4\\pi r^2) T^4$.",
+          "marks": 1
+        },
+        {
+          "text": "(M3) Simplifies to $S = 4\\sigma T^4$ and correctly substitutes values: $1360 = 4 \\times (5.67 \\times 10^{-8}) \\times T^4$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) $T = \\left( \\frac{1360}{4 \\times 5.67 \\times 10^{-8}} \\right)^{1/4} = 278.48... \\, \\text{K} \\approx 278 \\, \\text{K}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "In this model, the Earth is in thermal equilibrium, so the power it absorbs from the Sun must equal the power it radiates as a black body.\nThe Earth absorbs solar radiation over its cross-sectional area, which is a disc of radius $r$. So, Power absorbed $P_{in} = S \\times \\pi r^2$.\nThe Earth radiates energy from its entire spherical surface area, $A = 4\\pi r^2$. According to the Stefan-Boltzmann law, the power radiated is $P_{out} = \\sigma A T^4 = \\sigma (4\\pi r^2) T^4$.\nAt equilibrium, $P_{in} = P_{out}$.\n$S \\pi r^2 = \\sigma (4\\pi r^2) T^4$\nThe $\\pi r^2$ terms cancel, leaving $S = 4\\sigma T^4$.\nRearranging for temperature $T$:\n$T = \\left( \\frac{S}{4\\sigma} \\right)^{1/4}$\nSubstituting the values:\n$T = \\left( \\frac{1360 \\, \\text{W m}^{-2}}{4 \\times 5.67 \\times 10^{-8} \\, \\text{W m}^{-2} \\text{K}^{-4}} \\right)^{1/4}$\n$T = (5.996... \\times 10^9)^{1/4} \\, \\text{K}$\n$T \\approx 278 \\, \\text{K}$ (or $5^{\\circ}\\text{C}$)."
+    },
+    {
+      "id": "b-2-greenhouse-effect-q3",
+      "prompt": "The Sun has a surface temperature of approximately $5800 \\, \\text{K}$ and the Earth has an average surface temperature of $288 \\, \\text{K}$. Wien's displacement law constant is $2.90 \\times 10^{-3} \\, \\text{m K}$.\n\na) Calculate the peak emission wavelength for both the Sun and the Earth. [2]\nb) Using your answers to (a), explain why the greenhouse effect occurs. [3]",
+      "marks": 5,
+      "commandTerm": "Explain",
+      "difficulty": "standard",
+      "syllabusRef": "B.2.4",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) For the Sun: $\\lambda_{\\text{max}} = \\frac{2.90 \\times 10^{-3}}{5800} = 5.00 \\times 10^{-7} \\, \\text{m}$ (or 500 nm).",
+          "marks": 1
+        },
+        {
+          "text": "(M1) For the Earth: $\\lambda_{\\text{max}} = \\frac{2.90 \\times 10^{-3}}{288} = 1.01 \\times 10^{-5} \\, \\text{m}$ (or 10.1 µm).",
+          "marks": 1
+        },
+        {
+          "text": "(M1) The Sun's peak emission is short-wavelength (visible light), while the Earth's peak emission is long-wavelength (infrared).",
+          "marks": 1
+        },
+        {
+          "text": "(M1) The Earth's atmosphere is largely transparent to the incoming short-wavelength radiation from the Sun.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) However, greenhouse gases in the atmosphere absorb the outgoing long-wavelength (infrared) radiation from the Earth, trapping the energy.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "a) Using Wien's displacement law, $\\lambda_{\\text{max}} = \\frac{b}{T}$, where $b = 2.90 \\times 10^{-3} \\, \\text{m K}$.\nFor the Sun: $\\lambda_{\\text{max, Sun}} = \\frac{2.90 \\times 10^{-3} \\, \\text{m K}}{5800 \\, \\text{K}} = 5.00 \\times 10^{-7} \\, \\text{m}$ (500 nm).\nFor the Earth: $\\lambda_{\\text{max, Earth}} = \\frac{2.90 \\times 10^{-3} \\, \\text{m K}}{288 \\, \\text{K}} = 1.01 \\times 10^{-5} \\, \\text{m}$ (10.1 µm).\n\nb) The greenhouse effect occurs due to this difference in wavelengths. The Sun's radiation, peaking at short wavelengths (visible light), passes through the Earth's atmosphere with little absorption. This radiation warms the Earth's surface. The Earth then re-radiates energy, but at a much lower temperature, so its radiation peaks at long wavelengths (infrared), as calculated. Greenhouse gases in the atmosphere are effective absorbers of this long-wavelength infrared radiation but are transparent to the incoming short-wavelength radiation. By absorbing the outgoing IR, they trap thermal energy, which is then re-radiated in all directions, including back to the surface, causing warming."
+    },
+    {
+      "id": "b-2-greenhouse-effect-q4",
+      "prompt": "A more realistic energy balance model for a planet includes its albedo, $a$, and the emissivity, $e$, of its atmosphere. The atmosphere is assumed to be a thin layer at a single temperature $T_a$, and it is transparent to incoming solar radiation. The planet's surface is at temperature $T_s$. The atmosphere absorbs a fraction $e$ of the infrared radiation emitted by the surface and emits radiation both upwards into space and downwards to the surface.\n\nBy considering the energy balance of the atmosphere and the surface separately, determine an expression for the surface temperature $T_s$ in terms of the solar constant $S$, albedo $a$, emissivity $e$, and the Stefan-Boltzmann constant $\\sigma$. Assume the planet and its atmosphere are in radiative equilibrium.",
+      "marks": 6,
+      "commandTerm": "Determine",
+      "difficulty": "challenge",
+      "syllabusRef": "B.2.4",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) Considers energy balance for the atmosphere: Power absorbed $e\\sigma T_s^4$ equals power emitted $2e\\sigma T_a^4$ (up and down).",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Deduces from atmosphere balance that $T_s^4 = 2T_a^4$ or $\\sigma T_a^4 = \\frac{1}{2} \\sigma T_s^4$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Considers energy balance for the surface: Power gained = Power lost. Power gained is from Sun and atmosphere: $\\frac{S(1-a)}{4} + e\\sigma T_a^4$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Power lost from surface is $\\sigma T_s^4$. Sets up surface balance equation: $\\frac{S(1-a)}{4} + e\\sigma T_a^4 = \\sigma T_s^4$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Substitutes expression for $T_a$ into surface balance equation: $\\frac{S(1-a)}{4} + e(\\frac{1}{2}\\sigma T_s^4) = \\sigma T_s^4$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Correctly rearranges to find $T_s = \\left( \\frac{S(1-a)}{4\\sigma(1 - e/2)} \\right)^{1/4}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "We establish two energy balance equations, one for the planet's surface and one for the atmospheric layer, considering power per unit area.\n\n1.  **Atmospheric Layer Balance:**\nThe atmosphere absorbs a fraction $e$ of the IR radiation from the surface. Power absorbed = $e \\sigma T_s^4$.\nThe atmosphere emits radiation upwards and downwards. Total power emitted = $e \\sigma T_a^4 + e \\sigma T_a^4 = 2e \\sigma T_a^4$.\nAt equilibrium: $e \\sigma T_s^4 = 2e \\sigma T_a^4$, which simplifies to $\\sigma T_a^4 = \\frac{1}{2} \\sigma T_s^4$.\n\n2.  **Surface Balance:**\nThe surface gains energy from two sources: solar radiation and downward radiation from the atmosphere.\nPower gained = (Absorbed solar radiation) + (Downward atmospheric radiation).\nThe average incident solar radiation is $\\frac{S}{4}$. With albedo $a$, the absorbed solar power is $\\frac{S(1-a)}{4}$.\nDownward atmospheric radiation is $e \\sigma T_a^4$.\nTotal Power Gained = $\\frac{S(1-a)}{4} + e \\sigma T_a^4$.\nThe surface loses energy by emitting IR radiation as a black body: Power Lost = $\\sigma T_s^4$.\nAt equilibrium: $\\frac{S(1-a)}{4} + e \\sigma T_a^4 = \\sigma T_s^4$.\n\n3.  **Combine and Solve:**\nSubstitute the result from the atmospheric balance ($\\sigma T_a^4 = \\frac{1}{2} \\sigma T_s^4$) into the surface balance equation:\n$\\frac{S(1-a)}{4} + e \\left( \\frac{1}{2} \\sigma T_s^4 \\right) = \\sigma T_s^4$.\nNow, we solve for $T_s$:\n$\\frac{S(1-a)}{4} = \\sigma T_s^4 - \\frac{e}{2} \\sigma T_s^4$\n$\\frac{S(1-a)}{4} = \\sigma T_s^4 \\left( 1 - \\frac{e}{2} \\right)$\n$T_s^4 = \\frac{S(1-a)}{4\\sigma \\left( 1 - \\frac{e}{2} \\right)}$\nTherefore, the surface temperature is $T_s = \\left( \\frac{S(1-a)}{4\\sigma(1 - e/2)} \\right)^{1/4}$."
+    }
+  ]
+}

@@ -1,0 +1,536 @@
+{
+  "slug": "5-9-differential-equations-and-slope-fields",
+  "topicCode": "5.9",
+  "title": "Differential equations and slope fields",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "pilot",
+  "unit": {
+    "code": "5",
+    "title": "Calculus"
+  },
+  "summary": "A differential equation is an equation that ties an unknown function to its own rate of change, and it is how mathematics describes growth, decay, cooling and mixing. This lesson builds the full 5.9 toolkit for HL: setting up and interpreting a first-order differential equation $\\frac{dy}{dx}=f(x,y)$; reading and sketching slope (direction) fields and drawing solution curves that flow through a given point; solving separable equations $\\frac{dy}{dx}=g(x)h(y)$ by separating the variables and integrating, $\\int\\frac{1}{h(y)}\\,dy=\\int g(x)\\,dx$; using an initial or boundary condition to pin down the constant of integration and find the particular solution; Euler's method $y_{n+1}=y_n+h\\,f(x_n,y_n)$ for a step-by-step numerical approximation; and applications to growth, decay and mixing. Because Paper 1 is non-calculator, every worked example is laid out exactly the way our marking engine awards marks — method by method — so you keep every mark your working has earned.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Set up a first-order differential equation from a described rate of change and interpret what $\\frac{dy}{dx}=f(x,y)$ says about the behaviour of a solution.",
+    "Sketch and read a slope (direction) field, and draw the solution curve through a given initial point by following the flow of the segments.",
+    "Solve a separable differential equation $\\frac{dy}{dx}=g(x)h(y)$ by separating the variables and integrating both sides, remembering a single constant of integration.",
+    "Apply an initial or boundary condition to find the value of the constant and hence the particular solution, and present the answer in an accepted equivalent form.",
+    "Use Euler's method $y_{n+1}=y_n+h\\,f(x_n,y_n)$ to produce a numerical approximation, and model growth, decay and mixing situations with differential equations."
+  ],
+  "syllabusObjectivesCovered": [
+    "5.9"
+  ],
+  "levelNote": "HL only — Higher Level content.",
+  "simpleExplanation": {
+    "title": "Following the Flow of Change",
+    "summary": "A differential equation gives you the gradient of a curve at every point instead of the curve itself. A slope field draws that gradient as a tiny arrow at each point, so the whole plane becomes a map of currents; a solution curve is any path that always flows along the arrows.",
+    "analogy": "Picture a river seen from above. At every point the current pushes in a definite direction — that rule is the differential equation $\\frac{dy}{dx}=f(x,y)$. Draw a short arrow for the current at a grid of points and you have the slope field. Now drop a leaf onto the water at one spot (the initial condition): the path it traces as it drifts, always lining up with the local current, is the particular solution curve. Separating the variables is the algebra that gives you the exact equation of that path; Euler's method is what you do when you cannot find the exact path and instead take short straight steps along the arrows.",
+    "steps": [
+      "Read the equation as a gradient machine: substitute any point $(x,y)$ into $f(x,y)$ and you get the slope of the solution curve there.",
+      "To sketch a slope field, work through a grid of points, compute the gradient at each, and draw a short segment with that gradient.",
+      "To solve exactly when the equation is separable, gather all the $y$'s on one side and all the $x$'s on the other, then integrate both sides and add one constant $C$.",
+      "Use the initial condition to find $C$, giving the single particular solution; if you cannot integrate, step along the field numerically with Euler's method."
+    ]
+  },
+  "keyConcepts": [
+    "first-order differential equations",
+    "slope fields and solution curves",
+    "separation of variables",
+    "Euler's method"
+  ],
+  "flashcards": [
+    {
+      "front": "First-order differential equation",
+      "back": "An equation relating a function to its first derivative, written $\\frac{dy}{dx}=f(x,y)$. It gives the gradient of a solution curve at every point $(x,y)$ without telling you the curve directly.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Slope (direction) field",
+      "back": "A grid of short line segments, one at each chosen point $(x,y)$, whose gradient equals $f(x,y)$. It pictures the family of all solution curves at once.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Reading a gradient from the field",
+      "back": "To find the segment at $(a,b)$, substitute $x=a$ and $y=b$ into $\\frac{dy}{dx}=f(x,y)$. The number $f(a,b)$ IS the gradient of the segment there.",
+      "pillLabel": "Method"
+    },
+    {
+      "front": "Separable differential equation",
+      "back": "One that can be written $\\frac{dy}{dx}=g(x)h(y)$ — a function of $x$ times a function of $y$. It is solved by separating the variables and integrating both sides.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Separation of variables (the move)",
+      "back": "From $\\frac{dy}{dx}=g(x)h(y)$, gather variables: $\\frac{1}{h(y)}\\,dy=g(x)\\,dx$, then integrate: $\\int\\frac{1}{h(y)}\\,dy=\\int g(x)\\,dx$. One constant $C$ covers both integrals.",
+      "pillLabel": "Method"
+    },
+    {
+      "front": "General vs particular solution",
+      "back": "The general solution contains the arbitrary constant $C$ and is a whole family of curves. A particular solution is the one curve picked out by an initial/boundary condition, which fixes $C$.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "When do you find $C$?",
+      "back": "Integrate first and write $+C$, then substitute the condition to find $C$ BEFORE making $y$ the subject. Doing it in this order usually keeps the algebra simplest.",
+      "pillLabel": "Method"
+    },
+    {
+      "front": "$\\int\\frac{1}{y}\\,dy$",
+      "back": "$\\int\\frac{1}{y}\\,dy=\\ln|y|+C$. Keep the modulus in general; you may drop it in a model where the quantity is known to be positive (e.g. a population or a volume).",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Euler's method",
+      "back": "A numerical approximation to $\\frac{dy}{dx}=f(x,y)$: from a start point take straight steps of width $h$ using $y_{n+1}=y_n+h\\,f(x_n,y_n)$ and $x_{n+1}=x_n+h$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Growth / decay model",
+      "back": "'Rate of change proportional to the amount' means $\\frac{dP}{dt}=kP$, which separates to give $P=Ae^{kt}$: growth if $k>0$, decay if $k<0$.",
+      "pillLabel": "Application"
+    },
+    {
+      "front": "Setting up a mixing model",
+      "back": "For an amount $Q$ in a tank, $\\frac{dQ}{dt}=(\\text{rate in})-(\\text{rate out})$, where each rate is concentration $\\times$ flow. This is a first-order differential equation in $Q$.",
+      "pillLabel": "Application"
+    },
+    {
+      "front": "Exam Trap: dividing before separating",
+      "back": "You must separate FIRST — $\\frac{1}{h(y)}\\,dy=g(x)\\,dx$ — before integrating. Writing $\\int g(x)h(y)\\,dx$ and integrating the $y$-part as if $y$ were constant is wrong and scores no method mark.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "You are solving $\\frac{dy}{dx}=xy$. Which is the correct FIRST step before integrating?",
+      "options": [
+        "Integrate straight away: $y=\\int xy\\,dx$",
+        "Separate the variables: $\\frac{1}{y}\\,dy=x\\,dx$",
+        "Differentiate both sides with respect to $x$",
+        "Substitute an initial condition to remove $y$"
+      ],
+      "answer": "Separate the variables: $\\frac{1}{y}\\,dy=x\\,dx$"
+    },
+    {
+      "prompt": "After integrating a separable equation you obtain $\\frac{1}{2}y^2=x^2+C$, with the condition $y=3$ when $x=0$. What is the value of $C$?",
+      "options": [
+        "$C=0$",
+        "$C=3$",
+        "$C=4.5$",
+        "$C=9$"
+      ],
+      "answer": "$C=4.5$"
+    },
+    {
+      "prompt": "Euler's method for $\\frac{dy}{dx}=f(x,y)$ with step $h$ updates the $y$-value using which formula?",
+      "options": [
+        "$y_{n+1}=y_n+f(x_n,y_n)$",
+        "$y_{n+1}=y_n+h\\,f(x_n,y_n)$",
+        "$y_{n+1}=y_n\\cdot h\\,f(x_n,y_n)$",
+        "$y_{n+1}=h\\,f(x_{n+1},y_{n+1})$"
+      ],
+      "answer": "$y_{n+1}=y_n+h\\,f(x_n,y_n)$"
+    },
+    {
+      "prompt": "On a slope field for $\\frac{dy}{dx}=f(x,y)$, a segment is drawn perfectly horizontal at the point $(2,1)$. This tells you that:",
+      "options": [
+        "$f(2,1)=0$",
+        "$f(2,1)$ is undefined",
+        "$f(2,1)=1$",
+        "the solution curve has a vertical tangent there"
+      ],
+      "answer": "$f(2,1)=0$"
+    },
+    {
+      "prompt": "A quantity decays at a rate proportional to its current amount. Which differential equation models this?",
+      "options": [
+        "$\\frac{dN}{dt}=kt$ with $k>0$",
+        "$\\frac{dN}{dt}=kN$ with $k>0$",
+        "$\\frac{dN}{dt}=kN$ with $k<0$",
+        "$\\frac{dN}{dt}=k$ with $k<0$"
+      ],
+      "answer": "$\\frac{dN}{dt}=kN$ with $k<0$"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What exactly makes an equation 'differential', and what counts as its solution?",
+      "a": "A differential equation contains a derivative of the unknown function — here the first derivative $\\frac{dy}{dx}$. Its solution is not a number but a function (a whole curve), because you are undoing a derivative. Since integration introduces an arbitrary constant, the general solution is a family of curves, one for each value of $C$. A single condition then selects the particular curve you want."
+    },
+    {
+      "q": "How do I know whether an equation is separable?",
+      "a": "Check whether the right-hand side can be written as a function of $x$ times a function of $y$: $\\frac{dy}{dx}=g(x)h(y)$. For example $\\frac{dy}{dx}=xy$ and $\\frac{dy}{dx}=\\frac{2x}{y}$ are separable, but $\\frac{dy}{dx}=x+y$ is not, because the right side cannot be factored into an $x$-only part times a $y$-only part. In AA HL the separable case is the one you are expected to solve exactly."
+    },
+    {
+      "q": "In $\\ln|y|=\\dots$, when may I drop the modulus signs?",
+      "a": "When you exponentiate, $|y|=e^{\\text{(stuff)}}$ gives $y=\\pm e^{\\text{(stuff)}}$, and the $\\pm$ can be absorbed into the constant, giving forms like $y=Ae^{kx}$ with $A$ of either sign. In many modelling problems the quantity is physically positive (a population, a mass, a volume), so you may drop the modulus and take the positive branch. Keep it whenever the sign of $y$ is not guaranteed by the context."
+    },
+    {
+      "q": "Is Euler's method exact, and how do I make it more accurate?",
+      "a": "No — Euler's method only approximates. It replaces the true curve with short straight segments, so each step carries a small error, and the errors accumulate. Using a smaller step size $h$ (and therefore more steps) generally reduces the error and brings the approximation closer to the true solution, at the cost of more arithmetic. In the exam the step size is given; your job is to apply $y_{n+1}=y_n+h\\,f(x_n,y_n)$ carefully and consistently."
+    },
+    {
+      "q": "How do I turn a worded rate problem into a differential equation?",
+      "a": "Translate the English into a derivative. 'Rate of change of $P$ with respect to time' is $\\frac{dP}{dt}$; 'proportional to' introduces a constant $k$, so 'the rate is proportional to the amount' becomes $\\frac{dP}{dt}=kP$. For a mixing tank, the rate of change of the amount equals rate in minus rate out, each rate being a concentration multiplied by a flow rate. Once set up, solve by separating the variables and use the given data as your condition."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Differential equations are how mathematics writes down change itself: instead of describing where something is, they describe how fast it is changing, and leave you to reconstruct the behaviour. That reconstruction has three faces in AA HL. Geometrically, a slope field lets you see every solution at once and sketch the one you want. Algebraically, separation of variables lets you solve the equation exactly when it is separable. Numerically, Euler's method lets you approximate a solution when you cannot integrate. In this lesson we build all three, then apply them to growth, decay and mixing. Because Paper 1 is non-calculator, the worked examples are laid out exactly the way our engine marks your own practice — method mark by method mark."
+    },
+    {
+      "type": "heading",
+      "content": "Setting up and interpreting a first-order differential equation"
+    },
+    {
+      "type": "text",
+      "content": "A first-order differential equation has the form $\\frac{dy}{dx}=f(x,y)$: it gives the gradient of a solution curve at any point $(x,y)$, but not the curve itself. You have already met the simplest kind — being told $\\frac{dy}{dx}=2x$ and recovering $y=x^2+C$ by integrating. The new feature at HL is that the right-hand side may involve $y$ as well as $x$, as in $\\frac{dy}{dx}=y-x$ or $\\frac{dy}{dx}=\\frac{2x}{y}$, and that we often build the equation ourselves from a described rate of change."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**'Rate of change of $y$'** with respect to $x$ (or time $t$) is the derivative $\\frac{dy}{dx}$ (or $\\frac{dy}{dt}$) — the object you are trying to model.",
+        "**'Proportional to'** introduces a constant $k$: 'the rate is proportional to $y$' becomes $\\frac{dy}{dt}=ky$.",
+        "**Interpreting the equation:** where $f(x,y)>0$ solutions rise; where $f(x,y)<0$ they fall; where $f(x,y)=0$ they are momentarily flat.",
+        "**A solution is a function**, and the general solution is a family of curves because integrating introduces the constant $C$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Slope fields: seeing every solution at once"
+    },
+    {
+      "type": "text",
+      "content": "Because $\\frac{dy}{dx}=f(x,y)$ hands you a gradient at every point, you can picture the solutions without solving anything. A slope (direction) field is built by choosing a grid of points and, at each one, drawing a short line segment whose gradient is $f(x,y)$. The result is a field of tangents that reveals the 'flow' of all solution curves. To draw a particular solution, start at an initial point and sketch a smooth curve that stays tangent to the segments as it moves."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "To build the field for $\\frac{dy}{dx}=f(x,y)$, take a grid of $(x,y)$ points and compute the gradient $m=f(x,y)$ at each.",
+        "Draw a short segment of gradient $m$ at each point: rising for $m>0$, falling for $m<0$, horizontal for $m=0$.",
+        "If $f$ depends only on $x$, every point in a vertical column shares the same gradient; if it depends only on $y$, every point in a horizontal row does.",
+        "A solution curve never crosses the segments — it runs tangent to them, so trace it by 'following the flow' from the starting point."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A slope field is drawn for the differential equation $\\frac{dy}{dx}=x-y$.\n\n(a) Find the gradient of the solution curve at the points $(2,2)$, $(0,1)$ and $(-1,0)$.\n\n(b) Describe where in the plane the solution curves have horizontal tangents. [4]",
+      "solution": "(a) Substitute each point into $\\frac{dy}{dx}=x-y$.\n\nAt $(2,2)$: $\\frac{dy}{dx}=2-2=0$.\nAt $(0,1)$: $\\frac{dy}{dx}=0-1=-1$.\nAt $(-1,0)$: $\\frac{dy}{dx}=-1-0=-1$.  [M1: substitute points into $f(x,y)$][A1: all three gradients correct]\n\nSo the segment at $(2,2)$ is horizontal, while at $(0,1)$ and $(-1,0)$ the segments fall with gradient $-1$.\n\n(b) A tangent is horizontal where $\\frac{dy}{dx}=0$, i.e. where $x-y=0$.  [M1: set $f(x,y)=0$]\n\n**Horizontal tangents occur all along the line $y=x$.**  [A1]\n\n*Interpretation: along $y=x$ every segment is flat, so any solution curve crossing that line does so at a turning point.*"
+    },
+    {
+      "type": "heading",
+      "content": "Solving separable equations: separation of variables"
+    },
+    {
+      "type": "text",
+      "content": "Slope fields give a qualitative picture, but often we want an exact formula. That is possible for a special — and heavily examined — class of first-order equations: the separable ones. An equation is separable if it can be written as a function of $x$ times a function of $y$. The method is to gather all the $y$-terms (with $dy$) on one side and all the $x$-terms (with $dx$) on the other, and then integrate both sides."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{If } \\frac{dy}{dx}=g(x)h(y), \\text{ then } \\frac{1}{h(y)}\\,dy=g(x)\\,dx, \\text{ so } \\int\\frac{1}{h(y)}\\,dy=\\int g(x)\\,dx."
+    },
+    {
+      "type": "examTip",
+      "content": "Separate BEFORE you integrate, and add the constant of integration $+C$ the moment you integrate — once, on the $x$-side is conventional. If you integrate before separating, or treat $y$ as a constant inside an $x$-integral, you lose the method marks entirely. One combined constant $C$ is enough: a constant on each side would just merge into one."
+    },
+    {
+      "type": "workedExample",
+      "question": "A colony of bacteria of mass $m$ grams grows so that its rate of growth is proportional to its current mass, modelled by $\\frac{dm}{dt}=km$, where $t$ is measured in hours and $k>0$.\n\n(a) Show that the general solution is $m=Ae^{kt}$.\n\n(b) The colony has mass $50$ g at $t=0$ and $80$ g at $t=4$. Find the particular solution for $m$ in terms of $t$. [7]",
+      "solution": "(a) Separate the variables in $\\frac{dm}{dt}=km$:\n$\\frac{1}{m}\\,dm=k\\,dt$.  [M1: separate variables]\n\nIntegrate both sides:\n$\\int\\frac{1}{m}\\,dm=\\int k\\,dt$\n$\\ln|m|=kt+C$.  [A1: correct integration with one constant]\n\nSince the mass is positive we may drop the modulus. Exponentiate:\n$m=e^{kt+C}=e^{C}e^{kt}$.\n\nWrite $A=e^{C}$ (a positive constant):\n$m=Ae^{kt}$, as required.  [A1: reach $m=Ae^{kt}$]\n\n(b) Apply the condition $m=50$ when $t=0$:\n$50=Ae^{0}=A$, so $A=50$.  [M1: use initial condition]\n\nThus $m=50e^{kt}$. Now apply $m=80$ when $t=4$:\n$80=50e^{4k}$\n$e^{4k}=\\frac{80}{50}=1.6$  [M1: use second condition]\n$4k=\\ln 1.6$\n$k=\\tfrac{1}{4}\\ln 1.6$.  [A1: value of $k$]\n\n**Particular solution:** $m=50e^{\\frac{t}{4}\\ln 1.6}$, equivalently $m=50(1.6)^{t/4}$.  [A1: correct particular solution, any equivalent form]"
+    },
+    {
+      "type": "heading",
+      "content": "Euler's method: a numerical approximation"
+    },
+    {
+      "type": "text",
+      "content": "Not every differential equation can be solved exactly — sometimes the integral has no elementary form. Euler's method sidesteps this by approximating the solution with a chain of short straight steps. Starting from the known point, you use the current gradient to step forward a small distance $h$ in $x$, update $y$, and repeat. Each step assumes the gradient is constant across the interval, which is why smaller steps give better accuracy."
+    },
+    {
+      "type": "formula",
+      "content": "x_{n+1}=x_n+h, \\qquad y_{n+1}=y_n+h\\,f(x_n,y_n)"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Start from the initial point $(x_0,y_0)$ and the given step size $h$.",
+        "At each step compute the gradient $f(x_n,y_n)$ using the CURRENT point, then update $y$ by $y_{n+1}=y_n+h\\,f(x_n,y_n)$.",
+        "Advance $x$ by $x_{n+1}=x_n+h$ and repeat until you reach the required $x$-value.",
+        "The method under- or over-shoots because it follows tangents, not the true curve; a smaller $h$ reduces the accumulated error."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Use Euler's method with step size $h=0.1$ to find an approximate value of $y$ when $x=0.2$ for the differential equation $\\frac{dy}{dx}=x+y$, given that $y=1$ when $x=0$. [4]",
+      "solution": "Here $f(x,y)=x+y$, with $x_0=0$, $y_0=1$ and $h=0.1$.\n\n**Step 1 (from $x_0=0$ to $x_1=0.1$):**\n$f(x_0,y_0)=0+1=1$.\n$y_1=y_0+h\\,f(x_0,y_0)=1+0.1(1)=1.1$.  [M1: correct application of the Euler formula][A1: $y_1=1.1$]\n$x_1=0+0.1=0.1$.\n\n**Step 2 (from $x_1=0.1$ to $x_2=0.2$):**\n$f(x_1,y_1)=0.1+1.1=1.2$.\n$y_2=y_1+h\\,f(x_1,y_1)=1.1+0.1(1.2)=1.22$.  [M1: uses updated point $(0.1,1.1)$][A1: $y_2=1.22$]\n\n**Approximation:** $y\\approx 1.22$ when $x=0.2$.\n\n*Check on method: each step uses the gradient at the point you are LEAVING, not the one you are arriving at.*"
+    },
+    {
+      "type": "heading",
+      "content": "Applications: growth, decay and mixing"
+    },
+    {
+      "type": "text",
+      "content": "The reason differential equations dominate applied questions is that so many real processes are defined by their rate of change. 'The rate of change is proportional to the amount present' is exactly $\\frac{dN}{dt}=kN$, giving exponential growth ($k>0$) or decay ($k<0$) after separation. Mixing problems track an amount $Q$ in a tank where liquid flows in and out: the rate of change of $Q$ is the rate in minus the rate out, each rate being a concentration times a flow rate — again a first-order separable equation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Growth/decay:** $\\frac{dN}{dt}=kN \\Rightarrow N=N_0e^{kt}$, where $N_0$ is the initial amount; $k>0$ grows, $k<0$ decays.",
+        "**Half-life / doubling:** find $k$ from the given data, then solve $N=\\tfrac{1}{2}N_0$ (or $2N_0$) for $t$.",
+        "**Mixing:** $\\frac{dQ}{dt}=(\\text{concentration in}\\times\\text{flow in})-(\\text{concentration out}\\times\\text{flow out})$.",
+        "Always state the condition you use (e.g. $N(0)=N_0$) and keep units consistent throughout."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Integrating before separating** — you cannot write $y=\\int g(x)h(y)\\,dx$ and treat $y$ as a constant. Separate to $\\frac{1}{h(y)}\\,dy=g(x)\\,dx$ FIRST; skipping this scores no method mark.",
+        "**Forgetting the constant of integration** — $+C$ must appear the instant you integrate. Without it you have only one curve, not the general solution, and you cannot apply the condition.",
+        "**Finding $C$ at the wrong stage** — substitute the initial condition AFTER integrating but usually BEFORE rearranging for $y$. Rearranging first often makes the algebra messier and invites sign errors.",
+        "**Dropping the modulus carelessly** — $\\int\\frac{1}{y}\\,dy=\\ln|y|+C$. Only drop the modulus when the context guarantees $y>0$; otherwise you may lose valid solutions.",
+        "**Misapplying Euler's method** — it is $y_{n+1}=y_n+h\\,f(x_n,y_n)$. Multiplying instead of adding, omitting the $h$, or using the new point $(x_{n+1},y_{n+1})$ inside $f$ are all classic errors.",
+        "**Misreading a slope field** — a horizontal segment means $\\frac{dy}{dx}=0$, NOT that $y=0$; a (near-)vertical segment signals an undefined gradient, not a maximum.",
+        "**Answering the wrong quantity** — a growth question may ask for the TIME to reach an amount, not the amount at a time. Read whether $t$ or $N$ is the unknown before solving."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "Paper 1 is marked analytically: each mark is tied to a specific line of working. An **M** mark rewards a correct method — the right approach, even if the arithmetic later slips. An **A** mark rewards accuracy and is DEPENDENT on the method: you cannot earn the A without the M it hangs off. The engine also accepts any correct **equivalent form** (so $y=\\sqrt{2x^2+9}$ and $y^2=2x^2+9$ solved for $y$ score the same), applies **ISW** (ignore subsequent working once a correct answer appears) and allows **FT/ECF** follow-through on a genuine earlier slip. Study how each mark below is earned by one specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the differential equation $\\frac{dy}{dx}=\\frac{2x}{y}$ given that $y=3$ when $x=0$. [5]",
+      "solution": "**Model answer — full working.**\n\nThe equation is separable: the right-hand side is $2x\\cdot\\frac{1}{y}$. Separate the variables by multiplying both sides by $y$:\n$y\\,dy=2x\\,dx$.\n\nIntegrate both sides, adding a single constant:\n$\\int y\\,dy=\\int 2x\\,dx$\n$\\tfrac{1}{2}y^2=x^2+C$.\n\nApply the condition $y=3$ when $x=0$:\n$\\tfrac{1}{2}(3)^2=0+C$\n$\\tfrac{9}{2}=C$, so $C=4.5$.\n\nSubstitute back:\n$\\tfrac{1}{2}y^2=x^2+4.5$\n$y^2=2x^2+9$.\n\nTake the positive root (since $y=3>0$ at the start):\n$y=\\sqrt{2x^2+9}$.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — separate the variables.** Awarded for rearranging to $y\\,dy=2x\\,dx$ (all $y$ with $dy$, all $x$ with $dx$). This is a METHOD mark: it stands even if the integration later slips.\n- **M1 — integrate both sides.** Awarded for writing $\\int y\\,dy=\\int 2x\\,dx$ and attempting both integrals. The engine looks for the intent to integrate each side, not perfect arithmetic yet.\n- **A1 — correct integrated form.** Awarded for $\\tfrac{1}{2}y^2=x^2+C$ with the single constant present. This accuracy mark depends on the two method marks above.\n- **M1 — apply the initial condition.** Awarded for substituting $(0,3)$ to form an equation in $C$, reaching $C=4.5$ (or $\\tfrac{9}{2}$). A candidate who never substitutes cannot earn this method mark.\n- **A1 — correct particular solution.** Awarded for $y=\\sqrt{2x^2+9}$. Any correct equivalent scores: $y^2=2x^2+9$ left implicit, $\\tfrac{1}{2}y^2=x^2+4.5$, or $y=\\sqrt{2x^2+9}$ all accepted.\n\n**Follow-through (FT/ECF).** If a candidate mis-integrated but then applied a fully correct method to THEIR expression — substituting the condition and rearranging — the later method mark stands, and the final A can follow through on their own value provided the working is shown.\n\n**Equivalent forms and ISW.** The engine does not insist on one presentation: $y=\\sqrt{2x^2+9}$, $y=(2x^2+9)^{1/2}$ and the implicit $y^2=2x^2+9$ are all correct. By ISW, once the correct particular solution appears, later irrelevant tidying does not lose the mark.\n\n**Bottom line:** three of the five marks are method marks that survive an arithmetic slip, so a candidate who separates, integrates and substitutes the condition — showing each step — banks the method even if a number goes astray, and the accuracy marks are protected by follow-through."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: separate the variables on their own line, integrate both sides with one $+C$, substitute the condition to find $C$, then rearrange and state $y$. The method marks and follow-through are what protect your score when the arithmetic slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Differential equations pull the whole calculus unit together: separation of variables is really integration in disguise, the modulus in $\\ln|y|$ comes straight from your integration of $\\frac{1}{y}$, and the exponential solutions reconnect with the growth and decay you met when studying $e^x$. Slope fields train the geometric habit of reading a derivative as a gradient — the same instinct behind tangents, stationary points and concavity — while Euler's method previews the numerical thinking used throughout applied mathematics. Master the three faces here and you have a template for modelling almost any process defined by how fast it changes."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 1 separable differential equation marked: solve with a condition and full working",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=5.9&component=paper_1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Slope Field Plotter",
+          "href": "https://www.geogebra.org/m/W7dAdgqc"
+        },
+        {
+          "label": "IB Formula Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/dp-in-practice/formula-booklet/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "GeoGebra Slope Field Plotter",
+    "embedUrl": "https://www.geogebra.org/classic?material=W7dAdgqc",
+    "launchUrl": "https://www.geogebra.org/classic?material=W7dAdgqc",
+    "hint": "Use “GeoGebra Slope Field Plotter” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "AHL 5.16",
+      "title": "Slope fields.",
+      "detail": "Graphical representation of a differential equation $\\frac{\\mathrm{d}y}{\\mathrm{d}x} = f(x, y)$, solution curves."
+    },
+    {
+      "code": "AHL 5.17",
+      "title": "First order differential equations.",
+      "detail": "Solving by separating variables, including analytical and graphical approaches to the solution."
+    },
+    {
+      "code": "AHL 5.18",
+      "title": "First order linear differential equations.",
+      "detail": "Solving equations of the form $y' + P(x)y = Q(x)$, using an integrating factor."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "5-9-differential-equations-and-slope-fields-q1",
+      "prompt": "A slope field is drawn for the differential equation $\\frac{\\mathrm{d}y}{\\mathrm{d}x} = \\frac{x-1}{y}$.\n\n(a) Calculate the slope at the point $(3, 2)$.\n\n(b) On a copy of the slope field, sketch the solution curve that passes through the point $(1, -2)$.\n\n(c) Find the coordinates of any points where the slope is zero.",
+      "marks": 5,
+      "commandTerm": "Calculate",
+      "difficulty": "foundation",
+      "syllabusRef": "AHL 5.16",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) Substitute $(3,2)$ into the differential equation: $\\frac{3-1}{2}$.",
+          "marks": 1
+        },
+        {
+          "text": "Slope is $1$.",
+          "marks": 0
+        },
+        {
+          "text": "(b) Curve drawn passing through $(1, -2)$.",
+          "marks": 1
+        },
+        {
+          "text": "Curve follows the direction of the slope field, showing a local maximum at $(1, -2)$.",
+          "marks": 1
+        },
+        {
+          "text": "(c) Set the numerator of the differential equation to zero: $x-1=0$.",
+          "marks": 1
+        },
+        {
+          "text": "$x=1$. The slope is zero at all points $(1, y)$ for $y \\neq 0$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) To find the slope at the point $(3, 2)$, we substitute $x=3$ and $y=2$ into the expression for $\\frac{\\mathrm{d}y}{\\mathrm{d}x}$.\n\n$\\frac{\\mathrm{d}y}{\\mathrm{d}x} = \\frac{3-1}{2} = \\frac{2}{2} = 1$.\n\nThe slope at $(3, 2)$ is $1$.\n\n(b) To sketch the solution curve, we start at the point $(1, -2)$. At this point, the slope is $\\frac{1-1}{-2} = 0$, so the curve has a horizontal tangent, indicating a stationary point. Following the direction of the line segments on the slope field, we can see this is a local maximum. The curve will be symmetric about the line $x=1$, and the value of $y$ will decrease as $x$ moves away from $1$ in either direction.\n\n(c) The slope $\\frac{\\mathrm{d}y}{\\mathrm{d}x}$ is zero when the numerator is zero, provided the denominator is non-zero. \n\n$x-1 = 0 \\Rightarrow x=1$.\n\nThe slope is zero for all points on the line $x=1$, except where the function is undefined, which is when $y=0$. Therefore, the slope is zero at all points with coordinates $(1, y)$ where $y \\neq 0$."
+    },
+    {
+      "id": "5-9-differential-equations-and-slope-fields-q2",
+      "prompt": "Solve the differential equation $\\frac{\\mathrm{d}y}{\\mathrm{d}x} = (y+3) \\cos x$, given that $y=1$ when $x=\\pi$. Give your answer in the form $y=f(x)$.",
+      "marks": 6,
+      "commandTerm": "Solve",
+      "difficulty": "standard",
+      "syllabusRef": "AHL 5.17",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Correctly separates variables: $\\int \\frac{1}{y+3} \\mathrm{d}y = \\int \\cos x \\mathrm{d}x$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly integrates both sides: $\\ln|y+3| = \\sin x + C$.",
+          "marks": 2
+        },
+        {
+          "text": "Substitutes the initial condition $(\\pi, 1)$: $\\ln|1+3| = \\sin \\pi + C$.",
+          "marks": 1
+        },
+        {
+          "text": "Finds the constant of integration: $\\ln 4 = 0 + C \\Rightarrow C = \\ln 4$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly solves for y, including removing the absolute value: $y = 4e^{\\sin x} - 3$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The differential equation is $\\frac{\\mathrm{d}y}{\\mathrm{d}x} = (y+3) \\cos x$. This is a separable differential equation.\n\nFirst, we separate the variables:\n$\\frac{1}{y+3} \\mathrm{d}y = \\cos x \\mathrm{d}x$\n\nNext, we integrate both sides:\n$\\int \\frac{1}{y+3} \\mathrm{d}y = \\int \\cos x \\mathrm{d}x$\n$\\ln|y+3| = \\sin x + C$\n\nWe are given the initial condition that $y=1$ when $x=\\pi$. We substitute these values to find the constant $C$:\n$\\ln|1+3| = \\sin(\\pi) + C$\n$\\ln(4) = 0 + C$\n$C = \\ln 4$\n\nSo the particular solution is:\n$\\ln|y+3| = \\sin x + \\ln 4$\n\nTo express $y$ as a function of $x$, we exponentiate both sides:\n$e^{\\ln|y+3|} = e^{\\sin x + \\ln 4}$\n$|y+3| = e^{\\sin x} \\cdot e^{\\ln 4}$\n$|y+3| = 4e^{\\sin x}$\n\nSince the initial condition is $(\\pi, 1)$, the value of $y+3$ is $1+3=4$, which is positive. Therefore, we can remove the absolute value signs.\n$y+3 = 4e^{\\sin x}$\n$y = 4e^{\\sin x} - 3$"
+    },
+    {
+      "id": "5-9-differential-equations-and-slope-fields-q3",
+      "prompt": "Consider the differential equation $x \\frac{\\mathrm{d}y}{\\mathrm{d}x} - 2y = x^3 \\ln x$, for $x>0$.\n\n(a) Find the integrating factor for this differential equation. [3]\n\n(b) Hence, find the general solution for $y$ in terms of $x$. [4]",
+      "marks": 7,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "AHL 5.18",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) Rewrites the equation in standard form: $\\frac{\\mathrm{d}y}{\\mathrm{d}x} - \\frac{2}{x}y = x^2 \\ln x$.",
+          "marks": 1
+        },
+        {
+          "text": "Identifies $P(x) = -\\frac{2}{x}$ and sets up the integral for the integrating factor: $I(x) = e^{\\int -\\frac{2}{x} \\mathrm{d}x}$.",
+          "marks": 1
+        },
+        {
+          "text": "$I(x) = e^{-2\\ln x} = e^{\\ln x^{-2}} = x^{-2}$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) Multiplies the standard form equation by the integrating factor: $\\frac{1}{x^2} \\frac{\\mathrm{d}y}{\\mathrm{d}x} - \\frac{2}{x^3}y = \\ln x$.",
+          "marks": 1
+        },
+        {
+          "text": "Recognises the left side as the derivative of a product: $\\frac{\\mathrm{d}}{\\mathrm{d}x} \\left( y \\cdot \\frac{1}{x^2} \\right) = \\ln x$.",
+          "marks": 1
+        },
+        {
+          "text": "Integrates both sides: $\\frac{y}{x^2} = \\int \\ln x \\mathrm{d}x = x \\ln x - x + C$.",
+          "marks": 1
+        },
+        {
+          "text": "Solves for y: $y = x^2(x \\ln x - x + C) = x^3 \\ln x - x^3 + Cx^2$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) To find the integrating factor, we first write the equation in the standard linear form $\\frac{\\mathrm{d}y}{\\mathrm{d}x} + P(x)y = Q(x)$.\n\nDivide the given equation by $x$:\n$\\frac{\\mathrm{d}y}{\\mathrm{d}x} - \\frac{2}{x}y = x^2 \\ln x$\n\nHere, $P(x) = -\\frac{2}{x}$. The integrating factor, $I(x)$, is given by $I(x) = e^{\\int P(x) \\mathrm{d}x}$.\n\n$I(x) = e^{\\int -\\frac{2}{x} \\mathrm{d}x} = e^{-2\\ln|x|}$.\nSince we are given $x>0$, this simplifies to $e^{-2\\ln x}$.\nUsing logarithm properties, $I(x) = e^{\\ln(x^{-2})} = x^{-2} = \\frac{1}{x^2}$.\n\n(b) Now, we multiply the standard form of the equation by the integrating factor $I(x) = \\frac{1}{x^2}$:\n$\\frac{1}{x^2}\\frac{\\mathrm{d}y}{\\mathrm{d}x} - \\frac{2}{x^3}y = \\frac{1}{x^2}(x^2 \\ln x)$\n$\\frac{1}{x^2}\\frac{\\mathrm{d}y}{\\mathrm{d}x} - \\frac{2}{x^3}y = \\ln x$\n\nThe left-hand side is the result of the product rule for differentiation on $y \\cdot I(x)$:\n$\\frac{\\mathrm{d}}{\\mathrm{d}x} \\left( y \\cdot \\frac{1}{x^2} \\right) = \\ln x$\n\nIntegrate both sides with respect to $x$:\n$\\int \\frac{\\mathrm{d}}{\\mathrm{d}x} \\left( \\frac{y}{x^2} \\right) \\mathrm{d}x = \\int \\ln x \\mathrm{d}x$\n$\\frac{y}{x^2} = \\int \\ln x \\mathrm{d}x$\n\nThe integral of $\\ln x$ can be found using integration by parts or a calculator, and is a standard result: $\\int \\ln x \\mathrm{d}x = x \\ln x - x + C$.\n\nSo, $\\frac{y}{x^2} = x \\ln x - x + C$.\n\nFinally, we solve for $y$ by multiplying by $x^2$:\n$y = x^2(x \\ln x - x + C)$\n$y = x^3 \\ln x - x^3 + Cx^2$."
+    },
+    {
+      "id": "5-9-differential-equations-and-slope-fields-q4",
+      "prompt": "A population of bacteria, $P$, at time $t$ hours, can be modelled by the logistic differential equation $\\frac{\\mathrm{d}P}{\\mathrm{d}t} = kP(N-P)$, where $k$ and $N$ are positive constants.\n\n(a) By solving the differential equation, show that the solution can be written in the form $P = \\frac{N}{1+Ae^{-Nkt}}$, where $A$ is a constant. [6]\n\n(b) Given that the initial population is $P_0$, find an expression for $A$ in terms of $N$ and $P_0$. [2]",
+      "marks": 8,
+      "commandTerm": "Show that",
+      "difficulty": "challenge",
+      "syllabusRef": "AHL 5.17",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) Separates variables: $\\int \\frac{1}{P(N-P)} \\mathrm{d}P = \\int k \\mathrm{d}t$.",
+          "marks": 1
+        },
+        {
+          "text": "Uses partial fractions correctly: $\\frac{1}{P(N-P)} = \\frac{1}{N} \\left( \\frac{1}{P} + \\frac{1}{N-P} \\right)$.",
+          "marks": 1
+        },
+        {
+          "text": "Integrates to get $\\frac{1}{N} (\\ln|P| - \\ln|N-P|) = kt + C$.",
+          "marks": 1
+        },
+        {
+          "text": "Rearranges to $\\ln\\left|\\frac{P}{N-P}\\right| = Nkt + C_1$.",
+          "marks": 1
+        },
+        {
+          "text": "Exponentiates and attempts to solve for P: $\\frac{P}{N-P} = A_0e^{Nkt}$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly manipulates the expression to get $P = \\frac{N}{1+Ae^{-Nkt}}$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) Substitutes $t=0, P=P_0$: $P_0 = \\frac{N}{1+A}$.",
+          "marks": 1
+        },
+        {
+          "text": "Rearranges to find $A = \\frac{N-P_0}{P_0}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) We start with the differential equation $\\frac{\\mathrm{d}P}{\\mathrm{d}t} = kP(N-P)$.\n\nSeparate the variables:\n$\\frac{1}{P(N-P)} \\mathrm{d}P = k \\mathrm{d}t$\n\nWe use partial fractions for the left-hand side. Let $\\frac{1}{P(N-P)} = \\frac{X}{P} + \\frac{Y}{N-P}$.\nThis gives $1 = X(N-P) + YP$. \nIf $P=0$, $1=XN \\Rightarrow X=1/N$. \nIf $P=N$, $1=YN \\Rightarrow Y=1/N$.\n\nSo, the equation becomes:\n$\\int \\frac{1}{N}\\left(\\frac{1}{P} + \\frac{1}{N-P}\\right) \\mathrm{d}P = \\int k \\mathrm{d}t$\n\nIntegrate both sides:\n$\\frac{1}{N} (\\ln|P| - \\ln|N-P|) = kt + C$\n\nMultiply by $N$ and combine the logarithms:\n$\\ln\\left|\\frac{P}{N-P}\\right| = Nkt + NC$. Let $C_1 = NC$.\n\nExponentiate both sides:\n$\\left|\\frac{P}{N-P}\\right| = e^{Nkt + C_1} = e^{C_1}e^{Nkt}$\n\nLet $A_0 = \\pm e^{C_1}$. As $P$ is a population, $P>0$ and we assume $P<N$, so we can drop the absolute value signs.\n$\\frac{P}{N-P} = A_0e^{Nkt}$\n\nNow, solve for $P$:\n$P = A_0e^{Nkt}(N-P)$\n$P = NA_0e^{Nkt} - PA_0e^{Nkt}$\n$P + PA_0e^{Nkt} = NA_0e^{Nkt}$\n$P(1 + A_0e^{Nkt}) = NA_0e^{Nkt}$\n$P = \\frac{NA_0e^{Nkt}}{1 + A_0e^{Nkt}}$\n\nTo get the desired form, divide the numerator and denominator by $A_0e^{Nkt}$:\n$P = \\frac{N}{\\frac{1}{A_0e^{Nkt}} + 1} = \\frac{N}{1 + \\frac{1}{A_0}e^{-Nkt}}$\n\nLet $A = \\frac{1}{A_0}$. Then we have shown that $P = \\frac{N}{1+Ae^{-Nkt}}$.\n\n(b) We are given the initial condition $P=P_0$ at $t=0$. Substitute this into the solution:\n$P_0 = \\frac{N}{1+Ae^{-Nk(0)}} = \\frac{N}{1+Ae^0} = \\frac{N}{1+A}$\n\nNow, we solve for $A$ in terms of $N$ and $P_0$:\n$P_0(1+A) = N$\n$1+A = \\frac{N}{P_0}$\n$A = \\frac{N}{P_0} - 1$\n$A = \\frac{N-P_0}{P_0}$"
+    }
+  ]
+}

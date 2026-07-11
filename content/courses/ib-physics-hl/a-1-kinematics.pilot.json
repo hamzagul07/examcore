@@ -1,0 +1,521 @@
+{
+  "slug": "a-1-kinematics",
+  "topicCode": "A.1",
+  "unit": {
+    "code": "A",
+    "title": "Space, time and motion"
+  },
+  "title": "Kinematics",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "pilot",
+  "summary": "Kinematics is the language physics uses to describe how things move, before we ever ask what force causes the motion. This lesson builds the full A.1 toolkit: the difference between distance and displacement and between speed and velocity, acceleration, the four SUVAT equations for uniform acceleration, and how to read and draw displacement-time, velocity-time and acceleration-time graphs using gradient and area. It then applies all of this to free fall under gravity, to projectile motion by treating horizontal and vertical components independently, and finishes with a qualitative look at fluid resistance and terminal velocity. Every worked example is laid out exactly the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 28,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Distinguish distance from displacement and speed from velocity, and define acceleration as the rate of change of velocity.",
+    "Select and apply the SUVAT equations to solve one-dimensional problems with uniform acceleration.",
+    "Interpret and construct displacement-time, velocity-time and acceleration-time graphs, using gradient and area to extract physical quantities.",
+    "Analyse free fall and projectile motion by treating vertical and horizontal components as independent, and describe fluid resistance and terminal velocity qualitatively.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "A.1"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
+  "simpleExplanation": {
+    "title": "The Sat-Nav of Physics",
+    "summary": "Kinematics describes a journey the way a car's satellite navigation does: where you are (displacement), how fast and in which direction you are going (velocity), and whether you are speeding up or slowing down (acceleration). Given a few of these, the SUVAT equations predict the rest — provided the acceleration stays constant.",
+    "analogy": "Think of a sat-nav planning a trip. It knows your starting position, your speed, and how you will speed up on the motorway or slow into a town. From those it works out your arrival time and the ground you will cover. Kinematics gives you those same 'rules', written as equations, so that from a handful of known quantities you can calculate every other feature of the motion.",
+    "steps": [
+      "List the five variables using their symbols: $s$ (displacement), $u$ (initial velocity), $v$ (final velocity), $a$ (acceleration), $t$ (time). Fill in what the question gives you.",
+      "Identify which single variable is neither given nor asked for. Choose the one SUVAT equation that does not contain it.",
+      "Substitute carefully, watching units and signs — decide which direction is positive and keep it consistent.",
+      "Solve for the unknown and quote the answer with its unit and a sensible number of significant figures."
+    ]
+  },
+  "keyConcepts": [
+    "scalars and vectors",
+    "uniform acceleration",
+    "independence of motion"
+  ],
+  "flashcards": [
+    {
+      "front": "Distance vs displacement",
+      "back": "Distance is a scalar — the total path length travelled. Displacement ($s$) is a vector — the straight-line change in position from start to finish, with direction. A full lap of a track covers a large distance but gives zero displacement.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Speed vs velocity",
+      "back": "Speed is a scalar (how fast). Velocity ($u$, $v$) is a vector (how fast AND in which direction). Average speed = distance ÷ time; average velocity = displacement ÷ time.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Acceleration ($a$)",
+      "back": "The rate of change of velocity, a vector measured in m s⁻². A negative acceleration slows an object only if it is moving in the positive direction — sign shows direction, not simply 'slowing down'.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Condition for SUVAT",
+      "back": "The SUVAT equations are valid ONLY when acceleration is uniform (constant). If $a$ changes during the motion, they do not apply and you must use graphs (areas) or split the motion into constant-$a$ stages.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "$v = u + at$",
+      "back": "Relates the four variables $v$, $u$, $a$, $t$ — the equation with no $s$. Use it when displacement is neither given nor wanted.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "$s = ut + \\frac{1}{2}at^2$",
+      "back": "The equation with no $v$. Use it to find a displacement or a time from the initial velocity and acceleration.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "$v^2 = u^2 + 2as$",
+      "back": "The equation with no $t$. Use it when time is neither given nor wanted — for example finding the maximum height of a projectile.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "$s = \\dfrac{(u+v)}{2}t$",
+      "back": "The equation with no $a$. The bracket is the average velocity, valid only because acceleration is uniform.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Gradient of a displacement–time graph",
+      "back": "Equals velocity. A straight line means constant velocity; a curve means changing velocity (acceleration). A negative gradient means motion in the negative direction.",
+      "pillLabel": "Graph"
+    },
+    {
+      "front": "Area under a velocity–time graph",
+      "back": "Equals displacement. Split the area into triangles and rectangles. Area below the time axis counts as negative displacement (motion in the reverse direction).",
+      "pillLabel": "Graph"
+    },
+    {
+      "front": "Gradient of a velocity–time graph",
+      "back": "Equals acceleration. The area under an acceleration–time graph, in turn, gives the change in velocity ($\\Delta v = v - u$).",
+      "pillLabel": "Graph"
+    },
+    {
+      "front": "Acceleration due to gravity, $g$",
+      "back": "Near Earth's surface $g \\approx 9.81$ m s⁻², directed downwards. In free fall (air resistance ignored) every object has this same acceleration regardless of mass.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Independence of projectile motion",
+      "back": "Horizontal and vertical motions are independent. The horizontal velocity is constant (no horizontal force); the vertical motion is free fall with $a = g$. They share only the same time $t$.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Terminal velocity",
+      "back": "A falling object speeds up until the upward fluid resistance grows to equal its weight. The resultant force is then zero, so acceleration is zero and it falls at a constant terminal velocity.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Exam Trap: velocity at the top of flight",
+      "back": "At the highest point of a thrown ball the instantaneous velocity is zero, but the acceleration is still $9.81$ m s⁻² downwards. Gravity never switches off — the ball is only momentarily at rest.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "An athlete runs exactly one lap of a 400 m track and finishes where they started. Their distance and displacement for the lap are:",
+      "options": [
+        "Distance 400 m, displacement 400 m",
+        "Distance 400 m, displacement 0 m",
+        "Distance 0 m, displacement 400 m",
+        "Both 0 m"
+      ],
+      "answer": "Distance 400 m, displacement 0 m"
+    },
+    {
+      "prompt": "On a velocity–time graph, the displacement of the object over an interval is found from:",
+      "options": [
+        "The gradient of the line",
+        "The area under the line",
+        "The value of the velocity at the end",
+        "The length of the line"
+      ],
+      "answer": "The area under the line"
+    },
+    {
+      "prompt": "From the same height, ball X is dropped and ball Y is thrown horizontally at the same instant. Ignoring air resistance, which reaches the ground first?",
+      "options": [
+        "Ball X, because it falls straight down",
+        "Ball Y, because it is moving faster overall",
+        "They land at the same time",
+        "It depends on Y's horizontal speed"
+      ],
+      "answer": "They land at the same time"
+    },
+    {
+      "prompt": "A ball is thrown vertically upwards. At the highest point of its flight its velocity and acceleration are:",
+      "options": [
+        "Velocity 0; acceleration 0",
+        "Velocity 0; acceleration 9.81 m s⁻² downwards",
+        "Velocity maximum; acceleration 0",
+        "Velocity 0; acceleration 9.81 m s⁻² upwards"
+      ],
+      "answer": "Velocity 0; acceleration 9.81 m s⁻² downwards"
+    },
+    {
+      "prompt": "The gradient at a point on a curved displacement–time graph tells you the object's:",
+      "options": [
+        "Instantaneous velocity at that moment",
+        "Total distance travelled",
+        "Acceleration at that moment",
+        "Average speed for the whole journey"
+      ],
+      "answer": "Instantaneous velocity at that moment"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between average speed and average velocity?",
+      "a": "Average speed is total distance divided by total time (a scalar); average velocity is total displacement divided by total time (a vector). Run one lap of a 400 m track back to your start and your average velocity is zero — displacement is zero — even though your average speed was clearly not. Whenever a path doubles back on itself, the two answers diverge."
+    },
+    {
+      "q": "How do I choose the right SUVAT equation?",
+      "a": "List all five variables $s, u, v, a, t$, then mark what is given and what is asked. Exactly one variable will be neither given nor wanted. Each of the four equations is missing one variable — pick the one missing your unwanted variable, and you avoid ever having to find it."
+    },
+    {
+      "q": "Do the SUVAT equations work if acceleration isn't constant?",
+      "a": "No. They are derived assuming uniform acceleration. If $a$ changes, either break the journey into separate stages that each have constant acceleration, or work graphically: the area under a velocity–time graph gives displacement even when the graph is curved, and the gradient of a tangent gives the instantaneous acceleration."
+    },
+    {
+      "q": "Why do horizontal and vertical projectile motions not affect each other?",
+      "a": "Gravity acts only vertically, so it changes only the vertical velocity. Nothing acts horizontally (air resistance ignored), so the horizontal velocity stays constant. The two motions are linked by one shared quantity — the time of flight — which is why you almost always find the time from the vertical motion first, then feed it into the horizontal motion."
+    },
+    {
+      "q": "What is terminal velocity and why does it happen?",
+      "a": "As an object falls through a fluid, its speed rises, and fluid resistance (drag) rises with it. Eventually the upward drag equals the object's weight, the resultant force becomes zero, and by Newton's first law the object stops accelerating. It then continues at a constant speed called the terminal velocity."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Kinematics is the branch of mechanics that describes how objects move without yet worrying about the forces that cause the motion. From a sprinter leaving the blocks to a ball arcing off a cliff, the same small set of definitions, equations and graphs describes them all. This lesson is a foundation for almost everything that follows in mechanics, so it is worth mastering completely. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "Describing motion: scalars and vectors"
+    },
+    {
+      "type": "text",
+      "content": "To describe motion precisely we separate quantities that have only a size (scalars) from those that also have a direction (vectors). Distance and speed are scalars; displacement and velocity are vectors. In one dimension we capture direction with a sign: choose one direction as positive (say, to the right, or upwards) and the opposite direction is negative. The choice is yours, but once made it must be used consistently for every quantity in the problem."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Distance (scalar):** total path length actually travelled.",
+        "**Displacement ($s$) (vector):** straight-line change in position from start to end, with direction.",
+        "**Speed (scalar):** rate of change of distance.",
+        "**Velocity ($u$, $v$) (vector):** rate of change of displacement.",
+        "**Acceleration ($a$) (vector):** rate of change of velocity — measured in m s⁻²."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "The most common early error is treating distance and displacement (or speed and velocity) as interchangeable. They agree only when motion is in a single straight line without reversing. As soon as an object turns back on itself, the path length exceeds the magnitude of the displacement, and average speed exceeds the magnitude of the average velocity."
+    },
+    {
+      "type": "heading",
+      "content": "The SUVAT equations of uniform acceleration"
+    },
+    {
+      "type": "text",
+      "content": "When acceleration is uniform (constant), four equations relate the five kinematic variables. They are known as the SUVAT equations after the symbols $s$, $u$, $v$, $a$, $t$. Each equation deliberately omits one of the five variables, and that is exactly what makes them useful: choose the equation that omits the variable you neither know nor want."
+    },
+    {
+      "type": "formula",
+      "content": "1. \\; v = u + at\n2. \\; s = ut + \\tfrac{1}{2}at^2\n3. \\; v^2 = u^2 + 2as\n4. \\; s = \\frac{(u+v)}{2}\\,t"
+    },
+    {
+      "type": "text",
+      "content": "Here $s$ is displacement, $u$ is initial velocity, $v$ is final velocity, $a$ is acceleration and $t$ is time. Equation 1 has no $s$; equation 2 has no $v$; equation 3 has no $t$; equation 4 has no $a$. Because these all assume constant acceleration, they must never be applied to a stage of motion where the acceleration is changing."
+    },
+    {
+      "type": "workedExample",
+      "question": "A motorcyclist accelerates uniformly from 8.0 m s⁻¹ to 26 m s⁻¹ while travelling 150 m along a straight road. Calculate (a) the acceleration and (b) the time taken. [4]",
+      "solution": "**List the variables.**\n$s = 150$ m, $u = 8.0$ m s⁻¹, $v = 26$ m s⁻¹, $a = ?$, $t = ?$\n\n**(a) Acceleration.** Time is neither given nor wanted, so use the equation with no $t$: $v^2 = u^2 + 2as$.  [M1: correct equation]\n$26^2 = 8.0^2 + 2a(150)$\n$676 = 64 + 300a$\n$a = \\dfrac{676 - 64}{300} = 2.04$ m s⁻² $\\approx 2.0$ m s⁻².  [A1: answer with unit]\n\n**(b) Time.** Now use the equation with no $a$ so the acceleration slip cannot spread: $s = \\dfrac{(u+v)}{2}t$.\n$150 = \\dfrac{(8.0 + 26)}{2}\\,t = 17t$  [M1: correct substitution]\n$t = \\dfrac{150}{17} = 8.8$ s.  [A1: answer with unit]\n\n**Final answer:** acceleration $\\approx 2.0$ m s⁻²; time $\\approx 8.8$ s."
+    },
+    {
+      "type": "examTip",
+      "content": "Wherever possible, answer a later part using the original data rather than a number you calculated earlier. In the example above, finding the time from $s = \\frac{(u+v)}{2}t$ instead of from the acceleration means a slip in part (a) cannot 'carry forward' into part (b). It also keeps every step independently markable."
+    },
+    {
+      "type": "heading",
+      "content": "Motion graphs: gradient and area"
+    },
+    {
+      "type": "text",
+      "content": "Graphs turn motion into a shape you can read at a glance, and two operations unlock them: the gradient (slope) and the area beneath the line. On a displacement–time graph the gradient is the velocity, so a straight line means constant velocity and a curve means acceleration; the steeper the line, the faster the object. On a velocity–time graph the gradient is the acceleration, and — crucially — the area under the line is the displacement. On an acceleration–time graph the area under the line is the change in velocity."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Displacement–time:** gradient = velocity. Horizontal line = at rest; straight sloping line = constant velocity; curve = acceleration.",
+        "**Velocity–time:** gradient = acceleration; area under the line = displacement.",
+        "**Acceleration–time:** area under the line = change in velocity ($\\Delta v$).",
+        "Area below the time axis counts as negative — it represents motion in the reverse direction or a decrease in velocity."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A cyclist's motion is shown on a velocity–time graph. From rest, the velocity rises in a straight line to 12 m s⁻¹ over the first 4.0 s, then stays constant at 12 m s⁻¹ until 10 s. Determine (a) the acceleration during the first 4.0 s and (b) the total distance travelled in the 10 s. [4]",
+      "solution": "**(a) Acceleration = gradient of the velocity–time line.**\n$a = \\dfrac{\\Delta v}{\\Delta t} = \\dfrac{12 - 0}{4.0 - 0} = 3.0$ m s⁻².  [M1: gradient method]  [A1: answer with unit]\n\n**(b) Distance = area under the graph.** Split it into a triangle (0–4.0 s) and a rectangle (4.0–10 s).\nTriangle: $\\tfrac{1}{2} \\times \\text{base} \\times \\text{height} = \\tfrac{1}{2} \\times 4.0 \\times 12 = 24$ m.\nRectangle: $\\text{base} \\times \\text{height} = 6.0 \\times 12 = 72$ m.  [M1: area of both regions]\nTotal distance $= 24 + 72 = 96$ m.  [A1]\n\n**Final answer:** acceleration $3.0$ m s⁻²; total distance $96$ m."
+    },
+    {
+      "type": "heading",
+      "content": "Free fall and the acceleration due to gravity"
+    },
+    {
+      "type": "text",
+      "content": "An object moving under gravity alone, with air resistance ignored, is in free fall — a perfect case of uniform acceleration. That acceleration is $g \\approx 9.81$ m s⁻², directed downwards, and it is the same for all objects regardless of mass: a coin and a feather dropped in a vacuum land together. To handle free-fall problems, fix a sign convention. If you take upwards as positive, then for a ball thrown up the acceleration is $a = -g = -9.81$ m s⁻² throughout the motion — on the way up, at the top, and on the way down."
+    },
+    {
+      "type": "examTip",
+      "content": "State your sign convention in writing ('take upwards as positive') and never let the acceleration change sign midway. The classic slip is to make $a$ positive while the ball rises and negative while it falls. Gravity is one constant downward acceleration for the whole flight; only the velocity changes sign as the ball turns around."
+    },
+    {
+      "type": "heading",
+      "content": "Projectile motion: independent components"
+    },
+    {
+      "type": "text",
+      "content": "A projectile is any object moving under gravity alone in two dimensions — a ball thrown off a cliff, a kicked football, a stream of water. The key insight is that the horizontal and vertical motions are completely independent and share only the same clock. Horizontally there is no force (air resistance ignored), so the horizontal velocity is constant. Vertically the object is in free fall with acceleration $g$ downwards. You solve a projectile by analysing each direction with its own SUVAT list, connected only through the common time $t$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Horizontal:** no acceleration, so $a_x = 0$ and horizontal velocity is constant; horizontal distance $= u_x \\times t$.",
+        "**Vertical:** free fall, so $a_y = g$ downwards; apply the SUVAT equations to the vertical direction alone.",
+        "**Shared quantity:** the time of flight $t$ is the same for both directions — usually found from the vertical motion, then used in the horizontal.",
+        "A ball dropped and a ball thrown horizontally from the same height hit the ground at the same instant, because their vertical motions are identical."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Fluid resistance and terminal velocity"
+    },
+    {
+      "type": "text",
+      "content": "Real objects falling through air or water experience fluid resistance (drag), a force that opposes motion and grows larger as the object moves faster. Release an object from rest and at first its weight far exceeds the drag, so it accelerates. As it speeds up the drag increases, the resultant downward force shrinks, and the acceleration falls. Eventually the upward drag grows to equal the weight: the resultant force is zero, the acceleration is zero, and the object continues at a constant speed — its terminal velocity. On a velocity–time graph this appears as a curve that rises steeply, then bends over and flattens into a horizontal line. Note that once drag matters, the acceleration is no longer constant, so the SUVAT equations no longer apply."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Confusing distance with displacement (or speed with velocity)** — they agree only for straight-line motion that never reverses. A completed lap has zero displacement and zero average velocity.",
+        "**Using SUVAT when acceleration is not constant** — invalid during terminal-velocity motion or any changing-acceleration stage. Split the motion into constant-$a$ stages or use graph areas instead.",
+        "**Reading a velocity–time graph as if it were a position–time graph** — the gradient is acceleration and the AREA is displacement, not the height of the line.",
+        "**Letting $g$ change sign during a flight** — with upwards positive, $a = -9.81$ m s⁻² for the whole motion, including at the highest point where velocity is momentarily zero.",
+        "**Assuming velocity is zero at the top means acceleration is zero** — the object is only instantaneously at rest; gravity still accelerates it downwards.",
+        "**Mixing horizontal and vertical components** — never put a horizontal velocity into a vertical equation. Keep two separate SUVAT lists linked only by the shared time $t$.",
+        "**Dropping units or over-rounding mid-calculation** — carry extra figures through the working and round only the final answer; always attach the correct unit."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an answer mark (A) — and error-carried-forward (ECF) means a wrong number early on does not have to cost you the marks that follow. But that protection only exists if your method is written down. Study how each mark below is earned by a specific line, especially in a projectile question where the vertical and horizontal parts are marked separately."
+    },
+    {
+      "type": "workedExample",
+      "question": "A ball is thrown horizontally at 15 m s⁻¹ from the top of a cliff 20 m high. Calculate (a) the time to reach the ground and (b) the horizontal distance travelled. (Take $g = 9.81$ m s⁻² and ignore air resistance.) [4]",
+      "solution": "**Model answer — full working.**\n\nSet up two independent lists. Take downwards as positive for the vertical motion.\n\n**(a) Time — from the VERTICAL motion.** The ball is thrown horizontally, so its initial vertical velocity is zero: $u_y = 0$. Vertically it falls $s_y = 20$ m with $a = g = 9.81$ m s⁻².\nChoose the equation with no $v$: $s = ut + \\tfrac{1}{2}at^2$.\n$20 = (0)t + \\tfrac{1}{2}(9.81)t^2$\n$20 = 4.905\\,t^2$\n$t^2 = \\dfrac{20}{4.905} = 4.077$\n$t = 2.02$ s.\n\n**(b) Horizontal distance — from the HORIZONTAL motion.** Horizontally the velocity is constant at $u_x = 15$ m s⁻¹, and the time of flight is the same $t$ found above.\n$s_x = u_x \\times t = 15 \\times 2.02 = 30.3$ m $\\approx 30$ m.\n\n**Final answer:** the ball is in the air for $2.0$ s and lands $30$ m from the base of the cliff.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — correct method for the vertical motion.** Awarded for recognising $u_y = 0$ and choosing a valid vertical equation, i.e. $s = ut + \\tfrac{1}{2}at^2$ with $s = 20$ and $a = 9.81$. This is a METHOD mark: it is earned for the correct approach even if the arithmetic later slips.\n- **M1 — correct substitution.** Awarded for substituting the numbers correctly into that equation: $20 = \\tfrac{1}{2}(9.81)t^2$. The engine checks that the right values went into the right places.\n- **A1 — time with unit.** Awarded for $t \\approx 2.0$ s (accept 2.0–2.02 s). Here ECF protects you: a student who chose the right method and substituted correctly but mis-keyed the final division still keeps the two M-marks, and if their answer follows correctly from THEIR earlier figure the A-mark is protected too.\n- **A1 — horizontal distance with unit.** Awarded for $s_x = u_x t \\approx 30$ m. Because it uses the time from part (a), ECF applies: a student who found a wrong time but then correctly did $15 \\times (\\text{their } t)$ still earns this mark on their own figure.\n\n**'Accept answers that round correctly.'** The engine accepts $2.0$ s and $2.02$ s, and $30$ m or $30.3$ m — it does not demand a fixed number of decimal places, only a correctly-rounded final value with the right unit.\n\n**Bottom line:** of the 4 marks, two are method marks that survive an arithmetic slip, and the answer marks are shielded by ECF. A student who writes only '30 m' with no working risks losing 2–3 marks if the final number is wrong; a student who shows the vertical equation, the substitution and the horizontal step keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: separate the vertical and horizontal lists, write the equation you chose, show the substitution, then the answer with its unit. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Kinematics describes motion; the next topics explain it. Once you can quantify velocity and acceleration, Newton's laws connect that acceleration to the forces that cause it, and the SUVAT toolkit reappears wherever acceleration is uniform. The graph skills carry straight into interpreting force–time and momentum problems, and the independence of components underlies all two-dimensional dynamics. Master the habit — list the variables, pick the equation that omits the unwanted one, keep components separate, show every line — and the mechanics that follows becomes variations on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 2 calculation marked: solve a projectile problem with full working",
+      "href": "/mark?subject=ib-physics-hl&topic=A.1&component=paper_2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/"
+        },
+        {
+          "label": "PhET Simulation: The Moving Man",
+          "href": "https://phet.colorado.edu/en/simulations/moving-man"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "The Moving Man",
+    "embedUrl": "https://phet.colorado.edu/sims/html/moving-man/latest/moving-man_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/moving-man",
+    "hint": "Explore “The Moving Man” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "A.1.1",
+      "title": "Vectors and scalars",
+      "detail": "Distinction between vector and scalar quantities, and resolution of vectors into perpendicular components."
+    },
+    {
+      "code": "A.1.2",
+      "title": "Motion with constant acceleration",
+      "detail": "Analysis of motion using kinematic equations (suvat) for constant acceleration in one dimension."
+    },
+    {
+      "code": "A.1.3",
+      "title": "Projectile motion",
+      "detail": "Analysis of projectile motion as two independent motions with constant velocity horizontally and constant acceleration vertically."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "a-1-kinematics-q1",
+      "prompt": "A delivery drone travels 300 m due East, then 400 m due North. The entire journey takes 50.0 s.\n\n(a) Determine the magnitude of the displacement of the drone. [2]\n\n(b) Calculate the magnitude of the average velocity of the drone. [1]",
+      "marks": 3,
+      "commandTerm": "Determine",
+      "difficulty": "foundation",
+      "syllabusRef": "A.1.1",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) Correct use of Pythagoras' theorem: $d = \\sqrt{300^2 + 400^2}$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Displacement magnitude = 500 m.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Average velocity magnitude = $\\frac{500}{50.0} = 10.0$ m s$^{-1}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The drone's path forms a right-angled triangle with perpendicular sides of 300 m and 400 m. The magnitude of the displacement is the length of the hypotenuse.\nUsing Pythagoras' theorem:\n$d = \\sqrt{(300\\text{ m})^2 + (400\\text{ m})^2} = \\sqrt{90000 + 160000} = \\sqrt{250000} = 500$ m.\n\n(b) The magnitude of the average velocity is the magnitude of the total displacement divided by the total time taken.\n$|\\vec{v}_{avg}| = \\frac{\\text{total displacement}}{\\text{total time}} = \\frac{500\\text{ m}}{50.0\\text{ s}} = 10.0$ m s$^{-1}$."
+    },
+    {
+      "id": "a-1-kinematics-q2",
+      "prompt": "A car accelerates uniformly from rest. It travels 40.0 m in the first 4.0 s.\n\n(a) Calculate the acceleration of the car. [2]\n\n(b) Determine the speed of the car after 4.0 s. [1]\n\n(c) Calculate the distance the car travels in the next 4.0 s (from $t=4.0$ s to $t=8.0$ s). [2]",
+      "marks": 5,
+      "commandTerm": "Calculate",
+      "difficulty": "standard",
+      "syllabusRef": "A.1.2",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) Selects and uses $s = ut + \\frac{1}{2}at^2$ with $u=0$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) $a = \\frac{2s}{t^2} = \\frac{2 \\times 40.0}{4.0^2} = 5.0$ m s$^{-2}$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) $v = at = 5.0 \\times 4.0 = 20$ m s$^{-1}$. (Allow ECF from (a)).",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Calculates total distance at $t=8.0$ s: $s_{total} = \\frac{1}{2} \\times 5.0 \\times 8.0^2 = 160$ m. OR uses $s = ut + \\frac{1}{2}at^2$ with $u=20$ m s$^{-1}$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Distance in interval = $160 - 40.0 = 120$ m. (Allow ECF from (a) and (b)).",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) We use the kinematic equation $s = ut + \\frac{1}{2}at^2$. The car starts from rest, so initial velocity $u=0$. We are given $s=40.0$ m and $t=4.0$ s.\n$40.0 = (0)(4.0) + \\frac{1}{2}a(4.0)^2$\n$40.0 = 8.0a$\n$a = \\frac{40.0}{8.0} = 5.0$ m s$^{-2}$.\n\n(b) We use $v = u + at$ to find the final speed.\n$v = 0 + (5.0)(4.0) = 20$ m s$^{-1}$.\n\n(c) To find the distance in the next 4.0 s, we can find the total distance travelled in 8.0 s and subtract the distance travelled in the first 4.0 s.\nTotal distance in 8.0 s: $s_{total} = ut + \\frac{1}{2}at^2 = 0 + \\frac{1}{2}(5.0)(8.0)^2 = 160$ m.\nDistance in the interval from $t=4.0$ s to $t=8.0$ s is $s_{interval} = s_{total} - s_{initial} = 160 - 40.0 = 120$ m.\nAlternatively, the velocity at $t=4.0$ s becomes the initial velocity for the next interval, $u' = 20$ m s$^{-1}$. For the next 4.0 s:\n$s = u't + \\frac{1}{2}at^2 = (20)(4.0) + \\frac{1}{2}(5.0)(4.0)^2 = 80 + 40 = 120$ m."
+    },
+    {
+      "id": "a-1-kinematics-q3",
+      "prompt": "A projectile is launched from ground level with an initial velocity of 45 m s$^{-1}$ at an angle of $35^\\circ$ to the horizontal. Air resistance is negligible. Use $g=9.81$ m s$^{-2}$.\n\n(a) Calculate the time of flight of the projectile. [2]\n\n(b) Determine the maximum height reached by the projectile. [2]",
+      "marks": 4,
+      "commandTerm": "Calculate",
+      "difficulty": "standard",
+      "syllabusRef": "A.1.3",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) Vertical component of velocity $u_y = 45 \\sin(35^\\circ)$. Time to peak where $v_y = 0$ is $t = u_y/g$. Total time is $2t$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) $t_{flight} = \\frac{2 \\times 45 \\sin(35^\\circ)}{9.81} = 5.26$ s.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Use of $v_y^2 = u_y^2 + 2a_y s_y$ with $v_y = 0$ at max height.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) $s_y = \\frac{0^2 - (45 \\sin(35^\\circ))^2}{2(-9.81)} = 34.0$ m.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) First, resolve the initial velocity into its vertical component.\n$u_y = u \\sin(\\theta) = 45 \\sin(35^\\circ) \\approx 25.81$ m s$^{-1}$.\nThe time to reach the maximum height occurs when the vertical velocity $v_y = 0$. Using $v_y = u_y + a_y t_{peak}$, we get $t_{peak} = \\frac{-u_y}{a_y} = \\frac{-25.81}{-9.81} \\approx 2.63$ s. The total time of flight is twice the time to peak for a symmetric trajectory.\n$T = 2 \\times t_{peak} = 2 \\times 2.63 = 5.26$ s.\n\n(b) At the maximum height, the vertical velocity $v_y=0$. We can use the kinematic equation $v_y^2 = u_y^2 + 2a_y s_y$, where $s_y$ is the maximum height $H$. Using the unrounded value for the vertical component of velocity, $u_y = 45 \\sin(35^\\circ) \\approx 25.8109$ m s$^{-1}$.\n$0^2 = (25.8109)^2 + 2(-9.81)H$.\n$19.62 H = (25.8109)^2 \\approx 666.20$.\n$H = \\frac{666.20}{19.62} \\approx 33.955$ m.\nRounding to three significant figures gives a maximum height of $34.0$ m."
+    },
+    {
+      "id": "a-1-kinematics-q4",
+      "prompt": "A stone is thrown from the top of a cliff of height $h$. The initial speed of the stone is $v_0$ at an angle $\\theta$ above the horizontal. The stone hits the sea, at a horizontal distance $R$ from the base of the cliff, with a final speed of $2v_0$. Air resistance is negligible.\n\nDeduce, in terms of $v_0$ and the acceleration of free fall $g$, an expression for the height of the cliff $h$.",
+      "marks": 6,
+      "commandTerm": "Deduce",
+      "difficulty": "challenge",
+      "syllabusRef": "A.1.3",
+      "paper": "P2",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(M1) Applies the principle of conservation of energy.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Correct expression for initial energy: $E_i = \\frac{1}{2}mv_0^2 + mgh$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Correct expression for final energy: $E_f = \\frac{1}{2}m(2v_0)^2$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Equates initial and final energy: $\\frac{1}{2}mv_0^2 + mgh = \\frac{1}{2}m(2v_0)^2$.",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Simplifies the energy equation: $\\frac{1}{2}v_0^2 + gh = 2v_0^2$.",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Rearranges to find $h$: $gh = \\frac{3}{2}v_0^2 \\implies h = \\frac{3v_0^2}{2g}$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "This problem is solved most efficiently using the principle of conservation of mechanical energy. Let the top of the cliff be the initial position and the point where the stone hits the sea be the final position. We define the potential energy at sea level ($h=0$) to be zero.\n\nThe initial mechanical energy ($E_i$) of the stone is the sum of its initial kinetic energy and initial potential energy:\n$E_i = KE_i + PE_i = \\frac{1}{2}mv_0^2 + mgh$\nwhere $m$ is the mass of the stone.\n\nThe final mechanical energy ($E_f$) of the stone just before it hits the sea is the sum of its final kinetic energy and final potential energy. The final speed is given as $v_f = 2v_0$ and the final height is 0.\n$E_f = KE_f + PE_f = \\frac{1}{2}m v_f^2 + 0 = \\frac{1}{2}m(2v_0)^2 = \\frac{1}{2}m(4v_0^2) = 2mv_0^2$.\n\nSince air resistance is negligible, mechanical energy is conserved, so $E_i = E_f$.\n$\\frac{1}{2}mv_0^2 + mgh = 2mv_0^2$\n\nWe can cancel the mass $m$ from all terms, as it is a common factor:\n$\\frac{1}{2}v_0^2 + gh = 2v_0^2$\n\nNow, we rearrange the equation to make $h$ the subject:\n$gh = 2v_0^2 - \\frac{1}{2}v_0^2$\n$gh = \\frac{4}{2}v_0^2 - \\frac{1}{2}v_0^2$\n$gh = \\frac{3}{2}v_0^2$\n$h = \\frac{3v_0^2}{2g}$\n\nThe height of the cliff is given by the expression $h = \\frac{3v_0^2}{2g}$. Note that the angle $\\theta$ and horizontal range $R$ are not required for this deduction."
+    }
+  ]
+}

@@ -1,0 +1,540 @@
+{
+  "slug": "c-1-simple-harmonic-motion",
+  "topicCode": "C.1",
+  "unit": {
+    "code": "C",
+    "title": "Wave behaviour"
+  },
+  "title": "Simple harmonic motion",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "pilot",
+  "summary": "Simple harmonic motion (SHM) is the model physics uses for anything that oscillates cleanly about a fixed point — a pendulum, a mass bouncing on a spring, an atom vibrating in a solid. This lesson builds the full C.1 toolkit: the definition of SHM and its defining condition $a = -\\omega^2 x$; angular frequency, period and frequency and how they link; the two standard systems — the simple pendulum ($T = 2\\pi\\sqrt{l/g}$) and the mass–spring ($T = 2\\pi\\sqrt{m/k}$); how displacement, velocity and acceleration vary sinusoidally in time and in phase with one another; and the constant interchange of kinetic and potential energy. Every worked example is laid out exactly the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Define simple harmonic motion in terms of a restoring force and acceleration proportional to and opposite the displacement, $a = -\\omega^2 x$.",
+    "Relate angular frequency, period and frequency, and apply the period formulae for the simple pendulum and the mass–spring system.",
+    "Describe how displacement, velocity and acceleration vary sinusoidally with time and how they are related in phase.",
+    "Explain the interchange of kinetic and potential energy in SHM and that, without damping, the total energy is constant.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "C.1"
+  ],
+  "levelNote": "Common to SL and HL; the full SHM equations $x = x_0 \\sin/\\cos(\\omega t)$ are developed at HL.",
+  "simpleExplanation": {
+    "title": "The Rhythm of Repetition",
+    "summary": "Simple harmonic motion is a special, predictable back-and-forth motion, like a pendulum's swing or a mass on a spring. The key is that the force pulling the object back to the middle grows in step with how far it has strayed — furthest away means strongest pull back.",
+    "analogy": "Think of pushing a child on a swing. The further you pull them back from the lowest point (equilibrium), the stronger the urge to return to the bottom. As they sweep through the lowest point they are moving fastest; at the very top of the swing they stop for an instant before reversing. This constant trade between position and speed, driven by a restoring force that grows with displacement, is the essence of SHM.",
+    "steps": [
+      "Find the equilibrium position — the point of zero net force. Every displacement is measured from here.",
+      "Check the restoring force. For SHM it must point back towards equilibrium and be directly proportional to the displacement, giving $a = -\\omega^2 x$.",
+      "Read off the timing. Angular frequency $\\omega$ sets the period $T = 2\\pi/\\omega$ and frequency $f$; for a pendulum or spring these depend on the system, not the amplitude.",
+      "Track the energy. Without damping the total stays constant, swapping between kinetic energy (maximum at the centre) and potential energy (maximum at the extremes)."
+    ]
+  },
+  "keyConcepts": [
+    "restoring force",
+    "angular frequency",
+    "energy interchange"
+  ],
+  "flashcards": [
+    {
+      "front": "Definition of simple harmonic motion",
+      "back": "Oscillation in which the acceleration is directly proportional to the displacement from a fixed equilibrium position and always directed towards it. Equivalently, the restoring force obeys $F \\propto -x$.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "The defining equation of SHM",
+      "back": "$a = -\\omega^2 x$. The acceleration is proportional to displacement $x$ and the minus sign makes it point opposite to $x$ — back towards equilibrium. $\\omega^2$ is the constant of proportionality.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "What the negative sign in $a = -\\omega^2 x$ means",
+      "back": "The acceleration, and therefore the net (restoring) force, always acts in the opposite direction to the displacement — it pulls the object back to the centre. It is not a statement about slowing down.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Angular frequency $\\omega$",
+      "back": "The rate of oscillation in rad s⁻¹. Linked to period and frequency by $\\omega = \\dfrac{2\\pi}{T} = 2\\pi f$. It is a scalar characteristic of the oscillating system.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Period vs frequency",
+      "back": "Period $T$ is the time for one complete oscillation (seconds); frequency $f$ is the number of oscillations per second (Hz). They are reciprocals: $f = 1/T$.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Period of a simple pendulum",
+      "back": "$T = 2\\pi\\sqrt{\\dfrac{l}{g}}$, where $l$ is the length and $g$ is the gravitational field strength. The period depends on length and $g$ only — not on the mass of the bob nor (for small swings) on the amplitude.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Period of a mass–spring system",
+      "back": "$T = 2\\pi\\sqrt{\\dfrac{m}{k}}$, where $m$ is the mass and $k$ is the spring constant. A heavier mass or a softer spring gives a longer period.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Where velocity is maximum in SHM",
+      "back": "At the equilibrium position ($x = 0$), where displacement and acceleration are both zero. The maximum speed is $v_{max} = \\omega x_0$.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Where acceleration is maximum in SHM",
+      "back": "At the extremes of the motion ($x = \\pm x_0$), where the restoring force is greatest and the speed is momentarily zero. The maximum acceleration is $a_{max} = \\omega^2 x_0$.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Phase of displacement, velocity and acceleration",
+      "back": "Displacement and acceleration are exactly out of step ($a$ is largest and opposite when $x$ is largest); velocity is a quarter-cycle out of phase with both, peaking as the object passes through the centre.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Energy interchange in SHM",
+      "back": "Kinetic energy is maximum at the centre and zero at the extremes; potential energy is zero at the centre and maximum at the extremes. Without damping the total mechanical energy is constant.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Total energy of an SHM oscillator",
+      "back": "$E_{total} = \\tfrac{1}{2}m\\omega^2 x_0^2$; for a spring this equals $\\tfrac{1}{2}kx_0^2$. The total energy is proportional to the square of the amplitude $x_0$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Does the period depend on amplitude?",
+      "back": "No. For a mass–spring, and for a simple pendulum at small angles, the period is independent of amplitude — this is why oscillators keep good time. The amplitude sets the energy, not the timing.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: is $\\omega$ the same as angular velocity?",
+      "back": "It has the same units (rad s⁻¹) but in SHM $\\omega$ describes the rate of oscillation, not a physical rotation. Treat it as a property of the oscillator that sets its timing through $\\omega = 2\\pi/T$.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Which condition must hold for an object to be in simple harmonic motion?",
+      "options": [
+        "A constant force pushes it in one direction",
+        "The restoring force is proportional to displacement and directed towards equilibrium ($F \\propto -x$)",
+        "The speed is constant throughout the motion",
+        "The acceleration is largest at the centre of the motion"
+      ],
+      "answer": "The restoring force is proportional to displacement and directed towards equilibrium ($F \\propto -x$)"
+    },
+    {
+      "prompt": "At the extreme positions of an SHM oscillation (maximum displacement), the acceleration and velocity are:",
+      "options": [
+        "Acceleration maximum; velocity zero",
+        "Acceleration zero; velocity maximum",
+        "Both maximum",
+        "Both zero"
+      ],
+      "answer": "Acceleration maximum; velocity zero"
+    },
+    {
+      "prompt": "As an object passes through the equilibrium position of its SHM, its acceleration is directed:",
+      "options": [
+        "In the same direction as its velocity",
+        "Away from the equilibrium position",
+        "There is no acceleration at that point",
+        "Always downwards"
+      ],
+      "answer": "There is no acceleration at that point"
+    },
+    {
+      "prompt": "The amplitude of a mass–spring oscillator is doubled while the mass and spring are unchanged. The period of the oscillation:",
+      "options": [
+        "Doubles",
+        "Halves",
+        "Stays the same",
+        "Increases by a factor of four"
+      ],
+      "answer": "Stays the same"
+    },
+    {
+      "prompt": "For an undamped oscillator moving from an extreme towards the centre, the total mechanical energy:",
+      "options": [
+        "Increases as it speeds up",
+        "Decreases as potential energy is lost",
+        "Stays constant, with PE converting to KE",
+        "Is zero at the centre"
+      ],
+      "answer": "Stays constant, with PE converting to KE"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What actually makes a motion 'simple harmonic'?",
+      "a": "One condition, stated two equivalent ways: the restoring force is proportional to displacement and directed back towards equilibrium ($F \\propto -x$), which by $F = ma$ means the acceleration obeys $a = -\\omega^2 x$. If the force is constant, or grows with the square of displacement, or does not point back to the centre, the motion is oscillatory but not simple harmonic."
+    },
+    {
+      "q": "Why is there a negative sign in $a = -\\omega^2 x$?",
+      "a": "The sign encodes 'restoring'. The acceleration, and hence the net force, always points opposite to the displacement — when the object is to the right of centre it accelerates left, and vice versa. That is what continually drives it back through equilibrium and keeps the oscillation going."
+    },
+    {
+      "q": "Does the period of a pendulum or spring depend on how far it swings?",
+      "a": "No — for a mass–spring exactly, and for a simple pendulum provided the angle stays small, the period is independent of amplitude. $T = 2\\pi\\sqrt{l/g}$ and $T = 2\\pi\\sqrt{m/k}$ contain no amplitude term. A wider swing simply has more energy and a higher top speed, completed in the same time. This isochronism is exactly why pendulums make good clocks."
+    },
+    {
+      "q": "Where is the object fastest, and where does it accelerate most?",
+      "a": "It is fastest at the centre (equilibrium), where displacement and acceleration are both zero and all the energy is kinetic. It accelerates most at the extremes, where the restoring force is greatest, the speed is momentarily zero and all the energy is potential. Velocity and acceleration therefore peak a quarter-cycle apart."
+    },
+    {
+      "q": "Does the total energy of an SHM system stay constant?",
+      "a": "In the ideal, undamped case, yes — energy only shuttles back and forth between kinetic and potential, and the total $E_{total} = \\tfrac{1}{2}m\\omega^2 x_0^2$ is fixed by the amplitude. Real oscillators lose energy to friction and drag (damping), so their amplitude — and total energy — gradually decay."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "From the swing of a pendulum to the vibration of a guitar string and the jiggle of atoms in a solid, oscillatory motion is everywhere. Simple harmonic motion is the fundamental model for it — the cleanest possible oscillation, and the building block for describing more complicated vibrations and waves. This lesson defines SHM precisely, links its timing to angular frequency, applies it to the two systems you must know, and follows the energy as it flows between kinetic and potential. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "Defining simple harmonic motion"
+    },
+    {
+      "type": "text",
+      "content": "For an object to undergo SHM, two things must be true. First, it oscillates about a fixed equilibrium position — the point where it would rest undisturbed, because the net force there is zero. Second, whenever it is displaced, it feels a restoring force that is directly proportional to the displacement and always directed back towards equilibrium. The further you pull it away, the harder it is pulled back. Together these give the single defining condition of SHM: the acceleration is proportional to the displacement and points in the opposite direction."
+    },
+    {
+      "type": "formula",
+      "content": "a = -\\omega^2 x"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**The minus sign is the whole point:** the acceleration $a$ is always opposite to the displacement $x$, so the force is restoring — it drives the object back to the centre.",
+        "**$\\omega^2$ is the constant of proportionality.** $\\omega$ is the angular frequency, a fixed property of the particular oscillating system.",
+        "**Force follows the same rule.** Since $F = ma$, the restoring force is $F = -m\\omega^2 x$, i.e. $F \\propto -x$ — the test for whether a motion is simple harmonic at all."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "This is why a constant force (like a steady push) or a force that does not point back to a centre cannot produce SHM. It is the proportional, restoring nature of the force — captured entirely by $a = -\\omega^2 x$ — that makes the motion repeat with a fixed rhythm."
+    },
+    {
+      "type": "heading",
+      "content": "Angular frequency, period and frequency"
+    },
+    {
+      "type": "text",
+      "content": "Three quantities describe the timing of an oscillation, and they are all connected. The period $T$ is the time for one complete oscillation (in seconds). The frequency $f$ is the number of oscillations per second (in hertz, Hz), so $f = 1/T$. The angular frequency $\\omega$ measures the rate of oscillation in radians per second and ties directly to the defining equation. All three are linked by a single relationship."
+    },
+    {
+      "type": "formula",
+      "content": "\\omega = \\frac{2\\pi}{T} = 2\\pi f"
+    },
+    {
+      "type": "text",
+      "content": "Because $\\omega$ appears in $a = -\\omega^2 x$, knowing the period of an oscillator immediately tells you its acceleration at any displacement, and vice versa. Everything about the timing of the motion is carried by this one constant."
+    },
+    {
+      "type": "heading",
+      "content": "The two systems: pendulum and mass–spring"
+    },
+    {
+      "type": "text",
+      "content": "Two systems dominate SHM problems, and each has a period formula you must be able to use. A simple pendulum — a small bob on a light string — swings with SHM as long as the angle stays small. A mass on a spring oscillates with SHM because the spring supplies a restoring force proportional to extension (Hooke's law). Notice what each period depends on, and — just as importantly — what it does not."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Simple pendulum:} \\quad T = 2\\pi\\sqrt{\\dfrac{l}{g}}\n\\text{Mass–spring:} \\quad T = 2\\pi\\sqrt{\\dfrac{m}{k}}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Pendulum:** the period depends only on the length $l$ and the gravitational field strength $g$ — not on the mass of the bob and not (for small swings) on the amplitude.",
+        "**Mass–spring:** the period grows with mass $m$ and shrinks with spring stiffness $k$; a heavier mass or a softer spring oscillates more slowly.",
+        "**Neither depends on amplitude.** This isochronism — same period whatever the swing size — is exactly what makes oscillators useful as clocks.",
+        "**Link to $\\omega$:** comparing with $\\omega = 2\\pi/T$ gives $\\omega = \\sqrt{g/l}$ for the pendulum and $\\omega = \\sqrt{k/m}$ for the spring."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A simple pendulum has a length of 0.65 m. Taking $g = 9.81$ m s⁻², calculate (a) its period of oscillation and (b) its frequency. [3]",
+      "solution": "**List what you have.** $l = 0.65$ m, $g = 9.81$ m s⁻².\n\n**(a) Period.** Use the pendulum formula $T = 2\\pi\\sqrt{l/g}$.  [M1: correct equation and substitution]\n$T = 2\\pi\\sqrt{\\dfrac{0.65}{9.81}} = 2\\pi\\sqrt{0.06626} = 2\\pi(0.2574)$\n$T = 1.617 \\approx 1.6$ s.  [A1: answer with unit]\n\n**(b) Frequency.** Frequency is the reciprocal of the period: $f = 1/T$.\n$f = \\dfrac{1}{1.617} = 0.618 \\approx 0.62$ Hz.  [A1: answer with unit]\n\n**Final answer:** period $\\approx 1.6$ s; frequency $\\approx 0.62$ Hz."
+    },
+    {
+      "type": "heading",
+      "content": "How displacement, velocity and acceleration vary"
+    },
+    {
+      "type": "text",
+      "content": "In SHM the displacement traces out a sinusoidal curve in time — a sine or cosine, depending only on where you start the clock. If timing begins when the object is at maximum displacement (the amplitude $x_0$), the displacement follows a cosine, the velocity follows a negative sine, and the acceleration follows a negative cosine. You do not need to derive these at SL, but you must know how the three quantities relate in size and in phase."
+    },
+    {
+      "type": "formula",
+      "content": "x = x_0\\cos(\\omega t), \\quad v = -\\omega x_0\\sin(\\omega t), \\quad a = -\\omega^2 x_0\\cos(\\omega t) = -\\omega^2 x"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**At the extremes ($x = \\pm x_0$):** the speed is zero and the acceleration is maximum, $a_{max} = \\omega^2 x_0$. The object is momentarily at rest as it turns around.",
+        "**At the centre ($x = 0$):** the acceleration is zero and the speed is maximum, $v_{max} = \\omega x_0$. This is where the object moves fastest.",
+        "**Phase relationships:** displacement and acceleration are exactly out of step (opposite signs, peaking together), while velocity peaks a quarter-cycle away from both, as the object passes through the centre.",
+        "**Velocity from displacement:** at any point, $v = \\pm\\omega\\sqrt{x_0^2 - x^2}$, so speed falls smoothly from $v_{max}$ at the centre to zero at the extremes."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A trolley oscillates with SHM of amplitude 12 cm and period 0.80 s. Calculate (a) the angular frequency, (b) the maximum speed of the trolley and (c) the magnitude of its acceleration when the displacement is 6.0 cm. [5]",
+      "solution": "**List what you have.** $x_0 = 12$ cm $= 0.12$ m, $T = 0.80$ s.\n\n**(a) Angular frequency.** $\\omega = \\dfrac{2\\pi}{T}$.  [M1]\n$\\omega = \\dfrac{2\\pi}{0.80} = 7.854 \\approx 7.9$ rad s⁻¹.  [A1: answer with unit]\n\n**(b) Maximum speed.** This occurs at the centre: $v_{max} = \\omega x_0$.\n$v_{max} = 7.854 \\times 0.12 = 0.942 \\approx 0.94$ m s⁻¹.  [A1: answer with unit]\n\n**(c) Acceleration at $x = 6.0$ cm $= 0.060$ m.** Use the defining equation $a = -\\omega^2 x$; the question asks for magnitude.  [M1: correct equation]\n$|a| = \\omega^2 x = (7.854)^2 \\times 0.060 = 61.69 \\times 0.060 = 3.70 \\approx 3.7$ m s⁻².  [A1: answer with unit]\n\n**Final answer:** $\\omega \\approx 7.9$ rad s⁻¹; $v_{max} \\approx 0.94$ m s⁻¹; $|a| \\approx 3.7$ m s⁻² directed back towards equilibrium."
+    },
+    {
+      "type": "heading",
+      "content": "Energy in simple harmonic motion"
+    },
+    {
+      "type": "text",
+      "content": "In an ideal, undamped oscillator the total mechanical energy is constant; it only shuttles between kinetic energy $E_k$ and potential energy $E_p$. At the extremes the object is momentarily at rest, so all the energy is potential. As it accelerates towards the centre that potential energy converts into kinetic energy, reaching all-kinetic at the equilibrium position, where the speed is greatest. The cycle then reverses. Because the total is fixed by the amplitude, $E_{total} \\propto x_0^2$: doubling the amplitude quadruples the energy."
+    },
+    {
+      "type": "formula",
+      "content": "E_{total} = E_k + E_p = \\tfrac{1}{2}mv^2 + \\tfrac{1}{2}kx^2 = \\text{constant} = \\tfrac{1}{2}kx_0^2 = \\tfrac{1}{2}m\\omega^2 x_0^2"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Kinetic energy:** maximum at the centre ($x = 0$); zero at the extremes ($x = \\pm x_0$).",
+        "**Potential energy:** zero at the centre; maximum at the extremes.",
+        "**Total energy:** constant throughout the motion (no damping), and proportional to the square of the amplitude, $x_0^2$.",
+        "**Damping** (friction, air resistance) removes energy, so a real oscillator's amplitude and total energy decay over time."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A 0.30 kg mass oscillates on a spring of spring constant $k = 120$ N m⁻¹ with an amplitude of 5.0 cm. Calculate (a) the total energy of the oscillator and (b) the speed of the mass when its displacement is 3.0 cm from equilibrium. [4]",
+      "solution": "**List what you have.** $m = 0.30$ kg, $k = 120$ N m⁻¹, $x_0 = 5.0$ cm $= 0.050$ m.\n\n**(a) Total energy.** All the energy is potential at the amplitude: $E_{total} = \\tfrac{1}{2}kx_0^2$.  [M1: correct equation and substitution]\n$E_{total} = \\tfrac{1}{2}(120)(0.050)^2 = 60 \\times 0.0025 = 0.15$ J.  [A1: answer with unit]\n\n**(b) Speed at $x = 3.0$ cm $= 0.030$ m.** Conserve energy: total = kinetic + potential at that point.\n$E_{total} = \\tfrac{1}{2}mv^2 + \\tfrac{1}{2}kx^2$  [M1: energy conservation set up]\n$0.15 = \\tfrac{1}{2}(0.30)v^2 + \\tfrac{1}{2}(120)(0.030)^2$\n$0.15 = 0.15\\,v^2 + 0.054$\n$0.15\\,v^2 = 0.096$\n$v^2 = 0.640$\n$v = \\sqrt{0.640} = 0.800 \\approx 0.80$ m s⁻¹.  [A1: answer with unit]\n\n**Final answer:** total energy $0.15$ J; speed at 3.0 cm $\\approx 0.80$ m s⁻¹."
+    },
+    {
+      "type": "examTip",
+      "content": "If a problem gives displacement or velocity as a function of time and you must evaluate $\\cos(\\omega t)$ or $\\sin(\\omega t)$, set your calculator to **radians mode** — the quantity $\\omega t$ is an angle in radians. Leaving the calculator in degrees is one of the most common and most avoidable ways to lose an answer mark."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Forgetting the defining condition** — SHM requires a restoring force proportional to displacement and directed towards equilibrium ($F \\propto -x$). A constant force, or a force that does not point back to the centre, is not SHM, however 'wobbly' the motion looks.",
+        "**Dropping or misreading the minus sign in $a = -\\omega^2 x$** — the acceleration is always opposite to the displacement. The sign shows direction (restoring), not merely 'slowing down'.",
+        "**Swapping where speed and acceleration peak** — speed is maximum at the centre and zero at the extremes; acceleration is maximum at the extremes and zero at the centre. Mixing these up costs marks in both graph and calculation questions.",
+        "**Thinking the period depends on amplitude** — for a spring, and a pendulum at small angles, the period is independent of amplitude. A bigger swing changes the energy and the top speed, not the timing.",
+        "**Assuming total energy changes during the motion** — without damping the total is constant; only the split between kinetic and potential energy changes. Don't say energy is 'lost' at the extremes — it is all potential there.",
+        "**Confusing pendulum and spring variables** — a pendulum period depends on length and $g$ (not mass); a spring period depends on mass and $k$ (not $g$). Check which formula the system needs before substituting.",
+        "**Forgetting to convert centimetres to metres, or leaving the calculator in degrees** — convert every length to metres before substituting, carry extra figures through the working, and always attach the correct unit to the final answer."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an answer mark (A) — and error-carried-forward (ECF) means a wrong number early on does not have to cost you the marks that follow. But that protection only exists if your method is written down. Study how each mark below is earned by a specific line in a two-part SHM calculation."
+    },
+    {
+      "type": "workedExample",
+      "question": "A mass of 0.20 kg on a spring of spring constant 50 N m⁻¹ oscillates with SHM. Calculate the period and the maximum speed if the amplitude is 4.0 cm. [4]",
+      "solution": "**Model answer — full working.**\n\nList the data: $m = 0.20$ kg, $k = 50$ N m⁻¹, $x_0 = 4.0$ cm $= 0.040$ m.\n\n**Period — from the mass–spring formula.**\n$T = 2\\pi\\sqrt{\\dfrac{m}{k}} = 2\\pi\\sqrt{\\dfrac{0.20}{50}} = 2\\pi\\sqrt{0.0040}$\n$T = 2\\pi(0.06325) = 0.397 \\approx 0.40$ s.\n\n**Maximum speed — at the equilibrium position.**\nFirst find the angular frequency: $\\omega = \\dfrac{2\\pi}{T} = \\dfrac{2\\pi}{0.397} = 15.8$ rad s⁻¹ (equivalently $\\omega = \\sqrt{k/m} = \\sqrt{50/0.20} = 15.8$ rad s⁻¹).\n$v_{max} = \\omega x_0 = 15.8 \\times 0.040 = 0.632 \\approx 0.63$ m s⁻¹.\n\n**Final answer:** period $\\approx 0.40$ s; maximum speed $\\approx 0.63$ m s⁻¹.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — correct method for the period.** Awarded for choosing the mass–spring formula $T = 2\\pi\\sqrt{m/k}$ and substituting $m = 0.20$ and $k = 50$. This is a METHOD mark: it is earned for the correct approach even if the arithmetic later slips.\n- **A1 — period with unit.** Awarded for $T \\approx 0.40$ s (accept 0.39–0.40 s). ECF applies: a student who set up the formula correctly but mis-keyed the square root still keeps M1, and if the answer follows correctly from THEIR working the A-mark is protected.\n- **M1 — correct method for the maximum speed.** Awarded for using $v_{max} = \\omega x_0$ with a correctly obtained $\\omega$ (from $2\\pi/T$ or $\\sqrt{k/m}$) and $x_0 = 0.040$ m. The engine checks the right relationship and the metre conversion, not just the number.\n- **A1 — maximum speed with unit.** Awarded for $v_{max} \\approx 0.63$ m s⁻¹. Because it uses $\\omega$ from the first part, ECF applies: a student who found a wrong period but then correctly did $\\omega x_0$ on THEIR figures still earns this mark.\n\n**'Accept answers that round correctly.'** The engine accepts $0.40$ s or $0.397$ s, and $0.63$ m s⁻¹ or $0.632$ m s⁻¹ — it does not demand a fixed number of decimal places, only a correctly-rounded final value with the right unit. A common trap it catches: leaving the amplitude as 4.0 cm gives a $v_{max}$ 100 times too large, so the metre conversion is where the M-mark is really tested.\n\n**Bottom line:** of the 4 marks, two are method marks that survive an arithmetic slip, and the answer marks are shielded by ECF. A student who writes only '0.63 m/s' with no working risks losing 2–3 marks if the final number is wrong; a student who shows the period formula, the substitution, $\\omega$, and the $v_{max}$ step keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: write the formula you chose, convert centimetres to metres before substituting, show $\\omega$, then the answer with its unit. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "SHM is the seed of wave physics. The sinusoidal displacement of a single oscillator, repeated across many connected particles, is exactly what a travelling wave is — so the definitions of amplitude, period, frequency and phase carry straight into the wave topics that follow in unit C. The energy picture reappears too: standing waves, resonance and damping all build on the idea of energy stored and exchanged in an oscillator. Master the habit here — check the defining condition, read the timing from $\\omega$, keep speed and acceleration at the right places, and follow the energy — and wave behaviour becomes variations on a motion you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 2 calculation marked: solve an SHM problem with full working",
+      "href": "/mark?subject=ib-physics-hl&topic=C.1&component=paper_2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/"
+        },
+        {
+          "label": "PhET Mass & Springs Simulation",
+          "href": "https://phet.colorado.edu/en/simulations/masses-and-springs"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "PhET Mass & Springs Simulation",
+    "embedUrl": "https://phet.colorado.edu/sims/html/masses-and-springs/latest/masses-and-springs_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/masses-and-springs",
+    "hint": "Explore “PhET Mass & Springs Simulation” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "subtopics": [
+    {
+      "code": "C.1.1",
+      "title": "The defining equation of SHM",
+      "detail": "Understanding the conditions and the defining equation for simple harmonic motion, $a = -\\omega^2 x$."
+    },
+    {
+      "code": "C.1.2",
+      "title": "Solutions to the SHM equation",
+      "detail": "Using $x = x_0 \\sin(\\omega t)$, $x = x_0 \\cos(\\omega t)$, and $v = \\pm \\omega \\sqrt{x_0^2 - x^2}$ to solve problems."
+    },
+    {
+      "code": "C.1.3",
+      "title": "Energy changes during SHM",
+      "detail": "Analysing the interchange between kinetic and potential energy during simple harmonic motion."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "c-1-simple-harmonic-motion-q1",
+      "prompt": "A particle is described as undergoing simple harmonic motion (SHM).\n\n(a) State the two defining conditions for the acceleration of an object moving with SHM. [2]\n\n(b) Write down the equation that defines SHM, defining all symbols used. [2]",
+      "marks": 4,
+      "commandTerm": "State",
+      "difficulty": "foundation",
+      "syllabusRef": "C.1.1",
+      "paper": "P2",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) The acceleration is directed towards a fixed point in its path (the equilibrium position).",
+          "marks": 1
+        },
+        {
+          "text": "The magnitude of the acceleration is proportional to the displacement from that fixed point.",
+          "marks": 1
+        },
+        {
+          "text": "(b) $a = -\\omega^2 x$.",
+          "marks": 1
+        },
+        {
+          "text": "$a$ is acceleration, $x$ is displacement from equilibrium, and $\\omega$ is angular frequency (which is a constant).",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) For an object to be undergoing simple harmonic motion, its acceleration must satisfy two conditions:\n1. The acceleration is always directed towards a fixed equilibrium position.\n2. The magnitude of the acceleration is directly proportional to the magnitude of the displacement from the equilibrium position.\n\n(b) The defining equation for SHM is:\n$a = -\\omega^2 x$\nWhere:\n- $a$ is the acceleration of the object.\n- $x$ is the displacement of the object from its equilibrium position.\n- $\\omega$ is the angular frequency of the oscillation, which is a constant for the motion. The negative sign indicates that the acceleration vector is always in the opposite direction to the displacement vector."
+    },
+    {
+      "id": "c-1-simple-harmonic-motion-q2",
+      "prompt": "A mass of 350 g is attached to a vertical spring, causing it to oscillate with simple harmonic motion. The amplitude of the oscillation is 6.0 cm and its period is 1.2 s.\n\n(a) Calculate the maximum speed of the mass. [3]\n\n(b) Determine the magnitude of the maximum acceleration of the mass. [2]",
+      "marks": 5,
+      "commandTerm": "Calculate",
+      "difficulty": "standard",
+      "syllabusRef": "C.1.2",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) Calculates angular frequency: $\\omega = \\frac{2\\pi}{T} = \\frac{2\\pi}{1.2} \\approx 5.236$ rad s⁻¹.",
+          "marks": 1
+        },
+        {
+          "text": "Uses the formula for maximum speed: $v_{max} = \\omega x_0 = 5.236 \\times 0.060$.",
+          "marks": 1
+        },
+        {
+          "text": "Correct answer with unit: $v_{max} = 0.31$ m s⁻¹ (accept 0.314 m s⁻¹).",
+          "marks": 1
+        },
+        {
+          "text": "(b) Uses the formula for maximum acceleration: $a_{max} = \\omega^2 x_0 = (5.236)^2 \\times 0.060$.",
+          "marks": 1
+        },
+        {
+          "text": "Correct answer with unit: $a_{max} = 1.6$ m s⁻² (accept 1.64 m s⁻²).",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) First, we need to find the angular frequency, $\\omega$, from the period, $T$.\n$\\omega = \\frac{2\\pi}{T} = \\frac{2\\pi}{1.2 \\text{ s}} \\approx 5.236 \\text{ rad s}^{-1}$\nThe amplitude, $x_0$, is given as 6.0 cm, which is 0.060 m.\nThe maximum speed, $v_{max}$, occurs at the equilibrium position ($x=0$) and is given by the formula:\n$v_{max} = \\omega x_0$\n$v_{max} = (5.236 \\text{ rad s}^{-1}) \\times (0.060 \\text{ m}) = 0.31416... \\text{ m s}^{-1}$\nTo two significant figures, $v_{max} = 0.31 \\text{ m s}^{-1}$.\n\n(b) The maximum acceleration, $a_{max}$, occurs at the maximum displacement ($x = \\pm x_0$) and is given by the formula:\n$a_{max} = \\omega^2 x_0$\n$a_{max} = (5.236 \\text{ rad s}^{-1})^2 \\times (0.060 \\text{ m}) = (27.415... \\text{ rad}^2 \\text{ s}^{-2}) \\times (0.060 \\text{ m}) = 1.6449... \\text{ m s}^{-2}$\nTo two significant figures, $a_{max} = 1.6 \\text{ m s}^{-2}$."
+    },
+    {
+      "id": "c-1-simple-harmonic-motion-q3",
+      "prompt": "The graph shows the variation of kinetic energy $E_k$ with displacement $x$ for a body of mass $m$ undergoing simple harmonic motion. The amplitude of the motion is $x_0$.\n\n[A downward-opening parabola is shown on axes of $E_k$ (y-axis) vs $x$ (x-axis). The vertex is at $(0, E_{k,max})$. The parabola intersects the x-axis at $x = -x_0$ and $x = +x_0$.]\n\n(a) On a copy of the axes, sketch a graph to show the variation of the potential energy $E_p$ of the body with displacement $x$. [2]\n\n(b) The total energy of the system is $E_T$. Use the graph to explain how the total energy is conserved. [2]",
+      "marks": 4,
+      "commandTerm": "Explain",
+      "difficulty": "standard",
+      "syllabusRef": "C.1.3",
+      "paper": "P2",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) Upward-opening parabola drawn.",
+          "marks": 1
+        },
+        {
+          "text": "Correct shape: minimum at $x=0$ (value is zero), and maximum value $E_{k,max}$ at $x = \\pm x_0$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) The total energy $E_T$ is the sum of kinetic and potential energy, $E_T = E_k + E_p$.",
+          "marks": 1
+        },
+        {
+          "text": "For any displacement $x$, the decrease in one form of energy is equal to the increase in the other, so their sum $E_T$ remains constant (equal to $E_{k,max}$).",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The potential energy in an SHM system is given by $E_p = \\frac{1}{2}m\\omega^2 x^2$. This is a quadratic function of $x$, resulting in an upward-opening parabola.\n- When displacement $x=0$, potential energy is zero.\n- When displacement is maximum ($x = \\pm x_0$), potential energy is maximum. By conservation of energy, this maximum potential energy must equal the maximum kinetic energy.\nThe sketch should be an upward-opening parabola with its vertex at the origin (0,0) and reaching a maximum height of $E_{k,max}$ at both $x = -x_0$ and $x = +x_0$.\n\n(b) The total energy of the system is the sum of its kinetic and potential energies: $E_T = E_k + E_p$. \nFrom the graphs, at any displacement $x$, the kinetic energy is $E_k(x)$ and the potential energy is $E_p(x)$. The shape of the kinetic energy graph is an inverted parabola, and the potential energy graph is an upright parabola. If you add the vertical values of these two graphs at any given $x$, the sum is always constant and equal to the maximum kinetic energy, $E_{k,max}$ (which is also the maximum potential energy). For example, at $x=0$, $E_k = E_{k,max}$ and $E_p = 0$, so $E_T = E_{k,max}$. At $x = \\pm x_0$, $E_k = 0$ and $E_p = E_{k,max}$, so $E_T = E_{k,max}$. At any point in between, as $E_k$ decreases, $E_p$ increases by the same amount, keeping their sum constant. This demonstrates the principle of conservation of energy for the oscillator."
+    },
+    {
+      "id": "c-1-simple-harmonic-motion-q4",
+      "prompt": "A small object of mass $m$ is placed on a horizontal plate that is oscillating vertically with simple harmonic motion. The amplitude of the oscillation is 3.8 mm.\n\n(a) Determine the maximum frequency of oscillation for which the object will remain in contact with the plate at all times. [4]\n\n(b) The frequency is now set to 10 Hz. Determine the first time $t > 0$ at which the object loses contact with the plate, assuming the motion starts from the lowest point of the oscillation at $t=0$. [3]",
+      "marks": 7,
+      "commandTerm": "Determine",
+      "difficulty": "challenge",
+      "syllabusRef": "C.1.2",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) The object loses contact when the upward acceleration of the plate is less than the downward acceleration of the object in freefall, OR when the normal reaction force becomes zero. This happens when the downward acceleration of the plate equals $g$.",
+          "marks": 1
+        },
+        {
+          "text": "This condition occurs at the highest point of the motion, where acceleration is maximum and downwards: $a_{max} = g$.",
+          "marks": 1
+        },
+        {
+          "text": "Sets up the equation $\\omega^2 x_0 = g$ or $(2\\pi f)^2 x_0 = g$.",
+          "marks": 1
+        },
+        {
+          "text": "Solves for f: $f = \\frac{1}{2\\pi}\\sqrt{\\frac{g}{x_0}} = \\frac{1}{2\\pi}\\sqrt{\\frac{9.81}{0.0038}} \\approx 8.1$ Hz.",
+          "marks": 1
+        },
+        {
+          "text": "(b) The object loses contact when $a = -g$. The equation for displacement from the lowest point is $x = -x_0 \\cos(\\omega t)$. The acceleration is $a = \\frac{d^2x}{dt^2} = \\omega^2 x_0 \\cos(\\omega t)$.",
+          "marks": 1
+        },
+        {
+          "text": "Sets $a = g$ (since acceleration is positive upwards): $g = \\omega^2 x_0 \\cos(\\omega t)$. Calculates $\\omega = 2\\pi(10) = 20\\pi$. Finds $\\cos(\\omega t) = \\frac{g}{\\omega^2 x_0} = \\frac{9.81}{(20\\pi)^2(0.0038)} \\approx 0.658$.",
+          "marks": 1
+        },
+        {
+          "text": "Solves for $t$: $\\omega t = \\arccos(0.658) \\approx 0.852$ rad. $t = \\frac{0.852}{20\\pi} \\approx 0.0136$ s or 14 ms.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) The object will remain in contact with the plate as long as the upward normal reaction force on it is greater than or equal to zero. The equation of motion for the object is $N - mg = ma$, where $a$ is the acceleration of the plate. So, $N = m(g+a)$. The object loses contact when $N=0$, which means $a = -g$. The maximum downward acceleration of the plate occurs at the highest point of its oscillation and has magnitude $a_{max} = \\omega^2 x_0$. For the object to remain in contact, this maximum downward acceleration must be less than or equal to $g$. The limiting condition is when $a_{max} = g$.\n$a_{max} = \\omega^2 x_0 = (2\\pi f_{max})^2 x_0 = g$\nRearranging for $f_{max}$:\n$f_{max} = \\frac{1}{2\\pi} \\sqrt{\\frac{g}{x_0}}$\nGiven $x_0 = 3.8 \\text{ mm} = 0.0038 \\text{ m}$ and $g = 9.81 \\text{ m s}^{-2}$:\n$f_{max} = \\frac{1}{2\\pi} \\sqrt{\\frac{9.81}{0.0038}} = \\frac{1}{2\\pi} \\sqrt{2581.6} \\approx 8.08 \\text{ Hz}$\nSo the maximum frequency is approximately 8.1 Hz.\n\n(b) The motion starts at the lowest point, so we can model the displacement from equilibrium as $x(t) = -x_0 \\cos(\\omega t)$. The acceleration is the second derivative: $a(t) = \\omega^2 x_0 \\cos(\\omega t)$. The object loses contact when its downward acceleration equals $g$, i.e., $a(t) = -g$. However, our acceleration equation is defined positive upwards. So we need to find when the upward acceleration of the plate is such that the object would need to accelerate downwards faster than $g$ to keep up. This happens when the plate's acceleration is $a=-g$. But the question asks for the first time it loses contact. This occurs on the upward journey, when the downward force required to provide the SHM acceleration ($ma$) exceeds the available gravitational force ($mg$). This happens when $a = -g$. Let's re-evaluate the force equation: $N = m(g+a)$. Contact is lost when $N=0$, so $a=-g$. \n$a(t) = \\omega^2 x_0 \\cos(\\omega t) = -g$\nThis is not possible as the term on the left is always positive. Let's reconsider the physics. The object loses contact when the plate accelerates downwards faster than $g$. This happens on the upper part of the cycle. Let's model from the top: $x(t) = x_0 \\cos(\\omega t)$. Then $a(t) = -\\omega^2 x_0 \\cos(\\omega t)$. We need $a(t) = -g$. So $-g = -\\omega^2 x_0 \\cos(\\omega t)$.\nWith $f=10$ Hz, $\\omega = 2\\pi f = 20\\pi$ rad s⁻¹.\n$g = \\omega^2 x_0 \\cos(\\omega t)$\n$\\cos(\\omega t) = \\frac{g}{\\omega^2 x_0} = \\frac{9.81}{(20\\pi)^2 (0.0038)} = \\frac{9.81}{14.98} \\approx 0.6548$\n$\\omega t = \\arccos(0.6548) \\approx 0.857$ rad.\nThis is the time after passing the highest point. The motion starts at the lowest point. Time to go from lowest to highest point is $T/2 = \\frac{1}{2f} = \\frac{1}{20} = 0.05$ s. The object loses contact on the way down from the peak. The time from the start (lowest point) to the peak is $0.05$ s. The time from the peak to losing contact is $t' = \\frac{0.857}{20\\pi} \\approx 0.0136$ s. This is incorrect. \nLet's stick to the first model: $x(t) = -x_0 \\cos(\\omega t)$. $a(t) = \\omega^2 x_0 \\cos(\\omega t)$. The object is on the plate, so the net force is $N-mg=ma$. $N = m(g+a)$. It loses contact when $N=0$, so $a=-g$. This is impossible. What is wrong? The acceleration $a$ is the acceleration of the object. The plate provides this. The force on the object is $N-mg$. So $N-mg=ma_{obj}$. The plate has acceleration $a_{plate}$. As long as they are in contact $a_{obj}=a_{plate}$. The object loses contact when $N=0$, at which point $a_{obj}=-g$. So we need to find the time when the plate's required acceleration is $a_{plate}=-g$. \n$a_{plate}(t) = \\omega^2 x_0 \\cos(\\omega t)$. This is always positive or zero. My acceleration equation is wrong. \nLet's restart the model. $x(t) = -x_0 \\cos(\\omega t)$. $v(t) = \\omega x_0 \\sin(\\omega t)$. $a(t) = \\omega^2 x_0 \\cos(\\omega t)$. This is the *magnitude* of acceleration. The direction is towards equilibrium. So $a(t) = -\\omega^2 x(t) = \\omega^2 x_0 \\cos(\\omega t)$. This is acceleration relative to equilibrium. Let's use the standard definition. $a = -\\omega^2 x$. $a(t) = -\\omega^2(-x_0 \\cos(\\omega t)) = \\omega^2 x_0 \\cos(\\omega t)$. This is the upward acceleration. Loss of contact occurs when $a(t) = -g$. So $\\omega^2 x_0 \\cos(\\omega t) = -g$. $\\cos(\\omega t) = -\\frac{g}{\\omega^2 x_0}$.\n$\\omega = 20\\pi$. $\\omega^2 x_0 = (20\\pi)^2(0.0038) \\approx 14.98$ m s⁻². So $\\cos(20\\pi t) = -\\frac{9.81}{14.98} \\approx -0.6548$. \n$20\\pi t = \\arccos(-0.6548) \\approx 2.284$ rad (this is the first positive solution). \n$t = \\frac{2.284}{20\\pi} \\approx 0.03635$ s. To two significant figures, $t = 0.036$ s or 36 ms."
+    }
+  ]
+}

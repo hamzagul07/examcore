@@ -1,0 +1,464 @@
+{
+  "slug": "4-5-the-binomial-distribution",
+  "topicCode": "4.5",
+  "unit": {
+    "code": "4",
+    "title": "Statistics and probability"
+  },
+  "title": "The binomial distribution",
+  "paper": "P2",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "pilot",
+  "summary": "The binomial distribution is the model for counting successes across a fixed number of independent, two-outcome trials with a constant probability of success. This lesson builds the full 4.5 toolkit: the four conditions that let you recognise a binomial situation, the notation $X\\sim B(n,p)$, the exact probability formula $P(X=x)=\\binom{n}{x}p^x(1-p)^{n-x}$, cumulative probabilities for 'at least' and 'at most' phrasing using your GDC, and the mean $E(X)=np$ and variance $\\text{Var}(X)=np(1-p)$. As this is a Paper 2 topic the GDC does the arithmetic, so the marks live in how clearly you set up the distribution and the probability statement. Every worked example is laid out exactly the way our marking engine awards marks, mark by mark.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Recognise a random variable as binomial by checking the four defining conditions: fixed $n$, two outcomes, constant $p$, and independent trials.",
+    "State the distribution in the form $X\\sim B(n,p)$ and use the formula $P(X=x)=\\binom{n}{x}p^x(1-p)^{n-x}$ to find an exact probability.",
+    "Find cumulative probabilities $P(X\\le x)$ and $P(X\\ge x)$, translating 'at least' and 'at most' phrasing correctly for the GDC.",
+    "Calculate the mean $E(X)=np$ and the variance $\\text{Var}(X)=np(1-p)$ and interpret them in context.",
+    "Present working so that method marks and follow-through (FT) protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "4.5"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
+  "simpleExplanation": {
+    "title": "Counting Successes in a Fixed Number of Tries",
+    "summary": "The binomial distribution answers one question: if I repeat the same yes/no experiment a fixed number of times, how likely is each possible number of 'successes'? It is the maths behind any pass/fail, hit/miss or defective/good situation that you repeat under identical conditions.",
+    "analogy": "Imagine taking exactly 10 penalty kicks. Each kick is a goal ('success') or a miss ('failure'), your chance of scoring each one is the same, and no kick affects the next. The binomial distribution lets you compute the probability of exactly 7 goals, or at least 8 goals, out of the 10 — turning 'how many will go in?' into an exact number.",
+    "steps": [
+      "Check the four conditions: a fixed number of trials $n$, exactly two outcomes per trial, a constant success probability $p$, and independent trials.",
+      "Write the distribution as $X\\sim B(n,p)$, naming what $X$ counts.",
+      "Translate the words into a probability statement: 'exactly' is $P(X=x)$, 'at most' is $P(X\\le x)$, 'at least $k$' is $P(X\\ge k)=1-P(X\\le k-1)$.",
+      "Use the GDC (binomPdf for a single value, binomCdf for a cumulative one) and quote the answer, usually to 3 significant figures, in context."
+    ]
+  },
+  "keyConcepts": [
+    "binomial conditions",
+    "cumulative probability",
+    "mean and variance"
+  ],
+  "flashcards": [
+    {
+      "front": "The four conditions for a binomial distribution",
+      "back": "**B**inary: each trial has exactly two outcomes (success/failure). **I**ndependent: trials do not affect one another. **N**umber: a fixed number of trials $n$. **S**uccess: the probability of success $p$ is constant for every trial. (Acronym: BINS.)",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Meaning of $X\\sim B(n,p)$",
+      "back": "The random variable $X$, which counts the number of successes, follows a binomial distribution with $n$ trials and a constant success probability $p$. The failure probability is $q=1-p$.",
+      "pillLabel": "Notation"
+    },
+    {
+      "front": "The binomial probability formula",
+      "back": "$P(X=x)=\\binom{n}{x}p^x(1-p)^{n-x}$, where $\\binom{n}{x}=\\dfrac{n!}{x!(n-x)!}$ counts the ways to place $x$ successes among $n$ trials. Here $x$ is the number of successes and $n$ the number of trials — never swap them.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "binomPdf vs binomCdf on the GDC",
+      "back": "`binomPdf(n, p, x)` gives $P(X=x)$ — a single value ('exactly'). `binomCdf(n, p, x)` gives $P(X\\le x)=P(X=0)+\\dots+P(X=x)$ — cumulative ('at most').",
+      "pillLabel": "GDC"
+    },
+    {
+      "front": "'At least one' success",
+      "back": "$P(X\\ge 1)=1-P(X=0)=1-(1-p)^n$. The fastest and most reliable route is always the complement — do not add up every case from 1 to $n$.",
+      "pillLabel": "Technique"
+    },
+    {
+      "front": "$P(X\\ge k)$ from a cumulative function",
+      "back": "$P(X\\ge k)=1-P(X\\le k-1)$. On the GDC: `1 - binomCdf(n, p, k-1)`. The $k-1$ is the step students most often get wrong.",
+      "pillLabel": "Technique"
+    },
+    {
+      "front": "$P(a\\le X\\le b)$",
+      "back": "$P(a\\le X\\le b)=P(X\\le b)-P(X\\le a-1)$. On the GDC: `binomCdf(n, p, b) - binomCdf(n, p, a-1)`. Subtract at $a-1$, not $a$, so the value $X=a$ is kept.",
+      "pillLabel": "Technique"
+    },
+    {
+      "front": "Mean of a binomial distribution",
+      "back": "$E(X)=np$. The expected number of successes over many repetitions. It need not be a whole number even though $X$ only takes whole values.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Variance of a binomial distribution",
+      "back": "$\\text{Var}(X)=np(1-p)=npq$. The standard deviation is $\\sqrt{np(1-p)}$. Variance is largest when $p=0.5$ and shrinks as $p$ approaches 0 or 1.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Discrete: $P(X<5)$ vs $P(X\\le 5)$",
+      "back": "Because $X$ takes only whole values, $P(X<5)=P(X\\le 4)$ and $P(X>5)=1-P(X\\le 5)$. Shifting a strict inequality by one is where careless marks are lost.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A bag contains 4 red and 6 blue counters. Five counters are drawn one at a time WITHOUT replacement and the number of reds is counted. Is this binomial?",
+      "options": [
+        "Yes — there are two outcomes each draw",
+        "No — the probability of red is not constant, so the trials are not independent",
+        "Yes — there is a fixed number of five draws",
+        "No — because five is too few trials"
+      ],
+      "answer": "No — the probability of red is not constant, so the trials are not independent"
+    },
+    {
+      "prompt": "A fair coin is tossed 8 times. The probability of getting at least one head is best found as:",
+      "options": [
+        "$8\\times 0.5$",
+        "$1-(0.5)^8$",
+        "$(0.5)^8$",
+        "$1-0.5$"
+      ],
+      "answer": "$1-(0.5)^8$"
+    },
+    {
+      "prompt": "For $X\\sim B(40, 0.15)$, the mean number of successes $E(X)$ is:",
+      "options": [
+        "$40$",
+        "$0.15$",
+        "$6$",
+        "$5.1$"
+      ],
+      "answer": "$6$"
+    },
+    {
+      "prompt": "In $X\\sim B(12, 0.3)$, what do the numbers 12 and 0.3 represent?",
+      "options": [
+        "12 successes and 0.3 the number of trials",
+        "12 trials ($n$) and 0.3 the success probability ($p$)",
+        "12 the mean and 0.3 the variance",
+        "12 successes and 0.3 the failure probability"
+      ],
+      "answer": "12 trials ($n$) and 0.3 the success probability ($p$)"
+    },
+    {
+      "prompt": "For $X\\sim B(20, 0.4)$, which GDC expression gives $P(X\\ge 9)$ ('at least 9')?",
+      "options": [
+        "binomCdf(20, 0.4, 9)",
+        "1 - binomCdf(20, 0.4, 9)",
+        "1 - binomCdf(20, 0.4, 8)",
+        "binomPdf(20, 0.4, 9)"
+      ],
+      "answer": "1 - binomCdf(20, 0.4, 8)"
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I know whether a situation is binomial?",
+      "a": "Run through the four conditions in order: is there a fixed number of trials $n$? Does each trial have exactly two outcomes? Is the success probability $p$ the same every time? Are the trials independent? If all four hold, it is binomial. The condition that fails most often is constant $p$ with independence — for example drawing counters without replacement changes the probability from draw to draw, so that scenario is not binomial."
+    },
+    {
+      "q": "What is the quickest way to handle 'at least one'?",
+      "a": "Use the complement: $P(X\\ge 1)=1-P(X=0)$, and since $P(X=0)=(1-p)^n$ this is just $1-(1-p)^n$. Adding the probabilities of 1, 2, 3, ... successes one by one is slow and error-prone; the complement is a single short calculation and is what examiners expect to see."
+    },
+    {
+      "q": "When do I use binomPdf and when do I use binomCdf?",
+      "a": "Use binomPdf for a single, exact value — $P(X=x)$, the word 'exactly'. Use binomCdf for a running total from 0 up to and including a value — $P(X\\le x)$, the words 'at most', 'no more than', 'fewer than or equal to'. For 'at least' or 'more than', combine binomCdf with the complement: $P(X\\ge k)=1-P(X\\le k-1)$."
+    },
+    {
+      "q": "Why can the mean $np$ be a decimal when $X$ only takes whole values?",
+      "a": "The mean is a long-run average, not an outcome you can actually observe on one trial run. If $X\\sim B(40,0.15)$ then $E(X)=6$, but if $X\\sim B(10,0.15)$ then $E(X)=1.5$ — you can never score 1.5 successes in a single experiment, yet 1.5 is the average number of successes you would see across very many experiments."
+    },
+    {
+      "q": "What is the difference between the binomial and the normal distribution?",
+      "a": "The binomial distribution is discrete — $X$ takes only whole-number values $0,1,2,\\dots,n$ — and is used for counting successes. The normal distribution is continuous, for quantities like height or mass that vary smoothly over a range. In AA SL they are separate models; you choose the binomial whenever you are counting successes over a fixed number of two-outcome trials."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "The binomial distribution is the model you reach for whenever you are counting how many times something happens in a fixed number of repeated attempts — how many defective bulbs in a batch of 15, how many sixes in 10 rolls of a die, how many students in a class of 25 own a calculator. Because this is a Paper 2 topic, your graphic display calculator (GDC) will do the arithmetic; the marks are earned by recognising the distribution, writing the correct probability statement, and reading the answer off correctly. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "Recognising a binomial situation"
+    },
+    {
+      "type": "text",
+      "content": "Before any calculation, you must be sure the situation is genuinely binomial. Four conditions must all hold, and they are worth checking explicitly because a single failed condition changes the model entirely. A handy memory aid is the acronym BINS."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Binary:** each trial has exactly two outcomes, which we label 'success' and 'failure'. A coin toss is heads (success) or tails (failure).",
+        "**Independent:** the outcome of one trial has no effect on any other. Rolling a die repeatedly gives independent trials; drawing cards without replacement does not.",
+        "**Number:** the number of trials $n$ is fixed in advance. You decide to toss the coin 20 times, so $n=20$.",
+        "**Success:** the probability of success $p$ is the same on every trial. The probability of failure is then $q=1-p$."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "The condition most often overlooked is constant $p$ with independence. Sampling *without* replacement — drawing counters from a bag and not putting them back — changes the probability from one draw to the next, so those trials are neither independent nor identically distributed and the situation is not binomial. Sampling *with* replacement, or an experiment repeated under identical conditions, keeps $p$ constant and is binomial."
+    },
+    {
+      "type": "heading",
+      "content": "Notation and the probability formula"
+    },
+    {
+      "type": "text",
+      "content": "When a random variable $X$ counts the number of successes and satisfies the four conditions, we write it in the shorthand $X\\sim B(n,p)$. This states everything at once: a binomial distribution with $n$ trials and success probability $p$. Naming the distribution this way is not decoration — in an exam it is the line that earns the first method mark, because it shows the examiner you have identified the correct model."
+    },
+    {
+      "type": "formula",
+      "content": "The probability of exactly $x$ successes in $n$ trials is\n$$P(X=x)=\\binom{n}{x}p^x(1-p)^{n-x},\\qquad x=0,1,2,\\dots,n,$$\nwhere $\\binom{n}{x}=\\dfrac{n!}{x!(n-x)!}$ counts the number of ways to arrange $x$ successes among the $n$ trials."
+    },
+    {
+      "type": "text",
+      "content": "Read the formula as three factors: $\\binom{n}{x}$ counts the arrangements, $p^x$ is the probability of $x$ successes, and $(1-p)^{n-x}$ is the probability of the remaining $n-x$ failures. The two exponents must always add to $n$; if they do not, you have mixed up $x$ and $n$. On Paper 2 you rarely evaluate this by hand — the GDC command `binomPdf(n, p, x)` does it — but understanding the structure is what lets you set problems up correctly."
+    },
+    {
+      "type": "workedExample",
+      "question": "A factory's light bulbs are defective with probability 0.08, independently of one another. An inspector selects 15 bulbs at random. Find the probability that exactly 2 are defective. [3]",
+      "solution": "**Identify the distribution.** A trial is checking one bulb: defective (success) or not (failure); $n=15$ bulbs, constant $p=0.08$, independent. Let $X$ be the number of defective bulbs, so $X\\sim B(15,0.08)$.  [M1: correct model]\n\n**Write the probability statement.** 'Exactly 2' means $P(X=2)$, so use binomPdf:\n$$P(X=2)=\\binom{15}{2}(0.08)^2(0.92)^{13}=\\text{binomPdf}(15,0.08,2).$$  [M1: correct method/values]\n\n**Evaluate.** $P(X=2)=0.2186\\ldots\\approx 0.219$ (3 s.f.).  [A1: answer]\n\n**Final answer:** $P(X=2)\\approx 0.219$."
+    },
+    {
+      "type": "heading",
+      "content": "Cumulative probabilities: 'at least' and 'at most'"
+    },
+    {
+      "type": "text",
+      "content": "Exam questions rarely stop at 'exactly'. They ask for ranges: 'at most 3', 'at least 10', 'fewer than 5', 'between 8 and 12'. These are cumulative probabilities, and your GDC's `binomCdf` function is built for them. The single most important habit is to translate the English into a probability statement *before* touching the calculator, because that statement is where the method mark lives and where careless slips are caught."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**`binomPdf(n, p, x)`** gives $P(X=x)$. Use for 'exactly $x$'.",
+        "**`binomCdf(n, p, x)`** gives $P(X\\le x)$. Use for 'at most $x$', 'no more than $x$', '$x$ or fewer'.",
+        "**'At least $k$'** ($X\\ge k$): $P(X\\ge k)=1-P(X\\le k-1)$, i.e. `1 - binomCdf(n, p, k-1)`.",
+        "**'More than $k$'** ($X>k$): $P(X>k)=1-P(X\\le k)$, i.e. `1 - binomCdf(n, p, k)`.",
+        "**'Between $a$ and $b$ inclusive'** ($a\\le X\\le b$): $P(X\\le b)-P(X\\le a-1)$."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "The most common error in this whole topic is mishandling the boundary of an inequality. For 'at least 5' ($X\\ge 5$) you subtract the probability of '4 or fewer' ($X\\le 4$), NOT '5 or fewer'. Always write the statement $P(X\\ge 5)=1-P(X\\le 4)$ on the page first: it earns the method mark and forces you to get the $k-1$ right."
+    },
+    {
+      "type": "workedExample",
+      "question": "In a large school, 65% of students own a GDC. A teacher randomly selects a class of 25 students. (a) Find the probability that exactly 18 students own a GDC. (b) Find the probability that at least 20 students own a GDC. [5]",
+      "solution": "**Identify the distribution.** Let $X$ be the number of the 25 students who own a GDC. With $n=25$ and constant $p=0.65$, $X\\sim B(25,0.65)$.  [M1: correct model]\n\n**(a) Exactly 18.** $P(X=18)=\\text{binomPdf}(25,0.65,18)=0.1377\\ldots$  [M1: binomPdf with correct values]\n$P(X=18)\\approx 0.138$ (3 s.f.).  [A1: answer]\n\n**(b) At least 20.** 'At least 20' means $X\\ge 20$, so use the complement:\n$$P(X\\ge 20)=1-P(X\\le 19)=1-\\text{binomCdf}(25,0.65,19).$$  [M1: complement with $k-1=19$]\n$P(X\\ge 20)=1-0.9316\\ldots=0.0683\\ldots\\approx 0.0683$ (3 s.f.).  [A1: answer]\n\n**Final answer:** (a) $0.138$; (b) $0.0683$."
+    },
+    {
+      "type": "heading",
+      "content": "Mean and variance"
+    },
+    {
+      "type": "text",
+      "content": "For any distribution we want a measure of centre (the mean) and of spread (the variance). For the binomial these come from two remarkably simple formulas that you should be able to write down instantly — they are frequently worth an easy method-and-answer pair of marks."
+    },
+    {
+      "type": "formula",
+      "content": "For $X\\sim B(n,p)$:\n$$E(X)=\\mu=np,\\qquad \\text{Var}(X)=\\sigma^2=np(1-p)=npq.$$\nThe standard deviation is $\\sigma=\\sqrt{np(1-p)}$."
+    },
+    {
+      "type": "text",
+      "content": "The mean $E(X)=np$ is the average number of successes over many repetitions. Toss a fair coin 100 times ($n=100$, $p=0.5$) and you expect $E(X)=100\\times 0.5=50$ heads, with variance $\\text{Var}(X)=100\\times 0.5\\times 0.5=25$ and standard deviation $5$. Note that the mean need not be a whole number even though $X$ itself only takes whole values — it is a long-run average, not a single outcome."
+    },
+    {
+      "type": "workedExample",
+      "question": "A biased coin has probability 0.3 of landing heads. It is tossed 40 times and $X$ is the number of heads. (a) State the distribution of $X$. (b) Find the mean and standard deviation of $X$. (c) Find $E(X)$ if instead the coin were tossed 80 times. [5]",
+      "solution": "**(a)** $X\\sim B(40,0.3)$.  [A1: distribution stated]\n\n**(b) Mean.** $E(X)=np=40\\times 0.3=12$.  [M1: $np$ used]  [A1: mean $=12$]\n**Standard deviation.** $\\text{Var}(X)=np(1-p)=40\\times 0.3\\times 0.7=8.4$, so $\\sigma=\\sqrt{8.4}=2.898\\ldots\\approx 2.90$.  [M1: $np(1-p)$ then square root]  [A1: $\\sigma\\approx 2.90$]\n\n**(c)** With $n=80$: $E(X)=80\\times 0.3=24$.\n\n**Final answer:** (a) $X\\sim B(40,0.3)$; (b) mean $12$, standard deviation $\\approx 2.90$; (c) $E(X)=24$."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Applying the binomial model when a condition fails** — sampling without replacement makes $p$ change from trial to trial, so the trials are not independent and the situation is not binomial. Always check all four BINS conditions first.",
+        "**Swapping $x$ and $n$ in the formula** — in $\\binom{n}{x}p^x(1-p)^{n-x}$, $n$ is the number of trials and $x$ the number of successes. The two exponents must add to $n$; if they don't, you've mixed them up.",
+        "**Getting the boundary wrong for 'at least'** — 'at least $k$' is $P(X\\ge k)=1-P(X\\le k-1)$, so subtract at $k-1$, not $k$. Writing the probability statement before using the GDC prevents this.",
+        "**Adding cases for 'at least one' instead of using the complement** — $P(X\\ge 1)=1-P(X=0)=1-(1-p)^n$ is one short line; summing every case invites arithmetic error and wastes time.",
+        "**Confusing $P(X<k)$ with $P(X\\le k)$** — because $X$ is discrete, $P(X<5)=P(X\\le 4)$ and $P(X>5)=1-P(X\\le 5)$. Shifting a strict inequality by one is a classic dropped mark.",
+        "**Using $np$ where $np(1-p)$ is needed** — the mean is $np$ but the variance is $np(1-p)$; the standard deviation is the square root of the variance, not of the mean.",
+        "**Over-rounding mid-calculation** — carry full calculator accuracy through the working and round only the final answer, normally to 3 significant figures with any units."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "On Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) for the correct approach, or an accuracy mark (A) for the correct value that depends on that method being present. Follow-through (FT) means a wrong number early on need not cost you the marks that follow, provided your later steps are correct on your own figure. The engine also applies 'ignore subsequent working' (ISW) once a correct answer is seen, accepts equivalent forms, and accepts any answer that rounds correctly. But that protection only exists if the method is written down. Study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "A fair die is rolled 10 times. Find the probability of exactly 3 sixes, and the probability of at least one six. [5]",
+      "solution": "**Model answer — full working.**\n\n**Identify the distribution.** A trial is one roll: a six (success) or not a six (failure). There are $n=10$ independent rolls with constant $p=\\tfrac16$. Let $X$ be the number of sixes, so\n$$X\\sim B\\left(10,\\tfrac16\\right).$$\n\n**Exactly 3 sixes.** This is $P(X=3)$:\n$$P(X=3)=\\binom{10}{3}\\left(\\tfrac16\\right)^3\\left(\\tfrac56\\right)^7=\\text{binomPdf}\\!\\left(10,\\tfrac16,3\\right)=0.1550\\ldots\\approx 0.155.$$\n\n**At least one six.** 'At least one' is the complement of 'no sixes':\n$$P(X\\ge 1)=1-P(X=0)=1-\\left(\\tfrac56\\right)^{10}=1-0.1615\\ldots=0.8384\\ldots\\approx 0.838.$$\n\n**Final answer:** $P(X=3)\\approx 0.155$ and $P(X\\ge 1)\\approx 0.838$.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — recognise the binomial model.** Awarded for identifying $X\\sim B(10,\\tfrac16)$: the right $n=10$ and the right $p=\\tfrac16$. This is a METHOD mark, earned for the correct model even if the arithmetic later slips. Writing $p=\\tfrac16$ (not, say, $\\tfrac56$) is what secures it.\n- **M1 — correct expression for $P(X=3)$.** Awarded for $\\binom{10}{3}(\\tfrac16)^3(\\tfrac56)^7$, or the equivalent $\\text{binomPdf}(10,\\tfrac16,3)$. The engine checks the right values are in the right places and accepts either the formula or the GDC form — equivalent forms are accepted.\n- **A1 — value $\\approx 0.155$.** Awarded for $0.155$ (accept $0.1550\\ldots$ and any correctly-rounded equivalent such as $0.155$ to 3 s.f.). This ACCURACY mark depends on the preceding M1; it is released for a value that rounds correctly.\n- **M1 — complement for 'at least one'.** Awarded for $1-P(X=0)=1-(\\tfrac56)^{10}$. This is the key method line: it shows you recognised 'at least one' as one minus 'none'. FT applies — a candidate who used their own (even slightly wrong) $p$ here still earns the method mark for the correct complement structure.\n- **A1 — value $\\approx 0.838$.** Awarded for $0.838$ (accept $0.8384\\ldots$ and correctly-rounded equivalents). Under follow-through, a candidate whose earlier value differed but who then computed $1-(\\tfrac56)^{10}$ correctly on their own figure still earns this mark.\n\n**'Accept answers that round correctly.'** The engine accepts $0.155$ or $0.1550$, and $0.838$ or $0.8384$ — it does not demand a fixed number of decimal places, only a correctly-rounded final value. Once a correct answer is written, later restatements are ignored (ISW).\n\n**Bottom line:** of the 5 marks, three are method marks that survive an arithmetic slip, and the accuracy marks are shielded by follow-through. A candidate who writes only '$0.838$' with no working risks the method marks entirely if the number is wrong; a candidate who names $X\\sim B(10,\\tfrac16)$, writes the binomPdf expression, and shows the complement $1-(\\tfrac56)^{10}$ keeps the method marks regardless of the final digits."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the method: name the distribution $X\\sim B(n,p)$, write the probability statement ($P(X=3)$, or $1-P(X=0)$ for 'at least one'), then the value to 3 s.f. The method marks and follow-through are what protect your score when the final digit slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The binomial distribution is your first named probability model, and the habits it teaches carry forward. Recognising conditions before choosing a model, translating words into a precise probability statement, and using the complement for 'at least' all reappear in the normal distribution that follows, where the same GDC-and-statement discipline applies to continuous data. The mean and variance formulas foreshadow the more general expectation algebra of HL. Master the routine here — check BINS, write $X\\sim B(n,p)$, state the probability, read it off, round sensibly — and the rest of the statistics topic becomes variations on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 2 binomial question marked: solve it with full working",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=4.5&component=paper_2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Revision Village - Binomial Distribution",
+          "href": "https://www.revisionvillage.com/ib-maths/analysis-and-approaches-sl/probability-and-statistics/binomial-distribution/"
+        },
+        {
+          "label": "Khan Academy - Binomial Random Variables",
+          "href": "https://www.khanacademy.org/math/statistics-probability/random-variables-stats-library/binomial-random-variables/v/binomial-distribution"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "study-loop-pilot-v1",
+  "subtopics": [
+    {
+      "code": "SL 4.8",
+      "title": "The binomial distribution as the model for n independent Bernoulli trials",
+      "detail": "Recognise the conditions: a fixed number of trials n, exactly two outcomes, a constant probability of success p, and independent trials."
+    },
+    {
+      "code": "SL 4.8",
+      "title": "Calculating $P(X=x)$, $P(X\\le x)$ and $P(X\\ge x)$",
+      "detail": "Use $P(X=x)=\\binom{n}{x}p^{x}(1-p)^{\\,n-x}$ and technology for cumulative cases; convert 'at least / at most / more than' to the correct cumulative form."
+    },
+    {
+      "code": "SL 4.8",
+      "title": "Mean and variance of the binomial distribution",
+      "detail": "For $X\\sim B(n,p)$: $\\mathrm{E}(X)=np$ and $\\mathrm{Var}(X)=np(1-p)$."
+    },
+    {
+      "code": "SL 4.8",
+      "title": "Modelling and inverse problems",
+      "detail": "Set up and solve for an unknown n or p, e.g. the least n with $P(X\\ge 1)>k$."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "sl-4-8-q1",
+      "prompt": "A fair six-sided die is rolled $8$ times. Find the probability of obtaining exactly $3$ sixes.",
+      "marks": 2,
+      "commandTerm": "Find",
+      "difficulty": "foundation",
+      "syllabusRef": "SL 4.8",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) Recognises $X\\sim B\\!\\left(8,\\tfrac{1}{6}\\right)$ and writes $\\binom{8}{3}\\left(\\tfrac{1}{6}\\right)^{3}\\left(\\tfrac{5}{6}\\right)^{5}$",
+          "marks": 1
+        },
+        {
+          "text": "(A1) $=0.104$ (3 s.f.)",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "Let $X$ be the number of sixes, so $X\\sim B\\!\\left(8,\\tfrac{1}{6}\\right)$.\n\n$P(X=3)=\\binom{8}{3}\\left(\\tfrac{1}{6}\\right)^{3}\\left(\\tfrac{5}{6}\\right)^{5}=56\\cdot\\tfrac{1}{216}\\cdot\\tfrac{3125}{7776}=0.104$ (3 s.f.)."
+    },
+    {
+      "id": "sl-4-8-q2",
+      "prompt": "The random variable $X$ follows a binomial distribution with $X\\sim B(10,\\,0.35)$.\n(a) Find $P(X=4)$.\n(b) Find $P(X\\ge 2)$.\n(c) Write down $\\mathrm{E}(X)$ and $\\mathrm{Var}(X)$.",
+      "marks": 6,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "SL 4.8",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(a) (M1) $\\binom{10}{4}(0.35)^4(0.65)^6$",
+          "marks": 1
+        },
+        {
+          "text": "(a) (A1) $=0.238$ (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "text": "(b) (M1) Uses $P(X\\ge 2)=1-P(X\\le 1)$",
+          "marks": 1
+        },
+        {
+          "text": "(b) (A1) $=0.914$ (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "text": "(c) (A1) $\\mathrm{E}(X)=np=3.5$",
+          "marks": 1
+        },
+        {
+          "text": "(c) (A1) $\\mathrm{Var}(X)=np(1-p)=2.275$",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) $P(X=4)=\\binom{10}{4}(0.35)^4(0.65)^6=0.238$ (3 s.f.).\n\n(b) $P(X\\ge 2)=1-P(X\\le 1)=1-\\big(P(X=0)+P(X=1)\\big)=1-0.0860=0.914$ (3 s.f.).\n\n(c) $\\mathrm{E}(X)=np=10\\times0.35=3.5$;  $\\mathrm{Var}(X)=np(1-p)=10\\times0.35\\times0.65=2.275$."
+    },
+    {
+      "id": "sl-4-8-q3",
+      "prompt": "A biased coin has probability $p$ of landing heads. It is tossed $5$ times; let $X$ be the number of heads.\n(a) State two conditions needed for $X$ to follow a binomial distribution.\n(b) Given $p=\\tfrac{1}{3}$, show that $P(X=2)=\\dfrac{80}{243}$.",
+      "marks": 4,
+      "commandTerm": "Show that",
+      "difficulty": "standard",
+      "syllabusRef": "SL 4.8",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) (A1) Any valid condition (e.g. fixed number of trials $n=5$; two outcomes per trial)",
+          "marks": 1
+        },
+        {
+          "text": "(a) (A1) A second valid condition (constant $p$; trials independent)",
+          "marks": 1
+        },
+        {
+          "text": "(b) (M1) $\\binom{5}{2}\\left(\\tfrac{1}{3}\\right)^{2}\\left(\\tfrac{2}{3}\\right)^{3}$",
+          "marks": 1
+        },
+        {
+          "text": "(b) (A1) $=10\\cdot\\tfrac{1}{9}\\cdot\\tfrac{8}{27}=\\tfrac{80}{243}$ (AG)",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) Any two of: there is a fixed number of trials ($n=5$); each trial has two outcomes (head/tail); the probability of heads $p$ is constant; the trials are independent.\n\n(b) $P(X=2)=\\binom{5}{2}\\left(\\tfrac{1}{3}\\right)^{2}\\left(\\tfrac{2}{3}\\right)^{3}=10\\cdot\\tfrac{1}{9}\\cdot\\tfrac{8}{27}=\\dfrac{80}{243}$, as required."
+    },
+    {
+      "id": "sl-4-8-q4",
+      "prompt": "Each component produced by a machine is faulty with probability $0.08$, independently of every other component. A batch contains $n$ components. Find the least value of $n$ for which the probability that the batch contains at least one faulty component exceeds $0.95$.",
+      "marks": 4,
+      "commandTerm": "Find",
+      "difficulty": "challenge",
+      "syllabusRef": "SL 4.8",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "(M1) Forms $1-(0.92)^{n}>0.95$",
+          "marks": 1
+        },
+        {
+          "text": "(M1) Rearranges to $(0.92)^{n}<0.05$",
+          "marks": 1
+        },
+        {
+          "text": "(A1) $n>\\dfrac{\\ln 0.05}{\\ln 0.92}=35.9\\ldots$",
+          "marks": 1
+        },
+        {
+          "text": "(A1) Least $n=36$",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "Let $X\\sim B(n,0.08)$ be the number of faulty components.\n\n$P(X\\ge 1)=1-(0.92)^{n}>0.95\\;\\Rightarrow\\;(0.92)^{n}<0.05$.\n\nTaking logs: $n\\ln 0.92<\\ln 0.05\\;\\Rightarrow\\;n>\\dfrac{\\ln 0.05}{\\ln 0.92}=35.9\\ldots$\n\nSince $n$ is a positive integer, the least value is $n=36$."
+    }
+  ]
+}

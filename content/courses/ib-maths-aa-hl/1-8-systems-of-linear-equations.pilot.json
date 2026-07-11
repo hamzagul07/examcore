@@ -1,0 +1,462 @@
+{
+  "slug": "1-8-systems-of-linear-equations",
+  "topicCode": "1.8",
+  "title": "Systems of linear equations",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "pilot",
+  "unit": {
+    "code": "1",
+    "title": "Number and algebra"
+  },
+  "summary": "This lesson shows you how to solve a system of up to three linear equations in three unknowns and, just as importantly, how to read what the answer means. You will learn the row-reduction (Gaussian elimination) method as a single, repeatable procedure, and how the shape of the reduced system tells you which of the three cases you are in: a unique solution, no solution (an inconsistent system), or infinitely many solutions (a dependent system). Each case has a picture — three planes meeting at a point, three planes with no common point, or three planes meeting along a line — and you will learn to state that geometry with confidence. Every worked example is laid out exactly the way our marking engine awards marks, because on Paper 1 how you show your elimination decides how many marks you keep.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
+  "learningObjectives": [
+    "Solve a system of up to three linear equations in three unknowns using systematic elimination (row reduction / Gaussian elimination).",
+    "Recognise from the reduced system which of the three cases applies: a unique solution, no solution (inconsistent), or infinitely many solutions (dependent).",
+    "Express an infinite solution set in parametric form and describe it as a line of intersection.",
+    "Give the geometric interpretation in three dimensions: planes intersecting at a point, in a line, or not at all.",
+    "Present working so that method marks (M), accuracy marks (A) and follow-through (FT) protect the final answer."
+  ],
+  "syllabusObjectivesCovered": [
+    "1.8"
+  ],
+  "levelNote": "HL only — Higher Level content.",
+  "simpleExplanation": {
+    "title": "Finding Where Three Planes Meet",
+    "summary": "A system of linear equations asks a single question: is there a set of numbers that satisfies every equation at once? For three equations in $x$, $y$ and $z$, each equation is a flat plane in space, and the solution is wherever all three planes overlap. Sometimes that is a single point, sometimes a whole line, and sometimes there is no common overlap at all. Row reduction is the tidy, mechanical way to find out which.",
+    "analogy": "Think of three infinitely large, perfectly flat sheets of glass held in a room. Usually they cross at one exact point — the unique solution. But they might instead all pass through a common straight line, like three pages meeting at the spine of a book, in which case every point on that line works and there are infinitely many solutions. Or they might miss a common meeting entirely — two parallel, or arranged like the sides of a triangular tube — so there is no point on all three at once. Row reduction is a systematic way of sliding the equations against each other until the answer to 'do they all meet, and where?' becomes obvious.",
+    "steps": [
+      "Write the system in order and label the equations (1), (2), (3) — or stack the coefficients into an augmented matrix.",
+      "Eliminate the same variable from two different pairs of equations, reducing the problem to two equations in two unknowns.",
+      "Solve that smaller system, then back-substitute into an original equation to recover the last variable.",
+      "Interpret the result: a clean value for each variable is a unique solution (a point); a contradiction like $0=5$ is no solution (inconsistent); an identity like $0=0$ is infinitely many solutions (a line), which you then write in parametric form."
+    ]
+  },
+  "keyConcepts": [
+    "row reduction / Gaussian elimination",
+    "unique, no, and infinite solutions",
+    "geometry of intersecting planes"
+  ],
+  "flashcards": [
+    {
+      "front": "What is a system of linear equations?",
+      "back": "A set of two or more linear equations in the same variables. A solution is a set of values that satisfies every equation at the same time. At HL you work with up to three equations in three unknowns $x$, $y$, $z$.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "What does a single linear equation $ax+by+cz=d$ represent geometrically?",
+      "back": "A flat plane in three-dimensional space. The solution of a 3×3 system is the set of points that lie on all three planes simultaneously.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "What are the three elementary row operations?",
+      "back": "(1) Swap two equations (rows); (2) multiply an equation by a NON-zero constant; (3) add a multiple of one equation to another. Each keeps the solution set unchanged.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "What is row reduction (Gaussian elimination)?",
+      "back": "A systematic use of the elementary row operations to introduce zeros below the leading coefficients, producing an equivalent 'staircase' (row-echelon) system that is easy to solve by back-substitution.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "What are the three possible cases for the solution set of a linear system?",
+      "back": "A unique solution (one point), no solution (inconsistent), or infinitely many solutions (dependent). There is never exactly two, or any other finite number greater than one.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "During elimination you reach $0 = 5$. What does it mean?",
+      "back": "A contradiction: no values can make it true, so the system is INCONSISTENT and has NO solution. Geometrically the three planes have no common point.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "During elimination you reach $0 = 0$. What does it mean?",
+      "back": "An identity: the equation is always true, so it adds no new information. The system is DEPENDENT with infinitely many solutions — the planes meet along a common line, which you describe with a parameter.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "How do you write an infinite solution set?",
+      "back": "Introduce a parameter, e.g. let $z=t$ with $t\\in\\mathbb{R}$, then express $x$ and $y$ in terms of $t$. The answer is a point that moves along a line, e.g. $(x,y,z)=(1,\\,1+t,\\,t)$.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Geometry of a unique solution (3×3 system)?",
+      "back": "Three planes meeting at a single point. This is the most common exam case.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Geometry of an inconsistent 3×3 system?",
+      "back": "No common point of all three planes: two (or all three) are parallel, or the planes intersect only in pairs, forming a triangular-prism arrangement.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Geometry of a dependent 3×3 system?",
+      "back": "The three planes share a common line (like pages meeting at a book's spine), or are all the same plane. Every point on that line is a solution.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Why label your equations when solving by hand?",
+      "back": "Labelling (1), (2), (3) and each derived equation lets the examiner follow your method and award method marks even if a later arithmetic slip costs an accuracy mark. Clear working is how you protect your score.",
+      "pillLabel": "Exam"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "After row-reducing a 3×3 system you reach the row $0\\;\\;0\\;\\;0 \\mid 0$ (that is, $0=0$). The system has:",
+      "options": [
+        "a unique solution",
+        "no solution",
+        "infinitely many solutions",
+        "exactly two solutions"
+      ],
+      "answer": "infinitely many solutions"
+    },
+    {
+      "prompt": "Which of the following is NOT a valid elementary row operation?",
+      "options": [
+        "Swap two equations (rows)",
+        "Multiply an equation by a non-zero constant",
+        "Add a multiple of one equation to another",
+        "Multiply an equation by $0$"
+      ],
+      "answer": "Multiply an equation by $0$"
+    },
+    {
+      "prompt": "During elimination a system reduces to $0 = 7$. This tells you the system is:",
+      "options": [
+        "consistent with a unique solution",
+        "inconsistent, with no solution",
+        "dependent, with infinitely many solutions",
+        "solvable only after introducing a parameter"
+      ],
+      "answer": "inconsistent, with no solution"
+    },
+    {
+      "prompt": "Three planes meet along a single common straight line. The system therefore has:",
+      "options": [
+        "a unique solution",
+        "no solution",
+        "infinitely many solutions",
+        "a solution only if the planes are parallel"
+      ],
+      "answer": "infinitely many solutions"
+    },
+    {
+      "prompt": "A 3×3 system has a unique solution. Geometrically, the three planes:",
+      "options": [
+        "are all parallel",
+        "intersect at a single point",
+        "intersect along a common line",
+        "are all the same plane"
+      ],
+      "answer": "intersect at a single point"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can I use a matrix solver or my GDC on Paper 1?",
+      "a": "No. On Paper 1 (no calculator) you must show the algebra: systematic elimination or row reduction done by hand, with your steps visible. Calculator system-solvers and reduced-row-echelon commands are tools for Paper 2 and Paper 3. The good news is that row reduction by hand is exactly the same procedure — you are just doing the arithmetic yourself, so lay it out neatly and label every step."
+    },
+    {
+      "q": "How do I tell 'no solution' from 'infinitely many solutions'?",
+      "a": "Look at the line where the last variable should appear. If elimination collapses a row to a FALSE statement such as $0=5$, no values can satisfy it, so the system is inconsistent and there is no solution. If a row collapses to a TRUE statement such as $0=0$, that equation carries no new information, one variable is free, and there are infinitely many solutions. In three dimensions, no solution means the planes never share a common point; infinitely many means they share a whole line."
+    },
+    {
+      "q": "How should I write the answer when there are infinitely many solutions?",
+      "a": "Parametrise it. Choose one variable to be a free parameter — commonly $z=t$ with $t\\in\\mathbb{R}$ — then use the reduced equations to write the other two variables in terms of $t$. Present the answer as a single moving point, for example $(x,y,z)=(1,\\,1+t,\\,t)$. This describes the line of intersection of the planes, and any specific value of $t$ gives one actual solution."
+    },
+    {
+      "q": "Does it matter which variable I eliminate first?",
+      "a": "No — the final solution is the same whichever order you choose, so pick the variable that keeps the arithmetic cleanest. A variable that already has a coefficient of $1$, or coefficients that cancel neatly between two equations, saves work and reduces the chance of a slip. What matters for marks is that you eliminate the SAME variable from two different pairs of equations, so that you genuinely reduce to two equations in two unknowns."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to systems of linear equations. You have solved two equations in two unknowns before; the HL syllabus now asks you to handle up to three equations in three unknowns, and to say precisely what the answer means. The engine behind this is one repeatable procedure — row reduction, also called Gaussian elimination — and one habit of interpretation: after eliminating, look at what is left and decide whether you have a single point, no meeting at all, or a whole line of solutions. Because Paper 1 forbids calculator solvers, your method has to be on the page. As in every calculation topic, each worked example below is laid out exactly the way our engine marks your own practice: step by step, mark by mark."
+    },
+    {
+      "type": "heading",
+      "content": "The geometry: what a solution looks like"
+    },
+    {
+      "type": "text",
+      "content": "Before touching the algebra, picture the problem. In two dimensions a linear equation $ax+by=c$ is a straight line, and two such lines either cross once (a unique solution), run parallel and never meet (no solution), or lie exactly on top of each other (infinitely many solutions). Moving up to three dimensions, a linear equation $ax+by+cz=d$ is no longer a line but a flat plane stretching out forever. The solution of a system of three such equations is the set of points that lie on all three planes at once."
+    },
+    {
+      "type": "text",
+      "content": "There are only three things three planes can do. They can pinch together at a single point, they can share a whole common line, or they can fail to share any common point at all. These three pictures are exactly the three algebraic cases you will meet, so learning to read one from the other is the heart of this topic."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Unique solution — a point.** The three planes intersect at exactly one point $(x,y,z)$. Row reduction gives a clean value for each variable. This is the most common exam case.",
+        "**No solution — inconsistent.** The planes have no common point: two or more are parallel, or they meet only in pairs to form a triangular-prism shape. Elimination produces a contradiction such as $0=5$.",
+        "**Infinitely many solutions — dependent.** The planes share a common line (or are all the same plane). Elimination produces an identity such as $0=0$, one variable is free, and you describe the line with a parameter."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The row-reduction (Gaussian elimination) method"
+    },
+    {
+      "type": "text",
+      "content": "Row reduction is a disciplined way of eliminating variables one at a time until the system becomes a 'staircase' that you can solve from the bottom up. The tools are the three elementary row operations, and the crucial fact is that each of them leaves the solution set completely unchanged — you are rewriting the same system, never a different one."
+    },
+    {
+      "type": "formula",
+      "content": "The three elementary row operations are:\n1. Swap two equations: $R_i \\leftrightarrow R_j$.\n2. Multiply an equation by a non-zero constant: $R_i \\to k R_i$, $k\\neq 0$.\n3. Add a multiple of one equation to another: $R_i \\to R_i + k R_j$.\nA 3×3 system can be stacked into an augmented matrix\n$\\left[\\begin{array}{ccc|c} a_1 & b_1 & c_1 & d_1 \\\\ a_2 & b_2 & c_2 & d_2 \\\\ a_3 & b_3 & c_3 & d_3 \\end{array}\\right]$\nand reduced until zeros sit below the leading entries."
+    },
+    {
+      "type": "text",
+      "content": "The strategy is always the same: use the first equation to remove the first variable from the other two, then use the resulting second equation to remove the second variable from the third. That leaves a single equation in one unknown, which you solve and then feed back up the staircase — this last part is called back-substitution."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the system\n$x + y + z = 4$\n$2x - y + 3z = 13$\n$x + 2y - z = -1$\nusing row reduction. [6]",
+      "solution": "Label the equations and eliminate $x$ from (2) and (3) using (1).\n(1) $x + y + z = 4$\n(2) $2x - y + 3z = 13$\n(3) $x + 2y - z = -1$\n\n**Eliminate $x$.**\n$R_2 \\to R_2 - 2R_1$: $(2x-y+3z)-2(x+y+z)=13-8$ gives\n(4) $-3y + z = 5$.  [M1: eliminate a variable from a pair]\n$R_3 \\to R_3 - R_1$: $(x+2y-z)-(x+y+z)=-1-4$ gives\n(5) $y - 2z = -5$.  [M1: eliminate the same variable from another pair]\n\n**Eliminate $y$.** Use (4) and (5). $R_4 \\to R_4 + 3R_5$:\n$(-3y+z)+3(y-2z)=5+3(-5)$\n$-5z = -10 \\;\\Rightarrow\\; z = 2$.  [A1: first variable]\n\n**Back-substitute.**  [M1: back-substitution]\nInto (5): $y - 2(2) = -5 \\;\\Rightarrow\\; y = -1$.  [A1: second variable]\nInto (1): $x + (-1) + 2 = 4 \\;\\Rightarrow\\; x = 3$.  [A1: third variable]\n\n**Solution:** $(x,y,z) = (3,\\,-1,\\,2)$ — a unique solution, so the three planes meet at a single point.\nCheck in (2): $2(3)-(-1)+3(2)=6+1+6=13$. Correct."
+    },
+    {
+      "type": "examTip",
+      "content": "Choose the variable that is cheapest to eliminate — here $x$ has a coefficient of $1$ in two equations, so subtracting multiples of (1) is clean. Label every derived equation (4), (5) and show each row operation like $R_2 \\to R_2 - 2R_1$. That labelling is what lets the examiner (and our engine) award the method marks even if a single subtraction slips."
+    },
+    {
+      "type": "heading",
+      "content": "When the answer is not a single point"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes elimination does not leave a tidy value for each variable. If a row collapses to a contradiction such as $0=5$, no values can satisfy the system: it is inconsistent and has no solution. If a row collapses to an identity such as $0=0$, that equation is telling you nothing new: one variable is free and there are infinitely many solutions, which you must then write in parametric form. The two look similar on the page — a row of zeros on the left — so the deciding factor is the number on the right."
+    },
+    {
+      "type": "workedExample",
+      "question": "Show that the system\n$x + y + z = 2$\n$2x + 3y + z = 4$\n$3x + 4y + 2z = 7$\nhas no solution, and state what this means geometrically. [5]",
+      "solution": "(1) $x + y + z = 2$\n(2) $2x + 3y + z = 4$\n(3) $3x + 4y + 2z = 7$\n\n**Eliminate $x$.**\n$R_2 \\to R_2 - 2R_1$: $(2x+3y+z)-2(x+y+z)=4-4$ gives\n(4) $y - z = 0$.  [M1]\n$R_3 \\to R_3 - 3R_1$: $(3x+4y+2z)-3(x+y+z)=7-6$ gives\n(5) $y - z = 1$.  [A1: two correct equations in two unknowns]\n\n**Eliminate $y$.** $R_5 \\to R_5 - R_4$:\n$(y-z)-(y-z)=1-0$\n$0 = 1$.  [M1: reach and recognise the contradiction]\n\nThis is a contradiction — no values of $x,y,z$ can make it true — so the system is **inconsistent** and has **no solution**.  [A1]\n\n**Geometric meaning:** the three planes have no common point. Here (4) and (5) describe parallel relationships that cannot both hold, so the planes intersect only in pairs, arranged like the faces of a triangular prism, with no point lying on all three.  [A1]"
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the system\n$x + y - z = 2$\n$2x - y + z = 1$\n$4x + y - z = 5$\nExpress the solution set in parametric form and interpret it geometrically. [6]",
+      "solution": "(1) $x + y - z = 2$\n(2) $2x - y + z = 1$\n(3) $4x + y - z = 5$\n\n**Eliminate $x$.**\n$R_2 \\to R_2 - 2R_1$: $(2x-y+z)-2(x+y-z)=1-4$ gives $-3y+3z=-3$, i.e.\n(4) $y - z = 1$.  [M1]\n$R_3 \\to R_3 - 4R_1$: $(4x+y-z)-4(x+y-z)=5-8$ gives $-3y+3z=-3$, i.e.\n(5) $y - z = 1$.  [A1: two equations in two unknowns]\n\n**Compare (4) and (5).** They are identical, so $R_5 \\to R_5 - R_4$ gives\n$0 = 0$.  [M1: reach and recognise the identity]\n\nAn identity means one equation is redundant: there are **infinitely many solutions**.\n\n**Parametrise.** Let $z = t$, $t\\in\\mathbb{R}$.  [M1]\nFrom (4): $y - t = 1 \\;\\Rightarrow\\; y = 1 + t$.  [A1]\nFrom (1): $x + (1+t) - t = 2 \\;\\Rightarrow\\; x = 1$.\n\n**Solution set:** $(x,y,z) = (1,\\; 1+t,\\; t)$, $t\\in\\mathbb{R}$.  [A1]\n\n**Geometric meaning:** the three planes intersect along a common straight line — every point on that line, generated as $t$ varies, is a solution. (Check in (2): $2(1)-(1+t)+t = 2-1 = 1$. Correct for all $t$.)"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Confusing $0=5$ with $0=0$.** A false statement ($0=5$) means NO solution (inconsistent); a true statement ($0=0$) means INFINITELY many solutions (dependent). Read the right-hand side carefully before you conclude.",
+        "**Calling a dependent system 'no solution'.** Reaching $0=0$ does not mean there is nothing there — it means there is a whole line of solutions. You must go on to introduce a parameter and give the set, or you lose the final marks.",
+        "**Stopping at $0=0$ without parametrising.** An identity is not a final answer. State that there are infinitely many solutions AND write them, e.g. $(1,\\,1+t,\\,t)$ with $t\\in\\mathbb{R}$.",
+        "**Multiplying a row by $0$, or eliminating a variable using the same pair twice.** Multiplying by zero is not a valid row operation, and you must eliminate the SAME variable from two DIFFERENT pairs to genuinely reduce the system.",
+        "**Arithmetic sign slips in $R_i \\to R_i - kR_j$.** Subtracting a multiple of a row flips every sign inside the bracket; a single missed sign turns a unique solution into a false 'no solution'. Show the operation so a slip costs one accuracy mark, not the method.",
+        "**Giving a bare answer with no working.** On Paper 1 the method marks live in your elimination steps. 'By GDC' or an unsupported final triple risks losing most of the marks if a number is wrong — and calculator solvers are not allowed on Paper 1 anyway.",
+        "**Skipping the geometric interpretation when asked.** If a question says 'interpret geometrically', name the picture: a point, a line, or no common point (parallel planes / triangular prism)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "On Paper 1 the marks are analytic: each is tied to a specific line of working. A method mark (M) rewards a correct approach even if the arithmetic later slips; an accuracy mark (A) rewards a correct result and is usually dependent on the method mark being earned. Follow-through (FT) means a correct step performed on your own earlier (wrong) value still scores, ISW ('ignore subsequent working') means a correct answer is not un-marked by a later fumble, and equivalent correct forms are accepted. All of that protection exists only if your method is on the page. Study how each of the six marks below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the system: $x + y + z = 6$; $2x - y + z = 3$; $x + 2y - z = 2$. [6]",
+      "solution": "**Model answer — full working.**\n\nLabel the equations:\n(1) $x + y + z = 6$\n(2) $2x - y + z = 3$\n(3) $x + 2y - z = 2$\n\n**Eliminate $z$ from a first pair.** $(1)-(2)$:\n$(x+y+z)-(2x-y+z) = 6-3$\n(4) $-x + 2y = 3$.\n\n**Eliminate $z$ from a second pair.** $(1)+(3)$:\n$(x+y+z)+(x+2y-z) = 6+2$\n(5) $2x + 3y = 8$.\n\n**Solve the 2×2 system (4), (5).** From (4), $x = 2y - 3$. Substitute into (5):\n$2(2y-3) + 3y = 8 \\;\\Rightarrow\\; 7y - 6 = 8 \\;\\Rightarrow\\; 7y = 14 \\;\\Rightarrow\\; y = 2$.\n\n**Back-substitute.** $x = 2(2) - 3 = 1$. Into (1): $1 + 2 + z = 6 \\;\\Rightarrow\\; z = 3$.\n\n**Final answer:** $(x,y,z) = (1,\\,2,\\,3)$ — a unique solution; the three planes meet at a single point.\nCheck in (2): $2(1) - 2 + 3 = 3$. Correct.\n\n---\n**How our marking engine awards the 6 marks:**\n\n- **M1 — eliminate a variable from a pair.** Awarded for combining two equations to remove one variable, e.g. $(1)-(2)$ giving $-x+2y=3$. This is a METHOD mark: it stands even if a sign later slips.\n- **M1 — eliminate the same variable from another pair.** Awarded for a second, independent combination that removes the SAME variable, e.g. $(1)+(3)$ giving $2x+3y=8$. Together the two M marks confirm a genuine reduction to two equations in two unknowns.\n- **A1 — one variable.** Awarded for the first correct value, here $y=2$. This accuracy mark depends on the two method marks: it is only available once a valid elimination has produced a $2\\times2$ system.\n- **M1 — back-substitute.** Awarded for substituting a found value back to recover another variable — e.g. using $y$ in (4)/(5) for $x$, or a value in (1) for $z$. Because it acts on THEIR value, a student who mis-eliminated still earns this for the correct approach.\n- **A1 — second variable.** Awarded for $x=1$. Follow-through (FT) applies: a student with a wrong $y$ who then back-substitutes correctly still earns this on their own figure.\n- **A1 — third variable.** Awarded for $z=3$. FT again: correct back-substitution of their $x$ and $y$ into an original equation scores, even if an earlier value was wrong.\n\n**Accept equivalent forms.** The engine accepts the answer written as $x=1,\\ y=2,\\ z=3$, as the ordered triple $(1,2,3)$, or as a solution set $\\{(1,2,3)\\}$ — it marks the mathematics, not the formatting, and ISW means an unnecessary extra line does not lose a correct answer.\n\n**Bottom line:** of the six marks, three are method marks that survive an arithmetic slip, and the accuracy marks are shielded by follow-through. A student who writes only '$(1,2,3)$' with no elimination risks losing up to four marks if a single number is wrong; a student who shows both eliminations and the back-substitution keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the method: label the equations, write out each elimination like $(1)-(2)$ or $R_2 \\to R_2 - 2R_1$, then the back-substitution, then state whether the system has a unique, no, or infinite solution. The method marks and follow-through are what protect your score when a final number slips — and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Everything here is one procedure — eliminate systematically, then read the reduced system — applied to three outcomes. The same row-reduction habit reappears when you meet vectors and the intersection of planes later in the course, where the parametric solution you wrote for a dependent system becomes the vector equation of the line of intersection. Master the routine now — label, eliminate the same variable from two pairs, back-substitute, then interpret the geometry — and those later topics become variations on a method you already own."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 1 system marked: solve a 3×3 system with full working",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=1.8&component=paper_1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra 3D Grapher: intersecting planes",
+          "href": "https://www.geogebra.org/3d"
+        },
+        {
+          "label": "Khan Academy: Solving systems with elimination",
+          "href": "https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:systems-of-equations"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "qbank-gen-1",
+  "subtopics": [
+    {
+      "code": "SL 1.8",
+      "title": "Systems of linear equations in up to 3 variables.",
+      "detail": "Solving systems of the form $a_1x + b_1y + c_1z = d_1$, $a_2x + b_2y + c_2z = d_2$, $a_3x + b_3y + c_3z = d_3$."
+    },
+    {
+      "code": "SL 1.8",
+      "title": "The solution of systems of linear equations using technology.",
+      "detail": "Using a GDC to find the unique solution to a system of linear equations."
+    },
+    {
+      "code": "SL 1.8",
+      "title": "The number of solutions: zero, one or infinitely many. Geometric interpretation.",
+      "detail": "Understanding solutions as intersections of planes: a point, a line, or no common intersection."
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "1-8-systems-of-linear-equations-q1",
+      "prompt": "A system of linear equations is given by:\n$2x - y + 3z = 13$\n$x + 3y - z = -8$\n$-3x + 2y + z = -4$\nSolve the system of equations.",
+      "marks": 3,
+      "commandTerm": "Solve",
+      "difficulty": "foundation",
+      "syllabusRef": "SL 1.8",
+      "paper": "P2",
+      "calculator": true,
+      "markScheme": [
+        {
+          "text": "Evidence of an attempt to use a GDC to solve the system (e.g., setting up the matrix or using equation solver).",
+          "marks": 1
+        },
+        {
+          "text": "$x=1$",
+          "marks": 1
+        },
+        {
+          "text": "$y=-2, z=3$",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "The system of equations can be represented by the augmented matrix:\n$\\begin{pmatrix} 2 & -1 & 3 & 13 \\\\ 1 & 3 & -1 & -8 \\\\ -3 & 2 & 1 & -4 \\end{pmatrix}$\nUsing the simultaneous equation solver or matrix functions on a GDC, we find the solution.\nThe solution is $x=1, y=-2, z=3$."
+    },
+    {
+      "id": "1-8-systems-of-linear-equations-q2",
+      "prompt": "Consider the system of equations:\n$x + y + z = 8$\n$2x - y + z = 9$\n$x + 2y - 3z = -7$\nFind the values of $x, y$ and $z$.",
+      "marks": 5,
+      "commandTerm": "Find",
+      "difficulty": "standard",
+      "syllabusRef": "SL 1.8",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Attempt to eliminate one variable from two pairs of equations.",
+          "marks": 1
+        },
+        {
+          "text": "A correct system of two equations in two variables, e.g., $3x+2z=17$ and $5x-z=11$.",
+          "marks": 1
+        },
+        {
+          "text": "Attempt to solve the system of two equations.",
+          "marks": 1
+        },
+        {
+          "text": "Finds one correct variable, e.g. $x=3$ or $z=4$.",
+          "marks": 1
+        },
+        {
+          "text": "Finds the other two correct variables, $x=3, y=1, z=4$.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "Let the equations be:\n(1) $x + y + z = 8$\n(2) $2x - y + z = 9$\n(3) $x + 2y - 3z = -7$\n\nFirst, eliminate $y$. Add (1) and (2):\n$(x+2x) + (y-y) + (z+z) = 8+9$\n$3x + 2z = 17$ (4)\n\nMultiply (2) by 2 and add to (3):\n$2(2x - y + z) + (x + 2y - 3z) = 2(9) + (-7)$\n$4x - 2y + 2z + x + 2y - 3z = 18 - 7$\n$5x - z = 11$ (5)\n\nNow solve the system of equations (4) and (5).\nFrom (5), we can write $z = 5x - 11$. Substitute this into (4):\n$3x + 2(5x - 11) = 17$\n$3x + 10x - 22 = 17$\n$13x = 39$\n$x = 3$\n\nSubstitute $x=3$ back into the expression for $z$:\n$z = 5(3) - 11 = 15 - 11 = 4$\n\nSubstitute $x=3$ and $z=4$ into equation (1):\n$3 + y + 4 = 8$\n$y + 7 = 8$\n$y = 1$\n\nThe solution is $x=3, y=1, z=4$."
+    },
+    {
+      "id": "1-8-systems-of-linear-equations-q3",
+      "prompt": "Consider the system of equations:\n$x + 3y - z = 2$\n$2x + y + 2z = 5$\n$5x + 5y + 3z = 12$\nShow that this system does not have a unique solution. Describe the geometric relationship between the three planes represented by these equations.",
+      "marks": 6,
+      "commandTerm": "Show that",
+      "difficulty": "standard",
+      "syllabusRef": "SL 1.8",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "Attempt to eliminate a variable.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly eliminates a variable to get two new equations, e.g., $5y - 4z = -1$ and $10y - 8z = -2$.",
+          "marks": 1
+        },
+        {
+          "text": "Attempting to solve the new system of two equations.",
+          "marks": 1
+        },
+        {
+          "text": "Arriving at a true statement, e.g., $0=0$ or $-2=-2$.",
+          "marks": 1
+        },
+        {
+          "text": "Concluding that there are infinitely many solutions (system is dependent).",
+          "marks": 1
+        },
+        {
+          "text": "Stating that the planes intersect in a line.",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "Let the equations be:\n(1) $x + 3y - z = 2$\n(2) $2x + y + 2z = 5$\n(3) $5x + 5y + 3z = 12$\n\nWe eliminate $x$. Multiply (1) by 2 and subtract (2):\n$2(x + 3y - z) - (2x + y + 2z) = 2(2) - 5$\n$(2x-2x) + (6y-y) + (-2z-2z) = 4 - 5$\n$5y - 4z = -1$ (4)\n\nMultiply (1) by 5 and subtract (3):\n$5(x + 3y - z) - (5x + 5y + 3z) = 5(2) - 12$\n$(5x-5x) + (15y-5y) + (-5z-3z) = 10 - 12$\n$10y - 8z = -2$ (5)\n\nNow consider the system of equations (4) and (5).\nIf we multiply equation (4) by 2, we get:\n$2(5y - 4z) = 2(-1)$\n$10y - 8z = -2$\nThis is identical to equation (5). Since one equation is a multiple of the other, the system is dependent and does not have a unique solution. We can show this by subtracting the new equation from (5), which gives $0=0$. This means there are infinitely many solutions.\n\nGeometrically, since the system is consistent but dependent, the three distinct planes intersect in a common line."
+    },
+    {
+      "id": "1-8-systems-of-linear-equations-q4",
+      "prompt": "Consider the system of linear equations:\n$x + 2y + z = 7$\n$2x + y - z = 8$\n$3x + 3y + kz = 22$\nwhere $k \\in \\mathbb{R}$.\n(a) Find the value of $k$ for which the system has no unique solution.\n(b) For this value of $k$, determine whether the system has no solution or infinitely many solutions.",
+      "marks": 8,
+      "commandTerm": "Find",
+      "difficulty": "challenge",
+      "syllabusRef": "SL 1.8",
+      "paper": "P1",
+      "calculator": false,
+      "markScheme": [
+        {
+          "text": "(a) Attempt to eliminate one variable.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly obtains two equations in two variables, e.g., $y+z=2$ and $3y+(3-k)z=-1$.",
+          "marks": 1
+        },
+        {
+          "text": "Attempt to solve the new system, leading to an equation in one variable, e.g., $kz=7$.",
+          "marks": 1
+        },
+        {
+          "text": "Correctly identifies that no unique solution occurs when the coefficient of the variable is zero, so $k=0$.",
+          "marks": 1
+        },
+        {
+          "text": "(b) Substitutes $k=0$ into the derived equation from part (a).",
+          "marks": 1
+        },
+        {
+          "text": "Obtains the equation $0 \\cdot z = 7$ or $0=7$.",
+          "marks": 1
+        },
+        {
+          "text": "Recognises that this is a contradiction (R1).",
+          "marks": 1
+        },
+        {
+          "text": "Concludes that the system has no solution (is inconsistent).",
+          "marks": 1
+        }
+      ],
+      "modelAnswer": "(a) Let the equations be:\n(1) $x + 2y + z = 7$\n(2) $2x + y - z = 8$\n(3) $3x + 3y + kz = 22$\n\nWe will eliminate $x$. \nMultiply (1) by 2 and subtract (2):\n$2(x + 2y + z) - (2x + y - z) = 2(7) - 8$\n$2x + 4y + 2z - 2x - y + z = 14 - 8$\n$3y + 3z = 6 \\implies y + z = 2$ (4)\n\nMultiply (1) by 3 and subtract (3):\n$3(x + 2y + z) - (3x + 3y + kz) = 3(7) - 22$\n$3x + 6y + 3z - 3x - 3y - kz = 21 - 22$\n$3y + (3-k)z = -1$ (5)\n\nNow we have a system of two equations in $y$ and $z$.\nFrom (4), we have $y = 2 - z$. Substitute this into (5):\n$3(2-z) + (3-k)z = -1$\n$6 - 3z + 3z - kz = -1$\n$6 - kz = -1$\n$kz = 7$\nA unique solution for $z$ exists if and only if $k \\neq 0$. Therefore, the system has no unique solution when $k=0$.\n\n(b) For the value $k=0$, we substitute this into the equation derived in part (a), $kz=7$.\nThis gives:\n$0 \\cdot z = 7$\n$0 = 7$\nThis is a contradiction. This means the system of equations is inconsistent for this value of $k$.\nTherefore, for $k=0$, the system has no solution."
+    }
+  ]
+}

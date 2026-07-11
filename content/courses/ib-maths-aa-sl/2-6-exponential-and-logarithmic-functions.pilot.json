@@ -395,36 +395,36 @@
     },
     {
       "id": "2-6-exponential-and-logarithmic-functions-q2",
-      "prompt": "Solve the equation $5^{2x-1} = 3^{x+2}$, giving your answer correct to three significant figures.",
+      "prompt": "Solve the equation $5^{2x-1} = 3^{x+2}$, giving your answer correct to 3 significant figures.",
       "marks": 5,
       "commandTerm": "Solve",
       "difficulty": "standard",
-      "syllabusRef": "SL 2.6",
+      "syllabusRef": "SL 2.9",
       "paper": "P2",
       "calculator": true,
       "markScheme": [
         {
-          "text": "(M1) Taking logarithms on both sides (e.g., ln or log).",
+          "text": "Taking logarithms of both sides (any base).",
           "marks": 1
         },
         {
-          "text": "(M1) Correct use of the power rule of logarithms: $(2x-1)\\ln 5 = (x+2)\\ln 3$.",
+          "text": "Correct application of power law: $(2x-1)\\ln 5 = (x+2)\\ln 3$.",
           "marks": 1
         },
         {
-          "text": "(M1) Expanding and attempting to collect terms in $x$: $2x\\ln 5 - \\ln 5 = x\\ln 3 + 2\\ln 3$.",
+          "text": "Attempt to expand and rearrange to isolate terms in $x$. e.g. $2x\\ln 5 - x\\ln 3 = 2\\ln 3 + \\ln 5$.",
           "marks": 1
         },
         {
-          "text": "(M1) Isolating $x$: $x(2\\ln 5 - \\ln 3) = 2\\ln 3 + \\ln 5 \\implies x = \\frac{2\\ln 3 + \\ln 5}{2\\ln 5 - \\ln 3}$.",
+          "text": "Correctly isolating $x$: $x = \\frac{2\\ln 3 + \\ln 5}{2\\ln 5 - \\ln 3}$.",
           "marks": 1
         },
         {
-          "text": "(A1) $x \\approx 1.80$.",
+          "text": "$x \\approx 1.80$.",
           "marks": 1
         }
       ],
-      "modelAnswer": "The equation to solve is $5^{2x-1} = 3^{x+2}$.\n\nSince the bases are different, we take the natural logarithm (ln) of both sides:\n$\\ln(5^{2x-1}) = \\ln(3^{x+2})$\n\nUsing the power rule for logarithms, $\\ln(a^b) = b\\ln a$, we can bring the exponents down:\n$(2x-1)\\ln 5 = (x+2)\\ln 3$\n\nNow, expand both sides of the equation:\n$2x\\ln 5 - \\ln 5 = x\\ln 3 + 2\\ln 3$\n\nTo solve for $x$, we need to collect all terms involving $x$ on one side and constant terms on the other:\n$2x\\ln 5 - x\\ln 3 = 2\\ln 3 + \\ln 5$\n\nFactor out $x$ from the left-hand side:\n$x(2\\ln 5 - \\ln 3) = 2\\ln 3 + \\ln 5$\n\nFinally, isolate $x$ by dividing:\n$x = \\frac{2\\ln 3 + \\ln 5}{2\\ln 5 - \\ln 3}$\n\nNow, we use a calculator to find the numerical value:\n$x \\approx \\frac{2(1.09861...) + 1.60943...}{2(1.60943...) - 1.09861...}$\n$x \\approx \\frac{2.19722... + 1.60943...}{3.21887... - 1.09861...}$\n$x \\approx \\frac{3.80666...}{2.12026...}$\n$x \\approx 1.79538...$\n\nRounding to three significant figures, we get $x \\approx 1.80$."
+      "modelAnswer": "Given the equation $5^{2x-1} = 3^{x+2}$.\nSince the bases are different, we take the natural logarithm (or any other base logarithm) of both sides:\n$\\ln(5^{2x-1}) = \\ln(3^{x+2})$\n\nUsing the power law of logarithms, $\\ln(a^b) = b \\ln a$:\n$(2x-1)\\ln 5 = (x+2)\\ln 3$\n\nExpand the brackets:\n$2x\\ln 5 - \\ln 5 = x\\ln 3 + 2\\ln 3$\n\nRearrange the equation to group terms with $x$ on one side and constant terms on the other:\n$2x\\ln 5 - x\\ln 3 = 2\\ln 3 + \\ln 5$\n\nFactor out $x$ from the left-hand side:\n$x(2\\ln 5 - \\ln 3) = 2\\ln 3 + \\ln 5$\n\nIsolate $x$ by dividing:\n$x = \\frac{2\\ln 3 + \\ln 5}{2\\ln 5 - \\ln 3}$\n\nNow, use a calculator to find the numerical value:\n$x \\approx \\frac{2(1.09861...) + 1.60943...}{2(1.60943...) - 1.09861...}$\n$x \\approx \\frac{2.19722... + 1.60943...}{3.21887... - 1.09861...}$\n$x \\approx \\frac{3.80666...}{2.12026...}$\n$x \\approx 1.79538...$\n\nRounding the answer to 3 significant figures, we get:\n$x \\approx 1.80$"
     },
     {
       "id": "2-6-exponential-and-logarithmic-functions-q3",

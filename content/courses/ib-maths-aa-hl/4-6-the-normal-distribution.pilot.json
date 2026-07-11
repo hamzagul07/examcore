@@ -441,23 +441,23 @@
       "calculator": true,
       "markScheme": [
         {
-          "text": "(M1) $P(X<510)=0.975$",
+          "text": "$P(X > 510) = 0.025 \\Rightarrow P(X < 510) = 0.975$",
           "marks": 1
         },
         {
-          "text": "(A1) $z=1.96$",
+          "text": "The corresponding z-score is $z \\approx 1.96$ (or more accurate value from GDC, $1.95996...$)",
           "marks": 1
         },
         {
-          "text": "(M1) $510=\\mu+1.96(5)$",
+          "text": "Setting up the standardisation equation: $\\frac{510 - \\mu}{5} = 1.96$",
           "marks": 1
         },
         {
-          "text": "(A1) $\\mu=500$ ml (3 s.f.)",
+          "text": "$\\mu = 510 - (1.96 \\times 5) = 500.2$ ml. (If using GDC value, answer is $500.200...$ which rounds to $500$ ml (3 s.f.), this is also accepted).",
           "marks": 1
         }
       ],
-      "modelAnswer": "$P(X>510)=0.025\\Rightarrow P(X<510)=0.975$, so $z=1.96$. Then $510=\\mu+1.96(5)=\\mu+9.8\\Rightarrow\\mu=500$ ml (3 s.f.)."
+      "modelAnswer": "Let $X$ be the volume in a bottle, so $X \\sim N(\\mu, 5^2)$.\nWe are given that $P(X > 510) = 0.025$. This implies that the cumulative probability is $P(X < 510) = 1 - 0.025 = 0.975$.\nWe find the z-score that corresponds to a cumulative probability of $0.975$. Using the inverse normal function on a calculator, or recognising the value associated with a 95% confidence interval, we get $z \\approx 1.96$.\nThe standardisation formula is $z = \\frac{x - \\mu}{\\sigma}$.\nSubstituting the known values: $1.96 = \\frac{510 - \\mu}{5}$.\nTo find $\\mu$, we rearrange the equation: $5 \\times 1.96 = 510 - \\mu \\Rightarrow 9.8 = 510 - \\mu$.\nSolving for $\\mu$ gives $\\mu = 510 - 9.8 = 500.2$.\nThus, the mean volume is $500.2$ ml."
     }
   ]
 }

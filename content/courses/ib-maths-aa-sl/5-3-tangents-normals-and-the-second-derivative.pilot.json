@@ -421,36 +421,44 @@
     },
     {
       "id": "5-3-tangents-normals-and-the-second-derivative-q2",
-      "prompt": "Let $g(x) = \\frac{4}{x} + 2x^2$ for $x \\neq 0$.\n(a) Find $g'(x)$ and $g''(x)$. [3 marks]\n(b) Find the equation of the normal to the curve of $g$ at the point where $x=-1$. [3 marks]",
-      "marks": 6,
+      "prompt": "Consider the function $h(t) = 5\\cos(t) - \\sin(2t)$ for $0 \\le t \\le 2\\pi$.\n(a) Find the values of $t$ for which $h'(t)=0$. Give your answers to 3 significant figures. [3 marks]\n(b) Hence, find the coordinates of the local minimum point of $h(t)$. Justify your answer. [4 marks]",
+      "marks": 7,
       "commandTerm": "Find",
       "difficulty": "standard",
-      "syllabusRef": "SL 5.3",
-      "paper": "P1",
-      "calculator": false,
+      "syllabusRef": "SL 5.5",
+      "paper": "P2",
+      "calculator": true,
       "markScheme": [
         {
-          "text": "(a) For rewriting $g(x) = 4x^{-1} + 2x^2$. $g'(x) = -4x^{-2} + 4x$. (A1)(A1)",
-          "marks": 2
-        },
-        {
-          "text": "$g''(x) = 8x^{-3} + 4$. (A1)",
+          "text": "(a) Differentiates to find $h'(t) = -5\\sin(t) - 2\\cos(2t)$.",
           "marks": 1
         },
         {
-          "text": "(b) Substitutes $x=-1$ into $g'(x)$ to find gradient of tangent, $m_T = g'(-1) = -4(-1)^{-2} + 4(-1) = -8$. (M1)",
+          "text": "Sets $h'(t)=0$ and attempts to solve using a GDC.",
           "marks": 1
         },
         {
-          "text": "Correctly finds gradient of normal, $m_N = -\\frac{1}{-8} = \\frac{1}{8}$. (A1)",
+          "text": "Finds the correct values $t \\approx 3.47$ and $t \\approx 5.96$.",
           "marks": 1
         },
         {
-          "text": "Finds y-coordinate $g(-1)=-2$ and forms correct equation, e.g. $y - (-2) = \\frac{1}{8}(x - (-1))$. (A1)",
+          "text": "(b) Finds the second derivative, $h''(t) = -5\\cos(t) + 4\\sin(2t)$.",
+          "marks": 1
+        },
+        {
+          "text": "Evaluates the second derivative at the stationary points, e.g., $h''(3.466...) \\approx 7.08$.",
+          "marks": 1
+        },
+        {
+          "text": "Since $h''(3.466...) > 0$, this corresponds to a local minimum.",
+          "marks": 1
+        },
+        {
+          "text": "Finds the y-coordinate $h(3.466...) \\approx -5.41$. The coordinates are $(3.47, -5.41)$.",
           "marks": 1
         }
       ],
-      "modelAnswer": "(a) First, rewrite $g(x)$ using a negative exponent: $g(x) = 4x^{-1} + 2x^2$.\nUsing the power rule for differentiation, the first derivative is:\n$g'(x) = (-1) \\cdot 4x^{-2} + (2) \\cdot 2x^1 = -4x^{-2} + 4x$, which can be written as $g'(x) = -\\frac{4}{x^2} + 4x$.\nTo find the second derivative, we differentiate $g'(x)$:\n$g''(x) = (-2) \\cdot (-4)x^{-3} + 4 = 8x^{-3} + 4$, which can be written as $g''(x) = \\frac{8}{x^3} + 4$.\n\n(b) To find the equation of the normal, we first need the gradient of the tangent at $x=-1$. This is $m_T = g'(-1)$.\n$m_T = -4(-1)^{-2} + 4(-1) = -4(1) - 4 = -8$.\nThe gradient of the normal, $m_N$, is the negative reciprocal of the tangent's gradient.\n$m_N = -\\frac{1}{m_T} = -\\frac{1}{-8} = \\frac{1}{8}$.\nNext, we find the y-coordinate of the point on the curve at $x=-1$.\n$y = g(-1) = \\frac{4}{-1} + 2(-1)^2 = -4 + 2 = -2$. The point is $(-1, -2)$.\nUsing the point-gradient form $y - y_1 = m(x - x_1)$, the equation of the normal is:\n$y - (-2) = \\frac{1}{8}(x - (-1))$\n$y + 2 = \\frac{1}{8}(x + 1)$\nThis can be rearranged to $8y + 16 = x + 1$, or $x - 8y - 15 = 0$."
+      "modelAnswer": "(a) First, we find the derivative of $h(t)$.\n$h(t) = 5\\cos(t) - \\sin(2t)$\n$h'(t) = -5\\sin(t) - \\cos(2t) \\cdot 2 = -5\\sin(t) - 2\\cos(2t)$\n\nTo find the stationary points, we set $h'(t)=0$.\n$-5\\sin(t) - 2\\cos(2t) = 0$\nUsing a graphical display calculator (GDC) to solve for $t$ in the interval $0 \\le t \\le 2\\pi$, we find:\n$t \\approx 3.4668...$ and $t \\approx 5.9579...$\nTo 3 significant figures, the values are $t \\approx 3.47$ and $t \\approx 5.96$.\n\n(b) To determine the nature of these stationary points, we use the second derivative test. First, we find $h''(t)$.\n$h''(t) = \\frac{d}{dt}(-5\\sin(t) - 2\\cos(2t)) = -5\\cos(t) - 2(-\\sin(2t) \\cdot 2) = -5\\cos(t) + 4\\sin(2t)$\n\nNow we evaluate $h''(t)$ at each of the stationary points found in part (a).\nFor $t \\approx 3.4668$:\n$h''(3.4668) = -5\\cos(3.4668) + 4\\sin(2 \\cdot 3.4668) \\approx 7.08$\nSince $h''(3.4668) > 0$, this stationary point is a local minimum.\n\nFor $t \\approx 5.9579$:\n$h''(5.9579) = -5\\cos(5.9579) + 4\\sin(2 \\cdot 5.9579) \\approx -7.08$\nSince $h''(5.9579) < 0$, this stationary point is a local maximum.\n\nThe question asks for the coordinates of the local minimum point. We use $t \\approx 3.4668$.\n$h(3.4668) = 5\\cos(3.4668) - \\sin(2 \\cdot 3.4668) \\approx -5.413...$\n\nThe coordinates of the local minimum point, to 3 significant figures, are $(3.47, -5.41)$."
     },
     {
       "id": "5-3-tangents-normals-and-the-second-derivative-q3",

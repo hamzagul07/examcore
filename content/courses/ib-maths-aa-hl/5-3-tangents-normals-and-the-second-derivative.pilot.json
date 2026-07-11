@@ -446,7 +446,7 @@
           "marks": 1
         },
         {
-          "text": "Evaluates the second derivative at the stationary points, e.g., $h''(3.466...) \\approx 6.55$.",
+          "text": "Evaluates the second derivative at the stationary points, e.g., $h''(3.466...) \\approx 7.08$.",
           "marks": 1
         },
         {
@@ -458,7 +458,7 @@
           "marks": 1
         }
       ],
-      "modelAnswer": "(a) First, we find the derivative of $h(t)$.\n$h(t) = 5\\cos(t) - \\sin(2t)$\n$h'(t) = -5\\sin(t) - \\cos(2t) \\cdot 2 = -5\\sin(t) - 2\\cos(2t)$\n\nTo find the stationary points, we set $h'(t)=0$.\n$-5\\sin(t) - 2\\cos(2t) = 0$\nUsing a graphical display calculator (GDC) to solve for $t$ in the interval $0 \\le t \\le 2\\pi$, we find:\n$t \\approx 3.4668...$ and $t \\approx 5.9579...$\nTo 3 significant figures, the values are $t \\approx 3.47$ and $t \\approx 5.96$.\n\n(b) To determine the nature of these stationary points, we use the second derivative test. First, we find $h''(t)$.\n$h''(t) = \\frac{d}{dt}(-5\\sin(t) - 2\\cos(2t)) = -5\\cos(t) - 2(-\\sin(2t) \\cdot 2) = -5\\cos(t) + 4\\sin(2t)$\n\nNow we evaluate $h''(t)$ at each of the stationary points found in part (a).\nFor $t \\approx 3.4668$:\n$h''(3.4668) = -5\\cos(3.4668) + 4\\sin(2 \\cdot 3.4668) \\approx 6.55$\nSince $h''(3.4668) > 0$, this stationary point is a local minimum.\n\nFor $t \\approx 5.9579$:\n$h''(5.9579) = -5\\cos(5.9579) + 4\\sin(2 \\cdot 5.9579) \\approx -6.55$\nSince $h''(5.9579) < 0$, this stationary point is a local maximum.\n\nThe question asks for the coordinates of the local minimum point. We use $t \\approx 3.4668$.\n$h(3.4668) = 5\\cos(3.4668) - \\sin(2 \\cdot 3.4668) \\approx -5.413...$\n\nThe coordinates of the local minimum point, to 3 significant figures, are $(3.47, -5.41)$."
+      "modelAnswer": "(a) First, we find the derivative of $h(t)$.\n$h(t) = 5\\cos(t) - \\sin(2t)$\n$h'(t) = -5\\sin(t) - \\cos(2t) \\cdot 2 = -5\\sin(t) - 2\\cos(2t)$\n\nTo find the stationary points, we set $h'(t)=0$.\n$-5\\sin(t) - 2\\cos(2t) = 0$\nUsing a graphical display calculator (GDC) to solve for $t$ in the interval $0 \\le t \\le 2\\pi$, we find:\n$t \\approx 3.4668...$ and $t \\approx 5.9579...$\nTo 3 significant figures, the values are $t \\approx 3.47$ and $t \\approx 5.96$.\n\n(b) To determine the nature of these stationary points, we use the second derivative test. First, we find $h''(t)$.\n$h''(t) = \\frac{d}{dt}(-5\\sin(t) - 2\\cos(2t)) = -5\\cos(t) - 2(-\\sin(2t) \\cdot 2) = -5\\cos(t) + 4\\sin(2t)$\n\nNow we evaluate $h''(t)$ at each of the stationary points found in part (a).\nFor $t \\approx 3.4668$:\n$h''(3.4668) = -5\\cos(3.4668) + 4\\sin(2 \\cdot 3.4668) \\approx 7.08$\nSince $h''(3.4668) > 0$, this stationary point is a local minimum.\n\nFor $t \\approx 5.9579$:\n$h''(5.9579) = -5\\cos(5.9579) + 4\\sin(2 \\cdot 5.9579) \\approx -7.08$\nSince $h''(5.9579) < 0$, this stationary point is a local maximum.\n\nThe question asks for the coordinates of the local minimum point. We use $t \\approx 3.4668$.\n$h(3.4668) = 5\\cos(3.4668) - \\sin(2 \\cdot 3.4668) \\approx -5.413...$\n\nThe coordinates of the local minimum point, to 3 significant figures, are $(3.47, -5.41)$."
     },
     {
       "id": "5-3-tangents-normals-and-the-second-derivative-q3",

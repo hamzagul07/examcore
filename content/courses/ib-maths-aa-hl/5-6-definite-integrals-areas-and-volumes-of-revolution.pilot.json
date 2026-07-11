@@ -453,23 +453,23 @@
           "marks": 1
         },
         {
-          "text": "Correctly setting up the integral. $V = \\pi \\int_0^\\pi (e^x \\sin(x))^2 \\, dx$.",
+          "text": "Correctly setting up the integral: $V = \\pi \\int_0^\\pi (e^x \\sin(x))^2 \\, dx$.",
           "marks": 1
         },
         {
-          "text": "Simplifying the integrand. $V = \\pi \\int_0^\\pi e^{2x} \\sin^2(x) \\, dx$.",
+          "text": "Simplifying the integrand: $V = \\pi \\int_0^\\pi e^{2x} \\sin^2(x) \\, dx$.",
           "marks": 1
         },
         {
-          "text": "Evidence of using a calculator to evaluate the integral.",
+          "text": "Correct value for the definite integral from GDC: $\\int_0^\\pi e^{2x} \\sin^2(x) \\, dx \\approx 66.8115...$",
           "marks": 1
         },
         {
-          "text": "Correct final answer. $V \\approx 127.5$ (or $40.6\\pi$).",
+          "text": "Correct final answer, multiplying by $\\pi$ and rounding to 3 s.f. $V \\approx 210$.",
           "marks": 1
         }
       ],
-      "modelAnswer": "The volume of a solid formed by rotating a region bounded by a curve $y=f(x)$, the x-axis, and lines $x=a$ and $x=b$ about the x-axis is given by the formula:\n$V = \\pi \\int_a^b y^2 \\, dx$.\nIn this case, $y = e^x \\sin(x)$, $a=0$, and $b=\\pi$. Note that for $x \\in [0, \\pi]$, $\\sin(x) \\ge 0$ and $e^x > 0$, so the curve is above the x-axis.\nThe setup for the volume is:\n$V = \\pi \\int_0^\\pi (e^x \\sin(x))^2 \\, dx$\n$V = \\pi \\int_0^\\pi e^{2x} \\sin^2(x) \\, dx$.\nThis integral is difficult to compute by hand, so we use a calculator.\nUsing a graphic display calculator or other numerical integration tool:\n$\\int_0^\\pi e^{2x} \\sin^2(x) \\, dx \\approx 40.599...$\nTherefore, the volume is:\n$V = \\pi \\times 40.599... \\approx 127.536...$\nRounding to three significant figures, the volume is $128$ cubic units."
+      "modelAnswer": "The volume of a solid formed by rotating a region bounded by a curve $y=f(x)$, the x-axis, and lines $x=a$ and $x=b$ about the x-axis is given by the formula:\n$V = \\pi \\int_a^b y^2 \\, dx$.\nIn this case, $y = e^x \\sin(x)$, $a=0$, and $b=\\pi$. Note that for $x \\in [0, \\pi]$, $\\sin(x) \\ge 0$ and $e^x > 0$, so the curve is on or above the x-axis.\nThe setup for the volume is:\n$V = \\pi \\int_0^\\pi (e^x \\sin(x))^2 \\, dx$\n$V = \\pi \\int_0^\\pi e^{2x} \\sin^2(x) \\, dx$.\nThis integral is difficult to compute by hand, so we use a calculator.\nUsing a graphic display calculator or other numerical integration tool:\n$\\int_0^\\pi e^{2x} \\sin^2(x) \\, dx \\approx 66.8115...$\nTherefore, the volume is:\n$V = \\pi \\times 66.8115... \\approx 209.895...$\nRounding to three significant figures, the volume is $210$ cubic units."
     },
     {
       "id": "5-6-definite-integrals-areas-and-volumes-of-revolution-q4",

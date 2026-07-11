@@ -144,6 +144,54 @@ function renderMd(t, criteria, parsed) {
   return L.join('\n')
 }
 
+const DRY = !process.argv.slice(2).includes('--run')
+
+// IB assessment-catalog code -> community ROOM subject_code (rooms use a level suffix).
+const ROOM_CODE = { 'ib-economics': 'economics-hl', 'ib-psychology': 'psychology-hl' }
+
+const BOT = {
+  id: 'a1000004-0000-4000-8000-000000000004',
+  email: 'model-answers-seed@examcore.internal',
+  username: 'markscheme_answers',
+  name: 'MarkScheme Model Answers',
+}
+
+// Deterministic IDs (distinct tags from the Cambridge generator's c0de0001/2).
+function seededUuid(kind, key) {
+  let h = 0
+  for (let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) >>> 0
+  const hex = (h.toString(16) + '00000000').slice(0, 8)
+  const tag = kind === 'q' ? 'c0de0003' : 'c0de0004'
+  return `${hex}-0000-4000-8000-0000${tag}`.slice(0, 36)
+}
+
+// Convert diagram image markdown (![...](...) or ![...]) to a plain-text note (no broken images).
+function diagramToText(md) {
+  const toNote = (_m, alt) => `\n> **Diagram:** ${(alt || '').replace(/^Diagram Description:\s*/i, '').trim()}\n`
+  return (md || '').replace(/!\[([^\]]*)\]\([^)]*\)/g, toNote).replace(/!\[([^\]]*)\]/g, toNote)
+}
+
+function questionTitle(t) {
+  const clause = (t.question.match(/(?:Evaluate|Discuss)[^\[\n]*/gi) || []).pop() || t.question.split('\n')[0]
+  return `${t.subjectName} Paper 1: ${clause.trim()}`.replace(/\s+/g, ' ').slice(0, 155)
+}
+
+function questionBodyMd(t) {
+  return `**${t.subjectName} · ${t.label} · exam essay**\n\n${t.question.trim()}\n\n_A top-band (grade 7) model answer with a criterion-by-criterion breakdown is below._`
+}
+
+function answerBodyMd(t, parsed) {
+  const L = [diagramToText(parsed.modelAnswer?.trim() || ''), '', '---', '', '### How it meets the IB criteria', '']
+  for (const b of parsed.criterionBreakdown || []) L.push(`- **${b.criterion}** — ${b.howMet}`)
+  if (parsed.commonMistakes?.length) {
+    L.push('', '### Common ways to drop marks', '')
+    for (const m of parsed.commonMistakes) L.push(`- ${m}`)
+  }
+  if (parsed.studyTip) L.push('', `> **Examiner tip:** ${parsed.studyTip}`)
+  L.push('', '---', '', '*AI-generated exemplar for revision, grounded in the official IB assessment criteria and reviewed by the MarkScheme team. Write your own response for assessed work. [Mark your own answer →](/mark)*')
+  return L.join('\n')
+}
+
 async function main() {
   loadEnv()
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -154,27 +202,53 @@ async function main() {
   const { extractJSON } = await import('../../lib/marking/json.ts')
   const admin = createClient(url, key)
 
-  console.log(`\nIB essay model-answer generator — DRY RUN (no DB writes) · ${TARGETS.length} targets\n`)
-  mkdirSync(OUT_DIR, { recursive: true })
+  console.log(`\nIB essay model-answer generator — ${DRY ? 'DRY RUN (no DB writes)' : 'LIVE RUN (INSERTING)'} · ${TARGETS.length} targets\n`)
+  if (DRY) mkdirSync(OUT_DIR, { recursive: true })
 
+  if (!DRY) {
+    const { data: existing } = await admin.auth.admin.getUserById(BOT.id)
+    if (!existing?.user) {
+      await admin.auth.admin.createUser({ id: BOT.id, email: BOT.email, email_confirm: true, password: `seed-${BOT.id.slice(0, 8)}-disabled`, user_metadata: { username: BOT.username } })
+    }
+    await admin.from('user_profiles').upsert({ id: BOT.id, username: BOT.username, full_name: BOT.name, onboarded: true, onboarding_completed: true, updated_at: new Date().toISOString() }, { onConflict: 'id' })
+  }
+
+  let ok = 0, fail = 0
   for (const t of TARGETS) {
-    const label = `${t.subjectCode}/${t.component}/${t.level}`
+    const lbl = `${t.subjectCode}/${t.label}`
     try {
       const criteria = await fetchCriteria(admin, t)
       if (!criteria || !criteria.criteria.length) throw new Error('no criteria/bands found in DB')
       const raw = await generateGeminiText(buildPrompt(t, criteria), { model: GEMINI_PRO_MODEL, task: 'content-generation', temperature: 0.4, maxOutputTokens: 8000 })
       const parsed = extractJSON(raw)
       if (!parsed || !parsed.modelAnswer) throw new Error('no usable modelAnswer')
-      const md = renderMd(t, criteria, parsed)
-      const slug = t.label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-      const file = join(OUT_DIR, `${t.subjectCode}-${slug}.md`)
-      writeFileSync(file, md)
-      console.log(`  ✓ ${label} → ${file.split('/').pop()} (${criteria.criteria.length} criteria, ${md.length} chars)`)
+      if ((parsed.criterionBreakdown || []).length < 1 || parsed.modelAnswer.trim().length < 800) throw new Error('quality gate (thin essay)')
+
+      if (DRY) {
+        const slug = t.label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+        const file = join(OUT_DIR, `${t.subjectCode}-${slug}.md`)
+        writeFileSync(file, renderMd(t, criteria, parsed))
+        console.log(`  ✓ ${lbl} → ${file.split('/').pop()}`)
+      } else {
+        const roomCode = ROOM_CODE[t.subjectCode]
+        if (!roomCode) throw new Error(`no room-code map for ${t.subjectCode}`)
+        const key = `${t.subjectCode}|${t.component}|${t.level}|${t.label}`
+        const qId = seededUuid('q', key), aId = seededUuid('a', key)
+        const { error: qErr } = await admin.from('community_questions').upsert({ id: qId, author_id: BOT.id, board: 'ib', subject_code: roomCode, title: questionTitle(t), body_md: questionBodyMd(t), status: 'published' }, { onConflict: 'id', ignoreDuplicates: true })
+        if (qErr) throw new Error(`question insert: ${qErr.message}`)
+        const { error: aErr } = await admin.from('community_answers').upsert({ id: aId, question_id: qId, author_id: BOT.id, body_md: answerBodyMd(t, parsed), status: 'published', is_accepted: true }, { onConflict: 'id', ignoreDuplicates: true })
+        if (aErr) throw new Error(`answer insert: ${aErr.message}`)
+        const { error: uErr } = await admin.from('community_questions').update({ accepted_answer_id: aId }).eq('id', qId)
+        if (uErr) throw new Error(`link accepted answer: ${uErr.message}`)
+        console.log(`  ✓ ${lbl} → /community/questions/${qId} (room ${roomCode})`)
+      }
+      ok++
     } catch (e) {
-      console.log(`  ✗ ${label} — ${e.message}`)
+      fail++
+      console.log(`  ✗ ${lbl} — ${e.message}`)
     }
   }
-  console.log(`\nDone. Samples in ${OUT_DIR}\n`)
+  console.log(`\nDone. ${ok} ok, ${fail} failed.${DRY ? ` Samples in ${OUT_DIR}` : ' Inserted as IB community_questions (board=ib).'}\n`)
 }
 
 main().catch((e) => { console.error(e); process.exit(1) })

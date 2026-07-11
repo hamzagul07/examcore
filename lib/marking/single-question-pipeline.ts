@@ -40,6 +40,7 @@ import {
   normalizeIbQuestionNumber,
   type IbSelectableLevel,
 } from '@/lib/ib/assessment-catalog'
+import { detectIbPaperRef } from '@/lib/ib/paper-detect'
 
 /** For a points component, attach the official markpoints for THIS question
  * (if ingested) so the marker uses the real scheme instead of a derived one. */
@@ -121,12 +122,16 @@ function emitContext(
   onProgress?.({ type: 'context', ...ctx })
 }
 
-/** Resolve an IB catalog component for a practice upload (shared by single + multi paths). */
+/** Resolve an IB catalog component for a practice upload (shared by single + multi paths).
+ * When the component has more than one ingested paper and the user didn't pick one,
+ * try to auto-detect it from the script text (footer code / session line) so we can
+ * still ground on the official scheme; falls back to derive when undetermined. */
 async function resolvePracticeIb(
   practiceCode: string,
   ibComponentKey: string | null | undefined,
   ibLevel: string | null | undefined,
-  ibPaperRef?: string | null
+  ibPaperRef?: string | null,
+  scriptTextForDetect?: string | null
 ): Promise<ResolvedIbComponent | null> {
   if (!practiceCode.startsWith('ib-') || !ibComponentKey) return null
   const { subjectCode: catSubject, level: legacyLevel } =
@@ -135,14 +140,29 @@ async function resolvePracticeIb(
     | IbSelectableLevel
     | null
   if (rawLevel !== 'HL' && rawLevel !== 'SL') return null
+  const key = ibComponentKey.trim()
   try {
-    return await resolveComponentForMarking(
+    const resolved = await resolveComponentForMarking(
       catSubject,
       rawLevel,
-      ibComponentKey.trim(),
+      key,
       null,
       ibPaperRef ?? null
     )
+    // No explicit paper, but several are ingested → try to detect which one.
+    if (
+      !ibPaperRef &&
+      resolved &&
+      (resolved.availablePapers?.length ?? 0) > 1 &&
+      scriptTextForDetect
+    ) {
+      const hit = detectIbPaperRef(scriptTextForDetect, resolved.availablePapers!)
+      if (hit) {
+        console.info(`[mark] auto-detected IB paper ${hit.ref} via ${hit.via}`)
+        return await resolveComponentForMarking(catSubject, rawLevel, key, null, hit.ref)
+      }
+    }
+    return resolved
   } catch (err) {
     console.warn('[mark] IB catalog resolve failed; using fallback', err)
     return null
@@ -602,7 +622,8 @@ export async function runSingleQuestionMark(
           practiceCode,
           ibComponentKey,
           ibLevel,
-          ibPaperRef
+          ibPaperRef,
+          ocrText
         )
         return await markSplitQuestions({
           split,
@@ -643,7 +664,7 @@ export async function runSingleQuestionMark(
 
     // M1: if the upload carries an IB component + level and the subject is
     // catalogued, resolve it. Non-catalogued subjects return null → unchanged path.
-    resolvedIb = await resolvePracticeIb(practiceCode, ibComponentKey, ibLevel, ibPaperRef)
+    resolvedIb = await resolvePracticeIb(practiceCode, ibComponentKey, ibLevel, ibPaperRef, ocrText)
     // Attach the official points scheme for this single question when one is
     // ingested (parity with the multi-question path); else derive-then-mark.
     if (singleQuestionNumber) {

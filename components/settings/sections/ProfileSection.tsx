@@ -103,6 +103,15 @@ export function ProfileSection({
           {savedUsername ? (
             <p className="mb-2 text-sm text-[var(--ec-text-secondary)]">
               Current: <strong className="text-[var(--ec-text-primary)]">u/{savedUsername}</strong>
+              {' · '}
+              <a
+                href={`/u/${savedUsername}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ec-link"
+              >
+                View public profile
+              </a>
             </p>
           ) : (
             <p className="mb-2 text-sm text-[var(--ec-text-secondary)]">

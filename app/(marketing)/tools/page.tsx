@@ -126,13 +126,13 @@ export default function ToolsHubPage() {
           })}
         </ul>
 
-        <div className="ms-hub-card mt-12 text-center">
+        <div className="ms-hub-card mt-12 items-center text-center">
           <h2 className="ms-h3">Want feedback on the actual answer, not just a grade?</h2>
           <p className="ms-lead mx-auto" style={{ marginTop: 10, maxWidth: 500 }}>
             A grade estimate tells you where you landed. MarkScheme tells you <em>why</em> — upload
             your paper and get mark-by-mark feedback against the real Cambridge scheme.
           </p>
-          <Link href="/mark" className="ec-btn-primary inline-flex min-h-[48px]">
+          <Link href="/mark" className="ec-btn-primary mt-6 inline-flex min-h-[48px]">
             Mark a paper free <ArrowRight className="h-5 w-5" />
           </Link>
           <p className="ms-micro mt-6">

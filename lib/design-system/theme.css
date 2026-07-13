@@ -126,7 +126,10 @@
   --ec-text-faint: #8d8470;
   --ec-text-reading: #2a261d;
   --ec-brand: #19774d;
-  --ec-brand-deep: #17a86b;
+  /* Darker than brand — used as label text (AA on paper) and button hover. It
+     was #17a86b (lighter than brand), which made ec-label-tech/eyebrow text
+     ~2.9:1 and button hovers brighten instead of deepen. */
+  --ec-brand-deep: #12603f;
   /* Darker green for green text sitting on a green tint (chips/toggles), where
      the standard brand green only reaches ~4.3:1. Night themes fall back to the
      neon ink via var(--green-on-tint, var(--ink)). */

@@ -11,9 +11,9 @@
   --ec-surface-muted: #1a1711;
   --ec-paper: #211e14;
   --ec-paper-rule: #383223;
-  --ec-border: #322d1f;
+  --ec-border: #3a3421;
   --ec-border-soft: #322d1f;
-  --ec-border-subtle: #322d1f;
+  --ec-border-subtle: #2c2719;
   --ec-border-strong: #f0ead9;
   --ec-text-primary: #f0ead9;
   --ec-text-secondary: #c4bba1;
@@ -108,16 +108,18 @@
 
 [data-ec-theme='zen'] {
   color-scheme: light;
-  --ec-canvas: #f8f9fa;
-  --ec-bg-soft: #f1f3f5;
+  /* Warm paper palette — surfaces share the warm hue of the ink/serif
+     editorial language instead of generic cool blue-grays. */
+  --ec-canvas: #faf9f6;
+  --ec-bg-soft: #f3f1ea;
   --ec-surface: #ffffff;
-  --ec-surface-raised: #f5f6f8;
-  --ec-surface-muted: #eef0f2;
+  --ec-surface-raised: #f6f4ee;
+  --ec-surface-muted: #f0ede5;
   --ec-paper: #ffffff;
-  --ec-paper-rule: #e8eaed;
-  --ec-border: #e5e7eb;
-  --ec-border-soft: #e8eaed;
-  --ec-border-subtle: #ebecef;
+  --ec-paper-rule: #eae6dc;
+  --ec-border: #e7e3d8;
+  --ec-border-soft: #eae6dc;
+  --ec-border-subtle: #edeae1;
   --ec-border-strong: #25221b;
   --ec-text-primary: #25221b;
   --ec-text-secondary: #5c5546;
@@ -136,7 +138,7 @@
   --ec-ink-crimson: #a23e3e;
   --ec-ink-red: #a23e3e;
   --ec-pen: #2b3a8c;
-  --ec-on-brand-text: #f8f9fa;
+  --ec-on-brand-text: #faf9f6;
   --ec-font-handwriting: var(--font-caveat, 'Caveat', 'Caveat Fallback', cursive);
   --ec-chip-success-bg: rgba(30, 138, 94, 0.11);
   --ec-chip-success-text: #19774d;
@@ -144,7 +146,7 @@
   --ec-chip-warning-text: #735829;
   --ec-chip-critical-bg: rgba(176, 72, 72, 0.09);
   --ec-chip-critical-text: #a23e3e;
-  --ec-chip-neutral-bg: rgba(238, 240, 242, 0.9);
+  --ec-chip-neutral-bg: rgba(240, 236, 228, 0.9);
   --ec-chip-neutral-text: #8d8470;
   --ec-chip-info-bg: rgba(58, 95, 184, 0.12);
   --ec-chip-info-text: #3a5fb8;
@@ -181,12 +183,12 @@
   --ec-wireframe-color: 30, 138, 94;
   --ec-btn-glow: 0 10px 24px rgba(30, 138, 94, 0.25);
   --ec-btn-glow-hover: 0 14px 36px rgba(30, 138, 94, 0.32);
-  --ec-card-shadow: 0 6px 18px rgba(40, 45, 55, 0.05);
-  --ec-card-hover-shadow: 0 14px 36px rgba(40, 45, 55, 0.09);
+  --ec-card-shadow: 0 6px 18px rgba(70, 60, 40, 0.06);
+  --ec-card-hover-shadow: 0 14px 36px rgba(70, 60, 40, 0.1);
   --ec-shadow-hard: 6px 6px 0 rgba(37, 34, 27, 0.08);
-  --ec-shadow-elevation-1: 0 6px 18px rgba(40, 45, 55, 0.05);
-  --ec-shadow-elevation-2: 0 14px 36px rgba(40, 45, 55, 0.09);
-  --ec-shadow-elevation-3: 0 20px 48px rgba(40, 45, 55, 0.12);
+  --ec-shadow-elevation-1: 0 6px 18px rgba(70, 60, 40, 0.06);
+  --ec-shadow-elevation-2: 0 14px 36px rgba(70, 60, 40, 0.1);
+  --ec-shadow-elevation-3: 0 20px 48px rgba(70, 60, 40, 0.13);
   --ec-notebook-paper: var(--ec-paper);
   --ec-notebook-pencil: var(--ec-pen);
   --ec-notebook-rule: var(--ec-paper-rule);
@@ -197,11 +199,14 @@
   --ec-accent-warm-soft: rgba(217, 131, 36, 0.12);
   --ec-accent-warm-border: rgba(185, 101, 26, 0.4);
   --ec-accent-coral: #c8553d;
-  --ec-surface-warm: #f9faf8;
-  --ec-card-shadow-warm: 0 8px 24px rgba(60, 70, 80, 0.07);
-  --ec-card-hover-shadow-warm: 0 18px 44px rgba(60, 70, 80, 0.11);
+  --ec-surface-warm: #faf8f2;
+  --ec-card-shadow-warm: 0 8px 24px rgba(80, 68, 45, 0.07);
+  --ec-card-hover-shadow-warm: 0 18px 44px rgba(80, 68, 45, 0.11);
   --ec-focus-ring: 0 0 0 3px rgba(25, 119, 77, 0.18), 0 0 0 1px var(--ec-brand);
   --ec-radius-card-lg: 20px;
+  /* Subtle paper grain for the zen canvas (late-night keeps `none`). Rendered
+     by the shell overlay in ux-polish.css. */
+  --ec-paper-texture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.05'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 html,

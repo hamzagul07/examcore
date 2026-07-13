@@ -26,8 +26,26 @@ function marginNotesTheme(ec: EcTheme): 'paper' | 'night' {
 }
 
 function applyThemeAttributes(ec: EcTheme) {
-  document.documentElement.setAttribute('data-ec-theme', ec)
-  document.documentElement.setAttribute('data-theme', marginNotesTheme(ec))
+  const root = document.documentElement
+  const apply = () => {
+    root.setAttribute('data-ec-theme', ec)
+    root.setAttribute('data-theme', marginNotesTheme(ec))
+  }
+
+  // Soft cross-fade between themes via the View Transitions API. Skipped when
+  // the theme is unchanged (initial hydrate) or the user prefers reduced motion.
+  const doc = document as Document & {
+    startViewTransition?: (update: () => void) => unknown
+  }
+  if (
+    root.getAttribute('data-ec-theme') === ec ||
+    typeof doc.startViewTransition !== 'function' ||
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  ) {
+    apply()
+    return
+  }
+  doc.startViewTransition(apply)
 }
 
 function readStoredTheme(): EcTheme {

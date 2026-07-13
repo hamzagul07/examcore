@@ -1349,8 +1349,6 @@ export default function MarkPage() {
         )}
         <MarkStepsBar stage={markStage} />
 
-        {!result && <PageHelpStrip className="mb-6" />}
-
         {!result && practiceContext && (
           <div className="ms-mark-context-card ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4 min-w-0">
             <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
@@ -2042,6 +2040,8 @@ export default function MarkPage() {
             )}
           </form>
         )}
+
+        {!result && !loading && <PageHelpStrip className="mt-10" />}
 
         <AnimatePresence>
           {((cinematicActive) || markStreamError) && (

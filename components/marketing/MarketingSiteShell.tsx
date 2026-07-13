@@ -8,6 +8,7 @@ import { ScrollProgressBar } from '@/components/design-system/ScrollProgressBar'
 import { SiteFooter } from '@/components/layout/SiteFooter'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 import { MarketingTapFeedbackLayer } from '@/components/layout/MarketingTapFeedbackLayer'
+import { BackToTop } from '@/components/marketing/BackToTop'
 import { getSiteChromeVariant } from '@/lib/site-chrome'
 
 function isLessonPath(pathname: string): boolean {
@@ -35,6 +36,7 @@ export async function MarketingSiteShell({ children }: { children: ReactNode }) 
         <TapFeedbackLayer rootSelector=".course-root" config={COURSE_TAP_CONFIG} />
         <SiteHeader variant="reading" />
         {children}
+        <BackToTop />
         <SiteFooter variant="reading" />
       </div>
     )
@@ -47,6 +49,7 @@ export async function MarketingSiteShell({ children }: { children: ReactNode }) 
         <ScrollProgressBar />
         <SiteHeader variant="marketing" />
         {children}
+        <BackToTop />
         <SiteFooter variant="marketing" />
       </div>
     )

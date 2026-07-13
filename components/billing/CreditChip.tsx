@@ -152,7 +152,7 @@ export function CreditChip() {
         aria-expanded={open}
         aria-label={`${tierLabel} plan — ${qLeft} questions and ${oLeft} chat messages left`}
         title={`${tierLabel} · ${qLeft} questions · ${oLeft} chat left`}
-        className="flex min-h-[44px] max-w-full items-center gap-1.5 rounded-full border px-2.5 py-2 text-xs font-semibold tabular-nums transition-colors hover:border-[color-mix(in_srgb,var(--ec-brand)_35%,var(--ec-border))]"
+        className="relative flex h-8 max-w-full items-center gap-1 rounded-full border px-2 text-[11px] font-semibold tabular-nums transition-colors before:absolute before:-inset-1.5 before:content-[''] hover:border-[color-mix(in_srgb,var(--ec-brand)_35%,var(--ec-border))]"
         style={{
           borderColor: 'var(--ec-border)',
           color: 'var(--ec-text-secondary)',

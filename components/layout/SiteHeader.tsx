@@ -10,6 +10,10 @@ import { CreditChip } from '@/components/billing/CreditChip'
 import { GuestSignInChip } from '@/components/billing/GuestSignInChip'
 import { LoadingLink } from '@/components/ui/LoadingLink'
 import { ThemeFlip } from '@/components/margin-notes'
+import {
+  CommandKTrigger,
+  MobileSearchMenuButton,
+} from '@/components/margin-notes/CommandKTrigger'
 import { NotificationBell } from '@/components/community/NotificationBell'
 import { DiscussSubmitLink } from '@/components/community/DiscussSubmitLink'
 import { NavDropdown } from '@/components/layout/NavDropdown'
@@ -291,6 +295,7 @@ export function SiteHeader({ variant }: Props) {
               config.transparentShell && 'ec-nav-utils--frost'
             )}
           >
+            <CommandKTrigger />
             {showNotifications ? <NotificationBell dismiss={mobileOpen} /> : null}
             <ThemeFlip />
           </div>
@@ -396,6 +401,9 @@ export function SiteHeader({ variant }: Props) {
                   role="navigation"
                   aria-label="Mobile"
                 >
+                  <MobileSearchMenuButton
+                    onActivate={() => closeMobileMenu(false)}
+                  />
                   {showPrimaryCta
                     ? renderPrimaryCta(
                         cn('ec-nav-mobile-mark', CTA_CLASS[config.primaryCta.style]),

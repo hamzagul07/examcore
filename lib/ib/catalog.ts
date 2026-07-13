@@ -67,7 +67,7 @@ const P12 = ['Paper 1', 'Paper 2']
 const ACC = {
   langlit: '#7c5cbf',
   lang: '#2d8a6e',
-  society: '#c17f3a',
+  society: '#cf6a2f',
   science: '#3b6fd9',
   maths: '#b84a62',
   arts: '#9b4dca',

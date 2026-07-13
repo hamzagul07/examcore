@@ -11,8 +11,9 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: `${base}/mark`,
     /** Browser tab — avoids aggressive "install app" prompts on iOS until a native app exists. */
     display: 'browser',
-    background_color: '#f7f2e7',
-    theme_color: '#bb2a25',
+    /* Matches the zen warm-paper canvas + brand green (see theme.css). */
+    background_color: '#faf9f6',
+    theme_color: '#19774d',
     icons: [
       {
         src: `${base}/icon`,

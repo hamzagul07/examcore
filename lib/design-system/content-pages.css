@@ -1472,3 +1472,46 @@
 .gb-data-table th:not(:nth-child(2)) {
   text-align: center;
 }
+
+/* ── /compare — card-shell comparison tables ── */
+.compare-table-card {
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-card-lg, 20px);
+  background: var(--ec-surface);
+  box-shadow: var(--ec-card-shadow);
+  overflow: hidden;
+}
+
+.compare-table-head th {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+  border-bottom: 1px solid var(--ec-border);
+  background: var(--ec-surface-raised);
+  white-space: nowrap;
+}
+
+.compare-table-row {
+  color: var(--ec-text-secondary);
+}
+
+.compare-table-row + .compare-table-row {
+  border-top: 1px solid var(--ec-border-soft);
+}
+
+.compare-table-row:hover {
+  background: color-mix(in srgb, var(--ec-brand) 3%, transparent);
+}
+
+/* Our own row — quiet brand tint + accent edge, like the pricing matrix */
+.compare-table-row--self {
+  background: var(--ec-brand-muted);
+  box-shadow: inset 3px 0 0 var(--ec-brand);
+}
+
+.compare-table-row--self:hover {
+  background: color-mix(in srgb, var(--ec-brand) 9%, transparent);
+}

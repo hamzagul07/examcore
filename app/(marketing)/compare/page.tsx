@@ -104,32 +104,38 @@ export default function ComparePage() {
         lead="Not affiliate fluff — practical tables for Cambridge and IB students revising with past papers, mark schemes, and free courses."
       />
       <MarketingSection className="!pt-0">
-        <h2 className="ec-h3 mb-4 text-[var(--ec-text-primary)]">Marking workflow</h2>
-        <div className="ms-compare-scroll overflow-x-auto">
-          <table className="ec-blog-prose w-full min-w-[480px] text-left text-sm">
-            <thead>
-              <tr>
-                <th className="pb-3 pr-4">Option</th>
-                <th className="pb-3 pr-4">Cost</th>
-                <th className="pb-3 pr-4">Speed</th>
-                <th className="pb-3 pr-4">Handwriting</th>
-                <th className="pb-3">Strictness</th>
-              </tr>
-            </thead>
-            <tbody>
-              {MARKING_ROWS.map((r) => (
-                <tr key={r.name} className="border-t border-[var(--ec-border)]">
-                  <td className="py-3 pr-4 font-semibold text-[var(--ec-text-primary)]">
-                    {r.name}
-                  </td>
-                  <td className="py-3 pr-4">{r.cost}</td>
-                  <td className="py-3 pr-4">{r.speed}</td>
-                  <td className="py-3 pr-4">{r.handwriting}</td>
-                  <td className="py-3">{r.strictness}</td>
+        <p className="ms-overline mb-2">Workflow</p>
+        <h2 className="ec-h3 mb-5 text-[var(--ec-text-primary)]">Marking workflow</h2>
+        <div className="compare-table-card">
+          <div className="ms-compare-scroll overflow-x-auto">
+            <table className="w-full min-w-[480px] text-left text-sm">
+              <thead>
+                <tr className="compare-table-head">
+                  <th className="px-4 py-3">Option</th>
+                  <th className="px-4 py-3">Cost</th>
+                  <th className="px-4 py-3">Speed</th>
+                  <th className="px-4 py-3">Handwriting</th>
+                  <th className="px-4 py-3">Strictness</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {MARKING_ROWS.map((r) => (
+                  <tr
+                    key={r.name}
+                    className={`compare-table-row${r.name.startsWith('MarkScheme') ? ' compare-table-row--self' : ''}`}
+                  >
+                    <td className="px-4 py-3.5 font-semibold text-[var(--ec-text-primary)]">
+                      {r.name}
+                    </td>
+                    <td className="px-4 py-3.5">{r.cost}</td>
+                    <td className="px-4 py-3.5">{r.speed}</td>
+                    <td className="px-4 py-3.5">{r.handwriting}</td>
+                    <td className="px-4 py-3.5">{r.strictness}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
         <p className="landing-lead mt-8">
           Best workflow: self-mark strictly once, then{' '}
@@ -140,34 +146,40 @@ export default function ComparePage() {
         </p>
       </MarketingSection>
       <MarketingSection className="!pt-0">
-        <h2 className="ec-h3 mb-4 text-[var(--ec-text-primary)]">
+        <p className="ms-overline mb-2 mt-8">Platforms</p>
+        <h2 className="ec-h3 mb-5 text-[var(--ec-text-primary)]">
           Revision platforms (marking + courses)
         </h2>
-        <div className="ms-compare-scroll overflow-x-auto">
-          <table className="ec-blog-prose w-full min-w-[560px] text-left text-sm">
-            <thead>
-              <tr>
-                <th className="pb-3 pr-4">Platform</th>
-                <th className="pb-3 pr-4">Best for</th>
-                <th className="pb-3 pr-4">Marking</th>
-                <th className="pb-3 pr-4">Courses / notes</th>
-                <th className="pb-3">Cost</th>
-              </tr>
-            </thead>
-            <tbody>
-              {PLATFORM_ROWS.map((r) => (
-                <tr key={r.name} className="border-t border-[var(--ec-border)]">
-                  <td className="py-3 pr-4 font-semibold text-[var(--ec-text-primary)]">
-                    {r.name}
-                  </td>
-                  <td className="py-3 pr-4">{r.bestFor}</td>
-                  <td className="py-3 pr-4">{r.marking}</td>
-                  <td className="py-3 pr-4">{r.courses}</td>
-                  <td className="py-3">{r.cost}</td>
+        <div className="compare-table-card">
+          <div className="ms-compare-scroll overflow-x-auto">
+            <table className="w-full min-w-[560px] text-left text-sm">
+              <thead>
+                <tr className="compare-table-head">
+                  <th className="px-4 py-3">Platform</th>
+                  <th className="px-4 py-3">Best for</th>
+                  <th className="px-4 py-3">Marking</th>
+                  <th className="px-4 py-3">Courses / notes</th>
+                  <th className="px-4 py-3">Cost</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {PLATFORM_ROWS.map((r) => (
+                  <tr
+                    key={r.name}
+                    className={`compare-table-row${r.name === 'MarkScheme' ? ' compare-table-row--self' : ''}`}
+                  >
+                    <td className="px-4 py-3.5 font-semibold text-[var(--ec-text-primary)]">
+                      {r.name}
+                    </td>
+                    <td className="px-4 py-3.5">{r.bestFor}</td>
+                    <td className="px-4 py-3.5">{r.marking}</td>
+                    <td className="px-4 py-3.5">{r.courses}</td>
+                    <td className="px-4 py-3.5">{r.cost}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
         <p className="landing-lead mt-8">
           Deep dives:{' '}
@@ -186,19 +198,37 @@ export default function ComparePage() {
         </p>
       </MarketingSection>
       <MarketingSection className="!pt-0">
-        <section className="compare-seo-faq mx-auto max-w-3xl" aria-labelledby="compare-faq-heading">
-          <h2 id="compare-faq-heading" className="ec-h3 mb-4 text-[var(--ec-text-primary)]">
+        <section className="compare-seo-faq" aria-labelledby="compare-faq-heading">
+          <p className="ms-overline mb-2 mt-8">Questions</p>
+          <h2 id="compare-faq-heading" className="ec-h3 mb-5 text-[var(--ec-text-primary)]">
             Frequently asked questions
           </h2>
-          <dl className="space-y-4 text-sm">
+          <dl className="space-y-3">
             {COMPARE_SEO_FAQ.map((item) => (
-              <div key={item.q}>
-                <dt className="font-semibold text-[var(--ec-text-primary)]">{item.q}</dt>
-                <dd className="mt-1 leading-relaxed text-[var(--ec-text-secondary)]">{item.a}</dd>
+              <div
+                key={item.q}
+                className="rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface)] px-5 py-4"
+              >
+                <dt className="text-body font-semibold text-[var(--ec-text-primary)]">{item.q}</dt>
+                <dd className="mt-1.5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">{item.a}</dd>
               </div>
             ))}
           </dl>
         </section>
+      </MarketingSection>
+      <MarketingSection className="!pt-0">
+        <div className="rounded-3xl border border-[var(--ec-border)] bg-[var(--ec-bg-soft)] px-6 py-10 text-center sm:px-10">
+          <h2 className="ec-h3 text-[var(--ec-text-primary)]">
+            See it on your own handwriting
+          </h2>
+          <p className="mx-auto mt-2 max-w-md text-body text-[var(--ec-text-secondary)]">
+            One free question, marked against the official scheme — the fastest way
+            to compare is to try it.
+          </p>
+          <Link href="/mark" className="ec-btn-primary mt-6 inline-flex">
+            Mark a question free →
+          </Link>
+        </div>
       </MarketingSection>
     </MarketingPageShell>
   )

@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { Search } from 'lucide-react'
 import { useOmniAI } from '@/lib/omni-ai/context'
 import { cn } from '@/lib/utils'
@@ -8,20 +9,30 @@ type CommandKTriggerProps = {
   className?: string
 }
 
+/** SSR-safe platform hint — starts with ⌘ and corrects to Ctrl after mount. */
+function useShortcutHint() {
+  const [hint, setHint] = useState('⌘K')
+  useEffect(() => {
+    if (!/Mac|iPhone|iPad/i.test(navigator.platform)) setHint('Ctrl K')
+  }, [])
+  return hint
+}
+
 export function CommandKTrigger({ className }: CommandKTriggerProps) {
   const { setIsOpen } = useOmniAI()
+  const hint = useShortcutHint()
 
   return (
     <button
       type="button"
       className={cn('ec-cmdk-btn', className)}
       onClick={() => setIsOpen(true)}
-      title="Search (⌘K)"
+      title={`Search (${hint})`}
       aria-label="Open search"
     >
       <Search className="h-3.5 w-3.5 shrink-0" aria-hidden />
       <span>search</span>
-      <kbd>⌘K</kbd>
+      <kbd>{hint}</kbd>
     </button>
   )
 }

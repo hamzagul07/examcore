@@ -83,30 +83,50 @@
 .scard-top {
   display: flex; align-items: flex-start; justify-content: space-between; gap: 10px;
   padding: 22px 18px 18px; min-height: 116px;
-  background: linear-gradient(135deg, color-mix(in srgb, var(--acc) 78%, var(--surface)), color-mix(in srgb, var(--acc) 42%, var(--surface)));
-  border-bottom: 1px solid color-mix(in srgb, var(--acc) 30%, var(--border)); position: relative; overflow: hidden;
+  background:
+    radial-gradient(130% 100% at 10% 0%, rgba(255, 255, 255, 0.2), transparent 58%),
+    linear-gradient(135deg, color-mix(in srgb, var(--acc) 94%, #ffffff) 0%, color-mix(in srgb, var(--acc) 76%, #221d14) 100%);
+  border-bottom: 1px solid color-mix(in srgb, var(--acc) 45%, var(--border));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  position: relative; overflow: hidden;
 }
 /* oversized faded subject glyph watermark for a bold, colourful ZNotes-style card */
 .scard-watermark {
   position: absolute; right: -12px; bottom: -30px; font-family: 'Newsreader', serif;
-  font-size: 128px; line-height: 1; color: #fff; opacity: 0.16; pointer-events: none;
+  font-size: 128px; line-height: 1; color: #fff; opacity: 0.18; pointer-events: none;
   transition: transform 260ms cubic-bezier(.4,0,.2,1); z-index: 0;
 }
 .scard:hover .scard-watermark { transform: scale(1.1) rotate(-5deg); }
+/* glossy sheen that sweeps across the accent band on hover */
+.scard-top::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: -55%;
+  width: 55%;
+  z-index: 2;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+  transform: skewX(-18deg) translateX(-40%);
+  transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+.scard:hover .scard-top::after { transform: skewX(-18deg) translateX(340%); }
+@media (prefers-reduced-motion: reduce) {
+  .scard-top::after { display: none; }
+}
 /* white "app-icon" chip holding the subject glyph — pops on the coloured band, contrasts in both themes */
 .scard-glyph {
   position: relative; z-index: 1; display: grid; place-items: center;
   width: 60px; height: 60px; border-radius: 16px;
   background: var(--surface); color: var(--acc);
   font-family: 'Newsreader', serif; font-size: 32px; line-height: 1; font-weight: 600;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.24), inset 0 0 0 1px color-mix(in srgb, var(--acc) 16%, transparent);
   transition: transform 220ms cubic-bezier(.4,0,.2,1);
 }
 .scard:hover .scard-glyph { transform: translateY(-3px) rotate(-4deg); }
 .scard-tab { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); z-index: 1; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: #fff; opacity: 0.92; }
 .scard-new { position: absolute; top: 14px; right: 14px; z-index: 2; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,0.28); border: 1px solid rgba(255,255,255,0.35); border-radius: 999px; padding: 3px 8px; }
 .scard-top > svg, .scard-top > .stamp-free { position: relative; z-index: 1; }
-.stamp-free { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 700; line-height: 1.15; text-align: center; color: #fff; border: 1.5px solid rgba(255,255,255,0.7); border-radius: 6px; padding: 4px 7px; transform: rotate(4deg); letter-spacing: 0.05em; }
+.stamp-free { font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 700; line-height: 1.3; text-align: center; color: #fff; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.5); border-radius: 8px; padding: 4px 8px; letter-spacing: 0.07em; backdrop-filter: blur(3px); }
 .scard-body { padding: 14px 18px 4px; flex: 1; }
 .scard-name { font-family: 'Newsreader', serif; font-size: 22px; font-weight: 500; margin: 0 0 4px; letter-spacing: -0.01em; }
 .scard-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted); margin: 0 0 8px; letter-spacing: 0.03em; }
@@ -1179,8 +1199,24 @@
 .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 880px; margin: 0 auto; }
 .plan { padding: 28px 28px 30px; position: relative; transition: border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease; }
 .plan:hover { transform: translateY(-3px); border-color: var(--ink-border); box-shadow: var(--shadow-card); }
-.plan.featured { border: 1.5px solid var(--ink); border-radius: var(--ec-radius-card-lg, 20px); background: var(--ec-surface-warm, var(--surface)); box-shadow: var(--shadow-pop); }
-.plan.featured:hover { box-shadow: var(--shadow-pop); }
+/* tier accent — inset color tab along the top gives the plan ladder a color story */
+.plan::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 24px;
+  right: 24px;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: var(--plan-acc, var(--border));
+  pointer-events: none;
+}
+.plan[data-plan='free'] { --plan-acc: color-mix(in srgb, var(--acc-slate) 55%, var(--border)); }
+.plan[data-plan='pro'] { --plan-acc: var(--acc-blue); }
+.plan[data-plan='scholar'] { --plan-acc: linear-gradient(90deg, var(--ink), var(--ink-bright)); }
+.plan[data-plan='max'] { --plan-acc: var(--ec-accent-warm, var(--amber)); }
+.plan.featured { border: 1.5px solid var(--ink); border-radius: var(--ec-radius-card-lg, 20px); background: var(--ec-surface-warm, var(--surface)); box-shadow: var(--shadow-pop), 0 0 0 4px var(--ink-soft); }
+.plan.featured:hover { box-shadow: var(--shadow-pop), 0 0 0 4px var(--ink-soft); }
 .plan-cta { width: 100%; justify-content: center; }
 .plan-ribbon { position: absolute; top: -11px; right: 24px; background: var(--ec-accent-warm, var(--ink)); color: #241405; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; padding: 5px 12px; border-radius: 999px; }
 .plan-tag { font-size: 11px; color: var(--ink); margin-bottom: 8px; }
@@ -2298,3 +2334,110 @@ a.scard, a.continue, a.topic-row, a.pn-btn, a.related-card, a.subj-row, a.dash-c
 .cmp-card-row + .cmp-card-row { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); }
 .cmp-card-label { margin: 0 0 4px; color: var(--ink); }
 .cmp-card-value { margin: 0; color: var(--text-2); }
+
+/* ============================================================
+   PRICING v4 — premium overhaul
+   ============================================================ */
+/* Centered editorial hero */
+.pricing-hero { text-align: center; padding: 28px 0 8px; }
+.pricing-hero .overline { display: block; }
+
+/* Segmented billing toggle — soft well with a lifted active segment */
+.pricing-controls { margin: 26px 0 30px; }
+.pricing-toggle {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  padding: 5px;
+  gap: 2px;
+}
+.pricing-toggle-btn { padding: 9px 20px; }
+.pricing-toggle-btn.on {
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--ink) 30%, transparent);
+}
+
+/* Plan grid — featured column rises above its neighbours on desktop */
+.plans.four { gap: 18px; align-items: stretch; }
+@media (min-width: 1024px) {
+  .plans.four .plan.featured { transform: scale(1.045); z-index: 1; }
+  .plans.four .plan.featured:hover { transform: scale(1.045) translateY(-3px); }
+}
+
+/* Tier dot beside the plan tag — ties the tag to the accent tab above it */
+.plan-tag { display: inline-flex; align-items: center; gap: 7px; }
+.plan-tag::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--plan-acc, var(--ink));
+  flex-shrink: 0;
+}
+
+/* Price typography — bigger drop, mono period suffix */
+.plans.four .plan-now { font-size: 38px; letter-spacing: -0.02em; }
+.plan-per { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; }
+
+/* Trust chips sit directly under the decision point */
+.pricing-trust { border-top: none; padding-top: 0; margin-top: 26px; gap: 10px 12px; }
+.pricing-trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  color: var(--text-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 14px;
+}
+.pricing-trust-icon { width: 14px; height: 14px; color: var(--ink); flex-shrink: 0; }
+
+/* Value strip now lives below the plans — give it a section's breathing room */
+.pricing-value-strip { margin-top: 52px; }
+
+/* Comparison matrix gets a proper card shell + row hover */
+.ms-plan-matrix-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--ec-radius-card-lg, 20px);
+  box-shadow: var(--shadow-card);
+  padding: 12px 22px 16px;
+}
+.ms-plan-matrix tbody tr:hover td,
+.ms-plan-matrix tbody tr:hover th.ms-matrix-feat {
+  background: color-mix(in srgb, var(--ink) 3%, transparent);
+}
+@media (max-width: 640px) {
+  .ms-plan-matrix-wrap { padding: 6px 10px 10px; }
+}
+
+/* ── Pricing v4.1 — equal card internals + tighter rhythm ──
+   Subgrid puts every card row (pill, tag, name, price, blurb, CTA, feats…)
+   on shared tracks, so the four CTAs sit on exactly the same line. */
+/* Hidden spacer pill: only needed when cards sit side by side (row alignment);
+   on single-column mobile it would just leave a blank gap. */
+.plan-trial-pill.is-empty { display: none; }
+@media (min-width: 621px) {
+  .plan-trial-pill.is-empty { display: inline-block; visibility: hidden; }
+}
+
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 621px) {
+    .plans.four .plan {
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: span 10;
+      align-content: start;
+    }
+    .plans.four .plan .plan-cta { margin-top: 0; align-self: end; }
+  }
+}
+
+/* Tighter vertical rhythm — the cards were running long */
+.plans.four .plan { padding: 20px 18px 22px; }
+.plans.four .plan-blurb { font-size: 13.5px; line-height: 1.5; }
+.plans.four .plan-feats { margin-top: 16px; padding-top: 16px; gap: 9px; }
+.plan-killer { padding: 10px 12px; margin-bottom: 14px; font-size: 13px; }
+.plan-cta { min-height: 46px; }
+.plan-bestfor { margin: -6px 0 12px; }

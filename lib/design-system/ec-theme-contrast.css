@@ -361,3 +361,11 @@ a.btn-primary {
 .faq.on .faq-plus {
   color: var(--ec-c-phys);
 }
+
+/* The subject code sits on the coloured tile band, not on the page surface —
+   exempt it from the meta-copy remap above and keep it white in every theme. */
+/* :is() above carries (0,2,1) specificity via `.hero-stat span` — outrank it. */
+.course-root .scard-top .scard-tab,
+.scard-top .scard-tab {
+  color: rgba(255, 255, 255, 0.92);
+}

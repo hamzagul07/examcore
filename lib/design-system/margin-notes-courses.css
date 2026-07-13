@@ -919,7 +919,7 @@
   border-radius: 999px; padding: 4px 11px;
 }
 .checkpoint-title { font-size: 20px; margin: 0 0 8px; }
-.checkpoint-lead { font-size: 15px; line-height: 1.6; color: var(--muted); margin: 0 0 16px; }
+.checkpoint-lead { font-size: 15px; line-height: 1.6; color: var(--text-2); margin: 0 0 16px; }
 .checkpoint-foot { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
 
 /* Adaptive mastery band — the student's standing on this topic + study-next. */
@@ -1530,7 +1530,7 @@
   font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.04em;
   background: var(--ink-soft); color: var(--ink); padding: 2px 7px; border-radius: 999px;
 }
-.pricing-toggle-btn.on .pricing-toggle-save { background: rgba(255,255,255,0.22); color: var(--on-ink-text, var(--bg)); }
+.pricing-toggle-btn.on .pricing-toggle-save { background: rgba(0,0,0,0.22); color: var(--on-ink-text, var(--bg)); }
 :is([data-theme='night'], [data-ec-theme='late-night']) .pricing-toggle-btn.on .pricing-toggle-save { color: var(--on-ink-text, #07130d); }
 
 .pricing-currency select {

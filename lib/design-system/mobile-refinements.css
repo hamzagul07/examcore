@@ -1254,10 +1254,11 @@
     line-height: 1.55;
   }
 
+  /* Touch target comes from the .ec-link-touch overlay (ux-polish.css) —
+     an inline min-height here stretches the paragraph's line boxes. */
   .ms-guest-notice .ec-link {
-    display: inline-flex;
-    min-height: var(--ec-touch-min, 44px);
-    align-items: center;
+    display: inline;
+    min-height: 0;
   }
 
   .ms-prefs-section .ms-pref-toggle {

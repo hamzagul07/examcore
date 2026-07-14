@@ -11,7 +11,14 @@ import { getMarkingSubjectPages } from './programmatic-subjects'
 const missing = assertAllMarkingSubjectsHaveSeo()
 assert.equal(missing.length, 0, `missing SEO profiles: ${missing.join(', ')}`)
 
-assert.equal(getAllSubjectSeoProfiles().length, 24, '24 subject SEO profiles')
+// One SEO profile per marking subject — derived, not hardcoded, so adding a
+// subject doesn't silently drift this assertion. Catches orphan profiles
+// (a profile with no marking subject) as well as the reverse.
+assert.equal(
+  getAllSubjectSeoProfiles().length,
+  getMarkingSubjectPages().length,
+  'one SEO profile per marking subject',
+)
 
 for (const subject of getMarkingSubjectPages()) {
   const marking = buildSubjectMarkingSeo(subject)

@@ -172,6 +172,18 @@ export async function getPointsScheme(componentId: string): Promise<IbPointsSche
   return (data as IbPointsSchemeRow[]) ?? []
 }
 
+/** Distinct ingested + VERIFIED papers (sessions/timezones) for a points component,
+ * for the /mark paper picker. Empty for components with no verified scheme. */
+export async function listVerifiedPapers(
+  componentId: string
+): Promise<Array<{ ref: string; label: string }>> {
+  const schemes = await getPointsScheme(componentId)
+  return distinctPapers(schemes.filter((s) => s.verified === true)).map((p) => ({
+    ref: p.ref,
+    label: p.label,
+  }))
+}
+
 /**
  * Text the marking prompt should mark against: prefer the optional operational
  * `marking_guidance`, fall back to the VERBATIM authoritative `descriptor`.
@@ -223,6 +235,37 @@ function schemeQuestionNumber(marks: unknown): string | null {
   return null
 }
 
+/** The base paper reference of a stored row: strip the trailing " Q<n>" question suffix.
+ * `"N21/5/MATHX/SP1/ENG/TZ0/XX/M Q5"` -> `"N21/5/MATHX/SP1/ENG/TZ0/XX/M"`. */
+export function schemeBasePaperRef(paperRef: string | null | undefined): string | null {
+  if (!paperRef) return null
+  return paperRef.replace(/\s+Q\s*\d+\s*$/i, '').trim() || null
+}
+
+/** Parse an IB paper reference into human-facing parts for a picker. Best-effort:
+ * unknown formats fall back to the raw ref as the label. Format example:
+ * `N21/5/MATHX/SP1/ENG/TZ1/XX/M` -> Nov 2021, Paper 1, TZ1. */
+export function parseIbPaperRef(
+  ref: string
+): { ref: string; label: string; session?: string; year?: number; timezone?: string } {
+  const base = schemeBasePaperRef(ref) ?? ref
+  const segs = base.split('/')
+  const head = segs[0]?.trim().toUpperCase() ?? ''
+  const sessionLetter = head[0]
+  const yy = head.slice(1).match(/^\d{2}/)?.[0]
+  const session = sessionLetter === 'N' ? 'November' : sessionLetter === 'M' ? 'May' : undefined
+  const year = yy ? 2000 + parseInt(yy, 10) : undefined
+  const paperSeg = segs.find((s) => /P\d/i.test(s))
+  const paperNo = paperSeg?.match(/P(\d)/i)?.[1]
+  const tz = segs.find((s) => /^TZ\d/i.test(s.trim()))?.trim().toUpperCase()
+  const parts: string[] = []
+  if (session && year) parts.push(`${session} ${year}`)
+  if (paperNo) parts.push(`Paper ${paperNo}`)
+  if (tz && tz !== 'TZ0') parts.push(tz)
+  const label = parts.length ? parts.join(' · ') : base
+  return { ref: base, label, session, year, timezone: tz }
+}
+
 /** Build a { normalisedQuestion -> official markpoints } map for a points component. */
 function schemesByQuestion(
   schemes: IbPointsSchemeRow[]
@@ -235,6 +278,16 @@ function schemesByQuestion(
   return map
 }
 
+/** Distinct papers among verified schemes, most-recent-ish first (stable by ref). */
+function distinctPapers(schemes: IbPointsSchemeRow[]) {
+  const seen = new Map<string, ReturnType<typeof parseIbPaperRef>>()
+  for (const s of schemes) {
+    const base = schemeBasePaperRef(s.paper_ref)
+    if (base && !seen.has(base)) seen.set(base, parseIbPaperRef(base))
+  }
+  return [...seen.values()].sort((a, b) => a.ref.localeCompare(b.ref))
+}
+
 export async function resolveComponentForMarking(
   subjectCode: string,
   level: IbSelectableLevel,
@@ -242,7 +295,11 @@ export async function resolveComponentForMarking(
   /** When given, the official scheme for THIS question (if ingested) is attached
    * as `officialScheme`; the full per-question map is always attached so callers
    * marking several questions can pick per question. */
-  questionNumber?: string | null
+  questionNumber?: string | null,
+  /** The exact paper (session/timezone) the script is from, e.g.
+   * `"M21/5/MATHX/SP1/ENG/TZ1/XX/M"`. Required to disambiguate once more than one
+   * paper is ingested for a component — otherwise the official scheme is withheld. */
+  paperRef?: string | null
 ): Promise<ResolvedIbComponent | null> {
   const component = await getComponent(subjectCode, level, componentKey)
   if (!component) return null
@@ -262,8 +319,23 @@ export async function resolveComponentForMarking(
     // ingested scheme marks worse than the derive fallback. A missing `verified`
     // column (migration not yet applied) reads as unverified → derive fallback.
     const verified = schemes.filter((s) => s.verified === true)
-    const byQuestion = schemesByQuestion(verified)
-    const first = schemes[0]
+    const availablePapers = distinctPapers(verified)
+
+    // Which paper's schemes may we ground on? Only one, unambiguously:
+    //   - an explicit paperRef → that paper (if we have it);
+    //   - exactly one ingested paper → that one;
+    //   - several papers and no paperRef → NONE (ambiguous: Q1 of paper A must
+    //     never be marked with Q1 of paper B). Caller prompts with availablePapers.
+    const wantRef = schemeBasePaperRef(paperRef)
+    let selected: IbPointsSchemeRow[] = []
+    if (wantRef) {
+      selected = verified.filter((s) => schemeBasePaperRef(s.paper_ref) === wantRef)
+    } else if (availablePapers.length === 1) {
+      selected = verified
+    } // else: ambiguous → selected stays empty → no official scheme, fall back to derive
+
+    const byQuestion = schemesByQuestion(selected)
+    const conventionSource = selected[0] ?? schemes[0]
     // Only attach an official scheme for a question we actually matched — never a
     // different question's markpoints (that would mark worse than the fallback).
     const matched =
@@ -273,11 +345,12 @@ export async function resolveComponentForMarking(
     return {
       ...base,
       pointsConventions: {
-        accept: readGeneral(first?.accept_alternatives),
-        ecf: readGeneral(first?.ecf_rules),
+        accept: readGeneral(conventionSource?.accept_alternatives),
+        ecf: readGeneral(conventionSource?.ecf_rules),
       },
       officialScheme: matched,
       officialSchemesByQuestion: byQuestion,
+      availablePapers,
     }
   }
 

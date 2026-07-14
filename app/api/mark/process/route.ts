@@ -182,6 +182,9 @@ export async function POST(request: NextRequest) {
       formData.get('ib_component_key') as string | null
     )?.trim() || null
     const ibLevel = (formData.get('ib_level') as string | null)?.trim() || null
+    // Exact paper (session/timezone) to disambiguate which ingested official scheme
+    // to ground on. Optional — absent → resolver falls back to derive when ambiguous.
+    const ibPaperRef = (formData.get('ib_paper_ref') as string | null)?.trim() || null
     const ibMarksRaw = (formData.get('ib_marks_available') as string | null)?.trim()
     const ibMarksAvailable =
       ibMarksRaw && Number.isFinite(Number(ibMarksRaw)) && Number(ibMarksRaw) > 0
@@ -234,6 +237,10 @@ export async function POST(request: NextRequest) {
         ibLevel:
           markIntent === 'practice_question' || markIntent === 'combined_script'
             ? ibLevel
+            : null,
+        ibPaperRef:
+          markIntent === 'practice_question' || markIntent === 'combined_script'
+            ? ibPaperRef
             : null,
         questionMarks:
           markIntent === 'practice_question' || markIntent === 'combined_script'

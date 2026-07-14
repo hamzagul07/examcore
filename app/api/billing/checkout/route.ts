@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase/service'
-import { polar } from '@/lib/polar/server'
+import { polar, polarErrorForLog } from '@/lib/polar/server'
 import {
   type ProductKey,
   creditsForProduct,
@@ -146,7 +146,7 @@ export async function POST(req: NextRequest) {
           pendingCookies
         )
       } catch (err) {
-        console.error('[billing/checkout] Polar subscription update failed:', err)
+        console.error('[billing/checkout] Polar subscription update failed:', polarErrorForLog(err))
         return NextResponse.json(
           { error: 'Could not change your plan. Try again in a moment.' },
           { status: 502 }
@@ -179,7 +179,7 @@ export async function POST(req: NextRequest) {
 
     return jsonWithAuthCookies({ url: checkout.url }, pendingCookies)
   } catch (err) {
-    console.error('[billing/checkout] Polar checkout creation failed:', err)
+    console.error('[billing/checkout] Polar checkout creation failed:', polarErrorForLog(err))
     return NextResponse.json(
       { error: 'Could not start checkout. Try again in a moment.' },
       { status: 502 }

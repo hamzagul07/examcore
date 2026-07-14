@@ -36,3 +36,25 @@ export const polar = new Proxy({} as Polar, {
     return Reflect.get(getPolar() as object, prop)
   },
 })
+
+/**
+ * Redact a Polar SDK error to only the safe fields before logging.
+ *
+ * The SDK's thrown error object embeds the outgoing request — including the
+ * `Authorization: Bearer polar_oat_...` header — under `request$`/`data$`.
+ * Passing the raw error to `console.error` leaks the org access token into
+ * logs. Always log `polarErrorForLog(err)` instead of the raw error.
+ */
+export function polarErrorForLog(err: unknown): Record<string, unknown> {
+  if (!err || typeof err !== 'object') {
+    return { message: String(err) }
+  }
+  const e = err as Record<string, unknown>
+  return {
+    name: typeof e.name === 'string' ? e.name : e.constructor?.name,
+    message: typeof e.message === 'string' ? e.message.slice(0, 500) : undefined,
+    statusCode: e.statusCode,
+    error: e.error,
+    detail: e.detail,
+  }
+}

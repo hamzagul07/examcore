@@ -2,6 +2,7 @@ import { NextRequest } from 'next/server'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase/service'
 import { getOrCreatePolarCustomer } from '@/lib/polar/customer'
+import { polarErrorForLog } from '@/lib/polar/server'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -29,7 +30,7 @@ export async function POST(request: NextRequest) {
     })
     return jsonWithAuthCookies({ synced: true, customerId }, pendingCookies)
   } catch (err) {
-    console.error('[billing/sync-customer] failed:', err)
+    console.error('[billing/sync-customer] failed:', polarErrorForLog(err))
     // Don't block the user — a later request (or the checkout flow) will retry.
     return jsonWithAuthCookies({ synced: false }, pendingCookies, { status: 200 })
   }

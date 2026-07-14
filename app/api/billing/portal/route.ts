@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase/service'
-import { polar } from '@/lib/polar/server'
+import { polar, polarErrorForLog } from '@/lib/polar/server'
 import { getOrCreatePolarCustomer } from '@/lib/polar/customer'
 
 export const runtime = 'nodejs'
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
 
     return jsonWithAuthCookies({ url: session.customerPortalUrl }, pendingCookies)
   } catch (err) {
-    console.error('[billing/portal] Polar portal session failed:', err)
+    console.error('[billing/portal] Polar portal session failed:', polarErrorForLog(err))
     return NextResponse.json(
       { error: 'Could not open the billing portal. Try again in a moment.' },
       { status: 502 }

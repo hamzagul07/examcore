@@ -1,5 +1,5 @@
 ---
-title: Cambridge O-Level Chemistry (5070) — past papers, mark schemes & how to mark
+title: Cambridge O-Level Chemistry (5070) past papers
 description: Complete guide to 5070 Chemistry O-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 5070 past papers, O-Level chemistry Cambridge, chemistry past papers, Cambridge O-Level

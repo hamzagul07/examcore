@@ -1,5 +1,5 @@
 ---
-title: Cambridge 0580 Mathematics Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 0580 Mathematics Grade Boundaries 2026
 description: 0580 IGCSE Mathematics grade boundaries 2026 — IGCSE grades 18 August, threshold tables ~13 August. Core and Extended tiers with the calculator.
 date: 2026-06-19
 keywords: 0580 grade boundaries, 0580 grade boundaries 2026, Cambridge IGCSE Mathematics grade boundaries, 0580 mathematics thresholds, 0580 raw marks to grade

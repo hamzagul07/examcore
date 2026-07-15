@@ -1,5 +1,5 @@
 ---
-title: Cambridge IGCSE Biology (0610) — past papers, mark schemes & how to revise
+title: Cambridge IGCSE Biology (0610) — past papers & mark schemes
 description: Revise Cambridge IGCSE Biology (0610) with past papers — paper structure, how the mark scheme works, common mistakes, and a revision plan.
 date: 2026-06-19
 keywords: 0610 past papers, IGCSE Biology past papers, 0610 biology mark scheme, Cambridge IGCSE Biology, 0610 revision

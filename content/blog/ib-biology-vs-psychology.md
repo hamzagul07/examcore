@@ -1,6 +1,6 @@
 ---
 title: IB Biology vs Psychology — Which Should You Take?
-description: IB Biology vs Psychology compared: a Group 4 lab science vs a Group 3 social science, memorisation vs essays and studies, difficulty, university fit, and how to decide.
+description: IB Biology vs Psychology compared: a Group 4 lab science vs a Group 3 social science, memorisation vs essays and studies, difficulty, university fit
 date: 2026-07-03
 keywords: IB biology vs psychology, IB psychology vs biology, IB biology or psychology, IB science vs social science, IB biology psychology difficulty, choosing IB subjects
 category: subject-choice

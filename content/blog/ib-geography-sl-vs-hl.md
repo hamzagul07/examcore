@@ -1,6 +1,6 @@
 ---
 title: IB Geography SL vs HL — Which Should You Take?
-description: IB Geography SL vs HL compared: the extra HL option and Paper 3 (global interactions), workload, difficulty, university fit, and who each level suits — with a decision framework.
+description: IB Geography SL vs HL compared: the extra HL option and Paper 3 (global interactions), workload, difficulty, university fit, and who each level suits
 date: 2026-07-13
 keywords: IB geography SL vs HL, should I take IB geography HL, IB geography HL difficulty, IB geography paper 3, IB geography higher level, choosing IB geography
 category: subject-choice

@@ -1,5 +1,5 @@
 ---
-title: Cambridge 2281 Economics Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 2281 Economics Grade Boundaries 2026
 description: 2281 O-Level Economics grade boundaries 2026 — O-Level grades 18 August, threshold tables ~13 August. Estimate Papers 1–2 with the calculator.
 date: 2026-06-19
 keywords: 2281 grade boundaries, 2281 grade boundaries 2026, Cambridge Economics grade boundaries, 2281 economics thresholds, 2281 raw marks to grade

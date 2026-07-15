@@ -1,5 +1,5 @@
 ---
-title: Cambridge A-Level Sociology (9699) — past papers, mark schemes & how to mark
+title: Cambridge A-Level Sociology (9699) past papers
 description: Complete guide to 9699 Sociology A-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 9699 past papers, A-Level sociology marking, sociology essay bands, Cambridge sociology

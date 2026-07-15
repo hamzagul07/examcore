@@ -1,5 +1,5 @@
 ---
-title: Cambridge IGCSE Economics (0455) — past papers, mark schemes & how to revise
+title: Cambridge IGCSE Economics (0455) past papers & mark schemes
 description: Revise Cambridge IGCSE Economics (0455) with past papers — paper structure, how the mark scheme works, common mistakes, and a revision plan.
 date: 2026-06-19
 keywords: 0455 past papers, IGCSE Economics past papers, 0455 economics mark scheme, Cambridge IGCSE Economics, 0455 revision

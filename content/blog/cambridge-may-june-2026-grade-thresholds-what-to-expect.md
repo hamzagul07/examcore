@@ -1,5 +1,5 @@
 ---
-title: Cambridge May/June 2026 grade thresholds — what to expect after a disrupted series
+title: Cambridge May/June 2026 grade thresholds — what to expect
 description: Honest guide to June 2026 Cambridge grade thresholds — when they publish, how leaks and assessed marks affect grading, and why prediction posts mislead students.
 date: 2026-07-06
 updated: 2026-07-06

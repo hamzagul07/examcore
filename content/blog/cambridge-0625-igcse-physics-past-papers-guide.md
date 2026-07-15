@@ -1,5 +1,5 @@
 ---
-title: Cambridge IGCSE Physics (0625) — past papers, mark schemes & how to revise
+title: Cambridge IGCSE Physics (0625) — past papers & mark schemes
 description: Revise Cambridge IGCSE Physics (0625) with past papers — paper structure, how the mark scheme works, common mistakes, and a revision plan.
 date: 2026-06-19
 keywords: 0625 past papers, IGCSE Physics past papers, 0625 physics mark scheme, Cambridge IGCSE Physics, 0625 revision

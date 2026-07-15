@@ -1,5 +1,5 @@
 ---
-title: Cambridge IGCSE Business 0450 vs 0264 — syllabus change for 2026 & 2027 students
+title: Cambridge IGCSE Business 0450 vs 0264 syllabus change
 description: Sitting Business in 2026? Stay on 0450. Starting Year 10 in 2025? You may be on 0264 from 2027 — codes, content shifts, and how to practise with past papers.
 date: 2026-06-10
 category: editorial

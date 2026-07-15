@@ -1,6 +1,6 @@
 ---
 title: IB Psychology ERQ — How to Write a Top-Band Essay (22 Marks)
-description: A step-by-step method for the IB Psychology extended-response question (ERQ): how criteria A–E work, using studies to build an argument, developing critical thinking, and the paragraph structure that hits the top band.
+description: A step-by-step method for the IB Psychology extended-response question (ERQ): how criteria A–E work, using studies to build an argument
 date: 2026-07-03
 keywords: IB psychology ERQ, IB psychology essay, IB psychology extended response, IB psychology 22 mark essay, IB psychology critical thinking, IB psychology essay structure
 category: exam-technique

@@ -1,5 +1,5 @@
 ---
-title: Cambridge A-Level Further Mathematics (9231) — past papers, mark schemes & how to mark
+title: Cambridge A-Level Further Mathematics (9231) past papers
 description: Complete guide to 9231 Further Mathematics A-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 9231 past papers, Further Mathematics Cambridge, A-Level further maths marking, Cambridge past papers

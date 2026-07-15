@@ -1,5 +1,5 @@
 ---
-title: Cambridge 7115 Business Studies Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 7115 Business Studies Grade Boundaries 2026
 description: 7115 O-Level Business grade boundaries 2026 — O-Level grades 18 August, threshold tables ~13 August. Estimate case-study papers with the calculator.
 date: 2026-06-19
 keywords: 7115 grade boundaries, 7115 grade boundaries 2026, Cambridge Business Studies grade boundaries, 7115 business-studies thresholds, 7115 raw marks to grade

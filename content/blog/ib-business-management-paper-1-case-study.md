@@ -1,6 +1,6 @@
 ---
 title: IB Business Management Paper 1 — Pre-Released Case Study Strategy
-description: How to prepare for and answer IB Business Management Paper 1: working the pre-released case study, applying theory to the stimulus, hitting AO1–AO3 and the command terms, and structuring the extended response.
+description: How to prepare for and answer IB Business Management Paper 1: working the pre-released case study, applying theory to the stimulus
 date: 2026-07-03
 keywords: IB business management paper 1, IB BM pre-released case study, IB business management case study, IB business management paper 1 structure, IB business management application, IB BM exam technique
 category: exam-technique

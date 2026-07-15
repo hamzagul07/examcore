@@ -1,6 +1,6 @@
 ---
 title: IB TOK essay: how to plan and structure it
-description: A clear guide to the IB Theory of Knowledge essay: choosing a prescribed title, building knowledge questions, using real examples, and structuring for the top markbands.
+description: A clear guide to the IB Theory of Knowledge essay: choosing a prescribed title, building knowledge questions, using real examples
 date: 2026-06-19
 keywords: IB TOK essay, theory of knowledge essay, TOK essay structure, TOK prescribed titles, how to write TOK essay
 category: exam-technique

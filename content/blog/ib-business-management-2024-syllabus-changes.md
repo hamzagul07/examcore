@@ -1,6 +1,6 @@
 ---
 title: IB Business Management 2024 Syllabus — What Changed
-description: The IB Business Management syllabus (first exams 2024) explained: the restructured five units, the business management toolkit, HL Paper 3, and what it means for your revision.
+description: The IB Business Management syllabus (first exams 2024) explained: the restructured five units, the business management toolkit, HL Paper 3
 date: 2026-07-03
 keywords: IB business management 2024 syllabus, IB business management new syllabus, IB BM syllabus changes, IB business management toolkit, IB business management first exams 2024, IB BM paper 3
 category: subject-choice

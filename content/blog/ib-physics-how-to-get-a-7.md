@@ -1,6 +1,6 @@
 ---
 title: How to Get a 7 in IB Physics (SL & HL) — Study Guide
-description: The real path to a 7 in IB Physics: how Papers 1 and 2 are marked, earning method and accuracy marks with ECF, the derivations and data questions that decide it, and a weekly study system.
+description: The real path to a 7 in IB Physics: how Papers 1 and 2 are marked, earning method and accuracy marks with ECF
 date: 2026-07-03
 keywords: how to get a 7 in IB physics, IB physics grade 7, IB physics paper 2, IB physics method marks, IB physics revision, IB physics data booklet
 category: revision

@@ -1,5 +1,5 @@
 ---
-title: Cambridge IGCSE Mathematics (0580) — past papers, mark schemes & how to revise
+title: Cambridge IGCSE Mathematics (0580) past papers
 description: Revise Cambridge IGCSE Mathematics (0580) with past papers — paper structure, how the mark scheme works, common mistakes, and a revision plan.
 date: 2026-06-19
 keywords: 0580 past papers, IGCSE Mathematics past papers, 0580 mathematics mark scheme, Cambridge IGCSE Mathematics, 0580 revision

@@ -1,6 +1,6 @@
 ---
 title: After IB exams — results prep checklist (May 2026)
-description: Finished May 2026 IB exams? What to do before results in early July — honest grade estimates, EUR planning, university calls, and November retake prep without anxiety scrolling.
+description: Finished May 2026 IB exams? What to do before results in early July — honest grade estimates, EUR planning, university calls
 date: 2026-07-06
 updated: 2026-07-06
 category: editorial

@@ -1,5 +1,5 @@
 ---
-title: IB Internal Assessment (IA) complete guide — every subject, criteria & tips
+title: IB Internal Assessment (IA) guide — criteria & tips
 description: Master the IB IA across sciences, humanities, maths, and arts: word counts, criteria, supervisor role, and how to score top bands.
 date: 2026-06-25
 keywords: IB Internal Assessment, IB IA guide, IB IA criteria, IB IA word count, how to write IB IA, IB IA grade 7

@@ -1,5 +1,5 @@
 ---
-title: How to use Cambridge examiner reports (and why mark schemes are not enough)
+title: How to use Cambridge examiner reports
 description: Turn examiner reports into a revision list — what they contain, how to read them fast, and how to pair them with past-paper marking.
 date: 2026-05-12
 keywords: Cambridge examiner report, past paper revision, A-Level examiner feedback, mark scheme guide

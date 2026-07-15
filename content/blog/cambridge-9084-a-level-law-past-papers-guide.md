@@ -1,5 +1,5 @@
 ---
-title: Cambridge A-Level Law (9084) — past papers, mark schemes & how to mark
+title: Cambridge A-Level Law (9084) — past papers & mark schemes
 description: Complete guide to 9084 Law A-Level: paper structure, how Cambridge mark schemes work, common mistakes, revision plan, and marking your answers with MarkScheme.
 date: 2026-06-01
 keywords: 9084 past papers, A-Level law marking, Cambridge law past papers, law problem questions

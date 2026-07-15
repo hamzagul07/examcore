@@ -1,5 +1,5 @@
 ---
-title: Cambridge O-Level Biology (5090) — past papers, mark schemes & how to mark
+title: Cambridge O-Level Biology (5090) past papers & mark schemes
 description: Complete guide to 5090 Biology O-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 5090 past papers, O-Level biology Cambridge, biology past paper marking, Cambridge revision

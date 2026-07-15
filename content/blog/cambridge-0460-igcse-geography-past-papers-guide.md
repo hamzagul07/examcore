@@ -1,5 +1,5 @@
 ---
-title: Cambridge IGCSE Geography (0460) — past papers, mark schemes & how to revise
+title: Cambridge IGCSE Geography (0460) past papers & mark schemes
 description: Revise Cambridge IGCSE Geography (0460) with past papers — paper structure, how the mark scheme works, common mistakes, and a revision plan.
 date: 2026-06-19
 keywords: 0460 past papers, IGCSE Geography past papers, 0460 geography mark scheme, Cambridge Geography 0460, 0460 revision

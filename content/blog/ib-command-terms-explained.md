@@ -1,5 +1,5 @@
 ---
-title: IB command terms explained — what examiners expect on every question
+title: IB command terms explained — what examiners expect
 description: Full guide to IB command terms: analyse, evaluate, discuss, explain, compare — and how to answer each for full markband credit.
 date: 2026-06-25
 keywords: IB command terms, IB explain vs evaluate, IB discuss command term, IB exam technique, IB assessment objectives

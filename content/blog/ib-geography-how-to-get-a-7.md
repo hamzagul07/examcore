@@ -1,6 +1,6 @@
 ---
 title: How to Get a 7 in IB Geography (SL & HL) — Full Guide
-description: The real path to a 7 in IB Geography: how each paper is marked, hitting the top markbands with case studies and evaluation, the mistakes that cap you at a 5, and a study system.
+description: The real path to a 7 in IB Geography: how each paper is marked, hitting the top markbands with case studies and evaluation, the mistakes that cap you at a 5
 date: 2026-07-13
 keywords: how to get a 7 in IB geography, IB geography grade 7, IB geography markbands, IB geography case studies, IB geography paper 3, IB geography revision
 category: revision

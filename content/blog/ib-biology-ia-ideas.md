@@ -1,6 +1,6 @@
 ---
 title: IB Biology IA Ideas — Example Research Questions
-description: How to choose a strong IB Biology IA topic, plus example research questions grouped by area (enzymes, plants, ecology, human physiology) and how to refine them into a focused, measurable investigation.
+description: How to choose a strong IB Biology IA topic, plus example research questions grouped by area
 date: 2026-07-03
 keywords: IB biology IA ideas, IB biology IA topics, IB biology IA research questions, IB biology internal assessment ideas, IB biology investigation ideas, biology IA examples
 category: study-skills

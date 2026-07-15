@@ -1,5 +1,5 @@
 ---
-title: Most repeated Cambridge computer science past paper topics for 2026
+title: Most repeated Cambridge computer science topics 2026
 description: High-frequency topics in 9618, 0478 and 2210 — algorithms, logic, databases and programming questions ranked from 2019—2025 papers.
 date: 2026-07-06
 category: revision

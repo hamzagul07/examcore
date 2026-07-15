@@ -1,5 +1,5 @@
 ---
-title: Cambridge O-Level Additional Mathematics (4037) — past papers, mark schemes & how to mark
+title: Cambridge O-Level Additional Mathematics (4037) past papers
 description: Complete guide to 4037 Additional Mathematics O-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 4037 past papers, Additional Mathematics O-Level, Cambridge additional maths, O-Level past papers

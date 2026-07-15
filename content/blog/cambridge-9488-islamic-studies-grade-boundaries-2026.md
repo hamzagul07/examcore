@@ -1,5 +1,5 @@
 ---
-title: Cambridge 9488 Islamic Studies Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 9488 Islamic Studies Grade Boundaries 2026
 description: 9488 Islamic Studies A-Level grade boundaries 2026 — grades 11 August, threshold tables ~13 August. Estimate essay and source papers with the calculator.
 date: 2026-06-19
 keywords: 9488 grade boundaries, 9488 grade boundaries 2026, Cambridge Islamic Studies grade boundaries, 9488 islamic-studies thresholds, 9488 raw marks to grade

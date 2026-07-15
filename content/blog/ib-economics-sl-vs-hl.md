@@ -1,6 +1,6 @@
 ---
 title: IB Economics SL vs HL — Which Should You Take?
-description: IB Economics SL vs HL compared: the extra HL content and Paper 3, workload, difficulty, university requirements, and who each level suits — with a clear decision framework.
+description: IB Economics SL vs HL compared: the extra HL content and Paper 3, workload, difficulty, university requirements, and who each level suits
 date: 2026-07-03
 keywords: IB economics SL vs HL, should I take IB economics HL, IB economics HL difficulty, IB economics HL paper 3, IB economics higher level, choosing IB economics
 category: subject-choice

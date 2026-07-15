@@ -1,5 +1,5 @@
 ---
-title: Cambridge A-Level Media Studies (9607) — past papers, mark schemes & how to mark
+title: Cambridge A-Level Media Studies (9607) past papers
 description: Complete guide to 9607 Media Studies A-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 9607 past papers, A-Level media studies Cambridge, media analysis marking, Cambridge past papers

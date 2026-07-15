@@ -1,6 +1,6 @@
 ---
 title: IB History SL vs HL — Which Should You Take?
-description: IB History SL vs HL compared: the extra HL Paper 3 regional depth study, workload, difficulty, university requirements, and who each level suits — with a clear decision framework.
+description: IB History SL vs HL compared: the extra HL Paper 3 regional depth study, workload, difficulty, university requirements, and who each level suits
 date: 2026-07-13
 keywords: IB history SL vs HL, should I take IB history HL, IB history HL difficulty, IB history paper 3, IB history higher level, choosing IB history
 category: subject-choice

@@ -1,5 +1,5 @@
 ---
-title: Cambridge 4037 Additional Mathematics Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 4037 Additional Mathematics Grade Boundaries 2026
 description: 4037 O-Level Additional Mathematics grade boundaries 2026 — O-Level grades 18 August, threshold tables ~13 August. Estimate with the calculator.
 date: 2026-06-19
 keywords: 4037 grade boundaries, 4037 grade boundaries 2026, Cambridge Additional Mathematics grade boundaries, 4037 additional-mathematics thresholds, 4037 raw marks to grade

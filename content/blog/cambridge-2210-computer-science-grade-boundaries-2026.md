@@ -1,5 +1,5 @@
 ---
-title: Cambridge 2210 Computer Science Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 2210 Computer Science Grade Boundaries 2026
 description: 2210 O-Level Computer Science grade boundaries 2026 — O-Level results 18 August, threshold tables ~13 August for components. Estimate with the calculator.
 date: 2026-06-19
 keywords: 2210 grade boundaries, 2210 grade boundaries 2026, Cambridge Computer Science grade boundaries, 2210 computer-science thresholds, 2210 raw marks to grade

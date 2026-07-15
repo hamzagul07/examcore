@@ -1,6 +1,6 @@
 ---
 title: Exam Room community tour — MarkScheme demo transcript
-description: TikTok demo of Exam Room — free Cambridge A-Level and IB Diploma student communities for past-paper doubts, resources, and grade boundary discussion at markscheme.app/community.
+description: TikTok demo of Exam Room — free Cambridge A-Level and IB Diploma student communities for past-paper doubts, resources
 date: 2026-07-07
 keywords: markscheme exam room, IB study community, Cambridge A Level forum, past paper help, student revision community, markscheme community
 category: study-skills

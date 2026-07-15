@@ -1,5 +1,5 @@
 ---
-title: Cambridge 5054 Physics Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 5054 Physics Grade Boundaries 2026
 description: 5054 O-Level Physics grade boundaries 2026 — O-Level grades 18 August, threshold tables ~13 August. Estimate structured and MCQ papers with the calculator.
 date: 2026-06-19
 keywords: 5054 grade boundaries, 5054 grade boundaries 2026, Cambridge Physics grade boundaries, 5054 physics thresholds, 5054 raw marks to grade

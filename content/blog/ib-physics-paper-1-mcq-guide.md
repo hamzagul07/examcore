@@ -1,6 +1,6 @@
 ---
 title: IB Physics Paper 1 — Multiple Choice Technique
-description: How to score on IB Physics Paper 1 multiple choice: no negative marking so answer everything, elimination, unit and order-of-magnitude checks, spotting distractors, and timing.
+description: How to score on IB Physics Paper 1 multiple choice: no negative marking so answer everything, elimination, unit and order-of-magnitude checks
 date: 2026-07-03
 keywords: IB physics paper 1, IB physics multiple choice, IB physics MCQ technique, IB physics paper 1 tips, IB physics paper 1A, how to pass IB physics paper 1
 category: exam-technique

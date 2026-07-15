@@ -1,5 +1,5 @@
 ---
-title: Cambridge 9706 Accounting Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 9706 Accounting Grade Boundaries 2026
 description: 9706 Accounting A-Level grade boundaries 2026 — grades 11 August, threshold tables ~13 August. Estimate financial statement and costing papers with the calculator.
 date: 2026-06-19
 keywords: 9706 grade boundaries, 9706 grade boundaries 2026, Cambridge Accounting grade boundaries, 9706 accounting thresholds, 9706 raw marks to grade

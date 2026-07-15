@@ -1,5 +1,5 @@
 ---
-title: Error carried forward (ECF) — how Cambridge mark schemes rescue your marks
+title: Error carried forward (ECF) in Cambridge mark schemes
 description: What ECF means in Cambridge maths and science marking, when it applies, and how to write working so follow-through marks survive a wrong number.
 date: 2026-06-05
 category: mark-schemes

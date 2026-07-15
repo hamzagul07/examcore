@@ -1,5 +1,5 @@
 ---
-title: Cambridge IGCSE ICT (0417) — past papers, mark schemes & how to revise
+title: Cambridge IGCSE ICT (0417) — past papers & mark schemes
 description: Revise Cambridge IGCSE ICT (0417) with past papers — paper structure, how the mark scheme works, common mistakes, and a revision plan.
 date: 2026-06-19
 keywords: 0417 past papers, IGCSE ICT past papers, 0417 ict mark scheme, Cambridge ICT 0417, 0417 revision

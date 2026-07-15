@@ -1,5 +1,5 @@
 ---
-title: Cambridge O-Level English Language (1123) — past papers, mark schemes & how to revise
+title: Cambridge O-Level English Language (1123) past papers
 description: Revise Cambridge O-Level English Language (1123) with past papers — paper structure, how the mark scheme works, common mistakes, and a revision plan.
 date: 2026-06-19
 keywords: 1123 past papers, O-Level English Language past papers, 1123 english mark scheme, Cambridge English Language 1123, 1123 revision

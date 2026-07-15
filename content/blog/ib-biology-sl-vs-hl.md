@@ -1,6 +1,6 @@
 ---
 title: IB Biology SL vs HL — Which Should You Take?
-description: IB Biology SL vs HL compared: the extra HL topics, workload, difficulty, university requirements (medicine, biosciences), and who each level suits — with a clear decision framework.
+description: IB Biology SL vs HL compared: the extra HL topics, workload, difficulty, university requirements (medicine, biosciences), and who each level suits
 date: 2026-07-03
 keywords: IB biology SL vs HL, should I take IB biology HL, IB biology HL difficulty, IB biology for medicine, IB biology higher level, choosing IB biology
 category: subject-choice

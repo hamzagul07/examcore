@@ -1,5 +1,5 @@
 ---
-title: Cambridge 9231 Further Mathematics Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 9231 Further Mathematics Grade Boundaries 2026
 description: 9231 Further Maths A-Level grade boundaries 2026 — grades 11 August, threshold tables ~13 August. Estimate Pure + Mechanics/Stats papers with the calculator.
 date: 2026-06-19
 keywords: 9231 grade boundaries, 9231 grade boundaries 2026, Cambridge Further Mathematics grade boundaries, 9231 further-mathematics thresholds, 9231 raw marks to grade

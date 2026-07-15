@@ -1,5 +1,5 @@
 ---
-title: IB predicted grades explained — how they work & how to improve yours
+title: IB predicted grades explained — how to improve yours
 description: What IB predicted grades are, who submits them, how universities use them, and how to earn predictions that match your potential.
 date: 2026-06-25
 keywords: IB predicted grades, IB predicted score, IB university application, IB predicted 45, IB UCAS predicted

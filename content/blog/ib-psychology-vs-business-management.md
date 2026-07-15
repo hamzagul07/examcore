@@ -1,6 +1,6 @@
 ---
 title: IB Psychology vs Business Management — Which to Take?
-description: IB Psychology vs Business Management compared: essays and studies vs applied case-study business, difficulty, which suits which student, university fit, and how to decide.
+description: IB Psychology vs Business Management compared: essays and studies vs applied case-study business, difficulty, which suits which student, university fit
 date: 2026-07-03
 keywords: IB psychology vs business management, IB business management vs psychology, IB psychology or business, IB group 3 choice, choosing IB group 3, IB essay subjects
 category: subject-choice

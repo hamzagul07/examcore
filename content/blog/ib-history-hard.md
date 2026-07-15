@@ -1,6 +1,6 @@
 ---
 title: Is IB History Hard? An Honest Look (SL & HL)
-description: How hard IB History really is at SL and HL — the essay and source-analysis demands, what makes it challenging, whether a 7 is achievable, and how to make it manageable.
+description: How hard IB History really is at SL and HL — the essay and source-analysis demands, what makes it challenging, whether a 7 is achievable
 date: 2026-07-13
 keywords: is IB history hard, IB history difficulty, is IB history HL hard, IB history essay marking, IB history paper 1 OPVL, IB history tips
 category: subject-choice

@@ -1,5 +1,5 @@
 ---
-title: Cambridge 5070 Chemistry Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 5070 Chemistry Grade Boundaries 2026
 description: 5070 O-Level Chemistry grade boundaries 2026 — O-Level grades 18 August, threshold tables ~13 August. Estimate theory and practical papers with the calculator.
 date: 2026-06-19
 keywords: 5070 grade boundaries, 5070 grade boundaries 2026, Cambridge Chemistry grade boundaries, 5070 chemistry thresholds, 5070 raw marks to grade

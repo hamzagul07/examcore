@@ -1,5 +1,5 @@
 ---
-title: Cambridge 9609 Business Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 9609 Business Grade Boundaries 2026
 description: 9609 Business A-Level grade boundaries 2026 — grades 11 August, threshold tables ~13 August. Estimate case-study and essay papers with the calculator.
 date: 2026-06-19
 keywords: 9609 grade boundaries, 9609 grade boundaries 2026, Cambridge Business grade boundaries, 9609 business thresholds, 9609 raw marks to grade

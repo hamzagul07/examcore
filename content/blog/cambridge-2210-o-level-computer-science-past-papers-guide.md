@@ -1,5 +1,5 @@
 ---
-title: Cambridge O-Level Computer Science (2210) — past papers, mark schemes & how to mark
+title: Cambridge O-Level Computer Science (2210) past papers
 description: Complete guide to 2210 Computer Science O-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 2210 past papers, O-Level computer science, Cambridge computing O-Level, 2210 revision

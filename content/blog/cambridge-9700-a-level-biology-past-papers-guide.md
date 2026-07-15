@@ -1,5 +1,5 @@
 ---
-title: Cambridge A-Level Biology (9700) — past papers, mark schemes & how to mark
+title: Cambridge A-Level Biology (9700) past papers & mark schemes
 description: Complete guide to 9700 Biology A-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 9700 past papers, A-Level biology marking, Cambridge biology mark scheme, past paper practice

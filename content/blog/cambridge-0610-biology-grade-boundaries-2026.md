@@ -1,5 +1,5 @@
 ---
-title: Cambridge 0610 Biology Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 0610 Biology Grade Boundaries 2026
 description: 0610 IGCSE Biology grade boundaries 2026 — IGCSE grades 18 August, threshold tables ~13 August. Estimate MCQ and theory papers with the calculator.
 date: 2026-06-19
 keywords: 0610 grade boundaries, 0610 grade boundaries 2026, Cambridge IGCSE Biology grade boundaries, 0610 biology thresholds, 0610 raw marks to grade

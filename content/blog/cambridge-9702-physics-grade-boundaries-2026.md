@@ -1,5 +1,5 @@
 ---
-title: Cambridge 9702 Physics Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 9702 Physics Grade Boundaries 2026
 description: 9702 Physics A-Level grade boundaries 2026 — grades 11 August, threshold tables ~13 August. Estimate with the calculator and recent sessions.
 date: 2026-06-19
 keywords: 9702 grade boundaries, 9702 grade boundaries 2026, Cambridge Physics grade boundaries, 9702 physics thresholds, 9702 raw marks to grade

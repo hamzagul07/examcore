@@ -1,6 +1,6 @@
 ---
 title: How to Get a 7 in IB Biology (SL & HL) — Complete Guide
-description: The real path to a 7 in IB Biology: how Papers 1 and 2 are marked point-by-point, writing answers that earn every marking point, data and command-term technique, and a weekly study system.
+description: The real path to a 7 in IB Biology: how Papers 1 and 2 are marked point-by-point, writing answers that earn every marking point
 date: 2026-07-03
 keywords: how to get a 7 in IB biology, IB biology grade 7, IB biology paper 2, IB biology marking points, IB biology revision, IB biology command terms
 category: revision

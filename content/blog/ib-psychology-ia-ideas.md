@@ -1,6 +1,6 @@
 ---
 title: IB Psychology IA Ideas — Experiments You Can Replicate
-description: How to choose a strong IB Psychology IA — the simple experiments you can replicate, example aims and hypotheses across memory, cognition and social psychology, and how to keep it ethical.
+description: How to choose a strong IB Psychology IA — the simple experiments you can replicate, example aims and hypotheses across memory, cognition and social psychology
 date: 2026-07-03
 keywords: IB psychology IA ideas, IB psychology IA experiments, IB psychology IA topics, IB psychology internal assessment ideas, psychology IA replication, psychology IA examples
 category: study-skills

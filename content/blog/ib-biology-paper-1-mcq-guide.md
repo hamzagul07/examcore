@@ -1,6 +1,6 @@
 ---
 title: IB Biology Paper 1 — Multiple Choice Technique
-description: How to score on IB Biology Paper 1 multiple choice: no negative marking so answer everything, elimination, reading data and diagrams carefully, spotting distractors, and timing.
+description: How to score on IB Biology Paper 1 multiple choice: no negative marking so answer everything, elimination, reading data and diagrams carefully
 date: 2026-07-03
 keywords: IB biology paper 1, IB biology multiple choice, IB biology MCQ technique, IB biology paper 1 tips, IB biology paper 1A, how to pass IB biology paper 1
 category: exam-technique

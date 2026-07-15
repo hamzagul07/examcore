@@ -1,5 +1,5 @@
 ---
-title: Cambridge 7707 Accounting Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 7707 Accounting Grade Boundaries 2026
 description: 7707 O-Level Accounting grade boundaries 2026 — O-Level grades 18 August, threshold tables ~13 August. Estimate financial statement papers with the calculator.
 date: 2026-06-19
 keywords: 7707 grade boundaries, 7707 grade boundaries 2026, Cambridge Accounting grade boundaries, 7707 accounting thresholds, 7707 raw marks to grade

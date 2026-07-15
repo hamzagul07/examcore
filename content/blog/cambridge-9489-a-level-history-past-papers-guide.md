@@ -1,5 +1,5 @@
 ---
-title: Cambridge A-Level History (9489) — past papers, mark schemes & how to mark
+title: Cambridge A-Level History (9489) past papers & mark schemes
 description: Complete guide to 9489 History A-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 9489 past papers, A-Level history marking, history essay bands Cambridge, Cambridge history

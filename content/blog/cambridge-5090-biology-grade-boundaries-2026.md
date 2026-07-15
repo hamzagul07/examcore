@@ -1,5 +1,5 @@
 ---
-title: Cambridge 5090 Biology Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 5090 Biology Grade Boundaries 2026
 description: 5090 O-Level Biology grade boundaries 2026 — O-Level grades 18 August, threshold tables ~13 August. Estimate MCQ and theory papers with the calculator.
 date: 2026-06-19
 keywords: 5090 grade boundaries, 5090 grade boundaries 2026, Cambridge Biology grade boundaries, 5090 biology thresholds, 5090 raw marks to grade

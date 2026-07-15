@@ -1,5 +1,5 @@
 ---
-title: Cambridge A-Level maths mark schemes explained — B1, M1, A1 and ECF
+title: Cambridge A-Level maths mark schemes — B1, M1, A1
 description: What method marks and accuracy marks really mean on 9709 and other Cambridge maths papers, with examples of how examiners award (and withhold) marks.
 date: 2026-04-08
 keywords: B1 M1 A1 marks, A-Level maths marking, method marks A-Level, 9709 mark scheme notation, Cambridge maths mark scheme

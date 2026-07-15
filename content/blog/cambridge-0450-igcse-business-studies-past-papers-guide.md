@@ -1,5 +1,5 @@
 ---
-title: Cambridge IGCSE Business Studies (0450) — past papers, mark schemes & how to revise
+title: Cambridge IGCSE Business Studies (0450) past papers
 description: Revise Cambridge IGCSE Business Studies (0450) with past papers — paper structure, how the mark scheme works, common mistakes, and a revision plan.
 date: 2026-06-19
 keywords: 0450 past papers, IGCSE Business Studies past papers, 0450 business-studies mark scheme, Cambridge IGCSE Business Studies, 0450 revision

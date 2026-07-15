@@ -1,6 +1,6 @@
 ---
-title: Most repeated Cambridge English past paper topics for 2026 (Literature & Language)
-description: High-frequency skills and question types in 9695 A-Level Literature and 0500 IGCSE First Language English — passage analysis, essay structures, and marking-first revision.
+title: Most repeated Cambridge English past paper topics 2026
+description: High-frequency skills and question types in 9695 A-Level Literature and 0500 IGCSE First Language English — passage analysis, essay structures
 date: 2026-07-06
 category: revision
 keywords: Cambridge English revision 2026, 9695 essay topics, 0500 past papers, literature close analysis, most repeated exam topics

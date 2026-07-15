@@ -1,5 +1,5 @@
 ---
-title: How to photograph handwritten past paper answers for marking (phone tips)
+title: How to photograph handwritten past paper answers
 description: Blurry photos waste good revision. Lighting, framing, and contrast tips so upload-based marking reads your working clearly.
 date: 2026-05-06
 keywords: handwritten answers, upload past paper answers, photograph exam answers, Cambridge past papers, past paper marking

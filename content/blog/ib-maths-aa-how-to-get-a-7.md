@@ -1,6 +1,6 @@
 ---
 title: How to Get a 7 in IB Maths AA (SL & HL) — Study Guide
-description: The real path to a 7 in IB Maths Analysis & Approaches: how method, accuracy and follow-through marks work, GDC vs no-GDC papers, HL Paper 3, and a weekly study system.
+description: The real path to a 7 in IB Maths Analysis & Approaches: how method, accuracy and follow-through marks work, GDC vs no-GDC papers, HL Paper 3
 date: 2026-07-03
 keywords: how to get a 7 in IB maths AA, IB maths analysis and approaches grade 7, IB maths AA paper 1, IB maths method marks, IB maths AA HL paper 3, IB maths AA revision
 category: revision

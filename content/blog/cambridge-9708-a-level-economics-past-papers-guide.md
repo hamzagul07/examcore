@@ -1,5 +1,5 @@
 ---
-title: Cambridge A-Level Economics (9708) — past papers, mark schemes & how to mark
+title: Cambridge A-Level Economics (9708) past papers
 description: Complete guide to 9708 Economics A-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 9708 past papers, A-Level economics essay marking, economics band descriptors, Cambridge economics

@@ -1,6 +1,6 @@
 ---
 title: IB Chemistry vs Biology — Which Should You Take?
-description: IB Chemistry vs Biology compared: content and maths load, difficulty, workload, which suits which student, medicine/university requirements, and a clear way to decide.
+description: IB Chemistry vs Biology compared: content and maths load, difficulty, workload, which suits which student, medicine/university requirements
 date: 2026-07-03
 keywords: IB chemistry vs biology, IB biology vs chemistry, IB chemistry or biology, IB science choice, IB chemistry biology for medicine, choosing IB sciences
 category: subject-choice

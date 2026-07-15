@@ -1,5 +1,5 @@
 ---
-title: Cambridge A-Level Literature in English (9695) — past papers, mark schemes & how to revise
+title: Cambridge A-Level Literature in English (9695) past papers
 description: Revise Cambridge A-Level Literature in English (9695) with past papers — paper structure, how the mark scheme works, common mistakes, and a revision plan.
 date: 2026-06-19
 keywords: 9695 past papers, A-Level Literature in English past papers, 9695 english-literature mark scheme, Cambridge Literature in English 9695, 9695 revision

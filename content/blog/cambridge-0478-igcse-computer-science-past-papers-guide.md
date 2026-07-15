@@ -1,5 +1,5 @@
 ---
-title: Cambridge IGCSE Computer Science (0478) — past papers, mark schemes & how to revise
+title: Cambridge IGCSE Computer Science (0478) past papers
 description: Revise Cambridge IGCSE Computer Science (0478) with past papers — paper structure, how the mark scheme works, common mistakes, and a revision plan.
 date: 2026-06-19
 keywords: 0478 past papers, IGCSE Computer Science past papers, 0478 computer-science mark scheme, Cambridge IGCSE Computer Science, 0478 revision

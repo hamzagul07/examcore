@@ -1,6 +1,6 @@
 ---
 title: IB Physics IA Ideas — Example Research Questions
-description: How to choose a strong IB Physics IA topic, plus example research questions grouped by area (mechanics, waves, electricity, thermal) and how to refine them into a focused, measurable investigation.
+description: How to choose a strong IB Physics IA topic, plus example research questions grouped by area
 date: 2026-07-03
 keywords: IB physics IA ideas, IB physics IA topics, IB physics IA research questions, IB physics internal assessment ideas, IB physics investigation ideas, physics IA examples
 category: study-skills

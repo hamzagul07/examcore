@@ -1,5 +1,5 @@
 ---
-title: Cambridge 0625 Physics Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 0625 Physics Grade Boundaries 2026
 description: 0625 IGCSE Physics grade boundaries 2026 — IGCSE grades 18 August, threshold tables ~13 August. Estimate MCQ and theory papers with the calculator.
 date: 2026-06-19
 keywords: 0625 grade boundaries, 0625 grade boundaries 2026, Cambridge IGCSE Physics grade boundaries, 0625 physics thresholds, 0625 raw marks to grade

@@ -1,6 +1,6 @@
 ---
 title: Is IB Geography Hard? An Honest Look (SL & HL)
-description: How hard IB Geography really is at SL and HL — the case-study recall, data and map skills, evaluation demand, whether a 7 is achievable, who finds it tough, and how to make it manageable.
+description: How hard IB Geography really is at SL and HL — the case-study recall, data and map skills, evaluation demand, whether a 7 is achievable, who finds it tough
 date: 2026-07-13
 keywords: is IB geography hard, IB geography difficulty, is IB geography HL hard, IB geography case studies, IB geography evaluation, IB geography tips
 category: subject-choice

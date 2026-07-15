@@ -1,5 +1,5 @@
 ---
-title: Cambridge 9990 Psychology Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 9990 Psychology Grade Boundaries 2026
 description: 9990 Psychology A-Level grade boundaries 2026 — grades 11 August, threshold tables ~13 August. Estimate across Papers 1–4 with the calculator.
 date: 2026-06-19
 keywords: 9990 grade boundaries, 9990 grade boundaries 2026, Cambridge Psychology grade boundaries, 9990 psychology thresholds, 9990 raw marks to grade

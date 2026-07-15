@@ -1,6 +1,6 @@
 ---
-title: Cambridge 0990 First Language English Grade Boundaries 2026 — June Thresholds Explained
-description: 0990 IGCSE First Language English (9 — 1) grade boundaries 2026 — IGCSE grades 18 August, threshold tables ~13 August. Estimate reading and writing papers with the calculator.
+title: Cambridge 0990 First Language English Grade Boundaries 2026
+description: 0990 IGCSE First Language English (9 — 1) grade boundaries 2026 — IGCSE grades 18 August, threshold tables ~13 August
 date: 2026-06-19
 keywords: 0990 grade boundaries, 0990 grade boundaries 2026, Cambridge IGCSE English grade boundaries, 0990 English thresholds, 0990 raw marks to grade
 category: mark-schemes

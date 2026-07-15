@@ -1,6 +1,6 @@
 ---
 title: How to Get a 7 in IB Maths AI (SL & HL) — Study Guide
-description: The real path to a 7 in IB Maths Applications & Interpretation: how method and accuracy marks work, the GDC-heavy papers, statistics and modelling, HL Paper 3, and a weekly study system.
+description: The real path to a 7 in IB Maths Applications & Interpretation: how method and accuracy marks work, the GDC-heavy papers, statistics and modelling, HL Paper 3
 date: 2026-07-03
 keywords: how to get a 7 in IB maths AI, IB maths applications and interpretation grade 7, IB maths AI paper 3, IB maths AI GDC, IB maths AI statistics, IB maths AI revision
 category: revision

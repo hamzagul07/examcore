@@ -1,5 +1,5 @@
 ---
-title: Cambridge 9607 Media Studies Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 9607 Media Studies Grade Boundaries 2026
 description: 9607 Media Studies A-Level grade boundaries 2026 — grades 11 August, threshold tables ~13 August. Estimate exam and coursework components with the calculator.
 date: 2026-06-19
 keywords: 9607 grade boundaries, 9607 grade boundaries 2026, Cambridge Media Studies grade boundaries, 9607 media-studies thresholds, 9607 raw marks to grade

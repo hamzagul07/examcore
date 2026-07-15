@@ -1,6 +1,6 @@
 ---
 title: Is IB Maths AA Hard? An Honest Look (SL & HL)
-description: How hard IB Maths Analysis & Approaches really is at SL and HL — why HL AA has a fearsome reputation, whether a 7 is achievable, the workload, who finds it hard, and how to cope.
+description: How hard IB Maths Analysis & Approaches really is at SL and HL — why HL AA has a fearsome reputation, whether a 7 is achievable, the workload
 date: 2026-07-03
 keywords: is IB maths AA hard, is IB maths AA HL hard, IB maths analysis and approaches difficulty, hardest IB subject, IB maths AA workload, IB maths AA tips
 category: subject-choice

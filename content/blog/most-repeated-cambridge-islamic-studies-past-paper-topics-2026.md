@@ -1,5 +1,5 @@
 ---
-title: Most repeated Cambridge Islamic Studies past paper topics for 2026 (A-Level)
+title: Most repeated Cambridge Islamic Studies topics 2026
 description: High-frequency 9488 A-Level Islamic Studies topics from past papers 2019–2025 — set-text skills, thematic essays, and evaluation habits that repeat every series.
 date: 2026-07-06
 category: revision

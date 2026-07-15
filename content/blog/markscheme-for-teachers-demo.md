@@ -1,6 +1,6 @@
 ---
 title: MarkScheme for teachers — classroom demo transcript
-description: TikTok demo of teacher classrooms, invite codes, blindspot analytics, and marking review queue for Cambridge and IB past-paper practice at markscheme.app/for-teachers.
+description: TikTok demo of teacher classrooms, invite codes, blindspot analytics, and marking review queue for Cambridge and IB past-paper practice
 date: 2026-07-07
 keywords: markscheme for teachers, school past paper marking, teacher classroom analytics, Cambridge teacher tools, IB formative assessment, markscheme schools
 category: study-skills

@@ -1,6 +1,6 @@
 ---
 title: Is IB Biology Hard? An Honest Look (SL & HL)
-description: How hard IB Biology really is at SL and HL — the content volume, what makes it challenging, whether a 7 is achievable, the workload, who finds it hard, and how to make it manageable.
+description: How hard IB Biology really is at SL and HL — the content volume, what makes it challenging, whether a 7 is achievable, the workload, who finds it hard
 date: 2026-07-03
 keywords: is IB biology hard, IB biology difficulty, is IB biology HL hard, IB biology content volume, IB biology for medicine, IB biology tips
 category: subject-choice

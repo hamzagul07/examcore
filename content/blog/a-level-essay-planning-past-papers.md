@@ -1,5 +1,5 @@
 ---
-title: A-Level essay planning for past papers (5 minutes that save bands)
+title: A-Level essay planning for past papers
 description: A repeatable essay plan template for Cambridge humanities, economics, and social sciences — before you write under timed conditions.
 date: 2026-06-03
 category: exam-technique

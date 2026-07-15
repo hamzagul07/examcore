@@ -1,5 +1,5 @@
 ---
-title: Cambridge 9709 Maths Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 9709 Maths Grade Boundaries 2026
 description: 9709 Mathematics A-Level grade boundaries 2026 — grades 11 August, threshold tables ~13 August. Estimate with the calculator and recent sessions.
 date: 2026-06-19
 keywords: 9709 grade boundaries, 9709 grade boundaries 2026, Cambridge Mathematics grade boundaries, 9709 mathematics thresholds, 9709 raw marks to grade

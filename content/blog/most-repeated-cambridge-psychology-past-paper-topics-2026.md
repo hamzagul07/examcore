@@ -1,5 +1,5 @@
 ---
-title: Most repeated Cambridge psychology past paper topics for 2026 (A-Level)
+title: Most repeated Cambridge psychology past paper topics 2026
 description: High-frequency 9990 topics from past papers 2019—2025 — core studies, approaches, research methods and evaluation marks that repeat every series.
 date: 2026-07-06
 category: revision

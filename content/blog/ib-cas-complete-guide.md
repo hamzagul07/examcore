@@ -1,5 +1,5 @@
 ---
-title: IB CAS complete guide — learning outcomes, portfolio & reflections
+title: IB CAS guide — outcomes, portfolio & reflections
 description: IB Creativity Activity Service explained: seven learning outcomes, CAS project, portfolio evidence, interviews, and passing CAS without stress.
 date: 2026-06-25
 keywords: IB CAS, IB CAS guide, CAS learning outcomes, IB CAS project, CAS reflections, IB CAS portfolio

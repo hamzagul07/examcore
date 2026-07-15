@@ -1,6 +1,6 @@
 ---
-title: Is IB ESS Hard? An Honest Look (Environmental Systems and Societies)
-description: How hard IB ESS really is — the systems thinking, terminology, and evaluation it demands, whether a 7 is achievable, the workload, who finds it hard, and how to make it easier.
+title: Is IB ESS hard? An honest look at difficulty
+description: How hard IB ESS really is — the systems thinking, terminology, and evaluation it demands, whether a 7 is achievable, the workload, who finds it hard
 date: 2026-07-13
 keywords: is IB ESS hard, IB environmental systems and societies difficulty, is IB ESS easy, IB ESS systems thinking, IB ESS 7, IB ESS tips
 category: subject-choice

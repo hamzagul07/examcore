@@ -1,5 +1,5 @@
 ---
-title: Cambridge 9701 Chemistry Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 9701 Chemistry Grade Boundaries 2026
 description: 9701 Chemistry A-Level grade boundaries 2026 — grades 11 August, threshold tables ~13 August. Estimate with the calculator and recent sessions.
 date: 2026-06-19
 keywords: 9701 grade boundaries, 9701 grade boundaries 2026, Cambridge Chemistry grade boundaries, 9701 chemistry thresholds, 9701 raw marks to grade

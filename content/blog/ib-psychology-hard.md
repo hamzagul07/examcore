@@ -1,6 +1,6 @@
 ---
 title: Is IB Psychology Hard? An Honest Look (SL & HL)
-description: How hard IB Psychology really is at SL and HL — the essay and study-memorisation demands, whether a 7 is achievable, the workload, who finds it hard, and how to make it manageable.
+description: How hard IB Psychology really is at SL and HL — the essay and study-memorisation demands, whether a 7 is achievable, the workload, who finds it hard
 date: 2026-07-03
 keywords: is IB psychology hard, IB psychology difficulty, is IB psychology HL hard, IB psychology essays, IB psychology studies, IB psychology tips
 category: subject-choice

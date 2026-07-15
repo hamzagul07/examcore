@@ -1,5 +1,5 @@
 ---
-title: Cambridge IGCSE Chemistry (0620) — past papers, mark schemes & how to revise
+title: Cambridge IGCSE Chemistry (0620) past papers & mark schemes
 description: Revise Cambridge IGCSE Chemistry (0620) with past papers — paper structure, how the mark scheme works, common mistakes, and a revision plan.
 date: 2026-06-19
 keywords: 0620 past papers, IGCSE Chemistry past papers, 0620 chemistry mark scheme, Cambridge IGCSE Chemistry, 0620 revision

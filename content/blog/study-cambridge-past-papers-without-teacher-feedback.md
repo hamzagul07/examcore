@@ -1,5 +1,5 @@
 ---
-title: How to study Cambridge past papers when you do not have a teacher to mark them
+title: Study Cambridge past papers without a teacher to mark them
 description: Self-study workflows for homeschooled, international, and evening students — marking rigour, accountability, and tools that help.
 date: 2026-05-05
 keywords: self study A-Level, mark past papers at home, Cambridge homeschool, no teacher feedback, past paper marking

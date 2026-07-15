@@ -1,6 +1,6 @@
 ---
 title: IB Biology Paper 2 — How to Write Point-Per-Mark Answers
-description: A step-by-step method for IB Biology Paper 2: the point-per-mark rule, meeting command terms, writing mechanisms not vague statements, data-response technique, and structuring extended-response answers.
+description: A step-by-step method for IB Biology Paper 2: the point-per-mark rule, meeting command terms, writing mechanisms not vague statements, data-response technique
 date: 2026-07-03
 keywords: IB biology paper 2, IB biology paper 2 technique, IB biology marking points, IB biology command terms, IB biology data response, IB biology extended response
 category: exam-technique

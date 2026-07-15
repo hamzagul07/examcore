@@ -1,5 +1,5 @@
 ---
-title: Cambridge A-Level Business (9609) — past papers, mark schemes & how to mark
+title: Cambridge A-Level Business (9609) past papers & mark schemes
 description: Complete guide to 9609 Business A-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 9609 past papers, A-Level business marking, Cambridge business studies, case study past papers

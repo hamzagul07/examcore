@@ -1,5 +1,5 @@
 ---
-title: Most repeated Cambridge media studies past paper topics for 2026 (A-Level)
+title: Most repeated Cambridge Media Studies topics 2026
 description: High-frequency 9607 A-Level Media Studies topics from past papers 2019–2025 — representation, audience, industry and analysis skills that repeat every series.
 date: 2026-07-06
 category: revision

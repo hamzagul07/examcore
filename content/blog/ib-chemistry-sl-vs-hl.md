@@ -1,6 +1,6 @@
 ---
 title: IB Chemistry SL vs HL — Which Should You Take?
-description: IB Chemistry SL vs HL compared: the extra AHL content, longer papers, workload, difficulty, university requirements (medicine, engineering), and who each level suits.
+description: IB Chemistry SL vs HL compared: the extra AHL content, longer papers, workload, difficulty, university requirements (medicine, engineering)
 date: 2026-07-03
 keywords: IB chemistry SL vs HL, should I take IB chemistry HL, IB chemistry HL difficulty, IB chemistry for medicine, IB chemistry higher level, choosing IB chemistry
 category: subject-choice

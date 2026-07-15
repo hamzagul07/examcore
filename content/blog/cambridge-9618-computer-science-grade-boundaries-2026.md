@@ -1,5 +1,5 @@
 ---
-title: Cambridge 9618 Computer Science Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 9618 Computer Science Grade Boundaries 2026
 description: 9618 Computer Science A-Level grade boundaries 2026 — grades 11 August, threshold tables ~13 August. Estimate theory and programming papers with the calculator.
 date: 2026-06-19
 keywords: 9618 grade boundaries, 9618 grade boundaries 2026, Cambridge Computer Science grade boundaries, 9618 computer-science thresholds, 9618 raw marks to grade

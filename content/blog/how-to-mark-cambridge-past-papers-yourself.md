@@ -1,5 +1,5 @@
 ---
-title: How to mark Cambridge past papers yourself (and when to get a second opinion)
+title: How to mark Cambridge past papers yourself
 description: A practical workflow for self-marking Cambridge A-Level and O-Level past papers using the official mark scheme — plus where students usually slip up.
 date: 2026-04-02
 keywords: Cambridge past papers, self marking past papers, mark my own past paper, Cambridge revision, past paper practice

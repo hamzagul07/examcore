@@ -1,6 +1,6 @@
 ---
 title: IB Chemistry 2025 Syllabus — What Changed & What It Means
-description: The IB Chemistry syllabus (first exams 2025) explained: the new concept-based Structure and Reactivity framework, options removed, fewer exam papers, and what it means for your revision.
+description: The IB Chemistry syllabus (first exams 2025) explained: the new concept-based Structure and Reactivity framework, options removed, fewer exam papers
 date: 2026-07-03
 keywords: IB chemistry 2025 syllabus, IB chemistry new syllabus, IB chemistry syllabus changes, IB chemistry structure and reactivity, IB chemistry first exams 2025, IB chemistry syllabus 2025
 category: subject-choice

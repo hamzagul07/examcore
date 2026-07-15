@@ -1,6 +1,6 @@
 ---
 title: IB Maths AA SL vs HL — Which Should You Take?
-description: IB Maths Analysis & Approaches SL vs HL compared: the big HL step-up, Paper 3, workload, difficulty, university requirements (engineering, maths, economics), and who each suits.
+description: IB Maths Analysis & Approaches SL vs HL compared: the big HL step-up, Paper 3, workload, difficulty, university requirements (engineering, maths, economics)
 date: 2026-07-03
 keywords: IB maths AA SL vs HL, should I take IB maths AA HL, IB maths AA HL difficulty, IB maths AA HL paper 3, IB HL maths for engineering, choosing IB maths AA
 category: subject-choice

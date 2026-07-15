@@ -1,5 +1,5 @@
 ---
-title: Cambridge A-Level Accounting (9706) — past papers, mark schemes & how to mark
+title: Cambridge A-Level Accounting (9706) past papers
 description: Complete guide to 9706 Accounting A-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 9706 past papers, A-Level accounting marking, Cambridge accounting, financial statements past papers

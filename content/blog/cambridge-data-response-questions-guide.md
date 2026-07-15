@@ -1,5 +1,5 @@
 ---
-title: Cambridge data response questions — how to use the extract and score marks
+title: Cambridge data response questions — use the extract
 description: Structure for economics, business, and geography-style data response: read the stimulus, plan points, and mark yourself against band language.
 date: 2026-05-20
 category: exam-technique

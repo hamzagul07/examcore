@@ -1,6 +1,6 @@
 ---
 title: IB Physics vs Chemistry — Which Should You Take?
-description: IB Physics vs Chemistry compared: the maths load, content style, difficulty, workload, which suits which student, engineering/medicine requirements, and how to decide.
+description: IB Physics vs Chemistry compared: the maths load, content style, difficulty, workload, which suits which student, engineering/medicine requirements
 date: 2026-07-03
 keywords: IB physics vs chemistry, IB chemistry vs physics, IB physics or chemistry, IB science choice, IB physics chemistry engineering, choosing IB sciences
 category: subject-choice

@@ -1,6 +1,6 @@
 ---
 title: Is IB Maths AI Hard? An Honest Look (SL & HL)
-description: How hard IB Maths Applications & Interpretation really is at SL and HL — the statistics and modelling, whether it is easier than AA, whether a 7 is achievable, and how to cope.
+description: How hard IB Maths Applications & Interpretation really is at SL and HL — the statistics and modelling, whether it is easier than AA, whether a 7 is achievable
 date: 2026-07-03
 keywords: is IB maths AI hard, is IB maths AI HL hard, IB maths applications and interpretation difficulty, IB maths AI vs AA difficulty, IB maths AI workload, IB maths AI tips
 category: subject-choice

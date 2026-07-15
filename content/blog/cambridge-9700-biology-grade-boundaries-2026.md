@@ -1,5 +1,5 @@
 ---
-title: Cambridge 9700 Biology Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 9700 Biology Grade Boundaries 2026
 description: 9700 Biology A-Level grade boundaries 2026 — grades 11 August, threshold tables ~13 August. Estimate with the calculator and recent sessions.
 date: 2026-06-19
 keywords: 9700 grade boundaries, 9700 grade boundaries 2026, Cambridge Biology grade boundaries, 9700 biology thresholds, 9700 raw marks to grade

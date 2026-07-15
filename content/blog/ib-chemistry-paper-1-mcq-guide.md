@@ -1,6 +1,6 @@
 ---
 title: IB Chemistry Paper 1 — Multiple Choice Technique
-description: How to score on IB Chemistry Paper 1 multiple choice: no negative marking so never leave a blank, elimination, unit and order-of-magnitude checks, spotting distractors, and timing.
+description: How to score on IB Chemistry Paper 1 multiple choice: no negative marking so never leave a blank, elimination, unit and order-of-magnitude checks
 date: 2026-07-03
 keywords: IB chemistry paper 1, IB chemistry multiple choice, IB chemistry MCQ technique, IB chemistry paper 1 tips, IB chemistry paper 1A, how to pass IB chemistry paper 1
 category: exam-technique

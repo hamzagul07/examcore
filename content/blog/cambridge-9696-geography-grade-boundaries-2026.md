@@ -1,5 +1,5 @@
 ---
-title: Cambridge 9696 Geography Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 9696 Geography Grade Boundaries 2026
 description: 9696 Geography A-Level grade boundaries 2026 — grades 11 August, threshold tables ~13 August. Estimate essay and skills papers with the calculator.
 date: 2026-06-19
 keywords: 9696 grade boundaries, 9696 grade boundaries 2026, Cambridge Geography grade boundaries, 9696 geography thresholds, 9696 raw marks to grade

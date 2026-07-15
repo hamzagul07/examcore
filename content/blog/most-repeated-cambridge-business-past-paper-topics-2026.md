@@ -1,5 +1,5 @@
 ---
-title: Most repeated Cambridge business past paper topics for 2026 (A-Level & O-Level)
+title: Most repeated Cambridge business past paper topics 2026
 description: High-frequency 9609 and 7115 topics from past papers 2019—2025 — case study application, finance, marketing mix and essay bands that move marks.
 date: 2026-07-06
 category: revision

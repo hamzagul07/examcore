@@ -1,5 +1,5 @@
 ---
-title: Cambridge IGCSE past papers — how they differ from A-Level & O-Level
+title: Cambridge IGCSE past papers vs A-Level & O-Level
 description: IGCSE past paper labelling, mark scheme habits, and revision focus for students moving between IGCSE, O-Level, and A-Level routes.
 date: 2026-06-06
 category: revision

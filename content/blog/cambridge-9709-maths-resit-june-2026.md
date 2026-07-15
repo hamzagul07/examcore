@@ -1,5 +1,5 @@
 ---
-title: Cambridge 9709 maths resit June 2026 — Paper 32, Paper 12 & what to revise
+title: Cambridge 9709 maths resit June 2026 — what to revise
 description: Leaked 9709 papers led to voided components and replacement exams on 8–9 June 2026. Component codes, zones, withdrawal rules, and a focused revision plan.
 date: 2026-06-22
 category: editorial

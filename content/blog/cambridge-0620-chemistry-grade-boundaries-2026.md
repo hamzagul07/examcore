@@ -1,5 +1,5 @@
 ---
-title: Cambridge 0620 Chemistry Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 0620 Chemistry Grade Boundaries 2026
 description: 0620 IGCSE Chemistry grade boundaries 2026 — IGCSE grades 18 August, threshold tables ~13 August. Estimate MCQ and theory papers with the calculator.
 date: 2026-06-19
 keywords: 0620 grade boundaries, 0620 grade boundaries 2026, Cambridge IGCSE Chemistry grade boundaries, 0620 chemistry thresholds, 0620 raw marks to grade

@@ -1,6 +1,6 @@
 ---
 title: How to Get a 7 in IB Chemistry (SL & HL) — Exam Guide
-description: The real path to a 7 in IB Chemistry: how Papers 1 and 2 are marked, mastering method/accuracy and ECF marks, the calculations that separate 6s from 7s, and a weekly study system.
+description: The real path to a 7 in IB Chemistry: how Papers 1 and 2 are marked, mastering method/accuracy and ECF marks, the calculations that separate 6s from 7s
 date: 2026-07-03
 keywords: how to get a 7 in IB chemistry, IB chemistry grade 7, IB chemistry paper 2, IB chemistry ECF marks, IB chemistry revision, IB chemistry data booklet
 category: revision

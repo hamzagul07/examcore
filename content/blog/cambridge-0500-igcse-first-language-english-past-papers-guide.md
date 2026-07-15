@@ -1,5 +1,5 @@
 ---
-title: Cambridge IGCSE First Language English (0500) — past papers, mark schemes & how to revise
+title: Cambridge IGCSE First Language English (0500) past papers
 description: Revise Cambridge IGCSE First Language English (0500) with past papers — paper structure, how the mark scheme works, common mistakes, and a revision plan.
 date: 2026-06-19
 keywords: 0500 past papers, IGCSE First Language English past papers, 0500 first-language-english mark scheme, Cambridge IGCSE First Language English, 0500 revision

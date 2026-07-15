@@ -1,6 +1,6 @@
 ---
 title: How to Get a 7 in IB Economics (SL & HL) — Full Guide
-description: The real path to a 7 in IB Economics: how Papers 1, 2 and 3 are marked, hitting the top evaluation markband, the mistakes that cap you at a 5, and a weekly study system.
+description: The real path to a 7 in IB Economics: how Papers 1, 2 and 3 are marked, hitting the top evaluation markband, the mistakes that cap you at a 5
 date: 2026-07-03
 keywords: how to get a 7 in IB economics, IB economics grade 7, IB economics paper 1 evaluation, IB economics markbands, IB economics revision, IB economics HL paper 3
 category: revision

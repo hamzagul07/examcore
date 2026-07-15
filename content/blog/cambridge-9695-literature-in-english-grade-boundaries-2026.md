@@ -1,5 +1,5 @@
 ---
-title: Cambridge 9695 Literature in English Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 9695 Literature in English Grade Boundaries 2026
 description: 9695 A-Level Literature grade boundaries 2026 — A-Level grades 11 August, threshold tables ~13 August. Estimate passage and essay papers with the calculator.
 date: 2026-06-19
 keywords: 9695 grade boundaries, 9695 grade boundaries 2026, Cambridge Literature grade boundaries, 9695 English literature thresholds, 9695 raw marks to grade

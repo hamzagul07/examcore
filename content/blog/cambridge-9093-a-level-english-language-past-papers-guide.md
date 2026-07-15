@@ -1,5 +1,5 @@
 ---
-title: Cambridge A-Level English Language (9093) — past papers, mark schemes & how to revise
+title: Cambridge A-Level English Language (9093) past papers
 description: Revise Cambridge A-Level English Language (9093) with past papers — paper structure, how the mark scheme works, common mistakes, and a revision plan.
 date: 2026-06-19
 keywords: 9093 past papers, A-Level English Language past papers, 9093 english-language mark scheme, Cambridge English Language 9093, 9093 revision

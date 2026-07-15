@@ -1,5 +1,5 @@
 ---
-title: How to get a 7 in IB (every subject) — markbands, habits & revision science
+title: How to get a 7 in IB — markbands, habits & revision
 description: Practical system for IB grade 7s: markband thinking, spaced repetition, past paper cycles, IA strategy, and avoiding the mistakes that cap you at a 5.
 date: 2026-06-25
 keywords: how to get a 7 in IB, IB grade 7 tips, IB revision strategy, IB top marks, IB study tips, IB markbands

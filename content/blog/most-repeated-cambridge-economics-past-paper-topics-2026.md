@@ -1,5 +1,5 @@
 ---
-title: Most repeated Cambridge economics past paper topics for 2026 (A-Level & O-Level)
+title: Most repeated Cambridge economics past paper topics 2026
 description: High-frequency topics in 9708 and 2281 — ranked from past papers 2019—2025 with essay and calculation drills that move marks.
 date: 2026-07-06
 category: revision

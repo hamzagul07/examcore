@@ -1,5 +1,5 @@
 ---
-title: Cambridge A-Level Mathematics (9709) — past papers, mark schemes & how to mark
+title: Cambridge A-Level Mathematics (9709) past papers
 description: Complete guide to 9709 Mathematics A-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 9709 past papers, A-Level maths marking, Cambridge mathematics mark scheme, B1 M1 A1, past paper self assessment

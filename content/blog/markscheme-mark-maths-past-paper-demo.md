@@ -1,5 +1,5 @@
 ---
-title: Mark a Cambridge maths past paper in 30 seconds — MarkScheme demo transcript
+title: Mark a Cambridge maths past paper in 30 seconds — demo
 description: Watch how MarkScheme marks handwritten 9709 maths from a photo — B1/M1/A1 against the real mark scheme. Step-by-step demo transcript and honest limits.
 date: 2026-07-07
 keywords: markscheme, mark past paper online, 9709 past paper marking, Cambridge maths marking, handwritten maths answers, B1 M1 A1, second pass marking

@@ -1,5 +1,5 @@
 ---
-title: Cambridge results day August 2026 — dates, portal access & what to do next
+title: Cambridge results day August 2026 — dates & next steps
 description: AS/A-Level results 11 August, IGCSE and O-Level 18 August 2026 — how to check grades, read your statement, and plan retakes or remarks without panic.
 date: 2026-06-10
 updated: 2026-07-06

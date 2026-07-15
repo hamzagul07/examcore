@@ -1,5 +1,5 @@
 ---
-title: Cambridge PUM (percentage uniform marks) explained for 2026 results
+title: Cambridge PUM (percentage uniform marks) explained
 description: What percentage uniform marks mean on your Cambridge statement, how they differ from raw marks and past-paper scores, and how to use PUM when planning resits.
 date: 2026-06-10
 category: editorial

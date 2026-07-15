@@ -1,5 +1,5 @@
 ---
-title: Most repeated Cambridge geography past paper topics for 2026 (A-Level & IGCSE)
+title: Most repeated Cambridge geography past paper topics 2026
 description: High-frequency 9696 and 0460 topics from past papers 2019—2025 — case studies, skills papers, and essay bands that move marks every series.
 date: 2026-07-06
 category: revision

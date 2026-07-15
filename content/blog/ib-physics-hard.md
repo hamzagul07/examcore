@@ -1,6 +1,6 @@
 ---
 title: Is IB Physics Hard? An Honest Look (SL & HL)
-description: How hard IB Physics really is at SL and HL — the maths, what makes it challenging, whether a 7 is achievable, the workload, who finds it hard, and how to make it manageable.
+description: How hard IB Physics really is at SL and HL — the maths, what makes it challenging, whether a 7 is achievable, the workload, who finds it hard
 date: 2026-07-03
 keywords: is IB physics hard, IB physics difficulty, is IB physics HL hard, IB physics maths, IB physics for engineering, IB physics tips
 category: subject-choice

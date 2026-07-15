@@ -1,5 +1,5 @@
 ---
-title: Cambridge assessed marks 2026 explained — voided papers & what happens to your grade
+title: Cambridge assessed marks 2026 — voided papers explained
 description: After the May 2026 leaks voided papers: how Cambridge calculates assessed marks, who gets replacement exams, and what students should do now.
 date: 2026-06-22
 category: editorial

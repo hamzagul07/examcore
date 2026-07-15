@@ -1,6 +1,6 @@
 ---
 title: IB Maths IA Ideas — Exploration Topics (AA & AI)
-description: How to choose a strong IB Maths exploration topic for AA or AI, with example ideas across calculus, statistics, geometry, modelling and probability, and how to add real personal engagement.
+description: How to choose a strong IB Maths exploration topic for AA or AI, with example ideas across calculus, statistics, geometry, modelling and probability
 date: 2026-07-03
 keywords: IB maths IA ideas, IB maths exploration topics, IB maths AA IA ideas, IB maths AI IA ideas, IB maths internal assessment ideas, maths IA examples
 category: study-skills

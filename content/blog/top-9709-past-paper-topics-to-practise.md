@@ -1,5 +1,5 @@
 ---
-title: Top 9709 past paper topics to practise before exams (by component)
+title: Top 9709 past paper topics to practise before exams
 description: High-frequency Cambridge A-Level Mathematics (9709) topics across Pure, Mechanics, and Statistics — and how to prioritise past papers.
 date: 2026-05-22
 category: revision

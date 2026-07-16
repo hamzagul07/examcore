@@ -187,6 +187,17 @@ export async function POST(request: NextRequest) {
       ibMarksRaw && Number.isFinite(Number(ibMarksRaw)) && Number(ibMarksRaw) > 0
         ? Math.round(Number(ibMarksRaw))
         : null
+    // General per-question total, sent by the upload form's "Total marks" field
+    // for any single-question mark (not just IB points questions).
+    const totalMarksRaw = (
+      formData.get('total_marks_available') as string | null
+    )?.trim()
+    const totalMarksAvailable =
+      totalMarksRaw &&
+      Number.isFinite(Number(totalMarksRaw)) &&
+      Number(totalMarksRaw) > 0
+        ? Math.round(Number(totalMarksRaw))
+        : null
     const manualSubjectCode = manualPaperCode?.split('/')[0]
     const streamRequested = formData.get('stream') === '1'
 
@@ -236,9 +247,10 @@ export async function POST(request: NextRequest) {
             ? ibLevel
             : null,
         questionMarks:
-          markIntent === 'practice_question' || markIntent === 'combined_script'
+          (markIntent === 'practice_question' ||
+          markIntent === 'combined_script'
             ? ibMarksAvailable
-            : null,
+            : null) ?? totalMarksAvailable,
         userId,
         startedAt: startTime,
       }

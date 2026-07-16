@@ -216,6 +216,10 @@ export default function MarkPage() {
   const [ibLevel, setIbLevel] = useState<'HL' | 'SL'>('SL')
   const [ibComponentKey, setIbComponentKey] = useState('')
   const [ibMarksAvailable, setIbMarksAvailable] = useState('')
+  // General per-question total-marks control, shown on every single-question
+  // upload where the denominator would otherwise be guessed by the model.
+  const [totalMarksInput, setTotalMarksInput] = useState('')
+  const [marksInQuestion, setMarksInQuestion] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -867,6 +871,20 @@ export default function MarkPage() {
     (uploadMode === 'whole_paper' || questionNumber.trim())
   )
 
+  // The tailored IB "Marks available" input already covers points-based IB
+  // components — don't show a second marks field on top of it.
+  const ibPointsMarksShown =
+    (isPracticeMode || isCombinedMode) &&
+    !!catalogSubject &&
+    !!ibComponentKey &&
+    selectedCatalogComponent?.assessment_model === 'points'
+  // Show a per-question "total marks" control on every single-question upload
+  // where the total would otherwise be inferred by the model. Hidden when an
+  // official mark scheme supplies the total (isManualFilled) or the IB points
+  // input is already shown.
+  const showTotalMarksField =
+    uploadMode === 'single_question' && !isManualFilled && !ibPointsMarksShown
+
   const wholePaperCode =
     selectedSubject && selectedComponent
       ? `${selectedSubject}/${selectedComponent}`
@@ -1096,6 +1114,14 @@ export default function MarkPage() {
         formData.append('question_photo', questionFile)
       }
       if (questionTextInput.trim()) formData.append('question_text', questionTextInput)
+
+      // Per-question total marks: send the user-entered denominator unless they
+      // ticked "the marks are shown in my question" (then the marker reads it
+      // from the question image/text). The backend still prefers an official
+      // mark-scheme total over this when one is available.
+      if (showTotalMarksField && !marksInQuestion && totalMarksInput.trim()) {
+        formData.append('total_marks_available', totalMarksInput.trim())
+      }
 
       if (isPracticeMode && selectedSubject) {
         formData.append('practice_subject_code', selectedSubject)
@@ -1952,6 +1978,46 @@ export default function MarkPage() {
                         Retry
                       </button>
                     </p>
+                  )}
+                  {showTotalMarksField && (
+                    <div className="ec-card mb-4 space-y-3 p-4 sm:p-5">
+                      <Label
+                        htmlFor="total-marks"
+                        className="label-overline inline-block"
+                      >
+                        Total marks for this question
+                      </Label>
+                      {!marksInQuestion && (
+                        <input
+                          id="total-marks"
+                          type="number"
+                          min={1}
+                          max={100}
+                          inputMode="numeric"
+                          value={totalMarksInput}
+                          onChange={(e) => setTotalMarksInput(e.target.value)}
+                          placeholder="e.g. 25"
+                          className="ec-input"
+                        />
+                      )}
+                      <label className="flex cursor-pointer items-start gap-2 text-xs ec-text-secondary">
+                        <input
+                          type="checkbox"
+                          checked={marksInQuestion}
+                          onChange={(e) => setMarksInQuestion(e.target.checked)}
+                          className="mt-0.5"
+                        />
+                        <span>
+                          The marks are shown in the question I uploaded — read the
+                          total from there.
+                        </span>
+                      </label>
+                      <p className="text-xs ec-text-secondary">
+                        {marksInQuestion
+                          ? 'We’ll read the mark total from your question image or text.'
+                          : 'Enter the mark total so we mark out of the right number. Leave blank and we’ll try to read it from your question.'}
+                      </p>
+                    </div>
                   )}
                   <div className="ms-mark-submit-panel">
                   <MarkUsageIndicator variant="single" summary={billingSummary} className="mb-3" />

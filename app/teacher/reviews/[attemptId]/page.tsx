@@ -6,6 +6,7 @@ import {
   ExaminerInkOverlay,
   type LineReference,
 } from '@/components/examiner-ink/ExaminerInkOverlay'
+import { ExaminerInkPerPage } from '@/components/examiner-ink/ExaminerInkPerPage'
 import { toAnswerPhotoStoragePath } from '@/lib/storage/answer-photo-paths'
 import { OverrideConsole } from '@/components/teacher/OverrideConsole'
 import {
@@ -25,6 +26,7 @@ interface AttemptData {
   question_text: string | null
   answer_photo_url: string | null
   line_references: LineReference[] | null
+  ink_pages: Array<{ photo_url: string; line_references: LineReference[] }> | null
   marks_awarded: MarkAwarded[]
   user_profiles: { full_name: string | null } | null
 }
@@ -79,7 +81,13 @@ export default function ReviewDetailPage() {
 
       <div className="grid flex-1 grid-cols-1 gap-6 lg:grid-cols-5">
         <div className="ec-card overflow-hidden p-4 lg:col-span-3">
-          {attempt.answer_photo_url ? (
+          {attempt.ink_pages && attempt.ink_pages.length > 0 ? (
+            <ExaminerInkPerPage
+              pages={attempt.ink_pages}
+              attemptId={attempt.id}
+              animate={false}
+            />
+          ) : attempt.answer_photo_url ? (
             <ExaminerInkOverlay
               imageUrl={attempt.answer_photo_url}
               attemptId={attempt.id}

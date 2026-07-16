@@ -81,10 +81,6 @@ Full guide: [IB results day 2026](/blog/ib-results-day-2026-what-to-expect).
 | 24–48 | Coordinator meeting if surprise |
 | 48+ | EUR / November entry / accept decision per subject |
 
-## Cambridge students in the same window
-
-Cambridge June results release **11 August** (A-Level) and **18 August** (IGCSE/O Level) — different calendar. See [Cambridge post-exam prep](/blog/cambridge-post-exam-results-prep-2026).
-
 ## Frequently asked questions
 
 ### Should I keep studying?

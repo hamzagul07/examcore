@@ -24,6 +24,7 @@ import {
   buildAllPageInk,
   type PageInkSource,
 } from '@/lib/marking/ink-per-page'
+import { dropDuplicateAdjacentPages } from '@/lib/marking/dedupe-pages'
 import { extractMarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
 import { toMarkingAIResult, aggregateWholePaperResults } from '@/lib/marking/whole-paper'
 import { extractPracticeQuestionFromScript } from '@/lib/marking/practice-question-extract'
@@ -544,6 +545,19 @@ export async function runSingleQuestionMark(
     pageOcrResults.push(...ocred)
   } else {
     throw new Error('Upload at least one page of your answer.')
+  }
+
+  // Drop adjacent near-duplicate pages (same sheet photographed/OCR'd twice) so
+  // we don't mark — or bill Gemini for — the same page again, and don't persist
+  // a duplicate page image.
+  const deduped = dropDuplicateAdjacentPages(pageOcrResults, (i, sim) =>
+    console.warn(
+      `[mark] dropped duplicate answer page ${i + 1} (similarity ${sim.toFixed(2)})`
+    )
+  )
+  if (deduped.length !== pageOcrResults.length) {
+    pageOcrResults.length = 0
+    pageOcrResults.push(...deduped)
   }
 
   emit(onProgress, 'reading_work', 20)

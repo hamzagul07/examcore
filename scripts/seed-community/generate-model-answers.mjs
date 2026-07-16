@@ -51,11 +51,11 @@ const OUT_DIR = join(
 
 // Cambridge point-based subjects (best for discrete per-mark breakdowns), with display names.
 const SUBJECTS = [
-  { prefix: '9709', name: 'A-Level Mathematics', take: 70 },
-  { prefix: '9700', name: 'A-Level Biology', take: 55 },
-  { prefix: '9702', name: 'A-Level Physics', take: 45 },
-  { prefix: '9701', name: 'A-Level Chemistry', take: 30 },
-  { prefix: '9708', name: 'A-Level Economics', take: 30 },
+  { prefix: '9709', name: 'A-Level Mathematics', take: 180 },
+  { prefix: '9700', name: 'A-Level Biology', take: 90, minMarks: 3, maxMarks: 12 },
+  { prefix: '9702', name: 'A-Level Physics', take: 120, minMarks: 3, maxMarks: 12 },
+  { prefix: '9701', name: 'A-Level Chemistry', take: 80, minMarks: 2, maxMarks: 12 },
+  { prefix: '9708', name: 'A-Level Economics', take: 40 },
 ]
 
 // Fixed author for all seeded model answers — the MarkScheme Model Answers bot.
@@ -168,10 +168,10 @@ async function main() {
       .select('id, board, subject, paper_code, paper_session, question_number, question_text, total_marks, mark_scheme, marking_type, syllabus_tags')
       .like('paper_code', `${s.prefix}%`)
       .eq('marking_type', 'point_based')
-      .gte('total_marks', 4)
-      .lte('total_marks', 10)
+      .gte('total_marks', s.minMarks ?? 4)
+      .lte('total_marks', s.maxMarks ?? 10)
       .not('question_text', 'is', null)
-      .limit(400)
+      .limit(600)
     if (error) throw error
     // Skip questions that depend on a figure/diagram/table we can't include (not in question_text).
     const DIAGRAM_RE = /\b(figure|diagram|shown (above|below|in)|in the diagram|the shape [A-Z]{3,}|fig\.?\s*\d|the graph shows|the curve shown|table\s*\d|complete (the )?table|in the table|complete table|from the (table|graph))\b/i
@@ -185,11 +185,13 @@ async function main() {
   let batch = picked.slice(0, LIMIT)
 
   // Skip questions already generated (idempotent + saves Gemini calls on re-runs).
+  // Fetch the bot's existing ids in one small query (a 450-value .in() overflows the URL).
   const qidFor = (q) => seededUuid('q', `${q.paper_code}|${q.paper_session}|${q.question_number}`)
   const { data: existing } = await admin
     .from('community_questions')
     .select('id')
-    .in('id', batch.map(qidFor))
+    .eq('author_id', BOT.id)
+    .limit(10000)
   const have = new Set((existing || []).map((r) => r.id))
   const skipped = batch.length - batch.filter((q) => !have.has(qidFor(q))).length
   batch = batch.filter((q) => !have.has(qidFor(q)))

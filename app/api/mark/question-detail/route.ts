@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
       total_marks: row.total_marks ?? null,
       marking_type: (row.marking_type as MarkingStyle | null) ?? rubric?.style ?? null,
       syllabus_tags: (row.syllabus_tags as string[] | null) ?? [],
-      rubric,
+      // rubric stays server-side only — scheme text must never reach the client
       point_count: rubric?.points.length ?? 0,
       band_count: rubric?.bands.length ?? 0,
     })

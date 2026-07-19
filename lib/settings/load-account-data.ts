@@ -24,7 +24,7 @@ export async function loadAccountContext(): Promise<SettingsContext> {
   const { data: profile } = await supabase
     .from('user_profiles')
     .select(
-      'full_name, username, board, level, subjects, onboarded, onboarding_completed, exam_date, target_grade, stage, primary_goal, created_at, email_exam_reminders, email_product_updates, email_community_replies, email_community_digest, email_community_threads, email_review_digest'
+      'full_name, username, board, level, subjects, onboarded, onboarding_completed, exam_date, target_grade, stage, primary_goal, created_at, email_exam_reminders, email_product_updates, email_community_replies, email_community_digest, email_community_threads, email_review_digest, email_weekly_report'
     )
     .eq('id', user.id)
     .maybeSingle()
@@ -108,6 +108,7 @@ export async function loadAccountContext(): Promise<SettingsContext> {
       emailCommunityDigest: Boolean(profile?.email_community_digest),
       emailCommunityThreads: Boolean(profile?.email_community_threads),
       emailReviewDigest: profile?.email_review_digest !== false,
+      emailWeeklyReport: profile?.email_weekly_report !== false,
     },
   }
 }

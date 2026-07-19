@@ -8,6 +8,7 @@ type Body = {
   email_community_digest?: boolean
   email_community_threads?: boolean
   email_review_digest?: boolean
+  email_weekly_report?: boolean
 }
 
 export async function PATCH(request: NextRequest) {
@@ -44,6 +45,9 @@ export async function PATCH(request: NextRequest) {
   }
   if (typeof body.email_review_digest === 'boolean') {
     patch.email_review_digest = body.email_review_digest
+  }
+  if (typeof body.email_weekly_report === 'boolean') {
+    patch.email_weekly_report = body.email_weekly_report
   }
 
   if (Object.keys(patch).length === 0) {

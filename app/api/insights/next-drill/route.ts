@@ -15,6 +15,8 @@ import {
   topicTargetsFromMasteries,
   fetchTopicRecommendations,
 } from '@/lib/insights/recommendations'
+import type { NextDrill } from '@/lib/insights/types'
+import { isIbSubjectCode } from '@/lib/ib/marking-config'
 import { effectiveAccess } from '@/lib/billing/access'
 import { hasPaidAccess } from '@/lib/billing/features'
 import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
@@ -95,18 +97,48 @@ export async function GET(request: NextRequest) {
 
   if (subjectCodes.length === 0) return NextResponse.json({ drill: null })
 
-  // Per-subject mastery, merged into one ranking — topicTargetsFromMasteries
-  // sorts by percentage, so combining leaves yields the globally weakest first.
-  const masteries = subjectCodes.flatMap((code) => {
-    const subjectAttempts = allAttempts.filter(
-      (a) => getAttemptSubjectCode(a) === code
-    ) as AttemptLite[]
-    return flattenLeafMasteries(calculateParentMastery(subjectAttempts, code))
-  })
-  const targets = topicTargetsFromMasteries(masteries)
-  if (targets.length === 0) return NextResponse.json({ drill: null })
+  // Per-subject weak-topic targets, tagged with subject + weakness %, then merged
+  // weakest-first so the single drill we return is the student's biggest gap
+  // across everything they've marked.
+  const ranked = subjectCodes
+    .flatMap((code) => {
+      const subjectAttempts = allAttempts.filter(
+        (a) => getAttemptSubjectCode(a) === code
+      ) as AttemptLite[]
+      const leaves = flattenLeafMasteries(
+        calculateParentMastery(subjectAttempts, code)
+      )
+      const pctByCode = new Map(leaves.map((l) => [l.code, l.percentage]))
+      return topicTargetsFromMasteries(leaves).map((target) => ({
+        subjectCode: code,
+        target,
+        percentage: pctByCode.get(target.code) ?? 100,
+      }))
+    })
+    .sort((a, b) => a.percentage - b.percentage)
 
-  // Top drill only — one clear next action, not a list.
-  const [drill] = await fetchTopicRecommendations(supabaseAdmin, targets, 1)
-  return NextResponse.json({ drill: drill ?? null })
+  if (ranked.length === 0) return NextResponse.json({ drill: null })
+
+  // Walk weakest-first, return the first that resolves to a real drill. IB topics
+  // always resolve (the /mark practice flow generates a question); Cambridge needs
+  // a stored past-paper question. Cap the walk so a run of misses stays bounded.
+  for (const { subjectCode: code, target } of ranked.slice(0, 8)) {
+    if (isIbSubjectCode(code)) {
+      const drill: NextDrill = {
+        kind: 'topic',
+        subjectCode: code,
+        topicCode: target.code,
+        topicName: target.name,
+        reason: target.reason,
+      }
+      return NextResponse.json({ drill })
+    }
+    const [rec] = await fetchTopicRecommendations(supabaseAdmin, [target], 1)
+    if (rec) {
+      const drill: NextDrill = { kind: 'paper', ...rec }
+      return NextResponse.json({ drill })
+    }
+  }
+
+  return NextResponse.json({ drill: null })
 }

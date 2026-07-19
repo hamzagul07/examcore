@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { ChevronRight, Target } from 'lucide-react'
-import { drillHref } from '@/lib/insights/drill-link'
-import type { Recommendation } from '@/lib/insights/types'
+import { drillHref, topicDrillHref } from '@/lib/insights/drill-link'
+import type { NextDrill } from '@/lib/insights/types'
 
 /**
  * Premium coach card: surfaces the student's single weakest topic and a one-tap
@@ -25,7 +25,7 @@ export function WeakSpotDrillCard({
   title?: string
   className?: string
 }) {
-  const [drill, setDrill] = useState<Recommendation | null>(null)
+  const [drill, setDrill] = useState<NextDrill | null>(null)
 
   useEffect(() => {
     let active = true
@@ -35,7 +35,7 @@ export function WeakSpotDrillCard({
     fetch(`/api/insights/next-drill${qs}`)
       .then((r) => (r.ok ? r.json() : { drill: null }))
       .then((d) => {
-        if (active) setDrill((d?.drill as Recommendation | null) ?? null)
+        if (active) setDrill((d?.drill as NextDrill | null) ?? null)
       })
       .catch(() => {
         // Non-fatal — the surrounding page still renders.
@@ -46,6 +46,18 @@ export function WeakSpotDrillCard({
   }, [subjectCode])
 
   if (!drill) return null
+
+  // Cambridge points at a real past-paper question; IB points at a topic the
+  // /mark practice flow generates a question for.
+  const label = drill.kind === 'paper' ? drill.targetLabel : drill.topicName
+  const meta =
+    drill.kind === 'paper'
+      ? `${drill.paperCode} · Q${drill.questionNumber} · ${drill.totalMarks}m`
+      : 'IB practice'
+  const href =
+    drill.kind === 'paper'
+      ? drillHref(drill)
+      : topicDrillHref(drill.subjectCode, drill.topicCode)
 
   return (
     <div className={`ec-card border-[var(--ec-brand)]/30 p-5 sm:p-7 ${className}`}>
@@ -59,17 +71,17 @@ export function WeakSpotDrillCard({
       <div className="mt-3 rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4">
         <div className="flex min-w-0 flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
           <span className="min-w-0 truncate text-sm font-semibold text-[var(--ec-text-primary)]">
-            {drill.targetLabel}
+            {label}
           </span>
           <span className="shrink-0 font-mono text-[11px] text-[var(--ec-text-secondary)]">
-            {drill.paperCode} · Q{drill.questionNumber} · {drill.totalMarks}m
+            {meta}
           </span>
         </div>
         <p className="ec-break-anywhere mt-1.5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
           {drill.reason}
         </p>
         <Link
-          href={drillHref(drill)}
+          href={href}
           className="ec-btn ec-btn-primary mt-3 inline-flex items-center gap-1.5 text-sm"
         >
           Drill this

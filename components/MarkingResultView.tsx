@@ -2,9 +2,8 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { AlertCircle, CheckCircle2, ChevronRight, Info, Lock, Sparkles, Target } from 'lucide-react'
-import { drillHref } from '@/lib/insights/drill-link'
-import type { Recommendation } from '@/lib/insights/types'
+import { AlertCircle, CheckCircle2, ChevronRight, Info, Lock, Sparkles } from 'lucide-react'
+import { WeakSpotDrillCard } from '@/components/insights/WeakSpotDrillCard'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import { AskOmniAboutMark } from '@/components/omni-ai/AskOmniAboutMark'
 import { SyllabusTopicBadge } from '@/components/SyllabusTopicBadge'
@@ -480,7 +479,7 @@ export function MarkingResultView({
         )}
 
         {isPaid && badgeSubjectCode && (
-          <NextDrillCard subjectCode={badgeSubjectCode} />
+          <WeakSpotDrillCard subjectCode={badgeSubjectCode} />
         )}
 
         {attemptId && (
@@ -629,67 +628,6 @@ function ErrorClassificationPill({
 }
 
 export { ErrorClassificationPill }
-
-/**
- * Premium coach: after a mark, surface the student's single weakest topic across
- * ALL their attempts in this subject and a one-tap drill for it. Data comes from
- * /api/insights/next-drill (same weakness engine as the progress dashboard).
- * Renders nothing when no drill resolves — free tier, no confirmed weakness, or a
- * subject with no stored questions (e.g. IB) — so it's never a dead card.
- */
-function NextDrillCard({ subjectCode }: { subjectCode: string }) {
-  const [drill, setDrill] = useState<Recommendation | null>(null)
-
-  useEffect(() => {
-    if (!subjectCode) return
-    let active = true
-    fetch(`/api/insights/next-drill?subject=${encodeURIComponent(subjectCode)}`)
-      .then((r) => (r.ok ? r.json() : { drill: null }))
-      .then((d) => {
-        if (active) setDrill((d?.drill as Recommendation | null) ?? null)
-      })
-      .catch(() => {
-        // Non-fatal — the rest of the result still renders.
-      })
-    return () => {
-      active = false
-    }
-  }, [subjectCode])
-
-  if (!drill) return null
-
-  return (
-    <div className="ec-card border-[var(--ec-brand)]/30 p-5 sm:p-7">
-      <div className="mb-3 flex items-center gap-2">
-        <Target className="h-4 w-4 shrink-0 text-[var(--ec-brand)]" />
-        <p className="ms-micro" style={{ margin: 0 }}>
-          YOUR WEAKEST SPOT
-        </p>
-      </div>
-      <h3 className="ms-h3">Drill this next</h3>
-      <div className="mt-3 rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4">
-        <div className="flex min-w-0 flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
-          <span className="min-w-0 truncate text-sm font-semibold text-[var(--ec-text-primary)]">
-            {drill.targetLabel}
-          </span>
-          <span className="shrink-0 font-mono text-[11px] text-[var(--ec-text-secondary)]">
-            {drill.paperCode} · Q{drill.questionNumber} · {drill.totalMarks}m
-          </span>
-        </div>
-        <p className="ec-break-anywhere mt-1.5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-          {drill.reason}
-        </p>
-        <Link
-          href={drillHref(drill)}
-          className="ec-btn ec-btn-primary mt-3 inline-flex items-center gap-1.5 text-sm"
-        >
-          Drill this
-          <ChevronRight className="h-4 w-4" />
-        </Link>
-      </div>
-    </div>
-  )
-}
 
 type MarkBackLesson = { code: string; name: string; href: string }
 

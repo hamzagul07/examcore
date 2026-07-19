@@ -18,6 +18,7 @@ import { buildReviewQueue } from '@/lib/courses/review-queue'
 import { AppSupportStrip } from '@/components/marketing/AppSupportStrip'
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 import { HomeHero } from '@/components/dashboard/HomeHero'
+import { WeakSpotDrillCard } from '@/components/insights/WeakSpotDrillCard'
 import { StudyNotebook } from '@/components/dashboard/StudyNotebook'
 import { ContinueWork } from '@/components/dashboard/ContinueWork'
 import { ActiveSubjects } from '@/components/dashboard/ActiveSubjects'
@@ -193,6 +194,13 @@ export default async function DashboardPage() {
           />
 
           <BillingLimitBanner className="mb-6" />
+
+          {!isEmpty ? (
+            <WeakSpotDrillCard
+              title="Practice your weakest spot"
+              className="mb-6"
+            />
+          ) : null}
 
           <DashboardCoursesPanel catalog={continueCatalog} />
 

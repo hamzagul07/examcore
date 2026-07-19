@@ -27,15 +27,16 @@ const supabaseAdmin = createClient(
 )
 
 /**
- * The single top weak-topic "drill" for the signed-in user in a subject —
- * powers the post-mark "Drill your weakest spot" coach card. Premium-only, and
- * returns `{ drill: null }` whenever nothing resolves (free tier, no syllabus
- * tree, no confirmed weakness, or a subject with no stored questions — e.g. IB),
- * so the client simply renders nothing rather than a dead feature.
+ * The single top weak-topic "drill" for the signed-in user — powers the
+ * "Drill your weakest spot" coach card. With `?subject=CODE` it ranks within one
+ * subject (the post-mark card); with no subject it ranks GLOBALLY across every
+ * subject the student has marked (the persistent dashboard entry). Premium-only,
+ * and returns `{ drill: null }` whenever nothing resolves (free tier, no confirmed
+ * weakness, or subjects with no stored questions — e.g. IB), so the client simply
+ * renders nothing rather than a dead feature.
  */
 export async function GET(request: NextRequest) {
-  const subject = request.nextUrl.searchParams.get('subject')?.trim()
-  if (!subject) return NextResponse.json({ drill: null })
+  const subject = request.nextUrl.searchParams.get('subject')?.trim() || null
 
   const supabase = await createServerClient()
   const {
@@ -43,7 +44,7 @@ export async function GET(request: NextRequest) {
   } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ drill: null })
 
-  // Premium gate (defense in depth — the client also gates on isPaid).
+  // Premium gate (defense in depth — callers may also gate on isPaid).
   const { data: subscription } = await supabase
     .from('user_subscriptions')
     .select('tier, status, trial_ends_at')
@@ -58,13 +59,13 @@ export async function GET(request: NextRequest) {
   )
   if (!paid) return NextResponse.json({ drill: null })
 
-  // Mastery needs a syllabus tree for the subject; IB / untreed subjects opt out.
-  if (!getSyllabusByCode(subject)?.length) {
+  // A requested subject must have a syllabus tree; else nothing to rank.
+  if (subject && !getSyllabusByCode(subject)?.length) {
     return NextResponse.json({ drill: null })
   }
 
-  // Same read the progress dashboard uses: recent attempts, filtered to subject,
-  // scored into per-leaf mastery. Service client — attempts RLS needs it.
+  // Same read the progress dashboard uses: recent attempts scored into per-leaf
+  // mastery. Service client — attempts RLS needs it.
   const { data: rawAttempts } = await supabaseAdmin
     .from('attempts')
     .select(
@@ -78,13 +79,30 @@ export async function GET(request: NextRequest) {
     .order('created_at', { ascending: false })
     .limit(200)
 
-  const attempts = ((rawAttempts || []) as unknown as AttemptWithPaper[]).filter(
-    (a) => getAttemptSubjectCode(a) === subject
-  ) as AttemptLite[]
+  const allAttempts = (rawAttempts || []) as unknown as AttemptWithPaper[]
 
-  const masteries = flattenLeafMasteries(
-    calculateParentMastery(attempts, subject)
-  )
+  // Subjects to rank: the requested one, or every treed subject the student has
+  // marked (for the global "your weakest spot" entry).
+  const subjectCodes = subject
+    ? [subject]
+    : [
+        ...new Set(
+          allAttempts
+            .map((a) => getAttemptSubjectCode(a))
+            .filter((c): c is string => !!c)
+        ),
+      ].filter((c) => !!getSyllabusByCode(c)?.length)
+
+  if (subjectCodes.length === 0) return NextResponse.json({ drill: null })
+
+  // Per-subject mastery, merged into one ranking — topicTargetsFromMasteries
+  // sorts by percentage, so combining leaves yields the globally weakest first.
+  const masteries = subjectCodes.flatMap((code) => {
+    const subjectAttempts = allAttempts.filter(
+      (a) => getAttemptSubjectCode(a) === code
+    ) as AttemptLite[]
+    return flattenLeafMasteries(calculateParentMastery(subjectAttempts, code))
+  })
   const targets = topicTargetsFromMasteries(masteries)
   if (targets.length === 0) return NextResponse.json({ drill: null })
 

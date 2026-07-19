@@ -1,6 +1,6 @@
 ---
 title: IB Maths AA Paper 1 vs Paper 2 — Exam Strategy
-description: How IB Maths AA Paper 1 (no calculator) and Paper 2 (calculator/GDC) differ, how method and accuracy marks work on each, when to use the GDC, and the technique that banks marks on both.
+description: How IB Maths AA Paper 1 (no calculator) and Paper 2 (calculator/GDC) differ, how method and accuracy marks work on each, when to use the GDC
 date: 2026-07-03
 keywords: IB maths AA paper 1 vs paper 2, IB maths AA paper 1, IB maths AA paper 2 GDC, IB maths method marks, IB maths AA exam technique, IB maths no calculator paper
 category: exam-technique

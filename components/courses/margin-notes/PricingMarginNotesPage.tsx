@@ -379,21 +379,6 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
           </p>
         </header>
 
-        <div className="pricing-value-strip" role="list" aria-label="Key benefits">
-          {valueProps.map((v) => (
-            <div key={v.title} className="pricing-value-item" role="listitem">
-              <span className="pricing-value-icon" aria-hidden>
-                <v.icon className="h-5 w-5" />
-              </span>
-              <div>
-                <p className="pricing-value-title">{v.title}</p>
-                <p className="pricing-value-body">{v.body}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-
         <div className="pricing-controls">
           <div className="pricing-toggle" role="tablist" aria-label="Billing period">
             {(['monthly', 'yearly'] as Period[]).map((p) => (
@@ -421,12 +406,17 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
               <div
                 key={p.id}
                 className={`plan card${p.featured ? ' featured pricing-card--featured pricing-card-mesh' : ''}`}
+                data-plan={p.id}
                 data-screen-label={`Pricing — ${p.name}`}
               >
                 {p.featured ? <span className="plan-ribbon mono">MOST POPULAR</span> : null}
-                {p.trialPill ? (
-                  <span className="plan-trial-pill mono">{p.trialPill}</span>
-                ) : null}
+                {/* Always rendered (hidden when empty) so the pill row lines up across cards. */}
+                <span
+                  className={`plan-trial-pill mono${p.trialPill ? '' : ' is-empty'}`}
+                  aria-hidden={p.trialPill ? undefined : true}
+                >
+                  {p.trialPill ?? ' '}
+                </span>
                 <p className="plan-tag mono">{p.tag}</p>
                 <h3 className="plan-name serif">{p.name}</h3>
                 <div className="plan-price">
@@ -481,6 +471,39 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
           })}
         </div>
 
+        <div className="pricing-trust">
+          <span className="pricing-trust-item">
+            <CheckCircle2 className="pricing-trust-icon" aria-hidden />
+            Cancel anytime — no lock-in
+          </span>
+          <span className="pricing-trust-item">
+            <CheckCircle2 className="pricing-trust-icon" aria-hidden />
+            15 Cambridge subjects + IB Diploma
+          </span>
+          <span className="pricing-trust-item">
+            <CheckCircle2 className="pricing-trust-icon" aria-hidden />
+            Marked against official schemes
+          </span>
+          <span className="pricing-trust-item">
+            <CheckCircle2 className="pricing-trust-icon" aria-hidden />
+            Billed in {cur.toUpperCase()} · local currency at checkout
+          </span>
+        </div>
+
+        <div className="pricing-value-strip" role="list" aria-label="Key benefits">
+          {valueProps.map((v) => (
+            <div key={v.title} className="pricing-value-item" role="listitem">
+              <span className="pricing-value-icon" aria-hidden>
+                <v.icon className="h-5 w-5" />
+              </span>
+              <div>
+                <p className="pricing-value-title">{v.title}</p>
+                <p className="pricing-value-body">{v.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
         <section className="pricing-why" aria-labelledby="pricing-why-heading">
           <p className="overline pricing-why-kicker">Why Scholar wins</p>
           <h2 id="pricing-why-heading" className="h3 section-title pricing-why-title">
@@ -518,25 +541,6 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
         </section>
 
         <PlanComparisonMatrix />
-
-        <div className="pricing-trust">
-          <span className="pricing-trust-item">
-            <CheckCircle2 className="pricing-trust-icon" aria-hidden />
-            Cancel anytime — no lock-in
-          </span>
-          <span className="pricing-trust-item">
-            <CheckCircle2 className="pricing-trust-icon" aria-hidden />
-            15 Cambridge subjects + IB Diploma
-          </span>
-          <span className="pricing-trust-item">
-            <CheckCircle2 className="pricing-trust-icon" aria-hidden />
-            Marked against official schemes
-          </span>
-          <span className="pricing-trust-item">
-            <CheckCircle2 className="pricing-trust-icon" aria-hidden />
-            Billed in {cur.toUpperCase()} · local currency at checkout
-          </span>
-        </div>
 
         <div className="pricing-faqs">
           <h2 className="h3 section-title">Honest answers</h2>

@@ -124,6 +124,18 @@
   flex-shrink: 0;
 }
 
+/* Small screens: keep the title + chips column readable and drop the CTA
+   to its own full-width row instead of squeezing the chips vertical. */
+@media (max-width: 640px) {
+  .ms-sd-head { row-gap: 16px; }
+  .ms-sd-head > .min-w-0.flex-1 { flex-basis: 200px; }
+  .ms-sd-head > a.ec-btn-primary {
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+  }
+}
+
 .ms-sd-grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr;

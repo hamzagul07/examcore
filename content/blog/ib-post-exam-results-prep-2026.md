@@ -1,6 +1,6 @@
 ---
 title: After IB exams — results prep checklist (May 2026)
-description: Finished May 2026 IB exams? What to do before results in early July — honest grade estimates, EUR planning, university calls, and November retake prep without anxiety scrolling.
+description: Finished May 2026 IB exams? What to do before results in early July — honest grade estimates, EUR planning, university calls
 date: 2026-07-06
 updated: 2026-07-06
 category: editorial
@@ -80,10 +80,6 @@ Full guide: [IB results day 2026](/blog/ib-results-day-2026-what-to-expect).
 | 2–24 | Compare to your **evidence file** |
 | 24–48 | Coordinator meeting if surprise |
 | 48+ | EUR / November entry / accept decision per subject |
-
-## Cambridge students in the same window
-
-Cambridge June results release **11 August** (A-Level) and **18 August** (IGCSE/O Level) — different calendar. See [Cambridge post-exam prep](/blog/cambridge-post-exam-results-prep-2026).
 
 ## Frequently asked questions
 

@@ -1,6 +1,6 @@
 ---
 title: How to Get a 7 in IB Business Management (SL & HL)
-description: The real path to a 7 in IB Business Management: application and evaluation (AO1–AO3), the case study, quantitative tools, and a weekly study system that turns theory into top-band answers.
+description: The real path to a 7 in IB Business Management: application and evaluation (AO1–AO3), the case study, quantitative tools
 date: 2026-07-03
 keywords: how to get a 7 in IB business management, IB business management grade 7, IB BM paper 1 case study, IB business management evaluation, IB business management revision, IB BM HL
 category: revision

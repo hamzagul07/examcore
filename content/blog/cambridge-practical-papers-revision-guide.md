@@ -1,5 +1,5 @@
 ---
-title: Cambridge practical & alternative-to-practical papers — revision guide
+title: Cambridge practical papers — revision guide
 description: How to prepare for Paper 3/5-style practical skills, common vocabulary, and marking your written practical answers against Cambridge schemes.
 date: 2026-06-04
 category: exam-technique

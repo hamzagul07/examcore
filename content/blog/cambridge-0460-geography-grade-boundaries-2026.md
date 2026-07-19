@@ -1,5 +1,5 @@
 ---
-title: Cambridge 0460 Geography Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 0460 Geography Grade Boundaries 2026
 description: 0460 IGCSE Geography grade boundaries 2026 — IGCSE grades 18 August, threshold tables ~13 August. Estimate themes, skills and fieldwork papers with the calculator.
 date: 2026-06-19
 keywords: 0460 grade boundaries, 0460 grade boundaries 2026, Cambridge IGCSE Geography grade boundaries, 0460 geography thresholds, 0460 raw marks to grade

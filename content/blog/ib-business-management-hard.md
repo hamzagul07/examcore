@@ -1,6 +1,6 @@
 ---
 title: Is IB Business Management Hard? An Honest Look (SL & HL)
-description: How hard IB Business Management really is at SL and HL — why its "easy" reputation is misleading, whether a 7 is achievable, the workload, who finds it hard, and how to succeed.
+description: How hard IB Business Management really is at SL and HL — why its "easy" reputation is misleading, whether a 7 is achievable, the workload, who finds it hard
 date: 2026-07-03
 keywords: is IB business management hard, IB business management difficulty, is IB BM HL hard, IB business management easy, IB business management workload, IB BM tips
 category: subject-choice

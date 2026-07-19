@@ -20,7 +20,8 @@ export async function GET(request: NextRequest) {
     .eq('paper_session', paperSession)
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('[mark/paper-questions] query failed:', error)
+    return NextResponse.json({ error: 'Could not load paper questions' }, { status: 500 })
   }
 
   const nums = sortQuestionNumbers((data || []).map((r) => r.question_number))

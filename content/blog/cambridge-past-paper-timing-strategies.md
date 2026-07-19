@@ -1,5 +1,5 @@
 ---
-title: Cambridge past paper timing — how to finish without losing easy marks
+title: Cambridge past paper timing — finish without losing marks
 description: Paper-by-paper timing tactics for Cambridge A-Level and O-Level — when to move on, how to bank marks early, and what to do in the last five minutes.
 date: 2026-06-08
 category: exam-technique

@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import type { MarginNotesSubject } from '@/lib/courses/margin-notes/types'
 import { subjectProgressPercent } from '@/lib/courses/margin-notes/continue-learning'
 import { useCourseProgressRevision } from '@/components/courses/CourseProgressClient'
-import { Breadcrumb } from '@/components/courses/margin-notes/Breadcrumb'
 import { SubjectCard } from '@/components/courses/margin-notes/SubjectCard'
 import { FamilyFilterStrip, useFamilyFilterFromUrl } from '@/components/courses/FamilyFilterStrip'
 
@@ -31,7 +30,6 @@ export function SubjectsDirectoryPage({ subjects }: Props) {
   return (
     <main className="subjects-page" data-screen-label="Subjects directory">
       <div className="pg">
-        <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Subjects' }]} />
         <header className="subjects-hero">
           <p className="overline">Subjects · Cambridge International</p>
           <h2 className="h-display subjects-title">

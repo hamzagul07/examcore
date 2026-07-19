@@ -1,6 +1,6 @@
 ---
 title: IB Physics Paper 2 — How to Earn Full Marks (Method & ECF)
-description: A step-by-step method for IB Physics Paper 2: how method and accuracy marks work, error-carried-forward, showing working, units, significant figures and direction, and structuring explanation answers.
+description: A step-by-step method for IB Physics Paper 2: how method and accuracy marks work, error-carried-forward, showing working, units
 date: 2026-07-03
 keywords: IB physics paper 2, IB physics paper 2 technique, IB physics method marks, IB physics ECF, IB physics calculations, IB physics structured questions
 category: exam-technique

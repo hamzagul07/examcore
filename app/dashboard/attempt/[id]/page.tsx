@@ -168,16 +168,42 @@ export default async function AttemptDetailPage({
   }
 
   const result = toMarkingResult(attempt)
-  const signedPhotoUrl = attempt.answer_photo_url
-    ? await signAnswerPhotoUrl(attempt.answer_photo_url)
-    : null
-  const lineRefs = Array.isArray(attempt.line_references)
-    ? (attempt.line_references as LineReference[])
-    : []
-  const inkPages =
-    signedPhotoUrl && lineRefs.length > 0
-      ? [{ photo_url: signedPhotoUrl, line_references: lineRefs }]
-      : undefined
+  // Prefer the full multi-page script persisted in ai_marking.ink_pages (every
+  // page photo + its examiner ink). Older attempts only have the single
+  // answer_photo_url column — fall back to that.
+  const storedInkPages = (
+    attempt.ai_marking as {
+      ink_pages?: Array<{ photo_url: string; line_references?: LineReference[] }>
+    } | null
+  )?.ink_pages
+  let inkPages:
+    | Array<{ photo_url: string; line_references: LineReference[] }>
+    | undefined
+  if (Array.isArray(storedInkPages) && storedInkPages.length > 0) {
+    const signed = await Promise.all(
+      storedInkPages.map(async (p) => {
+        const url = await signAnswerPhotoUrl(p.photo_url)
+        return url
+          ? { photo_url: url, line_references: p.line_references ?? [] }
+          : null
+      })
+    )
+    const pages = signed.filter(
+      (p): p is { photo_url: string; line_references: LineReference[] } => !!p
+    )
+    inkPages = pages.length ? pages : undefined
+  } else {
+    const signedPhotoUrl = attempt.answer_photo_url
+      ? await signAnswerPhotoUrl(attempt.answer_photo_url)
+      : null
+    const lineRefs = Array.isArray(attempt.line_references)
+      ? (attempt.line_references as LineReference[])
+      : []
+    inkPages =
+      signedPhotoUrl && lineRefs.length > 0
+        ? [{ photo_url: signedPhotoUrl, line_references: lineRefs }]
+        : undefined
+  }
   const sessionParts = splitSession(
     attempt.mark_schemes?.paper_code,
     attempt.mark_schemes?.paper_session

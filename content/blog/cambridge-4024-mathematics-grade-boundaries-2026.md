@@ -1,5 +1,5 @@
 ---
-title: Cambridge 4024 Mathematics Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 4024 Mathematics Grade Boundaries 2026
 description: 4024 O-Level Mathematics grade boundaries 2026 — O-Level grades 18 August, threshold tables ~13 August. Estimate both papers with the calculator.
 date: 2026-06-19
 keywords: 4024 grade boundaries, 4024 grade boundaries 2026, Cambridge Mathematics grade boundaries, 4024 mathematics thresholds, 4024 raw marks to grade

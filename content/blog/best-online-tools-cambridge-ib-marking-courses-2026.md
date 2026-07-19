@@ -1,6 +1,6 @@
 ---
 title: Best online tools for Cambridge & IB — marking and courses (2026)
-description: Online tools to check past-paper marks and study courses for Cambridge International and IB Diploma — compared honestly with Save My Exams, PMT, ZNotes, and Revision Village.
+description: Online tools to check past-paper marks and study courses for Cambridge International and IB Diploma — compared honestly with Save My Exams, PMT, ZNotes
 date: 2026-07-07
 keywords: online tool check past paper marks, Cambridge and IB revision tool, best app to mark past papers, mark Cambridge and IB online, free courses Cambridge IB, MarkScheme
 category: study-skills

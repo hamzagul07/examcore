@@ -141,6 +141,36 @@ export async function authenticateRouteRequest(request: NextRequest) {
   return { supabase: cookieSupabase, user: null, pendingCookies }
 }
 
+/**
+ * Guardrail for routes that persist user-scoped data from a request body.
+ * If the request carried Supabase auth cookies but the user resolved to null,
+ * the row is about to be saved anonymously (user_id = null) despite a
+ * logged-in caller — the exact silent-data-loss bug that orphaned ~6 weeks of
+ * marked attempts on the streaming-multipart mark routes. Log it loudly so any
+ * regression surfaces immediately instead of failing silently. Returns true
+ * when the anomaly is detected. A genuinely anonymous request (no auth cookie)
+ * is expected and logs nothing.
+ */
+export function warnIfAuthDropped(
+  request: NextRequest,
+  userId: string | null,
+  context: string
+): boolean {
+  if (userId) return false
+  const hadAuthCookie = request.cookies
+    .getAll()
+    .some((c) => c.name.includes('auth-token'))
+  if (hadAuthCookie) {
+    console.error(
+      `[auth-dropped] ${context}: request carried Supabase auth cookies but ` +
+        `user resolved to null — data will save with user_id=null. Likely a ` +
+        `streaming-multipart auth regression (use authenticateRouteRequest).`
+    )
+    return true
+  }
+  return false
+}
+
 export function jsonWithAuthCookies<T>(
   body: T,
   pendingCookies: SupabaseAuthCookie[],

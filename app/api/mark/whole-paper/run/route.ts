@@ -110,16 +110,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Job missing paper context' }, { status: 400 })
     }
 
-    // Whole paper = 1 mark. Reserve atomically before the work; finalize on
-    // success, release on failure — same single-request pattern as /mark/process.
-    const markUserId = (attempt as { user_id?: string | null }).user_id ?? null
-    if (markUserId) {
-      reservation = await reserveMarkUsage(markUserId, 'mark_whole_paper')
-      if (reservation.blocked_by_mode) {
-        return NextResponse.json(quotaExceededBody(reservation.allowance), { status: 402 })
-      }
-    }
-
     const markingState: WholePaperJobState = {
       ...job,
       phase: 'marking',
@@ -127,7 +117,37 @@ export async function POST(request: NextRequest) {
       questions_completed: 0,
       questions_total: segments.length,
     }
-    await updateJob(attemptId, markingState)
+
+    // Atomically claim the job: flip phase→'marking' only if it is not already
+    // 'marking'. Postgres serializes the row update, so of two near-simultaneous
+    // POSTs exactly one matches the guard and proceeds; the loser gets 0 rows
+    // and returns already_running. This closes the read-then-write (TOCTOU)
+    // window that previously let a duplicate request mark the paper — and
+    // reserve the quota — twice.
+    const { data: claimed } = await supabaseAdmin
+      .from('attempts')
+      .update({ ai_marking: markingState, marks_earned: 0, total_marks: 0 })
+      .eq('id', attemptId)
+      .neq('ai_marking->>phase', 'marking')
+      .select('id')
+    if (!claimed || claimed.length === 0) {
+      return NextResponse.json({ status: 'already_running' })
+    }
+
+    // Whole paper = 1 mark. Reserve after winning the claim; finalize on
+    // success, release on failure — same single-request pattern as /mark/process.
+    const markUserId = (attempt as { user_id?: string | null }).user_id ?? null
+    if (markUserId) {
+      reservation = await reserveMarkUsage(markUserId, 'mark_whole_paper')
+      if (reservation.blocked_by_mode) {
+        // Un-claim so a later retry isn't wedged in 'marking' with no runner.
+        await supabaseAdmin
+          .from('attempts')
+          .update({ ai_marking: job })
+          .eq('id', attemptId)
+        return NextResponse.json(quotaExceededBody(reservation.allowance), { status: 402 })
+      }
+    }
 
     const paperQuestions = await fetchPaperQuestionMeta(paperCode, paperSession, {
       listSchemes: async (code, session) => {

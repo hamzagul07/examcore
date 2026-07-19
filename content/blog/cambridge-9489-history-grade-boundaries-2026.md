@@ -1,5 +1,5 @@
 ---
-title: Cambridge 9489 History Grade Boundaries 2026 — June Thresholds Explained
+title: Cambridge 9489 History Grade Boundaries 2026
 description: 9489 History A-Level grade boundaries 2026 — grades 11 August, threshold tables ~13 August. Estimate source and essay papers with the calculator.
 date: 2026-06-19
 keywords: 9489 grade boundaries, 9489 grade boundaries 2026, Cambridge History grade boundaries, 9489 history thresholds, 9489 raw marks to grade

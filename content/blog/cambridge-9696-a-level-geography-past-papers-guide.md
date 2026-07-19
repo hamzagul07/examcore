@@ -1,5 +1,5 @@
 ---
-title: Cambridge A-Level Geography (9696) — past papers, mark schemes & how to revise
+title: Cambridge A-Level Geography (9696) past papers
 description: Revise Cambridge A-Level Geography (9696) with past papers — paper structure, how the mark scheme works, common mistakes, and a revision plan.
 date: 2026-06-19
 keywords: 9696 past papers, A-Level Geography past papers, 9696 geography mark scheme, Cambridge Geography 9696, 9696 revision

@@ -1,5 +1,5 @@
 ---
-title: Most repeated Cambridge science past paper topics for 2026 (Biology, Chemistry, Physics)
+title: Most repeated Cambridge science past paper topics 2026
 description: High-frequency A-Level and O-Level topics in 9700, 9701, 9702, 5090, 5070 and 5054 — ranked from past papers 2019–2025 and how to practise them.
 date: 2026-06-10
 category: revision

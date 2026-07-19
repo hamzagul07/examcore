@@ -1,6 +1,6 @@
 ---
 title: IB Chemistry IA Ideas — Example Research Questions
-description: How to choose a strong IB Chemistry IA topic, plus example research questions grouped by area (rates, energetics, acids, electrochemistry) and how to refine them into a focused, measurable investigation.
+description: How to choose a strong IB Chemistry IA topic, plus example research questions grouped by area
 date: 2026-07-03
 keywords: IB chemistry IA ideas, IB chemistry IA topics, IB chemistry IA research questions, IB chemistry internal assessment ideas, IB chemistry investigation ideas, chemistry IA examples
 category: study-skills

@@ -41,7 +41,8 @@ export async function POST(req: NextRequest) {
     if (error.code === '23505') {
       return jsonWithAuthCookies({ success: true, message: 'Already enrolled' }, pendingCookies)
     }
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('[classrooms/join] enrollment insert failed:', error)
+    return NextResponse.json({ error: 'Could not join classroom' }, { status: 500 })
   }
 
   return jsonWithAuthCookies({ success: true }, pendingCookies)

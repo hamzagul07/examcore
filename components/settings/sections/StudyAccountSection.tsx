@@ -1,20 +1,18 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { ChevronRight } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/Button'
 import { PasswordInput } from '@/components/PasswordInput'
-import { ProfileFormFields } from '@/components/ProfileFormFields'
 import { SuccessBox } from '@/components/AuthFormBits'
 import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
 import {
   BOARDS,
   LEVELS,
-  IB_DIPLOMA_LEVEL,
   getSubjectById,
   isIbBoard,
 } from '@/lib/profile-options'
@@ -24,28 +22,6 @@ import {
   SettingsStatTile,
   SettingsSubsection,
 } from '@/components/settings/SettingsSectionCard'
-
-const STAGE_LABELS: Record<UserStage, string> = {
-  as_level: 'AS Level (Year 12)',
-  a2_level: 'A2 Level (Year 13)',
-  other: 'Just exploring',
-}
-
-const IB_STAGE_LABELS: Record<UserStage, string> = {
-  as_level: 'DP Year 1',
-  a2_level: 'DP Year 2',
-  other: 'Just exploring',
-}
-
-function stageLabel(stage: UserStage, board: string): string {
-  return isIbBoard(board) ? IB_STAGE_LABELS[stage] : STAGE_LABELS[stage]
-}
-
-const GOAL_LABELS: Record<PrimaryGoal, string> = {
-  mark_papers: 'Mark practice papers',
-  track_progress: 'Track progress per topic',
-  essay_feedback: 'Get feedback on essays',
-}
 
 type StudyProfile = {
     full_name: string
@@ -74,7 +50,7 @@ export function StudyAccountSection({ initialProfile }: Props) {
     <div className="space-y-6">
       <SettingsSectionCard
         title="Account"
-        description="Your exam setup and when you joined."
+        description="Your exam setup at a glance and when you joined."
       >
         <SettingsStatTile label="Member since" value={createdLabel} />
 
@@ -112,135 +88,18 @@ export function StudyAccountSection({ initialProfile }: Props) {
             </ul>
           </SettingsFieldGroup>
 
-          {(initialProfile.stage || initialProfile.primary_goal) ? (
-            <div
-              className="space-y-3 rounded-2xl border px-4 py-4"
-              style={{
-                borderColor: 'var(--ec-border)',
-                background: 'var(--ec-surface-raised)',
-              }}
-            >
-              {initialProfile.stage && (
-                <div>
-                  <p className="label-overline mb-1">Study stage</p>
-                  <p className="text-body text-[var(--ec-text-primary)]">
-                    {stageLabel(initialProfile.stage, initialProfile.board)}
-                  </p>
-                </div>
-              )}
-              {initialProfile.primary_goal && (
-                <div>
-                  <p className="label-overline mb-1">Primary goal</p>
-                  <p className="text-body text-[var(--ec-text-primary)]">
-                    {GOAL_LABELS[initialProfile.primary_goal]}
-                  </p>
-                </div>
-              )}
-              <p className="text-caption">
-                Want to change these?{' '}
-                <Link
-                  href="/onboarding?rerun=1&next=/account/study"
-                  className="font-semibold text-[var(--ec-brand)] underline-offset-2 hover:underline"
-                >
-                  Re-run onboarding →
-                </Link>
-              </p>
-            </div>
-          ) : (
-            <p className="text-caption">
-              Want to set your study stage or goal?{' '}
-              <Link
-                href="/onboarding?rerun=1&next=/account/study"
-                className="font-semibold text-[var(--ec-brand)] underline-offset-2 hover:underline"
-              >
-                Re-run onboarding →
-              </Link>
-            </p>
-          )}
+          <Link
+            href="/account/exam"
+            className="inline-flex min-h-[44px] items-center gap-1 text-body font-semibold text-[var(--ec-brand)] underline-offset-2 hover:underline"
+          >
+            Change board, subjects, stage, or exam date in Exam setup
+            <ChevronRight className="h-4 w-4" aria-hidden />
+          </Link>
         </div>
       </SettingsSectionCard>
 
-      <StudySubjectsEditor initialProfile={initialProfile} />
       <AccountSecuritySection />
     </div>
-  )
-}
-
-function StudySubjectsEditor({
-  initialProfile,
-}: {
-  initialProfile: StudyProfile
-}) {
-  const router = useRouter()
-  const [board, setBoard] = useState(initialProfile.board)
-  const [level, setLevel] = useState(() =>
-    isIbBoard(initialProfile.board) ? IB_DIPLOMA_LEVEL : initialProfile.level
-  )
-  const [subjects, setSubjects] = useState<string[]>(initialProfile.subjects)
-  const [loading, setLoading] = useState(false)
-  const [errorMsg, setErrorMsg] = useState('')
-  const [successMsg, setSuccessMsg] = useState('')
-
-  async function handleSave(e: React.FormEvent) {
-    e.preventDefault()
-    setLoading(true)
-    setErrorMsg('')
-    setSuccessMsg('')
-
-    const res = await fetch('/api/account', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        full_name: initialProfile.full_name.trim() || null,
-        board,
-        level,
-        subjects,
-      }),
-    })
-
-    setLoading(false)
-    if (!res.ok) {
-      const data = await res.json().catch(() => ({}))
-      setErrorMsg(data?.error || 'Could not save your changes. Try again.')
-      return
-    }
-    setSuccessMsg('Subjects and level updated.')
-    router.refresh()
-  }
-
-  return (
-    <SettingsSectionCard
-      title="Subjects & level"
-      description="Changes what papers and progress we surface for you."
-    >
-      <form onSubmit={handleSave} className="space-y-6">
-        <ProfileFormFields
-          fullName={initialProfile.full_name}
-          setFullName={() => {}}
-          board={board}
-          setBoard={setBoard}
-          level={level}
-          setLevel={setLevel}
-          subjects={subjects}
-          setSubjects={setSubjects}
-          showFullName={false}
-        />
-
-        {errorMsg && <FormErrorAlert message={errorMsg} />}
-        {successMsg && <SuccessBox message={successMsg} />}
-
-        <Button
-          type="submit"
-          variant="primary"
-          size="md"
-          isLoading={loading}
-          loadingText="Saving..."
-          disabled={subjects.length === 0}
-        >
-          Save changes
-        </Button>
-      </form>
-    </SettingsSectionCard>
   )
 }
 

@@ -1,5 +1,5 @@
 ---
-title: Fixing “silly mistakes” on Cambridge past papers (they are usually patterns)
+title: Fixing silly mistakes on Cambridge past papers
 description: Why careless errors repeat, how to classify them in a mark log, and drills that cut lost marks without more content revision.
 date: 2026-04-10
 keywords: silly mistakes A-Level, exam careless errors, past paper mistakes, lose marks maths, revision mistakes

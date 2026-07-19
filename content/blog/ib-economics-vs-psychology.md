@@ -1,6 +1,6 @@
 ---
 title: IB Economics vs Psychology — Which Should You Take?
-description: IB Economics vs Psychology compared: quantitative diagrams vs essays and studies, the maths, difficulty, which suits which student, university fit, and how to decide.
+description: IB Economics vs Psychology compared: quantitative diagrams vs essays and studies, the maths, difficulty, which suits which student, university fit
 date: 2026-07-03
 keywords: IB economics vs psychology, IB psychology vs economics, IB economics or psychology, IB group 3 choice, IB essay subjects, choosing IB group 3
 category: subject-choice

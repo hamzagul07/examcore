@@ -20,7 +20,11 @@ import { ocrPdfToPages, ocrPdfToPlainText } from '@/lib/marking/pdf-pages'
 import { buildDetectionPrompt } from '@/lib/marking/prompts'
 import { reconcileDetectionWithQuestion } from '@/lib/marking/subject-inference'
 import { resolveMarkResultSubjectCode } from '@/lib/syllabi/attempts'
-import { buildPerPageInk, type PageInkSource } from '@/lib/marking/ink-per-page'
+import {
+  buildAllPageInk,
+  type PageInkSource,
+} from '@/lib/marking/ink-per-page'
+import { dropDuplicateAdjacentPages } from '@/lib/marking/dedupe-pages'
 import { extractMarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
 import { toMarkingAIResult, aggregateWholePaperResults } from '@/lib/marking/whole-paper'
 import { extractPracticeQuestionFromScript } from '@/lib/marking/practice-question-extract'
@@ -276,7 +280,11 @@ async function markOneSplitQuestion(
     // Per-question examiner-ink: match this question's marks against every page's
     // OCR lines — each mark's quoted working lands on the page it's actually on,
     // so ink maps to the right pages without splitting the OCR lines per question.
-    const inkPages = buildPerPageInk(ai, ctx.pageSources)
+    // Keeps every page (empty ink where none) so the full script re-renders.
+    const inkPages = buildAllPageInk(ai, ctx.pageSources)
+    const pagePhotoUrls = ctx.pageSources
+      .map((p) => p.photo_url)
+      .filter((u): u is string => !!u)
     const timeSpent = Math.max(1, Math.round((Date.now() - ctx.startedAt) / 1000))
     const { data: attempt } = await supabaseAdmin
       .from('attempts')
@@ -286,7 +294,10 @@ async function markOneSplitQuestion(
         user_id: ctx.userId,
         question_text: q.question_text || null,
         ocr_text: answerText,
-        ai_marking: markingResult,
+        ai_marking:
+          inkPages.length > 0
+            ? { ...markingResult, page_photo_urls: pagePhotoUrls, ink_pages: inkPages }
+            : markingResult,
         marks_earned: ai.marks_earned,
         total_marks: ai.total_marks,
         syllabus_tags: resolvedTags,
@@ -564,6 +575,19 @@ export async function runSingleQuestionMark(
     throw new Error('Upload at least one page of your answer.')
   }
 
+  // Drop adjacent near-duplicate pages (same sheet photographed/OCR'd twice) so
+  // we don't mark — or bill Gemini for — the same page again, and don't persist
+  // a duplicate page image.
+  const deduped = dropDuplicateAdjacentPages(pageOcrResults, (i, sim) =>
+    console.warn(
+      `[mark] dropped duplicate answer page ${i + 1} (similarity ${sim.toFixed(2)})`
+    )
+  )
+  if (deduped.length !== pageOcrResults.length) {
+    pageOcrResults.length = 0
+    pageOcrResults.push(...deduped)
+  }
+
   emit(onProgress, 'reading_work', 20)
 
   const ocrText = pageOcrResults
@@ -796,6 +820,17 @@ export async function runSingleQuestionMark(
     Math.round((Date.now() - startedAt) / 1000)
   )
 
+  // Persist the FULL multi-page script (every page photo + per-page examiner
+  // ink) inside ai_marking — the attempts row only stores page 1 in
+  // answer_photo_url, which silently dropped pages 2+ of multi-page uploads.
+  const aiResult = toMarkingAIResult(markingResult)
+  const answerPages = buildAllPageInk(
+    aiResult,
+    pageOcrResults
+      .filter((p) => p.photo_url)
+      .map((p) => ({ photo_url: p.photo_url as string, ocr_lines: p.lines }))
+  )
+
   const { data: attempt } = await supabaseAdmin
     .from('attempts')
     .insert({
@@ -804,7 +839,14 @@ export async function runSingleQuestionMark(
       user_id: userId,
       question_text: questionText || (markScheme?.question_text ?? null),
       ocr_text: ocrText,
-      ai_marking: markingResult,
+      ai_marking:
+        answerPages.length > 0
+          ? {
+              ...markingResult,
+              page_photo_urls: pagePhotoUrls,
+              ink_pages: answerPages,
+            }
+          : markingResult,
       marks_earned: markingResult.marks_earned,
       total_marks: markingResult.total_marks,
       syllabus_tags: resolvedTags,
@@ -833,14 +875,6 @@ export async function runSingleQuestionMark(
     }
   }
 
-  const aiResult = toMarkingAIResult(markingResult)
-  const inkPages = buildPerPageInk(
-    aiResult,
-    pageOcrResults
-      .filter((p) => p.photo_url)
-      .map((p) => ({ photo_url: p.photo_url!, ocr_lines: p.lines }))
-  )
-
   const markSchemeRubric = markScheme
     ? extractMarkSchemeRubric(markScheme.mark_scheme, markScheme.marking_type)
     : null
@@ -859,7 +893,7 @@ export async function runSingleQuestionMark(
     answer_photo_url: answerPhotoUrl,
     page_photo_urls: pagePhotoUrls.length ? pagePhotoUrls : undefined,
     line_references: lineReferences,
-    ink_pages: inkPages.length ? inkPages : undefined,
+    ink_pages: answerPages.length ? answerPages : undefined,
     error_classifications: errorClassifications,
     upload_mode: 'single_question',
     time_spent_seconds: timeSpentSeconds,

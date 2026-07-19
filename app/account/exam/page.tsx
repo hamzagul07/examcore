@@ -15,6 +15,8 @@ export default async function ExamSettingsPage() {
         subjects: profile.subjects,
         exam_date: profile.exam_date,
         target_grade: profile.target_grade,
+        stage: profile.stage,
+        primary_goal: profile.primary_goal,
       }}
     />
   )

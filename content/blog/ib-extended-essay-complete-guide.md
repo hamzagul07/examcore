@@ -1,5 +1,5 @@
 ---
-title: IB Extended Essay complete guide — criteria, structure & grade 7 tips
+title: IB Extended Essay guide — criteria, structure & tips
 description: Everything you need for the IB Extended Essay: research question, 4,000-word structure, criteria A–E, RPPF reflections, and common mistakes.
 date: 2026-06-25
 keywords: IB Extended Essay, IB EE guide, Extended Essay criteria, IB EE structure, how to write Extended Essay, IB EE grade 7

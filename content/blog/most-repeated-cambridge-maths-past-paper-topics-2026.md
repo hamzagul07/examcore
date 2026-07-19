@@ -1,5 +1,5 @@
 ---
-title: Most repeated Cambridge maths past paper topics for 2026 (A-Level, Further & IGCSE)
+title: Most repeated Cambridge maths past paper topics 2026
 description: High-frequency 9709, 9231 and 0580 topics from past papers 2019—2025 — differentiation, matrices, vectors, probability and how to mark M1/A1 properly.
 date: 2026-07-06
 category: revision

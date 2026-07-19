@@ -1,5 +1,5 @@
 ---
-title: Cambridge A-Level Chemistry (9701) — past papers, mark schemes & how to mark
+title: Cambridge A-Level Chemistry (9701) past papers
 description: Complete guide to 9701 Chemistry A-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 9701 past papers, A-Level chemistry marking, Cambridge chemistry mark scheme, 9701 revision

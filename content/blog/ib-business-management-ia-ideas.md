@@ -1,6 +1,6 @@
 ---
 title: IB Business Management IA Ideas — Research Questions
-description: How to choose a strong IB Business Management IA — forward-looking research questions about a real business decision, example RQs across HR, finance, marketing and operations, and how to frame them.
+description: How to choose a strong IB Business Management IA — forward-looking research questions about a real business decision, example RQs across HR, finance
 date: 2026-07-03
 keywords: IB business management IA ideas, IB BM IA research questions, IB business management IA topics, IB business internal assessment ideas, business management IA examples, BM IA
 category: study-skills

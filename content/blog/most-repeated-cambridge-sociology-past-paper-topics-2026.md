@@ -1,5 +1,5 @@
 ---
-title: Most repeated Cambridge sociology past paper topics for 2026 (A-Level)
+title: Most repeated Cambridge sociology past paper topics 2026
 description: High-frequency 9699 A-Level Sociology topics from past papers 2019—2025 — theorists, application, evaluation and research methods that repeat every series.
 date: 2026-07-06
 category: revision

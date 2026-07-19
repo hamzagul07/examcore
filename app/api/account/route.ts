@@ -8,6 +8,7 @@ import {
   isSubjectValidForProfile,
 } from '@/lib/profile-options'
 import { isValidTargetGrade } from '@/lib/target-grade'
+import type { PrimaryGoal, UserStage } from '@/lib/database.types'
 
 type Body = {
   full_name?: string | null
@@ -16,7 +17,16 @@ type Body = {
   subjects?: string[]
   exam_date?: string | null
   target_grade?: string | null
+  stage?: UserStage | null
+  primary_goal?: PrimaryGoal | null
 }
+
+const VALID_STAGES = new Set<UserStage>(['as_level', 'a2_level', 'other'])
+const VALID_GOALS = new Set<PrimaryGoal>([
+  'mark_papers',
+  'track_progress',
+  'essay_feedback',
+])
 
 export async function POST(request: NextRequest) {
   const { supabase, user, pendingCookies } = await authenticateRouteRequest(request)
@@ -61,6 +71,12 @@ export async function POST(request: NextRequest) {
       { status: 400 }
     )
   }
+  if (subjects.length > 4) {
+    return NextResponse.json(
+      { error: 'Pick up to four subjects.' },
+      { status: 400 }
+    )
+  }
   for (const s of subjects) {
     if (!isSubjectValidForProfile(board, level, s)) {
       return NextResponse.json(
@@ -70,48 +86,73 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  const fullName =
-    typeof body.full_name === 'string' && body.full_name.trim()
-      ? body.full_name.trim().slice(0, 80)
-      : null
-
-  let examDate: string | null = null
-  if (body.exam_date === null || body.exam_date === '') {
-    examDate = null
-  } else if (typeof body.exam_date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(body.exam_date)) {
-    examDate = body.exam_date
+  // Only fields present in the request body are written — an omitted key keeps
+  // its stored value. (Always writing exam_date used to wipe the user's exam
+  // date whenever another settings form saved.)
+  const patch: Record<string, unknown> = {
+    id: user.id,
+    board,
+    level,
+    subjects,
+    onboarded: true,
+    updated_at: new Date().toISOString(),
   }
 
-  let targetGrade: string | null = null
-  if (typeof body.target_grade === 'string' && body.target_grade.trim()) {
-    const g = body.target_grade.trim()
-    if (!isValidTargetGrade(isIbBoard(board), g)) {
-      return NextResponse.json(
-        { error: 'Pick a valid target grade for your board.' },
-        { status: 400 }
-      )
+  if ('full_name' in body) {
+    patch.full_name =
+      typeof body.full_name === 'string' && body.full_name.trim()
+        ? body.full_name.trim().slice(0, 80)
+        : null
+  }
+
+  if ('exam_date' in body) {
+    if (body.exam_date === null || body.exam_date === '') {
+      patch.exam_date = null
+    } else if (
+      typeof body.exam_date === 'string' &&
+      /^\d{4}-\d{2}-\d{2}$/.test(body.exam_date)
+    ) {
+      patch.exam_date = body.exam_date
     }
-    targetGrade = g
+  }
+
+  if ('stage' in body) {
+    if (body.stage !== null && !VALID_STAGES.has(body.stage as UserStage)) {
+      return NextResponse.json({ error: 'Pick a valid study stage.' }, { status: 400 })
+    }
+    patch.stage = body.stage
+  }
+
+  if ('primary_goal' in body) {
+    if (
+      body.primary_goal !== null &&
+      !VALID_GOALS.has(body.primary_goal as PrimaryGoal)
+    ) {
+      return NextResponse.json({ error: 'Pick a valid goal.' }, { status: 400 })
+    }
+    patch.primary_goal = body.primary_goal
+  }
+
+  if ('target_grade' in body) {
+    if (body.target_grade === null || body.target_grade === '') {
+      patch.target_grade = null
+    } else if (typeof body.target_grade === 'string') {
+      const g = body.target_grade.trim()
+      if (!isValidTargetGrade(isIbBoard(board), g)) {
+        return NextResponse.json(
+          { error: 'Pick a valid target grade for your board.' },
+          { status: 400 }
+        )
+      }
+      patch.target_grade = g
+    }
   }
 
   // Account edits should not silently un-onboard a user. Preserve onboarded=true
   // (which is also our gate for /onboarding redirects).
   const { error } = await supabase
     .from('user_profiles')
-    .upsert(
-      {
-        id: user.id,
-        full_name: fullName,
-        board,
-        level,
-        subjects,
-        exam_date: examDate,
-        target_grade: targetGrade,
-        onboarded: true,
-        updated_at: new Date().toISOString(),
-      },
-      { onConflict: 'id' }
-    )
+    .upsert(patch, { onConflict: 'id' })
 
   if (error) {
     console.error('[account] upsert failed:', error)

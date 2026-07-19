@@ -1,6 +1,6 @@
 ---
 title: IB Chemistry Paper 2 — How to Earn Full Marks (Method & ECF)
-description: A step-by-step method for IB Chemistry Paper 2: how method and accuracy marks work, using error-carried-forward, showing working, units and significant figures, and answering "state and explain" for full marks.
+description: A step-by-step method for IB Chemistry Paper 2: how method and accuracy marks work, using error-carried-forward, showing working
 date: 2026-07-03
 keywords: IB chemistry paper 2, IB chemistry paper 2 technique, IB chemistry method marks, IB chemistry ECF, IB chemistry calculations, IB chemistry structured questions
 category: exam-technique

@@ -1,5 +1,5 @@
 ---
-title: Cambridge grade inflation myths — why mark schemes matter more than anecdotes
+title: Cambridge grade inflation myths vs mark schemes
 description: Viral grade stories vs how Cambridge awards marks — use schemes and examiner reports, not corridor rumours, to predict your performance.
 date: 2026-06-13
 category: editorial

@@ -1,5 +1,5 @@
 ---
-title: IB TOK exhibition guide — prompts, objects & the 950-word commentary
+title: IB TOK exhibition guide — prompts, objects & commentary
 description: How to choose one of the 35 TOK exhibition prompts, pick three objects, and write commentary examiners reward — criteria, word limit, and common mistakes.
 date: 2026-06-22
 category: revision

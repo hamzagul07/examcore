@@ -21,11 +21,11 @@ export function GuestMarkNotice({ className = '' }: Props) {
     >
       Marking as a guest — up to {ANON_DAILY_MARK_LIMIT} marks per day from this network.
       Cambridge and IB Diploma supported.{' '}
-      <Link href={buildMarketingSignUpHref()} className="ec-link inline-flex min-h-[44px] items-center">
+      <Link href={buildMarketingSignUpHref()} className="ec-link ec-link-touch">
         Create a free account
       </Link>{' '}
       for your own monthly allowance.{' '}
-      <Link href="/faq" className="ec-link inline-flex min-h-[44px] items-center">
+      <Link href="/faq" className="ec-link ec-link-touch">
         FAQ
       </Link>
     </p>

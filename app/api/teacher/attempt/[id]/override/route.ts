@@ -150,7 +150,26 @@ export async function GET(
       earned: boolean
       reasoning?: string
     }>
+    ink_pages?: Array<{ photo_url: string; line_references?: unknown[] }>
   } | null
+
+  // The full multi-page script (all page photos + per-page ink) lives in
+  // ai_marking.ink_pages — sign each so the reviewer sees every page, not just
+  // page 1 (answer_photo_url).
+  const signedInkPages = Array.isArray(aiMarking?.ink_pages)
+    ? (
+        await Promise.all(
+          aiMarking.ink_pages.map(async (p) => {
+            const url = await signAnswerPhotoUrl(p.photo_url)
+            return url
+              ? { photo_url: url, line_references: p.line_references ?? [] }
+              : null
+          })
+        )
+      ).filter(
+        (p): p is { photo_url: string; line_references: unknown[] } => !!p
+      )
+    : []
 
   return NextResponse.json({
     attempt: {
@@ -158,6 +177,7 @@ export async function GET(
       answer_photo_url: attempt.answer_photo_url
         ? await signAnswerPhotoUrl(attempt.answer_photo_url)
         : attempt.answer_photo_url,
+      ink_pages: signedInkPages,
       marks_awarded: aiMarking?.marks_awarded ?? [],
       user_profiles: profile,
     },

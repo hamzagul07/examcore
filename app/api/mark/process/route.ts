@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { GEMINI_FLASH_MODEL, generateGeminiText, generateGeminiWithContents } from '@/lib/ai/gemini-text'
 import { geminiBackendLabel } from '@/lib/ai/gemini-config'
-import { authenticateRouteRequest } from '@/lib/supabase-server'
+import {
+  authenticateRouteRequest,
+  warnIfAuthDropped,
+} from '@/lib/supabase-server'
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import type { OcrLine } from '@/lib/examiner-ink-positioning'
 import { runSingleQuestionMark } from '@/lib/marking/single-question-pipeline'
@@ -96,6 +99,7 @@ export async function POST(request: NextRequest) {
     // saving logged-in users' attempts with user_id = null (no progress).
     const { user } = await authenticateRouteRequest(request)
     const userId = user?.id || null
+    warnIfAuthDropped(request, userId, 'mark/process')
 
     const ip = clientIp(request)
     const rateCheck = await checkAnonymousMarkRateLimit(supabaseAdmin, ip, userId)
@@ -191,6 +195,17 @@ export async function POST(request: NextRequest) {
       ibMarksRaw && Number.isFinite(Number(ibMarksRaw)) && Number(ibMarksRaw) > 0
         ? Math.round(Number(ibMarksRaw))
         : null
+    // General per-question total, sent by the upload form's "Total marks" field
+    // for any single-question mark (not just IB points questions).
+    const totalMarksRaw = (
+      formData.get('total_marks_available') as string | null
+    )?.trim()
+    const totalMarksAvailable =
+      totalMarksRaw &&
+      Number.isFinite(Number(totalMarksRaw)) &&
+      Number(totalMarksRaw) > 0
+        ? Math.round(Number(totalMarksRaw))
+        : null
     const manualSubjectCode = manualPaperCode?.split('/')[0]
     const streamRequested = formData.get('stream') === '1'
 
@@ -254,9 +269,10 @@ export async function POST(request: NextRequest) {
             ? ibLevel
             : null,
         questionMarks:
-          markIntent === 'practice_question' || markIntent === 'combined_script'
+          (markIntent === 'practice_question' ||
+          markIntent === 'combined_script'
             ? ibMarksAvailable
-            : null,
+            : null) ?? totalMarksAvailable,
         userId,
         isPaid,
         enableRewrite,

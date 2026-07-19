@@ -1,6 +1,6 @@
 ---
 title: IB Biology 2025 Syllabus — What Changed & What It Means
-description: The IB Biology syllabus (first exams 2025) explained: the new theme-based framework built on big ideas, options removed, fewer exam papers, and what it means for your revision.
+description: The IB Biology syllabus (first exams 2025) explained: the new theme-based framework built on big ideas, options removed, fewer exam papers
 date: 2026-07-03
 keywords: IB biology 2025 syllabus, IB biology new syllabus, IB biology syllabus changes, IB biology themes, IB biology first exams 2025, IB biology syllabus 2025
 category: subject-choice

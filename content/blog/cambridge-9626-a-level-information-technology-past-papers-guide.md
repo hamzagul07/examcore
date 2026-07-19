@@ -1,5 +1,5 @@
 ---
-title: Cambridge A-Level Information Technology (9626) — past papers, mark schemes & how to revise
+title: Cambridge A-Level Information Technology (9626) past papers
 description: Revise Cambridge A-Level Information Technology (9626) with past papers — paper structure, how the mark scheme works, common mistakes, and a revision plan.
 date: 2026-06-19
 keywords: 9626 past papers, A-Level Information Technology past papers, 9626 information-technology mark scheme, Cambridge Information Technology 9626, 9626 revision

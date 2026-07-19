@@ -1,5 +1,5 @@
 ---
-title: Cambridge A-Level Computer Science (9618) — past papers, mark schemes & how to mark
+title: Cambridge A-Level Computer Science (9618) past papers
 description: Complete guide to 9618 Computer Science A-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 9618 past papers, A-Level computer science Cambridge, computing past papers, 9618 marking

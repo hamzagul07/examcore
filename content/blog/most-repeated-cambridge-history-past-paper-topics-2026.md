@@ -1,5 +1,5 @@
 ---
-title: Most repeated Cambridge history past paper topics for 2026 (A-Level)
+title: Most repeated Cambridge history past paper topics 2026
 description: High-frequency 9489 A-Level History topics from past papers 2019—2025 — source skills, essay themes, and a marking-first revision loop.
 date: 2026-07-06
 category: revision

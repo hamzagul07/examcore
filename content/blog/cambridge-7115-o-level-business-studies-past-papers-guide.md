@@ -1,5 +1,5 @@
 ---
-title: Cambridge O-Level Business Studies (7115) — past papers, mark schemes & how to mark
+title: Cambridge O-Level Business Studies (7115) past papers
 description: Complete guide to 7115 Business Studies O-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 7115 past papers, O-Level business studies, Cambridge business past papers, 7115 revision

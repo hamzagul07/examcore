@@ -1,6 +1,6 @@
 ---
 title: IB Economics Paper 1 — How to Structure a Top-Band Essay
-description: A step-by-step method for IB Economics Paper 1: how the part (a) /10 and part (b) /15 markbands work, structuring definitions, diagrams, analysis and evaluation, and the real-world example that unlocks the top band.
+description: A step-by-step method for IB Economics Paper 1: how the part (a) /10 and part (b) /15 markbands work, structuring definitions, diagrams
 date: 2026-07-03
 keywords: IB economics paper 1, IB economics paper 1 structure, IB economics essay, IB economics evaluation, IB economics 15 mark question, IB economics part b
 category: exam-technique

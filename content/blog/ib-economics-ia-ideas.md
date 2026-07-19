@@ -1,6 +1,6 @@
 ---
 title: IB Economics IA Ideas — Article & Commentary Topics
-description: How to choose strong articles and concepts for the IB Economics IA portfolio — example article topics and diagram pairings across microeconomics, macroeconomics and the global economy.
+description: How to choose strong articles and concepts for the IB Economics IA portfolio — example article topics and diagram pairings across microeconomics
 date: 2026-07-03
 keywords: IB economics IA ideas, IB economics IA articles, IB economics commentary topics, IB economics internal assessment ideas, economics IA examples, IB economics portfolio
 category: study-skills

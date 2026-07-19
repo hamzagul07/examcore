@@ -1,6 +1,6 @@
 ---
 title: IB Economics vs Business Management — Which to Take?
-description: IB Economics vs Business Management compared: how theoretical vs applied they are, the maths/evaluation demands, difficulty, which suits which student, university fit, and how to decide.
+description: IB Economics vs Business Management compared: how theoretical vs applied they are, the maths/evaluation demands, difficulty, which suits which student
 date: 2026-07-03
 keywords: IB economics vs business management, IB business management vs economics, IB economics or business, IB group 3 choice, IB economics business degree, choosing IB group 3
 category: subject-choice

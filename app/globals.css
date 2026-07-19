@@ -44,8 +44,11 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
+  /* Mapped straight to ec tokens: a root-level `--muted` alias would collide
+     with the margin-notes `--muted` (a TEXT color) and render those labels
+     surface-on-surface (invisible) in both themes. */
+  --color-muted: var(--ec-surface);
+  --color-muted-foreground: var(--ec-text-secondary);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
@@ -120,7 +123,6 @@
   --primary-foreground: var(--ec-on-brand-text);
   --secondary: var(--ec-surface);
   --secondary-foreground: var(--ec-text-primary);
-  --muted: var(--ec-surface);
   --muted-foreground: var(--ec-text-secondary);
   --accent: var(--ec-surface-raised);
   --accent-foreground: var(--ec-text-primary);
@@ -148,6 +150,11 @@
   html {
     background: var(--ec-canvas);
     @apply font-sans;
+    /* Theme native UI: checkboxes/radios/progress pick up the brand green,
+       and the document scrollbar tones down to match each theme. */
+    accent-color: var(--ec-brand);
+    scrollbar-color: color-mix(in srgb, var(--ec-text-faint) 55%, transparent)
+      transparent;
   }
 
   body {
@@ -211,6 +218,13 @@
 [data-ec-theme='zen'] .text-violet-300,
 [data-ec-theme='zen'] .text-violet-400 {
   color: var(--ec-chip-accent-text) !important;
+}
+
+/* Theme toggle cross-fade (View Transitions API — see ThemeProvider). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hero-bg,

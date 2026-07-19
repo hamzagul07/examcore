@@ -1,5 +1,5 @@
 ---
-title: Cambridge O-Level Mathematics (4024) — past papers, mark schemes & how to mark
+title: Cambridge O-Level Mathematics (4024) past papers
 description: Complete guide to 4024 Mathematics O-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 4024 past papers, O-Level maths Cambridge, O-Level mathematics marking, Cambridge O-Level past papers

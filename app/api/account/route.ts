@@ -7,6 +7,7 @@ import {
   isIbBoard,
   isSubjectValidForProfile,
 } from '@/lib/profile-options'
+import { isValidTargetGrade } from '@/lib/target-grade'
 
 type Body = {
   full_name?: string | null
@@ -14,6 +15,7 @@ type Body = {
   level?: string
   subjects?: string[]
   exam_date?: string | null
+  target_grade?: string | null
 }
 
 export async function POST(request: NextRequest) {
@@ -80,6 +82,18 @@ export async function POST(request: NextRequest) {
     examDate = body.exam_date
   }
 
+  let targetGrade: string | null = null
+  if (typeof body.target_grade === 'string' && body.target_grade.trim()) {
+    const g = body.target_grade.trim()
+    if (!isValidTargetGrade(isIbBoard(board), g)) {
+      return NextResponse.json(
+        { error: 'Pick a valid target grade for your board.' },
+        { status: 400 }
+      )
+    }
+    targetGrade = g
+  }
+
   // Account edits should not silently un-onboard a user. Preserve onboarded=true
   // (which is also our gate for /onboarding redirects).
   const { error } = await supabase
@@ -92,6 +106,7 @@ export async function POST(request: NextRequest) {
         level,
         subjects,
         exam_date: examDate,
+        target_grade: targetGrade,
         onboarded: true,
         updated_at: new Date().toISOString(),
       },

@@ -92,7 +92,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
 
   const { data: profile } = await supabase
     .from('user_profiles')
-    .select('full_name, subjects, level, board')
+    .select('full_name, subjects, level, board, target_grade')
     .eq('id', user.id)
     .maybeSingle()
 
@@ -281,7 +281,12 @@ export default async function ProgressPage({ searchParams }: PageProps) {
         totalTopics={totalTopics}
       />
       {!isIbSubject && (
-        <GradeTrajectory attempts={attempts} prediction={prediction} ibMode={isIbSubject} />
+        <GradeTrajectory
+          attempts={attempts}
+          prediction={prediction}
+          ibMode={isIbSubject}
+          targetGrade={(profile?.target_grade as string | null) ?? null}
+        />
       )}
       <MasteryMatrix
         parentMasteries={parentMasteries}

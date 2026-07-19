@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/Button'
 import { ErrorBox, SuccessBox } from '@/components/AuthFormBits'
 import { suggestedExamDates } from '@/lib/dashboard/exam-date'
+import { isIbBoard } from '@/lib/profile-options'
+import { targetGradeOptions } from '@/lib/target-grade'
 import {
   SettingsFieldGroup,
   SettingsSectionCard,
@@ -16,17 +18,28 @@ type Props = {
     level: string
     subjects: string[]
     exam_date: string
+    target_grade: string
   }
 }
 
 export function ExamSection({ initialProfile }: Props) {
   const [examDate, setExamDate] = useState(initialProfile.exam_date)
+  const [targetGrade, setTargetGrade] = useState(initialProfile.target_grade)
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
   const suggestions = suggestedExamDates()
+  const gradeOptions = targetGradeOptions(isIbBoard(initialProfile.board))
 
-  async function save(nextDate: string | null) {
+  // One save path for both fields — every write sends the current value of each
+  // so changing one never clobbers the other.
+  async function save(
+    next: { examDate?: string | null; targetGrade?: string | null },
+    successText: string
+  ) {
+    const nextDate = next.examDate !== undefined ? next.examDate : examDate || null
+    const nextGrade =
+      next.targetGrade !== undefined ? next.targetGrade : targetGrade || null
     setLoading(true)
     setErrorMsg('')
     setSuccessMsg('')
@@ -40,30 +53,61 @@ export function ExamSection({ initialProfile }: Props) {
         level: initialProfile.level,
         subjects: initialProfile.subjects,
         exam_date: nextDate,
+        target_grade: nextGrade,
       }),
     })
 
     setLoading(false)
     if (!res.ok) {
       const data = await res.json().catch(() => ({}))
-      setErrorMsg(data?.error || 'Could not save your exam date. Try again.')
+      setErrorMsg(data?.error || 'Could not save your changes. Try again.')
       return false
     }
     setExamDate(nextDate ?? '')
-    setSuccessMsg(nextDate ? 'Exam date saved.' : 'Exam date cleared.')
+    setTargetGrade(nextGrade ?? '')
+    setSuccessMsg(successText)
     return true
   }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    await save(examDate || null)
+    await save({ examDate: examDate || null }, examDate ? 'Exam date saved.' : 'Exam date cleared.')
   }
 
   async function handleClear() {
-    await save(null)
+    await save({ examDate: null }, 'Exam date cleared.')
+  }
+
+  async function handleTargetGrade(grade: string) {
+    setTargetGrade(grade)
+    await save(
+      { targetGrade: grade || null },
+      grade ? `Target grade set to ${grade}.` : 'Target grade cleared.'
+    )
   }
 
   return (
+    <>
+    <SettingsSectionCard
+      title="Target grade"
+      description="The grade you're aiming for. Powers your on-track trajectory on the progress dashboard."
+    >
+      <SettingsFieldGroup label="Target grade">
+        <select
+          value={targetGrade}
+          disabled={loading}
+          onChange={(e) => void handleTargetGrade(e.target.value)}
+          className="ec-input"
+        >
+          <option value="">No target set</option>
+          {gradeOptions.map((g) => (
+            <option key={g} value={g}>
+              {g}
+            </option>
+          ))}
+        </select>
+      </SettingsFieldGroup>
+    </SettingsSectionCard>
     <SettingsSectionCard
       title="Exam date"
       description="This powers your countdown on the dashboard home page."
@@ -125,5 +169,6 @@ export function ExamSection({ initialProfile }: Props) {
         </div>
       </form>
     </SettingsSectionCard>
+    </>
   )
 }

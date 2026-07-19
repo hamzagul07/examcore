@@ -55,6 +55,7 @@ import type {
   QuestionMarkResult,
   ResolvedIbComponent,
 } from '@/lib/marking/types'
+import { coerceMarkingStyle } from '@/lib/marking/types'
 import { withGeminiRetry } from '@/lib/marking/gemini-retry'
 import { buildExtractionPrompt } from '@/lib/marking/extraction-prompts'
 import type { ExtractionMode } from '@/lib/marking/storage-extract'
@@ -640,11 +641,13 @@ export async function markSingleQuestion(params: {
   }
 
   // The model echoes marking_style in its JSON, but a truncated response can
-  // drop it. Fall back to the style we actually marked with so downstream UI
-  // never sees an undefined style.
-  if (typeof markingResult.marking_style !== 'string' || !markingResult.marking_style) {
-    markingResult.marking_style = markingStyle
-  }
+  // drop it and past responses have hallucinated off-enum labels (e.g.
+  // `level_based`). Coerce back to a known style, falling back to the style we
+  // actually marked with so downstream UI never sees an undefined/invalid style.
+  markingResult.marking_style = coerceMarkingStyle(
+    markingResult.marking_style,
+    markingStyle
+  )
 
   const lineReferences = buildLineReferences(
     Array.isArray(markingResult?.marks_awarded)

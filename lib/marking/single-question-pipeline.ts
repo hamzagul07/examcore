@@ -29,11 +29,11 @@ import { extractStatedTotalMarks } from '@/lib/marking/question-marks'
 import type {
   MarkIntent,
   MarkingMode,
-  MarkingStyle,
   MarkSchemeRow,
   QuestionMarkResult,
   ResolvedIbComponent,
 } from '@/lib/marking/types'
+import { coerceMarkingStyle } from '@/lib/marking/types'
 import {
   resolveComponentForMarking,
   splitLegacyIbCode,
@@ -283,7 +283,7 @@ async function markOneSplitQuestion(
         question_number: q.question_number,
         marks_earned: ai.marks_earned,
         total_marks: ai.total_marks,
-        marking_style: (ai.marking_style as MarkingStyle) ?? 'point_based',
+        marking_style: coerceMarkingStyle(ai.marking_style, 'point_based'),
         summary: ai.summary,
         ai_marking: ai,
         status: 'attempted',

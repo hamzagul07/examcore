@@ -152,6 +152,15 @@ export type MarkingAIResult = {
     correct_answer: string
     correct: boolean
   }>
+  /**
+   * Premium: examiner rewrite of the student's own answer into a full-marks
+   * response, with each addition annotated with the mark it earns. Present only
+   * for paid users on a single question that lost marks.
+   */
+  full_marks_rewrite?: {
+    rewritten_answer: string
+    annotations: Array<{ text: string; earns: string }>
+  }
 }
 
 export type QuestionMarkStatus =

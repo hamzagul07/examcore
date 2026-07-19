@@ -65,3 +65,27 @@ export function getNextGrade(current: GradeLetter): GradeLetter | null {
   if (idx === -1 || idx === order.length - 1) return null
   return order[idx + 1]
 }
+
+/**
+ * How many more marks on THIS question would lift the student to the next grade
+ * band, and which grade that is. Powers the "2 marks from an A*" trajectory line.
+ * Returns null when the total is unknown, they're already at the top band, or
+ * they're already inside the next band (nothing to chase). Percentage-based, so
+ * it works across /50 and /75 papers — see the boundary caveat at the top.
+ */
+export function marksToNextGrade(
+  marksEarned: number,
+  totalMarks: number
+): { nextGrade: GradeLetter; marksNeeded: number } | null {
+  if (!(totalMarks > 0) || marksEarned >= totalMarks) return null
+  const pct = (marksEarned / totalMarks) * 100
+  const current = predictGradeFromPercentage(pct).grade
+  const next = getNextGrade(current)
+  if (!next) return null
+  const nextBoundary = GRADE_BOUNDARIES.find((b) => b.grade === next)
+  if (!nextBoundary) return null
+  const marksNeeded =
+    Math.ceil((nextBoundary.percentage / 100) * totalMarks) - marksEarned
+  if (marksNeeded <= 0 || marksNeeded > totalMarks - marksEarned) return null
+  return { nextGrade: next, marksNeeded }
+}

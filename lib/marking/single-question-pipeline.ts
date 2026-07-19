@@ -92,12 +92,32 @@ export type SingleQuestionMarkInput = {
   /** When `practice_question`, skips past-paper detection and uses subject conventions. */
   markIntent?: MarkIntent
   practiceSubjectCode?: string | null
+  /**
+   * Subject the user selected in the UI, forwarded even when they didn't pick a
+   * full paper (year/session/component). Used only as a last-resort tagging
+   * subject when no paper code is detected — so freeform "mark my work" attempts
+   * still resolve a subject and feed mastery/review instead of saving untagged.
+   */
+  fallbackSubjectCode?: string | null
   /** M1: IB selection axes. When set + catalogued, drives catalog-based marking. */
   ibComponentKey?: string | null
   ibLevel?: string | null
   /** Optional student-supplied total marks for this question. */
   questionMarks?: number | null
   userId: string | null
+  /**
+   * Paid entitlement for this mark. Drives premium marking depth — currently the
+   * second-opinion verify pass runs on the FULL script for paid users, where free
+   * users skip it on large multi-question batches to stay under the function
+   * timeout. Defaults false (free/guest).
+   */
+  isPaid?: boolean
+  /**
+   * Premium: generate the full-marks rewrite (single-question path only). Gated
+   * separately from `isPaid` so it can be re-tiered (e.g. Scholar+) without
+   * changing the verify-depth behaviour. Defaults false.
+   */
+  enableRewrite?: boolean
   startedAt?: number
   onProgress?: (event: MarkProgressEvent) => void
 }
@@ -324,6 +344,7 @@ async function markSplitQuestions(params: {
   practiceCode: string
   resolvedIb: ResolvedIbComponent | null
   userId: string | null
+  isPaid: boolean
   answerPhotoUrl: string | null
   pagePhotoUrls: string[]
   startedAt: number
@@ -336,6 +357,7 @@ async function markSplitQuestions(params: {
     practiceCode,
     resolvedIb,
     userId,
+    isPaid,
     answerPhotoUrl,
     pagePhotoUrls,
     startedAt,
@@ -363,8 +385,11 @@ async function markSplitQuestions(params: {
     total_questions: capped.length,
   })
 
-  // Verify pass only for small batches (timeout guard — see VERIFY_MAX_BATCH).
-  const verify = capped.length <= VERIFY_MAX_BATCH
+  // Verify pass: free/guest scripts skip it above VERIFY_MAX_BATCH to stay under
+  // the function timeout. Paid users get the second-opinion pass on the FULL
+  // script (premium marking depth) — the route runs on Fluid Compute with a much
+  // larger maxDuration, so the extra Pro calls have headroom.
+  const verify = isPaid || capped.length <= VERIFY_MAX_BATCH
   if (!verify) {
     console.warn(
       `[mark] ${capped.length} questions > ${VERIFY_MAX_BATCH}; skipping verify pass to stay under the function timeout`
@@ -464,10 +489,13 @@ export async function runSingleQuestionMark(
     manualQuestionNumber,
     markIntent = 'past_paper',
     practiceSubjectCode,
+    fallbackSubjectCode,
     ibComponentKey,
     ibLevel,
     questionMarks,
     userId,
+    isPaid = false,
+    enableRewrite = false,
     startedAt = Date.now(),
     onProgress,
   } = input
@@ -596,6 +624,7 @@ export async function runSingleQuestionMark(
           practiceCode,
           resolvedIb: sharedIb,
           userId,
+          isPaid,
           answerPhotoUrl,
           pagePhotoUrls,
           startedAt,
@@ -738,10 +767,15 @@ export async function runSingleQuestionMark(
       : detectedPaper?.paper_code,
     paperSession: detectedPaper?.paper_session,
     questionNumber: detectedPaper?.question_number,
+    // Falls back to the user's selected subject for tagging when no paper was
+    // detected — keeps freeform marks resolvable for mastery/review.
+    fallbackSubjectCode: manualSubjectCode ?? fallbackSubjectCode ?? null,
     resolvedIb,
     // User-entered marks win; otherwise read the total stated in the question
     // text (deterministic) before falling back to model inference in the marker.
     questionTotalMarks: questionMarks ?? extractStatedTotalMarks(questionText),
+    // Premium: full-marks rewrite on the focused single-question path only.
+    rewrite: enableRewrite,
   })
 
   if (resolvedTags.length > 0 || detectedPaper || hasManualSelection) {

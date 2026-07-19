@@ -7,6 +7,7 @@ import {
   buildIbTopicPracticePrompt,
   ibPracticeCriteriaSummary,
 } from '@/lib/ib/practice-prompts'
+import { getOrCreateIbPracticeQuestion } from '@/lib/ib/generate-practice-question'
 
 export async function GET(request: NextRequest) {
   const params = new URL(request.url).searchParams
@@ -26,15 +27,21 @@ export async function GET(request: NextRequest) {
 
     if (isIbSubjectCode(subjectCode)) {
       const profile = getIbMarkingProfile(subjectCode)
+      // Hand the student a real, generated exam question for this topic (cached).
+      // Falls back to the framing stub if generation is unavailable — no regression.
+      const generated = await getOrCreateIbPracticeQuestion(subjectCode, topicCode)
       return NextResponse.json({
         found: false,
         ib_practice: true,
+        ib_generated: !!generated,
         subject_code: subjectCode,
         topic_code: topicCode,
         topic_name: topicName,
-        practice_prompt: buildIbTopicPracticePrompt(subjectCode, topicCode),
+        practice_prompt:
+          generated?.question_text ??
+          buildIbTopicPracticePrompt(subjectCode, topicCode),
         criteria_summary: ibPracticeCriteriaSummary(subjectCode),
-        total_marks: profile?.practiceMaxMarks ?? null,
+        total_marks: generated?.total_marks ?? profile?.practiceMaxMarks ?? null,
       })
     }
 

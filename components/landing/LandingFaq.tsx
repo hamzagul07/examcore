@@ -16,18 +16,27 @@ export function LandingFaq() {
         <div className="ms-faq-list landing-faq">
           {LANDING_PAGE_FAQ.map((item, i) => {
             const open = openIndex === i
+            const questionId = `landing-faq-q-${i}`
+            const answerId = `landing-faq-a-${i}`
             return (
               <div key={item.q} className="ms-faq-item">
                 <button
                   type="button"
+                  id={questionId}
                   className="ms-faq-q"
                   aria-expanded={open}
+                  aria-controls={answerId}
                   onClick={() => setOpenIndex(open ? -1 : i)}
                 >
                   <span>{item.q}</span>
-                  <span className="ms-pm">{open ? '−' : '+'}</span>
+                  <span className="ms-pm" aria-hidden="true">
+                    {open ? '−' : '+'}
+                  </span>
                 </button>
                 <div
+                  id={answerId}
+                  role="region"
+                  aria-labelledby={questionId}
                   className="ms-faq-a"
                   style={{ maxHeight: open ? '320px' : '0px' }}
                   hidden={!open}

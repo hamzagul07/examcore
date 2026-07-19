@@ -80,7 +80,12 @@ export async function generateIbPracticeQuestion(
       {
         task: 'structured-extraction',
         model: GEMINI_PRO_MODEL,
-        maxOutputTokens: 900,
+        // Gemini Pro spends output budget on internal reasoning before it emits
+        // the JSON, so a tight cap truncates the question mid-sentence (extractJSON
+        // then salvages a partial string). The marking path hits the same trap and
+        // budgets 10k+ for it (maxTokensForStyle) — a single question needs far
+        // less text but the same thinking headroom, so give it generous room.
+        maxOutputTokens: 8000,
         temperature: 0.5,
       }
     )

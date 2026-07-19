@@ -42,6 +42,7 @@ import {
   questionPhotoOcrPrompt,
 } from '@/lib/marking/ocr'
 import { buildDetectionPrompt, buildVerifyMarkingPrompt } from '@/lib/marking/prompts'
+import { generateFullMarksRewrite } from '@/lib/marking/full-marks-rewrite'
 import { inferSubjectFromQuestionText } from '@/lib/marking/subject-inference'
 import { toMarkingAIResult } from '@/lib/marking/whole-paper'
 import { buildPerPageInk } from '@/lib/marking/ink-per-page'
@@ -55,6 +56,7 @@ import type {
   QuestionMarkResult,
   ResolvedIbComponent,
 } from '@/lib/marking/types'
+import { coerceMarkingStyle } from '@/lib/marking/types'
 import { withGeminiRetry } from '@/lib/marking/gemini-retry'
 import { buildExtractionPrompt } from '@/lib/marking/extraction-prompts'
 import type { ExtractionMode } from '@/lib/marking/storage-extract'
@@ -421,6 +423,12 @@ export async function markSingleQuestion(params: {
   paperCode?: string
   paperSession?: string
   questionNumber?: string
+  /**
+   * Subject to tag against when neither the paper code nor the question text
+   * yields one (freeform "mark my work"). Last resort only — never overrides a
+   * detected paper or a confident text inference.
+   */
+  fallbackSubjectCode?: string | null
   /** M1: resolved IB catalog component; when a points component, drives the prompt. */
   resolvedIb?: ResolvedIbComponent | null
   /** Optional student-supplied total marks for this question. */
@@ -428,6 +436,9 @@ export async function markSingleQuestion(params: {
   /** Run the second-opinion verify pass. Default true; large multi-question
    * batches pass false to stay under the function timeout. */
   verify?: boolean
+  /** Premium: generate a full-marks rewrite of the student's answer (single
+   * question only — the split path passes false to bound per-question latency). */
+  rewrite?: boolean
 }): Promise<{
   markingResult: Record<string, unknown>
   lineReferences: ReturnType<typeof buildLineReferences>
@@ -442,9 +453,11 @@ export async function markSingleQuestion(params: {
     markScheme,
     markingMode: initialMode,
     paperCode,
+    fallbackSubjectCode,
     resolvedIb,
     questionTotalMarks,
     verify = true,
+    rewrite = false,
   } = params
 
   let markingMode = initialMode
@@ -454,7 +467,7 @@ export async function markSingleQuestion(params: {
   const rawSubjectCode =
     initialMode === 'general_criteria_practice' && parsed?.subjectCode
       ? parsed.subjectCode
-      : parsed?.subjectCode ?? inferredSubject ?? null
+      : parsed?.subjectCode ?? inferredSubject ?? fallbackSubjectCode ?? null
   const ibProfile = rawSubjectCode ? getIbMarkingProfile(rawSubjectCode) : null
   const subjectCode = rawSubjectCode
   const subjectName = subjectCode
@@ -640,10 +653,45 @@ export async function markSingleQuestion(params: {
   }
 
   // The model echoes marking_style in its JSON, but a truncated response can
-  // drop it. Fall back to the style we actually marked with so downstream UI
-  // never sees an undefined style.
-  if (typeof markingResult.marking_style !== 'string' || !markingResult.marking_style) {
-    markingResult.marking_style = markingStyle
+  // drop it and past responses have hallucinated off-enum labels (e.g.
+  // `level_based`). Coerce back to a known style, falling back to the style we
+  // actually marked with so downstream UI never sees an undefined/invalid style.
+  markingResult.marking_style = coerceMarkingStyle(
+    markingResult.marking_style,
+    markingStyle
+  )
+
+  // Premium: rewrite the student's own answer into a full-marks response. Only
+  // when marks were actually lost and the style benefits (skip MCQ — nothing to
+  // rewrite). Best-effort: a failure leaves the mark result untouched.
+  const earned = Number(markingResult.marks_earned)
+  const totalForRewrite = Number(markingResult.total_marks)
+  if (
+    rewrite &&
+    (markingStyle === 'point_based' || markingStyle === 'level_of_response') &&
+    Number.isFinite(earned) &&
+    Number.isFinite(totalForRewrite) &&
+    totalForRewrite > 0 &&
+    earned < totalForRewrite
+  ) {
+    const rewriteSchemeJson =
+      derivedScheme ??
+      (resolvedIb?.officialScheme != null
+        ? JSON.stringify(resolvedIb.officialScheme)
+        : null) ??
+      (effectiveMarkScheme ? JSON.stringify(effectiveMarkScheme.mark_scheme) : null)
+    const fullMarksRewrite = await generateFullMarksRewrite({
+      subjectName,
+      board: !!resolvedIb || isIbSubjectCode(subjectCode ?? '') ? 'IB Diploma' : 'Cambridge',
+      questionText: questionText || effectiveMarkScheme?.question_text || '',
+      studentAnswer: ocrText,
+      schemeJson: rewriteSchemeJson,
+      priorResultJson: JSON.stringify(markingResult),
+      totalMarks: authoritativeTotal,
+    })
+    if (fullMarksRewrite) {
+      markingResult.full_marks_rewrite = fullMarksRewrite
+    }
   }
 
   const lineReferences = buildLineReferences(

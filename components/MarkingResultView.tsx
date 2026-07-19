@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { AlertCircle, CheckCircle2, ChevronRight, Info } from 'lucide-react'
+import { AlertCircle, CheckCircle2, ChevronRight, Info, Lock, Sparkles } from 'lucide-react'
+import { WeakSpotDrillCard } from '@/components/insights/WeakSpotDrillCard'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import { AskOmniAboutMark } from '@/components/omni-ai/AskOmniAboutMark'
 import { SyllabusTopicBadge } from '@/components/SyllabusTopicBadge'
@@ -16,7 +17,7 @@ import {
 } from '@/lib/error-classifications'
 import { getSubjectByCode } from '@/lib/profile-options'
 import { isIbSubjectCode } from '@/lib/ib/marking-config'
-import { predictGradeFromPercentage } from '@/lib/grade-boundaries'
+import { predictGradeFromPercentage, marksToNextGrade } from '@/lib/grade-boundaries'
 import { ExamSheet, ExamSheetLine } from '@/components/margin-notes/ExamSheet'
 import { ExaminerInkPerPage } from '@/components/examiner-ink/ExaminerInkPerPage'
 import type { LineReference } from '@/components/examiner-ink/ExaminerInkOverlay'
@@ -49,6 +50,10 @@ export type MarkingResultData = {
     band_result?: LorBandResult
     criteria_results?: IbCriterionResult[]
     marking_style?: MarkingStyle
+    full_marks_rewrite?: {
+      rewritten_answer: string
+      annotations: Array<{ text: string; earns: string }>
+    }
   }
   ocr_text?: string | null
   question_text?: string | null
@@ -109,10 +114,17 @@ export function MarkingResultView({
   result,
   attemptId,
   inkPages,
+  isPaid,
 }: {
   result: MarkingResultData
   attemptId?: string | null
   inkPages?: Array<{ photo_url: string; line_references: LineReference[] }>
+  /**
+   * Paid entitlement of the viewer. Only used to decide whether to show the
+   * free upsell teaser for the full-marks rewrite. Pass `false` on the live mark
+   * flow; omit elsewhere (e.g. historical attempt view) to suppress the teaser.
+   */
+  isPaid?: boolean
 }) {
   const [showOCR, setShowOCR] = useState(false)
   const marksAwarded = result.ai_marking?.marks_awarded
@@ -143,6 +155,20 @@ export function MarkingResultView({
       ? Math.round((result.marks_earned / result.total_marks) * 100)
       : 0
   const grade = predictGradeFromPercentage(percentage)
+  // A3: how many marks from the next grade band (Cambridge only — IB suppresses
+  // the letter-grade estimate, same as the audit pill).
+  const nextGradeStep = isIb
+    ? null
+    : marksToNextGrade(result.marks_earned, result.total_marks)
+  // Free upsell teaser for the full-marks rewrite: only on the live mark flow
+  // (isPaid === false), when marks were lost and the style is rewritable.
+  const lostMarks =
+    result.total_marks > 0 && result.marks_earned < result.total_marks
+  const showRewriteTeaser =
+    isPaid === false &&
+    !result.ai_marking?.full_marks_rewrite &&
+    lostMarks &&
+    result.ai_marking?.marking_style !== 'mcq'
   const overline = buildOverline(result)
   const selectedMark = marks[selectedIndex] ?? marks[0]
   const hasStructuredResult = marks.length > 0
@@ -174,6 +200,18 @@ export function MarkingResultView({
             {result.marks_earned} / {result.total_marks} —{' '}
             <em>{resultSubheading(result.marks_earned, result.total_marks)}</em>
           </h2>
+          {nextGradeStep && (
+            <p
+              className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold"
+              style={{ color: 'var(--ec-brand)' }}
+            >
+              <Sparkles className="h-3.5 w-3.5 shrink-0" />
+              {nextGradeStep.marksNeeded} mark
+              {nextGradeStep.marksNeeded === 1 ? '' : 's'}{' '}
+              {['A', 'A*', 'E'].includes(nextGradeStep.nextGrade) ? 'from an' : 'from a'}{' '}
+              {nextGradeStep.nextGrade}
+            </p>
+          )}
         </div>
       </div>
 
@@ -363,6 +401,12 @@ export function MarkingResultView({
           </div>
         </div>
 
+        {result.ai_marking.full_marks_rewrite && (
+          <FullMarksRewritePanel rewrite={result.ai_marking.full_marks_rewrite} />
+        )}
+
+        {showRewriteTeaser && <FullMarksRewriteTeaser />}
+
         {result.ai_marking.estimated_marks_explanation && (
           <div className="ec-banner ec-banner-warning">
             <p className="ec-banner__meta leading-relaxed">
@@ -434,6 +478,10 @@ export function MarkingResultView({
           </div>
         )}
 
+        {isPaid && badgeSubjectCode && (
+          <WeakSpotDrillCard subjectCode={badgeSubjectCode} />
+        )}
+
         {attemptId && (
           <div className="flex justify-center pt-2">
             <AskOmniAboutMark attemptId={attemptId} />
@@ -457,6 +505,98 @@ export function MarkingResultView({
           </div>
         )}
       </div>
+    </div>
+  )
+}
+
+/**
+ * Premium: the student's own answer rewritten to full marks, with each addition
+ * annotated with the mark it earns. Rendered only when the marking pipeline
+ * attached `full_marks_rewrite` (paid users who lost marks).
+ */
+function FullMarksRewritePanel({
+  rewrite,
+}: {
+  rewrite: {
+    rewritten_answer: string
+    annotations: Array<{ text: string; earns: string }>
+  }
+}) {
+  return (
+    <div className="ec-card border-[var(--ec-brand)]/30 p-5 sm:p-7">
+      <div className="mb-3 flex items-center gap-2">
+        <Sparkles className="h-4 w-4 shrink-0 text-[var(--ec-brand)]" />
+        <p className="ms-micro" style={{ margin: 0 }}>
+          REWRITTEN TO FULL MARKS
+        </p>
+      </div>
+      <h3 className="ms-h3">Your answer, taken to full marks</h3>
+      <p className="mb-4 text-sm text-[var(--ec-text-faint)]">
+        Your own answer, rewritten to show exactly what earns every mark.
+      </p>
+      <div className="rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4 leading-relaxed text-[var(--ec-text-primary)]">
+        <RichTextRenderer text={rewrite.rewritten_answer} />
+      </div>
+
+      {rewrite.annotations.length > 0 && (
+        <div className="mt-5">
+          <p className="ms-micro" style={{ marginBottom: 12 }}>
+            WHAT EACH CHANGE EARNS
+          </p>
+          <ul className="space-y-2">
+            {rewrite.annotations.map((a, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="mt-0.5 inline-flex shrink-0 items-center rounded-md border border-[var(--ec-brand)]/40 bg-[var(--ec-brand)]/10 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-[var(--ec-brand)]">
+                  {a.earns}
+                </span>
+                <span className="text-sm text-[var(--ec-text-secondary)]">
+                  <RichTextRenderer text={a.text} />
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  )
+}
+
+/**
+ * Free upsell teaser shown in place of the (paid-only) full-marks rewrite, when
+ * the student lost marks. Never a takeaway — free users never had the rewrite —
+ * it's a locked preview that converts on the exact moment they'd want it.
+ */
+function FullMarksRewriteTeaser() {
+  return (
+    <div className="ec-card relative overflow-hidden border-[var(--ec-brand)]/30 p-5 sm:p-7">
+      <div className="mb-3 flex items-center gap-2">
+        <Lock className="h-4 w-4 shrink-0 text-[var(--ec-brand)]" />
+        <p className="ms-micro" style={{ margin: 0 }}>
+          PREMIUM
+        </p>
+      </div>
+      <h3 className="ms-h3">See your answer rewritten to full marks</h3>
+      <p className="mt-1 leading-relaxed text-[var(--ec-text-secondary)]">
+        Premium rewrites <em>your</em> answer into a response that scores full
+        marks — keeping what you got right and showing exactly what each missing
+        mark needs, line by line.
+      </p>
+      <div
+        aria-hidden
+        className="mt-4 space-y-2 rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4 blur-[3px] select-none"
+      >
+        <div className="h-3 w-11/12 rounded bg-[var(--ec-border)]" />
+        <div className="h-3 w-full rounded bg-[var(--ec-border)]" />
+        <div className="h-3 w-4/5 rounded bg-[var(--ec-border)]" />
+        <div className="h-3 w-3/4 rounded bg-[var(--ec-border)]" />
+      </div>
+      <Link
+        href="/pricing"
+        className="ec-btn ec-btn-primary mt-5 inline-flex items-center gap-1.5"
+      >
+        <Sparkles className="h-4 w-4" />
+        Unlock full-marks rewrites
+      </Link>
     </div>
   )
 }

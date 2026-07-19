@@ -64,7 +64,7 @@ import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
 import { GuestMarkNotice } from '@/components/billing/GuestMarkNotice'
 import { MarkUsageIndicator } from '@/components/billing/MarkUsageIndicator'
 import { capForTier } from '@/lib/billing/caps'
-import { FREE_WHOLE_PAPER_QUESTION_LIMIT } from '@/lib/billing/features'
+import { FREE_WHOLE_PAPER_QUESTION_LIMIT, hasPaidAccess } from '@/lib/billing/features'
 import {
   questionUsageMessage,
   type BillingSummaryClient,
@@ -1110,6 +1110,9 @@ export default function MarkPage() {
       formData.append('upload_mode', uploadMode)
       formData.append('mark_intent', markIntent)
       formData.append('stream', '1')
+      // Always forward the chosen subject, even without a full paper selection,
+      // so freeform marks get syllabus-tagged and feed mastery/review.
+      if (selectedSubject) formData.append('subject_code', selectedSubject)
       if (questionFile) {
         formData.append('question_photo', questionFile)
       }
@@ -2243,6 +2246,9 @@ export default function MarkPage() {
             <MarkingResultView
               result={result}
               attemptId={result.attempt_id ?? null}
+              isPaid={
+                billingSummary ? hasPaidAccess(billingSummary.access) : undefined
+              }
               inkPages={
                 result.ink_pages ??
                 (result.answer_photo_url && result.line_references?.length

@@ -38,6 +38,8 @@ import {
   quotaExceededBody,
   type MarkReservation,
 } from '@/lib/billing/enforcement'
+import { effectiveAccess } from '@/lib/billing/access'
+import { hasPaidAccess, hasFullMarksRewrite } from '@/lib/billing/features'
 import {
   checkAnonymousMarkRateLimit,
   clientIp,
@@ -177,6 +179,12 @@ export async function POST(request: NextRequest) {
     const practiceSubjectCode = (
       formData.get('practice_subject_code') as string | null
     )?.trim() || null
+    // Subject the user selected in the UI, sent even when they skip the full
+    // paper selection. Used only as a tagging fallback so freeform marks still
+    // resolve a subject (feeds mastery/review); never overrides paper detection.
+    const selectedSubjectHint = (
+      formData.get('subject_code') as string | null
+    )?.trim() || null
     // M1: optional IB selection axes. Absent for all current traffic (inert).
     const ibComponentKey = (
       formData.get('ib_component_key') as string | null
@@ -215,6 +223,19 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Premium marking depth keys off paid entitlement. Guests (no reservation)
+    // are free. `isPaid` drives the verify pass on the full multi-question
+    // script; `enableRewrite` gates the full-marks rewrite (separate predicate so
+    // it can be re-tiered independently).
+    const markAccess = reservation
+      ? effectiveAccess({
+          tier: reservation.allowance.tier,
+          status: reservation.allowance.status,
+        })
+      : 'free'
+    const isPaid = hasPaidAccess(markAccess)
+    const enableRewrite = hasFullMarksRewrite(markAccess)
+
     if (uploadMode === 'single_question') {
       const pipelineInput = {
         pageFiles,
@@ -238,6 +259,7 @@ export async function POST(request: NextRequest) {
           markIntent === 'practice_question' || markIntent === 'combined_script'
             ? practiceSubjectCode
             : null,
+        fallbackSubjectCode: selectedSubjectHint,
         ibComponentKey:
           markIntent === 'practice_question' || markIntent === 'combined_script'
             ? ibComponentKey
@@ -252,6 +274,8 @@ export async function POST(request: NextRequest) {
             ? ibMarksAvailable
             : null) ?? totalMarksAvailable,
         userId,
+        isPaid,
+        enableRewrite,
         startedAt: startTime,
       }
 

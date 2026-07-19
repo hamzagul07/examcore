@@ -1,5 +1,28 @@
 export type MarkingStyle = 'mcq' | 'point_based' | 'level_of_response' | 'mixed'
 
+export const MARKING_STYLES: readonly MarkingStyle[] = [
+  'mcq',
+  'point_based',
+  'level_of_response',
+  'mixed',
+]
+
+/**
+ * The marker prompt asks the model to echo `marking_style`, and past responses
+ * have hallucinated off-enum labels (e.g. `level_based`, `levels_based`) that
+ * then land in `attempts.ai_marking` as jsonb with no compile-time protection.
+ * Coerce any echoed value back to a known style, falling back to `fallback`
+ * (the style the server actually marked with) when it is missing or invalid.
+ */
+export function coerceMarkingStyle(
+  value: unknown,
+  fallback: MarkingStyle,
+): MarkingStyle {
+  return typeof value === 'string' && MARKING_STYLES.includes(value as MarkingStyle)
+    ? (value as MarkingStyle)
+    : fallback
+}
+
 export type MarkingMode =
   | 'official_mark_scheme'
   | 'general_criteria_paper_not_in_db'
@@ -129,6 +152,15 @@ export type MarkingAIResult = {
     correct_answer: string
     correct: boolean
   }>
+  /**
+   * Premium: examiner rewrite of the student's own answer into a full-marks
+   * response, with each addition annotated with the mark it earns. Present only
+   * for paid users on a single question that lost marks.
+   */
+  full_marks_rewrite?: {
+    rewritten_answer: string
+    annotations: Array<{ text: string; earns: string }>
+  }
 }
 
 export type QuestionMarkStatus =

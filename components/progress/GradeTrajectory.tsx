@@ -4,6 +4,7 @@ import { useId, useMemo } from 'react'
 import { LineChart, Sparkles, TrendingUp } from 'lucide-react'
 import { EmptyState } from './EmptyState'
 import { GRADE_BOUNDARIES } from '@/lib/grade-boundaries'
+import { gapToTargetGrade } from '@/lib/target-grade'
 import type { AttemptLite } from '@/lib/mastery'
 import type { GradePrediction } from '@/lib/prediction'
 import { TiltCard } from '@/components/effects/TiltCard'
@@ -13,6 +14,8 @@ type Props = {
   prediction: GradePrediction
   /** IB subjects are graded 1–7 — the Cambridge letter estimate doesn't apply. */
   ibMode?: boolean
+  /** The grade the student is aiming for (Cambridge letter), if set. */
+  targetGrade?: string | null
 }
 
 /**
@@ -20,7 +23,12 @@ type Props = {
  * Recharts isn't in our bundle and a dedicated chart library would be
  * overkill for one line + six horizontal reference lines.
  */
-export function GradeTrajectory({ attempts, prediction, ibMode = false }: Props) {
+export function GradeTrajectory({
+  attempts,
+  prediction,
+  ibMode = false,
+  targetGrade = null,
+}: Props) {
   // Last 10 attempts, oldest-first so the line reads left-to-right.
   const series = useMemo(() => {
     const recent = attempts.slice(0, 10).reverse()
@@ -60,7 +68,7 @@ export function GradeTrajectory({ attempts, prediction, ibMode = false }: Props)
       </TiltCard>
 
       <TiltCard intensity={5} className="rounded-3xl lg:col-span-2">
-        <PredictiveGradeCard prediction={prediction} ibMode={ibMode} />
+        <PredictiveGradeCard prediction={prediction} ibMode={ibMode} targetGrade={targetGrade} />
       </TiltCard>
     </section>
   )
@@ -276,11 +284,14 @@ function GradeBoundaryLines({
 function PredictiveGradeCard({
   prediction,
   ibMode,
+  targetGrade,
 }: {
   prediction: GradePrediction
   ibMode: boolean
+  targetGrade?: string | null
 }) {
   const isPlaceholder = prediction.predictedGrade === '\u2014'
+  const targetGap = gapToTargetGrade(prediction.averagePercentage, targetGrade ?? null)
 
   return (
     <div
@@ -349,6 +360,17 @@ function PredictiveGradeCard({
           <p className="mt-2 text-xs text-[var(--ec-text-secondary)]">
             {Math.round(prediction.averagePercentage)}% rolling average across
             your last attempts
+          </p>
+        )}
+
+        {targetGrade && !isPlaceholder && (
+          <p className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold ec-text-brand">
+            <Sparkles className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+            {targetGap?.onTrack
+              ? `On track for your target ${targetGrade}`
+              : targetGap
+                ? `Target ${targetGrade} · +${targetGap.pointsToGo}% to go`
+                : `Target ${targetGrade}`}
           </p>
         )}
 

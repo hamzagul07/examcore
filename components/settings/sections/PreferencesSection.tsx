@@ -13,6 +13,7 @@ type Props = {
   initialCommunityDigest: boolean
   initialCommunityThreads: boolean
   initialReviewDigest: boolean
+  initialWeeklyReport: boolean
 }
 
 export function PreferencesSection({
@@ -22,6 +23,7 @@ export function PreferencesSection({
   initialCommunityDigest,
   initialCommunityThreads,
   initialReviewDigest,
+  initialWeeklyReport,
 }: Props) {
   const [examReminders, setExamReminders] = useState(initialExamReminders)
   const [productUpdates, setProductUpdates] = useState(initialProductUpdates)
@@ -29,6 +31,7 @@ export function PreferencesSection({
   const [communityDigest, setCommunityDigest] = useState(initialCommunityDigest)
   const [communityThreads, setCommunityThreads] = useState(initialCommunityThreads)
   const [reviewDigest, setReviewDigest] = useState(initialReviewDigest)
+  const [weeklyReport, setWeeklyReport] = useState(initialWeeklyReport)
   const [saving, setSaving] = useState<
     | 'exam'
     | 'product'
@@ -36,6 +39,7 @@ export function PreferencesSection({
     | 'communityDigest'
     | 'communityThreads'
     | 'reviewDigest'
+    | 'weeklyReport'
     | null
   >(null)
   const [errorMsg, setErrorMsg] = useState('')
@@ -48,7 +52,8 @@ export function PreferencesSection({
       | 'email_community_replies'
       | 'email_community_digest'
       | 'email_community_threads'
-      | 'email_review_digest',
+      | 'email_review_digest'
+      | 'email_weekly_report',
     value: boolean,
     savingKey:
       | 'exam'
@@ -57,6 +62,7 @@ export function PreferencesSection({
       | 'communityDigest'
       | 'communityThreads'
       | 'reviewDigest'
+      | 'weeklyReport'
   ) {
     setSaving(savingKey)
     setErrorMsg('')
@@ -77,7 +83,8 @@ export function PreferencesSection({
       else if (field === 'email_community_replies') setCommunityReplies(!value)
       else if (field === 'email_community_digest') setCommunityDigest(!value)
       else if (field === 'email_community_threads') setCommunityThreads(!value)
-      else setReviewDigest(!value)
+      else if (field === 'email_review_digest') setReviewDigest(!value)
+      else setWeeklyReport(!value)
       return
     }
 
@@ -378,6 +385,49 @@ export function PreferencesSection({
                 />
               </span>
               {saving === 'reviewDigest' && (
+                <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />
+              )}
+            </span>
+          </label>
+
+          <label className="ms-pref-toggle flex min-h-[56px] cursor-pointer items-start justify-between gap-4">
+            <span>
+              <span className="block text-sm font-semibold text-[var(--ec-text-primary)]">
+                Weekly progress report
+              </span>
+              <span className="mt-0.5 block text-sm text-[var(--ec-text-secondary)]">
+                A private examiner-style summary each week — your marks, grade
+                trajectory, and the topic to drill next. Premium.
+              </span>
+            </span>
+            <span className="relative inline-flex shrink-0 items-center">
+              <input
+                type="checkbox"
+                checked={weeklyReport}
+                onChange={(e) => {
+                  setWeeklyReport(e.target.checked)
+                  void savePreference('email_weekly_report', e.target.checked, 'weeklyReport')
+                }}
+                disabled={saving === 'weeklyReport'}
+                className="sr-only"
+                aria-label="Weekly progress report"
+              />
+              <span
+                className={`flex h-6 w-11 items-center rounded-full border px-0.5 transition-colors ${
+                  weeklyReport
+                    ? 'ec-select-active'
+                    : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)]'
+                }`}
+              >
+                <span
+                  className={`h-5 w-5 rounded-full transition-transform ${
+                    weeklyReport
+                      ? 'translate-x-5 bg-[var(--ec-brand)]'
+                      : 'translate-x-0 bg-[var(--ec-text-secondary)]'
+                  }`}
+                />
+              </span>
+              {saving === 'weeklyReport' && (
                 <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />
               )}
             </span>

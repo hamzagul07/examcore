@@ -8,6 +8,9 @@ import {
 } from '@/lib/ai/gemini-text'
 import { createClient, createServiceClient } from '@/lib/supabase-server'
 import { buildSystemPrompt } from '@/lib/omni-ai/system-prompts'
+import { buildStudentMemoryBlock } from '@/lib/omni-ai/student-memory'
+import { effectiveAccess } from '@/lib/billing/access'
+import { hasPaidAccess } from '@/lib/billing/features'
 import {
   extractActionFromText,
   stripPartialActionTail,
@@ -119,6 +122,7 @@ export async function POST(req: NextRequest) {
   const resolvedAttemptId = attemptIdFromBody || attemptIdFromContext
 
   let focusedAttemptBlock: string | null = null
+  let studentMemoryBlock: string | null = null
   if (user && resolvedAttemptId) {
     const row = await loadAttemptForOmni(
       supabaseService,
@@ -188,11 +192,31 @@ export async function POST(req: NextRequest) {
       // Fail open: never block chat on our own metering error.
       console.error('[omni-ai] recordOmniUsage failed:', err)
     }
+
+    // Premium: give the tutor memory of the student's marked work (weak topics,
+    // grade trajectory, exam countdown) so it coaches with context. In-app
+    // coaching chats only; best-effort — never block chat on it.
+    if (
+      markingAwareness &&
+      hasPaidAccess(
+        effectiveAccess({
+          tier: omniAllowance.tier,
+          status: omniAllowance.status,
+        })
+      )
+    ) {
+      try {
+        studentMemoryBlock = await buildStudentMemoryBlock(supabaseService, user.id)
+      } catch (err) {
+        console.error('[omni-ai] student memory build failed:', err)
+      }
+    }
   }
 
   const systemPrompt = buildSystemPrompt(context, {
     markingAwareness,
     focusedAttemptBlock,
+    studentMemoryBlock,
   })
 
   const stream = new ReadableStream({

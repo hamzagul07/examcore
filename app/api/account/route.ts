@@ -7,6 +7,7 @@ import {
   isIbBoard,
   isSubjectValidForProfile,
 } from '@/lib/profile-options'
+import { isValidTargetGrade } from '@/lib/target-grade'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
 
 type Body = {
@@ -15,6 +16,7 @@ type Body = {
   level?: string
   subjects?: string[]
   exam_date?: string | null
+  target_grade?: string | null
   stage?: UserStage | null
   primary_goal?: PrimaryGoal | null
 }
@@ -129,6 +131,21 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Pick a valid goal.' }, { status: 400 })
     }
     patch.primary_goal = body.primary_goal
+  }
+
+  if ('target_grade' in body) {
+    if (body.target_grade === null || body.target_grade === '') {
+      patch.target_grade = null
+    } else if (typeof body.target_grade === 'string') {
+      const g = body.target_grade.trim()
+      if (!isValidTargetGrade(isIbBoard(board), g)) {
+        return NextResponse.json(
+          { error: 'Pick a valid target grade for your board.' },
+          { status: 400 }
+        )
+      }
+      patch.target_grade = g
+    }
   }
 
   // Account edits should not silently un-onboard a user. Preserve onboarded=true

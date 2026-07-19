@@ -40,7 +40,9 @@ export default async function CommunityUnsubscribePage({ searchParams }: PagePro
         ? { email_community_threads: false }
         : parsed.kind === 'review'
           ? { email_review_digest: false }
-          : { email_community_digest: false }
+          : parsed.kind === 'weekly'
+            ? { email_weekly_report: false }
+            : { email_community_digest: false }
 
   await admin
     .from('user_profiles')
@@ -54,7 +56,9 @@ export default async function CommunityUnsubscribePage({ searchParams }: PagePro
         ? 'Exam Room thread activity emails'
         : parsed.kind === 'review'
           ? 'review reminder emails'
-          : 'Exam Room weekly digest'
+          : parsed.kind === 'weekly'
+            ? 'weekly progress report emails'
+            : 'Exam Room weekly digest'
 
   return (
     <div className="rc-page rc-page-narrow" style={{ maxWidth: 520, margin: '0 auto' }}>

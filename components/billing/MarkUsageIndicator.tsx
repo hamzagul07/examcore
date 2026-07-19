@@ -44,6 +44,10 @@ export function MarkUsageIndicator({ variant, summary: externalSummary, classNam
 
   if (variant === 'whole_paper') {
     const q = summary.questions
+    const message = wholePaperUsageMessage(summary)
+    // Paid users with headroom get an empty message — render nothing so marking
+    // feels unlimited (caps still enforced server-side).
+    if (!message) return null
     const tone =
       q.blocked && summary.enforcement_mode === 'enforce'
         ? 'text-[var(--ec-error,#f87171)]'
@@ -52,12 +56,14 @@ export function MarkUsageIndicator({ variant, summary: externalSummary, classNam
           : 'text-[var(--ec-text-secondary)]'
     return (
       <p className={`text-sm leading-relaxed ${tone} ${className}`}>
-        {wholePaperUsageMessage(summary)}
+        {message}
       </p>
     )
   }
 
   const { text, tone, disableSubmit } = questionUsageMessage(summary)
+  // Empty text = paid user with headroom → no meter shown.
+  if (!text) return null
   const toneClass =
     tone === 'error'
       ? 'text-[var(--ec-error,#f87171)]'

@@ -1,4 +1,4 @@
-import { GEMINI_PRO_MODEL, generateGeminiText } from '@/lib/ai/gemini-text'
+import { GEMINI_PRO_MODEL, generateGeminiTextWithMeta } from '@/lib/ai/gemini-text'
 import { extractJSON } from '@/lib/marking/json'
 import { supabaseAdmin } from '@/lib/marking/mark-runner'
 import { getSyllabusTopicByCode } from '@/lib/syllabi'
@@ -61,7 +61,15 @@ function buildPrompt(
     .join('\n')
 }
 
-/** Generate (no cache). Best-effort — returns null on any model/parse failure. */
+// Gemini Pro's thinking tokens share the output budget, so a question can
+// truncate mid-sentence at a tight cap (extractJSON then salvages a partial
+// string). We escalate the budget on a MAX_TOKENS finish — mirroring
+// runGeminiMarking — starting generous because a single question still needs the
+// same thinking headroom the marking path budgets 10k+ for.
+const TOKEN_BUDGETS = [8000, 16000]
+
+/** Generate (no cache). Best-effort — returns null on any model/parse failure.
+ * Retries with a larger budget when the model truncates on MAX_TOKENS. */
 export async function generateIbPracticeQuestion(
   subjectCode: string,
   topicCode: string
@@ -73,30 +81,55 @@ export async function generateIbPracticeQuestion(
   const topicName = topic?.name ?? topicCode
   const component = topic?.paper ?? null
   const marks = targetMarks(profile)
+  const prompt = buildPrompt(profile, topicName, component, marks)
 
-  try {
-    const text = await generateGeminiText(
-      buildPrompt(profile, topicName, component, marks),
-      {
+  // A truncated-but-parseable result is kept as a fallback so we still return
+  // something if every attempt truncates.
+  let salvaged: IbPracticeQuestion | null = null
+
+  for (let attempt = 0; attempt < TOKEN_BUDGETS.length; attempt++) {
+    const hasMoreBudget = attempt < TOKEN_BUDGETS.length - 1
+    try {
+      const { text, finishReason } = await generateGeminiTextWithMeta(prompt, {
         task: 'structured-extraction',
         model: GEMINI_PRO_MODEL,
-        // Gemini Pro spends output budget on internal reasoning before it emits
-        // the JSON, so a tight cap truncates the question mid-sentence (extractJSON
-        // then salvages a partial string). The marking path hits the same trap and
-        // budgets 10k+ for it (maxTokensForStyle) — a single question needs far
-        // less text but the same thinking headroom, so give it generous room.
-        maxOutputTokens: 8000,
+        maxOutputTokens: TOKEN_BUDGETS[attempt],
         temperature: 0.5,
+      })
+      const parsed = extractJSON(text) as { question_text?: string }
+      const question = parsed?.question_text?.trim()
+      if (!question || question.length < 12) {
+        // Nothing usable — escalate if it was truncation, else give up.
+        if (finishReason === 'MAX_TOKENS' && hasMoreBudget) continue
+        return salvaged
       }
-    )
-    const parsed = extractJSON(text) as { question_text?: string }
-    const question = parsed?.question_text?.trim()
-    if (!question || question.length < 12) return null
-    return { question_text: question, total_marks: marks, component }
-  } catch (err) {
-    console.warn('[ib-practice] question generation failed', err)
-    return null
+
+      const result: IbPracticeQuestion = {
+        question_text: question,
+        total_marks: marks,
+        component,
+      }
+      if (finishReason === 'MAX_TOKENS' && hasMoreBudget) {
+        // Salvageable but cut short — retry for the complete question.
+        salvaged = salvaged ?? result
+        console.warn(
+          '[ib-practice] truncated question, retrying with larger budget',
+          { attempt: attempt + 1, budget: TOKEN_BUDGETS[attempt] }
+        )
+        continue
+      }
+      return result
+    } catch (err) {
+      // Truncated JSON that couldn't be salvaged → escalate; otherwise stop.
+      console.warn('[ib-practice] question generation attempt failed', {
+        attempt: attempt + 1,
+        err,
+      })
+      if (!hasMoreBudget) return salvaged
+    }
   }
+
+  return salvaged
 }
 
 /**

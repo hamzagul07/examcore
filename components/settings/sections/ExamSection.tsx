@@ -8,6 +8,7 @@ import { ErrorBox, SuccessBox } from '@/components/AuthFormBits'
 import { suggestedExamDates } from '@/lib/dashboard/exam-date'
 import { ProfileFormFields } from '@/components/ProfileFormFields'
 import { IB_DIPLOMA_LEVEL, isIbBoard } from '@/lib/profile-options'
+import { targetGradeOptions } from '@/lib/target-grade'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
 import {
   SettingsFieldGroup,
@@ -21,6 +22,7 @@ type Props = {
     level: string
     subjects: string[]
     exam_date: string
+    target_grade: string
     stage: UserStage | null
     primary_goal: PrimaryGoal | null
   }
@@ -91,6 +93,11 @@ export function ExamSection({ initialProfile }: Props) {
         board={board}
         initialStage={initialProfile.stage}
         initialGoal={initialProfile.primary_goal}
+        post={post}
+      />
+      <TargetGradeCard
+        board={board}
+        initialTarget={initialProfile.target_grade}
         post={post}
       />
       <ExamDateCard initialDate={initialProfile.exam_date} post={post} />
@@ -265,6 +272,63 @@ function StageGoalCard({
           Save stage & goal
         </Button>
       </form>
+    </SettingsSectionCard>
+  )
+}
+
+function TargetGradeCard({
+  board,
+  initialTarget,
+  post,
+}: {
+  board: string
+  initialTarget: string
+  post: (payload: SavePayload) => Promise<string | null>
+}) {
+  const [targetGrade, setTargetGrade] = useState(initialTarget)
+  const [loading, setLoading] = useState(false)
+  const [errorMsg, setErrorMsg] = useState('')
+  const [successMsg, setSuccessMsg] = useState('')
+  const options = targetGradeOptions(isIbBoard(board))
+
+  async function save(next: string) {
+    setLoading(true)
+    setErrorMsg('')
+    setSuccessMsg('')
+    const error = await post({ target_grade: next || null })
+    setLoading(false)
+    if (error) {
+      setErrorMsg(error)
+      return
+    }
+    setSuccessMsg(next ? `Target grade set to ${next}.` : 'Target grade cleared.')
+  }
+
+  return (
+    <SettingsSectionCard
+      title="Target grade"
+      description="The grade you're aiming for. Powers your on-track trajectory on the progress dashboard."
+    >
+      <SettingsFieldGroup label="Target grade">
+        <select
+          value={targetGrade}
+          disabled={loading}
+          onChange={(e) => {
+            setTargetGrade(e.target.value)
+            void save(e.target.value)
+          }}
+          className="ec-input"
+        >
+          <option value="">No target set</option>
+          {options.map((g) => (
+            <option key={g} value={g}>
+              {g}
+            </option>
+          ))}
+        </select>
+        {errorMsg && <ErrorBox message={errorMsg} />}
+        {successMsg && <SuccessBox message={successMsg} />}
+      </SettingsFieldGroup>
     </SettingsSectionCard>
   )
 }

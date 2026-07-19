@@ -20,6 +20,9 @@ export type SystemPromptOptions = {
   markingAwareness?: boolean
   /** Full attempt payload injected when user opened Omni from a result page. */
   focusedAttemptBlock?: string | null
+  /** Compact profile of the student's marked work (weak topics, grade trajectory,
+   * exam countdown) so the tutor coaches with memory. Premium, signed-in only. */
+  studentMemoryBlock?: string | null
 }
 
 export function buildSystemPrompt(
@@ -31,6 +34,9 @@ export function buildSystemPrompt(
       ? MARKING_AWARENESS_SECTION +
         (options.focusedAttemptBlock
           ? `\n\nFOCUSED ATTEMPT (answer questions about THIS attempt unless they ask about others):\n${options.focusedAttemptBlock}`
+          : '') +
+        (options.studentMemoryBlock
+          ? `\n\nSTUDENT PROFILE (what you already know about this student from their marked work — coach with it proactively: reference their real weak topics and grade trajectory instead of asking, and don't re-fetch what's already here):\n${options.studentMemoryBlock}`
           : '')
       : ''
 

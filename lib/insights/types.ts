@@ -36,6 +36,21 @@ export interface Recommendation {
   topicCode?: string
 }
 
+/**
+ * A "drill your weakest spot" action. Cambridge points at a real past-paper
+ * question (`paper`); IB has no stored questions, so it points at a topic and the
+ * /mark practice flow generates one (`topic`). Powers WeakSpotDrillCard.
+ */
+export type NextDrill =
+  | ({ kind: 'paper' } & Recommendation)
+  | {
+      kind: 'topic'
+      subjectCode: string
+      topicCode: string
+      topicName: string
+      reason: string
+    }
+
 /** A ranked, evidence-backed error pattern. */
 export interface Pattern {
   classification: ErrorClassification

@@ -8,6 +8,7 @@ export type SettingsProfile = {
   level: string
   subjects: string[]
   exam_date: string
+  target_grade: string
   stage: UserStage | null
   primary_goal: PrimaryGoal | null
   created_at: string | null
@@ -53,5 +54,6 @@ export type SettingsContext = {
     emailCommunityDigest: boolean
     emailCommunityThreads: boolean
     emailReviewDigest: boolean
+    emailWeeklyReport: boolean
   }
 }

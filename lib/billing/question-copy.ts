@@ -60,6 +60,14 @@ export function questionUsageMessage(summary: BillingSummaryClient): {
   }
 
   if (q.remaining > 0) {
+    const nearCap = q.remaining <= Math.ceil(q.cap * 0.2)
+    // Paid users: hide the per-mark countdown during normal use so marking feels
+    // unlimited. Only surface a gentle heads-up once they're genuinely near the
+    // monthly cap (caps stay enforced server-side). Free users always see the
+    // countdown — it's the upgrade driver.
+    if (summary.tier !== 'free' && !nearCap) {
+      return { text: '', tone: 'normal', disableSubmit: false }
+    }
     const poolLabel =
       summary.tier === 'free'
         ? `${q.cap} free questions`
@@ -68,10 +76,10 @@ export function questionUsageMessage(summary: BillingSummaryClient): {
     const prefix =
       summary.tier === 'free'
         ? `This will use 1 of your ${poolLabel}.`
-        : `This will use 1 of your ${q.cap} monthly questions.`
+        : `You're approaching your ${q.cap} monthly questions.`
     return {
       text: `${prefix} You'll have ${after} left after this.`,
-      tone: q.remaining <= Math.ceil(q.cap * 0.2) ? 'warning' : 'normal',
+      tone: nearCap ? 'warning' : 'normal',
       disableSubmit: false,
     }
   }
@@ -110,9 +118,12 @@ export function wholePaperUsageMessage(summary: BillingSummaryClient): string {
   }
 
   const q = summary.questions
+  const nearCap = q.remaining <= Math.ceil(q.cap * 0.2)
   const base =
     'This whole paper will use 1 question (regardless of how many sub-questions it contains).'
   if (q.remaining > 0) {
+    // Paid users with comfortable headroom: no countdown (see questionUsageMessage).
+    if (summary.tier !== 'free' && !nearCap) return ''
     return `${base} You'll have ${Math.max(0, q.remaining - 1)} left after this.`
   }
   if (summary.credit_balance > 0) {

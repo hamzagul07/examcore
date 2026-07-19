@@ -15,6 +15,7 @@ export interface UserProfile {
   primary_goal: PrimaryGoal | null
   celebrations_seen: string[] | null
   exam_date: string | null
+  target_grade?: string | null
   role: UserRole
   email_exam_reminders?: boolean
   email_product_updates?: boolean

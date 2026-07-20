@@ -17,6 +17,9 @@
     },
     "app/api/cron/weekly-report/route.ts": {
       "maxDuration": 300
+    },
+    "app/api/cron/streak-nudge/route.ts": {
+      "maxDuration": 300
     }
   },
   "crons": [
@@ -27,6 +30,10 @@
     {
       "path": "/api/cron/weekly-report",
       "schedule": "0 17 * * 0"
+    },
+    {
+      "path": "/api/cron/streak-nudge",
+      "schedule": "0 18 * * *"
     },
     {
       "path": "/api/cron/review-digest",

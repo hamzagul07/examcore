@@ -101,8 +101,13 @@ export function computeWeeklyReportData(
     }
   }
 
-  // Weakest topic across every treed subject the student has marked.
-  const ranked: Array<{ subject: string; name: string; percentage: number }> = []
+  // Weakest topics across every treed subject the student has marked.
+  const ranked: Array<{
+    subject: string
+    code: string
+    name: string
+    percentage: number
+  }> = []
   for (const [subject] of countBySubject) {
     if (!getSyllabusByCode(subject)?.length) continue
     const subjectAttempts = attempts.filter(
@@ -113,6 +118,7 @@ export function computeWeeklyReportData(
     for (const t of topicTargetsFromMasteries(leaves)) {
       ranked.push({
         subject,
+        code: t.code,
         name: t.name,
         percentage: pctByCode.get(t.code) ?? 100,
       })
@@ -120,6 +126,13 @@ export function computeWeeklyReportData(
   }
   ranked.sort((a, b) => a.percentage - b.percentage)
   const weakest = ranked[0] ?? null
+  const weakTopics = ranked.slice(0, 3).map((r) => ({
+    name: r.name,
+    subjectLabel: subjectLabel(r.subject),
+    subjectCode: r.subject,
+    topicCode: r.code,
+    percentage: Math.round(r.percentage),
+  }))
 
   const countdown = examCountdown(profile.exam_date)
 
@@ -134,6 +147,7 @@ export function computeWeeklyReportData(
     onTrackForTarget,
     weakestTopicName: weakest?.name ?? null,
     weakestSubjectLabel: weakest ? subjectLabel(weakest.subject) : null,
+    weakTopics,
     examDaysLeft: countdown.kind === 'future' ? countdown.daysLeft : null,
   }
 }

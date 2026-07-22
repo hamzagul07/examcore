@@ -42,9 +42,13 @@ export function MomentumStrip({
   const { days, peak, activeDays, avgPct, deltaPct } = summary
   const marksInWindow = days.reduce((sum, d) => sum + d.count, 0)
 
-  // Nothing marked in the window: the strip would be a row of empty slots and
-  // three zeroes, which reads as failure rather than as a fresh start.
-  if (marksInWindow === 0) return null
+  // An empty fortnight used to render nothing at all, on the theory that a row
+  // of zeroes reads as failure. In practice it meant the dashboard had no
+  // visual whatsoever for the great majority of accounts, who have never marked
+  // — hiding the one thing that shows what the habit looks like. An empty grid
+  // with a target reads as a goal, not a rebuke, so it stays: the KPI tiles are
+  // dropped (nothing to boast) and the track is shown with an invitation.
+  const isEmpty = marksInWindow === 0
 
   return (
     <section className="ms-momentum" aria-labelledby="momentum-heading">
@@ -52,6 +56,17 @@ export function MomentumStrip({
         Your last two weeks
       </h2>
 
+      {isEmpty ? (
+        <div className="ms-momentum-empty">
+          <p className="ms-momentum-empty__title">
+            Your last {days.length} days
+          </p>
+          <p className="ms-momentum-empty__body">
+            Mark one question and the first square fills in. Two days running is
+            a streak.
+          </p>
+        </div>
+      ) : (
       <div className="ms-momentum-kpis">
         <div className="ms-momentum-kpi">
           <span className="ms-momentum-kpi__value">
@@ -87,6 +102,7 @@ export function MomentumStrip({
           </div>
         )}
       </div>
+      )}
 
       <ol
         className="ms-momentum-bars"

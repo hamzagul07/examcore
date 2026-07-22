@@ -11,6 +11,7 @@ import {
   type ParentMastery,
 } from '@/lib/mastery'
 import { EmptyState } from './EmptyState'
+import { MasteryHeatmap } from './MasteryHeatmap'
 
 type Props = {
   parentMasteries: ParentMastery[]
@@ -117,9 +118,17 @@ export function MasteryMatrix({
         <h2 className="ms-h3">Topic-by-topic strength</h2>
         <p className="ms-body-2 mt-1">
           {isMathFlat
-            ? 'Each topic is scored independently. Tap for attempt history.'
-            : 'Expand a section to see leaf-level mastery. One tagged question affects only that leaf.'}
+            ? 'Each topic is scored independently. Tap any square for attempt history.'
+            : 'Every square is one topic. Tap for attempt history, or expand a section below for the detail.'}
         </p>
+
+        {/* The whole subject at a glance. Cells open the same detail modal the
+            list rows do, so this is a second route into one experience rather
+            than a parallel one. */}
+        <MasteryHeatmap
+          parentMasteries={parentMasteries}
+          onSelectLeaf={setSelected}
+        />
 
         <div className="mt-6 space-y-6">
           {papers.map((paper) => {

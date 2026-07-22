@@ -2385,3 +2385,126 @@
     transform: none;
   }
 }
+
+/* ── Class blindspots ─────────────────────────────────────────────────────
+   Ranked horizontal bars: comparing magnitude across long-named categories.
+   Level colours are the same reserved status tokens the student mastery view
+   uses, via data-level (see .ms-mastery-heatmap for the shared mapping). */
+
+.ms-blindspots__title {
+  margin: 0;
+  font-size: clamp(19px, 2.4vw, 24px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.012em;
+  color: var(--ec-text-primary);
+}
+
+.ms-blindspots__sub {
+  margin: 6px 0 0;
+  font-size: 13.5px;
+  color: var(--ec-text-secondary);
+  max-width: 54ch;
+}
+
+.ms-blindspots__list {
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.ms-bs-row__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+
+.ms-bs-row__name {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ms-bs-row__pct {
+  font-size: 14.5px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--mh-ink, var(--ec-text-primary));
+  flex: 0 0 auto;
+}
+
+.ms-bs-row__track {
+  height: 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--mh-ink, var(--ec-text-secondary)) 12%, transparent);
+  overflow: hidden;
+}
+
+.ms-bs-row__fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--mh-ink, var(--ec-text-secondary));
+}
+
+/* Thin evidence is muted AND labelled — a row you should not act on yet must
+   not look as loud as one you should. */
+.ms-bs-row[data-thin='yes'] .ms-bs-row__fill {
+  opacity: 0.45;
+}
+
+.ms-bs-row__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin: 7px 0 0;
+  font-size: 12.5px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-bs-row__level {
+  font-weight: 700;
+  color: var(--mh-ink, var(--ec-text-primary));
+}
+
+.ms-bs-row__thin {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px dashed color-mix(in srgb, var(--ec-text-secondary) 45%, transparent);
+  color: var(--ec-text-faint);
+}
+
+.ms-blindspots__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid var(--ec-border);
+}
+
+.ms-blindspots__foot-note {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--ec-text-secondary);
+  max-width: 44ch;
+}
+
+.ms-blindspots__foot button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

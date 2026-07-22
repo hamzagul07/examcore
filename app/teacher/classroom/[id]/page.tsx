@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { Users, ArrowRight } from 'lucide-react'
 import { ClassroomSummary } from '@/components/teacher/ClassroomSummary'
-import { ClassBlindspotRadar } from '@/components/teacher/ClassBlindspotRadar'
+import { ClassBlindspots } from '@/components/teacher/ClassBlindspots'
 import { GradeRiskMatrix } from '@/components/teacher/GradeRiskMatrix'
 import { ReviewQueueList } from '@/components/teacher/ReviewQueueList'
 import { InviteCard } from '@/components/teacher/InviteCard'
@@ -152,7 +152,7 @@ export default function ClassroomPage() {
       </div>
 
       <div className="mb-8">
-        <ClassBlindspotRadar
+        <ClassBlindspots
           classroomId={id}
           blindspots={data.blindspots.topics || []}
         />

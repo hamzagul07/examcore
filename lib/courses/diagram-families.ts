@@ -1232,6 +1232,50 @@ const SLUG_FAMILY_9084_OVERRIDE: Record<string, keyof typeof FAMILIES> = Object.
     .map(([slug]) => [slug, 'law-remedies'])
 ) as Record<string, keyof typeof FAMILIES>
 
+/**
+ * IB Biology (SL + HL) → existing diagram families.
+ *
+ * The coverage audit showed Cambridge lessons at 98% and IB at 1%: ~861 IB
+ * lessons rendered with no diagram while their Cambridge equivalents had one.
+ * Nothing new is drawn here — these are IB lessons whose core visual is the
+ * SAME as a Cambridge one, so the existing family already teaches it.
+ *
+ * Mapped against what each family actually DEPICTS (its caption), not against
+ * the topic name. That distinction removed four entries a name-based pass
+ * accepts: `a1-2-nucleic-acids` is about nucleic-acid STRUCTURE while bio-dna
+ * depicts semi-conservative REPLICATION; likewise protein synthesis and gene
+ * expression are not replication, and `c4-1-populations-and-communities` is not
+ * the ~10% trophic-transfer diagram. A wrong diagram teaches the wrong thing
+ * with full visual authority, so anything not clearly the same concept is left
+ * uncovered on purpose.
+ *
+ * SL and HL share topic codes for the shared syllabus, so one map serves both.
+ */
+const SLUG_FAMILY_IB_BIOLOGY: Record<string, keyof typeof FAMILIES> = {
+  'a2-2-cell-structure': 'bio-cell',
+  'a4-1-evolution-and-speciation': 'bio-evolution',
+  'b1-1-carbohydrates-and-lipids': 'bio-molecule',
+  'b1-2-proteins': 'bio-molecule',
+  'b2-1-membranes-and-membrane-transport': 'bio-membrane',
+  'b2-2-organelles-and-compartmentalization': 'bio-cell',
+  'b3-1-gas-exchange': 'bio-gas-exchange',
+  'c1-1-enzymes-and-metabolism': 'bio-enzyme',
+  'c1-2-cell-respiration': 'bio-respiration',
+  'c1-3-photosynthesis': 'bio-photosynthesis',
+  'c2-2-neural-signalling': 'bio-nervous',
+  'c3-2-defence-against-infectious-disease': 'bio-immune',
+  'c4-2-transfers-of-energy-and-matter': 'bio-ecology',
+  'd1-1-dna-replication': 'bio-dna',
+  'd1-3-mutation-and-gene-editing': 'bio-biotech',
+  'd2-1-cell-and-nuclear-division': 'bio-mitosis',
+  // Water potential in IB is osmosis across the cell membrane, which the fluid
+  // mosaic diagram shows directly.
+  'd2-3-water-potential': 'bio-membrane',
+  'd3-2-inheritance': 'bio-genetics',
+  'd3-3-homeostasis': 'bio-homeostasis',
+  'd4-1-natural-selection': 'bio-evolution',
+}
+
 const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9702,
   ...SLUG_FAMILY_9700,
@@ -1243,6 +1287,7 @@ const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9609_OVERRIDE,
   ...SLUG_FAMILY_9990_OVERRIDE,
   ...SLUG_FAMILY_9084_OVERRIDE,
+  ...SLUG_FAMILY_IB_BIOLOGY,
 }
 
 const BIOLOGY_SLUGS = new Set(Object.keys(SLUG_FAMILY_9700))

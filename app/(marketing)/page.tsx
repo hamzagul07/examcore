@@ -11,6 +11,7 @@ import { LandingComparison } from '@/components/landing/LandingComparison'
 import { LandingFaq } from '@/components/landing/LandingFaq'
 import { LandingFinalCta } from '@/components/landing/LandingFinalCta'
 import { LandingEditorialSpotlight } from '@/components/landing/LandingEditorialSpotlight'
+import { LandingProof } from '@/components/landing/LandingProof'
 
 export const metadata = getPageMetadata('/')
 
@@ -28,6 +29,8 @@ export default function Home() {
         <LandingMarkingSection />
         <LandingPlatformShowcase />
         <LandingSubjects />
+        {/* Renders nothing until real, approved student feedback exists. */}
+        <LandingProof />
         <LandingFounder />
         <LandingComparison />
         <LandingFaq />

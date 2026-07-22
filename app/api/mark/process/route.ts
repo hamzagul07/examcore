@@ -24,7 +24,11 @@ import type {
 import {
   getGeminiRetryStats,
 } from '@/lib/marking/gemini-retry'
-import { classifyMarkingError, type ClassifiedMarkingError } from '@/lib/marking/classify-marking-error'
+import {
+  classifyMarkingError,
+  type ClassifiedMarkingError,
+  type MarkingErrorCode,
+} from '@/lib/marking/classify-marking-error'
 import {
   ocrAnswerBufferWithBoxes,
   uploadAnswerPhoto as uploadAnswerPhotoBuffer,
@@ -47,12 +51,43 @@ import {
 } from '@/lib/rate-limit'
 import { rateLimitJson } from '@/lib/http/rate-limit-response'
 import { signMarkPayloadForClient } from '@/lib/storage/answer-photos'
+import { withRequestDeadline } from '@/lib/ai/request-deadline'
+import { generateFullMarksRewrite } from '@/lib/marking/full-marks-rewrite'
+import type { FullMarksRewritePlan } from '@/lib/marking/mark-runner'
+import {
+  openMarkRun,
+  noteMarkRunStage,
+  settleMarkRunSuccess,
+  settleMarkRunError,
+  type MarkRunHandle,
+} from '@/lib/marking/mark-run-log'
 
 // Multi-question scanned scripts (derive → mark → verify per question) can run
 // 200–300s+; give generous headroom. NOTE: vercel.json's functions config for
 // this route overrides this export in production, so keep the two in sync.
 // 800s requires Fluid Compute (Pro/Enterprise); Vercel clamps to the plan max.
 export const maxDuration = 800
+
+/**
+ * Wall-clock budget for one marking request, used to stop Gemini retries before
+ * the platform kills the function.
+ *
+ * Derived from `maxDuration`, NOT from a guess about the plan ceiling. An
+ * earlier version assumed Vercel was clamping this route to 300s and budgeted
+ * 280s — but `attempts.time_spent_seconds` shows 6 marks that completed at up
+ * to 479s, so the 800s really is in force and a 280s budget would have aborted
+ * runs that currently succeed.
+ *
+ * Erring high is safe (the guard simply doesn't fire, leaving today's
+ * behaviour); erring low actively kills working marks. The reserve is what the
+ * handler needs to release its reservation, settle telemetry and emit an error.
+ */
+const MARK_BUDGET_RESERVE_MS = 20_000
+const MARK_REQUEST_BUDGET_MS = (() => {
+  const raw = Number(process.env.MARK_REQUEST_BUDGET_MS)
+  if (Number.isFinite(raw) && raw > 10_000) return Math.floor(raw)
+  return maxDuration * 1000 - MARK_BUDGET_RESERVE_MS
+})()
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -67,6 +102,44 @@ function logMarkFailure(err: unknown, classified: ClassifiedMarkingError) {
     retries: getGeminiRetryStats(),
     detail: err instanceof Error ? err.message.slice(0, 600) : String(err),
   })
+}
+
+/**
+ * Generate the premium full-marks rewrite AFTER the marks have been streamed,
+ * persist it onto the attempt, and push it to the open stream.
+ *
+ * Running this inline used to add 15–30s to every paid mark — the one group
+ * that should wait least waited most. Nothing in the score depends on it, so a
+ * failure here is silent by design: the user simply doesn't get the extra panel.
+ */
+async function streamDeferredRewrite(
+  plan: FullMarksRewritePlan,
+  attemptId: string | null,
+  send: (data: unknown) => void
+): Promise<void> {
+  try {
+    const rewrite = await generateFullMarksRewrite(plan)
+    if (!rewrite) return
+
+    if (attemptId) {
+      const { data: row } = await supabaseAdmin
+        .from('attempts')
+        .select('ai_marking')
+        .eq('id', attemptId)
+        .single()
+      const aiMarking = (row?.ai_marking ?? {}) as Record<string, unknown>
+      await supabaseAdmin
+        .from('attempts')
+        .update({ ai_marking: { ...aiMarking, full_marks_rewrite: rewrite } })
+        .eq('id', attemptId)
+    }
+
+    // attempt_id lets the client confirm the rewrite belongs to the result it
+    // is currently showing. A slow rewrite can outlive the mark it came from.
+    send({ type: 'rewrite', rewrite, attempt_id: attemptId })
+  } catch (err) {
+    console.warn('[mark/process] deferred rewrite failed (result already sent)', err)
+  }
 }
 
 async function ocrImage(file: File, prompt: string): Promise<string> {
@@ -88,10 +161,37 @@ async function ocrImage(file: File, prompt: string): Promise<string> {
 }
 
 export async function POST(request: NextRequest) {
+  // Everything below runs inside a wall-clock budget so retry loops fail here,
+  // in a handler that can release the reservation, settle telemetry and send a
+  // real error event — instead of being killed mid-stream with no trace.
+  return withRequestDeadline(MARK_REQUEST_BUDGET_MS, () => handleMarkRequest(request))
+}
+
+async function handleMarkRequest(request: NextRequest) {
   const startTime = Date.now()
   // Reservation lives at function scope so the outer catch can release it.
   let reservation: MarkReservation | null = null
   let reservationSettled = false // flips once on finalize OR release → exactly-once
+  // Telemetry row, opened once the request shape is known. Function scope so the
+  // outer catch can settle it; a run left unsettled is swept to 'abandoned'.
+  let markRun: MarkRunHandle | null = null
+  // Mirrors `reservationSettled`. Without it, work that runs AFTER
+  // settleMarkRunSuccess (extra-mark billing, payload signing, and especially
+  // controller.enqueue — which throws when the client has disconnected) falls
+  // into the catch and flips a genuinely successful, already-charged run to
+  // 'error', biasing the very success-rate metric this table exists to measure.
+  let markRunSettled = false
+
+  const settleRunSuccess = async (attemptId: string | null) => {
+    if (markRunSettled) return
+    markRunSettled = true
+    await settleMarkRunSuccess(markRun, attemptId)
+  }
+  const settleRunError = async (code: MarkingErrorCode, message: string) => {
+    if (markRunSettled) return
+    markRunSettled = true
+    await settleMarkRunError(markRun, code, message)
+  }
 
   try {
     // Read auth from request.cookies (+ bearer) — cookies() from next/headers
@@ -236,6 +336,18 @@ export async function POST(request: NextRequest) {
     const isPaid = hasPaidAccess(markAccess)
     const enableRewrite = hasFullMarksRewrite(markAccess)
 
+    // Open the reliability row before the first model call, so a run that dies
+    // mid-pipeline still leaves evidence behind.
+    markRun = await openMarkRun({
+      userId,
+      uploadMode,
+      markIntent,
+      pageCount: pageFiles.length,
+      hasPdf: !!answerPdf?.size,
+      isPaid,
+      subjectCode: practiceSubjectCode ?? selectedSubjectHint ?? manualSubjectCode ?? null,
+    })
+
     if (uploadMode === 'single_question') {
       const pipelineInput = {
         pageFiles,
@@ -307,27 +419,51 @@ export async function POST(request: NextRequest) {
             try {
               const payload = await runSingleQuestionMark({
                 ...pipelineInput,
-                onProgress: (ev) => send(ev),
+                deferRewrite: true,
+                onProgress: (ev) => {
+                  if (ev.type === 'progress') noteMarkRunStage(markRun, ev.stage)
+                  send(ev)
+                },
               })
               await bumpRateLimit()
               await finalizeReservation(
                 (payload as { attempt_id?: string })?.attempt_id ?? null,
                 'mark_single'
               )
+              await settleRunSuccess(
+                (payload as { attempt_id?: string })?.attempt_id ?? null
+              )
               const marksCharged = await chargeMultiQuestion(payload)
+              // Pull the deferred rewrite off the payload — it is server-only
+              // scaffolding and must never reach the client as part of `result`.
+              const { _rewrite_plan: rewritePlan, ...clientPayload } =
+                payload as Record<string, unknown> & {
+                  _rewrite_plan?: FullMarksRewritePlan
+                }
               send({
                 type: 'result',
                 payload: await signMarkPayloadForClient({
-                  ...payload,
+                  ...clientPayload,
                   _allowance: reservation
                     ? allowanceForResponse(reservation.allowance, marksCharged)
                     : undefined,
                 }),
               })
+
+              // Premium full-marks rewrite, generated only now that the score is
+              // on screen. Best-effort: any failure just means no rewrite panel.
+              if (rewritePlan) {
+                await streamDeferredRewrite(
+                  rewritePlan,
+                  (payload as { attempt_id?: string })?.attempt_id ?? null,
+                  send
+                )
+              }
               controller.close()
             } catch (err: unknown) {
               await releaseReservation()
               const classified = classifyMarkingError(err)
+              await settleRunError(classified.code, classified.message)
               logMarkFailure(err, classified)
               send({
                 type: 'error',
@@ -345,11 +481,21 @@ export async function POST(request: NextRequest) {
       }
 
       try {
-        const payload = await runSingleQuestionMark(pipelineInput)
+        // Stage tracking on the non-streaming path too, so its rows aren't
+        // permanently last_stage = NULL.
+        const payload = await runSingleQuestionMark({
+          ...pipelineInput,
+          onProgress: (ev) => {
+            if (ev.type === 'progress') noteMarkRunStage(markRun, ev.stage)
+          },
+        })
         await bumpRateLimit()
         await finalizeReservation(
           (payload as { attempt_id?: string })?.attempt_id ?? null,
           'mark_single'
+        )
+        await settleRunSuccess(
+          (payload as { attempt_id?: string })?.attempt_id ?? null
         )
         const marksCharged = await chargeMultiQuestion(payload)
         return NextResponse.json(
@@ -363,6 +509,7 @@ export async function POST(request: NextRequest) {
       } catch (err: unknown) {
         await releaseReservation()
         const classified = classifyMarkingError(err)
+        await settleRunError(classified.code, classified.message)
         logMarkFailure(err, classified)
         if (classified.code === 'client' || classified.code === 'ocr_empty') {
           return clientError(classified.message)
@@ -404,6 +551,12 @@ export async function POST(request: NextRequest) {
     const answerPhotoUrl = pageOcrResults[0]?.photo_url ?? null
 
     if (!ocrText || ocrText.trim().length < 5) {
+      // Must settle: an unsettled row is swept to 'abandoned' 20 minutes later
+      // and recorded as a killed function, so an unreadable photo would show up
+      // as an infrastructure failure. Release the reservation too — the user
+      // got no mark and should not be charged for one.
+      await releaseReservation()
+      await settleRunError('ocr_empty', 'No handwriting detected in upload.')
       return NextResponse.json(
         { error: 'No handwriting detected. Try a clearer photo.' },
         { status: 400 }
@@ -435,6 +588,10 @@ export async function POST(request: NextRequest) {
 
       if (!segments || segments.questions.length === 0) {
         await releaseReservation()
+        await settleRunError(
+          'client',
+          'Could not segment the paper into questions.'
+        )
         return NextResponse.json(
           {
             error:
@@ -449,6 +606,10 @@ export async function POST(request: NextRequest) {
 
       if (!paperCode || !paperSession) {
         await releaseReservation()
+        await settleRunError(
+          'client',
+          'Paper could not be identified for whole-paper marking.'
+        )
         return NextResponse.json(
           {
             error:
@@ -533,6 +694,7 @@ export async function POST(request: NextRequest) {
 
       // Whole paper = exactly 1 mark (not N questions).
       await finalizeReservation(attempt?.id ?? null, 'mark_whole_paper')
+      await settleRunSuccess(attempt?.id ?? null)
       if (userId) {
         const { isCommunityEnabled } = await import('@/lib/community/enabled')
         if (isCommunityEnabled() && attempt?.id) {
@@ -556,6 +718,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    await releaseReservation()
+    await settleRunError('client', 'Invalid upload mode.')
     return NextResponse.json(
       { error: 'Invalid upload mode' },
       { status: 400 }
@@ -566,6 +730,7 @@ export async function POST(request: NextRequest) {
       await releaseMarkReservation(reservation)
     }
     const classified = classifyMarkingError(err)
+    await settleRunError(classified.code, classified.message)
     logMarkFailure(err, classified)
     return NextResponse.json(
       {

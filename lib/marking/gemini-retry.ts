@@ -1,3 +1,9 @@
+import {
+  hasTimeForAnotherAttempt,
+  remainingRequestMs,
+  RequestDeadlineExceededError,
+} from '@/lib/ai/request-deadline'
+
 const GEMINI_RETRYABLE_STATUS = [429, 500, 502, 503, 504]
 
 /** Thrown when a Gemini/Vertex HTTP call exceeds the per-request timeout. */
@@ -136,12 +142,17 @@ async function withApiRetry<T>(
 ): Promise<T> {
   const { maxRetries = 8, baseDelayMs = 1000, label = 'api' } = opts
   let lastErr: unknown
+  // Observed cost of the slowest attempt so far — the basis for deciding
+  // whether another attempt can plausibly finish inside the request budget.
+  let slowestAttemptMs = 0
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    const attemptStartedAt = Date.now()
     try {
       return await fn()
     } catch (err: unknown) {
       lastErr = err
+      slowestAttemptMs = Math.max(slowestAttemptMs, Date.now() - attemptStartedAt)
       const status = extractStatus(err)
       const message = errorMessage(err)
       const isRetryable =
@@ -154,11 +165,23 @@ async function withApiRetry<T>(
 
       if (isGeminiQuotaExhausted(err)) break
 
+      const delay = retryDelayMs(err, attempt, baseDelayMs)
+
+      // Budget guard. Without this a sticky 503 burns every retry slot, the
+      // platform kills the function mid-stream, and the caller never gets to
+      // release its reservation, settle telemetry, or send an error event.
+      // Stopping here fails the request *inside* its own handler instead.
+      if (!hasTimeForAnotherAttempt(delay, slowestAttemptMs)) {
+        console.warn(
+          `[${label}] out of request budget after ${attempt + 1} attempt(s) — stopping retries`
+        )
+        throw new RequestDeadlineExceededError(remainingRequestMs() ?? 0, err)
+      }
+
       _totalRetries++
       if (status === 429) _rateLimitRetries++
       _lastRetryLabel = label
 
-      const delay = retryDelayMs(err, attempt, baseDelayMs)
       console.warn(
         `[${label}] retryable error (status ${status ?? errorCode(err) ?? 'unknown'}), attempt ${attempt + 1}/${maxRetries}, waiting ${Math.round(delay)}ms`
       )

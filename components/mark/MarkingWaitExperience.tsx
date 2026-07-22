@@ -248,7 +248,9 @@ function SingleQuestionWait({
     >
       <StageProgressBar percent={segment} />
       <p className="mt-3 text-center text-xs text-[var(--ec-text-secondary)]">
-        {markingTimeEstimateSubline()}
+        {markingTimeEstimateSubline(stage, {
+          totalQuestions: context?.total_questions,
+        })}
       </p>
 
       <div className="mt-8 space-y-6">

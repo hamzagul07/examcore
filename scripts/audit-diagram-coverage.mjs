@@ -14,8 +14,28 @@ const subjectArg =
   process.argv.find((a) => a.startsWith('--subject='))?.split('=')[1] ??
   (process.argv.includes('--subject') ? process.argv[process.argv.indexOf('--subject') + 1] : null)
 
-const ALL_SUBJECTS = ['9702', '9700', '9701', '9709', '9231', '9618']
-const subjects = subjectArg && subjectArg !== 'all' ? [subjectArg] : ALL_SUBJECTS
+/**
+ * Every subject with lessons on disk, not a hand-maintained list.
+ *
+ * This was pinned to six Cambridge codes and reported "100% coverage" — while
+ * measuring 318 of 1,721 lessons. A hardcoded list silently stops covering
+ * whatever is added after it, which for an audit is the one thing it must not
+ * do: the number it prints was read as a statement about the whole catalogue.
+ */
+function discoverSubjects() {
+  const root = path.join(PROJECT, 'content/courses')
+  return fs
+    .readdirSync(root, { withFileTypes: true })
+    .filter((e) => e.isDirectory())
+    .map((e) => e.name)
+    .filter((name) =>
+      fs.readdirSync(path.join(root, name)).some((f) => f.endsWith('.json'))
+    )
+    .sort()
+}
+
+const subjects =
+  subjectArg && subjectArg !== 'all' ? [subjectArg] : discoverSubjects()
 
 const { hasLessonLiveDiagram } = await import('../lib/courses/lesson-diagrams.ts')
 
@@ -47,8 +67,12 @@ for (const subject of subjects) {
   console.log(`  Missing:       ${missing.length}`)
 
   if (missing.length) {
+    const shown = missing.slice(0, 5)
     console.log('  Missing slugs:')
-    for (const slug of missing) console.log(`    - ${slug}`)
+    for (const slug of shown) console.log(`    - ${slug}`)
+    if (missing.length > shown.length) {
+      console.log(`    …and ${missing.length - shown.length} more (--subject ${subject} to list them)`)
+    }
   }
   console.log('')
 }

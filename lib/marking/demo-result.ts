@@ -81,7 +81,7 @@ export const DEMO_MARK_RESULT: MarkingResultData = {
       },
       {
         mark_id: 5,
-        type: 'A1',
+        type: 'B1',
         earned: false,
         reasoning:
           'You stated the nature of each point correctly, but stated it without justification. This mark needs the reasoning shown — either evaluate the second derivative (d²y/dx² = 6x − 12, giving −6 at x = 1 and +6 at x = 3) or show a sign change of dy/dx either side of each point. An unsupported assertion earns nothing here even when the conclusion is right.',

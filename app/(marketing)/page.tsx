@@ -12,8 +12,7 @@ import { LandingFaq } from '@/components/landing/LandingFaq'
 import { LandingFinalCta } from '@/components/landing/LandingFinalCta'
 import { LandingEditorialSpotlight } from '@/components/landing/LandingEditorialSpotlight'
 import { LandingProof } from '@/components/landing/LandingProof'
-import { LandingMarkPreview } from '@/components/landing/LandingMarkPreview'
-import { MarkedScriptShowcase } from '@/components/marketing/MarkedScriptShowcase'
+import { InteractiveMarkDemo } from '@/components/marketing/InteractiveMarkDemo'
 
 export const metadata = getPageMetadata('/')
 
@@ -27,12 +26,10 @@ export default function Home() {
         <LandingHero markHref={markHref} />
         <HomeGeoIntro />
         <LandingEditorialSpotlight />
-        {/* Show the artefact before explaining it — a visitor deciding in
-            five seconds looks rather than reads. */}
-        <LandingMarkPreview markHref={markHref} />
-        {/* The claim people don't believe until they see it. */}
+        {/* Show the artefact before explaining it, as one thing the visitor
+            can pick apart rather than two pictures of the same script. */}
         <div className="ms-pg">
-          <MarkedScriptShowcase />
+          <InteractiveMarkDemo />
         </div>
         <LandingPillars />
         <LandingMarkingSection />

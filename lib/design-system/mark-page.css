@@ -2237,3 +2237,151 @@
     font-size: 19px;
   }
 }
+
+/* ── Interactive mark demo ────────────────────────────────────────────────
+   Replaces two disconnected blocks that showed the same script twice. Script
+   and mark list are one selection: picking either drives the other. */
+
+.ms-demo {
+  margin: 48px 0;
+}
+
+.ms-demo__title {
+  margin: 8px 0 0;
+  font-size: clamp(24px, 3.4vw, 34px);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  color: var(--ec-text-primary);
+}
+
+.ms-demo__lead {
+  margin: 10px 0 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ec-text-secondary);
+  max-width: 60ch;
+}
+
+.ms-demo__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+  margin-top: 26px;
+}
+
+.ms-demo__script {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.ms-demo__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.ms-demo__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--ec-text-faint);
+}
+
+.ms-demo__marks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.ms-demo__mark {
+  display: grid;
+  grid-template-columns: 22px 34px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 13px;
+  border-radius: 12px;
+  border: 1px solid var(--ec-border);
+  background: var(--ec-surface);
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 140ms ease-out, transform 140ms ease-out;
+}
+
+.ms-demo__mark:hover {
+  border-color: color-mix(in srgb, var(--ec-brand) 45%, var(--ec-border));
+}
+
+/* Selection is a ring plus a shift, not a colour swap — the earned/lost hue
+   has to keep meaning what it means. */
+.ms-demo__mark.is-active {
+  border-color: var(--ec-brand);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ec-brand) 26%, transparent);
+  transform: translateX(2px);
+}
+
+.ms-demo__mark.is-lost {
+  border-color: color-mix(in srgb, var(--ec-chip-critical-text) 34%, var(--ec-border));
+}
+
+.ms-demo__mark:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+}
+
+.ms-demo__why {
+  margin-top: 22px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid var(--ec-border);
+  border-left: 3px solid var(--ec-chip-success-text);
+  background: var(--ec-surface-raised);
+}
+
+.ms-demo__why.is-lost {
+  border-left-color: var(--ec-chip-critical-text);
+}
+
+.ms-demo__why-label {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ec-chip-success-text);
+}
+
+.ms-demo__why.is-lost .ms-demo__why-label {
+  color: var(--ec-chip-critical-text);
+}
+
+.ms-demo__why-body {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.62;
+  color: var(--ec-text-primary);
+}
+
+@media (max-width: 900px) {
+  .ms-demo__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-demo__mark {
+    transition: none;
+  }
+  .ms-demo__mark.is-active {
+    transform: none;
+  }
+}

@@ -46,7 +46,11 @@ export function MarkStamp({ markId, earned }: MarkStampProps) {
         style={{
           color,
           borderColor: color,
-          background: 'color-mix(in srgb, var(--ec-paper) 92%, transparent)',
+          /* Fixed paper white, NOT --ec-paper. The stamp sits on a photograph
+             of the student's actual page, which is light in every theme — so a
+             themed surface token turns the backing plate dark in night mode and
+             the stamps read as grey blocks smudged across white paper. */
+          background: 'rgba(252, 251, 247, 0.92)',
         }}
       >
         <span>{displayId}</span>

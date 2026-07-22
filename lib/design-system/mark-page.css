@@ -1477,3 +1477,144 @@
     gap: 4px;
   }
 }
+
+/* ── Mastery heatmap ──────────────────────────────────────────────────────
+   Status palette, not a series palette: each level maps to the same chip tokens
+   used by the pills elsewhere, so a colour never means two things. `data-level`
+   carries the token stem so the markup stays free of colour decisions. */
+
+.ms-mastery-heatmap {
+  margin-top: 18px;
+}
+
+[data-level='success'] { --mh-ink: var(--ec-chip-success-text); --mh-bg: var(--ec-chip-success-bg); }
+[data-level='warning'] { --mh-ink: var(--ec-chip-warning-text); --mh-bg: var(--ec-chip-warning-bg); }
+[data-level='critical'] { --mh-ink: var(--ec-chip-critical-text); --mh-bg: var(--ec-chip-critical-bg); }
+[data-level='sampled'] { --mh-ink: var(--ec-chip-sampled-text); --mh-bg: var(--ec-chip-sampled-bg); }
+[data-level='neutral'] { --mh-ink: var(--ec-chip-neutral-text); --mh-bg: var(--ec-chip-neutral-bg); }
+
+/* Distribution bar — legend and summary in one element. */
+.ms-mh-dist {
+  display: flex;
+  gap: 2px; /* 2px surface gap between adjacent fills */
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.ms-mh-dist__seg {
+  background: var(--mh-ink);
+  min-width: 4px;
+}
+
+.ms-mh-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  font-size: 12px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-mh-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ms-mh-legend__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--mh-ink);
+}
+
+.ms-mh-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.ms-mh-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.ms-mh-row__label {
+  flex: 0 0 34px;
+  margin: 0;
+  padding-top: 7px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.ms-mh-cells {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  min-width: 0;
+}
+
+.ms-mh-cell {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  /* The chip tints (~11% alpha) are tuned for small pills where the TEXT
+     carries the state. Here the fill is the signal, and at chip strength the
+     grid read as one flat colour — a 38 looked like a 92. Mixed to 20% with a
+     40% border instead: strong enough to see the shape across a whole subject
+     at a glance, light enough that the ink-coloured score still clears AA. */
+  background: color-mix(in srgb, var(--mh-ink) 20%, var(--ec-surface));
+  border: 1px solid color-mix(in srgb, var(--mh-ink) 40%, transparent);
+  color: var(--mh-ink);
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition: transform 140ms ease-out, box-shadow 140ms ease-out;
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+
+/* Shape, not just hue: an untouched topic is hollow and dashed, so the grid
+   still reads correctly in greyscale or with any colour vision deficiency. */
+.ms-mh-cell[data-attempted='no'] {
+  background: transparent;
+  border: 1px dashed color-mix(in srgb, var(--mh-ink) 45%, transparent);
+}
+
+.ms-mh-cell:hover,
+.ms-mh-cell:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 2px var(--ec-surface), 0 0 0 4px var(--mh-ink);
+  outline: none;
+}
+
+@media (max-width: 520px) {
+  .ms-mh-cell {
+    width: 30px;
+    height: 30px;
+    font-size: 10px;
+  }
+  .ms-mh-cells {
+    gap: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-mh-cell {
+    transition: none;
+  }
+  .ms-mh-cell:hover,
+  .ms-mh-cell:focus-visible {
+    transform: none;
+  }
+}

@@ -1332,3 +1332,148 @@
     transition: none;
   }
 }
+
+/* ── Dashboard momentum strip ─────────────────────────────────────────────
+   KPI row + one column per day. Single series, so a single hue (brand) stepped
+   by opacity, with today at full strength as emphasis — no categorical palette
+   and therefore no legend. */
+
+.ms-momentum {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px;
+  margin-bottom: 28px;
+  border: 1px solid var(--ec-border);
+  border-radius: 18px;
+  background: var(--ec-surface-raised);
+}
+
+.ms-momentum-kpis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+
+.ms-momentum-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ms-momentum-kpi__value {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ec-text-primary);
+}
+
+.ms-momentum-kpi__label {
+  font-size: 13px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-momentum-flame {
+  color: var(--ec-chip-warning-text, #735829);
+}
+
+.ms-momentum-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.ms-momentum-delta.is-up {
+  color: var(--ec-chip-success-text, #19774d);
+  background: var(--ec-chip-success-bg, rgba(30, 138, 94, 0.11));
+}
+
+.ms-momentum-delta.is-down {
+  color: var(--ec-chip-critical-text, #a23e3e);
+  background: var(--ec-chip-critical-bg, rgba(176, 72, 72, 0.09));
+}
+
+.ms-momentum-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ms-momentum-bar {
+  position: relative;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.ms-momentum-bar__track {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 58px;
+  border-radius: 6px;
+  /* Empty days keep a faint track so the gap is visibly a gap, not a crop. */
+  background: color-mix(in srgb, var(--ec-brand) 8%, transparent);
+}
+
+.ms-momentum-bar__fill {
+  width: 100%;
+  /* 4px rounded data-end, anchored to the baseline. */
+  border-radius: 0 0 6px 6px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background: color-mix(in srgb, var(--ec-brand) 48%, transparent);
+}
+
+.ms-momentum-bar__fill.is-today {
+  background: var(--ec-brand);
+}
+
+.ms-momentum-bar__day {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ec-text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.ms-momentum-bar__day.is-today {
+  color: var(--ec-brand);
+}
+
+/* Hit target larger than the mark, for the native title tooltip. */
+.ms-momentum-bar__hit {
+  position: absolute;
+  inset: -4px -3px;
+  cursor: default;
+}
+
+@media (max-width: 520px) {
+  .ms-momentum-kpis {
+    gap: 20px;
+  }
+  .ms-momentum-kpi__value {
+    font-size: 25px;
+  }
+  .ms-momentum-bar__track {
+    height: 48px;
+  }
+  .ms-momentum-bars {
+    gap: 4px;
+  }
+}

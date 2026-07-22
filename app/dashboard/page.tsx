@@ -24,6 +24,8 @@ import { ContinueWork } from '@/components/dashboard/ContinueWork'
 import { ActiveSubjects } from '@/components/dashboard/ActiveSubjects'
 import { NewUserHome } from '@/components/dashboard/NewUserHome'
 import { computeStreak } from '@/lib/dashboard/streak'
+import { MomentumStrip } from '@/components/dashboard/MomentumStrip'
+import { buildMomentum } from '@/lib/dashboard/momentum'
 import { attemptsThisMonth, attemptsThisWeek, bestSubjectThisWeek } from '@/lib/dashboard/home-stats'
 import { displaySubjectName } from '@/lib/dashboard/subject-display'
 import { resolveDashboardState, type Recommendation } from '@/lib/insights/types'
@@ -91,6 +93,8 @@ export default async function DashboardPage() {
   const timestamps = attemptsList.map((a) => new Date(a.created_at))
   const streak = computeStreak(timestamps)
   const weeklyCount = attemptsThisWeek(timestamps)
+  // Reuses the attempts already fetched above — no extra query for the strip.
+  const momentum = buildMomentum(attemptsList, 14)
   const monthlyCount = attemptsThisMonth(timestamps)
   const bestSubjectCode = bestSubjectThisWeek(attemptsList)
   const bestSubjectLabel = displaySubjectName(bestSubjectCode)
@@ -194,6 +198,13 @@ export default async function DashboardPage() {
           />
 
           <BillingLimitBanner className="mb-6" />
+
+          {/* Above the fold, before anything asks them to do more work: have I
+              shown up? The strip returns null when the fortnight is empty, so a
+              brand-new account isn't greeted by a row of zeroes. */}
+          {!isEmpty ? (
+            <MomentumStrip summary={momentum} streak={streak} />
+          ) : null}
 
           {!isEmpty ? (
             <WeakSpotDrillCard

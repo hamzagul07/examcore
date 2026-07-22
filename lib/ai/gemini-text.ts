@@ -155,6 +155,22 @@ function resolveCallTimeoutMs(opts: GeminiTextOptions): number {
   return clampTimeoutToDeadline(opts.httpTimeoutMs ?? _defaultCallTimeoutMs)
 }
 
+/**
+ * Hard timeout + abort signal for call sites that build their own
+ * `generateContent` request instead of going through the helpers here.
+ *
+ * Those sites (PDF page OCR, cold mark-scheme extraction) relied solely on the
+ * timeout baked into the cached client, so they were invisible to the request
+ * budget — two of them back to back could spend 240s the deadline could not
+ * see. Pass the signal straight into `config.abortSignal`.
+ */
+export function withGeminiCallTimeout<T>(
+  fn: (signal: AbortSignal) => Promise<T>,
+  opts: Pick<GeminiTextOptions, 'httpTimeoutMs'> = {}
+): Promise<T> {
+  return withGeminiAbortTimeout(fn, resolveCallTimeoutMs(opts))
+}
+
 function isAbortError(err: unknown): boolean {
   if (!err || typeof err !== 'object') return false
   const name = (err as { name?: string }).name

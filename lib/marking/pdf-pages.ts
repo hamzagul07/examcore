@@ -1,5 +1,5 @@
 import type { GoogleGenAI } from '@google/genai'
-import { GEMINI_FLASH_MODEL } from '@/lib/ai/gemini-text'
+import { GEMINI_FLASH_MODEL, withGeminiCallTimeout } from '@/lib/ai/gemini-text'
 import { withGeminiRetry } from './gemini-retry'
 import { parseOcrAnswer } from './ocr'
 import type { OcrLine } from '@/lib/examiner-ink-positioning'
@@ -33,20 +33,25 @@ export async function ocrPdfToPages(
   const base64 = Buffer.from(pdfBytes).toString('base64')
   const response = await withGeminiRetry(
     () =>
-      genAI.models.generateContent({
-        model: GEMINI_FLASH_MODEL,
-        contents: [
-          {
-            role: 'user',
-            parts: [
-              { inlineData: { mimeType: 'application/pdf', data: base64 } },
-              { text: PDF_PAGES_OCR_PROMPT },
-            ],
-          },
-        ],
-        // Deterministic OCR — same scan should transcribe the same way each run.
-        config: { temperature: 0 },
-      }),
+      // Deadline-aware hard timeout: this call is built here rather than via
+      // the gemini-text helpers, so without this it is invisible to the
+      // request budget and can hang for the client's full baked-in timeout.
+      withGeminiCallTimeout((signal) =>
+        genAI.models.generateContent({
+          model: GEMINI_FLASH_MODEL,
+          contents: [
+            {
+              role: 'user',
+              parts: [
+                { inlineData: { mimeType: 'application/pdf', data: base64 } },
+                { text: PDF_PAGES_OCR_PROMPT },
+              ],
+            },
+          ],
+          // Deterministic OCR — same scan should transcribe the same way each run.
+          config: { temperature: 0, abortSignal: signal },
+        })
+      ),
     { label: 'pdf-pages-ocr' }
   )
   const raw = response.text || ''
@@ -87,19 +92,21 @@ export async function ocrPdfToPlainText(
   const base64 = Buffer.from(pdfBytes).toString('base64')
   const response = await withGeminiRetry(
     () =>
-      genAI.models.generateContent({
-        model: GEMINI_FLASH_MODEL,
-        contents: [
-          {
-            role: 'user',
-            parts: [
-              { inlineData: { mimeType: 'application/pdf', data: base64 } },
-              { text: prompt },
-            ],
-          },
-        ],
-        config: { temperature: 0 },
-      }),
+      withGeminiCallTimeout((signal) =>
+        genAI.models.generateContent({
+          model: GEMINI_FLASH_MODEL,
+          contents: [
+            {
+              role: 'user',
+              parts: [
+                { inlineData: { mimeType: 'application/pdf', data: base64 } },
+                { text: prompt },
+              ],
+            },
+          ],
+          config: { temperature: 0, abortSignal: signal },
+        })
+      ),
     { label: 'pdf-plain-ocr' }
   )
   return (response.text || '').trim()

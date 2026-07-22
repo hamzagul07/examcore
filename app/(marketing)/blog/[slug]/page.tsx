@@ -112,7 +112,10 @@ export default async function BlogPostPage({ params }: Props) {
 
         <BlogSourcesBlock slug={slug} />
         <BlogFollowUpChain slug={slug} />
-        <BlogMarkExample slug={slug} />
+        <BlogMarkExample
+          slug={slug}
+          board={slug.startsWith('ib-') ? 'ib' : 'cambridge'}
+        />
         <BlogPostCta
           variant={ctaVariant}
           subjectCode={subjectCode}

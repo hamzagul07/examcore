@@ -1,9 +1,10 @@
 import Link from 'next/link'
-import { ArrowRight, BarChart3, BookOpen, Target } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import type { Recommendation } from '@/lib/insights/types'
 import { ActiveSubjects } from '@/components/dashboard/ActiveSubjects'
 import { ContinueWork } from '@/components/dashboard/ContinueWork'
 import { MarkQuestionCta } from '@/components/dashboard/MarkQuestionCta'
+import { FirstMarkPreview } from '@/components/dashboard/FirstMarkPreview'
 
 type SubjectChip = {
   name: string
@@ -16,11 +17,6 @@ type Props = {
   recommendations: Recommendation[]
 }
 
-const PROGRESS_PLACEHOLDERS = [
-  { label: 'Topics tracked', icon: Target },
-  { label: 'Syllabus coverage', icon: BookOpen },
-  { label: 'Grade trend', icon: BarChart3 },
-] as const
 
 /** Richer home for users who have not marked anything yet. */
 export function NewUserHome({ subjects, subjectLabel, recommendations }: Props) {
@@ -32,7 +28,7 @@ export function NewUserHome({ subjects, subjectLabel, recommendations }: Props) 
           <h2 className="text-title">Mark your first question</h2>
           <p className="text-body mt-2 max-w-xl text-[var(--ec-text-secondary)]">
             Upload a photo of your work or pick a past-paper question. You&apos;ll get
-            examiner-style feedback in under a minute — then your progress dashboard
+            examiner-style feedback in a couple of minutes — then your progress dashboard
             starts filling in.
           </p>
           <div className="mt-5">
@@ -60,23 +56,7 @@ export function NewUserHome({ subjects, subjectLabel, recommendations }: Props) 
             </Link>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-3">
-            {PROGRESS_PLACEHOLDERS.map(({ label, icon: Icon }) => (
-              <div
-                key={label}
-                className="rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-4 py-4 text-center"
-              >
-                <Icon
-                  className="mx-auto mb-2 h-5 w-5 text-[var(--ec-text-secondary)]"
-                  aria-hidden
-                />
-                <p className="text-2xl font-bold tabular-nums text-[var(--ec-text-secondary)]">
-                  —
-                </p>
-                <p className="text-caption mt-1">{label}</p>
-              </div>
-            ))}
-          </div>
+          <FirstMarkPreview />
         </div>
       </section>
 

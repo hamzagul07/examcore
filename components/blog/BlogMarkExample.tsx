@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react'
 import { ScoreReveal } from '@/components/mark/ScoreReveal'
 import { MarkLineList } from '@/components/mark/MarkLineList'
 import { DEMO_MARK_RESULT } from '@/lib/marking/demo-result'
+import { DEMO_MARK_RESULT_IB } from '@/lib/marking/demo-result-ib'
 
 /**
  * A worked example of examiner-style marking, on every article.
@@ -21,11 +22,18 @@ import { DEMO_MARK_RESULT } from '@/lib/marking/demo-result'
  * /mark?example=1 — one artefact, recognisable wherever a reader meets it.
  */
 
-const r = DEMO_MARK_RESULT
-const marks = r.ai_marking.marks_awarded
-const lost = marks.find((m) => !m.earned)
-
-export function BlogMarkExample({ slug }: { slug?: string | null }) {
+export function BlogMarkExample({
+  slug,
+  board = 'cambridge',
+}: {
+  slug?: string | null
+  /** IB articles are kept free of Cambridge references, so they get the IB
+   * example — same teaching point, notation the reader will actually meet. */
+  board?: 'cambridge' | 'ib'
+}) {
+  const r = board === 'ib' ? DEMO_MARK_RESULT_IB : DEMO_MARK_RESULT
+  const marks = r.ai_marking.marks_awarded
+  const lost = marks.find((m) => !m.earned)
   const percentage = Math.round((r.marks_earned / r.total_marks) * 100)
   const href = slug ? `/mark?from=${encodeURIComponent(slug)}` : '/mark'
 
@@ -36,9 +44,9 @@ export function BlogMarkExample({ slug }: { slug?: string | null }) {
         What a lost mark actually looks like
       </h2>
       <p className="ms-blog-mark-example__lead">
-        This answer reaches the right coordinates and still drops a mark — the
-        conclusion is stated, but never justified. Examiners pay for the
-        reasoning, not the answer.
+        {board === 'ib'
+          ? 'This answer reaches the right coordinates and still drops a mark. The question asks you to justify — and R marks pay for the reasoning, not the conclusion.'
+          : 'This answer reaches the right coordinates and still drops a mark — the conclusion is stated, but never justified. Examiners pay for the reasoning, not the answer.'}
       </p>
 
       <div className="ms-blog-mark-example__body">

@@ -12,6 +12,7 @@ import { LandingFaq } from '@/components/landing/LandingFaq'
 import { LandingFinalCta } from '@/components/landing/LandingFinalCta'
 import { LandingEditorialSpotlight } from '@/components/landing/LandingEditorialSpotlight'
 import { LandingProof } from '@/components/landing/LandingProof'
+import { LandingMarkPreview } from '@/components/landing/LandingMarkPreview'
 
 export const metadata = getPageMetadata('/')
 
@@ -25,6 +26,9 @@ export default function Home() {
         <LandingHero markHref={markHref} />
         <HomeGeoIntro />
         <LandingEditorialSpotlight />
+        {/* Show the artefact before explaining it — a visitor deciding in
+            five seconds looks rather than reads. */}
+        <LandingMarkPreview markHref={markHref} />
         <LandingPillars />
         <LandingMarkingSection />
         <LandingPlatformShowcase />

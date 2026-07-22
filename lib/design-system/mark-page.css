@@ -1686,3 +1686,134 @@
     transition: none;
   }
 }
+
+/* ── Landing: "this is what comes back" ───────────────────────────────────
+   Live product components rather than a screenshot, so the landing page can
+   never show a UI the product no longer has. */
+
+.ms-mark-preview {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+  margin-top: 28px;
+}
+
+.ms-mark-preview__lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ms-mpl {
+  display: grid;
+  grid-template-columns: 22px 34px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--ec-border);
+  background: var(--ec-surface);
+  font-size: 14px;
+}
+
+.ms-mpl__icon {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+}
+
+/* Icon AND colour, so the verdict survives greyscale. */
+.ms-mpl.is-earned .ms-mpl__icon {
+  background: var(--ec-chip-success-bg);
+  color: var(--ec-chip-success-text);
+}
+
+.ms-mpl.is-lost .ms-mpl__icon {
+  background: var(--ec-chip-critical-bg);
+  color: var(--ec-chip-critical-text);
+}
+
+.ms-mpl.is-lost {
+  border-color: color-mix(in srgb, var(--ec-chip-critical-text) 38%, var(--ec-border));
+}
+
+.ms-mpl__type {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ec-text-secondary);
+}
+
+.ms-mpl__work {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 13px;
+  color: var(--ec-text-primary);
+}
+
+.ms-mark-preview__why {
+  margin: 20px 0 0;
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid var(--ec-border);
+  border-left: 3px solid var(--ec-chip-critical-text);
+  background: var(--ec-surface-raised);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ec-text-primary);
+}
+
+.ms-mark-preview__why p {
+  margin: 0;
+}
+
+.ms-mark-preview__why-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ec-chip-critical-text);
+  margin-bottom: 6px !important;
+}
+
+.ms-mark-preview__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 22px;
+  font-size: 14px;
+  color: var(--ec-text-secondary);
+}
+
+@media (max-width: 860px) {
+  .ms-mark-preview {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ms-mpl__work {
+    font-size: 12px;
+  }
+}
+
+/* Empty fortnight: the grid still renders, as a target rather than a scoreline. */
+.ms-momentum-empty__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ec-text-primary);
+}
+
+.ms-momentum-empty__body {
+  margin: 4px 0 0;
+  font-size: 13.5px;
+  color: var(--ec-text-secondary);
+}

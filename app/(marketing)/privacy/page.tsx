@@ -43,6 +43,9 @@ export default function PrivacyPage() {
                 <strong className="text-[var(--ec-text-primary)]">Usage data</strong> — basic logs (pages visited, errors, approximate location from IP) to keep the service running and secure.
               </li>
               <li>
+                <strong className="text-[var(--ec-text-primary)]">Visit measurement</strong> — which pages are viewed and roughly how long for, including before you sign in. These are linked only by a random identifier held in your browser&apos;s session storage: it is created fresh for each browsing session, is erased when you close the tab, and is never linked to your IP address or any device fingerprint. We use it to see where people get stuck, not to identify you.
+              </li>
+              <li>
                 <strong className="text-[var(--ec-text-primary)]">Communications</strong> — emails you send us and messages you exchange with MarkScheme study chat within the product.
               </li>
             </ul>

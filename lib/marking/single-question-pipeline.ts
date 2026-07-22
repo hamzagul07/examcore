@@ -3,10 +3,12 @@ import { generateGeminiText } from '@/lib/ai/gemini-text'
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import type { OcrLine } from '@/lib/examiner-ink-positioning'
 import { extractJSON } from '@/lib/marking/json'
-import type {
-  MarkContextPayload,
-  MarkProgressEvent,
+import {
+  stagePercent,
+  type MarkContextPayload,
+  type MarkProgressEvent,
 } from '@/lib/marking/mark-progress'
+import { isRequestDeadlineError } from '@/lib/ai/request-deadline'
 import {
   lookupMarkScheme,
   markSingleQuestion,
@@ -122,6 +124,12 @@ export type SingleQuestionMarkInput = {
    * changing the verify-depth behaviour. Defaults false.
    */
   enableRewrite?: boolean
+  /**
+   * Return the premium rewrite as a plan (on `_rewrite_plan`) instead of
+   * generating it inline. Set by the streaming caller, which sends the marks
+   * immediately and then fills the rewrite in with a follow-up event.
+   */
+  deferRewrite?: boolean
   startedAt?: number
   onProgress?: (event: MarkProgressEvent) => void
 }
@@ -129,9 +137,11 @@ export type SingleQuestionMarkInput = {
 function emit(
   onProgress: SingleQuestionMarkInput['onProgress'],
   stage: Extract<MarkProgressEvent, { type: 'progress' }>['stage'],
-  percent: number
+  /** Override only where a stage reports sub-progress (per-question batches);
+   * otherwise the canonical percent for the stage is used. */
+  percent?: number
 ) {
-  onProgress?.({ type: 'progress', stage, percent })
+  onProgress?.({ type: 'progress', stage, percent: percent ?? stagePercent(stage) })
 }
 
 function emitContext(
@@ -328,6 +338,12 @@ async function markOneSplitQuestion(
       tags: resolvedTags,
     }
   } catch (err) {
+    // Budget exhaustion is NOT a per-question failure — it means the whole run
+    // is out of time. Swallowing it here let the remaining questions each burn
+    // another doomed attempt and, worse, let the route settle the run as a
+    // success while half the questions read "marking failed". Propagate so the
+    // route classifies it, releases the reservation and records a real error.
+    if (isRequestDeadlineError(err)) throw err
     // H2: isolate the failure so the other questions still return.
     console.error(`[mark] split question ${q.question_number} failed:`, err)
     return {
@@ -507,6 +523,7 @@ export async function runSingleQuestionMark(
     userId,
     isPaid = false,
     enableRewrite = false,
+    deferRewrite = false,
     startedAt = Date.now(),
     onProgress,
   } = input
@@ -526,7 +543,7 @@ export async function runSingleQuestionMark(
     )
   const manualSubjectCode = manualPaperCode?.split('/')[0]
 
-  emit(onProgress, 'reading_work', 5)
+  emit(onProgress, 'reading_work')
 
   const pageOcrResults: Array<{
     full_text: string
@@ -552,6 +569,20 @@ export async function runSingleQuestionMark(
     (isPracticeQuestion ? practiceCode : manualSubjectCode)
       ? SUBJECT_CODE_MAP[isPracticeQuestion ? practiceCode! : manualSubjectCode!]
       : undefined
+
+  // The question photo is independent of the answer pages, so start reading it
+  // now and collect it below. Run serially it added 5–10s to every upload that
+  // used one. Settled (never raw-rejected) so a failure here can't surface as an
+  // unhandled rejection while the answer OCR is still in flight.
+  const questionOcrTask: Promise<
+    { ok: true; text: string } | { ok: false; error: unknown }
+  > | null =
+    questionPhoto && !questionTextInput.trim()
+      ? ocrQuestionFile(questionPhoto, subjectHint).then(
+          (text) => ({ ok: true as const, text }),
+          (error: unknown) => ({ ok: false as const, error })
+        )
+      : null
 
   if (answerPdf?.size) {
     const pdfPages = await ocrPdfToPages(
@@ -588,7 +619,7 @@ export async function runSingleQuestionMark(
     pageOcrResults.push(...deduped)
   }
 
-  emit(onProgress, 'reading_work', 20)
+  emit(onProgress, 'reading_work')
 
   const ocrText = pageOcrResults
     .map((p, i) => `[Page ${i + 1}]\n${p.full_text}`)
@@ -606,11 +637,15 @@ export async function runSingleQuestionMark(
   }
 
   let questionText = questionTextInput.trim()
-  if (questionPhoto && !questionText) {
-    questionText = await ocrQuestionFile(questionPhoto, subjectHint)
+  if (questionOcrTask) {
+    const outcome = await questionOcrTask
+    // Rethrow here rather than at kick-off time so the failure still reaches the
+    // caller's classifier with the same message it had when this ran serially.
+    if (!outcome.ok) throw outcome.error
+    questionText = outcome.text
   }
 
-  emit(onProgress, 'finding_scheme', 30)
+  emit(onProgress, 'finding_scheme')
 
   let markingMode: MarkingMode = 'general_criteria'
   let markScheme: MarkSchemeRow | null = null
@@ -630,7 +665,7 @@ export async function runSingleQuestionMark(
       }
     }
 
-    emit(onProgress, 'finding_scheme', 40)
+    emit(onProgress, 'finding_scheme')
 
     // Multi-question guard: a combined script can hold several distinct questions.
     // Detect them and, if there's more than one, mark each separately.
@@ -727,7 +762,7 @@ export async function runSingleQuestionMark(
       question_number: String(detection.question_number),
     }
 
-    emit(onProgress, 'finding_scheme', 50)
+    emit(onProgress, 'finding_scheme')
 
     const lookup = await lookupMarkScheme(
       detectedPaper.paper_code,
@@ -735,7 +770,7 @@ export async function runSingleQuestionMark(
       detectedPaper.question_number,
       {
         extractionMode: 'targeted',
-        onExtracting: () => emit(onProgress, 'extracting_scheme', 70),
+        onExtracting: () => emit(onProgress, 'extracting_scheme'),
       }
     )
     markScheme = lookup.scheme
@@ -772,14 +807,17 @@ export async function runSingleQuestionMark(
   }
   }
 
-  emit(onProgress, 'marking', 85)
-
+  // No 'marking' emit here: markSingleQuestion now reports its own stages via
+  // onStage, and it may start with 'deriving_scheme' (48%). Emitting 'marking'
+  // (62%) first made the bar and the headline visibly run BACKWARDS on every
+  // derive-path mark, which is most practice and freeform uploads.
   const {
     markingResult,
     lineReferences,
     errorClassifications,
     resolvedTags,
     markingMode: finalMode,
+    rewritePlan,
   } = await markSingleQuestion({
     ocrText: ocrTextForMarking,
     ocrLines,
@@ -800,6 +838,12 @@ export async function runSingleQuestionMark(
     questionTotalMarks: questionMarks ?? extractStatedTotalMarks(questionText),
     // Premium: full-marks rewrite on the focused single-question path only.
     rewrite: enableRewrite,
+    // When streaming, hand the rewrite back as a plan so the caller can deliver
+    // the marks first — otherwise paid users wait longest for their score.
+    deferRewrite: deferRewrite && enableRewrite,
+    // Keep the progress bar honest through derive → mark → verify, the ~2
+    // minutes that previously showed no movement at all.
+    onStage: (stage) => emit(onProgress, stage),
   })
 
   if (resolvedTags.length > 0 || detectedPaper || hasManualSelection) {
@@ -897,6 +941,8 @@ export async function runSingleQuestionMark(
     error_classifications: errorClassifications,
     upload_mode: 'single_question',
     time_spent_seconds: timeSpentSeconds,
+    // Internal: consumed and stripped by the route before the payload is sent.
+    _rewrite_plan: rewritePlan ?? undefined,
     mark_scheme_meta: markScheme
       ? {
           total_marks: markScheme.total_marks,

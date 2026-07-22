@@ -5,6 +5,7 @@ import {
   isTransientOverloadError,
 } from '@/lib/marking/gemini-retry'
 import { MarkingParseError } from '@/lib/marking/mark-runner'
+import { isRequestDeadlineError } from '@/lib/ai/request-deadline'
 
 export type MarkingErrorCode =
   | 'parse_failure'
@@ -66,6 +67,19 @@ export function classifyMarkingError(err: unknown): ClassifiedMarkingError {
       retryable: true,
       code: 'parse_failure',
       status: 500,
+    }
+  }
+
+  // Budget exhausted before the platform could kill us. Distinct from a single
+  // hung call: the model was reachable but kept failing, so a plain "try again"
+  // is likely to hit the same wall — say so honestly.
+  if (isRequestDeadlineError(err)) {
+    return {
+      message:
+        'Marking is under heavy load and ran out of time. Your upload is still here — try again in a minute.',
+      retryable: true,
+      code: 'timeout',
+      status: 503,
     }
   }
 

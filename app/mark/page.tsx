@@ -43,6 +43,16 @@ import { ibPracticeCriteriaSummary } from '@/lib/ib/practice-prompts'
 import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
 import { WholePaperResultView } from '@/components/WholePaperResultView'
 import { PostMarkNextSteps } from '@/components/mark/PostMarkNextSteps'
+import {
+  MarkExampleBanner,
+  MarkExampleFooter,
+  MarkExampleInvite,
+} from '@/components/mark/MarkExample'
+import { MarkFeedbackPrompt } from '@/components/mark/MarkFeedbackPrompt'
+import {
+  DEMO_MARK_RESULT,
+  DEMO_MARK_QUERY_PARAM,
+} from '@/lib/marking/demo-result'
 import { PastPaperSelectorFields } from '@/components/mark/PastPaperSelectorFields'
 import {
   MarkBoardPicker,
@@ -87,6 +97,7 @@ import {
   handleMarkStreamEvent,
   parseMarkStreamPart,
   refreshBillingSummary,
+  type FullMarksRewritePayload,
 } from './mark-stream'
 
 type SessionInfo = {
@@ -147,7 +158,18 @@ export default function MarkPage() {
   // is ready to hand off (onReveal). The ref mirrors it for the reveal callback.
   const [pendingResult, setPendingResult] = useState<MarkingResult | null>(null)
   const pendingResultRef = useRef<MarkingResult | null>(null)
+  // True while `result` holds the sample mark rather than one of the user's own.
+  // Gates everything that only makes sense for a real attempt (next steps,
+  // solutions, feedback) and drives the "this is an example" labelling.
+  const [showingExample, setShowingExample] = useState(false)
   const submittingRef = useRef(false)
+  // The stream now outlives the reveal — it stays open while the premium
+  // rewrite generates — so a second mark can legitimately start while the first
+  // is still draining. Every state write originating from a stream is tagged
+  // with the run that produced it, and the previous request is aborted on
+  // submit; otherwise mark #1's late error or late rewrite lands on mark #2.
+  const markRunSeqRef = useRef(0)
+  const markAbortRef = useRef<AbortController | null>(null)
   const [errorMsg, setErrorMsg] = useState('')
   const [errorRetryable, setErrorRetryable] = useState(false)
   const [firstMarkCelebration, setFirstMarkCelebration] = useState(false)
@@ -1014,11 +1036,22 @@ export default function MarkPage() {
     e.preventDefault()
     if (loading || submittingRef.current) return
     submittingRef.current = true
+    // Claim this run. Anything arriving from an earlier stream is ignored from
+    // here on, and the earlier request is torn down so it stops costing us a
+    // socket (and stops generating a rewrite nobody will see).
+    const runId = ++markRunSeqRef.current
+    const isCurrentRun = () => markRunSeqRef.current === runId
+    markAbortRef.current?.abort()
+    const abortController = new AbortController()
+    markAbortRef.current = abortController
     flushSync(() => {
       setLoading(true)
     })
 
     const releaseSubmit = () => {
+      // A superseded run must not clear the lock held by the run that replaced
+      // it — that would let a third submit start while #2 is still in flight.
+      if (!isCurrentRun()) return
       submittingRef.current = false
     }
 
@@ -1080,6 +1113,7 @@ export default function MarkPage() {
       setErrorMsg('')
       setErrorRetryable(false)
       setResult(null)
+      setShowingExample(false)
       setPendingResult(null)
       pendingResultRef.current = null
 
@@ -1173,7 +1207,11 @@ export default function MarkPage() {
         }
       }
 
-      const res = await fetch('/api/mark/process', { method: 'POST', body: formData })
+      const res = await fetch('/api/mark/process', {
+        method: 'POST',
+        body: formData,
+        signal: abortController.signal,
+      })
       if (!res.ok || !res.body) {
         const data = await res.json().catch(() => ({}))
         setLoading(false)
@@ -1219,12 +1257,25 @@ export default function MarkPage() {
       }
 
       const consumeStreamPart = (part: string): boolean => {
+        // A superseded run must not touch state belonging to the current one.
+        if (!isCurrentRun()) return true
         const event = parseMarkStreamPart(part)
         if (!event) return false
+        // The premium rewrite arrives after the result — patch it into whatever
+        // the user is already looking at rather than holding the score back.
+        if (event.type === 'rewrite' && event.rewrite) {
+          applyRewritePatch(event.rewrite, event.attempt_id ?? null)
+          return false
+        }
         const outcome = handleMarkStreamEvent(event, streamCtx)
         if (outcome === 'error') return true
         if (outcome === 'result' && event.payload) {
           finalPayload = event.payload as MarkingResult
+          // Begin the reveal the moment the marks land. The stream may stay
+          // open afterwards for the rewrite; waiting for it to close would
+          // reintroduce exactly the delay the deferral removed.
+          pendingResultRef.current = finalPayload
+          setPendingResult(finalPayload)
         }
         return false
       }
@@ -1234,6 +1285,22 @@ export default function MarkPage() {
         try {
           chunk = await reader.read()
         } catch (streamErr) {
+          // Superseded by a newer mark, or deliberately aborted: not an error
+          // the user should ever see.
+          if (!isCurrentRun() || abortController.signal.aborted) return
+          // The marks already landed and the stream was only still open for the
+          // premium rewrite. Losing the connection now costs the rewrite panel
+          // and nothing else — showing the full-screen "marking failed" overlay
+          // would bury a correct, already-charged result under a Retry button
+          // that re-charges the user.
+          if (finalPayload) {
+            console.warn(
+              '[mark] stream dropped after the result was delivered; rewrite skipped',
+              streamErr
+            )
+            releaseSubmit()
+            return
+          }
           const { message, retryable } = formatClientMarkError(streamErr)
           setLoading(false)
           releaseSubmit()
@@ -1261,13 +1328,11 @@ export default function MarkPage() {
         return
       }
 
-      if (finalPayload) {
-        // Buffer the payload and let the cinematic wait choreograph the reveal.
-        // Marking stays "in flight" (loading + markProgress) until onReveal
-        // commits the real results — see handleReveal.
-        pendingResultRef.current = finalPayload
-        setPendingResult(finalPayload)
-      } else {
+      // The payload was buffered as soon as the `result` event arrived (above),
+      // which hands off to the cinematic wait; marking stays "in flight" until
+      // onReveal commits it. Reaching the end of the stream with nothing means
+      // the function died without sending a result.
+      if (!finalPayload && isCurrentRun()) {
         setLoading(false)
         releaseSubmit()
         setMarkProgress(null)
@@ -1277,6 +1342,9 @@ export default function MarkPage() {
         setErrorRetryable(true)
       }
     } catch (err) {
+      // An abort means a newer mark took over (or the page tore down) — the
+      // user is already looking at that run, so surfacing this would be a lie.
+      if (!isCurrentRun() || abortController.signal.aborted) return
       setLoading(false)
       submittingRef.current = false
       setMarkProgress(null)
@@ -1286,6 +1354,61 @@ export default function MarkPage() {
       setErrorRetryable(retryable)
     }
   }
+
+  // The premium full-marks rewrite is generated after the score is delivered,
+  // so it has to be merged into whichever copy of the result is live: the
+  // buffered one if the reveal animation is still running, the committed one if
+  // the user is already reading their marks. Patching all three keeps them in
+  // sync regardless of which arrives first.
+  const applyRewritePatch = useCallback(
+    (rewrite: FullMarksRewritePayload, attemptId: string | null) => {
+      // Only patch the attempt the rewrite was generated for. A rewrite that
+      // hits Gemini retries can outlive its own mark; without this check it
+      // would graft a model answer for question 1 onto the result of question 2
+      // — visibly wrong, and invisible again on reload since the DB is correct.
+      const patch = (prev: MarkingResult | null): MarkingResult | null =>
+        prev && (!attemptId || prev.attempt_id === attemptId)
+          ? {
+              ...prev,
+              ai_marking: { ...prev.ai_marking, full_marks_rewrite: rewrite },
+            }
+          : prev
+      pendingResultRef.current = patch(pendingResultRef.current)
+      setPendingResult(patch)
+      setResult(patch)
+    },
+    []
+  )
+
+  const openExample = useCallback(() => {
+    setResult(DEMO_MARK_RESULT as MarkingResult)
+    setShowingExample(true)
+    setErrorMsg('')
+    setMarkStreamError(null)
+    if (typeof window !== 'undefined') window.scrollTo({ top: 0 })
+  }, [])
+
+  const closeExample = useCallback(() => {
+    setResult(null)
+    setShowingExample(false)
+    // Drop the ?example flag so a refresh (or a back-navigation) doesn't drag
+    // the sample back over the upload form the user just asked for.
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href)
+      if (url.searchParams.has(DEMO_MARK_QUERY_PARAM)) {
+        url.searchParams.delete(DEMO_MARK_QUERY_PARAM)
+        window.history.replaceState(null, '', url.toString())
+      }
+      window.scrollTo({ top: 0 })
+    }
+  }, [])
+
+  // Deep link from onboarding: land straight on the finished example.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const params = new URLSearchParams(window.location.search)
+    if (params.get(DEMO_MARK_QUERY_PARAM) === '1') openExample()
+  }, [openExample])
 
   // Called by the cinematic wait once it is ready to hand off. Commits the
   // buffered payload to the results view and tears down the wait surface so the
@@ -1453,6 +1576,12 @@ export default function MarkPage() {
         )}
 
         {!result && !loading && <GuestMarkNotice className="mb-5" />}
+
+        {/* The biggest leak on this page is people who never upload at all.
+            Offer the finished article before asking for the commitment. */}
+        {!result && !loading && (
+          <MarkExampleInvite onOpen={openExample} className="mb-5" />
+        )}
 
         {!result && !loading && (
           <form onSubmit={handleSubmit} className="ms-mark-form-shell space-y-8">
@@ -2197,6 +2326,8 @@ export default function MarkPage() {
 
         {result && !result.whole_paper && (
           <div className="space-y-8">
+            {showingExample && <MarkExampleBanner onDismiss={closeExample} />}
+
             {practiceContext?.returnTo === 'progress' && (
               <Link
                 href="/dashboard/progress?tab=insights&drilled=1"
@@ -2266,11 +2397,23 @@ export default function MarkPage() {
               <SolutionSection attemptId={result.attempt_id} />
             )}
 
-            <PostMarkNextSteps
-              result={result}
-              onMarkAnother={handleMarkAnotherAttempt}
-              onMarkNewQuestion={handleMarkNewQuestion}
-            />
+            {/* The example is a demo, not an attempt: no progress to review and
+                nothing to mark "again", so it gets its own single exit. */}
+            {/* Asked once per attempt, while the marking is still on screen —
+                the only place a student can judge whether it was fair. */}
+            {!showingExample && result.attempt_id && (
+              <MarkFeedbackPrompt attemptId={result.attempt_id} />
+            )}
+
+            {showingExample ? (
+              <MarkExampleFooter onDismiss={closeExample} />
+            ) : (
+              <PostMarkNextSteps
+                result={result}
+                onMarkAnother={handleMarkAnotherAttempt}
+                onMarkNewQuestion={handleMarkNewQuestion}
+              />
+            )}
 
             {showFreeNudge && (
               <p className="pt-1 text-center text-sm text-[var(--ec-text-secondary)]">

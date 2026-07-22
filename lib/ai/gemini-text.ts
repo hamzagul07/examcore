@@ -13,6 +13,7 @@ import {
   getGeminiRetryStats,
 } from '@/lib/marking/gemini-retry'
 import { ensureVertexApplicationCredentials } from '@/lib/ai/vertex-credentials'
+import { clampTimeoutToDeadline } from '@/lib/ai/request-deadline'
 import {
   assertGeminiConfigured,
   geminiBackendLabel,
@@ -148,7 +149,10 @@ function resolveModel(opts: GeminiTextOptions): GeminiModelId {
 }
 
 function resolveCallTimeoutMs(opts: GeminiTextOptions): number {
-  return opts.httpTimeoutMs ?? _defaultCallTimeoutMs
+  // Clamped to the request budget (when one is set) so no single call can
+  // outlive the function and get it killed before it can report the failure.
+  // Unbounded outside a request — batch scripts keep the full timeout.
+  return clampTimeoutToDeadline(opts.httpTimeoutMs ?? _defaultCallTimeoutMs)
 }
 
 function isAbortError(err: unknown): boolean {

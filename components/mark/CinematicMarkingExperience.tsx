@@ -170,7 +170,9 @@ export function CinematicMarkingExperience(
       <div className="relative z-10">
         <StageProgressBar percent={percent} />
         <p className="mt-3 text-center text-xs text-[var(--ec-text-secondary)]">
-          {markingTimeEstimateSubline()}
+          {markingTimeEstimateSubline(anticipating ? null : stage, {
+            totalQuestions: context?.total_questions,
+          })}
         </p>
 
         <div className="mt-6 space-y-1.5">
@@ -334,13 +336,20 @@ function SurgeDots() {
   )
 }
 
+// Floors keep the bar from starting near-empty and from dropping when a phase
+// advances ahead of the server's stage. They must stay BELOW the stage values
+// they gate, or they mask them: the old `analyzing` floor of 70 sat above every
+// real stage (25/35/48/62), pinning the bar at exactly 70% for the entire
+// 100–170s derive→mark→verify stretch — the frozen bar this was meant to fix.
 function phasePercent(phase: CinematicPhase, stage: MarkProgressStage): number {
   switch (phase) {
     case 'transform':
     case 'reading':
-      return Math.max(22, stageSegmentPercent(stage))
+      return Math.max(10, stageSegmentPercent(stage))
     case 'analyzing':
-      return Math.max(70, stageSegmentPercent(stage))
+      // Floor sits just above where `reading` can leave off, so the handover is
+      // monotonic while every later stage still drives the bar.
+      return Math.max(25, stageSegmentPercent(stage))
     case 'buildup':
       return 92
     case 'climax':

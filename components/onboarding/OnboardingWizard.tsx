@@ -407,8 +407,11 @@ export function OnboardingWizard({
                 signInAgainHref={signInAgainHref}
                 onBack={goBack}
                 onMark={() => completeOnboarding(rerun ? markHref : markHref)}
+                // The low-commitment path used to be the dashboard, which is a
+                // dead end for a brand-new account with no marks in it. A
+                // finished example needs no upload and still ends on /mark.
                 onDashboard={() =>
-                  completeOnboarding(rerun ? markHref : '/dashboard')
+                  completeOnboarding(rerun ? markHref : '/mark?example=1')
                 }
                 rerun={rerun}
               />
@@ -833,7 +836,7 @@ function StepFirstMark({
       <p className="ms-lead" style={{ marginTop: 16 }}>
         {rerun
           ? 'Review your choices, then save to update your dashboard and paper recommendations.'
-          : "Upload something you've already done. We'll mark it and show you what an examiner-style review looks like — usually under a minute."}
+          : "Upload something you've already done. We'll mark it against the real scheme and show you exactly where the marks went. A full mark takes a couple of minutes — or see a finished example first, no upload needed."}
       </p>
       {errorMsg && <div className="mt-4"><FormErrorAlert message={errorMsg} /></div>}
       {errorMsg.toLowerCase().includes('expired') && (
@@ -877,7 +880,7 @@ function StepFirstMark({
             onClick={onDashboard}
             className="ec-btn-ghost w-full justify-center"
           >
-            Explore the dashboard first
+            See a marked example first
           </button>
         )}
         <button

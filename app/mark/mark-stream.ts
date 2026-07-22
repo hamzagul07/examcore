@@ -23,9 +23,19 @@ export type MarkStreamEvent = {
   syllabus_tags?: string[] | null
   total_questions?: number | null
   payload?: MarkingResultData
+  /** Premium full-marks rewrite, delivered after `result` so it never delays
+   * the score. Patches the already-revealed result in place. */
+  rewrite?: FullMarksRewritePayload
+  /** Which attempt the rewrite belongs to — checked before patching, since a
+   * slow rewrite can arrive after the user has moved on to another mark. */
+  attempt_id?: string | null
   error?: string
   retryable?: boolean
 }
+
+export type FullMarksRewritePayload = NonNullable<
+  MarkingResultData['ai_marking']['full_marks_rewrite']
+>
 
 export function parseMarkStreamPart(part: string): MarkStreamEvent | null {
   const line = part.trim()
@@ -60,11 +70,16 @@ export function handleMarkStreamEvent(
   ctx: MarkStreamContext
 ): 'continue' | 'error' | 'result' {
   if (event.type === 'progress' && event.stage && event.percent != null) {
-    ctx.setMarkProgress({
-      percent: event.percent,
-      stage: event.stage,
+    const stage = event.stage
+    const percent = event.percent
+    ctx.setMarkProgress((prev) => ({
+      // Never let the bar run backwards. Stage percentages are ordered, but a
+      // reordering upstream (or an out-of-order event) should degrade to "bar
+      // pauses", never to "bar visibly rewinds" — which reads as a fault.
+      percent: prev ? Math.max(prev.percent, percent) : percent,
+      stage,
       questionNumber: ctx.questionNumber.trim() || undefined,
-    })
+    }))
   }
   if (event.type === 'context') {
     ctx.setMarkContext((prev) => ({

@@ -42,7 +42,16 @@ import {
   questionPhotoOcrPrompt,
 } from '@/lib/marking/ocr'
 import { buildDetectionPrompt, buildVerifyMarkingPrompt } from '@/lib/marking/prompts'
-import { generateFullMarksRewrite } from '@/lib/marking/full-marks-rewrite'
+import {
+  generateFullMarksRewrite,
+  type FullMarksRewriteInput,
+} from '@/lib/marking/full-marks-rewrite'
+import type { MarkProgressStage } from '@/lib/marking/mark-progress'
+import { isRequestDeadlineError } from '@/lib/ai/request-deadline'
+
+/** Everything `generateFullMarksRewrite` needs, captured so the rewrite can be
+ * run after the marks have already been streamed to the user. */
+export type FullMarksRewritePlan = FullMarksRewriteInput
 import { inferSubjectFromQuestionText } from '@/lib/marking/subject-inference'
 import { toMarkingAIResult } from '@/lib/marking/whole-paper'
 import { buildPerPageInk } from '@/lib/marking/ink-per-page'
@@ -439,12 +448,24 @@ export async function markSingleQuestion(params: {
   /** Premium: generate a full-marks rewrite of the student's answer (single
    * question only — the split path passes false to bound per-question latency). */
   rewrite?: boolean
+  /**
+   * Return the rewrite as a plan instead of generating it inline. The rewrite is
+   * pure post-processing — nothing in the score depends on it — but running it
+   * inline made PAYING users wait 15–30s longer than free ones for their marks.
+   * Deferred, the caller streams the result first and fills the rewrite in after.
+   */
+  deferRewrite?: boolean
+  /** Progress ping as each long stage begins, so the client bar keeps moving
+   * through derive → mark → verify instead of freezing for ~2 minutes. */
+  onStage?: (stage: MarkProgressStage) => void
 }): Promise<{
   markingResult: Record<string, unknown>
   lineReferences: ReturnType<typeof buildLineReferences>
   errorClassifications: unknown[]
   resolvedTags: SyllabusCode[]
   markingMode: MarkingMode
+  /** Present only when `deferRewrite` was set and a rewrite is warranted. */
+  rewritePlan: FullMarksRewritePlan | null
 }> {
   const {
     ocrText,
@@ -458,6 +479,8 @@ export async function markSingleQuestion(params: {
     questionTotalMarks,
     verify = true,
     rewrite = false,
+    deferRewrite = false,
+    onStage,
   } = params
 
   let markingMode = initialMode
@@ -537,6 +560,7 @@ export async function markSingleQuestion(params: {
   ) {
     const isIbBoard =
       !!resolvedIb || isIbSubjectCode(subjectCode ?? '')
+    onStage?.('deriving_scheme')
     const derived = await deriveMarkScheme({
       subjectName,
       board: isIbBoard ? 'IB Diploma' : 'Cambridge',
@@ -597,6 +621,7 @@ export async function markSingleQuestion(params: {
   const authoritativeTotal =
     schemeTotal ?? catalogTotal ?? studentTotal ?? derivedTotal ?? null
 
+  onStage?.('marking')
   let markingResult = reconcileMarkResult(
     normalizeMarkingResult(
       await runGeminiMarking(markingPrompt, maxTokensForStyle(markingStyle))
@@ -619,6 +644,7 @@ export async function markSingleQuestion(params: {
     hasBreakdown
   ) {
     try {
+      onStage?.('verifying')
       const verifyBoard =
         !!resolvedIb || isIbSubjectCode(subjectCode ?? '') ? 'IB Diploma' : 'Cambridge'
       const verifySchemeJson =
@@ -648,6 +674,10 @@ export async function markSingleQuestion(params: {
         markingResult = verified
       }
     } catch (err) {
+      // Out of budget means the run is over, not that verify alone failed.
+      // Continuing would spend what's left on persistence and the rewrite and
+      // still be killed — surface it so the caller can fail cleanly.
+      if (isRequestDeadlineError(err)) throw err
       console.warn('[mark] verify pass failed; keeping first-pass result', err)
     }
   }
@@ -666,6 +696,7 @@ export async function markSingleQuestion(params: {
   // rewrite). Best-effort: a failure leaves the mark result untouched.
   const earned = Number(markingResult.marks_earned)
   const totalForRewrite = Number(markingResult.total_marks)
+  let rewritePlan: FullMarksRewritePlan | null = null
   if (
     rewrite &&
     (markingStyle === 'point_based' || markingStyle === 'level_of_response') &&
@@ -680,7 +711,7 @@ export async function markSingleQuestion(params: {
         ? JSON.stringify(resolvedIb.officialScheme)
         : null) ??
       (effectiveMarkScheme ? JSON.stringify(effectiveMarkScheme.mark_scheme) : null)
-    const fullMarksRewrite = await generateFullMarksRewrite({
+    const plan: FullMarksRewritePlan = {
       subjectName,
       board: !!resolvedIb || isIbSubjectCode(subjectCode ?? '') ? 'IB Diploma' : 'Cambridge',
       questionText: questionText || effectiveMarkScheme?.question_text || '',
@@ -688,9 +719,16 @@ export async function markSingleQuestion(params: {
       schemeJson: rewriteSchemeJson,
       priorResultJson: JSON.stringify(markingResult),
       totalMarks: authoritativeTotal,
-    })
-    if (fullMarksRewrite) {
-      markingResult.full_marks_rewrite = fullMarksRewrite
+    }
+    if (deferRewrite) {
+      // Hand the plan back so the caller can stream the marks now and generate
+      // the rewrite afterwards — the score is what the user is waiting for.
+      rewritePlan = plan
+    } else {
+      const fullMarksRewrite = await generateFullMarksRewrite(plan)
+      if (fullMarksRewrite) {
+        markingResult.full_marks_rewrite = fullMarksRewrite
+      }
     }
   }
 
@@ -756,6 +794,7 @@ export async function markSingleQuestion(params: {
     errorClassifications,
     resolvedTags,
     markingMode,
+    rewritePlan,
   }
 }
 

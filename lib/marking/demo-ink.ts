@@ -57,7 +57,7 @@ export const DEMO_INK: LineReference[] = [
   },
   // The one that matters — a correct conclusion with nothing behind it.
   {
-    mark_id: 'A1',
+    mark_id: 'B1',
     earned: false,
     margin_note: 'Correct — but you never showed why',
     error_classification: 'incomplete_method',

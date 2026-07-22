@@ -7,7 +7,7 @@
  * intentional rather than broken.
  *
  * Mock attempts span a few weeks, hit a variety of syllabus topics, and
- * include realistic time-per-mark values so SpeedAccuracy renders sensibly.
+ * include realistic time-per-mark values so the speed-vs-accuracy scatter renders sensibly.
  */
 
 import type { AttemptLite } from './mastery'

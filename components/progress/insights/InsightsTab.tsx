@@ -8,10 +8,12 @@ import type {
   Win,
 } from '@/lib/insights/types'
 import type { SpeedProfile } from '@/lib/insights/patterns'
+import type { SpeedAccuracyData } from '@/lib/insights/speed-accuracy'
 import type { ActionPlanItem } from '@/lib/action-plan'
 import { ActionPlan } from '@/components/progress/ActionPlan'
 import { InsightHero } from './InsightHero'
 import { PatternsPanel } from './PatternsPanel'
+import { SpeedAccuracyChart } from './SpeedAccuracyChart'
 import { PracticePanel } from './PracticePanel'
 import { WinsPanel } from './WinsPanel'
 
@@ -20,6 +22,7 @@ type Props = {
   heroInsight: HeroInsight
   patterns: Pattern[]
   speedProfile: SpeedProfile
+  speedAccuracy: SpeedAccuracyData
   recommendations: Recommendation[]
   actionItems: ActionPlanItem[]
   genericRecommendations: boolean
@@ -31,6 +34,7 @@ export function InsightsTab({
   heroInsight,
   patterns,
   speedProfile,
+  speedAccuracy,
   recommendations,
   actionItems,
   genericRecommendations,
@@ -66,6 +70,11 @@ export function InsightsTab({
       )}
 
       {state !== 'zero' && <InsightHero insight={heroInsight} />}
+
+      {/* Sits directly under the profile line it illustrates. Renders nothing
+          below 3 timed attempts — a scatter of two dots implies a pattern that
+          isn't there yet. */}
+      <SpeedAccuracyChart data={speedAccuracy} />
 
       <div className="grid min-w-0 gap-5 lg:grid-cols-3">
         <PatternsPanel state={state} patterns={patterns} speedProfile={speedProfile} />

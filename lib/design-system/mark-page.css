@@ -1618,3 +1618,71 @@
     transform: none;
   }
 }
+
+/* ── Speed vs accuracy scatter ────────────────────────────────────────────
+   One hue: position already carries the quadrant, so the dots do not need
+   categorical colour. Grid and axes stay recessive; the dividers are dashed so
+   they read as reference lines rather than as data. */
+
+.ms-sa-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.ms-sa-grid {
+  stroke: var(--ec-border);
+  stroke-width: 1;
+}
+
+.ms-sa-divider {
+  stroke: color-mix(in srgb, var(--ec-text-secondary) 55%, transparent);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+
+.ms-sa-tick,
+.ms-sa-axis {
+  fill: var(--ec-text-faint);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.ms-sa-quad {
+  fill: var(--ec-text-faint);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.ms-sa-dot {
+  /* 2px surface ring so overlapping points stay countable. */
+  stroke: var(--ec-surface);
+  stroke-width: 2;
+  transition: r 120ms ease-out;
+}
+
+.ms-sa-dot.is-newest {
+  stroke: var(--ec-surface);
+  stroke-width: 2.5;
+}
+
+.ms-sa-dot:hover {
+  r: 8;
+}
+
+.ms-sa-note {
+  margin: 14px 0 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-sa-dot {
+    transition: none;
+  }
+}

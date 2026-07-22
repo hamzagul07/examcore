@@ -53,6 +53,7 @@ import {
   type Recommendation,
 } from '@/lib/insights/types'
 import { analysePatterns, analyseSpeedProfile } from '@/lib/insights/patterns'
+import { buildSpeedAccuracy } from '@/lib/insights/speed-accuracy'
 import { deriveWins } from '@/lib/insights/wins'
 import { buildTimeline } from '@/lib/insights/timeline'
 import { buildHeroInsight } from '@/lib/insights/hero'
@@ -201,6 +202,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
   const state = resolveDashboardState(attempts.length)
   const patterns = analysePatterns(attempts)
   const speedProfile = analyseSpeedProfile(attempts)
+  const speedAccuracy = buildSpeedAccuracy(attempts)
   const wins = deriveWins(attempts, masteries, streakDays, isIbSubject)
   const timelineStations = buildTimeline(attempts)
 
@@ -260,6 +262,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
       heroInsight={heroInsight}
       patterns={patterns}
       speedProfile={speedProfile}
+      speedAccuracy={speedAccuracy}
       recommendations={recommendations}
       actionItems={actionItems}
       genericRecommendations={genericRecommendations}

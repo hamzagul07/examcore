@@ -6,6 +6,7 @@
  */
 
 import type { AttemptLite } from '@/lib/mastery'
+import { buildSpeedAccuracy } from '@/lib/insights/speed-accuracy'
 import {
   ERROR_LABELS,
   type ErrorClassification,
@@ -108,21 +109,12 @@ export type SpeedProfile = {
   timedCount: number
 }
 
-const ACCURACY_THRESHOLD = 75
-
-/**
- * Condense the speed-vs-accuracy signal into a single profile line for the
- * Patterns panel. Mirrors the bucketing in components/progress/SpeedAccuracy.
- */
 export function analyseSpeedProfile(attempts: AttemptLite[]): SpeedProfile {
-  const timed = attempts.filter(
-    (a) =>
-      typeof a.time_spent_seconds === 'number' &&
-      (a.time_spent_seconds as number) > 0 &&
-      a.total_marks > 0
-  )
+  // Bucketing lives in lib/insights/speed-accuracy so the profile line and the
+  // scatter plot can never disagree about what "fast" or "accurate" means.
+  const { dominant, timedCount } = buildSpeedAccuracy(attempts)
 
-  if (timed.length === 0) {
+  if (timedCount === 0) {
     return {
       quadrant: null,
       label: 'Pace not tracked yet',
@@ -131,31 +123,6 @@ export function analyseSpeedProfile(attempts: AttemptLite[]): SpeedProfile {
       timedCount: 0,
     }
   }
-
-  const perMark = timed
-    .map((a) => (a.time_spent_seconds as number) / a.total_marks)
-    .sort((x, y) => x - y)
-  const mid = Math.floor(perMark.length / 2)
-  const median =
-    perMark.length % 2 === 0
-      ? (perMark[mid - 1] + perMark[mid]) / 2
-      : perMark[mid]
-
-  const buckets = { master: 0, perfectionist: 0, rushed: 0, critical: 0 }
-  for (const a of timed) {
-    const tpm = (a.time_spent_seconds as number) / a.total_marks
-    const pct = (a.marks_earned / a.total_marks) * 100
-    const fast = tpm <= median
-    const accurate = pct >= ACCURACY_THRESHOLD
-    if (fast && accurate) buckets.master += 1
-    else if (!fast && accurate) buckets.perfectionist += 1
-    else if (fast && !accurate) buckets.rushed += 1
-    else buckets.critical += 1
-  }
-
-  const dominant = (Object.entries(buckets).sort(
-    (a, b) => b[1] - a[1]
-  )[0]?.[0] || 'master') as SpeedProfile['quadrant']
 
   const COPY: Record<NonNullable<SpeedProfile['quadrant']>, { label: string; detail: string }> = {
     master: {
@@ -181,6 +148,6 @@ export function analyseSpeedProfile(attempts: AttemptLite[]): SpeedProfile {
     quadrant: dominant,
     label: copy.label,
     detail: copy.detail,
-    timedCount: timed.length,
+    timedCount,
   }
 }

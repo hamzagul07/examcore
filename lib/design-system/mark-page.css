@@ -2070,3 +2070,170 @@
     order: -1;
   }
 }
+
+/* ── Grade target track ───────────────────────────────────────────────────
+   A single value against a target on an ordered scale: one hue for the fill,
+   an outlined flag for the target. Grade-band colours are deliberately not
+   reused here — a B is not a warning state. */
+
+.ms-grade-target {
+  padding: 20px;
+  margin-bottom: 28px;
+  border: 1px solid var(--ec-border);
+  border-radius: 18px;
+  background: var(--ec-surface-raised);
+}
+
+.ms-grade-target__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.ms-grade-target__headline {
+  margin: 0;
+  font-size: clamp(19px, 2.6vw, 24px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ec-text-primary);
+}
+
+.ms-grade-target__sub {
+  margin: 5px 0 0;
+  font-size: 13px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-grade-target__countdown {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--ec-brand-border);
+  background: var(--ec-brand-muted);
+  color: var(--ec-text-primary);
+  white-space: nowrap;
+}
+
+.ms-grade-target__countdown svg {
+  align-self: center;
+  color: var(--ec-brand);
+}
+
+.ms-grade-target__days {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.ms-grade-target__days-label {
+  font-size: 12.5px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-grade-track {
+  /* Headroom for the target flag and the "you are here" percentage, which sit
+     above the rail; the band letters sit below it. Stacking them on the same
+     side made the percentage collide with the nearest letter. */
+  margin-top: 62px;
+  padding-bottom: 26px;
+}
+
+.ms-grade-track__rail {
+  position: relative;
+  height: 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ec-brand) 10%, transparent);
+}
+
+.ms-grade-track__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 999px;
+  background: var(--ec-brand);
+}
+
+.ms-grade-track__tick {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.ms-grade-track__tick-line {
+  display: block;
+  width: 1px;
+  height: 12px;
+  background: color-mix(in srgb, var(--ec-text-secondary) 35%, transparent);
+}
+
+.ms-grade-track__tick-label {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ec-text-faint);
+  white-space: nowrap;
+}
+
+/* Target: outlined, so it reads as a goal rather than as a value. */
+.ms-grade-track__target {
+  position: absolute;
+  top: -52px;
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  border: 1.5px dashed var(--ec-brand);
+  background: var(--ec-surface);
+  color: var(--ec-brand);
+}
+
+.ms-grade-track__you {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  justify-items: center;
+}
+
+.ms-grade-track__you-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--ec-brand);
+  border: 3px solid var(--ec-surface-raised);
+  box-shadow: 0 0 0 1px var(--ec-brand);
+}
+
+.ms-grade-track__you-label {
+  position: absolute;
+  top: -26px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ec-brand);
+  white-space: nowrap;
+}
+
+.ms-grade-target__cta {
+  margin: 18px 0 0;
+  font-size: 13.5px;
+  color: var(--ec-text-secondary);
+}
+
+@media (max-width: 560px) {
+  .ms-grade-target__head {
+    flex-direction: column;
+  }
+  .ms-grade-target__days {
+    font-size: 19px;
+  }
+}

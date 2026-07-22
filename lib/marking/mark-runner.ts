@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
-import { GEMINI_FLASH_MODEL, GEMINI_PRO_MODEL, generateGeminiTextWithMeta, generateGeminiWithContents, getGeminiClient } from '@/lib/ai/gemini-text'
+import { GEMINI_FLASH_MODEL, GEMINI_PRO_MODEL, generateGeminiTextWithMeta, generateGeminiWithContents, getGeminiClient, withGeminiCallTimeout } from '@/lib/ai/gemini-text'
 
 /**
  * Model tier for the marking JUDGEMENT call (which band, is a method valid).
@@ -213,19 +213,25 @@ const storageDeps = {
   ) => {
     const extractionResponse = await withGeminiRetry(
       () =>
-        getMarkingGenAI().models.generateContent({
-          model: GEMINI_FLASH_MODEL,
-          contents: [
-            {
-              role: 'user',
-              parts: [
-                { inlineData: { mimeType: 'application/pdf', data: qpBase64 } },
-                { inlineData: { mimeType: 'application/pdf', data: msBase64 } },
-                { text: prompt },
-              ],
-            },
-          ],
-        }),
+        // Cold mark-scheme extraction over two inline PDFs is the slowest call
+        // in the pipeline (30–90s). Clamp it to the request budget, or it can
+        // spend the client's full baked-in timeout unseen by the deadline.
+        withGeminiCallTimeout((signal) =>
+          getMarkingGenAI().models.generateContent({
+            model: GEMINI_FLASH_MODEL,
+            contents: [
+              {
+                role: 'user',
+                parts: [
+                  { inlineData: { mimeType: 'application/pdf', data: qpBase64 } },
+                  { inlineData: { mimeType: 'application/pdf', data: msBase64 } },
+                  { text: prompt },
+                ],
+              },
+            ],
+            config: { abortSignal: signal },
+          })
+        ),
       { label: 'pdf-extraction' }
     )
     return extractionResponse.text || ''

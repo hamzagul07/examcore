@@ -708,7 +708,7 @@ export function buildVerifyMarkingPrompt(params: {
 
   return `You are a SENIOR ${board} ${subjectName} examiner reviewing a first marker's marking and correcting its errors.
 
-A first (junior) marker frequently UNDER-marks: they withhold marks the student genuinely earned because the student's method or wording differs from the mark scheme. They occasionally OVER-mark too. Re-mark the student's work carefully and independently, then output a corrected result.
+A first (junior) marker errs in BOTH directions. They withhold marks the student genuinely earned when the student's method or wording differs from the mark scheme. They also award marks the student did not earn — most often by treating a correct final answer as proof that the working behind it deserved credit. Re-mark the student's work carefully and independently, then output a corrected result.
 
 QUESTION:
 ${questionText}
@@ -722,7 +722,7 @@ ${priorResultJson}
 How to re-mark — go through the mark scheme ONE MARK AT A TIME (do not mark holistically):
 1. For each individual mark in the scheme, state exactly what earns it.
 2. Find the specific line of the student's working that satisfies it and QUOTE that line as your evidence. Accept ANY mathematically/scientifically valid method and any equivalent correct form — never require the scheme's exact wording — and apply error-carried-forward from an earlier slip.
-3. Award the mark whenever you found genuine evidence for it. Withhold ONLY if the student truly did not do that step. If the evidence is present but imperfectly expressed, AWARD it — a student must never lose a mark they earned over presentation. Withholding earned marks is the single most common first-marker error, so scrutinise every mark the first marker did NOT award.
+3. Award the mark only when you found that evidence IN THE STUDENT'S OWN WRITTEN WORK. If the evidence is there but imperfectly expressed, AWARD it — a student must never lose a mark over presentation, or for a valid alternative method. But where the mark requires the student to SHOW something (a justification, a test, a derivation, a reason), award it only if they actually wrote it: never supply the missing reasoning on their behalf, and never let a correct final answer earn a mark for working the student did not show. Scrutinise every mark in BOTH directions — withholding a mark the student earned and awarding one they did not are equally serious errors, and you must be equally willing to correct either.
 Then set marks_earned to the number of marks you awarded.
 - ${totalLine}
 - marks_earned must equal the sum of the individual marks (or criteria marks) you award.

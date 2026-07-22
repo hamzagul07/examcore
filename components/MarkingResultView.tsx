@@ -25,6 +25,7 @@ import { MarkAuditPanel } from '@/components/mark/MarkAuditPanel'
 import { MarkSnippet } from '@/components/mark/MarkSnippet'
 import { MarkSchemeRubricPanel } from '@/components/mark/MarkSchemeRubricPanel'
 import { QuestionContextCard } from '@/components/mark/QuestionContextCard'
+import { ScoreReveal } from '@/components/mark/ScoreReveal'
 import type { MarkSchemeMeta } from '@/components/mark/QuestionContextCard'
 import type { MarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
 
@@ -196,22 +197,31 @@ export function MarkingResultView({
               {overline}
             </p>
           ) : null}
-          <h2 className="ms-h2" style={{ marginBottom: 0 }}>
+          {/* The score is the moment the whole wait pays off — it gets a meter
+              and a hero figure, not a text heading. The h2 stays for document
+              structure and screen readers; the visual is aria-hidden from it. */}
+          <h2 className="sr-only">
             {result.marks_earned} / {result.total_marks} —{' '}
-            <em>{resultSubheading(result.marks_earned, result.total_marks)}</em>
+            {resultSubheading(result.marks_earned, result.total_marks)}
           </h2>
-          {nextGradeStep && (
-            <p
-              className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold"
-              style={{ color: 'var(--ec-brand)' }}
-            >
-              <Sparkles className="h-3.5 w-3.5 shrink-0" />
-              {nextGradeStep.marksNeeded} mark
-              {nextGradeStep.marksNeeded === 1 ? '' : 's'}{' '}
-              {['A', 'A*', 'E'].includes(nextGradeStep.nextGrade) ? 'from an' : 'from a'}{' '}
-              {nextGradeStep.nextGrade}
-            </p>
-          )}
+          <ScoreReveal
+            marksEarned={result.marks_earned}
+            totalMarks={result.total_marks}
+            percentage={percentage}
+            grade={isIb ? null : grade.grade}
+            nextGrade={nextGradeStep}
+            marks={marks.map((m, i) => ({
+              id: String(m.mark_id ?? i),
+              earned: !!m.earned,
+              label: m.type?.trim() || `Mark ${i + 1}`,
+            }))}
+            onSelectMark={(id) => {
+              const idx = marks.findIndex(
+                (m, i) => String(m.mark_id ?? i) === id
+              )
+              if (idx >= 0) setSelectedIndex(idx)
+            }}
+          />
         </div>
       </div>
 

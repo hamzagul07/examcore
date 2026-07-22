@@ -49,6 +49,7 @@ import {
   MarkExampleInvite,
 } from '@/components/mark/MarkExample'
 import { MarkFeedbackPrompt } from '@/components/mark/MarkFeedbackPrompt'
+import { GuestConversionPrompt } from '@/components/mark/GuestConversionPrompt'
 import {
   DEMO_MARK_RESULT,
   DEMO_MARK_QUERY_PARAM,
@@ -2400,9 +2401,25 @@ export default function MarkPage() {
             {/* The example is a demo, not an attempt: no progress to review and
                 nothing to mark "again", so it gets its own single exit. */}
             {/* Asked once per attempt, while the marking is still on screen —
-                the only place a student can judge whether it was fair. */}
-            {!showingExample && result.attempt_id && (
-              <MarkFeedbackPrompt attemptId={result.attempt_id} />
+                the only place a student can judge whether it was fair. Signed-in
+                only: /api/mark/feedback authenticates and checks attempt
+                ownership, and a guest attempt has no owner, so showing this to
+                guests would offer a button that can only ever 401. */}
+            {!showingExample &&
+              result.attempt_id &&
+              billingSummary?.signedIn && (
+                <MarkFeedbackPrompt attemptId={result.attempt_id} />
+              )}
+
+            {/* Guests get the signup ask here, after the marks — not before
+                them. Gated on a loaded billing summary so it never flashes for
+                a signed-in user while auth is still resolving. */}
+            {!showingExample && billingSummary && !billingSummary.signedIn && (
+              <GuestConversionPrompt
+                marksEarned={result.marks_earned ?? null}
+                totalMarks={result.total_marks ?? null}
+                weakTopics={result.ai_marking?.weak_topics ?? []}
+              />
             )}
 
             {showingExample ? (

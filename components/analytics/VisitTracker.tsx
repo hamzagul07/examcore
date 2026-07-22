@@ -6,14 +6,44 @@ import { usePathname } from 'next/navigation'
 /**
  * First-party page-visit tracker. Measures (approximate, visibility-aware) active
  * time on each route and beacons it to /api/track on route change and tab hide.
- * The endpoint only stores events for signed-in users. Web timing is inherently
- * approximate (backgrounded/closed tabs, lost beacons) — treat it as an estimate.
+ * Records anonymous visits as well as signed-in ones, so the funnel can be seen
+ * from the first landing rather than only from signup onwards. Web timing is
+ * inherently approximate (backgrounded/closed tabs, lost beacons) — treat it as
+ * an estimate.
  */
 const MIN_DWELL_MS = 1000 // ignore sub-second glances
+const SESSION_KEY = 'ms_sid'
+
+/**
+ * Random id for this browsing session.
+ *
+ * Held in sessionStorage, so it dies with the tab and is never a durable
+ * identifier for a person — deliberately not a cookie, an IP or a fingerprint.
+ * It is enough to answer "did this visit lead to a signup?" and nothing more.
+ * Returns null where storage is unavailable (private mode, blocked), in which
+ * case the beacon is simply skipped.
+ */
+function sessionId(): string | null {
+  try {
+    const existing = sessionStorage.getItem(SESSION_KEY)
+    if (existing) return existing
+    const id =
+      typeof crypto !== 'undefined' && crypto.randomUUID
+        ? crypto.randomUUID()
+        : null
+    if (!id) return null
+    sessionStorage.setItem(SESSION_KEY, id)
+    return id
+  } catch {
+    return null
+  }
+}
 
 function beacon(path: string, dwellMs: number, referrer: string) {
   if (dwellMs < MIN_DWELL_MS) return
-  const body = JSON.stringify({ path, dwellMs, referrer })
+  const sid = sessionId()
+  if (!sid) return
+  const body = JSON.stringify({ path, dwellMs, referrer, sessionId: sid })
   try {
     if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
       navigator.sendBeacon('/api/track', new Blob([body], { type: 'application/json' }))

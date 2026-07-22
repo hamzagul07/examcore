@@ -9,7 +9,14 @@ import { SITE_NAME } from '@/lib/site-config'
 const MAX_LIST = 200 // cap each section so a busy day can't produce a giant email
 const MAX_PATHS_PER_USER = 40
 
-type EventRow = { user_id: string; path: string; dwell_ms: number }
+// user_id is null for anonymous visitors — the majority of traffic, and until
+// now entirely unrecorded.
+type EventRow = {
+  user_id: string | null
+  session_id: string | null
+  path: string
+  dwell_ms: number
+}
 type UsageRow = { user_id: string; event_type: string }
 type Signup = { id: string; email: string | null }
 
@@ -58,7 +65,7 @@ export async function sendVisitorDigest(
   const [eventsRes, usageRes, signupsRes] = await Promise.all([
     supabase
       .from('page_events')
-      .select('user_id, path, dwell_ms, created_at')
+      .select('user_id, session_id, path, dwell_ms, created_at')
       .gte('created_at', startISO)
       .lt('created_at', endISO)
       .order('created_at', { ascending: true }),
@@ -99,10 +106,37 @@ export async function sendVisitorDigest(
     else a.marks += 1
   }
   for (const e of events) {
+    // Anonymous rows have no user to attribute to; they're summarised separately.
+    if (!e.user_id) continue
     const a = get(e.user_id)
     a.visitMs += e.dwell_ms
     a.steps.push({ path: e.path, ms: e.dwell_ms })
   }
+
+  // ── Anonymous traffic ────────────────────────────────────────────────────
+  // The top of the funnel, previously invisible. A session that has BOTH
+  // anonymous and signed-in rows signed in or signed up mid-visit, which is the
+  // conversion we actually care about.
+  const anonSessions = new Set<string>()
+  const identifiedSessions = new Set<string>()
+  const landingCounts = new Map<string, number>()
+  let anonViews = 0
+  for (const e of events) {
+    if (!e.session_id) continue
+    if (e.user_id) {
+      identifiedSessions.add(e.session_id)
+    } else {
+      anonSessions.add(e.session_id)
+      anonViews += 1
+      landingCounts.set(e.path, (landingCounts.get(e.path) ?? 0) + 1)
+    }
+  }
+  const convertedSessions = [...anonSessions].filter((s) =>
+    identifiedSessions.has(s)
+  ).length
+  const topLanding = [...landingCounts.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10)
 
   const signupIds = new Set(signups.map((s) => s.id))
 
@@ -122,6 +156,20 @@ export async function sendVisitorDigest(
   }
 
   const lines: string[] = [`Daily summary for ${label} (UTC).`, '']
+
+  // ── Anonymous visitors ──────────────────────────────────────────────────
+  const convRate = anonSessions.size
+    ? ((100 * convertedSessions) / anonSessions.size).toFixed(1)
+    : '0.0'
+  lines.push(
+    `Anonymous sessions: ${anonSessions.size} (${anonViews} page views)`,
+    `  signed in or signed up during the visit: ${convertedSessions} (${convRate}%)`
+  )
+  if (topLanding.length) {
+    lines.push('  most-viewed pages by anonymous visitors:')
+    for (const [path, n] of topLanding) lines.push(`    ${path} — ${n}`)
+  }
+  lines.push('')
 
   // ── New signups ────────────────────────────────────────────────────────
   lines.push(`New signups: ${signups.length}`)
@@ -154,7 +202,7 @@ export async function sendVisitorDigest(
   await sendEmail({
     to: adminNotifyAddress(),
     subject: `[${SITE_NAME}] Daily summary — ${label}`,
-    preheader: `${signups.length} signups · ${returning.length} returning · ${events.length} page views`,
+    preheader: `${anonSessions.size} visitors → ${signups.length} signups · ${returning.length} returning · ${events.length} page views`,
     text: lines.join('\n'),
   })
 

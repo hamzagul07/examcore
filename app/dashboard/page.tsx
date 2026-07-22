@@ -26,6 +26,8 @@ import { NewUserHome } from '@/components/dashboard/NewUserHome'
 import { computeStreak } from '@/lib/dashboard/streak'
 import { MomentumStrip } from '@/components/dashboard/MomentumStrip'
 import { buildMomentum } from '@/lib/dashboard/momentum'
+import { GradeTargetTrack } from '@/components/dashboard/GradeTargetTrack'
+import { buildGradeTarget } from '@/lib/dashboard/grade-target'
 import { attemptsThisMonth, attemptsThisWeek, bestSubjectThisWeek } from '@/lib/dashboard/home-stats'
 import { displaySubjectName } from '@/lib/dashboard/subject-display'
 import { resolveDashboardState, type Recommendation } from '@/lib/insights/types'
@@ -68,7 +70,7 @@ export default async function DashboardPage() {
 
   const { data: profile } = await supabase
     .from('user_profiles')
-    .select('full_name, level, subjects, exam_date, board')
+    .select('full_name, level, subjects, exam_date, board, target_grade')
     .eq('id', user.id)
     .maybeSingle()
 
@@ -95,6 +97,13 @@ export default async function DashboardPage() {
   const weeklyCount = attemptsThisWeek(timestamps)
   // Reuses the attempts already fetched above — no extra query for the strip.
   const momentum = buildMomentum(attemptsList, 14)
+  // Recent form vs the target the student set — both already stored, never
+  // previously shown together.
+  const gradeTarget = buildGradeTarget({
+    attempts: attemptsList,
+    targetGrade: (profile?.target_grade as string | null) ?? null,
+    examDate,
+  })
   const monthlyCount = attemptsThisMonth(timestamps)
   const bestSubjectCode = bestSubjectThisWeek(attemptsList)
   const bestSubjectLabel = displaySubjectName(bestSubjectCode)
@@ -203,6 +212,10 @@ export default async function DashboardPage() {
               shown up? Shown to new accounts too — the strip has its own empty
               state, and the habit is easier to start when you can see the shape
               of it from day one. */}
+          {/* The question a student in an exam year actually opens the app
+              for. Renders nothing until there is a mark to place on it. */}
+          {gradeTarget ? <GradeTargetTrack data={gradeTarget} /> : null}
+
           <MomentumStrip summary={momentum} streak={streak} />
 
           {!isEmpty ? (

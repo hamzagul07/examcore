@@ -10,7 +10,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test:formula": "tsx lib/courses/formula-parts.test.ts",
-    "test:momentum": "tsx lib/dashboard/momentum.test.ts",
+    "test:momentum": "tsx lib/dashboard/momentum.test.ts && tsx lib/dashboard/grade-target.test.ts",
     "test:insights": "tsx lib/insights/speed-accuracy.test.ts",
     "test:marking": "tsx lib/ai/request-deadline.test.ts && tsx lib/marking/classify-marking-error.test.ts && tsx lib/marking/reconcile-marks.test.ts && tsx lib/marking/derive-scheme.test.ts && tsx lib/marking/split-questions.test.ts && tsx lib/marking/question-marks.test.ts && tsx lib/marking/json.test.ts && tsx lib/marking/client-mark-errors.test.ts && tsx lib/marking/mark-scheme-display.test.ts && tsx lib/marking/topic-question.test.ts",
     "test:seo": "cross-env NODE_OPTIONS=--conditions=react-server tsx lib/seo/hub-intro.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/seo/subject-seo.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/seo/grade-boundaries.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/seo/ib-blog-copy.test.ts",

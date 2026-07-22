@@ -1986,3 +1986,87 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* ── Marked-script showcase ───────────────────────────────────────────────
+   The examiner-ink overlay, shown to people who have not marked anything yet.
+   Copy on one side, the script on the other; stacked on narrow screens with
+   the script first, because the script is the argument. */
+
+.ms-script-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: 34px;
+  align-items: center;
+  margin: 48px 0;
+}
+
+.ms-script-showcase__title {
+  margin: 8px 0 0;
+  font-size: clamp(24px, 3.4vw, 34px);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  color: var(--ec-text-primary);
+}
+
+.ms-script-showcase__lead {
+  margin: 12px 0 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ec-text-secondary);
+  max-width: 52ch;
+}
+
+.ms-script-showcase__points {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+.ms-script-showcase__points li {
+  padding-left: 18px;
+  position: relative;
+}
+
+.ms-script-showcase__points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--ec-brand);
+}
+
+.ms-script-showcase__points strong {
+  color: var(--ec-text-primary);
+  font-weight: 650;
+}
+
+.ms-script-showcase__frame {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--ec-border);
+  background: #fcfbf7; /* the paper itself, not a themed surface */
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.05),
+    0 12px 28px -12px rgba(0, 0, 0, 0.22);
+}
+
+@media (max-width: 900px) {
+  .ms-script-showcase {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  /* Script first on mobile: it makes the case faster than the copy does. */
+  .ms-script-showcase__script {
+    order: -1;
+  }
+}

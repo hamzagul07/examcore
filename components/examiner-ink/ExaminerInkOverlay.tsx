@@ -59,9 +59,11 @@ export function ExaminerInkOverlay({
   onActiveMarkChange,
 }: ExaminerInkOverlayProps) {
   const containerRef = useRef<HTMLDivElement>(null)
+  const imgRef = useRef<HTMLImageElement>(null)
   const refreshedUrlRef = useRef(false)
   const [displayUrl, setDisplayUrl] = useState(imageUrl)
   const [imageLoaded, setImageLoaded] = useState(false)
+
   const [isMobileInk, setIsMobileInk] = useState(false)
   const [revealedCount, setRevealedCount] = useState<number>(
     animate ? 0 : lineReferences.length
@@ -81,6 +83,31 @@ export function ExaminerInkOverlay({
     setImageLoaded(false)
     refreshedUrlRef.current = false
   }, [imageUrl])
+
+  /**
+   * Don't rely on React's `onLoad` alone.
+   *
+   * When the markup is server-rendered, the browser can finish fetching the
+   * image before React hydrates and attaches its synthetic handler — the load
+   * event is then gone for good, `imageLoaded` stays false, and the spinner
+   * covers a perfectly loaded script forever while the marks (gated on the same
+   * flag) never animate. Reproduced on the landing showcase: `img.complete` was
+   * true and `naturalWidth` 1100 while React still believed it was loading.
+   *
+   * So: check `complete` when the node attaches, and otherwise listen natively,
+   * which is immune to hydration timing.
+   */
+  useEffect(() => {
+    const img = imgRef.current
+    if (!img) return
+    if (img.complete && img.naturalWidth > 0) {
+      setImageLoaded(true)
+      return
+    }
+    const onLoad = () => setImageLoaded(true)
+    img.addEventListener('load', onLoad)
+    return () => img.removeEventListener('load', onLoad)
+  }, [displayUrl])
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 640px)')
@@ -148,6 +175,7 @@ export function ExaminerInkOverlay({
       >
         {/* eslint-disable-next-line @next/next/no-img-element -- we don't know the image dimensions, and next/image's sizing breaks the percentage-based overlay math. */}
         <img
+          ref={imgRef}
           src={displayUrl}
           alt="Your handwritten answer"
           onLoad={() => setImageLoaded(true)}

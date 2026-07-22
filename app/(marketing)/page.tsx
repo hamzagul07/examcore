@@ -13,6 +13,7 @@ import { LandingFinalCta } from '@/components/landing/LandingFinalCta'
 import { LandingEditorialSpotlight } from '@/components/landing/LandingEditorialSpotlight'
 import { LandingProof } from '@/components/landing/LandingProof'
 import { LandingMarkPreview } from '@/components/landing/LandingMarkPreview'
+import { MarkedScriptShowcase } from '@/components/marketing/MarkedScriptShowcase'
 
 export const metadata = getPageMetadata('/')
 
@@ -29,6 +30,10 @@ export default function Home() {
         {/* Show the artefact before explaining it — a visitor deciding in
             five seconds looks rather than reads. */}
         <LandingMarkPreview markHref={markHref} />
+        {/* The claim people don't believe until they see it. */}
+        <div className="ms-pg">
+          <MarkedScriptShowcase />
+        </div>
         <LandingPillars />
         <LandingMarkingSection />
         <LandingPlatformShowcase />

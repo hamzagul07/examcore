@@ -1896,3 +1896,93 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Shared mark-line list — used by the landing, dashboard and blog examples. */
+.ms-mark-lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Blog: worked example ─────────────────────────────────────────────────
+   On ~550 articles that were otherwise entirely prose. Editorial as much as
+   promotional: a withheld mark illustrates exam technique better than a
+   paragraph about exam technique. */
+
+.ms-blog-mark-example {
+  margin-top: 44px;
+  padding: 24px;
+  border: 1px solid var(--ec-border);
+  border-radius: 18px;
+  background: var(--ec-surface-raised);
+}
+
+.ms-blog-mark-example__title {
+  margin: 6px 0 0;
+  font-size: clamp(20px, 3vw, 25px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ec-text-primary);
+}
+
+.ms-blog-mark-example__lead {
+  margin: 8px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ec-text-secondary);
+  max-width: 62ch;
+}
+
+.ms-blog-mark-example__body {
+  display: grid;
+  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  margin-top: 20px;
+}
+
+.ms-blog-mark-example__why {
+  margin: 18px 0 0;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border-left: 3px solid var(--ec-chip-critical-text);
+  background: var(--ec-surface);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ec-text-primary);
+}
+
+.ms-blog-mark-example__why p {
+  margin: 0;
+}
+
+.ms-blog-mark-example__why-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ec-chip-critical-text);
+  margin-bottom: 6px !important;
+}
+
+.ms-blog-mark-example__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin: 20px 0 0;
+  font-size: 14px;
+  color: var(--ec-text-secondary);
+}
+
+@media (max-width: 780px) {
+  .ms-blog-mark-example {
+    padding: 18px;
+  }
+  .ms-blog-mark-example__body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

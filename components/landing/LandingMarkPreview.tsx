@@ -1,5 +1,5 @@
-import { Check, X } from 'lucide-react'
 import { ScoreReveal } from '@/components/mark/ScoreReveal'
+import { MarkLineList } from '@/components/mark/MarkLineList'
 import { DEMO_MARK_RESULT } from '@/lib/marking/demo-result'
 
 /**
@@ -56,27 +56,7 @@ export function LandingMarkPreview({ markHref }: { markHref: string }) {
           />
         </div>
 
-        <ol className="ms-mark-preview__lines">
-          {marks.map((m, i) => (
-            <li
-              key={String(m.mark_id ?? i)}
-              className={`ms-mpl ${m.earned ? 'is-earned' : 'is-lost'}`}
-            >
-              <span className="ms-mpl__icon" aria-hidden="true">
-                {m.earned ? (
-                  <Check className="h-3.5 w-3.5" />
-                ) : (
-                  <X className="h-3.5 w-3.5" />
-                )}
-              </span>
-              <span className="ms-mpl__type">{m.type}</span>
-              <span className="ms-mpl__work">{m.line_reference}</span>
-              <span className="sr-only">
-                {m.earned ? 'earned' : 'not earned'}
-              </span>
-            </li>
-          ))}
-        </ol>
+        <MarkLineList marks={marks} className="ms-mark-preview__lines" />
       </div>
 
       {lost && (

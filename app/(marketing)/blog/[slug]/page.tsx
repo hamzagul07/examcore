@@ -13,6 +13,7 @@ import {
 import { BlogFollowUpChain } from '@/components/blog/BlogFollowUpChain'
 import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
 import { BlogPostCta } from '@/components/seo/BlogPostCta'
+import { BlogMarkExample } from '@/components/blog/BlogMarkExample'
 import { BlogPostGraphJsonLd } from '@/components/seo/BlogPostGraphJsonLd'
 import { BlogArticleHero } from '@/components/blog/BlogArticleHero'
 import { BlogAuthorByline } from '@/components/blog/BlogAuthorByline'
@@ -111,6 +112,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         <BlogSourcesBlock slug={slug} />
         <BlogFollowUpChain slug={slug} />
+        <BlogMarkExample slug={slug} />
         <BlogPostCta
           variant={ctaVariant}
           subjectCode={subjectCode}

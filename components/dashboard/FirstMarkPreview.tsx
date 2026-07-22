@@ -1,6 +1,7 @@
 import Link from 'next/link'
-import { ArrowRight, Check, X } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { ScoreReveal } from '@/components/mark/ScoreReveal'
+import { MarkLineList } from '@/components/mark/MarkLineList'
 import { DEMO_MARK_RESULT } from '@/lib/marking/demo-result'
 
 /**
@@ -56,33 +57,7 @@ export function FirstMarkPreview() {
           }))}
         />
 
-        <ul className="ms-first-mark__lines">
-          {marks.slice(0, 3).map((m, i) => (
-            <li
-              key={String(m.mark_id ?? i)}
-              className={`ms-mpl ${m.earned ? 'is-earned' : 'is-lost'}`}
-            >
-              <span className="ms-mpl__icon" aria-hidden="true">
-                {m.earned ? (
-                  <Check className="h-3.5 w-3.5" />
-                ) : (
-                  <X className="h-3.5 w-3.5" />
-                )}
-              </span>
-              <span className="ms-mpl__type">{m.type}</span>
-              <span className="ms-mpl__work">{m.line_reference}</span>
-            </li>
-          ))}
-          {lost && (
-            <li className="ms-mpl is-lost">
-              <span className="ms-mpl__icon" aria-hidden="true">
-                <X className="h-3.5 w-3.5" />
-              </span>
-              <span className="ms-mpl__type">{lost.type}</span>
-              <span className="ms-mpl__work">{lost.line_reference}</span>
-            </li>
-          )}
-        </ul>
+        <MarkLineList marks={marks} limit={3} className="ms-first-mark__lines" />
       </div>
 
       {lost?.margin_note && (

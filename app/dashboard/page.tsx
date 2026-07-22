@@ -200,11 +200,10 @@ export default async function DashboardPage() {
           <BillingLimitBanner className="mb-6" />
 
           {/* Above the fold, before anything asks them to do more work: have I
-              shown up? The strip returns null when the fortnight is empty, so a
-              brand-new account isn't greeted by a row of zeroes. */}
-          {!isEmpty ? (
-            <MomentumStrip summary={momentum} streak={streak} />
-          ) : null}
+              shown up? Shown to new accounts too — the strip has its own empty
+              state, and the habit is easier to start when you can see the shape
+              of it from day one. */}
+          <MomentumStrip summary={momentum} streak={streak} />
 
           {!isEmpty ? (
             <WeakSpotDrillCard

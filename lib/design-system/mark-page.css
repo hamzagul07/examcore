@@ -1817,3 +1817,82 @@
   font-size: 13.5px;
   color: var(--ec-text-secondary);
 }
+
+/* ── New-user home: first-mark preview ────────────────────────────────────
+   Replaces three tiles whose only content was an em dash. Shares .ms-mpl with
+   the landing preview so the mark rows are one visual language. */
+
+.ms-first-mark {
+  border: 1px solid var(--ec-border);
+  border-radius: 16px;
+  background: var(--ec-surface-raised);
+  padding: 18px;
+}
+
+.ms-first-mark__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.ms-first-mark__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ec-text-primary);
+}
+
+.ms-first-mark__sub {
+  margin: 3px 0 0;
+  font-size: 13px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-first-mark__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 44px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ec-brand);
+  white-space: nowrap;
+}
+
+.ms-first-mark__body {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.ms-first-mark__lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ms-first-mark__why {
+  margin: 14px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--ec-border);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+.ms-first-mark__why strong {
+  color: var(--ec-chip-critical-text);
+}
+
+@media (max-width: 780px) {
+  .ms-first-mark__body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

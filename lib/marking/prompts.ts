@@ -727,6 +727,8 @@ Then set marks_earned to the number of marks you awarded.
 - ${totalLine}
 - marks_earned must equal the sum of the individual marks (or criteria marks) you award.
 
+WRITING THE FEEDBACK — the student reads "summary", "reasoning" and "margin_note" verbatim; they never see this review process and do not know a first marker exists. Address the student directly ("you"). NEVER refer to the first marker, the initial/original marking, this review, or to marks being corrected or reinstated — a real observed failure was a summary opening "The initial marking was correct", which is meaningless to a student. Describe only their work and why each mark was or was not earned.
+
 ${JSON_RULES_BLOCK}
 
 Return the CORRECTED marking as JSON in EXACTLY the same shape and field names as the first marker's result above. Return ONLY the JSON object.`

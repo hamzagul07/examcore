@@ -2001,7 +2001,39 @@ export default function MarkPage() {
                 </div>
               )}
 
-              {!isPracticeMode && (
+              {/* The paper details were never actually required to submit —
+                  detection runs whenever they're absent — but presenting six
+                  dropdowns up front made them look mandatory, and most people
+                  who opened this page left without uploading anything. Collapsed
+                  by default so the upload is the obvious next step; still one tap
+                  away, and auto-expanded for anyone who arrived with a paper
+                  already chosen (deep link, saved preference). */}
+              {!isPracticeMode && !showManualPaper && !isManualFilled && (
+                <button
+                  type="button"
+                  onClick={() => setShowManualPaper(true)}
+                  className="ec-card flex w-full items-center justify-between gap-3 p-4 text-left transition-colors hover:border-[var(--ec-brand)]/50"
+                >
+                  <span>
+                    <span className="block text-sm font-semibold text-[var(--ec-text-primary)]">
+                      Know which paper this is? Add it{' '}
+                      <span className="font-normal text-[var(--ec-text-secondary)]">
+                        (optional)
+                      </span>
+                    </span>
+                    <span className="mt-0.5 block text-sm text-[var(--ec-text-secondary)]">
+                      We work it out from your upload. Naming the paper lets us
+                      mark against the official scheme instead.
+                    </span>
+                  </span>
+                  <ChevronRight
+                    className="h-5 w-5 shrink-0 text-[var(--ec-brand)]"
+                    aria-hidden="true"
+                  />
+                </button>
+              )}
+
+              {!isPracticeMode && (showManualPaper || isManualFilled) && (
                 <PastPaperSelectorFields
                   markBoard={selectedMarkBoard}
                   selectedSubject={selectedSubject}

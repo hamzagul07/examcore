@@ -543,6 +543,27 @@ export async function runSingleQuestionMark(
     )
   const manualSubjectCode = manualPaperCode?.split('/')[0]
 
+  /**
+   * The "just upload it" path: past-paper intent, but the student gave us no
+   * paper selection, no typed question and no separate question photo.
+   *
+   * The default OCR prompt transcribes the ANSWER only and discards printed
+   * text, so on a homework photo — where the question sits above the working —
+   * the question was thrown away before we ever looked for it. Detection then
+   * had nothing to match, and the run died with "We could not identify this as
+   * a past paper question", after the student had already waited ~30s for it.
+   *
+   * Transcribing the question as well costs nothing extra (same single OCR
+   * call) and is what makes upload-only actually work. Narrow by design: if the
+   * student did give us a question or a paper, nothing here changes.
+   */
+  const captureQuestionInOcr =
+    isCombinedScript ||
+    (!isPracticeQuestion &&
+      !hasManualSelection &&
+      !questionTextInput.trim() &&
+      !questionPhoto)
+
   emit(onProgress, 'reading_work')
 
   const pageOcrResults: Array<{
@@ -557,8 +578,10 @@ export async function runSingleQuestionMark(
       ocrAnswerBufferWithBoxes(
         buf,
         file.type || 'image/jpeg',
-        isCombinedScript ? practiceCode ?? undefined : manualSubjectCode,
         isCombinedScript
+          ? practiceCode ?? undefined
+          : manualSubjectCode ?? fallbackSubjectCode ?? undefined,
+        captureQuestionInOcr
       ),
       uploadAnswerPhoto(buf, file.type || 'image/jpeg', userId),
     ])
@@ -797,12 +820,39 @@ export async function runSingleQuestionMark(
     })
   }
 
+  // Detection found no paper and we have no question. Before giving up, look
+  // for the question in what we just transcribed — on the upload-only path the
+  // OCR deliberately captured the printed question alongside the working, and a
+  // homework photo usually has it right there. Recovering it turns the most
+  // common "I just uploaded my page" failure into a normal mark.
+  if (
+    markingMode === 'general_criteria' &&
+    captureQuestionInOcr &&
+    (!questionText || questionText.trim().length < 10)
+  ) {
+    try {
+      const recovered = await extractPracticeQuestionFromScript(
+        ocrText,
+        manualSubjectCode ?? fallbackSubjectCode ?? ''
+      )
+      if (recovered.question_text.trim().length >= 10) {
+        questionText = recovered.question_text
+        if (recovered.answer_text.trim().length >= 5) {
+          ocrTextForMarking = recovered.answer_text
+        }
+      }
+    } catch (err) {
+      // Best-effort: fall through to the error below with the original message.
+      console.warn('[mark] question recovery from script failed', err)
+    }
+  }
+
   if (
     markingMode === 'general_criteria' &&
     (!questionText || questionText.trim().length < 10)
   ) {
     throw new Error(
-      'We could not identify this as a past paper question. Please also upload a photo of the question, or type the question text below.'
+      "We couldn't find a question in your upload. Add a photo of the question, type it below, or pick the paper — then we can mark it."
     )
   }
   }

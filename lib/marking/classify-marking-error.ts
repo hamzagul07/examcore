@@ -22,11 +22,18 @@ export type ClassifiedMarkingError = {
   status: number
 }
 
+// Substrings that identify a "you need to give us something" error rather than
+// a fault on our side. A miss here is not cosmetic: the error is reported as a
+// 500 and marked retryable, so the user is told to try again at something that
+// will fail identically, and mark_runs records it as an infrastructure failure.
+// `find a question in your upload` covers both the combined-script and the
+// upload-only paths, which were previously falling through to 'unknown'.
 const CLIENT_HINTS = [
   'past paper question',
   'select a subject',
   'Add your question',
   'Add the question',
+  'find a question in your upload',
 ]
 
 export function classifyMarkingError(err: unknown): ClassifiedMarkingError {

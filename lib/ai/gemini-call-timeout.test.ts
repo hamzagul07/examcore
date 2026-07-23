@@ -49,6 +49,28 @@ async function main() {
     `retries completed in ${retryElapsed}ms`
   )
 
+  // A real (non-timeout) failure must pass through UNCHANGED — not be masked as a
+  // GeminiTimeoutError. If it were wrapped, the retry classifier would treat a
+  // genuine 400/permission/quota error as a transient timeout and retry a call
+  // that can never succeed, burning the request budget.
+  const realError = new Error('vertex 400: invalid argument')
+  let seen: unknown
+  try {
+    await withGeminiAbortTimeout(async () => {
+      throw realError
+    }, 1_000)
+    assert.fail('expected the underlying error to propagate')
+  } catch (err) {
+    seen = err
+  }
+  assert.equal(seen, realError, 'non-timeout error is rethrown as-is')
+  assert.ok(!(seen instanceof GeminiTimeoutError), 'not masked as a timeout')
+
+  // A fast success returns its value and does not spuriously time out (the timer
+  // is cleared) — a value that resolves well inside the window comes straight back.
+  const ok = await withGeminiAbortTimeout(async () => 'done', 1_000)
+  assert.equal(ok, 'done', 'successful call returns its value')
+
   console.log('gemini-call-timeout.test.ts: ok')
 }
 

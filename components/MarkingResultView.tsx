@@ -229,6 +229,11 @@ export function MarkingResultView({
       result.ai_marking.full_marks_rewrite,
     ]
   )
+  // When the band ladder owns the band story, drop the duplicates: the near-
+  // empty audit card (no per-mark rows to show) and the rubric's band list.
+  const bandLadderShown = !!bandGap && !hasStructuredResult
+  const showAudit =
+    hasStructuredResult || (result.ai_marking.criteria_results?.length ?? 0) > 0
 
   const handleInkMarkSelect = (markId: string) => {
     const idx = marks.findIndex(
@@ -369,9 +374,12 @@ export function MarkingResultView({
 
       {hasStructuredResult || hasCriteria ? (
         <div className="ms-result-grid">
-          {bandGap && !hasStructuredResult && (
+          {bandLadderShown && bandGap && (
             <div>
-              <MarkBandLadder gap={bandGap} />
+              <MarkBandLadder
+                gap={bandGap}
+                justification={result.ai_marking.band_result?.justification}
+              />
             </div>
           )}
           {hasStructuredResult && (
@@ -428,24 +436,29 @@ export function MarkingResultView({
           </div>
           )}
 
-          <MarkAuditPanel
-            marks={marks}
-            selectedIndex={selectedIndex}
-            onSelect={setSelectedIndex}
-            marksEarned={result.marks_earned}
-            totalMarks={result.total_marks}
-            gradeLabel={isIb ? null : grade.grade}
-            schemeLabel={schemeLabel(result)}
-            bandResult={result.ai_marking.band_result}
-            criteriaResults={result.ai_marking.criteria_results}
-            rubric={result.mark_scheme_rubric}
-          />
+          {showAudit && (
+            <MarkAuditPanel
+              marks={marks}
+              selectedIndex={selectedIndex}
+              onSelect={setSelectedIndex}
+              marksEarned={result.marks_earned}
+              totalMarks={result.total_marks}
+              gradeLabel={isIb ? null : grade.grade}
+              schemeLabel={schemeLabel(result)}
+              bandResult={
+                bandLadderShown ? undefined : result.ai_marking.band_result
+              }
+              criteriaResults={result.ai_marking.criteria_results}
+              rubric={result.mark_scheme_rubric}
+            />
+          )}
           {result.mark_scheme_rubric &&
           result.marking_mode === 'official_mark_scheme' ? (
             <MarkSchemeRubricPanel
               rubric={result.mark_scheme_rubric}
               activeMarkType={activeMarkId}
               compact
+              hideBands={bandLadderShown}
             />
           ) : null}
         </div>

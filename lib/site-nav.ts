@@ -98,10 +98,13 @@ export const SITE_NAV_ITEMS: SiteNavItem[] = [
     href: '/dashboard/progress',
     label: 'Progress',
     variants: ['app'],
-    // No longer claims /dashboard — that is Home. Progress owns only its own
-    // page and the per-attempt detail that opens from it.
+    // No longer claims /dashboard — that is Home. Progress owns its own page,
+    // the per-attempt detail that opens from it, and "Review your misses"
+    // (/dashboard/review), which is a progress activity and opens attempt pages.
     isActive: (p) =>
-      p.startsWith('/dashboard/progress') || p.startsWith('/dashboard/attempt/'),
+      p.startsWith('/dashboard/progress') ||
+      p.startsWith('/dashboard/attempt/') ||
+      p.startsWith('/dashboard/review'),
   },
   {
     id: 'account',

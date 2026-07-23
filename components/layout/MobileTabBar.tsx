@@ -44,7 +44,9 @@ const TABS: TabItem[] = [
     label: 'Progress',
     Icon: LineChart,
     match: (p) =>
-      p.startsWith('/dashboard/progress') || p.startsWith('/dashboard/attempt/'),
+      p.startsWith('/dashboard/progress') ||
+      p.startsWith('/dashboard/attempt/') ||
+      p.startsWith('/dashboard/review'),
   },
   {
     href: '/community',

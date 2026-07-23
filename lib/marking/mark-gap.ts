@@ -1,4 +1,5 @@
-import type { MarkAwarded } from './types'
+import type { LorBandResult, MarkAwarded } from './types'
+import type { RubricBand } from './mark-scheme-display'
 
 /**
  * The Mark Gap: the marks that were AVAILABLE but not awarded, each paired with
@@ -127,4 +128,68 @@ export function inlineGhostFixes(
     }
   }
   return out
+}
+
+/**
+ * Level-of-response marking has no ticks to place — the gap is the band above
+ * you. Each rung is a rubric level; `next` is the one directly above the
+ * achieved band, and `liftHint` is the single concrete move to reach it.
+ */
+export type BandRung = {
+  level: number
+  descriptor: string
+  marksMax: number
+  state: 'below' | 'current' | 'next' | 'above'
+}
+
+export type BandGap = {
+  level: number
+  marksAwarded: number
+  marksAvailable: number
+  /** The rung directly above the achieved band, when the rubric describes it. */
+  next: BandRung | null
+  /** One concrete move to reach the next band. */
+  liftHint: string | null
+  /** Full ladder, highest level first, when the rubric is present. */
+  ladder: BandRung[]
+}
+
+function rungState(level: number, current: number): BandRung['state'] {
+  if (level === current) return 'current'
+  if (level === current + 1) return 'next'
+  return level > current ? 'above' : 'below'
+}
+
+export function buildBandGap(
+  bandResult: LorBandResult,
+  bands: RubricBand[] | null | undefined,
+  rewrite?: { annotations: Array<{ text: string; earns: string }> } | null
+): BandGap {
+  const ladder: BandRung[] = [...(bands ?? [])]
+    .sort((a, b) => b.level - a.level)
+    .map((b) => ({
+      level: b.level,
+      descriptor: b.descriptor,
+      marksMax: b.marks_max,
+      state: rungState(b.level, bandResult.level),
+    }))
+  const next = ladder.find((r) => r.state === 'next') ?? null
+
+  // Prefer a rewrite annotation that names a band/level lift, then the
+  // examiner's first improvement, then the next band's own descriptor.
+  const bandAnnotation = rewrite?.annotations.find((a) => /band|level/i.test(a.earns))
+  const liftHint =
+    bandAnnotation?.text?.trim() ||
+    bandResult.improvements?.[0]?.trim() ||
+    next?.descriptor ||
+    null
+
+  return {
+    level: bandResult.level,
+    marksAwarded: bandResult.marks_awarded,
+    marksAvailable: bandResult.marks_available,
+    next,
+    liftHint,
+    ladder,
+  }
 }

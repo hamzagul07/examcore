@@ -1,8 +1,10 @@
 import { ExaminerInkPerPage } from '@/components/examiner-ink/ExaminerInkPerPage'
 import { MarkGapPanel } from '@/components/examiner-ink/MarkGapPanel'
+import { MarkBandLadder } from '@/components/examiner-ink/MarkBandLadder'
 import { buildPerPageInk, type PageInkSource } from '@/lib/marking/ink-per-page'
-import { buildMarkGap, inlineGhostFixes } from '@/lib/marking/mark-gap'
-import type { MarkingAIResult } from '@/lib/marking/types'
+import { buildBandGap, buildMarkGap, inlineGhostFixes } from '@/lib/marking/mark-gap'
+import type { LorBandResult, MarkingAIResult } from '@/lib/marking/types'
+import type { RubricBand } from '@/lib/marking/mark-scheme-display'
 
 export const metadata = {
   title: 'Mark Gap preview — dev',
@@ -95,11 +97,33 @@ function scriptDataUri(): string {
   return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`
 }
 
+// --- Level-of-response fixture (essay / IB criteria) ---
+const BANDS: RubricBand[] = [
+  { level: 1, marks_min: 1, marks_max: 2, descriptor: 'Basic, largely descriptive points.' },
+  { level: 2, marks_min: 3, marks_max: 4, descriptor: 'Developed explanation of both sides.' },
+  { level: 3, marks_min: 5, marks_max: 6, descriptor: 'Reasoned analysis leading to a supported judgement.' },
+  { level: 4, marks_min: 7, marks_max: 8, descriptor: 'Sustained, evaluative argument throughout.' },
+]
+
+const BAND_RESULT: LorBandResult = {
+  level: 2,
+  marks_awarded: 3,
+  marks_available: 8,
+  band_descriptor: 'Developed explanation of both sides.',
+  justification: 'Explains the case for and against but never weighs them.',
+  improvements: ['Commit to a conclusion and back it with your strongest point.'],
+}
+
 export default function MarkGapDevPage() {
   const pages: PageInkSource[] = [{ photo_url: scriptDataUri(), ocr_lines: OCR }]
   const inkPages = buildPerPageInk(aiMarking, pages)
   const gap = buildMarkGap(aiMarking, aiMarking.marks_earned, aiMarking.total_marks)
   const ghostFixes = inlineGhostFixes(gap)
+  const bandGap = buildBandGap(BAND_RESULT, BANDS, {
+    annotations: [
+      { text: 'End with “On balance… because…” and cite your strongest evidence.', earns: 'lifts to Level 3' },
+    ],
+  })
 
   return (
     <main
@@ -134,6 +158,17 @@ export default function MarkGapDevPage() {
       >
         <ExaminerInkPerPage pages={inkPages} animate={false} ghostFixes={ghostFixes} />
         <MarkGapPanel gap={gap} />
+      </div>
+
+      <header style={{ marginTop: 16 }}>
+        <h2 className="ms-h2">The same gap, for essays &amp; IB criteria</h2>
+        <p style={{ color: 'var(--ec-text-secondary)', marginTop: 6, maxWidth: '62ch' }}>
+          Level-of-response marking has no ticks to place — so the gap becomes the
+          rung above you. Achieved band lit, next band up drawn as the target.
+        </p>
+      </header>
+      <div style={{ maxWidth: 640 }}>
+        <MarkBandLadder gap={bandGap} />
       </div>
     </main>
   )

@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
-import { buildMarkGap, inlineGhostFixes } from './mark-gap'
-import type { MarkAwarded } from './types'
+import { buildBandGap, buildMarkGap, inlineGhostFixes } from './mark-gap'
+import type { LorBandResult, MarkAwarded } from './types'
+import type { RubricBand } from './mark-scheme-display'
 
 function mark(over: Partial<MarkAwarded>): MarkAwarded {
   return { mark_id: 1, type: 'M1', earned: true, reasoning: '', ...over }
@@ -103,6 +104,53 @@ function mark(over: Partial<MarkAwarded>): MarkAwarded {
   assert.equal(inline['A1'].text, 'Write F = 6.0 N.')
   assert.equal(inline['A1'].earns, 'A1')
   assert.equal('B1' in inline, false) // no anchor snippet → panel only
+}
+
+// --- band gap: ladder marks current + next, lift hint prefers band annotation ---
+{
+  const bands: RubricBand[] = [
+    { level: 1, marks_min: 1, marks_max: 2, descriptor: 'Basic, descriptive.' },
+    { level: 2, marks_min: 3, marks_max: 4, descriptor: 'Developed explanation.' },
+    { level: 3, marks_min: 5, marks_max: 6, descriptor: 'Reasoned analysis.' },
+  ]
+  const bandResult: LorBandResult = {
+    level: 2,
+    marks_awarded: 3,
+    marks_available: 6,
+    band_descriptor: 'Developed explanation.',
+    justification: 'Explains both sides but does not weigh them.',
+    improvements: ['Commit to a judgement.'],
+  }
+  const gap = buildBandGap(bandResult, bands, {
+    annotations: [{ text: 'End with a supported conclusion.', earns: 'lifts to Level 3' }],
+  })
+  // ladder is highest-level first
+  assert.deepEqual(
+    gap.ladder.map((r) => r.level),
+    [3, 2, 1]
+  )
+  assert.equal(gap.ladder.find((r) => r.level === 2)?.state, 'current')
+  assert.equal(gap.next?.level, 3)
+  // band-naming annotation wins over the examiner improvement
+  assert.equal(gap.liftHint, 'End with a supported conclusion.')
+}
+
+// --- band gap degrades: no rubric → empty ladder, hint falls to improvement ---
+{
+  const gap = buildBandGap(
+    {
+      level: 4,
+      marks_awarded: 8,
+      marks_available: 15,
+      band_descriptor: '',
+      justification: '',
+      improvements: ['Add a counter-argument.'],
+    },
+    null
+  )
+  assert.equal(gap.ladder.length, 0)
+  assert.equal(gap.next, null)
+  assert.equal(gap.liftHint, 'Add a counter-argument.')
 }
 
 console.log('mark-gap.test.ts: all assertions passed')

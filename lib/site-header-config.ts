@@ -158,8 +158,8 @@ export function getSiteHeaderConfig(
       tone: 'default',
       transparentShell: false,
       wordmarkHref: '/dashboard',
-      navItemIds: ['progress', 'mark', 'courses', 'community', 'account'],
-      context: { label: 'Dashboard', href: '/dashboard', glyph: '◆' },
+      navItemIds: ['home', 'courses', 'subjects', 'community', 'progress'],
+      context: { label: 'Home', href: '/dashboard', glyph: '◆' },
       primaryCta: { label: 'Mark a question', href: '/mark', style: 'primary' },
     }
   }
@@ -260,7 +260,11 @@ export function getSiteHeaderConfig(
 const CONSISTENT_NAV_IDS: Record<SiteHeaderVariant, string[]> = {
   marketing: ['mark', 'courses', 'subjects', 'community', 'pricing'],
   reading: ['mark', 'courses', 'subjects', 'community', 'pricing'],
-  app: ['mark', 'courses', 'subjects', 'community', 'progress'],
+  // Home + Progress are both present and distinct. 'mark' is dropped from the
+  // text nav because it is already the prominent primary CTA button in the app
+  // header — a second "mark" link was redundant, and its slot is better spent
+  // on Home, which previously had no nav entry at all (only the logo chip).
+  app: ['home', 'courses', 'subjects', 'community', 'progress'],
 }
 
 export function getNavItemsForConfig(

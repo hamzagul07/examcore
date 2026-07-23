@@ -60,7 +60,10 @@ export function ProgressDashboardPage({
     <MarginNotesPageShell>
       <main className="dash-page" data-screen-label="Progress dashboard">
         <div className="pg">
-          <Breadcrumb items={[{ label: 'Dashboard', href: '/dashboard' }, { label: 'Progress' }]} />
+          {/* "Home" to match the nav — the page was labelled "Dashboard" here
+              and "Home" everywhere else, which is half of why the two felt
+              indistinguishable. */}
+          <Breadcrumb items={[{ label: 'Home', href: '/dashboard' }, { label: 'Progress' }]} />
           <header className="dash-hero">
             <div>
               <p className="overline">Your progress</p>

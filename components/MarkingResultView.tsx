@@ -183,6 +183,24 @@ export function MarkingResultView({
     !!result.ai_marking?.band_result
   const activeMarkId = selectedMark?.type?.trim().toUpperCase() ?? null
 
+  // The ink overlay identifies a mark by its unique ref_id (its index in this
+  // same marks array), so two marks sharing a code select independently. Legacy
+  // attempts persisted before ref_id existed fall back to code matching — detect
+  // that and feed the overlay the code instead, preserving old behaviour.
+  const inkHasRefIds =
+    inkPages?.some((p) => p.line_references.some((r) => r.ref_id != null)) ?? false
+  const activeInkKey = inkHasRefIds ? String(selectedIndex) : activeMarkId
+  const handleInkRefSelect = (refKey: string) => {
+    if (!inkHasRefIds) {
+      handleInkMarkSelect(refKey) // legacy: refKey is a stamp code
+      return
+    }
+    const idx = Number(refKey)
+    if (Number.isInteger(idx) && idx >= 0 && idx < marks.length) {
+      setSelectedIndex(idx)
+    }
+  }
+
   // The Mark Gap: the marks that were available but not awarded, each paired
   // with the rewrite's fix when present. Drives the ghost insertions on the
   // script and the gap panel beneath it.
@@ -339,8 +357,8 @@ export function MarkingResultView({
                   pages={inkPages}
                   attemptId={attemptId ?? undefined}
                   animate
-                  activeMarkId={activeMarkId}
-                  onActiveMarkChange={handleInkMarkSelect}
+                  activeRefId={activeInkKey}
+                  onActiveMarkChange={handleInkRefSelect}
                   ghostFixes={ghostFixes}
                 />
               </div>

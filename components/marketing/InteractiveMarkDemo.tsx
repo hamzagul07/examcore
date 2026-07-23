@@ -61,7 +61,9 @@ export function InteractiveMarkDemo() {
   }, [])
 
   const active = marks[selected]
-  const activeCode = active?.type?.trim().toUpperCase() ?? null
+  // DEMO_INK[i].ref_id is String(i), so the selected index IS the overlay key —
+  // two marks sharing a code ("M1", "M1") stay independently selectable.
+  const activeRefId = String(selected)
 
   return (
     <section
@@ -86,12 +88,12 @@ export function InteractiveMarkDemo() {
             imageUrl={DEMO_SCRIPT_IMAGE}
             lineReferences={DEMO_INK}
             animate={inView}
-            activeMarkId={activeCode}
-            onActiveMarkChange={(markId) => {
-              const idx = marks.findIndex(
-                (m) => m.type?.trim().toUpperCase() === markId.toUpperCase()
-              )
-              if (idx >= 0) setSelected(idx)
+            activeRefId={activeRefId}
+            onActiveMarkChange={(refKey) => {
+              const idx = Number(refKey)
+              if (Number.isInteger(idx) && idx >= 0 && idx < marks.length) {
+                setSelected(idx)
+              }
             }}
           />
         </div>

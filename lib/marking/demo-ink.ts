@@ -25,6 +25,7 @@ const HEIGHT = 3.94
 export const DEMO_INK: LineReference[] = [
   {
     mark_id: 'M1',
+    ref_id: '0',
     earned: true,
     margin_note: null,
     error_classification: 'no_error',
@@ -33,6 +34,7 @@ export const DEMO_INK: LineReference[] = [
   },
   {
     mark_id: 'M1',
+    ref_id: '1',
     earned: true,
     margin_note: null,
     error_classification: 'no_error',
@@ -41,6 +43,7 @@ export const DEMO_INK: LineReference[] = [
   },
   {
     mark_id: 'A1',
+    ref_id: '2',
     earned: true,
     margin_note: null,
     error_classification: 'no_error',
@@ -49,6 +52,7 @@ export const DEMO_INK: LineReference[] = [
   },
   {
     mark_id: 'A1',
+    ref_id: '3',
     earned: true,
     margin_note: null,
     error_classification: 'no_error',
@@ -58,6 +62,7 @@ export const DEMO_INK: LineReference[] = [
   // The one that matters — a correct conclusion with nothing behind it.
   {
     mark_id: 'B1',
+    ref_id: '4',
     earned: false,
     margin_note: 'Correct — but you never showed why',
     error_classification: 'incomplete_method',

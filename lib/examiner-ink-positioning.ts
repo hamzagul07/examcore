@@ -35,8 +35,13 @@ export interface MarkAwardedWithRefs {
 }
 
 export interface LineReference {
-  /** Stamp code, e.g. "B1", "M1", "A1". */
+  /** Stamp code, e.g. "B1", "M1", "A1". NOT unique — a script can carry two M1
+   * marks — so it must not be used to identify a specific mark for selection. */
   mark_id: string
+  /** Stable unique identity for selection: the mark's index in the awarded-marks
+   * array. Two marks sharing a code ("M1", "M1") get distinct ref_ids, so
+   * selecting one highlights exactly one stamp. Persisted with the reference. */
+  ref_id: string
   earned: boolean
   margin_note: string | null
   error_classification: ErrorClassification
@@ -119,6 +124,10 @@ export function buildLineReferences(
 
     return {
       mark_id: stamp,
+      // Global position in the awarded-marks array. buildLineReferences runs over
+      // the SAME full array for every page (see buildPerPageInk), so this index
+      // is stable and unique across pages and matches the audit list's selection.
+      ref_id: String(idx),
       earned: !!mark.earned,
       margin_note: marginNote,
       error_classification: classification,

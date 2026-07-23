@@ -49,13 +49,21 @@ export function buildGradeTarget({
   attempts,
   targetGrade,
   examDate,
+  isIb = false,
   now = new Date(),
 }: {
   attempts: GradeTargetAttempt[]
   targetGrade: string | null
   examDate: string | null
+  /** IB students have no Cambridge A*–E boundary, and this whole track — the
+   * headline grade, the bands — is Cambridge. Rather than label an IB student
+   * "a B" off a Cambridge boundary they never sit against, show no track. The
+   * dashboard renders nothing when this returns null. */
+  isIb?: boolean
   now?: Date
 }): GradeTarget | null {
+  if (isIb) return null
+
   const scored = attempts
     .filter(
       (a) =>

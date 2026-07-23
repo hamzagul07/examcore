@@ -50,7 +50,12 @@ export function IbCriteriaBreakdown({
     return r(c) < r(arr[worst]) ? i : worst
   }, 0)
   const [selected, setSelected] = useState(weakestIdx)
-  const active = criteria[selected]
+  // `selected` is seeded once and never resyncs, so if this instance is reused
+  // for a shorter criteria array (a re-mark without a remount) the stored index
+  // can point past the end — `active` would be undefined and no tile would read
+  // as pressed. Fall back to the (always-valid) weakest index in that case.
+  const activeIdx = selected < criteria.length ? selected : weakestIdx
+  const active = criteria[activeIdx]
 
   return (
     <div className="ms-ib-criteria">
@@ -73,8 +78,8 @@ export function IbCriteriaBreakdown({
               <button
                 type="button"
                 onClick={() => setSelected(i)}
-                aria-pressed={i === selected}
-                className={`ms-ibc-tile ${i === selected ? 'is-active' : ''}`}
+                aria-pressed={i === activeIdx}
+                className={`ms-ibc-tile ${i === activeIdx ? 'is-active' : ''}`}
                 data-level={BAND_TOKEN[band]}
                 title={`${c.criterion} — ${c.criterion_name}`}
               >

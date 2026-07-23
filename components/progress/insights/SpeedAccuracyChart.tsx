@@ -46,7 +46,11 @@ export function SpeedAccuracyChart({ data }: { data: SpeedAccuracyData }) {
   const xMax = useMemo(() => {
     if (points.length === 0) return 60
     // Headroom so the slowest point isn't glued to the axis.
-    return niceCeil(Math.max(...points.map((p) => p.timePerMark)) * 1.12)
+    const ceil = niceCeil(Math.max(...points.map((p) => p.timePerMark)) * 1.12)
+    // Guard the degenerate all-zero-pace case: niceCeil(0) is 0, which would make
+    // every x() divide by zero → NaN and hide the whole scatter. Only substitutes
+    // when the real ceiling is 0, so genuine fast-pace charts aren't stretched.
+    return ceil > 0 ? ceil : 60
   }, [points])
 
   if (points.length < 3 || median == null) return null

@@ -23,6 +23,11 @@ const nextConfig: NextConfig = {
   // the default 60s per-page budget can be exceeded under memory/CPU pressure
   // even though each page is light, so give static generation more headroom.
   staticPageGenerationTimeout: 180,
+  // Trim barrel imports so only the icons/helpers actually used are bundled,
+  // instead of the whole package. Cuts homepage/first-load JS.
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'framer-motion', '@sentry/nextjs'],
+  },
   // Vercel serves everything under public/ from its CDN, so these files never
   // need to live inside a serverless function. Next's output file tracer would
   // otherwise bundle the whole public/courses/diagrams image tree (~190 MB) into

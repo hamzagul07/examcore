@@ -161,10 +161,10 @@ export function createBlogPostMetadata(post: {
 /** Shared favicon + apple touch icon for root metadata. */
 export const SITE_ICONS: Metadata['icons'] = {
   icon: [
-    { url: '/icon', type: 'image/png', sizes: '32x32' },
+    { url: '/icon.png', type: 'image/png', sizes: '32x32' },
     { url: '/favicon.png', type: 'image/png', sizes: '192x192' },
     { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
   ],
-  apple: [{ url: '/apple-icon', type: 'image/png', sizes: '180x180' }],
-  shortcut: ['/icon'],
+  apple: [{ url: '/apple-icon.png', type: 'image/png', sizes: '180x180' }],
+  shortcut: ['/icon.png'],
 }

@@ -8,14 +8,31 @@ type Props = {
   rubric: MarkSchemeRubric
   activeMarkType?: string | null
   compact?: boolean
+  /** Suppress the band-descriptor list — used when the Mark Gap band ladder
+   * already renders it, so level-of-response results don't show it twice. */
+  hideBands?: boolean
 }
 
 export function MarkSchemeRubricPanel({
   rubric,
   activeMarkType,
   compact = false,
+  hideBands = false,
 }: Props) {
   const activeKey = activeMarkType?.trim().toUpperCase() ?? null
+
+  // Nothing to show once bands are hidden and the rest is empty — don't render
+  // a header-only shell (happens for a level-of-response result whose only
+  // rubric content was the band list the ladder now owns).
+  const showBands = rubric.bands.length > 0 && !hideBands
+  const hasContent =
+    rubric.points.length > 0 ||
+    showBands ||
+    rubric.indicative_content.length > 0 ||
+    rubric.common_errors.length > 0 ||
+    rubric.acceptable_final_answers.length > 0 ||
+    !!rubric.notes
+  if (!hasContent) return null
 
   return (
     <section className={`ms-scheme-rubric ${compact ? 'ms-scheme-rubric--compact' : ''}`.trim()}>
@@ -46,7 +63,7 @@ export function MarkSchemeRubricPanel({
         </ol>
       ) : null}
 
-      {rubric.bands.length > 0 ? (
+      {showBands ? (
         <div className="ms-scheme-rubric-bands">
           {rubric.bands.map((band) => (
             <div key={band.level} className="ms-scheme-rubric-band">

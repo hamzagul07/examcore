@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ArrowUp } from 'lucide-react'
+import { RichTextRenderer } from '@/components/RichTextRenderer'
 import type { BandGap, BandRung } from '@/lib/marking/mark-gap'
 
 /**
@@ -10,7 +11,16 @@ import type { BandGap, BandRung } from '@/lib/marking/mark-gap'
  * rubric as a ladder with the achieved rung lit and the next rung up drawn as
  * the dashed target, plus the single move that reaches it.
  */
-export function MarkBandLadder({ gap, label }: { gap: BandGap; label?: string }) {
+export function MarkBandLadder({
+  gap,
+  label,
+  justification,
+}: {
+  gap: BandGap
+  label?: string
+  /** The examiner's reasoning for the placement — the "why you're here". */
+  justification?: string | null
+}) {
   const rungs = gap.ladder.length > 0 ? gap.ladder : fallbackRungs(gap)
   const atTop = gap.next === null && gap.ladder.length > 0
 
@@ -38,6 +48,12 @@ export function MarkBandLadder({ gap, label }: { gap: BandGap; label?: string })
           </>
         )}
       </p>
+
+      {justification && (
+        <div className="text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+          <RichTextRenderer text={justification} />
+        </div>
+      )}
 
       {/* rungs are highest-level first, so a plain column puts the top band up
           top — "one move up" points to the rung physically above. */}

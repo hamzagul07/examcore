@@ -1276,6 +1276,105 @@ const SLUG_FAMILY_IB_BIOLOGY: Record<string, keyof typeof FAMILIES> = {
   'd4-1-natural-selection': 'bio-evolution',
 }
 
+/**
+ * IB Chemistry (SL + HL) → existing families, mapped by what each family
+ * DEPICTS, not by the topic name. IB's "Reactivity / Structure" (r/s) codes
+ * describe the same chemistry the Cambridge families already draw.
+ *
+ * Left uncovered on purpose where no family shows the concept: enthalpy cycles
+ * (r1-1..1-3), entropy (r1-4), stoichiometry (r2-1), and the particulate-nature
+ * intro (s1-1) — none of these is what any existing diagram teaches.
+ */
+const SLUG_FAMILY_IB_CHEMISTRY: Record<string, keyof typeof FAMILIES> = {
+  'r2-2-how-fast-the-rate-of-chemical-change': 'reaction-rate',
+  'r2-3-how-far-the-extent-of-chemical-change': 'equilibrium',
+  'r3-1-proton-transfer-reactions': 'acids-bases',
+  'r3-2-electron-transfer-reactions': 'redox',
+  'r3-3-electron-sharing-reactions': 'covalent-bond',
+  's1-2-the-nuclear-atom': 'atomic-structure',
+  's1-3-electron-configurations': 'electron-config',
+  's1-5-ideal-gases': 'gas-kinetic',
+  's2-1-the-ionic-model': 'ionic-bond',
+  's2-2-the-covalent-model': 'covalent-bond',
+  's3-1-the-periodic-table-classification-of-elements': 'periodicity',
+  's3-2-functional-groups-classification-of-organic-compounds': 'organic-naming',
+}
+
+/**
+ * IB Physics (SL + HL) → existing families, mapped by what each family DEPICTS.
+ *
+ * Uncovered on purpose: relativity (a-5) and greenhouse/thermodynamics topics,
+ * which no existing diagram teaches. d-2 combines electric AND magnetic fields
+ * in one IB topic; magnetic-field is the better single fit for its core visual.
+ * SHM (c-1) is left out: its diagram is a displacement-time oscillation, which
+ * progressive-wave (v=fλ propagation) does not show — a near-miss, not a match.
+ */
+const SLUG_FAMILY_IB_PHYSICS: Record<string, keyof typeof FAMILIES> = {
+  'a-1-kinematics': 'kinematics',
+  'b-3-gas-laws': 'gas-kinetic',
+  'b-5-current-and-circuits': 'series-circuit',
+  'c-2-wave-model': 'progressive-wave',
+  'c-4-standing-waves-and-resonance': 'stationary-wave',
+  'd-1-gravitational-fields': 'gravitational-field',
+  'd-2-electric-and-magnetic-fields': 'magnetic-field',
+  'e-1-structure-of-the-atom': 'atomic-structure',
+  'e-2-quantum-physics': 'photoelectric',
+  'e-3-radioactive-decay': 'radioactive-decay',
+}
+
+/**
+ * IB Maths AA (SL + HL) → existing families. Maths concepts are board-neutral,
+ * so the Cambridge families map almost one-to-one; still mapped by caption, not
+ * name (e.g. "descriptive statistics" → stats-data, the histogram/spread
+ * diagram, not the discrete-stats P(X=x) one).
+ *
+ * SL and HL share topic numbers on the common core, so one map covers both.
+ * Left out: proof (1-5), 3D solids (3-1), Maclaurin/further-calculus HL
+ * extensions — no existing diagram depicts them.
+ */
+const SLUG_FAMILY_IB_MATHS_AA: Record<string, keyof typeof FAMILIES> = {
+  '1-1-sequences-and-series-arithmetic-and-geometric': 'series',
+  '1-2-exponents-and-logarithms': 'log-exp',
+  '1-3-the-binomial-theorem': 'series',
+  '1-6-complex-numbers-cartesian-polar-and-euler-form': 'complex-numbers',
+  '1-7-complex-numbers-de-moivres-theorem-and-roots': 'complex-numbers',
+  '2-1-linear-functions-and-equations-of-straight-lines': 'coordinate-geometry',
+  '2-2-functions-domain-range-composite-and-inverse': 'functions',
+  '2-3-quadratic-functions-and-equations': 'quadratics',
+  '2-6-exponential-and-logarithmic-functions': 'log-exp',
+  '3-2-trigonometry-sine-and-cosine-rules': 'trigonometry',
+  '3-3-the-unit-circle-and-radian-measure': 'trigonometry',
+  '3-4-trigonometric-functions-and-their-graphs': 'trigonometry',
+  '3-5-trigonometric-identities-and-equations': 'trigonometry',
+  '3-7-vectors-properties-and-operations': 'vectors',
+  '3-8-vector-equations-of-lines': 'vectors',
+  '3-9-scalar-and-vector-products-planes': 'vectors',
+  '4-1-descriptive-statistics': 'stats-data',
+  '4-3-probability-venn-diagrams-and-tree-diagrams': 'probability',
+  '4-5-the-binomial-distribution': 'discrete-stats',
+  '4-6-the-normal-distribution': 'normal-stats',
+  '5-1-limits-and-differentiation-from-first-principles': 'differentiation',
+  '5-2-differentiation-rules-chain-product-and-quotient': 'differentiation',
+  '5-3-tangents-normals-and-the-second-derivative': 'differentiation',
+  '5-5-integration-as-antidifferentiation': 'integration',
+  '5-6-definite-integrals-areas-and-volumes-of-revolution': 'integration',
+}
+
+/**
+ * IB Maths AI (SL + HL). AI is application-led with its own slugs (matrices,
+ * Voronoi, financial maths, data modelling) that mostly have no existing
+ * diagram — only the concepts that ARE the same as a drawn family are mapped.
+ */
+const SLUG_FAMILY_IB_MATHS_AI: Record<string, keyof typeof FAMILIES> = {
+  '1-2-arithmetic-and-geometric-sequences-and-series': 'series',
+  '1-4-exponents-and-logarithms': 'log-exp',
+  '1-8-complex-numbers-cartesian-and-polar-form-for-applications': 'complex-numbers',
+  '2-1-linear-models-and-equations-of-straight-lines': 'coordinate-geometry',
+  '2-2-functions-domain-range-inverse-and-graphs': 'functions',
+  '3-5-vectors-properties-operations-and-applications': 'vectors',
+  '3-6-vector-applications-kinematics-and-motion': 'vectors',
+}
+
 const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9702,
   ...SLUG_FAMILY_9700,
@@ -1288,6 +1387,10 @@ const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9990_OVERRIDE,
   ...SLUG_FAMILY_9084_OVERRIDE,
   ...SLUG_FAMILY_IB_BIOLOGY,
+  ...SLUG_FAMILY_IB_CHEMISTRY,
+  ...SLUG_FAMILY_IB_PHYSICS,
+  ...SLUG_FAMILY_IB_MATHS_AA,
+  ...SLUG_FAMILY_IB_MATHS_AI,
 }
 
 const BIOLOGY_SLUGS = new Set(Object.keys(SLUG_FAMILY_9700))

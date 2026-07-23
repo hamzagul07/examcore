@@ -95,14 +95,15 @@ export function MarkFeedbackPrompt({ attemptId }: { attemptId: string }) {
   }
 
   return (
-    <div className="ec-card space-y-4 p-4">
+    <div className="ec-card space-y-4 border-[var(--ec-brand)]/30 bg-[var(--ec-brand)]/[0.03] p-4 sm:p-5">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
+          <p className="text-[15px] font-semibold text-[var(--ec-text-primary)]">
             Was this marking fair?
           </p>
           <p className="mt-0.5 text-sm text-[var(--ec-text-secondary)]">
-            One tap. It tells us whether to tune the marking harder or softer.
+            One tap — it&apos;s how we tune the marking, and how we know it&apos;s
+            working.
           </p>
         </div>
         <div className="flex shrink-0 gap-2" role="group" aria-label="Rate this marking">

@@ -13,6 +13,10 @@ import {
 
 export interface LineReference {
   mark_id: string
+  /** Unique per-mark identity for selection (the awarded-mark index). Optional
+   * so references persisted before this field existed still type-check — those
+   * fall back to code matching in `lineRefKey`. */
+  ref_id?: string
   earned: boolean
   margin_note: string | null
   error_classification: ErrorClassification | string
@@ -29,10 +33,12 @@ interface ExaminerInkOverlayProps {
   photoRef?: string
   /** When true, marks reveal sequentially as if being drawn live. */
   animate?: boolean
-  /** Stamp code (B1, M1…) synced with mark audit selection. */
-  activeMarkId?: string | null
-  /** Fired when the student taps a stamp on the script. */
-  onActiveMarkChange?: (markId: string) => void
+  /** The selected mark's stable key (its `ref_id`, or a stamp code for legacy
+   * data) synced with the mark audit. Not a stamp code in the general case: two
+   * marks can share a code, so a code cannot single one out. */
+  activeRefId?: string | null
+  /** Fired when the student taps a stamp — emits that mark's `lineRefKey`. */
+  onActiveMarkChange?: (refKey: string) => void
   /**
    * Inline ghost insertions for missed marks, keyed by mark code (A1, B1).
    * When a missed mark resolves to a line on the script, its fix is drawn as a
@@ -44,6 +50,17 @@ interface ExaminerInkOverlayProps {
 
 /** Uppercased alphanumerics only, so "A1", "a1.", "(A1)" all key the same. */
 const markCodeKey = (s: string) => s.toUpperCase().replace(/[^A-Z0-9]/g, '')
+
+/**
+ * The identity used to select a single mark. A stamp code isn't unique — a
+ * script can carry two "M1" marks — so selecting by code lit up both and the
+ * reveal-sync resolved to whichever came first. New references carry a unique
+ * `ref_id`; legacy ones fall back to the code, preserving old behaviour for data
+ * that predates the field (a `ref_id` is all digits, a code always has a letter,
+ * so the two key spaces never collide).
+ */
+const lineRefKey = (line: LineReference): string =>
+  line.ref_id ?? markCodeKey(line.mark_id)
 
 /**
  * The centerpiece of Sprint 21.
@@ -65,7 +82,7 @@ export function ExaminerInkOverlay({
   attemptId,
   photoRef,
   animate = true,
-  activeMarkId = null,
+  activeRefId = null,
   onActiveMarkChange,
   ghostFixes = {},
 }: ExaminerInkOverlayProps) {
@@ -167,16 +184,22 @@ export function ExaminerInkOverlay({
   }, [animate, imageLoaded, positioned.length])
 
   useEffect(() => {
-    if (!activeMarkId) return
-    const idx = positioned.findIndex(
-      (line) => line.mark_id.toUpperCase() === activeMarkId.toUpperCase()
-    )
+    if (!activeRefId) return
+    const idx = positioned.findIndex((line) => lineRefKey(line) === activeRefId)
     if (idx >= 0) {
       setRevealedCount((prev) => Math.max(prev, idx + 1))
     }
-  }, [activeMarkId, positioned])
+  }, [activeRefId, positioned])
 
   const isMarking = animate && revealedCount < positioned.length
+
+  // Only fade the other stamps when the selected mark is actually on THIS page.
+  // Each page overlay gets the same activeRefId, so without this, selecting a
+  // mark that lives on another page — or an unpositioned "general feedback" mark
+  // that isn't drawn at all — would dim every stamp here and highlight none.
+  const activeOnThisPage =
+    activeRefId != null &&
+    positioned.some((line) => lineRefKey(line) === activeRefId)
 
   return (
     <div className="space-y-5">
@@ -196,30 +219,26 @@ export function ExaminerInkOverlay({
 
         <div className="pointer-events-none absolute inset-0">
           <AnimatePresence>
-            {positioned.slice(0, revealedCount).map((line, idx) => (
-              <ExaminerMark
-                key={`${line.mark_id}-${idx}`}
-                line={line}
-                ghostFix={
-                  !line.earned ? ghostFixes[markCodeKey(line.mark_id)] : undefined
-                }
-                mobileLayout={isMobileInk}
-                active={
-                  activeMarkId
-                    ? line.mark_id.toUpperCase() === activeMarkId.toUpperCase()
-                    : false
-                }
-                dimmed={
-                  !!activeMarkId &&
-                  line.mark_id.toUpperCase() !== activeMarkId.toUpperCase()
-                }
-                onSelect={
-                  onActiveMarkChange
-                    ? () => onActiveMarkChange(line.mark_id)
-                    : undefined
-                }
-              />
-            ))}
+            {positioned.slice(0, revealedCount).map((line, idx) => {
+              const key = lineRefKey(line)
+              return (
+                <ExaminerMark
+                  key={`${key}-${idx}`}
+                  line={line}
+                  ghostFix={
+                    !line.earned ? ghostFixes[markCodeKey(line.mark_id)] : undefined
+                  }
+                  mobileLayout={isMobileInk}
+                  active={activeOnThisPage && key === activeRefId}
+                  dimmed={activeOnThisPage && key !== activeRefId}
+                  onSelect={
+                    onActiveMarkChange
+                      ? () => onActiveMarkChange(key)
+                      : undefined
+                  }
+                />
+              )
+            })}
           </AnimatePresence>
         </div>
 

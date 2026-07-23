@@ -10,15 +10,15 @@ export function ExaminerInkPerPage({
   pages,
   animate = false,
   attemptId,
-  activeMarkId = null,
+  activeRefId = null,
   onActiveMarkChange,
   ghostFixes,
 }: {
   pages: Array<{ photo_url: string; line_references: LineReference[] }>
   animate?: boolean
   attemptId?: string
-  activeMarkId?: string | null
-  onActiveMarkChange?: (markId: string) => void
+  activeRefId?: string | null
+  onActiveMarkChange?: (refKey: string) => void
   /** Inline ghost insertions for missed marks, keyed by mark code (A1, B1). */
   ghostFixes?: Record<string, { text: string; earns: string }>
 }) {
@@ -37,7 +37,7 @@ export function ExaminerInkPerPage({
             attemptId={attemptId}
             photoRef={toAnswerPhotoStoragePath(page.photo_url)}
             animate={animate}
-            activeMarkId={activeMarkId}
+            activeRefId={activeRefId}
             onActiveMarkChange={onActiveMarkChange}
             ghostFixes={ghostFixes}
           />

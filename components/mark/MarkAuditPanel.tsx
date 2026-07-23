@@ -7,6 +7,7 @@ import type { MarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
 import { rubricPointForMarkType } from '@/lib/marking/mark-scheme-display'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import { MarkSnippet } from '@/components/mark/MarkSnippet'
+import { IbCriteriaBreakdown } from '@/components/mark/IbCriteriaBreakdown'
 
 type MarkAuditPanelProps = {
   marks: MarkAwarded[]
@@ -94,32 +95,7 @@ export function MarkAuditPanel({
 
       {criteriaResults && criteriaResults.length > 0 ? (
         <div className="ms-examiner-note-card" style={{ marginTop: 16 }}>
-          <p className="ms-overline" style={{ marginBottom: 8 }}>
-            IB criteria breakdown
-          </p>
-          <div className="space-y-4">
-            {criteriaResults.map((c) => (
-              <div
-                key={c.criterion}
-                className="rounded-xl border border-[var(--ec-border)] p-4"
-              >
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <span className="font-mono text-sm font-semibold text-[var(--ec-brand)]">
-                    {c.criterion} — {c.criterion_name}
-                  </span>
-                  <span className="ms-grade-pill">
-                    {c.marks_awarded}/{c.marks_available} · L{c.level}
-                  </span>
-                </div>
-                <p className="mt-2 text-xs text-[var(--ec-text-faint)]">
-                  {c.band_descriptor}
-                </p>
-                <div className="mt-2 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-                  <RichTextRenderer text={c.justification} />
-                </div>
-              </div>
-            ))}
-          </div>
+          <IbCriteriaBreakdown criteria={criteriaResults} />
         </div>
       ) : null}
 

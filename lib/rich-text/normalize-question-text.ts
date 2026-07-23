@@ -1,56 +1,108 @@
 import { normalizeMarkdownTables } from '@/lib/rich-text/normalize-marking-text'
 
 /**
- * Wrap obvious math in `$...$` for question text that arrives WITHOUT LaTeX
- * delimiters (Gemini PDF extraction / question-photo OCR produce plain text
- * like `x^2` and `(1 - 4x)^6`). The marking result page renders question_text
- * through RichTextRenderer (remark-math + KaTeX), which only renders math that
- * is already `$...$` delimited — so undelimited math shows as raw text.
+ * Wrap math in `$...$` for question text that arrives WITHOUT LaTeX delimiters
+ * (Gemini PDF extraction / question-photo OCR produce plain `x^2`, `dy/dx`,
+ * `\frac{1}{2}`). The result page renders question_text through RichTextRenderer
+ * (remark-math + KaTeX), which only renders already-delimited math — so
+ * undelimited math shows as raw text.
  *
- * This is intentionally CONSERVATIVE: it only wraps two unambiguous patterns
- * (an exponent on a single variable, or on a parenthesised expression). Bare
- * equations, fractions, and prose are left untouched — a false positive that
- * corrupts the question wording is far worse than under-wrapping.
+ * The previous version wrapped each EXPONENT on its own, producing
+ * `y = $x^3$ - 6$x^2$ + 9x + 1`: half the expression in KaTeX italics, half in
+ * the body font, with mismatched spacing. And it left bare LaTeX commands
+ * (`\frac{1}{2}`) as literal backslash text. Both are the "KaTeX on the
+ * question" breakage students see.
  *
- * Going forward, new extractions get proper `$...$` from the updated Gemini
- * prompt; this normalizer is the render-time safety net for OCR output and for
- * questions already cached in the DB without delimiters.
+ * This version wraps a WHOLE mathematical run as one unit, so an equation
+ * renders as one clean line, and catches bare LaTeX commands. Still
+ * conservative: a run must carry a real math signal (a superscript, a LaTeX
+ * command, or two atoms joined by an operator) before it is touched, because a
+ * false positive that corrupts the question wording is worse than under-wrapping.
  */
 
 const STASH = '\x00Q'
+
+// 3+ letter tokens are prose, EXCEPT these genuine math functions.
+const MATH_WORDS = new Set([
+  'sin', 'cos', 'tan', 'sec', 'csc', 'cot', 'log', 'exp', 'lim', 'max',
+  'min', 'det', 'sinh', 'cosh', 'tanh', 'arcsin', 'arccos', 'arctan', 'sqrt',
+])
+
+/**
+ * One math "atom": a LaTeX command, a bracketed group (with optional power), a
+ * number, or a variable (with optional sub/superscript). Ordered so the
+ * greediest, most specific forms match first.
+ */
+const ATOM =
+  String.raw`\\[a-zA-Z]+(?:\{[^{}]*\}|\^\{[^{}]*\}|_\{[^{}]*\})*` + // \frac{1}{2}, \sqrt{x}
+  String.raw`|[A-Za-z]\([^()\n]*\)(?:\^(?:\{[^{}]*\}|\w))?` + // f(x), g(x+1)
+  String.raw`|\d*\([^()\n]*\)(?:\^(?:\{[^{}]*\}|\w))?` + // (1 - 4x)^6, 3(x+1)
+  // Coefficient + variable, so implicit multiplication like `6x^2` is ONE atom
+  // (the coefficient is not a separate number that breaks the run). Tried
+  // before the bare-number form below.
+  String.raw`|\d*[A-Za-z](?:_(?:\{[^{}]*\}|\w))?(?:\^(?:\{[^{}]*\}|\w))?` + // x, 6x^2, a_n
+  String.raw`|\d+(?:\.\d+)?` // standalone numbers
+
+const OP = String.raw`[-+*/=<>≤≥≠]|\\(?:cdot|times|div|leq|geq|neq|pm)`
+
+// A single atom strong enough to wrap ALONE: it carries a superscript, a LaTeX
+// command, or a parenthesised power — unambiguous math even without an operator
+// beside it. (A bare `f(5)` renders identically as text and is deliberately not
+// here.) LaTeX may absorb up to three attached trailing letters (`\frac{1}{2}bh`),
+// bounded so a space-separated word is never eaten.
+const STRONG =
+  String.raw`\\[a-zA-Z]+(?:\{[^{}]*\}|\^\{[^{}]*\}|_\{[^{}]*\})+[A-Za-z]{0,3}(?![A-Za-z])` +
+  String.raw`|\d*\([^()\n]*\)\^(?:\{[^{}]*\}|\w)` + // (1 - 4x)^6
+  String.raw`|\d*[A-Za-z]\^(?:\{[^{}]*\}|\w)` // x^2
+
+// A run: atom, then one-or-more (operator, atom). Interior spacing is optional
+// so `dy/dx` and `x = 3` both match. Placed BEFORE the strong-single form so a
+// full equation wins over its first sub-term.
+const RUN_OR_STRONG = new RegExp(
+  String.raw`(?:${ATOM})(?:\s*(?:${OP})\s*(?:${ATOM}))+|${STRONG}`,
+  'g'
+)
+
+/**
+ * Decide whether a candidate match should be wrapped.
+ *
+ *  - Anything containing a LaTeX command (`\`) is unambiguously math — wrap it,
+ *    even though the command name ("frac") looks like a word.
+ *  - Otherwise it must (a) not be prose that merely contains an operator, so no
+ *    3+ letter word other than a known function; AND (b) carry a real math
+ *    signal — a superscript, an equals, a parenthesis, or a coefficient stuck
+ *    to a variable (`6x`). This rejects "9 am - 5 pm" and "8 out of 10" while
+ *    keeping "x = 3" and "3x^2 - 1".
+ */
+function shouldWrap(m: string): boolean {
+  if (m.includes('\\')) return true
+  const words = m.match(/[A-Za-z]{3,}/g) ?? []
+  if (!words.every((w) => MATH_WORDS.has(w.toLowerCase()))) return false
+  return /[\^=]|[0-9][A-Za-z]|\(/.test(m)
+}
 
 export function normalizeQuestionText(text: string): string {
   if (!text) return text
 
   const withTables = normalizeMarkdownTables(text)
 
-  // Already contains LaTeX delimiters — skip math wrapping only (tables still normalized).
+  // Already delimited — trust it, only normalise tables.
   if (/\$[^$]+\$/.test(withTables)) return withTables
 
   const stashed: string[] = []
-  const stash = (s: string): string => {
-    stashed.push(s)
+  const stash = (body: string): string => {
+    stashed.push(`$${body}$`)
     return `${STASH}${stashed.length - 1}\x00`
   }
 
   let out = withTables
 
-  // Pattern A: (expr)^power — a parenthesised base that contains a variable or
-  // operator, raised to a digit / letter / braced exponent. e.g. (1 - 4x)^6.
-  out = out.replace(
-    /\(([^()\n]*[A-Za-z+\-*/=][^()\n]*)\)\^(\{[^}]+\}|\d+|[A-Za-z])/g,
-    (_m, base: string, exp: string) => stash(`$(${base})^${exp}$`)
-  )
+  // One pass: whole equation runs (subsuming the per-exponent case), plus
+  // single atoms strong enough to stand alone. looksLikeMath rejects prose that
+  // merely contains an operator; a strong single atom is always math.
+  out = out.replace(RUN_OR_STRONG, (m) => (shouldWrap(m) ? stash(m.trim()) : m))
 
-  // Pattern B: letter^power — a single-letter base raised to a power. The
-  // negative lookbehind keeps us out of mid-word/identifier carets (e.g.
-  // "tan^2") and LaTeX commands ("\sum^").
-  out = out.replace(
-    /(?<![A-Za-z\\])([A-Za-z])\^(\{[^}]+\}|\d+|[A-Za-z])/g,
-    (_m, base: string, exp: string) => stash(`$${base}^${exp}$`)
-  )
-
-  // Restore wrapped regions.
+  // Restore.
   out = out.replace(
     new RegExp(`${STASH}(\\d+)\\x00`, 'g'),
     (_m, i: string) => stashed[parseInt(i, 10)]

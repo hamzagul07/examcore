@@ -2508,3 +2508,126 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* ── IB criteria breakdown ────────────────────────────────────────────────
+   A strip of criterion tiles that fits the screen, replacing a tall stack of
+   full-width cards. Level colour is the reserved status palette via data-level;
+   the ratio is always printed, so state never rides on colour alone. */
+
+.ms-ibc-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+  gap: 10px;
+  list-style: none;
+  margin: 0 0 4px;
+  padding: 0;
+}
+
+.ms-ibc-tile {
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  justify-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 12px 8px 10px;
+  border: 1px solid var(--ec-border);
+  border-radius: 12px;
+  background: var(--ec-surface);
+  cursor: pointer;
+  transition: border-color 140ms ease-out, box-shadow 140ms ease-out;
+}
+
+.ms-ibc-tile:hover {
+  border-color: color-mix(in srgb, var(--mh-ink, var(--ec-brand)) 50%, var(--ec-border));
+}
+
+.ms-ibc-tile.is-active {
+  border-color: var(--ec-brand);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ec-brand) 24%, transparent);
+}
+
+.ms-ibc-tile:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+}
+
+.ms-ibc-tile__crit {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--mh-ink, var(--ec-text-primary));
+}
+
+/* Vertical meter — compact, so a row of them fits without widening the tile. */
+.ms-ibc-tile__track {
+  display: flex;
+  align-items: flex-end;
+  width: 12px;
+  height: 40px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--mh-ink, var(--ec-text-secondary)) 14%, transparent);
+  overflow: hidden;
+}
+
+.ms-ibc-tile__fill {
+  width: 100%;
+  border-radius: 999px;
+  background: var(--mh-ink, var(--ec-brand));
+}
+
+.ms-ibc-tile__marks {
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ec-text-primary);
+}
+
+.ms-ibc-tile__max {
+  color: var(--ec-text-faint);
+  font-weight: 600;
+}
+
+.ms-ibc-tile__name {
+  font-size: 10.5px;
+  line-height: 1.25;
+  text-align: center;
+  color: var(--ec-text-secondary);
+  text-wrap: balance;
+}
+
+.ms-ibc-detail {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--ec-border);
+  border-left: 3px solid var(--ec-brand);
+  background: var(--ec-surface-raised);
+}
+
+.ms-ibc-detail__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.ms-ibc-detail__crit {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ec-brand);
+}
+
+.ms-ibc-detail__band {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--ec-text-faint);
+}
+
+.ms-ibc-detail__why {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ec-text-secondary);
+}

@@ -33,7 +33,17 @@ interface ExaminerInkOverlayProps {
   activeMarkId?: string | null
   /** Fired when the student taps a stamp on the script. */
   onActiveMarkChange?: (markId: string) => void
+  /**
+   * Inline ghost insertions for missed marks, keyed by mark code (A1, B1).
+   * When a missed mark resolves to a line on the script, its fix is drawn as a
+   * dashed insertion beneath that line — the mark made visible where it belonged.
+   * Marks that don't resolve to a line are left to the Mark Gap panel.
+   */
+  ghostFixes?: Record<string, { text: string; earns: string }>
 }
+
+/** Uppercased alphanumerics only, so "A1", "a1.", "(A1)" all key the same. */
+const markCodeKey = (s: string) => s.toUpperCase().replace(/[^A-Z0-9]/g, '')
 
 /**
  * The centerpiece of Sprint 21.
@@ -57,6 +67,7 @@ export function ExaminerInkOverlay({
   animate = true,
   activeMarkId = null,
   onActiveMarkChange,
+  ghostFixes = {},
 }: ExaminerInkOverlayProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const imgRef = useRef<HTMLImageElement>(null)
@@ -189,6 +200,9 @@ export function ExaminerInkOverlay({
               <ExaminerMark
                 key={`${line.mark_id}-${idx}`}
                 line={line}
+                ghostFix={
+                  !line.earned ? ghostFixes[markCodeKey(line.mark_id)] : undefined
+                }
                 mobileLayout={isMobileInk}
                 active={
                   activeMarkId
@@ -247,12 +261,14 @@ export function ExaminerInkOverlay({
 
 function ExaminerMark({
   line,
+  ghostFix,
   mobileLayout = false,
   active = false,
   dimmed = false,
   onSelect,
 }: {
   line: LineReference
+  ghostFix?: { text: string; earns: string }
   mobileLayout?: boolean
   active?: boolean
   dimmed?: boolean
@@ -334,6 +350,46 @@ function ExaminerMark({
           />
         )}
       </div>
+
+      {!earned && ghostFix && (
+        <motion.div
+          initial={{ opacity: 0, y: -3 }}
+          animate={{ opacity: dimmed ? 0.35 : 1, y: 0 }}
+          transition={{ duration: 0.25, delay: 0.15 }}
+          className="absolute"
+          style={{
+            top: `${Math.min(safeBox.top + safeBox.height + 1.2, 95)}%`,
+            left: `${safeBox.left}%`,
+            maxWidth: `${Math.max(42, 96 - safeBox.left)}%`,
+          }}
+        >
+          {/* Fixed paper white + dark ink: this sits on the photo, which is
+              light in every theme (see MarkStamp). */}
+          <div
+            className="flex items-center gap-2 rounded-lg border border-dashed px-2.5 py-1.5 text-[11px] leading-snug shadow-sm"
+            style={{
+              borderColor: 'var(--ec-chip-warning-text)',
+              background: 'rgba(252, 251, 247, 0.94)',
+              color: '#26221b',
+            }}
+          >
+            <span
+              className="font-mono font-bold"
+              style={{ color: 'var(--ec-chip-warning-text)' }}
+              aria-hidden="true"
+            >
+              &#8629;
+            </span>
+            <span className="min-w-0">{ghostFix.text}</span>
+            <span
+              className="whitespace-nowrap font-mono font-bold"
+              style={{ color: 'var(--ec-chip-warning-text)' }}
+            >
+              {ghostFix.earns}
+            </span>
+          </div>
+        </motion.div>
+      )}
 
       <div
         className="absolute transition-transform duration-200"

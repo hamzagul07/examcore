@@ -22,6 +22,8 @@ import { ExamSheet, ExamSheetLine } from '@/components/margin-notes/ExamSheet'
 import { ExaminerInkPerPage } from '@/components/examiner-ink/ExaminerInkPerPage'
 import type { LineReference } from '@/components/examiner-ink/ExaminerInkOverlay'
 import { MarkAuditPanel } from '@/components/mark/MarkAuditPanel'
+import { MarkGapPanel } from '@/components/examiner-ink/MarkGapPanel'
+import { buildMarkGap, inlineGhostFixes } from '@/lib/marking/mark-gap'
 import { MarkSnippet } from '@/components/mark/MarkSnippet'
 import { MarkSchemeRubricPanel } from '@/components/mark/MarkSchemeRubricPanel'
 import { QuestionContextCard } from '@/components/mark/QuestionContextCard'
@@ -181,6 +183,15 @@ export function MarkingResultView({
     !!result.ai_marking?.band_result
   const activeMarkId = selectedMark?.type?.trim().toUpperCase() ?? null
 
+  // The Mark Gap: the marks that were available but not awarded, each paired
+  // with the rewrite's fix when present. Drives the ghost insertions on the
+  // script and the gap panel beneath it.
+  const markGap = useMemo(
+    () => buildMarkGap(result.ai_marking, result.marks_earned, result.total_marks),
+    [result.ai_marking, result.marks_earned, result.total_marks]
+  )
+  const ghostFixes = useMemo(() => inlineGhostFixes(markGap), [markGap])
+
   const handleInkMarkSelect = (markId: string) => {
     const idx = marks.findIndex(
       (m) => m.type.trim().toUpperCase() === markId.toUpperCase()
@@ -330,9 +341,16 @@ export function MarkingResultView({
                   animate
                   activeMarkId={activeMarkId}
                   onActiveMarkChange={handleInkMarkSelect}
+                  ghostFixes={ghostFixes}
                 />
               </div>
             ) : null}
+
+            <MarkGapPanel
+              gap={markGap}
+              activeMarkId={activeMarkId}
+              onSelectMark={handleInkMarkSelect}
+            />
 
             <ExamSheet
               head="Your script, with Examiner's Ink"

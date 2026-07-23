@@ -418,6 +418,14 @@
   align-items: start;
 }
 
+/* A level-of-response result can leave the band ladder as the grid's only
+   child (audit suppressed, rubric empty). Centre it at a readable width rather
+   than stranding it in the left column with the right half empty. */
+.ms-result-grid:has(> :only-child) {
+  grid-template-columns: minmax(0, 640px);
+  justify-content: center;
+}
+
 .ms-audit {
   position: sticky;
   top: 96px;

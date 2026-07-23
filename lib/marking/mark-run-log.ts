@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import { getGeminiRetryStats } from '@/lib/marking/gemini-retry'
+import { requestRetryCount } from '@/lib/ai/request-deadline'
 import type { MarkingErrorCode } from '@/lib/marking/classify-marking-error'
 import type { MarkProgressStage } from '@/lib/marking/mark-progress'
 
@@ -99,13 +100,14 @@ export function noteMarkRunStage(
     )
 }
 
-function retryDelta(handle: MarkRunHandle): number {
-  // Derived from a MODULE-GLOBAL counter, so treat it as a weak signal:
-  //  - concurrent marks inflate it (other runs' retries are counted here)
-  //  - a batch script calling resetGeminiRetryStats() mid-run zeroes the
-  //    baseline, making the delta negative and this clamp report 0 — i.e. it
-  //    can under-report a genuine retry storm as "no retries at all".
-  // Good enough to spot storms in aggregate; never treat a single row as exact.
+function retryCount(handle: MarkRunHandle): number {
+  // Prefer the request-scoped counter: it counts only THIS request's retries and
+  // is immune to the module-global counter, which extraction jobs reset mid-run
+  // — that reset used to make this report 0 during a genuine retry storm.
+  const scoped = requestRetryCount()
+  if (scoped != null) return scoped
+  // No request context (batch scripts): fall back to the global delta, clamped.
+  // Still weak — concurrent marks inflate it — but there is nothing better here.
   return Math.max(0, getGeminiRetryStats().totalRetries - handle.retriesAtStart)
 }
 
@@ -122,7 +124,7 @@ export async function settleMarkRunSuccess(
         attempt_id: attemptId,
         last_stage: handle.lastStage,
         duration_ms: Date.now() - handle.startedAt,
-        gemini_retries: retryDelta(handle),
+        gemini_retries: retryCount(handle),
         finished_at: new Date().toISOString(),
       })
       .eq('id', handle.id)
@@ -146,7 +148,7 @@ export async function settleMarkRunError(
         error_message: message.slice(0, 600),
         last_stage: handle.lastStage,
         duration_ms: Date.now() - handle.startedAt,
-        gemini_retries: retryDelta(handle),
+        gemini_retries: retryCount(handle),
         finished_at: new Date().toISOString(),
       })
       .eq('id', handle.id)

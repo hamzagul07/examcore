@@ -1,5 +1,6 @@
 import {
   hasTimeForAnotherAttempt,
+  noteRequestRetry,
   remainingRequestMs,
   RequestDeadlineExceededError,
 } from '@/lib/ai/request-deadline'
@@ -181,6 +182,9 @@ async function withApiRetry<T>(
       _totalRetries++
       if (status === 429) _rateLimitRetries++
       _lastRetryLabel = label
+      // Also count against the current request (immune to the global counter's
+      // resets), so mark_runs.gemini_retries stays accurate under concurrency.
+      noteRequestRetry()
 
       console.warn(
         `[${label}] retryable error (status ${status ?? errorCode(err) ?? 'unknown'}), attempt ${attempt + 1}/${maxRetries}, waiting ${Math.round(delay)}ms`

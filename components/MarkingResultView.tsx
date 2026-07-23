@@ -23,7 +23,8 @@ import { ExaminerInkPerPage } from '@/components/examiner-ink/ExaminerInkPerPage
 import type { LineReference } from '@/components/examiner-ink/ExaminerInkOverlay'
 import { MarkAuditPanel } from '@/components/mark/MarkAuditPanel'
 import { MarkGapPanel } from '@/components/examiner-ink/MarkGapPanel'
-import { buildMarkGap, inlineGhostFixes } from '@/lib/marking/mark-gap'
+import { MarkBandLadder } from '@/components/examiner-ink/MarkBandLadder'
+import { buildMarkGap, buildBandGap, inlineGhostFixes } from '@/lib/marking/mark-gap'
 import { MarkSnippet } from '@/components/mark/MarkSnippet'
 import { MarkSchemeRubricPanel } from '@/components/mark/MarkSchemeRubricPanel'
 import { QuestionContextCard } from '@/components/mark/QuestionContextCard'
@@ -210,6 +211,25 @@ export function MarkingResultView({
   )
   const ghostFixes = useMemo(() => inlineGhostFixes(markGap), [markGap])
 
+  // Level-of-response marking has no per-mark ticks — the gap is the band above
+  // the one achieved. Built from the rubric's bands, degrading to a two-rung
+  // here/next view when the attempt carries no rubric.
+  const bandGap = useMemo(
+    () =>
+      result.ai_marking.band_result
+        ? buildBandGap(
+            result.ai_marking.band_result,
+            result.mark_scheme_rubric?.bands ?? null,
+            result.ai_marking.full_marks_rewrite ?? null
+          )
+        : null,
+    [
+      result.ai_marking.band_result,
+      result.mark_scheme_rubric,
+      result.ai_marking.full_marks_rewrite,
+    ]
+  )
+
   const handleInkMarkSelect = (markId: string) => {
     const idx = marks.findIndex(
       (m) => m.type.trim().toUpperCase() === markId.toUpperCase()
@@ -349,6 +369,11 @@ export function MarkingResultView({
 
       {hasStructuredResult || hasCriteria ? (
         <div className="ms-result-grid">
+          {bandGap && !hasStructuredResult && (
+            <div>
+              <MarkBandLadder gap={bandGap} />
+            </div>
+          )}
           {hasStructuredResult && (
           <div>
             {inkPages && inkPages.length > 0 ? (

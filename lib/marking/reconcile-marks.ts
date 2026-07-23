@@ -207,9 +207,26 @@ function reconcileBand(
   band: AnyRecord,
   authoritative: number | null
 ): void {
-  const total = authoritative ?? num(band.marks_available) ?? num(result.total_marks) ?? 0
+  const modelScale = num(band.marks_available) ?? num(result.total_marks)
+  const total = authoritative ?? modelScale ?? 0
   const bandMark = num(band.marks_awarded) ?? num(result.marks_earned) ?? 0
-  const earned = total > 0 ? clamp(bandMark, 0, total) : Math.max(0, bandMark)
+
+  let earned: number
+  if (total <= 0) {
+    earned = Math.max(0, bandMark)
+  } else if (
+    authoritative !== null &&
+    modelScale !== null &&
+    modelScale > authoritative
+  ) {
+    // Same fabricated-perfect problem as reconcilePoints (M3): the model marked
+    // a band mark against a LARGER scale than the real total, so clamping (e.g.
+    // 12 on a 15-mark scale, real total 9) would show 9/9 = 100%. Preserve the
+    // model's ratio on the real total instead.
+    earned = clamp(Math.round((bandMark * authoritative) / modelScale), 0, total)
+  } else {
+    earned = clamp(bandMark, 0, total)
+  }
 
   band.marks_available = total
   band.marks_awarded = earned
@@ -226,19 +243,29 @@ function reconcileBand(
 function reconcilePoints(result: AnyRecord, authoritative: number | null): void {
   if (authoritative === null) return
 
-  // M3: if the model actually marked against a LARGER total than the authoritative
-  // one (e.g. it scored 7/10 but the real total is 6), a plain clamp would show
-  // "6/6" — a fabricated perfect score. Scale earned to preserve the model's ratio
-  // instead. Only kicks in when earned would exceed the authoritative total.
+  // M3: if the model marked against a LARGER total than the authoritative one
+  // (e.g. it scored 5/10 but the real total is 5), a plain clamp would show a
+  // fabricated perfect ("5/5"). Preserve the model's ratio on the real total.
+  //
+  // This must apply to the WHOLE region where the model over-stated the total,
+  // not only when earned exceeds the authoritative total. Guarding on
+  // `earned > authoritative` was a bug: it left 5/10 as 5/5 (100%) while scaling
+  // 6/10 to 3/5 (60%) — a non-monotonic score that DROPS as the student earns
+  // more. The asymmetry is intentional: we only scale when the model over-stated
+  // the total (marked on an inflated scale). When it under-stated, the earned
+  // points are real discrete awards on the true scale, so they are kept as-is.
   const modelTotal = num(result.total_marks)
   const earned = num(result.marks_earned)
   result.total_marks = authoritative
   if (
     earned !== null &&
     modelTotal !== null &&
-    modelTotal > authoritative &&
-    earned > authoritative
+    modelTotal > authoritative
   ) {
-    result.marks_earned = Math.round((earned * authoritative) / modelTotal)
+    result.marks_earned = clamp(
+      Math.round((earned * authoritative) / modelTotal),
+      0,
+      authoritative
+    )
   }
 }

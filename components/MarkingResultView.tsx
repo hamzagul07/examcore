@@ -188,6 +188,92 @@ export function MarkingResultView({
     if (idx >= 0) setSelectedIndex(idx)
   }
 
+  // Which scheme the work was marked against — rendered once, near the top, so
+  // the authority of the mark is established before the breakdown.
+  const markingModeBanner = (
+    <>
+      {result.marking_mode === 'official_mark_scheme' && result.detected_paper && (
+        <div className="ec-banner ec-banner-success">
+          <CheckCircle2 className="ec-banner__icon h-5 w-5 shrink-0" />
+          <div>
+            <p className="ec-banner__title">
+              Marked with the official {boardLabel} mark scheme
+            </p>
+            <p className="ec-banner__meta">
+              {result.detected_paper.paper_code} •{' '}
+              {result.detected_paper.paper_session} • Question{' '}
+              {result.detected_paper.question_number}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {result.marking_mode === 'general_criteria_paper_not_in_db' && (
+        <div className="ec-banner ec-banner-warning">
+          <AlertCircle className="ec-banner__icon mt-0.5 h-5 w-5 shrink-0" />
+          <div className="flex-1">
+            <p className="ec-banner__title">
+              This past paper is not in our database yet
+            </p>
+            <p className="ec-banner__meta leading-relaxed">
+              {result.detected_paper && (
+                <>
+                  We detected: {result.detected_paper.paper_code} •{' '}
+                  {result.detected_paper.paper_session} • Question{' '}
+                  {result.detected_paper.question_number}.{' '}
+                </>
+              )}
+              We marked your answer using general {isIb ? 'IB' : 'A-Level'}{' '}
+              criteria. Think we should add this paper? Email{' '}
+              <a href={`mailto:${CONTACT_EMAIL}`} className="font-medium underline">
+                {CONTACT_EMAIL}
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+      )}
+
+      {result.marking_mode === 'general_criteria_practice' && (
+        <div className="ec-banner ec-banner-info">
+          <Info className="ec-banner__icon h-5 w-5 shrink-0" />
+          <div>
+            <p className="ec-banner__title">
+              Marked with {boardLabel}{' '}
+              {getSubjectByCode(badgeSubjectCode ?? '')?.label ??
+                (isIb ? 'Diploma' : 'A-Level')}{' '}
+              {isIb ? (isIbPoints ? 'mark scheme conventions' : 'markbands') : 'conventions'}
+            </p>
+            <p className="ec-banner__meta">
+              Your own question (not a past paper) — the same{' '}
+              {isIbPoints
+                ? 'method (M) and accuracy (A) marks'
+                : isIb
+                  ? 'criteria and markbands'
+                  : 'mark types and bands'}{' '}
+              examiners use, without an official mark scheme from our database.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {result.marking_mode === 'general_criteria' && (
+        <div className="ec-banner ec-banner-info">
+          <Info className="ec-banner__icon h-5 w-5 shrink-0" />
+          <div>
+            <p className="ec-banner__title">
+              Marked with general {isIb ? 'IB' : 'A-Level'} criteria
+            </p>
+            <p className="ec-banner__meta">
+              This was not detected as {isIb ? 'an IB' : 'a Cambridge'} past
+              paper question
+            </p>
+          </div>
+        </div>
+      )}
+    </>
+  )
+
   return (
     <div className="ms-marking-result min-w-0">
       <div className="ms-mark-result-head">
@@ -226,6 +312,11 @@ export function MarkingResultView({
       </div>
 
       <QuestionContextCard result={result} subjectCode={badgeSubjectCode} />
+
+      {/* How the work was marked belongs here — before the breakdown, not
+          buried below it. A student reads the authority of the mark (official
+          scheme vs general criteria) as part of the context, then dives in. */}
+      {markingModeBanner}
 
       {hasStructuredResult || hasCriteria ? (
         <div className="ms-result-grid">
@@ -300,88 +391,17 @@ export function MarkingResultView({
       ) : null}
 
       <div className={hasStructuredResult ? 'ms-mark-secondary' : 'space-y-6'}>
-        {result.marking_mode === 'official_mark_scheme' && result.detected_paper && (
-          <div className="ec-banner ec-banner-success">
-            <CheckCircle2 className="ec-banner__icon h-5 w-5 shrink-0" />
-            <div>
-              <p className="ec-banner__title">
-                Marked with the official {boardLabel} mark scheme
-              </p>
-              <p className="ec-banner__meta">
-                {result.detected_paper.paper_code} •{' '}
-                {result.detected_paper.paper_session} • Question{' '}
-                {result.detected_paper.question_number}
-              </p>
-            </div>
+        {/* SUMMARY first — the plain-English verdict a student reads before the
+            topic tags or study links. */}
+        <div>
+          <p className="ms-micro" style={{ marginBottom: 12 }}>
+            SUMMARY
+          </p>
+          <h3 className="ms-h3">What the examiner saw</h3>
+          <div className="leading-relaxed text-[var(--ec-text-secondary)]">
+            <RichTextRenderer text={result.ai_marking?.summary ?? ''} />
           </div>
-        )}
-
-        {result.marking_mode === 'general_criteria_paper_not_in_db' && (
-          <div className="ec-banner ec-banner-warning">
-            <AlertCircle className="ec-banner__icon mt-0.5 h-5 w-5 shrink-0" />
-            <div className="flex-1">
-              <p className="ec-banner__title">
-                This past paper is not in our database yet
-              </p>
-              <p className="ec-banner__meta leading-relaxed">
-                {result.detected_paper && (
-                  <>
-                    We detected: {result.detected_paper.paper_code} •{' '}
-                    {result.detected_paper.paper_session} • Question{' '}
-                    {result.detected_paper.question_number}.{' '}
-                  </>
-                )}
-                We marked your answer using general {isIb ? 'IB' : 'A-Level'}{' '}
-                criteria. Think we should add this paper? Email{' '}
-                <a
-                  href={`mailto:${CONTACT_EMAIL}`}
-                  className="font-medium underline"
-                >
-                  {CONTACT_EMAIL}
-                </a>
-                .
-              </p>
-            </div>
-          </div>
-        )}
-
-        {result.marking_mode === 'general_criteria_practice' && (
-          <div className="ec-banner ec-banner-info">
-            <Info className="ec-banner__icon h-5 w-5 shrink-0" />
-            <div>
-              <p className="ec-banner__title">
-                Marked with {boardLabel}{' '}
-                {getSubjectByCode(badgeSubjectCode ?? '')?.label ??
-                  (isIb ? 'Diploma' : 'A-Level')}{' '}
-                {isIb ? (isIbPoints ? 'mark scheme conventions' : 'markbands') : 'conventions'}
-              </p>
-              <p className="ec-banner__meta">
-                Your own question (not a past paper) — the same{' '}
-                {isIbPoints
-                  ? 'method (M) and accuracy (A) marks'
-                  : isIb
-                    ? 'criteria and markbands'
-                    : 'mark types and bands'}{' '}
-                examiners use, without an official mark scheme from our database.
-              </p>
-            </div>
-          </div>
-        )}
-
-        {result.marking_mode === 'general_criteria' && (
-          <div className="ec-banner ec-banner-info">
-            <Info className="ec-banner__icon h-5 w-5 shrink-0" />
-            <div>
-              <p className="ec-banner__title">
-                Marked with general {isIb ? 'IB' : 'A-Level'} criteria
-              </p>
-              <p className="ec-banner__meta">
-                This was not detected as {isIb ? 'an IB' : 'a Cambridge'} past
-                paper question
-              </p>
-            </div>
-          </div>
-        )}
+        </div>
 
         {result.syllabus_tags && result.syllabus_tags.length > 0 && (
           <div>
@@ -400,16 +420,6 @@ export function MarkingResultView({
             </div>
           </div>
         )}
-
-        <div>
-          <p className="ms-micro" style={{ marginBottom: 12 }}>
-            SUMMARY
-          </p>
-          <h3 className="ms-h3">What the examiner saw</h3>
-          <div className="leading-relaxed text-[var(--ec-text-secondary)]">
-            <RichTextRenderer text={result.ai_marking?.summary ?? ''} />
-          </div>
-        </div>
 
         {result.ai_marking.full_marks_rewrite && (
           <FullMarksRewritePanel rewrite={result.ai_marking.full_marks_rewrite} />

@@ -1419,6 +1419,63 @@ const SLUG_FAMILY_IB_ECONOMICS: Record<string, keyof typeof FAMILIES> = {
   '4-4-exchange-rates': 'econ-trade',
 }
 
+/**
+ * IB Psychology (SL + HL) → existing psych-* families (built for Cambridge 9990,
+ * which is 100% covered). SL and HL share topic codes, so one map serves both.
+ *
+ * Mapped by what each family DEPICTS: research design (IV/DV, controls, ethics),
+ * the DSM diagnostic-criteria panel, the diathesis-stress etiology model, the
+ * biopsychosocial treatment triad, the health-belief model, GAS as a health
+ * problem, and Tuckman's group stages.
+ *
+ * Left uncovered on purpose — no family shows them: the biological (brain,
+ * hormones, genetics, animal research) and cognitive topics, cultural/individual
+ * -and-group, globalization, all of developmental, and personal relationships /
+ * social responsibility. A near-miss would teach the wrong picture with full
+ * authority, so those render text-only.
+ */
+const SLUG_FAMILY_IB_PSYCHOLOGY: Record<string, keyof typeof FAMILIES> = {
+  '4-1-research-methods-in-psychology': 'psych-research',
+  '4-2-ethics-in-psychological-research': 'psych-research',
+  '5-1-abnormal-psychology-factors-influencing-diagnosis': 'psych-clinical-dsm',
+  '5-2-abnormal-psychology-etiology-of-disorders': 'psych-clinical-diathesis',
+  '5-3-abnormal-psychology-treatment-of-disorders': 'psych-clinical-treatment',
+  '6-1-health-psychology-determinants-of-health': 'psych-health',
+  '6-2-health-psychology-health-problems': 'psych-stress',
+  '6-3-health-psychology-promoting-health': 'psych-health',
+  '8-2-human-relationships-group-dynamics': 'psych-groups',
+}
+
+/**
+ * IB Sports, Exercise & Health Science (SL + HL) → existing bio-* families.
+ * Shared topic codes; 5-1 is HL-only. Mapped by depiction: double-circulation
+ * for the cardiovascular/respiratory system, aerobic ATP resynthesis in the
+ * mitochondria for energy systems, and negative-feedback for endocrine control.
+ *
+ * Left uncovered: anatomy (no skeleton/muscle diagram), exercise physiology,
+ * biomechanics and friction/drag/projectile (a free-body/kinematics near-miss,
+ * not the same picture), skill acquisition, measurement, nutrition, and exam
+ * technique — nothing existing depicts them.
+ */
+const SLUG_FAMILY_IB_SEHS: Record<string, keyof typeof FAMILIES> = {
+  '1-2-cardiovascular-and-respiratory-systems': 'bio-circulatory',
+  '1-3-energy-systems-and-atp-resynthesis': 'bio-respiration',
+  '5-1-the-endocrine-system-and-hormonal-regulation': 'bio-homeostasis',
+}
+
+/**
+ * IB Environmental Systems & Societies (SL) → existing bio-* families. Only the
+ * two ecosystem-energy lessons are the same picture as bio-ecology (the ~10%
+ * trophic-transfer diagram). Biodiversity/conservation is deliberately left out
+ * for the same reason IB Biology left `populations-and-communities` out: it is
+ * not the trophic-transfer diagram. Foundations, value systems, water, soil,
+ * atmosphere, climate change, human systems and pollution have no family.
+ */
+const SLUG_FAMILY_IB_ESS: Record<string, keyof typeof FAMILIES> = {
+  '2-1-ecosystems-and-ecology': 'bio-ecology',
+  '2-2-energy-flow-productivity-and-nutrient-cycles': 'bio-ecology',
+}
+
 const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9702,
   ...SLUG_FAMILY_9700,
@@ -1437,6 +1494,9 @@ const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_IB_MATHS_AI,
   ...SLUG_FAMILY_IB_BUSINESS,
   ...SLUG_FAMILY_IB_ECONOMICS,
+  ...SLUG_FAMILY_IB_PSYCHOLOGY,
+  ...SLUG_FAMILY_IB_SEHS,
+  ...SLUG_FAMILY_IB_ESS,
 }
 
 const BIOLOGY_SLUGS = new Set(Object.keys(SLUG_FAMILY_9700))
@@ -1491,6 +1551,21 @@ function familyAttribution(slug: string): DiagramAttribution {
   }
   if (ECONOMICS_SLUGS.has(slug)) {
     return { source: 'MarkScheme economics diagram family', license: 'Proprietary' }
+  }
+  // IB slugs aren't in the Cambridge slug-sets above, so key attribution off the
+  // family the slug actually resolves to. Without this they fall through to the
+  // Senpai physics URL below — wrong for a biology or psychology diagram.
+  const family = SLUG_FAMILY[slug]
+  if (family) {
+    if (family.startsWith('bio-')) {
+      return { source: 'MarkScheme biology diagram family', license: 'Proprietary' }
+    }
+    if (family.startsWith('psych-')) {
+      return { source: 'MarkScheme psychology diagram family', license: 'Proprietary' }
+    }
+    if (family.startsWith('econ-')) {
+      return { source: 'MarkScheme economics diagram family', license: 'Proprietary' }
+    }
   }
   const isAl = /^1[2-9]|^2[0-5]|^paper-5/.test(slug)
   return {

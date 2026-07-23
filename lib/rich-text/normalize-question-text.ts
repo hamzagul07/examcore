@@ -81,6 +81,25 @@ function shouldWrap(m: string): boolean {
   return /[\^=]|[0-9][A-Za-z]|\(/.test(m)
 }
 
+/**
+ * Reject a match that straddles a word. The atoms match single, unanchored
+ * letters, so a run can legitimately open on the last letter of a word and close
+ * on the first letter of the next — `Distance = speed` yields the run `e = s`,
+ * and wrapping it gives `Distanc$e = s$peed`, shattering both words. Genuine
+ * equations are always bounded by whitespace, punctuation, or a string edge, so
+ * a letter immediately before or after the match means we are inside prose, not
+ * math. This also stops two adjacent same-letter runs from emitting `$$`
+ * (`N2 + 3H2 = 2NH3` → two runs whose join reads as a display-math delimiter).
+ */
+function abutsWord(match: string, offset: number, full: string): boolean {
+  const before = offset > 0 ? full[offset - 1] : ''
+  const after = full[offset + match.length] ?? ''
+  // A colon on either side means ratio or clock notation (`a:b = 2:3`, `3:30`),
+  // not an equation — the OP set excludes `:`, so a run can end up bounded by
+  // one. A letter means the match is straddling a prose word.
+  return /[A-Za-z:]/.test(before) || /[A-Za-z:]/.test(after)
+}
+
 export function normalizeQuestionText(text: string): string {
   if (!text) return text
 
@@ -100,7 +119,9 @@ export function normalizeQuestionText(text: string): string {
   // One pass: whole equation runs (subsuming the per-exponent case), plus
   // single atoms strong enough to stand alone. looksLikeMath rejects prose that
   // merely contains an operator; a strong single atom is always math.
-  out = out.replace(RUN_OR_STRONG, (m) => (shouldWrap(m) ? stash(m.trim()) : m))
+  out = out.replace(RUN_OR_STRONG, (m: string, offset: number, full: string) =>
+    !abutsWord(m, offset, full) && shouldWrap(m) ? stash(m.trim()) : m
+  )
 
   // Restore.
   out = out.replace(

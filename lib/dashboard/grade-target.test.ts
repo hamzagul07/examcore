@@ -79,6 +79,21 @@ function main() {
   assert.equal(ib.targetPct, null)
   assert.equal(ib.pointsToGo, null)
 
+  // IB students have no Cambridge A*–E boundary, so this whole track (which is
+  // Cambridge grades and bands) must not render for them — even with plenty of
+  // scored attempts. Otherwise an IB student is told they're "a B".
+  assert.equal(
+    buildGradeTarget({
+      attempts: [a(72, 1), a(70, 2), a(74, 3)],
+      targetGrade: '6',
+      examDate: '2026-09-01',
+      isIb: true,
+      now: NOW,
+    }),
+    null,
+    'IB gets no Cambridge grade track'
+  )
+
   // No target set: still a valid position, just nothing to aim at yet.
   const noTarget = buildGradeTarget({
     attempts: [a(64, 1)],

@@ -7,7 +7,7 @@ import {
   flattenLeafMasteries,
   type AttemptLite,
 } from '@/lib/mastery'
-import { getSubjectById, defaultSubjectsForProfile, defaultMarkSubjectCode } from '@/lib/profile-options'
+import { getSubjectById, defaultSubjectsForProfile, defaultMarkSubjectCode, isIbBoard } from '@/lib/profile-options'
 import { getSyllabusByCode, getSyllabusSubjectName, hasSyllabusTree } from '@/lib/syllabi'
 import { getAttemptSubjectCode } from '@/lib/syllabi/attempts'
 import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
@@ -103,6 +103,7 @@ export default async function DashboardPage() {
     attempts: attemptsList,
     targetGrade: (profile?.target_grade as string | null) ?? null,
     examDate,
+    isIb: isIbBoard(profile?.board ?? 'Cambridge International'),
   })
   const monthlyCount = attemptsThisMonth(timestamps)
   const bestSubjectCode = bestSubjectThisWeek(attemptsList)

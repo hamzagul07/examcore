@@ -19,16 +19,34 @@ import { AsyncLocalStorage } from 'node:async_hooks'
  * in one process and each needs its own deadline.
  */
 
-type DeadlineContext = { deadlineAt: number }
+type DeadlineContext = {
+  deadlineAt: number
+  /** Gemini retries during THIS request. Request-scoped so it is immune to the
+   * module-global retry counter, which extraction jobs reset mid-run — that
+   * reset made mark_runs.gemini_retries report 0 during an actual retry storm. */
+  retries: number
+}
 
 const deadlineStore = new AsyncLocalStorage<DeadlineContext>()
+
+/** Record one retry against the current request, if there is one. Called by the
+ * Gemini retry loop; a no-op outside a request (batch scripts). */
+export function noteRequestRetry(): void {
+  const ctx = deadlineStore.getStore()
+  if (ctx) ctx.retries += 1
+}
+
+/** Retries seen in the current request, or null when unbounded (no request). */
+export function requestRetryCount(): number | null {
+  return deadlineStore.getStore()?.retries ?? null
+}
 
 /** Run `fn` with a wall-clock budget of `budgetMs` from now. */
 export function withRequestDeadline<T>(
   budgetMs: number,
   fn: () => Promise<T>
 ): Promise<T> {
-  return deadlineStore.run({ deadlineAt: Date.now() + budgetMs }, fn)
+  return deadlineStore.run({ deadlineAt: Date.now() + budgetMs, retries: 0 }, fn)
 }
 
 /** Milliseconds left in the current request budget, or null when unbounded. */

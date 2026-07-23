@@ -1375,6 +1375,50 @@ const SLUG_FAMILY_IB_MATHS_AI: Record<string, keyof typeof FAMILIES> = {
   '3-6-vector-applications-kinematics-and-motion': 'vectors',
 }
 
+/**
+ * IB Business Management + Economics (SL + HL) → existing commerce/econ
+ * families. These syllabi teach the same theory as their Cambridge equivalents
+ * (9609/9708), so the same diagram carries the concept. Mapped by caption.
+ *
+ * Business skips the descriptive/definitional lessons (what-is-a-business,
+ * types of entity, culture, communication) that have no diagram. Economics
+ * skips the methodology intros and the descriptive macro-goal lessons.
+ */
+const SLUG_FAMILY_IB_BUSINESS: Record<string, keyof typeof FAMILIES> = {
+  '1-4-stakeholders': 'commerce-stakeholder',
+  '2-2-organizational-structure': 'biz-hrm',
+  '3-2-sources-of-finance': 'biz-finance',
+  '3-3-costs-and-revenues': 'commerce-accounting-cost',
+  '3-4-final-accounts': 'commerce-accounting-statements',
+  '3-5-profitability-and-liquidity-ratio-analysis': 'commerce-ratios',
+  '3-6-debt-and-efficiency-ratio-analysis': 'commerce-ratios',
+  '3-7-cash-flow': 'commerce-cashflow',
+  '3-8-investment-appraisal': 'commerce-investment',
+  '4-1-introduction-to-marketing': 'biz-marketing',
+  '4-5-the-seven-ps-of-the-marketing-mix': 'biz-marketing',
+  '5-1-introduction-to-operations-management': 'biz-operations',
+  '5-5-break-even-analysis': 'commerce-breakeven',
+}
+
+const SLUG_FAMILY_IB_ECONOMICS: Record<string, keyof typeof FAMILIES> = {
+  '1-1-scarcity-choice-and-opportunity-cost': 'econ-ppc',
+  '2-1-demand-and-the-law-of-demand': 'econ-supply-demand',
+  '2-2-supply-and-the-law-of-supply': 'econ-supply-demand',
+  '2-3-market-equilibrium-and-the-price-mechanism': 'econ-supply-demand',
+  '2-4-price-elasticity-of-demand-and-income-elasticity': 'econ-elasticity',
+  '2-5-price-elasticity-of-supply': 'econ-elasticity',
+  '2-6-indirect-taxes-and-subsidies': 'econ-intervention',
+  '2-7-market-failure-externalities-and-the-environment': 'econ-intervention',
+  '2-9-theory-of-the-firm-costs-revenues-and-profit': 'econ-cost-revenue',
+  '2-10-market-structures-perfect-competition-and-monopoly': 'econ-market-structure',
+  '2-11-market-structures-monopolistic-competition-and-oligopoly': 'econ-market-structure',
+  '3-2-aggregate-demand-and-aggregate-supply': 'econ-macro',
+  '3-7-demand-side-policies-fiscal-and-monetary-policy': 'econ-macro',
+  '4-1-international-trade-and-comparative-advantage': 'econ-trade',
+  '4-2-free-trade-and-protectionism': 'econ-trade',
+  '4-4-exchange-rates': 'econ-trade',
+}
+
 const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9702,
   ...SLUG_FAMILY_9700,
@@ -1391,6 +1435,8 @@ const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_IB_PHYSICS,
   ...SLUG_FAMILY_IB_MATHS_AA,
   ...SLUG_FAMILY_IB_MATHS_AI,
+  ...SLUG_FAMILY_IB_BUSINESS,
+  ...SLUG_FAMILY_IB_ECONOMICS,
 }
 
 const BIOLOGY_SLUGS = new Set(Object.keys(SLUG_FAMILY_9700))

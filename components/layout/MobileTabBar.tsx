@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation'
 import {
   BookOpen,
   Home,
-  LibraryBig,
+  LineChart,
   MessagesSquare,
   PenLine,
   User,
@@ -37,15 +37,14 @@ const TABS: TabItem[] = [
       p.startsWith('/ib/courses/'),
   },
   {
-    href: '/subjects',
-    label: 'Subjects',
-    Icon: LibraryBig,
+    // Progress replaces Subjects here: it had no mobile tab at all, so a phone
+    // user could only reach their analytics via a link on the home page.
+    // Subjects stays reachable through Learn and the subject hubs.
+    href: '/dashboard/progress',
+    label: 'Progress',
+    Icon: LineChart,
     match: (p) =>
-      p === '/subjects' ||
-      p.startsWith('/subjects/') ||
-      p === '/ib/subjects' ||
-      p.startsWith('/ib/subjects/') ||
-      p === '/ib',
+      p.startsWith('/dashboard/progress') || p.startsWith('/dashboard/attempt/'),
   },
   {
     href: '/community',
@@ -54,13 +53,12 @@ const TABS: TabItem[] = [
     match: (p) => p === '/community' || p.startsWith('/community/') || p.startsWith('/u/'),
   },
   {
+    // Exact match only — Progress owns /dashboard/progress now, so Home no
+    // longer lights up when you are on the analytics page.
     href: '/dashboard',
     label: 'Home',
     Icon: Home,
-    match: (p) =>
-      p === '/dashboard' ||
-      p.startsWith('/dashboard/progress') ||
-      p.startsWith('/dashboard/attempt/'),
+    match: (p) => p === '/dashboard',
   },
   {
     href: '/account',

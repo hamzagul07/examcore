@@ -32,6 +32,17 @@ function subjectsActive(pathname: string) {
 /** Single source of truth for primary navigation across all headers. */
 export const SITE_NAV_ITEMS: SiteNavItem[] = [
   {
+    // The signed-in daily landing. "Home" rather than "Dashboard" so it reads
+    // as distinct from "Progress" — both said "your stats" before, which is
+    // what made the two impossible to tell apart. Exact match only: its
+    // sub-routes (/dashboard/progress, /dashboard/attempt) are their own items.
+    id: 'home',
+    href: '/dashboard',
+    label: 'Home',
+    variants: ['app'],
+    isActive: (p) => p === '/dashboard',
+  },
+  {
     id: 'mark',
     href: '/mark',
     label: 'Mark',
@@ -87,10 +98,10 @@ export const SITE_NAV_ITEMS: SiteNavItem[] = [
     href: '/dashboard/progress',
     label: 'Progress',
     variants: ['app'],
+    // No longer claims /dashboard — that is Home. Progress owns only its own
+    // page and the per-attempt detail that opens from it.
     isActive: (p) =>
-      p.startsWith('/dashboard/progress') ||
-      p.startsWith('/dashboard/attempt/') ||
-      p === '/dashboard',
+      p.startsWith('/dashboard/progress') || p.startsWith('/dashboard/attempt/'),
   },
   {
     id: 'account',

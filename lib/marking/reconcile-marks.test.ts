@@ -116,6 +116,58 @@ import { reconcileMarkResult } from './reconcile-marks'
   assert.equal(out.marks_earned, 4, 'earned scaled 7*6/10≈4, not clamped to 6/6')
 }
 
+// --- M3 regression: model over-stated the total but earned <= authoritative.
+// The old `earned > authoritative` guard skipped scaling here, so 5/10 showed a
+// fabricated 5/5 (100%) while 6/10 showed 3/5 (60%) — a score that DROPPED as the
+// student earned more. Scaling must apply across the whole over-stated region. ---
+{
+  const five = reconcileMarkResult(
+    { marks_awarded: [], marks_earned: 5, total_marks: 10 },
+    { authoritativeTotal: 5 }
+  )
+  assert.equal(five.total_marks, 5)
+  assert.equal(five.marks_earned, 3, '5/10 → round(2.5)=3 out of 5, not a fabricated 5/5')
+
+  const six = reconcileMarkResult(
+    { marks_awarded: [], marks_earned: 6, total_marks: 10 },
+    { authoritativeTotal: 5 }
+  )
+  assert.equal(six.marks_earned, 3, '6/10 → 3/5 — never below the 5/10 result')
+
+  // Monotonic: more earned (on the same model scale) never yields a lower score.
+  for (let e = 0; e <= 10; e++) {
+    const prev = reconcileMarkResult(
+      { marks_awarded: [], marks_earned: Math.max(0, e - 1), total_marks: 10 },
+      { authoritativeTotal: 5 }
+    ).marks_earned as number
+    const cur = reconcileMarkResult(
+      { marks_awarded: [], marks_earned: e, total_marks: 10 },
+      { authoritativeTotal: 5 }
+    ).marks_earned as number
+    assert.ok(cur >= prev, `earned ${e} must not score below earned ${e - 1}`)
+  }
+}
+
+// --- M3 for level-of-response: model marked a band against a larger scale than
+// the authoritative total → scale, don't clamp to a fabricated perfect. ---
+{
+  const out = reconcileMarkResult(
+    {
+      band_result: { level: 4, marks_awarded: 12, marks_available: 15 },
+      marks_earned: 12,
+      total_marks: 15,
+    },
+    { authoritativeTotal: 9 }
+  )
+  assert.equal(out.total_marks, 9, 'total from authoritative scheme')
+  assert.equal(out.marks_earned, 7, '12/15 → round(7.2)=7 out of 9, not 9/9')
+  assert.equal(
+    (out.band_result as Record<string, unknown>).marks_awarded,
+    7,
+    'band roll-up scaled too'
+  )
+}
+
 // --- Points: unknown total leaves model output untouched apart from clamp ---
 {
   const result: Record<string, unknown> = {

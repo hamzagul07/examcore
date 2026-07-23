@@ -36,10 +36,14 @@ const newsreader = Newsreader({
   variable: "--font-display",
 });
 
+// Only the hero display font (Newsreader, the mobile LCP element) is preloaded.
+// The rest still load on demand via `swap`, but stop competing for throttled
+// bandwidth against the LCP font's preload.
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
+  preload: false,
   variable: "--font-sans",
 });
 
@@ -47,6 +51,7 @@ const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   display: "swap",
+  preload: false,
   variable: "--font-mono",
 });
 
@@ -54,6 +59,7 @@ const caveat = Caveat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
+  preload: false,
   variable: "--font-caveat",
 });
 

@@ -12,7 +12,7 @@ import { LandingFaq } from '@/components/landing/LandingFaq'
 import { LandingFinalCta } from '@/components/landing/LandingFinalCta'
 import { LandingEditorialSpotlight } from '@/components/landing/LandingEditorialSpotlight'
 import { LandingProof } from '@/components/landing/LandingProof'
-import { InteractiveMarkDemo } from '@/components/marketing/InteractiveMarkDemo'
+import { InteractiveMarkDemoLazy } from '@/components/marketing/InteractiveMarkDemoLazy'
 
 export const metadata = getPageMetadata('/')
 
@@ -29,7 +29,7 @@ export default function Home() {
         {/* Show the artefact before explaining it, as one thing the visitor
             can pick apart rather than two pictures of the same script. */}
         <div className="ms-pg">
-          <InteractiveMarkDemo />
+          <InteractiveMarkDemoLazy />
         </div>
         <LandingPillars />
         <LandingMarkingSection />

@@ -32,8 +32,8 @@ export function logoMarkSvgMarkup(): string {
 
 /** Public favicon paths (static assets in app/ and public/). */
 export const FAVICON_PATHS = {
-  tab: '/icon',
-  apple: '/apple-icon',
+  tab: '/icon.png',
+  apple: '/apple-icon.png',
   pwa: '/favicon.png',
   large: '/icon-512.png',
 } as const

@@ -162,7 +162,14 @@ export default async function IbPastPaperSubjectPage({ params }: Props) {
           heading={`IB ${subject.name} ${subject.level} past papers — by session`}
           paragraph={`Every recent ${subject.name} exam series we cover (${ibYearRange()}), each with ${subject.papers.join(', ')}. Practise a paper, then mark it against the IB band descriptors — that's where the grade is won.`}
           links={[
-            { href: '/mark', label: 'Get feedback on your answer →', variant: 'primary' },
+            {
+              // IB marking codes are level-independent (ib-chemistry, not
+              // ib-chemistry-hl); strip the -hl/-sl the past-paper slug carries so
+              // /mark pre-selects the subject instead of landing on a blank picker.
+              href: `/mark?subject=ib-${slug.replace(/-(hl|sl)$/i, '')}`,
+              label: 'Get feedback on your answer →',
+              variant: 'primary',
+            },
             ...(course
               ? [{ href: course.path, label: `Free ${short} course`, variant: 'ghost' as const }]
               : []),

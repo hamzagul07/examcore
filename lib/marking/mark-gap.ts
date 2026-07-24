@@ -1,4 +1,4 @@
-import type { LorBandResult, MarkAwarded } from './types'
+import type { IbCriterionResult, LorBandResult, MarkAwarded } from './types'
 import type { RubricBand } from './mark-scheme-display'
 
 /**
@@ -158,6 +158,56 @@ function rungState(level: number, current: number): BandRung['state'] {
   if (level === current) return 'current'
   if (level === current + 1) return 'next'
   return level > current ? 'above' : 'below'
+}
+
+/**
+ * IB multi-criterion (EE, TOK, arts). Each criterion is its own little band,
+ * but the data carries only the achieved descriptor — there is no full ladder
+ * to climb. So the gap here is the shape: which criteria cost the most marks,
+ * and the examiner's "how to move up" for each (the `improvements` the criteria
+ * strip otherwise never shows).
+ */
+export type CriterionGap = {
+  criterion: string
+  name: string
+  level: number
+  awarded: number
+  available: number
+  lost: number
+  /** The examiner's how-to-improve for this criterion, if given. */
+  lift: string | null
+}
+
+export type CriteriaGap = {
+  totalAwarded: number
+  totalAvailable: number
+  totalLost: number
+  /** Criteria that lost marks, most-lost first — where the marks actually went. */
+  gaps: CriterionGap[]
+}
+
+export function buildCriteriaGap(criteria: IbCriterionResult[]): CriteriaGap {
+  let totalAwarded = 0
+  let totalAvailable = 0
+  const all: CriterionGap[] = criteria.map((c) => {
+    totalAwarded += c.marks_awarded
+    totalAvailable += c.marks_available
+    return {
+      criterion: c.criterion,
+      name: c.criterion_name,
+      level: c.level,
+      awarded: c.marks_awarded,
+      available: c.marks_available,
+      lost: Math.max(0, c.marks_available - c.marks_awarded),
+      lift: c.improvements?.[0]?.trim() || null,
+    }
+  })
+  return {
+    totalAwarded,
+    totalAvailable,
+    totalLost: totalAvailable - totalAwarded,
+    gaps: all.filter((g) => g.lost > 0).sort((a, b) => b.lost - a.lost),
+  }
 }
 
 export function buildBandGap(

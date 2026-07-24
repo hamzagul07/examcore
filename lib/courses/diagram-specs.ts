@@ -73,6 +73,54 @@ const SPECS: Record<string, LessonDiagramSpec> = {
   '1-2-changing-populations': DTM_SPEC,
   '5-1-abstract-data-structures-recursion-and-the-stack': STACK_QUEUE_SPEC,
   '5-4-stacks-queues-and-the-application-of-data-structures': STACK_QUEUE_SPEC,
+  // Psychology cluster — flat diagrams given cumulative step reveals. These are
+  // the DEFAULT_SLUGs, so the mapped IB psychology lessons (research, health)
+  // inherit the animation too.
+  '1-2-research-methods': {
+    steps: [
+      { focus: ['step-1'], caption: 'The independent variable (IV) is what the experimenter manipulates.' },
+      { focus: ['step-1', 'step-2'], caption: 'The dependent variable (DV) is what they measure in response.' },
+      { focus: ['step-1', 'step-2', 'step-3'], caption: 'Holding everything else constant lets us infer cause and effect.' },
+    ],
+  },
+  '3-1-the-health-belief-model': {
+    steps: [
+      { focus: ['step-1'], caption: 'Perceived susceptibility, severity, benefits and barriers shape health beliefs.' },
+      { focus: ['step-1', 'step-2'], caption: 'Together they set the likelihood of taking the health action.' },
+    ],
+  },
+  '3-4-1-sources-of-stress': {
+    steps: [
+      { focus: ['step-1'], caption: 'Alarm — the immediate fight-or-flight response to a stressor.' },
+      { focus: ['step-1', 'step-2'], caption: 'Resistance — the body adapts and copes if the stressor persists.' },
+      { focus: ['step-1', 'step-2', 'step-3'], caption: 'Exhaustion — prolonged stress depletes resources and harms health.' },
+    ],
+  },
+  '3-3-1-types-and-theories-of-pain': {
+    steps: [
+      { focus: ['step-1'], caption: 'Tissue damage sends pain signals toward the spinal cord.' },
+      { focus: ['step-1', 'step-2'], caption: "A neural 'gate' in the spinal cord can let the signals through or block them." },
+      { focus: ['step-1', 'step-2', 'step-3'], caption: 'Attention, mood and beliefs open or close the gate before pain reaches the brain.' },
+    ],
+  },
+  '2-2-the-physical-environment': {
+    steps: [
+      { focus: ['step-1'], caption: 'The store environment — layout, lighting, music and scent — is designed, not incidental.' },
+      { focus: ['step-1', 'step-2'], caption: 'These atmospheric cues nudge mood, dwell time and spending.' },
+    ],
+  },
+  '4-4-1-physical-work-conditions': {
+    steps: [
+      { focus: ['step-1'], caption: 'Physical conditions — noise, lighting, temperature and layout — vary across a workplace.' },
+      { focus: ['step-1', 'step-2'], caption: 'Each shifts comfort, wellbeing and performance.' },
+    ],
+  },
+  '4-5-1-theories-of-job-satisfaction': {
+    steps: [
+      { focus: ['step-1'], caption: 'Motivators — achievement, recognition, responsibility — drive satisfaction.' },
+      { focus: ['step-1', 'step-2'], caption: "Hygiene factors — pay, conditions, security — only prevent dissatisfaction; they don't motivate." },
+    ],
+  },
   // Step-animation for diagrams that had the layer structure but no spec, so
   // they rendered flat. Cumulative focus — each step adds a layer, keeping the
   // earlier ones bright. These are the DEFAULT_SLUGs, so the mapped IB lessons

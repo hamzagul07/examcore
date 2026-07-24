@@ -392,6 +392,14 @@ export default function MarkPage() {
   // Restore last manual selection from localStorage after profile load.
   useEffect(() => {
     if (profileLoading || typeof window === 'undefined') return
+    // An explicit URL selection (a deep-link from a content or course page) is
+    // authoritative — don't let the restored last-selection overwrite it. This
+    // effect re-runs when selectedMarkBoard changes, so without this guard it
+    // could clobber a subject just set by the deep-link handlers below.
+    const spGuard = new URLSearchParams(window.location.search)
+    if (spGuard.get('subject') || spGuard.get('practice') === '1' || spGuard.get('topic')) {
+      return
+    }
     try {
       const saved = readClientStorage(STORAGE_KEYS.lastSelection)
       if (!saved) return
@@ -576,6 +584,37 @@ export default function MarkPage() {
 
     return () => {
       cancelled = true
+    }
+  }, [])
+
+  // Subject deep-link from content pages — /mark?subject=<code>[&session=<s>].
+  // Blog CTAs (BlogPostCta) and past-paper pages emit this, but no effect read a
+  // bare `subject`, so a reader who clicked "Mark 9701 now" landed on a blank
+  // page and had to re-select their subject — friction at the point of intent.
+  // Declared last so it wins over the localStorage restore. The practice and
+  // subject+topic deep-links have their own effects above; skip when they apply.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const sp = new URLSearchParams(window.location.search)
+    if (sp.get('practice') === '1' || sp.get('topic')) return
+    const subject = sp.get('subject')?.trim()
+    if (!subject) return
+    setSelectedSubject(subject)
+    if (isIbSubjectCode(subject)) {
+      setSelectedMarkBoard('ib')
+      setUploadMode('single_question')
+      setMarkIntent('practice_question')
+      setShowManualPaper(false)
+    } else {
+      setSelectedMarkBoard('cambridge')
+      setMarkIntent('past_paper')
+      setShowManualPaper(true)
+      const session = sp.get('session')?.trim()
+      const m = session?.match(/^(.*)\s+(\d{4})$/)
+      if (m) {
+        setSelectedSession(m[1])
+        setSelectedYear(Number(m[2]))
+      }
     }
   }, [])
 

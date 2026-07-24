@@ -370,14 +370,64 @@
   }
 }
 
+/* Button hover-lift + tap-scale. This was framer-motion (whileHover / whileTap
+   on motion.button), which pulled the whole library onto every page with a
+   <Button>. Same micro-interaction in CSS; see Button.tsx. */
+.ec-btn-motion {
+  transition: transform 160ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.ec-btn-motion:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+.ec-btn-motion:not(:disabled):active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Button loading — success checkmark + morph-in.
+   These were framer-motion (motion.path pathLength / AnimatePresence), which put
+   the whole animation library on every page that renders a <Button>. Same effect
+   in CSS; see ButtonLoadingState. */
+.ec-check-draw path {
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: ec-check-draw 350ms ease-out forwards;
+}
+
+@keyframes ec-check-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.ec-btn-morph-in {
+  animation: ec-btn-morph-in 180ms ease both;
+}
+
+@keyframes ec-btn-morph-in {
+  from { opacity: 0; transform: translateY(4px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ec-nav-progress-bar,
   .ec-exam-loader-orbit::before,
   .ec-exam-loader-dot,
   .ec-exam-loader-core,
   .ec-skeleton-shimmer::after,
-  .ec-nav-progress-pill {
+  .ec-nav-progress-pill,
+  .ec-check-draw path,
+  .ec-btn-morph-in {
     animation: none !important;
+  }
+
+  .ec-btn-motion {
+    transition: none;
+  }
+  .ec-btn-motion:hover,
+  .ec-btn-motion:active {
+    transform: none;
+  }
+
+  .ec-check-draw path {
+    stroke-dashoffset: 0;
   }
 
   .ec-nav-progress-bar {

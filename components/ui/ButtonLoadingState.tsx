@@ -1,6 +1,6 @@
 'use client'
 
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { useEffect } from 'react'
 import { cn } from '@/lib/utils'
 
 export type ButtonLoadingMode = 'shimmer' | 'morph' | 'progress' | 'success' | 'exam'
@@ -12,6 +12,13 @@ function LoadingDots({ className }: { className?: string }) {
       <span />
       <span />
     </span>
+  )
+}
+
+function prefersReducedMotion() {
+  return (
+    typeof window !== 'undefined' &&
+    window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true
   )
 }
 
@@ -31,7 +38,14 @@ export function ButtonLoadingState({
   className,
   onSuccessComplete,
 }: Props) {
-  const prefersReduced = useReducedMotion()
+  // Fire the success callback on a fixed timer instead of an animation-complete
+  // event — deterministic, and works even under prefers-reduced-motion.
+  useEffect(() => {
+    if (mode !== 'success' || !onSuccessComplete) return
+    const delay = prefersReducedMotion() ? 0 : 600
+    const t = window.setTimeout(() => onSuccessComplete(), delay)
+    return () => window.clearTimeout(t)
+  }, [mode, onSuccessComplete])
 
   if (mode === 'exam') {
     return (
@@ -50,57 +64,39 @@ export function ButtonLoadingState({
 
   if (mode === 'success') {
     return (
-      <motion.span
-        className={cn('inline-flex items-center gap-2', className)}
-        initial={prefersReduced ? false : { opacity: 0.6 }}
-        animate={{ opacity: 1 }}
-        onAnimationComplete={() => {
-          if (!prefersReduced) {
-            window.setTimeout(() => onSuccessComplete?.(), 400)
-          } else {
-            onSuccessComplete?.()
-          }
-        }}
-      >
+      <span className={cn('inline-flex items-center gap-2', className)}>
         <svg
-          className="shrink-0"
+          className="ec-check-draw shrink-0"
           width={16}
           height={16}
           viewBox="0 0 24 24"
           fill="none"
           aria-hidden
         >
-          <motion.path
+          <path
             d="M5 13l4 4L19 7"
             stroke="currentColor"
             strokeWidth={2.5}
             strokeLinecap="round"
             strokeLinejoin="round"
-            initial={prefersReduced ? false : { pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 0.35, ease: 'easeOut' }}
           />
         </svg>
         <span>{loadingText ?? children}</span>
-      </motion.span>
+      </span>
     )
   }
 
   if (mode === 'morph') {
     return (
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.span
-          key="loading"
-          className={cn('inline-flex items-center gap-2', className)}
-          initial={prefersReduced ? false : { opacity: 0, y: 4, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={prefersReduced ? undefined : { opacity: 0, y: -4 }}
-          transition={{ duration: 0.18 }}
-        >
-          <LoadingDots />
-          <span>{loadingText ?? children}</span>
-        </motion.span>
-      </AnimatePresence>
+      <span
+        className={cn(
+          'ec-btn-morph-in inline-flex items-center gap-2',
+          className
+        )}
+      >
+        <LoadingDots />
+        <span>{loadingText ?? children}</span>
+      </span>
     )
   }
 

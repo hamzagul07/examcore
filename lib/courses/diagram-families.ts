@@ -1361,18 +1361,42 @@ const SLUG_FAMILY_IB_MATHS_AA: Record<string, keyof typeof FAMILIES> = {
 }
 
 /**
- * IB Maths AI (SL + HL). AI is application-led with its own slugs (matrices,
- * Voronoi, financial maths, data modelling) that mostly have no existing
- * diagram — only the concepts that ARE the same as a drawn family are mapped.
+ * IB Maths AI (SL + HL). AI is application-led, but its statistics, calculus and
+ * matrix topics are the same mathematics the Cambridge families already draw, so
+ * they map by caption like AA does. Mapped by what each family DEPICTS.
+ *
+ * Left uncovered on purpose — no family shows the concept: standard form and
+ * financial maths (1-1, 1-3), 3D solids and bearings (3-1, 3-3), Voronoi and
+ * graph theory (3-4, 3-7, 3-8), correlation/regression scatter and the
+ * hypothesis-test topics (4-1, 4-3, 4-8..4-10), logistic/piecewise modelling and
+ * data linearization (2-6, 2-7), Euler/slope-field and coupled ODEs (5-8, 5-9),
+ * and eigenvalues (1-7) — none is what an existing diagram teaches. 5-7 uses the
+ * physics kinematics graph, whose gradient=velocity / area=displacement picture
+ * is exactly rates of change.
  */
 const SLUG_FAMILY_IB_MATHS_AI: Record<string, keyof typeof FAMILIES> = {
   '1-2-arithmetic-and-geometric-sequences-and-series': 'series',
   '1-4-exponents-and-logarithms': 'log-exp',
+  '1-5-systems-of-equations-and-matrix-operations': 'matrices',
+  '1-6-matrices-determinants-inverses-and-applications': 'matrices',
   '1-8-complex-numbers-cartesian-and-polar-form-for-applications': 'complex-numbers',
   '2-1-linear-models-and-equations-of-straight-lines': 'coordinate-geometry',
   '2-2-functions-domain-range-inverse-and-graphs': 'functions',
+  '2-4-modelling-with-exponential-and-logarithmic-functions': 'log-exp',
+  '2-5-modelling-with-sinusoidal-functions': 'trigonometry',
   '3-5-vectors-properties-operations-and-applications': 'vectors',
   '3-6-vector-applications-kinematics-and-motion': 'vectors',
+  '4-2-descriptive-statistics': 'stats-data',
+  '4-4-probability-venn-diagrams-and-tree-diagrams': 'probability',
+  '4-5-discrete-random-variables-and-expected-value': 'discrete-stats',
+  '4-6-binomial-and-poisson-distributions': 'discrete-stats',
+  '4-7-the-normal-distribution': 'normal-stats',
+  '5-1-introduction-to-differentiation-and-rates-of-change': 'differentiation',
+  '5-2-differentiation-tangents-normals-and-optimization': 'differentiation',
+  '5-3-introduction-to-integration-and-area-under-a-curve': 'integration',
+  '5-4-the-trapezoidal-rule-and-numerical-integration': 'integration',
+  '5-5-further-differentiation-and-the-second-derivative': 'differentiation',
+  '5-7-kinematics-and-related-rates-of-change': 'kinematics',
 }
 
 /**

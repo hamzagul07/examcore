@@ -59,9 +59,20 @@ const DTM_SPEC: LessonDiagramSpec = {
   ],
 }
 
+/** Stack vs queue — stack, then queue, then the contrast. */
+const STACK_QUEUE_SPEC: LessonDiagramSpec = {
+  steps: [
+    { focus: ['step-1'], caption: 'A stack is LIFO: you push and pop at the same end — the top.' },
+    { focus: ['step-1', 'step-2'], caption: 'A queue is FIFO: enqueue at the rear, dequeue at the front.' },
+    { focus: ['step-1', 'step-2', 'step-3'], caption: 'So a stack removes the most recent item; a queue removes the oldest.' },
+  ],
+}
+
 const SPECS: Record<string, LessonDiagramSpec> = {
   '1-1-population-and-economic-development-patterns': DTM_SPEC,
   '1-2-changing-populations': DTM_SPEC,
+  '5-1-abstract-data-structures-recursion-and-the-stack': STACK_QUEUE_SPEC,
+  '5-4-stacks-queues-and-the-application-of-data-structures': STACK_QUEUE_SPEC,
   // Step-animation for diagrams that had the layer structure but no spec, so
   // they rendered flat. Cumulative focus — each step adds a layer, keeping the
   // earlier ones bright. These are the DEFAULT_SLUGs, so the mapped IB lessons

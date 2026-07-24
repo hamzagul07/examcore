@@ -1,7 +1,6 @@
 'use client'
 
 import * as React from 'react'
-import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import {
   ButtonLoadingState,
@@ -14,8 +13,8 @@ type ButtonSize = 'sm' | 'md' | 'lg'
 
 /**
  * Explicit prop surface. We pick the HTML button props we actually use across
- * the app — going through Omit<React.Button…, keyof HTMLMotionProps> strips
- * common props like `disabled` and `children` because framer also defines them.
+ * the app rather than spreading the full `React.ButtonHTMLAttributes`, so the
+ * component's API stays small and intentional.
  */
 export interface ButtonProps {
   children?: React.ReactNode
@@ -114,7 +113,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     return (
-      <motion.button
+      <button
         ref={ref}
         type={type}
         disabled={isDisabled}
@@ -132,13 +131,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         aria-expanded={props['aria-expanded']}
         aria-busy={isLoading || undefined}
         data-loading={isLoading ? 'true' : undefined}
-        whileHover={isDisabled ? undefined : { y: -1 }}
-        whileTap={isDisabled ? undefined : { scale: 0.98 }}
-        transition={{ type: 'spring', stiffness: 420, damping: 22, mass: 0.55 }}
         onClick={handleClick}
         onFocus={onFocus}
         onBlur={onBlur}
         className={cn(
+          // Hover-lift + tap-scale — CSS, see .ec-btn-motion (was framer-motion).
+          'ec-btn-motion',
           VARIANT_CLASSES[variant],
           SIZE_CLASSES[size],
           variant === 'primary' && size === 'sm' && 'ec-btn-primary--sm',
@@ -164,7 +162,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             )}
           </>
         )}
-      </motion.button>
+      </button>
     )
   }
 )

@@ -1,3 +1,4 @@
+import { after } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { generateGeminiText } from '@/lib/ai/gemini-text'
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
@@ -460,10 +461,19 @@ async function markSplitQuestions(params: {
   })
 
   if (userId && attemptIds.length > 0) {
-    const { isCommunityEnabled } = await import('@/lib/community/enabled')
-    if (isCommunityEnabled()) {
+    const firstAttemptId = attemptIds[0]
+    // Post-mark bookkeeping — deferred off the critical path (see the single
+    // path below for rationale).
+    const awardXpForMark = async () => {
+      const { isCommunityEnabled } = await import('@/lib/community/enabled')
+      if (!isCommunityEnabled()) return
       const { awardMarkingXp } = await import('@/lib/community/feed')
-      await awardMarkingXp(userId, subject_code, attemptIds[0])
+      await awardMarkingXp(userId, subject_code, firstAttemptId)
+    }
+    try {
+      after(awardXpForMark)
+    } catch {
+      await awardXpForMark()
     }
   }
 
@@ -962,10 +972,24 @@ export async function runSingleQuestionMark(
   })
 
   if (userId && attempt?.id) {
-    const { isCommunityEnabled } = await import('@/lib/community/enabled')
-    if (isCommunityEnabled()) {
+    const attemptId = attempt.id
+    // Community XP for marking a paper is pure post-mark bookkeeping — the score
+    // the user is waiting on doesn't depend on it. Awaiting it inline made every
+    // signed-in mark wait on two dynamic imports + the xp_events / reputation
+    // writes before the result could be sent. Run it after the response instead.
+    const awardXpForMark = async () => {
+      const { isCommunityEnabled } = await import('@/lib/community/enabled')
+      if (!isCommunityEnabled()) return
       const { awardMarkingXp } = await import('@/lib/community/feed')
-      await awardMarkingXp(userId, subject_code, attempt.id)
+      await awardMarkingXp(userId, subject_code, attemptId)
+    }
+    try {
+      // Runs after the response finishes, within the route's maxDuration.
+      after(awardXpForMark)
+    } catch {
+      // No after() scope available (shouldn't happen on the mark route) — fall
+      // back to the previous inline behaviour so XP is never silently dropped.
+      await awardXpForMark()
     }
   }
 

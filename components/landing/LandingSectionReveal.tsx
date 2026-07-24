@@ -1,9 +1,16 @@
 'use client'
 
-import type { ReactNode } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 
-/** Section reveal — transform-only (content visible if animation fails). */
+/**
+ * Section reveal — transform-only (content visible if animation fails).
+ *
+ * A fade-and-rise on first scroll into view. This used framer-motion, which put
+ * ~50 KiB (gzipped) of animation library — plus its hydration cost — on the
+ * homepage's critical path for a one-line transition. It's now CSS (`.ms-reveal`
+ * in landing-page.css) driven by an IntersectionObserver: same behaviour, no
+ * library, and the content stays in the server-rendered HTML.
+ */
 export function LandingSectionReveal({
   children,
   className = '',
@@ -13,21 +20,40 @@ export function LandingSectionReveal({
   className?: string
   delay?: number
 }) {
-  const prefersReduced = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null)
+  const [shown, setShown] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    if (
+      typeof IntersectionObserver === 'undefined' ||
+      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+    ) {
+      setShown(true)
+      return
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setShown(true)
+          io.disconnect()
+        }
+      },
+      { rootMargin: '-80px' },
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
 
   return (
-    <motion.div
-      initial={prefersReduced ? false : { opacity: 0, y: 10 }}
-      whileInView={prefersReduced ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={
-        prefersReduced
-          ? undefined
-          : { duration: 0.4, delay, ease: [0.4, 0, 0.2, 1] }
-      }
-      className={className}
+    <div
+      ref={ref}
+      data-reveal={shown ? 'in' : 'out'}
+      style={delay ? { transitionDelay: `${delay}s` } : undefined}
+      className={`ms-reveal ${className}`}
     >
       {children}
-    </motion.div>
+    </div>
   )
 }

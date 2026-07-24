@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
-import { buildBandGap, buildMarkGap, inlineGhostFixes } from './mark-gap'
-import type { LorBandResult, MarkAwarded } from './types'
+import { buildBandGap, buildCriteriaGap, buildMarkGap, inlineGhostFixes } from './mark-gap'
+import type { IbCriterionResult, LorBandResult, MarkAwarded } from './types'
 import type { RubricBand } from './mark-scheme-display'
 
 function mark(over: Partial<MarkAwarded>): MarkAwarded {
@@ -151,6 +151,53 @@ function mark(over: Partial<MarkAwarded>): MarkAwarded {
   assert.equal(gap.ladder.length, 0)
   assert.equal(gap.next, null)
   assert.equal(gap.liftHint, 'Add a counter-argument.')
+}
+
+// --- criteria gap: totals, most-lost-first ordering, lift from improvements ---
+{
+  const criteria: IbCriterionResult[] = [
+    {
+      criterion: 'A',
+      criterion_name: 'Focus and method',
+      level: 3,
+      marks_awarded: 5,
+      marks_available: 6,
+      band_descriptor: '…',
+      justification: '…',
+      improvements: ['Sharpen the research question.'],
+    },
+    {
+      criterion: 'B',
+      criterion_name: 'Knowledge',
+      level: 1,
+      marks_awarded: 2,
+      marks_available: 6,
+      band_descriptor: '…',
+      justification: '…',
+      improvements: ['Engage the academic sources directly.'],
+    },
+    {
+      criterion: 'C',
+      criterion_name: 'Discussion',
+      level: 4,
+      marks_awarded: 4,
+      marks_available: 4,
+      band_descriptor: '…',
+      justification: '…',
+    },
+  ]
+  const gap = buildCriteriaGap(criteria)
+  assert.equal(gap.totalAwarded, 11)
+  assert.equal(gap.totalAvailable, 16)
+  assert.equal(gap.totalLost, 5)
+  // C lost nothing → excluded; B (lost 4) ranks above A (lost 1)
+  assert.deepEqual(
+    gap.gaps.map((g) => g.criterion),
+    ['B', 'A']
+  )
+  assert.equal(gap.gaps[0].lost, 4)
+  assert.equal(gap.gaps[0].lift, 'Engage the academic sources directly.')
+  assert.equal(gap.gaps.find((g) => g.criterion === 'C'), undefined)
 }
 
 console.log('mark-gap.test.ts: all assertions passed')

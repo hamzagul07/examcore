@@ -1,7 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import { ArrowUp } from 'lucide-react'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
+import { buildCriteriaGap } from '@/lib/marking/mark-gap'
 import type { IbCriterionResult } from '@/lib/marking/types'
 
 /**
@@ -56,12 +58,36 @@ export function IbCriteriaBreakdown({
   // as pressed. Fall back to the (always-valid) weakest index in that case.
   const activeIdx = selected < criteria.length ? selected : weakestIdx
   const active = criteria[activeIdx]
+  const gap = buildCriteriaGap(criteria)
+  const topGap = gap.gaps[0]
 
   return (
     <div className="ms-ib-criteria">
       <p className="ms-overline" style={{ marginBottom: 10 }}>
         IB criteria breakdown
       </p>
+
+      {gap.totalLost > 0 && topGap && (
+        <p
+          className="text-sm"
+          style={{ marginBottom: 12, color: 'var(--ec-text-secondary)' }}
+        >
+          <span
+            className="font-semibold"
+            style={{ color: 'var(--ec-text-primary)' }}
+          >
+            {gap.totalLost} {gap.totalLost === 1 ? 'mark' : 'marks'} to find
+          </span>{' '}
+          — most in{' '}
+          <span
+            className="font-semibold"
+            style={{ color: 'var(--ec-chip-warning-text)' }}
+          >
+            {topGap.criterion} {topGap.name}
+          </span>
+          {gap.gaps[1] ? ` and ${gap.gaps[1].criterion}` : ''}.
+        </p>
+      )}
 
       <ul
         className="ms-ibc-strip"
@@ -115,6 +141,40 @@ export function IbCriteriaBreakdown({
           <div className="ms-ibc-detail__why">
             <RichTextRenderer text={active.justification} />
           </div>
+          {active.improvements && active.improvements.length > 0 && (
+            <div
+              className="mt-3 flex items-start gap-2.5 rounded-xl border border-dashed px-3.5 py-3"
+              style={{
+                borderColor: 'var(--ec-chip-warning-text)',
+                background: 'var(--ec-chip-warning-bg)',
+              }}
+            >
+              <ArrowUp
+                className="mt-0.5 h-4 w-4 flex-none"
+                style={{ color: 'var(--ec-chip-warning-text)' }}
+                aria-hidden="true"
+              />
+              <div className="text-sm text-[var(--ec-text-primary)]">
+                <span
+                  className="font-semibold"
+                  style={{ color: 'var(--ec-chip-warning-text)' }}
+                >
+                  To lift {active.criterion}:{' '}
+                </span>
+                {active.improvements.length === 1 ? (
+                  <RichTextRenderer text={active.improvements[0]} />
+                ) : (
+                  <ul className="ms-scheme-rubric-list mt-1">
+                    {active.improvements.map((item, i) => (
+                      <li key={i}>
+                        <RichTextRenderer text={item} />
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

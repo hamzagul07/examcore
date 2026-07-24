@@ -156,6 +156,7 @@ import { PsychSatisfactionDiagram } from '@/components/diagrams/PsychSatisfactio
 import { BioRespirationDiagram } from '@/components/diagrams/BioRespirationDiagram'
 import { BioEvolutionDiagram } from '@/components/diagrams/BioEvolutionDiagram'
 import { DensityPressureDiagram } from '@/components/diagrams/DensityPressureDiagram'
+import { DemographicTransitionDiagram } from '@/components/diagrams/DemographicTransitionDiagram'
 import { SLUG_FAMILY_COMMERCE_HUMANITIES, SLUG_FAMILY_9706, SLUG_FAMILY_9609 } from '@/lib/courses/generated/subject-visuals'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
@@ -834,6 +835,10 @@ const FAMILIES: Record<string, FamilyEntry> = {
     Component: BizFinanceDiagram,
     caption: 'Sources of finance fund the business; profit is revenue minus costs.',
   },
+  'geo-dtm': {
+    Component: DemographicTransitionDiagram,
+    caption: 'Death rate falls before birth rate — the gap is natural increase, so population booms mid-transition then levels off.',
+  },
 }
 
 /** 9702 slug → diagram family (custom slug-specific diagrams take priority). */
@@ -1500,6 +1505,18 @@ const SLUG_FAMILY_IB_ESS: Record<string, keyof typeof FAMILIES> = {
   '2-2-energy-flow-productivity-and-nutrient-cycles': 'bio-ecology',
 }
 
+/**
+ * IB Geography (SL + HL). First native geography diagram: the demographic
+ * transition model, which is the picture behind both the population-and-
+ * development patterns lesson and the changing-populations lesson. Everything
+ * else in the syllabus (climate, resources, global networks) has no drawn family
+ * yet and is left uncovered rather than mapped to a near-miss.
+ */
+const SLUG_FAMILY_IB_GEOGRAPHY: Record<string, keyof typeof FAMILIES> = {
+  '1-1-population-and-economic-development-patterns': 'geo-dtm',
+  '1-2-changing-populations': 'geo-dtm',
+}
+
 const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9702,
   ...SLUG_FAMILY_9700,
@@ -1521,6 +1538,7 @@ const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_IB_PSYCHOLOGY,
   ...SLUG_FAMILY_IB_SEHS,
   ...SLUG_FAMILY_IB_ESS,
+  ...SLUG_FAMILY_IB_GEOGRAPHY,
 }
 
 const BIOLOGY_SLUGS = new Set(Object.keys(SLUG_FAMILY_9700))
@@ -1589,6 +1607,9 @@ function familyAttribution(slug: string): DiagramAttribution {
     }
     if (family.startsWith('econ-')) {
       return { source: 'MarkScheme economics diagram family', license: 'Proprietary' }
+    }
+    if (family.startsWith('geo-')) {
+      return { source: 'MarkScheme geography diagram family', license: 'Proprietary' }
     }
   }
   const isAl = /^1[2-9]|^2[0-5]|^paper-5/.test(slug)

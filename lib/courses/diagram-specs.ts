@@ -37,7 +37,31 @@ function embedSpec(
   }
 }
 
+/** Demographic transition model — reveal the causal order rate-by-rate. */
+const DTM_SPEC: LessonDiagramSpec = {
+  steps: [
+    {
+      focus: ['death', 'stages'],
+      caption: 'Death rate falls first — clean water, food security and medicine cut mortality (stage 2).',
+    },
+    {
+      focus: ['birth', 'death', 'stages'],
+      caption: 'Birth rate falls later, once children are less of an economic necessity and contraception spreads (stage 3).',
+    },
+    {
+      focus: ['natural-increase', 'birth', 'death'],
+      caption: 'The gap between the two rates is natural increase — widest through stages 2–3, which is why population booms.',
+    },
+    {
+      focus: ['population', 'stages'],
+      caption: 'Total population surges through the transition, then levels off (or falls) once both rates settle low.',
+    },
+  ],
+}
+
 const SPECS: Record<string, LessonDiagramSpec> = {
+  '1-1-population-and-economic-development-patterns': DTM_SPEC,
+  '1-2-changing-populations': DTM_SPEC,
   '13-3-gravitational-field-of-a-point-mass': {
     params: [
       { id: 'M', label: 'Mass M', min: 1, max: 10, step: 1, default: 5, unit: '×10²⁴ kg' },

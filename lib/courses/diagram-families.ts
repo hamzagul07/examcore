@@ -157,6 +157,7 @@ import { BioRespirationDiagram } from '@/components/diagrams/BioRespirationDiagr
 import { BioEvolutionDiagram } from '@/components/diagrams/BioEvolutionDiagram'
 import { DensityPressureDiagram } from '@/components/diagrams/DensityPressureDiagram'
 import { DemographicTransitionDiagram } from '@/components/diagrams/DemographicTransitionDiagram'
+import { StackQueueDiagram } from '@/components/diagrams/StackQueueDiagram'
 import { SLUG_FAMILY_COMMERCE_HUMANITIES, SLUG_FAMILY_9706, SLUG_FAMILY_9609 } from '@/lib/courses/generated/subject-visuals'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
@@ -839,6 +840,10 @@ const FAMILIES: Record<string, FamilyEntry> = {
     Component: DemographicTransitionDiagram,
     caption: 'Death rate falls before birth rate — the gap is natural increase, so population booms mid-transition then levels off.',
   },
+  'cs-data-structures': {
+    Component: StackQueueDiagram,
+    caption: 'A stack is LIFO (push/pop the top); a queue is FIFO (enqueue the rear, dequeue the front).',
+  },
 }
 
 /** 9702 slug → diagram family (custom slug-specific diagrams take priority). */
@@ -1517,6 +1522,18 @@ const SLUG_FAMILY_IB_GEOGRAPHY: Record<string, keyof typeof FAMILIES> = {
   '1-2-changing-populations': 'geo-dtm',
 }
 
+/**
+ * IB Computer Science (HL). First native CS diagram: the stack/queue comparison,
+ * which is the picture behind both the abstract-data-structures-and-the-stack
+ * lesson and the stacks-queues-and-application lesson. Linked lists and trees
+ * (5-2, 5-3) want their own diagrams and are left uncovered for now; the rest of
+ * the syllabus (architecture, networks, OOP) has no drawn family yet.
+ */
+const SLUG_FAMILY_IB_CS: Record<string, keyof typeof FAMILIES> = {
+  '5-1-abstract-data-structures-recursion-and-the-stack': 'cs-data-structures',
+  '5-4-stacks-queues-and-the-application-of-data-structures': 'cs-data-structures',
+}
+
 const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9702,
   ...SLUG_FAMILY_9700,
@@ -1539,6 +1556,7 @@ const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_IB_SEHS,
   ...SLUG_FAMILY_IB_ESS,
   ...SLUG_FAMILY_IB_GEOGRAPHY,
+  ...SLUG_FAMILY_IB_CS,
 }
 
 const BIOLOGY_SLUGS = new Set(Object.keys(SLUG_FAMILY_9700))
@@ -1610,6 +1628,9 @@ function familyAttribution(slug: string): DiagramAttribution {
     }
     if (family.startsWith('geo-')) {
       return { source: 'MarkScheme geography diagram family', license: 'Proprietary' }
+    }
+    if (family.startsWith('cs-')) {
+      return { source: 'MarkScheme computer science diagram family', license: 'Proprietary' }
     }
   }
   const isAl = /^1[2-9]|^2[0-5]|^paper-5/.test(slug)

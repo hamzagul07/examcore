@@ -166,6 +166,92 @@ const SPECS: Record<string, LessonDiagramSpec> = {
       { focus: ['step-1', 'step-2'], caption: "The 'dark figure' — unreported, undetected crime — sits beneath them." },
     ],
   },
+  // Law cluster — flat diagrams given cumulative step reveals.
+  '1-1-1-english-legal-system-and-its-context': {
+    steps: [
+      { focus: ['step-1'], caption: 'Parliament makes statute law — the supreme source.' },
+      { focus: ['step-1', 'step-2'], caption: 'The judiciary develops the common law through binding precedent.' },
+      { focus: ['step-1', 'step-2', 'step-3'], caption: 'Courts apply and interpret both, bound by the hierarchy above them.' },
+    ],
+  },
+  '2-1-1-formation-of-contract': {
+    steps: [
+      { focus: ['step-1'], caption: 'A contract needs offer, acceptance, consideration and intention to be bound.' },
+      { focus: ['step-1', 'step-2'], caption: 'With all four present, there is a valid, binding contract.' },
+    ],
+  },
+  '3-1-1-criminal-liability': {
+    steps: [
+      { focus: ['step-1'], caption: 'Actus reus — the guilty act, plus causation.' },
+      { focus: ['step-1', 'step-2'], caption: 'Mens rea — the guilty mind: intention or recklessness.' },
+      { focus: ['step-1', 'step-2', 'step-3'], caption: 'Both together, with no valid defence, establish criminal liability.' },
+    ],
+  },
+  '4-2-1-remedies': {
+    steps: [
+      { focus: ['step-1'], caption: 'When a civil wrong is proven, the court awards a remedy.' },
+      { focus: ['step-1', 'step-2'], caption: 'Damages compensate the loss; equitable remedies compel or restrain conduct.' },
+    ],
+  },
+  // Commerce cluster — accounting & business diagrams given cumulative reveals.
+  '1-3-1-capital-and-revenue-income-and-expenditure': {
+    steps: [
+      { focus: ['step-1'], caption: 'The income statement matches revenue against expenses to give profit for the year.' },
+      { focus: ['step-1', 'step-2'], caption: 'The statement of financial position lists assets and liabilities at a point in time.' },
+    ],
+  },
+  '5-4-1-cost-information': {
+    steps: [
+      { focus: ['step-1'], caption: 'Fixed costs stay the same whatever the output.' },
+      { focus: ['step-1', 'step-2'], caption: 'Variable costs rise with each unit produced.' },
+      { focus: ['step-1', 'step-2', 'step-3'], caption: 'Their sum is total cost — the basis for pricing and break-even.' },
+    ],
+  },
+  '1-4-3-bank-reconciliation-statements': {
+    steps: [
+      { focus: ['step-1'], caption: "Start from the cash book balance — the business's own record." },
+      { focus: ['step-1', 'step-2'], caption: 'Compare it with the balance on the bank statement.' },
+      { focus: ['step-1', 'step-2', 'step-3'], caption: 'The gap is timing differences and errors — unpresented cheques, charges, direct debits.' },
+      { focus: ['step-1', 'step-2', 'step-3', 'step-4'], caption: 'Adjust for them and the two agree at the reconciled balance.' },
+    ],
+  },
+  '5-2-1-business-ownership-and-sources-of-finance': {
+    steps: [
+      { focus: ['step-1'], caption: 'Finance comes from internal sources (retained profit) and external ones (loans, shares).' },
+      { focus: ['step-1', 'step-2'], caption: "It funds the business's assets and operations." },
+      { focus: ['step-1', 'step-2', 'step-3'], caption: 'Which aim to make profit — revenue minus costs.' },
+    ],
+  },
+  '7-1-1-the-relationship-between-business-objectives-and-organisational-structure': {
+    steps: [
+      { focus: ['step-1'], caption: 'Directors set the objectives at the top of the hierarchy.' },
+      { focus: ['step-1', 'step-2'], caption: 'Managers pass them down the chain of command.' },
+      { focus: ['step-1', 'step-2', 'step-3'], caption: 'Teams carry them out — the span of control widens toward the base.' },
+    ],
+  },
+  '3-3-1-the-elements-of-the-marketing-mix-the-4ps': {
+    steps: [
+      { focus: ['step-1'], caption: 'The marketing mix is the set of controllable tools a firm uses to reach buyers.' },
+      { focus: ['step-1', 'step-2'], caption: 'Product, price, place and promotion are the four elements.' },
+      { focus: ['step-1', 'step-2', 'step-3'], caption: 'Aligned to the target market, a coordinated mix wins the right customers profitably.' },
+    ],
+  },
+  '5-5-1-the-meaning-and-purpose-of-budgets': {
+    steps: [
+      { focus: ['step-1'], caption: 'Track cash inflows against outflows, month by month.' },
+      { focus: ['step-1', 'step-2'], caption: 'Their running difference is the net cash position over time.' },
+      { focus: ['step-1', 'step-2', 'step-3'], caption: 'A budget sets the target; the gap to actual is a favourable or adverse variance.' },
+      { focus: ['step-1', 'step-2', 'step-3', 'step-4'], caption: 'Managing it keeps working capital — current assets minus current liabilities — healthy.' },
+    ],
+  },
+  '1-5-1-business-stakeholders': {
+    steps: [
+      { focus: ['step-1'], caption: 'Low power, low interest stakeholders need only minimal effort.' },
+      { focus: ['step-1', 'step-2'], caption: 'Low power, high interest — keep them informed.' },
+      { focus: ['step-1', 'step-2', 'step-3'], caption: 'High power, low interest — keep them satisfied.' },
+      { focus: ['step-1', 'step-2', 'step-3', 'step-4'], caption: 'High power, high interest are the key players — manage them closely.' },
+    ],
+  },
   // Step-animation for diagrams that had the layer structure but no spec, so
   // they rendered flat. Cumulative focus — each step adds a layer, keeping the
   // earlier ones bright. These are the DEFAULT_SLUGs, so the mapped IB lessons

@@ -95,7 +95,7 @@ export default async function SubjectCommandWordsPage({ params }: Props) {
       >
         <MarketingBreadcrumbs items={breadcrumbs} className="mb-4" />
         <div className="mt-4 flex flex-wrap gap-3">
-          <Link href="/mark" className="ec-btn-primary inline-flex min-h-[48px]">
+          <Link href={`/mark?subject=${code}`} className="ec-btn-primary inline-flex min-h-[48px]">
             Mark {code} free <ArrowRight className="h-5 w-5" />
           </Link>
           {entry.guideSlug ? (

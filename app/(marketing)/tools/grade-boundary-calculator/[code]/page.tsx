@@ -180,7 +180,7 @@ export default async function SubjectGradeCalculatorPage({ params }: Props) {
             mark by mark, so you know where the grade was won or lost.
           </p>
           <div className="mt-3 flex flex-wrap justify-center gap-3">
-            <Link href="/mark" className="ec-btn-primary inline-flex min-h-[48px]">
+            <Link href={hasMarking ? `/mark?subject=${code}` : '/mark'} className="ec-btn-primary inline-flex min-h-[48px]">
               Mark {hasMarking ? `${code} ` : ''}free <ArrowRight className="h-5 w-5" />
             </Link>
             {hasMarking ? (

@@ -161,7 +161,7 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
             </div>
           </div>
           <Link
-            href="/mark"
+            href={`/mark?subject=${code}`}
             className="ec-btn-primary ms-auto shrink-0 px-6 py-3 text-sm"
           >
             Mark a {code} question
@@ -217,7 +217,7 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
                   Past papers
                 </p>
                 <p className="ms-body-2">{copy.papers}</p>
-                <Link href="/mark" className="ec-btn-primary mt-4 inline-flex">
+                <Link href={`/mark?subject=${code}`} className="ec-btn-primary mt-4 inline-flex">
                   Mark {code} now →
                 </Link>
               </div>

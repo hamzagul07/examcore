@@ -121,6 +121,51 @@ const SPECS: Record<string, LessonDiagramSpec> = {
       { focus: ['step-1', 'step-2'], caption: "Hygiene factors — pay, conditions, security — only prevent dissatisfaction; they don't motivate." },
     ],
   },
+  // Sociology cluster — flat diagrams given cumulative step reveals.
+  '1-1-the-process-of-learning-and-socialisation': {
+    steps: [
+      { focus: ['step-1'], caption: 'Functionalism sees society as consensus — shared values holding the structure together.' },
+      { focus: ['step-1', 'step-2'], caption: 'Marxism and feminism see conflict — structures serving dominant class or gender interests.' },
+      { focus: ['step-1', 'step-2', 'step-3'], caption: 'Interactionism starts from agency — meaning built up through everyday interaction.' },
+    ],
+  },
+  '2-1-research-methods': {
+    steps: [
+      { focus: ['step-1'], caption: 'Positivists favour quantitative methods — reliable, generalisable, testing cause and effect.' },
+      { focus: ['step-1', 'step-2'], caption: 'Interpretivists favour qualitative methods — valid, in-depth understanding of meaning.' },
+      { focus: ['step-1', 'step-2', 'step-3'], caption: 'The method must fit the aim, and satisfy validity, reliability and ethics.' },
+    ],
+  },
+  '3-1-the-family': {
+    steps: [
+      { focus: ['step-1'], caption: 'The nuclear family is one form among many — extended, lone-parent, reconstituted.' },
+      { focus: ['step-1', 'step-2'], caption: 'Family diversity: roles and structures vary by culture, class, and over time.' },
+    ],
+  },
+  '4-1-education': {
+    steps: [
+      { focus: ['step-1'], caption: 'Education is meant to sort and select on merit — a fair route to opportunity.' },
+      { focus: ['step-1', 'step-2'], caption: 'But attainment gaps by class, ethnicity and gender suggest it reproduces inequality.' },
+    ],
+  },
+  '6-1-globalisation': {
+    steps: [
+      { focus: ['step-1'], caption: 'Globalisation connects societies into one interlinked system.' },
+      { focus: ['step-1', 'step-2'], caption: 'Its flows reshape identity, power, inequality and migration.' },
+    ],
+  },
+  '7-1-religion': {
+    steps: [
+      { focus: ['step-1'], caption: 'Religiosity is measured through attendance, belief and practice.' },
+      { focus: ['step-1', 'step-2'], caption: 'The secularisation thesis claims these are declining — or just changing form.' },
+    ],
+  },
+  '8-1-crime-and-deviance': {
+    steps: [
+      { focus: ['step-1'], caption: "Official statistics record only the crime that's reported and logged." },
+      { focus: ['step-1', 'step-2'], caption: "The 'dark figure' — unreported, undetected crime — sits beneath them." },
+    ],
+  },
   // Step-animation for diagrams that had the layer structure but no spec, so
   // they rendered flat. Cumulative focus — each step adds a layer, keeping the
   // earlier ones bright. These are the DEFAULT_SLUGs, so the mapped IB lessons

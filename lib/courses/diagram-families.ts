@@ -158,6 +158,8 @@ import { BioEvolutionDiagram } from '@/components/diagrams/BioEvolutionDiagram'
 import { DensityPressureDiagram } from '@/components/diagrams/DensityPressureDiagram'
 import { DemographicTransitionDiagram } from '@/components/diagrams/DemographicTransitionDiagram'
 import { StackQueueDiagram } from '@/components/diagrams/StackQueueDiagram'
+import { LinkedListDiagram } from '@/components/diagrams/LinkedListDiagram'
+import { BinaryTreeDiagram } from '@/components/diagrams/BinaryTreeDiagram'
 import { SLUG_FAMILY_COMMERCE_HUMANITIES, SLUG_FAMILY_9706, SLUG_FAMILY_9609 } from '@/lib/courses/generated/subject-visuals'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
@@ -844,6 +846,14 @@ const FAMILIES: Record<string, FamilyEntry> = {
     Component: StackQueueDiagram,
     caption: 'A stack is LIFO (push/pop the top); a queue is FIFO (enqueue the rear, dequeue the front).',
   },
+  'cs-linked-list': {
+    Component: LinkedListDiagram,
+    caption: 'Each node holds a value and a pointer to the next; the head marks the start, a null pointer the end.',
+  },
+  'cs-tree': {
+    Component: BinaryTreeDiagram,
+    caption: 'A binary tree: a root, each node with up to two children, leaves at the tips; its height is the longest root-to-leaf path.',
+  },
 }
 
 /** 9702 slug → diagram family (custom slug-specific diagrams take priority). */
@@ -1523,14 +1533,15 @@ const SLUG_FAMILY_IB_GEOGRAPHY: Record<string, keyof typeof FAMILIES> = {
 }
 
 /**
- * IB Computer Science (HL). First native CS diagram: the stack/queue comparison,
- * which is the picture behind both the abstract-data-structures-and-the-stack
- * lesson and the stacks-queues-and-application lesson. Linked lists and trees
- * (5-2, 5-3) want their own diagrams and are left uncovered for now; the rest of
- * the syllabus (architecture, networks, OOP) has no drawn family yet.
+ * IB Computer Science (HL). The abstract-data-structures cluster, each with its
+ * own native diagram: stack/queue (5-1, 5-4), the singly linked list (5-2) and
+ * the binary tree (5-3). The rest of the syllabus (architecture, networks, OOP)
+ * has no drawn family yet and is left uncovered.
  */
 const SLUG_FAMILY_IB_CS: Record<string, keyof typeof FAMILIES> = {
   '5-1-abstract-data-structures-recursion-and-the-stack': 'cs-data-structures',
+  '5-2-linked-lists': 'cs-linked-list',
+  '5-3-trees-and-binary-trees': 'cs-tree',
   '5-4-stacks-queues-and-the-application-of-data-structures': 'cs-data-structures',
 }
 

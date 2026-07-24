@@ -73,6 +73,20 @@ const SPECS: Record<string, LessonDiagramSpec> = {
   '1-2-changing-populations': DTM_SPEC,
   '5-1-abstract-data-structures-recursion-and-the-stack': STACK_QUEUE_SPEC,
   '5-4-stacks-queues-and-the-application-of-data-structures': STACK_QUEUE_SPEC,
+  '5-2-linked-lists': {
+    steps: [
+      { focus: ['step-1'], caption: 'Each node holds a value.' },
+      { focus: ['step-1', 'step-2'], caption: "A pointer links each node to the next, so they needn't sit together in memory." },
+      { focus: ['step-1', 'step-2', 'step-3'], caption: 'The head marks the start; the last pointer is null, ending the list.' },
+    ],
+  },
+  '5-3-trees-and-binary-trees': {
+    steps: [
+      { focus: ['step-1'], caption: 'A tree starts from a single root node.' },
+      { focus: ['step-1', 'step-2'], caption: 'Each node has up to two children — left and right.' },
+      { focus: ['step-1', 'step-2', 'step-3'], caption: 'Leaves have no children; the height is the longest path from root to leaf.' },
+    ],
+  },
   // Psychology cluster — flat diagrams given cumulative step reveals. These are
   // the DEFAULT_SLUGs, so the mapped IB psychology lessons (research, health)
   // inherit the animation too.

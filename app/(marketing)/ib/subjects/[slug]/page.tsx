@@ -275,7 +275,7 @@ export default async function IbSubjectPage({ params }: Props) {
                 Upload a photo of your answer and get structured, criteria-based feedback on where the
                 marks are.
               </p>
-              <Link href="/mark" className="ec-btn-underline text-sm">
+              <Link href={`/mark?subject=ib-${slug.replace(/-(hl|sl)$/i, '')}`} className="ec-btn-underline text-sm">
                 Get feedback →
               </Link>
             </div>

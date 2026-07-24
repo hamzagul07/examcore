@@ -62,6 +62,36 @@ const DTM_SPEC: LessonDiagramSpec = {
 const SPECS: Record<string, LessonDiagramSpec> = {
   '1-1-population-and-economic-development-patterns': DTM_SPEC,
   '1-2-changing-populations': DTM_SPEC,
+  // Step-animation for diagrams that had the layer structure but no spec, so
+  // they rendered flat. Cumulative focus — each step adds a layer, keeping the
+  // earlier ones bright. These are the DEFAULT_SLUGs, so the mapped IB lessons
+  // (abnormal psychology, respiration) inherit the animation too.
+  '1-1-1-diagnostic-criteria-for-schizophrenia': {
+    steps: [
+      { focus: ['step-1'], caption: 'Diagnosis starts from a checklist of agreed, observable symptoms.' },
+      { focus: ['step-1', 'step-2'], caption: 'Meeting the DSM-5 / ICD-11 criteria gives a reliable, shared diagnosis.' },
+    ],
+  },
+  '1-1-2-explanations-of-schizophrenia': {
+    steps: [
+      { focus: ['step-1'], caption: 'Everyone carries some vulnerability — a genetic or early-life predisposition.' },
+      { focus: ['step-1', 'step-2'], caption: 'Life stress adds to it; together they can push the total past the disorder threshold.' },
+      { focus: ['step-1', 'step-2', 'step-3'], caption: 'Low vulnerability needs high stress to trigger onset — and vice versa.' },
+    ],
+  },
+  '1-1-3-treatment-and-management-of-schizophrenia': {
+    steps: [
+      { focus: ['step-1'], caption: 'Treatment combines biological, psychological and social approaches.' },
+      { focus: ['step-1', 'step-2'], caption: 'Together they support recovery and management better than any single approach.' },
+    ],
+  },
+  '12-2-respiration': {
+    steps: [
+      { focus: ['step-1'], caption: 'Aerobic respiration oxidises glucose: glucose + O₂ → CO₂ + H₂O + ATP.' },
+      { focus: ['step-1', 'step-2'], caption: 'It runs in stages — glycolysis, the link reaction, the Krebs cycle and oxidative phosphorylation.' },
+      { focus: ['step-1', 'step-2', 'step-3'], caption: 'Yielding ~32 ATP per glucose, most of it made on the inner mitochondrial membrane.' },
+    ],
+  },
   '13-3-gravitational-field-of-a-point-mass': {
     params: [
       { id: 'M', label: 'Mass M', min: 1, max: 10, step: 1, default: 5, unit: '×10²⁴ kg' },

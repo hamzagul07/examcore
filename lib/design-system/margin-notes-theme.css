@@ -441,3 +441,25 @@ a { color: inherit; }
   .study-step-sub { display: none; }
   .study-rail-count { display: none; }
 }
+
+/* Recall confirmation — the one moment the spaced-repetition promise is made
+   out loud, so it sits with the quick check rather than in a toast. */
+.qc-recall {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 0 0 18px;
+  padding: 11px 14px;
+  border: 1px solid color-mix(in srgb, var(--stage-prove) 28%, transparent);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--stage-prove) 7%, transparent);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.qc-recall-mark {
+  flex: 0 0 auto;
+  color: var(--stage-prove);
+  font-weight: 700;
+}
+.qc-recall b { font-weight: 650; }

@@ -1,4 +1,4 @@
-import { nextRecallInterval, selectDueRecall, type RecallRow } from './recall-schedule'
+import { nextRecallInterval, selectDueRecall, type RecallRow, describeInterval, FIRST_INTERVAL_DAYS } from './recall-schedule'
 
 let failed = 0
 function check(name: string, ok: boolean) {
@@ -75,6 +75,30 @@ check(
 check('daysSince computed', selectDueRecall([row({ last_worked_at: daysAgo(9) })], none, NOW)[0].daysSince === 9)
 check('malformed due_at is skipped', selectDueRecall([row({ due_at: 'not-a-date' })], none, NOW).length === 0)
 check('row with no slug is skipped', selectDueRecall([row({ lesson_slug: '' })], none, NOW).length === 0)
+
+
+// ── Interval in words ───────────────────────────────────────────────────────
+// Every interval the scheduler can actually produce must read like something a
+// person would say. Driven off the real ladder rather than a copy of it.
+{
+  const ladder = [3, 7, 16, 35, 60]
+  const words = ladder.map((d) => describeInterval(d))
+  check('3 days is exact', words[0] === 'in 3 days')
+  check('7 is a week', words[1] === 'in a week')
+  check('16 is a couple of weeks', words[2] === 'in a couple of weeks')
+  check('35 is about a month', words[3] === 'in about a month')
+  check('60 is about two months', words[4] === 'in about two months')
+  // Nobody thinks in 16s — no phrasing may leak the raw number past a few days.
+  check(
+    'no raw day counts beyond a week',
+    words.slice(1).every((w) => !/\d/.test(w))
+  )
+  check('every interval has words', words.every((w) => w.length > 0))
+  check('first interval is what a guest is promised', FIRST_INTERVAL_DAYS === 3)
+  // Degenerate inputs must not produce "in 0 days".
+  check('same-day reads as tomorrow', describeInterval(0) === 'tomorrow')
+  check('one day reads as tomorrow', describeInterval(1) === 'tomorrow')
+}
 
 if (failed > 0) process.exit(1)
 console.log('recall-schedule.test.ts: all checks passed')

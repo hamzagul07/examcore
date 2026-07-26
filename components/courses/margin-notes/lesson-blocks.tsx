@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback, useRef } from 'react'
 import Link from 'next/link'
+import { describeInterval, FIRST_INTERVAL_DAYS } from '@/lib/courses/recall-schedule'
 import type { MarginNotesLesson } from '@/lib/courses/margin-notes/types'
 import { appendMarkReturn } from '@/lib/courses/format-session'
 import { useLessonMastery } from '@/lib/hooks/useLessonMastery'
@@ -335,6 +336,12 @@ export function QuickCheck({
   // failure (offline, signed out) simply means no scheduling — the quick check
   // itself is unaffected. The route no-ops for guests.
   const recordedRef = useRef(false)
+  // What the server actually did, not what we hope it did. The route already
+  // reports the interval it wrote and no-ops for guests; showing its answer
+  // means the promise on screen can never disagree with the row in the table.
+  const [recall, setRecall] = useState<
+    { recorded: true; intervalDays: number } | { recorded: false } | null
+  >(null)
   useEffect(() => {
     if (!allAnswered || recordedRef.current) return
     if (!subjectCode || !lessonSlug) return
@@ -356,9 +363,21 @@ export function QuickCheck({
         answered,
         total: items.length,
       }),
-    }).catch(() => {
-      recordedRef.current = false
     })
+      .then(async (r) => {
+        if (!r.ok) return
+        const j = (await r.json()) as { recorded?: boolean; intervalDays?: number }
+        setRecall(
+          j.recorded && typeof j.intervalDays === 'number'
+            ? { recorded: true, intervalDays: j.intervalDays }
+            : { recorded: false }
+        )
+      })
+      .catch(() => {
+        // Offline or a server error: say nothing rather than promise a recall
+        // that was never scheduled. Retry on the next completion.
+        recordedRef.current = false
+      })
   }, [allAnswered, answered, items.length, lessonSlug, onComplete, subjectCode])
 
   return (
@@ -376,6 +395,32 @@ export function QuickCheck({
             : `${answered} of ${items.length} answered`}
         </span>
       </div>
+
+      {/* Recall was doing its work invisibly: a row written, a lesson
+          reappearing days later with nothing having said it would. */}
+      {recall ? (
+        <p className="qc-recall" role="status">
+          {recall.recorded ? (
+            <>
+              <span className="qc-recall-mark" aria-hidden>
+                ✓
+              </span>
+              Saved. This lesson comes back{' '}
+              <b>{describeInterval(recall.intervalDays)}</b> — timed for just
+              before you would start forgetting it.
+            </>
+          ) : (
+            <>
+              <span className="qc-recall-mark" aria-hidden>
+                ✓
+              </span>
+              Nice work. Signed-in students get this lesson back{' '}
+              <b>{describeInterval(FIRST_INTERVAL_DAYS)}</b>, timed for just
+              before you would start forgetting it.
+            </>
+          )}
+        </p>
+      ) : null}
 
       {items.map((q, i) => {
         const draft = drafts[i] ?? ''

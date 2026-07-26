@@ -37,6 +37,29 @@ function clampToKnown(days: number): number {
   return found ?? INTERVALS[INTERVALS.length - 1]
 }
 
+/** The first interval, and therefore what a guest would get if they signed in. */
+export const FIRST_INTERVAL_DAYS = INTERVALS[0]
+
+/**
+ * The interval in words.
+ *
+ * Recall is the strongest thing the product does and it happens entirely out of
+ * sight — a student finishes a quick check, a row is written, and days later a
+ * lesson reappears with no memory of having been promised. Saying it out loud
+ * at the moment it is scheduled turns a background job into a commitment.
+ *
+ * Rounded to how people actually talk about time. "In 16 days" is technically
+ * what the schedule says and nobody thinks in 16s.
+ */
+export function describeInterval(days: number): string {
+  if (days <= 1) return 'tomorrow'
+  if (days < 7) return `in ${days} days`
+  if (days < 11) return 'in a week'
+  if (days < 21) return 'in a couple of weeks'
+  if (days < 45) return 'in about a month'
+  return 'in about two months'
+}
+
 export type RecallRow = {
   subject_code: string
   lesson_slug: string

@@ -19,6 +19,8 @@ import { ExplainBlock } from '@/components/courses/ExplainBlock'
 import { FeatureHint, markHintUsed } from '@/components/courses/FeatureHint'
 import { ResumeStrip } from '@/components/courses/ResumeStrip'
 import { StudyStages, StudyStageFooter } from '@/components/courses/StudyStages'
+import { Highlighter, useHighlights } from '@/components/courses/Highlighter'
+import { HighlightRecap } from '@/components/courses/HighlightRecap'
 import {
   stagesPresent,
   stageForSection,
@@ -278,6 +280,16 @@ export function CourseLessonPage({
 
   const activeStage = study ? stage : null
 
+  // Highlights. Painted with the CSS Custom Highlight API rather than wrapped
+  // in <mark>, so nothing is inserted into DOM that React owns — see
+  // highlight-dom.ts for why that matters here.
+  const {
+    list: highlights,
+    setList: setHighlights,
+    supported: hlSupported,
+    repaint: repaintHighlights,
+  } = useHighlights(L.lessonSlug, articleRef)
+
   // Only hints for features this lesson actually has. One shows at a time; the
   // rest wait for another visit.
   // What the contents lists show. In study mode the rail is the top-level
@@ -299,10 +311,21 @@ export function CourseLessonPage({
     // Only worth offering on a lesson long enough to be worth breaking up, and
     // pointless to advertise to somebody already using it.
     if (!study && stages.length > 2) out.push(HINT_KEYS.studyMode)
+    // Only where the browser can actually paint them.
+    if (hlSupported && !highlights.length) out.push(HINT_KEYS.highlight)
     if (stepSyncEnabled) out.push(HINT_KEYS.diagramSync)
     if (L.quiz?.length && !quizLocked) out.push(HINT_KEYS.quickCheck)
     return out
-  }, [L.notes?.length, L.quiz?.length, quizLocked, stages.length, stepSyncEnabled, study])
+  }, [
+    L.notes?.length,
+    L.quiz?.length,
+    highlights.length,
+    hlSupported,
+    quizLocked,
+    stages.length,
+    stepSyncEnabled,
+    study,
+  ])
 
 
   // Switching stage swaps most of the page out, so the old scroll position is
@@ -787,6 +810,7 @@ export function CourseLessonPage({
             />
 
             <FeatureHint hintKey={HINT_KEYS.studyMode} available={availableHints} />
+            <FeatureHint hintKey={HINT_KEYS.highlight} available={availableHints} />
 
             {activeStage ? (
               <StudyStages
@@ -1153,6 +1177,8 @@ export function CourseLessonPage({
               </section>
             ) : null}
 
+            <HighlightRecap list={highlights} onJump={scrollToSection} />
+
             {activeStage ? (
               <StudyStageFooter
                 stages={stages}
@@ -1191,6 +1217,15 @@ export function CourseLessonPage({
           </article>
         </div>
       )}
+
+      <Highlighter
+        list={highlights}
+        setList={setHighlights}
+        supported={hlSupported}
+        repaint={repaintHighlights}
+        rootRef={articleRef}
+        repaintKey={`${activeStage ?? 'doc'}|${simpler}|${mode}`}
+      />
     </main>
   )
 }

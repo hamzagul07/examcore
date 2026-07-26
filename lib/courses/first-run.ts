@@ -18,6 +18,7 @@
 export const HINT_KEYS = {
   explain: 'explain-block',
   studyMode: 'study-mode',
+  highlight: 'highlight',
   diagramSync: 'diagram-sync',
   quickCheck: 'quick-check',
 } as const

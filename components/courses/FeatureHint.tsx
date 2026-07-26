@@ -28,6 +28,10 @@ const COPY: Record<HintKey, { title: string; body: string }> = {
     title: 'This page is longer than it needs to be',
     body: 'Turn on Study mode, top right, and the lesson comes one step at a time instead of all at once — orient, see it, read it, test yourself, then do a real question. Nothing is removed; you can switch back whenever.',
   },
+  [HINT_KEYS.highlight]: {
+    title: 'You can mark this page up',
+    body: 'Select any sentence and choose Key point, Don\u2019t get it, or Exam-worthy. It stays there next time, and everything you marked is collected at the bottom of the lesson — so "the four things I did not follow" becomes a revision list.',
+  },
   [HINT_KEYS.diagramSync]: {
     title: 'The diagram follows your reading',
     body: 'It stays beside the text and advances to whichever step the paragraph you are on is describing. Tap a step to jump the other way.',

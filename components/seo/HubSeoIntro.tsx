@@ -7,6 +7,24 @@ type LinkItem = {
   variant?: 'primary' | 'ghost' | 'muted'
 }
 
+/**
+ * Callers assemble these links from several sources — a curated list, sibling
+ * courses, blog links, community — and two sources can legitimately point at the
+ * same place. On the IB hub, "Practice by topic" and a blog link both resolved to
+ * /ib/past-papers/<slug>#ib-topic-practice, which rendered the chip twice and
+ * tripped React's duplicate-key warning (keys are the href).
+ *
+ * First occurrence wins, so the curated label beats the generated one.
+ */
+function dedupeByHref<T extends { href: string }>(links: T[]): T[] {
+  const seen = new Set<string>()
+  return links.filter((l) => {
+    if (seen.has(l.href)) return false
+    seen.add(l.href)
+    return true
+  })
+}
+
 export function HubSeoIntro({
   heading,
   paragraph,
@@ -29,7 +47,7 @@ export function HubSeoIntro({
       <p className="mb-0 text-sm leading-relaxed text-[var(--ec-text-secondary)] sm:text-base">{paragraph}</p>
       {links?.length ? (
         <div className="mt-4 flex flex-wrap gap-2 hub-seo-intro-links">
-          {links.map((link) => (
+          {dedupeByHref(links).map((link) => (
             <HubSeoLink key={link.href} {...link} />
           ))}
         </div>

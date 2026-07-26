@@ -75,15 +75,35 @@ export function adaptCourseHub(
   subjectName: string,
   lessons: CourseLessonNav[],
   completedSlugs: Set<string>,
-  activeSlug: string | null
+  activeSlug: string | null,
+  /**
+   * Passed explicitly rather than sniffed from `subjectCode`. The canonical IB
+   * hub route supplies the catalog slug ("biology-hl", no `ib-` prefix), so a
+   * prefix test silently classified every IB course as Cambridge — which is how
+   * "40 premium lessons live for Cambridge biology-hl Biology" reached an
+   * indexed page.
+   */
+  board: 'cambridge' | 'ib' = 'cambridge'
 ): MarginNotesCourse {
   const tracks = getPaperTracks(subjectCode, lessons)
   const published = lessons.filter((l) => l.status === 'published' || l.status === 'premium').length
 
+  // Board is derived, not assumed. Every IB hub previously read "for Cambridge
+  // biology-hl Biology" — wrong board, and the raw content-directory slug shown
+  // to the reader. These are indexed pages.
+  const isIb = board === 'ib' || subjectCode.startsWith('ib-')
+  const boardLabel = isIb ? 'IB Diploma' : 'Cambridge'
+  // For Cambridge the code IS the name students search ("9702"); for IB the slug
+  // is an internal directory name and says nothing to anyone.
+  const subjectLabel = isIb ? subjectName : `${subjectCode} ${subjectName}`
+  const markLine = isIb
+    ? 'Learn visually, read concise notes, then practise with criterion marking on every topic.'
+    : 'Learn visually, read concise notes, then mark real past papers on every topic.'
+
   const blurb =
     published > 0
-      ? `${published} premium lessons live for Cambridge ${subjectCode} ${subjectName}. Learn visually, read concise notes, then mark real past papers on every topic.`
-      : `${lessons.length} official syllabus topics for Cambridge ${subjectCode} ${subjectName}. Learn visually, then mark real past papers on every topic.`
+      ? `${published} premium lessons live for ${boardLabel} ${subjectLabel}. ${markLine}`
+      : `${lessons.length} official syllabus topics for ${boardLabel} ${subjectLabel}. ${markLine}`
 
   const papers: MarginNotesPaper[] = tracks.map((track) => ({
     id: paperTabId(track),

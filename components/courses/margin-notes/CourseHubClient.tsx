@@ -63,8 +63,8 @@ export function CourseHubClient({
   )
 
   const course = useMemo(
-    () => adaptCourseHub(code, name, lessons, completedSlugs, activeSlug),
-    [code, name, lessons, completedSlugs, activeSlug]
+    () => adaptCourseHub(code, name, lessons, completedSlugs, activeSlug, board),
+    [code, name, lessons, completedSlugs, activeSlug, board]
   )
   const initialPaperId = paperIdFromNumber(course.papers, initialPaperNumber ?? null)
   const prog = lessons.length ? Math.round((done.size / lessons.length) * 100) : 0

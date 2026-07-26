@@ -69,6 +69,34 @@ export default async function IbCoursePage({ params }: Props) {
         <h1 className="sr-only">
           {subject.name} ({short}) — free IB {subject.level} course
         </h1>
+      </div>
+      <CourseHubClient
+        code={slug}
+        name={course.name}
+        level={course.level}
+        lessons={navLessons}
+        initialPaperNumber={null}
+        basePath="/ib/courses"
+        coursesCrumb={{ label: 'IB courses', href: '/ib/courses' }}
+        board="ib"
+        asideExtra={<IbLegitResourcesPanel slug={catalogSlug} />}
+        community={
+          communityOn ? (
+            <div className="hub-community">
+              <CommunityEntry
+                subjectCode={catalogSlug}
+                title={`IB ${subject.name} ${subject.level} Exam Room`}
+              />
+            </div>
+          ) : null
+        }
+      />
+
+      {/* Search-intent intro, deliberately AFTER the course itself — the
+          catalog page already does this and reads far better for it. A
+          student arriving here should meet their course, not link chips.
+          Same DOM, same server render; only the order changed. */}
+      <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pb-10 pt-14 sm:px-6">
         <HubSeoIntro
           headingLevel="h2"
           heading={intro.heading}
@@ -116,27 +144,6 @@ export default async function IbCoursePage({ params }: Props) {
           </p>
         ) : null}
       </div>
-      <CourseHubClient
-        code={slug}
-        name={course.name}
-        level={course.level}
-        lessons={navLessons}
-        initialPaperNumber={null}
-        basePath="/ib/courses"
-        coursesCrumb={{ label: 'IB courses', href: '/ib/courses' }}
-        board="ib"
-        asideExtra={<IbLegitResourcesPanel slug={catalogSlug} />}
-        community={
-          communityOn ? (
-            <div className="hub-community">
-              <CommunityEntry
-                subjectCode={catalogSlug}
-                title={`IB ${subject.name} ${subject.level} Exam Room`}
-              />
-            </div>
-          ) : null
-        }
-      />
     </>
   )
 }

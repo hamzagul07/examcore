@@ -146,7 +146,21 @@
 /* ============================================================
    COURSE HUB  (/courses/9702)
    ============================================================ */
-.hub-hero { background: var(--bg-soft); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-top: 8px; padding: 38px 0; }
+/* ── Course hub opening ──────────────────────────────────────────────────────
+   Matches the lesson page: the subject accent washes in behind the hero rather
+   than the hero sitting in a hard-edged grey band between two rules. */
+.hub-hero {
+  position: relative;
+  margin-top: 8px;
+  padding: 46px 0 42px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(110% 120% at 12% 0%,
+      color-mix(in srgb, var(--hub-acc, var(--ink)) 10%, transparent) 0%,
+      transparent 58%),
+    var(--bg-soft);
+}
 .hub-hero-inner { display: grid; grid-template-columns: 1.55fr 1fr; gap: 40px; align-items: center; }
 .hub-hero-left { display: flex; gap: 26px; align-items: flex-start; }
 .hub-glyph { font-family: 'Newsreader', serif; font-size: 92px; line-height: 0.8; color: var(--hub-acc, var(--acc-violet)); font-weight: 500; flex-shrink: 0; }
@@ -1597,8 +1611,25 @@
 .continue-title { margin: 3px 0 2px; }
 .continue-topic { font-weight: 400; font-style: italic; }
 .continue-blurb { font-size: 14px; margin: 0; }
-.hub-hero-title { font-size: clamp(40px, 5.5vw, 68px); }
-.hub-lead { margin-top: 12px; }
+.hub-hero-title { font-size: clamp(42px, 6vw, 76px); letter-spacing: -0.03em; line-height: 0.98; text-wrap: balance; }
+.hub-lead { margin-top: 16px; font-size: 18.5px; line-height: 1.6; max-width: 54ch; }
+
+/* The drop-cap is the subject's mark — let it carry more weight. */
+.hub-glyph { line-height: 0.78; opacity: 0.92; }
+
+/* Same section rhythm as the lesson page: a hairline that fades out, so the
+   hub reads as a sequence rather than a stack of boxes. */
+.hub-body .hub-sec-title,
+.hub-body > section > h2 { letter-spacing: -0.02em; }
+
+@media (max-width: 640px) {
+  .hub-hero { padding: 30px 0 28px; }
+  .hub-hero-left { gap: 16px; }
+  .hub-glyph { font-size: 62px; }
+  .hub-hero-title { font-size: clamp(34px, 10vw, 48px); }
+  .hub-lead { font-size: 16.5px; }
+  .hub-cta-row { gap: 10px; margin-top: 18px; }
+}
 .hub-prog-copy { font-size: 14px; margin: 0; }
 .hub-prog-sync { margin-top: 6px; }
 .hub-streak-copy { font-size: 13.5px; }

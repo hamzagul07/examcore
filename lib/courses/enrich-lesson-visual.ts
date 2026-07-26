@@ -285,7 +285,12 @@ export function enrichLessonVisual(
         blocks.push({
           type: 'diagram-image',
           src,
-          alt: `${lesson.title} diagram for Cambridge ${subjectCode}`,
+          // Board is derived: this alt text read "for Cambridge ib-biology-hl"
+          // on every IB diagram — wrong board and an internal slug, in the one
+          // string a screen-reader user actually hears.
+          alt: `${lesson.title} diagram — ${
+            subjectCode.startsWith('ib-') ? 'IB Diploma' : `Cambridge ${subjectCode}`
+          }`,
         })
       } else if (lesson.diagram?.src) {
         blocks.push({

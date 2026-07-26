@@ -640,3 +640,65 @@ a { color: inherit; }
 
 /* Quoted highlights are body copy, not links — --ink is the green accent. */
 .hl-recap-quote { color: var(--text); }
+
+/* ── Diagram palette ────────────────────────────────────────────────────────
+   Every diagram in the product was drawn in one colour: 113 uses of
+   --ec-brand and currentColor for everything else. That is fine for a single
+   figure and deadening across a whole course — nothing in a circuit told you
+   the source, the resistor and the current were different kinds of thing.
+
+   These are semantic roles rather than decoration. A diagram should use the
+   warm one for energy, the hot one for force, the cool one for fields and
+   flow, so the colour is doing work a student can read. */
+:root {
+  --dg-warm: #c07a2b;   /* energy, heat, sources */
+  --dg-cool: #3d7f9d;   /* fields, flow, water */
+  --dg-hot: #b3546c;    /* force, current, the thing that acts */
+  --dg-violet: #6a6aa8; /* abstract quantities, time, axes */
+  --dg-green: #3f8b64;  /* matter, mass, living things */
+  --dg-soft: color-mix(in srgb, currentColor 8%, transparent);
+}
+/* Brighter on dark paper — the light values go muddy against a dark ground. */
+[data-theme='dark'] {
+  --dg-warm: #e0a04a;
+  --dg-cool: #63aecd;
+  --dg-hot: #e0899f;
+  --dg-violet: #9a97dd;
+  --dg-green: #5fc08e;
+  --dg-soft: color-mix(in srgb, currentColor 12%, transparent);
+}
+
+/* Live diagrams take the subject's accent.
+
+   All 202 diagram components draw with var(--course-subject-accent,
+   var(--ec-brand)), and the token bridge pins BOTH to the one green — which is
+   why every figure in the product looked identical. Re-pointing them makes
+   physics violet, computer science slate, biology green, with no change to any
+   diagram component.
+
+   It has to go on .lesson-page and not on .course-root, where the bridge lives:
+   course-root is an ANCESTOR of the element carrying --acc-lesson, so the var
+   is not in scope there and the declaration silently falls back. Setting it per
+   diagram container half-worked and was worse than not doing it — some strokes
+   picked up the accent while the structure around them stayed green, which read
+   as a mistake rather than a scheme. */
+.lesson-page {
+  --course-subject-accent: var(--acc-lesson, var(--ink));
+  --ec-brand: var(--acc-lesson, var(--ink));
+}
+
+/* The diagram stylesheets colour another 26 strokes and fills straight from
+   --ink, which the token re-pointing above cannot reach — so a figure came out
+   half accent and half green, reading as a mistake rather than a scheme.
+   Remapping --ink inside the diagram frame catches those too. Scoped to the
+   frame deliberately: --ink is the page's brand colour everywhere else, and
+   this must not repaint buttons, links or headings outside the figure. */
+.visual-stack,
+.diagram-wrap,
+.diagram-stage,
+.course-step-stage-visual,
+.course-step-stage-diagram,
+.lesson-diagram,
+.course-topic-diagram {
+  --ink: var(--acc-lesson, #19774d);
+}

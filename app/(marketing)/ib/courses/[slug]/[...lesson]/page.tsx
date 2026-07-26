@@ -10,6 +10,7 @@ import { ibCatalogSlug, ibSubjectForSlug } from '@/lib/ib/slug-resolve'
 import { enrichLessonVisual } from '@/lib/courses/enrich-lesson-visual'
 import { buildIbCourseLessonSeo, buildIbCourseSubjectSeo } from '@/lib/seo/ib-course-seo'
 import { CourseLessonClient } from '@/components/courses/margin-notes/CourseLessonClient'
+import { getCriterionLadder } from '@/lib/courses/criterion-ladder.server'
 import { CourseLessonSeoIntro } from '@/components/courses/CourseLessonSeoIntro'
 import { appendMarkReturn } from '@/lib/courses/format-session'
 import { GuestSignupGate } from '@/components/auth/GuestSignupGate'
@@ -57,6 +58,9 @@ export default async function IbLessonPage({ params }: Props) {
   const catalogSlug = ibCatalogSlug(slug)
 
   const lessons = getIbCourseLessons(slug)
+  // Verbatim IB criteria for this component — null for subjects whose criteria
+  // are not loaded, which is most of them.
+  const criterionLadder = await getCriterionLadder(`ib-${slug}`, l.paper)
   const enriched = enrichLessonVisual(slug, l)
   const seo = buildIbCourseLessonSeo(subject, l)
   const subjectSeo = buildIbCourseSubjectSeo(subject, lessons.length)
@@ -94,6 +98,7 @@ export default async function IbLessonPage({ params }: Props) {
 
       <GuestSignupGate>
         <CourseLessonClient
+          criterionLadder={criterionLadder}
           subjectCode={slug}
           subjectName={subject.name}
           lesson={l}

@@ -13,6 +13,7 @@ import { useAuthCheck } from '@/lib/hooks/useAuthCheck'
 import { useBillingAccess } from '@/lib/hooks/useBillingAccess'
 import { buildSignInHref } from '@/lib/auth-redirect'
 import { CourseLessonPage } from '@/components/courses/margin-notes/CourseLessonPage'
+import type { CriterionLadderData } from '@/lib/courses/criterion-ladder.server'
 import { LessonPageSkeleton } from '@/components/courses/margin-notes/MarginNotesSkeletons'
 
 type Props = {
@@ -27,6 +28,8 @@ type Props = {
   coursesCrumb?: { label: string; href: string }
   /** Exam Room entry card — rendered from a server component parent. */
   community?: React.ReactNode
+  /** Verbatim IB criteria for this lesson's component, fetched server-side. */
+  criterionLadder?: CriterionLadderData | null
 }
 
 export function CourseLessonClient({
@@ -40,6 +43,7 @@ export function CourseLessonClient({
   basePath,
   coursesCrumb,
   community,
+  criterionLadder,
 }: Props) {
   const { done } = useCourseProgress(subjectCode)
   const { user, loading: authLoading } = useAuthCheck()
@@ -71,6 +75,7 @@ export function CourseLessonClient({
         basePath={basePath}
         coursesCrumb={coursesCrumb}
         community={community}
+        criterionLadder={criterionLadder}
       />
     </Suspense>
   )

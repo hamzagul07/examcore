@@ -18,6 +18,7 @@ import { CourseLessonJsonLd } from '@/components/seo/CourseLessonJsonLd'
 import { CourseLessonSeoIntro } from '@/components/courses/CourseLessonSeoIntro'
 import { appendMarkReturn } from '@/lib/courses/format-session'
 import { CourseLessonClient } from '@/components/courses/margin-notes/CourseLessonClient'
+import { getCriterionLadder } from '@/lib/courses/criterion-ladder.server'
 import { GuestSignupGate } from '@/components/auth/GuestSignupGate'
 import { stripLessonsForNav } from '@/lib/courses/lesson-nav'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
@@ -140,6 +141,9 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
   const lessons = getCourseLessons(code)
   const pastPaperQuestions = await fetchPastPaperQuestionsForTopic(code, lesson.topicCode, 2)
   const enriched = enrichLessonVisual(code, lesson)
+  // No-op for Cambridge codes: resolveComponent only maps IB subjects whose
+  // criteria are actually loaded.
+  const criterionLadder = await getCriterionLadder(code, lesson.paper)
   const seo = buildCourseLessonSeo(course, lesson)
   const subjectSeo = buildSubjectCourseSeo(course, course.lessonCount)
   const isPilotLesson = lesson.status === 'pilot' || isPilotPreview
@@ -197,6 +201,7 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
 
       <GuestSignupGate>
         <CourseLessonClient
+          criterionLadder={criterionLadder}
           subjectCode={code}
           subjectName={course.name}
           lesson={lessonForClient}

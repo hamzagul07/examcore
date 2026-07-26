@@ -999,6 +999,27 @@
 .qc-retry:hover { color: var(--text); }
 .qc-write[hidden] { display: none; }
 
+/* criterion ladder — verbatim IB descriptors */
+.crit-ladder { display: flex; flex-direction: column; gap: 14px; }
+.crit-ladder-lead { color: var(--text-2); margin: 0; }
+.crit-list { display: flex; flex-direction: column; gap: 8px; }
+.crit { border: 1px solid var(--border); border-radius: 12px; background: var(--surface); transition: border-color 150ms ease; }
+.crit:hover { border-color: var(--ink-border); }
+.crit.on { border-color: var(--ink-border); background: var(--ink-soft); }
+.crit-head { display: flex; align-items: baseline; gap: 12px; width: 100%; text-align: left; background: none; border: 0; padding: 13px 18px; cursor: pointer; font-family: inherit; color: inherit; }
+.crit-letter { flex-shrink: 0; color: var(--ink); font-size: 13px; font-weight: 700; }
+.crit-name { flex: 1; min-width: 0; font-size: 15.5px; font-weight: 500; }
+.crit-marks { flex-shrink: 0; color: var(--muted); font-size: 12px; }
+.crit-bands { list-style: none; margin: 0; padding: 0 18px 16px; display: flex; flex-direction: column; gap: 10px; }
+.crit-band { display: flex; gap: 12px; padding-left: 12px; border-left: 2px solid var(--border-strong); }
+.crit-band.top { border-left-color: var(--ink); }
+.crit-band-marks { flex-shrink: 0; min-width: 3.2rem; font-size: 12px; color: var(--muted); padding-top: 2px; }
+.crit-band-text { color: var(--text-2); min-width: 0; }
+.crit-band-text p { margin: 0; }
+@media (max-width: 480px) {
+  .crit-band { flex-direction: column; gap: 4px; }
+}
+
 /* progress + completion */
 .qc-progress { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
 .qc-progress[aria-hidden='true'] { display: none; }

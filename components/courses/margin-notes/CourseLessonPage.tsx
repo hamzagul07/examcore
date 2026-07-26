@@ -16,6 +16,8 @@ import { CourseLessonDiagramShell } from '@/components/courses/margin-notes/Cour
 import { LessonComparisonTable } from '@/components/courses/margin-notes/LessonComparisonTable'
 import { CourseRichText } from '@/components/courses/CourseRichText'
 import { ExplainBlock } from '@/components/courses/ExplainBlock'
+import { CriterionLadder } from '@/components/courses/CriterionLadder'
+import type { CriterionLadderData } from '@/lib/courses/criterion-ladder.server'
 import { useLessonStepSync } from '@/lib/courses/use-lesson-step-sync'
 import { useCourseProgress } from '@/components/courses/CourseProgressClient'
 import { appendMarkReturn } from '@/lib/courses/format-session'
@@ -53,6 +55,8 @@ type Props = {
   coursesCrumb?: { label: string; href: string }
   /** Exam Room entry card — rendered from a server component parent. */
   community?: React.ReactNode
+  /** Verbatim IB criteria for this lesson's component, fetched server-side. */
+  criterionLadder?: CriterionLadderData | null
 }
 
 export function CourseLessonPage({
@@ -65,6 +69,7 @@ export function CourseLessonPage({
   basePath = '/courses',
   coursesCrumb = { label: 'Courses', href: '/courses' },
   community,
+  criterionLadder,
 }: Props) {
   // Free tier sees notes + formulas only — live diagrams, practice questions and
   // the interactive blocks are gated. `undefined` (loading / SSR) renders full so
@@ -161,6 +166,7 @@ export function CourseLessonPage({
       [
         { id: 'simple', label: 'Simple explanation', on: !!L.simple },
         { id: 'syllabus', label: 'Syllabus coverage', on: !!L.subtopics?.length },
+        { id: 'criteria', label: 'How it’s marked', on: !!criterionLadder },
         { id: 'visual', label: 'Visual learning', on: hasVisual && !diagramsLocked },
         { id: 'formulas', label: 'Key formulas', on: !!L.formulas?.length },
         { id: 'compare', label: 'Side by side', on: !!L.comparisonTable },
@@ -175,7 +181,7 @@ export function CourseLessonPage({
         { id: 'resources', label: 'Extra links', on: !!L.resources?.length },
         { id: 'faqs', label: 'FAQs', on: !!L.faqs?.length },
       ].filter((s) => s.on),
-    [L, hasVisual, locked, diagramsLocked, quizLocked]
+    [L, hasVisual, locked, diagramsLocked, quizLocked, criterionLadder]
   )
 
   useEffect(() => {
@@ -616,6 +622,17 @@ export function CourseLessonPage({
                     </li>
                   ))}
                 </ol>
+              </section>
+            ) : null}
+
+            {criterionLadder ? (
+              <section id="criteria" className="lsec">
+                <SecHead
+                  k="·"
+                  title="How it’s marked"
+                  sub="The official criteria for this component — descriptors word for word, not paraphrased."
+                />
+                <CriterionLadder data={criterionLadder} />
               </section>
             ) : null}
 

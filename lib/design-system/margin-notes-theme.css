@@ -702,3 +702,51 @@ a { color: inherit; }
 .course-topic-diagram {
   --ink: var(--acc-lesson, #19774d);
 }
+
+/* ── Section colour identity ────────────────────────────────────────────────
+   Sixteen sections in a row, all styled identically, is what makes a long
+   lesson feel like one undifferentiated wall — you cannot tell from a glance
+   whether you are reading, checking yourself, or being asked to produce
+   something.
+
+   The hue comes from the SAME stage table study mode uses, so it is telling
+   you what KIND of work a section is rather than decorating it, and the two
+   modes agree about what belongs together. Reading is always the violet-blue
+   family, checking always rose, proving always green — across every lesson and
+   every subject, which is what lets it become a habit rather than noise. */
+.lsec[data-stage='orient'] { --sec: var(--stage-orient); }
+.lsec[data-stage='see'] { --sec: var(--stage-see); }
+.lsec[data-stage='read'] { --sec: var(--stage-read); }
+.lsec[data-stage='check'] { --sec: var(--stage-check); }
+.lsec[data-stage='prove'] { --sec: var(--stage-prove); }
+
+.lsec[data-stage] .lsec-k {
+  color: var(--sec);
+  background: color-mix(in srgb, var(--sec) 12%, transparent);
+  border-radius: 6px;
+  padding: 2px 7px;
+}
+/* The dash beside the number and the hairline above the heading pick up the
+   hue too, so the eye catches the change of section before it reads a word. */
+.lsec[data-stage] .lsec-k::after {
+  background: var(--sec);
+  opacity: 0.75;
+}
+.lsec[data-stage] .lsec-head::before {
+  background: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--sec) 55%, transparent) 0%,
+    var(--border) 22%,
+    transparent 92%
+  );
+}
+
+/* Contents rail: the same hue on the marker, so the list and the page agree
+   about which sections belong together. */
+.toc-link[data-stage='orient'] { --sec: var(--stage-orient); }
+.toc-link[data-stage='see'] { --sec: var(--stage-see); }
+.toc-link[data-stage='read'] { --sec: var(--stage-read); }
+.toc-link[data-stage='check'] { --sec: var(--stage-check); }
+.toc-link[data-stage='prove'] { --sec: var(--stage-prove); }
+.toc-link[data-stage] .toc-num { color: var(--sec); }
+.toc-link[data-stage].read .toc-num { opacity: 0.75; }

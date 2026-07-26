@@ -373,18 +373,6 @@ export function CourseLessonPage({
     [goStage, stage, stages]
   )
 
-  // Stamp each section with its stage so CSS can hide the inactive ones. Done
-  // here rather than on seventeen JSX nodes: the mapping is one table, and a
-  // section added later inherits the fail-open behaviour automatically.
-  useEffect(() => {
-    const root = articleRef.current
-    if (!root) return
-    for (const el of root.querySelectorAll<HTMLElement>('section.lsec')) {
-      const s = stageForSection(el.id)
-      if (s) el.dataset.stage = s
-      else delete el.dataset.stage
-    }
-  }, [toc])
 
 
   const tocPct = useMemo(() => {
@@ -750,6 +738,7 @@ export function CourseLessonPage({
                   className={`toc-link${active === tt.id ? ' on' : ''}${
                     readIds.has(tt.id) ? ' read' : ''
                   }`}
+                  data-stage={stageForSection(tt.id) ?? undefined}
                   aria-current={active === tt.id ? 'true' : undefined}
                   onClick={() => scrollToSection(tt.id)}
                 >
@@ -822,7 +811,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.simple ? (
-              <section id="simple" className="lsec">
+              <section id="simple" className="lsec" data-stage={stageForSection('simple') ?? undefined}>
                 <SecHead
                   k="01"
                   title="In simple terms"
@@ -858,7 +847,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.subtopics?.length ? (
-              <section id="syllabus" className="lsec">
+              <section id="syllabus" className="lsec" data-stage={stageForSection('syllabus') ?? undefined}>
                 <SecHead
                   k="·"
                   title="What this topic covers"
@@ -885,7 +874,7 @@ export function CourseLessonPage({
             ) : null}
 
             {criterionLadder ? (
-              <section id="criteria" className="lsec">
+              <section id="criteria" className="lsec" data-stage={stageForSection('criteria') ?? undefined}>
                 <SecHead
                   k="·"
                   title="How it’s marked"
@@ -900,7 +889,7 @@ export function CourseLessonPage({
               data-sync={stepSyncEnabled ? 'on' : 'off'}
             >
             {L.hasDiagram ? (
-              <section id="visual" className="lsec">
+              <section id="visual" className="lsec" data-stage={stageForSection('visual') ?? undefined}>
                 <SecHead
                   k="02"
                   title="Explore the concept"
@@ -936,7 +925,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.formulas?.length ? (
-              <section id="formulas" className="lsec">
+              <section id="formulas" className="lsec" data-stage={stageForSection('formulas') ?? undefined}>
                 <SecHead
                   k="03"
                   title="Key formulas"
@@ -951,7 +940,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.comparisonTable ? (
-              <section id="compare" className="lsec">
+              <section id="compare" className="lsec" data-stage={stageForSection('compare') ?? undefined}>
                 <SecHead
                   k="·"
                   title={L.comparisonTable.title}
@@ -962,7 +951,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.notes?.length ? (
-              <section id="notes" className="lsec">
+              <section id="notes" className="lsec" data-stage={stageForSection('notes') ?? undefined}>
                 <SecHead
                   k="04"
                   title="Full topic notes"
@@ -1024,7 +1013,7 @@ export function CourseLessonPage({
             </div>
 
             {L.worked?.length ? (
-              <section id="worked" className="lsec">
+              <section id="worked" className="lsec" data-stage={stageForSection('worked') ?? undefined}>
                 <SecHead
                   k="05"
                   title="Worked examples"
@@ -1039,7 +1028,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.conceptMap && !locked ? (
-              <section id="cmap" className="lsec">
+              <section id="cmap" className="lsec" data-stage={stageForSection('cmap') ?? undefined}>
                 <SecHead
                   k="06"
                   title="How it all connects"
@@ -1050,7 +1039,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.glossary?.length ? (
-              <section id="glossary" className="lsec">
+              <section id="glossary" className="lsec" data-stage={stageForSection('glossary') ?? undefined}>
                 <SecHead
                   k="07"
                   title="Glossary"
@@ -1061,7 +1050,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.quiz?.length && !quizLocked ? (
-              <section id="quiz" className="lsec">
+              <section id="quiz" className="lsec" data-stage={stageForSection('quiz') ?? undefined}>
                 <SecHead
                   k="08"
                   title="Quick check"
@@ -1081,7 +1070,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.flashcards?.length && !locked ? (
-              <section id="cards" className="lsec">
+              <section id="cards" className="lsec" data-stage={stageForSection('cards') ?? undefined}>
                 <SecHead
                   k="09"
                   title="Revision flashcards"
@@ -1092,7 +1081,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.takeaways?.length ? (
-              <section id="takeaways" className="lsec">
+              <section id="takeaways" className="lsec" data-stage={stageForSection('takeaways') ?? undefined}>
                 <SecHead
                   k="10"
                   title="Key takeaways"
@@ -1110,7 +1099,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.practice ? (
-              <section id="practice" className="lsec">
+              <section id="practice" className="lsec" data-stage={stageForSection('practice') ?? undefined}>
                 <SecHead
                   k="11"
                   title="Practice — then mark it"
@@ -1125,7 +1114,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.resources?.length ? (
-              <section id="resources" className="lsec">
+              <section id="resources" className="lsec" data-stage={stageForSection('resources') ?? undefined}>
                 <SecHead
                   k="·"
                   title="Extra simulations & links"
@@ -1150,7 +1139,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.faqs?.length ? (
-              <section id="faqs" className="lsec">
+              <section id="faqs" className="lsec" data-stage={stageForSection('faqs') ?? undefined}>
                 <SecHead k="·" title="Frequently asked" />
                 <div className="faqs">
                   {L.faqs.map((f, i) => (
@@ -1167,7 +1156,7 @@ export function CourseLessonPage({
             />
 
             {L.practiceQuestions?.length || L.practice ? (
-              <section id="checkpoint" className="lsec">
+              <section id="checkpoint" className="lsec" data-stage={stageForSection('checkpoint') ?? undefined}>
                 <SecHead
                   k="✓"
                   title="Checkpoint"

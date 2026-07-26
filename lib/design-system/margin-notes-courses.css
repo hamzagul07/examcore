@@ -588,13 +588,14 @@
   font-size: 12px; letter-spacing: 0.06em; color: var(--muted);
   margin-bottom: 18px;
 }
-.lesson-metaline-code { color: var(--ink); font-weight: 700; letter-spacing: 0.08em; }
+.lesson-metaline-code { color: var(--hub-acc, var(--ink)); font-weight: 700; letter-spacing: 0.08em; }
 .lesson-metaline-sep { opacity: 0.4; }
 .lesson-metaline-tag {
   margin-left: 2px; padding: 3px 8px; border-radius: 999px;
   font-size: 10px; letter-spacing: 0.12em;
-  color: var(--ink); background: var(--ink-soft);
-  border: 1px solid var(--ink-border);
+  color: var(--hub-acc, var(--ink));
+  background: color-mix(in srgb, var(--hub-acc, var(--ink)) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--hub-acc, var(--ink)) 32%, transparent);
 }
 
 .lesson-title {
@@ -652,8 +653,9 @@
   display: inline-flex; align-items: center; justify-content: center;
   width: 21px; height: 21px; flex-shrink: 0; margin-top: 1px;
   border-radius: 50%; font-size: 10.5px; font-weight: 700;
-  color: var(--ink); background: var(--ink-soft);
-  border: 1px solid var(--ink-border);
+  color: var(--hub-acc, var(--ink));
+  background: color-mix(in srgb, var(--hub-acc, var(--ink)) 9%, transparent);
+  border: 1px solid color-mix(in srgb, var(--hub-acc, var(--ink)) 34%, transparent);
 }
 
 /* ── The lesson sheet ────────────────────────────────────────────────────── */
@@ -671,7 +673,7 @@
 /* ── Progress rail ───────────────────────────────────────────────────────── */
 /* A section that has been worked through swaps its number for a tick. Quiet:
    the point is to show what is left, not to congratulate. */
-.toc-link.read .toc-num { color: var(--ink); opacity: 1; }
+.toc-link.read .toc-num { color: var(--hub-acc, var(--ink)); opacity: 1; }
 .toc-link.read { color: var(--text-2); }
 .toc-link.read:not(.on) { opacity: 0.82; }
 .toc-num { transition: color 200ms ease, opacity 200ms ease; }
@@ -812,7 +814,7 @@
 .simpler-banner .hand { font-size: 22px; color: var(--ink); }
 .lsec { padding-top: 18px; margin-bottom: 56px; scroll-margin-top: calc(var(--ec-nav-height, 72px) + var(--lesson-modebar-height, 56px) + 24px); }
 .lsec-head { margin-bottom: 22px; }
-.lsec-k { font-size: 12px; color: var(--ink); letter-spacing: 0.12em; display: block; margin-bottom: 6px; }
+.lsec-k { font-size: 12px; color: var(--hub-acc, var(--ink)); letter-spacing: 0.12em; display: block; margin-bottom: 6px; }
 .lsec-title { font-size: clamp(28px, 3.4vw, 38px); font-weight: 500; margin: 0; letter-spacing: -0.02em; line-height: 1.08; }
 .lsec-sub { margin-top: 8px; max-width: 56ch; }
 
@@ -950,8 +952,8 @@
 }
 .explain-btn:hover { border-color: var(--border-strong); color: var(--text); }
 .explain-btn.on {
-  border-color: var(--hub-acc, var(--acc-violet)); color: var(--text);
-  background: color-mix(in srgb, var(--hub-acc, var(--acc-violet)) 9%, var(--surface));
+  border-color: var(--hub-acc, var(--ink)); color: var(--text);
+  background: color-mix(in srgb, var(--hub-acc, var(--ink)) 10%, var(--surface));
 }
 .explain-panel {
   margin-top: 10px; padding: 12px 16px;

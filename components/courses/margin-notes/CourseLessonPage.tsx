@@ -276,7 +276,11 @@ export function CourseLessonPage({
     <main
       className="lesson-page"
       data-screen-label={`Lesson — ${L.name}`}
-      style={{ '--acc-lesson': acc } as React.CSSProperties}
+      // Both names: --acc-lesson is what the existing lesson CSS reads, --hub-acc
+      // is what the shared course components (hero wash, section rules, hints,
+      // save prompt) read. Publishing only the first meant every subject's
+      // accent silently fell back to ink green.
+      style={{ '--acc-lesson': acc, '--hub-acc': acc } as React.CSSProperties}
     >
       <ReadingProgress accent={acc} />
       <div className="pg">

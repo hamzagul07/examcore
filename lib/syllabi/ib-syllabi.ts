@@ -12,13 +12,17 @@ import ibComputerScienceHl from './ib-computer-science-hl.json'
 import ibComputerScienceSl from './ib-computer-science-sl.json'
 import ibDanceHl from './ib-dance-hl.json'
 import ibDanceSl from './ib-dance-sl.json'
+import ibDesignTechnologyHl from './ib-design-technology-hl.json'
+import ibDesignTechnologySl from './ib-design-technology-sl.json'
+import ibDigitalSocietyHl from './ib-digital-society-hl.json'
+import ibDigitalSocietySl from './ib-digital-society-sl.json'
 import ibEconomicsHl from './ib-economics-hl.json'
 import ibEconomicsSl from './ib-economics-sl.json'
-import ibEnvironmentalSystemsAndSocietiesSl from './ib-environmental-systems-and-societies-sl.json'
 import ibEnglishALangLitHl from './ib-english-a-lang-lit-hl.json'
 import ibEnglishALangLitSl from './ib-english-a-lang-lit-sl.json'
 import ibEnglishALiteratureHl from './ib-english-a-literature-hl.json'
 import ibEnglishALiteratureSl from './ib-english-a-literature-sl.json'
+import ibEnvironmentalSystemsAndSocietiesSl from './ib-environmental-systems-and-societies-sl.json'
 import ibExtendedEssay from './ib-extended-essay.json'
 import ibFilmHl from './ib-film-hl.json'
 import ibFilmSl from './ib-film-sl.json'
@@ -26,6 +30,8 @@ import ibFrenchBHl from './ib-french-b-hl.json'
 import ibFrenchBSl from './ib-french-b-sl.json'
 import ibGeographyHl from './ib-geography-hl.json'
 import ibGeographySl from './ib-geography-sl.json'
+import ibGlobalPoliticsHl from './ib-global-politics-hl.json'
+import ibGlobalPoliticsSl from './ib-global-politics-sl.json'
 import ibHistoryHl from './ib-history-hl.json'
 import ibHistorySl from './ib-history-sl.json'
 import ibMathsAaHl from './ib-maths-aa-hl.json'
@@ -40,6 +46,8 @@ import ibPsychologyHl from './ib-psychology-hl.json'
 import ibPsychologySl from './ib-psychology-sl.json'
 import ibSpanishBHl from './ib-spanish-b-hl.json'
 import ibSpanishBSl from './ib-spanish-b-sl.json'
+import ibSportsExerciseHealthScienceHl from './ib-sports-exercise-health-science-hl.json'
+import ibSportsExerciseHealthScienceSl from './ib-sports-exercise-health-science-sl.json'
 import ibTheatreHl from './ib-theatre-hl.json'
 import ibTheatreSl from './ib-theatre-sl.json'
 import ibTok from './ib-tok.json'
@@ -64,6 +72,10 @@ export const IB_SYLLABI: Record<string, IbSyllabusFile> = {
   'ib-computer-science-sl': ibComputerScienceSl as IbSyllabusFile,
   'ib-dance-hl': ibDanceHl as IbSyllabusFile,
   'ib-dance-sl': ibDanceSl as IbSyllabusFile,
+  'ib-design-technology-hl': ibDesignTechnologyHl as IbSyllabusFile,
+  'ib-design-technology-sl': ibDesignTechnologySl as IbSyllabusFile,
+  'ib-digital-society-hl': ibDigitalSocietyHl as IbSyllabusFile,
+  'ib-digital-society-sl': ibDigitalSocietySl as IbSyllabusFile,
   'ib-economics-hl': ibEconomicsHl as IbSyllabusFile,
   'ib-economics-sl': ibEconomicsSl as IbSyllabusFile,
   'ib-environmental-systems-and-societies-sl': ibEnvironmentalSystemsAndSocietiesSl as IbSyllabusFile,
@@ -78,6 +90,8 @@ export const IB_SYLLABI: Record<string, IbSyllabusFile> = {
   'ib-french-b-sl': ibFrenchBSl as IbSyllabusFile,
   'ib-geography-hl': ibGeographyHl as IbSyllabusFile,
   'ib-geography-sl': ibGeographySl as IbSyllabusFile,
+  'ib-global-politics-hl': ibGlobalPoliticsHl as IbSyllabusFile,
+  'ib-global-politics-sl': ibGlobalPoliticsSl as IbSyllabusFile,
   'ib-history-hl': ibHistoryHl as IbSyllabusFile,
   'ib-history-sl': ibHistorySl as IbSyllabusFile,
   'ib-maths-aa-hl': ibMathsAaHl as IbSyllabusFile,
@@ -92,6 +106,8 @@ export const IB_SYLLABI: Record<string, IbSyllabusFile> = {
   'ib-psychology-sl': ibPsychologySl as IbSyllabusFile,
   'ib-spanish-b-hl': ibSpanishBHl as IbSyllabusFile,
   'ib-spanish-b-sl': ibSpanishBSl as IbSyllabusFile,
+  'ib-sports-exercise-health-science-hl': ibSportsExerciseHealthScienceHl as IbSyllabusFile,
+  'ib-sports-exercise-health-science-sl': ibSportsExerciseHealthScienceSl as IbSyllabusFile,
   'ib-theatre-hl': ibTheatreHl as IbSyllabusFile,
   'ib-theatre-sl': ibTheatreSl as IbSyllabusFile,
   'ib-tok': ibTok as IbSyllabusFile,

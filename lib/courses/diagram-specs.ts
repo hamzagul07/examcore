@@ -68,7 +68,78 @@ const STACK_QUEUE_SPEC: LessonDiagramSpec = {
   ],
 }
 
+/**
+ * Essay argument map — thesis, evidence, counter, evaluation.
+ *
+ * Cumulative focus: the counter-claim and the evaluation are revealed last
+ * because that is the order in which essays actually improve. Students reliably
+ * produce thesis + evidence; the marks they leave behind are in engaging with
+ * the opposing reading and committing to a judgement.
+ */
+const ESSAY_ARGUMENT_SPEC: LessonDiagramSpec = {
+  steps: [
+    { focus: ['step-1'], caption: 'Start with a thesis that answers the question — a position, not a restatement of the title.' },
+    { focus: ['step-1', 'step-2'], caption: 'Each supporting point is anchored to specific evidence, then analysed — evidence alone scores nothing.' },
+    { focus: ['step-1', 'step-2', 'step-3'], caption: 'State the strongest opposing reading fairly. A straw man counter-claim reads as avoidance, not balance.' },
+    { focus: ['step-1', 'step-2', 'step-3', 'step-4'], caption: 'Weigh both sides and commit to a judgement. This is where the top band is earned.' },
+  ],
+}
+
+/**
+ * Historical causation — long-term causes, trigger, event, consequences.
+ *
+ * Step 2 isolates the trigger on its own because separating the spark from the
+ * conditions is the single most common mid-band error in causation essays.
+ * Step 4 is the weighting judgement, which is the band boundary itself.
+ */
+const HISTORY_CAUSATION_SPEC: LessonDiagramSpec = {
+  steps: [
+    { focus: ['step-1'], caption: 'Start with the long-term causes: the political, economic and ideological conditions that built up over years.' },
+    { focus: ['step-1', 'step-2'], caption: 'The immediate trigger is the spark, not the cause — without those conditions it would have changed nothing.' },
+    { focus: ['step-1', 'step-2', 'step-3'], caption: 'The event follows, and its short-term consequences are the immediate aftermath.' },
+    { focus: ['step-1', 'step-2', 'step-3', 'step-4'], caption: 'Then the long-term and contested effects — and the judgement: which causes mattered most, and why. Listing is one band; ranking is the next.' },
+  ],
+}
+
 const SPECS: Record<string, LessonDiagramSpec> = {
+  // History causation cluster. HL and SL renumber the same topics, so both slug
+  // sets are listed. Descriptive period topics (society and economy, societies
+  // in transition, dynasties) are deliberately NOT mapped — they are not
+  // causal, and the frame would not be the picture behind them.
+  '2-2-causes-and-effects-of-medieval-wars-750-1500': HISTORY_CAUSATION_SPEC,
+  '2-6-causes-and-effects-of-early-modern-wars-1500-1750': HISTORY_CAUSATION_SPEC,
+  '2-11-causes-and-effects-of-20th-century-wars': HISTORY_CAUSATION_SPEC,
+  '2-7-causes-and-effects-of-20th-century-wars': HISTORY_CAUSATION_SPEC,
+  '2-7-origins-development-and-impact-of-industrialization-1750-2005': HISTORY_CAUSATION_SPEC,
+  '2-4-origins-development-and-impact-of-industrialization-1750-2005': HISTORY_CAUSATION_SPEC,
+  '2-8-independence-movements-1800-2000': HISTORY_CAUSATION_SPEC,
+  '2-5-independence-movements-1800-2000': HISTORY_CAUSATION_SPEC,
+  '2-9-evolution-and-development-of-democratic-states-1848-2000': HISTORY_CAUSATION_SPEC,
+  '2-10-authoritarian-states-20th-century': HISTORY_CAUSATION_SPEC,
+  '2-6-authoritarian-states-20th-century': HISTORY_CAUSATION_SPEC,
+  '2-12-the-cold-war-superpower-tensions-and-rivalries': HISTORY_CAUSATION_SPEC,
+  '2-8-the-cold-war-superpower-tensions-and-rivalries': HISTORY_CAUSATION_SPEC,
+  // Digital Society paper 2 is an extended-response essay — same argument skeleton.
+  '4-2-extended-response-essays-paper-2': ESSAY_ARGUMENT_SPEC,
+
+  // Essay-argument cluster — the same skeleton is assessed in English A,
+  // History, Global Politics, TOK and the Extended Essay. HL and SL share slugs
+  // where both offer the lesson.
+  '1-3-paper-1-structured-essay-from-sources': ESSAY_ARGUMENT_SPEC,
+  '3-1-paper-3-regional-depth-study-essay-skills': ESSAY_ARGUMENT_SPEC,
+  '3-2-paper-3-historiography-and-historical-debate': ESSAY_ARGUMENT_SPEC,
+  '2-2-comparative-essay-structure-and-thesis': ESSAY_ARGUMENT_SPEC,
+  '3-1-hl-essay-line-of-inquiry': ESSAY_ARGUMENT_SPEC,
+  '3-2-hl-essay-argument-and-literary-evidence': ESSAY_ARGUMENT_SPEC,
+  '3-3-developing-a-critical-line-of-inquiry': ESSAY_ARGUMENT_SPEC,
+  '4-1-hl-essay-line-of-inquiry-and-research': ESSAY_ARGUMENT_SPEC,
+  '4-2-hl-essay-argument-evidence-and-structure': ESSAY_ARGUMENT_SPEC,
+  '2-1-writing-the-global-politics-essay': ESSAY_ARGUMENT_SPEC,
+  '1-3-structure-and-academic-writing': ESSAY_ARGUMENT_SPEC,
+  '2-3-criterion-c-critical-thinking': ESSAY_ARGUMENT_SPEC,
+  '3-2-tok-essay-argument-and-evidence': ESSAY_ARGUMENT_SPEC,
+  '3-3-tok-essay-perspectives-and-implications': ESSAY_ARGUMENT_SPEC,
+
   '1-1-population-and-economic-development-patterns': DTM_SPEC,
   '1-2-changing-populations': DTM_SPEC,
   '5-1-abstract-data-structures-recursion-and-the-stack': STACK_QUEUE_SPEC,

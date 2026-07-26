@@ -158,6 +158,8 @@ import { BioEvolutionDiagram } from '@/components/diagrams/BioEvolutionDiagram'
 import { DensityPressureDiagram } from '@/components/diagrams/DensityPressureDiagram'
 import { DemographicTransitionDiagram } from '@/components/diagrams/DemographicTransitionDiagram'
 import { StackQueueDiagram } from '@/components/diagrams/StackQueueDiagram'
+import { EssayArgumentMapDiagram } from '@/components/diagrams/EssayArgumentMapDiagram'
+import { HistoryCausationDiagram } from '@/components/diagrams/HistoryCausationDiagram'
 import { LinkedListDiagram } from '@/components/diagrams/LinkedListDiagram'
 import { BinaryTreeDiagram } from '@/components/diagrams/BinaryTreeDiagram'
 import { SLUG_FAMILY_COMMERCE_HUMANITIES, SLUG_FAMILY_9706, SLUG_FAMILY_9609 } from '@/lib/courses/generated/subject-visuals'
@@ -854,6 +856,14 @@ const FAMILIES: Record<string, FamilyEntry> = {
     Component: BinaryTreeDiagram,
     caption: 'A binary tree: a root, each node with up to two children, leaves at the tips; its height is the longest root-to-leaf path.',
   },
+  'essay-argument-map': {
+    Component: EssayArgumentMapDiagram,
+    caption: 'Thesis, evidence, counter-claim, evaluation — the top band is earned by weighing the counter, not by adding more evidence.',
+  },
+  'hist-causation': {
+    Component: HistoryCausationDiagram,
+    caption: 'Long-term causes and an immediate trigger lead to the event, then short- and long-term consequences — listing causes is one band, ranking them is the next.',
+  },
 }
 
 /** 9702 slug → diagram family (custom slug-specific diagrams take priority). */
@@ -1545,6 +1555,71 @@ const SLUG_FAMILY_IB_CS: Record<string, keyof typeof FAMILIES> = {
   '5-4-stacks-queues-and-the-application-of-data-structures': 'cs-data-structures',
 }
 
+/**
+ * The essay-argument cluster — the first family that spans subjects rather than
+ * sitting inside one.
+ *
+ * Every other family here draws a physical or mathematical object. An essay has
+ * none, so this draws the structure the mark scheme rewards, which is shared
+ * across English A, History, Global Politics, TOK and the Extended Essay. Only
+ * lessons explicitly about building the argument are mapped; content topics
+ * ("The Cold War", "Human rights frameworks") are left uncovered, because the
+ * skeleton is not the picture behind those.
+ */
+const SLUG_FAMILY_IB_ESSAY: Record<string, keyof typeof FAMILIES> = {
+  // History (HL and SL share these slugs)
+  '1-3-paper-1-structured-essay-from-sources': 'essay-argument-map',
+  '3-1-paper-3-regional-depth-study-essay-skills': 'essay-argument-map',
+  '3-2-paper-3-historiography-and-historical-debate': 'essay-argument-map',
+  // English A — literature and lang-lit
+  '2-2-comparative-essay-structure-and-thesis': 'essay-argument-map',
+  '3-1-hl-essay-line-of-inquiry': 'essay-argument-map',
+  '3-2-hl-essay-argument-and-literary-evidence': 'essay-argument-map',
+  '3-3-developing-a-critical-line-of-inquiry': 'essay-argument-map',
+  '4-1-hl-essay-line-of-inquiry-and-research': 'essay-argument-map',
+  '4-2-hl-essay-argument-evidence-and-structure': 'essay-argument-map',
+  // Global Politics — NOTE: currently unreachable. The subject has content JSON
+  // but no syllabus tree, so getCourseSubject() returns null and /courses/
+  // ib-global-politics-* soft-404s. The mapping is correct and activates the
+  // day the syllabus tree lands; it just does not render today.
+  '2-1-writing-the-global-politics-essay': 'essay-argument-map',
+  // Extended Essay
+  '1-3-structure-and-academic-writing': 'essay-argument-map',
+  '2-3-criterion-c-critical-thinking': 'essay-argument-map',
+  // Theory of Knowledge
+  '3-2-tok-essay-argument-and-evidence': 'essay-argument-map',
+  '3-3-tok-essay-perspectives-and-implications': 'essay-argument-map',
+  // Digital Society — paper 2 is an extended-response essay. Same caveat as
+  // Global Politics above: no syllabus tree yet, so these pages soft-404 and
+  // this mapping is inert until that is fixed.
+  '4-2-extended-response-essays-paper-2': 'essay-argument-map',
+}
+
+/**
+ * History causation cluster.
+ *
+ * HL and SL renumber the same topics (HL 2-11 is SL 2-7), so both slug sets are
+ * listed. Only the causal topics are mapped: the descriptive period lessons
+ * ("Society and economy 750-1400", "Societies in transition", "Dynasties and
+ * rulers") are left uncovered, because a causation frame is not the picture
+ * behind a survey topic.
+ */
+const SLUG_FAMILY_IB_HISTORY: Record<string, keyof typeof FAMILIES> = {
+  '2-2-causes-and-effects-of-medieval-wars-750-1500': 'hist-causation',
+  '2-6-causes-and-effects-of-early-modern-wars-1500-1750': 'hist-causation',
+  '2-11-causes-and-effects-of-20th-century-wars': 'hist-causation',
+  '2-7-causes-and-effects-of-20th-century-wars': 'hist-causation',
+  '2-7-origins-development-and-impact-of-industrialization-1750-2005': 'hist-causation',
+  '2-4-origins-development-and-impact-of-industrialization-1750-2005': 'hist-causation',
+  '2-8-independence-movements-1800-2000': 'hist-causation',
+  '2-5-independence-movements-1800-2000': 'hist-causation',
+  '2-9-evolution-and-development-of-democratic-states-1848-2000': 'hist-causation',
+  '2-10-authoritarian-states-20th-century': 'hist-causation',
+  '2-6-authoritarian-states-20th-century': 'hist-causation',
+  '2-12-the-cold-war-superpower-tensions-and-rivalries': 'hist-causation',
+  '2-8-the-cold-war-superpower-tensions-and-rivalries': 'hist-causation',
+}
+
 const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9702,
   ...SLUG_FAMILY_9700,
@@ -1568,6 +1643,8 @@ const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_IB_ESS,
   ...SLUG_FAMILY_IB_GEOGRAPHY,
   ...SLUG_FAMILY_IB_CS,
+  ...SLUG_FAMILY_IB_ESSAY,
+  ...SLUG_FAMILY_IB_HISTORY,
 }
 
 const BIOLOGY_SLUGS = new Set(Object.keys(SLUG_FAMILY_9700))
@@ -1642,6 +1719,12 @@ function familyAttribution(slug: string): DiagramAttribution {
     }
     if (family.startsWith('cs-')) {
       return { source: 'MarkScheme computer science diagram family', license: 'Proprietary' }
+    }
+    if (family.startsWith('essay-')) {
+      return { source: 'MarkScheme essay-skills diagram family', license: 'Proprietary' }
+    }
+    if (family.startsWith('hist-')) {
+      return { source: 'MarkScheme history diagram family', license: 'Proprietary' }
     }
   }
   const isAl = /^1[2-9]|^2[0-5]|^paper-5/.test(slug)

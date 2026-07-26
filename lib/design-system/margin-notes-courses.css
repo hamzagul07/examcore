@@ -2804,3 +2804,65 @@ a.scard, a.continue, a.topic-row, a.pn-btn, a.related-card, a.subj-row, a.dash-c
 .plan-killer { padding: 10px 12px; margin-bottom: 14px; font-size: 13px; }
 .plan-cta { min-height: 46px; }
 .plan-bestfor { margin: -6px 0 12px; }
+
+
+/* ── PROTOTYPE: lesson as a path (/dev/lesson-path) ──────────────────────────
+   One stage at a time with an explicit next step, instead of thirteen sections
+   stacked. Scoped under .lpath-root so nothing here touches the live page. */
+.lpath-root { max-width: 900px; margin: 0 auto; padding: 26px 20px 90px; }
+.lpath-flag { color: var(--muted); margin-bottom: 22px; }
+
+.lpath-head { position: sticky; top: 0; z-index: 5; padding: 14px 0 0;
+  background: linear-gradient(to bottom, var(--bg) 72%, transparent); }
+.lpath-meta { display: flex; gap: 9px; align-items: center; font-size: 12px;
+  letter-spacing: 0.06em; color: var(--muted); }
+.lpath-code { color: var(--ink); font-weight: 700; }
+.lpath-title { font-size: clamp(30px, 4.4vw, 46px); letter-spacing: -0.028em;
+  line-height: 1.02; margin: 6px 0 18px; }
+
+.lpath-rail { list-style: none; display: flex; gap: 6px; margin: 0; padding: 0; flex-wrap: wrap; }
+.lpath-rail-item button { display: flex; align-items: center; gap: 8px; cursor: pointer;
+  font-family: inherit; font-size: 13px; color: var(--text-2);
+  background: none; border: 1px solid transparent; border-radius: 999px; padding: 6px 12px 6px 7px;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease; }
+.lpath-rail-item button:hover { border-color: var(--border); color: var(--text); }
+.lpath-rail-dot { display: inline-flex; align-items: center; justify-content: center;
+  width: 21px; height: 21px; border-radius: 50%; font-size: 10.5px; font-weight: 700;
+  border: 1px solid var(--border-strong); color: var(--text-2); flex-shrink: 0; }
+.lpath-rail-item.is-now button { background: var(--ink-soft); border-color: var(--ink-border); color: var(--text); }
+.lpath-rail-item.is-now .lpath-rail-dot { background: var(--ink); border-color: var(--ink); color: var(--on-ink-text); }
+.lpath-rail-item.is-done .lpath-rail-dot { color: var(--ink); border-color: var(--ink-border); }
+.lpath-rail-item.is-todo button { opacity: 0.62; }
+
+.lpath-bar { height: 3px; border-radius: 999px; margin: 16px 0 0;
+  background: color-mix(in srgb, var(--ink) 12%, transparent); overflow: hidden; }
+.lpath-bar span { display: block; height: 100%; background: var(--ink);
+  transition: width 380ms cubic-bezier(.16,.7,.3,1); }
+
+.lpath-stage { padding-top: 34px; animation: lpath-in 340ms cubic-bezier(.16,.7,.3,1); }
+@keyframes lpath-in { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+.lpath-intent { color: var(--muted); margin: 0 0 20px; }
+.lpath-body { display: flex; flex-direction: column; gap: 22px; }
+.lpath-lead p { font-size: 19px; line-height: 1.62; color: var(--text); }
+.lpath-analogy { border-left: 2px solid var(--ink); padding-left: 16px; color: var(--text-2); }
+.lpath-analogy .micro { display: block; color: var(--muted); margin-bottom: 6px; }
+.lpath-objectives { list-style: none; margin: 0; padding: 18px 0 0; border-top: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 12px; }
+.lpath-objectives li { display: flex; gap: 12px; align-items: flex-start; font-size: 15.5px; color: var(--text-2); }
+.lpath-cta { align-self: flex-start; }
+
+.lpath-nav { position: sticky; bottom: 0; display: flex; align-items: center;
+  justify-content: space-between; gap: 14px; margin-top: 44px; padding: 14px 0;
+  background: linear-gradient(to top, var(--bg) 74%, transparent); }
+.lpath-count { color: var(--muted); }
+.lpath-nav button[disabled] { opacity: 0.4; cursor: default; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lpath-stage { animation: none; }
+  .lpath-bar span { transition: none; }
+}
+@media (max-width: 640px) {
+  .lpath-rail-label { display: none; }
+  .lpath-rail-item button { padding: 6px; }
+  .lpath-title { font-size: clamp(26px, 8vw, 34px); }
+}

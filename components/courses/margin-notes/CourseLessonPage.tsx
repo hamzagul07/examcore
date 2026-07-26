@@ -41,6 +41,7 @@ import { trialDaysLeft, type EffectiveAccess } from '@/lib/billing/access'
 import { INTERACTIVE_DIAGRAMS_FREE, QUICK_CHECK_FREE } from '@/lib/billing/features'
 import {
   jumpTo,
+  scrollToElement,
   lessonTopicHref,
   FormulaCard,
   Worked,
@@ -279,6 +280,19 @@ export function CourseLessonPage({
 
   // Only hints for features this lesson actually has. One shows at a time; the
   // rest wait for another visit.
+  // What the contents lists show. In study mode the rail is the top-level
+  // navigation and this becomes "sections in this step" — listing sections that
+  // are hidden meant two navigations stacked, one of them describing a page
+  // that was not on screen. Progress, resume and the stage set deliberately
+  // keep using the full toc: what you navigate is not what you have done.
+  const tocForNav = useMemo(() => {
+    if (!activeStage) return toc
+    return toc.filter((t) => {
+      const s = stageForSection(t.id)
+      return !s || s === activeStage
+    })
+  }, [activeStage, toc])
+
   const availableHints = useMemo(() => {
     const out: HintKey[] = []
     if (L.notes?.length) out.push(HINT_KEYS.explain)
@@ -291,28 +305,42 @@ export function CourseLessonPage({
   }, [L.notes?.length, L.quiz?.length, quizLocked, stages.length, stepSyncEnabled, study])
 
 
-  const toggleStudy = useCallback(() => {
-    setStudy((on) => {
-      const next = !on
-      if (next) markHintUsed(HINT_KEYS.studyMode)
-      try {
-        window.localStorage.setItem(STUDY_PREF_KEY, next ? '1' : '0')
-      } catch {
-        /* ignore */
-      }
-      return next
-    })
-  }, [])
+  // Switching stage swaps most of the page out, so the old scroll position is
+  // meaningless — turning study mode on halfway down a lesson would otherwise
+  // strand you in blank space below content that no longer exists.
+  //
+  // The scroll has to happen AFTER React has committed the new stage, not
+  // inside the state updater: the document collapses from every section to one,
+  // and anything measuring during the old layout scrolls to a stale position.
+  // An effect keyed on the stage is the only point where the measurement is
+  // guaranteed to match what is on screen.
+  const wantsScrollRef = useRef(false)
 
-  const goStage = useCallback(
-    (next: StageId) => {
-      setStage(next)
-      // Land at the top of the new stage. Without this you keep the old scroll
-      // position and arrive halfway down content you have not seen.
-      articleRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    },
-    []
-  )
+  useEffect(() => {
+    if (!wantsScrollRef.current) return
+    wantsScrollRef.current = false
+    const el = articleRef.current
+    if (el) scrollToElement(el)
+  }, [study, stage])
+
+  const toggleStudy = useCallback(() => {
+    const next = !study
+    setStudy(next)
+    if (next) {
+      markHintUsed(HINT_KEYS.studyMode)
+      wantsScrollRef.current = true
+    }
+    try {
+      window.localStorage.setItem(STUDY_PREF_KEY, next ? '1' : '0')
+    } catch {
+      /* ignore */
+    }
+  }, [study])
+
+  const goStage = useCallback((next: StageId) => {
+    wantsScrollRef.current = true
+    setStage(next)
+  }, [])
 
   const stepStudyStage = useCallback(
     (delta: number) => {
@@ -368,10 +396,20 @@ export function CourseLessonPage({
     if (searchParams.get('mode') === 'papers' && practiceCount > 0) setMode('papers')
   }, [searchParams, practiceCount])
 
+  // Inbound #hash, handled once.
+  //
+  // Guarded because scrollToSection now changes identity whenever the study
+  // stage does, and without the guard this effect re-fired on every stage
+  // change and dragged the reader back to the original anchor — which also
+  // reset the stage, since jumping to a section opens the stage that owns it.
+  // Navigating away from a deep link has to be allowed to stick.
+  const hashHandledRef = useRef(false)
   useEffect(() => {
     if (mode !== 'learn' || typeof window === 'undefined') return
+    if (hashHandledRef.current) return
     const hash = window.location.hash.replace('#', '')
     if (!hash) return
+    hashHandledRef.current = true
     const t = window.setTimeout(() => scrollToSection(hash), 150)
     return () => window.clearTimeout(t)
   }, [mode, scrollToSection])
@@ -618,7 +656,7 @@ export function CourseLessonPage({
           >
             {isDone ? '✓ done' : `${tocPct}%`}
           </span>
-          {toc.map((tt) => (
+          {tocForNav.map((tt) => (
             <button
               key={tt.id}
               type="button"
@@ -678,7 +716,11 @@ export function CourseLessonPage({
           <aside className="lesson-toc">
             <p className="micro toc-kicker">ON THIS PAGE</p>
             <nav>
-              {toc.map((tt, i) => (
+              {tocForNav.map((tt) => {
+                // Numbered against the whole lesson, so a section keeps the
+                // same number whichever stage is on screen.
+                const i = toc.findIndex((t) => t.id === tt.id)
+                return (
                 <button
                   key={tt.id}
                   type="button"
@@ -697,7 +739,8 @@ export function CourseLessonPage({
                   {tt.label}
                   {readIds.has(tt.id) ? <span className="sr-only"> — done</span> : null}
                 </button>
-              ))}
+                )
+              })}
             </nav>
             <div className="toc-progress card">
               <Ring pct={tocPct} size={40} stroke={4} color={acc} />

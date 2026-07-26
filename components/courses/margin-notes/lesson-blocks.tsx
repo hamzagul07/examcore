@@ -10,14 +10,54 @@ import type { MasteryLevel } from '@/lib/mastery'
 import { CourseRichText } from '@/components/courses/CourseRichText'
 import { GUEST_EARN_EVENT } from '@/components/auth/GuestSavePrompt'
 
-export function jumpTo(id: string) {
-  const el = document.getElementById(id)
-  if (!el) return
-  const y = el.getBoundingClientRect().top + window.scrollY - 88
+/** Breathing room between the sticky chrome and whatever you jumped to. */
+const JUMP_GAP = 14
+
+/**
+ * How much sticky chrome sits above the content, measured rather than assumed.
+ *
+ * This used to be a hardcoded 88px, which was already too small on desktop —
+ * the nav and mode bar are 128px together — and badly wrong on a phone, where
+ * the mode bar wraps to two lines and the real figure is over 200. The result
+ * was that jumping to a section put its heading underneath the bar you had just
+ * clicked. Reading `top` off the computed style gives where each bar sits once
+ * pinned, so this is right regardless of scroll position, wrapping or safe-area
+ * insets.
+ */
+function stickyChromeHeight(): number {
+  let bottom = 0
+  for (const el of document.querySelectorAll<HTMLElement>('body *')) {
+    const cs = getComputedStyle(el)
+    if (cs.position !== 'sticky' && cs.position !== 'fixed') continue
+    const top = parseFloat(cs.top)
+    // `top: auto` (anything anchored to the bottom, like the back-to-top
+    // button) parses to NaN and is correctly skipped.
+    if (!Number.isFinite(top) || top > 200) continue
+    const r = el.getBoundingClientRect()
+    if (r.height <= 0) continue
+    // Only full-width bars count. The contents sidebar is also sticky near the
+    // top, but it sits beside the prose rather than over it — counting its
+    // height sent every jump several hundred pixels too far.
+    if (r.width < window.innerWidth * 0.6) continue
+    bottom = Math.max(bottom, top + r.height)
+  }
+  return bottom
+}
+
+/** Scroll an element to just below the sticky chrome. */
+export function scrollToElement(el: Element) {
+  const y =
+    el.getBoundingClientRect().top + window.scrollY - stickyChromeHeight() - JUMP_GAP
   const smooth =
     typeof window !== 'undefined' &&
     !window.matchMedia('(prefers-reduced-motion: reduce)').matches
   window.scrollTo({ top: y, behavior: smooth ? 'smooth' : 'instant' })
+}
+
+export function jumpTo(id: string) {
+  const el = document.getElementById(id)
+  if (!el) return
+  scrollToElement(el)
   if (typeof window !== 'undefined') {
     const url = `${window.location.pathname}${window.location.search}#${id}`
     window.history.replaceState(null, '', url)

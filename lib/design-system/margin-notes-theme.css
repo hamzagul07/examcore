@@ -437,9 +437,18 @@ a { color: inherit; }
 .study-foot-name { font-size: 14px; font-weight: 600; }
 .study-foot-end { font-size: 13px; color: var(--ink-3, #6b6355); }
 
+/* On a phone the rail must fit without scrolling, or the last stage is a bare
+   clipped circle with no label and no hint that it scrolls. Only the stage you
+   are on is named; the rest are numbered dots, which is enough to show how far
+   through you are and is what the count line said in words anyway. */
 @media (max-width: 640px) {
+  .study-rail { gap: 8px; padding: 10px; }
+  .study-rail-list { overflow-x: visible; justify-content: space-between; width: 100%; }
   .study-step-sub { display: none; }
   .study-rail-count { display: none; }
+  .study-step { padding: 6px; gap: 7px; }
+  .study-step:not(.on) .study-step-label { display: none; }
+  .study-step.on { padding-right: 12px; }
 }
 
 /* Recall confirmation — the one moment the spaced-repetition promise is made

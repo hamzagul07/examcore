@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   HINT_KEYS,
   STORAGE,
@@ -24,6 +24,10 @@ const COPY: Record<HintKey, { title: string; body: string }> = {
     title: 'Stuck on a paragraph?',
     body: 'Every section has Simpler, Why? and Show me underneath. Tap one and this exact paragraph gets explained again — in plainer words, from first principles, or with a worked example.',
   },
+  [HINT_KEYS.studyMode]: {
+    title: 'This page is longer than it needs to be',
+    body: 'Turn on Study mode, top right, and the lesson comes one step at a time instead of all at once — orient, see it, read it, test yourself, then do a real question. Nothing is removed; you can switch back whenever.',
+  },
   [HINT_KEYS.diagramSync]: {
     title: 'The diagram follows your reading',
     body: 'It stays beside the text and advances to whichever step the paragraph you are on is describing. Tap a step to jump the other way.',
@@ -43,8 +47,17 @@ export function FeatureHint({
   available: readonly HintKey[]
 }) {
   const [show, setShow] = useState(false)
+  // Decided once per page load, never re-derived.
+  //
+  // Without this, using a hint changes what is available, the next-best hint
+  // immediately takes its place, and a reader who acts on one tip gets handed
+  // another — which is how a page becomes a tutorial. The contract is one hint
+  // per visit; the rest wait.
+  const decided = useRef(false)
 
   useEffect(() => {
+    if (decided.current) return
+    decided.current = true
     let seen: Set<string>
     try {
       seen = parseSeen(window.localStorage.getItem(STORAGE))

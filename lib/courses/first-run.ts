@@ -17,6 +17,7 @@
 
 export const HINT_KEYS = {
   explain: 'explain-block',
+  studyMode: 'study-mode',
   diagramSync: 'diagram-sync',
   quickCheck: 'quick-check',
 } as const
@@ -49,7 +50,9 @@ export function hasSeen(seen: ReadonlySet<string>, key: HintKey): boolean {
  *
  * Returns at most one. Order is deliberate: explain first because it is the one
  * a stuck reader needs, and a stuck reader is the person a hint can actually
- * help. The rest wait for another visit.
+ * help. Study mode second because it is the only one that changes how the whole
+ * page works, and finding that out on your fourth visit is finding it out too
+ * late. The rest wait for another visit.
  */
 export function nextHint(
   seen: ReadonlySet<string>,

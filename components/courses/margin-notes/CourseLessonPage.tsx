@@ -16,7 +16,7 @@ import { CourseLessonDiagramShell } from '@/components/courses/margin-notes/Cour
 import { LessonComparisonTable } from '@/components/courses/margin-notes/LessonComparisonTable'
 import { CourseRichText } from '@/components/courses/CourseRichText'
 import { ExplainBlock } from '@/components/courses/ExplainBlock'
-import { FeatureHint } from '@/components/courses/FeatureHint'
+import { FeatureHint, markHintUsed } from '@/components/courses/FeatureHint'
 import { ResumeStrip } from '@/components/courses/ResumeStrip'
 import { StudyStages, StudyStageFooter } from '@/components/courses/StudyStages'
 import {
@@ -152,16 +152,6 @@ export function CourseLessonPage({
   // papers panel mounts a different set of sections.
   useSectionReveal('.lsec', mode === 'learn')
 
-  // Only hints for features this lesson actually has. One shows at a time; the
-  // rest wait for another visit.
-  const availableHints = useMemo(() => {
-    const out: HintKey[] = []
-    if (L.notes?.length) out.push(HINT_KEYS.explain)
-    if (stepSyncEnabled) out.push(HINT_KEYS.diagramSync)
-    if (L.quiz?.length && !quizLocked) out.push(HINT_KEYS.quickCheck)
-    return out
-  }, [L.notes?.length, L.quiz?.length, quizLocked, stepSyncEnabled])
-
   const registerNoteBlock = useLessonStepSync({
     stepCount: syncStepCount,
     setStep,
@@ -287,9 +277,24 @@ export function CourseLessonPage({
 
   const activeStage = study ? stage : null
 
+  // Only hints for features this lesson actually has. One shows at a time; the
+  // rest wait for another visit.
+  const availableHints = useMemo(() => {
+    const out: HintKey[] = []
+    if (L.notes?.length) out.push(HINT_KEYS.explain)
+    // Only worth offering on a lesson long enough to be worth breaking up, and
+    // pointless to advertise to somebody already using it.
+    if (!study && stages.length > 2) out.push(HINT_KEYS.studyMode)
+    if (stepSyncEnabled) out.push(HINT_KEYS.diagramSync)
+    if (L.quiz?.length && !quizLocked) out.push(HINT_KEYS.quickCheck)
+    return out
+  }, [L.notes?.length, L.quiz?.length, quizLocked, stages.length, stepSyncEnabled, study])
+
+
   const toggleStudy = useCallback(() => {
     setStudy((on) => {
       const next = !on
+      if (next) markHintUsed(HINT_KEYS.studyMode)
       try {
         window.localStorage.setItem(STUDY_PREF_KEY, next ? '1' : '0')
       } catch {
@@ -737,6 +742,8 @@ export function CourseLessonPage({
               onJump={scrollToSection}
               practiceHref={quizPracticeHref}
             />
+
+            <FeatureHint hintKey={HINT_KEYS.studyMode} available={availableHints} />
 
             {activeStage ? (
               <StudyStages

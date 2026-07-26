@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server'
+import { contentSubjectCode } from '@/lib/courses/board'
 import { getCourseLesson, getCourseSubject } from '@/lib/courses'
 import { extractNotes } from '@/lib/courses/margin-notes/adapt-lesson'
 import { lessonBlockKey, isExplainIntent } from '@/lib/courses/explain-block-key'
@@ -75,29 +76,17 @@ type ExplainRequestBody = {
 }
 
 /**
- * The two IB lesson routes disagree about what `subjectCode` means.
+ * Content lives under the prefixed code ("ib-biology-hl") but the canonical IB
+ * route passes the catalog slug ("biology-hl"). `contentSubjectCode` normalises
+ * either shape, so the lookup happens once instead of try-then-try-prefixed.
  *
- * `/ib/courses/<slug>` — the canonical, sitemapped route — passes the catalog
- * slug, which `getIbCourseSlugs()` produces by stripping the `ib-` prefix
- * ("history-hl"). The legacy `/courses/ib-<subject>` alias passes the content
- * directory name ("ib-history-hl"). Lesson content only ever lives under the
- * prefixed name.
- *
- * Left unresolved this broke IB lessons two ways: `getCourseLesson()` missed
- * entirely (404 on every canonical IB page), and `isIbCourseCode()` — which
- * tests for the `ib-` prefix — would have reported an IB lesson as Cambridge and
- * prompted the model for B1/M1/A1 marks on a markband subject.
- *
- * Returns the canonical content code so everything downstream (prompt, board
- * detection, cached `subject_code`) agrees regardless of which route called.
+ * Returns the canonical code too, so everything downstream — prompt, board
+ * detection, cached rows — agrees regardless of which route called.
  */
 function resolveLesson(subjectCode: string, lessonSlug: string) {
-  const direct = getCourseLesson(subjectCode, lessonSlug)
-  if (direct) return { code: subjectCode, lesson: direct }
-  if (subjectCode.startsWith('ib-')) return null
-  const prefixed = `ib-${subjectCode}`
-  const viaPrefix = getCourseLesson(prefixed, lessonSlug)
-  return viaPrefix ? { code: prefixed, lesson: viaPrefix } : null
+  const code = contentSubjectCode(subjectCode)
+  const lesson = getCourseLesson(code, lessonSlug)
+  return lesson ? { code, lesson } : null
 }
 
 export async function POST(req: NextRequest) {

@@ -1,4 +1,5 @@
 import 'server-only'
+import { contentSubjectCode } from '@/lib/courses/board'
 
 import { getIbCourseLesson, getIbCourseLessons, getIbCourseSlugs } from '@/lib/courses/ib'
 import { ibCatalogSlug, ibCourseContentSlug } from '@/lib/ib/slug-resolve'
@@ -22,8 +23,7 @@ export type IbTopicPracticePage = {
 }
 
 function ibSyllabusCode(catalogSlug: string): string {
-  const courseSlug = ibCourseContentSlug(catalogSlug)
-  return courseSlug.startsWith('ib-') ? courseSlug : `ib-${courseSlug}`
+  return contentSubjectCode(ibCourseContentSlug(catalogSlug))
 }
 
 function buildPage(

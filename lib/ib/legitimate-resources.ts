@@ -5,6 +5,7 @@
  */
 
 import { getIbSubject } from '@/lib/ib/catalog'
+import { contentSubjectCode } from '@/lib/courses/board'
 import { getIbResources } from '@/lib/ib/resources'
 
 export type IbLegitResource = { label: string; href: string; note?: string }
@@ -35,5 +36,5 @@ export function formatLegitResourcesForPrompt(subjectCode: string): string {
 
 /** Catalog slug (`tok`, `biology-hl`) → marking / content code (`ib-tok`). */
 export function ibMarkingCodeFromSlug(slug: string): string {
-  return slug.startsWith('ib-') ? slug : `ib-${slug}`
+  return contentSubjectCode(slug)
 }

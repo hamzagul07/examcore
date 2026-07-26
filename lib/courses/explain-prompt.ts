@@ -1,5 +1,6 @@
 import type { LessonNote } from '@/lib/courses/margin-notes/types'
 import type { ExplainIntent } from '@/lib/courses/explain-block-key'
+import { isIbSubjectCode } from '@/lib/courses/board'
 
 /**
  * Prompt for the per-paragraph "Explain more" feature.
@@ -22,12 +23,13 @@ export type ExplainPromptInput = {
 }
 
 /**
- * Course subject codes are content directory names: numeric for Cambridge
- * ("9702"), `ib-` prefixed for the IB ("ib-physics-hl"). Not profile subject
- * ids, so this is the reliable discriminator here.
+ * Re-exported for callers that already import from here. The rule lives in
+ * lib/courses/board.ts — a prefix test was wrong for the canonical IB route,
+ * which passes an unprefixed slug, and would have prompted the model for
+ * Cambridge B1/M1/A1 marks on a markband subject.
  */
 export function isIbCourseCode(subjectCode: string): boolean {
-  return subjectCode.startsWith('ib-')
+  return isIbSubjectCode(subjectCode)
 }
 
 const INTENT_BRIEF: Record<ExplainIntent, string> = {

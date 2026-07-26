@@ -1,4 +1,5 @@
 import { filterLessonsByPaper, getPaperTracks, type PaperTrackWithStats } from '@/lib/courses/paper-tracks'
+import { boardLabel, isIbSubjectCode, type Board } from '@/lib/courses/board'
 import { getSyllabusTree } from '@/lib/syllabi'
 import type { CourseLessonNav } from '@/lib/courses/lesson-nav'
 import type { MarginNotesCourse, MarginNotesPaper, MarginNotesUnit } from '@/lib/courses/margin-notes/types'
@@ -77,13 +78,12 @@ export function adaptCourseHub(
   completedSlugs: Set<string>,
   activeSlug: string | null,
   /**
-   * Passed explicitly rather than sniffed from `subjectCode`. The canonical IB
-   * hub route supplies the catalog slug ("biology-hl", no `ib-` prefix), so a
-   * prefix test silently classified every IB course as Cambridge — which is how
-   * "40 premium lessons live for Cambridge biology-hl Biology" reached an
-   * indexed page.
+   * Optional override. Left undefined the board is derived from the code, which
+   * is correct for both shapes — so this must NOT default to 'cambridge'.
+   * It did, briefly, which made "unspecified" indistinguishable from
+   * "explicitly Cambridge" and forced every IB hub back to the wrong board.
    */
-  board: 'cambridge' | 'ib' = 'cambridge'
+  board?: Board
 ): MarginNotesCourse {
   const tracks = getPaperTracks(subjectCode, lessons)
   const published = lessons.filter((l) => l.status === 'published' || l.status === 'premium').length
@@ -91,19 +91,18 @@ export function adaptCourseHub(
   // Board is derived, not assumed. Every IB hub previously read "for Cambridge
   // biology-hl Biology" — wrong board, and the raw content-directory slug shown
   // to the reader. These are indexed pages.
-  const isIb = board === 'ib' || subjectCode.startsWith('ib-')
-  const boardLabel = isIb ? 'IB Diploma' : 'Cambridge'
+  const isIb = isIbSubjectCode(subjectCode, board)
   // For Cambridge the code IS the name students search ("9702"); for IB the slug
   // is an internal directory name and says nothing to anyone.
-  const subjectLabel = isIb ? subjectName : `${subjectCode} ${subjectName}`
+  const subjectLabel = `${boardLabel(subjectCode, board)} ${subjectName}`
   const markLine = isIb
     ? 'Learn visually, read concise notes, then practise with criterion marking on every topic.'
     : 'Learn visually, read concise notes, then mark real past papers on every topic.'
 
   const blurb =
     published > 0
-      ? `${published} premium lessons live for ${boardLabel} ${subjectLabel}. ${markLine}`
-      : `${lessons.length} official syllabus topics for ${boardLabel} ${subjectLabel}. ${markLine}`
+      ? `${published} premium lessons live for ${subjectLabel}. ${markLine}`
+      : `${lessons.length} official syllabus topics for ${subjectLabel}. ${markLine}`
 
   const papers: MarginNotesPaper[] = tracks.map((track) => ({
     id: paperTabId(track),

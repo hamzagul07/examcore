@@ -1,4 +1,5 @@
 import type { PaperKind } from '@/lib/courses/types'
+import { isIbSubjectCode } from '@/lib/courses/board'
 
 /** Objective depth thresholds — "complete enough" for published/premium lessons. */
 export type QualityTier = 'pilot' | 'published' | 'premium'
@@ -35,7 +36,7 @@ export function getQualityTargets(
     maxPrimaryVisuals: 1,
   }
 
-  if (subjectCode.startsWith('ib-')) {
+  if (isIbSubjectCode(subjectCode)) {
     return {
       ...base,
       minWorkedExamples: tier === 'pilot' ? 1 : 2,
@@ -48,7 +49,7 @@ export function getQualityTargets(
 }
 
 export function isStemSubject(subjectCode: string): boolean {
-  const cambridge = subjectCode.startsWith('ib-')
+  const cambridge = isIbSubjectCode(subjectCode)
     ? null
     : subjectCode.match(/^(\d+)/)?.[1]
   return cambridge ? STEM_ABSTRACT.has(cambridge) : false

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { contentSubjectCode } from '@/lib/courses/board'
 import { getCourseLesson } from '@/lib/courses'
 import { createClient, createServiceClient } from '@/lib/supabase-server'
 import { nextRecallInterval, DAY_MS } from '@/lib/courses/recall-schedule'
@@ -27,17 +28,14 @@ type RecallBody = {
 }
 
 /**
- * Same two-route subject-code mismatch as /api/courses/explain:
- * /ib/courses/<slug> passes "history-hl", the legacy alias passes
- * "ib-history-hl", and content lives under the prefixed name.
+ * Content lives under the prefixed code ("ib-biology-hl") but the canonical IB
+ * route passes the catalog slug ("biology-hl"). `contentSubjectCode` normalises
+ * either shape, so the lookup happens once instead of try-then-try-prefixed.
  */
 function resolveLesson(subjectCode: string, lessonSlug: string) {
-  const direct = getCourseLesson(subjectCode, lessonSlug)
-  if (direct) return { code: subjectCode, lesson: direct }
-  if (subjectCode.startsWith('ib-')) return null
-  const prefixed = `ib-${subjectCode}`
-  const viaPrefix = getCourseLesson(prefixed, lessonSlug)
-  return viaPrefix ? { code: prefixed, lesson: viaPrefix } : null
+  const code = contentSubjectCode(subjectCode)
+  const lesson = getCourseLesson(code, lessonSlug)
+  return lesson ? { code, lesson } : null
 }
 
 export async function POST(req: NextRequest) {

@@ -1,5 +1,7 @@
 'use client'
 
+import { resolveBoard } from '@/lib/courses/board'
+
 export type MarkExamBoard = 'cambridge' | 'ib'
 
 const OPTIONS: {
@@ -66,5 +68,5 @@ export function markBoardFromProfileBoard(board: string | null | undefined): Mar
 }
 
 export function subjectMatchesMarkBoard(code: string, markBoard: MarkExamBoard): boolean {
-  return markBoard === 'ib' ? code.startsWith('ib-') : !code.startsWith('ib-')
+  return resolveBoard(code) === markBoard
 }

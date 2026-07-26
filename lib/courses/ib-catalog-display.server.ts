@@ -1,4 +1,5 @@
 import 'server-only'
+import { contentSubjectCode } from '@/lib/courses/board'
 
 import { getIbCourse, getIbCourseLessons, getIbCourseSlugs } from '@/lib/courses/ib'
 import { ibCatalogSlug, ibCourseContentSlug } from '@/lib/ib/slug-resolve'
@@ -11,8 +12,7 @@ import { IB_NEW_COURSE_SLUGS } from '@/lib/courses/ib-catalog-display'
 import type { SubjectFamily } from '@/lib/courses/margin-notes/types'
 
 function ibSyllabusCode(slug: string): string {
-  const courseSlug = ibCourseContentSlug(slug)
-  return courseSlug.startsWith('ib-') ? courseSlug : `ib-${courseSlug}`
+  return contentSubjectCode(ibCourseContentSlug(slug))
 }
 
 function ibFamily(slug: string): SubjectFamily {

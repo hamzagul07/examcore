@@ -4,6 +4,7 @@
  */
 
 import type { MarkingStyle } from '@/lib/marking/types'
+import { isIbSubjectCode as isIbCourseSubject } from '@/lib/courses/board'
 
 export type IbCriterionBand = {
   level: number
@@ -453,11 +454,17 @@ export function getIbMarkingProfile(code: string): IbMarkingProfile | null {
   return BY_CODE.get(code) ?? null
 }
 
+/**
+ * Kept as a named export so the marking call sites are untouched, but the rule
+ * now lives in lib/courses/board.ts.
+ *
+ * The old prefix test also missed the unprefixed catalog slug ("biology-hl")
+ * that the canonical IB routes pass. Do NOT gate on a legacy marking profile
+ * either: catalog subjects like `ib-maths-aa` are IB but have no profile, and
+ * gating on BY_CODE mis-branded them as Cambridge.
+ */
 export function isIbSubjectCode(code: string): boolean {
-  // Any `ib-` prefixed code is an IB subject. (Do NOT also require a legacy
-  // marking profile: catalog subjects like `ib-maths-aa` are IB but have no
-  // profile — gating on BY_CODE mis-branded them as Cambridge.)
-  return code.startsWith('ib-')
+  return isIbCourseSubject(code)
 }
 
 export function getIbMarkableSubjectCodes(): string[] {

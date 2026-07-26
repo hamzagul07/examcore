@@ -1,4 +1,5 @@
 import fs from 'fs'
+import { boardLabel } from '@/lib/courses/board'
 import path from 'path'
 import type { CourseLesson, LessonSection } from '@/lib/courses/types'
 import type { EnrichedVisualLesson, VisualBlock, VisualStep } from '@/lib/courses/visual-types'
@@ -288,9 +289,7 @@ export function enrichLessonVisual(
           // Board is derived: this alt text read "for Cambridge ib-biology-hl"
           // on every IB diagram — wrong board and an internal slug, in the one
           // string a screen-reader user actually hears.
-          alt: `${lesson.title} diagram — ${
-            subjectCode.startsWith('ib-') ? 'IB Diploma' : `Cambridge ${subjectCode}`
-          }`,
+          alt: `${lesson.title} diagram — ${boardLabel(subjectCode)}`,
         })
       } else if (lesson.diagram?.src) {
         blocks.push({

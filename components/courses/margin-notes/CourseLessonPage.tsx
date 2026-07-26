@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState, useCallback } from 'react'
+import { useEffect, useMemo, useState, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import type { MarginNotesLesson } from '@/lib/courses/margin-notes/types'
@@ -18,6 +18,14 @@ import { CourseRichText } from '@/components/courses/CourseRichText'
 import { ExplainBlock } from '@/components/courses/ExplainBlock'
 import { FeatureHint } from '@/components/courses/FeatureHint'
 import { ResumeStrip } from '@/components/courses/ResumeStrip'
+import { StudyStages, StudyStageFooter } from '@/components/courses/StudyStages'
+import {
+  stagesPresent,
+  stageForSection,
+  stepStage,
+  STUDY_PREF_KEY,
+} from '@/lib/courses/study-mode'
+import type { StageId } from '@/lib/courses/lesson-stages'
 import { resumeState } from '@/lib/courses/lesson-resume'
 import { HINT_KEYS, type HintKey } from '@/lib/courses/first-run'
 import { CriterionLadder } from '@/components/courses/CriterionLadder'
@@ -232,16 +240,120 @@ export function CourseLessonPage({
     setActive((prev) => (toc.some((t) => t.id === prev) ? prev : toc[0]?.id ?? ''))
   }, [toc])
 
+  // ── Study mode ────────────────────────────────────────────────────────────
+  // The same page, walked one stage at a time. Off by default and hidden purely
+  // in CSS, so the served HTML is byte-identical either way and the indexed
+  // lesson URLs keep every word crawlers see today.
+  const articleRef = useRef<HTMLElement | null>(null)
+  const [study, setStudy] = useState(false)
+  const [stage, setStage] = useState<StageId | null>(null)
+
+  const stages = useMemo(() => stagesPresent(toc.map((t) => t.id)), [toc])
+
+  // A stage counts as done when every section in it is done, so the ticks come
+  // from the same progress the document mode shows.
+  const doneStages = useMemo(() => {
+    const out = new Set<StageId>()
+    for (const s of stages) {
+      const inStage = toc.filter((t) => stageForSection(t.id) === s)
+      if (inStage.length && inStage.every((t) => readIds.has(t.id))) out.add(s)
+    }
+    return out
+  }, [readIds, stages, toc])
+
+  useEffect(() => {
+    try {
+      setStudy(window.localStorage.getItem(STUDY_PREF_KEY) === '1')
+    } catch {
+      /* private mode: document view is the safe default */
+    }
+  }, [])
+
+  // Land on the first unfinished stage rather than always at the start —
+  // reopening a lesson should not make you click past what you already did.
+  useEffect(() => {
+    if (!study || !stages.length) return
+    setStage((prev) => {
+      if (prev && stages.includes(prev)) return prev
+      // An inbound #hash names the section somebody was sent here for, so its
+      // stage beats "where you left off". Resolved here rather than in the
+      // scroll handler because that races with this effect on a cold load.
+      const hash = window.location.hash.replace('#', '')
+      const hashStage = hash ? stageForSection(hash) : null
+      if (hashStage && stages.includes(hashStage)) return hashStage
+      return stages.find((s) => !doneStages.has(s)) ?? stages[0]!
+    })
+  }, [doneStages, stages, study])
+
+  const activeStage = study ? stage : null
+
+  const toggleStudy = useCallback(() => {
+    setStudy((on) => {
+      const next = !on
+      try {
+        window.localStorage.setItem(STUDY_PREF_KEY, next ? '1' : '0')
+      } catch {
+        /* ignore */
+      }
+      return next
+    })
+  }, [])
+
+  const goStage = useCallback(
+    (next: StageId) => {
+      setStage(next)
+      // Land at the top of the new stage. Without this you keep the old scroll
+      // position and arrive halfway down content you have not seen.
+      articleRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    },
+    []
+  )
+
+  const stepStudyStage = useCallback(
+    (delta: number) => {
+      if (!stage) return
+      goStage(stepStage(stages, stage, delta))
+    },
+    [goStage, stage, stages]
+  )
+
+  // Stamp each section with its stage so CSS can hide the inactive ones. Done
+  // here rather than on seventeen JSX nodes: the mapping is one table, and a
+  // section added later inherits the fail-open behaviour automatically.
+  useEffect(() => {
+    const root = articleRef.current
+    if (!root) return
+    for (const el of root.querySelectorAll<HTMLElement>('section.lsec')) {
+      const s = stageForSection(el.id)
+      if (s) el.dataset.stage = s
+      else delete el.dataset.stage
+    }
+  }, [toc])
+
 
   const tocPct = useMemo(() => {
     if (isDone) return 100
     return lessonPercent
   }, [isDone, lessonPercent])
 
-  const scrollToSection = useCallback((id: string) => {
-    jumpTo(id)
-    setActive(id)
-  }, [])
+  // The single choke point for every jump: the contents rail, the resume strip
+  // and #hash deep-links all land here. In study mode the target may be in a
+  // stage that is currently hidden, so open that stage first — otherwise those
+  // are dead clicks, and an inbound link to #quiz would appear to do nothing.
+  const scrollToSection = useCallback(
+    (id: string) => {
+      const target = study ? stageForSection(id) : null
+      if (target && target !== stage) {
+        setStage(target)
+        // Scroll after the section has been painted, not before.
+        requestAnimationFrame(() => requestAnimationFrame(() => jumpTo(id)))
+      } else {
+        jumpTo(id)
+      }
+      setActive(id)
+    },
+    [stage, study]
+  )
 
   useEffect(() => {
     saveLastLesson(L.code, L.slug)
@@ -460,6 +572,20 @@ export function CourseLessonPage({
             </button>
           </div>
           <div className="mode-right">
+            {mode === 'learn' && stages.length > 1 ? (
+              <label className="simpler-toggle study-toggle">
+                <span className="micro">STUDY MODE</span>
+                <button
+                  type="button"
+                  className={`switch${study ? ' on' : ''}`}
+                  onClick={toggleStudy}
+                  aria-pressed={study}
+                  title="Walk the lesson one step at a time instead of one long page"
+                >
+                  <span className="knob" />
+                </button>
+              </label>
+            ) : null}
             {mode === 'learn' ? (
               <label className="simpler-toggle">
                 <span className="micro">EXPLAIN SIMPLER</span>
@@ -584,7 +710,11 @@ export function CourseLessonPage({
             ) : null}
           </aside>
 
-          <article className="lesson-article">
+          <article
+            className="lesson-article"
+            ref={articleRef}
+            data-study-stage={activeStage ?? undefined}
+          >
             {simpler ? (
               <div className="simpler-banner">
                 <span className="hand">plain-English mode on — no jargon, no fear ✎</span>
@@ -607,6 +737,15 @@ export function CourseLessonPage({
               onJump={scrollToSection}
               practiceHref={quizPracticeHref}
             />
+
+            {activeStage ? (
+              <StudyStages
+                stages={stages}
+                active={activeStage}
+                doneStages={doneStages}
+                onSelect={goStage}
+              />
+            ) : null}
 
             {L.simple ? (
               <section id="simple" className="lsec">
@@ -962,6 +1101,14 @@ export function CourseLessonPage({
                 />
                 <LessonCheckpoint lesson={L} returnPath={pathname} />
               </section>
+            ) : null}
+
+            {activeStage ? (
+              <StudyStageFooter
+                stages={stages}
+                active={activeStage}
+                onStep={stepStudyStage}
+              />
             ) : null}
 
             <div className="lesson-end">

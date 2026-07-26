@@ -305,3 +305,139 @@ a { color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* ── Study mode ─────────────────────────────────────────────────────────────
+   The lesson walked one stage at a time. Everything stays in the DOM and is
+   hidden here, in CSS, so the HTML served to crawlers is identical whether the
+   mode is on or off — the 871 indexed lesson URLs keep every word they have.
+   One rule per stage because CSS cannot compare two attributes to each other. */
+.lesson-article[data-study-stage] section.lsec[data-stage] { display: none; }
+.lesson-article[data-study-stage='orient'] section.lsec[data-stage='orient'],
+.lesson-article[data-study-stage='see'] section.lsec[data-stage='see'],
+.lesson-article[data-study-stage='read'] section.lsec[data-stage='read'],
+.lesson-article[data-study-stage='check'] section.lsec[data-stage='check'],
+.lesson-article[data-study-stage='prove'] section.lsec[data-stage='prove'] { display: block; }
+
+/* Each stage carries its own hue, so moving through a lesson looks like moving
+   somewhere rather than scrolling further down the same page. */
+.lesson-article[data-study-stage='orient'] { --stage-hue: var(--stage-orient); }
+.lesson-article[data-study-stage='see'] { --stage-hue: var(--stage-see); }
+.lesson-article[data-study-stage='read'] { --stage-hue: var(--stage-read); }
+.lesson-article[data-study-stage='check'] { --stage-hue: var(--stage-check); }
+.lesson-article[data-study-stage='prove'] { --stage-hue: var(--stage-prove); }
+
+:root {
+  --stage-orient: #b8763a;
+  --stage-see: #3f7f9e;
+  --stage-read: #6a6f9c;
+  --stage-check: #a25f86;
+  --stage-prove: #4f8a5e;
+}
+
+.study-rail {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 0 0 28px;
+  padding: 12px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: var(--paper-2, #fbf8f1);
+  box-shadow: inset 3px 0 0 var(--stage-hue, var(--acc-lesson));
+}
+.study-rail-list {
+  display: flex;
+  flex: 1 1 auto;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.study-rail-list::-webkit-scrollbar { display: none; }
+.study-rail-item { flex: 0 0 auto; }
+.study-step {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 13px 7px 8px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--ink-3, #6b6355);
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+.study-step:hover { background: rgb(0 0 0 / 4%); color: var(--ink); }
+.study-step-dot {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  font-size: 11px;
+  line-height: 1;
+}
+.study-step-text { display: flex; flex-direction: column; line-height: 1.2; }
+.study-step-label { font-size: 13px; font-weight: 600; }
+.study-step-sub { font-size: 11px; opacity: 0.72; }
+.study-step.done { color: var(--stage-prove); }
+.study-step.done .study-step-dot { background: color-mix(in srgb, var(--stage-prove) 14%, transparent); }
+.study-step.on {
+  color: var(--stage-hue, var(--acc-lesson));
+  border-color: color-mix(in srgb, var(--stage-hue, var(--acc-lesson)) 40%, transparent);
+  background: color-mix(in srgb, var(--stage-hue, var(--acc-lesson)) 9%, transparent);
+}
+.study-step.on .study-step-dot {
+  background: var(--stage-hue, var(--acc-lesson));
+  border-color: var(--stage-hue, var(--acc-lesson));
+  color: #fff;
+}
+.study-rail-count {
+  flex: 0 0 auto;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-3, #6b6355);
+  margin: 0;
+}
+
+.study-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 32px 0 8px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+}
+.study-foot-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 16px;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--ink);
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.study-foot-btn:hover {
+  border-color: color-mix(in srgb, var(--stage-hue, var(--acc-lesson)) 50%, transparent);
+  background: color-mix(in srgb, var(--stage-hue, var(--acc-lesson)) 7%, transparent);
+}
+.study-foot-btn.next { text-align: right; }
+.study-foot-dir { font-size: 10px; letter-spacing: 0.1em; opacity: 0.6; }
+.study-foot-name { font-size: 14px; font-weight: 600; }
+.study-foot-end { font-size: 13px; color: var(--ink-3, #6b6355); }
+
+@media (max-width: 640px) {
+  .study-step-sub { display: none; }
+  .study-rail-count { display: none; }
+}

@@ -58,16 +58,34 @@ The 20 that resolve but have none are all Language B **Paper 2** — *"Receptive
 skills: listening and reading"* — which is objectively marked and genuinely has
 no criteria. Correct behaviour, not a gap.
 
+## Licensing — why there are no descriptors here
+
+**The first version of this shipped verbatim IB band descriptors onto 85 public,
+sitemapped lesson pages. That was wrong and is fixed.**
+
+`app/api/ib/catalog/route.ts` already sets this codebase's policy in its own
+docstring: public surfaces carry *"only non-sensitive metadata (codes, labels,
+level, model, max_marks) — NOT the verbatim licensed descriptors/prose."*
+Course lesson pages are public, prerendered and in the sitemap, so they fall
+squarely under that rule, and the ladder contradicted it.
+
+The descriptors remain in `ib_criterion_band` and remain available to the
+**marking pipeline**, which is where they were licensed to be used. They are no
+longer selected on the lesson path at all — not fetched, not passed as props, not
+present in the RSC payload.
+
+`CriterionBand` deliberately carries only `marksMin`/`marksMax`, and a unit test
+asserts the type has no third field, so a future edit cannot quietly put the
+prose back on an indexed page.
+
 ## Rendering
 
 `components/courses/CriterionLadder.tsx`, section "How it's marked".
 
-- **Descriptors are verbatim and never paraphrased.** The wording *is* the
-  assessment; a friendlier rewrite would be a different standard.
-- **Top band first.** Students should read the rung they are aiming at, not the
-  one they scraped.
-- First criterion open by default, the rest collapsed — five criteria fully
-  expanded is a wall of rubric.
+What survives is the part a student planning work actually needs: **which
+criteria exist and which are worth the most** — each with a weighting bar, its
+percentage share, and how many bands it is split into. For "the full descriptors,
+see your subject guide".
 
 ## Failure behaviour
 
@@ -79,8 +97,11 @@ and must not fail to build over an optional enrichment.
 
 - **Visual Arts SL** `1-1-visual-arts-inquiry-and-investigation`: 5 criteria,
   "Part 2: Process portfolio · 34 marks", criterion A "Skills, techniques and
-  processes" (12), 5 bands, top band 10–12 with the real IB wording.
+  processes" — 12 marks, 35% of the total, 5 bands (0–12).
 - **French B HL** `1-1-identities-…`: 3 criteria, and correctly picks the **HL**
   variant — "Paper 1 — Productive skills: writing (HL) · 30 marks".
 - **Biology HL**: no ladder, no TOC entry. Correctly absent.
+- **No descriptor leakage**: four verbatim phrases that the first version did
+  render were checked against both `document.body.innerText` and the raw HTML
+  payload on Visual Arts and French B — zero hits on either.
 - Production build passes (exit 0); no literal escape sequences left on the page.

@@ -79,10 +79,21 @@ export function resolveComponent(
   return { subjectCode, componentKey, level }
 }
 
+/**
+ * A band's MARK RANGE ONLY — deliberately no descriptor text.
+ *
+ * The band descriptors are verbatim licensed IB prose. `app/api/ib/catalog/route.ts`
+ * already states the policy for this codebase: public surfaces return "only
+ * non-sensitive metadata (codes, labels, level, model, max_marks) — NOT the
+ * verbatim licensed descriptors/prose". Lesson pages are public, prerendered and
+ * in the sitemap, so they fall under that rule.
+ *
+ * The descriptors stay in the database and remain available to the marking
+ * pipeline, which is where they were licensed to be used.
+ */
 export type CriterionBand = {
   marksMin: number
   marksMax: number
-  descriptor: string
 }
 
 export type Criterion = {

@@ -68,7 +68,8 @@ export const getCriterionLadder = cache(
 
       const { data: bands } = await admin
         .from('ib_criterion_band')
-        .select('criterion_id, marks_min, marks_max, descriptor')
+        // descriptor is deliberately NOT selected — see CriterionBand.
+        .select('criterion_id, marks_min, marks_max')
         .in(
           'criterion_id',
           criteria.map((c) => c.id)
@@ -77,11 +78,7 @@ export const getCriterionLadder = cache(
       const byCriterion = new Map<string, Criterion['bands']>()
       for (const b of bands ?? []) {
         const list = byCriterion.get(b.criterion_id) ?? []
-        list.push({
-          marksMin: b.marks_min,
-          marksMax: b.marks_max,
-          descriptor: b.descriptor,
-        })
+        list.push({ marksMin: b.marks_min, marksMax: b.marks_max })
         byCriterion.set(b.criterion_id, list)
       }
 

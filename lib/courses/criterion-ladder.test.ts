@@ -70,12 +70,18 @@ check('unknown paper name', resolveComponent('ib-visual-arts-sl', 'Sketchbook') 
 // --- Band ordering ---
 
 const sorted = sortBands([
-  { marksMin: 7, marksMax: 9, descriptor: 'top' },
-  { marksMin: 1, marksMax: 3, descriptor: 'bottom' },
-  { marksMin: 4, marksMax: 6, descriptor: 'middle' },
+  { marksMin: 7, marksMax: 9 },
+  { marksMin: 1, marksMax: 3 },
+  { marksMin: 4, marksMax: 6 },
 ])
-check('bands ascend', sorted.map((b) => b.descriptor).join(',') === 'bottom,middle,top')
-check('sortBands does not mutate', true)
+check('bands ascend', sorted.map((b) => b.marksMin).join(',') === '1,4,7')
+
+// The public type must not carry descriptor prose — that is the whole point of
+// the licensing split, and a stray field would put it back on indexed pages.
+check(
+  'band type carries no descriptor',
+  Object.keys(sorted[0]).sort().join(',') === 'marksMax,marksMin'
+)
 
 if (failed > 0) process.exit(1)
 console.log('criterion-ladder.test.ts: all checks passed')

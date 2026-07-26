@@ -17,6 +17,8 @@ import { LessonComparisonTable } from '@/components/courses/margin-notes/LessonC
 import { CourseRichText } from '@/components/courses/CourseRichText'
 import { ExplainBlock } from '@/components/courses/ExplainBlock'
 import { FeatureHint } from '@/components/courses/FeatureHint'
+import { ResumeStrip } from '@/components/courses/ResumeStrip'
+import { resumeState } from '@/lib/courses/lesson-resume'
 import { HINT_KEYS, type HintKey } from '@/lib/courses/first-run'
 import { CriterionLadder } from '@/components/courses/CriterionLadder'
 import type { CriterionLadderData } from '@/lib/courses/criterion-ladder.server'
@@ -214,6 +216,16 @@ export function CourseLessonPage({
   } = useLessonProgress(
     toc.map((t) => t.id),
     L.lessonSlug
+  )
+
+  // What to say to somebody who has been here before. Silent on a first visit.
+  const resume = useMemo(
+    () =>
+      resumeState(toc, readIds, {
+        checkId: L.quiz?.length && !quizLocked ? 'quiz' : undefined,
+        checkDone: readIds.has('quiz'),
+      }),
+    [L.quiz?.length, quizLocked, readIds, toc]
   )
 
   useEffect(() => {
@@ -589,6 +601,12 @@ export function CourseLessonPage({
                 </p>
               </div>
             ) : null}
+
+            <ResumeStrip
+              state={resume}
+              onJump={scrollToSection}
+              practiceHref={quizPracticeHref}
+            />
 
             {L.simple ? (
               <section id="simple" className="lsec">

@@ -221,18 +221,81 @@ export function Glossary({ items }: { items: NonNullable<MarginNotesLesson['glos
   )
 }
 
-export function QuickCheck({ items }: { items: NonNullable<MarginNotesLesson['quiz']> }) {
+/**
+ * Quick check — produce, then compare.
+ *
+ * The card used to be a single tap-to-reveal button. Revealing an answer you
+ * have not tried to produce feels like learning and mostly is not: the gain
+ * comes from generating the explanation yourself and then seeing where yours
+ * differs (the self-explanation effect). So the student writes first, and the
+ * reveal shows their attempt *beside* the model answer rather than replacing it.
+ *
+ * Deliberately no grading and no AI. Nothing here is scored, nothing is sent
+ * anywhere — a hard gate on a revision aid would just teach students to type "a"
+ * to get past it. The nudge is soft and the answer is always one tap away.
+ */
+export function QuickCheck({
+  items,
+  storageKey,
+  practiceHref,
+  practiceRef,
+}: {
+  items: NonNullable<MarginNotesLesson['quiz']>
+  /** Lesson slug — scopes saved attempts so they survive a reload. */
+  storageKey?: string
+  /** Where "now do the real thing" goes once every question is answered. */
+  practiceHref?: string | null
+  practiceRef?: string
+}) {
   const listRef = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState<Record<number, boolean>>({})
+  const [revealed, setRevealed] = useState<Record<number, boolean>>({})
+  const [drafts, setDrafts] = useState<Record<number, string>>({})
   const [focus, setFocus] = useState(0)
+
+  const lsKey = storageKey ? `ms:quickcheck:${storageKey}` : null
+
+  useEffect(() => {
+    if (!lsKey) return
+    try {
+      const raw = window.localStorage.getItem(lsKey)
+      if (raw) setDrafts(JSON.parse(raw) as Record<number, string>)
+    } catch {
+      /* private mode / quota — attempts just do not persist */
+    }
+  }, [lsKey])
+
+  const saveDraft = useCallback(
+    (i: number, value: string) => {
+      setDrafts((prev) => {
+        const next = { ...prev, [i]: value }
+        if (lsKey) {
+          try {
+            window.localStorage.setItem(lsKey, JSON.stringify(next))
+          } catch {
+            /* ignore */
+          }
+        }
+        return next
+      })
+    },
+    [lsKey]
+  )
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const el = listRef.current
       if (!el) return
+      // Never hijack keys while the student is typing an answer — Space would
+      // otherwise collapse the card mid-sentence.
+      const active = document.activeElement
+      const typing =
+        active instanceof HTMLTextAreaElement || active instanceof HTMLInputElement
+      if (typing) return
+
       const rect = el.getBoundingClientRect()
       const inView = rect.top < window.innerHeight * 0.92 && rect.bottom > window.innerHeight * 0.08
-      if (!inView && !el.contains(document.activeElement)) return
+      if (!inView && !el.contains(active)) return
 
       if (e.key === 'ArrowDown') {
         e.preventDefault()
@@ -241,7 +304,7 @@ export function QuickCheck({ items }: { items: NonNullable<MarginNotesLesson['qu
         e.preventDefault()
         setFocus((i) => Math.max(0, i - 1))
       } else if (e.key === 'Enter' || e.key === ' ') {
-        if (el.contains(document.activeElement)) {
+        if (el.contains(active)) {
           e.preventDefault()
           setOpen((s) => ({ ...s, [focus]: !s[focus] }))
         }
@@ -251,32 +314,143 @@ export function QuickCheck({ items }: { items: NonNullable<MarginNotesLesson['qu
     return () => window.removeEventListener('keydown', onKey)
   }, [focus, items.length])
 
+  const answered = items.reduce(
+    (n, _, i) => ((drafts[i] ?? '').trim() ? n + 1 : n),
+    0
+  )
+  const allAnswered = answered === items.length && items.length > 0
+  const pct = items.length ? Math.round((answered / items.length) * 100) : 0
+
   return (
     <div ref={listRef} className="qc-list">
-      {items.map((q, i) => (
-        <button
-          key={i}
-          type="button"
-          className={`qc${open[i] ? ' on' : ''}${focus === i ? ' focus' : ''}`}
-          onClick={() => {
-            setFocus(i)
-            setOpen((s) => ({ ...s, [i]: !s[i] }))
-          }}
-          onFocus={() => setFocus(i)}
-        >
-          <div className="qc-q">
-            <span className="qc-n mono">Q{i + 1}</span>
-            <CourseRichText content={q.q} variant="inline" className="qc-q-text" breakAnywhere={false} />
+      {/* Progress is the whole loop: an empty bar is a visible, closeable gap,
+          and each answer moves it. Counts attempts, not correctness — nothing
+          here is graded, and a bar that judged you would stop people writing. */}
+      <div className="qc-progress" aria-hidden={items.length < 2}>
+        <div className="qc-progress-bar">
+          <span className="qc-progress-fill" style={{ width: `${pct}%` }} />
+        </div>
+        <span className="micro qc-progress-label">
+          {allAnswered
+            ? `All ${items.length} answered`
+            : `${answered} of ${items.length} answered`}
+        </span>
+      </div>
+
+      {items.map((q, i) => {
+        const draft = drafts[i] ?? ''
+        const tried = draft.trim().length > 0
+        const isOpen = !!open[i]
+        const isRevealed = !!revealed[i]
+        return (
+          <div key={i} className={`qc-card${isOpen ? ' on' : ''}${focus === i ? ' focus' : ''}`}>
+            <button
+              type="button"
+              className="qc-head"
+              aria-expanded={isOpen}
+              onClick={() => {
+                setFocus(i)
+                setOpen((s) => ({ ...s, [i]: !s[i] }))
+              }}
+              onFocus={() => setFocus(i)}
+            >
+              <div className="qc-q">
+                <span className="qc-n mono">Q{i + 1}</span>
+                <CourseRichText content={q.q} variant="inline" className="qc-q-text" breakAnywhere={false} />
+              </div>
+              {!isOpen ? (
+                <span className="qc-reveal mono">
+                  {tried ? 'ANSWERED · TAP TO REOPEN' : 'TAP TO ANSWER'}
+                </span>
+              ) : null}
+            </button>
+
+            {isOpen ? (
+              <div className="qc-body">
+                {/* Once revealed the attempt is shown read-only in the comparison
+                    below; keeping the textarea too would print the same sentence
+                    twice. "Try again" brings the editor back. */}
+                <label className="qc-write" hidden={isRevealed}>
+                  <span className="micro qc-write-label">
+                    Your answer — write it before you look
+                  </span>
+                  <textarea
+                    className="qc-input"
+                    rows={3}
+                    value={draft}
+                    placeholder="In your own words…"
+                    onChange={(e) => saveDraft(i, e.target.value)}
+                  />
+                </label>
+
+                {!isRevealed ? (
+                  <div className="qc-actions">
+                    <button
+                      type="button"
+                      className="qc-check"
+                      onClick={() => setRevealed((s) => ({ ...s, [i]: true }))}
+                    >
+                      {tried ? 'Compare with the answer' : 'Show the answer anyway'}
+                    </button>
+                    {!tried ? (
+                      <span className="micro qc-hint">
+                        You will remember far more if you attempt it first.
+                      </span>
+                    ) : null}
+                  </div>
+                ) : (
+                  <div className="qc-compare">
+                    {tried ? (
+                      <div className="qc-mine">
+                        <span className="micro qc-col-label">YOU WROTE</span>
+                        <p className="body-2 qc-mine-text">{draft}</p>
+                      </div>
+                    ) : null}
+                    <div className="qc-model">
+                      <span className="micro qc-col-label">MODEL ANSWER</span>
+                      <div className="qc-a">
+                        <CourseRichText content={q.a} variant="prose" />
+                      </div>
+                    </div>
+                    {tried ? (
+                      <p className="micro qc-diff-hint">
+                        What is in the model answer that yours is missing? That gap is the
+                        mark you would have lost.
+                      </p>
+                    ) : null}
+                    <button
+                      type="button"
+                      className="qc-retry"
+                      onClick={() => setRevealed((s) => ({ ...s, [i]: false }))}
+                    >
+                      {tried ? 'Rewrite my answer' : 'Let me try it myself'}
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : null}
           </div>
-          {open[i] ? (
-            <div className="qc-a">
-              <CourseRichText content={q.a} variant="prose" />
-            </div>
-          ) : (
-            <span className="qc-reveal mono">TAP TO CHECK</span>
-          )}
-        </button>
-      ))}
+        )
+      })}
+
+      {allAnswered ? (
+        <div className="qc-done">
+          <span className="qc-done-tag mono">NICE</span>
+          <p className="body-2 qc-done-lead">
+            You wrote {items.length} answers instead of reading {items.length}. That is
+            the part that sticks.
+          </p>
+          {practiceHref ? (
+            <Link className="qc-done-cta" href={practiceHref}>
+              {/* Only name the question when the ref is an actual reference
+                  ("9702/21 Q3"). On many lessons it is a full sentence, which
+                  turns the call to action into a paragraph. */}
+              Now do the real thing
+              {practiceRef && practiceRef.length <= 24 ? ` — ${practiceRef}` : ''} &rarr;
+            </Link>
+          ) : null}
+        </div>
+      ) : null}
     </div>
   )
 }

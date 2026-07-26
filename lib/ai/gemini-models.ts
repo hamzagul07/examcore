@@ -51,6 +51,7 @@ export type GeminiTask =
   | 'chat' // Omni-AI / study chat
   | 'ocr' // handwriting / paper OCR
   | 'solution' // model worked solutions
+  | 'explain-block' // per-paragraph course lesson explanation (cached, latency-sensitive)
 
 const PRO_TASKS: ReadonlySet<GeminiTask> = new Set([
   'content-generation',

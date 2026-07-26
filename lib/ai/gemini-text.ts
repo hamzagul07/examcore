@@ -128,6 +128,15 @@ export type GeminiTextOptions = {
   tools?: FunctionDeclaration[]
   /** Per-request HTTP timeout override (ms). */
   httpTimeoutMs?: number
+  /**
+   * Gemini 2.5 thinking budget, in tokens. Thinking tokens are drawn from the
+   * SAME allowance as `maxOutputTokens`, so on a short, tightly-grounded task
+   * the default dynamic budget can consume the whole cap and truncate the
+   * visible answer mid-sentence. Pass 0 to disable thinking for such calls.
+   * Omit to keep the model default (dynamic) — correct for marking and
+   * extraction, where the reasoning is the point.
+   */
+  thinkingBudget?: number
 }
 
 export type GeminiChatMessage = {
@@ -376,5 +385,9 @@ function buildConfig(opts: GeminiTextOptions, abortSignal: AbortSignal) {
     httpOptions: { timeout },
     responseMimeType:
       opts.task && jsonTasks.has(opts.task) ? 'application/json' : undefined,
+    thinkingConfig:
+      opts.thinkingBudget === undefined
+        ? undefined
+        : { thinkingBudget: opts.thinkingBudget },
   }
 }

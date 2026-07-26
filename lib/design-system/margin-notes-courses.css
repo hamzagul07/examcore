@@ -604,6 +604,48 @@
 
 /* article + sections */
 .lesson-article { min-width: 0; max-width: min(760px, 100%); }
+
+/* Scroll-synced diagram.
+   Below the breakpoint this region is an ordinary block: sections stack exactly
+   as they did before, and only the step index follows the reader. At >=1400px
+   there is room beside the 760px article for the diagram to be pinned, so the
+   picture stays on screen while the prose describing it scrolls past. */
+@media (min-width: 1400px) {
+  /* The shared .pg container caps content at 1200px, which after the 200px TOC
+     leaves ~888px — not enough for a readable prose column AND a usable diagram
+     beside it. Widened only for lessons that actually pin a diagram. */
+  .lesson-layout.pg:has(.lesson-sync-region[data-sync='on']) { max-width: 1480px; }
+  .lesson-layout:has(.lesson-sync-region[data-sync='on']) .lesson-article {
+    max-width: 100%;
+  }
+  .lesson-sync-region[data-sync='on'] {
+    --lesson-sync-top: calc(
+      var(--ec-nav-height, 72px) + var(--lesson-modebar-height, 56px) + 16px
+    );
+    display: grid;
+    /* Prose keeps priority; the diagram takes a bounded slice rather than a
+       fixed one, so it never squeezes the column being read. */
+    grid-template-columns: minmax(0, 1fr) clamp(380px, 34%, 460px);
+    column-gap: 40px;
+    align-items: start;
+  }
+  .lesson-sync-region[data-sync='on'] > * { grid-column: 1; }
+  .lesson-sync-region[data-sync='on'] > #visual {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    position: sticky;
+    top: var(--lesson-sync-top);
+    align-self: start;
+    margin-bottom: 0;
+    /* Several diagrams run taller than the viewport. Pinned without a cap,
+       their lower half — controls, readouts, step detail — sits permanently
+       below the fold and cannot be reached by scrolling, because the sticky
+       element does not move. Cap and let it scroll internally instead. */
+    max-height: calc(100vh - var(--lesson-sync-top) - 24px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
 .simpler-banner { background: var(--ink-soft); border: 1px dashed var(--ink-border); border-radius: 12px; padding: 12px 18px; margin-bottom: 30px; }
 .simpler-banner .hand { font-size: 22px; color: var(--ink); }
 .lsec { padding-top: 18px; margin-bottom: 56px; scroll-margin-top: calc(var(--ec-nav-height, 72px) + var(--lesson-modebar-height, 56px) + 24px); }
@@ -726,6 +768,70 @@
 .note-tip { margin-top: 14px; background: var(--amber-soft); border: 1px solid color-mix(in srgb, var(--amber) 35%, transparent); border-radius: 12px; padding: 14px 18px; }
 .note-tip .body-2 { color: var(--text-2); }
 .note-tip-tag { display: block; font-size: 11px; letter-spacing: 0.1em; color: var(--amber); margin-bottom: 6px; }
+
+/* per-paragraph "explain more" — idle until wanted, so six of these down a
+   lesson read as a quiet affordance rather than six calls to action */
+.explain-block { margin-top: 12px; }
+.explain-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; opacity: 0.5; transition: opacity 160ms ease; }
+.note-block:hover .explain-actions,
+.explain-actions:focus-within { opacity: 1; }
+.explain-block:has(.explain-panel) .explain-actions { opacity: 1; }
+.explain-lead { color: var(--muted); margin-right: 1px; }
+.explain-btn {
+  font-family: inherit; font-size: 12px; line-height: 1; color: var(--text-2);
+  background: var(--surface); border: 1px solid var(--border); border-radius: 999px;
+  padding: 5px 11px; cursor: pointer;
+  transition: border-color 150ms ease, background 150ms ease, color 150ms ease;
+}
+.explain-btn:hover { border-color: var(--border-strong); color: var(--text); }
+.explain-btn.on {
+  border-color: var(--hub-acc, var(--acc-violet)); color: var(--text);
+  background: color-mix(in srgb, var(--hub-acc, var(--acc-violet)) 9%, var(--surface));
+}
+.explain-panel {
+  margin-top: 10px; padding: 12px 16px;
+  border-left: 2px solid var(--hub-acc, var(--acc-violet));
+  border-radius: 0 10px 10px 0;
+  background: color-mix(in srgb, var(--hub-acc, var(--acc-violet)) 5%, var(--surface));
+}
+.explain-panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.explain-panel-tag { color: var(--muted); }
+.explain-close {
+  flex-shrink: 0; font-family: inherit; font-size: 17px; line-height: 1; cursor: pointer;
+  color: var(--muted); background: none; border: 0; padding: 0 2px; border-radius: 4px;
+}
+.explain-close:hover { color: var(--text); }
+.explain-close:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.explain-skeleton { display: flex; flex-direction: column; gap: 8px; padding: 2px 0 4px; }
+.explain-skeleton span {
+  display: block; height: 11px; border-radius: 4px;
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--ink) 10%, transparent) 25%,
+    color-mix(in srgb, var(--ink) 18%, transparent) 50%,
+    color-mix(in srgb, var(--ink) 10%, transparent) 75%);
+  background-size: 200% 100%;
+  animation: explain-shimmer 1.2s ease-in-out infinite;
+}
+.explain-skeleton span:nth-child(2) { width: 92%; }
+.explain-skeleton span:nth-child(3) { width: 64%; }
+@keyframes explain-shimmer { 0% { background-position: 200% 0 } 100% { background-position: -200% 0 } }
+@media (prefers-reduced-motion: reduce) {
+  .explain-skeleton span { animation: none; }
+}
+/* Narrow screens: the label and three pills must not squeeze the pills to
+   unreadable widths, so the label takes its own line and the row stays tappable. */
+@media (max-width: 480px) {
+  .explain-actions { opacity: 1; row-gap: 6px; }
+  .explain-lead { flex-basis: 100%; }
+  .explain-btn { padding: 7px 13px; font-size: 12.5px; }
+}
+.explain-panel-body { color: var(--text-2); }
+.explain-panel-wait { color: var(--muted); font-style: italic; }
+.explain-panel-error { color: var(--text-2); }
+
+@media (prefers-reduced-motion: reduce) {
+  .explain-actions, .explain-btn { transition: none; }
+}
 
 /* worked */
 .worked-stack { display: flex; flex-direction: column; gap: 18px; }
@@ -854,6 +960,70 @@
 .qc-n { color: var(--ink); flex-shrink: 0; font-size: 13px; }
 .qc-a { margin: 10px 0 0 34px; font-size: 15px; color: var(--text-2); line-height: 1.5; }
 .qc-reveal { display: block; margin: 8px 0 0 34px; font-size: 10.5px; color: var(--muted); letter-spacing: 0.08em; }
+
+/* quick check — produce, then compare */
+.qc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; transition: border-color 150ms ease, background 150ms ease; }
+.qc-card:hover { border-color: var(--ink-border); }
+.qc-card.on { border-color: var(--ink-border); background: var(--ink-soft); }
+.qc-card.focus { border-color: var(--ink); box-shadow: 0 0 0 2px var(--ink-soft); }
+.qc-head { display: block; width: 100%; text-align: left; background: none; border: 0; padding: 16px 20px; cursor: pointer; font-family: inherit; color: inherit; }
+.qc-body { padding: 0 20px 18px; display: flex; flex-direction: column; gap: 12px; }
+.qc-write { display: flex; flex-direction: column; gap: 6px; }
+.qc-write-label { color: var(--muted); }
+.qc-input {
+  width: 100%; resize: vertical; font-family: inherit; font-size: 15px; line-height: 1.5;
+  color: var(--text); background: var(--surface); border: 1px solid var(--border-strong);
+  border-radius: 10px; padding: 10px 12px;
+}
+.qc-input:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 2px var(--ink-soft); }
+.qc-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.qc-check {
+  font-family: inherit; font-size: 13.5px; font-weight: 500; cursor: pointer;
+  color: var(--text); background: var(--surface); border: 1px solid var(--border-strong);
+  border-radius: 999px; padding: 7px 15px; transition: border-color 150ms ease, background 150ms ease;
+}
+.qc-check:hover { border-color: var(--ink); background: var(--ink-soft); }
+.qc-hint { color: var(--muted); }
+.qc-compare { display: flex; flex-direction: column; gap: 12px; }
+.qc-col-label { display: block; color: var(--muted); margin-bottom: 4px; }
+.qc-mine { border-left: 2px solid var(--border-strong); padding-left: 12px; }
+.qc-mine-text { color: var(--text-2); white-space: pre-wrap; margin: 0; }
+.qc-model { border-left: 2px solid var(--ink); padding-left: 12px; }
+.qc-model .qc-a { margin: 0; }
+.qc-diff-hint { color: var(--muted); font-style: italic; }
+.qc-retry {
+  align-self: flex-start; font-family: inherit; font-size: 12.5px; cursor: pointer;
+  color: var(--text-2); background: none; border: 0; padding: 2px 0;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.qc-retry:hover { color: var(--text); }
+.qc-write[hidden] { display: none; }
+
+/* progress + completion */
+.qc-progress { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+.qc-progress[aria-hidden='true'] { display: none; }
+.qc-progress-bar { flex: 1; height: 4px; border-radius: 999px; background: color-mix(in srgb, var(--ink) 12%, transparent); overflow: hidden; }
+.qc-progress-fill { display: block; height: 100%; background: var(--ink); border-radius: 999px; transition: width 320ms cubic-bezier(.4,0,.2,1); }
+.qc-progress-label { color: var(--muted); flex-shrink: 0; }
+.qc-done {
+  margin-top: 4px; padding: 16px 20px; border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--ink) 35%, transparent);
+  background: var(--ink-soft);
+  display: flex; flex-direction: column; gap: 8px; align-items: flex-start;
+  animation: qc-done-in 320ms cubic-bezier(.4,0,.2,1);
+}
+.qc-done-tag { font-size: 10.5px; letter-spacing: 0.12em; color: var(--ink); }
+.qc-done-lead { margin: 0; color: var(--text-2); }
+.qc-done-cta {
+  font-size: 14px; font-weight: 500; color: var(--text); text-decoration: none;
+  border-bottom: 1.5px solid var(--ink); padding-bottom: 1px;
+}
+.qc-done-cta:hover { color: var(--ink); }
+@keyframes qc-done-in { from { opacity: 0; transform: translateY(-4px) } to { opacity: 1; transform: none } }
+@media (prefers-reduced-motion: reduce) {
+  .qc-done { animation: none; }
+  .qc-progress-fill { transition: none; }
+}
 
 /* flashcards */
 .fc-zone { max-width: 460px; margin: 0 auto; }

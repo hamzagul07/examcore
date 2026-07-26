@@ -44,7 +44,12 @@ function splitSolutionSteps(solution: string): string[] {
   return [solution]
 }
 
-function extractNotes(sections: LessonSection[]): LessonNote[] {
+/**
+ * Exported so /api/courses/explain can rebuild the exact same note blocks the
+ * lesson page renders, and resolve a client-supplied block key against them
+ * without trusting any client-supplied prose.
+ */
+export function extractNotes(sections: LessonSection[]): LessonNote[] {
   const notes: LessonNote[] = []
   for (let i = 0; i < sections.length; i++) {
     const s = sections[i]

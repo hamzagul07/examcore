@@ -16,6 +16,20 @@ export function hasPaidAccess(access: EffectiveAccess): boolean {
  */
 export const INTERACTIVE_DIAGRAMS_FREE = true
 
+/**
+ * Quick check ("produce, then compare") is free for everyone.
+ *
+ * It is a retrieval-practice aid with no marginal cost — no AI call, nothing
+ * leaves the browser, attempts live in localStorage. Gating it earned nothing
+ * and removed the one place in a lesson where a free reader has to *produce*
+ * rather than read. It is also the natural bridge to marking: a student who has
+ * just written three answers is far closer to attempting a real question.
+ *
+ * Flip to `false` to move it back behind Pro/Max — that single change re-gates
+ * the lesson section and its table-of-contents entry.
+ */
+export const QUICK_CHECK_FREE = true
+
 /** Max questions marked per whole-paper upload on the free tier (preview). */
 export const FREE_WHOLE_PAPER_QUESTION_LIMIT = 3
 

@@ -15,11 +15,14 @@ import { LessonEndBlock } from '@/components/courses/margin-notes/LessonEndBlock
 import { CourseLessonDiagramShell } from '@/components/courses/margin-notes/CourseLessonDiagramShell'
 import { LessonComparisonTable } from '@/components/courses/margin-notes/LessonComparisonTable'
 import { CourseRichText } from '@/components/courses/CourseRichText'
+import { ExplainBlock } from '@/components/courses/ExplainBlock'
+import { useLessonStepSync } from '@/lib/courses/use-lesson-step-sync'
 import { useCourseProgress } from '@/components/courses/CourseProgressClient'
+import { appendMarkReturn } from '@/lib/courses/format-session'
 import { buildSignInHref } from '@/lib/auth-redirect'
 import { LessonUpsell } from '@/components/billing/LessonUpsell'
 import { trialDaysLeft, type EffectiveAccess } from '@/lib/billing/access'
-import { INTERACTIVE_DIAGRAMS_FREE } from '@/lib/billing/features'
+import { INTERACTIVE_DIAGRAMS_FREE, QUICK_CHECK_FREE } from '@/lib/billing/features'
 import {
   jumpTo,
   lessonTopicHref,
@@ -70,6 +73,9 @@ export function CourseLessonPage({
   // Interactive diagrams are free during launch (see INTERACTIVE_DIAGRAMS_FREE),
   // so they stay open even for the free tier. Everything else follows `locked`.
   const diagramsLocked = locked && !INTERACTIVE_DIAGRAMS_FREE
+  // Quick check is free for everyone (see QUICK_CHECK_FREE): zero marginal cost,
+  // and it is the only block that asks a free reader to produce rather than read.
+  const quizLocked = locked && !QUICK_CHECK_FREE
   const trialDays = access === 'trial' ? trialDaysLeft(trialEndsAt) : 0
   const acc = accentCssVar(subjectAcc)
   const pathname = usePathname()
@@ -108,6 +114,25 @@ export function CourseLessonPage({
   const practiceCount =
     L.practiceQuestions?.length ?? (L.practice ? 1 : 0)
 
+  // Mirrors CourseLessonDiagramShell's own step count for the non-explorable
+  // path. Over-estimating is harmless — the shell clamps the index it is given —
+  // whereas under-estimating would strand the last beats unreachable by scroll.
+  const syncStepCount = Math.max(
+    L.steps?.length ?? 0,
+    L.diagramSpec?.steps?.length ?? 0,
+    1
+  )
+  // Pointless without both halves on screen: a diagram to advance and prose to
+  // advance it from. Single-step diagrams have nothing to sync.
+  const stepSyncEnabled =
+    hasVisual && !diagramsLocked && !!L.notes?.length && syncStepCount > 1
+
+  const registerNoteBlock = useLessonStepSync({
+    stepCount: syncStepCount,
+    setStep,
+    enabled: stepSyncEnabled,
+  })
+
   const setLessonMode = useCallback(
     (next: 'learn' | 'papers') => {
       setMode(next)
@@ -119,6 +144,17 @@ export function CourseLessonPage({
     },
     [pathname, router, searchParams]
   )
+
+  // Hand-off after the last quick check: the student has just produced answers,
+  // which is the closest they get to attempting a real question without doing it.
+  const quizPractice = L.practiceQuestions?.[0] ?? L.practice ?? null
+  // Deliberately NOT gated on `locked`. The href is a /mark deep link, and
+  // marking has a free tier — this is the one moment a free reader has just
+  // written three answers and is closest to attempting a real question. Hiding
+  // the bridge from exactly that student would be backwards.
+  const quizPracticeHref = quizPractice
+    ? appendMarkReturn(quizPractice.href, pathname, L.point)
+    : null
 
   const toc = useMemo(
     () =>
@@ -132,14 +168,14 @@ export function CourseLessonPage({
         { id: 'worked', label: 'Worked examples', on: !!L.worked?.length },
         { id: 'cmap', label: 'Concept map', on: !!L.conceptMap && !locked },
         { id: 'glossary', label: 'Glossary', on: !!L.glossary?.length },
-        { id: 'quiz', label: 'Quick check', on: !!L.quiz?.length && !locked },
+        { id: 'quiz', label: 'Quick check', on: !!L.quiz?.length && !quizLocked },
         { id: 'cards', label: 'Flashcards', on: !!L.flashcards?.length && !locked },
         { id: 'takeaways', label: 'Key takeaways', on: !!L.takeaways?.length },
         { id: 'practice', label: 'Practice', on: !!L.practice && !locked },
         { id: 'resources', label: 'Extra links', on: !!L.resources?.length },
         { id: 'faqs', label: 'FAQs', on: !!L.faqs?.length },
       ].filter((s) => s.on),
-    [L, hasVisual, locked, diagramsLocked]
+    [L, hasVisual, locked, diagramsLocked, quizLocked]
   )
 
   useEffect(() => {
@@ -583,6 +619,10 @@ export function CourseLessonPage({
               </section>
             ) : null}
 
+            <div
+              className="lesson-sync-region"
+              data-sync={stepSyncEnabled ? 'on' : 'off'}
+            >
             {hasVisual ? (
               <section id="visual" className="lsec">
                 <SecHead
@@ -657,7 +697,7 @@ export function CourseLessonPage({
                 />
                 <div className="notes-body">
                   {L.notes.map((n, i) => (
-                    <div key={i} className="note-block">
+                    <div key={i} className="note-block" ref={registerNoteBlock(i)}>
                       <h3 className="note-h serif">{n.h}</h3>
                       {(simpler && L.simple?.simplerByHeading?.[n.h]
                         ? L.simple.simplerByHeading[n.h]
@@ -673,7 +713,10 @@ export function CourseLessonPage({
                           />
                         </div>
                       ) : null}
-                      {n.bullets?.length && !simpler ? (
+                      {/* Key points and the exam tip stay put in simpler mode.
+                          Hiding them stripped exam guidance from exactly the
+                          student who had just said they were struggling. */}
+                      {n.bullets?.length ? (
                         <ul className="note-bullets">
                           {n.bullets.map((b, bi) => (
                             <li key={bi} className="body-2">
@@ -682,7 +725,7 @@ export function CourseLessonPage({
                           ))}
                         </ul>
                       ) : null}
-                      {n.tip && !simpler ? (
+                      {n.tip ? (
                         <div className="note-tip">
                           <span className="note-tip-tag mono">EXAM TIP</span>
                           <div className="body-2">
@@ -690,11 +733,17 @@ export function CourseLessonPage({
                           </div>
                         </div>
                       ) : null}
+                      <ExplainBlock
+                        subjectCode={L.code}
+                        lessonSlug={L.lessonSlug}
+                        block={n}
+                      />
                     </div>
                   ))}
                 </div>
               </section>
             ) : null}
+            </div>
 
             {L.worked?.length ? (
               <section id="worked" className="lsec">
@@ -733,14 +782,19 @@ export function CourseLessonPage({
               </section>
             ) : null}
 
-            {L.quiz?.length && !locked ? (
+            {L.quiz?.length && !quizLocked ? (
               <section id="quiz" className="lsec">
                 <SecHead
                   k="08"
                   title="Quick check"
-                  sub="Answer in your head first — then tap to check. No pressure."
+                  sub="Write your answer first, then compare it with the model one — the gap is what you would have lost."
                 />
-                <QuickCheck items={L.quiz} />
+                <QuickCheck
+                  items={L.quiz}
+                  storageKey={L.lessonSlug}
+                  practiceHref={quizPracticeHref}
+                  practiceRef={quizPractice?.ref}
+                />
               </section>
             ) : null}
 

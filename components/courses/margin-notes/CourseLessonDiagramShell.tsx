@@ -69,6 +69,7 @@ export function CourseLessonDiagramShell({
   const activeIndex = Math.max(0, Math.min(stepCount - 1, step - 1))
   const diagramStep = clampStepIndex(resolvedSpec, activeIndex)
   const stepState = stepStateFor(resolvedSpec, diagramStep)
+  const activeStep = activeIndex + 1
   const activeBeat = beats[activeIndex]
   const currentStep = steps[activeIndex] ?? steps[0]
   const stepTitle = activeBeat?.label ?? currentStep?.title
@@ -127,7 +128,7 @@ export function CourseLessonDiagramShell({
                 : 'LIVE DIAGRAM'}
         </span>
         <span className="diagram-step-label mono">
-          STEP {step} / {stepCount}
+          STEP {activeStep} / {stepCount}
           {stepTitle ? ` · ${stepTitle}` : ''}
         </span>
         {stepCount > 1 ? (
@@ -189,7 +190,7 @@ export function CourseLessonDiagramShell({
             <button
               key={n}
               type="button"
-              className={`dg-dot${step === n ? ' on' : ''}`}
+              className={`dg-dot${activeStep === n ? ' on' : ''}`}
               aria-label={`Step ${n}`}
               onClick={() => setStep(n)}
             />
@@ -219,7 +220,7 @@ export function CourseLessonDiagramShell({
             <li key={i}>
               <button
                 type="button"
-                className={`diagram-step-pill${step === i + 1 ? ' on' : ''}`}
+                className={`diagram-step-pill${activeStep === i + 1 ? ' on' : ''}`}
                 onClick={() => setStep(i + 1)}
               >
                 <span className="diagram-step-pill-n mono">{i + 1}</span>
@@ -234,7 +235,7 @@ export function CourseLessonDiagramShell({
             <li key={s.n}>
               <button
                 type="button"
-                className={`diagram-step-pill${step === s.n ? ' on' : ''}`}
+                className={`diagram-step-pill${activeStep === s.n ? ' on' : ''}`}
                 onClick={() => setStep(s.n)}
               >
                 <span className="diagram-step-pill-n mono">{s.n}</span>

@@ -183,21 +183,6 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
         </div>
       ) : null}
 
-      {!isPilotLesson ? (
-        <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pt-4 sm:px-6">
-          <CourseLessonSeoIntro
-            heading={seo.introHeading}
-            paragraph={seo.introParagraph}
-            subjectCode={code}
-            subjectName={course.name}
-            markPath={appendMarkReturn(
-              seo.markPath,
-              `/courses/${code}/${lessonSlug}`,
-              lesson.topicCode
-            )}
-          />
-        </div>
-      ) : null}
 
       <GuestSignupGate>
         <CourseLessonClient
@@ -221,6 +206,26 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
           }
         />
       </GuestSignupGate>
+
+      {/* Search-intent intro. Deliberately BELOW the lesson: it is written for
+          crawlers, and a student landing here should meet their lesson first,
+          not marketing copy. Same DOM, same server render — only the order
+          changed. */}
+      {!isPilotLesson ? (
+        <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pb-10 pt-14 sm:px-6">
+          <CourseLessonSeoIntro
+            heading={seo.introHeading}
+            paragraph={seo.introParagraph}
+            subjectCode={code}
+            subjectName={course.name}
+            markPath={appendMarkReturn(
+              seo.markPath,
+              `/courses/${code}/${lessonSlug}`,
+              lesson.topicCode
+            )}
+          />
+        </div>
+      ) : null}
     </>
   )
 }

@@ -147,8 +147,12 @@ export function extractLatexEquations(content: string): string[] {
     const t = segment.trim()
     if (!t) continue
 
+    // Same guard as splitFormulaContent: a colon inside LaTeX is part of the
+    // maths, not a "Label: equation" separator. Without this, \text{SA:V ratio}
+    // lost its first half and rendered as "$V ratio} = …$".
     const labelMatch = t.match(/^([^:$\n]+):\s*(.+)$/)
-    if (labelMatch && /[=\\]|\\frac|\\text|[_^]/.test(labelMatch[2]!)) {
+    const labelIsProse = labelMatch ? !/[\\{}]/.test(labelMatch[1]!) : false
+    if (labelMatch && labelIsProse && /[=\\]|\\frac|\\text|[_^]/.test(labelMatch[2]!)) {
       const labelled = extractLatexEquations(labelMatch[2]!)
       if (labelled.length) {
         equations.push(...labelled)
@@ -179,8 +183,14 @@ export function splitFormulaContent(content: string): { description: string; lat
   const lines = extractLatexEquations(content)
   const latex = lines[0] ?? ''
 
+  // "Magnification: $...$" means the prefix is a description. But a colon also
+  // appears INSIDE LaTeX — \text{SA:V ratio} is one label, not a prefix plus an
+  // equation — and treating that as a description silently ate the first half of
+  // the formula, rendering "$V ratio} = ...$" on the page. Only accept a prefix
+  // that looks like prose.
   const labelMatch = s.match(/^([^:$\n]+):\s*/)
-  if (labelMatch && lines.length) {
+  const looksLikeProse = labelMatch ? !/[\\{}]/.test(labelMatch[1]) : false
+  if (labelMatch && looksLikeProse && lines.length) {
     return { description: labelMatch[1].trim(), latex }
   }
 
@@ -296,7 +306,14 @@ export function extractLatexSymbols(latex: string): string[] {
       c = c.replace(m[0], ' ')
     }
 
-    c = c.replace(/\\(?:cos|sin|tan|log|ln|sqrt|text|mathrm)[^a-zA-Z]*/gi, ' ')
+    // \text{…} and \mathrm{…} hold WORDS, not variables — remove them with
+    // their contents first. Stripping the command alone left "{magnification}"
+    // behind, which the implicit-multiplication splitter then shredded into
+    // fake symbols (m, a, gni, f, i, c, t, ion, ge) — and stray fragments like
+    // "ce" went on to match unrelated subject glossaries, so a Biology formula
+    // was captioned "Capital employed — total long-term funds in the business".
+    c = c.replace(/\\(?:text|mathrm|textrm|operatorname)\s*\{[^}]*\}/gi, ' ')
+    c = c.replace(/\\(?:cos|sin|tan|log|ln|sqrt)[^a-zA-Z]*/gi, ' ')
     c = c.replace(/\\[a-zA-Z]+(\{[^}]*\})?/g, ' ')
 
     for (const token of c.match(/[A-Za-z]+|λ|θ|ΔT|Δθ|Δ\([a-z]+\)|Δ[a-z]|I₀/g) ?? []) {
@@ -428,11 +445,17 @@ export function parseFormulaParts(
   const displayLines = latexLines.length > 0 ? latexLines : []
   const expressions = displayLines.map((l) => wrapFormulaExpression(l))
 
+  // Drop symbols we cannot actually define. The card invites the reader to "tap
+  // a symbol — great for exam definitions"; a chip that answers "Definition
+  // coming soon" spends their attention and gives nothing back. Better to show
+  // three real definitions than three real ones and a shrug.
+  const definedParts = parts.filter((p) => p.meaning !== 'Definition coming soon')
+
   return {
     description,
     latex: displayLines.join('\n'),
     expressions,
     expression: expressions[0] ?? '',
-    parts,
+    parts: definedParts,
   }
 }

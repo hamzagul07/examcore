@@ -425,6 +425,10 @@ export function adaptLesson(
         }
       : undefined,
     diagram: hasVisual ? 'live' : undefined,
+    // Whether CourseLessonDiagramShell will actually render something. It bails
+    // out unless one of these three exists, so a lesson with only step cards
+    // would otherwise get a "Explore the concept" heading over empty space.
+    hasDiagram: !!(liveDiagram || interactiveEmbed || hasExplorable(lesson.slug)),
     steps,
     formulas: formulas.length ? formulas : undefined,
     comparisonTable,

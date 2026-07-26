@@ -19,6 +19,7 @@ import { ExplainBlock } from '@/components/courses/ExplainBlock'
 import { CriterionLadder } from '@/components/courses/CriterionLadder'
 import type { CriterionLadderData } from '@/lib/courses/criterion-ladder.server'
 import { useLessonStepSync } from '@/lib/courses/use-lesson-step-sync'
+import { useSectionReveal } from '@/lib/courses/use-section-reveal'
 import { useCourseProgress } from '@/components/courses/CourseProgressClient'
 import { appendMarkReturn } from '@/lib/courses/format-session'
 import { buildSignInHref } from '@/lib/auth-redirect'
@@ -129,8 +130,14 @@ export function CourseLessonPage({
   )
   // Pointless without both halves on screen: a diagram to advance and prose to
   // advance it from. Single-step diagrams have nothing to sync.
+  // L.hasDiagram, not hasVisual: a lesson with only step cards renders no
+  // diagram, and pinning an empty column beside the prose looked broken.
   const stepSyncEnabled =
-    hasVisual && !diagramsLocked && !!L.notes?.length && syncStepCount > 1
+    L.hasDiagram && !diagramsLocked && !!L.notes?.length && syncStepCount > 1
+
+  // Sections settle in as they arrive. Re-runs when the tab changes, since the
+  // papers panel mounts a different set of sections.
+  useSectionReveal('.lsec', mode === 'learn')
 
   const registerNoteBlock = useLessonStepSync({
     stepCount: syncStepCount,
@@ -167,7 +174,7 @@ export function CourseLessonPage({
         { id: 'simple', label: 'Simple explanation', on: !!L.simple },
         { id: 'syllabus', label: 'Syllabus coverage', on: !!L.subtopics?.length },
         { id: 'criteria', label: 'How it’s marked', on: !!criterionLadder },
-        { id: 'visual', label: 'Visual learning', on: hasVisual && !diagramsLocked },
+        { id: 'visual', label: 'Visual learning', on: L.hasDiagram && !diagramsLocked },
         { id: 'formulas', label: 'Key formulas', on: !!L.formulas?.length },
         { id: 'compare', label: 'Side by side', on: !!L.comparisonTable },
         { id: 'notes', label: 'Full notes', on: !!L.notes?.length },
@@ -181,7 +188,7 @@ export function CourseLessonPage({
         { id: 'resources', label: 'Extra links', on: !!L.resources?.length },
         { id: 'faqs', label: 'FAQs', on: !!L.faqs?.length },
       ].filter((s) => s.on),
-    [L, hasVisual, locked, diagramsLocked, quizLocked, criterionLadder]
+    [L, locked, diagramsLocked, quizLocked, criterionLadder]
   )
 
   useEffect(() => {
@@ -303,18 +310,24 @@ export function CourseLessonPage({
         </div>
       ) : null}
 
+      <div className="lesson-stage" aria-hidden />
       <header className="lesson-hero pg">
         <div className="lesson-hero-main">
-          <div className="lesson-tagrow">
-            <span className="chip outline mono">
-              {L.code} · {L.point}
-            </span>
-            <span className="chip dim mono">{L.sub.toUpperCase()}</span>
+          {/* One line, ordered by what a student actually asks: which point is
+              this, in what, how long. Separators instead of four competing
+              pills — the old chip row wrapped to two lines on a phone. */}
+          <div className="lesson-metaline mono">
+            <span className="lesson-metaline-code">{L.point}</span>
+            <span className="lesson-metaline-sep" aria-hidden>/</span>
+            <span>{L.sub}</span>
             {L.mins ? (
-              <span className="chip dim mono">≈ {L.mins} MIN</span>
+              <>
+                <span className="lesson-metaline-sep" aria-hidden>/</span>
+                <span>{L.mins} min read</span>
+              </>
             ) : null}
             {L.tag === 'premium' || L.tag === 'pilot' ? (
-              <span className="chip ok mono">{(L.tag || 'topic').toUpperCase()}</span>
+              <span className="lesson-metaline-tag">{(L.tag || 'topic').toUpperCase()}</span>
             ) : null}
           </div>
           <h2 className="h-display lesson-title" aria-labelledby="lesson-seo-intro">
@@ -640,7 +653,7 @@ export function CourseLessonPage({
               className="lesson-sync-region"
               data-sync={stepSyncEnabled ? 'on' : 'off'}
             >
-            {hasVisual ? (
+            {L.hasDiagram ? (
               <section id="visual" className="lsec">
                 <SecHead
                   k="02"

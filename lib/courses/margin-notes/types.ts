@@ -113,6 +113,12 @@ export type MarginNotesLesson = {
     simplerByHeading?: Record<string, string>
   }
   diagram?: 'live'
+  /**
+   * A real diagram will render — a live SVG, a PhET/GeoGebra embed, or an
+   * explorable. Distinct from `hasVisual`, which is also true when a lesson only
+   * has step cards: those produce a section heading and nothing beneath it.
+   */
+  hasDiagram: boolean
   steps?: LessonStep[]
   formulas?: LessonFormula[]
   comparisonTable?: LessonComparisonTable

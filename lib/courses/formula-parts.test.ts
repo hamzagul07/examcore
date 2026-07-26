@@ -189,6 +189,53 @@ assert.ok(
   'no placeholder defs on ROCE formula'
 )
 
+// ── Colons inside LaTeX are maths, not "Label: equation" ────────────────────
+// \text{SA:V ratio} used to be split at the colon, so the rendered card showed
+// "$V ratio} = …$" — half the formula, plus a stray brace, on a live page.
+{
+  const sav = parseFormulaParts(
+    '\\text{SA:V ratio} = \\frac{\\text{surface area}}{\\text{volume}}',
+    { sections: [], topicCode: 'A2.2' } as never,
+    'ib-biology-hl'
+  )
+  assert.ok(sav.expression.includes('\\text{SA:V ratio}'), 'colon inside \\text is preserved')
+  assert.ok(!/^\$V ratio\}/.test(sav.expression), 'no orphan brace leaks into the expression')
+
+  // \text{…} holds words. Stripping the command but not its contents let the
+  // implicit-multiplication splitter shred "magnification" into m/a/gni/f/i/c/t,
+  // and the fragment "ce" then matched an accounting glossary — so a Biology
+  // formula was captioned "Capital employed — total long-term funds".
+  assert.ok(
+    !sav.parts.some((p) => ['rat', 'io', 'ce', 'surfa'].includes(p.symbol)),
+    'no shredded fragments from \\text labels'
+  )
+  assert.ok(
+    !sav.parts.some((p) => /Capital employed/i.test(p.meaning)),
+    'no cross-subject glossary bleed'
+  )
+
+  const mag = parseFormulaParts(
+    '\\text{magnification} = \\frac{\\text{image size}}{\\text{actual size}}',
+    { sections: [], topicCode: 'A2.2' } as never,
+    'ib-biology-hl'
+  )
+  assert.ok(mag.parts.some((p) => p.symbol === 'magnification') &&
+      !mag.parts.some((p) => ['gni', 'ion', 'ge'].includes(p.symbol), 'text labels survive whole')
+  )
+
+  // A chip that says "Definition coming soon" spends attention and returns none.
+  assert.ok(!mag.parts.some((p) => p.meaning === 'Definition coming soon', 'undefined symbols are not offered')
+  )
+
+  // A genuine prose label must still work.
+  const labelled = parseFormulaParts(
+    'Magnification: $M = \\frac{I}{A}$',
+    { sections: [], topicCode: '1.1' } as never,
+    '9700'
+  )
+  assert.ok(labelled.description.toLowerCase().includes('magnification'), 'prose label still splits')
+}
+
 if (failed > 0) {
   console.error(`\n${failed} extract test(s) failed`)
   process.exit(1)

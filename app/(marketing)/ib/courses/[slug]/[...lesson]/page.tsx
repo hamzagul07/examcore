@@ -77,24 +77,6 @@ export default async function IbLessonPage({ params }: Props) {
         topics={subjectSeo.topics}
       />
 
-      <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pt-4 sm:px-6">
-        <CourseLessonSeoIntro
-          heading={seo.introHeading}
-          paragraph={seo.introParagraph}
-          subjectCode={slug}
-          subjectName={subject.name}
-          markPath={appendMarkReturn(
-            seo.markPath,
-            `/ib/courses/${slug}/${lessonSlug}`,
-            l.topicCode
-          )}
-          courseHref={`/ib/courses/${slug}`}
-          subjectHubHref={`/ib/subjects/${catalogSlug}`}
-          markCtaLabel="IB criterion practice"
-          courseCtaLabel={`Full IB ${short} course`}
-          subjectHubCtaLabel={`${short} subject hub`}
-        />
-      </div>
 
       <GuestSignupGate>
         <CourseLessonClient
@@ -120,6 +102,29 @@ export default async function IbLessonPage({ params }: Props) {
           }
         />
       </GuestSignupGate>
+
+      {/* Search-intent intro. Deliberately BELOW the lesson: it is written for
+          crawlers, and a student landing here should meet their lesson first,
+          not marketing copy. Same DOM, same server render — only the order
+          changed. */}
+      <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pb-10 pt-14 sm:px-6">
+        <CourseLessonSeoIntro
+          heading={seo.introHeading}
+          paragraph={seo.introParagraph}
+          subjectCode={slug}
+          subjectName={subject.name}
+          markPath={appendMarkReturn(
+            seo.markPath,
+            `/ib/courses/${slug}/${lessonSlug}`,
+            l.topicCode
+          )}
+          courseHref={`/ib/courses/${slug}`}
+          subjectHubHref={`/ib/subjects/${catalogSlug}`}
+          markCtaLabel="IB criterion practice"
+          courseCtaLabel={`Full IB ${short} course`}
+          subjectHubCtaLabel={`${short} subject hub`}
+        />
+      </div>
     </>
   )
 }

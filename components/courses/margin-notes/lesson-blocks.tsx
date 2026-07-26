@@ -7,6 +7,7 @@ import { appendMarkReturn } from '@/lib/courses/format-session'
 import { useLessonMastery } from '@/lib/hooks/useLessonMastery'
 import type { MasteryLevel } from '@/lib/mastery'
 import { CourseRichText } from '@/components/courses/CourseRichText'
+import { GUEST_EARN_EVENT } from '@/components/auth/GuestSavePrompt'
 
 export function jumpTo(id: string) {
   const el = document.getElementById(id)
@@ -339,6 +340,13 @@ export function QuickCheck({
     if (!subjectCode || !lessonSlug) return
     recordedRef.current = true
     onComplete?.()
+    // A reader who has just written answers has something worth saving. Let the
+    // guest prompt offer the account here rather than on a timer.
+    try {
+      window.dispatchEvent(new Event(GUEST_EARN_EVENT))
+    } catch {
+      /* ignore */
+    }
     void fetch('/api/courses/recall', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

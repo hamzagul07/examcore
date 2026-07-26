@@ -30,6 +30,21 @@ export const INTERACTIVE_DIAGRAMS_FREE = true
  */
 export const QUICK_CHECK_FREE = true
 
+/**
+ * Whether the content gate BLOCKS the page for signed-out visitors.
+ *
+ * It used to. GuestSignupGate returned the signup panel *instead of* its
+ * children, so a first-time visitor arriving from search saw no lesson at all —
+ * just a modal asking for an account before they had any reason to want one.
+ * That sat on course lessons and past-paper topic pages, which is where the
+ * majority of sessions land.
+ *
+ * Now the content always renders and the account is asked for once the reader
+ * has something worth saving (see GuestSavePrompt). Flip to `true` to restore
+ * the hard wall.
+ */
+export const CONTENT_GATE_BLOCKS = false
+
 /** Max questions marked per whole-paper upload on the free tier (preview). */
 export const FREE_WHOLE_PAPER_QUESTION_LIMIT = 3
 

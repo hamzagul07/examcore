@@ -2866,3 +2866,36 @@ a.scard, a.continue, a.topic-row, a.pn-btn, a.related-card, a.subj-row, a.dash-c
   .lpath-rail-item button { padding: 6px; }
   .lpath-title { font-size: clamp(26px, 8vw, 34px); }
 }
+
+/* ── Guest save prompt ───────────────────────────────────────────────────────
+   Replaces a modal that rendered instead of the page. Sits at the bottom, never
+   over the text being read, and is dismissible. */
+.ms-save-prompt {
+  position: fixed; z-index: 60;
+  left: 50%; transform: translateX(-50%);
+  bottom: max(18px, env(safe-area-inset-bottom, 0px));
+  width: min(560px, calc(100vw - 28px));
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+  padding: 15px 18px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow-pop);
+  animation: ms-save-in 420ms cubic-bezier(.16,.7,.3,1);
+}
+.ms-save-prompt-body { flex: 1; min-width: 210px; }
+.ms-save-prompt-title { margin: 0; font-size: 15px; font-weight: 600; color: var(--text); }
+.ms-save-prompt-lead { margin: 3px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--text-2); }
+.ms-save-prompt-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.ms-save-prompt-cta { white-space: nowrap; }
+.ms-save-prompt-dismiss {
+  font-family: inherit; font-size: 13px; cursor: pointer;
+  color: var(--muted); background: none; border: 0; padding: 6px 2px;
+}
+.ms-save-prompt-dismiss:hover { color: var(--text-2); }
+@keyframes ms-save-in { from { opacity: 0; transform: translate(-50%, 14px) } to { opacity: 1; transform: translate(-50%, 0) } }
+@media (prefers-reduced-motion: reduce) { .ms-save-prompt { animation: none; } }
+@media (max-width: 560px) {
+  .ms-save-prompt { gap: 12px; padding: 14px; }
+  .ms-save-prompt-actions { width: 100%; justify-content: space-between; }
+}

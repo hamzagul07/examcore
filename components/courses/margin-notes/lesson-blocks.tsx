@@ -241,6 +241,7 @@ export function QuickCheck({
   practiceRef,
   subjectCode,
   lessonSlug,
+  onComplete,
 }: {
   items: NonNullable<MarginNotesLesson['quiz']>
   /** Lesson slug — scopes saved attempts so they survive a reload. */
@@ -251,6 +252,8 @@ export function QuickCheck({
   /** Identify the lesson for spaced recall. Omit to disable recording. */
   subjectCode?: string
   lessonSlug?: string
+  /** Fired once when every question has an answer. */
+  onComplete?: () => void
 }) {
   const listRef = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState<Record<number, boolean>>({})
@@ -335,6 +338,7 @@ export function QuickCheck({
     if (!allAnswered || recordedRef.current) return
     if (!subjectCode || !lessonSlug) return
     recordedRef.current = true
+    onComplete?.()
     void fetch('/api/courses/recall', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -347,7 +351,7 @@ export function QuickCheck({
     }).catch(() => {
       recordedRef.current = false
     })
-  }, [allAnswered, answered, items.length, lessonSlug, subjectCode])
+  }, [allAnswered, answered, items.length, lessonSlug, onComplete, subjectCode])
 
   return (
     <div ref={listRef} className="qc-list">

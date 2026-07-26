@@ -20,6 +20,7 @@ import { CriterionLadder } from '@/components/courses/CriterionLadder'
 import type { CriterionLadderData } from '@/lib/courses/criterion-ladder.server'
 import { useLessonStepSync } from '@/lib/courses/use-lesson-step-sync'
 import { useSectionReveal } from '@/lib/courses/use-section-reveal'
+import { useLessonProgress } from '@/lib/courses/use-lesson-progress'
 import { useCourseProgress } from '@/components/courses/CourseProgressClient'
 import { appendMarkReturn } from '@/lib/courses/format-session'
 import { buildSignInHref } from '@/lib/auth-redirect'
@@ -191,16 +192,27 @@ export function CourseLessonPage({
     [L, locked, diagramsLocked, quizLocked, criterionLadder]
   )
 
+  // Real progress: which sections the student has actually worked through.
+  // Replaces scroll position, which reported 99% for anyone who flicked to the
+  // bottom and 15% for anyone who read three sections carefully.
+  const {
+    readIds,
+    percent: lessonPercent,
+    markInteracted,
+  } = useLessonProgress(
+    toc.map((t) => t.id),
+    L.lessonSlug
+  )
+
   useEffect(() => {
     setActive((prev) => (toc.some((t) => t.id === prev) ? prev : toc[0]?.id ?? ''))
   }, [toc])
 
-  const [scrollPct, setScrollPct] = useState(0)
 
   const tocPct = useMemo(() => {
     if (isDone) return 100
-    return scrollPct
-  }, [isDone, scrollPct])
+    return lessonPercent
+  }, [isDone, lessonPercent])
 
   const scrollToSection = useCallback((id: string) => {
     jumpTo(id)
@@ -223,29 +235,8 @@ export function CourseLessonPage({
     return () => window.clearTimeout(t)
   }, [mode, scrollToSection])
 
-  useEffect(() => {
-    if (mode !== 'learn') return
-
-    const onScroll = () => {
-      const article = document.querySelector('.lesson-article') as HTMLElement | null
-      if (!article) return
-      const rect = article.getBoundingClientRect()
-      const top = window.scrollY + rect.top
-      const height = article.offsetHeight
-      const viewport = window.innerHeight
-      const scrolled = window.scrollY - top + viewport * 0.35
-      const max = Math.max(1, height - viewport * 0.45)
-      setScrollPct(Math.min(99, Math.max(0, Math.round((scrolled / max) * 100))))
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll)
-    onScroll()
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
-    }
-  }, [mode, toc])
+  // (A scroll listener used to compute a percentage here. Progress now comes
+  // from useLessonProgress — sections worked through, not scroll depth.)
 
   useEffect(() => {
     if (mode !== 'learn') return
@@ -532,12 +523,20 @@ export function CourseLessonPage({
                 <button
                   key={tt.id}
                   type="button"
-                  className={`toc-link${active === tt.id ? ' on' : ''}`}
+                  className={`toc-link${active === tt.id ? ' on' : ''}${
+                    readIds.has(tt.id) ? ' read' : ''
+                  }`}
                   aria-current={active === tt.id ? 'true' : undefined}
                   onClick={() => scrollToSection(tt.id)}
                 >
-                  <span className="toc-num mono">{String(i + 1).padStart(2, '0')}</span>
+                  {/* The number becomes a tick once the section is worked
+                      through, so the rail shows what is left rather than just
+                      where you are. */}
+                  <span className="toc-num mono" aria-hidden>
+                    {readIds.has(tt.id) ? '✓' : String(i + 1).padStart(2, '0')}
+                  </span>
                   {tt.label}
+                  {readIds.has(tt.id) ? <span className="sr-only"> — done</span> : null}
                 </button>
               ))}
             </nav>
@@ -820,6 +819,7 @@ export function CourseLessonPage({
                   sub="Write your answer first, then compare it with the model one — the gap is what you would have lost."
                 />
                 <QuickCheck
+                  onComplete={() => markInteracted('quiz')}
                   items={L.quiz}
                   storageKey={L.lessonSlug}
                   practiceHref={quizPracticeHref}

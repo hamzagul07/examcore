@@ -668,6 +668,15 @@
 }
 .lesson-sheet:hover { transform: translateY(-2px); box-shadow: var(--shadow-pop); }
 
+/* ── Progress rail ───────────────────────────────────────────────────────── */
+/* A section that has been worked through swaps its number for a tick. Quiet:
+   the point is to show what is left, not to congratulate. */
+.toc-link.read .toc-num { color: var(--ink); opacity: 1; }
+.toc-link.read { color: var(--text-2); }
+.toc-link.read:not(.on) { opacity: 0.82; }
+.toc-num { transition: color 200ms ease, opacity 200ms ease; }
+@media (prefers-reduced-motion: reduce) { .toc-num { transition: none; } }
+
 /* ── Craft ───────────────────────────────────────────────────────────────── */
 /* Selection picks up the subject ink instead of the browser default blue,
    which fights the warm palette badly. */

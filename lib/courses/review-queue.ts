@@ -7,6 +7,7 @@ import {
   type AttemptWithPaper,
 } from '@/lib/syllabi/attempts'
 import { hasSyllabusTree } from '@/lib/syllabi'
+import { selectDueRecall, type RecallRow } from '@/lib/courses/recall-schedule'
 import { makeTopicLessonResolver } from '@/lib/courses/topic-lesson'
 import { getSubjectByCode } from '@/lib/profile-options'
 import { nextReviewInterval } from '@/lib/review/schedule'
@@ -27,6 +28,15 @@ export type ReviewItem = {
   topErrors: { label: string; icon: string }[]
   practiceHref: string
   lessonHref: string | null
+  /**
+   * Where this item came from.
+   *
+   * 'attempts' — derived from marked work, so the score and error breakdown are
+   * real. 'recall' — the student completed the lesson's quick check and it is
+   * due to come back; there is no score, because nothing was marked. The UI must
+   * not print a percentage for a recall item, it would be fabricated.
+   */
+  source: 'attempts' | 'recall'
 }
 
 const DAY_MS = 86_400_000
@@ -79,7 +89,9 @@ export async function buildReviewQueue(
     .limit(400)
 
   const attempts = (data ?? []) as unknown as AttemptWithPaper[]
-  if (!attempts.length) return []
+  // NOT an early return any more. A student with no marked attempts used to get
+  // an empty queue — which is most students — so the entire spaced-review system
+  // was invisible to them. Lesson recall stands on its own.
 
   // Persisted spaced-repetition state (service-role only).
   type SchedRow = {
@@ -120,6 +132,7 @@ export async function buildReviewQueue(
 
   const now = Date.now()
   const items: ReviewItem[] = []
+  const recallItems: ReviewItem[] = []
 
   for (const [subject, subjectAttempts] of bySubject) {
     const resolve = makeTopicLessonResolver(subject)
@@ -190,6 +203,7 @@ export async function buildReviewQueue(
         topErrors: topErrorsFor(topicAttempts),
         practiceHref: practiceHref(subject, m.code),
         lessonHref: resolve(m.code)?.href ?? null,
+        source: 'attempts',
       })
     }
   }
@@ -210,5 +224,46 @@ export async function buildReviewQueue(
       a.percentage - b.percentage
   )
 
-  return items.slice(0, limit)
+  // Recall items: lessons whose quick check the student completed, now due.
+  // Appended after attempt-driven items — a real marked score always outranks a
+  // self-assessed one.
+  const markedTopicKeys = new Set<string>()
+  for (const a of attempts) {
+    const code = getAttemptSubjectCode(a)
+    if (!code) continue
+    for (const tag of a.syllabus_tags ?? []) markedTopicKeys.add(`${code}::${tag}`)
+  }
+
+  const { data: recallRows } = await admin
+    .from('lesson_recall')
+    .select('subject_code, lesson_slug, topic_code, answered_count, total_count, due_at, last_worked_at')
+    .eq('user_id', userId)
+    .order('due_at', { ascending: true })
+    .limit(200)
+
+  const due = selectDueRecall((recallRows ?? []) as RecallRow[], markedTopicKeys, now)
+  const alreadyListed = new Set(items.map((i) => `${i.subject}::${i.code}`))
+
+  for (const r of due) {
+    if (items.length + recallItems.length >= limit) break
+    if (alreadyListed.has(`${r.subjectCode}::${r.topicCode}`)) continue
+    if (!hasSyllabusTree(r.subjectCode)) continue
+    const resolved = makeTopicLessonResolver(r.subjectCode)(r.topicCode)
+    recallItems.push({
+      subject: r.subjectCode,
+      subjectLabel: getSubjectByCode(r.subjectCode)?.label ?? r.subjectCode,
+      code: r.topicCode,
+      name: resolved?.name ?? r.topicCode,
+      level: 'sampled',
+      percentage: 0,
+      attemptsCount: 0,
+      daysSince: r.daysSince,
+      topErrors: [],
+      practiceHref: practiceHref(r.subjectCode, r.topicCode),
+      lessonHref: resolved?.href ?? null,
+      source: 'recall',
+    })
+  }
+
+  return [...items, ...recallItems].slice(0, limit)
 }

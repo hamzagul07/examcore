@@ -239,6 +239,8 @@ export function QuickCheck({
   storageKey,
   practiceHref,
   practiceRef,
+  subjectCode,
+  lessonSlug,
 }: {
   items: NonNullable<MarginNotesLesson['quiz']>
   /** Lesson slug — scopes saved attempts so they survive a reload. */
@@ -246,6 +248,9 @@ export function QuickCheck({
   /** Where "now do the real thing" goes once every question is answered. */
   practiceHref?: string | null
   practiceRef?: string
+  /** Identify the lesson for spaced recall. Omit to disable recording. */
+  subjectCode?: string
+  lessonSlug?: string
 }) {
   const listRef = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState<Record<number, boolean>>({})
@@ -320,6 +325,29 @@ export function QuickCheck({
   )
   const allAnswered = answered === items.length && items.length > 0
   const pct = items.length ? Math.round((answered / items.length) * 100) : 0
+
+  // Record the completion once so the lesson can come back for spaced recall.
+  // Fire-and-forget and guarded by a ref: this must never block the UI, and a
+  // failure (offline, signed out) simply means no scheduling — the quick check
+  // itself is unaffected. The route no-ops for guests.
+  const recordedRef = useRef(false)
+  useEffect(() => {
+    if (!allAnswered || recordedRef.current) return
+    if (!subjectCode || !lessonSlug) return
+    recordedRef.current = true
+    void fetch('/api/courses/recall', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        subjectCode,
+        lessonSlug,
+        answered,
+        total: items.length,
+      }),
+    }).catch(() => {
+      recordedRef.current = false
+    })
+  }, [allAnswered, answered, items.length, lessonSlug, subjectCode])
 
   return (
     <div ref={listRef} className="qc-list">

@@ -794,6 +794,8 @@ export function CourseLessonPage({
                   storageKey={L.lessonSlug}
                   practiceHref={quizPracticeHref}
                   practiceRef={quizPractice?.ref}
+                  subjectCode={L.code}
+                  lessonSlug={L.lessonSlug}
                 />
               </section>
             ) : null}

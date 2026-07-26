@@ -30,7 +30,10 @@ export default async function ReviewPage() {
     getExamReadiness(user.id),
   ])
   // Cold start = no marked attempts anywhere → guide them in instead of blanks.
-  const coldStart = readiness.length === 0
+  // Recall items count as "not cold": the student has done real work on a lesson
+  // even though nothing has been marked, and showing them the start-here funnel
+  // would throw that away.
+  const coldStart = readiness.length === 0 && items.length === 0
   const startSubjects = coldStart ? await getStartHereSubjects(user.id) : []
 
   return (
@@ -157,12 +160,14 @@ export default async function ReviewPage() {
                 <div className="mb-1 flex flex-wrap items-center gap-2">
                   <span
                     className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide ${
-                      it.level === 'critical'
-                        ? 'bg-[color-mix(in_srgb,#e0575b_16%,var(--ec-surface))] text-[#c53a3f]'
-                        : 'bg-[color-mix(in_srgb,#e0a13a_18%,var(--ec-surface))] text-[#a06a11]'
+                      it.source === 'recall'
+                        ? 'bg-[var(--ec-surface-muted)] text-[var(--ec-text-secondary)]'
+                        : it.level === 'critical'
+                          ? 'bg-[color-mix(in_srgb,#e0575b_16%,var(--ec-surface))] text-[#c53a3f]'
+                          : 'bg-[color-mix(in_srgb,#e0a13a_18%,var(--ec-surface))] text-[#a06a11]'
                     }`}
                   >
-                    {LEVEL_LABEL[it.level] ?? it.level}
+                    {it.source === 'recall' ? 'Recall' : LEVEL_LABEL[it.level] ?? it.level}
                   </span>
                   <span className="text-xs font-medium text-[var(--ec-text-faint)]">
                     {it.subjectLabel} · {it.code}
@@ -171,12 +176,28 @@ export default async function ReviewPage() {
                 <p className="truncate text-[15px] font-semibold text-[var(--ec-text-primary)]">
                   {it.name}
                 </p>
+                {/* A recall item has never been marked, so it has no score.
+                    Printing "0% over 0 attempts" would be a fabricated result. */}
                 <p className="mt-0.5 text-[13px] text-[var(--ec-text-secondary)]">
-                  {it.percentage}% over {it.attemptsCount}{' '}
-                  {it.attemptsCount === 1 ? 'attempt' : 'attempts'}
-                  {it.daysSince < 999
-                    ? ` · last practised ${it.daysSince === 0 ? 'today' : `${it.daysSince}d ago`}`
-                    : ''}
+                  {it.source === 'recall' ? (
+                    <>
+                      You answered this lesson&rsquo;s quick check
+                      {it.daysSince < 999
+                        ? it.daysSince === 0
+                          ? ' today'
+                          : ` ${it.daysSince}d ago`
+                        : ''}{' '}
+                      · not yet marked
+                    </>
+                  ) : (
+                    <>
+                      {it.percentage}% over {it.attemptsCount}{' '}
+                      {it.attemptsCount === 1 ? 'attempt' : 'attempts'}
+                      {it.daysSince < 999
+                        ? ` · last practised ${it.daysSince === 0 ? 'today' : `${it.daysSince}d ago`}`
+                        : ''}
+                    </>
+                  )}
                 </p>
                 {it.topErrors.length > 0 ? (
                   <p className="mt-1.5 flex flex-wrap gap-1.5 text-[12px] text-[var(--ec-text-secondary)]">

@@ -194,7 +194,11 @@ export default async function DashboardPage() {
   const isEmpty = attemptsList.length === 0
   const continueCatalog = buildContinueCatalog()
 
-  const reviewItems = isEmpty ? [] : await buildReviewQueue(user.id)
+  // Always built, even with no marked attempts: the queue now also surfaces
+  // lessons whose quick check the student completed, and those students are
+  // exactly the ones who used to see an empty review section forever.
+  const reviewItems = await buildReviewQueue(user.id)
+  const hasReview = reviewItems.length > 0
 
   return (
     <main className="app-shell app-shell-tabbed ms-dash-home">
@@ -239,7 +243,7 @@ export default async function DashboardPage() {
             />
           ) : null}
 
-          {!isEmpty ? (
+          {!isEmpty || hasReview ? (
             <section className="ec-card mb-6 p-5 sm:p-6">
               <div className="mb-3 flex items-center justify-between gap-3">
                 <div>

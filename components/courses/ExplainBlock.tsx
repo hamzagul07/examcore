@@ -8,6 +8,8 @@ import {
   type ExplainIntent,
 } from '@/lib/courses/explain-block-key'
 import { CourseRichText } from '@/components/courses/CourseRichText'
+import { markHintUsed } from '@/components/courses/FeatureHint'
+import { HINT_KEYS } from '@/lib/courses/first-run'
 
 /**
  * Per-paragraph help, attached to one lesson note block.
@@ -172,6 +174,8 @@ export function ExplainBlock({
       }
       setOpen(intent)
       setError(null)
+      // Using it is the best acknowledgement — the hint retires itself.
+      markHintUsed(HINT_KEYS.explain)
       if (answers[intent] === undefined) void request(intent)
     },
     [answers, open, request]

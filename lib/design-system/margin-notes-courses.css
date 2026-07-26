@@ -934,10 +934,13 @@
 /* per-paragraph "explain more" — idle until wanted, so six of these down a
    lesson read as a quiet affordance rather than six calls to action */
 .explain-block { margin-top: 12px; }
-.explain-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; opacity: 0.5; transition: opacity 160ms ease; }
-.note-block:hover .explain-actions,
-.explain-actions:focus-within { opacity: 1; }
-.explain-block:has(.explain-panel) .explain-actions { opacity: 1; }
+/* Full opacity at rest. These used to sit at 0.5 until the note block was
+   hovered, which reads as restraint and behaves as invisible: on desktop most
+   readers never discovered the feature at all, and hover does not exist on a
+   phone. The buttons are small and low-contrast enough to stay quiet without
+   hiding. */
+.explain-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; }
+.note-block:hover .explain-btn { border-color: var(--border-strong); }
 .explain-lead { color: var(--muted); margin-right: 1px; }
 .explain-btn {
   font-family: inherit; font-size: 12px; line-height: 1; color: var(--text-2);
@@ -2898,4 +2901,32 @@ a.scard, a.continue, a.topic-row, a.pn-btn, a.related-card, a.subj-row, a.dash-c
 @media (max-width: 560px) {
   .ms-save-prompt { gap: 12px; padding: 14px; }
   .ms-save-prompt-actions { width: 100%; justify-content: space-between; }
+}
+
+/* ── Feature hint ────────────────────────────────────────────────────────────
+   Inline, once ever, one at a time. Sits above the thing it describes so it can
+   never cover the text. */
+.feature-hint {
+  display: flex; align-items: flex-start; gap: 14px;
+  margin: 0 0 22px; padding: 14px 16px;
+  border: 1px dashed var(--ink-border);
+  border-radius: 12px;
+  background: var(--ink-soft);
+}
+.feature-hint-mark {
+  flex-shrink: 0; margin-top: 1px; padding: 3px 7px; border-radius: 999px;
+  font-size: 9.5px; letter-spacing: 0.12em; color: var(--on-ink-text); background: var(--ink);
+}
+.feature-hint-body { flex: 1; min-width: 0; }
+.feature-hint-title { margin: 0; font-size: 14.5px; font-weight: 600; color: var(--text); }
+.feature-hint-text { margin: 4px 0 0; font-size: 13.5px; line-height: 1.55; color: var(--text-2); }
+.feature-hint-close {
+  flex-shrink: 0; align-self: center; font-family: inherit; font-size: 12.5px; cursor: pointer;
+  color: var(--ink); background: none; border: 1px solid var(--ink-border);
+  border-radius: 999px; padding: 5px 12px;
+}
+.feature-hint-close:hover { background: var(--surface); }
+@media (max-width: 560px) {
+  .feature-hint { flex-wrap: wrap; }
+  .feature-hint-close { width: 100%; }
 }

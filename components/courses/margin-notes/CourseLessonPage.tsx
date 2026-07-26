@@ -16,6 +16,8 @@ import { CourseLessonDiagramShell } from '@/components/courses/margin-notes/Cour
 import { LessonComparisonTable } from '@/components/courses/margin-notes/LessonComparisonTable'
 import { CourseRichText } from '@/components/courses/CourseRichText'
 import { ExplainBlock } from '@/components/courses/ExplainBlock'
+import { FeatureHint } from '@/components/courses/FeatureHint'
+import { HINT_KEYS, type HintKey } from '@/lib/courses/first-run'
 import { CriterionLadder } from '@/components/courses/CriterionLadder'
 import type { CriterionLadderData } from '@/lib/courses/criterion-ladder.server'
 import { useLessonStepSync } from '@/lib/courses/use-lesson-step-sync'
@@ -139,6 +141,16 @@ export function CourseLessonPage({
   // Sections settle in as they arrive. Re-runs when the tab changes, since the
   // papers panel mounts a different set of sections.
   useSectionReveal('.lsec', mode === 'learn')
+
+  // Only hints for features this lesson actually has. One shows at a time; the
+  // rest wait for another visit.
+  const availableHints = useMemo(() => {
+    const out: HintKey[] = []
+    if (L.notes?.length) out.push(HINT_KEYS.explain)
+    if (stepSyncEnabled) out.push(HINT_KEYS.diagramSync)
+    if (L.quiz?.length && !quizLocked) out.push(HINT_KEYS.quickCheck)
+    return out
+  }, [L.notes?.length, L.quiz?.length, quizLocked, stepSyncEnabled])
 
   const registerNoteBlock = useLessonStepSync({
     stepCount: syncStepCount,
@@ -665,6 +677,7 @@ export function CourseLessonPage({
                         : 'Use the live diagram and synced steps — play it or tap a step card to walk through.'
                   }
                 />
+                <FeatureHint hintKey={HINT_KEYS.diagramSync} available={availableHints} />
                 {diagramsLocked ? (
                   <LessonUpsell feature="diagrams" signedIn={signedIn} />
                 ) : (
@@ -724,6 +737,7 @@ export function CourseLessonPage({
                       : 'Formal explanation with the rigour you need for the exam.'
                   }
                 />
+                <FeatureHint hintKey={HINT_KEYS.explain} available={availableHints} />
                 <div className="notes-body">
                   {L.notes.map((n, i) => (
                     <div key={i} className="note-block" ref={registerNoteBlock(i)}>
@@ -818,6 +832,7 @@ export function CourseLessonPage({
                   title="Quick check"
                   sub="Write your answer first, then compare it with the model one — the gap is what you would have lost."
                 />
+                <FeatureHint hintKey={HINT_KEYS.quickCheck} available={availableHints} />
                 <QuickCheck
                   onComplete={() => markInteracted('quiz')}
                   items={L.quiz}

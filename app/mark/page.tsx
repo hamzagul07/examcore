@@ -539,6 +539,16 @@ export default function MarkPage() {
     }
     setShowOptional(true)
     setLessonHandoff({ returnTo: handoff.returnPath ?? null })
+    // They arrived to mark this specific answer. Leaving it more than a screen
+    // below the fold makes "your answer from the lesson is below" a claim the
+    // student has to go and verify.
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => {
+        document
+          .getElementById('answer-text')
+          ?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+      })
+    )
   }, [])
 
   // Course lesson "Mark this topic" deep-link — /mark?subject=9609&topic=5.4.4
@@ -1939,6 +1949,47 @@ export default function MarkPage() {
                   }
                   hint={isCombinedMode ? 'question + working on same file' : 'photos or PDF'}
                 />
+                {/* Typing leads because it needs nothing — no photo, no scan,
+                    just the keyboard already in front of you. The page
+                    converted nobody in five days while a photograph was the
+                    only way in, and the box that fixed that sat 1.6 screens
+                    down on desktop and 2.8 on a phone: built, then buried.
+
+                    Not offered for a scanned script, which exists to read a
+                    question and its working off the same sheet. */}
+                {!isCombinedMode && !hasAnswerUpload ? (
+                  <>
+                    <div>
+                      <Label
+                        htmlFor="answer-text"
+                        className="label-overline mb-2 inline-block"
+                      >
+                        Type your answer
+                      </Label>
+                      <textarea
+                        id="answer-text"
+                        value={answerTextInput}
+                        onChange={(e) => setAnswerTextInput(e.target.value)}
+                        rows={7}
+                        disabled={loading}
+                        placeholder={
+                          'Write your answer exactly as you would in the exam — working, steps and all.'
+                        }
+                        className="ec-input ec-question-text"
+                      />
+                      <p className="mt-2 text-xs text-[var(--ec-text-secondary)]">
+                        Marked the same way as a photo. You will not get
+                        examiner&rsquo;s ink over your page, because there is no
+                        page &mdash; you get the marks, the reasons and what was
+                        missing.
+                      </p>
+                    </div>
+                    <div className="ms-mark-or-divider" aria-hidden="true">
+                      <span>or upload it</span>
+                    </div>
+                  </>
+                ) : null}
+
                 <PageUploader
                   pages={answerPages}
                   onPagesChange={setAnswerPages}
@@ -1959,40 +2010,6 @@ export default function MarkPage() {
                   }
                 />
 
-                {/* Typing is not offered for a scanned script: that mode exists
-                    to read a question and its working off the same sheet. */}
-                {!isCombinedMode && !hasAnswerUpload ? (
-                  <>
-                    <div className="ms-mark-or-divider" aria-hidden="true">
-                      <span>or type it</span>
-                    </div>
-                    <div>
-                      <Label
-                        htmlFor="answer-text"
-                        className="label-overline mb-2 inline-block"
-                      >
-                        Type your answer
-                      </Label>
-                      <textarea
-                        id="answer-text"
-                        value={answerTextInput}
-                        onChange={(e) => setAnswerTextInput(e.target.value)}
-                        rows={7}
-                        disabled={loading}
-                        placeholder={
-                          'Write your answer exactly as you would in the exam \u2014 working, steps and all.'
-                        }
-                        className="ec-input ec-question-text"
-                      />
-                      <p className="mt-2 text-xs text-[var(--ec-text-secondary)]">
-                        Marked the same way as a photo. You will not get
-                        examiner&rsquo;s ink over your page, because there is no
-                        page &mdash; you get the marks, the reasons and what was
-                        missing.
-                      </p>
-                    </div>
-                  </>
-                ) : null}
               </div>
               <div className="ms-mark-form-card">
                 <StepLabel

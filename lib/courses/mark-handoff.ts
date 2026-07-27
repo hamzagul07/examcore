@@ -60,6 +60,24 @@ export function splitSubjectLevel(code: string | null | undefined): {
 }
 
 /**
+ * The subject codes the marker's picker might list this subject under.
+ *
+ * Two shapes are in use and which one applies differs per subject: catalogued
+ * IB subjects appear level-less ("ib-biology") with a separate HL/SL control,
+ * while everything else is a legacy code carrying its level ("ib-history-hl").
+ * Guessing one shape silently selected nothing for half the subjects, so offer
+ * both, most-specific-vocabulary first, and let the caller take whichever its
+ * options actually contain.
+ */
+export function subjectCandidates(code: string | null | undefined): string[] {
+  const c = code?.trim()
+  if (!c) return []
+  const { subjectCode } = splitSubjectLevel(c)
+  const out = subjectCode && subjectCode !== c ? [subjectCode, c] : [c]
+  return out.filter((x): x is string => !!x)
+}
+
+/**
  * A handoff is only worth making if there is a real question AND a real answer.
  *
  * Prefilling one without the other lands the student in a half-filled form

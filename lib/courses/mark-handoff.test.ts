@@ -4,6 +4,7 @@ import {
   parseHandoff,
   MAX_ANSWER_CHARS,
   splitSubjectLevel,
+  subjectCandidates,
   MARK_HANDOFF_PARAM,
   MARK_HANDOFF_VALUE,
   type MarkHandoff,
@@ -91,6 +92,21 @@ check('the param names are stable', MARK_HANDOFF_PARAM === 'from' && MARK_HANDOF
 }
 check('level round trips', parseHandoff(serializeHandoff({ ...good, ibLevel: 'HL' }))?.ibLevel === 'HL')
 check('a bogus level is dropped', parseHandoff('{"question":"Explain water properly","answer":"because it is polar and bent","ibLevel":"XL"}')?.ibLevel === null)
+
+
+// ── Both subject shapes, because the picker uses both ───────────────────────
+// Catalogued IB subjects are listed level-less with a separate HL/SL control
+// ("ib-biology"); the rest are legacy codes carrying their level
+// ("ib-history-hl"). Committing to one shape silently selected nothing for
+// every subject that used the other — verified in a browser against both.
+check('an IB code offers level-less first', subjectCandidates('ib-biology-hl')[0] === 'ib-biology')
+check('and keeps the full code as a fallback', subjectCandidates('ib-biology-hl')[1] === 'ib-biology-hl')
+check('exactly two candidates', subjectCandidates('ib-history-hl').length === 2)
+// Cambridge has one shape and must not gain a phantom alternative.
+check('cambridge offers itself only', subjectCandidates('9700').join(',') === '9700')
+check('an IB subject with no level offers itself only', subjectCandidates('ib-tok').join(',') === 'ib-tok')
+check('nothing in, nothing out', subjectCandidates(null).length === 0)
+check('blank in, nothing out', subjectCandidates('   ').length === 0)
 
 if (failed > 0) process.exit(1)
 console.log('mark-handoff.test.ts: all checks passed')

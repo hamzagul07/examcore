@@ -67,6 +67,8 @@ import { normalizeQuestionNumber } from '@/lib/marking/question-number'
 import {
   MARK_HANDOFF_PARAM,
   MARK_HANDOFF_VALUE,
+  splitSubjectLevel,
+  subjectCandidates,
   takeHandoff,
 } from '@/lib/courses/mark-handoff'
 import { parseMarkReturnPath } from '@/lib/marking/mark-return-url'
@@ -150,7 +152,7 @@ export default function MarkPage() {
   // Set when the student arrived from a lesson with an answer already written.
   const [lessonHandoff, setLessonHandoff] = useState<{ returnTo: string | null } | null>(null)
   const [pendingHandoffSubject, setPendingHandoffSubject] = useState<
-    { code: string; level: 'HL' | 'SL' | null; board: 'ib' | 'cambridge' } | null
+    { codes: string[]; level: 'HL' | 'SL' | null; board: 'ib' | 'cambridge' } | null
   >(null)
   const [answerPdf, setAnswerPdf] = useState<File | null>(null)
   const [answerPdfError, setAnswerPdfError] = useState<string | null>(null)
@@ -530,8 +532,8 @@ export default function MarkPage() {
       const isIb = isIbSubjectCode(handoff.subjectCode)
       setSelectedMarkBoard(isIb ? 'ib' : 'cambridge')
       setPendingHandoffSubject({
-        code: handoff.subjectCode,
-        level: handoff.ibLevel ?? null,
+        codes: subjectCandidates(handoff.subjectCode),
+        level: handoff.ibLevel ?? splitSubjectLevel(handoff.subjectCode).ibLevel,
         board: isIb ? 'ib' : 'cambridge',
       })
     }
@@ -850,8 +852,9 @@ export default function MarkPage() {
     const options =
       selectedMarkBoard === 'ib' ? ibSubjectOptions : boardFilteredSubjects
     if (!options.length) return
-    if (options.includes(pendingHandoffSubject.code)) {
-      setSelectedSubject(pendingHandoffSubject.code)
+    const match = pendingHandoffSubject.codes.find((c) => options.includes(c))
+    if (match) {
+      setSelectedSubject(match)
       if (pendingHandoffSubject.level) setIbLevel(pendingHandoffSubject.level)
     }
     setPendingHandoffSubject(null)

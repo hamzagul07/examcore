@@ -1,6 +1,7 @@
 'use client'
 
 import type { CriterionLadderData } from '@/lib/courses/criterion-ladder.server'
+import { ladderFocus, focusMessage } from '@/lib/courses/criterion-ladder'
 
 /**
  * How this lesson's component is marked: the criteria, their weights, and how
@@ -24,6 +25,9 @@ import type { CriterionLadderData } from '@/lib/courses/criterion-ladder.server'
  */
 export function CriterionLadder({ data }: { data: CriterionLadderData }) {
   const total = data.criteria.reduce((n, c) => n + (c.maxMarks || 0), 0)
+  // The shares are already on screen; what to do about them is not. Silent
+  // when the criteria are evenly weighted, because there is no plan to give.
+  const focus = focusMessage(ladderFocus(data.criteria))
 
   return (
     <div className="crit-ladder">
@@ -56,6 +60,15 @@ export function CriterionLadder({ data }: { data: CriterionLadderData }) {
           )
         })}
       </ul>
+
+      {focus ? (
+        <p className="crit-focus body-2">
+          <span className="crit-focus-mark mono" aria-hidden>
+            ↳
+          </span>
+          {focus}
+        </p>
+      ) : null}
     </div>
   )
 }

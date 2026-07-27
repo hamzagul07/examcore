@@ -107,3 +107,63 @@ export type Criterion = {
 export function sortBands(bands: CriterionBand[]): CriterionBand[] {
   return [...bands].sort((a, b) => a.marksMin - b.marksMin)
 }
+
+/**
+ * What the weightings mean for someone planning the work.
+ *
+ * The ladder shows the criteria and their shares, and then leaves the reader to
+ * draw the conclusion. The conclusion is the useful part: with a fixed number
+ * of hours, marks move fastest in the heaviest criterion, and students
+ * routinely spend equal effort on a criterion worth 8 marks and one worth 24.
+ *
+ * Pure, and deliberately unwilling to invent an insight where there is not one
+ * — a component whose criteria are evenly weighted has no "focus here", and
+ * saying otherwise would be worse than saying nothing.
+ */
+
+export type CriterionWeight = { letter: string; name: string; maxMarks: number }
+
+export type LadderFocus =
+  | { kind: 'none' }
+  /** One criterion is clearly the heaviest. */
+  | { kind: 'single'; letter: string; name: string; share: number }
+  /** Several tie for heaviest — name them all rather than picking arbitrarily. */
+  | { kind: 'tied'; letters: string[]; share: number }
+
+/**
+ * Only called out when it is meaningfully heavier than an even split, so a
+ * three-way 34/33/33 stays silent. A fifth again as much as an even share is
+ * the point where the difference is worth planning around.
+ */
+export const FOCUS_RATIO = 1.2
+
+export function ladderFocus(criteria: readonly CriterionWeight[]): LadderFocus {
+  const usable = criteria.filter((c) => c.maxMarks > 0)
+  if (usable.length < 2) return { kind: 'none' }
+
+  const total = usable.reduce((n, c) => n + c.maxMarks, 0)
+  if (total <= 0) return { kind: 'none' }
+
+  const top = Math.max(...usable.map((c) => c.maxMarks))
+  const evenShare = total / usable.length
+  if (top < evenShare * FOCUS_RATIO) return { kind: 'none' }
+
+  const heaviest = usable.filter((c) => c.maxMarks === top)
+  const share = Math.round((top / total) * 100)
+  if (heaviest.length === 1) {
+    return { kind: 'single', letter: heaviest[0]!.letter, name: heaviest[0]!.name, share }
+  }
+  return { kind: 'tied', letters: heaviest.map((c) => c.letter), share }
+}
+
+/** The sentence to show, or null when there is nothing worth saying. */
+export function focusMessage(focus: LadderFocus): string | null {
+  switch (focus.kind) {
+    case 'single':
+      return `${focus.letter} — ${focus.name} — carries ${focus.share}% of the marks on its own. If your time is short, that is where it moves fastest.`
+    case 'tied':
+      return `${focus.letters.join(' and ')} are the heaviest, at ${focus.share}% each. Plan the work around those before the rest.`
+    default:
+      return null
+  }
+}

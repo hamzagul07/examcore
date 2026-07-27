@@ -750,3 +750,17 @@ a { color: inherit; }
 .toc-link[data-stage='prove'] { --sec: var(--stage-prove); }
 .toc-link[data-stage] .toc-num { color: var(--sec); }
 .toc-link[data-stage].read .toc-num { opacity: 0.75; }
+
+/* The one conclusion the criterion weightings support, set apart from the list
+   so it reads as advice rather than another row of data. */
+.crit-focus {
+  display: flex;
+  gap: 9px;
+  margin: 14px 0 0;
+  padding: 11px 14px;
+  border-left: 3px solid var(--stage-check);
+  border-radius: 0 8px 8px 0;
+  background: color-mix(in srgb, var(--stage-check) 8%, transparent);
+  color: var(--text);
+}
+.crit-focus-mark { flex: 0 0 auto; opacity: 0.6; }

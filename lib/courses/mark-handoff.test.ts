@@ -3,6 +3,7 @@ import {
   serializeHandoff,
   parseHandoff,
   MAX_ANSWER_CHARS,
+  splitSubjectLevel,
   MARK_HANDOFF_PARAM,
   MARK_HANDOFF_VALUE,
   type MarkHandoff,
@@ -67,6 +68,29 @@ check('an over-long answer survives', !!capped)
 check('and is capped', (capped?.answer.length ?? 0) === MAX_ANSWER_CHARS)
 
 check('the param names are stable', MARK_HANDOFF_PARAM === 'from' && MARK_HANDOFF_VALUE === 'lesson')
+
+
+// ── Subject and level travel separately ─────────────────────────────────────
+// Lessons are keyed by level ("ib-biology-hl"); the marker's picker is not
+// ("ib-biology" plus an HL/SL control). Sending the lesson code straight
+// through selected nothing, silently, and left submit enabled against a
+// subject that was never really chosen.
+{
+  const hl = splitSubjectLevel('ib-biology-hl')
+  check('strips the level', hl.subjectCode === 'ib-biology')
+  check('and keeps it', hl.ibLevel === 'HL')
+  check('SL too', splitSubjectLevel('ib-history-sl').ibLevel === 'SL')
+  check('uppercase suffix', splitSubjectLevel('ib-biology-HL').subjectCode === 'ib-biology')
+  // Cambridge codes have no level and must pass through untouched.
+  check('cambridge is untouched', splitSubjectLevel('9700').subjectCode === '9700')
+  check('cambridge has no level', splitSubjectLevel('9700').ibLevel === null)
+  check('null is safe', splitSubjectLevel(null).subjectCode === null)
+  check('empty is safe', splitSubjectLevel('').subjectCode === null)
+  // A subject that merely ends in those letters must not be mangled.
+  check('only a real suffix counts', splitSubjectLevel('ib-global-politics').subjectCode === 'ib-global-politics')
+}
+check('level round trips', parseHandoff(serializeHandoff({ ...good, ibLevel: 'HL' }))?.ibLevel === 'HL')
+check('a bogus level is dropped', parseHandoff('{"question":"Explain water properly","answer":"because it is polar and bent","ibLevel":"XL"}')?.ibLevel === null)
 
 if (failed > 0) process.exit(1)
 console.log('mark-handoff.test.ts: all checks passed')

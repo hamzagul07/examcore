@@ -8,7 +8,12 @@ import { appendMarkReturn } from '@/lib/courses/format-session'
 import { useLessonMastery } from '@/lib/hooks/useLessonMastery'
 import type { MasteryLevel } from '@/lib/mastery'
 import { CourseRichText } from '@/components/courses/CourseRichText'
-import { isUsableHandoff, stashHandoff } from '@/lib/courses/mark-handoff'
+import {
+  isUsableHandoff,
+  splitSubjectLevel,
+  stashHandoff,
+} from '@/lib/courses/mark-handoff'
+import { contentSubjectCode } from '@/lib/courses/board'
 import { GUEST_EARN_EVENT } from '@/components/auth/GuestSavePrompt'
 
 /** Breathing room between the sticky chrome and whatever you jumped to. */
@@ -538,7 +543,14 @@ export function QuickCheck({
                           const href = stashHandoff({
                             question: q.q,
                             answer: draft,
-                            subjectCode: subjectCode ?? null,
+                            // Two shape mismatches to bridge: the canonical IB
+                            // route passes the catalog slug ("biology-hl")
+                            // rather than the content code, and the marker
+                            // picks subject and level with separate controls.
+                            // Getting either wrong selected nothing, silently.
+                            ...splitSubjectLevel(
+                              subjectCode ? contentSubjectCode(subjectCode) : null
+                            ),
                             returnPath: returnPath ?? null,
                           })
                           window.location.href = href

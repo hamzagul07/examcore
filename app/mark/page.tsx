@@ -149,6 +149,9 @@ export default function MarkPage() {
   const [answerTextInput, setAnswerTextInput] = useState('')
   // Set when the student arrived from a lesson with an answer already written.
   const [lessonHandoff, setLessonHandoff] = useState<{ returnTo: string | null } | null>(null)
+  const [pendingHandoffSubject, setPendingHandoffSubject] = useState<
+    { code: string; level: 'HL' | 'SL' | null; board: 'ib' | 'cambridge' } | null
+  >(null)
   const [answerPdf, setAnswerPdf] = useState<File | null>(null)
   const [answerPdfError, setAnswerPdfError] = useState<string | null>(null)
   const [questionPhoto, setQuestionPhoto] = useState<File | null>(null)
@@ -517,9 +520,20 @@ export default function MarkPage() {
     setQuestionTextInput(handoff.question)
     setAnswerTextInput(handoff.answer)
     if (handoff.totalMarks) setTotalMarksInput(String(handoff.totalMarks))
+    // The subject cannot be applied yet: the IB catalog that populates the
+    // picker is fetched, so at mount there is nothing to select into. Setting
+    // it anyway leaves the <select> blank while React state holds a value,
+    // which enables submit against a subject that was never really chosen —
+    // the student waits ninety seconds for a failure. Hand it to the effect
+    // below, which waits for the options to exist.
     if (handoff.subjectCode) {
-      setSelectedSubject(handoff.subjectCode)
-      setSelectedMarkBoard(isIbSubjectCode(handoff.subjectCode) ? 'ib' : 'cambridge')
+      const isIb = isIbSubjectCode(handoff.subjectCode)
+      setSelectedMarkBoard(isIb ? 'ib' : 'cambridge')
+      setPendingHandoffSubject({
+        code: handoff.subjectCode,
+        level: handoff.ibLevel ?? null,
+        board: isIb ? 'ib' : 'cambridge',
+      })
     }
     setShowOptional(true)
     setLessonHandoff({ returnTo: handoff.returnPath ?? null })
@@ -817,6 +831,37 @@ export default function MarkPage() {
     )
     return [...catalogCodes, ...legacy]
   }, [selectedMarkBoard, boardFilteredSubjects, ibCatalog])
+
+  // Apply the handed-off subject once the picker actually has it. Dropped
+  // rather than forced if it never appears — a blank picker with an honestly
+  // disabled button beats a subject the student cannot see or change.
+  useEffect(() => {
+    if (!pendingHandoffSubject) return
+    // Wait for the board switch to land. setSelectedMarkBoard is queued in the
+    // same commit that queues this, so the first run still sees the previous
+    // board — and its option list, which will never contain an IB subject.
+    // Clearing on that run threw the handoff away before it had a chance.
+    if (selectedMarkBoard !== pendingHandoffSubject.board) return
+    // "Options are non-empty" is NOT the same as "the catalog has arrived":
+    // until the fetch lands, ibSubjectOptions falls back to the profile's own
+    // subject list, which is full and contains no catalog codes. Acting on it
+    // discarded the handoff every time. Wait for the catalog itself.
+    if (selectedMarkBoard === 'ib' && ibCatalog.length === 0) return
+    const options =
+      selectedMarkBoard === 'ib' ? ibSubjectOptions : boardFilteredSubjects
+    if (!options.length) return
+    if (options.includes(pendingHandoffSubject.code)) {
+      setSelectedSubject(pendingHandoffSubject.code)
+      if (pendingHandoffSubject.level) setIbLevel(pendingHandoffSubject.level)
+    }
+    setPendingHandoffSubject(null)
+  }, [
+    pendingHandoffSubject,
+    selectedMarkBoard,
+    ibSubjectOptions,
+    boardFilteredSubjects,
+    ibCatalog,
+  ])
 
   const catalogSubject = useMemo(
     () => ibCatalog.find((s) => s.code === selectedSubject) ?? null,

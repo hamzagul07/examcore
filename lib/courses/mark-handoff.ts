@@ -33,6 +33,30 @@ export type MarkHandoff = {
   returnPath?: string | null
   /** Marks the question is out of, when the lesson knows. */
   totalMarks?: number | null
+  /** IB only. The marker picks subject and level separately, so a lesson code
+   *  like "ib-biology-hl" has to arrive split. */
+  ibLevel?: 'HL' | 'SL' | null
+}
+
+/**
+ * Split a course subject code into the shape the marker expects.
+ *
+ * Lessons are keyed by level ("ib-biology-hl") and the marker's subject picker
+ * is not ("ib-biology" plus an HL/SL control). Sending the lesson's code
+ * straight through selected nothing at all, silently.
+ */
+export function splitSubjectLevel(code: string | null | undefined): {
+  subjectCode: string | null
+  ibLevel: 'HL' | 'SL' | null
+} {
+  const c = code?.trim()
+  if (!c) return { subjectCode: null, ibLevel: null }
+  const m = c.match(/^(.*)-(hl|sl)$/i)
+  if (!m) return { subjectCode: c, ibLevel: null }
+  return {
+    subjectCode: m[1]!,
+    ibLevel: m[2]!.toUpperCase() === 'HL' ? 'HL' : 'SL',
+  }
 }
 
 /**
@@ -77,6 +101,7 @@ export function parseHandoff(raw: string | null | undefined): MarkHandoff | null
       typeof h.totalMarks === 'number' && Number.isFinite(h.totalMarks) && h.totalMarks > 0
         ? Math.round(h.totalMarks)
         : null,
+    ibLevel: h.ibLevel === 'HL' || h.ibLevel === 'SL' ? h.ibLevel : null,
   }
 }
 

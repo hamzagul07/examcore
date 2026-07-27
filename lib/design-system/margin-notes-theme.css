@@ -494,6 +494,16 @@ a { color: inherit; }
   background-color: color-mix(in srgb, var(--hl-exam) 30%, transparent);
 }
 
+/* On dark paper the yellow lifts the background toward the text and takes the
+   contrast under AA — 3.7:1 at the light-mode strength. axe cannot catch this,
+   because CSS Custom Highlight ranges are not in the accessibility tree, so it
+   passed every automated check while being genuinely hard to read. 28% brings
+   it back to 4.8:1 and is still plainly a highlight. The other two clear AA on
+   dark unchanged, at 5.5 and 5.8. */
+[data-theme='night'] ::highlight(ms-hl-key) {
+  background-color: color-mix(in srgb, var(--hl-key) 28%, transparent);
+}
+
 /* Selection toolbar — anchored to the selection, so it is never somewhere you
    have to go and look for. */
 .hl-bar {
@@ -658,8 +668,10 @@ a { color: inherit; }
   --dg-green: #3f8b64;  /* matter, mass, living things */
   --dg-soft: color-mix(in srgb, currentColor 8%, transparent);
 }
-/* Brighter on dark paper — the light values go muddy against a dark ground. */
-[data-theme='dark'] {
+/* Brighter on dark paper — the light values go muddy against a dark ground.
+   The attribute is 'night', not 'dark': this block was written against a value
+   the app never sets, so until now it did nothing at all. */
+[data-theme='night'] {
   --dg-warm: #e0a04a;
   --dg-cool: #63aecd;
   --dg-hot: #e0899f;

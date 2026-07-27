@@ -1065,6 +1065,7 @@ export function CourseLessonPage({
                   practiceRef={quizPractice?.ref}
                   subjectCode={L.code}
                   lessonSlug={L.lessonSlug}
+                  returnPath={pathname}
                 />
               </section>
             ) : null}

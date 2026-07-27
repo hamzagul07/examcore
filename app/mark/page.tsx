@@ -64,6 +64,11 @@ import {
 import { MarkingModeHint } from '@/components/mark/MarkingModeHint'
 import { formatClientMarkError } from '@/lib/marking/client-mark-errors'
 import { normalizeQuestionNumber } from '@/lib/marking/question-number'
+import {
+  MARK_HANDOFF_PARAM,
+  MARK_HANDOFF_VALUE,
+  takeHandoff,
+} from '@/lib/courses/mark-handoff'
 import { parseMarkReturnPath } from '@/lib/marking/mark-return-url'
 import { applyTopicQuestionToPaperSelection } from '@/lib/marking/topic-question'
 import { CinematicMarkingExperience } from '@/components/mark/CinematicMarkingExperienceLazy'
@@ -142,6 +147,8 @@ export default function MarkPage() {
   // through this page demanded a photo, which locks out anyone working at a
   // keyboard rather than over a page of handwriting.
   const [answerTextInput, setAnswerTextInput] = useState('')
+  // Set when the student arrived from a lesson with an answer already written.
+  const [lessonHandoff, setLessonHandoff] = useState<{ returnTo: string | null } | null>(null)
   const [answerPdf, setAnswerPdf] = useState<File | null>(null)
   const [answerPdfError, setAnswerPdfError] = useState<string | null>(null)
   const [questionPhoto, setQuestionPhoto] = useState<File | null>(null)
@@ -490,6 +497,32 @@ export default function MarkPage() {
       reason: sp.get('reason') || '',
       returnTo: sp.get('return'),
     })
+  }, [])
+
+  // Handoff from a lesson quick check — /mark?from=lesson, with the question
+  // and the student's own words in sessionStorage.
+  //
+  // Read once and cleared, so returning to /mark later does not refill the form
+  // with an answer they have already dealt with. Runs before the topic deep
+  // link below and bails out of it, since the two would fight over the subject.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const sp = new URLSearchParams(window.location.search)
+    if (sp.get(MARK_HANDOFF_PARAM) !== MARK_HANDOFF_VALUE) return
+    const handoff = takeHandoff()
+    if (!handoff) return
+
+    setUploadMode('single_question')
+    setMarkIntent('practice_question')
+    setQuestionTextInput(handoff.question)
+    setAnswerTextInput(handoff.answer)
+    if (handoff.totalMarks) setTotalMarksInput(String(handoff.totalMarks))
+    if (handoff.subjectCode) {
+      setSelectedSubject(handoff.subjectCode)
+      setSelectedMarkBoard(isIbSubjectCode(handoff.subjectCode) ? 'ib' : 'cambridge')
+    }
+    setShowOptional(true)
+    setLessonHandoff({ returnTo: handoff.returnPath ?? null })
   }, [])
 
   // Course lesson "Mark this topic" deep-link — /mark?subject=9609&topic=5.4.4
@@ -1829,6 +1862,24 @@ export default function MarkPage() {
                 )}
               </section>
             ) : (
+            <>
+            {lessonHandoff ? (
+              <div className="ms-lesson-handoff ms-fade-in" role="status">
+                <span className="ms-lesson-handoff-mark mono" aria-hidden>
+                  ✎
+                </span>
+                <p>
+                  <strong>Your answer from the lesson is below.</strong> Edit it
+                  if you want — it gets marked exactly as it stands.
+                </p>
+                {lessonHandoff.returnTo ? (
+                  <a className="ms-lesson-handoff-back" href={lessonHandoff.returnTo}>
+                    Back to the lesson
+                  </a>
+                ) : null}
+              </div>
+            ) : null}
+
             <div className="ms-upload-grid ms-fade-in ms-stag-2">
               <div className="ms-mark-upload-zone ec-section-tint ec-section-tint--learn">
                 <StepLabel
@@ -2326,6 +2377,7 @@ export default function MarkPage() {
                 </div>
               </div>
             </div>
+            </>
             )}
 
             {errorMsg && !loading && !markStreamError && (

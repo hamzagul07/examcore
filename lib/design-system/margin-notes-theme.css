@@ -764,3 +764,28 @@ a { color: inherit; }
   color: var(--text);
 }
 .crit-focus-mark { flex: 0 0 auto; opacity: 0.6; }
+
+/* Arrived from a lesson with an answer already written — say so, or a
+   pre-filled form looks like somebody else's work. */
+.ms-lesson-handoff {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0 0 18px;
+  padding: 12px 16px;
+  border: 1px solid color-mix(in srgb, var(--stage-prove) 30%, transparent);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--stage-prove) 8%, transparent);
+  font-size: 14px;
+  color: var(--text);
+}
+.ms-lesson-handoff p { margin: 0; flex: 1 1 260px; }
+.ms-lesson-handoff-mark { color: var(--stage-prove); }
+.ms-lesson-handoff-back {
+  flex: 0 0 auto;
+  font-size: 13px;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

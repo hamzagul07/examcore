@@ -8,6 +8,7 @@ import { appendMarkReturn } from '@/lib/courses/format-session'
 import { useLessonMastery } from '@/lib/hooks/useLessonMastery'
 import type { MasteryLevel } from '@/lib/mastery'
 import { CourseRichText } from '@/components/courses/CourseRichText'
+import { isUsableHandoff, stashHandoff } from '@/lib/courses/mark-handoff'
 import { GUEST_EARN_EVENT } from '@/components/auth/GuestSavePrompt'
 
 /** Breathing room between the sticky chrome and whatever you jumped to. */
@@ -284,6 +285,7 @@ export function QuickCheck({
   subjectCode,
   lessonSlug,
   onComplete,
+  returnPath,
 }: {
   items: NonNullable<MarginNotesLesson['quiz']>
   /** Lesson slug — scopes saved attempts so they survive a reload. */
@@ -296,6 +298,8 @@ export function QuickCheck({
   lessonSlug?: string
   /** Fired once when every question has an answer. */
   onComplete?: () => void
+  /** Where the marker should send them back to. */
+  returnPath?: string | null
 }) {
   const listRef = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState<Record<number, boolean>>({})
@@ -521,6 +525,27 @@ export function QuickCheck({
                       <span className="micro qc-hint">
                         You will remember far more if you attempt it first.
                       </span>
+                    ) : null}
+                    {/* Offered BEFORE the model answer, deliberately: this marks
+                        what the student actually thought, which is the only
+                        version worth a real mark. After a reveal it would be
+                        marking how well they copied. */}
+                    {isUsableHandoff({ question: q.q, answer: draft }) ? (
+                      <button
+                        type="button"
+                        className="qc-mark-mine"
+                        onClick={() => {
+                          const href = stashHandoff({
+                            question: q.q,
+                            answer: draft,
+                            subjectCode: subjectCode ?? null,
+                            returnPath: returnPath ?? null,
+                          })
+                          window.location.href = href
+                        }}
+                      >
+                        Get this marked &rarr;
+                      </button>
                     ) : null}
                   </div>
                 ) : (

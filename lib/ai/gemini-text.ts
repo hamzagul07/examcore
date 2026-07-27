@@ -125,6 +125,15 @@ export type GeminiTextOptions = {
   system?: string
   maxOutputTokens?: number
   temperature?: number
+  /**
+   * Fixes the sampler so the same prompt gives the same answer.
+   *
+   * temperature: 0 is not enough on its own — 2.5 Pro's thinking is stochastic
+   * regardless, and a derived mark scheme measured three different rubric
+   * shapes across four runs of one identical question. Best-effort rather than
+   * guaranteed, so anything relying on it should be measured, not assumed.
+   */
+  seed?: number
   tools?: FunctionDeclaration[]
   /** Per-request HTTP timeout override (ms). */
   httpTimeoutMs?: number
@@ -380,6 +389,7 @@ function buildConfig(opts: GeminiTextOptions, abortSignal: AbortSignal) {
     systemInstruction: opts.system,
     maxOutputTokens: opts.maxOutputTokens,
     temperature: opts.temperature,
+    seed: opts.seed,
     tools: opts.tools ? [{ functionDeclarations: opts.tools }] : undefined,
     abortSignal,
     httpOptions: { timeout },

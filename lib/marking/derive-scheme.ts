@@ -20,6 +20,10 @@
 import { generateGeminiTextWithMeta, GEMINI_PRO_MODEL } from '@/lib/ai/gemini-text'
 import { extractJSON } from '@/lib/marking/json'
 
+/** Fixed so a question always derives the same scheme. Any constant works;
+ *  what matters is that it never varies between requests. */
+const DERIVE_SCHEME_SEED = 20260728
+
 export type DerivedMarkPoint = {
   code: string
   marks: number
@@ -160,6 +164,12 @@ export async function deriveMarkScheme(params: {
         task: 'marking',
         model: GEMINI_PRO_MODEL,
         temperature: 0,
+        // The same question must produce the same rubric. Without this, a
+        // scheme is re-invented per submission: one identical answer measured
+        // 3/4 then 4/4 across four runs, with the rubric coming back as M/A
+        // pairs twice and all-B1 once. Two students with identical work were
+        // being marked against different schemes.
+        seed: DERIVE_SCHEME_SEED,
         maxOutputTokens: 2048,
       }
     )

@@ -539,16 +539,6 @@ export default function MarkPage() {
     }
     setShowOptional(true)
     setLessonHandoff({ returnTo: handoff.returnPath ?? null })
-    // They arrived to mark this specific answer. Leaving it more than a screen
-    // below the fold makes "your answer from the lesson is below" a claim the
-    // student has to go and verify.
-    requestAnimationFrame(() =>
-      requestAnimationFrame(() => {
-        document
-          .getElementById('answer-text')
-          ?.scrollIntoView({ block: 'center', behavior: 'smooth' })
-      })
-    )
   }, [])
 
   // Course lesson "Mark this topic" deep-link — /mark?subject=9609&topic=5.4.4
@@ -843,6 +833,22 @@ export default function MarkPage() {
     )
     return [...catalogCodes, ...legacy]
   }, [selectedMarkBoard, boardFilteredSubjects, ibCatalog])
+
+  // They arrived to mark this specific answer, so put it on screen —
+  // otherwise "your answer from the lesson is below" is a claim the student has
+  // to scroll a screen and a half to verify.
+  //
+  // An effect keyed on the handoff, NOT a pair of requestAnimationFrames from
+  // the effect that reads it. Locally the frames were slower than hydration and
+  // the element existed by the time they ran; in production they fired first,
+  // found nothing, and never retried — the scroll silently did not happen. An
+  // effect cannot lose that race: it runs after the commit that renders the box.
+  useEffect(() => {
+    if (!lessonHandoff) return
+    const el = document.getElementById('answer-text')
+    if (!el) return
+    el.scrollIntoView({ block: 'center', behavior: 'smooth' })
+  }, [lessonHandoff])
 
   // Apply the handed-off subject once the picker actually has it. Dropped
   // rather than forced if it never appears — a blank picker with an honestly

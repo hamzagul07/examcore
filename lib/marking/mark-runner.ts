@@ -51,6 +51,18 @@ import { isRequestDeadlineError } from '@/lib/ai/request-deadline'
 
 /** Everything `generateFullMarksRewrite` needs, captured so the rewrite can be
  * run after the marks have already been streamed to the user. */
+/**
+ * Fixed so the same answer against the same scheme marks the same way.
+ *
+ * temperature: 0 was already set and is not enough on its own — 2.5 Pro's
+ * thinking is stochastic regardless, which is why the verify pass below exists
+ * at all ("the main cause of run-to-run score variance", per its own comment).
+ * Both the first pass and verify go through runGeminiMarking, so one seed
+ * covers both; their prompts differ, so they still reach different judgements
+ * when they should.
+ */
+const MARKING_SEED = 20260728
+
 export type FullMarksRewritePlan = FullMarksRewriteInput
 import { inferSubjectFromQuestionText } from '@/lib/marking/subject-inference'
 import { toMarkingAIResult } from '@/lib/marking/whole-paper'
@@ -359,6 +371,7 @@ async function runGeminiMarking(
       model: MARKING_MODEL,
       maxOutputTokens: tokenBudgets[attempt],
       temperature: 0,
+      seed: MARKING_SEED,
     })
     lastText = text
 
@@ -415,6 +428,7 @@ async function runGeminiMarking(
       {
         task: 'json-repair-retry',
         temperature: 0,
+        seed: MARKING_SEED,
         maxOutputTokens: tokenBudgets[tokenBudgets.length - 1],
       }
     )

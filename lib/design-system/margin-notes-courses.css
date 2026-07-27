@@ -1150,6 +1150,19 @@
   border-radius: 999px; padding: 7px 15px; transition: border-color 150ms ease, background 150ms ease;
 }
 .qc-check:hover { border-color: var(--ink); background: var(--ink-soft); }
+/* "Get this marked" sits beside "compare with the answer" and is the heavier
+   of the two — it leaves the page and spends a mark — so it is filled rather
+   than outlined. Shipped unstyled at first, which rendered a bare browser
+   button next to a designed one. */
+.qc-mark-mine {
+  font-family: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer;
+  color: var(--on-ink-text, #fff); background: var(--ink); border: 1px solid var(--ink);
+  border-radius: 999px; padding: 7px 15px;
+  transition: background 150ms ease, border-color 150ms ease, transform 150ms ease;
+}
+.qc-mark-mine:hover { background: var(--ink-bright, var(--ink)); border-color: var(--ink-bright, var(--ink)); }
+.qc-mark-mine:active { transform: translateY(1px); }
+.qc-mark-mine:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 .qc-hint { color: var(--muted); }
 .qc-compare { display: flex; flex-direction: column; gap: 12px; }
 .qc-col-label { display: block; color: var(--muted); margin-bottom: 4px; }

@@ -882,7 +882,9 @@ export async function runSingleQuestionMark(
     (!questionText || questionText.trim().length < 10)
   ) {
     throw new Error(
-      "We couldn't find a question in your upload. Add a photo of the question, type it below, or pick the paper — then we can mark it."
+      typedAnswer
+        ? 'We need the question as well as your answer. Type it, photograph it, or pick the paper — a typed answer has no page for us to read it from.'
+        : "We couldn't find a question in your upload. Add a photo of the question, type it below, or pick the paper — then we can mark it."
     )
   }
   }

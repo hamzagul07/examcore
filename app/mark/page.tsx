@@ -1013,10 +1013,40 @@ export default function MarkPage() {
   const hasPracticeQuestion =
     questionTextInput.trim().length >= 10 || !!questionPhoto
 
+
+  const isManualFilled = !!(
+    selectedSubject &&
+    selectedYear !== '' &&
+    selectedSession &&
+    selectedComponent &&
+    (uploadMode === 'whole_paper' || questionNumber.trim())
+  )
+
+  /**
+   * A typed answer needs the question to come from somewhere else.
+   *
+   * With a photo we can read the printed question off the same page, and the
+   * pipeline deliberately does — that is what makes "just upload it" work.
+   * Text has no margins: somebody who types only their answer leaves nothing
+   * to recover a question from, so the run dies after two model calls with
+   * "we couldn't find a question in your upload". Better to say so before they
+   * spend the wait. Practice mode already demands a question of its own.
+   */
+  const typedAnswerNeedsQuestion =
+    hasTypedAnswer &&
+    !hasAnswerUpload &&
+    !isPracticeMode &&
+    !isCombinedMode &&
+    !questionTextInput.trim() &&
+    !questionPhoto &&
+    !isManualFilled
+
   // Why the submit button is disabled, in words — shown under the button so a
   // greyed-out CTA never leaves the user guessing.
   const submitDisabledReason = !hasAnswer
     ? 'Type your answer above, or add a photo or PDF of it.'
+    : typedAnswerNeedsQuestion
+      ? 'Add the question too — type it, photograph it, or pick the paper. A typed answer has no page for us to read it from.'
     : hasCompressingPages(answerPages) || questionPhotoCompressing
       ? 'Preparing your files — just a moment…'
       : answerPdfError
@@ -1030,14 +1060,6 @@ export default function MarkPage() {
               : isPracticeMode && !hasPracticeQuestion
                 ? 'Add the question (photo, PDF, or text) so we know what to mark against.'
                 : null
-
-  const isManualFilled = !!(
-    selectedSubject &&
-    selectedYear !== '' &&
-    selectedSession &&
-    selectedComponent &&
-    (uploadMode === 'whole_paper' || questionNumber.trim())
-  )
 
   // The tailored IB "Marks available" input already covers points-based IB
   // components — don't show a second marks field on top of it.
@@ -2406,6 +2428,7 @@ export default function MarkPage() {
                     loadingText="Marking your answer…"
                     disabled={
                       !hasAnswer ||
+                      typedAnswerNeedsQuestion ||
                       hasCompressingPages(answerPages) ||
                       questionPhotoCompressing ||
                       !!answerPdfError ||
@@ -2469,6 +2492,7 @@ export default function MarkPage() {
                     disabled={
                       loading ||
                       !hasAnswer ||
+                      typedAnswerNeedsQuestion ||
                       hasCompressingPages(answerPages) ||
                       questionPhotoCompressing ||
                       !!answerPdfError

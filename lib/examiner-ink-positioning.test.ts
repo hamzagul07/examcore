@@ -44,6 +44,40 @@ function main() {
   assert.equal(positioned[0].mark_id, 'B1')
   assert.equal(positioned[0].ref_id, '1', 'keeps its global index, not a per-page 0')
 
+  // Short maths quotes must still land on the page.
+  //
+  // Containment used to score by length ratio, so an EXACT match of a short
+  // quote inside a long line came out around 0.03 and the 0.35 threshold binned
+  // it. Maths and chemistry marks are quoted exactly like this, and on real
+  // uploads a quarter of all marks were arriving with no position at all.
+  const mathLines = [
+    { text: 'Substituting into the formula we obtain k = 8 after simplifying', bbox: { top: 5, left: 10, width: 60, height: 4 } },
+    { text: 'therefore median = mean for this distribution', bbox: { top: 20, left: 10, width: 40, height: 4 } },
+    { text: 'and so f(x)=0 at both endpoints', bbox: { top: 35, left: 10, width: 30, height: 4 } },
+  ]
+  const place = (quote: string) =>
+    buildLineReferences(
+      [{ mark_id: 1, type: 'M1', earned: true, line_reference: quote }],
+      mathLines
+    )[0]
+  for (const q of ['k = 8', 'median = mean', 'f(x)=0']) {
+    assert.ok(place(q).bbox, `short maths quote should position: ${q}`)
+  }
+
+  // The tightest containing line wins, not merely the first that matches.
+  const tie = buildLineReferences(
+    [{ mark_id: 1, type: 'M1', earned: true, line_reference: 'median = mean' }],
+    [
+      { text: 'a far longer line that also says median = mean somewhere inside', bbox: { top: 1, left: 0, width: 90, height: 4 } },
+      { text: 'median = mean', bbox: { top: 50, left: 0, width: 12, height: 4 } },
+    ]
+  )[0]
+  assert.equal(tie.bbox?.top, 50, 'tightest containing line should win')
+
+  // Too short to trust: "A1" is a mark code, not something the student wrote,
+  // and at two characters it would match almost any line.
+  assert.equal(place('A1').bbox, null, 'two-character snippet stays unplaced')
+
   console.log('examiner-ink-positioning.test.ts: ok')
 }
 

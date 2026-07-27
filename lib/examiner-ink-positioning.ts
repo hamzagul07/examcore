@@ -66,7 +66,19 @@ function similarity(a: string, b: string): number {
   if (na.includes(nb) || nb.includes(na)) {
     const shorter = Math.min(na.length, nb.length)
     const longer = Math.max(na.length, nb.length)
-    return shorter / longer
+    // Containment is the strongest evidence there is: the quote IS in the line.
+    // Returning the length ratio here scored an exact match of "= 4" inside a
+    // sixty-character line at 0.03 and the threshold rejected it — so short
+    // quotes were being thrown away for being short. Maths and chemistry marks
+    // are quoted exactly like that ("k = 8", "f(x)=0", "median = mean"), which
+    // is why a quarter of marks on real uploads never got positioned.
+    //
+    // Below a few characters a snippet matches almost anything, so those keep
+    // the old ratio and generally stay unplaced — "A1" is a mark code, not
+    // something a student wrote. Above it, the ratio survives only as a
+    // tie-break so the tightest containing line wins over a rambling one.
+    if (shorter < MIN_CONTAINMENT_CHARS) return shorter / longer
+    return 0.9 + 0.1 * (shorter / longer)
   }
   // Token overlap as a fallback. Cheap but works well enough for short math
   // snippets where exact substring matches fail because of OCR noise.
@@ -88,6 +100,9 @@ function pickStampCode(mark: MarkAwardedWithRefs, fallbackIndex: number): string
 }
 
 const MATCH_THRESHOLD = 0.35
+
+/** Below this many normalised characters a snippet matches too much to trust. */
+const MIN_CONTAINMENT_CHARS = 3
 
 /**
  * Build the array of `line_references` that gets stored on the attempt and

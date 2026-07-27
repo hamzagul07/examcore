@@ -79,10 +79,10 @@ export default async function IbCoursePage({ params }: Props) {
         basePath="/ib/courses"
         coursesCrumb={{ label: 'IB courses', href: '/ib/courses' }}
         board="ib"
-        asideExtra={<IbLegitResourcesPanel slug={catalogSlug} />}
+        asideExtra={<IbLegitResourcesPanel key="ib-legit" slug={catalogSlug} />}
         community={
           communityOn ? (
-            <div className="hub-community">
+            <div key="hub-community" className="hub-community">
               <CommunityEntry
                 subjectCode={catalogSlug}
                 title={`IB ${subject.name} ${subject.level} Exam Room`}

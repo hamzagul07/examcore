@@ -92,7 +92,7 @@ export default async function IbLessonPage({ params }: Props) {
           coursesCrumb={{ label: 'IB courses', href: '/ib/courses' }}
           community={
             communityOn ? (
-              <div className="lesson-community">
+              <div key="lesson-community" className="lesson-community">
                 <CommunityEntry
                   subjectCode={catalogSlug}
                   title={`Discuss ${l.title}`}

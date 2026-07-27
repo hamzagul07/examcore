@@ -81,7 +81,7 @@ export default async function CourseSubjectPage({ params, searchParams }: Props)
         initialPaperNumber={paper ?? null}
         community={
           communityOn ? (
-            <div className="hub-community">
+            <div key="hub-community" className="hub-community">
               <CommunityEntry subjectCode={code} title={`${course.name} Exam Room`} />
             </div>
           ) : null

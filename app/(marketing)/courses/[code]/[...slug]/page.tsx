@@ -196,7 +196,7 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
           paperQuery={paperQuery}
           community={
             communityOn && !isPilotLesson ? (
-              <div className="lesson-community">
+              <div key="lesson-community" className="lesson-community">
                 <CommunityEntry
                   subjectCode={code}
                   title={`Discuss ${lesson.title}`}

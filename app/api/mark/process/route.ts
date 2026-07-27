@@ -261,6 +261,9 @@ async function handleMarkRequest(request: NextRequest) {
       pageFiles.push(answerPhoto)
     }
     const answerPdf = formData.get('answer_pdf') as File | null
+    // The answer typed instead of photographed. Single-question only: whole
+    // paper exists to segment a scanned script, which presupposes a scan.
+    const answerTextInput = (formData.get('answer_text') as string | null) ?? null
     const questionPhoto = formData.get('question_photo') as File | null
     const questionTextInput = formData.get('question_text') as string | null
     const manualPaperCode = formData.get('manual_paper_code') as string | null
@@ -309,8 +312,22 @@ async function handleMarkRequest(request: NextRequest) {
     const manualSubjectCode = manualPaperCode?.split('/')[0]
     const streamRequested = formData.get('stream') === '1'
 
-    if (pageFiles.length === 0 && !answerPdf?.size) {
-      return NextResponse.json({ error: 'Answer photo is required' }, { status: 400 })
+    // A typed answer counts as an answer, but only for single-question marking:
+    // whole-paper mode exists to segment a scanned script into questions, which
+    // presupposes there is a scan.
+    const hasTypedAnswer =
+      uploadMode === 'single_question' && !!answerTextInput?.trim()
+
+    if (pageFiles.length === 0 && !answerPdf?.size && !hasTypedAnswer) {
+      return NextResponse.json(
+        {
+          error:
+            uploadMode === 'whole_paper'
+              ? 'Upload your paper to mark a whole script.'
+              : 'Add your answer — type it or upload a page.',
+        },
+        { status: 400 }
+      )
     }
 
     if (userId) {
@@ -352,6 +369,7 @@ async function handleMarkRequest(request: NextRequest) {
       const pipelineInput = {
         pageFiles,
         answerPdf: answerPdf?.size ? answerPdf : null,
+        answerText: answerTextInput,
         questionPhoto: questionPhoto?.size ? questionPhoto : null,
         questionTextInput: questionTextInput?.trim() || '',
         manualPaperCode:

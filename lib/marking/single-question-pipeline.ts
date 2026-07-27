@@ -91,6 +91,15 @@ async function ocrQuestionFile(
 export type SingleQuestionMarkInput = {
   pageFiles: File[]
   answerPdf: File | null
+  /**
+   * The answer typed rather than photographed.
+   *
+   * The marker has always been text-in — vision exists only to turn a photo of
+   * handwriting into these words. Accepting them directly skips OCR entirely,
+   * which is both the fastest path through the pipeline and the only one open
+   * to somebody working at a keyboard.
+   */
+  answerText?: string | null
   questionPhoto: File | null
   questionTextInput: string
   manualPaperCode: string | null
@@ -519,6 +528,7 @@ export async function runSingleQuestionMark(
   const {
     pageFiles,
     answerPdf,
+    answerText,
     questionPhoto,
     questionTextInput,
     manualPaperCode,
@@ -617,7 +627,15 @@ export async function runSingleQuestionMark(
         )
       : null
 
-  if (answerPdf?.size) {
+  const typedAnswer = answerText?.trim() ?? ''
+
+  if (typedAnswer) {
+    // No OCR, no upload, no image to annotate. `lines` stays empty, which the
+    // examiner-ink positioning already treats as "nothing to place" — the marks
+    // and reasons are unaffected, only the overlay is absent, because there is
+    // no photo to overlay them on.
+    pageOcrResults.push({ full_text: typedAnswer, lines: [], photo_url: null })
+  } else if (answerPdf?.size) {
     const pdfPages = await ocrPdfToPages(
       await answerPdf.arrayBuffer(),
       getMarkingGenAI()
@@ -636,7 +654,7 @@ export async function runSingleQuestionMark(
     const ocred = await mapWithConcurrency(pageFiles, 4, (file) => ocrOnePage(file))
     pageOcrResults.push(...ocred)
   } else {
-    throw new Error('Upload at least one page of your answer.')
+    throw new Error('Add your answer — type it or upload a page.')
   }
 
   // Drop adjacent near-duplicate pages (same sheet photographed/OCR'd twice) so
@@ -665,7 +683,9 @@ export async function runSingleQuestionMark(
 
   if (!ocrText || ocrText.trim().length < 5) {
     throw new Error(
-      "We couldn't read any answer in your photo. Upload a clear photo of your written working (a blank or unreadable page can't be marked)."
+      typedAnswer
+        ? 'Your answer is too short to mark. Write out your working and try again.'
+        : "We couldn't read any answer in your photo. Upload a clear photo of your written working (a blank or unreadable page can't be marked)."
     )
   }
 

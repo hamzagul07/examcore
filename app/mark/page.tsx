@@ -137,6 +137,11 @@ type UpgradeModalState = {
 
 export default function MarkPage() {
   const [answerPages, setAnswerPages] = useState<UploadPage[]>([])
+  // The answer typed rather than photographed. The marker has always been
+  // text-in — vision only ever existed to produce these words — but every path
+  // through this page demanded a photo, which locks out anyone working at a
+  // keyboard rather than over a page of handwriting.
+  const [answerTextInput, setAnswerTextInput] = useState('')
   const [answerPdf, setAnswerPdf] = useState<File | null>(null)
   const [answerPdfError, setAnswerPdfError] = useState<string | null>(null)
   const [questionPhoto, setQuestionPhoto] = useState<File | null>(null)
@@ -870,7 +875,11 @@ export default function MarkPage() {
     uploadMode === 'single_question' && markIntent === 'practice_question'
   const isCombinedMode =
     uploadMode === 'single_question' && markIntent === 'combined_script'
+  const MIN_TYPED_ANSWER = 12
+  const hasTypedAnswer = answerTextInput.trim().length >= MIN_TYPED_ANSWER
   const hasAnswerUpload = answerPages.length > 0 || !!answerPdf
+  /** An answer is an answer whether it was photographed or typed. */
+  const hasAnswer = hasAnswerUpload || hasTypedAnswer
 
   const markModeCallout = useMemo(() => {
     if (uploadMode === 'whole_paper') {
@@ -909,8 +918,8 @@ export default function MarkPage() {
 
   // Why the submit button is disabled, in words — shown under the button so a
   // greyed-out CTA never leaves the user guessing.
-  const submitDisabledReason = !hasAnswerUpload
-    ? 'Add a photo or PDF of your answer to get started.'
+  const submitDisabledReason = !hasAnswer
+    ? 'Type your answer above, or add a photo or PDF of it.'
     : hasCompressingPages(answerPages) || questionPhotoCompressing
       ? 'Preparing your files — just a moment…'
       : answerPdfError
@@ -1096,7 +1105,7 @@ export default function MarkPage() {
     }
 
     try {
-      if (!hasAnswerUpload) {
+      if (!hasAnswer) {
         setLoading(false)
         releaseSubmit()
         setErrorMsg('Upload at least one page or a PDF of your answer.')
@@ -1191,6 +1200,11 @@ export default function MarkPage() {
         formData.append('question_photo', questionFile)
       }
       if (questionTextInput.trim()) formData.append('question_text', questionTextInput)
+      // Only when there is nothing uploaded: a photo is richer than typing and
+      // sending both would leave the pipeline choosing between two answers.
+      if (!hasAnswerUpload && hasTypedAnswer) {
+        formData.append('answer_text', answerTextInput.trim())
+      }
 
       // Per-question total marks: send the user-entered denominator unless they
       // ticked "the marks are shown in my question" (then the marker reads it
@@ -1845,6 +1859,41 @@ export default function MarkPage() {
                       : 'photos, camera, or PDF — multi-page is fine'
                   }
                 />
+
+                {/* Typing is not offered for a scanned script: that mode exists
+                    to read a question and its working off the same sheet. */}
+                {!isCombinedMode && !hasAnswerUpload ? (
+                  <>
+                    <div className="ms-mark-or-divider" aria-hidden="true">
+                      <span>or type it</span>
+                    </div>
+                    <div>
+                      <Label
+                        htmlFor="answer-text"
+                        className="label-overline mb-2 inline-block"
+                      >
+                        Type your answer
+                      </Label>
+                      <textarea
+                        id="answer-text"
+                        value={answerTextInput}
+                        onChange={(e) => setAnswerTextInput(e.target.value)}
+                        rows={7}
+                        disabled={loading}
+                        placeholder={
+                          'Write your answer exactly as you would in the exam \u2014 working, steps and all.'
+                        }
+                        className="ec-input ec-question-text"
+                      />
+                      <p className="mt-2 text-xs text-[var(--ec-text-secondary)]">
+                        Marked the same way as a photo. You will not get
+                        examiner&rsquo;s ink over your page, because there is no
+                        page &mdash; you get the marks, the reasons and what was
+                        missing.
+                      </p>
+                    </div>
+                  </>
+                ) : null}
               </div>
               <div className="ms-mark-form-card">
                 <StepLabel
@@ -2234,7 +2283,7 @@ export default function MarkPage() {
                     loadingMode="progress"
                     loadingText="Marking your answer…"
                     disabled={
-                      !hasAnswerUpload ||
+                      !hasAnswer ||
                       hasCompressingPages(answerPages) ||
                       questionPhotoCompressing ||
                       !!answerPdfError ||
@@ -2244,7 +2293,7 @@ export default function MarkPage() {
                       (isCombinedMode && !selectedSubject)
                     }
                     pulse={
-                      hasAnswerUpload &&
+                      hasAnswer &&
                       !loading &&
                       (isCombinedMode
                         ? !!selectedSubject
@@ -2296,7 +2345,7 @@ export default function MarkPage() {
                     }}
                     disabled={
                       loading ||
-                      !hasAnswerUpload ||
+                      !hasAnswer ||
                       hasCompressingPages(answerPages) ||
                       questionPhotoCompressing ||
                       !!answerPdfError
@@ -2353,7 +2402,7 @@ export default function MarkPage() {
                 }}
                 retryDisabled={
                   loading ||
-                  !hasAnswerUpload ||
+                  !hasAnswer ||
                   hasCompressingPages(answerPages) ||
                   questionPhotoCompressing ||
                   !!answerPdfError

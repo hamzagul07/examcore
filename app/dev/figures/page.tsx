@@ -96,7 +96,11 @@ export default function Page() {
   const figures = pickValidFigures(SAMPLES, (reason, i) =>
     console.warn(`sample ${i} rejected: ${reason}`)
   )
-  const authored = authoredFigures('9701')
+  const authored = [
+    ...authoredFigures('9701'),
+    ...authoredFigures('ib-chemistry-hl'),
+    ...authoredFigures('ib-chemistry-sl'),
+  ]
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-12">
@@ -114,7 +118,7 @@ export default function Page() {
       {authored.length ? (
         <>
           <h2 className="mb-2 mt-14 text-xl font-semibold">
-            Authored in lessons — 9701 ({authored.length})
+            Authored in lessons — chemistry ({authored.length})
           </h2>
           <p className="mb-6 text-sm text-[var(--ec-text-secondary)]">
             Structures sourced from PubChem and formula-verified. Review pass.

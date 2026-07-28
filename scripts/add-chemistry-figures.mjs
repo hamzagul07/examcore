@@ -146,6 +146,116 @@ const CURATION = [
       { name: 'tetrafluoroethylene', expect: 'C2F4', title: 'Tetrafluoroethene → PTFE', caption: 'Strong C–F bonds make PTFE unreactive and non-stick — and very slow to degrade.' },
     ],
   },
+  // ── A Level organic (9701 topics 29–35) ──────────────────────────────────
+  {
+    subject: '9701',
+    slug: '29-3-shapes-of-aromatic-organic-molecules-and-bonds',
+    molecules: [
+      { name: 'benzene', expect: 'C6H6', title: 'Benzene — delocalised ring', caption: 'Every C–C bond is the same length. The p orbitals overlap into a delocalised π system above and below a planar ring.' },
+      { name: 'toluene', expect: 'C7H8', title: 'Methylbenzene', caption: 'The methyl group pushes electron density into the ring, activating it towards electrophiles and directing to 2- and 4-.' },
+    ],
+  },
+  {
+    subject: '9701',
+    slug: '29-4-isomerism-optical',
+    molecules: [
+      { name: 'L-alanine', expect: 'C3H7NO2', stereo: true, title: 'L-alanine', caption: 'The central carbon carries four different groups — a chiral centre, so the molecule is not superimposable on its mirror image.' },
+      { name: 'D-alanine', expect: 'C3H7NO2', stereo: true, title: 'D-alanine — the enantiomer', caption: 'Identical bonds and identical physical properties, but it rotates plane-polarised light the opposite way.' },
+    ],
+  },
+  {
+    subject: '9701',
+    slug: '30-1-arenes',
+    molecules: [
+      { name: 'benzene', expect: 'C6H6', title: 'Benzene', caption: 'Delocalisation makes the ring stable, so arenes substitute rather than add — the ring survives the reaction.' },
+      { name: 'nitrobenzene', expect: 'C6H5NO2', title: 'Nitrobenzene', caption: 'Product of nitration with concentrated HNO₃/H₂SO₄. The electrophile is NO₂⁺.' },
+    ],
+  },
+  {
+    subject: '9701',
+    slug: '31-1-halogen-compounds',
+    molecules: [
+      { name: 'chloroethane', expect: 'C2H5Cl', title: 'Chloroethane — reactive', caption: 'The polar C–Cl bond is readily attacked by nucleophiles.' },
+      { name: 'chlorobenzene', expect: 'C6H5Cl', title: 'Chlorobenzene — unreactive', caption: 'The Cl lone pair overlaps with the ring, giving partial double-bond character. That shorter, stronger C–Cl bond resists substitution.' },
+    ],
+  },
+  {
+    subject: '9701',
+    slug: '32-2-phenol',
+    molecules: [
+      { name: 'phenol', expect: 'C6H6O', title: 'Phenol', caption: 'The –OH lone pair delocalises into the ring, stabilising the phenoxide ion — so phenol is acidic, unlike an alcohol.' },
+      { name: '2,4,6-tribromophenol', expect: 'C6H3Br3O', title: '2,4,6-tribromophenol', caption: 'The white precipitate with bromine water. Three substitutions with no catalyst shows how strongly –OH activates the ring.' },
+    ],
+  },
+  {
+    subject: '9701',
+    slug: '33-1-carboxylic-acids',
+    molecules: [
+      { name: 'acetic acid', expect: 'C2H4O2', title: 'Ethanoic acid', caption: 'The baseline for comparison — pKa ≈ 4.8.' },
+      { name: 'chloroacetic acid', expect: 'C2H3ClO2', title: 'Chloroethanoic acid — stronger', caption: 'Cl withdraws electron density, stabilising the carboxylate ion, so the H⁺ is lost more readily.' },
+      { name: 'benzoic acid', expect: 'C7H6O2', title: 'Benzoic acid', caption: 'The ring also withdraws density — stronger than ethanoic acid, weaker than the chlorinated acid.' },
+    ],
+  },
+  {
+    subject: '9701',
+    slug: '33-3-acyl-chlorides',
+    molecules: [
+      { name: 'acetyl chloride', expect: 'C2H3ClO', title: 'Ethanoyl chloride', caption: 'C=O plus a good leaving group makes this the most reactive acid derivative — it fumes in moist air.' },
+    ],
+  },
+  {
+    subject: '9701',
+    slug: '34-1-primary-and-secondary-amines',
+    molecules: [
+      { name: 'ethylamine', expect: 'C2H7N', title: 'Ethylamine — primary', caption: 'One alkyl group donating electron density to N.' },
+      { name: 'diethylamine', expect: 'C4H11N', title: 'Diethylamine — secondary', caption: 'Two alkyl groups make the lone pair still more available, so it is the stronger base.' },
+    ],
+  },
+  {
+    subject: '9701',
+    slug: '34-2-phenylamine-and-azo-compounds',
+    molecules: [
+      { name: 'aniline', expect: 'C6H7N', title: 'Phenylamine', caption: 'The lone pair is delocalised into the ring — a much weaker base than an aliphatic amine, but the ring is strongly activated.' },
+      { name: 'azobenzene', expect: 'C12H10N2', title: 'Azobenzene — the azo group', caption: 'Two rings joined by –N=N–. The extended delocalisation across the whole system is what makes azo compounds coloured.' },
+    ],
+  },
+  {
+    subject: '9701',
+    slug: '34-3-amides',
+    molecules: [
+      { name: 'acetamide', expect: 'C2H5NO', title: 'Ethanamide', caption: 'The N lone pair delocalises into the C=O, so amides are neutral — not basic like amines.' },
+    ],
+  },
+  {
+    subject: '9701',
+    slug: '34-4-amino-acids',
+    molecules: [
+      { name: 'glycine', expect: 'C2H5NO2', title: 'Glycine — the achiral one', caption: 'Two hydrogens on the central carbon, so no chiral centre. The only amino acid without optical isomers.' },
+      { name: 'L-alanine', expect: 'C3H7NO2', stereo: true, title: 'Alanine — chiral', caption: 'Four different groups on the central carbon. Both –NH₂ and –COOH are present, so it forms a zwitterion at intermediate pH.' },
+    ],
+  },
+  {
+    subject: '9701',
+    slug: '35-1-condensation-polymerisation',
+    molecules: [
+      { name: 'ethylene glycol', expect: 'C2H6O2', title: 'Ethane-1,2-diol', caption: 'Two –OH groups: one monomer for PET. Each link formed loses a small molecule — that is what makes it condensation, not addition.' },
+      { name: 'terephthalic acid', expect: 'C8H6O4', title: 'Benzene-1,4-dicarboxylic acid', caption: 'Two –COOH groups. With the diol above it forms the ester links of PET (a polyester).' },
+      { name: 'hexamethylenediamine', expect: 'C6H16N2', title: '1,6-diaminohexane', caption: 'Two –NH₂ groups: one monomer for nylon-6,6.' },
+      { name: 'adipic acid', expect: 'C6H10O4', title: 'Hexanedioic acid', caption: 'Two –COOH groups. With the diamine above it forms the amide links of nylon-6,6 (a polyamide).' },
+    ],
+  },
+
+  // ── IB Chemistry ─────────────────────────────────────────────────────────
+  ...['ib-chemistry-hl', 'ib-chemistry-sl'].map((subject) => ({
+    subject,
+    slug: 's3-2-functional-groups-classification-of-organic-compounds',
+    molecules: [
+      { name: 'ethanol', expect: 'C2H6O', title: 'Ethanol — alcohol', caption: 'The –OH group. Homologous series members differ by CH₂ and share chemical properties.' },
+      { name: 'acetone', expect: 'C3H6O', title: 'Propanone — ketone', caption: 'C=O with carbons on both sides.' },
+      { name: 'acetic acid', expect: 'C2H4O2', title: 'Ethanoic acid — carboxylic acid', caption: '–COOH: a carbonyl and a hydroxyl on the same carbon.' },
+      { name: 'ethylamine', expect: 'C2H7N', title: 'Ethylamine — amine', caption: 'The –NH₂ group, with a lone pair on nitrogen.' },
+    ],
+  })),
 ]
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))

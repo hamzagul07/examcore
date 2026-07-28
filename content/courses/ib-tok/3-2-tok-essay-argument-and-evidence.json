@@ -194,5 +194,13 @@
       ]
     }
   ],
-  "generatorVersion": "ib-humanities-deep-1"
+  "generatorVersion": "ib-humanities-deep-1",
+  "figures": [
+    {
+      "kind": "mermaid",
+      "title": "The shape of a TOK argument",
+      "caption": "Marks come from the evaluation step, not the claim. An essay that states claims and examples without weighing them stalls in the middle bands.",
+      "source": "flowchart TD\n    A[\"Claim<br/>a knowledge assertion\"] --> B[\"Evidence<br/>a specific real example\"]\n    B --> C[\"Analysis<br/>why does this example support the claim?\"]\n    C --> D[\"Counterclaim<br/>the strongest opposing view\"]\n    D --> E[\"Counter-evidence<br/>a specific example, not a hypothetical\"]\n    E --> F[\"Evaluation<br/>which holds up, under what conditions?\"]\n    F --> G[\"Link back to the title\"]"
+    }
+  ]
 }

@@ -162,5 +162,13 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "figures": [
+    {
+      "kind": "mermaid",
+      "title": "Linear search as a flowchart",
+      "caption": "Every loop needs three things the examiner looks for: somewhere to start, a condition that can become false, and a change inside the loop that moves towards it.",
+      "source": "flowchart TD\n    A([Start]) --> B[/Input: list, target/]\n    B --> C[\"i = 0\"]\n    C --> D{\"i < length?\"}\n    D -- No --> E[/Output: not found/]\n    D -- Yes --> F{\"list[i] = target?\"}\n    F -- Yes --> G[/Output: i/]\n    F -- No --> H[\"i = i + 1\"]\n    H --> D\n    E --> Z([End])\n    G --> Z"
+    }
+  ]
 }

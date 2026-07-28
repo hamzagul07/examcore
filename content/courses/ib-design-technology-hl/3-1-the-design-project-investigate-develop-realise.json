@@ -167,5 +167,13 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "figures": [
+    {
+      "kind": "mermaid",
+      "title": "The design cycle",
+      "caption": "It is a cycle, not a line. Testing that sends you back to develop is evidence of iteration, which is what the criteria reward.",
+      "source": "flowchart LR\n    A[\"Investigate<br/>need, users, research\"] --> B[\"Design<br/>specification, ideas\"]\n    B --> C[\"Develop<br/>modelling, refinement\"]\n    C --> D[\"Realise<br/>prototype, manufacture\"]\n    D --> E[\"Test and evaluate<br/>against the specification\"]\n    E -->|refine| C\n    E -->|reframe the need| A"
+    }
+  ]
 }

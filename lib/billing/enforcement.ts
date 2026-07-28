@@ -9,9 +9,9 @@ import {
   type EnforcementMode,
 } from './enforcement-mode'
 import {
-  capForTier,
+  capForAccess,
   currentPeriodWindow,
-  omniCapForTier,
+  omniCapForAccess,
   TIER_MONTHLY_CAPS,
   TIER_OMNI_CAPS,
 } from './caps'
@@ -198,7 +198,7 @@ async function computeQuestionAllowanceFromContext(
     ctx.window.start,
     ctx.window.end
   )
-  return buildQuotaAllowance(ctx, { used, cap: capForTier(ctx.cap_tier) })
+  return buildQuotaAllowance(ctx, { used, cap: capForAccess(ctx.access, ctx.cap_tier) })
 }
 
 async function computeOmniAllowanceFromContext(
@@ -214,7 +214,11 @@ async function computeOmniAllowanceFromContext(
     ctx.window.start,
     ctx.window.end
   )
-  return buildQuotaAllowance(ctx, { used, cap: omniCapForTier(ctx.cap_tier), omni: true })
+  return buildQuotaAllowance(ctx, {
+    used,
+    cap: omniCapForAccess(ctx.access, ctx.cap_tier),
+    omni: true,
+  })
 }
 
 /**
@@ -437,7 +441,7 @@ export async function reserveMarkUsage(
   supabase: SupabaseClient = createServiceClient()
 ): Promise<MarkReservation> {
   const ctx = await loadBillingContext(userId, supabase)
-  const cap = capForTier(ctx.cap_tier)
+  const cap = capForAccess(ctx.access, ctx.cap_tier)
   const subscriptionInactive =
     ctx.tier !== 'free' && !ACTIVE_STATUSES.includes(ctx.status)
 
@@ -649,6 +653,9 @@ export function quotaExceededBody(allowance: MarkAllowance | QuotaAllowance) {
     error: 'mark_quota_exceeded' as const,
     reason: allowance.reason,
     tier: allowance.tier,
+    // Reported rather than left for the client to reconstruct from `tier` —
+    // a reverse-trial user's tier is 'free' but their cap is not the free one.
+    cap: allowance.cap,
     period_resets_at: allowance.period_resets_at ?? null,
     credit_balance: allowance.credit_balance,
     upgrade_url: '/pricing',

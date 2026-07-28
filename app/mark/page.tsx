@@ -1396,7 +1396,7 @@ export default function MarkPage() {
           setUpgradeModal({
             variant: 'cap',
             tier,
-            cap: capForTier(tier),
+            cap: data.cap ?? capForTier(tier),
             periodResetsAt: data.period_resets_at ?? null,
             creditBalance: data.credit_balance ?? 0,
           })
@@ -1934,7 +1934,7 @@ export default function MarkPage() {
                       setUpgradeModal({
                         variant: 'cap',
                         tier,
-                        cap: capForTier(tier),
+                        cap: data.cap ?? capForTier(tier),
                         periodResetsAt: data.period_resets_at ?? null,
                         creditBalance: data.credit_balance ?? 0,
                       })

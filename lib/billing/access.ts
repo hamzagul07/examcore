@@ -2,9 +2,15 @@ import type { SubscriptionTier, SubscriptionStatus } from '@/lib/database.types'
 
 /**
  * Effective access level — the single concept the whole app gates on.
- * Marketing names: free / Pro / Max. `trial` is legacy (reverse no-card trial,
- * no longer granted on signup). Scholar/Max checkout trials use status
- * `trialing` with a paid tier instead.
+ * Marketing names: free / Pro / Max.
+ *
+ * `trial` is the 7-day no-card reverse trial granted on signup by the
+ * user_subscriptions.trial_ends_at column default (see
+ * 20260728_restore_reverse_trial.sql). It carries Scholar-level access and caps
+ * — loadBillingContext() maps it to cap_tier 'scholar'.
+ *
+ * Distinct from Scholar/Max *checkout* trials, which collect a card and appear
+ * as status `trialing` against a paid tier.
  */
 export type EffectiveAccess = 'free' | 'trial' | 'pro' | 'max'
 

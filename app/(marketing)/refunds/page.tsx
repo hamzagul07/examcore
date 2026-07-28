@@ -20,14 +20,18 @@ export default function RefundsPage() {
           <section>
             <h2 className="ms-h3">Try before you pay</h2>
             <p>
-              New accounts start on the{' '}
-              <strong className="text-[var(--ec-text-primary)]">free plan</strong> — no
-              card required. When you choose to subscribe, your{' '}
+              New accounts include{' '}
+              <strong className="text-[var(--ec-text-primary)]">
+                7 days of full feature access
+              </strong>{' '}
+              — no card required, nothing to cancel, and no charge when it ends. You
+              simply move to the free plan, and everything you marked during the week
+              stays saved. When you later choose to subscribe, your{' '}
               <strong className="text-[var(--ec-text-primary)]">first Scholar or Max subscription includes a 7-day free trial</strong>:
               a card is collected at checkout but nothing is charged until the trial
               ends, and cancelling before then costs nothing. Pro subscriptions are
-              billed from day one. We recommend using the Scholar or Max trial to
-              decide whether MarkScheme is right for you before paying.
+              billed from day one. We recommend using the free week to decide whether
+              MarkScheme is right for you before paying.
             </p>
           </section>
 

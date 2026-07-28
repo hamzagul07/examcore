@@ -20,6 +20,9 @@
     },
     "app/api/cron/streak-nudge/route.ts": {
       "maxDuration": 300
+    },
+    "app/api/cron/trial-end/route.ts": {
+      "maxDuration": 300
     }
   },
   "crons": [
@@ -50,6 +53,10 @@
     {
       "path": "/api/cron/mark-run-sweep",
       "schedule": "*/30 * * * *"
+    },
+    {
+      "path": "/api/cron/trial-end",
+      "schedule": "0 10 * * *"
     }
   ]
 }

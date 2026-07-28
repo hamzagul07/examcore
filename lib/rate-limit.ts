@@ -1,6 +1,19 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 
-export const ANON_DAILY_MARK_LIMIT = 10
+/**
+ * Guest marks per IP per day.
+ *
+ * Was 10, which inverted the entire quota ladder: a guest got ~300 marks a
+ * month against 5/month for a signed-in free account and 50 for an $11
+ * subscriber, so creating an account was a 60× downgrade and paying bought less
+ * than clearing your cookies. Measured 2026-07-28 with 105 users and 1
+ * subscriber.
+ *
+ * One is the taste — enough to see examiner ink land on your own words, which
+ * is the moment that sells the product, and not enough to be a substitute for
+ * having an account.
+ */
+export const ANON_DAILY_MARK_LIMIT = 1
 export const ANON_DAILY_OMNI_LIMIT = 60
 const ANON_DAILY_CONTACT_LIMIT = 5
 const AUTH_DAILY_CONTACT_LIMIT = 20
@@ -44,8 +57,11 @@ export async function checkAnonymousMarkRateLimit(
   if (count >= ANON_DAILY_MARK_LIMIT) {
     return {
       allowed: false,
+      // Sells the next step rather than saying "come back tomorrow" — the
+      // student is standing at the exact moment the account is worth having,
+      // with a marked script on screen they are about to lose.
       message:
-        'Daily limit reached (10 marks per day for guests). Create a free account for your own quota, or try again tomorrow.',
+        'That was your free guest mark. Create a free account to keep it — you also get 7 days of full access, no card.',
     }
   }
 

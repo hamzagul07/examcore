@@ -24,7 +24,7 @@ import type { EffectiveAccess } from '@/lib/billing/access'
 import type { RegionChoice } from '@/lib/billing/region-cookie'
 import type { SubscriptionTier } from '@/lib/database.types'
 import { formatMoney } from '@/lib/billing/format'
-import { capForTier, omniCapForTier } from '@/lib/billing/caps'
+import { capForTier, omniCapForTier, TRIAL_MONTHLY_CAP } from '@/lib/billing/caps'
 import { INTERACTIVE_DIAGRAMS_FREE } from '@/lib/billing/features'
 import { buildSignUpHref } from '@/lib/auth-redirect'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
@@ -348,7 +348,7 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
     },
     {
       q: 'How does the free trial work?',
-      a: `There is no automatic trial when you sign up — you start on the free plan (${FREE_Q} questions and ${FREE_OMNI} study-chat messages per month). When you're ready, go to this pricing page and start Scholar or Max: your first subscription includes a 7-day free trial (card required, nothing charged until day 8). Cancel anytime before then. Pro is billed from day one with no trial.`,
+      a: `Creating an account gives you 7 days of full access automatically — every Scholar feature and ${TRIAL_MONTHLY_CAP} marked questions to use them on, no card, nothing to cancel. When the week is up you move to the free plan (${FREE_Q} questions and ${FREE_OMNI} study-chat messages per month) and everything you marked stays saved. Separately, starting a Scholar or Max subscription from this page also includes a 7-day free trial (card required, nothing charged until day 8) — cancel any time before then. Pro is billed from day one.`,
     },
     {
       q: 'What makes the marking different from ChatGPT?',

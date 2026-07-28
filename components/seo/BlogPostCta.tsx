@@ -51,7 +51,7 @@ export function BlogPostCta({
           <p className="ec-blog-footer-cta__trust">
             <Sparkles className="inline h-3.5 w-3.5 align-text-bottom" aria-hidden />
             {' '}
-            No card required · Scholar &amp; Max trial on pricing
+            No card required · 7-day full-access trial
           </p>
         </div>
 

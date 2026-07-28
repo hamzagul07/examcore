@@ -37,7 +37,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/pricing': {
     title: 'Pricing — free & paid marking plans',
     description:
-      'Free plan forever with notes & formulas. Scholar & Max include a 7-day free trial when you subscribe from pricing.',
+      'Every new account gets 7 days of full access, no card. Free plan forever after that, with notes & formulas.',
   },
   '/faq': {
     title: 'FAQ — Cambridge & IB marking, privacy & pricing',

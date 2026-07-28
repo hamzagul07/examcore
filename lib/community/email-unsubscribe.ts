@@ -3,7 +3,7 @@ import 'server-only'
 import crypto from 'crypto'
 import { SITE_URL } from '@/lib/site-config'
 
-export type UnsubscribeKind = 'replies' | 'digest' | 'threads' | 'review' | 'weekly' | 'streak'
+export type UnsubscribeKind = 'replies' | 'digest' | 'threads' | 'review' | 'weekly' | 'streak' | 'trial'
 
 function secret(): string {
   return (
@@ -36,7 +36,8 @@ export function verifyUnsubscribeToken(
         kind !== 'threads' &&
         kind !== 'review' &&
         kind !== 'weekly' &&
-        kind !== 'streak') ||
+        kind !== 'streak' &&
+        kind !== 'trial') ||
       !exp ||
       !sig
     )

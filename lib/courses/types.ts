@@ -134,6 +134,12 @@ export type CourseLesson = {
   flashcards?: CourseFlashcard[]
   /** Side-by-side comparison for contrast topics (e.g. transverse vs longitudinal) */
   comparisonTable?: ComparisonTableData
+  /**
+   * Data-authored figures — mermaid timelines, Vega-Lite charts, SMILES
+   * molecules, ABC notation. Scales to topics that need a visual but not a
+   * bespoke SVG component. See lib/courses/figures.ts.
+   */
+  figures?: import('@/lib/courses/figures').LessonFigure[]
   /** Prompt seed for Gemini diagram generation (not shown to students) */
   diagramPrompt?: string
   /** Primary interactive sim for this topic (overrides catalog lookup by slug) */

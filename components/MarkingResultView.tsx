@@ -25,6 +25,10 @@ import { MarkAuditPanel } from '@/components/mark/MarkAuditPanel'
 import { MarkGapPanel } from '@/components/examiner-ink/MarkGapPanel'
 import { MarkBandLadder } from '@/components/examiner-ink/MarkBandLadder'
 import { buildMarkGap, buildBandGap, inlineGhostFixes } from '@/lib/marking/mark-gap'
+import {
+  buildPostMarkDiagnosis,
+  type PostMarkDiagnosis,
+} from '@/lib/marking/post-mark-ask'
 import { MarkSnippet } from '@/components/mark/MarkSnippet'
 import { MarkSchemeRubricPanel } from '@/components/mark/MarkSchemeRubricPanel'
 import { QuestionContextCard } from '@/components/mark/QuestionContextCard'
@@ -173,6 +177,20 @@ export function MarkingResultView({
     !result.ai_marking?.full_marks_rewrite &&
     lostMarks &&
     result.ai_marking?.marking_style !== 'mcq'
+  // Computed only for the teaser's audience — the diagnosis is a read over
+  // marks_awarded, so it costs nothing, but it should never render for someone
+  // who already has the rewrite in front of them.
+  const postMarkDiagnosis = useMemo(
+    () =>
+      showRewriteTeaser
+        ? buildPostMarkDiagnosis({
+            marksAwarded: result.ai_marking?.marks_awarded ?? [],
+            marksEarned: result.marks_earned,
+            totalMarks: result.total_marks,
+          })
+        : null,
+    [showRewriteTeaser, result.ai_marking, result.marks_earned, result.total_marks]
+  )
   const overline = buildOverline(result)
   const selectedMark = marks[selectedIndex] ?? marks[0]
   const hasStructuredResult = marks.length > 0
@@ -499,7 +517,7 @@ export function MarkingResultView({
           <FullMarksRewritePanel rewrite={result.ai_marking.full_marks_rewrite} />
         )}
 
-        {showRewriteTeaser && <FullMarksRewriteTeaser />}
+        {showRewriteTeaser && <FullMarksRewriteTeaser diagnosis={postMarkDiagnosis} />}
 
         {result.ai_marking.estimated_marks_explanation && (
           <div className="ec-banner ec-banner-warning">
@@ -660,7 +678,11 @@ function FullMarksRewritePanel({
  * the student lost marks. Never a takeaway — free users never had the rewrite —
  * it's a locked preview that converts on the exact moment they'd want it.
  */
-function FullMarksRewriteTeaser() {
+function FullMarksRewriteTeaser({
+  diagnosis,
+}: {
+  diagnosis: PostMarkDiagnosis | null
+}) {
   return (
     <div className="ec-card relative overflow-hidden border-[var(--ec-brand)]/30 p-5 sm:p-7">
       <div className="mb-3 flex items-center gap-2">
@@ -669,12 +691,34 @@ function FullMarksRewriteTeaser() {
           PREMIUM
         </p>
       </div>
-      <h3 className="ms-h3">See your answer rewritten to full marks</h3>
-      <p className="mt-1 leading-relaxed text-[var(--ec-text-secondary)]">
-        Premium rewrites <em>your</em> answer into a response that scores full
-        marks — keeping what you got right and showing exactly what each missing
-        mark needs, line by line.
-      </p>
+      {/* Lead with the student's own diagnosis rather than the feature name.
+          The ask lands at the highest-emotion moment in the product, and at
+          that moment "here is the pattern in what you just lost" is the only
+          sentence that earns the next one. The generic pitch follows it. */}
+      {diagnosis ? (
+        <>
+          <h3 className="ms-h3">{diagnosis.headline}</h3>
+          {diagnosis.detail && (
+            <p className="mt-1 leading-relaxed text-[var(--ec-text-secondary)]">
+              {diagnosis.detail}
+            </p>
+          )}
+          <p className="mt-3 leading-relaxed text-[var(--ec-text-secondary)]">
+            Premium rewrites <em>your</em> answer into one that scores full marks —
+            keeping what you got right and showing exactly what each missing mark
+            needed, line by line.
+          </p>
+        </>
+      ) : (
+        <>
+          <h3 className="ms-h3">See your answer rewritten to full marks</h3>
+          <p className="mt-1 leading-relaxed text-[var(--ec-text-secondary)]">
+            Premium rewrites <em>your</em> answer into a response that scores full
+            marks — keeping what you got right and showing exactly what each missing
+            mark needs, line by line.
+          </p>
+        </>
+      )}
       <div
         aria-hidden
         className="mt-4 space-y-2 rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4 blur-[3px] select-none"

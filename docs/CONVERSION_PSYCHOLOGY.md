@@ -378,11 +378,11 @@ still works in year three.
 ## 12. Build order
 
 1. ✅ **Reverse trial + downgrade screen** (§1) — the 4.7% → 38% lever
-2. **Target grade in onboarding** (§2) — unblocks every premium feature you
-   already shipped; currently 0/105 users
+2. ✅ **Target grade in onboarding** (§2) — unblocks every premium feature you
+   already shipped; was 0/105 users
 3. ✅ **Un-invert the quota ladder** (Growth Plan §2.1) — without this, none of the
    above can work
-4. **Post-mark ask at the peak** (§6) — copy change on `MarkingResultView`
+4. ✅ **Post-mark ask at the peak** (§6) — `MarkingResultView`
 5. **Feedback collection on** (§7) — two weeks to real proof
 6. **IB trajectory** (§4) — 39% of traffic currently has no goal gradient
 7. **Parent-shareable report** (§8) — the missing funnel
@@ -406,9 +406,30 @@ still works in year three.
   index and SEO descriptions — all of which had been rewritten to say no trial
   exists.
 
-**Open decision:** a trial user inherits Scholar caps — 120 marks — for their
-free week, at 3–4 Gemini Pro calls per mark. That was the pre-existing
-behaviour, but it was never load-tested against real traffic. A trial-specific
-cap (~25 marks over the week — still 5× the free tier, still far more than
-anyone uses in seven days) would bound the exposure without weakening the
-mechanism. Not implemented: it changes unit economics, so it is your call.
+### Shipped 2026-07-28, part 2
+
+- **Target grade in onboarding** — step 3, beside the exam date, so the wizard
+  stays five steps. Validated server-side against the student's own board:
+  Cambridge (A*–E) and IB (1–7) are disjoint scales, and a Cambridge grade on an
+  IB profile does not error — `gapToTargetGrade` misses in `GRADE_BOUNDARIES`
+  and returns null forever, so the student sees no gap and never learns why.
+- **Post-mark ask** (`lib/marking/post-mark-ask.ts`) — the free rewrite teaser
+  now leads with the student's own diagnosis instead of the feature name:
+  *"You lost 4 marks — 3 of them to incomplete working."* Two guardrails are in
+  the code, not just the copy review: a pattern is named only when one
+  classification covers ≥2 lost marks **and** ≥half the classifiable ones (one
+  slip is not a trend, and inventing one from n=1 is how you get caught), and
+  every corrective line states what the student did *right* before what they
+  lost. A test asserts the generated strings never contain fail/behind/poor
+  language at any score.
+
+**Resolved:** the trial cap. `capForAccess()` gives the trial 25 marks rather
+than Scholar's 120 — the trial borrows Scholar's features but not its volume,
+because 120 marks at 3–4 Gemini Pro calls each, on a cardless account, is an
+unbounded bill. Still 5× the free tier.
+
+**Still open:** whether to grant a retroactive trial to the 129 existing free
+accounts. The SQL sits in the migration as a comment, deliberately unexecuted —
+it is a re-engagement campaign, not a schema change, and running it silently
+means the trial starts and expires while nobody is looking. It should ship with
+an email.

@@ -14,6 +14,7 @@ import { MarginNote } from '@/components/courses/margin-notes/HandAnnotations'
 import { LessonEndBlock } from '@/components/courses/margin-notes/LessonEndBlock'
 import { CourseLessonDiagramShell } from '@/components/courses/margin-notes/CourseLessonDiagramShell'
 import { LessonComparisonTable } from '@/components/courses/margin-notes/LessonComparisonTable'
+import { LessonFigureBlock } from '@/components/courses/figures/LessonFigureBlock'
 import { CourseRichText } from '@/components/courses/CourseRichText'
 import { ExplainBlock } from '@/components/courses/ExplainBlock'
 import { FeatureHint, markHintUsed } from '@/components/courses/FeatureHint'
@@ -191,6 +192,7 @@ export function CourseLessonPage({
         { id: 'syllabus', label: 'Syllabus coverage', on: !!L.subtopics?.length },
         { id: 'criteria', label: 'How it’s marked', on: !!criterionLadder },
         { id: 'visual', label: 'Visual learning', on: L.hasDiagram && !diagramsLocked },
+        { id: 'figures', label: 'Figures', on: !!L.figures?.length },
         { id: 'formulas', label: 'Key formulas', on: !!L.formulas?.length },
         { id: 'compare', label: 'Side by side', on: !!L.comparisonTable },
         { id: 'notes', label: 'Full notes', on: !!L.notes?.length },
@@ -924,6 +926,21 @@ export function CourseLessonPage({
               </section>
             ) : null}
 
+            {L.figures?.length ? (
+              <section id="figures" className="lsec" data-stage={stageForSection('figures') ?? undefined}>
+                <SecHead
+                  k="·"
+                  title="Figures"
+                  sub="Diagrams, charts and structures for this topic."
+                />
+                <div className="lesson-figure-stack">
+                  {L.figures.map((f, i) => (
+                    <LessonFigureBlock key={`${f.kind}-${i}`} figure={f} />
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
             {L.formulas?.length ? (
               <section id="formulas" className="lsec" data-stage={stageForSection('formulas') ?? undefined}>
                 <SecHead
@@ -949,6 +966,7 @@ export function CourseLessonPage({
                 <LessonComparisonTable table={L.comparisonTable} />
               </section>
             ) : null}
+
 
             {L.notes?.length ? (
               <section id="notes" className="lsec" data-stage={stageForSection('notes') ?? undefined}>

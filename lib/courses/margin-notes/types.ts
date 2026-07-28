@@ -123,6 +123,8 @@ export type MarginNotesLesson = {
   formulas?: LessonFormula[]
   comparisonTable?: LessonComparisonTable
   notes?: LessonNote[]
+  /** Data-authored figures (mermaid / Vega-Lite / SMILES / ABC). */
+  figures?: import('@/lib/courses/figures').LessonFigure[]
   worked?: LessonWorked[]
   conceptMap?: { center: string; nodes: ConceptMapNode[] }
   glossary?: LessonGlossary[]

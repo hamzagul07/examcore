@@ -9,6 +9,7 @@ import {
 import { hasLessonLiveDiagram } from '@/lib/courses/lesson-diagrams'
 import { hasExplorable } from '@/lib/courses/explorables'
 import { resolveLessonInteractiveEmbed } from '@/lib/courses/interactive-embeds'
+import { pickValidFigures } from '@/lib/courses/figures'
 import { filterResourcesForPromotedEmbed } from '@/lib/courses/embed-from-resources'
 import { resolveDiagramSpec } from '@/lib/courses/diagram-specs'
 import type {
@@ -397,6 +398,12 @@ export function adaptLesson(
         }
       : undefined
 
+  // Drop malformed generated specs rather than letting one bad figure break the
+  // page — the reason is logged so it shows up in the generator's output.
+  const figures = pickValidFigures(lesson.figures, (reason, i) => {
+    console.warn(`[figures] ${lesson.slug} figure ${i} rejected: ${reason}`)
+  })
+
   const practiceQuestions = buildPracticeQuestions(lesson, pastPaperQuestions)
 
   return {
@@ -432,6 +439,7 @@ export function adaptLesson(
     steps,
     formulas: formulas.length ? formulas : undefined,
     comparisonTable,
+    figures: figures.length ? figures : undefined,
     notes: notes.length ? notes : undefined,
     worked: worked.length ? worked : undefined,
     conceptMap,

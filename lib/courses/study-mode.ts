@@ -22,6 +22,7 @@ const SECTION_STAGE: Record<string, StageId> = {
   criteria: 'orient',
 
   visual: 'see',
+  figures: 'see',
 
   formulas: 'read',
   compare: 'read',

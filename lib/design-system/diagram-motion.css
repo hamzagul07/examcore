@@ -1,0 +1,203 @@
+/* ── Diagram motion primitives ──
+   Shared vocabulary for step-synced lesson diagrams. Apply only to the layer
+   that the active walkthrough step focuses, so motion reads as explanation
+   rather than decoration. Every primitive is a no-op under reduced motion. */
+
+@keyframes dgm-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+@keyframes dgm-draw {
+  from {
+    stroke-dashoffset: var(--dgm-draw-length, 260);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dgm-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes dgm-travel {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes dgm-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Marching dashes along a path — electron transport, mass flow, cycle direction. */
+.dgm-flow {
+  stroke-dasharray: 7 5;
+  animation: dgm-flow 1.1s linear infinite;
+}
+
+/* Path draws itself in once — reveal a mechanism as the step opens. */
+.dgm-draw {
+  stroke-dasharray: var(--dgm-draw-length, 260);
+  animation: dgm-draw 1.1s ease forwards;
+}
+
+/* Breathing emphasis — an input, product or active site. */
+.dgm-pulse {
+  animation: dgm-pulse 2.2s ease-in-out infinite;
+}
+
+/* A particle riding a path — photons, ions, electrons. Needs `offset-path`. */
+.dgm-travel {
+  animation: dgm-travel 2.4s linear infinite;
+}
+
+.dgm-delay-1 {
+  animation-delay: 0.4s;
+}
+
+.dgm-delay-2 {
+  animation-delay: 0.8s;
+}
+
+.dgm-delay-3 {
+  animation-delay: 1.2s;
+}
+
+/* Rotating machinery — ATP synthase, turbines, rotors. Set transform-origin. */
+.dgm-spin {
+  animation: dgm-spin 3.4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dgm-flow,
+  .dgm-draw,
+  .dgm-pulse,
+  .dgm-travel,
+  .dgm-spin {
+    animation: none;
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+
+  .dgm-travel {
+    offset-distance: 50%;
+  }
+}
+
+/* Dense diagrams keep their detail legible by scrolling rather than shrinking. */
+.lesson-diagram-scroll {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.lesson-diagram-svg--dense {
+  min-width: 34rem;
+}
+
+/* ── Data-authored lesson figures ──
+   Mermaid / Vega-Lite / SMILES / ABC blocks. Wide figures scroll inside their
+   own container so the page body never scrolls sideways on a phone. */
+
+.lesson-figure-stack {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.lesson-figure {
+  margin: 0;
+  border: 1px solid var(--ec-border-subtle);
+  border-radius: 1rem;
+  background: var(--ec-surface-raised, var(--ec-surface));
+  padding: 1rem 1.1rem 0.9rem;
+}
+
+.lesson-figure-title {
+  margin: 0 0 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 650;
+  color: var(--ec-text-primary);
+}
+
+.lesson-figure-body {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  color: var(--ec-text-primary);
+}
+
+.lesson-figure-caption {
+  margin: 0.7rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.lesson-figure-loading {
+  min-height: 9rem;
+  border-radius: 0.75rem;
+  background: var(--ec-bg-soft, var(--ec-surface-muted));
+  animation: dgm-pulse 1.6s ease-in-out infinite;
+}
+
+.lesson-figure-chart,
+.lesson-figure-chart .vega-embed,
+.lesson-figure-chart .vega-embed details {
+  display: block;
+  width: 100%;
+}
+
+.lesson-figure-mermaid svg,
+.lesson-figure-chart svg,
+.lesson-figure-notation svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.lesson-figure-molecule {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+}
+
+.lesson-figure-play {
+  margin-top: 0.6rem;
+  border: 1px solid var(--ec-border-subtle);
+  border-radius: 999px;
+  background: var(--ec-surface-muted);
+  padding: 0.3rem 0.9rem;
+  font-size: 0.78rem;
+  color: var(--ec-text-primary);
+  cursor: pointer;
+}
+
+.lesson-figure-play:hover {
+  border-color: var(--ec-brand);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lesson-figure-loading {
+    animation: none;
+  }
+}

@@ -227,19 +227,24 @@ html[data-ec-theme='late-night'] .katex :is(.base, .strut, .mord, .mop, .mbin, .
   color: inherit;
 }
 
-html[data-ec-theme='late-night'] .lesson-diagram-svg text {
+/* These rules flatten diagram ink to a single themed colour for contrast.
+   `.dgm-hue` opts an element out: use it only where the colour carries meaning
+   (light vs water vs energy carrier vs carbon), and pick mid-tone accents that
+   stay legible on both the zen paper and late-night surfaces. */
+
+html[data-ec-theme='late-night'] .lesson-diagram-svg text:not(.dgm-hue) {
   fill: var(--text, var(--ec-text-primary));
 }
 
-html[data-ec-theme='late-night'] .lesson-diagram-svg [stroke] {
+html[data-ec-theme='late-night'] .lesson-diagram-svg [stroke]:not(.dgm-hue) {
   stroke: var(--text-2, var(--ec-text-secondary));
 }
 
-html[data-ec-theme='zen'] .lesson-diagram-svg text {
+html[data-ec-theme='zen'] .lesson-diagram-svg text:not(.dgm-hue) {
   fill: var(--text, var(--ec-text-primary));
 }
 
-html[data-ec-theme='zen'] .lesson-diagram-svg [stroke] {
+html[data-ec-theme='zen'] .lesson-diagram-svg [stroke]:not(.dgm-hue) {
   stroke: var(--ink, var(--ec-brand));
 }
 

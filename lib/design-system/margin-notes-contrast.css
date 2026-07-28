@@ -111,15 +111,16 @@ html[data-ec-theme='late-night'] .course-root .course-rich-text--flashcard {
   color: var(--text);
 }
 
-html[data-ec-theme='late-night'] .course-root .lesson-diagram-svg text {
+/* `.dgm-hue` opts out — see ec-theme-contrast.css for the convention. */
+html[data-ec-theme='late-night'] .course-root .lesson-diagram-svg text:not(.dgm-hue) {
   fill: var(--text);
 }
 
-html[data-ec-theme='late-night'] .course-root .lesson-diagram-svg [stroke] {
+html[data-ec-theme='late-night'] .course-root .lesson-diagram-svg [stroke]:not(.dgm-hue) {
   stroke: var(--text-2);
 }
 
-html[data-ec-theme='zen'] .course-root .lesson-diagram-svg text {
+html[data-ec-theme='zen'] .course-root .lesson-diagram-svg text:not(.dgm-hue) {
   fill: var(--text);
 }
 
@@ -136,6 +137,6 @@ html[data-ec-theme='zen'] .course-root .lesson-diagram-svg text {
   color: var(--text-2);
 }
 
-html[data-ec-theme='zen'] .course-root .lesson-diagram-svg [stroke] {
+html[data-ec-theme='zen'] .course-root .lesson-diagram-svg [stroke]:not(.dgm-hue) {
   stroke: var(--ink);
 }

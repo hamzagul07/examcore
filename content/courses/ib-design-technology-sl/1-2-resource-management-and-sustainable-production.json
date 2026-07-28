@@ -181,5 +181,13 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "figures": [
+    {
+      "kind": "mermaid",
+      "title": "Product life cycle, and where it can loop",
+      "caption": "A linear cycle ends at disposal. Each loop back is a design decision made much earlier — at material selection, not at end of life.",
+      "source": "flowchart LR\n    A[\"Raw material<br/>extraction\"] --> B[\"Processing\"]\n    B --> C[\"Manufacture\"]\n    C --> D[\"Distribution\"]\n    D --> E[\"Use\"]\n    E --> F[\"End of life\"]\n    F -->|reuse| E\n    F -->|recycle| B\n    F -->|landfill| G[\"Disposal\"]"
+    }
+  ]
 }

@@ -97,10 +97,19 @@ export default function Page() {
     console.warn(`sample ${i} rejected: ${reason}`)
   )
   const authored = [
-    ...authoredFigures('9701'),
-    ...authoredFigures('ib-chemistry-hl'),
-    ...authoredFigures('ib-chemistry-sl'),
-  ]
+    '9701',
+    'ib-chemistry-hl',
+    'ib-chemistry-sl',
+    'ib-computer-science-hl',
+    'ib-computer-science-sl',
+    'ib-tok',
+    'ib-design-technology-hl',
+    'ib-design-technology-sl',
+    'ib-global-politics-hl',
+    'ib-global-politics-sl',
+    'ib-music-hl',
+    'ib-music-sl',
+  ].flatMap(authoredFigures)
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-12">
@@ -118,7 +127,7 @@ export default function Page() {
       {authored.length ? (
         <>
           <h2 className="mb-2 mt-14 text-xl font-semibold">
-            Authored in lessons — chemistry ({authored.length})
+            Authored in lessons ({authored.length})
           </h2>
           <p className="mb-6 text-sm text-[var(--ec-text-secondary)]">
             Structures sourced from PubChem and formula-verified. Review pass.

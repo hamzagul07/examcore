@@ -176,5 +176,13 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "figures": [
+    {
+      "kind": "mermaid",
+      "title": "What happens to data on the way down",
+      "caption": "Each layer adds its own header, and the matching layer at the other end strips it. That is why a change at one layer does not force a change at the others.",
+      "source": "flowchart TD\n    A[\"Application: your message\"] --> B[\"Transport: split into segments, add port\"]\n    B --> C[\"Network: add source and destination IP\"]\n    C --> D[\"Data link: add MAC address, frame it\"]\n    D --> E[\"Physical: transmit as signal\"]\n    E --> F[\"...and reassembled in reverse at the far end\"]"
+    }
+  ]
 }

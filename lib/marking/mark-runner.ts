@@ -52,14 +52,18 @@ import { isRequestDeadlineError } from '@/lib/ai/request-deadline'
 /** Everything `generateFullMarksRewrite` needs, captured so the rewrite can be
  * run after the marks have already been streamed to the user. */
 /**
- * Fixed so the same answer against the same scheme marks the same way.
+ * Fixed seed. Measured against this project's Vertex backend and NOT sufficient
+ * on its own — see DERIVE_SCHEME_SEED in derive-scheme.ts for the numbers.
  *
- * temperature: 0 was already set and is not enough on its own — 2.5 Pro's
- * thinking is stochastic regardless, which is why the verify pass below exists
- * at all ("the main cause of run-to-run score variance", per its own comment).
- * Both the first pass and verify go through runGeminiMarking, so one seed
- * covers both; their prompts differ, so they still reach different judgements
- * when they should.
+ * Short version: the seed is honoured (flash with thinking off is perfectly
+ * reproducible with it, and varies without it), but 2.5 Pro cannot disable
+ * thinking and thinking is stochastic, so three seeded Pro calls on one prompt
+ * still returned three different answers. Marking therefore remains
+ * non-reproducible, which is why the verify pass below still earns its keep —
+ * it exists to correct exactly this variance.
+ *
+ * Kept because it is free and correct wherever thinking is off. Do not read it
+ * as a guarantee that the same answer marks the same way.
  */
 const MARKING_SEED = 20260728
 

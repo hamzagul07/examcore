@@ -20,8 +20,23 @@
 import { generateGeminiTextWithMeta, GEMINI_PRO_MODEL } from '@/lib/ai/gemini-text'
 import { extractJSON } from '@/lib/marking/json'
 
-/** Fixed so a question always derives the same scheme. Any constant works;
- *  what matters is that it never varies between requests. */
+/**
+ * Fixed seed. Measured, and it is NOT sufficient here — read before trusting it.
+ *
+ * Tested directly against this project's Vertex backend:
+ *   flash, thinking off, temperature 1 — seeded 3x identical, unseeded 3x
+ *     different. The seed is plumbed through and honoured.
+ *   pro, thinking on, temperature 0   — seeded 3x DIFFERENT (281/305/282
+ *     chars). Same prompt, same seed, three answers.
+ *
+ * 2.5 Pro cannot turn thinking off (thinkingBudget: 0 is a 400), and thinking
+ * is the stochastic part. So a derived scheme is still not reproducible, and
+ * the same question can still be marked against different rubrics. Kept
+ * because it costs nothing and does work wherever thinking is off, but it does
+ * not solve the problem it was added for. Caching derived schemes is the only
+ * route left to a stable rubric — see the marking-accuracy memory for the
+ * trade-off that has to be decided first.
+ */
 const DERIVE_SCHEME_SEED = 20260728
 
 export type DerivedMarkPoint = {
@@ -164,11 +179,8 @@ export async function deriveMarkScheme(params: {
         task: 'marking',
         model: GEMINI_PRO_MODEL,
         temperature: 0,
-        // The same question must produce the same rubric. Without this, a
-        // scheme is re-invented per submission: one identical answer measured
-        // 3/4 then 4/4 across four runs, with the rubric coming back as M/A
-        // pairs twice and all-B1 once. Two students with identical work were
-        // being marked against different schemes.
+        // Intended to stabilise the rubric. It does not, on Pro with thinking
+        // — see DERIVE_SCHEME_SEED above for the measurement.
         seed: DERIVE_SCHEME_SEED,
         maxOutputTokens: 2048,
       }

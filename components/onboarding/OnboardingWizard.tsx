@@ -32,6 +32,7 @@ import {
   isContentGateReturnPath,
 } from '@/lib/content-gate'
 import { suggestedExamDates } from '@/lib/dashboard/exam-date'
+import { targetGradeOptions } from '@/lib/target-grade'
 import type { OnboardingInput } from '@/lib/onboarding/save-profile'
 
 const TOTAL_STEPS = 5
@@ -47,6 +48,7 @@ type WizardDraft = {
   stage: UserStage | null
   primaryGoal: PrimaryGoal | null
   examDate: string | null
+  targetGrade: string | null
 }
 
 function readDraft(): WizardDraft | null {
@@ -116,6 +118,7 @@ export function OnboardingWizard({
     stage: UserStage | null
     primary_goal: PrimaryGoal | null
     exam_date: string | null
+    target_grade?: string | null
   } | null
   saveToken: string
 }) {
@@ -135,6 +138,9 @@ export function OnboardingWizard({
     initialProfile?.primary_goal ?? null
   )
   const [examDate, setExamDate] = useState<string | null>(initialProfile?.exam_date ?? null)
+  const [targetGrade, setTargetGrade] = useState<string | null>(
+    initialProfile?.target_grade ?? null
+  )
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [showCelebration, setShowCelebration] = useState(false)
@@ -157,6 +163,7 @@ export function OnboardingWizard({
       setStage(draft.stage)
       setPrimaryGoal(draft.primaryGoal)
       setExamDate(draft.examDate)
+      setTargetGrade(draft.targetGrade ?? null)
     }
     setDraftRestored(true)
   }, [rerun])
@@ -175,12 +182,24 @@ export function OnboardingWizard({
           stage,
           primaryGoal,
           examDate,
+          targetGrade,
         } satisfies WizardDraft)
       )
     } catch {
       // storage unavailable (private mode / quota) — draft just won't persist
     }
-  }, [draftRestored, rerun, step, board, level, subjects, stage, primaryGoal, examDate])
+  }, [
+    draftRestored,
+    rerun,
+    step,
+    board,
+    level,
+    subjects,
+    stage,
+    primaryGoal,
+    examDate,
+    targetGrade,
+  ])
 
   function toggleSubject(id: string) {
     setSubjects((prev) => {
@@ -198,6 +217,11 @@ export function OnboardingWizard({
     if (isIbBoard(nextBoard)) {
       setStage((prev) => prev ?? 'other')
     }
+    // The two boards use different scales (A*–E vs 1–7). Without this, picking
+    // A* and then switching to IB leaves 'A*' in state: the chip row no longer
+    // shows it as selected, and the server drops it as invalid, so the student
+    // ends up with no target while believing they set one.
+    setTargetGrade(null)
     setErrorMsg('')
   }
 
@@ -253,6 +277,7 @@ export function OnboardingWizard({
       stage,
       primary_goal: primaryGoal,
       exam_date: examDate,
+      target_grade: targetGrade,
       role: 'student',
     }
 
@@ -386,6 +411,8 @@ export function OnboardingWizard({
                 onSelect={setStage}
                 examDate={examDate}
                 onExamDateChange={setExamDate}
+                targetGrade={targetGrade}
+                onTargetGradeChange={setTargetGrade}
                 errorMsg={errorMsg}
                 onContinue={goNext}
                 onBack={goBack}
@@ -672,6 +699,8 @@ function StepStage({
   onSelect,
   examDate,
   onExamDateChange,
+  targetGrade,
+  onTargetGradeChange,
   errorMsg,
   onContinue,
   onBack,
@@ -681,6 +710,8 @@ function StepStage({
   onSelect: (s: UserStage) => void
   examDate: string | null
   onExamDateChange: (d: string | null) => void
+  targetGrade: string | null
+  onTargetGradeChange: (g: string | null) => void
   errorMsg: string
   onContinue: () => void
   onBack: () => void
@@ -756,6 +787,35 @@ function StepStage({
         >
           I&apos;ll set this later
         </button>
+      </div>
+
+      {/* The single most valuable field in the whole wizard, and until now it
+          was buried in /account/exam where nobody found it — 0 of 105 users had
+          ever set one. It feeds the grade trajectory, the dashboard target
+          track, the weekly examiner report and Omni's coaching, all of which
+          say nothing without it. Asking here also does the quieter job: naming
+          a goal you typed yourself is what makes "you're 8 points off it" land
+          later. */}
+      <div className="mt-8 border-t border-[var(--ec-border)] pt-6 text-left">
+        <h2 className="ms-h2" style={{ fontSize: 'clamp(1.25rem, 2.5vw, 1.5rem)' }}>
+          What grade are you aiming for?
+        </h2>
+        <p className="ms-micro" style={{ marginTop: 6 }}>
+          Optional — we&apos;ll measure every mark against it and show you the gap.
+        </p>
+        <div className="ms-ob-subjects" style={{ justifyContent: 'flex-start', marginTop: 16 }}>
+          {targetGradeOptions(ib).map((g) => (
+            <button
+              key={g}
+              type="button"
+              onClick={() => onTargetGradeChange(targetGrade === g ? null : g)}
+              className={`ms-ob-chip${targetGrade === g ? ' on' : ''}`}
+              aria-pressed={targetGrade === g}
+            >
+              {ib ? `Grade ${g}` : g}
+            </button>
+          ))}
+        </div>
       </div>
 
       {errorMsg && <div className="mt-4"><FormErrorAlert message={errorMsg} /></div>}

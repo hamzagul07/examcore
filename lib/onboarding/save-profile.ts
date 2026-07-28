@@ -9,6 +9,7 @@ import {
 } from '@/lib/profile-options'
 import type { PrimaryGoal, UserRole, UserStage } from '@/lib/database.types'
 import { isOnboardingComplete } from '@/lib/onboarding'
+import { isValidTargetGrade } from '@/lib/target-grade'
 import { handleOnboardingCompleteEmails } from '@/lib/email/notifications'
 
 export type OnboardingInput = {
@@ -21,6 +22,7 @@ export type OnboardingInput = {
   stage?: UserStage
   primary_goal?: PrimaryGoal
   exam_date?: string | null
+  target_grade?: string | null
 }
 
 const VALID_STAGES = new Set<UserStage>(['as_level', 'a2_level', 'other'])
@@ -95,6 +97,16 @@ export async function saveOnboardingProfile(
       examDate = body.exam_date
     }
 
+    // Validated against the board's own scale — a Cambridge 'A*' stored for an
+    // IB student would silently break gapToTargetGrade, which looks the grade
+    // up in GRADE_BOUNDARIES and returns null on a miss. Skipping is the right
+    // failure: the target is optional and a wrong one is worse than none.
+    const targetGrade =
+      typeof body.target_grade === 'string' &&
+      isValidTargetGrade(isIbBoard(board), body.target_grade)
+        ? body.target_grade
+        : null
+
     const service = createServiceClient()
     const { data: existingProfile } = await service
       .from('user_profiles')
@@ -114,6 +126,7 @@ export async function saveOnboardingProfile(
         stage,
         primary_goal: primaryGoal,
         exam_date: examDate,
+        target_grade: targetGrade,
         onboarded: true,
         onboarding_completed: true,
         updated_at: new Date().toISOString(),
@@ -139,6 +152,7 @@ export async function saveOnboardingProfile(
             stage,
             primary_goal: primaryGoal,
             exam_date: examDate,
+            target_grade: targetGrade,
             onboarded: true,
             onboarding_completed: true,
             updated_at: new Date().toISOString(),

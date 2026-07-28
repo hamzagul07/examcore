@@ -44,12 +44,13 @@ async function OnboardingContent({ searchParams }: { searchParams: SearchParams 
     stage: UserStage | null
     primary_goal: PrimaryGoal | null
     exam_date: string | null
+    target_grade: string | null
   } | null = null
 
   if (rerun) {
     const { data: profile } = await supabase
       .from('user_profiles')
-      .select('board, level, subjects, stage, primary_goal, exam_date')
+      .select('board, level, subjects, stage, primary_goal, exam_date, target_grade')
       .eq('id', user.id)
       .maybeSingle()
 
@@ -61,6 +62,7 @@ async function OnboardingContent({ searchParams }: { searchParams: SearchParams 
         stage: (profile.stage as UserStage | null) ?? null,
         primary_goal: (profile.primary_goal as PrimaryGoal | null) ?? null,
         exam_date: (profile.exam_date as string | null) ?? null,
+        target_grade: (profile.target_grade as string | null) ?? null,
       }
     }
   }

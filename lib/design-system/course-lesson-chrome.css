@@ -1,0 +1,428 @@
+/* ── Course lesson chrome ──
+   Rescued from app/(marketing)/courses/course-premium.css, which has no importer
+   anywhere — so every rule in it was dead. These are the ones still referenced by
+   live components: the diagram frame, the step stage, the lesson contents list,
+   rich-text variants, the parameter controls and the original SVG animations.
+
+   The most visible casualty was `.lesson-diagram-svg { width: 100% }`. Without it
+   a lesson diagram renders 0x0 anywhere outside `.course-root .diagram-stage`,
+   which is why every /dev diagram preview came up blank.
+
+   The remaining ~211 selectors in that file are referenced by nothing and are
+   left there pending deletion. */
+
+@keyframes eq-pulse-force {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes eq-draw-vec {
+  0% {
+    stroke-dashoffset: 180;
+    opacity: 0.35;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+/* ── Equilibrium of forces animated diagram ── */
+
+.equilibrium-forces-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.equilibrium-forces-diagram-hint {
+  margin: 0;
+  font-size: 0.72rem;
+  color: var(--course-text-faint, var(--ec-text-tertiary));
+  text-align: center;
+}
+
+.eq-anim-force-cw {
+  animation: eq-pulse-force 2s ease-in-out infinite;
+}
+
+.eq-anim-force-acw {
+  animation: eq-pulse-force 2s ease-in-out 1s infinite;
+}
+
+.eq-anim-vec-a,
+.eq-anim-vec-b,
+.eq-anim-vec-c {
+  stroke-dasharray: 180;
+  animation: eq-draw-vec 2.4s ease forwards;
+}
+
+.eq-anim-vec-b {
+  animation-delay: 0.35s;
+}
+
+.eq-anim-vec-c {
+  animation-delay: 0.7s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  
+    .eq-anim-force-cw,
+    .eq-anim-force-acw,
+    .eq-anim-vec-a,
+    .eq-anim-vec-b,
+    .eq-anim-vec-c {
+      animation: none;
+      opacity: 1;
+      stroke-dashoffset: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+  
+  
+    .course-visual-learning-diagram .course-step-stage-diagram,
+    .course-visual-learning-diagram .course-step-stage-svg,
+    .course-visual-learning-diagram .lesson-diagram-svg {
+      max-height: min(52vh, 480px);
+    }
+}
+
+.course-visual-learning-diagram .course-step-stage-diagram,
+.course-visual-learning-diagram .course-step-stage-svg,
+.course-visual-learning-diagram .lesson-diagram-svg {
+  max-height: 360px;
+}
+
+.course-step-stage-svg {
+  display: block;
+  width: 100%;
+  min-height: 220px;
+  height: auto;
+  max-height: none;
+  color: var(--ec-text-primary);
+}
+
+.course-step-stage-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0 0.25rem;
+}
+
+@media (max-width: 1279px) {
+  
+  
+    .course-step-stage-svg {
+      min-height: 160px;
+      max-height: 200px;
+    }
+}
+
+.course-rich-text-wrap {
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.course-step-timeline-card .course-rich-text {
+  overflow: visible;
+  text-overflow: unset;
+}
+
+/* ── Rich text (markdown + KaTeX) ── */
+
+.course-rich-text {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.72;
+  letter-spacing: 0.01em;
+  color: var(--ec-text-secondary);
+}
+
+.course-rich-text strong {
+  font-weight: 650;
+  color: var(--ec-text-primary);
+}
+
+.course-rich-text--formula {
+  text-align: center;
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+
+.course-rich-text--formula .katex-display {
+  margin: 0.75rem auto;
+  font-size: 1.35em;
+}
+
+.course-rich-text--formula p {
+  margin: 0.5rem 0;
+}
+
+.course-rich-text--flashcard {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-weight: 550;
+  color: var(--ec-text-primary);
+  text-align: center;
+}
+
+.course-rich-text--flashcard .katex {
+  font-size: 1.08em;
+}
+
+.course-rich-text--flashcard p {
+  margin: 0;
+}
+
+.course-rich-text .katex-error {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.92em;
+  font-weight: 500;
+  color: var(--ec-text-primary);
+  background: var(--ec-surface-muted);
+  padding: 0.12em 0.45em;
+  border-radius: 0.35rem;
+  border: 1px solid var(--ec-border-subtle);
+}
+
+.course-rich-text table {
+  width: 100%;
+  min-width: 280px;
+  margin: 1.25rem 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 0.85rem;
+  overflow: hidden;
+  border: 1px solid var(--course-border, var(--ec-border-subtle));
+  background: var(--course-surface-elevated, var(--ec-surface-raised));
+  box-shadow: var(--course-glow, 0 4px 16px rgba(0, 0, 0, 0.06));
+  font-size: 0.95rem;
+}
+
+.course-rich-text thead {
+  background: var(--course-formula-green-soft, color-mix(in srgb, var(--course-formula-green) 12%, var(--ec-surface-muted)));
+}
+
+.course-rich-text th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 650;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-primary);
+  border-bottom: 1px solid var(--course-border, var(--ec-border-subtle));
+}
+
+.course-rich-text td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--course-border, var(--ec-border-subtle)) 70%, transparent);
+  vertical-align: top;
+}
+
+.course-rich-text tr:last-child td {
+  border-bottom: none;
+}
+
+.course-rich-text tbody tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--course-surface-card, var(--ec-surface-muted)) 50%, transparent);
+}
+
+.course-concept-node .course-rich-text {
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.course-reading-column,
+.course-reading-prose,
+.course-lesson-body .course-rich-text--prose {
+  font-family: var(--font-reading), Georgia, 'Times New Roman', serif;
+  font-size: var(--course-text-base, 1.125rem);
+  line-height: var(--course-leading-body, 1.7);
+  color: var(--course-read-text, var(--ec-text-secondary));
+  max-width: var(--course-measure, 68ch);
+}
+
+.course-rich-text a {
+  color: var(--course-subject-accent, var(--course-accent));
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.course-rich-text a:focus-visible {
+  outline: 2px solid var(--course-subject-accent, var(--course-accent));
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.course-rich-text .katex-display {
+  margin: var(--course-space-5, 1.25rem) 0;
+  padding: var(--course-space-4, 1rem);
+  overflow-x: auto;
+  max-width: var(--course-measure-wide, 52rem);
+  font-size: 1.12em;
+}
+
+/* Sticky TOC */
+.course-lesson-toc {
+  padding: var(--course-space-4, 1rem);
+  border-radius: var(--course-radius-lg, 1.15rem);
+  border: 1px solid var(--course-border);
+  background: var(--course-surface-card, var(--ec-surface-muted));
+}
+
+.course-lesson-toc-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 var(--course-space-3, 0.75rem);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: var(--course-text-xs, 0.75rem);
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--course-text-muted);
+}
+
+.course-lesson-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.course-lesson-toc-link {
+  display: block;
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--course-radius-sm, 0.5rem);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: var(--course-text-sm, 0.875rem);
+  line-height: 1.4;
+  color: var(--course-read-muted, var(--ec-text-secondary));
+  text-decoration: none;
+  transition: color var(--course-duration-fast, 120ms), background var(--course-duration-fast, 120ms);
+}
+
+.course-lesson-toc-link:hover,
+.course-lesson-toc-link.is-active {
+  color: var(--course-subject-accent, var(--course-accent));
+  background: color-mix(in srgb, var(--course-subject-accent, var(--course-accent)) 10%, transparent);
+}
+
+.course-lesson-toc-item--nested .course-lesson-toc-link {
+  padding-left: 1rem;
+  font-size: 0.8125rem;
+}
+
+.course-formula-description .course-rich-text--prose {
+  max-width: none;
+  margin: 0;
+}
+
+.course-rich-text--inline {
+  display: inline;
+}
+
+.course-rich-text--inline.course-rich-text-wrap {
+  display: block;
+  width: 100%;
+}
+
+.course-concept-node-text,
+.course-concept-node-text.course-rich-text-wrap {
+  min-width: 0;
+  max-width: 100%;
+  overflow: visible !important;
+  overflow-wrap: break-word !important;
+  word-break: normal !important;
+  hyphens: manual;
+  white-space: normal !important;
+  text-overflow: unset !important;
+}
+
+.course-concept-node .course-rich-text-wrap {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  
+  
+    .course-focus-root[data-focus-mode='true'] .course-reading-prose,
+    .course-focus-root[data-focus-mode='true'] .course-lesson-body .course-rich-text--prose {
+      max-width: 75ch;
+      margin-inline: auto;
+    }
+  
+  
+    .course-focus-root[data-focus-mode='true'] .course-visual-learning-diagram .course-step-stage-diagram,
+    .course-focus-root[data-focus-mode='true'] .course-visual-learning-diagram .course-step-stage-svg,
+    .course-focus-root[data-focus-mode='true'] .course-visual-learning-diagram .lesson-diagram-svg {
+      max-height: min(72vh, 720px);
+    }
+}
+
+/* ── Custom lesson diagrams ── */
+
+.lesson-diagram {
+  margin: 0;
+  width: 100%;
+}
+
+.lesson-diagram-body,
+.lesson-diagram-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.lesson-diagram-caption {
+  margin: 0.65rem 0 0;
+  text-align: center;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--ec-text-secondary);
+}
+
+.lesson-diagram-attribution {
+  margin: 0.25rem 0 0;
+  text-align: center;
+  font-size: 0.65rem;
+  color: var(--ec-text-tertiary);
+}
+
+.course-step-stage-custom-diagram .lesson-diagram-caption {
+  font-size: 0.75rem;
+}
+
+.course-step-stage-custom-diagram .lesson-diagram-attribution {
+  display: none;
+}
+
+.course-step-stage-custom-diagram .equilibrium-forces-diagram-tabs {
+  margin-bottom: 0.5rem;
+}
+
+.course-hero-native-diagram .course-step-stage-diagram,
+.course-hero-native-diagram .course-step-stage-svg,
+.course-hero-native-diagram .lesson-diagram-svg {
+  max-height: min(36vh, 320px);
+}
+
+.course-diagram-param-unit {
+  font-weight: 500;
+  color: var(--ec-text-tertiary);
+}
+
+.course-diagram-param-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}

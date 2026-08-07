@@ -6,6 +6,7 @@ import { faqPageNode } from '@/lib/seo/structured-data'
 import { FOR_TEACHERS_SEO_FAQ, TEACHER_FEATURES } from '@/lib/seo/for-teachers-seo'
 import { GEO_CATEGORY } from '@/lib/seo/llms-geo-qa'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
+import { SchoolLinkKit } from '@/components/marketing/SchoolLinkKit'
 
 export const metadata = getPageMetadata('/for-teachers')
 
@@ -47,6 +48,41 @@ export default function ForTeachersPage() {
             </p>
           </aside>
 
+          {/* Leads with the teacher's own problem rather than the student's.
+              Someone arriving from a cold email has not yet agreed that their
+              class needs anything — but they already know what marking a set of
+              mocks costs them. */}
+          <section>
+            <h2 className="landing-h3 mb-4 text-[var(--ec-text-primary)]">
+              Marking a set of mocks is a lost weekend
+            </h2>
+            <div className="ec-card px-5 py-5 sm:px-6">
+              <p className="text-base leading-relaxed text-[var(--ec-text-primary)]">
+                Put the class set through and you get every script marked against
+                the real mark scheme, plus one page telling you what the cohort
+                actually cannot do — not &ldquo;they&apos;re weak on organic
+                chemistry&rdquo;, but{' '}
+                <strong>
+                  &ldquo;they earn 84% of method marks and 9% of analysis
+                  marks&rdquo;
+                </strong>
+                . That is a lesson you can plan on Monday.
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+                It also shows the specific things most students dropped, and how
+                many of them dropped each one. Where too few scripts have been
+                marked to be sure, it says so rather than guessing.
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+                Teacher accounts are free, and they are not a trial.{' '}
+                <Link className="underline" href="/contact">
+                  Email us
+                </Link>{' '}
+                from your school address and we will set one up.
+              </p>
+            </div>
+          </section>
+
           <section>
             <h2 className="landing-h3 mb-4 text-[var(--ec-text-primary)]">What teachers get</h2>
             <ul className="space-y-4">
@@ -74,6 +110,8 @@ export default function ForTeachersPage() {
               ))}
             </dl>
           </section>
+
+          <SchoolLinkKit />
 
           <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Link href="/teacher/dashboard" className="ec-btn-primary justify-center text-center">

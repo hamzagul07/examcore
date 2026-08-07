@@ -45,10 +45,21 @@ function sessionId(): string | null {
   }
 }
 
+/**
+ * Whether this session has reported anything yet. The landing pageview is sent
+ * regardless of how briefly it was looked at: a visitor who arrives from a
+ * campaign and leaves in half a second is the single most useful fact about that
+ * campaign, and dropping it made every high-bounce channel look better than it
+ * was. Later pageviews keep the sub-second filter, which exists to stop a
+ * flicked-through route logging noise.
+ */
+let sessionReported = false
+
 function beacon(path: string, dwellMs: number) {
-  if (dwellMs < MIN_DWELL_MS) return
+  if (dwellMs < MIN_DWELL_MS && sessionReported) return
   const sid = sessionId()
   if (!sid) return
+  sessionReported = true
   const attr = firstTouch()
   const body = JSON.stringify({
     path,

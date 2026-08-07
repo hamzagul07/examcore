@@ -76,6 +76,15 @@ async function main() {
     if (!path) throw new Error('Usage: pnpm outreach import <file.csv>')
 
     const rows = parseCsv(await readFile(path, 'utf8'))
+
+    // Reported, not filtered away in silence: a sheet that half-imports while
+    // printing a confident count is how a campaign ends up with gaps nobody
+    // knows about.
+    const unnamed = rows.length - rows.filter((r) => r.school).length
+    if (unnamed) {
+      console.warn(`${unnamed} row(s) skipped: no school name.`)
+    }
+
     const targets = rows
       .filter((r) => r.school)
       .map((r) => ({
@@ -96,8 +105,44 @@ async function main() {
       return
     }
 
-    // Re-importing a corrected sheet must not reset the statuses of schools
-    // already written to, so existing slugs are left exactly as they are.
+    // A slug collides when two rows name the same school and subject, or when a
+    // long name truncates to the same 48 characters. `ignoreDuplicates` keeps
+    // the existing row — correct, since re-importing a corrected sheet must not
+    // reset the status of a school already written to — but a collision inside
+    // one file means a school is being dropped, so it is called out.
+    const seen = new Map<string, string>()
+    for (const t of targets) {
+      const prior = seen.get(t.slug)
+      // Any repeat means a row is discarded, including two rows for the same
+      // school and subject with different contacts — which is the common case
+      // when a sheet lists a department head and a second teacher.
+      if (prior !== undefined) {
+        console.warn(
+          `Duplicate slug ${t.slug}: "${t.school}" <${t.contact_email ?? 'no email'}> ` +
+            `collides with "${prior}" — only the first is imported. ` +
+            `Give them different subjects, or merge the rows.`
+        )
+        continue
+      }
+      seen.set(t.slug, `${t.school} <${t.contact_email ?? 'no email'}>`)
+    }
+
+    // A bounced cold email costs more than a missing one: it damages the sending
+    // domain, and there is no time to recover one before the September window.
+    const badEmail = targets.filter(
+      (t) => !t.contact_email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(t.contact_email)
+    )
+    if (badEmail.length) {
+      console.warn(
+        `\n${badEmail.length} target(s) have a missing or malformed email and cannot be written to:`
+      )
+      for (const t of badEmail.slice(0, 20)) {
+        console.warn(`  ${t.school} — ${t.contact_email ?? '(none)'}`)
+      }
+      if (badEmail.length > 20) console.warn(`  …and ${badEmail.length - 20} more`)
+      console.warn('They are still imported, so the addresses can be filled in later.\n')
+    }
+
     const { error } = await service
       .from('outreach_targets')
       .upsert(targets, { onConflict: 'slug', ignoreDuplicates: true })
@@ -131,7 +176,13 @@ async function main() {
       )
     }
 
-    console.log(`Imported ${targets.length} target(s).`)
+    // What is actually in the table now, rather than what was sent to it.
+    const { count } = await service
+      .from('outreach_targets')
+      .select('*', { count: 'exact', head: true })
+    console.log(
+      `Imported ${targets.length} row(s) from the file; ${count ?? '?'} target(s) now tracked.`
+    )
     return
   }
 

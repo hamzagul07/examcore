@@ -68,6 +68,30 @@ decision rather than an oversight:
 If IB coverage matters, the routes are to ask the IB in writing, or to check
 membership school-by-school by hand while researching contacts. Do not scrape it.
 
+### Finding the contact
+
+```bash
+pnpm outreach research --limit 50 --out research.csv
+```
+
+For each target that has a website but no email, this finds the page listing
+staff or the subject department, and writes a worksheet of links to open. It
+reads each site's `robots.txt` first and obeys it, spaces requests out (honouring
+`Crawl-delay`), identifies itself, and **skips any site whose robots.txt it
+cannot fetch** — treating an unreadable robots as permission is how a polite
+crawler becomes a rude one.
+
+It reads the school's own navigation rather than guessing URLs: one request that
+finds the page they actually built beats six guesses at pages we imagined, and
+it is six fewer requests on a small school server. Path guessing is the fallback
+when the navigation gives nothing.
+
+**It does not read email addresses off any page.** That is deliberate. Harvesting
+addresses at scale is what data-protection regulators object to most and what
+list vendors do, and a list built that way is worth less than one where somebody
+read the page — because reading the page is how you learn the name to open the
+email with.
+
 ### Emails are never generated
 
 GIAS has no email column and nothing invents one. `contact_email` comes out

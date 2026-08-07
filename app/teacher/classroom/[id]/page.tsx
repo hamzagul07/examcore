@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
-import { Users, ArrowRight } from 'lucide-react'
+import { Users, ArrowRight, Target } from 'lucide-react'
 import { ClassroomSummary } from '@/components/teacher/ClassroomSummary'
 import { ClassBlindspots } from '@/components/teacher/ClassBlindspots'
 import { GradeRiskMatrix } from '@/components/teacher/GradeRiskMatrix'
@@ -105,13 +105,22 @@ export default function ClassroomPage() {
             avgScore={data.analytics.avgScore}
           />
         </div>
-        <Link
-          href={`/teacher/classroom/${id}/students`}
-          className="ec-btn-secondary inline-flex min-h-[44px] items-center gap-2 text-sm"
-        >
-          <Users className="h-4 w-4 ec-text-brand" />
-          View all students
-        </Link>
+        <div className="flex flex-wrap gap-2">
+          <Link
+            href={`/teacher/classroom/${id}/gaps`}
+            className="ec-btn-primary inline-flex min-h-[44px] items-center gap-2 text-sm"
+          >
+            <Target className="h-4 w-4" />
+            Where the class loses marks
+          </Link>
+          <Link
+            href={`/teacher/classroom/${id}/students`}
+            className="ec-btn-secondary inline-flex min-h-[44px] items-center gap-2 text-sm"
+          >
+            <Users className="h-4 w-4 ec-text-brand" />
+            View all students
+          </Link>
+        </div>
       </div>
 
       {classroom?.invite_code && <InviteCard classroom={classroom} />}

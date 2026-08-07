@@ -38,10 +38,57 @@ pnpm outreach followups             # sent 7+ days ago, still silent
 
 ## Sourcing the list
 
-`outreach` deliberately does not generate targets. School contact details come
-from the public directories — the IB World School directory and the Cambridge
-school finder. Do not invent addresses that look plausible: they bounce, and a
-burned sending domain is not recoverable inside the September window.
+```bash
+pnpm outreach gias edubasealldata.csv --subject Chemistry --limit 200 --out targets.csv
+```
+
+**Source: Get Information About Schools (GIAS)** — the DfE register of
+educational establishments, published daily under the Open Government Licence,
+i.e. explicitly for reuse with attribution. Download the "Establishment fields"
+CSV by hand from
+<https://get-information-schools.service.gov.uk/Downloads>.
+
+`gias` keeps schools that are open and teach to 18, reports every row it dropped
+and why, and ranks the survivors by how researchable they are — a school with a
+website can have its department contact found in minutes; one without cannot be
+researched at all. It writes the same CSV that `import` reads.
+
+### Why not the IB directory
+
+The IB World Schools directory is **not** a usable source, and this is a
+decision rather than an oversight:
+
+- `ibo.org` returns HTTP 403 to automated requests, including for `robots.txt`.
+  Blocking the robots file is an unambiguous refusal of automated access.
+- IB's Rules for use of IB intellectual property state that any use not
+  expressly permitted "is prohibited unless special permission is obtained in
+  writing from the IB", and prohibit reproducing IB material for commercial
+  activity.
+
+If IB coverage matters, the routes are to ask the IB in writing, or to check
+membership school-by-school by hand while researching contacts. Do not scrape it.
+
+### Emails are never generated
+
+GIAS has no email column and nothing invents one. `contact_email` comes out
+blank on purpose. Fill it from each school's own staff page — which is also
+where the subject department head is actually named, and a named head of
+chemistry converts far better than a generic inbox.
+
+A guessed address (`head@school.sch.uk`) bounces. Bounces are what destroy a
+sending domain, and there is no time to recover one inside the September window.
+`import` refuses to stay quiet about missing or malformed addresses for exactly
+this reason.
+
+### Before sending
+
+Cold B2B email to UK schools is lawful, but it is not unconditional. Under PECR
+schools are corporate subscribers, so unsolicited email is permitted provided
+every message identifies the sender and carries a working opt-out; GDPR still
+applies to a named individual's address, so a role or department address is the
+safer default, and an opt-out must be honoured permanently. Warm the sending
+domain before a large send — a cold domain pushing 200 messages in a day lands
+in spam and teaches every future message to do the same.
 
 The relevant statuses are `linked` (their site now links here — the outcome the
 whole campaign exists to produce) and `signed_up`. Reply rate is a leading

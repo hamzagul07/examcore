@@ -1,6 +1,7 @@
 /**
  * Teacher outreach tracker.
  *
+ *   pnpm outreach gias edubasealldata.csv --subject Chemistry --limit 200
  *   pnpm outreach import targets.csv    # school,country,board,subject,contact_name,contact_email,contact_role,website
  *   pnpm outreach links [board]         # per-school links to paste into the emails
  *   pnpm outreach sent <slug>           # mark as sent (sets sent_at)
@@ -8,10 +9,20 @@
  *   pnpm outreach funnel                # where the campaign actually is
  *   pnpm outreach followups             # sent 7+ days ago, still silent
  *
- * The list itself is not generated here. School contact details have to come
- * from the public directories (the IB World School directory and the Cambridge
- * school finder) — inventing plausible-looking addresses for real schools would
- * produce a campaign that bounces and a sender reputation that never recovers.
+ * `gias` builds the school list from a Get Information About Schools extract —
+ * the DfE register, published daily under the Open Government Licence, i.e.
+ * explicitly for reuse with attribution. Download it by hand from
+ * get-information-schools.service.gov.uk/Downloads ("Establishment fields").
+ *
+ * It is the source used because it is the one we may use: the IB World Schools
+ * directory returns 403 to automated requests and IB's rules prohibit
+ * reproducing their material for commercial activity.
+ *
+ * GIAS has no email column, and nothing here invents one. It produces real
+ * schools with real websites and named heads; each address is filled in from the
+ * school's own staff page, which is also where the subject department head is
+ * actually named. A guessed address bounces, and bounces are what destroy a
+ * sending domain.
  */
 process.loadEnvFile?.('.env.local')
 
@@ -20,8 +31,16 @@ export {}
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://markscheme.app'
 
-/** Minimal RFC4180-ish reader: handles quoted fields and embedded commas. */
-function parseCsv(text: string): Record<string, string>[] {
+/**
+ * Minimal RFC4180-ish reader: handles quoted fields and embedded commas.
+ *
+ * Returns the original header spellings alongside the rows. The row keys are
+ * folded to lowercase for this file's own lookups, but GIAS column names have to
+ * be matched in their original casing, and re-parsing the first line with a
+ * second, simpler parser would mean two quote-handling implementations that
+ * could disagree.
+ */
+function parseCsv(text: string): { headers: string[]; rows: Record<string, string>[] } {
   const rows: string[][] = []
   let row: string[] = []
   let field = ''
@@ -56,11 +75,22 @@ function parseCsv(text: string): Record<string, string>[] {
     rows.push(row)
   }
 
-  if (!rows.length) return []
-  const header = rows[0].map((h) => h.trim().toLowerCase())
-  return rows.slice(1).map((r) =>
-    Object.fromEntries(header.map((h, i) => [h, (r[i] ?? '').trim()]))
-  )
+  if (!rows.length) return { headers: [], rows: [] }
+  const headers = rows[0].map((h) => h.trim())
+  const folded = headers.map((h) => h.toLowerCase())
+  return {
+    headers,
+    rows: rows.slice(1).map((r) =>
+      // Both spellings are present on every row, so a caller can look up by
+      // either the folded name or the original GIAS one.
+      Object.fromEntries(
+        headers.flatMap((h, i) => {
+          const value = (r[i] ?? '').trim()
+          return h === folded[i] ? [[h, value]] : [[h, value], [folded[i], value]]
+        })
+      )
+    ),
+  }
 }
 
 async function main() {
@@ -70,12 +100,87 @@ async function main() {
   const service = createServiceClient()
   const [command, ...args] = process.argv.slice(2)
 
+  if (command === 'gias') {
+    const { readFile } = await import('node:fs/promises')
+    const { ingestGias, prioritise } = await import('../lib/outreach/gias')
+
+    const path = args[0]
+    if (!path) {
+      throw new Error(
+        'Usage: pnpm outreach gias <edubasealldata.csv> [--subject X] [--limit N] [--out file.csv]'
+      )
+    }
+    const flag = (name: string) => {
+      const i = args.indexOf(`--${name}`)
+      return i >= 0 ? args[i + 1] : undefined
+    }
+    const subject = flag('subject') ?? ''
+    const limitRaw = flag('limit')
+    const limit = limitRaw ? Number(limitRaw) : 200
+    if (!Number.isInteger(limit) || limit <= 0) throw new Error('--limit must be a positive integer')
+    const outPath = flag('out')
+
+    const { headers, rows } = parseCsv(await readFile(path, 'utf8'))
+    if (!rows.length) throw new Error('No rows found — is this the right file?')
+
+    const result = ingestGias(rows, headers)
+
+    console.log(`Read ${result.totalRows} establishment(s).`)
+    console.log(`Kept ${result.schools.length} that are open and teach to 18.\n`)
+    console.log('Dropped:')
+    for (const [reason, count] of Object.entries(result.rejected).sort((a, b) => b[1] - a[1])) {
+      console.log(`  ${String(count).padStart(6)}  ${reason}`)
+    }
+
+    const chosen = prioritise(result.schools).slice(0, limit)
+    const withSite = chosen.filter((s) => s.website).length
+    console.log(
+      `\nTaking the top ${chosen.length}, ranked by how researchable they are ` +
+        `(${withSite} have a website).`
+    )
+
+    // Written as the same CSV `import` reads, with contact_email deliberately
+    // blank: GIAS has no email column and a guessed one bounces.
+    const esc = (v: string | null) =>
+      v && /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : (v ?? '')
+    const lines = [
+      'school,country,board,subject,contact_name,contact_email,contact_role,website',
+      ...chosen.map((s) =>
+        [
+          esc(s.name),
+          'England',
+          'cambridge',
+          esc(subject),
+          esc(s.headName),
+          '',
+          s.headName ? 'Headteacher' : '',
+          esc(s.website),
+        ].join(',')
+      ),
+    ]
+    const csv = lines.join('\n') + '\n'
+
+    if (outPath) {
+      const { writeFile } = await import('node:fs/promises')
+      await writeFile(outPath, csv, 'utf8')
+      console.log(`\nWrote ${outPath}.`)
+      console.log(
+        'contact_email is blank by design — fill it from each school\'s staff page,\n' +
+          'addressing the subject department head rather than a generic inbox, then:\n' +
+          `  pnpm outreach import ${outPath}`
+      )
+    } else {
+      console.log('\n(pass --out targets.csv to write the list)')
+    }
+    return
+  }
+
   if (command === 'import') {
     const { readFile } = await import('node:fs/promises')
     const path = args[0]
     if (!path) throw new Error('Usage: pnpm outreach import <file.csv>')
 
-    const rows = parseCsv(await readFile(path, 'utf8'))
+    const { rows } = parseCsv(await readFile(path, 'utf8'))
 
     // Reported, not filtered away in silence: a sheet that half-imports while
     // printing a confident count is how a campaign ends up with gaps nobody
@@ -309,7 +414,8 @@ async function main() {
   }
 
   console.error(
-    'Commands: import <csv> | links [board] | sent <slug> | status <slug> <state> [url] | funnel | followups'
+    'Commands: gias <csv> | import <csv> | links [board] | sent <slug> | ' +
+      'status <slug> <state> [url] | funnel | followups'
   )
   process.exit(1)
 }

@@ -4,6 +4,9 @@ import { validateEvent, WebhookVerificationError } from '@polar-sh/sdk/webhooks'
 import { createServiceClient } from '@/lib/supabase/service'
 import { resolvePolarProduct } from '@/lib/polar/products'
 import { notifyPurchaseEmails } from '@/lib/email/notifications'
+import { runAfterResponse } from '@/lib/after-response'
+import { tierMarketingName } from '@/lib/billing/caps'
+import type { SubscriptionTier } from '@/lib/database.types'
 
 export const runtime = 'nodejs' // not edge — needs the raw body
 export const dynamic = 'force-dynamic'
@@ -143,7 +146,7 @@ type PolarSubscription = {
 async function syncSubscription(
   supabase: SupabaseClient,
   sub: PolarSubscription
-): Promise<{ ok: boolean; userId: string | null; tier: string }> {
+): Promise<{ ok: boolean; userId: string | null; tier: SubscriptionTier | null }> {
   const userId = await resolveUserId(supabase, {
     externalId: sub.customer?.externalId,
     metadataUserId:
@@ -156,7 +159,7 @@ async function syncSubscription(
     console.warn(
       `[polar-webhook] subscription ${sub.id}: no resolvable user (customer ${sub.customerId}). Skipping.`
     )
-    return { ok: false, userId: null, tier: 'free' }
+    return { ok: false, userId: null, tier: null }
   }
 
   const resolved = resolvePolarProduct(sub.productId)
@@ -184,7 +187,9 @@ async function syncSubscription(
   )
   if (error) throw new Error(`syncSubscription upsert failed: ${error.message}`)
 
-  return { ok: true, userId, tier: resolved?.tier ?? 'paid' }
+  // null tier = unknown product. The confirmation email falls back to generic
+  // copy rather than naming a plan the DB was not given either.
+  return { ok: true, userId, tier: resolved?.tier ?? null }
 }
 
 async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
@@ -206,11 +211,16 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
       const { ok, userId, tier } = await syncSubscription(supabase, sub)
       // Only greet on activation, not on every update.
       if (ok && userId && event.type === 'subscription.active') {
-        void notifyPurchaseEmails(supabase, userId, {
-          kind: 'subscription',
-          detail: `Your ${tier} plan is now active.`,
-          providerRef: sub.id,
-        })
+        runAfterResponse('purchase-emails-subscription', () =>
+          notifyPurchaseEmails(supabase, userId, {
+            kind: 'subscription',
+            detail: tier
+              ? `Your ${tierMarketingName(tier)} plan is now active.`
+              : 'Your plan is now active.',
+            tier,
+            providerRef: sub.id,
+          })
+        )
       }
       break
     }
@@ -292,11 +302,14 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
       })
       if (error) throw new Error(`apply_credit_topup failed: ${error.message}`)
 
-      void notifyPurchaseEmails(supabase, userId, {
-        kind: 'credits',
-        detail: `${resolved.credits} marking credit${resolved.credits === 1 ? '' : 's'} have been added to your account.`,
-        providerRef: order.id,
-      })
+      runAfterResponse('purchase-emails-credits', () =>
+        notifyPurchaseEmails(supabase, userId, {
+          kind: 'credits',
+          detail: `${resolved.credits} marking credit${resolved.credits === 1 ? '' : 's'} have been added to your account.`,
+          credits: resolved.credits,
+          providerRef: order.id,
+        })
+      )
       break
     }
 

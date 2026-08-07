@@ -67,7 +67,6 @@ async function pushNotification(input: {
   href: string
   sendEmail?: boolean
   emailKind?: 'comment' | 'reply' | 'mention' | 'thread'
-  emailUserId?: string
   actorUsername?: string
   postTitle?: string
 }): Promise<void> {
@@ -98,12 +97,12 @@ async function pushNotification(input: {
     postTitle: input.postTitle,
     postHref: `${SITE_URL}${input.href}`,
     preview: input.body,
-    unsubscribeHref: input.emailUserId
-      ? unsubscribeUrl(
-          input.emailUserId,
-          input.emailKind === 'thread' ? 'threads' : 'replies'
-        )
-      : undefined,
+    // The recipient is `userId` — the same account whose prefs were just read,
+    // so the opt-out always belongs to the person actually being emailed.
+    unsubscribeHref: unsubscribeUrl(
+      input.userId,
+      input.emailKind === 'thread' ? 'threads' : 'replies'
+    ),
   })
 }
 
@@ -164,7 +163,6 @@ export async function notifyCommentActivity(input: {
           href,
           sendEmail: true,
           emailKind: r.type,
-          emailUserId: r.userId,
           actorUsername,
           postTitle,
         })
@@ -196,7 +194,6 @@ export async function notifyCommentActivity(input: {
           href,
           sendEmail: true,
           emailKind: 'thread',
-          emailUserId: postAuthorId,
           actorUsername,
           postTitle,
         })
@@ -379,7 +376,6 @@ export async function notifyMentions(input: {
           href,
           sendEmail: true,
           emailKind: 'mention',
-          emailUserId: userId,
           actorUsername,
           postTitle,
         })

@@ -87,7 +87,7 @@ export async function POST(request: Request) {
     userId: user?.id ?? null,
   })
 
-  void sendContactConfirmationEmail({ name, email })
+  void sendContactConfirmationEmail({ name, email, message })
 
   return NextResponse.json({ ok: true })
 }

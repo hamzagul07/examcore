@@ -7,6 +7,7 @@ import {
 import { resolvePostAuthPath } from '@/lib/auth-redirect'
 import { isOnboardingComplete } from '@/lib/onboarding'
 import { handlePostAuthEmails } from '@/lib/email/notifications'
+import { runAfterResponse } from '@/lib/after-response'
 import { claimUsernameFromMetadata } from '@/lib/community/claim-username'
 
 /**
@@ -66,7 +67,7 @@ export async function GET(request: NextRequest) {
   }
 
   const admin = createServiceClient()
-  void handlePostAuthEmails(admin, user)
+  runAfterResponse('post-auth-emails', () => handlePostAuthEmails(admin, user))
 
   // Claim the username chosen at sign-up (stored in user_metadata).
   await claimUsernameFromMetadata(

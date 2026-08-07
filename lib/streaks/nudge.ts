@@ -1,7 +1,11 @@
 import 'server-only'
 
 import { createServiceClient } from '@/lib/supabase-server'
-import { computeStreak } from '@/lib/dashboard/streak'
+import {
+  computeLongestStreak,
+  computeStreak,
+  countRecentAttempts,
+} from '@/lib/dashboard/streak'
 import { unsubscribeUrl } from '@/lib/community/email-unsubscribe'
 import { sendStreakNudgeEmail } from '@/lib/email/streak-nudge'
 
@@ -9,6 +13,9 @@ import { sendStreakNudgeEmail } from '@/lib/email/streak-nudge'
 const DEDUP_MS = 20 * 60 * 60 * 1000
 // Only nudge a streak worth protecting.
 const MIN_STREAK = 2
+// Attempt history loaded per candidate — bounds both the current streak and the
+// "best run" the email quotes.
+const HISTORY_DAYS = 120
 
 /** Real emails go out only when explicitly enabled — ships OFF. In-app
  * notifications are always safe to create. */
@@ -41,6 +48,10 @@ export async function sendStreakNudgeBatch(): Promise<{
   const todayStart = `${todayKey}T00:00:00Z`
   const nowIso = now.toISOString()
   const dedupCutoff = new Date(now.getTime() - DEDUP_MS).toISOString()
+  // How far back "your best run" is allowed to look.
+  const historyWindow = new Date(now)
+  historyWindow.setUTCDate(historyWindow.getUTCDate() - HISTORY_DAYS)
+  const historyStart = historyWindow.toISOString()
 
   // Candidates = anyone who marked YESTERDAY. Their streak is live and breaks at
   // midnight unless they mark today — exactly who to nudge.
@@ -74,12 +85,15 @@ export async function sendStreakNudgeBatch(): Promise<{
       continue
     }
 
+    // Bounded by date, not by row count. `.limit(90)` truncated the history of
+    // anyone marking several times a day — at 4 a day it only reached back 22
+    // days, so a longer streak was reported as 22 and the best run was worse.
     const { data: att } = await admin
       .from('attempts')
       .select('created_at')
       .eq('user_id', userId)
+      .gte('created_at', historyStart)
       .order('created_at', { ascending: false })
-      .limit(90)
 
     const stamps = (att ?? []).map((a) => new Date(a.created_at as string))
     // Already marked today → streak safe, no nudge.
@@ -111,6 +125,8 @@ export async function sendStreakNudgeBatch(): Promise<{
           to: email,
           recipientName: (profile.full_name as string | null) ?? null,
           streak,
+          markedThisWeek: countRecentAttempts(stamps, 7),
+          bestStreak: computeLongestStreak(stamps),
           unsubscribeHref: unsubscribeUrl(userId, 'streak'),
         })
         sent++

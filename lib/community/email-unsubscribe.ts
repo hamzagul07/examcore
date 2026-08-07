@@ -56,3 +56,69 @@ export function unsubscribeUrl(userId: string, kind: UnsubscribeKind): string {
   const token = signUnsubscribeToken(userId, kind)
   return `${SITE_URL}/community/unsubscribe?token=${encodeURIComponent(token)}`
 }
+
+/**
+ * RFC 8058 one-click endpoint. Mailbox providers POST here; the human-facing
+ * page at /community/unsubscribe only answers GET, so it cannot serve both.
+ */
+export const ONE_CLICK_UNSUBSCRIBE_PATH = '/api/email/unsubscribe'
+
+export function oneClickUnsubscribeUrl(userId: string, kind: UnsubscribeKind): string {
+  const token = signUnsubscribeToken(userId, kind)
+  return `${SITE_URL}${ONE_CLICK_UNSUBSCRIBE_PATH}?token=${encodeURIComponent(token)}`
+}
+
+/**
+ * Rewrites a body unsubscribe link into its one-click twin, so a sender that
+ * already computed the page URL does not have to thread userId + kind through
+ * as well. Returns null if the href is not one of ours.
+ */
+export function oneClickUrlFromPageHref(href: string): string | null {
+  try {
+    const token = new URL(href).searchParams.get('token')
+    if (!token) return null
+    return `${SITE_URL}${ONE_CLICK_UNSUBSCRIBE_PATH}?token=${encodeURIComponent(token)}`
+  } catch {
+    return null
+  }
+}
+
+/** The profile column each kind switches off. Shared so the one-click endpoint
+ * and the preferences page cannot disagree about what "unsubscribe" means. */
+export function unsubscribeColumnPatch(kind: UnsubscribeKind): Record<string, boolean> {
+  switch (kind) {
+    case 'replies':
+      return { email_community_replies: false }
+    case 'threads':
+      return { email_community_threads: false }
+    case 'review':
+      return { email_review_digest: false }
+    case 'weekly':
+      return { email_weekly_report: false }
+    case 'streak':
+      return { email_streak_reminders: false }
+    case 'trial':
+      return { email_trial_end: false }
+    default:
+      return { email_community_digest: false }
+  }
+}
+
+export function unsubscribeLabel(kind: UnsubscribeKind): string {
+  switch (kind) {
+    case 'replies':
+      return 'Exam Room reply emails'
+    case 'threads':
+      return 'Exam Room thread activity emails'
+    case 'review':
+      return 'review reminder emails'
+    case 'weekly':
+      return 'weekly progress report emails'
+    case 'streak':
+      return 'streak reminder emails'
+    case 'trial':
+      return 'trial reminder emails'
+    default:
+      return 'Exam Room weekly digest'
+  }
+}

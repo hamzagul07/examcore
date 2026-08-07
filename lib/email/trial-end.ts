@@ -1,5 +1,13 @@
 import { sendEmailAsync } from '@/lib/email/send'
-import { renderBrandedEmailHtml } from '@/lib/email/templates'
+import {
+  EMAIL_BRAND as BRAND,
+  EMAIL_HAIRLINE,
+  EMAIL_INK as INK,
+  calloutHtml,
+  escapeHtml as esc,
+  renderBrandedEmailHtml,
+  statCell,
+} from '@/lib/email/templates'
 import { SITE_URL } from '@/lib/site-config'
 import type { TrialSummary } from '@/lib/billing/trial-summary'
 
@@ -18,28 +26,8 @@ import type { TrialSummary } from '@/lib/billing/trial-summary'
  * after.
  */
 
-const BRAND = '#9f1239'
-const INK = '#1a1a1a'
-const MUTED = '#8a7f70'
-
-function esc(s: string): string {
-  return s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-}
-
-function statCell(big: string, label: string, accent = INK): string {
-  return `<td valign="top" style="padding:0 4px;width:33.33%">
-    <div style="background:#faf7f2;border:1px solid #eee2d6;border-radius:12px;padding:14px 6px;text-align:center">
-      <div style="font-size:24px;font-weight:800;color:${accent};line-height:1.1">${esc(big)}</div>
-      <div style="font-size:10.5px;color:${MUTED};text-transform:uppercase;letter-spacing:.05em;margin-top:5px">${esc(label)}</div>
-    </div></td>`
-}
-
 function pauseRow(text: string): string {
-  return `<tr><td style="padding:9px 0;border-bottom:1px solid #f0ece4;font-size:14.5px;color:#444;line-height:1.5">${text}</td></tr>`
+  return `<tr><td style="padding:9px 0;border-bottom:1px solid ${EMAIL_HAIRLINE};font-size:14.5px;color:#444;line-height:1.5">${text}</td></tr>`
 }
 
 /** The list of what goes dormant. Identical in substance to the in-app panel —
@@ -106,11 +94,11 @@ function buildBodyHtml(greeting: string, d: TrialSummary): string {
 
   if (d.pointsToGo !== null && d.targetGrade && !d.onTrack) {
     parts.push(
-      `<div style="background:linear-gradient(135deg,#fdf2f4,#faf7f2);border:1px solid #f0d9df;border-radius:14px;padding:16px 18px;margin:0 0 22px">
-        <div style="font-size:15px;line-height:1.55;color:#333">You&rsquo;re about <strong style="color:${BRAND}">${d.pointsToGo} percentage ${
+      calloutHtml(
+        `You&rsquo;re about <strong style="color:${BRAND}">${d.pointsToGo} percentage ${
           d.pointsToGo === 1 ? 'point' : 'points'
-        }</strong> off your target grade <strong>${esc(d.targetGrade)}</strong>. That&rsquo;s a handful of marks in the right places &mdash; and we know which places.</div>
-      </div>`
+        }</strong> off your target grade <strong>${esc(d.targetGrade)}</strong>. That&rsquo;s a handful of marks in the right places &mdash; and we know which places.`
+      )
     )
   }
 
@@ -200,14 +188,19 @@ export function sendTrialEndEmail(payload: {
   const bodyHtml =
     buildBodyHtml(greeting, data) +
     `<p style="margin:20px 0 0;font-size:14px;color:#666;line-height:1.6">Staying on the free plan is completely fine &mdash; your marked scripts stay saved either way.</p>` +
-    `<p style="margin:18px 0 0;font-size:15px;color:${INK}">&mdash; Your MarkScheme examiner</p>` +
-    `<p style="margin:16px 0 0;font-size:12px;color:#999"><a href="${esc(unsubscribeHref)}" style="color:#999">Unsubscribe from trial reminders</a></p>`
+    `<p style="margin:18px 0 0;font-size:15px;color:${INK}">&mdash; Your MarkScheme examiner</p>`
 
   sendEmailAsync({
     to,
     subject,
     preheader,
     text: buildText(greeting, data, unsubscribeHref),
-    html: renderBrandedEmailHtml({ preheader, bodyHtml, cta }),
+    html: renderBrandedEmailHtml({
+      preheader,
+      bodyHtml,
+      cta,
+      unsubscribe: { label: 'Unsubscribe from trial reminders', href: unsubscribeHref },
+    }),
+    unsubscribeHref,
   })
 }

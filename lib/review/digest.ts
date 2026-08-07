@@ -65,6 +65,8 @@ export async function sendReviewDigestBatch(): Promise<{
       return {
         name: getSyllabusTopicByCode(subject, code)?.name ?? code,
         subjectLabel: getSubjectByCode(subject)?.label ?? subject,
+        subjectCode: subject,
+        topicCode: code,
       }
     })
 

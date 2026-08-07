@@ -1,5 +1,17 @@
 import { sendEmailAsync } from '@/lib/email/send'
-import { renderBrandedEmailHtml } from '@/lib/email/templates'
+import {
+  EMAIL_BRAND as BRAND,
+  EMAIL_INK as INK,
+  EMAIL_MUTED as MUTED,
+  calloutHtml,
+  escapeHtml as esc,
+  linkRow,
+  linkRowTable,
+  noteHtml,
+  renderBrandedEmailHtml,
+  sectionHeading,
+  statCell,
+} from '@/lib/email/templates'
 import { topicDrillHref } from '@/lib/insights/drill-link'
 import { SITE_URL } from '@/lib/site-config'
 
@@ -32,18 +44,6 @@ export type WeeklyReportData = {
   examDaysLeft: number | null
 }
 
-const BRAND = '#9f1239'
-const INK = '#1a1a1a'
-const MUTED = '#8a7f70'
-
-function esc(s: string): string {
-  return s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-}
-
 function deltaBadge(delta: number | null): string {
   if (delta === null || Math.abs(delta) < 1) return ''
   const up = delta > 0
@@ -52,21 +52,13 @@ function deltaBadge(delta: number | null): string {
   return ` <span style="font-size:12px;font-weight:700;color:${color}">${up ? '▲' : '▼'}${n}%</span>`
 }
 
-function statCell(big: string, label: string, accent = INK): string {
-  return `<td valign="top" style="padding:0 4px;width:33.33%">
-    <div style="background:#faf7f2;border:1px solid #eee2d6;border-radius:12px;padding:14px 6px;text-align:center">
-      <div style="font-size:24px;font-weight:800;color:${accent};line-height:1.1">${big}</div>
-      <div style="font-size:10.5px;color:${MUTED};text-transform:uppercase;letter-spacing:.05em;margin-top:5px">${esc(label)}</div>
-    </div></td>`
-}
-
 /** Build the rich HTML body (inside the branded card). */
 function buildBodyHtml(greeting: string, d: WeeklyReportData): string {
   const parts: string[] = []
 
   parts.push(
     `<p style="margin:0 0 4px;font-size:16px;color:${INK}">Hi ${esc(greeting)},</p>`,
-    `<p style="margin:0 0 20px;font-size:15px;color:#555">Here's your week in review — and the one move that'll move your grade. 👇</p>`
+    `<p style="margin:0 0 20px;font-size:15px;color:#555">Here's your week in review — and the one move that'll move your grade.&nbsp;👇</p>`
   )
 
   // Stat row
@@ -90,42 +82,35 @@ function buildBodyHtml(greeting: string, d: WeeklyReportData): string {
     } else {
       inner = `You're tracking <strong>${esc(d.predictedGrade)}</strong>${subject}. <a href="${esc(SITE_URL)}/account/exam" style="color:${BRAND};font-weight:700">Set a target grade →</a> and we'll show you exactly how far you have to go.`
     }
-    parts.push(
-      `<div style="background:linear-gradient(135deg,#fdf2f4,#faf7f2);border:1px solid #f0d9df;border-radius:14px;padding:16px 18px;margin:0 0 22px">
-        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:${BRAND};font-weight:800;margin-bottom:6px">📈 Grade trajectory</div>
-        <div style="font-size:15px;line-height:1.55;color:#333">${inner}</div>
-      </div>`
-    )
+    parts.push(calloutHtml(inner, '📈 Grade trajectory'))
   }
 
   // Weak spots — "fix these" list (the hook)
   if (d.weakTopics.length > 0) {
     const rows = d.weakTopics
       .map((t) => {
-        const href = `${SITE_URL}${topicDrillHref(t.subjectCode, t.topicCode)}`
         const sub = t.subjectLabel ? `<span style="color:${MUTED}"> · ${esc(t.subjectLabel)}</span>` : ''
-        return `<tr>
-          <td style="padding:11px 0;border-bottom:1px solid #f0ece4">
-            <span style="font-size:15px;font-weight:600;color:${INK}">${esc(t.name)}</span>${sub}
-            <div style="font-size:12px;color:${MUTED};margin-top:2px">currently ${t.percentage}% — your biggest mark gap</div>
-          </td>
-          <td align="right" style="padding:11px 0;border-bottom:1px solid #f0ece4;white-space:nowrap">
-            <a href="${esc(href)}" style="color:${BRAND};font-weight:700;text-decoration:none;font-size:14px">Drill it →</a>
-          </td>
-        </tr>`
+        return linkRow({
+          titleHtml: `<span style="font-size:15px;font-weight:600;color:${INK}">${esc(t.name)}</span>${sub}`,
+          metaHtml: `currently ${t.percentage}% — your biggest mark gap`,
+          href: `${SITE_URL}${topicDrillHref(t.subjectCode, t.topicCode)}`,
+          actionLabel: 'Drill it →',
+        })
       })
       .join('')
     parts.push(
-      `<div style="font-size:17px;font-weight:800;color:${INK};margin:0 0 4px">🎯 Fix these before they cost you in the exam</div>
-       <div style="font-size:13px;color:#666;margin:0 0 10px">These topics are quietly leaking marks. One focused session each closes the gap.</div>
-       <table role="presentation" width="100%" cellpadding="0" cellspacing="0">${rows}</table>
-       <p style="margin:12px 0 22px;font-size:13px"><a href="${esc(SITE_URL)}/dashboard" style="color:${BRAND};font-weight:700">See all your weak spots →</a></p>`
+      sectionHeading(
+        '🎯 Fix these before they cost you in the exam',
+        'These topics are quietly leaking marks. One focused session each closes the gap.'
+      ) +
+        linkRowTable(rows) +
+        `<p style="margin:12px 0 22px;font-size:13px"><a href="${esc(SITE_URL)}/dashboard" style="color:${BRAND};font-weight:700">See all your weak spots →</a></p>`
     )
   } else {
     parts.push(
-      `<div style="background:#faf7f2;border:1px solid #eee2d6;border-radius:12px;padding:14px 16px;margin:0 0 22px;font-size:14px;color:#555">
-        No confirmed weak spots yet — a few more marked questions and we'll pinpoint exactly where your marks are hiding.
-      </div>`
+      noteHtml(
+        "No confirmed weak spots yet — a few more marked questions and we'll pinpoint exactly where your marks are hiding."
+      )
     )
   }
 
@@ -215,10 +200,14 @@ export function sendWeeklyReportEmail(payload: {
 
   const bodyHtml =
     buildBodyHtml(greeting, data) +
-    `<p style="margin:22px 0 0;font-size:15px;color:${INK}">— Your MarkScheme examiner</p>` +
-    `<p style="margin:16px 0 0;font-size:12px;color:#999"><a href="${esc(unsubscribeHref)}" style="color:#999">Unsubscribe from weekly reports</a></p>`
+    `<p style="margin:22px 0 0;font-size:15px;color:${INK}">— Your MarkScheme examiner</p>`
 
-  const html = renderBrandedEmailHtml({ preheader, bodyHtml, cta: primaryCta })
+  const html = renderBrandedEmailHtml({
+    preheader,
+    bodyHtml,
+    cta: primaryCta,
+    unsubscribe: { label: 'Unsubscribe from weekly reports', href: unsubscribeHref },
+  })
 
   sendEmailAsync({
     to,
@@ -226,5 +215,6 @@ export function sendWeeklyReportEmail(payload: {
     preheader,
     text: buildText(greeting, data, dashboardUrl, unsubscribeHref),
     html,
+    unsubscribeHref,
   })
 }

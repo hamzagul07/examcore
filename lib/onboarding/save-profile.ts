@@ -11,6 +11,7 @@ import type { PrimaryGoal, UserRole, UserStage } from '@/lib/database.types'
 import { isOnboardingComplete } from '@/lib/onboarding'
 import { isValidTargetGrade } from '@/lib/target-grade'
 import { handleOnboardingCompleteEmails } from '@/lib/email/notifications'
+import { runAfterResponse } from '@/lib/after-response'
 
 export type OnboardingInput = {
   full_name?: string | null
@@ -207,12 +208,16 @@ export async function saveOnboardingProfile(
     }
 
     if (!wasAlreadyOnboarded) {
-      void handleOnboardingCompleteEmails(service, userId, {
-        full_name: fullName,
-        level,
-        subjects,
-        primary_goal: primaryGoal,
-      })
+      runAfterResponse('onboarding-complete-emails', () =>
+        handleOnboardingCompleteEmails(service, userId, {
+          full_name: fullName,
+          board,
+          level,
+          subjects,
+          primary_goal: primaryGoal,
+          target_grade: targetGrade,
+        })
+      )
     }
 
     return { ok: true, role }

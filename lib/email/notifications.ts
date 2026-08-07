@@ -1,6 +1,27 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { CONTACT_EMAIL, SITE_NAME, SITE_URL } from '@/lib/site-config'
 import { adminNotifyAddress, sendEmail, sendEmailAsync } from '@/lib/email/send'
+import type { SubscriptionTier } from '@/lib/database.types'
+import {
+  EMAIL_INK,
+  EMAIL_MUTED,
+  calloutHtml,
+  escapeHtml as esc,
+  noteHtml,
+  quoteHtml,
+  renderBrandedEmailHtml,
+  sectionHeading,
+} from '@/lib/email/templates'
+import { capForTier, tierMarketingName } from '@/lib/billing/caps'
+import {
+  FREE_WHOLE_PAPER_QUESTION_LIMIT,
+  WHOLE_PAPER_QUESTION_LIMIT,
+} from '@/lib/billing/features'
+import { sendWelcomeEmail } from '@/lib/email/welcome'
+
+/** Lives in its own module (it is board-aware and long); re-exported so the
+ * existing `@/lib/email/notifications` import path keeps working. */
+export { sendWelcomeEmail }
 
 // ---------------------------------------------------------------------------
 // Admin alerts (to hello@markscheme.app by default)
@@ -31,25 +52,63 @@ export function notifyAdminContactMessage(payload: {
   })
 }
 
+/** Longest excerpt we quote back. Enough to confirm we got the whole thing
+ * without turning the confirmation into a wall of their own text. */
+const CONTACT_ECHO_LIMIT = 600
+
 export function sendContactConfirmationEmail(payload: {
   email: string
   name: string
+  /** Quoted back so they can see exactly what arrived — and so this reads as a
+   * real receipt rather than an autoresponder. */
+  message?: string
 }): void {
+  const raw = (payload.message ?? '').trim()
+  const truncated = raw.length > CONTACT_ECHO_LIMIT
+  const excerpt = truncated ? `${raw.slice(0, CONTACT_ECHO_LIMIT).trimEnd()}…` : raw
+
+  const echoHtml = excerpt ? quoteHtml(excerpt) : ''
+
+  const bodyHtml =
+    `<p style="margin:0 0 4px;font-size:16px;color:${EMAIL_INK}">Hi ${esc(payload.name)},</p>` +
+    `<p style="margin:0 0 18px;font-size:15px;line-height:1.6;color:#555">Your message reached us — a real person reads every one. Most replies go out within a day, from ${esc(
+      CONTACT_EMAIL
+    )}. You can just reply to this email to add anything.</p>` +
+    (echoHtml ? sectionHeading('What you sent') + echoHtml : '') +
+    calloutHtml(
+      `If it is something you would rather not wait on: <a href="${SITE_URL}/faq" style="color:${EMAIL_INK};font-weight:700">the FAQ</a> covers marking accuracy, plans and refunds, and if a mark looked wrong, reply with the question and we will re-run it ourselves.`
+    )
+
   sendEmailAsync({
     to: payload.email,
-    subject: `We received your message — ${SITE_NAME}`,
-    preheader: 'Thanks for reaching out. We will reply from hello@markscheme.app.',
-    cta: { label: 'Back to MarkScheme', href: SITE_URL },
+    subject: `We got your message — ${SITE_NAME}`,
+    preheader: 'A real person reads every one. Most replies go out within a day.',
     text: [
       `Hi ${payload.name},`,
       '',
-      `Thanks for contacting ${SITE_NAME}. We received your message and will reply from ${CONTACT_EMAIL} as soon as we can.`,
+      `Your message reached us — a real person reads every one. Most replies go out within a day, from ${CONTACT_EMAIL}. You can reply to this email to add anything.`,
+      excerpt ? '' : null,
+      excerpt ? 'What you sent:' : null,
+      excerpt ? excerpt.replace(/^/gm, '> ') : null,
       '',
-      'If your question is about marking a paper, you can also jump straight in:',
-      `${SITE_URL}/mark`,
+      'If you would rather not wait: the FAQ covers marking accuracy, plans and refunds.',
+      `${SITE_URL}/faq`,
+      '',
+      'And if a mark looked wrong, reply with the question — we will re-run it ourselves.',
       '',
       `— ${SITE_NAME}`,
-    ].join('\n'),
+    ]
+      .filter((line): line is string => line !== null)
+      .join('\n'),
+    html: renderBrandedEmailHtml({
+      preheader: 'A real person reads every one. Most replies go out within a day.',
+      bodyHtml,
+      secondaryLinks: [
+        { label: 'FAQ', href: `${SITE_URL}/faq` },
+        { label: 'Mark a question', href: `${SITE_URL}/mark` },
+        { label: 'Your dashboard', href: `${SITE_URL}/dashboard` },
+      ],
+    }),
   })
 }
 
@@ -195,69 +254,110 @@ export function notifyAdminWaitlistSignup(payload: {
 // User transactional (to the student)
 // ---------------------------------------------------------------------------
 
-export function sendWelcomeEmail(payload: {
-  email: string
-  name?: string | null
-  level?: string | null
-  subjects?: string[] | null
-}): void {
-  const greeting = payload.name?.trim() ? `Hi ${payload.name.trim()},` : 'Hi,'
-  const subjectLine = payload.subjects?.length
-    ? payload.subjects.slice(0, 3).join(', ')
-    : null
-
-  sendEmailAsync({
-    to: payload.email,
-    subject: `Welcome to ${SITE_NAME} — you're all set`,
-    preheader: 'Mark your first Cambridge question in under a minute.',
-    cta: { label: 'Mark your first question', href: `${SITE_URL}/mark` },
-    text: [
-      greeting,
-      '',
-      `Your ${SITE_NAME} account is ready.`,
-      payload.level && subjectLine
-        ? `We saved your ${payload.level} profile${subjectLine ? ` (${subjectLine})` : ''}.`
-        : '',
-      '',
-      'Upload a photo of your handwritten answer and get mark-by-mark feedback tied to real Cambridge mark schemes.',
-      '',
-      `Mark a question: ${SITE_URL}/mark`,
-      `Track progress: ${SITE_URL}/dashboard/progress`,
-      `Account settings: ${SITE_URL}/account`,
-      '',
-      `— ${SITE_NAME}`,
-    ]
-      .filter(Boolean)
-      .join('\n'),
-  })
-}
-
+/**
+ * Purchase confirmation. Leads with what the student can now do that they could
+ * not do an hour ago — a receipt they can already see in their bank app is not
+ * worth an email on its own.
+ */
 export function sendPurchaseConfirmationEmail(payload: {
   email: string
   kind: 'credits' | 'subscription'
   detail: string
+  /** Credits added, for the one-time packs. */
+  credits?: number | null
+  /** Tier reached, for subscriptions — drives the cap and plan name shown. */
+  tier?: SubscriptionTier | null
 }): void {
-  const subject =
-    payload.kind === 'credits'
-      ? `Your ${SITE_NAME} credits are ready`
+  const isCredits = payload.kind === 'credits'
+  const planName = payload.tier ? tierMarketingName(payload.tier) : null
+  const cap = payload.tier ? capForTier(payload.tier) : null
+
+  const subject = isCredits
+    ? `Your ${SITE_NAME} credits are on your account`
+    : planName
+      ? `${planName} is active — here's what just unlocked`
       : `Your ${SITE_NAME} plan is active`
+
+  const unlockedHtml = isCredits
+    ? noteHtml(
+        `Credits are only spent once you have used up your monthly questions — so they sit there until you actually need them, and they never expire mid-session on you.`
+      )
+    : sectionHeading('What just unlocked') +
+      `<div style="margin:6px 0 20px">` +
+      [
+        `<strong style="color:${EMAIL_INK}">Whole scripts, end to end.</strong> Up to ${WHOLE_PAPER_QUESTION_LIMIT} questions per upload, instead of stopping after the first ${FREE_WHOLE_PAPER_QUESTION_LIMIT}.`,
+        `<strong style="color:${EMAIL_INK}">A second-opinion pass on every mark.</strong> Each script is re-checked against the scheme before you see it, which is where the borderline marks get settled.`,
+        `<strong style="color:${EMAIL_INK}">Your answer rewritten to full marks.</strong> Annotated line by line, so you can see exactly what each addition earned.`,
+        `<strong style="color:${EMAIL_INK}">An examiner's report every Sunday</strong>, plus drills generated for whichever topics are costing you the most.`,
+      ]
+        .map(
+          (item) =>
+            `<p style="margin:0 0 10px;font-size:14.5px;line-height:1.55;color:#333">${item}</p>`
+        )
+        .join('') +
+      `</div>`
+
+  const capLine =
+    cap !== null
+      ? `<p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#555">You are on <strong style="color:${EMAIL_INK}">${esc(
+          planName ?? 'your plan'
+        )}</strong> — ${cap} questions a month.</p>`
+      : ''
+
+  const bodyHtml =
+    `<p style="margin:0 0 4px;font-size:16px;color:${EMAIL_INK}">Hi,</p>` +
+    `<p style="margin:0 0 18px;font-size:15px;line-height:1.6;color:#555">${esc(
+      payload.detail
+    )} Thank you — this is what keeps MarkScheme running.</p>` +
+    capLine +
+    unlockedHtml +
+    `<p style="margin:0;font-size:13px;line-height:1.6;color:${EMAIL_MUTED}">Payments and receipts are handled by Polar, our merchant of record. You can change or cancel your plan any time from billing — no email required.</p>`
+
+  const text = [
+    'Hi,',
+    '',
+    `${payload.detail} Thank you — this is what keeps ${SITE_NAME} running.`,
+    cap !== null ? `` : '',
+    cap !== null ? `You're on ${planName} — ${cap} questions a month.` : '',
+    '',
+    isCredits
+      ? 'Credits are only spent once your monthly questions run out, so they sit there until you need them.'
+      : [
+          'What just unlocked:',
+          `- Whole scripts, up to ${WHOLE_PAPER_QUESTION_LIMIT} questions per upload (free stops after ${FREE_WHOLE_PAPER_QUESTION_LIMIT}).`,
+          '- A second-opinion pass on every mark before you see it.',
+          '- Your answer rewritten to full marks, annotated line by line.',
+          "- An examiner's report every Sunday, plus drills for your weakest topics.",
+        ].join('\n'),
+    '',
+    'Payments and receipts are handled by Polar, our merchant of record. Change or cancel any time:',
+    `${SITE_URL}/account/billing`,
+    '',
+    `Start marking: ${SITE_URL}/mark`,
+    '',
+    `— ${SITE_NAME}`,
+  ]
+    .filter((line, i, arr) => !(line === '' && arr[i - 1] === ''))
+    .join('\n')
 
   sendEmailAsync({
     to: payload.email,
     subject,
-    preheader: 'Thanks for supporting MarkScheme.',
-    cta: { label: 'Start marking', href: `${SITE_URL}/mark` },
-    text: [
-      'Hi,',
-      '',
-      payload.kind === 'credits'
-        ? `Thanks for your purchase. ${payload.detail}`
-        : `Thanks for subscribing. ${payload.detail}`,
-      '',
-      `Billing: ${SITE_URL}/account/billing`,
-      '',
-      `— ${SITE_NAME}`,
-    ].join('\n'),
+    preheader: isCredits
+      ? 'On your account and ready when your monthly questions run out.'
+      : 'Whole scripts, a second-opinion pass, and full-marks rewrites.',
+    text,
+    html: renderBrandedEmailHtml({
+      preheader: isCredits
+        ? 'On your account and ready when your monthly questions run out.'
+        : 'Whole scripts, a second-opinion pass, and full-marks rewrites.',
+      bodyHtml,
+      cta: { label: 'Start marking →', href: `${SITE_URL}/mark` },
+      secondaryLinks: [
+        { label: 'Billing & receipts', href: `${SITE_URL}/account/billing` },
+        { label: 'Your dashboard', href: `${SITE_URL}/dashboard` },
+      ],
+    }),
   })
 }
 
@@ -342,9 +442,13 @@ export async function handleOnboardingCompleteEmails(
   userId: string,
   profile: {
     full_name?: string | null
+    /** Needed by the welcome email: an IB student must not be told their work
+     * is marked against Cambridge schemes. */
+    board?: string | null
     level?: string | null
     subjects?: string[] | null
     primary_goal?: string | null
+    target_grade?: string | null
   }
 ): Promise<void> {
   const { data: authData } = await supabase.auth.admin.getUserById(userId)
@@ -359,8 +463,10 @@ export async function handleOnboardingCompleteEmails(
   sendWelcomeEmail({
     email,
     name: profile.full_name,
+    board: profile.board,
     level: profile.level,
     subjects: profile.subjects,
+    targetGrade: profile.target_grade,
   })
 
   notifyAdminOnboardingComplete({
@@ -380,6 +486,10 @@ export async function notifyPurchaseEmails(
   payload: {
     kind: 'credits' | 'subscription'
     detail: string
+    /** Credits added (one-time packs) / tier reached (subscriptions) — drive the
+     * "what just unlocked" section of the confirmation. */
+    credits?: number | null
+    tier?: SubscriptionTier | null
     /** Polar subscription or order ID. */
     providerRef?: string | null
   }
@@ -392,6 +502,8 @@ export async function notifyPurchaseEmails(
     email,
     kind: payload.kind,
     detail: payload.detail,
+    credits: payload.credits,
+    tier: payload.tier,
   })
 
   notifyAdminPurchase({

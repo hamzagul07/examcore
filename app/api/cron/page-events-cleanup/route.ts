@@ -30,5 +30,24 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 
-  return NextResponse.json({ ok: true, deleted: count ?? 0, cutoff })
+  // visit_sessions is written by the same public beacon and had no retention of
+  // its own, so it would have grown without bound — and anyone can mint rows in
+  // it by generating session ids. Pruned on the same schedule and window as the
+  // events it summarises, so the two never disagree about what history exists.
+  const { error: sessionError, count: sessionCount } = await supabase
+    .from('visit_sessions')
+    .delete({ count: 'exact' })
+    .lt('first_seen_at', cutoff)
+
+  if (sessionError) {
+    console.error('[page-events-cleanup] visit_sessions delete failed:', sessionError.message)
+    return NextResponse.json({ error: sessionError.message }, { status: 500 })
+  }
+
+  return NextResponse.json({
+    ok: true,
+    deleted: count ?? 0,
+    sessionsDeleted: sessionCount ?? 0,
+    cutoff,
+  })
 }

@@ -5,6 +5,7 @@
 import { createServiceClient } from '@/lib/supabase/service'
 import { adminNotifyAddress, sendEmail } from '@/lib/email/send'
 import { SITE_NAME } from '@/lib/site-config'
+import { channelReport, formatReport } from '@/lib/analytics/channel-report'
 
 const MAX_LIST = 200 // cap each section so a busy day can't produce a giant email
 const MAX_PATHS_PER_USER = 40
@@ -198,6 +199,18 @@ export async function sendVisitorDigest(
     if (a.steps.length > steps.length) lines.push(`    …and ${a.steps.length - steps.length} more`)
   }
   if (returning.length > MAX_LIST) lines.push('', `(+${returning.length - MAX_LIST} more omitted)`)
+
+  // ── Where the traffic came from ─────────────────────────────────────────
+  // Pushed rather than pulled: a channel report nobody opens cannot change a
+  // decision. Best-effort — a reporting failure must not cost the whole digest.
+  lines.push('', '─'.repeat(60), '')
+  try {
+    lines.push(formatReport(await channelReport(7)))
+  } catch (err) {
+    lines.push(
+      `Channel report unavailable: ${err instanceof Error ? err.message : String(err)}`
+    )
+  }
 
   await sendEmail({
     to: adminNotifyAddress(),

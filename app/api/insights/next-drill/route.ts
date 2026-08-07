@@ -49,14 +49,13 @@ export async function GET(request: NextRequest) {
   // Premium gate (defense in depth — callers may also gate on isPaid).
   const { data: subscription } = await supabase
     .from('user_subscriptions')
-    .select('tier, status, trial_ends_at')
+    .select('tier, status')
     .eq('user_id', user.id)
     .maybeSingle()
   const paid = hasPaidAccess(
     effectiveAccess({
       tier: (subscription?.tier ?? 'free') as SubscriptionTier,
       status: (subscription?.status ?? 'canceled') as SubscriptionStatus,
-      trialEndsAt: subscription?.trial_ends_at as string | null | undefined,
     })
   )
   if (!paid) return NextResponse.json({ drill: null })

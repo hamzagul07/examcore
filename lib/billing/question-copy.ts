@@ -5,9 +5,8 @@ import { capForTier, omniCapForTier, tierMarketingName } from './caps'
 export type BillingSummaryClient = {
   signedIn: boolean
   tier: SubscriptionTier
-  /** Derived access level used for content gating + trial messaging. */
+  /** Derived access level used for content gating. */
   access: EffectiveAccess
-  trial_ends_at: string | null
   status: string
   credit_balance: number
   period_resets_at: string | null

@@ -17,9 +17,8 @@ import {
   isIbBoard,
   type SubjectOption,
 } from '@/lib/profile-options'
-import { TIER_MONTHLY_CAPS, TRIAL_MONTHLY_CAP } from '@/lib/billing/caps'
+import { TIER_MONTHLY_CAPS } from '@/lib/billing/caps'
 import { FREE_WHOLE_PAPER_QUESTION_LIMIT } from '@/lib/billing/features'
-import { REVERSE_TRIAL_DAYS } from '@/lib/billing/trial-summary'
 import { SITE_NAME, SITE_URL } from '@/lib/site-config'
 
 /**
@@ -152,11 +151,12 @@ function accuracyBlock(ib: boolean): string {
   )
 }
 
-function trialBlock(): string {
+/** What the free plan actually gives — stated plainly, with its edges named. */
+function freePlanBlock(): string {
   return calloutHtml(
-    `For the next <strong>${REVERSE_TRIAL_DAYS} days</strong> you are on the full coach — no card, nothing to cancel. That means whole scripts marked end to end (the free plan stops after the first ${FREE_WHOLE_PAPER_QUESTION_LIMIT} questions), an examiner's report every Sunday, and practice drills generated for whichever topics turn out to be your weakest. Up to ${TRIAL_MONTHLY_CAP} questions.<br><br>
-     After that you drop to the free plan — ${TIER_MONTHLY_CAPS.free} questions a month. Nothing you have marked is ever deleted.`,
-    `🎁 Your free week has started`
+    `You are on the <strong>free plan</strong>: ${TIER_MONTHLY_CAPS.free} marked questions a month, against the real mark scheme, with no card and no expiry date. Whole scripts are marked up to the first ${FREE_WHOLE_PAPER_QUESTION_LIMIT} questions.<br><br>
+     Nothing you mark is ever deleted, and there is no countdown running. Upgrade only once you have seen it mark something of yours.`,
+    `📄 Your free plan`
   )
 }
 
@@ -179,7 +179,7 @@ function buildBodyHtml(greeting: string, p: Profile, targetGrade: string | null)
   const subjects = subjectsBlock(p)
   if (subjects) parts.push(subjects, `<div style="height:22px"></div>`)
 
-  parts.push(accuracyBlock(p.ib), `<div style="height:10px"></div>`, trialBlock())
+  parts.push(accuracyBlock(p.ib), `<div style="height:10px"></div>`, freePlanBlock())
 
   return parts.join('\n')
 }
@@ -225,8 +225,8 @@ function buildText(
       ? '3. Answer the command term — IB criteria are chosen by the wording of the question.'
       : '3. Pick the paper you took it from, so it marks against that exact scheme.',
     '',
-    `Your free week has started: ${REVERSE_TRIAL_DAYS} days of the full coach, no card. Whole scripts marked (the free plan stops after the first ${FREE_WHOLE_PAPER_QUESTION_LIMIT} questions), a Sunday examiner's report, and drills for your weakest topics. Up to ${TRIAL_MONTHLY_CAP} questions.`,
-    `After that: the free plan, ${TIER_MONTHLY_CAPS.free} questions a month. Nothing you mark is ever deleted.`,
+    `You are on the free plan: ${TIER_MONTHLY_CAPS.free} marked questions a month, no card, no expiry. Whole scripts are marked up to the first ${FREE_WHOLE_PAPER_QUESTION_LIMIT} questions.`,
+    'Nothing you mark is ever deleted, and there is no countdown running.',
     '',
     `Mark your first question: ${ctaHref}`,
     p.ib

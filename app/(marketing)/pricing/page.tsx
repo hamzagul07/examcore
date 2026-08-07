@@ -4,8 +4,7 @@ import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { createClient } from '@/lib/supabase-server'
 import { resolveRegion, REGION_COOKIE } from '@/lib/billing/region-cookie'
 import { getPricingDisplay } from '@/lib/billing/display-prices'
-import { effectiveAccess } from '@/lib/billing/access'
-import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
+import type { SubscriptionTier } from '@/lib/database.types'
 import { PricingMarginNotesPage } from '@/components/courses/margin-notes/PricingMarginNotesPage'
 
 export const dynamic = 'force-dynamic'
@@ -25,20 +24,16 @@ export default async function PricingPage() {
     data: { user },
   } = await supabase.auth.getUser()
 
-  let access: ReturnType<typeof effectiveAccess> = 'free'
+  // Only the tier is needed: the cards compare the viewer's plan against each
+  // row, and there is no longer an access level that outranks their tier.
   let currentTier: SubscriptionTier | null = null
   if (user) {
     const { data: sub } = await supabase
       .from('user_subscriptions')
-      .select('tier, status, trial_ends_at')
+      .select('tier')
       .eq('user_id', user.id)
       .maybeSingle()
     currentTier = (sub?.tier as SubscriptionTier) ?? 'free'
-    access = effectiveAccess({
-      tier: (sub?.tier as SubscriptionTier) ?? 'free',
-      status: (sub?.status as SubscriptionStatus) ?? 'canceled',
-      trialEndsAt: sub?.trial_ends_at as string | null | undefined,
-    })
   }
 
   const display = await getPricingDisplay(region)
@@ -57,7 +52,6 @@ export default async function PricingPage() {
       <PricingMarginNotesPage
         display={display}
         signedIn={Boolean(user)}
-        access={access}
         currentTier={currentTier}
         region={region}
       />

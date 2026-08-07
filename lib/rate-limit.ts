@@ -61,7 +61,7 @@ export async function checkAnonymousMarkRateLimit(
       // student is standing at the exact moment the account is worth having,
       // with a marked script on screen they are about to lose.
       message:
-        'That was your free guest mark. Create a free account to keep it — you also get 7 days of full access, no card.',
+        'That was your free guest mark. Create a free account to keep it — no card required.',
     }
   }
 

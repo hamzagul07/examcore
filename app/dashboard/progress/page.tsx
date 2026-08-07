@@ -99,16 +99,14 @@ export default async function ProgressPage({ searchParams }: PageProps) {
 
   const { data: subscription } = await supabase
     .from('user_subscriptions')
-    .select('tier, status, trial_ends_at')
+    .select('tier, status')
     .eq('user_id', user.id)
     .maybeSingle()
 
-  // Trial-aware: paid checkout trials use status trialing + a paid tier.
   const masteryUnlocked = hasPaidAccess(
     effectiveAccess({
       tier: (subscription?.tier ?? 'free') as SubscriptionTier,
       status: (subscription?.status ?? 'canceled') as SubscriptionStatus,
-      trialEndsAt: subscription?.trial_ends_at as string | null | undefined,
     })
   )
 

@@ -4,15 +4,12 @@ import type { SubscriptionTier, SubscriptionStatus } from '@/lib/database.types'
  * Effective access level — the single concept the whole app gates on.
  * Marketing names: free / Pro / Max.
  *
- * `trial` is the 7-day no-card reverse trial granted on signup by the
- * user_subscriptions.trial_ends_at column default (see
- * 20260728_restore_reverse_trial.sql). It carries Scholar-level access and caps
- * — loadBillingContext() maps it to cap_tier 'scholar'.
- *
- * Distinct from Scholar/Max *checkout* trials, which collect a card and appear
- * as status `trialing` against a paid tier.
+ * There is no trial. The 7-day no-card reverse trial and the Scholar/Max
+ * checkout trial were both removed; access is now paid or it is free.
+ * `trialing` stays in ACTIVE_STATUSES only because Polar can still report it
+ * for subscriptions created before the checkout trial was switched off.
  */
-export type EffectiveAccess = 'free' | 'trial' | 'pro' | 'max'
+export type EffectiveAccess = 'free' | 'pro' | 'max'
 
 // `past_due` keeps access during Polar's payment-recovery (dunning) window — a
 // temporary card decline shouldn't instantly lock the user out. Access is only
@@ -23,26 +20,11 @@ export const ACTIVE_STATUSES: SubscriptionStatus[] = ['active', 'trialing', 'pas
 export function effectiveAccess(opts: {
   tier: SubscriptionTier
   status: SubscriptionStatus
-  trialEndsAt?: string | null
-  now?: Date
 }): EffectiveAccess {
-  const now = opts.now ?? new Date()
   const paidActive = opts.tier !== 'free' && ACTIVE_STATUSES.includes(opts.status)
-  if (paidActive) {
-    // mastery → Max; scholar (and legacy `student`) → Pro.
-    return opts.tier === 'mastery' ? 'max' : 'pro'
-  }
-  if (opts.trialEndsAt && new Date(opts.trialEndsAt).getTime() > now.getTime()) {
-    return 'trial'
-  }
-  return 'free'
-}
-
-/** Whole days remaining in the reverse trial (0 if none / expired). */
-export function trialDaysLeft(trialEndsAt?: string | null, now: Date = new Date()): number {
-  if (!trialEndsAt) return 0
-  const ms = new Date(trialEndsAt).getTime() - now.getTime()
-  return ms <= 0 ? 0 : Math.ceil(ms / 86_400_000)
+  if (!paidActive) return 'free'
+  // mastery → Max; scholar (and legacy `student`) → Pro.
+  return opts.tier === 'mastery' ? 'max' : 'pro'
 }
 
 /**

@@ -1,8 +1,9 @@
 import type { EffectiveAccess } from './access'
 
 /**
- * Trial-aware paid check — use for feature gating: Polar checkout trials
- * (status trialing) still have a paid tier in the DB.
+ * The paid check to gate features on. Any Polar subscription still reporting
+ * status `trialing` from before checkout trials were removed keeps its paid
+ * tier here rather than being locked out mid-period.
  */
 export function hasPaidAccess(access: EffectiveAccess): boolean {
   return access !== 'free'

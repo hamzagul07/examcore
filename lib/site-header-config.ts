@@ -233,7 +233,7 @@ export function getSiteHeaderConfig(
       navItemIds: ['pricing', 'mark', 'courses', 'community'],
       context: { label: 'Plans', href: '/pricing', glyph: '◇' },
       primaryCta: {
-        label: 'Start free trial',
+        label: 'Get started free',
         href: '/auth/signup?next=/pricing',
         style: 'primary',
       },

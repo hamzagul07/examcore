@@ -56,6 +56,15 @@ user.
 there — `effectiveAccess()` in `lib/billing/access.ts` already resolves
 `trial_ends_at` to `'trial'`, and `trialDaysLeft()` exists.
 
+> **Superseded 2026-08-07.** Both trials were removed (`20260807_remove_trials.sql`).
+> The reverse trial ran from 2026-07-28 to 2026-08-07 and reached 47 concurrent
+> trial accounts against 2 paying subscribers. `effectiveAccess` no longer has a
+> `'trial'` level, `trialDaysLeft()` and `trial-summary.ts` are deleted, and
+> `trial_ends_at` is dropped. The argument below is kept because the reasoning
+> about endowment still applies to whatever replaces it — but the code it points
+> at is gone, and this is the second reversal of the same mechanism
+> (removed 2026-07-05, restored 2026-07-28, removed again 2026-08-07).
+
 But the mechanism only fires if the trial **manufactures endowment**. A trial
 where the student reads about features and then loses them is a gain-frame with
 extra steps. A trial where the student *builds a record* and then watches it go
@@ -389,10 +398,15 @@ still works in year three.
 
 ### Shipped 2026-07-28
 
+> **Everything trial-related in this section was removed on 2026-08-07.** The
+> files below (`trial-summary.ts`, `TrialSummaryPanel.tsx`, the trial-end email
+> and cron) are deleted, and the copy described in the last bullet was rewritten
+> a second time to say no trial exists. Kept as a record of what was tried.
+> `ANON_DAILY_MARK_LIMIT` 10 → 1 still stands.
+
 - `supabase/migrations/20260728_restore_reverse_trial.sql` — restores the
-  `trial_ends_at` column default that grants the trial. **Not yet applied to
-  production**; until it is, no new signup gets a trial and the panel below
-  stays dormant for everyone.
+  `trial_ends_at` column default that grants the trial. **Reverted 2026-08-07**
+  by `20260807_remove_trials.sql`, which drops the column outright.
 - `lib/billing/trial-summary.ts` + `lib/billing/trial-summary.test.ts` — the
   artefact count (scripts marked, marks earned, weakest topic, gap to target),
   scoped to work done *inside* the trial window so the number is honest.

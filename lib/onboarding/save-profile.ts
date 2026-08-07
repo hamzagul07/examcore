@@ -179,9 +179,8 @@ export async function saveOnboardingProfile(
       }
     }
 
-    // The subscription row is created by handle_new_user_billing() on signup —
-    // free tier, with the trial_ends_at column default granting the 7-day
-    // no-card reverse trial. No upsert needed here.
+    // The subscription row is created by handle_new_user_billing() on signup,
+    // on the free tier. No upsert needed here.
 
     if (role === 'teacher') {
       const classroomName = (body.classroom_name || '').trim()

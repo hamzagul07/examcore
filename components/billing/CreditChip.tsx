@@ -117,8 +117,7 @@ export function CreditChip() {
 
   if (loading || !summary?.signedIn) return null
 
-  const tierLabel =
-    summary.access === 'trial' ? 'Trial' : tierMarketingName(summary.tier)
+  const tierLabel = tierMarketingName(summary.tier)
   const qLeft = Math.max(0, summary.questions.remaining)
   const oLeft = Math.max(0, summary.omni.remaining)
   const qCap = summary.questions.cap

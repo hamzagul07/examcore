@@ -16,8 +16,7 @@ export type QuotaExceeded = {
   error: 'mark_quota_exceeded'
   reason?: string
   tier: SubscriptionTier
-  /** The cap actually enforced. Reported because it cannot be derived from
-   * `tier` — a reverse-trial user is tier 'free' on a trial-sized cap. */
+  /** The cap actually enforced, reported rather than derived from `tier`. */
   cap?: number
   period_resets_at: string | null
   credit_balance: number

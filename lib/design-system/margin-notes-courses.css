@@ -1725,18 +1725,6 @@
 }
 
 /* pricing — plan card enhancements */
-.plan-trial-pill {
-  display: inline-block;
-  margin-bottom: 8px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--ink);
-  background: color-mix(in srgb, var(--ink) 12%, var(--surface));
-  border: 1px solid var(--ink-border);
-  padding: 4px 10px;
-  border-radius: 999px;
-}
 .plan-bestfor {
   font-size: 11px;
   letter-spacing: 0.04em;
@@ -2796,13 +2784,6 @@ a.scard, a.continue, a.topic-row, a.pn-btn, a.related-card, a.subj-row, a.dash-c
 /* ── Pricing v4.1 — equal card internals + tighter rhythm ──
    Subgrid puts every card row (pill, tag, name, price, blurb, CTA, feats…)
    on shared tracks, so the four CTAs sit on exactly the same line. */
-/* Hidden spacer pill: only needed when cards sit side by side (row alignment);
-   on single-column mobile it would just leave a blank gap. */
-.plan-trial-pill.is-empty { display: none; }
-@media (min-width: 621px) {
-  .plan-trial-pill.is-empty { display: inline-block; visibility: hidden; }
-}
-
 @supports (grid-template-rows: subgrid) {
   @media (min-width: 621px) {
     .plans.four .plan {

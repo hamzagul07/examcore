@@ -3,7 +3,7 @@ import 'server-only'
 import crypto from 'crypto'
 import { SITE_URL } from '@/lib/site-config'
 
-export type UnsubscribeKind = 'replies' | 'digest' | 'threads' | 'review' | 'weekly' | 'streak' | 'trial'
+export type UnsubscribeKind = 'replies' | 'digest' | 'threads' | 'review' | 'weekly' | 'streak'
 
 function secret(): string {
   return (
@@ -36,8 +36,7 @@ export function verifyUnsubscribeToken(
         kind !== 'threads' &&
         kind !== 'review' &&
         kind !== 'weekly' &&
-        kind !== 'streak' &&
-        kind !== 'trial') ||
+        kind !== 'streak') ||
       !exp ||
       !sig
     )
@@ -97,8 +96,6 @@ export function unsubscribeColumnPatch(kind: UnsubscribeKind): Record<string, bo
       return { email_weekly_report: false }
     case 'streak':
       return { email_streak_reminders: false }
-    case 'trial':
-      return { email_trial_end: false }
     default:
       return { email_community_digest: false }
   }
@@ -116,8 +113,6 @@ export function unsubscribeLabel(kind: UnsubscribeKind): string {
       return 'weekly progress report emails'
     case 'streak':
       return 'streak reminder emails'
-    case 'trial':
-      return 'trial reminder emails'
     default:
       return 'Exam Room weekly digest'
   }

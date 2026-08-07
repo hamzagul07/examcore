@@ -12,8 +12,6 @@ import { getSubjectById, defaultSubjectsForProfile, defaultMarkSubjectCode, isIb
 import { getSyllabusByCode, getSyllabusSubjectName, hasSyllabusTree } from '@/lib/syllabi'
 import { getAttemptSubjectCode } from '@/lib/syllabi/attempts'
 import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
-import { TrialSummaryPanel } from '@/components/billing/TrialSummaryPanel'
-import { buildTrialSummary, loadTrialSubscription } from '@/lib/billing/trial-summary'
 import { buildContinueCatalog } from '@/lib/courses/margin-notes/continue-catalog'
 import { DashboardCoursesPanel } from '@/components/courses/margin-notes/DashboardCoursesPanel'
 import { DashboardEntry } from './dashboard.client'
@@ -148,8 +146,6 @@ export default async function DashboardPage() {
 
   let recommendations: Recommendation[] = []
   let continueSubjectLabel: string | null = null
-  // Hoisted out of the syllabus block below so the trial panel can name the
-  // same weakest topic the drill card is about to offer.
   let masteries: LeafMastery[] = []
 
   const primarySubject = profileSubjects.find((name) => {
@@ -200,19 +196,6 @@ export default async function DashboardPage() {
   const isEmpty = attemptsList.length === 0
   const continueCatalog = buildContinueCatalog()
 
-  // The end of the reverse trial is the single highest-stakes moment in the
-  // funnel, so the panel is built from what this student actually produced —
-  // scripts, marks, their weakest topic — rather than a generic upsell. Returns
-  // null for everyone not within two days either side of the trial boundary,
-  // which is almost everyone, so this costs one indexed row lookup.
-  const trialSummary = buildTrialSummary({
-    subscription: await loadTrialSubscription(supabaseAdmin, user.id),
-    attempts: attemptsList,
-    masteries,
-    targetGrade: (profile?.target_grade as string | null) ?? null,
-    averagePct: gradeTarget?.averagePct ?? null,
-  })
-
   // Always built, even with no marked attempts: the queue now also surfaces
   // lessons whose quick check the student completed, and those students are
   // exactly the ones who used to see an empty review section forever.
@@ -229,10 +212,6 @@ export default async function DashboardPage() {
             weeklyAttempts={weeklyCount}
             hideMarkCta={isEmpty}
           />
-
-          {trialSummary ? (
-            <TrialSummaryPanel summary={trialSummary} className="mb-6" />
-          ) : null}
 
           <BillingLimitBanner className="mb-6" />
 

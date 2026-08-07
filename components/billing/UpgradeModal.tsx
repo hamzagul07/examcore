@@ -31,10 +31,9 @@ function capCopy(
     }
     return `You've used all ${omniCap} of your study chat messages this month`
   }
-  // An explicitly reported cap always wins over one reconstructed from the
-  // tier: a reverse-trial user's DB tier is 'free' while their real cap is the
-  // trial's, so deriving from tier would tell them they'd used all 5 of a
-  // quota that was actually 25.
+  // An explicitly reported cap still wins over one reconstructed from the tier:
+  // the server knows what it actually enforced, and a number quoted back to a
+  // student who has just been blocked has to be the one they hit.
   const questionCap = cap ?? (tier ? capForTier(tier) : capForTier('free'))
   if (tier === 'free') {
     return `You've used all ${questionCap} of your free questions this month`

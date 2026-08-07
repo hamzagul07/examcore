@@ -55,7 +55,6 @@ async function main() {
   )
   const { sendStreakNudgeEmail } = await import('@/lib/email/streak-nudge')
   const { sendWeeklyReportEmail } = await import('@/lib/email/weekly-report')
-  const { sendTrialEndEmail } = await import('@/lib/email/trial-end')
 
   const to = 'student@example.com'
   const unsubscribeHref = 'https://markscheme.app/unsubscribe?token=preview'
@@ -254,27 +253,6 @@ async function main() {
           },
         ],
         examDaysLeft: 43,
-      },
-    })
-  )
-
-  await capture('trial-ending', () =>
-    sendTrialEndEmail({
-      to,
-      recipientName: 'Amara',
-      unsubscribeHref,
-      data: {
-        phase: 'ending_soon',
-        daysLeft: 1,
-        endsAt: '2026-08-10T00:00:00.000Z',
-        scriptsMarked: 4,
-        marksEarned: 31,
-        marksAvailable: 48,
-        weakest: { code: '4.2', name: 'Moments', percentage: 41 },
-        targetGrade: 'A',
-        pointsToGo: 9,
-        onTrack: false,
-        empty: false,
       },
     })
   )

@@ -47,7 +47,7 @@ export function CourseLessonClient({
 }: Props) {
   const { done } = useCourseProgress(subjectCode)
   const { user, loading: authLoading } = useAuthCheck()
-  const { access, trialEndsAt } = useBillingAccess()
+  const { access } = useBillingAccess()
   const track = findPaperTrack(subjectCode, lessons, paperQuery ?? null)
   const scoped = track ? filterLessonsByPaper(lessons, track) : lessons
   const flat = useMemo(
@@ -71,7 +71,6 @@ export function CourseLessonClient({
         paperQuery={paperQuery}
         signedIn={authLoading ? undefined : !!user}
         access={access}
-        trialEndsAt={trialEndsAt}
         basePath={basePath}
         coursesCrumb={coursesCrumb}
         community={community}

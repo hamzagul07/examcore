@@ -39,7 +39,7 @@ export function LandingFinalCta({ markHref }: LandingFinalCtaProps) {
           </LoadingLink>
         </div>
         <p className="ms-micro" style={{ marginTop: 26 }}>
-          7-DAY FREE TRIAL · NO CARD · FREE PLAN FOREVER
+          NO CARD · FREE PLAN FOREVER · CANCEL ANY TIME
         </p>
       </div>
     </section>

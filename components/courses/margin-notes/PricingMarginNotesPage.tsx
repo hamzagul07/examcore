@@ -20,11 +20,10 @@ import { CourseRichText } from '@/components/courses/CourseRichText'
 import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
 import { LoadingLink } from '@/components/ui/LoadingLink'
 import type { PricingDisplay, SubscriptionDisplayPrices } from '@/lib/billing/display-prices'
-import type { EffectiveAccess } from '@/lib/billing/access'
 import type { RegionChoice } from '@/lib/billing/region-cookie'
 import type { SubscriptionTier } from '@/lib/database.types'
 import { formatMoney } from '@/lib/billing/format'
-import { capForTier, omniCapForTier, TRIAL_MONTHLY_CAP } from '@/lib/billing/caps'
+import { capForTier, omniCapForTier } from '@/lib/billing/caps'
 import { INTERACTIVE_DIAGRAMS_FREE } from '@/lib/billing/features'
 import { buildSignUpHref } from '@/lib/auth-redirect'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
@@ -57,7 +56,6 @@ function Faq({ f }: { f: { q: string; a: string } }) {
 type Props = {
   display: PricingDisplay
   signedIn: boolean
-  access: EffectiveAccess
   currentTier: SubscriptionTier | null
   region: RegionChoice
 }
@@ -83,7 +81,7 @@ const SCH_OMNI = omniCapForTier('scholar')
 const MAX_Q = capForTier('mastery')
 const MAX_OMNI = omniCapForTier('mastery')
 
-export function PricingMarginNotesPage({ display, signedIn, access, currentTier }: Props) {
+export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props) {
   const router = useRouter()
   const [period, setPeriod] = useState<Period>('yearly')
   const [busy, setBusy] = useState<string | null>(null)
@@ -166,7 +164,7 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
 
     if (!signedIn) {
       return {
-        label: loading ? 'Opening checkout…' : `Start free trial → ${PLAN_NAME[plan]}`,
+        label: loading ? 'Opening checkout…' : `Choose ${PLAN_NAME[plan]}`,
         href: buildSignUpHref('/pricing'),
         variant: featured ? 'primary' : 'ghost',
       }
@@ -177,14 +175,9 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
     }
 
     const planRank = TIER_RANK[product]
-    // First Scholar/Max subscription starts with a 7-day free trial (see
-    // checkout API). Pro checkouts charge immediately.
-    const hasCheckoutTrial = plan === 'scholar' || plan === 'max'
     const verb =
-      currentRank === 0 || access === 'trial'
-        ? hasCheckoutTrial
-          ? `Try ${PLAN_NAME[plan]} free for 7 days`
-          : `Choose ${PLAN_NAME[plan]}`
+      currentRank === 0
+        ? `Choose ${PLAN_NAME[plan]}`
         : planRank > currentRank
           ? `Upgrade to ${PLAN_NAME[plan]}`
           : `Switch to ${PLAN_NAME[plan]}`
@@ -205,7 +198,6 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
     bestFor: string
     blurb: string
     killer: string
-    trialPill?: string
     now: string
     per: string
     sub: string | null
@@ -263,7 +255,6 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
       bestFor: 'Full exam prep across subjects',
       blurb: 'The complete toolkit — detailed marking feedback, topic mastery tracking, and in-depth courses that actually teach the syllabus.',
       killer: `${SCH_Q} questions + mastery matrix & grade journey`,
-      trialPill: '7-day free trial',
       now: scholarPrice.now,
       per: scholarPrice.per,
       sub: scholarPrice.sub,
@@ -285,7 +276,6 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
       bestFor: 'Daily paper marking before exams',
       blurb: 'Maximum marking headroom when you\'re sitting papers every day — plus projected grades and priority queue.',
       killer: `${MAX_Q} questions / month + projected grades`,
-      trialPill: '7-day free trial',
       now: maxPrice.now,
       per: maxPrice.per,
       sub: maxPrice.sub,
@@ -344,11 +334,11 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
   const faqs = [
     {
       q: 'Which plan should I pick?',
-      a: `Pro is ideal if you're focusing on one subject and want whole-paper marking plus past-paper practice — ${PRO_Q} questions a month is enough for weekly papers. Scholar is our most popular pick: you get ${SCH_Q} questions, in-depth courses, detailed examiner feedback, and the full progress journey — plus a 7-day free trial on your first subscription. Max is for exam season when you're marking daily — ${MAX_Q} questions, projected grades, and priority queue.`,
+      a: `Pro is ideal if you're focusing on one subject and want whole-paper marking plus past-paper practice — ${PRO_Q} questions a month is enough for weekly papers. Scholar is our most popular pick: you get ${SCH_Q} questions, in-depth courses, detailed examiner feedback, and the full progress journey. Max is for exam season when you're marking daily — ${MAX_Q} questions, projected grades, and priority queue.`,
     },
     {
-      q: 'How does the free trial work?',
-      a: `Creating an account gives you 7 days of full access automatically — every Scholar feature and ${TRIAL_MONTHLY_CAP} marked questions to use them on, no card, nothing to cancel. When the week is up you move to the free plan (${FREE_Q} questions and ${FREE_OMNI} study-chat messages per month) and everything you marked stays saved. Separately, starting a Scholar or Max subscription from this page also includes a 7-day free trial (card required, nothing charged until day 8) — cancel any time before then. Pro is billed from day one.`,
+      q: 'Can I try it without paying?',
+      a: `Yes. Creating an account puts you on the free plan — ${FREE_Q} marked questions and ${FREE_OMNI} study-chat messages every month, against the real mark scheme, with no card and no time limit. It is not a trial that expires; it is simply the free plan. Everything you mark stays saved and readable whether or not you ever subscribe.`,
     },
     {
       q: 'What makes the marking different from ChatGPT?',
@@ -410,13 +400,6 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
                 data-screen-label={`Pricing — ${p.name}`}
               >
                 {p.featured ? <span className="plan-ribbon mono">MOST POPULAR</span> : null}
-                {/* Always rendered (hidden when empty) so the pill row lines up across cards. */}
-                <span
-                  className={`plan-trial-pill mono${p.trialPill ? '' : ' is-empty'}`}
-                  aria-hidden={p.trialPill ? undefined : true}
-                >
-                  {p.trialPill ?? ' '}
-                </span>
                 <p className="plan-tag mono">{p.tag}</p>
                 <h3 className="plan-name serif">{p.name}</h3>
                 <div className="plan-price">
@@ -550,7 +533,7 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
         </div>
 
         <p className="micro pricing-footnote">
-          7-DAY FREE TRIAL ON SCHOLAR &amp; MAX (VIA PRICING) · FREE PLAN FOREVER ·
+          FREE PLAN FOREVER · NO CARD TO START · CANCEL ANY TIME ·
           NOT ENDORSED BY CAMBRIDGE INTERNATIONAL
         </p>
 

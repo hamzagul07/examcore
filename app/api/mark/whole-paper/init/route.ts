@@ -61,19 +61,18 @@ export async function POST(request: NextRequest) {
     }
 
     let allowance: Awaited<ReturnType<typeof computeAllowance>> | null = null
-    // Gate on effectiveAccess (paid tiers + legacy reverse trial if any).
+    // Gate on effectiveAccess (paid tiers only).
     let access: EffectiveAccess = 'free'
     if (userId) {
       const service = createServiceClient()
       const { data: subRow } = await service
         .from('user_subscriptions')
-        .select('tier, status, trial_ends_at')
+        .select('tier, status')
         .eq('user_id', userId)
         .maybeSingle()
       access = effectiveAccess({
         tier: (subRow?.tier ?? 'free') as SubscriptionTier,
         status: (subRow?.status ?? 'canceled') as SubscriptionStatus,
-        trialEndsAt: subRow?.trial_ends_at as string | null | undefined,
       })
 
       allowance = await computeAllowance(userId)

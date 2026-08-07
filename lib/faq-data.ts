@@ -1,4 +1,4 @@
-import { capForTier, omniCapForTier, TRIAL_MONTHLY_CAP } from '@/lib/billing/caps'
+import { capForTier, omniCapForTier } from '@/lib/billing/caps'
 import { WHOLE_PAPER_QUESTION_LIMIT } from '@/lib/billing/features'
 import { CONTACT_EMAIL } from '@/lib/site-config'
 import { LANDING_PAGE_FAQ } from '@/lib/seo/landing-faq'
@@ -115,7 +115,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         q: 'Is there a free trial?',
-        a: `Yes. Every new account starts with 7 days of full access — every Scholar feature (the second-opinion verify pass, rewrite-to-full-marks, drills, the weekly examiner report) and ${TRIAL_MONTHLY_CAP} marked questions to use them on, with no card required. When the week ends you move to the free plan automatically and nothing is charged. Everything you marked stays saved and readable. Separately, subscribing to Scholar or Max from the pricing page also includes a 7-day trial (card collected, nothing charged until day 8); Pro is billed from day one.`,
+        a: `No — there's a free plan instead, which doesn't expire. You get ${capForTier('free')} marked questions a month against the real mark scheme with no card, for as long as you want, rather than everything for a week and then nothing. Paid plans are billed from day one and you can cancel any time; everything you've marked stays saved and readable either way.`,
       },
       {
         q: 'What counts as one question?',

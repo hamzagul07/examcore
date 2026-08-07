@@ -154,9 +154,10 @@ Nothing here is a marketing task; all of it is why marketing doesn't work yet.
    mark is the taste; the account is the save. (`ANON_DAILY_MARK_LIMIT: 10 → 1`,
    day → lifetime-ish per IP.) Expect guest mark volume to drop and signups to
    rise — that is the trade you want.
-2. **Bring back the reverse trial:** 7 days of Scholar on signup, no card. It is
-   the only way anyone ever sees the premium half. The code path still exists
-   (`effectiveAccess` handles `trial_ends_at`).
+2. ~~**Bring back the reverse trial:** 7 days of Scholar on signup, no card.~~
+   **Done 2026-07-28, reversed 2026-08-07.** Both the reverse trial and the
+   Scholar/Max checkout trial are now removed; there is no trial in the product.
+   Access is paid or free. See `20260807_remove_trials.sql`.
 3. **Rewrite the hero to lead with typing.** "Type or photograph your answer —
    marked against the real mark scheme, in your margins." One line, and it
    unblocks every desktop visitor.

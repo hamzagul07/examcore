@@ -40,7 +40,7 @@ import { useCourseProgress } from '@/components/courses/CourseProgressClient'
 import { appendMarkReturn } from '@/lib/courses/format-session'
 import { buildSignInHref } from '@/lib/auth-redirect'
 import { LessonUpsell } from '@/components/billing/LessonUpsell'
-import { trialDaysLeft, type EffectiveAccess } from '@/lib/billing/access'
+import type { EffectiveAccess } from '@/lib/billing/access'
 import { INTERACTIVE_DIAGRAMS_FREE, QUICK_CHECK_FREE } from '@/lib/billing/features'
 import {
   jumpTo,
@@ -66,7 +66,6 @@ type Props = {
   signedIn?: boolean
   /** Effective access level; undefined while loading (renders full content for SEO). */
   access?: EffectiveAccess
-  trialEndsAt?: string | null
   /** URL prefix for course links — '/courses' (Cambridge) or '/ib/courses' (IB). */
   basePath?: string
   /** First breadcrumb crumb — defaults to the Cambridge "Courses" hub. */
@@ -83,7 +82,6 @@ export function CourseLessonPage({
   paperQuery,
   signedIn,
   access,
-  trialEndsAt,
   basePath = '/courses',
   coursesCrumb = { label: 'Courses', href: '/courses' },
   community,
@@ -99,7 +97,6 @@ export function CourseLessonPage({
   // Quick check is free for everyone (see QUICK_CHECK_FREE): zero marginal cost,
   // and it is the only block that asks a free reader to produce rather than read.
   const quizLocked = locked && !QUICK_CHECK_FREE
-  const trialDays = access === 'trial' ? trialDaysLeft(trialEndsAt) : 0
   const acc = accentCssVar(subjectAcc)
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -477,25 +474,6 @@ export function CourseLessonPage({
           ]}
         />
       </div>
-
-      {access === 'trial' && trialDays > 0 ? (
-        <div className="pg">
-          <div className="lesson-trial-banner" role="status">
-            <span className="lesson-trial-spark mono" aria-hidden>
-              TRIAL
-            </span>
-            <span className="lesson-trial-text">
-              <strong>
-                {trialDays} {trialDays === 1 ? 'day' : 'days'} of full access left
-              </strong>{' '}
-              — diagrams, practice &amp; marking are all unlocked.
-            </span>
-            <Link className="lesson-trial-link" href="/pricing">
-              Keep Pro →
-            </Link>
-          </div>
-        </div>
-      ) : null}
 
       <div className="lesson-stage" aria-hidden />
       <header className="lesson-hero pg">

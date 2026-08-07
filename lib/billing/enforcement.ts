@@ -58,7 +58,6 @@ export type MarkAllowance = QuotaAllowance & { marks_used: number }
 export type BillingSummary = {
   tier: SubscriptionTier
   access: EffectiveAccess
-  trial_ends_at?: string | null
   status: SubscriptionStatus
   credit_balance: number
   period_resets_at?: string
@@ -69,10 +68,9 @@ export type BillingSummary = {
 
 type BillingContext = {
   tier: SubscriptionTier
-  /** Tier whose caps apply (trial → scholar). */
+  /** Tier whose caps apply. */
   cap_tier: SubscriptionTier
   access: EffectiveAccess
-  trial_ends_at: string | null
   status: SubscriptionStatus
   credit_balance: number
   window: ReturnType<typeof currentPeriodWindow>
@@ -86,9 +84,7 @@ async function loadBillingContext(
   const [{ data: sub }, { data: credits }] = await Promise.all([
     supabase
       .from('user_subscriptions')
-      .select(
-        'tier, status, current_period_start, current_period_end, trial_ends_at'
-      )
+      .select('tier, status, current_period_start, current_period_end')
       .eq('user_id', userId)
       .maybeSingle(),
     supabase.from('user_credits').select('balance').eq('user_id', userId).maybeSingle(),
@@ -96,18 +92,14 @@ async function loadBillingContext(
 
   const tier = (sub?.tier ?? 'free') as SubscriptionTier
   const status = (sub?.status ?? 'active') as SubscriptionStatus
-  const trial_ends_at = (sub?.trial_ends_at ?? null) as string | null
-  const access = effectiveAccess({ tier, status, trialEndsAt: trial_ends_at })
+  const access = effectiveAccess({ tier, status })
   // Caps come from the ACTUAL paid tier now that Pro/Scholar/Max are distinct
-  // (student=Pro, scholar=Scholar, mastery=Max). Trial gets Scholar-level caps;
-  // free gets free caps.
-  const cap_tier: SubscriptionTier =
-    access === 'free' ? 'free' : access === 'trial' ? 'scholar' : tier
+  // (student=Pro, scholar=Scholar, mastery=Max); free gets free caps.
+  const cap_tier: SubscriptionTier = access === 'free' ? 'free' : tier
   return {
     tier,
     cap_tier,
     access,
-    trial_ends_at,
     status,
     credit_balance: credits?.balance ?? 0,
     window: currentPeriodWindow({
@@ -255,7 +247,6 @@ export async function computeBillingSummary(
   return {
     tier: ctx.tier,
     access: ctx.access,
-    trial_ends_at: ctx.trial_ends_at,
     status: ctx.status,
     credit_balance: ctx.credit_balance,
     period_resets_at: ctx.window.end ?? undefined,
@@ -656,8 +647,7 @@ export function quotaExceededBody(allowance: MarkAllowance | QuotaAllowance) {
     error: 'mark_quota_exceeded' as const,
     reason: allowance.reason,
     tier: allowance.tier,
-    // Reported rather than left for the client to reconstruct from `tier` —
-    // a reverse-trial user's tier is 'free' but their cap is not the free one.
+    // Reported rather than left for the client to reconstruct from `tier`.
     cap: allowance.cap,
     period_resets_at: allowance.period_resets_at ?? null,
     credit_balance: allowance.credit_balance,

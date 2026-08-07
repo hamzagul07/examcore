@@ -23,7 +23,6 @@ export async function GET() {
     signedIn: true,
     tier: summary.tier,
     access: summary.access,
-    trial_ends_at: summary.trial_ends_at ?? null,
     status: summary.status,
     credit_balance: summary.credit_balance,
     period_resets_at: summary.period_resets_at ?? null,

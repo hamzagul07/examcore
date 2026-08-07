@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams, useRouter, useSearchParams } from 'next/navigation'
 import { BookOpen, Users, Check, AlertCircle } from 'lucide-react'
 import { buildSignInHref, buildSignUpHref } from '@/lib/auth-redirect'
 import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
@@ -13,15 +13,50 @@ interface ClassroomPreview {
   studentCount: number
 }
 
+/** Shown while the invite loads, and as the Suspense fallback below. */
+function JoinSkeleton() {
+  return (
+    <div
+      className="ms-join-card ec-card p-6 text-center sm:p-8"
+      aria-busy
+      aria-label="Loading invitation"
+    >
+      <SkeletonBlock className="mx-auto mb-4 h-16 w-16 rounded-2xl" />
+      <SkeletonBlock className="mx-auto mb-3 h-8 w-56 max-w-full" />
+      <SkeletonLine className="mx-auto mb-6 h-4 w-72 max-w-full" />
+      <SkeletonBlock className="mx-auto h-12 w-full max-w-xs" />
+    </div>
+  )
+}
+
+/**
+ * `useSearchParams` client-side renders everything up to the nearest Suspense
+ * boundary, so the boundary is declared here rather than left to the framework.
+ */
 export default function JoinClassroomPage() {
+  return (
+    <Suspense fallback={<JoinSkeleton />}>
+      <JoinClassroom />
+    </Suspense>
+  )
+}
+
+function JoinClassroom() {
   const { code } = useParams<{ code: string }>()
   const router = useRouter()
+  const searchParams = useSearchParams()
+  // Set on the post-auth return leg only (see joinPath below). A student who
+  // signed up *in order to* join should not have to find and press the button a
+  // second time — that round trip is where an invited student silently fails to
+  // end up on the roster.
+  const autoJoin = searchParams.get('auto') === '1'
   const [classroom, setClassroom] = useState<ClassroomPreview | null>(null)
   const [loading, setLoading] = useState(true)
   const [joining, setJoining] = useState(false)
   const [joined, setJoined] = useState(false)
   const [error, setError] = useState('')
   const [needsAuth, setNeedsAuth] = useState(false)
+  const autoJoinedRef = useRef(false)
 
   useEffect(() => {
     const normalizedCode = (typeof code === 'string' ? code : '').trim()
@@ -62,33 +97,52 @@ export default function JoinClassroomPage() {
     load()
   }, [code])
 
-  async function joinClassroom() {
+  const joinClassroom = useCallback(async () => {
     setJoining(true)
     setError('')
 
-    const res = await fetch('/api/classrooms/join', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ invite_code: code }),
-    })
-    const data = await res.json()
+    try {
+      const res = await fetch('/api/classrooms/join', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ invite_code: code }),
+      })
+      const data = await res.json()
 
-    if (data.success) {
-      setJoined(true)
-      setTimeout(() => router.push('/dashboard'), 1800)
-    } else {
-      setError(data.error || 'Failed to join')
+      if (data.success) {
+        setJoined(true)
+        setTimeout(() => router.push('/dashboard'), 1800)
+      } else {
+        setError(data.error || 'Failed to join')
+      }
+    } catch {
+      // A dropped request must leave the button usable rather than stuck on
+      // "Joining…" — a student in a lesson gets one attempt at this.
+      setError('Could not reach the server. Check your connection and try again.')
+    } finally {
+      setJoining(false)
     }
-    setJoining(false)
-  }
+  }, [code, router])
 
-  if (loading) {
+  // Complete the join automatically once the student is back from signing up.
+  useEffect(() => {
+    if (!autoJoin || autoJoinedRef.current) return
+    if (loading || needsAuth || joined || !classroom) return
+    autoJoinedRef.current = true
+    void joinClassroom()
+  }, [autoJoin, loading, needsAuth, joined, classroom, joinClassroom])
+
+  if (loading) return <JoinSkeleton />
+
+  // The auto-join leg should read as one continuous step, not as a form that
+  // reappears and submits itself.
+  if (autoJoin && joining && !joined) {
     return (
-      <div className="ms-join-card ec-card p-6 text-center sm:p-8" aria-busy aria-label="Loading invitation">
-        <SkeletonBlock className="mx-auto mb-4 h-16 w-16 rounded-2xl" />
-        <SkeletonBlock className="mx-auto mb-3 h-8 w-56 max-w-full" />
-        <SkeletonLine className="mx-auto mb-6 h-4 w-72 max-w-full" />
-        <SkeletonBlock className="mx-auto h-12 w-full max-w-xs" />
+      <div className="ms-join-card ec-card p-6 text-center sm:p-8" aria-busy>
+        <BookOpen className="mx-auto mb-4 h-16 w-16 ec-text-brand" />
+        <h2 className="mb-2 text-2xl font-bold text-[var(--ec-text-primary)] sm:text-3xl">
+          Adding you to {classroom?.name ?? 'the class'}…
+        </h2>
       </div>
     )
   }
@@ -129,7 +183,9 @@ export default function JoinClassroomPage() {
     return null
   }
 
-  const joinPath = `/join/${code}`
+  // `auto=1` so the join completes on arrival back here, rather than asking a
+  // student who has just signed up to press Join a second time.
+  const joinPath = `/join/${code}?auto=1`
   const signUpHref = buildSignUpHref(joinPath)
   const signInHref = buildSignInHref(joinPath)
 

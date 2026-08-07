@@ -19,6 +19,13 @@ export interface UserProfile {
   role: UserRole
   email_exam_reminders?: boolean
   email_product_updates?: boolean
+  /**
+   * Set only by the service role; grants the free teacher allowance. Distinct
+   * from `role`, which merely selects the teacher UI and is chosen by the user
+   * during onboarding — see lib/billing/access.ts.
+   */
+  teacher_verified_at?: string | null
+  teacher_verified_reason?: string | null
   created_at?: string
   updated_at?: string
 }
@@ -41,6 +48,63 @@ export interface Classroom {
   subject: string
   created_at: string
   updated_at: string
+}
+
+/** One browsing session's first-touch attribution. Service-role only. */
+export interface VisitSession {
+  session_id: string
+  first_seen_at: string
+  last_seen_at: string
+  landing_path: string | null
+  referrer: string | null
+  referrer_host: string | null
+  utm_source: string | null
+  utm_medium: string | null
+  utm_campaign: string | null
+  utm_content: string | null
+  utm_term: string | null
+  /** 'organic' | 'ai-assistant' | 'social' | 'school' | 'referral' | 'email' | 'paid' | 'direct' */
+  channel: string
+  user_id: string | null
+  converted_at: string | null
+  pageviews: number
+}
+
+/** A school being approached in the teacher-outreach campaign. Service-role only. */
+export interface OutreachTarget {
+  id: string
+  school: string
+  slug: string
+  country: string | null
+  board: string | null
+  subject: string | null
+  contact_name: string | null
+  contact_email: string | null
+  contact_role: string | null
+  website: string | null
+  status:
+    | 'queued'
+    | 'sent'
+    | 'bounced'
+    | 'replied'
+    | 'trialing'
+    | 'signed_up'
+    | 'linked'
+    | 'declined'
+  sent_at: string | null
+  replied_at: string | null
+  linked_at: string | null
+  linked_url: string | null
+  notes: string | null
+  created_at: string
+  updated_at: string
+}
+
+/** Schools on non-education TLDs, so their referrals reach the school channel. */
+export interface SchoolHost {
+  host: string
+  note: string | null
+  created_at: string
 }
 
 export interface ClassroomMembership {

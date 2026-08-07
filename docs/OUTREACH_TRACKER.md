@@ -1,53 +1,56 @@
-# Outreach tracker � external listicle mentions
+# Outreach tracker — moved into the database
 
-Goal: **10 live backlinks** from independent education sites (school resource pages, student blogs, newsletters, directories).
+This file used to be a markdown table of backlink targets. It sat at 0/10 for a
+month, which is the predictable failure of tracking a campaign in a file: it
+cannot tell you which schools replied, which produced signups, which are overdue
+a follow-up, or whether any of it moved traffic. So it stopped being updated, and
+an un-updated tracker is worse than none — it looks like a record.
 
-Copy-paste blurbs: [OUTREACH_LISTICLE.md](./OUTREACH_LISTICLE.md) � **Directory forms:** [DIRECTORY_SUBMISSIONS.md](./DIRECTORY_SUBMISSIONS.md)
+The list now lives in the `outreach_targets` table and is driven from the CLI.
 
----
+```bash
+pnpm outreach import targets.csv    # school,country,board,subject,contact_name,contact_email,contact_role,website
+pnpm outreach links [board]         # per-school links to paste into the emails
+pnpm outreach sent <slug>           # mark as sent
+pnpm outreach status <slug> linked https://school.example/revision
+pnpm outreach funnel                # statuses, reply rate, and real clicks per school
+pnpm outreach followups             # sent 7+ days ago, still silent
+```
 
-## Progress
+## Why it is wired this way
 
-| # | Target | Action | Date | Live? | Live URL | Notes |
-|---|--------|--------|------|-------|----------|-------|
-| 1 | [Indie Hackers](https://www.indiehackers.com/products) | Submit product | | ? | | EdTech / exam prep angle |
-| 2 | [BetaList](https://betalist.com/submit) | Submit startup | | ? | | Free IB + Cambridge courses hook |
-| 3 | [AlternativeTo � Save My Exams](https://alternativeto.net/software/save-my-exams/) | Suggest alternative | | ? | | Honest comparison, link /compare |
-| 4 | r/IBO resource / wiki thread | [REDDIT_BARNACLE_COMMENTS.md](./REDDIT_BARNACLE_COMMENTS.md) | | ? | | Use barnacle UTM from BARNACLE_SEO_PLAYBOOK |
-| 5 | r/alevel resources thread | [REDDIT_BARNACLE_COMMENTS.md](./REDDIT_BARNACLE_COMMENTS.md) | | ? | | Link /mark + maths demo blog |
-| 6 | r/igcse resources thread | [REDDIT_BARNACLE_COMMENTS.md](./REDDIT_BARNACLE_COMMENTS.md) | | ? | | |
-| 7 | Local sixth-form / IB coordinator | [OUTREACH_DM_EMAILS.md](./OUTREACH_DM_EMAILS.md) row 7 | | ? | | 1 school you know |
-| 8 | Independent tutor (Cambridge) | [OUTREACH_DM_EMAILS.md](./OUTREACH_DM_EMAILS.md) row 8 | | ? | | |
-| 9 | Student Notion template creator (IB/Cambridge) | [OUTREACH_DM_EMAILS.md](./OUTREACH_DM_EMAILS.md) row 9 | | ? | | Search Twitter/TikTok #ibdp |
-| 10 | Education Substack / newsletter | [OUTREACH_DM_EMAILS.md](./OUTREACH_DM_EMAILS.md) row 10 | | ? | | "Second-pass marking" topic |
+- Every target gets `utm_source=school-<slug>`. `classify_channel()` routes
+  anything matching `school-%` to the **school** channel, so a click on an
+  outreach link is attributed to the school it came from with no further work.
+  `pnpm outreach funnel` prints those clicks next to the statuses, so the table
+  can be checked against reality rather than trusted.
+- `import` also records each school's website in `school_hosts`. School
+  detection is education-TLD only (`.sch.uk`, `.ac.uk`, `.edu`, …) because
+  matching on the words *school*/*college*/*academy* classified khanacademy.org
+  and a news site as schools and inflated the number the campaign is judged on.
+  The allowlist is how a school on a vanity domain (`harrowschool.org.uk`) still
+  counts. Past visits are recomputed on import.
+- The link a school puts on its **own** resources page carries no UTM at all —
+  see the copy-paste kit on `/for-teachers`. A tagged link is a campaign; a clean
+  canonical link is a citation and passes its full weight to the domain, which is
+  the entire reason for asking. Those arrive with a school referrer and are
+  attributed by host instead.
 
-**Live count:** 0 / 10
+## Sourcing the list
 
----
+`outreach` deliberately does not generate targets. School contact details come
+from the public directories — the IB World School directory and the Cambridge
+school finder. Do not invent addresses that look plausible: they bounce, and a
+burned sending domain is not recoverable inside the September window.
 
-## Quick pitches by target type
+The relevant statuses are `linked` (their site now links here — the outcome the
+whole campaign exists to produce) and `signed_up`. Reply rate is a leading
+indicator; neither of those two is.
 
-| Type | Link to send | One line |
-|------|--------------|----------|
-| IB students | `/ib/courses` + `/blog/markscheme-free-ib-courses-demo` | Free IB Diploma courses, no paywall |
-| Cambridge students | `/mark` + maths demo blog | Mark handwriting against real schemes |
-| Teachers | `/for-teachers` + teachers demo blog | Classrooms + blindspot analytics |
-| vs Save My Exams | `/compare` + vs SME demo blog | Notes vs second-pass marking |
-| Press / AI citation | `/research` + Wikidata Q140455387 | Citable facts |
+## Still current
 
----
-
-## When a link goes live
-
-1. Paste the URL in the table and check **Live?**
-2. Optional: mention in Exam Room or a social post
-3. Re-test Perplexity monthly ([ai-visibility-checklist.md](./generated/ai-visibility-checklist.md))
-
----
-
-## Link quality rules
-
-- Prefer `.edu`, school domains, established student resource sites
-- Avoid paid link farms
-- Anchor text: **MarkScheme** + topic (e.g. "mark IB past papers")
-- Deep-link to `/mark` or a relevant blog post
+- [OUTREACH_DM_EMAILS.md](./OUTREACH_DM_EMAILS.md) — the message templates
+- [OUTREACH_LISTICLE.md](./OUTREACH_LISTICLE.md) — blurbs for directories
+- [DIRECTORY_SUBMISSIONS.md](./DIRECTORY_SUBMISSIONS.md) — directory forms.
+  Worth knowing these are mostly nofollow and pass no authority; they are a
+  discovery play, not a backlink one.

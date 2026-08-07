@@ -2,6 +2,7 @@
 
 import { Copy, Link2, Check } from 'lucide-react'
 import { useState } from 'react'
+import { formatInviteCode } from '@/lib/teacher/invite-code'
 
 interface InviteCardProps {
   classroom: {
@@ -17,6 +18,10 @@ export function InviteCard({ classroom }: InviteCardProps) {
     typeof window !== 'undefined'
       ? `${window.location.origin}/join/${classroom.invite_code}`
       : ''
+
+  // Grouped for reading aloud; the hyphen is cosmetic and the join form strips
+  // it, so a student who types what they see still gets in.
+  const displayCode = formatInviteCode(classroom.invite_code)
 
   function copyCode() {
     navigator.clipboard.writeText(classroom.invite_code)
@@ -37,7 +42,7 @@ export function InviteCard({ classroom }: InviteCardProps) {
           <div className="ec-label-tech mb-3">INVITE STUDENTS</div>
           <div className="flex items-center gap-3">
             <code className="font-mono text-4xl font-bold tracking-widest ec-text-brand">
-              {classroom.invite_code}
+              {displayCode}
             </code>
             <button
               type="button"

@@ -3,15 +3,21 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { BookOpen, ArrowRight } from 'lucide-react'
+import { isValidInviteCode, normalizeInviteCode } from '@/lib/teacher/invite-code'
 
 export default function JoinPage() {
   const router = useRouter()
   const [code, setCode] = useState('')
 
+  // Normalised here as well as at the route, so the student is sent to a URL
+  // that will resolve rather than to a 'code not found' page for a code they
+  // typed exactly as it appeared on the board.
+  const normalized = normalizeInviteCode(code)
+
   function submit(e: React.FormEvent) {
     e.preventDefault()
-    if (code.trim()) {
-      router.push(`/join/${code.trim().toUpperCase()}`)
+    if (isValidInviteCode(normalized)) {
+      router.push(`/join/${normalized}`)
     }
   }
 
@@ -31,20 +37,23 @@ export default function JoinPage() {
         <input
           type="text"
           value={code}
-          onChange={(e) =>
-            setCode(e.target.value.toUpperCase().replace(/\s/g, ''))
-          }
-          placeholder="e.g. A3F9B2D1"
-          maxLength={8}
+          onChange={(e) => setCode(e.target.value.toUpperCase())}
+          placeholder="e.g. ABC-123"
+          // Room for the display hyphen and for the older 8-character codes
+          // still held by classrooms created before the format changed.
+          maxLength={13}
           className="ms-join-code-input ec-input mb-4 text-center font-mono text-xl tracking-widest sm:text-2xl"
           autoFocus
           autoComplete="off"
           spellCheck={false}
+          // A code is typed once, in a hurry, on a phone.
+          inputMode="text"
+          autoCapitalize="characters"
         />
         <button
           type="submit"
           className="ec-btn-primary inline-flex w-full min-h-[48px] items-center justify-center gap-2"
-          disabled={code.length < 4}
+          disabled={!isValidInviteCode(normalized)}
         >
           Continue <ArrowRight className="h-5 w-5" />
         </button>

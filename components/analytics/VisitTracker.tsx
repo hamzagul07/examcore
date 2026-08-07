@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
+import { firstTouch } from '@/lib/analytics/attribution'
 
 /**
  * First-party page-visit tracker. Measures (approximate, visibility-aware) active
@@ -10,6 +11,11 @@ import { usePathname } from 'next/navigation'
  * from the first landing rather than only from signup onwards. Web timing is
  * inherently approximate (backgrounded/closed tabs, lost beacons) — treat it as
  * an estimate.
+ *
+ * Each beacon carries the session's *first touch* (see lib/analytics/attribution)
+ * rather than the previously-viewed route. It used to send the latter, which
+ * meant every visit in the table looked like it came from nowhere and no channel
+ * could ever be judged.
  */
 const MIN_DWELL_MS = 1000 // ignore sub-second glances
 const SESSION_KEY = 'ms_sid'
@@ -39,11 +45,22 @@ function sessionId(): string | null {
   }
 }
 
-function beacon(path: string, dwellMs: number, referrer: string) {
+function beacon(path: string, dwellMs: number) {
   if (dwellMs < MIN_DWELL_MS) return
   const sid = sessionId()
   if (!sid) return
-  const body = JSON.stringify({ path, dwellMs, referrer, sessionId: sid })
+  const attr = firstTouch()
+  const body = JSON.stringify({
+    path,
+    dwellMs,
+    sessionId: sid,
+    referrer: attr.referrer,
+    utmSource: attr.utmSource,
+    utmMedium: attr.utmMedium,
+    utmCampaign: attr.utmCampaign,
+    utmContent: attr.utmContent,
+    utmTerm: attr.utmTerm,
+  })
   try {
     if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
       navigator.sendBeacon('/api/track', new Blob([body], { type: 'application/json' }))
@@ -63,11 +80,16 @@ function beacon(path: string, dwellMs: number, referrer: string) {
 export function VisitTracker() {
   const pathname = usePathname()
   const pathRef = useRef(pathname)
-  const referrerRef = useRef('')
   // Accumulated active ms for the current path; `visibleSince` is the start of the
   // current visible segment (null while the tab is hidden/paused).
   const activeRef = useRef(0)
   const visibleSinceRef = useRef<number | null>(Date.now())
+
+  // Capture first-touch on mount, before any client-side navigation can replace
+  // document.referrer with an internal route or strip the UTM query string.
+  useEffect(() => {
+    firstTouch()
+  }, [])
 
   // Fold the currently-visible segment into the accumulator and pause the clock.
   const accumulate = () => {
@@ -79,7 +101,7 @@ export function VisitTracker() {
 
   const flush = (path: string) => {
     accumulate()
-    beacon(path, activeRef.current, referrerRef.current)
+    beacon(path, activeRef.current)
     activeRef.current = 0
     visibleSinceRef.current = Date.now()
   }
@@ -88,7 +110,6 @@ export function VisitTracker() {
   useEffect(() => {
     if (pathRef.current !== pathname) {
       flush(pathRef.current)
-      referrerRef.current = pathRef.current
       pathRef.current = pathname
       activeRef.current = 0
       visibleSinceRef.current = Date.now()

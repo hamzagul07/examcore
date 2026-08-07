@@ -18,6 +18,7 @@ import {
 import {
   ACTIVE_STATUSES,
   effectiveAccess,
+  isVerifiedTeacher,
   type EffectiveAccess,
 } from './access'
 import type { SubscriptionTier, SubscriptionStatus } from '@/lib/database.types'
@@ -36,6 +37,11 @@ export type AllowanceReason =
   | 'omni_cap'
   | 'no_credits'
   | 'subscription_inactive'
+  // A granted teacher seat that has run out for the month. Distinct from
+  // `free_tier_cap` so a teacher is never told they have used up 5 free marks
+  // and shown an upgrade page for a plan smaller than the seat they already
+  // have.
+  | 'teacher_seat_cap'
 
 export type QuotaAllowance = {
   allowed: boolean
@@ -50,6 +56,8 @@ export type QuotaAllowance = {
   period_resets_at?: string
   warning: boolean
   enforcement_mode: EnforcementMode
+  /** True when the allowance came from a granted teacher seat, not a purchase. */
+  teacher_seat: boolean
 }
 
 /** Mark-specific alias — `marks_used` mirrors `used` for existing callers. */
@@ -72,6 +80,8 @@ type BillingContext = {
   cap_tier: SubscriptionTier
   access: EffectiveAccess
   status: SubscriptionStatus
+  /** Teacher seats are given away and metered on their own, larger allowance. */
+  is_teacher: boolean
   credit_balance: number
   window: ReturnType<typeof currentPeriodWindow>
   enforcement_mode: EnforcementMode
@@ -81,18 +91,27 @@ async function loadBillingContext(
   userId: string,
   supabase: SupabaseClient
 ): Promise<BillingContext> {
-  const [{ data: sub }, { data: credits }] = await Promise.all([
+  const [{ data: sub }, { data: credits }, { data: profile }] = await Promise.all([
     supabase
       .from('user_subscriptions')
       .select('tier, status, current_period_start, current_period_end')
       .eq('user_id', userId)
       .maybeSingle(),
     supabase.from('user_credits').select('balance').eq('user_id', userId).maybeSingle(),
+    // Fetched alongside the others rather than in a follow-up query: this runs
+    // on the gate for every mark, so it must not add a round trip.
+    supabase
+      .from('user_profiles')
+      .select('teacher_verified_at')
+      .eq('id', userId)
+      .maybeSingle(),
   ])
 
   const tier = (sub?.tier ?? 'free') as SubscriptionTier
   const status = (sub?.status ?? 'active') as SubscriptionStatus
-  const access = effectiveAccess({ tier, status })
+  // The granted seat, not the self-declared `role` column.
+  const is_teacher = isVerifiedTeacher(profile?.teacher_verified_at)
+  const access = effectiveAccess({ tier, status, teacherVerified: is_teacher })
   // Caps come from the ACTUAL paid tier now that Pro/Scholar/Max are distinct
   // (student=Pro, scholar=Scholar, mastery=Max); free gets free caps.
   const cap_tier: SubscriptionTier = access === 'free' ? 'free' : tier
@@ -101,6 +120,7 @@ async function loadBillingContext(
     cap_tier,
     access,
     status,
+    is_teacher,
     credit_balance: credits?.balance ?? 0,
     window: currentPeriodWindow({
       tier,
@@ -139,7 +159,7 @@ function buildQuotaAllowance(
     omni?: boolean
   }
 ): QuotaAllowance {
-  const { tier, status, credit_balance, window, enforcement_mode } = ctx
+  const { tier, status, credit_balance, window, enforcement_mode, is_teacher } = ctx
   const remaining = Math.max(0, opts.cap - opts.used)
   const subscriptionInactive = tier !== 'free' && !ACTIVE_STATUSES.includes(status)
   const atCap = opts.used >= opts.cap
@@ -151,7 +171,13 @@ function buildQuotaAllowance(
     reason = 'subscription_inactive'
   } else if (atCap && credit_balance <= 0) {
     would_block = true
-    reason = opts.omni ? 'omni_cap' : tier === 'free' ? 'free_tier_cap' : 'tier_cap'
+    reason = opts.omni
+      ? 'omni_cap'
+      : is_teacher
+        ? 'teacher_seat_cap'
+        : tier === 'free'
+          ? 'free_tier_cap'
+          : 'tier_cap'
   }
 
   const warning = opts.cap > 0 && opts.used >= 0.8 * opts.cap
@@ -171,6 +197,7 @@ function buildQuotaAllowance(
     period_resets_at: window.end ?? undefined,
     warning,
     enforcement_mode,
+    teacher_seat: is_teacher,
   }
 }
 
@@ -191,7 +218,10 @@ async function computeQuestionAllowanceFromContext(
     ctx.window.start,
     ctx.window.end
   )
-  return buildQuotaAllowance(ctx, { used, cap: capForAccess(ctx.access, ctx.cap_tier) })
+  return buildQuotaAllowance(ctx, {
+    used,
+    cap: capForAccess(ctx.access, ctx.cap_tier, ctx.is_teacher),
+  })
 }
 
 async function computeOmniAllowanceFromContext(
@@ -209,7 +239,7 @@ async function computeOmniAllowanceFromContext(
   )
   return buildQuotaAllowance(ctx, {
     used,
-    cap: omniCapForAccess(ctx.access, ctx.cap_tier),
+    cap: omniCapForAccess(ctx.access, ctx.cap_tier, ctx.is_teacher),
     omni: true,
   })
 }
@@ -414,6 +444,7 @@ function reservationAllowance(
     period_resets_at: ctx.window.end ?? undefined,
     warning,
     enforcement_mode: ctx.enforcement_mode,
+    teacher_seat: ctx.is_teacher,
   })
 }
 
@@ -433,7 +464,7 @@ export async function reserveMarkUsage(
   supabase: SupabaseClient = createServiceClient()
 ): Promise<MarkReservation> {
   const ctx = await loadBillingContext(userId, supabase)
-  const cap = capForAccess(ctx.access, ctx.cap_tier)
+  const cap = capForAccess(ctx.access, ctx.cap_tier, ctx.is_teacher)
   const subscriptionInactive =
     ctx.tier !== 'free' && !ACTIVE_STATUSES.includes(ctx.status)
 
@@ -499,7 +530,11 @@ export async function reserveMarkUsage(
         viaCredit = true
       } else {
         wouldBlock = true
-        reason = ctx.tier === 'free' ? 'free_tier_cap' : 'tier_cap'
+        reason = ctx.is_teacher
+          ? 'teacher_seat_cap'
+          : ctx.tier === 'free'
+            ? 'free_tier_cap'
+            : 'tier_cap'
       }
     }
   }
@@ -651,7 +686,9 @@ export function quotaExceededBody(allowance: MarkAllowance | QuotaAllowance) {
     cap: allowance.cap,
     period_resets_at: allowance.period_resets_at ?? null,
     credit_balance: allowance.credit_balance,
-    upgrade_url: '/pricing',
+    // Selling a teacher a plan smaller than the seat they were given is both
+    // wrong and insulting; they are asked to get in touch instead.
+    upgrade_url: allowance.teacher_seat ? '/contact' : '/pricing',
   }
 }
 
@@ -663,7 +700,7 @@ export function omniQuotaExceededBody(allowance: QuotaAllowance) {
     cap: allowance.cap,
     period_resets_at: allowance.period_resets_at ?? null,
     credit_balance: allowance.credit_balance,
-    upgrade_url: '/pricing',
+    upgrade_url: allowance.teacher_seat ? '/contact' : '/pricing',
   }
 }
 

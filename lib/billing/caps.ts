@@ -20,6 +20,37 @@ export const TIER_OMNI_CAPS: Record<SubscriptionTier, number> = {
   mastery: 300, // Max
 }
 
+/**
+ * Teacher caps.
+ *
+ * A teacher seat is a distribution cost, not a revenue line: the teacher who
+ * puts this in front of a class is worth far more than the ~$11 they would
+ * otherwise pay, and a teacher who hits a wall halfway through marking a class
+ * set will not come back. So the cap is set high enough to be invisible during
+ * real use — a set of 30 scripts marked several times a term — while still
+ * being a cap, because marking runs on a paid model and an unbounded allowance
+ * on a compromised account is an unbounded bill.
+ *
+ * Overridable by env so the ceiling can be lifted mid-campaign without a code
+ * change, matching how ENFORCEMENT_MODE is read.
+ */
+const TEACHER_MARK_CAP_DEFAULT = 300
+const TEACHER_OMNI_CAP_DEFAULT = 400
+
+/** Positive integers only; anything else falls back to the default. */
+function capFromEnv(raw: string | undefined, fallback: number): number {
+  const n = Number(raw)
+  return Number.isInteger(n) && n > 0 ? n : fallback
+}
+
+export function teacherMarkCap(): number {
+  return capFromEnv(process.env.TEACHER_MARK_CAP, TEACHER_MARK_CAP_DEFAULT)
+}
+
+export function teacherOmniCap(): number {
+  return capFromEnv(process.env.TEACHER_OMNI_CAP, TEACHER_OMNI_CAP_DEFAULT)
+}
+
 export function capForTier(tier: SubscriptionTier): number {
   return TIER_MONTHLY_CAPS[tier] ?? TIER_MONTHLY_CAPS.free
 }
@@ -31,19 +62,26 @@ export function omniCapForTier(tier: SubscriptionTier): number {
 /**
  * Cap for an effective access level. Access now maps straight onto a tier —
  * kept as its own function because every caller gates on access, not tier.
+ *
+ * A teacher gets the teacher cap unless they are paying for something larger;
+ * upgrading must never reduce what someone already has.
  */
 export function capForAccess(
   access: EffectiveAccess,
-  capTier: SubscriptionTier
+  capTier: SubscriptionTier,
+  isTeacher = false
 ): number {
-  return access === 'free' ? capForTier('free') : capForTier(capTier)
+  const base = access === 'free' ? capForTier('free') : capForTier(capTier)
+  return isTeacher ? Math.max(base, teacherMarkCap()) : base
 }
 
 export function omniCapForAccess(
   access: EffectiveAccess,
-  capTier: SubscriptionTier
+  capTier: SubscriptionTier,
+  isTeacher = false
 ): number {
-  return access === 'free' ? omniCapForTier('free') : omniCapForTier(capTier)
+  const base = access === 'free' ? omniCapForTier('free') : omniCapForTier(capTier)
+  return isTeacher ? Math.max(base, teacherOmniCap()) : base
 }
 
 /** Human label for a question cap. */

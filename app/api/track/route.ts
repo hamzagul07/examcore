@@ -14,6 +14,9 @@ const MAX_BODY_BYTES = 2048
 // keeps junk out of the table now that this endpoint is public.
 const SESSION_ID_RE =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+// UTM values come off a public endpoint, so they are length-capped before they
+// reach the table — an unbounded campaign name is a free write amplifier.
+const MAX_UTM_LEN = 128
 
 const noContent = () => new NextResponse(null, { status: 204 })
 
@@ -40,6 +43,11 @@ export async function POST(req: NextRequest) {
     dwellMs?: unknown
     referrer?: unknown
     sessionId?: unknown
+    utmSource?: unknown
+    utmMedium?: unknown
+    utmCampaign?: unknown
+    utmContent?: unknown
+    utmTerm?: unknown
   }
   try {
     body = JSON.parse(raw)
@@ -68,6 +76,9 @@ export async function POST(req: NextRequest) {
       ? body.referrer.slice(0, 512)
       : null
 
+  const utm = (value: unknown): string | null =>
+    typeof value === 'string' && value ? value.slice(0, MAX_UTM_LEN) : null
+
   // Auth is now optional: a null user is an anonymous visitor, not a reason to
   // discard the event.
   const { user } = await authenticateRouteRequest(req)
@@ -79,6 +90,11 @@ export async function POST(req: NextRequest) {
     p_user_id: user?.id ?? null,
     p_referrer: referrer,
     p_dwell_ms: dwellMs,
+    p_utm_source: utm(body.utmSource),
+    p_utm_medium: utm(body.utmMedium),
+    p_utm_campaign: utm(body.utmCampaign),
+    p_utm_content: utm(body.utmContent),
+    p_utm_term: utm(body.utmTerm),
   })
   if (error) console.error('[track] record failed:', error.message)
 

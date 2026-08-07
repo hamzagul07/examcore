@@ -2,6 +2,7 @@
  * Teacher outreach tracker.
  *
  *   pnpm outreach gias edubasealldata.csv --subject Chemistry --limit 200
+ *   pnpm outreach research --limit 50 --out research.csv
  *   pnpm outreach import targets.csv    # school,country,board,subject,contact_name,contact_email,contact_role,website
  *   pnpm outreach links [board]         # per-school links to paste into the emails
  *   pnpm outreach sent <slug>           # mark as sent (sets sent_at)
@@ -291,6 +292,204 @@ async function main() {
     return
   }
 
+  if (command === 'research') {
+    const {
+      RESEARCH_USER_AGENT,
+      bestCandidate,
+      candidatePaths,
+      extractLinks,
+      isAllowed,
+      parseRobots,
+      rankLinks,
+    } = await import('../lib/outreach/contact-research')
+
+    const flag = (name: string) => {
+      const i = args.indexOf(`--${name}`)
+      return i >= 0 ? args[i + 1] : undefined
+    }
+    const limit = Number(flag('limit') ?? 25)
+    if (!Number.isInteger(limit) || limit <= 0) throw new Error('--limit must be a positive integer')
+    const outPath = flag('out')
+
+    const { data, error } = await service
+      .from('outreach_targets')
+      .select('school, slug, subject, website, contact_email')
+      .not('website', 'is', null)
+      .is('contact_email', null)
+      .order('school')
+      .limit(limit)
+    if (error) throw new Error(error.message)
+
+    const targets = data ?? []
+    if (!targets.length) {
+      console.log('Nothing to research: every target with a website already has an email.')
+      return
+    }
+
+    console.log(
+      `Researching ${targets.length} school(s).\n` +
+        `Each site's robots.txt is read first and obeyed, requests are spaced out, and\n` +
+        `no email addresses are read from any page — this finds the page for you to open.\n`
+    )
+
+    // One request at a time, with a gap. These are small school servers and the
+    // whole point is to be unremarkable in their logs.
+    const MIN_DELAY_MS = 1000
+    const TIMEOUT_MS = 10_000
+    const MAX_PROBES_PER_SCHOOL = 6
+
+    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
+
+    async function get(url: string, signalMs = TIMEOUT_MS) {
+      const controller = new AbortController()
+      const timer = setTimeout(() => controller.abort(), signalMs)
+      try {
+        return await fetch(url, {
+          redirect: 'follow',
+          signal: controller.signal,
+          headers: { 'User-Agent': RESEARCH_USER_AGENT, Accept: 'text/html,*/*' },
+        })
+      } finally {
+        clearTimeout(timer)
+      }
+    }
+
+    const rows: string[] = ['school,slug,subject,website,best_page,note']
+    const esc = (v: string) => (/[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v)
+
+    for (const t of targets) {
+      const site = t.website as string
+      let origin: string
+      try {
+        origin = new URL(site).origin
+      } catch {
+        console.log(`  ${t.school}: unusable website (${site})`)
+        rows.push([esc(t.school as string), t.slug, esc((t.subject as string) ?? ''), esc(site), '', 'bad website'].join(','))
+        continue
+      }
+
+      // A site that will not serve robots.txt is left alone. Treating an
+      // unreadable robots as permission is how a polite crawler becomes a rude
+      // one, and one school's complaint costs more than one school's contact.
+      let rules
+      try {
+        const res = await get(`${origin}/robots.txt`, 6000)
+        rules = res.ok ? parseRobots(await res.text(), RESEARCH_USER_AGENT) : parseRobots('', RESEARCH_USER_AGENT)
+      } catch {
+        console.log(`  ${t.school}: robots.txt unreachable — skipped`)
+        rows.push([esc(t.school as string), t.slug, esc((t.subject as string) ?? ''), esc(site), '', 'robots unreachable'].join(','))
+        continue
+      }
+
+      const delay = Math.max(MIN_DELAY_MS, (rules.crawlDelaySeconds ?? 0) * 1000)
+      const results: { url: string; status: number; title?: string | null }[] = []
+      let probes = 0
+      let blocked = 0
+
+      // Read the school's own navigation first. One request that finds the page
+      // they actually built beats six guesses at pages we imagined — and it is
+      // six fewer requests on a small school server.
+      let suggested: string[] = []
+      if (isAllowed(rules, '/')) {
+        await sleep(delay)
+        probes += 1
+        try {
+          const home = await get(origin)
+          if (home.ok) {
+            const html = (await home.text()).slice(0, 400_000)
+            suggested = rankLinks(extractLinks(html, home.url || origin), t.subject as string | null)
+              .map((l) => l.url)
+          }
+        } catch {
+          // Homepage unreachable — fall through to guessing paths.
+        }
+      }
+
+      for (const url of suggested) {
+        if (probes >= MAX_PROBES_PER_SCHOOL) break
+        const path = new URL(url).pathname
+        if (!isAllowed(rules, path)) {
+          blocked += 1
+          continue
+        }
+        await sleep(delay)
+        probes += 1
+        try {
+          const res = await get(url)
+          let title: string | null = null
+          if (res.ok) {
+            const html = (await res.text()).slice(0, 4000)
+            title = /<title[^>]*>([^<]{0,200})/i.exec(html)?.[1]?.trim() ?? null
+          }
+          results.push({ url: res.url || url, status: res.status, title })
+          if (res.ok) break
+        } catch {
+          // Move on.
+        }
+      }
+
+      // Only guess at paths when the site's own navigation gave nothing usable.
+      for (const path of bestCandidate(results, t.subject as string | null)
+        ? []
+        : candidatePaths(t.subject as string | null)) {
+        if (probes >= MAX_PROBES_PER_SCHOOL) break
+        if (!isAllowed(rules, path)) {
+          blocked += 1
+          continue
+        }
+        await sleep(delay)
+        probes += 1
+        try {
+          const res = await get(`${origin}${path}`)
+          // Only the first chunk is read, and only for the <title>. Page bodies
+          // are not searched for addresses.
+          let title: string | null = null
+          if (res.ok) {
+            const html = (await res.text()).slice(0, 4000)
+            title = /<title[^>]*>([^<]{0,200})/i.exec(html)?.[1]?.trim() ?? null
+          }
+          results.push({ url: res.url || `${origin}${path}`, status: res.status, title })
+          if (res.ok) break
+        } catch {
+          // Timeout or connection refused — move on.
+        }
+      }
+
+      const best = bestCandidate(results, t.subject as string | null)
+      const note = best
+        ? (best.title ?? '').slice(0, 80)
+        : blocked
+          ? `nothing found (${blocked} path(s) disallowed by robots)`
+          : 'nothing found'
+      console.log(`  ${t.school}: ${best ? best.url : note}`)
+      rows.push(
+        [
+          esc(t.school as string),
+          t.slug,
+          esc((t.subject as string) ?? ''),
+          esc(site),
+          esc(best?.url ?? ''),
+          esc(note),
+        ].join(',')
+      )
+    }
+
+    const found = rows.length - 1 - rows.slice(1).filter((r) => r.split(',').slice(-2)[0] === '').length
+    console.log(`\nFound a likely page for ${found} of ${targets.length}.`)
+
+    if (outPath) {
+      const { writeFile } = await import('node:fs/promises')
+      await writeFile(outPath, rows.join('\n') + '\n', 'utf8')
+      console.log(
+        `Wrote ${outPath}. Open each page, find the head of department, and put their\n` +
+          'address in contact_email — then re-import. Names beat generic inboxes.'
+      )
+    } else {
+      console.log('(pass --out research.csv to write the worksheet)')
+    }
+    return
+  }
+
   if (command === 'links') {
     let q = service
       .from('outreach_targets')
@@ -414,7 +613,7 @@ async function main() {
   }
 
   console.error(
-    'Commands: gias <csv> | import <csv> | links [board] | sent <slug> | ' +
+    'Commands: gias <csv> | import <csv> | research | links [board] | sent <slug> | ' +
       'status <slug> <state> [url] | funnel | followups'
   )
   process.exit(1)

@@ -65,7 +65,7 @@ export type CohortGapReport = {
   /** The specific things most students failed to do. */
   mostMissed: MissedPoint[]
   /** Why marks were dropped, by the marker's own classification. */
-  errorBreakdown: { classification: string; count: number }[]
+  errorBreakdown: { classification: string; label: string; count: number }[]
   /** True when there is too little marked work to report on at all. */
   insufficientEvidence: boolean
   /**
@@ -127,6 +127,53 @@ const MIN_POINTS_PER_TYPE = 5
  * entry per mark. Their points are not comparable with M/A/B marks.
  */
 const BANDED_STYLES = new Set(['level_of_response'])
+
+/**
+ * Classifications that describe the *marking*, not the student.
+ *
+ * `marker_error`, `under_marked` and friends are the marker correcting itself
+ * during the second pass. They are real and worth keeping in the data, but a
+ * panel headed "why marks were dropped", shown to a teacher deciding whether to
+ * trust this tool, is the worst possible place for them: they say nothing about
+ * the student and everything about us.
+ */
+const MARKING_PROCESS_CLASSIFICATIONS = new Set([
+  'no_error',
+  'none',
+  'marker_error',
+  'under_marking',
+  'under_marked',
+  'over_marking',
+  'over_marked',
+  'misclassification',
+  'corrected_error',
+  'overturned_first_marker_error',
+  // Restates that the mark was not earned, which the reader already knows.
+  'mark_not_earned',
+])
+
+/** Teacher-facing wording for the classifications that survive. */
+const CLASSIFICATION_LABELS: Record<string, string> = {
+  incomplete: 'Answer incomplete',
+  conceptual: 'Concept misunderstood',
+  arithmetic: 'Arithmetic slip',
+  calculation_error: 'Calculation error',
+  algebraic_sign: 'Sign error',
+  missing_step: 'Working step missing',
+  insufficient_justification: 'Not justified',
+  notation: 'Notation',
+  units: 'Units',
+  rounding: 'Rounding',
+  transcription: 'Copied down wrongly',
+}
+
+/** Falls back to de-snaking an unknown code rather than hiding it. */
+export function classificationLabel(code: string): string {
+  return (
+    CLASSIFICATION_LABELS[code] ??
+    code.replace(/_/g, ' ').replace(/^./, (c) => c.toUpperCase())
+  )
+}
 /** Below this many marked scripts, the report says so instead of reporting. */
 const MIN_SCRIPTS = 3
 
@@ -144,12 +191,80 @@ export function markTypeLabel(code: string): string {
 }
 
 /**
- * Folds a marker note into a comparison key. Notes are generated per script, so
- * two students who made the same omission get near-identical sentences; matching
- * on the normalised form groups them without pretending to do fuzzy clustering.
+ * Folds a marker note into a comparison key.
+ *
+ * Notes are written per script, so two students who made the same omission get
+ * sentences that differ in incidental ways. Exact matching on the raw string —
+ * the first approach — split one miss across five rows in the live corpus:
+ *
+ *   3  No final answer
+ *   2  No final answer for $a$ given
+ *   2  No final answer for a
+ *   2  No final answer for a given
+ *
+ * A teacher reading that sees five small problems instead of one large one,
+ * which is the opposite of what the report is for. Maths delimiters are stripped
+ * (keeping their contents, so `$a$` and `a` agree) along with punctuation and
+ * possessives.
  */
 function noteKey(note: string): string {
-  return note.trim().toLowerCase().replace(/\s+/g, ' ').replace(/[.!?]+$/, '')
+  return note
+    .toLowerCase()
+    // Keep the contents of maths spans, drop the delimiters: `for $a$ given`
+    // and `for a given` are the same instruction to a student.
+    .replace(/\\[()[\]]/g, ' ')
+    .replace(/\$+/g, ' ')
+    .replace(/[’']s\b/g, '')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+/**
+ * Tokens that must match exactly before two notes can be treated as one.
+ *
+ * "Diagram for the first policy is missing" and "Diagram for the second policy
+ * is missing" are ~75% identical by word overlap but are different marks on
+ * different parts of the answer. Merging them would tell a teacher one diagram
+ * was missed when two were.
+ */
+const DISCRIMINATORS = new Set([
+  'first', 'second', 'third', 'fourth', 'fifth', 'sixth',
+  'i', 'ii', 'iii', 'iv', 'v', 'vi',
+  'a', 'b', 'c', 'd',
+])
+
+/**
+ * Words that carry no meaning for matching. Deliberately tiny, and deliberately
+ * excludes negations ("no", "not") — which flip a note's meaning — and anything
+ * in DISCRIMINATORS, since `a` is both an article and a part label.
+ */
+const STOPWORDS = new Set(['is', 'was', 'are', 'were', 'the', 'of', 'been', 'has', 'have'])
+
+function meaningfulTokens(key: string): string[] {
+  return key ? key.split(' ').filter((t) => t && !STOPWORDS.has(t)) : []
+}
+
+function discriminators(tokens: string[]): string {
+  return tokens
+    .filter((t) => DISCRIMINATORS.has(t) || /^\d+$/.test(t))
+    .sort()
+    .join('|')
+}
+
+/**
+ * How much word overlap makes two notes the same miss. Set high, because the
+ * cost of wrongly splitting a miss (a slightly understated row) is much lower
+ * than the cost of wrongly merging two (a teacher reteaches one thing and
+ * misses another).
+ */
+const NOTE_SIMILARITY = 0.8
+
+function jaccard(a: Set<string>, b: Set<string>): number {
+  let shared = 0
+  for (const t of a) if (b.has(t)) shared += 1
+  const union = a.size + b.size - shared
+  return union ? shared / union : 0
 }
 
 export function buildCohortGapReport(
@@ -208,10 +323,10 @@ export function buildCohortGapReport(
         missed.set(key, entry)
       }
 
-      // 'no_error'/'none' describe an earned point; on a dropped mark they carry
-      // no information about why it was dropped, so they are not counted.
-      const classification = point.error_classification?.trim()
-      if (classification && classification !== 'no_error' && classification !== 'none') {
+      // Classifications that describe the marking rather than the student are
+      // dropped here — see MARKING_PROCESS_CLASSIFICATIONS.
+      const classification = point.error_classification?.trim().toLowerCase()
+      if (classification && !MARKING_PROCESS_CLASSIFICATIONS.has(classification)) {
         errors.set(classification, (errors.get(classification) ?? 0) + 1)
       }
     }
@@ -231,18 +346,14 @@ export function buildCohortGapReport(
     .sort((a, b) => a.earnedPct - b.earnedPct || b.points - a.points)
     .slice(0, topMarkTypes)
 
-  const mostMissed: MissedPoint[] = [...missed.values()]
-    .map((m) => ({ note: m.note, occurrences: m.occurrences, students: m.students.size }))
-    .sort(
-      (a, b) =>
-        b.students - a.students ||
-        b.occurrences - a.occurrences ||
-        a.note.localeCompare(b.note)
-    )
-    .slice(0, topMissed)
+  const mostMissed = clusterMissedPoints([...missed.values()]).slice(0, topMissed)
 
   const errorBreakdown = [...errors.entries()]
-    .map(([classification, count]) => ({ classification, count }))
+    .map(([classification, count]) => ({
+      classification,
+      label: classificationLabel(classification),
+      count,
+    }))
     .sort((a, b) => b.count - a.count || a.classification.localeCompare(b.classification))
 
   return {
@@ -257,6 +368,61 @@ export function buildCohortGapReport(
     errorBreakdown,
     insufficientEvidence: scripts < MIN_SCRIPTS,
   }
+}
+
+/**
+ * Merges notes that describe the same miss.
+ *
+ * Greedy single-pass clustering, largest first, so the most common phrasing
+ * becomes the label a teacher reads. Deliberately conservative: two notes merge
+ * only when their word overlap clears NOTE_SIMILARITY *and* they agree on every
+ * ordinal and number, because "the first policy" and "the second policy" are
+ * different marks however similar the sentences are.
+ *
+ * This is approximate, and says so. The alternative — exact string matching —
+ * was measured splitting one miss across five rows on real data.
+ */
+function clusterMissedPoints(
+  raw: { note: string; occurrences: number; students: Set<string> }[]
+): MissedPoint[] {
+  const prepared = raw
+    .map((m) => {
+      const tokens = meaningfulTokens(noteKey(m.note))
+      return { ...m, tokens: new Set(tokens), discriminator: discriminators(tokens) }
+    })
+    // Largest first: the winning cluster keeps its own wording as the label.
+    .sort((a, b) => b.students.size - a.students.size || b.occurrences - a.occurrences)
+
+  const clusters: {
+    note: string
+    occurrences: number
+    students: Set<string>
+    tokens: Set<string>
+    discriminator: string
+  }[] = []
+
+  for (const item of prepared) {
+    const match = clusters.find(
+      (c) =>
+        c.discriminator === item.discriminator &&
+        jaccard(c.tokens, item.tokens) >= NOTE_SIMILARITY
+    )
+    if (match) {
+      match.occurrences += item.occurrences
+      for (const s of item.students) match.students.add(s)
+      continue
+    }
+    clusters.push({ ...item, students: new Set(item.students) })
+  }
+
+  return clusters
+    .map((c) => ({ note: c.note, occurrences: c.occurrences, students: c.students.size }))
+    .sort(
+      (a, b) =>
+        b.students - a.students ||
+        b.occurrences - a.occurrences ||
+        a.note.localeCompare(b.note)
+    )
 }
 
 /**

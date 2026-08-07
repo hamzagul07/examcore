@@ -199,7 +199,7 @@ export default function CohortGapsPage() {
                     key={e.classification}
                     className="rounded-full bg-[var(--ec-surface-raised)] px-3 py-1 text-sm text-[var(--ec-text-secondary)]"
                   >
-                    {e.classification.replace(/_/g, ' ')} · {e.count}
+                    {e.label} · {e.count}
                   </li>
                 ))}
               </ul>

@@ -4,6 +4,7 @@ import {
   headlineGap,
   markTypeCode,
   markTypeLabel,
+  classificationLabel,
   type GapAttempt,
   type MarkPoint,
 } from '@/lib/teacher/cohort-gaps'
@@ -186,6 +187,121 @@ const unmarked = buildCohortGapReport([
 ])
 assert.equal(unmarked.scripts, 1, 'an attempt with no per-point breakdown is not a script here')
 assert.equal(unmarked.marksAvailable, 2, 'and does not inflate the class average')
+
+// --- near-identical notes are one miss ----------------------------------------------
+
+// Measured on the live corpus: exact string matching split a single miss across
+// five rows, so a teacher saw five small problems instead of one large one.
+const variants = buildCohortGapReport([
+  attempt('s1', [pt('A1', false, 'No final answer for $a$ given')]),
+  attempt('s2', [pt('A1', false, 'No final answer for a given')]),
+  attempt('s3', [pt('A1', false, 'No final answer for a given')]),
+])
+assert.equal(variants.mostMissed.length, 1, 'maths delimiters are not a different miss')
+assert.equal(variants.mostMissed[0].students, 3)
+
+const filler = buildCohortGapReport([
+  attempt('s1', [pt('A1', false, 'Final answer missing')]),
+  attempt('s2', [pt('A1', false, 'Final answer is missing')]),
+  attempt('s3', [pt('A1', false, 'The final answer is missing.')]),
+])
+assert.equal(filler.mostMissed.length, 1, '"is"/"the"/punctuation are not a different miss')
+assert.equal(filler.mostMissed[0].students, 3)
+
+// The label a teacher reads is the most common phrasing, not whichever came first.
+const labelled = buildCohortGapReport([
+  attempt('s1', [pt('A1', false, 'Working not shown')]),
+  attempt('s2', [pt('A1', false, 'Working is not shown')]),
+  attempt('s3', [pt('A1', false, 'Working is not shown')]),
+  attempt('s4', [pt('A1', false, 'Working is not shown')]),
+])
+assert.equal(labelled.mostMissed[0].note, 'Working is not shown', 'the common wording wins')
+assert.equal(labelled.mostMissed[0].students, 4)
+
+// One student who phrased it two ways is still one student.
+const sameStudent = buildCohortGapReport([
+  attempt('s1', [
+    pt('A1', false, 'Final answer missing'),
+    pt('A2', false, 'Final answer is missing'),
+  ]),
+  attempt('s2', [pt('A1', false, 'Final answer missing')]),
+  attempt('s3', [pt('A1', false, 'Final answer missing')]),
+])
+assert.equal(sameStudent.mostMissed[0].students, 3, 'students are a set, not a tally')
+assert.equal(sameStudent.mostMissed[0].occurrences, 4, 'occurrences still count every point')
+
+// --- but genuinely different misses must never merge --------------------------------
+
+// These are ~75% identical by word overlap and are two different missing
+// diagrams. Merging them would tell a teacher one thing was missed when two were.
+const ordinals = buildCohortGapReport([
+  attempt('s1', [
+    pt('An1', false, 'Diagram for the first policy is missing'),
+    pt('An2', false, 'Diagram for the second policy is missing'),
+  ]),
+  attempt('s2', [
+    pt('An1', false, 'Diagram for the first policy is missing'),
+    pt('An2', false, 'Diagram for the second policy is missing'),
+  ]),
+  attempt('s3', [pt('An1', false, 'Diagram for the first policy is missing')]),
+])
+assert.equal(ordinals.mostMissed.length, 2, 'first and second are different marks')
+
+const numbered = buildCohortGapReport([
+  attempt('s1', [pt('A1', false, 'Part 1 not attempted'), pt('A2', false, 'Part 2 not attempted')]),
+  attempt('s2', [pt('A1', false, 'Part 1 not attempted'), pt('A2', false, 'Part 2 not attempted')]),
+  attempt('s3', [pt('A1', false, 'Part 1 not attempted')]),
+])
+assert.equal(numbered.mostMissed.length, 2, 'numbers discriminate too')
+
+// Negation flips meaning and is never a stopword.
+const negation = buildCohortGapReport([
+  attempt('s1', [pt('A1', false, 'Units given')]),
+  attempt('s2', [pt('A1', false, 'Units not given')]),
+  attempt('s3', [pt('A1', false, 'Units not given')]),
+])
+assert.equal(negation.mostMissed.length, 2, '"not given" is not "given"')
+
+// --- classifications describe the student, not the marker ---------------------------
+
+const classified = buildCohortGapReport([
+  attempt('s1', [
+    pt('A1', false, 'x', 'incomplete'),
+    pt('A2', false, 'y', 'marker_error'),
+    pt('A3', false, 'z', 'mark_not_earned'),
+  ]),
+  attempt('s2', [pt('A1', false, 'x', 'incomplete'), pt('A2', false, 'w', 'under_marked')]),
+  attempt('s3', [pt('A1', false, 'x', 'arithmetic')]),
+])
+
+const codes = classified.errorBreakdown.map((e) => e.classification)
+assert.ok(codes.includes('incomplete'), 'a real student error is reported')
+assert.ok(codes.includes('arithmetic'))
+// A panel headed "why marks were dropped", shown to a teacher deciding whether
+// to trust this tool, must not be where the marker discusses its own mistakes.
+for (const meta of ['marker_error', 'mark_not_earned', 'under_marked', 'no_error', 'none']) {
+  assert.ok(!codes.includes(meta), `${meta} describes the marking, not the student`)
+}
+
+assert.equal(
+  classified.errorBreakdown.find((e) => e.classification === 'incomplete')!.label,
+  'Answer incomplete',
+  'teachers read words, not snake_case'
+)
+assert.equal(classificationLabel('algebraic_sign'), 'Sign error')
+assert.equal(
+  classificationLabel('some_new_thing'),
+  'Some new thing',
+  'an unmapped code is de-snaked rather than hidden'
+)
+
+// Case and whitespace in the source data do not create a second bucket.
+const messyCase = buildCohortGapReport([
+  attempt('s1', [pt('A1', false, 'x', ' Incomplete ')]),
+  attempt('s2', [pt('A1', false, 'x', 'incomplete')]),
+])
+assert.equal(messyCase.errorBreakdown.length, 1, 'one classification, one row')
+assert.equal(messyCase.errorBreakdown[0].count, 2)
 
 // --- banded scripts are excluded from the mark-type table ---------------------------
 

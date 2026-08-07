@@ -96,7 +96,7 @@ async function main() {
   if (report.errorBreakdown.length) {
     console.log('\nWHY MARKS WERE DROPPED')
     for (const e of report.errorBreakdown) {
-      console.log(`  ${String(e.count).padStart(4)}  ${e.classification}`)
+      console.log(`  ${String(e.count).padStart(4)}  ${e.label}`)
     }
   }
 }

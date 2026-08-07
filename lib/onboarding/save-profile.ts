@@ -116,6 +116,10 @@ export async function saveOnboardingProfile(
       .maybeSingle()
     const wasAlreadyOnboarded = isOnboardingComplete(existingProfile)
 
+    // `role` is deliberately absent here: the column grant is revoked from
+    // `authenticated` so that a user cannot promote themselves to teacher, and
+    // including it would make PostgREST reject the entire upsert. It is written
+    // with the service client below, after the user id has been verified.
     const { error } = await userClient.from('user_profiles').upsert(
       {
         id: userId,
@@ -123,7 +127,6 @@ export async function saveOnboardingProfile(
         board,
         level,
         subjects,
-        role,
         stage,
         primary_goal: primaryGoal,
         exam_date: examDate,
@@ -176,6 +179,27 @@ export async function saveOnboardingProfile(
           error: 'Could not save your profile. Try again in a moment.',
           status: 500,
         }
+      }
+    }
+
+    // Role is written server-side, with the service client, because the column
+    // is no longer writable by `authenticated` — that grant was what let anyone
+    // promote themselves into the teacher UI. Safe here: the user id was
+    // verified by the caller before this function was reached.
+    //
+    // Runs on both paths (the fallback above sets it too); an idempotent write
+    // is cheaper than reasoning about which branch ran.
+    const { error: roleError } = await service
+      .from('user_profiles')
+      .update({ role })
+      .eq('id', userId)
+
+    if (roleError) {
+      console.error('[onboarding] role write failed:', roleError)
+      return {
+        ok: false,
+        error: 'Could not save your profile. Try again in a moment.',
+        status: 500,
       }
     }
 

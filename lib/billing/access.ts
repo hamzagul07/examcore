@@ -20,11 +20,31 @@ export const ACTIVE_STATUSES: SubscriptionStatus[] = ['active', 'trialing', 'pas
 export function effectiveAccess(opts: {
   tier: SubscriptionTier
   status: SubscriptionStatus
+  /**
+   * A *verified* teacher seat — `user_profiles.teacher_verified_at`, which only
+   * the service role can write. Deliberately not the `role` column: that one is
+   * self-declared during onboarding, so gating paid access on it would let
+   * anyone claim a plan by ticking a box.
+   */
+  teacherVerified?: boolean
 }): EffectiveAccess {
   const paidActive = opts.tier !== 'free' && ACTIVE_STATUSES.includes(opts.status)
-  if (!paidActive) return 'free'
+  // A teacher seat is a distribution cost, not a customer: it is given away so
+  // that the class arrives with it. Floored rather than assigned, so a teacher
+  // who does pay for Max keeps Max.
+  if (!paidActive) return opts.teacherVerified ? 'pro' : 'free'
   // mastery → Max; scholar (and legacy `student`) → Pro.
   return opts.tier === 'mastery' ? 'max' : 'pro'
+}
+
+/**
+ * Whether this account holds a granted teacher seat.
+ *
+ * Takes the verification timestamp, never the role, so that a caller cannot
+ * accidentally pass the self-declared field.
+ */
+export function isVerifiedTeacher(teacherVerifiedAt?: string | null): boolean {
+  return Boolean(teacherVerifiedAt)
 }
 
 /**

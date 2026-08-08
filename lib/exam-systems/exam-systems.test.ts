@@ -6,6 +6,7 @@ import {
   listMarkingExamSystems,
   resolveExamSystemForSubject,
 } from '@/lib/exam-systems/registry'
+import { buildMarkReturnPath } from '@/lib/exam-systems/paths'
 import { LESSON_SURFACES } from '@/lib/exam-systems/surfaces'
 import {
   boardLabel,
@@ -102,6 +103,13 @@ check('contentSubjectCode via adapter', contentSubjectCode('biology-hl') === 'ib
 check('catalogSubjectSlug via adapter', catalogSubjectSlug('ib-biology-hl') === 'biology-hl')
 check('boardLabel via adapter', boardLabel('9702') === 'Cambridge 9702')
 check('IB boardLabel', boardLabel('biology-hl') === 'IB Diploma')
+
+check(
+  'mark return keeps edexcel unit',
+  buildMarkReturnPath({ board: 'edexcel', subject: 'WMA11' }) ===
+    '/mark?board=edexcel&subject=WMA11'
+)
+check('mark return bare', buildMarkReturnPath({}) === '/mark')
 
 // ── Shared surfaces liberated from CAIE naming ──────────────────────────────
 check('five lesson surfaces', LESSON_SURFACES.length === 5)

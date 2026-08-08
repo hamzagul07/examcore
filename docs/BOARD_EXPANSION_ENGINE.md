@@ -387,6 +387,7 @@ E0 board-native platform
 
 - Edexcel onboarding enabled with Wave 1 Maths **units** as subjects (WMA/WME/WST)
 - Adapter `enabled: true`; funnel board preselects Edexcel after `/mark?board=edexcel`
+- Guest post-mark signup returns to `/mark?board=…&subject=…` (not bare `/mark`)
 - Physics/Chem still not selectable in profile (no false marking promise)
 
 ### Next

@@ -372,5 +372,11 @@ export function signUpSubheadForRedirect(redirect: string | null): string {
   if (redirect?.startsWith('/ib/courses/') || redirect?.startsWith('/ib/past-papers/')) {
     return 'Free tier included — create your account to open this topic and save progress.'
   }
+  if (redirect?.includes('board=edexcel')) {
+    return 'Free tier included — save this Edexcel IAL mark and keep marking with method/accuracy conventions.'
+  }
+  if (redirect?.startsWith('/mark')) {
+    return 'Free tier included — save this mark, then pick your board and subjects in onboarding.'
+  }
   return 'Free tier included — Cambridge, IB, or Edexcel IAL Maths. Pick subjects in onboarding.'
 }

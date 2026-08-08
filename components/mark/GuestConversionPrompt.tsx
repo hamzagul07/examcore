@@ -1,8 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, BookmarkX, LineChart, Target } from 'lucide-react'
-import { trackFunnelEvent } from '@/lib/analytics/funnel'
+import { lastFunnelBoard, trackFunnelEvent } from '@/lib/analytics/funnel'
+import { buildSignUpHref } from '@/lib/auth-redirect'
+import { buildMarkReturnPath } from '@/lib/exam-systems/paths'
 
 /**
  * The signup ask, placed at the moment it is actually earned.
@@ -20,39 +21,56 @@ export function GuestConversionPrompt({
   marksEarned,
   totalMarks,
   weakTopics,
+  markBoard,
+  subjectCode,
 }: {
   marksEarned: number | null
   totalMarks: number | null
   weakTopics: string[]
+  /** Current /mark board so signup → onboarding → return keeps dialect. */
+  markBoard?: string | null
+  subjectCode?: string | null
 }) {
   const scored =
     typeof marksEarned === 'number' && typeof totalMarks === 'number' && totalMarks > 0
       ? `${marksEarned}/${totalMarks}`
       : null
   const topic = weakTopics[0]
+  const board = markBoard ?? lastFunnelBoard()
+  const returnPath = buildMarkReturnPath({ board, subject: subjectCode })
+  const signupHref = buildSignUpHref(returnPath)
 
   return (
-    <div className="ec-card space-y-4 border-[var(--ec-brand)]/40 bg-[var(--ec-brand)]/[0.04] p-5">
-      <div>
-        <p className="text-base font-semibold text-[var(--ec-text-primary)]">
-          {scored
-            ? `You scored ${scored} — but this mark isn't saved anywhere.`
-            : "This mark isn't saved anywhere."}
-        </p>
-        <p className="mt-1 text-sm text-[var(--ec-text-secondary)]">
-          You marked this as a guest. Close the tab and it&apos;s gone — there&apos;s
-          no history to come back to. A free account keeps every mark and starts
-          tracking what you keep dropping.
-        </p>
+    <div className="ec-card ec-card--paper space-y-4 border-[var(--ec-brand)]/40 bg-[var(--ec-brand)]/[0.04] p-5">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="text-base font-semibold text-[var(--ec-text-primary)]">
+            {scored
+              ? `You scored ${scored} — but this mark isn't saved anywhere.`
+              : "This mark isn't saved anywhere."}
+          </p>
+          <p className="mt-1 text-sm text-[var(--ec-text-secondary)]">
+            You marked this as a guest. Close the tab and it&apos;s gone — there&apos;s
+            no history to come back to. A free account keeps every mark and starts
+            tracking what you keep dropping.
+          </p>
+        </div>
+        <span className="ec-ink-stamp ec-ink-stamp--crimson" aria-hidden>
+          A0
+        </span>
       </div>
 
       <ul className="space-y-2.5 text-sm text-[var(--ec-text-secondary)]">
         <li className="flex items-start gap-2.5">
-          <BookmarkX className="mt-0.5 h-4 w-4 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
+          <span className="ec-ink-stamp" aria-hidden>
+            ✎
+          </span>
           <span>Every mark saved, with the examiner ink on your own pages.</span>
         </li>
         <li className="flex items-start gap-2.5">
-          <Target className="mt-0.5 h-4 w-4 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
+          <span className="ec-ink-stamp" aria-hidden>
+            M1
+          </span>
           <span>
             {topic
               ? `Track ${topic} across papers, so you can see it improve.`
@@ -60,18 +78,24 @@ export function GuestConversionPrompt({
           </span>
         </li>
         <li className="flex items-start gap-2.5">
-          <LineChart className="mt-0.5 h-4 w-4 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
+          <span className="ec-ink-stamp" aria-hidden>
+            A*
+          </span>
           <span>A predicted grade that updates as you mark more.</span>
         </li>
       </ul>
 
       <Link
-        href={`/auth/signup?next=${encodeURIComponent('/mark')}`}
+        href={signupHref}
         className="ec-btn-primary inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 text-sm font-semibold"
-        onClick={() => trackFunnelEvent('signup_started', { source: 'guest_post_mark' })}
+        onClick={() =>
+          trackFunnelEvent('signup_started', {
+            source: 'guest_post_mark',
+            board: board ?? null,
+          })
+        }
       >
-        Create a free account
-        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        Create a free account →
       </Link>
       <p className="text-center text-xs text-[var(--ec-text-secondary)]">
         Free — no card needed. You can keep marking as a guest if you&apos;d rather.

@@ -49,11 +49,13 @@ export default async function EdexcelSubjectPage({ params }: Props) {
   const pastPapersPath = edexcelSubjectPastPapersPath(qualification, subjectSlug)
   const boundariesPath = edexcelSubjectBoundariesPath(qualification, subjectSlug)
   const waveNote =
-    subject.markingWave === 1
-      ? 'Wave 1 marking subject — Maths, Physics and Chemistry lead the Edexcel experiment.'
-      : subject.markingWave === 1.5
-        ? 'Wave 1.5 — Biology shell is live; phrase-level marking follows STEM conversion.'
-        : 'Later marking wave.'
+    subject.slug === 'mathematics'
+      ? 'Wave 1 marking is live for IAL Maths units — practice and scanned scripts on /mark.'
+      : subject.markingWave === 1
+        ? 'Wave 1 shell — Physics and Chemistry marking follow once Maths conversion is proven.'
+        : subject.markingWave === 1.5
+          ? 'Wave 1.5 — Biology shell is live; phrase-level marking follows STEM conversion.'
+          : 'Later marking wave.'
 
   return (
     <MarketingPageShell>
@@ -113,11 +115,19 @@ export default async function EdexcelSubjectPage({ params }: Props) {
             </Link>
           </li>
           <li>
-            <Link href="/mark" className="ec-card block p-4">
+            <Link
+              href={
+                subject.slug === 'mathematics'
+                  ? '/mark?subject=WMA11'
+                  : '/mark'
+              }
+              className="ec-card block p-4"
+            >
               <span className="font-semibold">Mark an answer</span>
               <span className="ms-body-2 mt-1 block">
-                Cambridge and IB marking are live today. Edexcel dialect ships in the
-                Maths wave (E2).
+                {subject.slug === 'mathematics'
+                  ? 'Edexcel IAL Maths marking is live — practice and scanned scripts with method/accuracy conventions.'
+                  : 'Edexcel Maths marking is live first. Physics and Chemistry follow once conversion is proven.'}
               </span>
             </Link>
           </li>

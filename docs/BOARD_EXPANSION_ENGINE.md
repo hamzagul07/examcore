@@ -1,6 +1,6 @@
 # Board Expansion Engine
 
-**Status:** E0 foundation + E1 Edexcel IAL shell shipped; E2 Maths marking next  
+**Status:** E0–E2 + board analytics instrumentation shipped; apply migration + measure before Physics/Chem  
 **Audience:** Codex / Claude implementing multi-board  
 **North star:** Boards are acquisition surfaces; marking is the product.
 
@@ -343,11 +343,11 @@ E0 board-native platform
 4. `/mark` board picker + onboarding `BOARDS` driven by adapter metadata (future boards disabled).  
 5. Path helpers in `lib/exam-systems/paths.ts` for upcoming shells.
 
-### Still in E0 (before E1 content)
+### Still later
 
-- Board dimension on mark analytics / north-star dashboard queries  
-- Sitemap generation reading `listExamSystems()` for future prefixes (no Edexcel URLs until E1)  
-- Ensure community `Board` union stays CAIE/IB until those boards have community support  
+- Sitemap generation reading `listExamSystems()` for future prefixes (done for Edexcel shard)  
+- Community `Board` union stays CAIE/IB until those boards have community support  
+- See `docs/BOARD_CONVERSION_METRICS.md` for board analytics SQL (mark_runs.exam_system)  
 
 ### Done (E1 shell)
 
@@ -356,7 +356,16 @@ E0 board-native platform
 - Sitemap shard `edexcel`  
 - Adapter `ownsSubjectCode` for `WMA11`-style units (no IB steal)
 
-### Next: E2
+### Done (E2 Maths marking)
 
-Edexcel Maths marking dialect (typed + photo), behind flags until metering matches `GROWTH_PLAN_2026H2`.  
-Onboarding `Edexcel` stays `enabled: false` until marks work.
+- `/mark` board picker includes Pearson Edexcel (practice + scanned script only)
+- Wave 1 units: WMA/WME/WST from `lib/edexcel/marking.ts`
+- Prompt + derive/verify/rewrite board label = `Edexcel`
+- Kill-switch: `NEXT_PUBLIC_EDEXCEL_MARKING_ENABLED=0`
+- Onboarding `Edexcel` stays `enabled: false` until free→paid conversion is proven
+
+### Next
+
+- Instrument mark→signup→paid by board (north-star dashboard)
+- Edexcel Physics/Chem only after Maths conversion gates
+- Optional: past-paper scheme ingest for IAL Maths

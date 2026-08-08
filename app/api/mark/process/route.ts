@@ -61,6 +61,7 @@ import {
   settleMarkRunError,
   type MarkRunHandle,
 } from '@/lib/marking/mark-run-log'
+import { resolveMarkRunExamSystem } from '@/lib/marking/resolve-exam-system'
 
 // Multi-question scanned scripts (derive → mark → verify per question) can run
 // 200–300s+; give generous headroom. NOTE: vercel.json's functions config for
@@ -355,6 +356,10 @@ async function handleMarkRequest(request: NextRequest) {
 
     // Open the reliability row before the first model call, so a run that dies
     // mid-pipeline still leaves evidence behind.
+    const subjectCodeForRun =
+      practiceSubjectCode ?? selectedSubjectHint ?? manualSubjectCode ?? null
+    const examSystemExplicit =
+      (formData.get('exam_system') as string | null)?.trim() || null
     markRun = await openMarkRun({
       userId,
       uploadMode,
@@ -362,7 +367,11 @@ async function handleMarkRequest(request: NextRequest) {
       pageCount: pageFiles.length,
       hasPdf: !!answerPdf?.size,
       isPaid,
-      subjectCode: practiceSubjectCode ?? selectedSubjectHint ?? manualSubjectCode ?? null,
+      subjectCode: subjectCodeForRun,
+      examSystem: resolveMarkRunExamSystem({
+        explicit: examSystemExplicit,
+        subjectCode: subjectCodeForRun,
+      }),
     })
 
     if (uploadMode === 'single_question') {

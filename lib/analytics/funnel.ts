@@ -34,6 +34,8 @@ export type FunnelProps = {
 }
 
 const STARTED_KEY = 'ms_funnel_answer_started'
+/** Last board selected on /mark — used by signup/upgrade events after leave. */
+const LAST_BOARD_KEY = 'ms_funnel_last_board'
 
 function sessionId(): string | null {
   try {
@@ -52,16 +54,44 @@ function sessionId(): string | null {
   }
 }
 
-function beaconPath(event: FunnelEvent): string {
-  return `/__funnel/${event}`
+function sanitizeBoardSegment(board: string): string {
+  return board.replace(/[^a-z0-9_-]/gi, '').toLowerCase().slice(0, 32)
+}
+
+function beaconPath(event: FunnelEvent, board?: string | null): string {
+  const b = board ? sanitizeBoardSegment(board) : ''
+  return b ? `/__funnel/${event}/${b}` : `/__funnel/${event}`
+}
+
+/** Remember board for later signup/upgrade events in this tab. */
+export function rememberFunnelBoard(board: string | null | undefined): void {
+  if (typeof window === 'undefined' || !board) return
+  try {
+    sessionStorage.setItem(LAST_BOARD_KEY, sanitizeBoardSegment(board))
+  } catch {
+    /* ignore */
+  }
+}
+
+export function lastFunnelBoard(): string | null {
+  if (typeof window === 'undefined') return null
+  try {
+    return sessionStorage.getItem(LAST_BOARD_KEY)
+  } catch {
+    return null
+  }
 }
 
 export function trackFunnelEvent(event: FunnelEvent, props: FunnelProps = {}): void {
   if (typeof window === 'undefined') return
 
+  const board = props.board ?? lastFunnelBoard()
+  if (props.board) rememberFunnelBoard(props.board)
+
   const path = props.path ?? window.location.pathname
   const payload = {
     ...props,
+    board: board ?? props.board ?? null,
     path,
     event,
   }
@@ -76,7 +106,7 @@ export function trackFunnelEvent(event: FunnelEvent, props: FunnelProps = {}): v
   const sid = sessionId()
   if (!sid) return
   const body = JSON.stringify({
-    path: beaconPath(event),
+    path: beaconPath(event, board),
     dwellMs: 0,
     sessionId: sid,
     referrer: document.referrer || '',

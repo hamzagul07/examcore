@@ -85,7 +85,11 @@ import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
 import { UpgradeModal } from '@/components/billing/UpgradeModal'
-import { trackAnswerInputStarted, trackFunnelEvent } from '@/lib/analytics/funnel'
+import {
+  rememberFunnelBoard,
+  trackAnswerInputStarted,
+  trackFunnelEvent,
+} from '@/lib/analytics/funnel'
 import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
 import { GuestMarkNotice } from '@/components/billing/GuestMarkNotice'
 import { MarkUsageIndicator } from '@/components/billing/MarkUsageIndicator'
@@ -458,7 +462,7 @@ export default function MarkPage() {
           hasAny = true
         }
       }
-      if (hasAny && selectedMarkBoard !== 'ib') {
+      if (hasAny && boardSupportsPastPaperLookup(selectedMarkBoard)) {
         setShowManualPaper(true)
       }
     } catch {
@@ -673,8 +677,14 @@ export default function MarkPage() {
     const subject = sp.get('subject')?.trim()
     if (!subject) return
     setSelectedSubject(subject)
-    if (isIbSubjectCode(subject)) {
+    const board = resolveBoard(subject)
+    if (board === 'ib') {
       setSelectedMarkBoard('ib')
+      setUploadMode('single_question')
+      setMarkIntent('practice_question')
+      setShowManualPaper(false)
+    } else if (board === 'edexcel') {
+      setSelectedMarkBoard('edexcel')
       setUploadMode('single_question')
       setMarkIntent('practice_question')
       setShowManualPaper(false)
@@ -1203,13 +1213,14 @@ export default function MarkPage() {
 
   function handleMarkBoardChange(next: MarkExamBoard) {
     setSelectedMarkBoard(next)
+    rememberFunnelBoard(next)
     if (selectedSubject && !subjectMatchesMarkBoard(selectedSubject, next)) {
       setSelectedSubject('')
       setSelectedYear('')
       setSelectedSession('')
       setSelectedComponent('')
     }
-    if (next === 'ib') {
+    if (!boardSupportsPastPaperLookup(next)) {
       if (uploadMode === 'single_question' && markIntent === 'past_paper') {
         setMarkIntent('practice_question')
         setShowManualPaper(false)
@@ -1227,10 +1238,14 @@ export default function MarkPage() {
 
   function handleSubjectChange(value: string) {
     if (value) {
-      const nextBoard = subjectMatchesMarkBoard(value, 'ib') ? 'ib' : 'cambridge'
+      const resolved = resolveBoard(value)
+      const nextBoard: MarkExamBoard =
+        resolved === 'ib' || resolved === 'edexcel' || resolved === 'cambridge'
+          ? resolved
+          : 'cambridge'
       if (nextBoard !== selectedMarkBoard) {
         setSelectedMarkBoard(nextBoard)
-        if (nextBoard === 'ib') {
+        if (!boardSupportsPastPaperLookup(nextBoard)) {
           setUploadMode('single_question')
           setMarkIntent('practice_question')
           setShowManualPaper(false)
@@ -1341,6 +1356,7 @@ export default function MarkPage() {
       trackFunnelEvent('answer_submitted', {
         subject: selectedSubject || null,
         source: uploadMode,
+        board: selectedMarkBoard,
       })
 
       const { pageFiles, answerPdf: preparedPdf, questionFile, error: payloadError } =
@@ -1369,6 +1385,7 @@ export default function MarkPage() {
       }
       formData.append('upload_mode', uploadMode)
       formData.append('mark_intent', markIntent)
+      formData.append('exam_system', selectedMarkBoard)
       formData.append('stream', '1')
       // Always forward the chosen subject, even without a full paper selection,
       // so freeform marks get syllabus-tagged and feed mastery/review.
@@ -1658,6 +1675,7 @@ export default function MarkPage() {
     trackFunnelEvent('mark_result_viewed', {
       attemptId: payload.attempt_id ?? null,
       subject: selectedSubject || null,
+      board: selectedMarkBoard,
     })
     handleAllowance(payload._allowance)
     void fetch('/api/celebrations', {
@@ -1726,11 +1744,20 @@ export default function MarkPage() {
           <header className="ms-mark-hero ms-fade-in">
             <p className="ms-overline ms-mark-hero-eyebrow">Mark a question</p>
             <h2 className="ms-mark-hero-title">
-              {selectedMarkBoard === 'ib' ? 'IB examiner-style feedback' : 'Cambridge examiner-style feedback'}
+              {selectedMarkBoard === 'ib'
+                ? 'IB examiner-style feedback'
+                : selectedMarkBoard === 'edexcel'
+                  ? 'Edexcel IAL examiner-style feedback'
+                  : 'Cambridge examiner-style feedback'}
             </h2>
             <p className="ms-mark-hero-lead">
               Upload photos or PDFs — marked in about a minute with{' '}
-              {selectedMarkBoard === 'ib' ? 'criterion bands' : 'official mark scheme logic'}.
+              {selectedMarkBoard === 'ib'
+                ? 'criterion bands'
+                : selectedMarkBoard === 'edexcel'
+                  ? 'Edexcel method and accuracy marks'
+                  : 'official mark scheme logic'}
+              .
             </p>
           </header>
         )}
@@ -1839,14 +1866,14 @@ export default function MarkPage() {
                 type="button"
                 role="tab"
                 aria-selected={uploadMode === 'single_question' && markIntent === 'past_paper'}
-                aria-disabled={selectedMarkBoard === 'ib'}
-                tabIndex={selectedMarkBoard === 'ib' ? -1 : 0}
+                aria-disabled={!boardSupportsPastPaperLookup(selectedMarkBoard)}
+                tabIndex={boardSupportsPastPaperLookup(selectedMarkBoard) ? 0 : -1}
                 onClick={() => {
-                  if (selectedMarkBoard === 'ib') return
+                  if (!boardSupportsPastPaperLookup(selectedMarkBoard)) return
                   setUploadMode('single_question')
                   setMarkIntent('past_paper')
                 }}
-                className={`ms-lvl-tab ${uploadMode === 'single_question' && markIntent === 'past_paper' ? 'on' : ''}${selectedMarkBoard === 'ib' ? ' is-disabled' : ''}`}
+                className={`ms-lvl-tab ${uploadMode === 'single_question' && markIntent === 'past_paper' ? 'on' : ''}${!boardSupportsPastPaperLookup(selectedMarkBoard) ? ' is-disabled' : ''}`}
               >
                 Single question
               </button>
@@ -1880,13 +1907,13 @@ export default function MarkPage() {
                 type="button"
                 role="tab"
                 aria-selected={uploadMode === 'whole_paper'}
-                aria-disabled={selectedMarkBoard === 'ib'}
-                tabIndex={selectedMarkBoard === 'ib' ? -1 : 0}
+                aria-disabled={!boardSupportsWholePaper(selectedMarkBoard)}
+                tabIndex={boardSupportsWholePaper(selectedMarkBoard) ? 0 : -1}
                 onClick={() => {
-                  if (selectedMarkBoard === 'ib') return
+                  if (!boardSupportsWholePaper(selectedMarkBoard)) return
                   setUploadMode('whole_paper')
                 }}
-                className={`ms-lvl-tab ${uploadMode === 'whole_paper' ? 'on' : ''}${selectedMarkBoard === 'ib' ? ' is-disabled' : ''}`}
+                className={`ms-lvl-tab ${uploadMode === 'whole_paper' ? 'on' : ''}${!boardSupportsWholePaper(selectedMarkBoard) ? ' is-disabled' : ''}`}
               >
                 Whole paper
               </button>
@@ -2065,6 +2092,7 @@ export default function MarkPage() {
                             trackAnswerInputStarted({
                               subject: selectedSubject || null,
                               source: 'typed',
+                              board: selectedMarkBoard,
                             })
                           }
                         }}
@@ -2072,6 +2100,7 @@ export default function MarkPage() {
                           trackAnswerInputStarted({
                             subject: selectedSubject || null,
                             source: 'typed_focus',
+                            board: selectedMarkBoard,
                           })
                         }
                         rows={7}
@@ -2102,6 +2131,7 @@ export default function MarkPage() {
                       trackAnswerInputStarted({
                         subject: selectedSubject || null,
                         source: 'upload',
+                        board: selectedMarkBoard,
                       })
                     }
                   }}
@@ -2139,15 +2169,33 @@ export default function MarkPage() {
                 <>
                   <div>
                     <Label htmlFor="mark-subject" className="label-overline mb-2 inline-block">
-                      {selectedMarkBoard === 'ib' ? 'IB subject' : 'Subject'}
+                      {selectedMarkBoard === 'ib'
+                        ? 'IB subject'
+                        : selectedMarkBoard === 'edexcel'
+                          ? 'IAL Maths unit'
+                          : 'Subject'}
                     </Label>
-                    {boardFilteredSubjects.length === 0 ? (
+                    {markSubjectOptions.length === 0 ? (
                       <p className="text-sm text-[var(--ec-text-secondary)]">
-                        No {selectedMarkBoard === 'ib' ? 'IB' : 'Cambridge'} subjects in your
-                        profile yet.{' '}
-                        <Link href="/onboarding?rerun=1" className="ec-link font-medium">
-                          Update subjects
-                        </Link>
+                        {selectedMarkBoard === 'edexcel' ? (
+                          <>
+                            Edexcel IAL Maths marking is warming up.{' '}
+                            <Link
+                              href="/edexcel/international-a-level/mathematics"
+                              className="ec-link font-medium"
+                            >
+                              Browse units
+                            </Link>
+                          </>
+                        ) : (
+                          <>
+                            No {selectedMarkBoard === 'ib' ? 'IB' : 'Cambridge'} subjects in
+                            your profile yet.{' '}
+                            <Link href="/onboarding?rerun=1" className="ec-link font-medium">
+                              Update subjects
+                            </Link>
+                          </>
+                        )}
                       </p>
                     ) : (
                     <select
@@ -2164,7 +2212,14 @@ export default function MarkPage() {
                       <option value="">
                         {profileLoading ? 'Loading your subjects…' : 'Select subject…'}
                       </option>
-                      {(selectedMarkBoard === 'ib' ? ibSubjectOptions : boardFilteredSubjects).map((code) => {
+                      {markSubjectOptions.map((code) => {
+                        if (selectedMarkBoard === 'edexcel') {
+                          return (
+                            <option key={code} value={code}>
+                              {resolveEdexcelUnitLabel(code)}
+                            </option>
+                          )
+                        }
                         const catalog = ibCatalog.find((s) => s.code === code)
                         const meta = getSubjectByCode(code)
                         const label =

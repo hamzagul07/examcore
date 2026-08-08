@@ -27,10 +27,10 @@ function check(name: string, ok: boolean) {
 check('six exam systems registered', listExamSystems().length === 6)
 check('only CAIE + IB enabled', listEnabledExamSystems().map((s) => s.id).join(',') === 'cambridge,ib')
 check(
-  'only CAIE + IB marking',
+  'CAIE + Edexcel + IB marking',
   listMarkingExamSystems()
     .map((s) => s.id)
-    .join(',') === 'cambridge,ib'
+    .join(',') === 'cambridge,edexcel,ib'
 )
 
 check('CAIE route prefix', getExamSystem('cambridge').routePrefix === 'caie')

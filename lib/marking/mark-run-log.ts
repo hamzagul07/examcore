@@ -38,6 +38,8 @@ export type MarkRunOpenInput = {
   hasPdf: boolean
   isPaid: boolean
   subjectCode: string | null
+  /** ExamSystemId — cambridge | ib | edexcel (nullable for legacy rows). */
+  examSystem?: string | null
 }
 
 /** Open a run row. Returns a handle with a null id if logging is unavailable —
@@ -51,23 +53,32 @@ export async function openMarkRun(
     retriesAtStart: getGeminiRetryStats().totalRetries,
     lastStage: null,
   }
+  const baseRow = {
+    user_id: input.userId,
+    status: 'running' as const,
+    upload_mode: input.uploadMode,
+    mark_intent: input.markIntent,
+    page_count: input.pageCount,
+    has_pdf: input.hasPdf,
+    is_paid: input.isPaid,
+    subject_code: input.subjectCode,
+  }
   try {
-    const { data, error } = await supabaseAdmin
+    // Prefer board-aware insert; fall back if migration not applied yet.
+    let result = await supabaseAdmin
       .from('mark_runs')
-      .insert({
-        user_id: input.userId,
-        status: 'running',
-        upload_mode: input.uploadMode,
-        mark_intent: input.markIntent,
-        page_count: input.pageCount,
-        has_pdf: input.hasPdf,
-        is_paid: input.isPaid,
-        subject_code: input.subjectCode,
-      })
+      .insert({ ...baseRow, exam_system: input.examSystem ?? null })
       .select('id')
       .single()
-    if (error) throw error
-    handle.id = data?.id ?? null
+    if (result.error && /exam_system/i.test(result.error.message ?? '')) {
+      result = await supabaseAdmin
+        .from('mark_runs')
+        .insert(baseRow)
+        .select('id')
+        .single()
+    }
+    if (result.error) throw result.error
+    handle.id = result.data?.id ?? null
   } catch (err) {
     console.warn('[mark-run] open failed (marking continues)', err)
   }

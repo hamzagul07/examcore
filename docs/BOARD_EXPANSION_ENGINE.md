@@ -371,9 +371,15 @@ E0 board-native platform
 - Sitemap shard `oxfordaqa`
 - Engine test: new board ≈ catalog + graph + pages, not a rewrite
 
+### Done (discovery)
+
+- Nav / footer / `?board=` / `/results-2026/edexcel`
+- Blog: `edexcel-ial-vs-cambridge-a-level-2026` + CTAs on board-choice posts
+- `mark_runs.exam_system` migration applied in production
+
 ### Next
 
-- Apply `20260809_mark_runs_exam_system.sql`
-- Measure Edexcel Maths mark→signup→paid
+- Measure Edexcel Maths mark→signup→paid (SQL in `BOARD_CONVERSION_METRICS.md`)
 - Edexcel Physics/Chem marking only after gates
 - Optional: past-paper scheme ingest for IAL Maths
+- Do not mix board work into unrelated branding/landing WIP on main

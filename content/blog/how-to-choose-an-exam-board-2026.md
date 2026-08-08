@@ -41,7 +41,7 @@ Because every board is really a marking system, the smartest way to test-drive a
 
 ## Comparison guides to read next
 
-Once you have shortlisted two routes, dig into the head-to-heads: [IB vs A-Level](/blog/ib-vs-a-level), [IB vs AP](/blog/ib-vs-ap), [A-Level vs AP](/blog/a-level-vs-ap), and — if you are still weighing UK exam boards — [Cambridge vs Edexcel vs AQA](/blog/cambridge-vs-edexcel-vs-aqa). For subject-level choices within a board, see [which A-Level subjects to take](/blog/which-cambridge-a-level-subjects-should-you-take-2026) and [which O-Level subjects to take](/blog/which-o-level-subjects-to-take-cambridge-2026).
+Once you have shortlisted two routes, dig into the head-to-heads: [IB vs A-Level](/blog/ib-vs-a-level), [IB vs AP](/blog/ib-vs-ap), [A-Level vs AP](/blog/a-level-vs-ap), [Edexcel IAL vs Cambridge](/blog/edexcel-ial-vs-cambridge-a-level-2026), and — if you are still weighing UK exam boards — [Cambridge vs Edexcel vs AQA](/blog/cambridge-vs-edexcel-vs-aqa). For subject-level choices within a board, see [which A-Level subjects to take](/blog/which-cambridge-a-level-subjects-should-you-take-2026) and [which O-Level subjects to take](/blog/which-o-level-subjects-to-take-cambridge-2026).
 
 ## Frequently asked questions
 

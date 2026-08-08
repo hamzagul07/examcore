@@ -5,11 +5,13 @@ date: 2026-07-16
 keywords: Cambridge vs Edexcel vs AQA, which exam board is best, AQA vs Edexcel, easiest exam board, best A-Level exam board
 category: subject-choice
 author: hamza-gul
-updated: 2026-07-16
+updated: 2026-08-09
 informationGain: synthesis
 ---
 
 The honest answer to "which exam board is best" is that there is no single winner — AQA, Edexcel (Pearson) and Cambridge (CAIE) are held to comparable standards, so the qualification you earn is worth the same whichever awards it. What actually differs is the specification content, the style of questions, and where each board is offered: AQA and Edexcel dominate schools in England, while Cambridge is the international board used across schools worldwide. In most cases your school picks the board, and chasing a supposedly "easier" one is a myth that rarely survives contact with an examiner report.
+
+If you are choosing between **international** Cambridge and Edexcel IAL specifically, see [Edexcel IAL vs Cambridge A-Level](/blog/edexcel-ial-vs-cambridge-a-level-2026).
 
 ## The boards at a glance
 
@@ -50,6 +52,15 @@ Not systematically. Cambridge is the international board and its papers are set 
 
 ### Do universities prefer one exam board over another?
 No. Universities treat AQA, Edexcel, OCR and Cambridge qualifications as equivalent and make offers on grades, not boards. Choose based on specification fit and what your school offers, not on any imagined admissions advantage.
+
+## Practise on the board you sit
+
+Board choice only helps if revision matches the paper. On MarkScheme:
+
+- [Cambridge marking & CAIE graph](/caie) — syllabus hubs wired to [/mark](/mark?board=cambridge)
+- [Edexcel International](/edexcel) — IAL Maths units with [live marking](/mark?board=edexcel)
+- [OxfordAQA International](/oxfordaqa) — paper maps (marking follows once IAL Maths conversion is proven)
+- [IB Diploma](/ib) — criterion marking and free courses
 
 ## Bottom line
 AQA, Edexcel and Cambridge are held to comparable standards, so no board is a shortcut to easy grades — the qualification is worth the same whichever awards it. Focus on knowing your own specification and practising its exact question style, because that, not the logo on the paper, is what determines your grade.

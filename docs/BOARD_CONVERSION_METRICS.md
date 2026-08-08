@@ -90,18 +90,20 @@ Do not open UK boards until roughly:
 | Mark → account | Edexcel within ~20% of CAIE |
 | Free → paid | Edexcel within ~25–30% of CAIE |
 
-### Snapshot 2026-08-09 (7d)
+### Snapshot 2026-08-09 (7d, rechecked)
 
 | Metric | Value |
 |--------|-------|
-| Edexcel marks | **0** (all-time mark_runs.exam_system=edexcel also 0) |
+| Edexcel marks | **0** |
 | Cambridge marks | 1 (7d) |
 | `/edexcel*` pageviews | **0** |
+| `/blog/edexcel*` pageviews | **0** |
 | Funnel `/__funnel/*/edexcel` | **0** |
-| Closest edexcel-named traffic | `/blog/cambridge-vs-edexcel-vs-aqa` only (not yet the new IAL guides) |
-| Live SEO cluster | UMS + past papers + marking + WMA11 guides **READY** on production; IndexNow re-pinged after go-live |
+| `/results-2026*` pageviews | 3 |
+| Closest edexcel-named traffic | `/blog/cambridge-vs-edexcel-vs-aqa` only (2) |
+| Live SEO cluster | UMS + past papers + marking + WMA11 guides live; wrong-board bridges on Results Day + will-my-grade-hold |
 
-**Verdict:** hold new dialects; distribution (Results Day ops + Reddit) must send IAL traffic to the live guides — chrome/SEO alone hasn't moved `/edexcel` yet.
+**Verdict:** hold new dialects. Product bridges are in place; **human posts** in [READY_TO_POST_NOW.md](./READY_TO_POST_NOW.md) are still required to move `/edexcel`.
 
 ---
 

@@ -5,6 +5,7 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode, softwareApplicationNode } from '@/lib/seo/structured-data'
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { WillMyGradeHold } from '@/components/tools/WillMyGradeHold'
+import { EdexcelWrongBoardBridge } from '@/components/seo/EdexcelWrongBoardBridge'
 import { getOfficialBoundaries } from '@/lib/seo/grade-boundaries-data'
 import {
   getGradeBoundaryCalculatorPages,
@@ -33,6 +34,10 @@ const FAQS = [
   {
     q: 'When should I use Will my grade hold?',
     a: 'On and after Results Day once thresholds are public, or beforehand with recent-session boundaries as an estimate. It is especially useful when you are one or two marks from a boundary and deciding on a remark.',
+  },
+  {
+    q: 'I sit Edexcel International — does this tool apply?',
+    a: 'No. This checker is for Cambridge raw-mark thresholds. Edexcel International A Level Maths uses unit UMS and cash-in combinations. Use the IAL UMS explainer and mark practice on board=edexcel instead.',
   },
 ]
 
@@ -93,6 +98,7 @@ export default async function WillMyGradeHoldPage({ searchParams }: Props) {
           official={official}
           defaultLevel={level}
         />
+        <EdexcelWrongBoardBridge />
       </MarketingSection>
 
       <MarketingSection>

@@ -7,6 +7,7 @@ import { faqPageNode } from '@/lib/seo/structured-data'
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { MockPackEmailCapture } from '@/components/tools/MockPackEmailCapture'
 import { FunnelLandingView } from '@/components/analytics/FunnelLandingView'
+import { EdexcelWrongBoardBridge } from '@/components/seo/EdexcelWrongBoardBridge'
 import {
   getResultsDeadlines,
   getResultsHubCopy,
@@ -39,6 +40,10 @@ const FAQS = [
   {
     q: 'What should I do if I miss a grade?',
     a: 'Talk to your exams officer about remarks (priority vs non-priority) and retake options for November or the next June series. Practise the weak topics with past-paper marking while the paper is still fresh.',
+  },
+  {
+    q: 'What if I take Edexcel International, not Cambridge?',
+    a: 'Cambridge threshold tables do not map onto Edexcel IAL unit scores. Use the Edexcel International results hub for UMS / cash-in context, then mark WMA / WME / WST practice with board=edexcel.',
   },
 ]
 
@@ -129,6 +134,7 @@ export default function Results2026Page() {
             Edexcel International results
           </Link>
         </p>
+        <EdexcelWrongBoardBridge className="!mt-6" />
       </MarketingSection>
 
       <MarketingSection>

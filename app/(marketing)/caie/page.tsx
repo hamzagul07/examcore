@@ -66,7 +66,7 @@ export default function CaieHubPage() {
           <h2 className="ms-h2">On Edexcel International instead?</h2>
           <p className="ms-body-2 mt-2 max-w-2xl text-[var(--ec-text-secondary)]">
             Many international schools offer Pearson Edexcel IAL alongside Cambridge.
-            IAL Maths marking is live with method/accuracy conventions — same product,
+            IAL Maths, Physics and Chemistry marking is live with method/accuracy conventions — same product,
             different dialect.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
@@ -74,7 +74,7 @@ export default function CaieHubPage() {
               href="/mark?board=edexcel&subject=WMA11"
               className="ec-btn-primary inline-flex min-h-[48px]"
             >
-              Mark Edexcel IAL Maths →
+              Mark Edexcel IAL →
             </Link>
             <Link href="/edexcel" className="ec-btn-ghost inline-flex min-h-[48px]">
               Browse Edexcel hubs

@@ -1,6 +1,6 @@
 # Board Expansion Engine
 
-**Status:** E0–E2 + analytics + E4 OxfordAQA shell shipped; apply mark_runs migration; measure Edexcel before more marking  
+**Status:** E0–E2 + E3 graph v1 + analytics + E4 OxfordAQA shell shipped; Physics/Chem marking next per product override  
 **Audience:** Codex / Claude implementing multi-board  
 **North star:** Boards are acquisition surfaces; marking is the product.
 
@@ -397,10 +397,23 @@ E0 board-native platform
 - Thin IAL Maths session map on past-papers + unit pages (metadata only; no PDF bank)
 - UMS explainer + mark CTA on grade-boundaries hubs (tables still deferred)
 
+### Done (E3 curriculum graph v1)
+
+- `lib/curriculum-graph/` — content-first CAIE 9709 ↔ Edexcel WMA/WME/WST mappings
+- Seed: `content/data/curriculum-graph/caie-9709-edexcel-wma.json` (all 9709 topic codes)
+- UI: `CrossBoardTopicLinks` on CAIE 9709 lessons + Edexcel Maths subject/unit hubs
+- Not yet: Supabase tables, science topic trees, lesson-JSON reuse
+
+### Done (Wave 1 Physics/Chem marking + science SEO)
+
+- `getEdexcelMarkableUnitCodes()` includes WPH/WCH; Biology still out
+- Maths session map gated to WMA/WME/WST only
+- Science examiner line in point-based prompts; picker/onboarding copy updated
+- SEO: WPH11 + Physics past-papers + Chemistry marking guides; OxfordAQA hub strip
+
 ### Next
 
-- **Scorecard 2026-08-09:** 0 Edexcel marks / 0 `/edexcel` pageviews in 7d — gates fail; hold Physics/Chem, UK, PDF ingest. Re-run SQL in `BOARD_CONVERSION_METRICS.md` weekly.
-- Acquisition bridges shipped: grade-boundaries hub + BlogPostCta + PUM/footer chrome + in-body links. SEO posts: IAL Maths UMS + past papers + WMA11 guides (shells deep-link via `lib/edexcel/seo-guides.ts`). Wait for `/edexcel` sessions before more dialects.
-- Edexcel Physics/Chem marking only after gates
-- Full past-paper / scheme ingest for IAL Maths only after conversion justifies it
+- Measure Edexcel marks / `/edexcel` sessions weekly (`BOARD_CONVERSION_METRICS.md`)
+- Full past-paper / scheme ingest only after conversion justifies it
+- OxfordAQA marking still off; UK / AP still gated on demand
 - Do not mix board work into unrelated branding/landing WIP on main

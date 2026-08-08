@@ -185,7 +185,7 @@ export function buildMarkingPrompt(params: {
       derivedScheme ?? fallbackScheme,
       ocrText,
       syllabusBlock,
-      { board: pointBoard }
+      { board: pointBoard, subjectCode }
     )
   }
 
@@ -247,7 +247,7 @@ export function buildMarkingPrompt(params: {
     msJson,
     ocrText,
     syllabusBlock,
-    { board: pointBoard }
+    { board: pointBoard, subjectCode }
   )
 }
 

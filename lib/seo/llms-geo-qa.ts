@@ -150,6 +150,12 @@ export const INDEXNOW_PRIORITY_URLS = [
   '/blog/edexcel-ial-maths-past-papers-guide-2026',
   '/blog/edexcel-ial-maths-marking-guide-2026',
   '/blog/edexcel-wma11-pure-mathematics-1-guide-2026',
+  '/blog/edexcel-wph11-physics-unit-1-guide-2026',
+  '/blog/edexcel-ial-physics-past-papers-guide-2026',
+  '/blog/edexcel-ial-chemistry-marking-guide-2026',
+  '/oxfordaqa',
+  '/edexcel/international-a-level/physics',
+  '/edexcel/international-a-level/chemistry',
   '/blog/cambridge-vs-edexcel-vs-aqa',
   ...TIKTOK_COMPANION_BLOG_PATHS,
 ] as const

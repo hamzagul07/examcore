@@ -19,8 +19,10 @@ function check(name: string, ok: boolean) {
 }
 
 check('edexcel board id', isEdexcelBoard(EDEXCEL_BOARD_ID))
-check('wave-1 units in options', EDEXCEL_SUBJECT_OPTIONS.some((s) => s.id === 'WMA11'))
-check('no physics units yet', !EDEXCEL_SUBJECT_OPTIONS.some((s) => s.id === 'WPH11'))
+check('wave-1 maths in options', EDEXCEL_SUBJECT_OPTIONS.some((s) => s.id === 'WMA11'))
+check('wave-1 physics in options', EDEXCEL_SUBJECT_OPTIONS.some((s) => s.id === 'WPH11'))
+check('wave-1 chemistry in options', EDEXCEL_SUBJECT_OPTIONS.some((s) => s.id === 'WCH11'))
+check('no biology units yet', !EDEXCEL_SUBJECT_OPTIONS.some((s) => s.id === 'WBI11'))
 check(
   'WMA11 valid for Edexcel A-Level',
   isSubjectValidForProfile('Edexcel', 'A-Level', 'WMA11')

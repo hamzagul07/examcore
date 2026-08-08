@@ -1,6 +1,7 @@
 /**
- * Edexcel IAL marking surface (Phase E2).
- * Wave 1 = Mathematics units only (practice + combined; no past-paper DB yet).
+ * Edexcel IAL marking surface (Phase E2 + Wave 1 sciences).
+ * Wave 1 = Mathematics + Physics + Chemistry (practice + combined; no past-paper DB yet).
+ * Biology stays wave 1.5 (shell only).
  */
 
 import {
@@ -22,10 +23,24 @@ export function getEdexcelMarkableMathsSubject(): EdexcelSubject | null {
   )
 }
 
-/** Unit codes shown on /mark when board = edexcel (Wave 1 Maths). */
+/** Wave 1 IAL subjects with live marking (Maths, Physics, Chemistry). */
+export function getEdexcelMarkableSubjects(): EdexcelSubject[] {
+  return getEdexcelSubjects('international-a-level').filter(
+    (s) => s.shellEnabled && s.markingWave === 1
+  )
+}
+
+/** Unit codes shown on /mark when board = edexcel (Wave 1 STEM). */
 export function getEdexcelMarkableUnitCodes(): string[] {
-  const maths = getEdexcelMarkableMathsSubject()
-  return maths?.units.map((u) => u.code) ?? []
+  return getEdexcelMarkableSubjects().flatMap((s) => s.units.map((u) => u.code))
+}
+
+export function isEdexcelMathsUnitCode(code: string): boolean {
+  return /^W(MA|ME|ST)\d{2}$/i.test(code.trim())
+}
+
+export function isEdexcelScienceUnitCode(code: string): boolean {
+  return /^W(PH|CH)\d{2}$/i.test(code.trim())
 }
 
 export function getEdexcelUnitMeta(code: string): {
@@ -54,7 +69,7 @@ export function resolveEdexcelMarkingSubjectName(code: string): string {
 }
 
 /**
- * Deep-link into /mark with board (+ unit when Wave 1 Maths).
+ * Deep-link into /mark with board (+ unit when Wave 1 markable).
  * Keeps organic Edexcel landers from falling through to Cambridge defaults.
  */
 export function edexcelMarkHref(unitCode?: string | null): string {

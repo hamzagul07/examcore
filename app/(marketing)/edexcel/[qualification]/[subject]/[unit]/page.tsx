@@ -23,6 +23,7 @@ import {
   resolveEdexcelSubject,
 } from '@/lib/seo/edexcel-graph'
 import { buildEdexcelSubjectCopy } from '@/lib/seo/edexcel-seo'
+import { CrossBoardTopicLinks } from '@/components/seo/CrossBoardTopicLinks'
 
 type Props = {
   params: Promise<{ qualification: string; subject: string; unit: string }>
@@ -99,16 +100,16 @@ export default async function EdexcelUnitPage({ params }: Props) {
         lead={
           unitMarkable
             ? `Modular unit in Edexcel International A Level ${subject.name}. Upload a practice answer or scanned script and get method/accuracy marking for ${unitRow.code}.`
-            : `Modular unit in Edexcel International A Level ${subject.name}. Unit hubs and past-paper maps are live; Maths marking is available first while other subjects follow conversion.`
+            : `Modular unit in Edexcel International A Level ${subject.name}. Unit hubs and past-paper maps are live; Wave 1 Maths/Physics/Chemistry marking is available on /mark.`
         }
       />
       <MarketingSection>
-        <div className="ec-card ec-card--paper mb-8 border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-bg-soft))] px-6 py-8 text-center sm:px-10">
+        <div className="ec-card mb-8 border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-bg-soft))] px-6 py-8 text-center sm:px-10">
           <h2 className="ms-h2">Mark a {unitRow.code} answer</h2>
           <p className="mx-auto mt-2 max-w-lg text-[var(--ec-text-secondary)]">
             {unitMarkable
-              ? 'Practice questions and scanned scripts — Edexcel IAL Maths conventions, not a Cambridge default.'
-              : 'Open the Edexcel mark picker. Wave 1 Maths units are live; this unit’s dialect follows once Maths converts.'}
+              ? `Practice questions and scanned scripts — Edexcel IAL ${subject.name} conventions, not a Cambridge default.`
+              : 'Open the Edexcel mark picker. Wave 1 Maths, Physics and Chemistry units are live; Biology follows later.'}
           </p>
           <Link href={markHref} className="ec-btn-primary mt-5 inline-flex min-h-[48px]">
             {unitMarkable ? `Mark ${unitRow.code} →` : 'Open Edexcel marking →'}
@@ -181,6 +182,9 @@ export default async function EdexcelUnitPage({ params }: Props) {
             </Link>
           </li>
         </ul>
+        {subject.slug === 'mathematics' ? (
+          <CrossBoardTopicLinks mode="edexcel-unit" unitCode={unitRow.code} />
+        ) : null}
       </MarketingSection>
     </MarketingPageShell>
   )

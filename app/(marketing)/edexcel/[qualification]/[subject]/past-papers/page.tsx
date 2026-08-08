@@ -10,7 +10,7 @@ import { createPageMetadata } from '@/lib/seo/metadata'
 import { getEdexcelQualification } from '@/lib/edexcel/catalog'
 import { getEdexcelMathsSessionsForUnit } from '@/lib/edexcel/maths-paper-sessions'
 import { edexcelMarkHref, getEdexcelMarkableUnitCodes } from '@/lib/edexcel/marking'
-import { EDEXCEL_IAL_MATHS_PAST_PAPERS_GUIDE } from '@/lib/edexcel/seo-guides'
+import { edexcelSubjectPastPapersGuideHref } from '@/lib/edexcel/seo-guides'
 import {
   edexcelRootPath,
   edexcelSubjectPath,
@@ -52,8 +52,17 @@ export default async function EdexcelPastPapersPage({ params }: Props) {
   const copy = buildEdexcelSubjectCopy(subject)
   const markable = new Set(getEdexcelMarkableUnitCodes())
   const isMaths = subject.slug === 'mathematics'
-  const defaultMarkHref = isMaths ? edexcelMarkHref('WMA11') : edexcelMarkHref()
+  const markableWave1 = subject.markingWave === 1
+  const defaultMarkHref =
+    subject.slug === 'mathematics'
+      ? edexcelMarkHref('WMA11')
+      : subject.slug === 'physics'
+        ? edexcelMarkHref('WPH11')
+        : subject.slug === 'chemistry'
+          ? edexcelMarkHref('WCH11')
+          : edexcelMarkHref()
   const sampleSessions = isMaths ? getEdexcelMathsSessionsForUnit('WMA11').slice(0, 6) : []
+  const pastPapersGuideHref = edexcelSubjectPastPapersGuideHref(subject.slug)
 
   return (
     <MarketingPageShell>
@@ -74,7 +83,9 @@ export default async function EdexcelPastPapersPage({ params }: Props) {
         lead={
           isMaths
             ? 'Edexcel IAL Mathematics is modular. Use the unit + session map below to plan which papers to sit, then mark practice answers with method/accuracy conventions.'
-            : `Edexcel IAL ${subject.name} is modular. Use the unit map below — session archives and marking expand as each subject’s dialect ships.`
+            : markableWave1
+              ? `Edexcel IAL ${subject.name} is modular. Use the unit map below, then mark practice answers with method/accuracy conventions.`
+              : `Edexcel IAL ${subject.name} is modular. Use the unit map below — Biology marking follows Wave 1 STEM.`
         }
       />
 
@@ -89,12 +100,12 @@ export default async function EdexcelPastPapersPage({ params }: Props) {
             {sampleSessions.map((s) => (
               <li
                 key={s.label}
-                className="rounded-full border border-[var(--ec-border)] px-3 py-1 text-sm text-[var(--ec-text-secondary)]"
+                className="rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-3 py-1 font-mono text-xs font-semibold tracking-wide text-[var(--ec-text-secondary)] shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.05))]"
               >
                 {s.label}
               </li>
             ))}
-            <li className="rounded-full border border-[var(--ec-border)] px-3 py-1 text-sm text-[var(--ec-text-secondary)]">
+            <li className="rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-3 py-1 font-mono text-xs font-semibold tracking-wide text-[var(--ec-text-secondary)] shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.05))]">
               + earlier series
             </li>
           </ul>
@@ -134,11 +145,11 @@ export default async function EdexcelPastPapersPage({ params }: Props) {
           })}
         </ul>
         <p className="ms-body-2 mt-6 text-[var(--ec-text-secondary)]">
-          {isMaths ? (
+          {pastPapersGuideHref ? (
             <>
               How to run a unit practice loop:{' '}
-              <Link href={EDEXCEL_IAL_MATHS_PAST_PAPERS_GUIDE} className="underline">
-                IAL Maths past papers guide
+              <Link href={pastPapersGuideHref} className="underline">
+                IAL {subject.name} past papers guide
               </Link>
               . Worked a paper?{' '}
             </>
@@ -146,9 +157,9 @@ export default async function EdexcelPastPapersPage({ params }: Props) {
           <Link href={defaultMarkHref} className="underline">
             Mark an Edexcel answer
           </Link>
-          {isMaths
-            ? ' with method/accuracy conventions for IAL Maths.'
-            : ' — Maths units are live first; this subject’s dialect follows once conversion is proven.'}
+          {markableWave1
+            ? ` with method/accuracy conventions for IAL ${subject.name}.`
+            : ' — Wave 1 Maths, Physics and Chemistry are live; Biology follows later.'}
         </p>
       </MarketingSection>
     </MarketingPageShell>

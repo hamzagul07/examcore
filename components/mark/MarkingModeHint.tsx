@@ -53,7 +53,7 @@ export function MarkingModeHint({ mode, markBoard = 'cambridge' }: Props) {
               body: ib
                 ? 'Select your IB subject and add the question text, photo, or PDF — we mark against criterion bands.'
                 : edexcel
-                  ? 'Select your IAL Maths unit and add the question — we derive an Edexcel-style scheme and mark your working.'
+                  ? 'Select your IAL Maths, Physics or Chemistry unit and add the question — we derive an Edexcel-style scheme and mark your working.'
                   : 'Select the paper above for official marking, or add the question text — we will detect the paper from your script if possible.',
             }
 

@@ -214,7 +214,7 @@ export function buildPointBasedMarkingPrompt(
   markSchemeJson: string,
   ocrText: string,
   syllabusBlock?: string,
-  opts?: { board?: 'cambridge' | 'edexcel' }
+  opts?: { board?: 'cambridge' | 'edexcel'; subjectCode?: string }
 ): string {
   const taggingBlock = syllabusBlock
     ? `\n${syllabusBlock}\n`
@@ -233,8 +233,11 @@ export function buildPointBasedMarkingPrompt(
     : `TOTAL MARKS AVAILABLE: determine from the question itself (marks are usually shown as "[3]" or "(Total 8 marks)"); set "total_marks" to that number.`
 
   const edexcel = opts?.board === 'edexcel'
+  const scienceUnit = /^W(PH|CH)\d{2}$/i.test(opts?.subjectCode ?? '')
   const examinerLine = edexcel
-    ? `You are a Pearson Edexcel International A Level ${subjectName} examiner. Mark this student's work against the mark scheme using Edexcel IAL analytic conventions (M marks for method, A marks for accuracy/final answers, B marks for independent correct statements). Apply follow-through (FT) on dependent accuracy when the method is valid. Accept equivalent forms ("oe" / or equivalent). Watch units and significant figures when the question requires them.`
+    ? scienceUnit
+      ? `You are a Pearson Edexcel International A Level ${subjectName} examiner. Mark this student's work against the mark scheme using Edexcel IAL analytic conventions (M marks for method/working, A marks for accuracy/final answers, B marks for independent correct statements). Apply follow-through (FT) on dependent accuracy when the method is valid. For science: require clear working, correct units, and significant figures when the question (or scheme) demands them; do not award accuracy that contradicts an earlier incorrect method.`
+      : `You are a Pearson Edexcel International A Level ${subjectName} examiner. Mark this student's work against the mark scheme using Edexcel IAL analytic conventions (M marks for method, A marks for accuracy/final answers, B marks for independent correct statements). Apply follow-through (FT) on dependent accuracy when the method is valid. Accept equivalent forms ("oe" / or equivalent). Watch units and significant figures when the question requires them.`
     : `You are a Cambridge International A-Level ${subjectName} examiner. Mark this student's work against the official mark scheme using point-based Cambridge conventions (B1/M1/A1/C1 marks, "award 1 mark for...", ECF where stated).`
 
   const awardLine = edexcel

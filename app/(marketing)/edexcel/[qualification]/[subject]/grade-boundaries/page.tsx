@@ -49,7 +49,15 @@ export default async function EdexcelBoundariesPage({ params }: Props) {
   if (!qual) notFound()
   const copy = buildEdexcelSubjectCopy(subject)
   const isMaths = subject.slug === 'mathematics'
-  const markHref = isMaths ? edexcelMarkHref('WMA11') : edexcelMarkHref()
+  const markableWave1 = subject.markingWave === 1
+  const markHref =
+    subject.slug === 'mathematics'
+      ? edexcelMarkHref('WMA11')
+      : subject.slug === 'physics'
+        ? edexcelMarkHref('WPH11')
+        : subject.slug === 'chemistry'
+          ? edexcelMarkHref('WCH11')
+          : edexcelMarkHref()
 
   return (
     <MarketingPageShell>
@@ -117,7 +125,7 @@ export default async function EdexcelBoundariesPage({ params }: Props) {
                 {u.code}
               </Link>
               <span className="ms-body-2 mt-1 block">{u.name}</span>
-              {isMaths ? (
+              {markableWave1 ? (
                 <Link
                   href={edexcelMarkHref(u.code)}
                   className="ms-micro mt-3 inline-block font-semibold uppercase tracking-wide text-[var(--ec-accent)]"
@@ -128,15 +136,15 @@ export default async function EdexcelBoundariesPage({ params }: Props) {
             </li>
           ))}
         </ul>
-        <div className="mt-8 rounded-3xl border border-[var(--ec-border)] bg-[var(--ec-bg-soft)] px-6 py-8 text-center sm:px-10">
+        <div className="mt-8 rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-bg-soft))] px-6 py-8 text-center shadow-[var(--ec-shadow-hard,4px_4px_0_rgba(0,0,0,0.08))] sm:px-10">
           <h2 className="ms-h2">Boundaries set the target. Marking finds the gap.</h2>
           <p className="mx-auto mt-2 max-w-lg text-[var(--ec-text-secondary)]">
-            {isMaths
-              ? 'Upload a WMA/WME/WST practice answer and get method/accuracy feedback before the next sitting.'
-              : 'IAL Maths marking is live first — Physics and Chemistry follow once conversion is proven.'}
+            {markableWave1
+              ? `Upload a ${subject.familyCode} practice answer and get method/accuracy feedback before the next sitting.`
+              : 'Wave 1 Maths, Physics and Chemistry marking is live — Biology follows later.'}
           </p>
           <Link href={markHref} className="ec-btn-primary mt-5 inline-flex min-h-[48px]">
-            {isMaths ? 'Mark IAL Maths →' : 'Open Edexcel marking →'}
+            {markableWave1 ? `Mark IAL ${subject.name} →` : 'Open Edexcel marking →'}
           </Link>
         </div>
       </MarketingSection>

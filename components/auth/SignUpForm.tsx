@@ -34,7 +34,7 @@ type SignUpFormProps = {
 export function SignUpForm({
   redirectPath,
   signInHref,
-  signupSubhead = 'Free tier included — Cambridge, IB, or Edexcel IAL Maths. Pick subjects in onboarding.',
+  signupSubhead = 'Free tier included — Cambridge, IB, or Edexcel IAL STEM. Pick subjects in onboarding.',
   showBlogReturnHint = false,
   showContentReturnHint = false,
   guestBrowseSkipPath = null,
@@ -378,5 +378,5 @@ export function signUpSubheadForRedirect(redirect: string | null): string {
   if (redirect?.startsWith('/mark')) {
     return 'Free tier included — save this mark, then pick your board and subjects in onboarding.'
   }
-  return 'Free tier included — Cambridge, IB, or Edexcel IAL Maths. Pick subjects in onboarding.'
+  return 'Free tier included — Cambridge, IB, or Edexcel IAL STEM. Pick subjects in onboarding.'
 }

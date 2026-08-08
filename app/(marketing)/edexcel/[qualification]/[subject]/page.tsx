@@ -18,6 +18,7 @@ import {
   resolveEdexcelSubject,
 } from '@/lib/seo/edexcel-graph'
 import { buildEdexcelSubjectCopy } from '@/lib/seo/edexcel-seo'
+import { CrossBoardTopicLinks } from '@/components/seo/CrossBoardTopicLinks'
 
 type Props = { params: Promise<{ qualification: string; subject: string }> }
 
@@ -50,13 +51,11 @@ export default async function EdexcelSubjectPage({ params }: Props) {
   const pastPapersPath = edexcelSubjectPastPapersPath(qualification, subjectSlug)
   const boundariesPath = edexcelSubjectBoundariesPath(qualification, subjectSlug)
   const waveNote =
-    subject.slug === 'mathematics'
-      ? 'Wave 1 marking is live for IAL Maths units — practice and scanned scripts on /mark.'
-      : subject.markingWave === 1
-        ? 'Wave 1 shell — Physics and Chemistry marking follow once Maths conversion is proven.'
-        : subject.markingWave === 1.5
-          ? 'Wave 1.5 — Biology shell is live; phrase-level marking follows STEM conversion.'
-          : 'Later marking wave.'
+    subject.markingWave === 1
+      ? 'Wave 1 marking is live — practice and scanned scripts on /mark with Edexcel method/accuracy conventions.'
+      : subject.markingWave === 1.5
+        ? 'Wave 1.5 — Biology shell is live; phrase-level marking follows STEM conversion.'
+        : 'Later marking wave.'
 
   return (
     <MarketingPageShell>
@@ -120,15 +119,19 @@ export default async function EdexcelSubjectPage({ params }: Props) {
               href={
                 subject.slug === 'mathematics'
                   ? edexcelMarkHref('WMA11')
-                  : edexcelMarkHref()
+                  : subject.slug === 'physics'
+                    ? edexcelMarkHref('WPH11')
+                    : subject.slug === 'chemistry'
+                      ? edexcelMarkHref('WCH11')
+                      : edexcelMarkHref()
               }
               className="ec-card block p-4"
             >
               <span className="font-semibold">Mark an answer</span>
               <span className="ms-body-2 mt-1 block">
-                {subject.slug === 'mathematics'
-                  ? 'Edexcel IAL Maths marking is live — practice and scanned scripts with method/accuracy conventions.'
-                  : 'Edexcel Maths marking is live first. Physics and Chemistry follow once conversion is proven.'}
+                {subject.markingWave === 1
+                  ? `Edexcel IAL ${subject.name} marking is live — practice and scanned scripts with method/accuracy conventions.`
+                  : 'Biology marking follows after Wave 1 STEM conversion. Maths, Physics and Chemistry are live now.'}
               </span>
             </Link>
           </li>
@@ -141,6 +144,9 @@ export default async function EdexcelSubjectPage({ params }: Props) {
             </Link>
           </li>
         </ul>
+        {subject.slug === 'mathematics' ? (
+          <CrossBoardTopicLinks mode="edexcel-maths-hub" />
+        ) : null}
       </MarketingSection>
     </MarketingPageShell>
   )

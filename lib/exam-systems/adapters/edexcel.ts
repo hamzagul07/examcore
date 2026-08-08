@@ -3,9 +3,9 @@ import { isEdexcelMarkingLive } from '@/lib/edexcel/marking'
 import type { ExamSystem } from '@/lib/exam-systems/types'
 
 /**
- * Pearson Edexcel — adapter (E1 shell + E2 Maths marking).
+ * Pearson Edexcel — adapter (E1 shell + E2 Wave 1 STEM marking).
  * Unit codes (WMA11, WPH14, …) are owned here so they never fall through to IB.
- * Onboarding is on so mark → signup can store board=Edexcel (Wave 1 Maths units).
+ * Onboarding is on so mark → signup can store board=Edexcel (Maths/Physics/Chemistry units).
  */
 export const edexcelExamSystem: ExamSystem = {
   id: 'edexcel',
@@ -41,7 +41,7 @@ export const edexcelExamSystem: ExamSystem = {
   gradeModel: 'ums',
   markingDialect: 'point_method',
   assessmentStyle: 'modular',
-  markPickerHint: 'IAL Maths units — method, accuracy & follow-through marking',
+  markPickerHint: 'IAL Maths, Physics & Chemistry units — method, accuracy & follow-through',
   ownsSubjectCode(code) {
     return isEdexcelUnitCode(code)
   },

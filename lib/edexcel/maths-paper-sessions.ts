@@ -4,7 +4,10 @@
  * without waiting on scheme ingest.
  */
 
-import { getEdexcelMarkableUnitCodes } from '@/lib/edexcel/marking'
+import {
+  getEdexcelMarkableMathsSubject,
+  isEdexcelMathsUnitCode,
+} from '@/lib/edexcel/marking'
 
 export type EdexcelPaperSeason = 'January' | 'June' | 'October'
 
@@ -35,15 +38,17 @@ function buildSessions(): EdexcelPaperSession[] {
 const SHARED_SESSIONS = buildSessions()
 
 /**
- * Session list for a Wave 1 Maths unit. Non-maths / unknown codes → [].
+ * Session list for IAL Maths units only. Physics/Chem → [] (no Maths calendar leak).
  * Same calendar for all Maths units (IAL modular sitting pattern).
  */
 export function getEdexcelMathsSessionsForUnit(unitCode: string): EdexcelPaperSession[] {
   const code = unitCode.trim().toUpperCase()
-  if (!getEdexcelMarkableUnitCodes().includes(code)) return []
+  if (!isEdexcelMathsUnitCode(code)) return []
+  const maths = getEdexcelMarkableMathsSubject()
+  if (!maths?.units.some((u) => u.code === code)) return []
   return SHARED_SESSIONS
 }
 
 export function listEdexcelMathsUnitsWithSessions(): string[] {
-  return getEdexcelMarkableUnitCodes()
+  return getEdexcelMarkableMathsSubject()?.units.map((u) => u.code) ?? []
 }

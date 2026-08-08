@@ -118,7 +118,7 @@ export function ProfileFormFields({
 
       <FieldGroup
         label="Exam board"
-        hint="Cambridge, IB Diploma, and Edexcel IAL Maths are live."
+        hint="Cambridge, IB Diploma, and Edexcel IAL Maths/Physics/Chemistry are live."
       >
         <OptionGrid
           options={BOARDS.filter((b) => b.enabled)}

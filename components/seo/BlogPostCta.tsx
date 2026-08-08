@@ -47,7 +47,7 @@ export function BlogPostCta({
   const communityHref = subjectCode ? `/community/s/${subjectCode}` : '/community'
   const roomLabel =
     markBoard === 'edexcel'
-      ? 'Edexcel IAL Maths'
+      ? 'Edexcel IAL'
       : subjectCode
         ? subjectName
           ? `${subjectCode} ${subjectName}`
@@ -55,7 +55,7 @@ export function BlogPostCta({
         : 'exam season'
   const markCtaLabel =
     markBoard === 'edexcel'
-      ? 'Mark an Edexcel IAL Maths question — free'
+      ? 'Mark an Edexcel IAL question — free'
       : subjectCode
         ? `Mark a ${subjectCode} question — free`
         : 'Mark a question — free, no account'

@@ -98,7 +98,7 @@ export default function PumCalculatorPage() {
           <aside className="mt-8 flex flex-wrap items-center justify-between gap-4 ec-card ec-card--paper border border-[var(--ec-border)] px-5 py-4">
             <p className="ms-body-2" style={{ margin: 0, maxWidth: 520 }}>
               Sitting Edexcel International? Units cash in via UMS (same idea as PUM, different
-              board). MarkScheme marks Wave 1 IAL Maths units live.
+              board). MarkScheme marks Wave 1 IAL Maths, Physics and Chemistry units live.
             </p>
             <div className="flex flex-wrap gap-2">
               <Link

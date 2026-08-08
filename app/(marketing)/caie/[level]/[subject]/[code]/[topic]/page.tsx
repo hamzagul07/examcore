@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowRight } from 'lucide-react'
+
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -8,6 +8,7 @@ import { faqPageNode } from '@/lib/seo/structured-data'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { CaieGraphNav } from '@/components/seo/CaieGraphNav'
 import { SyllabusGraphLinks } from '@/components/seo/SyllabusGraphLinks'
+import { CrossBoardTopicLinks } from '@/components/seo/CrossBoardTopicLinks'
 import { getCourseLessons } from '@/lib/courses'
 import {
   getAllCaieLessonParams,
@@ -205,7 +206,7 @@ export default async function CaieLessonHubPage({ params }: Props) {
             href={`/mark?subject=${encodeURIComponent(code)}&topic=${encodeURIComponent(lesson.topicCode)}`}
             className="ec-btn-primary min-h-[48px]"
           >
-            Mark this topic <ArrowRight className="h-4 w-4" />
+            Mark this topic <span className="h-4 w-4" aria-hidden>-&gt;</span>
           </Link>
           <Link
             href={`/courses/${code}/${lesson.slug}`}
@@ -216,6 +217,13 @@ export default async function CaieLessonHubPage({ params }: Props) {
         </div>
 
         <SyllabusGraphLinks code={code} topicCode={lesson.topicCode} />
+        {code === '9709' ? (
+          <CrossBoardTopicLinks
+            mode="caie-topic"
+            syllabusCode={code}
+            topicCode={lesson.topicCode}
+          />
+        ) : null}
       </MarketingSection>
     </MarketingPageShell>
   )

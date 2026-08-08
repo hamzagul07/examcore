@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import {
   MarketingHero,
   MarketingPageShell,
@@ -16,6 +16,7 @@ import {
   oxfordaqaSubjectPath,
 } from '@/lib/seo/oxfordaqa-graph'
 import { buildOxfordaqaHubCopy } from '@/lib/seo/oxfordaqa-seo'
+import { OXFORD_AQA_HUB_GUIDE_LINKS } from '@/lib/edexcel/seo-guides'
 
 const copy = buildOxfordaqaHubCopy()
 
@@ -44,8 +45,31 @@ export default function OxfordaqaHubPage() {
       <MarketingHero
         label="OxfordAQA"
         title="OxfordAQA International"
-        lead="Paper maps, past-paper indexes and grade boundaries for International A-level — the same acquisition surface pattern as Edexcel, without a second product build."
+        lead="Paper maps, past-paper indexes and grade boundaries for International A-level — the same acquisition surface pattern as Edexcel, without a second product build. Marking stays off until Edexcel conversion justifies the next dialect."
       />
+
+      <MarketingSection className="!pt-0">
+        <div className="flex flex-wrap gap-3">
+          <Link href="/edexcel" className="ec-btn-primary inline-flex min-h-[48px]">
+            Marking live on Edexcel IAL →
+          </Link>
+          <Link href="/results-2026/edexcel" className="ec-btn-ghost inline-flex min-h-[48px]">
+            Results Day — Edexcel path
+          </Link>
+          <Link href="/caie" className="ec-btn-ghost inline-flex min-h-[48px]">
+            Cambridge syllabus graph
+          </Link>
+        </div>
+        <ul className="mt-6 grid list-none gap-2 p-0 sm:grid-cols-2">
+          {OXFORD_AQA_HUB_GUIDE_LINKS.map((g) => (
+            <li key={g.href}>
+              <Link href={g.href} className="ec-card block p-3 text-sm font-semibold">
+                {g.label} →
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </MarketingSection>
 
       <MarketingSection>
         <h2 className="ms-h2">Qualifications</h2>
@@ -63,7 +87,7 @@ export default function OxfordaqaHubPage() {
                   </span>
                   <span className="ms-body-2 mt-2 block">{q.blurb}</span>
                 </span>
-                <ArrowRight className="h-4 w-4 shrink-0 opacity-60" />
+                <span className="h-4 w-4 shrink-0 opacity-60" aria-hidden>-&gt;</span>
               </Link>
             </li>
           ))}

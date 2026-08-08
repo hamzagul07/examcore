@@ -616,8 +616,8 @@ function StepSubjects({
       <h1 className="ms-h2">What are you studying?</h1>
       <p className="ms-lead" style={{ marginTop: 12 }}>
         Pick your exam board, then choose up to four subjects. Cambridge, IB, and
-        Edexcel IAL Maths are live — we&apos;ll tailor marking and progress to your
-        choices.
+        Edexcel IAL Maths/Physics/Chemistry are live — we&apos;ll tailor marking and
+        progress to your choices.
       </p>
 
       <p className="ms-overline" style={{ marginTop: 28 }}>
@@ -639,7 +639,7 @@ function StepSubjects({
               {opt.id === IB_BOARD_ID
                 ? 'HL, SL & Core'
                 : opt.id === EDEXCEL_BOARD_ID
-                  ? 'IAL Maths units'
+                  ? 'IAL Maths, Physics & Chemistry'
                   : 'A-Level, AS & O-Level'}
             </span>
           </button>
@@ -673,7 +673,7 @@ function StepSubjects({
         {ib
           ? 'Which IB subjects are you taking?'
           : edexcel
-            ? 'Which Edexcel IAL Maths units are you taking?'
+            ? 'Which Edexcel IAL units are you taking?'
             : `Which Cambridge ${levelHeading} are you taking?`}
       </h2>
       <p className="ms-lead" style={{ marginTop: 10, fontSize: 15 }}>

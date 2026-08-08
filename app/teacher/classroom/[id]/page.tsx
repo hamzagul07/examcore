@@ -11,6 +11,7 @@ import { ReviewQueueList } from '@/components/teacher/ReviewQueueList'
 import { InviteCard } from '@/components/teacher/InviteCard'
 import { TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
 import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
+import { attemptSummary } from '@/lib/teacher/stat-display'
 import { useSetAIContext } from '@/lib/omni-ai/context'
 import type { StudentQuadrantMetric } from '@/lib/teacher-analytics'
 
@@ -154,7 +155,7 @@ export default function ClassroomPage() {
                 <div>
                   <div className="font-medium text-[var(--ec-text-primary)]">{s.name}</div>
                   <div className="text-xs text-[var(--ec-text-secondary)]">
-                    {s.attemptCount} attempts · {s.accuracy.toFixed(0)}% avg
+                    {attemptSummary(s.attemptCount, s.accuracy)}
                   </div>
                 </div>
                 <ArrowRight className="h-4 w-4 text-[var(--ec-text-secondary)]" />

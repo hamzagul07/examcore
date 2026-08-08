@@ -10,6 +10,8 @@ import {
   type OfficialBoundaries,
 } from '@/lib/seo/grade-boundaries'
 import { MockPackEmailCapture } from '@/components/tools/MockPackEmailCapture'
+import { buildGradeHoldSlipText } from '@/lib/tools/grade-hold-slip'
+import { ToolShareActions } from '@/components/tools/ToolShareActions'
 
 function rowsFromOfficial(
   official: OfficialBoundaries | null,
@@ -65,131 +67,172 @@ export function WillMyGradeHold({
     setRows(rowsFromOfficial(official, next))
   }
 
+  function setMark(i: number, value: string) {
+    setRows((prev) =>
+      prev.map((r, idx) => (idx === i ? { ...r, mark: value === '' ? '' : Number(value) } : r))
+    )
+  }
+
   return (
-    <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-      <div className="ec-card space-y-4 p-5">
-        <div className="flex flex-wrap gap-2">
-          {(['A-Level', 'AS-Level'] as const).map((opt) => (
+    <div className="gb-tool" style={{ marginTop: 0 }}>
+      <div className="gb-grid">
+        <div className="gb-inputs">
+          <div className="gb-level">
             <button
-              key={opt}
               type="button"
-              onClick={() => switchLevel(opt)}
-              className={
-                level === opt ? 'ec-btn-primary min-h-[40px]' : 'ec-btn-ghost min-h-[40px]'
-              }
+              className={`cmd-tab${level === 'A-Level' ? ' is-active' : ''}`}
+              onClick={() => switchLevel('A-Level')}
+              aria-pressed={level === 'A-Level'}
             >
-              {opt}
+              A-Level (A*–E)
             </button>
-          ))}
-        </div>
+            <button
+              type="button"
+              className={`cmd-tab${level === 'AS-Level' ? ' is-active' : ''}`}
+              onClick={() => switchLevel('AS-Level')}
+              aria-pressed={level === 'AS-Level'}
+            >
+              AS-Level (a–e)
+            </button>
+          </div>
 
-        {code ? (
-          <p className="ms-body-2">
-            Checking <strong>{code}</strong>
-            {subjectLabel ? ` · ${subjectLabel}` : ''}. Pre-filled from the latest verified
-            session where available — always confirm against your official statement.
-          </p>
-        ) : (
-          <p className="ms-body-2">
-            Paste your raw mark and the published thresholds for your component. We show the
-            grade and the gap to the next boundary.
-          </p>
-        )}
+          {code ? (
+            <p className="gb-help micro">
+              Checking <strong>{code}</strong>
+              {subjectLabel ? ` · ${subjectLabel}` : ''}. Pre-filled from the latest verified
+              session where available — always confirm against your official statement.
+            </p>
+          ) : (
+            <p className="gb-help micro">
+              Paste your raw mark and the published thresholds for your component. We show the
+              grade and the gap to the next boundary.
+            </p>
+          )}
 
-        <div className="grid gap-3 sm:grid-cols-2">
-          <label className="block text-sm">
-            <span className="ms-overline">Raw mark</span>
+          <label className="gb-field">
+            <span>Raw mark</span>
             <input
               inputMode="decimal"
               value={raw}
               onChange={(e) => setRaw(e.target.value.replace(/[^\d.]/g, ''))}
-              className="mt-1 w-full rounded-md border border-[var(--ec-border)] bg-[var(--ec-bg)] px-3 py-2.5"
               placeholder="e.g. 62"
             />
           </label>
-          <label className="block text-sm">
-            <span className="ms-overline">Paper / aggregate total</span>
+          <label className="gb-field">
+            <span>Paper / aggregate total</span>
             <input
               inputMode="decimal"
               value={total}
               onChange={(e) => setTotal(e.target.value.replace(/[^\d.]/g, ''))}
-              className="mt-1 w-full rounded-md border border-[var(--ec-border)] bg-[var(--ec-bg)] px-3 py-2.5"
               placeholder="e.g. 100"
             />
           </label>
-        </div>
 
-        <div className="space-y-2">
-          <p className="ms-overline">Thresholds (edit if needed)</p>
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+          <p className="gb-help micro">Thresholds (edit if needed)</p>
+          <div className="gb-thresholds">
             {rows.map((row, i) => (
-              <label key={row.grade} className="block text-sm">
-                <span className="text-[var(--ec-text-secondary)]">{row.grade}</span>
+              <label key={row.grade} className="gb-threshold">
+                <span className="gb-grade-label mono">{row.grade}</span>
                 <input
                   inputMode="decimal"
                   value={row.mark === '' ? '' : String(row.mark)}
-                  onChange={(e) => {
-                    const v = e.target.value.replace(/[^\d.]/g, '')
-                    setRows((prev) =>
-                      prev.map((r, idx) =>
-                        idx === i
-                          ? { ...r, mark: v === '' ? '' : Number(v) }
-                          : r
-                      )
-                    )
-                  }}
-                  className="mt-1 w-full rounded-md border border-[var(--ec-border)] bg-[var(--ec-bg)] px-3 py-2"
+                  onChange={(e) => setMark(i, e.target.value.replace(/[^\d.]/g, ''))}
+                  placeholder="mark"
+                  aria-label={`Boundary mark for grade ${row.grade}`}
                 />
               </label>
             ))}
           </div>
         </div>
 
-        {result ? (
-          <div className="rounded-md border border-[var(--ec-border)] bg-[var(--ec-surface)] p-4">
-            <p className="ms-overline">Predicted grade</p>
-            <p className="ms-h2" style={{ fontSize: '2rem', marginTop: 4 }}>
-              {result.grade ?? '—'}
-              {result.percent != null ? (
-                <span className="ms-body-2 ml-2 font-normal">
-                  ({result.percent}%)
-                </span>
-              ) : null}
-            </p>
-            {result.nextGrade && result.marksToNext != null ? (
-              <p className="ms-body-2 mt-2">
-                <strong>{result.marksToNext}</strong> raw mark
-                {result.marksToNext === 1 ? '' : 's'} to a {result.nextGrade}.
+        <div className="gb-result" aria-live="polite">
+          {!result ? (
+            <div className="gb-result-empty">
+              <p className="ms-body-2">
+                Enter your raw mark, the total, and thresholds to see whether the grade holds.
               </p>
-            ) : (
-              <p className="ms-body-2 mt-2">You&apos;re at the top of this ladder for the thresholds entered.</p>
-            )}
-            {code ? (
-              <div className="mt-4 flex flex-wrap gap-2">
-                <Link
-                  href={`/mark?subject=${encodeURIComponent(code)}`}
-                  className="ec-btn-primary min-h-[44px]"
+            </div>
+          ) : (
+            <>
+              <span className="gb-result-stamp" aria-hidden>
+                {result.grade ?? '—'}
+              </span>
+              <p className="ms-overline" style={{ color: 'var(--ec-brand)' }}>
+                Predicted grade
+              </p>
+              <div className="gb-grade-big">{result.grade ?? '—'}</div>
+              {result.percent != null ? (
+                <p className="gb-percent mono">{result.percent}% of total</p>
+              ) : null}
+              {result.nextGrade && result.marksToNext != null ? (
+                <p className="gb-next">
+                  <strong>{result.marksToNext}</strong> raw mark
+                  {result.marksToNext === 1 ? '' : 's'} to a <strong>{result.nextGrade}</strong>
+                </p>
+              ) : (
+                <p className="gb-next">Top of the ladder for the thresholds entered.</p>
+              )}
+              <p className="gb-disclaimer micro">
+                An estimate from the thresholds entered. Official grades come from Cambridge via
+                your centre — confirm against your statement of results.
+              </p>
+              <ToolShareActions
+                title="MarkScheme · Will my grade hold?"
+                url={
+                  code
+                    ? `https://markscheme.app/tools/will-my-grade-hold?code=${encodeURIComponent(code)}`
+                    : 'https://markscheme.app/tools/will-my-grade-hold'
+                }
+                copyLabel="Copy result"
+                text={buildGradeHoldSlipText({
+                  grade: result.grade ?? null,
+                  percent: result.percent ?? null,
+                  raw: Number.isFinite(Number(raw)) ? Number(raw) : null,
+                  total: Number.isFinite(Number(total)) ? Number(total) : null,
+                  nextGrade: result.nextGrade ?? null,
+                  marksToNext: result.marksToNext ?? null,
+                  subjectLabel: subjectLabel ?? null,
+                  code: code ?? null,
+                  level,
+                })}
+              />
+              {code ? (
+                <div
+                  className="mt-3 flex flex-wrap justify-center gap-2"
+                  style={{ marginTop: 12 }}
                 >
-                  Mark a {code} question — free
-                </Link>
+                  <Link
+                    href={`/mark?subject=${encodeURIComponent(code)}`}
+                    className="ec-btn-primary min-h-[44px]"
+                  >
+                    Mark a {code} question — free
+                  </Link>
+                  <Link href={`/courses/${code}`} className="ec-btn-ghost min-h-[44px]">
+                    Free {code} course
+                  </Link>
+                </div>
+              ) : (
                 <Link
-                  href={`/courses/${code}`}
-                  className="ec-btn-ghost min-h-[44px]"
+                  href="/mark"
+                  className="ec-btn-primary inline-flex min-h-[44px]"
+                  style={{ marginTop: 12 }}
                 >
-                  Free {code} course
+                  Mark a paper free <span aria-hidden>-&gt;</span>
                 </Link>
-              </div>
-            ) : null}
-          </div>
-        ) : null}
+              )}
+            </>
+          )}
+        </div>
       </div>
 
-      <MockPackEmailCapture
-        source="will-my-grade-hold"
-        syllabusCode={code}
-        rawMark={raw === '' ? null : Number(raw)}
-        predictedGrade={result?.grade ?? null}
-      />
+      <div style={{ marginTop: 18 }}>
+        <MockPackEmailCapture
+          source="will-my-grade-hold"
+          syllabusCode={code}
+          rawMark={raw === '' ? null : Number(raw)}
+          predictedGrade={result?.grade ?? null}
+        />
+      </div>
     </div>
   )
 }

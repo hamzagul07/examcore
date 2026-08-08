@@ -142,10 +142,16 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     ],
   },
   '/tools/will-my-grade-hold': {
-    title: 'Will my grade hold? — Cambridge raw mark checker',
+    title: 'Will My Grade Hold? — Cambridge Results Day 2026 Checker',
     description:
-      'Paste your Cambridge raw mark and published thresholds. See your grade, the gap to the next boundary, and get the November mock pack.',
-    keywords: ['will my grade hold', 'Cambridge grade calculator', 'raw mark to grade'],
+      'Paste a Cambridge raw mark and May/June thresholds. See if your grade holds, marks to the next boundary, then get the free November mock pack.',
+    keywords: [
+      'will my grade hold',
+      'Cambridge grade calculator',
+      'raw mark to grade',
+      'grade boundaries 2026',
+      'A Level results 2026',
+    ],
   },
   '/privacy': {
     title: 'Privacy policy',

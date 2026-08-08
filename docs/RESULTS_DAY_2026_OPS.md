@@ -25,6 +25,26 @@ primary CTA — use UMS / cash-in + `/mark?board=edexcel`.
 
 ---
 
+## GSC Request Indexing (do today — ~10 URLs)
+
+Paste into Search Console → URL Inspection → Request indexing. Priority = rewritten
+CTR winners + conversion destinations:
+
+1. `https://markscheme.app/guides/grade-boundaries`
+2. `https://markscheme.app/tools/will-my-grade-hold`
+3. `https://markscheme.app/results-2026`
+4. `https://markscheme.app/blog/cambridge-results-day-august-2026-guide`
+5. `https://markscheme.app/blog/cambridge-9709-mathematics-grade-boundaries-2026`
+6. `https://markscheme.app/blog/cambridge-may-june-2026-grade-thresholds-what-to-expect`
+7. `https://markscheme.app/tools/grade-boundary-calculator`
+8. `https://markscheme.app/blog/cambridge-2281-o-level-economics-past-papers-guide`
+9. `https://markscheme.app/tools/command-words`
+10. `https://markscheme.app/ib/past-papers/chemistry-hl`
+
+Full list: `node scripts/gsc-indexing-urls.mjs --tier 1`
+
+---
+
 ## Sprint checklist
 
 ### Now → 10 Aug (pre-results)

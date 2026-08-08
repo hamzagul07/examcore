@@ -82,6 +82,17 @@ export function lastFunnelBoard(): string | null {
   }
 }
 
+/** Map /mark funnel board id → user_profiles.board / onboarding BOARDS id. */
+export function profileBoardFromFunnelBoard(
+  funnelBoard: string | null | undefined
+): string | null {
+  const b = funnelBoard?.trim().toLowerCase()
+  if (b === 'edexcel') return 'Edexcel'
+  if (b === 'ib') return 'IB'
+  if (b === 'cambridge') return 'Cambridge International'
+  return null
+}
+
 export function trackFunnelEvent(event: FunnelEvent, props: FunnelProps = {}): void {
   if (typeof window === 'undefined') return
 

@@ -25,7 +25,13 @@ function check(name: string, ok: boolean) {
 
 // ── Registry shape ──────────────────────────────────────────────────────────
 check('six exam systems registered', listExamSystems().length === 6)
-check('only CAIE + IB enabled', listEnabledExamSystems().map((s) => s.id).join(',') === 'cambridge,ib')
+check(
+  'CAIE + Edexcel + IB enabled',
+  listEnabledExamSystems()
+    .map((s) => s.id)
+    .sort()
+    .join(',') === 'cambridge,edexcel,ib'
+)
 check(
   'CAIE + Edexcel + IB marking',
   listMarkingExamSystems()

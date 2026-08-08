@@ -7,10 +7,13 @@ import {
   SUBJECT_GROUPS,
   IB_DIPLOMA_LEVEL,
   isIbBoard,
+  isEdexcelBoard,
   isSubjectValidForProfile,
   subjectsInGroup,
   ibSubjectGroups,
   ibSubjectsInGroup,
+  edexcelSubjectGroups,
+  edexcelSubjectsInGroup,
   levelsForBoard,
   type ProfileOption,
   type SubjectOption,
@@ -44,6 +47,7 @@ export function ProfileFormFields({
   showFullName = true,
 }: Props) {
   const ib = isIbBoard(board)
+  const edexcel = isEdexcelBoard(board)
 
   function handleBoardChange(nextBoard: string) {
     setBoard(nextBoard)
@@ -65,7 +69,11 @@ export function ProfileFormFields({
     setSubjects([...subjects, id])
   }
 
-  const subjectGroups = ib ? ibSubjectGroups() : [...SUBJECT_GROUPS]
+  const subjectGroups = ib
+    ? ibSubjectGroups()
+    : edexcel
+      ? edexcelSubjectGroups()
+      : [...SUBJECT_GROUPS]
   const visibleLevels = levelsForBoard(board)
 
   return (
@@ -110,7 +118,7 @@ export function ProfileFormFields({
 
       <FieldGroup
         label="Exam board"
-        hint="Cambridge International and IB Diploma are both live."
+        hint="Cambridge, IB Diploma, and Edexcel IAL Maths are live."
       >
         <OptionGrid
           options={BOARDS.filter((b) => b.enabled)}
@@ -121,7 +129,7 @@ export function ProfileFormFields({
       </FieldGroup>
 
       {!ib ? (
-        <FieldGroup label="Cambridge level">
+        <FieldGroup label={edexcel ? 'IAL level' : 'Cambridge level'}>
           <OptionGrid
             options={visibleLevels}
             selected={level}
@@ -138,14 +146,16 @@ export function ProfileFormFields({
       )}
 
       <FieldGroup
-        label="Subjects you're studying"
+        label={edexcel ? "Units you're studying" : "Subjects you're studying"}
         hint={`${subjects.length}/4 selected — tap to add or remove.`}
       >
         <div className="space-y-5">
           {subjectGroups.map((group) => {
             const groupSubjects = ib
               ? ibSubjectsInGroup(group)
-              : subjectsInGroup(group, level)
+              : edexcel
+                ? edexcelSubjectsInGroup(group)
+                : subjectsInGroup(group, level)
             if (groupSubjects.length === 0) return null
             return (
               <div key={group}>
@@ -301,11 +311,11 @@ function SubjectGrid({
 }
 
 function optionButtonClass(isActive: boolean, isDisabled: boolean) {
-  return `group relative flex items-center justify-between rounded-2xl border px-4 py-3.5 text-left text-sm font-medium transition-all duration-200 ${
+  return `group relative flex items-center justify-between rounded border px-4 py-3.5 text-left text-sm font-medium transition-all duration-200 ${
     isDisabled
       ? 'cursor-not-allowed border-[var(--ec-border)] bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)]'
       : isActive
         ? 'ec-option-active text-[var(--ec-text-primary)]'
-        : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)] hover:-translate-y-0.5 hover:border-[color-mix(in_srgb,var(--ec-brand)_30%,transparent)] hover:bg-[var(--ec-brand-muted)] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.15)]'
+        : 'border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] text-[var(--ec-text-secondary)] hover:-translate-y-0.5 hover:border-[color-mix(in_srgb,var(--ec-brand)_30%,transparent)] hover:bg-[var(--ec-brand-muted)] hover:shadow-[var(--ec-shadow-hard,3px_3px_0_rgba(0,0,0,0.08))]'
   }`
 }

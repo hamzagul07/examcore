@@ -5,14 +5,14 @@ import type { ExamSystem } from '@/lib/exam-systems/types'
 /**
  * Pearson Edexcel — adapter (E1 shell + E2 Maths marking).
  * Unit codes (WMA11, WPH14, …) are owned here so they never fall through to IB.
- * Onboarding stays disabled until free→paid conversion is proven on Edexcel.
+ * Onboarding is on so mark → signup can store board=Edexcel (Wave 1 Maths units).
  */
 export const edexcelExamSystem: ExamSystem = {
   id: 'edexcel',
   label: 'Pearson Edexcel',
   shortLabel: 'Edexcel',
   profileBoardId: 'Edexcel',
-  enabled: false,
+  enabled: true,
   markingEnabled: isEdexcelMarkingLive(),
   routePrefix: 'edexcel',
   qualifications: [

@@ -6,6 +6,10 @@
  * `markingEnabled: true` — live marking on /mark.
  */
 
+import {
+  getEdexcelMarkableUnitCodes,
+  getEdexcelUnitMeta,
+} from '@/lib/edexcel/marking'
 import { IB_MARKING_PROFILES, type IbMarkingProfile } from '@/lib/ib/marking-config'
 
 export type ProfileOption = {
@@ -36,13 +40,14 @@ export type SubjectOption = {
 export const BOARDS: ProfileOption[] = [
   { id: 'Cambridge International', label: 'Cambridge International', enabled: true },
   { id: 'IB', label: 'IB Diploma', enabled: true },
-  { id: 'Edexcel', label: 'Pearson Edexcel', enabled: false },
+  { id: 'Edexcel', label: 'Pearson Edexcel', enabled: true },
   { id: 'OxfordAQA', label: 'OxfordAQA', enabled: false },
   { id: 'AQA', label: 'AQA', enabled: false },
   { id: 'AP', label: 'AP (College Board)', enabled: false },
 ]
 
 export const IB_BOARD_ID = 'IB'
+export const EDEXCEL_BOARD_ID = 'Edexcel'
 export const IB_DIPLOMA_LEVEL = 'IB Diploma'
 
 export const LEVELS: ProfileOption[] = [
@@ -348,8 +353,49 @@ export const IB_SUBJECT_OPTIONS: SubjectOption[] = IB_MARKING_PROFILES.map((p) =
 
 const IB_SUBJECT_BY_ID = new Map(IB_SUBJECT_OPTIONS.map((s) => [s.id, s]))
 
+/** Wave 1 IAL Maths units — stored as subject ids so mark resolves WMA/WME/WST codes. */
+export const EDEXCEL_SUBJECT_OPTIONS: SubjectOption[] = getEdexcelMarkableUnitCodes()
+  .map((code) => {
+    const meta = getEdexcelUnitMeta(code)
+    if (!meta) return null
+    return {
+      id: code,
+      label: `${meta.unit.name} (${code})`,
+      code,
+      group: meta.subject.group,
+      levels: ['AS Level', 'A-Level'],
+      enabled: true,
+      markingEnabled: true,
+      markingType: 'point_based' as const,
+    }
+  })
+  .filter((s): s is SubjectOption => s != null)
+
+const EDEXCEL_SUBJECT_BY_ID = new Map(EDEXCEL_SUBJECT_OPTIONS.map((s) => [s.id, s]))
+
 export function isIbBoard(board: string): boolean {
   return board === IB_BOARD_ID
+}
+
+export function isEdexcelBoard(board: string): boolean {
+  return board === EDEXCEL_BOARD_ID
+}
+
+export function edexcelSubjectsInGroup(group: string): SubjectOption[] {
+  return EDEXCEL_SUBJECT_OPTIONS.filter((s) => s.group === group && s.enabled)
+}
+
+export function edexcelSubjectGroups(): string[] {
+  const present = new Set(EDEXCEL_SUBJECT_OPTIONS.map((s) => s.group))
+  return SUBJECT_GROUPS.filter((g) => present.has(g))
+}
+
+export function getEdexcelSubjectOption(id: string): SubjectOption | undefined {
+  return EDEXCEL_SUBJECT_BY_ID.get(id)
+}
+
+export function isEdexcelSubjectId(id: string): boolean {
+  return EDEXCEL_SUBJECT_BY_ID.has(id)
 }
 
 export function ibSubjectsInGroup(group: string): SubjectOption[] {
@@ -381,6 +427,8 @@ export function getSubjectById(
 ): SubjectOption | undefined {
   const ib = getIbSubjectOption(id)
   if (ib) return ib
+  const edexcel = getEdexcelSubjectOption(id)
+  if (edexcel) return edexcel
 
   const candidates = SUBJECTS.filter((s) => s.id === id)
   if (candidates.length === 0) return undefined
@@ -394,6 +442,8 @@ export function getSubjectById(
 export function getSubjectByCode(code: string): SubjectOption | undefined {
   const ib = getIbSubjectOption(code)
   if (ib) return ib
+  const edexcel = getEdexcelSubjectOption(code)
+  if (edexcel) return edexcel
   return SUBJECT_BY_CODE.get(code)
 }
 
@@ -426,13 +476,22 @@ export function isSubjectValidForProfile(
   if (isIbBoard(board)) {
     return level === IB_DIPLOMA_LEVEL && isSubjectValidForIb(subjectId)
   }
-  if (isIbSubjectId(subjectId)) return false
+  if (isEdexcelBoard(board)) {
+    const opt = getEdexcelSubjectOption(subjectId)
+    return !!opt?.enabled && opt.levels.includes(level)
+  }
+  if (isIbSubjectId(subjectId) || isEdexcelSubjectId(subjectId)) return false
   return isSubjectValidForLevel(subjectId, level)
 }
 
 export function levelsForBoard(board: string): ProfileOption[] {
   if (isIbBoard(board)) {
     return LEVELS.filter((l) => l.id === IB_DIPLOMA_LEVEL && l.enabled)
+  }
+  if (isEdexcelBoard(board)) {
+    return LEVELS.filter(
+      (l) => (l.id === 'AS Level' || l.id === 'A-Level') && l.enabled
+    )
   }
   return LEVELS.filter((l) => l.id !== IB_DIPLOMA_LEVEL && l.enabled)
 }
@@ -441,6 +500,7 @@ export function levelsForBoard(board: string): ProfileOption[] {
 export const SELECTABLE_SUBJECT_IDS = new Set([
   ...SUBJECTS.filter((s) => s.enabled).map((s) => s.id),
   ...IB_SUBJECT_OPTIONS.filter((s) => s.enabled).map((s) => s.id),
+  ...EDEXCEL_SUBJECT_OPTIONS.filter((s) => s.enabled).map((s) => s.id),
 ])
 
 /** @deprecated use SELECTABLE_SUBJECT_IDS — kept for minimal diff at call sites */
@@ -449,11 +509,13 @@ export const ENABLED_SUBJECT_IDS = SELECTABLE_SUBJECT_IDS
 export const MARKING_ENABLED_SUBJECT_CODES = new Set([
   ...SUBJECTS.filter((s) => s.markingEnabled).map((s) => s.code),
   ...IB_SUBJECT_OPTIONS.filter((s) => s.markingEnabled).map((s) => s.code),
+  ...EDEXCEL_SUBJECT_OPTIONS.filter((s) => s.markingEnabled).map((s) => s.code),
 ])
 
 export const SUBJECT_CODE_MAP: Record<string, string> = {
   ...Object.fromEntries(SUBJECTS.map((s) => [s.code, s.label])),
   ...Object.fromEntries(IB_MARKING_PROFILES.map((p) => [p.code, p.name])),
+  ...Object.fromEntries(EDEXCEL_SUBJECT_OPTIONS.map((s) => [s.code, s.label])),
 }
 
 export const ENABLED_BOARD_IDS = new Set(
@@ -473,11 +535,17 @@ export function defaultSubjectsForProfile(board: string, level: string): string[
     const first = IB_SUBJECT_OPTIONS.find((s) => s.enabled)
     return first ? [first.id] : ['ib-biology-hl']
   }
+  if (isEdexcelBoard(board)) {
+    return ['WMA11']
+  }
   return DEFAULT_SUBJECTS
 }
 
 /** Fallback mark subject code when profile codes cannot be resolved. */
-export function defaultMarkSubjectCode(level: string): string {
+export function defaultMarkSubjectCode(level: string, board?: string): string {
+  if (isEdexcelBoard(board ?? '')) {
+    return 'WMA11'
+  }
   if (level === IB_DIPLOMA_LEVEL) {
     return IB_SUBJECT_OPTIONS.find((s) => s.enabled)?.code ?? 'ib-biology-hl'
   }

@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { Mail } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
 import { Label } from '@/components/ui/label'
 import { PasswordInput } from '@/components/PasswordInput'
@@ -35,7 +34,7 @@ type SignUpFormProps = {
 export function SignUpForm({
   redirectPath,
   signInHref,
-  signupSubhead = 'Free tier included — Cambridge or IB Diploma, pick your subjects in onboarding.',
+  signupSubhead = 'Free tier included — Cambridge, IB, or Edexcel IAL Maths. Pick subjects in onboarding.',
   showBlogReturnHint = false,
   showContentReturnHint = false,
   guestBrowseSkipPath = null,
@@ -171,9 +170,9 @@ export function SignUpForm({
   if (sent) {
     return (
       <div className="space-y-3 text-center">
-        <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-2xl border ec-tint-brand-icon">
-          <Mail className="h-8 w-8 ec-text-brand" />
-        </div>
+        <span className="ec-ink-stamp ec-ink-stamp--hero mx-auto mb-3" aria-hidden>
+          @
+        </span>
         <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)]">
           Check your email
         </h2>
@@ -207,7 +206,7 @@ export function SignUpForm({
 
       {showBlogReturnHint ? (
         <p
-          className="mb-6 rounded-xl border border-[color-mix(in_srgb,var(--ec-brand)_24%,var(--ec-border))] bg-[color-mix(in_srgb,var(--ec-brand)_6%,var(--ec-surface))] px-4 py-3 text-sm leading-relaxed text-[var(--ec-text-secondary)]"
+          className="ec-card ec-card--paper mb-6 border border-[color-mix(in_srgb,var(--ec-brand)_24%,var(--ec-border))] bg-[color-mix(in_srgb,var(--ec-brand)_6%,var(--ec-surface))] px-4 py-3 text-sm leading-relaxed text-[var(--ec-text-secondary)]"
           role="note"
         >
           After a quick subject setup (~60 sec), you&apos;ll land back on the guide you were
@@ -217,7 +216,7 @@ export function SignUpForm({
 
       {showContentReturnHint ? (
         <p
-          className="mb-6 rounded-xl border border-[color-mix(in_srgb,var(--ec-brand)_24%,var(--ec-border))] bg-[color-mix(in_srgb,var(--ec-brand)_6%,var(--ec-surface))] px-4 py-3 text-sm leading-relaxed text-[var(--ec-text-secondary)]"
+          className="ec-card ec-card--paper mb-6 border border-[color-mix(in_srgb,var(--ec-brand)_24%,var(--ec-border))] bg-[color-mix(in_srgb,var(--ec-brand)_6%,var(--ec-surface))] px-4 py-3 text-sm leading-relaxed text-[var(--ec-text-secondary)]"
           role="note"
         >
           After a quick subject setup (~60 sec), you&apos;ll return to the topic you were viewing.
@@ -373,5 +372,5 @@ export function signUpSubheadForRedirect(redirect: string | null): string {
   if (redirect?.startsWith('/ib/courses/') || redirect?.startsWith('/ib/past-papers/')) {
     return 'Free tier included — create your account to open this topic and save progress.'
   }
-  return 'Free tier included — Cambridge or IB Diploma, pick your subjects in onboarding.'
+  return 'Free tier included — Cambridge, IB, or Edexcel IAL Maths. Pick subjects in onboarding.'
 }

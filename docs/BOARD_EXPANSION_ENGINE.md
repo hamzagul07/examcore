@@ -383,10 +383,15 @@ E0 board-native platform
 - Past-papers / boundaries no longer leak to bare `/mark` or CAIE as the primary CTA
 - `/compare` + board-choice blog surface Edexcel IAL Maths mark deep links
 
+### Done (mark → account)
+
+- Edexcel onboarding enabled with Wave 1 Maths **units** as subjects (WMA/WME/WST)
+- Adapter `enabled: true`; funnel board preselects Edexcel after `/mark?board=edexcel`
+- Physics/Chem still not selectable in profile (no false marking promise)
+
 ### Next
 
 - Measure Edexcel Maths mark→signup→paid (SQL in `BOARD_CONVERSION_METRICS.md`)
-- Revisit onboarding `enabled: false` once mark→account is measurable and desired
 - Edexcel Physics/Chem marking only after gates
 - Optional: past-paper scheme ingest for IAL Maths
 - Do not mix board work into unrelated branding/landing WIP on main

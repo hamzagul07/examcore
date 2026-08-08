@@ -11,6 +11,7 @@ import { AuthShell } from '@/components/AuthShell'
 import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
 import { completeOnboardingRequest } from '@/lib/onboarding/complete-onboarding-client'
+import { lastFunnelBoard, profileBoardFromFunnelBoard } from '@/lib/analytics/funnel'
 import {
   SUBJECT_GROUPS,
   DEFAULT_BOARD,
@@ -18,11 +19,15 @@ import {
   BOARDS,
   IB_DIPLOMA_LEVEL,
   IB_BOARD_ID,
+  EDEXCEL_BOARD_ID,
   isIbBoard,
+  isEdexcelBoard,
   isSubjectValidForProfile,
   subjectsInGroup,
   ibSubjectGroups,
   ibSubjectsInGroup,
+  edexcelSubjectGroups,
+  edexcelSubjectsInGroup,
   levelsForBoard,
 } from '@/lib/profile-options'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
@@ -126,7 +131,9 @@ export function OnboardingWizard({
   const nextParam = searchParams.get('next')
 
   const [step, setStep] = useState(rerun ? 2 : 1)
-  const [board, setBoard] = useState(initialProfile?.board ?? DEFAULT_BOARD)
+  const [board, setBoard] = useState(
+    () => initialProfile?.board ?? DEFAULT_BOARD
+  )
   const [level, setLevel] = useState(() => {
     if (initialProfile?.level) return initialProfile.level
     if (initialProfile?.board === IB_BOARD_ID) return IB_DIPLOMA_LEVEL
@@ -149,7 +156,7 @@ export function OnboardingWizard({
   const [draftRestored, setDraftRestored] = useState(false)
 
   // Restore an in-progress draft after a refresh (first run only — reruns are
-  // pre-filled from the saved profile).
+  // pre-filled from the saved profile). Otherwise inherit board from /mark funnel.
   useEffect(() => {
     if (rerun) {
       setDraftRestored(true)
@@ -165,9 +172,15 @@ export function OnboardingWizard({
       setPrimaryGoal(draft.primaryGoal)
       setExamDate(draft.examDate)
       setTargetGrade(draft.targetGrade ?? null)
+    } else if (!initialProfile?.board) {
+      const fromFunnel = profileBoardFromFunnelBoard(lastFunnelBoard())
+      if (fromFunnel) {
+        setBoard(fromFunnel)
+        setLevel(fromFunnel === IB_BOARD_ID ? IB_DIPLOMA_LEVEL : DEFAULT_LEVEL)
+      }
     }
     setDraftRestored(true)
-  }, [rerun])
+  }, [rerun, initialProfile?.board])
 
   // Keep the draft in sync so a refresh mid-wizard doesn't lose progress.
   useEffect(() => {
@@ -218,10 +231,8 @@ export function OnboardingWizard({
     if (isIbBoard(nextBoard)) {
       setStage((prev) => prev ?? 'other')
     }
-    // The two boards use different scales (A*–E vs 1–7). Without this, picking
-    // A* and then switching to IB leaves 'A*' in state: the chip row no longer
-    // shows it as selected, and the server drops it as invalid, so the student
-    // ends up with no target while believing they set one.
+    // IB uses 1–7; Cambridge/Edexcel use A*–E. Clear so a leftover chip
+    // doesn't look selected while the server silently drops it.
     setTargetGrade(null)
     setErrorMsg('')
   }
@@ -513,15 +524,11 @@ function StepWelcome({
             <span className="ms-ob-hero-score">7/8</span>
             <div className="ms-ob-hero-row">
               <span className="ms-ob-hero-line" />
-              <span className="ms-ob-hero-badge good">
-                <Check className="h-3 w-3" /> M1
-              </span>
+              <span className="ms-ob-hero-badge good">M1 ✓</span>
             </div>
             <div className="ms-ob-hero-row">
               <span className="ms-ob-hero-line short" />
-              <span className="ms-ob-hero-badge good">
-                <Check className="h-3 w-3" /> A1
-              </span>
+              <span className="ms-ob-hero-badge good">A1 ✓</span>
             </div>
             <div className="ms-ob-hero-row">
               <span className="ms-ob-hero-line" />
@@ -585,6 +592,7 @@ function StepSubjects({
   onBack: () => void
 }) {
   const ib = isIbBoard(board)
+  const edexcel = isEdexcelBoard(board)
   const levelHeading =
     level === 'O-Level'
       ? 'O-Levels'
@@ -596,15 +604,20 @@ function StepSubjects({
             ? 'IB Diploma subjects'
             : 'A-Levels'
 
-  const subjectGroups = ib ? ibSubjectGroups() : [...SUBJECT_GROUPS]
+  const subjectGroups = ib
+    ? ibSubjectGroups()
+    : edexcel
+      ? edexcelSubjectGroups()
+      : [...SUBJECT_GROUPS]
   const visibleLevels = levelsForBoard(board)
 
   return (
     <div>
       <h1 className="ms-h2">What are you studying?</h1>
       <p className="ms-lead" style={{ marginTop: 12 }}>
-        Pick your exam board, then choose up to four subjects. Cambridge and IB are
-        separate — we&apos;ll tailor marking and progress to your choices.
+        Pick your exam board, then choose up to four subjects. Cambridge, IB, and
+        Edexcel IAL Maths are live — we&apos;ll tailor marking and progress to your
+        choices.
       </p>
 
       <p className="ms-overline" style={{ marginTop: 28 }}>
@@ -622,7 +635,13 @@ function StepSubjects({
               <Check className="h-3.5 w-3.5" />
             </span>
             <b>{opt.label}</b>
-            <span>{opt.id === IB_BOARD_ID ? 'HL, SL & Core' : 'A-Level, AS & O-Level'}</span>
+            <span>
+              {opt.id === IB_BOARD_ID
+                ? 'HL, SL & Core'
+                : opt.id === EDEXCEL_BOARD_ID
+                  ? 'IAL Maths units'
+                  : 'A-Level, AS & O-Level'}
+            </span>
           </button>
         ))}
       </div>
@@ -630,7 +649,7 @@ function StepSubjects({
       {!ib ? (
         <>
           <p className="ms-overline" style={{ marginTop: 28 }}>
-            Cambridge level
+            {edexcel ? 'IAL level' : 'Cambridge level'}
           </p>
           <div className="ms-ob-choices" style={{ marginTop: 12 }}>
             {visibleLevels.map((opt) => (
@@ -651,7 +670,11 @@ function StepSubjects({
       ) : null}
 
       <h2 className="ms-h2" style={{ marginTop: 40, fontSize: 'clamp(1.35rem, 3vw, 1.75rem)' }}>
-        {ib ? 'Which IB subjects are you taking?' : `Which Cambridge ${levelHeading} are you taking?`}
+        {ib
+          ? 'Which IB subjects are you taking?'
+          : edexcel
+            ? 'Which Edexcel IAL Maths units are you taking?'
+            : `Which Cambridge ${levelHeading} are you taking?`}
       </h2>
       <p className="ms-lead" style={{ marginTop: 10, fontSize: 15 }}>
         {selected.length}/4 selected — we&apos;ll surface past papers, courses, and marking for
@@ -659,7 +682,11 @@ function StepSubjects({
       </p>
       <div className="ms-ob-subjects-scroll space-y-6">
         {subjectGroups.map((group) => {
-          const items = ib ? ibSubjectsInGroup(group) : subjectsInGroup(group, level)
+          const items = ib
+            ? ibSubjectsInGroup(group)
+            : edexcel
+              ? edexcelSubjectsInGroup(group)
+              : subjectsInGroup(group, level)
           if (!items.length) return null
           return (
             <div key={group}>

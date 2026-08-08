@@ -17,6 +17,10 @@ const src = readFileSync(resolve('lib/analytics/funnel.ts'), 'utf8')
 check('encodes board in beacon path', src.includes('/__funnel/${event}/${b}'))
 check('remembers last board', src.includes('ms_funnel_last_board'))
 check('exports rememberFunnelBoard', src.includes('export function rememberFunnelBoard'))
+check(
+  'exports profileBoardFromFunnelBoard',
+  src.includes('export function profileBoardFromFunnelBoard')
+)
 check('falls back to lastFunnelBoard', src.includes('props.board ?? lastFunnelBoard()'))
 
 if (failed > 0) process.exit(1)

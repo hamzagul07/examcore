@@ -44,6 +44,16 @@ Open [DIRECTORY_SUBMISSIONS.md](./DIRECTORY_SUBMISSIONS.md). Paste fields, submi
 
 ---
 
+## Results Day week (priority through 18 Aug)
+
+Open [RESULTS_DAY_2026_OPS.md](./RESULTS_DAY_2026_OPS.md) — social, email, Reddit
+copy pointing at `/results-2026` + `/tools/will-my-grade-hold`.
+
+- [ ] Pin bio to will-my-grade-hold
+- [ ] One pre-results post + one 11 Aug morning post
+- [ ] Two Reddit barnacle replies (Results Day section)
+- [ ] Email broadcast if you have a list
+
 ## Week 1 (optional, 30 min/day)
 
 - [ ] Reddit barnacle comments — rows 4-6 in [REDDIT_BARNACLE_COMMENTS.md](./REDDIT_BARNACLE_COMMENTS.md)
@@ -55,7 +65,9 @@ Open [DIRECTORY_SUBMISSIONS.md](./DIRECTORY_SUBMISSIONS.md). Paste fields, submi
 
 ## Done for today?
 
-Code and GEO are complete. Next wins: **backlinks** (school emails from [OUTREACH_DM_EMAILS.md](./OUTREACH_DM_EMAILS.md)), **monthly** Perplexity tests, **TikTok** descriptions pointing to companion blogs.
+Code and GEO are complete. Through Results Day: **send the ops copy** in
+[RESULTS_DAY_2026_OPS.md](./RESULTS_DAY_2026_OPS.md). After 18 Aug: backlinks
+(school emails), monthly Perplexity tests, TikTok ? companion blogs.
 
 ```bash
 # After your next on-site content change:

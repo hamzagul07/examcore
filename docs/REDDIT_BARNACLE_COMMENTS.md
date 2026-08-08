@@ -31,6 +31,14 @@ UTM base: `?utm_source=reddit&utm_medium=barnacle&utm_campaign=marking-general`
 
 ---
 
+## Results Day week (11–18 Aug 2026)
+
+Use the dedicated templates in [RESULTS_DAY_2026_OPS.md](./RESULTS_DAY_2026_OPS.md)
+(`utm_campaign=results-2026`). Same barnacle rules — answer the question, then
+link the tool/hub once.
+
+---
+
 ## After posting
 
 1. Log thread URL in OUTREACH_TRACKER (counts toward 10 backlinks if it stays indexed)

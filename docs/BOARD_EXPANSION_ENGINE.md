@@ -394,10 +394,11 @@ E0 board-native platform
 
 - Edexcel hub primary mark CTA; CAIE hub “On Edexcel?” bridge
 - Blog CTAs / worked examples route Edexcel-named posts to `/mark?board=edexcel`
+- Thin IAL Maths session map on past-papers + unit pages (metadata only; no PDF bank)
 
 ### Next
 
 - Measure Edexcel Maths mark→signup→paid (SQL in `BOARD_CONVERSION_METRICS.md`)
 - Edexcel Physics/Chem marking only after gates
-- Optional: past-paper scheme ingest for IAL Maths
+- Full past-paper / scheme ingest for IAL Maths only after conversion justifies it
 - Do not mix board work into unrelated branding/landing WIP on main

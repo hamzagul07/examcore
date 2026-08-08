@@ -8,6 +8,7 @@ import {
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { getEdexcelQualification } from '@/lib/edexcel/catalog'
+import { getEdexcelMathsSessionsForUnit } from '@/lib/edexcel/maths-paper-sessions'
 import { edexcelMarkHref, getEdexcelMarkableUnitCodes } from '@/lib/edexcel/marking'
 import {
   edexcelRootPath,
@@ -72,6 +73,7 @@ export default async function EdexcelUnitPage({ params }: Props) {
   const copy = buildEdexcelSubjectCopy(subject)
   const markHref = edexcelMarkHref(unitRow.code)
   const unitMarkable = getEdexcelMarkableUnitCodes().includes(unitRow.code)
+  const sessions = getEdexcelMathsSessionsForUnit(unitRow.code)
 
   return (
     <MarketingPageShell>
@@ -96,7 +98,7 @@ export default async function EdexcelUnitPage({ params }: Props) {
         }
       />
       <MarketingSection>
-        <div className="mb-8 rounded-3xl border border-[var(--ec-border)] bg-[var(--ec-bg-soft)] px-6 py-8 text-center sm:px-10">
+        <div className="ec-card ec-card--paper mb-8 border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-bg-soft))] px-6 py-8 text-center sm:px-10">
           <h2 className="ms-h2">Mark a {unitRow.code} answer</h2>
           <p className="mx-auto mt-2 max-w-lg text-[var(--ec-text-secondary)]">
             {unitMarkable
@@ -107,6 +109,30 @@ export default async function EdexcelUnitPage({ params }: Props) {
             {unitMarkable ? `Mark ${unitRow.code} →` : 'Open Edexcel marking →'}
           </Link>
         </div>
+        {sessions.length > 0 ? (
+          <>
+            <h2 className="ms-h2">Exam series</h2>
+            <p className="ms-body-2 mb-4 text-[var(--ec-text-secondary)]">
+              Typical IAL sittings for {unitRow.code}. Use your own QP/MS from Pearson or
+              your school, then mark a practice answer here.
+            </p>
+            <ul className="mb-8 grid list-none gap-2 p-0 sm:grid-cols-2 lg:grid-cols-3">
+              {sessions.map((s) => (
+                <li key={s.label}>
+                  <Link
+                    href={markHref}
+                    className="ec-card flex items-center justify-between gap-2 p-3 text-sm"
+                  >
+                    <span className="font-medium">{s.label}</span>
+                    <span className="ms-micro uppercase tracking-wide text-[var(--ec-accent)]">
+                      Mark →
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : null}
         <h2 className="ms-h2">Also on this subject</h2>
         <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
           <li>

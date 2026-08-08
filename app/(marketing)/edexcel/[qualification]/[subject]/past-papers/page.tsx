@@ -8,6 +8,7 @@ import {
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { getEdexcelQualification } from '@/lib/edexcel/catalog'
+import { getEdexcelMathsSessionsForUnit } from '@/lib/edexcel/maths-paper-sessions'
 import { edexcelMarkHref, getEdexcelMarkableUnitCodes } from '@/lib/edexcel/marking'
 import {
   edexcelRootPath,
@@ -49,8 +50,9 @@ export default async function EdexcelPastPapersPage({ params }: Props) {
   if (!qual) notFound()
   const copy = buildEdexcelSubjectCopy(subject)
   const markable = new Set(getEdexcelMarkableUnitCodes())
-  const defaultMarkHref =
-    subject.slug === 'mathematics' ? edexcelMarkHref('WMA11') : edexcelMarkHref()
+  const isMaths = subject.slug === 'mathematics'
+  const defaultMarkHref = isMaths ? edexcelMarkHref('WMA11') : edexcelMarkHref()
+  const sampleSessions = isMaths ? getEdexcelMathsSessionsForUnit('WMA11').slice(0, 6) : []
 
   return (
     <MarketingPageShell>
@@ -68,13 +70,42 @@ export default async function EdexcelPastPapersPage({ params }: Props) {
       <MarketingHero
         label={`${subject.familyCode} · Past papers`}
         title={`${subject.name} past papers`}
-        lead={`Edexcel IAL ${subject.name} is modular. Use the unit map below, then mark practice answers with Edexcel conventions — session PDF archives grow here without sending you to Cambridge.`}
+        lead={
+          isMaths
+            ? 'Edexcel IAL Mathematics is modular. Use the unit + session map below to plan which papers to sit, then mark practice answers with method/accuracy conventions.'
+            : `Edexcel IAL ${subject.name} is modular. Use the unit map below — session archives and marking expand as each subject’s dialect ships.`
+        }
       />
+
+      {isMaths && sampleSessions.length > 0 ? (
+        <MarketingSection>
+          <h2 className="ms-h2">Recent IAL series</h2>
+          <p className="ms-body-2 mb-4 text-[var(--ec-text-secondary)]">
+            January, June and October sittings (2022–2025). We do not host Pearson PDFs
+            here — open your paper, write an answer, then mark it on MarkScheme.
+          </p>
+          <ul className="flex list-none flex-wrap gap-2 p-0">
+            {sampleSessions.map((s) => (
+              <li
+                key={s.label}
+                className="rounded-full border border-[var(--ec-border)] px-3 py-1 text-sm text-[var(--ec-text-secondary)]"
+              >
+                {s.label}
+              </li>
+            ))}
+            <li className="rounded-full border border-[var(--ec-border)] px-3 py-1 text-sm text-[var(--ec-text-secondary)]">
+              + earlier series
+            </li>
+          </ul>
+        </MarketingSection>
+      ) : null}
+
       <MarketingSection>
         <h2 className="ms-h2">Units</h2>
         <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
           {subject.units.map((u) => {
             const canMark = markable.has(u.code)
+            const sessions = getEdexcelMathsSessionsForUnit(u.code)
             return (
               <li key={u.code} className="ec-card p-4">
                 <Link
@@ -84,6 +115,11 @@ export default async function EdexcelPastPapersPage({ params }: Props) {
                   {u.code}
                 </Link>
                 <span className="ms-body-2 mt-1 block">{u.name}</span>
+                {sessions.length > 0 ? (
+                  <span className="ms-micro mt-2 block text-[var(--ec-text-secondary)]">
+                    {sessions.length} series mapped · Jan / June / Oct
+                  </span>
+                ) : null}
                 {canMark ? (
                   <Link
                     href={edexcelMarkHref(u.code)}
@@ -101,7 +137,7 @@ export default async function EdexcelPastPapersPage({ params }: Props) {
           <Link href={defaultMarkHref} className="underline">
             Mark an Edexcel answer
           </Link>
-          {subject.slug === 'mathematics'
+          {isMaths
             ? ' with method/accuracy conventions for IAL Maths.'
             : ' — Maths units are live first; this subject’s dialect follows once conversion is proven.'}
         </p>

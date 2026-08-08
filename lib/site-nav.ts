@@ -117,6 +117,21 @@ export const SITE_NAV_ITEMS: SiteNavItem[] = [
 
 export type SiteHeaderVariant = 'marketing' | 'app' | 'reading'
 
+/**
+ * Shown to teachers only, appended at render time once the role is known.
+ *
+ * It is not part of SITE_NAV_ITEMS because those are static and role-blind; a
+ * teacher signing in previously landed on the student dashboard with no route
+ * anywhere to the classes they own.
+ */
+export const TEACHER_NAV_ITEM: SiteNavItem = {
+  id: 'teacher',
+  href: '/teacher/dashboard',
+  label: 'Classrooms',
+  isActive: (pathname: string) => pathname.startsWith('/teacher'),
+  variants: ['marketing', 'app', 'reading'],
+}
+
 export function getNavItemsForVariant(variant: SiteHeaderVariant): SiteNavItem[] {
   return SITE_NAV_ITEMS.filter((item) => item.variants.includes(variant))
 }

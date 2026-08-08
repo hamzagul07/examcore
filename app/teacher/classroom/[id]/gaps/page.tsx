@@ -132,9 +132,9 @@ export default function CohortGapsPage() {
 
           <div className="ec-card mb-6 p-6">
             <div className="ec-label-tech mb-4">BY MARK TYPE — WEAKEST FIRST</div>
-            <ul className="space-y-3">
+            <ul>
               {report.markTypes.map((t) => (
-                <li key={t.code}>
+                <li key={t.code} className="ms-gap-row">
                   <div className="mb-1 flex items-baseline justify-between gap-3 text-sm">
                     <span className="font-medium text-[var(--ec-text-primary)]">
                       {t.label}
@@ -152,12 +152,12 @@ export default function CohortGapsPage() {
                     </span>
                   </div>
                   <div
-                    className="h-2 w-full overflow-hidden rounded-full bg-[var(--ec-surface-raised)]"
+                    className="ms-gap-track"
                     role="img"
                     aria-label={`${t.label}: ${t.earnedPct} percent of marks earned`}
                   >
                     <div
-                      className="h-full rounded-full"
+                      className="ms-gap-fill"
                       style={{
                         width: `${t.earnedPct}%`,
                         // Thin rows are drawn faintly so the eye is not drawn to

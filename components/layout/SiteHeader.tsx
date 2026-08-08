@@ -25,7 +25,7 @@ import {
   getSiteHeaderConfig,
   type HeaderCta,
 } from '@/lib/site-header-config'
-import { MARKETING_NAV_SECONDARY, type SiteHeaderVariant } from '@/lib/site-nav'
+import { MARKETING_NAV_SECONDARY, type SiteHeaderVariant, TEACHER_NAV_ITEM } from '@/lib/site-nav'
 import {
   buildMarketingSignUpHref,
   buildSignInHref,
@@ -66,7 +66,7 @@ function mobileViewportMatches() {
 export function SiteHeader({ variant }: Props) {
   const pathname = usePathname()
   const config = getSiteHeaderConfig(pathname, variant)
-  const navItems = getNavItemsForConfig(variant, config)
+  const baseNavItems = getNavItemsForConfig(variant, config)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [restoreMenuFocus, setRestoreMenuFocus] = useState(true)
   const [mounted, setMounted] = useState(false)
@@ -75,8 +75,14 @@ export function SiteHeader({ variant }: Props) {
   const burgerRef = useRef<HTMLButtonElement>(null)
   const mobileSheetRef = useRef<HTMLDivElement>(null)
   const { scrolled, hidden: headerHidden } = useHeaderScroll(mobileOpen)
-  const { user, loading } = useAuthCheck()
+  const { user, loading, role } = useAuthCheck()
   const initial = avatarInitial(user)
+  // Appended rather than baked into SITE_NAV_ITEMS: the role is only known once
+  // the auth probe returns, and a teacher otherwise has no link to their classes.
+  // Left unmemoised on purpose — React Compiler handles it, and a manual useMemo
+  // here defeats the compiler rather than helping it.
+  const navItems =
+    role === 'teacher' ? [...baseNavItems, TEACHER_NAV_ITEM] : baseNavItems
   const isGuest = !loading && !user
   // Logged-in users already have the account avatar — never show them a
   // "Sign up"/"Sign in" header CTA.

@@ -133,10 +133,14 @@ export default function ClassroomPage() {
         </div>
 
         {students.length === 0 ? (
-          <div className="py-8 text-center">
-            <Users className="mx-auto mb-3 h-12 w-12 text-[var(--ec-text-secondary)] opacity-50" />
-            <p className="text-[var(--ec-text-secondary)]">
-              No students yet. Share the invite code above.
+          <div className="ms-teacher-empty">
+            <span className="ms-teacher-empty__icon">
+              <Users className="h-6 w-6" aria-hidden />
+            </span>
+            <p className="ms-teacher-empty__title">No students yet</p>
+            <p className="ms-teacher-empty__body">
+              Read the code above out in your next lesson, or send the share link.
+              Their marked work appears here as they go.
             </p>
           </div>
         ) : (

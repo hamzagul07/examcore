@@ -552,6 +552,12 @@ function StepWelcome({
             {browseSkipLoading ? 'Opening topic…' : 'Just browsing? Skip setup for now'}
           </button>
         ) : null}
+        {/* This wizard asks for an exam year and a revision goal, which a teacher
+            does not have. Their setup is four fields and lives elsewhere; without
+            this link they would have to complete a student profile to get out. */}
+        <a href="/for-teachers/start" className="ec-guest-browse-skip mt-3 block w-full text-center">
+          I&apos;m a teacher, not a student
+        </a>
       </div>
     </div>
   )

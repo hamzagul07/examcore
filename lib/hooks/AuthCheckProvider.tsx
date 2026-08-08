@@ -15,15 +15,24 @@ export type AuthCheckUser = {
   name?: string
 }
 
+type AuthCheckResponse = {
+  user?: AuthCheckUser | null
+  onboarded?: boolean
+  role?: 'student' | 'teacher'
+}
+
 type AuthCheckState = {
   user: AuthCheckUser | null
   onboarded: boolean
+  /** Which home this account has: a teacher's is their classrooms. */
+  role: 'student' | 'teacher'
   loading: boolean
 }
 
 const AuthCheckContext = createContext<AuthCheckState>({
   user: null,
   onboarded: false,
+  role: 'student',
   loading: true,
 })
 
@@ -33,6 +42,7 @@ export function AuthCheckProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<AuthCheckState>({
     user: null,
     onboarded: false,
+    role: 'student',
     loading: true,
   })
 
@@ -42,17 +52,18 @@ export function AuthCheckProvider({ children }: { children: ReactNode }) {
 
     void fetch('/api/auth/check', { cache: 'no-store', credentials: 'same-origin' })
       .then((res) => (res.ok ? res.json() : { user: null, onboarded: false }))
-      .then((data: { user?: AuthCheckUser | null; onboarded?: boolean }) => {
+      .then((data: AuthCheckResponse) => {
         if (cancelled) return
         setState({
           user: data.user ?? null,
           onboarded: data.onboarded === true,
+          role: data.role === 'teacher' ? 'teacher' : 'student',
           loading: false,
         })
       })
       .catch(() => {
         if (!cancelled) {
-          setState({ user: null, onboarded: false, loading: false })
+          setState({ user: null, onboarded: false, role: 'student', loading: false })
         }
       })
 

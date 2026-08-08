@@ -74,11 +74,8 @@ export default function ForTeachersPage() {
                 marked to be sure, it says so rather than guessing.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-                Teacher accounts are free, and they are not a trial.{' '}
-                <Link className="underline" href="/contact">
-                  Email us
-                </Link>{' '}
-                from your school address and we will set one up.
+                Teacher accounts are free, and they are not a trial — set one up
+                yourself in about thirty seconds.
               </p>
             </div>
           </section>
@@ -114,8 +111,10 @@ export default function ForTeachersPage() {
           <SchoolLinkKit />
 
           <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <Link href="/teacher/dashboard" className="ec-btn-primary justify-center text-center">
-              Open teacher dashboard
+            {/* Was /teacher/dashboard, which 403s anyone who is not already a
+                teacher — i.e. every single person this page is written for. */}
+            <Link href="/for-teachers/start" className="ec-btn-primary justify-center text-center">
+              Set up your first class
             </Link>
             <Link href="/contact" className="ec-btn-secondary justify-center text-center">
               Contact for schools

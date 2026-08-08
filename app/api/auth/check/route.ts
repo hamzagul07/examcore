@@ -21,12 +21,13 @@ export async function GET(request: NextRequest) {
 
   const { data: profile } = await supabase
     .from('user_profiles')
-    .select('onboarded, onboarding_completed, full_name')
+    .select('onboarded, onboarding_completed, full_name, role')
     .eq('id', user.id)
     .maybeSingle()
 
   const onboarded = isOnboardingComplete(profile)
-  const destination = resolvePostAuthPath(onboarded, nextParam)
+  const role = profile?.role === 'teacher' ? ('teacher' as const) : ('student' as const)
+  const destination = resolvePostAuthPath(onboarded, nextParam, role)
 
   const metadata = user.user_metadata as { full_name?: string; name?: string } | undefined
   const displayName =
@@ -43,6 +44,9 @@ export async function GET(request: NextRequest) {
         name: displayName,
       },
       onboarded,
+      // Surfaced so the header can offer a teacher the way back to their
+      // classrooms; this select already ran, so it costs nothing.
+      role,
       destination,
     },
     pendingCookies

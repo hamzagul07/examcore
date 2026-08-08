@@ -1,6 +1,8 @@
 import { sendEmailAsync } from '@/lib/email/send'
 import {
   EMAIL_BRAND as BRAND,
+  EMAIL_HAIRLINE,
+  EMAIL_SANS as SANS,
   EMAIL_INK as INK,
   EMAIL_MUTED as MUTED,
   calloutHtml,
@@ -114,13 +116,16 @@ function buildBodyHtml(greeting: string, d: WeeklyReportData): string {
     )
   }
 
-  // Exam countdown
+  // Exam countdown. A dateline rather than a pill: a rounded grey chip is the
+  // one element on the page that still reads as an app widget.
   if (d.examDaysLeft !== null) {
     const urgent = d.examDaysLeft <= 30
     parts.push(
-      `<div style="display:inline-block;background:${urgent ? '#fdecea' : '#f6f4f0'};border:1px solid ${urgent ? '#f3c9c3' : '#e8e4dc'};border-radius:999px;padding:8px 16px;margin:0 0 20px;font-size:14px;font-weight:700;color:${urgent ? '#b4413b' : INK}">
-        ${d.examDaysLeft} ${d.examDaysLeft === 1 ? 'day' : 'days'} until your exam${urgent ? ' — every session counts now' : ''}
-      </div>`
+      `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 24px"><tr>
+        <td style="border-top:1px solid ${EMAIL_HAIRLINE};border-bottom:1px solid ${EMAIL_HAIRLINE};padding:12px 0;font-family:${SANS};font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:${urgent ? BRAND : MUTED}">
+          ${d.examDaysLeft} ${d.examDaysLeft === 1 ? 'day' : 'days'} until your exam${urgent ? ' &middot; every session counts now' : ''}
+        </td>
+      </tr></table>`
     )
   }
 

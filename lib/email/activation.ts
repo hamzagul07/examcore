@@ -1,8 +1,10 @@
 import { sendEmailAsync } from '@/lib/email/send'
 import {
   EMAIL_BODY,
+  EMAIL_HAIRLINE,
   EMAIL_INK,
   EMAIL_MUTED,
+  EMAIL_SANS,
   calloutHtml,
   escapeHtml as esc,
   linkRow,
@@ -47,13 +49,15 @@ function greetingFor(name?: string | null): string {
   return name?.trim() || 'there'
 }
 
-/** Exam countdown chip. Only rendered when a date is set and still ahead. */
+/** Exam dateline. Only rendered when a date is set and still ahead. */
 function examChip(examDate?: string | null): string {
   const days = daysUntilExam(examDate)
   if (days === null) return ''
-  return `<div style="display:inline-block;background:#f4f1ea;border-radius:999px;padding:8px 14px;margin:0 0 20px;font-size:13.5px;font-weight:700;color:${EMAIL_INK}">${days} ${
-    days === 1 ? 'day' : 'days'
-  } until your exam</div>`
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 24px"><tr>
+    <td style="border-top:1px solid ${EMAIL_HAIRLINE};border-bottom:1px solid ${EMAIL_HAIRLINE};padding:12px 0;font-family:${EMAIL_SANS};font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:${EMAIL_MUTED}">
+      ${days} ${days === 1 ? 'day' : 'days'} until your exam
+    </td>
+  </tr></table>`
 }
 
 /** Their subjects as one-click rows. The whole point of the first email. */

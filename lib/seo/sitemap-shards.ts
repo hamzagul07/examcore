@@ -167,6 +167,7 @@ export async function buildSitemapShard(
       return [
         entry('/results-2026', { priority: 0.95, changeFrequency: 'daily' }),
         entry('/results-2026/ib', { priority: 0.9, changeFrequency: 'daily' }),
+        entry('/results-2026/edexcel', { priority: 0.9, changeFrequency: 'daily' }),
         ...getGradeBoundaryCalculatorCodes().map((code) =>
           entry(`/results-2026/caie/${code}`, {
             priority: 0.9,

@@ -118,8 +118,8 @@ export default async function EdexcelSubjectPage({ params }: Props) {
             <Link
               href={
                 subject.slug === 'mathematics'
-                  ? '/mark?subject=WMA11'
-                  : '/mark'
+                  ? '/mark?board=edexcel&subject=WMA11'
+                  : '/mark?board=edexcel'
               }
               className="ec-card block p-4"
             >

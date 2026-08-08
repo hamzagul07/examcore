@@ -348,6 +348,24 @@ export default function MarkPage() {
     return () => window.removeEventListener('beforeunload', warn)
   }, [hasUnsavedUploads])
 
+  // Deep-link: /mark?board=edexcel|ib|cambridge — wins for guests immediately;
+  // signed-in profile load below respects the same URL override.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const urlBoard = new URLSearchParams(window.location.search)
+      .get('board')
+      ?.trim()
+      .toLowerCase()
+    if (urlBoard !== 'ib' && urlBoard !== 'edexcel' && urlBoard !== 'cambridge') return
+    setSelectedMarkBoard(urlBoard)
+    rememberFunnelBoard(urlBoard)
+    if (!boardSupportsPastPaperLookup(urlBoard)) {
+      setUploadMode('single_question')
+      setMarkIntent('practice_question')
+      setShowManualPaper(false)
+    }
+  }, [])
+
   useEffect(() => {
     let cancelled = false
     async function loadProfile() {
@@ -370,13 +388,22 @@ export default function MarkPage() {
         const codes = subjectNames
           .map((name) => getSubjectById(name, profileLevel)?.code)
           .filter((c): c is string => !!c)
-        const markBoard = markBoardFromProfileBoard(profileBoard)
+        const urlBoard = new URLSearchParams(window.location.search)
+          .get('board')
+          ?.trim()
+          .toLowerCase()
+        const fromUrl: MarkExamBoard | null =
+          urlBoard === 'ib' || urlBoard === 'edexcel' || urlBoard === 'cambridge'
+            ? urlBoard
+            : null
+        const markBoard = fromUrl ?? markBoardFromProfileBoard(profileBoard)
         const fallbackCode = defaultMarkSubjectCode(profileLevel)
         if (!cancelled) {
           setProfileLevel(profileLevel)
           setProfileSubjectCodes(codes.length ? codes : [fallbackCode])
           setSelectedMarkBoard(markBoard)
-          if (markBoard === 'ib') {
+          rememberFunnelBoard(markBoard)
+          if (!boardSupportsPastPaperLookup(markBoard)) {
             setUploadMode('single_question')
             setMarkIntent('practice_question')
             setShowManualPaper(false)

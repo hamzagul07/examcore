@@ -121,9 +121,12 @@ export default function Results2026Page() {
             </li>
           ))}
         </ul>
-        <p className="mt-4">
+        <p className="mt-4 flex flex-wrap gap-4">
           <Link href="/results-2026/ib" className="ec-btn-underline">
-            IB Diploma results &amp; points →
+            IB Diploma results &amp; points
+          </Link>
+          <Link href="/results-2026/edexcel" className="ec-btn-underline">
+            Edexcel International results
           </Link>
         </p>
       </MarketingSection>

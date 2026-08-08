@@ -12,10 +12,12 @@ export type SiteNavItem = {
   variants: Array<'marketing' | 'app' | 'reading'>
 }
 
-/** Subjects dropdown — both boards under one menu. */
+/** Subjects dropdown — boards under one menu. */
 export const SUBJECTS_DROPDOWN: NavDropdownItem[] = [
   { href: '/subjects', label: 'A-Level', sublabel: 'Cambridge International' },
   { href: '/ib', label: 'IB Diploma', sublabel: 'HL & SL past papers' },
+  { href: '/edexcel', label: 'Edexcel International', sublabel: 'IAL Maths marking live' },
+  { href: '/oxfordaqa', label: 'OxfordAQA', sublabel: 'International A-level shell' },
   { href: '/ib/courses', label: 'IB free courses', sublabel: '760+ lessons · TOK · sciences' },
   { href: '/guides/ib', label: 'IB study guides', sublabel: 'Markbands & revision' },
 ]
@@ -25,7 +27,11 @@ function subjectsActive(pathname: string) {
     pathname === '/subjects' ||
     pathname.startsWith('/subjects/') ||
     pathname === '/ib' ||
-    pathname.startsWith('/ib/')
+    pathname.startsWith('/ib/') ||
+    pathname === '/edexcel' ||
+    pathname.startsWith('/edexcel/') ||
+    pathname === '/oxfordaqa' ||
+    pathname.startsWith('/oxfordaqa/')
   )
 }
 
@@ -59,7 +65,11 @@ export const SITE_NAV_ITEMS: SiteNavItem[] = [
       p.startsWith('/courses/') ||
       p.startsWith('/ib/courses') ||
       p === '/caie' ||
-      p.startsWith('/caie/'),
+      p.startsWith('/caie/') ||
+      p === '/edexcel' ||
+      p.startsWith('/edexcel/') ||
+      p === '/oxfordaqa' ||
+      p.startsWith('/oxfordaqa/'),
   },
   {
     id: 'subjects',
@@ -184,6 +194,8 @@ export const FOOTER_PRODUCT_LINKS = [
   { href: '/caie', label: 'CAIE syllabus graph' },
   { href: '/ib', label: 'IB past papers' },
   { href: '/ib/courses', label: 'IB free courses' },
+  { href: '/edexcel', label: 'Edexcel International' },
+  { href: '/oxfordaqa', label: 'OxfordAQA International' },
   { href: '/courses', label: 'Free courses' },
   { href: '/results-2026', label: 'Results Day 2026' },
   { href: '/tools/will-my-grade-hold', label: 'Will my grade hold?' },
@@ -201,6 +213,8 @@ export const FOOTER_SUBJECT_LINKS = [
   { href: '/subjects/9702', label: '9702 Physics' },
   { href: '/ib/subjects/tok', label: 'IB TOK' },
   { href: '/ib/subjects/biology-hl', label: 'IB Biology HL' },
+  { href: '/edexcel/international-a-level/mathematics', label: 'Edexcel IAL Maths' },
+  { href: '/oxfordaqa/international-a-level/mathematics', label: 'OxfordAQA Maths' },
   { href: '/subjects', label: 'All Cambridge subjects' },
   { href: '/ib/subjects', label: 'All IB subjects' },
 ]

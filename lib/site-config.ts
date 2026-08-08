@@ -21,6 +21,19 @@ export const SITE_TAGLINE =
 export const CONTACT_EMAIL = 'hello@markscheme.app'
 
 /**
+ * Postal address shown in the footer of marketing email.
+ *
+ * Required by CAN-SPAM for any promotional message and expected by most other
+ * regimes; a newsletter without one is the single most common compliance miss.
+ * Lifecycle mail (marking results, review reminders) does not need it, but it
+ * costs nothing to carry.
+ *
+ * Left empty deliberately — the footer omits the line entirely rather than
+ * print a placeholder. Fill this in before the next promotional send.
+ */
+export const POSTAL_ADDRESS = ''
+
+/**
  * Twitter/X handle (including the leading @) for Twitter card attribution.
  * Leave empty to omit site/creator from the card.
  */

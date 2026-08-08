@@ -51,7 +51,7 @@ function greetingFor(name?: string | null): string {
 function examChip(examDate?: string | null): string {
   const days = daysUntilExam(examDate)
   if (days === null) return ''
-  return `<div style="display:inline-block;background:#f4f1ea;border-radius:999px;padding:8px 14px;margin:0 0 20px;font-size:13.5px;font-weight:700;color:${EMAIL_INK}">🗓️ ${days} ${
+  return `<div style="display:inline-block;background:#f4f1ea;border-radius:999px;padding:8px 14px;margin:0 0 20px;font-size:13.5px;font-weight:700;color:${EMAIL_INK}">${days} ${
     days === 1 ? 'day' : 'days'
   } until your exam</div>`
 }
@@ -105,7 +105,7 @@ export function sendActivationFirstMarkEmail(payload: ActivationPayload): void {
       : '') +
     calloutHtml(
       `Take a question you have already done — homework, a past paper, anything with working on it. Photograph it or type it. It comes back graded against <strong>${scheme}</strong>, mark by mark, showing which ones you got and which you missed.`,
-      '⏱️ About two minutes'
+      'About two minutes'
     )
 
   const text = [
@@ -279,7 +279,7 @@ export function sendFinishOnboardingEmail(payload: {
     `<p style="margin:0 0 18px;font-size:15px;line-height:1.6;color:#555">You created an account but didn't finish picking your subjects, so there's nothing set up to mark against yet.</p>` +
     calloutHtml(
       'It is four questions — your board, your subjects, your year, and when your exam is. After that the marker opens on the right paper instead of asking you to find it.',
-      '⏱️ Under a minute'
+      'Under a minute'
     )
 
   const text = [

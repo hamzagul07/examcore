@@ -80,7 +80,7 @@ export function sendStreakNudgeEmail(payload: {
 
   sendEmailAsync({
     to,
-    subject: `🔥 Your ${streak}-day streak ends tonight`,
+    subject: `Your ${streak}-day streak ends tonight`,
     preheader: `One question keeps your ${streak}-day streak alive.`,
     text,
     html,

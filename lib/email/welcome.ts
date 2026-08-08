@@ -125,7 +125,7 @@ function freePlanBlock(): string {
   return calloutHtml(
     `You are on the <strong>free plan</strong>: ${TIER_MONTHLY_CAPS.free} marked questions a month, against the real mark scheme, with no card and no expiry date. Whole scripts are marked up to the first ${FREE_WHOLE_PAPER_QUESTION_LIMIT} questions.<br><br>
      Nothing you mark is ever deleted, and there is no countdown running. Upgrade only once you have seen it mark something of yours.`,
-    `📄 Your free plan`
+    `Your free plan`
   )
 }
 

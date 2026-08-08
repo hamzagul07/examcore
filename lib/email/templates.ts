@@ -1,4 +1,4 @@
-import { CONTACT_EMAIL, SITE_NAME, SITE_URL } from '@/lib/site-config'
+import { CONTACT_EMAIL, POSTAL_ADDRESS, SITE_HOST, SITE_NAME, SITE_URL } from '@/lib/site-config'
 
 export type EmailContent = {
   subject: string
@@ -18,6 +18,8 @@ export const EMAIL_MUTED = '#8a7f70'
 export const EMAIL_SURFACE = '#faf7f2'
 export const EMAIL_BORDER = '#eee2d6'
 export const EMAIL_HAIRLINE = '#f0ece4'
+/** The ground the card sits on. Warmer than the card, so the sheet reads as paper. */
+export const EMAIL_PAPER = '#f2efe9'
 
 export function escapeHtml(value: string): string {
   return value
@@ -149,6 +151,9 @@ export function renderBrandedEmailHtml(payload: {
   /** Rendered last, below the footer rule. Pass it rather than appending an
    * unsubscribe line to `bodyHtml`, so the opt-out cannot precede the CTA. */
   unsubscribe?: { label: string; href: string }
+  /** Small-caps dateline above the body, e.g. "Weekly report". Labels the
+   * email without competing with its first sentence. */
+  kicker?: string
 }): string {
   // The trailing zero-width joiners pad the inbox preview line. Without them the
   // client keeps reading past the preheader and appends "MarkScheme." plus the
@@ -159,7 +164,7 @@ export function renderBrandedEmailHtml(payload: {
     : ''
 
   const cta = payload.cta
-    ? `<p style="margin:28px 0 0"><a href="${escapeAttr(payload.cta.href)}" style="display:inline-block;background:${EMAIL_BRAND};color:#fff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:10px">${escapeHtml(payload.cta.label)}</a></p>`
+    ? `<p style="margin:30px 0 0"><a href="${escapeAttr(payload.cta.href)}" style="display:inline-block;background:${EMAIL_BRAND};color:#fff;text-decoration:none;font-weight:600;font-size:14.5px;letter-spacing:.01em;padding:14px 26px;border-radius:4px">${escapeHtml(payload.cta.label)}</a></p>`
     : ''
 
   // Both of these render *after* the CTA on purpose. Senders used to append
@@ -175,28 +180,61 @@ export function renderBrandedEmailHtml(payload: {
     ? unsubscribeLineHtml(payload.unsubscribe.label, payload.unsubscribe.href)
     : ''
 
+  // A dateline-style kicker, if the sender gave one. Small caps rather than a
+  // heading: it labels the email without competing with the first sentence.
+  const kicker = payload.kicker
+    ? `<p style="margin:0 0 18px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:${EMAIL_MUTED}">${escapeHtml(
+        payload.kicker
+      )}</p>`
+    : ''
+
+  // Only rendered when configured. An empty address line is worse than none.
+  const postal = POSTAL_ADDRESS.trim()
+    ? `<p style="margin:10px 0 0;font-size:11.5px;line-height:1.6;color:#9a9186">${escapeHtml(
+        SITE_NAME
+      )} &middot; ${escapeHtml(POSTAL_ADDRESS.trim())}</p>`
+    : ''
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="supported-color-schemes" content="light"></head>
-<body style="margin:0;padding:0;background:#f6f4f0;font-family:system-ui,-apple-system,sans-serif;color:${EMAIL_INK}">
+<body style="margin:0;padding:0;background:${EMAIL_PAPER};font-family:Georgia,'Iowan Old Style','Times New Roman',serif;color:${EMAIL_INK}">
 ${preheader}
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f6f4f0;padding:32px 16px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${EMAIL_PAPER};padding:40px 16px">
 <tr><td align="center">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#fff;border:1px solid #e8e4dc;border-radius:16px;overflow:hidden">
-<tr><td style="padding:24px 28px 8px;font-family:Georgia,'Times New Roman',serif;font-size:22px;font-weight:600;color:${EMAIL_INK}">
-${escapeHtml(SITE_NAME)}<span style="color:${EMAIL_BRAND}">.</span>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#fff;border:1px solid ${EMAIL_BORDER};border-radius:4px">
+
+<!-- Masthead rule. A 3px brand edge is what separates a letterhead from a card;
+     it also survives every client, unlike a background image or a logo file. -->
+<tr><td style="height:3px;background:${EMAIL_BRAND};font-size:0;line-height:0;border-radius:3px 3px 0 0">&nbsp;</td></tr>
+
+<tr><td style="padding:30px 34px 0">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td style="font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:23px;font-weight:600;letter-spacing:-.01em;color:${EMAIL_INK}">
+        ${escapeHtml(SITE_NAME)}<span style="color:${EMAIL_BRAND}">.</span>
+      </td>
+      <td align="right" style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:${EMAIL_MUTED};font-family:system-ui,-apple-system,sans-serif">
+        Examiner-style marking
+      </td>
+    </tr>
+  </table>
+  <div style="height:1px;background:${EMAIL_BORDER};margin:16px 0 24px;font-size:0;line-height:0">&nbsp;</div>
 </td></tr>
-<tr><td style="padding:8px 28px 28px;font-size:15px;line-height:1.6;color:${EMAIL_BODY}">
-${payload.bodyHtml}
+
+<tr><td style="padding:0 34px 30px;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.65;color:${EMAIL_BODY}">
+${kicker}${payload.bodyHtml}
 ${cta}
 ${secondaryLinks}
-<p style="margin:28px 0 0;padding-top:20px;border-top:1px solid #eee;font-size:13px;color:#666">
-Questions? Reply to this email or write to <a href="mailto:${escapeAttr(CONTACT_EMAIL)}" style="color:${EMAIL_BRAND}">${escapeHtml(CONTACT_EMAIL)}</a>.
+<div style="height:1px;background:${EMAIL_BORDER};margin:30px 0 0;font-size:0;line-height:0">&nbsp;</div>
+<p style="margin:18px 0 0;font-size:13px;line-height:1.6;color:#6b635a">
+Questions? Reply to this email or write to <a href="mailto:${escapeAttr(CONTACT_EMAIL)}" style="color:${EMAIL_BRAND};text-decoration:none;border-bottom:1px solid #e3cdd3">${escapeHtml(CONTACT_EMAIL)}</a>.
 </p>
+${postal}
 ${unsubscribe}
 </td></tr>
 </table>
-<p style="margin:16px 0 0;font-size:12px;color:#888"><a href="${escapeAttr(SITE_URL)}" style="color:#888">${escapeHtml(SITE_URL)}</a></p>
+<p style="margin:18px 0 0;font-size:11.5px;letter-spacing:.04em;color:#9a9186;font-family:system-ui,-apple-system,sans-serif"><a href="${escapeAttr(SITE_URL)}" style="color:#9a9186;text-decoration:none">${escapeHtml(SITE_HOST)}</a></p>
 </td></tr>
 </table>
 </body></html>`

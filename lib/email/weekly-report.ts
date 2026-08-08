@@ -58,7 +58,7 @@ function buildBodyHtml(greeting: string, d: WeeklyReportData): string {
 
   parts.push(
     `<p style="margin:0 0 4px;font-size:16px;color:${INK}">Hi ${esc(greeting)},</p>`,
-    `<p style="margin:0 0 20px;font-size:15px;color:#555">Here's your week in review — and the one move that'll move your grade.&nbsp;👇</p>`
+    `<p style="margin:0 0 20px;font-size:15px;color:#555">Here's your week in review, and the one move that will move your grade.</p>`
   )
 
   // Stat row
@@ -82,7 +82,7 @@ function buildBodyHtml(greeting: string, d: WeeklyReportData): string {
     } else {
       inner = `You're tracking <strong>${esc(d.predictedGrade)}</strong>${subject}. <a href="${esc(SITE_URL)}/account/exam" style="color:${BRAND};font-weight:700">Set a target grade →</a> and we'll show you exactly how far you have to go.`
     }
-    parts.push(calloutHtml(inner, '📈 Grade trajectory'))
+    parts.push(calloutHtml(inner, 'Grade trajectory'))
   }
 
   // Weak spots — "fix these" list (the hook)
@@ -100,7 +100,7 @@ function buildBodyHtml(greeting: string, d: WeeklyReportData): string {
       .join('')
     parts.push(
       sectionHeading(
-        '🎯 Fix these before they cost you in the exam',
+        'Fix these before they cost you in the exam',
         'These topics are quietly leaking marks. One focused session each closes the gap.'
       ) +
         linkRowTable(rows) +
@@ -119,7 +119,7 @@ function buildBodyHtml(greeting: string, d: WeeklyReportData): string {
     const urgent = d.examDaysLeft <= 30
     parts.push(
       `<div style="display:inline-block;background:${urgent ? '#fdecea' : '#f6f4f0'};border:1px solid ${urgent ? '#f3c9c3' : '#e8e4dc'};border-radius:999px;padding:8px 16px;margin:0 0 20px;font-size:14px;font-weight:700;color:${urgent ? '#b4413b' : INK}">
-        🗓 ${d.examDaysLeft} ${d.examDaysLeft === 1 ? 'day' : 'days'} until your exam${urgent ? ' — every session counts now' : ''}
+        ${d.examDaysLeft} ${d.examDaysLeft === 1 ? 'day' : 'days'} until your exam${urgent ? ' — every session counts now' : ''}
       </div>`
     )
   }
@@ -211,7 +211,7 @@ export function sendWeeklyReportEmail(payload: {
 
   sendEmailAsync({
     to,
-    subject: 'Your week in review 📈',
+    subject: 'Your week in review',
     preheader,
     text: buildText(greeting, data, dashboardUrl, unsubscribeHref),
     html,

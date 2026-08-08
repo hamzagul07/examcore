@@ -51,14 +51,13 @@ export async function saveOnboardingProfile(
     if (isIbBoard(board)) {
       level = IB_DIPLOMA_LEVEL
     }
-    const subjects =
-      role === 'teacher'
-        ? ['Mathematics']
-        : Array.isArray(body.subjects)
-          ? Array.from(
-              new Set(body.subjects.map((s) => String(s).trim()).filter(Boolean))
-            )
-          : []
+    const requested = Array.isArray(body.subjects)
+      ? Array.from(new Set(body.subjects.map((s) => String(s).trim()).filter(Boolean)))
+      : []
+    // A teacher teaches one subject here — the one their first classroom is for.
+    // This used to be hardcoded to Mathematics, which handed every chemistry
+    // teacher a maths class on the first screen they saw.
+    const subjects = role === 'teacher' ? requested.slice(0, 1) : requested
 
     if (role === 'student') {
       if (!ENABLED_BOARD_IDS.has(board)) {
@@ -221,13 +220,17 @@ export async function saveOnboardingProfile(
       if (!classroomName) {
         return { ok: false, error: 'Classroom name is required for teachers.', status: 400 }
       }
+      const classroomSubject = subjects[0]
+      if (!classroomSubject) {
+        return { ok: false, error: 'Pick the subject you teach.', status: 400 }
+      }
 
       const { error: classroomError } = await userClient.from('classrooms').insert({
         teacher_id: userId,
         name: classroomName.slice(0, 120),
         board,
         level,
-        subject: 'Mathematics',
+        subject: classroomSubject,
       })
 
       if (classroomError) {

@@ -1,0 +1,224 @@
+/*
+ * Teacher surfaces.
+ *
+ * The teacher side was built early and never revisited, so its styling lived in
+ * mobile-only media queries in mobile-refinements.css — which meant it had no
+ * desktop design at all, only Tailwind defaults. This is the missing half.
+ *
+ * Everything uses the shared tokens so the teacher area inherits both themes
+ * rather than needing its own light/dark handling.
+ */
+
+/* ---------------------------------------------------------------------------
+ * Teacher setup — the one screen that turns somebody into a teacher
+ * ------------------------------------------------------------------------ */
+
+.ms-teacher-start-shell {
+  display: flex;
+  justify-content: center;
+  padding: clamp(1.5rem, 4vw, 3.5rem) 1rem clamp(3rem, 8vw, 5rem);
+}
+
+.ms-teacher-start-card {
+  width: 100%;
+  max-width: 34rem;
+}
+
+.ms-teacher-start__eyebrow {
+  color: var(--ec-brand);
+  margin-bottom: 0.75rem;
+}
+
+.ms-teacher-start__title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-start__lead {
+  margin-top: 0.75rem;
+  color: var(--ec-text-secondary);
+  line-height: 1.6;
+}
+
+.ms-teacher-start {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.ms-teacher-start__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.ms-teacher-start__legend {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+  padding: 0;
+}
+
+.ms-teacher-start__choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
+
+.ms-teacher-start__choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  /* 44px minimum: this is filled on a phone in a staffroom as often as at a desk. */
+  min-height: 44px;
+  padding: 0.625rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--ec-border);
+  background: var(--ec-surface-raised);
+  color: var(--ec-text-secondary);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.ms-teacher-start__choice:hover {
+  border-color: var(--ec-brand-border);
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-start__choice[aria-pressed='true'] {
+  border-color: var(--ec-brand);
+  background: var(--ec-brand-muted);
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-start__input {
+  width: 100%;
+  min-height: 48px;
+}
+
+.ms-teacher-start__hint {
+  font-size: 0.8125rem;
+  color: var(--ec-text-secondary);
+}
+
+.ms-teacher-start__error {
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--ec-border);
+  background: var(--ec-surface-raised);
+  color: var(--ec-text-primary);
+  font-size: 0.875rem;
+}
+
+.ms-teacher-start__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 52px;
+  width: 100%;
+}
+
+.ms-teacher-start__submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ---------------------------------------------------------------------------
+ * Teacher dashboard and classroom
+ * ------------------------------------------------------------------------ */
+
+/* A classroom with no students yet is the state every new teacher sees first,
+ * so it is designed rather than left as centred grey text. */
+.ms-teacher-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: clamp(2rem, 6vw, 3.5rem) 1.5rem;
+  text-align: center;
+  border: 1px dashed var(--ec-border-strong);
+  border-radius: 1rem;
+  background: var(--ec-surface-muted);
+}
+
+.ms-teacher-empty__icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.875rem;
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+}
+
+.ms-teacher-empty__title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-empty__body {
+  max-width: 32rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ec-text-secondary);
+}
+
+/* The invite code is read aloud to a room, so it is the loudest thing on the
+ * page and set in a face where 8 and B cannot be confused. */
+.ms-teacher-invite code {
+  font-variant-numeric: tabular-nums slashed-zero;
+  letter-spacing: 0.12em;
+}
+
+/* Cohort gap report bars — the artifact a cold-emailed teacher is shown first. */
+.ms-gap-row + .ms-gap-row {
+  margin-top: 0.875rem;
+}
+
+.ms-gap-track {
+  height: 0.5rem;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--ec-surface-raised);
+}
+
+.ms-gap-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-gap-fill {
+    transition: none;
+  }
+}
+
+/* Printed gap report: a head of department takes this into a department
+ * meeting, so it must not waste the page on app chrome. */
+@media print {
+  .ms-teacher-layout nav,
+  .ms-teacher-print-hide {
+    display: none !important;
+  }
+
+  .ms-teacher-layout {
+    padding: 0 !important;
+  }
+
+  .ec-card {
+    break-inside: avoid;
+    box-shadow: none !important;
+  }
+}

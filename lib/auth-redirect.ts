@@ -57,11 +57,17 @@ export function buildSignInHref(nextPath?: string | null): string {
 /**
  * Post-auth routing after OAuth / magic link.
  * New users must finish onboarding before app destinations (e.g. /mark).
+ *
+ * A teacher's home is their classrooms, not the student dashboard. Without this
+ * a teacher who logged in landed on a revision homepage built for someone
+ * sitting the exam, with no link anywhere to the classes they own.
  */
 export function resolvePostAuthPath(
   onboarded: boolean,
-  next: string | null | undefined
+  next: string | null | undefined,
+  role?: 'student' | 'teacher' | null
 ): string {
+  const home = role === 'teacher' ? '/teacher/dashboard' : '/dashboard'
   if (next && isSafeNextPath(next)) {
     const trimmed = next.trim()
     // Avoid /onboarding?next=/onboarding redirect loops after sign-in.
@@ -72,7 +78,7 @@ export function resolvePostAuthPath(
     if (onboarded || authOnly) return trimmed
     return `/onboarding?next=${encodeURIComponent(trimmed)}`
   }
-  return onboarded ? '/dashboard' : '/onboarding'
+  return onboarded ? home : '/onboarding'
 }
 
 /** Marketing signup — no redirect param; onboarding runs first. */

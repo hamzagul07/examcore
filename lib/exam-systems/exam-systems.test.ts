@@ -77,7 +77,18 @@ check('edexcel owns WMA11', getExamSystem('edexcel').ownsSubjectCode('WMA11'))
 check('WMA11 resolves to edexcel', resolveExamSystemForSubject('WMA11').id === 'edexcel')
 check('WPH14 resolves to edexcel', resolveExamSystemForSubject('WPH14').id === 'edexcel')
 check('unknown WXX99 is not edexcel', !getExamSystem('edexcel').ownsSubjectCode('WXX99'))
-check('oxfordaqa owns nothing yet', !getExamSystem('oxfordaqa').ownsSubjectCode('anything'))
+check(
+  'oxfordaqa owns oxaqa-mathematics',
+  getExamSystem('oxfordaqa').ownsSubjectCode('oxaqa-mathematics')
+)
+check(
+  'oxaqa-physics resolves to oxfordaqa',
+  resolveExamSystemForSubject('oxaqa-physics').id === 'oxfordaqa'
+)
+check(
+  'random slug still IB catch-all',
+  resolveExamSystemForSubject('anything-random').id === 'ib'
+)
 
 // board.ts still the public façade
 check('resolveBoard agrees', resolveBoard('9702') === 'cambridge' && resolveBoard('tok') === 'ib')

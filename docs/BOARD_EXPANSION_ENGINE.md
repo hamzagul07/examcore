@@ -1,6 +1,6 @@
 # Board Expansion Engine
 
-**Status:** E0–E2 + board analytics instrumentation shipped; apply migration + measure before Physics/Chem  
+**Status:** E0–E2 + analytics + E4 OxfordAQA shell shipped; apply mark_runs migration; measure Edexcel before more marking  
 **Audience:** Codex / Claude implementing multi-board  
 **North star:** Boards are acquisition surfaces; marking is the product.
 
@@ -364,8 +364,16 @@ E0 board-native platform
 - Kill-switch: `NEXT_PUBLIC_EDEXCEL_MARKING_ENABLED=0`
 - Onboarding `Edexcel` stays `enabled: false` until free→paid conversion is proven
 
+### Done (E4 OxfordAQA shell)
+
+- `lib/oxfordaqa/catalog.ts` + `/oxfordaqa/**` routes (config → surfaces)
+- Adapter owns `oxaqa-*` codes; **markingEnabled: false**
+- Sitemap shard `oxfordaqa`
+- Engine test: new board ≈ catalog + graph + pages, not a rewrite
+
 ### Next
 
-- Instrument mark→signup→paid by board (north-star dashboard)
-- Edexcel Physics/Chem only after Maths conversion gates
+- Apply `20260809_mark_runs_exam_system.sql`
+- Measure Edexcel Maths mark→signup→paid
+- Edexcel Physics/Chem marking only after gates
 - Optional: past-paper scheme ingest for IAL Maths

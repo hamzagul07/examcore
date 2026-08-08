@@ -1,6 +1,11 @@
+import { isOxfordaqaContentCode } from '@/lib/oxfordaqa/catalog'
 import type { ExamSystem } from '@/lib/exam-systems/types'
 
-/** OxfordAQA International — stub (Phase E4). */
+/**
+ * OxfordAQA International — adapter (Phase E4 shell).
+ * Owns oxaqa-* content codes so they never fall through to IB.
+ * Marking stays off until Edexcel Maths conversion clears expansion gates.
+ */
 export const oxfordaqaExamSystem: ExamSystem = {
   id: 'oxfordaqa',
   label: 'OxfordAQA',
@@ -14,29 +19,30 @@ export const oxfordaqaExamSystem: ExamSystem = {
       id: 'international-a-level',
       label: 'International A-level',
       slug: 'international-a-level',
-      shellEnabled: false,
+      shellEnabled: true,
       markingEnabled: false,
     },
     {
       id: 'international-gcse',
       label: 'International GCSE',
       slug: 'international-gcse',
-      shellEnabled: false,
+      shellEnabled: true,
       markingEnabled: false,
     },
   ],
   gradeModel: 'raw_marks',
   markingDialect: 'point_method',
   assessmentStyle: 'linear',
-  markPickerHint: 'International A-level & GCSE — coming soon',
-  ownsSubjectCode() {
-    return false
+  markPickerHint: 'International A-level — shell live, marking after Edexcel converts',
+  ownsSubjectCode(code) {
+    return isOxfordaqaContentCode(code)
   },
   contentSubjectCode(code) {
-    return code.trim()
+    return code.trim().toLowerCase()
   },
   catalogSubjectSlug(code) {
-    return code.trim().toLowerCase()
+    const trimmed = code.trim().toLowerCase()
+    return trimmed.startsWith('oxaqa-') ? trimmed.slice('oxaqa-'.length) : trimmed
   },
   boardLabel(code) {
     return `OxfordAQA ${code.trim()}`

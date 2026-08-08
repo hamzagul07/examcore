@@ -44,6 +44,17 @@ import {
   getAllEdexcelSubjectParams,
   resolveEdexcelSubject,
 } from '@/lib/seo/edexcel-graph'
+import {
+  getAllOxfordaqaQualificationParams,
+  getAllOxfordaqaSubjectParams,
+  oxfordaqaPaperPath,
+  oxfordaqaQualificationPath,
+  oxfordaqaRootPath,
+  oxfordaqaSubjectBoundariesPath,
+  oxfordaqaSubjectPastPapersPath,
+  oxfordaqaSubjectPath,
+  resolveOxfordaqaSubject,
+} from '@/lib/seo/oxfordaqa-graph'
 
 export const SITEMAP_SHARD_IDS = [
   'static',
@@ -61,6 +72,7 @@ export const SITEMAP_SHARD_IDS = [
   'past-paper-topics',
   'ib',
   'edexcel',
+  'oxfordaqa',
   'questions',
   'markschemes',
   'community',
@@ -117,6 +129,9 @@ export async function buildSitemapShard(
         '/edexcel',
         '/edexcel/international-a-level',
         '/edexcel/international-gcse',
+        '/oxfordaqa',
+        '/oxfordaqa/international-a-level',
+        '/oxfordaqa/international-gcse',
         '/questions',
         '/markscheme',
         '/past-papers',
@@ -324,6 +339,43 @@ export async function buildSitemapShard(
       })
       return [
         entry(edexcelRootPath(), { priority: 0.9 }),
+        ...qualEntries,
+        ...subjectEntries,
+      ]
+    }
+
+    case 'oxfordaqa': {
+      const qualEntries = getAllOxfordaqaQualificationParams().map((p) =>
+        entry(oxfordaqaQualificationPath(p.qualification), {
+          priority: 0.86,
+          changeFrequency: 'weekly',
+        })
+      )
+      const subjectEntries = getAllOxfordaqaSubjectParams().flatMap((p) => {
+        const subject = resolveOxfordaqaSubject(p.qualification, p.subject)
+        if (!subject) return []
+        const hub = oxfordaqaSubjectPath(p.qualification, p.subject)
+        const paperEntries = subject.papers.map((paper) =>
+          entry(oxfordaqaPaperPath(p.qualification, p.subject, paper.slug), {
+            priority: 0.78,
+            changeFrequency: 'monthly',
+          })
+        )
+        return [
+          entry(hub, { priority: 0.86 }),
+          entry(oxfordaqaSubjectPastPapersPath(p.qualification, p.subject), {
+            priority: 0.82,
+            changeFrequency: 'monthly',
+          }),
+          entry(oxfordaqaSubjectBoundariesPath(p.qualification, p.subject), {
+            priority: 0.8,
+            changeFrequency: 'monthly',
+          }),
+          ...paperEntries,
+        ]
+      })
+      return [
+        entry(oxfordaqaRootPath(), { priority: 0.9 }),
         ...qualEntries,
         ...subjectEntries,
       ]

@@ -40,7 +40,7 @@ What separates strong scripts:
 4. **Second pass** — photograph or type the worst question into [MarkScheme WMA11 marking](/mark?board=edexcel&subject=WMA11) so method/accuracy feedback is board-native.  
 5. **UMS awareness** — after you have a marked raw total, read [IAL UMS / grade boundaries](/blog/edexcel-ial-maths-grade-boundaries-ums-2026) so you know how the unit feeds cash-in. Do not convert with a Cambridge calculator.
 
-January, June, and October series appear on the [IAL Maths past-papers lander](/edexcel/international-a-level/mathematics/past-papers) as a session map (metadata). Pull official papers and schemes from Pearson / your centre — we do not host copyrighted PDFs.
+January, June, and October series appear on the [IAL Maths past-papers lander](/edexcel/international-a-level/mathematics/past-papers) as a session map (metadata). Full practice loop: [IAL Maths past papers guide](/blog/edexcel-ial-maths-past-papers-guide-2026). Pull official papers and schemes from Pearson / your centre — we do not host copyrighted PDFs.
 
 ## Common WMA11 mistakes
 

@@ -58,7 +58,7 @@ Pearson publishes grade boundaries and related documents for International A Lev
 | WME01 / WME02 | Mechanics 1 / 2 | [Mark WME01](/mark?board=edexcel&subject=WME01) |
 | WST01 / WST02 | Statistics 1 / 2 | [Mark WST01](/mark?board=edexcel&subject=WST01) |
 
-Session calendar metadata (Jan / June / Oct) lives on the [past-papers lander](/edexcel/international-a-level/mathematics/past-papers) and each unit page (for example [WMA11](/edexcel/international-a-level/mathematics/wma11)).
+Session calendar metadata (Jan / June / Oct) lives on the [past-papers lander](/edexcel/international-a-level/mathematics/past-papers) and each unit page (for example [WMA11](/edexcel/international-a-level/mathematics/wma11)). Practice loop: [IAL Maths past papers guide](/blog/edexcel-ial-maths-past-papers-guide-2026).
 
 ## How to use boundaries without panicking
 

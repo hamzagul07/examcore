@@ -10,6 +10,7 @@ import { createPageMetadata } from '@/lib/seo/metadata'
 import { getEdexcelQualification } from '@/lib/edexcel/catalog'
 import { getEdexcelMathsSessionsForUnit } from '@/lib/edexcel/maths-paper-sessions'
 import { edexcelMarkHref, getEdexcelMarkableUnitCodes } from '@/lib/edexcel/marking'
+import { EDEXCEL_IAL_MATHS_PAST_PAPERS_GUIDE } from '@/lib/edexcel/seo-guides'
 import {
   edexcelRootPath,
   edexcelSubjectPath,
@@ -133,7 +134,15 @@ export default async function EdexcelPastPapersPage({ params }: Props) {
           })}
         </ul>
         <p className="ms-body-2 mt-6 text-[var(--ec-text-secondary)]">
-          Worked a paper?{' '}
+          {isMaths ? (
+            <>
+              How to run a unit practice loop:{' '}
+              <Link href={EDEXCEL_IAL_MATHS_PAST_PAPERS_GUIDE} className="underline">
+                IAL Maths past papers guide
+              </Link>
+              . Worked a paper?{' '}
+            </>
+          ) : null}
           <Link href={defaultMarkHref} className="underline">
             Mark an Edexcel answer
           </Link>

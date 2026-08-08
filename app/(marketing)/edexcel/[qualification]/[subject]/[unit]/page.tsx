@@ -11,6 +11,10 @@ import { getEdexcelQualification } from '@/lib/edexcel/catalog'
 import { getEdexcelMathsSessionsForUnit } from '@/lib/edexcel/maths-paper-sessions'
 import { edexcelMarkHref, getEdexcelMarkableUnitCodes } from '@/lib/edexcel/marking'
 import {
+  EDEXCEL_IAL_MATHS_UMS_GUIDE,
+  edexcelUnitGuideHref,
+} from '@/lib/edexcel/seo-guides'
+import {
   edexcelRootPath,
   edexcelSubjectBoundariesPath,
   edexcelSubjectPastPapersPath,
@@ -74,6 +78,7 @@ export default async function EdexcelUnitPage({ params }: Props) {
   const markHref = edexcelMarkHref(unitRow.code)
   const unitMarkable = getEdexcelMarkableUnitCodes().includes(unitRow.code)
   const sessions = getEdexcelMathsSessionsForUnit(unitRow.code)
+  const unitGuideHref = edexcelUnitGuideHref(unitRow.code)
 
   return (
     <MarketingPageShell>
@@ -135,6 +140,13 @@ export default async function EdexcelUnitPage({ params }: Props) {
         ) : null}
         <h2 className="ms-h2">Also on this subject</h2>
         <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
+          {unitGuideHref ? (
+            <li>
+              <Link href={unitGuideHref} className="ec-card block p-4 font-semibold">
+                {unitRow.code} revision guide
+              </Link>
+            </li>
+          ) : null}
           <li>
             <Link
               href={edexcelSubjectPastPapersPath(qualification, subjectSlug)}
@@ -151,6 +163,13 @@ export default async function EdexcelUnitPage({ params }: Props) {
               Grade boundaries
             </Link>
           </li>
+          {unitMarkable ? (
+            <li>
+              <Link href={EDEXCEL_IAL_MATHS_UMS_GUIDE} className="ec-card block p-4 font-semibold">
+                UMS & cash-in guide
+              </Link>
+            </li>
+          ) : null}
           <li>
             <Link href={copy.path} className="ec-card block p-4 font-semibold">
               All {subject.name} units

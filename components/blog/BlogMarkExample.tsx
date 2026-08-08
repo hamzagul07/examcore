@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { ScoreReveal } from '@/components/mark/ScoreReveal'
 import { MarkLineList } from '@/components/mark/MarkLineList'
+import { edexcelMarkHref } from '@/lib/edexcel/marking'
 import { DEMO_MARK_RESULT } from '@/lib/marking/demo-result'
 import { DEMO_MARK_RESULT_IB } from '@/lib/marking/demo-result-ib'
 
@@ -27,15 +28,23 @@ export function BlogMarkExample({
   board = 'cambridge',
 }: {
   slug?: string | null
-  /** IB articles are kept free of Cambridge references, so they get the IB
-   * example — same teaching point, notation the reader will actually meet. */
-  board?: 'cambridge' | 'ib'
+  /** IB articles get the IB demo. Edexcel IAL posts reuse the point-method demo
+   * (method/accuracy) and deep-link into Edexcel marking. */
+  board?: 'cambridge' | 'ib' | 'edexcel'
 }) {
   const r = board === 'ib' ? DEMO_MARK_RESULT_IB : DEMO_MARK_RESULT
   const marks = r.ai_marking.marks_awarded
   const lost = marks.find((m) => !m.earned)
   const percentage = Math.round((r.marks_earned / r.total_marks) * 100)
-  const href = slug ? `/mark?from=${encodeURIComponent(slug)}` : '/mark'
+  const from = slug ? `from=${encodeURIComponent(slug)}` : ''
+  const href =
+    board === 'edexcel'
+      ? `${edexcelMarkHref('WMA11')}${from ? `&${from}` : ''}`
+      : board === 'ib'
+        ? `/mark?board=ib${from ? `&${from}` : ''}`
+        : slug
+          ? `/mark?from=${encodeURIComponent(slug)}`
+          : '/mark'
 
   return (
     <aside className="ms-blog-mark-example" aria-labelledby="blog-mark-example-h">
@@ -46,7 +55,9 @@ export function BlogMarkExample({
       <p className="ms-blog-mark-example__lead">
         {board === 'ib'
           ? 'This answer reaches the right coordinates and still drops a mark. The question asks you to justify — and R marks pay for the reasoning, not the conclusion.'
-          : 'This answer reaches the right coordinates and still drops a mark — the conclusion is stated, but never justified. Examiners pay for the reasoning, not the answer.'}
+          : board === 'edexcel'
+            ? 'This answer reaches the right coordinates and still drops a mark — method is partial, so accuracy and follow-through never unlock. Edexcel IAL Maths pays for working, not just the final line.'
+            : 'This answer reaches the right coordinates and still drops a mark — the conclusion is stated, but never justified. Examiners pay for the reasoning, not the answer.'}
       </p>
 
       <div className="ms-blog-mark-example__body">

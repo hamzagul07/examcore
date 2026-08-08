@@ -60,6 +60,28 @@ export default function CaieHubPage() {
           ))}
         </ul>
       </MarketingSection>
+
+      <MarketingSection>
+        <div className="ec-card ec-card--paper border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-bg-soft))] px-6 py-8 sm:px-10">
+          <h2 className="ms-h2">On Edexcel International instead?</h2>
+          <p className="ms-body-2 mt-2 max-w-2xl text-[var(--ec-text-secondary)]">
+            Many international schools offer Pearson Edexcel IAL alongside Cambridge.
+            IAL Maths marking is live with method/accuracy conventions — same product,
+            different dialect.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link
+              href="/mark?board=edexcel&subject=WMA11"
+              className="ec-btn-primary inline-flex min-h-[48px]"
+            >
+              Mark Edexcel IAL Maths →
+            </Link>
+            <Link href="/edexcel" className="ec-btn-ghost inline-flex min-h-[48px]">
+              Browse Edexcel hubs
+            </Link>
+          </div>
+        </div>
+      </MarketingSection>
     </MarketingPageShell>
   )
 }

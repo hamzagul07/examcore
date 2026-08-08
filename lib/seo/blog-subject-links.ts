@@ -7,9 +7,17 @@
  * loop so a syllabus-coded or IB-subject post links directly to its subject page,
  * concentrating internal PageRank on the pages that actually rank for
  * "cambridge 9709", "IB biology past papers", etc.
+ *
+ * Mark dialect helpers live in `blog-mark-href.ts` (client-safe).
  */
 import { getIbSubjectSlugs } from '@/lib/ib/catalog'
 import { isValidMarkingSubjectCode } from '@/lib/seo/programmatic-subjects'
+
+export {
+  markBoardFromBlogSlug,
+  markHrefForBlogSlug,
+  type BlogMarkBoard,
+} from '@/lib/seo/blog-mark-href'
 
 /**
  * A Cambridge blog slug (e.g. `cambridge-9709-…`, `top-9709-past-paper-topics`)

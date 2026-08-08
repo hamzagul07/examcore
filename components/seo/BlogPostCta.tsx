@@ -1,9 +1,13 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, MessageCircle, Sparkles } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { buildSignUpHref } from '@/lib/auth-redirect'
 import { trackFunnelEvent } from '@/lib/analytics/funnel'
+import {
+  markBoardFromBlogSlug,
+  markHrefForBlogSlug,
+} from '@/lib/seo/blog-mark-href'
 import { getResultsDayPhase } from '@/lib/seo/results-day'
 import { hasSyllabusTree } from '@/lib/syllabi'
 
@@ -31,12 +35,27 @@ export function BlogPostCta({
   const hasCourse = Boolean(subjectCode && hasSyllabusTree(subjectCode))
   const courseHref = subjectCode ? `/courses/${subjectCode}` : '/courses'
   const signupHref = slug ? buildSignUpHref(`/blog/${slug}`) : buildSignUpHref('/blog')
+  const markBoard = slug ? markBoardFromBlogSlug(slug) : 'cambridge'
+  const markHref = slug
+    ? markHrefForBlogSlug(slug, subjectCode)
+    : subjectCode
+      ? `/mark?subject=${encodeURIComponent(subjectCode)}`
+      : '/mark'
   const communityHref = subjectCode ? `/community/s/${subjectCode}` : '/community'
-  const roomLabel = subjectCode
-    ? subjectName
-      ? `${subjectCode} ${subjectName}`
+  const roomLabel =
+    markBoard === 'edexcel'
+      ? 'Edexcel IAL Maths'
       : subjectCode
-    : 'exam season'
+        ? subjectName
+          ? `${subjectCode} ${subjectName}`
+          : subjectCode
+        : 'exam season'
+  const markCtaLabel =
+    markBoard === 'edexcel'
+      ? 'Mark an Edexcel IAL Maths question — free'
+      : subjectCode
+        ? `Mark a ${subjectCode} question — free`
+        : 'Mark a question — free, no account'
 
   return (
     <aside className="ec-blog-footer-cta mt-12">
@@ -62,8 +81,9 @@ export function BlogPostCta({
               )}
           </p>
           <p className="ec-blog-footer-cta__trust">
-            <Sparkles className="inline h-3.5 w-3.5 align-text-bottom" aria-hidden />
-            {' '}
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+              ✓
+            </span>{' '}
             No card required · Free plan, no expiry
           </p>
         </div>
@@ -75,16 +95,16 @@ export function BlogPostCta({
                 <span className="ec-discuss-live__dot" />
                 Live now
               </div>
-              <div className="ec-discuss-avatars" aria-hidden>
-                <span className="ec-discuss-avatars__bubble ec-discuss-avatars__bubble--a">A</span>
-                <span className="ec-discuss-avatars__bubble ec-discuss-avatars__bubble--b">M</span>
-                <span className="ec-discuss-avatars__bubble ec-discuss-avatars__bubble--c">S</span>
-                <span className="ec-discuss-avatars__more">+12</span>
+              <div className="ec-discuss-room-stamp" aria-hidden>
+                <span className="ec-discuss-room-stamp__hash">#</span>
+                <span className="ec-discuss-room-stamp__label">Exam Room</span>
               </div>
             </div>
             <p className="ec-blog-footer-cta__discuss-label">Exam discussion</p>
             <Link href={communityHref} className="ec-btn-discuss">
-              <MessageCircle className="h-5 w-5 shrink-0" aria-hidden />
+              <span className="font-mono text-sm font-bold" aria-hidden>
+                #
+              </span>
               Discuss with other students
               <ArrowRight className="h-4 w-4 shrink-0 opacity-90" aria-hidden />
             </Link>
@@ -92,18 +112,17 @@ export function BlogPostCta({
 
           {!isGradeBoundaries ? (
             <Link
-              href={subjectCode ? `/mark?subject=${encodeURIComponent(subjectCode)}` : '/mark'}
+              href={markHref}
               className="ec-btn-primary ec-blog-footer-cta__signup min-h-[48px] w-full justify-center"
               onClick={() =>
                 trackFunnelEvent('mark_cta_clicked', {
                   source: 'blog_footer',
                   subject: subjectCode,
+                  board: markBoard,
                 })
               }
             >
-              {subjectCode
-                ? `Mark a ${subjectCode} question — free`
-                : 'Mark a question — free, no account'}
+              {markCtaLabel}
             </Link>
           ) : (
             <Link
@@ -122,6 +141,7 @@ export function BlogPostCta({
                 trackFunnelEvent('signup_started', {
                   source: 'blog_footer',
                   subject: subjectCode,
+                  board: markBoard,
                 })
               }
             >
@@ -129,7 +149,7 @@ export function BlogPostCta({
             </Link>
             {isGradeBoundaries ? (
               <Link
-                href={subjectCode ? `/mark?subject=${encodeURIComponent(subjectCode)}` : '/mark'}
+                href={markHref}
                 className="ec-btn-ghost min-h-[44px] flex-1 justify-center"
               >
                 Mark a paper free

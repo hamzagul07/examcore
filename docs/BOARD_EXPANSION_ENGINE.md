@@ -390,6 +390,11 @@ E0 board-native platform
 - Guest post-mark signup returns to `/mark?board=…&subject=…` (not bare `/mark`)
 - Physics/Chem still not selectable in profile (no false marking promise)
 
+### Done (acquisition bridges)
+
+- Edexcel hub primary mark CTA; CAIE hub “On Edexcel?” bridge
+- Blog CTAs / worked examples route Edexcel-named posts to `/mark?board=edexcel`
+
 ### Next
 
 - Measure Edexcel Maths mark→signup→paid (SQL in `BOARD_CONVERSION_METRICS.md`)

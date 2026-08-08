@@ -3,6 +3,7 @@ import { createBlogPostMetadata } from '@/lib/seo/metadata'
 import { getAllBlogSlugs, getBlogPost, getRelatedPosts } from '@/lib/blog'
 import { enrichPostMeta, extractHeadings } from '@/lib/blog/meta'
 import { getClusterForSlug } from '@/lib/seo/clusters'
+import { markBoardFromBlogSlug } from '@/lib/seo/blog-mark-href'
 import {
   isGradeBoundaryGuideSlug,
   isIbGuideSlug,
@@ -112,10 +113,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         <BlogSourcesBlock slug={slug} />
         <BlogFollowUpChain slug={slug} />
-        <BlogMarkExample
-          slug={slug}
-          board={slug.startsWith('ib-') ? 'ib' : 'cambridge'}
-        />
+        <BlogMarkExample slug={slug} board={markBoardFromBlogSlug(slug)} />
         <BlogPostCta
           variant={ctaVariant}
           subjectCode={subjectCode}

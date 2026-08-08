@@ -8,6 +8,7 @@ import {
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { EDEXCEL_QUALIFICATIONS, getEdexcelSubjects } from '@/lib/edexcel/catalog'
+import { edexcelMarkHref } from '@/lib/edexcel/marking'
 import {
   edexcelQualificationPath,
   edexcelSubjectPath,
@@ -43,6 +44,26 @@ export default function EdexcelHubPage() {
         title="Edexcel International"
         lead="Unit maps, past-paper indexes and grade boundaries for International A Level — wired for examiner-style marking. Boards acquire students; marking is the product."
       />
+
+      <MarketingSection className="!pt-0">
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href={edexcelMarkHref('WMA11')}
+            className="ec-btn-primary inline-flex min-h-[48px]"
+          >
+            Mark IAL Maths (WMA11) →
+          </Link>
+          <Link
+            href="/blog/edexcel-ial-vs-cambridge-a-level-2026"
+            className="ec-btn-ghost inline-flex min-h-[48px]"
+          >
+            Edexcel IAL vs Cambridge
+          </Link>
+          <Link href="/caie" className="ec-btn-ghost inline-flex min-h-[48px]">
+            Studying Cambridge too?
+          </Link>
+        </div>
+      </MarketingSection>
 
       <MarketingSection>
         <h2 className="ms-h2">Qualifications</h2>

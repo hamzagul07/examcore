@@ -158,6 +158,21 @@ export function ChatPanel({
   async function sendMessage(text: string) {
     if (!text.trim() || isStreaming) return
 
+    // Mine first-party search intent for the SEO opportunity engine.
+    try {
+      void fetch('/api/seo/site-search', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: text.trim().slice(0, 200),
+          path: typeof window !== 'undefined' ? window.location.pathname : null,
+        }),
+        keepalive: true,
+      })
+    } catch {
+      /* ignore */
+    }
+
     const userMsg: OmniAIMessage = {
       id: `u-${Date.now()}`,
       role: 'user',

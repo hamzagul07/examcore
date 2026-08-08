@@ -78,6 +78,7 @@ import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
 import { UpgradeModal } from '@/components/billing/UpgradeModal'
+import { trackAnswerInputStarted, trackFunnelEvent } from '@/lib/analytics/funnel'
 import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
 import { GuestMarkNotice } from '@/components/billing/GuestMarkNotice'
 import { MarkUsageIndicator } from '@/components/billing/MarkUsageIndicator'
@@ -1284,6 +1285,10 @@ export default function MarkPage() {
       setShowingExample(false)
       setPendingResult(null)
       pendingResultRef.current = null
+      trackFunnelEvent('answer_submitted', {
+        subject: selectedSubject || null,
+        source: uploadMode,
+      })
 
       const { pageFiles, answerPdf: preparedPdf, questionFile, error: payloadError } =
         await prepareSingleQuestionUpload(answerPages, {
@@ -1597,6 +1602,10 @@ export default function MarkPage() {
     setMarkStreamError(null)
     setPendingResult(null)
     pendingResultRef.current = null
+    trackFunnelEvent('mark_result_viewed', {
+      attemptId: payload.attempt_id ?? null,
+      subject: selectedSubject || null,
+    })
     handleAllowance(payload._allowance)
     void fetch('/api/celebrations', {
       method: 'POST',
@@ -1608,7 +1617,7 @@ export default function MarkPage() {
         if (data.show) setFirstMarkCelebration(true)
       })
       .catch((err) => console.error('mark: celebrations check failed', err))
-  }, [])
+  }, [selectedSubject])
 
   function resetForm() {
     setResult(null)
@@ -1997,7 +2006,21 @@ export default function MarkPage() {
                       <textarea
                         id="answer-text"
                         value={answerTextInput}
-                        onChange={(e) => setAnswerTextInput(e.target.value)}
+                        onChange={(e) => {
+                          setAnswerTextInput(e.target.value)
+                          if (e.target.value.trim().length > 0) {
+                            trackAnswerInputStarted({
+                              subject: selectedSubject || null,
+                              source: 'typed',
+                            })
+                          }
+                        }}
+                        onFocus={() =>
+                          trackAnswerInputStarted({
+                            subject: selectedSubject || null,
+                            source: 'typed_focus',
+                          })
+                        }
                         rows={7}
                         disabled={loading}
                         placeholder={
@@ -2020,7 +2043,15 @@ export default function MarkPage() {
 
                 <PageUploader
                   pages={answerPages}
-                  onPagesChange={setAnswerPages}
+                  onPagesChange={(pages) => {
+                    setAnswerPages(pages)
+                    if (pages.length > 0) {
+                      trackAnswerInputStarted({
+                        subject: selectedSubject || null,
+                        source: 'upload',
+                      })
+                    }
+                  }}
                   allowPdf
                   pdfFile={answerPdf}
                   onPdfChange={setAnswerPdf}

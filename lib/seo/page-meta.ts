@@ -131,6 +131,22 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'ZNotes alternative free',
     ],
   },
+  '/results-2026': {
+    title: 'Cambridge Results Day 2026 — boundaries & next steps',
+    description:
+      'AS & A Level results 11 August 2026. Check grade boundaries, will-my-grade-hold, remarks, retakes, and the free November mock pack.',
+    keywords: [
+      'Cambridge results day 2026',
+      'A Level results August 2026',
+      'Cambridge grade thresholds',
+    ],
+  },
+  '/tools/will-my-grade-hold': {
+    title: 'Will my grade hold? — Cambridge raw mark checker',
+    description:
+      'Paste your Cambridge raw mark and published thresholds. See your grade, the gap to the next boundary, and get the November mock pack.',
+    keywords: ['will my grade hold', 'Cambridge grade calculator', 'raw mark to grade'],
+  },
   '/privacy': {
     title: 'Privacy policy',
     description:

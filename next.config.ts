@@ -98,9 +98,19 @@ const nextConfig: NextConfig = {
     ]
   },
   async headers() {
+    const embedHeaders = securityHeaders
+      .filter((h) => h.key !== 'X-Frame-Options')
+      .concat([
+        // Allow teachers/blogs to iframe embed widgets; still deny for the rest of the site.
+        { key: 'Content-Security-Policy', value: 'frame-ancestors *' },
+      ])
     return [
       {
-        source: '/(.*)',
+        source: '/embed/:path*',
+        headers: embedHeaders,
+      },
+      {
+        source: '/((?!embed/).*)',
         headers: securityHeaders,
       },
     ]

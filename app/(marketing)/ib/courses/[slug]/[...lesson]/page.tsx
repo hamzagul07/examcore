@@ -19,17 +19,58 @@ import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { IbCourseLessonJsonLd } from '@/components/seo/IbCourseLessonJsonLd'
 import { ibShortName } from '@/lib/seo/ib-seo'
+import { IbSurfacePage } from '@/components/seo/IbSurfacePage'
+import {
+  getAllIbSurfaceParams,
+  ibSurfacePath,
+  resolveIbSurface,
+} from '@/lib/seo/ib-graph'
+import { CAIE_SURFACES, type CaieSurface } from '@/lib/seo/caie-graph'
 
 type Props = { params: Promise<{ slug: string; lesson: string[] }> }
 
+function parseSurfaceSegments(segments: string[]): {
+  lessonSlug: string
+  surface: CaieSurface | null
+} {
+  if (segments.length >= 2) {
+    const maybe = segments[segments.length - 1]
+    if ((CAIE_SURFACES as string[]).includes(maybe)) {
+      return {
+        lessonSlug: segments[segments.length - 2] ?? '',
+        surface: maybe as CaieSurface,
+      }
+    }
+  }
+  return { lessonSlug: segments[segments.length - 1] ?? '', surface: null }
+}
+
 export function generateStaticParams() {
-  return getAllIbCourseLessonParams().map(({ slug, lesson }) => ({ slug, lesson: [lesson] }))
+  const lessons = getAllIbCourseLessonParams().map(({ slug, lesson }) => ({
+    slug,
+    lesson: [lesson],
+  }))
+  const surfaces = getAllIbSurfaceParams().map(({ slug, lesson, surface }) => ({
+    slug,
+    lesson: [lesson, surface],
+  }))
+  return [...lessons, ...surfaces]
 }
 
 export async function generateMetadata({ params }: Props) {
   const { slug, lesson } = await params
   const subject = ibSubjectForSlug(slug)
-  const l = getIbCourseLesson(slug, lesson[lesson.length - 1] ?? '')
+  const { lessonSlug, surface } = parseSurfaceSegments(lesson)
+  if (surface) {
+    const l = resolveIbSurface(slug, lessonSlug, surface)
+    if (!subject || !l) return {}
+    return createPageMetadata({
+      title: `${l.title} ${surface} — IB ${subject.name}`,
+      description: `IB ${subject.name} ${surface} for ${l.title}. Linked to criterion-style marking.`,
+      path: ibSurfacePath(slug, l.slug, surface),
+    })
+  }
+  const l = getIbCourseLesson(slug, lessonSlug)
   if (!subject || !l) return {}
   const seo = buildIbCourseLessonSeo(subject, l)
   const subjectSeo = buildIbCourseSubjectSeo(subject, getIbCourseLessons(slug).length)
@@ -51,7 +92,21 @@ export default async function IbLessonPage({ params }: Props) {
   const { slug, lesson } = await params
   const subject = ibSubjectForSlug(slug)
   const course = getIbCourse(slug)
-  const lessonSlug = lesson[lesson.length - 1] ?? ''
+  const { lessonSlug, surface } = parseSurfaceSegments(lesson)
+
+  if (surface) {
+    const l = resolveIbSurface(slug, lessonSlug, surface)
+    if (!subject || !l) notFound()
+    return (
+      <IbSurfacePage
+        slug={slug}
+        subjectName={subject.name}
+        lesson={l}
+        surface={surface}
+      />
+    )
+  }
+
   const l = getIbCourseLesson(slug, lessonSlug)
   if (!subject || !course || !l) notFound()
 

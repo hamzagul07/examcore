@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { SITE_URL } from '@/lib/site-config'
+import { SITEMAP_SHARD_IDS } from '@/lib/seo/sitemap-shards'
 
 const PRIVATE_PREFIXES = [
   '/api/',
@@ -11,12 +12,19 @@ const PRIVATE_PREFIXES = [
   '/onboarding',
   '/teacher',
   '/admin',
+  '/embed/',
+  '/challenge/',
 ]
 
 const PUBLIC_ALLOW = [
   '/',
   '/blog/',
   '/courses/',
+  '/caie/',
+  '/questions/',
+  '/markscheme/',
+  '/results-2026',
+  '/results-2026/',
   '/mark',
   '/subjects/',
   '/past-papers/',
@@ -55,7 +63,11 @@ export default function robots(): MetadataRoute.Robots {
       allow: PUBLIC_ALLOW,
       disallow: PRIVATE_PREFIXES,
     })),
-    sitemap: `${base}/sitemap.xml`,
+    // Prefer the explicit index; also list shards for engines that ignore indexes.
+    sitemap: [
+      `${base}/sitemap-index.xml`,
+      ...SITEMAP_SHARD_IDS.map((id) => `${base}/sitemap/${id}.xml`),
+    ],
     host: base,
   }
 }

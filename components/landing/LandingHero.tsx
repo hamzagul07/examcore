@@ -1,6 +1,8 @@
 ﻿'use client'
 
+import { useEffect } from 'react'
 import { LoadingLink } from '@/components/ui/LoadingLink'
+import { trackFunnelEvent } from '@/lib/analytics/funnel'
 import {
   ExamSheet,
   ExamSheetLine,
@@ -29,7 +31,7 @@ export function LandingHeroSheet() {
           stampDelayMs={440}
         />
       </ExamSheet>
-      <p className="ms-sheet-caption">real Examiner&apos;s Ink, on your actual handwriting</p>
+      <p className="ms-sheet-caption">real Examiner&apos;s Ink on typed or handwritten work</p>
     </div>
   )
 }
@@ -39,6 +41,10 @@ interface LandingHeroProps {
 }
 
 export function LandingHero({ markHref }: LandingHeroProps) {
+  useEffect(() => {
+    trackFunnelEvent('landing_view', { source: 'home' })
+  }, [])
+
   return (
     <section className="ms-pg ms-hero ms-hero--energized ec-page-mesh ec-no-annot-mobile">
       <div className="ms-fade-in">
@@ -54,14 +60,15 @@ export function LandingHero({ markHref }: LandingHeroProps) {
           <MarginNote style={{ top: '-44px', right: '-10px' }}>this step earns M1!</MarginNote>
         </h1>
         <p className="ms-lead ms-hero-lead">
-          Photograph your handwritten answer. Scheme-aligned second-pass marking against the
-          official mark scheme — with Examiner&apos;s Ink in your margins.
+          Type or photograph your answer — marked against the real mark scheme, with
+          Examiner&apos;s Ink in your margins.
         </p>
         <div className="ms-hero-ctas">
           <LoadingLink
             href={markHref}
             className="ec-btn-primary brand-pulse"
             loadingText="Opening mark…"
+            onNavigate={() => trackFunnelEvent('mark_cta_clicked', { source: 'home_hero' })}
           >
             Mark your first question — free
           </LoadingLink>

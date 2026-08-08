@@ -15,6 +15,7 @@ import { OmniAIProviders } from "@/components/omni-ai/OmniAIProviders";
 import { VisitTracker } from "@/components/analytics/VisitTracker";
 import { OmniAILazy } from "@/components/omni-ai/OmniAILazy";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SeoAnalytics } from "@/components/seo/SeoAnalytics";
 import { SiteJsonLd } from "@/components/seo/SiteJsonLd";
 import { SITE_ICONS } from "@/lib/seo/metadata";
@@ -122,6 +123,7 @@ export default function RootLayout({
         <SiteJsonLd />
         <SeoAnalytics />
         <Analytics />
+        <SpeedInsights />
         <ThemeProvider>
           <OmniAIProviders>
             <a

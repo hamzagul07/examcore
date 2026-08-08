@@ -1,5 +1,13 @@
 import Link from 'next/link'
-import { ArrowRight, Calculator, BookText, GraduationCap, Percent, Timer } from 'lucide-react'
+import {
+  ArrowRight,
+  Calculator,
+  BookText,
+  GraduationCap,
+  Percent,
+  Timer,
+  Target,
+} from 'lucide-react'
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -22,6 +30,14 @@ type ToolCard = {
 }
 
 const TOOLS: ToolCard[] = [
+  {
+    href: '/tools/will-my-grade-hold',
+    title: 'Will my grade hold?',
+    description:
+      'Results Day tool: paste your raw mark and published thresholds to see your grade, the gap to the next boundary, and get the free November mock pack.',
+    cta: 'Check my grade',
+    icon: Target,
+  },
   {
     href: '/tools/grade-boundary-calculator',
     title: 'Grade boundary calculator',

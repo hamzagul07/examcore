@@ -1,7 +1,8 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { Suspense, useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
+import { CheckoutSuccessTracker } from '@/components/analytics/CheckoutSuccessTracker'
 import { ExternalLink, MessageCircle, PenLine, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
@@ -113,6 +114,9 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
 
   return (
     <div className="space-y-6">
+      <Suspense fallback={null}>
+        <CheckoutSuccessTracker />
+      </Suspense>
       {/* ---- Current plan ---- */}
       <Card variant="glass" padding="lg" as="section" className="ms-settings-section relative overflow-hidden">
         {/* Soft brand wash behind the plan name — quiet, not a banner. */}

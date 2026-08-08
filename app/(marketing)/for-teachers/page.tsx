@@ -95,6 +95,32 @@ export default function ForTeachersPage() {
           </section>
 
           <section>
+            <h2 className="landing-h3 mb-4 text-[var(--ec-text-primary)]">
+              Free embeds for your VLE or blog
+            </h2>
+            <div className="ec-card space-y-3 px-5 py-5 sm:px-6">
+              <p className="text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+                Drop a calculator or daily practice prompt onto your school site. Each widget
+                links back to MarkScheme with a clear &ldquo;Powered by MarkScheme&rdquo; credit.
+              </p>
+              <pre className="overflow-x-auto rounded-md bg-[var(--ec-surface)] p-3 text-xs">
+{`<iframe
+  src="https://markscheme.app/embed/grade-boundary"
+  title="Grade boundary calculator"
+  style="width:100%;min-height:480px;border:0"
+></iframe>`}
+              </pre>
+              <pre className="overflow-x-auto rounded-md bg-[var(--ec-surface)] p-3 text-xs">
+{`<iframe
+  src="https://markscheme.app/embed/question-of-day"
+  title="Question of the day"
+  style="width:100%;min-height:280px;border:0"
+></iframe>`}
+              </pre>
+            </div>
+          </section>
+
+          <section>
             <h2 className="landing-h3 mb-4 text-[var(--ec-text-primary)]">Frequently asked</h2>
             <dl className="for-teachers-faq space-y-4">
               {FOR_TEACHERS_SEO_FAQ.map((item) => (

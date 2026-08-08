@@ -169,6 +169,13 @@ export function buildCourseLessonSeo(
   lesson: CourseLesson
 ): CourseLessonSeo {
   const intro = buildCourseLessonIntro(course, lesson)
+  // Prefer the public CAIE graph path as canonical when the lesson is indexable.
+  const { caieLessonPath, isIndexableLesson } = requireCaieGraph()
+  let canonicalPath = `/courses/${course.code}/${lesson.slug}`
+  if (isIndexableLesson(lesson)) {
+    const graphPath = caieLessonPath(course.code, lesson.slug)
+    if (graphPath) canonicalPath = graphPath
+  }
   return {
     title: buildCourseLessonTitle(course, lesson),
     description: buildCourseLessonDescription(course, lesson),
@@ -179,11 +186,21 @@ export function buildCourseLessonSeo(
       { name: 'Home', path: '/' },
       { name: 'Free courses', path: '/courses' },
       { name: `${course.name} ${course.code}`, path: `/courses/${course.code}` },
-      { name: lesson.title, path: `/courses/${course.code}/${lesson.slug}` },
+      { name: lesson.title, path: canonicalPath },
     ],
     faqs: buildCourseLessonFaqs(course, lesson),
     markPath: `/mark?subject=${course.code}&topic=${encodeURIComponent(lesson.topicCode)}`,
   }
+}
+
+function requireCaieGraph(): {
+  caieLessonPath: (code: string, lessonSlug: string) => string | null
+  isIndexableLesson: (lesson: CourseLesson) => boolean
+} {
+  // Deferred import: caie-graph loads the course catalog; keep seo.ts free of a
+  // hard top-level cycle during module init.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  return require('@/lib/seo/caie-graph') as typeof import('@/lib/seo/caie-graph')
 }
 
 export function buildCourseSubjectSeo(course: CourseSeoContext, lessonCount: number): {

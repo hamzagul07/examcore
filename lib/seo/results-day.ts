@@ -94,10 +94,12 @@ export function getResultsDayBannerCopy(ctx: BannerContext): ResultsDayBannerCop
         body: code
           ? `AS & A Level results land 11 August 2026; grade threshold tables for ${code} follow around 13 August. Build your evidence file and honest grade estimate before then.`
           : 'AS & A Level results land 11 August 2026 (06:00 GMT). Use the gap after exams to predict grades honestly, save marked scripts, and plan remarks — not leak rumours.',
-        primaryHref: '/blog/cambridge-post-exam-results-prep-2026',
-        primaryLabel: 'Post-exam results prep',
-        secondaryHref: '/blog/cambridge-results-day-august-2026-guide',
-        secondaryLabel: 'Results day guide',
+        primaryHref: code ? `/results-2026/caie/${code}` : '/results-2026',
+        primaryLabel: 'Results Day 2026 hub',
+        secondaryHref: code
+          ? `/tools/will-my-grade-hold?code=${encodeURIComponent(code)}`
+          : '/tools/will-my-grade-hold',
+        secondaryLabel: 'Will my grade hold?',
       }
     case 'alevel-results':
       return {
@@ -106,10 +108,12 @@ export function getResultsDayBannerCopy(ctx: BannerContext): ResultsDayBannerCop
         body: code
           ? `Your ${code} grade is on your statement. Component grade thresholds publish around 13 August — we will load the official ${JUNE_2026_SERIES} table in the calculator as soon as Cambridge releases it.`
           : 'Cambridge has released AS & A Level grades. Per-component grade threshold tables for June 2026 publish around 13 August — check back here or use recent sessions to interpret raw marks.',
-        primaryHref: '/blog/cambridge-results-day-august-2026-guide',
-        primaryLabel: 'What to do next',
-        secondaryHref: calc,
-        secondaryLabel: code ? `Estimate ${code}` : 'Grade calculator',
+        primaryHref: code ? `/results-2026/caie/${code}` : '/results-2026',
+        primaryLabel: 'Results Day hub',
+        secondaryHref: code
+          ? `/tools/will-my-grade-hold?code=${encodeURIComponent(code)}`
+          : '/tools/will-my-grade-hold',
+        secondaryLabel: 'Will my grade hold?',
       }
     case 'threshold-week':
       return {

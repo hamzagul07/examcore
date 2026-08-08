@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowRight, BookmarkX, LineChart, Target } from 'lucide-react'
+import { trackFunnelEvent } from '@/lib/analytics/funnel'
 
 /**
  * The signup ask, placed at the moment it is actually earned.
@@ -67,6 +68,7 @@ export function GuestConversionPrompt({
       <Link
         href={`/auth/signup?next=${encodeURIComponent('/mark')}`}
         className="ec-btn-primary inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 text-sm font-semibold"
+        onClick={() => trackFunnelEvent('signup_started', { source: 'guest_post_mark' })}
       >
         Create a free account
         <ArrowRight className="h-4 w-4" aria-hidden="true" />

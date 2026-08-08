@@ -25,8 +25,8 @@ const STEPS = [
     width: 592,
     height: 827,
     title: 'Ink on your paper',
-    body: 'Stamps and notes sit on your actual handwriting — not a vague paragraph at the bottom of the page.',
-    alt: "Examiner's Ink on handwritten binomial expansion work with B1, M1, and A1 stamps on the student's script",
+    body: 'Stamps and notes sit on your typed or handwritten working — not a vague paragraph at the bottom of the page.',
+    alt: "Examiner's Ink on binomial expansion work with B1, M1, and A1 stamps on the student's script",
   },
   {
     src: '/landing-screenshots/marking-result-4.png',

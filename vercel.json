@@ -62,6 +62,14 @@
     {
       "path": "/api/cron/activation",
       "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/cron/indexnow",
+      "schedule": "0 7 * * *"
+    },
+    {
+      "path": "/api/cron/gsc-ingest",
+      "schedule": "0 5 * * 1"
     }
   ]
 }

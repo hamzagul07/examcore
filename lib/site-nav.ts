@@ -57,7 +57,9 @@ export const SITE_NAV_ITEMS: SiteNavItem[] = [
     isActive: (p) =>
       p === '/courses' ||
       p.startsWith('/courses/') ||
-      p.startsWith('/ib/courses'),
+      p.startsWith('/ib/courses') ||
+      p === '/caie' ||
+      p.startsWith('/caie/'),
   },
   {
     id: 'subjects',
@@ -178,14 +180,19 @@ export const MARKETING_NAV_PRIMARY = getNavItemsForVariant('marketing').map((ite
 export const FOOTER_PRODUCT_LINKS = [
   { href: '/mark', label: 'Mark a question' },
   { href: '/past-papers', label: 'Past papers' },
+  { href: '/past-papers/topics', label: 'Questions by topic' },
+  { href: '/caie', label: 'CAIE syllabus graph' },
   { href: '/ib', label: 'IB past papers' },
   { href: '/ib/courses', label: 'IB free courses' },
   { href: '/courses', label: 'Free courses' },
+  { href: '/results-2026', label: 'Results Day 2026' },
+  { href: '/tools/will-my-grade-hold', label: 'Will my grade hold?' },
   { href: '/tools/grade-boundary-calculator', label: 'Grade calculator' },
   { href: '/tools/command-words', label: 'Command words' },
   { href: '/tools/ib-points-calculator', label: 'IB points calculator' },
   { href: '/tools/pum-calculator', label: 'PUM / UMS calculator' },
   { href: '/tools/exam-countdown', label: 'Exam countdown' },
+  { href: '/insights', label: 'Marking benchmarks' },
   { href: '/pricing', label: 'Pricing' },
 ]
 

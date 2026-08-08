@@ -4,11 +4,11 @@ import { Chip } from '@/components/margin-notes'
 const STEPS = [
   {
     num: '1.',
-    title: 'Upload your working',
-    body: 'Snap your handwritten answer or drop a PDF. Pick the paper code so we fetch the right scheme.',
+    title: 'Type or upload your working',
+    body: 'Type an answer, snap handwriting, or drop a PDF. Pick the paper code so we fetch the right scheme.',
     chips: [
+      { variant: 'outline' as const, label: 'Typed · Q7(b) working' },
       { variant: 'outline' as const, label: '9702_s23_qp_22.pdf' },
-      { variant: 'outline' as const, label: 'IMG_0231.jpg · Q3 (a)–(c)' },
     ],
   },
   {

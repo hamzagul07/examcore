@@ -1,6 +1,9 @@
+'use client'
+
 import Link from 'next/link'
 import { ArrowRight, MessageCircle, Sparkles } from 'lucide-react'
 import { buildSignUpHref } from '@/lib/auth-redirect'
+import { trackFunnelEvent } from '@/lib/analytics/funnel'
 import { getResultsDayPhase } from '@/lib/seo/results-day'
 import { hasSyllabusTree } from '@/lib/syllabi'
 
@@ -41,12 +44,22 @@ export function BlogPostCta({
         <div className="ec-blog-footer-cta__copy">
           <p className="ms-overline">Keep learning</p>
           <h2 className="ec-blog-footer-cta__title">
-            Save your subjects — join the conversation
+            {isGradeBoundaries
+              ? 'Check your boundaries — then mark a paper'
+              : subjectCode
+                ? `Mark a ${subjectCode} question against the real scheme`
+                : 'Mark a question — then join the conversation'}
           </h2>
           <p className="ec-blog-footer-cta__lead">
-            Free account brings you back to this guide anytime. Or jump into{' '}
-            <strong className="font-semibold text-[var(--ec-text-primary)]">{roomLabel}</strong>{' '}
-            discussions — browse free, post when you&apos;re ready.
+            {isGradeBoundaries
+              ? 'Use the calculator with your raw mark, then practise the topics that decide the next grade. Free account saves your subjects for mock season.'
+              : (
+                <>
+                  Type or photograph one answer — free, no account. Or jump into{' '}
+                  <strong className="font-semibold text-[var(--ec-text-primary)]">{roomLabel}</strong>{' '}
+                  discussions when you&apos;re ready.
+                </>
+              )}
           </p>
           <p className="ec-blog-footer-cta__trust">
             <Sparkles className="inline h-3.5 w-3.5 align-text-bottom" aria-hidden />
@@ -77,22 +90,46 @@ export function BlogPostCta({
             </Link>
           </div>
 
-          <Link
-            href={signupHref}
-            className="ec-btn-primary ec-blog-footer-cta__signup min-h-[48px] w-full justify-center"
-          >
-            Create free account
-          </Link>
+          {!isGradeBoundaries ? (
+            <Link
+              href={subjectCode ? `/mark?subject=${encodeURIComponent(subjectCode)}` : '/mark'}
+              className="ec-btn-primary ec-blog-footer-cta__signup min-h-[48px] w-full justify-center"
+              onClick={() =>
+                trackFunnelEvent('mark_cta_clicked', {
+                  source: 'blog_footer',
+                  subject: subjectCode,
+                })
+              }
+            >
+              {subjectCode
+                ? `Mark a ${subjectCode} question — free`
+                : 'Mark a question — free, no account'}
+            </Link>
+          ) : (
+            <Link
+              href={calculatorHref}
+              className="ec-btn-primary ec-blog-footer-cta__signup min-h-[48px] w-full justify-center"
+            >
+              Open grade calculator
+            </Link>
+          )}
 
           <div className="ec-blog-footer-cta__secondary">
+            <Link
+              href={signupHref}
+              className="ec-btn-ghost min-h-[44px] flex-1 justify-center"
+              onClick={() =>
+                trackFunnelEvent('signup_started', {
+                  source: 'blog_footer',
+                  subject: subjectCode,
+                })
+              }
+            >
+              Create free account
+            </Link>
             {isGradeBoundaries ? (
-              <Link href={calculatorHref} className="ec-btn-ghost min-h-[44px] flex-1 justify-center">
-                Grade calculator
-              </Link>
-            ) : null}
-            {!isGradeBoundaries ? (
               <Link
-                href={subjectCode ? `/mark?subject=${subjectCode}` : '/mark'}
+                href={subjectCode ? `/mark?subject=${encodeURIComponent(subjectCode)}` : '/mark'}
                 className="ec-btn-ghost min-h-[44px] flex-1 justify-center"
               >
                 Mark a paper free

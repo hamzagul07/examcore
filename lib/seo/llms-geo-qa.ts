@@ -90,6 +90,9 @@ export const TIKTOK_COMPANION_BLOG_PATHS = TIKTOK_COMPANION_BLOG_SLUGS.map(
 export const INDEXNOW_PRIORITY_URLS = [
   '/',
   '/mark',
+  '/results-2026',
+  '/results-2026/ib',
+  '/tools/will-my-grade-hold',
   '/courses',
   '/ib/courses',
   '/compare',

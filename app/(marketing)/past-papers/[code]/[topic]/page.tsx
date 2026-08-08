@@ -9,25 +9,26 @@ import { learningResourceNode, itemListNode, faqPageNode } from '@/lib/seo/struc
 import { SITE_URL } from '@/lib/site-config'
 import { Chip } from '@/components/margin-notes'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
+import { buildTopicQuestionCopy } from '@/lib/seo/topic-questions'
 import {
-  getAllTopicQuestionParams,
-  getTopicQuestionPage,
-  getTopicQuestionPages,
-  buildTopicQuestionCopy,
-} from '@/lib/seo/topic-questions'
+  getAllExpandedTopicQuestionParams,
+  getExpandedTopicQuestionPage,
+  getExpandedTopicQuestionPages,
+} from '@/lib/seo/topic-questions-expand'
 import { getCatalogSubject } from '@/lib/subjects-catalog'
 import { getCourseSubject } from '@/lib/courses'
 import { GuestSignupGate } from '@/components/auth/GuestSignupGate'
+import { caieLessonPath } from '@/lib/seo/caie-graph'
 
 type Props = { params: Promise<{ code: string; topic: string }> }
 
 export function generateStaticParams() {
-  return getAllTopicQuestionParams()
+  return getAllExpandedTopicQuestionParams()
 }
 
 export async function generateMetadata({ params }: Props) {
   const { code, topic } = await params
-  const page = getTopicQuestionPage(code, topic)
+  const page = getExpandedTopicQuestionPage(code, topic)
   if (!page) return {}
   const copy = buildTopicQuestionCopy(code, page)
   return createPageMetadata({
@@ -41,33 +42,38 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function TopicQuestionsPage({ params }: Props) {
   const { code, topic } = await params
-  const page = getTopicQuestionPage(code, topic)
+  const page = getExpandedTopicQuestionPage(code, topic)
   if (!page) notFound()
 
   const copy = buildTopicQuestionCopy(code, page)
   const accent = getCatalogSubject(code)?.color ?? 'var(--ec-brand)'
   const course = getCourseSubject(code)
-  const lessonHref = course ? `/courses/${code}/${page.lessonSlug}` : null
+  const graphLesson = caieLessonPath(code, page.lessonSlug)
+  const lessonHref =
+    graphLesson ?? (course ? `/courses/${code}/${page.lessonSlug}` : null)
   const url = `${SITE_URL}${copy.path}`
 
   const faq = [
     {
       q: `How many ${page.title} questions are there for ${code}?`,
-      a: `This page collects ${page.questionCount} recent Cambridge ${copy.label} (${code}) past-paper questions tagged to ${page.title}. Each links straight to instant marking against the official ${code} scheme.`,
+      a:
+        page.questionCount > 0
+          ? `This page collects ${page.questionCount} recent Cambridge ${copy.label} (${code}) past-paper questions tagged to ${page.title}. Each links straight to instant marking against the official ${code} scheme.`
+          : `Open MarkScheme to attempt a real ${code} past-paper question on ${page.title} against the official scheme. Topic-tagged stems are added as we verify them.`,
     },
     {
       q: `How are ${page.title} answers marked?`,
-      a: `Upload a photo of your working and MarkScheme scores it against the real ${code} mark scheme for this topic — method, accuracy and any band descriptors — so you see exactly where the marks are.`,
+      a: `Type or photograph your working and MarkScheme scores it against the real ${code} mark scheme for this topic — method, accuracy and any band descriptors — so you see exactly where the marks are.`,
     },
     {
       q: `Where can I learn ${page.title} first?`,
       a: lessonHref
-        ? `Start with the free ${copy.label} lesson on ${page.title}, then come back and drill these past-paper questions under timed conditions.`
-        : `Revise the topic, then attempt these past-paper questions under timed conditions and mark them against the official scheme.`,
+        ? `Start with the free ${copy.label} lesson on ${page.title}, then come back and drill past-paper questions under timed conditions.`
+        : `Revise the topic, then attempt past-paper questions under timed conditions and mark them against the official scheme.`,
     },
   ]
 
-  const related = getTopicQuestionPages(code)
+  const related = getExpandedTopicQuestionPages(code)
     .filter((t) => t.topicSlug !== topic)
     .slice(0, 10)
 
@@ -122,7 +128,11 @@ export default async function TopicQuestionsPage({ params }: Props) {
             <div className="flex flex-wrap gap-2">
               <Chip variant="dim">{copy.label}</Chip>
               <Chip variant="dim">Topic {page.topicCode}</Chip>
-              <Chip variant="ok">{page.questionCount} questions ✓</Chip>
+              <Chip variant="ok">
+                {page.questionCount > 0
+                  ? `${page.questionCount} questions ✓`
+                  : 'Mark practice ready'}
+              </Chip>
             </div>
           </div>
         </div>
@@ -141,25 +151,44 @@ export default async function TopicQuestionsPage({ params }: Props) {
         <GuestSignupGate>
         <section aria-labelledby="tq-list" style={{ marginTop: 12 }}>
           <h2 id="tq-list" className="ms-overline" style={{ marginBottom: 12 }}>
-            {page.questionCount} past-paper questions on {page.title}
+            {page.questionCount > 0
+              ? `${page.questionCount} past-paper questions on ${page.title}`
+              : `Practise ${page.title} with marking`}
           </h2>
-          <ul className="ms-tq-list">
-            {page.questions.map((q, i) => (
-              <li key={`${q.paperCode}-${q.questionNumber}-${i}`} className="ms-sd-card ms-sd-card-pad ms-tq-item">
-                <div className="ms-tq-meta">
-                  <span className="ms-tq-paper">{q.paperCode} · {q.sessionLabel}</span>
-                  <span className="ms-tq-marks">{q.marks} marks</span>
-                </div>
-                <p className="ms-tq-stem">{q.stem}</p>
-                <Link href={q.markHref} className="ec-btn-underline text-sm">
-                  Practise the full question →
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <p className="ms-micro" style={{ marginTop: 14, color: 'var(--ec-text-faint)' }}>
-            Question stems are shortened previews. Open a question to attempt the full version and have it marked.
-          </p>
+          {page.questions.length > 0 ? (
+            <>
+              <ul className="ms-tq-list">
+                {page.questions.map((q, i) => (
+                  <li key={`${q.paperCode}-${q.questionNumber}-${i}`} className="ms-sd-card ms-sd-card-pad ms-tq-item">
+                    <div className="ms-tq-meta">
+                      <span className="ms-tq-paper">{q.paperCode} · {q.sessionLabel}</span>
+                      <span className="ms-tq-marks">{q.marks} marks</span>
+                    </div>
+                    <p className="ms-tq-stem">{q.stem}</p>
+                    <Link href={q.markHref} className="ec-btn-underline text-sm">
+                      Practise the full question →
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <p className="ms-micro" style={{ marginTop: 14, color: 'var(--ec-text-faint)' }}>
+                Question stems are shortened previews. Open a question to attempt the full version and have it marked.
+              </p>
+            </>
+          ) : (
+            <div className="ms-sd-card ms-sd-card-pad">
+              <p className="ms-body-2">
+                Pick a real {code} past-paper question on syllabus point {page.topicCode}, type or photograph
+                your answer, and get Examiner&apos;s Ink against the official scheme.
+              </p>
+              <Link
+                href={`/mark?subject=${encodeURIComponent(code)}&topic=${encodeURIComponent(page.topicCode)}`}
+                className="ec-btn-primary mt-4 inline-flex min-h-[44px]"
+              >
+                Mark a {code} question on this topic →
+              </Link>
+            </div>
+          )}
         </section>
 
         <section className="ms-subject-faq" aria-labelledby="tq-faq">

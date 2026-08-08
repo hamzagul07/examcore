@@ -29,6 +29,11 @@ export const TEACHER_FEATURES = [
     detail: 'Create a class, share a code, and students join in one step — no manual roster imports required.',
   },
   {
+    title: 'Embeddable tools',
+    detail:
+      'Drop a grade-boundary calculator or question-of-the-day widget on your VLE / blog with an iframe — free for schools.',
+  },
+  {
     title: 'Blindspot radar',
     detail: 'See which syllabus topics the whole class struggles with after marking attempts — prioritise revision before mocks.',
   },

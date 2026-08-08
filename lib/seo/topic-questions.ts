@@ -55,7 +55,10 @@ export function buildTopicQuestionCopy(code: string, topic: TopicQuestionPage) {
   const label = subjectLabel(code)
   const level = subjectLevel(code)
   const title = `${code} ${label}: ${topic.title} Past Paper Questions`
-  const description = `Practise ${topic.questionCount} Cambridge ${level} ${label} (${code}) past-paper questions on ${topic.title}, each marked instantly against the official ${code} mark scheme.`
+  const description =
+    topic.questionCount > 0
+      ? `Practise ${topic.questionCount} Cambridge ${level} ${label} (${code}) past-paper questions on ${topic.title}, each marked instantly against the official ${code} mark scheme.`
+      : `Practise Cambridge ${level} ${label} (${code}) ${topic.title} with scheme-aligned marking. Open a past-paper question on this syllabus point and get Examiner’s Ink feedback.`
   return {
     label,
     level,

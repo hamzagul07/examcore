@@ -480,9 +480,27 @@ a { color: inherit; }
   --hl-key: #e8b93a;
   --hl-unclear: #d4728f;
   --hl-exam: #4a9b7f;
+
+  /* Resolved rather than mixed at the point of use, so the night variant is a
+     token override instead of a second `::highlight()` rule. A rule of the form
+     `[data-theme='night'] ::highlight(...)` parses in browsers but the build's
+     CSS parser rejects `::highlight()` after a combinator, which is where the
+     "not recognized as a valid pseudo-element" warning came from. */
+  --hl-key-bg: color-mix(in srgb, var(--hl-key) 38%, transparent);
 }
+
+/* On dark paper the yellow lifts the background toward the text and takes the
+   contrast under AA — 3.7:1 at the light-mode strength. axe cannot catch this,
+   because CSS Custom Highlight ranges are not in the accessibility tree, so it
+   passed every automated check while being genuinely hard to read. 28% brings
+   it back to 4.8:1 and is still plainly a highlight. The other two clear AA on
+   dark unchanged, at 5.5 and 5.8. */
+[data-theme='night'] {
+  --hl-key-bg: color-mix(in srgb, var(--hl-key) 28%, transparent);
+}
+
 ::highlight(ms-hl-key) {
-  background-color: color-mix(in srgb, var(--hl-key) 38%, transparent);
+  background-color: var(--hl-key-bg);
   text-decoration-color: var(--hl-key);
 }
 ::highlight(ms-hl-unclear) {
@@ -492,16 +510,6 @@ a { color: inherit; }
 }
 ::highlight(ms-hl-exam) {
   background-color: color-mix(in srgb, var(--hl-exam) 30%, transparent);
-}
-
-/* On dark paper the yellow lifts the background toward the text and takes the
-   contrast under AA — 3.7:1 at the light-mode strength. axe cannot catch this,
-   because CSS Custom Highlight ranges are not in the accessibility tree, so it
-   passed every automated check while being genuinely hard to read. 28% brings
-   it back to 4.8:1 and is still plainly a highlight. The other two clear AA on
-   dark unchanged, at 5.5 and 5.8. */
-[data-theme='night'] ::highlight(ms-hl-key) {
-  background-color: color-mix(in srgb, var(--hl-key) 28%, transparent);
 }
 
 /* Selection toolbar — anchored to the selection, so it is never somewhere you

@@ -97,14 +97,23 @@ export async function generateMetadata({ params, searchParams }: Props) {
 
   const { lesson, lessonSlug } = resolved
   const seo = buildCourseLessonSeo(course, lesson)
-  const canonicalPath = `/courses/${code}/${lessonSlug}`
+  const legacyPath = `/courses/${code}/${lessonSlug}`
   const path =
     resolved.mode === 'paper' && resolved.paperDir
       ? `/courses/${code}/${resolved.paperDir}/${lessonSlug}${isPilotPreview ? '?pilot=1' : ''}`
-      : canonicalPath
+      : legacyPath
+  // Breadcrumb leaf already prefers the CAIE graph URL when indexable.
+  const graphCanonical = seo.breadcrumbs[seo.breadcrumbs.length - 1]?.path
+  const canonicalPath =
+    !isPilotPreview && graphCanonical?.startsWith('/caie/')
+      ? graphCanonical
+      : legacyPath
   const subjectSeo = buildSubjectCourseSeo(course, course.lessonCount)
   const isPublished = lesson.status === 'premium' || lesson.status === 'published'
   const modified = lesson.updated ? `${lesson.updated}T12:00:00.000Z` : undefined
+
+  const hasCaieCanonical =
+    !isPilotPreview && Boolean(canonicalPath?.startsWith('/caie/'))
 
   return createPageMetadata({
     title: isPilotPreview ? `[Pilot] ${seo.title}` : seo.title,
@@ -116,7 +125,9 @@ export async function generateMetadata({ params, searchParams }: Props) {
     ogType: isPublished ? 'article' : 'website',
     publishedTime: modified,
     modifiedTime: modified,
-    index: !isPilotPreview && lesson.status !== 'pilot',
+    // When the CAIE graph owns the URL, keep /courses/... out of the index —
+    // sitemap + canonical + robots should all prefer /caie/...
+    index: !isPilotPreview && lesson.status !== 'pilot' && !hasCaieCanonical,
   })
 }
 

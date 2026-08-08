@@ -1,8 +1,10 @@
 'use client'
 
+import { useEffect } from 'react'
 import Link from 'next/link'
 import { buildSignUpHref } from '@/lib/auth-redirect'
 import { Sparkles } from 'lucide-react'
+import { trackFunnelEvent } from '@/lib/analytics/funnel'
 import { capForTier, omniCapForTier, tierMarketingName } from '@/lib/billing/caps'
 import { Sheet } from '@/components/ui/Sheet'
 import type { SubscriptionTier } from '@/lib/database.types'
@@ -52,6 +54,17 @@ export function UpgradeModal({
   creditBalance = 0,
   returnPath = '/mark',
 }: UpgradeModalProps) {
+  useEffect(() => {
+    if (!open) return
+    trackFunnelEvent('upgrade_viewed', {
+      source: variant,
+      subject: tier ?? null,
+    })
+    if (variant === 'anonymous') {
+      trackFunnelEvent('signup_started', { source: 'upgrade_modal_anonymous' })
+    }
+  }, [open, variant, tier])
+
   const isAnon = variant === 'anonymous'
   const title = isAnon ? 'Sign up to keep marking' : capCopy(variant, tier, cap)
   const resetDate = periodResetsAt

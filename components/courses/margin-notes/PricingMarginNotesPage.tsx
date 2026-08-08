@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import {
   ArrowRight,
@@ -26,7 +26,9 @@ import { formatMoney } from '@/lib/billing/format'
 import { capForTier, omniCapForTier } from '@/lib/billing/caps'
 import { INTERACTIVE_DIAGRAMS_FREE } from '@/lib/billing/features'
 import { buildSignUpHref } from '@/lib/auth-redirect'
+import { trackFunnelEvent } from '@/lib/analytics/funnel'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
+import { CheckoutSuccessTracker } from '@/components/analytics/CheckoutSuccessTracker'
 import { PlanComparisonMatrix } from '@/components/courses/margin-notes/PlanComparisonMatrix'
 
 type Period = 'monthly' | 'yearly'
@@ -96,6 +98,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
     }
     setBusy(product)
     setNotice(null)
+    trackFunnelEvent('checkout_started', { source: product })
     try {
       const res = await fetch('/api/billing/checkout', {
         method: 'POST',
@@ -352,6 +355,9 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
 
   return (
     <main className="pricing-page ec-page-mesh" data-screen-label="Pricing">
+      <Suspense fallback={null}>
+        <CheckoutSuccessTracker />
+      </Suspense>
       <div className="pg">
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Pricing' }]} />
 

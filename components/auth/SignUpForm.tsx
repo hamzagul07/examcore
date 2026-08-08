@@ -19,6 +19,7 @@ import { GoogleAuthSection } from '@/components/auth/GoogleAuthSection'
 import { AuthDivider } from '@/components/auth/AuthDivider'
 import { UsernameField, type UsernameState } from '@/components/auth/UsernameField'
 import { GuestBrowseSkip } from '@/components/auth/GuestBrowseSkip'
+import { trackFunnelEvent } from '@/lib/analytics/funnel'
 
 type SignUpFormProps = {
   redirectPath: string
@@ -68,6 +69,7 @@ export function SignUpForm({
     }
     setLoading(true)
     setErrorMsg('')
+    trackFunnelEvent('signup_started', { source: 'magic_link' })
 
     const supabase = createClient()
     const callbackUrl = buildAuthCallbackUrl(
@@ -89,6 +91,7 @@ export function SignUpForm({
       setErrorMsg(formatAuthError(error))
       return
     }
+    trackFunnelEvent('signup_completed', { source: 'magic_link_sent' })
     setSent(true)
   }
 
@@ -112,6 +115,7 @@ export function SignUpForm({
     }
     setLoading(true)
     setErrorMsg('')
+    trackFunnelEvent('signup_started', { source: 'password' })
 
     const supabase = createClient()
     const callbackUrl =
@@ -135,6 +139,7 @@ export function SignUpForm({
     }
 
     if (!data.session) {
+      trackFunnelEvent('signup_completed', { source: 'password_verify_email' })
       const params = new URLSearchParams({ email })
       if (intentDestination !== '/onboarding') {
         params.set('next', intentDestination)
@@ -142,6 +147,8 @@ export function SignUpForm({
       router.push(`/auth/verify-email?${params.toString()}`)
       return
     }
+
+    trackFunnelEvent('signup_completed', { source: 'password_session' })
 
     try {
       await fetch('/api/community/username', {

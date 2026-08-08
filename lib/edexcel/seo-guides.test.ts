@@ -1,4 +1,6 @@
 import {
+  EDEXCEL_HUB_GUIDE_LINKS,
+  EDEXCEL_IAL_MATHS_MARKING_GUIDE,
   EDEXCEL_IAL_MATHS_PAST_PAPERS_GUIDE,
   EDEXCEL_IAL_MATHS_UMS_GUIDE,
   edexcelUnitGuideHref,
@@ -16,6 +18,8 @@ check('WMA11 guide', edexcelUnitGuideHref('wma11') === '/blog/edexcel-wma11-pure
 check('unknown unit', edexcelUnitGuideHref('WPH11') === null)
 check('ums path', EDEXCEL_IAL_MATHS_UMS_GUIDE.includes('grade-boundaries-ums'))
 check('past papers path', EDEXCEL_IAL_MATHS_PAST_PAPERS_GUIDE.includes('past-papers-guide'))
+check('marking path', EDEXCEL_IAL_MATHS_MARKING_GUIDE.includes('marking-guide'))
+check('hub links', EDEXCEL_HUB_GUIDE_LINKS.length >= 4)
 
 if (failed > 0) process.exit(1)
 console.log('seo-guides.test.ts: all checks passed')

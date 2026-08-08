@@ -9,6 +9,7 @@ import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { EDEXCEL_QUALIFICATIONS, getEdexcelSubjects } from '@/lib/edexcel/catalog'
 import { edexcelMarkHref } from '@/lib/edexcel/marking'
+import { EDEXCEL_HUB_GUIDE_LINKS } from '@/lib/edexcel/seo-guides'
 import {
   edexcelQualificationPath,
   edexcelSubjectPath,
@@ -63,6 +64,15 @@ export default function EdexcelHubPage() {
             Studying Cambridge too?
           </Link>
         </div>
+        <ul className="mt-6 grid list-none gap-2 p-0 sm:grid-cols-2">
+          {EDEXCEL_HUB_GUIDE_LINKS.map((g) => (
+            <li key={g.href}>
+              <Link href={g.href} className="ec-card block p-3 text-sm font-semibold">
+                {g.label} →
+              </Link>
+            </li>
+          ))}
+        </ul>
       </MarketingSection>
 
       <MarketingSection>

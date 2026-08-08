@@ -148,6 +148,7 @@ export const INDEXNOW_PRIORITY_URLS = [
   '/blog/edexcel-ial-vs-cambridge-a-level-2026',
   '/blog/edexcel-ial-maths-grade-boundaries-ums-2026',
   '/blog/edexcel-ial-maths-past-papers-guide-2026',
+  '/blog/edexcel-ial-maths-marking-guide-2026',
   '/blog/edexcel-wma11-pure-mathematics-1-guide-2026',
   '/blog/cambridge-vs-edexcel-vs-aqa',
   ...TIKTOK_COMPANION_BLOG_PATHS,

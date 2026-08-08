@@ -163,6 +163,7 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
       /^cambridge-vs-edexcel-vs-aqa$/,
       /^edexcel-ial-vs-cambridge/,
       /^edexcel-ial-maths-past-papers/,
+      /^edexcel-ial-maths-marking/,
       /^edexcel-wma11/,
       /^which-igcse-subjects/,
       /^how-many-a-levels/,

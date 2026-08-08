@@ -90,6 +90,19 @@ Do not open UK boards until roughly:
 | Mark → account | Edexcel within ~20% of CAIE |
 | Free → paid | Edexcel within ~25–30% of CAIE |
 
+### Snapshot 2026-08-09 (7d)
+
+| Metric | Value |
+|--------|-------|
+| Edexcel marks | **0** (all-time mark_runs.exam_system=edexcel also 0) |
+| Cambridge marks | 1 (7d) / 11 (all-time tagged) |
+| `/edexcel*` pageviews | **0** |
+| Funnel `/__funnel/*/edexcel` | **0** |
+| Closest edexcel-named traffic | 5× `/blog/cambridge-vs-edexcel-vs-aqa` in 30d |
+| Top internal bridge target | `/guides/grade-boundaries` (36 events, ties `/mark`) |
+
+**Verdict:** hold new dialects; push acquisition bridges, not more board surface.
+
 ---
 
 ## Apply migration

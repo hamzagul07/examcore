@@ -118,6 +118,25 @@ export function GradeBoundaryHubPanel() {
             Open calculator <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
+
+        <aside className="mt-8 flex flex-wrap items-center justify-between gap-4 ec-card ec-card--paper border border-[var(--ec-border)] px-5 py-4">
+          <p className="ms-body-2" style={{ margin: 0, maxWidth: 520 }}>
+            Sitting Edexcel International A Level? Boundaries use UMS / cash-in,
+            not Cambridge raw thresholds — then mark Wave 1 Maths units on the
+            same product.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href="/edexcel/international-a-level/mathematics/grade-boundaries"
+              className="ec-btn-secondary ec-btn-secondary--sm"
+            >
+              Edexcel UMS explainer
+            </Link>
+            <Link href="/mark?board=edexcel&subject=WMA11" className="ec-btn-primary ec-btn-primary--sm">
+              Mark WMA11 <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </aside>
       </div>
     </div>
   )

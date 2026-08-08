@@ -399,7 +399,8 @@ E0 board-native platform
 
 ### Next
 
-- Measure Edexcel Maths mark→signup→paid (SQL in `BOARD_CONVERSION_METRICS.md`)
+- **Scorecard 2026-08-09:** 0 Edexcel marks / 0 `/edexcel` pageviews in 7d — gates fail; hold Physics/Chem, UK, PDF ingest. Re-run SQL in `BOARD_CONVERSION_METRICS.md` weekly.
+- Acquisition bridges from live traffic (grade-boundaries hub, Results Day, Cambridge maths boundary posts) until `/edexcel` sessions appear
 - Edexcel Physics/Chem marking only after gates
 - Full past-paper / scheme ingest for IAL Maths only after conversion justifies it
 - Do not mix board work into unrelated branding/landing WIP on main

@@ -143,6 +143,12 @@ export default async function ClusterGuidePage({ params }: Props) {
             <Link href="/blog/cambridge-results-day-august-2026-guide" className="ec-btn-ghost ec-btn-ghost--sm">
               Results day 2026
             </Link>
+            <Link
+              href="/edexcel/international-a-level/mathematics/grade-boundaries"
+              className="ec-btn-ghost ec-btn-ghost--sm"
+            >
+              Edexcel IAL UMS
+            </Link>
           </div>
         )}
 
@@ -164,7 +170,7 @@ export default async function ClusterGuidePage({ params }: Props) {
         )}
 
         {isIb && (
-          <aside className="mb-10 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-[var(--ec-border)] px-5 py-4">
+          <aside className="mb-10 flex flex-wrap items-center justify-between gap-4 ec-card ec-card--paper border border-[var(--ec-border)] px-5 py-4">
             <p className="ms-body-2" style={{ margin: 0, maxWidth: 480 }}>
               Practise on MarkScheme — past papers, free courses, and topic-by-topic marking.
             </p>
@@ -234,7 +240,7 @@ export default async function ClusterGuidePage({ params }: Props) {
           </div>
         )}
 
-        <div className="ms-hub-card mt-12 text-center">
+        <div className="ms-hub-card ec-card--paper mt-12 text-center">
           <h2 className="ms-h3">Ready to mark a paper?</h2>
           <p className="ms-lead mx-auto" style={{ marginTop: 10, maxWidth: 480 }}>
             {isIb

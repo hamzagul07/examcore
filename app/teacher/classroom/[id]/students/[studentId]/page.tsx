@@ -3,6 +3,12 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import {
+  NO_DATA,
+  attemptSummary,
+  hasMarkedWork,
+  percentOrDash,
+} from '@/lib/teacher/stat-display'
+import {
   TeacherBackLink,
   TeacherPageContainer,
   TeacherPageHeader,

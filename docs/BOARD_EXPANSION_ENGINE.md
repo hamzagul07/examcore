@@ -400,7 +400,7 @@ E0 board-native platform
 ### Next
 
 - **Scorecard 2026-08-09:** 0 Edexcel marks / 0 `/edexcel` pageviews in 7d — gates fail; hold Physics/Chem, UK, PDF ingest. Re-run SQL in `BOARD_CONVERSION_METRICS.md` weekly.
-- Acquisition bridges shipped: grade-boundaries hub + BlogPostCta on Cambridge boundaries/results posts + in-body links on 9709 / May–June thresholds / results-day guides. Wait for `/edexcel` sessions before more dialects.
+- Acquisition bridges shipped: grade-boundaries hub + BlogPostCta + PUM/footer chrome + in-body links. SEO posts: IAL Maths UMS guide + WMA11 Pure 1 guide. Wait for `/edexcel` sessions before more dialects.
 - Edexcel Physics/Chem marking only after gates
 - Full past-paper / scheme ingest for IAL Maths only after conversion justifies it
 - Do not mix board work into unrelated branding/landing WIP on main

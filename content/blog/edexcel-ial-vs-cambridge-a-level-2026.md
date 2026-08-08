@@ -35,6 +35,7 @@ Both boards award credit for valid method and correct answers, but the published
 
 - Cambridge: pick your syllabus on [/mark](/mark?board=cambridge) or browse the [CAIE syllabus graph](/caie).
 - Edexcel IAL Maths: open [/mark?board=edexcel](/mark?board=edexcel) or the [IAL Mathematics hub](/edexcel/international-a-level/mathematics) (units WMA11–WST02).
+- UMS / cash-in: [Edexcel IAL Maths grade boundaries](/blog/edexcel-ial-maths-grade-boundaries-ums-2026) · first unit: [WMA11 Pure 1 guide](/blog/edexcel-wma11-pure-mathematics-1-guide-2026).
 - Still deciding among UK domestic boards as well? See [Cambridge vs Edexcel vs AQA](/blog/cambridge-vs-edexcel-vs-aqa).
 
 ## Where OxfordAQA fits

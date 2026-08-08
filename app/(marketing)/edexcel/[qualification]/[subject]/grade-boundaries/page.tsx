@@ -89,6 +89,19 @@ export default async function EdexcelBoundariesPage({ params }: Props) {
         <p className="ms-body-2 mt-4 text-[var(--ec-text-secondary)]">
           Session-by-session A/B/C raw-mark tables will publish here as we add them. Until then,
           treat official Pearson boundary PDFs as the source of truth for a given series.
+          {isMaths ? (
+            <>
+              {' '}
+              Full walkthrough:{' '}
+              <Link
+                href="/blog/edexcel-ial-maths-grade-boundaries-ums-2026"
+                className="ec-btn-underline"
+              >
+                Edexcel IAL Maths UMS guide
+              </Link>
+              .
+            </>
+          ) : null}
         </p>
       </MarketingSection>
 

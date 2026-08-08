@@ -146,6 +146,8 @@ export const INDEXNOW_PRIORITY_URLS = [
   '/blog/how-to-mark-cambridge-past-papers-yourself',
   '/blog/cambridge-results-day-august-2026-guide',
   '/blog/edexcel-ial-vs-cambridge-a-level-2026',
+  '/blog/edexcel-ial-maths-grade-boundaries-ums-2026',
+  '/blog/edexcel-wma11-pure-mathematics-1-guide-2026',
   '/blog/cambridge-vs-edexcel-vs-aqa',
   ...TIKTOK_COMPANION_BLOG_PATHS,
 ] as const

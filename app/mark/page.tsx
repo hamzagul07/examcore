@@ -2020,7 +2020,7 @@ export default function MarkPage() {
                 ) : (
                   <>
                     {billingSummary?.signedIn && billingSummary.access === 'free' && (
-                      <div className="ec-banner-warning-inline ec-card ec-card--paper px-4 py-3 text-sm">
+                      <div className="ec-banner-warning-inline rounded-xl px-4 py-3 text-sm">
                         <span className="font-semibold">Free preview:</span>{' '}
                         we mark up to {FREE_WHOLE_PAPER_QUESTION_LIMIT} questions per
                         whole-paper upload.{' '}
@@ -2530,7 +2530,7 @@ export default function MarkPage() {
               )}
 
                   {billingSummaryError && (
-                    <p className="ec-card ec-card--paper mb-3 border ec-tint-info-chip px-4 py-2 text-center text-xs">
+                    <p className="mb-3 rounded-xl border ec-tint-info-chip px-4 py-2 text-center text-xs">
                       Couldn&apos;t check your remaining allowance — marking may be declined if
                       you&apos;re at your cap.{' '}
                       <button
@@ -2663,7 +2663,7 @@ export default function MarkPage() {
                       questionPhotoCompressing ||
                       !!answerPdfError
                     }
-                    className="ec-card ec-card--paper mt-3 border border-[color-mix(in_srgb,var(--ec-chip-warning-text)_40%,transparent)] bg-[var(--ec-chip-warning-bg)] px-4 py-2 text-sm font-medium text-[var(--ec-banner-warning-title)] transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="mt-3 rounded-xl border border-[color-mix(in_srgb,var(--ec-chip-warning-text)_40%,transparent)] bg-[var(--ec-chip-warning-bg)] px-4 py-2 text-sm font-medium text-[var(--ec-banner-warning-title)] transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     Try again
                   </button>

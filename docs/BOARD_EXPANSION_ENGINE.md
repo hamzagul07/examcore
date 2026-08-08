@@ -395,6 +395,7 @@ E0 board-native platform
 - Edexcel hub primary mark CTA; CAIE hub “On Edexcel?” bridge
 - Blog CTAs / worked examples route Edexcel-named posts to `/mark?board=edexcel`
 - Thin IAL Maths session map on past-papers + unit pages (metadata only; no PDF bank)
+- UMS explainer + mark CTA on grade-boundaries hubs (tables still deferred)
 
 ### Next
 

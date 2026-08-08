@@ -48,8 +48,8 @@ export default async function EdexcelBoundariesPage({ params }: Props) {
   const qual = getEdexcelQualification(qualification)
   if (!qual) notFound()
   const copy = buildEdexcelSubjectCopy(subject)
-  const markHref =
-    subject.slug === 'mathematics' ? edexcelMarkHref('WMA11') : edexcelMarkHref()
+  const isMaths = subject.slug === 'mathematics'
+  const markHref = isMaths ? edexcelMarkHref('WMA11') : edexcelMarkHref()
 
   return (
     <MarketingPageShell>
@@ -67,30 +67,65 @@ export default async function EdexcelBoundariesPage({ params }: Props) {
       <MarketingHero
         label={`${subject.familyCode} · UMS`}
         title={`${subject.name} grade boundaries`}
-        lead="Edexcel IAL uses Uniform Mark Scale (UMS) across modular units. Session tables land here as we publish them — use the unit list to target the papers that matter for your cash-in, then mark practice answers against Edexcel conventions."
+        lead="Edexcel IAL uses Uniform Mark Scale (UMS) across modular units. Know the cash-in rules, target the units that move your grade, then close the gap with examiner-style marking."
       />
+
+      <MarketingSection>
+        <h2 className="ms-h2">How UMS works (IAL)</h2>
+        <ol className="ms-body-2 m-0 grid list-decimal gap-3 pl-5 text-[var(--ec-text-secondary)]">
+          <li>
+            Each unit paper is marked in <strong className="text-[var(--ec-text-primary)]">raw marks</strong>.
+          </li>
+          <li>
+            Pearson converts raw marks to <strong className="text-[var(--ec-text-primary)]">UMS</strong> so
+            different sessions stay comparable.
+          </li>
+          <li>
+            Your qualification grade comes from the{' '}
+            <strong className="text-[var(--ec-text-primary)]">UMS total</strong> across the units you cash
+            in — not from a single linear paper set.
+          </li>
+        </ol>
+        <p className="ms-body-2 mt-4 text-[var(--ec-text-secondary)]">
+          Session-by-session A/B/C raw-mark tables will publish here as we add them. Until then,
+          treat official Pearson boundary PDFs as the source of truth for a given series.
+        </p>
+      </MarketingSection>
+
       <MarketingSection>
         <h2 className="ms-h2">Units in this subject</h2>
         <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
           {subject.units.map((u) => (
-            <li key={u.code}>
+            <li key={u.code} className="ec-card p-4">
               <Link
                 href={edexcelUnitPath(qualification, subjectSlug, u.code)}
-                className="ec-card block p-4"
+                className="font-semibold text-[var(--ec-text-primary)] underline-offset-2 hover:underline"
               >
-                <span className="font-semibold">{u.code}</span>
-                <span className="ms-body-2 mt-1 block">{u.name}</span>
+                {u.code}
               </Link>
+              <span className="ms-body-2 mt-1 block">{u.name}</span>
+              {isMaths ? (
+                <Link
+                  href={edexcelMarkHref(u.code)}
+                  className="ms-micro mt-3 inline-block font-semibold uppercase tracking-wide text-[var(--ec-accent)]"
+                >
+                  Mark {u.code} →
+                </Link>
+              ) : null}
             </li>
           ))}
         </ul>
-        <p className="ms-body-2 mt-6 text-[var(--ec-text-secondary)]">
-          Boundaries tell you the target; marking tells you the gap.{' '}
-          <Link href={markHref} className="underline">
-            Mark an Edexcel answer
+        <div className="mt-8 rounded-3xl border border-[var(--ec-border)] bg-[var(--ec-bg-soft)] px-6 py-8 text-center sm:px-10">
+          <h2 className="ms-h2">Boundaries set the target. Marking finds the gap.</h2>
+          <p className="mx-auto mt-2 max-w-lg text-[var(--ec-text-secondary)]">
+            {isMaths
+              ? 'Upload a WMA/WME/WST practice answer and get method/accuracy feedback before the next sitting.'
+              : 'IAL Maths marking is live first — Physics and Chemistry follow once conversion is proven.'}
+          </p>
+          <Link href={markHref} className="ec-btn-primary mt-5 inline-flex min-h-[48px]">
+            {isMaths ? 'Mark IAL Maths →' : 'Open Edexcel marking →'}
           </Link>
-          {subject.slug === 'mathematics' ? ' for IAL Maths.' : ' (Maths live first).'}
-        </p>
+        </div>
       </MarketingSection>
     </MarketingPageShell>
   )

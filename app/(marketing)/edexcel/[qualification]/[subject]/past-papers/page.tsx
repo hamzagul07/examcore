@@ -8,9 +8,11 @@ import {
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { getEdexcelQualification } from '@/lib/edexcel/catalog'
+import { edexcelMarkHref, getEdexcelMarkableUnitCodes } from '@/lib/edexcel/marking'
 import {
   edexcelRootPath,
   edexcelSubjectPath,
+  edexcelUnitPath,
   getAllEdexcelSubjectParams,
   resolveEdexcelSubject,
 } from '@/lib/seo/edexcel-graph'
@@ -46,6 +48,9 @@ export default async function EdexcelPastPapersPage({ params }: Props) {
   const qual = getEdexcelQualification(qualification)
   if (!qual) notFound()
   const copy = buildEdexcelSubjectCopy(subject)
+  const markable = new Set(getEdexcelMarkableUnitCodes())
+  const defaultMarkHref =
+    subject.slug === 'mathematics' ? edexcelMarkHref('WMA11') : edexcelMarkHref()
 
   return (
     <MarketingPageShell>
@@ -63,28 +68,42 @@ export default async function EdexcelPastPapersPage({ params }: Props) {
       <MarketingHero
         label={`${subject.familyCode} · Past papers`}
         title={`${subject.name} past papers`}
-        lead={`Edexcel IAL ${subject.name} is modular. Use the unit list below as your paper map — full session archives and in-context marking land with the Maths marking wave.`}
+        lead={`Edexcel IAL ${subject.name} is modular. Use the unit map below, then mark practice answers with Edexcel conventions — session PDF archives grow here without sending you to Cambridge.`}
       />
       <MarketingSection>
         <h2 className="ms-h2">Units</h2>
         <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
-          {subject.units.map((u) => (
-            <li key={u.code} className="ec-card p-4">
-              <span className="font-semibold">{u.code}</span>
-              <span className="ms-body-2 mt-1 block">{u.name}</span>
-            </li>
-          ))}
+          {subject.units.map((u) => {
+            const canMark = markable.has(u.code)
+            return (
+              <li key={u.code} className="ec-card p-4">
+                <Link
+                  href={edexcelUnitPath(qualification, subjectSlug, u.code)}
+                  className="font-semibold text-[var(--ec-text-primary)] underline-offset-2 hover:underline"
+                >
+                  {u.code}
+                </Link>
+                <span className="ms-body-2 mt-1 block">{u.name}</span>
+                {canMark ? (
+                  <Link
+                    href={edexcelMarkHref(u.code)}
+                    className="ms-micro mt-3 inline-block font-semibold uppercase tracking-wide text-[var(--ec-accent)]"
+                  >
+                    Mark {u.code} →
+                  </Link>
+                ) : null}
+              </li>
+            )
+          })}
         </ul>
         <p className="ms-body-2 mt-6 text-[var(--ec-text-secondary)]">
-          Prefer Cambridge papers today?{' '}
-          <Link href="/past-papers" className="underline">
-            Browse CAIE past papers
-          </Link>{' '}
-          or{' '}
-          <Link href="/mark" className="underline">
-            mark an answer
+          Worked a paper?{' '}
+          <Link href={defaultMarkHref} className="underline">
+            Mark an Edexcel answer
           </Link>
-          .
+          {subject.slug === 'mathematics'
+            ? ' with method/accuracy conventions for IAL Maths.'
+            : ' — Maths units are live first; this subject’s dialect follows once conversion is proven.'}
         </p>
       </MarketingSection>
     </MarketingPageShell>

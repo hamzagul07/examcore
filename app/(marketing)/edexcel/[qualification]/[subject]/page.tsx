@@ -8,6 +8,7 @@ import {
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { getEdexcelQualification } from '@/lib/edexcel/catalog'
+import { edexcelMarkHref } from '@/lib/edexcel/marking'
 import {
   edexcelRootPath,
   edexcelSubjectBoundariesPath,
@@ -118,8 +119,8 @@ export default async function EdexcelSubjectPage({ params }: Props) {
             <Link
               href={
                 subject.slug === 'mathematics'
-                  ? '/mark?board=edexcel&subject=WMA11'
-                  : '/mark?board=edexcel'
+                  ? edexcelMarkHref('WMA11')
+                  : edexcelMarkHref()
               }
               className="ec-card block p-4"
             >

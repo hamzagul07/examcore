@@ -8,6 +8,7 @@ import {
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { getEdexcelQualification } from '@/lib/edexcel/catalog'
+import { edexcelMarkHref, getEdexcelMarkableUnitCodes } from '@/lib/edexcel/marking'
 import {
   edexcelRootPath,
   edexcelSubjectBoundariesPath,
@@ -69,6 +70,8 @@ export default async function EdexcelUnitPage({ params }: Props) {
   const subjectPath = edexcelSubjectPath(qualification, subjectSlug)
   const path = `${subjectPath}/${unitRow.code.toLowerCase()}`
   const copy = buildEdexcelSubjectCopy(subject)
+  const markHref = edexcelMarkHref(unitRow.code)
+  const unitMarkable = getEdexcelMarkableUnitCodes().includes(unitRow.code)
 
   return (
     <MarketingPageShell>
@@ -86,10 +89,25 @@ export default async function EdexcelUnitPage({ params }: Props) {
       <MarketingHero
         label={`${subject.familyCode} · ${unitRow.short}`}
         title={`${unitRow.code} — ${unitRow.name}`}
-        lead={`Modular unit in Edexcel International A Level ${subject.name}. Topic lessons and in-context marking attach here as the Edexcel adapter fills out.`}
+        lead={
+          unitMarkable
+            ? `Modular unit in Edexcel International A Level ${subject.name}. Upload a practice answer or scanned script and get method/accuracy marking for ${unitRow.code}.`
+            : `Modular unit in Edexcel International A Level ${subject.name}. Unit hubs and past-paper maps are live; Maths marking is available first while other subjects follow conversion.`
+        }
       />
       <MarketingSection>
-        <h2 className="ms-h2">Next steps</h2>
+        <div className="mb-8 rounded-3xl border border-[var(--ec-border)] bg-[var(--ec-bg-soft)] px-6 py-8 text-center sm:px-10">
+          <h2 className="ms-h2">Mark a {unitRow.code} answer</h2>
+          <p className="mx-auto mt-2 max-w-lg text-[var(--ec-text-secondary)]">
+            {unitMarkable
+              ? 'Practice questions and scanned scripts — Edexcel IAL Maths conventions, not a Cambridge default.'
+              : 'Open the Edexcel mark picker. Wave 1 Maths units are live; this unit’s dialect follows once Maths converts.'}
+          </p>
+          <Link href={markHref} className="ec-btn-primary mt-5 inline-flex min-h-[48px]">
+            {unitMarkable ? `Mark ${unitRow.code} →` : 'Open Edexcel marking →'}
+          </Link>
+        </div>
+        <h2 className="ms-h2">Also on this subject</h2>
         <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
           <li>
             <Link
@@ -113,7 +131,7 @@ export default async function EdexcelUnitPage({ params }: Props) {
             </Link>
           </li>
           <li>
-            <Link href="/mark" className="ec-card block p-4 font-semibold">
+            <Link href={markHref} className="ec-card block p-4 font-semibold">
               Mark an answer
             </Link>
           </li>

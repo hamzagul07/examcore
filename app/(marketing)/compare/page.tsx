@@ -35,9 +35,9 @@ const MARKING_ROWS = [
 const PLATFORM_ROWS = [
   {
     name: 'MarkScheme',
-    bestFor: 'Marking handwriting + free Cambridge & IB courses',
-    marking: 'Cambridge schemes + IB markbands',
-    courses: 'Yes — /courses and /ib/courses',
+    bestFor: 'Marking handwriting + Cambridge, IB, and Edexcel IAL Maths',
+    marking: 'Cambridge schemes + IB markbands + Edexcel IAL Maths',
+    courses: 'Yes — /courses, /ib/courses, /edexcel',
     cost: 'Free tier',
   },
   {
@@ -101,7 +101,7 @@ export default function ComparePage() {
       <MarketingHero
         label="COMPARISON"
         title="Which marking path fits you?"
-        lead="Not affiliate fluff — practical tables for Cambridge and IB students revising with past papers, mark schemes, and free courses."
+        lead="Not affiliate fluff — practical tables for Cambridge, IB, and Edexcel International students revising with past papers, mark schemes, and free courses."
       />
       <MarketingSection className="!pt-0">
         <p className="ms-overline mb-2">Workflow</p>
@@ -142,7 +142,12 @@ export default function ComparePage() {
           <Link href="/mark" className="ec-link font-semibold">
             MarkScheme
           </Link>{' '}
-          on the same script for a second pass before your next paper.
+          on the same script for a second pass before your next paper. On Edexcel
+          IAL Maths, start at{' '}
+          <Link href="/mark?board=edexcel&subject=WMA11" className="ec-link font-semibold">
+            /mark?board=edexcel
+          </Link>
+          .
         </p>
       </MarketingSection>
       <MarketingSection className="!pt-0">
@@ -187,6 +192,10 @@ export default function ComparePage() {
             best online tools for Cambridge &amp; IB
           </Link>
           ,{' '}
+          <Link href="/blog/edexcel-ial-vs-cambridge-a-level-2026" className="ec-link font-semibold">
+            Edexcel IAL vs Cambridge
+          </Link>
+          ,{' '}
           <Link href="/blog/best-free-cambridge-revision-resources-2026" className="ec-link font-semibold">
             free Cambridge resources
           </Link>
@@ -223,11 +232,16 @@ export default function ComparePage() {
           </h2>
           <p className="mx-auto mt-2 max-w-md text-body text-[var(--ec-text-secondary)]">
             One free question, marked against the official scheme — the fastest way
-            to compare is to try it.
+            to compare is to try it. Cambridge, IB, or Edexcel IAL Maths.
           </p>
-          <Link href="/mark" className="ec-btn-primary mt-6 inline-flex">
-            Mark a question free →
-          </Link>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <Link href="/mark" className="ec-btn-primary inline-flex">
+              Mark a question free →
+            </Link>
+            <Link href="/mark?board=edexcel&subject=WMA11" className="ec-btn-ghost inline-flex min-h-[48px]">
+              Edexcel IAL Maths →
+            </Link>
+          </div>
         </div>
       </MarketingSection>
     </MarketingPageShell>

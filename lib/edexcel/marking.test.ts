@@ -3,6 +3,7 @@ import { markingBoardLabel, isEdexcelSubjectCode } from '@/lib/marking/exam-boar
 import { isMathSubjectCode } from '@/lib/marking/math-subjects'
 import { listMarkingExamSystems } from '@/lib/exam-systems'
 import {
+  edexcelMarkHref,
   getEdexcelMarkableUnitCodes,
   resolveEdexcelMarkingSubjectName,
   resolveEdexcelUnitLabel,
@@ -35,6 +36,9 @@ check('cambridge label unchanged', markingBoardLabel('9709') === 'Cambridge')
 const markingIds = listMarkingExamSystems().map((s) => s.id)
 check('edexcel in marking picker', markingIds.includes('edexcel'))
 check('cambridge still marking', markingIds.includes('cambridge'))
+check('mark href WMA11', edexcelMarkHref('WMA11') === '/mark?board=edexcel&subject=WMA11')
+check('mark href physics stays board-only', edexcelMarkHref('WPH11') === '/mark?board=edexcel')
+check('mark href empty', edexcelMarkHref() === '/mark?board=edexcel')
 
 const prompt = buildMarkingPrompt({
   markScheme: null,

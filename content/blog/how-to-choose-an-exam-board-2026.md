@@ -37,7 +37,7 @@ If you are choosing at 14, the real question is usually [IGCSE vs GCSE](/blog/ig
 
 ## How marking differs — and why it should influence your choice
 
-Because every board is really a marking system, the smartest way to test-drive a route is to see how its papers are actually assessed. A-Level science and maths chase itemised marks; IB essays are placed into best-fit descriptor bands; AP free-response is scored against rubrics. Practising real questions and checking your answers against the genuine standard — for example with [instant AI marking](/mark) or [free IB syllabus courses](/ib/courses) — reveals within a week whether you enjoy a board's demands or dread them. That felt experience beats any second-hand opinion.
+Because every board is really a marking system, the smartest way to test-drive a route is to see how its papers are actually assessed. A-Level science and maths chase itemised marks; IB essays are placed into best-fit descriptor bands; AP free-response is scored against rubrics. Practising real questions and checking your answers against the genuine standard — for example with [instant AI marking](/mark), [Edexcel IAL Maths marking](/mark?board=edexcel&subject=WMA11), or [free IB syllabus courses](/ib/courses) — reveals within a week whether you enjoy a board's demands or dread them. That felt experience beats any second-hand opinion.
 
 ## Comparison guides to read next
 

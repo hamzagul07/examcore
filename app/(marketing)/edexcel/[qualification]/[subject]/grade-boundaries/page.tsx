@@ -8,9 +8,11 @@ import {
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { getEdexcelQualification } from '@/lib/edexcel/catalog'
+import { edexcelMarkHref } from '@/lib/edexcel/marking'
 import {
   edexcelRootPath,
   edexcelSubjectPath,
+  edexcelUnitPath,
   getAllEdexcelSubjectParams,
   resolveEdexcelSubject,
 } from '@/lib/seo/edexcel-graph'
@@ -46,6 +48,8 @@ export default async function EdexcelBoundariesPage({ params }: Props) {
   const qual = getEdexcelQualification(qualification)
   if (!qual) notFound()
   const copy = buildEdexcelSubjectCopy(subject)
+  const markHref =
+    subject.slug === 'mathematics' ? edexcelMarkHref('WMA11') : edexcelMarkHref()
 
   return (
     <MarketingPageShell>
@@ -63,24 +67,29 @@ export default async function EdexcelBoundariesPage({ params }: Props) {
       <MarketingHero
         label={`${subject.familyCode} · UMS`}
         title={`${subject.name} grade boundaries`}
-        lead="Edexcel IAL uses Uniform Mark Scale (UMS) across modular units. This hub will host session boundary tables; until then, use the unit list to target the papers that matter for your cash-in."
+        lead="Edexcel IAL uses Uniform Mark Scale (UMS) across modular units. Session tables land here as we publish them — use the unit list to target the papers that matter for your cash-in, then mark practice answers against Edexcel conventions."
       />
       <MarketingSection>
         <h2 className="ms-h2">Units in this subject</h2>
         <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
           {subject.units.map((u) => (
-            <li key={u.code} className="ec-card p-4">
-              <span className="font-semibold">{u.code}</span>
-              <span className="ms-body-2 mt-1 block">{u.name}</span>
+            <li key={u.code}>
+              <Link
+                href={edexcelUnitPath(qualification, subjectSlug, u.code)}
+                className="ec-card block p-4"
+              >
+                <span className="font-semibold">{u.code}</span>
+                <span className="ms-body-2 mt-1 block">{u.name}</span>
+              </Link>
             </li>
           ))}
         </ul>
         <p className="ms-body-2 mt-6 text-[var(--ec-text-secondary)]">
-          Need Cambridge boundaries now?{' '}
-          <Link href="/tools/grade-boundary-calculator" className="underline">
-            Open the grade-boundary calculator
+          Boundaries tell you the target; marking tells you the gap.{' '}
+          <Link href={markHref} className="underline">
+            Mark an Edexcel answer
           </Link>
-          .
+          {subject.slug === 'mathematics' ? ' for IAL Maths.' : ' (Maths live first).'}
         </p>
       </MarketingSection>
     </MarketingPageShell>

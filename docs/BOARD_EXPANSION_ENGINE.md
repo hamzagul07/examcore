@@ -377,9 +377,16 @@ E0 board-native platform
 - Blog: `edexcel-ial-vs-cambridge-a-level-2026` + CTAs on board-choice posts
 - `mark_runs.exam_system` migration applied in production
 
+### Done (conversion plumbing)
+
+- Shell CTAs keep `board=edexcel` (+ unit for Wave 1 Maths) via `edexcelMarkHref`
+- Past-papers / boundaries no longer leak to bare `/mark` or CAIE as the primary CTA
+- `/compare` + board-choice blog surface Edexcel IAL Maths mark deep links
+
 ### Next
 
 - Measure Edexcel Maths mark→signup→paid (SQL in `BOARD_CONVERSION_METRICS.md`)
+- Revisit onboarding `enabled: false` once mark→account is measurable and desired
 - Edexcel Physics/Chem marking only after gates
 - Optional: past-paper scheme ingest for IAL Maths
 - Do not mix board work into unrelated branding/landing WIP on main

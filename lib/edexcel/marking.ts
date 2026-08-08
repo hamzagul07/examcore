@@ -52,3 +52,15 @@ export function resolveEdexcelMarkingSubjectName(code: string): string {
   if (!meta) return 'Mathematics'
   return `International A Level ${meta.subject.name} (${meta.unit.code})`
 }
+
+/**
+ * Deep-link into /mark with board (+ unit when Wave 1 Maths).
+ * Keeps organic Edexcel landers from falling through to Cambridge defaults.
+ */
+export function edexcelMarkHref(unitCode?: string | null): string {
+  const code = unitCode?.trim().toUpperCase() ?? ''
+  if (code && getEdexcelMarkableUnitCodes().includes(code)) {
+    return `/mark?board=edexcel&subject=${encodeURIComponent(code)}`
+  }
+  return '/mark?board=edexcel'
+}

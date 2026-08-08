@@ -1,6 +1,6 @@
 # GEO distribution status (MarkScheme)
 
-Last updated: 2026-07-07. Production: **https://markscheme.app**
+Last updated: 2026-08-09. Production: **https://markscheme.app**
 
 ---
 
@@ -49,11 +49,26 @@ pnpm seo:ai-visibility   # refresh monthly worksheet
 
 ---
 
+## Edexcel IAL acquisition (live)
+
+| Surface | URL |
+|---------|-----|
+| Hub + guide strip | `/edexcel` |
+| UMS / cash-in | `/blog/edexcel-ial-maths-grade-boundaries-ums-2026` |
+| Past papers loop | `/blog/edexcel-ial-maths-past-papers-guide-2026` |
+| Marking dialect | `/blog/edexcel-ial-maths-marking-guide-2026` |
+| WMA11 | `/blog/edexcel-wma11-pure-mathematics-1-guide-2026` |
+| Mark CTA | `/mark?board=edexcel&subject=WMA11` |
+
+Distribution copy: [RESULTS_DAY_2026_OPS.md](./RESULTS_DAY_2026_OPS.md) (block **F** + Reddit IAL barnacle).  
+Scorecard still **0** `/edexcel` shell sessions — posting beats shipping more dialects.
+
 ## What moves citations next
 
-1. **Backlinks** — school resource pages mentioning MarkScheme by name
-2. **Branded search** — TikTok/IG bios pointing to `/mark`
-3. **Bing/Copilot** — Webmaster Tools + IndexNow
-4. **Time + consistency** — monthly Perplexity checks; refresh pillar posts each exam series
+1. **Results Day posts** — send ops copy (Cambridge + Edexcel F) through 18 Aug
+2. **Backlinks** — school resource pages mentioning MarkScheme by name
+3. **Branded search** — TikTok/IG bios pointing to `/mark` (or will-my-grade-hold this week)
+4. **Bing/Copilot** — Webmaster Tools + IndexNow
+5. **Time + consistency** — monthly Perplexity checks; refresh pillar posts each exam series
 
-Code cannot substitute for (1) and (2). The repo is ready; distribution is the bottleneck.
+Code cannot substitute for (1)–(3). The repo is ready; distribution is the bottleneck.

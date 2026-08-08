@@ -19,6 +19,20 @@ UTM base: `?utm_source=reddit&utm_medium=barnacle&utm_campaign=marking-general`
 
 ---
 
+## r/alevel / intl - "Edexcel IAL / WMA11 marking" (not Cambridge)
+
+> If you're on **Edexcel IAL Maths**, don't use Cambridge 9709 schemes as a proxy — method/accuracy and UMS cash-in are a different dialect. I self-mark the Pearson scheme first, then second-pass handwriting on MarkScheme with `board=edexcel` (WMA11 etc.): https://markscheme.app/mark?board=edexcel&subject=WMA11&utm_source=reddit&utm_medium=barnacle&utm_campaign=marking-general  
+> How the marks work: https://markscheme.app/blog/edexcel-ial-maths-marking-guide-2026?utm_source=reddit&utm_medium=barnacle&utm_campaign=marking-general
+
+---
+
+## r/alevel / intl - "Edexcel IAL grade boundaries / UMS"
+
+> Cambridge threshold PDFs don't map onto IAL unit scores. Edexcel International Maths is raw → **UMS** → cash-in across WMA/WME/WST. Short explainer: https://markscheme.app/blog/edexcel-ial-maths-grade-boundaries-ums-2026?utm_source=reddit&utm_medium=barnacle&utm_campaign=marking-general  
+> Hub: https://markscheme.app/edexcel?utm_source=reddit&utm_medium=barnacle&utm_campaign=marking-general
+
+---
+
 ## r/igcse - "revision tools besides Save My Exams"
 
 > SME is great for notes. For marking handwriting I use MarkScheme as a second pass after the official mark scheme - Cambridge and IB. Honest comparison: https://markscheme.app/compare?utm_source=reddit&utm_medium=barnacle&utm_campaign=marking-general

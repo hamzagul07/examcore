@@ -51,7 +51,8 @@ copy pointing at `/results-2026` + `/tools/will-my-grade-hold`.
 
 - [ ] Pin bio to will-my-grade-hold
 - [ ] One pre-results post + one 11 Aug morning post
-- [ ] Two Reddit barnacle replies (Results Day section)
+- [ ] Two Reddit barnacle replies (Results Day section — Cambridge)
+- [ ] **One Edexcel IAL reply** (ops copy **F** or barnacle in [REDDIT_BARNACLE_COMMENTS.md](./REDDIT_BARNACLE_COMMENTS.md)) ? UMS guide + `/mark?board=edexcel`
 - [ ] Email broadcast if you have a list
 
 ## Week 1 (optional, 30 min/day)

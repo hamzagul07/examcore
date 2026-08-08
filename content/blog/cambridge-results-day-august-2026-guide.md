@@ -64,6 +64,8 @@ Threshold tables explain how raw marks mapped to grades for the cohort — they 
 
 Why predictions mislead: [May/June 2026 thresholds guide](/blog/cambridge-may-june-2026-grade-thresholds-what-to-expect).
 
+**Edexcel International results?** Different portal and UMS grading — see [Edexcel results 2026](/results-2026/edexcel), the [IAL Maths UMS explainer](/edexcel/international-a-level/mathematics/grade-boundaries), and [mark practice](/mark?board=edexcel&subject=WMA11).
+
 ## How to access your results
 
 1. **School candidates** — your exams officer distributes login details or printed statements. Process varies by centre.  

@@ -53,6 +53,8 @@ Search traffic spikes every June for **"Cambridge grade thresholds 2026 predicti
 
 Full index: [/guides/grade-boundaries](/guides/grade-boundaries)
 
+Sitting **Edexcel International**? That board uses UMS / cash-in, not Cambridge raw thresholds — start at the [IAL Maths UMS explainer](/edexcel/international-a-level/mathematics/grade-boundaries) or [mark WMA11](/mark?board=edexcel&subject=WMA11).
+
 ## How Cambridge sets thresholds (simplified)
 
 1. Papers are marked worldwide  

@@ -32,3 +32,24 @@ export function markHrefForBlogSlug(
     subject: subjectCode ?? null,
   })
 }
+
+/**
+ * Cambridge boundaries / results posts get an Edexcel UMS bridge — those
+ * readers are the closest organic cohort to IAL Maths marking.
+ */
+export function showEdexcelBridgeForBlogSlug(
+  slug: string | null | undefined
+): boolean {
+  if (!slug) return false
+  if (markBoardFromBlogSlug(slug) !== 'cambridge') return false
+  return (
+    slug.includes('grade-boundaries') ||
+    slug.includes('grade-threshold') ||
+    slug.includes('results-day') ||
+    slug.includes('how-to-read-cambridge-grade-boundaries') ||
+    slug.includes('cambridge-pum')
+  )
+}
+
+export const EDEXCEL_UMS_HREF =
+  '/edexcel/international-a-level/mathematics/grade-boundaries' as const

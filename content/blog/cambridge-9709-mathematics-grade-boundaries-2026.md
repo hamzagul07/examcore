@@ -61,6 +61,14 @@ Yes — that is how Cambridge keeps standards consistent across years.
 
 Cambridge **Grade Threshold** documents per session — also on [9709 subject page](/subjects/9709) and the [grade boundaries hub](/guides/grade-boundaries).
 
+## Sitting Edexcel IAL Maths instead?
+
+Cambridge 9709 uses **raw component thresholds**. Edexcel International A Level Maths uses **UMS / cash-in** across units (WMA11, WMA12, …). Do not read a Cambridge threshold table onto an IAL unit score.
+
+- [Edexcel IAL Maths UMS explainer](/edexcel/international-a-level/mathematics/grade-boundaries)
+- [Mark WMA11 free](/mark?board=edexcel&subject=WMA11)
+- Board choice detail: [Edexcel IAL vs Cambridge A-Level](/blog/edexcel-ial-vs-cambridge-a-level-2026)
+
 ## Related subjects
 
 A-Level boundaries publish with **11 August** grades and **~13 August** threshold PDFs — each syllabus code is separate. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.

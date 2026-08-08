@@ -5,9 +5,12 @@ import { ArrowRight } from 'lucide-react'
 import { buildSignUpHref } from '@/lib/auth-redirect'
 import { trackFunnelEvent } from '@/lib/analytics/funnel'
 import {
+  EDEXCEL_UMS_HREF,
   markBoardFromBlogSlug,
   markHrefForBlogSlug,
+  showEdexcelBridgeForBlogSlug,
 } from '@/lib/seo/blog-mark-href'
+import { edexcelMarkHref } from '@/lib/edexcel/marking'
 import { getResultsDayPhase } from '@/lib/seo/results-day'
 import { hasSyllabusTree } from '@/lib/syllabi'
 
@@ -56,6 +59,8 @@ export function BlogPostCta({
       : subjectCode
         ? `Mark a ${subjectCode} question — free`
         : 'Mark a question — free, no account'
+  const showEdexcelBridge = showEdexcelBridgeForBlogSlug(slug)
+  const edexcelMarkCta = edexcelMarkHref('WMA11')
 
   return (
     <aside className="ec-blog-footer-cta mt-12">
@@ -80,6 +85,30 @@ export function BlogPostCta({
                 </>
               )}
           </p>
+          {showEdexcelBridge ? (
+            <p className="ec-blog-footer-cta__lead" style={{ marginTop: 10 }}>
+              Sitting Edexcel International instead? Boundaries use UMS / cash-in
+              — see the{' '}
+              <Link href={EDEXCEL_UMS_HREF} className="ec-btn-underline">
+                IAL UMS explainer
+              </Link>{' '}
+              or{' '}
+              <Link
+                href={edexcelMarkCta}
+                className="ec-btn-underline"
+                onClick={() =>
+                  trackFunnelEvent('mark_cta_clicked', {
+                    source: 'blog_footer_edexcel_bridge',
+                    subject: 'WMA11',
+                    board: 'edexcel',
+                  })
+                }
+              >
+                mark WMA11 free
+              </Link>
+              .
+            </p>
+          ) : null}
           <p className="ec-blog-footer-cta__trust">
             <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
               ✓
@@ -166,6 +195,14 @@ export function BlogPostCta({
                 className="ec-btn-ghost min-h-[44px] flex-1 justify-center"
               >
                 Results day guide
+              </Link>
+            ) : null}
+            {showEdexcelBridge ? (
+              <Link
+                href={EDEXCEL_UMS_HREF}
+                className="ec-btn-ghost min-h-[44px] flex-1 justify-center"
+              >
+                Edexcel IAL UMS
               </Link>
             ) : null}
           </div>

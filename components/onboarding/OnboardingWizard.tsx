@@ -138,6 +138,7 @@ export function OnboardingWizard({
     initialProfile?.primary_goal ?? null
   )
   const [examDate, setExamDate] = useState<string | null>(initialProfile?.exam_date ?? null)
+  const [productUpdates, setProductUpdates] = useState(true)
   const [targetGrade, setTargetGrade] = useState<string | null>(
     initialProfile?.target_grade ?? null
   )
@@ -278,6 +279,7 @@ export function OnboardingWizard({
       primary_goal: primaryGoal,
       exam_date: examDate,
       target_grade: targetGrade,
+      email_product_updates: productUpdates,
       role: 'student',
     }
 
@@ -429,6 +431,8 @@ export function OnboardingWizard({
             )}
             {step === 5 && (
               <StepFirstMark
+                productUpdates={productUpdates}
+                onProductUpdatesChange={setProductUpdates}
                 loading={loading}
                 errorMsg={errorMsg}
                 signInAgainHref={signInAgainHref}
@@ -872,6 +876,8 @@ function StepFirstMark({
   onBack,
   onMark,
   onDashboard,
+  productUpdates,
+  onProductUpdatesChange,
   rerun = false,
 }: {
   loading: boolean
@@ -880,6 +886,8 @@ function StepFirstMark({
   onBack: () => void
   onMark: () => void
   onDashboard: () => void
+  productUpdates: boolean
+  onProductUpdatesChange: (next: boolean) => void
   rerun?: boolean
 }) {
   return (
@@ -898,6 +906,25 @@ function StepFirstMark({
           ? 'Review your choices, then save to update your dashboard and paper recommendations.'
           : "Upload something you've already done. We'll mark it against the real scheme and show you exactly where the marks went. A full mark takes a couple of minutes — or see a finished example first, no upload needed."}
       </p>
+      {/* Consent for non-essential mail, captured once, here, where the student
+          is finishing setup rather than buried in settings they never open.
+          Ticked by default but stated plainly and always reversible — the
+          lifecycle emails (marking results, review reminders) are separate and
+          not governed by this. */}
+      {!rerun && (
+        <label className="ms-ob-consent">
+          <input
+            type="checkbox"
+            checked={productUpdates}
+            onChange={(e) => onProductUpdatesChange(e.target.checked)}
+            disabled={loading}
+          />
+          <span>
+            Email me occasional product updates and study tips. No more than
+            twice a month, and you can turn this off in one click from any email.
+          </span>
+        </label>
+      )}
       {errorMsg && <div className="mt-4"><FormErrorAlert message={errorMsg} /></div>}
       {errorMsg.toLowerCase().includes('expired') && (
         <p className="mt-3 text-center text-sm">

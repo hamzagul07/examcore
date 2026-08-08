@@ -12,11 +12,10 @@ import {
   stepHtml,
 } from '@/lib/email/templates'
 import {
-  IB_DIPLOMA_LEVEL,
-  getSubjectById,
-  isIbBoard,
-  type SubjectOption,
-} from '@/lib/profile-options'
+  markHref,
+  resolveStudentProfile,
+  type EmailStudentProfile,
+} from '@/lib/email/student-profile'
 import { TIER_MONTHLY_CAPS } from '@/lib/billing/caps'
 import { FREE_WHOLE_PAPER_QUESTION_LIMIT } from '@/lib/billing/features'
 import { SITE_NAME, SITE_URL } from '@/lib/site-config'
@@ -45,36 +44,6 @@ type WelcomePayload = {
   targetGrade?: string | null
 }
 
-/** Resolved onboarding choices, with the board question already answered. */
-type Profile = {
-  ib: boolean
-  levelLabel: string
-  markable: SubjectOption[]
-  notYetMarkable: SubjectOption[]
-}
-
-function resolveProfile(payload: WelcomePayload): Profile {
-  const ib = isIbBoard(payload.board ?? '') || payload.level === IB_DIPLOMA_LEVEL
-  const level = payload.level ?? undefined
-
-  const options = (payload.subjects ?? [])
-    .map((id) => getSubjectById(id, level))
-    .filter((s): s is SubjectOption => Boolean(s))
-
-  return {
-    ib,
-    levelLabel: ib ? 'IB Diploma' : (payload.level?.trim() || 'A-Level'),
-    markable: options.filter((s) => s.markingEnabled),
-    notYetMarkable: options.filter((s) => !s.markingEnabled),
-  }
-}
-
-function markHref(subjectCode?: string): string {
-  return subjectCode
-    ? `${SITE_URL}/mark?subject=${encodeURIComponent(subjectCode)}`
-    : `${SITE_URL}/mark`
-}
-
 /** What the marking is actually measured against — the sentence that was wrong. */
 function schemeSentence(ib: boolean): string {
   return ib
@@ -82,7 +51,7 @@ function schemeSentence(ib: boolean): string {
     : `Write an answer, and it comes back graded against the <strong style="color:${EMAIL_INK}">real Cambridge mark scheme</strong>, mark by mark — M1 for the method, A1 for the answer, B1 for the standalone marks, and which ones you missed.`
 }
 
-function subjectsBlock(p: Profile): string {
+function subjectsBlock(p: EmailStudentProfile): string {
   if (p.markable.length === 0) return ''
 
   const rows = p.markable
@@ -160,7 +129,7 @@ function freePlanBlock(): string {
   )
 }
 
-function buildBodyHtml(greeting: string, p: Profile, targetGrade: string | null): string {
+function buildBodyHtml(greeting: string, p: EmailStudentProfile, targetGrade: string | null): string {
   const parts: string[] = [
     `<p style="margin:0 0 4px;font-size:16px;color:${EMAIL_INK}">Hi ${esc(greeting)},</p>`,
     `<p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#555">Your ${esc(
@@ -186,7 +155,7 @@ function buildBodyHtml(greeting: string, p: Profile, targetGrade: string | null)
 
 function buildText(
   greeting: string,
-  p: Profile,
+  p: EmailStudentProfile,
   targetGrade: string | null,
   ctaHref: string
 ): string {
@@ -245,7 +214,7 @@ function buildText(
 
 export function sendWelcomeEmail(payload: WelcomePayload): void {
   const greeting = payload.name?.trim() || 'there'
-  const p = resolveProfile(payload)
+  const p = resolveStudentProfile(payload)
   const targetGrade = payload.targetGrade?.trim() || null
 
   // Deep-link the CTA into their first live subject so the marker opens with the

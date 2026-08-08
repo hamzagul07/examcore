@@ -24,6 +24,8 @@ export type OnboardingInput = {
   primary_goal?: PrimaryGoal
   exam_date?: string | null
   target_grade?: string | null
+  /** Consent for non-essential mail, captured on the final onboarding step. */
+  email_product_updates?: boolean
 }
 
 const VALID_STAGES = new Set<UserStage>(['as_level', 'a2_level', 'other'])
@@ -108,6 +110,12 @@ export async function saveOnboardingProfile(
         ? body.target_grade
         : null
 
+    // Only written when the client actually sent a boolean. A rerun of the
+    // wizard (or an older client) must not silently reset a choice the student
+    // already made in settings.
+    const productUpdates =
+      typeof body.email_product_updates === 'boolean' ? body.email_product_updates : undefined
+
     const service = createServiceClient()
     const { data: existingProfile } = await service
       .from('user_profiles')
@@ -131,6 +139,7 @@ export async function saveOnboardingProfile(
         primary_goal: primaryGoal,
         exam_date: examDate,
         target_grade: targetGrade,
+        ...(productUpdates === undefined ? {} : { email_product_updates: productUpdates }),
         onboarded: true,
         onboarding_completed: true,
         updated_at: new Date().toISOString(),
@@ -157,6 +166,7 @@ export async function saveOnboardingProfile(
             primary_goal: primaryGoal,
             exam_date: examDate,
             target_grade: targetGrade,
+            ...(productUpdates === undefined ? {} : { email_product_updates: productUpdates }),
             onboarded: true,
             onboarding_completed: true,
             updated_at: new Date().toISOString(),

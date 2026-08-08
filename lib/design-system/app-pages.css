@@ -388,6 +388,35 @@
   flex-wrap: wrap;
 }
 
+/* Onboarding consent row — deliberately quieter than the step content: it is a
+   choice, not a task, and must not compete with the primary action below it. */
+.ms-ob-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 24px;
+  padding: 14px 16px;
+  border: 1px solid var(--ec-border, #e8e4dc);
+  border-radius: 12px;
+  background: var(--ec-surface-2, #faf7f2);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ec-text-secondary, #555);
+  text-align: left;
+  cursor: pointer;
+}
+.ms-ob-consent input[type='checkbox'] {
+  margin-top: 2px;
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--ec-accent, #9f1239);
+  cursor: pointer;
+}
+.ms-ob-consent input[type='checkbox']:disabled {
+  cursor: default;
+}
+
 /* pricing */
 .ms-price-page {
   padding-top: 56px;

@@ -41,9 +41,9 @@ globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
 }) as typeof fetch
 
 /** Emails are fire-and-forget, so let the microtask queue drain after each. */
-async function capture(name: string, fire: () => void): Promise<void> {
+async function capture(name: string, fire: () => void | Promise<unknown>): Promise<void> {
   currentName = name
-  fire()
+  await fire()
   await new Promise((resolve) => setTimeout(resolve, 0))
 }
 
@@ -54,6 +54,12 @@ async function main() {
     '@/lib/email/notifications'
   )
   const { sendStreakNudgeEmail } = await import('@/lib/email/streak-nudge')
+  const {
+    sendActivationFirstMarkEmail,
+    sendActivationProofEmail,
+    sendActivationFeedbackEmail,
+    sendFinishOnboardingEmail,
+  } = await import('@/lib/email/activation')
   const { sendWeeklyReportEmail } = await import('@/lib/email/weekly-report')
 
   const to = 'student@example.com'
@@ -83,6 +89,59 @@ async function main() {
 
   await capture('welcome-minimal', () =>
     sendWelcomeEmail({ email: to, name: null, level: 'IGCSE', subjects: [] })
+  )
+
+  // The activation series — the three emails to someone who signed up and never
+  // marked anything, plus the separate track for unfinished onboarding.
+  await capture('activation-1-first-mark', () =>
+    sendActivationFirstMarkEmail({
+      to,
+      recipientName: 'Sam',
+      board: 'Cambridge International',
+      level: 'A-Level',
+      subjects: ['Mathematics', 'Physics', 'Chemistry'],
+      examDate: '2026-10-14',
+      unsubscribeHref,
+    })
+  )
+
+  // IB variant: no syllabus codes shown, and the scheme sentence differs.
+  await capture('activation-1-first-mark-ib', () =>
+    sendActivationFirstMarkEmail({
+      to,
+      recipientName: 'Amara',
+      board: 'IB',
+      level: 'IB Diploma',
+      subjects: ['ib-biology-hl', 'ib-chemistry-sl'],
+      examDate: null,
+      unsubscribeHref,
+    })
+  )
+
+  await capture('activation-2-proof', () =>
+    sendActivationProofEmail({
+      to,
+      recipientName: 'Sam',
+      board: 'Cambridge International',
+      level: 'A-Level',
+      subjects: ['Mathematics'],
+      unsubscribeHref,
+    })
+  )
+
+  await capture('activation-3-feedback', () =>
+    sendActivationFeedbackEmail({
+      to,
+      recipientName: 'Sam',
+      board: 'Cambridge International',
+      level: 'A-Level',
+      subjects: ['Mathematics'],
+      unsubscribeHref,
+    })
+  )
+
+  await capture('activation-finish-onboarding', () =>
+    sendFinishOnboardingEmail({ to, recipientName: null, unsubscribeHref })
   )
 
   await capture('review-digest', () =>
@@ -254,6 +313,28 @@ async function main() {
         ],
         examDaysLeft: 43,
       },
+    })
+  )
+
+  // Broadcast campaigns render through the same shell. This is the live copy of
+  // the re-permission ask, with the per-recipient placeholders already filled.
+  const { sendBroadcastEmail } = await import('@/lib/email/broadcast')
+  await capture('campaign-repermission', () =>
+    sendBroadcastEmail({
+      to,
+      recipientName: 'Sam',
+      subject: 'Do you want product updates from MarkScheme?',
+      preheader: 'One question about email. Ignore it and nothing changes.',
+      body: `You made a MarkScheme account, and until now the only emails we have sent you are the ones about your own work — marking results, review reminders, that kind of thing. Those carry on either way.
+
+What we have never done is ask whether you want to hear about anything else: new subjects going live, features worth knowing about, and the occasional bit of exam-season guidance.
+
+So this is us asking, once. No more than twice a month, and every one has a one-click unsubscribe.
+
+If you would rather not, do nothing at all — this is the only time we will ask, and ignoring it keeps you exactly where you are.`,
+      cta: { label: 'Yes, send me updates →', href: 'https://markscheme.app/email/subscribe?token=preview' },
+      unsubscribeHref,
+      unsubscribeLabel: 'Unsubscribe from product updates',
     })
   )
 

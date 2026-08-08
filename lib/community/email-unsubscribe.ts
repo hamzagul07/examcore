@@ -3,7 +3,15 @@ import 'server-only'
 import crypto from 'crypto'
 import { SITE_URL } from '@/lib/site-config'
 
-export type UnsubscribeKind = 'replies' | 'digest' | 'threads' | 'review' | 'weekly' | 'streak'
+export type UnsubscribeKind =
+  | 'replies'
+  | 'digest'
+  | 'threads'
+  | 'review'
+  | 'weekly'
+  | 'streak'
+  | 'activation'
+  | 'updates'
 
 function secret(): string {
   return (
@@ -36,7 +44,9 @@ export function verifyUnsubscribeToken(
         kind !== 'threads' &&
         kind !== 'review' &&
         kind !== 'weekly' &&
-        kind !== 'streak') ||
+        kind !== 'streak' &&
+        kind !== 'activation' &&
+        kind !== 'updates') ||
       !exp ||
       !sig
     )
@@ -49,6 +59,26 @@ export function verifyUnsubscribeToken(
   } catch {
     return null
   }
+}
+
+/**
+ * The opt-IN twin of `unsubscribeUrl`, for the re-permission ask.
+ *
+ * Deliberately lands on a page with a button rather than flipping the column on
+ * GET. A link that grants consent when merely fetched is worse than one that
+ * revokes it: a mail scanner following it would opt somebody in to marketing
+ * they never agreed to, which is exactly the record this email exists to
+ * create honestly.
+ */
+export function subscribeUrl(userId: string, kind: UnsubscribeKind): string {
+  const token = signUnsubscribeToken(userId, kind)
+  return `${SITE_URL}/email/subscribe?token=${encodeURIComponent(token)}`
+}
+
+/** The column each kind switches ON. Mirror of `unsubscribeColumnPatch`. */
+export function subscribeColumnPatch(kind: UnsubscribeKind): Record<string, boolean> {
+  const off = unsubscribeColumnPatch(kind)
+  return Object.fromEntries(Object.keys(off).map((col) => [col, true]))
 }
 
 export function unsubscribeUrl(userId: string, kind: UnsubscribeKind): string {
@@ -96,6 +126,10 @@ export function unsubscribeColumnPatch(kind: UnsubscribeKind): Record<string, bo
       return { email_weekly_report: false }
     case 'streak':
       return { email_streak_reminders: false }
+    case 'activation':
+      return { email_activation: false }
+    case 'updates':
+      return { email_product_updates: false }
     default:
       return { email_community_digest: false }
   }
@@ -113,6 +147,10 @@ export function unsubscribeLabel(kind: UnsubscribeKind): string {
       return 'weekly progress report emails'
     case 'streak':
       return 'streak reminder emails'
+    case 'activation':
+      return 'getting-started emails'
+    case 'updates':
+      return 'product update emails'
     default:
       return 'Exam Room weekly digest'
   }

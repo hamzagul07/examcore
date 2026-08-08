@@ -220,6 +220,30 @@ export function textToHtmlParagraphs(text: string): string {
 }
 
 /**
+ * Prose written as blank-line-separated paragraphs.
+ *
+ * Distinct from `textToHtmlParagraphs`, which treats every newline as its own
+ * paragraph and a blank line as an extra <br> — right for the admin alerts,
+ * which are lists of one-line facts that need blocks pulled apart, but on real
+ * prose it doubles the gap between paragraphs. Campaign and newsletter copy is
+ * written the way anyone writes an email, so it is split on blank lines and the
+ * paragraph margin alone does the spacing.
+ */
+export function textToProseParagraphs(text: string): string {
+  return text
+    .split(/\n\s*\n/)
+    .map((para) => para.trim())
+    .filter(Boolean)
+    .map(
+      (para) =>
+        `<p style="margin:0 0 16px;font-size:15px;line-height:1.65;color:${EMAIL_BODY}">${linkify(
+          escapeHtml(para).replace(/\n/g, '<br>')
+        )}</p>`
+    )
+    .join('')
+}
+
+/**
  * Turns bare URLs in already-escaped text into anchors. Without this, the
  * plain-text fallback renders links as dead text in any client that doesn't
  * auto-detect them.

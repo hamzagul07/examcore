@@ -1,6 +1,6 @@
 ---
-title: "O-Level vs IGCSE: which should you choose in 2026?"
-description: Cambridge O-Level vs IGCSE compared — coursework vs exam-only, grading, regional availability and which one universities recognise.
+title: "Difference Between O Level and IGCSE (2026)"
+description: What is the difference between IGCSE and O Level? Coursework vs exam-only, grading, regional availability, and which universities recognise.
 date: 2026-07-16
 keywords: O-Level vs IGCSE, difference between O Level and IGCSE, is O Level harder than IGCSE, O Level or IGCSE, Cambridge O Level vs IGCSE
 category: subject-choice

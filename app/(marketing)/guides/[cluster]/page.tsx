@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowRight } from 'lucide-react'
+
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import {
   getAllClusterIds,
@@ -34,6 +34,21 @@ export async function generateMetadata({ params }: Props) {
   const { cluster: clusterId } = await params
   const cluster = getClusterById(clusterId as ContentClusterId)
   if (!cluster) return {}
+  if (cluster.id === 'grade-boundaries') {
+    return getPageMetadata(cluster.path, {
+      title: 'Cambridge Grade Boundaries 2026 — May/June Thresholds by Subject',
+      description: cluster.description,
+      keywords: [
+        'grade boundaries 2026',
+        'grade boundaries 2026 qs',
+        '2026 grade boundaries',
+        'expected threshold for may june 2026',
+        'Cambridge grade boundaries',
+        'May June 2026 thresholds',
+        'grade threshold a level 2026',
+      ],
+    })
+  }
   const keywords =
     cluster.id === 'ib'
       ? [cluster.headTerm, 'IB Diploma', 'IB HL SL', 'IB free courses', 'IB markbands']
@@ -135,7 +150,7 @@ export default async function ClusterGuidePage({ params }: Props) {
         {isGradeBoundaries && (
           <div className="mb-10 flex flex-wrap gap-3">
             <Link href="/tools/will-my-grade-hold" className="ec-btn-primary ec-btn-primary--sm">
-              Will my grade hold? <ArrowRight className="h-4 w-4" />
+              Will my grade hold? <span className="h-4 w-4" aria-hidden>-&gt;</span>
             </Link>
             <Link href="/tools/grade-boundary-calculator" className="ec-btn-ghost ec-btn-ghost--sm">
               Grade calculator
@@ -158,7 +173,7 @@ export default async function ClusterGuidePage({ params }: Props) {
         {isCommandWords && (
           <div className="mb-10 flex flex-wrap gap-3">
             <Link href="/tools/command-words" className="ec-btn-primary ec-btn-primary--sm">
-              Command word tool <ArrowRight className="h-4 w-4" />
+              Command word tool <span className="h-4 w-4" aria-hidden>-&gt;</span>
             </Link>
             <Link href="/blog/cambridge-command-words-explained" className="ec-btn-ghost ec-btn-ghost--sm">
               Full guide
@@ -256,7 +271,7 @@ export default async function ClusterGuidePage({ params }: Props) {
                 ? 'Practise criterion marking'
                 : 'Mark a paper free'
               : 'Browse subjects'}
-            <ArrowRight className="h-5 w-5" />
+            <span className="h-5 w-5" aria-hidden>-&gt;</span>
           </Link>
         </div>
         <PageHelpStrip />

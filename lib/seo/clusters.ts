@@ -230,14 +230,14 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
   {
     id: 'grade-boundaries',
     path: '/guides/grade-boundaries',
-    title: 'Grade boundaries 2026',
+    title: 'Cambridge Grade Boundaries 2026',
     description:
-      'How Cambridge grade boundaries work, where to find them, and how to turn raw marks into an A*–E grade for every major syllabus.',
-    headTerm: 'Cambridge grade boundaries',
+      'May/June 2026 Cambridge grade boundaries & expected thresholds by subject — grades 11 Aug, threshold tables ~13 Aug. Calculators, 9709/9700 guides, Will my grade hold?',
+    headTerm: 'grade boundaries 2026',
     intent: 'informational',
     format: 'hub',
     pillarBlogSlug: 'how-to-read-cambridge-grade-boundaries',
-    moneyPath: '/tools/grade-boundary-calculator',
+    moneyPath: '/tools/will-my-grade-hold',
     slugPatterns: [
       /^cambridge-grade-boundaries/,
       /^how-to-read-cambridge-grade-boundaries/,

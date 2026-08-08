@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -31,9 +31,10 @@ const FAQS = [
 ]
 
 export const metadata = getPageMetadata(PATH, {
-  title: 'Cambridge command words explainer',
+  ogImagePath: '/api/og/tools/command-words',
+  title: 'Cambridge Command Words — Explain, Evaluate, Discuss Meaning',
   description:
-    'A free, searchable guide to every Cambridge command word — State, Explain, Analyse, Discuss, Evaluate, Justify — with what examiners reward and the mistakes to avoid.',
+    'Cambridge command words explained: what State, Explain, Analyse, Discuss, Evaluate and Justify require — and the examiner mistakes that lose marks.',
   keywords: [
     'Cambridge command words',
     'command words meaning',
@@ -70,7 +71,7 @@ export default function CommandWordsToolPage() {
       >
         <div className="mt-6 flex flex-wrap gap-3">
           <Link href="/mark" className="ec-btn-primary inline-flex min-h-[48px]">
-            Mark your answer free <ArrowRight className="h-5 w-5" />
+            Mark your answer free <span className="h-5 w-5" aria-hidden>-&gt;</span>
           </Link>
           <Link href="/blog/cambridge-command-words-explained" className="ec-btn-ghost ec-btn-ghost--sm">
             Read the full guide

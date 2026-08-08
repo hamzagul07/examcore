@@ -1,8 +1,8 @@
 ---
-title: Cambridge O-Level Economics (2281) past papers
-description: Complete guide to 2281 Economics O-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
+title: 2281 Past Papers — Cambridge O-Level Economics Guide
+description: 2281 Economics O-Level past papers — paper structure, mark schemes, common mistakes, and a revision plan that moves your grade.
 date: 2026-06-01
-keywords: 2281 past papers, O-Level economics Cambridge, economics past papers, Cambridge O-Level
+keywords: 2281, 2281 past papers, O-Level economics Cambridge, economics past papers, Cambridge O-Level 2281
 author: hamza-gul
 ---
 

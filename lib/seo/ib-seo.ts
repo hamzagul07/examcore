@@ -78,10 +78,15 @@ export function keywordsForIbPath(path: string): string[] | undefined {
 export function buildIbPastPaperCopy(subject: IbSubject) {
   const short = ibShortName(subject)
   const range = ibYearRange()
+  // Lead titles with the head search phrase (e.g. "IB Chemistry past papers") before level.
+  const title =
+    subject.slug === 'chemistry-hl' || subject.slug === 'chemistry-sl'
+      ? `IB Chemistry Past Papers (${subject.level}) & Mark Schemes`
+      : `IB ${short} ${subject.level} Past Papers & Mark Schemes`
   return {
     short,
-    title: `IB ${short} ${subject.level} Past Papers & Mark Schemes`,
-    description: `Every recent IB ${subject.name} ${subject.level} exam series (${range}) — ${subject.papers.join(', ')} — organised by session, with mark-scheme and markband guidance. Free on MarkScheme.`,
+    title,
+    description: `IB ${short} past papers for ${subject.level} (${range}) — ${subject.papers.join(', ')} by session, with mark-scheme and markband guidance. Free on MarkScheme.`,
     path: `/ib/past-papers/${subject.slug}`,
     keywords: [
       `IB ${short} past papers`,

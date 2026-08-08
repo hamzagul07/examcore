@@ -1,7 +1,7 @@
 import 'server-only'
 
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import { getGradeBoundaryHubEntries } from '@/lib/seo/grade-boundary-hub'
 import { hasJune2026Session } from '@/lib/seo/grade-boundaries-data'
 import { JUNE_2026_SERIES } from '@/lib/seo/results-day'
@@ -32,15 +32,56 @@ export function GradeBoundaryHubPanel() {
     <div className="mb-12">
       <ResultsDayBanner />
 
+      <div className="mt-8 overflow-x-auto">
+        <table className="gb-data-table ms-boundary-hub-table">
+          <caption className="sr-only">June 2026 grade boundaries quick answers</caption>
+          <thead>
+            <tr>
+              <th>Question</th>
+              <th>Answer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>When are June 2026 grades?</td>
+              <td>AS &amp; A Level <strong>11 Aug</strong>; IGCSE/O Level <strong>18 Aug</strong> (06:00 GMT)</td>
+            </tr>
+            <tr>
+              <td>When are threshold tables / expected boundaries?</td>
+              <td>
+                Official component PDFs typically <strong>~13 Aug</strong> — not before. Estimate with recent
+                sessions until then.
+              </td>
+            </tr>
+            <tr>
+              <td>Where do I check my mark vs a boundary?</td>
+              <td>
+                <Link href="/tools/will-my-grade-hold" className="ec-btn-underline">
+                  Will my grade hold?
+                </Link>
+                {' · '}
+                <Link href="/tools/grade-boundary-calculator" className="ec-btn-underline">
+                  Calculator
+                </Link>
+                {' · '}
+                <Link href="/results-2026" className="ec-btn-underline">
+                  Results Day hub
+                </Link>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <div className="mt-10">
         <p className="ms-overline">By syllabus</p>
         <h2 className="ms-h3" style={{ fontSize: 'clamp(1.25rem, 3vw, 1.6rem)' }}>
-          Grade boundaries & calculators
+          Grade boundaries 2026 by subject
         </h2>
         <p className="ms-body-2" style={{ marginTop: 10, maxWidth: 680 }}>
           {juneLiveCount > 0
             ? `${juneLiveCount} subject${juneLiveCount === 1 ? '' : 's'} with verified ${JUNE_2026_SERIES} thresholds in the calculator. Others use historical sessions until we ingest the official PDF.`
-            : `Official ${JUNE_2026_SERIES} tables load in the calculator as Cambridge publishes them. Until then, use the most recent session in each subject guide.`}
+            : `Looking for May/June 2026 grade boundaries or expected thresholds? Official ${JUNE_2026_SERIES} tables load in the calculator as Cambridge publishes them. Until then, use the most recent session in each subject guide — or stress-test your raw mark on Will my grade hold?.`}
         </p>
 
         <div className="mt-5 overflow-x-auto">
@@ -115,7 +156,7 @@ export function GradeBoundaryHubPanel() {
             Self-marking gap data
           </Link>
           <Link href="/tools/grade-boundary-calculator" className="ec-btn-primary ec-btn-primary--sm">
-            Open calculator <ArrowRight className="h-4 w-4" />
+            Open calculator <span className="h-4 w-4" aria-hidden>-&gt;</span>
           </Link>
         </div>
 
@@ -133,7 +174,7 @@ export function GradeBoundaryHubPanel() {
               Edexcel UMS explainer
             </Link>
             <Link href="/mark?board=edexcel&subject=WMA11" className="ec-btn-primary ec-btn-primary--sm">
-              Mark WMA11 <ArrowRight className="h-4 w-4" />
+              Mark WMA11 <span className="h-4 w-4" aria-hidden>-&gt;</span>
             </Link>
           </div>
         </aside>

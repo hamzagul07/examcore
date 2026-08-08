@@ -73,7 +73,9 @@ Full results workflow: [August 2026 results day guide](/blog/cambridge-results-d
 
 ## PUM vs UMS (Edexcel) — do not mix boards
 
-**UMS** is a Pearson Edexcel concept for modular GCSE/A-Level. **Cambridge International does not use UMS** on the same model. If your school runs both boards, compare like with like — Cambridge **PUM** only on Cambridge statements.
+**UMS** is a Pearson Edexcel concept for modular GCSE/A-Level (including International A Level cash-in). **Cambridge International does not use UMS** on the same model. If your school runs both boards, compare like with like — Cambridge **PUM** only on Cambridge statements.
+
+Sitting Edexcel IAL Maths? Use the [IAL UMS explainer](/edexcel/international-a-level/mathematics/grade-boundaries) and [mark WMA11 free](/mark?board=edexcel&subject=WMA11) — do not paste Cambridge PUM numbers onto an Edexcel unit.
 
 ## Improving PUM on a resit
 

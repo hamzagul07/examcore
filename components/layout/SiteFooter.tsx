@@ -90,13 +90,15 @@ export function SiteFooter({ variant }: Props) {
             <p className="body-2 footer-tagline">
               Past papers marked the way a real examiner marks — against the official Cambridge scheme.
             </p>
-            <p className="micro footer-coming">CAMBRIDGE &amp; IB — PAST PAPERS, MARKING &amp; FREE COURSES</p>
+            <p className="micro footer-coming">
+              CAMBRIDGE · IB · EDEXCEL IAL — PAST PAPERS, MARKING &amp; FREE COURSES
+            </p>
             <FooterSocials />
           </div>
           <div className="footer-col">
             <h4>Product</h4>
             {FOOTER_PRODUCT_LINKS.filter((l) =>
-              ['/mark', '/courses', '/ib', '/pricing'].includes(l.href)
+              ['/mark', '/courses', '/ib', '/edexcel', '/pricing'].includes(l.href)
             ).map((link) => (
               <Link key={link.href} href={link.href}>
                 {link.label}
@@ -108,6 +110,7 @@ export function SiteFooter({ variant }: Props) {
             <h4>Subjects</h4>
             <Link href="/subjects/9702">9702 Physics</Link>
             <Link href="/subjects/9709">9709 Mathematics</Link>
+            <Link href="/edexcel/international-a-level/mathematics">Edexcel IAL Maths</Link>
             <Link href="/ib/subjects/tok">IB TOK</Link>
             <Link href="/ib/subjects/biology-hl">IB Biology HL</Link>
             <Link href="/subjects">Cambridge subjects</Link>
@@ -146,7 +149,9 @@ export function SiteFooter({ variant }: Props) {
             Past papers marked the way a real examiner marks — against the official Cambridge
             scheme.
           </p>
-          <p className="ec-ms-footer__micro">CAMBRIDGE &amp; IB — PAST PAPERS, MARKING &amp; FREE COURSES</p>
+          <p className="ec-ms-footer__micro">
+            CAMBRIDGE · IB · EDEXCEL IAL — PAST PAPERS, MARKING &amp; FREE COURSES
+          </p>
           <FooterSocials />
         </div>
 

@@ -95,6 +95,26 @@ export default function PumCalculatorPage() {
             </Link>{' '}
             for the full picture.
           </p>
+          <aside className="mt-8 flex flex-wrap items-center justify-between gap-4 ec-card ec-card--paper border border-[var(--ec-border)] px-5 py-4">
+            <p className="ms-body-2" style={{ margin: 0, maxWidth: 520 }}>
+              Sitting Edexcel International? Units cash in via UMS (same idea as PUM, different
+              board). MarkScheme marks Wave 1 IAL Maths units live.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Link
+                href="/edexcel/international-a-level/mathematics/grade-boundaries"
+                className="ec-btn-secondary ec-btn-secondary--sm"
+              >
+                Edexcel UMS explainer
+              </Link>
+              <Link
+                href="/mark?board=edexcel&subject=WMA11"
+                className="ec-btn-primary ec-btn-primary--sm"
+              >
+                Mark WMA11 <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </aside>
         </div>
 
         <div className="ms-hub-card mt-12 text-center">

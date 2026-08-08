@@ -6,6 +6,11 @@ import {
   cambridgeSubjectLinkForSlug,
   ibTopicPracticeLinkForSlug,
 } from '@/lib/seo/blog-subject-links'
+import {
+  EDEXCEL_UMS_HREF,
+  showEdexcelBridgeForBlogSlug,
+} from '@/lib/seo/blog-mark-href'
+import { edexcelMarkHref } from '@/lib/edexcel/marking'
 
 type Props = { slug: string }
 
@@ -31,6 +36,7 @@ export function BlogInContentLinks({ slug }: Props) {
     : isIb
       ? 'Mark with IB criteria — free'
       : 'Mark a past-paper question — free, no account'
+  const showEdexcelBridge = showEdexcelBridgeForBlogSlug(slug)
 
   return (
     <nav className="ms-blog-cta-block my-8" aria-label="Primary actions">
@@ -67,6 +73,22 @@ export function BlogInContentLinks({ slug }: Props) {
               className="ec-btn-secondary inline-flex min-h-[44px] text-sm"
             >
               Practise {cambridgeSubject.code} by topic
+            </Link>
+          ) : null}
+          {showEdexcelBridge ? (
+            <Link
+              href={EDEXCEL_UMS_HREF}
+              className="ec-btn-secondary inline-flex min-h-[44px] text-sm"
+            >
+              Edexcel IAL UMS
+            </Link>
+          ) : null}
+          {showEdexcelBridge ? (
+            <Link
+              href={edexcelMarkHref('WMA11')}
+              className="ec-btn-ghost inline-flex min-h-[44px] text-sm"
+            >
+              Mark WMA11
             </Link>
           ) : null}
           <Link

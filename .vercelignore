@@ -1,35 +1,50 @@
-# What NOT to upload when deploying from the CLI.
+# What gets uploaded when deploying from the CLI.
 #
-# Without this the CLI packages the whole working directory — 54,984 files and
-# several GB — and the deploy is rejected for exceeding 15,000 files. Vercel
-# installs dependencies and runs the build itself, so none of the build output
-# or vendored material below is needed to produce a deployment.
+# This is an allowlist, not a denylist, and that is deliberate. The repo root
+# doubles as a research library — IB specimen papers, subject guides, site
+# scrapes, loose PDFs — roughly 50,000 files and 3GB, none of it tracked in git
+# and none of it read by the build. A denylist meant a new folder of source
+# material silently broke the next deploy: the API rejects any upload over
+# 15,000 files, and 3GB of it aborted mid-transfer anyway.
 #
-# Everything the build actually reads stays: content/, public/, app/, lib/,
-# components/, scripts/ (the build runs seo:generate-llms) and supabase/.
+# So: ignore everything, then add back what the build actually reads. If a
+# genuinely new build input appears, the build fails loudly with a missing
+# import rather than quietly shipping 3GB.
 
-# Rebuilt on Vercel.
+/*
+.*
+
+# Source.
+!/app
+!/lib
+!/components
+!/content
+!/scripts
+!/public
+!/data
+!/supabase
+
+# Config the build needs.
+!/package.json
+!/pnpm-lock.yaml
+!/pnpm-workspace.yaml
+!/tsconfig.json
+!/next.config.ts
+!/postcss.config.mjs
+!/eslint.config.mjs
+!/components.json
+!/vercel.json
+!/proxy.ts
+!/instrumentation.ts
+!/instrumentation-client.ts
+!/sentry.edge.config.ts
+!/sentry.server.config.ts
+!/pdfjs-dist-shim.d.ts
+!/next-env.d.ts
+
+# Never upload, even though the rules above would not have caught them.
 node_modules
 .next
-.vercel
-
-# Local-only research material: site scrapes and imported source documents kept
-# on disk for reference. Each is untracked in git and referenced by no code, and
-# together they are ~39,000 of the ~45,000 files the CLI was trying to upload.
-StudyIB
-ThinkIB
-markschemehamza
-LitCharts
-_imported
-IB SUBJECT REPORTS
-SaveMyExams - Notes
-
-# Static design exports, not imported by the app.
-design-handoff
-
-# Scratch output — email previews and similar.
-tmp
-
 .git
-*.log
 .env*.local
+tmp

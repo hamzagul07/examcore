@@ -42,7 +42,18 @@ const MARKETING_PREFIXES = [
 const AUTH_PREFIX = '/auth'
 
 /** Routes with their own chrome — no student app header or mobile tab bar. */
-const NO_APP_CHROME_PREFIXES = ['/onboarding', '/join', '/teacher', '/admin', '/dashboard/progress']
+const NO_APP_CHROME_PREFIXES = [
+  '/onboarding',
+  '/join',
+  '/teacher',
+  '/admin',
+  '/dashboard/progress',
+  // Teacher setup renders the teacher header itself. Without this a head of
+  // department arriving from a cold email met a revision app's navigation —
+  // "Mark a question", a credits chip, "progress" — above a form asking what
+  // they teach.
+  '/for-teachers/start',
+]
 
 function matchesPrefix(pathname: string, prefix: string) {
   return pathname === prefix || pathname.startsWith(prefix + '/')

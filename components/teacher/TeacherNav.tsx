@@ -17,7 +17,14 @@ const NAV = [
   { href: '/teacher/reviews', label: 'Reviews', icon: ClipboardCheck },
 ]
 
-export function TeacherNav() {
+/**
+ * `showNav: false` renders the teacher header without its links.
+ *
+ * Used on teacher setup, where the visitor is not a teacher yet: Classrooms and
+ * Reviews would both 403 them. They still get the teacher wordmark, so they can
+ * see which part of the product they are in, and a way to sign out.
+ */
+export function TeacherNav({ showNav = true }: { showNav?: boolean } = {}) {
   const pathname = usePathname()
 
   return (
@@ -26,7 +33,10 @@ export function TeacherNav() {
       style={{ borderColor: 'var(--ec-border)' }}
     >
       <div className="mx-auto flex w-full min-w-0 max-w-7xl items-center gap-2 overflow-x-clip px-3 py-2.5 sm:gap-3 sm:px-6 sm:py-3">
-        <Link href="/teacher/dashboard" className="flex shrink-0 items-center gap-2 max-[420px]:gap-1.5">
+        <Link
+          href={showNav ? '/teacher/dashboard' : '/for-teachers'}
+          className="flex shrink-0 items-center gap-2 max-[420px]:gap-1.5"
+        >
           <BookOpen className="h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden />
           <span className="font-bold text-[var(--ec-text-primary)] max-[420px]:text-sm">
             MarkScheme{' '}
@@ -36,6 +46,9 @@ export function TeacherNav() {
           </span>
         </Link>
 
+        {!showNav && <div className="min-w-0 flex-1" />}
+
+        {showNav && (
         <nav
           className="flex min-w-0 flex-1 items-center justify-center gap-1 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] sm:justify-start [&::-webkit-scrollbar]:hidden"
           aria-label="Teacher navigation"
@@ -60,6 +73,7 @@ export function TeacherNav() {
             )
           })}
         </nav>
+        )}
 
         <div className="flex shrink-0 items-center gap-1 sm:gap-2">
           <ThemeSwitcher />

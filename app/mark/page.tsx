@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
+import { ChevronRight, Sparkles } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { Label } from '@/components/ui/label'
@@ -1792,12 +1792,7 @@ export default function MarkPage() {
 
         {!result && practiceContext && (
           <div className="ms-mark-context-card ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4 min-w-0">
-            <span
-              className="mt-0.5 inline-grid h-6 min-w-6 shrink-0 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1.5 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]"
-              aria-hidden
-            >
-              M1
-            </span>
+            <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
             <div className="min-w-0 flex-1">
               <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
                 Practicing: {practiceContext.pattern}
@@ -1813,12 +1808,7 @@ export default function MarkPage() {
 
         {!result && !practiceContext && courseTopicContext && (
           <div className="ms-mark-context-card ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4 min-w-0">
-            <span
-              className="mt-0.5 inline-grid h-6 min-w-6 shrink-0 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1.5 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]"
-              aria-hidden
-            >
-              M1
-            </span>
+            <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
             <div className="min-w-0 flex-1">
               <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
                 From your course: {courseTopicContext.topicName}
@@ -1853,12 +1843,7 @@ export default function MarkPage() {
 
         {!result && !practiceContext && !courseTopicContext && ibManualCriteriaSummary && (
           <div className="ms-mark-context-card ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4 min-w-0">
-            <span
-              className="mt-0.5 inline-grid h-6 min-w-6 shrink-0 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1.5 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]"
-              aria-hidden
-            >
-              M1
-            </span>
+            <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
             <div className="min-w-0 flex-1">
               <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
                 IB criterion practice — {resolveSubjectLabel(selectedSubject)}
@@ -2006,7 +1991,7 @@ export default function MarkPage() {
                 </div>
 
                 {selectedSubject && paperStructure && paperStructure.papers.length > 0 && (
-                  <div className="ec-card ec-card--paper border ec-border-color ec-bg-surface-raised p-4">
+                  <div className="rounded-2xl border ec-border-color ec-bg-surface-raised p-4">
                     <p className="label-overline mb-3">Available papers</p>
                     <ul className="space-y-1.5 text-sm text-[var(--ec-text-secondary)]">
                       {paperStructure.papers.map((p) => (
@@ -2282,7 +2267,7 @@ export default function MarkPage() {
               )}
 
               {(isPracticeMode || isCombinedMode) && catalogSubject && (
-                <div className="space-y-3 ec-card ec-card--paper border ec-border-color ec-bg-surface-raised p-4">
+                <div className="space-y-3 rounded-2xl border ec-border-color ec-bg-surface-raised p-4">
                   <p className="label-overline">IB assessment</p>
                   {catalogLevels.length > 1 && (
                     <div>
@@ -2626,13 +2611,7 @@ export default function MarkPage() {
                         : !isPracticeMode ||
                           (!!selectedSubject && hasPracticeQuestion))
                     }
-                    leftIcon={
-                      !loading ? (
-                        <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
-                          M1
-                        </span>
-                      ) : undefined
-                    }
+                    leftIcon={!loading ? <Sparkles className="h-5 w-5" /> : undefined}
                     className="mark-submit-btn justify-center text-base"
                   >
                     {isCombinedMode
@@ -2749,13 +2728,11 @@ export default function MarkPage() {
         {result?.whole_paper && (
           <div className="space-y-8">
             {result.multi_question && (
-              <div className="ec-card ec-card--paper flex items-start gap-3 border-[var(--ec-brand)]/30 p-4">
-                <span
-                  className="mt-0.5 inline-grid h-6 min-w-6 shrink-0 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1.5 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]"
-                  aria-hidden
-                >
-                  M1
-                </span>
+              <div className="ec-card flex items-start gap-3 border-[var(--ec-brand)]/30 p-4">
+                <Sparkles
+                  className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]"
+                  aria-hidden="true"
+                />
                 <p className="text-sm text-[var(--ec-text-secondary)]">
                   We found{' '}
                   <strong className="text-[var(--ec-text-primary)]">
@@ -2791,12 +2768,7 @@ export default function MarkPage() {
                 className="ec-card group flex items-center justify-between gap-4 border-[var(--ec-brand)]/30 p-4 transition-colors hover:border-[var(--ec-brand)]/50"
               >
                 <div className="flex items-start gap-3">
-                  <span
-              className="mt-0.5 inline-grid h-6 min-w-6 shrink-0 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1.5 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]"
-              aria-hidden
-            >
-              M1
-            </span>
+                  <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
                   <div>
                     <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
                       Practice complete
@@ -2819,12 +2791,7 @@ export default function MarkPage() {
                 className="ec-card group flex items-center justify-between gap-4 border-[var(--ec-brand)]/30 p-4 transition-colors hover:border-[var(--ec-brand)]/50"
               >
                 <div className="flex items-start gap-3">
-                  <span
-              className="mt-0.5 inline-grid h-6 min-w-6 shrink-0 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1.5 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]"
-              aria-hidden
-            >
-              M1
-            </span>
+                  <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
                   <div>
                     <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
                       Back to {courseTopicContext.topicName}

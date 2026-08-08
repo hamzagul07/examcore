@@ -95,13 +95,13 @@ Do not open UK boards until roughly:
 | Metric | Value |
 |--------|-------|
 | Edexcel marks | **0** (all-time mark_runs.exam_system=edexcel also 0) |
-| Cambridge marks | 1 (7d) / 11 (all-time tagged) |
+| Cambridge marks | 1 (7d) |
 | `/edexcel*` pageviews | **0** |
 | Funnel `/__funnel/*/edexcel` | **0** |
-| Closest edexcel-named traffic | 5× `/blog/cambridge-vs-edexcel-vs-aqa` in 30d |
-| Top internal bridge target | `/guides/grade-boundaries` (36 events, ties `/mark`) |
+| Closest edexcel-named traffic | `/blog/cambridge-vs-edexcel-vs-aqa` only (not yet the new IAL guides) |
+| Live SEO cluster | UMS + past papers + marking + WMA11 guides **READY** on production; IndexNow re-pinged after go-live |
 
-**Verdict:** hold new dialects; push acquisition bridges, not more board surface.
+**Verdict:** hold new dialects; distribution (Results Day ops + Reddit) must send IAL traffic to the live guides — chrome/SEO alone hasn't moved `/edexcel` yet.
 
 ---
 

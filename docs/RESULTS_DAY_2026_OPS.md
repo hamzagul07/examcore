@@ -13,9 +13,15 @@ Primary links (always use UTMs):
 | 9709 deep | `https://markscheme.app/tools/will-my-grade-hold?code=9709&utm_source=social&utm_medium=organic&utm_campaign=results-2026` |
 | Boundaries hub | `https://markscheme.app/guides/grade-boundaries?utm_source=social&utm_medium=organic&utm_campaign=results-2026` |
 | Mark (after grade) | `https://markscheme.app/mark?utm_source=social&utm_medium=organic&utm_campaign=results-2026` |
+| **Edexcel IAL hub** | `https://markscheme.app/results-2026/edexcel?utm_source=social&utm_medium=organic&utm_campaign=results-2026` |
+| **Edexcel UMS guide** | `https://markscheme.app/blog/edexcel-ial-maths-grade-boundaries-ums-2026?utm_source=social&utm_medium=organic&utm_campaign=results-2026` |
+| **Mark WMA11** | `https://markscheme.app/mark?board=edexcel&subject=WMA11&utm_source=social&utm_medium=organic&utm_campaign=results-2026` |
 
 Swap `utm_source` / `utm_medium` per channel (`tiktok`, `instagram`, `email`,
 `reddit` + `barnacle`). Email campaign: `utm_campaign=results-2026-email`.
+
+**Do not** send Edexcel IAL students to Cambridge threshold calculators as the
+primary CTA — use UMS / cash-in + `/mark?board=edexcel`.
 
 ---
 
@@ -87,6 +93,17 @@ Swap `utm_source` / `utm_medium` per channel (`tiktok`, `instagram`, `email`,
 > markscheme.app/tools/will-my-grade-hold?code=9709  
 > Guide: markscheme.app/blog/cambridge-9709-mathematics-grade-boundaries-2026
 
+### F. Edexcel IAL Maths (wrong-board rescue)
+
+> Sitting Edexcel International, not Cambridge? Grades aren't a 9709 threshold table.  
+> IAL Maths uses **UMS / cash-in** across units (WMA11…).  
+> → markscheme.app/results-2026/edexcel  
+> → markscheme.app/blog/edexcel-ial-maths-grade-boundaries-ums-2026  
+> Practise the next unit: markscheme.app/mark?board=edexcel&subject=WMA11
+
+**When to use F:** replies on threads mixing "Edexcel" + "grade boundaries",
+or Cambridge posts where comments say "I'm on IAL / Pearson."
+
 ---
 
 ## Email (broadcast or Resend one-off)
@@ -154,6 +171,15 @@ UTM: `?utm_source=reddit&utm_medium=barnacle&utm_campaign=results-2026`
 > IGCSE release. Calm checklist:
 > https://markscheme.app/blog/cambridge-results-day-august-2026-guide?utm_source=reddit&utm_medium=barnacle&utm_campaign=results-2026
 > Hub: https://markscheme.app/results-2026?utm_source=reddit&utm_medium=barnacle&utm_campaign=results-2026
+
+### r/alevel / intl — "Edexcel IAL grade boundaries / UMS"
+
+> If you're on **Edexcel International A Level Maths**, don't paste Cambridge
+> 9709 threshold tables onto a WMA unit. IAL is raw → **UMS** → cash-in.
+> Short explainer:
+> https://markscheme.app/blog/edexcel-ial-maths-grade-boundaries-ums-2026?utm_source=reddit&utm_medium=barnacle&utm_campaign=results-2026
+> Results hub: https://markscheme.app/results-2026/edexcel?utm_source=reddit&utm_medium=barnacle&utm_campaign=results-2026
+> Practice mark (WMA11): https://markscheme.app/mark?board=edexcel&subject=WMA11&utm_source=reddit&utm_medium=barnacle&utm_campaign=results-2026
 
 ---
 

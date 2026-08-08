@@ -21,6 +21,8 @@ import {
 } from '@/lib/examiner-ink-positioning'
 import { normalizeErrorClassification } from '@/lib/error-classifications'
 import { isMathSubjectCode } from '@/lib/marking/math-subjects'
+import { markingBoardLabel } from '@/lib/marking/exam-board'
+import { resolveEdexcelMarkingSubjectName, getEdexcelUnitMeta } from '@/lib/edexcel/marking'
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import { parsePaperCode } from '@/lib/marking/component-types'
 import { buildMarkingPrompt, maxTokensForStyle, looksLikeMcq } from '@/lib/marking/build-marking-prompt'
@@ -518,9 +520,11 @@ export async function markSingleQuestion(params: {
   const ibProfile = rawSubjectCode ? getIbMarkingProfile(rawSubjectCode) : null
   const subjectCode = rawSubjectCode
   const subjectName = subjectCode
-    ? resolveSubjectLabel(subjectCode) !== subjectCode
-      ? resolveSubjectLabel(subjectCode)
-      : SUBJECT_CODE_MAP[subjectCode] || subjectCode
+    ? getEdexcelUnitMeta(subjectCode)
+      ? resolveEdexcelMarkingSubjectName(subjectCode)
+      : resolveSubjectLabel(subjectCode) !== subjectCode
+        ? resolveSubjectLabel(subjectCode)
+        : SUBJECT_CODE_MAP[subjectCode] || subjectCode
     : 'A-Level'
 
   let effectiveMarkScheme = markScheme
@@ -582,12 +586,10 @@ export async function markSingleQuestion(params: {
     !looksLikeMcq(questionText) &&
     questionText.trim().length >= 8
   ) {
-    const isIbBoard =
-      !!resolvedIb || isIbSubjectCode(subjectCode ?? '')
     onStage?.('deriving_scheme')
     const derived = await deriveMarkScheme({
       subjectName,
-      board: isIbBoard ? 'IB Diploma' : 'Cambridge',
+      board: markingBoardLabel(subjectCode, { resolvedIb }),
       questionText,
       totalMarks:
         typeof questionTotalMarks === 'number' && questionTotalMarks > 0
@@ -669,8 +671,7 @@ export async function markSingleQuestion(params: {
   ) {
     try {
       onStage?.('verifying')
-      const verifyBoard =
-        !!resolvedIb || isIbSubjectCode(subjectCode ?? '') ? 'IB Diploma' : 'Cambridge'
+      const verifyBoard = markingBoardLabel(subjectCode, { resolvedIb })
       const verifySchemeJson =
         derivedScheme ??
         (resolvedIb?.officialScheme != null
@@ -737,7 +738,7 @@ export async function markSingleQuestion(params: {
       (effectiveMarkScheme ? JSON.stringify(effectiveMarkScheme.mark_scheme) : null)
     const plan: FullMarksRewritePlan = {
       subjectName,
-      board: !!resolvedIb || isIbSubjectCode(subjectCode ?? '') ? 'IB Diploma' : 'Cambridge',
+      board: markingBoardLabel(subjectCode, { resolvedIb }),
       questionText: questionText || effectiveMarkScheme?.question_text || '',
       studentAnswer: ocrText,
       schemeJson: rewriteSchemeJson,

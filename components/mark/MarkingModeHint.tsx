@@ -9,6 +9,7 @@ type Props = {
 
 export function MarkingModeHint({ mode, markBoard = 'cambridge' }: Props) {
   const ib = markBoard === 'ib'
+  const edexcel = markBoard === 'edexcel'
 
   const copy =
     mode === 'official'
@@ -16,34 +17,44 @@ export function MarkingModeHint({ mode, markBoard = 'cambridge' }: Props) {
           title: 'Official mark scheme',
           body: ib
             ? 'We found this question in our database — marking uses IB assessment criteria and markbands.'
-            : 'We found this question in our database — marking uses the exact Cambridge criteria (B1, M1, A1, bands).',
+            : edexcel
+              ? 'We found this question in our database — marking uses Edexcel IAL M/A conventions.'
+              : 'We found this question in our database — marking uses the exact Cambridge criteria (B1, M1, A1, bands).',
         }
       : mode === 'missing_paper'
         ? {
             title: 'Paper not in database',
             body: ib
               ? 'This session is not cached yet — we mark with IB criterion conventions. Add a question photo or PDF for better accuracy.'
-              : 'This session is not cached yet — we mark with general Cambridge conventions. Add a question photo or PDF for better accuracy.',
+              : edexcel
+                ? 'This session is not cached yet — we mark with Edexcel IAL conventions. Add a question photo or PDF for better accuracy.'
+                : 'This session is not cached yet — we mark with general Cambridge conventions. Add a question photo or PDF for better accuracy.',
           }
         : mode === 'practice'
           ? {
               title: 'Your own question',
               body: ib
                 ? 'Marked band-by-band against IB assessment criteria for your subject — not an official past-paper lookup.'
-                : 'Marked with Cambridge-style conventions for your subject — not an official past-paper scheme.',
+                : edexcel
+                  ? 'Marked with Edexcel IAL method/accuracy conventions for your unit — not an official past-paper scheme.'
+                  : 'Marked with Cambridge-style conventions for your subject — not an official past-paper scheme.',
             }
           : mode === 'combined'
             ? {
                 title: 'Question + answer on one scan',
                 body: ib
                   ? 'We read the question and your working from the same upload, then mark band-by-band against IB criteria.'
-                  : 'We split the question from your working on the same page or PDF, then mark with Cambridge conventions.',
+                  : edexcel
+                    ? 'We split the question from your working on the same page or PDF, then mark with Edexcel IAL conventions.'
+                    : 'We split the question from your working on the same page or PDF, then mark with Cambridge conventions.',
               }
             : {
               title: 'Auto-detect mode',
               body: ib
                 ? 'Select your IB subject and add the question text, photo, or PDF — we mark against criterion bands.'
-                : 'Select the paper above for official marking, or add the question text — we will detect the paper from your script if possible.',
+                : edexcel
+                  ? 'Select your IAL Maths unit and add the question — we derive an Edexcel-style scheme and mark your working.'
+                  : 'Select the paper above for official marking, or add the question text — we will detect the paper from your script if possible.',
             }
 
   return (

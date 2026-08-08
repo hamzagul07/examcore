@@ -57,10 +57,17 @@ import {
 import { PastPaperSelectorFields } from '@/components/mark/PastPaperSelectorFields'
 import {
   MarkBoardPicker,
+  boardSupportsPastPaperLookup,
+  boardSupportsWholePaper,
   markBoardFromProfileBoard,
   subjectMatchesMarkBoard,
   type MarkExamBoard,
 } from '@/components/mark/MarkBoardPicker'
+import {
+  getEdexcelMarkableUnitCodes,
+  resolveEdexcelUnitLabel,
+} from '@/lib/edexcel/marking'
+import { resolveBoard } from '@/lib/courses/board'
 import { MarkingModeHint } from '@/components/mark/MarkingModeHint'
 import { formatClientMarkError } from '@/lib/marking/client-mark-errors'
 import { normalizeQuestionNumber } from '@/lib/marking/question-number'
@@ -153,7 +160,7 @@ export default function MarkPage() {
   // Set when the student arrived from a lesson with an answer already written.
   const [lessonHandoff, setLessonHandoff] = useState<{ returnTo: string | null } | null>(null)
   const [pendingHandoffSubject, setPendingHandoffSubject] = useState<
-    { codes: string[]; level: 'HL' | 'SL' | null; board: 'ib' | 'cambridge' } | null
+    { codes: string[]; level: 'HL' | 'SL' | null; board: MarkExamBoard } | null
   >(null)
   const [answerPdf, setAnswerPdf] = useState<File | null>(null)
   const [answerPdfError, setAnswerPdfError] = useState<string | null>(null)
@@ -530,12 +537,16 @@ export default function MarkPage() {
     // the student waits ninety seconds for a failure. Hand it to the effect
     // below, which waits for the options to exist.
     if (handoff.subjectCode) {
-      const isIb = isIbSubjectCode(handoff.subjectCode)
-      setSelectedMarkBoard(isIb ? 'ib' : 'cambridge')
+      const board = resolveBoard(handoff.subjectCode) as MarkExamBoard
+      const markBoard: MarkExamBoard =
+        board === 'ib' || board === 'edexcel' || board === 'cambridge'
+          ? board
+          : 'cambridge'
+      setSelectedMarkBoard(markBoard)
       setPendingHandoffSubject({
         codes: subjectCandidates(handoff.subjectCode),
         level: handoff.ibLevel ?? splitSubjectLevel(handoff.subjectCode).ibLevel,
-        board: isIb ? 'ib' : 'cambridge',
+        board: markBoard,
       })
     }
     setShowOptional(true)
@@ -555,12 +566,19 @@ export default function MarkPage() {
     setMarkIntent('past_paper')
     setSelectedSubject(subject)
     setShowManualPaper(true)
-    if (isIbSubjectCode(subject)) {
-      setSelectedMarkBoard('ib')
-      setMarkIntent('practice_question')
-      setShowManualPaper(false)
-    } else {
-      setSelectedMarkBoard('cambridge')
+    {
+      const board = resolveBoard(subject)
+      if (board === 'ib') {
+        setSelectedMarkBoard('ib')
+        setMarkIntent('practice_question')
+        setShowManualPaper(false)
+      } else if (board === 'edexcel') {
+        setSelectedMarkBoard('edexcel')
+        setMarkIntent('practice_question')
+        setShowManualPaper(false)
+      } else {
+        setSelectedMarkBoard('cambridge')
+      }
     }
 
     const returnTo = parseMarkReturnPath(sp.get('return'))
@@ -835,6 +853,18 @@ export default function MarkPage() {
     return [...catalogCodes, ...legacy]
   }, [selectedMarkBoard, boardFilteredSubjects, ibCatalog])
 
+  // Edexcel Wave 1: IAL Maths units from catalog (not profile SUBJECTS).
+  const edexcelSubjectOptions = useMemo(() => {
+    if (selectedMarkBoard !== 'edexcel') return boardFilteredSubjects
+    return getEdexcelMarkableUnitCodes()
+  }, [selectedMarkBoard, boardFilteredSubjects])
+
+  const markSubjectOptions = useMemo(() => {
+    if (selectedMarkBoard === 'ib') return ibSubjectOptions
+    if (selectedMarkBoard === 'edexcel') return edexcelSubjectOptions
+    return boardFilteredSubjects
+  }, [selectedMarkBoard, ibSubjectOptions, edexcelSubjectOptions, boardFilteredSubjects])
+
   // They arrived to mark this specific answer, so put it on screen —
   // otherwise "your answer from the lesson is below" is a claim the student has
   // to scroll a screen and a half to verify.
@@ -866,8 +896,7 @@ export default function MarkPage() {
     // subject list, which is full and contains no catalog codes. Acting on it
     // discarded the handoff every time. Wait for the catalog itself.
     if (selectedMarkBoard === 'ib' && ibCatalog.length === 0) return
-    const options =
-      selectedMarkBoard === 'ib' ? ibSubjectOptions : boardFilteredSubjects
+    const options = markSubjectOptions
     if (!options.length) return
     const match = pendingHandoffSubject.codes.find((c) => options.includes(c))
     if (match) {
@@ -878,8 +907,7 @@ export default function MarkPage() {
   }, [
     pendingHandoffSubject,
     selectedMarkBoard,
-    ibSubjectOptions,
-    boardFilteredSubjects,
+    markSubjectOptions,
     ibCatalog,
   ])
 
@@ -926,7 +954,7 @@ export default function MarkPage() {
   }, [paperStructure])
 
   useEffect(() => {
-    if (selectedMarkBoard !== 'ib') return
+    if (boardSupportsPastPaperLookup(selectedMarkBoard)) return
     if (uploadMode === 'whole_paper') {
       setUploadMode('single_question')
     }
@@ -946,16 +974,21 @@ export default function MarkPage() {
     ) {
       return
     }
-    const pool = boardFilteredSubjects.length
-      ? boardFilteredSubjects
-      : profileSelectableSubjects
+    const pool =
+      selectedMarkBoard === 'edexcel'
+        ? edexcelSubjectOptions
+        : boardFilteredSubjects.length
+          ? boardFilteredSubjects
+          : profileSelectableSubjects
     const preferred =
       selectedMarkBoard === 'ib'
         ? pool[0]
-        : pool.find((c) => c === '9709') ?? pool[0]
+        : selectedMarkBoard === 'edexcel'
+          ? pool.find((c) => c === 'WMA11') ?? pool[0]
+          : pool.find((c) => c === '9709') ?? pool[0]
     if (preferred) {
       setSelectedSubject(preferred)
-      if (selectedMarkBoard !== 'ib') {
+      if (boardSupportsPastPaperLookup(selectedMarkBoard)) {
         setShowManualPaper(true)
       }
     }
@@ -964,6 +997,7 @@ export default function MarkPage() {
     papersLoading,
     selectedSubject,
     boardFilteredSubjects,
+    edexcelSubjectOptions,
     profileSelectableSubjects,
     markIntent,
     selectedMarkBoard,
@@ -984,25 +1018,44 @@ export default function MarkPage() {
       return 'Upload your full answer paper — we segment and mark each question against the official scheme.'
     }
     if (isCombinedMode) {
-      return selectedMarkBoard === 'ib'
-        ? 'One PDF or photo with the IB question and your answer together. We split them and mark band-by-band.'
-        : 'One scan with question and answer together — worksheets, homework sheets, or textbook pages.'
+      if (selectedMarkBoard === 'ib') {
+        return 'One PDF or photo with the IB question and your answer together. We split them and mark band-by-band.'
+      }
+      if (selectedMarkBoard === 'edexcel') {
+        return 'One scan with the IAL question and your working together — we split them and mark with Edexcel M/A conventions.'
+      }
+      return 'One scan with question and answer together — worksheets, homework sheets, or textbook pages.'
     }
     if (isPracticeMode) {
-      return selectedMarkBoard === 'ib'
-        ? 'Homework or textbook practice — upload answer and question separately, or use Scanned script.'
-        : 'Homework or textbook questions — photos or PDFs, marked with Cambridge conventions.'
+      if (selectedMarkBoard === 'ib') {
+        return 'Homework or textbook practice — upload answer and question separately, or use Scanned script.'
+      }
+      if (selectedMarkBoard === 'edexcel') {
+        return 'IAL Maths homework or textbook questions — photos or PDFs, marked with Edexcel method/accuracy conventions.'
+      }
+      return 'Homework or textbook questions — photos or PDFs, marked with Cambridge conventions.'
     }
     if (selectedMarkBoard === 'ib') {
       return 'Pick My question or Scanned script. PDF drops welcome — past-paper lookup is Cambridge only.'
+    }
+    if (selectedMarkBoard === 'edexcel') {
+      return 'Pick My question or Scanned script for IAL Maths units. Past-paper lookup stays Cambridge-only for now.'
     }
     return 'Select a past paper question or add your own — photos and PDFs supported throughout.'
   }, [uploadMode, isCombinedMode, isPracticeMode, selectedMarkBoard])
 
   const markLearnMoreHref =
-    selectedMarkBoard === 'ib' ? '/blog/ib-markbands-explained' : '/tools/command-words'
+    selectedMarkBoard === 'ib'
+      ? '/blog/ib-markbands-explained'
+      : selectedMarkBoard === 'edexcel'
+        ? '/edexcel/international-a-level/mathematics'
+        : '/tools/command-words'
   const markLearnMoreLabel =
-    selectedMarkBoard === 'ib' ? 'How IB markbands work' : 'What the command words mean'
+    selectedMarkBoard === 'ib'
+      ? 'How IB markbands work'
+      : selectedMarkBoard === 'edexcel'
+        ? 'Edexcel IAL Maths units'
+        : 'What the command words mean'
 
   const ibManualCriteriaSummary =
     (isPracticeMode || isCombinedMode) &&

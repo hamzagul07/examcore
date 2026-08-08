@@ -1,7 +1,7 @@
 import type { OcrLine } from '@/lib/examiner-ink-positioning'
 import { parseOcrLines } from '@/lib/examiner-ink-positioning'
 
-export const ANSWER_OCR_PROMPT_MATH = `Transcribe the handwritten Cambridge A-Level Mathematics work in this image. For each line of working, provide:
+export const ANSWER_OCR_PROMPT_MATH = `Transcribe the handwritten A-Level / International A Level Mathematics work in this image. For each line of working, provide:
 1. The text content (use ^ for exponents, sqrt() for roots, * for multiplication where useful).
 2. The bounding box as percentages of the image dimensions: top, left, width, height (each 0-100).
 
@@ -22,7 +22,7 @@ Rules:
 - If the image is blank or contains no handwritten work, output {"full_text": "", "lines": []}.
 - Output ONLY valid JSON. No surrounding commentary.`
 
-export const ANSWER_OCR_PROMPT_GENERAL = `Transcribe the handwritten Cambridge A-Level exam work in this image. For each line of writing, provide:
+export const ANSWER_OCR_PROMPT_GENERAL = `Transcribe the handwritten exam work in this image. For each line of writing, provide:
 1. The text content (preserve scientific notation, chemical formulae, diagrams described briefly in [brackets]).
 2. The bounding box as percentages of the image dimensions: top, left, width, height (each 0-100).
 

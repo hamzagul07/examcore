@@ -8,23 +8,30 @@
  *   /caie/{level}/{subjectSlug}/{code}/paper-{n}
  *
  * Legacy /courses/{code}/… stay live; metadata.canonical points here.
+ *
+ * Lesson surfaces are board-agnostic (`lib/exam-systems/surfaces`); CAIE names
+ * are kept as aliases so existing imports keep working.
  */
 import { getCourseLesson, getCourseLessons, getCourseSubject, getCourseSubjectCodes } from '@/lib/courses'
 import type { CourseLesson } from '@/lib/courses/types'
+import {
+  LESSON_SURFACES,
+  isIndexableLesson,
+  lessonHasSurface,
+  type LessonSurface,
+} from '@/lib/exam-systems/surfaces'
 import { getMarkingSubjectPages } from '@/lib/seo/programmatic-subjects'
 import { topicToLessonSlug } from '@/lib/courses/slug'
 
 export type CaieLevelSlug = 'a-level' | 'as-level' | 'o-level' | 'igcse'
 
-export type CaieSurface = 'flashcards' | 'faq' | 'quiz' | 'questions' | 'mistakes'
+/** @deprecated Prefer LessonSurface from @/lib/exam-systems */
+export type CaieSurface = LessonSurface
 
-export const CAIE_SURFACES: CaieSurface[] = [
-  'flashcards',
-  'faq',
-  'quiz',
-  'questions',
-  'mistakes',
-]
+/** @deprecated Prefer LESSON_SURFACES from @/lib/exam-systems */
+export const CAIE_SURFACES: CaieSurface[] = LESSON_SURFACES
+
+export { isIndexableLesson, lessonHasSurface }
 
 export type CaieSubjectRef = {
   code: string
@@ -87,39 +94,21 @@ export function caiePaperPath(code: string, paperNumber: string | number): strin
   return `${ref.hubPath}/paper-${paperNumber}`
 }
 
+/**
+ * Paper hubs share the `[topic]` segment as `paper-{n}`.
+ * Do NOT use a sibling `paper-[paper]` route — Next matches that over `[topic]`
+ * for every child URL (including real lesson slugs), which 404s the graph.
+ */
+export function parseCaiePaperTopicSlug(topic: string): string | null {
+  const m = topic.match(/^paper-(\d+)$/)
+  return m?.[1] ?? null
+}
+
 /** Normalize lesson.paper values like "P4", "Paper 4", "4" → "4". */
 export function normalizePaperNumber(paper: string | undefined | null): string | null {
   if (!paper) return null
   const m = String(paper).match(/(\d+)/)
   return m?.[1] ?? null
-}
-
-/** Full lessons only — outlines do not get child surface URLs (thin content gate). */
-export function isIndexableLesson(lesson: CourseLesson): boolean {
-  return lesson.status === 'published' || lesson.status === 'premium'
-}
-
-export function lessonHasSurface(lesson: CourseLesson, surface: CaieSurface): boolean {
-  if (!isIndexableLesson(lesson)) return false
-  switch (surface) {
-    case 'flashcards':
-      return (lesson.flashcards?.length ?? 0) >= 3
-    case 'faq':
-      return (lesson.faq?.length ?? 0) >= 2
-    case 'quiz':
-      return (lesson.quickCheck?.length ?? 0) >= 2
-    case 'questions': {
-      const practice = lesson.sections?.some((s) => s.type === 'pastPaperPractice')
-      const worked = lesson.sections?.some((s) => s.type === 'workedExample')
-      return Boolean(practice || worked || (lesson.pastPaperReferences?.length ?? 0) > 0)
-    }
-    case 'mistakes': {
-      const tips = lesson.sections?.filter((s) => s.type === 'examTip') ?? []
-      return tips.length >= 1 || (lesson.faq?.length ?? 0) >= 1
-    }
-    default:
-      return false
-  }
 }
 
 export function getAllCaieHubParams(): Array<{
@@ -135,6 +124,27 @@ export function getAllCaieHubParams(): Array<{
       subject: r.subjectSlug,
       code: r.code,
     }))
+}
+
+export function getAllCaiePaperTopicParams(): Array<{
+  level: string
+  subject: string
+  code: string
+  topic: string
+}> {
+  const out: Array<{ level: string; subject: string; code: string; topic: string }> = []
+  for (const hub of getAllCaieHubParams()) {
+    const papers = new Set<string>()
+    for (const lesson of getCourseLessons(hub.code)) {
+      if (!isIndexableLesson(lesson)) continue
+      const n = normalizePaperNumber(lesson.paper)
+      if (n) papers.add(n)
+    }
+    for (const paper of papers) {
+      out.push({ ...hub, topic: `paper-${paper}` })
+    }
+  }
+  return out
 }
 
 export function getAllCaieLessonParams(): Array<{

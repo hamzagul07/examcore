@@ -33,6 +33,17 @@ import {
   isIndexableLesson,
   type CaieSurface,
 } from '@/lib/seo/caie-graph'
+import {
+  edexcelRootPath,
+  edexcelQualificationPath,
+  edexcelSubjectBoundariesPath,
+  edexcelSubjectPastPapersPath,
+  edexcelSubjectPath,
+  edexcelUnitPath,
+  getAllEdexcelQualificationParams,
+  getAllEdexcelSubjectParams,
+  resolveEdexcelSubject,
+} from '@/lib/seo/edexcel-graph'
 
 export const SITEMAP_SHARD_IDS = [
   'static',
@@ -49,6 +60,7 @@ export const SITEMAP_SHARD_IDS = [
   'caie-papers',
   'past-paper-topics',
   'ib',
+  'edexcel',
   'questions',
   'markschemes',
   'community',
@@ -102,6 +114,9 @@ export async function buildSitemapShard(
         '/subjects',
         '/courses',
         '/caie',
+        '/edexcel',
+        '/edexcel/international-a-level',
+        '/edexcel/international-gcse',
         '/questions',
         '/markscheme',
         '/past-papers',
@@ -276,6 +291,43 @@ export async function buildSitemapShard(
           })
         ),
       ]
+
+    case 'edexcel': {
+      const qualEntries = getAllEdexcelQualificationParams().map((p) =>
+        entry(edexcelQualificationPath(p.qualification), {
+          priority: 0.86,
+          changeFrequency: 'weekly',
+        })
+      )
+      const subjectEntries = getAllEdexcelSubjectParams().flatMap((p) => {
+        const subject = resolveEdexcelSubject(p.qualification, p.subject)
+        if (!subject) return []
+        const hub = edexcelSubjectPath(p.qualification, p.subject)
+        const unitEntries = subject.units.map((u) =>
+          entry(edexcelUnitPath(p.qualification, p.subject, u.code), {
+            priority: 0.78,
+            changeFrequency: 'monthly',
+          })
+        )
+        return [
+          entry(hub, { priority: 0.86 }),
+          entry(edexcelSubjectPastPapersPath(p.qualification, p.subject), {
+            priority: 0.82,
+            changeFrequency: 'monthly',
+          }),
+          entry(edexcelSubjectBoundariesPath(p.qualification, p.subject), {
+            priority: 0.8,
+            changeFrequency: 'monthly',
+          }),
+          ...unitEntries,
+        ]
+      })
+      return [
+        entry(edexcelRootPath(), { priority: 0.9 }),
+        ...qualEntries,
+        ...subjectEntries,
+      ]
+    }
 
     case 'questions':
       // Hub + a capped sample of examinable units. Full inventory grows via

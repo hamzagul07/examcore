@@ -11,6 +11,8 @@ import {
   buildIbCatalogPointsPrompt,
 } from './prompts'
 import { isIbSubjectCode, ibUsesCriterionRubrics } from '@/lib/ib/marking-config'
+import { isEdexcelSubjectCode } from '@/lib/marking/exam-board'
+import { resolveEdexcelMarkingSubjectName } from '@/lib/edexcel/marking'
 import type { ResolvedIbComponent } from './types'
 
 const IB_BOARD = 'IB Diploma'
@@ -141,15 +143,20 @@ export function buildMarkingPrompt(params: {
 
   const isIb =
     markScheme?.board === IB_BOARD || isIbSubjectCode(subjectCode)
+  const isEdexcel = !isIb && isEdexcelSubjectCode(subjectCode)
   const parsed = markScheme?.paper_code
     ? parsePaperCode(markScheme.paper_code)
     : null
   const effectiveCode = parsed?.subjectCode ?? subjectCode
-  const is9709 = !isIb && effectiveCode === '9709'
+  const is9709 = !isIb && !isEdexcel && effectiveCode === '9709'
   const syllabusBlock =
-    effectiveCode && !is9709 && !isIb
+    effectiveCode && !is9709 && !isIb && !isEdexcel
       ? buildSyllabusTaggingBlock(effectiveCode)
       : undefined
+  const pointSubjectName = isEdexcel
+    ? resolveEdexcelMarkingSubjectName(subjectCode) || subjectName
+    : subjectName
+  const pointBoard = isEdexcel ? ('edexcel' as const) : ('cambridge' as const)
 
   if (is9709 && isOfficial && markScheme) {
     return build9709OfficialMarkingPrompt(
@@ -168,14 +175,17 @@ export function buildMarkingPrompt(params: {
     // No official scheme: use the student-supplied total when given, otherwise
     // let the model read the mark allocation from the question (0 = infer). Never
     // fall back to a fixed denominator — that was the source of wrong totals.
+    const fallbackScheme = isEdexcel
+      ? '{"marks":[{"id":1,"type":"M1","value":1,"description":"Award marks using Edexcel IAL M/A conventions for this unit"}]}'
+      : '{"marks":[{"id":1,"type":"B1","value":1,"description":"Award marks using standard Cambridge conventions for this subject"}]}'
     return buildPointBasedMarkingPrompt(
-      subjectName,
+      pointSubjectName,
       questionText || '[Question not provided — infer from student\'s work]',
       questionTotalMarks && questionTotalMarks > 0 ? questionTotalMarks : 0,
-      derivedScheme ??
-        '{"marks":[{"id":1,"type":"B1","value":1,"description":"Award marks using standard Cambridge conventions for this subject"}]}',
+      derivedScheme ?? fallbackScheme,
       ocrText,
-      syllabusBlock
+      syllabusBlock,
+      { board: pointBoard }
     )
   }
 
@@ -231,12 +241,13 @@ export function buildMarkingPrompt(params: {
     )
   }
   return buildPointBasedMarkingPrompt(
-    subjectName,
+    pointSubjectName,
     qText,
     total,
     msJson,
     ocrText,
-    syllabusBlock
+    syllabusBlock,
+    { board: pointBoard }
   )
 }
 

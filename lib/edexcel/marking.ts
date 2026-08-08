@@ -1,0 +1,54 @@
+/**
+ * Edexcel IAL marking surface (Phase E2).
+ * Wave 1 = Mathematics units only (practice + combined; no past-paper DB yet).
+ */
+
+import {
+  getEdexcelSubjects,
+  type EdexcelSubject,
+  type EdexcelUnit,
+} from '@/lib/edexcel/catalog'
+
+/** Kill-switch: set NEXT_PUBLIC_EDEXCEL_MARKING_ENABLED=0 to hide from /mark. */
+export function isEdexcelMarkingLive(): boolean {
+  return process.env.NEXT_PUBLIC_EDEXCEL_MARKING_ENABLED !== '0'
+}
+
+export function getEdexcelMarkableMathsSubject(): EdexcelSubject | null {
+  return (
+    getEdexcelSubjects('international-a-level').find(
+      (s) => s.slug === 'mathematics' && s.shellEnabled
+    ) ?? null
+  )
+}
+
+/** Unit codes shown on /mark when board = edexcel (Wave 1 Maths). */
+export function getEdexcelMarkableUnitCodes(): string[] {
+  const maths = getEdexcelMarkableMathsSubject()
+  return maths?.units.map((u) => u.code) ?? []
+}
+
+export function getEdexcelUnitMeta(code: string): {
+  subject: EdexcelSubject
+  unit: EdexcelUnit
+} | null {
+  const upper = code.trim().toUpperCase()
+  for (const subject of getEdexcelSubjects()) {
+    const unit = subject.units.find((u) => u.code === upper)
+    if (unit) return { subject, unit }
+  }
+  return null
+}
+
+export function resolveEdexcelUnitLabel(code: string): string {
+  const meta = getEdexcelUnitMeta(code)
+  if (!meta) return code
+  return `${meta.unit.code} ${meta.unit.name}`
+}
+
+/** Display name for mark prompts (subject family, not unit). */
+export function resolveEdexcelMarkingSubjectName(code: string): string {
+  const meta = getEdexcelUnitMeta(code)
+  if (!meta) return 'Mathematics'
+  return `International A Level ${meta.subject.name} (${meta.unit.code})`
+}

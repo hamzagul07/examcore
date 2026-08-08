@@ -1,25 +1,24 @@
 'use client'
 
 import { resolveBoard } from '@/lib/courses/board'
+import {
+  getExamSystemByProfileBoardId,
+  listMarkingExamSystems,
+  type ExamSystemId,
+} from '@/lib/exam-systems'
 
-export type MarkExamBoard = 'cambridge' | 'ib'
+/** Boards that currently accept marks on /mark (driven by adapter.markingEnabled). */
+export type MarkExamBoard = Extract<ExamSystemId, 'cambridge' | 'ib' | 'edexcel'>
 
-const OPTIONS: {
-  id: MarkExamBoard
-  label: string
-  hint: string
-}[] = [
-  {
-    id: 'cambridge',
-    label: 'Cambridge International',
-    hint: 'Past papers, PDF uploads & B1/M1/A1 marking',
-  },
-  {
-    id: 'ib',
-    label: 'IB Diploma',
-    hint: 'Criterion bands, scanned scripts & PDF drops',
-  },
-]
+const OPTIONS = listMarkingExamSystems()
+  .filter((sys): sys is typeof sys & { id: MarkExamBoard } =>
+    sys.id === 'cambridge' || sys.id === 'ib' || sys.id === 'edexcel'
+  )
+  .map((sys) => ({
+    id: sys.id,
+    label: sys.label,
+    hint: sys.markPickerHint,
+  }))
 
 type Props = {
   value: MarkExamBoard
@@ -28,11 +27,19 @@ type Props = {
 }
 
 export function MarkBoardPicker({ value, onChange, disabled }: Props) {
+  const labels = OPTIONS.map((o) => o.label)
+  const labelText =
+    labels.length <= 1
+      ? labels[0] ?? 'your board'
+      : labels.length === 2
+        ? `${labels[0]} and ${labels[1]}`
+        : `${labels.slice(0, -1).join(', ')}, and ${labels[labels.length - 1]}`
+
   return (
     <fieldset className="ms-mark-board-picker" disabled={disabled}>
       <legend className="label-overline mb-2.5 block">Exam board</legend>
       <p className="ms-mark-board-hint mb-3 text-xs leading-relaxed text-[var(--ec-text-secondary)]">
-        Pick your board — Cambridge and IB both support photos, PDFs, and scanned worksheets.
+        Pick your board — {labelText} support photos, PDFs, and scanned worksheets.
       </p>
       <div className="ms-mark-board-grid">
         {OPTIONS.map((opt) => {
@@ -64,9 +71,27 @@ export function MarkBoardPicker({ value, onChange, disabled }: Props) {
 }
 
 export function markBoardFromProfileBoard(board: string | null | undefined): MarkExamBoard {
-  return board === 'IB' ? 'ib' : 'cambridge'
+  const sys = board ? getExamSystemByProfileBoardId(board) : null
+  if (
+    sys?.markingEnabled &&
+    (sys.id === 'cambridge' || sys.id === 'ib' || sys.id === 'edexcel')
+  ) {
+    return sys.id
+  }
+  if (board === 'IB') return 'ib'
+  if (board === 'Edexcel') return 'edexcel'
+  return 'cambridge'
 }
 
 export function subjectMatchesMarkBoard(code: string, markBoard: MarkExamBoard): boolean {
   return resolveBoard(code) === markBoard
+}
+
+/** Past-paper lookup + whole-paper are Cambridge-only until other boards have scheme banks. */
+export function boardSupportsPastPaperLookup(board: MarkExamBoard): boolean {
+  return board === 'cambridge'
+}
+
+export function boardSupportsWholePaper(board: MarkExamBoard): boolean {
+  return board === 'cambridge'
 }

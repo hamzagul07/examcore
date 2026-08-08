@@ -53,18 +53,18 @@ function flashcardQuizJsonLd(lesson: CourseLesson, path: string) {
 }
 
 export function CaieSurfacePage({
-  ref,
+  subjectRef,
   lesson,
   surface,
   path,
 }: {
-  ref: CaieSubjectRef
+  subjectRef: CaieSubjectRef
   lesson: CourseLesson
   surface: CaieSurface
   path: string
 }) {
-  const lessonPath = caieLessonPath(ref.code, lesson.slug) ?? ref.hubPath
-  const markHref = `/mark?subject=${encodeURIComponent(ref.code)}&topic=${encodeURIComponent(lesson.topicCode)}`
+  const lessonPath = caieLessonPath(subjectRef.code, lesson.slug) ?? subjectRef.hubPath
+  const markHref = `/mark?subject=${encodeURIComponent(subjectRef.code)}&topic=${encodeURIComponent(lesson.topicCode)}`
   const titles: Record<CaieSurface, string> = {
     flashcards: `${lesson.title} flashcards`,
     faq: `${lesson.title} — FAQ`,
@@ -73,11 +73,11 @@ export function CaieSurfacePage({
     mistakes: `${lesson.title} — common mistakes`,
   }
   const leads: Record<CaieSurface, string> = {
-    flashcards: `Revision flashcards for Cambridge ${ref.code} ${lesson.title} (syllabus ${lesson.topicCode}). Flip, recall, then mark a real past-paper question.`,
-    faq: `Frequently asked questions for ${ref.code} ${lesson.title}. Direct answers first, then deeper explanation — then practise with marking.`,
-    quiz: `Quick-check quiz for ${ref.code} ${lesson.title}. Check yourself, then mark a past-paper question on the same syllabus point.`,
-    questions: `Practice and worked examples for ${ref.code} ${lesson.title}. Short previews only — attempt the full question in MarkScheme against the official scheme.`,
-    mistakes: `Common exam mistakes on ${ref.code} ${lesson.title}. Learn what loses marks, then practise the topic with Examiner’s Ink.`,
+    flashcards: `Revision flashcards for Cambridge ${subjectRef.code} ${lesson.title} (syllabus ${lesson.topicCode}). Flip, recall, then mark a real past-paper question.`,
+    faq: `Frequently asked questions for ${subjectRef.code} ${lesson.title}. Direct answers first, then deeper explanation — then practise with marking.`,
+    quiz: `Quick-check quiz for ${subjectRef.code} ${lesson.title}. Check yourself, then mark a past-paper question on the same syllabus point.`,
+    questions: `Practice and worked examples for ${subjectRef.code} ${lesson.title}. Short previews only — attempt the full question in MarkScheme against the official scheme.`,
+    mistakes: `Common exam mistakes on ${subjectRef.code} ${lesson.title}. Learn what loses marks, then practise the topic with Examiner’s Ink.`,
   }
 
   const examTips =
@@ -107,7 +107,7 @@ export function CaieSurfacePage({
         breadcrumbs={[
           { name: 'Home', path: '/' },
           { name: 'CAIE', path: '/caie' },
-          { name: `${ref.code} ${ref.name}`, path: ref.hubPath },
+          { name: `${subjectRef.code} ${subjectRef.name}`, path: subjectRef.hubPath },
           { name: lesson.title, path: lessonPath },
           { name: titles[surface], path },
         ]}
@@ -115,19 +115,19 @@ export function CaieSurfacePage({
       {structured.length ? <JsonLd data={structured} /> : null}
 
       <MarketingHero
-        label={`${ref.code} · ${lesson.topicCode}`}
+        label={`${subjectRef.code} · ${lesson.topicCode}`}
         title={titles[surface]}
         lead={leads[surface]}
         breadcrumbs={[
           { name: 'Home', path: '/' },
-          { name: `${ref.code}`, path: ref.hubPath },
+          { name: `${subjectRef.code}`, path: subjectRef.hubPath },
           { name: lesson.title, path: lessonPath },
           { name: surface, path },
         ]}
       />
 
       <MarketingSection className="!pt-0">
-        <CaieGraphNav code={ref.code} lesson={lesson} active={surface} />
+        <CaieGraphNav code={subjectRef.code} lesson={lesson} active={surface} />
 
         {surface === 'flashcards' ? (
           <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
@@ -157,7 +157,7 @@ export function CaieSurfacePage({
         {surface === 'quiz' ? (
           <CaieQuizSurface
             lesson={lesson}
-            quizHref={caieSurfacePath(ref.code, lesson.slug, 'quiz') ?? path}
+            quizHref={caieSurfacePath(subjectRef.code, lesson.slug, 'quiz') ?? path}
           />
         ) : null}
 
@@ -240,12 +240,12 @@ export function CaieSurfacePage({
 
         <div className="mt-10 flex flex-wrap gap-3">
           <Link href={markHref} className="ec-btn-primary min-h-[48px]">
-            Mark a {ref.code} question on this topic
+            Mark a {subjectRef.code} question on this topic
           </Link>
           <Link href={lessonPath} className="ec-btn-ghost min-h-[48px]">
             Full lesson
           </Link>
-          <Link href={`/courses/${ref.code}/${lesson.slug}`} className="ec-btn-ghost min-h-[48px]">
+          <Link href={`/courses/${subjectRef.code}/${lesson.slug}`} className="ec-btn-ghost min-h-[48px]">
             Open in course studio
           </Link>
         </div>

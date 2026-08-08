@@ -29,11 +29,17 @@ export type SubjectOption = {
   markingType: MarkingType
 }
 
+/**
+ * Onboarding board ids must match ExamSystem.profileBoardId
+ * (`lib/exam-systems/adapters/*`). Enable only when a shell + mark path exists.
+ */
 export const BOARDS: ProfileOption[] = [
   { id: 'Cambridge International', label: 'Cambridge International', enabled: true },
-  { id: 'Edexcel', label: 'Edexcel', enabled: false },
-  { id: 'AQA', label: 'AQA', enabled: false },
   { id: 'IB', label: 'IB Diploma', enabled: true },
+  { id: 'Edexcel', label: 'Pearson Edexcel', enabled: false },
+  { id: 'OxfordAQA', label: 'OxfordAQA', enabled: false },
+  { id: 'AQA', label: 'AQA', enabled: false },
+  { id: 'AP', label: 'AP (College Board)', enabled: false },
 ]
 
 export const IB_BOARD_ID = 'IB'

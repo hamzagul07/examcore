@@ -6,14 +6,16 @@ import {
 } from '@/lib/courses/ib'
 import type { CourseLesson } from '@/lib/courses/types'
 import {
-  CAIE_SURFACES,
-  type CaieSurface,
+  LESSON_SURFACES,
   isIndexableLesson,
   lessonHasSurface,
-} from '@/lib/seo/caie-graph'
+  type LessonSurface,
+} from '@/lib/exam-systems/surfaces'
 
-export type { CaieSurface as IbSurface }
-export { CAIE_SURFACES as IB_SURFACES, lessonHasSurface, isIndexableLesson }
+export type IbSurface = LessonSurface
+export { LESSON_SURFACES as IB_SURFACES, lessonHasSurface, isIndexableLesson }
+/** @deprecated Prefer LessonSurface / LESSON_SURFACES */
+export type { LessonSurface as CaieSurface }
 
 export function ibLessonPath(slug: string, lessonSlug: string): string {
   return `/ib/courses/${slug}/${lessonSlug}`
@@ -22,7 +24,7 @@ export function ibLessonPath(slug: string, lessonSlug: string): string {
 export function ibSurfacePath(
   slug: string,
   lessonSlug: string,
-  surface: CaieSurface
+  surface: LessonSurface
 ): string {
   return `/ib/courses/${slug}/${lessonSlug}/${surface}`
 }
@@ -30,13 +32,13 @@ export function ibSurfacePath(
 export function getAllIbSurfaceParams(): Array<{
   slug: string
   lesson: string
-  surface: CaieSurface
+  surface: LessonSurface
 }> {
-  const out: Array<{ slug: string; lesson: string; surface: CaieSurface }> = []
+  const out: Array<{ slug: string; lesson: string; surface: LessonSurface }> = []
   for (const slug of getIbCourseSlugs()) {
     for (const lesson of getIbCourseLessons(slug)) {
       if (!isIndexableLesson(lesson)) continue
-      for (const surface of CAIE_SURFACES) {
+      for (const surface of LESSON_SURFACES) {
         if (!lessonHasSurface(lesson, surface)) continue
         out.push({ slug, lesson: lesson.slug, surface })
       }
@@ -48,7 +50,7 @@ export function getAllIbSurfaceParams(): Array<{
 export function resolveIbSurface(
   slug: string,
   lessonSlug: string,
-  surface: CaieSurface
+  surface: LessonSurface
 ): CourseLesson | null {
   const lesson = getIbCourseLesson(slug, lessonSlug)
   if (!lesson || !isIndexableLesson(lesson) || !lessonHasSurface(lesson, surface)) {

@@ -17,7 +17,7 @@ export type FullMarksRewrite = {
 
 export type FullMarksRewriteInput = {
   subjectName: string
-  board: 'Cambridge' | 'IB Diploma'
+  board: 'Cambridge' | 'IB Diploma' | 'Edexcel'
   questionText: string
   /** The student's answer as OCR'd from their script. */
   studentAnswer: string

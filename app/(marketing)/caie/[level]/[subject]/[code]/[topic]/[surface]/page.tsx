@@ -56,7 +56,7 @@ export default async function CaieLessonSurfaceRoute({ params }: Props) {
   const path = caieSurfacePath(code, resolved.lesson.slug, surface)!
   return (
     <CaieSurfacePage
-      ref={resolved.ref}
+      subjectRef={resolved.ref}
       lesson={resolved.lesson}
       surface={surface}
       path={path}

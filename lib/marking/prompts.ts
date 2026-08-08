@@ -213,7 +213,8 @@ export function buildPointBasedMarkingPrompt(
   totalMarks: number,
   markSchemeJson: string,
   ocrText: string,
-  syllabusBlock?: string
+  syllabusBlock?: string,
+  opts?: { board?: 'cambridge' | 'edexcel' }
 ): string {
   const taggingBlock = syllabusBlock
     ? `\n${syllabusBlock}\n`
@@ -231,7 +232,16 @@ export function buildPointBasedMarkingPrompt(
     ? `TOTAL MARKS AVAILABLE: ${totalMarks}`
     : `TOTAL MARKS AVAILABLE: determine from the question itself (marks are usually shown as "[3]" or "(Total 8 marks)"); set "total_marks" to that number.`
 
-  return `You are a Cambridge International A-Level ${subjectName} examiner. Mark this student's work against the official mark scheme using point-based Cambridge conventions (B1/M1/A1/C1 marks, "award 1 mark for...", ECF where stated).
+  const edexcel = opts?.board === 'edexcel'
+  const examinerLine = edexcel
+    ? `You are a Pearson Edexcel International A Level ${subjectName} examiner. Mark this student's work against the mark scheme using Edexcel IAL analytic conventions (M marks for method, A marks for accuracy/final answers, B marks for independent correct statements). Apply follow-through (FT) on dependent accuracy when the method is valid. Accept equivalent forms ("oe" / or equivalent). Watch units and significant figures when the question requires them.`
+    : `You are a Cambridge International A-Level ${subjectName} examiner. Mark this student's work against the official mark scheme using point-based Cambridge conventions (B1/M1/A1/C1 marks, "award 1 mark for...", ECF where stated).`
+
+  const awardLine = edexcel
+    ? `For each discrete mark in the scheme: decide if earned, explain why in plain English. Apply FT/ECF where appropriate. Accept equivalent correct forms and valid alternative methods.`
+    : `For each discrete mark in the scheme: decide if earned, explain why in plain English. Apply ECF rules. Accept equivalent correct forms.`
+
+  return `${examinerLine}
 
 QUESTION:
 ${questionText}
@@ -244,7 +254,7 @@ ${markSchemeJson}
 STUDENT'S TRANSCRIBED ANSWER:
 ${ocrText}
 
-For each discrete mark in the scheme: decide if earned, explain why in plain English. Apply ECF rules. Accept equivalent correct forms.
+${awardLine}
 
 ${TONE_BLOCK}
 ${taggingBlock}
@@ -259,7 +269,7 @@ Return ONLY this JSON:
   "marks_awarded": [
     {
       "mark_id": 1,
-      "type": "B1",
+      "type": "M1",
       "earned": true,
       "reasoning": "...",
       "error_classification": "no_error",

@@ -2,40 +2,34 @@
  * One place to answer "which board is this subject, and what is its canonical
  * content code".
  *
- * This kept going wrong because subject codes arrive in two shapes and the two
- * course routes disagree about which they pass:
+ * Phase E0: behaviour is unchanged for CAIE + IB, but resolution goes through
+ * the ExamSystem registry (`lib/exam-systems`) so new boards are adapters, not
+ * another `startsWith` fork.
  *
  *   /courses/<code>              -> "9702", "ib-biology-hl"   (content dir)
  *   /ib/courses/<slug>           -> "biology-hl"              (catalog slug)
  *
- * Every site that tested `code.startsWith('ib-')` was therefore correct for the
- * legacy route and silently wrong for the canonical one. That single mistake
- * produced, on live indexed pages: "40 premium lessons live for Cambridge
- * biology-hl Biology", diagram alt text reading "for Cambridge ib-biology-hl",
- * and an explain endpoint that 404'd on every IB lesson while prompting the
- * model for Cambridge B1/M1/A1 marks on markband subjects.
- *
- * The reliable discriminator is not the prefix, it is the shape: **every
- * Cambridge syllabus code is numeric** (2281 … 9990) and no IB slug is. That
- * holds for both shapes above, so no caller has to know which one it received.
- * `lib/courses/board.test.ts` asserts it against the real content directory.
+ * The reliable discriminator for live boards remains: **every Cambridge
+ * syllabus code is numeric**; IB owns non-numeric slugs until another adapter
+ * claims them (Edexcel unit codes will register ahead of IB in resolve order).
  */
 
-export type Board = 'cambridge' | 'ib'
+import {
+  resolveExamSystemForSubject,
+  type ExamSystemId,
+} from '@/lib/exam-systems'
 
-/** Cambridge syllabus codes are 4-digit (a few are 4-digit with a leading 2/7). */
-const CAMBRIDGE_CODE = /^\d+$/
+/** @deprecated Prefer ExamSystemId — kept as the historical courses/mark alias. */
+export type Board = ExamSystemId
 
 /**
  * Board for a course subject code, in either shape.
  *
  * `explicit` wins when a caller genuinely knows better (a route that carries the
- * board in its own path, say). It exists so callers never have to fall back to
- * sniffing, not because the derivation is unreliable.
+ * board in its own path, say).
  */
 export function resolveBoard(code: string, explicit?: Board): Board {
-  if (explicit) return explicit
-  return CAMBRIDGE_CODE.test(code.trim()) ? 'cambridge' : 'ib'
+  return resolveExamSystemForSubject(code, explicit).id
 }
 
 export function isIbSubjectCode(code: string, explicit?: Board): boolean {
@@ -44,7 +38,7 @@ export function isIbSubjectCode(code: string, explicit?: Board): boolean {
 
 /** Human label. Cambridge keeps its code — "9702" is what students search. */
 export function boardLabel(code: string, explicit?: Board): string {
-  return resolveBoard(code, explicit) === 'ib' ? 'IB Diploma' : `Cambridge ${code}`
+  return resolveExamSystemForSubject(code, explicit).boardLabel(code)
 }
 
 /**
@@ -53,9 +47,7 @@ export function boardLabel(code: string, explicit?: Board): string {
  * stays as is.
  */
 export function contentSubjectCode(code: string, explicit?: Board): string {
-  const trimmed = code.trim()
-  if (resolveBoard(trimmed, explicit) === 'cambridge') return trimmed
-  return trimmed.startsWith('ib-') ? trimmed : `ib-${trimmed}`
+  return resolveExamSystemForSubject(code, explicit).contentSubjectCode(code)
 }
 
 /**
@@ -63,9 +55,7 @@ export function contentSubjectCode(code: string, explicit?: Board): string {
  * `contentSubjectCode`. Cambridge codes pass through unchanged.
  */
 export function catalogSubjectSlug(code: string, explicit?: Board): string {
-  const trimmed = code.trim()
-  if (resolveBoard(trimmed, explicit) === 'cambridge') return trimmed
-  return trimmed.startsWith('ib-') ? trimmed.slice(3) : trimmed
+  return resolveExamSystemForSubject(code, explicit).catalogSubjectSlug(code)
 }
 
 /** Level from a course slug: "biology-hl" -> HL. Defaults to SL. */

@@ -15,6 +15,17 @@ const BASE = 'https://markscheme.app'
 const TIERS = {
   1: [
     '/',
+    '/results-2026',
+    '/results-2026/ib',
+    '/results-2026/caie/9702',
+    '/results-2026/caie/9709',
+    '/results-2026/caie/9700',
+    '/results-2026/caie/9701',
+    '/tools/will-my-grade-hold',
+    '/caie/a-level/physics/9702',
+    '/caie/a-level/mathematics/9709',
+    '/caie/a-level/biology/9700',
+    '/caie/a-level/chemistry/9701',
     '/guides/grade-boundaries',
     '/blog/cambridge-post-exam-results-prep-2026',
     '/blog/cambridge-may-june-2026-grade-thresholds-what-to-expect',
@@ -22,6 +33,7 @@ const TIERS = {
     '/tools/grade-boundary-calculator',
     '/insights',
   ],
+
   2: [
     '9709-mathematics',
     '9700-biology',

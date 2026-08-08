@@ -55,6 +55,8 @@ export default function StudentDetailPage() {
     )
   }
 
+  const marked = hasMarkedWork(student.attemptCount)
+
   return (
     <TeacherPageContainer className="ms-teacher-student max-w-4xl">
       <TeacherBackLink href={`/teacher/classroom/${id}/students`}>
@@ -66,29 +68,31 @@ export default function StudentDetailPage() {
         title={student.name}
         lead={
           <>
-            Predicted grade: {student.predictedGrade} · {student.attemptCount}{' '}
-            attempts · {student.accuracy.toFixed(0)}% accuracy
+            Predicted grade: {student.predictedGrade} ·{' '}
+            {attemptSummary(student.attemptCount, student.accuracy)}
           </>
         }
       />
 
       <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        {/* Every figure here is derived from marked work, so with none they are
+            unknown rather than zero — see lib/teacher/stat-display. */}
         <div className="ec-card p-5">
           <div className="ec-label-tech mb-2">ACCURACY</div>
           <div className="text-2xl font-bold text-[var(--ec-text-primary)]">
-            {student.accuracy.toFixed(0)}%
+            {percentOrDash(student.accuracy, student.attemptCount)}
           </div>
         </div>
         <div className="ec-card p-5">
           <div className="ec-label-tech mb-2">SPEED</div>
           <div className="text-2xl font-bold text-[var(--ec-text-primary)]">
-            {student.timePerMark.toFixed(1)} min/mark
+            {marked ? `${student.timePerMark.toFixed(1)} min/mark` : NO_DATA}
           </div>
         </div>
         <div className="ec-card p-5">
           <div className="ec-label-tech mb-2">COVERAGE</div>
           <div className="text-2xl font-bold text-[var(--ec-text-primary)]">
-            {student.coverage.toFixed(0)}%
+            {percentOrDash(student.coverage, student.attemptCount)}
           </div>
         </div>
       </div>

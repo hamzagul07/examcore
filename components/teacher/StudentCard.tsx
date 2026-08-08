@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { attemptSummary } from '@/lib/teacher/stat-display'
 import type { StudentQuadrantMetric } from '@/lib/teacher-analytics'
 
 const QUADRANT_LABELS: Record<StudentQuadrantMetric['quadrant'], string> = {
@@ -38,8 +39,7 @@ export function StudentCard({
         <div>
           <h3 className="font-bold text-[var(--ec-text-primary)]">{name}</h3>
           <p className="mt-1 text-sm text-[var(--ec-text-secondary)]">
-            {attemptCount} attempt{attemptCount === 1 ? '' : 's'} ·{' '}
-            {accuracy.toFixed(0)}% accuracy
+            {attemptSummary(attemptCount, accuracy)}
           </p>
         </div>
         <span className="rounded-lg ec-tint-success-chip px-2 py-1 text-sm font-bold">

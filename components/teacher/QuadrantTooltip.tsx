@@ -1,3 +1,4 @@
+import { NO_DATA, percentOrDash } from '@/lib/teacher/stat-display'
 import type { StudentQuadrantMetric } from '@/lib/teacher-analytics'
 
 export function QuadrantTooltip({ student }: { student: StudentQuadrantMetric }) {
@@ -5,8 +6,10 @@ export function QuadrantTooltip({ student }: { student: StudentQuadrantMetric })
     <div className="absolute right-2 top-2 z-20 max-w-[calc(100%-1rem)] min-w-0 rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface)]/95 p-3 shadow-2xl backdrop-blur-xl sm:min-w-[220px] sm:p-4">
       <h4 className="mb-1 font-bold text-[var(--ec-text-primary)]">{student.name}</h4>
       <div className="mb-3 text-xs text-[var(--ec-text-secondary)]">
-        Accuracy {student.accuracy.toFixed(0)}% ·{' '}
-        {student.timePerMark.toFixed(1)} min/mark
+        Accuracy {percentOrDash(student.accuracy, student.attemptCount)} ·{' '}
+        {student.attemptCount > 0
+          ? `${student.timePerMark.toFixed(1)} min/mark`
+          : NO_DATA}
       </div>
       <div className="space-y-2 text-sm">
         <div className="flex justify-between">

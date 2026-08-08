@@ -54,6 +54,8 @@ primary CTA — use UMS / cash-in + `/mark?board=edexcel`.
 
 ---
 
+**Paste-ready pack for this week:** [READY_TO_POST_NOW.md](./READY_TO_POST_NOW.md)
+
 ## Social copy (customize lightly — do not paste identical text everywhere)
 
 ### A. Pre-results (9–10 Aug) — TikTok / Reels / Shorts caption

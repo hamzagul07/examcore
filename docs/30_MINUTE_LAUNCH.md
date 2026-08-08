@@ -46,14 +46,15 @@ Open [DIRECTORY_SUBMISSIONS.md](./DIRECTORY_SUBMISSIONS.md). Paste fields, submi
 
 ## Results Day week (priority through 18 Aug)
 
-Open [RESULTS_DAY_2026_OPS.md](./RESULTS_DAY_2026_OPS.md) — social, email, Reddit
-copy pointing at `/results-2026` + `/tools/will-my-grade-hold`.
+**Start here:** [READY_TO_POST_NOW.md](./READY_TO_POST_NOW.md) (bios + captions + Reddit + 11 Aug).  
+Full variants: [RESULTS_DAY_2026_OPS.md](./RESULTS_DAY_2026_OPS.md).
 
 - [ ] Pin bio to will-my-grade-hold
-- [ ] One pre-results post + one 11 Aug morning post
-- [ ] Two Reddit barnacle replies (Results Day section — Cambridge)
-- [ ] **One Edexcel IAL reply** (ops copy **F** or barnacle in [REDDIT_BARNACLE_COMMENTS.md](./REDDIT_BARNACLE_COMMENTS.md)) ? UMS guide + `/mark?board=edexcel`
+- [ ] One pre-results Cambridge post + one Edexcel IAL post/Story
+- [ ] Schedule 11 Aug morning post
+- [ ] Two Reddit barnacle replies (Cambridge) + **one Edexcel IAL reply**
 - [ ] Email broadcast if you have a list
+- [ ] Optional: Edexcel tutor email — row 11 in [OUTREACH_DM_EMAILS.md](./OUTREACH_DM_EMAILS.md)
 
 ## Week 1 (optional, 30 min/day)
 

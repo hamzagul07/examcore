@@ -60,7 +60,8 @@ pnpm seo:ai-visibility   # refresh monthly worksheet
 | WMA11 | `/blog/edexcel-wma11-pure-mathematics-1-guide-2026` |
 | Mark CTA | `/mark?board=edexcel&subject=WMA11` |
 
-Distribution copy: [RESULTS_DAY_2026_OPS.md](./RESULTS_DAY_2026_OPS.md) (block **F** + Reddit IAL barnacle).  
+Paste pack (do this first): [READY_TO_POST_NOW.md](./READY_TO_POST_NOW.md).  
+Full variants: [RESULTS_DAY_2026_OPS.md](./RESULTS_DAY_2026_OPS.md) (block **F** + Reddit IAL barnacle).  
 Scorecard still **0** `/edexcel` shell sessions — posting beats shipping more dialects.
 
 ## What moves citations next

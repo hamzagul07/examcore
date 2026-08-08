@@ -87,37 +87,34 @@ No pressure if it's not a fit � thanks for the work you do for students.
 
 ---
 
+## Row 11 — Edexcel IAL Maths tutor / centre
+
+**Subject:** WMA11 second-pass marking (Edexcel International)
+
+Hi [Name],
+
+I built **MarkScheme** for the gap between sessions: students photograph handwritten answers and get scheme-style feedback. We now support **Edexcel International A Level Maths** units (WMA / WME / WST) with UMS context — not Cambridge 9709 dialect.
+
+Useful links for your resource list:
+
+- Mark WMA11: https://markscheme.app/mark?board=edexcel&subject=WMA11&utm_source=outreach&utm_medium=email&utm_campaign=edexcel-tutor  
+- UMS / cash-in explainer: https://markscheme.app/blog/edexcel-ial-maths-grade-boundaries-ums-2026?utm_source=outreach&utm_medium=email&utm_campaign=edexcel-tutor  
+- Board hub: https://markscheme.app/edexcel?utm_source=outreach&utm_medium=email&utm_campaign=edexcel-tutor  
+
+Happy to send a one-line blurb if you share packs with students.
+
+Thanks,  
+[Name]
+
+**Blurb (if they ask):**
+
+> **MarkScheme** (markscheme.app) — free second-pass marking from handwriting for Edexcel IAL Maths (WMA11…) plus Cambridge. Not affiliated with Pearson.
+
+---
+
 ## After sending
 
 1. Log **Date** in [OUTREACH_TRACKER.md](./OUTREACH_TRACKER.md)  
 2. When a link goes live, add **Live URL** and bump **Live count**  
 3. Re-test Perplexity in 2-4 weeks ([ai-visibility-checklist.md](./generated/ai-visibility-checklist.md))
-
-MarkScheme.
-Hi there,
-
-
-Here are trending discussions in Exam Room this week:
-
-
-1. How do you structure a 9708 economics essay for the evaluation marks? (s/9708 · 2 pts · 3 comments)
-
-https://markscheme.app/community/posts/b5000001-0000-4000-8000-000000000001
-
-2. How did everyone find the June 2026 Physics A-Level papers? (s/9702 · 1 pts · 3 comments)
-
-https://markscheme.app/community/posts/b2000001-0000-4000-8000-000000000001
-
-3. May/June 2024 Physics A-Level grade boundaries — what are you expecting? (s/9702 · 2 pts · 4 comments)
-
-https://markscheme.app/community/posts/b1000001-0000-4000-8000-000000000001
-
-
-Browse all rooms: https://markscheme.app/community
-
-
-Unsubscribe from weekly digest: https://markscheme.app/community/unsubscribe?token=N2UzNDQ0ZjUtMWVmYS00ZWU1LTk4ZDktNjY2NDY5ZGNjNDFhLmRpZ2VzdC4xODE3MjgzNjYyMjI1LkM5azBJdk9iZ2pMUUlYeHNEWWRrTVFWSVMzNE1ETnpROXlKSUdmZmxzeVU
-
-
-— MarkScheme Exam Room
 

@@ -354,11 +354,11 @@ export const IB_SUBJECT_OPTIONS: SubjectOption[] = IB_MARKING_PROFILES.map((p) =
 const IB_SUBJECT_BY_ID = new Map(IB_SUBJECT_OPTIONS.map((s) => [s.id, s]))
 
 /** Wave 1 IAL Maths units — stored as subject ids so mark resolves WMA/WME/WST codes. */
-export const EDEXCEL_SUBJECT_OPTIONS: SubjectOption[] = getEdexcelMarkableUnitCodes()
-  .map((code) => {
+export const EDEXCEL_SUBJECT_OPTIONS: SubjectOption[] = getEdexcelMarkableUnitCodes().flatMap(
+  (code) => {
     const meta = getEdexcelUnitMeta(code)
-    if (!meta) return null
-    return {
+    if (!meta) return []
+    const option: SubjectOption = {
       id: code,
       label: `${meta.unit.name} (${code})`,
       code,
@@ -366,10 +366,11 @@ export const EDEXCEL_SUBJECT_OPTIONS: SubjectOption[] = getEdexcelMarkableUnitCo
       levels: ['AS Level', 'A-Level'],
       enabled: true,
       markingEnabled: true,
-      markingType: 'point_based' as const,
+      markingType: 'point_based',
     }
-  })
-  .filter((s): s is SubjectOption => s != null)
+    return [option]
+  }
+)
 
 const EDEXCEL_SUBJECT_BY_ID = new Map(EDEXCEL_SUBJECT_OPTIONS.map((s) => [s.id, s]))
 

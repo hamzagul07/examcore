@@ -78,6 +78,17 @@ export default function GradeCalculatorPage() {
 
       <MarketingSection className="!pt-0">
         <ResultsDayBanner className="mb-10" />
+        <div className="mb-8 flex flex-wrap gap-3">
+          <Link href="/tools/will-my-grade-hold" className="ec-btn-primary ec-btn-primary--sm">
+            Will my grade hold? <ArrowRight className="h-4 w-4" />
+          </Link>
+          <Link href="/results-2026" className="ec-btn-ghost ec-btn-ghost--sm">
+            Results Day hub
+          </Link>
+          <Link href="/guides/grade-boundaries" className="ec-btn-ghost ec-btn-ghost--sm">
+            All subject boundaries
+          </Link>
+        </div>
         <GradeBoundaryCalculator />
 
         <div className="mt-12">
@@ -123,7 +134,7 @@ export default function GradeCalculatorPage() {
           </ul>
         </div>
 
-        <div className="ms-hub-card mt-12 text-center">
+        <div className="ms-hub-card ec-card--paper mt-12 text-center">
           <h2 className="ms-h3">Want to know what each mark was worth?</h2>
           <p className="ms-lead mx-auto" style={{ marginTop: 10, maxWidth: 480 }}>
             A grade estimate tells you where you landed. MarkScheme tells you <em>why</em> — upload your

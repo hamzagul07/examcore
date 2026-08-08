@@ -134,14 +134,17 @@ export default async function ClusterGuidePage({ params }: Props) {
 
         {isGradeBoundaries && (
           <div className="mb-10 flex flex-wrap gap-3">
-            <Link href="/tools/grade-boundary-calculator" className="ec-btn-primary ec-btn-primary--sm">
-              Grade calculator <ArrowRight className="h-4 w-4" />
+            <Link href="/tools/will-my-grade-hold" className="ec-btn-primary ec-btn-primary--sm">
+              Will my grade hold? <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link href="/blog/how-to-read-cambridge-grade-boundaries" className="ec-btn-ghost ec-btn-ghost--sm">
-              How boundaries work
+            <Link href="/tools/grade-boundary-calculator" className="ec-btn-ghost ec-btn-ghost--sm">
+              Grade calculator
+            </Link>
+            <Link href="/results-2026" className="ec-btn-ghost ec-btn-ghost--sm">
+              Results Day hub
             </Link>
             <Link href="/blog/cambridge-results-day-august-2026-guide" className="ec-btn-ghost ec-btn-ghost--sm">
-              Results day 2026
+              Results day guide
             </Link>
             <Link
               href="/edexcel/international-a-level/mathematics/grade-boundaries"

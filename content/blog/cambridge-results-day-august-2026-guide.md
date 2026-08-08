@@ -22,7 +22,7 @@ Results day is a **timestamp**, not a verdict on your future. Cambridge releases
 | When are threshold PDFs? | **~13 August** (components; before IGCSE grades) |
 | Where to log in? | School portal / [myresults.cie.org.uk](https://myresults.cie.org.uk) |
 | EAR deadline (June series)? | **20 September 2026** (school cut-offs often mid-August) |
-| Waiting before August? | [Post-exam prep checklist](/blog/cambridge-post-exam-results-prep-2026) |
+| Waiting before August? | [Will my grade hold?](/tools/will-my-grade-hold) · [Results Day hub](/results-2026) · [Post-exam prep](/blog/cambridge-post-exam-results-prep-2026) |
 
 ## Cambridge June 2026 results dates
 
@@ -43,9 +43,9 @@ Source: [Cambridge key dates June 2026 series (international)](https://www.cambr
 | What | When (June 2026 series) | Where on MarkScheme |
 |------|-------------------------|---------------------|
 | **Statement of results** (grades) | AS & A Level **11 August**; IGCSE/O Level **18 August** | Your school portal / [myresults.cie.org.uk](https://myresults.cie.org.uk) |
-| **Grade threshold tables** (raw marks per component) | Typically **~13 August** for the June series | [Grade boundaries hub](/guides/grade-boundaries) · [calculator](/tools/grade-boundary-calculator) |
+| **Grade threshold tables** (raw marks per component) | Typically **~13 August** for the June series | [Grade boundaries hub](/guides/grade-boundaries) · [calculator](/tools/grade-boundary-calculator) · [Will my grade hold?](/tools/will-my-grade-hold) |
 
-Threshold tables explain how raw marks mapped to grades for the cohort — they are **not** a forecast for next year's exams. Once Cambridge publishes June 2026 PDFs, we load verified component marks into each [syllabus calculator](/tools/grade-boundary-calculator).
+Threshold tables explain how raw marks mapped to grades for the cohort — they are **not** a forecast for next year's exams. Before the PDFs land, stress-test your estimate on [Will my grade hold?](/tools/will-my-grade-hold) and the [Results Day 2026 hub](/results-2026). Once Cambridge publishes June 2026 PDFs, we load verified component marks into each [syllabus calculator](/tools/grade-boundary-calculator).
 
 ### Grade boundary guides by subject (2026)
 

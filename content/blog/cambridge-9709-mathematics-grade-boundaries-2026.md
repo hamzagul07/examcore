@@ -20,9 +20,9 @@ Official **9709 Mathematics** grade boundaries for the **June 2026** series publ
 | When are **threshold tables** published? | **~13 August 2026** — per-component raw marks |
 | What is a grade boundary? | Minimum **raw mark** for each grade (A*, A, B…) per paper |
 | Can I predict 2026 thresholds? | Use **June/Nov 2025** sessions as a bracket — not a guarantee |
-| Best estimate tool? | [9709 grade calculator](/tools/grade-boundary-calculator/9709) |
+| Best estimate tool? | [Will my grade hold?](/tools/will-my-grade-hold?code=9709) · [9709 calculator](/tools/grade-boundary-calculator/9709) |
 
-Waiting for results? [Post-exam prep checklist](/blog/cambridge-post-exam-results-prep-2026) · [Results day guide](/blog/cambridge-results-day-august-2026-guide)
+Waiting for results? [Will my grade hold?](/tools/will-my-grade-hold?code=9709) · [Results Day hub](/results-2026/caie/9709) · [Results day guide](/blog/cambridge-results-day-august-2026-guide)
 
 ## What are grade boundaries?
 
@@ -45,7 +45,8 @@ Each paper has separate thresholds. Structure detail: [9709 past papers guide](/
 
 1. Complete a recent A-Level paper under timed conditions for your exact entry route.  
 2. Mark strictly to the official scheme — log every lost mark before convincing yourself an answer "basically counts".  
-3. Compare component raw marks to June 2024/2023 in the [9709 calculator](/tools/grade-boundary-calculator/9709) until the verified June 2026 PDF loads.
+3. Compare component raw marks to June 2024/2023 in the [9709 calculator](/tools/grade-boundary-calculator/9709) until the verified June 2026 PDF loads.  
+4. Run the same numbers through [Will my grade hold?](/tools/will-my-grade-hold?code=9709) so you see how sensitive your grade is if thresholds move.
 
 ## Frequently asked questions
 

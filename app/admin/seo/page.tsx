@@ -78,8 +78,8 @@ export default async function AdminSeoPage() {
         <h2 className="ms-h3">Top opportunities</h2>
         {summary.items.length === 0 ? (
           <p className="ms-body-2 mt-3">
-            No GSC rows yet. Configure weekly ingest (`GSC_SITE_URL` + service account) or
-            wait for the dry-run cron. Meanwhile mine site search below.
+            No classified opportunities in this sample yet. Ingest runs Mondays via
+            `/api/cron/gsc-ingest`. Meanwhile mine site search below.
           </p>
         ) : (
           <ul className="mt-4 space-y-2">

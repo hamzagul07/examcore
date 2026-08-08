@@ -27,10 +27,13 @@ const TIERS = {
     '/caie/a-level/biology/9700',
     '/caie/a-level/chemistry/9701',
     '/guides/grade-boundaries',
+    '/blog/cambridge-9709-mathematics-grade-boundaries-2026',
     '/blog/cambridge-post-exam-results-prep-2026',
     '/blog/cambridge-may-june-2026-grade-thresholds-what-to-expect',
     '/blog/cambridge-results-day-august-2026-guide',
     '/tools/grade-boundary-calculator',
+    '/tools/grade-boundary-calculator/9709',
+    '/ib/past-papers/chemistry-hl',
     '/insights',
   ],
 

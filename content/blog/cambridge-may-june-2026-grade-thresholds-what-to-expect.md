@@ -21,7 +21,8 @@ Search traffic spikes every June for **"Cambridge grade thresholds 2026 predicti
 | Can anyone predict them accurately beforehand? | **No** — depends on global cohort performance |
 | Do paper leaks lower thresholds? | **Not guaranteed** — voids and assessed marks change the picture |
 | Where are official tables? | Cambridge PDFs + our [calculator](/tools/grade-boundary-calculator) |
-| What should students do? | Mark past papers; ignore fake spreadsheets |
+| What should students do? | [Will my grade hold?](/tools/will-my-grade-hold) · mark past papers · ignore fake spreadsheets |
+| Results Day hub | [Results Day 2026](/results-2026) |
 
 > **Key takeaway:** Thresholds **follow** performance; they do not reward students who gambled on predictions.
 

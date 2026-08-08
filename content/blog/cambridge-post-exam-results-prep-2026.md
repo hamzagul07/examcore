@@ -19,7 +19,8 @@ The weeks **after** your last Cambridge paper are dangerous: either you forget e
 |----------|--------|
 | When are June 2026 results? | AS/A-Level **11 August**; IGCSE/O Level **18 August** (06:00 GMT) |
 | When are threshold tables? | **~13 August** (A-Level components) |
-| Can I predict my grade now? | **Estimate** from marked mocks — not from TikTok thresholds |
+| Can I predict my grade now? | [Will my grade hold?](/tools/will-my-grade-hold) + marked mocks — not TikTok thresholds |
+| Results Day hub | [Results Day 2026](/results-2026) |
 | Should I revise for retakes already? | Light **technique** review only; rest first |
 | What to save? | Mock scripts, marked past papers, candidate details |
 | What to ignore? | "Leaked" papers, fake threshold spreadsheets |

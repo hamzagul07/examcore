@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase-server'
 import { createOnboardingSaveToken } from '@/lib/onboarding/save-token'
 import { TeacherStartForm } from '@/components/teacher/TeacherStartForm'
+import { TeacherNav } from '@/components/teacher/TeacherNav'
 
 export const dynamic = 'force-dynamic'
 
@@ -45,7 +46,11 @@ export default async function TeacherStartPage() {
   const saveToken = createOnboardingSaveToken(user.id)
 
   return (
-    <div className="ms-teacher-start-shell">
+    <>
+      {/* The teacher header, without its links: this visitor is not a teacher
+          yet, so Classrooms and Reviews would both refuse them. */}
+      <TeacherNav showNav={false} />
+      <div className="ms-teacher-start-shell">
       <div className="ms-teacher-start-card">
         <p className="ec-label-tech ms-teacher-start__eyebrow">FOR TEACHERS</p>
         <h1 className="ms-teacher-start__title">Set up your first class</h1>
@@ -55,6 +60,7 @@ export default async function TeacherStartPage() {
         </p>
         <TeacherStartForm saveToken={saveToken} />
       </div>
-    </div>
+      </div>
+    </>
   )
 }

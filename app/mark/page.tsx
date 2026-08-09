@@ -132,9 +132,20 @@ import {
   refreshBillingSummary,
   type FullMarksRewritePayload,
 } from './mark-stream'
-import { MarkFlow } from '@/components/mark-flow/MarkFlow'
-import { MarkingScreen } from '@/components/mark-flow/screens/MarkingScreen'
+import {
+  MarkFlow,
+  type MarkFlowHandle,
+} from '@/components/mark-flow/MarkFlow'
+import {
+  MarkingScreen,
+  MarkingScreenHeader,
+} from '@/components/mark-flow/screens/MarkingScreen'
 import { ResultScreen } from '@/components/mark-flow/screens/ResultScreen'
+import {
+  parsePaperCode,
+  parsePaperSession,
+} from '@/components/mark-flow/parse-paper-meta'
+import type { AvailablePapersMap } from '@/components/mark-flow/MarkFlowPastPaperPicker'
 import { isMarkFlowV2Enabled } from '@/lib/marking/mark-flow-flag'
 
 type SessionInfo = {
@@ -210,6 +221,7 @@ export default function MarkPage() {
   // solutions, feedback) and drives the "this is an example" labelling.
   const [showingExample, setShowingExample] = useState(false)
   const submittingRef = useRef(false)
+  const markFlowRef = useRef<MarkFlowHandle | null>(null)
   // The stream now outlives the reveal — it stays open while the premium
   // rewrite generates — so a second mark can legitimately start while the first
   // is still draining. Every state write originating from a stream is tagged
@@ -289,6 +301,8 @@ export default function MarkPage() {
   const [v2WpPhase, setV2WpPhase] = useState<'upload' | 'marking' | 'result'>(
     'marking'
   )
+  /** True from Confirm→submit until cancel/result — keeps wait shell open before `loading`. */
+  const [v2OneAnswerMarking, setV2OneAnswerMarking] = useState(false)
 
   useEffect(() => {
     setGradeAskDismissed(wasTargetGradeAskDismissed())
@@ -1735,12 +1749,14 @@ export default function MarkPage() {
     if (!payload) return
     setResult(payload)
     setLoading(false)
+    setV2OneAnswerMarking(false)
     submittingRef.current = false
     setMarkProgress(null)
     setMarkContext(null)
     setMarkStreamError(null)
     setPendingResult(null)
     pendingResultRef.current = null
+    markFlowRef.current?.markingDone()
     trackFunnelEvent('mark_result_viewed', {
       attemptId: payload.attempt_id ?? null,
       subject: selectedSubject || null,
@@ -2256,13 +2272,13 @@ export default function MarkPage() {
                 M1
               </span>
             </div>
-            <h1 className="ms-mark-hero-title">
+            <h2 className="ms-mark-hero-title">
               {selectedMarkBoard === 'ib'
                 ? 'IB examiner-style feedback'
                 : selectedMarkBoard === 'edexcel'
                   ? 'Edexcel IAL examiner-style feedback'
                   : 'Cambridge examiner-style feedback'}
-            </h1>
+            </h2>
             <p className="ms-mark-hero-lead">
               Upload photos or PDFs — marked in {MARK_DURATION_SINGLE} with{' '}
               {selectedMarkBoard === 'ib'

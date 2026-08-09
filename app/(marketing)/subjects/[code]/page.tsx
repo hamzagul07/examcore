@@ -29,6 +29,7 @@ import {
   hotTopicsForSubject,
 } from '@/lib/subjects/paper-browser'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
+import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
 import { buildSubjectHubIntro } from '@/lib/seo/hub-intro'
 import { SITE_URL } from '@/lib/site-config'
 import type { CSSProperties } from 'react'
@@ -54,6 +55,14 @@ export async function generateMetadata({ params }: Props) {
 }
 
 const SUBJECT_FAQ = (label: string, code: string, level: string) => [
+  {
+    q: `When are Cambridge ${code} results 2026?`,
+    a: `AS & A Level grades for the June 2026 series release 11 August 2026 (06:00 GMT). Component grade threshold tables typically follow around 13 August. IGCSE/O Level grades release 18 August. Subject checklist: /results-2026/caie/${code}.`,
+  },
+  {
+    q: `How do I check if my ${code} grade will hold?`,
+    a: `Paste your ${label} (${code}) raw mark and recent or official thresholds into Will my grade hold? — you will see the predicted grade and marks to the next boundary. Always confirm against your official statement.`,
+  },
   {
     q: `Can MarkScheme mark ${label} (${code}) handwriting?`,
     a: `Yes — upload photos of your ${level} ${label} answers. We score against Cambridge mark schemes for syllabus ${code}, including method marks and essay bands where applicable.`,
@@ -130,31 +139,21 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
           ← All subjects
         </Link>
 
-        <div className="ms-sd-head">
+        <div className="ms-sd-head" data-code={code}>
           <div className="ms-sd-glyph" aria-hidden>
-            {catalog?.glyph ?? subject.label.charAt(0)}
+            {code}
           </div>
-          <div className="min-w-0 flex-1">
-            <h1 className="ms-h2" style={{ marginBottom: 2 }}>
-              {subject.label}{' '}
-              <em
-                style={{
-                  color: 'var(--ec-text-faint)',
-                  fontSize: '0.6em',
-                }}
-              >
-                · {code}
-              </em>
+          <div className="min-w-0 flex-1" style={{ position: 'relative', zIndex: 1 }}>
+            <p className="ms-overline" style={{ marginBottom: 4 }}>
+              CAIE · {catalog ? subjectLevelChip(catalog) : copy.level}
+            </p>
+            <h1 className="ms-h2" style={{ marginBottom: 6 }}>
+              {subject.label}
             </h1>
             <div className="flex flex-wrap gap-2">
-              <Chip variant="dim">
-                {catalog?.papers ?? 0} past papers
-              </Chip>
-              <Chip variant="dim">
-                CAIE · {catalog ? subjectLevelChip(catalog) : copy.level}
-              </Chip>
+              <Chip variant="dim">{catalog?.papers ?? 0} past papers</Chip>
               {course ? (
-                <Chip variant="ok">free course ✓</Chip>
+                <Chip variant="ok">free course</Chip>
               ) : (
                 <Chip variant="outline">course coming soon</Chip>
               )}
@@ -163,29 +162,31 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
           <Link
             href={`/mark?subject=${code}`}
             className="ec-btn-primary ms-auto shrink-0 px-6 py-3 text-sm"
+            style={{ position: 'relative', zIndex: 1 }}
           >
             Mark a {code} question
           </Link>
         </div>
 
-        <HubSeoIntro
-          headingLevel="h2"
-          heading={intro.heading}
-          paragraph={intro.paragraph}
-          links={[
-            { href: '/mark', label: `Mark ${code} now →`, variant: 'primary' },
-            { href: `/past-papers/${code}`, label: `${code} past papers`, variant: 'ghost' as const },
-            ...(course
-              ? [{ href: course.path, label: `Free ${code} course`, variant: 'ghost' as const }]
-              : []),
-            ...(communityOn
-              ? [{ href: `/community/s/${code}`, label: 'Exam Room community', variant: 'muted' as const }]
-              : []),
-            ...(copy.guideSlug
-              ? [{ href: `/blog/${copy.guideSlug}`, label: `${code} revision guide`, variant: 'muted' as const }]
-              : []),
-          ]}
-        />
+        <ResultsDayBanner subjectCode={code} className="mt-8" />
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          <Link
+            href={`/tools/will-my-grade-hold?code=${encodeURIComponent(code)}`}
+            className="ec-btn-ghost ec-btn-ghost--sm"
+          >
+            Will my {code} grade hold?
+          </Link>
+          <Link href={`/results-2026/caie/${code}`} className="ec-btn-ghost ec-btn-ghost--sm">
+            {code} Results Day hub
+          </Link>
+          <Link
+            href={`/tools/grade-boundary-calculator/${code}`}
+            className="ec-btn-ghost ec-btn-ghost--sm"
+          >
+            {code} calculator
+          </Link>
+        </div>
 
         {communityOn ? (
           <div style={{ marginTop: 32 }}>
@@ -271,10 +272,10 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
               ))}
             </div>
 
-            <div
-              className="ms-sd-card ms-sd-card-pad"
-              style={{ background: 'var(--ec-bg-soft)' }}
-            >
+            <div className="ms-sd-card ms-sd-card-pad ms-subjects-honesty">
+              <p className="ms-overline" style={{ color: 'var(--ec-brand)', marginBottom: 8 }}>
+                Examiner note
+              </p>
               <p className="ms-greennote" style={{ fontSize: 20, marginTop: 0 }}>
                 {copy.quickAnswer}
               </p>
@@ -283,32 +284,58 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
                   href={`/blog/${copy.guideSlug}`}
                   className="ec-btn-underline mt-3 inline-block text-sm"
                 >
-                  {code} revision guide →
+                  {code} revision guide -&gt;
                 </Link>
               ) : null}
               <Link
                 href="/dashboard/progress"
                 className="ec-btn-underline mt-2 inline-block text-sm"
               >
-                Your {subject.label} progress →
+                Your {subject.label} progress -&gt;
               </Link>
             </div>
           </div>
         </div>
 
+        <HubSeoIntro
+          quiet
+          headingLevel="h2"
+          heading={intro.heading}
+          paragraph={intro.paragraph}
+          links={[
+            { href: '/mark', label: `Mark ${code} now →`, variant: 'primary' },
+            {
+              href: `/tools/will-my-grade-hold?code=${encodeURIComponent(code)}`,
+              label: `Will my ${code} grade hold?`,
+              variant: 'ghost' as const,
+            },
+            {
+              href: `/results-2026/caie/${code}`,
+              label: `${code} Results Day`,
+              variant: 'ghost' as const,
+            },
+            { href: `/past-papers/${code}`, label: `${code} past papers`, variant: 'ghost' as const },
+            ...(course
+              ? [{ href: course.path, label: `Free ${code} course`, variant: 'ghost' as const }]
+              : []),
+            ...(communityOn
+              ? [{ href: `/community/s/${code}`, label: 'Exam Room community', variant: 'muted' as const }]
+              : []),
+            ...(copy.guideSlug
+              ? [{ href: `/blog/${copy.guideSlug}`, label: `${code} revision guide`, variant: 'muted' as const }]
+              : []),
+          ]}
+        />
+
         <section className="ms-subject-faq" aria-labelledby="subject-faq">
           <h2 id="subject-faq" className="ms-h3">
             Frequently asked questions
           </h2>
-          <dl className="mt-6 space-y-6">
+          <dl className="ms-tool-faq">
             {faq.map((item) => (
               <div key={item.q} data-chunk-id={item.q.slice(0, 36)}>
-                <dt className="font-semibold text-[var(--ec-text-primary)]">
-                  {item.q}
-                </dt>
-                <dd className="mt-2 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-                  {item.a}
-                </dd>
+                <dt>{item.q}</dt>
+                <dd className="ms-body-2">{item.a}</dd>
               </div>
             ))}
           </dl>
@@ -326,7 +353,7 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
               <li key={s.code}>
                 <Link
                   href={`/subjects/${s.code}`}
-                  className="inline-flex rounded-full border border-[var(--ec-border)] px-3 py-1.5 text-xs font-semibold text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]"
+                  className="inline-flex rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-3 py-1.5 font-mono text-[11px] font-semibold tracking-wide shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.05))] text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]"
                 >
                   {s.code} {s.label}
                 </Link>

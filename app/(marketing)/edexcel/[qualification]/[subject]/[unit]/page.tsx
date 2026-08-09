@@ -23,7 +23,8 @@ import {
   resolveEdexcelSubject,
 } from '@/lib/seo/edexcel-graph'
 import { buildEdexcelSubjectCopy } from '@/lib/seo/edexcel-seo'
-import { CrossBoardTopicLinks } from '@/components/seo/CrossBoardTopicLinks'
+import { EdexcelUnitStudyPath } from '@/components/seo/EdexcelUnitStudyPath'
+import { verifiedCourseLessonsForEdexcelUnit } from '@/lib/curriculum-graph/verified-course-links'
 
 type Props = {
   params: Promise<{ qualification: string; subject: string; unit: string }>
@@ -53,7 +54,7 @@ export async function generateMetadata({ params }: Props) {
   const path = `${edexcelSubjectPath(qualification, subjectSlug)}/${unitRow.code.toLowerCase()}`
   return createPageMetadata({
     title: `${unitRow.code} ${unitRow.name} — Edexcel IAL ${subject.name}`,
-    description: `Edexcel International A Level ${subject.name} unit ${unitRow.code} (${unitRow.name}): syllabus map, past papers and marking path.`,
+    description: `Edexcel International A Level ${subject.name} unit ${unitRow.code} (${unitRow.name}): mapped free course lessons, past papers and Edexcel marking path.`,
     path,
     keywords: [
       unitRow.code,
@@ -80,6 +81,7 @@ export default async function EdexcelUnitPage({ params }: Props) {
   const unitMarkable = getEdexcelMarkableUnitCodes().includes(unitRow.code)
   const sessions = getEdexcelIalSessionsForUnit(unitRow.code)
   const unitGuideHref = edexcelUnitGuideHref(unitRow.code)
+  const studyLessons = verifiedCourseLessonsForEdexcelUnit(unitRow.code)
 
   return (
     <MarketingPageShell>
@@ -137,6 +139,13 @@ export default async function EdexcelUnitPage({ params }: Props) {
             </Link>
           </div>
         </div>
+
+        <EdexcelUnitStudyPath
+          unitCode={unitRow.code}
+          unitName={unitRow.name}
+          markHref={markHref}
+          lessons={studyLessons}
+        />
 
         {sessions.length > 0 ? (
           <>
@@ -245,10 +254,6 @@ export default async function EdexcelUnitPage({ params }: Props) {
             </Link>
           </li>
         </ul>
-        {qualification === 'international-a-level' &&
-        ['mathematics', 'physics', 'chemistry', 'biology'].includes(subject.slug) ? (
-          <CrossBoardTopicLinks mode="edexcel-unit" unitCode={unitRow.code} />
-        ) : null}
       </MarketingSection>
     </MarketingPageShell>
   )

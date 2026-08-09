@@ -440,6 +440,12 @@ Mistakes found and fixed in-tree (do not claim production READY until shipped):
 5. Fake AP score calculator — replaced with honest placeholder route
 6. Placement: `lib/seo/aqa-graph.ts`, `ap-graph.ts`; sitemap shards `aqa` + `ap`; CrossBoard uses `edexcelPathForUnit` (IAL vs UK)
 
+### Edexcel study path (legal course reuse)
+
+Unit pages resolve **verified** mapped CAIE `/courses/{code}/…` lessons via
+`verifiedCourseLessonsForEdexcelUnit` + `EdexcelUnitStudyPath` — our lesson JSON
+only, with original Edexcel dialect framing. No scraped third-party courses.
+
 ### E1 thicken (in tree — Edexcel IAL only)
 
 - Biology hero/past-papers/boundaries deep-link to `WBI11` (Wave 1.5 treated as live)

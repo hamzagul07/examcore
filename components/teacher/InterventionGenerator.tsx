@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Check, Loader2 } from 'lucide-react'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
-import { X, Loader2 } from 'lucide-react'
 
 interface Question {
   id: string

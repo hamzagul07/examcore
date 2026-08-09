@@ -10,7 +10,7 @@ type Option<T extends string> = {
 }
 
 type Props<T extends string> = {
-  value: T
+  value: T | null
   onChange: (value: T) => void
   options: Option<T>[]
   'aria-label'?: string

@@ -107,7 +107,7 @@ export function MarkFeedbackPrompt({ attemptId }: { attemptId: string }) {
             working.
           </p>
         </div>
-        <SegmentedControl
+        <SegmentedControl<Rating>
           className="ms-mark-feedback__rate flex shrink-0 gap-2"
           optionClassName="ms-mark-feedback__rate-btn"
           aria-label="Rate this marking"
@@ -142,11 +142,11 @@ export function MarkFeedbackPrompt({ attemptId }: { attemptId: string }) {
           <p className="text-sm font-medium text-[var(--ec-text-primary)]">
             What went wrong?
           </p>
-          <SegmentedControl
+          <SegmentedControl<(typeof DOWN_REASONS)[number]['value']>
             className="flex flex-wrap gap-2"
             optionClassName="ms-mark-feedback__reason"
             aria-label="What went wrong"
-            value={reason}
+            value={reason as (typeof DOWN_REASONS)[number]['value'] | null}
             onChange={(next) => setReason(reason === next ? null : next)}
             options={DOWN_REASONS.map((r) => ({
               value: r.value,

@@ -12,7 +12,7 @@ export function FormSuccessStatus({ message, className = '' }: Props) {
   if (!message) return null
   return (
     <StatusMessage
-      tone="status"
+      tone="success"
       className={`ms-auth-success ${className}`.trim()}
     >
       {message}

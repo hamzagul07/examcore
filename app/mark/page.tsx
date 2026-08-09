@@ -1833,7 +1833,7 @@ export default function MarkPage() {
     const codes =
       profileSubjectCodes.length > 0
         ? profileSubjectCodes
-        : markableCodesForBoard(selectedMarkBoard).slice(0, 12)
+        : (markableCodesForBoard(selectedMarkBoard) ?? []).slice(0, 12)
     return codes.map((code) => ({
       code,
       label: getSubjectByCode(code)?.label ?? code,

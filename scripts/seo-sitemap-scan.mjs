@@ -21,12 +21,63 @@ function shouldSkipPath(path) {
   return skipPrefixes.some((prefix) => path.startsWith(prefix))
 }
 
+function locsFromXml(xml) {
+  return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim())
+}
+
+function pathFromLoc(loc) {
+  const url = new URL(loc)
+  return url.pathname + url.search
+}
+
+/** True for sitemap index / shard documents — not HTML pages to audit. */
+function isSitemapDocPath(path) {
+  return (
+    path === '/sitemap.xml' ||
+    path === '/sitemap-index.xml' ||
+    path.startsWith('/sitemap/')
+  )
+}
+
+/**
+ * Expand sitemap index → shard urlsets → page paths.
+ * `/sitemap.xml` is an index of `/sitemap/{id}.xml` shards (not a urlset).
+ */
 async function fetchSitemapPaths() {
-  const xml = await fetch(`${base}/sitemap.xml`).then((r) => r.text())
-  return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => {
-    const url = new URL(m[1])
-    return url.pathname + url.search
+  const rootXml = await fetch(`${base}/sitemap.xml`).then((r) => r.text())
+  const rootLocs = locsFromXml(rootXml)
+  const shardLocs = rootLocs.filter((loc) => {
+    try {
+      return isSitemapDocPath(pathFromLoc(loc))
+    } catch {
+      return false
+    }
   })
+  const directPages = rootLocs
+    .filter((loc) => {
+      try {
+        return !isSitemapDocPath(pathFromLoc(loc))
+      } catch {
+        return false
+      }
+    })
+    .map(pathFromLoc)
+
+  if (!shardLocs.length) return directPages
+
+  const pagePaths = [...directPages]
+  for (const shardLoc of shardLocs) {
+    const shardXml = await fetch(shardLoc).then((r) => r.text())
+    for (const loc of locsFromXml(shardXml)) {
+      try {
+        const path = pathFromLoc(loc)
+        if (!isSitemapDocPath(path)) pagePaths.push(path)
+      } catch {
+        // skip malformed loc
+      }
+    }
+  }
+  return [...new Set(pagePaths)]
 }
 
 async function fetchRobotsDisallows() {

@@ -42,7 +42,10 @@ import {
   isContentGateReturnPath,
 } from '@/lib/content-gate'
 import { suggestedExamDates } from '@/lib/dashboard/exam-date'
-import { targetGradeOptions } from '@/lib/target-grade'
+import {
+  targetGradeKindFromBoard,
+  targetGradeOptions,
+} from '@/lib/target-grade'
 import type { OnboardingInput } from '@/lib/onboarding/save-profile'
 import { MARK_DURATION_SINGLE_SENTENCE } from '@/lib/copy/product-lexicon'
 
@@ -440,6 +443,7 @@ export function OnboardingWizard({
 
             {rerun && step === 2 ? (
               <StepStage
+                board={board}
                 level={level}
                 selected={stage}
                 onSelect={setStage}
@@ -837,10 +841,15 @@ function StepSubjects({
                   onChange={(g) =>
                     onTargetGradeChange?.(targetGrade === g ? null : g)
                   }
-                  options={targetGradeOptions(ib).map((g) => ({
-                    value: g,
-                    label: ib ? `G${g}` : g,
-                  }))}
+                  options={targetGradeOptions(targetGradeKindFromBoard(board)).map(
+                    (g) => ({
+                      value: g,
+                      label:
+                        targetGradeKindFromBoard(board) === 'ib'
+                          ? `G${g}`
+                          : g,
+                    })
+                  )}
                 />
               </div>
             </div>
@@ -901,6 +910,7 @@ function StepSubjects({
 }
 
 function StepStage({
+  board,
   level,
   selected,
   onSelect,
@@ -912,6 +922,7 @@ function StepStage({
   onContinue,
   onBack,
 }: {
+  board: string
   level: string
   selected: UserStage | null
   onSelect: (s: UserStage) => void
@@ -925,6 +936,7 @@ function StepStage({
 }) {
   const suggestions = suggestedExamDates()
   const ib = level === IB_DIPLOMA_LEVEL
+  const gradeKind = targetGradeKindFromBoard(board)
   const stageOptions =
     ib
       ? IB_STAGE_OPTIONS
@@ -1018,9 +1030,9 @@ function StepStage({
           aria-label="Target grade"
           value={targetGrade}
           onChange={(g) => onTargetGradeChange(targetGrade === g ? null : g)}
-          options={targetGradeOptions(ib).map((g) => ({
+          options={targetGradeOptions(gradeKind).map((g) => ({
             value: g,
-            label: ib ? `G${g}` : g,
+            label: gradeKind === 'ib' ? `G${g}` : g,
           }))}
         />
       </div>

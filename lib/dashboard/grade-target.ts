@@ -49,20 +49,22 @@ export function buildGradeTarget({
   attempts,
   targetGrade,
   examDate,
+  usesLetterGrades = true,
+  /** @deprecated Prefer `usesLetterGrades`. Kept so older call sites still suppress. */
   isIb = false,
   now = new Date(),
 }: {
   attempts: GradeTargetAttempt[]
   targetGrade: string | null
   examDate: string | null
-  /** IB students have no Cambridge A*–E boundary, and this whole track — the
-   * headline grade, the bands — is Cambridge. Rather than label an IB student
-   * "a B" off a Cambridge boundary they never sit against, show no track. The
-   * dashboard renders nothing when this returns null. */
+  /** Letter-band track (A*–E) is Cambridge-style only. IB levels and AP 1–5
+   * must not be labelled off Cambridge percentage boundaries. */
+  usesLetterGrades?: boolean
+  /** @deprecated Prefer `usesLetterGrades`. */
   isIb?: boolean
   now?: Date
 }): GradeTarget | null {
-  if (isIb) return null
+  if (!usesLetterGrades || isIb) return null
 
   const scored = attempts
     .filter(

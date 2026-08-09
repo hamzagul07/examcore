@@ -94,6 +94,18 @@ function main() {
     'IB gets no Cambridge grade track'
   )
 
+  assert.equal(
+    buildGradeTarget({
+      attempts: [a(72, 1), a(70, 2), a(74, 3)],
+      targetGrade: '5',
+      examDate: '2026-09-01',
+      usesLetterGrades: false,
+      now: NOW,
+    }),
+    null,
+    'AP gets no Cambridge grade track'
+  )
+
   // No target set: still a valid position, just nothing to aim at yet.
   const noTarget = buildGradeTarget({
     attempts: [a(64, 1)],

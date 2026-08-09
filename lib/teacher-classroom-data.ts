@@ -38,15 +38,18 @@ export async function getClassroomAttempts(
 export async function getStudentProfiles(
   supabase: SupabaseClient,
   studentIds: string[]
-): Promise<Map<string, { full_name: string | null }>> {
+): Promise<Map<string, { full_name: string | null; board: string | null }>> {
   if (studentIds.length === 0) return new Map()
 
   const { data: profiles } = await supabase
     .from('user_profiles')
-    .select('id, full_name')
+    .select('id, full_name, board')
     .in('id', studentIds)
 
   return new Map(
-    (profiles || []).map((p) => [p.id, { full_name: p.full_name }])
+    (profiles || []).map((p) => [
+      p.id,
+      { full_name: p.full_name, board: p.board ?? null },
+    ])
   )
 }

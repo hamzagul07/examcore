@@ -9,7 +9,10 @@ import {
 } from '@/lib/profile-options'
 import type { PrimaryGoal, UserRole, UserStage } from '@/lib/database.types'
 import { isOnboardingComplete } from '@/lib/onboarding'
-import { isValidTargetGrade } from '@/lib/target-grade'
+import {
+  isValidTargetGrade,
+  targetGradeKindFromBoard,
+} from '@/lib/target-grade'
 import { handleOnboardingCompleteEmails } from '@/lib/email/notifications'
 import { runAfterResponse } from '@/lib/after-response'
 
@@ -105,7 +108,7 @@ export async function saveOnboardingProfile(
     // failure: the target is optional and a wrong one is worse than none.
     const targetGrade =
       typeof body.target_grade === 'string' &&
-      isValidTargetGrade(isIbBoard(board), body.target_grade)
+      isValidTargetGrade(targetGradeKindFromBoard(board), body.target_grade)
         ? body.target_grade
         : null
 

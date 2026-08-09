@@ -10,6 +10,7 @@ import {
 } from '@/lib/mastery'
 import { predictGrade } from '@/lib/prediction'
 import { generateActionPlan } from '@/lib/action-plan'
+import { resolveBoard } from '@/lib/courses/board'
 import { getSubjectById, defaultSubjectsForProfile } from '@/lib/profile-options'
 import {
   getSyllabusByCode,
@@ -139,7 +140,21 @@ export default async function ProgressPage({ searchParams }: PageProps) {
 
   const selectedSubject = subjectOptions.find((s) => s.code === selectedCode)
   const isIbSubject = selectedCode.startsWith('ib-')
-  const boardPrefix = isIbSubject || isIbProfile ? 'IB' : 'Cambridge'
+  const subjectBoard = resolveBoard(selectedCode)
+  const boardPrefix =
+    subjectBoard === 'ib'
+      ? 'IB'
+      : subjectBoard === 'edexcel'
+        ? 'Edexcel'
+        : subjectBoard === 'oxfordaqa'
+          ? 'OxfordAQA'
+          : subjectBoard === 'aqa'
+            ? 'AQA'
+            : subjectBoard === 'ap'
+              ? 'AP'
+              : 'Cambridge'
+  const usesLetterGrades =
+    subjectBoard !== 'ib' && subjectBoard !== 'ap'
   const syllabus = getSyllabusByCode(selectedCode)
   const analyticsAvailable = !!syllabus?.length
 
@@ -165,7 +180,11 @@ export default async function ProgressPage({ searchParams }: PageProps) {
   const subjectLabel =
     getSyllabusSubjectName(selectedCode) ||
     selectedSubject?.label ||
-    (isIbSubject || isIbProfile ? 'IB Diploma' : 'Cambridge A-Level')
+    (isIbSubject || isIbProfile
+      ? 'IB Diploma'
+      : subjectBoard === 'ap'
+        ? 'AP'
+        : `${boardPrefix}`)
 
   const displaySubjectLabel = isIbSubject
     ? subjectLabel
@@ -177,16 +196,17 @@ export default async function ProgressPage({ searchParams }: PageProps) {
   const masteries = flattenLeafMasteries(parentMasteries)
   const coverage = calculateSyllabusCoverage(masteries)
   const rawPrediction = predictGrade(attempts, masteries)
-  // IB is graded 1–7, not Cambridge A*–E — don't surface a Cambridge predicted
-  // grade, trajectory or "grade-up" win for IB subjects.
-  const prediction = isIbSubject
+  // IB levels and AP 1–5 are not Cambridge A*–E — don't surface letter bands.
+  const prediction = !usesLetterGrades
     ? {
         ...rawPrediction,
         predictedGrade: '—' as const,
         color: '#94a3b8',
         nextLevelTip:
           rawPrediction.averagePercentage != null
-            ? 'IB is graded 1–7 — keep marking to track your mastery and bands.'
+            ? subjectBoard === 'ap'
+              ? 'AP is scored 1–5 — keep marking to track your free-response form.'
+              : 'IB is graded 1–7 — keep marking to track your mastery and bands.'
             : rawPrediction.nextLevelTip,
       }
     : rawPrediction
@@ -201,7 +221,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
   const patterns = analysePatterns(attempts)
   const speedProfile = analyseSpeedProfile(attempts)
   const speedAccuracy = buildSpeedAccuracy(attempts)
-  const wins = deriveWins(attempts, masteries, streakDays, isIbSubject)
+  const wins = deriveWins(attempts, masteries, streakDays, !usesLetterGrades)
   const timelineStations = buildTimeline(attempts)
 
   let recommendations: Recommendation[] = []
@@ -281,14 +301,14 @@ export default async function ProgressPage({ searchParams }: PageProps) {
         subjectLabel={`${boardPrefix} ${selectedCode} ${subjectLabel}`}
         totalTopics={totalTopics}
       />
-      {!isIbSubject && (
+      {usesLetterGrades ? (
         <GradeTrajectory
           attempts={attempts}
           prediction={prediction}
-          ibMode={isIbSubject}
+          ibMode={false}
           targetGrade={(profile?.target_grade as string | null) ?? null}
         />
-      )}
+      ) : null}
       <MasteryMatrix
         parentMasteries={parentMasteries}
         attempts={attempts}

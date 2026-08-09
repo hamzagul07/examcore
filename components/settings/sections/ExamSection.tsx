@@ -7,7 +7,10 @@ import { ErrorBox, SuccessBox } from '@/components/AuthFormBits'
 import { suggestedExamDates } from '@/lib/dashboard/exam-date'
 import { ProfileFormFields } from '@/components/ProfileFormFields'
 import { IB_DIPLOMA_LEVEL, isIbBoard } from '@/lib/profile-options'
-import { targetGradeOptions } from '@/lib/target-grade'
+import {
+  targetGradeKindFromBoard,
+  targetGradeOptions,
+} from '@/lib/target-grade'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
 import {
   SettingsFieldGroup,
@@ -279,7 +282,7 @@ function TargetGradeCard({
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
-  const options = targetGradeOptions(isIbBoard(board))
+  const options = targetGradeOptions(targetGradeKindFromBoard(board))
 
   async function save(next: string) {
     setLoading(true)

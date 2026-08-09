@@ -1,8 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { isIbBoard } from '@/lib/profile-options'
-import { targetGradeOptions } from '@/lib/target-grade'
+import {
+  peakTargetStamp,
+  targetGradeKindFromBoard,
+  targetGradeOptions,
+} from '@/lib/target-grade'
 import { SegmentedControl } from '@/components/ui/SegmentedControl'
 import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 import { FormSuccessStatus } from '@/components/ui/FormSuccessStatus'
@@ -20,7 +23,9 @@ type Props = {
  * ON-01 / R3 — ask for target grade after the first mark, not during signup.
  */
 export function PostMarkTargetGradeAsk({ board, onSaved, onDismiss }: Props) {
-  const options = targetGradeOptions(isIbBoard(board))
+  const kind = targetGradeKindFromBoard(board)
+  const options = targetGradeOptions(kind)
+  const stamp = peakTargetStamp(kind)
   const [saving, setSaving] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
@@ -67,7 +72,7 @@ export function PostMarkTargetGradeAsk({ board, onSaved, onDismiss }: Props) {
     <aside className="ms-mark-example-slip" aria-label="Set a target grade">
       <div className="ms-mark-example-slip__body">
         <span className="ec-ink-stamp" aria-hidden>
-          A*
+          {stamp}
         </span>
         <div className="ms-mark-example-slip__copy min-w-0">
           <p className="ms-mark-example-slip__title">Want a target to aim at?</p>

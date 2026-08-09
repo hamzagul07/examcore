@@ -8,7 +8,12 @@ import {
   type AttemptLite,
   type LeafMastery,
 } from '@/lib/mastery'
-import { getSubjectById, defaultSubjectsForProfile, defaultMarkSubjectCode, isIbBoard } from '@/lib/profile-options'
+import {
+  getSubjectById,
+  defaultSubjectsForProfile,
+  defaultMarkSubjectCode,
+} from '@/lib/profile-options'
+import { usesLetterGradeBands } from '@/lib/target-grade'
 import { getSyllabusByCode, getSyllabusSubjectName, hasSyllabusTree } from '@/lib/syllabi'
 import { getAttemptSubjectCode } from '@/lib/syllabi/attempts'
 import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
@@ -102,11 +107,12 @@ export default async function DashboardPage() {
   const momentum = buildMomentum(attemptsList, 14)
   // Recent form vs the target the student set — both already stored, never
   // previously shown together.
+  const profileBoard = profile?.board ?? 'Cambridge International'
   const gradeTarget = buildGradeTarget({
     attempts: attemptsList,
     targetGrade: (profile?.target_grade as string | null) ?? null,
     examDate,
-    isIb: isIbBoard(profile?.board ?? 'Cambridge International'),
+    usesLetterGrades: usesLetterGradeBands(profileBoard),
   })
   const monthlyCount = attemptsThisMonth(timestamps)
   const bestSubjectCode = bestSubjectThisWeek(attemptsList)
@@ -120,7 +126,6 @@ export default async function DashboardPage() {
   }))
 
   const profileLevel = profile?.level ?? 'A-Level'
-  const profileBoard = profile?.board ?? 'Cambridge International'
   const profileSubjects: string[] = profile?.subjects?.length
     ? profile.subjects
     : defaultSubjectsForProfile(profileBoard, profileLevel)

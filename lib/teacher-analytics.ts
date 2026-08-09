@@ -6,6 +6,7 @@ import {
 import { predictGradeFromPercentage } from '@/lib/grade-boundaries'
 import type { AttemptLite } from '@/lib/mastery'
 import { calculateMastery } from '@/lib/mastery'
+import { usesLetterGradeBands } from '@/lib/target-grade'
 
 export type ClassroomAttempt = AttemptLite & { user_id: string }
 
@@ -125,7 +126,7 @@ export function computeQuadrant(
 
 export function computeStudentQuadrants(
   attempts: ClassroomAttempt[],
-  studentProfiles: Map<string, { full_name: string | null }>
+  studentProfiles: Map<string, { full_name: string | null; board?: string | null }>
 ): StudentQuadrantMetric[] {
   const byStudent = new Map<string, ClassroomAttempt[]>()
   for (const a of attempts) {
@@ -182,7 +183,10 @@ export function computeStudentQuadrants(
         }
       : null
 
-    const predicted = predictGradeFromPercentage(accuracy)
+    const board = profile?.board ?? 'Cambridge International'
+    const predictedGrade = usesLetterGradeBands(board)
+      ? predictGradeFromPercentage(accuracy).grade
+      : '—'
 
     metrics.push({
       studentId,
@@ -190,7 +194,7 @@ export function computeStudentQuadrants(
       accuracy,
       timePerMark,
       coverage,
-      predictedGrade: predicted.grade,
+      predictedGrade,
       biggestDeficit,
       quadrant: computeQuadrant(accuracy, timePerMark, coverage),
       attemptCount: studentAttempts.length,

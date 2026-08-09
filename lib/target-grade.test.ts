@@ -5,19 +5,28 @@ import {
   gapToTargetGrade,
   CAMBRIDGE_TARGET_GRADES,
   IB_TARGET_GRADES,
+  AP_TARGET_GRADES,
+  targetGradeKindFromBoard,
+  usesLetterGradeBands,
 } from '@/lib/target-grade'
 
 function main() {
-  // The two boards use disjoint scales. Onboarding validates against the
-  // student's own board before storing, because a Cambridge grade saved on an
-  // IB profile does not error — it silently produces no gap forever, since
-  // gapToTargetGrade looks the grade up in GRADE_BOUNDARIES and misses.
+  // Boards use disjoint scales. Onboarding validates against the student's own
+  // board before storing, because a Cambridge grade saved on an IB/AP profile
+  // would silently produce no gap forever.
   assert.deepEqual(targetGradeOptions(false), [...CAMBRIDGE_TARGET_GRADES])
   assert.deepEqual(targetGradeOptions(true), [...IB_TARGET_GRADES])
+  assert.deepEqual(targetGradeOptions('ap'), [...AP_TARGET_GRADES])
+  assert.equal(targetGradeKindFromBoard('AP'), 'ap')
+  assert.equal(usesLetterGradeBands('AP'), false)
+  assert.equal(usesLetterGradeBands('Cambridge International'), true)
 
   assert.equal(isValidTargetGrade(false, 'A*'), true)
   assert.equal(isValidTargetGrade(true, 'A*'), false, 'IB has no A*')
+  assert.equal(isValidTargetGrade('ap', 'A*'), false, 'AP has no A*')
   assert.equal(isValidTargetGrade(true, '7'), true)
+  assert.equal(isValidTargetGrade('ap', '5'), true)
+  assert.equal(isValidTargetGrade('ap', '7'), false, 'AP tops at 5')
   assert.equal(isValidTargetGrade(false, '7'), false, 'Cambridge has no grade 7')
   assert.equal(isValidTargetGrade(false, ''), false)
   assert.equal(isValidTargetGrade(false, 'a*'), false, 'case-sensitive by design')
@@ -29,6 +38,9 @@ function main() {
   }
   for (const g of targetGradeOptions(true)) {
     assert.equal(isValidTargetGrade(true, g), true, `IB option ${g} rejected`)
+  }
+  for (const g of targetGradeOptions('ap')) {
+    assert.equal(isValidTargetGrade('ap', g), true, `AP option ${g} rejected`)
   }
 
   // Gap arithmetic. A = 70%.

@@ -7,7 +7,10 @@ import {
   isIbBoard,
   isSubjectValidForProfile,
 } from '@/lib/profile-options'
-import { isValidTargetGrade } from '@/lib/target-grade'
+import {
+  isValidTargetGrade,
+  targetGradeKindFromBoard,
+} from '@/lib/target-grade'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
 
 type Body = {
@@ -138,7 +141,7 @@ export async function POST(request: NextRequest) {
       patch.target_grade = null
     } else if (typeof body.target_grade === 'string') {
       const g = body.target_grade.trim()
-      if (!isValidTargetGrade(isIbBoard(board), g)) {
+      if (!isValidTargetGrade(targetGradeKindFromBoard(board), g)) {
         return NextResponse.json(
           { error: 'Pick a valid target grade for your board.' },
           { status: 400 }

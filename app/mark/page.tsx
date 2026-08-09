@@ -1130,6 +1130,15 @@ export default function MarkPage() {
       if (selectedMarkBoard === 'edexcel') {
         return 'IAL homework or textbook questions — photos or PDFs, marked with Edexcel method/accuracy conventions.'
       }
+      if (selectedMarkBoard === 'oxfordaqa') {
+        return 'Homework or textbook questions — photos or PDFs, marked with OxfordAQA point/method conventions.'
+      }
+      if (selectedMarkBoard === 'aqa') {
+        return 'Homework or textbook questions — photos or PDFs, marked with AQA method/accuracy conventions.'
+      }
+      if (selectedMarkBoard === 'ap') {
+        return 'Homework or textbook FRQs — photos or PDFs, marked with AP earned-point conventions.'
+      }
       return 'Homework or textbook questions — photos or PDFs, marked with Cambridge conventions.'
     }
     if (selectedMarkBoard === 'ib') {
@@ -1137,6 +1146,13 @@ export default function MarkPage() {
     }
     if (selectedMarkBoard === 'edexcel') {
       return 'One answer: choose how the question is provided below. Past-paper lookup stays Cambridge-only for now.'
+    }
+    if (
+      selectedMarkBoard === 'oxfordaqa' ||
+      selectedMarkBoard === 'aqa' ||
+      selectedMarkBoard === 'ap'
+    ) {
+      return 'One answer: choose how the question is provided below. Past-paper lookup is Cambridge-only for now.'
     }
     return 'One answer from a past paper or your own question — tick the box if both are on the same page.'
   }, [uploadMode, isCombinedMode, isPracticeMode, selectedMarkBoard])
@@ -2277,7 +2293,13 @@ export default function MarkPage() {
                 ? 'IB examiner-style feedback'
                 : selectedMarkBoard === 'edexcel'
                   ? 'Edexcel IAL examiner-style feedback'
-                  : 'Cambridge examiner-style feedback'}
+                  : selectedMarkBoard === 'oxfordaqa'
+                    ? 'OxfordAQA examiner-style feedback'
+                    : selectedMarkBoard === 'aqa'
+                      ? 'AQA examiner-style feedback'
+                      : selectedMarkBoard === 'ap'
+                        ? 'AP examiner-style feedback'
+                        : 'Cambridge examiner-style feedback'}
             </h2>
             <p className="ms-mark-hero-lead">
               Upload photos or PDFs — marked in {MARK_DURATION_SINGLE} with{' '}
@@ -2285,7 +2307,13 @@ export default function MarkPage() {
                 ? 'criterion bands'
                 : selectedMarkBoard === 'edexcel'
                   ? 'Edexcel method and accuracy marks'
-                  : 'official mark scheme logic'}
+                  : selectedMarkBoard === 'oxfordaqa'
+                    ? 'OxfordAQA point and method marks'
+                    : selectedMarkBoard === 'aqa'
+                      ? 'AQA method and accuracy marks'
+                      : selectedMarkBoard === 'ap'
+                        ? 'AP free-response point marks'
+                        : 'official mark scheme logic'}
               .
             </p>
             <span className="ms-mark-hero-note" aria-hidden>
@@ -2755,8 +2783,17 @@ export default function MarkPage() {
                           </>
                         ) : (
                           <>
-                            No {selectedMarkBoard === 'ib' ? 'IB' : 'Cambridge'} subjects in
-                            your profile yet.{' '}
+                            No{' '}
+                            {selectedMarkBoard === 'ib'
+                              ? 'IB'
+                              : selectedMarkBoard === 'oxfordaqa'
+                                ? 'OxfordAQA'
+                                : selectedMarkBoard === 'aqa'
+                                  ? 'AQA'
+                                  : selectedMarkBoard === 'ap'
+                                    ? 'AP'
+                                    : 'Cambridge'}{' '}
+                            subjects in your profile yet.{' '}
                             <Link href="/onboarding?rerun=1" className="ec-link font-medium">
                               Update subjects
                             </Link>

@@ -17,6 +17,7 @@ import {
 } from '@/lib/error-classifications'
 import { getSubjectByCode } from '@/lib/profile-options'
 import { isIbSubjectCode } from '@/lib/ib/marking-config'
+import { markingBoardLabel } from '@/lib/marking/exam-board'
 import { predictGradeFromPercentage, marksToNextGrade } from '@/lib/grade-boundaries'
 import { ExamSheet, ExamSheetLine } from '@/components/margin-notes/ExamSheet'
 import { ExaminerInkPerPage } from '@/components/examiner-ink/ExaminerInkPerPage'
@@ -158,9 +159,13 @@ export function MarkingResultView({
       syllabus_tags: result.syllabus_tags,
     }) ?? undefined
 
-  // Board-aware labels: IB subjects must not be branded as Cambridge.
+  // Board-aware labels: never brand Edexcel/OxfordAQA/etc. as Cambridge.
   const isIb = isIbSubjectCode(badgeSubjectCode ?? '')
-  const boardLabel = isIb ? 'IB' : 'Cambridge'
+  const boardFull = markingBoardLabel(badgeSubjectCode)
+  const boardLabel = boardFull === 'IB Diploma' ? 'IB' : boardFull
+  const boardArticle = /^(IB|AP|[AEIOU])/i.test(boardLabel)
+    ? `an ${boardLabel}`
+    : `a ${boardLabel}`
   // Paradigm-aware: IB points subjects (e.g. Maths) mark against analytic mark
   // schemes (M/A marks), NOT markbands — so don't say "markbands" for them.
   const isIbPoints = isIb && result.ai_marking?.marking_style === 'point_based'
@@ -302,8 +307,8 @@ export function MarkingResultView({
                   {result.detected_paper.question_number}.{' '}
                 </>
               )}
-              We marked your answer using general {isIb ? 'IB' : 'A-Level'}{' '}
-              criteria. Think we should add this paper? Email{' '}
+              We marked your answer using general {boardLabel} criteria. Think
+              we should add this paper? Email{' '}
               <a href={`mailto:${CONTACT_EMAIL}`} className="font-medium underline">
                 {CONTACT_EMAIL}
               </a>
@@ -341,11 +346,10 @@ export function MarkingResultView({
           <span className="ec-banner__icon inline-grid h-5 min-w-5 shrink-0 place-items-center rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-1 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-text-secondary)]" aria-hidden>i</span>
           <div>
             <p className="ec-banner__title">
-              Marked with general {isIb ? 'IB' : 'A-Level'} criteria
+              Marked with general {boardLabel} criteria
             </p>
             <p className="ec-banner__meta">
-              This was not detected as {isIb ? 'an IB' : 'a Cambridge'} past
-              paper question
+              This was not detected as {boardArticle} past paper question
             </p>
           </div>
         </div>

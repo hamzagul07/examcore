@@ -403,7 +403,9 @@ function ExaminerMark({
             >
               &#8629;
             </span>
-            <span className="min-w-0">{ghostFix.text}</span>
+            <span className="min-w-0">
+              <MathText text={ghostFix.text} />
+            </span>
             <span
               className="whitespace-nowrap font-mono font-bold"
               style={{ color: 'var(--ec-chip-warning-text)' }}

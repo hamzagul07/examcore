@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 
+import { MarkSnippet } from '@/components/mark/MarkSnippet'
 import type { MarkGap, MarkGapItem } from '@/lib/marking/mark-gap'
 
 /**
@@ -134,7 +135,9 @@ function GapCard({
         </span>
       </div>
 
-      <p className="text-sm text-[var(--ec-text-primary)]">{item.reasoning}</p>
+      <div className="text-sm text-[var(--ec-text-primary)]">
+        <MarkSnippet text={item.reasoning} />
+      </div>
 
       {item.fix && (
         <div
@@ -147,8 +150,8 @@ function GapCard({
           <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--ec-chip-warning-text)]">
             Add
           </span>
-          <span className="flex-1 text-sm text-[var(--ec-text-primary)]">
-            {item.fix}
+          <span className="min-w-0 flex-1 text-sm text-[var(--ec-text-primary)]">
+            <MarkSnippet text={item.fix} />
           </span>
           <span className="whitespace-nowrap font-mono text-xs font-bold text-[var(--ec-chip-success-text)]">
             {item.earns ?? `+1 ${item.type}`}

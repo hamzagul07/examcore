@@ -18,9 +18,17 @@ import { CourseLessonJsonLd } from '@/components/seo/CourseLessonJsonLd'
 import { CourseLessonSeoIntro } from '@/components/courses/CourseLessonSeoIntro'
 import { appendMarkReturn } from '@/lib/courses/format-session'
 import { CourseLessonClient } from '@/components/courses/margin-notes/CourseLessonClient'
+import { ApLessonBridge } from '@/components/seo/ApLessonBridge'
 import { AqaLessonBridge } from '@/components/seo/AqaLessonBridge'
 import { EdexcelLessonBridge } from '@/components/seo/EdexcelLessonBridge'
 import { OxfordaqaLessonBridge } from '@/components/seo/OxfordaqaLessonBridge'
+import {
+  apStudyLabel,
+  apStudyLessonHref,
+  apStudyMarkHref,
+  apStudySubjectHubHref,
+  parseApStudySubject,
+} from '@/lib/ap/study-path'
 import {
   aqaStudyLabel,
   aqaStudyLessonHref,
@@ -42,6 +50,7 @@ import {
   parseOxfordaqaStudySubject,
 } from '@/lib/oxfordaqa/study-path'
 import {
+  verifiedCourseLessonsForApSubject,
   verifiedCourseLessonsForAqaSubject,
   verifiedCourseLessonsForEdexcelUnit,
   verifiedCourseLessonsForOxfordaqaSubject,
@@ -198,6 +207,7 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
   const edexcelUnit = parseEdexcelStudyUnit({ board, unit })
   const oxfordaqaSubject = parseOxfordaqaStudySubject({ board, subject: studySubject })
   const aqaSubject = parseAqaStudySubject({ board, subject: studySubject })
+  const apSubject = parseApStudySubject({ board, subject: studySubject })
   const edexcelMarkPath = edexcelUnit
     ? edexcelStudyMarkHref(edexcelUnit, lessonPath, lesson.topicCode)
     : null
@@ -207,7 +217,11 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
   const aqaMarkPath = aqaSubject
     ? aqaStudyMarkHref(aqaSubject, lessonPath, lesson.topicCode)
     : null
-  const boardMarkPath = edexcelMarkPath ?? oxfordaqaMarkPath ?? aqaMarkPath
+  const apMarkPath = apSubject
+    ? apStudyMarkHref(apSubject, lessonPath, lesson.topicCode)
+    : null
+  const boardMarkPath =
+    edexcelMarkPath ?? oxfordaqaMarkPath ?? aqaMarkPath ?? apMarkPath
   const markPath =
     boardMarkPath ??
     appendMarkReturn(seo.markPath, lessonPath, lesson.topicCode)
@@ -217,12 +231,15 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
       ? `Mark ${oxfordaqaStudyLabel(oxfordaqaSubject)}`
       : aqaSubject
         ? `Mark ${aqaStudyLabel(aqaSubject)}`
-        : 'Mark a past paper'
+        : apSubject
+          ? `Mark ${apStudyLabel(apSubject)}`
+          : 'Mark a past paper'
   const edexcelUnitHub = edexcelUnit ? edexcelStudyUnitHubHref(edexcelUnit) : null
   const oxfordaqaHub = oxfordaqaSubject
     ? oxfordaqaStudySubjectHubHref(oxfordaqaSubject)
     : null
   const aqaHub = aqaSubject ? aqaStudySubjectHubHref(aqaSubject) : null
+  const apHub = apSubject ? apStudySubjectHubHref(apSubject) : null
   const edexcelNextLesson = (() => {
     if (!edexcelUnit) return null
     const pathLessons = verifiedCourseLessonsForEdexcelUnit(edexcelUnit)
@@ -255,6 +272,18 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
     if (!next) return null
     return {
       href: aqaStudyLessonHref(next.href, aqaSubject),
+      title: next.title,
+      topicCode: next.topicCode,
+    }
+  })()
+  const apNextLesson = (() => {
+    if (!apSubject) return null
+    const pathLessons = verifiedCourseLessonsForApSubject(apSubject)
+    const idx = pathLessons.findIndex((l) => l.href === lessonPath)
+    const next = idx >= 0 ? pathLessons[idx + 1] : undefined
+    if (!next) return null
+    return {
+      href: apStudyLessonHref(next.href, apSubject),
       title: next.title,
       topicCode: next.topicCode,
     }
@@ -322,6 +351,16 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
         />
       ) : null}
 
+      {apSubject && apMarkPath && apHub ? (
+        <ApLessonBridge
+          contentCode={apSubject}
+          label={apStudyLabel(apSubject)}
+          markHref={apMarkPath}
+          subjectHubHref={apHub}
+          nextLesson={apNextLesson}
+        />
+      ) : null}
+
       <GuestSignupGate>
         <CourseLessonClient
           criterionLadder={criterionLadder}
@@ -340,7 +379,9 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
                 ? `Mark ${oxfordaqaStudyLabel(oxfordaqaSubject)}`
                 : aqaSubject
                   ? `Mark ${aqaStudyLabel(aqaSubject)}`
-                  : undefined
+                  : apSubject
+                    ? `Mark ${apStudyLabel(apSubject)}`
+                    : undefined
           }
           community={
             communityOn && !isPilotLesson ? (

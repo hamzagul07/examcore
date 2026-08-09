@@ -6,6 +6,7 @@ export type CurriculumBoardId =
   | 'ib'
   | 'oxfordaqa'
   | 'aqa'
+  | 'ap'
 
 export type BoardTopicRef = {
   board: CurriculumBoardId

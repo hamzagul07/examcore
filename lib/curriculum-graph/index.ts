@@ -4,6 +4,7 @@ import seed9701Wch from '@/content/data/curriculum-graph/caie-9701-edexcel-wch.j
 import seed9700Wbi from '@/content/data/curriculum-graph/caie-9700-edexcel-wbi.json'
 import seedOxfordaqa from '@/content/data/curriculum-graph/caie-oxfordaqa-stem.json'
 import seedAqa from '@/content/data/curriculum-graph/caie-aqa-stem.json'
+import seedAp from '@/content/data/curriculum-graph/caie-ap-stem.json'
 import { CAMBRIDGE_9709_SYLLABUS } from '@/lib/syllabus'
 import { getSyllabusTopicByCode } from '@/lib/syllabi'
 import { topicToLessonSlug } from '@/lib/courses/slug'
@@ -21,6 +22,7 @@ const GRAPH_FILES: CurriculumGraphFile[] = [
   seed9700Wbi as CurriculumGraphFile,
   seedOxfordaqa as CurriculumGraphFile,
   seedAqa as CurriculumGraphFile,
+  seedAp as CurriculumGraphFile,
 ]
 
 const CAIE_HUB: Record<string, string> = {
@@ -109,6 +111,13 @@ export function getMappingsForAqaSubject(contentCode: string): CanonicalConcept[
   )
 }
 
+export function getMappingsForApSubject(contentCode: string): CanonicalConcept[] {
+  const code = contentCode.trim().toLowerCase()
+  return allConcepts().filter((c) =>
+    c.refs.some((r) => r.board === 'ap' && r.syllabusOrUnit.toLowerCase() === code)
+  )
+}
+
 /** Distinct Edexcel units that overlap a CAIE syllabus (topic-grained concepts preferred). */
 export function listOverlapForSubject(syllabusCode: string): Array<{
   unitCode: string
@@ -185,10 +194,14 @@ function hrefForRef(ref: BoardTopicRef): string | null {
     const slug = ref.syllabusOrUnit.replace(/^aqa-/i, '').toLowerCase()
     return `/aqa/a-level/${slug}`
   }
+  if (ref.board === 'ap') {
+    const slug = ref.syllabusOrUnit.replace(/^ap-/i, '').toLowerCase()
+    return `/ap/${slug}`
+  }
   return caieShellHref(ref)
 }
 
-/** Counterpart links for a CAIE topic (Edexcel / OxfordAQA / AQA). */
+/** Counterpart links for a CAIE topic (Edexcel / OxfordAQA / AQA / AP). */
 export function resolveEdexcelLinksForCaieTopic(
   syllabusCode: string,
   topicCode: string
@@ -199,7 +212,12 @@ export function resolveEdexcelLinksForCaieTopic(
 
   for (const concept of concepts) {
     for (const ref of concept.refs) {
-      if (ref.board !== 'edexcel' && ref.board !== 'oxfordaqa' && ref.board !== 'aqa') {
+      if (
+        ref.board !== 'edexcel' &&
+        ref.board !== 'oxfordaqa' &&
+        ref.board !== 'aqa' &&
+        ref.board !== 'ap'
+      ) {
         continue
       }
       const key = refKey(ref)
@@ -367,6 +385,60 @@ export function resolveCaieLinksForAqaSubject(
   contentCode: string
 ): ResolvedCrossBoardLink[] {
   const concepts = getMappingsForAqaSubject(contentCode)
+  const seen = new Set<string>()
+  const out: ResolvedCrossBoardLink[] = []
+
+  for (const concept of concepts) {
+    for (const ref of concept.refs) {
+      if (ref.board !== 'cambridge' || !ref.topicCode) continue
+      const key = refKey(ref)
+      if (seen.has(key)) continue
+      const href = caieShellHref(ref)
+      if (!href) continue
+      seen.add(key)
+      out.push({
+        board: 'cambridge',
+        label: ref.label ?? `${ref.syllabusOrUnit} ${ref.topicCode}`,
+        href,
+        syllabusOrUnit: ref.syllabusOrUnit,
+        topicCode: ref.topicCode,
+      })
+    }
+  }
+  return out
+}
+
+export function resolveCourseLinksForApSubject(
+  contentCode: string
+): ResolvedCrossBoardLink[] {
+  const concepts = getMappingsForApSubject(contentCode)
+  const seen = new Set<string>()
+  const out: ResolvedCrossBoardLink[] = []
+
+  for (const concept of concepts) {
+    for (const ref of concept.refs) {
+      if (ref.board !== 'cambridge' || !ref.topicCode) continue
+      const key = `course|${refKey(ref)}`
+      if (seen.has(key)) continue
+      const href = caieCourseHref(ref)
+      if (!href) continue
+      seen.add(key)
+      out.push({
+        board: 'cambridge',
+        label: ref.label ?? `${ref.syllabusOrUnit} ${ref.topicCode}`,
+        href,
+        syllabusOrUnit: ref.syllabusOrUnit,
+        topicCode: ref.topicCode,
+      })
+    }
+  }
+  return out
+}
+
+export function resolveCaieLinksForApSubject(
+  contentCode: string
+): ResolvedCrossBoardLink[] {
+  const concepts = getMappingsForApSubject(contentCode)
   const seen = new Set<string>()
   const out: ResolvedCrossBoardLink[] = []
 

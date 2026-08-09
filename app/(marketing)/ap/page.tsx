@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { FunnelLandingView } from '@/components/analytics/FunnelLandingView'
+import { FunnelMarkLink } from '@/components/analytics/FunnelMarkLink'
 import {
   MarketingHero,
   MarketingPageShell,
@@ -22,6 +24,7 @@ export default function ApHubPage() {
   const courses = getApCourses()
   return (
     <MarketingPageShell>
+      <FunnelLandingView source="board_hub_ap" />
       <PageJsonLd
         path="/ap"
         title="AP College Board"
@@ -37,12 +40,15 @@ export default function ApHubPage() {
         lead="Own lifecycle — FRQ marking now; interactive 1–5 calculator later. Not an A-Level Results Day clone."
       >
         <div className="mt-6 flex flex-wrap gap-3">
-          <Link
+          <FunnelMarkLink
             href={apMarkHref('ap-calculus-ab')}
+            source="board_hub_ap"
+            board="ap"
+            subject="ap-calculus-ab"
             className="ec-btn-primary inline-flex min-h-[48px] items-center"
           >
             Mark Calculus AB FRQ -&gt;
-          </Link>
+          </FunnelMarkLink>
           <Link href="/ap/calculus-ab" className="ec-btn-ghost inline-flex min-h-[48px] items-center">
             Calculus AB hub
           </Link>

@@ -14,6 +14,8 @@ Requires migration `20260809_mark_runs_exam_system.sql` applied.
 | Funnel beacons | Path `/__funnel/{event}/{board}` in `page_events` (e.g. `/__funnel/answer_submitted/edexcel`) |
 | GA4 | `board` property on funnel events |
 | Session memory | `sessionStorage.ms_funnel_last_board` so signup/upgrade after mark still tags board |
+| Board hubs | `landing_view` via `FunnelLandingView` (`board_hub_edexcel` / `_oxfordaqa` / `_aqa` / `_ap`) |
+| Hub + study-path CTAs | `mark_cta_clicked` with `source` + `board` (hub hero, study-path sheet/practice/checkpoint) |
 
 Live marking boards: `cambridge` · `ib` · `edexcel` · `oxfordaqa` · `aqa` · `ap`.
 

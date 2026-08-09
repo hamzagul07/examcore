@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { FunnelLandingView } from '@/components/analytics/FunnelLandingView'
+import { FunnelMarkLink } from '@/components/analytics/FunnelMarkLink'
 import {
   MarketingHero,
   MarketingPageShell,
@@ -30,6 +32,7 @@ export default function EdexcelHubPage() {
 
   return (
     <MarketingPageShell>
+      <FunnelLandingView source="board_hub_edexcel" />
       <PageJsonLd
         path={copy.path}
         title={copy.title}
@@ -45,15 +48,18 @@ export default function EdexcelHubPage() {
         lead="Unit maps, past-paper indexes and grade boundaries for International A Level — wired for examiner-style marking. Boards acquire students; marking is the product."
       >
         <div className="mt-6 flex flex-wrap gap-3">
-          <Link
+          <FunnelMarkLink
             href={edexcelMarkHref('WMA11')}
+            source="board_hub_edexcel"
+            board="edexcel"
+            subject="WMA11"
             className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
           >
             <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
               M1
             </span>
             Mark IAL Maths (WMA11) -&gt;
-          </Link>
+          </FunnelMarkLink>
           <Link
             href="/blog/edexcel-ial-vs-cambridge-a-level-2026"
             className="ec-btn-ghost inline-flex min-h-[48px]"

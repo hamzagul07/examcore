@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { describeInterval, FIRST_INTERVAL_DAYS } from '@/lib/courses/recall-schedule'
 import type { MarginNotesLesson } from '@/lib/courses/margin-notes/types'
 import { appendMarkReturn } from '@/lib/courses/format-session'
+import { trackFunnelEvent } from '@/lib/analytics/funnel'
 import { useLessonMastery } from '@/lib/hooks/useLessonMastery'
 import type { MasteryLevel } from '@/lib/mastery'
 import { CourseRichText } from '@/components/courses/CourseRichText'
@@ -771,6 +772,16 @@ export function Faq({ f }: { f: { q: string; a: string } }) {
   )
 }
 
+function studyBoardFromHref(href: string | null | undefined): string | null {
+  if (!href) return null
+  try {
+    const board = new URL(href, 'https://markscheme.app').searchParams.get('board')
+    return board?.trim().toLowerCase() || null
+  } catch {
+    return null
+  }
+}
+
 function PracticeBlock({
   practice,
   lesson,
@@ -810,7 +821,17 @@ function PracticeBlock({
         <CourseRichText content={p.text} variant="prose" breakAnywhere={false} />
       </div>
       <div className="practice-foot">
-        <Link className="btn-primary" href={markHref}>
+        <Link
+          className="btn-primary"
+          href={markHref}
+          onClick={() =>
+            trackFunnelEvent('mark_cta_clicked', {
+              source: markHrefOverride ? 'study_path_practice' : 'lesson_practice',
+              board: studyBoardFromHref(markHref),
+              subject: lesson.code,
+            })
+          }
+        >
           {markCtaLabel ?? 'Do it on paper → mark it'}
         </Link>
         <span className="micro">MARKED MARK-BY-MARK · B1 / M1 / A1 · OFFICIAL SCHEME</span>
@@ -925,7 +946,17 @@ export function LessonCheckpoint({
         get examiner-style feedback on exactly where you win and lose marks.
       </p>
       <div className="checkpoint-foot">
-        <Link className="btn-primary" href={markHref}>
+        <Link
+          className="btn-primary"
+          href={markHref}
+          onClick={() =>
+            trackFunnelEvent('mark_cta_clicked', {
+              source: markHrefOverride ? 'study_path_checkpoint' : 'lesson_checkpoint',
+              board: studyBoardFromHref(markHref),
+              subject: lesson.code,
+            })
+          }
+        >
           {markCtaLabel ? `${markCtaLabel} →` : 'Attempt & get marked →'}
         </Link>
         <span className="micro">Takes about a minute · you&rsquo;ll land back on this lesson</span>

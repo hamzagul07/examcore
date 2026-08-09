@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { FunnelLandingView } from '@/components/analytics/FunnelLandingView'
+import { FunnelMarkLink } from '@/components/analytics/FunnelMarkLink'
 import {
   MarketingHero,
   MarketingPageShell,
@@ -23,6 +25,7 @@ export default function AqaHubPage() {
   const subjects = getAqaSubjects()
   return (
     <MarketingPageShell>
+      <FunnelLandingView source="board_hub_aqa" />
       <PageJsonLd
         path="/aqa"
         title="AQA A-level"
@@ -38,12 +41,15 @@ export default function AqaHubPage() {
         lead="Selective shell — Mathematics and Physics first. Not a full GCSE catalogue. Mark practice answers with AQA method/accuracy dialect."
       >
         <div className="mt-6 flex flex-wrap gap-3">
-          <Link
+          <FunnelMarkLink
             href={aqaMarkHref('aqa-mathematics')}
+            source="board_hub_aqa"
+            board="aqa"
+            subject="aqa-mathematics"
             className="ec-btn-primary inline-flex min-h-[48px] items-center"
           >
             Mark AQA Maths -&gt;
-          </Link>
+          </FunnelMarkLink>
           <Link href="/edexcel/a-level" className="ec-btn-ghost inline-flex min-h-[48px] items-center">
             Edexcel UK A Level
           </Link>

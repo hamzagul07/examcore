@@ -1,5 +1,7 @@
 import Link from 'next/link'
 
+import { FunnelLandingView } from '@/components/analytics/FunnelLandingView'
+import { FunnelMarkLink } from '@/components/analytics/FunnelMarkLink'
 import {
   MarketingHero,
   MarketingPageShell,
@@ -7,6 +9,7 @@ import {
 } from '@/components/marketing/MarketingPageShell'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { createPageMetadata } from '@/lib/seo/metadata'
+import { edexcelMarkHref } from '@/lib/edexcel/marking'
 import {
   OXFORD_AQA_QUALIFICATIONS,
   getOxfordaqaSubjects,
@@ -38,6 +41,7 @@ export default function OxfordaqaHubPage() {
 
   return (
     <MarketingPageShell>
+      <FunnelLandingView source="board_hub_oxfordaqa" />
       <PageJsonLd
         path={copy.path}
         title={copy.title}
@@ -53,15 +57,18 @@ export default function OxfordaqaHubPage() {
         lead="Mapped visual study paths, paper maps, and OxfordAQA-dialect marking for International A-level — our CAIE lessons tagged to your board, not a scraped course."
       >
         <div className="mt-6 flex flex-wrap gap-3">
-          <Link
+          <FunnelMarkLink
             href={oxfordaqaMarkHref('oxaqa-mathematics')}
+            source="board_hub_oxfordaqa"
+            board="oxfordaqa"
+            subject="oxaqa-mathematics"
             className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
           >
             <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
               M1
             </span>
             Mark OxfordAQA Maths -&gt;
-          </Link>
+          </FunnelMarkLink>
           <Link
             href="/oxfordaqa/international-a-level/mathematics"
             className="ec-btn-ghost inline-flex min-h-[48px]"
@@ -148,21 +155,27 @@ export default function OxfordaqaHubPage() {
             modular units? Edexcel IAL is one hop away.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
-            <Link
+            <FunnelMarkLink
               href={oxfordaqaMarkHref('oxaqa-mathematics')}
+              source="board_hub_oxfordaqa_cross"
+              board="oxfordaqa"
+              subject="oxaqa-mathematics"
               className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
             >
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 M1
               </span>
               Mark OxfordAQA Maths -&gt;
-            </Link>
-            <Link
-              href="/mark?board=edexcel&subject=WMA11"
+            </FunnelMarkLink>
+            <FunnelMarkLink
+              href={edexcelMarkHref('WMA11')}
+              source="board_hub_oxfordaqa_cross"
+              board="edexcel"
+              subject="WMA11"
               className="ec-btn-ghost inline-flex min-h-[48px] items-center"
             >
               Mark Edexcel WMA11
-            </Link>
+            </FunnelMarkLink>
           </div>
         </div>
       </MarketingSection>

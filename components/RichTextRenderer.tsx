@@ -10,6 +10,8 @@ import {
 } from '@/lib/rich-text/markdown-components'
 import { normalizeMarkingText } from '@/lib/rich-text/normalize-marking-text'
 import { normalizeMarkSchemeText } from '@/lib/rich-text/normalize-mark-scheme-text'
+import { normalizeQuestionText } from '@/lib/rich-text/normalize-question-text'
+import { KATEX_REHYPE_OPTIONS } from '@/lib/rich-text/sanitize-latex'
 
 export type RichTextContentKind = 'marking' | 'question' | 'mark_scheme'
 
@@ -19,8 +21,7 @@ export type RichTextRendererProps = {
   className?: string
   variant?: RichTextVariant
   /**
-   * `question` — skip accounting-oriented normalizeMarkingText (preserves $...$
-   * in table cells). Caller should run normalizeQuestionText first.
+   * `question` — wrap/sanitize via normalizeQuestionText (tables + bare math).
    * `marking` — default; Claude/Accounting currency normalization applies.
    */
   contentKind?: RichTextContentKind
@@ -40,26 +41,23 @@ export function RichTextRenderer({
 
   const normalized =
     contentKind === 'question'
-      ? text
+      ? normalizeQuestionText(text)
       : contentKind === 'mark_scheme'
         ? normalizeMarkSchemeText(text)
         : normalizeMarkingText(text)
   const components = createMarkdownComponents(variant)
-  const proseClass =
-    variant === 'dark'
-      ? 'prose prose-sm max-w-none'
-      : 'prose prose-sm max-w-none'
+  const proseClass = 'prose prose-sm max-w-none'
 
   return (
-    <div className={`${proseClass} ec-break-anywhere min-w-0 max-w-full overflow-x-auto ${className}`.trim()}>
+    <div
+      className={`${proseClass} ms-rich-text ec-break-anywhere min-w-0 max-w-full overflow-x-auto ${className}`.trim()}
+    >
       <ReactMarkdown
         remarkPlugins={[
           remarkGfm,
           [remarkMath, { singleDollarTextMath: true }],
         ]}
-        // Match CourseRichText / CommunityMarkdown: render best-effort instead of
-        // emitting red error markup when a fragment fails to parse.
-        rehypePlugins={[[rehypeKatex, { strict: 'ignore', throwOnError: false }]]}
+        rehypePlugins={[[rehypeKatex, KATEX_REHYPE_OPTIONS]]}
         components={components}
       >
         {normalized}

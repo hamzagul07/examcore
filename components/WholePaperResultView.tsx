@@ -92,9 +92,9 @@ function QuestionDetail({
                 </span>
               </div>
               {c.band_descriptor && (
-                <p className="mt-2 text-xs text-[var(--ec-text-secondary)]">
-                  {c.band_descriptor}
-                </p>
+                <div className="mt-2 text-xs text-[var(--ec-text-secondary)]">
+                  <RichTextRenderer text={c.band_descriptor} />
+                </div>
               )}
               <div className="mt-2">
                 <RichTextRenderer text={c.justification} />

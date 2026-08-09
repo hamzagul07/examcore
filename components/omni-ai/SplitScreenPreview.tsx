@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { PaperPreview } from '@/components/command-bar/PaperPreview'
+import { RichTextRenderer } from '@/components/RichTextRenderer'
 import type { ChatPaperPayload } from '@/lib/chat-intents'
 
 interface SplitScreenPreviewProps {
@@ -27,7 +28,7 @@ export function SplitScreenPreview({
             background: 'var(--ec-surface-raised)',
           }}
         >
-          {messageContent}
+          <RichTextRenderer text={messageContent} variant="light" />
         </div>
       )}
       <PaperPreview paper={paper} />

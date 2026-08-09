@@ -1,16 +1,18 @@
 'use client'
 
-import {
-  MARK_DURATION_PAPER,
-  MARK_DURATION_SINGLE,
-} from '@/lib/copy/product-lexicon'
 import { StatusMessage } from '@/components/ui/StatusMessage'
-import type { MarkFlowDraft } from '../types'
+import {
+  MARK_FLOW_DURATION_PAPER,
+  MARK_FLOW_DURATION_SINGLE,
+  type MarkFlowDraft,
+} from '../types'
 
 type Props = {
   draft: MarkFlowDraft
   error: string | null
   submitting?: boolean
+  /** Human subject label when draft.subjectCode is a code. */
+  subjectLabel?: string | null
   onBack: () => void
   onConfirm: () => void
 }
@@ -23,39 +25,54 @@ export function ConfirmScreen({
   draft,
   error,
   submitting,
+  subjectLabel = null,
   onBack,
   onConfirm,
 }: Props) {
   const isPaper = draft.scope === 'whole_paper'
+  const isPastPaperQ = !isPaper && draft.questionSource === 'past_paper'
+  const isCombined =
+    !isPaper && !isPastPaperQ && draft.practiceKind === 'combined_script'
   const pages = draft.pageCount
   const hasTyped = draft.inputKind === 'typed' && draft.typedAnswer.trim().length > 0
 
   const inputSummary = hasTyped
     ? 'Typed working ready'
-    : pages === 1
-      ? '1 page selected'
-      : `${pages} pages selected`
+    : isCombined
+      ? pages === 1
+        ? '1 page — question and working together'
+        : `${pages} pages — question and working together`
+      : pages === 1
+        ? '1 page selected'
+        : `${pages} pages selected`
 
   const questionSummary = isPaper
     ? null
-    : draft.hasQuestionPhoto && draft.questionText.trim().length >= 10
-      ? 'Question photo + typed stem'
-      : draft.hasQuestionPhoto
-        ? 'Question photo attached'
-        : draft.questionText.trim().length >= 10
-          ? 'Question stem typed'
-          : 'Question context missing'
+    : isPastPaperQ
+      ? [draft.paperCode, draft.paperSession, draft.questionNumber ? `Q${draft.questionNumber}` : null]
+          .filter(Boolean)
+          .join(' · ') || 'Past paper details missing'
+      : isCombined
+        ? 'On the same upload as your working'
+        : draft.hasQuestionPhoto && draft.questionText.trim().length >= 10
+          ? 'Question photo + typed stem'
+          : draft.hasQuestionPhoto
+            ? 'Question photo attached'
+            : draft.questionText.trim().length >= 10
+              ? 'Question stem typed'
+              : 'Question context missing'
 
-  const duration = isPaper ? MARK_DURATION_PAPER : MARK_DURATION_SINGLE
+  const duration = isPaper ? MARK_FLOW_DURATION_PAPER : MARK_FLOW_DURATION_SINGLE
   const allowance = isPaper
     ? 'Uses whole-paper marking (counts toward your monthly allowance by question).'
     : 'Uses 1 marked question from your monthly allowance.'
 
-  const catalogHint =
-    isPaper && draft.questionNumber
-      ? `This paper lists question ${draft.questionNumber} in our catalog — that is structure only, not what we found in your upload.`
-      : isPaper
-        ? 'We have not OCR’d your pages yet — the count above is what you selected.'
+  const catalogHint = isPaper
+    ? 'We have not OCR’d your pages yet — the count above is what you selected.'
+    : isPastPaperQ
+      ? 'We will look up this paper in our mark-scheme bank — that is catalog match, not OCR yet.'
+      : isCombined
+        ? 'We have not read the sheet yet — we will split question from working when marking starts.'
         : null
 
   return (
@@ -73,7 +90,7 @@ export function ConfirmScreen({
       <dl className="ms-mark-flow-confirm-slip ec-card ec-card--paper space-y-3 border border-[var(--ec-border)] p-5">
         {questionSummary ? (
           <div>
-            <dt className="ms-micro">QUESTION</dt>
+            <dt className="ms-micro">{isPastPaperQ ? 'PAST PAPER' : 'QUESTION'}</dt>
             <dd className="mt-1 text-sm font-semibold text-[var(--ec-text-primary)]">
               {questionSummary}
             </dd>
@@ -91,12 +108,28 @@ export function ConfirmScreen({
         <div>
           <dt className="ms-micro">MODE</dt>
           <dd className="mt-1 text-sm text-[var(--ec-text-primary)]">
-            {isPaper ? 'Whole paper' : 'One answer'}
+            {isPaper
+              ? 'Whole paper'
+              : isPastPaperQ
+                ? 'Past paper question'
+                : isCombined
+                  ? 'Scanned script'
+                  : 'My question'}
             {isPaper && draft.paperCode ? ` · ${draft.paperCode}` : ''}
             {isPaper && draft.paperSession ? ` · ${draft.paperSession}` : ''}
-            {!isPaper && draft.subjectCode ? ` · ${draft.subjectCode}` : ''}
+            {!isPaper && (subjectLabel || draft.subjectCode)
+              ? ` · ${subjectLabel || draft.subjectCode}`
+              : ''}
           </dd>
         </div>
+        {!isPaper && !isPastPaperQ && !isCombined && draft.totalMarksHint ? (
+          <div>
+            <dt className="ms-micro">TOTAL MARKS</dt>
+            <dd className="mt-1 text-sm text-[var(--ec-text-primary)]">
+              {draft.totalMarksHint}
+            </dd>
+          </div>
+        ) : null}
         <div>
           <dt className="ms-micro">EXPECTED TIME</dt>
           <dd className="mt-1 text-sm text-[var(--ec-text-primary)]">

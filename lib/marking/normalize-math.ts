@@ -22,6 +22,8 @@
  * - Better to under-normalize than to mangle non-math text.
  */
 
+import { normalizeMarkingText } from '@/lib/rich-text/normalize-marking-text'
+
 /** True if the inner content of a paren group looks unambiguously like math. */
 function looksLikeMath(inner: string): boolean {
   const s = inner.trim()
@@ -191,6 +193,16 @@ export function normalizeMathDelimiters(text: string): string {
   return out
 }
 
+/**
+ * Full prose prep for stored marking fields: paren→$ / dedupe, then the same
+ * wrap + sanitize + currency stack the client RichTextRenderer uses so DB
+ * consumers / exports / ink notes see delimiters already fixed.
+ */
+export function prepareMarkingProse(text: string): string {
+  if (!text || typeof text !== 'string') return text
+  return normalizeMarkingText(normalizeMathDelimiters(text))
+}
+
 /** Marking-result shaped object whose prose fields should be normalized. */
 type MarkLike = {
   reasoning?: unknown
@@ -213,15 +225,23 @@ type MarkingResultLike = {
   weak_topics?: unknown
   marks_awarded?: unknown
   band_result?: unknown
+  criteria_results?: unknown
   [key: string]: unknown
 }
 
 function normStr(v: unknown): unknown {
-  return typeof v === 'string' ? normalizeMathDelimiters(v) : v
+  return typeof v === 'string' ? prepareMarkingProse(v) : v
 }
 
 function normStrArray(v: unknown): unknown {
   return Array.isArray(v) ? v.map((item) => normStr(item)) : v
+}
+
+function normBandLike(band: BandLike): void {
+  band.justification = normStr(band.justification)
+  band.band_descriptor = normStr(band.band_descriptor)
+  band.strengths = normStrArray(band.strengths)
+  band.improvements = normStrArray(band.improvements)
 }
 
 /**
@@ -249,11 +269,14 @@ export function normalizeMarkingResult<T extends MarkingResultLike>(result: T): 
   }
 
   if (result.band_result && typeof result.band_result === 'object') {
-    const band = result.band_result as BandLike
-    band.justification = normStr(band.justification)
-    band.band_descriptor = normStr(band.band_descriptor)
-    band.strengths = normStrArray(band.strengths)
-    band.improvements = normStrArray(band.improvements)
+    normBandLike(result.band_result as BandLike)
+  }
+
+  if (Array.isArray(result.criteria_results)) {
+    for (const crit of result.criteria_results as BandLike[]) {
+      if (!crit || typeof crit !== 'object') continue
+      normBandLike(crit)
+    }
   }
 
   return result

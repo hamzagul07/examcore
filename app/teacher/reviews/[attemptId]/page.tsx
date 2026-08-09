@@ -16,7 +16,6 @@ import {
 } from '@/components/teacher/TeacherPageChrome'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
-import { normalizeQuestionText } from '@/lib/rich-text/normalize-question-text'
 import type { MarkAwarded } from '@/components/MarkingResultView'
 
 interface AttemptData {
@@ -72,7 +71,7 @@ export default function ReviewDetailPage() {
         lead={
           attempt.question_text ? (
             <RichTextRenderer
-              text={normalizeQuestionText(attempt.question_text)}
+              text={attempt.question_text}
               contentKind="question"
             />
           ) : undefined

@@ -25,7 +25,6 @@ type Props = InputFieldProps | TextareaFieldProps
 
 /**
  * Labelled form field with 44px touch target and linked hint/error (DS-03).
- * Uses `ec-input` so product forms stay on brand tokens.
  */
 export function Field(props: Props) {
   const autoId = useId()
@@ -39,9 +38,9 @@ export function Field(props: Props) {
   const id = props.inputProps?.id ?? autoId
   const hintId = hint ? `${id}-hint` : undefined
   const errorId = error ? `${id}-error` : undefined
-  const describedBy = [hintId, errorId, props.inputProps?.['aria-describedby']]
-    .filter(Boolean)
-    .join(' ') || undefined
+  const describedBy =
+    [hintId, errorId, props.inputProps?.['aria-describedby']].filter(Boolean).join(' ') ||
+    undefined
 
   return (
     <div className={cn('ms-field', className)}>
@@ -71,7 +70,7 @@ export function Field(props: Props) {
         </p>
       ) : null}
       {error ? (
-        <p id={errorId} className="mt-1.5 text-xs ec-score-low" role="alert">
+        <p id={errorId} className="mt-1.5 text-xs text-[var(--ec-danger,#b91c1c)]" role="alert">
           {error}
         </p>
       ) : null}

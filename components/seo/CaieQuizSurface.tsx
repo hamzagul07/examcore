@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react'
 import type { CourseLesson } from '@/lib/courses/types'
 import { QuizChallengeShare } from '@/components/seo/QuizChallengeShare'
+import { CourseRichText } from '@/components/courses/CourseRichText'
 
 export function CaieQuizSurface({
   lesson,
@@ -59,7 +60,9 @@ export function CaieQuizSurface({
               </button>
             </div>
             {revealed[i] ? (
-              <p className="ms-body-2 mt-2 whitespace-pre-wrap">{q.answer}</p>
+              <div className="ms-body-2 mt-2">
+                <CourseRichText content={q.answer} variant="prose" />
+              </div>
             ) : null}
           </li>
         ))}

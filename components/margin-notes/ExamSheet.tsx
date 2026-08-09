@@ -1,7 +1,12 @@
 'use client'
 
 import type { CSSProperties, ReactNode } from 'react'
+import { MathText } from '@/components/MathText'
 import { cn } from '@/lib/utils'
+
+function maybeMath(node: ReactNode): ReactNode {
+  return typeof node === 'string' ? <MathText text={node} /> : node
+}
 
 type ExamSheetProps = {
   head?: ReactNode
@@ -98,7 +103,7 @@ export function ExamSheetLine({
         role={onClick ? 'button' : undefined}
         tabIndex={onClick ? 0 : undefined}
       >
-        <span className="ec-exam-sheet__work font-handwritten">{work}</span>
+        <span className="ec-exam-sheet__work font-handwritten">{maybeMath(work)}</span>
         {mark ? (
           <MarkStamp ok={ok} style={stampDelayMs ? { animationDelay: `${stampDelayMs}ms` } : undefined}>
             {mark}
@@ -106,7 +111,9 @@ export function ExamSheetLine({
         ) : null}
       </div>
       {note ? (
-        <span className={noteOk ? 'ec-exam-note--green' : 'ec-exam-note--red'}>{note}</span>
+        <span className={noteOk ? 'ec-exam-note--green' : 'ec-exam-note--red'}>
+          {maybeMath(note)}
+        </span>
       ) : null}
     </div>
   )

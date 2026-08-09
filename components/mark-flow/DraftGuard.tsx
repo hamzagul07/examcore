@@ -2,20 +2,16 @@
 
 import { useEffect } from 'react'
 
-type Props = {
-  dirty: boolean
-}
-
-/** Warn before unload when the capture draft has unsaved work (R1 / MK-03). */
-export function DraftGuard({ dirty }: Props) {
+/** Warn before leaving with an unsaved capture draft. */
+export function DraftGuard({ dirty }: { dirty: boolean }) {
   useEffect(() => {
     if (!dirty) return
-    const warn = (e: BeforeUnloadEvent) => {
+    const onBeforeUnload = (e: BeforeUnloadEvent) => {
       e.preventDefault()
       e.returnValue = ''
     }
-    window.addEventListener('beforeunload', warn)
-    return () => window.removeEventListener('beforeunload', warn)
+    window.addEventListener('beforeunload', onBeforeUnload)
+    return () => window.removeEventListener('beforeunload', onBeforeUnload)
   }, [dirty])
 
   return null

@@ -78,13 +78,10 @@ export function AnswerCapture({
             ref={typeRef}
             id="mark-flow-typed"
             className="ec-input min-h-[200px] font-mono text-sm leading-relaxed"
-            placeholder="Type the working you want marked…"
             value={typedAnswer}
+            onChange={(e) => onTypedAnswerChange(e.target.value)}
+            placeholder="Type your working exactly as you would on the paper…"
             disabled={disabled}
-            onChange={(e) => {
-              onTypedAnswerChange(e.target.value)
-              onInputKindChange('typed')
-            }}
           />
         </div>
       ) : (
@@ -97,15 +94,9 @@ export function AnswerCapture({
             onPdfChange?.(f)
             if (f) onInputKindChange('pdf')
           }}
+          emptyLabel={touch ? 'Take a photo of your working' : 'Add photos or a PDF'}
+          emptyHint="Page count only until we mark — no questions detected yet"
           disabled={disabled}
-          emptyLabel={
-            touch ? 'Take photos of your working' : 'Drop files here, or choose files'
-          }
-          emptyHint={
-            touch
-              ? 'Camera, gallery photos, or a PDF scan'
-              : 'JPEG, PNG, WebP, or PDF'
-          }
         />
       )}
     </div>

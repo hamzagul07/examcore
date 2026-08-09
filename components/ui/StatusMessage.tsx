@@ -1,39 +1,35 @@
 'use client'
 
 import type { ReactNode } from 'react'
+import { cn } from '@/lib/utils'
 
-export type StatusMessageTone = 'status' | 'alert' | 'note'
+type Tone = 'info' | 'alert' | 'success'
 
 type Props = {
   children: ReactNode
-  /** status = polite live; alert = assertive; note = static (no live region). */
-  tone?: StatusMessageTone
+  tone?: Tone
   className?: string
-  id?: string
 }
 
-/**
- * Shared status / alert / note surface (Codex DS primitive).
- * Prefer this over ad-hoc success/error boxes so announcements stay consistent.
- */
-export function StatusMessage({
-  children,
-  tone = 'status',
-  className = '',
-  id,
-}: Props) {
-  const role = tone === 'alert' ? 'alert' : tone === 'status' ? 'status' : undefined
-  const live =
-    tone === 'alert' ? ('assertive' as const) : tone === 'status' ? ('polite' as const) : undefined
+const TONE: Record<Tone, string> = {
+  info: 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)]',
+  alert: 'border-[color-mix(in_srgb,var(--ec-danger,#b91c1c)_35%,transparent)] bg-[color-mix(in_srgb,var(--ec-danger,#b91c1c)_8%,transparent)] text-[var(--ec-text-primary)]',
+  success:
+    'border-[color-mix(in_srgb,var(--ec-brand)_35%,transparent)] bg-[var(--ec-brand-muted)] text-[var(--ec-text-primary)]',
+}
 
+/** Inline status slip for forms (desk language). */
+export function StatusMessage({ children, tone = 'info', className }: Props) {
   return (
-    <div
-      id={id}
-      role={role}
-      aria-live={live}
-      className={className}
+    <p
+      role={tone === 'alert' ? 'alert' : 'status'}
+      className={cn(
+        'rounded-[var(--radius,4px)] border px-4 py-3 text-sm leading-relaxed',
+        TONE[tone],
+        className
+      )}
     >
       {children}
-    </div>
+    </p>
   )
 }

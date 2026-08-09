@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import { Loader2 } from 'lucide-react'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
-import { normalizeQuestionText } from '@/lib/rich-text/normalize-question-text'
 import { SyllabusTopicBadge } from '@/components/SyllabusTopicBadge'
 import type { MarkingStyle } from '@/lib/marking/types'
 import type { SyllabusCode } from '@/lib/syllabus'
@@ -118,7 +117,7 @@ export function QuestionPreviewPanel({
           {detail.question_text ? (
             <div className="ms-question-preview-text">
               <RichTextRenderer
-                text={normalizeQuestionText(detail.question_text)}
+                text={detail.question_text}
                 contentKind="question"
               />
             </div>

@@ -1,3 +1,5 @@
+import { Check, X } from 'lucide-react'
+import { MathText } from '@/components/MathText'
 import type { MarkAwarded } from '@/components/MarkingResultView'
 
 /**
@@ -37,7 +39,9 @@ export function MarkLineList({
             {m.earned ? '✓' : '×'}
           </span>
           <span className="ms-mpl__type">{m.type}</span>
-          <span className="ms-mpl__work">{m.line_reference}</span>
+          <span className="ms-mpl__work">
+            {m.line_reference ? <MathText text={m.line_reference} /> : null}
+          </span>
           <span className="sr-only">
             {m.type} {m.earned ? 'earned' : 'not earned'}
           </span>

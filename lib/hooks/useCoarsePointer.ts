@@ -1,24 +1,19 @@
 'use client'
 
-import { useSyncExternalStore } from 'react'
+import { useEffect, useState } from 'react'
 
-/** Phones / coarse pointers — prefer camera-first upload (MK-06). */
-function subscribe(onStoreChange: () => void) {
-  if (typeof window === 'undefined') return () => {}
-  const mq = window.matchMedia('(pointer: coarse), (max-width: 640px)')
-  mq.addEventListener('change', onStoreChange)
-  return () => mq.removeEventListener('change', onStoreChange)
-}
+/** True when the primary pointer is coarse (phone/tablet) — prefer camera CTAs. */
+export function useCoarsePointer(): boolean {
+  const [coarse, setCoarse] = useState(false)
 
-function getSnapshot() {
-  if (typeof window === 'undefined') return false
-  return window.matchMedia('(pointer: coarse), (max-width: 640px)').matches
-}
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return
+    const mq = window.matchMedia('(pointer: coarse)')
+    const sync = () => setCoarse(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
 
-function getServerSnapshot() {
-  return false
-}
-
-export function useCoarsePointer() {
-  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
+  return coarse
 }

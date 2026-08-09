@@ -1,30 +1,25 @@
 /**
- * Mark flow v2 (R1) — Capture → Confirm → Marking → Result.
- * Enable with `?flow=v2` or localStorage `ms-mark-flow=v2`.
+ * MarkFlow v2 preview gate.
+ * Enable with `?flow=v2` or `localStorage.setItem('ms-mark-flow', 'v2')`.
+ * Escape with `?flow=v1`.
  */
+export const MARK_FLOW_STORAGE_KEY = 'ms-mark-flow'
 
-export const MARK_FLOW_V2_STORAGE_KEY = 'ms-mark-flow'
-
-export function isMarkFlowV2Enabled(search?: string | null): boolean {
-  if (typeof window === 'undefined') {
-    return typeof search === 'string' && /(?:^|[?&])flow=v2(?:&|$)/.test(search)
-  }
+export function isMarkFlowV2Enabled(): boolean {
+  if (typeof window === 'undefined') return false
   try {
-    const params = new URLSearchParams(search ?? window.location.search)
-    if (params.get('flow') === 'v2') return true
-    if (params.get('flow') === 'v1') return false
-    return window.localStorage.getItem(MARK_FLOW_V2_STORAGE_KEY) === 'v2'
+    const params = new URLSearchParams(window.location.search)
+    const flow = params.get('flow')
+    if (flow === 'v1') {
+      window.localStorage.removeItem(MARK_FLOW_STORAGE_KEY)
+      return false
+    }
+    if (flow === 'v2') {
+      window.localStorage.setItem(MARK_FLOW_STORAGE_KEY, 'v2')
+      return true
+    }
+    return window.localStorage.getItem(MARK_FLOW_STORAGE_KEY) === 'v2'
   } catch {
     return false
-  }
-}
-
-export function setMarkFlowV2Preference(enabled: boolean) {
-  if (typeof window === 'undefined') return
-  try {
-    if (enabled) window.localStorage.setItem(MARK_FLOW_V2_STORAGE_KEY, 'v2')
-    else window.localStorage.removeItem(MARK_FLOW_V2_STORAGE_KEY)
-  } catch {
-    /* ignore */
   }
 }

@@ -17,7 +17,9 @@ interface StreamingMessageProps {
 export function StreamingMessage({ message, splitPaper = false }: StreamingMessageProps) {
   if (message.role === 'user') {
     return (
-      <div className="ms-omni-msg user ec-chat-message-enter">{message.content}</div>
+      <div className="ms-omni-msg user ec-chat-message-enter">
+        <RichTextRenderer text={message.content} variant="light" />
+      </div>
     )
   }
 
@@ -44,7 +46,7 @@ export function StreamingMessage({ message, splitPaper = false }: StreamingMessa
             {message.isStreaming ? (
               <div className="text-sm leading-relaxed">
                 {message.content ? (
-                  <span className="whitespace-pre-wrap break-words">{message.content}</span>
+                  <RichTextRenderer text={message.content} variant="light" />
                 ) : (
                   <span className="text-[var(--ec-text-secondary)]">Thinking</span>
                 )}

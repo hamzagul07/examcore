@@ -1,6 +1,11 @@
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
 import { ArrowRight, BookOpen, Target } from 'lucide-react'
+import { normalizeMarkingText } from '@/lib/rich-text/normalize-marking-text'
+import { KATEX_REHYPE_OPTIONS } from '@/lib/rich-text/sanitize-latex'
 
 export function CourseLessonSeoIntro({
   heading,
@@ -40,8 +45,10 @@ export function CourseLessonSeoIntro({
       >
         {heading}
       </h1>
-      <div className="mb-4 text-sm leading-relaxed text-[var(--ec-text-secondary)] sm:text-base">
+      <div className="ms-rich-text mb-4 text-sm leading-relaxed text-[var(--ec-text-secondary)] sm:text-base">
         <ReactMarkdown
+          remarkPlugins={[remarkGfm, [remarkMath, { singleDollarTextMath: true }]]}
+          rehypePlugins={[[rehypeKatex, KATEX_REHYPE_OPTIONS]]}
           components={{
             p: ({ children }) => <p className="mb-0">{children}</p>,
             strong: ({ children }) => (
@@ -49,7 +56,7 @@ export function CourseLessonSeoIntro({
             ),
           }}
         >
-          {paragraph}
+          {normalizeMarkingText(paragraph)}
         </ReactMarkdown>
       </div>
       <div className="flex flex-wrap gap-3 text-sm">

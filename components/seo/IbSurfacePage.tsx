@@ -12,6 +12,7 @@ import type { CaieSurface } from '@/lib/seo/caie-graph'
 import { CAIE_SURFACES, lessonHasSurface } from '@/lib/seo/caie-graph'
 import { ibLessonPath, ibSurfacePath } from '@/lib/seo/ib-graph'
 import type { CourseLesson } from '@/lib/courses/types'
+import { CourseRichText } from '@/components/courses/CourseRichText'
 
 const LABELS: Record<CaieSurface, string> = {
   flashcards: 'Flashcards',
@@ -101,7 +102,9 @@ export function IbSurfacePage({
                 <dt className="font-semibold">
                   <h2 className="text-base font-semibold">{f.q}</h2>
                 </dt>
-                <dd className="ms-body-2 mt-2 whitespace-pre-wrap">{f.a}</dd>
+                <dd className="ms-body-2 mt-2">
+                  <CourseRichText content={f.a} variant="prose" />
+                </dd>
               </div>
             ))}
           </dl>
@@ -116,7 +119,9 @@ export function IbSurfacePage({
                   <summary className="cursor-pointer text-sm text-[var(--ec-brand)]">
                     Show answer
                   </summary>
-                  <p className="ms-body-2 mt-2 whitespace-pre-wrap">{q.answer}</p>
+                  <div className="ms-body-2 mt-2">
+                    <CourseRichText content={q.answer} variant="prose" />
+                  </div>
                 </details>
               </li>
             ))}
@@ -142,7 +147,9 @@ export function IbSurfacePage({
                 <h2 className="ms-h3" style={{ fontSize: '1.05rem' }}>
                   Exam tip {i + 1}
                 </h2>
-                <p className="ms-body-2 mt-2 whitespace-pre-wrap">{tip}</p>
+                <div className="ms-body-2 mt-2">
+                  <CourseRichText content={tip} variant="prose" />
+                </div>
               </article>
             ))}
           </div>

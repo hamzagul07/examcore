@@ -7,6 +7,8 @@ import type { Components } from 'react-markdown'
 import { createMarkdownComponents } from '@/lib/rich-text/markdown-components'
 import { linkifyMentions } from '@/lib/community/markdown-mentions'
 import { safeUrl, stripRawHtml } from '@/lib/community/sanitize'
+import { normalizeMarkingText } from '@/lib/rich-text/normalize-marking-text'
+import { KATEX_REHYPE_OPTIONS } from '@/lib/rich-text/sanitize-latex'
 
 /**
  * Renders UNTRUSTED community markdown safely (see lib/community/sanitize.ts).
@@ -57,12 +59,12 @@ const components: Components = {
 }
 
 export function CommunityMarkdown({ content }: { content: string }) {
-  const prepared = linkifyMentions(stripRawHtml(content))
+  const prepared = normalizeMarkingText(linkifyMentions(stripRawHtml(content)))
   return (
-    <div className="community-md course-rich-text ec-break-anywhere min-w-0 max-w-full">
+    <div className="community-md course-rich-text ms-rich-text ec-break-anywhere min-w-0 max-w-full">
       <ReactMarkdown
         remarkPlugins={[remarkGfm, [remarkMath, { singleDollarTextMath: true }]]}
-        rehypePlugins={[[rehypeKatex, { strict: 'ignore', throwOnError: false }]]}
+        rehypePlugins={[[rehypeKatex, KATEX_REHYPE_OPTIONS]]}
         components={components}
       >
         {prepared}

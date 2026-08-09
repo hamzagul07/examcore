@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { MathText } from '@/components/MathText'
 import { ScoreReveal } from '@/components/mark/ScoreReveal'
 import { MarkLineList } from '@/components/mark/MarkLineList'
 import { DEMO_MARK_RESULT } from '@/lib/marking/demo-result'
@@ -62,7 +63,8 @@ export function FirstMarkPreview() {
 
       {lost?.margin_note && (
         <p className="ms-first-mark__why">
-          <strong>Why that mark was lost:</strong> {lost.margin_note}.
+          <strong>Why that mark was lost:</strong>{' '}
+          <MathText text={lost.margin_note} />.
         </p>
       )}
     </div>

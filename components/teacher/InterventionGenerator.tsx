@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Check, Loader2 } from 'lucide-react'
+import { RichTextRenderer } from '@/components/RichTextRenderer'
 
 interface Question {
   id: string
@@ -178,9 +179,15 @@ export function InterventionGenerator({
                       {q.paper_code} · {q.paper_session} · Q{q.question_number}{' '}
                       · {q.total_marks} marks
                     </div>
-                    <p className="line-clamp-2 text-sm text-[var(--ec-text-primary)]">
-                      {q.question_text}
-                    </p>
+                    <div className="line-clamp-2 text-sm text-[var(--ec-text-primary)]">
+                      {q.question_text ? (
+                        <RichTextRenderer
+                          text={q.question_text}
+                          contentKind="question"
+                          variant="light"
+                        />
+                      ) : null}
+                    </div>
                   </button>
                 ))}
               </div>

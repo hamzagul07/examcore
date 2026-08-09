@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { MathText } from '@/components/MathText'
 
 interface MarginNoteProps {
   note: string
@@ -50,7 +51,7 @@ export function MarginNote({ note, flip = false, layout = 'side' }: MarginNotePr
               transformOrigin: 'left top',
             }}
           >
-            {note}
+            <MathText text={note} />
           </p>
         </div>
       </motion.div>
@@ -102,7 +103,7 @@ export function MarginNote({ note, flip = false, layout = 'side' }: MarginNotePr
             transformOrigin: flip ? 'right top' : 'left top',
           }}
         >
-          {note}
+          <MathText text={note} />
         </p>
       </div>
     </motion.div>

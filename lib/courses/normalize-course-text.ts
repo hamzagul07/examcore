@@ -1,5 +1,6 @@
 import { normalizeMarkdownTables, stripControlChars } from '@/lib/rich-text/normalize-marking-text'
 import { repairMathDelimiters } from '@/lib/courses/math-format'
+import { sanitizeMathDelimitersInText } from '@/lib/rich-text/sanitize-latex'
 
 const STASH = '\x00C'
 
@@ -52,7 +53,9 @@ export function normalizeCourseText(text: string): string {
   // Keep numbered steps in one <ol> (avoid blank lines resetting to "1.")
   s = s.replace(/\n\n+(?=\d+\.\s)/g, '\n')
 
-  return displayBlocksOnOwnLines(sanitizeCurrencyInMath(repairMathDelimiters(s)))
+  return sanitizeMathDelimitersInText(
+    displayBlocksOnOwnLines(sanitizeCurrencyInMath(repairMathDelimiters(s)))
+  )
 }
 
 /**

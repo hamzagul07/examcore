@@ -329,6 +329,21 @@
   color: var(--ec-text-primary);
 }
 
+/* Keep KaTeX glyphs intact — overflow-wrap:anywhere on parents shreds metrics. */
+.katex,
+.katex-display,
+.ec-break-anywhere .katex,
+.ec-break-anywhere .katex-display,
+.ms-rich-text .katex,
+.ms-rich-text .katex-display {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.katex {
+  white-space: nowrap;
+}
+
 .katex-display {
   margin: 1.25em 0;
   padding: 1em;
@@ -336,6 +351,38 @@
   background: var(--ec-surface);
   border: 1px solid var(--ec-border);
   overflow-x: auto;
+  white-space: normal;
+}
+
+/* Examiner-ink margin notes: keep KaTeX in crimson with the handwritten note. */
+.examiner-ink .katex,
+.examiner-ink .katex .base,
+.examiner-ink .katex .strut,
+.examiner-ink .katex .mord,
+.examiner-ink .katex .mop,
+.examiner-ink .katex .mbin,
+.examiner-ink .katex .mrel,
+.examiner-ink .katex .mopen,
+.examiner-ink .katex .mclose,
+.examiner-ink .katex .mpunct {
+  color: var(--ec-ink-crimson);
+  font-size: 1.05em;
+}
+
+/* Soft fallback when a fragment still fails — never scream red site-wide. */
+.katex-error,
+.ms-rich-text .katex-error,
+.course-rich-text .katex-error {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 0.92em;
+  font-weight: 500;
+  color: var(--ec-text-primary) !important;
+  background: var(--ec-surface-muted, var(--ec-surface));
+  padding: 0.12em 0.45em;
+  border-radius: 0.35rem;
+  border: 1px solid var(--ec-border-subtle, var(--ec-border));
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 @media (prefers-reduced-motion: reduce) {

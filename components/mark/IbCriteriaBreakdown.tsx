@@ -137,7 +137,9 @@ export function IbCriteriaBreakdown({
               {active.marks_awarded}/{active.marks_available} · L{active.level}
             </span>
           </div>
-          <p className="ms-ibc-detail__band">{active.band_descriptor}</p>
+          <div className="ms-ibc-detail__band">
+            <RichTextRenderer text={active.band_descriptor} />
+          </div>
           <div className="ms-ibc-detail__why">
             <RichTextRenderer text={active.justification} />
           </div>

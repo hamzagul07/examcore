@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ArrowUp } from 'lucide-react'
+import { MathText } from '@/components/MathText'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import type { BandGap, BandRung } from '@/lib/marking/mark-gap'
 
@@ -138,7 +139,7 @@ function Rung({ rung }: { rung: BandRung }) {
         L{rung.level}
       </span>
       <span className="text-sm leading-snug" style={{ color: tone.text }}>
-        {rung.descriptor}
+        <MathText text={rung.descriptor} />
         {rung.state === 'current' && (
           <span className="ml-1.5 font-mono text-[11px] text-[var(--ec-chip-success-text)]">
             ← you are here

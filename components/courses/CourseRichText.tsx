@@ -8,6 +8,7 @@ import rehypeKatex from 'rehype-katex'
 import type { Components } from 'react-markdown'
 import { createMarkdownComponents } from '@/lib/rich-text/markdown-components'
 import { normalizeCourseText } from '@/lib/courses/normalize-course-text'
+import { KATEX_REHYPE_OPTIONS } from '@/lib/rich-text/sanitize-latex'
 
 export type CourseRichTextVariant = 'prose' | 'inline' | 'formula' | 'flashcard'
 
@@ -54,7 +55,7 @@ export const CourseRichText = memo(function CourseRichText({
     <Wrapper className={`${variantClass} ${wrapClass} min-w-0 max-w-full ${className}`.trim()}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm, [remarkMath, { singleDollarTextMath: true }]]}
-        rehypePlugins={[[rehypeKatex, { strict: 'ignore', throwOnError: false }]]}
+        rehypePlugins={[[rehypeKatex, KATEX_REHYPE_OPTIONS]]}
         components={components}
       >
         {normalized}

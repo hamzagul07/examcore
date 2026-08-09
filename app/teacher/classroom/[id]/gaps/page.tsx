@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import { Printer, Target } from 'lucide-react'
+import { MathText } from '@/components/MathText'
 import { SkeletonBlock } from '@/components/ui/PageSkeleton'
 import {
   TeacherBackLink,
@@ -183,7 +184,9 @@ export default function CohortGapsPage() {
                     <span className="min-w-[5.5rem] shrink-0 tabular-nums text-[var(--ec-text-secondary)]">
                       {m.students} student{m.students === 1 ? '' : 's'}
                     </span>
-                    <span className="text-[var(--ec-text-primary)]">{m.note}</span>
+                    <span className="text-[var(--ec-text-primary)]">
+                      <MathText text={m.note} />
+                    </span>
                   </li>
                 ))}
               </ul>

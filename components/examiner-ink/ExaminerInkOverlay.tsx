@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { AlertCircle, Eye } from 'lucide-react'
+import { MathText } from '@/components/MathText'
 import { MarginNote } from './MarginNote'
 import { MarkStamp } from './MarkStamp'
 import { UnderlineMark } from './UnderlineMark'
@@ -444,8 +445,13 @@ function UnpositionedNotes({ notes }: { notes: LineReference[] }) {
               <MarkStamp markId={n.mark_id} earned={n.earned} />
               <div className="flex-1">
                 <p className="text-sm font-medium text-[var(--ec-text-primary)]">
-                  {n.margin_note ||
-                    (n.earned ? 'Mark awarded.' : 'Mark not awarded.')}
+                  {n.margin_note ? (
+                    <MathText text={n.margin_note} />
+                  ) : n.earned ? (
+                    'Mark awarded.'
+                  ) : (
+                    'Mark not awarded.'
+                  )}
                 </p>
                 {!n.earned && (
                   <p

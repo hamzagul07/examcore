@@ -13,6 +13,7 @@ import type { CaieSubjectRef, CaieSurface } from '@/lib/seo/caie-graph'
 import { caieLessonPath, caieSurfacePath } from '@/lib/seo/caie-graph'
 import type { CourseLesson } from '@/lib/courses/types'
 import { CaieQuizSurface } from '@/components/seo/CaieQuizSurface'
+import { CourseRichText } from '@/components/courses/CourseRichText'
 
 function quizJsonLd(lesson: CourseLesson, path: string) {
   const items = (lesson.quickCheck ?? []).slice(0, 20).map((q) => ({
@@ -148,7 +149,9 @@ export function CaieSurfacePage({
                 <dt className="font-semibold">
                   <h2 className="text-base font-semibold">{f.q}</h2>
                 </dt>
-                <dd className="ms-body-2 mt-2 whitespace-pre-wrap">{f.a}</dd>
+                <dd className="ms-body-2 mt-2">
+                  <CourseRichText content={f.a} variant="prose" />
+                </dd>
               </div>
             ))}
           </dl>
@@ -169,12 +172,16 @@ export function CaieSurfacePage({
                   <h2 className="ms-h3" style={{ fontSize: '1.1rem' }}>
                     Worked example {i + 1}
                   </h2>
-                  <p className="ms-body-2 mt-3 whitespace-pre-wrap">{w.question}</p>
+                  <div className="ms-body-2 mt-3">
+                    <CourseRichText content={w.question} variant="prose" />
+                  </div>
                   <details className="mt-3">
                     <summary className="cursor-pointer text-sm font-medium text-[var(--ec-brand)]">
                       Show solution outline
                     </summary>
-                    <p className="ms-body-2 mt-2 whitespace-pre-wrap">{w.solution}</p>
+                    <div className="ms-body-2 mt-2">
+                      <CourseRichText content={w.solution} variant="prose" />
+                    </div>
                   </details>
                 </article>
               ) : null
@@ -224,7 +231,9 @@ export function CaieSurfacePage({
                 <h2 className="ms-h3" style={{ fontSize: '1.05rem' }}>
                   Exam tip {i + 1}
                 </h2>
-                <p className="ms-body-2 mt-2 whitespace-pre-wrap">{tip}</p>
+                <div className="ms-body-2 mt-2">
+                  <CourseRichText content={tip} variant="prose" />
+                </div>
               </article>
             ))}
             {(lesson.faq ?? []).slice(0, 4).map((f) => (
@@ -232,7 +241,9 @@ export function CaieSurfacePage({
                 <h2 className="ms-h3" style={{ fontSize: '1.05rem' }}>
                   {f.q}
                 </h2>
-                <p className="ms-body-2 mt-2 whitespace-pre-wrap">{f.a}</p>
+                <div className="ms-body-2 mt-2">
+                  <CourseRichText content={f.a} variant="prose" />
+                </div>
               </article>
             ))}
           </div>

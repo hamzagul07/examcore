@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Check, X, MessageSquare, Save } from 'lucide-react'
+import { MathText } from '@/components/MathText'
 import type { MarkAwarded } from '@/components/MarkingResultView'
 
 interface AttemptForOverride {
@@ -99,8 +100,8 @@ export function OverrideConsole({ attempt, onSubmit }: Props) {
               <span className="shrink-0 rounded-md bg-[var(--ec-surface-raised)] px-2 py-1 font-mono text-sm ec-score-high">
                 {m.mark_id}
               </span>
-              <span className="truncate text-sm text-[var(--ec-text-primary)]">
-                {m.reasoning?.slice(0, 60)}
+              <span className="line-clamp-1 text-sm text-[var(--ec-text-primary)]">
+                {m.reasoning ? <MathText text={m.reasoning} /> : null}
               </span>
             </div>
             <div

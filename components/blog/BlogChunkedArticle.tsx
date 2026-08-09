@@ -1,7 +1,11 @@
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
 import { parseFanOutChunks } from '@/lib/seo/fan-out'
 import { blogMarkdownComponents } from '@/components/blog/blogMarkdownComponents'
+import { normalizeMarkingText } from '@/lib/rich-text/normalize-marking-text'
+import { KATEX_REHYPE_OPTIONS } from '@/lib/rich-text/sanitize-latex'
 
 type Props = {
   content: string
@@ -14,12 +18,22 @@ type Props = {
  */
 export function BlogChunkedArticle({ content, slug }: Props) {
   const chunks = parseFanOutChunks(content, slug)
+  const plugins = {
+    remarkPlugins: [remarkGfm, [remarkMath, { singleDollarTextMath: true }] as const],
+    rehypePlugins: [[rehypeKatex, KATEX_REHYPE_OPTIONS] as const],
+  }
 
   if (chunks.length < 2) {
     return (
-      <ReactMarkdown remarkPlugins={[remarkGfm]} components={blogMarkdownComponents}>
-        {content}
-      </ReactMarkdown>
+      <div className="ms-rich-text">
+        <ReactMarkdown
+          remarkPlugins={plugins.remarkPlugins as never}
+          rehypePlugins={plugins.rehypePlugins as never}
+          components={blogMarkdownComponents}
+        >
+          {normalizeMarkingText(content)}
+        </ReactMarkdown>
+      </div>
     )
   }
 
@@ -43,9 +57,13 @@ export function BlogChunkedArticle({ content, slug }: Props) {
             </h3>
           )}
           <p className="ec-chunk-lead mt-3 font-medium">{chunk.lead}</p>
-          <div className="ec-chunk-body mt-4">
-            <ReactMarkdown remarkPlugins={[remarkGfm]} components={blogMarkdownComponents}>
-              {chunk.bodyMarkdown || ''}
+          <div className="ec-chunk-body ms-rich-text mt-4">
+            <ReactMarkdown
+              remarkPlugins={plugins.remarkPlugins as never}
+              rehypePlugins={plugins.rehypePlugins as never}
+              components={blogMarkdownComponents}
+            >
+              {normalizeMarkingText(chunk.bodyMarkdown || '')}
             </ReactMarkdown>
           </div>
         </section>

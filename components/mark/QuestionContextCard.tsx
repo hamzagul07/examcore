@@ -2,7 +2,6 @@
 
 import { Clock, FileText } from 'lucide-react'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
-import { normalizeQuestionText } from '@/lib/rich-text/normalize-question-text'
 import { SyllabusTopicBadge } from '@/components/SyllabusTopicBadge'
 import { formatPaperReference } from '@/lib/study-tips/display-context'
 import { getSubjectByCode } from '@/lib/profile-options'
@@ -145,7 +144,7 @@ export function QuestionContextCard({ result, subjectCode }: Props) {
           </p>
           <div className="ec-question-text min-w-0 max-w-full overflow-x-auto break-words whitespace-pre-wrap text-base">
             <RichTextRenderer
-              text={normalizeQuestionText(result.question_text)}
+              text={result.question_text}
               contentKind="question"
             />
           </div>

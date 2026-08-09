@@ -3,19 +3,23 @@
  * - Currency: $\\$152{,}000$ or $(166{,}600)$
  * - Real math: $11{,}900 \\times \\$40 = \\$476{,}000$
  * - Stray $ (e.g. "85 - x$") that swallow paragraphs into one math node
+ * - Bare LaTeX (`x^2`, `\\frac{1}{2}`) with no `$` delimiters
  *
  * The renderer (RichTextRenderer) runs remark-math with
  * `singleDollarTextMath: true`, so every UNESCAPED `$...$` is treated as
  * inline KaTeX. This normalizer prepares the text so that:
- * - genuine math (inline `$...$` / `\\(...\\)`, block `$$...$$`) is preserved
- *   verbatim for KaTeX, even when it embeds escaped currency like `\\$40`,
+ * - genuine math is preserved for KaTeX (after sanitize),
+ * - bare math runs are wrapped,
  * - currency / non-math `$...$` is rendered as plain text,
- * - any stray/leftover `$` is escaped (`\\$`) so it never opens math mode.
- *
- * Matching is escape-aware: an inner `\\$` is a literal dollar, not a math
- * delimiter, so `$\\$152{,}000$` and `$... \\$40 ... \\$476{,}000$` parse
- * correctly instead of breaking at the first embedded `$`.
+ * - any stray/leftover `$` is escaped so it never opens math mode.
  */
+
+import {
+  promoteBareBeginEnvironments,
+  promoteEnvironmentsToDisplay,
+  sanitizeLatexFragment,
+} from '@/lib/rich-text/sanitize-latex'
+import { wrapBareMathRuns } from '@/lib/rich-text/wrap-bare-math'
 
 /** True when the delimiter contents are genuine math (vs currency/numbers). */
 export function isRealMath(inner: string): boolean {
@@ -30,21 +34,14 @@ export function isRealMath(inner: string): boolean {
     return true
   }
 
-  // Any LaTeX letter-command (\theta, \pi, \sin, \vec, \Delta, \begin, …) is
-  // math. `\$` (escaped currency dollar) has no letters, so it is NOT matched.
   if (/\\[a-zA-Z]{2,}/.test(s)) return true
-
-  // Algebraic: letter + ^ or _ or = with letters
   if (/[=^_]/.test(s) && /[a-zA-Z]/.test(s)) return true
 
-  // Pure currency / numeric (optional \$ prefix, {,} grouping)
   const plain = s
     .replace(/\\\$/g, '')
     .replace(/\{,\}/g, ',')
     .replace(/[(),\s]/g, '')
   if (/^[\d.$]+$/.test(plain)) return false
-
-  // Only escaped dollars and digits
   if (/^(\\?\$)*[\d\s{},().]+$/.test(s)) return false
 
   return false
@@ -69,19 +66,20 @@ export function stripControlChars(text: string): string {
 
 export function normalizeMarkingText(text: string): string {
   if (!text) return text
-  // Strip C0 control chars (keep \t \n \r): they collide with the `\x00`/`\x01`
-  // stash sentinels below and are "Unexpected character" parse errors in KaTeX.
   text = stripControlChars(text)
+
+  // Convert LaTeX-native delimiters + wrap bare runs BEFORE the currency
+  // discriminator, so mixed output (`$\theta$` + bare `x^2`) both render.
+  text = text
+    .replace(/\\\[([\s\S]*?)\\\]/g, (_m, inner: string) => `$$${inner.trim()}$$`)
+    .replace(/\\\(([\s\S]*?)\\\)/g, (_m, inner: string) => `$${inner.trim()}$`)
+  text = wrapBareMathRuns(text)
+  text = promoteBareBeginEnvironments(text)
+  text = promoteEnvironmentsToDisplay(text)
 
   const stash: string[] = []
   const stashMath = (latex: string, display: boolean): string => {
-    // A literal `$` inside a `$...$` span would prematurely close it in
-    // remark-math (it ignores the backslash escape). Render embedded currency
-    // dollars via `\text{\textdollar}`, which needs no `$` character. NOTE:
-    // `\textdollar` is only defined in text mode, so it MUST be wrapped in
-    // `\text{}` — a bare `\textdollar` in math mode is an undefined control
-    // sequence and KaTeX renders it as a red error.
-    const safe = latex
+    const safe = sanitizeLatexFragment(latex)
       .replace(/\\\$/g, '\\text{\\textdollar}')
       .replace(/\$/g, '\\text{\\textdollar}')
     stash.push(display ? `$$${safe}$$` : `$${safe}$`)
@@ -90,34 +88,18 @@ export function normalizeMarkingText(text: string): string {
 
   let working = text
 
-  // 1. Block math `$$...$$` — stash verbatim for KaTeX.
   working = working.replace(/\$\$([\s\S]+?)\$\$/g, (_full, inner: string) =>
     stashMath(inner, true)
   )
 
-  // 2. Inline math `$...$`, escape-aware: an inner `\$` is a literal dollar.
-  //    Opening/closing `$` must not be escaped.
   working = working.replace(
     /(?<!\\)\$((?:\\.|[^$\n])+?)(?<!\\)\$/g,
     (_full, inner: string) =>
       isRealMath(inner) ? stashMath(inner, false) : formatPlainCurrency(inner)
   )
 
-  // 3. Inline math written as `\(...\)` (Claude sometimes emits this directly).
-  working = working.replace(/\\\(([\s\S]*?)\\\)/g, (_full, inner: string) =>
-    isRealMath(inner) ? stashMath(inner, false) : formatPlainCurrency(inner)
-  )
-
-  // 3b. Display math written as `\[...\]`.
-  working = working.replace(/\\\[([\s\S]*?)\\\]/g, (_full, inner: string) =>
-    isRealMath(inner) ? stashMath(inner, true) : formatPlainCurrency(inner)
-  )
-
-  // 4. Escape every remaining unescaped `$` (currency / stray) so remark-math
-  //    never opens math mode on them.
   working = working.replace(/(?<!\\)\$/g, '\\$')
 
-  // 5. Restore stashed real math verbatim (its `$` delimiters stay unescaped).
   working = working.replace(
     new RegExp(`${STASH_OPEN}(\\d+)${STASH_CLOSE}`, 'g'),
     (_m, i: string) => stash[parseInt(i, 10)]

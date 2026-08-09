@@ -21,7 +21,7 @@ Open [BING_WEBMASTER.md](./BING_WEBMASTER.md).
 - [ ] Add site at https://www.bing.com/webmasters/
 - [ ] Copy `msvalidate.01` content ? Vercel `BING_SITE_VERIFICATION`
 - [ ] Redeploy, verify: `curl -s https://markscheme.app | grep msvalidate`
-- [ ] Submit sitemap: `https://markscheme.app/sitemap.xml`
+- [ ] Submit sitemap: `https://markscheme.app/sitemap-index.xml` (`/sitemap.xml` 308s here)
 
 ---
 

@@ -8,8 +8,8 @@ import {
 
 /**
  * Named sitemap shards → Search Console can track each page type separately.
- * With generateSitemaps, /sitemap.xml is the index; shards live at
- * /sitemap/{id}.xml (e.g. /sitemap/caie-topics.xml).
+ * Shards: /sitemap/{id}.xml. Index: /sitemap-index.xml
+ * (/sitemap.xml permanently redirects there — Next does not emit the index).
  *
  * Intentionally omitted from all shards: /embed/*, /challenge/* (noindex junk).
  * Per-lesson /courses/... URLs omitted — canonical public graph is /caie/...

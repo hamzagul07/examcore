@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { HONEYPOT_FIELD } from '@/lib/honeypot'
+import { trackFunnelEvent } from '@/lib/analytics/funnel'
 
 type Props = {
   source?: string
@@ -40,8 +41,15 @@ export function MockPackEmailCapture({
           [HONEYPOT_FIELD]: honeypot,
         }),
       })
-      const data = (await res.json().catch(() => ({}))) as { error?: string }
+      const data = (await res.json().catch(() => ({}))) as {
+        error?: string
+        isNew?: boolean
+      }
       if (!res.ok) throw new Error(data.error || 'Could not save your email')
+      trackFunnelEvent('lead_captured', {
+        source,
+        subject: syllabusCode,
+      })
       setStatus('done')
     } catch (err) {
       setStatus('error')
@@ -51,42 +59,48 @@ export function MockPackEmailCapture({
 
   if (status === 'done') {
     return (
-      <div className={`ec-card p-5 ${className}`.trim()}>
-        <p className="ms-h3" style={{ fontSize: '1.05rem' }}>
+      <div className={`gb-official ${className}`.trim()}>
+        <span className="gb-result-stamp" aria-hidden style={{ margin: '0 0 10px', display: 'inline-grid' }}>
+          M1
+        </span>
+        <p className="ms-h3" style={{ fontSize: '1.05rem', margin: 0 }}>
           You&apos;re on the list
         </p>
-        <p className="ms-body-2" style={{ marginTop: 8 }}>
-          We&apos;ll send the November mock pack — one past-paper focus path per week, no spam.
+        <p className="ms-body-2" style={{ marginTop: 8, marginBottom: 0 }}>
+          Check your inbox for a confirmation with Results Day links. November mock pack
+          follows when marking season starts — one past-paper focus path per week, no spam.
         </p>
       </div>
     )
   }
 
   return (
-    <form onSubmit={onSubmit} className={`ec-card p-5 ${className}`.trim()}>
-      <p className="ms-overline" style={{ color: 'var(--ec-brand)' }}>
+    <form onSubmit={onSubmit} className={`gb-official ${className}`.trim()}>
+      <span className="gb-result-stamp" aria-hidden style={{ margin: '0 0 10px', display: 'inline-grid' }}>
+        NOV
+      </span>
+      <p className="ms-overline" style={{ color: 'var(--ec-brand)', marginBottom: 6 }}>
         Free mock pack
       </p>
-      <p className="ms-h3" style={{ fontSize: '1.1rem', marginTop: 6 }}>
+      <p className="ms-h3" style={{ fontSize: '1.1rem', margin: 0 }}>
         Get the November mock pack
       </p>
       <p className="ms-body-2" style={{ marginTop: 8 }}>
         Honest promise: we&apos;ll email you a mock-season plan when marking actually matters —
         not a sales drip during summer holidays.
       </p>
-      <label className="sr-only" htmlFor="mock-pack-email">
-        Email
+      <label className="gb-field" htmlFor="mock-pack-email" style={{ marginTop: 14, marginBottom: 0 }}>
+        <span>Email</span>
+        <input
+          id="mock-pack-email"
+          type="email"
+          required
+          autoComplete="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="you@school.edu"
+        />
       </label>
-      <input
-        id="mock-pack-email"
-        type="email"
-        required
-        autoComplete="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="you@school.edu"
-        className="mt-4 w-full rounded-md border border-[var(--ec-border)] bg-[var(--ec-bg)] px-3 py-2.5 text-sm"
-      />
       <input
         type="text"
         tabIndex={-1}

@@ -7,6 +7,7 @@ import {
 } from '@/lib/rate-limit'
 import { HONEYPOT_FIELD, isHoneypotTripped } from '@/lib/honeypot'
 import { rateLimitJson } from '@/lib/http/rate-limit-response'
+import { sendMockPackConfirmEmail } from '@/lib/email/mock-pack-confirm'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -78,6 +79,7 @@ export async function POST(request: Request) {
     .eq('source', source)
     .maybeSingle()
 
+  const isNew = !existing
   const { error } = existing
     ? await admin.from('marketing_leads').update(row).eq('id', existing.id)
     : await admin.from('marketing_leads').insert(row)
@@ -90,6 +92,15 @@ export async function POST(request: Request) {
     )
   }
 
+  // Confirm only on first capture — re-submits should not re-mail.
+  if (isNew) {
+    sendMockPackConfirmEmail({
+      email,
+      syllabusCode,
+      predictedGrade,
+    })
+  }
+
   await incrementSignupRateLimit(admin, ip, rate.count)
-  return NextResponse.json({ ok: true })
+  return NextResponse.json({ ok: true, isNew })
 }

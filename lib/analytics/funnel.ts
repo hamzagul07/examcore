@@ -20,6 +20,7 @@ export type FunnelEvent =
   | 'mark_result_viewed'
   | 'signup_started'
   | 'signup_completed'
+  | 'lead_captured'
   | 'upgrade_viewed'
   | 'checkout_started'
   | 'subscription_started'

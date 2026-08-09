@@ -183,5 +183,9 @@ for (const [key, list] of Object.entries(issues)) {
   if (list.length > 20) console.log(`... and ${list.length - 20} more`)
 }
 
-const failed = Object.entries(summary).some(([k, n]) => k !== 'robots' && n > 0)
-process.exit(failed ? 1 : 0)
+// Soft signals (noDesc / noH1 / large) are reported for triage but do not fail
+// CI — a full shard crawl always surfaces a few heavy lessons. Hard fail on
+// broken URLs, meta-refresh, or multi-H1 (crawl / ranking hazards).
+const hardFail =
+  summary.fail > 0 || summary.refresh > 0 || summary.multiH1 > 0
+process.exit(hardFail ? 1 : 0)

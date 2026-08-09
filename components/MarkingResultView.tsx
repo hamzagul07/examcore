@@ -19,6 +19,7 @@ import { getSubjectByCode } from '@/lib/profile-options'
 import { isIbSubjectCode } from '@/lib/ib/marking-config'
 import { markingBoardLabel } from '@/lib/marking/exam-board'
 import { predictGradeFromPercentage, marksToNextGrade } from '@/lib/grade-boundaries'
+import { truncateMarkingPreview } from '@/lib/rich-text/truncate-marking-preview'
 import { ExamSheet, ExamSheetLine } from '@/components/margin-notes/ExamSheet'
 import { ExaminerInkPerPage } from '@/components/examiner-ink/ExaminerInkPerPage'
 import type { LineReference } from '@/components/examiner-ink/ExaminerInkOverlay'
@@ -87,9 +88,14 @@ export type MarkingResultData = {
 function sheetWork(mark: MarkAwarded): string {
   const ref = mark.line_reference?.trim()
   if (ref) return ref
-  const reasoning = mark.reasoning?.trim() ?? ''
-  if (reasoning.length <= 100) return reasoning
-  return `${reasoning.slice(0, 97)}…`
+  return truncateMarkingPreview(mark.reasoning, 100, '')
+}
+
+function practiceLevelFallback(boardFull: string): string {
+  if (boardFull === 'IB Diploma') return 'Diploma'
+  if (boardFull === 'AP') return 'course'
+  if (boardFull === 'Edexcel') return 'IAL'
+  return 'A-Level'
 }
 
 function resultSubheading(earned: number, total: number): string {
@@ -166,6 +172,8 @@ export function MarkingResultView({
   const boardArticle = /^(IB|AP|[AEIOU])/i.test(boardLabel)
     ? `an ${boardLabel}`
     : `a ${boardLabel}`
+  // A*–E letter bands are Cambridge/A-Level style — not IB levels or AP 1–5.
+  const usesLetterGrades = boardFull !== 'IB Diploma' && boardFull !== 'AP'
   // Paradigm-aware: IB points subjects (e.g. Maths) mark against analytic mark
   // schemes (M/A marks), NOT markbands — so don't say "markbands" for them.
   const isIbPoints = isIb && result.ai_marking?.marking_style === 'point_based'
@@ -174,12 +182,12 @@ export function MarkingResultView({
     result.total_marks > 0
       ? Math.round((result.marks_earned / result.total_marks) * 100)
       : 0
-  const grade = predictGradeFromPercentage(percentage)
-  // A3: how many marks from the next grade band (Cambridge only — IB suppresses
-  // the letter-grade estimate, same as the audit pill).
-  const nextGradeStep = isIb
-    ? null
-    : marksToNextGrade(result.marks_earned, result.total_marks)
+  const grade = usesLetterGrades
+    ? predictGradeFromPercentage(percentage)
+    : null
+  const nextGradeStep = usesLetterGrades
+    ? marksToNextGrade(result.marks_earned, result.total_marks)
+    : null
   // Free upsell teaser for the full-marks rewrite: only on the live mark flow
   // (isPaid === false), when marks were lost and the style is rewritable.
   const lostMarks =
@@ -325,7 +333,7 @@ export function MarkingResultView({
             <p className="ec-banner__title">
               Marked with {boardLabel}{' '}
               {getSubjectByCode(badgeSubjectCode ?? '')?.label ??
-                (isIb ? 'Diploma' : 'A-Level')}{' '}
+                practiceLevelFallback(boardFull)}{' '}
               {isIb ? (isIbPoints ? 'mark scheme conventions' : 'markbands') : 'conventions'}
             </p>
             <p className="ec-banner__meta">
@@ -375,7 +383,7 @@ export function MarkingResultView({
             marksEarned={result.marks_earned}
             totalMarks={result.total_marks}
             percentage={percentage}
-            grade={isIb ? null : grade.grade}
+            grade={grade?.grade ?? null}
             nextGrade={nextGradeStep}
             activeMarkId={String(
               marks[selectedIndex]?.mark_id ?? selectedIndex
@@ -386,11 +394,7 @@ export function MarkingResultView({
               label: m.type?.trim() || `Mark ${i + 1}`,
               reason: m.earned
                 ? null
-                : m.reasoning?.trim()
-                  ? m.reasoning.trim().length > 140
-                    ? `${m.reasoning.trim().slice(0, 137)}…`
-                    : m.reasoning.trim()
-                  : null,
+                : truncateMarkingPreview(m.reasoning, 140, '') || null,
             }))}
             report={{
               subjectLabel:
@@ -534,7 +538,7 @@ export function MarkingResultView({
                 onSelect={setSelectedIndex}
                 marksEarned={result.marks_earned}
                 totalMarks={result.total_marks}
-                gradeLabel={isIb ? null : grade.grade}
+                gradeLabel={grade?.grade ?? null}
                 schemeLabel={schemeLabel(result)}
                 bandResult={
                   bandLadderShown ? undefined : result.ai_marking.band_result

@@ -5,7 +5,11 @@ import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
 import { QuestionPreviewPanel } from '@/components/mark/QuestionPreviewPanel'
 import { getSubjectByCode } from '@/lib/profile-options'
 import { resolveSubjectLabel } from '@/lib/ib/marking-config'
-import type { MarkExamBoard } from '@/components/mark/MarkBoardPicker'
+import {
+  boardSupportsPastPaperLookup,
+  type MarkExamBoard,
+} from '@/components/mark/MarkBoardPicker'
+import { getExamSystem } from '@/lib/exam-systems'
 
 type Props = {
   markBoard: MarkExamBoard
@@ -77,17 +81,50 @@ export function PastPaperSelectorFields({
     questionNumber.trim()
   )
 
-  if (markBoard === 'ib') {
+  if (!boardSupportsPastPaperLookup(markBoard)) {
+    const boardLabel =
+      markBoard === 'ib'
+        ? 'IB'
+        : markBoard === 'edexcel'
+          ? 'Edexcel'
+          : markBoard === 'ap'
+            ? 'AP'
+            : getExamSystem(markBoard).label
+    const stamp =
+      markBoard === 'ib'
+        ? 'IB'
+        : markBoard === 'edexcel'
+          ? 'EDX'
+          : markBoard === 'oxfordaqa'
+            ? 'OA'
+            : markBoard === 'aqa'
+              ? 'AQA'
+              : markBoard === 'ap'
+                ? 'AP'
+                : 'PP'
+    const dialect =
+      markBoard === 'ib'
+        ? 'IB assessment criteria'
+        : markBoard === 'edexcel'
+          ? 'Edexcel IAL method/accuracy conventions'
+          : markBoard === 'oxfordaqa'
+            ? 'OxfordAQA point/method conventions'
+            : markBoard === 'aqa'
+              ? 'AQA method/accuracy conventions'
+              : markBoard === 'ap'
+                ? 'AP free-response point conventions'
+                : `${boardLabel} conventions`
+
     return (
       <div className="ec-card ec-card--paper border border-[var(--ec-border)] p-4 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
         <span className="ec-ink-stamp mb-2" aria-hidden>
-          IB
+          {stamp}
         </span>
         <p className="mt-2">
-          Cambridge past-paper lookup is not used for IB. Use{' '}
+          Cambridge past-paper lookup is not used for {boardLabel}. Use{' '}
           <strong className="text-[var(--ec-text-primary)]">My question</strong> above,
-          pick your IB subject, and paste or photograph the prompt — we mark against IB
-          assessment criteria.
+          pick your {boardLabel} subject, and paste or photograph the prompt — we mark
+          against {dialect}.
         </p>
       </div>
     )

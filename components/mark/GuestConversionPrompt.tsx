@@ -29,6 +29,15 @@ export function GuestConversionPrompt({
       : null
   const topic = weakTopics[0]
   const board = markBoard ?? lastFunnelBoard()
+  const boardKey = (board ?? '').toLowerCase()
+  const gradeStamp =
+    boardKey === 'ib' ? '7' : boardKey === 'ap' ? '5' : 'A*'
+  const gradeSell =
+    boardKey === 'ib'
+      ? 'A predicted IB level that updates as you mark more.'
+      : boardKey === 'ap'
+        ? 'A predicted AP score that updates as you mark more.'
+        : 'A predicted grade that updates as you mark more.'
   const returnPath = buildMarkReturnPath({ board, subject: subjectCode })
   const signupHref = buildSignUpHref(returnPath)
 
@@ -79,9 +88,9 @@ export function GuestConversionPrompt({
         </li>
         <li>
           <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
-            A*
+            {gradeStamp}
           </span>
-          <span>A predicted grade that updates as you mark more.</span>
+          <span>{gradeSell}</span>
         </li>
       </ul>
 

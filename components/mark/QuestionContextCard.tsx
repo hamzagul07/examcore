@@ -5,7 +5,6 @@ import { SyllabusTopicBadge } from '@/components/SyllabusTopicBadge'
 import { formatPaperReference } from '@/lib/study-tips/display-context'
 import { getSubjectByCode } from '@/lib/profile-options'
 import { predictGradeFromPercentage } from '@/lib/grade-boundaries'
-import { isIbSubjectCode } from '@/lib/ib/marking-config'
 import type { MarkingResultData } from '@/components/MarkingResultView'
 import { MARKING_TYPE_LABELS } from '@/components/mark/QuestionPreviewPanel'
 import { markingBoardLabel } from '@/lib/marking/exam-board'
@@ -43,12 +42,13 @@ export function QuestionContextCard({ result, subjectCode }: Props) {
 
   const paperLine = formatPaperReference(paperCode, paperSession, questionNumber)
   const paperSubjectCode = paperCode?.split('/')[0] || null
-  // Board-aware: IB is graded 1–7 (not A*–E); scheme label follows subject board.
+  // Board-aware: IB/AP are not A*–E; scheme label follows subject board.
   const schemeSubject = subjectCode ?? paperSubjectCode ?? ''
-  const isIb = isIbSubjectCode(schemeSubject)
   const schemeBoard = markingBoardLabel(schemeSubject)
   const schemeBoardShort =
     schemeBoard === 'IB Diploma' ? 'IB' : schemeBoard
+  const usesLetterGrades =
+    schemeBoard !== 'IB Diploma' && schemeBoard !== 'AP'
   const subjectLabel = subjectCode
     ? getSubjectByCode(subjectCode)?.label
     : paperSubjectCode
@@ -67,7 +67,9 @@ export function QuestionContextCard({ result, subjectCode }: Props) {
     result.total_marks > 0
       ? Math.round((result.marks_earned / result.total_marks) * 100)
       : 0
-  const grade = isIb ? null : predictGradeFromPercentage(percentage)
+  const grade = usesLetterGrades
+    ? predictGradeFromPercentage(percentage)
+    : null
 
   const tags =
     result.syllabus_tags?.length

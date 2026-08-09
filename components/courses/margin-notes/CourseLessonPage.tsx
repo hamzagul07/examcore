@@ -38,6 +38,7 @@ import { useSectionReveal } from '@/lib/courses/use-section-reveal'
 import { useLessonProgress } from '@/lib/courses/use-lesson-progress'
 import { useCourseProgress } from '@/components/courses/CourseProgressClient'
 import { appendMarkReturn } from '@/lib/courses/format-session'
+import { trackFunnelEvent } from '@/lib/analytics/funnel'
 import { SegmentedControl } from '@/components/ui/SegmentedControl'
 import { buildSignInHref } from '@/lib/auth-redirect'
 import { LessonUpsell } from '@/components/billing/LessonUpsell'
@@ -596,7 +597,17 @@ export function CourseLessonPage({
                   : 'Unlock practice & diagrams →'}
               </Link>
             ) : boardStudyVisit && markHrefOverride ? (
-              <Link className="btn-primary btn-block" href={markHrefOverride}>
+              <Link
+                className="btn-primary btn-block"
+                href={markHrefOverride}
+                onClick={() =>
+                  trackFunnelEvent('mark_cta_clicked', {
+                    source: 'study_path_sheet',
+                    board: studyBoard,
+                    subject: L.code,
+                  })
+                }
+              >
                 {markCtaLabel ? `${markCtaLabel} →` : 'Mark this unit →'}
               </Link>
             ) : (

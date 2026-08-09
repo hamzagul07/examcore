@@ -1,13 +1,16 @@
 import fs from 'fs'
 import path from 'path'
-import { resolveCourseLinksForEdexcelUnit } from '@/lib/curriculum-graph'
+import {
+  resolveCourseLinksForEdexcelUnit,
+  resolveCourseLinksForOxfordaqaSubject,
+} from '@/lib/curriculum-graph'
 import { getLessonDiagramSpec } from '@/lib/courses/diagram-specs'
 import { hasLessonLiveDiagram } from '@/lib/courses/lesson-diagrams'
 import { topicToLessonSlug } from '@/lib/courses/slug'
 import { CAMBRIDGE_9709_SYLLABUS } from '@/lib/syllabus'
 import { getSyllabusTopicByCode } from '@/lib/syllabi'
 
-export type EdexcelUnitCourseLesson = {
+export type VerifiedBoardCourseLesson = {
   topicCode: string
   title: string
   href: string
@@ -19,6 +22,9 @@ export type EdexcelUnitCourseLesson = {
   /** Interactive param sliders on the diagram. */
   hasDiagramParams: boolean
 }
+
+/** @deprecated Prefer VerifiedBoardCourseLesson — same shape. */
+export type EdexcelUnitCourseLesson = VerifiedBoardCourseLesson
 
 function lessonJsonExists(syllabusCode: string, slug: string): boolean {
   const base = path.join(process.cwd(), 'content', 'courses', syllabusCode)
@@ -38,16 +44,14 @@ function topicTitle(syllabusCode: string, topicCode: string, fallback: string): 
   return fallback
 }
 
-/**
- * Graph-mapped CAIE course lessons for an Edexcel unit, existence-checked
- * against content/courses (never returns a 404 href). Legal reuse of our own
- * lesson JSON — not scraped third-party notes.
- */
-export function verifiedCourseLessonsForEdexcelUnit(
-  unitCode: string
-): EdexcelUnitCourseLesson[] {
-  const mapped = resolveCourseLinksForEdexcelUnit(unitCode)
-  const out: EdexcelUnitCourseLesson[] = []
+function verifiedFromMapped(
+  mapped: Array<{
+    topicCode?: string | null
+    syllabusOrUnit: string
+    label?: string | null
+  }>
+): VerifiedBoardCourseLesson[] {
+  const out: VerifiedBoardCourseLesson[] = []
   const seen = new Set<string>()
 
   for (const link of mapped) {
@@ -75,4 +79,25 @@ export function verifiedCourseLessonsForEdexcelUnit(
   return out.sort((a, b) =>
     a.topicCode.localeCompare(b.topicCode, undefined, { numeric: true })
   )
+}
+
+/**
+ * Graph-mapped CAIE course lessons for an Edexcel unit, existence-checked
+ * against content/courses (never returns a 404 href). Legal reuse of our own
+ * lesson JSON — not scraped third-party notes.
+ */
+export function verifiedCourseLessonsForEdexcelUnit(
+  unitCode: string
+): VerifiedBoardCourseLesson[] {
+  return verifiedFromMapped(resolveCourseLinksForEdexcelUnit(unitCode))
+}
+
+/**
+ * Graph-mapped CAIE course lessons for an OxfordAQA subject (content code).
+ * Same legal reuse rules as the Edexcel unit helper.
+ */
+export function verifiedCourseLessonsForOxfordaqaSubject(
+  contentCode: string
+): VerifiedBoardCourseLesson[] {
+  return verifiedFromMapped(resolveCourseLinksForOxfordaqaSubject(contentCode))
 }

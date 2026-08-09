@@ -207,7 +207,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
       sub: null,
       features: [
         ['All lessons, notes & worked examples', true],
-        ['Edexcel IAL study paths → mark in Pearson dialect', true],
+        ['Edexcel & OxfordAQA study paths → board-dialect mark', true],
         [`${FREE_Q} marked questions / month`, true],
         [`${FREE_OMNI} study-chat messages / month`, true],
         [
@@ -226,7 +226,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
       tag: 'Start marking seriously',
       bestFor: 'One subject, regular practice',
       blurb:
-        'Real examiner-style marking — Cambridge, IB, and Edexcel IAL units — plus whole papers and flashcards for weekly practice.',
+        'Real examiner-style marking — Cambridge, IB, Edexcel IAL, and OxfordAQA — plus whole papers and flashcards for weekly practice.',
       killer: `${PRO_Q} questions / month — 10× the free tier`,
       now: proPrice.now,
       per: proPrice.per,
@@ -328,7 +328,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
   const faqs = [
     {
       q: 'Which plan should I pick?',
-      a: `Pro is ideal if you're focusing on one subject and want whole-paper marking plus past-paper practice — ${PRO_Q} questions a month is enough for weekly papers. Scholar is our most popular pick: you get ${SCH_Q} questions, in-depth courses (including Edexcel IAL study paths into Pearson marking), detailed examiner feedback, and the full progress journey. Max is for exam season when you're marking daily — ${MAX_Q} questions, projected grades, and priority queue.`,
+      a: `Pro is ideal if you're focusing on one subject and want whole-paper marking plus past-paper practice — ${PRO_Q} questions a month is enough for weekly papers. Scholar is our most popular pick: you get ${SCH_Q} questions, in-depth courses (including Edexcel and OxfordAQA study paths into board-dialect marking), detailed examiner feedback, and the full progress journey. Max is for exam season when you're marking daily — ${MAX_Q} questions, projected grades, and priority queue.`,
     },
     {
       q: 'Can I try it without paying?',
@@ -339,8 +339,8 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
       a: 'We mark in the dialect of your board — Cambridge, IB, or Edexcel IAL — for that past-paper style question: B1/M1/A1 method marks, MCQ keys, essay bands. You get point-by-point feedback on your handwriting with Examiner\'s Ink, not a generic "good effort" paragraph.',
     },
     {
-      q: 'Do you have Edexcel courses?',
-      a: 'Native lesson JSON is Cambridge and IB. For Edexcel IAL Maths (and mapped science units) we give free study paths: our own visual CAIE lessons tagged to your unit, then mark with Pearson method/accuracy conventions. You are not buying a scraped Pearson course — you are buying the marking loop that converts.',
+      q: 'Do you have Edexcel or OxfordAQA courses?',
+      a: 'Native lesson JSON is Cambridge and IB. For Edexcel IAL and OxfordAQA IAL we give free study paths: our own visual CAIE lessons tagged to your board, then mark in that board\'s dialect. You are not buying a scraped third-party course — you are buying the marking loop that converts.',
     },
     {
       q: 'Can I cancel anytime?',

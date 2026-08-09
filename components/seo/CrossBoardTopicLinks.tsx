@@ -9,6 +9,7 @@ import {
   resolveEdexcelLinksForCaieTopic,
 } from '@/lib/curriculum-graph'
 import { edexcelMarkHref } from '@/lib/edexcel/marking'
+import { oxfordaqaStudyLessonHref } from '@/lib/oxfordaqa/study-path'
 
 type CrossBoardTopicLinksProps =
   | { mode: 'caie-topic'; syllabusCode: string; topicCode: string }
@@ -153,7 +154,7 @@ export function CrossBoardTopicLinks(props: CrossBoardTopicLinksProps) {
             {courseLinks.map((l) => (
               <li key={`c-${l.topicCode}-${l.href}`}>
                 <Link
-                  href={l.href}
+                  href={oxfordaqaStudyLessonHref(l.href, props.contentCode)}
                   className="inline-flex rounded border border-[var(--ec-brand)]/30 bg-[var(--ec-brand)]/5 px-3 py-1.5 font-mono text-[11px] font-semibold tracking-wide"
                 >
                   Course · {l.topicCode}

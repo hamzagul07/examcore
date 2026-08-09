@@ -3,7 +3,10 @@ import {
   getOxfordaqaMarkableContentCodes,
   oxfordaqaMarkHref,
 } from '@/lib/oxfordaqa/marking'
-import { appendMarkReturn } from '@/lib/courses/format-session'
+import {
+  appendMarkReturn,
+  appendStudyPathAttribution,
+} from '@/lib/courses/format-session'
 import { oxfordaqaSubjectPath } from '@/lib/seo/oxfordaqa-graph'
 
 /** Tag a CAIE course lesson URL so the lesson can convert back to OxfordAQA mark. */
@@ -47,10 +50,13 @@ export function oxfordaqaStudyMarkHref(
   lessonPath: string,
   topicCode?: string | null
 ): string {
-  return appendMarkReturn(
-    oxfordaqaMarkHref(contentCode),
-    oxfordaqaStudyReturnPath(lessonPath, contentCode),
-    topicCode ?? undefined
+  return appendStudyPathAttribution(
+    appendMarkReturn(
+      oxfordaqaMarkHref(contentCode),
+      oxfordaqaStudyReturnPath(lessonPath, contentCode),
+      topicCode ?? undefined
+    ),
+    'oxfordaqa'
   )
 }
 

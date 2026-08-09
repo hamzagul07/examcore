@@ -15,6 +15,7 @@ import {
   resolveOxfordaqaSubject,
 } from '@/lib/seo/oxfordaqa-graph'
 import { buildOxfordaqaSubjectCopy } from '@/lib/seo/oxfordaqa-seo'
+import { oxfordaqaMarkHref } from '@/lib/oxfordaqa/marking'
 
 type Props = { params: Promise<{ qualification: string; subject: string }> }
 
@@ -86,19 +87,19 @@ export default async function OxfordaqaPastPapersPage({ params }: Props) {
 
         <div className="ms-board-cross mt-8">
           <p className="ms-overline">Live marking</p>
-          <h2 className="ms-h2">Prefer a board with live marking?</h2>
+          <h2 className="ms-h2">Mark OxfordAQA {subject.name}</h2>
           <p className="ms-body-2 mt-2 max-w-xl text-[var(--ec-text-secondary)]">
-            Cambridge, IB and Edexcel IAL Maths are available today.
+            Keep the board dialect — open /mark with OxfordAQA selected, not Cambridge default.
           </p>
           <div className="mt-5">
             <Link
-              href="/mark"
+              href={oxfordaqaMarkHref(subject.contentCode)}
               className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
             >
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 M1
               </span>
-              Open marking desk -&gt;
+              Mark OxfordAQA {subject.name} -&gt;
             </Link>
           </div>
         </div>

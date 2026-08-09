@@ -1,6 +1,9 @@
 import { getAqaSubjects } from '@/lib/aqa/catalog'
 import { aqaMarkHref, getAqaMarkableContentCodes } from '@/lib/aqa/marking'
-import { appendMarkReturn } from '@/lib/courses/format-session'
+import {
+  appendMarkReturn,
+  appendStudyPathAttribution,
+} from '@/lib/courses/format-session'
 import { aqaSubjectPath } from '@/lib/seo/aqa-graph'
 
 /** Tag a CAIE course lesson URL so the lesson can convert back to AQA mark. */
@@ -44,10 +47,13 @@ export function aqaStudyMarkHref(
   lessonPath: string,
   topicCode?: string | null
 ): string {
-  return appendMarkReturn(
-    aqaMarkHref(contentCode),
-    aqaStudyReturnPath(lessonPath, contentCode),
-    topicCode ?? undefined
+  return appendStudyPathAttribution(
+    appendMarkReturn(
+      aqaMarkHref(contentCode),
+      aqaStudyReturnPath(lessonPath, contentCode),
+      topicCode ?? undefined
+    ),
+    'aqa'
   )
 }
 

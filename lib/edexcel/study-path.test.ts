@@ -32,6 +32,10 @@ const mark = edexcelStudyMarkHref('WMA11', '/courses/9709/1-1-quadratics', '1.1'
 check('mark has board', mark.includes('board=edexcel') && mark.includes('subject=WMA11'))
 check('mark has return', mark.includes('return='))
 check(
+  'mark has study_path utm',
+  mark.includes('utm_source=study_path') && mark.includes('utm_campaign=edexcel')
+)
+check(
   'return keeps unit context',
   decodeURIComponent(mark).includes(
     'return=/courses/9709/1-1-quadratics?board=edexcel&unit=WMA11'

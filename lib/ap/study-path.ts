@@ -1,6 +1,9 @@
 import { getApCourses } from '@/lib/ap/catalog'
 import { apMarkHref, getApMarkableContentCodes } from '@/lib/ap/marking'
-import { appendMarkReturn } from '@/lib/courses/format-session'
+import {
+  appendMarkReturn,
+  appendStudyPathAttribution,
+} from '@/lib/courses/format-session'
 import { apCoursePath } from '@/lib/seo/ap-graph'
 
 /** Tag a CAIE course lesson URL so the lesson can convert back to AP mark. */
@@ -44,10 +47,13 @@ export function apStudyMarkHref(
   lessonPath: string,
   topicCode?: string | null
 ): string {
-  return appendMarkReturn(
-    apMarkHref(contentCode),
-    apStudyReturnPath(lessonPath, contentCode),
-    topicCode ?? undefined
+  return appendStudyPathAttribution(
+    appendMarkReturn(
+      apMarkHref(contentCode),
+      apStudyReturnPath(lessonPath, contentCode),
+      topicCode ?? undefined
+    ),
+    'ap'
   )
 }
 

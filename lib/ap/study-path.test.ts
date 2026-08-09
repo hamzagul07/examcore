@@ -50,6 +50,10 @@ check(
 )
 check('mark has return', mark.includes('return='))
 check(
+  'mark has study_path utm',
+  mark.includes('utm_source=study_path') && mark.includes('utm_campaign=ap')
+)
+check(
   'return keeps subject context',
   mark.includes(
     'return=%2Fcourses%2F9709%2F1-7-differentiation%3Fboard%3Dap%26subject%3Dap-calculus-ab'

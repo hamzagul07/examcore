@@ -22,6 +22,9 @@ check(
   src.includes('export function profileBoardFromFunnelBoard')
 )
 check('falls back to lastFunnelBoard', src.includes('props.board ?? lastFunnelBoard()'))
+check('maps oxfordaqa funnel board', src.includes("b === 'oxfordaqa'"))
+check('maps aqa funnel board', src.includes("b === 'aqa'"))
+check('maps ap funnel board', src.includes("b === 'ap'"))
 
 if (failed > 0) process.exit(1)
 console.log('funnel.test.ts: all checks passed')

@@ -17,6 +17,7 @@ import {
 } from '@/lib/seo/oxfordaqa-graph'
 import { buildOxfordaqaHubCopy } from '@/lib/seo/oxfordaqa-seo'
 import { OXFORD_AQA_HUB_GUIDE_LINKS } from '@/lib/oxfordaqa/seo-guides'
+import { oxfordaqaMarkHref } from '@/lib/oxfordaqa/marking'
 
 const copy = buildOxfordaqaHubCopy()
 
@@ -49,23 +50,26 @@ export default function OxfordaqaHubPage() {
       <MarketingHero
         label="OxfordAQA"
         title="OxfordAQA International"
-        lead="Paper maps, past-paper indexes and grade boundaries for International A-level — the same acquisition surface pattern as Edexcel, without a second product build. Marking stays off until Edexcel conversion justifies the next dialect."
+        lead="Mapped visual study paths, paper maps, and OxfordAQA-dialect marking for International A-level — our CAIE lessons tagged to your board, not a scraped course."
       >
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
-            href="/edexcel"
+            href={oxfordaqaMarkHref('oxaqa-mathematics')}
             className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
           >
             <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
               M1
             </span>
-            Marking live on Edexcel IAL -&gt;
+            Mark OxfordAQA Maths -&gt;
           </Link>
-          <Link href="/results-2026/edexcel" className="ec-btn-ghost inline-flex min-h-[48px]">
-            Results Day — Edexcel path
+          <Link
+            href="/oxfordaqa/international-a-level/mathematics"
+            className="ec-btn-ghost inline-flex min-h-[48px]"
+          >
+            Maths study path
           </Link>
-          <Link href="/caie" className="ec-btn-ghost inline-flex min-h-[48px]">
-            Cambridge syllabus graph
+          <Link href="/edexcel" className="ec-btn-ghost inline-flex min-h-[48px]">
+            Edexcel IAL instead
           </Link>
         </div>
       </MarketingHero>
@@ -140,21 +144,24 @@ export default function OxfordaqaHubPage() {
           <p className="ms-overline">Also marking</p>
           <h2 className="ms-h2">Need handwriting marked today?</h2>
           <p className="ms-body-2 mt-2 max-w-2xl text-[var(--ec-text-secondary)]">
-            OxfordAQA marking stays shelled until Edexcel IAL conversion proves the dialect
-            path. Cambridge and Edexcel IAL Maths are live now.
+            OxfordAQA Maths, Physics, Chemistry, and Biology marking is live. Prefer Pearson
+            modular units? Edexcel IAL is one hop away.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link
-              href="/mark?board=edexcel&subject=WMA11"
+              href={oxfordaqaMarkHref('oxaqa-mathematics')}
               className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
             >
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 M1
               </span>
-              Mark Edexcel IAL -&gt;
+              Mark OxfordAQA Maths -&gt;
             </Link>
-            <Link href="/caie" className="ec-btn-ghost inline-flex min-h-[48px]">
-              Browse Cambridge hubs
+            <Link
+              href="/mark?board=edexcel&subject=WMA11"
+              className="ec-btn-ghost inline-flex min-h-[48px] items-center"
+            >
+              Mark Edexcel WMA11
             </Link>
           </div>
         </div>

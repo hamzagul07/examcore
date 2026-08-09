@@ -1,4 +1,5 @@
 import {
+  verifiedCourseLessonsForApSubject,
   verifiedCourseLessonsForAqaSubject,
   verifiedCourseLessonsForEdexcelUnit,
   verifiedCourseLessonsForOxfordaqaSubject,
@@ -68,7 +69,20 @@ check(
   aqaPhys.every((l) => l.href.startsWith('/courses/9702/'))
 )
 
+const apCalc = verifiedCourseLessonsForApSubject('ap-calculus-ab')
+check('AP Calculus AB has mapped course lessons', apCalc.length >= 6)
+check(
+  'AP Calculus AB hrefs are /courses/9709/',
+  apCalc.every((l) => l.href.startsWith('/courses/9709/'))
+)
+const apPhys = verifiedCourseLessonsForApSubject('ap-physics-1')
+check('AP Physics 1 has mapped course lessons', apPhys.length >= 1)
+check(
+  'AP Physics 1 hrefs are /courses/9702/',
+  apPhys.every((l) => l.href.startsWith('/courses/9702/'))
+)
+
 if (failed > 0) process.exit(1)
 console.log(
-  `verified-course-links.test.ts: all checks passed (WMA11=${wma11.length} oxMaths=${oxMaths.length} aqaMaths=${aqaMaths.length})`
+  `verified-course-links.test.ts: all checks passed (WMA11=${wma11.length} oxMaths=${oxMaths.length} aqaMaths=${aqaMaths.length} apCalc=${apCalc.length})`
 )

@@ -4,6 +4,7 @@ import {
   edexcelQualificationForUnit,
   edexcelUnitsWithCourseLinks,
   expectedCaie9709TopicCodes,
+  getMappingsForApSubject,
   getMappingsForAqaSubject,
   getMappingsForCaieTopic,
   getMappingsForEdexcelUnit,
@@ -101,6 +102,15 @@ check(
   'AQA maths resolves hub href',
   resolveEdexcelLinksForCaieTopic('9709', '1.1').some((l) =>
     l.href.includes('/aqa/a-level/mathematics')
+  )
+)
+
+const apCalc = getMappingsForApSubject('ap-calculus-ab')
+check('AP Calculus AB has topic mappings', apCalc.length >= 6)
+check(
+  'AP Calculus AB resolves hub href',
+  resolveEdexcelLinksForCaieTopic('9709', '1.7').some((l) =>
+    l.href.includes('/ap/calculus-ab')
   )
 )
 

@@ -2,14 +2,17 @@ import Link from 'next/link'
 import {
   edexcelPathForUnit,
   listOverlapForSubject,
+  resolveCaieLinksForApSubject,
   resolveCaieLinksForAqaSubject,
   resolveCaieLinksForEdexcelUnit,
   resolveCaieLinksForOxfordaqaSubject,
+  resolveCourseLinksForApSubject,
   resolveCourseLinksForAqaSubject,
   resolveCourseLinksForEdexcelUnit,
   resolveCourseLinksForOxfordaqaSubject,
   resolveEdexcelLinksForCaieTopic,
 } from '@/lib/curriculum-graph'
+import { apStudyLessonHref } from '@/lib/ap/study-path'
 import { aqaStudyLessonHref } from '@/lib/aqa/study-path'
 import { edexcelMarkHref } from '@/lib/edexcel/marking'
 import { oxfordaqaStudyLessonHref } from '@/lib/oxfordaqa/study-path'
@@ -21,6 +24,7 @@ type CrossBoardTopicLinksProps =
   | { mode: 'edexcel-subject-hub'; syllabusCode: '9709' | '9702' | '9701' | '9700' }
   | { mode: 'oxfordaqa-subject'; contentCode: string }
   | { mode: 'aqa-subject'; contentCode: string }
+  | { mode: 'ap-subject'; contentCode: string }
 
 /**
  * Cross-board overlap + course-reuse links (curriculum graph).
@@ -34,6 +38,7 @@ export function CrossBoardTopicLinks(props: CrossBoardTopicLinksProps) {
     const edexcel = links.filter((l) => l.board === 'edexcel')
     const oxford = links.filter((l) => l.board === 'oxfordaqa')
     const aqa = links.filter((l) => l.board === 'aqa')
+    const ap = links.filter((l) => l.board === 'ap')
     return (
       <aside
         className="mt-8 ec-card border border-[var(--ec-border)] px-5 py-4"
@@ -88,6 +93,23 @@ export function CrossBoardTopicLinks(props: CrossBoardTopicLinksProps) {
             <p className="ms-overline mb-2 mt-4">Related on AQA</p>
             <ul className="flex flex-wrap gap-2">
               {aqa.map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="inline-flex rounded border border-[var(--ec-border)] px-3 py-1.5 font-mono text-[11px] font-semibold tracking-wide hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : null}
+        {ap.length ? (
+          <>
+            <p className="ms-overline mb-2 mt-4">Related on AP</p>
+            <ul className="flex flex-wrap gap-2">
+              {ap.map((l) => (
                 <li key={l.href}>
                   <Link
                     href={l.href}
@@ -212,6 +234,41 @@ export function CrossBoardTopicLinks(props: CrossBoardTopicLinksProps) {
               <li key={`c-${l.topicCode}-${l.href}`}>
                 <Link
                   href={aqaStudyLessonHref(l.href, props.contentCode)}
+                  className="inline-flex rounded border border-[var(--ec-brand)]/30 bg-[var(--ec-brand)]/5 px-3 py-1.5 font-mono text-[11px] font-semibold tracking-wide"
+                >
+                  Course · {l.topicCode}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+        <Link href={`/courses/${syllabus}`} className="ec-btn-underline mt-3 inline-flex">
+          Open Cambridge {syllabus} course
+        </Link>
+      </aside>
+    )
+  }
+
+  if (props.mode === 'ap-subject') {
+    const shellLinks = resolveCaieLinksForApSubject(props.contentCode).slice(0, 8)
+    const courseLinks = resolveCourseLinksForApSubject(props.contentCode).slice(0, 8)
+    if (!shellLinks.length && !courseLinks.length) return null
+    const syllabus = courseLinks[0]?.syllabusOrUnit ?? shellLinks[0]?.syllabusOrUnit ?? '9709'
+    return (
+      <aside
+        className="mt-8 ec-card border border-[var(--ec-border)] px-5 py-4"
+        aria-label="Related Cambridge lessons"
+      >
+        <p className="ms-overline mb-2">Study overlapping Cambridge lessons</p>
+        <p className="ms-body-2 mb-3" style={{ marginTop: 0 }}>
+          AP topic overlap mapped onto the CAIE course spine — no forked lesson JSON.
+        </p>
+        {courseLinks.length ? (
+          <ul className="mb-3 flex flex-wrap gap-2">
+            {courseLinks.map((l) => (
+              <li key={`c-${l.topicCode}-${l.href}`}>
+                <Link
+                  href={apStudyLessonHref(l.href, props.contentCode)}
                   className="inline-flex rounded border border-[var(--ec-brand)]/30 bg-[var(--ec-brand)]/5 px-3 py-1.5 font-mono text-[11px] font-semibold tracking-wide"
                 >
                   Course · {l.topicCode}

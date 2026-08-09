@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import {
+  resolveCourseLinksForApSubject,
   resolveCourseLinksForAqaSubject,
   resolveCourseLinksForEdexcelUnit,
   resolveCourseLinksForOxfordaqaSubject,
@@ -111,4 +112,14 @@ export function verifiedCourseLessonsForAqaSubject(
   contentCode: string
 ): VerifiedBoardCourseLesson[] {
   return verifiedFromMapped(resolveCourseLinksForAqaSubject(contentCode))
+}
+
+/**
+ * Graph-mapped CAIE course lessons for an AP course (content code).
+ * Same legal reuse rules as the Edexcel / OxfordAQA / AQA helpers.
+ */
+export function verifiedCourseLessonsForApSubject(
+  contentCode: string
+): VerifiedBoardCourseLesson[] {
+  return verifiedFromMapped(resolveCourseLinksForApSubject(contentCode))
 }

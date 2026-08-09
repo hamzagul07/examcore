@@ -3040,6 +3040,15 @@
    Level colours are the same reserved status tokens the student mastery view
    uses, via data-level (see .ms-mastery-heatmap for the shared mapping). */
 
+.ms-blindspots__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 4px;
+}
+
 .ms-blindspots__title {
   margin: 0;
   font-size: clamp(19px, 2.4vw, 24px);
@@ -3288,6 +3297,10 @@
 }
 
 /* MarkFlow v2 screen chrome (Capture / Confirm / wait / result) */
+.ms-mark-flow {
+  min-width: 0;
+}
+
 .ms-mark-flow-screen {
   min-width: 0;
 }
@@ -3296,11 +3309,48 @@
   margin-top: 1.5rem;
 }
 
+.ms-mark-flow-mode {
+  padding: 14px 12px;
+  border: 1px dashed color-mix(in srgb, var(--ec-border) 85%, var(--ec-brand));
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ec-paper, var(--ec-surface-raised)) 88%, var(--ec-bg));
+}
+
+.ms-mark-flow-capture {
+  padding: 16px;
+  border: 1px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-surface-raised, var(--ec-bg-soft));
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.06));
+}
+
+.ms-mark-flow-input-mode .ec-pill.on,
+.ms-mark-flow-mode .ec-pill.on {
+  border-color: color-mix(in srgb, var(--ec-brand) 50%, transparent);
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+}
+
 .ms-mark-flow-confirm-slip {
   margin-top: 1rem;
+}
+
+.ms-mark-flow-confirm-slip dt {
+  letter-spacing: 0.04em;
+}
+
+.ms-mark-flow-confirm-slip dd {
+  margin: 0;
 }
 
 .ms-mark-flow-marking,
 .ms-mark-flow-result {
   animation: ms-fade-in 280ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-mark-flow-marking,
+  .ms-mark-flow-result {
+    animation: none;
+  }
 }

@@ -17,7 +17,7 @@ function check(label: string, ok: boolean) {
       questionText: 'Find dy/dx if y = x^2. [3]',
     },
   })
-  let blocked = markFlowReducer(ctx, { type: 'CONTINUE_TO_CONFIRM' })
+  const blocked = markFlowReducer(ctx, { type: 'CONTINUE_TO_CONFIRM' })
   check('practice needs subject', blocked.state === 'capture')
   ctx = markFlowReducer(ctx, {
     type: 'PATCH_DRAFT',

@@ -28,12 +28,18 @@ export function buildQuestionSlug(
   paperSession: string,
   questionNumber: string
 ): string {
+  // Paper codes must be URL-segment safe — a slash (e.g. "9709/11") would make
+  // `/questions/${slug}` look like two path segments and 404 the [slug] route.
+  const paper = paperCode
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
   const session = paperSession
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '')
   const q = questionNumber.toLowerCase().replace(/[^a-z0-9]+/g, '')
-  return `${paperCode.toLowerCase()}-${session}-q${q}`
+  return `${paper}-${session}-q${q}`
 }
 
 function excerpt(text: string | null | undefined): string {

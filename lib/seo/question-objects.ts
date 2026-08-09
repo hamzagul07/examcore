@@ -101,8 +101,17 @@ export function rowToQuestionObject(row: MarkSchemeRow): QuestionObject {
   }
 }
 
+function isPlaceholderSupabase(): boolean {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+  return !url || url.includes('placeholder')
+}
+
 /** Static params for high-value tagged questions (capped per subject). */
 export async function listQuestionObjectSlugs(limitPerSubject = 40): Promise<string[]> {
+  // CI builds use placeholder Supabase — listing here would emit sitemap URLs
+  // that 500 under `next start` (DYNAMIC_SERVER_USAGE / empty service DB).
+  if (isPlaceholderSupabase()) return []
+
   const admin = createServiceClient()
   const subjects = ['9709', '9702', '9701', '9700', '9708', '9609', '9618']
   const slugs: string[] = []

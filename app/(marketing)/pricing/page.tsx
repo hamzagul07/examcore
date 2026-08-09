@@ -9,6 +9,7 @@ import { pricingSeoDescription } from '@/lib/billing/pricing-copy'
 import type { RegionChoice } from '@/lib/billing/region-cookie'
 import type { SubscriptionTier } from '@/lib/database.types'
 import { PricingMarginNotesPage } from '@/components/courses/margin-notes/PricingMarginNotesPage'
+import { PricingPageSkeleton } from '@/components/courses/margin-notes/PricingPageSkeleton'
 
 export const dynamic = 'force-dynamic'
 
@@ -79,16 +80,11 @@ export default async function PricingPage() {
           { name: 'Pricing', path: '/pricing' },
         ]}
       />
-      <Suspense
-        fallback={
-          <PricingMarginNotesPage
-            display={display}
-            signedIn={false}
-            currentTier={null}
-            region={region}
-          />
-        }
-      >
+      {/*
+        Skeleton only — a full PricingMarginNotesPage fallback duplicated the H1
+        in streamed SSR HTML (seo-sitemap-scan multiH1 on /pricing).
+      */}
+      <Suspense fallback={<PricingPageSkeleton />}>
         <PricingWithAccount
           display={display}
           region={region}

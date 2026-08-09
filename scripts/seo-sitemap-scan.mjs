@@ -30,6 +30,16 @@ function pathFromLoc(loc) {
   return url.pathname + url.search
 }
 
+/**
+ * Sitemap index/shards always emit absolute SITE_URL locs (production).
+ * When BASE_URL is localhost CI, rewrite so we expand *this* server's shards
+ * instead of silently auditing markscheme.app against 127.0.0.1.
+ */
+function fetchUrlForLoc(loc) {
+  const path = pathFromLoc(loc)
+  return `${base}${path}`
+}
+
 /** True for sitemap index / shard documents — not HTML pages to audit. */
 function isSitemapDocPath(path) {
   return (
@@ -67,7 +77,7 @@ async function fetchSitemapPaths() {
 
   const pagePaths = [...directPages]
   for (const shardLoc of shardLocs) {
-    const shardXml = await fetch(shardLoc).then((r) => r.text())
+    const shardXml = await fetch(fetchUrlForLoc(shardLoc)).then((r) => r.text())
     for (const loc of locsFromXml(shardXml)) {
       try {
         const path = pathFromLoc(loc)

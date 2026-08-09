@@ -14,6 +14,12 @@ import {
 type Props = { params: Promise<{ slug: string }> }
 
 export const dynamicParams = true
+/**
+ * Marketing layout reads `headers()` for chrome variant. Prerendered question
+ * shells then throw DYNAMIC_SERVER_USAGE (500) under `next start` in CI.
+ * Force dynamic so sitemap scan gets a real response (or clean 404).
+ */
+export const dynamic = 'force-dynamic'
 
 export async function generateStaticParams() {
   try {

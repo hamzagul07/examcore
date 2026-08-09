@@ -3,15 +3,12 @@
 import { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
+import { MarkSnippet } from '@/components/mark/MarkSnippet'
 import { AskOmniAboutMark } from '@/components/omni-ai/AskOmniAboutMark'
 import { ExaminerInkPerPage } from '@/components/examiner-ink/ExaminerInkPerPage'
 import type { LineReference } from '@/components/examiner-ink/ExaminerInkOverlay'
 import type { QuestionMarkResult, WholePaperResult } from '@/lib/marking/types'
-
-function plainSnippet(text: string, max = 88): string {
-  const stripped = text.replace(/[#*_`[\]()$]/g, '').replace(/\s+/g, ' ').trim()
-  return stripped.length <= max ? stripped : `${stripped.slice(0, max - 1)}…`
-}
+import { truncateMarkingPreview } from '@/lib/rich-text/truncate-marking-preview'
 
 function scoreBarColor(pct: number, skipped: boolean): string {
   if (skipped) return 'var(--ec-text-faint)'
@@ -324,7 +321,9 @@ export function WholePaperResultView({
                   <span>
                     <b>Q{question.question_number}</b>
                     {' — '}
-                    {plainSnippet(question.summary)}
+                    <MarkSnippet
+                      text={truncateMarkingPreview(question.summary, 88, '')}
+                    />
                   </span>
                   <button
                     type="button"
@@ -396,7 +395,13 @@ export function WholePaperResultView({
                     Q{q.question_number}
                   </span>
                   <span className="qt line-clamp-2">
-                    {isFailed ? 'Marking failed' : q.summary}
+                    {isFailed ? (
+                      'Marking failed'
+                    ) : (
+                      <MarkSnippet
+                        text={truncateMarkingPreview(q.summary, 120, '')}
+                      />
+                    )}
                   </span>
                   <span className="ms-wp-qbar" aria-hidden>
                     <i style={{ width: `${pct}%`, background: col }} />

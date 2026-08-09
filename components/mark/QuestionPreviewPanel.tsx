@@ -160,7 +160,7 @@ export function QuestionPreviewPanel({
       ) : (
         <p className="ms-question-preview-missing">
           This question isn&apos;t in our database yet — we&apos;ll mark using general
-          Cambridge criteria, or add a photo of the question below for better accuracy.
+          mark-scheme criteria, or add a photo of the question below for better accuracy.
         </p>
       )}
     </div>

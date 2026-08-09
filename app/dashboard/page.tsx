@@ -39,6 +39,7 @@ import {
   fetchTopicRecommendations,
   topicTargetsFromMasteries,
 } from '@/lib/insights/recommendations'
+import { truncateMarkingPreview } from '@/lib/rich-text/truncate-marking-preview'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -57,8 +58,7 @@ function attemptLabel(attempt: {
   if (attempt.source_type === 'past_paper' && ms) {
     return `Q${ms.question_number} — ${ms.paper_code}`
   }
-  const text = attempt.question_text || ''
-  return `Custom: ${text.substring(0, 50)}${text.length > 50 ? '…' : ''}`
+  return `Custom: ${truncateMarkingPreview(attempt.question_text, 50, 'question')}`
 }
 
 export default async function DashboardPage() {

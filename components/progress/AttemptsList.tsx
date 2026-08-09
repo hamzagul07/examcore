@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { SyllabusTopicBadgeList } from '@/components/SyllabusTopicBadge'
 import { AppEmptyState } from '@/components/ui/AppEmptyState'
+import { truncateMarkingPreview } from '@/lib/rich-text/truncate-marking-preview'
 import type { SyllabusCode } from '@/lib/syllabus'
 
 export type AttemptListRow = {
@@ -59,9 +60,7 @@ export function AttemptsList({ attempts }: { attempts: AttemptListRow[] }) {
         const isPastPaper = attempt.source_type === 'past_paper' && ms
         const questionLabel = isPastPaper
           ? `Q${ms?.question_number} — ${ms?.paper_code} ${ms?.paper_session}`
-          : `Custom: ${(attempt.question_text || '').substring(0, 60)}${
-              (attempt.question_text || '').length > 60 ? '…' : ''
-            }`
+          : `Custom: ${truncateMarkingPreview(attempt.question_text, 60, 'question')}`
         const dateStr = new Date(attempt.created_at).toLocaleDateString('en-US', {
           month: 'short',
           day: 'numeric',

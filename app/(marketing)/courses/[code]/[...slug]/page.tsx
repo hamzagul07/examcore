@@ -18,6 +18,14 @@ import { CourseLessonJsonLd } from '@/components/seo/CourseLessonJsonLd'
 import { CourseLessonSeoIntro } from '@/components/courses/CourseLessonSeoIntro'
 import { appendMarkReturn } from '@/lib/courses/format-session'
 import { CourseLessonClient } from '@/components/courses/margin-notes/CourseLessonClient'
+import { EdexcelLessonBridge } from '@/components/seo/EdexcelLessonBridge'
+import {
+  edexcelStudyLessonHref,
+  edexcelStudyMarkHref,
+  edexcelStudyUnitHubHref,
+  parseEdexcelStudyUnit,
+} from '@/lib/edexcel/study-path'
+import { verifiedCourseLessonsForEdexcelUnit } from '@/lib/curriculum-graph/verified-course-links'
 import { getCriterionLadder } from '@/lib/courses/criterion-ladder.server'
 import { GuestSignupGate } from '@/components/auth/GuestSignupGate'
 import { stripLessonsForNav } from '@/lib/courses/lesson-nav'
@@ -27,7 +35,12 @@ import { buildSubjectCourseSeo } from '@/lib/seo/subject-seo'
 
 type Props = {
   params: Promise<{ code: string; slug: string[] }>
-  searchParams: Promise<{ pilot?: string; paper?: string }>
+  searchParams: Promise<{
+    pilot?: string
+    paper?: string
+    board?: string
+    unit?: string
+  }>
 }
 
 type ResolvedLesson =
@@ -133,7 +146,7 @@ export async function generateMetadata({ params, searchParams }: Props) {
 
 export default async function CourseLessonCatchAllPage({ params, searchParams }: Props) {
   const { code, slug } = await params
-  const { pilot, paper } = await searchParams
+  const { pilot, paper, board, unit } = await searchParams
   const preferPublished = pilot === '0'
   const isPilotPreview = pilot === '1'
 
@@ -160,6 +173,28 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
   const isPilotLesson = lesson.status === 'pilot' || isPilotPreview
   const paperQuery = paper ?? resolved.paperNumber ?? null
   const communityOn = isCommunityEnabled()
+  const lessonPath = `/courses/${code}/${lessonSlug}`
+  const edexcelUnit = parseEdexcelStudyUnit({ board, unit })
+  const edexcelMarkPath = edexcelUnit
+    ? edexcelStudyMarkHref(edexcelUnit, lessonPath, lesson.topicCode)
+    : null
+  const markPath =
+    edexcelMarkPath ??
+    appendMarkReturn(seo.markPath, lessonPath, lesson.topicCode)
+  const markCtaLabel = edexcelUnit ? `Mark ${edexcelUnit}` : 'Mark a past paper'
+  const edexcelUnitHub = edexcelUnit ? edexcelStudyUnitHubHref(edexcelUnit) : null
+  const edexcelNextLesson = (() => {
+    if (!edexcelUnit) return null
+    const pathLessons = verifiedCourseLessonsForEdexcelUnit(edexcelUnit)
+    const idx = pathLessons.findIndex((l) => l.href === lessonPath)
+    const next = idx >= 0 ? pathLessons[idx + 1] : undefined
+    if (!next) return null
+    return {
+      href: edexcelStudyLessonHref(next.href, edexcelUnit),
+      title: next.title,
+      topicCode: next.topicCode,
+    }
+  })()
 
   return (
     <>
@@ -194,6 +229,14 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
         </div>
       ) : null}
 
+      {edexcelUnit && edexcelMarkPath && edexcelUnitHub ? (
+        <EdexcelLessonBridge
+          unitCode={edexcelUnit}
+          markHref={edexcelMarkPath}
+          unitHubHref={edexcelUnitHub}
+          nextLesson={edexcelNextLesson}
+        />
+      ) : null}
 
       <GuestSignupGate>
         <CourseLessonClient
@@ -205,6 +248,8 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
           pastPaperQuestions={pastPaperQuestions}
           lessons={stripLessonsForNav(lessons)}
           paperQuery={paperQuery}
+          markHrefOverride={edexcelMarkPath}
+          markCtaLabel={edexcelUnit ? `Mark ${edexcelUnit}` : undefined}
           community={
             communityOn && !isPilotLesson ? (
               <div key="lesson-community" className="lesson-community">
@@ -229,11 +274,8 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
             paragraph={seo.introParagraph}
             subjectCode={code}
             subjectName={course.name}
-            markPath={appendMarkReturn(
-              seo.markPath,
-              `/courses/${code}/${lessonSlug}`,
-              lesson.topicCode
-            )}
+            markPath={markPath}
+            markCtaLabel={markCtaLabel}
           />
         </div>
       ) : null}

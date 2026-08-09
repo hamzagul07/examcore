@@ -212,13 +212,15 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
       name: 'Free',
       tag: 'No card required',
       bestFor: 'Browsing courses & trying marking',
-      blurb: 'Every lesson, formula and worked example — forever. Enough marking to see if it clicks.',
+      blurb:
+        'Mapped visual lessons (Cambridge, IB, Edexcel study paths) plus enough marking to see if the dialect clicks.',
       killer: `${FREE_Q} marked questions every month — no card, no expiry`,
       now: formatMoney(0, cur),
       per: 'forever',
       sub: null,
       features: [
         ['All lessons, notes & worked examples', true],
+        ['Edexcel IAL study paths → mark in Pearson dialect', true],
         [`${FREE_Q} marked questions / month`, true],
         [`${FREE_OMNI} study-chat messages / month`, true],
         [
@@ -236,7 +238,8 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
       name: 'Pro',
       tag: 'Start marking seriously',
       bestFor: 'One subject, regular practice',
-      blurb: 'Real examiner-style marking on past papers — whole papers, flashcards, and enough headroom for weekly practice.',
+      blurb:
+        'Real examiner-style marking — Cambridge, IB, and Edexcel IAL units — plus whole papers and flashcards for weekly practice.',
       killer: `${PRO_Q} questions / month — 10× the free tier`,
       now: proPrice.now,
       per: proPrice.per,
@@ -256,7 +259,8 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
       name: 'Scholar',
       tag: 'Most popular',
       bestFor: 'Full exam prep across subjects',
-      blurb: 'The complete toolkit — detailed marking feedback, topic mastery tracking, and in-depth courses that actually teach the syllabus.',
+      blurb:
+        'Courses that teach + marking that converts — visual lessons, Pearson/Cambridge/IB dialect feedback, mastery tracking.',
       killer: `${SCH_Q} questions + mastery matrix & grade journey`,
       now: scholarPrice.now,
       per: scholarPrice.per,
@@ -266,7 +270,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
         ['Everything in Pro', true],
         [`${SCH_Q} marked questions / month`, true],
         [`${SCH_OMNI} study-chat messages / month`, true],
-        ['In-depth, interactive courses', true],
+        ['In-depth courses + Edexcel mapped study paths', true],
         ['Examiner-style detailed marking feedback', true],
         ['Topic mastery matrix & progress journey', true],
         ['Extra revision resources & practice packs', true],
@@ -296,8 +300,8 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
   const valueProps = [
     {
       icon: FileCheck,
-      title: 'Official mark schemes',
-      body: 'B1, M1, A1 — marked against the real Cambridge or IB scheme for that exact question, not a generic AI guess.',
+      title: 'Board-dialect mark schemes',
+      body: 'B1, M1, A1 — Cambridge, IB, and Edexcel IAL conventions on your handwriting, not a generic AI guess.',
     },
     {
       icon: Target,
@@ -319,8 +323,8 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
   const scholarReasons = [
     {
       icon: GraduationCap,
-      title: 'Courses that teach the syllabus',
-      body: 'Interactive lessons with diagrams, worked examples, and topic-by-topic coverage — not just marking.',
+      title: 'Learn visuals → mark your board',
+      body: 'Interactive diagrams and worked steps on mapped courses, then deep-link into Cambridge, IB, or Edexcel IAL marking.',
     },
     {
       icon: Sparkles,
@@ -337,7 +341,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
   const faqs = [
     {
       q: 'Which plan should I pick?',
-      a: `Pro is ideal if you're focusing on one subject and want whole-paper marking plus past-paper practice — ${PRO_Q} questions a month is enough for weekly papers. Scholar is our most popular pick: you get ${SCH_Q} questions, in-depth courses, detailed examiner feedback, and the full progress journey. Max is for exam season when you're marking daily — ${MAX_Q} questions, projected grades, and priority queue.`,
+      a: `Pro is ideal if you're focusing on one subject and want whole-paper marking plus past-paper practice — ${PRO_Q} questions a month is enough for weekly papers. Scholar is our most popular pick: you get ${SCH_Q} questions, in-depth courses (including Edexcel IAL study paths into Pearson marking), detailed examiner feedback, and the full progress journey. Max is for exam season when you're marking daily — ${MAX_Q} questions, projected grades, and priority queue.`,
     },
     {
       q: 'Can I try it without paying?',
@@ -345,7 +349,11 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
     },
     {
       q: 'What makes the marking different from ChatGPT?',
-      a: 'We mark against the real Cambridge or IB mark scheme for that exact past-paper question — B1/M1/A1 method marks, MCQ keys, essay bands. You get point-by-point feedback on your handwriting with Examiner\'s Ink, not a generic "good effort" paragraph.',
+      a: 'We mark in the dialect of your board — Cambridge, IB, or Edexcel IAL — for that past-paper style question: B1/M1/A1 method marks, MCQ keys, essay bands. You get point-by-point feedback on your handwriting with Examiner\'s Ink, not a generic "good effort" paragraph.',
+    },
+    {
+      q: 'Do you have Edexcel courses?',
+      a: 'Native lesson JSON is Cambridge and IB. For Edexcel IAL Maths (and mapped science units) we give free study paths: our own visual CAIE lessons tagged to your unit, then mark with Pearson method/accuracy conventions. You are not buying a scraped Pearson course — you are buying the marking loop that converts.',
     },
     {
       q: 'Can I cancel anytime?',
@@ -369,9 +377,9 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
             Starting today.
           </h1>
           <p className="lead pricing-lead">
-            Official Cambridge &amp; IB mark schemes, point by point on your handwriting —{' '}
-            <InkScribble>not a generic AI paragraph</InkScribble>. Start free, upgrade
-            only when you need more.
+            Cambridge, IB, and Edexcel IAL marking — point by point on your handwriting —{' '}
+            <InkScribble>not a generic AI paragraph</InkScribble>. Visual lessons in,
+            board-dialect marks out. Start free, upgrade only when you need more.
           </p>
         </header>
 
@@ -467,7 +475,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
           </span>
           <span className="pricing-trust-item">
             <CheckCircle2 className="pricing-trust-icon" aria-hidden />
-            15 Cambridge subjects + IB Diploma
+            Cambridge + IB courses · Edexcel IAL mark + study paths
           </span>
           <span className="pricing-trust-item">
             <CheckCircle2 className="pricing-trust-icon" aria-hidden />
@@ -540,7 +548,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
 
         <p className="micro pricing-footnote">
           FREE PLAN FOREVER · NO CARD TO START · CANCEL ANY TIME ·
-          NOT ENDORSED BY CAMBRIDGE INTERNATIONAL
+          NOT ENDORSED BY CAMBRIDGE, PEARSON, OR THE IB
         </p>
 
         <PageHelpStrip className="mt-10" />

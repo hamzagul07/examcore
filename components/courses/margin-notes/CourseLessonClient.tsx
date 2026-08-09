@@ -30,6 +30,9 @@ type Props = {
   community?: React.ReactNode
   /** Verbatim IB criteria for this lesson's component, fetched server-side. */
   criterionLadder?: CriterionLadderData | null
+  /** When set (e.g. Edexcel study path), practice CTAs use this mark deep-link. */
+  markHrefOverride?: string | null
+  markCtaLabel?: string
 }
 
 export function CourseLessonClient({
@@ -44,6 +47,8 @@ export function CourseLessonClient({
   coursesCrumb,
   community,
   criterionLadder,
+  markHrefOverride,
+  markCtaLabel,
 }: Props) {
   const { done } = useCourseProgress(subjectCode)
   const { user, loading: authLoading } = useAuthCheck()
@@ -75,6 +80,8 @@ export function CourseLessonClient({
         coursesCrumb={coursesCrumb}
         community={community}
         criterionLadder={criterionLadder}
+        markHrefOverride={markHrefOverride}
+        markCtaLabel={markCtaLabel}
       />
     </Suspense>
   )

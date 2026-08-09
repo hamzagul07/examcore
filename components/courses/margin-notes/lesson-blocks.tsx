@@ -748,6 +748,8 @@ function PracticeBlock({
   index = 0,
   total = 1,
   returnPath,
+  markHrefOverride,
+  markCtaLabel,
 }: {
   practice: NonNullable<MarginNotesLesson['practice']>
   lesson: MarginNotesLesson
@@ -757,9 +759,12 @@ function PracticeBlock({
   total?: number
   /** When set, marking returns the student to this lesson (closes the loop). */
   returnPath?: string | null
+  markHrefOverride?: string | null
+  markCtaLabel?: string
 }) {
   const p = practice
-  const markHref = appendMarkReturn(p.href, returnPath, lesson.point)
+  const markHref =
+    markHrefOverride ?? appendMarkReturn(p.href, returnPath, lesson.point)
   const [schemeOpen, setSchemeOpen] = useState(!collapseScheme)
   return (
     <div className={`practice card${big ? ' big' : ''}`} data-screen-label="Lesson — practice question">
@@ -775,7 +780,7 @@ function PracticeBlock({
       </div>
       <div className="practice-foot">
         <Link className="btn-primary" href={markHref}>
-          Do it on paper → mark it
+          {markCtaLabel ?? 'Do it on paper → mark it'}
         </Link>
         <span className="micro">MARKED MARK-BY-MARK · B1 / M1 / A1 · OFFICIAL SCHEME</span>
       </div>
@@ -817,11 +822,15 @@ export function PracticeSection({
   lesson,
   big,
   returnPath,
+  markHrefOverride,
+  markCtaLabel,
 }: {
   lesson: MarginNotesLesson
   big?: boolean
   /** When set, marking returns the student to this lesson (closes the loop). */
   returnPath?: string | null
+  markHrefOverride?: string | null
+  markCtaLabel?: string
 }) {
   const questions =
     lesson.practiceQuestions?.length
@@ -845,6 +854,8 @@ export function PracticeSection({
           index={i}
           total={questions.length}
           returnPath={returnPath}
+          markHrefOverride={markHrefOverride}
+          markCtaLabel={markCtaLabel}
         />
       ))}
     </div>
@@ -860,14 +871,19 @@ export function PracticeSection({
 export function LessonCheckpoint({
   lesson,
   returnPath,
+  markHrefOverride,
+  markCtaLabel,
 }: {
   lesson: MarginNotesLesson
   returnPath?: string | null
+  markHrefOverride?: string | null
+  markCtaLabel?: string
 }) {
   const primary = lesson.practiceQuestions?.[0] ?? lesson.practice ?? null
   if (!primary) return null
 
-  const markHref = appendMarkReturn(primary.href, returnPath, lesson.point)
+  const markHref =
+    markHrefOverride ?? appendMarkReturn(primary.href, returnPath, lesson.point)
 
   return (
     <div className="checkpoint card" data-screen-label="Lesson — checkpoint">
@@ -879,7 +895,7 @@ export function LessonCheckpoint({
       </p>
       <div className="checkpoint-foot">
         <Link className="btn-primary" href={markHref}>
-          Attempt &amp; get marked →
+          {markCtaLabel ? `${markCtaLabel} →` : 'Attempt & get marked →'}
         </Link>
         <span className="micro">Takes about a minute · you&rsquo;ll land back on this lesson</span>
       </div>

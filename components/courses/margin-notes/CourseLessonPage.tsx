@@ -74,6 +74,9 @@ type Props = {
   community?: React.ReactNode
   /** Verbatim IB criteria for this lesson's component, fetched server-side. */
   criterionLadder?: CriterionLadderData | null
+  /** Board study-path override — flips practice CTAs to that board's mark URL. */
+  markHrefOverride?: string | null
+  markCtaLabel?: string
 }
 
 export function CourseLessonPage({
@@ -86,6 +89,8 @@ export function CourseLessonPage({
   coursesCrumb = { label: 'Courses', href: '/courses' },
   community,
   criterionLadder,
+  markHrefOverride,
+  markCtaLabel,
 }: Props) {
   // Free tier sees notes + formulas only — live diagrams, practice questions and
   // the interactive blocks are gated. `undefined` (loading / SSR) renders full so
@@ -173,14 +178,26 @@ export function CourseLessonPage({
 
   // Hand-off after the last quick check: the student has just produced answers,
   // which is the closest they get to attempting a real question without doing it.
+  // Keep board/unit query on return so Edexcel study bridge survives /mark.
+  const lessonReturnPath = useMemo(() => {
+    const board = searchParams.get('board')?.toLowerCase()
+    const unit = searchParams.get('unit')?.trim().toUpperCase()
+    if (board === 'edexcel' && unit) {
+      return `${pathname}?board=edexcel&unit=${encodeURIComponent(unit)}`
+    }
+    return pathname
+  }, [pathname, searchParams])
+
   const quizPractice = L.practiceQuestions?.[0] ?? L.practice ?? null
   // Deliberately NOT gated on `locked`. The href is a /mark deep link, and
   // marking has a free tier — this is the one moment a free reader has just
   // written three answers and is closest to attempting a real question. Hiding
   // the bridge from exactly that student would be backwards.
   const quizPracticeHref = quizPractice
-    ? appendMarkReturn(quizPractice.href, pathname, L.point)
+    ? markHrefOverride ??
+      appendMarkReturn(quizPractice.href, lessonReturnPath, L.point)
     : null
+  const edexcelVisit = Boolean(markHrefOverride)
 
   const toc = useMemo(
     () =>
@@ -544,6 +561,10 @@ export function CourseLessonPage({
                   ? 'Create free account →'
                   : 'Unlock practice & diagrams →'}
               </Link>
+            ) : edexcelVisit && markHrefOverride ? (
+              <Link className="btn-primary btn-block" href={markHrefOverride}>
+                {markCtaLabel ? `${markCtaLabel} →` : 'Mark this unit →'}
+              </Link>
             ) : (
               <button
                 type="button"
@@ -567,7 +588,9 @@ export function CourseLessonPage({
               </button>
             ) : null}
             <p className="greennote sheet-footnote">
-              marked against the real scheme ✓
+              {edexcelVisit
+                ? 'Edexcel dialect · method & accuracy marks ✓'
+                : 'marked against the real scheme ✓'}
             </p>
           </div>
         </aside>
@@ -671,15 +694,25 @@ export function CourseLessonPage({
             k="·"
             title="Past paper questions"
             sub={
-              practiceCount > 1
-                ? `${practiceCount} real Cambridge questions for this topic — mark each one against the official scheme.`
-                : 'A real Cambridge question for this topic — mark it against the official scheme.'
+              edexcelVisit
+                ? practiceCount > 1
+                  ? `${practiceCount} practice questions — mark each in Edexcel dialect after you attempt on paper.`
+                  : 'Attempt on paper, then mark in Edexcel dialect (method / accuracy).'
+                : practiceCount > 1
+                  ? `${practiceCount} real Cambridge questions for this topic — mark each one against the official scheme.`
+                  : 'A real Cambridge question for this topic — mark it against the official scheme.'
             }
           />
           {locked ? (
             <LessonUpsell feature="practice" signedIn={signedIn} />
           ) : (
-            <PracticeSection lesson={L} big returnPath={pathname} />
+            <PracticeSection
+              lesson={L}
+              big
+              returnPath={lessonReturnPath}
+              markHrefOverride={markHrefOverride}
+              markCtaLabel={markCtaLabel}
+            />
           )}
           <div className="lesson-end lesson-papers-end">
             <LessonEndBlock
@@ -1061,7 +1094,7 @@ export function CourseLessonPage({
                   practiceRef={quizPractice?.ref}
                   subjectCode={L.code}
                   lessonSlug={L.lessonSlug}
-                  returnPath={pathname}
+                  returnPath={lessonReturnPath}
                 />
               </section>
             ) : null}
@@ -1100,12 +1133,21 @@ export function CourseLessonPage({
                 <SecHead
                   k="11"
                   title="Practice — then mark it"
-                  sub="The whole point: a real Cambridge question, marked mark-by-mark."
+                  sub={
+                    edexcelVisit
+                      ? 'The whole point: attempt on paper, then mark in Edexcel dialect.'
+                      : 'The whole point: a real Cambridge question, marked mark-by-mark.'
+                  }
                 />
                 {locked ? (
                   <LessonUpsell feature="practice" signedIn={signedIn} />
                 ) : (
-                  <PracticeSection lesson={L} returnPath={pathname} />
+                  <PracticeSection
+                    lesson={L}
+                    returnPath={lessonReturnPath}
+                    markHrefOverride={markHrefOverride}
+                    markCtaLabel={markCtaLabel}
+                  />
                 )}
               </section>
             ) : null}
@@ -1159,7 +1201,12 @@ export function CourseLessonPage({
                   title="Checkpoint"
                   sub="One marked question is worth ten re-reads — close the loop before you move on."
                 />
-                <LessonCheckpoint lesson={L} returnPath={pathname} />
+                <LessonCheckpoint
+                  lesson={L}
+                  returnPath={lessonReturnPath}
+                  markHrefOverride={markHrefOverride}
+                  markCtaLabel={markCtaLabel}
+                />
               </section>
             ) : null}
 

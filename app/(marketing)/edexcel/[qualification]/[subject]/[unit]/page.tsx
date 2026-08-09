@@ -100,15 +100,29 @@ export default async function EdexcelUnitPage({ params }: Props) {
         label={`${subject.familyCode} · ${unitRow.short}`}
         title={`${unitRow.code} — ${unitRow.name}`}
         lead={
-          unitMarkable
-            ? `Modular unit in Edexcel International A Level ${subject.name}. Upload a practice answer or scanned script and get method/accuracy marking for ${unitRow.code}.`
-            : `Modular unit in Edexcel International A Level ${subject.name}. Unit hubs and past-paper maps are live; IAL STEM marking (including Biology) is available on /mark.`
+          studyLessons.length > 0
+            ? `Free mapped visual lessons for ${unitRow.code}, then mark with Pearson method/accuracy conventions — not a Cambridge default.`
+            : unitMarkable
+              ? `Modular unit in Edexcel International A Level ${subject.name}. Upload a practice answer or scanned script and get method/accuracy marking for ${unitRow.code}.`
+              : `Modular unit in Edexcel International A Level ${subject.name}. Unit hubs and past-paper maps are live; IAL STEM marking is available on /mark.`
         }
       >
         <div className="mt-6 flex flex-wrap gap-3">
+          {studyLessons.length > 0 ? (
+            <a
+              href="#edexcel-study-path-h"
+              className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+            >
+              Start study path -&gt;
+            </a>
+          ) : null}
           <Link
             href={markHref}
-            className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+            className={
+              studyLessons.length > 0
+                ? 'ec-btn-ghost inline-flex min-h-[48px] items-center gap-2'
+                : 'ec-btn-primary inline-flex min-h-[48px] items-center gap-2'
+            }
           >
             <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
               M1
@@ -119,12 +133,19 @@ export default async function EdexcelUnitPage({ params }: Props) {
       </MarketingHero>
 
       <MarketingSection>
+        <EdexcelUnitStudyPath
+          unitCode={unitRow.code}
+          unitName={unitRow.name}
+          markHref={markHref}
+          lessons={studyLessons}
+        />
+
         <div className="ms-board-cross mb-8">
           <p className="ms-overline">Marking desk</p>
           <h2 className="ms-h2">Mark a {unitRow.code} answer</h2>
           <p className="ms-body-2 mt-2 max-w-lg text-[var(--ec-text-secondary)]">
             {unitMarkable
-              ? `Practice questions and scanned scripts — Edexcel IAL ${subject.name} conventions, not a Cambridge default.`
+              ? `After a visual lesson — practice answers and scanned scripts with Edexcel IAL ${subject.name} conventions.`
               : 'Open the Edexcel mark picker — Maths, Physics, Chemistry and Biology units are live.'}
           </p>
           <div className="mt-5">
@@ -139,13 +160,6 @@ export default async function EdexcelUnitPage({ params }: Props) {
             </Link>
           </div>
         </div>
-
-        <EdexcelUnitStudyPath
-          unitCode={unitRow.code}
-          unitName={unitRow.name}
-          markHref={markHref}
-          lessons={studyLessons}
-        />
 
         {sessions.length > 0 ? (
           <>

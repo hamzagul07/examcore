@@ -19,6 +19,7 @@ import {
 } from '@/lib/seo/edexcel-graph'
 import { buildEdexcelSubjectCopy } from '@/lib/seo/edexcel-seo'
 import { CrossBoardTopicLinks } from '@/components/seo/CrossBoardTopicLinks'
+import { EdexcelMathsStudyStrip } from '@/components/seo/EdexcelMathsStudyStrip'
 
 type Props = { params: Promise<{ qualification: string; subject: string }> }
 
@@ -105,6 +106,12 @@ export default async function EdexcelSubjectPage({ params }: Props) {
       </MarketingHero>
 
       <MarketingSection>
+        {qualification === 'international-a-level' && subject.slug === 'mathematics' ? (
+          <EdexcelMathsStudyStrip
+            qualification={qualification}
+            subjectSlug={subjectSlug}
+          />
+        ) : null}
         <h2 className="ms-h2">Units</h2>
         <p className="ms-body-2 mb-4 text-[var(--ec-text-secondary)]">{waveNote}</p>
         <ul className="ms-board-index">

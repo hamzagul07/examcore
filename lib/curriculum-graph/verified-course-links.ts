@@ -1,6 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 import { resolveCourseLinksForEdexcelUnit } from '@/lib/curriculum-graph'
+import { getLessonDiagramSpec } from '@/lib/courses/diagram-specs'
+import { hasLessonLiveDiagram } from '@/lib/courses/lesson-diagrams'
 import { topicToLessonSlug } from '@/lib/courses/slug'
 import { CAMBRIDGE_9709_SYLLABUS } from '@/lib/syllabus'
 import { getSyllabusTopicByCode } from '@/lib/syllabi'
@@ -10,6 +12,12 @@ export type EdexcelUnitCourseLesson = {
   title: string
   href: string
   syllabusCode: string
+  /** Live SVG / catalog diagram on the mapped course lesson. */
+  hasLiveDiagram: boolean
+  /** Synced diagram steps (0 if none). */
+  diagramStepCount: number
+  /** Interactive param sliders on the diagram. */
+  hasDiagramParams: boolean
 }
 
 function lessonJsonExists(syllabusCode: string, slug: string): boolean {
@@ -52,11 +60,15 @@ export function verifiedCourseLessonsForEdexcelUnit(
     const href = `/courses/${syllabus}/${slug}`
     if (seen.has(href)) continue
     seen.add(href)
+    const spec = getLessonDiagramSpec(slug)
     out.push({
       topicCode: topic,
       title: name,
       href,
       syllabusCode: syllabus,
+      hasLiveDiagram: hasLessonLiveDiagram(slug),
+      diagramStepCount: spec?.steps?.length ?? 0,
+      hasDiagramParams: (spec?.params?.length ?? 0) > 0,
     })
   }
 

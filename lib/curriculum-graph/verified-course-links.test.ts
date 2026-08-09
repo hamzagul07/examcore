@@ -22,6 +22,15 @@ check(
   'WMA11 titles present',
   wma11.every((l) => l.title.trim().length > 0)
 )
+check(
+  'WMA11 lessons expose live diagrams',
+  wma11.every((l) => l.hasLiveDiagram && l.diagramStepCount >= 4)
+)
+check(
+  'WMA11 differentiation/integration have params',
+  wma11.some((l) => l.topicCode === '1.7' && l.hasDiagramParams) &&
+    wma11.some((l) => l.topicCode === '1.8' && l.hasDiagramParams)
+)
 
 const wme02 = verifiedCourseLessonsForEdexcelUnit('WME02')
 check('WME02 has verified course lessons', wme02.length >= 1)

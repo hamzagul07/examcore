@@ -13,9 +13,21 @@ export function appendMarkReturnUrl(href: string, returnPath: string): string {
   }
 }
 
+/**
+ * Safe lesson return from /mark. Allows `/courses/...` plus an optional query
+ * (e.g. `?board=edexcel&unit=WMA11` so the Edexcel study bridge survives).
+ */
 export function parseMarkReturnPath(raw: string | null | undefined): string | null {
   if (!raw?.trim()) return null
-  const path = raw.trim()
-  if (!path.startsWith('/courses/')) return null
-  return path
+  const trimmed = raw.trim()
+  if (trimmed.startsWith('//') || /^[a-z][a-z0-9+.-]*:/i.test(trimmed)) return null
+  try {
+    const url = new URL(trimmed, 'https://markscheme.app')
+    if (url.origin !== 'https://markscheme.app') return null
+    if (!url.pathname.startsWith('/courses/')) return null
+    // Drop hash — return should land on the lesson with board context, not mid-section.
+    return `${url.pathname}${url.search}`
+  } catch {
+    return null
+  }
 }

@@ -1,8 +1,10 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowRight } from 'lucide-react'
+
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
+import { JsonLd } from '@/components/seo/JsonLd'
+import { faqPageNode } from '@/lib/seo/structured-data'
 import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import {
@@ -13,6 +15,8 @@ import {
 import { getOfficialBoundaries } from '@/lib/seo/grade-boundaries-data'
 import { getSubjectGuideSlugForCode } from '@/lib/seo/subject-guides'
 import { MockPackEmailCapture } from '@/components/tools/MockPackEmailCapture'
+import { WillMyGradeHold } from '@/components/tools/WillMyGradeHold'
+import { FunnelLandingView } from '@/components/analytics/FunnelLandingView'
 import { hasSyllabusTree } from '@/lib/syllabi'
 
 type Props = { params: Promise<{ code: string }> }
@@ -30,13 +34,15 @@ export async function generateMetadata({ params }: Props) {
   const subject = getSubject(code)
   if (!subject) return {}
   return getPageMetadata(`/results-2026/caie/${code}`, {
-    title: `${code} ${subject.label} Results Day 2026 — thresholds & next steps`,
-    description: `Cambridge ${code} ${subject.label} Results Day 2026: interpret raw marks, check grade boundaries, plan remarks or retakes, and practise weak topics with free marking.`,
+    title: `${code} ${subject.label} Results Day 2026 — Will My Grade Hold?`,
+    description: `Cambridge ${code} ${subject.label} Results Day 2026: check if your grade holds against May/June thresholds, plan remarks/retakes, mark weak topics free.`,
     keywords: [
       `${code} results 2026`,
       `${code} grade boundaries`,
+      `${code} grade boundaries 2026`,
       `${code} remark`,
       `Cambridge ${subject.label} results`,
+      'will my grade hold',
     ],
   })
 }
@@ -51,9 +57,28 @@ export default async function Results2026CaiePage({ params }: Props) {
   const guideSlug = getSubjectGuideSlugForCode(code)
   const hasCourse = hasSyllabusTree(code)
   const session = official?.sessions[0]
+  const defaultLevel =
+    subject.levels.includes('AS-Level') && !subject.levels.includes('A-Level')
+      ? 'AS-Level'
+      : 'A-Level'
+  const faqs = [
+    {
+      q: `When are Cambridge ${code} results 2026?`,
+      a: `AS & A Level grades for the June 2026 series release 11 August 2026 (06:00 GMT). Component grade threshold tables typically follow around 13 August. IGCSE/O Level grades release 18 August.`,
+    },
+    {
+      q: `How do I check if my ${code} grade will hold?`,
+      a: `Enter your ${code} raw mark and the published (or recent-session) thresholds in the checker on this page. It shows the predicted grade and marks to the next boundary. Always confirm against your official statement.`,
+    },
+    {
+      q: `Where are ${code} grade boundaries 2026?`,
+      a: `Official component thresholds publish with Cambridge's June 2026 threshold PDFs (~13 August). Until then, estimate with recent sessions in the calculator, then stress-test sensitivity with Will my grade hold?`,
+    },
+  ]
 
   return (
     <MarketingPageShell>
+      <FunnelLandingView source="results-2026-caie" subject={code} />
       <PageJsonLd
         path={path}
         title={`${code} ${subject.label} Results Day 2026`}
@@ -64,6 +89,7 @@ export default async function Results2026CaiePage({ params }: Props) {
           { name: `${code} ${subject.label}`, path },
         ]}
       />
+      <JsonLd data={faqPageNode(faqs)} />
 
       <MarketingHero
         label={`${code} · ${copy.level} · June 2026`}
@@ -71,12 +97,9 @@ export default async function Results2026CaiePage({ params }: Props) {
         lead={`Check how your ${code} raw marks sit against published thresholds, decide on remarks or retakes, then mark the topics that decide the next grade.`}
       >
         <div className="mt-6 flex flex-wrap gap-3">
-          <Link
-            href={`/tools/will-my-grade-hold?code=${encodeURIComponent(code)}`}
-            className="ec-btn-primary min-h-[48px]"
-          >
-            Will my {code} grade hold? <ArrowRight className="h-4 w-4" />
-          </Link>
+          <a href="#grade-hold" className="ec-btn-primary min-h-[48px]">
+            Will my {code} grade hold? <span className="h-4 w-4" aria-hidden>-&gt;</span>
+          </a>
           <Link
             href={`/tools/grade-boundary-calculator/${code}`}
             className="ec-btn-ghost min-h-[48px]"
@@ -95,8 +118,40 @@ export default async function Results2026CaiePage({ params }: Props) {
       <MarketingSection className="!pt-0">
         <ResultsDayBanner subjectCode={code} className="mb-8" />
 
+        <div className="mb-8 overflow-x-auto">
+          <table className="gb-data-table ms-boundary-hub-table">
+            <caption className="sr-only">{code} Results Day 2026 quick answers</caption>
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Answer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>AS &amp; A Level grades</td>
+                <td>
+                  <strong>11 Aug 2026</strong> (06:00 GMT)
+                </td>
+              </tr>
+              <tr>
+                <td>{code} threshold tables</td>
+                <td>
+                  Typically <strong>~13 Aug</strong> — confirm with your centre PDF
+                </td>
+              </tr>
+              <tr>
+                <td>IGCSE / O Level grades</td>
+                <td>
+                  <strong>18 Aug 2026</strong> (06:00 GMT)
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         {session ? (
-          <div className="ec-card mb-8 p-5">
+          <div className="ec-card ec-card--paper mb-8 p-5">
             <p className="ms-overline">Latest verified session in MarkScheme</p>
             <p className="ms-h3 mt-2" style={{ fontSize: '1.15rem' }}>
               {session.session}
@@ -118,13 +173,29 @@ export default async function Results2026CaiePage({ params }: Props) {
             ) : null}
           </div>
         ) : (
-          <div className="ec-card mb-8 p-5">
+          <div className="ec-card ec-card--paper mb-8 p-5">
             <p className="ms-body-2">
               June 2026 thresholds for {code} will appear here as they are verified. Until then,
-              use recent sessions in the calculator and your statement of results.
+              use recent sessions in the checker below and your statement of results.
             </p>
           </div>
         )}
+
+        <div id="grade-hold" className="mb-10 scroll-mt-24">
+          <h2 className="ms-h2">Will my {code} grade hold?</h2>
+          <p className="ms-lead mt-3" style={{ maxWidth: '56ch' }}>
+            Paste your raw mark and thresholds. See the grade, the gap to the next boundary, then
+            grab the November mock pack.
+          </p>
+          <div className="mt-6">
+            <WillMyGradeHold
+              code={code}
+              subjectLabel={subject.label}
+              official={official}
+              defaultLevel={defaultLevel}
+            />
+          </div>
+        </div>
 
         <div className="grid gap-6 lg:grid-cols-2">
           <div>
@@ -150,7 +221,7 @@ export default async function Results2026CaiePage({ params }: Props) {
                 <li>
                   Deep dive:{' '}
                   <Link href={`/blog/${guideSlug}`} className="underline">
-                    {code} subject guide
+                    {code} 2026 boundaries guide
                   </Link>
                 </li>
               ) : null}

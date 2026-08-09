@@ -162,7 +162,7 @@ export function CaptureScreen({
             M1
           </span>
         </div>
-        <h1 id="mark-flow-capture-title" className="ms-mark-hero-title">
+        <h2 id="mark-flow-capture-title" className="ms-mark-hero-title">
           {isPaper
             ? 'Mark a paper'
             : isPastPaperQ
@@ -170,7 +170,7 @@ export function CaptureScreen({
               : isCombined
                 ? 'Mark a scanned script'
                 : 'Mark an answer'}
-        </h1>
+        </h2>
         <p className="ms-mark-hero-lead">
           {isPaper
             ? 'Photograph every page of your script. Set the paper code before continuing.'
@@ -405,54 +405,56 @@ export function CaptureScreen({
                 ) : null}
               </div>
               {!isCombined ? (
-                <>
-                  <div className="space-y-3">
-                    <p className="ms-micro">THE QUESTION</p>
-                    <QuestionUploadField
-                      id="mark-flow-question-photo"
-                      label="Photo of the question"
-                      hint="Optional if you type the stem below — JPEG, PNG, WebP, or PDF"
-                      file={questionPhoto}
-                      onChange={onQuestionPhotoChange}
-                    />
-                    <Field
-                      label="Or type the question"
-                      hint="At least 10 characters, or attach a photo above"
-                      as="textarea"
-                      inputProps={{
-                        value: draft.questionText,
-                        onChange: (e) =>
-                          onPatchDraft({ questionText: e.target.value }),
-                        placeholder: 'Paste or type the question stem…',
-                        rows: 4,
-                        className:
-                          'ec-input min-h-[100px] font-mono text-sm leading-relaxed',
-                      }}
-                    />
-                  </div>
+                <div className="space-y-3">
+                  <p className="ms-micro">THE QUESTION</p>
+                  <QuestionUploadField
+                    id="mark-flow-question-photo"
+                    label="Photo of the question"
+                    hint="Optional if you type the stem below — JPEG, PNG, WebP, or PDF"
+                    file={questionPhoto}
+                    onChange={onQuestionPhotoChange}
+                  />
                   <Field
-                    label="Total marks (optional)"
-                    hint="If the question shows [n], enter n — improves scoring"
+                    label="Or type the question"
+                    hint="At least 10 characters, or attach a photo above"
+                    as="textarea"
                     inputProps={{
-                      type: 'number',
-                      min: 1,
-                      max: 100,
-                      inputMode: 'numeric',
-                      value: draft.totalMarksHint ?? '',
-                      onChange: (e) => {
-                        const n = Number(e.target.value)
-                        onPatchDraft({
-                          totalMarksHint:
-                            e.target.value && Number.isFinite(n) && n > 0
-                              ? n
-                              : null,
-                        })
-                      },
-                      placeholder: 'e.g. 6',
+                      value: draft.questionText,
+                      onChange: (e) =>
+                        onPatchDraft({ questionText: e.target.value }),
+                      placeholder: 'Paste or type the question stem…',
+                      rows: 4,
+                      className:
+                        'ec-input min-h-[100px] font-mono text-sm leading-relaxed',
                     }}
                   />
-                </>
+                </div>
               ) : null}
+              <Field
+                label="Total marks (optional)"
+                hint={
+                  isCombined
+                    ? 'If the script shows a total (or [n] per question), enter it — improves scoring'
+                    : 'If the question shows [n], enter n — improves scoring'
+                }
+                inputProps={{
+                  type: 'number',
+                  min: 1,
+                  max: 100,
+                  inputMode: 'numeric',
+                  value: draft.totalMarksHint ?? '',
+                  onChange: (e) => {
+                    const n = Number(e.target.value)
+                    onPatchDraft({
+                      totalMarksHint:
+                        e.target.value && Number.isFinite(n) && n > 0
+                          ? n
+                          : null,
+                    })
+                  },
+                  placeholder: 'e.g. 6',
+                }}
+              />
             </div>
           )}
           <div>

@@ -14,9 +14,9 @@ export function ResultScreen({ children, onMarkAnother }: Props) {
       className="ms-mark-flow-screen ms-mark-flow-result"
       aria-labelledby="mark-flow-result-title"
     >
-      <h1 id="mark-flow-result-title" className="sr-only">
+      <h2 id="mark-flow-result-title" className="sr-only">
         Marking result
-      </h1>
+      </h2>
       {children}
       {onMarkAnother ? (
         <div className="mt-8">

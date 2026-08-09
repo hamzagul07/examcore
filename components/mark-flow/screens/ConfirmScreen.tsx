@@ -79,9 +79,9 @@ export function ConfirmScreen({
     <section className="ms-mark-flow-screen" aria-labelledby="mark-flow-confirm-title">
       <header className="mb-6">
         <p className="ms-overline mb-2">Before we mark</p>
-        <h1 id="mark-flow-confirm-title" className="ms-mark-hero-title">
+        <h2 id="mark-flow-confirm-title" className="ms-mark-hero-title">
           Check this looks right
-        </h1>
+        </h2>
         <p className="ms-mark-hero-lead">
           We have not read the pages yet — confirm the upload and cost, then start marking.
         </p>
@@ -122,7 +122,7 @@ export function ConfirmScreen({
               : ''}
           </dd>
         </div>
-        {!isPaper && !isPastPaperQ && !isCombined && draft.totalMarksHint ? (
+        {!isPaper && !isPastPaperQ && draft.totalMarksHint ? (
           <div>
             <dt className="ms-micro">TOTAL MARKS</dt>
             <dd className="mt-1 text-sm text-[var(--ec-text-primary)]">

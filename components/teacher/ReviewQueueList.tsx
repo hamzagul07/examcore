@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useCallback, useEffect, useState } from 'react'
+import { MarkSnippet } from '@/components/mark/MarkSnippet'
 import { SkeletonBlock } from '@/components/ui/PageSkeleton'
 
 interface Review {
@@ -128,8 +129,8 @@ export function ReviewQueueList({ classroomId, limit = 5 }: Props) {
                       </span>
                     ) : null}
                   </span>
-                  <span className="mt-1 block truncate text-sm text-[var(--ec-text-secondary)]">
-                    {r.questionPreview}
+                  <span className="mt-1 block line-clamp-2 text-sm text-[var(--ec-text-secondary)]">
+                    <MarkSnippet text={r.questionPreview} />
                   </span>
                   <span className="mt-1 block text-xs text-[var(--ec-text-secondary)]">
                     AI score: {r.marksEarned}/{r.totalMarks}

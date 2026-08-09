@@ -23,9 +23,9 @@ export function MarkingScreenHeader({ scope }: { scope: Scope }) {
   return (
     <header className="mb-6">
       <p className="ms-overline mb-2">Marking</p>
-      <h1 id="mark-flow-marking-title" className="ms-mark-hero-title">
+      <h2 id="mark-flow-marking-title" className="ms-mark-hero-title">
         Under the scheme
-      </h1>
+      </h2>
       <p className="ms-mark-hero-lead" role="status" aria-live="polite">
         Usually {duration}. Keep this tab open — you can cancel from the wait panel if needed.
       </p>

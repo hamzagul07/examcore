@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
+import { MarkSnippet } from '@/components/mark/MarkSnippet'
 import { TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
 import { SkeletonBlock } from '@/components/ui/PageSkeleton'
 import { useSetAIContext } from '@/lib/omni-ai/context'
@@ -147,7 +148,7 @@ export default function ReviewsPage() {
               <span>
                 <h2 className="ms-teacher-class-slip__name">{r.studentName}</h2>
                 <p className="ms-teacher-class-slip__meta">
-                  {r.questionPreview}
+                  <MarkSnippet text={r.questionPreview} />
                   {r.overridden ? ' · overridden' : ''}
                 </p>
               </span>

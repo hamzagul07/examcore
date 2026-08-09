@@ -10,7 +10,6 @@ import { createPageMetadata } from '@/lib/seo/metadata'
 import { getAqaSubject, getAqaSubjects } from '@/lib/aqa/catalog'
 import { aqaMarkHref } from '@/lib/aqa/marking'
 import { aqaRootPath, aqaSubjectPath } from '@/lib/seo/aqa-graph'
-import { aqaRootPath, aqaSubjectPath } from '@/lib/seo/aqa-graph'
 
 type Props = { params: Promise<{ subject: string }> }
 

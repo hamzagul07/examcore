@@ -1,5 +1,6 @@
 import { GEMINI_PRO_MODEL, generateGeminiText } from '@/lib/ai/gemini-text'
 import { extractJSON } from '@/lib/marking/json'
+import type { MarkingBoardLabel } from '@/lib/marking/exam-board'
 
 /**
  * Rewrite-to-full-marks (premium): an examiner-style rewrite of the student's
@@ -17,7 +18,7 @@ export type FullMarksRewrite = {
 
 export type FullMarksRewriteInput = {
   subjectName: string
-  board: 'Cambridge' | 'IB Diploma' | 'Edexcel'
+  board: MarkingBoardLabel
   questionText: string
   /** The student's answer as OCR'd from their script. */
   studentAnswer: string

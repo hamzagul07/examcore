@@ -171,6 +171,14 @@ export function CrossBoardTopicLinks(props: CrossBoardTopicLinksProps) {
 
   const syllabusCode =
     props.mode === 'edexcel-subject-hub' ? props.syllabusCode : '9709'
+  const caieSubjectSlug =
+    syllabusCode === '9702'
+      ? 'physics'
+      : syllabusCode === '9701'
+        ? 'chemistry'
+        : syllabusCode === '9700'
+          ? 'biology'
+          : 'mathematics'
   const overlap = listOverlapForSubject(syllabusCode)
   if (!overlap.length) return null
   return (
@@ -200,7 +208,7 @@ export function CrossBoardTopicLinks(props: CrossBoardTopicLinksProps) {
         ))}
       </ul>
       <Link
-        href={`/caie/a-level/${subjectSlug}/${syllabusCode}`}
+        href={`/caie/a-level/${caieSubjectSlug}/${syllabusCode}`}
         className="ec-btn-underline mt-3 inline-flex"
       >
         Open Cambridge {syllabusCode}

@@ -63,9 +63,10 @@ export default function robots(): MetadataRoute.Robots {
       allow: PUBLIC_ALLOW,
       disallow: PRIVATE_PREFIXES,
     })),
-    // Prefer the explicit index; also list shards for engines that ignore indexes.
+    // Prefer the real index; /sitemap.xml 301s here for legacy GSC submissions.
     sitemap: [
       `${base}/sitemap-index.xml`,
+      `${base}/sitemap.xml`,
       ...SITEMAP_SHARD_IDS.map((id) => `${base}/sitemap/${id}.xml`),
     ],
     host: base,

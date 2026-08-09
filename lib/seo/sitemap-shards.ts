@@ -1,7 +1,7 @@
 /**
  * Named sitemap shards for Search Console tracking by page type.
  * Served via app/sitemap.ts generateSitemaps → /sitemap/{id}.xml
- * Root /sitemap.xml becomes the sitemap index when generateSitemaps is exported.
+ * Index document is served at /sitemap-index.xml (/sitemap.xml redirects there).
  */
 import type { MetadataRoute } from 'next'
 import { SITE_URL } from '@/lib/site-config'

@@ -45,6 +45,14 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Next generateSitemaps serves shards at /sitemap/{id}.xml but leaves
+      // /sitemap.xml as a 404 metadata route. GSC expects /sitemap.xml — send
+      // crawlers to the explicit index (Google follows sitemap redirects).
+      {
+        source: '/sitemap.xml',
+        destination: '/sitemap-index.xml',
+        permanent: true,
+      },
       {
         source: '/blog/why-i-built-examcore',
         destination: '/blog/why-i-built-markscheme',

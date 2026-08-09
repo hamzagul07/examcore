@@ -11,6 +11,7 @@ import { LandingFaq } from '@/components/landing/LandingFaq'
 import { LandingFinalCta } from '@/components/landing/LandingFinalCta'
 import { LandingProof } from '@/components/landing/LandingProof'
 import { LandingMoreBand } from '@/components/landing/LandingMoreBand'
+import { LandingEditorialSpotlight } from '@/components/landing/LandingEditorialSpotlight'
 import { LandingArtefactBeat } from '@/components/landing/LandingArtefactBeat'
 import { InteractiveMarkDemoLazy } from '@/components/marketing/InteractiveMarkDemoLazy'
 
@@ -40,6 +41,7 @@ export default function Home() {
         <LandingFaq />
         <LandingFinalCta markHref={markHref} />
         <LandingMoreBand>
+          <LandingEditorialSpotlight />
           <LandingPillars />
           <LandingFounder />
           <LandingComparison />

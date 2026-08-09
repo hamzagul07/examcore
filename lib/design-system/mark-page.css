@@ -3286,3 +3286,21 @@
   line-height: 1.6;
   color: var(--ec-text-secondary);
 }
+
+/* MarkFlow v2 screen chrome (Capture / Confirm / wait / result) */
+.ms-mark-flow-screen {
+  min-width: 0;
+}
+
+.ms-mark-flow-screen + .ms-mark-flow-screen {
+  margin-top: 1.5rem;
+}
+
+.ms-mark-flow-confirm-slip {
+  margin-top: 1rem;
+}
+
+.ms-mark-flow-marking,
+.ms-mark-flow-result {
+  animation: ms-fade-in 280ms ease-out;
+}

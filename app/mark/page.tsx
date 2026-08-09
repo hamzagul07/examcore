@@ -1817,8 +1817,11 @@ export default function MarkPage() {
     if (block?.tier === 'free') setShowFreeNudge(true)
   }
 
-  const waitOpen = cinematicActive || !!markStreamError
-
+  // V2 treats any in-flight mark as wait (covers the gap before markProgress lands).
+  const waitOpen =
+    cinematicActive ||
+    !!markStreamError ||
+    (markFlowV2 && (loading || v2OneAnswerMarking) && !result)
   const handleSubmitRef = useRef(handleSubmit)
   handleSubmitRef.current = handleSubmit
 
@@ -1829,24 +1832,74 @@ export default function MarkPage() {
     } as React.FormEvent)
   }, [v2SubmitTick])
 
+  useEffect(() => {
+    if (!markFlowV2 || !v2OneAnswerMarking || result) return
+    if (loading || markStreamError || cinematicActive) return
+    const t = window.setTimeout(() => {
+      setV2OneAnswerMarking((still) => {
+        if (!still) return still
+        markFlowRef.current?.cancelMarking()
+        return false
+      })
+    }, 120)
+    return () => window.clearTimeout(t)
+  }, [
+    markFlowV2,
+    v2OneAnswerMarking,
+    loading,
+    markStreamError,
+    cinematicActive,
+    result,
+  ])
+
+  const retryV2Mark = () => {
+    setMarkStreamError(null)
+    setErrorMsg('')
+    setErrorRetryable(false)
+    setV2OneAnswerMarking(true)
+    void handleSubmit({
+      preventDefault: () => {},
+    } as React.FormEvent)
+  }
+
+  const cancelV2Mark = () => {
+    markAbortRef.current?.abort()
+    setLoading(false)
+    submittingRef.current = false
+    setV2OneAnswerMarking(false)
+    setMarkStreamError(null)
+    setMarkProgress(null)
+    setMarkContext(null)
+    setPendingResult(null)
+    pendingResultRef.current = null
+    setErrorMsg('')
+    setErrorRetryable(false)
+    markFlowRef.current?.cancelMarking()
+  }
+
   const markFlowSubjectOptions = useMemo(() => {
     const codes =
-      profileSubjectCodes.length > 0
-        ? profileSubjectCodes
-        : (markableCodesForBoard(selectedMarkBoard) ?? []).slice(0, 12)
+      markSubjectOptions.length > 0
+        ? markSubjectOptions
+        : SUBJECTS.filter((s) => s.markingEnabled)
+            .slice(0, 12)
+            .map((s) => s.code)
     return codes.map((code) => ({
       code,
       label: getSubjectByCode(code)?.label ?? code,
     }))
-  }, [profileSubjectCodes, selectedMarkBoard])
+  }, [markSubjectOptions])
 
   const exitMarkFlowV2 = () => {
     setMarkFlowV2(false)
     setV2WholePaperSeed(null)
+    setV2WpPhase('marking')
+    setV2OneAnswerMarking(false)
     try {
       const url = new URL(window.location.href)
       url.searchParams.set('flow', 'v1')
       window.history.replaceState({}, '', url.toString())
+      window.localStorage.removeItem('ms-mark-flow')
     } catch {
       /* ignore */
     }
@@ -1897,10 +1950,6 @@ export default function MarkPage() {
     return (
       <main className="app-shell app-shell-tabbed ms-mark-shell">
         <div className="ms-mark-pg min-w-0">
-          {/*
-            Single tree so WholePaperFlow does not remount when phase flips
-            MarkingScreen → ResultScreen.
-          */}
           <section
             className={
               v2WpPhase === 'result'
@@ -1915,9 +1964,9 @@ export default function MarkPage() {
             aria-busy={v2WpPhase !== 'result' || undefined}
           >
             {v2WpPhase === 'result' ? (
-              <h1 id="mark-flow-result-title" className="sr-only">
+              <h2 id="mark-flow-result-title" className="sr-only">
                 Marking result
-              </h1>
+              </h2>
             ) : (
               <MarkingScreen scope="whole_paper">
                 <p className="mb-4 text-sm text-[var(--ec-text-secondary)]">
@@ -1926,7 +1975,6 @@ export default function MarkPage() {
                 </p>
               </MarkingScreen>
             )}
-            {v2WpPhase !== 'result' ? null : null}
             {wpFlow}
             {v2WpPhase === 'result' ? (
               <div className="mt-8">
@@ -1968,17 +2016,112 @@ export default function MarkPage() {
     )
   }
 
-  // R1: Capture → Confirm; one-answer wait/result hand off to host overlays.
-  if (markFlowV2 && !result && !waitOpen && !showingExample) {
+  // R1: Capture → Confirm → wait → result on one MarkFlow instance.
+  if (
+    markFlowV2 &&
+    !showingExample &&
+    !v2WholePaperSeed &&
+    !(result?.whole_paper)
+  ) {
+    const showWaitChrome = waitOpen && !cinematicActive && !markStreamError
+    const resultSlot =
+      result && !result.whole_paper ? (
+        <ResultScreen
+          onMarkAnother={() => {
+            markFlowRef.current?.markAnother()
+            setResult(null)
+            setV2WholePaperSeed(null)
+            setV2OneAnswerMarking(false)
+            setAnswerPages([])
+            setAnswerPdf(null)
+            setAnswerTextInput('')
+            setQuestionTextInput('')
+            setQuestionPhoto(null)
+            setTotalMarksInput('')
+            setErrorMsg('')
+          }}
+        >
+          <MarkingResultView
+            result={result}
+            attemptId={result.attempt_id ?? null}
+            isPaid={
+              billingSummary ? hasPaidAccess(billingSummary.access) : undefined
+            }
+            inkPages={
+              result.ink_pages ??
+              (result.answer_photo_url && result.line_references?.length
+                ? [
+                    {
+                      photo_url: result.answer_photo_url,
+                      line_references: result.line_references,
+                    },
+                  ]
+                : undefined)
+            }
+          />
+        </ResultScreen>
+      ) : null
+
+    const waitSlot = waitOpen ? (
+      <section
+        className="ms-mark-flow-screen ms-mark-flow-marking"
+        aria-labelledby="mark-flow-marking-title"
+        aria-busy="true"
+      >
+        {showWaitChrome ? <MarkingScreenHeader scope="one_answer" /> : null}
+        {cinematicActive || markStreamError ? (
+          <CinematicMarkingExperience
+            stage={markProgress?.stage ?? 'reading_work'}
+            context={markContext}
+            imageUrl={answerPages[0]?.previewUrl ?? null}
+            resultReady={!!pendingResult}
+            lineReferences={pendingResult?.line_references ?? null}
+            onReveal={handleReveal}
+            error={markStreamError}
+            onRetry={errorRetryable ? retryV2Mark : undefined}
+            onBackToUpload={cancelV2Mark}
+            retryDisabled={
+              loading ||
+              !(
+                answerPages.length > 0 ||
+                !!answerPdf ||
+                answerTextInput.trim().length > 0
+              ) ||
+              hasCompressingPages(answerPages) ||
+              questionPhotoCompressing ||
+              !!answerPdfError
+            }
+          />
+        ) : (
+          <p className="text-sm text-[var(--ec-text-secondary)]" role="status">
+            Starting the mark…
+          </p>
+        )}
+      </section>
+    ) : null
+
+    const hostSlot = resultSlot ?? waitSlot
+
     return (
       <main className="app-shell app-shell-tabbed ms-mark-shell">
-        <div className="ms-mark-pg ms-mark-pg--narrow min-w-0">
+        <div
+          className={`ms-mark-pg min-w-0 ${waitOpen || result ? '' : 'ms-mark-pg--narrow'}`}
+        >
           <MarkFlow
+            ref={markFlowRef}
             board={selectedMarkBoard}
             subjectCode={selectedSubject || null}
             subjectOptions={markFlowSubjectOptions}
+            pastPaperCatalog={{
+              availablePapers: availablePapers as AvailablePapersMap | null,
+              papersLoading,
+              subjectCodes: profileSelectableSubjects.filter((code) =>
+                subjectMatchesMarkBoard(code, 'cambridge')
+              ),
+            }}
             submitting={loading}
             submitError={errorMsg || null}
+            hostSlot={hostSlot}
             onSubmit={(payload) => {
               if (payload.draft.scope === 'whole_paper') {
                 const code = payload.draft.paperCode?.trim() ?? ''
@@ -1995,6 +2138,7 @@ export default function MarkPage() {
                 }
                 setUploadMode('whole_paper')
                 setErrorMsg('')
+                setV2WpPhase('marking')
                 setV2WholePaperSeed({
                   pages: payload.pages,
                   pdf: payload.pdfFile,
@@ -2003,26 +2147,70 @@ export default function MarkPage() {
                 })
                 return
               }
+              const isPastPaperQ = payload.draft.questionSource === 'past_paper'
+              if (isPastPaperQ) {
+                const code = payload.draft.paperCode?.trim() ?? ''
+                const session = payload.draft.paperSession?.trim() ?? ''
+                const qn = payload.draft.questionNumber?.trim() ?? ''
+                const parsedCode = parsePaperCode(code)
+                const parsedSession = parsePaperSession(session)
+                if (!parsedCode || !parsedSession || !qn) {
+                  setErrorMsg(
+                    'Past paper needs a code like 9709/12, a session like May/June 2024, and a question number.'
+                  )
+                  markFlowRef.current?.cancelMarking()
+                  setV2OneAnswerMarking(false)
+                  return
+                }
+                flushSync(() => {
+                  setV2OneAnswerMarking(true)
+                  setAnswerPages(payload.pages)
+                  setAnswerPdf(payload.pdfFile)
+                  setAnswerTextInput(payload.typedAnswer)
+                  setQuestionTextInput(payload.questionText)
+                  setQuestionPhoto(payload.questionPhoto)
+                  setUploadMode('single_question')
+                  setMarkIntent('past_paper')
+                  setShowManualPaper(true)
+                  if (payload.draft.board) {
+                    setSelectedMarkBoard(payload.draft.board as MarkExamBoard)
+                  }
+                  setSelectedSubject(parsedCode.subject)
+                  setSelectedComponent(parsedCode.component)
+                  setSelectedSession(parsedSession.season)
+                  setSelectedYear(parsedSession.year)
+                  setQuestionNumber(qn)
+                  setErrorMsg('')
+                })
+                setV2SubmitTick((n) => n + 1)
+                return
+              }
+              if (!payload.draft.subjectCode?.trim()) {
+                setErrorMsg('Pick a subject before marking.')
+                markFlowRef.current?.cancelMarking()
+                setV2OneAnswerMarking(false)
+                return
+              }
+              const combined = payload.draft.practiceKind === 'combined_script'
               flushSync(() => {
+                setV2OneAnswerMarking(true)
                 setAnswerPages(payload.pages)
                 setAnswerPdf(payload.pdfFile)
                 setAnswerTextInput(payload.typedAnswer)
+                setQuestionTextInput(payload.questionText)
+                setQuestionPhoto(payload.questionPhoto)
                 setUploadMode('single_question')
-                setMarkIntent('practice_question')
+                setMarkIntent(combined ? 'combined_script' : 'practice_question')
                 setShowManualPaper(false)
                 if (payload.draft.board) {
                   setSelectedMarkBoard(payload.draft.board as MarkExamBoard)
                 }
-                if (payload.draft.subjectCode) {
-                  setSelectedSubject(payload.draft.subjectCode)
-                } else if (!selectedSubject && markFlowSubjectOptions[0]) {
-                  setSelectedSubject(markFlowSubjectOptions[0].code)
-                }
-                if (questionTextInput.trim().length < 10) {
-                  setQuestionTextInput(
-                    'Practice working — mark against the scheme for this subject.'
-                  )
-                }
+                setSelectedSubject(payload.draft.subjectCode ?? '')
+                setTotalMarksInput(
+                  payload.draft.totalMarksHint
+                    ? String(payload.draft.totalMarksHint)
+                    : ''
+                )
                 setErrorMsg('')
               })
               setV2SubmitTick((n) => n + 1)
@@ -2033,51 +2221,24 @@ export default function MarkPage() {
             <button
               type="button"
               className="underline underline-offset-2 hover:text-[var(--ec-brand)]"
-              onClick={exitMarkFlowV2}
+              onClick={() => {
+                if (waitOpen) cancelV2Mark()
+                exitMarkFlowV2()
+              }}
             >
               Use classic desk
             </button>
           </p>
         </div>
-      </main>
-    )
-  }
-
-  // R1: one-answer result chrome while still in the v2 preview.
-  if (markFlowV2 && result && !result.whole_paper) {
-    return (
-      <main className="app-shell app-shell-tabbed ms-mark-shell">
-        <div className="ms-mark-pg min-w-0">
-          <ResultScreen
-            onMarkAnother={() => {
-              setResult(null)
-              setV2WholePaperSeed(null)
-              setAnswerPages([])
-              setAnswerPdf(null)
-              setAnswerTextInput('')
-              setErrorMsg('')
-            }}
-          >
-            <MarkingResultView
-              result={result}
-              attemptId={result.attempt_id ?? null}
-              isPaid={
-                billingSummary ? hasPaidAccess(billingSummary.access) : undefined
-              }
-              inkPages={
-                result.ink_pages ??
-                (result.answer_photo_url && result.line_references?.length
-                  ? [
-                      {
-                        photo_url: result.answer_photo_url,
-                        line_references: result.line_references,
-                      },
-                    ]
-                  : undefined)
-              }
-            />
-          </ResultScreen>
-        </div>
+        <UpgradeModal
+          open={!!upgradeModal}
+          onClose={() => setUpgradeModal(null)}
+          variant={upgradeModal?.variant ?? 'cap'}
+          tier={upgradeModal?.tier}
+          cap={upgradeModal?.cap}
+          periodResetsAt={upgradeModal?.periodResetsAt}
+          creditBalance={upgradeModal?.creditBalance}
+        />
       </main>
     )
   }

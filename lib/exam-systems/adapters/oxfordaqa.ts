@@ -1,18 +1,17 @@
 import { isOxfordaqaContentCode } from '@/lib/oxfordaqa/catalog'
+import { isOxfordaqaMarkingLive } from '@/lib/oxfordaqa/marking'
 import type { ExamSystem } from '@/lib/exam-systems/types'
 
 /**
- * OxfordAQA International — adapter (Phase E4 shell).
- * Owns oxaqa-* content codes so they never fall through to IB.
- * Marking stays off until Edexcel Maths conversion clears expansion gates.
+ * OxfordAQA International — shell + Wave 1 STEM marking (product override).
  */
 export const oxfordaqaExamSystem: ExamSystem = {
   id: 'oxfordaqa',
   label: 'OxfordAQA',
   shortLabel: 'OxfordAQA',
   profileBoardId: 'OxfordAQA',
-  enabled: false,
-  markingEnabled: false,
+  enabled: true,
+  markingEnabled: isOxfordaqaMarkingLive(),
   routePrefix: 'oxfordaqa',
   qualifications: [
     {
@@ -20,7 +19,7 @@ export const oxfordaqaExamSystem: ExamSystem = {
       label: 'International A-level',
       slug: 'international-a-level',
       shellEnabled: true,
-      markingEnabled: false,
+      markingEnabled: isOxfordaqaMarkingLive(),
     },
     {
       id: 'international-gcse',
@@ -33,7 +32,7 @@ export const oxfordaqaExamSystem: ExamSystem = {
   gradeModel: 'raw_marks',
   markingDialect: 'point_method',
   assessmentStyle: 'linear',
-  markPickerHint: 'International A-level — shell live, marking after Edexcel converts',
+  markPickerHint: 'IAL Maths, Physics, Chemistry & Biology — linear papers, point/method dialect',
   ownsSubjectCode(code) {
     return isOxfordaqaContentCode(code)
   },

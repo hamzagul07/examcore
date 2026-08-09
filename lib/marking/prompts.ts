@@ -214,7 +214,10 @@ export function buildPointBasedMarkingPrompt(
   markSchemeJson: string,
   ocrText: string,
   syllabusBlock?: string,
-  opts?: { board?: 'cambridge' | 'edexcel'; subjectCode?: string }
+  opts?: {
+    board?: 'cambridge' | 'edexcel' | 'oxfordaqa' | 'aqa' | 'ap'
+    subjectCode?: string
+  }
 ): string {
   const taggingBlock = syllabusBlock
     ? `\n${syllabusBlock}\n`
@@ -232,17 +235,41 @@ export function buildPointBasedMarkingPrompt(
     ? `TOTAL MARKS AVAILABLE: ${totalMarks}`
     : `TOTAL MARKS AVAILABLE: determine from the question itself (marks are usually shown as "[3]" or "(Total 8 marks)"); set "total_marks" to that number.`
 
-  const edexcel = opts?.board === 'edexcel'
-  const scienceUnit = /^W(PH|CH)\d{2}$/i.test(opts?.subjectCode ?? '')
-  const examinerLine = edexcel
-    ? scienceUnit
-      ? `You are a Pearson Edexcel International A Level ${subjectName} examiner. Mark this student's work against the mark scheme using Edexcel IAL analytic conventions (M marks for method/working, A marks for accuracy/final answers, B marks for independent correct statements). Apply follow-through (FT) on dependent accuracy when the method is valid. For science: require clear working, correct units, and significant figures when the question (or scheme) demands them; do not award accuracy that contradicts an earlier incorrect method.`
-      : `You are a Pearson Edexcel International A Level ${subjectName} examiner. Mark this student's work against the mark scheme using Edexcel IAL analytic conventions (M marks for method, A marks for accuracy/final answers, B marks for independent correct statements). Apply follow-through (FT) on dependent accuracy when the method is valid. Accept equivalent forms ("oe" / or equivalent). Watch units and significant figures when the question requires them.`
-    : `You are a Cambridge International A-Level ${subjectName} examiner. Mark this student's work against the official mark scheme using point-based Cambridge conventions (B1/M1/A1/C1 marks, "award 1 mark for...", ECF where stated).`
+  const board = opts?.board
+  const code = opts?.subjectCode ?? ''
+  const scienceUnit = /^W(PH|CH)\d{2}$/i.test(code)
+  const biologyUnit = /^WBI\d{2}$/i.test(code)
+  const edexcelUk = /^9(MA|PH)0$/i.test(code)
+  const oxfordaqa = board === 'oxfordaqa' || /^oxaqa-/i.test(code)
+  const aqa = board === 'aqa' || /^aqa-/i.test(code)
+  const ap = board === 'ap' || /^ap-/i.test(code)
+  const edexcel =
+    board === 'edexcel' ||
+    /^W(MA|ME|ST|PH|CH|BI)\d{2}$/i.test(code) ||
+    edexcelUk
+  const edexcelQualLabel = edexcelUk ? 'A Level' : 'International A Level'
 
-  const awardLine = edexcel
-    ? `For each discrete mark in the scheme: decide if earned, explain why in plain English. Apply FT/ECF where appropriate. Accept equivalent correct forms and valid alternative methods.`
-    : `For each discrete mark in the scheme: decide if earned, explain why in plain English. Apply ECF rules. Accept equivalent correct forms.`
+  const examinerLine = ap
+    ? `You are an AP ${subjectName} reader. Score this FRQ against the scoring guidelines using earned / not-earned points. Award a point only when the guideline criterion is clearly met; do not invent partial credit beyond the guideline. Note algebraic equivalence and units where the guideline requires them. Optionally comment on a plausible 1–5 exam projection from this single response quality — label it as indicative only.`
+    : edexcel
+      ? biologyUnit
+        ? `You are a Pearson Edexcel ${edexcelQualLabel} ${subjectName} examiner. Mark against the mark scheme using Edexcel analytic conventions (M/A/B where stated). Biology often uses phrase-level / semantic matching — award when the student clearly communicates the required idea even if wording differs, but do not invent marks for vague statements. Prefer scheme terminology for definitions and processes.`
+        : scienceUnit || (edexcelUk && /physics/i.test(subjectName))
+          ? `You are a Pearson Edexcel ${edexcelQualLabel} ${subjectName} examiner. Mark this student's work against the mark scheme using Edexcel analytic conventions (M marks for method/working, A marks for accuracy/final answers, B marks for independent correct statements). Apply follow-through (FT) on dependent accuracy when the method is valid. For science: require clear working, correct units, and significant figures when the question (or scheme) demands them; do not award accuracy that contradicts an earlier incorrect method.`
+          : `You are a Pearson Edexcel ${edexcelQualLabel} ${subjectName} examiner. Mark this student's work against the mark scheme using Edexcel analytic conventions (M marks for method, A marks for accuracy/final answers, B marks for independent correct statements). Apply follow-through (FT) on dependent accuracy when the method is valid. Accept equivalent forms ("oe" / or equivalent). Watch units and significant figures when the question requires them.`
+      : oxfordaqa
+        ? /^oxaqa-biology$/i.test(code)
+          ? `You are an OxfordAQA International A-level ${subjectName} examiner. Mark against the mark scheme using point/method conventions for a linear paper. Biology often needs phrase-level / semantic matching — award when the student clearly communicates the required idea even if wording differs; prefer scheme terminology for definitions and processes.`
+          : `You are an OxfordAQA International A-level ${subjectName} examiner. Mark against the mark scheme using point/method conventions appropriate to a linear International A-level paper. Award method and accuracy clearly; accept equivalent correct forms; require units and significant figures when the question demands them.`
+        : aqa
+          ? `You are an AQA A-level ${subjectName} examiner (UK). Mark against the mark scheme using AQA point/method conventions. Award method marks for valid working; apply follow-through where appropriate; watch units and significant figures.`
+          : `You are a Cambridge International A-Level ${subjectName} examiner. Mark this student's work against the official mark scheme using point-based Cambridge conventions (B1/M1/A1/C1 marks, "award 1 mark for...", ECF where stated).`
+
+  const awardLine = ap
+    ? `For each scoring-guideline point: earned or not earned, with a one-line reason. Do not invent half-points.`
+    : edexcel || oxfordaqa || aqa
+      ? `For each discrete mark in the scheme: decide if earned, explain why in plain English. Apply FT/ECF where appropriate. Accept equivalent correct forms and valid alternative methods.`
+      : `For each discrete mark in the scheme: decide if earned, explain why in plain English. Apply ECF rules. Accept equivalent correct forms.`
 
   return `${examinerLine}
 

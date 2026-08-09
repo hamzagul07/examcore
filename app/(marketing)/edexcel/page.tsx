@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
 import {
   MarketingHero,
   MarketingPageShell,
@@ -44,15 +43,16 @@ export default function EdexcelHubPage() {
         label="Pearson Edexcel"
         title="Edexcel International"
         lead="Unit maps, past-paper indexes and grade boundaries for International A Level — wired for examiner-style marking. Boards acquire students; marking is the product."
-      />
-
-      <MarketingSection className="!pt-0">
-        <div className="flex flex-wrap gap-3">
+      >
+        <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href={edexcelMarkHref('WMA11')}
-            className="ec-btn-primary inline-flex min-h-[48px]"
+            className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
           >
-            Mark IAL Maths (WMA11) →
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+              M1
+            </span>
+            Mark IAL Maths (WMA11) -&gt;
           </Link>
           <Link
             href="/blog/edexcel-ial-vs-cambridge-a-level-2026"
@@ -64,11 +64,20 @@ export default function EdexcelHubPage() {
             Studying Cambridge too?
           </Link>
         </div>
-        <ul className="mt-6 grid list-none gap-2 p-0 sm:grid-cols-2">
+      </MarketingHero>
+
+      <MarketingSection className="!pt-0">
+        <p className="ms-overline">Guides</p>
+        <ul className="ms-board-index ms-board-index--guides">
           {EDEXCEL_HUB_GUIDE_LINKS.map((g) => (
             <li key={g.href}>
-              <Link href={g.href} className="ec-card block p-3 text-sm font-semibold">
-                {g.label} →
+              <Link href={g.href} className="ms-board-slip ms-board-slip--compact">
+                <span className="ms-board-slip__body">
+                  <span className="ms-board-slip__name">{g.label}</span>
+                </span>
+                <span className="ms-board-slip__go" aria-hidden>
+                  -&gt;
+                </span>
               </Link>
             </li>
           ))}
@@ -77,21 +86,21 @@ export default function EdexcelHubPage() {
 
       <MarketingSection>
         <h2 className="ms-h2">Qualifications</h2>
-        <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
+        <ul className="ms-board-index">
           {quals.map((q) => (
             <li key={q.slug}>
               <Link
                 href={edexcelQualificationPath(q.slug)}
-                className="ec-card flex h-full items-center justify-between gap-3 p-4"
+                className="ms-board-slip"
               >
-                <span>
-                  <span className="font-semibold">{q.label}</span>
-                  <span className="ms-micro mt-1 block uppercase tracking-wide">
-                    {q.shortLabel}
-                  </span>
-                  <span className="ms-body-2 mt-2 block">{q.blurb}</span>
+                <span className="ms-board-slip__code">{q.shortLabel}</span>
+                <span className="ms-board-slip__body">
+                  <span className="ms-board-slip__name">{q.label}</span>
+                  <span className="ms-board-slip__meta">{q.blurb}</span>
                 </span>
-                <ArrowRight className="h-4 w-4 shrink-0 opacity-60" />
+                <span className="ms-board-slip__go" aria-hidden>
+                  -&gt;
+                </span>
               </Link>
             </li>
           ))}
@@ -100,20 +109,24 @@ export default function EdexcelHubPage() {
 
       <MarketingSection>
         <h2 className="ms-h2">IAL subjects live on the shell</h2>
-        <ul className="grid list-none gap-3 p-0 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="ms-board-index ms-board-index--4">
           {ialSubjects.map((s) => (
             <li key={s.slug}>
               <Link
                 href={edexcelSubjectPath(s.qualification, s.slug)}
-                className="ec-card flex h-full flex-col justify-between gap-2 p-4"
+                className="ms-board-slip"
               >
-                <span>
-                  <span className="font-semibold">{s.name}</span>
-                  <span className="ms-micro mt-1 block uppercase tracking-wide">
-                    {s.familyCode} · Wave {s.markingWave}
+                <span className="ms-board-slip__code">{s.familyCode}</span>
+                <span className="ms-board-slip__body">
+                  <span className="ms-board-slip__name">{s.name}</span>
+                  <span className="ms-board-slip__meta">
+                    Wave {s.markingWave}
                   </span>
+                  <span className="ms-board-slip__blurb">{s.blurb}</span>
                 </span>
-                <span className="ms-body-2 line-clamp-3">{s.blurb}</span>
+                <span className="ms-board-slip__go" aria-hidden>
+                  -&gt;
+                </span>
               </Link>
             </li>
           ))}

@@ -27,18 +27,21 @@ function check(name: string, ok: boolean) {
 // ── Registry shape ──────────────────────────────────────────────────────────
 check('six exam systems registered', listExamSystems().length === 6)
 check(
-  'CAIE + Edexcel + IB enabled',
+  'all six boards enabled',
   listEnabledExamSystems()
     .map((s) => s.id)
     .sort()
-    .join(',') === 'cambridge,edexcel,ib'
+    .join(',') === 'ap,aqa,cambridge,edexcel,ib,oxfordaqa'
 )
 check(
-  'CAIE + Edexcel + IB marking',
+  'all six boards marking',
   listMarkingExamSystems()
     .map((s) => s.id)
-    .join(',') === 'cambridge,edexcel,ib'
+    .join(',') === 'cambridge,edexcel,oxfordaqa,aqa,ap,ib'
 )
+check('aqa owns aqa-mathematics', getExamSystem('aqa').ownsSubjectCode('aqa-mathematics'))
+check('ap owns ap-calculus-ab', getExamSystem('ap').ownsSubjectCode('ap-calculus-ab'))
+check('9MA0 resolves to edexcel', resolveExamSystemForSubject('9MA0').id === 'edexcel')
 
 check('CAIE route prefix', getExamSystem('cambridge').routePrefix === 'caie')
 check('IB route prefix', getExamSystem('ib').routePrefix === 'ib')
@@ -107,7 +110,22 @@ check('IB boardLabel', boardLabel('biology-hl') === 'IB Diploma')
 check(
   'mark return keeps edexcel unit',
   buildMarkReturnPath({ board: 'edexcel', subject: 'WMA11' }) ===
-    '/mark?board=edexcel&subject=WMA11'
+  '/mark?board=edexcel&subject=WMA11'
+)
+check(
+  'mark return oxfordaqa',
+  buildMarkReturnPath({ board: 'oxfordaqa', subject: 'oxaqa-mathematics' }) ===
+    '/mark?board=oxfordaqa&subject=oxaqa-mathematics'
+)
+check(
+  'mark return aqa',
+  buildMarkReturnPath({ board: 'aqa', subject: 'aqa-mathematics' }) ===
+    '/mark?board=aqa&subject=aqa-mathematics'
+)
+check(
+  'mark return ap',
+  buildMarkReturnPath({ board: 'ap', subject: 'ap-calculus-ab' }) ===
+    '/mark?board=ap&subject=ap-calculus-ab'
 )
 check('mark return bare', buildMarkReturnPath({}) === '/mark')
 

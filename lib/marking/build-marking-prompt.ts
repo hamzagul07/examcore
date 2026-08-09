@@ -12,6 +12,7 @@ import {
 } from './prompts'
 import { isIbSubjectCode, ibUsesCriterionRubrics } from '@/lib/ib/marking-config'
 import { isEdexcelSubjectCode } from '@/lib/marking/exam-board'
+import { resolveBoard } from '@/lib/courses/board'
 import { resolveEdexcelMarkingSubjectName } from '@/lib/edexcel/marking'
 import type { ResolvedIbComponent } from './types'
 
@@ -144,19 +145,31 @@ export function buildMarkingPrompt(params: {
   const isIb =
     markScheme?.board === IB_BOARD || isIbSubjectCode(subjectCode)
   const isEdexcel = !isIb && isEdexcelSubjectCode(subjectCode)
+  const resolvedBoard = resolveBoard(subjectCode)
+  const isOxfordaqa = !isIb && !isEdexcel && resolvedBoard === 'oxfordaqa'
+  const isAqa = !isIb && !isEdexcel && resolvedBoard === 'aqa'
+  const isAp = !isIb && !isEdexcel && resolvedBoard === 'ap'
   const parsed = markScheme?.paper_code
     ? parsePaperCode(markScheme.paper_code)
     : null
   const effectiveCode = parsed?.subjectCode ?? subjectCode
-  const is9709 = !isIb && !isEdexcel && effectiveCode === '9709'
+  const is9709 = !isIb && !isEdexcel && !isOxfordaqa && !isAqa && !isAp && effectiveCode === '9709'
   const syllabusBlock =
-    effectiveCode && !is9709 && !isIb && !isEdexcel
+    effectiveCode && !is9709 && !isIb && !isEdexcel && !isOxfordaqa && !isAqa && !isAp
       ? buildSyllabusTaggingBlock(effectiveCode)
       : undefined
   const pointSubjectName = isEdexcel
     ? resolveEdexcelMarkingSubjectName(subjectCode) || subjectName
     : subjectName
-  const pointBoard = isEdexcel ? ('edexcel' as const) : ('cambridge' as const)
+  const pointBoard = isAp
+    ? ('ap' as const)
+    : isAqa
+      ? ('aqa' as const)
+      : isOxfordaqa
+        ? ('oxfordaqa' as const)
+        : isEdexcel
+          ? ('edexcel' as const)
+          : ('cambridge' as const)
 
   if (is9709 && isOfficial && markScheme) {
     return build9709OfficialMarkingPrompt(
@@ -175,9 +188,11 @@ export function buildMarkingPrompt(params: {
     // No official scheme: use the student-supplied total when given, otherwise
     // let the model read the mark allocation from the question (0 = infer). Never
     // fall back to a fixed denominator — that was the source of wrong totals.
-    const fallbackScheme = isEdexcel
-      ? '{"marks":[{"id":1,"type":"M1","value":1,"description":"Award marks using Edexcel IAL M/A conventions for this unit"}]}'
-      : '{"marks":[{"id":1,"type":"B1","value":1,"description":"Award marks using standard Cambridge conventions for this subject"}]}'
+    const fallbackScheme = isAp
+      ? '{"marks":[{"id":1,"type":"P1","value":1,"description":"Award FRQ points using AP scoring guidelines (earned/not earned)"}]}'
+      : isEdexcel || isOxfordaqa || isAqa
+        ? '{"marks":[{"id":1,"type":"M1","value":1,"description":"Award marks using method/accuracy conventions for this board"}]}'
+        : '{"marks":[{"id":1,"type":"B1","value":1,"description":"Award marks using standard Cambridge conventions for this subject"}]}'
     return buildPointBasedMarkingPrompt(
       pointSubjectName,
       questionText || '[Question not provided — infer from student\'s work]',

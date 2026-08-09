@@ -8,17 +8,13 @@ import {
 } from '@/lib/exam-systems'
 
 /** Boards that currently accept marks on /mark (driven by adapter.markingEnabled). */
-export type MarkExamBoard = Extract<ExamSystemId, 'cambridge' | 'ib' | 'edexcel'>
+export type MarkExamBoard = ExamSystemId
 
-const OPTIONS = listMarkingExamSystems()
-  .filter((sys): sys is typeof sys & { id: MarkExamBoard } =>
-    sys.id === 'cambridge' || sys.id === 'ib' || sys.id === 'edexcel'
-  )
-  .map((sys) => ({
-    id: sys.id,
-    label: sys.label,
-    hint: sys.markPickerHint,
-  }))
+const OPTIONS = listMarkingExamSystems().map((sys) => ({
+  id: sys.id as MarkExamBoard,
+  label: sys.label,
+  hint: sys.markPickerHint,
+}))
 
 type Props = {
   value: MarkExamBoard
@@ -72,14 +68,12 @@ export function MarkBoardPicker({ value, onChange, disabled }: Props) {
 
 export function markBoardFromProfileBoard(board: string | null | undefined): MarkExamBoard {
   const sys = board ? getExamSystemByProfileBoardId(board) : null
-  if (
-    sys?.markingEnabled &&
-    (sys.id === 'cambridge' || sys.id === 'ib' || sys.id === 'edexcel')
-  ) {
-    return sys.id
-  }
+  if (sys?.markingEnabled) return sys.id
   if (board === 'IB') return 'ib'
   if (board === 'Edexcel') return 'edexcel'
+  if (board === 'OxfordAQA') return 'oxfordaqa'
+  if (board === 'AQA') return 'aqa'
+  if (board === 'AP') return 'ap'
   return 'cambridge'
 }
 
@@ -94,4 +88,15 @@ export function boardSupportsPastPaperLookup(board: MarkExamBoard): boolean {
 
 export function boardSupportsWholePaper(board: MarkExamBoard): boolean {
   return board === 'cambridge'
+}
+
+export function isUrlMarkBoard(value: string | null | undefined): value is MarkExamBoard {
+  if (!value) return false
+  return listMarkingExamSystems().some((s) => s.id === value)
+}
+
+/** Map resolveBoard() / URL board onto a live mark picker board (never invent IDs). */
+export function coerceMarkExamBoard(board: string | null | undefined): MarkExamBoard {
+  if (isUrlMarkBoard(board)) return board
+  return 'cambridge'
 }

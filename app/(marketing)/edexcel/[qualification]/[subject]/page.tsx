@@ -50,11 +50,22 @@ export default async function EdexcelSubjectPage({ params }: Props) {
   const copy = buildEdexcelSubjectCopy(subject)
   const pastPapersPath = edexcelSubjectPastPapersPath(qualification, subjectSlug)
   const boundariesPath = edexcelSubjectBoundariesPath(qualification, subjectSlug)
+  const markHref =
+    subject.slug === 'mathematics'
+      ? edexcelMarkHref('WMA11')
+      : subject.slug === 'physics'
+        ? edexcelMarkHref('WPH11')
+        : subject.slug === 'chemistry'
+          ? edexcelMarkHref('WCH11')
+          : subject.slug === 'biology'
+            ? edexcelMarkHref('WBI11')
+            : edexcelMarkHref()
+  const markingLive = subject.markingWave === 1 || subject.markingWave === 1.5
   const waveNote =
     subject.markingWave === 1
       ? 'Wave 1 marking is live — practice and scanned scripts on /mark with Edexcel method/accuracy conventions.'
       : subject.markingWave === 1.5
-        ? 'Wave 1.5 — Biology shell is live; phrase-level marking follows STEM conversion.'
+        ? 'Wave 1.5 Biology marking is live — phrase-level mark-scheme matching on /mark.'
         : 'Later marking wave.'
 
   return (
@@ -74,21 +85,43 @@ export default async function EdexcelSubjectPage({ params }: Props) {
         label={`Edexcel IAL · ${subject.familyCode}`}
         title={subject.name}
         lead={subject.blurb}
-      />
+      >
+        {markingLive ? (
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href={markHref}
+              className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+            >
+              <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                M1
+              </span>
+              Mark {subject.name} -&gt;
+            </Link>
+            <Link href={pastPapersPath} className="ec-btn-ghost inline-flex min-h-[48px]">
+              Past papers
+            </Link>
+          </div>
+        ) : null}
+      </MarketingHero>
 
       <MarketingSection>
         <h2 className="ms-h2">Units</h2>
         <p className="ms-body-2 mb-4 text-[var(--ec-text-secondary)]">{waveNote}</p>
-        <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
+        <ul className="ms-board-index">
           {subject.units.map((u) => (
             <li key={u.code}>
               <Link
                 href={edexcelUnitPath(qualification, subjectSlug, u.code)}
-                className="ec-card block p-4"
+                className="ms-board-slip"
               >
-                <span className="font-semibold">{u.code}</span>
-                <span className="ms-micro ml-2 uppercase tracking-wide">{u.short}</span>
-                <span className="ms-body-2 mt-1 block">{u.name}</span>
+                <span className="ms-board-slip__code">{u.code}</span>
+                <span className="ms-board-slip__body">
+                  <span className="ms-board-slip__name">{u.name}</span>
+                  <span className="ms-board-slip__meta">{u.short}</span>
+                </span>
+                <span className="ms-board-slip__go" aria-hidden>
+                  -&gt;
+                </span>
               </Link>
             </li>
           ))}
@@ -97,55 +130,74 @@ export default async function EdexcelSubjectPage({ params }: Props) {
 
       <MarketingSection>
         <h2 className="ms-h2">Tools</h2>
-        <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
+        <ul className="ms-board-index ms-board-index--guides">
           <li>
-            <Link href={pastPapersPath} className="ec-card block p-4">
-              <span className="font-semibold">Past papers</span>
-              <span className="ms-body-2 mt-1 block">
-                Session index and unit paper map for Edexcel IAL {subject.name}.
+            <Link href={pastPapersPath} className="ms-board-slip">
+              <span className="ms-board-slip__code">PP</span>
+              <span className="ms-board-slip__body">
+                <span className="ms-board-slip__name">Past papers</span>
+                <span className="ms-board-slip__blurb">
+                  Session index and unit paper map for Edexcel IAL {subject.name}.
+                </span>
+              </span>
+              <span className="ms-board-slip__go" aria-hidden>
+                -&gt;
               </span>
             </Link>
           </li>
           <li>
-            <Link href={boundariesPath} className="ec-card block p-4">
-              <span className="font-semibold">Grade boundaries</span>
-              <span className="ms-body-2 mt-1 block">
-                UMS and raw mark boundary reference for {subject.name} units.
+            <Link href={boundariesPath} className="ms-board-slip">
+              <span className="ms-board-slip__code">GB</span>
+              <span className="ms-board-slip__body">
+                <span className="ms-board-slip__name">Grade boundaries</span>
+                <span className="ms-board-slip__blurb">
+                  UMS and raw mark boundary reference for {subject.name} units.
+                </span>
+              </span>
+              <span className="ms-board-slip__go" aria-hidden>
+                -&gt;
               </span>
             </Link>
           </li>
           <li>
-            <Link
-              href={
-                subject.slug === 'mathematics'
-                  ? edexcelMarkHref('WMA11')
-                  : subject.slug === 'physics'
-                    ? edexcelMarkHref('WPH11')
-                    : subject.slug === 'chemistry'
-                      ? edexcelMarkHref('WCH11')
-                      : edexcelMarkHref()
-              }
-              className="ec-card block p-4"
-            >
-              <span className="font-semibold">Mark an answer</span>
-              <span className="ms-body-2 mt-1 block">
-                {subject.markingWave === 1
-                  ? `Edexcel IAL ${subject.name} marking is live — practice and scanned scripts with method/accuracy conventions.`
-                  : 'Biology marking follows after Wave 1 STEM conversion. Maths, Physics and Chemistry are live now.'}
+            <Link href={markHref} className="ms-board-slip">
+              <span className="ms-board-slip__code">M1</span>
+              <span className="ms-board-slip__body">
+                <span className="ms-board-slip__name">Mark an answer</span>
+                <span className="ms-board-slip__blurb">
+                  {subject.markingWave === 1
+                    ? `Edexcel IAL ${subject.name} marking is live — practice and scanned scripts with method/accuracy conventions.`
+                    : 'Biology marking is live with phrase-level matching. All IAL STEM units are on /mark.'}
+                </span>
+              </span>
+              <span className="ms-board-slip__go" aria-hidden>
+                -&gt;
               </span>
             </Link>
           </li>
           <li>
-            <Link href="/caie" className="ec-card block p-4">
-              <span className="font-semibold">Studying Cambridge too?</span>
-              <span className="ms-body-2 mt-1 block">
-                Many international schools offer both. Browse the CAIE syllabus graph.
+            <Link href="/caie" className="ms-board-slip">
+              <span className="ms-board-slip__code">CAIE</span>
+              <span className="ms-board-slip__body">
+                <span className="ms-board-slip__name">Studying Cambridge too?</span>
+                <span className="ms-board-slip__blurb">
+                  Many international schools offer both. Browse the CAIE syllabus graph.
+                </span>
+              </span>
+              <span className="ms-board-slip__go" aria-hidden>
+                -&gt;
               </span>
             </Link>
           </li>
         </ul>
-        {subject.slug === 'mathematics' ? (
-          <CrossBoardTopicLinks mode="edexcel-maths-hub" />
+        {qualification === 'international-a-level' && subject.slug === 'mathematics' ? (
+          <CrossBoardTopicLinks mode="edexcel-subject-hub" syllabusCode="9709" />
+        ) : qualification === 'international-a-level' && subject.slug === 'physics' ? (
+          <CrossBoardTopicLinks mode="edexcel-subject-hub" syllabusCode="9702" />
+        ) : qualification === 'international-a-level' && subject.slug === 'chemistry' ? (
+          <CrossBoardTopicLinks mode="edexcel-subject-hub" syllabusCode="9701" />
+        ) : qualification === 'international-a-level' && subject.slug === 'biology' ? (
+          <CrossBoardTopicLinks mode="edexcel-subject-hub" syllabusCode="9700" />
         ) : null}
       </MarketingSection>
     </MarketingPageShell>

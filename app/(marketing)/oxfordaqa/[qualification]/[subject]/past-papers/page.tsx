@@ -9,6 +9,7 @@ import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import {
   getAllOxfordaqaSubjectParams,
+  oxfordaqaPaperPath,
   oxfordaqaRootPath,
   oxfordaqaSubjectPath,
   resolveOxfordaqaSubject,
@@ -63,20 +64,44 @@ export default async function OxfordaqaPastPapersPage({ params }: Props) {
       />
       <MarketingSection>
         <h2 className="ms-h2">Papers</h2>
-        <ul className="grid list-none gap-3 p-0 sm:grid-cols-3">
+        <ul className="ms-board-index">
           {subject.papers.map((p) => (
-            <li key={p.slug} className="ec-card p-4">
-              <span className="font-semibold">{p.name}</span>
+            <li key={p.slug}>
+              <Link
+                href={oxfordaqaPaperPath(qualification, subjectSlug, p.slug)}
+                className="ms-board-slip"
+              >
+                <span className="ms-board-slip__code">{p.short}</span>
+                <span className="ms-board-slip__body">
+                  <span className="ms-board-slip__name">{p.name}</span>
+                  <span className="ms-board-slip__meta">Shell index</span>
+                </span>
+                <span className="ms-board-slip__go" aria-hidden>
+                  -&gt;
+                </span>
+              </Link>
             </li>
           ))}
         </ul>
-        <p className="ms-body-2 mt-6 text-[var(--ec-text-secondary)]">
-          Prefer a board with live marking?{' '}
-          <Link href="/mark" className="underline">
-            Mark on Cambridge, IB or Edexcel
-          </Link>
-          .
-        </p>
+
+        <div className="ms-board-cross mt-8">
+          <p className="ms-overline">Live marking</p>
+          <h2 className="ms-h2">Prefer a board with live marking?</h2>
+          <p className="ms-body-2 mt-2 max-w-xl text-[var(--ec-text-secondary)]">
+            Cambridge, IB and Edexcel IAL Maths are available today.
+          </p>
+          <div className="mt-5">
+            <Link
+              href="/mark"
+              className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+            >
+              <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                M1
+              </span>
+              Open marking desk -&gt;
+            </Link>
+          </div>
+        </div>
       </MarketingSection>
     </MarketingPageShell>
   )

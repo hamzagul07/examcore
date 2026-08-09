@@ -33,7 +33,7 @@ const IAL_SUBJECTS: OxfordaqaSubject[] = [
     qualification: 'international-a-level',
     group: 'Mathematics',
     blurb:
-      'OxfordAQA International A-level Mathematics is a linear qualification with papers that reward clear method and accurate algebra. MarkScheme will attach examiner-style marking after the Edexcel IAL Maths experiment converts.',
+      'OxfordAQA International A-level Mathematics is a linear qualification with papers that reward clear method and accurate algebra. MarkScheme marks practice answers and scanned scripts with OxfordAQA point/method dialect.',
     markingWave: 1,
     shellEnabled: true,
     papers: [
@@ -81,7 +81,7 @@ const IAL_SUBJECTS: OxfordaqaSubject[] = [
     qualification: 'international-a-level',
     group: 'Sciences',
     blurb:
-      'OxfordAQA International A-level Biology covers molecules to ecosystems. Phrase-level mark-scheme matching comes after STEM maths/physics/chem conversion.',
+      'OxfordAQA International A-level Biology covers molecules to ecosystems. Phrase-level mark-scheme matching is live for practice scripts.',
     markingWave: 1.5,
     shellEnabled: true,
     papers: [

@@ -3,7 +3,10 @@
  * Config-driven — Board Expansion Engine ingests this rather than hardcoding routes.
  */
 
-export type EdexcelQualificationId = 'international-a-level' | 'international-gcse'
+export type EdexcelQualificationId =
+  | 'international-a-level'
+  | 'international-gcse'
+  | 'a-level'
 
 export type EdexcelUnit = {
   code: string
@@ -133,10 +136,47 @@ export const EDEXCEL_QUALIFICATIONS: {
     blurb:
       'International GCSE shell for discovery and grade-boundary tools. Full subject packs follow after IAL marking converts.',
   },
+  {
+    id: 'a-level',
+    slug: 'a-level',
+    label: 'A Level (UK)',
+    shortLabel: 'UK AL',
+    shellEnabled: true,
+    blurb:
+      'Selective UK A Level shell — Mathematics and Physics first. Not a full GCSE catalogue.',
+  },
+]
+
+/** UK A-level subjects (Pearson 9MA0 / 9PH0 style codes for marking picker). */
+const UK_A_LEVEL_SUBJECTS: EdexcelSubject[] = [
+  {
+    slug: 'mathematics',
+    name: 'Mathematics',
+    familyCode: '9MA',
+    qualification: 'a-level',
+    group: 'Mathematics',
+    blurb:
+      'Edexcel UK A Level Mathematics — linear papers. MarkScheme offers practice marking with method/accuracy dialect; past-paper PDF banks stay deferred.',
+    markingWave: 1,
+    shellEnabled: true,
+    units: [{ code: '9MA0', name: 'Mathematics', short: 'Maths' }],
+  },
+  {
+    slug: 'physics',
+    name: 'Physics',
+    familyCode: '9PH',
+    qualification: 'a-level',
+    group: 'Sciences',
+    blurb:
+      'Edexcel UK A Level Physics — linear papers with equations, units and significant figures.',
+    markingWave: 1,
+    shellEnabled: true,
+    units: [{ code: '9PH0', name: 'Physics', short: 'Physics' }],
+  },
 ]
 
 export function getEdexcelSubjects(qualification?: EdexcelQualificationId): EdexcelSubject[] {
-  const all = IAL_SUBJECTS.filter((s) => s.shellEnabled)
+  const all = [...IAL_SUBJECTS, ...UK_A_LEVEL_SUBJECTS].filter((s) => s.shellEnabled)
   if (!qualification) return all
   return all.filter((s) => s.qualification === qualification)
 }
@@ -160,10 +200,10 @@ export function getEdexcelUnitCodes(): string[] {
   return getEdexcelSubjects().flatMap((s) => s.units.map((u) => u.code))
 }
 
-/** Pearson IAL unit codes look like WMA11, WPH14, WST01. */
+/** Pearson IAL units (WMA11…) and UK A-level codes (9MA0…). */
 export function isEdexcelUnitCode(code: string): boolean {
   const trimmed = code.trim().toUpperCase()
-  if (!/^W[A-Z]{2}\d{2}$/.test(trimmed)) return false
+  if (!/^W[A-Z]{2}\d{2}$/.test(trimmed) && !/^9[A-Z]{2}0$/.test(trimmed)) return false
   return getEdexcelUnitCodes().includes(trimmed)
 }
 

@@ -1,5 +1,10 @@
 import seed9709Wma from '@/content/data/curriculum-graph/caie-9709-edexcel-wma.json'
+import seed9702Wph from '@/content/data/curriculum-graph/caie-9702-edexcel-wph.json'
+import seed9701Wch from '@/content/data/curriculum-graph/caie-9701-edexcel-wch.json'
+import seed9700Wbi from '@/content/data/curriculum-graph/caie-9700-edexcel-wbi.json'
+import seedOxfordaqa from '@/content/data/curriculum-graph/caie-oxfordaqa-stem.json'
 import { CAMBRIDGE_9709_SYLLABUS } from '@/lib/syllabus'
+import { getSyllabusTopicByCode } from '@/lib/syllabi'
 import { topicToLessonSlug } from '@/lib/courses/slug'
 import type {
   BoardTopicRef,
@@ -10,9 +15,41 @@ import type {
 
 const GRAPH_FILES: CurriculumGraphFile[] = [
   seed9709Wma as CurriculumGraphFile,
+  seed9702Wph as CurriculumGraphFile,
+  seed9701Wch as CurriculumGraphFile,
+  seed9700Wbi as CurriculumGraphFile,
+  seedOxfordaqa as CurriculumGraphFile,
 ]
 
-const CAIE_9709_HUB = '/caie/a-level/mathematics/9709'
+const CAIE_HUB: Record<string, string> = {
+  '9709': '/caie/a-level/mathematics/9709',
+  '9702': '/caie/a-level/physics/9702',
+  '9701': '/caie/a-level/chemistry/9701',
+  '9700': '/caie/a-level/biology/9700',
+}
+
+function edexcelSubjectSlugForUnit(unit: string): string {
+  const u = unit.toUpperCase()
+  if (/^W(MA|ME|ST)/.test(u) || /^9MA/.test(u)) return 'mathematics'
+  if (/^WPH/.test(u) || /^9PH/.test(u)) return 'physics'
+  if (/^WCH/.test(u)) return 'chemistry'
+  if (/^WBI/.test(u)) return 'biology'
+  return 'mathematics'
+}
+
+export function edexcelQualificationForUnit(unit: string): string {
+  const u = unit.toUpperCase()
+  if (/^9[A-Z]{2}0$/.test(u)) return 'a-level'
+  return 'international-a-level'
+}
+
+/** Canonical Edexcel unit hub path (IAL vs UK A Level). */
+export function edexcelPathForUnit(unitCode: string): string {
+  const unit = unitCode.trim().toLowerCase()
+  const subject = edexcelSubjectSlugForUnit(unitCode)
+  const qual = edexcelQualificationForUnit(unitCode)
+  return `/edexcel/${qual}/${subject}/${unit}`
+}
 
 function allConcepts(): CanonicalConcept[] {
   return GRAPH_FILES.flatMap((g) => g.concepts)
@@ -52,6 +89,17 @@ export function getMappingsForEdexcelUnit(unitCode: string): CanonicalConcept[] 
   )
 }
 
+export function getMappingsForOxfordaqaSubject(
+  contentCode: string
+): CanonicalConcept[] {
+  const code = contentCode.trim().toLowerCase()
+  return allConcepts().filter((c) =>
+    c.refs.some(
+      (r) => r.board === 'oxfordaqa' && r.syllabusOrUnit.toLowerCase() === code
+    )
+  )
+}
+
 /** Distinct Edexcel units that overlap a CAIE syllabus (topic-grained concepts preferred). */
 export function listOverlapForSubject(syllabusCode: string): Array<{
   unitCode: string
@@ -87,24 +135,47 @@ export function listOverlapForSubject(syllabusCode: string): Array<{
     .sort((a, b) => a.unitCode.localeCompare(b.unitCode))
 }
 
-function hrefForRef(ref: BoardTopicRef): string | null {
-  if (ref.board === 'edexcel') {
-    const unit = ref.syllabusOrUnit.toLowerCase()
-    return `/edexcel/international-a-level/mathematics/${unit}`
-  }
-  if (ref.board === 'cambridge' && ref.syllabusOrUnit === '9709') {
-    if (!ref.topicCode) return CAIE_9709_HUB
-    const name =
-      ref.label ??
-      CAMBRIDGE_9709_SYLLABUS.find((t) => t.code === ref.topicCode)?.name ??
-      ref.topicCode
-    const slug = topicToLessonSlug(ref.topicCode, name)
-    return `${CAIE_9709_HUB}/${slug}`
-  }
-  return null
+function caieShellHref(ref: BoardTopicRef): string | null {
+  if (ref.board !== 'cambridge') return null
+  const hub = CAIE_HUB[ref.syllabusOrUnit]
+  if (!hub) return null
+  if (!ref.topicCode) return hub
+  const name =
+    ref.label ??
+    getSyllabusTopicByCode(ref.syllabusOrUnit, ref.topicCode)?.name ??
+    (ref.syllabusOrUnit === '9709'
+      ? CAMBRIDGE_9709_SYLLABUS.find((t) => t.code === ref.topicCode)?.name
+      : undefined) ??
+    ref.topicCode
+  const slug = topicToLessonSlug(ref.topicCode, name)
+  return `${hub}/${slug}`
 }
 
-/** Counterpart links for a CAIE topic (Edexcel units). */
+function caieCourseHref(ref: BoardTopicRef): string | null {
+  if (ref.board !== 'cambridge' || !ref.topicCode) return null
+  const name =
+    ref.label ??
+    getSyllabusTopicByCode(ref.syllabusOrUnit, ref.topicCode)?.name ??
+    (ref.syllabusOrUnit === '9709'
+      ? CAMBRIDGE_9709_SYLLABUS.find((t) => t.code === ref.topicCode)?.name
+      : undefined) ??
+    ref.topicCode
+  const slug = topicToLessonSlug(ref.topicCode, name)
+  return `/courses/${ref.syllabusOrUnit}/${slug}`
+}
+
+function hrefForRef(ref: BoardTopicRef): string | null {
+  if (ref.board === 'edexcel') {
+    return edexcelPathForUnit(ref.syllabusOrUnit)
+  }
+  if (ref.board === 'oxfordaqa') {
+    const slug = ref.syllabusOrUnit.replace(/^oxaqa-/i, '').toLowerCase()
+    return `/oxfordaqa/international-a-level/${slug}`
+  }
+  return caieShellHref(ref)
+}
+
+/** Counterpart links for a CAIE topic (Edexcel / OxfordAQA). */
 export function resolveEdexcelLinksForCaieTopic(
   syllabusCode: string,
   topicCode: string
@@ -115,14 +186,14 @@ export function resolveEdexcelLinksForCaieTopic(
 
   for (const concept of concepts) {
     for (const ref of concept.refs) {
-      if (ref.board !== 'edexcel') continue
+      if (ref.board !== 'edexcel' && ref.board !== 'oxfordaqa') continue
       const key = refKey(ref)
       if (seen.has(key)) continue
       const href = hrefForRef(ref)
       if (!href) continue
       seen.add(key)
       out.push({
-        board: 'edexcel',
+        board: ref.board,
         label: ref.label ?? ref.syllabusOrUnit,
         href,
         syllabusOrUnit: ref.syllabusOrUnit.toUpperCase(),
@@ -133,7 +204,7 @@ export function resolveEdexcelLinksForCaieTopic(
   return out
 }
 
-/** Counterpart links for an Edexcel unit (CAIE topics / hub). */
+/** Counterpart shell links for an Edexcel unit (CAIE topics / hub). */
 export function resolveCaieLinksForEdexcelUnit(
   unitCode: string
 ): ResolvedCrossBoardLink[] {
@@ -147,7 +218,92 @@ export function resolveCaieLinksForEdexcelUnit(
       if (!ref.topicCode) continue
       const key = refKey(ref)
       if (seen.has(key)) continue
-      const href = hrefForRef(ref)
+      const href = caieShellHref(ref)
+      if (!href) continue
+      seen.add(key)
+      out.push({
+        board: 'cambridge',
+        label: ref.label ?? `${ref.syllabusOrUnit} ${ref.topicCode}`,
+        href,
+        syllabusOrUnit: ref.syllabusOrUnit,
+        topicCode: ref.topicCode,
+      })
+    }
+  }
+  return out
+}
+
+/**
+ * Mapped CAIE lesson course URLs for an Edexcel unit — reuse existing
+ * content/courses JSON (no board fork).
+ */
+export function resolveCourseLinksForEdexcelUnit(
+  unitCode: string
+): ResolvedCrossBoardLink[] {
+  const concepts = getMappingsForEdexcelUnit(unitCode)
+  const seen = new Set<string>()
+  const out: ResolvedCrossBoardLink[] = []
+
+  for (const concept of concepts) {
+    for (const ref of concept.refs) {
+      if (ref.board !== 'cambridge' || !ref.topicCode) continue
+      const key = `course|${refKey(ref)}`
+      if (seen.has(key)) continue
+      const href = caieCourseHref(ref)
+      if (!href) continue
+      seen.add(key)
+      out.push({
+        board: 'cambridge',
+        label: ref.label ?? `${ref.syllabusOrUnit} ${ref.topicCode}`,
+        href,
+        syllabusOrUnit: ref.syllabusOrUnit,
+        topicCode: ref.topicCode,
+      })
+    }
+  }
+  return out
+}
+
+export function resolveCourseLinksForOxfordaqaSubject(
+  contentCode: string
+): ResolvedCrossBoardLink[] {
+  const concepts = getMappingsForOxfordaqaSubject(contentCode)
+  const seen = new Set<string>()
+  const out: ResolvedCrossBoardLink[] = []
+
+  for (const concept of concepts) {
+    for (const ref of concept.refs) {
+      if (ref.board !== 'cambridge' || !ref.topicCode) continue
+      const key = `course|${refKey(ref)}`
+      if (seen.has(key)) continue
+      const href = caieCourseHref(ref)
+      if (!href) continue
+      seen.add(key)
+      out.push({
+        board: 'cambridge',
+        label: ref.label ?? `${ref.syllabusOrUnit} ${ref.topicCode}`,
+        href,
+        syllabusOrUnit: ref.syllabusOrUnit,
+        topicCode: ref.topicCode,
+      })
+    }
+  }
+  return out
+}
+
+export function resolveCaieLinksForOxfordaqaSubject(
+  contentCode: string
+): ResolvedCrossBoardLink[] {
+  const concepts = getMappingsForOxfordaqaSubject(contentCode)
+  const seen = new Set<string>()
+  const out: ResolvedCrossBoardLink[] = []
+
+  for (const concept of concepts) {
+    for (const ref of concept.refs) {
+      if (ref.board !== 'cambridge' || !ref.topicCode) continue
+      const key = refKey(ref)
+      if (seen.has(key)) continue
+      const href = caieShellHref(ref)
       if (!href) continue
       seen.add(key)
       out.push({
@@ -177,4 +333,14 @@ export function listedCaie9709TopicCodes(): string[] {
 
 export function expectedCaie9709TopicCodes(): string[] {
   return CAMBRIDGE_9709_SYLLABUS.map((t) => t.code)
+}
+
+export function edexcelUnitsWithCourseLinks(): string[] {
+  const units = new Set<string>()
+  for (const c of allConcepts()) {
+    for (const r of c.refs) {
+      if (r.board === 'edexcel') units.add(r.syllabusOrUnit.toUpperCase())
+    }
+  }
+  return [...units].sort()
 }

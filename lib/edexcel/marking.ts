@@ -1,7 +1,6 @@
 /**
- * Edexcel IAL marking surface (Phase E2 + Wave 1 sciences).
- * Wave 1 = Mathematics + Physics + Chemistry (practice + combined; no past-paper DB yet).
- * Biology stays wave 1.5 (shell only).
+ * Edexcel IAL marking surface (Phase E2 + sciences + Biology Wave 1.5).
+ * Wave 1 = Mathematics + Physics + Chemistry; Wave 1.5 = Biology.
  */
 
 import {
@@ -23,14 +22,17 @@ export function getEdexcelMarkableMathsSubject(): EdexcelSubject | null {
   )
 }
 
-/** Wave 1 IAL subjects with live marking (Maths, Physics, Chemistry). */
+/** Markable subjects: IAL Wave 1/1.5 + UK A-level Wave 1 Maths/Physics. */
 export function getEdexcelMarkableSubjects(): EdexcelSubject[] {
-  return getEdexcelSubjects('international-a-level').filter(
-    (s) => s.shellEnabled && s.markingWave === 1
+  return getEdexcelSubjects().filter(
+    (s) =>
+      s.shellEnabled &&
+      (s.markingWave === 1 || s.markingWave === 1.5) &&
+      (s.qualification === 'international-a-level' || s.qualification === 'a-level')
   )
 }
 
-/** Unit codes shown on /mark when board = edexcel (Wave 1 STEM). */
+/** Unit codes shown on /mark when board = edexcel. */
 export function getEdexcelMarkableUnitCodes(): string[] {
   return getEdexcelMarkableSubjects().flatMap((s) => s.units.map((u) => u.code))
 }
@@ -40,7 +42,11 @@ export function isEdexcelMathsUnitCode(code: string): boolean {
 }
 
 export function isEdexcelScienceUnitCode(code: string): boolean {
-  return /^W(PH|CH)\d{2}$/i.test(code.trim())
+  return /^W(PH|CH|BI)\d{2}$/i.test(code.trim())
+}
+
+export function isEdexcelBiologyUnitCode(code: string): boolean {
+  return /^WBI\d{2}$/i.test(code.trim())
 }
 
 export function getEdexcelUnitMeta(code: string): {
@@ -65,7 +71,11 @@ export function resolveEdexcelUnitLabel(code: string): string {
 export function resolveEdexcelMarkingSubjectName(code: string): string {
   const meta = getEdexcelUnitMeta(code)
   if (!meta) return 'Mathematics'
-  return `International A Level ${meta.subject.name} (${meta.unit.code})`
+  const qualLabel =
+    meta.subject.qualification === 'a-level'
+      ? 'A Level'
+      : 'International A Level'
+  return `${qualLabel} ${meta.subject.name} (${meta.unit.code})`
 }
 
 /**

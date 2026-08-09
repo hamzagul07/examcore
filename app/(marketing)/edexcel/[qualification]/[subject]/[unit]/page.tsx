@@ -8,7 +8,7 @@ import {
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { getEdexcelQualification } from '@/lib/edexcel/catalog'
-import { getEdexcelMathsSessionsForUnit } from '@/lib/edexcel/maths-paper-sessions'
+import { getEdexcelIalSessionsForUnit } from '@/lib/edexcel/ial-paper-sessions'
 import { edexcelMarkHref, getEdexcelMarkableUnitCodes } from '@/lib/edexcel/marking'
 import {
   EDEXCEL_IAL_MATHS_UMS_GUIDE,
@@ -78,7 +78,7 @@ export default async function EdexcelUnitPage({ params }: Props) {
   const copy = buildEdexcelSubjectCopy(subject)
   const markHref = edexcelMarkHref(unitRow.code)
   const unitMarkable = getEdexcelMarkableUnitCodes().includes(unitRow.code)
-  const sessions = getEdexcelMathsSessionsForUnit(unitRow.code)
+  const sessions = getEdexcelIalSessionsForUnit(unitRow.code)
   const unitGuideHref = edexcelUnitGuideHref(unitRow.code)
 
   return (
@@ -100,21 +100,44 @@ export default async function EdexcelUnitPage({ params }: Props) {
         lead={
           unitMarkable
             ? `Modular unit in Edexcel International A Level ${subject.name}. Upload a practice answer or scanned script and get method/accuracy marking for ${unitRow.code}.`
-            : `Modular unit in Edexcel International A Level ${subject.name}. Unit hubs and past-paper maps are live; Wave 1 Maths/Physics/Chemistry marking is available on /mark.`
+            : `Modular unit in Edexcel International A Level ${subject.name}. Unit hubs and past-paper maps are live; IAL STEM marking (including Biology) is available on /mark.`
         }
-      />
-      <MarketingSection>
-        <div className="ec-card mb-8 border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-bg-soft))] px-6 py-8 text-center sm:px-10">
-          <h2 className="ms-h2">Mark a {unitRow.code} answer</h2>
-          <p className="mx-auto mt-2 max-w-lg text-[var(--ec-text-secondary)]">
-            {unitMarkable
-              ? `Practice questions and scanned scripts — Edexcel IAL ${subject.name} conventions, not a Cambridge default.`
-              : 'Open the Edexcel mark picker. Wave 1 Maths, Physics and Chemistry units are live; Biology follows later.'}
-          </p>
-          <Link href={markHref} className="ec-btn-primary mt-5 inline-flex min-h-[48px]">
-            {unitMarkable ? `Mark ${unitRow.code} →` : 'Open Edexcel marking →'}
+      >
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Link
+            href={markHref}
+            className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+          >
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+              M1
+            </span>
+            {unitMarkable ? `Mark ${unitRow.code} -&gt;` : 'Open Edexcel marking -&gt;'}
           </Link>
         </div>
+      </MarketingHero>
+
+      <MarketingSection>
+        <div className="ms-board-cross mb-8">
+          <p className="ms-overline">Marking desk</p>
+          <h2 className="ms-h2">Mark a {unitRow.code} answer</h2>
+          <p className="ms-body-2 mt-2 max-w-lg text-[var(--ec-text-secondary)]">
+            {unitMarkable
+              ? `Practice questions and scanned scripts — Edexcel IAL ${subject.name} conventions, not a Cambridge default.`
+              : 'Open the Edexcel mark picker — Maths, Physics, Chemistry and Biology units are live.'}
+          </p>
+          <div className="mt-5">
+            <Link
+              href={markHref}
+              className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+            >
+              <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                M1
+              </span>
+              {unitMarkable ? `Mark ${unitRow.code} -&gt;` : 'Open Edexcel marking -&gt;'}
+            </Link>
+          </div>
+        </div>
+
         {sessions.length > 0 ? (
           <>
             <h2 className="ms-h2">Exam series</h2>
@@ -122,16 +145,16 @@ export default async function EdexcelUnitPage({ params }: Props) {
               Typical IAL sittings for {unitRow.code}. Use your own QP/MS from Pearson or
               your school, then mark a practice answer here.
             </p>
-            <ul className="mb-8 grid list-none gap-2 p-0 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="ms-board-index mb-8">
               {sessions.map((s) => (
                 <li key={s.label}>
-                  <Link
-                    href={markHref}
-                    className="ec-card flex items-center justify-between gap-2 p-3 text-sm"
-                  >
-                    <span className="font-medium">{s.label}</span>
-                    <span className="ms-micro uppercase tracking-wide text-[var(--ec-accent)]">
-                      Mark →
+                  <Link href={markHref} className="ms-board-slip ms-board-slip--compact">
+                    <span className="ms-board-slip__body">
+                      <span className="ms-board-slip__name">{s.label}</span>
+                      <span className="ms-board-slip__meta">Mark practice</span>
+                    </span>
+                    <span className="ms-board-slip__go" aria-hidden>
+                      -&gt;
                     </span>
                   </Link>
                 </li>
@@ -139,50 +162,91 @@ export default async function EdexcelUnitPage({ params }: Props) {
             </ul>
           </>
         ) : null}
+
         <h2 className="ms-h2">Also on this subject</h2>
-        <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
+        <ul className="ms-board-index ms-board-index--guides">
           {unitGuideHref ? (
             <li>
-              <Link href={unitGuideHref} className="ec-card block p-4 font-semibold">
-                {unitRow.code} revision guide
+              <Link href={unitGuideHref} className="ms-board-slip ms-board-slip--compact">
+                <span className="ms-board-slip__code">RG</span>
+                <span className="ms-board-slip__body">
+                  <span className="ms-board-slip__name">{unitRow.code} revision guide</span>
+                </span>
+                <span className="ms-board-slip__go" aria-hidden>
+                  -&gt;
+                </span>
               </Link>
             </li>
           ) : null}
           <li>
             <Link
               href={edexcelSubjectPastPapersPath(qualification, subjectSlug)}
-              className="ec-card block p-4 font-semibold"
+              className="ms-board-slip ms-board-slip--compact"
             >
-              {subject.name} past papers
+              <span className="ms-board-slip__code">PP</span>
+              <span className="ms-board-slip__body">
+                <span className="ms-board-slip__name">{subject.name} past papers</span>
+              </span>
+              <span className="ms-board-slip__go" aria-hidden>
+                -&gt;
+              </span>
             </Link>
           </li>
           <li>
             <Link
               href={edexcelSubjectBoundariesPath(qualification, subjectSlug)}
-              className="ec-card block p-4 font-semibold"
+              className="ms-board-slip ms-board-slip--compact"
             >
-              Grade boundaries
+              <span className="ms-board-slip__code">GB</span>
+              <span className="ms-board-slip__body">
+                <span className="ms-board-slip__name">Grade boundaries</span>
+              </span>
+              <span className="ms-board-slip__go" aria-hidden>
+                -&gt;
+              </span>
             </Link>
           </li>
           {unitMarkable ? (
             <li>
-              <Link href={EDEXCEL_IAL_MATHS_UMS_GUIDE} className="ec-card block p-4 font-semibold">
-                UMS & cash-in guide
+              <Link
+                href={EDEXCEL_IAL_MATHS_UMS_GUIDE}
+                className="ms-board-slip ms-board-slip--compact"
+              >
+                <span className="ms-board-slip__code">UMS</span>
+                <span className="ms-board-slip__body">
+                  <span className="ms-board-slip__name">UMS &amp; cash-in guide</span>
+                </span>
+                <span className="ms-board-slip__go" aria-hidden>
+                  -&gt;
+                </span>
               </Link>
             </li>
           ) : null}
           <li>
-            <Link href={copy.path} className="ec-card block p-4 font-semibold">
-              All {subject.name} units
+            <Link href={copy.path} className="ms-board-slip ms-board-slip--compact">
+              <span className="ms-board-slip__code">{subject.familyCode}</span>
+              <span className="ms-board-slip__body">
+                <span className="ms-board-slip__name">All {subject.name} units</span>
+              </span>
+              <span className="ms-board-slip__go" aria-hidden>
+                -&gt;
+              </span>
             </Link>
           </li>
           <li>
-            <Link href={markHref} className="ec-card block p-4 font-semibold">
-              Mark an answer
+            <Link href={markHref} className="ms-board-slip ms-board-slip--compact">
+              <span className="ms-board-slip__code">M1</span>
+              <span className="ms-board-slip__body">
+                <span className="ms-board-slip__name">Mark an answer</span>
+              </span>
+              <span className="ms-board-slip__go" aria-hidden>
+                -&gt;
+              </span>
             </Link>
           </li>
         </ul>
-        {subject.slug === 'mathematics' ? (
+        {qualification === 'international-a-level' &&
+        ['mathematics', 'physics', 'chemistry', 'biology'].includes(subject.slug) ? (
           <CrossBoardTopicLinks mode="edexcel-unit" unitCode={unitRow.code} />
         ) : null}
       </MarketingSection>

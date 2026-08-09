@@ -59,14 +59,16 @@ import {
   MarkBoardPicker,
   boardSupportsPastPaperLookup,
   boardSupportsWholePaper,
+  coerceMarkExamBoard,
+  isUrlMarkBoard,
   markBoardFromProfileBoard,
   subjectMatchesMarkBoard,
   type MarkExamBoard,
 } from '@/components/mark/MarkBoardPicker'
 import {
-  getEdexcelMarkableUnitCodes,
   resolveEdexcelUnitLabel,
 } from '@/lib/edexcel/marking'
+import { markableCodesForBoard } from '@/lib/marking/mark-board-subjects'
 import { resolveBoard } from '@/lib/courses/board'
 import { MarkingModeHint } from '@/components/mark/MarkingModeHint'
 import { formatClientMarkError } from '@/lib/marking/client-mark-errors'
@@ -356,7 +358,7 @@ export default function MarkPage() {
       .get('board')
       ?.trim()
       .toLowerCase()
-    if (urlBoard !== 'ib' && urlBoard !== 'edexcel' && urlBoard !== 'cambridge') return
+    if (!isUrlMarkBoard(urlBoard)) return
     setSelectedMarkBoard(urlBoard)
     rememberFunnelBoard(urlBoard)
     if (!boardSupportsPastPaperLookup(urlBoard)) {
@@ -392,10 +394,7 @@ export default function MarkPage() {
           .get('board')
           ?.trim()
           .toLowerCase()
-        const fromUrl: MarkExamBoard | null =
-          urlBoard === 'ib' || urlBoard === 'edexcel' || urlBoard === 'cambridge'
-            ? urlBoard
-            : null
+        const fromUrl: MarkExamBoard | null = isUrlMarkBoard(urlBoard) ? urlBoard : null
         const markBoard = fromUrl ?? markBoardFromProfileBoard(profileBoard)
         const fallbackCode = defaultMarkSubjectCode(profileLevel, profileBoard)
         if (!cancelled) {
@@ -568,11 +567,7 @@ export default function MarkPage() {
     // the student waits ninety seconds for a failure. Hand it to the effect
     // below, which waits for the options to exist.
     if (handoff.subjectCode) {
-      const board = resolveBoard(handoff.subjectCode) as MarkExamBoard
-      const markBoard: MarkExamBoard =
-        board === 'ib' || board === 'edexcel' || board === 'cambridge'
-          ? board
-          : 'cambridge'
+      const markBoard = coerceMarkExamBoard(resolveBoard(handoff.subjectCode))
       setSelectedMarkBoard(markBoard)
       setPendingHandoffSubject({
         codes: subjectCandidates(handoff.subjectCode),
@@ -598,17 +593,11 @@ export default function MarkPage() {
     setSelectedSubject(subject)
     setShowManualPaper(true)
     {
-      const board = resolveBoard(subject)
-      if (board === 'ib') {
-        setSelectedMarkBoard('ib')
+      const markBoard = coerceMarkExamBoard(resolveBoard(subject))
+      setSelectedMarkBoard(markBoard)
+      if (!boardSupportsPastPaperLookup(markBoard)) {
         setMarkIntent('practice_question')
         setShowManualPaper(false)
-      } else if (board === 'edexcel') {
-        setSelectedMarkBoard('edexcel')
-        setMarkIntent('practice_question')
-        setShowManualPaper(false)
-      } else {
-        setSelectedMarkBoard('cambridge')
       }
     }
 
@@ -704,19 +693,13 @@ export default function MarkPage() {
     const subject = sp.get('subject')?.trim()
     if (!subject) return
     setSelectedSubject(subject)
-    const board = resolveBoard(subject)
-    if (board === 'ib') {
-      setSelectedMarkBoard('ib')
-      setUploadMode('single_question')
-      setMarkIntent('practice_question')
-      setShowManualPaper(false)
-    } else if (board === 'edexcel') {
-      setSelectedMarkBoard('edexcel')
+    const markBoard = coerceMarkExamBoard(resolveBoard(subject))
+    setSelectedMarkBoard(markBoard)
+    if (!boardSupportsPastPaperLookup(markBoard)) {
       setUploadMode('single_question')
       setMarkIntent('practice_question')
       setShowManualPaper(false)
     } else {
-      setSelectedMarkBoard('cambridge')
       setMarkIntent('past_paper')
       setShowManualPaper(true)
       const session = sp.get('session')?.trim()
@@ -890,17 +873,18 @@ export default function MarkPage() {
     return [...catalogCodes, ...legacy]
   }, [selectedMarkBoard, boardFilteredSubjects, ibCatalog])
 
-  // Edexcel Wave 1: IAL Maths units from catalog (not profile SUBJECTS).
-  const edexcelSubjectOptions = useMemo(() => {
-    if (selectedMarkBoard !== 'edexcel') return boardFilteredSubjects
-    return getEdexcelMarkableUnitCodes()
+  // Catalog boards: units/content codes from board adapters (not CAIE profile SUBJECTS).
+  const catalogBoardSubjectOptions = useMemo(() => {
+    const codes = markableCodesForBoard(selectedMarkBoard)
+    if (!codes) return boardFilteredSubjects
+    return codes
   }, [selectedMarkBoard, boardFilteredSubjects])
 
   const markSubjectOptions = useMemo(() => {
     if (selectedMarkBoard === 'ib') return ibSubjectOptions
-    if (selectedMarkBoard === 'edexcel') return edexcelSubjectOptions
+    if (markableCodesForBoard(selectedMarkBoard)) return catalogBoardSubjectOptions
     return boardFilteredSubjects
-  }, [selectedMarkBoard, ibSubjectOptions, edexcelSubjectOptions, boardFilteredSubjects])
+  }, [selectedMarkBoard, ibSubjectOptions, catalogBoardSubjectOptions, boardFilteredSubjects])
 
   // They arrived to mark this specific answer, so put it on screen —
   // otherwise "your answer from the lesson is below" is a claim the student has
@@ -1013,7 +997,7 @@ export default function MarkPage() {
     }
     const pool =
       selectedMarkBoard === 'edexcel'
-        ? edexcelSubjectOptions
+        ? catalogBoardSubjectOptions
         : boardFilteredSubjects.length
           ? boardFilteredSubjects
           : profileSelectableSubjects
@@ -1034,7 +1018,7 @@ export default function MarkPage() {
     papersLoading,
     selectedSubject,
     boardFilteredSubjects,
-    edexcelSubjectOptions,
+    catalogBoardSubjectOptions,
     profileSelectableSubjects,
     markIntent,
     selectedMarkBoard,
@@ -1265,11 +1249,7 @@ export default function MarkPage() {
 
   function handleSubjectChange(value: string) {
     if (value) {
-      const resolved = resolveBoard(value)
-      const nextBoard: MarkExamBoard =
-        resolved === 'ib' || resolved === 'edexcel' || resolved === 'cambridge'
-          ? resolved
-          : 'cambridge'
+      const nextBoard = coerceMarkExamBoard(resolveBoard(value))
       if (nextBoard !== selectedMarkBoard) {
         setSelectedMarkBoard(nextBoard)
         if (!boardSupportsPastPaperLookup(nextBoard)) {
@@ -2199,8 +2179,14 @@ export default function MarkPage() {
                       {selectedMarkBoard === 'ib'
                         ? 'IB subject'
                         : selectedMarkBoard === 'edexcel'
-                          ? 'IAL Maths unit'
-                          : 'Subject'}
+                          ? 'Edexcel unit'
+                          : selectedMarkBoard === 'oxfordaqa'
+                            ? 'OxfordAQA subject'
+                            : selectedMarkBoard === 'aqa'
+                              ? 'AQA subject'
+                              : selectedMarkBoard === 'ap'
+                                ? 'AP course'
+                                : 'Subject'}
                     </Label>
                     {markSubjectOptions.length === 0 ? (
                       <p className="text-sm text-[var(--ec-text-secondary)]">
@@ -2244,6 +2230,18 @@ export default function MarkPage() {
                           return (
                             <option key={code} value={code}>
                               {resolveEdexcelUnitLabel(code)}
+                            </option>
+                          )
+                        }
+                        if (
+                          selectedMarkBoard === 'oxfordaqa' ||
+                          selectedMarkBoard === 'aqa' ||
+                          selectedMarkBoard === 'ap'
+                        ) {
+                          const meta = getSubjectByCode(code)
+                          return (
+                            <option key={code} value={code}>
+                              {meta?.label ?? code}
                             </option>
                           )
                         }

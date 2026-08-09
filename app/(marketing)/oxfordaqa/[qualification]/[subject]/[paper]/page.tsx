@@ -88,32 +88,82 @@ export default async function OxfordaqaPaperPage({ params }: Props) {
         lead={`Linear paper in OxfordAQA International A-level ${subject.name}. Topic lessons and marking attach here once this board clears the expansion gates.`}
       />
       <MarketingSection>
+        <div className="ms-board-cross mb-8">
+          <p className="ms-overline">Shell status</p>
+          <h2 className="ms-h2">Marking attaches later</h2>
+          <p className="ms-body-2 mt-2 max-w-xl text-[var(--ec-text-secondary)]">
+            Browse the paper map and boundaries here. For handwriting feedback today, use Cambridge
+            or Edexcel IAL Maths.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link
+              href="/mark"
+              className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+            >
+              <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                M1
+              </span>
+              Open marking desk -&gt;
+            </Link>
+            <Link
+              href="/edexcel/international-a-level/mathematics"
+              className="ec-btn-ghost inline-flex min-h-[48px]"
+            >
+              Edexcel IAL Maths
+            </Link>
+          </div>
+        </div>
+
         <h2 className="ms-h2">Next steps</h2>
-        <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
+        <ul className="ms-board-index ms-board-index--guides">
           <li>
             <Link
               href={oxfordaqaSubjectPastPapersPath(qualification, subjectSlug)}
-              className="ec-card block p-4 font-semibold"
+              className="ms-board-slip ms-board-slip--compact"
             >
-              {subject.name} past papers
+              <span className="ms-board-slip__code">PP</span>
+              <span className="ms-board-slip__body">
+                <span className="ms-board-slip__name">{subject.name} past papers</span>
+              </span>
+              <span className="ms-board-slip__go" aria-hidden>
+                -&gt;
+              </span>
             </Link>
           </li>
           <li>
             <Link
               href={oxfordaqaSubjectBoundariesPath(qualification, subjectSlug)}
-              className="ec-card block p-4 font-semibold"
+              className="ms-board-slip ms-board-slip--compact"
             >
-              Grade boundaries
+              <span className="ms-board-slip__code">GB</span>
+              <span className="ms-board-slip__body">
+                <span className="ms-board-slip__name">Grade boundaries</span>
+              </span>
+              <span className="ms-board-slip__go" aria-hidden>
+                -&gt;
+              </span>
             </Link>
           </li>
           <li>
-            <Link href={copy.path} className="ec-card block p-4 font-semibold">
-              All {subject.name} papers
+            <Link href={copy.path} className="ms-board-slip ms-board-slip--compact">
+              <span className="ms-board-slip__code">{paperRow.short}</span>
+              <span className="ms-board-slip__body">
+                <span className="ms-board-slip__name">All {subject.name} papers</span>
+              </span>
+              <span className="ms-board-slip__go" aria-hidden>
+                -&gt;
+              </span>
             </Link>
           </li>
           <li>
-            <Link href="/mark" className="ec-card block p-4 font-semibold">
-              Mark an answer
+            <Link href="/mark" className="ms-board-slip ms-board-slip--compact">
+              <span className="ms-board-slip__code">M1</span>
+              <span className="ms-board-slip__body">
+                <span className="ms-board-slip__name">Mark an answer</span>
+              </span>
+              <span className="ms-board-slip__go" aria-hidden>
+                -&gt;
+              </span>
             </Link>
           </li>
         </ul>

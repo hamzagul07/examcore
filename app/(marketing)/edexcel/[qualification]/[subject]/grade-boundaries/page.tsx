@@ -49,7 +49,7 @@ export default async function EdexcelBoundariesPage({ params }: Props) {
   if (!qual) notFound()
   const copy = buildEdexcelSubjectCopy(subject)
   const isMaths = subject.slug === 'mathematics'
-  const markableWave1 = subject.markingWave === 1
+  const markingLive = subject.markingWave === 1 || subject.markingWave === 1.5
   const markHref =
     subject.slug === 'mathematics'
       ? edexcelMarkHref('WMA11')
@@ -57,7 +57,9 @@ export default async function EdexcelBoundariesPage({ params }: Props) {
         ? edexcelMarkHref('WPH11')
         : subject.slug === 'chemistry'
           ? edexcelMarkHref('WCH11')
-          : edexcelMarkHref()
+          : subject.slug === 'biology'
+            ? edexcelMarkHref('WBI11')
+            : edexcelMarkHref()
 
   return (
     <MarketingPageShell>
@@ -115,37 +117,50 @@ export default async function EdexcelBoundariesPage({ params }: Props) {
 
       <MarketingSection>
         <h2 className="ms-h2">Units in this subject</h2>
-        <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
+        <ul className="ms-board-index">
           {subject.units.map((u) => (
-            <li key={u.code} className="ec-card p-4">
+            <li key={u.code}>
               <Link
                 href={edexcelUnitPath(qualification, subjectSlug, u.code)}
-                className="font-semibold text-[var(--ec-text-primary)] underline-offset-2 hover:underline"
+                className="ms-board-slip"
               >
-                {u.code}
+                <span className="ms-board-slip__code">{u.code}</span>
+                <span className="ms-board-slip__body">
+                  <span className="ms-board-slip__name">{u.name}</span>
+                  <span className="ms-board-slip__meta">
+                    {u.short}
+                    {markingLive ? ' · Marking live' : ''}
+                  </span>
+                </span>
+                <span className="ms-board-slip__go" aria-hidden>
+                  -&gt;
+                </span>
               </Link>
-              <span className="ms-body-2 mt-1 block">{u.name}</span>
-              {markableWave1 ? (
-                <Link
-                  href={edexcelMarkHref(u.code)}
-                  className="ms-micro mt-3 inline-block font-semibold uppercase tracking-wide text-[var(--ec-accent)]"
-                >
-                  Mark {u.code} →
-                </Link>
-              ) : null}
             </li>
           ))}
         </ul>
-        <div className="mt-8 rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-bg-soft))] px-6 py-8 text-center shadow-[var(--ec-shadow-hard,4px_4px_0_rgba(0,0,0,0.08))] sm:px-10">
+
+        <div className="ms-board-cross mt-8">
+          <p className="ms-overline">Close the gap</p>
           <h2 className="ms-h2">Boundaries set the target. Marking finds the gap.</h2>
-          <p className="mx-auto mt-2 max-w-lg text-[var(--ec-text-secondary)]">
-            {markableWave1
-              ? `Upload a ${subject.familyCode} practice answer and get method/accuracy feedback before the next sitting.`
-              : 'Wave 1 Maths, Physics and Chemistry marking is live — Biology follows later.'}
+          <p className="ms-body-2 mt-2 max-w-lg text-[var(--ec-text-secondary)]">
+            {markingLive
+              ? `Upload a ${subject.familyCode} practice answer and get board-native feedback before the next sitting.`
+              : 'IAL STEM marking is live on /mark for Maths, Physics, Chemistry and Biology.'}
           </p>
-          <Link href={markHref} className="ec-btn-primary mt-5 inline-flex min-h-[48px]">
-            {markableWave1 ? `Mark IAL ${subject.name} →` : 'Open Edexcel marking →'}
-          </Link>
+          <div className="mt-5">
+            <Link
+              href={markHref}
+              className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+            >
+              <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                M1
+              </span>
+              {markingLive
+                ? `Mark IAL ${subject.name} -&gt;`
+                : 'Open Edexcel marking -&gt;'}
+            </Link>
+          </div>
         </div>
       </MarketingSection>
     </MarketingPageShell>

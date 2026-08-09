@@ -10,6 +10,12 @@ import {
   getEdexcelMarkableUnitCodes,
   getEdexcelUnitMeta,
 } from '@/lib/edexcel/marking'
+import { getOxfordaqaMarkableContentCodes } from '@/lib/oxfordaqa/marking'
+import { getOxfordaqaSubjects } from '@/lib/oxfordaqa/catalog'
+import { getAqaMarkableContentCodes } from '@/lib/aqa/marking'
+import { getAqaSubjects } from '@/lib/aqa/catalog'
+import { getApMarkableContentCodes } from '@/lib/ap/marking'
+import { getApCourses } from '@/lib/ap/catalog'
 import { IB_MARKING_PROFILES, type IbMarkingProfile } from '@/lib/ib/marking-config'
 
 export type ProfileOption = {
@@ -41,13 +47,16 @@ export const BOARDS: ProfileOption[] = [
   { id: 'Cambridge International', label: 'Cambridge International', enabled: true },
   { id: 'IB', label: 'IB Diploma', enabled: true },
   { id: 'Edexcel', label: 'Pearson Edexcel', enabled: true },
-  { id: 'OxfordAQA', label: 'OxfordAQA', enabled: false },
-  { id: 'AQA', label: 'AQA', enabled: false },
-  { id: 'AP', label: 'AP (College Board)', enabled: false },
+  { id: 'OxfordAQA', label: 'OxfordAQA', enabled: true },
+  { id: 'AQA', label: 'AQA', enabled: true },
+  { id: 'AP', label: 'AP (College Board)', enabled: true },
 ]
 
 export const IB_BOARD_ID = 'IB'
 export const EDEXCEL_BOARD_ID = 'Edexcel'
+export const OXFORDAQA_BOARD_ID = 'OxfordAQA'
+export const AQA_BOARD_ID = 'AQA'
+export const AP_BOARD_ID = 'AP'
 export const IB_DIPLOMA_LEVEL = 'IB Diploma'
 
 export const LEVELS: ProfileOption[] = [
@@ -374,12 +383,80 @@ export const EDEXCEL_SUBJECT_OPTIONS: SubjectOption[] = getEdexcelMarkableUnitCo
 
 const EDEXCEL_SUBJECT_BY_ID = new Map(EDEXCEL_SUBJECT_OPTIONS.map((s) => [s.id, s]))
 
+export const OXFORDAQA_SUBJECT_OPTIONS: SubjectOption[] =
+  getOxfordaqaMarkableContentCodes().flatMap((code) => {
+    const subject = getOxfordaqaSubjects().find((s) => s.contentCode === code)
+    if (!subject) return []
+    return [
+      {
+        id: code,
+        label: `OxfordAQA ${subject.name}`,
+        code,
+        group: subject.group,
+        levels: ['A-Level'],
+        enabled: true,
+        markingEnabled: true,
+        markingType: 'point_based' as const,
+      },
+    ]
+  })
+
+export const AQA_SUBJECT_OPTIONS: SubjectOption[] = getAqaMarkableContentCodes().flatMap(
+  (code) => {
+    const subject = getAqaSubjects().find((s) => s.contentCode === code)
+    if (!subject) return []
+    return [
+      {
+        id: code,
+        label: `AQA ${subject.name}`,
+        code,
+        group: subject.group,
+        levels: ['A-Level'],
+        enabled: true,
+        markingEnabled: true,
+        markingType: 'point_based' as const,
+      },
+    ]
+  }
+)
+
+export const AP_SUBJECT_OPTIONS: SubjectOption[] = getApMarkableContentCodes().flatMap(
+  (code) => {
+    const course = getApCourses().find((c) => c.contentCode === code)
+    if (!course) return []
+    return [
+      {
+        id: code,
+        label: `AP ${course.name}`,
+        code,
+        group: 'Other',
+        levels: ['A-Level'],
+        enabled: true,
+        markingEnabled: true,
+        markingType: 'point_based' as const,
+      },
+    ]
+  }
+)
+
 export function isIbBoard(board: string): boolean {
   return board === IB_BOARD_ID
 }
 
 export function isEdexcelBoard(board: string): boolean {
   return board === EDEXCEL_BOARD_ID
+}
+
+export function isOxfordaqaBoard(board: string): boolean {
+  return board === OXFORDAQA_BOARD_ID
+}
+
+export function isAqaBoard(board: string): boolean {
+  return board === AQA_BOARD_ID
+}
+
+export function isApBoard(board: string): boolean {
+  return board === AP_BOARD_ID
 }
 
 export function edexcelSubjectsInGroup(group: string): SubjectOption[] {
@@ -389,6 +466,28 @@ export function edexcelSubjectsInGroup(group: string): SubjectOption[] {
 export function edexcelSubjectGroups(): string[] {
   const present = new Set(EDEXCEL_SUBJECT_OPTIONS.map((s) => s.group))
   return SUBJECT_GROUPS.filter((g) => present.has(g))
+}
+
+/** Subject options for OxfordAQA / AQA / AP catalog boards. */
+export function catalogBoardSubjects(board: string): SubjectOption[] {
+  if (isOxfordaqaBoard(board)) return OXFORDAQA_SUBJECT_OPTIONS.filter((s) => s.enabled)
+  if (isAqaBoard(board)) return AQA_SUBJECT_OPTIONS.filter((s) => s.enabled)
+  if (isApBoard(board)) return AP_SUBJECT_OPTIONS.filter((s) => s.enabled)
+  return []
+}
+
+export function catalogBoardSubjectsInGroup(board: string, group: string): SubjectOption[] {
+  return catalogBoardSubjects(board).filter((s) => s.group === group)
+}
+
+export function catalogBoardSubjectGroups(board: string): string[] {
+  const present = new Set(catalogBoardSubjects(board).map((s) => s.group))
+  return [...SUBJECT_GROUPS, 'Other'].filter((g) => present.has(g))
+}
+
+/** Non-Edexcel boards that use content-code subject options (not CAIE SUBJECTS). */
+export function isCatalogBoard(board: string): boolean {
+  return isOxfordaqaBoard(board) || isAqaBoard(board) || isApBoard(board)
 }
 
 export function getEdexcelSubjectOption(id: string): SubjectOption | undefined {
@@ -422,14 +521,23 @@ export function isSubjectValidForIb(id: string): boolean {
 
 const SUBJECT_BY_CODE = new Map(SUBJECTS.map((s) => [s.code, s]))
 
+function catalogSubjectOption(id: string): SubjectOption | undefined {
+  return (
+    getEdexcelSubjectOption(id) ??
+    OXFORDAQA_SUBJECT_OPTIONS.find((s) => s.id === id) ??
+    AQA_SUBJECT_OPTIONS.find((s) => s.id === id) ??
+    AP_SUBJECT_OPTIONS.find((s) => s.id === id)
+  )
+}
+
 export function getSubjectById(
   id: string,
   level?: string
 ): SubjectOption | undefined {
   const ib = getIbSubjectOption(id)
   if (ib) return ib
-  const edexcel = getEdexcelSubjectOption(id)
-  if (edexcel) return edexcel
+  const catalog = catalogSubjectOption(id)
+  if (catalog) return catalog
 
   const candidates = SUBJECTS.filter((s) => s.id === id)
   if (candidates.length === 0) return undefined
@@ -443,8 +551,8 @@ export function getSubjectById(
 export function getSubjectByCode(code: string): SubjectOption | undefined {
   const ib = getIbSubjectOption(code)
   if (ib) return ib
-  const edexcel = getEdexcelSubjectOption(code)
-  if (edexcel) return edexcel
+  const catalog = catalogSubjectOption(code)
+  if (catalog) return catalog
   return SUBJECT_BY_CODE.get(code)
 }
 
@@ -481,7 +589,17 @@ export function isSubjectValidForProfile(
     const opt = getEdexcelSubjectOption(subjectId)
     return !!opt?.enabled && opt.levels.includes(level)
   }
-  if (isIbSubjectId(subjectId) || isEdexcelSubjectId(subjectId)) return false
+  if (isOxfordaqaBoard(board) || isAqaBoard(board) || isApBoard(board)) {
+    const opt = catalogSubjectOption(subjectId)
+    return !!opt?.enabled
+  }
+  if (
+    isIbSubjectId(subjectId) ||
+    isEdexcelSubjectId(subjectId) ||
+    !!catalogSubjectOption(subjectId)
+  ) {
+    return false
+  }
   return isSubjectValidForLevel(subjectId, level)
 }
 
@@ -489,7 +607,12 @@ export function levelsForBoard(board: string): ProfileOption[] {
   if (isIbBoard(board)) {
     return LEVELS.filter((l) => l.id === IB_DIPLOMA_LEVEL && l.enabled)
   }
-  if (isEdexcelBoard(board)) {
+  if (
+    isEdexcelBoard(board) ||
+    isOxfordaqaBoard(board) ||
+    isAqaBoard(board) ||
+    isApBoard(board)
+  ) {
     return LEVELS.filter(
       (l) => (l.id === 'AS Level' || l.id === 'A-Level') && l.enabled
     )
@@ -502,6 +625,9 @@ export const SELECTABLE_SUBJECT_IDS = new Set([
   ...SUBJECTS.filter((s) => s.enabled).map((s) => s.id),
   ...IB_SUBJECT_OPTIONS.filter((s) => s.enabled).map((s) => s.id),
   ...EDEXCEL_SUBJECT_OPTIONS.filter((s) => s.enabled).map((s) => s.id),
+  ...OXFORDAQA_SUBJECT_OPTIONS.filter((s) => s.enabled).map((s) => s.id),
+  ...AQA_SUBJECT_OPTIONS.filter((s) => s.enabled).map((s) => s.id),
+  ...AP_SUBJECT_OPTIONS.filter((s) => s.enabled).map((s) => s.id),
 ])
 
 /** @deprecated use SELECTABLE_SUBJECT_IDS — kept for minimal diff at call sites */
@@ -511,12 +637,18 @@ export const MARKING_ENABLED_SUBJECT_CODES = new Set([
   ...SUBJECTS.filter((s) => s.markingEnabled).map((s) => s.code),
   ...IB_SUBJECT_OPTIONS.filter((s) => s.markingEnabled).map((s) => s.code),
   ...EDEXCEL_SUBJECT_OPTIONS.filter((s) => s.markingEnabled).map((s) => s.code),
+  ...OXFORDAQA_SUBJECT_OPTIONS.filter((s) => s.markingEnabled).map((s) => s.code),
+  ...AQA_SUBJECT_OPTIONS.filter((s) => s.markingEnabled).map((s) => s.code),
+  ...AP_SUBJECT_OPTIONS.filter((s) => s.markingEnabled).map((s) => s.code),
 ])
 
 export const SUBJECT_CODE_MAP: Record<string, string> = {
   ...Object.fromEntries(SUBJECTS.map((s) => [s.code, s.label])),
   ...Object.fromEntries(IB_MARKING_PROFILES.map((p) => [p.code, p.name])),
   ...Object.fromEntries(EDEXCEL_SUBJECT_OPTIONS.map((s) => [s.code, s.label])),
+  ...Object.fromEntries(OXFORDAQA_SUBJECT_OPTIONS.map((s) => [s.code, s.label])),
+  ...Object.fromEntries(AQA_SUBJECT_OPTIONS.map((s) => [s.code, s.label])),
+  ...Object.fromEntries(AP_SUBJECT_OPTIONS.map((s) => [s.code, s.label])),
 }
 
 export const ENABLED_BOARD_IDS = new Set(
@@ -539,6 +671,15 @@ export function defaultSubjectsForProfile(board: string, level: string): string[
   if (isEdexcelBoard(board)) {
     return ['WMA11']
   }
+  if (isOxfordaqaBoard(board)) {
+    return ['oxaqa-mathematics']
+  }
+  if (isAqaBoard(board)) {
+    return ['aqa-mathematics']
+  }
+  if (isApBoard(board)) {
+    return ['ap-calculus-ab']
+  }
   return DEFAULT_SUBJECTS
 }
 
@@ -546,6 +687,15 @@ export function defaultSubjectsForProfile(board: string, level: string): string[
 export function defaultMarkSubjectCode(level: string, board?: string): string {
   if (isEdexcelBoard(board ?? '')) {
     return 'WMA11'
+  }
+  if (isOxfordaqaBoard(board ?? '')) {
+    return 'oxaqa-mathematics'
+  }
+  if (isAqaBoard(board ?? '')) {
+    return 'aqa-mathematics'
+  }
+  if (isApBoard(board ?? '')) {
+    return 'ap-calculus-ab'
   }
   if (level === IB_DIPLOMA_LEVEL) {
     return IB_SUBJECT_OPTIONS.find((s) => s.enabled)?.code ?? 'ib-biology-hl'

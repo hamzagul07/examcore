@@ -1,10 +1,9 @@
+import { listMarkingExamSystems } from '@/lib/exam-systems/registry'
 import type { ExamSystem, LessonSurface } from '@/lib/exam-systems/types'
-
-const MARK_BOARDS = new Set(['cambridge', 'ib', 'edexcel'])
 
 /**
  * Deep-link back to /mark after signup/onboarding.
- * Preserves board (+ subject) so Edexcel/IB guests don't land on Cambridge.
+ * Preserves board (+ subject) so guests don't land on Cambridge by default.
  */
 export function buildMarkReturnPath(opts: {
   board?: string | null
@@ -12,7 +11,8 @@ export function buildMarkReturnPath(opts: {
 }): string {
   const params = new URLSearchParams()
   const board = opts.board?.trim().toLowerCase()
-  if (board && MARK_BOARDS.has(board)) {
+  const liveMarkBoards = new Set(listMarkingExamSystems().map((s) => s.id))
+  if (board && liveMarkBoards.has(board as never)) {
     params.set('board', board)
   }
   const subject = opts.subject?.trim()

@@ -55,6 +55,17 @@ import {
   oxfordaqaSubjectPath,
   resolveOxfordaqaSubject,
 } from '@/lib/seo/oxfordaqa-graph'
+import {
+  aqaRootPath,
+  aqaSubjectPath,
+  getAllAqaSubjectParams,
+} from '@/lib/seo/aqa-graph'
+import {
+  apCoursePath,
+  apRootPath,
+  apScoreCalculatorPath,
+  getAllApCourseParams,
+} from '@/lib/seo/ap-graph'
 
 export const SITEMAP_SHARD_IDS = [
   'static',
@@ -73,6 +84,8 @@ export const SITEMAP_SHARD_IDS = [
   'ib',
   'edexcel',
   'oxfordaqa',
+  'aqa',
+  'ap',
   'questions',
   'markschemes',
   'community',
@@ -128,10 +141,15 @@ export async function buildSitemapShard(
         '/caie',
         '/edexcel',
         '/edexcel/international-a-level',
+        '/edexcel/a-level',
         '/edexcel/international-gcse',
         '/oxfordaqa',
         '/oxfordaqa/international-a-level',
         '/oxfordaqa/international-gcse',
+        '/aqa',
+        '/aqa/a-level',
+        '/ap',
+        '/ap/score-calculator',
         '/questions',
         '/markscheme',
         '/past-papers',
@@ -381,6 +399,33 @@ export async function buildSitemapShard(
         ...subjectEntries,
       ]
     }
+
+    case 'aqa':
+      return [
+        entry(aqaRootPath(), { priority: 0.9 }),
+        entry('/aqa/a-level', { priority: 0.86, changeFrequency: 'weekly' }),
+        ...getAllAqaSubjectParams().map((p) =>
+          entry(aqaSubjectPath(p.subject), {
+            priority: 0.86,
+            changeFrequency: 'weekly',
+          })
+        ),
+      ]
+
+    case 'ap':
+      return [
+        entry(apRootPath(), { priority: 0.9 }),
+        entry(apScoreCalculatorPath(), {
+          priority: 0.7,
+          changeFrequency: 'monthly',
+        }),
+        ...getAllApCourseParams().map((p) =>
+          entry(apCoursePath(p.course), {
+            priority: 0.86,
+            changeFrequency: 'weekly',
+          })
+        ),
+      ]
 
     case 'questions':
       // Hub + a capped sample of examinable units. Full inventory grows via

@@ -1,6 +1,8 @@
 # Board Expansion Engine
 
-**Status:** E0–E2 + E3 graph v1 + analytics + E4 OxfordAQA shell shipped; Physics/Chem marking next per product override  
+**Status:** WIP — Edexcel IAL STEM+Bio marking + graph→CAIE course reuse live in tree; OxfordAQA/AQA/AP shells exist but wiring bugs being fixed; conversion gates still unmet (do not claim “complete”)  
+
+
 **Audience:** Codex / Claude implementing multi-board  
 **North star:** Boards are acquisition surfaces; marking is the product.
 
@@ -185,18 +187,17 @@ GCSE only after observed search demand — otherwise MarkScheme becomes a conten
 AP adapter surfaces, not `/results-2026/ap` clones:
 
 ```
-/ap
-/ap/exam-dates
-/ap/score-calculator
-/ap/calculus-ab/score-calculator
-/ap/physics-1/frq
-/ap/physics-1/scoring
-/ap/scores
+/ap                          (live shell)
+/ap/calculus-ab              (live FRQ mark CTA)
+/ap/physics-1                (live FRQ mark CTA)
+/ap/score-calculator         (honest placeholder — calculator not live)
 ```
+
+Planned later (not live): exam-dates hub, per-course FRQ/scoring landers, real indicative 1–5 helper.
 
 Lifecycle: course selection → year → May exams → score release → credit/placement.  
 Reuse: accounts, billing, OCR, handwriting, feedback engine, concept/weakness graphs, practice engine.  
-New: FRQ, scoring guidelines, earned/not-earned points, 1–5 projection, AP analytics.
+New: FRQ, scoring guidelines, earned/not-earned points; 1–5 projection only when a real helper ships.
 
 Edexcel *may* get `/results-2026/edexcel`-style seasonals; AP must not inherit that architecture mechanically.
 
@@ -411,9 +412,45 @@ E0 board-native platform
 - Science examiner line in point-based prompts; picker/onboarding copy updated
 - SEO: WPH11 + Physics past-papers + Chemistry marking guides; OxfordAQA hub strip
 
+### Done (full-completion override 2026-08-09)
+
+- P0 scorecard: still 0 Edexcel marks — G1/G2 fail; product override documented in BOARD_CONVERSION_METRICS.md
+- P1: course hrefs via curriculum graph + CrossBoard courses strip on Edexcel hubs
+- P2: 9702/9701↔WPH/WCH seeds + Chem/Bio SEO blogs
+- P3: Edexcel Biology (WBI) marking + phrase-level prompt
+- P4: OxfordAQA Wave 1 marking + seo-guides + graph seed
+- P5: Selective UK AQA + Edexcel UK A-level Maths/Physics shells + marking
+- P6: AP Calculus AB / Physics 1 FRQ surfaces + earned-point dialect
+- Courses remain CAIE/IB JSON; board hubs link via graph (no lesson forks)
+
+### Done (expansion pass — Bio graph + UK/AP SEO)
+
+- `9700 ↔ WBI` graph seed; CrossBoard on Biology hubs; OxfordAQA Biology markable
+- Unit guides: WMA12, WBI11; OxfordAQA Biology + AQA Maths + AP Calculus AB FRQ blogs
+- Hub guide strips on `/aqa` and `/ap`; IndexNow priorities extended
+
+### Recovery (fix wiring before more expansion)
+
+Mistakes found and fixed in-tree (do not claim production READY until shipped):
+
+1. `/mark` board whitelist collapsed OxfordAQA/AQA/AP → Cambridge — fixed via `coerceMarkExamBoard`
+2. `resolveMarkRunExamSystem` ignored new boards — fixed to all live marking systems
+3. `buildMarkReturnPath` only preserved cambridge/ib/edexcel — now uses all live marking systems
+4. Edexcel UK `/edexcel/a-level` empty while `9MA0`/`9PH0` markable — qualification page loads UK subjects; prompt labels say A Level not IAL
+5. Fake AP score calculator — replaced with honest placeholder route
+6. Placement: `lib/seo/aqa-graph.ts`, `ap-graph.ts`; sitemap shards `aqa` + `ap`; CrossBoard uses `edexcelPathForUnit` (IAL vs UK)
+
+### E1 thicken (in tree — Edexcel IAL only)
+
+- Biology hero/past-papers/boundaries deep-link to `WBI11` (Wave 1.5 treated as live)
+- WME02 curriculum-graph seed (CrossBoard + course reuse)
+- Deepened WMA12 + WBI11 guides; new WPH12 + WCH12 guides registered in `seo-guides.ts`
+- IAL session calendar extended to Physics/Chem/Bio unit + past-papers landers
+
 ### Next
 
+- Board-only commit (isolate from branding WIP) then deploy
 - Measure Edexcel marks / `/edexcel` sessions weekly (`BOARD_CONVERSION_METRICS.md`)
-- Full past-paper / scheme ingest only after conversion justifies it
-- OxfordAQA marking still off; UK / AP still gated on demand
+- OxfordAQA depth only after Edexcel conversion moves
+- IndexNow after production READY
 - Do not mix board work into unrelated branding/landing WIP on main

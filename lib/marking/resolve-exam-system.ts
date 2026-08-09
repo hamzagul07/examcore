@@ -1,7 +1,13 @@
 import { resolveBoard } from '@/lib/courses/board'
-import { isExamSystemId, type ExamSystemId } from '@/lib/exam-systems'
+import {
+  isExamSystemId,
+  listMarkingExamSystems,
+  type ExamSystemId,
+} from '@/lib/exam-systems'
 
-const MARKING_SYSTEMS = new Set<ExamSystemId>(['cambridge', 'ib', 'edexcel'])
+function markingSystemIds(): Set<ExamSystemId> {
+  return new Set(listMarkingExamSystems().map((s) => s.id))
+}
 
 /**
  * Prefer the board picker value from the client; fall back to subject_code.
@@ -11,10 +17,11 @@ export function resolveMarkRunExamSystem(params: {
   explicit?: string | null
   subjectCode?: string | null
 }): ExamSystemId | null {
+  const live = markingSystemIds()
   const raw = params.explicit?.trim().toLowerCase()
-  if (raw && isExamSystemId(raw) && MARKING_SYSTEMS.has(raw)) return raw
+  if (raw && isExamSystemId(raw) && live.has(raw)) return raw
   const code = params.subjectCode?.trim()
   if (!code) return null
   const board = resolveBoard(code)
-  return MARKING_SYSTEMS.has(board) ? board : null
+  return live.has(board) ? board : null
 }

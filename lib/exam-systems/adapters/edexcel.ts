@@ -34,14 +34,14 @@ export const edexcelExamSystem: ExamSystem = {
       id: 'a-level',
       label: 'A Level (UK)',
       slug: 'a-level',
-      shellEnabled: false,
-      markingEnabled: false,
+      shellEnabled: true,
+      markingEnabled: isEdexcelMarkingLive(),
     },
   ],
   gradeModel: 'ums',
   markingDialect: 'point_method',
   assessmentStyle: 'modular',
-  markPickerHint: 'IAL Maths, Physics & Chemistry units — method, accuracy & follow-through',
+  markPickerHint: 'IAL Maths, Physics, Chemistry & Biology units — method, accuracy & follow-through',
   ownsSubjectCode(code) {
     return isEdexcelUnitCode(code)
   },

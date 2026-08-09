@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowRight } from 'lucide-react'
+
 import {
   MarketingHero,
   MarketingPageShell,
@@ -36,6 +36,10 @@ export async function generateMetadata({ params }: Props) {
     path: copy.path,
     keywords: copy.keywords,
   })
+}
+
+function subjectStamp(slug: string) {
+  return slug.slice(0, 4).toUpperCase()
 }
 
 export default async function OxfordaqaQualificationPage({ params }: Props) {
@@ -74,27 +78,30 @@ export default async function OxfordaqaQualificationPage({ params }: Props) {
           <p className="ms-body-2 text-[var(--ec-text-secondary)]">
             International GCSE subject hubs follow after IAL Maths/Physics/Chemistry
             conversion. Browse{' '}
-            <Link href="/oxfordaqa/international-a-level" className="underline">
+            <Link href="/oxfordaqa/international-a-level" className="ec-link">
               International A-level
             </Link>{' '}
             for now.
           </p>
         ) : (
-          <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
+          <ul className="ms-board-index">
             {subjects.map((s) => (
               <li key={s.slug}>
                 <Link
                   href={oxfordaqaSubjectPath(s.qualification, s.slug)}
-                  className="ec-card flex h-full items-center justify-between gap-3 p-4"
+                  className="ms-board-slip"
                 >
-                  <span>
-                    <span className="font-semibold">{s.name}</span>
-                    <span className="ms-micro mt-1 block uppercase tracking-wide">
-                      {s.papers.length} papers
+                  <span className="ms-board-slip__code">{subjectStamp(s.slug)}</span>
+                  <span className="ms-board-slip__body">
+                    <span className="ms-board-slip__name">{s.name}</span>
+                    <span className="ms-board-slip__meta">
+                      {s.papers.length} papers · Wave {s.markingWave}
                     </span>
-                    <span className="ms-body-2 mt-2 block line-clamp-3">{s.blurb}</span>
+                    <span className="ms-board-slip__blurb">{s.blurb}</span>
                   </span>
-                  <ArrowRight className="h-4 w-4 shrink-0 opacity-60" />
+                  <span className="ms-board-slip__go" aria-hidden>
+                    -&gt;
+                  </span>
                 </Link>
               </li>
             ))}
@@ -105,13 +112,22 @@ export default async function OxfordaqaQualificationPage({ params }: Props) {
       {qualification === 'international-gcse' && (
         <MarketingSection>
           <h2 className="ms-h2">Also available</h2>
-          <ul className="list-none p-0">
+          <ul className="ms-board-index ms-board-index--guides">
             {OXFORD_AQA_QUALIFICATIONS.filter(
               (q) => q.slug === 'international-a-level'
             ).map((q) => (
               <li key={q.slug}>
-                <Link href={`/oxfordaqa/${q.slug}`} className="ms-body-2 underline">
-                  Browse {q.label} subjects
+                <Link
+                  href={`/oxfordaqa/${q.slug}`}
+                  className="ms-board-slip ms-board-slip--compact"
+                >
+                  <span className="ms-board-slip__code">{q.shortLabel}</span>
+                  <span className="ms-board-slip__body">
+                    <span className="ms-board-slip__name">Browse {q.label} subjects</span>
+                  </span>
+                  <span className="ms-board-slip__go" aria-hidden>
+                    -&gt;
+                  </span>
                 </Link>
               </li>
             ))}

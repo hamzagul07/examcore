@@ -105,6 +105,18 @@ Do not open UK boards until roughly:
 
 **Verdict:** hold new dialects. Product bridges are in place; **human posts** in [READY_TO_POST_NOW.md](./READY_TO_POST_NOW.md) are still required to move `/edexcel`.
 
+### Snapshot 2026-08-09 afternoon (7d, full-completion baseline)
+
+| Metric | Value |
+|--------|-------|
+| Edexcel marks (`mark_runs.exam_system`) | **0** |
+| Cambridge marks | **5** succeeded / 5 runs |
+| `/edexcel*` + `/blog/edexcel*` + funnel edexcel paths | **0** page_events |
+| G1 (OxfordAQA marking) | **FAIL** on demand — product override to continue full-completion sequence |
+| G2 (UK A-Level) | **FAIL** on demand — same override |
+
+**Verdict:** conversion gates still fail. Engineering continues under explicit full-completion override; distribution in [READY_TO_POST_NOW.md](./READY_TO_POST_NOW.md) remains required for organic demand.
+
 ---
 
 ## Apply migration
@@ -116,3 +128,14 @@ npx supabase db push
 ```
 
 Until the column exists, `openMarkRun` insert of `exam_system` may warn and the run still marks (telemetry is best-effort). Prefer applying the migration before shipping E2 traffic.
+
+
+### G1 / G2 override (full-completion sequence)
+
+| Gate | Result | Action |
+|------|--------|--------|
+| G1 OxfordAQA marking | FAIL (0 Edexcel marks) | **Override** — OxfordAQA Wave 1 marking shipped |
+| G2 UK A-Level | FAIL (same) | **Override** — selective AQA + Edexcel UK AL shipped |
+| AP | n/a (after UK in plan) | **Override** — Calculus AB + Physics 1 FRQ shipped |
+
+Re-check scorecard weekly. Distribution remains the bottleneck.

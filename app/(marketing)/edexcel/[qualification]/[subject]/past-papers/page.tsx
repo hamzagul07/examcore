@@ -8,7 +8,7 @@ import {
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { getEdexcelQualification } from '@/lib/edexcel/catalog'
-import { getEdexcelMathsSessionsForUnit } from '@/lib/edexcel/maths-paper-sessions'
+import { getEdexcelIalSessionsForUnit } from '@/lib/edexcel/ial-paper-sessions'
 import { edexcelMarkHref, getEdexcelMarkableUnitCodes } from '@/lib/edexcel/marking'
 import { edexcelSubjectPastPapersGuideHref } from '@/lib/edexcel/seo-guides'
 import {
@@ -51,17 +51,21 @@ export default async function EdexcelPastPapersPage({ params }: Props) {
   if (!qual) notFound()
   const copy = buildEdexcelSubjectCopy(subject)
   const markable = new Set(getEdexcelMarkableUnitCodes())
-  const isMaths = subject.slug === 'mathematics'
-  const markableWave1 = subject.markingWave === 1
-  const defaultMarkHref =
+  const markingLive = subject.markingWave === 1 || subject.markingWave === 1.5
+  const defaultUnit =
     subject.slug === 'mathematics'
-      ? edexcelMarkHref('WMA11')
+      ? 'WMA11'
       : subject.slug === 'physics'
-        ? edexcelMarkHref('WPH11')
+        ? 'WPH11'
         : subject.slug === 'chemistry'
-          ? edexcelMarkHref('WCH11')
-          : edexcelMarkHref()
-  const sampleSessions = isMaths ? getEdexcelMathsSessionsForUnit('WMA11').slice(0, 6) : []
+          ? 'WCH11'
+          : subject.slug === 'biology'
+            ? 'WBI11'
+            : null
+  const defaultMarkHref = defaultUnit ? edexcelMarkHref(defaultUnit) : edexcelMarkHref()
+  const sampleSessions = defaultUnit
+    ? getEdexcelIalSessionsForUnit(defaultUnit).slice(0, 6)
+    : []
   const pastPapersGuideHref = edexcelSubjectPastPapersGuideHref(subject.slug)
 
   return (
@@ -81,15 +85,13 @@ export default async function EdexcelPastPapersPage({ params }: Props) {
         label={`${subject.familyCode} · Past papers`}
         title={`${subject.name} past papers`}
         lead={
-          isMaths
-            ? 'Edexcel IAL Mathematics is modular. Use the unit + session map below to plan which papers to sit, then mark practice answers with method/accuracy conventions.'
-            : markableWave1
-              ? `Edexcel IAL ${subject.name} is modular. Use the unit map below, then mark practice answers with method/accuracy conventions.`
-              : `Edexcel IAL ${subject.name} is modular. Use the unit map below — Biology marking follows Wave 1 STEM.`
+          markingLive
+            ? `Edexcel IAL ${subject.name} is modular. Use the unit + session map below to plan which papers to sit, then mark practice answers with board-native conventions.`
+            : `Edexcel IAL ${subject.name} is modular. Use the unit map below to plan practice.`
         }
       />
 
-      {isMaths && sampleSessions.length > 0 ? (
+      {sampleSessions.length > 0 ? (
         <MarketingSection>
           <h2 className="ms-h2">Recent IAL series</h2>
           <p className="ms-body-2 mb-4 text-[var(--ec-text-secondary)]">
@@ -114,53 +116,64 @@ export default async function EdexcelPastPapersPage({ params }: Props) {
 
       <MarketingSection>
         <h2 className="ms-h2">Units</h2>
-        <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
+        <ul className="ms-board-index">
           {subject.units.map((u) => {
             const canMark = markable.has(u.code)
-            const sessions = getEdexcelMathsSessionsForUnit(u.code)
+            const sessions = getEdexcelIalSessionsForUnit(u.code)
             return (
-              <li key={u.code} className="ec-card p-4">
+              <li key={u.code}>
                 <Link
                   href={edexcelUnitPath(qualification, subjectSlug, u.code)}
-                  className="font-semibold text-[var(--ec-text-primary)] underline-offset-2 hover:underline"
+                  className="ms-board-slip"
                 >
-                  {u.code}
-                </Link>
-                <span className="ms-body-2 mt-1 block">{u.name}</span>
-                {sessions.length > 0 ? (
-                  <span className="ms-micro mt-2 block text-[var(--ec-text-secondary)]">
-                    {sessions.length} series mapped · Jan / June / Oct
+                  <span className="ms-board-slip__code">{u.code}</span>
+                  <span className="ms-board-slip__body">
+                    <span className="ms-board-slip__name">{u.name}</span>
+                    <span className="ms-board-slip__meta">
+                      {sessions.length > 0
+                        ? `${sessions.length} series · Jan / June / Oct`
+                        : u.short}
+                      {canMark ? ' · Marking live' : ''}
+                    </span>
                   </span>
-                ) : null}
-                {canMark ? (
-                  <Link
-                    href={edexcelMarkHref(u.code)}
-                    className="ms-micro mt-3 inline-block font-semibold uppercase tracking-wide text-[var(--ec-accent)]"
-                  >
-                    Mark {u.code} →
-                  </Link>
-                ) : null}
+                  <span className="ms-board-slip__go" aria-hidden>
+                    -&gt;
+                  </span>
+                </Link>
               </li>
             )
           })}
         </ul>
-        <p className="ms-body-2 mt-6 text-[var(--ec-text-secondary)]">
-          {pastPapersGuideHref ? (
-            <>
-              How to run a unit practice loop:{' '}
-              <Link href={pastPapersGuideHref} className="underline">
-                IAL {subject.name} past papers guide
-              </Link>
-              . Worked a paper?{' '}
-            </>
-          ) : null}
-          <Link href={defaultMarkHref} className="underline">
-            Mark an Edexcel answer
-          </Link>
-          {markableWave1
-            ? ` with method/accuracy conventions for IAL ${subject.name}.`
-            : ' — Wave 1 Maths, Physics and Chemistry are live; Biology follows later.'}
-        </p>
+
+        <div className="ms-board-cross mt-8">
+          <p className="ms-overline">Practice loop</p>
+          <h2 className="ms-h2">Worked a paper?</h2>
+          <p className="ms-body-2 mt-2 max-w-xl text-[var(--ec-text-secondary)]">
+            {pastPapersGuideHref ? (
+              <>
+                How to run a unit practice loop:{' '}
+                <Link href={pastPapersGuideHref} className="ec-link">
+                  IAL {subject.name} past papers guide
+                </Link>
+                .{' '}
+              </>
+            ) : null}
+            {markingLive
+              ? `Mark with board-native conventions for IAL ${subject.name}.`
+              : 'Open the Edexcel mark picker for live IAL STEM units.'}
+          </p>
+          <div className="mt-5">
+            <Link
+              href={defaultMarkHref}
+              className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+            >
+              <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                M1
+              </span>
+              Mark an Edexcel answer -&gt;
+            </Link>
+          </div>
+        </div>
       </MarketingSection>
     </MarketingPageShell>
   )

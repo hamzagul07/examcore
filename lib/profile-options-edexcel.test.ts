@@ -22,7 +22,8 @@ check('edexcel board id', isEdexcelBoard(EDEXCEL_BOARD_ID))
 check('wave-1 maths in options', EDEXCEL_SUBJECT_OPTIONS.some((s) => s.id === 'WMA11'))
 check('wave-1 physics in options', EDEXCEL_SUBJECT_OPTIONS.some((s) => s.id === 'WPH11'))
 check('wave-1 chemistry in options', EDEXCEL_SUBJECT_OPTIONS.some((s) => s.id === 'WCH11'))
-check('no biology units yet', !EDEXCEL_SUBJECT_OPTIONS.some((s) => s.id === 'WBI11'))
+check('biology units markable', EDEXCEL_SUBJECT_OPTIONS.some((s) => s.id === 'WBI11'))
+check('uk a-level maths option', EDEXCEL_SUBJECT_OPTIONS.some((s) => s.id === '9MA0'))
 check(
   'WMA11 valid for Edexcel A-Level',
   isSubjectValidForProfile('Edexcel', 'A-Level', 'WMA11')

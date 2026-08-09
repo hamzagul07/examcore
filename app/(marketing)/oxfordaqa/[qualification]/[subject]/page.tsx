@@ -17,6 +17,8 @@ import {
   resolveOxfordaqaSubject,
 } from '@/lib/seo/oxfordaqa-graph'
 import { buildOxfordaqaSubjectCopy } from '@/lib/seo/oxfordaqa-seo'
+import { CrossBoardTopicLinks } from '@/components/seo/CrossBoardTopicLinks'
+import { oxfordaqaMarkHref } from '@/lib/oxfordaqa/marking'
 
 type Props = { params: Promise<{ qualification: string; subject: string }> }
 
@@ -70,15 +72,21 @@ export default async function OxfordaqaSubjectPage({ params }: Props) {
           Shell only — marking stays on Cambridge, IB and Edexcel IAL Maths until
           OxfordAQA earns its engineering allocation.
         </p>
-        <ul className="grid list-none gap-3 p-0 sm:grid-cols-3">
+        <ul className="ms-board-index">
           {subject.papers.map((p) => (
             <li key={p.slug}>
               <Link
                 href={oxfordaqaPaperPath(qualification, subjectSlug, p.slug)}
-                className="ec-card block p-4"
+                className="ms-board-slip"
               >
-                <span className="font-semibold">{p.name}</span>
-                <span className="ms-micro ml-2 uppercase tracking-wide">{p.short}</span>
+                <span className="ms-board-slip__code">{p.short}</span>
+                <span className="ms-board-slip__body">
+                  <span className="ms-board-slip__name">{p.name}</span>
+                  <span className="ms-board-slip__meta">Shell index</span>
+                </span>
+                <span className="ms-board-slip__go" aria-hidden>
+                  -&gt;
+                </span>
               </Link>
             </li>
           ))}
@@ -87,46 +95,76 @@ export default async function OxfordaqaSubjectPage({ params }: Props) {
 
       <MarketingSection>
         <h2 className="ms-h2">Tools</h2>
-        <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
+        <ul className="ms-board-index ms-board-index--guides">
           <li>
             <Link
               href={oxfordaqaSubjectPastPapersPath(qualification, subjectSlug)}
-              className="ec-card block p-4"
+              className="ms-board-slip"
             >
-              <span className="font-semibold">Past papers</span>
-              <span className="ms-body-2 mt-1 block">
-                Paper map for OxfordAQA {subject.name}.
+              <span className="ms-board-slip__code">PP</span>
+              <span className="ms-board-slip__body">
+                <span className="ms-board-slip__name">Past papers</span>
+                <span className="ms-board-slip__blurb">
+                  Paper map for OxfordAQA {subject.name}.
+                </span>
+              </span>
+              <span className="ms-board-slip__go" aria-hidden>
+                -&gt;
               </span>
             </Link>
           </li>
           <li>
             <Link
               href={oxfordaqaSubjectBoundariesPath(qualification, subjectSlug)}
-              className="ec-card block p-4"
+              className="ms-board-slip"
             >
-              <span className="font-semibold">Grade boundaries</span>
-              <span className="ms-body-2 mt-1 block">
-                Boundary reference hub for {subject.name}.
+              <span className="ms-board-slip__code">GB</span>
+              <span className="ms-board-slip__body">
+                <span className="ms-board-slip__name">Grade boundaries</span>
+                <span className="ms-board-slip__blurb">
+                  Boundary reference hub for {subject.name}.
+                </span>
+              </span>
+              <span className="ms-board-slip__go" aria-hidden>
+                -&gt;
               </span>
             </Link>
           </li>
           <li>
-            <Link href="/edexcel/international-a-level/mathematics" className="ec-card block p-4">
-              <span className="font-semibold">Edexcel IAL Maths is live</span>
-              <span className="ms-body-2 mt-1 block">
-                Marking is live for Edexcel first — prove conversion, then OxfordAQA.
+            <Link
+              href="/edexcel/international-a-level/mathematics"
+              className="ms-board-slip"
+            >
+              <span className="ms-board-slip__code">IAL</span>
+              <span className="ms-board-slip__body">
+                <span className="ms-board-slip__name">Edexcel IAL Maths is live</span>
+                <span className="ms-board-slip__blurb">
+                  Marking is live for Edexcel first — prove conversion, then OxfordAQA.
+                </span>
+              </span>
+              <span className="ms-board-slip__go" aria-hidden>
+                -&gt;
               </span>
             </Link>
           </li>
           <li>
-            <Link href="/mark" className="ec-card block p-4">
-              <span className="font-semibold">Mark an answer</span>
-              <span className="ms-body-2 mt-1 block">
-                Cambridge, IB and Edexcel IAL Maths marking are available today.
+            <Link href={oxfordaqaMarkHref(subject.contentCode)} className="ms-board-slip">
+              <span className="ms-board-slip__code">M1</span>
+              <span className="ms-board-slip__body">
+                <span className="ms-board-slip__name">Mark on OxfordAQA</span>
+                <span className="ms-board-slip__blurb">
+                  Maths, Physics, Chemistry and Biology marking is live on /mark.
+                </span>
+              </span>
+              <span className="ms-board-slip__go" aria-hidden>
+                -&gt;
               </span>
             </Link>
           </li>
         </ul>
+        {subject.markingWave === 1 || subject.markingWave === 1.5 ? (
+          <CrossBoardTopicLinks mode="oxfordaqa-subject" contentCode={subject.contentCode} />
+        ) : null}
       </MarketingSection>
     </MarketingPageShell>
   )

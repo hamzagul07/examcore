@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowRight } from 'lucide-react'
 import {
   MarketingHero,
   MarketingPageShell,
@@ -46,10 +45,9 @@ export default async function EdexcelQualificationPage({ params }: Props) {
   const copy = buildEdexcelQualificationCopy(qualification)
   if (!copy) notFound()
 
-  const subjects =
-    qualification === 'international-a-level'
-      ? getEdexcelSubjects('international-a-level')
-      : []
+  const subjects = getEdexcelSubjects(
+    qualification as 'international-a-level' | 'international-gcse' | 'a-level'
+  )
 
   return (
     <MarketingPageShell>
@@ -73,26 +71,29 @@ export default async function EdexcelQualificationPage({ params }: Props) {
         <h2 className="ms-h2">Subjects</h2>
         {subjects.length === 0 ? (
           <p className="ms-body-2 text-[var(--ec-text-secondary)]">
-            International GCSE subject hubs are next — IAL Mathematics, Physics,
-            Chemistry and Biology are live first so we can prove marking conversion
-            before growing the catalogue.
+            {qualification === 'international-gcse'
+              ? 'International GCSE subject hubs are next — IAL and selective UK A Level Maths/Physics are live first.'
+              : 'Subject hubs for this qualification are not listed yet.'}
           </p>
         ) : (
-          <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
+          <ul className="ms-board-index">
             {subjects.map((s) => (
               <li key={s.slug}>
                 <Link
                   href={edexcelSubjectPath(s.qualification, s.slug)}
-                  className="ec-card flex h-full items-center justify-between gap-3 p-4"
+                  className="ms-board-slip"
                 >
-                  <span>
-                    <span className="font-semibold">{s.name}</span>
-                    <span className="ms-micro mt-1 block uppercase tracking-wide">
+                  <span className="ms-board-slip__code">{s.familyCode}</span>
+                  <span className="ms-board-slip__body">
+                    <span className="ms-board-slip__name">{s.name}</span>
+                    <span className="ms-board-slip__meta">
                       {s.units.length} units · {s.familyCode}
                     </span>
-                    <span className="ms-body-2 mt-2 block line-clamp-3">{s.blurb}</span>
+                    <span className="ms-board-slip__blurb">{s.blurb}</span>
                   </span>
-                  <ArrowRight className="h-4 w-4 shrink-0 opacity-60" />
+                  <span className="ms-board-slip__go" aria-hidden>
+                    -&gt;
+                  </span>
                 </Link>
               </li>
             ))}
@@ -103,12 +104,18 @@ export default async function EdexcelQualificationPage({ params }: Props) {
       {qualification === 'international-gcse' && (
         <MarketingSection>
           <h2 className="ms-h2">Also available</h2>
-          <ul className="list-none p-0">
+          <ul className="ms-board-index ms-board-index--guides">
             {EDEXCEL_QUALIFICATIONS.filter((q) => q.slug === 'international-a-level').map(
               (q) => (
                 <li key={q.slug}>
-                  <Link href={`/edexcel/${q.slug}`} className="ms-body-2 underline">
-                    Browse {q.label} subjects
+                  <Link href={`/edexcel/${q.slug}`} className="ms-board-slip ms-board-slip--compact">
+                    <span className="ms-board-slip__code">{q.shortLabel}</span>
+                    <span className="ms-board-slip__body">
+                      <span className="ms-board-slip__name">Browse {q.label} subjects</span>
+                    </span>
+                    <span className="ms-board-slip__go" aria-hidden>
+                      -&gt;
+                    </span>
                   </Link>
                 </li>
               )

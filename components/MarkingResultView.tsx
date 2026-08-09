@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import Link from 'next/link'
-import { AlertCircle, CheckCircle2, ChevronRight, Info, Lock, Sparkles } from 'lucide-react'
+import { ChevronRight } from 'lucide-react'
 import { WeakSpotDrillCard } from '@/components/insights/WeakSpotDrillCard'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import { AskOmniAboutMark } from '@/components/omni-ai/AskOmniAboutMark'
@@ -33,6 +33,7 @@ import { MarkSnippet } from '@/components/mark/MarkSnippet'
 import { MarkSchemeRubricPanel } from '@/components/mark/MarkSchemeRubricPanel'
 import { QuestionContextCard } from '@/components/mark/QuestionContextCard'
 import { ScoreReveal } from '@/components/mark/ScoreReveal'
+import { Disclosure } from '@/components/ui/Disclosure'
 import type { MarkSchemeMeta } from '@/components/mark/QuestionContextCard'
 import type { MarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
 
@@ -123,6 +124,7 @@ export function MarkingResultView({
   attemptId,
   inkPages,
   isPaid,
+  primaryAction,
 }: {
   result: MarkingResultData
   attemptId?: string | null
@@ -133,6 +135,11 @@ export function MarkingResultView({
    * flow; omit elsewhere (e.g. historical attempt view) to suppress the teaser.
    */
   isPaid?: boolean
+  /**
+   * MK-05 — “what should I do next?” sits after the mark gap / band ladder,
+   * before mark-by-mark evidence, so the action isn’t buried under audit chrome.
+   */
+  primaryAction?: ReactNode
 }) {
   const [showOCR, setShowOCR] = useState(false)
   const marksAwarded = result.ai_marking?.marks_awarded
@@ -266,7 +273,7 @@ export function MarkingResultView({
     <>
       {result.marking_mode === 'official_mark_scheme' && result.detected_paper && (
         <div className="ec-banner ec-banner-success">
-          <CheckCircle2 className="ec-banner__icon h-5 w-5 shrink-0" />
+          <span className="ec-banner__icon inline-grid h-5 min-w-5 shrink-0 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]" aria-hidden>✓</span>
           <div>
             <p className="ec-banner__title">
               Marked with the official {boardLabel} mark scheme
@@ -282,7 +289,7 @@ export function MarkingResultView({
 
       {result.marking_mode === 'general_criteria_paper_not_in_db' && (
         <div className="ec-banner ec-banner-warning">
-          <AlertCircle className="ec-banner__icon mt-0.5 h-5 w-5 shrink-0" />
+          <span className="ec-banner__icon mt-0.5 inline-grid h-5 min-w-5 shrink-0 place-items-center rounded border border-[color-mix(in_srgb,var(--ec-chip-critical-text)_40%,transparent)] bg-[color-mix(in_srgb,var(--ec-chip-critical-text)_12%,transparent)] px-1 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-chip-critical-text)]" aria-hidden>!</span>
           <div className="flex-1">
             <p className="ec-banner__title">
               This past paper is not in our database yet
@@ -308,7 +315,7 @@ export function MarkingResultView({
 
       {result.marking_mode === 'general_criteria_practice' && (
         <div className="ec-banner ec-banner-info">
-          <Info className="ec-banner__icon h-5 w-5 shrink-0" />
+          <span className="ec-banner__icon inline-grid h-5 min-w-5 shrink-0 place-items-center rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-1 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-text-secondary)]" aria-hidden>i</span>
           <div>
             <p className="ec-banner__title">
               Marked with {boardLabel}{' '}
@@ -331,7 +338,7 @@ export function MarkingResultView({
 
       {result.marking_mode === 'general_criteria' && (
         <div className="ec-banner ec-banner-info">
-          <Info className="ec-banner__icon h-5 w-5 shrink-0" />
+          <span className="ec-banner__icon inline-grid h-5 min-w-5 shrink-0 place-items-center rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-1 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-text-secondary)]" aria-hidden>i</span>
           <div>
             <p className="ec-banner__title">
               Marked with general {isIb ? 'IB' : 'A-Level'} criteria
@@ -355,24 +362,44 @@ export function MarkingResultView({
               {overline}
             </p>
           ) : null}
-          {/* The score is the moment the whole wait pays off — it gets a meter
-              and a hero figure, not a text heading. The h2 stays for document
-              structure and screen readers; the visual is aria-hidden from it. */}
-          <h2 className="sr-only">
+          {/* Route title unmounts when a result is shown, so this is the page h1 (A11Y-02).
+              Visually the tally slip carries the score; this heading is for structure + focus. */}
+          <h1 id="mark-result-heading" className="sr-only" tabIndex={-1}>
             {result.marks_earned} / {result.total_marks} —{' '}
             {resultSubheading(result.marks_earned, result.total_marks)}
-          </h2>
+          </h1>
           <ScoreReveal
             marksEarned={result.marks_earned}
             totalMarks={result.total_marks}
             percentage={percentage}
             grade={isIb ? null : grade.grade}
             nextGrade={nextGradeStep}
+            activeMarkId={String(
+              marks[selectedIndex]?.mark_id ?? selectedIndex
+            )}
             marks={marks.map((m, i) => ({
               id: String(m.mark_id ?? i),
               earned: !!m.earned,
               label: m.type?.trim() || `Mark ${i + 1}`,
+              reason: m.earned
+                ? null
+                : m.reasoning?.trim()
+                  ? m.reasoning.trim().length > 140
+                    ? `${m.reasoning.trim().slice(0, 137)}…`
+                    : m.reasoning.trim()
+                  : null,
             }))}
+            report={{
+              subjectLabel:
+                getSubjectByCode(badgeSubjectCode ?? '')?.label ??
+                badgeSubjectCode ??
+                null,
+              paperRef: overline,
+              topics: [
+                ...(result.ai_marking?.weak_topics ?? []),
+                ...(result.syllabus_tags ?? []).map(String),
+              ].filter(Boolean).slice(0, 6),
+            }}
             onSelectMark={(id) => {
               const idx = marks.findIndex(
                 (m, i) => String(m.mark_id ?? i) === id
@@ -383,240 +410,241 @@ export function MarkingResultView({
         </div>
       </div>
 
-      <QuestionContextCard result={result} subjectCode={badgeSubjectCode} />
+      {/* MK-05 outcome layer: score → verdict → recover → act → evidence. */}
+      <div className="ms-mark-verdict mt-5">
+        <p className="ms-micro" style={{ marginBottom: 10 }}>
+          VERDICT
+        </p>
+        <h2 className="ms-h3">What the examiner saw</h2>
+        <div className="leading-relaxed text-[var(--ec-text-secondary)]">
+          <RichTextRenderer text={result.ai_marking?.summary ?? ''} />
+        </div>
+      </div>
 
-      {/* How the work was marked belongs here — before the breakdown, not
-          buried below it. A student reads the authority of the mark (official
-          scheme vs general criteria) as part of the context, then dives in. */}
-      {markingModeBanner}
+      <div className="ms-mark-authority mt-4">{markingModeBanner}</div>
 
-      {hasStructuredResult || hasCriteria ? (
-        <div className="ms-result-grid">
-          {bandLadderShown && bandGap && (
-            <div>
-              <MarkBandLadder
-                gap={bandGap}
-                justification={result.ai_marking.band_result?.justification}
-              />
-            </div>
-          )}
-          {hasStructuredResult && (
-          <div>
-            {inkPages && inkPages.length > 0 ? (
-              <div className="ms-mark-ink-block">
-                <ExaminerInkPerPage
-                  pages={inkPages}
-                  attemptId={attemptId ?? undefined}
-                  animate
-                  activeRefId={activeInkKey}
-                  onActiveMarkChange={handleInkRefSelect}
-                  ghostFixes={ghostFixes}
-                />
-              </div>
-            ) : null}
-
-            <MarkGapPanel
-              gap={markGap}
-              activeMarkId={activeMarkId}
-              onSelectMark={handleInkMarkSelect}
-            />
-
-            <ExamSheet
-              head="Your script, with Examiner's Ink"
-              headRight="tap a line"
-              tally={`${result.marks_earned} / ${result.total_marks}`}
-              cite={
-                selectedMark?.reasoning ? (
-                  <RichTextRenderer text={selectedMark.reasoning} />
-                ) : null
-              }
-            >
-              {marks.map((mark, i) => (
-                <ExamSheetLine
-                  key={String(mark.mark_id)}
-                  work={<MarkSnippet text={sheetWork(mark)} />}
-                  mark={`${mark.type} ${mark.earned ? '✓' : '✗'}`}
-                  ok={mark.earned}
-                  note={
-                    mark.margin_note ? (
-                      <MarkSnippet text={mark.margin_note} className="ms-mark-snippet--inline" />
-                    ) : undefined
-                  }
-                  noteOk={mark.earned}
-                  active={selectedIndex === i}
-                  onClick={() => setSelectedIndex(i)}
-                />
-              ))}
-            </ExamSheet>
-            <p className="ms-micro" style={{ marginTop: 14 }}>
-              CLICK ANY LINE — THE AUDIT AND SCHEME CITATION FOLLOW IT
-            </p>
-          </div>
-          )}
-
-          {showAudit && (
-            <MarkAuditPanel
-              marks={marks}
-              selectedIndex={selectedIndex}
-              onSelect={setSelectedIndex}
-              marksEarned={result.marks_earned}
-              totalMarks={result.total_marks}
-              gradeLabel={isIb ? null : grade.grade}
-              schemeLabel={schemeLabel(result)}
-              bandResult={
-                bandLadderShown ? undefined : result.ai_marking.band_result
-              }
-              criteriaResults={result.ai_marking.criteria_results}
-              rubric={result.mark_scheme_rubric}
-            />
-          )}
-          {result.mark_scheme_rubric &&
-          result.marking_mode === 'official_mark_scheme' ? (
-            <MarkSchemeRubricPanel
-              rubric={result.mark_scheme_rubric}
-              activeMarkType={activeMarkId}
-              compact
-              hideBands={bandLadderShown}
-            />
-          ) : null}
+      {bandLadderShown && bandGap ? (
+        <div className="mt-6">
+          <MarkBandLadder
+            gap={bandGap}
+            justification={result.ai_marking.band_result?.justification}
+          />
         </div>
       ) : null}
 
-      <div className={hasStructuredResult ? 'ms-mark-secondary' : 'space-y-6'}>
-        {/* SUMMARY first — the plain-English verdict a student reads before the
-            topic tags or study links. */}
-        <div>
-          <p className="ms-micro" style={{ marginBottom: 12 }}>
-            SUMMARY
-          </p>
-          <h3 className="ms-h3">What the examiner saw</h3>
-          <div className="leading-relaxed text-[var(--ec-text-secondary)]">
-            <RichTextRenderer text={result.ai_marking?.summary ?? ''} />
-          </div>
+      {hasStructuredResult ? (
+        <div className="mt-6">
+          <MarkGapPanel
+            gap={markGap}
+            activeMarkId={activeMarkId}
+            onSelectMark={handleInkMarkSelect}
+          />
         </div>
+      ) : null}
 
-        {result.syllabus_tags && result.syllabus_tags.length > 0 && (
-          <div>
-            <p className="ms-micro" style={{ marginBottom: 12 }}>
-              TOPICS COVERED
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {result.syllabus_tags.map((code) => (
-                <SyllabusTopicBadge
-                  key={code}
-                  code={code}
-                  subjectCode={badgeSubjectCode}
-                  size="md"
-                />
-              ))}
-            </div>
-          </div>
-        )}
+      {showRewriteTeaser ? (
+        <div className="mt-6">
+          <FullMarksRewriteTeaser diagnosis={postMarkDiagnosis} />
+        </div>
+      ) : null}
 
-        {result.ai_marking.full_marks_rewrite && (
+      {result.ai_marking.full_marks_rewrite ? (
+        <div className="mt-6">
           <FullMarksRewritePanel rewrite={result.ai_marking.full_marks_rewrite} />
-        )}
+        </div>
+      ) : null}
 
-        {showRewriteTeaser && <FullMarksRewriteTeaser diagnosis={postMarkDiagnosis} />}
+      {primaryAction ? (
+        <div className="ms-mark-primary-action mt-7">{primaryAction}</div>
+      ) : null}
 
-        {result.ai_marking.estimated_marks_explanation && (
-          <div className="ec-banner ec-banner-warning">
-            <p className="ec-banner__meta leading-relaxed">
-              <strong className="ec-banner__title">Marking note:</strong>{' '}
-              <RichTextRenderer text={result.ai_marking.estimated_marks_explanation} />
-            </p>
+      {hasStructuredResult || showAudit || hasCriteria ? (
+        <Disclosure
+          className="ms-mark-evidence mt-7"
+          summaryClassName="ms-mark-evidence__summary"
+          summary={
+            <>
+              <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                INK
+              </span>
+              See mark-by-mark evidence
+            </>
+          }
+          hint="script, audit, scheme"
+        >
+          <div className="ms-result-grid mt-4">
+            {hasStructuredResult ? (
+              <div>
+                {inkPages && inkPages.length > 0 ? (
+                  <div className="ms-mark-ink-block">
+                    <ExaminerInkPerPage
+                      pages={inkPages}
+                      attemptId={attemptId ?? undefined}
+                      animate
+                      activeRefId={activeInkKey}
+                      onActiveMarkChange={handleInkRefSelect}
+                      ghostFixes={ghostFixes}
+                    />
+                  </div>
+                ) : null}
+
+                <ExamSheet
+                  head="Your script, with Examiner's Ink"
+                  headRight="tap a line"
+                  tally={`${result.marks_earned} / ${result.total_marks}`}
+                  cite={
+                    selectedMark?.reasoning ? (
+                      <RichTextRenderer text={selectedMark.reasoning} />
+                    ) : null
+                  }
+                >
+                  {marks.map((mark, i) => (
+                    <ExamSheetLine
+                      key={String(mark.mark_id)}
+                      work={<MarkSnippet text={sheetWork(mark)} />}
+                      mark={`${mark.type} ${mark.earned ? '✓' : '✗'}`}
+                      ok={mark.earned}
+                      note={
+                        mark.margin_note ? (
+                          <MarkSnippet
+                            text={mark.margin_note}
+                            className="ms-mark-snippet--inline"
+                          />
+                        ) : undefined
+                      }
+                      noteOk={mark.earned}
+                      active={selectedIndex === i}
+                      onClick={() => setSelectedIndex(i)}
+                    />
+                  ))}
+                </ExamSheet>
+                <p className="ms-micro" style={{ marginTop: 14 }}>
+                  TAP ANY LINE — THE AUDIT AND SCHEME CITATION FOLLOW IT
+                </p>
+              </div>
+            ) : null}
+
+            {showAudit ? (
+              <MarkAuditPanel
+                marks={marks}
+                selectedIndex={selectedIndex}
+                onSelect={setSelectedIndex}
+                marksEarned={result.marks_earned}
+                totalMarks={result.total_marks}
+                gradeLabel={isIb ? null : grade.grade}
+                schemeLabel={schemeLabel(result)}
+                bandResult={
+                  bandLadderShown ? undefined : result.ai_marking.band_result
+                }
+                criteriaResults={result.ai_marking.criteria_results}
+                rubric={result.mark_scheme_rubric}
+              />
+            ) : null}
+            {result.mark_scheme_rubric &&
+            result.marking_mode === 'official_mark_scheme' ? (
+              <MarkSchemeRubricPanel
+                rubric={result.mark_scheme_rubric}
+                activeMarkType={activeMarkId}
+                compact
+                hideBands={bandLadderShown}
+              />
+            ) : null}
           </div>
-        )}
+        </Disclosure>
+      ) : null}
 
-        {result.ai_marking.band_result &&
-          result.ai_marking.band_result.strengths &&
-          result.ai_marking.band_result.strengths.length > 0 && (
-            <div className="ec-card p-5 sm:p-7">
-              <p className="ms-micro" style={{ marginBottom: 12 }}>
-                STRENGTHS
-              </p>
-              <ul className="list-inside list-disc space-y-1 text-[var(--ec-text-secondary)]">
-                {result.ai_marking.band_result.strengths.map((s, i) => (
-                  <li key={i}>
-                    <RichTextRenderer text={s} />
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+      <Disclosure
+        className="ms-mark-more mt-6"
+        summaryClassName="ms-mark-more__summary"
+        summary="More about this mark"
+        hint="topics, notes, extras"
+      >
+        <div className="ms-mark-secondary mt-4">
+          <QuestionContextCard result={result} subjectCode={badgeSubjectCode} />
 
-        {result.ai_marking.weak_topics &&
-          result.ai_marking.weak_topics.length > 0 && (
+          {result.syllabus_tags && result.syllabus_tags.length > 0 && (
             <div>
               <p className="ms-micro" style={{ marginBottom: 12 }}>
-                TOPICS TO WORK ON
+                TOPICS COVERED
               </p>
-              <h3 className="ms-h3">Where you lost marks</h3>
-              <ul className="space-y-2">
-                {result.ai_marking.weak_topics.map((topic, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-2 text-[var(--ec-text-secondary)]"
-                  >
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--ec-chip-warning-text)]" />
-                    <span>
-                      <RichTextRenderer text={topic} />
-                    </span>
-                  </li>
+              <div className="flex flex-wrap gap-2">
+                {result.syllabus_tags.map((code) => (
+                  <SyllabusTopicBadge
+                    key={code}
+                    code={code}
+                    subjectCode={badgeSubjectCode}
+                    size="md"
+                  />
                 ))}
-              </ul>
+              </div>
             </div>
           )}
 
-        {result.syllabus_tags &&
-        result.syllabus_tags.length > 0 &&
-        badgeSubjectCode &&
-        result.total_marks > 0 &&
-        result.marks_earned < result.total_marks ? (
-          <StudyLessonsBlock
-            subjectCode={badgeSubjectCode}
-            codes={result.syllabus_tags}
-          />
-        ) : null}
-
-        {result.ai_marking.what_to_study_next && (
-          <div className="ec-card p-6">
-            <p className="ms-micro" style={{ marginBottom: 12 }}>
-              WHAT TO STUDY NEXT
-            </p>
-            <div className="leading-relaxed text-[var(--ec-text-secondary)]">
-              <RichTextRenderer text={result.ai_marking.what_to_study_next} />
+          {result.ai_marking.estimated_marks_explanation && (
+            <div className="ec-banner ec-banner-warning">
+              <p className="ec-banner__meta leading-relaxed">
+                <strong className="ec-banner__title">Marking note:</strong>{' '}
+                <RichTextRenderer text={result.ai_marking.estimated_marks_explanation} />
+              </p>
             </div>
-          </div>
-        )}
+          )}
 
-        {isPaid && badgeSubjectCode && (
-          <WeakSpotDrillCard subjectCode={badgeSubjectCode} />
-        )}
-
-        {attemptId && (
-          <div className="flex justify-center pt-2">
-            <AskOmniAboutMark attemptId={attemptId} />
-          </div>
-        )}
-
-        {result.ocr_text && (
-          <div>
-            <button
-              type="button"
-              onClick={() => setShowOCR(!showOCR)}
-              className="font-mono text-xs font-medium text-[var(--ec-text-secondary)] underline ec-link-muted"
-            >
-              {showOCR ? 'HIDE' : 'SHOW'} WHAT THE AI READ FROM YOUR HANDWRITING
-            </button>
-            {showOCR && (
-              <pre className="mt-2 max-w-full overflow-x-auto break-words whitespace-pre-wrap rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4 font-mono text-xs text-[var(--ec-text-secondary)]">
-                {result.ocr_text}
-              </pre>
+          {result.ai_marking.band_result &&
+            result.ai_marking.band_result.strengths &&
+            result.ai_marking.band_result.strengths.length > 0 && (
+              <div className="ec-card ec-card--paper p-5 sm:p-7">
+                <p className="ms-micro" style={{ marginBottom: 12 }}>
+                  STRENGTHS
+                </p>
+                <ul className="list-inside list-disc space-y-1 text-[var(--ec-text-secondary)]">
+                  {result.ai_marking.band_result.strengths.map((s, i) => (
+                    <li key={i}>
+                      <RichTextRenderer text={s} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
             )}
-          </div>
-        )}
-      </div>
+
+          {result.syllabus_tags &&
+          result.syllabus_tags.length > 0 &&
+          badgeSubjectCode &&
+          result.total_marks > 0 &&
+          result.marks_earned < result.total_marks ? (
+            <StudyLessonsBlock
+              subjectCode={badgeSubjectCode}
+              codes={result.syllabus_tags}
+            />
+          ) : null}
+
+          {isPaid && badgeSubjectCode && (
+            <WeakSpotDrillCard subjectCode={badgeSubjectCode} />
+          )}
+
+          {attemptId && (
+            <div className="flex justify-center pt-2">
+              <AskOmniAboutMark attemptId={attemptId} />
+            </div>
+          )}
+
+          {result.ocr_text && (
+            <div>
+              <button
+                type="button"
+                onClick={() => setShowOCR(!showOCR)}
+                className="font-mono text-xs font-medium text-[var(--ec-text-secondary)] underline ec-link-muted"
+              >
+                {showOCR ? 'HIDE' : 'SHOW'} WHAT THE AI READ FROM YOUR HANDWRITING
+              </button>
+              {showOCR && (
+                <pre className="ec-card ec-card--paper mt-2 max-w-full overflow-x-auto break-words whitespace-pre-wrap border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] p-4 font-mono text-xs text-[var(--ec-text-secondary)]">
+                  {result.ocr_text}
+                </pre>
+              )}
+            </div>
+          )}
+        </div>
+      </Disclosure>
     </div>
   )
 }
@@ -635,18 +663,23 @@ function FullMarksRewritePanel({
   }
 }) {
   return (
-    <div className="ec-card border-[var(--ec-brand)]/30 p-5 sm:p-7">
+    <div className="ec-card ec-card--paper border-[var(--ec-brand)]/30 p-5 sm:p-7">
       <div className="mb-3 flex items-center gap-2">
-        <Sparkles className="h-4 w-4 shrink-0 text-[var(--ec-brand)]" />
+        <span
+          className="inline-grid h-6 min-w-6 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1.5 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]"
+          aria-hidden
+        >
+          A*
+        </span>
         <p className="ms-micro" style={{ margin: 0 }}>
           REWRITTEN TO FULL MARKS
         </p>
       </div>
       <h3 className="ms-h3">Your answer, taken to full marks</h3>
-      <p className="mb-4 text-sm text-[var(--ec-text-faint)]">
+      <p className="mb-4 text-sm text-[var(--ec-text-secondary)]">
         Your own answer, rewritten to show exactly what earns every mark.
       </p>
-      <div className="rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4 leading-relaxed text-[var(--ec-text-primary)]">
+      <div className="ec-card ec-card--paper border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] p-4 leading-relaxed text-[var(--ec-text-primary)]">
         <RichTextRenderer text={rewrite.rewritten_answer} />
       </div>
 
@@ -684,9 +717,9 @@ function FullMarksRewriteTeaser({
   diagnosis: PostMarkDiagnosis | null
 }) {
   return (
-    <div className="ec-card relative overflow-hidden border-[var(--ec-brand)]/30 p-5 sm:p-7">
+    <div className="ec-card ec-card--paper relative overflow-hidden border-[var(--ec-brand)]/30 p-5 sm:p-7">
       <div className="mb-3 flex items-center gap-2">
-        <Lock className="h-4 w-4 shrink-0 text-[var(--ec-brand)]" />
+        <span className="inline-grid h-5 min-w-5 shrink-0 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]" aria-hidden>L</span>
         <p className="ms-micro" style={{ margin: 0 }}>
           PREMIUM
         </p>
@@ -721,7 +754,7 @@ function FullMarksRewriteTeaser({
       )}
       <div
         aria-hidden
-        className="mt-4 space-y-2 rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4 blur-[3px] select-none"
+        className="ec-card ec-card--paper mt-4 space-y-2 border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] p-4 opacity-40 select-none"
       >
         <div className="h-3 w-11/12 rounded bg-[var(--ec-border)]" />
         <div className="h-3 w-full rounded bg-[var(--ec-border)]" />
@@ -732,7 +765,9 @@ function FullMarksRewriteTeaser({
         href="/pricing"
         className="ec-btn ec-btn-primary mt-5 inline-flex items-center gap-1.5"
       >
-        <Sparkles className="h-4 w-4" />
+        <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+          A*
+        </span>
         Unlock full-marks rewrites
       </Link>
     </div>
@@ -807,7 +842,7 @@ function StudyLessonsBlock({
   if (!lessons.length) return null
 
   return (
-    <div className="ec-card border-[var(--ec-brand)]/25 p-6">
+    <div className="ec-card ec-card--paper border-[var(--ec-brand)]/25 p-6">
       <p className="ms-micro" style={{ marginBottom: 12 }}>
         STUDY THE LESSONS THAT FIX THIS
       </p>
@@ -820,7 +855,7 @@ function StudyLessonsBlock({
           >
             <span className="text-sm font-medium text-[var(--ec-text-primary)]">
               {l.name}{' '}
-              <span className="text-[var(--ec-text-faint)]">· {l.code}</span>
+              <span className="text-[var(--ec-text-secondary)]">· {l.code}</span>
             </span>
             <span className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-[var(--ec-brand)]">
               Study

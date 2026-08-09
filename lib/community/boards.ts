@@ -7,14 +7,14 @@ export const COMMUNITY_BOARDS = [
     label: 'Cambridge A-Level',
     short: 'A-Level',
     sub: 'CAIE · 15 subjects',
-    glyph: '🎓',
+    glyph: 'CAIE',
   },
   {
     id: 'ib' as const,
     label: 'IB Diploma',
     short: 'IB',
     sub: 'HL & SL programmes',
-    glyph: '🌍',
+    glyph: 'IB',
   },
 ] as const
 

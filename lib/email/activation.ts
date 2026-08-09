@@ -276,22 +276,22 @@ export function sendFinishOnboardingEmail(payload: {
 }): void {
   const greeting = greetingFor(payload.recipientName)
   const href = `${SITE_URL}/onboarding`
-  const preheader = 'Pick your subjects and the marker opens on the right paper.'
+  const preheader = 'Board + one subject — then the marker opens on the right paper.'
 
   const bodyHtml =
     `<p style="margin:0 0 4px;font-size:16px;color:${EMAIL_INK}">Hi ${esc(greeting)},</p>` +
-    `<p style="margin:0 0 18px;font-size:15px;line-height:1.6;color:#555">You created an account but didn't finish picking your subjects, so there's nothing set up to mark against yet.</p>` +
+    `<p style="margin:0 0 18px;font-size:15px;line-height:1.6;color:#555">You created an account but didn't finish setup, so there's nothing set up to mark against yet.</p>` +
     calloutHtml(
-      'It is four questions — your board, your subjects, your year, and when your exam is. After that the marker opens on the right paper instead of asking you to find it.',
+      'One screen: pick your exam board and the subject you are marking now. Exam date and target grade stay optional. Then the marker opens on the right paper.',
       'Under a minute'
     )
 
   const text = [
     `Hi ${greeting},`,
     '',
-    "You created an account but didn't finish picking your subjects, so there's nothing set up to mark against yet.",
+    "You created an account but didn't finish setup, so there's nothing set up to mark against yet.",
     '',
-    'It is four questions — your board, your subjects, your year, and when your exam is.',
+    'One screen: pick your exam board and the subject you are marking now. Exam date and target grade stay optional.',
     '',
     `Finish setting up: ${href}`,
     '',

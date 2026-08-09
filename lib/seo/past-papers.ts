@@ -107,7 +107,7 @@ export function buildPastPaperSubjectCopy(subject: PastPaperSubject) {
       ...(years[0] ? [`${code} ${years[0]} past paper`] : []),
     ],
     ogImagePath: subject.hasMarking
-      ? `/subjects/${code}/opengraph-image`
-      : `/past-papers/opengraph-image`,
+      ? `/api/og/subject/${code}`
+      : '/api/og/page/past-papers',
   }
 }

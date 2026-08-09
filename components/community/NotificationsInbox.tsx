@@ -20,12 +20,12 @@ const PAGE_SIZE = 30
 
 function notifIcon(type: string): string {
   if (type === 'reply') return '↩'
-  if (type === 'digest') return '🔥'
+  if (type === 'digest') return '★'
   if (type === 'upvote' || type === 'comment_upvote') return '↑'
   if (type === 'mention') return '@'
-  if (type === 'milestone') return '⭐'
-  if (type === 'thread') return '🧵'
-  return '💬'
+  if (type === 'milestone') return '★'
+  if (type === 'thread') return '#'
+  return '#'
 }
 
 export function NotificationsInbox() {

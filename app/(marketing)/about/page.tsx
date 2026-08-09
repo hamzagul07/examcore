@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { AboutPersonJsonLd } from '@/components/seo/AboutPersonJsonLd'
 import { AboutGeoIntro } from '@/components/seo/AboutGeoIntro'
@@ -61,14 +61,18 @@ export default function AboutPage() {
       <AboutGeoIntro />
       <MarketingSection className="!pt-0">
         <div className="mx-auto max-w-3xl">
-          <div id="hamza-gul" className="ms-story-founder scroll-mt-24">
-            <div className="ms-story-avatar">
-              <span
-                className="font-[family-name:var(--ec-font-handwriting)] text-[19px] leading-tight text-[var(--ec-brand)]"
-              >
-                Hamza Gul ✎
-              </span>
-            </div>
+          <div id="hamza-gul" className="ms-story-founder ms-story-founder--paper scroll-mt-24">
+            <aside className="ms-founder-note" aria-hidden>
+              <p className="ms-founder-note__ruled">
+                past papers without
+                <br />
+                the examiner&apos;s eye
+                <br />
+                are half the loop —
+              </p>
+              <p className="ms-founder-note__sign">— Hamza Gul</p>
+              <span className="ms-founder-note__stamp">M1</span>
+            </aside>
             <div>
               <p className="ms-founder-quote">
                 &ldquo;Past papers without the examiner&apos;s eye are half the loop. You practise,
@@ -151,7 +155,7 @@ export default function AboutPage() {
               and what we should improve.
             </p>
             <Link href="/contact" className="ec-btn-primary mt-6 inline-flex min-h-[48px]">
-              Get in touch <ArrowRight className="h-5 w-5" />
+              Get in touch <span className="h-5 w-5" aria-hidden>-&gt;</span>
             </Link>
           </div>
         </div>

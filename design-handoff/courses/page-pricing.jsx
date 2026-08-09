@@ -40,8 +40,8 @@ function PricingPage({ go }) {
           <p className="overline">Pricing · honest &amp; student-first</p>
           <h1 className="h-display" style={{ fontSize: 'clamp(38px,5vw,64px)' }}>The courses are <em>free.</em><br/>Always.</h1>
           <p className="lead" style={{ marginTop: 16 }}>
-            Every course, lesson and flashcard is free forever. Plus unlocks unlimited marking and projected
-            grades — and founding members lock in <InkScribble>50% off, forever</InkScribble>.
+            Every course, lesson and flashcard is free forever. Paid plans add higher monthly marking
+            allowances and projected grades — and founding members lock in <InkScribble>50% off, forever</InkScribble>.
           </p>
         </header>
 
@@ -72,7 +72,7 @@ function PricingPage({ go }) {
         <div className="pricing-faqs">
           <h2 className="h3" style={{ marginBottom: 14 }}>Honest answers</h2>
           {[
-            { q: 'Are the courses really free?', a: 'Yes — all 15 courses, every lesson, flashcards and exam tips are free forever, no card required. Plus only adds unlimited marking and projected grades.' },
+            { q: 'Are the courses really free?', a: 'Yes — all 15 courses, every lesson, flashcards and exam tips are free forever, no card required. Paid plans add higher monthly marking allowances and projected grades.' },
             { q: 'What does “founding member” mean?', a: 'Sign up while we’re young and your 50% discount is locked in for as long as you keep your subscription — even after prices rise.' },
             { q: 'Is the marking really the official scheme?', a: 'We mark against the real Cambridge mark scheme for that exact question — B1/M1/A1, MCQ keys, essay bands — not a generic AI guess. We’re honest where AI is uncertain.' },
           ].map((f, i) => <Faq key={i} f={f} />)}

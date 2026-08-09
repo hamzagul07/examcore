@@ -113,30 +113,14 @@
 
 /* Gradient headline accent */
 .ec-gradient-text {
-  background: linear-gradient(
-    120deg,
-    var(--ec-brand-deep) 0%,
-    var(--ec-c-phys) 42%,
-    var(--ec-c-chem) 78%,
-    var(--ec-accent-warm-deep) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--ec-brand);
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: unset;
 }
 
-[data-ec-theme='late-night'] .ec-gradient-text {
-  background: linear-gradient(
-    120deg,
-    var(--ec-brand) 0%,
-    var(--ec-c-phys) 40%,
-    var(--ec-c-chem) 75%,
-    var(--ec-accent-warm) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+[data-ec-theme='late-night'] .ec-gradient-text { color: var(--ec-brand); }
 
 /* Kicker underline accent */
 .ec-kicker-accent {
@@ -196,7 +180,7 @@
 .ec-loading-dots span {
   width: 5px;
   height: 5px;
-  border-radius: 50%;
+  border-radius: 2px;
   background: currentColor;
   opacity: 0.45;
   animation: ec-loading-dot-bounce 0.9s ease-in-out infinite;
@@ -256,7 +240,7 @@
   display: inline-block;
   width: 8px;
   height: 8px;
-  border-radius: 50%;
+  border-radius: 2px;
   background: var(--ec-brand);
   animation: ec-inline-saving-pulse 1s ease-in-out infinite;
 }
@@ -268,7 +252,7 @@
   width: 10px;
   height: 10px;
   margin-top: -5px;
-  border-radius: 50%;
+  border-radius: 2px;
   border: 2px solid var(--ec-brand);
   animation: ec-btn-pulse-ring 1s ease-out infinite;
 }
@@ -349,7 +333,7 @@
   position: relative;
   margin: -28px -26px 16px;
   padding: 22px 26px 18px;
-  border-radius: 13px 13px 0 0;
+  border-radius: 4px 4px 0 0;
   overflow: hidden;
 }
 

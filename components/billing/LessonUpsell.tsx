@@ -1,22 +1,24 @@
 'use client'
 
 import Link from 'next/link'
-import { Sparkles } from 'lucide-react'
 
 type Feature = 'diagrams' | 'practice' | 'interactive'
 
-const COPY: Record<Feature, { title: string; body: string }> = {
+const COPY: Record<Feature, { title: string; body: string; stamp: string }> = {
   diagrams: {
     title: 'Live diagrams & step-by-step visuals',
     body: 'Play interactive diagrams, drag the controls, and walk through each step.',
+    stamp: '◇',
   },
   practice: {
     title: 'Past-paper practice questions',
     body: 'Try a real Cambridge question for this topic and mark it against the official scheme.',
+    stamp: 'M1',
   },
   interactive: {
     title: 'Flashcards, quick checks & concept maps',
     body: 'Test yourself with active-recall flashcards, quizzes, and connected concept maps.',
+    stamp: '¶',
   },
 }
 
@@ -31,12 +33,12 @@ export function LessonUpsell({
   feature: Feature
   signedIn?: boolean
 }) {
-  const { title, body } = COPY[feature]
+  const { title, body, stamp } = COPY[feature]
   const cta = signedIn ? 'See plans →' : 'Create free account →'
   return (
-    <div className="lesson-upsell card" data-screen-label="Lesson — upgrade">
-      <span className="lesson-upsell-icon" aria-hidden>
-        <Sparkles size={18} />
+    <div className="lesson-upsell card lesson-upsell--paper" data-screen-label="Lesson — upgrade">
+      <span className="ec-ink-stamp lesson-upsell-icon" aria-hidden>
+        {stamp}
       </span>
       <div className="lesson-upsell-body">
         <p className="lesson-upsell-title serif">{title}</p>

@@ -18,7 +18,7 @@ export function CommunitySearchBar({ subjectCode, defaultValue = '' }: { subject
 
   return (
     <form onSubmit={go} className="rc-searchbar">
-      <span className="rc-searchbar-icon" aria-hidden>🔍</span>
+      <span className="rc-searchbar-icon" aria-hidden>/</span>
       <input
         className="rc-searchbar-input"
         value={q}

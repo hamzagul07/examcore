@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import type { ReactNode } from 'react'
 import type { MarginNotesSubject } from '@/lib/courses/margin-notes/types'
 import type { ContinueCatalogEntry } from '@/lib/courses/margin-notes/continue-learning'
 import { ContinueLearningStrip } from '@/components/courses/margin-notes/ContinueLearningStrip'
@@ -16,9 +17,10 @@ type Props = {
   subjects: MarginNotesSubject[]
   continueCatalog: ContinueCatalogEntry[]
   ibSubjects?: IbCatalogCard[]
+  seoIntro?: ReactNode
 }
 
-export function CourseCatalogPage({ subjects, continueCatalog, ibSubjects = [] }: Props) {
+export function CourseCatalogPage({ subjects, continueCatalog, ibSubjects = [], seoIntro }: Props) {
   const { fam, selectFam } = useFamilyFilterFromUrl()
 
   const list = fam === 'All' ? subjects : subjects.filter((s) => s.fam === fam)
@@ -32,11 +34,11 @@ export function CourseCatalogPage({ subjects, continueCatalog, ibSubjects = [] }
       <header className="catalog-hero pg">
         <div className="catalog-hero-text">
           <p className="overline">Courses · 100% free, forever</p>
-          <h2 className="h-display">
+          <h1 className="h-display">
             Premium courses,
             <br />
             <em>without the premium.</em>
-          </h2>
+          </h1>
           <p className="lead catalog-lead">
             Syllabus-aligned, topic by topic — Cambridge past-paper questions and IB criterion
             practice on every lesson. Learn it, practise it, <InkScribble>mark it</InkScribble>.
@@ -60,6 +62,8 @@ export function CourseCatalogPage({ subjects, continueCatalog, ibSubjects = [] }
       </header>
 
       <div className="pg">
+        {seoIntro}
+
         <ContinueLearningStrip catalog={continueCatalog} screenLabel="Courses — continue learning" />
 
         <div className="catalog-bar">

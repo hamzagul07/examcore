@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { MessageCircle } from 'lucide-react'
 import { getClusterForSlug } from '@/lib/seo/clusters'
 import { getFollowUpChainForSlug } from '@/lib/seo/follow-up-chain'
 
@@ -14,7 +13,7 @@ export function BlogFollowUpChain({ slug }: Props) {
   return (
     <section className="ms-blog-aside mt-12" aria-label="Follow-up questions">
       <div className="mb-4 flex items-center gap-2">
-        <MessageCircle className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden />
+        <span className="inline-grid h-5 min-w-5 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]" aria-hidden>Q</span>
         <p className="ms-overline" style={{ marginBottom: 0 }}>
           If you&apos;re still wondering
         </p>

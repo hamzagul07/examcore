@@ -8,11 +8,11 @@ export function ContactGeoSection() {
       <h2 id="contact-geo-heading" className="landing-h3 mb-4 text-[var(--ec-text-primary)]">
         Schools, press &amp; support
       </h2>
-      <dl className="contact-geo space-y-4">
+      <dl className="contact-geo ms-tool-faq">
         {CONTACT_SEO_FAQ.map((item) => (
-          <div key={item.q} className="ec-card px-5 py-4 sm:px-6">
-            <dt className="font-semibold text-[var(--ec-text-primary)]">{item.q}</dt>
-            <dd className="mt-2 text-sm leading-relaxed text-[var(--ec-text-secondary)]">{item.a}</dd>
+          <div key={item.q}>
+            <dt>{item.q}</dt>
+            <dd>{item.a}</dd>
           </div>
         ))}
       </dl>

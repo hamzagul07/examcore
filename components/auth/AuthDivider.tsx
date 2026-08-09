@@ -1,23 +1,8 @@
-import { cn } from '@/lib/utils'
-
-/** Visual separator between OAuth and email/password auth. */
-export function AuthDivider({
-  label = 'or',
-  className,
-}: {
+type Props = {
   label?: string
-  className?: string
-}) {
-  return (
-    <div className={cn('relative my-6', className)} aria-hidden>
-      <div className="absolute inset-0 flex items-center">
-        <div className="w-full border-t border-[var(--ec-border)]" />
-      </div>
-      <div className="relative flex justify-center">
-        <span className="bg-[var(--ec-surface)] px-3 text-xs font-medium uppercase tracking-wider text-[var(--ec-text-secondary)]">
-          {label}
-        </span>
-      </div>
-    </div>
-  )
+}
+
+/** Ruled filing divider between Google and email methods. */
+export function AuthDivider({ label = 'or continue with email' }: Props) {
+  return <p className="ms-auth-divider">{label}</p>
 }

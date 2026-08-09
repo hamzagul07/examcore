@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import type { CSSProperties } from 'react'
-import { ArrowRight, BookOpen, Clock } from 'lucide-react'
+
 import type { EnrichedBlogMeta } from '@/lib/blog/meta'
 import { formatBlogDate } from '@/lib/blog/meta'
 import { subjectAccent, subjectGlyph, accentCssVar } from '@/lib/courses/margin-notes/subject-meta'
@@ -24,9 +24,11 @@ export function BlogPostCard({ post, variant = 'default' }: Props) {
     >
       <div className="flex flex-wrap items-center gap-2">
         {post.spotlight ? (
-          <span className="ec-chip-ms ec-chip-ms--ok">Spotlight</span>
+          <span className="ec-ink-stamp ec-ink-stamp--inline" aria-label="Spotlight">
+            HOT
+          </span>
         ) : null}
-        <span className="ec-chip-ms ec-chip-ms--outline">{post.categoryLabel}</span>
+        <span className="ms-blog-kw-stamp">{post.categoryLabel}</span>
         {code ? (
           <span className="ec-chip ec-chip-accent subject-accented" style={{ '--acc': accentCssVar(subjectAccent(code)) } as CSSProperties}>
             <span aria-hidden="true">{subjectGlyph(code, '')}</span> {code}
@@ -37,9 +39,8 @@ export function BlogPostCard({ post, variant = 'default' }: Props) {
             {formatBlogDate(post.date)}
           </time>
         ) : null}
-        <span className="ms-micro inline-flex items-center gap-1">
-          <Clock className="h-3 w-3" aria-hidden />
-          {post.readingMinutes} min
+        <span className="ms-micro inline-flex items-center gap-1 font-mono">
+          {post.readingMinutes}m
         </span>
       </div>
 
@@ -59,13 +60,15 @@ export function BlogPostCard({ post, variant = 'default' }: Props) {
         <span className="ec-btn-underline inline-flex items-center gap-1.5 text-sm">
           {isCompact ? (
             <>
-              <BookOpen className="h-4 w-4" aria-hidden />
+              <span className="font-mono text-[11px] font-bold" aria-hidden>
+                ¶
+              </span>
               Read guide
             </>
           ) : (
             <>
               Read article
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              <span className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden>-&gt;</span>
             </>
           )}
         </span>

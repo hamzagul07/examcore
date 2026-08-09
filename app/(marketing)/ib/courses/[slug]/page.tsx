@@ -98,6 +98,7 @@ export default async function IbCoursePage({ params }: Props) {
           Same DOM, same server render; only the order changed. */}
       <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pb-10 pt-14 sm:px-6">
         <HubSeoIntro
+          quiet
           headingLevel="h2"
           heading={intro.heading}
           paragraph={intro.paragraph}
@@ -135,7 +136,7 @@ export default async function IbCoursePage({ params }: Props) {
         />
         {publishingMore ? (
           <p
-            className="mt-4 rounded-lg border border-[var(--ec-border)] bg-[var(--ec-bg-soft)] px-4 py-3 text-sm text-[var(--ec-text-secondary)]"
+            className="ec-card ec-card--paper mt-4 border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-bg-soft))] px-4 py-3 text-sm text-[var(--ec-text-secondary)]"
             role="status"
           >
             <strong className="text-[var(--ec-text-primary)]">Course in progress</strong> —{' '}

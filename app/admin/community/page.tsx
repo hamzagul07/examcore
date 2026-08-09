@@ -28,7 +28,7 @@ export default async function AdminCommunityPage() {
       </p>
 
       {queue.length === 0 ? (
-        <p className="ms-body-2">Nothing to review. 🎉</p>
+        <p className="ms-body-2">Nothing to review.</p>
       ) : (
         <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: 18 }}>
           {queue.map((item) => (

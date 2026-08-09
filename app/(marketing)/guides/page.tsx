@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { CONTENT_CLUSTERS } from '@/lib/seo/clusters'
 import { getClusterSpokes } from '@/lib/seo/cluster-spokes'
@@ -104,54 +104,55 @@ export default function GuidesIndexPage() {
           need 9709-level detail.
         </p>
 
-        <div className="ms-hub-grid" style={{ marginTop: 28 }}>
+        <ul className="ms-board-index" style={{ marginTop: 28 }}>
           {CONTENT_CLUSTERS.map((cluster) => {
             const pillar = getBlogPost(cluster.pillarBlogSlug)
             const spokeCount = getClusterSpokes(cluster.id).length
+            const stamp = cluster.id
+              .split('-')
+              .map((w) => w[0]?.toUpperCase() ?? '')
+              .join('')
+              .slice(0, 4)
             return (
-              <article key={cluster.id} className="ms-hub-card">
-                <span className="ec-chip-ms ec-chip-ms--outline">{cluster.headTerm}</span>
-                <h3 className="ms-h3" style={{ marginTop: 12 }}>
-                  <Link href={cluster.path} className="hover:text-[var(--ec-brand)]">
-                    {cluster.title}
-                  </Link>
-                </h3>
-                <p className="ms-body-2 flex-1" style={{ marginTop: 8 }}>
-                  {cluster.description}
-                </p>
-                <p className="ms-micro" style={{ marginTop: 12 }}>
-                  {spokeCount + 1} articles · Pillar:{' '}
-                  {pillar ? (
-                    <Link href={`/blog/${pillar.slug}`} className="ec-btn-underline">
-                      {pillar.title.slice(0, 48)}
-                      {pillar.title.length > 48 ? '…' : ''}
-                    </Link>
-                  ) : (
-                    cluster.pillarBlogSlug
-                  )}
-                </p>
-                <div className="mt-5 flex flex-wrap gap-3">
-                  <Link href={cluster.path} className="ec-btn-ghost ec-btn-ghost--sm">
-                    Open hub <ArrowRight className="h-4 w-4" />
-                  </Link>
-                  <Link href={cluster.moneyPath} className="ec-btn-underline">
-                    {cluster.moneyPath === '/mark' ? 'Mark a paper' : 'View subjects'}
-                  </Link>
-                </div>
-              </article>
+              <li key={cluster.id}>
+                <Link href={cluster.path} className="ms-board-slip">
+                  <span className="ms-board-slip__code">{stamp || 'G'}</span>
+                  <span className="ms-board-slip__body">
+                    <span className="ms-board-slip__name">{cluster.title}</span>
+                    <span className="ms-board-slip__meta">
+                      {spokeCount + 1} articles
+                      {pillar ? ` · ${pillar.title.slice(0, 42)}${pillar.title.length > 42 ? '…' : ''}` : ''}
+                    </span>
+                    <span className="ms-board-slip__blurb">{cluster.description}</span>
+                  </span>
+                  <span className="ms-board-slip__go" aria-hidden>
+                    -&gt;
+                  </span>
+                </Link>
+              </li>
             )
           })}
-        </div>
+        </ul>
 
-        <div className="ms-hub-card ms-hub-cta">
-          <p className="ms-greennote" style={{ margin: 0, flex: 1, minWidth: 240 }}>
-            guides tell you how marks work — the courses make you earn them ↓
+        <div className="ms-board-cross mt-10">
+          <p className="ms-overline">Put ink on the working</p>
+          <p className="ms-greennote" style={{ margin: '8px 0 0' }}>
+            guides show how marks land — now mark a real answer
           </p>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/courses" className="ec-btn-primary ec-btn-primary--sm">
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link
+              href="/mark"
+              className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+            >
+              <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                M1
+              </span>
+              Mark a question — free -&gt;
+            </Link>
+            <Link href="/courses" className="ec-btn-ghost inline-flex min-h-[48px]">
               Cambridge courses
             </Link>
-            <Link href="/ib/courses" className="ec-btn-secondary ec-btn-secondary--sm">
+            <Link href="/ib/courses" className="ec-btn-ghost inline-flex min-h-[48px]">
               IB courses
             </Link>
           </div>

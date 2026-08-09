@@ -14,6 +14,9 @@ import {
   ibSubjectsInGroup,
   edexcelSubjectGroups,
   edexcelSubjectsInGroup,
+  catalogBoardSubjectGroups,
+  catalogBoardSubjectsInGroup,
+  isCatalogBoard,
   levelsForBoard,
   type ProfileOption,
   type SubjectOption,
@@ -48,6 +51,7 @@ export function ProfileFormFields({
 }: Props) {
   const ib = isIbBoard(board)
   const edexcel = isEdexcelBoard(board)
+  const catalogBoard = isCatalogBoard(board)
 
   function handleBoardChange(nextBoard: string) {
     setBoard(nextBoard)
@@ -73,7 +77,9 @@ export function ProfileFormFields({
     ? ibSubjectGroups()
     : edexcel
       ? edexcelSubjectGroups()
-      : [...SUBJECT_GROUPS]
+      : catalogBoard
+        ? catalogBoardSubjectGroups(board)
+        : [...SUBJECT_GROUPS]
   const visibleLevels = levelsForBoard(board)
 
   return (
@@ -125,6 +131,7 @@ export function ProfileFormFields({
           selected={board}
           onSelect={handleBoardChange}
           mode="single"
+          aria-label="Exam board"
         />
       </FieldGroup>
 
@@ -135,6 +142,7 @@ export function ProfileFormFields({
             selected={level}
             onSelect={handleLevelChange}
             mode="single"
+            aria-label={edexcel ? 'IAL level' : 'Cambridge level'}
           />
         </FieldGroup>
       ) : (
@@ -155,7 +163,9 @@ export function ProfileFormFields({
               ? ibSubjectsInGroup(group)
               : edexcel
                 ? edexcelSubjectsInGroup(group)
-                : subjectsInGroup(group, level)
+                : catalogBoard
+                  ? catalogBoardSubjectsInGroup(board, group)
+                  : subjectsInGroup(group, level)
             if (groupSubjects.length === 0) return null
             return (
               <div key={group}>
@@ -204,17 +214,24 @@ type OptionGridProps =
       options: ProfileOption[]
       selected: string
       onSelect: (id: string) => void
+      'aria-label'?: string
     }
   | {
       mode: 'multi'
       options: ProfileOption[]
       selectedMany: string[]
       onToggle: (id: string) => void
+      'aria-label'?: string
     }
 
 function OptionGrid(props: OptionGridProps) {
+  const isSingle = props.mode === 'single'
   return (
-    <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+    <div
+      className="grid grid-cols-1 gap-2.5 sm:grid-cols-2"
+      role={isSingle ? 'radiogroup' : 'group'}
+      aria-label={props['aria-label']}
+    >
       {props.options.map((opt) => {
         const isActive =
           props.mode === 'single'
@@ -233,7 +250,9 @@ function OptionGrid(props: OptionGridProps) {
               else props.onToggle(opt.id)
             }}
             className={optionButtonClass(isActive, isDisabled)}
-            aria-pressed={isActive}
+            role={isSingle ? 'radio' : undefined}
+            aria-checked={isSingle ? isActive : undefined}
+            aria-pressed={isSingle ? undefined : isActive}
           >
             <span>{opt.label}</span>
             {isDisabled ? (

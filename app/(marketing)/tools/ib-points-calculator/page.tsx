@@ -1,16 +1,12 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode, softwareApplicationNode } from '@/lib/seo/structured-data'
-import {
-  MarketingHero,
-  MarketingPageShell,
-  MarketingSection,
-} from '@/components/marketing/MarketingPageShell'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { IbPointsCalculator } from '@/components/tools/IbPointsCalculator'
+import { ToolInstrumentShell } from '@/components/tools/ToolInstrumentShell'
 
 const PATH = '/tools/ib-points-calculator'
 
@@ -34,6 +30,7 @@ const FAQS = [
 ]
 
 export const metadata = getPageMetadata(PATH, {
+  ogImagePath: '/api/og/tools/ib-points-calculator',
   title: 'IB points calculator (out of 45) — TOK & EE bonus',
   description:
     'Free IB Diploma points calculator: enter your six subject grades (1–7) plus TOK and Extended Essay to get your total out of 45 and check the pass conditions.',
@@ -47,9 +44,46 @@ export const metadata = getPageMetadata(PATH, {
   ],
 })
 
+function IbArtefact() {
+  return (
+    <aside
+      className="ms-tools-artefact"
+      aria-label="Example: 38 points out of 45, diploma conditions met"
+    >
+      <div className="ms-tools-artefact__head">
+        <span className="ms-tools-artefact__kicker">Diploma · /45</span>
+        <span className="ms-tools-artefact__stamp" aria-hidden>
+          45
+        </span>
+      </div>
+      <div className="ms-tools-artefact__figure">
+        <span className="ms-tools-artefact__raw">38</span>
+        <span className="ms-tools-artefact__of">/ 45</span>
+      </div>
+      <dl className="ms-tools-artefact__rows">
+        <div className="ms-tools-artefact__row">
+          <dt>Subjects</dt>
+          <dd>36</dd>
+        </div>
+        <div className="ms-tools-artefact__row ms-tools-artefact__row--gap">
+          <dt>TOK/EE</dt>
+          <dd>+2</dd>
+        </div>
+        <div className="ms-tools-artefact__row">
+          <dt>Pass</dt>
+          <dd>Met</dd>
+        </div>
+      </dl>
+      <p className="ms-tools-artefact__cite" aria-hidden>
+        24 is the floor — conditions decide the award
+      </p>
+    </aside>
+  )
+}
+
 export default function IbPointsCalculatorPage() {
   return (
-    <MarketingPageShell>
+    <>
       <PageJsonLd
         path={PATH}
         title="IB Diploma points calculator"
@@ -62,18 +96,41 @@ export default function IbPointsCalculatorPage() {
       />
       <JsonLd data={[faqPageNode(FAQS), softwareApplicationNode()]} />
 
-      <MarketingHero
-        label="Free tool"
+      <ToolInstrumentShell
+        stamp="45"
+        label="IB Diploma instrument"
+        title={
+          <>
+            IB points <em>calculator</em>
+          </>
+        }
+        lead="Add up your IB score out of 45 — six subjects (1–7) plus the Theory of Knowledge and Extended Essay bonus — and instantly see whether you meet the diploma award conditions."
+        note="points tell you where you are — bands tell you how to climb"
+        artefact={<IbArtefact />}
         breadcrumbs={[
           { name: 'Home', path: '/' },
           { name: 'Tools', path: '/tools' },
           { name: 'IB points calculator', path: PATH },
         ]}
-        title="IB Diploma points calculator"
-        lead="Add up your IB score out of 45 — six subjects (1–7) plus the Theory of Knowledge and Extended Essay bonus — and instantly see whether you meet the diploma award conditions."
-      />
-
-      <MarketingSection className="!pt-0">
+        after={
+          <>
+            <section className="ms-tool-instrument__faq" aria-labelledby="ib-faq">
+              <h2 id="ib-faq" className="ms-tool-instrument__faq-title">
+                FAQ
+              </h2>
+              <dl className="ms-tool-faq">
+                {FAQS.map((f) => (
+                  <div key={f.q}>
+                    <dt>{f.q}</dt>
+                    <dd className="ms-body-2">{f.a}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+            <PageHelpStrip />
+          </>
+        }
+      >
         <IbPointsCalculator />
 
         <div className="mt-12 max-w-2xl">
@@ -96,25 +153,33 @@ export default function IbPointsCalculatorPage() {
           </p>
         </div>
 
-        <div className="ms-hub-card mt-12 text-center">
-          <h2 className="ms-h3">Turn a 5 into a 7</h2>
-          <p className="ms-lead mx-auto" style={{ marginTop: 10, maxWidth: 480 }}>
-            A points total tells you where you are. Free MarkScheme IB courses and markband-aware
-            practice show you how to climb a band in each subject.
-          </p>
-          <Link href="/ib/courses" className="ec-btn-primary inline-flex min-h-[48px]">
-            Explore free IB courses <ArrowRight className="h-5 w-5" />
+        <aside className="ms-mark-example-slip mt-12">
+          <div className="ms-mark-example-slip__body">
+            <span className="ec-ink-stamp" aria-hidden>
+              7
+            </span>
+            <div className="ms-mark-example-slip__copy">
+              <p className="ms-mark-example-slip__title">Turn a 5 into a 7</p>
+              <p className="ms-mark-example-slip__lead">
+                A points total tells you where you are. Free MarkScheme IB courses and markband-aware
+                practice show you how to climb a band in each subject.
+              </p>
+              <span className="ms-mark-example-slip__note" aria-hidden>
+                climb the band — don&apos;t just count the points
+              </span>
+            </div>
+          </div>
+          <Link
+            href="/ib/courses"
+            className="ec-btn-primary ms-mark-example-slip__cta inline-flex min-h-[44px] items-center gap-2"
+          >
+            Explore free IB courses
+            <span className="font-mono text-[11px] font-bold" aria-hidden>
+              -&gt;
+            </span>
           </Link>
-          <p className="ms-micro mt-6">
-            More tools:{' '}
-            <Link href="/tools" className="ec-btn-underline">
-              all free revision tools
-            </Link>
-            .
-          </p>
-        </div>
-        <PageHelpStrip />
-      </MarketingSection>
-    </MarketingPageShell>
+        </aside>
+      </ToolInstrumentShell>
+    </>
   )
 }

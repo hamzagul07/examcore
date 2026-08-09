@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { AlertTriangle, Info, Zap } from 'lucide-react'
 import { InterventionGenerator } from './InterventionGenerator'
 import {
   actionable,
@@ -55,24 +54,29 @@ export function ClassBlindspots({
 
   if (!worst) {
     return (
-      <div className="ec-card p-8">
-        <h2 className="mb-2 text-xl font-bold text-[var(--ec-text-primary)]">
-          Class blindspots
-        </h2>
-        <p className="text-[var(--ec-text-secondary)]">
-          Not enough data yet. Topics appear once a few students have been
-          marked on them.
+      <div className="ms-teacher-empty">
+        <span className="ms-teacher-empty__icon" aria-hidden>
+          <span className="font-mono text-sm font-bold tracking-wide">!</span>
+        </span>
+        <h2 className="ms-teacher-empty__title">Class blindspots</h2>
+        <p className="ms-teacher-empty__body">
+          Not enough data yet. Topics appear once a few students have been marked on them.
         </p>
       </div>
     )
   }
 
   return (
-    <section className="ms-blindspots ec-card p-6 sm:p-8">
+    <section className="ms-blindspots ec-card ec-card--paper p-6 sm:p-8">
       <div className="ms-blindspots__head">
         <div>
           <div className="mb-2 flex items-center gap-2">
-            <AlertTriangle className="h-4 w-4 ec-score-low" aria-hidden="true" />
+            <span
+              className="inline-grid h-5 min-w-5 place-items-center rounded border border-[color-mix(in_srgb,var(--ec-chip-critical-text)_40%,transparent)] bg-[color-mix(in_srgb,var(--ec-chip-critical-text)_12%,transparent)] px-1 font-mono text-[10px] font-bold tracking-wide ec-score-low"
+              aria-hidden
+            >
+              !
+            </span>
             <span className="ec-label-tech ec-score-low">Class blindspots</span>
           </div>
           <h2 className="ms-blindspots__title">
@@ -118,7 +122,9 @@ export function ClassBlindspots({
               </span>
               {t.thinEvidence && (
                 <span className="ms-bs-row__thin">
-                  <Info className="h-3 w-3" aria-hidden="true" />
+                  <span className="font-mono text-[9px] font-bold" aria-hidden>
+                    i
+                  </span>
                   too few to act on yet
                 </span>
               )}
@@ -134,7 +140,7 @@ export function ClassBlindspots({
           disabled={targets.length === 0}
           className="ec-btn-primary inline-flex min-h-[48px] items-center justify-center gap-2"
         >
-          <Zap className="h-5 w-5" aria-hidden="true" />
+          <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>M1</span>
           Generate targeted intervention
         </button>
         <p className="ms-blindspots__foot-note">

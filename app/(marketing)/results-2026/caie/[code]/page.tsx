@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode } from '@/lib/seo/structured-data'
@@ -18,6 +17,8 @@ import { MockPackEmailCapture } from '@/components/tools/MockPackEmailCapture'
 import { WillMyGradeHold } from '@/components/tools/WillMyGradeHold'
 import { FunnelLandingView } from '@/components/analytics/FunnelLandingView'
 import { hasSyllabusTree } from '@/lib/syllabi'
+import { ToolInstrumentShell } from '@/components/tools/ToolInstrumentShell'
+import { ToolsDeskArtefact } from '@/components/tools/ToolsDeskArtefact'
 
 type Props = { params: Promise<{ code: string }> }
 
@@ -77,7 +78,7 @@ export default async function Results2026CaiePage({ params }: Props) {
   ]
 
   return (
-    <MarketingPageShell>
+    <>
       <FunnelLandingView source="results-2026-caie" subject={code} />
       <PageJsonLd
         path={path}
@@ -91,31 +92,63 @@ export default async function Results2026CaiePage({ params }: Props) {
       />
       <JsonLd data={faqPageNode(faqs)} />
 
-      <MarketingHero
+      <ToolInstrumentShell
+        stamp={code.slice(0, 2)}
         label={`${code} · ${copy.level} · June 2026`}
-        title={`${code} ${subject.label} — Results Day`}
+        title={
+          <>
+            {code} {subject.label} — <em>Results Day</em>
+          </>
+        }
         lead={`Check how your ${code} raw marks sit against published thresholds, decide on remarks or retakes, then mark the topics that decide the next grade.`}
+        note="paste the thresholds — then decide on the remark"
+        artefact={<ToolsDeskArtefact />}
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Results 2026', path: '/results-2026' },
+          { name: code, path },
+        ]}
+        actions={
+          <>
+            <a
+              href="#grade-hold"
+              className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+            >
+              Will my {code} grade hold?
+              <span className="font-mono text-[11px] font-bold" aria-hidden>
+                -&gt;
+              </span>
+            </a>
+            <Link
+              href={`/tools/grade-boundary-calculator/${code}`}
+              className="ec-btn-ghost inline-flex min-h-[48px] items-center"
+            >
+              {code} calculator
+            </Link>
+            <Link
+              href={`/mark?subject=${encodeURIComponent(code)}`}
+              className="ec-btn-ghost inline-flex min-h-[48px] items-center"
+            >
+              Mark a {code} question
+            </Link>
+          </>
+        }
+        after={
+          <section className="ms-tool-instrument__faq" aria-labelledby="results-code-faq">
+            <h2 id="results-code-faq" className="ms-tool-instrument__faq-title">
+              FAQ
+            </h2>
+            <dl className="ms-tool-faq">
+              {faqs.map((f) => (
+                <div key={f.q}>
+                  <dt>{f.q}</dt>
+                  <dd className="ms-body-2">{f.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        }
       >
-        <div className="mt-6 flex flex-wrap gap-3">
-          <a href="#grade-hold" className="ec-btn-primary min-h-[48px]">
-            Will my {code} grade hold? <span className="h-4 w-4" aria-hidden>-&gt;</span>
-          </a>
-          <Link
-            href={`/tools/grade-boundary-calculator/${code}`}
-            className="ec-btn-ghost min-h-[48px]"
-          >
-            {code} calculator
-          </Link>
-          <Link
-            href={`/mark?subject=${encodeURIComponent(code)}`}
-            className="ec-btn-ghost min-h-[48px]"
-          >
-            Mark a {code} question
-          </Link>
-        </div>
-      </MarketingHero>
-
-      <MarketingSection className="!pt-0">
         <ResultsDayBanner subjectCode={code} className="mb-8" />
 
         <div className="mb-8 overflow-x-auto">
@@ -151,34 +184,48 @@ export default async function Results2026CaiePage({ params }: Props) {
         </div>
 
         {session ? (
-          <div className="ec-card ec-card--paper mb-8 p-5">
-            <p className="ms-overline">Latest verified session in MarkScheme</p>
-            <p className="ms-h3 mt-2" style={{ fontSize: '1.15rem' }}>
-              {session.session}
-            </p>
-            <p className="ms-body-2 mt-2">
-              {session.components.length} component
-              {session.components.length === 1 ? '' : 's'} loaded. Always confirm against the
-              official Cambridge threshold PDF for your centre.
-            </p>
+          <aside className="ms-mark-example-slip mb-8">
+            <div className="ms-mark-example-slip__body">
+              <span className="ec-ink-stamp" aria-hidden>
+                OK
+              </span>
+              <div className="ms-mark-example-slip__copy">
+                <p className="ms-mark-example-slip__title">
+                  Latest verified session · {session.session}
+                </p>
+                <p className="ms-mark-example-slip__lead">
+                  {session.components.length} component
+                  {session.components.length === 1 ? '' : 's'} loaded. Always confirm against the
+                  official Cambridge threshold PDF for your centre.
+                </p>
+              </div>
+            </div>
             {session.sourceUrl ? (
               <a
                 href={session.sourceUrl}
-                className="ec-btn-underline mt-3 inline-flex"
+                className="ms-mark-example-slip__cta font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-brand)]"
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                Official source
+                Official source -&gt;
               </a>
             ) : null}
-          </div>
+          </aside>
         ) : (
-          <div className="ec-card ec-card--paper mb-8 p-5">
-            <p className="ms-body-2">
-              June 2026 thresholds for {code} will appear here as they are verified. Until then,
-              use recent sessions in the checker below and your statement of results.
-            </p>
-          </div>
+          <aside className="ms-mark-example-slip mb-8">
+            <div className="ms-mark-example-slip__body">
+              <span className="ec-ink-stamp ec-ink-stamp--crimson" aria-hidden>
+                …
+              </span>
+              <div className="ms-mark-example-slip__copy">
+                <p className="ms-mark-example-slip__title">Thresholds pending</p>
+                <p className="ms-mark-example-slip__lead">
+                  June 2026 thresholds for {code} will appear here as they are verified. Until then,
+                  use recent sessions in the checker below and your statement of results.
+                </p>
+              </div>
+            </div>
+          </aside>
         )}
 
         <div id="grade-hold" className="mb-10 scroll-mt-24">
@@ -202,7 +249,9 @@ export default async function Results2026CaiePage({ params }: Props) {
             <h2 className="ms-h2">Next steps for {code}</h2>
             <ul className="ms-body-2 mt-4 list-disc space-y-2 pl-5">
               <li>Compare each component mark to the published boundary.</li>
-              <li>One-mark misses: discuss an enquiry about results with your exams officer quickly.</li>
+              <li>
+                One-mark misses: discuss an enquiry about results with your exams officer quickly.
+              </li>
               <li>
                 Retake path: rebuild weak topics in
                 {hasCourse ? (
@@ -229,7 +278,7 @@ export default async function Results2026CaiePage({ params }: Props) {
           </div>
           <MockPackEmailCapture source="results-2026" syllabusCode={code} />
         </div>
-      </MarketingSection>
-    </MarketingPageShell>
+      </ToolInstrumentShell>
+    </>
   )
 }

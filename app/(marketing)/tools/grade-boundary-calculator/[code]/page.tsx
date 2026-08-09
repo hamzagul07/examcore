@@ -1,11 +1,10 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowRight } from 'lucide-react'
+
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode, softwareApplicationNode } from '@/lib/seo/structured-data'
-import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { GradeBoundaryCalculator } from '@/components/tools/GradeBoundaryCalculator'
 import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
 import {
@@ -16,6 +15,8 @@ import {
 } from '@/lib/seo/programmatic-subjects'
 import { getSubjectGuideSlugForCode } from '@/lib/seo/subject-guides'
 import { getOfficialBoundaries } from '@/lib/seo/grade-boundaries-data'
+import { ToolInstrumentShell } from '@/components/tools/ToolInstrumentShell'
+import { ToolsDeskArtefact } from '@/components/tools/ToolsDeskArtefact'
 
 type Props = { params: Promise<{ code: string }> }
 
@@ -33,6 +34,7 @@ export async function generateMetadata({ params }: Props) {
   if (!subject) return {}
   const copy = buildSubjectPageCopy(subject)
   return getPageMetadata(`/tools/grade-boundary-calculator/${code}`, {
+    ogImagePath: '/api/og/tools/grade-boundary-calculator',
     title: `${code} ${subject.label} grade calculator (raw marks → grade)`,
     description: `Convert your ${code} ${subject.label} (${copy.level}) raw marks into a Cambridge grade. Enter the official thresholds for your session to see your grade and the marks needed for the next.`,
     keywords: [
@@ -72,38 +74,85 @@ export default async function SubjectGradeCalculatorPage({ params }: Props) {
   ]
 
   return (
-    <MarketingPageShell>
+    <>
       <PageJsonLd
         path={path}
         title={`${code} ${subject.label} grade calculator`}
         description={`Convert ${code} ${subject.label} raw marks into a Cambridge grade.`}
         breadcrumbs={[
           { name: 'Home', path: '/' },
+          { name: 'Tools', path: '/tools' },
           { name: 'Grade calculator', path: '/tools/grade-boundary-calculator' },
           { name: `${code} ${subject.label}`, path },
         ]}
       />
       <JsonLd data={[faqPageNode(faqs), softwareApplicationNode()]} />
 
-      <MarketingHero
+      <ToolInstrumentShell
+        stamp={code.slice(0, 2)}
         label={`${code} · ${copy.level}`}
-        title={`${code} ${subject.label} grade calculator`}
+        title={
+          <>
+            {code} {subject.label} <em>grade</em> calculator
+          </>
+        }
         lead={`Turn your ${code} ${subject.label} raw marks into a Cambridge grade. Enter the official thresholds for your session for an accurate result — and see exactly how far you are from the next grade.`}
-      />
+        note="use the table for your exact series"
+        artefact={<ToolsDeskArtefact />}
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Tools', path: '/tools' },
+          { name: 'Grade calculator', path: '/tools/grade-boundary-calculator' },
+          { name: `${code}`, path },
+        ]}
+        after={
+          <section className="ms-tool-instrument__faq" aria-labelledby="gb-code-faq">
+            <h2 id="gb-code-faq" className="ms-tool-instrument__faq-title">
+              FAQ
+            </h2>
+            <dl className="ms-tool-faq">
+              {faqs.map((f) => (
+                <div key={f.q}>
+                  <dt>{f.q}</dt>
+                  <dd className="ms-body-2">{f.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        }
+      >
+        <ResultsDayBanner subjectCode={code} className="mb-6" />
 
-      <MarketingSection className="!pt-0">
-        <ResultsDayBanner subjectCode={code} className="mb-8" />
-
-        <aside className="ms-quick-answer">
-          <p className="ms-overline" style={{ color: 'var(--ec-brand)', marginBottom: 8 }}>
-            Quick answer
-          </p>
-          <p className="ms-body-2" style={{ fontSize: 16, color: 'var(--ec-text-primary)' }}>
-            {code} {subject.label} is marked across {copy.papers}. Grade thresholds are raw marks set
-            each session, so enter the ones from your official table below for an accurate {copy.level}{' '}
-            grade.
-          </p>
+        <aside className="ms-mark-example-slip mb-6">
+          <div className="ms-mark-example-slip__body">
+            <span className="ec-ink-stamp" aria-hidden>
+              QA
+            </span>
+            <div className="ms-mark-example-slip__copy">
+              <p className="ms-mark-example-slip__title">Quick answer</p>
+              <p className="ms-mark-example-slip__lead">
+                {code} {subject.label} is marked across {copy.papers}. Grade thresholds are raw marks
+                set each session, so enter the ones from your official table below for an accurate{' '}
+                {copy.level} grade.
+              </p>
+            </div>
+          </div>
         </aside>
+
+        <div className="ms-tool-instrument__links mb-6">
+          <Link
+            href={`/tools/will-my-grade-hold?code=${encodeURIComponent(code)}`}
+            className="ec-link"
+          >
+            Will my grade hold? -&gt;
+          </Link>
+          <Link href="/tools/grade-boundary-calculator" className="ec-link">
+            All calculators -&gt;
+          </Link>
+          <Link href="/guides/grade-boundaries" className="ec-link">
+            Boundaries hub -&gt;
+          </Link>
+        </div>
 
         <GradeBoundaryCalculator defaultLevel={isAS ? 'AS-Level' : 'A-Level'} official={official} />
 
@@ -119,7 +168,13 @@ export default async function SubjectGradeCalculatorPage({ params }: Props) {
               <div key={session.session} style={{ marginTop: 22 }}>
                 <h3 className="ms-h3" style={{ fontSize: '1.1rem' }}>
                   {session.session}{' '}
-                  <a href={session.sourceUrl} target="_blank" rel="noopener noreferrer" className="ec-btn-underline" style={{ fontSize: '0.8rem' }}>
+                  <a
+                    href={session.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ec-btn-underline"
+                    style={{ fontSize: '0.8rem' }}
+                  >
                     (official source)
                   </a>
                 </h3>
@@ -127,14 +182,22 @@ export default async function SubjectGradeCalculatorPage({ params }: Props) {
                   <table className="gb-data-table">
                     <thead>
                       <tr>
-                        <th>Component</th><th>Paper</th><th>Max</th>
-                        <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th>
+                        <th>Component</th>
+                        <th>Paper</th>
+                        <th>Max</th>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>C</th>
+                        <th>D</th>
+                        <th>E</th>
                       </tr>
                     </thead>
                     <tbody>
                       {session.components.map((c) => (
                         <tr key={c.component}>
-                          <td className="mono">{code}/{c.component}</td>
+                          <td className="mono">
+                            {code}/{c.component}
+                          </td>
                           <td>{c.paper}</td>
                           <td className="mono">{c.max}</td>
                           <td className="mono">{c.thresholds.A}</td>
@@ -163,7 +226,8 @@ export default async function SubjectGradeCalculatorPage({ params }: Props) {
             </Link>
             {guideSlug ? (
               <>
-                {' '}and the{' '}
+                {' '}
+                and the{' '}
                 <Link href={`/blog/${guideSlug}`} className="ec-btn-underline">
                   {code} past papers guide
                 </Link>
@@ -173,15 +237,28 @@ export default async function SubjectGradeCalculatorPage({ params }: Props) {
           </p>
         </div>
 
-        <div className="ms-hub-card mt-12 text-center">
-          <h2 className="ms-h3">Know why you got that mark</h2>
-          <p className="ms-lead mx-auto" style={{ marginTop: 10, maxWidth: 480 }}>
-            Upload your {code} answers and MarkScheme marks them against the real Cambridge scheme —
-            mark by mark, so you know where the grade was won or lost.
-          </p>
-          <div className="mt-3 flex flex-wrap justify-center gap-3">
-            <Link href={hasMarking ? `/mark?subject=${code}` : '/mark'} className="ec-btn-primary inline-flex min-h-[48px]">
-              Mark {hasMarking ? `${code} ` : ''}free <ArrowRight className="h-5 w-5" />
+        <aside className="ms-mark-example-slip mt-12">
+          <div className="ms-mark-example-slip__body">
+            <span className="ec-ink-stamp" aria-hidden>
+              M1
+            </span>
+            <div className="ms-mark-example-slip__copy">
+              <p className="ms-mark-example-slip__title">Know why you got that mark</p>
+              <p className="ms-mark-example-slip__lead">
+                Upload your {code} answers and MarkScheme marks them against the real Cambridge
+                scheme — mark by mark, so you know where the grade was won or lost.
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href={hasMarking ? `/mark?subject=${code}` : '/mark'}
+              className="ec-btn-primary inline-flex min-h-[44px] items-center gap-2"
+            >
+              Mark {hasMarking ? `${code} ` : ''}free
+              <span className="font-mono text-[11px] font-bold" aria-hidden>
+                -&gt;
+              </span>
             </Link>
             {hasMarking ? (
               <Link href={`/subjects/${code}`} className="ec-btn-ghost ec-btn-ghost--sm">
@@ -189,8 +266,8 @@ export default async function SubjectGradeCalculatorPage({ params }: Props) {
               </Link>
             ) : null}
           </div>
-        </div>
-      </MarketingSection>
-    </MarketingPageShell>
+        </aside>
+      </ToolInstrumentShell>
+    </>
   )
 }

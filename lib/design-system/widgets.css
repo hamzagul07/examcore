@@ -13,10 +13,10 @@
 
 .ms-cmdk {
   width: min(560px, calc(100vw - 32px));
-  background: var(--ec-surface);
+  background: var(--ec-paper, var(--ec-surface));
   border: 1px solid var(--ec-border);
-  border-radius: 16px;
-  box-shadow: var(--ec-shadow-pop, 0 8px 24px rgba(0, 0, 0, 0.12));
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-hard, 6px 6px 0 rgba(0, 0, 0, 0.12));
   overflow: hidden;
 }
 
@@ -32,7 +32,7 @@
   background: var(--ec-brand);
   color: var(--ec-on-brand-text, #fff);
   border: none;
-  border-radius: 999px;
+  border-radius: 4px;
   padding: 14px 22px;
   font-family: var(--ec-font-handwriting, 'Caveat', cursive);
   font-size: 21px;
@@ -56,10 +56,10 @@
   max-height: min(560px, calc(100vh - 130px));
   display: flex;
   flex-direction: column;
-  background: var(--ec-surface);
+  background: var(--ec-paper, var(--ec-surface));
   border: 1px solid var(--ec-border);
-  border-radius: 18px;
-  box-shadow: var(--ec-shadow-pop, 0 8px 24px rgba(0, 0, 0, 0.12));
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-hard, 6px 6px 0 rgba(0, 0, 0, 0.12));
   overflow: hidden;
 }
 
@@ -82,13 +82,13 @@
   width: min(680px, calc(100vw - 32px));
   max-height: min(800px, 85vh);
   height: 85vh;
-  border-radius: 24px 24px 0 0;
+  border-radius: 4px 4px 0 0;
 }
 
 @media (min-width: 768px) {
   .ms-omni-panel--landing {
     height: 80vh;
-    border-radius: 24px;
+    border-radius: 4px;
   }
 }
 
@@ -137,9 +137,10 @@
 .ms-omni-msg {
   max-width: 85%;
   padding: 11px 15px;
-  border-radius: 14px;
+  border-radius: 4px;
   font-size: 14px;
   line-height: 1.55;
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
 }
 
 .ms-omni-msg.user {
@@ -178,7 +179,7 @@
   color: var(--ec-brand);
   background: var(--ec-brand-muted);
   border: 1px solid var(--ec-brand-border);
-  border-radius: 999px;
+  border-radius: 4px;
   padding: 6px 13px;
   cursor: pointer;
   font-family: var(--font-sans);
@@ -228,7 +229,7 @@
     right: 0;
     width: 100%;
     max-width: none;
-    border-radius: 24px 24px 0 0;
+    border-radius: 4px 4px 0 0;
   }
 }
 

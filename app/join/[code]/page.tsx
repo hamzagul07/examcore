@@ -3,7 +3,6 @@
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useParams, useRouter, useSearchParams } from 'next/navigation'
-import { BookOpen, Users, Check, AlertCircle } from 'lucide-react'
 import { buildSignInHref, buildSignUpHref } from '@/lib/auth-redirect'
 import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
 
@@ -17,11 +16,11 @@ interface ClassroomPreview {
 function JoinSkeleton() {
   return (
     <div
-      className="ms-join-card ec-card p-6 text-center sm:p-8"
+      className="ms-join-card ec-card ec-card--paper p-6 text-center sm:p-8"
       aria-busy
       aria-label="Loading invitation"
     >
-      <SkeletonBlock className="mx-auto mb-4 h-16 w-16 rounded-2xl" />
+      <SkeletonBlock className="mx-auto mb-4 h-16 w-16 rounded" />
       <SkeletonBlock className="mx-auto mb-3 h-8 w-56 max-w-full" />
       <SkeletonLine className="mx-auto mb-6 h-4 w-72 max-w-full" />
       <SkeletonBlock className="mx-auto h-12 w-full max-w-xs" />
@@ -138,8 +137,13 @@ function JoinClassroom() {
   // reappears and submits itself.
   if (autoJoin && joining && !joined) {
     return (
-      <div className="ms-join-card ec-card p-6 text-center sm:p-8" aria-busy>
-        <BookOpen className="mx-auto mb-4 h-16 w-16 ec-text-brand" />
+      <div className="ms-join-card ec-card ec-card--paper p-6 text-center sm:p-8" aria-busy>
+        <span
+          className="mx-auto mb-4 inline-grid h-16 min-w-16 place-items-center rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] px-3 font-mono text-xl font-bold tracking-wide ec-text-brand"
+          aria-hidden
+        >
+          CL
+        </span>
         <h2 className="mb-2 text-2xl font-bold text-[var(--ec-text-primary)] sm:text-3xl">
           Adding you to {classroom?.name ?? 'the class'}…
         </h2>
@@ -149,8 +153,13 @@ function JoinClassroom() {
 
   if (error && !classroom) {
     return (
-      <div className="ms-join-card ec-card p-6 text-center sm:p-8">
-        <AlertCircle className="mx-auto mb-4 h-16 w-16 ec-score-low" />
+      <div className="ms-join-card ec-card ec-card--paper p-6 text-center sm:p-8">
+        <span
+          className="mx-auto mb-4 inline-grid h-16 min-w-16 place-items-center rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] px-3 font-mono text-xl font-bold tracking-wide ec-score-low"
+          aria-hidden
+        >
+          !
+        </span>
         <h2 className="mb-2 text-2xl font-bold text-[var(--ec-text-primary)] sm:text-3xl">
           Can&apos;t join
         </h2>
@@ -167,8 +176,13 @@ function JoinClassroom() {
 
   if (joined && classroom) {
     return (
-      <div className="ms-join-card ec-card p-6 text-center sm:p-8">
-        <Check className="mx-auto mb-4 h-16 w-16 ec-score-high" />
+      <div className="ms-join-card ec-card ec-card--paper p-6 text-center sm:p-8">
+        <span
+          className="mx-auto mb-4 inline-grid h-16 min-w-16 place-items-center rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] px-3 font-mono text-xl font-bold tracking-wide ec-score-high"
+          aria-hidden
+        >
+          ✓
+        </span>
         <h2 className="mb-2 text-2xl font-bold text-[var(--ec-text-primary)] sm:text-3xl">
           You&apos;re in!
         </h2>
@@ -190,8 +204,13 @@ function JoinClassroom() {
   const signInHref = buildSignInHref(joinPath)
 
   return (
-    <div className="ms-join-card ec-card p-6 text-center sm:p-8">
-      <BookOpen className="mx-auto mb-4 h-16 w-16 ec-text-brand" />
+    <div className="ms-join-card ec-card ec-card--paper p-6 text-center sm:p-8">
+      <span
+          className="mx-auto mb-4 inline-grid h-16 min-w-16 place-items-center rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] px-3 font-mono text-xl font-bold tracking-wide ec-text-brand"
+          aria-hidden
+        >
+          CL
+        </span>
       <div className="ec-label-tech mb-3">CLASSROOM INVITATION</div>
       <h1 className="mb-2 text-2xl font-bold text-[var(--ec-text-primary)] sm:text-3xl">
         {classroom.name}
@@ -202,12 +221,14 @@ function JoinClassroom() {
         </p>
       )}
       <div className="mb-8 flex items-center justify-center gap-2 text-sm text-[var(--ec-text-secondary)]">
-        <Users className="h-4 w-4" />
+        <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>
+          N
+        </span>
         <span>{classroom.studentCount} students enrolled</span>
       </div>
 
       {error && (
-        <div className="ec-tint-critical-chip mb-4 rounded-xl p-3 text-sm">
+        <div className="ec-card ec-card--paper ec-tint-critical-chip mb-4 p-3 text-sm">
           {error}
         </div>
       )}

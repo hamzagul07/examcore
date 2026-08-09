@@ -13,13 +13,13 @@ export function StageProgressBar({ percent }: { percent: number }) {
       aria-valuemax={100}
       aria-valuenow={v}
       aria-label="Marking stage progress"
-      className="h-[3px] w-full overflow-hidden rounded-full"
+      className="h-[3px] w-full overflow-hidden rounded-[1px]"
       style={{
         background: 'var(--ec-border)',
       }}
     >
       <motion.div
-        className="h-full rounded-full"
+        className="h-full rounded-[1px]"
         style={{ background: 'var(--ec-brand)' }}
         initial={{ width: 0 }}
         animate={{ width: `${v}%` }}

@@ -1,15 +1,13 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import {
   examEncouragement,
   examSessionLabel,
   timeGreeting,
 } from '@/lib/dashboard/exam-date'
-import { useIntersectionVisible } from '@/lib/hooks/useIntersectionVisible'
-import { CountdownParticles } from './CountdownParticles'
 import { MarkQuestionCta } from './MarkQuestionCta'
 
 type Props = {
@@ -25,74 +23,67 @@ export function ExamCountdownHero({
   daysLeft,
   weeklyAttempts,
 }: Props) {
-  const reduce = useReducedMotion()
-  const heroRef = useRef<HTMLDivElement>(null)
-  const inView = useIntersectionVisible(heroRef, !reduce)
   const [revealed, setRevealed] = useState(false)
   const greeting = timeGreeting(firstName)
   const encouragement = examEncouragement(daysLeft)
   const session = examSessionLabel(examDate)
-  const animateDecor = !reduce && inView
 
   return (
     <div className="mb-6">
       <div
-        ref={heroRef}
-        className="relative mx-auto max-w-3xl text-center ms-dash-countdown"
+        className="ms-dash-countdown-desk"
         onMouseEnter={() => setRevealed(true)}
         onMouseLeave={() => setRevealed(false)}
         onClick={() => setRevealed((v) => !v)}
       >
-        <CountdownParticles paused={!animateDecor} />
+        <div className="mb-3 flex items-center gap-2">
+          <p className="ec-eyebrow mb-0">Countdown</p>
+          <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+            DAY
+          </span>
+        </div>
 
-        <div
-          className={`pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 will-change-transform ${
-            animateDecor ? 'animate-[ec-breathe_10s_ease-in-out_infinite]' : ''
-          }`}
-          style={{
-            width: 'min(420px, 90vw)',
-            height: 'min(280px, 70vw)',
-            background:
-              'radial-gradient(circle, color-mix(in srgb, var(--ec-brand) 7%, transparent) 0%, transparent 70%)',
-          }}
-          aria-hidden
-        />
-
-        <p
-          className="ec-countdown-number relative"
-          aria-label={`${daysLeft} days until your ${session}`}
-        >
-          {daysLeft}
-        </p>
-
-        <p className="text-title relative mt-2 text-[var(--ec-text-primary)]">
-          days until your {session}
-        </p>
-        <p className="text-caption relative mt-2">{encouragement}</p>
-        <p className="text-caption relative mt-1 opacity-80">{greeting}</p>
+        <div className="ms-dash-countdown-desk__row">
+          <p
+            className="ms-dash-countdown-desk__number"
+            aria-label={`${daysLeft} days until your ${session}`}
+          >
+            {daysLeft}
+          </p>
+          <div className="ms-dash-countdown-desk__copy">
+            <p className="ms-dash-countdown-desk__title">
+              days until your {session}
+            </p>
+            <p className="ms-dash-countdown-desk__meta">{encouragement}</p>
+            <p className="ms-dash-countdown-desk__meta opacity-90">{greeting}</p>
+            <span className="ms-dash-countdown-desk__note" aria-hidden>
+              put ink on a script before the calendar wins
+            </span>
+          </div>
+        </div>
 
         <motion.p
           initial={false}
-          animate={{ opacity: revealed ? 1 : 0 }}
-          className="text-caption relative mt-3"
+          animate={{ opacity: revealed ? 1 : 0.55 }}
+          className="mt-3 font-mono text-[11px] font-bold uppercase tracking-wide"
         >
           <Link
             href="/account/exam"
             className="text-[var(--ec-text-secondary)] underline-offset-2 hover:text-[var(--ec-brand)] hover:underline"
           >
-            Change exam date →
+            Change exam date -&gt;
           </Link>
         </motion.p>
       </div>
 
-      <div className="mt-6 flex flex-col items-center">
+      <div className="ms-dash-countdown-desk__actions">
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
           <MarkQuestionCta />
         </motion.div>
         {weeklyAttempts > 0 && (
-          <p className="text-caption mt-3 text-center">
-            You&apos;ve marked {weeklyAttempts} question
-            {weeklyAttempts === 1 ? '' : 's'} this week
+          <p className="text-caption m-0">
+            {weeklyAttempts} question{weeklyAttempts === 1 ? '' : 's'} marked this
+            week
           </p>
         )}
       </div>

@@ -98,18 +98,6 @@ export default function IbPastPapersHubPage() {
           guidance so practice actually moves your grade.
         </p>
 
-        <HubSeoIntro
-          headingLevel="h2"
-          heading="Past papers, by session and paper"
-          paragraph="Pick a subject to see its papers laid out by exam series. Work each under timed conditions, mark yourself against the band descriptors, and use the guidance to close the gap to a 7."
-          links={[
-            { href: '/ib/subjects', label: 'Browse IB subjects', variant: 'primary' },
-            { href: '/ib/courses', label: 'Free IB courses', variant: 'ghost' },
-            { href: '/mark', label: 'Get feedback on your answer', variant: 'ghost' },
-            { href: '/blog/ib-free-courses-guide', label: 'Free courses guide', variant: 'muted' },
-          ]}
-        />
-
         {grouped.map((g) => (
           <section key={g.group} style={{ marginTop: 36 }} aria-labelledby={`pp-${g.groupNumber}`}>
             <h2 id={`pp-${g.groupNumber}`} className="ms-h3" style={{ marginBottom: 14 }}>
@@ -131,19 +119,17 @@ export default function IbPastPapersHubPage() {
                     style={{ '--acc': s.accent } as CSSProperties}
                   >
                     <span className="ms-pp-glyph" aria-hidden>
-                      {s.glyph}
+                      {s.level}
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="ms-pp-title">
-                        {s.name} <em className="ms-pp-code">· {s.level}</em>
-                      </span>
+                      <span className="ms-pp-title">{s.name}</span>
                       <span className="ms-pp-meta">
                         {ibYearRange()} · {s.papers.length} papers
                         {extras.length ? ` · ${extras.join(' · ')}` : ''}
                       </span>
                     </span>
                     <span className="ms-pp-cta" aria-hidden>
-                      →
+                      -&gt;
                     </span>
                   </Link>
                 </li>
@@ -153,17 +139,28 @@ export default function IbPastPapersHubPage() {
           </section>
         ))}
 
+        <HubSeoIntro
+          quiet
+          headingLevel="h2"
+          heading="Past papers, by session and paper"
+          paragraph="Pick a subject above to see its papers laid out by exam series. Work each under timed conditions, mark yourself against the band descriptors, and use the guidance to close the gap to a 7."
+          links={[
+            { href: '/ib/subjects', label: 'Browse IB subjects', variant: 'primary' },
+            { href: '/ib/courses', label: 'Free IB courses', variant: 'ghost' },
+            { href: '/mark', label: 'Get feedback on your answer', variant: 'ghost' },
+            { href: '/blog/ib-free-courses-guide', label: 'Free courses guide', variant: 'muted' },
+          ]}
+        />
+
         <section className="ms-subject-faq" aria-labelledby="ibpp-faq" style={{ marginTop: 48 }}>
           <h2 id="ibpp-faq" className="ms-h3">
             Frequently asked questions
           </h2>
-          <dl className="mt-6 space-y-6">
+          <dl className="ms-tool-faq">
             {FAQ.map((item) => (
               <div key={item.q} data-chunk-id={item.q.slice(0, 36)}>
-                <dt className="font-semibold text-[var(--ec-text-primary)]">{item.q}</dt>
-                <dd className="mt-2 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-                  {item.a}
-                </dd>
+                <dt>{item.q}</dt>
+                <dd className="ms-body-2">{item.a}</dd>
               </div>
             ))}
           </dl>

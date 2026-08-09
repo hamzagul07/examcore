@@ -1,35 +1,40 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import {
-  BookOpen,
-  Home,
-  LineChart,
-  MessagesSquare,
-  PenLine,
-  User,
-  type LucideIcon,
-} from 'lucide-react'
 import { LoadingLink } from '@/components/ui/LoadingLink'
+import {
+  InkGlyphBook,
+  InkGlyphHome,
+  InkGlyphProgress,
+  InkGlyphTick,
+} from '@/components/margin-notes'
+import type { ReactNode } from 'react'
 
 type TabItem = {
   href: string
   label: string
-  Icon: LucideIcon
+  icon: ReactNode
   match: (p: string) => boolean
+  /** Visually emphasise the core action (Mark). */
+  primary?: boolean
 }
 
+/**
+ * Phone tab bar — four destinations (NAV-01 / Codex UI review).
+ * Discuss and Account stay in the header/menu; Mark is the emphasised centre.
+ * Icons are brand InkGlyph SVGs — not punctuation stamps (LOW-01).
+ */
 const TABS: TabItem[] = [
   {
-    href: '/mark',
-    label: 'Mark',
-    Icon: PenLine,
-    match: (p) => p === '/mark' || p.startsWith('/mark/'),
+    href: '/dashboard',
+    label: 'Home',
+    icon: <InkGlyphHome className="ec-tabbar__svg" title="" />,
+    match: (p) => p === '/dashboard',
   },
   {
     href: '/courses',
     label: 'Learn',
-    Icon: BookOpen,
+    icon: <InkGlyphBook className="ec-tabbar__svg" title="" />,
     match: (p) =>
       p === '/courses' ||
       p.startsWith('/courses/') ||
@@ -37,36 +42,20 @@ const TABS: TabItem[] = [
       p.startsWith('/ib/courses/'),
   },
   {
-    // Progress replaces Subjects here: it had no mobile tab at all, so a phone
-    // user could only reach their analytics via a link on the home page.
-    // Subjects stays reachable through Learn and the subject hubs.
+    href: '/mark',
+    label: 'Mark',
+    icon: <InkGlyphTick className="ec-tabbar__svg" title="" />,
+    primary: true,
+    match: (p) => p === '/mark' || p.startsWith('/mark/'),
+  },
+  {
     href: '/dashboard/progress',
     label: 'Progress',
-    Icon: LineChart,
+    icon: <InkGlyphProgress className="ec-tabbar__svg" title="" />,
     match: (p) =>
       p.startsWith('/dashboard/progress') ||
       p.startsWith('/dashboard/attempt/') ||
       p.startsWith('/dashboard/review'),
-  },
-  {
-    href: '/community',
-    label: 'Discuss',
-    Icon: MessagesSquare,
-    match: (p) => p === '/community' || p.startsWith('/community/') || p.startsWith('/u/'),
-  },
-  {
-    // Exact match only — Progress owns /dashboard/progress now, so Home no
-    // longer lights up when you are on the analytics page.
-    href: '/dashboard',
-    label: 'Home',
-    Icon: Home,
-    match: (p) => p === '/dashboard',
-  },
-  {
-    href: '/account',
-    label: 'You',
-    Icon: User,
-    match: (p) => p.startsWith('/account'),
   },
 ]
 
@@ -75,7 +64,7 @@ export function MobileTabBar() {
 
   return (
     <nav aria-label="Main navigation" className="ec-tabbar lg:hidden">
-      {TABS.map(({ href, label, Icon, match }) => {
+      {TABS.map(({ href, label, icon, match, primary }) => {
         const active = match(pathname)
         return (
           <LoadingLink
@@ -84,10 +73,15 @@ export function MobileTabBar() {
             variant="inline"
             loadingText="Opening…"
             aria-current={active ? 'page' : undefined}
-            className="ec-tabbar-link"
+            className={`ec-tabbar-link${primary ? ' ec-tabbar-link--mark' : ''}`}
           >
-            <span className="ec-tabbar__glyph" aria-hidden>
-              <Icon strokeWidth={active ? 2.4 : 2} />
+            <span
+              className={`ec-tabbar__glyph ${active ? 'is-active' : ''}${
+                primary ? ' ec-tabbar__glyph--mark' : ''
+              }`}
+              aria-hidden
+            >
+              {icon}
             </span>
             <span className="ec-tabbar__label">{label}</span>
           </LoadingLink>

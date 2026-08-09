@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     description: DEFAULT_SITE_DESCRIPTION,
-    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
+    images: [{ url: "/api/og/page/home", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
@@ -128,7 +128,7 @@ export default function RootLayout({
           <OmniAIProviders>
             <a
               href="#main-content"
-              className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-[var(--ec-brand)] focus:px-4 focus:py-2 focus:font-semibold focus:text-[var(--ec-on-brand-text)]"
+              className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-[var(--ec-brand)] focus:px-4 focus:py-2 focus:font-semibold focus:text-[var(--ec-on-brand-text)]"
             >
               Skip to content
             </a>

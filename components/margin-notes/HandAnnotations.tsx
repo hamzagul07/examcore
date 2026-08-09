@@ -9,6 +9,7 @@ export function InkCircle({ children, className }: { children: ReactNode; classN
       {children}
       <svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden>
         <path
+          className="ec-ink-draw"
           d="M8,22 C10,8 38,2 58,4 C82,6 96,12 95,22 C94,33 70,38 46,37 C22,36 5,32 8,20"
           fill="none"
           stroke={INK_STROKE}
@@ -26,6 +27,7 @@ export function InkScribble({ children, className }: { children: ReactNode; clas
       {children}
       <svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden>
         <path
+          className="ec-ink-draw ec-ink-draw--scribble"
           d="M2,6 C20,2 45,8 62,5 C78,2 92,6 98,4"
           fill="none"
           stroke={INK_STROKE}

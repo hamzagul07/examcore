@@ -1,23 +1,20 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import {
+  buildParentScoreSlipText,
+  openParentScoreSlip,
+  shareParentScoreSlipNative,
+  shareParentScoreSlipWhatsApp,
+} from '@/lib/marking/parent-score-slip'
 
 /**
  * The score, as the moment it actually is.
  *
- * This is the emotional peak of the product and it was a line of text —
- * "4 / 5 — one mark got away." A student who has just waited a minute and a half
- * deserves the result to land.
- *
- * Form follows the data's job (dataviz method): a single ratio against a limit
- * is a METER, and the one number the view leads with is a HERO FIGURE — not a
- * chart. So: one ring meter, one hero number inside it, and a pip per mark
- * point so the breakdown is visible at a glance rather than read as prose.
- *
- * Colour is never the only channel — the band is named in text, the pips differ
- * in fill AND shape, and the whole thing carries an aria-label that states the
- * score in words. The track is a lighter step of the fill's own ramp rather than
- * a neutral gray, so the state reads across the entire ring.
+ * Emotional peak of the product — an examiner’s tally slip, not a fitness ring.
+ * Hero figure = earned / total on ruled paper; pips = tick / cross stamps;
+ * next-grade as a margin note. Colour never the only channel: band named in
+ * text, stamps differ in fill AND glyph, aria-label states the score in words.
  */
 
 type Band = 'high' | 'mid' | 'low'
@@ -28,12 +25,11 @@ function bandFor(pct: number): Band {
   return 'low'
 }
 
-/** Reserved status tokens — deliberately the same ones the rest of the app uses
- * for success/warning/critical, so a colour never means two different things. */
+/** Dual-ink: green awarded, amber caution, crimson correction. */
 const BAND_INK: Record<Band, string> = {
-  high: 'var(--ec-chip-success-text, #19774d)',
+  high: 'var(--ec-ink, var(--ec-brand, #19774d))',
   mid: 'var(--ec-chip-warning-text, #735829)',
-  low: 'var(--ec-chip-critical-text, #a23e3e)',
+  low: 'var(--ec-ink-crimson, var(--ec-chip-critical-text, #bb2a25))',
 }
 
 function bandLabel(pct: number, earned: number, total: number): string {
@@ -91,6 +87,13 @@ export type ScoreRevealMark = {
   id: string
   earned: boolean
   label: string
+  reason?: string | null
+}
+
+export type ScoreRevealReport = {
+  subjectLabel?: string | null
+  paperRef?: string | null
+  topics?: string[]
 }
 
 export function ScoreReveal({
@@ -101,6 +104,9 @@ export function ScoreReveal({
   nextGrade,
   marks = [],
   onSelectMark,
+  activeMarkId = null,
+  shareable = true,
+  report,
 }: {
   marksEarned: number
   totalMarks: number
@@ -110,6 +116,12 @@ export function ScoreReveal({
   nextGrade?: { marksNeeded: number; nextGrade: string } | null
   marks?: ScoreRevealMark[]
   onSelectMark?: (id: string) => void
+  /** Currently inspected mark — radiogroup selection (MK-07 / A11Y-01). */
+  activeMarkId?: string | null
+  /** Show copy/print parent slip — on for real results, off for demos/previews. */
+  shareable?: boolean
+  /** Extra context for the parent/tutor artefact. */
+  report?: ScoreRevealReport
 }) {
   const reduced = usePrefersReducedMotion()
   const animate = !reduced
@@ -117,78 +129,111 @@ export function ScoreReveal({
   const band = bandFor(pct)
   const ink = BAND_INK[band]
   const label = bandLabel(pct, marksEarned, totalMarks)
+  const [copied, setCopied] = useState(false)
+  const fullMarks = totalMarks > 0 && marksEarned >= totalMarks
+  const stampText = grade?.trim() || (fullMarks ? 'DONE' : label === 'Strong' ? 'OK' : 'MARK')
 
   const shownMarks = useCountUp(marksEarned, 900, animate)
-  const [swept, setSwept] = useState(!animate)
+  const [settled, setSettled] = useState(!animate)
   useEffect(() => {
     if (!animate) return
-    // Next frame, so the ring transitions from empty rather than starting full.
-    const id = requestAnimationFrame(() => setSwept(true))
+    const id = requestAnimationFrame(() => setSettled(true))
     return () => cancelAnimationFrame(id)
   }, [animate])
 
-  const R = 52
-  const CIRC = 2 * Math.PI * R
-  const offset = CIRC * (1 - (swept ? pct : 0) / 100)
+  function slipInput() {
+    return {
+      marksEarned,
+      totalMarks,
+      percentage: pct,
+      bandLabel: label,
+      grade,
+      nextGrade,
+      subjectLabel: report?.subjectLabel,
+      paperRef: report?.paperRef,
+      topics: report?.topics,
+      marks: marks.map((m) => ({
+        label: m.label,
+        earned: m.earned,
+        reason: m.reason,
+      })),
+    }
+  }
+
+  async function copySlip() {
+    const text = buildParentScoreSlipText(slipInput())
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 2000)
+    } catch {
+      const ta = document.createElement('textarea')
+      ta.value = text
+      ta.setAttribute('readonly', '')
+      ta.style.position = 'fixed'
+      ta.style.opacity = '0'
+      document.body.appendChild(ta)
+      ta.select()
+      document.execCommand('copy')
+      document.body.removeChild(ta)
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 2000)
+    }
+  }
+
+  function printSlip() {
+    openParentScoreSlip(slipInput())
+  }
+
+  function whatsappSlip() {
+    shareParentScoreSlipWhatsApp(slipInput())
+  }
+
+  async function nativeShareSlip() {
+    const ok = await shareParentScoreSlipNative(slipInput())
+    if (!ok) shareParentScoreSlipWhatsApp(slipInput())
+  }
+
+  const paperRef = report?.paperRef?.trim()
 
   return (
-    <div className="ms-score-reveal">
+    <div className="ms-score-reveal" style={{ ['--ms-score-ink' as string]: ink }}>
       <div className="ms-score-reveal__main">
         <div
-          className="ms-score-ring"
+          className={`ms-score-tally${settled ? ' is-settled' : ''}`}
           role="img"
           aria-label={`You scored ${marksEarned} out of ${totalMarks}${
             totalMarks > 0 ? `, ${pct}%` : ''
           }. ${label}.${grade ? ` Predicted grade ${grade}.` : ''}`}
         >
-          <svg viewBox="0 0 120 120" aria-hidden="true">
-            {/* Track: a lighter step of the fill's own ramp, not a neutral gray,
-                so the band reads across the whole ring. */}
-            <circle
-              cx="60"
-              cy="60"
-              r={R}
-              fill="none"
-              strokeWidth="10"
-              stroke={`color-mix(in srgb, ${ink} 18%, var(--ec-surface, #fff))`}
-            />
-            <circle
-              cx="60"
-              cy="60"
-              r={R}
-              fill="none"
-              strokeWidth="10"
-              strokeLinecap="round"
-              stroke={ink}
-              strokeDasharray={CIRC}
-              strokeDashoffset={offset}
-              transform="rotate(-90 60 60)"
-              style={{
-                transition: animate
-                  ? 'stroke-dashoffset 1100ms cubic-bezier(0.22, 1, 0.36, 1)'
-                  : undefined,
-              }}
-            />
-          </svg>
-          <div className="ms-score-ring__value">
-            {/* Hero figure — exactly one per view. Proportional figures: at this
-                size tabular-nums makes the number look loose. */}
-            <span className="ms-score-ring__earned" style={{ color: ink }}>
-              {Math.round(shownMarks)}
+          <div className="ms-score-tally__head">
+            <span className="ms-score-tally__kicker">
+              {paperRef ? paperRef : 'MARKED'}
             </span>
-            <span className="ms-score-ring__total">/ {totalMarks}</span>
+            <span className="ms-score-tally__stamp" aria-hidden>
+              {stampText}
+            </span>
           </div>
+          <div className="ms-score-tally__figure">
+            <span className="ms-score-tally__earned">{Math.round(shownMarks)}</span>
+            <span className="ms-score-tally__slash" aria-hidden>
+              /
+            </span>
+            <span className="ms-score-tally__total">{totalMarks}</span>
+          </div>
+          <span className="ms-score-tally__pct">{pct}%</span>
         </div>
 
         <div className="ms-score-reveal__meta">
-          <p className="ms-score-reveal__band" style={{ color: ink }}>
-            {label}
-          </p>
+          <p className="ms-score-reveal__band">{label}</p>
           <p className="ms-score-reveal__pct">
             {pct}%{grade ? ` · predicted ${grade}` : ''}
           </p>
           {nextGrade && nextGrade.marksNeeded > 0 && (
             <p className="ms-score-reveal__next">
+              <span className="ms-score-reveal__next-ink" aria-hidden>
+                note
+              </span>
               <strong>
                 {nextGrade.marksNeeded} mark
                 {nextGrade.marksNeeded === 1 ? '' : 's'}
@@ -197,33 +242,71 @@ export function ScoreReveal({
               {nextGrade.nextGrade}
             </p>
           )}
+          {shareable && (
+            <div className="ms-score-reveal__actions">
+              <button
+                type="button"
+                className={`ms-score-reveal__share${copied ? ' is-copied' : ''}`}
+                onClick={() => void copySlip()}
+              >
+                <span aria-hidden>{copied ? 'OK' : 'CP'}</span>
+                {copied ? 'Slip copied' : 'Copy slip'}
+              </button>
+              <button type="button" className="ms-score-reveal__share" onClick={printSlip}>
+                <span aria-hidden>PR</span>
+                Parent report
+              </button>
+              <button
+                type="button"
+                className="ms-score-reveal__share"
+                onClick={() => void nativeShareSlip()}
+              >
+                <span aria-hidden>SH</span>
+                Share
+              </button>
+              <button type="button" className="ms-score-reveal__share" onClick={whatsappSlip}>
+                <span aria-hidden>WA</span>
+                WhatsApp
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
       {marks.length > 0 && (
-        <ul className="ms-score-pips" aria-label="Mark by mark">
-          {marks.map((m, i) => (
-            <li key={m.id}>
-              <button
-                type="button"
-                onClick={() => onSelectMark?.(m.id)}
-                className={`ms-score-pip ${m.earned ? 'is-earned' : 'is-lost'}`}
-                style={{
-                  // Stagger so the breakdown resolves after the ring, not with it.
-                  transitionDelay: animate ? `${420 + i * 70}ms` : undefined,
-                  ...(swept ? { opacity: 1, transform: 'none' } : {}),
-                }}
-                title={`${m.label} — ${m.earned ? 'earned' : 'not earned'}`}
-              >
-                {/* Shape carries the state as well as colour: a solid disc for
-                    earned, a hollow ring for lost. */}
-                <span aria-hidden="true" className="ms-score-pip__dot" />
-                <span className="sr-only">
-                  {m.label} {m.earned ? 'earned' : 'not earned'}
-                </span>
-              </button>
-            </li>
-          ))}
+        <ul
+          className="ms-score-pips"
+          role="radiogroup"
+          aria-label="Mark by mark"
+        >
+          {marks.map((m, i) => {
+            const checked = activeMarkId != null && activeMarkId === m.id
+            return (
+              <li key={m.id} role="none">
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked={checked}
+                  onClick={() => onSelectMark?.(m.id)}
+                  className={`ms-score-pip ${m.earned ? 'is-earned' : 'is-lost'}${
+                    checked ? ' is-active' : ''
+                  }`}
+                  style={{
+                    transitionDelay: animate ? `${280 + i * 60}ms` : undefined,
+                    ...(settled ? { opacity: 1, transform: 'none' } : {}),
+                  }}
+                  title={`${m.label} — ${m.earned ? 'earned' : 'not earned'}`}
+                >
+                  <span aria-hidden="true" className="ms-score-pip__stamp">
+                    {m.earned ? 'M' : 'X'}
+                  </span>
+                  <span className="sr-only">
+                    {m.label} {m.earned ? 'earned' : 'not earned'}
+                  </span>
+                </button>
+              </li>
+            )
+          })}
         </ul>
       )}
     </div>

@@ -47,7 +47,7 @@ export default async function ProfilePage({ params }: Props) {
   return (
     <div className="ms-pg" style={{ paddingTop: 48 }}>
       <div className="ms-sd-head">
-        <div className="ms-sd-glyph" aria-hidden>
+        <div className="ms-sd-glyph ms-sd-glyph--person" aria-hidden>
           {profile.username.charAt(0).toUpperCase()}
         </div>
         <div className="min-w-0 flex-1">

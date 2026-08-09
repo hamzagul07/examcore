@@ -1,9 +1,9 @@
 'use client'
 
 import { useCallback, useRef, useState } from 'react'
-import { FileText, UploadCloud, X } from 'lucide-react'
 import { compressImage } from '@/lib/upload/compress-image'
 import { formatFileSize, getPdfSizeError } from '@/lib/upload/upload-limits'
+import { useCoarsePointer } from '@/lib/hooks/useCoarsePointer'
 
 type Props = {
   id: string
@@ -23,14 +23,16 @@ function isPdf(file: File) {
 export function QuestionUploadField({
   id,
   label,
-  hint = 'JPEG, PNG, WebP, or PDF - drag and drop',
+  hint = 'JPEG, PNG, WebP, or PDF — drop files here, or choose files',
   file,
   onChange,
   disabled = false,
   compressing = false,
   onCompressingChange,
 }: Props) {
-  const inputRef = useRef<HTMLInputElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const cameraInputRef = useRef<HTMLInputElement>(null)
+  const touchPrimary = useCoarsePointer()
   const [dragOver, setDragOver] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -76,16 +78,9 @@ export function QuestionUploadField({
         {label}
       </label>
       {file ? (
-        <div className="ms-q-upload-file ec-card flex items-center gap-3 p-4">
-          <span
-            className="ms-q-upload-file-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
-            aria-hidden
-          >
-            {isPdf(file) ? (
-              <FileText className="h-5 w-5" />
-            ) : (
-              <UploadCloud className="h-5 w-5" />
-            )}
+        <div className="ms-q-upload-file ec-card ec-card--paper flex items-center gap-3 p-4">
+          <span className="ec-ink-stamp" aria-hidden>
+            {isPdf(file) ? 'PDF' : 'IMG'}
           </span>
           <div className="min-w-0 flex-1 text-left">
             <p className="truncate font-semibold text-[var(--ec-text-primary)]">
@@ -99,11 +94,48 @@ export function QuestionUploadField({
             type="button"
             disabled={busy}
             onClick={() => void ingest(null)}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border ec-border-color text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)]"
+            className="flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded border ec-border-color text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)]"
             aria-label="Remove file"
           >
-            <X className="h-4 w-4" />
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden>
+              <path
+                d="M4.5 4.5 L13.5 13.5 M13.5 4.5 L4.5 13.5"
+                stroke="currentColor"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+              />
+            </svg>
           </button>
+        </div>
+      ) : touchPrimary ? (
+        <div className="ms-q-upload-drop border-2 border-dashed p-5 text-center ec-border-color">
+          <span className="ec-ink-stamp mx-auto mb-3" aria-hidden>
+            ↑
+          </span>
+          <p className="font-medium text-[var(--ec-text-primary)]">
+            {compressing ? 'Preparing…' : 'Photo of the question'}
+          </p>
+          <p className="mt-1 font-mono text-xs text-[var(--ec-text-secondary)]">
+            Camera, gallery, or a PDF scan
+          </p>
+          <div className="mt-5 flex flex-col gap-3">
+            <button
+              type="button"
+              disabled={busy}
+              onClick={() => cameraInputRef.current?.click()}
+              className="ec-btn-primary w-full justify-center text-sm"
+            >
+              Take photo
+            </button>
+            <button
+              type="button"
+              disabled={busy}
+              onClick={() => fileInputRef.current?.click()}
+              className="ec-btn-secondary w-full justify-center text-sm"
+            >
+              Choose existing photo or PDF
+            </button>
+          </div>
         </div>
       ) : (
         <div
@@ -112,7 +144,7 @@ export function QuestionUploadField({
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault()
-              if (!busy) inputRef.current?.click()
+              if (!busy) fileInputRef.current?.click()
             }
           }}
           onDragOver={(e) => {
@@ -128,23 +160,38 @@ export function QuestionUploadField({
             if (dropped) void ingest(dropped)
           }}
           onClick={() => {
-            if (!busy) inputRef.current?.click()
+            if (!busy) fileInputRef.current?.click()
           }}
-          className={`ms-q-upload-drop group cursor-pointer rounded-2xl border-2 border-dashed p-6 text-center transition-all duration-200 ${
+          className={`ms-q-upload-drop group cursor-pointer border-2 border-dashed p-6 text-center transition-all duration-200 ${
             dragOver
               ? 'border-[var(--ec-brand)] bg-[var(--ec-brand-muted)]'
-              : 'ec-border-color ec-bg-surface-raised hover:border-[color-mix(in_srgb,var(--ec-brand)_50%,transparent)] hover:bg-[var(--ec-brand-muted)]'
+              : 'ec-border-color hover:border-[color-mix(in_srgb,var(--ec-brand)_50%,transparent)] hover:bg-[var(--ec-brand-muted)]'
           }`}
         >
-          <UploadCloud className="mx-auto mb-2 h-6 w-6 text-[var(--ec-text-secondary)] transition-colors group-hover:text-[var(--ec-brand)]" />
+          <span className="ec-ink-stamp mx-auto mb-3" aria-hidden>
+            ↑
+          </span>
           <p className="font-medium text-[var(--ec-text-primary)]">
-            {compressing ? 'Preparing...' : 'Drop question here or click to upload'}
+            {compressing ? 'Preparing…' : 'Drop question here, or choose files'}
           </p>
           <p className="mt-1 font-mono text-xs text-[var(--ec-text-secondary)]">{hint}</p>
         </div>
       )}
       <input
-        ref={inputRef}
+        ref={cameraInputRef}
+        type="file"
+        accept="image/*"
+        capture="environment"
+        className="hidden"
+        disabled={busy}
+        onChange={(e) => {
+          const raw = e.target.files?.[0] ?? null
+          void ingest(raw)
+          e.target.value = ''
+        }}
+      />
+      <input
+        ref={fileInputRef}
         id={id}
         type="file"
         accept="image/jpeg,image/png,image/webp,application/pdf"

@@ -29,7 +29,9 @@ export function PostAttachments({ attachments }: { attachments: SignedAttachment
             <li key={a.path}>
               {a.url ? (
                 <a href={a.url} target="_blank" rel="noopener noreferrer" className="rc-attach-file">
-                  <span className="rc-attach-file-icon">{a.kind === 'pdf' ? '📄' : '📎'}</span>
+                  <span className="rc-attach-file-icon" aria-hidden>
+                    {a.kind === 'pdf' ? 'PDF' : 'FILE'}
+                  </span>
                   <span className="rc-attach-file-name">{a.name}</span>
                   <span className="rc-attach-file-size">{fmtSize(a.size)}</span>
                   <span className="rc-attach-file-dl">Download ↓</span>

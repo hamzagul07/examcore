@@ -3,13 +3,17 @@
 type MarkStepsBarProps = {
   /** 0 = upload, 1 = marking, 2 = examiner's ink / results */
   stage: 0 | 1 | 2
+  className?: string
 }
 
 const STEPS = ['Upload', 'Marking', "Examiner's Ink"] as const
 
-export function MarkStepsBar({ stage }: MarkStepsBarProps) {
+export function MarkStepsBar({ stage, className }: MarkStepsBarProps) {
   return (
-    <ol className="ms-mark-steps-bar" aria-label="Marking progress">
+    <ol
+      className={['ms-mark-steps-bar', className].filter(Boolean).join(' ')}
+      aria-label="Marking progress"
+    >
       {STEPS.map((label, i) => (
         <li key={label} className="contents">
           {i > 0 ? <span className="ms-mstep-sep" aria-hidden="true" /> : null}

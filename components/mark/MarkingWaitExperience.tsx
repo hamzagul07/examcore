@@ -73,7 +73,7 @@ function AnticipationDots() {
       {[0, 1, 2, 3, 4].map((i) => (
         <motion.span
           key={i}
-          className="h-1.5 w-1.5 rounded-full"
+          className="h-1.5 w-1.5 rounded-[2px]"
           style={{ background: 'var(--ec-brand)' }}
           initial={{ opacity: 0.2 }}
           animate={{ opacity: [0.2, 0.85, 0.2] }}
@@ -154,10 +154,19 @@ function MarkingStoppedCard({
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      className="ec-card ec-tint-critical-panel p-6 sm:p-8"
+      className="ms-mark-wait ms-mark-wait--stopped"
+      role="alert"
     >
-      <p className="ec-label-tech mb-3 ec-score-low">MARKING STOPPED</p>
-      <p className="text-base leading-relaxed text-[var(--ec-text-primary)]">
+      <div className="ms-mark-wait__cap">
+        <p className="ms-mark-wait__label">Marking stopped</p>
+        <span className="ec-ink-stamp ec-ink-stamp--crimson" aria-hidden>
+          X
+        </span>
+      </div>
+      <h2 id="marking-wait-title" className="ms-mark-wait__headline" tabIndex={-1}>
+        Couldn&apos;t finish this script
+      </h2>
+      <p className="mt-3 text-base leading-relaxed text-[var(--ec-text-primary)]">
         {error}
       </p>
       {onRetry && (
@@ -165,6 +174,9 @@ function MarkingStoppedCard({
           Your photos are still uploaded — you won&apos;t need to add them again.
         </p>
       )}
+      <span className="ms-mark-wait__note" aria-hidden>
+        photos stay — try again or go back
+      </span>
       {(onRetry || onBackToUpload) && (
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           {onRetry && (
@@ -172,9 +184,12 @@ function MarkingStoppedCard({
               type="button"
               onClick={onRetry}
               disabled={retryDisabled}
-              className="ec-btn-primary w-full justify-center text-sm sm:w-auto disabled:cursor-not-allowed disabled:opacity-50"
+              className="ec-btn-primary inline-flex w-full items-center justify-center gap-2 text-sm sm:w-auto disabled:cursor-not-allowed disabled:opacity-50"
             >
               Try again
+              <span className="font-mono text-[11px] font-bold" aria-hidden>
+                -&gt;
+              </span>
             </button>
           )}
           {onBackToUpload && (
@@ -244,29 +259,47 @@ function SingleQuestionWait({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.35 }}
-      className="ec-card overflow-hidden p-6 sm:p-8"
+      className="ms-mark-wait"
+      aria-busy="true"
     >
+      {/* Stable live region — animated headline alone does not reliably announce (MK-02). */}
+      <p className="sr-only" aria-live="polite" aria-atomic="true">
+        {headline}.{' '}
+        {markingTimeEstimateSubline(stage, {
+          totalQuestions: context?.total_questions,
+        })}
+      </p>
+      <div className="ms-mark-wait__cap">
+        <p className="ms-mark-wait__label">Marking desk</p>
+        <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+          INK
+        </span>
+      </div>
       <StageProgressBar percent={segment} />
-      <p className="mt-3 text-center text-xs text-[var(--ec-text-secondary)]">
+      <p className="ms-mark-wait__eta">
         {markingTimeEstimateSubline(stage, {
           totalQuestions: context?.total_questions,
         })}
       </p>
 
-      <div className="mt-8 space-y-6">
+      <div className="mt-7 space-y-6">
         <div>
-          <p className="ec-label-tech mb-3">MARKING</p>
           <AnimatePresence mode="wait">
             <motion.h2
               key={headline}
+              id="marking-wait-title"
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="text-xl font-semibold tracking-tight text-[var(--ec-text-primary)] sm:text-2xl"
+              className="ms-mark-wait__headline"
+              tabIndex={-1}
             >
               {headline}
             </motion.h2>
           </AnimatePresence>
+          <span className="ms-mark-wait__note" aria-hidden>
+            marks land on the line — hold on
+          </span>
         </div>
 
         {context?.total_questions && context.total_questions > 1 ? (
@@ -382,21 +415,36 @@ function WholePaperWait({
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
-      className="ec-card overflow-hidden p-6 sm:p-8"
+      className="ms-mark-wait"
+      aria-busy="true"
     >
+      <p className="sr-only" aria-live="polite" aria-atomic="true">
+        {headline}
+        {paceLine ? `. ${paceLine}` : ''}
+      </p>
+      <div className="ms-mark-wait__cap">
+        <p className="ms-mark-wait__label">Whole paper</p>
+        <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+          WP
+        </span>
+      </div>
       <StageProgressBar percent={segment} />
 
-      <div className="mt-8 space-y-6">
+      <div className="mt-7 space-y-6">
         <div>
-          <p className="ec-label-tech mb-3">WHOLE PAPER</p>
           <motion.h2
             key={headline}
+            id="marking-wait-title"
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-xl font-semibold tracking-tight text-[var(--ec-text-primary)] sm:text-2xl"
+            className="ms-mark-wait__headline"
+            tabIndex={-1}
           >
             {headline}
           </motion.h2>
+          <span className="ms-mark-wait__note" aria-hidden>
+            one question at a time under the scheme
+          </span>
         </div>
 
         {showScan && (

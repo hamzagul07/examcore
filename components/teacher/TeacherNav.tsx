@@ -2,19 +2,12 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import {
-  LayoutDashboard,
-  BookOpen,
-  ClipboardCheck,
-  LogOut,
-  Settings,
-} from 'lucide-react'
 import { ThemeSwitcher } from '@/components/design-system/ThemeSwitcher'
 import { cn } from '@/lib/utils'
 
 const NAV = [
-  { href: '/teacher/dashboard', label: 'Classrooms', icon: LayoutDashboard },
-  { href: '/teacher/reviews', label: 'Reviews', icon: ClipboardCheck },
+  { href: '/teacher/dashboard', label: 'Classrooms', stamp: 'CL' },
+  { href: '/teacher/reviews', label: 'Reviews', stamp: 'RV' },
 ]
 
 /**
@@ -29,15 +22,19 @@ export function TeacherNav({ showNav = true }: { showNav?: boolean } = {}) {
 
   return (
     <header
-      className="ec-app-header sticky top-0 z-50 border-b lg:backdrop-blur-xl"
-      style={{ borderColor: 'var(--ec-border)' }}
+      className="ec-app-header sticky top-0 z-50 border-b border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))]"
     >
       <div className="mx-auto flex w-full min-w-0 max-w-7xl items-center gap-2 overflow-x-clip px-3 py-2.5 sm:gap-3 sm:px-6 sm:py-3">
         <Link
           href={showNav ? '/teacher/dashboard' : '/for-teachers'}
           className="flex shrink-0 items-center gap-2 max-[420px]:gap-1.5"
         >
-          <BookOpen className="h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden />
+          <span
+            className="inline-grid h-6 min-w-6 shrink-0 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1.5 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]"
+            aria-hidden
+          >
+            TCH
+          </span>
           <span className="font-bold text-[var(--ec-text-primary)] max-[420px]:text-sm">
             MarkScheme{' '}
             <span className="font-normal text-[var(--ec-text-secondary)] max-[420px]:hidden">
@@ -53,21 +50,23 @@ export function TeacherNav({ showNav = true }: { showNav?: boolean } = {}) {
           className="flex min-w-0 flex-1 items-center justify-center gap-1 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] sm:justify-start [&::-webkit-scrollbar]:hidden"
           aria-label="Teacher navigation"
         >
-          {NAV.map(({ href, label, icon: Icon }) => {
+          {NAV.map(({ href, label, stamp }) => {
             const active = pathname === href || pathname.startsWith(`${href}/`)
             return (
               <Link
                 key={href}
                 href={href}
                 className={cn(
-                  'flex min-h-[44px] shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors',
+                  'flex min-h-[44px] shrink-0 items-center gap-2 rounded px-3 py-2 text-sm transition-colors',
                   active
-                    ? 'bg-[var(--ec-brand-muted)] text-[var(--ec-text-primary)]'
+                    ? 'border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] text-[var(--ec-text-primary)] shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.06))]'
                     : 'text-[var(--ec-text-secondary)] hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)]'
                 )}
                 aria-current={active ? 'page' : undefined}
               >
-                <Icon className="h-4 w-4" aria-hidden />
+                <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>
+                  {stamp}
+                </span>
                 <span className="whitespace-nowrap">{label}</span>
               </Link>
             )
@@ -79,18 +78,22 @@ export function TeacherNav({ showNav = true }: { showNav?: boolean } = {}) {
           <ThemeSwitcher />
           <Link
             href="/account"
-            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)]"
+            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)]"
             aria-label="Account settings"
           >
-            <Settings className="h-4 w-4" />
+            <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+              ACC
+            </span>
           </Link>
           <form action="/auth/signout" method="POST" className="inline">
             <button
               type="submit"
-              className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)]"
+              className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)]"
               aria-label="Sign out"
             >
-              <LogOut className="h-4 w-4" />
+              <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+                OUT
+              </span>
             </button>
           </form>
         </div>

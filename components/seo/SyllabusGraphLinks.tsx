@@ -28,7 +28,7 @@ export function SyllabusGraphLinks({
               <li key={item.topicCode}>
                 <Link
                   href={item.href}
-                  className="inline-flex rounded-full border border-[var(--ec-border)] px-3 py-1.5 text-xs font-semibold hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]"
+                  className="inline-flex rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-3 py-1.5 font-mono text-[11px] font-semibold tracking-wide shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.05))] hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]"
                 >
                   {item.topicCode} · {item.title}
                 </Link>

@@ -42,55 +42,49 @@ export default function ChangelogPage() {
       />
       <MarketingSection className="!pt-0">
         <div className="mx-auto max-w-3xl">
-          <aside className="ec-blog-quick-answer mb-10 rounded-xl border border-[var(--ec-brand)]/25 bg-[var(--ec-brand)]/5 px-5 py-5">
-            <p className="ec-label-tech mb-2 text-[var(--ec-brand)]">QUICK ANSWER</p>
-            <p className="text-base font-medium leading-relaxed text-[var(--ec-text-primary)]">
+          <aside className="ms-board-cross mb-10">
+            <p className="ms-overline">Quick answer</p>
+            <p className="ms-body-2 mt-2 text-[var(--ec-text-primary)]">
               <strong>MarkScheme</strong> (markscheme.app) ships Cambridge &amp; IB past-paper marking from
               handwriting, free syllabus courses, Exam Room communities, teacher classroom analytics, and
-              open marking insights ÿ this page lists major releases newest first.
+              open marking insights — this page lists major releases newest first.
             </p>
           </aside>
 
-          <ol className="space-y-8 border-l-2 border-[var(--ec-border)] pl-6">
+          <ol className="ms-changelog-ledger">
             {CHANGELOG_ENTRIES.map((entry) => (
-              <li key={`${entry.date}-${entry.title}`} className="relative">
-                <span
-                  className="absolute -left-[calc(0.5rem+1px)] top-1.5 h-3 w-3 rounded-full bg-[var(--ec-brand)]"
-                  aria-hidden
-                />
-                <time
-                  dateTime={entry.date}
-                  className="ec-label-tech text-[var(--ec-text-secondary)]"
-                >
+              <li key={`${entry.date}-${entry.title}`} className="ms-changelog-ledger__item">
+                <time dateTime={entry.date} className="ms-changelog-ledger__date">
                   {entry.date}
                 </time>
-                <h2 className="landing-h3 mt-1 text-[var(--ec-text-primary)]">{entry.title}</h2>
-                <p className="mt-2 leading-relaxed text-[var(--ec-text-secondary)]">{entry.summary}</p>
-                <ul className="mt-3 flex flex-wrap gap-2">
+                <h2 className="ms-changelog-ledger__title">{entry.title}</h2>
+                <p className="ms-changelog-ledger__summary">{entry.summary}</p>
+                <ul className="ms-changelog-ledger__tags">
                   {entry.tags.map((tag) => (
-                    <li
-                      key={tag}
-                      className="rounded-full border border-[var(--ec-border)] px-2.5 py-0.5 text-xs text-[var(--ec-text-secondary)]"
-                    >
-                      {tag}
-                    </li>
+                    <li key={tag}>{tag}</li>
                   ))}
                 </ul>
               </li>
             ))}
           </ol>
 
-          <p className="landing-lead mt-12 text-center">
-            Press &amp; methodology:{' '}
-            <Link href="/research" className="ec-link">
-              /research
-            </Link>
-            . Product:{' '}
-            <Link href="/mark" className="ec-link">
-              /mark
-            </Link>
-            .
-          </p>
+          <div className="ms-board-cross mt-12">
+            <p className="ms-overline">Next</p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Link
+                href="/mark"
+                className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+              >
+                <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                  M1
+                </span>
+                Open marking desk -&gt;
+              </Link>
+              <Link href="/research" className="ec-btn-ghost inline-flex min-h-[48px]">
+                Press &amp; methodology
+              </Link>
+            </div>
+          </div>
         </div>
       </MarketingSection>
     </MarketingPageShell>

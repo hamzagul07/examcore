@@ -1,9 +1,16 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState, type Dispatch, type SetStateAction } from 'react'
-import { UploadCloud, Plus, Camera } from 'lucide-react'
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type Dispatch,
+  type SetStateAction,
+} from 'react'
 import { compressImage } from '@/lib/upload/compress-image'
 import { formatFileSize, getPdfSizeError } from '@/lib/upload/upload-limits'
+import { useCoarsePointer } from '@/lib/hooks/useCoarsePointer'
 import {
   UploadPageCard,
   type UploadPage,
@@ -83,13 +90,15 @@ export function PageUploader({
   onPdfChange,
   onPdfError,
   disabled,
-  emptyLabel = 'Drop pages here or click to upload',
+  emptyLabel = 'Drop files here, or choose files',
   emptyHint = 'Multiple JPEG, PNG, or WebP images',
 }: PageUploaderProps) {
+  const touchPrimary = useCoarsePointer()
   const [dragIndex, setDragIndex] = useState<number | null>(null)
   const [pdfError, setPdfError] = useState<string | null>(null)
   const [rejectedMsg, setRejectedMsg] = useState<string | null>(null)
   const [selectedPageId, setSelectedPageId] = useState<string | null>(null)
+  const [moreOpen, setMoreOpen] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const pdfInputRef = useRef<HTMLInputElement>(null)
   const cameraInputRef = useRef<HTMLInputElement>(null)
@@ -97,6 +106,11 @@ export function PageUploader({
 
   const isCompressing = pages.some((p) => p.status === 'compressing')
   const controlsDisabled = disabled || isCompressing
+
+  function openCamera() {
+    retakeTargetRef.current = null
+    cameraInputRef.current?.click()
+  }
 
   const setPdf = useCallback(
     (file: File | null) => {
@@ -224,22 +238,17 @@ export function PageUploader({
   return (
     <div className="space-y-4">
       {isCompressing && (
-        <p className="rounded-xl border ec-tint-info-chip px-4 py-2 text-center text-sm" role="status">
+        <p className="ec-card ec-card--paper border ec-tint-info-chip px-4 py-2 text-center text-sm" role="status">
           Preparing images…
         </p>
       )}
 
       <div className="relative group">
         <div
-          className={`pointer-events-none absolute -inset-0.5 rounded-[28px] ec-upload-glow-ring blur transition-opacity duration-300 ${
-            hasContent ? 'opacity-60' : 'opacity-25 group-hover:opacity-50'
-          }`}
-        />
-        <div
           role="region"
           aria-label="Upload answer pages"
           aria-describedby={!hasContent ? 'upload-hint' : undefined}
-          className={`relative ec-card border-2 border-dashed text-center transition-all duration-300 hover:-translate-y-1 ${
+          className={`relative ec-card ec-card--paper border-2 border-dashed text-center transition-all duration-200 hover:translate-x-[-1px] hover:translate-y-[-2px] ${
             hasContent ? 'p-5 sm:p-6' : 'p-8 sm:p-10'
           }`}
           style={{ borderColor: 'var(--ec-border)' }}
@@ -251,51 +260,122 @@ export function PageUploader({
         >
           {!hasContent && (
             <div
-              className="ec-upload-icon-wrap relative mx-auto mb-5 flex items-center justify-center rounded-2xl"
+              className="ec-upload-icon-wrap relative mx-auto mb-5 flex items-center justify-center rounded border border-[var(--ec-brand-border)]"
               style={{ width: 72, height: 72 }}
             >
-              <UploadCloud className="h-9 w-9 ec-text-brand" />
+              <span className="font-mono text-lg font-bold tracking-wide ec-text-brand" aria-hidden>
+                ↑
+              </span>
             </div>
           )}
           <p className={`font-bold text-[var(--ec-text-primary)] ${hasContent ? 'text-base' : 'text-lg'}`}>
-            {hasContent ? 'Add another page' : emptyLabel}
+            {hasContent
+              ? 'Add another page'
+              : touchPrimary
+                ? 'Take photos of your working'
+                : emptyLabel}
           </p>
           {!hasContent && (
-            <p id="upload-hint" className="mt-2 font-mono text-xs text-[var(--ec-text-secondary)]">{emptyHint}</p>
+            <p id="upload-hint" className="mt-2 font-mono text-xs text-[var(--ec-text-secondary)]">
+              {touchPrimary
+                ? 'Camera, gallery photos, or a PDF scan'
+                : emptyHint}
+            </p>
           )}
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <button
-              type="button"
-              disabled={controlsDisabled}
-              onClick={() => fileInputRef.current?.click()}
-              className="ec-btn-secondary justify-center text-sm"
-            >
-              <UploadCloud className="h-4 w-4" />
-              Choose files
-            </button>
-            {allowPdf && onPdfChange && (
+
+          {touchPrimary ? (
+            <div className="mt-6 flex flex-col gap-3">
               <button
                 type="button"
                 disabled={controlsDisabled}
-                onClick={() => pdfInputRef.current?.click()}
+                onClick={openCamera}
+                className="ec-btn-primary w-full justify-center text-sm"
+              >
+                <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+                  IMG
+                </span>
+                Take photos
+              </button>
+              <div className="relative">
+                <button
+                  type="button"
+                  disabled={controlsDisabled}
+                  aria-expanded={moreOpen}
+                  onClick={() => setMoreOpen((o) => !o)}
+                  className="ec-btn-secondary w-full justify-center text-sm"
+                >
+                  Choose existing photos or PDF
+                </button>
+                {moreOpen ? (
+                  <div
+                    className="mt-2 flex flex-col gap-2 rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] p-2"
+                    role="group"
+                    aria-label="Other upload options"
+                  >
+                    <button
+                      type="button"
+                      disabled={controlsDisabled}
+                      onClick={() => {
+                        setMoreOpen(false)
+                        fileInputRef.current?.click()
+                      }}
+                      className="ec-btn-secondary w-full justify-center text-sm"
+                    >
+                      Choose photos
+                    </button>
+                    {allowPdf && onPdfChange ? (
+                      <button
+                        type="button"
+                        disabled={controlsDisabled}
+                        onClick={() => {
+                          setMoreOpen(false)
+                          pdfInputRef.current?.click()
+                        }}
+                        className="ec-btn-secondary w-full justify-center text-sm"
+                      >
+                        Upload PDF
+                      </button>
+                    ) : null}
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          ) : (
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+              <button
+                type="button"
+                disabled={controlsDisabled}
+                onClick={() => fileInputRef.current?.click()}
                 className="ec-btn-secondary justify-center text-sm"
               >
-                Upload PDF
+                <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+                  ↑
+                </span>
+                Choose files
               </button>
-            )}
-            <button
-              type="button"
-              disabled={controlsDisabled}
-              onClick={() => {
-                retakeTargetRef.current = null
-                cameraInputRef.current?.click()
-              }}
-              className="ec-btn-secondary justify-center text-sm"
-            >
-              <Camera className="h-4 w-4" />
-              Take a photo
-            </button>
-          </div>
+              {allowPdf && onPdfChange ? (
+                <button
+                  type="button"
+                  disabled={controlsDisabled}
+                  onClick={() => pdfInputRef.current?.click()}
+                  className="ec-btn-secondary justify-center text-sm"
+                >
+                  Upload PDF
+                </button>
+              ) : null}
+              <button
+                type="button"
+                disabled={controlsDisabled}
+                onClick={openCamera}
+                className="ec-btn-secondary justify-center text-sm"
+              >
+                <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+                  IMG
+                </span>
+                Take a photo
+              </button>
+            </div>
+          )}
           <input
             ref={fileInputRef}
             type="file"
@@ -339,19 +419,19 @@ export function PageUploader({
       </div>
 
       {rejectedMsg && (
-        <p className="rounded-xl border ec-tint-critical-chip px-4 py-3 text-sm" role="alert">
+        <p className="ec-card ec-card--paper border ec-tint-critical-chip px-4 py-3 text-sm" role="alert">
           {rejectedMsg}
         </p>
       )}
 
       {pdfError && (
-        <p className="rounded-xl border ec-tint-critical-chip px-4 py-3 text-sm">
+        <p className="ec-card ec-card--paper border ec-tint-critical-chip px-4 py-3 text-sm">
           {pdfError}
         </p>
       )}
 
       {pdfFile && !pdfError && (
-        <div className="ec-card flex items-center justify-between gap-3 p-4">
+        <div className="ec-card ec-card--paper flex items-center justify-between gap-3 p-4">
           <div>
             <p className="font-semibold text-[var(--ec-text-primary)]">{pdfFile.name}</p>
             <p className="font-mono text-xs text-[var(--ec-text-secondary)]">
@@ -445,7 +525,7 @@ export function PageUploader({
         onClick={() => fileInputRef.current?.click()}
         className="ec-btn-secondary w-full justify-center"
       >
-        <Plus className="h-4 w-4" />
+        <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>+</span>
         Add another page
       </button>
     </div>

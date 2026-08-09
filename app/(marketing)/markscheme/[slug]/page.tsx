@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowRight } from 'lucide-react'
+
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { createPageMetadata } from '@/lib/seo/metadata'
@@ -68,7 +68,7 @@ export default async function MarkschemeObjectPage({ params }: Props) {
         lead={`Examiner-style marking logic for Cambridge ${label}. This page is not the question stem and not a reproduction of the official mark scheme PDF.`}
       />
       <MarketingSection className="!pt-0">
-        <article className="ec-card space-y-5 p-5">
+        <article className="ec-card ec-card--paper space-y-5 p-5">
           <section>
             <h2 className="ms-h3" style={{ fontSize: '1.1rem' }}>
               Marking logic
@@ -107,7 +107,7 @@ export default async function MarkschemeObjectPage({ params }: Props) {
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href={q.markHref} className="ec-btn-primary min-h-[48px]">
-            Mark your attempt <ArrowRight className="h-4 w-4" />
+            Mark your attempt <span className="h-4 w-4" aria-hidden>-&gt;</span>
           </Link>
           <Link href={`/questions/${slug}`} className="ec-btn-ghost min-h-[48px]">
             Question object (stem &amp; intent)

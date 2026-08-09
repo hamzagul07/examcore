@@ -79,11 +79,16 @@ export function PastPaperSelectorFields({
 
   if (markBoard === 'ib') {
     return (
-      <div className="rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-        Cambridge past-paper lookup is not used for IB. Use{' '}
-        <strong className="text-[var(--ec-text-primary)]">My question</strong> above,
-        pick your IB subject, and paste or photograph the prompt — we mark against IB
-        assessment criteria.
+      <div className="ec-card ec-card--paper border border-[var(--ec-border)] p-4 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+        <span className="ec-ink-stamp mb-2" aria-hidden>
+          IB
+        </span>
+        <p className="mt-2">
+          Cambridge past-paper lookup is not used for IB. Use{' '}
+          <strong className="text-[var(--ec-text-primary)]">My question</strong> above,
+          pick your IB subject, and paste or photograph the prompt — we mark against IB
+          assessment criteria.
+        </p>
       </div>
     )
   }

@@ -11,13 +11,6 @@ type Props = {
   className?: string
 }
 
-const VARIANT_CLASS = {
-  error:
-    'border-[color-mix(in_srgb,var(--ec-chip-critical-text)_30%,transparent)] bg-[var(--ec-chip-critical-bg)] text-[var(--ec-chip-critical-text)]',
-  warning:
-    'border-[color-mix(in_srgb,var(--ec-chip-warning-text)_30%,transparent)] bg-[var(--ec-chip-warning-bg)] text-[var(--ec-banner-warning-title)]',
-}
-
 /** Accessible inline form error — announces to assistive tech and can receive focus. */
 export function FormErrorAlert({
   message,
@@ -43,9 +36,9 @@ export function FormErrorAlert({
       ref={ref}
       role="alert"
       tabIndex={-1}
-      className={`rounded-2xl border p-3.5 text-sm backdrop-blur outline-none ${VARIANT_CLASS[variant]} ${className}`.trim()}
+      className={`${variant === 'warning' ? 'ms-auth-warning' : 'ms-auth-error'} outline-none ${className}`.trim()}
     >
-      {message ? <p>{message}</p> : null}
+      {message ? <p className="m-0">{message}</p> : null}
       {children}
     </div>
   )

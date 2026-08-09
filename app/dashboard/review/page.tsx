@@ -52,9 +52,9 @@ export default async function ReviewPage() {
           <p className="ec-eyebrow mb-3">Exam readiness — if you sat it today</p>
           <div className="grid gap-3 sm:grid-cols-2">
             {readiness.map((r) => (
-              <div key={r.subject} className="ec-card flex items-start gap-4 p-4 sm:p-5">
+              <div key={r.subject} className="ec-card ec-card--paper flex items-start gap-4 p-4 sm:p-5">
                 <div
-                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl text-2xl font-bold"
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded border font-mono text-2xl font-bold"
                   style={{
                     color: r.color,
                     backgroundColor: `color-mix(in srgb, ${r.color} 14%, var(--ec-surface))`,
@@ -67,7 +67,7 @@ export default async function ReviewPage() {
                 <div className="min-w-0">
                   <p className="text-sm font-bold text-[var(--ec-text-primary)]">
                     {r.subjectLabel}
-                    <span className="ml-1.5 font-medium text-[var(--ec-text-faint)]">
+                    <span className="ml-1.5 font-medium text-[var(--ec-text-secondary)]">
                       · predicted on recent form · {r.coveragePct}% of topics mastered
                     </span>
                   </p>
@@ -82,7 +82,7 @@ export default async function ReviewPage() {
       ) : null}
 
       {profile.top ? (
-        <section className="ec-card mb-8 p-5 sm:p-6">
+        <section className="ec-card ec-card--paper mb-8 p-5 sm:p-6">
           <p className="ec-eyebrow mb-2">Your mark-losing pattern</p>
           <h2 className="mb-1 text-lg font-bold text-[var(--ec-text-primary)]">
             You lose most marks to {profile.top.label.toLowerCase()}
@@ -99,11 +99,11 @@ export default async function ReviewPage() {
                   {e.label}
                 </span>
                 <span
-                  className="h-2 rounded-full bg-[var(--ec-brand)]"
+                  className="h-2 rounded-[1px] bg-[var(--ec-brand)]"
                   style={{ width: `${Math.max(e.pct, 3)}%` }}
                   aria-hidden
                 />
-                <span className="shrink-0 tabular-nums text-[var(--ec-text-faint)]">{e.pct}%</span>
+                <span className="shrink-0 tabular-nums text-[var(--ec-text-secondary)]">{e.pct}%</span>
               </div>
             ))}
           </div>
@@ -111,7 +111,7 @@ export default async function ReviewPage() {
       ) : null}
 
       {coldStart ? (
-        <section className="ec-card p-6">
+        <section className="ec-card ec-card--paper p-6">
           <p className="ec-eyebrow mb-2">Start here</p>
           <h2 className="mb-1 text-lg font-bold text-[var(--ec-text-primary)]">
             Mark a question to unlock your study plan
@@ -140,7 +140,7 @@ export default async function ReviewPage() {
           )}
         </section>
       ) : items.length === 0 ? (
-        <div className="ec-card p-6 text-center">
+        <div className="ec-card ec-card--paper p-6 text-center">
           <p className="mb-4 text-[var(--ec-text-secondary)]">
             You&apos;re all caught up — nothing due for review right now. Keep marking
             to surface new weak spots.
@@ -154,12 +154,12 @@ export default async function ReviewPage() {
           {items.map((it) => (
             <li
               key={`${it.subject}-${it.code}`}
-              className="ec-card flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between"
+              className="ec-card ec-card--paper flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between"
             >
               <div className="min-w-0">
                 <div className="mb-1 flex flex-wrap items-center gap-2">
                   <span
-                    className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide ${
+                    className={`inline-flex items-center rounded px-2.5 py-0.5 font-mono text-[11px] font-bold uppercase tracking-wide ${
                       it.source === 'recall'
                         ? 'bg-[var(--ec-surface-muted)] text-[var(--ec-text-secondary)]'
                         : it.level === 'critical'
@@ -169,7 +169,7 @@ export default async function ReviewPage() {
                   >
                     {it.source === 'recall' ? 'Recall' : LEVEL_LABEL[it.level] ?? it.level}
                   </span>
-                  <span className="text-xs font-medium text-[var(--ec-text-faint)]">
+                  <span className="text-xs font-medium text-[var(--ec-text-secondary)]">
                     {it.subjectLabel} · {it.code}
                   </span>
                 </div>

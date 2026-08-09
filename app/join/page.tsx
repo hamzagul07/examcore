@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { BookOpen, ArrowRight } from 'lucide-react'
+
 import { isValidInviteCode, normalizeInviteCode } from '@/lib/teacher/invite-code'
 
 export default function JoinPage() {
@@ -22,9 +22,11 @@ export default function JoinPage() {
   }
 
   return (
-    <div className="ms-join-card ec-card p-6 text-center sm:p-8">
-      <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl ec-icon-hero-gradient">
-        <BookOpen className="h-8 w-8 ec-text-brand" />
+    <div className="ms-join-card ec-card ec-card--paper p-6 text-center sm:p-8">
+      <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)]">
+        <span className="font-mono text-lg font-bold tracking-wide ec-text-brand" aria-hidden>
+          #
+        </span>
       </div>
       <h1 className="mb-2 text-2xl font-bold text-[var(--ec-text-primary)] sm:text-3xl">
         Join a classroom
@@ -55,7 +57,7 @@ export default function JoinPage() {
           className="ec-btn-primary inline-flex w-full min-h-[48px] items-center justify-center gap-2"
           disabled={!isValidInviteCode(normalized)}
         >
-          Continue <ArrowRight className="h-5 w-5" />
+          Continue <span className="h-5 w-5" aria-hidden>-&gt;</span>
         </button>
       </form>
     </div>

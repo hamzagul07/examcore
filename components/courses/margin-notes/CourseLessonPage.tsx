@@ -38,6 +38,7 @@ import { useSectionReveal } from '@/lib/courses/use-section-reveal'
 import { useLessonProgress } from '@/lib/courses/use-lesson-progress'
 import { useCourseProgress } from '@/components/courses/CourseProgressClient'
 import { appendMarkReturn } from '@/lib/courses/format-session'
+import { SegmentedControl } from '@/components/ui/SegmentedControl'
 import { buildSignInHref } from '@/lib/auth-redirect'
 import { LessonUpsell } from '@/components/billing/LessonUpsell'
 import type { EffectiveAccess } from '@/lib/billing/access'
@@ -92,16 +93,24 @@ export function CourseLessonPage({
   markHrefOverride,
   markCtaLabel,
 }: Props) {
-  // Free tier sees notes + formulas only — live diagrams, practice questions and
-  // the interactive blocks are gated. `undefined` (loading / SSR) renders full so
-  // crawlers index everything and paid users never flash to a locked state.
+  // Free tier sees notes + formulas only — live diagrams, practice, and
+  // interactive blocks are gated. SSR keeps access undefined → unlocked for SEO.
+  // After hydration, treat unresolved access as pending-locked so free readers
+  // never see premium blocks appear then vanish (CO-01).
+  const [clientMounted, setClientMounted] = useState(false)
+  useEffect(() => {
+    setClientMounted(true)
+  }, [])
+  const accessPending = clientMounted && access === undefined
   const locked = access === 'free'
+  // Hide premium interactive blocks until access resolves (and for free tier).
+  const premiumHidden = locked || accessPending
   // Interactive diagrams are free during launch (see INTERACTIVE_DIAGRAMS_FREE),
-  // so they stay open even for the free tier. Everything else follows `locked`.
-  const diagramsLocked = locked && !INTERACTIVE_DIAGRAMS_FREE
+  // so they stay open even for the free tier. Everything else follows premiumHidden.
+  const diagramsLocked = premiumHidden && !INTERACTIVE_DIAGRAMS_FREE
   // Quick check is free for everyone (see QUICK_CHECK_FREE): zero marginal cost,
   // and it is the only block that asks a free reader to produce rather than read.
-  const quizLocked = locked && !QUICK_CHECK_FREE
+  const quizLocked = premiumHidden && !QUICK_CHECK_FREE
   const acc = accentCssVar(subjectAcc)
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -211,16 +220,16 @@ export function CourseLessonPage({
         { id: 'compare', label: 'Side by side', on: !!L.comparisonTable },
         { id: 'notes', label: 'Full notes', on: !!L.notes?.length },
         { id: 'worked', label: 'Worked examples', on: !!L.worked?.length },
-        { id: 'cmap', label: 'Concept map', on: !!L.conceptMap && !locked },
+        { id: 'cmap', label: 'Concept map', on: !!L.conceptMap && !premiumHidden },
         { id: 'glossary', label: 'Glossary', on: !!L.glossary?.length },
         { id: 'quiz', label: 'Quick check', on: !!L.quiz?.length && !quizLocked },
-        { id: 'cards', label: 'Flashcards', on: !!L.flashcards?.length && !locked },
+        { id: 'cards', label: 'Flashcards', on: !!L.flashcards?.length && !premiumHidden },
         { id: 'takeaways', label: 'Key takeaways', on: !!L.takeaways?.length },
-        { id: 'practice', label: 'Practice', on: !!L.practice && !locked },
+        { id: 'practice', label: 'Practice', on: !!L.practice && !premiumHidden },
         { id: 'resources', label: 'Extra links', on: !!L.resources?.length },
         { id: 'faqs', label: 'FAQs', on: !!L.faqs?.length },
       ].filter((s) => s.on),
-    [L, locked, diagramsLocked, quizLocked, criterionLadder]
+    [L, premiumHidden, diagramsLocked, quizLocked, criterionLadder]
   )
 
   // Real progress: which sections the student has actually worked through.
@@ -272,7 +281,15 @@ export function CourseLessonPage({
 
   useEffect(() => {
     try {
-      setStudy(window.localStorage.getItem(STUDY_PREF_KEY) === '1')
+      const pref = window.localStorage.getItem(STUDY_PREF_KEY)
+      if (pref === '1') {
+        setStudy(true)
+      } else if (pref === '0') {
+        setStudy(false)
+      } else {
+        // No saved preference: phone defaults to staged Study (CO-02); desktop stays document.
+        setStudy(window.matchMedia('(max-width: 860px)').matches)
+      }
     } catch {
       /* private mode: document view is the safe default */
     }
@@ -320,6 +337,11 @@ export function CourseLessonPage({
       return !s || s === activeStage
     })
   }, [activeStage, toc])
+
+  const mobileNavIndex = useMemo(() => {
+    const idx = tocForNav.findIndex((t) => t.id === active)
+    return idx >= 0 ? idx : 0
+  }, [active, tocForNav])
 
   const availableHints = useMemo(() => {
     const out: HintKey[] = []
@@ -512,7 +534,7 @@ export function CourseLessonPage({
               <span className="lesson-metaline-tag">{(L.tag || 'topic').toUpperCase()}</span>
             ) : null}
           </div>
-          <h2 className="h-display lesson-title" aria-labelledby="lesson-seo-intro">
+          <h1 className="h-display lesson-title">
             {L.heroEm ? (
               <>
                 {L.heroPre} <em>{L.heroEm}</em>
@@ -520,7 +542,7 @@ export function CourseLessonPage({
             ) : (
               L.name
             )}
-          </h2>
+          </h1>
           <div className="lead lesson-intro">
             <CourseRichText content={L.intro} variant="prose" className="lesson-intro-rich" breakAnywhere={false} />
           </div>
@@ -529,6 +551,7 @@ export function CourseLessonPage({
               <p className="micro objlist-kicker">
                 BY THE END, YOU CAN…
               </p>
+              <MarginNote className="lesson-obj-note">exam checklist — tick these off</MarginNote>
               <ol>
                 {L.objectives.map((o, i) => (
                   <li key={i}>
@@ -569,6 +592,7 @@ export function CourseLessonPage({
               <button
                 type="button"
                 className="btn-primary btn-block"
+                disabled={accessPending}
                 onClick={() =>
                   practiceCount > 1 ? setLessonMode('papers') : scrollToSection('practice')
                 }
@@ -630,56 +654,104 @@ export function CourseLessonPage({
           </div>
           <div className="mode-right">
             {mode === 'learn' && stages.length > 1 ? (
-              <label className="simpler-toggle study-toggle">
-                <span className="micro">STUDY MODE</span>
-                <button
-                  type="button"
-                  className={`switch${study ? ' on' : ''}`}
-                  onClick={toggleStudy}
-                  aria-pressed={study}
-                  title="Walk the lesson one step at a time instead of one long page"
-                >
-                  <span className="knob" />
-                </button>
-              </label>
+              <div className="ink-toggle study-toggle">
+                <span className="micro" id="lesson-study-label">
+                  STUDY MODE
+                </span>
+                <span id="lesson-study-hint" className="sr-only">
+                  Walk the lesson one step at a time instead of one long page
+                </span>
+                <SegmentedControl
+                  className="ink-seg"
+                  optionClassName="ink-seg-opt"
+                  aria-labelledby="lesson-study-label"
+                  aria-describedby="lesson-study-hint"
+                  value={study ? 'on' : 'off'}
+                  onChange={(v) => {
+                    if ((v === 'on') !== study) toggleStudy()
+                  }}
+                  options={[
+                    { value: 'off', label: 'OFF' },
+                    { value: 'on', label: 'ON' },
+                  ]}
+                />
+              </div>
             ) : null}
             {mode === 'learn' ? (
-              <label className="simpler-toggle">
-                <span className="micro">EXPLAIN SIMPLER</span>
-                <button
-                  type="button"
-                  className={`switch${simpler ? ' on' : ''}`}
-                  onClick={() => setSimpler((s) => !s)}
-                  aria-pressed={simpler}
-                >
-                  <span className="knob" />
-                </button>
-              </label>
+              <div className="ink-toggle">
+                <span className="micro" id="lesson-simpler-label">
+                  EXPLAIN SIMPLER
+                </span>
+                <SegmentedControl
+                  className="ink-seg"
+                  optionClassName="ink-seg-opt"
+                  aria-labelledby="lesson-simpler-label"
+                  value={simpler ? 'on' : 'off'}
+                  onChange={(v) => setSimpler(v === 'on')}
+                  options={[
+                    { value: 'off', label: 'OFF' },
+                    { value: 'on', label: 'ON' },
+                  ]}
+                />
+              </div>
             ) : null}
           </div>
         </div>
       </div>
 
-      {mode === 'learn' ? (
+      {mode === 'learn' && tocForNav.length > 0 ? (
         <nav className="lesson-mobile-jump pg" aria-label="On this page">
-          {/* Compact stand-in for the sidebar progress ring, which is hidden
-              on mobile — readers still get completion feedback. */}
+          {/* Compact stand-in for the sidebar progress ring (hidden on mobile). */}
           <span
             className={`lesson-mobile-jump-progress mono${isDone ? ' done' : ''}`}
             aria-label={isDone ? 'Topic complete' : `Lesson progress: ${tocPct}%`}
           >
             {isDone ? '✓ done' : `${tocPct}%`}
           </span>
-          {tocForNav.map((tt) => (
+          {/* Section X of Y — replaces the horizontal chip rail of every TOC entry (CO-02). */}
+          <div className="lesson-mobile-jump-stepper">
             <button
-              key={tt.id}
               type="button"
-              className={`lesson-mobile-jump-link${active === tt.id ? ' on' : ''}`}
-              onClick={() => scrollToSection(tt.id)}
+              className="lesson-mobile-jump-step"
+              disabled={mobileNavIndex <= 0}
+              aria-label="Previous section"
+              onClick={() => {
+                const prev = tocForNav[mobileNavIndex - 1]
+                if (prev) scrollToSection(prev.id)
+              }}
             >
-              {tt.label}
+              ‹
             </button>
-          ))}
+            <label className="lesson-mobile-jump-select-wrap">
+              <span className="sr-only">
+                Section {mobileNavIndex + 1} of {tocForNav.length}
+              </span>
+              <select
+                className="lesson-mobile-jump-select"
+                value={tocForNav[mobileNavIndex]?.id ?? tocForNav[0]!.id}
+                onChange={(e) => scrollToSection(e.target.value)}
+                aria-label={`Section ${mobileNavIndex + 1} of ${tocForNav.length}`}
+              >
+                {tocForNav.map((tt, i) => (
+                  <option key={tt.id} value={tt.id}>
+                    {i + 1}/{tocForNav.length} · {tt.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <button
+              type="button"
+              className="lesson-mobile-jump-step"
+              disabled={mobileNavIndex >= tocForNav.length - 1}
+              aria-label="Next section"
+              onClick={() => {
+                const next = tocForNav[mobileNavIndex + 1]
+                if (next) scrollToSection(next.id)
+              }}
+            >
+              ›
+            </button>
+          </div>
         </nav>
       ) : null}
 
@@ -1048,6 +1120,7 @@ export function CourseLessonPage({
                   title="Worked examples"
                   sub="See the formulas applied — reveal one step at a time, like the exam."
                 />
+                <MarginNote className="lesson-worked-note">reveal slowly — mark each step</MarginNote>
                 <div className="worked-stack">
                   {L.worked.map((w, i) => (
                     <Worked key={i} w={w} idx={i} />
@@ -1056,7 +1129,7 @@ export function CourseLessonPage({
               </section>
             ) : null}
 
-            {L.conceptMap && !locked ? (
+            {L.conceptMap && !premiumHidden ? (
               <section id="cmap" className="lsec" data-stage={stageForSection('cmap') ?? undefined}>
                 <SecHead
                   k="06"
@@ -1099,7 +1172,7 @@ export function CourseLessonPage({
               </section>
             ) : null}
 
-            {L.flashcards?.length && !locked ? (
+            {L.flashcards?.length && !premiumHidden ? (
               <section id="cards" className="lsec" data-stage={stageForSection('cards') ?? undefined}>
                 <SecHead
                   k="09"
@@ -1117,10 +1190,13 @@ export function CourseLessonPage({
                   title="Key takeaways"
                   sub="Review these before you close the topic — retrieval beats re-reading."
                 />
+                <MarginNote className="lesson-takeaway-note">close the tab only after these stick</MarginNote>
                 <ul className="takeaways">
                   {L.takeaways.map((t, i) => (
                     <li key={i}>
-                      <span className="take-check">✓</span>
+                      <span className="take-check mono" aria-hidden>
+                        M1
+                      </span>
                       <CourseRichText content={t} variant="prose" className="body-2 takeaway-rich" breakAnywhere={false} />
                     </li>
                   ))}

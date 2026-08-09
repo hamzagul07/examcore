@@ -1,86 +1,72 @@
 import Link from 'next/link'
-import {
-  ArrowRight,
-  Calculator,
-  BookText,
-  GraduationCap,
-  Percent,
-  Timer,
-  Target,
-} from 'lucide-react'
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { softwareApplicationNode } from '@/lib/seo/structured-data'
-import {
-  MarketingHero,
-  MarketingPageShell,
-  MarketingSection,
-} from '@/components/marketing/MarketingPageShell'
+import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
+import { MarketingBreadcrumbs } from '@/components/seo/MarketingBreadcrumbs'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
+import { ToolsDeskArtefact } from '@/components/tools/ToolsDeskArtefact'
 
 const PATH = '/tools'
 
-type ToolCard = {
+type Instrument = {
   href: string
   title: string
-  description: string
+  job: string
   cta: string
-  icon: typeof Calculator
+  stamp: string
+  featured?: boolean
 }
 
-const TOOLS: ToolCard[] = [
+const INSTRUMENTS: Instrument[] = [
   {
     href: '/tools/will-my-grade-hold',
     title: 'Will my grade hold?',
-    description:
-      'Results Day tool: paste your raw mark and published thresholds to see your grade, the gap to the next boundary, and get the free November mock pack.',
+    job: 'Results Day: paste a raw mark and published thresholds — see the grade, the gap, then take the November mock pack.',
     cta: 'Check my grade',
-    icon: Target,
+    stamp: 'A*',
+    featured: true,
   },
   {
     href: '/tools/grade-boundary-calculator',
     title: 'Grade boundary calculator',
-    description:
-      'Enter your raw marks and the official thresholds to see your Cambridge A*–E grade, your percentage, and the marks needed for the next grade up. Per-subject calculators for every syllabus we mark.',
+    job: 'Raw marks in, A*–E out — percentage and marks to the next boundary for every syllabus we mark.',
     cta: 'Open calculator',
-    icon: Calculator,
+    stamp: '∴',
   },
   {
     href: '/tools/command-words',
     title: 'Command words explorer',
-    description:
-      'What every Cambridge command word — state, explain, evaluate, justify — actually asks for, and how to answer it to earn the marks. Searchable, with per-subject profiles.',
-    cta: 'Explore command words',
-    icon: BookText,
+    job: 'What state, explain, evaluate, and justify actually ask for — and how to earn the marks.',
+    cta: 'Explore words',
+    stamp: 'CW',
   },
   {
     href: '/tools/ib-points-calculator',
     title: 'IB points calculator',
-    description:
-      'Add up your IB Diploma score out of 45 — six subjects (1–7) plus the Theory of Knowledge and Extended Essay bonus — and check whether you meet the pass conditions.',
-    cta: 'Calculate IB points',
-    icon: GraduationCap,
+    job: 'Six subjects plus TOK/EE bonus — total out of 45 and whether you meet the pass conditions.',
+    cta: 'Calculate points',
+    stamp: '45',
   },
   {
     href: '/tools/pum-calculator',
     title: 'PUM / UMS calculator',
-    description:
-      'Convert a raw mark to a Percentage Uniform Mark on the 0–100 scale using your A–E thresholds — see your grade and how many marks reach the next one.',
+    job: 'Convert a raw mark to the 0–100 uniform scale using your A–E thresholds.',
     cta: 'Convert to PUM',
-    icon: Percent,
+    stamp: '%',
   },
   {
     href: '/tools/exam-countdown',
     title: 'Exam countdown & planner',
-    description:
-      'Enter your exam date to see days and weeks left, the revision phase you should be in, and how many past papers a week to clear your target — for any session.',
-    cta: 'Start the countdown',
-    icon: Timer,
+    job: 'Days left, revision phase, and how many past papers a week to clear your target.',
+    cta: 'Start countdown',
+    stamp: 'T',
   },
 ]
 
 export const metadata = getPageMetadata(PATH, {
+  ogImagePath: '/api/og/tools/hub',
   title: 'Free revision tools — Cambridge grade & command words',
   description:
     'Free Cambridge revision tools: a grade boundary calculator that turns raw marks into an A*–E grade, and a command words explorer that shows how to answer each question type.',
@@ -94,6 +80,9 @@ export const metadata = getPageMetadata(PATH, {
 })
 
 export default function ToolsHubPage() {
+  const featured = INSTRUMENTS.find((t) => t.featured)
+  const rack = INSTRUMENTS.filter((t) => !t.featured)
+
   return (
     <MarketingPageShell>
       <PageJsonLd
@@ -107,60 +96,146 @@ export default function ToolsHubPage() {
       />
       <JsonLd data={[softwareApplicationNode()]} />
 
-      <MarketingHero
-        label="Free tools"
-        breadcrumbs={[
-          { name: 'Home', path: '/' },
-          { name: 'Tools', path: PATH },
-        ]}
-        title="Free revision tools for Cambridge students"
-        lead="Quick, no-sign-up tools to check where you stand and answer questions the way examiners want — built from the same mark schemes we use to mark full papers."
-      />
+      <div className="ms-pg ms-tools-desk">
+        <MarketingBreadcrumbs
+          items={[
+            { name: 'Home', path: '/' },
+            { name: 'Tools', path: PATH },
+          ]}
+          className="mb-5"
+        />
 
-      <MarketingSection className="!pt-0">
-        <ul className="ms-guide-grid sm:grid-cols-2">
-          {TOOLS.map((tool) => {
-            const Icon = tool.icon
-            return (
-              <li key={tool.href}>
-                <Link href={tool.href} className="ms-hub-card" style={{ display: 'block' }}>
-                  <span className="ec-chip ec-chip-accent" aria-hidden="true">
-                    <Icon className="h-4 w-4" />
+        <section className="ms-tools-desk__hero" aria-labelledby="tools-desk-title">
+          <div className="ms-tools-desk__copy">
+            <div className="ms-tools-desk__brand">
+              <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                MS
+              </span>
+              <span className="ms-tools-desk__brand-mark">MarkScheme · instrument desk</span>
+            </div>
+
+            <h1 id="tools-desk-title" className="ms-tools-desk__title">
+              Tools that speak <em>examiner.</em>
+            </h1>
+
+            <p className="ms-tools-desk__lead">
+              No sign-up. Check where a raw mark lands, decode command words, plan the weeks
+              left — built from the same schemes we use to mark full papers.
+            </p>
+
+            <p className="ms-tools-desk__note" aria-hidden>
+              thresholds are ink — grades are earned
+            </p>
+
+            <div className="ms-tools-desk__actions">
+              <Link
+                href="/mark"
+                className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+              >
+                <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                  M1
+                </span>
+                Mark a paper free -&gt;
+              </Link>
+              <Link
+                href="/tools/will-my-grade-hold"
+                className="ec-btn-ghost inline-flex min-h-[48px]"
+              >
+                Will my grade hold?
+              </Link>
+            </div>
+          </div>
+
+          <div className="ms-tools-desk__artefact">
+            <ToolsDeskArtefact />
+          </div>
+        </section>
+
+        <section className="ms-tools-desk__rack" aria-labelledby="tools-rack-heading">
+          <div className="ms-tools-desk__rack-head">
+            <div>
+              <p className="ms-overline">On the desk</p>
+              <h2 id="tools-rack-heading" className="ms-tools-desk__rack-title">
+                Pick an instrument
+              </h2>
+            </div>
+          </div>
+
+          <ul className="ms-tools-instruments">
+            {featured ? (
+              <li>
+                <Link
+                  href={featured.href}
+                  className="ms-tools-instrument ms-tools-instrument--featured"
+                >
+                  <span className="ms-tools-instrument__stamp" aria-hidden>
+                    {featured.stamp}
                   </span>
-                  <h2 className="ms-h3" style={{ marginTop: 12, fontSize: '1.15rem' }}>
-                    {tool.title}
-                  </h2>
-                  <p className="ms-body-2" style={{ marginTop: 8 }}>
-                    {tool.description}
-                  </p>
-                  <span className="ec-btn-underline mt-3 inline-flex items-center gap-1 text-sm">
-                    {tool.cta} <ArrowRight className="h-4 w-4" />
+                  <span className="ms-tools-instrument__body">
+                    <span className="ms-tools-instrument__name">{featured.title}</span>
+                    <span className="ms-tools-instrument__job">{featured.job}</span>
+                    <span className="ms-tools-instrument__cta">
+                      {featured.cta} <span aria-hidden>-&gt;</span>
+                    </span>
+                  </span>
+                  <span className="ms-tools-instrument__go" aria-hidden>
+                    -&gt;
                   </span>
                 </Link>
               </li>
-            )
-          })}
-        </ul>
+            ) : null}
 
-        <div className="ms-hub-card mt-12 items-center text-center">
-          <h2 className="ms-h3">Want feedback on the actual answer, not just a grade?</h2>
-          <p className="ms-lead mx-auto" style={{ marginTop: 10, maxWidth: 500 }}>
-            A grade estimate tells you where you landed. MarkScheme tells you <em>why</em> — upload
-            your paper and get mark-by-mark feedback against the real Cambridge scheme.
+            {rack.map((tool) => (
+              <li key={tool.href}>
+                <Link href={tool.href} className="ms-tools-instrument">
+                  <div className="ms-tools-instrument__top">
+                    <span className="ms-tools-instrument__stamp" aria-hidden>
+                      {tool.stamp}
+                    </span>
+                    <span className="ms-tools-instrument__go" aria-hidden>
+                      -&gt;
+                    </span>
+                  </div>
+                  <span className="ms-tools-instrument__body">
+                    <span className="ms-tools-instrument__name">{tool.title}</span>
+                    <span className="ms-tools-instrument__job">{tool.job}</span>
+                    <span className="ms-tools-instrument__cta">
+                      {tool.cta} <span aria-hidden>-&gt;</span>
+                    </span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="ms-tools-desk__payoff" aria-labelledby="tools-payoff-heading">
+          <p className="ms-overline">Beyond the estimate</p>
+          <h2 id="tools-payoff-heading" className="ms-tools-desk__payoff-title">
+            Want feedback on the actual answer, not just a grade?
+          </h2>
+          <p className="ms-tools-desk__payoff-lead">
+            A boundary check tells you where you landed. MarkScheme tells you <em>why</em> —
+            upload your paper and get mark-by-mark feedback against the real Cambridge scheme.
           </p>
-          <Link href="/mark" className="ec-btn-primary mt-6 inline-flex min-h-[48px]">
-            Mark a paper free <ArrowRight className="h-5 w-5" />
-          </Link>
-          <p className="ms-micro mt-6">
-            Looking for written guides instead?{' '}
-            <Link href="/guides" className="ec-btn-underline">
-              Browse all revision guides
+          <div className="ms-tools-desk__payoff-actions">
+            <Link
+              href="/mark"
+              className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+            >
+              <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                M1
+              </span>
+              Mark a paper free -&gt;
             </Link>
-            .
-          </p>
-        </div>
+            <Link href="/guides" className="ec-btn-ghost inline-flex min-h-[48px]">
+              Browse revision guides
+            </Link>
+          </div>
+        </section>
+
         <PageHelpStrip />
-      </MarketingSection>
+      </div>
     </MarketingPageShell>
   )
 }

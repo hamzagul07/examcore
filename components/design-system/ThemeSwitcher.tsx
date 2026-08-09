@@ -1,6 +1,5 @@
 'use client'
 
-import { Moon, Sun } from 'lucide-react'
 import { useEcTheme } from '@/lib/design-system/ThemeProvider'
 import { triggerPrimaryHaptic } from '@/lib/hooks/useTapFeedback'
 
@@ -19,7 +18,7 @@ export function ThemeSwitcher({ compact = false }: ThemeSwitcherProps) {
 
   return (
     <div
-      className="ms-theme-switcher flex items-center gap-1 rounded-xl p-1"
+      className="ms-theme-switcher flex items-center gap-1 rounded border border-[var(--ec-border)] p-1"
       style={{
         background: 'var(--ec-surface)',
         border: '1px solid var(--ec-border)',
@@ -31,7 +30,7 @@ export function ThemeSwitcher({ compact = false }: ThemeSwitcherProps) {
         type="button"
         title="Dark"
         onClick={() => select('late-night')}
-        className={`flex items-center gap-1.5 rounded-lg text-xs font-medium transition-all duration-300 active:scale-[0.98] ${
+        className={`flex items-center gap-1.5 rounded text-xs font-medium transition-all duration-300 active:scale-[0.98] ${
           compact ? 'px-2 py-1.5' : 'px-2.5 py-1.5 md:px-3'
         }`}
         style={{
@@ -43,14 +42,14 @@ export function ThemeSwitcher({ compact = false }: ThemeSwitcherProps) {
               : 'var(--ec-text-secondary)',
         }}
       >
-        <Moon className="h-3.5 w-3.5" />
+        <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>N</span>
         {!compact && <span className="hidden sm:inline">Dark</span>}
       </button>
       <button
         type="button"
         title="Light"
         onClick={() => select('zen')}
-        className={`flex items-center gap-1.5 rounded-lg text-xs font-medium transition-all duration-300 active:scale-[0.98] ${
+        className={`flex items-center gap-1.5 rounded text-xs font-medium transition-all duration-300 active:scale-[0.98] ${
           compact ? 'px-2 py-1.5' : 'px-2.5 py-1.5 md:px-3'
         }`}
         style={{
@@ -59,7 +58,7 @@ export function ThemeSwitcher({ compact = false }: ThemeSwitcherProps) {
             theme === 'zen' ? 'var(--ec-brand)' : 'var(--ec-text-secondary)',
         }}
       >
-        <Sun className="h-3.5 w-3.5" />
+        <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>Z</span>
         {!compact && <span className="hidden sm:inline">Light</span>}
       </button>
     </div>

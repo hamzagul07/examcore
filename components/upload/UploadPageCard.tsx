@@ -1,6 +1,6 @@
 'use client'
 
-import { GripVertical, X, RotateCcw, Loader2, ChevronUp, ChevronDown } from 'lucide-react'
+import { GripVertical, X, Loader2, ChevronUp, ChevronDown } from 'lucide-react'
 import { formatQuestionLabel } from '@/lib/marking/page-detection'
 import { formatFileSize } from '@/lib/upload/upload-limits'
 
@@ -86,9 +86,10 @@ export function UploadPageCard({
       onDragStart={onDragStart}
       onDragOver={onDragOver}
       onDrop={onDrop}
-      className={`ec-card flex gap-3 p-3 sm:p-4${selected ? ' ring-2 ring-[var(--ec-brand)] ring-offset-2 ring-offset-[var(--ec-bg)]' : ''}`}
+      className={`ec-card ec-card--paper flex gap-3 p-3 sm:p-4${selected ? ' ring-2 ring-[var(--ec-brand)] ring-offset-2 ring-offset-[var(--ec-bg)]' : ''}`}
     >
-      <div className="flex shrink-0 flex-col items-center gap-1">
+      <div className="flex shrink-0 flex-col items-center gap-0.5">
+        {/* Drag is pointer enhancement only — Move Up/Down stay keyboard-reachable at every breakpoint (MK-07). */}
         <button
           type="button"
           className="hidden min-h-[44px] min-w-[44px] cursor-grab touch-none items-center justify-center text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)] active:cursor-grabbing sm:flex"
@@ -102,8 +103,8 @@ export function UploadPageCard({
             type="button"
             onClick={onMoveUp}
             disabled={index === 0}
-            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)] disabled:opacity-30 sm:hidden"
-            aria-label="Move page up"
+            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)] disabled:opacity-30"
+            aria-label={`Move page ${index + 1} up`}
           >
             <ChevronUp className="h-5 w-5" />
           </button>
@@ -113,8 +114,8 @@ export function UploadPageCard({
             type="button"
             onClick={onMoveDown}
             disabled={index >= total - 1}
-            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)] disabled:opacity-30 sm:hidden"
-            aria-label="Move page down"
+            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)] disabled:opacity-30"
+            aria-label={`Move page ${index + 1} down`}
           >
             <ChevronDown className="h-5 w-5" />
           </button>
@@ -124,7 +125,7 @@ export function UploadPageCard({
       <button
         type="button"
         onClick={onSelect}
-        className="relative h-24 w-[4.5rem] shrink-0 overflow-hidden rounded-xl border border-[var(--ec-border)] bg-[var(--ec-bg-soft)] sm:h-28 sm:w-20 ms-upload-page-thumb"
+        className="relative h-24 w-[4.5rem] shrink-0 overflow-hidden rounded border border-[var(--ec-border)] bg-[var(--ec-bg-soft)] sm:h-28 sm:w-20 ms-upload-page-thumb"
         aria-label={`Preview page ${index + 1}`}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -139,7 +140,7 @@ export function UploadPageCard({
         <div className="flex flex-wrap items-center gap-2">
           <span className="font-mono text-xs text-[var(--ec-text-secondary)]">Page {index + 1}</span>
           <span
-            className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider ${statusStyles[page.status]}`}
+            className={`inline-flex items-center gap-1 rounded border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider ${statusStyles[page.status]}`}
           >
             {page.status === 'compressing' && (
               <Loader2 className="h-3 w-3 animate-spin" aria-hidden />
@@ -189,7 +190,7 @@ export function UploadPageCard({
           onClick={onRetake}
           className="ec-link mt-2 inline-flex min-h-[44px] items-center gap-1 text-xs"
         >
-          <RotateCcw className="h-3.5 w-3.5" />
+          <span className="font-mono text-[10px] font-bold" aria-hidden>↻</span>
           Retake
         </button>
       </div>

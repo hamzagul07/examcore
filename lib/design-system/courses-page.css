@@ -52,13 +52,14 @@
 .ms-simpler-switch {
   width: 38px;
   height: 22px;
-  border-radius: 99px;
-  border: none;
+  border-radius: 4px;
+  border: 1.5px solid var(--ec-border-strong, var(--ec-border));
   padding: 0;
   background: var(--ec-border);
   position: relative;
   cursor: pointer;
   transition: background 150ms ease;
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.06));
 }
 
 .ms-simpler-switch.on {
@@ -67,13 +68,13 @@
 
 .ms-simpler-switch span {
   position: absolute;
-  top: 3px;
-  left: 3px;
+  top: 2px;
+  left: 2px;
   width: 16px;
   height: 16px;
-  border-radius: 50%;
-  background: var(--ec-surface);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.1));
   transition: left 150ms ease;
 }
 
@@ -104,20 +105,23 @@
 .ms-fc {
   min-height: 148px;
   border: 1px solid var(--ec-border);
-  border-radius: 14px;
+  border-radius: 4px;
   background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.06));
   padding: 16px 18px;
   display: flex;
   flex-direction: column;
   cursor: pointer;
   transition:
     border-color 150ms ease,
-    transform 150ms ease;
+    transform 150ms ease,
+    box-shadow 150ms ease;
 }
 
 .ms-fc:hover {
   border-color: var(--ec-brand);
-  transform: translateY(-2px);
+  transform: translate(-1px, -2px);
+  box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.09));
 }
 
 .ms-fc.flipped {
@@ -175,7 +179,7 @@ html[data-ec-theme='late-night'] .course-studio {
   --course-border-strong: var(--ec-border-strong, var(--ec-border));
   --course-text-muted: var(--ec-text-secondary);
   --course-text-faint: var(--ec-text-faint);
-  --course-glow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.08));
+  --course-glow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.08));
 }
 
 .course-studio-page {
@@ -197,10 +201,10 @@ html[data-ec-theme='late-night'] .course-studio {
 }
 
 .course-studio-nav {
-  background: var(--ec-surface);
+  background: var(--ec-paper, var(--ec-surface));
   border: 1px solid var(--ec-border);
-  border-radius: 16px;
-  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.06));
   padding: 18px 0;
   max-height: calc(100vh - 130px);
 }
@@ -296,7 +300,7 @@ html[data-ec-theme='late-night'] .course-studio {
 }
 
 .course-studio-mark-cta {
-  border-radius: 999px;
+  border-radius: 4px;
   background: var(--ec-brand);
   color: var(--ec-on-brand-text, #fff);
   border: none;
@@ -332,7 +336,7 @@ html[data-ec-theme='late-night'] .course-studio {
 .course-exam-tip-box {
   border-left: 3px solid var(--ec-brand);
   background: var(--ec-brand-muted);
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 4px 4px 0;
   padding: 16px 20px;
   margin: 22px 0;
   max-width: 760px;
@@ -352,7 +356,7 @@ html[data-ec-theme='late-night'] .course-studio {
   font-family: var(--font-mono);
   background: var(--ec-paper);
   border: 1px solid var(--ec-border);
-  border-radius: 10px;
+  border-radius: 4px;
   padding: 16px 20px;
   margin: 18px 0;
   font-size: 15px;

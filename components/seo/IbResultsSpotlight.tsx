@@ -1,7 +1,7 @@
 import 'server-only'
 
 import Link from 'next/link'
-import { ArrowRight, GraduationCap } from 'lucide-react'
+
 import { getBlogPost } from '@/lib/blog'
 import {
   getIbResultsSpotlightCopy,
@@ -24,11 +24,12 @@ export function IbResultsSpotlight({ className = '' }: Props) {
 
   return (
     <aside
-      className={`ms-results-day-banner ${className}`.trim()}
+      className={`ms-results-day-banner ms-results-day-banner--paper ${className}`.trim()}
       aria-label="IB May 2026 results"
     >
-      <div className="ms-results-day-banner__icon" aria-hidden="true">
-        <GraduationCap className="h-5 w-5" />
+      <div className="ms-results-day-banner__stamp" aria-hidden="true">
+        <span className="ms-results-day-banner__stamp-code">IB</span>
+        <span className="ms-results-day-banner__stamp-label">May</span>
       </div>
       <div className="ms-results-day-banner__body">
         <p className="ms-overline" style={{ color: 'var(--ec-brand)', marginBottom: 6 }}>
@@ -45,7 +46,7 @@ export function IbResultsSpotlight({ className = '' }: Props) {
         <div className="mt-4 flex flex-wrap gap-2">
           <Link href={copy.primaryHref} className="ec-btn-primary ec-btn-primary--sm">
             {copy.primaryLabel}
-            <ArrowRight className="h-4 w-4" />
+            <span className="h-4 w-4" aria-hidden>-&gt;</span>
           </Link>
           <Link href={copy.secondaryHref} className="ec-btn-ghost ec-btn-ghost--sm">
             {copy.secondaryLabel}

@@ -70,20 +70,45 @@ function CellContent({ value }: { value: Cell }) {
   return <span className="ms-matrix-val">{value}</span>
 }
 
-export function PlanComparisonMatrix() {
+export function PlanComparisonMatrix({
+  /** When nested under a disclosure summary, skip the duplicate page heading (PR-02). */
+  nested = false,
+}: {
+  nested?: boolean
+} = {}) {
   return (
-    <section className="ms-plan-matrix-wrap" aria-labelledby="plan-matrix-heading">
-      <p className="overline" style={{ textAlign: 'center', marginBottom: 10 }}>
-        Full breakdown
-      </p>
-      <h2 id="plan-matrix-heading" className="h3 section-title" style={{ textAlign: 'center' }}>
-        Compare every feature
-      </h2>
-      <p className="body-2" style={{ textAlign: 'center', maxWidth: '48ch', margin: '0 auto 24px', color: 'var(--text-2)' }}>
-        Every cap and feature side by side — Scholar highlighted as the sweet spot for exam prep.
-      </p>
+    <section
+      className="ms-plan-matrix-wrap"
+      aria-labelledby={nested ? undefined : 'plan-matrix-heading'}
+      aria-label={nested ? 'Feature comparison by plan' : undefined}
+    >
+      {nested ? null : (
+        <>
+          <p className="overline" style={{ textAlign: 'center', marginBottom: 10 }}>
+            Full breakdown
+          </p>
+          <h2 id="plan-matrix-heading" className="h3 section-title" style={{ textAlign: 'center' }}>
+            Compare every feature
+          </h2>
+          <p
+            className="body-2"
+            style={{
+              textAlign: 'center',
+              maxWidth: '48ch',
+              margin: '0 auto 24px',
+              color: 'var(--text-2)',
+            }}
+          >
+            Every cap and feature side by side — Scholar highlighted as the sweet spot for exam
+            prep.
+          </p>
+        </>
+      )}
       <div className="ms-plan-matrix-scroll">
         <table className="ms-plan-matrix">
+          <caption className="sr-only">
+            Feature comparison across Free, Pro, Scholar, and Max
+          </caption>
           <thead>
             <tr>
               <th scope="col" className="ms-matrix-feat-head">

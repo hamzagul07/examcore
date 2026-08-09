@@ -33,9 +33,9 @@ export function MarkStamp({ markId, earned }: MarkStampProps) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, rotate: -15, scale: 0.5 }}
+      initial={{ opacity: 0, rotate: -18, scale: 1.45 }}
       animate={{ opacity: 1, rotate: -6, scale: 1 }}
-      transition={{ type: 'spring', stiffness: 280, damping: 16, delay: 0.18 }}
+      transition={{ type: 'spring', stiffness: 420, damping: 14, delay: 0.22 }}
       className="relative inline-flex select-none items-center"
       style={{
         filter: 'drop-shadow(1px 1px 0 rgba(0,0,0,0.08))',

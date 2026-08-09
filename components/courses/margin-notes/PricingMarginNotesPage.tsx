@@ -2,20 +2,10 @@
 
 import { Suspense, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import {
-  ArrowRight,
-  BarChart3,
-  BookOpen,
-  CheckCircle2,
-  FileCheck,
-  GraduationCap,
-  MessageSquare,
-  Sparkles,
-  Target,
-  Zap,
-} from 'lucide-react'
+
 import { Breadcrumb } from '@/components/courses/margin-notes/Breadcrumb'
 import { InkScribble } from '@/components/courses/margin-notes/HandAnnotations'
+import { ExamSheet, ExamSheetLine } from '@/components/margin-notes'
 import { CourseRichText } from '@/components/courses/CourseRichText'
 import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
 import { LoadingLink } from '@/components/ui/LoadingLink'
@@ -30,28 +20,24 @@ import { trackFunnelEvent } from '@/lib/analytics/funnel'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { CheckoutSuccessTracker } from '@/components/analytics/CheckoutSuccessTracker'
 import { PlanComparisonMatrix } from '@/components/courses/margin-notes/PlanComparisonMatrix'
+import { SegmentedControl } from '@/components/ui/SegmentedControl'
+import { StatusMessage } from '@/components/ui/StatusMessage'
 
 type Period = 'monthly' | 'yearly'
 
 function Faq({ f }: { f: { q: string; a: string } }) {
-  const [open, setOpen] = useState(false)
   return (
-    <div className={`faq${open ? ' on' : ''}`}>
-      <button
-        type="button"
-        className="faq-q"
-        onClick={() => setOpen((o) => !o)}
-        aria-expanded={open}
-      >
+    <details className="faq">
+      <summary className="faq-q">
         <CourseRichText content={f.q} variant="inline" className="faq-q-text" breakAnywhere={false} />
-        <span className="faq-plus">{open ? '−' : '+'}</span>
-      </button>
-      {open ? (
-        <div className="faq-a body-2">
-          <CourseRichText content={f.a} variant="prose" />
-        </div>
-      ) : null}
-    </div>
+        <span className="faq-plus" aria-hidden>
+          +
+        </span>
+      </summary>
+      <div className="faq-a body-2">
+        <CourseRichText content={f.a} variant="prose" />
+      </div>
+    </details>
   )
 }
 
@@ -86,6 +72,7 @@ const MAX_OMNI = omniCapForTier('mastery')
 export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props) {
   const router = useRouter()
   const [period, setPeriod] = useState<Period>('yearly')
+  const [focusPlan, setFocusPlan] = useState<PlanId>('scholar')
   const [busy, setBusy] = useState<string | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
   const cur = display.currency
@@ -299,22 +286,22 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
 
   const valueProps = [
     {
-      icon: FileCheck,
-      title: 'Board-dialect mark schemes',
-      body: 'B1, M1, A1 — Cambridge, IB, and Edexcel IAL conventions on your handwriting, not a generic AI guess.',
+      stamp: 'MS',
+      title: 'Official mark schemes',
+      body: 'B1, M1, A1 — marked against the real Cambridge or IB scheme for that exact question, not a generic AI guess.',
     },
     {
-      icon: Target,
+      stamp: 'Q·P',
       title: 'Whole-paper marking',
       body: 'Upload a full past paper and get every question marked in one go — up to 15 questions per paper on paid plans.',
     },
     {
-      icon: BarChart3,
+      stamp: 'Δ',
       title: 'Progress that matters',
       body: 'Topic mastery matrix, grade trajectory, and weak-spot radar — see exactly where marks are being lost.',
     },
     {
-      icon: MessageSquare,
+      stamp: '✎',
       title: 'Ask MarkScheme',
       body: 'Study chat that knows your subjects, your attempts, and the syllabus — not a generic homework bot.',
     },
@@ -322,17 +309,17 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
 
   const scholarReasons = [
     {
-      icon: GraduationCap,
-      title: 'Learn visuals → mark your board',
-      body: 'Interactive diagrams and worked steps on mapped courses, then deep-link into Cambridge, IB, or Edexcel IAL marking.',
+      stamp: '¶',
+      title: 'Courses that teach the syllabus',
+      body: 'Interactive lessons with diagrams, worked examples, and topic-by-topic coverage — not just marking.',
     },
     {
-      icon: Sparkles,
+      stamp: 'M1',
       title: 'Feedback an examiner would write',
       body: 'Detailed mark-by-mark breakdowns with margin notes on your handwriting — the same style as our landing demo.',
     },
     {
-      icon: BookOpen,
+      stamp: 'A*',
       title: 'Know your weak topics',
       body: 'Mastery matrix maps every syllabus topic to your score. Revision time goes where it actually helps.',
     },
@@ -369,39 +356,81 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
       <div className="pg">
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Pricing' }]} />
 
-        <header className="pricing-hero">
-          <p className="overline">Pricing · honest &amp; student-first</p>
-          <h1 className="h-display pricing-title">
-            Mark like it&apos;s <em>exam day.</em>
-            <br />
-            Starting today.
-          </h1>
-          <p className="lead pricing-lead">
-            Cambridge, IB, and Edexcel IAL marking — point by point on your handwriting —{' '}
-            <InkScribble>not a generic AI paragraph</InkScribble>. Visual lessons in,
-            board-dialect marks out. Start free, upgrade only when you need more.
-          </p>
+        <header className="pricing-hero pricing-hero--artefact">
+          <div className="pricing-hero-copy">
+            <p className="overline">Pricing · your ink history</p>
+            <h1 className="h-display pricing-title">
+              Keep the scripts <em>you built.</em>
+            </h1>
+            <p className="lead pricing-lead">
+              Every mark becomes a record you own — green stamps, crimson corrections, margin
+              notes on <InkScribble>your</InkScribble> handwriting. Start free; upgrade when you
+              need more papers in that history.
+            </p>
+          </div>
+          <div className="pricing-hero-sheet" aria-hidden>
+            <ExamSheet
+              head="Your script · sample"
+              headRight="Scholar record"
+              tally="4 / 5"
+              cite="Endowment: marked work stays readable on every plan"
+            >
+              <ExamSheetLine work="method clear — chain rule" mark="M1 ✓" ok stampDelayMs={120} />
+              <ExamSheetLine work="both stationary points" mark="A1 ✓" ok stampDelayMs={320} />
+              <ExamSheetLine
+                work="nature: min at x = 1"
+                mark="A0 ✗"
+                ok={false}
+                note="d²y/dx² — check the sign"
+                stampDelayMs={520}
+              />
+            </ExamSheet>
+          </div>
         </header>
 
         <div className="pricing-controls">
-          <div className="pricing-toggle" role="tablist" aria-label="Billing period">
-            {(['monthly', 'yearly'] as Period[]).map((p) => (
-              <button
-                key={p}
-                type="button"
-                role="tab"
-                aria-selected={period === p}
-                className={`pricing-toggle-btn${period === p ? ' on' : ''}`}
-                onClick={() => setPeriod(p)}
-              >
-                {p === 'monthly' ? 'Monthly' : 'Annual'}
-                {p === 'yearly' ? <span className="pricing-toggle-save">2 months free</span> : null}
-              </button>
-            ))}
-          </div>
+          <p className="pricing-allowance-lead">
+            How many answers do you mark each month?{' '}
+            <span className="mono">
+              Free {FREE_Q} · Pro {PRO_Q} · Scholar {SCH_Q} · Max {MAX_Q}
+            </span>
+          </p>
+          <SegmentedControl
+            className="pricing-toggle"
+            optionClassName="pricing-toggle-btn"
+            aria-label="Billing period"
+            value={period}
+            onChange={setPeriod}
+            options={[
+              { value: 'monthly', label: 'Monthly' },
+              {
+                value: 'yearly',
+                label: (
+                  <>
+                    Annual
+                    <span className="pricing-toggle-save">2 months free</span>
+                  </>
+                ),
+              },
+            ]}
+          />
         </div>
 
-        {notice ? <p className="pricing-notice">{notice}</p> : null}
+        {notice ? (
+          <StatusMessage tone="alert" className="pricing-notice">
+            {notice}
+          </StatusMessage>
+        ) : null}
+
+        {/* Phone: one plan at a time. Desktop CSS shows all four (PR-02). */}
+        <SegmentedControl
+          className="pricing-plan-picker"
+          optionClassName="pricing-plan-picker-btn"
+          aria-label="Choose a plan to compare"
+          value={focusPlan}
+          onChange={setFocusPlan}
+          options={plans.map((p) => ({ value: p.id, label: p.name }))}
+        />
 
         <div className="plans four" id="plans">
           {plans.map((p) => {
@@ -411,6 +440,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
                 key={p.id}
                 className={`plan card${p.featured ? ' featured pricing-card--featured pricing-card-mesh' : ''}`}
                 data-plan={p.id}
+                data-focus={focusPlan === p.id ? '1' : '0'}
                 data-screen-label={`Pricing — ${p.name}`}
               >
                 {p.featured ? <span className="plan-ribbon mono">MOST POPULAR</span> : null}
@@ -424,7 +454,9 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
                 <p className="body-2 plan-blurb">{p.blurb}</p>
                 <p className="plan-bestfor mono">Best for: {p.bestFor}</p>
                 <div className="plan-killer">
-                  <Zap className="plan-killer-icon" aria-hidden />
+                  <span className="plan-killer-stamp" aria-hidden>
+                    ✓
+                  </span>
                   <span>{p.killer}</span>
                 </div>
                 {cta.href ? (
@@ -457,7 +489,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
                   {p.features.map((f, i) => (
                     <li key={i} className={f[1] ? 'yes' : 'no'}>
                       <span className="feat-mark" aria-hidden>
-                        {f[1] ? <CheckCircle2 className="h-4 w-4" /> : '—'}
+                        {f[1] ? '✓' : '—'}
                       </span>
                       <span>{f[0]}</span>
                     </li>
@@ -470,28 +502,36 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
 
         <div className="pricing-trust">
           <span className="pricing-trust-item">
-            <CheckCircle2 className="pricing-trust-icon" aria-hidden />
+            <span className="pricing-trust-tick" aria-hidden>
+              ✓
+            </span>
             Cancel anytime — no lock-in
           </span>
           <span className="pricing-trust-item">
-            <CheckCircle2 className="pricing-trust-icon" aria-hidden />
-            Cambridge + IB courses · Edexcel IAL mark + study paths
+            <span className="pricing-trust-tick" aria-hidden>
+              ✓
+            </span>
+            15 Cambridge subjects + IB Diploma
           </span>
           <span className="pricing-trust-item">
-            <CheckCircle2 className="pricing-trust-icon" aria-hidden />
+            <span className="pricing-trust-tick" aria-hidden>
+              ✓
+            </span>
             Marked against official schemes
           </span>
           <span className="pricing-trust-item">
-            <CheckCircle2 className="pricing-trust-icon" aria-hidden />
+            <span className="pricing-trust-tick" aria-hidden>
+              ✓
+            </span>
             Billed in {cur.toUpperCase()} · local currency at checkout
           </span>
         </div>
 
         <div className="pricing-value-strip" role="list" aria-label="Key benefits">
           {valueProps.map((v) => (
-            <div key={v.title} className="pricing-value-item" role="listitem">
-              <span className="pricing-value-icon" aria-hidden>
-                <v.icon className="h-5 w-5" />
+            <div key={v.title} className="pricing-value-item pricing-value-item--slip" role="listitem">
+              <span className="pricing-value-stamp" aria-hidden>
+                {v.stamp}
               </span>
               <div>
                 <p className="pricing-value-title">{v.title}</p>
@@ -512,9 +552,9 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
           </p>
           <div className="pricing-why-grid">
             {scholarReasons.map((r) => (
-              <div key={r.title} className="pricing-why-card card">
-                <span className="pricing-why-card-icon" aria-hidden>
-                  <r.icon className="h-6 w-6" />
+              <div key={r.title} className="pricing-why-card pricing-why-card--paper">
+                <span className="pricing-value-stamp" aria-hidden>
+                  {r.stamp}
                 </span>
                 <h3 className="pricing-why-card-title">{r.title}</h3>
                 <p className="body-2 pricing-why-card-body">{r.body}</p>
@@ -532,12 +572,19 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
               }}
               disabled={ctaFor('scholar').disabled}
             >
-              {ctaFor('scholar').label} <ArrowRight className="h-4 w-4" />
+              {ctaFor('scholar').label} <span className="h-4 w-4" aria-hidden>-&gt;</span>
             </button>
           </div>
         </section>
 
-        <PlanComparisonMatrix />
+        <details className="pricing-matrix-disclosure">
+          <summary className="pricing-matrix-summary">
+            Compare every feature across Free, Pro, Scholar, and Max
+          </summary>
+          <div className="pricing-matrix-body">
+            <PlanComparisonMatrix nested />
+          </div>
+        </details>
 
         <div className="pricing-faqs">
           <h2 className="h3 section-title">Honest answers</h2>

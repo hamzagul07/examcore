@@ -6,10 +6,18 @@ export function LandingFounder() {
       <h2 id="story-heading" className="sr-only">
         Why a student built MarkScheme
       </h2>
-      <div className="ms-founder">
-        <div className="ms-founder-avatar" aria-hidden>
-          H
-        </div>
+      <div className="ms-founder ms-founder--paper">
+        <aside className="ms-founder-note" aria-hidden>
+          <p className="ms-founder-note__ruled">
+            past papers without the
+            <br />
+            examiner&apos;s eye are
+            <br />
+            half the loop —
+          </p>
+          <p className="ms-founder-note__sign">— H.G.</p>
+          <span className="ms-founder-note__stamp">M1</span>
+        </aside>
         <div>
           <p className="ms-founder-quote">
             &ldquo;I built this because I couldn&apos;t tell whether my working would actually score.

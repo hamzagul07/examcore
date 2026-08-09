@@ -57,18 +57,23 @@ export default function SubjectsPage() {
           ]}
           className="mb-4"
         />
-        <HubSeoIntro
-          headingLevel="h1"
-          heading="Cambridge past paper marking — every syllabus we support"
-          paragraph="MarkScheme marks handwritten answers against real Cambridge mark schemes for 24 A-Level and O-Level syllabuses. Choose your subject code, browse past papers, or upload a photo of your working for B1/M1/A1, essay band, or MCQ feedback."
-          links={[
-            { href: '/courses', label: 'Free courses', variant: 'ghost' },
-            { href: '/community', label: 'Exam Room community', variant: 'muted' },
-            { href: '/mark', label: 'Mark now →', variant: 'primary' },
-          ]}
-        />
       </div>
-      <SubjectsDirectoryClient subjects={subjects} />
+      <SubjectsDirectoryClient
+        subjects={subjects}
+        seoIntro={
+          <HubSeoIntro
+            quiet
+            headingLevel="h2"
+            heading="Cambridge past paper marking — every syllabus we support"
+            paragraph="MarkScheme marks handwritten answers against real Cambridge mark schemes for 24 A-Level and O-Level syllabuses. Choose your subject code above, browse past papers, or upload a photo of your working for B1/M1/A1, essay band, or MCQ feedback."
+            links={[
+              { href: '/courses', label: 'Free courses', variant: 'ghost' },
+              { href: '/community', label: 'Exam Room community', variant: 'muted' },
+              { href: '/mark', label: 'Mark now →', variant: 'primary' },
+            ]}
+          />
+        }
+      />
     </>
   )
 }

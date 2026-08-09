@@ -101,12 +101,12 @@ export function HandwritingAnalysisOverlay({
 
   return (
     <div
-      className="relative mx-auto w-full overflow-hidden rounded-2xl"
+      className="relative mx-auto w-full overflow-hidden rounded border"
       style={{
         maxWidth: 520,
-        border: '1px solid color-mix(in srgb, var(--ec-brand) 35%, transparent)',
+        borderColor: 'color-mix(in srgb, var(--ec-brand) 35%, transparent)',
         boxShadow:
-          '0 24px 64px -16px rgba(0,0,0,0.55), 0 0 48px color-mix(in srgb, var(--ec-brand) 20%, transparent)',
+          'var(--ec-shadow-hard, 6px 6px 0 rgba(0, 0, 0, 0.14))',
       }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element -- unknown dims; percentage overlay math needs the natural box. */}
@@ -169,27 +169,23 @@ export function HandwritingAnalysisOverlay({
                 initial={{ pathLength: 0 }}
                 animate={{ pathLength: 1 }}
                 transition={{ duration: 0.6, ease: 'easeInOut' }}
-                style={{
-                  filter:
-                    'drop-shadow(0 0 6px color-mix(in srgb, var(--ec-brand) 45%, transparent))',
-                }}
               />
             </motion.svg>
           ))}
         </AnimatePresence>
 
-        {/* The reading sweep: a soft bright band travelling top → bottom. */}
+        {/* Reading sweep — hard ink band, no soft blur glow */}
         {imageLoaded && (
           <motion.div
-            initial={{ top: '-12%' }}
+            initial={{ top: '-8%' }}
             animate={{ top: '108%' }}
             transition={{ duration: durationMs / 1000, ease: 'linear' }}
             className="absolute left-0 right-0"
             style={{
-              height: '14%',
+              height: '3%',
               background:
-                'linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--ec-brand) 30%, transparent) 45%, color-mix(in srgb, var(--ec-brand) 55%, transparent) 50%, color-mix(in srgb, var(--ec-brand) 30%, transparent) 55%, transparent 100%)',
-              filter: 'blur(2px)',
+                'color-mix(in srgb, var(--ec-brand) 55%, transparent)',
+              boxShadow: '0 0 0 1px color-mix(in srgb, var(--ec-brand) 25%, transparent)',
             }}
           />
         )}

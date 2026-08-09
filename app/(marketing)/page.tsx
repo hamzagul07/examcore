@@ -4,18 +4,21 @@ import { HomeGeoIntro } from '@/components/seo/HomeGeoIntro'
 import { LandingHero } from '@/components/landing/LandingHero'
 import { LandingPillars } from '@/components/landing/LandingPillars'
 import { LandingMarkingSection } from '@/components/landing/LandingMarkingSection'
-import { LandingPlatformShowcase } from '@/components/landing/LandingPlatformShowcase'
 import { LandingSubjects } from '@/components/landing/LandingSubjects'
 import { LandingFounder } from '@/components/landing/LandingFounder'
 import { LandingComparison } from '@/components/landing/LandingComparison'
 import { LandingFaq } from '@/components/landing/LandingFaq'
 import { LandingFinalCta } from '@/components/landing/LandingFinalCta'
-import { LandingEditorialSpotlight } from '@/components/landing/LandingEditorialSpotlight'
 import { LandingProof } from '@/components/landing/LandingProof'
+import { LandingMoreBand } from '@/components/landing/LandingMoreBand'
 import { InteractiveMarkDemoLazy } from '@/components/marketing/InteractiveMarkDemoLazy'
 
 export const metadata = getPageMetadata('/')
 
+/**
+ * LAND-01: one narrative spine — hero → live artefact → how marking works →
+ * subjects → proof → FAQ → CTA. Platform pillars / founder / comparison sit in More.
+ */
 export default function Home() {
   const markHref = '/mark'
 
@@ -25,22 +28,20 @@ export default function Home() {
       <main>
         <LandingHero markHref={markHref} />
         <HomeGeoIntro />
-        <LandingEditorialSpotlight />
-        {/* Show the artefact before explaining it, as one thing the visitor
-            can pick apart rather than two pictures of the same script. */}
         <div className="ms-pg">
           <InteractiveMarkDemoLazy />
         </div>
-        <LandingPillars />
         <LandingMarkingSection />
-        <LandingPlatformShowcase />
         <LandingSubjects />
         {/* Renders nothing until real, approved student feedback exists. */}
         <LandingProof />
-        <LandingFounder />
-        <LandingComparison />
         <LandingFaq />
         <LandingFinalCta markHref={markHref} />
+        <LandingMoreBand>
+          <LandingPillars />
+          <LandingFounder />
+          <LandingComparison />
+        </LandingMoreBand>
       </main>
     </>
   )

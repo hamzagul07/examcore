@@ -59,27 +59,30 @@ export function MarkAuditPanel({
           <span className="ms-micro">MARK AUDIT</span>
           {schemeLabel ? <span className="ms-micro">{schemeLabel}</span> : null}
         </div>
-        {marks.map((mark, i) => (
-          <button
-            key={String(mark.mark_id)}
-            type="button"
-            className={[
-              'ms-audit-row',
-              mark.earned ? 'earn' : 'lost',
-              selectedIndex === i ? 'sel' : '',
-            ]
-              .filter(Boolean)
-              .join(' ')}
-            onClick={() => onSelect(i)}
-            aria-pressed={selectedIndex === i}
-          >
-            <span className="code">{mark.type}</span>
-            <span className="desc">
-              <MarkSnippet text={auditDescription(mark)} />
-            </span>
-            <span className="pts">{mark.earned ? '+1' : '0'}</span>
-          </button>
-        ))}
+        <div role="radiogroup" aria-label="Mark points">
+          {marks.map((mark, i) => (
+            <button
+              key={String(mark.mark_id)}
+              type="button"
+              role="radio"
+              aria-checked={selectedIndex === i}
+              className={[
+                'ms-audit-row',
+                mark.earned ? 'earn' : 'lost',
+                selectedIndex === i ? 'sel' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              onClick={() => onSelect(i)}
+            >
+              <span className="code">{mark.type}</span>
+              <span className="desc">
+                <MarkSnippet text={auditDescription(mark)} />
+              </span>
+              <span className="pts">{mark.earned ? '+1' : '0'}</span>
+            </button>
+          ))}
+        </div>
         <div className="ms-audit-total">
           <span
             className="font-mono text-sm font-bold"

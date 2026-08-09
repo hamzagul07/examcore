@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { InkGlyphBook, InkGlyphDiscuss } from '@/components/margin-notes'
 import { landingCourseMiniCards } from '@/lib/landing-subjects-preview'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 
@@ -10,11 +11,12 @@ const TRENDING_ROOMS = [
 ]
 
 export function LandingPlatformShowcase() {
-  const courses = landingCourseMiniCards()
+  const courses = landingCourseMiniCards().slice(0, 4)
   const communityLive = isCommunityEnabled()
+  const rooms = TRENDING_ROOMS.slice(0, 3)
 
   return (
-    <section className="ms-pg ms-sec ms-platform-showcase scroll-mt-20">
+    <section className="ms-pg ms-sec ms-platform-showcase ms-platform-showcase--tight scroll-mt-20">
       <div className="ms-showcase-head">
         <div>
           <p className="ms-overline">See it live</p>
@@ -36,10 +38,10 @@ export function LandingPlatformShowcase() {
       </div>
 
       <div className="ms-showcase-split">
-        <div id="courses" className="ms-showcase-panel ms-showcase-panel--learn">
+        <div id="courses" className="ms-showcase-panel ms-showcase-panel--paper ms-showcase-panel--learn">
           <div className="ms-showcase-panel-head">
             <span className="ms-showcase-panel-icon" aria-hidden>
-              📚
+              <InkGlyphBook className="ms-showcase-glyph" />
             </span>
             <div>
               <p className="ms-showcase-panel-kicker">Learn</p>
@@ -49,9 +51,9 @@ export function LandingPlatformShowcase() {
               IB hub →
             </Link>
           </div>
-          <div className="ms-course-mini ms-course-mini--showcase">
+          <div className="ms-course-mini ms-course-mini--showcase ms-course-mini--slips">
             {courses.map((course) => (
-              <Link key={course.code} href={course.href} className="ms-course-card">
+              <Link key={course.code} href={course.href} className="ms-course-card ms-course-card--slip">
                 <span className="ms-code">{course.code}</span>
                 <div className="ms-name">{course.name}</div>
                 <div className="ms-meta">{course.meta}</div>
@@ -60,10 +62,10 @@ export function LandingPlatformShowcase() {
           </div>
         </div>
 
-        <div id="community" className="ms-showcase-panel ms-showcase-panel--discuss">
+        <div id="community" className="ms-showcase-panel ms-showcase-panel--paper ms-showcase-panel--discuss">
           <div className="ms-showcase-panel-head">
             <span className="ms-showcase-panel-icon" aria-hidden>
-              💬
+              <InkGlyphDiscuss className="ms-showcase-glyph" />
             </span>
             <div>
               <p className="ms-showcase-panel-kicker">Discuss</p>
@@ -73,12 +75,12 @@ export function LandingPlatformShowcase() {
               All rooms →
             </Link>
           </div>
-          <div className="ms-course-mini ms-course-mini--showcase">
-            {TRENDING_ROOMS.map((room) => (
+          <div className="ms-course-mini ms-course-mini--showcase ms-course-mini--slips">
+            {rooms.map((room) => (
               <Link
                 key={room.subject}
                 href={communityLive ? `/community/s/${room.subject}` : '/community'}
-                className="ms-course-card"
+                className="ms-course-card ms-course-card--slip"
               >
                 <span className="ms-code">{room.board}</span>
                 <div className="ms-name">s/{room.subject}</div>

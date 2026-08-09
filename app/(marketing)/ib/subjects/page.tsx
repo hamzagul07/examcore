@@ -77,17 +77,6 @@ export default function IbSubjectsPage() {
           mark-scheme guidance, free courses, and revision help.
         </p>
 
-        <HubSeoIntro
-          headingLevel="h2"
-          heading="Past papers, courses, and criterion marking"
-          paragraph="Each subject page lists exam papers and markband guidance. Where we have a full course, you can revise topic-by-topic with worked examples and practise with IB criterion marking — all free."
-          links={[
-            { href: '/ib/courses', label: 'Free IB courses →', variant: 'primary' },
-            { href: '/ib/past-papers', label: 'IB past papers', variant: 'muted' },
-            { href: '/guides/ib', label: 'IB study guide', variant: 'muted' },
-          ]}
-        />
-
         {catalogCards.length ? (
           <p className="ms-body-2" style={{ marginTop: 24, color: 'var(--ec-text-secondary)' }}>
             <Link href="/ib/courses" className="ec-link">
@@ -113,19 +102,17 @@ export default function IbSubjectsPage() {
                     style={{ '--acc': s.accent } as CSSProperties}
                   >
                     <span className="ms-pp-glyph" aria-hidden>
-                      {s.glyph}
+                      {s.level}
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="ms-pp-title">
-                        {s.name} <em className="ms-pp-code">· {s.level}</em>
-                      </span>
+                      <span className="ms-pp-title">{s.name}</span>
                       <span className="ms-pp-meta">
                         {s.papers.join(' · ')}
                         {course ? ` · Free course · ${course.lessons} lessons` : ''}
                       </span>
                     </span>
                     <span className="ms-pp-cta" aria-hidden>
-                      →
+                      -&gt;
                     </span>
                   </Link>
                 </li>
@@ -134,6 +121,18 @@ export default function IbSubjectsPage() {
             </ul>
           </section>
         ))}
+
+        <HubSeoIntro
+          quiet
+          headingLevel="h2"
+          heading="Past papers, courses, and criterion marking"
+          paragraph="Each subject page lists exam papers and markband guidance. Where we have a full course, you can revise topic-by-topic with worked examples and practise with IB criterion marking — all free."
+          links={[
+            { href: '/ib/courses', label: 'Free IB courses →', variant: 'primary' },
+            { href: '/ib/past-papers', label: 'IB past papers', variant: 'muted' },
+            { href: '/guides/ib', label: 'IB study guide', variant: 'muted' },
+          ]}
+        />
       </div>
     </MarketingPageShell>
   )

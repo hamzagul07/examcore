@@ -20,8 +20,32 @@
 }
 
 .ms-teacher-start-card {
+  position: relative;
   width: 100%;
   max-width: 34rem;
+  padding: 28px 24px 24px;
+  background: var(--ec-paper, var(--ec-surface));
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
+  overflow: hidden;
+}
+
+.ms-teacher-start-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ec-brand) 0%,
+    var(--ec-brand) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 100%
+  );
+  pointer-events: none;
 }
 
 .ms-teacher-start__eyebrow {
@@ -30,8 +54,9 @@
 }
 
 .ms-teacher-start__title {
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--ec-text-primary);
@@ -79,24 +104,62 @@
   /* 44px minimum: this is filled on a phone in a staffroom as often as at a desk. */
   min-height: 44px;
   padding: 0.625rem 1rem;
-  border-radius: 0.75rem;
-  border: 1px solid var(--ec-border);
-  background: var(--ec-surface-raised);
+  border-radius: 4px;
+  border: 1.5px solid var(--ec-border);
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
   color: var(--ec-text-secondary);
-  font-size: 0.9375rem;
-  font-weight: 500;
-  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.14s ease,
+    box-shadow 0.14s ease;
 }
 
 .ms-teacher-start__choice:hover {
-  border-color: var(--ec-brand-border);
+  transform: translate(-1px, -1px);
+  border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border));
   color: var(--ec-text-primary);
 }
 
-.ms-teacher-start__choice[aria-pressed='true'] {
+.ms-teacher-start__choice[aria-pressed='true'],
+.ms-teacher-start__choice[aria-checked='true'],
+.ms-teacher-start__choice.on,
+.ms-teacher-start__choice[aria-selected='true'] {
   border-color: var(--ec-brand);
-  background: var(--ec-brand-muted);
+  background: color-mix(in srgb, var(--ec-brand) 8%, var(--ec-paper, var(--ec-surface)));
+  color: var(--ec-brand);
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.07));
+  transform: rotate(-1.5deg);
+}
+
+.ms-teacher-start__note {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--ec-font-handwriting, var(--font-handwritten, 'Caveat', cursive));
+  font-size: 18px;
+  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  transform: rotate(-1deg);
+}
+
+.ms-teacher-start__error {
+  padding: 12px 14px;
+  border: 1.5px solid color-mix(in srgb, var(--ec-logo-crimson, var(--ec-ink-crimson)) 40%, var(--ec-border));
+  border-left: 3px solid var(--ec-logo-crimson, var(--ec-ink-crimson));
+  border-radius: 4px;
+  background: color-mix(
+    in srgb,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 6%,
+    var(--ec-paper, var(--ec-surface))
+  );
+  font-size: 13.5px;
+  line-height: 1.5;
   color: var(--ec-text-primary);
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
 }
 
 .ms-teacher-start__input {
@@ -107,15 +170,6 @@
 .ms-teacher-start__hint {
   font-size: 0.8125rem;
   color: var(--ec-text-secondary);
-}
-
-.ms-teacher-start__error {
-  padding: 0.75rem 1rem;
-  border-radius: 0.75rem;
-  border: 1px solid var(--ec-border);
-  background: var(--ec-surface-raised);
-  color: var(--ec-text-primary);
-  font-size: 0.875rem;
 }
 
 .ms-teacher-start__submit {
@@ -141,13 +195,280 @@
 .ms-teacher-empty {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.75rem;
-  padding: clamp(2rem, 6vw, 3.5rem) 1.5rem;
-  text-align: center;
-  border: 1px dashed var(--ec-border-strong);
-  border-radius: 1rem;
-  background: var(--ec-surface-muted);
+  padding: clamp(1.5rem, 4vw, 2.25rem) clamp(1.25rem, 3vw, 1.75rem);
+  text-align: left;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
+}
+
+/* Class file slips on the dashboard */
+.ms-teacher-class-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ms-teacher-class-slip {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px 16px;
+  align-items: center;
+  padding: 16px 18px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.07));
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    border-color 140ms ease;
+}
+
+.ms-teacher-class-slip:hover {
+  transform: translate(-1px, -2px);
+  border-color: color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border));
+  box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.1));
+}
+
+.ms-teacher-class-slip__stamp {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0 0.5rem;
+  border: 1.5px solid var(--ec-brand-border);
+  border-radius: 4px;
+  background: var(--ec-brand-muted);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--ec-brand);
+}
+
+.ms-teacher-class-slip__name {
+  margin: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-class-slip__meta {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-teacher-class-slip__code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-variant-numeric: tabular-nums slashed-zero;
+  letter-spacing: 0.08em;
+  color: var(--ec-text-primary);
+  font-weight: 700;
+}
+
+.ms-teacher-class-slip__go {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-brand);
+}
+
+/* Summary tallies — not three soft cards */
+.ms-teacher-tally {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.ms-teacher-tally__cell {
+  padding: 14px 14px 12px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.06));
+}
+
+.ms-teacher-tally__label {
+  margin: 0 0 6px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.ms-teacher-tally__value {
+  margin: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: clamp(1.75rem, 3vw, 2.15rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--ec-text-primary);
+}
+
+/* Invite — green-spine filing slip */
+.ms-teacher-invite {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 28px;
+  padding: 20px 18px 18px;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.09));
+}
+
+.ms-teacher-invite::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ec-brand) 0%,
+    var(--ec-brand) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 100%
+  );
+}
+
+.ms-teacher-roster {
+  margin-bottom: 28px;
+  padding: 18px 16px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.07));
+}
+
+.ms-teacher-roster__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ms-teacher-roster__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 52px;
+  padding: 10px 12px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 140ms ease, transform 140ms ease;
+}
+
+.ms-teacher-roster__row:hover {
+  transform: translate(-1px, -1px);
+  border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border));
+}
+
+.ms-teacher-desk-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px 20px;
+  margin-bottom: 28px;
+}
+
+.ms-teacher-desk-head__note {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--ec-font-handwriting, var(--font-handwritten, 'Caveat', cursive));
+  font-size: 18px;
+  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  transform: rotate(-1deg);
+}
+
+.ms-teacher-error {
+  padding: 16px 18px;
+  border: 1.5px solid color-mix(in srgb, var(--ec-logo-crimson, var(--ec-ink-crimson)) 40%, var(--ec-border));
+  border-left: 4px solid var(--ec-logo-crimson, var(--ec-ink-crimson));
+  border-radius: 4px;
+  background: color-mix(
+    in srgb,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 5%,
+    var(--ec-paper, var(--ec-surface))
+  );
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.06));
+}
+
+/* Demo / example-class banner — ink stamp, not an error */
+.ms-teacher-demo-flag {
+  padding: 14px 16px;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ec-brand) 6%, var(--ec-paper, var(--ec-surface)));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
+}
+
+.ms-teacher-risk-legend__cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
+}
+
+.ms-teacher-risk-legend__stamp {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 0.35rem;
+  border: 1.5px solid var(--ec-brand-border);
+  border-radius: 4px;
+  background: var(--ec-brand-muted);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--ec-brand);
+}
+
+@media (max-width: 640px) {
+  .ms-teacher-tally {
+    grid-template-columns: 1fr;
+  }
+
+  .ms-teacher-class-slip {
+    grid-template-columns: auto 1fr;
+  }
+
+  .ms-teacher-class-slip__go {
+    grid-column: 1 / -1;
+  }
 }
 
 .ms-teacher-empty__icon {
@@ -155,7 +476,7 @@
   place-items: center;
   width: 3rem;
   height: 3rem;
-  border-radius: 0.875rem;
+  border-radius: 4px;
   background: var(--ec-brand-muted);
   color: var(--ec-brand);
 }
@@ -189,13 +510,13 @@
   height: 0.5rem;
   width: 100%;
   overflow: hidden;
-  border-radius: 999px;
+  border-radius: 4px;
   background: var(--ec-surface-raised);
 }
 
 .ms-gap-fill {
   height: 100%;
-  border-radius: 999px;
+  border-radius: 4px;
   transition: width 0.4s ease;
 }
 

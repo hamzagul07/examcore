@@ -14,23 +14,22 @@ type Props = {
 }
 
 /**
- * Per-paper color wash — deliberately desaturated so the badges look like
- * sophisticated metadata rather than candy. Each paper's hue is the same
- * tonal family used in the Mastery Matrix legend.
+ * Paper / component tint — dual-ink only (green vs crimson), not a rainbow
+ * of SaaS chip colors. Alternating papers use muted brand vs crimson wash.
  */
 const paperColors: Record<string, string> = {
-  P1: 'ec-tint-success-chip',
-  P2: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/30',
-  P3: 'bg-blue-500/10 text-blue-300 border-blue-500/30',
-  P4: 'bg-orange-500/10 text-orange-300 border-orange-500/30',
-  P5: 'bg-violet-500/10 text-violet-300 border-violet-500/30',
-  P6: 'bg-pink-500/10 text-pink-300 border-pink-500/30',
-  AS: 'bg-teal-500/10 text-teal-300 border-teal-500/30',
-  A2: 'bg-indigo-500/10 text-indigo-300 border-indigo-500/30',
+  P1: 'border-[color-mix(in_srgb,var(--ec-brand)_40%,var(--ec-border))] bg-[var(--ec-brand-muted)] text-[var(--ec-brand)]',
+  P2: 'border-[color-mix(in_srgb,var(--ec-ink-crimson,#a23e3e)_35%,var(--ec-border))] bg-[var(--ec-chip-critical-bg)] text-[var(--ec-ink-crimson,#a23e3e)]',
+  P3: 'border-[color-mix(in_srgb,var(--ec-brand)_40%,var(--ec-border))] bg-[var(--ec-brand-muted)] text-[var(--ec-brand)]',
+  P4: 'border-[color-mix(in_srgb,var(--ec-ink-crimson,#a23e3e)_35%,var(--ec-border))] bg-[var(--ec-chip-critical-bg)] text-[var(--ec-ink-crimson,#a23e3e)]',
+  P5: 'border-[color-mix(in_srgb,var(--ec-brand)_40%,var(--ec-border))] bg-[var(--ec-brand-muted)] text-[var(--ec-brand)]',
+  P6: 'border-[color-mix(in_srgb,var(--ec-ink-crimson,#a23e3e)_35%,var(--ec-border))] bg-[var(--ec-chip-critical-bg)] text-[var(--ec-ink-crimson,#a23e3e)]',
+  AS: 'border-[color-mix(in_srgb,var(--ec-brand)_40%,var(--ec-border))] bg-[var(--ec-brand-muted)] text-[var(--ec-brand)]',
+  A2: 'border-[color-mix(in_srgb,var(--ec-ink-crimson,#a23e3e)_35%,var(--ec-border))] bg-[var(--ec-chip-critical-bg)] text-[var(--ec-ink-crimson,#a23e3e)]',
 }
 
 const FALLBACK_CHIP =
-  'border-[var(--ec-border)] bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)] border backdrop-blur'
+  'border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] text-[var(--ec-text-secondary)]'
 
 function lookupTopic(
   subjectCode: string | undefined,
@@ -44,6 +43,9 @@ function lookupTopic(
   return topic ?? null
 }
 
+const STAMP =
+  'inline-flex items-center gap-1.5 rounded border font-mono text-[11px] font-semibold tracking-wide shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.05))]'
+
 export function SyllabusTopicBadge({
   code,
   subjectCode,
@@ -52,15 +54,15 @@ export function SyllabusTopicBadge({
 }: Props) {
   const topic = lookupTopic(subjectCode, code)
   const sizeClasses =
-    size === 'sm' ? 'text-xs px-2.5 py-0.5' : 'text-sm px-3 py-1'
+    size === 'sm' ? 'px-2.5 py-0.5' : 'px-3 py-1 text-xs'
 
   if (!topic) {
     return (
       <span
-        className={`inline-flex items-center gap-1.5 rounded-full border font-medium tracking-tight ${FALLBACK_CHIP} ${sizeClasses}`}
+        className={`${STAMP} ${FALLBACK_CHIP} ${sizeClasses}`}
         title={subjectCode ? `${subjectCode} • ${code}` : code}
       >
-        <span className="font-mono opacity-80">{code}</span>
+        <span className="opacity-80">{code}</span>
       </span>
     )
   }
@@ -69,11 +71,13 @@ export function SyllabusTopicBadge({
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full border font-medium tracking-tight transition-transform duration-200 hover:scale-[1.03] ${chipClass} ${sizeClasses}`}
+      className={`${STAMP} ${chipClass} ${sizeClasses}`}
       title={`${topic.paperName} • ${topic.name}`}
     >
-      <span className="font-mono opacity-60">{code}</span>
-      {!compact && <span>{topic.name}</span>}
+      <span className="opacity-70">{code}</span>
+      {!compact && (
+        <span className="font-sans font-medium tracking-normal">{topic.name}</span>
+      )}
     </span>
   )
 }
@@ -110,8 +114,8 @@ export function SyllabusTopicBadgeList({
       ))}
       {overflow > 0 && (
         <span
-          className={`inline-flex items-center rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] font-medium text-[var(--ec-text-secondary)] backdrop-blur ${
-            size === 'sm' ? 'text-xs px-2.5 py-0.5' : 'text-sm px-3 py-1'
+          className={`${STAMP} ${FALLBACK_CHIP} ${
+            size === 'sm' ? 'px-2.5 py-0.5' : 'px-3 py-1 text-xs'
           }`}
           title={`${overflow} more topic${overflow === 1 ? '' : 's'}`}
         >

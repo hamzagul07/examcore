@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FileText } from 'lucide-react'
 import { MathText } from '@/components/MathText'
 import { InlineCTA } from './InlineCTA'
 import type { ChatPaperPayload } from '@/lib/chat-intents'
@@ -22,14 +21,17 @@ export function PaperPreview({ paper }: PaperPreviewProps) {
       initial={{ opacity: 0, scale: 0.95, y: 10 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-      className="ec-card relative overflow-hidden border-[color-mix(in_srgb,var(--ec-brand)_20%,transparent)]"
+      className="ec-card ec-card--paper relative overflow-hidden border-[color-mix(in_srgb,var(--ec-brand)_20%,transparent)]"
     >
-      <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full bg-[color-mix(in_srgb,var(--ec-brand)_15%,transparent)] blur-3xl" />
-
       <div className="relative p-5 sm:p-6">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <FileText className="h-4 w-4 ec-text-brand" />
+            <span
+              className="inline-grid h-5 min-w-5 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1 font-mono text-[9px] font-bold text-[var(--ec-brand)]"
+              aria-hidden
+            >
+              Q
+            </span>
             <span className="font-mono text-xs uppercase tracking-wider ec-text-brand">
               {paper.subject_code} · {paper.session} · {paper.paper} · Q
               {paper.question_number}
@@ -41,7 +43,7 @@ export function PaperPreview({ paper }: PaperPreviewProps) {
         </div>
 
         <div
-          className="mb-4 rounded-xl border ec-border-color ec-bg-surface-raised ec-text-primary p-4 sm:p-5"
+          className="ec-card ec-card--paper mb-4 border ec-border-color ec-bg-surface-raised ec-text-primary p-4 sm:p-5"
         >
           <MathText text={paper.question_text} />
         </div>
@@ -51,7 +53,7 @@ export function PaperPreview({ paper }: PaperPreviewProps) {
             {paper.syllabus_tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border px-2 py-0.5 text-xs text-[var(--ec-text-secondary)]"
+                className="rounded border px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide text-[var(--ec-text-secondary)]"
                 style={{
                   borderColor: 'var(--ec-border)',
                   background: 'var(--ec-surface-raised)',

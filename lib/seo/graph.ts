@@ -84,14 +84,14 @@ export function buildBlogPostGraph(post: BlogPost, content: string): JsonLd[] {
             { '@id': `${SITE_URL}${cluster.path}#collection` },
           ]
         : { '@id': `${SITE_URL}${cluster.path}#collection` },
-      primaryImageOfPage: `${url}/opengraph-image`,
+      primaryImageOfPage: `${SITE_URL}/api/og/blog/${post.slug}`,
     },
     {
       '@type': 'BlogPosting',
       '@id': articleId,
       headline: post.title,
       description: post.description,
-      image: `${url}/opengraph-image`,
+      image: `${SITE_URL}/api/og/blog/${post.slug}`,
       datePublished: post.date || undefined,
       dateModified: post.updated || post.date || undefined,
       url,

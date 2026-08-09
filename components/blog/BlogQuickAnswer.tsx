@@ -15,7 +15,7 @@ export function BlogQuickAnswer({ title, description, content, date }: Props) {
   return (
     <aside className="ms-quick-answer mt-8" aria-label="Quick answer">
       <p className="ms-overline" style={{ color: 'var(--ec-brand)', marginBottom: 8 }}>
-        Quick answer
+        Examiner note
       </p>
       <p className="ms-body-2" style={{ fontSize: 16, color: 'var(--ec-text-primary)' }}>
         {answer}

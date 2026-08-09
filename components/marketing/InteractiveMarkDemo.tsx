@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Check, MousePointerClick, X } from 'lucide-react'
 import { ExaminerInkOverlay } from '@/components/examiner-ink/ExaminerInkOverlay'
 import { ScoreReveal } from '@/components/mark/ScoreReveal'
 import { DEMO_INK, DEMO_SCRIPT_IMAGE } from '@/lib/marking/demo-ink'
@@ -105,6 +104,8 @@ export function InteractiveMarkDemo() {
             percentage={percentage}
             grade={null}
             nextGrade={null}
+            shareable={false}
+            activeMarkId={String(marks[selected]?.mark_id ?? selected)}
             marks={marks.map((m, i) => ({
               id: String(m.mark_id ?? i),
               earned: !!m.earned,
@@ -119,27 +120,30 @@ export function InteractiveMarkDemo() {
           />
 
           <p className="ms-demo__hint">
-            <MousePointerClick className="h-3.5 w-3.5" aria-hidden="true" />
+            <span className="ms-demo__hint-stamp" aria-hidden>
+              ✎
+            </span>
             Tap a mark to see the examiner&apos;s reasoning
           </p>
 
-          <ul className="ms-demo__marks">
+          <ul
+            className="ms-demo__marks"
+            role="radiogroup"
+            aria-label="Marks in this answer"
+          >
             {marks.map((m, i) => (
-              <li key={String(m.mark_id ?? i)}>
+              <li key={String(m.mark_id ?? i)} role="none">
                 <button
                   type="button"
+                  role="radio"
                   onClick={() => setSelected(i)}
-                  aria-pressed={i === selected}
+                  aria-checked={i === selected}
                   className={`ms-demo__mark ${m.earned ? 'is-earned' : 'is-lost'} ${
                     i === selected ? 'is-active' : ''
                   }`}
                 >
                   <span className="ms-mpl__icon" aria-hidden="true">
-                    {m.earned ? (
-                      <Check className="h-3.5 w-3.5" />
-                    ) : (
-                      <X className="h-3.5 w-3.5" />
-                    )}
+                    {m.earned ? '✓' : '×'}
                   </span>
                   <span className="ms-mpl__type">{m.type}</span>
                   <span className="ms-mpl__work">{m.line_reference}</span>

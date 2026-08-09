@@ -3,7 +3,7 @@
 import { Suspense, useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { CheckoutSuccessTracker } from '@/components/analytics/CheckoutSuccessTracker'
-import { ExternalLink, MessageCircle, PenLine, Sparkles } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { ErrorBox } from '@/components/AuthFormBits'
@@ -118,23 +118,13 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
         <CheckoutSuccessTracker />
       </Suspense>
       {/* ---- Current plan ---- */}
-      <Card variant="glass" padding="lg" as="section" className="ms-settings-section relative overflow-hidden">
-        {/* Soft brand wash behind the plan name — quiet, not a banner. */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full opacity-60"
-          style={{
-            background:
-              'radial-gradient(closest-side, color-mix(in srgb, var(--ec-brand) 16%, transparent), transparent)',
-          }}
-        />
-
+      <Card variant="solid" padding="lg" as="section" className="ms-settings-section relative overflow-hidden">
         <div className="relative">
           <div className="flex flex-wrap items-center gap-2">
             <p className="label-overline">Current plan</p>
             {status && (
               <span
-                className="inline-flex items-center rounded-full px-2.5 py-0.5 text-caption font-semibold"
+                className="inline-flex items-center rounded px-2.5 py-0.5 font-mono text-caption font-semibold"
                 style={TONE_STYLE[status.tone]}
               >
                 {status.label}
@@ -142,7 +132,7 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
             )}
             {isPaid && billing.cancelAtPeriodEnd && !isTrialing && (
               <span
-                className="inline-flex items-center rounded-full px-2.5 py-0.5 text-caption font-semibold"
+                className="inline-flex items-center rounded px-2.5 py-0.5 font-mono text-caption font-semibold"
                 style={TONE_STYLE.warning}
               >
                 Cancels soon
@@ -193,7 +183,11 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
                     type="button"
                     fullWidth
                     className="sm:w-auto"
-                    leftIcon={<Sparkles className="h-4 w-4" aria-hidden />}
+                    leftIcon={
+                      <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+                        ↑
+                      </span>
+                    }
                   >
                     Upgrade plan
                   </Button>
@@ -235,7 +229,7 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
           )}
 
           {syncFailed && (
-            <div className="text-body mt-4 rounded-2xl border ec-highlight-warning-panel px-4 py-3">
+            <div className="text-body mt-4 ec-card ec-card--paper border ec-highlight-warning-panel px-4 py-3">
               <p className="ec-score-mid">
                 Billing setup didn&apos;t finish — checkout and the billing portal may not work yet.
               </p>
@@ -252,7 +246,7 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
       </Card>
 
       {/* ---- Usage this period ---- */}
-      <Card variant="glass" padding="lg" as="section" className="ms-settings-section">
+      <Card variant="solid" padding="lg" as="section" className="ms-settings-section">
         <div className="mb-5 flex flex-wrap items-baseline justify-between gap-2">
           <h2 className="text-h3 text-[var(--ec-text-primary)]">Usage this period</h2>
           {resetDate && <p className="text-caption">Resets {resetDate}</p>}
@@ -260,7 +254,11 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <UsageMeter
-            icon={<PenLine className="h-4 w-4" aria-hidden />}
+            icon={
+              <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>
+                M1
+              </span>
+            }
             label="Questions marked"
             used={billing.marksUsed}
             cap={billing.markCap}
@@ -273,7 +271,11 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
             }
           />
           <UsageMeter
-            icon={<MessageCircle className="h-4 w-4" aria-hidden />}
+            icon={
+              <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+                ¶
+              </span>
+            }
             label="Study chat messages"
             used={billing.omniUsed}
             cap={billing.omniCap}
@@ -284,7 +286,7 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
         </div>
 
         <div
-          className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border px-4 py-3"
+          className="mt-4 flex flex-wrap items-center justify-between gap-3 ec-card ec-card--paper border px-4 py-3"
           style={{ borderColor: 'var(--ec-border)', background: 'var(--ec-surface-raised)' }}
         >
           <div>
@@ -303,7 +305,7 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
 
         {(billing.questionsBlocked || billing.omniBlocked) &&
           billing.enforcementMode === 'enforce' && (
-            <p className="text-body mt-4 rounded-2xl border ec-tint-critical-panel px-4 py-3 ec-score-low">
+            <p className="text-body mt-4 ec-card ec-card--paper border ec-tint-critical-panel px-4 py-3 ec-score-low">
               {billing.questionsBlocked && billing.omniBlocked
                 ? 'Monthly question and study chat caps reached — marking and Ask MarkScheme are paused until you upgrade or top up credits.'
                 : billing.questionsBlocked
@@ -315,7 +317,7 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
         {billing.enforcementMode === 'warn' &&
           (billing.marksUsed >= billing.markCap || billing.omniUsed >= billing.omniCap) &&
           billing.credits <= 0 && (
-            <p className="text-body mt-4 rounded-2xl border ec-highlight-warning-panel px-4 py-3 ec-score-mid">
+            <p className="text-body mt-4 ec-card ec-card--paper border ec-highlight-warning-panel px-4 py-3 ec-score-mid">
               You&apos;re over one or more monthly caps. Warning mode still allows usage — upgrade
               or top up before enforce goes live.
             </p>
@@ -324,7 +326,7 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
 
       {/* ---- Recent activity ---- */}
       {billing.recentUsage.length > 0 && (
-        <Card variant="glass" padding="lg" as="section" className="ms-settings-section">
+        <Card variant="solid" padding="lg" as="section" className="ms-settings-section">
           <h2 className="text-h3 mb-4 text-[var(--ec-text-primary)]">Recent activity</h2>
           <ul className="divide-y" style={{ borderColor: 'var(--ec-border)' }}>
             {billing.recentUsage.map((u) => (
@@ -381,13 +383,17 @@ function UsageMeter({
 
   return (
     <div
-      className="rounded-2xl border px-4 py-4"
+      className="ec-card ec-card--paper border px-4 py-4"
       style={{ borderColor: 'var(--ec-border)', background: 'var(--ec-surface-raised)' }}
     >
       <div className="flex items-center gap-2 text-[var(--ec-text-secondary)]">
         <span
-          className="flex h-7 w-7 items-center justify-center rounded-lg"
-          style={{ background: 'var(--ec-brand-muted)', color: 'var(--ec-brand)' }}
+          className="flex h-7 w-7 items-center justify-center rounded border"
+          style={{
+            background: 'var(--ec-brand-muted)',
+            color: 'var(--ec-brand)',
+            borderColor: 'var(--ec-brand-border)',
+          }}
         >
           {icon}
         </span>
@@ -405,7 +411,7 @@ function UsageMeter({
       </div>
 
       <div
-        className="mt-2 h-2 w-full overflow-hidden rounded-full"
+        className="mt-2 h-2 w-full overflow-hidden rounded-[2px] border border-[var(--ec-border)]"
         role="progressbar"
         aria-valuenow={used}
         aria-valuemin={0}
@@ -414,7 +420,7 @@ function UsageMeter({
         style={{ background: 'color-mix(in srgb, var(--ec-border) 80%, transparent)' }}
       >
         <div
-          className="h-full rounded-full transition-all"
+          className="h-full rounded-[1px] transition-all"
           style={{ width: `${pct}%`, background: barColor }}
         />
       </div>

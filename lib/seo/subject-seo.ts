@@ -420,7 +420,7 @@ export function buildSubjectMarkingSeo(subject: SubjectOption) {
     tagline: profile.tagline,
     topics: profile.topics,
     path: `/subjects/${subject.code}`,
-    ogImagePath: `/subjects/${subject.code}/opengraph-image`,
+    ogImagePath: `/api/og/subject/${subject.code}`,
   }
 }
 
@@ -435,7 +435,7 @@ export function buildSubjectCourseSeo(course: CourseSeoContext, lessonCount: num
       keywords: [`free ${course.code} course`, `${course.code} notes free`, `Cambridge ${course.code} revision`],
       tagline: `${course.code} · ${course.name} · Free course`,
       topics: [course.name, `Cambridge ${course.code}`],
-      ogImagePath: `/courses/${course.code}/opengraph-image`,
+      ogImagePath: `/api/og/subject/${course.code}`,
     }
   }
   return {
@@ -451,7 +451,7 @@ export function buildSubjectCourseSeo(course: CourseSeoContext, lessonCount: num
     ],
     tagline: profile.tagline,
     topics: profile.topics,
-    ogImagePath: `/courses/${course.code}/opengraph-image`,
+    ogImagePath: `/api/og/subject/${course.code}`,
   }
 }
 

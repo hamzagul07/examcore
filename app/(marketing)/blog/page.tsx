@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { BookOpen, Sparkles, TrendingUp } from 'lucide-react'
 import { buildSignUpHref } from '@/lib/auth-redirect'
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { getBlogPosts } from '@/lib/blog'
@@ -120,7 +119,9 @@ export default function BlogIndexPage() {
       {trending.length > 0 && (
         <MarketingSection className="!pt-12">
           <div className="mb-4 flex items-center gap-2">
-            <TrendingUp className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden />
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+              ▲
+            </span>
             <p className="ms-overline" style={{ marginBottom: 0 }}>
               Trending topics
             </p>
@@ -176,7 +177,9 @@ export default function BlogIndexPage() {
                 href="/mark"
                 className="ec-btn-primary inline-flex min-h-[44px] items-center gap-2 px-5 text-sm"
               >
-                <Sparkles className="h-4 w-4" />
+                <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+                  M1
+                </span>
                 Try marking free
               </Link>
             </div>
@@ -223,7 +226,7 @@ export default function BlogIndexPage() {
               href="/subjects"
               className="ec-btn-underline inline-flex items-center gap-1 text-sm"
             >
-              <BookOpen className="h-4 w-4" />
+              <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>¶</span>
               All Cambridge subjects
             </Link>
           </div>
@@ -252,7 +255,7 @@ export default function BlogIndexPage() {
               href="/guides/ib"
               className="ec-btn-underline inline-flex items-center gap-1 text-sm"
             >
-              <BookOpen className="h-4 w-4" />
+              <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>¶</span>
               IB guide hub
             </Link>
           </div>
@@ -280,28 +283,46 @@ export default function BlogIndexPage() {
         <TopicHubStrip />
 
         <div className="ms-blog-cta" style={{ marginTop: 40 }}>
-          <p className="ms-overline">Keep learning</p>
+          <span className="ec-ink-stamp ms-blog-cta__stamp" aria-hidden>
+            M1
+          </span>
+          <p className="ms-overline">Now mark it</p>
           <h2 className="ms-h3" style={{ fontSize: 'clamp(1.35rem, 3vw, 1.75rem)', marginTop: 8 }}>
-            Guides for your subjects — in one place
+            Put the scheme on your working
           </h2>
           <p className="ms-lead mx-auto" style={{ marginTop: 12, maxWidth: 520 }}>
-            Pick your board and papers once — get tailored guides, community rooms, and exam
-            updates. Marking and free courses unlock when you&apos;re ready.
+            Guides show how Cambridge and IB examiners award marks. Mark a question free — then
+            keep a free account for syllabus-matched guides and courses.
           </p>
-          <ul className="ms-blog-cta__perks" aria-label="Included with a free account">
-            <li>Your subjects matched</li>
-            <li>Community rooms</li>
-            <li>A free plan on every new account — no card, no expiry</li>
+          <ul className="ms-blog-cta__perks" aria-label="What you get">
+            <li>Mark a question free</li>
+            <li>Syllabus-matched guides</li>
+            <li>Free plan · no card</li>
           </ul>
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link href={buildSignUpHref('/blog')} className="ec-btn-primary min-h-[48px] px-8">
-              Create free revision hub
+            <Link href="/mark" className="ec-btn-primary min-h-[48px] px-8 inline-flex items-center gap-2">
+              <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+                M1
+              </span>
+              Mark a question — free
             </Link>
-            <Link href="/guides" className="ec-btn-ghost min-h-[48px] px-8">
-              Browse all guides
+            <Link
+              href={buildSignUpHref('/mark')}
+              className="ec-btn-ghost min-h-[48px] px-8 inline-flex items-center gap-2"
+            >
+              Create free account
+              <span className="font-mono text-[11px] font-bold" aria-hidden>
+                -&gt;
+              </span>
             </Link>
           </div>
-          <p className="ms-blog-cta__trust">No card required · Free forever tier</p>
+          <p className="ms-blog-cta__trust">
+            <Link href="/guides" className="ec-btn-underline">
+              Browse all guides
+            </Link>
+            {' · '}
+            No card required
+          </p>
         </div>
         <p className="ms-micro mt-8 text-center">
           <Link href="/guides" className="ec-btn-underline">

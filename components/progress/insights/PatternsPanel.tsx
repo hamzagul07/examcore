@@ -1,6 +1,6 @@
-import { Gauge, ScanSearch } from 'lucide-react'
 import type { Pattern, DashboardState } from '@/lib/insights/types'
 import type { SpeedProfile } from '@/lib/insights/patterns'
+import { WaitingForInk } from '@/components/ui/WaitingForInk'
 
 type Props = {
   state: DashboardState
@@ -12,7 +12,12 @@ export function PatternsPanel({ state, patterns, speedProfile }: Props) {
   return (
     <section className="ms-dash-card min-w-0">
       <div className="mb-5 flex items-center gap-2">
-        <ScanSearch className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden="true" />
+        <span
+          className="inline-grid h-5 min-w-5 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1 font-mono text-[10px] font-bold text-[var(--ec-brand)]"
+          aria-hidden
+        >
+          ∴
+        </span>
         <p className="ms-overline" style={{ marginBottom: 0 }}>
           Patterns
         </p>
@@ -34,13 +39,13 @@ export function PatternsPanel({ state, patterns, speedProfile }: Props) {
           {patterns.map((p) => (
             <li
               key={p.classification}
-              className="rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4"
+              className="ec-card ec-card--paper border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] p-4"
             >
               <div className="flex min-w-0 items-center justify-between gap-3">
                 <div className="flex min-w-0 items-center gap-2.5">
                   <span
-                    className="h-2.5 w-2.5 shrink-0 rounded-full"
-                    style={{ background: p.color, boxShadow: `0 0 8px ${p.color}99` }}
+                    className="h-2.5 w-2.5 shrink-0 rounded-[2px]"
+                    style={{ background: p.color }}
                     aria-hidden="true"
                   />
                   <span className="min-w-0 truncate text-sm font-semibold text-[var(--ec-text-primary)]">
@@ -59,8 +64,13 @@ export function PatternsPanel({ state, patterns, speedProfile }: Props) {
         </ul>
       )}
 
-      <div className="mt-4 flex items-start gap-2.5 rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface)] p-4">
-        <Gauge className="mt-0.5 h-4 w-4 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
+      <div className="ec-card ec-card--paper mt-4 flex items-start gap-2.5 border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] p-4">
+        <span
+          className="mt-0.5 inline-grid h-5 min-w-5 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1 font-mono text-[10px] font-bold text-[var(--ec-brand)]"
+          aria-hidden
+        >
+          T
+        </span>
         <div className="min-w-0 flex-1">
           <p className="ec-break-anywhere text-sm font-semibold text-[var(--ec-text-primary)]">
             {speedProfile.label}
@@ -80,5 +90,5 @@ export function PatternsPanel({ state, patterns, speedProfile }: Props) {
 }
 
 function Hint({ children }: { children: React.ReactNode }) {
-  return <div className="ms-progress-hint ec-break-anywhere">{children}</div>
+  return <WaitingForInk className="ec-break-anywhere ms-waiting-ink--inline">{children}</WaitingForInk>
 }

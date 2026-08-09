@@ -25,7 +25,7 @@ export function CaieQuizSurface({
     <div>
       <ol className="space-y-4">
         {items.map((q, i) => (
-          <li key={i} className="ec-card p-5">
+          <li key={i} className="ec-card ec-card--paper p-5">
             <p className="ms-overline">Question {i + 1}</p>
             <p className="mt-2 font-semibold">{q.prompt}</p>
             {q.options?.length ? (

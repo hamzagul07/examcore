@@ -71,7 +71,9 @@ export default async function QuestionsIndexPage() {
         </p>
 
         {ordered.length === 0 ? (
-          <p className="community-empty">No model answers yet.</p>
+          <p className="community-empty">
+            No model answers yet — the first full-marks script sets the ink.
+          </p>
         ) : (
           ordered.map(({ code, subject, qs }) => (
             <section key={code} style={{ marginBottom: 28 }}>

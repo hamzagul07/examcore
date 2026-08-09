@@ -1,6 +1,5 @@
 'use client'
 
-import { Clock, FileText } from 'lucide-react'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import { normalizeQuestionText } from '@/lib/rich-text/normalize-question-text'
 import { SyllabusTopicBadge } from '@/components/SyllabusTopicBadge'
@@ -77,7 +76,7 @@ export function QuestionContextCard({ result, subjectCode }: Props) {
     result.ai_marking?.marks_awarded?.filter((m) => !m.earned).length ?? null
 
   return (
-    <section className="ms-question-context ec-card-premium">
+    <section className="ms-question-context ec-card ec-card--paper">
       <div className="ms-question-context-head">
         <div className="min-w-0 flex-1">
           {paperLine ? (
@@ -95,7 +94,9 @@ export function QuestionContextCard({ result, subjectCode }: Props) {
         </div>
         {result.time_spent_seconds ? (
           <span className="ms-question-context-time">
-            <Clock className="h-3.5 w-3.5" aria-hidden="true" />
+            <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>
+              T
+            </span>
             {result.time_spent_seconds}s to mark
           </span>
         ) : null}
@@ -140,7 +141,9 @@ export function QuestionContextCard({ result, subjectCode }: Props) {
       {result.question_text ? (
         <div className="ms-question-context-body">
           <p className="ms-micro" style={{ marginBottom: 10 }}>
-            <FileText className="inline h-3.5 w-3.5 -translate-y-px" aria-hidden="true" />{' '}
+            <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>
+              Q
+            </span>{' '}
             QUESTION
           </p>
           <div className="ec-question-text min-w-0 max-w-full overflow-x-auto break-words whitespace-pre-wrap text-base">

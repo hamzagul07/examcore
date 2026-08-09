@@ -57,14 +57,14 @@ export function ContactForm({ geoSection }: { geoSection?: React.ReactNode }) {
 
       <div className="ms-pg space-y-8 pb-16">
         {geoSection}
-        <div className="ms-dash-card">
+        <div className="ms-board-cross">
           <p className="ms-overline">Email</p>
           <a href={`mailto:${CONTACT_EMAIL}`} className="ec-btn-underline text-xl">
             {CONTACT_EMAIL}
           </a>
         </div>
 
-        <div className="ms-dash-card">
+        <div className="ms-board-cross">
           <p className="ms-overline">Send a message</p>
           <form onSubmit={handleSubmit} className="relative space-y-4">
             <input
@@ -141,7 +141,12 @@ export function ContactForm({ geoSection }: { geoSection?: React.ReactNode }) {
                   Send message
                 </ButtonLoadingState>
               ) : (
-                'Send message'
+                <>
+                  <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                    IN
+                  </span>
+                  Send message
+                </>
               )}
             </button>
           </form>

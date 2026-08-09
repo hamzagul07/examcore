@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { Board } from '@/lib/community/posts'
+import { buildSignInHref } from '@/lib/auth-redirect'
 
 function submitHref(opts: { subjectCode?: string; board?: Board; kind?: string }) {
   const params = new URLSearchParams()
@@ -20,19 +21,19 @@ export function CreatePostBar({
   signedIn: boolean
 }) {
   const href = submitHref({ subjectCode, board })
+  // Guests: both affordances share the same sign-in URL with return to submit (COM-02).
+  const actionHref = signedIn ? href : buildSignInHref(href)
+  const label = signedIn ? 'Create a post…' : 'Sign in to create a post…'
+
   return (
     <div className="rc-create-bar">
-      <div className="rc-create-avatar" aria-hidden>✎</div>
-      {signedIn ? (
-        <Link href={href} className="rc-create-input">
-          Create a post…
-        </Link>
-      ) : (
-        <Link href="/auth/signin?next=/community/submit" className="rc-create-input">
-          Sign in to create a post…
-        </Link>
-      )}
-      <Link href={href} className="rc-create-go" aria-label="Create post">
+      <div className="rc-create-avatar" aria-hidden>
+        ✎
+      </div>
+      <Link href={actionHref} className="rc-create-input">
+        {label}
+      </Link>
+      <Link href={actionHref} className="rc-create-go" aria-label={label}>
         +
       </Link>
     </div>

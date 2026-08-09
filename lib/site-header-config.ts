@@ -44,14 +44,14 @@ function communityContext(pathname: string): HeaderContext | undefined {
     return {
       label: `s/${code}`,
       href: `/community/s/${code}`,
-      glyph: '💬',
+      glyph: '#',
     }
   }
   if (pathname.startsWith('/community/submit')) {
     return { label: 'New post', href: '/community/submit', glyph: '✎' }
   }
   if (pathname.startsWith('/community')) {
-    return { label: 'Exam Room', href: '/community', glyph: '💬' }
+    return { label: 'Exam Room', href: '/community', glyph: '#' }
   }
   return undefined
 }
@@ -63,6 +63,11 @@ function ibSubjectLabel(slug: string): string {
   return `${subject.name} ${subject.level}`
 }
 
+/** Ink / mono crumbs — no emoji (marketing + product chrome). */
+const GLYPH_COURSE = '¶'
+const GLYPH_PAPER = '▢'
+const GLYPH_IB = '◇'
+
 function coursesContext(pathname: string): HeaderContext | undefined {
   const ibCourseMatch = pathname.match(/^\/ib\/courses\/([^/]+)(?:\/(.+))?/)
   if (ibCourseMatch) {
@@ -72,13 +77,13 @@ function coursesContext(pathname: string): HeaderContext | undefined {
       return {
         label: ibSubjectLabel(slug),
         href: `/ib/courses/${slug}`,
-        glyph: subject?.glyph ?? '📖',
+        glyph: GLYPH_COURSE,
       }
     }
     return {
       label: subject ? `IB ${subject.name}` : 'IB course',
       href: `/ib/courses/${slug}`,
-      glyph: subject?.glyph ?? '📚',
+      glyph: GLYPH_COURSE,
     }
   }
 
@@ -88,16 +93,16 @@ function coursesContext(pathname: string): HeaderContext | undefined {
     return {
       label: ibSubjectLabel(slug),
       href: `/ib/subjects/${slug}`,
-      glyph: getIbSubject(slug)?.glyph ?? '📚',
+      glyph: GLYPH_COURSE,
     }
   }
 
   if (pathname === '/ib' || pathname.startsWith('/ib/past-papers')) {
-    return { label: 'IB Diploma', href: '/ib', glyph: '◇' }
+    return { label: 'IB Diploma', href: '/ib', glyph: GLYPH_IB }
   }
 
   if (pathname === '/ib/courses') {
-    return { label: 'IB courses', href: '/ib/courses', glyph: '📚' }
+    return { label: 'IB courses', href: '/ib/courses', glyph: GLYPH_COURSE }
   }
 
   const ibTopicMatch = pathname.match(/^\/ib\/past-papers\/([^/]+)\/([^/]+)/)
@@ -105,7 +110,7 @@ function coursesContext(pathname: string): HeaderContext | undefined {
     return {
       label: ibSubjectLabel(ibTopicMatch[1]),
       href: `/ib/past-papers/${ibTopicMatch[1]}`,
-      glyph: getIbSubject(ibTopicMatch[1])?.glyph ?? '📄',
+      glyph: GLYPH_PAPER,
     }
   }
 
@@ -114,12 +119,12 @@ function coursesContext(pathname: string): HeaderContext | undefined {
     return {
       label: lessonMatch[1],
       href: `/courses/${lessonMatch[1]}`,
-      glyph: '📖',
+      glyph: GLYPH_COURSE,
     }
   }
   if (pathname.startsWith('/subjects/')) {
     const code = pathname.split('/')[2]
-    return code ? { label: code, href: pathname, glyph: '📚' } : undefined
+    return code ? { label: code, href: pathname, glyph: GLYPH_COURSE } : undefined
   }
   if (
     pathname === '/courses' ||
@@ -127,7 +132,7 @@ function coursesContext(pathname: string): HeaderContext | undefined {
     pathname.startsWith('/subjects') ||
     pathname.startsWith('/ib/courses')
   ) {
-    return { label: 'Free courses', href: '/courses', glyph: '📚' }
+    return { label: 'Free courses', href: '/courses', glyph: GLYPH_COURSE }
   }
   return undefined
 }

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import {
   MarketingHero,
   MarketingPageShell,
@@ -132,7 +132,7 @@ export function CaieSurfacePage({
         {surface === 'flashcards' ? (
           <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
             {(lesson.flashcards ?? []).map((card, i) => (
-              <li key={i} className="ec-card p-4">
+              <li key={i} className="ec-card ec-card--paper p-4">
                 <p className="ms-overline">{card.pillLabel || 'Card'}</p>
                 <p className="mt-2 font-semibold">{card.front}</p>
                 <p className="ms-body-2 mt-2">{card.back}</p>
@@ -144,7 +144,7 @@ export function CaieSurfacePage({
         {surface === 'faq' ? (
           <dl className="space-y-4">
             {(lesson.faq ?? []).map((f) => (
-              <div key={f.q} className="ec-card p-5">
+              <div key={f.q} className="ec-card ec-card--paper p-5">
                 <dt className="font-semibold">
                   <h2 className="text-base font-semibold">{f.q}</h2>
                 </dt>
@@ -165,7 +165,7 @@ export function CaieSurfacePage({
           <div className="space-y-6">
             {worked.map((w, i) =>
               w.type === 'workedExample' ? (
-                <article key={i} className="ec-card p-5">
+                <article key={i} className="ec-card ec-card--paper p-5">
                   <h2 className="ms-h3" style={{ fontSize: '1.1rem' }}>
                     Worked example {i + 1}
                   </h2>
@@ -186,13 +186,13 @@ export function CaieSurfacePage({
                     Past-paper practice
                   </h2>
                   {block.questions.map((q) => (
-                    <article key={q.questionId} className="ec-card p-5">
+                    <article key={q.questionId} className="ec-card ec-card--paper p-5">
                       <p className="ms-overline">
                         {q.session} · Paper {q.paperVariant} · Q{q.questionNumber} · {q.marks} marks
                       </p>
                       <p className="ms-body-2 mt-2">{q.questionTextPreview}</p>
                       <Link href={q.markHref} className="ec-btn-primary mt-3 inline-flex min-h-[44px]">
-                        Attempt &amp; mark <ArrowRight className="h-4 w-4" />
+                        Attempt &amp; mark <span className="h-4 w-4" aria-hidden>-&gt;</span>
                       </Link>
                     </article>
                   ))}
@@ -202,7 +202,7 @@ export function CaieSurfacePage({
             {(lesson.pastPaperReferences ?? []).length > 0 ? (
               <ul className="space-y-3">
                 {lesson.pastPaperReferences!.map((q) => (
-                  <li key={`${q.paperCode}-${q.questionNumber}`} className="ec-card p-5">
+                  <li key={`${q.paperCode}-${q.questionNumber}`} className="ec-card ec-card--paper p-5">
                     <p className="ms-overline">
                       {q.sessionLabel} · {q.paperCode} · Q{q.questionNumber}
                     </p>
@@ -220,7 +220,7 @@ export function CaieSurfacePage({
         {surface === 'mistakes' ? (
           <div className="space-y-4">
             {examTips.map((tip, i) => (
-              <article key={i} className="ec-card p-5">
+              <article key={i} className="ec-card ec-card--paper p-5">
                 <h2 className="ms-h3" style={{ fontSize: '1.05rem' }}>
                   Exam tip {i + 1}
                 </h2>
@@ -228,7 +228,7 @@ export function CaieSurfacePage({
               </article>
             ))}
             {(lesson.faq ?? []).slice(0, 4).map((f) => (
-              <article key={f.q} className="ec-card p-5">
+              <article key={f.q} className="ec-card ec-card--paper p-5">
                 <h2 className="ms-h3" style={{ fontSize: '1.05rem' }}>
                   {f.q}
                 </h2>

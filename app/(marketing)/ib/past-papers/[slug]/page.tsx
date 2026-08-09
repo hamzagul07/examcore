@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props) {
     description: copy.description,
     path: copy.path,
     keywords: copy.keywords,
-    ogImagePath: '/ib/opengraph-image',
+    ogImagePath: `/api/og/ib/${slug}`,
   })
 }
 
@@ -137,54 +137,30 @@ export default async function IbPastPaperSubjectPage({ params }: Props) {
       >
         <MarketingBreadcrumbs items={breadcrumbs} className="mb-6" />
 
-        <div className="ms-sd-head">
+        <div className="ms-sd-head" data-code={subject.level}>
           <div className="ms-sd-glyph" aria-hidden>
-            {subject.glyph}
+            {subject.level}
           </div>
-          <div className="min-w-0 flex-1">
-            <h1 className="ms-h2" style={{ marginBottom: 2 }}>
-              {subject.name} past papers{' '}
-              <em style={{ color: 'var(--ec-text-faint)', fontSize: '0.55em' }}>· IB {subject.level}</em>
+          <div className="min-w-0 flex-1" style={{ position: 'relative', zIndex: 1 }}>
+            <p className="ms-overline" style={{ marginBottom: 4 }}>
+              IB · Group {subject.groupNumber}
+            </p>
+            <h1 className="ms-h2" style={{ marginBottom: 6 }}>
+              {subject.name} past papers
             </h1>
             <div className="flex flex-wrap gap-2">
               <Chip variant="dim">{ibYearRange()}</Chip>
-              <Chip variant="dim">Group {subject.groupNumber}</Chip>
               <Chip variant="dim">{subject.papers.join(' · ')}</Chip>
             </div>
           </div>
-          <Link href={`/ib/subjects/${subject.slug}`} className="ec-btn-primary ms-auto shrink-0 px-6 py-3 text-sm">
+          <Link
+            href={`/ib/subjects/${subject.slug}`}
+            className="ec-btn-primary ms-auto shrink-0 px-6 py-3 text-sm"
+            style={{ position: 'relative', zIndex: 1 }}
+          >
             Subject overview
           </Link>
         </div>
-
-        <HubSeoIntro
-          headingLevel="h2"
-          heading={`IB ${subject.name} ${subject.level} past papers — by session`}
-          paragraph={`Every recent ${subject.name} exam series we cover (${ibYearRange()}), each with ${subject.papers.join(', ')}. Practise a paper, then mark it against the IB band descriptors — that's where the grade is won.`}
-          links={[
-            {
-              // IB marking codes are level-independent (ib-chemistry, not
-              // ib-chemistry-hl); strip the -hl/-sl the past-paper slug carries so
-              // /mark pre-selects the subject instead of landing on a blank picker.
-              href: `/mark?subject=ib-${slug.replace(/-(hl|sl)$/i, '')}`,
-              label: 'Get feedback on your answer →',
-              variant: 'primary',
-            },
-            ...(course
-              ? [{ href: course.path, label: `Free ${short} course`, variant: 'ghost' as const }]
-              : []),
-            ...(topicPages.length
-              ? [
-                  {
-                    href: `#ib-topic-practice`,
-                    label: 'Practice by topic',
-                    variant: 'ghost' as const,
-                  },
-                ]
-              : []),
-            { href: `/ib/subjects/${subject.slug}`, label: `About ${short} ${subject.level}`, variant: 'ghost' },
-          ]}
-        />
 
         {topicPages.length ? (
           <section aria-labelledby="ib-topic-practice" style={{ marginTop: 32 }}>
@@ -225,10 +201,10 @@ export default async function IbPastPaperSubjectPage({ params }: Props) {
                   <span className="ms-pp-year" style={{ fontSize: 19 }}>{s}</span>
                   <span className="ms-pp-paperno">{subject.level}</span>
                 </div>
-                <div className="flex flex-wrap gap-2" style={{ marginTop: 10 }}>
+                <div className="ms-pp-sessions">
                   {subject.papers.map((p) => (
-                    <span key={p} className="ec-chip-warm">
-                      {p}
+                    <span key={p} className="ms-pp-session">
+                      <span>{p}</span>
                     </span>
                   ))}
                 </div>
@@ -241,17 +217,45 @@ export default async function IbPastPaperSubjectPage({ params }: Props) {
           </p>
         </section>
 
+        <HubSeoIntro
+          quiet
+          headingLevel="h2"
+          heading={`IB ${subject.name} ${subject.level} past papers — by session`}
+          paragraph={`Every recent ${subject.name} exam series we cover (${ibYearRange()}), each with ${subject.papers.join(', ')}. Practise a paper, then mark it against the IB band descriptors — that's where the grade is won.`}
+          links={[
+            {
+              // IB marking codes are level-independent (ib-chemistry, not
+              // ib-chemistry-hl); strip the -hl/-sl the past-paper slug carries so
+              // /mark pre-selects the subject instead of landing on a blank picker.
+              href: `/mark?subject=ib-${slug.replace(/-(hl|sl)$/i, '')}`,
+              label: 'Get feedback on your answer →',
+              variant: 'primary',
+            },
+            ...(course
+              ? [{ href: course.path, label: `Free ${short} course`, variant: 'ghost' as const }]
+              : []),
+            ...(topicPages.length
+              ? [
+                  {
+                    href: `#ib-topic-practice`,
+                    label: 'Practice by topic',
+                    variant: 'ghost' as const,
+                  },
+                ]
+              : []),
+            { href: `/ib/subjects/${subject.slug}`, label: `About ${short} ${subject.level}`, variant: 'ghost' },
+          ]}
+        />
+
         <section className="ms-subject-faq" aria-labelledby="ib-pp-faq">
           <h2 id="ib-pp-faq" className="ms-h3">
             Frequently asked questions
           </h2>
-          <dl className="mt-6 space-y-6">
+          <dl className="ms-tool-faq">
             {faq.map((item) => (
               <div key={item.q} data-chunk-id={item.q.slice(0, 36)}>
-                <dt className="font-semibold text-[var(--ec-text-primary)]">{item.q}</dt>
-                <dd className="mt-2 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-                  {item.a}
-                </dd>
+                <dt>{item.q}</dt>
+                <dd className="ms-body-2">{item.a}</dd>
               </div>
             ))}
           </dl>
@@ -268,7 +272,7 @@ export default async function IbPastPaperSubjectPage({ params }: Props) {
               <li key={s.slug}>
                 <Link
                   href={`/ib/past-papers/${s.slug}`}
-                  className="inline-flex rounded-full border border-[var(--ec-border)] px-3 py-1.5 text-xs font-semibold text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]"
+                  className="inline-flex rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-3 py-1.5 font-mono text-[11px] font-semibold tracking-wide shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.05))] text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]"
                 >
                   {s.name} {s.level}
                 </Link>

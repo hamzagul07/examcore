@@ -1,13 +1,14 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { validateUsername } from '@/lib/community/username'
 
 export type UsernameState = { value: string; valid: boolean }
 
 /**
  * Username input with live format validation + availability check against
- * /api/community/username. Used at sign-up and in account settings.
+ * /api/community/username. Used in account settings and first community post —
+ * not at signup (AU-01).
  */
 export function UsernameField({
   value,
@@ -23,6 +24,7 @@ export function UsernameField({
   const [status, setStatus] = useState<'idle' | 'checking' | 'ok' | 'taken' | 'invalid'>('idle')
   const [message, setMessage] = useState('')
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const hintId = useId()
 
   useEffect(() => {
     if (!value) {
@@ -58,7 +60,7 @@ export function UsernameField({
       } catch {
         // Network hiccup — treat format-valid as acceptable; server re-checks.
         setStatus('ok')
-        setMessage('')
+        setMessage('Couldn’t verify availability — you can still continue.')
         onChange({ value: check.username, valid: true })
       }
     }, 400)
@@ -66,6 +68,13 @@ export function UsernameField({
       if (timer.current) clearTimeout(timer.current)
     }
   }, [value, onChange])
+
+  const statusTone =
+    status === 'ok'
+      ? 'ec-score-high'
+      : status === 'checking' || status === 'idle'
+        ? 'text-[var(--ec-text-secondary)]'
+        : 'ec-score-low'
 
   return (
     <div>
@@ -89,31 +98,30 @@ export function UsernameField({
           type="text"
           value={value}
           autoFocus={autoFocus}
-          onChange={(e) => onChange({ value: e.target.value.toLowerCase().replace(/\s/g, ''), valid: false })}
+          onChange={(e) =>
+            onChange({
+              value: e.target.value.toLowerCase().replace(/\s/g, ''),
+              valid: false,
+            })
+          }
           autoComplete="username"
           placeholder="studymaster_21"
           maxLength={20}
           className="ec-input"
           style={{ paddingLeft: 34 }}
+          aria-describedby={hintId}
+          aria-invalid={status === 'taken' || status === 'invalid' ? true : undefined}
         />
       </div>
-      {message ? (
-        <p
-          className={`mt-1.5 text-xs ${
-            status === 'ok'
-              ? 'ec-score-high'
-              : status === 'checking'
-                ? 'text-[var(--ec-text-secondary)]'
-                : 'ec-score-low'
-          }`}
-        >
-          {message}
-        </p>
-      ) : (
-        <p className="mt-1.5 text-xs text-[var(--ec-text-secondary)]">
-          3–20 chars: lowercase letters, numbers, underscores. Your public community name.
-        </p>
-      )}
+      <p
+        id={hintId}
+        className={`mt-1.5 text-xs ${statusTone}`}
+        role="status"
+        aria-live="polite"
+      >
+        {message ||
+          '3–20 chars: lowercase letters, numbers, underscores. Your public community name.'}
+      </p>
     </div>
   )
 }

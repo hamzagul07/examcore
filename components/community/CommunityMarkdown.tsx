@@ -50,7 +50,7 @@ const components: Components = {
         src={url}
         alt={alt || ''}
         loading="lazy"
-        className="my-3 max-h-[480px] w-auto max-w-full rounded-xl border border-[var(--ec-border)]"
+        className="my-3 max-h-[480px] w-auto max-w-full rounded border border-[var(--ec-border)] shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.05))]"
       />
     )
   },

@@ -64,7 +64,7 @@ export function createMarkdownComponents(
     },
     pre: ({ children }) => (
       <pre
-        className={`my-3 overflow-x-auto rounded-xl p-4 font-mono text-xs ${t.preBg} ${t.preText}`}
+        className={`my-3 overflow-x-auto rounded border border-[var(--ec-border)] p-4 font-mono text-xs shadow-[var(--ec-shadow-hard,3px_3px_0_rgba(0,0,0,0.06))] ${t.preBg} ${t.preText}`}
       >
         {children}
       </pre>

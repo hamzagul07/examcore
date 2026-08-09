@@ -49,7 +49,7 @@ export function sendStreakNudgeEmail(payload: {
 
   const bodyHtml =
     `<p style="margin:0 0 14px;font-size:16px;color:${INK}">Hi ${esc(greeting)},</p>` +
-    `<div style="text-align:center;margin:0 0 14px"><div style="font-size:40px;line-height:1">🔥</div></div>` +
+    `<div style="text-align:center;margin:0 0 14px"><div style="display:inline-block;font-family:ui-monospace,Menlo,monospace;font-size:14px;font-weight:700;letter-spacing:0.06em;color:#19774d;border:1.5px solid #19774d;background:#e8f3ec;padding:8px 12px;border-radius:4px">STREAK</div></div>` +
     statsRow +
     `<p style="margin:0 0 8px;font-size:15px;line-height:1.6;color:#333">You've marked something ${streak} days running — that's real momentum. But you haven't marked anything today, and your streak resets at midnight.</p>` +
     `<p style="margin:0 0 4px;font-size:15px;line-height:1.6;color:#333">${closing}</p>`

@@ -173,7 +173,7 @@
     justify-content: center;
     min-height: var(--ec-touch-min, 44px);
     margin-bottom: 4px;
-    border-radius: 12px;
+    border-radius: 4px;
     background: var(--ec-brand);
     color: var(--ec-on-brand-text, #fff);
     font-family: var(--font-sans);
@@ -188,7 +188,7 @@
     justify-content: center;
     min-width: var(--ec-touch-min, 44px);
     min-height: var(--ec-touch-min, 44px);
-    border-radius: 10px;
+    border-radius: 4px;
     border: 1px solid color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border));
     background: var(--ec-brand-muted);
     color: var(--ec-brand);
@@ -325,7 +325,7 @@
     min-height: var(--ec-touch-min, 44px);
     padding: 0;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: 4px;
     gap: 0;
   }
 
@@ -638,7 +638,7 @@
   align-items: center;
   min-height: var(--ec-touch-min, 44px);
   padding: 8px 14px;
-  border-radius: 999px;
+  border-radius: 4px;
   border: 1px solid var(--ec-border);
   background: var(--ec-surface);
   color: var(--ec-text-secondary);
@@ -762,7 +762,8 @@
     font-size: clamp(1.125rem, 4.5vw, 1.375rem);
   }
 
-  .ms-verify-digits input {
+  .ms-verify-digits input,
+  .ms-verify-digit {
     height: 48px;
     width: 2.25rem;
     font-size: 1rem;
@@ -806,7 +807,7 @@
     max-width: none;
     height: min(88dvh, calc(100dvh - env(safe-area-inset-top, 0px)));
     max-height: min(88dvh, calc(100dvh - env(safe-area-inset-top, 0px)));
-    border-radius: 20px 20px 0 0;
+    border-radius: 4px 4px 0 0;
   }
 
   .ms-teacher-review-detail .ec-card.overflow-hidden {
@@ -1049,7 +1050,8 @@
     font-size: 16px;
   }
 
-  .ms-verify-digits input {
+  .ms-verify-digits input,
+  .ms-verify-digit {
     width: 2.5rem;
     min-width: 2.5rem;
   }
@@ -1178,7 +1180,7 @@
   .ms-content-hub {
     width: 100%;
     justify-content: stretch;
-    border-radius: 16px;
+    border-radius: 4px;
   }
 
   .ms-content-hub .ms-hub-tab {
@@ -1309,7 +1311,7 @@
   /* Exam Room — embedded entry cards on course/lesson pages */
   .rc-entry {
     padding: 16px;
-    border-radius: 14px;
+    border-radius: 4px;
   }
 
   .rc-entry-title {

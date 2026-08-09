@@ -1,4 +1,3 @@
-import { Target } from 'lucide-react'
 import {
   countMasteries,
   MASTERY_STYLES,
@@ -29,18 +28,19 @@ export function SyllabusCoverage({
 
   return (
     <Card
-      variant="brand-glow"
+      variant="solid"
       padding="lg"
-      className="ms-syllabus-coverage ms-dash-card relative overflow-hidden !border-[color-mix(in_srgb,var(--ec-brand)_22%,transparent)] !shadow-[var(--ec-shadow-card)]"
+      className="ms-syllabus-coverage ms-dash-card relative overflow-hidden border-[color-mix(in_srgb,var(--ec-brand)_35%,var(--ec-border))]"
     >
-      <div
-        className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full ec-glow-orb blur-[80px]"
-        aria-hidden="true"
-      />
 
       <div className="relative">
         <div className="mb-6 flex items-center gap-2">
-          <Target className="h-4 w-4 ec-text-brand" aria-hidden="true" />
+          <span
+            className="inline-grid h-5 min-w-5 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]"
+            aria-hidden
+          >
+            ¶
+          </span>
           <p className="ms-overline" style={{ marginBottom: 0 }}>Syllabus coverage</p>
         </div>
 
@@ -107,10 +107,10 @@ function CoverageStats({
         return (
           <div
             key={key}
-            className="rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-3 py-3 text-center backdrop-blur"
+            className="ec-card ec-card--paper border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] px-3 py-3 text-center"
           >
             <div className="flex items-center justify-center gap-1.5">
-              <span className={`h-2 w-2 rounded-full ${style.dot}`} />
+              <span className={`h-2 w-2 rounded-[2px] ${style.dot}`} />
               <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-[var(--ec-text-secondary)]">
                 {label}
               </span>

@@ -128,8 +128,9 @@
 .lesson-figure {
   margin: 0;
   border: 1px solid var(--ec-border-subtle);
-  border-radius: 1rem;
-  background: var(--ec-surface-raised, var(--ec-surface));
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface-raised, var(--ec-surface)));
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.06));
   padding: 1rem 1.1rem 0.9rem;
 }
 
@@ -155,7 +156,7 @@
 
 .lesson-figure-loading {
   min-height: 9rem;
-  border-radius: 0.75rem;
+  border-radius: 4px;
   background: var(--ec-bg-soft, var(--ec-surface-muted));
   animation: dgm-pulse 1.6s ease-in-out infinite;
 }
@@ -184,7 +185,7 @@
 .lesson-figure-play {
   margin-top: 0.6rem;
   border: 1px solid var(--ec-border-subtle);
-  border-radius: 999px;
+  border-radius: 4px;
   background: var(--ec-surface-muted);
   padding: 0.3rem 0.9rem;
   font-size: 0.78rem;

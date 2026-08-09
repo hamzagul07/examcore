@@ -33,7 +33,7 @@ export async function CommunityEntry({
   return (
     <section className="rc-entry" style={{ '--sc': accent } as CSSProperties}>
       <div className="rc-entry-head">
-        <span className="rc-entry-glyph">{subject?.glyph ?? '💬'}</span>
+        <span className="rc-entry-glyph">{subject?.glyph ?? '#'}</span>
         <div>
           <h3 className="rc-entry-title">{title}</h3>
           <p className="rc-entry-sub">
@@ -50,7 +50,7 @@ export async function CommunityEntry({
             <Link key={p.id} href={`/community/posts/${p.id}`} className="rc-entry-post" style={{ '--sc': accent } as CSSProperties}>
               <span className="rc-entry-post-score">{compactCount(p.score)}</span>
               <span className="rc-entry-post-title">{p.title}</span>
-              <span className="rc-entry-post-comments">{p.commentCount} 💬</span>
+              <span className="rc-entry-post-comments">{p.commentCount} #</span>
             </Link>
           ))}
         </div>

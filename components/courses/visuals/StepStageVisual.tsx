@@ -63,7 +63,7 @@ function DiagramStage({
   if (mode === 'loading') {
     return (
       <div
-        className="course-step-stage-diagram min-h-[12rem] animate-pulse rounded-xl bg-[var(--ec-bg-soft)]"
+        className="course-step-stage-diagram min-h-[12rem] animate-pulse rounded bg-[var(--ec-bg-soft)]"
         aria-hidden
       />
     )

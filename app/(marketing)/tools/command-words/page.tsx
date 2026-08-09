@@ -4,10 +4,10 @@ import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode, softwareApplicationNode } from '@/lib/seo/structured-data'
-import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { CommandWordExplorer } from '@/components/tools/CommandWordExplorer'
 import { getCommandWords } from '@/lib/seo/command-words'
+import { ToolInstrumentShell } from '@/components/tools/ToolInstrumentShell'
 
 const PATH = '/tools/command-words'
 
@@ -44,55 +44,105 @@ export const metadata = getPageMetadata(PATH, {
   ],
 })
 
+function CommandWordsArtefact() {
+  return (
+    <aside
+      className="ms-tools-artefact"
+      aria-label="Example: Evaluate needs a justified conclusion"
+    >
+      <div className="ms-tools-artefact__head">
+        <span className="ms-tools-artefact__kicker">Verb · depth</span>
+        <span className="ms-tools-artefact__stamp" aria-hidden>
+          CW
+        </span>
+      </div>
+      <div className="ms-tools-artefact__figure">
+        <span className="ms-tools-artefact__raw" style={{ fontSize: '1.75rem' }}>
+          Eval
+        </span>
+      </div>
+      <dl className="ms-tools-artefact__rows">
+        <div className="ms-tools-artefact__row">
+          <dt>Ask</dt>
+          <dd>Both sides</dd>
+        </div>
+        <div className="ms-tools-artefact__row ms-tools-artefact__row--gap">
+          <dt>Top band</dt>
+          <dd>Judgement</dd>
+        </div>
+      </dl>
+      <p className="ms-tools-artefact__cite" aria-hidden>
+        the verb decides the depth — not the topic
+      </p>
+    </aside>
+  )
+}
+
 export default function CommandWordsToolPage() {
   const words = getCommandWords()
   return (
-    <MarketingPageShell>
+    <>
       <PageJsonLd
         path={PATH}
         title="Cambridge command words explainer"
         description="Every Cambridge command word with examiner-accurate meanings and common mistakes."
         breadcrumbs={[
           { name: 'Home', path: '/' },
-          { name: 'Tools', path: '/tools/command-words' },
+          { name: 'Tools', path: '/tools' },
           { name: 'Command words', path: PATH },
         ]}
       />
       <JsonLd data={[faqPageNode(FAQS), softwareApplicationNode()]} />
 
-      <MarketingHero
-        label="Free tool"
+      <ToolInstrumentShell
+        stamp="CW"
+        label="Technique instrument"
+        title={
+          <>
+            Cambridge <em>command words</em>
+          </>
+        }
+        lead="Every command word Cambridge uses, what the examiner actually wants for each, and the mistake that costs marks. Search the verb in your question and answer to the right depth."
+        note="circle the verb before you plan the answer"
+        artefact={<CommandWordsArtefact />}
         breadcrumbs={[
           { name: 'Home', path: '/' },
+          { name: 'Tools', path: '/tools' },
           { name: 'Command words', path: PATH },
         ]}
-        title="Cambridge command words explainer"
-        lead="Every command word Cambridge uses, what the examiner actually wants for each, and the mistake that costs marks. Search the verb in your question and answer to the right depth."
+        after={
+          <>
+            <section className="ms-tool-instrument__faq" aria-labelledby="cw-faq">
+              <h2 id="cw-faq" className="ms-tool-instrument__faq-title">
+                FAQ
+              </h2>
+              <dl className="ms-tool-faq">
+                {FAQS.map((f) => (
+                  <div key={f.q}>
+                    <dt>{f.q}</dt>
+                    <dd className="ms-body-2">{f.a}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+            <PageHelpStrip />
+          </>
+        }
       >
-        <div className="mt-6 flex flex-wrap gap-3">
-          <Link href="/mark" className="ec-btn-primary inline-flex min-h-[48px]">
-            Mark your answer free <span className="h-5 w-5" aria-hidden>-&gt;</span>
+        <div className="ms-tool-instrument__links mb-6">
+          <Link href="/mark" className="ec-link">
+            Mark your answer free -&gt;
           </Link>
-          <Link href="/blog/cambridge-command-words-explained" className="ec-btn-ghost ec-btn-ghost--sm">
-            Read the full guide
+          <Link href="/blog/cambridge-command-words-explained" className="ec-link">
+            Full guide -&gt;
+          </Link>
+          <Link href="/guides/command-words" className="ec-link">
+            Per-subject pages -&gt;
           </Link>
         </div>
-      </MarketingHero>
 
-      <MarketingSection className="!pt-0">
         <CommandWordExplorer words={words} />
-
-        <p className="ms-micro mt-8">
-          <Link href="/guides/command-words" className="ec-btn-underline">
-            Per-subject command word pages
-          </Link>
-          {' · '}
-          <Link href="/blog/cambridge-command-words-explained" className="ec-btn-underline">
-            Full guide
-          </Link>
-        </p>
-        <PageHelpStrip />
-      </MarketingSection>
-    </MarketingPageShell>
+      </ToolInstrumentShell>
+    </>
   )
 }

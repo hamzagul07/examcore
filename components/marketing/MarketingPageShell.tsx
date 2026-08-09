@@ -51,7 +51,7 @@ export function MarketingHero({
   breadcrumbs?: MarketingBreadcrumbItem[]
 }) {
   return (
-    <section className="ms-pg ms-content-hero scroll-mt-24">
+    <section className="ms-pg ms-content-hero ms-content-hero--ink scroll-mt-24">
       {breadcrumbs?.length ? (
         <MarketingBreadcrumbs items={breadcrumbs} className="mb-4" />
       ) : null}
@@ -65,6 +65,7 @@ export function MarketingHero({
         </p>
       ) : null}
       {children}
+      <span className="ms-content-hero__rule" aria-hidden />
     </section>
   )
 }
@@ -72,18 +73,20 @@ export function MarketingHero({
 export function MarketingSection({
   children,
   className = '',
+  id,
 }: {
   children: ReactNode
   className?: string
+  id?: string
 }) {
   return (
-    <section className={`ms-pg ms-sec scroll-mt-24 ${className}`}>{children}</section>
+    <section id={id} className={`ms-pg ms-sec scroll-mt-24 ${className}`}>{children}</section>
   )
 }
 
 export function LegalDisclaimer() {
   return (
-    <div className="ec-highlight-warning-panel mb-8 rounded-2xl p-4 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+    <div className="ec-card ec-card--paper ec-highlight-warning-panel mb-8 p-4 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
       This is a draft policy written for transparency during early access. If you
       have legal needs requiring formal review, consult a lawyer before relying on
       it for compliance.

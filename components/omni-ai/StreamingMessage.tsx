@@ -1,6 +1,5 @@
 'use client'
 
-import { Sparkles } from 'lucide-react'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import type { OmniAIMessage, OmniAIAction } from '@/lib/omni-ai/types'
 import { PaperPreview } from '@/components/command-bar/PaperPreview'
@@ -30,13 +29,18 @@ export function StreamingMessage({ message, splitPaper = false }: StreamingMessa
 
   return (
     <div className="flex gap-3 ec-chat-message-enter">
-      <div className="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full ec-chat-avatar">
-        <Sparkles className="h-4 w-4 ec-on-brand-text" />
+      <div
+        className="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand)] font-mono text-[10px] font-bold tracking-wide ec-on-brand-text"
+        aria-hidden
+      >
+        MS
       </div>
 
       <div className="min-w-0 flex-1 space-y-3">
         {!showSplitPaper && (
-          <div className="rounded-2xl rounded-bl-md border ec-border-color bg-[var(--ec-surface-raised)] px-4 py-3 text-[var(--ec-text-primary)]">
+          <div className="rounded border ec-border-color bg-[var(--ec-paper,var(--ec-surface-raised))] px-4 py-3 text-[var(--ec-text-primary)]"
+            style={{ boxShadow: 'var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.06))' }}
+          >
             {message.isStreaming ? (
               <div className="text-sm leading-relaxed">
                 {message.content ? (
@@ -54,7 +58,7 @@ export function StreamingMessage({ message, splitPaper = false }: StreamingMessa
 
         {showSplitPaper && message.action?.paper && (
           <>
-            <div className="ec-card hidden rounded-2xl rounded-bl-md border ec-border-color px-4 py-3 text-[var(--ec-text-primary)] lg:block">
+            <div className="ec-card ec-card--paper hidden border ec-border-color px-4 py-3 text-[var(--ec-text-primary)] lg:block">
               <RichTextRenderer text={message.content} variant="light" />
             </div>
             <SplitScreenPreview

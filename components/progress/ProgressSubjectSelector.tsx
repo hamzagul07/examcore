@@ -36,7 +36,7 @@ export function ProgressSubjectSelector({ subjects, selectedCode }: Props) {
           id="progress-subject"
           value={selectedCode}
           onChange={(e) => onChange(e.target.value)}
-          className="ec-input w-full min-h-[44px] appearance-none rounded-xl py-2.5 pr-10 text-sm font-medium transition-colors hover:border-[color-mix(in_srgb,var(--ec-brand)_40%,transparent)]"
+          className="ec-input w-full min-h-[44px] appearance-none rounded py-2.5 pr-10 text-sm font-medium transition-colors hover:border-[color-mix(in_srgb,var(--ec-brand)_40%,transparent)]"
         >
           {subjects.map((s) => (
             <option key={s.code} value={s.code}>

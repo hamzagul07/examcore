@@ -56,12 +56,11 @@ export function ExaminerHandReveal({
 
   return (
     <div
-      className="relative mx-auto w-full overflow-hidden rounded-2xl"
+      className="relative mx-auto w-full overflow-hidden rounded border border-[var(--ec-border)]"
       style={{
         maxWidth: 520,
-        border: '1px solid var(--ec-border)',
         boxShadow:
-          '0 24px 64px -16px rgba(0,0,0,0.55), 0 0 40px color-mix(in srgb, var(--ec-ink-crimson) 16%, transparent)',
+          'var(--ec-shadow-hard, 6px 6px 0 rgba(0, 0, 0, 0.14)), 0 0 36px color-mix(in srgb, var(--ec-ink-crimson, var(--ec-logo-crimson)) 16%, transparent)',
       }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element -- unknown dims; percentage overlay math needs the natural box. */}

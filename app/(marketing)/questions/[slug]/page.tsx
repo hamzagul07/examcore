@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowRight } from 'lucide-react'
+
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { createPageMetadata } from '@/lib/seo/metadata'
@@ -69,7 +69,7 @@ export default async function QuestionObjectPage({ params }: Props) {
       />
       <MarketingSection className="!pt-0">
         <div className="grid gap-4 md:grid-cols-3">
-          <article className="ec-card p-5 md:col-span-2">
+          <article className="ec-card ec-card--paper p-5 md:col-span-2">
             <p className="ms-overline">Stem preview</p>
             <p className="ms-body-2 mt-3">{q.preview}</p>
             <p className="ms-micro mt-3 text-[var(--ec-text-faint)]">
@@ -77,7 +77,7 @@ export default async function QuestionObjectPage({ params }: Props) {
               identify the item, then attempt your own answer.
             </p>
           </article>
-          <aside className="ec-card p-5">
+          <aside className="ec-card ec-card--paper p-5">
             <p className="ms-overline">Question metadata</p>
             <dl className="ms-body-2 mt-3 space-y-2">
               <div>
@@ -102,14 +102,14 @@ export default async function QuestionObjectPage({ params }: Props) {
           </aside>
         </div>
 
-        <article className="ec-card mt-6 p-5">
+        <article className="ec-card ec-card--paper mt-6 p-5">
           <h2 className="ms-h3" style={{ fontSize: '1.1rem' }}>
             What the examiner is asking
           </h2>
           <p className="ms-body-2 mt-3">{intent.examinerAsk}</p>
         </article>
 
-        <article className="ec-card mt-4 p-5">
+        <article className="ec-card ec-card--paper mt-4 p-5">
           <h2 className="ms-h3" style={{ fontSize: '1.1rem' }}>
             Prerequisite concepts
           </h2>
@@ -125,7 +125,7 @@ export default async function QuestionObjectPage({ params }: Props) {
           ) : null}
         </article>
 
-        <article className="ec-card mt-4 p-5">
+        <article className="ec-card ec-card--paper mt-4 p-5">
           <h2 className="ms-h3" style={{ fontSize: '1.1rem' }}>
             Similar practice
           </h2>
@@ -134,7 +134,7 @@ export default async function QuestionObjectPage({ params }: Props) {
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href={q.markHref} className="ec-btn-primary min-h-[48px]">
-            Try it yourself — mark my answer <ArrowRight className="h-4 w-4" />
+            Try it yourself — mark my answer <span className="h-4 w-4" aria-hidden>-&gt;</span>
           </Link>
           <Link href={`/markscheme/${slug}`} className="ec-btn-ghost min-h-[48px]">
             How marks are awarded (assessment page)

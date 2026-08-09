@@ -15,7 +15,14 @@ export function FeaturedGuideBlock({ post }: Props) {
   return (
     <article className="ms-guide-feature">
       <div>
-        <span className="ec-chip-ms ec-chip-ms--ok">featured</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+            FEAT
+          </span>
+          <p className="ms-overline" style={{ marginBottom: 0 }}>
+            Featured
+          </p>
+        </div>
         <h2 className="ms-h3" style={{ fontSize: 30, margin: '14px 0 10px' }}>
           <Link href={`/blog/${post.slug}`} className="hover:text-[var(--ec-brand)]">
             {post.title}
@@ -35,10 +42,13 @@ export function FeaturedGuideBlock({ post }: Props) {
             flexWrap: 'wrap',
           }}
         >
-          <Link href={`/blog/${post.slug}`} className="ec-btn-ghost ec-btn-ghost--sm">
-            Read the guide →
+          <Link href={`/blog/${post.slug}`} className="ec-btn-ghost ec-btn-ghost--sm inline-flex items-center gap-1.5">
+            Read the guide
+            <span className="font-mono text-[11px] font-bold" aria-hidden>
+              -&gt;
+            </span>
           </Link>
-          <span className="ms-micro">
+          <span className="ms-micro font-mono">
             {post.readingMinutes} min
             {post.date ? ` · ${formatBlogDate(post.date).toUpperCase()}` : ''}
           </span>

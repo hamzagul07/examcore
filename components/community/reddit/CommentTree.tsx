@@ -169,7 +169,7 @@ function CommentComposer({
   const [submitting, setSubmitting] = useState(false)
 
   if (locked && topLevel) {
-    return <p className="rc-comments-empty">🔒 This thread is locked.</p>
+    return <p className="rc-comments-empty">This thread is locked.</p>
   }
   if (!signedIn && topLevel) {
     return (

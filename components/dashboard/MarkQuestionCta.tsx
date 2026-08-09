@@ -1,6 +1,5 @@
 'use client'
 
-import { ArrowRight } from 'lucide-react'
 import { LoadingLink } from '@/components/ui/LoadingLink'
 import { cn } from '@/lib/utils'
 
@@ -18,8 +17,7 @@ export function MarkQuestionCta({ className }: Props) {
         className
       )}
     >
-      Mark a question
-      <ArrowRight className="h-4 w-4" />
+      Mark a question →
     </LoadingLink>
   )
 }

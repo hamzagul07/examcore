@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
-import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
+
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode } from '@/lib/seo/structured-data'
@@ -14,6 +13,8 @@ import {
   getResultsSubjectLinks,
 } from '@/lib/seo/results-2026-hub'
 import { daysUntil } from '@/lib/seo/results-day'
+import { ToolInstrumentShell } from '@/components/tools/ToolInstrumentShell'
+import { ToolsDeskArtefact } from '@/components/tools/ToolsDeskArtefact'
 
 export const metadata = getPageMetadata('/results-2026', {
   title: 'Cambridge Results Day 2026 — boundaries, remarks, mocks',
@@ -54,7 +55,7 @@ export default function Results2026Page() {
   const path = '/results-2026'
 
   return (
-    <MarketingPageShell>
+    <>
       <FunnelLandingView source="results-2026" />
       <PageJsonLd
         path={path}
@@ -67,84 +68,134 @@ export default function Results2026Page() {
       />
       <JsonLd data={faqPageNode(FAQS)} />
 
-      <MarketingHero label={copy.overline} title={copy.title} lead={copy.lead}>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <Link href="/tools/will-my-grade-hold" className="ec-btn-primary min-h-[48px]">
-            Will my grade hold? <ArrowRight className="h-4 w-4" />
+      <ToolInstrumentShell
+        stamp="RD"
+        label={copy.overline}
+        title={
+          <>
+            Results Day <em>2026</em>
+          </>
+        }
+        lead={copy.lead}
+        note="one mark from the boundary — that's when the checker earns its keep"
+        artefact={<ToolsDeskArtefact />}
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Results 2026', path },
+        ]}
+        actions={
+          <>
+            <Link
+              href="/tools/will-my-grade-hold"
+              className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+            >
+              Will my grade hold?
+              <span className="font-mono text-[11px] font-bold" aria-hidden>
+                -&gt;
+              </span>
+            </Link>
+            <Link
+              href="/tools/grade-boundary-calculator"
+              className="ec-btn-ghost inline-flex min-h-[48px] items-center"
+            >
+              Grade boundary calculator
+            </Link>
+            <Link
+              href="/blog/cambridge-results-day-august-2026-guide"
+              className="ec-btn-ghost inline-flex min-h-[48px] items-center"
+            >
+              Results day guide
+            </Link>
+          </>
+        }
+        after={
+          <section className="ms-tool-instrument__faq" aria-labelledby="results-faq">
+            <h2 id="results-faq" className="ms-tool-instrument__faq-title">
+              FAQ
+            </h2>
+            <dl className="ms-tool-faq">
+              {FAQS.map((f) => (
+                <div key={f.q}>
+                  <dt>{f.q}</dt>
+                  <dd className="ms-body-2">{f.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        }
+      >
+        <h2 className="ms-h2">Key dates</h2>
+        <ul className="ms-date-slips mt-6">
+          {deadlines.map((d) => {
+            const days = daysUntil(d.utc)
+            return (
+              <li key={d.id} className="ms-date-slip">
+                <span className="ms-date-slip__stamp" aria-hidden>
+                  {days === 0 ? 'NOW' : `${days}d`}
+                </span>
+                <p className="ms-overline">{d.label}</p>
+                <p className="ms-h3" style={{ fontSize: '1.15rem', marginTop: 6 }}>
+                  {d.when}
+                </p>
+                <p className="ms-body-2" style={{ marginTop: 8, marginBottom: 0 }}>
+                  {d.detail}
+                </p>
+              </li>
+            )
+          })}
+        </ul>
+
+        <h2 className="ms-h2 mt-14">By syllabus</h2>
+        <p className="ms-lead mt-3" style={{ maxWidth: '56ch' }}>
+          Open your subject for thresholds, interpretation, remark / retake paths, and a direct
+          link into free marking.
+        </p>
+        <div className="ms-tool-instrument__rail mt-5" role="navigation" aria-label="Results by syllabus">
+          {subjects.map((s) => (
+            <Link
+              key={s.code}
+              href={s.href}
+              className="ms-tool-instrument__stamp-link"
+              title={s.label}
+            >
+              {s.code}
+              {s.hasJune2026 ? (
+                <span className="sr-only"> — June 2026 data ready — {s.label}</span>
+              ) : (
+                <span className="sr-only"> — {s.label}</span>
+              )}
+            </Link>
+          ))}
+        </div>
+        <p className="ms-micro mt-3">
+          Green-ready codes have verified June tables where available — always confirm with your
+          centre PDF.
+        </p>
+        <div className="ms-tool-instrument__links mt-5">
+          <Link href="/results-2026/ib" className="ec-link">
+            IB Diploma results -&gt;
           </Link>
-          <Link href="/tools/grade-boundary-calculator" className="ec-btn-ghost min-h-[48px]">
-            Grade boundary calculator
-          </Link>
-          <Link href="/blog/cambridge-results-day-august-2026-guide" className="ec-btn-ghost min-h-[48px]">
-            Results day guide
+          <Link href="/results-2026/edexcel" className="ec-link">
+            Edexcel International -&gt;
           </Link>
         </div>
-      </MarketingHero>
-
-      <MarketingSection>
-        <h2 className="ms-h2">Key dates</h2>
-        <ul className="mt-6 grid list-none gap-4 p-0 md:grid-cols-3">
-          {deadlines.map((d) => (
-            <li key={d.id} className="ec-card p-5">
-              <p className="ms-overline">{d.label}</p>
-              <p className="ms-h3 mt-2" style={{ fontSize: '1.15rem' }}>
-                {d.when}
-              </p>
-              <p className="ms-body-2 mt-2">{d.detail}</p>
-              <p className="ms-micro mt-3">
-                {daysUntil(d.utc) === 0 ? 'Today / live' : `${daysUntil(d.utc)} days`}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </MarketingSection>
-
-      <MarketingSection>
-        <h2 className="ms-h2">By syllabus</h2>
-        <p className="ms-lead mt-3" style={{ maxWidth: '56ch' }}>
-          Open your subject for thresholds, interpretation, remark / retake paths, and a
-          direct link into free marking.
-        </p>
-        <ul className="mt-6 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2 lg:grid-cols-3">
-          {subjects.map((s) => (
-            <li key={s.code}>
-              <Link
-                href={s.href}
-                className="ec-card flex h-full items-center justify-between gap-3 p-4 transition hover:border-[var(--ec-brand)]"
-              >
-                <span>
-                  <span className="font-semibold">{s.code}</span>
-                  <span className="ms-body-2 ml-2">{s.label}</span>
-                  {s.hasJune2026 ? (
-                    <span className="ms-micro mt-1 block text-[var(--ec-brand)]">
-                      June 2026 data ready
-                    </span>
-                  ) : null}
-                </span>
-                <ArrowRight className="h-4 w-4 shrink-0 opacity-60" />
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-4 flex flex-wrap gap-4">
-          <Link href="/results-2026/ib" className="ec-btn-underline">
-            IB Diploma results &amp; points
-          </Link>
-          <Link href="/results-2026/edexcel" className="ec-btn-underline">
-            Edexcel International results
-          </Link>
-        </p>
         <EdexcelWrongBoardBridge className="!mt-6" />
-      </MarketingSection>
 
-      <MarketingSection>
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="mt-14 grid gap-6 lg:grid-cols-2">
           <div>
             <h2 className="ms-h2">Remarks &amp; retakes</h2>
             <ul className="ms-body-2 mt-4 list-disc space-y-2 pl-5">
-              <li>Ask your exams officer about priority vs standard enquiry about results (EAR).</li>
-              <li>Compare your mark to the published boundary — a one-mark miss is the highest-intent case for a remark.</li>
-              <li>November / next June retakes: practise the exact topics that lost marks with scheme-aligned marking.</li>
+              <li>
+                Ask your exams officer about priority vs standard enquiry about results (EAR).
+              </li>
+              <li>
+                Compare your mark to the published boundary — a one-mark miss is the highest-intent
+                case for a remark.
+              </li>
+              <li>
+                November / next June retakes: practise the exact topics that lost marks with
+                scheme-aligned marking.
+              </li>
               <li>
                 Start here:{' '}
                 <Link href="/tools/will-my-grade-hold" className="underline">
@@ -155,19 +206,7 @@ export default function Results2026Page() {
           </div>
           <MockPackEmailCapture source="results-2026" />
         </div>
-      </MarketingSection>
-
-      <MarketingSection>
-        <h2 className="ms-h2">FAQ</h2>
-        <dl className="mt-6 space-y-4">
-          {FAQS.map((f) => (
-            <div key={f.q} className="ec-card p-5">
-              <dt className="font-semibold">{f.q}</dt>
-              <dd className="ms-body-2 mt-2">{f.a}</dd>
-            </div>
-          ))}
-        </dl>
-      </MarketingSection>
-    </MarketingPageShell>
+      </ToolInstrumentShell>
+    </>
   )
 }

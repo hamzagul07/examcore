@@ -20,13 +20,13 @@ const COMMUNITY_ON = process.env.NEXT_PUBLIC_COMMUNITY_ENABLED === 'true'
 
 function notifIcon(type: string): string {
   if (type === 'reply') return '↩'
-  if (type === 'digest') return '🔥'
+  if (type === 'digest') return '★'
   if (type === 'upvote' || type === 'comment_upvote') return '↑'
   if (type === 'mention') return '@'
-  if (type === 'milestone') return '⭐'
-  if (type === 'thread') return '🧵'
-  if (type === 'review-due') return '🎯'
-  return '💬'
+  if (type === 'milestone') return '★'
+  if (type === 'thread') return '#'
+  if (type === 'review-due') return '→'
+  return '#'
 }
 
 export function NotificationBell({ dismiss = false }: { dismiss?: boolean }) {
@@ -100,7 +100,9 @@ export function NotificationBell({ dismiss = false }: { dismiss?: boolean }) {
   return (
     <div className="notif-bell-wrap" ref={wrapRef}>
       <button type="button" className="notif-bell" onClick={toggle} aria-label="Notifications" aria-expanded={open}>
-        🔔
+        <span className="notif-bell-glyph" aria-hidden>
+          N
+        </span>
         {unread > 0 ? <span className="notif-badge">{unread > 9 ? '9+' : unread}</span> : null}
       </button>
       {open ? (

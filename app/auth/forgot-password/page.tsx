@@ -8,12 +8,12 @@ import {
   buildSignInHref,
   readPostAuthNextParam,
 } from '@/lib/auth-redirect'
-import { Mail } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
-import { Label } from '@/components/ui/label'
 import { AuthShell } from '@/components/AuthShell'
 import { ErrorBox, SubmitButton } from '@/components/AuthFormBits'
+import { Field } from '@/components/ui/Field'
 import { formatAuthError } from '@/lib/auth-errors'
+import { SignupDeskArtefact } from '@/components/auth/SignupDeskArtefact'
 
 export default function ForgotPasswordPage() {
   return (
@@ -25,8 +25,23 @@ export default function ForgotPasswordPage() {
 
 function ForgotPasswordSkeleton() {
   return (
-    <AuthShell backLabel="Back to sign in" backHref={buildSignInHref()}>
-      <p className="leading-relaxed text-[var(--ec-text-secondary)]">Loading...</p>
+    <AuthShell
+      backLabel="Back to sign in"
+      backHref={buildSignInHref()}
+      aside={<SignupDeskArtefact variant="reset" />}
+    >
+      <div className="ms-signup-desk">
+        <div className="mb-2 flex items-center gap-2">
+          <p className="ec-eyebrow mb-0">Password reset</p>
+          <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+            PW
+          </span>
+        </div>
+        <p className="text-hero mb-3" aria-hidden="true">
+          Reset your <em>password</em>
+        </p>
+        <p className="leading-relaxed text-[var(--ec-text-secondary)]">Loading...</p>
+      </div>
     </AuthShell>
   )
 }
@@ -69,34 +84,43 @@ function ForgotPasswordForm() {
   }
 
   return (
-    <AuthShell backLabel="Back to sign in" backHref={signInHref}>
+    <AuthShell
+      backLabel="Back to sign in"
+      backHref={signInHref}
+      aside={sent ? null : <SignupDeskArtefact variant="reset" />}
+    >
       {!sent ? (
-        <>
-          <p className="ec-eyebrow mb-3">Password reset</p>
+        <div className="ms-signup-desk">
+          <div className="mb-2 flex items-center gap-2">
+            <p className="ec-eyebrow mb-0">Password reset</p>
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+              PW
+            </span>
+          </div>
           <h1 className="text-hero mb-3">
-            Reset your <span className="ec-text-gradient">password</span>
+            Reset your <em>password</em>
           </h1>
-          <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
-            Enter the email you signed up with and we&apos;ll send you a link to
-            set a new password.
+          <p className="mb-2 leading-relaxed text-[var(--ec-text-secondary)]">
+            Enter the email you signed up with — we&apos;ll send a link to set a
+            new one.
+          </p>
+          <p className="ms-signup-note mb-6" aria-hidden>
+            same email that opened the desk
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <Label htmlFor="email" className="label-overline mb-2 inline-block">
-                Email
-              </Label>
-              <input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                autoComplete="email"
-                placeholder="you@example.com"
-                className="ec-input"
-              />
-            </div>
+            <Field
+              label="Email"
+              inputProps={{
+                id: 'email',
+                type: 'email',
+                value: email,
+                onChange: (e) => setEmail(e.target.value),
+                required: true,
+                autoComplete: 'email',
+                placeholder: 'you@example.com',
+              }}
+            />
 
             {errorMsg && <ErrorBox message={errorMsg} />}
 
@@ -110,22 +134,33 @@ function ForgotPasswordForm() {
           <p className="mt-6 text-center text-sm text-[var(--ec-text-secondary)]">
             Remembered it?{' '}
             <Link href={signInHref} className="ec-link ec-auth-footer-link">
-              Sign in
+              Return to desk
             </Link>
           </p>
-        </>
+        </div>
       ) : (
-        <div className="space-y-3 text-center">
-          <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-2xl ec-icon-hero">
-            <Mail className="h-8 w-8 ec-text-brand" />
+        <div className="ms-signup-desk space-y-3">
+          <div className="mb-2 flex items-center gap-2">
+            <p className="ec-eyebrow mb-0">Inbox</p>
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+              @
+            </span>
           </div>
-          <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)]">
-            Check your email
+          <h2 className="text-hero mb-3">
+            Check your <em>email</em>
           </h2>
           <p className="leading-relaxed text-[var(--ec-text-secondary)]">
             If an account exists for{' '}
-            <strong className="text-[var(--ec-text-primary)]">{email}</strong>, we&apos;ve sent a
-            password reset link. Click it to choose a new password.
+            <strong className="text-[var(--ec-text-primary)]">{email}</strong>, we&apos;ve
+            sent a reset link. Open it to choose a new password.
+          </p>
+          <p className="ms-signup-note" aria-hidden>
+            open the link in this browser
+          </p>
+          <p className="pt-2 text-sm text-[var(--ec-text-secondary)]">
+            <Link href={signInHref} className="ec-link ec-auth-footer-link">
+              Return to desk
+            </Link>
           </p>
         </div>
       )}

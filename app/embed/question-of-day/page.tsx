@@ -27,7 +27,7 @@ export default function EmbedQuestionOfDayPage() {
     : `${SITE_URL}/mark?utm_source=embed&utm_medium=iframe&utm_campaign=qotd`
 
   return (
-    <div className="ec-card p-4">
+    <div className="ec-card ec-card--paper p-4">
       <p className="ms-overline">Question of the day · 9702</p>
       <h1 className="ms-h3 mt-2" style={{ fontSize: '1.15rem' }}>
         {topic?.title ?? 'Mark a Physics past-paper question'}

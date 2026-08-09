@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic'
 import type { ComponentType } from 'react'
 import type { CinematicMarkingExperienceProps } from '@/components/mark/CinematicMarkingExperience'
+import { MarkingWaitFallback } from '@/components/mark/MarkingWaitFallback'
 
 export type { CinematicMarkingExperienceProps }
 
@@ -12,5 +13,5 @@ export const CinematicMarkingExperience: ComponentType<CinematicMarkingExperienc
       import('@/components/mark/CinematicMarkingExperience').then(
         (m) => m.CinematicMarkingExperience
       ),
-    { ssr: false, loading: () => null }
+    { ssr: false, loading: () => <MarkingWaitFallback /> }
   )

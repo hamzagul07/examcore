@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { Clock, ArrowLeft } from 'lucide-react'
 import type { EnrichedBlogMeta } from '@/lib/blog/meta'
 import { formatBlogDate } from '@/lib/blog/meta'
 import { ContentHubNav } from '@/components/content/ContentHubNav'
@@ -13,27 +12,31 @@ export function BlogArticleHero({ post }: Props) {
     <header className="ms-content-hero">
       <Link
         href="/blog"
-        className="inline-flex min-h-[44px] items-center gap-1.5 text-sm font-semibold text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-brand)]"
+        className="inline-flex min-h-[44px] items-center gap-1.5 font-mono text-[12px] font-semibold tracking-wide text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-brand)]"
       >
-        <ArrowLeft className="h-4 w-4" />
-        Back to guides &amp; blog
+        <span aria-hidden>&lt;-</span>
+        Guides &amp; blog
       </Link>
 
       <div className="mt-6 flex flex-wrap items-center gap-2">
         {post.spotlight ? (
-          <span className="ec-chip-ms ec-chip-ms--ok">Spotlight</span>
+          <span className="ms-blog-kw-stamp" style={{ color: 'var(--ec-brand)', borderColor: 'var(--ec-brand-border)' }}>
+            Spotlight
+          </span>
         ) : null}
-        <span className="ec-chip-ms ec-chip-ms--outline">{post.categoryLabel}</span>
+        <span className="ms-blog-kw-stamp">{post.categoryLabel}</span>
         {post.syllabusCode ? (
-          <span className="ec-chip-ms ec-chip-ms--dim">{post.syllabusCode}</span>
+          <span className="ms-blog-kw-stamp" style={{ color: 'var(--ec-brand)' }}>
+            {post.syllabusCode}
+          </span>
         ) : null}
         {post.date ? (
           <time dateTime={post.date} className="ms-micro">
             {formatBlogDate(post.date)}
           </time>
         ) : null}
-        <span className="ms-micro inline-flex items-center gap-1">
-          <Clock className="h-3 w-3" aria-hidden />
+        <span className="ms-micro inline-flex items-center gap-1 font-mono">
+          <span aria-hidden>·</span>
           {post.readingMinutes} min read
         </span>
       </div>
@@ -51,7 +54,7 @@ export function BlogArticleHero({ post }: Props) {
         <ul className="ms-hub-strip" style={{ marginTop: 20 }} aria-label="Topics">
           {post.keywords.slice(0, 5).map((kw) => (
             <li key={kw}>
-              <span className="ms-ob-chip">{kw}</span>
+              <span className="ms-blog-kw-stamp">{kw}</span>
             </li>
           ))}
         </ul>

@@ -7,7 +7,7 @@ type BlockProps = {
 export function SkeletonBlock({ className }: BlockProps) {
   return (
     <div
-      className={cn('ec-skeleton-shimmer rounded-2xl', className)}
+      className={cn('ec-skeleton-shimmer rounded', className)}
       aria-hidden
     />
   )

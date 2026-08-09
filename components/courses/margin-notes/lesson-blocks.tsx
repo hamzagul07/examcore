@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useCallback, useRef } from 'react'
+import { useEffect, useState, useCallback, useRef, useId } from 'react'
 import Link from 'next/link'
 import { describeInterval, FIRST_INTERVAL_DAYS } from '@/lib/courses/recall-schedule'
 import type { MarginNotesLesson } from '@/lib/courses/margin-notes/types'
@@ -90,6 +90,7 @@ export function FormulaCard({ f }: { f: NonNullable<MarginNotesLesson['formulas'
 
   return (
     <div className="formula-card">
+      <span className="formula-sheet-head mono">KEY RELATION</span>
       <div className={`formula-eq${useLatex ? ' formula-eq--latex' : ' mono'}`}>
         {useLatex ? (
           <CourseRichText content={latex} variant="formula" breakAnywhere={false} />
@@ -155,7 +156,7 @@ export function Worked({ w, idx }: { w: NonNullable<MarginNotesLesson['worked']>
   }
 
   return (
-    <div className="worked card" data-screen-label={`Lesson — ${w.title}`}>
+    <div className="worked sheet" data-screen-label={`Lesson — ${w.title}`}>
       <div className="worked-head">
         <span className="worked-badge mono">EXAMPLE {idx + 1}</span>
         <div className="worked-q">
@@ -176,15 +177,15 @@ export function Worked({ w, idx }: { w: NonNullable<MarginNotesLesson['worked']>
       {shown < w.steps.length ? (
         <button
           type="button"
-          className="btn-ghost sm worked-reveal"
+          className="worked-reveal"
           aria-busy={revealing || undefined}
           disabled={revealing}
           onClick={revealNext}
         >
-          Reveal step {shown + 1} of {w.steps.length} →
+          {`Reveal step ${shown + 1} of ${w.steps.length} ->`}
         </button>
       ) : (
-        <span className="worked-done mono">✓ FULLY WORKED</span>
+        <span className="stamp ok worked-done-stamp">DONE</span>
       )}
     </div>
   )
@@ -242,25 +243,31 @@ export function Glossary({ items }: { items: NonNullable<MarginNotesLesson['glos
   const [open, setOpen] = useState<number | null>(null)
   return (
     <div className="gloss-grid">
-      {items.map((g, i) => (
-        <button
-          key={i}
-          type="button"
-          className={`gloss${open === i ? ' on' : ''}`}
-          onClick={() => setOpen(open === i ? null : i)}
-        >
-          <span className="gloss-t">
-            <CourseRichText content={g.t} variant="inline" />
-          </span>
-          <span className="gloss-d">
-            {open === i ? (
-              <CourseRichText content={g.d} variant="prose" className="gloss-d-rich" />
-            ) : (
-              'Tap to reveal definition'
-            )}
-          </span>
-        </button>
-      ))}
+      {items.map((g, i) => {
+        const panelId = `gloss-panel-${i}`
+        const isOpen = open === i
+        return (
+          <button
+            key={i}
+            type="button"
+            className={`gloss${isOpen ? ' on' : ''}`}
+            aria-expanded={isOpen}
+            aria-controls={panelId}
+            onClick={() => setOpen(isOpen ? null : i)}
+          >
+            <span className="gloss-t">
+              <CourseRichText content={g.t} variant="inline" />
+            </span>
+            <span className="gloss-d" id={panelId} role="region">
+              {isOpen ? (
+                <CourseRichText content={g.d} variant="prose" className="gloss-d-rich" />
+              ) : (
+                'Open to reveal definition'
+              )}
+            </span>
+          </button>
+        )
+      })}
     </div>
   )
 }
@@ -337,36 +344,48 @@ export function QuickCheck({
     [lsKey]
   )
 
+  // Roving tabindex: arrows only when focus is already inside this widget (CO-02).
+  // Never attach to window — that stole page scroll whenever the list was merely on screen.
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      const el = listRef.current
-      if (!el) return
-      // Never hijack keys while the student is typing an answer — Space would
-      // otherwise collapse the card mid-sentence.
-      const active = document.activeElement
-      const typing =
-        active instanceof HTMLTextAreaElement || active instanceof HTMLInputElement
-      if (typing) return
+    const el = listRef.current
+    if (!el) return
 
-      const rect = el.getBoundingClientRect()
-      const inView = rect.top < window.innerHeight * 0.92 && rect.bottom > window.innerHeight * 0.08
-      if (!inView && !el.contains(active)) return
+    const focusHead = (index: number) => {
+      const heads = el.querySelectorAll<HTMLButtonElement>('.qc-head')
+      heads[index]?.focus()
+    }
+
+    const onKey = (e: KeyboardEvent) => {
+      const active = document.activeElement
+      if (!(active instanceof Node) || !el.contains(active)) return
+      // Never hijack keys while typing an answer — Space would collapse the card.
+      if (active instanceof HTMLTextAreaElement || active instanceof HTMLInputElement) return
 
       if (e.key === 'ArrowDown') {
         e.preventDefault()
-        setFocus((i) => Math.min(items.length - 1, i + 1))
+        setFocus((i) => {
+          const next = Math.min(items.length - 1, i + 1)
+          queueMicrotask(() => focusHead(next))
+          return next
+        })
       } else if (e.key === 'ArrowUp') {
         e.preventDefault()
-        setFocus((i) => Math.max(0, i - 1))
+        setFocus((i) => {
+          const next = Math.max(0, i - 1)
+          queueMicrotask(() => focusHead(next))
+          return next
+        })
       } else if (e.key === 'Enter' || e.key === ' ') {
-        if (el.contains(active)) {
-          e.preventDefault()
-          setOpen((s) => ({ ...s, [focus]: !s[focus] }))
-        }
+        // Native button activation already toggles via click; only handle when
+        // focus is on a non-button descendant so we do not double-fire.
+        if (active instanceof HTMLButtonElement) return
+        e.preventDefault()
+        setOpen((s) => ({ ...s, [focus]: !s[focus] }))
       }
     }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+
+    el.addEventListener('keydown', onKey)
+    return () => el.removeEventListener('keydown', onKey)
   }, [focus, items.length])
 
   const answered = items.reduce(
@@ -478,6 +497,7 @@ export function QuickCheck({
               type="button"
               className="qc-head"
               aria-expanded={isOpen}
+              tabIndex={focus === i ? 0 : -1}
               onClick={() => {
                 setFocus(i)
                 setOpen((s) => ({ ...s, [i]: !s[i] }))
@@ -637,14 +657,15 @@ export function Flashcards({ cards }: { cards: NonNullable<MarginNotesLesson['fl
     window.setTimeout(() => setBusy(false), 320)
   }, [busy])
 
+  // CO-02: arrows / space only when focus is inside this widget — never steal
+  // page scroll because the deck is merely on screen.
   useEffect(() => {
+    const el = zoneRef.current
+    if (!el) return
     const onKey = (e: KeyboardEvent) => {
-      const el = zoneRef.current
-      if (!el) return
-      const rect = el.getBoundingClientRect()
-      const inView = rect.top < window.innerHeight * 0.92 && rect.bottom > window.innerHeight * 0.08
-      const focused = el.contains(document.activeElement)
-      if (!inView && !focused) return
+      const active = document.activeElement
+      if (!(active instanceof Node) || !el.contains(active)) return
+      if (active instanceof HTMLTextAreaElement || active instanceof HTMLInputElement) return
 
       if (e.key === 'ArrowLeft') {
         e.preventDefault()
@@ -653,29 +674,30 @@ export function Flashcards({ cards }: { cards: NonNullable<MarginNotesLesson['fl
         e.preventDefault()
         go(1)
       } else if (e.key === ' ' || e.key === 'Spacebar') {
-        if (focused || document.activeElement === document.body) {
-          e.preventDefault()
-          toggleFlip()
+        if (active instanceof HTMLButtonElement && active.classList.contains('fcard')) {
+          // Native button activation handles flip via click.
+          return
         }
+        e.preventDefault()
+        toggleFlip()
       }
     }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    el.addEventListener('keydown', onKey)
+    return () => el.removeEventListener('keydown', onKey)
   }, [go, toggleFlip])
 
   return (
-    <div ref={zoneRef} className="fc-zone" data-screen-label="Lesson — flashcards">
-      <div
+    <div
+      ref={zoneRef}
+      className="fc-zone"
+      data-screen-label="Lesson — flashcards"
+      tabIndex={-1}
+    >
+      <button
+        type="button"
         className={`fcard${flip ? ' flipped' : ''}${busy ? ' fcard--busy' : ''}`}
         onClick={toggleFlip}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault()
-            toggleFlip()
-          }
-        }}
-        role="button"
-        tabIndex={0}
+        aria-pressed={flip}
         aria-label={`Flashcard ${i + 1} of ${cards.length}. ${flip ? 'Answer' : 'Question'}. Press space to flip.`}
       >
         <div className="fcard-face fcard-front">
@@ -696,7 +718,7 @@ export function Flashcards({ cards }: { cards: NonNullable<MarginNotesLesson['fl
           </span>
           <span className="fcard-hint micro">TAP OR SPACE TO FLIP BACK</span>
         </div>
-      </div>
+      </button>
       <div className="fc-nav">
         <button type="button" className="fc-arrow" onClick={() => go(-1)} aria-label="Previous card" disabled={busy}>
           ←
@@ -725,14 +747,23 @@ export function SecHead({ k, title, sub }: { k: string; title: string; sub?: str
 
 export function Faq({ f }: { f: { q: string; a: string } }) {
   const [open, setOpen] = useState(false)
+  const panelId = useId()
   return (
     <div className={`faq${open ? ' on' : ''}`}>
-      <button type="button" className="faq-q" onClick={() => setOpen((o) => !o)}>
+      <button
+        type="button"
+        className="faq-q"
+        aria-expanded={open}
+        aria-controls={panelId}
+        onClick={() => setOpen((o) => !o)}
+      >
         <CourseRichText content={f.q} variant="inline" className="faq-q-text" breakAnywhere={false} />
-        <span className="faq-plus">{open ? '−' : '+'}</span>
+        <span className="faq-plus" aria-hidden>
+          {open ? '−' : '+'}
+        </span>
       </button>
       {open ? (
-        <div className="faq-a body-2">
+        <div id={panelId} className="faq-a body-2" role="region">
           <CourseRichText content={f.a} variant="prose" />
         </div>
       ) : null}

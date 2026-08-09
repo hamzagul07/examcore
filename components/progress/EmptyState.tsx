@@ -1,4 +1,3 @@
-import type { LucideIcon } from 'lucide-react'
 import {
   EmptyStateIllustration,
   type IllustrationVariant,
@@ -6,12 +5,13 @@ import {
 import { LoadingLink } from '@/components/ui/LoadingLink'
 
 type Props = {
-  icon: LucideIcon
+  /** Mono ink stamp shown in the empty visual (e.g. "MX", "∴"). */
+  stamp?: string
   title: string
   body: string
   /** When set, the component renders inline (no card) so the parent card's frame shows through. */
   inline?: boolean
-  /** Replace the lucide icon with one of the brand illustrations. */
+  /** Replace the stamp with one of the brand illustrations. */
   illustration?: IllustrationVariant
   ctaLabel?: string
   ctaHref?: string
@@ -23,7 +23,7 @@ type Props = {
  * so empty days feel intentional rather than broken.
  */
 export function EmptyState({
-  icon: Icon,
+  stamp = '¶',
   title,
   body,
   inline,
@@ -34,8 +34,11 @@ export function EmptyState({
   const visual = illustration ? (
     <EmptyStateIllustration variant={illustration} size={inline ? 96 : 140} />
   ) : (
-    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)]">
-      <Icon className="h-5 w-5 text-[var(--ec-text-secondary)]" aria-hidden="true" />
+    <div
+      className="inline-grid h-12 min-w-12 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-2 font-mono text-sm font-bold tracking-wide text-[var(--ec-brand)]"
+      aria-hidden
+    >
+      {stamp}
     </div>
   )
 
@@ -64,14 +67,12 @@ export function EmptyState({
   }
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-dashed border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-8">
-      <div className="flex flex-col items-center gap-4 text-center">
-        {visual}
-        <div className="max-w-md">
-          <p className="text-base font-semibold text-[var(--ec-text-primary)]">{title}</p>
-          <p className="mt-1.5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">{body}</p>
-          {cta}
-        </div>
+    <div className="ec-card ec-card--paper flex flex-col items-center justify-center gap-3 p-8 text-center">
+      {visual}
+      <div className="max-w-sm">
+        <p className="text-sm font-semibold text-[var(--ec-text-primary)]">{title}</p>
+        <p className="mt-1 text-sm leading-relaxed text-[var(--ec-text-secondary)]">{body}</p>
+        {cta}
       </div>
     </div>
   )

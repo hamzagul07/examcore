@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Brain } from 'lucide-react'
 import { MathText } from '@/components/MathText'
 import { InlineCTA } from './InlineCTA'
 import type { ChatDiagnosticPayload } from '@/lib/chat-intents'
@@ -20,13 +19,17 @@ export function DiagnosticPreview({ diagnostic }: DiagnosticPreviewProps) {
       initial={{ opacity: 0, scale: 0.95, y: 10 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-      className="ec-card relative overflow-hidden border-[color-mix(in_srgb,var(--ec-chip-accent-text)_20%,transparent)]"
+      className="ec-card ec-card--paper relative overflow-hidden border-[color-mix(in_srgb,var(--ec-chip-accent-text)_20%,transparent)]"
     >
-      <div className="pointer-events-none absolute -left-10 -top-10 h-32 w-32 rounded-full ec-glow-orb blur-3xl opacity-50" />
 
       <div className="relative p-5 sm:p-6">
         <div className="mb-3 flex items-center gap-2">
-          <Brain className="h-4 w-4 text-[var(--ec-chip-accent-text)]" />
+          <span
+            className="inline-grid h-5 min-w-5 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1 font-mono text-[9px] font-bold text-[var(--ec-chip-accent-text)]"
+            aria-hidden
+          >
+            ∴
+          </span>
           <span className="font-mono text-xs uppercase tracking-wider text-[var(--ec-chip-accent-text)]">
             Diagnostic · {diagnostic.topic_code} · {diagnostic.total_marks} marks
           </span>
@@ -37,7 +40,7 @@ export function DiagnosticPreview({ diagnostic }: DiagnosticPreviewProps) {
         </h4>
 
         <div
-          className="mb-4 rounded-xl border p-4 sm:p-5"
+          className="ec-card ec-card--paper mb-4 border p-4 sm:p-5"
           style={{
             borderColor: 'var(--ec-border)',
             background: 'var(--ec-surface-raised)',

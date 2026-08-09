@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import { ScoreReveal } from '@/components/mark/ScoreReveal'
 import { MarkLineList } from '@/components/mark/MarkLineList'
 import { edexcelMarkHref } from '@/lib/edexcel/marking'
@@ -67,6 +67,7 @@ export function BlogMarkExample({
           percentage={percentage}
           grade={null}
           nextGrade={null}
+          shareable={false}
           marks={marks.map((m, i) => ({
             id: String(m.mark_id ?? i),
             earned: !!m.earned,
@@ -88,7 +89,7 @@ export function BlogMarkExample({
       <p className="ms-blog-mark-example__cta">
         <Link href={href} className="ec-btn-primary inline-flex text-sm">
           Mark your own answer
-          <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
+          <span className="ml-1 h-4 w-4" aria-hidden>-&gt;</span>
         </Link>
         <span>Free — no account needed for your first one.</span>
       </p>

@@ -1,0 +1,749 @@
+/* Signup funnel — examiner’s filing desk (not a centered SaaS auth card) */
+
+.ms-auth-desk {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding:
+    calc(32px + env(safe-area-inset-top, 0px))
+    20px
+    calc(40px + env(safe-area-inset-bottom, 0px));
+  background: var(--ec-canvas, var(--ec-bg));
+}
+
+.ms-auth-desk__masthead {
+  width: 100%;
+  max-width: 920px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  margin-bottom: 28px;
+}
+
+.ms-auth-desk__masthead-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ms-auth-desk__masthead-label {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.ms-auth-desk__docket {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  padding: clamp(24px, 4vw, 36px) clamp(20px, 3vw, 32px) clamp(22px, 3vw, 30px);
+  background: var(--ec-paper, var(--ec-surface));
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-hard, 6px 6px 0 rgba(0, 0, 0, 0.1));
+  overflow: hidden;
+}
+
+.ms-auth-desk__docket::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ec-brand) 0%,
+    var(--ec-brand) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 100%
+  );
+  pointer-events: none;
+}
+
+.ms-auth-desk__docket--spread {
+  max-width: 920px;
+  display: grid;
+  grid-template-columns: minmax(240px, 0.9fr) minmax(280px, 1.1fr);
+  gap: clamp(24px, 4vw, 40px);
+  align-items: start;
+  padding: clamp(28px, 4vw, 40px);
+}
+
+.ms-auth-desk__aside {
+  position: relative;
+  min-width: 0;
+}
+
+.ms-auth-desk__aside::after {
+  content: '';
+  position: absolute;
+  inset: 8% -8% -4% 8%;
+  background-image: repeating-linear-gradient(
+    transparent 0,
+    transparent 26px,
+    color-mix(in srgb, var(--ec-border) 50%, transparent) 26px,
+    color-mix(in srgb, var(--ec-border) 50%, transparent) 27px
+  );
+  opacity: 0.28;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ms-auth-desk__sheet {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.ms-auth-desk__footer {
+  width: 100%;
+  max-width: 920px;
+  margin-top: 24px;
+  text-align: center;
+}
+
+.ms-auth-desk__back {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--ec-text-secondary);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.ms-auth-desk__back:hover {
+  color: var(--ec-text-primary);
+}
+
+/* Signup artefact — pinned script slip */
+.ms-signup-artefact {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+  padding: 14px 16px 16px;
+  background: var(--ec-paper, var(--ec-surface));
+  border: 1.5px solid var(--ec-border-strong, var(--ec-border));
+  border-radius: 4px;
+  box-shadow:
+    var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.09)),
+    10px 12px 0 color-mix(in srgb, var(--ec-logo-crimson, var(--ec-ink-crimson)) 10%, transparent);
+  transform: rotate(-1.2deg);
+  animation: ms-signup-artefact-settle 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes ms-signup-artefact-settle {
+  from {
+    opacity: 0;
+    transform: rotate(-4deg) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-1.2deg) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-signup-artefact {
+    animation: none;
+  }
+}
+
+.ms-signup-artefact__cap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.ms-signup-artefact__label {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-signup-artefact__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px dashed color-mix(in srgb, var(--ec-border) 85%, transparent);
+}
+
+.ms-signup-artefact__work {
+  flex: 1;
+  min-width: 0;
+  height: 10px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--ec-border) 70%, transparent);
+}
+
+.ms-signup-artefact__work.short {
+  max-width: 55%;
+}
+
+.ms-signup-artefact__badge {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  min-width: 32px;
+  padding: 3px 6px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  border-radius: 4px;
+  border: 1.5px solid var(--ec-brand);
+  color: var(--ec-brand);
+  background: color-mix(in srgb, var(--ec-brand) 10%, var(--ec-paper, var(--ec-surface)));
+  transform: rotate(-4deg);
+}
+
+.ms-signup-artefact__badge--bad {
+  border-color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  background: color-mix(
+    in srgb,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 10%,
+    var(--ec-paper, var(--ec-surface))
+  );
+}
+
+.ms-signup-artefact__note {
+  margin: 14px 0 0;
+  font-family: var(--ec-font-handwriting, var(--font-handwritten, 'Caveat', cursive));
+  font-size: 20px;
+  line-height: 1.25;
+  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  transform: rotate(-1deg);
+}
+
+/* Filing tabs for email-link / password */
+.ms-auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
+  overflow: hidden;
+}
+
+.ms-auth-tabs__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: none;
+  border-right: 1.5px solid var(--ec-border);
+  background: transparent;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+  cursor: pointer;
+  transition:
+    background 150ms ease,
+    color 150ms ease;
+}
+
+.ms-auth-tabs__btn:last-child {
+  border-right: none;
+}
+
+.ms-auth-tabs__btn:hover {
+  color: var(--ec-text-primary);
+  background: color-mix(in srgb, var(--ec-brand) 4%, transparent);
+}
+
+.ms-auth-tabs__btn[aria-pressed='true'],
+.ms-auth-tabs__btn[aria-checked='true'],
+.ms-auth-tabs__btn.on {
+  color: var(--ec-brand);
+  background: color-mix(in srgb, var(--ec-brand) 9%, var(--ec-paper, var(--ec-surface)));
+  box-shadow: inset 0 -2.5px 0 var(--ec-brand);
+}
+
+.ms-auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.ms-auth-divider::before,
+.ms-auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--ec-border);
+}
+
+/* Onboarding — kill soft wash; paper desk */
+.ms-ob-shell {
+  background: var(--ec-canvas, var(--ec-bg));
+}
+
+.ms-ob-shell::before {
+  display: none;
+}
+
+.ms-ob-docket {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  padding: clamp(22px, 3vw, 32px);
+  background: var(--ec-paper, var(--ec-surface));
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.09));
+  overflow: hidden;
+}
+
+.ms-ob-docket::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ec-brand) 0%,
+    var(--ec-brand) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 100%
+  );
+  pointer-events: none;
+}
+
+.ms-ob-docket .ms-h2,
+.ms-ob-docket .ms-lead {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.ms-ob-docket .ms-ob-nav {
+  justify-content: flex-start;
+}
+
+/* Subjects as filing rows, not pill chips */
+.ms-ob-file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ms-ob-file-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 14px;
+  text-align: left;
+  border: 1.5px solid var(--ec-border);
+  border-left: 3px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.04));
+  cursor: pointer;
+  transition:
+    transform 140ms ease,
+    border-color 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.ms-ob-file-row:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border));
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.07));
+}
+
+.ms-ob-file-row.on {
+  border-left-color: var(--ec-brand);
+  border-color: color-mix(in srgb, var(--ec-brand) 45%, var(--ec-border));
+  background: color-mix(in srgb, var(--ec-brand) 6%, var(--ec-paper, var(--ec-surface)));
+}
+
+.ms-ob-file-row:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ms-ob-file-row__code {
+  flex: none;
+  min-width: 52px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--ec-brand);
+}
+
+.ms-ob-file-row__name {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ec-text-primary);
+}
+
+.ms-ob-file-row__mark {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  display: inline-grid;
+  place-items: center;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--ec-text-faint);
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-surface-raised, var(--ec-surface));
+}
+
+.ms-ob-file-row.on .ms-ob-file-row__mark {
+  color: var(--ec-brand);
+  border-color: var(--ec-brand);
+  background: color-mix(in srgb, var(--ec-brand) 12%, var(--ec-paper, var(--ec-surface)));
+}
+
+/* Guest post-mark conversion slip */
+.ms-guest-slip {
+  position: relative;
+  padding: 22px 22px 20px;
+  background: var(--ec-paper, var(--ec-surface));
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-logo-crimson, var(--ec-ink-crimson));
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.09));
+  overflow: hidden;
+}
+
+.ms-guest-slip::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ec-brand) 0%,
+    var(--ec-brand) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 100%
+  );
+  pointer-events: none;
+}
+
+.ms-guest-slip__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ms-guest-slip__title {
+  margin: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--ec-text-primary);
+}
+
+.ms-guest-slip__title em {
+  font-style: italic;
+  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+}
+
+.ms-guest-slip__body {
+  margin: 10px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+.ms-guest-slip__list {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ms-guest-slip__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ec-text-secondary);
+}
+
+.ms-guest-slip__note {
+  margin: 14px 0 0;
+  font-family: var(--ec-font-handwriting, var(--font-handwritten, 'Caveat', cursive));
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  transform: rotate(-1deg);
+}
+
+/* Empty first desk — one composition, no HomeHero stack */
+.ms-new-user-desk {
+  position: relative;
+  overflow: hidden;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 6px 6px 0 rgba(0, 0, 0, 0.1));
+}
+
+.ms-new-user-desk::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ec-brand) 0%,
+    var(--ec-brand) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ms-new-user-home .ms-new-user-desk.ms-new-user-hero {
+  /* Prefer desk frame over generic dash card */
+  box-shadow: var(--ec-shadow-hard, 6px 6px 0 rgba(0, 0, 0, 0.1));
+}
+
+/* Google — paper desk control, still recognisably Google */
+.ms-google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 16px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.08));
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+  cursor: pointer;
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease,
+    border-color 150ms ease;
+}
+
+.ms-google-btn:hover:not(:disabled) {
+  transform: translate(-1px, -2px);
+  box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.1));
+  border-color: color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border));
+}
+
+.ms-google-btn:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 3px;
+}
+
+.ms-google-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.ms-google-section__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.ms-google-section__hint {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ec-text-faint);
+  text-align: left;
+}
+
+/* Auth form error as crimson margin slip */
+.ms-auth-error {
+  padding: 12px 14px;
+  border: 1.5px solid color-mix(in srgb, var(--ec-logo-crimson, var(--ec-ink-crimson)) 40%, var(--ec-border));
+  border-left: 3px solid var(--ec-logo-crimson, var(--ec-ink-crimson));
+  border-radius: 4px;
+  background: color-mix(
+    in srgb,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 6%,
+    var(--ec-paper, var(--ec-surface))
+  );
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ec-text-primary);
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
+}
+
+/* Stage / grade stamp picks */
+.ms-ob-stamp-pick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ms-ob-stamp-pick__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  min-width: 44px;
+  padding: 8px 14px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--ec-text-secondary);
+  cursor: pointer;
+  transition:
+    transform 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.ms-ob-stamp-pick__btn:hover {
+  transform: translate(-1px, -1px);
+  color: var(--ec-text-primary);
+  border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border));
+}
+
+.ms-ob-stamp-pick__btn.on {
+  color: var(--ec-brand);
+  border-color: var(--ec-brand);
+  background: color-mix(in srgb, var(--ec-brand) 8%, var(--ec-paper, var(--ec-surface)));
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.07));
+  transform: rotate(-2deg);
+}
+
+/* Finish step inside docket — no second paper frame */
+.ms-ob-docket .ms-ob-finish {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.ms-ob-docket .ms-ob-finish::before {
+  display: none;
+}
+
+/* Welcome artefact flush-left inside the filing docket */
+.ms-ob-hero--flush {
+  margin-inline: 0;
+}
+
+.ms-signup-desk .ms-verify-digits {
+  justify-content: flex-start;
+}
+
+/* Auth success as green margin slip */
+.ms-auth-success {
+  padding: 12px 14px;
+  border: 1.5px solid color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border));
+  border-left: 3px solid var(--ec-brand);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ec-brand) 7%, var(--ec-paper, var(--ec-surface)));
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ec-text-primary);
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
+}
+
+/* Warning slip (amber) — same desk language as error/success */
+.ms-auth-warning {
+  padding: 12px 14px;
+  border: 1.5px solid color-mix(in srgb, var(--ec-chip-warning-text, #b45309) 35%, var(--ec-border));
+  border-left: 3px solid var(--ec-chip-warning-text, #b45309);
+  border-radius: 4px;
+  background: var(--ec-chip-warning-bg, color-mix(in srgb, #b45309 8%, var(--ec-paper, var(--ec-surface))));
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ec-banner-warning-title, var(--ec-text-primary));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
+}
+
+@media (max-width: 800px) {
+  .ms-auth-desk__docket--spread {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    gap: 22px;
+  }
+
+  .ms-auth-desk__aside {
+    order: -1;
+  }
+
+  .ms-auth-desk__aside::after {
+    display: none;
+  }
+
+  .ms-signup-artefact {
+    transform: rotate(-0.5deg);
+  }
+}

@@ -43,11 +43,14 @@ export async function LandingProof() {
               ? SUBJECT_CODE_MAP[t.subjectCode]
               : null
           return (
-            <li key={t.id} className="ec-card flex h-full flex-col gap-3 p-5">
-              <blockquote className="flex-1 text-sm leading-relaxed text-[var(--ec-text-primary)]">
+            <li key={t.id} className="ms-proof-slip">
+              <span className="ms-proof-slip__tick" aria-hidden>
+                M1
+              </span>
+              <blockquote className="ms-proof-slip__quote">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
-              <footer className="text-xs text-[var(--ec-text-secondary)]">
+              <footer className="ms-proof-slip__foot">
                 <span className="font-semibold">{t.name}</span>
                 {typeof subject === 'string' && <span> · {subject}</span>}
               </footer>

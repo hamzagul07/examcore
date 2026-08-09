@@ -52,9 +52,9 @@ export default function ResearchPage() {
       />
       <MarketingSection className="!pt-0">
         <div className="mx-auto max-w-3xl space-y-10">
-          <aside className="ec-blog-quick-answer rounded-xl border border-[var(--ec-brand)]/25 bg-[var(--ec-brand)]/5 px-5 py-5">
-            <p className="ec-label-tech mb-2 text-[var(--ec-brand)]">QUICK FACT</p>
-            <p className="text-base font-medium leading-relaxed text-[var(--ec-text-primary)]">
+          <aside className="ms-board-cross">
+            <p className="ms-overline">Quick fact</p>
+            <p className="ms-body-2 mt-2 text-[var(--ec-text-primary)]">
               <strong>MarkScheme</strong> ({SITE_URL.replace(/^https?:\/\//, '')}) is a free-tier web app
               where Cambridge and IB students upload photos of handwritten past-paper answers for
               scheme-aligned marking, study in free syllabus courses, and discuss papers in Exam Room
@@ -74,11 +74,11 @@ export default function ResearchPage() {
 
           <section data-chunk-id="facts-at-a-glance">
             <h2 className="ms-h3">Facts at a glance</h2>
-            <dl className="mt-4 space-y-3 text-sm">
+            <dl className="ms-research-ledger mt-4">
               {FACTS.map((row) => (
-                <div key={row.term} className="grid gap-1 sm:grid-cols-[10rem_1fr]">
-                  <dt className="font-semibold text-[var(--ec-text-primary)]">{row.term}</dt>
-                  <dd className="text-[var(--ec-text-secondary)]">{row.value}</dd>
+                <div key={row.term} className="ms-research-ledger__row">
+                  <dt className="ms-research-ledger__term">{row.term}</dt>
+                  <dd className="ms-research-ledger__value">{row.value}</dd>
                 </div>
               ))}
             </dl>
@@ -120,13 +120,22 @@ export default function ResearchPage() {
           </section>
 
           <div className="flex flex-wrap gap-3">
-            <Link href="/contact" className="ec-btn-secondary min-h-[48px]">
+            <Link
+              href="/mark"
+              className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+            >
+              <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                M1
+              </span>
+              Open the marking desk -&gt;
+            </Link>
+            <Link href="/contact" className="ec-btn-ghost inline-flex min-h-[48px]">
               Press &amp; partnerships
             </Link>
-            <Link href="/mark" className="ec-btn-primary min-h-[48px]">
-              Try the product
-            </Link>
-            <Link href="/blog/best-online-tools-cambridge-ib-marking-courses-2026" className="ec-btn-secondary min-h-[48px]">
+            <Link
+              href="/blog/best-online-tools-cambridge-ib-marking-courses-2026"
+              className="ec-btn-ghost inline-flex min-h-[48px]"
+            >
               Tools comparison
             </Link>
           </div>

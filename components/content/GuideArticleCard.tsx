@@ -9,12 +9,12 @@ type Props = {
 export function GuideArticleCard({ post }: Props) {
   return (
     <Link href={`/blog/${post.slug}`} className="ms-guide-card">
-      <span className="ec-chip-ms ec-chip-ms--outline">{post.categoryLabel}</span>
+      <span className="ms-blog-kw-stamp">{post.categoryLabel}</span>
       <h3 className="ms-gt">{post.title}</h3>
       <div className="ms-gmeta">
-        <span className="ms-micro">{post.readingMinutes} min read</span>
-        <span className="ec-btn-underline" style={{ marginLeft: 'auto', fontSize: 13.5 }}>
-          read →
+        <span className="ms-micro font-mono">{post.readingMinutes} min</span>
+        <span className="ms-micro font-mono" style={{ marginLeft: 'auto', letterSpacing: '0.06em' }}>
+          READ -&gt;
         </span>
       </div>
     </Link>

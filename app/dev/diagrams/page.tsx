@@ -48,7 +48,7 @@ export default function DiagramPreviewPage() {
                 const family = getFamilyIdForSlug(slug)
                 const kind = PILOT_DIAGRAM_SLUGS.includes(slug) ? 'custom' : `family:${family}`
                 return (
-                  <section key={slug} className="rounded-2xl border border-[var(--ec-border-subtle)] p-6">
+                  <section key={slug} className="rounded border border-[var(--ec-border-subtle)] bg-[var(--ec-paper,var(--ec-surface))] p-6 shadow-[var(--ec-shadow-hard,3px_3px_0_rgba(0,0,0,0.06))]">
                     <h3 className="mb-1 text-lg font-semibold">{slug}</h3>
                     <p className="mb-4 text-xs text-[var(--ec-text-tertiary)]">{kind}</p>
                     <LessonDiagram Component={entry.Component} meta={entry.meta} />

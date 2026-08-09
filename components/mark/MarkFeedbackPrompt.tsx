@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { Check, ThumbsDown, ThumbsUp } from 'lucide-react'
+import { SegmentedControl } from '@/components/ui/SegmentedControl'
+import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 
 /**
  * "Was this marking fair?"
@@ -85,57 +86,55 @@ export function MarkFeedbackPrompt({ attemptId }: { attemptId: string }) {
 
   if (done) {
     return (
-      <div className="ec-card flex items-center gap-3 p-4">
-        <Check className="h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
-        <p className="text-sm text-[var(--ec-text-secondary)]">
+      <aside className="ms-mark-feedback flex items-center gap-3">
+        <span className="ec-ink-stamp" aria-hidden>
+          M1
+        </span>
+        <p className="m-0 text-sm text-[var(--ec-text-secondary)]">
           Thanks — this goes straight into how we tune the marking.
         </p>
-      </div>
+      </aside>
     )
   }
 
   return (
-    <div className="ec-card space-y-4 border-[var(--ec-brand)]/30 bg-[var(--ec-brand)]/[0.03] p-4 sm:p-5">
+    <aside className="ms-mark-feedback space-y-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-[15px] font-semibold text-[var(--ec-text-primary)]">
-            Was this marking fair?
-          </p>
-          <p className="mt-0.5 text-sm text-[var(--ec-text-secondary)]">
+          <p className="ms-mark-feedback__title">Was this marking fair?</p>
+          <p className="ms-mark-feedback__lead">
             One tap — it&apos;s how we tune the marking, and how we know it&apos;s
             working.
           </p>
         </div>
-        <div className="flex shrink-0 gap-2" role="group" aria-label="Rate this marking">
-          <button
-            type="button"
-            disabled={saving}
-            aria-pressed={rating === 'up'}
-            onClick={() => void handleRate('up')}
-            className={`inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border px-4 text-sm font-semibold transition-colors ${
-              rating === 'up'
-                ? 'border-[var(--ec-brand)] bg-[var(--ec-brand)]/10 text-[var(--ec-brand)]'
-                : 'border-[var(--ec-border)] text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)]/50'
-            }`}
-          >
-            <ThumbsUp className="h-4 w-4" aria-hidden="true" />
-            Fair
-          </button>
-          <button
-            type="button"
-            disabled={saving}
-            aria-pressed={rating === 'down'}
-            onClick={() => void handleRate('down')}
-            className={`inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border px-4 text-sm font-semibold transition-colors ${
-              rating === 'down'
-                ? 'border-[var(--ec-brand)] bg-[var(--ec-brand)]/10 text-[var(--ec-brand)]'
-                : 'border-[var(--ec-border)] text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)]/50'
-            }`}
-          >
-            <ThumbsDown className="h-4 w-4" aria-hidden="true" />
-            Not fair
-          </button>
-        </div>
+        <SegmentedControl
+          className="ms-mark-feedback__rate flex shrink-0 gap-2"
+          optionClassName="ms-mark-feedback__rate-btn"
+          aria-label="Rate this marking"
+          value={rating}
+          disabled={saving}
+          onChange={(next) => void handleRate(next)}
+          options={[
+            {
+              value: 'up',
+              label: (
+                <>
+                  <span aria-hidden="true">✓</span>
+                  Fair
+                </>
+              ),
+            },
+            {
+              value: 'down',
+              label: (
+                <>
+                  <span aria-hidden="true">×</span>
+                  Not fair
+                </>
+              ),
+            },
+          ]}
+        />
       </div>
 
       {rating === 'down' && (
@@ -143,23 +142,17 @@ export function MarkFeedbackPrompt({ attemptId }: { attemptId: string }) {
           <p className="text-sm font-medium text-[var(--ec-text-primary)]">
             What went wrong?
           </p>
-          <div className="flex flex-wrap gap-2">
-            {DOWN_REASONS.map((r) => (
-              <button
-                key={r.value}
-                type="button"
-                aria-pressed={reason === r.value}
-                onClick={() => setReason(reason === r.value ? null : r.value)}
-                className={`min-h-[36px] rounded-full border px-3 text-sm transition-colors ${
-                  reason === r.value
-                    ? 'border-[var(--ec-brand)] bg-[var(--ec-brand)]/10 text-[var(--ec-brand)]'
-                    : 'border-[var(--ec-border)] text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)]/50'
-                }`}
-              >
-                {r.label}
-              </button>
-            ))}
-          </div>
+          <SegmentedControl
+            className="flex flex-wrap gap-2"
+            optionClassName="ms-mark-feedback__reason"
+            aria-label="What went wrong"
+            value={reason}
+            onChange={(next) => setReason(reason === next ? null : next)}
+            options={DOWN_REASONS.map((r) => ({
+              value: r.value,
+              label: r.label,
+            }))}
+          />
           <label className="block">
             <span className="sr-only">Anything else about this mark?</span>
             <textarea
@@ -221,11 +214,7 @@ export function MarkFeedbackPrompt({ attemptId }: { attemptId: string }) {
         </div>
       )}
 
-      {error && (
-        <p className="text-sm text-[var(--ec-error-ink,#c0392b)]" role="alert">
-          {error}
-        </p>
-      )}
+      {error ? <FormErrorAlert message={error} /> : null}
 
       {rating && (
         <button
@@ -237,6 +226,6 @@ export function MarkFeedbackPrompt({ attemptId }: { attemptId: string }) {
           {saving ? 'Sending…' : comment.trim() || reason ? 'Send feedback' : 'Done'}
         </button>
       )}
-    </div>
+    </aside>
   )
 }

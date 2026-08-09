@@ -1,28 +1,14 @@
 import { Suspense } from 'react'
 import { redirect } from 'next/navigation'
-import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
 import { createClient } from '@/lib/supabase-server'
 import { OnboardingWizard } from '@/components/onboarding/OnboardingWizard'
+import { OnboardingSkeleton } from '@/components/onboarding/OnboardingSkeleton'
 import { createOnboardingSaveToken } from '@/lib/onboarding/save-token'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
 
 export const dynamic = 'force-dynamic'
 
 type SearchParams = Promise<{ rerun?: string; next?: string }>
-
-function OnboardingFallback() {
-  return (
-    <div className="ms-ob-shell">
-      <div className="mx-auto w-full max-w-lg pt-10 text-left">
-        <SkeletonLine className="mx-auto mb-8 h-3 w-32" />
-        <SkeletonBlock className="mx-auto mb-6 h-10 w-3/4" />
-        <SkeletonBlock className="mb-4 h-16 w-full" />
-        <SkeletonBlock className="mb-4 h-16 w-full" />
-        <SkeletonBlock className="h-16 w-full" />
-      </div>
-    </div>
-  )
-}
 
 async function OnboardingContent({ searchParams }: { searchParams: SearchParams }) {
   const params = await searchParams
@@ -37,7 +23,7 @@ async function OnboardingContent({ searchParams }: { searchParams: SearchParams 
     redirect(`/auth/signin?next=${encodeURIComponent(next)}`)
   }
 
-    let initialProfile: {
+  let initialProfile: {
     board: string
     level: string
     subjects: string[]
@@ -84,7 +70,7 @@ export default function OnboardingPage({
   searchParams: SearchParams
 }) {
   return (
-    <Suspense fallback={<OnboardingFallback />}>
+    <Suspense fallback={<OnboardingSkeleton />}>
       <OnboardingContent searchParams={searchParams} />
     </Suspense>
   )

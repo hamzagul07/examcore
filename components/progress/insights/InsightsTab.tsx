@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import type {
   DashboardState,
   HeroInsight,
@@ -57,7 +57,7 @@ export function InsightsTab({
             </p>
             <Link href="/mark" className="ec-btn-primary inline-flex text-sm">
               Mark your first question
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <span className="h-4 w-4" aria-hidden>-&gt;</span>
             </Link>
             <p
               className="font-[family-name:var(--font-handwritten,'Caveat',cursive)] text-[var(--ec-brand)]"

@@ -239,7 +239,7 @@ export default async function AttemptDetailPage({
         {/* Back link */}
         <Link
           href="/dashboard"
-          className="animate-entry mb-8 inline-flex min-h-[44px] items-center gap-1.5 rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-4 py-2 text-xs font-semibold text-[var(--ec-text-secondary)] backdrop-blur transition-colors hover:border-[color-mix(in_srgb,var(--ec-brand)_40%,transparent)] hover:text-[var(--ec-brand)]"
+          className="ec-card ec-card--paper animate-entry mb-8 inline-flex min-h-[44px] items-center gap-1.5 px-4 py-2 text-xs font-semibold text-[var(--ec-text-secondary)] transition-colors hover:border-[color-mix(in_srgb,var(--ec-brand)_40%,transparent)] hover:text-[var(--ec-brand)]"
         >
           <ArrowLeft className="h-3 w-3" />
           Back to dashboard
@@ -249,7 +249,7 @@ export default async function AttemptDetailPage({
         <div className="animate-entry stagger-1 mb-10">
           <p className="ms-overline mb-3">Attempt</p>
           <h1 className="text-hero">
-            <span className="gradient-text">
+            <span className="text-[var(--ec-text-primary)]">
               {result.marking_mode === 'official_mark_scheme' && result.detected_paper
                 ? result.detected_paper.paper_code
                 : 'Custom'}

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown } from 'lucide-react'
 import type { FaqCategory, FaqItem } from '@/lib/faq-data'
 
 export function FaqAccordion({
@@ -22,7 +21,7 @@ export function FaqAccordion({
           <h2 className="landing-h3 mb-4 text-[var(--ec-text-primary)]">
             {category.title}
           </h2>
-          <div className="space-y-3">
+          <div className="ms-faq-list">
             {category.items.map((item, index) => (
               <FaqRow
                 key={item.q}
@@ -55,32 +54,28 @@ function FaqRow({
   onToggle: () => void
 }) {
   return (
-    <div className="ec-card overflow-hidden">
+    <div className="ms-faq-item">
       <button
         type="button"
         id={`faq-btn-${itemKey}`}
         aria-expanded={isOpen}
         aria-controls={`faq-panel-${itemKey}`}
         onClick={onToggle}
-        className="flex min-h-[52px] w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-[var(--ec-surface-raised)] sm:px-6 sm:py-5"
+        className="ms-faq-q"
       >
-        <span className="text-base font-semibold text-[var(--ec-text-primary)] sm:text-lg">
-          {item.q}
+        <span>{item.q}</span>
+        <span className="ms-pm" aria-hidden>
+          {isOpen ? '−' : '+'}
         </span>
-        <ChevronDown
-          className={`h-5 w-5 shrink-0 text-[var(--ec-text-secondary)] transition-transform duration-200 ${
-            isOpen ? 'rotate-180' : ''
-          }`}
-        />
       </button>
       <div
         id={`faq-panel-${itemKey}`}
         role="region"
         aria-labelledby={`faq-btn-${itemKey}`}
         hidden={!isOpen}
-        className="border-t border-[var(--ec-border)] px-5 pb-5 sm:px-6 sm:pb-6"
+        className="ms-faq-a"
       >
-        {isOpen && <p className="landing-lead pt-4">{item.a}</p>}
+        {isOpen && <p className="ms-body-2">{item.a}</p>}
       </div>
     </div>
   )

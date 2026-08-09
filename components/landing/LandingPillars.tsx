@@ -1,14 +1,26 @@
+import type { ReactNode } from 'react'
 import Link from 'next/link'
 import { LoadingLink } from '@/components/ui/LoadingLink'
-import { Chip } from '@/components/margin-notes'
+import {
+  Chip,
+  InkGlyphArrow,
+  InkGlyphBook,
+  InkGlyphCards,
+  InkGlyphDiagram,
+  InkGlyphDiscuss,
+  InkGlyphNotes,
+  InkGlyphTick,
+} from '@/components/margin-notes'
 import { capForTier } from '@/lib/billing/caps'
 import { isCommunityEnabled } from '@/lib/community/enabled'
+import { MARK_DURATION_SINGLE_SHORT } from '@/lib/copy/product-lexicon'
 
 type PillarId = 'mark' | 'learn' | 'discuss'
 
 type Pillar = {
   id: PillarId
-  glyph: string
+  glyph: ReactNode
+  watermark: string
   kicker: string
   title: string
   body: string
@@ -25,7 +37,7 @@ type Pillar = {
 const PLATFORM_STATS = [
   { value: '15+', label: 'Syllabuses' },
   { value: 'B1·M1·A1', label: 'Real codes' },
-  { value: '~60s', label: 'To feedback' },
+  { value: MARK_DURATION_SINGLE_SHORT, label: 'To feedback' },
   { value: 'Free', label: 'Tier to start' },
 ] as const
 
@@ -38,7 +50,8 @@ const FLOW_STEPS = [
 const PILLARS: Pillar[] = [
   {
     id: 'mark',
-    glyph: '✓',
+    glyph: <InkGlyphTick className="ms-pillar-glyph-svg" />,
+    watermark: '✓',
     kicker: 'Mark',
     title: 'Past-paper marking',
     body: 'Type your answer or upload a photo / PDF of a whole paper. We pull the real Cambridge or IB mark scheme and score every line of working — not a chatbot guess.',
@@ -55,7 +68,8 @@ const PILLARS: Pillar[] = [
   },
   {
     id: 'learn',
-    glyph: '📚',
+    glyph: <InkGlyphBook className="ms-pillar-glyph-svg" />,
+    watermark: '¶',
     kicker: 'Learn',
     title: 'Free syllabus courses',
     body: 'Every lesson follows your board\'s syllabus order — theory, diagrams, flashcards, then one tap into marking a real past-paper question for that exact point.',
@@ -71,7 +85,8 @@ const PILLARS: Pillar[] = [
   },
   {
     id: 'discuss',
-    glyph: '💬',
+    glyph: <InkGlyphDiscuss className="ms-pillar-glyph-svg" />,
+    watermark: '#',
     kicker: 'Discuss',
     title: 'Exam Room',
     body: 'Reddit-style communities with separate boards for Cambridge A-Level and IB Diploma — pick your board, then your subject room.',
@@ -96,10 +111,10 @@ const DISCUSS_FLOW = [
 ]
 
 const LEARN_FEATURES = [
-  { icon: '📝', label: 'Notes' },
-  { icon: '◇', label: 'Diagrams' },
-  { icon: '🃏', label: 'Flashcards' },
-  { icon: '→', label: 'Mark link' },
+  { icon: <InkGlyphNotes className="ms-pillar-feature-icon" />, label: 'Notes' },
+  { icon: <InkGlyphDiagram className="ms-pillar-feature-icon" />, label: 'Diagrams' },
+  { icon: <InkGlyphCards className="ms-pillar-feature-icon" />, label: 'Flashcards' },
+  { icon: <InkGlyphArrow className="ms-pillar-feature-icon" />, label: 'Mark link' },
 ]
 
 const POST_TYPES = ['Discussion', 'Question', 'Resource'] as const
@@ -156,11 +171,11 @@ export function LandingPillars() {
             <article
               key={pillar.id}
               id={pillar.anchorId}
-              className={`ms-pillar ec-card ms-pillar--${pillar.id}${pillar.featured ? ' ms-pillar--featured' : ''}`}
+              className={`ms-pillar ms-pillar--paper ms-pillar--${pillar.id}${pillar.featured ? ' ms-pillar--featured' : ''}`}
             >
               <div className="ms-pillar-band">
                 <span className="ms-pillar-watermark" aria-hidden>
-                  {pillar.glyph}
+                  {pillar.watermark}
                 </span>
                 <div className="ms-pillar-top">
                   <span className="ms-pillar-glyph" aria-hidden>

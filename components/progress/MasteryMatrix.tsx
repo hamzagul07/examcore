@@ -2,7 +2,6 @@
 
 import { useEffect, useId, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { ChevronDown, ChevronRight, Grid3X3 } from 'lucide-react'
 import {
   MASTERY_STYLES,
   formatParentLeafBreakdown,
@@ -90,7 +89,7 @@ export function MasteryMatrix({
     return (
       <section className="ms-dash-card">
         <EmptyState
-          icon={Grid3X3}
+          stamp="MX"
           title="Mastery matrix"
           body="Mark questions to see your topic-by-topic strength."
           ctaLabel="Mark a question"
@@ -105,14 +104,19 @@ export function MasteryMatrix({
     <>
       <section id="mastery-matrix" className="ms-mastery-matrix ms-dash-card">
         {emptyBanner && (
-          <div className="ec-banner-info-inline mb-5 rounded-xl px-4 py-3 text-sm">
+          <div className="ec-banner-info-inline ec-card ec-card--paper mb-5 px-4 py-3 text-sm">
             Mark questions in{' '}
             <strong>{subjectLabel || subjectCode}</strong>{' '}
             to start filling this in. Every topic you touch will appear here.
           </div>
         )}
         <div className="mb-5 flex items-center gap-2">
-          <Grid3X3 className="h-4 w-4 text-[var(--ec-brand)]" />
+          <span
+            className="inline-grid h-5 min-w-5 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]"
+            aria-hidden
+          >
+            MX
+          </span>
           <p className="ms-overline" style={{ marginBottom: 0 }}>Mastery matrix</p>
         </div>
         <h2 className="ms-h3">Topic-by-topic strength</h2>
@@ -137,7 +141,7 @@ export function MasteryMatrix({
             return (
               <div key={paper}>
                 <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider">
-                  <span className="ec-text-gradient">{paper}</span>
+                  <span className="font-display italic text-[var(--ec-brand)]">{paper}</span>
                   <span className="ml-2 font-normal normal-case ec-text-secondary">
                     {parents[0]?.paperName}
                   </span>
@@ -159,11 +163,11 @@ export function MasteryMatrix({
                           key={parent.code}
                           type="button"
                           onClick={() => setSelected(leaf)}
-                          className={`flex min-h-[48px] w-full items-center gap-2 rounded-xl border ec-border-color px-3 py-2.5 text-left transition-all hover:-translate-y-0.5 ${chipClass(leaf.level)}`}
+                          className={`flex min-h-[48px] w-full items-center gap-2 rounded border ec-border-color px-3 py-2.5 text-left transition-all hover:-translate-y-0.5 ${chipClass(leaf.level)}`}
                           title={`${leaf.name} — ${leafStyle.label}`}
                         >
                           <span
-                            className={`h-2 w-2 shrink-0 rounded-full ${leafStyle.dot}`}
+                            className={`h-2 w-2 shrink-0 rounded-[2px] ${leafStyle.dot}`}
                           />
                           <span className="font-mono text-xs opacity-70">
                             {leaf.code}
@@ -183,20 +187,21 @@ export function MasteryMatrix({
                     return (
                       <div
                         key={parent.code}
-                        className="overflow-hidden rounded-xl border ec-border-color"
+                        className="overflow-hidden rounded border ec-border-color"
                       >
                         <button
                           type="button"
                           onClick={() => toggleParent(parent.code)}
                           className="flex min-h-[48px] w-full items-center gap-3 px-3 py-3 text-left transition-colors hover:bg-[var(--ec-brand-muted)]"
                         >
-                          {isOpen ? (
-                            <ChevronDown className="h-4 w-4 shrink-0 text-[var(--ec-text-secondary)]" />
-                          ) : (
-                            <ChevronRight className="h-4 w-4 shrink-0 text-[var(--ec-text-secondary)]" />
-                          )}
                           <span
-                            className={`h-2 w-2 shrink-0 rounded-full ${style.dot}`}
+                            className="w-4 shrink-0 font-mono text-[11px] font-bold text-[var(--ec-text-secondary)]"
+                            aria-hidden
+                          >
+                            {isOpen ? 'v' : '>'}
+                          </span>
+                          <span
+                            className={`h-2 w-2 shrink-0 rounded-[2px] ${style.dot}`}
                           />
                           <div className="min-w-0 flex-1">
                             <p className="truncate text-sm font-semibold">
@@ -223,7 +228,7 @@ export function MasteryMatrix({
                                   title={`${leaf.name} — ${leafStyle.label} (${leaf.attemptsCount} attempts)`}
                                 >
                                   <span
-                                    className={`h-1.5 w-1.5 rounded-full ${leafStyle.dot}`}
+                                    className={`h-1.5 w-1.5 rounded-[2px] ${leafStyle.dot}`}
                                   />
                                   <span className="font-mono opacity-70">
                                     {leaf.code}
@@ -295,7 +300,7 @@ function TopicDetailModal({
         className="absolute inset-0 ec-modal-backdrop"
         onClick={onClose}
       />
-      <div className="ec-card relative w-full max-w-lg overflow-hidden rounded-t-3xl p-4 sm:rounded-2xl sm:p-6">
+      <div className="ec-card ec-card--paper relative w-full max-w-lg overflow-hidden rounded-t p-4 sm:rounded sm:p-6">
         <p className="ec-label-tech mb-2">{topic.code}</p>
         <h3 id={titleId} className="text-xl font-bold">{topic.name}</h3>
         <p className="mt-1 text-sm ec-text-secondary">
@@ -355,7 +360,7 @@ function TopicDetailModal({
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-xl border ec-border-color ec-bg-surface-raised px-2 py-3">
+    <div className="ec-card ec-card--paper border ec-border-color ec-bg-surface-raised px-2 py-3">
       <p className="text-[10px] font-semibold uppercase tracking-wider ec-text-secondary">
         {label}
       </p>

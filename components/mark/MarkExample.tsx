@@ -1,7 +1,5 @@
 'use client'
 
-import { ArrowRight, Eye, X } from 'lucide-react'
-
 /**
  * "See it work before you upload."
  *
@@ -21,33 +19,36 @@ export function MarkExampleInvite({
   className?: string
 }) {
   return (
-    <div
-      className={`ec-card flex flex-col gap-3 border-[var(--ec-brand)]/25 p-4 sm:flex-row sm:items-center sm:justify-between ${className}`}
+    <aside
+      className={`ms-mark-example-slip ${className}`.trim()}
+      aria-label="See a marked example before uploading"
     >
-      <div className="flex items-start gap-3">
-        <Eye
-          className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]"
-          aria-hidden="true"
-        />
-        <div>
-          <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
-            Not sure what you get back?
-          </p>
-          <p className="mt-0.5 text-sm text-[var(--ec-text-secondary)]">
+      <div className="ms-mark-example-slip__body">
+        <span className="ec-ink-stamp" aria-hidden>
+          eg
+        </span>
+        <div className="ms-mark-example-slip__copy">
+          <p className="ms-mark-example-slip__title">Not sure what you get back?</p>
+          <p className="ms-mark-example-slip__lead">
             Look at a real marked answer first — every mark, why it was given,
             and the one that got away. No upload, nothing to set up.
           </p>
+          <span className="ms-mark-example-slip__note" aria-hidden>
+            see the ink before you spend a photo
+          </span>
         </div>
       </div>
       <button
         type="button"
         onClick={onOpen}
-        className="ec-btn-secondary inline-flex min-h-[44px] shrink-0 items-center justify-center gap-1.5 self-start whitespace-nowrap text-sm font-semibold sm:self-auto"
+        className="ec-btn-secondary ms-mark-example-slip__cta inline-flex min-h-[44px] items-center justify-center gap-1.5 text-sm font-semibold"
       >
         See a marked example
-        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        <span className="font-mono text-[11px] font-bold" aria-hidden>
+          -&gt;
+        </span>
       </button>
-    </div>
+    </aside>
   )
 }
 
@@ -62,31 +63,38 @@ export function MarkExampleBanner({
   onDismiss: () => void
 }) {
   return (
-    <div className="ec-card flex flex-col gap-3 border-[var(--ec-brand)]/40 bg-[var(--ec-brand)]/[0.04] p-4 sm:flex-row sm:items-center sm:justify-between">
-      <div className="flex items-start gap-3">
-        <Eye
-          className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]"
-          aria-hidden="true"
-        />
-        <div>
-          <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
+    <aside
+      className="ms-mark-example-slip ms-mark-example-slip--live"
+      aria-label="This is a sample mark, not your work"
+    >
+      <div className="ms-mark-example-slip__body">
+        <span className="ec-ink-stamp ec-ink-stamp--crimson" aria-hidden>
+          eg
+        </span>
+        <div className="ms-mark-example-slip__copy">
+          <p className="ms-mark-example-slip__title">
             This is an example — not your work
           </p>
-          <p className="mt-0.5 text-sm text-[var(--ec-text-secondary)]">
+          <p className="ms-mark-example-slip__lead">
             A real A-Level Maths answer, marked against the official scheme.
             Yours will look like this, against your own paper.
           </p>
+          <span className="ms-mark-example-slip__note" aria-hidden>
+            sample slip — close it when you&apos;re ready
+          </span>
         </div>
       </div>
       <button
         type="button"
         onClick={onDismiss}
-        className="ec-btn-primary inline-flex min-h-[44px] shrink-0 items-center justify-center gap-1.5 self-start whitespace-nowrap text-sm font-semibold sm:self-auto"
+        className="ec-btn-primary ms-mark-example-slip__cta inline-flex min-h-[44px] items-center justify-center gap-1.5 text-sm font-semibold"
       >
         Mark my own answer
-        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        <span className="font-mono text-[11px] font-bold" aria-hidden>
+          -&gt;
+        </span>
       </button>
-    </div>
+    </aside>
   )
 }
 
@@ -96,10 +104,9 @@ export function MarkExampleFooter({ onDismiss }: { onDismiss: () => void }) {
     <button
       type="button"
       onClick={onDismiss}
-      className="ec-btn-ghost inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 text-sm font-semibold"
+      className="ec-btn-ghost inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wide"
     >
-      <X className="h-4 w-4" aria-hidden="true" />
-      Close example and upload my own
+      Close example and upload my own -&gt;
     </button>
   )
 }

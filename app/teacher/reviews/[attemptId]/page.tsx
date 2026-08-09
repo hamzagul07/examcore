@@ -80,7 +80,7 @@ export default function ReviewDetailPage() {
       />
 
       <div className="grid flex-1 grid-cols-1 gap-6 lg:grid-cols-5">
-        <div className="ec-card overflow-hidden p-4 lg:col-span-3">
+        <div className="ec-card ec-card--paper overflow-hidden p-4 lg:col-span-3">
           {attempt.ink_pages && attempt.ink_pages.length > 0 ? (
             <ExaminerInkPerPage
               pages={attempt.ink_pages}
@@ -100,7 +100,7 @@ export default function ReviewDetailPage() {
               animate={false}
             />
           ) : (
-            <div className="flex aspect-[4/3] items-center justify-center rounded-xl bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)]">
+            <div className="ec-card ec-card--paper flex aspect-[4/3] items-center justify-center bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)]">
               No answer image for this demo submission. Mark overrides still
               work via the console →
             </div>

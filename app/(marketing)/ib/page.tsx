@@ -6,7 +6,6 @@ import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { collectionPageNode, itemListNode, faqPageNode } from '@/lib/seo/structured-data'
 import { SITE_URL } from '@/lib/site-config'
-import { Chip } from '@/components/margin-notes'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 import { MarketingBreadcrumbs } from '@/components/seo/MarketingBreadcrumbs'
 import { getIbSubjects, getIbSubjectsByGroup, getIbSubject, ibYearRange } from '@/lib/ib/catalog'
@@ -135,19 +134,23 @@ export default function IbHubPage() {
           Every IBDP subject, HL and SL, organised by session and paper ({ibYearRange()}) — with
           markband guidance so you know exactly how examiners award the marks.
         </p>
-
-        <HubSeoIntro
-          headingLevel="h2"
-          heading="The IB papers, finally organised"
-          paragraph="Official IB past papers are scattered and hard to navigate. We lay out every Higher and Standard Level subject by exam series and paper, and explain the markbands and assessment criteria that decide your grade — so practice actually moves your score. Pick a subject below to start."
-          links={[
-            { href: '/ib/past-papers', label: 'Browse IB past papers →', variant: 'primary' },
-            { href: '/ib/courses', label: 'Free IB courses', variant: 'ghost' },
-            { href: '/guides/ib', label: 'Study guides', variant: 'muted' },
-            { href: '/ib/topic-practice', label: 'Topic practice', variant: 'muted' },
-            { href: '/mark', label: 'Criterion marking', variant: 'muted' },
-          ]}
-        />
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Link
+            href="/mark?board=ib"
+            className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+          >
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+              M1
+            </span>
+            Criterion marking -&gt;
+          </Link>
+          <Link href="/ib/courses" className="ec-btn-ghost inline-flex min-h-[48px]">
+            Free IB courses
+          </Link>
+          <Link href="/ib/past-papers" className="ec-btn-ghost inline-flex min-h-[48px]">
+            Past papers
+          </Link>
+        </div>
 
         <div style={{ marginTop: 28 }}>
           <IbResultsSpotlight />
@@ -191,11 +194,11 @@ export default function IbHubPage() {
                             }
                           >
                             <span className="ms-pp-glyph" aria-hidden>
-                              {subject?.glyph ?? '◆'}
+                              {c.level}
                             </span>
                             <span className="min-w-0 flex-1">
                               <span className="ms-pp-title">
-                                {c.name} <em className="ms-pp-code">· {c.level}</em>
+                                {c.name}
                                 {isNew ? (
                                   <span className="ms-pp-new" aria-label="New course">
                                     New
@@ -205,7 +208,7 @@ export default function IbHubPage() {
                               <span className="ms-pp-meta">{meta}</span>
                             </span>
                             <span className="ms-pp-cta" aria-hidden>
-                              →
+                              -&gt;
                             </span>
                           </Link>
                         </li>
@@ -231,16 +234,14 @@ export default function IbHubPage() {
                     style={{ '--acc': s.accent } as CSSProperties}
                   >
                     <span className="ms-pp-glyph" aria-hidden>
-                      {s.glyph}
+                      {s.level}
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="ms-pp-title">
-                        {s.name} <em className="ms-pp-code">· {s.level}</em>
-                      </span>
+                      <span className="ms-pp-title">{s.name}</span>
                       <span className="ms-pp-meta">{s.papers.length} papers · {ibYearRange()}</span>
                     </span>
                     <span className="ms-pp-cta" aria-hidden>
-                      →
+                      -&gt;
                     </span>
                   </Link>
                 </li>
@@ -249,17 +250,29 @@ export default function IbHubPage() {
           </section>
         ))}
 
+        <HubSeoIntro
+          quiet
+          headingLevel="h2"
+          heading="The IB papers, finally organised"
+          paragraph="Official IB past papers are scattered and hard to navigate. We lay out every Higher and Standard Level subject by exam series and paper, and explain the markbands and assessment criteria that decide your grade — so practice actually moves your score. Pick a subject above to start."
+          links={[
+            { href: '/ib/past-papers', label: 'Browse IB past papers →', variant: 'primary' },
+            { href: '/ib/courses', label: 'Free IB courses', variant: 'ghost' },
+            { href: '/guides/ib', label: 'Study guides', variant: 'muted' },
+            { href: '/ib/topic-practice', label: 'Topic practice', variant: 'muted' },
+            { href: '/mark', label: 'Criterion marking', variant: 'muted' },
+          ]}
+        />
+
         <section className="ms-subject-faq" aria-labelledby="ib-faq" style={{ marginTop: 48 }}>
           <h2 id="ib-faq" className="ms-h3">
             Frequently asked questions
           </h2>
-          <dl className="mt-6 space-y-6">
+          <dl className="ms-tool-faq">
             {FAQ.map((item) => (
               <div key={item.q} data-chunk-id={item.q.slice(0, 36)}>
-                <dt className="font-semibold text-[var(--ec-text-primary)]">{item.q}</dt>
-                <dd className="mt-2 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-                  {item.a}
-                </dd>
+                <dt>{item.q}</dt>
+                <dd className="ms-body-2">{item.a}</dd>
               </div>
             ))}
           </dl>
@@ -268,20 +281,53 @@ export default function IbHubPage() {
         <IbResources resources={IB_GLOBAL_RESOURCES} />
 
         <nav className="mt-12 border-t border-[var(--ec-border)] pt-8" aria-label="Related">
-          <div className="flex flex-wrap gap-2">
-            <Chip variant="dim">
-              <Link href="/ib/past-papers">IB past papers</Link>
-            </Chip>
-            <Chip variant="dim">
-              <Link href="/ib/subjects">IB subjects</Link>
-            </Chip>
-            <Chip variant="dim">
-              <Link href="/ib/courses">Free IB courses</Link>
-            </Chip>
-            <Chip variant="dim">
-              <Link href="/blog/browse/ib">IB revision guides</Link>
-            </Chip>
-          </div>
+          <p className="ms-overline mb-3">Also on the desk</p>
+          <ul className="ms-board-index ms-board-index--guides">
+            <li>
+              <Link href="/ib/past-papers" className="ms-board-slip ms-board-slip--compact">
+                <span className="ms-board-slip__code">PP</span>
+                <span className="ms-board-slip__body">
+                  <span className="ms-board-slip__name">IB past papers</span>
+                </span>
+                <span className="ms-board-slip__go" aria-hidden>
+                  -&gt;
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/ib/subjects" className="ms-board-slip ms-board-slip--compact">
+                <span className="ms-board-slip__code">SUB</span>
+                <span className="ms-board-slip__body">
+                  <span className="ms-board-slip__name">IB subjects</span>
+                </span>
+                <span className="ms-board-slip__go" aria-hidden>
+                  -&gt;
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/ib/courses" className="ms-board-slip ms-board-slip--compact">
+                <span className="ms-board-slip__code">CRS</span>
+                <span className="ms-board-slip__body">
+                  <span className="ms-board-slip__name">Free IB courses</span>
+                </span>
+                <span className="ms-board-slip__go" aria-hidden>
+                  -&gt;
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog/browse/ib" className="ms-board-slip ms-board-slip--compact">
+                <span className="ms-board-slip__code">GDE</span>
+                <span className="ms-board-slip__body">
+                  <span className="ms-board-slip__name">IB revision guides</span>
+                </span>
+                <span className="ms-board-slip__go" aria-hidden>
+                  -&gt;
+                </span>
+              </Link>
+            </li>
+          </ul>
         </nav>
       </div>
     </MarketingPageShell>

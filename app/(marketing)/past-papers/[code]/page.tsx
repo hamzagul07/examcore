@@ -156,41 +156,31 @@ export default async function PastPaperSubjectPage({ params }: Props) {
           ← All past papers
         </Link>
 
-        <div className="ms-sd-head">
+        <div className="ms-sd-head" data-code={code}>
           <div className="ms-sd-glyph" aria-hidden>
-            {subject.glyph}
+            {code}
           </div>
-          <div className="min-w-0 flex-1">
-            <h1 className="ms-h2" style={{ marginBottom: 2 }}>
-              {label} past papers{' '}
-              <em style={{ color: 'var(--ec-text-faint)', fontSize: '0.6em' }}>· {code}</em>
+          <div className="min-w-0 flex-1" style={{ position: 'relative', zIndex: 1 }}>
+            <p className="ms-overline" style={{ marginBottom: 4 }}>
+              CAIE · {level}
+            </p>
+            <h1 className="ms-h2" style={{ marginBottom: 6 }}>
+              {label} past papers
             </h1>
             <div className="flex flex-wrap gap-2">
               <Chip variant="dim">{subject.yearRange}</Chip>
-              <Chip variant="dim">CAIE · {level}</Chip>
               <Chip variant="dim">{subject.componentCount} papers</Chip>
-              {subject.hasMarking ? <Chip variant="ok">instant marking ✓</Chip> : null}
+              {subject.hasMarking ? <Chip variant="ok">instant marking</Chip> : null}
             </div>
           </div>
-          <Link href={markHref()} className="ec-btn-primary ms-auto shrink-0 px-6 py-3 text-sm">
+          <Link
+            href={markHref()}
+            className="ec-btn-primary ms-auto shrink-0 px-6 py-3 text-sm"
+            style={{ position: 'relative', zIndex: 1 }}
+          >
             Mark a {code} paper
           </Link>
         </div>
-
-        <HubSeoIntro
-          headingLevel="h2"
-          heading={`${label} (${code}) past papers — marked, not just downloaded`}
-          paragraph={`Below is every recent ${label} exam series we cover (${subject.yearRange}). Practise any paper, then upload photos of your handwriting and MarkScheme grades it against the real ${code} mark scheme — so you get feedback on method and accuracy marks, not just a model answer.`}
-          links={[
-            { href: markHref(), label: `Mark ${code} now →`, variant: 'primary' },
-            ...(subject.hasMarking
-              ? [{ href: `/subjects/${code}`, label: `About ${code} marking`, variant: 'ghost' as const }]
-              : []),
-            ...(course
-              ? [{ href: course.path, label: `Free ${code} course`, variant: 'muted' as const }]
-              : []),
-          ]}
-        />
 
         <div className="ms-sd-grid">
           <div>
@@ -207,15 +197,11 @@ export default async function PastPaperSubjectPage({ params }: Props) {
                         Papers {components.join(', ')}
                       </span>
                     </div>
-                    <div className="flex flex-wrap gap-2" style={{ marginTop: 10 }}>
+                    <div className="ms-pp-sessions">
                       {y.seasons.map((s) => (
-                        <Link
-                          key={s.code}
-                          href={markHref(s.code)}
-                          className="ec-chip-warm"
-                          style={{ textDecoration: 'none' }}
-                        >
-                          {s.season} {y.year} →
+                        <Link key={s.code} href={markHref(s.code)} className="ms-pp-session">
+                          <span>{s.season}</span>
+                          <span className="ms-pp-session__code">{s.code}</span>
                         </Link>
                       ))}
                     </div>
@@ -272,12 +258,9 @@ export default async function PastPaperSubjectPage({ params }: Props) {
             <ul className="ms-pp-topic-grid">
               {topicPages.map((t) => (
                 <li key={t.topicSlug}>
-                  <Link
-                    href={`/past-papers/${code}/${t.topicSlug}`}
-                    className="inline-flex items-center gap-2 rounded-full border border-[var(--ec-border)] px-3.5 py-2 text-[13px] font-semibold text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]"
-                  >
-                    {t.title}
-                    <span style={{ color: 'var(--ec-text-faint)' }}>{t.questionCount}</span>
+                  <Link href={`/past-papers/${code}/${t.topicSlug}`}>
+                    <span>{t.title}</span>
+                    <span>{t.questionCount}</span>
                   </Link>
                 </li>
               ))}
@@ -298,17 +281,31 @@ export default async function PastPaperSubjectPage({ params }: Props) {
           </section>
         ) : null}
 
+        <HubSeoIntro
+          quiet
+          headingLevel="h2"
+          heading={`${label} (${code}) past papers — marked, not just downloaded`}
+          paragraph={`Above is every recent ${label} exam series we cover (${subject.yearRange}). Practise any paper, then upload photos of your handwriting and MarkScheme grades it against the real ${code} mark scheme — so you get feedback on method and accuracy marks, not just a model answer.`}
+          links={[
+            { href: markHref(), label: `Mark ${code} now →`, variant: 'primary' },
+            ...(subject.hasMarking
+              ? [{ href: `/subjects/${code}`, label: `About ${code} marking`, variant: 'ghost' as const }]
+              : []),
+            ...(course
+              ? [{ href: course.path, label: `Free ${code} course`, variant: 'muted' as const }]
+              : []),
+          ]}
+        />
+
         <section className="ms-subject-faq" aria-labelledby="pp-subject-faq">
           <h2 id="pp-subject-faq" className="ms-h3">
             Frequently asked questions
           </h2>
-          <dl className="mt-6 space-y-6">
+          <dl className="ms-tool-faq">
             {faq.map((item) => (
               <div key={item.q} data-chunk-id={item.q.slice(0, 36)}>
-                <dt className="font-semibold text-[var(--ec-text-primary)]">{item.q}</dt>
-                <dd className="mt-2 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-                  {item.a}
-                </dd>
+                <dt>{item.q}</dt>
+                <dd className="ms-body-2">{item.a}</dd>
               </div>
             ))}
           </dl>
@@ -326,7 +323,7 @@ export default async function PastPaperSubjectPage({ params }: Props) {
               <li key={s.code}>
                 <Link
                   href={`/past-papers/${s.code}`}
-                  className="inline-flex rounded-full border border-[var(--ec-border)] px-3 py-1.5 text-xs font-semibold text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]"
+                  className="inline-flex rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-3 py-1.5 font-mono text-[11px] font-semibold tracking-wide shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.05))] text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]"
                 >
                   {s.code} {s.label}
                 </Link>

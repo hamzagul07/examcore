@@ -119,10 +119,9 @@ export function QASection({
           ))}
         </ul>
       ) : (
-        <div className="community-empty-card">
-          <p className="ms-body-2">
-            No questions yet for {subjectName}. {user ? 'Ask the first one!' : 'Sign in to ask the first question.'}
-          </p>
+        <div className="community-empty">
+          No questions yet for {subjectName}.{' '}
+          {user ? 'Ask the first one — set the ink.' : 'Sign in to ask the first question.'}
         </div>
       )}
     </section>

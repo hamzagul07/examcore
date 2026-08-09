@@ -102,25 +102,41 @@ function CaiePaperHub({
         lead={`All indexable ${code} topics tagged to Paper ${paper}, with links into lessons and scheme-aligned marking.`}
       />
       <MarketingSection>
-        <ul className="grid list-none gap-3 p-0">
+        <ul className="ms-board-index">
           {lessons.map((lesson) => {
             const href = caieLessonPath(code, lesson.slug)
             if (!href) return null
             return (
               <li key={lesson.slug}>
-                <Link href={href} className="ec-card block p-4 font-semibold hover:underline">
-                  {lesson.topicCode} · {lesson.title}
+                <Link href={href} className="ms-board-slip">
+                  <span className="ms-board-slip__code">{lesson.topicCode || code}</span>
+                  <span className="ms-board-slip__body">
+                    <span className="ms-board-slip__name">{lesson.title}</span>
+                    <span className="ms-board-slip__meta">Paper {paper}</span>
+                  </span>
+                  <span className="ms-board-slip__go" aria-hidden>
+                    -&gt;
+                  </span>
                 </Link>
               </li>
             )
           })}
         </ul>
-        <Link
-          href={`/mark?subject=${encodeURIComponent(code)}`}
-          className="ec-btn-primary mt-8 inline-flex min-h-[48px]"
-        >
-          Mark a Paper {paper} style question
-        </Link>
+        <div className="ms-board-cross mt-8">
+          <p className="ms-overline">Marking desk</p>
+          <h2 className="ms-h2">Mark a Paper {paper} style question</h2>
+          <div className="mt-5">
+            <Link
+              href={`/mark?subject=${encodeURIComponent(code)}`}
+              className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+            >
+              <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                M1
+              </span>
+              Mark {code} -&gt;
+            </Link>
+          </div>
+        </div>
       </MarketingSection>
     </MarketingPageShell>
   )
@@ -176,7 +192,8 @@ export default async function CaieLessonHubPage({ params }: Props) {
         <CaieGraphNav code={code} lesson={lesson} active="lesson" />
 
         {keyPoints.length ? (
-          <div className="ec-card mb-6 p-5">
+          <div className="ms-board-cross mb-6">
+            <p className="ms-overline">Need to know</p>
             <h2 className="ms-h3" style={{ fontSize: '1.1rem' }}>
               What you need to know
             </h2>
@@ -189,7 +206,8 @@ export default async function CaieLessonHubPage({ params }: Props) {
         ) : null}
 
         {lesson.simpleExplanation?.steps?.length ? (
-          <div className="ec-card mb-6 p-5">
+          <div className="ms-board-cross mb-6">
+            <p className="ms-overline">Explanation</p>
             <h2 className="ms-h3" style={{ fontSize: '1.1rem' }}>
               {lesson.simpleExplanation.title || 'Simple explanation'}
             </h2>
@@ -204,9 +222,12 @@ export default async function CaieLessonHubPage({ params }: Props) {
         <div className="flex flex-wrap gap-3">
           <Link
             href={`/mark?subject=${encodeURIComponent(code)}&topic=${encodeURIComponent(lesson.topicCode)}`}
-            className="ec-btn-primary min-h-[48px]"
+            className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
           >
-            Mark this topic <span className="h-4 w-4" aria-hidden>-&gt;</span>
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+              M1
+            </span>
+            Mark this topic -&gt;
           </Link>
           <Link
             href={`/courses/${code}/${lesson.slug}`}
@@ -217,7 +238,7 @@ export default async function CaieLessonHubPage({ params }: Props) {
         </div>
 
         <SyllabusGraphLinks code={code} topicCode={lesson.topicCode} />
-        {code === '9709' ? (
+        {['9709', '9702', '9701', '9700'].includes(code) ? (
           <CrossBoardTopicLinks
             mode="caie-topic"
             syllabusCode={code}

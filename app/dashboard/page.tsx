@@ -19,16 +19,18 @@ import { buildReviewQueue } from '@/lib/courses/review-queue'
 import { AppSupportStrip } from '@/components/marketing/AppSupportStrip'
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 import { HomeHero } from '@/components/dashboard/HomeHero'
-import { WeakSpotDrillCard } from '@/components/insights/WeakSpotDrillCard'
 import { StudyNotebook } from '@/components/dashboard/StudyNotebook'
 import { ContinueWork } from '@/components/dashboard/ContinueWork'
 import { ActiveSubjects } from '@/components/dashboard/ActiveSubjects'
 import { NewUserHome } from '@/components/dashboard/NewUserHome'
+import { NextActionCard } from '@/components/dashboard/NextActionCard'
+import { DashboardSection } from '@/components/dashboard/DashboardSection'
 import { computeStreak } from '@/lib/dashboard/streak'
 import { MomentumStrip } from '@/components/dashboard/MomentumStrip'
 import { buildMomentum } from '@/lib/dashboard/momentum'
 import { GradeTargetTrack } from '@/components/dashboard/GradeTargetTrack'
 import { buildGradeTarget } from '@/lib/dashboard/grade-target'
+import { buildNextAction } from '@/lib/dashboard/next-action'
 import { attemptsThisMonth, attemptsThisWeek, bestSubjectThisWeek } from '@/lib/dashboard/home-stats'
 import { displaySubjectName } from '@/lib/dashboard/subject-display'
 import { resolveDashboardState, type Recommendation } from '@/lib/insights/types'
@@ -200,117 +202,107 @@ export default async function DashboardPage() {
   // lessons whose quick check the student completed, and those students are
   // exactly the ones who used to see an empty review section forever.
   const reviewItems = await buildReviewQueue(user.id)
-  const hasReview = reviewItems.length > 0
+  const nextAction = buildNextAction({ reviewItems, recommendations })
+  // Extra due items beyond the one promoted into nextAction.
+  const moreReview = reviewItems.slice(1, 4)
 
   return (
     <main className="app-shell app-shell-tabbed ms-dash-home">
-      <div className="mx-auto min-w-0 max-w-7xl rounded-none px-0 pb-8 pt-0 sm:rounded-2xl">
+      <div className="mx-auto min-w-0 max-w-7xl rounded-none px-0 pb-8 pt-0 sm:rounded">
         <DashboardEntry>
-          <HomeHero
-            firstName={greetingName}
-            examDate={examDate}
-            weeklyAttempts={weeklyCount}
-            hideMarkCta={isEmpty}
-          />
-
-          <BillingLimitBanner className="mb-6" />
-
-          {/* Above the fold, before anything asks them to do more work: have I
-              shown up? Shown to new accounts too — the strip has its own empty
-              state, and the habit is easier to start when you can see the shape
-              of it from day one. */}
-          {/* The question a student in an exam year actually opens the app
-              for. Renders nothing until there is a mark to place on it. */}
-          {gradeTarget ? <GradeTargetTrack data={gradeTarget} /> : null}
-
-          <MomentumStrip summary={momentum} streak={streak} />
-
-          {!isEmpty ? (
-            <WeakSpotDrillCard
-              title="Practice your weakest spot"
-              className="mb-6"
-            />
-          ) : null}
-
-          <DashboardCoursesPanel catalog={continueCatalog} />
-
-          {!isEmpty ? (
-            <StudyNotebook
-              monthlyAttempts={monthlyCount}
-              streak={streak}
-              bestSubjectLabel={bestSubjectLabel}
-              recentAttempts={notebookRecent}
-              recommendations={recommendations}
-              isEmpty={false}
-            />
-          ) : null}
-
-          {!isEmpty || hasReview ? (
-            <section className="ec-card mb-6 p-5 sm:p-6">
-              <div className="mb-3 flex items-center justify-between gap-3">
-                <div>
-                  <p className="ec-eyebrow mb-1">Spaced review</p>
-                  <h2 className="text-lg font-bold text-[var(--ec-text-primary)]">
-                    Review your misses
-                  </h2>
-                </div>
-                <Link
-                  href="/dashboard/review"
-                  className="whitespace-nowrap text-sm font-semibold text-[var(--ec-brand)]"
-                >
-                  {reviewItems.length > 0 ? 'See all →' : 'Open →'}
-                </Link>
-              </div>
-              {reviewItems.length === 0 ? (
-                <p className="text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-                  You&apos;re caught up — nothing due right now. Your predicted grade,
-                  mark-losing pattern and full review plan live here.
-                </p>
-              ) : (
-              <ul className="flex flex-col gap-2">
-                {reviewItems.slice(0, 3).map((it) => (
-                  <li key={`${it.subject}-${it.code}`}>
-                    <Link
-                      href={it.practiceHref}
-                      className="flex items-center justify-between gap-3 rounded-lg border border-[var(--ec-border)] px-3 py-2 transition-colors hover:border-[color-mix(in_srgb,var(--ec-brand)_50%,var(--ec-border))]"
-                    >
-                      <span className="min-w-0 truncate text-sm font-medium text-[var(--ec-text-primary)]">
-                        {it.name}{' '}
-                        <span className="text-[var(--ec-text-faint)]">· {it.subjectLabel}</span>
-                      </span>
-                      <span className="shrink-0 text-xs font-semibold text-[var(--ec-brand)]">
-                        Review →
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              )}
-            </section>
-          ) : null}
-
           {isEmpty ? (
-            <NewUserHome
-              subjects={profileSubjectChips}
-              subjectLabel={continueSubjectLabel}
-              recommendations={recommendations}
-            />
+            <>
+              {/* DB-01: first-mark CTA before any billing/approaching chrome. */}
+              <NewUserHome
+                subjects={profileSubjectChips}
+                subjectLabel={continueSubjectLabel}
+                recommendations={recommendations}
+                board={profileBoard}
+                firstName={greetingName}
+              />
+              <BillingLimitBanner className="mb-6 mt-6" />
+            </>
           ) : (
             <>
-              <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
+              <HomeHero
+                firstName={greetingName}
+                examDate={examDate}
+                weeklyAttempts={weeklyCount}
+                hideMarkCta
+              />
+              {/* DB-02: one server-computed next action, then weekly status. */}
+              <NextActionCard action={nextAction} />
+              <BillingLimitBanner className="mb-6" />
+              <MomentumStrip summary={momentum} streak={streak} />
+
+              <DashboardSection title="Continue learning" defaultOpen>
+                <DashboardCoursesPanel catalog={continueCatalog} />
                 <ContinueWork
-                  recommendations={recommendations}
+                  recommendations={
+                    nextAction.kind === 'drill'
+                      ? recommendations.slice(1)
+                      : recommendations
+                  }
                   subjectLabel={continueSubjectLabel}
                 />
-                <ActiveSubjects subjects={activeSubjects} />
-              </div>
+              </DashboardSection>
 
-              <p className="text-caption text-center lg:text-left">
-                Want mastery matrix, journey timeline, and grade trajectory?{' '}
-                <Link href="/dashboard/progress" className="font-semibold text-[var(--ec-brand)]">
-                  View detailed progress →
-                </Link>
-              </p>
+              <DashboardSection title="Progress">
+                {gradeTarget ? <GradeTargetTrack data={gradeTarget} /> : null}
+                <StudyNotebook
+                  monthlyAttempts={monthlyCount}
+                  streak={streak}
+                  bestSubjectLabel={bestSubjectLabel}
+                  recentAttempts={notebookRecent}
+                  recommendations={recommendations}
+                  isEmpty={false}
+                />
+                {moreReview.length > 0 ? (
+                  <section className="ms-review-slip mb-6">
+                    <div className="mb-3 flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-2">
+                        <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                          RV
+                        </span>
+                        <div>
+                          <p className="ec-eyebrow mb-0">More due</p>
+                          <h3 className="text-lg font-bold text-[var(--ec-text-primary)]">
+                            Other review items
+                          </h3>
+                        </div>
+                      </div>
+                      <Link
+                        href="/dashboard/review"
+                        className="whitespace-nowrap font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-brand)]"
+                      >
+                        See all -&gt;
+                      </Link>
+                    </div>
+                    <ul className="ms-review-slip__list">
+                      {moreReview.map((it) => (
+                        <li key={`${it.subject}-${it.code}`}>
+                          <Link href={it.practiceHref} className="ms-review-slip__row">
+                            <span className="min-w-0 truncate text-sm font-medium text-[var(--ec-text-primary)]">
+                              {it.name}{' '}
+                              <span className="text-[var(--ec-text-secondary)]">· {it.subjectLabel}</span>
+                            </span>
+                            <span className="shrink-0 font-mono text-[11px] font-bold text-[var(--ec-brand)]">
+                              Review -&gt;
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                ) : null}
+                <ActiveSubjects subjects={activeSubjects} />
+                <p className="text-caption text-center lg:text-left">
+                  Want mastery matrix, journey timeline, and grade trajectory?{' '}
+                  <Link href="/dashboard/progress" className="font-semibold text-[var(--ec-brand)]">
+                    View detailed progress →
+                  </Link>
+                </p>
+              </DashboardSection>
             </>
           )}
           <AppSupportStrip className="mt-10" />

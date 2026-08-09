@@ -1,18 +1,17 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import { notFound } from 'next/navigation'
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode } from '@/lib/seo/structured-data'
-import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { CommandWordExplorer } from '@/components/tools/CommandWordExplorer'
-import { MarketingBreadcrumbs } from '@/components/seo/MarketingBreadcrumbs'
 import { getCommandWords } from '@/lib/seo/command-words'
 import { getCommandWordsHubEntry } from '@/lib/seo/command-words-hub'
 import { getCommandWordsSubjectProfile } from '@/lib/seo/command-words-subjects'
 import { isValidMarkingSubjectCode } from '@/lib/seo/programmatic-subjects'
 import { getMarkingSubjectCodes } from '@/lib/seo/programmatic-subjects'
+import { ToolInstrumentShell } from '@/components/tools/ToolInstrumentShell'
 
 type Props = { params: Promise<{ code: string }> }
 
@@ -26,6 +25,7 @@ export async function generateMetadata({ params }: Props) {
   const entry = getCommandWordsHubEntry(code)
   if (!entry) return {}
   return getPageMetadata(entry.toolPath, {
+    ogImagePath: '/api/og/tools/command-words',
     title: `${code} ${entry.label} command words — Cambridge exam technique`,
     description: `Every command word that matters in Cambridge ${code} ${entry.label} (${entry.level}): what examiners reward, common mistakes, and how to mark your answers.`,
     keywords: [
@@ -50,6 +50,7 @@ export default async function SubjectCommandWordsPage({ params }: Props) {
   const path = entry.toolPath
   const breadcrumbs = [
     { name: 'Home', path: '/' },
+    { name: 'Tools', path: '/tools' },
     { name: 'Command words', path: '/tools/command-words' },
     { name: `${code} ${entry.label}`, path },
   ]
@@ -74,8 +75,10 @@ export default async function SubjectCommandWordsPage({ params }: Props) {
     },
   ]
 
+  const topVerb = profile.topVerbs[0] ?? 'Explain'
+
   return (
-    <MarketingPageShell>
+    <>
       <PageJsonLd
         path={path}
         title={`${code} ${entry.label} command words`}
@@ -84,7 +87,8 @@ export default async function SubjectCommandWordsPage({ params }: Props) {
       />
       <JsonLd data={[faqPageNode(faqs)]} />
 
-      <MarketingHero
+      <ToolInstrumentShell
+        stamp={code.slice(0, 2)}
         label={`${code} · ${entry.level}`}
         title={
           <>
@@ -92,44 +96,72 @@ export default async function SubjectCommandWordsPage({ params }: Props) {
           </>
         }
         lead={profile.emphasis}
+        note={`lean on ${topVerb.toLowerCase()} — but circle every verb`}
+        artefact={
+          <aside className="ms-tools-artefact" aria-label={`${code} command-word focus`}>
+            <div className="ms-tools-artefact__head">
+              <span className="ms-tools-artefact__kicker">{code} · verbs</span>
+              <span className="ms-tools-artefact__stamp" aria-hidden>
+                CW
+              </span>
+            </div>
+            <div className="ms-tools-artefact__figure">
+              <span className="ms-tools-artefact__raw" style={{ fontSize: '1.5rem' }}>
+                {topVerb.slice(0, 6)}
+              </span>
+            </div>
+            <dl className="ms-tools-artefact__rows">
+              {profile.topVerbs.slice(0, 3).map((v) => (
+                <div key={v} className="ms-tools-artefact__row">
+                  <dt>Verb</dt>
+                  <dd>{v}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="ms-tools-artefact__cite" aria-hidden>
+              match depth to the verb every time
+            </p>
+          </aside>
+        }
+        breadcrumbs={breadcrumbs}
+        after={
+          <section className="ms-tool-instrument__faq" aria-labelledby="cw-subj-faq">
+            <h2 id="cw-subj-faq" className="ms-tool-instrument__faq-title">
+              FAQ
+            </h2>
+            <dl className="ms-tool-faq">
+              {faqs.map((f) => (
+                <div key={f.q}>
+                  <dt>{f.q}</dt>
+                  <dd className="ms-body-2">{f.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        }
       >
-        <MarketingBreadcrumbs items={breadcrumbs} className="mb-4" />
-        <div className="mt-4 flex flex-wrap gap-3">
-          <Link href={`/mark?subject=${code}`} className="ec-btn-primary inline-flex min-h-[48px]">
-            Mark {code} free <ArrowRight className="h-5 w-5" />
+        <div className="ms-tool-instrument__links mb-6">
+          <Link href={`/mark?subject=${code}`} className="ec-link">
+            Mark {code} free -&gt;
           </Link>
           {entry.guideSlug ? (
-            <Link href={`/blog/${entry.guideSlug}`} className="ec-btn-ghost ec-btn-ghost--sm">
-              Full {code} guide
+            <Link href={`/blog/${entry.guideSlug}`} className="ec-link">
+              Full {code} guide -&gt;
             </Link>
           ) : null}
-          <Link href={entry.subjectPath} className="ec-btn-ghost ec-btn-ghost--sm">
-            {code} marking hub
+          <Link href={entry.subjectPath} className="ec-link">
+            {code} marking hub -&gt;
+          </Link>
+          <Link href="/tools/command-words" className="ec-link">
+            All command words -&gt;
+          </Link>
+          <Link href={`/past-papers/${code}`} className="ec-link">
+            {code} past papers -&gt;
           </Link>
         </div>
-      </MarketingHero>
 
-      <MarketingSection className="!pt-0">
         <CommandWordExplorer words={words} />
-
-        <p className="ms-micro mt-8">
-          <Link href="/tools/command-words" className="ec-btn-underline">
-            All command words
-          </Link>
-          {entry.guideSlug ? (
-            <>
-              {' · '}
-              <Link href={`/blog/${entry.guideSlug}`} className="ec-btn-underline">
-                {code} guide
-              </Link>
-            </>
-          ) : null}
-          {' · '}
-          <Link href={`/past-papers/${code}`} className="ec-btn-underline">
-            {code} past papers
-          </Link>
-        </p>
-      </MarketingSection>
-    </MarketingPageShell>
+      </ToolInstrumentShell>
+    </>
   )
 }

@@ -212,34 +212,39 @@ export default function ComparePage() {
           <h2 id="compare-faq-heading" className="ec-h3 mb-5 text-[var(--ec-text-primary)]">
             Frequently asked questions
           </h2>
-          <dl className="space-y-3">
+          <dl className="ms-tool-faq">
             {COMPARE_SEO_FAQ.map((item) => (
-              <div
-                key={item.q}
-                className="rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface)] px-5 py-4"
-              >
-                <dt className="text-body font-semibold text-[var(--ec-text-primary)]">{item.q}</dt>
-                <dd className="mt-1.5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">{item.a}</dd>
+              <div key={item.q}>
+                <dt>{item.q}</dt>
+                <dd>{item.a}</dd>
               </div>
             ))}
           </dl>
         </section>
       </MarketingSection>
       <MarketingSection className="!pt-0">
-        <div className="rounded-3xl border border-[var(--ec-border)] bg-[var(--ec-bg-soft)] px-6 py-10 text-center sm:px-10">
-          <h2 className="ec-h3 text-[var(--ec-text-primary)]">
-            See it on your own handwriting
-          </h2>
-          <p className="mx-auto mt-2 max-w-md text-body text-[var(--ec-text-secondary)]">
+        <div className="ms-board-cross mt-4 text-center sm:text-left">
+          <p className="ms-overline">Try it</p>
+          <h2 className="ms-h2">See it on your own handwriting</h2>
+          <p className="ms-body-2 mx-auto mt-2 max-w-md text-[var(--ec-text-secondary)] sm:mx-0">
             One free question, marked against the official scheme — the fastest way
             to compare is to try it. Cambridge, IB, or Edexcel IAL Maths.
           </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-            <Link href="/mark" className="ec-btn-primary inline-flex">
-              Mark a question free →
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
+            <Link
+              href="/mark"
+              className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+            >
+              <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                M1
+              </span>
+              Mark a question free -&gt;
             </Link>
-            <Link href="/mark?board=edexcel&subject=WMA11" className="ec-btn-ghost inline-flex min-h-[48px]">
-              Edexcel IAL Maths →
+            <Link
+              href="/mark?board=edexcel&subject=WMA11"
+              className="ec-btn-ghost inline-flex min-h-[48px]"
+            >
+              Edexcel IAL Maths -&gt;
             </Link>
           </div>
         </div>

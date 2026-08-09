@@ -4,20 +4,15 @@ import { LoadingLink } from '@/components/ui/LoadingLink'
 export default function NotFound() {
   return (
     <main className="app-shell flex min-h-[60vh] items-center justify-center px-4">
-      <div className="ec-card relative mx-auto w-full max-w-lg overflow-hidden p-8 text-center sm:p-12">
-        <div
-          className="pointer-events-none absolute -right-24 -top-24 h-48 w-48 rounded-full ec-glow-orb blur-[80px] opacity-60"
+      <div className="ec-card ec-card--paper relative mx-auto w-full max-w-lg overflow-hidden border border-[var(--ec-border)] p-8 text-center shadow-[var(--ec-shadow-hard,6px_6px_0_rgba(0,0,0,0.1))] sm:p-12">
+        <span
+          className="mx-auto mb-4 inline-grid h-8 min-w-8 place-items-center rounded border border-[var(--ec-ink-crimson,#bb2a25)] bg-[color-mix(in_srgb,var(--ec-ink-crimson,#bb2a25)_10%,transparent)] px-2 font-mono text-xs font-bold tracking-wide text-[var(--ec-ink-crimson,#bb2a25)]"
           aria-hidden
-        />
+        >
+          A0
+        </span>
         <p
-          className="relative mb-2 font-mono text-[64px] font-bold leading-none tracking-tight"
-          style={{
-            background:
-              'linear-gradient(180deg, var(--ec-brand), color-mix(in srgb, var(--ec-brand) 35%, transparent))',
-            WebkitBackgroundClip: 'text',
-            backgroundClip: 'text',
-            color: 'transparent',
-          }}
+          className="relative mb-2 font-mono text-[64px] font-bold leading-none tracking-tight text-[var(--ec-brand)]"
           aria-hidden
         >
           404
@@ -26,11 +21,11 @@ export default function NotFound() {
         <p className="text-body mb-8">
           That link may be broken, or the page may have moved. Try one of these
           instead — or search the site with{' '}
-          <kbd className="rounded-md border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-1.5 py-0.5 font-mono text-xs font-semibold">
+          <kbd className="rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] px-1.5 py-0.5 font-mono text-xs font-semibold shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.05))]">
             Ctrl
           </kbd>{' '}
           +{' '}
-          <kbd className="rounded-md border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-1.5 py-0.5 font-mono text-xs font-semibold">
+          <kbd className="rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] px-1.5 py-0.5 font-mono text-xs font-semibold shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.05))]">
             K
           </kbd>
           .
@@ -63,12 +58,8 @@ export default function NotFound() {
             FAQ
           </Link>
           {' · '}
-          <Link href="/ib" className="ec-link">
-            IB past papers
-          </Link>
-          {' · '}
-          <Link href="/dashboard" className="ec-link">
-            Dashboard
+          <Link href="/guides" className="ec-link">
+            Guides
           </Link>
         </p>
       </div>

@@ -6,7 +6,6 @@ import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { learningResourceNode, itemListNode, faqPageNode } from '@/lib/seo/structured-data'
 import { SITE_URL } from '@/lib/site-config'
-import { Chip } from '@/components/margin-notes'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 import { getIbSubject, getIbSubjects, getIbSubjectSlugs } from '@/lib/ib/catalog'
 import { buildIbSubjectCopy, ibShortName } from '@/lib/seo/ib-seo'
@@ -41,7 +40,7 @@ export async function generateMetadata({ params }: Props) {
     description,
     path: copy.path,
     keywords: copy.keywords,
-    ogImagePath: '/ib/opengraph-image',
+    ogImagePath: `/api/og/ib/${slug}`,
   })
 }
 
@@ -152,33 +151,116 @@ export default async function IbSubjectPage({ params }: Props) {
       >
         <MarketingBreadcrumbs items={breadcrumbs} className="mb-6" />
 
-        <div className="ms-sd-head">
+        <div className="ms-sd-head" data-code={subject.level}>
           <div className="ms-sd-glyph" aria-hidden>
-            {subject.glyph}
+            {subject.level}
           </div>
-          <div className="min-w-0 flex-1">
-            <h1 className="ms-h2" style={{ marginBottom: 2 }}>
-              {subject.name}{' '}
-              <em style={{ color: 'var(--ec-text-faint)', fontSize: '0.55em' }}>· IB {subject.level}</em>
+          <div className="min-w-0 flex-1" style={{ position: 'relative', zIndex: 1 }}>
+            <p className="ms-overline" style={{ marginBottom: 4 }}>
+              IB · Group {subject.groupNumber} · {subject.group}
+            </p>
+            <h1 className="ms-h2" style={{ marginBottom: 6 }}>
+              {subject.name}
             </h1>
-            <div className="flex flex-wrap gap-2">
-              <Chip variant="dim">Group {subject.groupNumber}</Chip>
-              <Chip variant="dim">{subject.group}</Chip>
-              <Chip variant="dim">{subject.papers.length} papers</Chip>
+            <p className="ms-micro">
+              {subject.level} · {subject.papers.length} papers
+            </p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Link
+                href={`/mark?subject=ib-${slug.replace(/-(hl|sl)$/i, '')}`}
+                className="ec-btn-primary inline-flex min-h-[44px] items-center gap-2"
+              >
+                <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                  M1
+                </span>
+                Criterion mark -&gt;
+              </Link>
+              <Link
+                href={`/ib/past-papers/${subject.slug}`}
+                className="ec-btn-ghost inline-flex min-h-[44px]"
+              >
+                Past papers
+              </Link>
             </div>
           </div>
-          <Link
-            href={`/ib/past-papers/${subject.slug}`}
-            className="ec-btn-primary ms-auto shrink-0 px-6 py-3 text-sm"
-          >
-            Past papers
-          </Link>
+        </div>
+
+        {communityOn ? (
+          <div style={{ marginTop: 32 }}>
+            <CommunityEntry
+              subjectCode={subject.slug}
+              title={`IB ${subject.name} ${subject.level} community`}
+            />
+          </div>
+        ) : null}
+
+        {course ? (
+          <SubjectChapters
+            code={course.code}
+            lessons={getIbCourseLessonsForCatalog(subject.slug)}
+            basePath="/ib/courses"
+            accent={subject.accent}
+            heading={`${subject.name} ${subject.level} chapters`}
+          />
+        ) : null}
+
+        <div className="ms-sd-grid">
+          <div>
+            <section aria-labelledby="ib-papers">
+              <h2 id="ib-papers" className="ms-overline" style={{ marginBottom: 12 }}>
+                Papers in {subject.name} {subject.level}
+              </h2>
+              <ul className="ms-board-index ms-board-index--guides">
+                {subject.papers.map((p, i) => (
+                  <li key={p} className="ms-board-slip">
+                    <span className="ms-board-slip__code">{subject.level}</span>
+                    <span className="ms-board-slip__body">
+                      <span className="ms-board-slip__name">{p}</span>
+                      <span className="ms-board-slip__blurb">
+                        {i === 0
+                          ? 'Practise under timed conditions, then mark against the band descriptors.'
+                          : 'Drill the question style, then review the markbands to push into the top band.'}
+                      </span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
+
+          <div className="flex flex-col gap-[18px]">
+            <div className="ms-board-cross">
+              <p className="ms-overline">How IB marking differs</p>
+              <p className="ms-body-2 mt-2">
+                Unlike point-based A-Level mark schemes, IB uses <strong>markbands</strong> — examiners place your
+                answer in a level band against descriptors. Knowing the band wording is how you turn a
+                5 into a 7.
+              </p>
+            </div>
+            <div className="ms-board-cross">
+              <p className="ms-overline">Check your work</p>
+              <p className="ms-body-2 mt-2 mb-4">
+                Upload a photo of your answer and get structured, criteria-based feedback on where the
+                marks are.
+              </p>
+              <Link
+                href={`/mark?subject=ib-${slug.replace(/-(hl|sl)$/i, '')}`}
+                className="ec-btn-primary inline-flex min-h-[44px] items-center gap-2"
+              >
+                <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                  M1
+                </span>
+                Get feedback -&gt;
+              </Link>
+            </div>
+          </div>
         </div>
 
         <HubSeoIntro
+          quiet
           headingLevel="h2"
           heading={`IB ${subject.name} ${subject.level} — papers & markbands`}
-          paragraph={`${subject.blurb} Below are the papers you'll sit and how examiners award marks. Practise past papers, learn the markbands, then check your own answers for feedback.`}
+          paragraph={`${subject.blurb} Above are the papers you'll sit and how examiners award marks. Practise past papers, learn the markbands, then check your own answers for feedback.`}
           links={[
             { href: `/ib/past-papers/${subject.slug}`, label: 'Past papers →', variant: 'primary' },
             ...(course
@@ -213,86 +295,15 @@ export default async function IbSubjectPage({ params }: Props) {
           ]}
         />
 
-        {communityOn ? (
-          <div style={{ marginTop: 32 }}>
-            <CommunityEntry
-              subjectCode={subject.slug}
-              title={`IB ${subject.name} ${subject.level} community`}
-            />
-          </div>
-        ) : null}
-
-        {course ? (
-          <SubjectChapters
-            code={course.code}
-            lessons={getIbCourseLessonsForCatalog(subject.slug)}
-            basePath="/ib/courses"
-            accent={subject.accent}
-            heading={`${subject.name} ${subject.level} chapters`}
-          />
-        ) : null}
-
-        <div className="ms-sd-grid">
-          <div>
-            <section aria-labelledby="ib-papers">
-              <h2 id="ib-papers" className="ms-overline" style={{ marginBottom: 12 }}>
-                Papers in {subject.name} {subject.level}
-              </h2>
-              <ul className="ms-pp-year-list">
-                {subject.papers.map((p, i) => (
-                  <li key={p} className="ms-sd-card ms-sd-card-pad">
-                    <div className="ms-pp-year-head">
-                      <span className="ms-pp-year" style={{ fontSize: 18 }}>{p}</span>
-                      <span className="ms-pp-paperno">{subject.level}</span>
-                    </div>
-                    <p className="ms-body-2" style={{ marginTop: 6, color: 'var(--ec-text-secondary)' }}>
-                      {i === 0
-                        ? 'Practise this paper under timed conditions, then mark against the band descriptors.'
-                        : 'Drill the question style, then review the markbands to push into the top band.'}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          </div>
-
-          <div className="flex flex-col gap-[18px]">
-            <div className="ms-sd-card ms-sd-card-pad" style={{ background: 'var(--ec-bg-soft)' }}>
-              <p className="ms-overline" style={{ marginBottom: 8 }}>
-                How IB marking differs
-              </p>
-              <p className="ms-body-2">
-                Unlike point-based A-Level mark schemes, IB uses <strong>markbands</strong> — examiners place your
-                answer in a level band against descriptors. Knowing the band wording is how you turn a
-                5 into a 7.
-              </p>
-            </div>
-            <div className="ms-sd-card ms-sd-card-pad">
-              <p className="ms-overline" style={{ marginBottom: 8 }}>
-                Check your work
-              </p>
-              <p className="ms-body-2" style={{ marginBottom: 14 }}>
-                Upload a photo of your answer and get structured, criteria-based feedback on where the
-                marks are.
-              </p>
-              <Link href={`/mark?subject=ib-${slug.replace(/-(hl|sl)$/i, '')}`} className="ec-btn-underline text-sm">
-                Get feedback →
-              </Link>
-            </div>
-          </div>
-        </div>
-
         <section className="ms-subject-faq" aria-labelledby="ib-subject-faq">
           <h2 id="ib-subject-faq" className="ms-h3">
             Frequently asked questions
           </h2>
-          <dl className="mt-6 space-y-6">
+          <dl className="ms-tool-faq">
             {faq.map((item) => (
               <div key={item.q} data-chunk-id={item.q.slice(0, 36)}>
-                <dt className="font-semibold text-[var(--ec-text-primary)]">{item.q}</dt>
-                <dd className="mt-2 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-                  {item.a}
-                </dd>
+                <dt>{item.q}</dt>
+                <dd className="ms-body-2">{item.a}</dd>
               </div>
             ))}
           </dl>
@@ -302,23 +313,29 @@ export default async function IbSubjectPage({ params }: Props) {
 
         {related.length ? (
           <nav className="mt-12 border-t border-[var(--ec-border)] pt-8" aria-label="Related IB subjects">
-            <p className="ms-micro" style={{ marginBottom: 12 }}>
-              MORE {subject.group.toUpperCase()}
+            <p className="ms-overline" style={{ marginBottom: 12 }}>
+              More {subject.group}
             </p>
-            <ul className="flex flex-wrap gap-2">
+            <ul className="ms-board-index ms-board-index--guides">
               {related.map((s) => (
                 <li key={s.slug}>
                   <Link
                     href={`/ib/subjects/${s.slug}`}
-                    className="inline-flex rounded-full border border-[var(--ec-border)] px-3 py-1.5 text-xs font-semibold text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]"
+                    className="ms-board-slip ms-board-slip--compact"
                   >
-                    {s.name} {s.level}
+                    <span className="ms-board-slip__code">{s.level}</span>
+                    <span className="ms-board-slip__body">
+                      <span className="ms-board-slip__name">{s.name}</span>
+                    </span>
+                    <span className="ms-board-slip__go" aria-hidden>
+                      -&gt;
+                    </span>
                   </Link>
                 </li>
               ))}
             </ul>
             <Link href="/ib" className="ec-btn-underline mt-4 inline-block text-sm">
-              All IB subjects →
+              All IB subjects -&gt;
             </Link>
           </nav>
         ) : null}

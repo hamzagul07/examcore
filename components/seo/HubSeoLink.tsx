@@ -16,7 +16,7 @@ export function HubSeoLink({
     variant === 'primary'
       ? 'ec-btn-primary px-4 py-2 text-sm'
       : variant === 'muted'
-        ? 'inline-flex rounded-full border border-[var(--ec-border)] px-3 py-1.5 text-xs font-semibold text-[var(--ec-text-secondary)] no-underline hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]'
+        ? 'inline-flex rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-3 py-1.5 font-mono text-[11px] font-semibold tracking-wide shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.05))] text-[var(--ec-text-secondary)] no-underline hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]'
         : 'ec-btn-ghost px-4 py-2 text-sm no-underline'
 
   if (variant === 'primary') {

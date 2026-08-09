@@ -20,15 +20,15 @@ export function LandingHeroSheet() {
         tally="4 / 5"
         cite="MS 9709/12/M/J/23 · Q7(b): M1 differentiate · M1 set = 0 · A1 both roots · A1 classification"
       >
-        <ExamSheetLine work="dy/dx = 3x² − 12x + 9" mark="M1 ✓" ok stampDelayMs={80} />
-        <ExamSheetLine work="3x² − 12x + 9 = 0" mark="M1 ✓" ok stampDelayMs={200} />
-        <ExamSheetLine work="x = 1, x = 3" mark="A1 ✓" ok stampDelayMs={320} />
+        <ExamSheetLine work="dy/dx = 3x² − 12x + 9" mark="M1 ✓" ok stampDelayMs={180} />
+        <ExamSheetLine work="3x² − 12x + 9 = 0" mark="M1 ✓" ok stampDelayMs={420} />
+        <ExamSheetLine work="x = 1, x = 3" mark="A1 ✓" ok stampDelayMs={680} />
         <ExamSheetLine
           work="min at x = 1"
           mark="A0 ✗"
           ok={false}
           note="check d²y/dx² — x = 1 is the maximum ↑"
-          stampDelayMs={440}
+          stampDelayMs={980}
         />
       </ExamSheet>
       <p className="ms-sheet-caption">real Examiner&apos;s Ink on typed or handwritten work</p>

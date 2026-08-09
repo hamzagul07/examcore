@@ -1,15 +1,16 @@
 import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
 
+/** Shared teacher-route shell — slip list, not a card grid. */
 export default function TeacherLoading() {
   return (
     <main className="app-shell md:py-10">
       <div className="mx-auto min-w-0 max-w-7xl">
-        <SkeletonLine className="mb-3 h-3 w-20" />
-        <SkeletonBlock className="mb-8 h-10 w-48" />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <SkeletonBlock className="h-36 w-full" />
-          <SkeletonBlock className="h-36 w-full" />
-          <SkeletonBlock className="h-36 w-full sm:col-span-2 lg:col-span-1" />
+        <SkeletonLine className="mb-3 h-3 w-28" />
+        <SkeletonBlock className="mb-8 h-10 w-56 max-w-full" />
+        <div className="ms-teacher-class-list">
+          <SkeletonBlock className="h-20 w-full" />
+          <SkeletonBlock className="h-20 w-full" />
+          <SkeletonBlock className="h-20 w-full" />
         </div>
       </div>
     </main>

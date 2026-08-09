@@ -3,7 +3,6 @@
 import { useEffect } from 'react'
 import Link from 'next/link'
 import { buildSignUpHref } from '@/lib/auth-redirect'
-import { Sparkles } from 'lucide-react'
 import { trackFunnelEvent } from '@/lib/analytics/funnel'
 import { capForTier, omniCapForTier, tierMarketingName } from '@/lib/billing/caps'
 import { Sheet } from '@/components/ui/Sheet'
@@ -76,9 +75,9 @@ export function UpgradeModal({
 
   return (
     <Sheet open={open} onClose={onClose} title={title} className="ms-upgrade-sheet">
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border ec-tint-brand-icon">
-        <Sparkles className="h-6 w-6 ec-text-brand" />
-      </div>
+      <span className="ec-ink-stamp ec-ink-stamp--hero mb-4" aria-hidden>
+        {isAnon ? '@' : 'M1'}
+      </span>
 
       <h2 className="text-headline text-[var(--ec-text-primary)]">{title}</h2>
       <p className="text-body mt-2 text-[var(--ec-text-secondary)]">

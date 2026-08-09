@@ -2,17 +2,16 @@
 
 import { useEffect, useState, type ReactNode } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { Sparkles, Route, LayoutGrid, ListChecks, type LucideIcon } from 'lucide-react'
 
 export type ProgressTabKey = 'insights' | 'journey' | 'topics' | 'attempts'
 
-type TabDef = { key: ProgressTabKey; label: string; icon: LucideIcon }
+type TabDef = { key: ProgressTabKey; label: string; glyph: string }
 
 const TABS: TabDef[] = [
-  { key: 'insights', label: 'Insights', icon: Sparkles },
-  { key: 'journey', label: 'Journey', icon: Route },
-  { key: 'topics', label: 'Detailed topics', icon: LayoutGrid },
-  { key: 'attempts', label: 'All attempts', icon: ListChecks },
+  { key: 'insights', label: 'Insights', glyph: '◇' },
+  { key: 'journey', label: 'Journey', glyph: '→' },
+  { key: 'topics', label: 'Detailed topics', glyph: '#' },
+  { key: 'attempts', label: 'All attempts', glyph: '≡' },
 ]
 
 type Props = {
@@ -65,7 +64,6 @@ export function ProgressTabs({ insights, journey, topics, attempts }: Props) {
         <div className="ms-progress-tabs">
           {TABS.map((tab) => {
             const selected = tab.key === active
-            const Icon = tab.icon
             return (
               <button
                 key={tab.key}
@@ -75,7 +73,9 @@ export function ProgressTabs({ insights, journey, topics, attempts }: Props) {
                 onClick={() => setActive(tab.key)}
                 className={`ms-progress-tab${selected ? ' on' : ''}`}
               >
-                <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span className="ms-progress-tab-glyph" aria-hidden>
+                  {tab.glyph}
+                </span>
                 <span className="sm:hidden">
                   {tab.key === 'topics'
                     ? 'Topics'

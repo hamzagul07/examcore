@@ -9,12 +9,19 @@ type WordmarkProps = {
   size?: 'sm' | 'md'
 }
 
-/** MarkScheme wordmark — Newsreader with ink-green dot (prototype). */
+/**
+ * MarkScheme wordmark — Newsreader with ink-green period.
+ * Dual ink is intentional: green period = awarded marks; crimson logo tick
+ * (--ec-logo-crimson) = examiner correction. Do not unify to one colour.
+ */
 export function Wordmark({ className = '', size = 'md' }: WordmarkProps) {
   const textClass = size === 'sm' ? 'text-[21px]' : 'text-[23px]'
 
   return (
-    <span className={`ec-wordmark inline-flex items-baseline ${textClass} ${className}`}>
+    <span
+      className={`ec-wordmark inline-flex items-baseline ${textClass} ${className}`}
+      title="Green = awarded · Crimson = examiner correction"
+    >
       MarkScheme
       <i className="ec-wordmark-dot" aria-hidden>
         .

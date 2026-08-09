@@ -1,14 +1,11 @@
 'use client'
 
 import { useId, useMemo } from 'react'
-import { LineChart, Sparkles, TrendingUp } from 'lucide-react'
 import { EmptyState } from './EmptyState'
 import { GRADE_BOUNDARIES } from '@/lib/grade-boundaries'
 import { gapToTargetGrade } from '@/lib/target-grade'
 import type { AttemptLite } from '@/lib/mastery'
 import type { GradePrediction } from '@/lib/prediction'
-import { TiltCard } from '@/components/effects/TiltCard'
-
 type Props = {
   attempts: AttemptLite[]
   prediction: GradePrediction
@@ -41,35 +38,33 @@ export function GradeTrajectory({
 
   return (
     <section className="ms-grade-trajectory grid grid-cols-1 gap-4 lg:grid-cols-5">
-      <TiltCard
-        intensity={3}
-        glow={false}
-        className="rounded-3xl lg:col-span-3"
-      >
-        <div className="ms-dash-card h-full">
-          <div className="mb-5 flex items-center gap-2">
-            <LineChart className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden="true" />
-            <p className="ms-overline" style={{ marginBottom: 0 }}>Grade trajectory</p>
-          </div>
-          <h2 className="ms-h3">
-            Your last {Math.max(series.length, 1)} attempt
-            {series.length === 1 ? '' : 's'}
-          </h2>
-          <p className="ms-body-2 mt-1">
-            {ibMode
-              ? 'Percentages across your recent attempts.'
-              : 'Percentages charted against Cambridge 9709 grade boundaries.'}
+      <div className="ms-dash-card ms-grade-trajectory__chart h-full lg:col-span-3">
+        <div className="mb-5 flex items-center gap-2">
+          <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+            ∴
+          </span>
+          <p className="ms-overline" style={{ marginBottom: 0 }}>
+            Grade trajectory
           </p>
-
-          <div className="mt-6">
-            <TrajectoryChart series={series} />
-          </div>
         </div>
-      </TiltCard>
+        <h2 className="ms-h3">
+          Your last {Math.max(series.length, 1)} attempt
+          {series.length === 1 ? '' : 's'}
+        </h2>
+        <p className="ms-body-2 mt-1">
+          {ibMode
+            ? 'Percentages across your recent attempts.'
+            : 'Percentages charted against Cambridge 9709 grade boundaries.'}
+        </p>
 
-      <TiltCard intensity={5} className="rounded-3xl lg:col-span-2">
+        <div className="mt-6">
+          <TrajectoryChart series={series} />
+        </div>
+      </div>
+
+      <div className="lg:col-span-2">
         <PredictiveGradeCard prediction={prediction} ibMode={ibMode} targetGrade={targetGrade} />
-      </TiltCard>
+      </div>
     </section>
   )
 }
@@ -131,7 +126,7 @@ function TrajectoryChart({ series }: { series: Point[] }) {
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
           <EmptyState
-            icon={Sparkles}
+            stamp="∴"
             illustration="no-data"
             title="Your scores will appear here"
             body="Each marked answer becomes a point on this line. Grade boundaries (A* through E) are pre-drawn so you can see where you're tracking."
@@ -179,7 +174,6 @@ function TrajectoryChart({ series }: { series: Point[] }) {
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          style={{ filter: 'drop-shadow(0 0 6px color-mix(in srgb, var(--ec-brand) 60%, transparent))' }}
         />
       )}
 
@@ -189,10 +183,9 @@ function TrajectoryChart({ series }: { series: Point[] }) {
             cx={xScale(p.x)}
             cy={yScale(p.y)}
             r="5"
-            fill="var(--ec-surface-raised)"
+            fill="var(--ec-paper, var(--ec-surface-raised))"
             stroke="var(--ec-brand)"
             strokeWidth="2.5"
-            style={{ filter: 'drop-shadow(0 0 4px color-mix(in srgb, var(--ec-brand) 70%, transparent))' }}
           />
           <title>
             {new Date(p.attempt.created_at).toLocaleDateString('en-US', {
@@ -297,28 +290,31 @@ function PredictiveGradeCard({
     <div
       className="ms-dash-card relative h-full overflow-hidden"
       style={{
-        borderColor: isPlaceholder ? undefined : `${prediction.color}55`,
+        borderColor: isPlaceholder
+          ? undefined
+          : `color-mix(in srgb, ${prediction.color} 45%, var(--ec-border))`,
         background: isPlaceholder
           ? undefined
-          : `linear-gradient(160deg, color-mix(in srgb, ${prediction.color} 14%, transparent) 0%, color-mix(in srgb, var(--ec-surface) 92%, transparent) 60%)`,
+          : `color-mix(in srgb, ${prediction.color} 8%, var(--ec-paper, var(--ec-surface)))`,
         boxShadow: isPlaceholder
           ? undefined
-          : `0 0 0 1px ${prediction.color}30 inset, 0 0 48px ${prediction.color}28, 0 24px 64px -12px rgba(0,0,0,0.6)`,
+          : 'var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1))',
       }}
     >
-      <div
-        className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full blur-[80px]"
-        style={{
-          backgroundColor: isPlaceholder
-            ? 'color-mix(in srgb, var(--ec-text-primary) 5%, transparent)'
-            : `${prediction.color}40`,
-        }}
-        aria-hidden="true"
-      />
 
       <div className="relative">
         <div className="mb-3 flex items-center gap-2">
-          <TrendingUp className="h-4 w-4" style={{ color: prediction.color }} aria-hidden="true" />
+          <span
+            className="inline-grid h-5 min-w-5 place-items-center rounded border px-1 font-mono text-[10px] font-bold tracking-wide"
+            style={{
+              color: prediction.color,
+              borderColor: `color-mix(in srgb, ${prediction.color} 45%, transparent)`,
+              background: `color-mix(in srgb, ${prediction.color} 12%, transparent)`,
+            }}
+            aria-hidden
+          >
+            A*
+          </span>
           <p
             className="ms-overline"
             style={{ marginBottom: 0, color: prediction.color }}
@@ -333,7 +329,7 @@ function PredictiveGradeCard({
 
         <div className="flex items-baseline gap-3">
           {ibMode ? (
-            <span className="mt-2 inline-flex items-center rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface)] px-3 py-1.5 text-sm font-semibold text-[var(--ec-text-secondary)]">
+            <span className="mt-2 inline-flex items-center rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-3 py-1.5 font-mono text-xs font-semibold tracking-wide text-[var(--ec-text-secondary)]">
               1–7 estimate coming soon
             </span>
           ) : (
@@ -365,7 +361,12 @@ function PredictiveGradeCard({
 
         {targetGrade && !isPlaceholder && (
           <p className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold ec-text-brand">
-            <Sparkles className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+            <span
+              className="inline-grid h-4 min-w-4 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-0.5 font-mono text-[9px] font-bold text-[var(--ec-brand)]"
+              aria-hidden
+            >
+              ↑
+            </span>
             {targetGap?.onTrack
               ? `On track for your target ${targetGrade}`
               : targetGap
@@ -375,7 +376,7 @@ function PredictiveGradeCard({
         )}
 
         {!isPlaceholder ? (
-          <div className="ec-highlight-success-panel mt-6 rounded-2xl p-4">
+          <div className="ec-card ec-card--paper ec-highlight-success-panel mt-6 p-4">
             <div className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] ec-text-brand">
               Path to next grade
             </div>
@@ -415,13 +416,12 @@ function ConfidenceBar({
         <span>Confidence</span>
         <span>{confidence}%</span>
       </div>
-      <div className="h-1.5 w-full overflow-hidden rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)]">
+      <div className="h-1.5 w-full overflow-hidden rounded-[2px] border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))]">
         <div
-          className="h-full rounded-full transition-all duration-700"
+          className="h-full rounded-[1px] transition-all duration-700"
           style={{
             width: `${confidence}%`,
             backgroundColor: color,
-            boxShadow: `0 0 12px ${color}80`,
           }}
         />
       </div>

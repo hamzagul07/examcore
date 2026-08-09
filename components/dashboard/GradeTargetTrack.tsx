@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { CalendarDays, Flag } from 'lucide-react'
 import type { GradeTarget } from '@/lib/dashboard/grade-target'
 
 /**
@@ -70,7 +69,9 @@ export function GradeTargetTrack({ data }: { data: GradeTarget }) {
 
         {daysToExam != null && (
           <div className="ms-grade-target__countdown">
-            <CalendarDays className="h-4 w-4" aria-hidden="true" />
+            <span className="ec-ink-stamp" aria-hidden>
+              d
+            </span>
             <span className="ms-grade-target__days">{daysToExam}</span>
             <span className="ms-grade-target__days-label">
               day{daysToExam === 1 ? '' : 's'} to your exam
@@ -113,7 +114,9 @@ export function GradeTargetTrack({ data }: { data: GradeTarget }) {
               style={{ left: `${pos(targetPct)}%` }}
               title={`Target: ${targetGrade}`}
             >
-              <Flag className="h-3.5 w-3.5" aria-hidden="true" />
+              <span className="ms-grade-track__target-mark" aria-hidden>
+                ★
+              </span>
             </span>
           )}
 

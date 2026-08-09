@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode, softwareApplicationNode } from '@/lib/seo/structured-data'
@@ -12,6 +11,8 @@ import {
   getGradeBoundaryCalculatorPages,
   isValidMarkingSubjectCode,
 } from '@/lib/seo/programmatic-subjects'
+import { ToolInstrumentShell } from '@/components/tools/ToolInstrumentShell'
+import { ToolsDeskArtefact } from '@/components/tools/ToolsDeskArtefact'
 
 type Props = { searchParams: Promise<{ code?: string }> }
 
@@ -70,7 +71,7 @@ export default async function WillMyGradeHoldPage({ searchParams }: Props) {
       : 'A-Level'
 
   return (
-    <MarketingPageShell>
+    <>
       <PageJsonLd
         path={path}
         title="Will my grade hold?"
@@ -83,73 +84,95 @@ export default async function WillMyGradeHoldPage({ searchParams }: Props) {
       />
       <JsonLd data={[faqPageNode(FAQS), softwareApplicationNode()]} />
 
-      <MarketingHero
-        label="Results Day tool"
-        title="Will my grade hold?"
+      <ToolInstrumentShell
+        stamp="A*"
+        label="Results Day instrument"
+        title={
+          <>
+            Will my grade <em>hold</em>?
+          </>
+        }
         lead="Enter your raw mark and the published thresholds for your component. See the grade, the gap to the next boundary, then capture the November mock pack."
+        note="thresholds are ink — grades are earned"
+        artefact={<ToolsDeskArtefact />}
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Tools', path: '/tools' },
+          { name: 'Will my grade hold?', path },
+        ]}
+        after={
+          <section className="ms-tool-instrument__faq" aria-labelledby="grade-hold-faq">
+            <h2 id="grade-hold-faq" className="ms-tool-instrument__faq-title">
+              FAQ
+            </h2>
+            <dl className="ms-tool-faq">
+              {FAQS.map((f) => (
+                <div key={f.q}>
+                  <dt>{f.q}</dt>
+                  <dd className="ms-body-2">{f.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        }
       >
-        <p className="ms-body-2 mt-4">
+        <ResultsDayBanner subjectCode={code} className="mb-6" />
+
+        <p className="ms-body-2 mb-5">
           Coming from Results Day?{' '}
-          <Link href="/results-2026" className="underline">
+          <Link href="/results-2026" className="ec-link">
             Open the 2026 hub
           </Link>
           {code ? (
             <>
               {' '}
               ·{' '}
-              <Link href={`/results-2026/caie/${code}`} className="underline">
+              <Link href={`/results-2026/caie/${code}`} className="ec-link">
                 {code} page
               </Link>
             </>
           ) : null}
         </p>
-      </MarketingHero>
 
-      <MarketingSection className="!pt-0">
-        <ResultsDayBanner subjectCode={code} className="mb-10" />
-        <div className="mb-6">
-          <p className="ms-overline">Jump to a syllabus</p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {QUICK_CODES.map((item) => {
-              const active = code === item.code
-              return (
-                <Link
-                  key={item.code}
-                  href={`/tools/will-my-grade-hold?code=${item.code}`}
-                  className={
-                    active
-                      ? 'ec-btn-primary ec-btn-primary--sm'
-                      : 'ec-btn-ghost ec-btn-ghost--sm'
-                  }
-                  aria-current={active ? 'page' : undefined}
-                >
-                  {item.code} · {item.label}
-                </Link>
-              )
-            })}
-            <Link href="/guides/grade-boundaries" className="ec-btn-ghost ec-btn-ghost--sm">
-              All subjects
-            </Link>
-          </div>
+        <div className="ms-tool-instrument__rail" role="navigation" aria-label="Jump to a syllabus">
+          <p className="ms-tool-instrument__rail-label">Syllabus</p>
+          {QUICK_CODES.map((item) => {
+            const active = code === item.code
+            return (
+              <Link
+                key={item.code}
+                href={`/tools/will-my-grade-hold?code=${item.code}`}
+                className={`ms-tool-instrument__stamp-link${active ? ' is-active' : ''}`}
+                aria-current={active ? 'page' : undefined}
+              >
+                {item.code}
+              </Link>
+            )
+          })}
+          <Link href="/guides/grade-boundaries" className="ms-tool-instrument__stamp-link">
+            All
+          </Link>
         </div>
-        <div className="mb-8 flex flex-wrap gap-3">
+
+        <div className="ms-tool-instrument__links">
           <Link
             href={
               code
                 ? `/tools/grade-boundary-calculator/${code}`
                 : '/tools/grade-boundary-calculator'
             }
-            className="ec-btn-ghost ec-btn-ghost--sm"
+            className="ec-link"
           >
-            Grade boundary calculator
+            Grade boundary calculator -&gt;
           </Link>
-          <Link href="/results-2026" className="ec-btn-ghost ec-btn-ghost--sm">
-            Results Day hub
+          <Link href="/results-2026" className="ec-link">
+            Results Day hub -&gt;
           </Link>
-          <Link href="/guides/grade-boundaries" className="ec-btn-ghost ec-btn-ghost--sm">
-            2026 boundaries hub
+          <Link href="/guides/grade-boundaries" className="ec-link">
+            2026 boundaries -&gt;
           </Link>
         </div>
+
         <WillMyGradeHold
           code={code}
           subjectLabel={subject?.label ?? null}
@@ -157,19 +180,7 @@ export default async function WillMyGradeHoldPage({ searchParams }: Props) {
           defaultLevel={level}
         />
         <EdexcelWrongBoardBridge />
-      </MarketingSection>
-
-      <MarketingSection>
-        <h2 className="ms-h2">FAQ</h2>
-        <dl className="ms-tool-faq mt-6">
-          {FAQS.map((f) => (
-            <div key={f.q}>
-              <dt>{f.q}</dt>
-              <dd className="ms-body-2">{f.a}</dd>
-            </div>
-          ))}
-        </dl>
-      </MarketingSection>
-    </MarketingPageShell>
+      </ToolInstrumentShell>
+    </>
   )
 }

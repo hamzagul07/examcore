@@ -26,25 +26,25 @@ export function DashboardCoursesPanel({ catalog }: Props) {
       {cont ? (
         <ContinueLearningStrip catalog={catalog} screenLabel="Dashboard — continue learning" />
       ) : (
-        <div className="continue card dash-courses-start">
+        <div className="continue card dash-courses-start ms-dash-courses-start">
           <div className="continue-body">
-            <p className="micro continue-kicker">FREE CAMBRIDGE COURSES</p>
+            <p className="micro continue-kicker">FREE COURSES · DESK</p>
             <h3 className="h3 continue-title">
-              Syllabus-aligned lessons — <em>every topic free</em>
+              Syllabus lessons — <em>every topic free</em>
             </h3>
             <p className="body-2 continue-blurb">
-              Visual notes, flashcards and a real past-paper question for every syllabus point.
+              Visual notes, flashcards, and a past-paper question per syllabus point.
             </p>
           </div>
           <Link className="continue-cta btn-primary sm" href="/courses">
-            Browse courses →
+            Browse courses -&gt;
           </Link>
         </div>
       )}
       <p className="micro dash-courses-foot">
-        Full progress dashboard with marking insights on{' '}
+        Marking insights live on{' '}
         <Link className="hub-sync-link" href="/dashboard/progress">
-          your progress page →
+          your progress page -&gt;
         </Link>
       </p>
     </section>

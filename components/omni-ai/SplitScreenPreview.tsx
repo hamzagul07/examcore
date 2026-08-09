@@ -21,7 +21,7 @@ export function SplitScreenPreview({
     >
       {messageContent && (
         <div
-          className="rounded-2xl border px-4 py-3 text-sm text-[var(--ec-text-secondary)] lg:hidden"
+          className="ec-card ec-card--paper border px-4 py-3 text-sm text-[var(--ec-text-secondary)] lg:hidden"
           style={{
             borderColor: 'var(--ec-border)',
             background: 'var(--ec-surface-raised)',

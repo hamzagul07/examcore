@@ -4,12 +4,11 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
-import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
 import { createClient } from '@/lib/supabase'
 import { AuthShell } from '@/components/AuthShell'
 import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
-import { CelebrationModal } from '@/components/ui/CelebrationModal'
+import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
+import { SegmentedControl } from '@/components/ui/SegmentedControl'
 import { completeOnboardingRequest } from '@/lib/onboarding/complete-onboarding-client'
 import { lastFunnelBoard, profileBoardFromFunnelBoard } from '@/lib/analytics/funnel'
 import {
@@ -28,6 +27,12 @@ import {
   ibSubjectsInGroup,
   edexcelSubjectGroups,
   edexcelSubjectsInGroup,
+  catalogBoardSubjectGroups,
+  catalogBoardSubjectsInGroup,
+  isCatalogBoard,
+  isOxfordaqaBoard,
+  isAqaBoard,
+  isApBoard,
   levelsForBoard,
 } from '@/lib/profile-options'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
@@ -39,8 +44,12 @@ import {
 import { suggestedExamDates } from '@/lib/dashboard/exam-date'
 import { targetGradeOptions } from '@/lib/target-grade'
 import type { OnboardingInput } from '@/lib/onboarding/save-profile'
+import { MARK_DURATION_SINGLE_SENTENCE } from '@/lib/copy/product-lexicon'
 
-const TOTAL_STEPS = 5
+/** First-run is one screen (ON-01). Rerun keeps subjects → year → save. */
+function totalStepsFor(rerun: boolean) {
+  return rerun ? 3 : 1
+}
 
 /** sessionStorage key for the in-progress wizard draft (first-run only). */
 const DRAFT_KEY = 'ms-onboarding-draft'
@@ -51,7 +60,8 @@ type WizardDraft = {
   level: string
   subjects: string[]
   stage: UserStage | null
-  primaryGoal: PrimaryGoal | null
+  /** Kept for draft compat; goal step removed — always mark_papers on save. */
+  primaryGoal?: PrimaryGoal | null
   examDate: string | null
   targetGrade: string | null
 }
@@ -88,28 +98,6 @@ const IB_STAGE_OPTIONS: { id: UserStage; title: string; subtitle: string }[] = [
   { id: 'other', title: 'Just exploring', subtitle: 'Other / not sure yet' },
 ]
 
-const GOAL_OPTIONS: {
-  id: PrimaryGoal
-  title: string
-  subtitle: string
-}[] = [
-  {
-    id: 'mark_papers',
-    title: 'Mark practice papers',
-    subtitle: 'Most students start here',
-  },
-  {
-    id: 'track_progress',
-    title: 'Track my progress per topic',
-    subtitle: 'Mastery matrix & grade trajectory',
-  },
-  {
-    id: 'essay_feedback',
-    title: 'Get feedback on essays',
-    subtitle: 'History, Law, Sociology & more',
-  },
-]
-
 export function OnboardingWizard({
   rerun = false,
   initialProfile = null,
@@ -130,7 +118,8 @@ export function OnboardingWizard({
   const searchParams = useSearchParams()
   const nextParam = searchParams.get('next')
 
-  const [step, setStep] = useState(rerun ? 2 : 1)
+  const totalSteps = totalStepsFor(rerun)
+  const [step, setStep] = useState(1)
   const [board, setBoard] = useState(
     () => initialProfile?.board ?? DEFAULT_BOARD
   )
@@ -141,18 +130,15 @@ export function OnboardingWizard({
   })
   const [subjects, setSubjects] = useState<string[]>(initialProfile?.subjects ?? [])
   const [stage, setStage] = useState<UserStage | null>(initialProfile?.stage ?? null)
-  const [primaryGoal, setPrimaryGoal] = useState<PrimaryGoal | null>(
-    initialProfile?.primary_goal ?? null
-  )
   const [examDate, setExamDate] = useState<string | null>(initialProfile?.exam_date ?? null)
-  const [productUpdates, setProductUpdates] = useState(true)
+  // ON-02: marketing consent must be opt-in — never pre-ticked.
+  const [productUpdates, setProductUpdates] = useState(false)
   const [targetGrade, setTargetGrade] = useState<string | null>(
     initialProfile?.target_grade ?? null
   )
+  const [showOptionalPlanning, setShowOptionalPlanning] = useState(false)
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
-  const [showCelebration, setShowCelebration] = useState(false)
-  const [pendingHref, setPendingHref] = useState('/mark')
   const [draftRestored, setDraftRestored] = useState(false)
 
   // Restore an in-progress draft after a refresh (first run only — reruns are
@@ -164,14 +150,17 @@ export function OnboardingWizard({
     }
     const draft = readDraft()
     if (draft) {
-      setStep(Math.min(Math.max(draft.step, 1), TOTAL_STEPS))
+      // Old multi-step drafts collapse onto the current shorter path (ON-01).
+      setStep(Math.min(Math.max(draft.step, 1), totalStepsFor(false)))
       setBoard(draft.board)
       setLevel(draft.level)
-      setSubjects(draft.subjects)
+      setSubjects(draft.subjects.slice(0, 1))
       setStage(draft.stage)
-      setPrimaryGoal(draft.primaryGoal)
       setExamDate(draft.examDate)
       setTargetGrade(draft.targetGrade ?? null)
+      if (draft.examDate || draft.targetGrade || draft.stage) {
+        setShowOptionalPlanning(true)
+      }
     } else if (!initialProfile?.board) {
       const fromFunnel = profileBoardFromFunnelBoard(lastFunnelBoard())
       if (fromFunnel) {
@@ -194,7 +183,6 @@ export function OnboardingWizard({
           level,
           subjects,
           stage,
-          primaryGoal,
           examDate,
           targetGrade,
         } satisfies WizardDraft)
@@ -210,7 +198,6 @@ export function OnboardingWizard({
     level,
     subjects,
     stage,
-    primaryGoal,
     examDate,
     targetGrade,
   ])
@@ -218,6 +205,8 @@ export function OnboardingWizard({
   function toggleSubject(id: string) {
     setSubjects((prev) => {
       if (prev.includes(id)) return prev.filter((s) => s !== id)
+      // ON-01: first run needs one subject to open Mark — swapping replaces.
+      if (!rerun) return [id]
       if (prev.length >= 4) return prev
       return [...prev, id]
     })
@@ -277,16 +266,25 @@ export function OnboardingWizard({
   }
 
   async function completeOnboarding(redirectHref: string) {
-    if (!stage || !primaryGoal || subjects.length === 0) return
+    if (subjects.length === 0) return
 
     setLoading(true)
     setErrorMsg('')
+
+    // Goal step removed — default mark_papers; keep prior value on profile rerun.
+    const primaryGoal: PrimaryGoal =
+      rerun && initialProfile?.primary_goal
+        ? initialProfile.primary_goal
+        : 'mark_papers'
+
+    // Stage is optional for activation (ON-01). Default "other" so Mark is never gated.
+    const effectiveStage: UserStage = stage ?? 'other'
 
     const payload: OnboardingInput = {
       board,
       level,
       subjects,
-      stage,
+      stage: effectiveStage,
       primary_goal: primaryGoal,
       exam_date: examDate,
       target_grade: targetGrade,
@@ -307,12 +305,8 @@ export function OnboardingWizard({
       }
 
       clearDraft()
-      setPendingHref(redirectHref)
-      if (rerun) {
-        void navigateAfterOnboarding(redirectHref)
-        return
-      }
-      setShowCelebration(true)
+      // ON-01: no celebration modal — first value is a mark, not a confetti gate.
+      void navigateAfterOnboarding(redirectHref)
     } catch (err) {
       console.error('[onboarding wizard] save failed:', err)
       setErrorMsg('Could not save your profile. Check your connection and try again.')
@@ -340,26 +334,17 @@ export function OnboardingWizard({
     window.location.href = `/onboarding/complete?${params.toString()}`
   }
 
-  function finishCelebration() {
-    setShowCelebration(false)
-    void navigateAfterOnboarding(pendingHref)
-  }
-
   function goNext() {
     setErrorMsg('')
-    if (step === 2 && subjects.length === 0) {
+    if (step === 1 && subjects.length === 0) {
       setErrorMsg('Pick at least one subject to continue.')
       return
     }
-    if (step === 3 && !stage) {
+    if (rerun && step === 2 && !stage) {
       setErrorMsg('Pick where you are in your studies.')
       return
     }
-    if (step === 4 && !primaryGoal) {
-      setErrorMsg('Pick what you want to focus on.')
-      return
-    }
-    setStep((s) => Math.min(s + 1, TOTAL_STEPS))
+    setStep((s) => Math.min(s + 1, totalSteps))
   }
 
   function goBack() {
@@ -374,6 +359,15 @@ export function OnboardingWizard({
   const backHref = rerun ? sanitizeNextPath(nextParam, '/account/study') : '/auth/signout'
   const backLabel = rerun ? 'Back to settings' : 'Sign out'
 
+  function startMarking() {
+    setErrorMsg('')
+    if (subjects.length === 0) {
+      setErrorMsg('Pick at least one subject to continue.')
+      return
+    }
+    void completeOnboarding(markHref)
+  }
+
   return (
     <>
       <AuthShell
@@ -385,26 +379,52 @@ export function OnboardingWizard({
           rerun ? undefined : 'Sign out? Your setup progress is saved and will be here when you return.'
         }
       >
-        <ProgressSteps current={step} total={TOTAL_STEPS} />
+        <ProgressSteps
+          current={step}
+          total={totalSteps}
+          labels={rerun ? RERUN_STEP_LABELS : FIRST_RUN_STEP_LABELS}
+        />
 
         <AnimatePresence mode="wait">
           <motion.div
             key={step}
-            className="ms-ob-step"
-            initial={{ y: 14, opacity: 0 }}
+            className="ms-ob-step ms-ob-docket"
+            initial={{ y: 10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -10, opacity: 0 }}
-            transition={{ duration: 0.22, ease: [0.4, 0, 0.2, 1] }}
+            exit={{ y: -8, opacity: 0 }}
+            transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
           >
-            {step === 1 && (
-              <StepWelcome
-                onContinue={goNext}
+            {!rerun ? (
+              <StepSubjects
+                board={board}
+                onBoardChange={handleBoardChange}
+                level={level}
+                onLevelChange={handleLevelChange}
+                selected={subjects}
+                onToggle={toggleSubject}
+                errorMsg={errorMsg}
+                onContinue={startMarking}
+                onBack={undefined}
+                continueLabel={loading ? 'Filing desk…' : 'Start marking'}
+                continueBusy={loading}
+                firstRun
                 showBrowseSkip={Boolean(nextParam && isContentGateReturnPath(nextParam))}
                 browseSkipLoading={loading}
                 onBrowseSkip={() => void skipOnboardingForBrowse()}
+                showOptionalPlanning={showOptionalPlanning}
+                onToggleOptionalPlanning={() => setShowOptionalPlanning((v) => !v)}
+                stage={stage}
+                onStageChange={setStage}
+                examDate={examDate}
+                onExamDateChange={setExamDate}
+                targetGrade={targetGrade}
+                onTargetGradeChange={setTargetGrade}
+                productUpdates={productUpdates}
+                onProductUpdatesChange={setProductUpdates}
               />
-            )}
-            {step === 2 && (
+            ) : null}
+
+            {rerun && step === 1 ? (
               <StepSubjects
                 board={board}
                 onBoardChange={handleBoardChange}
@@ -414,10 +434,11 @@ export function OnboardingWizard({
                 onToggle={toggleSubject}
                 errorMsg={errorMsg}
                 onContinue={goNext}
-                onBack={goBack}
+                onBack={undefined}
               />
-            )}
-            {step === 3 && (
+            ) : null}
+
+            {rerun && step === 2 ? (
               <StepStage
                 level={level}
                 selected={stage}
@@ -430,17 +451,9 @@ export function OnboardingWizard({
                 onContinue={goNext}
                 onBack={goBack}
               />
-            )}
-            {step === 4 && (
-              <StepGoal
-                selected={primaryGoal}
-                onSelect={setPrimaryGoal}
-                errorMsg={errorMsg}
-                onContinue={goNext}
-                onBack={goBack}
-              />
-            )}
-            {step === 5 && (
+            ) : null}
+
+            {rerun && step === 3 ? (
               <StepFirstMark
                 productUpdates={productUpdates}
                 onProductUpdatesChange={setProductUpdates}
@@ -448,37 +461,44 @@ export function OnboardingWizard({
                 errorMsg={errorMsg}
                 signInAgainHref={signInAgainHref}
                 onBack={goBack}
-                onMark={() => completeOnboarding(rerun ? markHref : markHref)}
-                // The low-commitment path used to be the dashboard, which is a
-                // dead end for a brand-new account with no marks in it. A
-                // finished example needs no upload and still ends on /mark.
-                onDashboard={() =>
-                  completeOnboarding(rerun ? markHref : '/mark?example=1')
-                }
+                onMark={() => void completeOnboarding(markHref)}
+                onDashboard={() => void completeOnboarding(markHref)}
                 rerun={rerun}
               />
-            )}
+            ) : null}
           </motion.div>
         </AnimatePresence>
       </AuthShell>
-
-      <CelebrationModal
-        open={showCelebration}
-        title="You're all set!"
-        message="Your profile is ready. Time to see what examiner-style feedback looks like."
-        onDismiss={finishCelebration}
-      />
     </>
   )
 }
 
-const STEP_LABELS = ['Welcome', 'Subjects', 'Your year', 'Your goal', 'Finish']
+const FIRST_RUN_STEP_LABELS = ['Subjects']
+const RERUN_STEP_LABELS = ['Subjects', 'Your year', 'Finish']
 
-function ProgressSteps({ current, total }: { current: number; total: number }) {
+function ProgressSteps({
+  current,
+  total,
+  labels,
+}: {
+  current: number
+  total: number
+  labels: string[]
+}) {
+  if (total <= 1) {
+    return (
+      <div className="ms-ob-progress">
+        <p className="ms-ob-progress-label" aria-hidden>
+          One screen — then mark
+        </p>
+      </div>
+    )
+  }
+
   return (
     <div className="ms-ob-progress">
       <p className="ms-ob-progress-label" aria-hidden>
-        Step <b>{current}</b> of {total} — {STEP_LABELS[current - 1]}
+        Filing <b>{current}</b> of {total} — {labels[current - 1]}
       </p>
       <ol className="ms-ob-dots" aria-label="Onboarding progress">
         {Array.from({ length: total }, (_, i) => {
@@ -494,78 +514,13 @@ function ProgressSteps({ current, total }: { current: number; total: number }) {
               <span
                 className={active ? 'on now' : done ? 'on' : undefined}
                 aria-hidden
-              />
+              >
+                {stepNum}
+              </span>
             </li>
           )
         })}
       </ol>
-    </div>
-  )
-}
-
-function StepWelcome({
-  onContinue,
-  showBrowseSkip = false,
-  browseSkipLoading = false,
-  onBrowseSkip,
-}: {
-  onContinue: () => void
-  showBrowseSkip?: boolean
-  browseSkipLoading?: boolean
-  onBrowseSkip?: () => void
-}) {
-  return (
-    <div>
-      {/* Miniature marked answer — a preview of what the product does. */}
-      <div className="mb-10 mt-2 flex justify-center" aria-hidden>
-        <div className="ms-ob-hero">
-          <div className="ms-ob-hero-glow" />
-          <div className="ms-ob-hero-paper">
-            <span className="ms-ob-hero-score">7/8</span>
-            <div className="ms-ob-hero-row">
-              <span className="ms-ob-hero-line" />
-              <span className="ms-ob-hero-badge good">M1 ✓</span>
-            </div>
-            <div className="ms-ob-hero-row">
-              <span className="ms-ob-hero-line short" />
-              <span className="ms-ob-hero-badge good">A1 ✓</span>
-            </div>
-            <div className="ms-ob-hero-row">
-              <span className="ms-ob-hero-line" />
-              <span className="ms-ob-hero-badge part">±1 B1</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <h1 className="ms-h2">
-        Welcome to <em>MarkScheme</em>
-      </h1>
-      <p className="ms-lead" style={{ marginTop: 16 }}>
-        Let&apos;s set up your account so we can mark your work the way you need
-        — Cambridge or IB Diploma, real mark schemes, honest feedback, about a
-        minute per question.
-      </p>
-      <div className="ms-ob-nav">
-        <button type="button" onClick={onContinue} className="ec-btn-primary">
-          Let&apos;s go <ArrowRight className="h-4 w-4" />
-        </button>
-        {showBrowseSkip && onBrowseSkip ? (
-          <button
-            type="button"
-            onClick={onBrowseSkip}
-            disabled={browseSkipLoading}
-            className="ec-guest-browse-skip mt-3 w-full"
-          >
-            {browseSkipLoading ? 'Opening topic…' : 'Just browsing? Skip setup for now'}
-          </button>
-        ) : null}
-        {/* This wizard asks for an exam year and a revision goal, which a teacher
-            does not have. Their setup is four fields and lives elsewhere; without
-            this link they would have to complete a student profile to get out. */}
-        <a href="/for-teachers/start" className="ec-guest-browse-skip mt-3 block w-full text-center">
-          I&apos;m a teacher, not a student
-        </a>
-      </div>
     </div>
   )
 }
@@ -580,6 +535,22 @@ function StepSubjects({
   errorMsg,
   onContinue,
   onBack,
+  continueLabel = 'Continue',
+  continueBusy = false,
+  firstRun = false,
+  showBrowseSkip = false,
+  browseSkipLoading = false,
+  onBrowseSkip,
+  showOptionalPlanning = false,
+  onToggleOptionalPlanning,
+  stage = null,
+  onStageChange,
+  examDate = null,
+  onExamDateChange,
+  targetGrade = null,
+  onTargetGradeChange,
+  productUpdates = false,
+  onProductUpdatesChange,
 }: {
   board: string
   onBoardChange: (board: string) => void
@@ -589,10 +560,27 @@ function StepSubjects({
   onToggle: (id: string) => void
   errorMsg: string
   onContinue: () => void
-  onBack: () => void
+  onBack?: () => void
+  continueLabel?: string
+  continueBusy?: boolean
+  firstRun?: boolean
+  showBrowseSkip?: boolean
+  browseSkipLoading?: boolean
+  onBrowseSkip?: () => void
+  showOptionalPlanning?: boolean
+  onToggleOptionalPlanning?: () => void
+  stage?: UserStage | null
+  onStageChange?: (s: UserStage) => void
+  examDate?: string | null
+  onExamDateChange?: (d: string | null) => void
+  targetGrade?: string | null
+  onTargetGradeChange?: (g: string | null) => void
+  productUpdates?: boolean
+  onProductUpdatesChange?: (next: boolean) => void
 }) {
   const ib = isIbBoard(board)
   const edexcel = isEdexcelBoard(board)
+  const catalogBoard = isCatalogBoard(board)
   const levelHeading =
     level === 'O-Level'
       ? 'O-Levels'
@@ -608,64 +596,105 @@ function StepSubjects({
     ? ibSubjectGroups()
     : edexcel
       ? edexcelSubjectGroups()
-      : [...SUBJECT_GROUPS]
+      : catalogBoard
+        ? catalogBoardSubjectGroups(board)
+        : [...SUBJECT_GROUPS]
   const visibleLevels = levelsForBoard(board)
+  const stageOptions =
+    ib
+      ? IB_STAGE_OPTIONS
+      : level === 'O-Level' || level === 'IGCSE'
+        ? STAGE_OPTIONS.filter((opt) => opt.id === 'other')
+        : STAGE_OPTIONS
+  const suggestions = suggestedExamDates()
 
   return (
     <div>
-      <h1 className="ms-h2">What are you studying?</h1>
-      <p className="ms-lead" style={{ marginTop: 12 }}>
-        Pick your exam board, then choose up to four subjects. Cambridge, IB, and
-        Edexcel IAL Maths/Physics/Chemistry are live — we&apos;ll tailor marking and
-        progress to your choices.
-      </p>
+      {firstRun ? (
+        <>
+          <div className="mb-2 flex items-center gap-2">
+            <p className="ec-eyebrow mb-0">Marking desk</p>
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+              M1
+            </span>
+          </div>
+          <h1 className="ms-h2">
+            What are you <em>marking</em>?
+          </h1>
+          <p className="ms-lead" style={{ marginTop: 12 }}>
+            Pick the board and the subject you&apos;re marking now. One is enough —
+            add more later in account settings or when you open courses.
+          </p>
+          <p className="ms-ob-hero-note" style={{ marginTop: 10 }} aria-hidden>
+            one subject — then the marker
+          </p>
+        </>
+      ) : (
+        <>
+          <h1 className="ms-h2">File your subjects</h1>
+          <p className="ms-lead" style={{ marginTop: 12 }}>
+            Pick your exam board, then choose up to four subjects. Cambridge, IB, and
+            Edexcel IAL Maths/Physics/Chemistry are live — we&apos;ll tailor marking and
+            progress to your choices.
+          </p>
+          <p className="ms-ob-hero-note" style={{ marginTop: 10 }} aria-hidden>
+            max four — keep the desk clear
+          </p>
+        </>
+      )}
 
-      <p className="ms-overline" style={{ marginTop: 28 }}>
+      <p className="ms-overline" style={{ marginTop: 28 }} id="ob-board-label">
         Exam board
       </p>
-      <div className="ms-ob-choices" style={{ marginTop: 12 }}>
-        {BOARDS.filter((b) => b.enabled).map((opt) => (
-          <button
-            key={opt.id}
-            type="button"
-            onClick={() => onBoardChange(opt.id)}
-            className={`ms-ob-choice${board === opt.id ? ' on' : ''}`}
-          >
-            <span className="ms-ob-tick" aria-hidden>
-              <Check className="h-3.5 w-3.5" />
-            </span>
-            <b>{opt.label}</b>
-            <span>
-              {opt.id === IB_BOARD_ID
-                ? 'HL, SL & Core'
-                : opt.id === EDEXCEL_BOARD_ID
-                  ? 'IAL Maths, Physics & Chemistry'
-                  : 'A-Level, AS & O-Level'}
-            </span>
-          </button>
-        ))}
-      </div>
+      <SegmentedControl
+        className="ms-ob-choices"
+        optionClassName="ms-ob-choice"
+        aria-labelledby="ob-board-label"
+        value={board}
+        onChange={onBoardChange}
+        options={BOARDS.filter((b) => b.enabled).map((opt) => ({
+          value: opt.id,
+          label: (
+            <>
+              <span className="ms-ob-tick" aria-hidden>
+                M
+              </span>
+              <b>{opt.label}</b>
+              <span>
+                {opt.id === IB_BOARD_ID
+                  ? 'HL, SL & Core'
+                  : opt.id === EDEXCEL_BOARD_ID
+                    ? 'IAL + UK Maths/Physics units'
+                    : 'A-Level, AS & O-Level'}
+              </span>
+            </>
+          ),
+        }))}
+      />
 
       {!ib ? (
         <>
-          <p className="ms-overline" style={{ marginTop: 28 }}>
+          <p className="ms-overline" style={{ marginTop: 28 }} id="ob-level-label">
             {edexcel ? 'IAL level' : 'Cambridge level'}
           </p>
-          <div className="ms-ob-choices" style={{ marginTop: 12 }}>
-            {visibleLevels.map((opt) => (
-              <button
-                key={opt.id}
-                type="button"
-                onClick={() => onLevelChange(opt.id)}
-                className={`ms-ob-choice${level === opt.id ? ' on' : ''}`}
-              >
-                <span className="ms-ob-tick" aria-hidden>
-                  <Check className="h-3.5 w-3.5" />
-                </span>
-                <b>{opt.label}</b>
-              </button>
-            ))}
-          </div>
+          <SegmentedControl
+            className="ms-ob-choices"
+            optionClassName="ms-ob-choice"
+            aria-labelledby="ob-level-label"
+            value={level}
+            onChange={onLevelChange}
+            options={visibleLevels.map((opt) => ({
+              value: opt.id,
+              label: (
+                <>
+                  <span className="ms-ob-tick" aria-hidden>
+                    M
+                  </span>
+                  <b>{opt.label}</b>
+                </>
+              ),
+            }))}
+          />
         </>
       ) : null}
 
@@ -673,12 +702,21 @@ function StepSubjects({
         {ib
           ? 'Which IB subjects are you taking?'
           : edexcel
-            ? 'Which Edexcel IAL units are you taking?'
-            : `Which Cambridge ${levelHeading} are you taking?`}
+            ? 'Which Edexcel units are you taking?'
+            : isOxfordaqaBoard(board)
+              ? 'Which OxfordAQA subjects are you taking?'
+              : isAqaBoard(board)
+                ? 'Which AQA subjects are you taking?'
+                : isApBoard(board)
+                  ? 'Which AP courses are you taking?'
+                  : `Which Cambridge ${levelHeading} are you taking?`}
       </h2>
       <p className="ms-lead" style={{ marginTop: 10, fontSize: 15 }}>
-        {selected.length}/4 selected — we&apos;ll surface past papers, courses, and marking for
-        these.
+        {firstRun
+          ? selected.length === 0
+            ? 'Pick the subject you\u2019ll mark first.'
+            : '1 selected — tap another to switch.'
+          : `${selected.length}/4 selected — we'll surface past papers, courses, and marking for these.`}
       </p>
       <div className="ms-ob-subjects-scroll space-y-6">
         {subjectGroups.map((group) => {
@@ -686,46 +724,178 @@ function StepSubjects({
             ? ibSubjectsInGroup(group)
             : edexcel
               ? edexcelSubjectsInGroup(group)
-              : subjectsInGroup(group, level)
+              : catalogBoard
+                ? catalogBoardSubjectsInGroup(board, group)
+                : subjectsInGroup(group, level)
           if (!items.length) return null
           return (
             <div key={group}>
               <p className="ms-overline mb-3">{group}</p>
-              <div className="ms-ob-subjects" style={{ justifyContent: 'flex-start' }}>
+              <ul className="ms-ob-file-list">
                 {items.map((subject) => {
                   const active = selected.includes(subject.id)
                   const atLimit = !active && selected.length >= 4
+                  const codeLabel = ib
+                    ? subject.label.split(' ').slice(-1)[0]?.slice(0, 4).toUpperCase() || 'IB'
+                    : subject.code
                   return (
-                    <button
-                      key={subject.code}
-                      type="button"
-                      disabled={atLimit}
-                      title={atLimit ? 'Deselect one to add another (max 4)' : undefined}
-                      onClick={() => onToggle(subject.id)}
-                      className={`ms-ob-chip${active ? ' on' : ''}${atLimit ? ' opacity-50' : ''}`}
-                      aria-pressed={active}
-                    >
-                      {active && (
-                        <Check className="ms-ob-chip-check" aria-hidden />
-                      )}
-                      {ib ? subject.label : `${subject.label} · ${subject.code}`}
-                    </button>
+                    <li key={subject.code}>
+                      <button
+                        type="button"
+                        disabled={atLimit}
+                        title={atLimit ? 'Deselect one to add another (max 4)' : undefined}
+                        onClick={() => onToggle(subject.id)}
+                        className={`ms-ob-file-row${active ? ' on' : ''}`}
+                        aria-pressed={active}
+                      >
+                        <span className="ms-ob-file-row__code">{codeLabel}</span>
+                        <span className="ms-ob-file-row__name">{subject.label}</span>
+                        <span className="ms-ob-file-row__mark" aria-hidden>
+                          {active ? 'M' : ''}
+                        </span>
+                      </button>
+                    </li>
                   )
                 })}
-              </div>
+              </ul>
             </div>
           )
         })}
       </div>
-      {selected.length >= 4 ? (
+      {firstRun && selected.length === 1 ? (
+        <p className="ms-micro mt-3">
+          Tap another subject to switch. You can file more after your first mark.
+        </p>
+      ) : null}
+      {!firstRun && selected.length >= 4 ? (
         <p className="ms-micro mt-3">Maximum four subjects — deselect one to change.</p>
       ) : null}
+
+      {firstRun && onToggleOptionalPlanning ? (
+        <div className="mt-8 border-t border-[var(--ec-border)] pt-5">
+          <button
+            type="button"
+            onClick={onToggleOptionalPlanning}
+            className="ec-btn-ghost min-h-[44px] px-0 text-sm font-semibold"
+            aria-expanded={showOptionalPlanning}
+          >
+            {showOptionalPlanning
+              ? 'Hide exam date & target'
+              : 'Optional: exam date & target grade'}
+          </button>
+          {showOptionalPlanning ? (
+            <div className="mt-4 space-y-6">
+              <div>
+                <p className="ms-overline mb-3" id="ob-stage-label">
+                  Where are you in your studies?
+                </p>
+                <SegmentedControl
+                  className="ms-ob-choices ms-ob-choices--stack"
+                  optionClassName="ms-ob-choice"
+                  aria-labelledby="ob-stage-label"
+                  value={stage}
+                  onChange={(id) => onStageChange?.(id)}
+                  options={stageOptions.map((opt) => ({
+                    value: opt.id,
+                    label: (
+                      <>
+                        <span className="ms-ob-tick" aria-hidden>
+                          M
+                        </span>
+                        <b>{opt.title}</b>
+                        <span>{opt.subtitle}</span>
+                      </>
+                    ),
+                  }))}
+                />
+              </div>
+              <div>
+                <p className="ms-overline mb-2" id="ob-exam-label">
+                  Exam session
+                </p>
+                <SegmentedControl
+                  className="ms-ob-stamp-pick"
+                  optionClassName="ms-ob-stamp-pick__btn"
+                  aria-labelledby="ob-exam-label"
+                  value={examDate}
+                  onChange={(v) => onExamDateChange?.(v)}
+                  options={suggestions.map((s) => ({
+                    value: s.value,
+                    label: s.label,
+                  }))}
+                />
+              </div>
+              <div>
+                <p className="ms-overline mb-2" id="ob-grade-label">
+                  Target grade
+                </p>
+                <SegmentedControl
+                  className="ms-ob-stamp-pick"
+                  optionClassName="ms-ob-stamp-pick__btn"
+                  aria-labelledby="ob-grade-label"
+                  value={targetGrade}
+                  onChange={(g) =>
+                    onTargetGradeChange?.(targetGrade === g ? null : g)
+                  }
+                  options={targetGradeOptions(ib).map((g) => ({
+                    value: g,
+                    label: ib ? `G${g}` : g,
+                  }))}
+                />
+              </div>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+
+      {firstRun && onProductUpdatesChange ? (
+        <label className="mt-6 flex min-h-[44px] cursor-pointer items-start gap-3 text-sm text-[var(--ec-text-secondary)]">
+          <input
+            type="checkbox"
+            checked={productUpdates}
+            onChange={(e) => onProductUpdatesChange(e.target.checked)}
+            className="mt-1"
+          />
+          <span>Email me product updates (optional — not required to mark).</span>
+        </label>
+      ) : null}
+
       {errorMsg && (
         <div className="mt-4">
           <FormErrorAlert message={errorMsg} />
         </div>
       )}
-      <StepNav onBack={onBack} onContinue={onContinue} continueLabel="Continue" />
+      <StepNav
+        onBack={onBack}
+        onContinue={onContinue}
+        continueLabel={continueLabel}
+        continueBusy={continueBusy}
+      />
+      {firstRun ? (
+        <div className="mt-3 space-y-2">
+          {showBrowseSkip && onBrowseSkip ? (
+            <button
+              type="button"
+              onClick={onBrowseSkip}
+              disabled={browseSkipLoading}
+              className="ec-guest-browse-skip w-full"
+            >
+              {browseSkipLoading ? 'Opening topic…' : 'Just browsing? Skip setup for now'}
+            </button>
+          ) : null}
+          <a
+            href="/for-teachers/start"
+            className="ec-guest-browse-skip block w-full text-center"
+          >
+            I&apos;m a teacher, not a student
+          </a>
+          <p className="text-center text-xs text-[var(--ec-text-secondary)]">
+            Prefer a finished example first? After filing, open{' '}
+            <span className="font-mono">/mark?example=1</span> — or use the example
+            invite on Mark.
+          </p>
+        </div>
+      ) : null}
     </div>
   )
 }
@@ -772,22 +942,25 @@ function StepStage({
             ? 'This helps us tailor papers and feedback for your O-Level year.'
             : 'This helps us pitch feedback at the right level.'}
       </p>
-      <div className="ms-ob-choices" style={{ gridTemplateColumns: '1fr' }}>
-        {stageOptions.map((opt) => (
-          <button
-            key={opt.id}
-            type="button"
-            onClick={() => onSelect(opt.id)}
-            className={`ms-ob-choice${selected === opt.id ? ' on' : ''}`}
-          >
-            <span className="ms-ob-tick" aria-hidden>
-              <Check className="h-3.5 w-3.5" />
-            </span>
-            <b>{opt.title}</b>
-            <span>{opt.subtitle}</span>
-          </button>
-        ))}
-      </div>
+      <SegmentedControl
+        className="ms-ob-choices ms-ob-choices--stack"
+        optionClassName="ms-ob-choice"
+        aria-label="Study stage"
+        value={selected}
+        onChange={onSelect}
+        options={stageOptions.map((opt) => ({
+          value: opt.id,
+          label: (
+            <>
+              <span className="ms-ob-tick" aria-hidden>
+                M
+              </span>
+              <b>{opt.title}</b>
+              <span>{opt.subtitle}</span>
+            </>
+          ),
+        }))}
+      />
 
       <div className="mt-8 border-t border-[var(--ec-border)] pt-6 text-left">
         <h2 className="ms-h2" style={{ fontSize: 'clamp(1.25rem, 2.5vw, 1.5rem)' }}>
@@ -796,18 +969,17 @@ function StepStage({
         <p className="ms-micro" style={{ marginTop: 6 }}>
           Optional — we&apos;ll show a countdown on your home page.
         </p>
-        <div className="ms-ob-subjects" style={{ justifyContent: 'flex-start', marginTop: 16 }}>
-          {suggestions.map((s) => (
-            <button
-              key={s.value}
-              type="button"
-              onClick={() => onExamDateChange(s.value)}
-              className={`ms-ob-chip${examDate === s.value ? ' on' : ''}`}
-            >
-              {s.label}
-            </button>
-          ))}
-        </div>
+        <SegmentedControl
+          className="ms-ob-stamp-pick"
+          optionClassName="ms-ob-stamp-pick__btn"
+          aria-label="Suggested exam sessions"
+          value={examDate}
+          onChange={onExamDateChange}
+          options={suggestions.map((s) => ({
+            value: s.value,
+            label: s.label,
+          }))}
+        />
         <label className="mt-4 block">
           <span className="text-caption mb-1.5 block">Or pick a specific date</span>
           <input
@@ -840,62 +1012,19 @@ function StepStage({
         <p className="ms-micro" style={{ marginTop: 6 }}>
           Optional — we&apos;ll measure every mark against it and show you the gap.
         </p>
-        <div className="ms-ob-subjects" style={{ justifyContent: 'flex-start', marginTop: 16 }}>
-          {targetGradeOptions(ib).map((g) => (
-            <button
-              key={g}
-              type="button"
-              onClick={() => onTargetGradeChange(targetGrade === g ? null : g)}
-              className={`ms-ob-chip${targetGrade === g ? ' on' : ''}`}
-              aria-pressed={targetGrade === g}
-            >
-              {ib ? `Grade ${g}` : g}
-            </button>
-          ))}
-        </div>
+        <SegmentedControl
+          className="ms-ob-stamp-pick"
+          optionClassName="ms-ob-stamp-pick__btn"
+          aria-label="Target grade"
+          value={targetGrade}
+          onChange={(g) => onTargetGradeChange(targetGrade === g ? null : g)}
+          options={targetGradeOptions(ib).map((g) => ({
+            value: g,
+            label: ib ? `G${g}` : g,
+          }))}
+        />
       </div>
 
-      {errorMsg && <div className="mt-4"><FormErrorAlert message={errorMsg} /></div>}
-      <StepNav onBack={onBack} onContinue={onContinue} continueLabel="Continue" />
-    </div>
-  )
-}
-
-function StepGoal({
-  selected,
-  onSelect,
-  errorMsg,
-  onContinue,
-  onBack,
-}: {
-  selected: PrimaryGoal | null
-  onSelect: (g: PrimaryGoal) => void
-  errorMsg: string
-  onContinue: () => void
-  onBack: () => void
-}) {
-  return (
-    <div>
-      <h1 className="ms-h2">What&apos;s your main goal?</h1>
-      <p className="ms-lead" style={{ marginTop: 12 }}>
-        We&apos;ll prioritize the right parts of your dashboard.
-      </p>
-      <div className="ms-ob-choices" style={{ gridTemplateColumns: '1fr' }}>
-        {GOAL_OPTIONS.map((opt) => (
-          <button
-            key={opt.id}
-            type="button"
-            onClick={() => onSelect(opt.id)}
-            className={`ms-ob-choice${selected === opt.id ? ' on' : ''}`}
-          >
-            <span className="ms-ob-tick" aria-hidden>
-              <Check className="h-3.5 w-3.5" />
-            </span>
-            <b>{opt.title}</b>
-            <span>{opt.subtitle}</span>
-          </button>
-        ))}
-      </div>
       {errorMsg && <div className="mt-4"><FormErrorAlert message={errorMsg} /></div>}
       <StepNav onBack={onBack} onContinue={onContinue} continueLabel="Continue" />
     </div>
@@ -924,26 +1053,33 @@ function StepFirstMark({
   rerun?: boolean
 }) {
   return (
-    <div>
+    <div className={rerun ? undefined : 'ms-ob-finish'}>
+      {!rerun ? (
+        <div className="ms-ob-finish__meta">
+          <span className="ec-ink-stamp" aria-hidden>
+            M1
+          </span>
+          <p className="ms-overline" style={{ marginBottom: 0 }}>
+            Desk ready
+          </p>
+        </div>
+      ) : null}
       <h1 className="ms-h2">
         {rerun ? (
           'Save your updated profile'
         ) : (
           <>
-            You&apos;re all set. <em>Mark your first question.</em>
+            Profile filed. <em>Put ink on a script.</em>
           </>
         )}
       </h1>
       <p className="ms-lead" style={{ marginTop: 16 }}>
         {rerun
           ? 'Review your choices, then save to update your dashboard and paper recommendations.'
-          : "Upload something you've already done. We'll mark it against the real scheme and show you exactly where the marks went. A full mark takes a couple of minutes — or see a finished example first, no upload needed."}
+          : `Upload working you've already done — we'll stamp it mark-by-mark against the scheme. ${MARK_DURATION_SINGLE_SENTENCE}. Or open a finished example first, no upload needed.`}
       </p>
-      {/* Consent for non-essential mail, captured once, here, where the student
-          is finishing setup rather than buried in settings they never open.
-          Ticked by default but stated plainly and always reversible — the
-          lifecycle emails (marking results, review reminders) are separate and
-          not governed by this. */}
+      {/* Consent for non-essential mail (ON-02): opt-in only, never pre-ticked.
+          Lifecycle emails (results, review reminders) are separate. */}
       {!rerun && (
         <label className="ms-ob-consent">
           <input
@@ -954,7 +1090,7 @@ function StepFirstMark({
           />
           <span>
             Email me occasional product updates and study tips. No more than
-            twice a month, and you can turn this off in one click from any email.
+            twice a month — one click to turn off from any email.
           </span>
         </label>
       )}
@@ -981,7 +1117,7 @@ function StepFirstMark({
           aria-busy={loading || undefined}
           data-loading={loading ? 'true' : undefined}
           onClick={onMark}
-          className="ec-btn-primary w-full justify-center"
+          className="ec-btn-primary w-full justify-center inline-flex items-center gap-2"
         >
           {loading ? (
             <ButtonLoadingState mode="morph" loadingText="Saving profile…">
@@ -990,7 +1126,15 @@ function StepFirstMark({
           ) : rerun ? (
             <>Save and return to settings</>
           ) : (
-            <>Mark a question now <ArrowRight className="h-4 w-4" /></>
+            <>
+              <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                M1
+              </span>
+              Mark a question now
+              <span className="font-mono text-[11px] font-bold" aria-hidden>
+                -&gt;
+              </span>
+            </>
           )}
         </button>
         {!rerun && (
@@ -1007,9 +1151,12 @@ function StepFirstMark({
           type="button"
           onClick={onBack}
           disabled={loading}
-          className="ec-btn-underline"
+          className="ec-btn-underline inline-flex items-center gap-1.5"
         >
-          <ArrowLeft className="h-4 w-4" /> Back
+          <span className="font-mono text-[11px] font-bold" aria-hidden>
+            &lt;-
+          </span>
+          Back
         </button>
       </div>
     </div>
@@ -1020,18 +1167,42 @@ function StepNav({
   onBack,
   onContinue,
   continueLabel,
+  continueBusy = false,
 }: {
-  onBack: () => void
+  onBack?: () => void
   onContinue: () => void
   continueLabel: string
+  continueBusy?: boolean
 }) {
   return (
     <div className="ms-ob-nav">
-      <button type="button" onClick={onBack} className="ec-btn-underline">
-        <ArrowLeft className="h-4 w-4" /> Back
-      </button>
-      <button type="button" onClick={onContinue} className="ec-btn-primary">
-        {continueLabel} <ArrowRight className="h-4 w-4" />
+      {onBack ? (
+        <button
+          type="button"
+          onClick={onBack}
+          className="ec-btn-underline inline-flex items-center gap-1.5"
+        >
+          <span className="font-mono text-[11px] font-bold" aria-hidden>
+            &lt;-
+          </span>
+          Back
+        </button>
+      ) : (
+        <span />
+      )}
+      <button
+        type="button"
+        onClick={onContinue}
+        disabled={continueBusy}
+        aria-busy={continueBusy || undefined}
+        className="ec-btn-primary inline-flex items-center gap-2 disabled:opacity-55"
+      >
+        {continueLabel}
+        {!continueBusy ? (
+          <span className="font-mono text-[11px] font-bold" aria-hidden>
+            -&gt;
+          </span>
+        ) : null}
       </button>
     </div>
   )

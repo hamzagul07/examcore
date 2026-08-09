@@ -1,8 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { ChevronRight, Clock } from 'lucide-react'
+import { useCallback, useEffect, useState } from 'react'
 import { SkeletonBlock } from '@/components/ui/PageSkeleton'
 
 interface Review {
@@ -20,94 +19,132 @@ interface Props {
   limit?: number
 }
 
-export function ReviewQueueList({ classroomId, limit = 5 }: Props) {
-  const [reviews, setReviews] = useState<Review[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+type QueueState =
+  | { status: 'loading' }
+  | { status: 'ready'; data: Review[] }
+  | { status: 'empty' }
+  | { status: 'error'; message: string }
 
-  useEffect(() => {
+export function ReviewQueueList({ classroomId, limit = 5 }: Props) {
+  const [state, setState] = useState<QueueState>({ status: 'loading' })
+
+  const load = useCallback(async () => {
+    setState({ status: 'loading' })
     const url = classroomId
       ? `/api/teacher/reviews?classroom_id=${classroomId}`
       : '/api/teacher/reviews'
-    fetch(url)
-      .then((r) => r.json())
-      .then((d) => {
-        setReviews((d.reviews || []).slice(0, limit))
-        setLoading(false)
+
+    try {
+      const r = await fetch(url, { cache: 'no-store' })
+      const d = await r.json().catch(() => ({}))
+      if (!r.ok) {
+        setState({
+          status: 'error',
+          message: d.error || 'Could not load submissions. Please try again.',
+        })
+        return
+      }
+      const list = ((d.reviews || []) as Review[]).slice(0, limit)
+      setState(list.length === 0 ? { status: 'empty' } : { status: 'ready', data: list })
+    } catch {
+      setState({
+        status: 'error',
+        message: 'Could not load submissions. Please try again.',
       })
-      .catch((err) => {
-        console.error('ReviewQueueList: failed to load reviews', err)
-        setError('Could not load submissions. Please try again.')
-        setLoading(false)
-      })
+    }
   }, [classroomId, limit])
 
+  useEffect(() => {
+    void load()
+  }, [load])
+
   return (
-    <div className="ms-teacher-review ec-card p-6 sm:p-8">
+    <section className="ms-teacher-roster" aria-labelledby="review-queue-heading">
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <div className="ec-label-tech mb-2">REVIEW QUEUE</div>
-          <h2 className="text-xl font-bold text-[var(--ec-text-primary)] sm:text-2xl">Recent submissions</h2>
+          <div className="mb-2 flex items-center gap-2">
+            <span className="ec-label-tech mb-0">Review queue</span>
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+              RV
+            </span>
+          </div>
+          <h2 id="review-queue-heading" className="text-xl font-bold text-[var(--ec-text-primary)] sm:text-2xl">
+            Recent submissions
+          </h2>
         </div>
         <Link
           href="/teacher/reviews"
-          className="inline-flex min-h-[44px] items-center text-sm ec-link"
+          className="inline-flex min-h-[44px] items-center font-mono text-[11px] font-bold tracking-wide ec-text-brand"
         >
-          View all →
+          View all -&gt;
         </Link>
       </div>
 
-      {loading && (
-        <div className="space-y-3" aria-hidden>
-          <SkeletonBlock className="h-[88px] w-full rounded-xl" />
-          <SkeletonBlock className="h-[88px] w-full rounded-xl" />
+      {state.status === 'loading' ? (
+        <div className="ms-teacher-class-list" aria-busy aria-label="Loading submissions">
+          <SkeletonBlock className="h-[72px] w-full" />
+          <SkeletonBlock className="h-[72px] w-full" />
         </div>
-      )}
+      ) : null}
 
-      {!loading && error && (
-        <p className="text-[var(--ec-danger,#b91c1c)]">{error}</p>
-      )}
-
-      {!loading && !error && reviews.length === 0 && (
-        <p className="text-[var(--ec-text-secondary)]">
-          No AI-marked submissions yet. Students need to complete marked attempts
-          with full marking data.
-        </p>
-      )}
-
-      <div className="space-y-3">
-        {reviews.map((r) => (
-          <Link
-            key={r.id}
-            href={`/teacher/reviews/${r.id}`}
-            className="flex min-h-[56px] items-center justify-between rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4 transition-colors ec-hover-brand-border-mild hover:bg-[var(--ec-surface-raised)]"
+      {state.status === 'error' ? (
+        <div className="ms-teacher-error" role="alert">
+          <p className="font-semibold text-[var(--ec-text-primary)]">Couldn’t load submissions</p>
+          <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">{state.message}</p>
+          <button
+            type="button"
+            onClick={() => void load()}
+            className="ec-btn-secondary mt-4 inline-flex min-h-[44px] items-center"
           >
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-2">
-                <span className="font-semibold text-[var(--ec-text-primary)]">{r.studentName}</span>
-                {r.overridden && (
-                  <span className="ec-tint-accent-chip rounded-full px-2 py-0.5 text-xs">
-                    Overridden
+            Try again
+          </button>
+        </div>
+      ) : null}
+
+      {state.status === 'empty' ? (
+        <div className="ms-teacher-empty">
+          <span className="ms-teacher-empty__icon" aria-hidden>
+            <span className="font-mono text-sm font-bold tracking-wide">IN</span>
+          </span>
+          <p className="ms-teacher-empty__title">No submissions yet</p>
+          <p className="ms-teacher-empty__body">
+            Students need to complete marked attempts with full marking data before they appear
+            here.
+          </p>
+        </div>
+      ) : null}
+
+      {state.status === 'ready' ? (
+        <ul className="ms-teacher-roster__list">
+          {state.data.map((r) => (
+            <li key={r.id}>
+              <Link href={`/teacher/reviews/${r.id}`} className="ms-teacher-roster__row">
+                <span className="min-w-0 flex-1">
+                  <span className="flex flex-wrap items-center gap-2">
+                    <span className="font-semibold text-[var(--ec-text-primary)]">{r.studentName}</span>
+                    {r.overridden ? (
+                      <span className="ec-tint-accent-chip rounded px-2 py-0.5 text-xs">
+                        Overridden
+                      </span>
+                    ) : null}
                   </span>
-                )}
-              </div>
-              <p className="mt-1 truncate text-sm text-[var(--ec-text-secondary)]">
-                {r.questionPreview}
-              </p>
-              <div className="mt-2 flex items-center gap-3 text-xs text-[var(--ec-text-secondary)]">
-                <span>
-                  AI score: {r.marksEarned}/{r.totalMarks}
+                  <span className="mt-1 block truncate text-sm text-[var(--ec-text-secondary)]">
+                    {r.questionPreview}
+                  </span>
+                  <span className="mt-1 block text-xs text-[var(--ec-text-secondary)]">
+                    AI score: {r.marksEarned}/{r.totalMarks}
+                    {' · '}
+                    {new Date(r.createdAt).toLocaleDateString()}
+                  </span>
                 </span>
-                <span className="flex items-center gap-1">
-                  <Clock className="h-3 w-3" />
-                  {new Date(r.createdAt).toLocaleDateString()}
+                <span className="font-mono text-[11px] font-bold text-[var(--ec-brand)]" aria-hidden>
+                  -&gt;
                 </span>
-              </div>
-            </div>
-            <ChevronRight className="h-5 w-5 shrink-0 text-[var(--ec-text-secondary)]" />
-          </Link>
-        ))}
-      </div>
-    </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </section>
   )
 }

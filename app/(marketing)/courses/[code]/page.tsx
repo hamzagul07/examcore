@@ -60,18 +60,9 @@ export default async function CourseSubjectPage({ params, searchParams }: Props)
         topics={seo.topics}
       />
       <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pt-6 sm:px-6">
-        <HubSeoIntro
-          headingLevel="h1"
-          heading={intro.heading}
-          paragraph={intro.paragraph}
-          links={[
-            { href: `/subjects/${code}`, label: `${code} past papers`, variant: 'muted' },
-            { href: '/mark', label: 'Mark a past paper →', variant: 'primary' },
-            ...(communityOn
-              ? [{ href: `/community/s/${code}`, label: 'Exam Room community', variant: 'muted' as const }]
-              : []),
-          ]}
-        />
+        <h1 className="sr-only">
+          {course.name} ({code}) — free {course.level} course
+        </h1>
       </div>
       <CourseHubClient
         code={code}
@@ -87,6 +78,24 @@ export default async function CourseSubjectPage({ params, searchParams }: Props)
           ) : null
         }
       />
+
+      {/* Search-intent intro AFTER the spine — match IB hub. Student meets
+          the course first; SEO chips stay in DOM below. */}
+      <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pb-10 pt-14 sm:px-6">
+        <HubSeoIntro
+          quiet
+          headingLevel="h2"
+          heading={intro.heading}
+          paragraph={intro.paragraph}
+          links={[
+            { href: `/subjects/${code}`, label: `${code} past papers`, variant: 'muted' },
+            { href: '/mark', label: 'Mark a past paper →', variant: 'primary' },
+            ...(communityOn
+              ? [{ href: `/community/s/${code}`, label: 'Exam Room community', variant: 'muted' as const }]
+              : []),
+          ]}
+        />
+      </div>
     </>
   )
 }

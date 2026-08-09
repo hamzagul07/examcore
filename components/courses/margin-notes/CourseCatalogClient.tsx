@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import type { MarginNotesSubject } from '@/lib/courses/margin-notes/types'
 import type { ContinueCatalogEntry } from '@/lib/courses/margin-notes/continue-learning'
 import { subjectProgressPercent } from '@/lib/courses/margin-notes/continue-learning'
@@ -12,10 +12,13 @@ export function CourseCatalogClient({
   subjects,
   continueCatalog,
   ibSubjects = [],
+  seoIntro,
 }: {
   subjects: MarginNotesSubject[]
   continueCatalog: ContinueCatalogEntry[]
   ibSubjects?: IbCatalogCard[]
+  /** Quiet SEO slip rendered after the catalog hero (product-first). */
+  seoIntro?: ReactNode
 }) {
   const progressRev = useCourseProgressRevision()
   const [withProg, setWithProg] = useState(subjects)
@@ -41,6 +44,7 @@ export function CourseCatalogClient({
       subjects={withProg}
       continueCatalog={continueCatalog}
       ibSubjects={withIbProg}
+      seoIntro={seoIntro}
     />
   )
 }

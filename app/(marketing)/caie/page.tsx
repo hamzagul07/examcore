@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { getPageMetadata } from '@/lib/seo/page-meta'
@@ -40,21 +39,18 @@ export default function CaieHubPage() {
         lead="Every syllabus code is a hub: lessons, flashcards, FAQs, quizzes and practice questions — all wired to scheme-aligned marking on /mark."
       />
       <MarketingSection>
-        <ul className="grid list-none gap-3 p-0 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="ms-board-index">
           {hubs.map((h) => (
             <li key={h.code}>
-              <Link
-                href={h.hubPath}
-                className="ec-card flex h-full items-center justify-between gap-3 p-4"
-              >
-                <span>
-                  <span className="font-semibold">{h.code}</span>
-                  <span className="ms-body-2 ml-2">{h.name}</span>
-                  <span className="ms-micro mt-1 block uppercase tracking-wide">
-                    {h.levelSlug}
-                  </span>
+              <Link href={h.hubPath} className="ms-board-slip">
+                <span className="ms-board-slip__code">{h.code}</span>
+                <span className="ms-board-slip__body">
+                  <span className="ms-board-slip__name">{h.name}</span>
+                  <span className="ms-board-slip__meta">{h.levelSlug}</span>
                 </span>
-                <ArrowRight className="h-4 w-4 opacity-60" />
+                <span className="ms-board-slip__go" aria-hidden>
+                  -&gt;
+                </span>
               </Link>
             </li>
           ))}
@@ -62,7 +58,8 @@ export default function CaieHubPage() {
       </MarketingSection>
 
       <MarketingSection>
-        <div className="ec-card ec-card--paper border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-bg-soft))] px-6 py-8 sm:px-10">
+        <div className="ms-board-cross">
+          <p className="ms-overline">Also marking</p>
           <h2 className="ms-h2">On Edexcel International instead?</h2>
           <p className="ms-body-2 mt-2 max-w-2xl text-[var(--ec-text-secondary)]">
             Many international schools offer Pearson Edexcel IAL alongside Cambridge.
@@ -72,9 +69,12 @@ export default function CaieHubPage() {
           <div className="mt-5 flex flex-wrap gap-3">
             <Link
               href="/mark?board=edexcel&subject=WMA11"
-              className="ec-btn-primary inline-flex min-h-[48px]"
+              className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
             >
-              Mark Edexcel IAL →
+              <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                M1
+              </span>
+              Mark Edexcel IAL -&gt;
             </Link>
             <Link href="/edexcel" className="ec-btn-ghost inline-flex min-h-[48px]">
               Browse Edexcel hubs

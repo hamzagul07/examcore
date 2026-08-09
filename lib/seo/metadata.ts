@@ -3,6 +3,7 @@ import { PAGE_KEYWORDS, SEO_KEYWORDS } from '@/lib/seo/keywords'
 import { keywordsForSubjectPath } from '@/lib/seo/subject-seo'
 import { keywordsForIbPath } from '@/lib/seo/ib-seo'
 import { formatMetaDescription, formatSerpTitle } from '@/lib/seo/on-page'
+import { ogApiPathForPage } from '@/lib/seo/og-catalog'
 import { SITE_NAME, SITE_TWITTER, SITE_URL } from '@/lib/site-config'
 
 type PageMetadataOptions = {
@@ -16,7 +17,7 @@ type PageMetadataOptions = {
   ogType?: 'website' | 'article'
   publishedTime?: string
   modifiedTime?: string
-  /** Relative OG image under metadataBase, e.g. /opengraph-image */
+  /** Relative OG image under metadataBase, e.g. /api/og/page/home */
   ogImagePath?: string
 }
 
@@ -43,7 +44,8 @@ function buildVerification(): Metadata['verification'] | undefined {
 }
 
 function ogImages(path: string, ogImagePath: string | undefined, alt: string) {
-  const imagePath = ogImagePath ?? (path === '/' ? '/opengraph-image' : path.startsWith('/blog') ? '/blog/opengraph-image' : '/opengraph-image')
+  // Prefer explicit path; otherwise API OG (file-convention opengraph-image 404s under (marketing)).
+  const imagePath = ogImagePath ?? ogApiPathForPage(path)
   return [
     {
       url: imagePath,
@@ -154,7 +156,7 @@ export function createBlogPostMetadata(post: {
     ogType: 'article',
     publishedTime: published,
     modifiedTime: modified,
-    ogImagePath: `/blog/${post.slug}/opengraph-image`,
+    ogImagePath: `/api/og/blog/${post.slug}`,
   })
 }
 

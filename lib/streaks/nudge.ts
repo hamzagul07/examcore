@@ -111,7 +111,7 @@ export async function sendStreakNudgeBatch(): Promise<{
     await admin.from('notifications').insert({
       user_id: userId,
       type: 'streak-risk',
-      title: `🔥 Your ${streak}-day streak ends tonight`,
+      title: `Your ${streak}-day streak ends tonight`,
       href: '/mark',
     })
     notified++

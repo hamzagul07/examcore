@@ -32,7 +32,10 @@ for (const subject of getMarkingSubjectPages()) {
     42
   )
   assert.ok(course.description.includes('42'), `${subject.code} course count`)
-  assert.ok(course.ogImagePath.includes(subject.code), `${subject.code} og path`)
+  assert.ok(
+    course.ogImagePath === `/api/og/subject/${subject.code}`,
+    `${subject.code} og path`
+  )
 }
 
 assert.deepEqual(

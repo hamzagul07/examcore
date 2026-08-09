@@ -1,7 +1,10 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { WholePaperUploadSection, type WholePaperPage } from './WholePaperUploadSection'
+import {
+  WholePaperUploadSection,
+  type WholePaperPage,
+} from './WholePaperUploadSection'
 import { WholePaperMarkingProgress } from './WholePaperMarkingProgress'
 import { WholePaperResultView } from '@/components/WholePaperResultView'
 import type { WholePaperLoadingContext, WholePaperResult } from '@/lib/marking/types'
@@ -18,7 +21,18 @@ type Props = {
   onQuotaExceeded?: (data: QuotaExceeded) => void
   onAllowance?: (block: AllowanceBlock | undefined) => void
   onGuestRateLimit?: () => void
+  /** Whole-paper pages live in child state — surface dirty for beforeunload (MK-03). */
+  onUnsavedChange?: (dirty: boolean) => void
   disabled?: boolean
+  /**
+   * R1 MarkFlow handoff — pages already captured; skip upload UI and start marking.
+   * Catalog question count is still only structural (MK-03), never “detected”.
+   */
+  seed?: { pages: WholePaperPage[]; pdf: File | null } | null
+  /** Host chrome (MarkingScreen / ResultScreen) — keep WholePaperFlow mounted across phases. */
+  onPhaseChange?: (phase: 'upload' | 'marking' | 'result') => void
+  /** When host ResultScreen owns “Mark another”, hide the duplicate footer CTA. */
+  hideMarkAnother?: boolean
 }
 
 type JobStatus = {
@@ -54,10 +68,25 @@ export function WholePaperFlow({
   onQuotaExceeded,
   onAllowance,
   onGuestRateLimit,
+  onUnsavedChange,
   disabled,
+  seed = null,
+  onPhaseChange,
+  hideMarkAnother = false,
 }: Props) {
-  const [phase, setPhase] = useState<'upload' | 'marking' | 'result'>('upload')
-  const [jobStatus, setJobStatus] = useState<JobStatus | null>(null)
+  const [phase, setPhase] = useState<'upload' | 'marking' | 'result'>(
+    seed ? 'marking' : 'upload'
+  )
+  const [jobStatus, setJobStatus] = useState<JobStatus | null>(
+    seed
+      ? {
+          phase: 'ocr',
+          message: 'Extracting text from your work…',
+          questions_total: 0,
+          questions_completed: 0,
+        }
+      : null
+  )
   const [markingError, setMarkingError] = useState<string | null>(null)
   const [retrying, setRetrying] = useState(false)
   const [result, setResult] = useState<WholePaperResult | null>(null)
@@ -65,6 +94,7 @@ export function WholePaperFlow({
   const [answerPhotoUrl, setAnswerPhotoUrl] = useState<string | null>(null)
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const pollFailuresRef = useRef(0)
+  const seedStartedRef = useRef(false)
 
   const stopPolling = useCallback(() => {
     if (pollRef.current) {
@@ -74,6 +104,15 @@ export function WholePaperFlow({
   }, [])
 
   useEffect(() => () => stopPolling(), [stopPolling])
+
+  useEffect(() => {
+    onPhaseChange?.(phase)
+  }, [phase, onPhaseChange])
+
+  // Uploads only exist on the upload phase; clear the parent dirty flag otherwise.
+  useEffect(() => {
+    if (phase !== 'upload') onUnsavedChange?.(false)
+  }, [phase, onUnsavedChange])
 
   // ~24s of consecutive status failures (12 polls × 2s) before we give up.
   const MAX_POLL_FAILURES = 12
@@ -319,6 +358,19 @@ export function WholePaperFlow({
     setResult(data.whole_paper as WholePaperResult)
   }
 
+  // R1: MarkFlow already collected pages — jump straight into init/run.
+  useEffect(() => {
+    if (!seed || seedStartedRef.current) return
+    if (!paperCode.trim() || !paperSession.trim()) {
+      onError('Add the paper code and session before marking a whole paper.')
+      setPhase('upload')
+      return
+    }
+    seedStartedRef.current = true
+    void handleSubmit(seed.pages, seed.pdf)
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- one-shot seed handoff
+  }, [seed, paperCode, paperSession])
+
   if (phase === 'result' && result) {
     return (
       <div className="space-y-8">
@@ -328,14 +380,16 @@ export function WholePaperFlow({
           answerPhotoUrl={answerPhotoUrl}
           onRetryQuestion={handleRetryQuestion}
         />
-        <button
-          type="button"
-          onClick={onReset}
-          className="ec-btn-primary w-full justify-center text-base"
-          style={{ padding: '16px 24px' }}
-        >
-          Mark another paper
-        </button>
+        {!hideMarkAnother ? (
+          <button
+            type="button"
+            onClick={onReset}
+            className="ec-btn-primary w-full justify-center text-base"
+            style={{ padding: '16px 24px' }}
+          >
+            Mark another paper
+          </button>
+        ) : null}
       </div>
     )
   }
@@ -361,9 +415,10 @@ export function WholePaperFlow({
   return (
     <WholePaperUploadSection
       questionOptions={questionOptions}
-      detectedQuestionCount={questionOptions.length}
+      catalogQuestionCount={questionOptions.length}
       onCancel={onReset}
       onSubmit={handleSubmit}
+      onUnsavedChange={onUnsavedChange}
       disabled={disabled}
     />
   )

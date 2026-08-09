@@ -51,15 +51,22 @@ export default async function TeacherStartPage() {
           yet, so Classrooms and Reviews would both refuse them. */}
       <TeacherNav showNav={false} />
       <div className="ms-teacher-start-shell">
-      <div className="ms-teacher-start-card">
-        <p className="ec-label-tech ms-teacher-start__eyebrow">FOR TEACHERS</p>
-        <h1 className="ms-teacher-start__title">Set up your first class</h1>
-        <p className="ms-teacher-start__lead">
-          Four questions, then you get a code to give your students. Marking their
-          work is free for you — no card, no trial.
-        </p>
-        <TeacherStartForm saveToken={saveToken} />
-      </div>
+        <div className="ms-teacher-start-card">
+          <div className="mb-2 flex items-center gap-2">
+            <p className="ec-eyebrow mb-0">Teacher desk</p>
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+              CLS
+            </span>
+          </div>
+          <h1 className="ms-teacher-start__title">
+            Set up your first <em>class</em>
+          </h1>
+          <p className="ms-teacher-start__lead">
+            Four questions, then you get a code to give your students. Marking their work is free
+            for you — no card, no trial.
+          </p>
+          <TeacherStartForm saveToken={saveToken} />
+        </div>
       </div>
     </>
   )

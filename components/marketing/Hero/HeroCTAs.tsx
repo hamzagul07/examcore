@@ -2,11 +2,14 @@
 
 import Link from 'next/link'
 import { motion, useReducedMotion, type Variants } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+
+type SecondaryCta =
+  | { label: string; targetId: string; href?: never }
+  | { label: string; href: string; targetId?: never }
 
 interface HeroCTAsProps {
   primary: { label: string; href: string }
-  secondary: { label: string; targetId: string }
+  secondary?: SecondaryCta
 }
 
 const ctaBase =
@@ -21,6 +24,7 @@ export function HeroCTAs({ primary, secondary }: HeroCTAsProps) {
   const arrowVariants: Variants = prefersReducedMotion ? {} : { hover: { x: 3 } }
 
   function handleSecondaryClick() {
+    if (!secondary?.targetId) return
     const el = document.getElementById(secondary.targetId)
     el?.scrollIntoView({
       behavior: prefersReducedMotion ? 'auto' : 'smooth',
@@ -42,20 +46,29 @@ export function HeroCTAs({ primary, secondary }: HeroCTAsProps) {
           className={`${ctaBase} gap-2 rounded-[var(--ec-radius-button)] bg-[var(--ec-text-primary)] text-[var(--ec-surface)]`}
         >
           {primary.label}
-          <motion.span className="inline-flex" variants={arrowVariants}>
-            <ArrowRight size={16} aria-hidden />
+          <motion.span className="inline-flex font-mono text-sm" variants={arrowVariants} aria-hidden>
+            -&gt;
           </motion.span>
         </Link>
       </motion.div>
 
-      <button
-        type="button"
-        onClick={handleSecondaryClick}
-        aria-controls={secondary.targetId}
-        className={`${ctaBase} text-[var(--ec-text-secondary)] transition-colors duration-200 hover:text-[var(--ec-text-primary)]`}
-      >
-        {secondary.label}
-      </button>
+      {secondary?.href ? (
+        <Link
+          href={secondary.href}
+          className={`${ctaBase} text-[var(--ec-text-secondary)] transition-colors duration-200 hover:text-[var(--ec-text-primary)]`}
+        >
+          {secondary.label}
+        </Link>
+      ) : secondary?.targetId ? (
+        <button
+          type="button"
+          onClick={handleSecondaryClick}
+          aria-controls={secondary.targetId}
+          className={`${ctaBase} text-[var(--ec-text-secondary)] transition-colors duration-200 hover:text-[var(--ec-text-primary)]`}
+        >
+          {secondary.label}
+        </button>
+      ) : null}
     </div>
   )
 }

@@ -8,7 +8,6 @@ import {
   buildSignInHref,
   readPostAuthNextParam,
 } from '@/lib/auth-redirect'
-import { CheckCircle2 } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
 import { Label } from '@/components/ui/label'
 import { AuthShell } from '@/components/AuthShell'
@@ -16,6 +15,7 @@ import { PasswordInput } from '@/components/PasswordInput'
 import { ErrorBox, SubmitButton } from '@/components/AuthFormBits'
 import { fetchPostAuthDestination } from '@/lib/auth-post-login'
 import { formatAuthError } from '@/lib/auth-errors'
+import { SignupDeskArtefact } from '@/components/auth/SignupDeskArtefact'
 
 export default function ResetPasswordPage() {
   return (
@@ -27,10 +27,22 @@ export default function ResetPasswordPage() {
 
 function ResetPasswordSkeleton() {
   return (
-    <AuthShell backLabel="Back to sign in" backHref={buildSignInHref()}>
-      <p className="leading-relaxed text-[var(--ec-text-secondary)]">
-        Checking your reset link…
-      </p>
+    <AuthShell
+      backLabel="Back to sign in"
+      backHref={buildSignInHref()}
+      aside={<SignupDeskArtefact variant="reset" />}
+    >
+      <div className="ms-signup-desk">
+        <div className="mb-2 flex items-center gap-2">
+          <p className="ec-eyebrow mb-0">New password</p>
+          <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+            PW
+          </span>
+        </div>
+        <p className="leading-relaxed text-[var(--ec-text-secondary)]">
+          Checking your reset link…
+        </p>
+      </div>
     </AuthShell>
   )
 }
@@ -112,36 +124,67 @@ function ResetPasswordForm() {
 
   if (!hasSession) {
     return (
-      <AuthShell backLabel="Back to sign in" backHref={signInHref}>
-        <p className="ec-eyebrow mb-3">Password reset</p>
-        <h1 className="text-hero mb-3">
-          Link <span className="ec-text-gradient">expired</span>
-        </h1>
-        <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
-          Open the reset link from your email in this browser, or request a fresh
-          one below.
-        </p>
-        <Link
-          href={forgotHref}
-          className="ec-btn-primary inline-flex w-full justify-center"
-        >
-          Request a new link
-        </Link>
+      <AuthShell
+        backLabel="Back to sign in"
+        backHref={signInHref}
+        aside={<SignupDeskArtefact variant="reset" />}
+      >
+        <div className="ms-signup-desk">
+          <div className="mb-2 flex items-center gap-2">
+            <p className="ec-eyebrow mb-0">Password reset</p>
+            <span
+              className="ec-ink-stamp ec-ink-stamp--inline ec-ink-stamp--crimson"
+              aria-hidden
+            >
+              X
+            </span>
+          </div>
+          <h1 className="text-hero mb-3">
+            Link <em>expired</em>
+          </h1>
+          <p className="mb-2 leading-relaxed text-[var(--ec-text-secondary)]">
+            Open the reset link from your email in this browser, or request a fresh
+            one below.
+          </p>
+          <p className="ms-signup-note mb-6" aria-hidden>
+            links expire — that&apos;s the point
+          </p>
+          <Link
+            href={forgotHref}
+            className="ec-btn-primary inline-flex w-full items-center justify-center gap-2"
+          >
+            Request a new link
+            <span className="font-mono text-[11px] font-bold" aria-hidden>
+              -&gt;
+            </span>
+          </Link>
+        </div>
       </AuthShell>
     )
   }
 
   return (
-    <AuthShell backLabel="Back to sign in" backHref={signInHref}>
+    <AuthShell
+      backLabel="Back to sign in"
+      backHref={signInHref}
+      aside={done ? null : <SignupDeskArtefact variant="reset" />}
+    >
       {!done ? (
-        <>
-          <p className="ec-label-tech mb-3">NEW PASSWORD</p>
+        <div className="ms-signup-desk">
+          <div className="mb-2 flex items-center gap-2">
+            <p className="ec-eyebrow mb-0">New password</p>
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+              PW
+            </span>
+          </div>
           <h1 className="text-hero mb-3">
-            Set a <span className="ec-text-gradient">new password</span>
+            Set a <em>new password</em>
           </h1>
-          <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
-            Pick something at least 8 characters long. You&apos;ll use this from
-            now on.
+          <p className="mb-2 leading-relaxed text-[var(--ec-text-secondary)]">
+            At least 8 characters. You&apos;ll use this from now on.
+          </p>
+          <p className="ms-signup-note mb-6" aria-hidden>
+            file the new key — then the desk opens
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -185,17 +228,23 @@ function ResetPasswordForm() {
               Request another
             </Link>
           </p>
-        </>
+        </div>
       ) : (
-        <div className="space-y-3 text-center">
-          <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-2xl ec-icon-hero">
-            <CheckCircle2 className="h-8 w-8 ec-score-high" />
+        <div className="ms-signup-desk space-y-3">
+          <div className="mb-2 flex items-center gap-2">
+            <p className="ec-eyebrow mb-0">Filed</p>
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+              M1
+            </span>
           </div>
-          <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)]">
-            Password updated
+          <h2 className="text-hero mb-3">
+            Password <em>updated</em>
           </h2>
           <p className="leading-relaxed text-[var(--ec-text-secondary)]">
-            Taking you to your dashboard…
+            Taking you back to your desk…
+          </p>
+          <p className="ms-signup-note" aria-hidden>
+            key filed — desk unlocking
           </p>
         </div>
       )}

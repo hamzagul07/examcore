@@ -1,103 +1,80 @@
 'use client'
 
-import {
-  ArrowRight,
-  Target,
-  Zap,
-  Clock,
-  Flame,
-  Map,
-  Sparkles,
-  TrendingDown,
-  CalendarClock,
-  type LucideIcon,
-} from 'lucide-react'
 import type {
   ActionPlanItem,
   ActionPlanType,
 } from '@/lib/action-plan'
-import { TiltCard } from '@/components/effects/TiltCard'
 import { LoadingLink } from '@/components/ui/LoadingLink'
 
 type Props = {
   items: ActionPlanItem[]
 }
 
-const ICONS: Record<ActionPlanType, LucideIcon> = {
-  onboarding: Sparkles,
-  blindspot: Target,
-  deficit: TrendingDown,
-  grade_booster: Zap,
-  time_warning: Clock,
-  time_optimization: CalendarClock,
-  streak: Flame,
-  coverage: Map,
-  encouragement: Sparkles,
-  sampled: Sparkles,
+const GLYPHS: Record<ActionPlanType, string> = {
+  onboarding: 'M1',
+  blindspot: '◆',
+  deficit: '↓',
+  grade_booster: '↑',
+  time_warning: 'T',
+  time_optimization: 'H',
+  streak: 'S',
+  coverage: '¶',
+  encouragement: '→',
+  sampled: '✓',
 }
 
 const TINTS: Record<
   ActionPlanType,
-  { iconBg: string; iconRing: string; iconColor: string; chip: string }
+  { iconBg: string; iconRing: string; chip: string }
 > = {
   onboarding: {
     iconBg: 'ec-tint-success-icon',
     iconRing: 'border',
-    iconColor: '',
     chip: 'ec-tint-success-chip',
   },
   blindspot: {
     iconBg: 'ec-tint-accent-icon',
     iconRing: 'border',
-    iconColor: '',
     chip: 'ec-tint-accent-chip',
   },
   deficit: {
     iconBg: 'ec-tint-critical-icon',
     iconRing: 'border',
-    iconColor: '',
     chip: 'ec-tint-critical-chip',
   },
   grade_booster: {
     iconBg: 'ec-tint-warning-icon',
     iconRing: 'border',
-    iconColor: '',
     chip: 'ec-tint-warning-chip',
   },
   time_warning: {
     iconBg: 'ec-tint-warning-icon',
     iconRing: 'border',
-    iconColor: '',
     chip: 'ec-tint-warning-chip',
   },
   time_optimization: {
     iconBg: 'ec-tint-info-icon',
     iconRing: 'border',
-    iconColor: '',
     chip: 'ec-tint-info-chip',
   },
   streak: {
     iconBg: 'ec-tint-success-icon',
     iconRing: 'border',
-    iconColor: '',
     chip: 'ec-tint-success-chip',
   },
   coverage: {
     iconBg: 'ec-tint-info-icon',
     iconRing: 'border',
-    iconColor: '',
     chip: 'ec-tint-info-chip',
   },
   encouragement: {
     iconBg: 'ec-tint-success-icon',
     iconRing: 'border',
-    iconColor: '',
     chip: 'ec-tint-success-chip',
   },
   sampled: {
     iconBg: 'ec-tint-sampled-icon',
     iconRing: 'border',
-    iconColor: '',
     chip: 'ec-tint-sampled-chip',
   },
 }
@@ -120,7 +97,12 @@ export function ActionPlan({ items }: Props) {
     <section className="ms-action-plan ms-dash-card">
       <div className="mb-6">
         <div className="mb-2 flex items-center gap-2">
-          <Target className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden="true" />
+          <span
+            className="inline-grid h-5 min-w-5 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1 font-mono text-[10px] font-bold text-[var(--ec-brand)]"
+            aria-hidden
+          >
+            ◆
+          </span>
           <p className="ms-overline" style={{ marginBottom: 0 }}>
             Fix next
           </p>
@@ -147,20 +129,18 @@ function ActionCard({
   item: ActionPlanItem
   index: number
 }) {
-  const Icon = ICONS[item.type]
+  const glyph = GLYPHS[item.type]
   const tint = TINTS[item.type]
+  const crimson = item.type === 'deficit' || item.type === 'blindspot' || item.type === 'time_warning'
   return (
-    <TiltCard intensity={5} className="h-full rounded-3xl">
-      <div className="ms-dash-card group relative flex h-full flex-col transition-transform hover:-translate-y-0.5">
+    <div className="ms-dash-card ms-action-card group relative flex h-full flex-col">
       <div className="mb-4 flex items-center justify-between gap-2">
-        <div
-          className={`flex h-10 w-10 items-center justify-center rounded-xl border ${tint.iconBg} ${tint.iconRing}`}
-        >
-          <Icon className="h-5 w-5" aria-hidden="true" />
-        </div>
+        <span className={`ec-ink-stamp${crimson ? ' ec-ink-stamp--crimson' : ''}`} aria-hidden>
+          {glyph}
+        </span>
         <div className="flex items-center gap-2">
           <span
-            className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider ${tint.chip}`}
+            className={`inline-flex items-center rounded px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider ${tint.chip}`}
           >
             {TYPE_LABELS[item.type]}
           </span>
@@ -183,9 +163,10 @@ function ActionCard({
         className="ec-btn-secondary ms-action-cta mt-5 w-full justify-center self-stretch px-3.5 py-2 text-sm sm:w-auto sm:self-start"
       >
         {item.ctaText}
-        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+        <span className="font-mono text-[11px] font-bold" aria-hidden>
+          -&gt;
+        </span>
       </LoadingLink>
-      </div>
-    </TiltCard>
+    </div>
   )
 }

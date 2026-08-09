@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { Loader2, ExternalLink } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 import type { BillingSummaryClient } from '@/lib/billing/question-copy'
 import { tierMarketingName } from '@/lib/billing/caps'
 import { billingPortalButtonLabel, useBillingPortal } from '@/lib/hooks/useBillingPortal'
@@ -48,7 +48,7 @@ function UsageMeter({
   return (
     <div>
       <div className="flex items-baseline justify-between gap-3">
-        <span className="text-xs font-semibold uppercase tracking-wider text-[var(--ec-text-faint)]">
+        <span className="text-xs font-semibold uppercase tracking-wider text-[var(--ec-text-secondary)]">
           {label}
         </span>
         <span className="text-xs tabular-nums text-[var(--ec-text-secondary)]">
@@ -58,8 +58,8 @@ function UsageMeter({
         </span>
       </div>
       <div
-        className="mt-1.5 h-1.5 overflow-hidden rounded-full"
-        style={{ background: 'var(--ec-surface-muted)' }}
+        className="mt-1.5 h-1.5 overflow-hidden rounded-[2px] border border-[var(--ec-border)]"
+        style={{ background: 'var(--ec-paper, var(--ec-surface-muted))' }}
         role="progressbar"
         aria-valuenow={remaining}
         aria-valuemin={0}
@@ -67,7 +67,7 @@ function UsageMeter({
         aria-label={`${label}: ${remaining} of ${cap} left`}
       >
         <div
-          className="h-full rounded-full transition-[width] duration-300"
+          className="h-full rounded-[1px] transition-[width] duration-300"
           style={{ width: `${100 - pct}%`, background: tone }}
         />
       </div>
@@ -151,11 +151,12 @@ export function CreditChip() {
         aria-expanded={open}
         aria-label={`${tierLabel} plan — ${qLeft} questions and ${oLeft} chat messages left`}
         title={`${tierLabel} · ${qLeft} questions · ${oLeft} chat left`}
-        className="relative flex h-8 max-w-full items-center gap-1 rounded-full border px-2 text-[11px] font-semibold tabular-nums transition-colors before:absolute before:-inset-1.5 before:content-[''] hover:border-[color-mix(in_srgb,var(--ec-brand)_35%,var(--ec-border))]"
+        className="relative flex h-8 max-w-full items-center gap-1 rounded border px-2 font-mono text-[11px] font-semibold tabular-nums transition-colors before:absolute before:-inset-1.5 before:content-[''] hover:border-[color-mix(in_srgb,var(--ec-brand)_35%,var(--ec-border))]"
         style={{
           borderColor: 'var(--ec-border)',
           color: 'var(--ec-text-secondary)',
-          background: 'color-mix(in srgb, var(--ec-canvas) 60%, transparent)',
+          background: 'var(--ec-paper, var(--ec-surface))',
+          boxShadow: 'var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.06))',
         }}
       >
         <UsageRing fraction={qFraction} tone={ringTone} />
@@ -173,12 +174,12 @@ export function CreditChip() {
           <div
             role="dialog"
             aria-label="Plan usage"
-            className="ec-card fixed left-3 right-3 top-[calc(3.25rem+env(safe-area-inset-top,0px))] z-[60] max-h-[min(70dvh,24rem)] overflow-y-auto p-4 text-sm sm:absolute sm:inset-auto sm:right-0 sm:top-full sm:mt-2 sm:w-72 sm:max-h-none"
+            className="ec-card ec-card--paper fixed left-3 right-3 top-[calc(3.25rem+env(safe-area-inset-top,0px))] z-[60] max-h-[min(70dvh,24rem)] overflow-y-auto p-4 text-sm sm:absolute sm:inset-auto sm:right-0 sm:top-full sm:mt-2 sm:w-72 sm:max-h-none"
           >
             <div className="flex items-baseline justify-between gap-3">
               <p className="font-semibold text-[var(--ec-text-primary)]">{tierLabel} plan</p>
               {resetDate && (
-                <p className="text-xs text-[var(--ec-text-faint)]">Resets {resetDate}</p>
+                <p className="text-xs text-[var(--ec-text-secondary)]">Resets {resetDate}</p>
               )}
             </div>
 
@@ -211,7 +212,7 @@ export function CreditChip() {
           {summary.enforcement_mode === 'enforce' &&
             summary.questions.blocked &&
             summary.credit_balance <= 0 && (
-              <p className="mt-3 rounded-xl border ec-tint-critical-panel px-3 py-2 text-xs leading-relaxed">
+              <p className="ec-card ec-card--paper mt-3 border ec-tint-critical-panel px-3 py-2 text-xs leading-relaxed">
                 You&apos;ve hit your monthly question cap. Marking and whole papers
                 are paused until you upgrade, top up credits, or your allowance
                 resets.
@@ -220,7 +221,7 @@ export function CreditChip() {
           {summary.enforcement_mode === 'warn' &&
             summary.questions.remaining <= 0 &&
             summary.credit_balance <= 0 && (
-              <p className="mt-3 rounded-xl border ec-highlight-warning-panel px-3 py-2 text-xs leading-relaxed">
+              <p className="ec-card ec-card--paper mt-3 border ec-highlight-warning-panel px-3 py-2 text-xs leading-relaxed">
                 Warning mode: you&apos;re over your monthly cap but can still
                 submit for now. Upgrade or top up before enforce goes live.
               </p>
@@ -238,7 +239,7 @@ export function CreditChip() {
                 ) : (
                   <>
                     {billingPortalButtonLabel(portalState, 'Manage plan')}
-                    <ExternalLink className="h-3.5 w-3.5" aria-hidden />
+                    <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>↗</span>
                   </>
                 )}
               </button>

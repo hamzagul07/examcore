@@ -58,7 +58,7 @@ const SOCIAL_ICON = {
 
 function FooterSocials() {
   return (
-    <div className="mt-4 flex items-center gap-3">
+    <div className="mt-4 flex items-center gap-1">
       {FOOTER_SOCIAL_LINKS.map((s) => {
         const Icon = SOCIAL_ICON[s.icon]
         return (
@@ -68,9 +68,9 @@ function FooterSocials() {
             target="_blank"
             rel="noopener noreferrer me"
             aria-label={s.label}
-            className="text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-brand)]"
+            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-brand)]"
           >
-            <Icon className="h-5 w-5" />
+            <Icon className="h-5 w-5" aria-hidden />
           </a>
         )
       })}

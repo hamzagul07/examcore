@@ -155,7 +155,7 @@ export function CinematicMarkingExperience(
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, transition: { duration: 0.4 } }}
       transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-      className="ec-card ec-cinematic-card relative overflow-hidden p-4 sm:p-6 md:p-8"
+      className="ec-card ec-card--paper ec-cinematic-card relative overflow-hidden p-4 sm:p-6 md:p-8"
     >
       {/* A — kinetic field, full bleed behind everything */}
       <motion.div
@@ -300,7 +300,8 @@ function ImageStage({
           animate={{ opacity: 0.82 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4 }}
-          className="relative mx-auto w-full max-w-[520px] overflow-hidden rounded-2xl border ec-border-color ec-shadow-elevation-3"
+          className="relative mx-auto w-full max-w-[520px] overflow-hidden rounded border ec-border-color"
+          style={{ boxShadow: 'var(--ec-shadow-hard, 6px 6px 0 rgba(0, 0, 0, 0.12))' }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element -- continuity with the overlay components; same cached src. */}
           <img
@@ -321,7 +322,7 @@ function SurgeDots() {
       {[0, 1, 2, 3, 4].map((i) => (
         <motion.span
           key={i}
-          className="h-1.5 w-1.5 rounded-full bg-[var(--ec-brand)]"
+          className="h-1.5 w-1.5 rounded-[2px] bg-[var(--ec-brand)]"
           initial={{ opacity: 0.2 }}
           animate={{ opacity: [0.2, 0.9, 0.2] }}
           transition={{

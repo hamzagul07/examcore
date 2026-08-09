@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import type { SVGProps } from 'react'
-import { Link2, Check, Share2 } from 'lucide-react'
 
 // Inline brand SVGs (lucide dropped its brand icons) — matches SiteFooter.
 function XIcon(props: SVGProps<SVGSVGElement>) {
@@ -21,7 +20,7 @@ function LinkedinIcon(props: SVGProps<SVGSVGElement>) {
 }
 
 const BTN =
-  'inline-flex min-h-[44px] items-center gap-1.5 rounded-full border border-[var(--ec-border)] px-3.5 text-sm font-semibold text-[var(--ec-text-secondary)] transition-colors hover:border-[var(--ec-brand)] hover:text-[var(--ec-brand)]'
+  'inline-flex min-h-[44px] items-center gap-1.5 rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-3.5 font-mono text-xs font-semibold tracking-wide text-[var(--ec-text-secondary)] shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.06))] transition-colors hover:border-[var(--ec-brand)] hover:text-[var(--ec-brand)]'
 
 export function BlogShareButtons({ url, title }: { url: string; title: string }) {
   const [copied, setCopied] = useState(false)
@@ -64,7 +63,7 @@ export function BlogShareButtons({ url, title }: { url: string; title: string })
       <span className="ms-micro mr-1">SHARE</span>
       {canShare ? (
         <button type="button" className={BTN} onClick={nativeShare}>
-          <Share2 className="h-4 w-4" aria-hidden />
+          <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>↗</span>
           <span>Share</span>
         </button>
       ) : null}
@@ -94,7 +93,7 @@ export function BlogShareButtons({ url, title }: { url: string; title: string })
         onClick={copyLink}
         aria-label={copied ? 'Link copied to clipboard' : 'Copy link'}
       >
-        {copied ? <Check className="h-4 w-4" aria-hidden /> : <Link2 className="h-4 w-4" aria-hidden />}
+        {copied ? <span className="font-mono text-[11px] font-bold" aria-hidden>✓</span> : <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>URL</span>}
         <span>{copied ? 'Copied' : 'Copy link'}</span>
       </button>
     </div>

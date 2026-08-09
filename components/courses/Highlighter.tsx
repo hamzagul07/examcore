@@ -18,6 +18,7 @@ import {
   offsetOf,
   paint,
   clearPaint,
+  ensureHighlightStyles,
   sectionOf,
   supportsHighlightApi,
   textBits,
@@ -72,7 +73,9 @@ export function useHighlights(lessonSlug: string, rootRef: React.RefObject<HTMLE
   // recap, and reading localStorage during the first render would disagree with
   // the server-rendered HTML.
   useEffect(() => {
-    setSupported(supportsHighlightApi())
+    const ok = supportsHighlightApi()
+    setSupported(ok)
+    if (ok) ensureHighlightStyles()
     try {
       setList(parse(window.localStorage.getItem(storageKey(lessonSlug))))
     } catch {

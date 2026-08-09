@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import {
   MarketingHero,
   MarketingPageShell,
@@ -86,7 +86,7 @@ export function IbSurfacePage({
         {surface === 'flashcards' ? (
           <ul className="grid list-none gap-3 p-0 sm:grid-cols-2">
             {(lesson.flashcards ?? []).map((card, i) => (
-              <li key={i} className="ec-card p-4">
+              <li key={i} className="ec-card ec-card--paper p-4">
                 <p className="font-semibold">{card.front}</p>
                 <p className="ms-body-2 mt-2">{card.back}</p>
               </li>
@@ -97,7 +97,7 @@ export function IbSurfacePage({
         {surface === 'faq' ? (
           <dl className="space-y-4">
             {(lesson.faq ?? []).map((f) => (
-              <div key={f.q} className="ec-card p-5">
+              <div key={f.q} className="ec-card ec-card--paper p-5">
                 <dt className="font-semibold">
                   <h2 className="text-base font-semibold">{f.q}</h2>
                 </dt>
@@ -110,7 +110,7 @@ export function IbSurfacePage({
         {surface === 'quiz' ? (
           <ol className="space-y-4">
             {(lesson.quickCheck ?? []).map((q, i) => (
-              <li key={i} className="ec-card p-5">
+              <li key={i} className="ec-card ec-card--paper p-5">
                 <p className="font-semibold">{q.prompt}</p>
                 <details className="mt-3">
                   <summary className="cursor-pointer text-sm text-[var(--ec-brand)]">
@@ -124,7 +124,7 @@ export function IbSurfacePage({
         ) : null}
 
         {surface === 'questions' ? (
-          <div className="ec-card p-5">
+          <div className="ec-card ec-card--paper p-5">
             <p className="ms-body-2">
               Open the full lesson for worked examples, then mark a practice answer against IB
               criteria.
@@ -138,7 +138,7 @@ export function IbSurfacePage({
         {surface === 'mistakes' ? (
           <div className="space-y-4">
             {examTips.map((tip, i) => (
-              <article key={i} className="ec-card p-5">
+              <article key={i} className="ec-card ec-card--paper p-5">
                 <h2 className="ms-h3" style={{ fontSize: '1.05rem' }}>
                   Exam tip {i + 1}
                 </h2>
@@ -149,7 +149,7 @@ export function IbSurfacePage({
         ) : null}
 
         <Link href={markHref} className="ec-btn-primary mt-8 inline-flex min-h-[48px]">
-          Mark with IB criteria <ArrowRight className="h-4 w-4" />
+          Mark with IB criteria <span className="h-4 w-4" aria-hidden>-&gt;</span>
         </Link>
       </MarketingSection>
     </MarketingPageShell>

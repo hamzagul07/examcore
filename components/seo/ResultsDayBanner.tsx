@@ -1,7 +1,7 @@
 import 'server-only'
 
 import Link from 'next/link'
-import { ArrowRight, Calendar } from 'lucide-react'
+
 import { getResultsDayBannerCopy, getResultsDayPhase } from '@/lib/seo/results-day'
 import { hasJune2026Session, anyJune2026DataAvailable } from '@/lib/seo/grade-boundaries-data'
 
@@ -25,9 +25,13 @@ export function ResultsDayBanner({ subjectCode = null, className = '' }: Results
   })
 
   return (
-    <aside className={`ms-results-day-banner ${className}`.trim()} aria-label="June 2026 results and grade thresholds">
-      <div className="ms-results-day-banner__icon" aria-hidden="true">
-        <Calendar className="h-5 w-5" />
+    <aside
+      className={`ms-results-day-banner ms-results-day-banner--paper ${className}`.trim()}
+      aria-label="June 2026 results and grade thresholds"
+    >
+      <div className="ms-results-day-banner__stamp" aria-hidden="true">
+        <span className="ms-results-day-banner__stamp-code">JUN</span>
+        <span className="ms-results-day-banner__stamp-label">results</span>
       </div>
       <div className="ms-results-day-banner__body">
         <p className="ms-overline" style={{ color: 'var(--ec-brand)', marginBottom: 6 }}>
@@ -42,7 +46,7 @@ export function ResultsDayBanner({ subjectCode = null, className = '' }: Results
         <div className="mt-4 flex flex-wrap gap-2">
           <Link href={copy.primaryHref} className="ec-btn-primary ec-btn-primary--sm">
             {copy.primaryLabel}
-            <ArrowRight className="h-4 w-4" />
+            <span className="h-4 w-4" aria-hidden>-&gt;</span>
           </Link>
           {copy.secondaryHref && copy.secondaryLabel ? (
             <Link href={copy.secondaryHref} className="ec-btn-ghost ec-btn-ghost--sm">

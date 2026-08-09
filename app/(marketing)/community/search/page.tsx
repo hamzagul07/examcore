@@ -36,7 +36,7 @@ export default async function CommunitySearchPage({ searchParams }: PageProps) {
         {q.length < 2 ? (
           <p className="rc-dir-sub">Type at least 2 characters to search.</p>
         ) : hits.length === 0 ? (
-          <div className="rc-empty"><div className="rc-empty-glyph" aria-hidden>🔍</div><p>No results for “{q}”.</p></div>
+          <div className="rc-empty"><div className="rc-empty-glyph" aria-hidden>/</div><p>No results for “{q}”.</p></div>
         ) : (
           <div className="rc-feed">
             {hits.map((h) => {

@@ -15,21 +15,33 @@ type Props = {
   layout?: 'vertical' | 'horizontal'
 }
 
-export function VoteBox({ targetType, id, initialScore, initialVote = 0, signedIn, layout = 'vertical' }: Props) {
+export function VoteBox({
+  targetType,
+  id,
+  initialScore,
+  initialVote = 0,
+  signedIn,
+  layout = 'vertical',
+}: Props) {
   const pathname = usePathname()
   const [score, setScore] = useState(initialScore)
   const [vote, setVote] = useState(initialVote)
   const [busy, setBusy] = useState(false)
   const [signInHint, setSignInHint] = useState(false)
-  const lockedTitle = signedIn ? undefined : 'Sign in to vote'
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
+  const [retryValue, setRetryValue] = useState<1 | -1 | null>(null)
 
   async function cast(value: 1 | -1) {
     if (busy) return
     if (!signedIn) {
       setSignInHint(true)
+      setErrorMsg(null)
+      setRetryValue(null)
       return
     }
     setSignInHint(false)
+    setErrorMsg(null)
+    setRetryValue(null)
     const prevVote = vote
     const prevScore = score
     const nextVote = prevVote === value ? 0 : value
@@ -37,22 +49,29 @@ export function VoteBox({ targetType, id, initialScore, initialVote = 0, signedI
     setScore(prevScore - prevVote + nextVote)
     setBusy(true)
     try {
-      const res = await fetch(`/api/community/${targetType === 'post' ? 'posts' : 'comments'}/${id}/vote`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ value }),
-      })
-      const data = await res.json()
+      const res = await fetch(
+        `/api/community/${targetType === 'post' ? 'posts' : 'comments'}/${id}/vote`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ value }),
+        }
+      )
+      const data = await res.json().catch(() => ({}))
       if (res.ok) {
         setVote(typeof data.value === 'number' ? data.value : nextVote)
         if (typeof data.score === 'number') setScore(data.score)
       } else {
         setVote(prevVote)
         setScore(prevScore)
+        setErrorMsg("Vote wasn't saved — try again.")
+        setRetryValue(value)
       }
     } catch {
       setVote(prevVote)
       setScore(prevScore)
+      setErrorMsg("Vote wasn't saved — try again.")
+      setRetryValue(value)
     }
     setBusy(false)
   }
@@ -64,7 +83,6 @@ export function VoteBox({ targetType, id, initialScore, initialVote = 0, signedI
         aria-label={signedIn ? 'Upvote' : 'Upvote (sign in required)'}
         aria-pressed={vote === 1}
         disabled={busy}
-        title={lockedTitle}
         className={`rc-vote-btn${vote === 1 ? ' rc-vote-up-on' : ''}${signedIn ? '' : ' rc-vote-btn-locked'}`}
         onClick={() => cast(1)}
       >
@@ -84,7 +102,6 @@ export function VoteBox({ targetType, id, initialScore, initialVote = 0, signedI
         aria-label={signedIn ? 'Downvote' : 'Downvote (sign in required)'}
         aria-pressed={vote === -1}
         disabled={busy}
-        title={lockedTitle}
         className={`rc-vote-btn${vote === -1 ? ' rc-vote-down-on' : ''}${signedIn ? '' : ' rc-vote-btn-locked'}`}
         onClick={() => cast(-1)}
       >
@@ -93,8 +110,21 @@ export function VoteBox({ targetType, id, initialScore, initialVote = 0, signedI
         </svg>
       </button>
       {signInHint && !signedIn ? (
-        <p className="rc-vote-signin-hint">
+        <p className="rc-vote-signin-hint" role="status">
           <Link href={buildSignInHref(pathname)}>Sign in</Link> to vote
+        </p>
+      ) : null}
+      {errorMsg && retryValue ? (
+        <p className="rc-vote-error" role="status" aria-live="polite">
+          {errorMsg}{' '}
+          <button
+            type="button"
+            className="rc-vote-retry"
+            disabled={busy}
+            onClick={() => cast(retryValue)}
+          >
+            Retry
+          </button>
         </p>
       ) : null}
     </div>

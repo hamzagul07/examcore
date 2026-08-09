@@ -1,16 +1,12 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode, softwareApplicationNode } from '@/lib/seo/structured-data'
-import {
-  MarketingHero,
-  MarketingPageShell,
-  MarketingSection,
-} from '@/components/marketing/MarketingPageShell'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { ExamCountdown } from '@/components/tools/ExamCountdown'
+import { ToolInstrumentShell } from '@/components/tools/ToolInstrumentShell'
 
 const PATH = '/tools/exam-countdown'
 
@@ -34,6 +30,7 @@ const FAQS = [
 ]
 
 export const metadata = getPageMetadata(PATH, {
+  ogImagePath: '/api/og/tools/exam-countdown',
   title: 'Exam countdown & revision pacing planner',
   description:
     'Free exam countdown: enter your exam date to see days and weeks left, which revision phase you are in, and how many past papers a week to clear your target.',
@@ -47,9 +44,42 @@ export const metadata = getPageMetadata(PATH, {
   ],
 })
 
+function CountdownArtefact() {
+  return (
+    <aside
+      className="ms-tools-artefact"
+      aria-label="Example: 47 days left, timed-papers phase"
+    >
+      <div className="ms-tools-artefact__head">
+        <span className="ms-tools-artefact__kicker">Session · your date</span>
+        <span className="ms-tools-artefact__stamp" aria-hidden>
+          T
+        </span>
+      </div>
+      <div className="ms-tools-artefact__figure">
+        <span className="ms-tools-artefact__raw">47</span>
+        <span className="ms-tools-artefact__of">days</span>
+      </div>
+      <dl className="ms-tools-artefact__rows">
+        <div className="ms-tools-artefact__row">
+          <dt>Phase</dt>
+          <dd>Timed papers</dd>
+        </div>
+        <div className="ms-tools-artefact__row ms-tools-artefact__row--gap">
+          <dt>Pace</dt>
+          <dd>~3 / week</dd>
+        </div>
+      </dl>
+      <p className="ms-tools-artefact__cite" aria-hidden>
+        the calendar is the examiner you can&apos;t argue with
+      </p>
+    </aside>
+  )
+}
+
 export default function ExamCountdownPage() {
   return (
-    <MarketingPageShell>
+    <>
       <PageJsonLd
         path={PATH}
         title="Exam countdown & revision planner"
@@ -62,17 +92,41 @@ export default function ExamCountdownPage() {
       />
       <JsonLd data={[faqPageNode(FAQS), softwareApplicationNode()]} />
 
-      <MarketingHero
-        label="Free tool"
+      <ToolInstrumentShell
+        stamp="T"
+        label="Pacing instrument"
+        title={
+          <>
+            Exam countdown &amp; <em>revision planner</em>
+          </>
+        }
+        lead="Enter your exam date to see exactly how long is left, which revision phase you should be in, and how many past papers a week it takes to clear your target."
+        note="put ink on a script before the calendar wins"
+        artefact={<CountdownArtefact />}
         breadcrumbs={[
           { name: 'Home', path: '/' },
+          { name: 'Tools', path: '/tools' },
           { name: 'Exam countdown', path: PATH },
         ]}
-        title="Exam countdown & revision planner"
-        lead="Enter your exam date to see exactly how long is left, which revision phase you should be in, and how many past papers a week it takes to clear your target — for any subject, any session."
-      />
-
-      <MarketingSection className="!pt-0">
+        after={
+          <>
+            <section className="ms-tool-instrument__faq" aria-labelledby="countdown-faq">
+              <h2 id="countdown-faq" className="ms-tool-instrument__faq-title">
+                FAQ
+              </h2>
+              <dl className="ms-tool-faq">
+                {FAQS.map((f) => (
+                  <div key={f.q}>
+                    <dt>{f.q}</dt>
+                    <dd className="ms-body-2">{f.a}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+            <PageHelpStrip />
+          </>
+        }
+      >
         <ExamCountdown />
 
         <div className="mt-12 max-w-2xl">
@@ -97,25 +151,33 @@ export default function ExamCountdownPage() {
           </p>
         </div>
 
-        <div className="ms-hub-card mt-12 text-center">
-          <h2 className="ms-h3">Make every paper count</h2>
-          <p className="ms-lead mx-auto" style={{ marginTop: 10, maxWidth: 480 }}>
-            A plan gets you doing papers. MarkScheme makes each one teach you something — upload your
-            answers for mark-by-mark feedback against the real scheme.
-          </p>
-          <Link href="/mark" className="ec-btn-primary inline-flex min-h-[48px]">
-            Mark a paper free <ArrowRight className="h-5 w-5" />
+        <aside className="ms-mark-example-slip mt-12">
+          <div className="ms-mark-example-slip__body">
+            <span className="ec-ink-stamp" aria-hidden>
+              M1
+            </span>
+            <div className="ms-mark-example-slip__copy">
+              <p className="ms-mark-example-slip__title">Make every paper count</p>
+              <p className="ms-mark-example-slip__lead">
+                A plan gets you doing papers. MarkScheme makes each one teach you something —
+                upload your answers for mark-by-mark feedback against the real scheme.
+              </p>
+              <span className="ms-mark-example-slip__note" aria-hidden>
+                the plan is nothing without the ink
+              </span>
+            </div>
+          </div>
+          <Link
+            href="/mark"
+            className="ec-btn-primary ms-mark-example-slip__cta inline-flex min-h-[44px] items-center gap-2"
+          >
+            Mark a paper free
+            <span className="font-mono text-[11px] font-bold" aria-hidden>
+              -&gt;
+            </span>
           </Link>
-          <p className="ms-micro mt-6">
-            More tools:{' '}
-            <Link href="/tools" className="ec-btn-underline">
-              all free revision tools
-            </Link>
-            .
-          </p>
-        </div>
-        <PageHelpStrip />
-      </MarketingSection>
-    </MarketingPageShell>
+        </aside>
+      </ToolInstrumentShell>
+    </>
   )
 }

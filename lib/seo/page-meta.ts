@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { pricingSeoDescription } from '@/lib/billing/pricing-copy'
 import { createPageMetadata } from '@/lib/seo/metadata'
 
 export type PageSeoEntry = {
@@ -36,8 +37,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
   },
   '/pricing': {
     title: 'Pricing — free & paid marking plans',
-    description:
-      'Free plan on every new account — no card, no expiry, with notes & formulas.',
+    description: pricingSeoDescription(),
   },
   '/faq': {
     title: 'FAQ — Cambridge & IB marking, privacy & pricing',

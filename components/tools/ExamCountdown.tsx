@@ -2,9 +2,11 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import { buildCountdown } from '@/lib/seo/revision-countdown'
 import { readUrlParams, writeUrlParams } from '@/lib/url-state'
+import { ToolShareActions } from '@/components/tools/ToolShareActions'
+import { buildToolSlipText } from '@/lib/tools/tool-slip'
 
 export function ExamCountdown() {
   const [examDate, setExamDate] = useState('')
@@ -63,7 +65,7 @@ export function ExamCountdown() {
             type="date"
             value={examDate}
             onChange={(e) => setExamDate(e.target.value)}
-            className="mt-2 min-h-[44px] w-full rounded-md border border-[var(--ec-border)] bg-[var(--ec-surface)] px-3 text-base"
+            className="mt-2 min-h-[44px] w-full rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-3 text-base"
           />
         </label>
         <div className="grid grid-cols-2 gap-4">
@@ -73,7 +75,7 @@ export function ExamCountdown() {
               inputMode="numeric"
               value={subjects}
               onChange={(e) => setSubjects(e.target.value.replace(/[^\d]/g, ''))}
-              className="mt-2 min-h-[44px] w-full rounded-md border border-[var(--ec-border)] bg-[var(--ec-surface)] px-3 text-base"
+              className="mt-2 min-h-[44px] w-full rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-3 text-base"
               placeholder="3"
             />
           </label>
@@ -83,7 +85,7 @@ export function ExamCountdown() {
               inputMode="numeric"
               value={papersEach}
               onChange={(e) => setPapersEach(e.target.value.replace(/[^\d]/g, ''))}
-              className="mt-2 min-h-[44px] w-full rounded-md border border-[var(--ec-border)] bg-[var(--ec-surface)] px-3 text-base"
+              className="mt-2 min-h-[44px] w-full rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-3 text-base"
               placeholder="8"
             />
           </label>
@@ -96,7 +98,7 @@ export function ExamCountdown() {
 
       {/* Result */}
       <div
-        className="rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-6"
+        className="ec-card ec-card--paper border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] p-6"
         aria-live="polite"
       >
         {!result ? (
@@ -123,7 +125,7 @@ export function ExamCountdown() {
             <p className="ms-body-2 mt-2">{result.advice}</p>
 
             {result.papersPerWeek !== null && (
-              <p className="ms-body-2 mt-4 rounded-md bg-[color-mix(in_srgb,var(--ec-brand)_10%,transparent)] p-3">
+              <p className="ms-body-2 mt-4 rounded bg-[color-mix(in_srgb,var(--ec-brand)_10%,transparent)] p-3">
                 To clear your target, aim for about{' '}
                 <strong>
                   {result.papersPerWeek} past paper{result.papersPerWeek === 1 ? '' : 's'} per week
@@ -132,11 +134,27 @@ export function ExamCountdown() {
               </p>
             )}
 
+            <ToolShareActions
+              title="MarkScheme · Exam countdown"
+              url={`https://markscheme.app/tools/exam-countdown?date=${encodeURIComponent(examDate)}&subjects=${encodeURIComponent(subjects)}&papers=${encodeURIComponent(papersEach)}`}
+              text={buildToolSlipText([
+                'MarkScheme · Exam countdown',
+                examDate ? `First exam: ${examDate}` : null,
+                `${result.daysLeft} day${result.daysLeft === 1 ? '' : 's'} left${
+                  result.weeksLeft > 0 ? ` · ${result.weeksLeft} wk` : ''
+                }`,
+                result.headline,
+                result.papersPerWeek != null
+                  ? `Aim: ~${result.papersPerWeek} past paper${result.papersPerWeek === 1 ? '' : 's'}/week`
+                  : null,
+                'markscheme.app/tools/exam-countdown',
+              ])}
+            />
             <Link
               href="/mark"
               className="ec-btn-primary mt-5 inline-flex min-h-[44px] items-center gap-2"
             >
-              Mark a past paper free <ArrowRight className="h-4 w-4" />
+              Mark a past paper free <span className="h-4 w-4" aria-hidden>-&gt;</span>
             </Link>
           </>
         )}

@@ -1,7 +1,6 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
-import { Check } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
 import {
   COURSE_PROGRESS_CHANGED,
@@ -87,7 +86,7 @@ export function CourseProgressBar({
   const pct = total > 0 ? Math.round((count / total) * 100) : 0
 
   return (
-    <div className="course-studio-progress rounded-xl border border-[var(--course-border,var(--ec-border-subtle))] bg-[var(--course-surface-card,var(--ec-surface-muted))] p-3.5">
+    <div className="course-studio-progress ec-card ec-card--paper rounded border border-[var(--course-border,var(--ec-border-subtle))] bg-[var(--course-surface-card,var(--ec-surface-muted))] p-3.5">
       <div className="mb-2 flex items-center justify-between text-sm">
         <span className="font-medium text-[var(--ec-text-primary)]">Your progress</span>
         <span className="text-[var(--ec-text-tertiary)]">
@@ -95,14 +94,14 @@ export function CourseProgressBar({
         </span>
       </div>
       <div
-        className="h-2 overflow-hidden rounded-full bg-[var(--ec-surface-raised)]"
+        className="h-2 overflow-hidden rounded-[2px] border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))]"
         role="progressbar"
         aria-valuenow={pct}
         aria-valuemin={0}
         aria-valuemax={100}
       >
         <div
-          className="h-full rounded-full bg-[var(--ec-accent)] transition-all duration-300"
+          className="h-full rounded-[1px] bg-[var(--ec-brand)] transition-all duration-300"
           style={{ width: `${pct}%` }}
         />
       </div>
@@ -129,13 +128,18 @@ export function MarkLessonCompleteButton({
     <button
       type="button"
       onClick={() => toggle(lessonSlug, !isDone)}
-      className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-medium transition-colors ${
+      className={`inline-flex items-center gap-2 rounded border px-4 py-2.5 text-sm font-medium transition-colors ${
         isDone
           ? 'ec-tint-success-chip border'
-          : 'border-[var(--ec-border-subtle)] bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)] hover:border-[var(--ec-accent)]'
+          : 'border-[var(--ec-border-subtle)] bg-[var(--ec-paper,var(--ec-surface-raised))] text-[var(--ec-text-secondary)] hover:border-[var(--ec-accent)]'
       }`}
     >
-      <Check className={`h-4 w-4 ${isDone ? 'opacity-100' : 'opacity-40'}`} aria-hidden />
+      <span
+        className={`font-mono text-[11px] font-bold ${isDone ? 'opacity-100' : 'opacity-40'}`}
+        aria-hidden
+      >
+        {isDone ? '✓' : '○'}
+      </span>
       {isDone ? 'Completed' : 'Mark as complete'}
     </button>
   )

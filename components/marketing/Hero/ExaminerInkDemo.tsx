@@ -66,7 +66,7 @@ function DemoScoreBadge({ mark, reduced }: { mark: ScoreMark; reduced: boolean }
     <motion.span
       aria-hidden
       variants={markEntrance(mark.delay, reduced)}
-      className="absolute right-5 top-5 rounded-full bg-[var(--ec-ink-red)] px-3 py-1 text-[13px] font-medium text-[var(--ec-surface-raised)]"
+      className="absolute right-5 top-5 rounded border-2 border-[var(--ec-ink-crimson,var(--ec-ink-red))] bg-[var(--ec-paper,var(--ec-surface-raised))] px-2.5 py-1 font-mono text-[12px] font-bold tracking-wide text-[var(--ec-ink-crimson,var(--ec-ink-red))] shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.1))] rotate-[-6deg]"
     >
       {mark.label}
     </motion.span>
@@ -97,7 +97,7 @@ function UnderlineStroke({
       aria-hidden
       variants={underlineDraw(mark.delay, reduced)}
       style={{ transformOrigin: 'left' }}
-      className="absolute inset-x-0 -bottom-[2px] block h-[2px] rounded-full bg-[var(--ec-ink-red)]"
+      className="absolute inset-x-0 -bottom-[2px] block h-[2px] rounded-[1px] bg-[var(--ec-ink-crimson,var(--ec-ink-red))]"
     />
   )
 }
@@ -194,7 +194,7 @@ export function ExaminerInkDemo() {
         viewport={{ once: true, amount: 0.2 }}
         role="img"
         aria-label="Demonstration of MarkScheme marking a Physics past paper question, earning 3 out of 4 marks"
-        className="relative rounded-[16px] border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-6 shadow-[var(--ec-card-shadow)] md:p-10"
+        className="relative rounded border border-[var(--ec-border)] bg-[var(--ec-paper)] p-6 shadow-[var(--ec-shadow-hard)] md:p-10"
       >
         {scoreMark && <DemoScoreBadge mark={scoreMark} reduced={reduced} />}
         <DemoHeader>{demoQuestion.subjectCode}</DemoHeader>

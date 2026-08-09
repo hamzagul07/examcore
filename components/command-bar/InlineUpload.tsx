@@ -3,7 +3,6 @@
 import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
-import { Camera, FileImage, Upload } from 'lucide-react'
 import { STORAGE_KEYS, writeSessionStorage } from '@/lib/client-storage'
 
 export function InlineUpload() {
@@ -46,7 +45,7 @@ export function InlineUpload() {
         setIsDragging(false)
         handleFileSelect(e.dataTransfer.files?.[0])
       }}
-      className={`relative rounded-2xl border-2 border-dashed p-6 sm:p-8 transition-all ${
+      className={`relative rounded border-2 border-dashed p-6 sm:p-8 transition-all ${
         isDragging ? 'border-[color-mix(in_srgb,var(--ec-brand)_50%,transparent)] bg-[var(--ec-brand-muted)]' : ''
       }`}
       style={
@@ -54,13 +53,16 @@ export function InlineUpload() {
           ? undefined
           : {
               borderColor: 'var(--ec-border)',
-              background: 'var(--ec-surface-raised)',
+              background: 'var(--ec-paper, var(--ec-surface-raised))',
+              boxShadow: 'var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08))',
             }
       }
     >
       <div className="text-center">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl ec-chat-avatar-soft">
-          <Upload className="h-8 w-8 ec-text-brand" />
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)]">
+          <span className="font-mono text-xl font-bold tracking-wide ec-text-brand" aria-hidden>
+            ↑
+          </span>
         </div>
 
         <h4 className="mb-2 font-semibold text-[var(--ec-text-primary)]">
@@ -76,7 +78,7 @@ export function InlineUpload() {
             onClick={() => cameraInputRef.current?.click()}
             className="ec-btn-primary flex min-h-[44px] items-center justify-center gap-2"
           >
-            <Camera className="h-5 w-5" />
+            <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>IMG</span>
             Use camera
           </button>
           <button
@@ -84,7 +86,7 @@ export function InlineUpload() {
             onClick={() => fileInputRef.current?.click()}
             className="ec-btn-secondary flex min-h-[44px] items-center justify-center gap-2"
           >
-            <FileImage className="h-5 w-5" />
+            <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>PDF</span>
             Choose file
           </button>
         </div>

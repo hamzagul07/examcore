@@ -18,11 +18,12 @@ export function BlogAuthorByline({ authorId }: Props) {
           alt={author.name}
           width={44}
           height={44}
-          className="h-11 w-11 shrink-0 rounded-full border border-[var(--ec-border)] object-cover"
+          className="h-11 w-11 shrink-0 rounded border border-[var(--ec-border)] object-cover shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.06))]"
         />
       ) : (
         <div
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] font-semibold text-[var(--ec-brand)]"
+          className="ms-sd-glyph ms-sd-glyph--person"
+          style={{ width: 44, height: 44, fontSize: 22 }}
           aria-hidden
         >
           {author.name.charAt(0)}

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -99,7 +99,7 @@ export default function CambridgeTopicPracticeHubPage() {
       >
         <div className="mt-6 flex flex-wrap gap-3">
           <Link href="/past-papers" className="ec-btn-primary ec-btn-primary--sm">
-            All past papers <ArrowRight className="h-4 w-4" />
+            All past papers <span className="h-4 w-4" aria-hidden>-&gt;</span>
           </Link>
           <Link href="/mark" className="ec-btn-ghost ec-btn-ghost--sm">
             Mark a question

@@ -2,7 +2,6 @@
 
 import { useTransition } from 'react'
 import { useRouter } from 'next/navigation'
-import { RotateCcw } from 'lucide-react'
 import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
 import { motion } from 'framer-motion'
 import { triggerPrimaryHaptic } from '@/lib/hooks/useTapFeedback'
@@ -71,7 +70,7 @@ export function MarkAgainButton({
         </ButtonLoadingState>
       ) : (
         <>
-          <RotateCcw className="h-4 w-4" />
+          <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>↻</span>
           Mark this question again
         </>
       )}

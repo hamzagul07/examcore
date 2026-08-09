@@ -334,17 +334,7 @@ export function SiteHeader({ variant }: Props) {
                 : null}
             </>
           ) : null}
-          {variant === 'app' &&
-          pathname !== '/mark' &&
-          !pathname.startsWith('/mark/') ? (
-            <Link
-              href="/mark"
-              className="ec-nav-mark-compact inline-flex min-[901px]:hidden"
-              aria-label="Mark a question"
-            >
-              ✎
-            </Link>
-          ) : null}
+          {/* NAV-01: Mark lives in the phone tab bar — do not duplicate it here. */}
           {/* Account avatar lives last so it sits in the far top-right corner. */}
           {renderDesktopAuth()}
           {showMobileMenu ? (
@@ -359,7 +349,7 @@ export function SiteHeader({ variant }: Props) {
                 setMobileOpen((v) => !v)
               }}
             >
-              {mobileOpen ? '✕' : '☰'}
+              {mobileOpen ? <NavIconClose /> : <NavIconMenu />}
             </button>
           ) : null}
         </div>
@@ -389,7 +379,7 @@ export function SiteHeader({ variant }: Props) {
                     aria-label="Close menu"
                     onClick={() => closeMobileMenu(true)}
                   >
-                    ✕
+                    <NavIconClose />
                   </button>
                 </div>
                 {config.context ? (
@@ -480,5 +470,32 @@ export function SiteHeader({ variant }: Props) {
           )
         : null}
     </div>
+  )
+}
+
+/** Menu / close marks — SVG, not emoji punctuation (LOW-01). */
+function NavIconMenu() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
+      <path
+        d="M3 4.5 H15 M3 9 H15 M3 13.5 H15"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+function NavIconClose() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
+      <path
+        d="M4.5 4.5 L13.5 13.5 M13.5 4.5 L4.5 13.5"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+      />
+    </svg>
   )
 }

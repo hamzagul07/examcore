@@ -18,8 +18,8 @@ export function LandingSubjects() {
           All subjects &amp; levels →
         </Link>
       </div>
-      <div className="ms-scard-grid">
-        {LANDING_SUBJECT_PREVIEW.map((subject) => (
+      <div className="ms-scard-grid ms-scard-grid--tight">
+        {LANDING_SUBJECT_PREVIEW.slice(0, 4).map((subject) => (
           <SubjectCard key={subject.code} subject={subject} />
         ))}
       </div>

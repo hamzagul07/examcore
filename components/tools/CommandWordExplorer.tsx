@@ -2,6 +2,7 @@
 
 import { useMemo, useState, type CSSProperties } from 'react'
 import { COMMAND_WORD_TIERS, type CommandWord, type CommandWordTier } from '@/lib/seo/command-words'
+import { SegmentedControl } from '@/components/ui/SegmentedControl'
 
 const TIER_ORDER: CommandWordTier[] = ['recall', 'understanding', 'application', 'analysis', 'evaluation']
 
@@ -47,27 +48,17 @@ export function CommandWordExplorer({ words }: { words: CommandWord[] }) {
           onChange={(e) => setQuery(e.target.value)}
           aria-label="Search command words"
         />
-        <div className="cmd-tabs" role="tablist" aria-label="Filter by depth">
-          <button
-            type="button"
-            className={`cmd-tab${tier === 'all' ? ' is-active' : ''}`}
-            onClick={() => setTier('all')}
-            aria-pressed={tier === 'all'}
-          >
-            All
-          </button>
-          {TIER_ORDER.map((t) => (
-            <button
-              key={t}
-              type="button"
-              className={`cmd-tab${tier === t ? ' is-active' : ''}`}
-              onClick={() => setTier(t)}
-              aria-pressed={tier === t}
-            >
-              {t}
-            </button>
-          ))}
-        </div>
+        <SegmentedControl
+          className="cmd-tabs"
+          optionClassName="cmd-tab"
+          aria-label="Filter by depth"
+          value={tier}
+          onChange={setTier}
+          options={[
+            { value: 'all', label: 'All' },
+            ...TIER_ORDER.map((t) => ({ value: t, label: t })),
+          ]}
+        />
       </div>
 
       {grouped.length === 0 ? (

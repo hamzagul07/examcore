@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Search } from 'lucide-react'
 import { useOmniAI } from '@/lib/omni-ai/context'
 import { cn } from '@/lib/utils'
 
@@ -30,7 +29,7 @@ export function CommandKTrigger({ className }: CommandKTriggerProps) {
       title={`Search (${hint})`}
       aria-label="Open search"
     >
-      <Search className="h-3.5 w-3.5 shrink-0" aria-hidden />
+      <span className="font-mono text-[11px] font-bold" aria-hidden>/</span>
       <span>search</span>
       <kbd>{hint}</kbd>
     </button>
@@ -50,7 +49,7 @@ export function MobileSearchMenuButton({ onActivate }: { onActivate?: () => void
         onActivate?.()
       }}
     >
-      <Search className="h-4 w-4 shrink-0" aria-hidden />
+      <span className="font-mono text-[11px] font-bold" aria-hidden>/</span>
       Search / Ask MarkScheme
     </button>
   )

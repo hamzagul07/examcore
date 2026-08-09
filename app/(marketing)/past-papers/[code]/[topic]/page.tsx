@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props) {
     description: copy.description,
     path: copy.path,
     keywords: copy.keywords,
-    ogImagePath: `/past-papers/opengraph-image`,
+    ogImagePath: '/api/og/page/past-papers',
   })
 }
 
@@ -119,34 +119,27 @@ export default async function TopicQuestionsPage({ params }: Props) {
           ← {code} past papers
         </Link>
 
-        <div className="ms-sd-head">
-          <div className="min-w-0 flex-1">
-            <h1 className="ms-h2" style={{ marginBottom: 4 }}>
-              {page.title}{' '}
-              <em style={{ color: 'var(--ec-text-faint)', fontSize: '0.55em' }}>· {code} past paper questions</em>
+        <div className="ms-sd-head" data-code={code}>
+          <div className="ms-sd-glyph" aria-hidden>
+            {page.topicCode}
+          </div>
+          <div className="min-w-0 flex-1" style={{ position: 'relative', zIndex: 1 }}>
+            <p className="ms-overline" style={{ marginBottom: 4 }}>
+              {code} · topic questions
+            </p>
+            <h1 className="ms-h2" style={{ marginBottom: 6 }}>
+              {page.title}
             </h1>
             <div className="flex flex-wrap gap-2">
               <Chip variant="dim">{copy.label}</Chip>
-              <Chip variant="dim">Topic {page.topicCode}</Chip>
               <Chip variant="ok">
                 {page.questionCount > 0
-                  ? `${page.questionCount} questions ✓`
+                  ? `${page.questionCount} questions`
                   : 'Mark practice ready'}
               </Chip>
             </div>
           </div>
         </div>
-
-        <HubSeoIntro
-          headingLevel="h2"
-          heading={`${page.title} (${code}) past-paper questions — marked instantly`}
-          paragraph={`These are real Cambridge ${copy.label} past-paper questions on ${page.title}. Open one, attempt it, then upload your working — MarkScheme grades it against the official ${code} mark scheme so you see exactly where the marks are won and lost on this topic.`}
-          links={[
-            { href: '/mark', label: 'Mark your answer →', variant: 'primary' },
-            ...(lessonHref ? [{ href: lessonHref, label: `Learn ${page.title}`, variant: 'ghost' as const }] : []),
-            { href: `/tools/grade-boundary-calculator/${code}`, label: `${code} grade boundaries`, variant: 'muted' as const },
-          ]}
-        />
 
         <GuestSignupGate>
         <section aria-labelledby="tq-list" style={{ marginTop: 12 }}>
@@ -191,17 +184,27 @@ export default async function TopicQuestionsPage({ params }: Props) {
           )}
         </section>
 
+        <HubSeoIntro
+          quiet
+          headingLevel="h2"
+          heading={`${page.title} (${code}) past-paper questions — marked instantly`}
+          paragraph={`These are real Cambridge ${copy.label} past-paper questions on ${page.title}. Open one, attempt it, then upload your working — MarkScheme grades it against the official ${code} mark scheme so you see exactly where the marks are won and lost on this topic.`}
+          links={[
+            { href: '/mark', label: 'Mark your answer →', variant: 'primary' },
+            ...(lessonHref ? [{ href: lessonHref, label: `Learn ${page.title}`, variant: 'ghost' as const }] : []),
+            { href: `/tools/grade-boundary-calculator/${code}`, label: `${code} grade boundaries`, variant: 'muted' as const },
+          ]}
+        />
+
         <section className="ms-subject-faq" aria-labelledby="tq-faq">
           <h2 id="tq-faq" className="ms-h3">
             Frequently asked questions
           </h2>
-          <dl className="mt-6 space-y-6">
+          <dl className="ms-tool-faq">
             {faq.map((item) => (
               <div key={item.q} data-chunk-id={item.q.slice(0, 36)}>
-                <dt className="font-semibold text-[var(--ec-text-primary)]">{item.q}</dt>
-                <dd className="mt-2 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-                  {item.a}
-                </dd>
+                <dt>{item.q}</dt>
+                <dd className="ms-body-2">{item.a}</dd>
               </div>
             ))}
           </dl>
@@ -217,7 +220,7 @@ export default async function TopicQuestionsPage({ params }: Props) {
                 <li key={t.topicSlug}>
                   <Link
                     href={`/past-papers/${code}/${t.topicSlug}`}
-                    className="inline-flex rounded-full border border-[var(--ec-border)] px-3 py-1.5 text-xs font-semibold text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]"
+                    className="inline-flex rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-3 py-1.5 font-mono text-[11px] font-semibold tracking-wide shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.05))] text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]"
                   >
                     {t.title}
                   </Link>

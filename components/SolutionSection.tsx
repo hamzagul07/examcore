@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { BookOpen, Sparkles, Loader2 } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MarkdownWithMath } from '@/components/MarkdownWithMath'
 import { Skeleton } from '@/components/ui/Skeleton'
@@ -64,8 +64,10 @@ export function SolutionSection({
         className="ms-solution-section ec-card p-5 sm:p-6"
       >
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <div className="ec-tint-brand-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border">
-            <BookOpen className="h-5 w-5 ec-text-brand" />
+          <div className="ec-tint-brand-icon flex h-10 w-10 shrink-0 items-center justify-center rounded border">
+            <span className="font-mono text-[11px] font-bold tracking-wide ec-text-brand" aria-hidden>
+              A*
+            </span>
           </div>
           <div className="flex-1">
             <p className="font-semibold tracking-tight text-[var(--ec-text-primary)]">
@@ -101,10 +103,6 @@ export function SolutionSection({
         transition={{ duration: 0.45 }}
         className="ms-solution-section ec-card-brand relative overflow-hidden p-6 text-center sm:p-12"
       >
-        <div
-          className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full ec-glow-orb blur-[80px]"
-          aria-hidden="true"
-        />
         <div className="relative">
           <p className="ec-label-tech mb-6 justify-center" style={{ display: 'inline-flex' }}>
             WORKED SOLUTION
@@ -112,9 +110,11 @@ export function SolutionSection({
           <motion.div
             animate={{ rotate: [0, 5, -5, 0] }}
             transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            className="ec-upload-icon-wrap mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl"
+            className="ec-upload-icon-wrap mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded border border-[var(--ec-brand-border)]"
           >
-            <Sparkles className="h-8 w-8 ec-text-brand" />
+            <span className="font-mono text-lg font-bold tracking-wide ec-text-brand" aria-hidden>
+              A*
+            </span>
           </motion.div>
           <h3 className="landing-h3">
             Want to see <em>how it&apos;s done?</em>
@@ -142,7 +142,9 @@ export function SolutionSection({
               </>
             ) : (
               <>
-                <Sparkles className="h-5 w-5" />
+                <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+                  A*
+                </span>
                 See full solution
               </>
             )}
@@ -179,8 +181,10 @@ export function SolutionSection({
       className="ms-solution-section ec-card p-5 sm:p-7"
     >
       <div className="mb-5 flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl border ec-tint-brand-icon">
-          <BookOpen className="h-5 w-5" />
+        <div className="flex h-10 w-10 items-center justify-center rounded border ec-tint-brand-icon">
+          <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+            A*
+          </span>
         </div>
         <div>
           <p className="ec-label-tech mb-1">WORKED SOLUTION</p>

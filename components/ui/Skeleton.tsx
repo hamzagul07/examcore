@@ -23,7 +23,7 @@ export function Skeleton({ className, circle = false }: SkeletonProps) {
       aria-hidden="true"
       className={cn(
         'relative overflow-hidden border border-[var(--ec-border)] bg-[var(--ec-surface-raised)]',
-        circle ? 'rounded-full' : 'rounded-xl',
+        circle ? 'rounded-full' : 'rounded',
         className
       )}
     >

@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { FileText, NotebookPen, ChevronRight } from 'lucide-react'
 import { SyllabusTopicBadgeList } from '@/components/SyllabusTopicBadge'
 import { AppEmptyState } from '@/components/ui/AppEmptyState'
 import type { SyllabusCode } from '@/lib/syllabus'
@@ -78,15 +77,12 @@ export function AttemptsList({ attempts }: { attempts: AttemptListRow[] }) {
             <div className="flex items-center justify-between gap-4">
               <div className="flex min-w-0 flex-1 items-center gap-4">
                 <div
-                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border ${
+                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded border font-mono text-[10px] font-bold tracking-wide ${
                     isPastPaper ? 'ec-tint-info-icon-wrap' : 'ec-tint-accent-icon-wrap'
                   }`}
+                  aria-hidden
                 >
-                  {isPastPaper ? (
-                    <FileText className="h-5 w-5" />
-                  ) : (
-                    <NotebookPen className="h-5 w-5" />
-                  )}
+                  {isPastPaper ? 'PP' : 'NB'}
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="truncate font-semibold text-[var(--ec-text-primary)]">
@@ -107,12 +103,17 @@ export function AttemptsList({ attempts }: { attempts: AttemptListRow[] }) {
                     {percentage}%
                   </div>
                 </div>
-                <ChevronRight className="h-5 w-5 text-[var(--ec-text-secondary)] transition-all duration-200 group-hover:translate-x-1 group-hover:text-[var(--ec-brand)]" />
+                <span
+                  className="font-mono text-[11px] font-bold text-[var(--ec-text-secondary)] transition-colors group-hover:text-[var(--ec-brand)]"
+                  aria-hidden
+                >
+                  -&gt;
+                </span>
               </div>
             </div>
-            <div className="mt-4 h-1.5 overflow-hidden rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface)]">
+            <div className="mt-4 h-1.5 overflow-hidden rounded-[2px] border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))]">
               <div
-                className={`h-full rounded-full transition-all duration-500 ${
+                className={`h-full rounded-[1px] transition-all duration-500 ${
                   percentage === 100
                     ? 'ec-score-bar-high'
                     : percentage >= 50

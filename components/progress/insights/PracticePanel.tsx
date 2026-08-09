@@ -1,7 +1,8 @@
-import { ArrowRight, Dumbbell } from 'lucide-react'
+
 import type { Recommendation, DashboardState } from '@/lib/insights/types'
 import { drillHref } from '@/lib/insights/drill-link'
 import { LoadingLink } from '@/components/ui/LoadingLink'
+import { WaitingForInk } from '@/components/ui/WaitingForInk'
 
 type Props = {
   state: DashboardState
@@ -13,7 +14,12 @@ export function PracticePanel({ state, recommendations, generic }: Props) {
   return (
     <section className="ms-dash-card min-w-0">
       <div className="mb-5 flex items-center gap-2">
-        <Dumbbell className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden="true" />
+        <span
+          className="inline-grid h-5 min-w-5 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]"
+          aria-hidden
+        >
+          DR
+        </span>
         <p className="ms-overline" style={{ marginBottom: 0 }}>
           Practice
         </p>
@@ -34,7 +40,7 @@ export function PracticePanel({ state, recommendations, generic }: Props) {
               {recommendations.map((rec) => (
                 <li
                   key={`${rec.paperCode}-${rec.paperSession}-${rec.questionNumber}`}
-                  className="rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4"
+                  className="ec-card ec-card--paper border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] p-4"
                 >
                   <div className="flex min-w-0 flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
                     <span className="min-w-0 truncate text-sm font-semibold text-[var(--ec-text-primary)]">
@@ -53,7 +59,7 @@ export function PracticePanel({ state, recommendations, generic }: Props) {
                     className="ec-btn-secondary mt-3 inline-flex text-sm"
                   >
                     Drill this
-                    <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                    <span className="h-3.5 w-3.5" aria-hidden>-&gt;</span>
                   </LoadingLink>
                 </li>
               ))}
@@ -71,5 +77,5 @@ export function PracticePanel({ state, recommendations, generic }: Props) {
 }
 
 function Hint({ children }: { children: React.ReactNode }) {
-  return <div className="ms-progress-hint ec-break-anywhere">{children}</div>
+  return <WaitingForInk className="ec-break-anywhere ms-waiting-ink--inline">{children}</WaitingForInk>
 }

@@ -99,7 +99,7 @@ export function ProfileSection({
       description="Your public name in the Exam Room community (u/yourname)."
     >
       <form onSubmit={handleSaveUsername} className="space-y-4">
-        <SettingsFieldGroup label="Username">
+        <SettingsFieldGroup label="Username" htmlFor="username">
           {savedUsername ? (
             <p className="mb-2 text-sm text-[var(--ec-text-secondary)]">
               Current: <strong className="text-[var(--ec-text-primary)]">u/{savedUsername}</strong>
@@ -118,7 +118,7 @@ export function ProfileSection({
               You haven&apos;t set a username yet.
             </p>
           )}
-          <UsernameField value={username.value} onChange={setUsername} />
+          <UsernameField value={username.value} onChange={setUsername} id="username" />
         </SettingsFieldGroup>
 
         {usernameError && <ErrorBox message={usernameError} />}
@@ -141,7 +141,7 @@ export function ProfileSection({
       description="How you appear across MarkScheme."
     >
       <form onSubmit={handleSave} className="space-y-6">
-        <SettingsFieldGroup label="Display name">
+        <SettingsFieldGroup label="Display name" htmlFor="fullName">
           <input
             id="fullName"
             type="text"
@@ -150,6 +150,7 @@ export function ProfileSection({
             maxLength={80}
             placeholder="Hassan"
             className="ec-input"
+            autoComplete="name"
           />
         </SettingsFieldGroup>
 
@@ -158,11 +159,12 @@ export function ProfileSection({
           hint="Email cannot be changed yet. Contact support if you need to update it."
         >
           <div
-            className="rounded-xl border px-4 py-3 font-mono text-body text-[var(--ec-text-primary)]"
+            className="ec-card ec-card--paper border px-4 py-3 font-mono text-body text-[var(--ec-text-primary)]"
             style={{
               borderColor: 'var(--ec-border)',
-              background: 'var(--ec-surface-raised)',
+              background: 'var(--ec-paper, var(--ec-surface-raised))',
             }}
+            aria-describedby="email-hint"
           >
             {email || '—'}
           </div>

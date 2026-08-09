@@ -122,18 +122,6 @@ export default function PastPapersHubPage() {
           {totalPapers.toLocaleString()}+ papers.
         </p>
 
-        <HubSeoIntro
-          headingLevel="h2"
-          heading="Don't just download papers — get them marked"
-          paragraph="A PDF only shows you the questions and a model answer. MarkScheme reads photos of your own handwriting and scores them against the real Cambridge mark scheme — method marks, accuracy marks and essay bands included. Pick a subject below, choose a paper, and see exactly where you're winning and dropping marks."
-          links={[
-            { href: '/mark', label: 'Mark a paper now →', variant: 'primary' },
-            { href: '/subjects', label: 'Browse subjects', variant: 'ghost' },
-            { href: '/tools/grade-boundary-calculator', label: 'Grade boundaries', variant: 'muted' },
-            { href: '/past-papers/topics', label: 'Questions by topic', variant: 'muted' },
-          ]}
-        />
-
         {grouped.map(([level, list]) => (
           <section key={level} style={{ marginTop: 40 }} aria-labelledby={`lvl-${level}`}>
             <h2 id={`lvl-${level}`} className="ms-h3" style={{ marginBottom: 16 }}>
@@ -150,18 +138,16 @@ export default function PastPapersHubPage() {
                       style={{ '--acc': accent } as CSSProperties}
                     >
                       <span className="ms-pp-glyph" aria-hidden>
-                        {s.glyph}
+                        {s.code}
                       </span>
                       <span className="min-w-0 flex-1">
-                        <span className="ms-pp-title">
-                          {s.label} <em className="ms-pp-code">· {s.code}</em>
-                        </span>
+                        <span className="ms-pp-title">{s.label}</span>
                         <span className="ms-pp-meta">
                           {s.yearRange} · {s.componentCount} papers
                         </span>
                       </span>
                       <span className="ms-pp-cta" aria-hidden>
-                        →
+                        -&gt;
                       </span>
                     </Link>
                   </li>
@@ -171,17 +157,28 @@ export default function PastPapersHubPage() {
           </section>
         ))}
 
+        <HubSeoIntro
+          quiet
+          headingLevel="h2"
+          heading="Don't just download papers — get them marked"
+          paragraph="A PDF only shows you the questions and a model answer. MarkScheme reads photos of your own handwriting and scores them against the real Cambridge mark scheme — method marks, accuracy marks and essay bands included. Pick a subject above, choose a paper, and see exactly where you're winning and dropping marks."
+          links={[
+            { href: '/mark', label: 'Mark a paper now →', variant: 'primary' },
+            { href: '/subjects', label: 'Browse subjects', variant: 'ghost' },
+            { href: '/tools/grade-boundary-calculator', label: 'Grade boundaries', variant: 'muted' },
+            { href: '/past-papers/topics', label: 'Questions by topic', variant: 'muted' },
+          ]}
+        />
+
         <section className="ms-subject-faq" aria-labelledby="pp-faq" style={{ marginTop: 48 }}>
           <h2 id="pp-faq" className="ms-h3">
             Frequently asked questions
           </h2>
-          <dl className="mt-6 space-y-6">
+          <dl className="ms-tool-faq">
             {FAQ.map((item) => (
               <div key={item.q} data-chunk-id={item.q.slice(0, 36)}>
-                <dt className="font-semibold text-[var(--ec-text-primary)]">{item.q}</dt>
-                <dd className="mt-2 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-                  {item.a}
-                </dd>
+                <dt>{item.q}</dt>
+                <dd className="ms-body-2">{item.a}</dd>
               </div>
             ))}
           </dl>

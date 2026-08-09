@@ -67,6 +67,7 @@ export default async function CommunityHomePage({ searchParams }: PageProps) {
   const sort: PostSort = SORTS.includes(sp.sort as PostSort) ? (sp.sort as PostSort) : 'hot'
   const board: Board | 'all' =
     sp.board === 'cambridge' || sp.board === 'ib' ? sp.board : 'all'
+  const boardFilter = board === 'all' ? undefined : board
 
   await ensureCommunitySeed()
 
@@ -75,17 +76,19 @@ export default async function CommunityHomePage({ searchParams }: PageProps) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  const posts = await listPosts({
-    sort,
-    board: board === 'all' ? undefined : board,
-    limit: 30,
-  })
+  // Independent reads after auth (COM-01) — do not serialise posts behind questions.
+  const [posts, featuredQuestions] = await Promise.all([
+    listPosts({
+      sort,
+      board: boardFilter,
+      limit: 30,
+    }),
+    listQuestions({
+      board: boardFilter,
+      limit: 6,
+    }),
+  ])
   const userVotes = user ? await getUserPostVotes(user.id, posts.map((p) => p.id)) : {}
-
-  const featuredQuestions = await listQuestions({
-    board: board === 'all' ? undefined : board,
-    limit: 8,
-  })
 
   const emptyLabel =
     board === 'cambridge'
@@ -94,45 +97,53 @@ export default async function CommunityHomePage({ searchParams }: PageProps) {
         ? 'No IB Diploma posts yet — start a discussion.'
         : 'No posts yet. Be the first to start a discussion.'
 
+  const feedBase = board === 'all' ? '/community' : `/community?board=${board}`
+
   return (
     <div className="rc-page rc-page--hub">
-      <CommunityHubIntro board={board === 'all' ? undefined : board} />
+      <CommunityHubIntro board={boardFilter} />
       <div className="rc-layout rc-layout--hub">
         <CommunityLeftRail board={board} />
         <main className="rc-main">
+          {/* Composer + feed first — model answers are secondary (COM-01). */}
+          <div className="rc-feed-toolbar">
+            <CommunitySearchBar />
+            <CreatePostBar signedIn={!!user} board={boardFilter} />
+            <div className="rc-feed-filters">
+              <BoardTabs active={board} basePath="/community" sort={sort} />
+              <SortTabs active={sort} basePath={feedBase} />
+            </div>
+          </div>
+          <PostFeed posts={posts} userVotes={userVotes} signedIn={!!user} emptyLabel={emptyLabel} />
+
           {featuredQuestions.length ? (
-            <section className="community-notes" style={{ marginBottom: 16 }} aria-labelledby="rc-model-answers-h">
-              <div className="community-head">
-                <div>
-                  <h2 id="rc-model-answers-h" className="ms-h3">Model answers</h2>
-                  <p className="ms-body-2 community-sub">
-                    Full-marks worked answers to real past-paper questions, each with a mark-by-mark examiner breakdown.
-                  </p>
-                </div>
-              </div>
+            <details className="community-notes community-notes--after-feed">
+              <summary className="community-notes-summary">
+                <span className="community-notes-summary-title">Model answers</span>
+                <span className="community-notes-summary-meta">
+                  {featuredQuestions.length} worked past-paper answers
+                </span>
+              </summary>
               <ul className="community-note-list">
                 {featuredQuestions.map((q) => (
                   <li key={q.id} className="community-note-row">
                     <Link href={`/community/questions/${q.id}`} className="community-note-main">
                       <span className="community-note-title">
-                        {q.title} {q.acceptedAnswerId ? <span className="community-solved">solved ✓</span> : null}
+                        {q.title}{' '}
+                        {q.acceptedAnswerId ? (
+                          <span className="community-solved">solved ✓</span>
+                        ) : null}
                       </span>
                       <span className="community-note-meta">
-                        {q.subjectCode} · {q.answerCount} {q.answerCount === 1 ? 'answer' : 'answers'}
+                        {q.subjectCode} · {q.answerCount}{' '}
+                        {q.answerCount === 1 ? 'answer' : 'answers'}
                       </span>
                     </Link>
                   </li>
                 ))}
               </ul>
-            </section>
+            </details>
           ) : null}
-          <div className="rc-feed-toolbar">
-            <CommunitySearchBar />
-            <CreatePostBar signedIn={!!user} board={board === 'all' ? undefined : board} />
-            <BoardTabs active={board} basePath="/community" sort={sort} />
-            <SortTabs active={sort} basePath={board === 'all' ? '/community' : `/community?board=${board}`} />
-          </div>
-          <PostFeed posts={posts} userVotes={userVotes} signedIn={!!user} emptyLabel={emptyLabel} />
         </main>
         <CommunitySidebar board={board} />
       </div>

@@ -85,7 +85,16 @@ export function ProgressDashboardPage({
             <div className="dash-streakcard card">
               <p className="micro">STUDY STREAK</p>
               <div className="streak-num">
-                <span className="flame">🔥</span>
+                <span className="flame" aria-hidden>
+                  <svg className="ms-ink-glyph streak-ink" viewBox="0 0 32 32" fill="none" width="20" height="20">
+                    <path
+                      d="M16 4 C16 4 10 11 10 17 C10 21.4 12.7 24.5 16 24.5 C19.3 24.5 22 21.4 22 17 C22 14 20 11.5 18.5 10 C19.5 13 18 15 16.5 15.5 C17.5 12 16 7.5 16 4 Z"
+                      stroke="currentColor"
+                      strokeWidth="1.7"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
                 <b>{streakDays}</b>
                 <span className="streak-days">days</span>
               </div>

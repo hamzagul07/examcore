@@ -17,8 +17,11 @@ export function GuestMarkNotice({ className = '' }: Props) {
 
   return (
     <p
-      className={`ms-guest-notice rounded-2xl border ec-border-color ec-bg-surface-raised px-4 py-3 text-sm leading-relaxed text-[var(--ec-text-secondary)] ${className}`}
+      className={`ms-guest-notice ec-card ec-card--paper border ec-border-color px-4 py-3 text-sm leading-relaxed text-[var(--ec-text-secondary)] ${className}`}
     >
+      <span className="ec-ink-stamp mr-2 inline-grid align-middle" aria-hidden>
+        eg
+      </span>
       Marking as a guest —{' '}
       {ANON_DAILY_MARK_LIMIT === 1
         ? 'one free mark'

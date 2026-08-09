@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { ChevronRight, Target, BarChart3 } from 'lucide-react'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import type { MarkingResultData } from '@/components/MarkingResultView'
 
@@ -22,37 +21,34 @@ export function PostMarkNextSteps({
   return (
     <div className="ms-post-mark-next space-y-4 pt-2">
       {(weakTopics.length > 0 || studyNext) && (
-        <div className="ec-card group flex flex-col gap-4 border-[var(--ec-brand)]/25 p-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-start gap-3">
-            <Target
-              className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]"
-              aria-hidden="true"
-            />
-            <div>
-              <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
+        <aside className="ms-mark-example-slip" aria-label="What to study next">
+          <div className="ms-mark-example-slip__body">
+            <span className="ec-ink-stamp" aria-hidden>
+              Q
+            </span>
+            <div className="ms-mark-example-slip__copy">
+              <p className="ms-mark-example-slip__title">
                 {weakTopics.length > 0
                   ? `Focus next: ${weakTopics.slice(0, 2).join(', ')}`
                   : 'Keep the momentum going'}
               </p>
-              {studyNext && (
-                <div className="mt-0.5 text-sm text-[var(--ec-text-secondary)]">
+              {studyNext ? (
+                <div className="ms-mark-example-slip__lead">
                   <RichTextRenderer text={studyNext} />
                 </div>
-              )}
+              ) : null}
+              <span className="ms-mark-example-slip__note" aria-hidden>
+                one weak topic beats a vague redo
+              </span>
             </div>
           </div>
           <Link
             href="/dashboard/progress"
-            className="inline-flex min-h-[44px] shrink-0 items-center gap-1.5 self-start text-sm font-semibold text-[var(--ec-brand)] sm:self-auto"
+            className="ms-mark-example-slip__cta inline-flex min-h-[44px] items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-brand)]"
           >
-            <BarChart3 className="h-4 w-4" aria-hidden="true" />
-            View progress
-            <ChevronRight
-              className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-              aria-hidden="true"
-            />
+            View progress -&gt;
           </Link>
-        </div>
+        </aside>
       )}
 
       <div className="flex flex-col gap-3 sm:flex-row">
@@ -67,10 +63,13 @@ export function PostMarkNextSteps({
         <button
           type="button"
           onClick={onMarkNewQuestion}
-          className="ec-btn-primary min-h-[48px] w-full justify-center text-base"
+          className="ec-btn-primary inline-flex min-h-[48px] w-full items-center justify-center gap-2 text-base"
         >
           <span className="sm:hidden">New question</span>
           <span className="hidden sm:inline">Mark a new question</span>
+          <span className="font-mono text-[11px] font-bold" aria-hidden>
+            -&gt;
+          </span>
         </button>
       </div>
     </div>

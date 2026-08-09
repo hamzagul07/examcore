@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
-import { Printer, Target } from 'lucide-react'
 import { SkeletonBlock } from '@/components/ui/PageSkeleton'
 import {
   TeacherBackLink,
@@ -99,12 +98,12 @@ export default function CohortGapsPage() {
           onClick={() => window.print()}
           className="ec-btn-secondary inline-flex min-h-[44px] items-center gap-2 print:hidden"
         >
-          <Printer className="h-4 w-4" /> Print
+          <span className="font-mono text-[11px] font-bold" aria-hidden>PR</span> Print
         </button>
       </div>
 
       {report.insufficientEvidence ? (
-        <div className="ec-card p-6">
+        <div className="ec-card ec-card--paper p-6">
           <p className="text-[var(--ec-text-primary)]">
             Not enough marked work yet.
           </p>
@@ -117,9 +116,9 @@ export default function CohortGapsPage() {
       ) : (
         <>
           {headline && (
-            <div className="ec-card mb-6 p-6">
+            <div className="ec-card ec-card--paper mb-6 p-6">
               <div className="ec-label-tech mb-2 flex items-center gap-2">
-                <Target className="h-4 w-4" /> THE HEADLINE
+                <span className="font-mono text-[11px] font-bold tracking-wide text-[var(--ec-brand)]" aria-hidden>¶</span> THE HEADLINE
               </div>
               <p className="text-xl font-bold text-[var(--ec-text-primary)]">
                 The class earns only {headline.earnedPct}% of {headline.label} marks
@@ -130,7 +129,7 @@ export default function CohortGapsPage() {
             </div>
           )}
 
-          <div className="ec-card mb-6 p-6">
+          <div className="ec-card ec-card--paper mb-6 p-6">
             <div className="ec-label-tech mb-4">BY MARK TYPE — WEAKEST FIRST</div>
             <ul>
               {report.markTypes.map((t) => (
@@ -173,7 +172,7 @@ export default function CohortGapsPage() {
           </div>
 
           {report.mostMissed.length > 0 && (
-            <div className="ec-card mb-6 p-6">
+            <div className="ec-card ec-card--paper mb-6 p-6">
               <div className="ec-label-tech mb-4">
                 THE SPECIFIC THINGS MOST STUDENTS MISSED
               </div>
@@ -191,13 +190,13 @@ export default function CohortGapsPage() {
           )}
 
           {report.errorBreakdown.length > 0 && (
-            <div className="ec-card p-6">
+            <div className="ec-card ec-card--paper p-6">
               <div className="ec-label-tech mb-4">WHY MARKS WERE DROPPED</div>
               <ul className="flex flex-wrap gap-2">
                 {report.errorBreakdown.map((e) => (
                   <li
                     key={e.classification}
-                    className="rounded-full bg-[var(--ec-surface-raised)] px-3 py-1 text-sm text-[var(--ec-text-secondary)]"
+                    className="rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] px-3 py-1 font-mono text-xs font-semibold text-[var(--ec-text-secondary)]"
                   >
                     {e.label} · {e.count}
                   </li>

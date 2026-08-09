@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState, type FormEvent } from 'react'
-import { Send, RotateCcw, X } from 'lucide-react'
+import { X } from 'lucide-react'
 import { useOmniAI } from '@/lib/omni-ai/context'
 import { StreamingMessage } from './StreamingMessage'
 import { UpgradeModal } from '@/components/billing/UpgradeModal'
@@ -345,7 +345,7 @@ export function ChatPanel({
                   className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)]"
                   title="Clear chat"
                 >
-                  <RotateCcw className="h-4 w-4" />
+                  <span className="font-mono text-[11px] font-bold" aria-hidden>↻</span>
                 </button>
               )}
               {showClose ? (
@@ -393,7 +393,7 @@ export function ChatPanel({
             disabled={!input.trim() || isStreaming || (isMetered && omniSubmitBlocked)}
             className="ec-btn-primary ec-btn-primary--sm min-h-[44px] px-4"
           >
-            <Send className="h-4 w-4" />
+            <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>→</span>
             <span className="sr-only">Send</span>
           </button>
         </form>

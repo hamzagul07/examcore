@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import type { Board } from '@/lib/community/posts'
 
-const TABS: { id: Board | 'all'; label: string; sub?: string }[] = [
-  { id: 'all', label: 'All boards' },
-  { id: 'cambridge', label: 'Cambridge A-Level', sub: 'CAIE' },
-  { id: 'ib', label: 'IB Diploma', sub: 'HL & SL' },
+const TABS: { id: Board | 'all'; label: string; short: string; sub?: string }[] = [
+  { id: 'all', label: 'All boards', short: 'All' },
+  { id: 'cambridge', label: 'Cambridge A-Level', short: 'Cambridge', sub: 'CAIE' },
+  { id: 'ib', label: 'IB Diploma', short: 'IB', sub: 'HL & SL' },
 ]
 
 export function BoardTabs({
@@ -25,19 +25,24 @@ export function BoardTabs({
   }
 
   return (
-    <div className="rc-boardtabs" role="tablist" aria-label="Exam board">
-      {TABS.map((t) => (
-        <Link
-          key={t.id}
-          href={href(t.id)}
-          className={`rc-boardtab${active === t.id ? ' on' : ''}`}
-          role="tab"
-          aria-selected={active === t.id}
-        >
-          <span className="rc-boardtab-label">{t.label}</span>
-          {t.sub ? <span className="rc-boardtab-sub">{t.sub}</span> : null}
-        </Link>
-      ))}
-    </div>
+    <nav className="rc-boardtabs" aria-label="Exam board">
+      {TABS.map((t) => {
+        const isActive = active === t.id
+        return (
+          <Link
+            key={t.id}
+            href={href(t.id)}
+            className={`rc-boardtab${isActive ? ' on' : ''}`}
+            aria-current={isActive ? 'page' : undefined}
+          >
+            <span className="rc-boardtab-label">
+              <span className="rc-boardtab-label-full">{t.label}</span>
+              <span className="rc-boardtab-label-short">{t.short}</span>
+            </span>
+            {t.sub ? <span className="rc-boardtab-sub">{t.sub}</span> : null}
+          </Link>
+        )
+      })}
+    </nav>
   )
 }

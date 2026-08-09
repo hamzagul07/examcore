@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import {
   A_LEVEL_GRADES,
   AS_LEVEL_GRADES,
@@ -11,6 +11,9 @@ import {
   type OfficialBoundaries,
 } from '@/lib/seo/grade-boundaries'
 import { readUrlParams, writeUrlParams } from '@/lib/url-state'
+import { ToolShareActions } from '@/components/tools/ToolShareActions'
+import { buildToolSlipText } from '@/lib/tools/tool-slip'
+import { SegmentedControl } from '@/components/ui/SegmentedControl'
 
 function initialRows(grades: readonly string[]): GradeThreshold[] {
   return grades.map((grade) => ({ grade, mark: '' }))
@@ -154,24 +157,17 @@ export function GradeBoundaryCalculator({
       )}
       <div className="gb-grid">
         <div className="gb-inputs">
-          <div className="gb-level">
-            <button
-              type="button"
-              className={`cmd-tab${level === 'A-Level' ? ' is-active' : ''}`}
-              onClick={() => switchLevel('A-Level')}
-              aria-pressed={level === 'A-Level'}
-            >
-              A-Level (A*–E)
-            </button>
-            <button
-              type="button"
-              className={`cmd-tab${level === 'AS-Level' ? ' is-active' : ''}`}
-              onClick={() => switchLevel('AS-Level')}
-              aria-pressed={level === 'AS-Level'}
-            >
-              AS-Level (a–e)
-            </button>
-          </div>
+          <SegmentedControl
+            className="gb-level"
+            optionClassName="cmd-tab"
+            aria-label="Qualification level"
+            value={level}
+            onChange={switchLevel}
+            options={[
+              { value: 'A-Level', label: 'A-Level (A*–E)' },
+              { value: 'AS-Level', label: 'AS-Level (a–e)' },
+            ]}
+          />
 
           <label className="gb-field">
             <span>Your raw mark</span>
@@ -210,8 +206,13 @@ export function GradeBoundaryCalculator({
             </div>
           ) : (
             <>
-              <p className="ms-overline" style={{ color: 'var(--ec-brand)' }}>Estimated grade</p>
-              <div className="gb-grade-big mono">{result.grade ?? '—'}</div>
+              <span className="gb-result-stamp" aria-hidden>
+                {result.grade ?? '—'}
+              </span>
+              <p className="ms-overline" style={{ color: 'var(--ec-brand)' }}>
+                Estimated grade
+              </p>
+              <div className="gb-grade-big">{result.grade ?? '—'}</div>
               {result.percent !== null && <p className="gb-percent mono">{result.percent}% of total</p>}
               {result.nextGrade && result.marksToNext !== null ? (
                 <p className="gb-next">
@@ -225,8 +226,22 @@ export function GradeBoundaryCalculator({
                 An estimate from the boundaries you entered. Boundaries change every session — confirm against the
                 official table on results day.
               </p>
+              <ToolShareActions
+                title="MarkScheme · Grade boundary"
+                url="https://markscheme.app/tools/grade-boundary-calculator"
+                text={buildToolSlipText([
+                  'MarkScheme · Grade boundary calculator',
+                  `Level: ${level}`,
+                  `${rawNum} / ${totalNum}${result.percent != null ? ` · ${result.percent}%` : ''}`,
+                  result.grade ? `Estimated grade: ${result.grade}` : null,
+                  result.nextGrade && result.marksToNext != null
+                    ? `${result.marksToNext} mark${result.marksToNext === 1 ? '' : 's'} to ${result.nextGrade}`
+                    : null,
+                  'markscheme.app/tools/grade-boundary-calculator',
+                ])}
+              />
               <Link href="/mark" className="ec-btn-primary inline-flex min-h-[44px]" style={{ marginTop: 12 }}>
-                See what each mark was worth <ArrowRight className="h-4 w-4" />
+                See what each mark was worth <span className="h-4 w-4" aria-hidden>-&gt;</span>
               </Link>
             </>
           )}

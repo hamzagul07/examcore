@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
-import { ArrowRight, BookOpen, Target } from 'lucide-react'
 
 export function CourseLessonSeoIntro({
   heading,
@@ -31,15 +30,20 @@ export function CourseLessonSeoIntro({
   const hubLabel = subjectHubCtaLabel ?? `${subjectCode} subject hub`
   return (
     <section
-      className="course-seo-intro mb-8 rounded-2xl border-2 border-[color-mix(in_srgb,var(--ec-brand)_22%,var(--ec-border-subtle))] bg-[var(--ec-surface-muted)] p-5 sm:p-6"
+      className="course-seo-intro ec-card ec-card--paper mb-8 border-2 border-[color-mix(in_srgb,var(--ec-brand)_22%,var(--ec-border-subtle))] p-5 sm:p-6"
       aria-labelledby="lesson-seo-intro"
     >
-      <h1
-        id="lesson-seo-intro"
-        className="mb-3 text-lg font-bold tracking-tight text-[var(--ec-text-primary)] sm:text-xl"
-      >
-        {heading}
-      </h1>
+      <div className="mb-3 flex items-start justify-between gap-3">
+        <h2
+          id="lesson-seo-intro"
+          className="text-lg font-bold tracking-tight text-[var(--ec-text-primary)] sm:text-xl"
+        >
+          {heading}
+        </h2>
+        <span className="ec-ink-stamp shrink-0" aria-hidden>
+          {subjectCode}
+        </span>
+      </div>
       <div className="mb-4 text-sm leading-relaxed text-[var(--ec-text-secondary)] sm:text-base">
         <ReactMarkdown
           components={{
@@ -55,22 +59,25 @@ export function CourseLessonSeoIntro({
       <div className="flex flex-wrap gap-3 text-sm">
         <Link
           href={courseLink}
-          className="inline-flex items-center gap-1.5 rounded-xl border-2 border-[var(--ec-border-subtle)] bg-[var(--ec-surface-raised)] px-3 py-2 font-semibold text-[var(--ec-text-primary)] no-underline hover:border-[var(--ec-brand)]/40"
+          className="inline-flex items-center gap-1.5 rounded border-2 border-[var(--ec-border-subtle)] bg-[var(--ec-paper)] px-3 py-2 font-semibold text-[var(--ec-text-primary)] no-underline hover:border-[var(--ec-brand)]/40"
         >
-          <BookOpen className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden />
+          <span className="ec-ink-stamp" aria-hidden>
+            ¶
+          </span>
           {courseLabel}
         </Link>
         <Link
           href={markPath}
-          className="inline-flex items-center gap-1.5 rounded-xl border-2 border-[color-mix(in_srgb,var(--ec-brand)_35%,var(--ec-border-subtle))] bg-[color-mix(in_srgb,var(--ec-brand)_10%,var(--ec-surface-raised))] px-3 py-2 font-semibold text-[var(--ec-brand)] no-underline hover:border-[var(--ec-brand)]"
+          className="inline-flex items-center gap-1.5 rounded border-2 border-[color-mix(in_srgb,var(--ec-brand)_35%,var(--ec-border-subtle))] bg-[color-mix(in_srgb,var(--ec-brand)_10%,var(--ec-paper))] px-3 py-2 font-semibold text-[var(--ec-brand)] no-underline hover:border-[var(--ec-brand)]"
         >
-          <Target className="h-4 w-4" aria-hidden />
-          {markCtaLabel}
-          <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+          <span className="ec-ink-stamp" aria-hidden>
+            M1
+          </span>
+          {markCtaLabel} →
         </Link>
         <Link
           href={hubLink}
-          className="inline-flex items-center gap-1.5 rounded-xl border-2 border-[var(--ec-border-subtle)] px-3 py-2 font-medium text-[var(--ec-text-secondary)] no-underline hover:text-[var(--ec-accent)]"
+          className="inline-flex items-center gap-1.5 rounded border-2 border-[var(--ec-border-subtle)] px-3 py-2 font-medium text-[var(--ec-text-secondary)] no-underline hover:text-[var(--ec-accent)]"
         >
           {hubLabel}
         </Link>

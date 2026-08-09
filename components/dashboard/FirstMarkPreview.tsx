@@ -1,29 +1,26 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
 import { ScoreReveal } from '@/components/mark/ScoreReveal'
 import { MarkLineList } from '@/components/mark/MarkLineList'
 import { DEMO_MARK_RESULT } from '@/lib/marking/demo-result'
+import { DEMO_MARK_RESULT_IB } from '@/lib/marking/demo-result-ib'
+import { isIbBoard } from '@/lib/profile-options'
 
 /**
  * What a new account sees instead of three empty boxes.
  *
- * The new-user home showed "Topics tracked —", "Syllabus coverage —", "Grade
- * trend —": three tiles whose only content was an em dash. They told someone
- * who had just signed up, three times over, that they have nothing — and this
- * is the page the large majority of accounts land on, since most have never
- * marked anything.
- *
- * Replaced with the artefact they'd actually receive. Same fixture as the
- * landing page and /mark?example=1, so the product makes one promise in one
- * shape everywhere, and a new user recognises their first real result because
- * they have already seen it.
+ * Same fixtures as the landing page and /mark?example=1 — board-aware so IB
+ * students don't get a Cambridge 9709 slip after onboarding.
  */
 
-const r = DEMO_MARK_RESULT
-const marks = r.ai_marking.marks_awarded
-const lost = marks.find((m) => !m.earned)
+type Props = {
+  board?: string | null
+}
 
-export function FirstMarkPreview() {
+export function FirstMarkPreview({ board = null }: Props) {
+  const ib = isIbBoard(board ?? '')
+  const r = ib ? DEMO_MARK_RESULT_IB : DEMO_MARK_RESULT
+  const marks = r.ai_marking.marks_awarded
+  const lost = marks.find((m) => !m.earned)
   const percentage = Math.round((r.marks_earned / r.total_marks) * 100)
 
   return (
@@ -34,12 +31,13 @@ export function FirstMarkPreview() {
             Your first mark comes back like this
           </h3>
           <p className="ms-first-mark__sub">
-            A real A-Level Maths answer, marked against the official scheme.
+            {ib
+              ? 'A Maths AA answer, marked with IB method / accuracy / reasoning notation.'
+              : 'A real A-Level Maths answer, marked against the official scheme.'}
           </p>
         </div>
         <Link href="/mark?example=1" className="ms-first-mark__link">
-          See the full example
-          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          See the full example -&gt;
         </Link>
       </div>
 
@@ -50,6 +48,7 @@ export function FirstMarkPreview() {
           percentage={percentage}
           grade={null}
           nextGrade={null}
+          shareable={false}
           marks={marks.map((m, i) => ({
             id: String(m.mark_id ?? i),
             earned: !!m.earned,
@@ -62,7 +61,8 @@ export function FirstMarkPreview() {
 
       {lost?.margin_note && (
         <p className="ms-first-mark__why">
-          <strong>Why that mark was lost:</strong> {lost.margin_note}.
+          <strong>Lost mark</strong>
+          {lost.margin_note}
         </p>
       )}
     </div>

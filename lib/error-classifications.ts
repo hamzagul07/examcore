@@ -35,7 +35,7 @@ export const ERROR_LABELS: Record<
   conceptual: {
     label: 'Conceptual error',
     color: '#ef4444',
-    icon: '🧠',
+    icon: '∴',
     description: 'Wrong approach or misunderstanding of the topic.',
   },
   algebraic_sign: {
@@ -59,7 +59,7 @@ export const ERROR_LABELS: Record<
   time_pressure: {
     label: 'Time pressure',
     color: '#a855f7',
-    icon: '⏱',
+    icon: 'T',
     description: 'Rushed: multiple small errors that look unlike your usual work.',
   },
   no_error: {

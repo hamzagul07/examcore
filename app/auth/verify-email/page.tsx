@@ -3,7 +3,6 @@
 import { Suspense, useMemo, useRef, useState, type KeyboardEvent } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { Mail } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
 import { AuthShell } from '@/components/AuthShell'
 import { ErrorBox, SubmitButton, SuccessBox } from '@/components/AuthFormBits'
@@ -24,11 +23,18 @@ export default function VerifyEmailPage() {
 function VerifyEmailSkeleton() {
   return (
     <AuthShell backLabel="Back to sign up" backHref="/auth/signup">
-      <p className="ec-eyebrow mb-3">Verify email</p>
-      <p className="text-hero mb-3" aria-hidden="true">
-        Check your <span className="ec-text-gradient">email</span>
-      </p>
-      <p className="leading-relaxed text-[var(--ec-text-secondary)]">Loading...</p>
+      <div className="ms-signup-desk">
+        <div className="mb-2 flex items-center gap-2">
+          <p className="ec-eyebrow mb-0">Verify email</p>
+          <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+            @
+          </span>
+        </div>
+        <p className="text-hero mb-3" aria-hidden="true">
+          Check your <em>inbox</em>
+        </p>
+        <p className="leading-relaxed text-[var(--ec-text-secondary)]">Loading...</p>
+      </div>
     </AuthShell>
   )
 }
@@ -149,96 +155,103 @@ function VerifyEmailForm() {
   if (!email) {
     return (
       <AuthShell backLabel="Back to sign up" backHref={signUpHref}>
-        <p className="ec-eyebrow mb-3">Verify email</p>
-        <h1 className="mb-3 text-2xl font-bold tracking-tight text-[var(--ec-text-primary)]">
-          No email address found
-        </h1>
-        <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
-          Start from the sign-up page so we know where to send your code.
-        </p>
-        <Link href={signUpHref} className="ec-btn-primary inline-flex w-full justify-center">
-          Go to sign up
-        </Link>
+        <div className="ms-signup-desk">
+          <div className="mb-2 flex items-center gap-2">
+            <p className="ec-eyebrow mb-0">Verify email</p>
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+              @
+            </span>
+          </div>
+          <h1 className="text-hero mb-3">
+            No email on the <em>slip</em>
+          </h1>
+          <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
+            Start from sign-up so we know where to send your code.
+          </p>
+          <Link href={signUpHref} className="ec-btn-primary inline-flex w-full justify-center">
+            Go to sign up
+          </Link>
+        </div>
       </AuthShell>
     )
   }
 
   return (
     <AuthShell backLabel="Back to sign up" backHref={signUpHref}>
-      <div className="mb-6 text-center">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl ec-icon-hero">
-          <Mail className="h-8 w-8 ec-text-brand" />
+      <div className="ms-signup-desk">
+        <div className="mb-2 flex items-center gap-2">
+          <p className="ec-eyebrow mb-0">Verify email</p>
+          <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+            @
+          </span>
         </div>
-        <p className="ec-eyebrow mb-3">Verify email</p>
         <h1 className="text-hero mb-3">
-          Check your <span className="ec-text-gradient">email</span>
+          Check your <em>inbox</em>
         </h1>
-        <p className="leading-relaxed text-[var(--ec-text-secondary)]">
-          We sent a 6-digit code to{' '}
+        <p className="mb-2 leading-relaxed text-[var(--ec-text-secondary)]">
+          Enter the 6-digit code we sent to{' '}
           <strong className="text-[var(--ec-text-primary)]">{email}</strong>
         </p>
-      </div>
+        <p className="ms-signup-note mb-6" aria-hidden>
+          six digits — then the desk opens
+        </p>
 
-      <form onSubmit={handleVerify} className="space-y-5">
-        <div>
-          <label className="label-overline mb-3 block text-center">
-            Verification code
-          </label>
-          <div
-            className="ms-verify-digits flex justify-center gap-1.5 sm:gap-3"
-            onPaste={handlePaste}
-          >
-            {digits.map((digit, index) => (
-              <input
-                key={index}
-                ref={(el) => {
-                  inputRefs.current[index] = el
-                }}
-                type="text"
-                inputMode="numeric"
-                autoComplete={index === 0 ? 'one-time-code' : 'off'}
-                maxLength={1}
-                value={digit}
-                onChange={(e) => handleDigitChange(index, e.target.value)}
-                onKeyDown={(e) => handleKeyDown(index, e)}
-                aria-label={`Digit ${index + 1} of ${CODE_LENGTH}`}
-                    className="ec-auth-input-focus h-12 w-10 rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] text-center text-lg font-semibold text-[var(--ec-text-primary)] outline-none transition-all sm:h-14 sm:w-12 sm:text-xl"
-              />
-            ))}
+        <form onSubmit={handleVerify} className="space-y-5">
+          <div>
+            <label className="label-overline mb-3 block">Verification code</label>
+            <div className="ms-verify-digits" onPaste={handlePaste}>
+              {digits.map((digit, index) => (
+                <input
+                  key={index}
+                  ref={(el) => {
+                    inputRefs.current[index] = el
+                  }}
+                  type="text"
+                  inputMode="numeric"
+                  autoComplete={index === 0 ? 'one-time-code' : 'off'}
+                  maxLength={1}
+                  value={digit}
+                  onChange={(e) => handleDigitChange(index, e.target.value)}
+                  onKeyDown={(e) => handleKeyDown(index, e)}
+                  aria-label={`Digit ${index + 1} of ${CODE_LENGTH}`}
+                  className="ms-verify-digit ec-auth-input-focus"
+                />
+              ))}
+            </div>
           </div>
+
+          {errorMsg && <ErrorBox message={errorMsg} />}
+          {resent && (
+            <SuccessBox message="A new code has been sent. Check your inbox." />
+          )}
+
+          <SubmitButton
+            loading={loading}
+            idleLabel="Verify and open desk"
+            loadingLabel="Verifying..."
+            disabled={code.length !== CODE_LENGTH}
+          />
+        </form>
+
+        <div className="mt-6 space-y-3 text-sm">
+          <p className="text-[var(--ec-text-secondary)]">
+            Didn&apos;t get the code?{' '}
+            <button
+              type="button"
+              onClick={handleResend}
+              disabled={resending}
+              className="ec-auth-link ec-link disabled:opacity-50"
+            >
+              {resending ? 'Sending...' : 'Resend'}
+            </button>
+          </p>
+          <p className="text-[var(--ec-text-secondary)]">
+            Wrong email?{' '}
+            <Link href={signUpHref} className="ec-link ec-auth-footer-link">
+              Sign up again
+            </Link>
+          </p>
         </div>
-
-        {errorMsg && <ErrorBox message={errorMsg} />}
-        {resent && (
-          <SuccessBox message="A new code has been sent. Check your inbox." />
-        )}
-
-        <SubmitButton
-          loading={loading}
-          idleLabel="Verify"
-          loadingLabel="Verifying..."
-          disabled={code.length !== CODE_LENGTH}
-        />
-      </form>
-
-      <div className="mt-6 space-y-3 text-center text-sm">
-        <p className="text-[var(--ec-text-secondary)]">
-          Didn&apos;t get the code?{' '}
-          <button
-            type="button"
-            onClick={handleResend}
-            disabled={resending}
-            className="ec-auth-link ec-link disabled:opacity-50"
-          >
-            {resending ? 'Sending...' : 'Resend'}
-          </button>
-        </p>
-        <p className="text-[var(--ec-text-secondary)]">
-          Wrong email?{' '}
-          <Link href={signUpHref} className="ec-link ec-auth-footer-link">
-            Sign up again
-          </Link>
-        </p>
       </div>
     </AuthShell>
   )

@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useId, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import { Route, Flag, Trophy, Star, MapPin, CircleDot } from 'lucide-react'
 import type { TimelineStation, StationKind } from '@/lib/insights/types'
+import { WaitingForInk } from '@/components/ui/WaitingForInk'
 
 type Props = {
   stations: TimelineStation[]
@@ -12,31 +12,36 @@ type Props = {
 
 type ViewMode = 'story' | 'detailed'
 
+/** Dual-ink only — no cyan/purple SaaS rainbow. */
 const MAJOR_META: Record<
   StationKind,
   { tint: string }
 > = {
-  first_mark: { tint: '#38bdf8' },
+  first_mark: { tint: 'var(--ec-brand)' },
   attempt: { tint: 'var(--ec-brand)' },
-  milestone: { tint: '#a855f7' },
-  streak: { tint: '#f97316' },
+  milestone: { tint: 'var(--ec-ink-crimson, #a23e3e)' },
+  streak: { tint: 'var(--ec-brand)' },
   exam_ready: { tint: 'var(--ec-chip-success-text)' },
-  best: { tint: '#f59e0b' },
+  best: { tint: 'var(--ec-ink-crimson, #a23e3e)' },
   latest: { tint: 'var(--ec-brand)' },
 }
 
-function stationIcon(kind: StationKind) {
+function stationStamp(kind: StationKind) {
   switch (kind) {
     case 'first_mark':
-      return Flag
+      return '1'
     case 'best':
-      return Trophy
+      return '★'
     case 'milestone':
-      return Star
+      return '◇'
     case 'latest':
-      return MapPin
+      return '•'
+    case 'streak':
+      return 'N'
+    case 'exam_ready':
+      return 'A*'
     default:
-      return CircleDot
+      return '○'
   }
 }
 
@@ -64,15 +69,14 @@ export function JourneyTimeline({ stations, subjectLabel }: Props) {
     return (
       <section className="ms-dash-card">
         <Header subjectLabel={subjectLabel} view={view} setView={setView} disabled />
-        <div className="ms-progress-hint p-10 text-center">
-          <Route className="mx-auto mb-3 h-8 w-8 text-[var(--ec-text-secondary)]" aria-hidden="true" />
-          <p className="ms-h3" style={{ fontSize: 20 }}>
+        <WaitingForInk stamp="MAP" className="p-8">
+          <p className="ms-h3" style={{ fontSize: 20, color: 'var(--ec-text-primary)' }}>
             Your journey starts with your first question
           </p>
           <p className="ms-body-2 mx-auto mt-1.5 max-w-sm">
             Every question you mark becomes a stop on this line. Mark one and watch the map grow.
           </p>
-        </div>
+        </WaitingForInk>
       </section>
     )
   }
@@ -104,7 +108,12 @@ function Header({
     <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
       <div>
         <div className="mb-2 flex items-center gap-2">
-          <Route className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden="true" />
+          <span
+            className="inline-grid h-5 min-w-5 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]"
+            aria-hidden
+          >
+            MAP
+          </span>
           <p className="ms-overline" style={{ marginBottom: 0 }}>Your journey</p>
         </div>
         <h2 className="ms-h3">
@@ -115,7 +124,7 @@ function Header({
         <div
           role="tablist"
           aria-label="Timeline detail"
-          className="inline-flex shrink-0 rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface)] p-1"
+          className="inline-flex shrink-0 rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] p-1"
         >
           {(['story', 'detailed'] as ViewMode[]).map((v) => (
             <button
@@ -149,7 +158,6 @@ function HorizontalMetro({
   stations: TimelineStation[]
   reduce: boolean
 }) {
-  const gradientId = useId()
   const [hovered, setHovered] = useState<string | null>(null)
 
   const n = stations.length
@@ -182,13 +190,6 @@ function HorizontalMetro({
           aria-label={`Journey timeline with ${n} stations`}
           style={{ minWidth: width }}
         >
-          <defs>
-            <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#38bdf8" />
-              <stop offset="100%" stopColor="var(--ec-brand)" />
-            </linearGradient>
-          </defs>
-
           {/* base rail */}
           <path
             d={linePath}
@@ -198,15 +199,14 @@ function HorizontalMetro({
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-          {/* drawn line */}
+          {/* drawn line — ink, not SaaS gradient glow */}
           <motion.path
             d={linePath}
             fill="none"
-            stroke={`url(#${gradientId})`}
+            stroke="var(--ec-brand)"
             strokeWidth="5"
             strokeLinecap="round"
             strokeLinejoin="round"
-            style={{ filter: 'drop-shadow(0 0 6px var(--ec-brand-muted))' }}
             initial={reduce ? { opacity: 0 } : { pathLength: 0 }}
             animate={reduce ? { opacity: 1 } : { pathLength: 1 }}
             transition={{ duration: reduce ? 0.4 : 1.4, ease: 'easeInOut' }}
@@ -261,15 +261,17 @@ function HorizontalMetro({
         {/* hover tooltip overlay (percentage-positioned to match the scaled SVG) */}
         {points.map((p) => {
           if (hovered !== p.s.id) return null
-          const Icon = stationIcon(p.s.kind)
+          const mark = stationStamp(p.s.kind)
           return (
             <div
               key={`tip-${p.s.id}`}
               className="pointer-events-none absolute z-10 -translate-x-1/2 translate-y-2"
               style={{ left: `${(p.x / width) * 100}%`, top: `${(p.y / height) * 100}%` }}
             >
-              <div className="ec-card flex items-center gap-2 whitespace-nowrap px-3 py-2 text-xs shadow-[var(--ec-card-hover-shadow)]">
-                <Icon className="h-3.5 w-3.5 text-[var(--ec-brand)]" aria-hidden="true" />
+              <div className="ec-card ec-card--paper flex items-center gap-2 whitespace-nowrap px-3 py-2 text-xs">
+                <span className="font-mono text-[10px] font-bold text-[var(--ec-brand)]" aria-hidden>
+                  {mark}
+                </span>
                 <span className="font-semibold text-[var(--ec-text-primary)]">{p.s.label}</span>
                 {p.s.detail && (
                   <span className="font-mono text-[var(--ec-text-secondary)]">{p.s.detail}</span>
@@ -295,13 +297,13 @@ function VerticalMetro({
   return (
     <ol className="relative ml-2 space-y-1">
       <span
-        className="absolute left-[11px] top-2 bottom-2 w-[3px] rounded-full"
-        style={{ background: 'linear-gradient(var(--ec-brand), #38bdf8)' }}
+        className="absolute left-[11px] top-2 bottom-2 w-[3px] rounded-[1px]"
+        style={{ background: 'var(--ec-brand)' }}
         aria-hidden="true"
       />
       {stations.map((s, i) => {
         const tint = MAJOR_META[s.kind].tint
-        const Icon = stationIcon(s.kind)
+        const mark = stationStamp(s.kind)
         return (
           <motion.li
             key={s.id}
@@ -311,15 +313,17 @@ function VerticalMetro({
             transition={{ delay: reduce ? 0 : i * 0.05, duration: 0.3 }}
           >
             <span
-              className="absolute left-0 top-3 flex items-center justify-center rounded-full border-[3px] bg-[var(--ec-surface-raised)]"
+              className="absolute left-0 top-3 flex items-center justify-center rounded border-2 bg-[var(--ec-paper,var(--ec-surface-raised))] font-mono text-[9px] font-bold"
               style={{
                 width: s.major ? 26 : 20,
                 height: s.major ? 26 : 20,
                 borderColor: tint,
+                color: tint,
                 marginLeft: s.major ? -1 : 2,
               }}
+              aria-hidden
             >
-              {s.major && <Icon className="h-3 w-3" style={{ color: tint }} aria-hidden="true" />}
+              {s.major ? mark : ''}
             </span>
             <div className="min-w-0">
               <p className="text-sm font-semibold text-[var(--ec-text-primary)]">{s.label}</p>

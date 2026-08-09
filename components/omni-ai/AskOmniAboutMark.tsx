@@ -1,6 +1,5 @@
 'use client'
 
-import { Sparkles } from 'lucide-react'
 import { useOmniAI } from '@/lib/omni-ai/context'
 
 /**
@@ -19,7 +18,12 @@ export function AskOmniAboutMark({ attemptId }: { attemptId: string }) {
       }}
       className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-brand)]"
     >
-      <Sparkles className="h-3 w-3 shrink-0 opacity-70" />
+      <span
+        className="inline-grid h-4 min-w-4 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-0.5 text-[9px] font-bold text-[var(--ec-brand)]"
+        aria-hidden
+      >
+        ¶
+      </span>
       Ask MarkScheme about this mark
     </button>
   )

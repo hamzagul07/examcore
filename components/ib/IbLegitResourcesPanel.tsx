@@ -29,16 +29,16 @@ export function IbLegitResourcesPanel({ slug, className }: Props) {
               href={r.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block rounded-xl border border-[var(--ec-border)] px-3 py-2.5 transition-colors hover:border-[var(--ec-brand)] hover:bg-[var(--ec-bg-soft)]"
+              className="ec-card ec-card--paper group block border border-[var(--ec-border)] px-3 py-2.5 transition-colors hover:border-[var(--ec-brand)] hover:bg-[var(--ec-bg-soft)]"
             >
               <span className="flex items-center justify-between gap-2 text-sm font-medium text-[var(--ec-text-primary)]">
                 {r.label}
-                <span className="text-[var(--ec-text-faint)] transition-colors group-hover:text-[var(--ec-brand)]">
+                <span className="text-[var(--ec-text-secondary)] transition-colors group-hover:text-[var(--ec-brand)]">
                   ↗
                 </span>
               </span>
               {r.note ? (
-                <span className="mt-1 block text-xs leading-relaxed text-[var(--ec-text-faint)]">
+                <span className="mt-1 block text-xs leading-relaxed text-[var(--ec-text-secondary)]">
                   {r.note}
                 </span>
               ) : null}

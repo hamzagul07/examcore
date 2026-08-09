@@ -3,7 +3,6 @@
 import { useEffect, useId, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useBodyScrollLock } from '@/lib/hooks/useBodyScrollLock'
 
@@ -77,7 +76,7 @@ export function Sheet({
             aria-modal="true"
             aria-labelledby={labelledById ?? (title ? titleId : undefined)}
             className={cn(
-              'ec-card relative z-10 max-h-[90dvh] w-full overflow-y-auto rounded-t-3xl p-6 pt-[calc(1.5rem+env(safe-area-inset-top,0px))] sm:max-w-md sm:rounded-2xl sm:p-8 sm:pt-8',
+              'ec-card ec-card--paper relative z-10 max-h-[90dvh] w-full overflow-y-auto rounded-t-xl p-6 pt-[calc(1.5rem+env(safe-area-inset-top,0px))] sm:max-w-md sm:rounded sm:p-8 sm:pt-8',
               compactPadding && 'p-0 pt-0 sm:p-0 sm:pt-0',
               className
             )}
@@ -91,7 +90,7 @@ export function Sheet({
           >
             {showHandle && (
               <div
-                className="mx-auto mb-3 h-1 w-10 rounded-full bg-[var(--ec-border)] sm:hidden"
+                className="mx-auto mb-3 h-1 w-10 rounded-[2px] bg-[var(--ec-border)] sm:hidden"
                 aria-hidden
               />
             )}
@@ -103,10 +102,17 @@ export function Sheet({
             <button
               type="button"
               onClick={onClose}
-              className="absolute right-3 top-3 z-20 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-brand-muted)] hover:text-[var(--ec-text-primary)] sm:right-4 sm:top-4"
+              className="absolute right-3 top-3 z-20 flex min-h-[44px] min-w-[44px] items-center justify-center rounded text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-brand-muted)] hover:text-[var(--ec-text-primary)] sm:right-4 sm:top-4"
               aria-label="Close"
             >
-              <X className="h-5 w-5" />
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
+                <path
+                  d="M4.5 4.5 L13.5 13.5 M13.5 4.5 L4.5 13.5"
+                  stroke="currentColor"
+                  strokeWidth="1.7"
+                  strokeLinecap="round"
+                />
+              </svg>
             </button>
             {children}
           </motion.div>

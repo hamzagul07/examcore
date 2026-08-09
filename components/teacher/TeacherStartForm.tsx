@@ -1,7 +1,6 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { ArrowRight, Check, Loader2 } from 'lucide-react'
 import { completeOnboardingRequest } from '@/lib/onboarding/complete-onboarding-client'
 import {
   BOARDS,
@@ -11,6 +10,9 @@ import {
   isIbBoard,
   subjectsForLevel,
 } from '@/lib/profile-options'
+import { SegmentedControl } from '@/components/ui/SegmentedControl'
+import { Field } from '@/components/ui/Field'
+import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 
 /**
  * Teacher setup — one screen.
@@ -86,40 +88,40 @@ export function TeacherStartForm({ saveToken }: { saveToken: string }) {
   return (
     <form onSubmit={submit} className="ms-teacher-start">
       <fieldset className="ms-teacher-start__field" disabled={saving}>
-        <legend className="ms-teacher-start__legend">Which exam board do you teach?</legend>
-        <div className="ms-teacher-start__choices">
-          {BOARDS.filter((b) => b.enabled).map((b) => (
-            <button
-              key={b.id}
-              type="button"
-              onClick={() => changeBoard(b.id)}
-              aria-pressed={board === b.id}
-              className="ms-teacher-start__choice"
-            >
-              {b.label}
-              {board === b.id && <Check className="h-4 w-4" aria-hidden />}
-            </button>
-          ))}
-        </div>
+        <legend className="ms-teacher-start__legend" id="teacher-board-label">
+          Which exam board do you teach?
+        </legend>
+        <SegmentedControl
+          className="ms-teacher-start__choices"
+          optionClassName="ms-teacher-start__choice"
+          aria-labelledby="teacher-board-label"
+          value={board}
+          onChange={changeBoard}
+          disabled={saving}
+          options={BOARDS.filter((b) => b.enabled).map((b) => ({
+            value: b.id,
+            label: b.label,
+          }))}
+        />
       </fieldset>
 
       {!ib && (
         <fieldset className="ms-teacher-start__field" disabled={saving}>
-          <legend className="ms-teacher-start__legend">Which level?</legend>
-          <div className="ms-teacher-start__choices">
-            {levelOptions.map((l) => (
-              <button
-                key={l.id}
-                type="button"
-                onClick={() => changeLevel(l.id)}
-                aria-pressed={level === l.id}
-                className="ms-teacher-start__choice"
-              >
-                {l.label}
-                {level === l.id && <Check className="h-4 w-4" aria-hidden />}
-              </button>
-            ))}
-          </div>
+          <legend className="ms-teacher-start__legend" id="teacher-level-label">
+            Which level?
+          </legend>
+          <SegmentedControl
+            className="ms-teacher-start__choices"
+            optionClassName="ms-teacher-start__choice"
+            aria-labelledby="teacher-level-label"
+            value={level}
+            onChange={changeLevel}
+            disabled={saving}
+            options={levelOptions.map((l) => ({
+              value: l.id,
+              label: l.label,
+            }))}
+          />
         </fieldset>
       )}
 
@@ -143,36 +145,45 @@ export function TeacherStartForm({ saveToken }: { saveToken: string }) {
         </select>
       </div>
 
-      <div className="ms-teacher-start__field">
-        <label className="ms-teacher-start__legend" htmlFor="teacher-class">
-          Name your first class
-        </label>
-        <input
-          id="teacher-class"
-          type="text"
-          value={className}
-          onChange={(e) => setClassName(e.target.value)}
-          disabled={saving}
-          maxLength={120}
-          placeholder="e.g. Year 12 Chemistry"
-          className="ec-input ms-teacher-start__input"
-          autoComplete="off"
-        />
-        <p className="ms-teacher-start__hint">
-          You&apos;ll get a code to share with them. You can add more classes later.
-        </p>
-      </div>
+      <Field
+        className="ms-teacher-start__field"
+        labelClassName="ms-teacher-start__legend"
+        label="Name your first class"
+        hint="You'll get a code to share with them. You can add more classes later."
+        inputProps={{
+          id: 'teacher-class',
+          type: 'text',
+          value: className,
+          onChange: (e) => setClassName(e.target.value),
+          disabled: saving,
+          maxLength: 120,
+          placeholder: 'e.g. Year 12 Chemistry',
+          className: 'ms-teacher-start__input',
+          autoComplete: 'off',
+        }}
+      />
+      <span className="ms-teacher-start__note" aria-hidden>
+        four fields — then the invite code
+      </span>
 
-      {error && <p className="ms-teacher-start__error">{error}</p>}
+      {error ? (
+        <FormErrorAlert message={error} className="ms-teacher-start__error" />
+      ) : null}
 
-      <button type="submit" disabled={!ready || saving} className="ec-btn-primary ms-teacher-start__submit">
+      <button
+        type="submit"
+        disabled={!ready || saving}
+        aria-busy={saving || undefined}
+        className="ec-btn-primary ms-teacher-start__submit"
+      >
         {saving ? (
-          <>
-            <Loader2 className="h-4 w-4 animate-spin" aria-hidden /> Setting up…
-          </>
+          'Filing classroom…'
         ) : (
           <>
-            Create my classroom <ArrowRight className="h-4 w-4" aria-hidden />
+            Create my classroom
+            <span className="font-mono text-[11px] font-bold" aria-hidden>
+              -&gt;
+            </span>
           </>
         )}
       </button>

@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { ListTree } from 'lucide-react'
 
 export type TocEntry = { id: string; label: string; level: 2 | 3 }
 
@@ -38,7 +37,12 @@ export function CourseLessonToc({ entries }: { entries: TocEntry[] }) {
   return (
     <nav className="course-lesson-toc" aria-label="On this page">
       <p className="course-lesson-toc-title">
-        <ListTree className="h-4 w-4" aria-hidden />
+        <span
+          className="inline-grid h-5 min-w-5 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]"
+          aria-hidden
+        >
+          ¶
+        </span>
         On this page
       </p>
       <ol className="course-lesson-toc-list">

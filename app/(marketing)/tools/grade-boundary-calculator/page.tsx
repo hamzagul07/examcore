@@ -1,10 +1,9 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode, softwareApplicationNode } from '@/lib/seo/structured-data'
-import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { GradeBoundaryCalculator } from '@/components/tools/GradeBoundaryCalculator'
 import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
@@ -12,8 +11,8 @@ import {
   getGradeBoundaryCalculatorPages,
   buildSubjectPageCopy,
 } from '@/lib/seo/programmatic-subjects'
-import { subjectAccent, subjectGlyph, accentCssVar } from '@/lib/courses/margin-notes/subject-meta'
-import type { CSSProperties } from 'react'
+import { ToolsDeskArtefact } from '@/components/tools/ToolsDeskArtefact'
+import { ToolInstrumentShell } from '@/components/tools/ToolInstrumentShell'
 
 const PATH = '/tools/grade-boundary-calculator'
 
@@ -37,6 +36,7 @@ const FAQS = [
 ]
 
 export const metadata = getPageMetadata(PATH, {
+  ogImagePath: '/api/og/tools/grade-boundary-calculator',
   title: 'Cambridge grade boundary calculator (raw marks → grade)',
   description:
     'Free Cambridge grade calculator: enter your raw marks and the official thresholds to see your A*–E grade, your percentage, and the marks needed for the next grade.',
@@ -53,42 +53,68 @@ export default function GradeCalculatorPage() {
   const subjects = getGradeBoundaryCalculatorPages().map((s) => buildSubjectPageCopy(s))
 
   return (
-    <MarketingPageShell>
+    <>
       <PageJsonLd
         path={PATH}
         title="Cambridge grade boundary calculator"
         description="Convert raw marks to a Cambridge A*–E grade using official grade thresholds."
         breadcrumbs={[
           { name: 'Home', path: '/' },
-          { name: 'Tools', path: PATH },
+          { name: 'Tools', path: '/tools' },
           { name: 'Grade boundary calculator', path: PATH },
         ]}
       />
       <JsonLd data={[faqPageNode(FAQS), softwareApplicationNode()]} />
 
-      <MarketingHero
-        label="Free tool"
+      <ToolInstrumentShell
+        stamp="∴"
+        label="Boundary instrument"
+        title={
+          <>
+            Cambridge grade <em>boundary</em> calculator
+          </>
+        }
+        lead="Turn raw marks into a Cambridge grade. Enter your mark, the total, and the official thresholds for your session — get your A*–E grade, your percentage, and exactly how many marks you need for the next grade."
+        note="boundaries are raw marks — not fixed percentages"
+        artefact={<ToolsDeskArtefact />}
         breadcrumbs={[
           { name: 'Home', path: '/' },
+          { name: 'Tools', path: '/tools' },
           { name: 'Grade calculator', path: PATH },
         ]}
-        title="Cambridge grade boundary calculator"
-        lead="Turn raw marks into a Cambridge grade. Enter your mark, the total, and the official thresholds for your session — get your A*–E grade, your percentage, and exactly how many marks you need for the next grade."
-      />
+        after={
+          <>
+            <section className="ms-tool-instrument__faq" aria-labelledby="gb-faq">
+              <h2 id="gb-faq" className="ms-tool-instrument__faq-title">
+                FAQ
+              </h2>
+              <dl className="ms-tool-faq">
+                {FAQS.map((f) => (
+                  <div key={f.q}>
+                    <dt>{f.q}</dt>
+                    <dd className="ms-body-2">{f.a}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+            <PageHelpStrip />
+          </>
+        }
+      >
+        <ResultsDayBanner className="mb-6" />
 
-      <MarketingSection className="!pt-0">
-        <ResultsDayBanner className="mb-10" />
-        <div className="mb-8 flex flex-wrap gap-3">
-          <Link href="/tools/will-my-grade-hold" className="ec-btn-primary ec-btn-primary--sm">
-            Will my grade hold? <ArrowRight className="h-4 w-4" />
+        <div className="ms-tool-instrument__links mb-6">
+          <Link href="/tools/will-my-grade-hold" className="ec-link">
+            Will my grade hold? -&gt;
           </Link>
-          <Link href="/results-2026" className="ec-btn-ghost ec-btn-ghost--sm">
-            Results Day hub
+          <Link href="/results-2026" className="ec-link">
+            Results Day hub -&gt;
           </Link>
-          <Link href="/guides/grade-boundaries" className="ec-btn-ghost ec-btn-ghost--sm">
-            All subject boundaries
+          <Link href="/guides/grade-boundaries" className="ec-link">
+            All subject boundaries -&gt;
           </Link>
         </div>
+
         <GradeBoundaryCalculator />
 
         <div className="mt-12">
@@ -107,45 +133,60 @@ export default function GradeCalculatorPage() {
         </div>
 
         <div className="mt-10">
-          <p className="ms-overline">By subject</p>
+          <p className="ms-tool-instrument__rail-label" style={{ marginBottom: 10 }}>
+            By syllabus
+          </p>
           <h2 className="ms-h3" style={{ fontSize: 'clamp(1.25rem, 3vw, 1.6rem)' }}>
-            Grade calculators by syllabus
+            Grade calculators by subject
           </h2>
-          <ul className="ms-guide-grid sm:grid-cols-2" style={{ marginTop: 16 }}>
+          <ul className="ms-tool-instrument__rail" style={{ marginTop: 16, listStyle: 'none', padding: 0 }}>
             {subjects.map((s) => {
               const code = s.path.split('/').pop() ?? ''
               return (
                 <li key={s.path}>
                   <Link
                     href={`/tools/grade-boundary-calculator/${code}`}
-                    className="ms-hub-card subject-accented ec-card-accent-edge"
-                    style={{ display: 'block', '--acc': accentCssVar(subjectAccent(code)) } as CSSProperties}
+                    className="ms-tool-instrument__stamp-link"
                   >
-                    <span className="ec-chip ec-chip-accent" aria-hidden="true">
-                      <span style={{ fontSize: '1rem' }}>{subjectGlyph(code, '')}</span> {code}
-                    </span>
-                    <h3 className="ms-h3" style={{ marginTop: 10, fontSize: '1.05rem' }}>
+                    {code}
+                    <span className="sr-only">
+                      {' '}
                       {s.level} grade calculator
-                    </h3>
+                    </span>
                   </Link>
                 </li>
               )
             })}
           </ul>
+          <p className="ms-micro mt-3">
+            Tap a syllabus code for pre-filled thresholds where we have verified tables.
+          </p>
         </div>
 
-        <div className="ms-hub-card ec-card--paper mt-12 text-center">
-          <h2 className="ms-h3">Want to know what each mark was worth?</h2>
-          <p className="ms-lead mx-auto" style={{ marginTop: 10, maxWidth: 480 }}>
-            A grade estimate tells you where you landed. MarkScheme tells you <em>why</em> — upload your
-            paper and get mark-by-mark feedback against the real Cambridge scheme.
-          </p>
-          <Link href="/mark" className="ec-btn-primary inline-flex min-h-[48px]">
-            Mark a paper free <ArrowRight className="h-5 w-5" />
+        <aside className="ms-mark-example-slip mt-12">
+          <div className="ms-mark-example-slip__body">
+            <span className="ec-ink-stamp" aria-hidden>
+              M1
+            </span>
+            <div className="ms-mark-example-slip__copy">
+              <p className="ms-mark-example-slip__title">Want to know what each mark was worth?</p>
+              <p className="ms-mark-example-slip__lead">
+                A grade estimate tells you where you landed. MarkScheme tells you why — upload your
+                paper and get mark-by-mark feedback against the real Cambridge scheme.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/mark"
+            className="ec-btn-primary ms-mark-example-slip__cta inline-flex min-h-[44px] items-center gap-2"
+          >
+            Mark a paper free
+            <span className="font-mono text-[11px] font-bold" aria-hidden>
+              -&gt;
+            </span>
           </Link>
-        </div>
-        <PageHelpStrip />
-      </MarketingSection>
-    </MarketingPageShell>
+        </aside>
+      </ToolInstrumentShell>
+    </>
   )
 }

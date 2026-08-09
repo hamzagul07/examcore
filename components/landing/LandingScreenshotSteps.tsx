@@ -1,7 +1,7 @@
 'use client'
 
+import Image from 'next/image'
 import { LandingSectionReveal } from './LandingSectionReveal'
-import { DeviceFrame } from '@/components/marketing/DeviceFrame'
 
 const STEPS = [
   {
@@ -40,29 +40,54 @@ const STEPS = [
 
 export function LandingScreenshotSteps() {
   return (
-    <div className="space-y-24 sm:space-y-32">
+    <div className="ms-hiw-shots">
       {STEPS.map((step, index) => {
         const imageOnRight = index % 2 === 1
         return (
           <LandingSectionReveal key={step.src} delay={index * 0.05}>
-            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
-              <div className={imageOnRight ? 'lg:order-2' : ''}>
-                <DeviceFrame
-                  src={step.src}
-                  alt={step.alt}
-                  width={step.width}
-                  height={step.height}
-                  priority={index === 0}
-                />
+            <div className="ms-hiw-shot">
+              <div className={imageOnRight ? 'ms-hiw-shot__media ms-hiw-shot__media--right' : 'ms-hiw-shot__media'}>
+                <figure className="ms-shot-paper">
+                  <figcaption className="ms-shot-paper__cap">
+                    <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                      {index + 1}
+                    </span>
+                    <span className="ms-shot-paper__label">SCRIPT · STEP {index + 1}</span>
+                  </figcaption>
+                  <div className="ms-shot-paper__frame">
+                    <Image
+                      src={step.src}
+                      alt={step.alt}
+                      width={step.width}
+                      height={step.height}
+                      priority={index === 0}
+                      className="ms-shot-paper__img"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 560px"
+                    />
+                  </div>
+                </figure>
               </div>
               <div
-                className={`max-w-lg ${imageOnRight ? 'lg:order-1 lg:pr-4' : 'lg:pl-4'}`}
+                className={
+                  imageOnRight
+                    ? 'ms-hiw-shot__copy ms-hiw-shot__copy--left'
+                    : 'ms-hiw-shot__copy'
+                }
               >
-                <span className="ec-label-tech mb-4">Step {index + 1}</span>
-                <h3 className="landing-h3 mb-4 text-[var(--ec-text-primary)]">
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                    {index + 1}
+                  </span>
+                  <p className="ms-overline" style={{ marginBottom: 0 }}>
+                    Step {index + 1}
+                  </p>
+                </div>
+                <h3 className="ms-h3" style={{ marginTop: 14 }}>
                   {step.title}
                 </h3>
-                <p className="landing-lead">{step.body}</p>
+                <p className="ms-body-2" style={{ marginTop: 10, maxWidth: 420 }}>
+                  {step.body}
+                </p>
               </div>
             </div>
           </LandingSectionReveal>

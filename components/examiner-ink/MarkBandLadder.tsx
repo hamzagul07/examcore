@@ -25,10 +25,10 @@ export function MarkBandLadder({
   const atTop = gap.next === null && gap.ladder.length > 0
 
   return (
-    <section className="ec-card flex flex-col gap-4 p-5" aria-label="The next band">
+    <section className="ec-card ec-card--paper flex flex-col gap-4 p-5" aria-label="The next band">
       <div className="flex items-baseline justify-between gap-3">
         <p className="ec-label-tech flex items-center gap-2">
-          <span className="h-1.5 w-1.5 rounded-full bg-[var(--ec-chip-warning-text)]" />
+          <span className="h-1.5 w-1.5 rounded-[2px] bg-[var(--ec-chip-warning-text)]" />
           {label ?? 'THE NEXT BAND'}
         </p>
         <span className="font-mono text-xs text-[var(--ec-text-secondary)]">
@@ -65,7 +65,7 @@ export function MarkBandLadder({
 
       {!atTop && gap.liftHint && (
         <div
-          className="flex items-start gap-2.5 rounded-xl border border-dashed px-3.5 py-3"
+          className="ec-card ec-card--paper flex items-start gap-2.5 border border-dashed px-3.5 py-3"
           style={{
             borderColor: 'var(--ec-chip-warning-text)',
             background: 'var(--ec-chip-warning-bg)',
@@ -119,7 +119,7 @@ function Rung({ rung }: { rung: BandRung }) {
     <motion.div
       initial={{ opacity: 0, x: -6 }}
       animate={{ opacity: faint ? 0.55 : 1, x: 0 }}
-      className="flex items-center gap-3 rounded-lg px-3 py-2.5"
+      className="flex items-center gap-3 rounded px-3 py-2.5"
       style={{
         border: `${tone.dashed ? '1.5px dashed' : '1px solid'} ${tone.border}`,
         background: tone.bg,

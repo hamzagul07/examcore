@@ -1,0 +1,814 @@
+/* Tools desk — examiner’s instrument rack (flagship composition, not a card grid) */
+
+.ms-tools-desk {
+  padding-top: 40px;
+  padding-bottom: 72px;
+}
+
+/* ── First viewport: one paper composition ── */
+.ms-tools-desk__hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+  gap: clamp(28px, 4vw, 48px);
+  align-items: center;
+  padding: clamp(28px, 4vw, 40px) clamp(22px, 3vw, 36px) clamp(26px, 3.5vw, 36px);
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--ec-paper, var(--ec-surface)) 92%, var(--ec-brand)) 0%,
+      var(--ec-paper, var(--ec-surface)) 48%,
+      color-mix(in srgb, var(--ec-paper, var(--ec-surface)) 94%, var(--ec-logo-crimson, var(--ec-ink-crimson))) 100%
+    );
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-hard, 6px 6px 0 rgba(0, 0, 0, 0.1));
+  overflow: hidden;
+}
+
+.ms-tools-desk__hero::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ec-brand) 0%,
+    var(--ec-brand) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 100%
+  );
+  pointer-events: none;
+}
+
+/* Ruled paper texture — subtle horizontal lines behind artefact column */
+.ms-tools-desk__hero::after {
+  content: '';
+  position: absolute;
+  inset: 3px 0 0 55%;
+  background-image: repeating-linear-gradient(
+    transparent 0,
+    transparent 27px,
+    color-mix(in srgb, var(--ec-border) 55%, transparent) 27px,
+    color-mix(in srgb, var(--ec-border) 55%, transparent) 28px
+  );
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.ms-tools-desk__copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.ms-tools-desk__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.ms-tools-desk__brand-mark {
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ec-brand);
+}
+
+.ms-tools-desk__title {
+  margin: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: clamp(2.25rem, 5vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--ec-text-primary);
+}
+
+.ms-tools-desk__title em {
+  font-style: italic;
+  color: var(--ec-brand);
+}
+
+.ms-tools-desk__lead {
+  margin: 16px 0 0;
+  max-width: 38ch;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+.ms-tools-desk__note {
+  display: block;
+  margin: 18px 0 0;
+  font-family: var(--ec-font-handwriting, var(--font-handwritten, 'Caveat', cursive));
+  font-size: clamp(22px, 3vw, 28px);
+  line-height: 1.25;
+  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  transform: rotate(-1.5deg);
+  transform-origin: left center;
+}
+
+.ms-tools-desk__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.ms-tools-desk__artefact {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ── Boundary / tally slip artefact ── */
+.ms-tools-artefact {
+  --ms-tools-ink: var(--ec-brand);
+  width: min(100%, 280px);
+  padding: 16px 18px 18px;
+  background: var(--ec-paper, var(--ec-surface));
+  border: 1.5px solid var(--ec-border-strong, var(--ec-border));
+  border-radius: 4px;
+  box-shadow:
+    var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.1)),
+    12px 14px 0 color-mix(in srgb, var(--ec-logo-crimson, var(--ec-ink-crimson)) 12%, transparent);
+  transform: rotate(1.5deg);
+  animation: ms-tools-artefact-settle 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes ms-tools-artefact-settle {
+  from {
+    opacity: 0;
+    transform: rotate(4deg) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(1.5deg) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-tools-artefact {
+    animation: none;
+  }
+}
+
+.ms-tools-artefact__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.ms-tools-artefact__kicker {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-tools-artefact__stamp {
+  display: inline-grid;
+  place-items: center;
+  min-width: 40px;
+  padding: 5px 8px;
+  border: 1.5px solid var(--ms-tools-ink);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ms-tools-ink) 12%, var(--ec-paper, var(--ec-surface)));
+  color: var(--ms-tools-ink);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  transform: rotate(-7deg);
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.08));
+  animation: ms-stamp-ink 480ms cubic-bezier(0.22, 1, 0.36, 1) 280ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-tools-artefact__stamp {
+    animation: none;
+  }
+}
+
+.ms-tools-artefact__figure {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed color-mix(in srgb, var(--ec-border) 80%, var(--ms-tools-ink));
+}
+
+.ms-tools-artefact__raw {
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--ms-tools-ink);
+}
+
+.ms-tools-artefact__of {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ec-text-secondary);
+}
+
+.ms-tools-artefact__grade {
+  margin-left: auto;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 42px;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1;
+  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+}
+
+.ms-tools-artefact__rows {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ms-tools-artefact__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.ms-tools-artefact__row dt {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.ms-tools-artefact__row dd {
+  margin: 0;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ec-text-primary);
+}
+
+.ms-tools-artefact__row--gap dd {
+  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+}
+
+.ms-tools-artefact__cite {
+  margin: 14px 0 0;
+  font-family: var(--ec-font-handwriting, var(--font-handwritten, 'Caveat', cursive));
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--ec-brand);
+  transform: rotate(-0.5deg);
+}
+
+/* ── Instrument rack ── */
+.ms-tools-desk__rack {
+  margin-top: clamp(40px, 6vw, 56px);
+}
+
+.ms-tools-desk__rack-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.ms-tools-desk__rack-title {
+  margin: 6px 0 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: clamp(1.5rem, 3vw, 1.85rem);
+  font-weight: 500;
+  color: var(--ec-text-primary);
+}
+
+.ms-tools-instruments {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ms-tools-instrument {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 100%;
+  padding: 22px 22px 20px;
+  text-decoration: none;
+  color: inherit;
+  background: var(--ec-paper, var(--ec-surface));
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease;
+}
+
+.ms-tools-instrument:hover {
+  transform: translate(-2px, -3px);
+  box-shadow: var(--ec-shadow-hard, 7px 7px 0 rgba(0, 0, 0, 0.1));
+  border-color: color-mix(in srgb, var(--ec-brand) 45%, var(--ec-border));
+}
+
+.ms-tools-instrument:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 3px;
+}
+
+.ms-tools-instrument--featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 10px 20px;
+  align-items: start;
+  padding: 26px 28px 24px;
+  border-left-color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  background:
+    linear-gradient(
+      120deg,
+      color-mix(in srgb, var(--ec-logo-crimson, var(--ec-ink-crimson)) 6%, var(--ec-paper, var(--ec-surface))) 0%,
+      var(--ec-paper, var(--ec-surface)) 55%
+    );
+}
+
+.ms-tools-instrument--featured .ms-tools-instrument__stamp {
+  grid-row: 1 / span 2;
+  align-self: center;
+  min-width: 56px;
+  height: 56px;
+  font-size: 18px;
+  transform: rotate(-8deg);
+  border-color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  background: color-mix(
+    in srgb,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 10%,
+    var(--ec-paper, var(--ec-surface))
+  );
+}
+
+.ms-tools-instrument--featured .ms-tools-instrument__body {
+  grid-column: 2;
+}
+
+.ms-tools-instrument--featured .ms-tools-instrument__go {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  align-self: center;
+  font-size: 14px;
+}
+
+.ms-tools-instrument__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ms-tools-instrument__stamp {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 8px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--ec-brand);
+  border: 1.5px solid var(--ec-brand-border, var(--ec-brand));
+  background: var(--ec-brand-muted, color-mix(in srgb, var(--ec-brand) 10%, transparent));
+  border-radius: 4px;
+  transform: rotate(-4deg);
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.06));
+}
+
+.ms-tools-instrument__name {
+  display: block;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--ec-text-primary);
+}
+
+.ms-tools-instrument--featured .ms-tools-instrument__name {
+  font-size: clamp(1.65rem, 3vw, 2.1rem);
+}
+
+.ms-tools-instrument__job {
+  display: block;
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ec-text-secondary);
+  max-width: 52ch;
+}
+
+.ms-tools-instrument__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-brand);
+}
+
+.ms-tools-instrument__go {
+  flex: none;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ec-text-faint);
+  transition: color 150ms ease, transform 150ms ease;
+}
+
+.ms-tools-instrument:hover .ms-tools-instrument__go {
+  color: var(--ec-brand);
+  transform: translateX(3px);
+}
+
+/* Featured layout: top row without separate __top */
+.ms-tools-instrument:not(.ms-tools-instrument--featured) .ms-tools-instrument__body {
+  flex: 1;
+}
+
+/* ── Closing payoff ── */
+.ms-tools-desk__payoff {
+  position: relative;
+  margin-top: clamp(40px, 6vw, 56px);
+  padding: 32px 28px 28px;
+  background: var(--ec-paper, var(--ec-surface));
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.09));
+  overflow: hidden;
+}
+
+.ms-tools-desk__payoff::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ec-brand) 0%,
+    var(--ec-brand) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 100%
+  );
+  pointer-events: none;
+}
+
+.ms-tools-desk__payoff-title {
+  margin: 8px 0 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: clamp(1.45rem, 3vw, 1.85rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ec-text-primary);
+  max-width: 28ch;
+}
+
+.ms-tools-desk__payoff-lead {
+  margin: 12px 0 0;
+  max-width: 48ch;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+.ms-tools-desk__payoff-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+/* ── Single-instrument page (will-my-grade-hold, countdown, …) ── */
+.ms-tool-instrument {
+  padding-top: 32px;
+  padding-bottom: 72px;
+}
+
+.ms-tool-instrument__crumb {
+  margin: 0 0 18px;
+  font-size: 13px;
+}
+
+.ms-tool-instrument__hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr);
+  gap: clamp(24px, 3.5vw, 40px);
+  align-items: center;
+  padding: clamp(24px, 3.5vw, 36px) clamp(20px, 3vw, 32px);
+  margin-bottom: 28px;
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--ec-paper, var(--ec-surface)) 92%, var(--ec-brand)) 0%,
+      var(--ec-paper, var(--ec-surface)) 50%,
+      color-mix(in srgb, var(--ec-paper, var(--ec-surface)) 94%, var(--ec-logo-crimson, var(--ec-ink-crimson))) 100%
+    );
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-hard, 6px 6px 0 rgba(0, 0, 0, 0.1));
+  overflow: hidden;
+}
+
+.ms-tool-instrument__hero::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ec-brand) 0%,
+    var(--ec-brand) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 100%
+  );
+  pointer-events: none;
+}
+
+.ms-tool-instrument__copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.ms-tool-instrument__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.ms-tool-instrument__brand-mark {
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ec-brand);
+}
+
+.ms-tool-instrument__title {
+  margin: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: clamp(2rem, 4.5vw, 2.85rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--ec-text-primary);
+}
+
+.ms-tool-instrument__title em {
+  font-style: italic;
+  color: var(--ec-brand);
+}
+
+.ms-tool-instrument__lead {
+  margin: 14px 0 0;
+  max-width: 42ch;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+.ms-tool-instrument__note {
+  display: block;
+  margin: 12px 0 0;
+  font-family: var(--ec-font-handwriting, var(--font-handwritten, 'Caveat', cursive));
+  font-size: 20px;
+  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  transform: rotate(-1deg);
+}
+
+.ms-tool-instrument__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin-top: 20px;
+}
+
+.ms-tool-instrument__artefact {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.ms-tool-instrument__stage {
+  position: relative;
+}
+
+.ms-tool-instrument__rail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.ms-tool-instrument__rail-label {
+  margin: 0 6px 0 0;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.ms-tool-instrument__stamp-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: var(--ec-text-secondary);
+  text-decoration: none;
+  transition:
+    transform 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease;
+}
+
+.ms-tool-instrument__stamp-link:hover {
+  transform: translate(-1px, -1px);
+  color: var(--ec-text-primary);
+  border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border));
+}
+
+.ms-tool-instrument__stamp-link.is-active {
+  color: var(--ec-brand);
+  border-color: var(--ec-brand);
+  background: color-mix(in srgb, var(--ec-brand) 8%, var(--ec-paper, var(--ec-surface)));
+  transform: rotate(-2deg);
+}
+
+.ms-tool-instrument__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin: 0 0 22px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ms-tool-instrument__faq {
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1.5px solid var(--ec-border);
+}
+
+.ms-tool-instrument__faq-title {
+  margin: 0 0 16px;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: clamp(1.35rem, 2.5vw, 1.6rem);
+  font-weight: 500;
+}
+
+/* Result panel — left desk slip inside instrument stage */
+.ms-tool-instrument .gb-result {
+  text-align: left;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+}
+
+.ms-tool-instrument .gb-result-stamp {
+  margin: 0 0 10px;
+}
+
+.ms-tool-instrument .gb-inputs {
+  border: 1.5px solid var(--ec-border);
+}
+
+.ms-tool-instrument .gb-result .mt-3.flex {
+  justify-content: flex-start !important;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .ms-tool-instrument__hero {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .ms-tool-instrument__artefact {
+    order: -1;
+  }
+
+  .ms-tools-desk__hero {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .ms-tools-desk__hero::after {
+    inset: auto 0 0 0;
+    height: 42%;
+    opacity: 0.22;
+  }
+
+  .ms-tools-desk__artefact {
+    order: -1;
+  }
+
+  .ms-tools-artefact {
+    transform: rotate(0.5deg);
+    width: min(100%, 300px);
+  }
+
+  @keyframes ms-tools-artefact-settle {
+    from {
+      opacity: 0;
+      transform: rotate(2deg) translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: rotate(0.5deg) translateY(0);
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .ms-tools-instruments {
+    grid-template-columns: 1fr;
+  }
+
+  .ms-tools-instrument--featured {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  .ms-tools-instrument--featured .ms-tools-instrument__stamp {
+    grid-row: 1;
+  }
+
+  .ms-tools-instrument--featured .ms-tools-instrument__body {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .ms-tools-instrument--featured .ms-tools-instrument__go {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    justify-self: start;
+    margin-top: 4px;
+  }
+
+  .ms-tools-desk__hero {
+    padding: 24px 18px 22px;
+  }
+}

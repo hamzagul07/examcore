@@ -38,8 +38,8 @@ function GoogleIcon() {
 }
 
 /**
- * Google Identity–style button (light fill on dark auth card for recognition).
- * OAuth starts on the server at /auth/google for reliable PKCE + cookie handling.
+ * Google OAuth as a desk control — paper + hard shadow, Google glyph kept for recognition.
+ * Starts on the server at /auth/google for reliable PKCE + cookie handling.
  */
 export function GoogleAuthButton({
   label,
@@ -72,7 +72,7 @@ export function GoogleAuthButton({
       aria-label={loading ? 'Connecting to Google' : label}
       onClick={handleGoogle}
       className={cn(
-        'group flex min-h-[52px] w-full items-center justify-center gap-3 rounded-xl border border-[#747775] bg-white px-4 py-3.5 text-[15px] font-medium text-[#1f1f1f] shadow-[0_1px_2px_rgba(0,0,0,0.12)] transition-[box-shadow,transform,background-color] duration-200 hover:bg-[#f8f9fa] hover:shadow-[0_2px_6px_rgba(0,0,0,0.18)] active:scale-[0.99] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ec-brand)] disabled:cursor-not-allowed disabled:opacity-60 disabled:active:scale-100',
+        'ms-google-btn',
         loading && 'ec-btn-is-loading ec-btn-loading-wrap ec-btn-shimmer'
       )}
     >
@@ -84,6 +84,9 @@ export function GoogleAuthButton({
         <>
           <GoogleIcon />
           <span>{label}</span>
+          <span className="font-mono text-[11px] font-bold text-[var(--ec-text-secondary)]" aria-hidden>
+            -&gt;
+          </span>
         </>
       )}
     </button>

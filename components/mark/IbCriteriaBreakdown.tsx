@@ -91,6 +91,7 @@ export function IbCriteriaBreakdown({
 
       <ul
         className="ms-ibc-strip"
+        role="radiogroup"
         aria-label="Criteria — tap one for the examiner's reasoning"
       >
         {criteria.map((c, i) => {
@@ -100,12 +101,13 @@ export function IbCriteriaBreakdown({
               ? Math.max(6, (c.marks_awarded / c.marks_available) * 100)
               : 0
           return (
-            <li key={c.criterion}>
+            <li key={c.criterion} role="none">
               <button
                 type="button"
+                role="radio"
                 onClick={() => setSelected(i)}
-                aria-pressed={i === activeIdx}
-                className={`ms-ibc-tile ${i === activeIdx ? 'is-active' : ''}`}
+                aria-checked={i === activeIdx}
+                className={`ms-ibc-tile ${i === activeIdx ? 'is-active on' : ''}`}
                 data-level={BAND_TOKEN[band]}
                 title={`${c.criterion} — ${c.criterion_name}`}
               >
@@ -143,7 +145,7 @@ export function IbCriteriaBreakdown({
           </div>
           {active.improvements && active.improvements.length > 0 && (
             <div
-              className="mt-3 flex items-start gap-2.5 rounded-xl border border-dashed px-3.5 py-3"
+              className="ec-card ec-card--paper mt-3 flex items-start gap-2.5 border border-dashed px-3.5 py-3"
               style={{
                 borderColor: 'var(--ec-chip-warning-text)',
                 background: 'var(--ec-chip-warning-bg)',

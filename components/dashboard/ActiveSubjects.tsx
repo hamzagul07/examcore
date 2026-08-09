@@ -1,8 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { getSubjectById } from '@/lib/profile-options'
-import { getSubjectColor } from '@/lib/design-system/subject-colors'
 import { LoadingLink } from '@/components/ui/LoadingLink'
 
 type SubjectChip = {
@@ -15,45 +13,48 @@ type Props = {
   title?: string
 }
 
+/** Booklet subject slips — no soft chip carousel / mask fade. */
 export function ActiveSubjects({ subjects, title = 'Subjects active' }: Props) {
   if (subjects.length === 0) return null
 
   return (
     <section className="ms-active-subjects mb-8">
-      <h2 className="text-title mb-4">{title}</h2>
-      <div className="relative">
-        <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:flex-wrap lg:overflow-visible [&::-webkit-scrollbar]:hidden [mask-image:linear-gradient(to_right,black_90%,transparent)] lg:[mask-image:none]">
+      <div className="mb-4 flex items-center gap-2">
+        <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+          ¶
+        </span>
+        <h2 className="text-title" style={{ margin: 0 }}>
+          {title}
+        </h2>
+      </div>
+      <ul className="ms-active-subjects__list">
         {subjects.map(({ name, code }) => {
           const href = code
             ? `/dashboard/progress?subject=${encodeURIComponent(code)}`
             : '/dashboard/progress'
           const meta = getSubjectById(name)
-          const dotColor = getSubjectColor(code)
 
           return (
-            <motion.div
-              key={name}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="shrink-0"
-            >
-              <LoadingLink
-                href={href}
-                variant="inline"
-                className="ec-chip ec-chip-info inline-flex min-h-[44px] items-center gap-2 px-4 py-2.5 text-sm"
-              >
-                <span
-                  className="h-2 w-2 shrink-0 rounded-full"
-                  style={{ backgroundColor: dotColor }}
-                  aria-hidden
-                />
-                <span className="font-semibold">{meta?.label ?? name}</span>
+            <li key={name}>
+              <LoadingLink href={href} variant="inline" className="ms-active-subjects__slip">
+                {code ? (
+                  <span className="ms-active-subjects__code" aria-hidden>
+                    {code}
+                  </span>
+                ) : (
+                  <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                    SB
+                  </span>
+                )}
+                <span className="ms-active-subjects__name">{meta?.label ?? name}</span>
+                <span className="ms-active-subjects__go" aria-hidden>
+                  -&gt;
+                </span>
               </LoadingLink>
-            </motion.div>
+            </li>
           )
         })}
-        </div>
-      </div>
+      </ul>
     </section>
   )
 }

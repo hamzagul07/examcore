@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-import { Sparkles, X } from 'lucide-react'
+import { X } from 'lucide-react'
 
 /**
  * Shown once when the student returns from a "Drill this" practice run
@@ -35,9 +35,12 @@ export function DrillToast() {
           className="fixed bottom-[calc(5rem+env(safe-area-inset-bottom,0px))] left-1/2 z-[var(--ec-z-toast,100)] -translate-x-1/2 px-4 lg:bottom-6"
           role="status"
         >
-          <div className="ec-card flex items-center gap-3 px-4 py-3 shadow-[var(--ec-card-hover-shadow)]">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[var(--ec-brand)]/30 bg-[var(--ec-brand-muted)]">
-              <Sparkles className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden="true" />
+          <div className="ec-card ec-card--paper flex items-center gap-3 px-4 py-3 shadow-[var(--ec-card-hover-shadow)]">
+            <div
+              className="flex h-8 min-w-8 shrink-0 items-center justify-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]"
+              aria-hidden
+            >
+              M1
             </div>
             <p className="text-sm font-medium text-[var(--ec-text-primary)]">
               Updated insights based on your latest mark

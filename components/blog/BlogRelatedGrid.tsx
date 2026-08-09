@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import { GuideArticleCard } from '@/components/content/GuideArticleCard'
 import { enrichPostMeta } from '@/lib/blog/meta'
 import { getBlogPost, type BlogPostMeta } from '@/lib/blog'
@@ -39,7 +39,7 @@ export function BlogRelatedGrid({ posts, title, clusterId }: Props) {
         {hub && hubLabel ? (
           <Link href={hub.path} className="ec-btn-underline inline-flex items-center gap-1 text-sm">
             {hubLabel}
-            <ArrowRight className="h-4 w-4" />
+            <span className="h-4 w-4" aria-hidden>-&gt;</span>
           </Link>
         ) : null}
       </div>

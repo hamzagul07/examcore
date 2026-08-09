@@ -3,9 +3,7 @@
 import { Suspense, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { Mail } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
-import { Label } from '@/components/ui/label'
 import { AuthShell } from '@/components/AuthShell'
 import { PasswordInput } from '@/components/PasswordInput'
 import {
@@ -14,6 +12,7 @@ import {
   ErrorBox,
   SubmitButton,
 } from '@/components/AuthFormBits'
+import { Field } from '@/components/ui/Field'
 import { buildSignUpHref, buildForgotPasswordHref } from '@/lib/auth-redirect'
 import { formatAuthError } from '@/lib/auth-errors'
 import { isContentGateReturnPath } from '@/lib/content-gate'
@@ -25,6 +24,7 @@ import {
 } from '@/components/auth/GoogleAuthSection'
 import { AuthDivider } from '@/components/auth/AuthDivider'
 import { GuestBrowseSkip } from '@/components/auth/GuestBrowseSkip'
+import { SignupDeskArtefact } from '@/components/auth/SignupDeskArtefact'
 
 const AUTH_CALLBACK_ERRORS: Record<string, string> = {
   missing_code: 'That sign-in link is invalid or expired. Request a new one.',
@@ -42,15 +42,22 @@ export default function SignInPage() {
 
 function SignInSkeleton() {
   return (
-    <AuthShell>
-      <p className="ec-eyebrow mb-3">Welcome back</p>
-      <p className="text-hero mb-3" aria-hidden="true">
-        Sign in to <span className="ec-text-gradient">MarkScheme</span>
-      </p>
-      <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
-        Pick up where you left off — mark papers and track progress.
-      </p>
-      <GoogleAuthSectionSkeleton label="Continue with Google" />
+    <AuthShell aside={<SignupDeskArtefact variant="signin" />}>
+      <div className="ms-signup-desk">
+        <div className="mb-2 flex items-center gap-2">
+          <p className="ec-eyebrow mb-0">Marking desk</p>
+          <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+            M1
+          </span>
+        </div>
+        <p className="text-hero mb-3" aria-hidden="true">
+          Return to your <em>desk</em>
+        </p>
+        <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
+          Pick up marking and progress where you left off.
+        </p>
+        <GoogleAuthSectionSkeleton label="Continue with Google" />
+      </div>
     </AuthShell>
   )
 }
@@ -145,28 +152,29 @@ function SignInForm() {
   const contentGateReturn = isContentGateReturnPath(nextParam) ? nextParam : null
 
   return (
-    <AuthShell>
+    <AuthShell aside={sent ? null : <SignupDeskArtefact variant="signin" />}>
       {!sent ? (
-        <>
-          <p className="ec-eyebrow mb-3">Welcome back</p>
-          <h2 className="text-hero mb-3">
-            Sign in to <span className="ec-text-gradient">MarkScheme</span>
-          </h2>
+        <div className="ms-signup-desk">
+          <div className="mb-2 flex items-center gap-2">
+            <p className="ec-eyebrow mb-0">Marking desk</p>
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+              M1
+            </span>
+          </div>
+          <h1 className="text-hero mb-3">
+            Return to your <em>desk</em>
+          </h1>
           {profileSaved ? (
-            <div className="ec-banner ec-banner-info mb-6">
-              <p className="ec-banner__title">Profile saved — one more sign-in</p>
-              <p className="ec-banner__meta mt-1">
-                Your subjects and settings are ready. Sign in below to continue to{' '}
-                {nextParam === '/mark' ? 'marking' : 'your destination'}.
-              </p>
-            </div>
-          ) : null}
-
-          <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
-            {profileSaved
-              ? 'Use the same method you signed up with.'
-              : 'Pick up where you left off — mark papers and track progress.'}
-          </p>
+            <p className="ms-signup-note" role="status">
+              Profile filed — one more sign-in to open{' '}
+              {nextParam === '/mark' ? 'marking' : 'your destination'}. Use the same
+              method you signed up with.
+            </p>
+          ) : (
+            <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
+              Pick up marking and progress where you left off.
+            </p>
+          )}
 
           <GoogleAuthSection
             label="Continue with Google"
@@ -181,51 +189,45 @@ function SignInForm() {
 
           {method === 'magic' ? (
             <form onSubmit={handleMagicLink} className="mt-6 space-y-4">
-              <div>
-                <Label htmlFor="email" className="label-overline mb-2 inline-block">
-                  Email
-                </Label>
-                <input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  autoComplete="email"
-                  placeholder="you@example.com"
-                  className="ec-input"
-                />
-              </div>
+              <Field
+                label="Email"
+                inputProps={{
+                  id: 'email',
+                  type: 'email',
+                  value: email,
+                  onChange: (e) => setEmail(e.target.value),
+                  required: true,
+                  autoComplete: 'email',
+                  placeholder: 'you@example.com',
+                }}
+              />
 
               {errorMsg && <ErrorBox message={errorMsg} />}
 
               <SubmitButton
                 loading={loading}
-                idleLabel="Send magic link"
-                loadingLabel="Sending magic link..."
+                idleLabel="Send email link"
+                loadingLabel="Sending link..."
               />
             </form>
           ) : (
             <form onSubmit={handlePasswordSignIn} className="mt-6 space-y-4">
+              <Field
+                label="Email"
+                inputProps={{
+                  id: 'email',
+                  type: 'email',
+                  value: email,
+                  onChange: (e) => setEmail(e.target.value),
+                  required: true,
+                  autoComplete: 'email',
+                  placeholder: 'you@example.com',
+                }}
+              />
               <div>
-                <Label htmlFor="email" className="label-overline mb-2 inline-block">
-                  Email
-                </Label>
-                <input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  autoComplete="email"
-                  placeholder="you@example.com"
-                  className="ec-input"
-                />
-              </div>
-              <div>
-                <Label htmlFor="password" className="label-overline mb-2 inline-block">
+                <label htmlFor="password" className="label-overline mb-2 inline-block">
                   Password
-                </Label>
+                </label>
                 <PasswordInput
                   id="password"
                   value={password}
@@ -259,23 +261,30 @@ function SignInForm() {
           <p className="mt-6 text-center text-sm text-[var(--ec-text-secondary)]">
             Don&apos;t have an account?{' '}
             <Link href={signupHref} className="ec-link ec-auth-footer-link">
-              Sign up
+              Open a desk
             </Link>
           </p>
-        </>
+        </div>
       ) : (
-        <div className="space-y-3 text-center">
-          <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-2xl ec-icon-hero">
-            <Mail className="h-8 w-8" />
+        <div className="ms-signup-desk space-y-3">
+          <div className="mb-2 flex items-center gap-2">
+            <p className="ec-eyebrow mb-0">Inbox</p>
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+              @
+            </span>
           </div>
-          <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)]">
-            Check your email
+          <h2 className="text-hero mb-3">
+            Check your <em>email</em>
           </h2>
           <p className="leading-relaxed text-[var(--ec-text-secondary)]">
-            We sent a magic link to{' '}
-            <strong className="text-[var(--ec-text-primary)]">{email}</strong>. Click it to sign in.
+            We sent a sign-in link to{' '}
+            <strong className="text-[var(--ec-text-primary)]">{email}</strong>. Open it to
+            return to your desk.
           </p>
-          <p className="pt-4 text-xs leading-relaxed text-[var(--ec-text-secondary)]">
+          <p className="ms-signup-note" aria-hidden>
+            same inbox you used to open the desk
+          </p>
+          <p className="pt-2 text-xs leading-relaxed text-[var(--ec-text-secondary)]">
             Did not get it? Check your spam folder, or{' '}
             <button
               type="button"

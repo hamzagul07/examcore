@@ -45,6 +45,34 @@ export function supportsHighlightApi(): boolean {
   )
 }
 
+const HIGHLIGHT_STYLE_ID = 'ms-highlight-api-styles'
+
+/**
+ * Install ::highlight() paint rules outside the PostCSS pipeline.
+ * Bundlers in this repo reject `::highlight` as an unknown pseudo-element.
+ */
+export function ensureHighlightStyles(): void {
+  if (typeof document === 'undefined') return
+  if (document.getElementById(HIGHLIGHT_STYLE_ID)) return
+  const style = document.createElement('style')
+  style.id = HIGHLIGHT_STYLE_ID
+  style.textContent = `
+::highlight(ms-hl-key) {
+  background-color: var(--hl-key-bg);
+  text-decoration-color: var(--hl-key);
+}
+::highlight(ms-hl-unclear) {
+  background-color: color-mix(in srgb, var(--hl-unclear) 32%, transparent);
+  text-decoration: underline wavy var(--hl-unclear);
+  text-underline-offset: 4px;
+}
+::highlight(ms-hl-exam) {
+  background-color: color-mix(in srgb, var(--hl-exam) 30%, transparent);
+}
+`.trim()
+  document.head.appendChild(style)
+}
+
 /**
  * Text nodes of a section, in order, with running character offsets.
  *
@@ -156,6 +184,7 @@ export function rangeFromOffsets(
  */
 export function paint(root: ParentNode, list: readonly Highlight[]): void {
   if (!supportsHighlightApi()) return
+  ensureHighlightStyles()
   const css = (window as unknown as { CSS: CSSWithHighlights }).CSS
   const registry = css.highlights
   if (!registry) return

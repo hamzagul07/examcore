@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { AlertCircle, Eye } from 'lucide-react'
 import { MarginNote } from './MarginNote'
 import { MarkStamp } from './MarkStamp'
 import { UnderlineMark } from './UnderlineMark'
@@ -205,7 +204,8 @@ export function ExaminerInkOverlay({
     <div className="space-y-5">
       <div
         ref={containerRef}
-        className="examiner-ink-overlay relative w-full overflow-hidden rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] shadow-[var(--ec-shadow-elevation-2)]"
+        className="examiner-ink-overlay relative w-full overflow-hidden rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))]"
+        style={{ boxShadow: 'var(--ec-shadow-hard, 6px 6px 0 rgba(0, 0, 0, 0.12))' }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element -- we don't know the image dimensions, and next/image's sizing breaks the percentage-based overlay math. */}
         <img
@@ -247,11 +247,10 @@ export function ExaminerInkOverlay({
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="absolute right-3 top-3 flex items-center gap-2 rounded-full border border-[var(--ec-border)] bg-[color-mix(in_srgb,var(--ec-surface)_92%,transparent)] px-3 py-1.5 text-xs font-semibold text-[var(--ec-text-primary)] backdrop-blur-sm"
+            className="absolute right-3 top-3 flex items-center gap-2 rounded border border-[var(--ec-border)] bg-[color-mix(in_srgb,var(--ec-paper,var(--ec-surface))_94%,transparent)] px-3 py-1.5 font-mono text-[11px] font-semibold tracking-wide text-[var(--ec-text-primary)]"
           >
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--ec-chip-critical-text)] opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--ec-chip-critical-text)]" />
+              <span className="relative inline-flex h-2 w-2 rounded-[2px] bg-[var(--ec-chip-critical-text)]" />
             </span>
             Examiner is marking&hellip;
           </motion.div>
@@ -259,7 +258,7 @@ export function ExaminerInkOverlay({
 
         {animate && !imageLoaded && (
           <div className="absolute inset-0 flex items-center justify-center bg-[var(--ec-surface-raised)]">
-            <div className="h-10 w-10 animate-spin rounded-full border-2 border-[color-mix(in_srgb,var(--ec-brand)_40%,transparent)] border-t-[var(--ec-brand)]" />
+            <div className="h-10 w-10 animate-spin rounded border-2 border-[color-mix(in_srgb,var(--ec-brand)_40%,transparent)] border-t-[var(--ec-brand)]" />
           </div>
         )}
       </div>
@@ -269,7 +268,7 @@ export function ExaminerInkOverlay({
       )}
 
       <p className="flex items-center gap-2 text-xs text-[var(--ec-text-secondary)]">
-        <Eye className="h-3.5 w-3.5" aria-hidden="true" />
+        <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>EYE</span>
         Stamps and notes are drawn from the AI examiner&rsquo;s reasoning.
         Positioning is approximate, but every annotation maps to a real mark
         decision below.
@@ -357,7 +356,10 @@ function ExaminerMark({
           left: `${safeBox.left}%`,
           width: `${safeBox.width}%`,
           height: `${safeBox.height}%`,
-          filter: active ? 'drop-shadow(0 0 6px color-mix(in srgb, var(--ec-brand) 55%, transparent))' : undefined,
+          outline: active
+            ? '1.5px solid color-mix(in srgb, var(--ec-brand) 70%, transparent)'
+            : undefined,
+          outlineOffset: active ? 2 : undefined,
         }}
       >
         <UnderlineMark earned={earned} />
@@ -385,7 +387,7 @@ function ExaminerMark({
           {/* Fixed paper white + dark ink: this sits on the photo, which is
               light in every theme (see MarkStamp). */}
           <div
-            className="flex items-center gap-2 rounded-lg border border-dashed px-2.5 py-1.5 text-[11px] leading-snug shadow-sm"
+            className="flex items-center gap-2 rounded border border-dashed px-2.5 py-1.5 text-[11px] leading-snug shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.06))]"
             style={{
               borderColor: 'var(--ec-chip-warning-text)',
               background: 'rgba(252, 251, 247, 0.94)',
@@ -422,9 +424,9 @@ function ExaminerMark({
 
 function UnpositionedNotes({ notes }: { notes: LineReference[] }) {
   return (
-    <div className="ec-card p-5">
+    <div className="ec-card ec-card--paper p-5">
       <div className="mb-3 flex items-center gap-2">
-        <AlertCircle className="h-4 w-4 ec-score-mid" aria-hidden="true" />
+        <span className="inline-grid h-5 min-w-5 place-items-center rounded border border-[color-mix(in_srgb,var(--ec-chip-warning-text)_40%,transparent)] bg-[color-mix(in_srgb,var(--ec-chip-warning-text)_12%,transparent)] px-1 font-mono text-[10px] font-bold tracking-wide ec-score-mid" aria-hidden>!</span>
         <p className="ec-label-tech">GENERAL FEEDBACK</p>
       </div>
       <p className="mb-4 text-xs leading-relaxed text-[var(--ec-text-secondary)]">
@@ -439,7 +441,7 @@ function UnpositionedNotes({ notes }: { notes: LineReference[] }) {
           return (
             <li
               key={`${n.mark_id}-unpos-${i}`}
-              className="flex items-start gap-3 rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-3"
+              className="ec-card ec-card--paper flex items-start gap-3 border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] p-3"
             >
               <MarkStamp markId={n.mark_id} earned={n.earned} />
               <div className="flex-1">

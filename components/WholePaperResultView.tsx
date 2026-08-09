@@ -1,7 +1,6 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { ChevronDown, ChevronRight, AlertCircle, RotateCcw } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import { AskOmniAboutMark } from '@/components/omni-ai/AskOmniAboutMark'
@@ -82,7 +81,7 @@ function QuestionDetail({
           {ai.criteria_results.map((c) => (
             <div
               key={c.criterion}
-              className="rounded-xl border border-[var(--ec-border)] p-3"
+              className="ec-card ec-card--paper border border-[var(--ec-border)] p-3"
             >
               <div className="flex items-center justify-between gap-2">
                 <span className="font-mono text-xs font-semibold">
@@ -162,7 +161,7 @@ function QuestionDetail({
           {ai.marks_awarded.map((mark) => (
             <div
               key={String(mark.mark_id)}
-              className={`rounded-xl border p-4 text-sm ${
+              className={`ec-card ec-card--paper border p-4 text-sm ${
                 mark.earned
                   ? 'ec-tint-success-chip border-0'
                   : 'ec-tint-critical-chip'
@@ -257,7 +256,7 @@ export function WholePaperResultView({
     <div className="ms-whole-paper-result space-y-6">
       {result.questions_excluded_count ? (
         <div className="ec-banner ec-banner-warning">
-          <AlertCircle className="ec-banner__icon h-5 w-5 shrink-0" />
+          <span className="ec-banner__icon inline-grid h-5 min-w-5 shrink-0 place-items-center rounded border border-[color-mix(in_srgb,var(--ec-chip-critical-text)_40%,transparent)] bg-[color-mix(in_srgb,var(--ec-chip-critical-text)_12%,transparent)] px-1 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-chip-critical-text)]" aria-hidden>!</span>
           <p className="ec-banner__meta">
             {result.questions_excluded_count} question
             {result.questions_excluded_count > 1 ? 's' : ''} excluded due to error
@@ -273,7 +272,7 @@ export function WholePaperResultView({
               {overlineParts.join(' · ')}
             </p>
           ) : null}
-          <h2 className="ms-h2" style={{ marginBottom: 0 }}>
+          <h1 id="mark-result-heading" className="ms-h2" style={{ marginBottom: 0 }} tabIndex={-1}>
             {primaryScore.marks_earned} / {primaryScore.total_marks}
             {primaryScore.estimated_grade ? (
               <>
@@ -283,7 +282,7 @@ export function WholePaperResultView({
             ) : (
               <> — <em>whole paper marked.</em></>
             )}
-          </h2>
+          </h1>
         </div>
       </div>
 
@@ -358,7 +357,17 @@ export function WholePaperResultView({
             <span className="ms-micro">QUESTION BY QUESTION</span>
             <span className="ms-micro">TAP FOR EXAMINER&apos;S INK</span>
           </div>
-          {result.questions.map((q) => {
+          {/* MK-05: highest lost opportunity first — skip blanks at the end. */}
+          {[...result.questions]
+            .map((q) => ({
+              q,
+              lost:
+                q.status === 'unattempted' || q.total_marks <= 0
+                  ? -1
+                  : Math.max(0, q.total_marks - q.marks_earned),
+            }))
+            .sort((a, b) => b.lost - a.lost)
+            .map(({ q }) => {
             const isUnattempted = q.status === 'unattempted'
             const isFailed = q.status === 'marking_failed'
             const isOpen = expanded === q.question_number
@@ -367,6 +376,8 @@ export function WholePaperResultView({
                 ? 0
                 : (q.marks_earned / q.total_marks) * 100
             const col = scoreBarColor(pct, isUnattempted)
+
+            const panelId = `wp-q-panel-${q.question_number}`
 
             return (
               <div key={q.question_number}>
@@ -378,6 +389,8 @@ export function WholePaperResultView({
                     setExpanded(isOpen ? null : q.question_number)
                   }
                   disabled={isUnattempted}
+                  aria-expanded={isUnattempted ? undefined : isOpen}
+                  aria-controls={isUnattempted ? undefined : panelId}
                 >
                   <span className="qn" style={{ color: col }}>
                     Q{q.question_number}
@@ -409,7 +422,7 @@ export function WholePaperResultView({
                       }}
                       className="ec-btn-secondary text-sm"
                     >
-                      <RotateCcw className="h-4 w-4" />
+                      <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>↻</span>
                       {retrying === q.question_number ? 'Retrying…' : 'Retry this question'}
                     </button>
                   </div>
@@ -418,6 +431,9 @@ export function WholePaperResultView({
                 <AnimatePresence>
                   {isOpen && !isUnattempted && (
                     <motion.div
+                      id={panelId}
+                      role="region"
+                      aria-label={`Question ${q.question_number} detail`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -425,12 +441,13 @@ export function WholePaperResultView({
                     >
                       <div className="px-[18px] py-4">
                         <div className="mb-2 flex items-center gap-2">
-                          {isOpen ? (
-                            <ChevronDown className="h-4 w-4 text-[var(--ec-text-secondary)]" />
-                          ) : (
-                            <ChevronRight className="h-4 w-4 text-[var(--ec-text-secondary)]" />
-                          )}
-                          <span className="rounded-full border border-[var(--ec-border)] px-2 py-0.5 font-mono text-[10px] uppercase text-[var(--ec-text-secondary)]">
+                          <span
+                            className="font-mono text-[11px] font-bold text-[var(--ec-text-secondary)]"
+                            aria-hidden
+                          >
+                            ▾
+                          </span>
+                          <span className="rounded border border-[var(--ec-border)] px-2 py-0.5 font-mono text-[10px] uppercase text-[var(--ec-text-secondary)]">
                             {q.marking_style.replace(/_/g, ' ')}
                           </span>
                         </div>

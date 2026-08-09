@@ -94,19 +94,25 @@ export function GuestSavePrompt() {
   return (
     <aside className="ms-save-prompt" role="complementary" aria-label="Save your progress">
       <div className="ms-save-prompt-body">
-        <p className="ms-save-prompt-title">Keep this progress?</p>
+        <p className="ms-save-prompt-title">File this progress?</p>
         <p className="ms-save-prompt-lead">
-          You&rsquo;re partway through. A free account remembers where you got to and
+          You&rsquo;re partway through. A free desk remembers where you got to and
           builds your revision list from it.
         </p>
+        <span className="ms-save-prompt-note" aria-hidden>
+          no card — just an email
+        </span>
       </div>
       <div className="ms-save-prompt-actions">
         <LoadingLink
           href={buildContentGateSignUpHref(pathname ?? '/')}
-          className="ec-btn-primary ms-save-prompt-cta"
-          loadingText="Opening sign up…"
+          className="ec-btn-primary ms-save-prompt-cta inline-flex items-center gap-2"
+          loadingText="Opening desk…"
         >
-          Save my progress
+          Open a desk
+          <span className="font-mono text-[11px] font-bold" aria-hidden>
+            -&gt;
+          </span>
         </LoadingLink>
         <button type="button" className="ms-save-prompt-dismiss" onClick={dismiss}>
           Not now

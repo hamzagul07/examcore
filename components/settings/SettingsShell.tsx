@@ -1,9 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useLayoutEffect } from 'react'
 import { SETTINGS_NAV, settingsNavItem } from '@/lib/settings/nav'
 import { SignOutButton } from '@/components/settings/SignOutButton'
 import { AppSupportStrip } from '@/components/marketing/AppSupportStrip'
@@ -11,22 +10,11 @@ import { cn } from '@/lib/utils'
 
 export function SettingsShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
-  const router = useRouter()
   const active = settingsNavItem(pathname)
   const isIndex = pathname === '/account'
-
-  useLayoutEffect(() => {
-    if (typeof window === 'undefined') return
-    const mq = window.matchMedia('(min-width: 1024px)')
-    const sync = () => {
-      if (mq.matches && isIndex) {
-        router.replace('/account/profile')
-      }
-    }
-    sync()
-    mq.addEventListener('change', sync)
-    return () => mq.removeEventListener('change', sync)
-  }, [isIndex, router])
+  // Index is a master-detail shell: mobile list + desktop Profile panel (no viewport redirect).
+  const profileActive =
+    isIndex || pathname === '/account/profile' || pathname.startsWith('/account/profile/')
 
   return (
     <main className="app-shell app-shell-tabbed ms-settings-shell md:py-10 lg:py-14">
@@ -48,7 +36,10 @@ export function SettingsShell({ children }: { children: React.ReactNode }) {
           <h1 className="ms-h2" style={{ marginTop: 12 }}>
             {isIndex ? (
               <>
-                Your <em>account</em>
+                <span className="lg:hidden">
+                  Your <em>account</em>
+                </span>
+                <span className="hidden lg:inline">{SETTINGS_NAV[0]?.label ?? 'Profile'}</span>
               </>
             ) : (
               active?.label ?? 'Settings'
@@ -56,9 +47,18 @@ export function SettingsShell({ children }: { children: React.ReactNode }) {
           </h1>
           {(isIndex || active?.description) && (
             <p className="ms-lead" style={{ marginTop: 10, maxWidth: 520 }}>
-              {isIndex
-                ? 'Manage your profile, exam setup, billing, and preferences.'
-                : active?.description}
+              {isIndex ? (
+                <>
+                  <span className="lg:hidden">
+                    Manage your profile, exam setup, billing, and preferences.
+                  </span>
+                  <span className="hidden lg:inline">
+                    {SETTINGS_NAV[0]?.description ?? 'Display name and email'}
+                  </span>
+                </>
+              ) : (
+                active?.description
+              )}
             </p>
           )}
         </header>
@@ -68,14 +68,16 @@ export function SettingsShell({ children }: { children: React.ReactNode }) {
             <nav aria-label="Settings categories" className="sticky top-24 space-y-1">
               {SETTINGS_NAV.map((item) => {
                 const isActive =
-                  pathname === item.href || pathname.startsWith(`${item.href}/`)
+                  item.slug === 'profile'
+                    ? profileActive
+                    : pathname === item.href || pathname.startsWith(`${item.href}/`)
                 const Icon = item.icon
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      'flex min-h-[44px] items-center gap-2.5 rounded-xl px-3 py-2.5 text-body font-medium transition-colors',
+                      'flex min-h-[44px] items-center gap-2.5 rounded px-3 py-2.5 text-body font-medium transition-colors',
                       isActive
                         ? 'text-[var(--ec-brand)]'
                         : 'text-[var(--ec-text-secondary)] hover:bg-[var(--ec-brand-muted)] hover:text-[var(--ec-text-primary)]'
@@ -114,8 +116,12 @@ export function SettingsMobileIndex() {
             className="ms-acct-card flex min-h-[56px] items-center gap-3 transition-colors hover:border-[var(--ec-brand)]/40"
           >
             <span
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
-              style={{ background: 'var(--ec-brand-muted)', color: 'var(--ec-brand)' }}
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded border"
+              style={{
+                background: 'var(--ec-brand-muted)',
+                color: 'var(--ec-brand)',
+                borderColor: 'var(--ec-brand-border)',
+              }}
             >
               <Icon className="h-5 w-5" aria-hidden />
             </span>

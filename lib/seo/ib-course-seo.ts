@@ -60,7 +60,7 @@ export function buildIbCourseSubjectSeo(subject: IbSubject, lessonCount: number)
     ],
     tagline: `IB ${short} · ${lp} · Free course`,
     topics: [`IB ${subject.name}`, subject.group, ...subject.papers.slice(0, 3)],
-    ogImagePath: '/ib/opengraph-image',
+    ogImagePath: `/api/og/ib/${subject.slug}`,
   }
 }
 

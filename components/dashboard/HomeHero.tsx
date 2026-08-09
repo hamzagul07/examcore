@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { Calendar } from 'lucide-react'
 import { examCountdown, timeGreeting } from '@/lib/dashboard/exam-date'
 import { ExamCountdownHero } from './ExamCountdownHero'
 import { MarkQuestionCta } from './MarkQuestionCta'
@@ -23,7 +22,12 @@ export function HomeHero({
 
   return (
     <section className="ms-dash-hero mb-8 lg:mb-10">
-      <p className="ec-eyebrow mb-3">Home</p>
+      <div className="mb-3 flex items-center gap-2">
+        <p className="ec-eyebrow mb-0">Home desk</p>
+        <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+          M1
+        </span>
+      </div>
 
       {countdown.kind === 'future' && examDate ? (
         <ExamCountdownHero
@@ -33,23 +37,35 @@ export function HomeHero({
           weeklyAttempts={weeklyAttempts}
         />
       ) : countdown.kind === 'past' ? (
-        <div className="ec-banner ec-banner-info mb-6">
-          <Calendar className="ec-banner__icon h-5 w-5 shrink-0" aria-hidden />
-          <div>
-            <p className="ec-banner__title">
-              Hope your exams went well — set a new date when you&apos;re ready
-            </p>
-            <p className="ec-banner__meta mt-1">
-              <Link href="/account/exam" className="underline underline-offset-2">
-                Update exam date in settings
-              </Link>
-            </p>
+        <aside className="ms-mark-example-slip mb-6" aria-label="Exam date passed">
+          <div className="ms-mark-example-slip__body">
+            <span className="ec-ink-stamp" aria-hidden>
+              ✓
+            </span>
+            <div className="ms-mark-example-slip__copy">
+              <p className="ms-mark-example-slip__title">
+                Hope your exams went well
+              </p>
+              <p className="ms-mark-example-slip__lead">
+                Set a new date when you&apos;re ready — the desk keeps every mark
+                you filed.
+              </p>
+              <span className="ms-mark-example-slip__note" aria-hidden>
+                update the date when the next sitting lands
+              </span>
+            </div>
           </div>
-        </div>
+          <Link
+            href="/account/exam"
+            className="ms-mark-example-slip__cta inline-flex min-h-[44px] items-center font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-brand)]"
+          >
+            Update date -&gt;
+          </Link>
+        </aside>
       ) : (
         <div className="mb-4">
           <h1 className="text-hero">
-            <span className="gradient-text">{greeting}</span>
+            <span className="text-[var(--ec-text-primary)]">{greeting}</span>
           </h1>
           {!examDate && (
             <p className="text-caption mt-3">
@@ -57,18 +73,14 @@ export function HomeHero({
                 href="/account/exam"
                 className="text-[var(--ec-text-secondary)] underline-offset-2 hover:text-[var(--ec-brand)] hover:underline"
               >
-                Set your exam date to track progress
+                Set your exam date to track progress -&gt;
               </Link>
-            </p>
-          )}
-          {hideMarkCta && (
-            <p className="text-body mt-3 text-[var(--ec-text-secondary)]">
-              Start below — your progress dashboard fills in after your first mark.
             </p>
           )}
         </div>
       )}
 
+      {/* hideMarkCta: NextActionCard owns the primary CTA on the mature desk. */}
       {countdown.kind !== 'future' && !hideMarkCta && (
         <>
           <MarkQuestionCta />

@@ -125,18 +125,18 @@ const BASE: BaseSubject[] = [
   },
   {
     slugBase: 'global-politics', name: 'Global Politics', group: IB_GROUPS[2], groupNumber: 3,
-    levels: ['HL', 'SL'], papers: { HL: P12, SL: P12 }, accent: ACC.society, glyph: '🌐',
+    levels: ['HL', 'SL'], papers: { HL: P12, SL: P12 }, accent: ACC.society, glyph: 'W',
     blurb: 'Stimulus-based source analysis (Paper 1) and essays across power, rights, development and peace (Paper 2), plus the engagement project — with an HL global political challenges extension.',
   },
   {
     slugBase: 'digital-society', name: 'Digital Society', group: IB_GROUPS[2], groupNumber: 3,
-    levels: ['HL', 'SL'], papers: { HL: P123, SL: P12 }, accent: ACC.society, glyph: '💻',
+    levels: ['HL', 'SL'], papers: { HL: P123, SL: P12 }, accent: ACC.society, glyph: 'D',
     blurb: 'Concepts, content and contexts of digital systems through source response (Paper 1) and essays (Paper 2), with an HL pre-released intervention paper (Paper 3).',
   },
   // Group 4 — Sciences
   {
     slugBase: 'biology', name: 'Biology', group: IB_GROUPS[3], groupNumber: 4,
-    levels: ['HL', 'SL'], papers: { HL: P123, SL: P123 }, accent: ACC.science, glyph: '🧬',
+    levels: ['HL', 'SL'], papers: { HL: P123, SL: P123 }, accent: ACC.science, glyph: 'β',
     blurb: 'Multiple choice (Paper 1), data and extended response (Paper 2) and the option/short-answer paper (Paper 3).',
   },
   {
@@ -151,17 +151,17 @@ const BASE: BaseSubject[] = [
   },
   {
     slugBase: 'computer-science', name: 'Computer Science', group: IB_GROUPS[3], groupNumber: 4,
-    levels: ['HL', 'SL'], papers: { HL: P123, SL: P12 }, accent: ACC.science, glyph: '⌨',
+    levels: ['HL', 'SL'], papers: { HL: P123, SL: P12 }, accent: ACC.science, glyph: 'CS',
     blurb: 'Core theory (Paper 1), the case study (Paper 2) and — at HL — chosen-option questions (Paper 3).',
   },
   {
     slugBase: 'environmental-systems-and-societies', name: 'Environmental Systems and Societies', group: IB_GROUPS[3], groupNumber: 4,
-    levels: ['SL'], papers: { SL: P12 }, accent: ACC.science, glyph: '🌱',
+    levels: ['SL'], papers: { SL: P12 }, accent: ACC.science, glyph: 'ES',
     blurb: 'A transdisciplinary Group 3/4 course: case-study resource booklet (Paper 1) and structured essays (Paper 2).',
   },
   {
     slugBase: 'sports-exercise-health-science', name: 'Sports, Exercise and Health Science', group: IB_GROUPS[3], groupNumber: 4,
-    levels: ['HL', 'SL'], papers: { HL: P123, SL: P123 }, accent: ACC.science, glyph: '🏃',
+    levels: ['HL', 'SL'], papers: { HL: P123, SL: P123 }, accent: ACC.science, glyph: 'PE',
     blurb: 'Anatomy, physiology and biomechanics: multiple choice (Paper 1), data and structured response (Paper 2) and the options paper (Paper 3).',
   },
   {

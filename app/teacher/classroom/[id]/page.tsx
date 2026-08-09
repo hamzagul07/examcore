@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
-import { Users, ArrowRight, Target } from 'lucide-react'
+
 import { ClassroomSummary } from '@/components/teacher/ClassroomSummary'
 import { ClassBlindspots } from '@/components/teacher/ClassBlindspots'
 import { GradeRiskMatrix } from '@/components/teacher/GradeRiskMatrix'
@@ -39,6 +39,8 @@ interface ClassroomData {
 
 interface ClassroomInfo {
   invite_code: string
+  name?: string
+  description?: string | null
 }
 
 interface RosterStudent {
@@ -48,27 +50,69 @@ interface RosterStudent {
   accuracy: number
 }
 
+async function fetchJson(url: string): Promise<{ ok: boolean; data: unknown }> {
+  try {
+    const r = await fetch(url, { cache: 'no-store' })
+    const data = await r.json().catch(() => ({}))
+    return { ok: r.ok, data }
+  } catch {
+    return { ok: false, data: null }
+  }
+}
+
 export default function ClassroomPage() {
   const { id } = useParams<{ id: string }>()
   const [data, setData] = useState<ClassroomData | null>(null)
   const [classroom, setClassroom] = useState<ClassroomInfo | null>(null)
   const [students, setStudents] = useState<RosterStudent[]>([])
+  const [loadError, setLoadError] = useState('')
+  const [loading, setLoading] = useState(true)
+
+  const load = useCallback(async (signal?: { cancelled: boolean }) => {
+    setLoading(true)
+    setLoadError('')
+
+    const [analyticsRes, blindspotsRes, quadrantsRes, classroomRes, studentsRes] =
+      await Promise.all([
+        fetchJson(`/api/teacher/classroom/${id}/analytics`),
+        fetchJson(`/api/teacher/classroom/${id}/blindspots`),
+        fetchJson(`/api/teacher/classroom/${id}/quadrants`),
+        fetchJson(`/api/teacher/classroom/${id}`),
+        fetchJson(`/api/teacher/classroom/${id}/students`),
+      ])
+
+    if (signal?.cancelled) return
+
+    const analytics = analyticsRes.data as ClassroomData['analytics'] | null
+    if (!analyticsRes.ok || !analytics || typeof analytics.classroomName !== 'string') {
+      setLoadError('Could not load this classroom. Check the link or try again.')
+      setData(null)
+      setLoading(false)
+      return
+    }
+
+    const blindspots = (blindspotsRes.data || { topics: [] }) as ClassroomData['blindspots']
+    const quadrants = (quadrantsRes.data || { students: [] }) as ClassroomData['quadrants']
+    const classroomPayload = classroomRes.data as { classroom?: ClassroomInfo } | null
+    const studentsPayload = studentsRes.data as { students?: RosterStudent[] } | null
+
+    setData({
+      analytics,
+      blindspots: { topics: blindspots.topics || [] },
+      quadrants: { students: quadrants.students || [] },
+    })
+    setClassroom(classroomPayload?.classroom ?? null)
+    setStudents(studentsPayload?.students || [])
+    setLoading(false)
+  }, [id])
 
   useEffect(() => {
-    Promise.all([
-      fetch(`/api/teacher/classroom/${id}/analytics`).then((r) => r.json()),
-      fetch(`/api/teacher/classroom/${id}/blindspots`).then((r) => r.json()),
-      fetch(`/api/teacher/classroom/${id}/quadrants`).then((r) => r.json()),
-      fetch(`/api/teacher/classroom/${id}`).then((r) => r.json()),
-      fetch(`/api/teacher/classroom/${id}/students`).then((r) => r.json()),
-    ]).then(([analytics, blindspots, quadrants, classroomRes, studentsRes]) => {
-      setData({ analytics, blindspots, quadrants })
-      if (classroomRes.classroom) {
-        setClassroom(classroomRes.classroom)
-      }
-      setStudents(studentsRes.students || [])
-    })
-  }, [id])
+    const signal = { cancelled: false }
+    void load(signal)
+    return () => {
+      signal.cancelled = true
+    }
+  }, [load])
 
   useSetAIContext(
     {
@@ -78,7 +122,7 @@ export default function ClassroomPage() {
     [data]
   )
 
-  if (!data) {
+  if (loading) {
     return (
       <TeacherPageContainer className="ms-teacher-classroom">
         <div aria-busy aria-label="Loading classroom analytics">
@@ -94,12 +138,61 @@ export default function ClassroomPage() {
     )
   }
 
+  if (loadError || !data) {
+    return (
+      <TeacherPageContainer className="ms-teacher-classroom">
+        <div className="ms-teacher-error" role="alert">
+          <p className="font-semibold text-[var(--ec-text-primary)]">Classroom unavailable</p>
+          <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">
+            {loadError || 'Could not load this classroom.'}
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => void load()}
+              className="ec-btn-primary inline-flex min-h-[44px] items-center"
+            >
+              Try again
+            </button>
+            <Link
+              href="/teacher/dashboard"
+              className="ec-btn-secondary inline-flex min-h-[44px] items-center"
+            >
+              &lt;- Back to classrooms
+            </Link>
+          </div>
+        </div>
+      </TeacherPageContainer>
+    )
+  }
+
+  const isDemo =
+    /demo|example class/i.test(
+      `${data.analytics.classroomName} ${classroom?.description ?? ''}`
+    )
+
   return (
     <TeacherPageContainer className="ms-teacher-classroom">
-      <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+      {isDemo ? (
+        <aside className="ms-teacher-demo-flag mb-6" role="status">
+          <p className="font-semibold text-[var(--ec-text-primary)]">
+            <span className="mr-2 font-mono text-[11px] font-bold tracking-wide ec-text-brand">
+              DEMO
+            </span>
+            Example data
+          </p>
+          <p className="mt-1 text-sm text-[var(--ec-text-secondary)]">
+            This classroom is seeded with simulated students — not your real cohort.
+          </p>
+        </aside>
+      ) : null}
+      <div className="ms-teacher-desk-head">
         <div>
           <p className="ec-eyebrow mb-3">Classroom analytics</p>
           <h1 className="text-headline">{data.analytics.classroomName}</h1>
+          <span className="ms-teacher-desk-head__note" aria-hidden>
+            {isDemo ? 'demo class — not your students' : 'marks the cohort actually drops'}
+          </span>
           <ClassroomSummary
             studentCount={data.analytics.studentCount}
             totalAttempts={data.analytics.totalAttempts}
@@ -111,14 +204,21 @@ export default function ClassroomPage() {
             href={`/teacher/classroom/${id}/gaps`}
             className="ec-btn-primary inline-flex min-h-[44px] items-center gap-2 text-sm"
           >
-            <Target className="h-4 w-4" />
+            <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+              ¶
+            </span>
             Where the class loses marks
           </Link>
           <Link
             href={`/teacher/classroom/${id}/students`}
             className="ec-btn-secondary inline-flex min-h-[44px] items-center gap-2 text-sm"
           >
-            <Users className="h-4 w-4 ec-text-brand" />
+            <span
+              className="font-mono text-[11px] font-bold tracking-wide text-[var(--ec-brand)]"
+              aria-hidden
+            >
+              N
+            </span>
             View all students
           </Link>
         </div>
@@ -126,50 +226,52 @@ export default function ClassroomPage() {
 
       {classroom?.invite_code && <InviteCard classroom={classroom} />}
 
-      <div className="ec-card mb-8 p-6">
-        <div className="mb-4 flex items-center justify-between">
-          <h3 className="text-xl font-bold text-[var(--ec-text-primary)]">
+      <section className="ms-teacher-roster" aria-labelledby="classroom-roster-heading">
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <h2 id="classroom-roster-heading" className="text-xl font-bold text-[var(--ec-text-primary)]">
             Students ({students.length})
-          </h3>
+          </h2>
         </div>
 
         {students.length === 0 ? (
           <div className="ms-teacher-empty">
             <span className="ms-teacher-empty__icon">
-              <Users className="h-6 w-6" aria-hidden />
+              <span className="font-mono text-sm font-bold tracking-wide" aria-hidden>
+                N
+              </span>
             </span>
             <p className="ms-teacher-empty__title">No students yet</p>
             <p className="ms-teacher-empty__body">
-              Read the code above out in your next lesson, or send the share link.
-              Their marked work appears here as they go.
+              Read the code above out in your next lesson, or send the share link. Their marked work
+              appears here as they go.
             </p>
           </div>
         ) : (
-          <div className="space-y-2">
+          <ul className="ms-teacher-roster__list">
             {students.map((s) => (
-              <Link
-                key={s.id}
-                href={`/teacher/classroom/${id}/students/${s.id}`}
-                className="flex min-h-[44px] items-center justify-between rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4 transition-colors hover:bg-[var(--ec-brand-muted)]"
-              >
-                <div>
-                  <div className="font-medium text-[var(--ec-text-primary)]">{s.name}</div>
-                  <div className="text-xs text-[var(--ec-text-secondary)]">
-                    {attemptSummary(s.attemptCount, s.accuracy)}
-                  </div>
-                </div>
-                <ArrowRight className="h-4 w-4 text-[var(--ec-text-secondary)]" />
-              </Link>
+              <li key={s.id}>
+                <Link
+                  href={`/teacher/classroom/${id}/students/${s.id}`}
+                  className="ms-teacher-roster__row"
+                >
+                  <span>
+                    <span className="block font-medium text-[var(--ec-text-primary)]">{s.name}</span>
+                    <span className="block text-xs text-[var(--ec-text-secondary)]">
+                      {attemptSummary(s.attemptCount, s.accuracy)}
+                    </span>
+                  </span>
+                  <span className="font-mono text-[11px] font-bold text-[var(--ec-brand)]" aria-hidden>
+                    -&gt;
+                  </span>
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
-      </div>
+      </section>
 
       <div className="mb-8">
-        <ClassBlindspots
-          classroomId={id}
-          blindspots={data.blindspots.topics || []}
-        />
+        <ClassBlindspots classroomId={id} blindspots={data.blindspots.topics || []} />
       </div>
 
       <div className="mb-8">

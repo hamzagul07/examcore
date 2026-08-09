@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { X, AlertTriangle } from 'lucide-react'
+import { X } from 'lucide-react'
 
 export type ApproachingLimitBannerProps = {
   used: number
@@ -56,10 +56,12 @@ export function ApproachingLimitBanner({
 
   return (
     <div
-      className="ms-billing-approaching mb-5 flex items-center gap-3 rounded-2xl border ec-highlight-warning-panel px-4 py-3"
+      className="ms-billing-approaching ec-card ec-card--paper mb-5 flex items-center gap-3 border ec-highlight-warning-panel px-4 py-3"
       role="status"
     >
-      <AlertTriangle className="h-5 w-5 shrink-0 ec-score-mid" />
+      <span className="ec-ink-stamp shrink-0" aria-hidden>
+        !
+      </span>
       <p className="min-w-0 flex-1 text-sm text-[var(--ec-text-primary)]">
         {body}
         <Link href="/pricing" className="ec-link">

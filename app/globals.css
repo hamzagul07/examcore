@@ -14,6 +14,8 @@
 @import "../lib/design-system/app-pages.css";
 @import "../lib/design-system/teacher.css";
 @import "../lib/design-system/content-pages.css";
+@import "../lib/design-system/tools-desk.css";
+@import "../lib/design-system/signup-desk.css";
 @import "../lib/design-system/widgets.css";
 @import "../lib/design-system/paper-theme.css";
 @import "../lib/design-system/zen-contrast.css";
@@ -71,13 +73,15 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+  /* Stamp radii — Examiner's Ink. Keep every Tailwind rounded-* hard-paper
+     (rounded-full still uses 9999px for knobs/loaders). */
+  --radius-sm: 4px;
+  --radius-md: 4px;
+  --radius-lg: 4px;
+  --radius-xl: 4px;
+  --radius-2xl: 4px;
+  --radius-3xl: 4px;
+  --radius-4xl: 4px;
 
   --text-mega: var(--text-display);
   --text-mega--line-height: var(--leading-display);
@@ -113,7 +117,7 @@
 :root {
   --background: var(--ec-canvas);
   --foreground: var(--ec-text-primary);
-  --radius: 1rem;
+  --radius: 4px;
   --border: var(--ec-border);
   --input: var(--ec-border);
   --ring: color-mix(in srgb, var(--ec-brand) 40%, transparent);
@@ -177,50 +181,8 @@
   }
 }
 
-[data-ec-theme='late-night'] .text-slate-900 { color: #f8fafc; }
-[data-ec-theme='late-night'] .text-slate-800 { color: #f1f5f9; }
-[data-ec-theme='late-night'] .text-slate-700 { color: #cbd5e1; }
-[data-ec-theme='late-night'] .text-slate-600,
-[data-ec-theme='late-night'] .text-slate-500,
-[data-ec-theme='late-night'] .text-slate-400 { color: #94a3b8; }
-[data-ec-theme='late-night'] .text-slate-300 { color: #64748b; }
-
-/* Zen: remap accent colors designed for dark UI → readable on warm sand */
-[data-ec-theme='zen'] .text-emerald-100,
-[data-ec-theme='zen'] .text-emerald-200,
-[data-ec-theme='zen'] .text-emerald-300 {
-  color: var(--ec-chip-success-text) !important;
-}
-
-[data-ec-theme='zen'] .text-emerald-400,
-[data-ec-theme='zen'] .text-emerald-500 {
-  color: var(--ec-brand) !important;
-}
-
-[data-ec-theme='zen'] .text-amber-100,
-[data-ec-theme='zen'] .text-amber-200,
-[data-ec-theme='zen'] .text-amber-300,
-[data-ec-theme='zen'] .text-amber-400 {
-  color: var(--ec-chip-warning-text) !important;
-}
-
-[data-ec-theme='zen'] .text-cyan-100,
-[data-ec-theme='zen'] .text-cyan-200,
-[data-ec-theme='zen'] .text-cyan-300,
-[data-ec-theme='zen'] .text-cyan-400 {
-  color: var(--ec-chip-info-text) !important;
-}
-
-[data-ec-theme='zen'] .text-red-200,
-[data-ec-theme='zen'] .text-red-300,
-[data-ec-theme='zen'] .text-red-400 {
-  color: var(--ec-chip-critical-text) !important;
-}
-
-[data-ec-theme='zen'] .text-violet-300,
-[data-ec-theme='zen'] .text-violet-400 {
-  color: var(--ec-chip-accent-text) !important;
-}
+/* DS-01: palette-utility remaps removed — product TSX uses semantic --ec-* tokens.
+   Residual Tailwind slate helpers (if any) live in ec-theme-contrast.css only. */
 
 /* Theme toggle cross-fade (View Transitions API — see ThemeProvider). */
 ::view-transition-old(root),
@@ -244,17 +206,12 @@
 
 @layer components {
   .gradient-text {
-    background: linear-gradient(
-      120deg,
-      var(--ec-brand-deep) 0%,
-      var(--ec-c-phys) 42%,
-      var(--ec-c-chem) 78%,
-      var(--ec-accent-warm-deep) 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
+  color: var(--ec-brand);
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: unset;
+}
 
   .bento-grid {
     display: grid;

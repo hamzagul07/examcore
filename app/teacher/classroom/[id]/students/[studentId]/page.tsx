@@ -83,19 +83,19 @@ export default function StudentDetailPage() {
       <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
         {/* Every figure here is derived from marked work, so with none they are
             unknown rather than zero — see lib/teacher/stat-display. */}
-        <div className="ec-card p-5">
+        <div className="ec-card ec-card--paper p-5">
           <div className="ec-label-tech mb-2">ACCURACY</div>
           <div className="text-2xl font-bold text-[var(--ec-text-primary)]">
             {percentOrDash(student.accuracy, student.attemptCount)}
           </div>
         </div>
-        <div className="ec-card p-5">
+        <div className="ec-card ec-card--paper p-5">
           <div className="ec-label-tech mb-2">SPEED</div>
           <div className="text-2xl font-bold text-[var(--ec-text-primary)]">
             {marked ? `${student.timePerMark.toFixed(1)} min/mark` : NO_DATA}
           </div>
         </div>
-        <div className="ec-card p-5">
+        <div className="ec-card ec-card--paper p-5">
           <div className="ec-label-tech mb-2">COVERAGE</div>
           <div className="text-2xl font-bold text-[var(--ec-text-primary)]">
             {percentOrDash(student.coverage, student.attemptCount)}
@@ -104,7 +104,7 @@ export default function StudentDetailPage() {
       </div>
 
       {student.biggestDeficit && (
-        <div className="ec-card p-6">
+        <div className="ec-card ec-card--paper p-6">
           <div className="ec-label-tech mb-2 ec-score-low">BIGGEST DEFICIT</div>
           <h3 className="text-xl font-bold text-[var(--ec-text-primary)]">
             {student.biggestDeficit.name}

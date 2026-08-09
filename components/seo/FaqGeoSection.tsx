@@ -12,7 +12,7 @@ export function FaqGeoSection() {
       </p>
       <dl className="faq-geo space-y-4">
         {GEO_QA_PAIRS.map((item) => (
-          <div key={item.q} className="ec-card px-5 py-4 sm:px-6">
+          <div key={item.q} className="ec-card ec-card--paper px-5 py-4 sm:px-6">
             <dt className="font-semibold text-[var(--ec-text-primary)]">{item.q}</dt>
             <dd className="mt-2 text-sm leading-relaxed text-[var(--ec-text-secondary)]">{item.a}</dd>
           </div>

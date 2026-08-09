@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { Ban } from 'lucide-react'
 import type { BillingSummaryClient } from '@/lib/billing/question-copy'
 
 type Props = {
@@ -39,10 +38,12 @@ export function BillingBlockedBanner({ summary, className = '' }: Props) {
 
   return (
     <div
-      className={`ms-billing-blocked flex items-start gap-3 rounded-2xl border ec-tint-critical-panel px-4 py-3 ${className}`}
+      className={`ms-billing-blocked ec-card ec-card--paper flex items-start gap-3 border ec-tint-critical-panel px-4 py-3 ${className}`}
       role="alert"
     >
-      <Ban className="mt-0.5 h-5 w-5 shrink-0 ec-score-low" aria-hidden="true" />
+      <span className="ec-ink-stamp ec-ink-stamp--crimson mt-0.5 shrink-0" aria-hidden>
+        A0
+      </span>
       <div className="min-w-0 flex-1 text-sm text-[var(--ec-text-primary)]">
         <p>{message}</p>
         {reset && (

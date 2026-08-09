@@ -12,6 +12,7 @@ import {
 import { MockPackEmailCapture } from '@/components/tools/MockPackEmailCapture'
 import { buildGradeHoldSlipText } from '@/lib/tools/grade-hold-slip'
 import { ToolShareActions } from '@/components/tools/ToolShareActions'
+import { SegmentedControl } from '@/components/ui/SegmentedControl'
 
 function rowsFromOfficial(
   official: OfficialBoundaries | null,
@@ -77,24 +78,17 @@ export function WillMyGradeHold({
     <div className="gb-tool" style={{ marginTop: 0 }}>
       <div className="gb-grid">
         <div className="gb-inputs">
-          <div className="gb-level">
-            <button
-              type="button"
-              className={`cmd-tab${level === 'A-Level' ? ' is-active' : ''}`}
-              onClick={() => switchLevel('A-Level')}
-              aria-pressed={level === 'A-Level'}
-            >
-              A-Level (A*–E)
-            </button>
-            <button
-              type="button"
-              className={`cmd-tab${level === 'AS-Level' ? ' is-active' : ''}`}
-              onClick={() => switchLevel('AS-Level')}
-              aria-pressed={level === 'AS-Level'}
-            >
-              AS-Level (a–e)
-            </button>
-          </div>
+          <SegmentedControl
+            className="gb-level"
+            optionClassName="cmd-tab"
+            aria-label="Qualification level"
+            value={level}
+            onChange={switchLevel}
+            options={[
+              { value: 'A-Level', label: 'A-Level (A*–E)' },
+              { value: 'AS-Level', label: 'AS-Level (a–e)' },
+            ]}
+          />
 
           {code ? (
             <p className="gb-help micro">
@@ -148,8 +142,14 @@ export function WillMyGradeHold({
         <div className="gb-result" aria-live="polite">
           {!result ? (
             <div className="gb-result-empty">
+              <p className="ms-overline" style={{ marginBottom: 8 }}>
+                Result slip
+              </p>
               <p className="ms-body-2">
                 Enter your raw mark, the total, and thresholds to see whether the grade holds.
+              </p>
+              <p className="ms-tool-instrument__note" style={{ marginTop: 12 }} aria-hidden>
+                paste the thresholds — then the grade lands
               </p>
             </div>
           ) : (
@@ -197,15 +197,15 @@ export function WillMyGradeHold({
                 })}
               />
               {code ? (
-                <div
-                  className="mt-3 flex flex-wrap justify-center gap-2"
-                  style={{ marginTop: 12 }}
-                >
+                <div className="mt-3 flex flex-wrap gap-2" style={{ marginTop: 12 }}>
                   <Link
                     href={`/mark?subject=${encodeURIComponent(code)}`}
-                    className="ec-btn-primary min-h-[44px]"
+                    className="ec-btn-primary inline-flex min-h-[44px] items-center gap-2"
                   >
-                    Mark a {code} question — free
+                    Mark a {code} question
+                    <span className="font-mono text-[11px] font-bold" aria-hidden>
+                      -&gt;
+                    </span>
                   </Link>
                   <Link href={`/courses/${code}`} className="ec-btn-ghost min-h-[44px]">
                     Free {code} course
@@ -214,10 +214,13 @@ export function WillMyGradeHold({
               ) : (
                 <Link
                   href="/mark"
-                  className="ec-btn-primary inline-flex min-h-[44px]"
+                  className="ec-btn-primary inline-flex min-h-[44px] items-center gap-2"
                   style={{ marginTop: 12 }}
                 >
-                  Mark a paper free <span aria-hidden>-&gt;</span>
+                  Mark a paper free
+                  <span className="font-mono text-[11px] font-bold" aria-hidden>
+                    -&gt;
+                  </span>
                 </Link>
               )}
             </>

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Check, Copy } from 'lucide-react'
 
 /**
  * Copy-paste snippets for a department's own resources page.
@@ -71,7 +70,7 @@ function CopyButton({ value, label }: { value: string; label: string }) {
       className="ec-btn-secondary inline-flex min-h-[44px] shrink-0 items-center gap-2 text-sm"
       aria-label={`Copy the ${label} snippet`}
     >
-      {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+      {copied ? <span aria-hidden>✓</span> : <span aria-hidden className="font-mono text-xs font-bold">CP</span>}
       {copied ? 'Copied' : 'Copy'}
     </button>
   )
@@ -89,22 +88,25 @@ export function SchoolLinkKit() {
         version fits.
       </p>
 
-      <ul className="space-y-4">
+      <ul className="ms-board-index ms-board-index--guides">
         {SNIPPETS.map((s) => (
-          <li key={s.id} className="ec-card px-5 py-4 sm:px-6">
-            <div className="mb-2 flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <h3 className="font-semibold text-[var(--ec-text-primary)]">{s.label}</h3>
-                <p className="text-xs text-[var(--ec-text-secondary)]">{s.hint}</p>
-              </div>
+          <li key={s.id} className="ms-board-slip ms-board-slip--stack">
+            <div className="ms-board-slip__main" style={{ alignItems: 'center' }}>
+              <span className="ms-board-slip__code">
+                {s.id === 'text' ? 'TXT' : s.id === 'html' ? 'HTML' : 'MD'}
+              </span>
+              <span className="ms-board-slip__body">
+                <span className="ms-board-slip__name">{s.label}</span>
+                <span className="ms-board-slip__meta">{s.hint}</span>
+              </span>
               <CopyButton value={s.value} label={s.label} />
             </div>
             {s.code ? (
-              <pre className="overflow-x-auto rounded-lg bg-[var(--ec-surface-raised)] p-3 text-xs leading-relaxed">
+              <pre className="overflow-x-auto rounded border border-[var(--ec-border)] bg-[var(--ec-surface)] p-3 font-mono text-xs leading-relaxed">
                 <code className="whitespace-pre">{s.value}</code>
               </pre>
             ) : (
-              <p className="rounded-lg bg-[var(--ec-surface-raised)] p-3 text-sm leading-relaxed text-[var(--ec-text-primary)]">
+              <p className="rounded border border-[var(--ec-border)] bg-[var(--ec-surface)] p-3 text-sm leading-relaxed text-[var(--ec-text-primary)]">
                 {s.value}
               </p>
             )}

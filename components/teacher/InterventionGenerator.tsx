@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Check, Loader2 } from 'lucide-react'
+import { X, Loader2 } from 'lucide-react'
 
 interface Question {
   id: string
@@ -110,7 +110,7 @@ export function InterventionGenerator({
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}
-          className="ms-teacher-intervention ec-card max-h-[90dvh] w-full max-w-2xl overflow-y-auto rounded-t-3xl p-4 sm:max-h-[85vh] sm:rounded-2xl sm:p-8"
+          className="ms-teacher-intervention ec-card ec-card--paper max-h-[90dvh] w-full max-w-2xl overflow-y-auto rounded-t p-4 sm:max-h-[85vh] sm:rounded sm:p-8"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="mb-6 flex items-start justify-between">
@@ -134,8 +134,11 @@ export function InterventionGenerator({
 
           {result ? (
             <div className="text-center">
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border ec-tint-brand-icon">
-                <Check className="h-8 w-8 ec-score-high" />
+              <div
+                className="ec-ink-stamp ec-ink-stamp--hero mx-auto mb-4"
+                aria-hidden
+              >
+                ✓
               </div>
               <h4 className="text-xl font-bold text-[var(--ec-text-primary)]">{result.title}</h4>
               <p className="mt-2 text-[var(--ec-text-secondary)]">
@@ -168,7 +171,7 @@ export function InterventionGenerator({
                     key={q.id}
                     type="button"
                     onClick={() => toggle(q.id)}
-                    className={`min-h-[56px] w-full rounded-xl border p-4 text-left transition-all ${
+                    className={`ec-card ec-card--paper min-h-[56px] w-full border p-4 text-left transition-all ${
                       selected.has(q.id)
                         ? 'border-[color-mix(in_srgb,var(--ec-brand)_40%,transparent)] bg-[color-mix(in_srgb,var(--ec-brand)_5%,transparent)]'
                         : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)] ec-hover-brand-border-mild hover:bg-[var(--ec-brand-muted)]'

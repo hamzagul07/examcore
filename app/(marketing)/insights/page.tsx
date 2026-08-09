@@ -51,39 +51,43 @@ export default function InsightsPage() {
       />
 
       <MarketingSection className="!pt-0">
-        <aside className="ec-blog-quick-answer mb-10 rounded-xl border border-[var(--ec-brand)]/25 bg-[var(--ec-brand)]/5 px-5 py-5">
-          <p className="ec-label-tech mb-2 text-[var(--ec-brand)]">QUICK ANSWER</p>
-          <p className="text-base font-medium leading-relaxed text-[var(--ec-text-primary)]">
+        <aside className="ms-board-cross mb-10">
+          <p className="ms-overline">Quick answer</p>
+          <p className="ms-body-2 mt-2 text-[var(--ec-text-primary)]">
             <strong>71%</strong> of Cambridge maths sessions under-award method marks on first
             self-mark; <strong>48%</strong> of IB criterion responses sit one markband high on first
             read (MarkScheme product data, not official exam board statistics). Cite{' '}
             {insights.citation}.
           </p>
-          <p className="mt-2 text-xs text-[var(--ec-text-secondary)]">
+          <p className="ms-micro mt-2">
             Last updated {insights.dateModified}. CC BY 4.0 — press: /research
           </p>
         </aside>
 
-        <div className="overflow-x-auto">
+        <div className="compare-table-card overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead>
-              <tr className="border-b border-[var(--ec-border)]">
-                <th className="pb-3 pr-4">Metric</th>
-                <th className="pb-3 pr-4">Value</th>
-                <th className="pb-3">Notes</th>
+              <tr className="compare-table-head">
+                <th className="px-4 py-3">Metric</th>
+                <th className="px-4 py-3">Value</th>
+                <th className="px-4 py-3">Notes</th>
               </tr>
             </thead>
             <tbody>
               {insights.variables.map((v) => (
-                <tr key={v.id} className="border-b border-[var(--ec-border)]" data-chunk-id={v.id}>
-                  <td className="py-4 pr-4 font-semibold text-[var(--ec-text-primary)]">
+                <tr
+                  key={v.id}
+                  className="compare-table-row"
+                  data-chunk-id={v.id}
+                >
+                  <td className="px-4 py-3.5 font-semibold text-[var(--ec-text-primary)]">
                     {v.label}
                   </td>
-                  <td className="py-4 pr-4 font-mono text-[var(--ec-brand)]">
+                  <td className="px-4 py-3.5 font-mono text-[var(--ec-brand)]">
                     {v.value}
                     <span className="ml-1 text-xs text-[var(--ec-text-secondary)]">{v.unit}</span>
                   </td>
-                  <td className="py-4 text-[var(--ec-text-secondary)]">{v.notes}</td>
+                  <td className="px-4 py-3.5 text-[var(--ec-text-secondary)]">{v.notes}</td>
                 </tr>
               ))}
             </tbody>
@@ -94,13 +98,23 @@ export default function InsightsPage() {
           Cite as: <span className="font-mono text-sm">{insights.citation}</span>
         </p>
 
-        <div className="mt-10 flex flex-wrap gap-3">
-          <Link href="/mark" className="ec-btn-primary min-h-[48px]">
-            Test on your script
-          </Link>
-          <Link href="/research" className="ec-btn-secondary min-h-[48px]">
-            Methodology
-          </Link>
+        <div className="ms-board-cross mt-10">
+          <p className="ms-overline">Verify on ink</p>
+          <h2 className="ms-h2">Test the gap on your own script</h2>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link
+              href="/mark"
+              className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
+            >
+              <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                M1
+              </span>
+              Open marking desk -&gt;
+            </Link>
+            <Link href="/research" className="ec-btn-ghost inline-flex min-h-[48px]">
+              Methodology
+            </Link>
+          </div>
         </div>
       </MarketingSection>
     </MarketingPageShell>

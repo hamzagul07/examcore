@@ -32,14 +32,6 @@ const STEPS = [
   },
 ]
 
-const CAPABILITIES = [
-  { glyph: 'MS', title: 'Official schemes', desc: 'Real Cambridge & IB criteria, cited line by line' },
-  { glyph: '✎', title: "Examiner's Ink", desc: 'Stamps on your handwriting' },
-  { glyph: 'Q·P', title: 'Single or full paper', desc: 'Quick check or projected grade' },
-  { glyph: 'IMG', title: 'Photo · camera · PDF', desc: 'Multi-page with reorder' },
-  { glyph: 'A*', title: 'Grade boundaries', desc: 'Honest A*–E estimates' },
-]
-
 export function LandingMarkingSection() {
   return (
     <section id="how-it-works" className="ms-pg ms-sec scroll-mt-20 ec-section-tint ec-section-tint--mark">
@@ -52,27 +44,13 @@ export function LandingMarkingSection() {
         and question.
       </p>
 
-      <div className="ms-marking-capabilities">
-        {CAPABILITIES.map((cap) => (
-          <div key={cap.title} className="ms-marking-cap">
-            <span className="ms-marking-cap-glyph" aria-hidden>
-              {cap.glyph}
-            </span>
-            <div>
-              <strong>{cap.title}</strong>
-              <span>{cap.desc}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-
       <div className="ms-steps">
         {STEPS.map((step, i) => (
-          <div key={step.num} className={`ec-card ms-step ms-step--${i + 1}`}>
+          <div key={step.num} className={`ms-step ms-step--paper ms-step--${i + 1}`}>
             <div className="ms-num">{step.num}</div>
             <h3 className="ms-h3">{step.title}</h3>
             <p className="ms-body-2">{step.body}</p>
-            <div className="ms-step-art">
+            <div className="ms-step-art ms-step-art--ruled">
               {step.chips.map((c) => (
                 <Chip key={c.label} variant={c.variant}>
                   {c.label}

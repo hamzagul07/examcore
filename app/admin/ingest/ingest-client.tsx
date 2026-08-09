@@ -381,7 +381,7 @@ export default function IngestClient() {
                 return (
                   <label
                     key={board.id}
-                    className={`flex cursor-pointer items-center gap-2 rounded-xl border-2 px-4 py-2 text-sm font-medium transition-all ${
+                    className={`flex cursor-pointer items-center gap-2 rounded border-2 px-4 py-2 text-sm font-medium transition-all ${
                       checked
                         ? 'border-[var(--ec-brand)] ec-bg-brand-muted text-[var(--ec-brand)]'
                         : 'border-[var(--ec-border)] bg-[var(--ec-surface)] text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)]/40'
@@ -413,7 +413,7 @@ export default function IngestClient() {
                 return (
                   <label
                     key={year}
-                    className={`flex cursor-pointer items-center gap-2 rounded-xl border-2 px-4 py-2 text-sm font-medium transition-all ${
+                    className={`flex cursor-pointer items-center gap-2 rounded border-2 px-4 py-2 text-sm font-medium transition-all ${
                       checked
                         ? 'border-[var(--ec-brand)] ec-bg-brand-muted text-[var(--ec-brand)]'
                         : 'border-[var(--ec-border)] bg-[var(--ec-surface)] text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)]/40'
@@ -440,7 +440,7 @@ export default function IngestClient() {
             </p>
             <label
               htmlFor="zip-input"
-              className="block w-full cursor-pointer rounded-xl border-2 border-dashed border-[var(--ec-border)] p-8 text-center transition-all hover:border-[var(--ec-brand)]/50 ec-bg-brand-muted/30"
+              className="block w-full cursor-pointer rounded border-2 border-dashed border-[var(--ec-border)] p-8 text-center transition-all hover:border-[var(--ec-brand)]/50 ec-bg-brand-muted/30"
             >
               <FileArchive className="mx-auto mb-3 h-8 w-8 text-[var(--ec-text-secondary)]" />
               <div className="font-medium text-[var(--ec-text-primary)]">
@@ -477,7 +477,7 @@ export default function IngestClient() {
             </div>
 
             {scanError && (
-              <div className="mt-4 flex items-start gap-3 rounded-xl border ec-tint-critical-panel p-4">
+              <div className="mt-4 flex items-start gap-3 rounded border ec-tint-critical-panel p-4">
                 <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 ec-score-low" />
                 <p className="text-sm ec-score-low">{scanError}</p>
               </div>
@@ -492,7 +492,7 @@ export default function IngestClient() {
               </h2>
 
               <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-                <div className="rounded-xl border ec-border-color ec-bg-surface-raised p-4">
+                <div className="rounded border ec-border-color ec-bg-surface-raised p-4">
                   <div className="text-xs font-medium uppercase tracking-wide text-[var(--ec-text-secondary)]">
                     PDFs in archive
                   </div>
@@ -500,7 +500,7 @@ export default function IngestClient() {
                     {scanResult.totalPdfs}
                   </div>
                 </div>
-                <div className="rounded-xl border border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4">
+                <div className="rounded border border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4">
                   <div className="text-xs font-medium uppercase tracking-wide text-[var(--ec-brand)]">
                     Will be uploaded
                   </div>
@@ -508,7 +508,7 @@ export default function IngestClient() {
                     {entriesToUpload.length}
                   </div>
                 </div>
-                <div className="rounded-xl border ec-highlight-warning-panel p-4">
+                <div className="rounded border ec-highlight-warning-panel p-4">
                   <div className="text-xs font-medium uppercase tracking-wide ec-score-mid">
                     Skipped
                   </div>
@@ -571,7 +571,7 @@ export default function IngestClient() {
                   <h3 className="mb-2 text-sm font-semibold text-[var(--ec-text-primary)]">
                     Will skip — unrecognized filenames ({scanResult.invalidEntries.length})
                   </h3>
-                  <div className="max-h-40 overflow-y-auto rounded-xl border ec-border-color ec-bg-surface-raised p-3 text-xs text-[var(--ec-text-secondary)]">
+                  <div className="max-h-40 overflow-y-auto rounded border ec-border-color ec-bg-surface-raised p-3 text-xs text-[var(--ec-text-secondary)]">
                     {scanResult.invalidEntries.slice(0, 50).map((e) => (
                       <div key={e.zipPath} className="truncate">
                         {e.basename}{' '}
@@ -642,9 +642,9 @@ export default function IngestClient() {
                   </span>
                   <span className="text-[var(--ec-text-secondary)]">{progressPct}%</span>
                 </div>
-                <div className="h-2 overflow-hidden rounded-full ec-bg-surface-raised">
+                <div className="h-2 overflow-hidden rounded-[2px] ec-bg-surface-raised">
                   <div
-                    className="h-full rounded-full bg-[var(--ec-brand)] transition-all"
+                    className="h-full rounded-[1px] bg-[var(--ec-brand)] transition-all"
                     style={{ width: `${progressPct}%` }}
                   />
                 </div>
@@ -657,7 +657,7 @@ export default function IngestClient() {
               )}
 
               <div className="mb-4 grid grid-cols-3 gap-3 text-center">
-                <div className="rounded-xl border border-[var(--ec-brand)]/30 ec-bg-brand-muted p-3">
+                <div className="rounded border border-[var(--ec-brand)]/30 ec-bg-brand-muted p-3">
                   <div className="text-xs font-medium uppercase tracking-wide text-[var(--ec-brand)]">
                     Uploaded
                   </div>
@@ -665,7 +665,7 @@ export default function IngestClient() {
                     {uploadSummary.uploaded}
                   </div>
                 </div>
-                <div className="rounded-xl border ec-tint-critical-panel p-3">
+                <div className="rounded border ec-tint-critical-panel p-3">
                   <div className="text-xs font-medium uppercase tracking-wide ec-score-low">
                     Failed
                   </div>
@@ -673,7 +673,7 @@ export default function IngestClient() {
                     {uploadSummary.failed}
                   </div>
                 </div>
-                <div className="rounded-xl border ec-border-color ec-bg-surface-raised p-3">
+                <div className="rounded border ec-border-color ec-bg-surface-raised p-3">
                   <div className="text-xs font-medium uppercase tracking-wide text-[var(--ec-text-secondary)]">
                     Skipped
                   </div>
@@ -684,7 +684,7 @@ export default function IngestClient() {
               </div>
 
               {uploadLog.length > 0 && (
-                <div className="max-h-60 overflow-y-auto rounded-xl border ec-border-color ec-bg-surface-raised p-3 font-mono text-xs">
+                <div className="max-h-60 overflow-y-auto rounded border ec-border-color ec-bg-surface-raised p-3 font-mono text-xs">
                   {uploadLog.map((entry, i) => (
                     <div
                       key={i}
@@ -710,7 +710,7 @@ export default function IngestClient() {
               )}
 
               {uploadDone && (
-                <div className="mt-4 flex items-start gap-3 rounded-xl border ec-highlight-success p-4">
+                <div className="mt-4 flex items-start gap-3 rounded border ec-highlight-success p-4">
                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 ec-score-high" />
                   <p className="text-sm text-[var(--ec-text-primary)]">
                     Done. Uploaded: <strong>{uploadSummary.uploaded}</strong>.

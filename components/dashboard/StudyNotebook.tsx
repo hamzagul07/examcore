@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import type { Recommendation } from '@/lib/insights/types'
+import { ExamSheet, ExamSheetLine } from '@/components/margin-notes'
 import { useNotebookAnimate } from './notebook/useNotebookAnimate'
 import {
   HandArrow,
@@ -54,9 +55,25 @@ export function StudyNotebook({
           </h2>
           <HandUnderline key={markKey} animate={animate} delay={0} color={ink} />
         </header>
+        <div className="ms-notebook-empty-artefact mb-4" aria-hidden>
+          <ExamSheet
+            className="ms-notebook-empty-sheet"
+            head="Waiting for your first script"
+            headRight="—"
+            tally="— / —"
+          >
+            <ExamSheetLine work="your working appears here" mark="M1 ?" ok stampDelayMs={160} />
+            <ExamSheetLine
+              work="margin notes land after you mark"
+              mark="A1 ?"
+              ok
+              stampDelayMs={380}
+            />
+          </ExamSheet>
+        </div>
         <div className="flex flex-wrap items-center gap-3 py-2">
           <p className="text-sm text-[var(--ec-text-secondary)]">
-            Your notebook is empty. Mark a question to start.
+            Your notebook is empty. Mark a question to start the ink trail.
           </p>
           <Link
             href="/mark"

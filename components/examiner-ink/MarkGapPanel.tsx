@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+
 import type { MarkGap, MarkGapItem } from '@/lib/marking/mark-gap'
 
 /**
@@ -26,9 +26,9 @@ export function MarkGapPanel({
   const allFixable = gap.items.every((i) => i.fix)
 
   return (
-    <section className="ec-card flex flex-col gap-4 p-5" aria-label="The mark gap">
+    <section className="ec-card ec-card--paper flex flex-col gap-4 p-5" aria-label="The mark gap">
       <p className="ec-label-tech flex items-center gap-2">
-        <span className="h-1.5 w-1.5 rounded-full bg-[var(--ec-chip-warning-text)]" />
+        <span className="h-1.5 w-1.5 rounded-[2px] bg-[var(--ec-chip-warning-text)]" />
         THE MARK GAP
       </p>
 
@@ -71,7 +71,7 @@ export function MarkGapPanel({
       </div>
 
       {allFixable && (
-        <p className="rounded-xl border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-4 py-3 text-sm text-[var(--ec-text-primary)]">
+        <p className="ec-card ec-card--paper border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-4 py-3 text-sm text-[var(--ec-text-primary)]">
           Fix {lostCount === 1 ? 'this' : 'all of these'} and this becomes{' '}
           <span className="font-semibold text-[var(--ec-brand)]">
             {gap.total} / {gap.total}
@@ -97,9 +97,9 @@ function GapCard({
     <motion.article
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`flex flex-col gap-2.5 rounded-xl border bg-[var(--ec-surface-raised)] p-4 transition-shadow ${
+      className={`ec-card ec-card--paper flex flex-col gap-2.5 border bg-[var(--ec-paper,var(--ec-surface-raised))] p-4 transition-shadow ${
         active
-          ? 'border-[var(--ec-chip-warning-text)] shadow-[var(--ec-shadow-elevation-2)]'
+          ? 'border-[var(--ec-chip-warning-text)]'
           : 'border-[var(--ec-border)]'
       } ${interactive ? 'cursor-pointer' : ''}`}
       style={{ borderLeftWidth: 3, borderLeftColor: 'var(--ec-chip-warning-text)' }}
@@ -138,7 +138,7 @@ function GapCard({
 
       {item.fix && (
         <div
-          className="flex items-center gap-2.5 rounded-lg border border-dashed px-3 py-2"
+          className="flex items-center gap-2.5 rounded border border-dashed px-3 py-2"
           style={{
             borderColor: 'var(--ec-chip-warning-text)',
             background: 'var(--ec-chip-warning-bg)',
@@ -158,7 +158,7 @@ function GapCard({
 
       {interactive && (
         <span className="flex items-center gap-1 text-xs text-[var(--ec-text-secondary)]">
-          <ArrowRight className="h-3 w-3" aria-hidden="true" />
+          <span className="h-3 w-3" aria-hidden>-&gt;</span>
           Show on my script
         </span>
       )}

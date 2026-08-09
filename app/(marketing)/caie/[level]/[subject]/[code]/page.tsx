@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowRight } from 'lucide-react'
+
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { createPageMetadata } from '@/lib/seo/metadata'
@@ -74,9 +74,12 @@ export default async function CaieSubjectHubPage({ params }: Props) {
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href={`/mark?subject=${encodeURIComponent(code)}`}
-            className="ec-btn-primary min-h-[48px]"
+            className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
           >
-            Mark a {code} question <ArrowRight className="h-4 w-4" />
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+              M1
+            </span>
+            Mark a {code} question -&gt;
           </Link>
           <Link href={`/courses/${code}`} className="ec-btn-ghost min-h-[48px]">
             Course studio
@@ -90,14 +93,20 @@ export default async function CaieSubjectHubPage({ params }: Props) {
       {papers.length ? (
         <MarketingSection>
           <h2 className="ms-h2">By paper</h2>
-          <ul className="mt-4 flex flex-wrap gap-2">
+          <ul className="ms-board-index ms-board-index--guides mt-4">
             {papers.map((p) => {
               const href = caiePaperPath(code, p)
               if (!href) return null
               return (
                 <li key={p}>
-                  <Link href={href} className="ec-btn-ghost min-h-[40px]">
-                    Paper {p}
+                  <Link href={href} className="ms-board-slip ms-board-slip--compact">
+                    <span className="ms-board-slip__code">P{p}</span>
+                    <span className="ms-board-slip__body">
+                      <span className="ms-board-slip__name">Paper {p}</span>
+                    </span>
+                    <span className="ms-board-slip__go" aria-hidden>
+                      -&gt;
+                    </span>
                   </Link>
                 </li>
               )
@@ -108,34 +117,40 @@ export default async function CaieSubjectHubPage({ params }: Props) {
 
       <MarketingSection>
         <h2 className="ms-h2">Topics</h2>
-        <ul className="mt-6 grid list-none gap-3 p-0">
+        <ul className="ms-board-index mt-6">
           {lessons.map((lesson) => {
             const href = caieLessonPath(code, lesson.slug)
             if (!href) return null
             const surfaces = CAIE_SURFACES.filter((s) => lessonHasSurface(lesson, s))
             return (
-              <li key={lesson.slug} className="ec-card p-4">
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                  <div>
-                    <Link href={href} className="font-semibold hover:underline">
-                      {lesson.topicCode} · {lesson.title}
-                    </Link>
-                    {lesson.paperName ? (
-                      <p className="ms-micro mt-1">{lesson.paperName}</p>
-                    ) : null}
-                  </div>
-                  <div className="flex flex-wrap gap-2">
+              <li key={lesson.slug} className="ms-board-slip ms-board-slip--stack">
+                <Link href={href} className="ms-board-slip__main">
+                  <span className="ms-board-slip__code">
+                    {lesson.topicCode || code}
+                  </span>
+                  <span className="ms-board-slip__body">
+                    <span className="ms-board-slip__name">{lesson.title}</span>
+                    <span className="ms-board-slip__meta">
+                      {lesson.paperName || 'Syllabus topic'}
+                    </span>
+                  </span>
+                  <span className="ms-board-slip__go" aria-hidden>
+                    -&gt;
+                  </span>
+                </Link>
+                {surfaces.length ? (
+                  <div className="ms-board-slip__surfaces">
                     {surfaces.map((s) => {
                       const sHref = caieSurfacePath(code, lesson.slug, s)
                       if (!sHref) return null
                       return (
-                        <Link key={s} href={sHref} className="ec-btn-ghost min-h-[36px] text-xs">
+                        <Link key={s} href={sHref} className="ms-board-slip__surface">
                           {s}
                         </Link>
                       )
                     })}
                   </div>
-                </div>
+                ) : null}
               </li>
             )
           })}

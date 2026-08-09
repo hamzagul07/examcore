@@ -43,7 +43,7 @@ export function LazyLiveDiagram({
   if (!entry) {
     return (
       <div
-        className={`course-step-stage-diagram min-h-[12rem] animate-pulse rounded-xl bg-[var(--ec-bg-soft)] ${className}`.trim()}
+        className={`course-step-stage-diagram min-h-[12rem] animate-pulse rounded bg-[var(--ec-bg-soft)] ${className}`.trim()}
         aria-hidden
       />
     )

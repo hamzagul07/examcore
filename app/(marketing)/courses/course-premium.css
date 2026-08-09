@@ -24,14 +24,14 @@ html[data-ec-theme='zen'] .course-studio {
   --course-border-strong: #c8baa4;
   --course-text-muted: #4a4239;
   --course-text-faint: #8a7f70;
-  --course-glow: 0 2px 8px -4px rgba(33, 28, 23, 0.1), 0 12px 32px -12px rgba(33, 28, 23, 0.14);
+  --course-glow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
   --ec-text-primary: var(--course-read-text);
   --ec-text-secondary: var(--course-read-muted);
   --ec-text-tertiary: var(--course-text-faint);
 }
 
 html[data-ec-theme='zen'] .course-studio-topbar {
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
   background: color-mix(in srgb, var(--course-surface-nav) 85%, white);
 }
 
@@ -55,7 +55,7 @@ html[data-ec-theme='late-night'] .course-studio {
   --course-border-strong: rgba(255, 255, 255, 0.12);
   --course-text-muted: #8b93a7;
   --course-text-faint: #5c6378;
-  --course-glow: 0 0 0 1px rgba(79, 143, 247, 0.12), 0 12px 40px rgba(0, 0, 0, 0.45);
+  --course-glow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 
   --ec-surface-muted: var(--course-surface-card);
   --ec-surface-raised: var(--course-surface-elevated);
@@ -114,11 +114,11 @@ html[data-ec-theme='late-night'] .course-studio {
   flex-shrink: 0;
   width: 2.75rem;
   height: 2.75rem;
-  border-radius: 999px;
+  border-radius: 4px;
   border: 1px solid var(--course-border-strong);
   background: linear-gradient(145deg, var(--course-surface-elevated), var(--course-surface-card));
   color: var(--course-accent);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 .course-studio-subject-name {
@@ -141,7 +141,7 @@ html[data-ec-theme='late-night'] .course-studio {
 .course-studio-tag {
   display: inline-flex;
   align-items: center;
-  border-radius: 999px;
+  border-radius: 4px;
   padding: 0.15rem 0.55rem;
   font-size: 0.65rem;
   font-weight: 600;
@@ -165,7 +165,7 @@ html[data-ec-theme='late-night'] .course-studio {
   gap: 0.5rem;
   margin: 0 0.35rem;
   padding: 0.55rem 0.85rem;
-  border-radius: 0.75rem;
+  border-radius: 4px;
   border: 1px solid var(--course-border);
   background: var(--course-surface-card);
   font-size: 0.8rem;
@@ -211,7 +211,7 @@ html[data-ec-theme='late-night'] .course-studio {
   align-items: flex-start;
   gap: 0.55rem;
   padding: 0.55rem 0.65rem;
-  border-radius: 0.7rem;
+  border-radius: 4px;
   font-size: 0.84rem;
   line-height: 1.35;
   color: var(--course-text-muted);
@@ -234,7 +234,7 @@ html[data-ec-theme='late-night'] .course-studio {
   width: 0.45rem;
   height: 0.45rem;
   margin-top: 0.45rem;
-  border-radius: 999px;
+  border-radius: 4px;
   background: transparent;
   border: 1.5px solid color-mix(in srgb, var(--course-text-muted) 50%, transparent);
   transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
@@ -295,7 +295,7 @@ html[data-ec-theme='late-night'] .course-studio {
   position: sticky;
   top: 4rem;
   z-index: 20;
-  backdrop-filter: blur(12px);
+  backdrop-filter: none;
 }
 
 @media (min-width: 640px) {
@@ -315,7 +315,7 @@ html[data-ec-theme='late-night'] .course-studio {
   align-items: center;
   gap: 0.45rem;
   padding: 0.5rem 0.9rem;
-  border-radius: 0.7rem;
+  border-radius: 4px;
   border: 1.5px solid color-mix(in srgb, var(--course-subject-accent, var(--ec-brand)) 72%, var(--course-border));
   background: transparent;
   font-size: 0.8rem;
@@ -328,7 +328,7 @@ html[data-ec-theme='late-night'] .course-studio {
 .course-studio-mark-dot {
   width: 0.45rem;
   height: 0.45rem;
-  border-radius: 50%;
+  border-radius: 4px;
   background: var(--course-subject-accent, var(--ec-brand));
   flex-shrink: 0;
 }
@@ -346,7 +346,7 @@ html[data-ec-theme='late-night'] .course-studio {
   height: 2.75rem;
   min-width: 44px;
   min-height: 44px;
-  border-radius: 0.65rem;
+  border-radius: 4px;
   border: 1px solid var(--course-border);
   background: var(--course-surface-card);
   color: var(--course-text-muted);
@@ -399,7 +399,7 @@ html[data-ec-theme='late-night'] .course-studio {
   display: inline-flex;
   align-items: center;
   padding: 0.2rem 0.65rem;
-  border-radius: 999px;
+  border-radius: 4px;
   font-weight: 600;
   color: var(--course-accent);
   background: var(--course-accent-muted);
@@ -490,7 +490,7 @@ html[data-ec-theme='late-night'] .course-studio {
 .course-studio-hero {
   margin-bottom: 2rem;
   padding: 1.5rem;
-  border-radius: 1.25rem;
+  border-radius: 4px;
   border: 1px solid var(--course-border);
   background: linear-gradient(
     160deg,
@@ -511,7 +511,7 @@ html[data-ec-theme='late-night'] .course-studio {
 }
 
 .course-studio-hero-diagram {
-  border-radius: 1rem;
+  border-radius: 4px;
   border: 1px solid color-mix(in srgb, var(--course-accent) 35%, var(--course-border));
   background: color-mix(in srgb, var(--course-accent) 5%, var(--course-surface-deep));
   padding: 0;
@@ -534,7 +534,7 @@ html[data-ec-theme='late-night'] .course-studio {
   align-items: center;
   gap: 0.4rem;
   padding: 0.5rem 0.85rem;
-  border-radius: 0.7rem;
+  border-radius: 4px;
   border: 1px solid var(--course-border);
   background: var(--course-surface-card);
   font-size: 0.8rem;
@@ -581,7 +581,7 @@ html[data-ec-theme='late-night'] .course-studio {
 }
 
 .course-studio .course-visual-tabs {
-  border-radius: 0.85rem !important;
+  border-radius: 4px !important;
   border: 1px solid var(--course-border) !important;
   background: var(--course-surface-card) !important;
   padding: 0.35rem !important;
@@ -591,14 +591,14 @@ html[data-ec-theme='late-night'] .course-studio {
   background: var(--course-surface-elevated) !important;
   color: var(--ec-text-primary) !important;
   border: 1px solid var(--course-border-strong) !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 .course-studio .course-visual-section {
   border-width: 1px;
   border-color: var(--course-border);
   background: var(--course-surface-card);
-  box-shadow: none;
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 .course-studio .course-visual-section-header {
@@ -617,14 +617,14 @@ html[data-ec-theme='late-night'] .course-studio {
   border-width: 1px;
   border-color: var(--course-border);
   background: var(--course-surface-card);
-  border-radius: 1.15rem;
+  border-radius: 4px;
   padding: 1.75rem 1.5rem;
 }
 
 .course-premium-hero {
   position: relative;
   overflow: hidden;
-  border-radius: 1.5rem;
+  border-radius: 4px;
   border: 2px solid color-mix(in srgb, var(--ec-brand) 28%, var(--ec-border-subtle));
   background: linear-gradient(
     135deg,
@@ -633,28 +633,13 @@ html[data-ec-theme='late-night'] .course-studio {
     var(--ec-surface-muted) 100%
   );
   padding: 1.75rem 1.5rem;
-  box-shadow:
-    0 1px 2px color-mix(in srgb, black 4%, transparent),
-    0 12px 36px color-mix(in srgb, var(--ec-brand) 8%, transparent);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
-.course-premium-hero::before {
-  content: '';
-  position: absolute;
-  top: -40%;
-  right: -20%;
-  width: 55%;
-  height: 140%;
-  background: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--ec-brand) 18%, transparent) 0%,
-    transparent 70%
-  );
-  pointer-events: none;
-}
+.course-premium-hero::before { display: none; }
 
 .course-premium-hero-diagram-wrap {
-  border-radius: 1.25rem;
+  border-radius: 4px;
   border: 2px dashed color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border-subtle));
   background: color-mix(in srgb, var(--ec-brand) 6%, var(--ec-surface-raised));
   padding: 1rem;
@@ -664,7 +649,7 @@ html[data-ec-theme='late-night'] .course-studio {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  border-radius: 999px;
+  border-radius: 4px;
   border: 1.5px solid color-mix(in srgb, var(--course-subject-accent, var(--ec-brand)) 50%, var(--course-border));
   background: color-mix(in srgb, var(--course-subject-accent, var(--ec-brand)) 10%, var(--course-surface-card));
   padding: 0.25rem 0.75rem;
@@ -676,11 +661,11 @@ html[data-ec-theme='late-night'] .course-studio {
 }
 
 .course-objective-card {
-  border-radius: 1.25rem;
+  border-radius: 4px;
   border: 2px solid color-mix(in srgb, var(--ec-brand) 22%, var(--ec-border-subtle));
   background: var(--ec-surface-muted);
   padding: 1.25rem 1.5rem;
-  box-shadow: 0 4px 20px color-mix(in srgb, var(--ec-brand) 5%, transparent);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 .course-objective-header {
@@ -693,16 +678,14 @@ html[data-ec-theme='late-night'] .course-studio {
 }
 
 .course-past-paper-card {
-  border-radius: 1.25rem;
+  border-radius: 4px;
   border: 2px solid color-mix(in srgb, var(--ec-brand) 20%, var(--ec-border-subtle));
   background: var(--ec-surface-raised);
-  box-shadow:
-    0 1px 2px color-mix(in srgb, black 4%, transparent),
-    0 8px 24px color-mix(in srgb, var(--ec-brand) 6%, transparent);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 .course-simple-panel {
-  border-radius: 1.25rem;
+  border-radius: 4px;
   border: 1px solid color-mix(in srgb, var(--ec-brand) 30%, var(--ec-border-subtle));
   background: color-mix(in srgb, var(--ec-brand) 5%, var(--ec-surface-muted));
 }
@@ -718,7 +701,7 @@ html[data-ec-theme='late-night'] .course-studio {
 }
 
 .course-subject-card {
-  border-radius: 1.25rem;
+  border-radius: 4px;
   border: 2px solid var(--ec-border-subtle);
   background: var(--ec-surface-raised);
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
@@ -726,7 +709,7 @@ html[data-ec-theme='late-night'] .course-studio {
 
 .course-subject-card:hover {
   border-color: color-mix(in srgb, var(--ec-brand) 30%, var(--ec-border-subtle));
-  box-shadow: 0 12px 32px color-mix(in srgb, var(--ec-brand) 8%, transparent);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 /* ── Paper track picker ── */
@@ -741,7 +724,7 @@ html[data-ec-theme='late-night'] .course-studio {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  border-radius: 1rem;
+  border-radius: 4px;
   border: 2px solid var(--course-border, var(--ec-border-subtle));
   background: var(--course-surface-card, var(--ec-surface-raised));
   padding: 1rem 1.1rem;
@@ -751,7 +734,7 @@ html[data-ec-theme='late-night'] .course-studio {
 
 .course-paper-card:hover {
   border-color: color-mix(in srgb, var(--course-accent, var(--ec-accent)) 35%, var(--course-border));
-  box-shadow: 0 8px 24px color-mix(in srgb, var(--course-accent, var(--ec-accent)) 8%, transparent);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 .course-paper-card.is-active {
@@ -772,7 +755,7 @@ html[data-ec-theme='late-night'] .course-studio {
   justify-content: center;
   width: 2rem;
   height: 2rem;
-  border-radius: 0.65rem;
+  border-radius: 4px;
   background: var(--course-accent-muted, color-mix(in srgb, var(--ec-accent) 12%, transparent));
   color: var(--course-accent, var(--ec-accent));
 }
@@ -822,7 +805,7 @@ html[data-ec-theme='late-night'] .course-studio {
   flex: 1 1 auto;
   min-width: 3.5rem;
   border: 1px solid var(--course-border, var(--ec-border-subtle));
-  border-radius: 0.55rem;
+  border-radius: 4px;
   background: transparent;
   padding: 0.35rem 0.5rem;
   font-size: 0.72rem;
@@ -864,7 +847,7 @@ html[data-ec-theme='late-night'] .course-studio {
 
 .equilibrium-forces-diagram-tabs button {
   border: 1px solid var(--course-border, var(--ec-border-subtle));
-  border-radius: 0.55rem;
+  border-radius: 4px;
   background: transparent;
   padding: 0.3rem 0.55rem;
   font-size: 0.72rem;
@@ -948,7 +931,7 @@ html[data-ec-theme='late-night'] .course-studio {
   display: flex;
   gap: 0.75rem;
   align-items: flex-start;
-  border-radius: 1.25rem;
+  border-radius: 4px;
   border: 2px solid color-mix(in srgb, var(--ec-brand) 30%, var(--ec-border-subtle));
   background: linear-gradient(
     90deg,
@@ -971,13 +954,11 @@ html[data-ec-theme='late-night'] .course-studio {
 }
 
 .course-visual-section {
-  border-radius: 1.35rem;
+  border-radius: 4px;
   border: 2px solid var(--ec-border-subtle);
   background: var(--ec-surface-raised);
   overflow: visible;
-  box-shadow:
-    0 1px 2px color-mix(in srgb, black 3%, transparent),
-    0 6px 20px color-mix(in srgb, black 4%, transparent);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 .course-visual-section--brand {
@@ -1040,7 +1021,7 @@ html[data-ec-theme='late-night'] .course-studio {
   flex-shrink: 0;
   width: 2.5rem;
   height: 2.5rem;
-  border-radius: 0.85rem;
+  border-radius: 4px;
   border: 2px solid color-mix(in srgb, var(--ec-brand) 35%, transparent);
   background: var(--ec-surface-raised);
   color: var(--ec-brand);
@@ -1090,7 +1071,7 @@ html[data-ec-theme='late-night'] .course-studio {
   display: inline-flex;
   align-items: center;
   padding: 0.2rem 0.55rem;
-  border-radius: 999px;
+  border-radius: 4px;
   border: 1px solid color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border-subtle));
   background: color-mix(in srgb, var(--ec-brand) 8%, var(--ec-surface-raised));
   font-size: 0.65rem;
@@ -1117,11 +1098,11 @@ html[data-ec-theme='late-night'] .course-studio {
   display: flex;
   flex-direction: column;
   gap: clamp(20px, 2.5vw, 32px);
-  border-radius: 1.35rem;
+  border-radius: 4px;
   border: 2px solid color-mix(in srgb, var(--ec-brand) 25%, var(--ec-border-subtle));
   background: var(--ec-surface-muted);
   padding: clamp(1.25rem, 2vw, 1.5rem);
-  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--ec-text-primary) 8%, transparent);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
   align-items: stretch;
 }
 
@@ -1185,7 +1166,7 @@ html[data-ec-theme='late-night'] .course-studio {
   gap: 0.75rem;
   min-width: 0;
   padding: 1rem;
-  border-radius: 1.15rem;
+  border-radius: 4px;
   border: 2px solid color-mix(in srgb, var(--ec-brand) 28%, var(--ec-border-subtle));
   background: var(--ec-surface-raised);
 }
@@ -1205,7 +1186,7 @@ html[data-ec-theme='late-night'] .course-studio {
 
 .course-step-stage-diagram {
   padding: 0.75rem;
-  border-radius: 0.85rem;
+  border-radius: 4px;
   border: 1px solid color-mix(in srgb, var(--ec-brand) 22%, var(--ec-border-subtle));
   background: color-mix(in srgb, var(--ec-brand) 5%, var(--ec-surface-muted));
 }
@@ -1270,7 +1251,7 @@ html[data-ec-theme='late-night'] .course-studio {
 
 .course-hero-visual-diagram-wrap {
   padding: 1rem;
-  border-radius: 0.85rem;
+  border-radius: 4px;
   border: 1px solid color-mix(in srgb, var(--course-accent) 30%, var(--course-border));
   background: color-mix(in srgb, var(--course-accent) 6%, var(--course-surface-deep));
 }
@@ -1342,7 +1323,7 @@ html[data-ec-theme='late-night'] .course-studio {
 
 .course-visual-tabs {
   border: 2px solid var(--ec-border-subtle) !important;
-  box-shadow: 0 4px 16px color-mix(in srgb, black 4%, transparent);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 .course-visual-tabs button[aria-selected='true'] {
@@ -1352,7 +1333,7 @@ html[data-ec-theme='late-night'] .course-studio {
 .course-step-timeline-card {
   min-width: 0;
   width: 100%;
-  border-radius: 1rem;
+  border-radius: 4px;
   border: 2px solid var(--ec-border-subtle);
   background: var(--ec-surface-raised);
   overflow: visible;
@@ -1383,7 +1364,7 @@ html[data-ec-theme='late-night'] .course-studio {
 
 .course-step-timeline-card.is-active {
   border-color: color-mix(in srgb, var(--ec-brand) 45%, var(--ec-border-subtle));
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--ec-brand) 10%, transparent);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 .course-step-dot {
@@ -1396,14 +1377,14 @@ html[data-ec-theme='late-night'] .course-studio {
 }
 
 .course-learning-path-track {
-  border-radius: 1.15rem;
+  border-radius: 4px;
   border: 2px solid var(--ec-border-subtle);
   background: var(--ec-surface-muted);
   padding: 1rem;
 }
 
 .course-learning-path-step {
-  border-radius: 1rem;
+  border-radius: 4px;
   border: 2px solid var(--ec-border-subtle);
   background: var(--ec-surface-raised);
   transition: border-color 0.2s ease, transform 0.2s ease;
@@ -1415,7 +1396,7 @@ html[data-ec-theme='late-night'] .course-studio {
 }
 
 .course-snapshot-card {
-  border-radius: 1.1rem;
+  border-radius: 4px;
   border: 2px solid var(--ec-border-subtle);
   background: var(--ec-surface-raised);
   transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
@@ -1424,7 +1405,7 @@ html[data-ec-theme='late-night'] .course-studio {
 .course-snapshot-card:hover {
   border-color: color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border-subtle));
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px color-mix(in srgb, var(--ec-brand) 8%, transparent);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 .course-snapshot-index {
@@ -1433,7 +1414,7 @@ html[data-ec-theme='late-night'] .course-studio {
   justify-content: center;
   width: 1.5rem;
   height: 1.5rem;
-  border-radius: 999px;
+  border-radius: 4px;
   border: 2px solid color-mix(in srgb, var(--ec-brand) 40%, transparent);
   background: color-mix(in srgb, var(--ec-brand) 12%, var(--ec-surface-muted));
   font-size: 0.65rem;
@@ -1442,7 +1423,7 @@ html[data-ec-theme='late-night'] .course-studio {
 }
 
 .course-quick-check-card {
-  border-radius: 1.15rem;
+  border-radius: 4px;
   border: 2px solid var(--ec-border-subtle);
   background: var(--ec-surface-raised);
   transition: border-color 0.2s ease;
@@ -1455,7 +1436,7 @@ html[data-ec-theme='late-night'] .course-studio {
 .course-quick-check-answer {
   width: 100%;
   max-width: none;
-  border-radius: 0.85rem;
+  border-radius: 4px;
   border: 1px solid var(--ec-border-subtle);
 }
 
@@ -1467,7 +1448,7 @@ html[data-ec-theme='late-night'] .course-studio {
 
 .course-compare-card {
   border-width: 2px;
-  box-shadow: 0 4px 14px color-mix(in srgb, black 3%, transparent);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 .course-compare-grid {
@@ -1537,7 +1518,7 @@ html[data-ec-theme='late-night'] .course-studio {
   color: var(--ec-text-primary);
   background: var(--ec-surface-muted);
   padding: 0.12em 0.45em;
-  border-radius: 0.35rem;
+  border-radius: 4px;
   border: 1px solid var(--ec-border-subtle);
 }
 
@@ -1547,11 +1528,11 @@ html[data-ec-theme='late-night'] .course-studio {
   margin: 1.25rem 0;
   border-collapse: separate;
   border-spacing: 0;
-  border-radius: 0.85rem;
+  border-radius: 4px;
   overflow: hidden;
   border: 1px solid var(--course-border, var(--ec-border-subtle));
   background: var(--course-surface-elevated, var(--ec-surface-raised));
-  box-shadow: var(--course-glow, 0 4px 16px rgba(0, 0, 0, 0.06));
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
   font-size: 0.95rem;
 }
 
@@ -1601,12 +1582,10 @@ html[data-ec-theme='late-night'] .course-studio {
   width: 100%;
   max-width: none;
   padding: 1.75rem 1.5rem 1.25rem;
-  border-radius: 1.15rem;
+  border-radius: 4px;
   border: 1px solid var(--course-border, var(--ec-border-subtle));
   background: var(--course-surface-elevated, #fff);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.8) inset,
-    0 10px 32px rgba(40, 35, 25, 0.08);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 .course-formula-chips {
@@ -1623,7 +1602,7 @@ html[data-ec-theme='late-night'] .course-studio {
   justify-content: center;
   width: 2.65rem;
   height: 2.65rem;
-  border-radius: 999px;
+  border-radius: 4px;
   border: 2px solid color-mix(in srgb, var(--chip-color, var(--course-formula-green)) 35%, var(--course-border));
   background: var(--course-surface-elevated, #fff);
   color: var(--chip-color, var(--course-formula-green));
@@ -1642,7 +1621,7 @@ html[data-ec-theme='late-night'] .course-studio {
 .course-formula-chip.is-active {
   border-color: var(--chip-color, var(--course-formula-green));
   background: color-mix(in srgb, var(--chip-color, var(--course-formula-green)) 14%, white);
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--chip-color, var(--course-formula-green)) 22%, transparent);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
   transform: scale(1.08);
 }
 
@@ -1657,12 +1636,12 @@ html[data-ec-theme='late-night'] .course-studio {
   width: 100%;
   max-width: none;
   padding: 0.85rem 1.25rem;
-  border-radius: 1rem;
+  border-radius: 4px;
   border: 1.5px solid color-mix(in srgb, var(--chip-color, var(--course-formula-green)) 45%, var(--course-border));
   background: var(--course-surface-elevated, #fff);
   text-align: center;
   font-size: 0.95rem;
-  box-shadow: 0 4px 14px rgba(40, 35, 25, 0.05);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
   animation: course-formula-reveal 0.35s cubic-bezier(0.34, 1.2, 0.64, 1);
 }
 
@@ -1721,10 +1700,10 @@ html[data-ec-theme='late-night'] .course-studio {
 
 .course-glossary-accordion {
   padding: 1.15rem 1.25rem;
-  border-radius: 1rem;
+  border-radius: 4px;
   border: 1px solid color-mix(in srgb, var(--course-formula-green) 35%, var(--course-border));
   background: var(--course-surface-elevated, var(--ec-surface-raised));
-  box-shadow: 0 6px 18px color-mix(in srgb, black 4%, transparent);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 .course-glossary-accordion-term {
@@ -1738,7 +1717,7 @@ html[data-ec-theme='late-night'] .course-studio {
 .course-glossary-hint {
   margin: 0;
   padding: 0.85rem 1rem;
-  border-radius: 0.85rem;
+  border-radius: 4px;
   border: 1px solid var(--course-border, var(--ec-border-subtle));
   background: var(--course-surface-card, var(--ec-surface-muted));
   font-size: 0.9rem;
@@ -1752,7 +1731,7 @@ html[data-ec-theme='late-night'] .course-studio {
   margin-top: 0.85rem;
   padding: 0.35rem 0.65rem;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 4px;
   background: transparent;
   font-size: 0.8rem;
   font-weight: 600;
@@ -1777,7 +1756,7 @@ html[data-ec-theme='late-night'] .course-studio {
 .course-glossary-focus {
   margin-top: 1rem;
   padding: 1rem 1.1rem;
-  border-radius: 1rem;
+  border-radius: 4px;
   border: 1px solid var(--course-border);
   background: var(--course-surface-card, var(--ec-surface-muted));
 }
@@ -1817,11 +1796,11 @@ html[data-ec-theme='late-night'] .course-studio {
 
 .course-key-term-pill.is-active {
   border-color: var(--ec-brand);
-  box-shadow: 0 4px 12px color-mix(in srgb, var(--ec-brand) 15%, transparent);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 .course-key-term-detail {
-  border-radius: 1.15rem;
+  border-radius: 4px;
   border: 2px solid color-mix(in srgb, var(--ec-brand) 28%, var(--ec-border-subtle));
   background: var(--ec-surface-muted);
 }
@@ -1855,17 +1834,17 @@ html[data-ec-theme='late-night'] .course-studio {
   gap: 1.25rem;
   padding: 1.25rem 1.5rem;
   border: 2px solid color-mix(in srgb, #a78bfa 30%, var(--ec-border-subtle));
-  border-radius: 1rem;
+  border-radius: 4px;
   overflow: visible;
 }
 
 .course-concept-core {
   margin: 0;
   padding: 1rem 1.25rem;
-  border-radius: 1rem;
+  border-radius: 4px;
   border: 3px solid var(--ec-brand);
   background: var(--ec-surface-raised);
-  box-shadow: 0 8px 24px color-mix(in srgb, var(--ec-brand) 15%, transparent);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
   text-align: center;
 }
 
@@ -1913,7 +1892,7 @@ html[data-ec-theme='late-night'] .course-studio {
   min-height: auto;
   min-width: 0;
   padding: 16px;
-  border-radius: 0.85rem;
+  border-radius: 4px;
   text-align: left;
   cursor: pointer;
   overflow: visible;
@@ -1935,7 +1914,7 @@ html[data-ec-theme='late-night'] .course-studio {
   gap: 0.75rem;
   padding: 1.25rem 1.5rem;
   border: 2px solid color-mix(in srgb, #a78bfa 35%, var(--ec-border-subtle));
-  border-radius: 1rem;
+  border-radius: 4px;
   overflow: visible;
   min-width: 0;
   max-width: 100%;
@@ -1963,7 +1942,7 @@ html[data-ec-theme='late-night'] .course-studio {
 .course-concept-think-panel {
   margin: 0;
   padding: 16px 20px;
-  border-radius: 0.75rem;
+  border-radius: 4px;
   border: 1px solid var(--ec-border-subtle);
   background: var(--ec-surface-raised);
   overflow: visible;
@@ -2005,13 +1984,13 @@ html[data-ec-theme='late-night'] .course-studio {
 }
 
 .course-exam-tip-box {
-  border-radius: 1.25rem;
+  border-radius: 4px;
   border: 2px solid color-mix(in srgb, #f59e0b 45%, transparent);
   background: color-mix(in srgb, #f59e0b 8%, var(--ec-surface-muted));
 }
 
 .course-worked-box {
-  border-radius: 1.25rem;
+  border-radius: 4px;
   border: 2px solid color-mix(in srgb, var(--ec-accent) 30%, var(--ec-border-subtle));
   overflow: hidden;
 }
@@ -2025,7 +2004,7 @@ html[data-ec-theme='late-night'] .course-studio {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.75rem;
+  border-radius: 4px;
   padding: 0.35rem;
   color: var(--ec-text-secondary);
   background: transparent;
@@ -2046,7 +2025,7 @@ html[data-ec-theme='late-night'] .course-studio {
 }
 
 .course-visual-carousel-panel {
-  border-radius: 1.15rem;
+  border-radius: 4px;
   border: 2px solid color-mix(in srgb, var(--ec-brand) 25%, var(--ec-border-subtle));
   background: var(--ec-surface-raised);
   overflow: hidden;
@@ -2143,7 +2122,7 @@ html[data-ec-theme='late-night'] .course-studio {
   gap: 0.45rem;
   margin: 0;
   padding: 0.45rem 0.9rem;
-  border-radius: 999px;
+  border-radius: 4px;
   font-size: 0.78rem;
   font-weight: 500;
   color: var(--course-text-muted, var(--ec-text-secondary));
@@ -2191,13 +2170,11 @@ html[data-ec-theme='late-night'] .course-studio {
   align-items: center;
   justify-content: center;
   padding: 2rem 1.75rem 1.5rem;
-  border-radius: 1.25rem;
+  border-radius: 4px;
   border: 1px solid var(--course-border, var(--ec-border-subtle));
   background: var(--course-surface-elevated, #fff);
   backface-visibility: hidden;
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.9) inset,
-    0 14px 40px rgba(30, 25, 20, 0.1);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 .course-flashcard-back {
@@ -2268,7 +2245,7 @@ html[data-ec-theme='late-night'] .course-studio {
 .course-flashcard-dot {
   width: 0.55rem;
   height: 0.55rem;
-  border-radius: 999px;
+  border-radius: 4px;
   border: none;
   padding: 0;
   background: var(--course-border-strong, var(--ec-border-subtle));
@@ -2408,7 +2385,7 @@ html[data-ec-theme='late-night'] .course-studio {
   display: flex;
   gap: var(--course-space-4, 1rem);
   padding: var(--course-space-5, 1.25rem) var(--course-space-6, 1.5rem);
-  border-radius: var(--course-radius-lg, 1.15rem);
+  border-radius: var(--course-radius-lg, 4px);
   border: 1px solid var(--course-read-border, var(--course-border));
   border-left-width: 4px;
   background: var(--course-surface-elevated, var(--ec-surface-raised));
@@ -2504,7 +2481,7 @@ html[data-ec-theme='late-night'] .course-studio {
 
 .course-worked-reveal-step.is-visible {
   padding: var(--course-space-3, 0.75rem) var(--course-space-4, 1rem);
-  border-radius: var(--course-radius-md, 0.85rem);
+  border-radius: var(--course-radius-md, 4px);
   background: color-mix(in srgb, var(--course-subject-accent-soft, white) 40%, var(--course-surface-elevated));
   animation: course-formula-reveal 0.35s var(--course-ease);
 }
@@ -2536,7 +2513,7 @@ html[data-ec-theme='late-night'] .course-studio {
   gap: 0.4rem;
   margin-top: var(--course-space-4, 1rem);
   padding: 0.55rem 1rem;
-  border-radius: 999px;
+  border-radius: 4px;
   border: 1px solid var(--course-border);
   background: var(--course-surface-elevated);
   font-family: var(--font-sans), system-ui, sans-serif;
@@ -2554,7 +2531,7 @@ html[data-ec-theme='late-night'] .course-studio {
 .course-worked-reveal-btn:active:not(:disabled),
 .course-worked-reveal-btn.mn-tapped {
   transform: scale(0.97);
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 .course-worked-reveal-btn[aria-busy='true'] {
@@ -2573,7 +2550,7 @@ html[data-ec-theme='late-night'] .course-studio {
 .course-key-takeaways {
   margin-top: var(--course-space-10, 2.5rem);
   padding: var(--course-space-6, 1.5rem);
-  border-radius: var(--course-radius-xl, 1.5rem);
+  border-radius: var(--course-radius-xl, 4px);
   border: 2px solid color-mix(in srgb, var(--course-subject-accent, var(--course-accent)) 35%, var(--course-border));
   background: color-mix(in srgb, var(--course-subject-accent-soft, white) 35%, var(--course-surface-card));
   max-width: var(--course-measure-wide, 52rem);
@@ -2613,7 +2590,7 @@ html[data-ec-theme='late-night'] .course-studio {
   display: flex;
   gap: 0.5rem;
   padding: var(--course-space-3, 0.75rem) var(--course-space-4, 1rem);
-  border-radius: var(--course-radius-md, 0.85rem);
+  border-radius: var(--course-radius-md, 4px);
   background: var(--course-surface-elevated, #fff);
   border: 1px solid var(--course-read-border, var(--course-border));
   font-family: var(--font-reading), Georgia, serif;
@@ -2631,7 +2608,7 @@ html[data-ec-theme='late-night'] .course-studio {
 /* Sticky TOC */
 .course-lesson-toc {
   padding: var(--course-space-4, 1rem);
-  border-radius: var(--course-radius-lg, 1.15rem);
+  border-radius: var(--course-radius-lg, 4px);
   border: 1px solid var(--course-border);
   background: var(--course-surface-card, var(--ec-surface-muted));
 }
@@ -2661,7 +2638,7 @@ html[data-ec-theme='late-night'] .course-studio {
 .course-lesson-toc-link {
   display: block;
   padding: 0.35rem 0.5rem;
-  border-radius: var(--course-radius-sm, 0.5rem);
+  border-radius: var(--course-radius-sm, 4px);
   font-family: var(--font-sans), system-ui, sans-serif;
   font-size: var(--course-text-sm, 0.875rem);
   line-height: 1.4;
@@ -2685,7 +2662,7 @@ html[data-ec-theme='late-night'] .course-studio {
   margin: 0;
   padding: var(--course-space-4, 1rem);
   border-left: 3px solid var(--course-subject-accent, var(--course-accent));
-  border-radius: 0 var(--course-radius-md, 0.85rem) var(--course-radius-md, 0.85rem) 0;
+  border-radius: 0 var(--course-radius-md, 4px) var(--course-radius-md, 4px) 0;
   background: var(--course-surface-elevated);
   font-style: italic;
 }
@@ -2835,10 +2812,10 @@ html[data-ec-theme='late-night'] .course-studio {
   justify-content: center;
   width: 48px;
   height: 48px;
-  border-radius: 50%;
+  border-radius: 4px;
   border: 1px solid color-mix(in srgb, var(--course-subject-accent, var(--ec-brand)) 40%, var(--course-border));
   background: var(--course-surface-elevated, var(--ec-surface-raised));
-  box-shadow: 0 6px 24px color-mix(in srgb, black 14%, transparent);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
   color: var(--course-subject-accent, var(--ec-brand));
   cursor: pointer;
   transition:
@@ -2855,7 +2832,7 @@ html[data-ec-theme='late-night'] .course-studio {
   transform: scale(1.05);
   background: color-mix(in srgb, var(--course-subject-accent, var(--ec-brand)) 10%, var(--course-surface-elevated));
   outline: none;
-  box-shadow: 0 8px 28px color-mix(in srgb, var(--course-subject-accent, var(--ec-brand)) 20%, transparent);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 html[data-course-focus='true'] .ec-nav-wrap,
@@ -3028,7 +3005,7 @@ html[data-course-focus='true'] .course-studio-grid {
   display: inline-flex;
   align-items: center;
   padding: 0.3rem 0.75rem;
-  border-radius: 999px;
+  border-radius: 4px;
   border: 1px solid color-mix(in srgb, var(--course-subject-accent, var(--ec-brand)) 45%, transparent);
   background: color-mix(in srgb, var(--course-subject-accent, var(--ec-brand)) 12%, var(--course-surface-card));
   font-family: var(--font-mono, ui-monospace, monospace);
@@ -3083,7 +3060,7 @@ html[data-course-focus='true'] .course-studio-grid {
 
 .course-comparison-table-wrap {
   overflow-x: auto;
-  border-radius: 1rem;
+  border-radius: 4px;
   border: 1px solid var(--course-border);
 }
 
@@ -3150,7 +3127,7 @@ html[data-course-focus='true'] .course-studio-grid {
 
   .course-comparison-card {
     padding: 1rem;
-    border-radius: 1rem;
+    border-radius: 4px;
     border: 1px solid var(--course-border);
     background: var(--course-surface-elevated);
   }
@@ -3243,7 +3220,7 @@ html[data-course-focus='true'] .course-studio-grid {
   }
 
   .course-formula-meaning {
-    border-radius: 1rem;
+    border-radius: 4px;
     max-width: 100%;
   }
 
@@ -3281,7 +3258,7 @@ html[data-course-focus='true'] .course-studio-grid {
 /* ── Simple explanation (ELI5 intro) ── */
 
 .lesson-simple-explanation {
-  border-radius: 1.35rem;
+  border-radius: 4px;
   border: 1px solid color-mix(in srgb, var(--course-subject-accent, var(--ec-brand)) 22%, var(--ec-border-subtle));
   background: color-mix(in srgb, var(--course-subject-accent, var(--ec-brand)) 5%, var(--ec-surface-muted));
   padding: 1.35rem 1.5rem;
@@ -3325,7 +3302,7 @@ html[data-course-focus='true'] .course-studio-grid {
 .lesson-simple-explanation-analogy {
   margin-top: 1.25rem;
   padding: 1rem 1.15rem;
-  border-radius: 1rem;
+  border-radius: 4px;
   border-left: 3px solid var(--course-subject-accent, var(--ec-brand));
   background: color-mix(in srgb, var(--course-subject-accent, var(--ec-brand)) 8%, var(--ec-surface-raised));
 }
@@ -3465,10 +3442,10 @@ html[data-course-focus='true'] .course-studio-grid {
 .course-interactive-embed {
   margin: 0;
   border: 1px solid color-mix(in srgb, var(--ec-brand) 22%, var(--ec-border));
-  border-radius: 1rem;
+  border-radius: 4px;
   background: var(--ec-surface);
   overflow: hidden;
-  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.08));
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 .course-interactive-embed-head {
@@ -3509,7 +3486,7 @@ html[data-course-focus='true'] .course-studio-grid {
   align-items: center;
   gap: 0.35rem;
   padding: 0.4rem 0.65rem;
-  border-radius: 0.55rem;
+  border-radius: 4px;
   border: 1px solid var(--ec-border);
   background: var(--ec-surface-raised);
   font-size: 0.75rem;
@@ -3636,14 +3613,14 @@ html[data-course-focus='true'] .course-studio-grid {
   border-radius: 0;
   border: 0;
   background: rgba(8, 8, 8, 0.96);
-  backdrop-filter: blur(6px);
+  backdrop-filter: none;
 }
 
 .course-interactive-embed--fullscreen .course-interactive-embed-stage {
   flex: 1;
   min-height: 0;
   margin: 0.5rem;
-  border-radius: 0.5rem;
+  border-radius: 4px;
   overflow: hidden;
 }
 
@@ -3678,7 +3655,7 @@ html[data-course-focus='true'] .course-studio-grid {
 .course-dual-visual-bridge {
   margin: 0 0 0.85rem;
   padding: 0.65rem 0.9rem;
-  border-radius: 0.75rem;
+  border-radius: 4px;
   border: 1px dashed color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border-subtle));
   background: color-mix(in srgb, var(--ec-brand) 5%, var(--ec-surface-muted));
   font-size: 0.8125rem;
@@ -3706,7 +3683,7 @@ html[data-course-focus='true'] .course-studio-grid {
 }
 
 .course-step-counter-pill {
-  border-radius: 999px;
+  border-radius: 4px;
   border: 2px solid var(--ec-border-subtle);
   background: var(--ec-surface-muted);
   padding: 0.25rem 0.75rem;
@@ -3747,7 +3724,7 @@ html[data-course-focus='true'] .course-studio-grid {
 }
 
 .course-hero-native-diagram {
-  border-radius: 1rem;
+  border-radius: 4px;
   border: 1px solid color-mix(in srgb, var(--course-accent) 35%, var(--course-border));
   background: color-mix(in srgb, var(--course-accent) 5%, var(--course-surface-deep));
   padding: 0.75rem;
@@ -3766,7 +3743,7 @@ html[data-course-focus='true'] .course-studio-grid {
 
 .course-step-sync-callout {
   padding: 0.85rem 1rem;
-  border-radius: 0.85rem;
+  border-radius: 4px;
   border: 1px solid color-mix(in srgb, var(--ec-brand) 28%, var(--ec-border-subtle));
   background: color-mix(in srgb, var(--ec-brand) 6%, var(--ec-surface-raised));
   font-size: 0.875rem;
@@ -3777,7 +3754,7 @@ html[data-course-focus='true'] .course-studio-grid {
 .course-step-stage-step-badge {
   margin-left: 0.5rem;
   padding: 0.15rem 0.45rem;
-  border-radius: 999px;
+  border-radius: 4px;
   font-size: 0.65rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -3791,7 +3768,7 @@ html[data-course-focus='true'] .course-studio-grid {
   gap: 0.75rem;
   margin-top: 0.85rem;
   padding: 0.85rem 1rem;
-  border-radius: 0.85rem;
+  border-radius: 4px;
   border: 1px solid var(--ec-border-subtle);
   background: var(--ec-surface-muted);
 }
@@ -3831,7 +3808,7 @@ html[data-course-focus='true'] .course-studio-grid {
 
 .course-revision-tools {
   border: 1px solid var(--ec-border);
-  border-radius: 1rem;
+  border-radius: 4px;
   background: var(--ec-surface);
   overflow: hidden;
 }

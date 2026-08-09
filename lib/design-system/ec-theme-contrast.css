@@ -9,7 +9,8 @@
   --muted: color-mix(in oklch, var(--text) 58%, var(--bg));
   --ec-text-secondary: color-mix(in oklch, var(--ec-text-primary) 72%, var(--ec-canvas));
   --ec-text-tertiary: color-mix(in oklch, var(--ec-text-primary) 68%, var(--ec-canvas));
-  --ec-text-faint: color-mix(in oklch, var(--ec-text-primary) 58%, var(--ec-canvas));
+  /* Keep faint ≥ AA for 10–12px metadata (DS-02). */
+  --ec-text-faint: color-mix(in oklch, var(--ec-text-primary) 70%, var(--ec-canvas));
 }
 
 [data-ec-theme='late-night'] {
@@ -17,7 +18,7 @@
   --muted: color-mix(in oklch, var(--text) 62%, var(--bg));
   --ec-text-secondary: color-mix(in oklch, var(--ec-text-primary) 78%, var(--ec-canvas));
   --ec-text-tertiary: color-mix(in oklch, var(--ec-text-primary) 72%, var(--ec-canvas));
-  --ec-text-faint: color-mix(in oklch, var(--ec-text-primary) 62%, var(--ec-canvas));
+  --ec-text-faint: color-mix(in oklch, var(--ec-text-primary) 72%, var(--ec-canvas));
 }
 
 @media (prefers-contrast: more) {

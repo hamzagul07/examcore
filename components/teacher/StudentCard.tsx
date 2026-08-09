@@ -33,7 +33,7 @@ export function StudentCard({
   return (
     <Link
       href={`/teacher/classroom/${classroomId}/students/${id}`}
-      className="ec-card ec-card-interactive block min-h-[72px] p-5"
+      className="ec-card ec-card--paper ec-card-interactive block min-h-[72px] p-5"
     >
       <div className="flex items-start justify-between gap-3">
         <div>

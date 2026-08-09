@@ -89,8 +89,16 @@ export function PostCard({
 
         {post.attachments.length ? (
           <div className="rc-attach-row">
-            {imageCount > 0 ? <span className="rc-attach-chip">🖼 {imageCount} image{imageCount > 1 ? 's' : ''}</span> : null}
-            {fileCount > 0 ? <span className="rc-attach-chip">📎 {fileCount} file{fileCount > 1 ? 's' : ''}</span> : null}
+            {imageCount > 0 ? (
+              <span className="rc-attach-chip">
+                IMG · {imageCount} image{imageCount > 1 ? 's' : ''}
+              </span>
+            ) : null}
+            {fileCount > 0 ? (
+              <span className="rc-attach-chip">
+                FILE · {fileCount} file{fileCount > 1 ? 's' : ''}
+              </span>
+            ) : null}
           </div>
         ) : null}
 

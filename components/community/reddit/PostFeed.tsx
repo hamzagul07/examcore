@@ -7,17 +7,17 @@ import { PostCard } from './PostCard'
  * These are not posts; they give a signed-in student a low-friction way to
  * start the first genuine thread in a quiet room. */
 type StarterPrompt = {
-  emoji: string
+  glyph: string
   label: string
   kind: 'discussion' | 'question' | 'resource'
   title: string
 }
 
 const STARTER_PROMPTS: StarterPrompt[] = [
-  { emoji: '❓', label: 'Ask a doubt', kind: 'question', title: "I'm stuck on… " },
-  { emoji: '📚', label: 'Share a tip or resource', kind: 'resource', title: 'Something that helped me: ' },
-  { emoji: '✍️', label: 'Get an answer checked', kind: 'discussion', title: 'Does my answer look right? ' },
-  { emoji: '💬', label: 'Start a discussion', kind: 'discussion', title: 'What are you revising this week?' },
+  { glyph: '?', label: 'Ask a doubt', kind: 'question', title: "I'm stuck on… " },
+  { glyph: '¶', label: 'Share a tip or resource', kind: 'resource', title: 'Something that helped me: ' },
+  { glyph: '✎', label: 'Get an answer checked', kind: 'discussion', title: 'Does my answer look right? ' },
+  { glyph: '#', label: 'Start a discussion', kind: 'discussion', title: 'What are you revising this week?' },
 ]
 
 function submitHref(p: StarterPrompt, subject?: string, board?: string) {
@@ -47,7 +47,7 @@ export function PostFeed({
     return (
       <div className="rc-empty">
         <div className="rc-empty-glyph" aria-hidden>
-          💬
+          #
         </div>
         <p>{emptyLabel}</p>
         <p className="rc-empty-sub">
@@ -62,8 +62,8 @@ export function PostFeed({
               loadingText="Opening…"
               className="rc-starter-card"
             >
-              <span className="rc-starter-emoji" aria-hidden>
-                {p.emoji}
+              <span className="rc-starter-stamp" aria-hidden>
+                {p.glyph}
               </span>
               <span className="rc-starter-label">{p.label}</span>
             </LoadingLink>

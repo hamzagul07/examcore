@@ -299,7 +299,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
       />
     </div>
   ) : (
-    <div className="ec-card p-6 sm:p-7">
+    <div className="ec-card ec-card--paper p-6 sm:p-7">
       <p className="text-body text-[var(--ec-text-secondary)]">
         {isIbSubject ? (
           <>

@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { CalendarClock } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { ErrorBox, SuccessBox } from '@/components/AuthFormBits'
 import { suggestedExamDates } from '@/lib/dashboard/exam-date'
@@ -14,6 +13,7 @@ import {
   SettingsFieldGroup,
   SettingsSectionCard,
 } from '@/components/settings/SettingsSectionCard'
+import { SegmentedControl } from '@/components/ui/SegmentedControl'
 
 type Props = {
   initialProfile: {
@@ -220,43 +220,33 @@ function StageGoalCard({
     >
       <form onSubmit={handleSave} className="space-y-6">
         <SettingsFieldGroup label="Study stage">
-          <div className="flex flex-wrap gap-2">
-            {STAGE_OPTIONS.map((s) => {
-              const active = stage === s.id
-              return (
-                <button
-                  key={s.id}
-                  type="button"
-                  disabled={loading}
-                  onClick={() => setStage(active ? null : s.id)}
-                  aria-pressed={active}
-                  className={`ec-pill ${active ? 'border-[color-mix(in_srgb,var(--ec-brand)_50%,transparent)] bg-[var(--ec-brand-muted)] text-[var(--ec-brand)]' : ''}`}
-                >
-                  {ib ? s.ibLabel : s.label}
-                </button>
-              )
-            })}
-          </div>
+          <SegmentedControl
+            className="flex flex-wrap gap-2"
+            optionClassName="ec-pill"
+            aria-label="Study stage"
+            value={stage}
+            disabled={loading}
+            onChange={(id) => setStage(stage === id ? null : id)}
+            options={STAGE_OPTIONS.map((s) => ({
+              value: s.id,
+              label: ib ? s.ibLabel : s.label,
+            }))}
+          />
         </SettingsFieldGroup>
 
         <SettingsFieldGroup label="Primary goal">
-          <div className="flex flex-wrap gap-2">
-            {GOAL_OPTIONS.map((g) => {
-              const active = goal === g.id
-              return (
-                <button
-                  key={g.id}
-                  type="button"
-                  disabled={loading}
-                  onClick={() => setGoal(active ? null : g.id)}
-                  aria-pressed={active}
-                  className={`ec-pill ${active ? 'border-[color-mix(in_srgb,var(--ec-brand)_50%,transparent)] bg-[var(--ec-brand-muted)] text-[var(--ec-brand)]' : ''}`}
-                >
-                  {g.label}
-                </button>
-              )
-            })}
-          </div>
+          <SegmentedControl
+            className="flex flex-wrap gap-2"
+            optionClassName="ec-pill"
+            aria-label="Primary goal"
+            value={goal}
+            disabled={loading}
+            onChange={(id) => setGoal(goal === id ? null : id)}
+            options={GOAL_OPTIONS.map((g) => ({
+              value: g.id,
+              label: g.label,
+            }))}
+          />
         </SettingsFieldGroup>
 
         {errorMsg && <ErrorBox message={errorMsg} />}
@@ -310,22 +300,19 @@ function TargetGradeCard({
       description="The grade you're aiming for. Powers your on-track trajectory on the progress dashboard."
     >
       <SettingsFieldGroup label="Target grade">
-        <select
-          value={targetGrade}
+        <SegmentedControl
+          className="ms-ob-stamp-pick flex flex-wrap gap-2"
+          optionClassName="ms-ob-stamp-pick__btn"
+          aria-label="Target grade"
+          value={targetGrade || null}
           disabled={loading}
-          onChange={(e) => {
-            setTargetGrade(e.target.value)
-            void save(e.target.value)
+          onChange={(g) => {
+            const next = targetGrade === g ? '' : g
+            setTargetGrade(next)
+            void save(next)
           }}
-          className="ec-input"
-        >
-          <option value="">No target set</option>
-          {options.map((g) => (
-            <option key={g} value={g}>
-              {g}
-            </option>
-          ))}
-        </select>
+          options={options.map((g) => ({ value: g, label: g }))}
+        />
         {errorMsg && <ErrorBox message={errorMsg} />}
         {successMsg && <SuccessBox message={successMsg} />}
       </SettingsFieldGroup>
@@ -387,7 +374,7 @@ function ExamDateCard({
           ))}
         </div>
 
-        <SettingsFieldGroup label="Specific date">
+        <SettingsFieldGroup label="Specific date" htmlFor="examDate">
           <input
             id="examDate"
             type="date"
@@ -399,14 +386,14 @@ function ExamDateCard({
 
         {days !== null && (
           <p
-            className="inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-sm font-semibold"
+            className="inline-flex items-center gap-2 rounded border px-3.5 py-1.5 font-mono text-xs font-semibold tracking-wide"
             style={{
               borderColor: 'color-mix(in srgb, var(--ec-brand) 35%, transparent)',
               background: 'var(--ec-brand-muted)',
               color: 'var(--ec-brand)',
             }}
           >
-            <CalendarClock className="h-4 w-4" aria-hidden />
+            <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>T</span>
             {days > 1
               ? `${days} days to go`
               : days === 1

@@ -26,17 +26,17 @@
     opacity: 0.82;
   }
 
+  /* Green period = awarded ink; logo tick stays crimson (--ec-logo-crimson) */
   .ec-wordmark-dot {
     font-style: normal;
     color: var(--ec-brand);
-    transition: text-shadow 200ms ease;
+    transition: color 150ms ease;
   }
 
   .ec-wordmark:hover .ec-wordmark-dot {
-    text-shadow: 0 0 14px color-mix(in srgb, var(--ec-brand) 55%, transparent);
   }
 
-  /* ---- sticky nav shell (modern glass) ---- */
+  /* ---- sticky nav shell (hard paper island) ---- */
   /* Floating-island header: the wrap is just the sticky layer + the gap that
      lets the page show around the detached island (.ec-nav). All surface
      styling lives on .ec-nav. */
@@ -79,11 +79,8 @@
   /* On scroll the island tightens + lifts a little higher off the page. */
   .ec-nav-wrap--scrolled .ec-nav {
     padding-block: 7px;
-    background: color-mix(in srgb, var(--ec-surface) 94%, transparent);
-    box-shadow:
-      inset 0 1px 0 color-mix(in srgb, #ffffff 42%, transparent),
-      0 18px 42px -18px rgba(18, 22, 30, 0.36),
-      0 6px 16px -10px rgba(18, 22, 30, 0.20);
+    background: var(--ec-paper, var(--ec-surface));
+    box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.12));
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -114,10 +111,11 @@
     a.ec-btn-ghost,
     .ec-nav-burger
   ) {
-    background: color-mix(in srgb, var(--ec-surface) 50%, transparent);
-    backdrop-filter: blur(14px) saturate(1.35);
-    -webkit-backdrop-filter: blur(14px) saturate(1.35);
-    border-color: color-mix(in srgb, var(--ec-border) 40%, transparent);
+    background: var(--ec-paper, var(--ec-surface));
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-color: var(--ec-border);
+    box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.06));
   }
 
   /* Nav CTAs stay vivid — frost must not wash out primary/warm pills */
@@ -187,12 +185,12 @@
     height: 34px;
     display: grid;
     place-items: center;
-    border-radius: 999px;
+    border-radius: 4px;
     padding: 0;
   }
 
   .ec-nav-right--frost .ec-nav-signin {
-    border-radius: 999px;
+    border-radius: 4px;
     padding: 8px 14px;
     border: 1px solid color-mix(in srgb, var(--ec-border) 40%, transparent);
   }
@@ -208,7 +206,7 @@
   }
 
   .ec-nav-wrap--tone-mark {
-    --ec-nav-accent: var(--ec-c-teal);
+    --ec-nav-accent: var(--ec-acc-teal, var(--ec-c-bio));
   }
 
   /* Layout: community — tighter single-row chrome */
@@ -399,7 +397,9 @@
 
     .ec-nav-context-glyph {
       flex-shrink: 0;
-      font-size: 13px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
     }
 
     .ec-nav-brand {
@@ -459,20 +459,12 @@
     max-width: var(--ec-maxw, 1200px);
     margin: 0 auto;
     padding: 9px 16px;
-    border-radius: 20px;
-    background: color-mix(in srgb, var(--ec-surface) 85%, transparent);
-    backdrop-filter: blur(22px) saturate(1.6);
-    -webkit-backdrop-filter: blur(22px) saturate(1.6);
-    /* Per-section identity: the island border + lift glow pick up the section
-       accent, so each page family reads differently while the tabs stay put. */
-    border: 1px solid color-mix(in srgb, var(--ec-nav-accent, var(--ec-brand)) 24%, var(--ec-border));
-    box-shadow:
-      inset 0 1px 0 color-mix(in srgb, #ffffff 45%, transparent),
-      /* very subtle accent glow hugging the border */
-      0 0 10px -1px color-mix(in srgb, var(--ec-nav-accent, var(--ec-brand)) 18%, transparent),
-      0 14px 34px -18px color-mix(in srgb, var(--ec-nav-accent, var(--ec-brand)) 24%, rgba(18, 22, 30, 0.30)),
-      0 4px 12px -8px rgba(18, 22, 30, 0.16);
-    transition: box-shadow 240ms ease, background 240ms ease, border-color 240ms ease;
+    border-radius: 4px;
+    background: var(--ec-paper, var(--ec-surface));
+    /* Per-section identity: border picks up section accent; hard paper lift. */
+    border: 1px solid color-mix(in srgb, var(--ec-nav-accent, var(--ec-brand)) 28%, var(--ec-border));
+    box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.08));
+    transition: box-shadow 200ms ease, background 200ms ease, border-color 200ms ease;
   }
 
   .ec-wordmark-link:active .ec-wordmark,
@@ -487,10 +479,10 @@
   @keyframes ec-wordmark-pulse {
     0%,
     100% {
-      text-shadow: 0 0 8px color-mix(in srgb, var(--ec-brand) 35%, transparent);
+      opacity: 1;
     }
     50% {
-      text-shadow: 0 0 18px color-mix(in srgb, var(--ec-brand) 75%, transparent);
+      opacity: 0.55;
     }
   }
 
@@ -507,7 +499,7 @@
     align-items: center;
     gap: 6px;
     padding: 5px 11px;
-    border-radius: 999px;
+    border-radius: 4px;
     font-family: var(--font-mono);
     font-size: 10.5px;
     font-weight: 700;
@@ -522,8 +514,11 @@
   }
 
   .ec-nav-context-glyph {
-    font-size: 13px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
     line-height: 1;
+    color: var(--ec-nav-accent, var(--ec-brand));
   }
 
   .ec-nav-context-label {
@@ -558,7 +553,7 @@
     border: none;
     cursor: pointer;
     padding: 8px 14px;
-    border-radius: 999px;
+    border-radius: 4px;
     transition:
       color 160ms ease,
       background 160ms ease,
@@ -617,7 +612,7 @@
     place-items: center;
     width: 36px;
     height: 36px;
-    border-radius: 999px;
+    border-radius: 4px;
     border: 1px solid var(--ec-border);
     background: none;
     color: var(--ec-text-secondary);
@@ -637,7 +632,7 @@
     gap: 8px;
     border: 1px solid var(--ec-border);
     background: var(--ec-surface);
-    border-radius: 999px;
+    border-radius: 4px;
     padding: 8px 14px;
     cursor: pointer;
     color: var(--ec-text-faint);
@@ -667,7 +662,7 @@
     width: 44px;
     height: 44px;
     border: 1px solid var(--ec-border);
-    border-radius: 10px;
+    border-radius: 4px;
     background: none;
     color: var(--ec-text-primary);
     font-size: 17px;
@@ -715,9 +710,9 @@
     margin: 0;
     padding: 0;
     cursor: pointer;
-    background: color-mix(in srgb, var(--ec-ink, #1a1a18) 42%, transparent);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    background: color-mix(in srgb, var(--ec-ink, #1a1a18) 55%, transparent);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     animation: ec-nav-backdrop-in 180ms ease;
   }
 
@@ -742,7 +737,7 @@
     -webkit-overflow-scrolling: touch;
     background: var(--ec-canvas);
     border-top: 1px solid var(--ec-border);
-    box-shadow: 0 -12px 40px color-mix(in srgb, var(--ec-ink, #000) 12%, transparent);
+    box-shadow: var(--ec-shadow-hard, 0 -4px 0 rgba(0, 0, 0, 0.12));
     animation: ec-nav-sheet-in 220ms cubic-bezier(0.22, 1, 0.36, 1);
     display: flex;
     flex-direction: column;
@@ -758,9 +753,10 @@
     position: sticky;
     top: 0;
     z-index: 2;
-    background: color-mix(in srgb, var(--ec-canvas) 94%, transparent);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: var(--ec-canvas);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: var(--ec-shadow-hard, 0 2px 0 rgba(0, 0, 0, 0.06));
   }
 
   .ec-nav-mobile-sheet-title {
@@ -777,7 +773,7 @@
     width: var(--ec-touch-min, 44px);
     height: var(--ec-touch-min, 44px);
     border: 1px solid var(--ec-border);
-    border-radius: 10px;
+    border-radius: 4px;
     background: var(--ec-surface);
     color: var(--ec-text-primary);
     font-size: 18px;
@@ -849,7 +845,7 @@
     justify-content: center;
     min-height: var(--ec-touch-min, 44px);
     margin-bottom: 4px;
-    border-radius: 12px;
+    border-radius: 4px;
     border-bottom: none !important;
     text-align: center;
   }
@@ -933,12 +929,16 @@
     place-items: center;
     width: 36px;
     height: 36px;
-    border-radius: 50%;
+    border-radius: 4px;
     border: 1.5px solid var(--ec-brand-border);
     background: var(--ec-brand-muted);
     color: var(--ec-brand);
-    font-family: var(--ec-font-handwriting);
-    font-size: 19px;
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.06));
+    transform: rotate(-3deg);
     cursor: pointer;
     text-decoration: none;
   }
@@ -1010,7 +1010,7 @@
     color: var(--ec-text-primary);
     padding: 13px 26px;
     min-height: var(--ec-touch-min, 44px);
-    border-radius: var(--ec-radius-pill, 999px);
+    border-radius: var(--ec-radius-pill, 4px);
     font-weight: 500;
     font-size: 16px;
     line-height: 1.2;
@@ -1054,9 +1054,10 @@
     font-family: var(--font-mono);
     font-size: 12px;
     font-weight: 600;
-    padding: 4px 12px;
-    border-radius: 999px;
+    padding: 4px 10px;
+    border-radius: 4px;
     line-height: 1.2;
+    box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
   }
 
   .ec-chip-ms--ok {
@@ -1140,11 +1141,12 @@
     font-size: 12.5px;
     font-weight: 700;
     padding: 2px 9px;
-    border-radius: 999px;
+    border-radius: 4px;
     transform: rotate(-3deg);
     white-space: nowrap;
     flex-shrink: 0;
-    animation: ec-stamp-in 260ms cubic-bezier(0.34, 1.4, 0.64, 1) both;
+    /* Longer settle so the landing hero stamps can breathe */
+    animation: ec-stamp-in 520ms cubic-bezier(0.34, 1.4, 0.64, 1) both;
   }
 
   .ec-mark-stamp--ok {
@@ -1205,9 +1207,15 @@
 
   @keyframes ec-stamp-in {
     from {
-      transform: scale(1.12) rotate(-7deg);
+      opacity: 0;
+      transform: scale(1.35) rotate(-12deg);
+    }
+    55% {
+      opacity: 1;
+      transform: scale(0.96) rotate(-2deg);
     }
     to {
+      opacity: 1;
       transform: scale(1) rotate(-3deg);
     }
   }
@@ -1243,6 +1251,26 @@
     pointer-events: none;
   }
 
+  /* Stroke draw — circle / scribble reveal on first paint */
+  .ec-ink-draw {
+    stroke-dasharray: 280;
+    stroke-dashoffset: 280;
+    animation: ec-ink-draw 1.1s cubic-bezier(0.4, 0, 0.2, 1) 0.25s forwards;
+  }
+
+  .ec-ink-draw--scribble {
+    stroke-dasharray: 160;
+    stroke-dashoffset: 160;
+    animation-duration: 0.85s;
+    animation-delay: 0.55s;
+  }
+
+  @keyframes ec-ink-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
   .ec-margin-note {
     position: absolute;
     font-family: var(--ec-font-handwriting);
@@ -1264,6 +1292,12 @@
   @media (prefers-reduced-motion: reduce) {
     .ec-mark-stamp {
       animation: none;
+    }
+
+    .ec-ink-draw,
+    .ec-ink-draw--scribble {
+      animation: none;
+      stroke-dashoffset: 0;
     }
   }
 
@@ -1395,11 +1429,9 @@
       right: 0;
       bottom: 0;
       z-index: 70;
-      background: color-mix(in srgb, var(--ec-canvas) 90%, transparent);
-      backdrop-filter: blur(16px) saturate(1.4);
-      -webkit-backdrop-filter: blur(16px) saturate(1.4);
-      border-top: 1px solid color-mix(in srgb, var(--ec-border) 70%, transparent);
-      box-shadow: 0 -6px 24px -18px rgba(0, 0, 0, 0.5);
+      background: var(--ec-paper, var(--ec-canvas));
+      border-top: 1px solid var(--ec-border);
+      box-shadow: var(--ec-shadow-hard, 0 -3px 0 rgba(0, 0, 0, 0.08));
       padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px));
     }
 
@@ -1419,26 +1451,29 @@
       text-decoration: none;
     }
 
-    /* Pill that highlights behind the active icon (Material-3 style) */
+    /* Ink stamp behind the active tab — hard paper, not Material pill */
     .ec-tabbar__glyph {
       display: grid;
       place-items: center;
-      width: 46px;
-      height: 26px;
-      border-radius: 999px;
+      min-width: 36px;
+      height: 24px;
+      padding: 0 6px;
+      border-radius: 4px;
+      border: 1px solid transparent;
       color: var(--ec-text-secondary);
-      transition: background 160ms ease, color 160ms ease;
+      transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
     }
 
-    .ec-tabbar__glyph svg {
-      width: 21px;
-      height: 21px;
+    .ec-tabbar__svg {
+      width: 18px;
+      height: 18px;
+      display: block;
     }
 
     .ec-tabbar__label {
       font-family: var(--font-mono);
-      font-size: 9.5px;
-      letter-spacing: 0.07em;
+      font-size: 11px;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       transition: color 160ms ease;
     }
@@ -1453,6 +1488,27 @@
     .ec-tabbar .ec-tabbar-link[aria-current='page'] .ec-tabbar__glyph,
     .ec-tabbar button[aria-current='page'] .ec-tabbar__glyph {
       background: var(--ec-brand-muted);
+      border-color: var(--ec-brand-border, var(--ec-brand));
+      color: var(--ec-brand);
+      box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.06));
+    }
+
+    /* NAV-01 — Mark is the emphasised centre action, not one of six equals */
+    .ec-tabbar-link--mark .ec-tabbar__glyph--mark {
+      min-width: 40px;
+      height: 28px;
+      border-color: color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border));
+      background: color-mix(in srgb, var(--ec-brand) 8%, var(--ec-paper, var(--ec-surface)));
+      color: var(--ec-brand);
+    }
+
+    .ec-tabbar-link--mark .ec-tabbar__svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .ec-tabbar-link--mark .ec-tabbar__label {
+      font-weight: 800;
       color: var(--ec-brand);
     }
   }

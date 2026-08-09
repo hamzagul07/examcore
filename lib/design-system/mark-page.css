@@ -3,16 +3,13 @@
 .ms-mark-shell {
   padding-top: 40px;
   padding-bottom: 64px;
-  background-image:
-    radial-gradient(820px circle at 50% -180px, var(--ec-brand-muted) 0%, transparent 58%),
-    radial-gradient(520px circle at 12% 24%, color-mix(in srgb, var(--ec-accent-warm) 10%, transparent) 0%, transparent 55%),
-    radial-gradient(480px circle at 88% 32%, color-mix(in srgb, var(--ec-acc-violet) 8%, transparent) 0%, transparent 52%);
-  background-repeat: no-repeat;
+  /* Paper stage only — no soft SaaS radials competing with the tally slip. */
+  background: var(--ec-bg, var(--bg));
 }
 
 .ms-mark-hero {
-  text-align: center;
-  margin-bottom: 8px;
+  text-align: left;
+  margin-bottom: 14px;
 }
 
 .ms-mark-hero-eyebrow {
@@ -31,15 +28,291 @@
 }
 
 .ms-mark-hero-lead {
-  margin: 0 auto;
-  max-width: 36rem;
+  margin: 0;
+  max-width: 38rem;
   font-size: 15px;
   line-height: 1.6;
   color: var(--ec-text-secondary);
 }
 
+.ms-mark-hero-note {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--ec-font-handwriting, var(--font-handwritten, 'Caveat', cursive));
+  font-size: 19px;
+  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  transform: rotate(-1deg);
+}
+
+/* Marking-in-progress — examiner’s working slip (ScoreReveal cousin) */
+.ms-mark-wait {
+  position: relative;
+  overflow: hidden;
+  padding: 22px 20px 20px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.1));
+}
+
+.ms-mark-wait::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ec-brand) 0%,
+    var(--ec-brand) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 55%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 100%
+  );
+}
+
+.ms-mark-wait--stopped {
+  border-left: 4px solid var(--ec-logo-crimson, var(--ec-ink-crimson));
+  background: color-mix(
+    in srgb,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 5%,
+    var(--ec-paper, var(--ec-surface))
+  );
+}
+
+.ms-mark-wait__cap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.ms-mark-wait__label {
+  margin: 0;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.ms-mark-wait__headline {
+  margin: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--ec-text-primary);
+}
+
+.ms-mark-wait__note {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--ec-font-handwriting, var(--font-handwritten, 'Caveat', cursive));
+  font-size: 18px;
+  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  transform: rotate(-1deg);
+}
+
+.ms-mark-wait__eta {
+  margin: 10px 0 0;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ec-text-secondary);
+}
+
+/* Feedback fairness slip */
+.ms-mark-feedback {
+  padding: 16px 16px 16px 14px;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.08));
+}
+
+.ms-mark-feedback__title {
+  margin: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ec-text-primary);
+}
+
+.ms-mark-feedback__lead {
+  margin: 4px 0 0;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--ec-text-secondary);
+}
+
+.ms-mark-feedback__rate-btn {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 6px;
+  border-radius: 4px;
+  border: 1px solid var(--ec-border);
+  background: var(--ec-paper, var(--ec-surface));
+  padding: 0 16px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ec-text-secondary);
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.ms-mark-feedback__rate-btn.on {
+  border-color: var(--ec-brand);
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.08));
+}
+
+/* Second option = “Not fair” */
+.ms-mark-feedback__rate .ms-mark-feedback__rate-btn:nth-child(2).on {
+  border-color: var(--ec-ink-crimson, #a23e3e);
+  background: var(--ec-chip-critical-bg);
+  color: var(--ec-ink-crimson, #a23e3e);
+}
+
+.ms-mark-feedback__reason {
+  min-height: 36px;
+  border-radius: 4px;
+  border: 1px solid var(--ec-border);
+  background: transparent;
+  padding: 0 12px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ec-text-secondary);
+  cursor: pointer;
+}
+
+.ms-mark-feedback__reason.on,
+.ms-mark-feedback__reason[aria-checked='true'] {
+  border-color: var(--ec-brand);
+  background: color-mix(in srgb, var(--ec-brand) 10%, transparent);
+  color: var(--ec-brand);
+}
+
 .ms-mark-form-shell {
   margin-top: 4px;
+}
+
+/* MK-01: phone first viewport = capture, then board/mode, then chrome */
+@media (max-width: 640px) {
+  .ms-mark-hero {
+    margin-bottom: 8px;
+  }
+
+  .ms-mark-hero-title {
+    font-size: 1.35rem;
+    margin-bottom: 0;
+  }
+
+  .ms-mark-hero-lead,
+  .ms-mark-hero-note {
+    display: none;
+  }
+
+  .ms-mark-steps-bar--idle {
+    display: none;
+  }
+
+  /* One-answer flow only — whole paper still needs paper identity first. */
+  .ms-mark-form-shell--capture-first {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ms-mark-form-shell--capture-first .ms-mark-capture-block {
+    order: 1;
+  }
+
+  .ms-mark-form-shell--capture-first .ms-mark-setup-panel {
+    order: 2;
+  }
+
+  .ms-mark-form-shell--capture-first > [role='alert'] {
+    order: 3;
+  }
+}
+
+/* Example invite / banner — filing slips, not soft ec-cards */
+.ms-mark-example-slip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 18px;
+  padding: 14px 16px 14px 14px;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.08));
+}
+
+.ms-mark-example-slip--live {
+  border-left-color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  background: color-mix(
+    in srgb,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 4%,
+    var(--ec-paper, var(--ec-surface))
+  );
+}
+
+.ms-mark-example-slip__body {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: min(100%, 240px);
+  flex: 1;
+}
+
+.ms-mark-example-slip__copy {
+  min-width: 0;
+}
+
+.ms-mark-example-slip__title {
+  margin: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ec-text-primary);
+}
+
+.ms-mark-example-slip__lead {
+  margin: 4px 0 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.ms-mark-example-slip__note {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--ec-font-handwriting, var(--font-handwritten, 'Caveat', cursive));
+  font-size: 17px;
+  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  transform: rotate(-1deg);
+}
+
+.ms-mark-example-slip__cta {
+  flex-shrink: 0;
 }
 
 .ms-mark-setup-panel {
@@ -69,14 +342,28 @@
   line-height: 1.55;
   color: var(--ec-text-secondary);
   padding: 12px 16px;
-  border-radius: 14px;
+  border-radius: 4px;
   border: 1px solid var(--ec-border);
-  background: color-mix(in srgb, var(--ec-surface) 88%, var(--ec-brand-muted));
+  background: color-mix(in srgb, var(--ec-paper, var(--ec-surface)) 88%, var(--ec-brand-muted));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
 }
 
 .ms-mark-context-card {
-  border-radius: var(--ec-radius-lg, 16px);
-  box-shadow: 0 8px 28px color-mix(in srgb, var(--ec-brand) 8%, transparent);
+  border-radius: 4px;
+  border: 1.5px solid var(--ec-border) !important;
+  border-left: 3px solid var(--ec-ink, var(--ec-brand)) !important;
+  background: var(--ec-paper, var(--ec-surface)) !important;
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.08));
+}
+.ms-mark-context-card .ec-ink-stamp--inline {
+  margin-top: 2px;
+}
+.ms-mark-paper-slip {
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.06));
+  padding: 14px 16px;
 }
 
 .ms-mark-pg {
@@ -113,7 +400,7 @@
 .ms-mstep .dot {
   width: 26px;
   height: 26px;
-  border-radius: 999px;
+  border-radius: 4px;
   border: 1.5px solid var(--ec-border);
   display: grid;
   place-items: center;
@@ -148,7 +435,7 @@
   gap: 4px;
   background: var(--ec-bg-soft);
   border: 1px solid var(--ec-border);
-  border-radius: 999px;
+  border-radius: 4px;
   padding: 4px;
   margin-bottom: 0;
   box-shadow: inset 0 1px 0 color-mix(in srgb, var(--ec-surface) 65%, transparent);
@@ -161,7 +448,7 @@
   color: var(--ec-text-secondary);
   background: transparent;
   border: none;
-  border-radius: 999px;
+  border-radius: 4px;
   padding: 9px 22px;
   cursor: pointer;
   white-space: nowrap;
@@ -175,7 +462,7 @@
 .ms-lvl-tab.on {
   background: var(--ec-surface);
   color: var(--ec-brand);
-  box-shadow: var(--ec-card-shadow, 0 4px 14px rgba(0, 0, 0, 0.08));
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
   transform: translateY(-1px);
 }
 
@@ -208,7 +495,7 @@
   flex-direction: column;
   gap: 18px;
   padding: 20px 18px 22px;
-  border-radius: var(--ec-radius-lg, 16px);
+  border-radius: var(--ec-radius-lg, 4px);
   border: 1px solid var(--ec-border);
   min-width: 0;
 }
@@ -226,7 +513,7 @@
   justify-content: center;
   width: 30px;
   height: 30px;
-  border-radius: 999px;
+  border-radius: 4px;
   font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 700;
@@ -294,11 +581,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-radius: 4px !important;
+  background: var(--ec-paper, var(--ec-surface-raised));
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
 }
 
 .ms-q-upload-file {
   border: 1px solid color-mix(in srgb, var(--ec-brand) 20%, var(--ec-border));
-  background: color-mix(in srgb, var(--ec-brand-muted) 35%, var(--ec-surface));
+  background: color-mix(in srgb, var(--ec-brand-muted) 35%, var(--ec-paper, var(--ec-surface)));
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.08));
 }
 
 .ms-upload-preview-wrap {
@@ -309,9 +601,10 @@
   max-height: min(55vh, 520px);
   min-height: 140px;
   padding: 12px;
-  background: var(--ec-surface);
+  background: var(--ec-paper, var(--ec-surface));
   border: 1px solid var(--ec-border);
-  border-radius: var(--ec-radius-lg, 16px);
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
   overflow: hidden;
 }
 
@@ -336,7 +629,7 @@
   width: 76px;
   height: 102px;
   flex-shrink: 0;
-  border-radius: 8px;
+  border-radius: 4px;
   border: 2px solid var(--ec-border);
   overflow: hidden;
   background: var(--ec-bg-soft);
@@ -370,11 +663,11 @@
 
 .ms-mark-form-card {
   position: relative;
-  background: var(--ec-surface);
-  border: 1px solid var(--ec-border);
-  border-radius: var(--ec-radius-lg, 16px);
+  background: var(--ec-paper, var(--ec-surface));
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
   padding: 22px 22px 20px;
-  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.08));
   overflow: hidden;
   min-width: 0;
 }
@@ -386,11 +679,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(
-    90deg,
-    var(--ec-brand) 0%,
-    color-mix(in srgb, var(--ec-accent-warm) 70%, var(--ec-brand)) 100%
-  );
+  background: var(--ec-ink, var(--ec-brand));
 }
 
 .ms-mark-form-body {
@@ -434,9 +723,9 @@
 .ms-audit-card {
   background: var(--ec-surface);
   border: 1px solid var(--ec-border);
-  border-radius: var(--ec-radius-lg, 16px);
+  border-radius: var(--ec-radius-lg, 4px);
   overflow: hidden;
-  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.08));
 }
 
 .ms-audit-head {
@@ -560,7 +849,7 @@
   gap: 10px;
   padding: 16px;
   background: var(--ec-brand-muted);
-  border-radius: 0 0 13px 13px;
+  border-radius: 0 0 4px 4px;
   flex-wrap: wrap;
 }
 
@@ -576,9 +865,9 @@
   margin-top: 16px;
   background: var(--ec-surface);
   border: 1px solid var(--ec-border);
-  border-radius: var(--ec-radius-lg, 16px);
+  border-radius: var(--ec-radius-lg, 4px);
   padding: 20px 22px;
-  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.08));
 }
 
 .ms-greennote {
@@ -655,8 +944,87 @@
   }
 }
 
+/* MK-05 — evidence stays behind one disclosure so the verdict can breathe */
+.ms-mark-evidence {
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.07));
+  padding: 0 14px 14px;
+}
+
+.ms-mark-evidence__summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 12px 4px;
+  cursor: pointer;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--ec-text-primary);
+  list-style: none;
+}
+
+.ms-mark-evidence__summary::-webkit-details-marker {
+  display: none;
+}
+
+.ms-mark-evidence__hint,
+.ms-disclosure__hint {
+  margin-left: auto;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.ms-mark-verdict {
+  padding: 4px 0 2px;
+}
+
+.ms-mark-authority .ec-banner {
+  padding: 10px 12px;
+}
+
+.ms-mark-primary-action {
+  padding-top: 2px;
+}
+
+.ms-mark-more {
+  border-top: 1px dashed var(--ec-border);
+  padding-top: 4px;
+}
+
+.ms-mark-more__summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  cursor: pointer;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+  list-style: none;
+}
+
+.ms-mark-more__summary::-webkit-details-marker {
+  display: none;
+}
+
+.ms-mark-more .ms-disclosure__hint {
+  font-weight: 600;
+}
+
 .ms-mark-secondary {
-  margin-top: 48px;
   display: flex;
   flex-direction: column;
   gap: 28px;
@@ -666,7 +1034,7 @@
 .ms-question-preview {
   margin-top: 12px;
   padding: 14px 16px;
-  border-radius: var(--ec-radius-lg, 16px);
+  border-radius: var(--ec-radius-lg, 4px);
   border: 1px solid var(--ec-border);
   background: var(--ec-bg-soft);
   min-width: 0;
@@ -695,7 +1063,7 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   padding: 4px 8px;
-  border-radius: 999px;
+  border-radius: 4px;
   border: 1px solid var(--ec-border);
 }
 
@@ -811,9 +1179,10 @@
 
 .ms-marking-mode-hint {
   padding: 14px 16px;
-  border-radius: 14px;
+  border-radius: 4px;
   border: 1px solid color-mix(in srgb, var(--ec-brand) 22%, var(--ec-border));
-  background: color-mix(in srgb, var(--ec-brand-muted) 55%, var(--ec-bg-soft));
+  background: color-mix(in srgb, var(--ec-brand-muted) 55%, var(--ec-paper, var(--ec-bg-soft)));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
 }
 
 .ms-marking-mode-hint-title {
@@ -833,7 +1202,7 @@
 .ms-scheme-rubric {
   margin-top: 16px;
   padding: 16px 18px;
-  border-radius: var(--ec-radius-lg, 16px);
+  border-radius: var(--ec-radius-lg, 4px);
   border: 1px solid var(--ec-border);
   background: var(--ec-surface);
   min-width: 0;
@@ -878,7 +1247,7 @@
   font-size: 13px;
   line-height: 1.45;
   padding: 8px 10px;
-  border-radius: 10px;
+  border-radius: 4px;
   border: 1px solid transparent;
 }
 
@@ -1000,8 +1369,8 @@
   padding: 36px 30px 30px;
   background: var(--ec-surface);
   border: 1px solid var(--ec-border);
-  border-radius: var(--ec-radius-lg, 16px);
-  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+  border-radius: var(--ec-radius-lg, 4px);
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.08));
 }
 
 .ms-wp-qrow {
@@ -1010,6 +1379,7 @@
   gap: 14px;
   align-items: center;
   padding: 13px 18px;
+  min-height: 44px;
   border-bottom: 1px solid var(--ec-border);
   cursor: pointer;
   width: 100%;
@@ -1111,9 +1481,10 @@
   gap: 4px;
   text-align: left;
   padding: 14px 16px;
-  border-radius: 16px;
+  border-radius: 4px;
   border: 1.5px solid var(--ec-border);
-  background: var(--ec-surface-raised);
+  background: var(--ec-paper, var(--ec-surface-raised));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
   color: var(--ec-text-secondary);
   cursor: pointer;
   transition:
@@ -1138,9 +1509,7 @@
   border-color: color-mix(in srgb, var(--ec-brand) 55%, var(--ec-border));
   background: var(--ec-brand-muted);
   color: var(--ec-text-primary);
-  box-shadow:
-    0 4px 16px color-mix(in srgb, var(--ec-brand) 12%, transparent),
-    inset 0 1px 0 color-mix(in srgb, var(--ec-surface) 70%, transparent);
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.1));
 }
 
 .ms-mark-board-option-label {
@@ -1173,143 +1542,331 @@
 }
 
 /* ── Score reveal ─────────────────────────────────────────────────────────
-   The result headline was a line of text; this is the meter + hero figure that
-   replaces it. All colour comes from the reserved status tokens via an inline
-   `ink` custom property set by the component, so light/dark and the warm-paper
-   palette are inherited rather than restated here. */
+   Examiner’s tally slip — hard paper, hero earned/total, stamp corner.
+   Ink from --ms-score-ink (set inline by the component). */
 
 .ms-score-reveal {
+  --ms-score-ink: var(--ec-ink, var(--ec-brand));
   display: flex;
   flex-direction: column;
   gap: 18px;
-  padding: 22px 20px;
-  border: 1px solid var(--ec-border);
-  border-radius: 18px;
-  background: var(--ec-surface-raised);
+  padding: 20px 18px 18px;
+  border: 1.5px solid var(--ec-border-strong, var(--ec-border));
+  border-radius: 4px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--ec-paper, var(--ec-surface)) 90%, var(--ec-brand-muted)) 0 3px,
+      var(--ec-paper, var(--ec-surface)) 3px
+    );
+  box-shadow: var(--ec-shadow-hard, 6px 6px 0 rgba(0, 0, 0, 0.12));
+  animation: ms-score-settle 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes ms-score-settle {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-score-reveal {
+    animation: none;
+  }
 }
 
 .ms-score-reveal__main {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 22px;
 }
 
-.ms-score-ring {
+/* Hard rectangle tally — not a fitness ring */
+.ms-score-tally {
   position: relative;
   flex: 0 0 auto;
-  width: 132px;
-  height: 132px;
+  width: min(168px, 42vw);
+  min-height: 148px;
+  padding: 12px 14px 14px;
+  border: 1.5px solid var(--ec-border-strong, var(--ec-border));
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.1));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
 }
 
-.ms-score-ring svg {
-  width: 100%;
-  height: 100%;
-  display: block;
+.ms-score-tally__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
 }
 
-.ms-score-ring__value {
-  position: absolute;
-  inset: 0;
+.ms-score-tally__kicker {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+  max-width: 9ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ms-score-tally__stamp {
+  flex-shrink: 0;
+  display: inline-grid;
+  place-items: center;
+  min-width: 36px;
+  padding: 4px 7px;
+  border: 1.5px solid var(--ms-score-ink);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ms-score-ink) 12%, var(--ec-paper, var(--ec-surface)));
+  color: var(--ms-score-ink);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transform: rotate(-6deg);
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.08));
+}
+
+.ms-score-tally.is-settled .ms-score-tally__stamp {
+  animation: ms-stamp-ink 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes ms-stamp-ink {
+  from {
+    opacity: 0;
+    transform: rotate(-14deg) scale(1.12);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-6deg) scale(1);
+  }
+}
+
+.ms-score-tally__figure {
   display: flex;
   align-items: baseline;
-  justify-content: center;
-  gap: 3px;
+  gap: 4px;
+  border-bottom: 1px dashed color-mix(in srgb, var(--ec-border) 80%, var(--ms-score-ink));
+  padding-bottom: 8px;
 }
 
-/* Hero figure. Proportional figures (no tabular-nums): at display sizes tabular
-   digits give every glyph the width of a 0 and the number reads loose. */
-.ms-score-ring__earned {
+.ms-score-tally__earned {
+  font-family: var(--font-display, 'Newsreader', serif);
   font-size: 52px;
-  font-weight: 700;
-  line-height: 1;
+  font-weight: 600;
+  line-height: 0.95;
   letter-spacing: -0.02em;
-  align-self: center;
+  color: var(--ms-score-ink);
 }
 
-.ms-score-ring__total {
-  font-size: 19px;
-  font-weight: 600;
+.ms-score-tally__slash {
+  font-family: var(--font-display, 'Newsreader', serif);
+  font-size: 28px;
+  font-weight: 500;
   color: var(--ec-text-secondary);
-  align-self: center;
+  opacity: 0.7;
+}
+
+.ms-score-tally__total {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ec-text-secondary);
+}
+
+.ms-score-tally__pct {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ec-text-secondary);
 }
 
 .ms-score-reveal__meta {
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
 }
 
 .ms-score-reveal__band {
   margin: 0;
-  font-size: 21px;
-  font-weight: 700;
+  font-family: var(--font-display, 'Newsreader', serif);
+  font-size: 22px;
+  font-weight: 600;
   line-height: 1.2;
+  color: var(--ms-score-ink);
 }
 
 .ms-score-reveal__pct {
   margin: 4px 0 0;
-  font-size: 14px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  letter-spacing: 0.04em;
   color: var(--ec-text-secondary);
 }
 
+.ms-score-reveal__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.ms-score-reveal__share {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+  cursor: pointer;
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+
+.ms-score-reveal__share:hover {
+  color: var(--ec-brand);
+  border-color: var(--ec-brand-border, var(--ec-brand));
+  transform: translate(-1px, -1px);
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.08));
+}
+
+.ms-score-reveal__share.is-copied {
+  color: var(--ec-brand);
+  border-color: var(--ec-brand-border, var(--ec-brand));
+  background: var(--ec-brand-muted);
+}
+
+/* Margin note — not a soft brand pill */
 .ms-score-reveal__next {
   margin: 12px 0 0;
   font-size: 14px;
+  line-height: 1.4;
   color: var(--ec-text-primary);
-  padding: 7px 11px;
-  border-radius: 999px;
-  background: var(--ec-brand-muted);
-  border: 1px solid var(--ec-brand-border);
-  display: inline-block;
+  padding: 8px 12px 8px 10px;
+  border-radius: 0;
+  border: none;
+  border-left: 3px solid var(--ec-ink-crimson, var(--ec-chip-critical-text, #bb2a25));
+  background: color-mix(in srgb, var(--ec-paper, var(--ec-surface)) 88%, var(--ec-chip-critical-bg, rgba(176, 72, 72, 0.12)));
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 8px;
+  max-width: 100%;
+  font-family: var(--font-hand, 'Caveat', cursive);
+  font-size: 18px;
 }
 
-/* One pip per mark point — the breakdown at a glance, and a shortcut into the
-   detail for that mark. Shape carries state alongside colour. */
+.ms-score-reveal__next strong {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ec-ink-crimson, var(--ec-chip-critical-text, #bb2a25));
+}
+
+.ms-score-reveal__next-ink {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ec-ink-crimson, var(--ec-chip-critical-text, #bb2a25));
+  opacity: 0.85;
+}
+
+/* Tick / cross stamps — no glow halos */
 .ms-score-pips {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 10px 0 0;
+  border-top: 1px dashed var(--ec-border);
 }
 
 .ms-score-pip {
   display: grid;
   place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 999px;
+  /* 44px hit target; visual stamp stays small inside (MK-07) */
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 4px;
   border: 0;
   background: none;
   cursor: pointer;
+  padding: 0;
   opacity: 0;
-  transform: translateY(6px) scale(0.82);
+  transform: translateY(4px);
   transition:
-    opacity 320ms ease-out,
-    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 280ms ease-out,
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.ms-score-pip__dot {
-  width: 17px;
-  height: 17px;
-  border-radius: 999px;
-  display: block;
+.ms-score-pip__stamp {
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  border: 1.5px solid transparent;
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.08));
 }
 
-.ms-score-pip.is-earned .ms-score-pip__dot {
-  background: var(--ec-chip-success-text, #19774d);
-  box-shadow: 0 0 0 3px var(--ec-chip-success-bg, rgba(30, 138, 94, 0.11));
+.ms-score-pip.is-earned .ms-score-pip__stamp {
+  background: var(--ec-ink, var(--ec-chip-success-text, #19774d));
+  border-color: var(--ec-ink, var(--ec-chip-success-text, #19774d));
+  color: var(--ec-paper, #fff);
 }
 
-/* Hollow, not just a different hue — the state survives greyscale and CVD. */
-.ms-score-pip.is-lost .ms-score-pip__dot {
-  background: transparent;
-  border: 2.5px solid var(--ec-chip-critical-text, #a23e3e);
-  box-shadow: 0 0 0 3px var(--ec-chip-critical-bg, rgba(176, 72, 72, 0.09));
+.ms-score-pip.is-lost .ms-score-pip__stamp {
+  background: var(--ec-paper, var(--ec-surface));
+  border-color: var(--ec-ink-crimson, var(--ec-chip-critical-text, #bb2a25));
+  color: var(--ec-ink-crimson, var(--ec-chip-critical-text, #bb2a25));
 }
 
-.ms-score-pip:hover .ms-score-pip__dot,
-.ms-score-pip:focus-visible .ms-score-pip__dot {
-  transform: scale(1.16);
+.ms-score-pip:hover .ms-score-pip__stamp,
+.ms-score-pip:focus-visible .ms-score-pip__stamp {
+  transform: translate(-1px, -1px);
+}
+
+.ms-score-pip.is-active .ms-score-pip__stamp,
+.ms-score-pip[aria-checked='true'] .ms-score-pip__stamp {
+  box-shadow:
+    var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.08)),
+    0 0 0 2px color-mix(in srgb, var(--ec-brand) 40%, transparent);
 }
 
 .ms-score-pip:focus-visible {
@@ -1319,17 +1876,19 @@
 
 @media (max-width: 520px) {
   .ms-score-reveal__main {
-    gap: 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
   }
-  .ms-score-ring {
-    width: 104px;
-    height: 104px;
+  .ms-score-tally {
+    width: 100%;
+    min-height: 0;
   }
-  .ms-score-ring__earned {
-    font-size: 40px;
+  .ms-score-tally__earned {
+    font-size: 44px;
   }
   .ms-score-reveal__band {
-    font-size: 18px;
+    font-size: 20px;
   }
 }
 
@@ -1338,6 +1897,9 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  .ms-score-tally.is-settled .ms-score-tally__stamp {
+    animation: none;
   }
 }
 
@@ -1353,36 +1915,48 @@
   padding: 20px;
   margin-bottom: 28px;
   border: 1px solid var(--ec-border);
-  border-radius: 18px;
-  background: var(--ec-surface-raised);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface-raised));
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.06));
 }
 
 .ms-momentum-kpis {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
 }
 
 .ms-momentum-kpi {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 6px;
   min-width: 0;
+  padding: 14px 16px;
+  background: var(--ec-paper, var(--ec-surface));
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.06));
 }
 
 .ms-momentum-kpi__value {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  font-size: 30px;
-  font-weight: 700;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 32px;
+  font-weight: 500;
   line-height: 1.1;
   letter-spacing: -0.02em;
-  color: var(--ec-text-primary);
+  color: var(--ec-brand);
 }
 
 .ms-momentum-kpi__label {
-  font-size: 13px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--ec-text-secondary);
 }
 
@@ -1397,7 +1971,7 @@
   font-size: 12px;
   font-weight: 700;
   padding: 3px 8px;
-  border-radius: 999px;
+  border-radius: 4px;
 }
 
 .ms-momentum-delta.is-up {
@@ -1473,10 +2047,11 @@
 
 @media (max-width: 520px) {
   .ms-momentum-kpis {
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
   .ms-momentum-kpi__value {
-    font-size: 25px;
+    font-size: 28px;
   }
   .ms-momentum-bar__track {
     height: 48px;
@@ -1506,7 +2081,7 @@
   display: flex;
   gap: 2px; /* 2px surface gap between adjacent fills */
   height: 10px;
-  border-radius: 999px;
+  border-radius: 4px;
   overflow: hidden;
 }
 
@@ -1535,7 +2110,7 @@
 .ms-mh-legend__dot {
   width: 9px;
   height: 9px;
-  border-radius: 999px;
+  border-radius: 4px;
   background: var(--mh-ink);
 }
 
@@ -1573,7 +2148,7 @@
 .ms-mh-cell {
   width: 34px;
   height: 34px;
-  border-radius: 8px;
+  border-radius: 4px;
   /* The chip tints (~11% alpha) are tuned for small pills where the TEXT
      carries the state. Here the fill is the signal, and at chip strength the
      grid read as one flat colour — a 38 looked like a 92. Mixed to 20% with a
@@ -1722,9 +2297,10 @@
   align-items: center;
   gap: 10px;
   padding: 10px 14px;
-  border-radius: 12px;
+  border-radius: 4px;
   border: 1px solid var(--ec-border);
-  background: var(--ec-surface);
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.04));
   font-size: 14px;
 }
 
@@ -1733,7 +2309,12 @@
   place-items: center;
   width: 22px;
   height: 22px;
-  border-radius: 999px;
+  border-radius: 3px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  border: 1px solid currentColor;
 }
 
 /* Icon AND colour, so the verdict survives greyscale. */
@@ -1771,10 +2352,11 @@
 .ms-mark-preview__why {
   margin: 20px 0 0;
   padding: 16px 18px;
-  border-radius: 14px;
+  border-radius: 4px;
   border: 1px solid var(--ec-border);
   border-left: 3px solid var(--ec-chip-critical-text);
-  background: var(--ec-surface-raised);
+  background: var(--ec-paper, var(--ec-surface-raised));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
   font-size: 15px;
   line-height: 1.6;
   color: var(--ec-text-primary);
@@ -1826,15 +2408,34 @@
   color: var(--ec-text-secondary);
 }
 
+.ms-momentum-empty--ink {
+  padding: 16px 18px;
+  border: 1px dashed var(--ec-brand-border);
+  border-radius: 4px;
+  background: var(--ec-brand-muted);
+}
+
+.ms-momentum-empty__stamp {
+  margin: 10px 0 0;
+  font-family: var(--ec-font-handwriting, Caveat, cursive);
+  font-size: 20px;
+  color: var(--ec-brand);
+  transform: rotate(-3deg);
+}
+
 /* ── New-user home: first-mark preview ────────────────────────────────────
    Replaces three tiles whose only content was an em dash. Shares .ms-mpl with
    the landing preview so the mark rows are one visual language. */
 
 .ms-first-mark {
-  border: 1px solid var(--ec-border);
-  border-radius: 16px;
-  background: var(--ec-surface-raised);
+  position: relative;
+  overflow: hidden;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface-raised));
   padding: 18px;
+  box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.1));
 }
 
 .ms-first-mark__head {
@@ -1844,17 +2445,20 @@
   justify-content: space-between;
   gap: 12px;
   margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed color-mix(in srgb, var(--ec-border) 85%, transparent);
 }
 
 .ms-first-mark__title {
   margin: 0;
-  font-size: 15px;
-  font-weight: 700;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 17px;
+  font-weight: 500;
   color: var(--ec-text-primary);
 }
 
 .ms-first-mark__sub {
-  margin: 3px 0 0;
+  margin: 4px 0 0;
   font-size: 13px;
   color: var(--ec-text-secondary);
 }
@@ -1864,8 +2468,11 @@
   align-items: center;
   gap: 5px;
   min-height: 44px;
-  font-size: 13.5px;
-  font-weight: 600;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--ec-brand);
   white-space: nowrap;
 }
@@ -1889,14 +2496,22 @@
 .ms-first-mark__why {
   margin: 14px 0 0;
   padding-top: 14px;
-  border-top: 1px solid var(--ec-border);
-  font-size: 13.5px;
-  line-height: 1.55;
-  color: var(--ec-text-secondary);
+  border-top: 1px dashed color-mix(in srgb, var(--ec-border) 85%, transparent);
+  font-family: var(--ec-font-handwriting, 'Caveat', cursive);
+  font-size: 20px;
+  line-height: 1.35;
+  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  transform: rotate(-0.8deg);
 }
 
 .ms-first-mark__why strong {
-  color: var(--ec-chip-critical-text);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  margin-right: 6px;
 }
 
 @media (max-width: 780px) {
@@ -1922,10 +2537,16 @@
 
 .ms-blog-mark-example {
   margin-top: 44px;
-  padding: 24px;
-  border: 1px solid var(--ec-border);
-  border-radius: 18px;
-  background: var(--ec-surface-raised);
+  padding: 20px 18px 18px;
+  border: 1.5px solid var(--ec-border-strong, var(--ec-border));
+  border-radius: 4px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--ec-paper, var(--ec-surface)) 90%, var(--ec-brand-muted)) 0 3px,
+      var(--ec-paper, var(--ec-surface)) 3px
+    );
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
 .ms-blog-mark-example__title {
@@ -1955,9 +2576,10 @@
 .ms-blog-mark-example__why {
   margin: 18px 0 0;
   padding: 14px 16px;
-  border-radius: 12px;
+  border-radius: 4px;
   border-left: 3px solid var(--ec-chip-critical-text);
-  background: var(--ec-surface);
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.04));
   font-size: 14.5px;
   line-height: 1.6;
   color: var(--ec-text-primary);
@@ -2049,7 +2671,7 @@
   top: 8px;
   width: 7px;
   height: 7px;
-  border-radius: 999px;
+  border-radius: 4px;
   background: var(--ec-brand);
 }
 
@@ -2059,13 +2681,12 @@
 }
 
 .ms-script-showcase__frame {
-  border-radius: 16px;
+  border-radius: 4px;
   overflow: hidden;
   border: 1px solid var(--ec-border);
   background: #fcfbf7; /* the paper itself, not a themed surface */
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.05),
-    0 12px 28px -12px rgba(0, 0, 0, 0.22);
+  box-shadow: var(--ec-shadow-hard, 6px 6px 0 rgba(0, 0, 0, 0.14));
+  transform: rotate(-0.6deg);
 }
 
 @media (max-width: 900px) {
@@ -2088,8 +2709,9 @@
   padding: 20px;
   margin-bottom: 28px;
   border: 1px solid var(--ec-border);
-  border-radius: 18px;
-  background: var(--ec-surface-raised);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface-raised));
+  box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.1));
 }
 
 .ms-grade-target__head {
@@ -2120,7 +2742,7 @@
   align-items: baseline;
   gap: 7px;
   padding: 9px 14px;
-  border-radius: 999px;
+  border-radius: 4px;
   border: 1px solid var(--ec-brand-border);
   background: var(--ec-brand-muted);
   color: var(--ec-text-primary);
@@ -2155,14 +2777,14 @@
 .ms-grade-track__rail {
   position: relative;
   height: 12px;
-  border-radius: 999px;
+  border-radius: 4px;
   background: color-mix(in srgb, var(--ec-brand) 10%, transparent);
 }
 
 .ms-grade-track__fill {
   position: absolute;
   inset: 0 auto 0 0;
-  border-radius: 999px;
+  border-radius: 4px;
   background: var(--ec-brand);
 }
 
@@ -2199,10 +2821,16 @@
   place-items: center;
   width: 26px;
   height: 26px;
-  border-radius: 999px;
+  border-radius: 4px;
   border: 1.5px dashed var(--ec-brand);
-  background: var(--ec-surface);
+  background: var(--ec-paper, var(--ec-surface));
   color: var(--ec-brand);
+}
+
+.ms-grade-track__target-mark {
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 700;
 }
 
 .ms-grade-track__you {
@@ -2216,7 +2844,7 @@
 .ms-grade-track__you-dot {
   width: 20px;
   height: 20px;
-  border-radius: 999px;
+  border-radius: 4px;
   background: var(--ec-brand);
   border: 3px solid var(--ec-surface-raised);
   box-shadow: 0 0 0 1px var(--ec-brand);
@@ -2280,8 +2908,19 @@
 }
 
 .ms-demo__script {
-  border-radius: 16px;
+  border-radius: 4px;
   overflow: hidden;
+  border: 1px solid var(--ec-border);
+  box-shadow: var(--ec-shadow-hard, 6px 6px 0 rgba(0, 0, 0, 0.12));
+  transform: rotate(-0.5deg);
+  background: #fcfbf7;
+}
+
+.ms-demo__hint-stamp {
+  font-family: var(--ec-font-handwriting, Caveat, cursive);
+  font-size: 18px;
+  color: var(--ec-brand);
+  line-height: 1;
 }
 
 .ms-demo__panel {
@@ -2316,7 +2955,7 @@
   gap: 10px;
   width: 100%;
   padding: 10px 13px;
-  border-radius: 12px;
+  border-radius: 4px;
   border: 1px solid var(--ec-border);
   background: var(--ec-surface);
   font-size: 14px;
@@ -2331,7 +2970,8 @@
 
 /* Selection is a ring plus a shift, not a colour swap — the earned/lost hue
    has to keep meaning what it means. */
-.ms-demo__mark.is-active {
+.ms-demo__mark.is-active,
+.ms-demo__mark[aria-checked='true'] {
   border-color: var(--ec-brand);
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--ec-brand) 26%, transparent);
   transform: translateX(2px);
@@ -2349,7 +2989,8 @@
 .ms-demo__why {
   margin-top: 22px;
   padding: 16px 18px;
-  border-radius: 14px;
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
   border: 1px solid var(--ec-border);
   border-left: 3px solid var(--ec-chip-success-text);
   background: var(--ec-surface-raised);
@@ -2452,7 +3093,7 @@
 
 .ms-bs-row__track {
   height: 10px;
-  border-radius: 999px;
+  border-radius: 4px;
   background: color-mix(in srgb, var(--mh-ink, var(--ec-text-secondary)) 12%, transparent);
   overflow: hidden;
 }
@@ -2460,7 +3101,7 @@
 .ms-bs-row__fill {
   display: block;
   height: 100%;
-  border-radius: 999px;
+  border-radius: 4px;
   background: var(--mh-ink, var(--ec-text-secondary));
 }
 
@@ -2490,7 +3131,7 @@
   align-items: center;
   gap: 4px;
   padding: 2px 8px;
-  border-radius: 999px;
+  border-radius: 4px;
   border: 1px dashed color-mix(in srgb, var(--ec-text-secondary) 45%, transparent);
   color: var(--ec-text-faint);
 }
@@ -2539,19 +3180,24 @@
   width: 100%;
   padding: 12px 8px 10px;
   border: 1px solid var(--ec-border);
-  border-radius: 12px;
-  background: var(--ec-surface);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.04));
   cursor: pointer;
-  transition: border-color 140ms ease-out, box-shadow 140ms ease-out;
+  transition: border-color 140ms ease-out, box-shadow 140ms ease-out, transform 140ms ease-out;
 }
 
 .ms-ibc-tile:hover {
   border-color: color-mix(in srgb, var(--mh-ink, var(--ec-brand)) 50%, var(--ec-border));
+  transform: translate(-1px, -1px);
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.07));
 }
 
-.ms-ibc-tile.is-active {
+.ms-ibc-tile.is-active,
+.ms-ibc-tile.on,
+.ms-ibc-tile[aria-checked='true'] {
   border-color: var(--ec-brand);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ec-brand) 24%, transparent);
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 color-mix(in srgb, var(--ec-brand) 35%, transparent));
 }
 
 .ms-ibc-tile:focus-visible {
@@ -2572,14 +3218,14 @@
   align-items: flex-end;
   width: 12px;
   height: 40px;
-  border-radius: 999px;
+  border-radius: 4px;
   background: color-mix(in srgb, var(--mh-ink, var(--ec-text-secondary)) 14%, transparent);
   overflow: hidden;
 }
 
 .ms-ibc-tile__fill {
   width: 100%;
-  border-radius: 999px;
+  border-radius: 4px;
   background: var(--mh-ink, var(--ec-brand));
 }
 
@@ -2606,10 +3252,11 @@
 .ms-ibc-detail {
   margin-top: 14px;
   padding: 14px 16px;
-  border-radius: 12px;
+  border-radius: 4px;
   border: 1px solid var(--ec-border);
   border-left: 3px solid var(--ec-brand);
-  background: var(--ec-surface-raised);
+  background: var(--ec-paper, var(--ec-surface-raised));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
 }
 
 .ms-ibc-detail__head {

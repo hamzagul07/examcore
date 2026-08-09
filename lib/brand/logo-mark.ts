@@ -1,7 +1,11 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-/** Shared MarkScheme logo colours (fixed hex — not CSS variables). */
+/**
+ * Shared MarkScheme logo colours (fixed hex — not CSS variables).
+ * `brand` crimson is dual-ink with UI green (--ec-brand): logo tick / corrections
+ * vs awarded marks. Mirrored in theme.css as --ec-logo-crimson.
+ */
 export const LOGO_COLORS = {
   bg: '#f7f2e7',
   paper: '#fffdf7',

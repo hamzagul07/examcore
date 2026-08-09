@@ -1,52 +1,51 @@
-import {
-  Flag,
-  Trophy,
-  CircleCheck,
-  Flame,
-  Map,
-  TrendingUp,
-  Star,
-  type LucideIcon,
-} from 'lucide-react'
 import type { Win, WinKind, DashboardState } from '@/lib/insights/types'
+import { WaitingForInk } from '@/components/ui/WaitingForInk'
 
-const ICONS: Record<WinKind, LucideIcon> = {
-  first_mark: Flag,
-  personal_best: Trophy,
-  perfect_score: Star,
-  exam_ready: CircleCheck,
-  streak: Flame,
-  coverage: Map,
-  grade_up: TrendingUp,
+const GLYPHS: Record<WinKind, string> = {
+  first_mark: '1',
+  personal_best: 'PB',
+  perfect_score: 'A*',
+  exam_ready: '✓',
+  streak: 'S',
+  coverage: '¶',
+  grade_up: '↑',
 }
 
 export function WinsPanel({ state, wins }: { state: DashboardState; wins: Win[] }) {
   return (
     <section className="ms-dash-card min-w-0">
       <div className="mb-5 flex items-center gap-2">
-        <Trophy className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden="true" />
+        <span
+          className="inline-grid h-5 min-w-5 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1 font-mono text-[10px] font-bold text-[var(--ec-brand)]"
+          aria-hidden
+        >
+          ★
+        </span>
         <p className="ms-overline" style={{ marginBottom: 0 }}>
           Wins
         </p>
       </div>
 
       {wins.length === 0 ? (
-        <div className="ms-progress-hint ec-break-anywhere">
+        <WaitingForInk className="ec-break-anywhere">
           {state === 'zero'
             ? 'Wins will appear here once you start — your first marked question is the first one.'
             : 'Wins will appear here as you hit real milestones.'}
-        </div>
+        </WaitingForInk>
       ) : (
         <ul className="space-y-2.5">
           {wins.map((win, i) => {
-            const Icon = ICONS[win.kind]
+            const glyph = GLYPHS[win.kind]
             return (
               <li
                 key={`${win.kind}-${i}`}
-                className="flex items-start gap-3 rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-3.5"
+                className="ec-card ec-card--paper flex items-start gap-3 border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] p-3.5"
               >
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[var(--ec-brand)]/25 bg-[var(--ec-brand-muted)]">
-                  <Icon className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden="true" />
+                <div
+                  className="flex h-9 min-w-9 shrink-0 items-center justify-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1 font-mono text-[11px] font-bold tracking-wide text-[var(--ec-brand)]"
+                  aria-hidden
+                >
+                  {glyph}
                 </div>
                 <div className="min-w-0">
                   <p className="text-sm font-semibold text-[var(--ec-text-primary)]">

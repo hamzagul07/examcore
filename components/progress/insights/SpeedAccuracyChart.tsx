@@ -1,7 +1,6 @@
 'use client'
 
 import { useId, useMemo } from 'react'
-import { Gauge } from 'lucide-react'
 import {
   ACCURACY_THRESHOLD,
   QUADRANT_COPY,
@@ -76,7 +75,12 @@ export function SpeedAccuracyChart({ data }: { data: SpeedAccuracyData }) {
   return (
     <section className="ms-dash-card ms-sa-chart min-w-0">
       <div className="mb-4 flex items-center gap-2">
-        <Gauge className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden="true" />
+        <span
+          className="inline-grid h-5 min-w-5 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]"
+          aria-hidden
+        >
+          T
+        </span>
         <p className="ms-overline" style={{ marginBottom: 0 }}>
           Speed vs accuracy
         </p>

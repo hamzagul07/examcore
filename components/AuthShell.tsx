@@ -1,29 +1,35 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
-import { motion } from 'framer-motion'
+import type { ReactNode } from 'react'
 import { WordmarkLink } from '@/components/layout/Wordmark'
 
 type Props = {
-  children: React.ReactNode
+  children: ReactNode
+  /** Optional left-column artefact for the signup spread desk. */
+  aside?: ReactNode
   showBetaBadge?: boolean
   backLabel?: string
   backHref?: string
   /** Ask before following the back link (e.g. "Sign out?" mid-onboarding). */
   confirmBackMessage?: string
-  /** Onboarding uses centered ob-shell without auth card chrome. */
-  layout?: 'card' | 'onboarding'
+  /**
+   * desk — filing docket for signup / signin / verify
+   * onboarding — wizard shell (progress outside the docket)
+   * card — legacy alias for desk
+   */
+  layout?: 'desk' | 'onboarding' | 'card'
 }
 
-/** Outer chrome for /auth/* and /onboarding — paper card on canvas. */
+/** Outer chrome for /auth/* and /onboarding — examiner’s filing desk. */
 export function AuthShell({
   children,
+  aside = null,
   showBetaBadge = true,
   backLabel = 'Back to home',
   backHref = '/',
   confirmBackMessage,
-  layout = 'card',
+  layout = 'desk',
 }: Props) {
   const handleBackClick = confirmBackMessage
     ? (e: React.MouseEvent) => {
@@ -47,55 +53,49 @@ export function AuthShell({
     )
   }
 
+  const spread = Boolean(aside)
+
   return (
-    <main className="ec-auth-shell relative flex min-h-screen min-h-dvh items-center justify-center px-4 sm:px-6">
-      <div className="w-full max-w-md">
-        <motion.div
-          initial={{ y: -8 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-8 text-center"
-        >
-          <WordmarkLink />
-          {showBetaBadge && (
-            <div className="mt-5 flex justify-center">
-              <span className="ec-label-tech">FREE TIER AVAILABLE</span>
-            </div>
-          )}
-        </motion.div>
+    <main className="ms-auth-desk">
+      <header className="ms-auth-desk__masthead">
+        <WordmarkLink />
+        {showBetaBadge ? (
+          <div className="ms-auth-desk__masthead-meta">
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+              FREE
+            </span>
+            <span className="ms-auth-desk__masthead-label">No card required</span>
+          </div>
+        ) : null}
+      </header>
 
-        <motion.div
-          initial={{ y: 14 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
-          className="ec-card relative overflow-hidden p-6 sm:p-10"
-        >
-          <div
-            className="pointer-events-none absolute -right-24 -top-24 h-48 w-48 rounded-full ec-glow-orb blur-[80px] opacity-60"
-            aria-hidden="true"
-          />
-          <div className="relative">{children}</div>
-        </motion.div>
+      <div
+        className={`ms-auth-desk__docket${spread ? ' ms-auth-desk__docket--spread' : ''}`}
+      >
+        {aside ? <div className="ms-auth-desk__aside">{aside}</div> : null}
+        <div className="ms-auth-desk__sheet">{children}</div>
+      </div>
 
-        <div className="mt-6 text-center">
-          <Link
-            href={backHref}
-            onClick={handleBackClick}
-            className="inline-flex min-h-[44px] items-center justify-center gap-1.5 text-sm text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)]"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            {backLabel}
+      <div className="ms-auth-desk__footer">
+        <Link
+          href={backHref}
+          onClick={handleBackClick}
+          className="ms-auth-desk__back"
+        >
+          <span className="font-mono text-[11px] font-bold" aria-hidden>
+            &lt;-
+          </span>
+          {backLabel}
+        </Link>
+        <p className="mt-2 text-xs text-[var(--ec-text-secondary)]">
+          <Link href="/faq" className="ec-link inline-flex min-h-[44px] items-center px-1">
+            FAQ
           </Link>
-          <p className="mt-2 text-xs text-[var(--ec-text-secondary)]">
-            <Link href="/faq" className="ec-link inline-flex min-h-[44px] items-center px-1">
-              FAQ
-            </Link>
-            {' · '}
-            <Link href="/how-it-works" className="ec-link inline-flex min-h-[44px] items-center px-1">
-              How it works
-            </Link>
-          </p>
-        </div>
+          {' · '}
+          <Link href="/how-it-works" className="ec-link inline-flex min-h-[44px] items-center px-1">
+            How it works
+          </Link>
+        </p>
       </div>
     </main>
   )

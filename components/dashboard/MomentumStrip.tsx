@@ -1,4 +1,3 @@
-import { Flame, TrendingDown, TrendingUp } from 'lucide-react'
 import {
   weekdayInitial,
   type MomentumSummary,
@@ -19,13 +18,14 @@ import {
 
 function DeltaBadge({ delta }: { delta: number }) {
   const up = delta > 0
-  const Icon = up ? TrendingUp : TrendingDown
   return (
     <span
       className={`ms-momentum-delta ${up ? 'is-up' : 'is-down'}`}
       title={`${up ? 'Up' : 'Down'} ${Math.abs(delta)} percentage points vs the previous fortnight`}
     >
-      <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+      <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>
+        {up ? '▲' : '▼'}
+      </span>
       {up ? '+' : ''}
       {delta} pts
     </span>
@@ -57,7 +57,7 @@ export function MomentumStrip({
       </h2>
 
       {isEmpty ? (
-        <div className="ms-momentum-empty">
+        <div className="ms-momentum-empty ms-momentum-empty--ink">
           <p className="ms-momentum-empty__title">
             Your last {days.length} days
           </p>
@@ -65,16 +65,18 @@ export function MomentumStrip({
             Mark one question and the first square fills in. Two days running is
             a streak.
           </p>
+          <p className="ms-momentum-empty__stamp" aria-hidden>
+            waiting for ink
+          </p>
         </div>
       ) : (
       <div className="ms-momentum-kpis">
         <div className="ms-momentum-kpi">
           <span className="ms-momentum-kpi__value">
             {streak > 0 && (
-              <Flame
-                className="ms-momentum-flame h-5 w-5"
-                aria-hidden="true"
-              />
+              <span className="ec-ink-stamp ms-momentum-flame" aria-hidden>
+                ✎
+              </span>
             )}
             {streak}
           </span>

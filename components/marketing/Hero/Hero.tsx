@@ -42,10 +42,14 @@ export function Hero({ primaryHref, embedded = false }: HeroProps) {
                 label: 'Mark your first question free',
                 href: primaryHref,
               }}
-              secondary={{
-                label: 'See how marking works',
-                targetId: 'how-it-works',
-              }}
+              secondary={
+                embedded
+                  ? { label: 'Compare tools', href: '/compare' }
+                  : {
+                      label: 'See how marking works',
+                      targetId: 'how-it-works',
+                    }
+              }
             />
           }
         />

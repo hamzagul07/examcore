@@ -17,12 +17,10 @@ export default function Error({
 
   return (
     <main className="app-shell flex min-h-[60vh] items-center justify-center px-4">
-      <div className="ec-card relative mx-auto w-full max-w-lg overflow-hidden p-8 text-center sm:p-12">
-        <div
-          className="pointer-events-none absolute -right-24 -top-24 h-48 w-48 rounded-full blur-[80px] opacity-70"
-          style={{ background: 'var(--ec-chip-critical-bg)' }}
-          aria-hidden
-        />
+      <div className="ec-card ec-card--paper relative mx-auto w-full max-w-lg overflow-hidden p-8 text-center sm:p-12">
+        <span className="ec-ink-stamp ec-ink-stamp--crimson mx-auto mb-4" aria-hidden>
+          A0
+        </span>
         <p className="ec-label-tech ec-score-low relative mb-4 justify-center">Something went wrong</p>
         <h1 className="text-headline relative mb-3">We hit a snag</h1>
         <p className="text-body relative mb-8">

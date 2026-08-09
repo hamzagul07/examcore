@@ -14,9 +14,9 @@ type SubjectOpt = { id: string; name: string; board: Board; accent: string; glyp
 type Kind = 'discussion' | 'question' | 'resource'
 
 const KINDS: { id: Kind; label: string; hint: string; icon: string }[] = [
-  { id: 'discussion', label: 'Discussion', hint: 'Share a thought or start a chat', icon: '💬' },
-  { id: 'question', label: 'Question', hint: 'Ask a doubt', icon: '❓' },
-  { id: 'resource', label: 'Resource', hint: 'Share notes, PDFs or files', icon: '📎' },
+  { id: 'discussion', label: 'Discussion', hint: 'Share a thought or start a chat', icon: '#' },
+  { id: 'question', label: 'Question', hint: 'Ask a doubt', icon: '?' },
+  { id: 'resource', label: 'Resource', hint: 'Share notes, PDFs or files', icon: '¶' },
 ]
 
 function boardFromSubject(subjects: SubjectOpt[], subjectId?: string): Board | '' {
@@ -465,7 +465,9 @@ export function PostComposer({
             <ul className="rc-attach-list">
               {attachments.map((a, i) => (
                 <li key={a.path} className="rc-attach-item">
-                  <span className="rc-attach-kind">{a.kind === 'image' ? '🖼' : a.kind === 'pdf' ? '📄' : '📎'}</span>
+                  <span className="rc-attach-kind" aria-hidden>
+                    {a.kind === 'image' ? 'IMG' : a.kind === 'pdf' ? 'PDF' : 'FILE'}
+                  </span>
                   <span className="rc-attach-name">{a.name}</span>
                   <button
                     type="button"

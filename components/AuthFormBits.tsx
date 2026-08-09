@@ -1,7 +1,9 @@
 'use client'
 
-import type React from 'react'
 import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
+import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
+import { FormSuccessStatus } from '@/components/ui/FormSuccessStatus'
+import { SegmentedControl } from '@/components/ui/SegmentedControl'
 import { triggerPrimaryHaptic } from '@/lib/hooks/useTapFeedback'
 
 export type AuthMethod = 'magic' | 'password'
@@ -16,67 +18,29 @@ export function MethodTabs({
   setError: (s: string) => void
 }) {
   return (
-    <div className="grid grid-cols-2 gap-1 rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-1 backdrop-blur">
-      <TabButton
-        active={method === 'magic'}
-        onClick={() => {
-          setMethod('magic')
-          setError('')
-        }}
-      >
-        Magic link
-      </TabButton>
-      <TabButton
-        active={method === 'password'}
-        onClick={() => {
-          setMethod('password')
-          setError('')
-        }}
-      >
-        Password
-      </TabButton>
-    </div>
-  )
-}
-
-function TabButton({
-  active,
-  onClick,
-  children,
-}: {
-  active: boolean
-  onClick: () => void
-  children: React.ReactNode
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`flex min-h-[44px] items-center justify-center rounded-xl px-3 py-2.5 text-sm font-semibold tracking-tight transition-all duration-200 active:scale-[0.98] ${
-        active
-          ? 'ec-tab-active'
-          : 'text-[var(--ec-text-secondary)] hover:text-[var(--ec-text-primary)]'
-      }`}
-    >
-      {children}
-    </button>
+    <SegmentedControl
+      aria-label="Sign-in method"
+      value={method}
+      onChange={(next) => {
+        setMethod(next)
+        setError('')
+      }}
+      className="ms-auth-tabs"
+      optionClassName="ms-auth-tabs__btn"
+      options={[
+        { value: 'magic', label: 'Email link' },
+        { value: 'password', label: 'Password' },
+      ]}
+    />
   )
 }
 
 export function ErrorBox({ message }: { message: string }) {
-  return (
-    <div className="rounded-2xl border ec-tint-critical-chip p-3.5 text-sm leading-relaxed backdrop-blur">
-      {message}
-    </div>
-  )
+  return <FormErrorAlert message={message} />
 }
 
 export function SuccessBox({ message }: { message: string }) {
-  return (
-    <div className="ec-highlight-success leading-relaxed">
-      {message}
-    </div>
-  )
+  return <FormSuccessStatus message={message} />
 }
 
 /**

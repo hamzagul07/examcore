@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Check, X, MessageSquare, Save } from 'lucide-react'
 import type { MarkAwarded } from '@/components/MarkingResultView'
 
 interface AttemptForOverride {
@@ -70,14 +69,14 @@ export function OverrideConsole({ attempt, onSubmit }: Props) {
       </div>
 
       <div className="mb-6 grid grid-cols-2 gap-3">
-        <div className="ec-card p-4">
+        <div className="ec-card ec-card--paper p-4">
           <div className="mb-1 text-xs text-[var(--ec-text-secondary)]">AI SCORE</div>
           <div className="text-2xl font-bold text-[var(--ec-text-primary)] sm:text-3xl">
             {aiTotal}/{attempt.total_marks}
           </div>
         </div>
         <div
-          className={`ec-card p-4 ${newTotal !== aiTotal ? 'border border-[color-mix(in_srgb,var(--ec-brand)_40%,transparent)]' : ''}`}
+          className={`ec-card ec-card--paper p-4 ${newTotal !== aiTotal ? 'border border-[color-mix(in_srgb,var(--ec-brand)_40%,transparent)]' : ''}`}
         >
           <div className="mb-1 text-xs ec-text-brand">YOUR SCORE</div>
           <div className="text-2xl font-bold ec-score-high sm:text-3xl">
@@ -93,7 +92,7 @@ export function OverrideConsole({ attempt, onSubmit }: Props) {
             key={String(m.mark_id)}
             type="button"
             onClick={() => toggleMark(m.mark_id)}
-            className="flex min-h-[56px] w-full items-center justify-between rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-3 transition-all hover:border-[color-mix(in_srgb,var(--ec-brand)_30%,transparent)]"
+            className="flex min-h-[56px] w-full items-center justify-between ec-card ec-card--paper border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-3 transition-all hover:border-[color-mix(in_srgb,var(--ec-brand)_30%,transparent)]"
           >
             <div className="flex min-w-0 items-center gap-3">
               <span className="shrink-0 rounded-md bg-[var(--ec-surface-raised)] px-2 py-1 font-mono text-sm ec-score-high">
@@ -104,17 +103,15 @@ export function OverrideConsole({ attempt, onSubmit }: Props) {
               </span>
             </div>
             <div
-              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${
+              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded ${
                 overrides[String(m.mark_id)]
                   ? 'ec-tint-success-chip border-0'
                   : 'ec-tint-critical-chip border-0'
               }`}
             >
-              {overrides[String(m.mark_id)] ? (
-                <Check className="h-5 w-5" />
-              ) : (
-                <X className="h-5 w-5" />
-              )}
+              <span className="font-mono text-sm font-bold" aria-hidden>
+                {overrides[String(m.mark_id)] ? '✓' : '×'}
+              </span>
             </div>
           </button>
         ))}
@@ -122,7 +119,9 @@ export function OverrideConsole({ attempt, onSubmit }: Props) {
 
       <div className="mb-4">
         <label className="ec-label-tech mb-2 block">
-          <MessageSquare className="mr-1 inline h-3 w-3" />
+          <span className="mr-1 font-mono text-[10px] font-bold tracking-wide" aria-hidden>
+            NB
+          </span>
           ADD TEACHER NOTE (becomes handwritten margin note)
         </label>
         <textarea
@@ -140,7 +139,9 @@ export function OverrideConsole({ attempt, onSubmit }: Props) {
         disabled={saving}
         className="ec-btn-primary inline-flex min-h-[48px] w-full items-center justify-center gap-2"
       >
-        <Save className="h-5 w-5" />
+        <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+          OK
+        </span>
         {saving ? 'Submitting...' : 'Submit override to student'}
       </button>
     </div>

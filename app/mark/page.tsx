@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 import Link from 'next/link'
-import { ChevronRight, Sparkles } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { Label } from '@/components/ui/label'
@@ -44,6 +43,16 @@ import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
 import { WholePaperResultView } from '@/components/WholePaperResultView'
 import { PostMarkNextSteps } from '@/components/mark/PostMarkNextSteps'
 import {
+  PostMarkTargetGradeAsk,
+  wasTargetGradeAskDismissed,
+} from '@/components/mark/PostMarkTargetGradeAsk'
+import {
+  PostMarkExamDateAsk,
+  wasExamDateAskDismissed,
+} from '@/components/mark/PostMarkExamDateAsk'
+import { SegmentedControl } from '@/components/ui/SegmentedControl'
+import { MARK_DURATION_SINGLE } from '@/lib/copy/product-lexicon'
+import {
   MarkExampleBanner,
   MarkExampleFooter,
   MarkExampleInvite,
@@ -66,6 +75,7 @@ import {
   type MarkExamBoard,
 } from '@/components/mark/MarkBoardPicker'
 import {
+  getEdexcelMarkableUnitCodes,
   resolveEdexcelUnitLabel,
 } from '@/lib/edexcel/marking'
 import { markableCodesForBoard } from '@/lib/marking/mark-board-subjects'
@@ -83,6 +93,7 @@ import {
 import { parseMarkReturnPath } from '@/lib/marking/mark-return-url'
 import { applyTopicQuestionToPaperSelection } from '@/lib/marking/topic-question'
 import { CinematicMarkingExperience } from '@/components/mark/CinematicMarkingExperienceLazy'
+import { MarkingWaitOverlay } from '@/components/mark/MarkingWaitOverlay'
 import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
@@ -121,6 +132,10 @@ import {
   refreshBillingSummary,
   type FullMarksRewritePayload,
 } from './mark-stream'
+import { MarkFlow } from '@/components/mark-flow/MarkFlow'
+import { MarkingScreen } from '@/components/mark-flow/screens/MarkingScreen'
+import { ResultScreen } from '@/components/mark-flow/screens/ResultScreen'
+import { isMarkFlowV2Enabled } from '@/lib/marking/mark-flow-flag'
 
 type SessionInfo = {
   year: number
@@ -247,10 +262,39 @@ export default function MarkPage() {
   >('past_paper')
   const [paperQuestionOptions, setPaperQuestionOptions] = useState<string[]>([])
   const [wholePaperKey, setWholePaperKey] = useState(0)
+  /** Whole-paper pages live inside WholePaperFlow — track dirty for beforeunload (MK-03). */
+  const [wholePaperUnsaved, setWholePaperUnsaved] = useState(false)
   const [profileSubjectCodes, setProfileSubjectCodes] = useState<string[]>([])
   const [, setProfileLevel] = useState('A-Level')
+  const [profileBoard, setProfileBoard] = useState('Cambridge International')
+  /** undefined = not loaded yet; null = signed-in with no target. */
+  const [targetGrade, setTargetGrade] = useState<string | null | undefined>(undefined)
+  const [gradeAskDismissed, setGradeAskDismissed] = useState(false)
+  /** undefined = not loaded yet; null = signed-in with no exam date. */
+  const [examDate, setExamDate] = useState<string | null | undefined>(undefined)
+  const [examDateAskDismissed, setExamDateAskDismissed] = useState(false)
   const [selectedMarkBoard, setSelectedMarkBoard] = useState<MarkExamBoard>('cambridge')
   const [profileLoading, setProfileLoading] = useState(true)
+  /** R1 MarkFlow v2 — Capture/Confirm shell (`?flow=v2` or localStorage). */
+  const [markFlowV2, setMarkFlowV2] = useState(false)
+  const [v2SubmitTick, setV2SubmitTick] = useState(0)
+  /** Whole-paper seed after Confirm — pages already captured in MarkFlow. */
+  const [v2WholePaperSeed, setV2WholePaperSeed] = useState<{
+    pages: UploadPage[]
+    pdf: File | null
+    paperCode: string
+    paperSession: string
+  } | null>(null)
+  /** Keep WholePaperFlow mounted; only swap Marking/Result chrome (R1). */
+  const [v2WpPhase, setV2WpPhase] = useState<'upload' | 'marking' | 'result'>(
+    'marking'
+  )
+
+  useEffect(() => {
+    setGradeAskDismissed(wasTargetGradeAskDismissed())
+    setExamDateAskDismissed(wasExamDateAskDismissed())
+    setMarkFlowV2(isMarkFlowV2Enabled())
+  }, [])
 
   // IB assessment catalog (M1) — drives Level + Component selection for catalogued subjects.
   type IbCatalogComponent = {
@@ -326,7 +370,8 @@ export default function MarkPage() {
     result ? 2 : cinematicActive || loading ? 1 : 0
 
   useEffect(() => {
-    if (!cinematicActive || typeof window === 'undefined') return
+    const waitOpen = cinematicActive || !!markStreamError
+    if (!waitOpen || typeof window === 'undefined') return
     const mq = window.matchMedia('(max-width: 1023px)')
     if (!mq.matches) return
     const prev = document.body.style.overflow
@@ -334,12 +379,13 @@ export default function MarkPage() {
     return () => {
       document.body.style.overflow = prev
     }
-  }, [cinematicActive])
+  }, [cinematicActive, markStreamError])
 
   // Uploaded photos only live in memory — warn before a refresh/close discards
-  // them. Skipped once results are in (nothing left to lose).
+  // them. Includes whole-paper uploads held in WholePaperFlow (MK-03).
+  // Skipped once results are in (nothing left to lose).
   const hasUnsavedUploads =
-    (answerPages.length > 0 || !!answerPdf) && !result
+    ((answerPages.length > 0 || !!answerPdf || wholePaperUnsaved) && !result)
   useEffect(() => {
     if (!hasUnsavedUploads || typeof window === 'undefined') return
     const warn = (e: BeforeUnloadEvent) => {
@@ -379,14 +425,14 @@ export default function MarkPage() {
         if (!user || cancelled) return
         const { data: profile } = await supabase
           .from('user_profiles')
-          .select('subjects, level, board')
+          .select('subjects, level, board, target_grade, exam_date')
           .eq('id', user.id)
           .maybeSingle()
         const profileLevel = profile?.level ?? 'A-Level'
-        const profileBoard = profile?.board ?? 'Cambridge International'
+        const boardName = profile?.board ?? 'Cambridge International'
         const subjectNames: string[] = profile?.subjects?.length
           ? profile.subjects
-          : defaultSubjectsForProfile(profileBoard, profileLevel)
+          : defaultSubjectsForProfile(boardName, profileLevel)
         const codes = subjectNames
           .map((name) => getSubjectById(name, profileLevel)?.code)
           .filter((c): c is string => !!c)
@@ -395,10 +441,22 @@ export default function MarkPage() {
           ?.trim()
           .toLowerCase()
         const fromUrl: MarkExamBoard | null = isUrlMarkBoard(urlBoard) ? urlBoard : null
-        const markBoard = fromUrl ?? markBoardFromProfileBoard(profileBoard)
-        const fallbackCode = defaultMarkSubjectCode(profileLevel, profileBoard)
+        const markBoard = fromUrl ?? markBoardFromProfileBoard(boardName)
+        const fallbackCode = defaultMarkSubjectCode(profileLevel, boardName)
         if (!cancelled) {
           setProfileLevel(profileLevel)
+          setProfileBoard(boardName)
+          setTargetGrade(
+            typeof profile?.target_grade === 'string' && profile.target_grade.trim()
+              ? profile.target_grade.trim()
+              : null
+          )
+          setExamDate(
+            typeof profile?.exam_date === 'string' &&
+              /^\d{4}-\d{2}-\d{2}$/.test(profile.exam_date)
+              ? profile.exam_date
+              : null
+          )
           setProfileSubjectCodes(codes.length ? codes : [fallbackCode])
           setSelectedMarkBoard(markBoard)
           rememberFunnelBoard(markBoard)
@@ -409,7 +467,11 @@ export default function MarkPage() {
           }
         }
       } catch {
-        if (!cancelled) setProfileSubjectCodes([defaultMarkSubjectCode('A-Level')])
+        if (!cancelled) {
+          setProfileSubjectCodes([defaultMarkSubjectCode('A-Level')])
+          setTargetGrade(null)
+          setExamDate(null)
+        }
       } finally {
         if (!cancelled) setProfileLoading(false)
       }
@@ -1049,20 +1111,20 @@ export default function MarkPage() {
     }
     if (isPracticeMode) {
       if (selectedMarkBoard === 'ib') {
-        return 'Homework or textbook practice — upload answer and question separately, or use Scanned script.'
+        return 'Homework or textbook practice — add the question as text or a photo, then your answer.'
       }
       if (selectedMarkBoard === 'edexcel') {
-        return 'IAL Maths homework or textbook questions — photos or PDFs, marked with Edexcel method/accuracy conventions.'
+        return 'IAL homework or textbook questions — photos or PDFs, marked with Edexcel method/accuracy conventions.'
       }
       return 'Homework or textbook questions — photos or PDFs, marked with Cambridge conventions.'
     }
     if (selectedMarkBoard === 'ib') {
-      return 'Pick My question or Scanned script. PDF drops welcome — past-paper lookup is Cambridge only.'
+      return 'One answer: choose how the question is provided below. Past-paper lookup is Cambridge-only for now.'
     }
     if (selectedMarkBoard === 'edexcel') {
-      return 'Pick My question or Scanned script for IAL Maths units. Past-paper lookup stays Cambridge-only for now.'
+      return 'One answer: choose how the question is provided below. Past-paper lookup stays Cambridge-only for now.'
     }
-    return 'Select a past paper question or add your own — photos and PDFs supported throughout.'
+    return 'One answer from a past paper or your own question — tick the box if both are on the same page.'
   }, [uploadMode, isCombinedMode, isPracticeMode, selectedMarkBoard])
 
   const markLearnMoreHref =
@@ -1695,6 +1757,19 @@ export default function MarkPage() {
         if (data.show) setFirstMarkCelebration(true)
       })
       .catch((err) => console.error('mark: celebrations check failed', err))
+    // MK-02: move keyboard/SR focus to the score once the wait tears down.
+    window.requestAnimationFrame(() => {
+      window.setTimeout(() => {
+        const heading = document.getElementById('mark-result-heading')
+        if (!heading) return
+        try {
+          heading.focus({ preventScroll: true })
+        } catch {
+          heading.focus()
+        }
+        heading.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+      }, 50)
+    })
   }, [selectedSubject])
 
   function resetForm() {
@@ -1742,6 +1817,271 @@ export default function MarkPage() {
     if (block?.tier === 'free') setShowFreeNudge(true)
   }
 
+  const waitOpen = cinematicActive || !!markStreamError
+
+  const handleSubmitRef = useRef(handleSubmit)
+  handleSubmitRef.current = handleSubmit
+
+  useEffect(() => {
+    if (v2SubmitTick === 0) return
+    void handleSubmitRef.current({
+      preventDefault() {},
+    } as React.FormEvent)
+  }, [v2SubmitTick])
+
+  const markFlowSubjectOptions = useMemo(() => {
+    const codes =
+      profileSubjectCodes.length > 0
+        ? profileSubjectCodes
+        : markableCodesForBoard(selectedMarkBoard).slice(0, 12)
+    return codes.map((code) => ({
+      code,
+      label: getSubjectByCode(code)?.label ?? code,
+    }))
+  }, [profileSubjectCodes, selectedMarkBoard])
+
+  const exitMarkFlowV2 = () => {
+    setMarkFlowV2(false)
+    setV2WholePaperSeed(null)
+    try {
+      const url = new URL(window.location.href)
+      url.searchParams.set('flow', 'v1')
+      window.history.replaceState({}, '', url.toString())
+    } catch {
+      /* ignore */
+    }
+  }
+
+  // R1: whole-paper after Confirm — seeded WholePaperFlow (no second upload).
+  if (markFlowV2 && v2WholePaperSeed) {
+    const wpPageCount =
+      v2WholePaperSeed.pages.length || (v2WholePaperSeed.pdf ? 1 : 0)
+    const wpFlow = (
+      <WholePaperFlow
+        key={`v2-wp-${v2WholePaperSeed.paperCode}-${v2WholePaperSeed.paperSession}`}
+        paperCode={v2WholePaperSeed.paperCode}
+        paperSession={v2WholePaperSeed.paperSession}
+        questionOptions={paperQuestionOptions}
+        seed={{
+          pages: v2WholePaperSeed.pages,
+          pdf: v2WholePaperSeed.pdf,
+        }}
+        hideMarkAnother
+        onPhaseChange={setV2WpPhase}
+        onError={(msg, retryable) => {
+          setErrorMsg(msg)
+          setErrorRetryable(!!retryable)
+        }}
+        onReset={() => {
+          setV2WholePaperSeed(null)
+          setV2WpPhase('marking')
+          setErrorMsg('')
+        }}
+        onUnsavedChange={setWholePaperUnsaved}
+        onQuotaExceeded={(data) => {
+          const tier = (data.tier ?? 'free') as SubscriptionTier
+          setUpgradeModal({
+            variant: 'cap',
+            tier,
+            cap: data.cap ?? capForTier(tier),
+            periodResetsAt: data.period_resets_at ?? null,
+            creditBalance: data.credit_balance ?? 0,
+          })
+          refreshBillingSummary()
+        }}
+        onAllowance={handleAllowance}
+        onGuestRateLimit={() => setUpgradeModal({ variant: 'anonymous' })}
+        disabled={submitBlocked}
+      />
+    )
+    return (
+      <main className="app-shell app-shell-tabbed ms-mark-shell">
+        <div className="ms-mark-pg min-w-0">
+          {/*
+            Single tree so WholePaperFlow does not remount when phase flips
+            MarkingScreen → ResultScreen.
+          */}
+          <section
+            className={
+              v2WpPhase === 'result'
+                ? 'ms-mark-flow-screen ms-mark-flow-result'
+                : 'ms-mark-flow-screen ms-mark-flow-marking'
+            }
+            aria-labelledby={
+              v2WpPhase === 'result'
+                ? 'mark-flow-result-title'
+                : 'mark-flow-marking-title'
+            }
+            aria-busy={v2WpPhase !== 'result' || undefined}
+          >
+            {v2WpPhase === 'result' ? (
+              <h1 id="mark-flow-result-title" className="sr-only">
+                Marking result
+              </h1>
+            ) : (
+              <MarkingScreen scope="whole_paper">
+                <p className="mb-4 text-sm text-[var(--ec-text-secondary)]">
+                  {wpPageCount} page{wpPageCount === 1 ? '' : 's'} ·{' '}
+                  {v2WholePaperSeed.paperCode} · {v2WholePaperSeed.paperSession}
+                </p>
+              </MarkingScreen>
+            )}
+            {v2WpPhase !== 'result' ? null : null}
+            {wpFlow}
+            {v2WpPhase === 'result' ? (
+              <div className="mt-8">
+                <button
+                  type="button"
+                  className="ec-btn-primary w-full justify-center sm:w-auto"
+                  onClick={() => {
+                    setV2WholePaperSeed(null)
+                    setV2WpPhase('marking')
+                    setErrorMsg('')
+                  }}
+                >
+                  Mark another
+                </button>
+              </div>
+            ) : null}
+          </section>
+          <p className="mt-8 text-center font-mono text-[11px] text-[var(--ec-text-secondary)]">
+            Preview flow ·{' '}
+            <button
+              type="button"
+              className="underline underline-offset-2 hover:text-[var(--ec-brand)]"
+              onClick={exitMarkFlowV2}
+            >
+              Use classic desk
+            </button>
+          </p>
+        </div>
+        <UpgradeModal
+          open={!!upgradeModal}
+          onClose={() => setUpgradeModal(null)}
+          variant={upgradeModal?.variant ?? 'cap'}
+          tier={upgradeModal?.tier}
+          cap={upgradeModal?.cap}
+          periodResetsAt={upgradeModal?.periodResetsAt}
+          creditBalance={upgradeModal?.creditBalance}
+        />
+      </main>
+    )
+  }
+
+  // R1: Capture → Confirm; one-answer wait/result hand off to host overlays.
+  if (markFlowV2 && !result && !waitOpen && !showingExample) {
+    return (
+      <main className="app-shell app-shell-tabbed ms-mark-shell">
+        <div className="ms-mark-pg ms-mark-pg--narrow min-w-0">
+          <MarkFlow
+            board={selectedMarkBoard}
+            subjectCode={selectedSubject || null}
+            subjectOptions={markFlowSubjectOptions}
+            submitting={loading}
+            submitError={errorMsg || null}
+            onSubmit={(payload) => {
+              if (payload.draft.scope === 'whole_paper') {
+                const code = payload.draft.paperCode?.trim() ?? ''
+                const session = payload.draft.paperSession?.trim() ?? ''
+                if (!code || !session) {
+                  setErrorMsg('Add the paper code and session before marking.')
+                  return
+                }
+                if (payload.draft.board) {
+                  setSelectedMarkBoard(payload.draft.board as MarkExamBoard)
+                }
+                if (payload.draft.subjectCode) {
+                  setSelectedSubject(payload.draft.subjectCode)
+                }
+                setUploadMode('whole_paper')
+                setErrorMsg('')
+                setV2WholePaperSeed({
+                  pages: payload.pages,
+                  pdf: payload.pdfFile,
+                  paperCode: code,
+                  paperSession: session,
+                })
+                return
+              }
+              flushSync(() => {
+                setAnswerPages(payload.pages)
+                setAnswerPdf(payload.pdfFile)
+                setAnswerTextInput(payload.typedAnswer)
+                setUploadMode('single_question')
+                setMarkIntent('practice_question')
+                setShowManualPaper(false)
+                if (payload.draft.board) {
+                  setSelectedMarkBoard(payload.draft.board as MarkExamBoard)
+                }
+                if (payload.draft.subjectCode) {
+                  setSelectedSubject(payload.draft.subjectCode)
+                } else if (!selectedSubject && markFlowSubjectOptions[0]) {
+                  setSelectedSubject(markFlowSubjectOptions[0].code)
+                }
+                if (questionTextInput.trim().length < 10) {
+                  setQuestionTextInput(
+                    'Practice working — mark against the scheme for this subject.'
+                  )
+                }
+                setErrorMsg('')
+              })
+              setV2SubmitTick((n) => n + 1)
+            }}
+          />
+          <p className="mt-8 text-center font-mono text-[11px] text-[var(--ec-text-secondary)]">
+            Preview flow ·{' '}
+            <button
+              type="button"
+              className="underline underline-offset-2 hover:text-[var(--ec-brand)]"
+              onClick={exitMarkFlowV2}
+            >
+              Use classic desk
+            </button>
+          </p>
+        </div>
+      </main>
+    )
+  }
+
+  // R1: one-answer result chrome while still in the v2 preview.
+  if (markFlowV2 && result && !result.whole_paper) {
+    return (
+      <main className="app-shell app-shell-tabbed ms-mark-shell">
+        <div className="ms-mark-pg min-w-0">
+          <ResultScreen
+            onMarkAnother={() => {
+              setResult(null)
+              setV2WholePaperSeed(null)
+              setAnswerPages([])
+              setAnswerPdf(null)
+              setAnswerTextInput('')
+              setErrorMsg('')
+            }}
+          >
+            <MarkingResultView
+              result={result}
+              attemptId={result.attempt_id ?? null}
+              isPaid={
+                billingSummary ? hasPaidAccess(billingSummary.access) : undefined
+              }
+              inkPages={
+                result.ink_pages ??
+                (result.answer_photo_url && result.line_references?.length
+                  ? [
+                      {
+                        photo_url: result.answer_photo_url,
+                        line_references: result.line_references,
+                      },
+                    ]
+                  : undefined)
+              }
+            />
+          </ResultScreen>
+        </div>
+      </main>
+    )
+  }
+
   return (
     <main className="app-shell app-shell-tabbed ms-mark-shell">
       <div
@@ -1749,16 +2089,21 @@ export default function MarkPage() {
       >
         {!result && (
           <header className="ms-mark-hero ms-fade-in">
-            <p className="ms-overline ms-mark-hero-eyebrow">Mark a question</p>
-            <h2 className="ms-mark-hero-title">
+            <div className="mb-2 flex items-center gap-2">
+              <p className="ms-overline ms-mark-hero-eyebrow mb-0">Marking desk</p>
+              <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                M1
+              </span>
+            </div>
+            <h1 className="ms-mark-hero-title">
               {selectedMarkBoard === 'ib'
                 ? 'IB examiner-style feedback'
                 : selectedMarkBoard === 'edexcel'
                   ? 'Edexcel IAL examiner-style feedback'
                   : 'Cambridge examiner-style feedback'}
-            </h2>
+            </h1>
             <p className="ms-mark-hero-lead">
-              Upload photos or PDFs — marked in about a minute with{' '}
+              Upload photos or PDFs — marked in {MARK_DURATION_SINGLE} with{' '}
               {selectedMarkBoard === 'ib'
                 ? 'criterion bands'
                 : selectedMarkBoard === 'edexcel'
@@ -1766,94 +2111,107 @@ export default function MarkPage() {
                   : 'official mark scheme logic'}
               .
             </p>
+            <span className="ms-mark-hero-note" aria-hidden>
+              put one script under the scheme
+            </span>
           </header>
         )}
-        <MarkStepsBar stage={markStage} />
+        <MarkStepsBar
+          stage={markStage}
+          className={markStage === 0 ? 'ms-mark-steps-bar--idle' : undefined}
+        />
 
         {!result && practiceContext && (
-          <div className="ms-mark-context-card ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4 min-w-0">
-            <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
-            <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
-                Practicing: {practiceContext.pattern}
-              </p>
-              {practiceContext.reason && (
-                <p className="mt-1 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-                  Why this question helps: {practiceContext.reason}
+          <aside className="ms-mark-example-slip mb-6 min-w-0">
+            <div className="ms-mark-example-slip__body">
+              <span className="ec-ink-stamp shrink-0" aria-hidden>
+                M1
+              </span>
+              <div className="ms-mark-example-slip__copy min-w-0">
+                <p className="ms-mark-example-slip__title">
+                  Practicing: {practiceContext.pattern}
                 </p>
-              )}
+                {practiceContext.reason ? (
+                  <p className="ms-mark-example-slip__lead">
+                    Why this question helps: {practiceContext.reason}
+                  </p>
+                ) : null}
+              </div>
             </div>
-          </div>
+          </aside>
         )}
 
         {!result && !practiceContext && courseTopicContext && (
-          <div className="ms-mark-context-card ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4 min-w-0">
-            <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
-            <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
-                From your course: {courseTopicContext.topicName}
-                {courseTopicContext.topicCode !== courseTopicContext.topicName
-                  ? ` (${courseTopicContext.topicCode})`
-                  : ''}
-              </p>
-              <p className="mt-1 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-                {courseTopicContext.ibPractice
-                  ? 'IB criterion practice — upload your answer below. We mark band-by-band against the official assessment criteria.'
-                  : courseTopicContext.foundQuestion && courseTopicContext.paperLabel
-                    ? `We picked ${courseTopicContext.paperLabel} from our mark scheme bank — upload your answer below.`
-                    : 'Select a past paper question on this topic, or upload your answer and we will detect the paper.'}
-              </p>
-              {courseTopicContext.ibPractice && courseTopicContext.criteriaSummary ? (
-                <p className="mt-2 text-xs font-medium text-[var(--ec-brand)]">
-                  {courseTopicContext.criteriaSummary}
+          <aside className="ms-mark-example-slip mb-6 min-w-0">
+            <div className="ms-mark-example-slip__body">
+              <span className="ec-ink-stamp shrink-0" aria-hidden>
+                M1
+              </span>
+              <div className="ms-mark-example-slip__copy min-w-0">
+                <p className="ms-mark-example-slip__title">
+                  From your course: {courseTopicContext.topicName}
+                  {courseTopicContext.topicCode !== courseTopicContext.topicName
+                    ? ` (${courseTopicContext.topicCode})`
+                    : ''}
                 </p>
-              ) : null}
-              {courseTopicContext.returnTo ? (
-                <Link
-                  href={courseTopicContext.returnTo}
-                  className="ec-link mt-2 inline-flex items-center gap-1 text-sm font-medium"
-                >
-                  Back to lesson
-                  <ChevronRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              ) : null}
+                <p className="ms-mark-example-slip__lead">
+                  {courseTopicContext.ibPractice
+                    ? 'IB criterion practice — upload your answer below. We mark band-by-band against the official assessment criteria.'
+                    : courseTopicContext.foundQuestion && courseTopicContext.paperLabel
+                      ? `We picked ${courseTopicContext.paperLabel} from our mark scheme bank — upload your answer below.`
+                      : 'Select a past paper question on this topic, or upload your answer and we will detect the paper.'}
+                </p>
+                {courseTopicContext.ibPractice && courseTopicContext.criteriaSummary ? (
+                  <p className="mt-2 text-xs font-medium text-[var(--ec-brand)]">
+                    {courseTopicContext.criteriaSummary}
+                  </p>
+                ) : null}
+                {courseTopicContext.returnTo ? (
+                  <Link
+                    href={courseTopicContext.returnTo}
+                    className="ec-link mt-2 inline-flex items-center gap-1 text-sm font-medium"
+                  >
+                    Back to lesson
+                    <span className="font-mono text-xs font-bold" aria-hidden>
+                      -&gt;
+                    </span>
+                  </Link>
+                ) : null}
+              </div>
             </div>
-          </div>
+          </aside>
         )}
 
         {!result && !practiceContext && !courseTopicContext && ibManualCriteriaSummary && (
-          <div className="ms-mark-context-card ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4 min-w-0">
-            <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
-            <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
-                IB criterion practice — {resolveSubjectLabel(selectedSubject)}
-              </p>
-              <p className="mt-1 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-                {isCombinedMode
-                  ? 'Upload one PDF or photo with the question and your answer — we split them and mark band-by-band.'
-                  : 'Upload your answer (and question separately, or use Scanned script). We mark band-by-band against IB assessment criteria.'}
-              </p>
-              <p className="mt-2 text-xs font-medium text-[var(--ec-brand)]">
-                {ibManualCriteriaSummary}
-              </p>
+          <aside className="ms-mark-example-slip mb-6 min-w-0">
+            <div className="ms-mark-example-slip__body">
+              <span className="ec-ink-stamp shrink-0" aria-hidden>
+                M1
+              </span>
+              <div className="ms-mark-example-slip__copy min-w-0">
+                <p className="ms-mark-example-slip__title">
+                  IB criterion practice — {resolveSubjectLabel(selectedSubject)}
+                </p>
+                <p className="ms-mark-example-slip__lead">
+                  {isCombinedMode
+                    ? 'Upload one PDF or photo with the question and your answer — we split them and mark band-by-band.'
+                    : 'Upload your answer (and the question as text or a photo). We mark band-by-band against IB assessment criteria.'}
+                </p>
+                <p className="mt-2 text-xs font-medium text-[var(--ec-brand)]">
+                  {ibManualCriteriaSummary}
+                </p>
+              </div>
             </div>
-          </div>
-        )}
-
-        {!result && (
-          <BillingLimitBanner className="mb-5" />
-        )}
-
-        {!result && !loading && <GuestMarkNotice className="mb-5" />}
-
-        {/* The biggest leak on this page is people who never upload at all.
-            Offer the finished article before asking for the commitment. */}
-        {!result && !loading && (
-          <MarkExampleInvite onOpen={openExample} className="mb-5" />
+          </aside>
         )}
 
         {!result && !loading && (
-          <form onSubmit={handleSubmit} className="ms-mark-form-shell space-y-8">
+          <form
+            onSubmit={handleSubmit}
+            className={`ms-mark-form-shell space-y-8${
+              uploadMode === 'single_question' ? ' ms-mark-form-shell--capture-first' : ''
+            }`}
+          >
             <section className="ms-mark-setup-panel ms-fade-in ms-stag-1">
             <MarkBoardPicker
               value={selectedMarkBoard}
@@ -1862,85 +2220,104 @@ export default function MarkPage() {
             />
 
             <div className="ms-mark-mode-panel">
-            <div className="ms-lvl-tabs-scroll">
-            <div
-              className="ms-lvl-tabs"
-              role="tablist"
-              aria-label="Mark mode"
-              aria-describedby="mark-mode-callout"
-            >
-              <button
-                type="button"
-                role="tab"
-                aria-selected={uploadMode === 'single_question' && markIntent === 'past_paper'}
-                aria-disabled={!boardSupportsPastPaperLookup(selectedMarkBoard)}
-                tabIndex={boardSupportsPastPaperLookup(selectedMarkBoard) ? 0 : -1}
-                onClick={() => {
-                  if (!boardSupportsPastPaperLookup(selectedMarkBoard)) return
+              {/* MK-04: two student questions — one answer vs whole paper — not four pipelines. */}
+              <SegmentedControl
+                className="ms-lvl-tabs"
+                optionClassName="ms-lvl-tab"
+                aria-label="What are you marking?"
+                aria-describedby="mark-mode-callout"
+                value={uploadMode}
+                onChange={(next) => {
+                  if (next === 'whole_paper') {
+                    if (!boardSupportsWholePaper(selectedMarkBoard)) return
+                    setUploadMode('whole_paper')
+                    return
+                  }
                   setUploadMode('single_question')
-                  setMarkIntent('past_paper')
+                  if (
+                    markIntent === 'past_paper' &&
+                    !boardSupportsPastPaperLookup(selectedMarkBoard)
+                  ) {
+                    setMarkIntent('practice_question')
+                  }
                 }}
-                className={`ms-lvl-tab ${uploadMode === 'single_question' && markIntent === 'past_paper' ? 'on' : ''}${!boardSupportsPastPaperLookup(selectedMarkBoard) ? ' is-disabled' : ''}`}
-              >
-                Single question
-              </button>
-              <button
-                type="button"
-                role="tab"
-                aria-selected={isPracticeMode}
-                onClick={() => {
-                  setUploadMode('single_question')
-                  setMarkIntent('practice_question')
-                  setShowManualPaper(false)
-                }}
-                className={`ms-lvl-tab ${isPracticeMode ? 'on' : ''}`}
-              >
-                My question
-              </button>
-              <button
-                type="button"
-                role="tab"
-                aria-selected={isCombinedMode}
-                onClick={() => {
-                  setUploadMode('single_question')
-                  setMarkIntent('combined_script')
-                  setShowManualPaper(false)
-                }}
-                className={`ms-lvl-tab ${isCombinedMode ? 'on' : ''}`}
-              >
-                Scanned script
-              </button>
-              <button
-                type="button"
-                role="tab"
-                aria-selected={uploadMode === 'whole_paper'}
-                aria-disabled={!boardSupportsWholePaper(selectedMarkBoard)}
-                tabIndex={boardSupportsWholePaper(selectedMarkBoard) ? 0 : -1}
-                onClick={() => {
-                  if (!boardSupportsWholePaper(selectedMarkBoard)) return
-                  setUploadMode('whole_paper')
-                }}
-                className={`ms-lvl-tab ${uploadMode === 'whole_paper' ? 'on' : ''}${!boardSupportsWholePaper(selectedMarkBoard) ? ' is-disabled' : ''}`}
-              >
-                Whole paper
-              </button>
-            </div>
-            </div>
-            <p
-              id="mark-mode-callout"
-              className="ms-mark-mode-callout"
-            >
-              {markModeCallout}{' '}
-              <Link href={markLearnMoreHref} className="ec-link">
-                {markLearnMoreLabel}
-              </Link>
-            </p>
+                options={[
+                  { value: 'single_question', label: 'One answer' },
+                  {
+                    value: 'whole_paper',
+                    label: 'Whole paper',
+                    disabled: !boardSupportsWholePaper(selectedMarkBoard),
+                  },
+                ]}
+              />
+
+              {uploadMode === 'single_question' ? (
+                <div className="ms-mark-intent-row mt-3">
+                  <p className="label-overline mb-2" id="mark-intent-label">
+                    Question source
+                  </p>
+                  <SegmentedControl
+                    className="ms-ob-stamp-pick flex flex-wrap gap-2"
+                    optionClassName="ms-ob-stamp-pick__btn"
+                    aria-labelledby="mark-intent-label"
+                    value={
+                      markIntent === 'past_paper' ? 'past_paper' : 'own_question'
+                    }
+                    onChange={(next) => {
+                      if (next === 'past_paper') {
+                        setMarkIntent('past_paper')
+                        return
+                      }
+                      setMarkIntent((prev) =>
+                        prev === 'combined_script' ? 'combined_script' : 'practice_question'
+                      )
+                      setShowManualPaper(false)
+                    }}
+                    options={[
+                      ...(boardSupportsPastPaperLookup(selectedMarkBoard)
+                        ? [{ value: 'past_paper' as const, label: 'Past paper' }]
+                        : []),
+                      { value: 'own_question' as const, label: 'My own question' },
+                    ]}
+                  />
+                  {/* MK-04: combined is a detail of “my question”, not a third pipeline. */}
+                  {(markIntent === 'practice_question' ||
+                    markIntent === 'combined_script') && (
+                    <label className="mt-3 flex min-h-[44px] cursor-pointer items-start gap-2.5 text-sm text-[var(--ec-text-secondary)]">
+                      <input
+                        type="checkbox"
+                        className="mt-1"
+                        checked={markIntent === 'combined_script'}
+                        onChange={(e) => {
+                          setMarkIntent(
+                            e.target.checked ? 'combined_script' : 'practice_question'
+                          )
+                          setShowManualPaper(false)
+                        }}
+                      />
+                      <span>
+                        Question and answer are on the{' '}
+                        <strong className="font-medium text-[var(--ec-text-primary)]">
+                          same page or PDF
+                        </strong>
+                      </span>
+                    </label>
+                  )}
+                </div>
+              ) : null}
+
+              <p id="mark-mode-callout" className="ms-mark-mode-callout">
+                {markModeCallout}{' '}
+                <Link href={markLearnMoreHref} className="ec-link">
+                  {markLearnMoreLabel}
+                </Link>
+              </p>
             </div>
             </section>
 
             {uploadMode === 'whole_paper' && (
             <section>
-              <div className="ec-card ec-card-rounded-lg space-y-4 p-5 sm:p-6">
+              <div className="ec-card ec-card--paper space-y-4 p-5 sm:p-6">
                 <div>
                   <Label htmlFor="mark-subject" className="label-overline mb-2 inline-block">
                     Subject
@@ -1971,7 +2348,7 @@ export default function MarkPage() {
                 </div>
 
                 {selectedSubject && paperStructure && paperStructure.papers.length > 0 && (
-                  <div className="rounded-2xl border ec-border-color ec-bg-surface-raised p-4">
+                  <div className="ms-mark-paper-slip space-y-3">
                     <p className="label-overline mb-3">Available papers</p>
                     <ul className="space-y-1.5 text-sm text-[var(--ec-text-secondary)]">
                       {paperStructure.papers.map((p) => (
@@ -1989,6 +2366,7 @@ export default function MarkPage() {
               </div>
             </section>
             )}
+            <div className="ms-mark-capture-block">
             {uploadMode === 'whole_paper' ? (
               <section className="animate-entry stagger-1 space-y-4">
                 <StepLabel number={1} label="Upload your full answer paper" />
@@ -2000,7 +2378,7 @@ export default function MarkPage() {
                 ) : (
                   <>
                     {billingSummary?.signedIn && billingSummary.access === 'free' && (
-                      <div className="ec-banner-warning-inline rounded-xl px-4 py-3 text-sm">
+                      <div className="ec-banner-warning-inline rounded px-4 py-3 text-sm">
                         <span className="font-semibold">Free preview:</span>{' '}
                         we mark up to {FREE_WHOLE_PAPER_QUESTION_LIMIT} questions per
                         whole-paper upload.{' '}
@@ -2023,8 +2401,10 @@ export default function MarkPage() {
                     }}
                     onReset={() => {
                       setWholePaperKey((k) => k + 1)
+                      setWholePaperUnsaved(false)
                       setErrorMsg('')
                     }}
+                    onUnsavedChange={setWholePaperUnsaved}
                     onQuotaExceeded={(data) => {
                       const tier = (data.tier ?? 'free') as SubscriptionTier
                       setUpgradeModal({
@@ -2147,15 +2527,11 @@ export default function MarkPage() {
                   onPdfChange={setAnswerPdf}
                   onPdfError={setAnswerPdfError}
                   disabled={loading}
-                  emptyLabel={
-                    isCombinedMode
-                      ? 'Drop your script here'
-                      : 'Drop your working here'
-                  }
+                  emptyLabel="Drop files here, or choose files"
                   emptyHint={
                     isCombinedMode
-                      ? 'photos or PDF — question and answer together'
-                      : 'photos, camera, or PDF — multi-page is fine'
+                      ? 'Photos or PDF — question and answer together'
+                      : 'Photos or PDF — multi-page is fine'
                   }
                 />
 
@@ -2179,7 +2555,7 @@ export default function MarkPage() {
                       {selectedMarkBoard === 'ib'
                         ? 'IB subject'
                         : selectedMarkBoard === 'edexcel'
-                          ? 'Edexcel unit'
+                          ? 'IAL unit'
                           : selectedMarkBoard === 'oxfordaqa'
                             ? 'OxfordAQA subject'
                             : selectedMarkBoard === 'aqa'
@@ -2265,7 +2641,7 @@ export default function MarkPage() {
               )}
 
               {(isPracticeMode || isCombinedMode) && catalogSubject && (
-                <div className="space-y-3 rounded-2xl border ec-border-color ec-bg-surface-raised p-4">
+                <div className="ms-mark-paper-slip space-y-3">
                   <p className="label-overline">IB assessment</p>
                   {catalogLevels.length > 1 && (
                     <div>
@@ -2422,10 +2798,9 @@ export default function MarkPage() {
                       mark against the official scheme instead.
                     </span>
                   </span>
-                  <ChevronRight
-                    className="h-5 w-5 shrink-0 text-[var(--ec-brand)]"
-                    aria-hidden="true"
-                  />
+                  <span className="font-mono text-sm font-bold text-[var(--ec-brand)]" aria-hidden>
+                    -&gt;
+                  </span>
                 </button>
               )}
 
@@ -2478,11 +2853,14 @@ export default function MarkPage() {
                   onClick={() => setShowOptional(!showOptional)}
                   className="inline-flex items-center gap-1.5 text-sm ec-link"
                 >
-                  <ChevronRight
-                    className={`h-4 w-4 transition-transform duration-200 ${
+                  <span
+                    className={`inline-block font-mono text-xs font-bold transition-transform duration-200 ${
                       showOptional ? 'rotate-90' : ''
                     }`}
-                  />
+                    aria-hidden
+                  >
+                    &gt;
+                  </span>
                   {showOptional
                     ? 'Hide question details'
                     : 'Add the question (improves accuracy)'}
@@ -2528,7 +2906,7 @@ export default function MarkPage() {
               )}
 
                   {billingSummaryError && (
-                    <p className="mb-3 rounded-xl border ec-tint-info-chip px-4 py-2 text-center text-xs">
+                    <p className="mb-3 rounded border ec-tint-info-chip px-4 py-2 text-center text-xs">
                       Couldn&apos;t check your remaining allowance — marking may be declined if
                       you&apos;re at your cap.{' '}
                       <button
@@ -2609,7 +2987,6 @@ export default function MarkPage() {
                         : !isPracticeMode ||
                           (!!selectedSubject && hasPracticeQuestion))
                     }
-                    leftIcon={!loading ? <Sparkles className="h-5 w-5" /> : undefined}
                     className="mark-submit-btn justify-center text-base"
                   >
                     {isCombinedMode
@@ -2637,6 +3014,7 @@ export default function MarkPage() {
             </div>
             </>
             )}
+            </div>
 
             {errorMsg && !loading && !markStreamError && (
               <FormErrorAlert
@@ -2661,7 +3039,7 @@ export default function MarkPage() {
                       questionPhotoCompressing ||
                       !!answerPdfError
                     }
-                    className="mt-3 rounded-xl border border-[color-mix(in_srgb,var(--ec-chip-warning-text)_40%,transparent)] bg-[var(--ec-chip-warning-bg)] px-4 py-2 text-sm font-medium text-[var(--ec-banner-warning-title)] transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="mt-3 rounded border border-[color-mix(in_srgb,var(--ec-chip-warning-text)_40%,transparent)] bg-[var(--ec-chip-warning-bg)] px-4 py-2 text-sm font-medium text-[var(--ec-banner-warning-title)] transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     Try again
                   </button>
@@ -2671,10 +3049,20 @@ export default function MarkPage() {
           </form>
         )}
 
+        {/* MK-01: keep allowance / guest / example chrome below the capture path
+            so the first viewport leads with upload, not banners. */}
+        {!result && (
+          <div className="ms-mark-defer-chrome mt-6 space-y-5">
+            <BillingLimitBanner />
+            {!loading && <GuestMarkNotice />}
+            {!loading && <MarkExampleInvite onOpen={openExample} />}
+          </div>
+        )}
+
         {!result && !loading && <PageHelpStrip className="mt-10" />}
 
         <AnimatePresence>
-          {((cinematicActive) || markStreamError) && (
+          {waitOpen ? (
             <motion.div
               key="marking-progress"
               className="fixed inset-0 z-[55] overflow-x-clip overflow-y-auto overscroll-contain bg-[var(--ec-canvas)] px-3 pt-[calc(0.75rem+env(safe-area-inset-top,0px))] pb-[calc(5rem+env(safe-area-inset-bottom,0px))] sm:px-4 sm:pt-[calc(1rem+env(safe-area-inset-top,0px))] lg:relative lg:inset-auto lg:z-auto lg:mt-10 lg:overflow-visible lg:bg-transparent lg:p-0 lg:pb-0 lg:pt-0"
@@ -2683,54 +3071,58 @@ export default function MarkPage() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
             >
-              <CinematicMarkingExperience
-                stage={markProgress?.stage ?? 'reading_work'}
-                context={markContext}
-                imageUrl={answerPages[0]?.previewUrl ?? null}
-                resultReady={!!pendingResult}
-                lineReferences={pendingResult?.line_references ?? null}
-                onReveal={handleReveal}
-                error={markStreamError}
-                onRetry={
-                  errorRetryable
-                    ? () => {
-                        setMarkStreamError(null)
-                        setErrorMsg('')
-                        setErrorRetryable(false)
-                        void handleSubmit({
-                          preventDefault: () => {},
-                        } as React.FormEvent)
-                      }
-                    : undefined
-                }
-                onBackToUpload={() => {
-                  setLoading(false)
-                  setMarkStreamError(null)
-                  setMarkProgress(null)
-                  setMarkContext(null)
-                  setErrorMsg('')
-                  setErrorRetryable(false)
-                }}
-                retryDisabled={
-                  loading ||
-                  !hasAnswer ||
-                  hasCompressingPages(answerPages) ||
-                  questionPhotoCompressing ||
-                  !!answerPdfError
-                }
-              />
+              <MarkingWaitOverlay
+                open={waitOpen}
+                className="min-h-full outline-none lg:min-h-0"
+              >
+                <CinematicMarkingExperience
+                  stage={markProgress?.stage ?? 'reading_work'}
+                  context={markContext}
+                  imageUrl={answerPages[0]?.previewUrl ?? null}
+                  resultReady={!!pendingResult}
+                  lineReferences={pendingResult?.line_references ?? null}
+                  onReveal={handleReveal}
+                  error={markStreamError}
+                  onRetry={
+                    errorRetryable
+                      ? () => {
+                          setMarkStreamError(null)
+                          setErrorMsg('')
+                          setErrorRetryable(false)
+                          void handleSubmit({
+                            preventDefault: () => {},
+                          } as React.FormEvent)
+                        }
+                      : undefined
+                  }
+                  onBackToUpload={() => {
+                    setLoading(false)
+                    setMarkStreamError(null)
+                    setMarkProgress(null)
+                    setMarkContext(null)
+                    setErrorMsg('')
+                    setErrorRetryable(false)
+                  }}
+                  retryDisabled={
+                    loading ||
+                    !hasAnswer ||
+                    hasCompressingPages(answerPages) ||
+                    questionPhotoCompressing ||
+                    !!answerPdfError
+                  }
+                />
+              </MarkingWaitOverlay>
             </motion.div>
-          )}
+          ) : null}
         </AnimatePresence>
 
         {result?.whole_paper && (
           <div className="space-y-8">
             {result.multi_question && (
               <div className="ec-card flex items-start gap-3 border-[var(--ec-brand)]/30 p-4">
-                <Sparkles
-                  className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]"
-                  aria-hidden="true"
-                />
+                <span className="ec-ink-stamp ec-ink-stamp--inline shrink-0" aria-hidden>
+                  M1
+                </span>
                 <p className="text-sm text-[var(--ec-text-secondary)]">
                   We found{' '}
                   <strong className="text-[var(--ec-text-primary)]">
@@ -2766,7 +3158,9 @@ export default function MarkPage() {
                 className="ec-card group flex items-center justify-between gap-4 border-[var(--ec-brand)]/30 p-4 transition-colors hover:border-[var(--ec-brand)]/50"
               >
                 <div className="flex items-start gap-3">
-                  <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
+                  <span className="ec-ink-stamp ec-ink-stamp--inline shrink-0" aria-hidden>
+              M1
+            </span>
                   <div>
                     <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
                       Practice complete
@@ -2778,7 +3172,7 @@ export default function MarkPage() {
                 </div>
                 <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-[var(--ec-brand)]">
                   See updated insights
-                  <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                  <span className="font-mono text-xs font-bold transition-transform group-hover:translate-x-0.5" aria-hidden>-&gt;</span>
                 </span>
               </Link>
             )}
@@ -2789,7 +3183,9 @@ export default function MarkPage() {
                 className="ec-card group flex items-center justify-between gap-4 border-[var(--ec-brand)]/30 p-4 transition-colors hover:border-[var(--ec-brand)]/50"
               >
                 <div className="flex items-start gap-3">
-                  <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
+                  <span className="ec-ink-stamp ec-ink-stamp--inline shrink-0" aria-hidden>
+              M1
+            </span>
                   <div>
                     <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
                       Back to {courseTopicContext.topicName}
@@ -2801,7 +3197,7 @@ export default function MarkPage() {
                 </div>
                 <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-[var(--ec-brand)]">
                   Back to lesson
-                  <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                  <span className="font-mono text-xs font-bold transition-transform group-hover:translate-x-0.5" aria-hidden>-&gt;</span>
                 </span>
               </Link>
             ) : null}
@@ -2823,14 +3219,70 @@ export default function MarkPage() {
                     ]
                   : undefined)
               }
+              primaryAction={
+                showingExample ? (
+                  <MarkExampleFooter onDismiss={closeExample} />
+                ) : (
+                  <>
+                    {/* ON-01 / R3: target grade after value, not before. */}
+                    {billingSummary?.signedIn &&
+                    targetGrade === null &&
+                    !gradeAskDismissed ? (
+                      <PostMarkTargetGradeAsk
+                        board={profileBoard}
+                        onSaved={(g) => {
+                          setTargetGrade(g)
+                          setGradeAskDismissed(true)
+                        }}
+                        onDismiss={() => setGradeAskDismissed(true)}
+                      />
+                    ) : null}
+                    {/* R3: exam date after target grade ask is resolved. */}
+                    {billingSummary?.signedIn &&
+                    examDate === null &&
+                    !examDateAskDismissed &&
+                    targetGrade !== undefined &&
+                    (targetGrade !== null || gradeAskDismissed) ? (
+                      <PostMarkExamDateAsk
+                        onSaved={(d) => {
+                          setExamDate(d)
+                          setExamDateAskDismissed(true)
+                        }}
+                        onDismiss={() => setExamDateAskDismissed(true)}
+                      />
+                    ) : null}
+                    {/* Guests: signup ask while marks are still on screen. */}
+                    {billingSummary && !billingSummary.signedIn ? (
+                      <GuestConversionPrompt
+                        marksEarned={result.marks_earned ?? null}
+                        totalMarks={result.total_marks ?? null}
+                        weakTopics={result.ai_marking?.weak_topics ?? []}
+                        markBoard={selectedMarkBoard}
+                        subjectCode={selectedSubject || null}
+                      />
+                    ) : null}
+                    <PostMarkNextSteps
+                      result={result}
+                      onMarkAnother={handleMarkAnotherAttempt}
+                      onMarkNewQuestion={handleMarkNewQuestion}
+                    />
+                    {showFreeNudge ? (
+                      <p className="pt-1 text-center text-sm text-[var(--ec-text-secondary)]">
+                        Want to mark more?{' '}
+                        <Link href="/pricing" className="ec-link">
+                          See plans →
+                        </Link>
+                      </p>
+                    ) : null}
+                  </>
+                )
+              }
             />
 
             {result.attempt_id && (
               <SolutionSection attemptId={result.attempt_id} />
             )}
 
-            {/* The example is a demo, not an attempt: no progress to review and
-                nothing to mark "again", so it gets its own single exit. */}
             {/* Asked once per attempt, while the marking is still on screen —
                 the only place a student can judge whether it was fair. Signed-in
                 only: /api/mark/feedback authenticates and checks attempt
@@ -2841,38 +3293,6 @@ export default function MarkPage() {
               billingSummary?.signedIn && (
                 <MarkFeedbackPrompt attemptId={result.attempt_id} />
               )}
-
-            {/* Guests get the signup ask here, after the marks — not before
-                them. Gated on a loaded billing summary so it never flashes for
-                a signed-in user while auth is still resolving. */}
-            {!showingExample && billingSummary && !billingSummary.signedIn && (
-              <GuestConversionPrompt
-                marksEarned={result.marks_earned ?? null}
-                totalMarks={result.total_marks ?? null}
-                weakTopics={result.ai_marking?.weak_topics ?? []}
-                markBoard={selectedMarkBoard}
-                subjectCode={selectedSubject || null}
-              />
-            )}
-
-            {showingExample ? (
-              <MarkExampleFooter onDismiss={closeExample} />
-            ) : (
-              <PostMarkNextSteps
-                result={result}
-                onMarkAnother={handleMarkAnotherAttempt}
-                onMarkNewQuestion={handleMarkNewQuestion}
-              />
-            )}
-
-            {showFreeNudge && (
-              <p className="pt-1 text-center text-sm text-[var(--ec-text-secondary)]">
-                Want to mark more?{' '}
-                <Link href="/pricing" className="ec-link">
-                  See plans →
-                </Link>
-              </p>
-            )}
           </div>
         )}
       </div>

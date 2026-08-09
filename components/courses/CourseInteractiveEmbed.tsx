@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useId, useState } from 'react'
-import { ExternalLink, Loader2, Maximize2, X } from 'lucide-react'
+import { Loader2, X } from 'lucide-react'
 import type { LessonInteractiveEmbed } from '@/lib/courses/types'
 import {
   embedSlowLoadHintMs,
@@ -76,7 +76,7 @@ export function CourseInteractiveEmbed({ embed, className = '', stepLabel, layou
                 rel="noopener noreferrer"
                 className="course-interactive-embed-btn"
               >
-                <ExternalLink className="h-4 w-4" aria-hidden />
+                <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>↗</span>
                 {label}
               </a>
             ) : null}
@@ -104,7 +104,7 @@ export function CourseInteractiveEmbed({ embed, className = '', stepLabel, layou
                 rel="noopener noreferrer"
                 className="course-interactive-embed-btn course-interactive-embed-btn--primary"
               >
-                <ExternalLink className="h-4 w-4" aria-hidden />
+                <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>↗</span>
                 {label}
               </a>
             ) : null}
@@ -115,7 +115,7 @@ export function CourseInteractiveEmbed({ embed, className = '', stepLabel, layou
               aria-label="Open simulation full screen"
               disabled={!loaded}
             >
-              <Maximize2 className="h-4 w-4" aria-hidden />
+              <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>□</span>
               Full screen
             </button>
           </div>
@@ -139,7 +139,7 @@ export function CourseInteractiveEmbed({ embed, className = '', stepLabel, layou
                 rel="noopener noreferrer"
                 className="course-interactive-embed-btn course-interactive-embed-btn--primary"
               >
-                <ExternalLink className="h-4 w-4" aria-hidden />
+                <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>↗</span>
                 {label}
               </a>
             ) : null}
@@ -150,7 +150,7 @@ export function CourseInteractiveEmbed({ embed, className = '', stepLabel, layou
               aria-label="Open simulation full screen"
               disabled={!loaded}
             >
-              <Maximize2 className="h-4 w-4" aria-hidden />
+              <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>□</span>
               Full screen
             </button>
           </div>

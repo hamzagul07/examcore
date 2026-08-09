@@ -2,8 +2,10 @@
 
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import { PUM_GRADES, rawToPum, type PumBoundary } from '@/lib/seo/uniform-marks'
+import { ToolShareActions } from '@/components/tools/ToolShareActions'
+import { buildToolSlipText } from '@/lib/tools/tool-slip'
 
 function initialRows(): PumBoundary[] {
   return PUM_GRADES.map((grade) => ({ grade, mark: '' }))
@@ -101,12 +103,25 @@ export function PumConverter() {
                 subject aggregate, not per component. Confirm against your official statement of
                 results.
               </p>
+              <ToolShareActions
+                title="MarkScheme · PUM"
+                url="https://markscheme.app/tools/pum-calculator"
+                text={buildToolSlipText([
+                  'MarkScheme · PUM calculator',
+                  `${rawNum} / ${totalNum}`,
+                  `PUM: ${result.pum}${result.grade ? ` · grade ${result.grade}` : ''}`,
+                  result.nextGrade && result.marksToNext != null
+                    ? `${result.marksToNext} raw mark${result.marksToNext === 1 ? '' : 's'} to ${result.nextGrade}`
+                    : null,
+                  'markscheme.app/tools/pum-calculator',
+                ])}
+              />
               <Link
                 href="/mark"
                 className="ec-btn-primary inline-flex min-h-[44px]"
                 style={{ marginTop: 12 }}
               >
-                See what each mark was worth <ArrowRight className="h-4 w-4" />
+                See what each mark was worth <span className="h-4 w-4" aria-hidden>-&gt;</span>
               </Link>
             </>
           )}

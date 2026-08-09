@@ -4,7 +4,17 @@ import * as React from 'react'
 import { motion, type HTMLMotionProps } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
-type CardVariant = 'glass' | 'frost' | 'solid' | 'brand-glow' | 'default' | 'subtle'
+/** Canonical variants. Legacy aliases still accepted for call-site compatibility. */
+type CardVariant =
+  | 'paper'
+  | 'brand'
+  | 'glass'
+  | 'frost'
+  | 'solid'
+  | 'default'
+  | 'subtle'
+  | 'brand-glow'
+
 type CardPadding = 'none' | 'sm' | 'md' | 'lg'
 
 type CardProps = {
@@ -12,34 +22,24 @@ type CardProps = {
   variant?: CardVariant
   /** Apply the hover lift effect. Only meaningful for clickable cards. */
   hover?: boolean
-  /** Run the entry animation (spring slide-up + fade). */
+  /** Run the entry animation (spring slide-up + fade). Prefer static PaperCard otherwise. */
   animate?: boolean
-  /** Padding tier. `none` lets the caller control padding entirely. */
   padding?: CardPadding
   className?: string
-  /**
-   * Semantic element. Defaults to `div`. `section` is supported; anything else
-   * falls back to `div` since framer-motion needs to know the element shape.
-   */
   as?: 'div' | 'section'
   id?: string
   style?: React.CSSProperties
 } & Pick<HTMLMotionProps<'div'>, 'onClick' | 'onMouseEnter' | 'onMouseLeave'>
 
 /**
- * Premium glass card primitive.
+ * Client Card — use `animate` only when motion is required.
+ * For static slips, prefer `PaperCard` (no client bundle).
  *
- * Variants:
- *   - glass:      heavy backdrop-blur, semi-transparent — the new default
- *   - frost:      heavier blur, more translucent — auth shells, hero stats
- *   - solid:      opaque white — when blur is unhelpful (long content, code)
- *   - brand-glow: hero stat / decisive surface — paper card with soft wash
- *   - default:    alias for `glass` (legacy)
- *   - subtle:     alias for `frost` with smaller radius (legacy)
+ * DS-03: glass/frost/solid/default/subtle all resolve to paper; brand-glow → brand.
  */
 export function Card({
   children,
-  variant = 'glass',
+  variant = 'paper',
   hover = false,
   animate = false,
   padding = 'md',
@@ -54,13 +54,10 @@ export function Card({
   const variantClass = pickVariant(variant)
   const paddingClass = pickPadding(padding)
   const hoverClass = hover ? 'ec-card-lift' : ''
-
   const className_ = cn(variantClass, paddingClass, hoverClass, className)
 
-  // Framer's motion factory works for both div and section.
-  const MotionTag = as === 'section' ? motion.section : motion.div
-
   if (animate) {
+    const MotionTag = as === 'section' ? motion.section : motion.div
     return (
       <MotionTag
         id={id}
@@ -78,7 +75,6 @@ export function Card({
     )
   }
 
-  // Static (non-animated) variant — render the plain element.
   const Tag = as
   return (
     <Tag
@@ -95,20 +91,8 @@ export function Card({
 }
 
 function pickVariant(variant: CardVariant): string {
-  switch (variant) {
-    case 'glass':
-    case 'default':
-      return 'ec-card'
-    case 'frost':
-      return 'ec-card'
-    case 'subtle':
-      // Legacy "subtle" — a lighter frost used for nested groups.
-      return 'ec-card rounded-2xl'
-    case 'solid':
-      return 'ec-card'
-    case 'brand-glow':
-      return 'ec-card-brand'
-  }
+  if (variant === 'brand' || variant === 'brand-glow') return 'ec-card-brand'
+  return 'ec-card ec-card--paper'
 }
 
 function pickPadding(padding: CardPadding): string {

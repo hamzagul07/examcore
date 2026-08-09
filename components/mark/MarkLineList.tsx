@@ -1,4 +1,3 @@
-import { Check, X } from 'lucide-react'
 import type { MarkAwarded } from '@/components/MarkingResultView'
 
 /**
@@ -9,7 +8,7 @@ import type { MarkAwarded } from '@/components/MarkingResultView'
  * the next, and so a change to how a verdict reads happens once. Styling lives
  * in `.ms-mpl`.
  *
- * Verdict is carried by icon AND colour, never colour alone, so it survives
+ * Verdict is carried by stamp AND colour, never colour alone, so it survives
  * greyscale, print and colour vision deficiency.
  */
 export function MarkLineList({
@@ -35,11 +34,7 @@ export function MarkLineList({
           className={`ms-mpl ${m.earned ? 'is-earned' : 'is-lost'}`}
         >
           <span className="ms-mpl__icon" aria-hidden="true">
-            {m.earned ? (
-              <Check className="h-3.5 w-3.5" />
-            ) : (
-              <X className="h-3.5 w-3.5" />
-            )}
+            {m.earned ? '✓' : '×'}
           </span>
           <span className="ms-mpl__type">{m.type}</span>
           <span className="ms-mpl__work">{m.line_reference}</span>

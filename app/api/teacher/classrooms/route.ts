@@ -2,6 +2,7 @@ import { randomBytes } from 'crypto'
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase-server'
 import { requireTeacher } from '@/lib/teacher-auth'
+import { listTeacherClassrooms } from '@/lib/teacher/list-classrooms'
 
 function generateInviteCode(): string {
   return randomBytes(4).toString('hex').toUpperCase()
@@ -17,47 +18,12 @@ export async function GET() {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  const teacherCheck = await requireTeacher(supabase, user.id)
-  if (!teacherCheck.ok) {
-    return NextResponse.json({ error: 'Not a teacher' }, { status: 403 })
+  const result = await listTeacherClassrooms(supabase, user.id)
+  if (!result.ok) {
+    return NextResponse.json({ error: result.error }, { status: result.status })
   }
 
-  const { data: classrooms, error } = await supabase
-    .from('classrooms')
-    .select('id, name, description, invite_code, board, level, subject, created_at')
-    .eq('teacher_id', user.id)
-    .order('created_at', { ascending: false })
-
-  if (error) {
-    console.error('[teacher/classrooms] list failed:', error)
-    return NextResponse.json({ error: 'Failed to load classrooms' }, { status: 500 })
-  }
-
-  // Single grouped read instead of one count query per classroom (N+1). Fetch
-  // every membership for this teacher's classrooms in one round-trip and tally
-  // in memory.
-  const classroomList = classrooms || []
-  const ids = classroomList.map((c) => c.id)
-  const counts = new Map<string, number>()
-  if (ids.length) {
-    const { data: memberships, error: membershipError } = await supabase
-      .from('classroom_memberships')
-      .select('classroom_id')
-      .in('classroom_id', ids)
-    if (membershipError) {
-      console.error('[teacher/classrooms] membership count failed:', membershipError)
-    }
-    for (const m of memberships ?? []) {
-      counts.set(m.classroom_id, (counts.get(m.classroom_id) ?? 0) + 1)
-    }
-  }
-
-  const withCounts = classroomList.map((c) => ({
-    ...c,
-    studentCount: counts.get(c.id) ?? 0,
-  }))
-
-  return NextResponse.json({ classrooms: withCounts })
+  return NextResponse.json({ classrooms: result.classrooms })
 }
 
 type CreateBody = {

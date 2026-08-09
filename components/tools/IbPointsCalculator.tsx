@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Check, X } from 'lucide-react'
+
 import {
   CORE_GRADES,
   SUBJECT_GRADES,
@@ -13,6 +13,9 @@ import {
   type SubjectLevel,
 } from '@/lib/ib/points'
 import { readUrlParams, writeUrlParams } from '@/lib/url-state'
+import { ToolShareActions } from '@/components/tools/ToolShareActions'
+import { buildToolSlipText } from '@/lib/tools/tool-slip'
+import { SegmentedControl } from '@/components/ui/SegmentedControl'
 
 const DEFAULT_SUBJECTS: DiplomaSubject[] = [
   { grade: 6, level: 'HL' },
@@ -96,29 +99,23 @@ export function IbPointsCalculator() {
               <span className="ms-body-2 w-16 shrink-0 font-semibold text-[var(--ec-text-secondary)]">
                 Subject {i + 1}
               </span>
-              <div className="flex overflow-hidden rounded-md border border-[var(--ec-border)]" role="group" aria-label={`Subject ${i + 1} level`}>
-                {(['HL', 'SL'] as SubjectLevel[]).map((lvl) => (
-                  <button
-                    key={lvl}
-                    type="button"
-                    onClick={() => setLevel(i, lvl)}
-                    aria-pressed={s.level === lvl}
-                    className={`min-h-[40px] px-3 text-sm font-semibold ${
-                      s.level === lvl
-                        ? 'bg-[var(--ec-brand)] text-white'
-                        : 'bg-transparent text-[var(--ec-text-secondary)]'
-                    }`}
-                  >
-                    {lvl}
-                  </button>
-                ))}
-              </div>
+              <SegmentedControl
+                className="ms-ib-level flex overflow-hidden rounded border border-[var(--ec-border)]"
+                optionClassName="ms-ib-level__btn"
+                aria-label={`Subject ${i + 1} level`}
+                value={s.level}
+                onChange={(lvl) => setLevel(i, lvl)}
+                options={[
+                  { value: 'HL', label: 'HL' },
+                  { value: 'SL', label: 'SL' },
+                ]}
+              />
               <label className="ml-auto flex items-center gap-2">
                 <span className="sr-only">Subject {i + 1} grade</span>
                 <select
                   value={s.grade}
                   onChange={(e) => setGrade(i, Number(e.target.value) as SubjectGrade)}
-                  className="min-h-[40px] rounded-md border border-[var(--ec-border)] bg-[var(--ec-surface)] px-3 text-base font-semibold"
+                  className="min-h-[40px] rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-3 text-base font-semibold"
                 >
                   {SUBJECT_GRADES.map((g) => (
                     <option key={g} value={g}>
@@ -138,7 +135,7 @@ export function IbPointsCalculator() {
             <select
               value={tok}
               onChange={(e) => setTok(e.target.value as CoreGrade)}
-              className="mt-2 min-h-[40px] w-full rounded-md border border-[var(--ec-border)] bg-[var(--ec-surface)] px-3 text-base font-semibold"
+              className="mt-2 min-h-[40px] w-full rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-3 text-base font-semibold"
             >
               {CORE_GRADES.map((g) => (
                 <option key={g} value={g}>
@@ -152,7 +149,7 @@ export function IbPointsCalculator() {
             <select
               value={ee}
               onChange={(e) => setEe(e.target.value as CoreGrade)}
-              className="mt-2 min-h-[40px] w-full rounded-md border border-[var(--ec-border)] bg-[var(--ec-surface)] px-3 text-base font-semibold"
+              className="mt-2 min-h-[40px] w-full rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-3 text-base font-semibold"
             >
               {CORE_GRADES.map((g) => (
                 <option key={g} value={g}>
@@ -173,7 +170,7 @@ export function IbPointsCalculator() {
 
       {/* Result */}
       <div
-        className="rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-6"
+        className="ec-card ec-card--paper border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] p-6"
         aria-live="polite"
       >
         <p className="ms-overline" style={{ color: 'var(--ec-brand)' }}>
@@ -189,13 +186,13 @@ export function IbPointsCalculator() {
         </p>
 
         <div
-          className={`mt-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold ${
+          className={`mt-4 inline-flex items-center gap-2 rounded border px-3 py-1 font-mono text-sm font-semibold ${
             result.awarded
               ? 'bg-[color-mix(in_srgb,var(--ec-brand)_15%,transparent)] text-[var(--ec-brand)]'
               : 'bg-[color-mix(in_srgb,#8f1f1c_12%,transparent)] text-[#8f1f1c]'
           }`}
         >
-          {result.awarded ? <Check className="h-4 w-4" /> : <X className="h-4 w-4" />}
+          {result.awarded ? <span aria-hidden>✓</span> : <span aria-hidden>×</span>}
           {result.awarded ? 'Meets the award conditions' : 'A condition is not met'}
         </div>
 
@@ -203,9 +200,9 @@ export function IbPointsCalculator() {
           {result.conditions.map((c) => (
             <li key={c.label} className="flex items-start gap-2">
               {c.pass ? (
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--ec-brand)]" aria-hidden />
+                <span className="mt-0.5 shrink-0 font-mono text-sm font-bold text-[var(--ec-brand)]" aria-hidden>✓</span>
               ) : (
-                <X className="mt-0.5 h-4 w-4 shrink-0 text-[#8f1f1c]" aria-hidden />
+                <span className="mt-0.5 shrink-0 font-mono text-sm font-bold text-[var(--ec-ink-crimson,#8f1f1c)]" aria-hidden>×</span>
               )}
               <span className="ms-body-2">
                 {c.label}
@@ -219,11 +216,26 @@ export function IbPointsCalculator() {
           An estimate of your /45 and the published award conditions. The final diploma also requires
           completing CAS and depends on your exact HL/SL registration — confirm with your coordinator.
         </p>
+        <ToolShareActions
+          title="MarkScheme · IB points"
+          url="https://markscheme.app/tools/ib-points-calculator"
+          text={buildToolSlipText([
+            'MarkScheme · IB points calculator',
+            `Total: ${result.total}/45`,
+            `${result.subjectTotal} from subjects + ${result.bonus} bonus`,
+            result.awarded ? 'Meets the award conditions' : 'A condition is not met',
+            ...result.conditions
+              .filter((c) => !c.pass)
+              .slice(0, 3)
+              .map((c) => `× ${c.label}${c.detail ? ` — ${c.detail}` : ''}`),
+            'markscheme.app/tools/ib-points-calculator',
+          ])}
+        />
         <Link
           href="/ib/courses"
           className="ec-btn-primary mt-4 inline-flex min-h-[44px] items-center gap-2"
         >
-          Revise free with IB courses <ArrowRight className="h-4 w-4" />
+          Revise free with IB courses <span className="h-4 w-4" aria-hidden>-&gt;</span>
         </Link>
       </div>
     </div>

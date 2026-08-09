@@ -3,7 +3,7 @@ import type { FaqItem } from '@/lib/faq-data'
 export const FOR_TEACHERS_SEO_FAQ: FaqItem[] = [
   {
     q: 'How do teachers get started with MarkScheme?',
-    a: 'Sign up, open the teacher dashboard at markscheme.app/teacher, and create a classroom. Share the invite code with students — they join from their account and mark past papers as usual.',
+    a: 'Sign up, then open markscheme.app/for-teachers/start to file your first class (about thirty seconds). Share the invite code with students — they join from /join and mark past papers as usual. Already set up? Your desk is at /teacher/dashboard.',
   },
   {
     q: 'What can teachers see about student marking?',

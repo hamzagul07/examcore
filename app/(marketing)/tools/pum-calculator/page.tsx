@@ -1,16 +1,11 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode, softwareApplicationNode } from '@/lib/seo/structured-data'
-import {
-  MarketingHero,
-  MarketingPageShell,
-  MarketingSection,
-} from '@/components/marketing/MarketingPageShell'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { PumConverter } from '@/components/tools/PumConverter'
+import { ToolInstrumentShell } from '@/components/tools/ToolInstrumentShell'
 
 const PATH = '/tools/pum-calculator'
 
@@ -47,9 +42,43 @@ export const metadata = getPageMetadata(PATH, {
   ],
 })
 
+function PumArtefact() {
+  return (
+    <aside
+      className="ms-tools-artefact"
+      aria-label="Example: raw 62 of 75 converts to PUM 83, grade A"
+    >
+      <div className="ms-tools-artefact__head">
+        <span className="ms-tools-artefact__kicker">Raw → PUM</span>
+        <span className="ms-tools-artefact__stamp" aria-hidden>
+          %
+        </span>
+      </div>
+      <div className="ms-tools-artefact__figure">
+        <span className="ms-tools-artefact__raw">83</span>
+        <span className="ms-tools-artefact__of">PUM</span>
+        <span className="ms-tools-artefact__grade">A</span>
+      </div>
+      <dl className="ms-tools-artefact__rows">
+        <div className="ms-tools-artefact__row">
+          <dt>Raw</dt>
+          <dd>62 / 75</dd>
+        </div>
+        <div className="ms-tools-artefact__row ms-tools-artefact__row--gap">
+          <dt>A floor</dt>
+          <dd>PUM 80</dd>
+        </div>
+      </dl>
+      <p className="ms-tools-artefact__cite" aria-hidden>
+        uniform scale — same grade, any session
+      </p>
+    </aside>
+  )
+}
+
 export default function PumCalculatorPage() {
   return (
-    <MarketingPageShell>
+    <>
       <PageJsonLd
         path={PATH}
         title="Cambridge PUM / UMS calculator"
@@ -62,17 +91,41 @@ export default function PumCalculatorPage() {
       />
       <JsonLd data={[faqPageNode(FAQS), softwareApplicationNode()]} />
 
-      <MarketingHero
-        label="Free tool"
+      <ToolInstrumentShell
+        stamp="%"
+        label="Uniform-mark instrument"
+        title={
+          <>
+            Cambridge PUM / <em>UMS</em> calculator
+          </>
+        }
+        lead="Convert a raw mark into a Percentage Uniform Mark on the 0–100 scale. Enter your mark, the total, and the A–E thresholds — get your PUM, grade, and marks to the next band."
+        note="boundaries pin the scale — not the raw percentage"
+        artefact={<PumArtefact />}
         breadcrumbs={[
           { name: 'Home', path: '/' },
+          { name: 'Tools', path: '/tools' },
           { name: 'PUM / UMS calculator', path: PATH },
         ]}
-        title="Cambridge PUM / UMS calculator"
-        lead="Convert a raw mark into a Percentage Uniform Mark on the 0–100 scale. Enter your mark, the total, and the A–E thresholds for your session — get your PUM, your grade, and the marks to the next grade."
-      />
-
-      <MarketingSection className="!pt-0">
+        after={
+          <>
+            <section className="ms-tool-instrument__faq" aria-labelledby="pum-faq">
+              <h2 id="pum-faq" className="ms-tool-instrument__faq-title">
+                FAQ
+              </h2>
+              <dl className="ms-tool-faq">
+                {FAQS.map((f) => (
+                  <div key={f.q}>
+                    <dt>{f.q}</dt>
+                    <dd className="ms-body-2">{f.a}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+            <PageHelpStrip />
+          </>
+        }
+      >
         <PumConverter />
 
         <div className="mt-12 max-w-2xl">
@@ -95,50 +148,63 @@ export default function PumCalculatorPage() {
             </Link>{' '}
             for the full picture.
           </p>
-          <aside className="mt-8 flex flex-wrap items-center justify-between gap-4 ec-card ec-card--paper border border-[var(--ec-border)] px-5 py-4">
-            <p className="ms-body-2" style={{ margin: 0, maxWidth: 520 }}>
-              Sitting Edexcel International? Units cash in via UMS (same idea as PUM, different
-              board). MarkScheme marks Wave 1 IAL Maths, Physics and Chemistry units live.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <Link
-                href="/edexcel/international-a-level/mathematics/grade-boundaries"
-                className="ec-btn-secondary ec-btn-secondary--sm"
-              >
-                Edexcel UMS explainer
-              </Link>
-              <Link
-                href="/mark?board=edexcel&subject=WMA11"
-                className="ec-btn-primary ec-btn-primary--sm"
-              >
-                Mark WMA11 <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </aside>
         </div>
 
-        <div className="ms-hub-card mt-12 text-center">
-          <h2 className="ms-h3">Want to know where each mark went?</h2>
-          <p className="ms-lead mx-auto" style={{ marginTop: 10, maxWidth: 480 }}>
-            A PUM tells you the grade. MarkScheme shows you <em>why</em> — upload your paper for
-            mark-by-mark feedback against the real Cambridge scheme.
-          </p>
-          <Link href="/mark" className="ec-btn-primary inline-flex min-h-[48px]">
-            Mark a paper free <ArrowRight className="h-5 w-5" />
-          </Link>
-          <p className="ms-micro mt-6">
-            More tools:{' '}
-            <Link href="/tools/grade-boundary-calculator" className="ec-btn-underline">
-              grade boundary calculator
-            </Link>{' '}
-            ·{' '}
-            <Link href="/tools" className="ec-btn-underline">
-              all free tools
+        <aside className="ms-mark-example-slip mt-8">
+          <div className="ms-mark-example-slip__body">
+            <span className="ec-ink-stamp" aria-hidden>
+              EX
+            </span>
+            <div className="ms-mark-example-slip__copy">
+              <p className="ms-mark-example-slip__title">Sitting Edexcel International?</p>
+              <p className="ms-mark-example-slip__lead">
+                Units cash in via UMS (same idea as PUM, different board). MarkScheme marks Wave 1
+                IAL Maths, Physics and Chemistry units live.
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href="/edexcel/international-a-level/mathematics/grade-boundaries"
+              className="ec-btn-secondary ec-btn-secondary--sm"
+            >
+              Edexcel UMS
             </Link>
-          </p>
-        </div>
-        <PageHelpStrip />
-      </MarketingSection>
-    </MarketingPageShell>
+            <Link
+              href="/mark?board=edexcel&subject=WMA11"
+              className="ec-btn-primary ec-btn-primary--sm inline-flex items-center gap-1"
+            >
+              Mark WMA11
+              <span className="font-mono text-[11px] font-bold" aria-hidden>
+                -&gt;
+              </span>
+            </Link>
+          </div>
+        </aside>
+
+        <aside className="ms-mark-example-slip mt-8">
+          <div className="ms-mark-example-slip__body">
+            <span className="ec-ink-stamp" aria-hidden>
+              M1
+            </span>
+            <div className="ms-mark-example-slip__copy">
+              <p className="ms-mark-example-slip__title">Want to know where each mark went?</p>
+              <p className="ms-mark-example-slip__lead">
+                Convert the scale here — then put a real script under the scheme on the marking desk.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/mark"
+            className="ec-btn-primary ms-mark-example-slip__cta inline-flex min-h-[44px] items-center gap-2"
+          >
+            Mark a paper free
+            <span className="font-mono text-[11px] font-bold" aria-hidden>
+              -&gt;
+            </span>
+          </Link>
+        </aside>
+      </ToolInstrumentShell>
+    </>
   )
 }

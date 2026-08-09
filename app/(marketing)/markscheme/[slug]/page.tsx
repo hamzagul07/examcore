@@ -14,6 +14,8 @@ import {
 type Props = { params: Promise<{ slug: string }> }
 
 export const dynamicParams = true
+/** Same rationale as /questions/[slug] — avoid static shell + headers() 500s in CI. */
+export const dynamic = 'force-dynamic'
 
 export async function generateStaticParams() {
   try {

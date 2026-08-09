@@ -191,8 +191,12 @@ export function CourseLessonPage({
   const lessonReturnPath = useMemo(() => {
     const board = searchParams.get('board')?.toLowerCase()
     const unit = searchParams.get('unit')?.trim().toUpperCase()
+    const subject = searchParams.get('subject')?.trim().toLowerCase()
     if (board === 'edexcel' && unit) {
       return `${pathname}?board=edexcel&unit=${encodeURIComponent(unit)}`
+    }
+    if (board === 'oxfordaqa' && subject) {
+      return `${pathname}?board=oxfordaqa&subject=${encodeURIComponent(subject)}`
     }
     return pathname
   }, [pathname, searchParams])
@@ -206,7 +210,8 @@ export function CourseLessonPage({
     ? markHrefOverride ??
       appendMarkReturn(quizPractice.href, lessonReturnPath, L.point)
     : null
-  const edexcelVisit = Boolean(markHrefOverride)
+  const studyBoard = searchParams.get('board')?.toLowerCase()
+  const boardStudyVisit = Boolean(markHrefOverride)
 
   const toc = useMemo(
     () =>
@@ -584,7 +589,7 @@ export function CourseLessonPage({
                   ? 'Create free account →'
                   : 'Unlock practice & diagrams →'}
               </Link>
-            ) : edexcelVisit && markHrefOverride ? (
+            ) : boardStudyVisit && markHrefOverride ? (
               <Link className="btn-primary btn-block" href={markHrefOverride}>
                 {markCtaLabel ? `${markCtaLabel} →` : 'Mark this unit →'}
               </Link>
@@ -612,9 +617,11 @@ export function CourseLessonPage({
               </button>
             ) : null}
             <p className="greennote sheet-footnote">
-              {edexcelVisit
+              {studyBoard === 'edexcel'
                 ? 'Edexcel dialect · method & accuracy marks ✓'
-                : 'marked against the real scheme ✓'}
+                : studyBoard === 'oxfordaqa'
+                  ? 'OxfordAQA dialect · board-style marks ✓'
+                  : 'marked against the real scheme ✓'}
             </p>
           </div>
         </aside>
@@ -766,10 +773,10 @@ export function CourseLessonPage({
             k="·"
             title="Past paper questions"
             sub={
-              edexcelVisit
+              boardStudyVisit
                 ? practiceCount > 1
-                  ? `${practiceCount} practice questions — mark each in Edexcel dialect after you attempt on paper.`
-                  : 'Attempt on paper, then mark in Edexcel dialect (method / accuracy).'
+                  ? `${practiceCount} practice questions — mark each in your board dialect after you attempt on paper.`
+                  : 'Attempt on paper, then mark in your board dialect.'
                 : practiceCount > 1
                   ? `${practiceCount} real Cambridge questions for this topic — mark each one against the official scheme.`
                   : 'A real Cambridge question for this topic — mark it against the official scheme.'
@@ -1210,8 +1217,8 @@ export function CourseLessonPage({
                   k="11"
                   title="Practice — then mark it"
                   sub={
-                    edexcelVisit
-                      ? 'The whole point: attempt on paper, then mark in Edexcel dialect.'
+                    boardStudyVisit
+                      ? 'The whole point: attempt on paper, then mark in your board dialect.'
                       : 'The whole point: a real Cambridge question, marked mark-by-mark.'
                   }
                 />

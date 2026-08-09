@@ -19,13 +19,24 @@ import { CourseLessonSeoIntro } from '@/components/courses/CourseLessonSeoIntro'
 import { appendMarkReturn } from '@/lib/courses/format-session'
 import { CourseLessonClient } from '@/components/courses/margin-notes/CourseLessonClient'
 import { EdexcelLessonBridge } from '@/components/seo/EdexcelLessonBridge'
+import { OxfordaqaLessonBridge } from '@/components/seo/OxfordaqaLessonBridge'
 import {
   edexcelStudyLessonHref,
   edexcelStudyMarkHref,
   edexcelStudyUnitHubHref,
   parseEdexcelStudyUnit,
 } from '@/lib/edexcel/study-path'
-import { verifiedCourseLessonsForEdexcelUnit } from '@/lib/curriculum-graph/verified-course-links'
+import {
+  oxfordaqaStudyLabel,
+  oxfordaqaStudyLessonHref,
+  oxfordaqaStudyMarkHref,
+  oxfordaqaStudySubjectHubHref,
+  parseOxfordaqaStudySubject,
+} from '@/lib/oxfordaqa/study-path'
+import {
+  verifiedCourseLessonsForEdexcelUnit,
+  verifiedCourseLessonsForOxfordaqaSubject,
+} from '@/lib/curriculum-graph/verified-course-links'
 import { getCriterionLadder } from '@/lib/courses/criterion-ladder.server'
 import { GuestSignupGate } from '@/components/auth/GuestSignupGate'
 import { stripLessonsForNav } from '@/lib/courses/lesson-nav'
@@ -40,6 +51,7 @@ type Props = {
     paper?: string
     board?: string
     unit?: string
+    subject?: string
   }>
 }
 
@@ -146,7 +158,7 @@ export async function generateMetadata({ params, searchParams }: Props) {
 
 export default async function CourseLessonCatchAllPage({ params, searchParams }: Props) {
   const { code, slug } = await params
-  const { pilot, paper, board, unit } = await searchParams
+  const { pilot, paper, board, unit, subject: studySubject } = await searchParams
   const preferPublished = pilot === '0'
   const isPilotPreview = pilot === '1'
 
@@ -175,14 +187,26 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
   const communityOn = isCommunityEnabled()
   const lessonPath = `/courses/${code}/${lessonSlug}`
   const edexcelUnit = parseEdexcelStudyUnit({ board, unit })
+  const oxfordaqaSubject = parseOxfordaqaStudySubject({ board, subject: studySubject })
   const edexcelMarkPath = edexcelUnit
     ? edexcelStudyMarkHref(edexcelUnit, lessonPath, lesson.topicCode)
     : null
+  const oxfordaqaMarkPath = oxfordaqaSubject
+    ? oxfordaqaStudyMarkHref(oxfordaqaSubject, lessonPath, lesson.topicCode)
+    : null
+  const boardMarkPath = edexcelMarkPath ?? oxfordaqaMarkPath
   const markPath =
-    edexcelMarkPath ??
+    boardMarkPath ??
     appendMarkReturn(seo.markPath, lessonPath, lesson.topicCode)
-  const markCtaLabel = edexcelUnit ? `Mark ${edexcelUnit}` : 'Mark a past paper'
+  const markCtaLabel = edexcelUnit
+    ? `Mark ${edexcelUnit}`
+    : oxfordaqaSubject
+      ? `Mark ${oxfordaqaStudyLabel(oxfordaqaSubject)}`
+      : 'Mark a past paper'
   const edexcelUnitHub = edexcelUnit ? edexcelStudyUnitHubHref(edexcelUnit) : null
+  const oxfordaqaHub = oxfordaqaSubject
+    ? oxfordaqaStudySubjectHubHref(oxfordaqaSubject)
+    : null
   const edexcelNextLesson = (() => {
     if (!edexcelUnit) return null
     const pathLessons = verifiedCourseLessonsForEdexcelUnit(edexcelUnit)
@@ -191,6 +215,18 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
     if (!next) return null
     return {
       href: edexcelStudyLessonHref(next.href, edexcelUnit),
+      title: next.title,
+      topicCode: next.topicCode,
+    }
+  })()
+  const oxfordaqaNextLesson = (() => {
+    if (!oxfordaqaSubject) return null
+    const pathLessons = verifiedCourseLessonsForOxfordaqaSubject(oxfordaqaSubject)
+    const idx = pathLessons.findIndex((l) => l.href === lessonPath)
+    const next = idx >= 0 ? pathLessons[idx + 1] : undefined
+    if (!next) return null
+    return {
+      href: oxfordaqaStudyLessonHref(next.href, oxfordaqaSubject),
       title: next.title,
       topicCode: next.topicCode,
     }
@@ -238,6 +274,16 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
         />
       ) : null}
 
+      {oxfordaqaSubject && oxfordaqaMarkPath && oxfordaqaHub ? (
+        <OxfordaqaLessonBridge
+          contentCode={oxfordaqaSubject}
+          label={oxfordaqaStudyLabel(oxfordaqaSubject)}
+          markHref={oxfordaqaMarkPath}
+          subjectHubHref={oxfordaqaHub}
+          nextLesson={oxfordaqaNextLesson}
+        />
+      ) : null}
+
       <GuestSignupGate>
         <CourseLessonClient
           criterionLadder={criterionLadder}
@@ -248,8 +294,14 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
           pastPaperQuestions={pastPaperQuestions}
           lessons={stripLessonsForNav(lessons)}
           paperQuery={paperQuery}
-          markHrefOverride={edexcelMarkPath}
-          markCtaLabel={edexcelUnit ? `Mark ${edexcelUnit}` : undefined}
+          markHrefOverride={boardMarkPath}
+          markCtaLabel={
+            edexcelUnit
+              ? `Mark ${edexcelUnit}`
+              : oxfordaqaSubject
+                ? `Mark ${oxfordaqaStudyLabel(oxfordaqaSubject)}`
+                : undefined
+          }
           community={
             communityOn && !isPilotLesson ? (
               <div key="lesson-community" className="lesson-community">

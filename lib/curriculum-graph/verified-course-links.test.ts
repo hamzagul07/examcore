@@ -1,4 +1,7 @@
-import { verifiedCourseLessonsForEdexcelUnit } from '@/lib/curriculum-graph/verified-course-links'
+import {
+  verifiedCourseLessonsForEdexcelUnit,
+  verifiedCourseLessonsForOxfordaqaSubject,
+} from '@/lib/curriculum-graph/verified-course-links'
 
 let failed = 0
 function check(name: string, ok: boolean) {
@@ -38,7 +41,20 @@ check('WME02 has verified course lessons', wme02.length >= 1)
 const empty = verifiedCourseLessonsForEdexcelUnit('WXX99')
 check('unknown unit empty', empty.length === 0)
 
+const oxMaths = verifiedCourseLessonsForOxfordaqaSubject('oxaqa-mathematics')
+check('OxfordAQA maths has mapped course lessons', oxMaths.length >= 8)
+check(
+  'OxfordAQA maths hrefs are /courses/9709/',
+  oxMaths.every((l) => l.href.startsWith('/courses/9709/'))
+)
+const oxBio = verifiedCourseLessonsForOxfordaqaSubject('oxaqa-biology')
+check('OxfordAQA biology has mapped course lessons', oxBio.length >= 1)
+check(
+  'OxfordAQA biology hrefs are /courses/9700/',
+  oxBio.every((l) => l.href.startsWith('/courses/9700/'))
+)
+
 if (failed > 0) process.exit(1)
 console.log(
-  `verified-course-links.test.ts: all checks passed (WMA11=${wma11.length} lessons)`
+  `verified-course-links.test.ts: all checks passed (WMA11=${wma11.length} oxMaths=${oxMaths.length})`
 )

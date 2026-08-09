@@ -167,9 +167,15 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
   ],
   'grade-boundaries': [
     {
+      question: 'Will my grade hold if thresholds move?',
+      answer:
+        'Paste your raw mark and recent-session (or official) thresholds into Will my grade hold? — you will see the grade and how many marks sit between you and the next boundary.',
+      href: '/tools/will-my-grade-hold',
+    },
+    {
       question: 'Where do I find official grade thresholds?',
       answer:
-        'Cambridge publishes per-syllabus, per-session grade threshold tables on results day — your exams officer also receives them in the results pack.',
+        'Cambridge publishes per-syllabus, per-session grade threshold tables on results day (~13 August for June 2026) — your exams officer also receives them in the results pack.',
       href: '/guides/grade-boundaries',
     },
     {
@@ -177,6 +183,12 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       answer:
         'Add your component raw marks and compare against the most recent published thresholds — our calculator does this for the major syllabuses.',
       href: '/tools/grade-boundary-calculator',
+    },
+    {
+      question: 'What is the Cambridge Results Day 2026 checklist?',
+      answer:
+        'AS & A Level grades 11 August, thresholds ~13 August, IGCSE/O Level 18 August — dates, remarks, and subject links live on the Results Day hub.',
+      href: '/results-2026',
     },
     {
       question: 'Why do boundaries change every year?',

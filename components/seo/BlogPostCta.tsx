@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
 import { buildSignUpHref } from '@/lib/auth-redirect'
 import { trackFunnelEvent } from '@/lib/analytics/funnel'
 import {
@@ -35,6 +34,9 @@ export function BlogPostCta({
   const calculatorHref = subjectCode
     ? `/tools/grade-boundary-calculator/${subjectCode}`
     : '/tools/grade-boundary-calculator'
+  const gradeHoldHref = subjectCode
+    ? `/tools/will-my-grade-hold?code=${encodeURIComponent(subjectCode)}`
+    : '/tools/will-my-grade-hold'
   const hasCourse = Boolean(subjectCode && hasSyllabusTree(subjectCode))
   const courseHref = subjectCode ? `/courses/${subjectCode}` : '/courses'
   const signupHref = slug ? buildSignUpHref(`/blog/${slug}`) : buildSignUpHref('/blog')
@@ -69,14 +71,14 @@ export function BlogPostCta({
           <p className="ms-overline">Keep learning</p>
           <h2 className="ec-blog-footer-cta__title">
             {isGradeBoundaries
-              ? 'Check your boundaries — then mark a paper'
+              ? 'Will your grade hold — then mark the gap'
               : subjectCode
                 ? `Mark a ${subjectCode} question against the real scheme`
                 : 'Mark a question — then join the conversation'}
           </h2>
           <p className="ec-blog-footer-cta__lead">
             {isGradeBoundaries
-              ? 'Use the calculator with your raw mark, then practise the topics that decide the next grade. Free account saves your subjects for mock season.'
+              ? 'Stress-test your raw mark against May/June thresholds, then practise the topics that decide the next grade. Free account saves your subjects for mock season.'
               : (
                 <>
                   Type or photograph one answer — free, no account. Or jump into{' '}
@@ -135,7 +137,9 @@ export function BlogPostCta({
                 #
               </span>
               Discuss with other students
-              <ArrowRight className="h-4 w-4 shrink-0 opacity-90" aria-hidden />
+              <span className="font-mono text-xs font-bold opacity-90" aria-hidden>
+                -&gt;
+              </span>
             </Link>
           </div>
 
@@ -155,10 +159,17 @@ export function BlogPostCta({
             </Link>
           ) : (
             <Link
-              href={calculatorHref}
+              href={gradeHoldHref}
               className="ec-btn-primary ec-blog-footer-cta__signup min-h-[48px] w-full justify-center"
+              onClick={() =>
+                trackFunnelEvent('mark_cta_clicked', {
+                  source: 'blog_footer_grade_hold',
+                  subject: subjectCode,
+                  board: markBoard,
+                })
+              }
             >
-              Open grade calculator
+              Will my grade hold?
             </Link>
           )}
 
@@ -177,12 +188,20 @@ export function BlogPostCta({
               Create free account
             </Link>
             {isGradeBoundaries ? (
-              <Link
-                href={markHref}
-                className="ec-btn-ghost min-h-[44px] flex-1 justify-center"
-              >
-                Mark a paper free
-              </Link>
+              <>
+                <Link
+                  href={calculatorHref}
+                  className="ec-btn-ghost min-h-[44px] flex-1 justify-center"
+                >
+                  Grade calculator
+                </Link>
+                <Link
+                  href={markHref}
+                  className="ec-btn-ghost min-h-[44px] flex-1 justify-center"
+                >
+                  Mark a paper free
+                </Link>
+              </>
             ) : null}
             {variant === 'subject' && hasCourse ? (
               <Link href={courseHref} className="ec-btn-ghost min-h-[44px] flex-1 justify-center">

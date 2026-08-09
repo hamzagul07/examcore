@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
 import { getClusterForSlug } from '@/lib/seo/clusters'
 import { MONEY_PAGES } from '@/lib/seo/internal-sculpt'
 import {
@@ -20,22 +20,32 @@ type Props = { slug: string }
 export function BlogInContentLinks({ slug }: Props) {
   const cluster = getClusterForSlug(slug)
   const isIb = cluster.id === 'ib'
+  const isGradeBoundaries = cluster.id === 'grade-boundaries'
   const hubLabel = isIb ? 'IB Diploma hub' : `${cluster.title} hub`
   // Link down to the subject hub so ~200 syllabus-coded posts stop orphaning
   // their /subjects/[code] and /ib topic-practice pages.
   const ibTopicPractice = isIb ? ibTopicPracticeLinkForSlug(slug) : null
   const cambridgeSubject = isIb ? null : cambridgeSubjectLinkForSlug(slug)
   const subjectCode = cambridgeSubject?.code ?? null
-  const primaryHref = subjectCode
-    ? `/mark?subject=${encodeURIComponent(subjectCode)}`
-    : isIb
-      ? '/mark?board=ib'
-      : MONEY_PAGES[0]
-  const primaryLabel = subjectCode
-    ? `Mark a ${subjectCode} question — free, no account`
-    : isIb
-      ? 'Mark with IB criteria — free'
-      : 'Mark a past-paper question — free, no account'
+  const gradeHoldHref = subjectCode
+    ? `/tools/will-my-grade-hold?code=${encodeURIComponent(subjectCode)}`
+    : '/tools/will-my-grade-hold'
+  const primaryHref = isGradeBoundaries
+    ? gradeHoldHref
+    : subjectCode
+      ? `/mark?subject=${encodeURIComponent(subjectCode)}`
+      : isIb
+        ? '/mark?board=ib'
+        : MONEY_PAGES[0]
+  const primaryLabel = isGradeBoundaries
+    ? subjectCode
+      ? `Will ${subjectCode} grade hold?`
+      : 'Will my grade hold?'
+    : subjectCode
+      ? `Mark a ${subjectCode} question — free, no account`
+      : isIb
+        ? 'Mark with IB criteria — free'
+        : 'Mark a past-paper question — free, no account'
   const showEdexcelBridge = showEdexcelBridgeForBlogSlug(slug)
 
   return (
@@ -43,22 +53,36 @@ export function BlogInContentLinks({ slug }: Props) {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="ms-h3" style={{ fontSize: '1.05rem' }}>
-            {subjectCode
-              ? `Mark a ${subjectCode} question against the real scheme`
-              : isIb
-                ? 'Practise criterion marking while this guide is fresh'
-                : 'Mark your paper while this guide is fresh'}
+            {isGradeBoundaries
+              ? subjectCode
+                ? `Stress-test your ${subjectCode} raw mark before thresholds land`
+                : 'Stress-test your raw mark before thresholds land'
+              : subjectCode
+                ? `Mark a ${subjectCode} question against the real scheme`
+                : isIb
+                  ? 'Practise criterion marking while this guide is fresh'
+                  : 'Mark your paper while this guide is fresh'}
           </p>
           <p className="ms-body-2" style={{ marginTop: 6 }}>
-            {isIb
-              ? 'Band-by-band IB feedback — type or photograph your answer, no account needed for the first mark'
-              : 'Type or photograph your answer — scheme-aligned Examiner\u2019s Ink, free first mark'}
+            {isGradeBoundaries
+              ? 'See how sensitive your grade is if boundaries move a mark or two — then mark the topics that close the gap'
+              : isIb
+                ? 'Band-by-band IB feedback — type or photograph your answer, no account needed for the first mark'
+                : 'Type or photograph your answer — scheme-aligned Examiner\u2019s Ink, free first mark'}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
           <Link href={primaryHref} className="ec-btn-primary inline-flex min-h-[44px] text-sm">
-            {primaryLabel} <ArrowRight className="h-4 w-4" />
+            {primaryLabel} <span className="h-4 w-4" aria-hidden>-&gt;</span>
           </Link>
+          {isGradeBoundaries && subjectCode ? (
+            <Link
+              href={`/mark?subject=${encodeURIComponent(subjectCode)}`}
+              className="ec-btn-secondary inline-flex min-h-[44px] text-sm"
+            >
+              Mark a {subjectCode} question
+            </Link>
+          ) : null}
           {ibTopicPractice ? (
             <Link
               href={ibTopicPractice}

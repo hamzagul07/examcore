@@ -530,120 +530,6 @@
   text-align: center;
 }
 
-/* platform showcase — courses + community side by side */
-.ms-platform-showcase {
-  padding-bottom: 16px;
-}
-
-.ms-showcase-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 24px;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-}
-
-.ms-showcase-head-ctas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.ms-showcase-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  align-items: stretch;
-}
-
-.ms-showcase-panel {
-  border-radius: 4px;
-  border: 1px solid var(--ec-border);
-  padding: 24px 22px 22px;
-  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
-  position: relative;
-  overflow: hidden;
-  background: var(--ec-paper, var(--ec-surface));
-}
-
-.ms-showcase-panel::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-}
-
-.ms-showcase-panel--learn {
-  background: linear-gradient(
-    165deg,
-    color-mix(in srgb, var(--ec-accent-warm) 8%, var(--ec-surface)) 0%,
-    var(--ec-surface) 42%
-  );
-}
-
-.ms-showcase-panel--learn::before {
-  background: linear-gradient(90deg, var(--ec-accent-warm), color-mix(in srgb, var(--ec-accent-warm) 60%, var(--ec-brand)));
-}
-
-.ms-showcase-panel--discuss {
-  background: linear-gradient(
-    165deg,
-    color-mix(in srgb, var(--ec-acc-violet) 10%, var(--ec-surface)) 0%,
-    var(--ec-surface) 42%
-  );
-}
-
-.ms-showcase-panel--discuss::before {
-  background: linear-gradient(90deg, var(--ec-acc-violet), color-mix(in srgb, var(--ec-acc-violet) 60%, var(--ec-c-phys)));
-}
-
-.ms-showcase-panel-head {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 18px;
-}
-
-.ms-showcase-panel-icon {
-  width: 40px;
-  height: 40px;
-  flex: none;
-  display: grid;
-  place-items: center;
-  border-radius: 4px;
-  font-size: 20px;
-  background: var(--ec-bg-soft);
-}
-
-.ms-showcase-panel-kicker {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ec-text-faint);
-  margin: 0 0 2px;
-}
-
-.ms-showcase-panel-head .ms-h3 {
-  margin: 0;
-  font-size: 20px;
-}
-
-.ms-showcase-panel-link {
-  margin-left: auto;
-  font-size: 13px !important;
-  white-space: nowrap;
-  align-self: center;
-}
-
-.ms-course-mini--showcase {
-  grid-template-columns: 1fr 1fr;
-}
-
 /* pillars — mark / learn / discuss */
 .ms-pillars-wrap {
   padding-top: 56px;
@@ -1792,14 +1678,6 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .ms-showcase-split {
-    grid-template-columns: 1fr;
-  }
-
-  .ms-showcase-head {
-    align-items: flex-start;
-  }
-
   .ms-feat-grid,
   .ms-steps {
     grid-template-columns: 1fr;
@@ -1819,10 +1697,6 @@
   }
 
   .ms-course-mini {
-    grid-template-columns: 1fr;
-  }
-
-  .ms-course-mini--showcase {
     grid-template-columns: 1fr;
   }
 
@@ -1930,18 +1804,6 @@
   vertical-align: -2px;
 }
 
-.ms-showcase-glyph {
-  width: 22px;
-  height: 22px;
-}
-
-.ms-showcase-panel-icon {
-  color: var(--ec-brand);
-  border: 1px solid var(--ec-brand-border);
-  background: var(--ec-brand-muted);
-  border-radius: 4px;
-}
-
 /* Full-bleed artefact beat */
 .ms-artefact-beat {
   position: relative;
@@ -2007,22 +1869,6 @@
   display: grid;
   place-items: center;
   color: var(--ec-brand);
-}
-
-/* Showcase as paper panels + slips */
-.ms-platform-showcase--tight {
-  padding-top: 48px;
-  padding-bottom: 8px;
-}
-
-.ms-showcase-panel--paper {
-  border-radius: 4px;
-  box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.1));
-  background: var(--ec-paper);
-}
-
-.ms-showcase-panel--paper::before {
-  height: 3px;
 }
 
 .ms-course-mini--slips {

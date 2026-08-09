@@ -8,6 +8,7 @@ import { predictGradeFromPercentage } from '@/lib/grade-boundaries'
 import { isIbSubjectCode } from '@/lib/ib/marking-config'
 import type { MarkingResultData } from '@/components/MarkingResultView'
 import { MARKING_TYPE_LABELS } from '@/components/mark/QuestionPreviewPanel'
+import { markingBoardLabel } from '@/lib/marking/exam-board'
 import type { MarkingStyle } from '@/lib/marking/types'
 import type { SyllabusCode } from '@/lib/syllabus'
 
@@ -42,8 +43,12 @@ export function QuestionContextCard({ result, subjectCode }: Props) {
 
   const paperLine = formatPaperReference(paperCode, paperSession, questionNumber)
   const paperSubjectCode = paperCode?.split('/')[0] || null
-  // Board-aware: IB is graded 1–7 (not A*–E) and isn't "Cambridge".
-  const isIb = isIbSubjectCode(subjectCode ?? paperSubjectCode ?? '')
+  // Board-aware: IB is graded 1–7 (not A*–E); scheme label follows subject board.
+  const schemeSubject = subjectCode ?? paperSubjectCode ?? ''
+  const isIb = isIbSubjectCode(schemeSubject)
+  const schemeBoard = markingBoardLabel(schemeSubject)
+  const schemeBoardShort =
+    schemeBoard === 'IB Diploma' ? 'IB' : schemeBoard
   const subjectLabel = subjectCode
     ? getSubjectByCode(subjectCode)?.label
     : paperSubjectCode
@@ -132,7 +137,7 @@ export function QuestionContextCard({ result, subjectCode }: Props) {
         {result.marking_mode === 'official_mark_scheme' ? (
           <div>
             <dt>Scheme</dt>
-            <dd className="ms-question-context-scheme">Official {isIb ? 'IB' : 'Cambridge'}</dd>
+            <dd className="ms-question-context-scheme">Official {schemeBoardShort}</dd>
           </div>
         ) : null}
       </dl>

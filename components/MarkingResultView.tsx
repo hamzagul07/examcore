@@ -362,12 +362,11 @@ export function MarkingResultView({
               {overline}
             </p>
           ) : null}
-          {/* Route title unmounts when a result is shown, so this is the page h1 (A11Y-02).
-              Visually the tally slip carries the score; this heading is for structure + focus. */}
-          <h1 id="mark-result-heading" className="sr-only" tabIndex={-1}>
+          {/* MarkSeoIntro in the /mark layout keeps the page h1. Focus target after mark. */}
+          <h2 id="mark-result-heading" className="sr-only" tabIndex={-1}>
             {result.marks_earned} / {result.total_marks} —{' '}
             {resultSubheading(result.marks_earned, result.total_marks)}
-          </h1>
+          </h2>
           <ScoreReveal
             marksEarned={result.marks_earned}
             totalMarks={result.total_marks}

@@ -272,7 +272,7 @@ export function WholePaperResultView({
               {overlineParts.join(' · ')}
             </p>
           ) : null}
-          <h1 id="mark-result-heading" className="ms-h2" style={{ marginBottom: 0 }} tabIndex={-1}>
+          <h2 id="mark-result-heading" className="ms-h2" style={{ marginBottom: 0 }} tabIndex={-1}>
             {primaryScore.marks_earned} / {primaryScore.total_marks}
             {primaryScore.estimated_grade ? (
               <>
@@ -282,7 +282,7 @@ export function WholePaperResultView({
             ) : (
               <> — <em>whole paper marked.</em></>
             )}
-          </h1>
+          </h2>
         </div>
       </div>
 

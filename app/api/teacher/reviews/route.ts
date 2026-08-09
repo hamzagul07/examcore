@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase-server'
+import { truncateMarkingPreview } from '@/lib/rich-text/truncate-marking-preview'
 import { requireTeacher, verifyTeacherOwnsClassroom } from '@/lib/teacher-auth'
 import { getClassroomStudentIds } from '@/lib/teacher-classroom-data'
 
@@ -87,7 +88,7 @@ export async function GET(request: Request) {
   const reviews = (attempts || []).map((a) => ({
     id: a.id,
     studentName: nameById.get(a.user_id) || 'Student',
-    questionPreview: (a.question_text || 'Marked submission').slice(0, 80),
+    questionPreview: truncateMarkingPreview(a.question_text),
     marksEarned: a.marks_earned,
     totalMarks: a.total_marks,
     createdAt: a.created_at,

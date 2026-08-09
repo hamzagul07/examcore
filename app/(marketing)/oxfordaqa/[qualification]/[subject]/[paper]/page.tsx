@@ -18,6 +18,7 @@ import {
   resolveOxfordaqaSubject,
 } from '@/lib/seo/oxfordaqa-graph'
 import { buildOxfordaqaSubjectCopy } from '@/lib/seo/oxfordaqa-seo'
+import { oxfordaqaMarkHref } from '@/lib/oxfordaqa/marking'
 
 type Props = {
   params: Promise<{ qualification: string; subject: string; paper: string }>
@@ -89,27 +90,27 @@ export default async function OxfordaqaPaperPage({ params }: Props) {
       />
       <MarketingSection>
         <div className="ms-board-cross mb-8">
-          <p className="ms-overline">Shell status</p>
-          <h2 className="ms-h2">Marking attaches later</h2>
+          <p className="ms-overline">Marking</p>
+          <h2 className="ms-h2">Mark this subject in OxfordAQA dialect</h2>
           <p className="ms-body-2 mt-2 max-w-xl text-[var(--ec-text-secondary)]">
-            Browse the paper map and boundaries here. For handwriting feedback today, use Cambridge
-            or Edexcel IAL Maths.
+            Browse the paper map here, then open the desk with OxfordAQA selected — not the
+            Cambridge default.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link
-              href="/mark"
+              href={oxfordaqaMarkHref(subject.contentCode)}
               className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
             >
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 M1
               </span>
-              Open marking desk -&gt;
+              Mark OxfordAQA {subject.name} -&gt;
             </Link>
             <Link
-              href="/edexcel/international-a-level/mathematics"
+              href={oxfordaqaSubjectPath(qualification, subjectSlug)}
               className="ec-btn-ghost inline-flex min-h-[48px]"
             >
-              Edexcel IAL Maths
+              Study path
             </Link>
           </div>
         </div>
@@ -156,7 +157,10 @@ export default async function OxfordaqaPaperPage({ params }: Props) {
             </Link>
           </li>
           <li>
-            <Link href="/mark" className="ms-board-slip ms-board-slip--compact">
+            <Link
+              href={oxfordaqaMarkHref(subject.contentCode)}
+              className="ms-board-slip ms-board-slip--compact"
+            >
               <span className="ms-board-slip__code">M1</span>
               <span className="ms-board-slip__body">
                 <span className="ms-board-slip__name">Mark an answer</span>

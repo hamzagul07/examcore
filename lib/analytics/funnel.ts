@@ -91,6 +91,9 @@ export function profileBoardFromFunnelBoard(
   if (b === 'edexcel') return 'Edexcel'
   if (b === 'ib') return 'IB'
   if (b === 'cambridge') return 'Cambridge International'
+  if (b === 'oxfordaqa') return 'OxfordAQA'
+  if (b === 'aqa') return 'AQA'
+  if (b === 'ap') return 'AP'
   return null
 }
 

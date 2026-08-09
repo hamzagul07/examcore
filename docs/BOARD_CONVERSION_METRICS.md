@@ -15,7 +15,9 @@ Requires migration `20260809_mark_runs_exam_system.sql` applied.
 | GA4 | `board` property on funnel events |
 | Session memory | `sessionStorage.ms_funnel_last_board` so signup/upgrade after mark still tags board |
 
-Live marking boards: `cambridge` · `ib` · `edexcel`.
+Live marking boards: `cambridge` · `ib` · `edexcel` · `oxfordaqa` · `aqa` · `ap`.
+
+Study-path → mark deep links carry `utm_source=study_path&utm_medium=lesson&utm_campaign={board}` so lesson handoffs are visible in UTM scorecards.
 
 ---
 

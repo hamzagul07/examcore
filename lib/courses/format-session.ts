@@ -52,3 +52,23 @@ export function appendMarkReturn(
   const qs = params.toString()
   return qs ? `${base}?${qs}` : base
 }
+
+/**
+ * Tag a /mark deep-link so study-path → mark volume is visible in UTM columns
+ * and funnel scorecards (board conversion metrics).
+ */
+export function appendStudyPathAttribution(
+  href: string,
+  board: string
+): string {
+  if (!href) return href
+  const [base, query = ''] = href.split('?')
+  const params = new URLSearchParams(query)
+  if (!params.get('utm_source')) params.set('utm_source', 'study_path')
+  if (!params.get('utm_medium')) params.set('utm_medium', 'lesson')
+  if (!params.get('utm_campaign')) {
+    params.set('utm_campaign', board.trim().toLowerCase().slice(0, 32) || 'board')
+  }
+  const qs = params.toString()
+  return qs ? `${base}?${qs}` : base
+}

@@ -46,6 +46,9 @@ check('default subjects', defaultSubjectsForProfile('Edexcel', 'A-Level')[0] ===
 check('default mark code', defaultMarkSubjectCode('A-Level', 'Edexcel') === 'WMA11')
 check('getSubjectById WMA11', getSubjectById('WMA11')?.code === 'WMA11')
 check('funnel → profile', profileBoardFromFunnelBoard('edexcel') === 'Edexcel')
+check('funnel → OxfordAQA', profileBoardFromFunnelBoard('oxfordaqa') === 'OxfordAQA')
+check('funnel → AQA', profileBoardFromFunnelBoard('aqa') === 'AQA')
+check('funnel → AP', profileBoardFromFunnelBoard('ap') === 'AP')
 
 if (failed > 0) process.exit(1)
 console.log(

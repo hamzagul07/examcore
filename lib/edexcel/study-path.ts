@@ -1,7 +1,10 @@
 import { findEdexcelSubjectByUnitCode } from '@/lib/edexcel/catalog'
 import { getEdexcelMarkableUnitCodes } from '@/lib/edexcel/marking'
 import { edexcelMarkHref } from '@/lib/edexcel/marking'
-import { appendMarkReturn } from '@/lib/courses/format-session'
+import {
+  appendMarkReturn,
+  appendStudyPathAttribution,
+} from '@/lib/courses/format-session'
 import { edexcelUnitPath } from '@/lib/seo/edexcel-graph'
 
 /** Tag a CAIE course lesson URL so the lesson can convert back to Edexcel mark. */
@@ -45,10 +48,13 @@ export function edexcelStudyMarkHref(
   lessonPath: string,
   topicCode?: string | null
 ): string {
-  return appendMarkReturn(
-    edexcelMarkHref(unitCode),
-    edexcelStudyReturnPath(lessonPath, unitCode),
-    topicCode ?? undefined
+  return appendStudyPathAttribution(
+    appendMarkReturn(
+      edexcelMarkHref(unitCode),
+      edexcelStudyReturnPath(lessonPath, unitCode),
+      topicCode ?? undefined
+    ),
+    'edexcel'
   )
 }
 

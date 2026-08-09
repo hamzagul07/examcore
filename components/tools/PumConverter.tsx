@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { PUM_GRADES, rawToPum, type PumBoundary } from '@/lib/seo/uniform-marks'
 import { ToolShareActions } from '@/components/tools/ToolShareActions'
 import { buildToolSlipText } from '@/lib/tools/tool-slip'
+import { edexcelMarkHref } from '@/lib/edexcel/marking'
 
 function initialRows(): PumBoundary[] {
   return PUM_GRADES.map((grade) => ({ grade, mark: '' }))
@@ -117,7 +118,7 @@ export function PumConverter() {
                 ])}
               />
               <Link
-                href="/mark"
+                href={edexcelMarkHref('WMA11')}
                 className="ec-btn-primary inline-flex min-h-[44px]"
                 style={{ marginTop: 12 }}
               >

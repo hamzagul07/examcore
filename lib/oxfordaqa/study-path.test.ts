@@ -51,6 +51,10 @@ check(
 )
 check('mark has return', mark.includes('return='))
 check(
+  'mark has study_path utm',
+  mark.includes('utm_source=study_path') && mark.includes('utm_campaign=oxfordaqa')
+)
+check(
   'return keeps subject context',
   mark.includes(
     'return=%2Fcourses%2F9709%2F1-1-quadratics%3Fboard%3Doxfordaqa%26subject%3Doxaqa-mathematics'

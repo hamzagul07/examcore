@@ -11,6 +11,7 @@ import { LandingFaq } from '@/components/landing/LandingFaq'
 import { LandingFinalCta } from '@/components/landing/LandingFinalCta'
 import { LandingProof } from '@/components/landing/LandingProof'
 import { LandingMoreBand } from '@/components/landing/LandingMoreBand'
+import { LandingArtefactBeat } from '@/components/landing/LandingArtefactBeat'
 import { InteractiveMarkDemoLazy } from '@/components/marketing/InteractiveMarkDemoLazy'
 
 export const metadata = getPageMetadata('/')
@@ -31,6 +32,7 @@ export default function Home() {
         <div className="ms-pg">
           <InteractiveMarkDemoLazy />
         </div>
+        <LandingArtefactBeat />
         <LandingMarkingSection />
         <LandingSubjects />
         {/* Renders nothing until real, approved student feedback exists. */}

@@ -62,15 +62,19 @@ export function getResultsDayBannerCopy(ctx: BannerContext): ResultsDayBannerCop
   const code = ctx.subjectCode
   const calc = ctx.calculatorHref ?? (code ? `/tools/grade-boundary-calculator/${code}` : '/tools/grade-boundary-calculator')
 
+  const holdHref = code
+    ? `/tools/will-my-grade-hold?code=${encodeURIComponent(code)}`
+    : '/tools/will-my-grade-hold'
+
   if (ctx.hasJune2026Data && code) {
     return {
       overline: `${JUNE_2026_SERIES} · live`,
-      title: `Official ${code} grade thresholds are in the calculator`,
-      body: `We have verified the Cambridge ${JUNE_2026_SERIES} threshold table for ${code}. Load your component in the calculator, or compare against your statement of results.`,
-      primaryHref: calc,
-      primaryLabel: `Open ${code} calculator`,
-      secondaryHref: '/guides/grade-boundaries',
-      secondaryLabel: 'All subjects',
+      title: `Official ${code} grade thresholds are live`,
+      body: `We have verified the Cambridge ${JUNE_2026_SERIES} threshold table for ${code}. Stress-test your statement mark, then open the calculator for the full component table.`,
+      primaryHref: holdHref,
+      primaryLabel: 'Will my grade hold?',
+      secondaryHref: calc,
+      secondaryLabel: `Open ${code} calculator`,
     }
   }
 
@@ -78,11 +82,11 @@ export function getResultsDayBannerCopy(ctx: BannerContext): ResultsDayBannerCop
     return {
       overline: `${JUNE_2026_SERIES} · live`,
       title: 'June 2026 grade thresholds are rolling out',
-      body: 'Official Cambridge threshold tables are being added subject by subject. Pick your syllabus in the calculator — we load verified component boundaries where available.',
-      primaryHref: '/tools/grade-boundary-calculator',
-      primaryLabel: 'Grade calculator',
-      secondaryHref: '/guides/grade-boundaries',
-      secondaryLabel: 'Subject index',
+      body: 'Official Cambridge threshold tables are being added subject by subject. Stress-test a raw mark first, then load verified components in the calculator.',
+      primaryHref: holdHref,
+      primaryLabel: 'Will my grade hold?',
+      secondaryHref: '/tools/grade-boundary-calculator',
+      secondaryLabel: 'Grade calculator',
     }
   }
 
@@ -120,12 +124,12 @@ export function getResultsDayBannerCopy(ctx: BannerContext): ResultsDayBannerCop
         overline: `${JUNE_2026_SERIES} thresholds`,
         title: 'Grade threshold tables are publishing now',
         body: code
-          ? `Cambridge is releasing ${JUNE_2026_SERIES} grade thresholds for ${code}. We add verified tables to the calculator as they go live — refresh or pick another subject if yours is not loaded yet.`
-          : 'Cambridge is publishing June 2026 grade threshold tables subject by subject. Pick your syllabus below — official component marks load automatically where we have verified the PDF.',
-        primaryHref: calc,
-        primaryLabel: code ? `Check ${code} calculator` : 'Open grade calculator',
-        secondaryHref: '/guides/grade-boundaries',
-        secondaryLabel: 'Subject index',
+          ? `Cambridge is releasing ${JUNE_2026_SERIES} grade thresholds for ${code}. Paste your statement mark into Will my grade hold?, then open the calculator for the full component table as we verify the PDF.`
+          : 'Cambridge is publishing June 2026 grade threshold tables subject by subject. Stress-test your grade first — official component marks load in the calculator where we have verified the PDF.',
+        primaryHref: holdHref,
+        primaryLabel: 'Will my grade hold?',
+        secondaryHref: calc,
+        secondaryLabel: code ? `${code} calculator` : 'Open grade calculator',
       }
     case 'post-igcse':
     default:
@@ -133,10 +137,10 @@ export function getResultsDayBannerCopy(ctx: BannerContext): ResultsDayBannerCop
         overline: `${JUNE_2026_SERIES} · complete`,
         title: 'June 2026 threshold season',
         body: code
-          ? `IGCSE and O Level results released 18 August. ${code} thresholds should be on the Cambridge site — we mirror verified tables in the calculator when available.`
-          : 'IGCSE and O Level results released 18 August 2026. All June threshold tables should be on the Cambridge site; we mirror verified data in the calculator as we ingest each syllabus.',
-        primaryHref: '/guides/grade-boundaries',
-        primaryLabel: 'Browse subjects',
+          ? `IGCSE and O Level results released 18 August. ${code} thresholds should be on the Cambridge site — stress-test your mark, then confirm in the calculator.`
+          : 'IGCSE and O Level results released 18 August 2026. Stress-test a raw mark against published thresholds, then browse the subject index for verified calculator data.',
+        primaryHref: holdHref,
+        primaryLabel: 'Will my grade hold?',
         secondaryHref: calc,
         secondaryLabel: code ? `${code} calculator` : 'Grade calculator',
       }

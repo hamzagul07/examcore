@@ -93,6 +93,7 @@ export function GradeBoundaryHubPanel() {
                 <th>Data</th>
                 <th>Guide</th>
                 <th>Course</th>
+                <th>Hold</th>
                 <th>Calculator</th>
               </tr>
             </thead>
@@ -134,6 +135,14 @@ export function GradeBoundaryHubPanel() {
                       )}
                     </td>
                     <td>
+                      <Link
+                        href={`/tools/will-my-grade-hold?code=${encodeURIComponent(entry.code)}`}
+                        className="ec-btn-underline"
+                      >
+                        Hold
+                      </Link>
+                    </td>
+                    <td>
                       <Link href={entry.calculatorPath} className="ec-btn-underline">
                         Calculator
                       </Link>
@@ -146,6 +155,12 @@ export function GradeBoundaryHubPanel() {
         </div>
 
         <div className="mt-6 flex flex-wrap gap-3">
+          <Link href="/tools/will-my-grade-hold" className="ec-btn-primary ec-btn-primary--sm">
+            Will my grade hold? <span className="h-4 w-4" aria-hidden>-&gt;</span>
+          </Link>
+          <Link href="/tools/grade-boundary-calculator" className="ec-btn-ghost ec-btn-ghost--sm">
+            Open calculator
+          </Link>
           <Link href="/blog/cambridge-results-day-august-2026-guide" className="ec-btn-ghost ec-btn-ghost--sm">
             Results day guide
           </Link>
@@ -154,9 +169,6 @@ export function GradeBoundaryHubPanel() {
           </Link>
           <Link href="/insights" className="ec-btn-ghost ec-btn-ghost--sm">
             Self-marking gap data
-          </Link>
-          <Link href="/tools/grade-boundary-calculator" className="ec-btn-primary ec-btn-primary--sm">
-            Open calculator <span className="h-4 w-4" aria-hidden>-&gt;</span>
           </Link>
         </div>
 

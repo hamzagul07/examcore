@@ -12,7 +12,7 @@ import { getBlogPosts } from '@/lib/blog'
 import { ContentHubNav } from '@/components/content/ContentHubNav'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
-import { collectionPageNode, itemListNode } from '@/lib/seo/structured-data'
+import { collectionPageNode, faqPageNode, itemListNode } from '@/lib/seo/structured-data'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { BlogPostCard } from '@/components/blog/BlogPostCard'
@@ -21,6 +21,7 @@ import { IbResultsSpotlight } from '@/components/seo/IbResultsSpotlight'
 import { enrichPostMeta } from '@/lib/blog/meta'
 import { SITE_URL } from '@/lib/site-config'
 import { groupIbClusterSpokes } from '@/lib/seo/ib-guide-groups'
+import { getFollowUpChain } from '@/lib/seo/follow-up-chain'
 
 const IB_GUIDE_PREVIEW = 8
 
@@ -78,6 +79,11 @@ export default async function ClusterGuidePage({ params }: Props) {
   const isGradeBoundaries = cluster.id === 'grade-boundaries'
   const isCommandWords = cluster.id === 'command-words'
   const ibGroups = isIb ? groupIbClusterSpokes(spokeSlugs) : []
+  const gradeBoundaryFaqs = isGradeBoundaries
+    ? getFollowUpChain('grade-boundaries')
+        .slice(0, 8)
+        .map((item) => ({ q: item.question, a: item.answer }))
+    : []
   const allParts = [
     ...(pillarMeta ? [{ name: pillarMeta.title, url: `${SITE_URL}/blog/${pillarMeta.slug}` }] : []),
     ...spokes.map((p) => ({
@@ -106,6 +112,7 @@ export default async function ClusterGuidePage({ params }: Props) {
             description: cluster.description,
             hasPart: allParts,
           }),
+          ...(isGradeBoundaries ? [faqPageNode(gradeBoundaryFaqs)] : []),
           ...(isIb
             ? [
                 itemListNode({
@@ -258,19 +265,41 @@ export default async function ClusterGuidePage({ params }: Props) {
           </div>
         )}
 
+        {isGradeBoundaries && gradeBoundaryFaqs.length > 0 ? (
+          <section className="mt-12" aria-labelledby="grade-boundaries-faq">
+            <h2 id="grade-boundaries-faq" className="ms-h3">
+              Grade boundaries FAQ
+            </h2>
+            <dl className="ms-tool-faq mt-4">
+              {gradeBoundaryFaqs.map((f) => (
+                <div key={f.q}>
+                  <dt>{f.q}</dt>
+                  <dd className="ms-body-2">{f.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        ) : null}
+
         <div className="ms-hub-card ec-card--paper mt-12 text-center">
-          <h2 className="ms-h3">Ready to mark a paper?</h2>
+          <h2 className="ms-h3">
+            {isGradeBoundaries ? 'Stress-test your grade' : 'Ready to mark a paper?'}
+          </h2>
           <p className="ms-lead mx-auto" style={{ marginTop: 10, maxWidth: 480 }}>
-            {isIb
-              ? 'Put what you learned into practice — upload your answer for criterion-based, band-by-band IB feedback.'
-              : 'Put what you learned into practice — upload handwriting and get mark-by-mark feedback from real Cambridge mark schemes.'}
+            {isGradeBoundaries
+              ? 'Paste a raw mark against recent or official thresholds — see the grade and how many marks sit between you and the next boundary.'
+              : isIb
+                ? 'Put what you learned into practice — upload your answer for criterion-based, band-by-band IB feedback.'
+                : 'Put what you learned into practice — upload handwriting and get mark-by-mark feedback from real Cambridge mark schemes.'}
           </p>
           <Link href={cluster.moneyPath} className="ec-btn-primary inline-flex min-h-[48px]">
-            {cluster.moneyPath === '/mark'
-              ? isIb
-                ? 'Practise criterion marking'
-                : 'Mark a paper free'
-              : 'Browse subjects'}
+            {isGradeBoundaries
+              ? 'Will my grade hold?'
+              : cluster.moneyPath === '/mark'
+                ? isIb
+                  ? 'Practise criterion marking'
+                  : 'Mark a paper free'
+                : 'Browse subjects'}
             <span className="h-5 w-5" aria-hidden>-&gt;</span>
           </Link>
         </div>

@@ -1,6 +1,11 @@
 /** Cross-board curriculum graph (Phase E3) — content-first, not DB-backed yet. */
 
-export type CurriculumBoardId = 'cambridge' | 'edexcel' | 'ib' | 'oxfordaqa'
+export type CurriculumBoardId =
+  | 'cambridge'
+  | 'edexcel'
+  | 'ib'
+  | 'oxfordaqa'
+  | 'aqa'
 
 export type BoardTopicRef = {
   board: CurriculumBoardId

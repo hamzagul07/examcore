@@ -4,6 +4,7 @@ import {
   edexcelQualificationForUnit,
   edexcelUnitsWithCourseLinks,
   expectedCaie9709TopicCodes,
+  getMappingsForAqaSubject,
   getMappingsForCaieTopic,
   getMappingsForEdexcelUnit,
   listOverlapForSubject,
@@ -93,6 +94,15 @@ for (const code of CAMBRIDGE_9709_SYLLABUS.map((t) => t.code)) {
     maps.some((c) => c.refs.some((r) => r.board === 'edexcel'))
   )
 }
+
+const aqaMaths = getMappingsForAqaSubject('aqa-mathematics')
+check('AQA maths has topic mappings', aqaMaths.length >= 8)
+check(
+  'AQA maths resolves hub href',
+  resolveEdexcelLinksForCaieTopic('9709', '1.1').some((l) =>
+    l.href.includes('/aqa/a-level/mathematics')
+  )
+)
 
 if (failed > 0) process.exit(1)
 console.log(

@@ -1,4 +1,5 @@
 import {
+  verifiedCourseLessonsForAqaSubject,
   verifiedCourseLessonsForEdexcelUnit,
   verifiedCourseLessonsForOxfordaqaSubject,
 } from '@/lib/curriculum-graph/verified-course-links'
@@ -54,7 +55,20 @@ check(
   oxBio.every((l) => l.href.startsWith('/courses/9700/'))
 )
 
+const aqaMaths = verifiedCourseLessonsForAqaSubject('aqa-mathematics')
+check('AQA maths has mapped course lessons', aqaMaths.length >= 8)
+check(
+  'AQA maths hrefs are /courses/9709/',
+  aqaMaths.every((l) => l.href.startsWith('/courses/9709/'))
+)
+const aqaPhys = verifiedCourseLessonsForAqaSubject('aqa-physics')
+check('AQA physics has mapped course lessons', aqaPhys.length >= 1)
+check(
+  'AQA physics hrefs are /courses/9702/',
+  aqaPhys.every((l) => l.href.startsWith('/courses/9702/'))
+)
+
 if (failed > 0) process.exit(1)
 console.log(
-  `verified-course-links.test.ts: all checks passed (WMA11=${wma11.length} oxMaths=${oxMaths.length})`
+  `verified-course-links.test.ts: all checks passed (WMA11=${wma11.length} oxMaths=${oxMaths.length} aqaMaths=${aqaMaths.length})`
 )

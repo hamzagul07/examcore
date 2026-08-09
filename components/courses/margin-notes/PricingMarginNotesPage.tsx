@@ -200,14 +200,14 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
       tag: 'No card required',
       bestFor: 'Browsing courses & trying marking',
       blurb:
-        'Mapped visual lessons (Cambridge, IB, Edexcel study paths) plus enough marking to see if the dialect clicks.',
+        'Mapped visual lessons (Cambridge, IB, Edexcel/OxfordAQA/AQA study paths) plus enough marking to see if the dialect clicks.',
       killer: `${FREE_Q} marked questions every month — no card, no expiry`,
       now: formatMoney(0, cur),
       per: 'forever',
       sub: null,
       features: [
         ['All lessons, notes & worked examples', true],
-        ['Edexcel & OxfordAQA study paths → board-dialect mark', true],
+        ['Edexcel, OxfordAQA & AQA study paths → board-dialect mark', true],
         [`${FREE_Q} marked questions / month`, true],
         [`${FREE_OMNI} study-chat messages / month`, true],
         [
@@ -226,7 +226,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
       tag: 'Start marking seriously',
       bestFor: 'One subject, regular practice',
       blurb:
-        'Real examiner-style marking — Cambridge, IB, Edexcel IAL, and OxfordAQA — plus whole papers and flashcards for weekly practice.',
+        'Real examiner-style marking — Cambridge, IB, Edexcel IAL, OxfordAQA, and AQA — plus whole papers and flashcards for weekly practice.',
       killer: `${PRO_Q} questions / month — 10× the free tier`,
       now: proPrice.now,
       per: proPrice.per,
@@ -257,7 +257,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
         ['Everything in Pro', true],
         [`${SCH_Q} marked questions / month`, true],
         [`${SCH_OMNI} study-chat messages / month`, true],
-        ['In-depth courses + Edexcel mapped study paths', true],
+        ['In-depth courses + mapped board study paths', true],
         ['Examiner-style detailed marking feedback', true],
         ['Topic mastery matrix & progress journey', true],
         ['Extra revision resources & practice packs', true],
@@ -328,7 +328,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
   const faqs = [
     {
       q: 'Which plan should I pick?',
-      a: `Pro is ideal if you're focusing on one subject and want whole-paper marking plus past-paper practice — ${PRO_Q} questions a month is enough for weekly papers. Scholar is our most popular pick: you get ${SCH_Q} questions, in-depth courses (including Edexcel and OxfordAQA study paths into board-dialect marking), detailed examiner feedback, and the full progress journey. Max is for exam season when you're marking daily — ${MAX_Q} questions, projected grades, and priority queue.`,
+      a: `Pro is ideal if you're focusing on one subject and want whole-paper marking plus past-paper practice — ${PRO_Q} questions a month is enough for weekly papers. Scholar is our most popular pick: you get ${SCH_Q} questions, in-depth courses (including Edexcel, OxfordAQA, and AQA study paths into board-dialect marking), detailed examiner feedback, and the full progress journey. Max is for exam season when you're marking daily — ${MAX_Q} questions, projected grades, and priority queue.`,
     },
     {
       q: 'Can I try it without paying?',
@@ -339,8 +339,8 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
       a: 'We mark in the dialect of your board — Cambridge, IB, or Edexcel IAL — for that past-paper style question: B1/M1/A1 method marks, MCQ keys, essay bands. You get point-by-point feedback on your handwriting with Examiner\'s Ink, not a generic "good effort" paragraph.',
     },
     {
-      q: 'Do you have Edexcel or OxfordAQA courses?',
-      a: 'Native lesson JSON is Cambridge and IB. For Edexcel IAL and OxfordAQA IAL we give free study paths: our own visual CAIE lessons tagged to your board, then mark in that board\'s dialect. You are not buying a scraped third-party course — you are buying the marking loop that converts.',
+      q: 'Do you have Edexcel, OxfordAQA, or AQA courses?',
+      a: 'Native lesson JSON is Cambridge and IB. For Edexcel IAL, OxfordAQA IAL, and UK AQA Maths/Physics we give free study paths: our own visual CAIE lessons tagged to your board, then mark in that board\'s dialect. You are not buying a scraped third-party course — you are buying the marking loop that converts.',
     },
     {
       q: 'Can I cancel anytime?',

@@ -198,6 +198,9 @@ export function CourseLessonPage({
     if (board === 'oxfordaqa' && subject) {
       return `${pathname}?board=oxfordaqa&subject=${encodeURIComponent(subject)}`
     }
+    if (board === 'aqa' && subject) {
+      return `${pathname}?board=aqa&subject=${encodeURIComponent(subject)}`
+    }
     return pathname
   }, [pathname, searchParams])
 
@@ -621,7 +624,9 @@ export function CourseLessonPage({
                 ? 'Edexcel dialect · method & accuracy marks ✓'
                 : studyBoard === 'oxfordaqa'
                   ? 'OxfordAQA dialect · board-style marks ✓'
-                  : 'marked against the real scheme ✓'}
+                  : studyBoard === 'aqa'
+                    ? 'AQA dialect · method & accuracy marks ✓'
+                    : 'marked against the real scheme ✓'}
             </p>
           </div>
         </aside>

@@ -8,6 +8,7 @@ import { rubricPointForMarkType } from '@/lib/marking/mark-scheme-display'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import { MarkSnippet } from '@/components/mark/MarkSnippet'
 import { IbCriteriaBreakdown } from '@/components/mark/IbCriteriaBreakdown'
+import { truncateMarkingPreview } from '@/lib/rich-text/truncate-marking-preview'
 
 type MarkAuditPanelProps = {
   marks: MarkAwarded[]
@@ -25,9 +26,7 @@ type MarkAuditPanelProps = {
 function auditDescription(mark: MarkAwarded): string {
   const ref = mark.line_reference?.trim()
   if (ref) return ref
-  const reasoning = mark.reasoning?.trim() ?? ''
-  if (reasoning.length <= 120) return reasoning
-  return `${reasoning.slice(0, 117)}…`
+  return truncateMarkingPreview(mark.reasoning, 120, '')
 }
 
 function examinerNote(mark: MarkAwarded): string {

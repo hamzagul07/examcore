@@ -98,6 +98,13 @@ function practiceLevelFallback(boardFull: string): string {
   return 'A-Level'
 }
 
+/** Peak-score stamp used on rewrite CTAs — not Cambridge A* for IB/AP. */
+function peakGradeStamp(boardFull: string): string {
+  if (boardFull === 'IB Diploma') return '7'
+  if (boardFull === 'AP') return '5'
+  return 'A*'
+}
+
 function resultSubheading(earned: number, total: number): string {
   if (total <= 0) return 'marked.'
   if (earned >= total) return 'full marks.'
@@ -451,13 +458,19 @@ export function MarkingResultView({
 
       {showRewriteTeaser ? (
         <div className="mt-6">
-          <FullMarksRewriteTeaser diagnosis={postMarkDiagnosis} />
+          <FullMarksRewriteTeaser
+            diagnosis={postMarkDiagnosis}
+            gradeStamp={peakGradeStamp(boardFull)}
+          />
         </div>
       ) : null}
 
       {result.ai_marking.full_marks_rewrite ? (
         <div className="mt-6">
-          <FullMarksRewritePanel rewrite={result.ai_marking.full_marks_rewrite} />
+          <FullMarksRewritePanel
+            rewrite={result.ai_marking.full_marks_rewrite}
+            gradeStamp={peakGradeStamp(boardFull)}
+          />
         </div>
       ) : null}
 
@@ -663,11 +676,13 @@ export function MarkingResultView({
  */
 function FullMarksRewritePanel({
   rewrite,
+  gradeStamp,
 }: {
   rewrite: {
     rewritten_answer: string
     annotations: Array<{ text: string; earns: string }>
   }
+  gradeStamp: string
 }) {
   return (
     <div className="ec-card ec-card--paper border-[var(--ec-brand)]/30 p-5 sm:p-7">
@@ -676,7 +691,7 @@ function FullMarksRewritePanel({
           className="inline-grid h-6 min-w-6 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1.5 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]"
           aria-hidden
         >
-          A*
+          {gradeStamp}
         </span>
         <p className="ms-micro" style={{ margin: 0 }}>
           REWRITTEN TO FULL MARKS
@@ -720,8 +735,10 @@ function FullMarksRewritePanel({
  */
 function FullMarksRewriteTeaser({
   diagnosis,
+  gradeStamp,
 }: {
   diagnosis: PostMarkDiagnosis | null
+  gradeStamp: string
 }) {
   return (
     <div className="ec-card ec-card--paper relative overflow-hidden border-[var(--ec-brand)]/30 p-5 sm:p-7">
@@ -773,7 +790,7 @@ function FullMarksRewriteTeaser({
         className="ec-btn ec-btn-primary mt-5 inline-flex items-center gap-1.5"
       >
         <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
-          A*
+          {gradeStamp}
         </span>
         Unlock full-marks rewrites
       </Link>

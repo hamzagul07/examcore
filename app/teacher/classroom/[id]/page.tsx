@@ -66,11 +66,13 @@ export default function ClassroomPage() {
   const [classroom, setClassroom] = useState<ClassroomInfo | null>(null)
   const [students, setStudents] = useState<RosterStudent[]>([])
   const [loadError, setLoadError] = useState('')
+  const [inviteError, setInviteError] = useState('')
   const [loading, setLoading] = useState(true)
 
   const load = useCallback(async (signal?: { cancelled: boolean }) => {
     setLoading(true)
     setLoadError('')
+    setInviteError('')
 
     const [analyticsRes, blindspotsRes, quadrantsRes, classroomRes, studentsRes] =
       await Promise.all([
@@ -87,6 +89,8 @@ export default function ClassroomPage() {
     if (!analyticsRes.ok || !analytics || typeof analytics.classroomName !== 'string') {
       setLoadError('Could not load this classroom. Check the link or try again.')
       setData(null)
+      setClassroom(null)
+      setInviteError('')
       setLoading(false)
       return
     }
@@ -101,7 +105,17 @@ export default function ClassroomPage() {
       blindspots: { topics: blindspots.topics || [] },
       quadrants: { students: quadrants.students || [] },
     })
-    setClassroom(classroomPayload?.classroom ?? null)
+    if (!classroomRes.ok || !classroomPayload?.classroom?.invite_code) {
+      setClassroom(null)
+      setInviteError(
+        classroomRes.ok
+          ? 'This classroom has no invite code yet. Refresh or try again.'
+          : 'Could not load the invite code. Try again to share it with your class.'
+      )
+    } else {
+      setClassroom(classroomPayload.classroom)
+      setInviteError('')
+    }
     setStudents(studentsPayload?.students || [])
     setLoading(false)
   }, [id])
@@ -224,7 +238,20 @@ export default function ClassroomPage() {
         </div>
       </div>
 
-      {classroom?.invite_code && <InviteCard classroom={classroom} />}
+      {classroom?.invite_code ? <InviteCard classroom={classroom} /> : null}
+      {inviteError ? (
+        <div className="ms-teacher-error mb-6" role="alert">
+          <p className="font-semibold text-[var(--ec-text-primary)]">Invite code unavailable</p>
+          <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">{inviteError}</p>
+          <button
+            type="button"
+            onClick={() => void load()}
+            className="ec-btn-secondary mt-4 inline-flex min-h-[44px] items-center"
+          >
+            Try again
+          </button>
+        </div>
+      ) : null}
 
       <section className="ms-teacher-roster" aria-labelledby="classroom-roster-heading">
         <div className="mb-4 flex items-center justify-between gap-3">
@@ -242,8 +269,9 @@ export default function ClassroomPage() {
             </span>
             <p className="ms-teacher-empty__title">No students yet</p>
             <p className="ms-teacher-empty__body">
-              Read the code above out in your next lesson, or send the share link. Their marked work
-              appears here as they go.
+              {inviteError
+                ? 'Load the invite code above first, then share it with your class. Their marked work appears here as they go.'
+                : 'Read the code above out in your next lesson, or send the share link. Their marked work appears here as they go.'}
             </p>
           </div>
         ) : (

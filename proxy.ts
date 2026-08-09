@@ -48,6 +48,13 @@ function marketingSeoRedirect(request: NextRequest): NextResponse | null {
     return NextResponse.redirect(url, 308)
   }
 
+  // Metadata generateSitemaps 404s /sitemap.xml; real index lives here.
+  if (pathname === '/sitemap.xml') {
+    const url = request.nextUrl.clone()
+    url.pathname = '/sitemap-index.xml'
+    return NextResponse.redirect(url, 308)
+  }
+
   return null
 }
 

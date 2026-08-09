@@ -1,9 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase-server'
-import {
-  requireTeacher,
-  verifyTeacherOwnsClassroom,
-} from '@/lib/teacher-auth'
+import { requireClassroomTeacher } from '@/lib/teacher/route-guard'
 import { summarizeClassAnalytics } from '@/lib/teacher-analytics'
 import { getClassroomAttempts } from '@/lib/teacher-classroom-data'
 
@@ -12,36 +8,18 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const guard = await requireClassroomTeacher(id)
+  if (!guard.ok) return guard.response
+  const { supabase, classroom } = guard.ctx
 
-  if (!user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
-
-  const teacherCheck = await requireTeacher(supabase, user.id)
-  if (!teacherCheck.ok) {
-    return NextResponse.json({ error: 'Not a teacher' }, { status: 403 })
-  }
-
-  const owns = await verifyTeacherOwnsClassroom(supabase, user.id, id)
-  if (!owns) {
-    return NextResponse.json({ error: 'Classroom not found' }, { status: 404 })
-  }
-
-  const { data: classroom } = await supabase
-    .from('classrooms')
-    .select('name')
-    .eq('id', id)
-    .single()
-
-  const { studentIds, attempts } = await getClassroomAttempts(supabase, id)
+  // The classroom row comes from the guard, which already had to read it to
+  // prove ownership — this route used to select it a second time for the name.
+  const { studentIds, attempts, truncated } = await getClassroomAttempts(supabase, id)
   const summary = summarizeClassAnalytics(attempts, studentIds.length)
 
   return NextResponse.json({
-    classroomName: classroom?.name ?? 'Classroom',
+    classroomName: classroom.name ?? 'Classroom',
     ...summary,
+    truncated,
   })
 }

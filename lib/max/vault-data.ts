@@ -25,8 +25,26 @@ import {
   topicTargetsFromMasteries,
 } from '@/lib/insights/recommendations'
 import type { Recommendation } from '@/lib/insights/types'
+import {
+  buildVaultCommunityHooks,
+  buildVaultCourseLessons,
+  buildVaultDiagramPads,
+  type VaultCommunityHook,
+  type VaultCourseLesson,
+  type VaultDiagramPad,
+} from '@/lib/max/vault-exclusives'
+import { isCommunityEnabled } from '@/lib/community/enabled'
 
 export type VaultToolLink = { label: string; href: string; note: string }
+
+export type VaultOwnership = {
+  marksUsed: number
+  marksRemaining: number
+  marksCap: number
+  credits: number
+  priorityMarking: boolean
+  weeklyCoach: boolean
+}
 
 export type FullMarksModel = {
   attemptId: string
@@ -73,6 +91,14 @@ export type MaxVaultData = {
   fullMarksModels: FullMarksModel[]
   sprintUnlocked: boolean
   otherCuratedCodes: string[]
+  /** Platform-owned course lessons for weak topics (not outbound blogs). */
+  courseLessons: VaultCourseLesson[]
+  /** Live MarkScheme diagrams for weak / showcase topics. */
+  diagramPads: VaultDiagramPad[]
+  /** Pre-filled Exam Room asks for weak topics (when community is on). */
+  communityHooks: VaultCommunityHook[]
+  /** Max ownership theatre — headroom, priority, coach. */
+  ownership: VaultOwnership | null
 }
 
 export type VaultSubjectInput = {
@@ -194,6 +220,7 @@ export async function loadMaxVaultData(opts: {
   targetGrade?: string | null
   /** Recent attempts across subjects (newest first). */
   attempts: AttemptWithPaper[]
+  ownership?: VaultOwnership | null
 }): Promise<MaxVaultData> {
   const {
     supabase,
@@ -203,6 +230,7 @@ export async function loadMaxVaultData(opts: {
     examDate,
     targetGrade = null,
     attempts,
+    ownership = null,
   } = opts
 
   const focusCode = pickFocusSubjectCode(subjects, attempts, overrideCode)
@@ -348,6 +376,16 @@ export async function loadMaxVaultData(opts: {
     (c) => !shelfCodes.has(c)
   )
 
+  const weakForFocus = examPack?.weakTopics ?? topicTargetsFromMasteries(focusMasteries, 6)
+  const focusDrills = shelves.find((s) => s.isFocus)?.drills ?? []
+  const courseLessons = buildVaultCourseLessons(focusCode, weakForFocus, 4)
+  const diagramPads = buildVaultDiagramPads(focusCode, courseLessons, focusDrills, 2)
+  const communityHooks = buildVaultCommunityHooks(
+    focusCode,
+    weakForFocus,
+    isCommunityEnabled()
+  )
+
   return {
     subjectCode: focusCode,
     subjectName: focusName,
@@ -361,5 +399,9 @@ export async function loadMaxVaultData(opts: {
     fullMarksModels,
     sprintUnlocked: examPack?.isSprint ?? false,
     otherCuratedCodes,
+    courseLessons,
+    diagramPads,
+    communityHooks,
+    ownership,
   }
 }

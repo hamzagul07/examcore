@@ -10,9 +10,17 @@ export function MaxVaultTeaser() {
       <div>
         <h1 className="text-title text-[var(--ec-text-primary)]">Max Resource Vault</h1>
         <p className="text-body mt-2 text-[var(--ec-text-secondary)]">
-          Personalised sprint packs and curated resources for every subject on your profile —
-          weak-topic drills, examiner digests, and your full-marks model bank. Included on Max.
+          Your private exam machine: live diagrams for weak topics, course lessons that
+          close mark gaps, personalised sprint packs, full-marks rewrites of{' '}
+          <em>your</em> answers, priority marking, and Exam Room asks pre-filled from your
+          mastery. Not a bookmark list — included only on Max.
         </p>
+        <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-[var(--ec-text-secondary)]">
+          <li>Diagram pads + visual course path from your weakest topics</li>
+          <li>Sprint / week pack built from real past-paper rows</li>
+          <li>Full-marks rewrite bank + projected grade</li>
+          <li>Priority queue + Max credit gifts</li>
+        </ul>
       </div>
       <Link href="/pricing" className="ec-btn-primary inline-flex w-full justify-center sm:w-auto">
         Upgrade to Max →

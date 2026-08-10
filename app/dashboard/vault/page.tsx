@@ -9,9 +9,10 @@ import {
 } from '@/lib/profile-options'
 import { hasSyllabusTree } from '@/lib/syllabi'
 import { effectiveAccess } from '@/lib/billing/access'
-import { hasMaxResourceVault } from '@/lib/billing/features'
+import { hasMaxResourceVault, hasMaxWeeklyCoach } from '@/lib/billing/features'
 import { loadMaxVaultData, type VaultSubjectInput } from '@/lib/max/vault-data'
 import { maybeGrantMaxSprintGift } from '@/lib/max/gifts'
+import { computeBillingSummary } from '@/lib/billing/enforcement'
 import { MaxVaultTeaser } from '@/components/max/MaxVaultTeaser'
 import { MaxVaultView } from '@/components/max/MaxVaultView'
 import { AppSupportStrip } from '@/components/marketing/AppSupportStrip'
@@ -117,6 +118,21 @@ export default async function MaxVaultPage({
     .order('created_at', { ascending: false })
     .limit(200)
 
+  let ownership = null
+  try {
+    const summary = await computeBillingSummary(user.id, supabaseAdmin)
+    ownership = {
+      marksUsed: summary.questions.used,
+      marksRemaining: summary.questions.remaining,
+      marksCap: summary.questions.cap,
+      credits: summary.credit_balance,
+      priorityMarking: true,
+      weeklyCoach: hasMaxWeeklyCoach(access),
+    }
+  } catch {
+    ownership = null
+  }
+
   const vault = await loadMaxVaultData({
     supabase: supabaseAdmin,
     userId: user.id,
@@ -125,6 +141,7 @@ export default async function MaxVaultPage({
     examDate,
     targetGrade: (profile?.target_grade as string | null) ?? null,
     attempts: (attempts || []) as AttemptWithPaper[],
+    ownership,
   })
 
   return (

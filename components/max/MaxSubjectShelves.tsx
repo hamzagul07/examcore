@@ -33,8 +33,8 @@ export function MaxSubjectShelves({
       <div className="ms-vault__panel ms-vault__panel--blue space-y-4">
         <p className="text-body m-0 text-[var(--ec-text-secondary)]">
           {active?.isFocus
-            ? `Focusing on ${active.name} — weakest or selected.`
-            : 'Pick a subject shelf to open its curated pack and drills.'}
+            ? `Focusing on ${active.name} — drills and courses first, blogs last.`
+            : 'Pick a subject shelf for MarkScheme drills and course paths.'}
         </p>
 
         <div className="ms-vault__tabs" role="tablist" aria-label="Your subjects">
@@ -109,6 +109,20 @@ export function MaxSubjectShelves({
 }
 
 function SubjectShelfDetail({ shelf }: { shelf: MaxSubjectShelf }) {
+  const courseFirst = [
+    ...(shelf.curated?.courseLinks ?? []),
+    ...shelf.links.filter((l) => l.href.includes('/courses/')),
+  ]
+  const paperLinks = [
+    ...(shelf.curated?.paperPath ?? []).filter((l) => l.href.startsWith('/')),
+    ...shelf.links.filter((l) => l.href.includes('/past-papers/')),
+  ]
+  // Technique / blog links stay secondary — Max value is in drills + courses.
+  const techniqueLinks = [
+    ...(shelf.curated?.techniqueLinks ?? []),
+    ...(shelf.technique?.links ?? []),
+  ].filter((l) => !l.href.startsWith('http'))
+
   return (
     <div className="space-y-4 border-t border-[var(--ec-border)] pt-4">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
@@ -126,49 +140,11 @@ function SubjectShelfDetail({ shelf }: { shelf: MaxSubjectShelf }) {
 
       {shelf.curated ? (
         <div>
-          <p className="ms-overline m-0 mb-2 text-[var(--ec-c-math)]">Curated Max pack</p>
+          <p className="ms-overline m-0 mb-2 text-[var(--ec-c-math)]">Examiner digest</p>
           <p className="text-body m-0 text-[var(--ec-text-secondary)]">{shelf.curated.blurb}</p>
           <ul className="ms-vault__digest">
             {shelf.curated.examinerDigest.slice(0, 4).map((line) => (
               <li key={line}>{line}</li>
-            ))}
-          </ul>
-          <ul className="mt-3 m-0 list-none space-y-2 pl-0">
-            {[
-              ...shelf.curated.paperPath,
-              ...shelf.curated.courseLinks,
-              ...shelf.curated.techniqueLinks,
-            ]
-              .slice(0, 6)
-              .map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="ec-link font-semibold">
-                    {l.label}
-                  </Link>
-                  {l.note ? (
-                    <span className="block text-sm text-[var(--ec-text-secondary)]">{l.note}</span>
-                  ) : null}
-                </li>
-              ))}
-          </ul>
-        </div>
-      ) : null}
-
-      {shelf.technique ? (
-        <div>
-          <p className="ms-overline m-0 mb-2 text-[var(--ec-acc-teal)]">
-            {shelf.technique.title}
-          </p>
-          <ul className="m-0 list-none space-y-2 pl-0">
-            {shelf.technique.links.map((l) => (
-              <li key={l.href}>
-                <Link href={l.href} className="ec-link font-semibold">
-                  {l.label}
-                </Link>
-                {l.note ? (
-                  <span className="block text-sm text-[var(--ec-text-secondary)]">{l.note}</span>
-                ) : null}
-              </li>
             ))}
           </ul>
         </div>
@@ -176,7 +152,9 @@ function SubjectShelfDetail({ shelf }: { shelf: MaxSubjectShelf }) {
 
       {shelf.drills.length > 0 ? (
         <div>
-          <p className="ms-overline m-0 mb-2 text-[var(--ec-brand)]">Weak-topic drills</p>
+          <p className="ms-overline m-0 mb-2 text-[var(--ec-brand)]">
+            Weak-topic drills (mark these)
+          </p>
           <ul className="m-0 list-none space-y-2 pl-0">
             {shelf.drills.map((d) => (
               <li key={`${d.paperCode}-${d.questionNumber}`}>
@@ -190,15 +168,59 @@ function SubjectShelfDetail({ shelf }: { shelf: MaxSubjectShelf }) {
         </div>
       ) : null}
 
-      <ul className="m-0 flex list-none flex-wrap gap-x-4 gap-y-2 pl-0">
-        {shelf.links.map((l) => (
-          <li key={l.href}>
-            <Link href={l.href} className="ec-link text-sm font-semibold">
-              {l.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {courseFirst.length > 0 ? (
+        <div>
+          <p className="ms-overline m-0 mb-2 text-[var(--ec-acc-blue)]">Course path</p>
+          <ul className="m-0 list-none space-y-2 pl-0">
+            {courseFirst.slice(0, 4).map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="ec-link font-semibold">
+                  {l.label}
+                </Link>
+                {l.note ? (
+                  <span className="block text-sm text-[var(--ec-text-secondary)]">{l.note}</span>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {paperLinks.length > 0 ? (
+        <div>
+          <p className="ms-overline m-0 mb-2 text-[var(--ec-acc-rose)]">Timed papers on MarkScheme</p>
+          <ul className="m-0 list-none space-y-2 pl-0">
+            {paperLinks.slice(0, 3).map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="ec-link font-semibold">
+                  {l.label}
+                </Link>
+                {l.note ? (
+                  <span className="block text-sm text-[var(--ec-text-secondary)]">{l.note}</span>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {techniqueLinks.length > 0 ? (
+        <details>
+          <summary className="ms-vault__extras-summary text-sm">Technique notes</summary>
+          <ul className="mt-2 m-0 list-none space-y-2 pl-0">
+            {techniqueLinks.slice(0, 4).map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="ec-link font-semibold">
+                  {l.label}
+                </Link>
+                {'note' in l && l.note ? (
+                  <span className="block text-sm text-[var(--ec-text-secondary)]">{l.note}</span>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </details>
+      ) : null}
     </div>
   )
 }

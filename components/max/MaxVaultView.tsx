@@ -4,6 +4,10 @@ import { MaxBadge } from '@/components/max/MaxBadge'
 import { MaxEarlyAccessBanner } from '@/components/max/MaxEarlyAccessBanner'
 import { MaxCoachBrief } from '@/components/max/MaxCoachBrief'
 import { MaxSubjectShelves } from '@/components/max/MaxSubjectShelves'
+import { MaxVaultOwnership } from '@/components/max/MaxVaultOwnership'
+import { MaxVaultDiagramPads } from '@/components/max/MaxVaultDiagramPads'
+import { MaxVaultCoursePath } from '@/components/max/MaxVaultCoursePath'
+import { MaxVaultCommunityInvite } from '@/components/max/MaxVaultCommunityInvite'
 import type { MaxVaultData } from '@/lib/max/vault-data'
 import { drillHref } from '@/lib/insights/drill-link'
 import { MaxVaultOpenTracker } from '@/components/max/MaxVaultOpenTracker'
@@ -60,14 +64,18 @@ export function MaxVaultView({
       <header className="ms-vault__hero">
         <div className="ms-vault__hero-top">
           <p className="ec-eyebrow mb-0">Max Resource Vault</p>
-          <MaxBadge label="Exclusive" />
+          <MaxBadge label="You own this" />
           {data.sprintUnlocked ? <MaxBadge label="Sprint unlocked" /> : null}
         </div>
-        <h1 className="text-hero m-0 text-[var(--ec-text-primary)]">Your private exam desk</h1>
+        <h1 className="text-hero m-0 text-[var(--ec-text-primary)]">
+          Your private exam machine
+        </h1>
         <p className="text-body mt-3 max-w-2xl text-[var(--ec-text-secondary)]">
-          Personalised packs, curated examiner paths, and full-marks models for{' '}
+          Not a list of Google links — a Max desk built from{' '}
+          <strong className="text-[var(--ec-text-primary)]">your marks</strong>, our live
+          diagrams, course lessons, full-marks rewrites, and priority marking for{' '}
           <strong className="text-[var(--ec-text-primary)]">{subjectLine}</strong>
-          {data.subjectName ? ` — sprint focused on ${data.subjectName}` : ''}.
+          {data.subjectName ? ` · sprint focus ${data.subjectName}` : ''}.
           {sprintCreditsGranted
             ? ' Sprint bonus marks were just added to your account.'
             : null}
@@ -81,19 +89,19 @@ export function MaxVaultView({
             </span>
           </li>
           <li className="ms-vault__chip ms-vault__chip--gold">
-            <span className="ms-vault__chip-value">{drillCount}</span>
-            <span className="ms-vault__chip-label">Ready drills</span>
+            <span className="ms-vault__chip-value">{data.diagramPads.length}</span>
+            <span className="ms-vault__chip-label">Live diagrams</span>
           </li>
           <li className="ms-vault__chip ms-vault__chip--blue">
-            <span className="ms-vault__chip-value">{data.fullMarksModels.length}</span>
-            <span className="ms-vault__chip-label">Full-marks models</span>
+            <span className="ms-vault__chip-value">{data.courseLessons.length}</span>
+            <span className="ms-vault__chip-label">Course fixes</span>
           </li>
           <li className="ms-vault__chip ms-vault__chip--rose">
             <span className="ms-vault__chip-value">
-              {data.sprintUnlocked ? (pack?.daysLeft ?? '—') : data.shelves.length}
+              {data.fullMarksModels.length || drillCount}
             </span>
             <span className="ms-vault__chip-label">
-              {data.sprintUnlocked ? 'Days to exam' : 'Subject shelves'}
+              {data.fullMarksModels.length > 0 ? 'Full-marks models' : 'Ready drills'}
             </span>
           </li>
         </ul>
@@ -109,7 +117,15 @@ export function MaxVaultView({
       </header>
 
       <MaxEarlyAccessBanner />
+      {data.ownership ? <MaxVaultOwnership ownership={data.ownership} /> : null}
       <MaxCoachBrief pack={pack} />
+
+      <MaxVaultDiagramPads pads={data.diagramPads} subjectCode={data.subjectCode} />
+      <MaxVaultCoursePath
+        lessons={data.courseLessons}
+        subjectCode={data.subjectCode}
+        subjectName={data.subjectName}
+      />
 
       {projected && projected.prediction.predictedGrade !== '—' ? (
         <VaultSection stamp="A*" eyebrow="Live form" title="Projected grade" tone="brand">
@@ -141,7 +157,8 @@ export function MaxVaultView({
                 {projected.prediction.nextLevelTip}
               </p>
               <p className="text-caption m-0">
-                Confidence {projected.prediction.confidence}% · Max-only projection
+                Confidence {projected.prediction.confidence}% · Max-only projection from your
+                attempts — not a public grade calculator.
               </p>
             </div>
           </div>
@@ -156,7 +173,8 @@ export function MaxVaultView({
           tone={pack.isSprint ? 'rose' : 'teal'}
         >
           <p className="text-body m-0 text-[var(--ec-text-secondary)]">
-            Week of {pack.weekLabel}
+            Built from your mastery graph + real past-paper rows — not a generic revision
+            timetable.
             {pack.daysLeft !== null
               ? ` · ${pack.daysLeft} day${pack.daysLeft === 1 ? '' : 's'} to exam`
               : null}
@@ -181,7 +199,7 @@ export function MaxVaultView({
                     </Link>
                     <span className="text-[var(--ec-text-secondary)]">
                       {' '}
-                      · {p.minutes} min under timed conditions, then mark
+                      · {p.minutes} min under timed conditions, then mark on MarkScheme
                     </span>
                   </li>
                 ))}
@@ -238,6 +256,38 @@ export function MaxVaultView({
         </VaultSection>
       ) : null}
 
+      <VaultSection stamp="A*" eyebrow="Rewrite bank" title="Your full-marks models" tone="brand">
+        {data.fullMarksModels.length > 0 ? (
+          <ul className="m-0 grid list-none gap-2 pl-0 sm:grid-cols-2">
+            {data.fullMarksModels.map((m) => (
+              <li key={m.attemptId} className="ms-vault__model">
+                <Link
+                  href={`/dashboard/attempt/${m.attemptId}`}
+                  className="ec-link font-semibold"
+                >
+                  {m.label}
+                </Link>
+                <span className="ms-vault__model-score">
+                  {m.marksEarned}/{m.totalMarks}
+                  {m.subjectCode ? ` · ${m.subjectCode}` : ''}
+                </span>
+                <span className="block text-caption text-[var(--ec-text-secondary)]">
+                  Annotated rewrite of your answer — reopen and beat it.
+                </span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-body m-0 text-[var(--ec-text-secondary)]">
+            Mark questions where you lose marks — Max saves the annotated full-marks
+            rewrite of <em>your</em> script here. That bank only exists because you mark
+            on MarkScheme.
+          </p>
+        )}
+      </VaultSection>
+
+      <MaxVaultCommunityInvite hooks={data.communityHooks} />
+
       {data.shelves.length > 0 ? (
         <MaxSubjectShelves shelves={data.shelves} focusCode={data.subjectCode} />
       ) : null}
@@ -262,62 +312,47 @@ export function MaxVaultView({
         </VaultSection>
       ) : null}
 
-      <VaultSection stamp="A*" eyebrow="Rewrite bank" title="Your full-marks models" tone="brand">
-        {data.fullMarksModels.length > 0 ? (
-          <ul className="m-0 grid list-none gap-2 pl-0 sm:grid-cols-2">
-            {data.fullMarksModels.map((m) => (
-              <li key={m.attemptId} className="ms-vault__model">
-                <Link
-                  href={`/dashboard/attempt/${m.attemptId}`}
-                  className="ec-link font-semibold"
-                >
-                  {m.label}
-                </Link>
-                <span className="ms-vault__model-score">
-                  {m.marksEarned}/{m.totalMarks}
-                  {m.subjectCode ? ` · ${m.subjectCode}` : ''}
-                </span>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-body m-0 text-[var(--ec-text-secondary)]">
-            Mark questions where you lose marks — Max saves the annotated full-marks
-            rewrite here automatically. Every perfect rewrite becomes a model you can
-            reopen.
-          </p>
-        )}
-      </VaultSection>
-
       {data.ibLinks.length > 0 ? (
-        <VaultSection stamp="IB" eyebrow="Legitimate sources" title="IB resources" tone="blue">
-          <ul className="m-0 list-none space-y-3 pl-0">
-            {data.ibLinks.map((l) => (
-              <li key={l.href}>
-                <a href={l.href} className="ec-link font-semibold" rel="noopener noreferrer">
-                  {l.label}
-                </a>
-                <span className="block text-sm text-[var(--ec-text-secondary)]">{l.note}</span>
-              </li>
-            ))}
-          </ul>
-        </VaultSection>
+        <details className="ms-vault__section">
+          <summary className="ms-vault__extras-summary">
+            Extra IB reference links (optional)
+          </summary>
+          <div className="ms-vault__panel ms-vault__panel--blue mt-3 space-y-3">
+            <p className="text-caption m-0 text-[var(--ec-text-secondary)]">
+              Official / community references — secondary to your MarkScheme drills and
+              lessons above.
+            </p>
+            <ul className="m-0 list-none space-y-3 pl-0">
+              {data.ibLinks.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} className="ec-link font-semibold" rel="noopener noreferrer">
+                    {l.label}
+                  </a>
+                  <span className="block text-sm text-[var(--ec-text-secondary)]">{l.note}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </details>
       ) : null}
 
-      <VaultSection stamp="⚙" eyebrow="Utilities" title="Tools that convert marks into grades" tone="teal">
-        <ul className="ms-vault__tool-grid">
-          {data.tools.map((l) => (
-            <li key={l.href}>
-              <Link href={l.href} className="ms-vault__tool">
-                <span className="ec-link font-semibold">{l.label}</span>
-                <span className="mt-1 block text-sm text-[var(--ec-text-secondary)]">
-                  {l.note}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </VaultSection>
+      <details className="ms-vault__section">
+        <summary className="ms-vault__extras-summary">Utilities</summary>
+        <div className="ms-vault__panel ms-vault__panel--teal mt-3">
+          <ul className="ms-vault__tool-grid">
+            {data.tools.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="ms-vault__tool">
+                  <span className="ec-link font-semibold">{l.label}</span>
+                  <span className="mt-1 block text-sm text-[var(--ec-text-secondary)]">
+                    {l.note}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </details>
     </div>
   )
 }

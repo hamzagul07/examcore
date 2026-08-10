@@ -429,3 +429,164 @@
 .ms-vault-slip__cta:hover {
   filter: brightness(1.05);
 }
+
+/* Exclusive modules — diagrams, courses, community, ownership */
+
+.ms-vault__diagram-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .ms-vault__diagram-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.ms-vault__diagram-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1.5px solid color-mix(in srgb, var(--ec-c-math) 40%, var(--ec-border));
+  background: color-mix(in srgb, var(--ec-chip-warning-bg) 70%, var(--ec-surface));
+}
+
+.ms-vault__diagram-stage {
+  min-height: 11rem;
+  overflow: hidden;
+  border: 1px solid var(--ec-border);
+  background: var(--ec-bg-soft, #0b1220);
+}
+
+.ms-vault__diagram-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ms-vault__diagram-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+}
+
+.ms-vault__course-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .ms-vault__course-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.ms-vault__course-card {
+  padding: 0.85rem;
+  border: 1.5px solid color-mix(in srgb, var(--ec-acc-blue) 35%, var(--ec-border));
+  background: color-mix(in srgb, var(--ec-chip-info-bg) 80%, transparent);
+}
+
+.ms-vault__pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1rem 0.45rem;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 1px solid var(--ec-border);
+}
+
+.ms-vault__pill--gold {
+  border-color: color-mix(in srgb, var(--ec-c-math) 50%, var(--ec-border));
+  background: var(--ec-chip-warning-bg);
+  color: var(--ec-c-math);
+}
+
+.ms-vault__community-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1.5px solid color-mix(in srgb, var(--ec-acc-teal) 35%, var(--ec-border));
+  background: color-mix(in srgb, var(--ec-acc-teal) 8%, transparent);
+}
+
+.ms-vault__perk-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .ms-vault__perk-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.ms-vault__perk {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  border: 1.5px solid var(--ec-brand-border);
+  background: color-mix(in srgb, var(--ec-brand-muted) 70%, transparent);
+}
+
+.ms-vault__perk-value {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--ec-brand);
+}
+
+.ms-vault__perk-of {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ec-text-secondary);
+}
+
+.ms-vault__perk-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-primary);
+}
+
+.ms-vault__extras-summary {
+  cursor: pointer;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+  list-style: none;
+}
+
+.ms-vault__extras-summary::-webkit-details-marker {
+  display: none;
+}
+
+.ms-vault__extras-summary:hover {
+  color: var(--ec-brand);
+}

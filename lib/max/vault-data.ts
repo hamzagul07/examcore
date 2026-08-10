@@ -34,6 +34,7 @@ import {
 } from '@/lib/max/vault-exclusives'
 import {
   buildVaultDiagramTheatre,
+  buildVaultDiagramTheatres,
   type VaultDiagramTheatre,
 } from '@/lib/max/vault-diagram-showcase'
 import { isCommunityEnabled } from '@/lib/community/enabled'
@@ -116,8 +117,10 @@ export type MaxVaultData = {
   courseLessons: VaultCourseLesson[]
   /** Live MarkScheme diagrams for weak / showcase topics. */
   diagramPads: VaultDiagramPad[]
-  /** Signature + syllabus gallery theatre. */
+  /** Focus subject's theatre (compat / chips). */
   diagramTheatre: VaultDiagramTheatre | null
+  /** One syllabus theatre per profile subject that has curated visuals. */
+  diagramTheatres: VaultDiagramTheatre[]
   /** Pre-filled Exam Room asks for weak topics (when community is on). */
   communityHooks: VaultCommunityHook[]
   /** Max ownership theatre — headroom, priority, coach. */
@@ -444,7 +447,13 @@ export async function loadMaxVaultData(opts: {
   const focusDrills = shelves.find((s) => s.isFocus)?.drills ?? []
   const courseLessons = buildVaultCourseLessons(focusCode, weakForFocus, 4)
   const diagramPads = buildVaultDiagramPads(focusCode, courseLessons, focusDrills, 2)
-  const diagramTheatre = buildVaultDiagramTheatre(focusCode)
+  const diagramTheatres = buildVaultDiagramTheatres(
+    shelfSubjects.map((s) => ({ code: s.code, name: s.name }))
+  )
+  const diagramTheatre =
+    diagramTheatres.find((t) => t.subjectCode === focusCode) ??
+    diagramTheatres[0] ??
+    buildVaultDiagramTheatre(focusCode, focusName)
   const communityHooks = buildVaultCommunityHooks(
     focusCode,
     weakForFocus,
@@ -489,6 +498,7 @@ export async function loadMaxVaultData(opts: {
     courseLessons,
     diagramPads,
     diagramTheatre,
+    diagramTheatres,
     communityHooks,
     ownership,
     completedDays,

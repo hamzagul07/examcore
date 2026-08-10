@@ -810,3 +810,96 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Syllabus diagram studio — subject tabs + teaching beats */
+.ms-vault__theatre-subjects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ms-vault__theatre-subject {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  min-height: 44px;
+  padding: 0.55rem 0.75rem;
+  border: 1.5px solid var(--ec-border);
+  background: color-mix(in srgb, var(--ec-surface-raised) 88%, transparent);
+  cursor: pointer;
+  text-align: left;
+}
+
+.ms-vault__theatre-subject.is-active {
+  border-color: var(--ec-brand-border);
+  background: var(--ec-brand-muted);
+}
+
+.ms-vault__theatre-subject-name {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--ec-text-primary);
+}
+
+.ms-vault__theatre-subject-meta {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-vault__theatre-stage--xl {
+  min-height: 18rem;
+}
+
+@media (min-width: 900px) {
+  .ms-vault__theatre-stage--xl {
+    min-height: 22rem;
+  }
+}
+
+.ms-vault__theatre-beats {
+  list-style: none;
+  margin: 0.65rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.ms-vault__theatre-beat-btn {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0.55rem 0.65rem;
+  text-align: left;
+  border: 1.5px solid var(--ec-border);
+  background: transparent;
+  cursor: pointer;
+  color: var(--ec-text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+.ms-vault__theatre-beat.is-active .ms-vault__theatre-beat-btn {
+  border-color: var(--ec-c-math);
+  background: color-mix(in srgb, var(--ec-chip-warning-bg) 80%, transparent);
+  color: var(--ec-text-primary);
+  font-weight: 600;
+}
+
+.ms-vault__theatre-beat-n {
+  flex: none;
+  width: 1.35rem;
+  height: 1.35rem;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid currentColor;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.7rem;
+  font-weight: 800;
+}

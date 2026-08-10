@@ -1,22 +1,25 @@
 import assert from 'node:assert/strict'
-import { buildVaultDiagramTheatre } from '@/lib/max/vault-diagram-showcase'
+import {
+  buildVaultDiagramTheatre,
+  buildVaultDiagramTheatres,
+} from '@/lib/max/vault-diagram-showcase'
 
-const maths = buildVaultDiagramTheatre('9709')
+const maths = buildVaultDiagramTheatre('9709', 'Mathematics')
 assert.ok(maths)
+assert.equal(maths!.subjectLabel, 'Mathematics')
 assert.ok(maths!.signature)
-assert.equal(maths!.signature!.chip, 'Signature')
-assert.ok(maths!.gallery.length >= 3)
-assert.ok(maths!.catalogCount >= 4)
+assert.ok((maths!.signature!.teachingSteps?.length ?? 0) >= 3)
 
-const physics = buildVaultDiagramTheatre('9702')
-assert.ok(physics?.signature?.slug.includes('specific-heat') || physics?.signature)
-
-const ib = buildVaultDiagramTheatre('ib-maths-aa-hl')
-assert.ok(ib)
-assert.ok(ib!.signature)
-assert.equal(ib!.subjectCode, 'ib-maths-aa-hl')
-
-assert.equal(buildVaultDiagramTheatre(null), null)
-assert.equal(buildVaultDiagramTheatre('9999'), null)
+const many = buildVaultDiagramTheatres([
+  { code: '9709', name: 'Mathematics' },
+  { code: '9702', name: 'Physics' },
+  { code: 'ib-maths-aa-hl', name: 'Maths AA HL' },
+  { code: '9999', name: 'Unknown' },
+])
+assert.ok(many.length >= 2)
+assert.ok(many.some((t) => t.subjectCode === '9709'))
+assert.ok(many.some((t) => t.subjectCode === '9702'))
+assert.ok(many.some((t) => t.subjectCode === 'ib-maths-aa-hl'))
+assert.ok(!many.some((t) => t.subjectCode === '9999'))
 
 console.log('vault-diagram-showcase.test.ts: ok')

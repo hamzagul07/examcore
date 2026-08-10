@@ -93,9 +93,11 @@ export function MaxVaultView({
           </li>
           <li className="ms-vault__chip ms-vault__chip--gold">
             <span className="ms-vault__chip-value">
-              {data.diagramTheatre?.catalogCount ?? data.diagramPads.length}
+              {data.diagramTheatres.reduce((n, t) => n + t.catalogCount, 0) ||
+                data.diagramTheatre?.catalogCount ||
+                data.diagramPads.length}
             </span>
-            <span className="ms-vault__chip-label">Live diagrams</span>
+            <span className="ms-vault__chip-label">Syllabus diagrams</span>
           </li>
           <li className="ms-vault__chip ms-vault__chip--blue">
             <span className="ms-vault__chip-value">{data.fullMarksModels.length}</span>
@@ -121,8 +123,16 @@ export function MaxVaultView({
       {data.ownership ? <MaxVaultOwnership ownership={data.ownership} /> : null}
       <MaxCoachBrief pack={pack} />
 
-      {data.diagramTheatre ? (
-        <MaxVaultDiagramTheatre theatre={data.diagramTheatre} />
+      {data.diagramTheatres.length > 0 ? (
+        <MaxVaultDiagramTheatre
+          theatres={data.diagramTheatres}
+          focusCode={data.subjectCode}
+        />
+      ) : data.diagramTheatre ? (
+        <MaxVaultDiagramTheatre
+          theatres={[data.diagramTheatre]}
+          focusCode={data.subjectCode}
+        />
       ) : null}
       <MaxVaultDiagramPads pads={data.diagramPads} subjectCode={data.subjectCode} />
       <MaxVaultCoursePath

@@ -148,7 +148,7 @@ export function InteractiveMarkDemo() {
                   </span>
                   <span className="ms-mpl__type">{m.type}</span>
                   <span className="ms-mpl__work">
-                    <MarkSnippet text={m.line_reference} />
+                    <MarkSnippet text={m.line_reference ?? ''} />
                   </span>
                 </button>
               </li>

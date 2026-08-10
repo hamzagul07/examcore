@@ -53,8 +53,8 @@ loadEnvFile('.env.local')
 // Mirrors the previous tier-A pricing. Single price per product; Polar (MoR)
 // presents it in the buyer's local currency at checkout.
 
-// Marketing tiers Pro / Scholar / Max map to the DB tiers student / scholar /
-// mastery. Annual = 2 months free (×10). Amounts in USD cents.
+// Marketing: Scholar / Max (Pro/student kept in Polar for legacy subs).
+// Annual list = 10× monthly. Amounts in USD cents.
 const SUBSCRIPTIONS = [
   { key: 'student', name: 'MarkScheme Pro', monthly: 1100, yearly: 11000 },
   { key: 'scholar', name: 'MarkScheme Scholar', monthly: 1999, yearly: 19900 },

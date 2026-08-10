@@ -8,22 +8,24 @@ export function MaxVaultTeaser() {
         MX
       </span>
       <div>
-        <h1 className="text-title text-[var(--ec-text-primary)]">Max Resource Vault</h1>
+        <h1 className="text-title text-[var(--ec-text-primary)]">
+          Your private exam machine
+        </h1>
         <p className="text-body mt-2 text-[var(--ec-text-secondary)]">
-          Your private exam machine: live diagrams for weak topics, course lessons that
-          close mark gaps, personalised sprint packs, full-marks rewrites of{' '}
-          <em>your</em> answers, priority marking, and Exam Room asks pre-filled from your
-          mastery. Not a bookmark list — included only on Max.
+          Max listens to every stamp. Then it rebuilds a desk around the leak — Cinema that
+          makes the idea move, a sprint pack from real past papers, full-marks rewrites of{' '}
+          <em>your</em> answers, priority depth when the paper is long, and a Sunday coach that
+          won&apos;t let the week go soft.
         </p>
         <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-[var(--ec-text-secondary)]">
-          <li>Diagram pads + visual course path from your weakest topics</li>
-          <li>Sprint / week pack built from real past-paper rows</li>
-          <li>Full-marks rewrite bank + projected grade</li>
-          <li>Priority queue + Max credit gifts</li>
+          <li>Vault desks that chase where marks actually leak</li>
+          <li>Concept Cinema beside the path — scrub until it clicks</li>
+          <li>Sprint pack when the exam is inside two weeks</li>
+          <li>Priority marking + welcome / sprint gift marks</li>
         </ul>
       </div>
-      <Link href="/pricing" className="ec-btn-primary inline-flex w-full justify-center sm:w-auto">
-        Upgrade to Max →
+      <Link href="/pricing#plans" className="ec-btn-primary inline-flex w-full justify-center sm:w-auto">
+        I want Max →
       </Link>
     </div>
   )

@@ -5,11 +5,8 @@ import { capForTier } from '@/lib/billing/caps'
  * Sourced from the same monthly caps the matrix and enforcement use — never “unlimited.”
  */
 export function pricingSeoDescription(): string {
-  const free = capForTier('free')
-  const pro = capForTier('student')
-  const scholar = capForTier('scholar')
   const max = capForTier('mastery')
-  return `Free courses forever. Monthly marking allowances: Free ${free}, Pro ${pro}, Scholar ${scholar}, Max ${max} questions — renew each month.`
+  return `Free to feel the first examiner stamp. Scholar for whole papers and courses. Max (${max}/mo) — Vault, Cinema, priority marking, Sunday coach. Free courses forever.`
 }
 
 export function pricingPlanAllowanceLine(

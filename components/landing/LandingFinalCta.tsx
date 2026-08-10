@@ -17,14 +17,15 @@ export function LandingFinalCta({ markHref }: LandingFinalCtaProps) {
       <div className="ms-final-cta ms-final-cta--desk">
         <div className="ms-final-cta__copy">
           <h2 className="ms-h2 ms-final-cta__title">
-            Try one question.{' '}
+            One question.{' '}
             <em>
-              <InkScribble>About a minute.</InkScribble>
+              <InkScribble>Then you can&apos;t unsee it.</InkScribble>
             </em>
           </h2>
           <p className="ms-lead ms-final-cta__lead">
-            No card, no commitment. Mark a question and keep the inked script — then browse free
-            courses or join Exam Room when you&apos;re ready.
+            The stamp lands. The leak appears. Suddenly revision has a target — and Max turns
+            that target into a desk, a Cinema beat, and a Sunday coach. Start free. Keep every
+            script.
           </p>
           <div className="ms-cta-row ms-cta-row--center ms-final-cta__actions">
             <LoadingLink
@@ -32,17 +33,17 @@ export function LandingFinalCta({ markHref }: LandingFinalCtaProps) {
               className="ec-btn-primary brand-pulse"
               loadingText="Opening mark…"
             >
-              Mark your first question
+              Mark one question free
+            </LoadingLink>
+            <LoadingLink href="/pricing#plans" className="ec-btn-ghost ec-btn-ghost--sm">
+              Unlock Max
             </LoadingLink>
             <LoadingLink href="/courses" className="ec-btn-ghost ec-btn-ghost--sm">
               Free courses
             </LoadingLink>
-            <LoadingLink href="/community" className="ec-btn-ghost ec-btn-ghost--sm">
-              Exam Room
-            </LoadingLink>
           </div>
           <p className="ms-micro ms-final-cta__micro">
-            NO CARD · FREE PLAN FOREVER · CANCEL ANY TIME
+            NO CARD · KEEP THE SCRIPT · CANCEL ANY TIME
           </p>
         </div>
 

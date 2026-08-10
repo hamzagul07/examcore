@@ -6,7 +6,7 @@ export const contentType = 'image/png'
 
 export default function OgImage() {
   return createOgImage({
-    title: 'Plans for every study pace',
-    subtitle: 'Free · Pro · Scholar · Max',
+    title: 'Once you see the leak…',
+    subtitle: 'Max rebuilds the desk. Cinema. Sunday coach.',
   })
 }

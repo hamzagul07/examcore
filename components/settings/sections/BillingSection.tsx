@@ -99,7 +99,7 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
     : null
 
   const renewalLine = !isPaid
-    ? 'Upgrade for higher limits, whole-paper marking, and the mastery dashboard.'
+    ? 'Upgrade for whole-paper marking, courses, or Max — Vault, priority marking, and the weekly coach.'
     : isTrialing
       ? periodEnd
         ? `Trial ends ${periodEnd} — your card is charged then. Cancel before that date and you pay nothing.`

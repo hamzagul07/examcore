@@ -48,22 +48,20 @@ type Props = {
   region: RegionChoice
 }
 
-type PlanId = 'free' | 'pro' | 'scholar' | 'max'
+/** Sell surface: Free / Scholar / Max. Pro (`student`) is legacy-only. */
+type PlanId = 'free' | 'scholar' | 'max'
 type PaidPlan = Exclude<PlanId, 'free'>
-type PaidProduct = 'student' | 'scholar' | 'mastery'
+type PaidProduct = 'scholar' | 'mastery'
 
 const PLAN_PRODUCT: Record<PaidPlan, PaidProduct> = {
-  pro: 'student',
   scholar: 'scholar',
   max: 'mastery',
 }
-const PLAN_NAME: Record<PlanId, string> = { free: 'Free', pro: 'Pro', scholar: 'Scholar', max: 'Max' }
+const PLAN_NAME: Record<PlanId, string> = { free: 'Free', scholar: 'Scholar', max: 'Max' }
 const TIER_RANK: Record<string, number> = { free: 0, student: 1, scholar: 2, mastery: 3 }
 
 const FREE_Q = capForTier('free')
 const FREE_OMNI = omniCapForTier('free')
-const PRO_Q = capForTier('student')
-const PRO_OMNI = omniCapForTier('student')
 const SCH_Q = capForTier('scholar')
 const SCH_OMNI = omniCapForTier('scholar')
 const MAX_Q = capForTier('mastery')
@@ -72,11 +70,12 @@ const MAX_OMNI = omniCapForTier('mastery')
 export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props) {
   const router = useRouter()
   const [period, setPeriod] = useState<Period>('yearly')
-  const [focusPlan, setFocusPlan] = useState<PlanId>('scholar')
+  const [focusPlan, setFocusPlan] = useState<PlanId>('max')
   const [busy, setBusy] = useState<string | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
   const cur = display.currency
   const currentRank = TIER_RANK[currentTier ?? 'free'] ?? 0
+  const onLegacyPro = currentTier === 'student'
 
   async function checkout(product: PaidProduct) {
     if (!signedIn) {
@@ -128,11 +127,9 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
     }
   }
 
-  const proPrice = priceBlock(display.student)
   const scholarPrice = priceBlock(display.scholar)
   const maxPrice = priceBlock(display.mastery)
 
-  // CTA wiring per plan, based on the viewer's current subscription tier.
   function ctaFor(plan: PlanId): {
     label: string
     onClick?: () => void
@@ -150,7 +147,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
 
     const product = PLAN_PRODUCT[plan]
     const loading = busy === product
-    const featured = plan === 'scholar'
+    const featured = plan === 'max'
 
     if (!signedIn) {
       return {
@@ -197,11 +194,11 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
     {
       id: 'free',
       name: 'Free',
-      tag: 'No card required',
-      bestFor: 'Browsing courses & trying marking',
+      tag: 'Taste the ink',
+      bestFor: 'Feeling the marker before you commit',
       blurb:
-        'Mapped visual lessons (Cambridge, IB, plus Edexcel/OxfordAQA/AQA/AP study paths) plus enough marking to see if the dialect clicks.',
-      killer: `${FREE_Q} marked questions every month — no card, no expiry`,
+        'A few scripts a month with the real stamps — green, crimson, scheme codes in your margins. Enough to know this is not another chatbot.',
+      killer: `${FREE_Q} stamped questions / month · keep every script forever`,
       now: formatMoney(0, cur),
       per: 'forever',
       sub: null,
@@ -217,70 +214,53 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
           INTERACTIVE_DIAGRAMS_FREE,
         ],
         ['Whole-paper marking', false],
-        ['Past-paper practice & flashcards', false],
-      ],
-    },
-    {
-      id: 'pro',
-      name: 'Pro',
-      tag: 'Start marking seriously',
-      bestFor: 'One subject, regular practice',
-      blurb:
-        'Real examiner-style marking — Cambridge, IB, Edexcel IAL, OxfordAQA, AQA, and AP FRQ — plus whole papers and flashcards for weekly practice.',
-      killer: `${PRO_Q} questions / month — 10× the free tier`,
-      now: proPrice.now,
-      per: proPrice.per,
-      sub: proPrice.sub,
-      features: [
-        ['Everything in Free', true],
-        [`${PRO_Q} marked questions / month`, true],
-        [`${PRO_OMNI} study-chat messages / month`, true],
-        ['Whole-paper marking — up to 15 questions', true],
-        ['Past-paper practice, flashcards & quizzes', true],
-        ['Live interactive diagrams', true],
-        ['In-depth courses & progress journey', false],
+        ['Max Resource Vault & weekly coach', false],
       ],
     },
     {
       id: 'scholar',
       name: 'Scholar',
-      tag: 'Most popular',
-      bestFor: 'Full exam prep across subjects',
+      tag: 'Serious weekly pace',
+      bestFor: 'Courses, whole papers, mastery map',
       blurb:
-        'Courses that teach + marking that converts — visual lessons, Pearson/Cambridge/IB dialect feedback, mastery tracking.',
-      killer: `${SCH_Q} questions + mastery matrix & grade journey`,
+        'When free feels too small: whole papers, examiner-depth feedback, visual courses, and a journey that shows exactly which topics still bleed marks.',
+      killer: `${SCH_Q} questions · mastery matrix · grade journey`,
       now: scholarPrice.now,
       per: scholarPrice.per,
       sub: scholarPrice.sub,
-      featured: true,
       features: [
-        ['Everything in Pro', true],
+        ['Everything in Free', true],
         [`${SCH_Q} marked questions / month`, true],
         [`${SCH_OMNI} study-chat messages / month`, true],
+        ['Whole-paper marking — up to 15 questions', true],
+        ['Past-paper practice, flashcards & quizzes', true],
         ['In-depth courses + mapped board study paths', true],
         ['Examiner-style detailed marking feedback', true],
         ['Topic mastery matrix & progress journey', true],
+        ['Max Resource Vault & weekly coach', false],
       ],
     },
     {
       id: 'max',
       name: 'Max',
-      tag: 'Exam season',
-      bestFor: 'Daily papers + the strongest resources',
+      tag: 'Most popular',
+      bestFor: 'The loop you can\'t stop once it clicks',
       blurb:
-        "Won't run out in exam season — Resource Vault, personalised packs, priority deep marking, and the weekly Max coach report.",
-      killer: `${MAX_Q} questions / month · Resource Vault · priority marking`,
+        'Stamp a script. Watch the Vault rebuild around the leak. Scrub Cinema until the idea moves. Sit the next desk. Sunday, the coach tells you if the week was honest. Exam season volume — with priority when the paper is long.',
+      killer: `${MAX_Q} questions · Vault · Cinema · Sunday coach`,
       now: maxPrice.now,
       per: maxPrice.per,
       sub: maxPrice.sub,
+      featured: true,
       features: [
         ['Everything in Scholar', true],
         [`${MAX_Q} marked questions / month`, true],
         [`${MAX_OMNI} study-chat messages / month`, true],
-        ['Max Resource Vault (best packs, first)', true],
-        ['Projected grade dashboard + gap-to-target', true],
-        ['Priority deep marking', true],
-        ['Max weekly coach report', true],
+        ['Max Resource Vault — desks, packs, Cinema', true],
+        ['Personalised sprint pack near your exam', true],
+        ['Priority deep marking on big scripts', true],
+        ['Weekly Max coach report (Sundays)', true],
+        ['Projected grade + gap-to-target', true],
         ['Welcome bonus +25 marks', true],
         ['Early access when new features ship', true],
       ],
@@ -290,48 +270,52 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
   const valueProps = [
     {
       stamp: 'MS',
-      title: 'Official mark schemes',
-      body: 'B1, M1, A1 — marked against the real Cambridge or IB scheme for that exact question, not a generic AI guess.',
+      title: 'The scheme, not a vibe',
+      body: 'B1 · M1 · A1 on the exact paper — stamps that feel like an examiner stood over your desk, not a soft “good effort.”',
+    },
+    {
+      stamp: 'MX',
+      title: 'Max makes the next paper addictive',
+      body: 'Every leak feeds a Vault desk, a Cinema beat, a sprint pack, a Sunday report — revision that pulls you back because it finally has a target.',
     },
     {
       stamp: 'Q·P',
-      title: 'Whole-paper marking',
-      body: 'Upload a full past paper and get every question marked in one go — up to 15 questions per paper on paid plans.',
-    },
-    {
-      stamp: 'Δ',
-      title: 'Progress that matters',
-      body: 'Topic mastery matrix, grade trajectory, and weak-spot radar — see exactly where marks are being lost.',
+      title: 'Whole papers in one breath',
+      body: 'Drop the full script. Up to fifteen questions come back stamped — the hall rhythm, not one lonely question.',
     },
     {
       stamp: '✎',
-      title: 'Ask MarkScheme',
-      body: 'Study chat that knows your subjects, your attempts, and the syllabus — not a generic homework bot.',
+      title: 'Ask someone who remembers you',
+      body: 'Study chat that knows your subjects, your attempts, your syllabus — not a stranger homework bot.',
     },
   ]
 
-  const scholarReasons = [
+  const maxReasons = [
     {
-      stamp: '¶',
-      title: 'Courses that teach the syllabus',
-      body: 'Interactive lessons with diagrams, worked examples, and topic-by-topic coverage — not just marking.',
+      stamp: '01',
+      title: 'The stamp becomes a desk',
+      body: 'You mark. Max maps the bleed. Overnight your Vault is a subject desk built from your weakest topics — living, not a bookmark list you forget.',
     },
     {
-      stamp: 'M1',
-      title: 'Feedback an examiner would write',
-      body: 'Detailed mark-by-mark breakdowns with margin notes on your handwriting — the same style as our landing demo.',
+      stamp: '02',
+      title: 'Cinema until it clicks',
+      body: 'Watch demand shift, a derivative fall, a market clear — scrub the beat, then mark again with priority depth when the paper stretches long.',
     },
     {
-      stamp: 'A*',
-      title: 'Know your weak topics',
-      body: 'Mastery matrix maps every syllabus topic to your score. Revision time goes where it actually helps.',
+      stamp: '03',
+      title: 'Sunday won\'t let you drift',
+      body: 'A coach report with drills, +25 welcome marks, and a sprint pack when the exam is inside two weeks. The season stops feeling endless.',
     },
   ]
 
   const faqs = [
     {
       q: 'Which plan should I pick?',
-      a: `Pro is ideal if you're focusing on one subject and want whole-paper marking plus past-paper practice — ${PRO_Q} questions a month is enough for weekly papers. Scholar is our most popular pick: you get ${SCH_Q} questions, in-depth courses (including Edexcel, OxfordAQA, AQA, and AP study paths into board-dialect marking), detailed examiner feedback, and the full progress journey. Max is for exam season when you're marking daily — ${MAX_Q} questions, the Resource Vault with the best packs, priority deep marking, and the weekly Max coach report.`,
+      a: `Free if you want the first stamp to hit — ${FREE_Q} questions, no card. Scholar when you are sitting whole papers and want courses plus a mastery map (${SCH_Q} questions). Max when you want the loop that pulls you back: Vault, Cinema, priority marking, Sunday coach, sprint near the exam, and ${MAX_Q} questions so May never runs dry.`,
+    },
+    {
+      q: 'What do I actually get with Max?',
+      a: 'Not “Scholar plus more stamps.” A private exam machine: a Vault that rebuilds from your marks, Cinema beside the path, sprint packs from real past-paper rows, priority deep marking, a Sunday coach with drills, grade-to-target, and +25 welcome marks. That is the craving — and the reason Max exists.',
     },
     {
       q: 'Can I try it without paying?',
@@ -361,22 +345,23 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
 
         <header className="pricing-hero pricing-hero--artefact">
           <div className="pricing-hero-copy">
-            <p className="overline">Pricing · your ink history</p>
+            <p className="overline">Pricing · the stamp that starts the hunger</p>
             <h1 className="h-display pricing-title">
-              Keep the scripts <em>you built.</em>
+              Once you see the leak, you will want the <em>machine.</em>
             </h1>
             <p className="lead pricing-lead">
-              Every mark becomes a record you own — green stamps, crimson corrections, margin
-              notes on <InkScribble>your</InkScribble> handwriting. Start free; upgrade when you
-              need more papers in that history.
+              Free lets the ink land. Scholar makes weekly prep feel examiner-real.{' '}
+              <InkScribble>Max</InkScribble> is the craving — Vault desks that rebuild,
+              Cinema that moves the idea, priority stamps on long papers, and a Sunday
+              coach that keeps you honest until the hall.
             </p>
           </div>
           <div className="pricing-hero-sheet" aria-hidden>
             <ExamSheet
               head="Your script · sample"
-              headRight="Scholar record"
+              headRight="Max record"
               tally="4 / 5"
-              cite="Endowment: marked work stays readable on every plan"
+              cite="Every stamp feeds the Vault — that is the addiction"
             >
               <ExamSheetLine work="method clear — chain rule" mark="M1 ✓" ok stampDelayMs={120} />
               <ExamSheetLine work="both stationary points" mark="A1 ✓" ok stampDelayMs={320} />
@@ -384,18 +369,25 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
                 work="nature: min at x = 1"
                 mark="A0 ✗"
                 ok={false}
-                note="d²y/dx² — check the sign"
+                note="Cinema beat → second derivative"
                 stampDelayMs={520}
               />
             </ExamSheet>
           </div>
         </header>
 
+        {onLegacyPro ? (
+          <StatusMessage tone="info" className="pricing-notice">
+            You are on Pro (no longer offered to new subscribers). Upgrade to Scholar or Max
+            anytime — or manage billing in your account.
+          </StatusMessage>
+        ) : null}
+
         <div className="pricing-controls">
           <p className="pricing-allowance-lead">
             How many answers do you mark each month?{' '}
             <span className="mono">
-              Free {FREE_Q} · Pro {PRO_Q} · Scholar {SCH_Q} · Max {MAX_Q}
+              Free {FREE_Q} · Scholar {SCH_Q} · Max {MAX_Q}
             </span>
           </p>
           <SegmentedControl
@@ -406,15 +398,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
             onChange={setPeriod}
             options={[
               { value: 'monthly', label: 'Monthly' },
-              {
-                value: 'yearly',
-                label: (
-                  <>
-                    Annual
-                    <span className="pricing-toggle-save">2 months free</span>
-                  </>
-                ),
-              },
+              { value: 'yearly', label: 'Annual' },
             ]}
           />
         </div>
@@ -425,7 +409,6 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
           </StatusMessage>
         ) : null}
 
-        {/* Phone: one plan at a time. Desktop CSS shows all four (PR-02). */}
         <SegmentedControl
           className="pricing-plan-picker"
           optionClassName="pricing-plan-picker-btn"
@@ -435,7 +418,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
           options={plans.map((p) => ({ value: p.id, label: p.name }))}
         />
 
-        <div className="plans four" id="plans">
+        <div className="plans three" id="plans">
           {plans.map((p) => {
             const cta = ctaFor(p.id)
             return (
@@ -545,16 +528,17 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
         </div>
 
         <section className="pricing-why" aria-labelledby="pricing-why-heading">
-          <p className="overline pricing-why-kicker">Why Scholar wins</p>
+          <p className="overline pricing-why-kicker">Why Max feels unfair</p>
           <h2 id="pricing-why-heading" className="h3 section-title pricing-why-title">
-            Most students pick Scholar — here&apos;s why
+            Other plans mark you. Max <em>pulls you back.</em>
           </h2>
           <p className="lead pricing-why-lead">
-            Pro gets you marking. Scholar gets you <em>exam-ready</em> — courses,
-            detailed feedback, and a progress journey that shows exactly where to revise.
+            Scholar is honest exam prep. Max is the loop students stay in — because every
+            stamp opens a desk, a moving idea, and a next paper that already knows your weak
+            spot.
           </p>
           <div className="pricing-why-grid">
-            {scholarReasons.map((r) => (
+            {maxReasons.map((r) => (
               <div key={r.title} className="pricing-why-card pricing-why-card--paper">
                 <span className="pricing-value-stamp" aria-hidden>
                   {r.stamp}
@@ -569,20 +553,20 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
               type="button"
               className="btn-primary"
               onClick={() => {
-                const cta = ctaFor('scholar')
+                const cta = ctaFor('max')
                 if (cta.href) router.push(cta.href)
                 else if (cta.onClick) cta.onClick()
               }}
-              disabled={ctaFor('scholar').disabled}
+              disabled={ctaFor('max').disabled}
             >
-              {ctaFor('scholar').label} <span className="h-4 w-4" aria-hidden>-&gt;</span>
+              {ctaFor('max').label} <span className="h-4 w-4" aria-hidden>-&gt;</span>
             </button>
           </div>
         </section>
 
         <details className="pricing-matrix-disclosure">
           <summary className="pricing-matrix-summary">
-            Compare every feature across Free, Pro, Scholar, and Max
+            Compare every feature across Free, Scholar, and Max
           </summary>
           <div className="pricing-matrix-body">
             <PlanComparisonMatrix nested />

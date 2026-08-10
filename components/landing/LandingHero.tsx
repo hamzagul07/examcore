@@ -49,19 +49,19 @@ export function LandingHero({ markHref }: LandingHeroProps) {
     <section className="ms-pg ms-hero ms-hero--energized ec-page-mesh ec-no-annot-mobile">
       <div className="ms-fade-in">
         <p className="ms-hero-kicker ec-kicker-accent">
-          Cambridge A-Level, O-Level &amp; IB Diploma
+          Cambridge · IB · the ink that tells the truth
         </p>
         <h1 className="ms-h-display">
-          Your past papers, <InkCircle>marked</InkCircle> like the{' '}
+          Watch your script get <InkCircle>stamped</InkCircle> like an{' '}
           <em>
-            <InkScribble>real exam</InkScribble>
-          </em>
-          .
+            <InkScribble>examiner</InkScribble>
+          </em>{' '}
+          just left the room.
           <MarginNote style={{ top: '-44px', right: '-10px' }}>this step earns M1!</MarginNote>
         </h1>
         <p className="ms-lead ms-hero-lead">
-          Type or photograph your answer — marked against the real mark scheme, with
-          Examiner&apos;s Ink in your margins.
+          Type it or photograph the page. Green for marks earned. Crimson where they slipped.
+          Real scheme codes in your margins — then Max rebuilds the path around every leak.
         </p>
         <div className="ms-hero-ctas">
           <LoadingLink
@@ -70,19 +70,19 @@ export function LandingHero({ markHref }: LandingHeroProps) {
             loadingText="Opening mark…"
             onNavigate={() => trackFunnelEvent('mark_cta_clicked', { source: 'home_hero' })}
           >
-            Mark your first question — free
+            Feel the first stamp — free
           </LoadingLink>
           {/* One dominant CTA — the other paths are quiet text links so the
               primary action doesn't compete with two more buttons. */}
-          <LoadingLink href="/courses" className="ec-btn-underline" loadingText="Loading courses…">
-            Browse free courses
+          <LoadingLink href="/pricing#plans" className="ec-btn-underline" loadingText="Loading pricing…">
+            See what Max unlocks
           </LoadingLink>
-          <LoadingLink href="/community" className="ec-btn-underline">
-            Visit Exam Room
+          <LoadingLink href="/courses" className="ec-btn-underline" loadingText="Loading courses…">
+            Free courses
           </LoadingLink>
         </div>
         <p className="ms-micro ms-hero-micro">
-          MARK · COURSES · EXAM ROOM · FREE TIER · NO CARD
+          ONE QUESTION · REAL SCHEME · NO CARD · KEEP THE INK
         </p>
       </div>
       <div className="ms-fade-in ms-stag-2">

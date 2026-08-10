@@ -117,8 +117,9 @@ export const DISPLAY_PRICES_USD: {
   credits_100: number
   credits_500: number
 } = {
-  // Pro / Scholar / Max. Annual = 2 months free (×10, ~17% off).
-  student: { monthly: 1100, yearly: 11000 }, // Pro  $11 / $110
+  // Pro (legacy / not sold on /pricing) · Scholar · Max.
+  // Annual list price = 10× monthly (~17% vs paying monthly for a year).
+  student: { monthly: 1100, yearly: 11000 }, // Pro  $11 / $110 (legacy)
   scholar: { monthly: 1999, yearly: 19900 }, // Scholar $19.99 / $199
   mastery: { monthly: 3500, yearly: 35000 }, // Max  $35 / $350
   credits_25: 1000,

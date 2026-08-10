@@ -75,7 +75,7 @@ const PILLARS: Pillar[] = [
     body: 'Every lesson follows your board\'s syllabus order — theory, diagrams, flashcards, then one tap into marking a real past-paper question for that exact point.',
     bullets: [
       'Notes, formulas, and worked examples for every syllabus point',
-      'Live interactive diagrams and concept maps (Pro trial)',
+      'Live interactive diagrams and concept maps',
       'Past-paper practice, flashcards, and quick-check quizzes',
       'Cambridge A-Level, O-Level, and IB Diploma HL/SL',
     ],
@@ -131,11 +131,11 @@ export function LandingPillars() {
     >
       <p className="ms-overline">The platform</p>
       <h2 className="ms-h2 ms-pillars-heading">
-        Mark. Learn. <em>Discuss.</em>
+        Stamp. Rebuild. <em>Rise.</em>
       </h2>
       <p className="ms-lead ms-pillars-lead">
-        One place for examiner-style feedback, free syllabus courses, and subject communities —
-        built for Cambridge A-Level, O-Level, and IB Diploma students.
+        Marking that speaks examiner. Courses that move. A room that talks your subject —
+        Cambridge, O-Level, IB — and Max that turns every lost mark into the next win.
       </p>
 
       <div className="ms-platform-stats" aria-label="Platform highlights">
@@ -223,8 +223,8 @@ export function LandingPillars() {
                     <span className="ms-detail-board-tag ms-detail-board-tag--ib">IB Diploma</span>
                   </div>
                   <p className="ms-pillar-foot">
-                    Notes and worked examples are free forever. Live diagrams unlock with Pro trial or
-                    paid plan.
+                    Notes, worked examples, and live diagrams are free while diagrams stay in
+                    beta. Paid plans add whole-paper marking — Max adds the Vault and weekly coach.
                   </p>
                 </div>
               ) : null}

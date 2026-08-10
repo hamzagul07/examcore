@@ -18,7 +18,7 @@ export const LANDING_PAGE_FAQ: FaqItem[] = [
   },
   {
     q: "What's in a free course lesson?",
-    a: 'Syllabus-aligned notes, formula sheets, worked examples, and links to a real past-paper question for that topic. Pro trial unlocks live diagrams, flashcards, and practice quizzes. You can read every lesson without paying.',
+    a: 'Syllabus-aligned notes, formula sheets, worked examples, live diagrams (while in beta), and links to a real past-paper question for that topic. You can read every lesson without paying.',
   },
   {
     q: 'How does Exam Room work?',
@@ -26,7 +26,7 @@ export const LANDING_PAGE_FAQ: FaqItem[] = [
   },
   {
     q: 'What does it cost?',
-    a: 'Single-question marking has a free tier — no card. Paid plans add whole-paper marking and deeper analytics. The courses are 100% free, forever.',
+    a: 'Free lets you feel the first real stamp — no card. Scholar is whole papers, courses, and a mastery map. Max is the loop students stay in: Vault desks that rebuild from your leaks, Concept Cinema, priority marking, Sunday coach. Courses stay free. See /pricing.',
   },
   {
     q: 'Is MarkScheme affiliated with Cambridge?',

@@ -21,7 +21,7 @@ export const PAGE_OG: Record<string, OgSlip> = {
   },
   pricing: {
     title: 'Plans for every study pace',
-    subtitle: 'Free · Pro · Scholar · Max',
+    subtitle: 'Max — Vault, Cinema, Sunday coach',
   },
   'how-it-works': {
     title: 'Upload. Mark. Fix.',

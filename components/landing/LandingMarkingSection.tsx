@@ -4,8 +4,8 @@ import { Chip } from '@/components/margin-notes'
 const STEPS = [
   {
     num: '1.',
-    title: 'Type or upload your working',
-    body: 'Type an answer, snap handwriting, or drop a PDF. Pick the paper code so we fetch the right scheme.',
+    title: 'Put the working on the desk',
+    body: 'Type it, snap the page, or drop a PDF. Name the paper — we pull the scheme that examiner used.',
     chips: [
       { variant: 'outline' as const, label: 'Typed · Q7(b) working' },
       { variant: 'outline' as const, label: '9702_s23_qp_22.pdf' },
@@ -13,8 +13,8 @@ const STEPS = [
   },
   {
     num: '2.',
-    title: 'Marked mark-by-mark',
-    body: "Each line of working is checked against the scheme's criteria — and stamped where the mark lands.",
+    title: 'Every mark earns a stamp',
+    body: 'Line by line against the scheme — green when it lands, crimson when it slips, codes in the margin like the real hall.',
     chips: [
       { variant: 'ok' as const, label: 'C1 ✓ ω = 2π/T' },
       { variant: 'no' as const, label: 'M0 ✗ wrong relation' },
@@ -23,8 +23,8 @@ const STEPS = [
   },
   {
     num: '3.',
-    title: 'Fix what lost marks',
-    body: 'Every dropped mark links to the syllabus point and a free lesson — so the same mistake doesn\u2019t repeat.',
+    title: 'Chase the leak, not the chapter',
+    body: 'Dropped marks open the exact syllabus point — and on Max, the Vault rebuilds a desk and Cinema beat around it.',
     chips: [
       { variant: 'warn' as const, label: 'Fix next: SHM equations' },
       { variant: 'dim' as const, label: '→ free lesson · 9702 unit 17' },
@@ -37,11 +37,11 @@ export function LandingMarkingSection() {
     <section id="how-it-works" className="ms-pg ms-sec scroll-mt-20 ec-section-tint ec-section-tint--mark">
       <p className="ms-overline">How marking works</p>
       <h2 className="ms-h2">
-        Upload. Mark. <em>Fix.</em>
+        Ink lands. Truth <em>shows.</em>
       </h2>
       <p className="ms-lead ms-marking-lead">
-        Not a chatbot&apos;s opinion — every stamp comes from the actual mark scheme for that paper
-        and question.
+        Not a chatbot guessing. The real scheme for that paper — B1, M1, A1 — stamped onto{' '}
+        <em>your</em> lines, so the next attempt hits what this one missed.
       </p>
 
       <div className="ms-steps">

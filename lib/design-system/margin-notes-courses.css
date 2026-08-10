@@ -2753,9 +2753,15 @@ button.note-sketch-fig:hover {
   color: var(--ink);
 }
 
-/* pricing — 3-up plans, period toggle, currency, trial bar, trust strip */
-.plans.three { grid-template-columns: repeat(3, 1fr); max-width: 1040px; }
-.plans.three .plan { padding: 26px 24px 28px; }
+/* pricing — 3-up plans (Free / Scholar / Max) */
+.plans.three { grid-template-columns: repeat(3, 1fr); max-width: 1100px; gap: 18px; align-items: stretch; }
+.plans.three .plan { padding: 26px 22px 28px; display: flex; flex-direction: column; }
+.plans.three .plan .plan-cta { margin-top: auto; }
+.plans.three .plan-now { font-size: 36px; letter-spacing: -0.02em; }
+@media (min-width: 1024px) {
+  .plans.three .plan.featured { transform: scale(1.045); z-index: 1; }
+  .plans.three .plan.featured:hover { transform: scale(1.045) translateY(-3px); }
+}
 
 /* pricing — 4-up plans (Free / Pro / Scholar / Max) */
 .plans.four { grid-template-columns: repeat(4, 1fr); max-width: 1240px; gap: 16px; }
@@ -2852,7 +2858,9 @@ button.note-sketch-fig:hover {
 .pricing-matrix-body { padding: 8px 0 18px; border-top: 1px dashed var(--border); }
 @media (max-width: 860px) {
   .pricing-plan-picker { display: flex; }
+  .plans.three .plan,
   .plans.four .plan { display: none; }
+  .plans.three .plan[data-focus='1'],
   .plans.four .plan[data-focus='1'] { display: flex; }
 }
 .pricing-toggle {

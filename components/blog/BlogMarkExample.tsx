@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import { MarkSnippet } from '@/components/mark/MarkSnippet'
 import { ScoreReveal } from '@/components/mark/ScoreReveal'
 import { MarkLineList } from '@/components/mark/MarkLineList'
 import { edexcelMarkHref } from '@/lib/edexcel/marking'
@@ -82,7 +83,9 @@ export function BlogMarkExample({
           <p className="ms-blog-mark-example__why-label">
             {lost.type} — withheld
           </p>
-          <p>{lost.reasoning}</p>
+          <div>
+            <MarkSnippet text={lost.reasoning} />
+          </div>
         </blockquote>
       )}
 

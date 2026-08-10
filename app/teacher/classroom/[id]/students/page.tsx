@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
+import Link from 'next/link'
 import { StudentCard } from '@/components/teacher/StudentCard'
 import { SkeletonBlock } from '@/components/ui/PageSkeleton'
 import {
@@ -25,16 +26,33 @@ export default function ClassroomStudentsPage() {
   const { id } = useParams<{ id: string }>()
   const [students, setStudents] = useState<Student[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState('')
+
+  const load = useCallback(async () => {
+    setLoading(true)
+    setLoadError('')
+    try {
+      const r = await fetch(`/api/teacher/classroom/${id}/students`, {
+        cache: 'no-store',
+      })
+      const d = await r.json().catch(() => ({}))
+      if (!r.ok) {
+        setStudents([])
+        setLoadError(d.error || 'Could not load the class roster. Try again.')
+        return
+      }
+      setStudents((d.students || []) as Student[])
+    } catch {
+      setStudents([])
+      setLoadError('Could not load the class roster. Check your connection.')
+    } finally {
+      setLoading(false)
+    }
+  }, [id])
 
   useEffect(() => {
-    fetch(`/api/teacher/classroom/${id}/students`)
-      .then((r) => r.json())
-      .then((d) => {
-        setStudents(d.students || [])
-        setLoading(false)
-      })
-      .catch(() => setLoading(false))
-  }, [id])
+    void load()
+  }, [load])
 
   return (
     <TeacherPageContainer className="ms-teacher-roster">
@@ -51,7 +69,29 @@ export default function ClassroomStudentsPage() {
         </div>
       )}
 
-      {!loading && students.length === 0 && (
+      {!loading && loadError ? (
+        <div className="ms-teacher-error" role="alert">
+          <p className="font-semibold text-[var(--ec-text-primary)]">Roster unavailable</p>
+          <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">{loadError}</p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => void load()}
+              className="ec-btn-primary inline-flex min-h-[44px] items-center"
+            >
+              Try again
+            </button>
+            <Link
+              href={`/teacher/classroom/${id}`}
+              className="ec-btn-secondary inline-flex min-h-[44px] items-center"
+            >
+              Back to classroom
+            </Link>
+          </div>
+        </div>
+      ) : null}
+
+      {!loading && !loadError && students.length === 0 && (
         <div className="ec-card ec-card--paper relative overflow-hidden p-10 text-center">
           <div className="relative">
             <div
@@ -74,20 +114,22 @@ export default function ClassroomStudentsPage() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {students.map((s) => (
-          <StudentCard
-            key={s.id}
-            id={s.id}
-            name={s.name}
-            accuracy={s.accuracy}
-            attemptCount={s.attemptCount}
-            predictedGrade={s.predictedGrade}
-            quadrant={s.quadrant}
-            classroomId={id}
-          />
-        ))}
-      </div>
+      {!loading && !loadError ? (
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {students.map((s) => (
+            <StudentCard
+              key={s.id}
+              id={s.id}
+              name={s.name}
+              accuracy={s.accuracy}
+              attemptCount={s.attemptCount}
+              predictedGrade={s.predictedGrade}
+              quadrant={s.quadrant}
+              classroomId={id}
+            />
+          ))}
+        </div>
+      ) : null}
     </TeacherPageContainer>
   )
 }

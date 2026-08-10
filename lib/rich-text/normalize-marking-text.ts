@@ -192,17 +192,13 @@ export function normalizeMarkdownTables(text: string): string {
  * every space ("Youstatedthenature…").
  */
 function isMarkingProse(text: string): boolean {
+  const words = text.split(/\s+/).filter(Boolean)
+  // Two+ tokens with letters → examiner phrase ("Award M1 for x^2"), not a
+  // lone OCR fragment like "= 240x^2". Whole-wrapping that in $…$ drops spaces.
+  if (words.length >= 2 && /[a-zA-Z]{2,}/.test(text)) return true
   if (text.length > 100) return true
-  if (/[.!?]/.test(text) && text.split(/\s+/).filter(Boolean).length >= 6) {
-    return true
-  }
-  // Multi-sentence commas + words around an equation (demo B1 reasoning).
-  if (
-    /,\s+[a-z]/.test(text) &&
-    text.split(/\s+/).filter(Boolean).length >= 8
-  ) {
-    return true
-  }
+  if (/[.!?]/.test(text) && words.length >= 6) return true
+  if (/,\s+[a-z]/.test(text) && words.length >= 8) return true
   return false
 }
 

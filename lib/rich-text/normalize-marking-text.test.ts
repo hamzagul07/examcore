@@ -56,6 +56,12 @@ assert.ok(!t10.includes('\\\\frac'), `no double slash left: ${t10}`)
 const snip = prepareMarkingSnippet('= 240x^2')
 assert.ok(snip.startsWith('$') && snip.endsWith('$'), `short math wrap: ${snip}`)
 
+// Short mixed examiner phrases must keep spaces (not "$Award M1 for…$").
+const shortMixed = prepareMarkingSnippet('Award M1 for x^2 + 3x')
+assert.ok(shortMixed.includes('Award M1'), `short mixed spaces: ${shortMixed}`)
+assert.ok(!shortMixed.startsWith('$Award'), `short mixed not whole-wrapped: ${shortMixed}`)
+assert.ok(shortMixed.includes('$') && shortMixed.includes('x^2'), `bare math still wrapped: ${shortMixed}`)
+
 // Examiner prose with an equation must keep spaces (not one giant math node).
 const demoReasoning =
   'You stated the nature of each point correctly, but stated it without justification. This mark needs the reasoning shown — either evaluate the second derivative (d²y/dx² = 6x − 12, giving −6 at x = 1 and +6 at x = 3) or show a sign change of dy/dx either side of each point. An unsupported assertion earns nothing here even when the conclusion is right.'

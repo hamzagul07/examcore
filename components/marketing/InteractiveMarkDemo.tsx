@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { ExaminerInkOverlay } from '@/components/examiner-ink/ExaminerInkOverlay'
+import { MarkSnippet } from '@/components/mark/MarkSnippet'
 import { ScoreReveal } from '@/components/mark/ScoreReveal'
 import { DEMO_INK, DEMO_SCRIPT_IMAGE } from '@/lib/marking/demo-ink'
 import { DEMO_MARK_RESULT } from '@/lib/marking/demo-result'
@@ -146,7 +147,9 @@ export function InteractiveMarkDemo() {
                     {m.earned ? '✓' : '×'}
                   </span>
                   <span className="ms-mpl__type">{m.type}</span>
-                  <span className="ms-mpl__work">{m.line_reference}</span>
+                  <span className="ms-mpl__work">
+                    <MarkSnippet text={m.line_reference} />
+                  </span>
                 </button>
               </li>
             ))}
@@ -164,7 +167,9 @@ export function InteractiveMarkDemo() {
           <p className="ms-demo__why-label">
             {active.type} — {active.earned ? 'awarded' : 'withheld'}
           </p>
-          <p className="ms-demo__why-body">{active.reasoning}</p>
+          <div className="ms-demo__why-body">
+            <MarkSnippet text={active.reasoning} />
+          </div>
         </div>
       )}
     </section>

@@ -69,6 +69,8 @@ const NO_APP_CHROME_PREFIXES = [
   // "Mark a question", a credits chip, "progress" — above a form asking what
   // they teach.
   '/for-teachers/start',
+  // Embed iframes (for-teachers demos) — chrome would double inside the frame.
+  '/embed',
 ] as const
 
 function matchesPrefix(pathname: string, prefix: string) {

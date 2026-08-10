@@ -4,7 +4,8 @@ import { WaitingForInk } from '@/components/ui/WaitingForInk'
 const GLYPHS: Record<WinKind, string> = {
   first_mark: '1',
   personal_best: 'PB',
-  perfect_score: 'A*',
+  // Board-neutral: A* is Cambridge-only; "100" reads for IB/AP too.
+  perfect_score: '100',
   exam_ready: '✓',
   streak: 'S',
   coverage: '¶',

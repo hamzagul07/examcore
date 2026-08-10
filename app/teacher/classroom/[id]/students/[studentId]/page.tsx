@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
+import Link from 'next/link'
 import {
   NO_DATA,
   attemptSummary,
@@ -20,19 +21,37 @@ export default function StudentDetailPage() {
   const { id, studentId } = useParams<{ id: string; studentId: string }>()
   const [student, setStudent] = useState<StudentQuadrantMetric | null>(null)
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState('')
+
+  const load = useCallback(async () => {
+    setLoading(true)
+    setLoadError('')
+    try {
+      const r = await fetch(`/api/teacher/classroom/${id}/quadrants`, {
+        cache: 'no-store',
+      })
+      const d = await r.json().catch(() => ({}))
+      if (!r.ok) {
+        setStudent(null)
+        setLoadError(d.error || 'Could not load this student. Try again.')
+        return
+      }
+      const found = ((d.students || []) as StudentQuadrantMetric[]).find(
+        (s) => s.studentId === studentId
+      )
+      setStudent(found || null)
+      if (!found) setLoadError('')
+    } catch {
+      setStudent(null)
+      setLoadError('Could not load this student. Check your connection.')
+    } finally {
+      setLoading(false)
+    }
+  }, [id, studentId])
 
   useEffect(() => {
-    fetch(`/api/teacher/classroom/${id}/quadrants`)
-      .then((r) => r.json())
-      .then((d) => {
-        const found = (d.students || []).find(
-          (s: StudentQuadrantMetric) => s.studentId === studentId
-        )
-        setStudent(found || null)
-        setLoading(false)
-      })
-      .catch(() => setLoading(false))
-  }, [id, studentId])
+    void load()
+  }, [load])
 
   if (loading) {
     return (
@@ -44,6 +63,35 @@ export default function StudentDetailPage() {
             <SkeletonBlock className="h-24 w-full" />
             <SkeletonBlock className="h-24 w-full" />
             <SkeletonBlock className="h-24 w-full" />
+          </div>
+        </div>
+      </TeacherPageContainer>
+    )
+  }
+
+  if (loadError) {
+    return (
+      <TeacherPageContainer className="ms-teacher-student max-w-4xl">
+        <TeacherBackLink href={`/teacher/classroom/${id}/students`}>
+          ← Back to roster
+        </TeacherBackLink>
+        <div className="ms-teacher-error" role="alert">
+          <p className="font-semibold text-[var(--ec-text-primary)]">Student unavailable</p>
+          <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">{loadError}</p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => void load()}
+              className="ec-btn-primary inline-flex min-h-[44px] items-center"
+            >
+              Try again
+            </button>
+            <Link
+              href={`/teacher/classroom/${id}/students`}
+              className="ec-btn-secondary inline-flex min-h-[44px] items-center"
+            >
+              Back to roster
+            </Link>
           </div>
         </div>
       </TeacherPageContainer>

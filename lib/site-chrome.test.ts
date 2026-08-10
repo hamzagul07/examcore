@@ -31,5 +31,6 @@ assert.equal(shouldShowAppHeader('/for-teachers/start'), false)
 
 assert.equal(shouldShowAppHeader('/mark'), true)
 assert.equal(shouldShowAppHeader('/dashboard'), true)
+assert.equal(shouldShowAppHeader('/embed/mark-demo'), false)
 
 console.log('site-chrome.test.ts: ok')

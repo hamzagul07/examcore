@@ -39,7 +39,7 @@ function stationStamp(kind: StationKind) {
     case 'streak':
       return 'N'
     case 'exam_ready':
-      return 'A*'
+      return '✓'
     default:
       return '○'
   }

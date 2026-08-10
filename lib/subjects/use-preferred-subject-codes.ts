@@ -29,10 +29,13 @@ export function usePreferredSubjectCodes(): string[] {
           .maybeSingle()
 
         // Only pin subjects the student actually chose — not board defaults.
-        if (!profile?.subjects?.length) return
+        const subjectNames = (profile?.subjects ?? []).filter(
+          (name): name is string => typeof name === 'string' && name.length > 0
+        )
+        if (!subjectNames.length) return
 
         const level = profile.level ?? 'A-Level'
-        const next = profile.subjects
+        const next = subjectNames
           .map((name) => getSubjectById(name, level)?.code)
           .filter((c): c is string => Boolean(c))
 

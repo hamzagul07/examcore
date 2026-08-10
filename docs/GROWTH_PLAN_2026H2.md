@@ -168,6 +168,7 @@ Nothing here is a marketing task; all of it is why marketing doesn't work yet.
 5. **Fix attribution.** Send `document.referrer` and UTM params into
    `/api/track`. Without this, Phase 2 is unjudgeable.
 6. **Turn on the emails you already built.** `WEEKLY_REPORT_SEND=true` +
+   `MAX_LIFECYCLE_EMAIL_SEND=true` (vault tour ~24h + day-4 Max coach) +
    `RESEND_API_KEY`. The weekly examiner report and streak nudge are written and
    dark.
 7. **Start collecting proof.** `mark_feedback` has 0 rows; the testimonial

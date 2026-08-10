@@ -212,15 +212,22 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
       const { ok, userId, tier } = await syncSubscription(supabase, sub)
       // Purchase greeting only on activation — not on every update/cancel flag flip.
       if (ok && userId && event.type === 'subscription.active') {
+        // Max gets grantMaxWelcomeGift (Vault + bonus) — one Day-0 student email.
+        const skipStudentEmail = tier === 'mastery'
         runAfterResponse('purchase-emails-subscription', () =>
-          notifyPurchaseEmails(supabase, userId, {
-            kind: 'subscription',
-            detail: tier
-              ? `Your ${tierMarketingName(tier)} plan is now active.`
-              : 'Your plan is now active.',
-            tier,
-            providerRef: sub.id,
-          })
+          notifyPurchaseEmails(
+            supabase,
+            userId,
+            {
+              kind: 'subscription',
+              detail: tier
+                ? `Your ${tierMarketingName(tier)} plan is now active.`
+                : 'Your plan is now active.',
+              tier,
+              providerRef: sub.id,
+            },
+            { skipStudentEmail }
+          )
         )
       }
       // Max welcome gift: new Max checkouts fire `subscription.active`; Pro/Scholar

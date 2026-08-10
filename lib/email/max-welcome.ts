@@ -26,7 +26,7 @@ export function sendMaxWelcomeEmail(payload: {
 
   const bodyHtml =
     `<p style="margin:0 0 4px;font-size:16px;color:${EMAIL_INK}">Hi ${esc(greeting)},</p>` +
-    `<p style="margin:0 0 16px;font-size:15px;line-height:1.55;color:#555">Welcome to <strong style="color:${EMAIL_INK}">Max</strong> — exam-season volume, the Resource Vault, priority deep marking, and your weekly Max coach report.</p>` +
+    `<p style="margin:0 0 16px;font-size:15px;line-height:1.55;color:#555">Welcome to <strong style="color:${EMAIL_INK}">Max</strong> — your plan is active. Start in the Resource Vault, then mark one real script so the path rebuilds around where marks leak.</p>` +
     (payload.creditsGranted
       ? noteHtml(
           `<strong style="color:${EMAIL_INK}">+${payload.bonusCredits} bonus marks</strong> are on your account now. Credits only spend after your monthly Max allowance — they sit ready for peak weeks.`
@@ -46,18 +46,21 @@ export function sendMaxWelcomeEmail(payload: {
           href: markHref,
           actionLabel: 'Mark →',
         })
-    )
+    ) +
+    `<p style="margin:18px 0 0;font-size:13px;line-height:1.6;color:${EMAIL_MUTED}">Payments and receipts are handled by Polar. Change or cancel any time from billing. Your weekly Max coach lands on Sundays once you have marked.</p>`
 
   const text = [
     `Hi ${greeting},`,
     '',
-    `Welcome to Max on ${SITE_NAME}.`,
+    `Welcome to Max on ${SITE_NAME}. Your plan is active.`,
     payload.creditsGranted
       ? `+${payload.bonusCredits} bonus marks are on your account.`
       : '',
     '',
     `Open your Resource Vault: ${vaultHref}`,
     `Mark a paper: ${markHref}`,
+    '',
+    `Billing: ${SITE_URL}/account/billing`,
     '',
     `— ${SITE_NAME}`,
   ]
@@ -73,6 +76,10 @@ export function sendMaxWelcomeEmail(payload: {
       preheader,
       bodyHtml,
       cta: { label: 'Open your Max Vault →', href: vaultHref },
+      secondaryLinks: [
+        { label: 'Mark a question', href: markHref },
+        { label: 'Billing & receipts', href: `${SITE_URL}/account/billing` },
+      ],
     }),
   })
 }

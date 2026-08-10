@@ -36,7 +36,14 @@ Redeploy after adding.
 | Contact form | Auto-reply confirmation | Contact alert (reply-to set to sender) |
 | Waitlist signup (`/api/signup`) | — | Waitlist alert |
 | Polar credit purchase (sandbox or production) | Receipt | Purchase alert |
-| New subscription (checkout completed) | Plan confirmation | Purchase alert |
+| New Pro/Scholar subscription | Plan confirmation | Purchase alert |
+| New **Max** subscription | Max welcome only (Vault + bonus; no duplicate purchase receipt) | Purchase alert |
+| Max ~24h later | Vault tour (subject-aware) | — |
+| Max ~day 4 | First-mark nudge or Vault drill payoff | — |
+| Max exam ≤14 days | Sprint pack unlock (+15 marks) — vault visit **or** daily cron | — |
+| Max Sundays 17:00 UTC | Weekly coach report (needs attempts) | — |
+
+Max drip + sprint cron: `/api/cron/max-lifecycle` daily 10:00 UTC. Tour/day-4 need `MAX_LIFECYCLE_EMAIL_SEND=true` (sprint gifts always run). Weekly coach needs `WEEKLY_REPORT_SEND=true`.
 
 Marketing blasts are **not** sent automatically. Students opt in under **Account → Preferences** (`email_product_updates`, `email_exam_reminders`). Use `sendProductUpdateEmail()` from code or a future script when you run a campaign.
 

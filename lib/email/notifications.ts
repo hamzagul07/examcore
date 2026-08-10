@@ -287,7 +287,7 @@ export function sendPurchaseConfirmationEmail(payload: {
       (payload.tier === 'mastery'
         ? [
             `<strong style="color:${EMAIL_INK}">Max Resource Vault.</strong> Personalised sprint packs, curated flagship resources, and your full-marks model bank.`,
-            `<strong style="color:${EMAIL_INK}">+25 welcome bonus marks</strong> on your account (separate Max welcome email confirms).`,
+            `<strong style="color:${EMAIL_INK}">+25 welcome bonus marks</strong> on your account now.`,
             `<strong style="color:${EMAIL_INK}">Priority deep marking</strong> on big multi-question scripts — Max finishes the verify pass sooner.`,
             `<strong style="color:${EMAIL_INK}">Weekly Max coach report</strong> every Sunday with weak-topic drills.`,
             `<strong style="color:${EMAIL_INK}">${cap ?? 250} questions a month</strong> so exam season doesn't run you out of marks.`,
@@ -335,7 +335,7 @@ export function sendPurchaseConfirmationEmail(payload: {
         ? [
             'What just unlocked:',
             '- Max Resource Vault — sprint packs, curated resources, full-marks bank.',
-            '- +25 welcome bonus marks (confirmed in a separate Max email).',
+            '- +25 welcome bonus marks on your account now.',
             '- Priority deep marking on big multi-question scripts.',
             '- Weekly Max coach report every Sunday.',
             `- ${cap ?? 250} questions a month.`,
@@ -353,29 +353,41 @@ export function sendPurchaseConfirmationEmail(payload: {
     'Payments and receipts are handled by Polar, our merchant of record. Change or cancel any time:',
     `${SITE_URL}/account/billing`,
     '',
-    `Start marking: ${SITE_URL}/mark`,
+    payload.tier === 'mastery'
+      ? `Open your Vault: ${SITE_URL}/dashboard/vault`
+      : `Start marking: ${SITE_URL}/mark`,
     '',
     `— ${SITE_NAME}`,
   ]
     .filter((line, i, arr) => !(line === '' && arr[i - 1] === ''))
     .join('\n')
 
+  const isMax = payload.tier === 'mastery'
   sendEmailAsync({
     to: payload.email,
     subject,
     preheader: isCredits
       ? 'On your account and ready when your monthly questions run out.'
-      : 'Whole scripts, a second-opinion pass, and full-marks rewrites.',
+      : isMax
+        ? 'Vault unlocked — bonus marks on your account.'
+        : 'Whole scripts, a second-opinion pass, and full-marks rewrites.',
     text,
     html: renderBrandedEmailHtml({
       preheader: isCredits
         ? 'On your account and ready when your monthly questions run out.'
-        : 'Whole scripts, a second-opinion pass, and full-marks rewrites.',
+        : isMax
+          ? 'Vault unlocked — bonus marks on your account.'
+          : 'Whole scripts, a second-opinion pass, and full-marks rewrites.',
       bodyHtml,
-      cta: { label: 'Start marking →', href: `${SITE_URL}/mark` },
+      cta: isMax
+        ? { label: 'Open your Max Vault →', href: `${SITE_URL}/dashboard/vault` }
+        : { label: 'Start marking →', href: `${SITE_URL}/mark` },
       secondaryLinks: [
         { label: 'Billing & receipts', href: `${SITE_URL}/account/billing` },
-        { label: 'Your dashboard', href: `${SITE_URL}/dashboard` },
+        {
+          label: isMax ? 'Mark a question' : 'Your dashboard',
+          href: isMax ? `${SITE_URL}/mark` : `${SITE_URL}/dashboard`,
+        },
       ],
     }),
   })
@@ -512,19 +524,29 @@ export async function notifyPurchaseEmails(
     tier?: SubscriptionTier | null
     /** Polar subscription or order ID. */
     providerRef?: string | null
+  },
+  options?: {
+    /**
+     * Max activation already sends `sendMaxWelcomeEmail` (Vault + bonus).
+     * Skip the generic purchase receipt so Day-0 is one student email.
+     * Admin notify still fires.
+     */
+    skipStudentEmail?: boolean
   }
 ): Promise<void> {
   const { data: authData } = await supabase.auth.admin.getUserById(userId)
   const email = authData?.user?.email
   if (!email) return
 
-  sendPurchaseConfirmationEmail({
-    email,
-    kind: payload.kind,
-    detail: payload.detail,
-    credits: payload.credits,
-    tier: payload.tier,
-  })
+  if (!options?.skipStudentEmail) {
+    sendPurchaseConfirmationEmail({
+      email,
+      kind: payload.kind,
+      detail: payload.detail,
+      credits: payload.credits,
+      tier: payload.tier,
+    })
+  }
 
   notifyAdminPurchase({
     email,

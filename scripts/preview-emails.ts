@@ -339,6 +339,43 @@ async function main() {
     })
   )
 
+  const { sendMaxSprintEmail } = await import('@/lib/email/max-sprint')
+  await capture('max-sprint', () =>
+    sendMaxSprintEmail({
+      to,
+      recipientName: 'Hamza',
+      daysLeft: 9,
+      bonusCredits: 15,
+    })
+  )
+
+  const { sendMaxDay4Email } = await import('@/lib/email/max-day4')
+  await capture('max-day4-unmarked', () =>
+    sendMaxDay4Email({
+      to,
+      recipientName: 'Hamza',
+      hasMarked: false,
+      focusSubject: 'Economics',
+    })
+  )
+  await capture('max-day4-marked', () =>
+    sendMaxDay4Email({
+      to,
+      recipientName: 'Hamza',
+      hasMarked: true,
+      focusSubject: 'Economics',
+    })
+  )
+
+  await capture('purchase-max', () =>
+    sendPurchaseConfirmationEmail({
+      email: to,
+      kind: 'subscription',
+      detail: 'Your Max plan is now active.',
+      tier: 'mastery',
+    })
+  )
+
   // Broadcast campaigns render through the same shell. This is the live copy of
   // the re-permission ask, with the per-recipient placeholders already filled.
   const { sendBroadcastEmail } = await import('@/lib/email/broadcast')

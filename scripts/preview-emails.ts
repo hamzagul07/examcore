@@ -61,6 +61,8 @@ async function main() {
     sendFinishOnboardingEmail,
   } = await import('@/lib/email/activation')
   const { sendWeeklyReportEmail } = await import('@/lib/email/weekly-report')
+  const { sendMaxVaultTourEmail } = await import('@/lib/email/max-vault-tour')
+  const { sendMaxWelcomeEmail } = await import('@/lib/email/max-welcome')
 
   const to = 'student@example.com'
   const unsubscribeHref = 'https://markscheme.app/unsubscribe?token=preview'
@@ -313,6 +315,19 @@ async function main() {
         ],
         examDaysLeft: 43,
       },
+    })
+  )
+
+  await capture('max-vault-tour', () =>
+    sendMaxVaultTourEmail({ to, recipientName: 'Hamza', wait: true })
+  )
+
+  await capture('max-welcome', () =>
+    sendMaxWelcomeEmail({
+      to,
+      recipientName: 'Hamza',
+      bonusCredits: 20,
+      creditsGranted: true,
     })
   )
 

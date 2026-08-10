@@ -14,7 +14,6 @@ import { getCuratedMaxPack, type CuratedMaxPack } from '@/lib/max/curated-packs'
 import type { MaxExamPack } from '@/lib/max/build-exam-pack'
 import { getCachedMaxExamPack } from '@/lib/max/exam-pack-cache'
 import { getTechniquePack, type TechniquePack } from '@/lib/max/technique-packs'
-import { IB_GLOBAL_RESOURCES, getIbSubjectResources } from '@/lib/ib/resources'
 import { isIbSubjectCode } from '@/lib/ib/marking-config'
 import { predictGrade, type GradePrediction } from '@/lib/prediction'
 import { gapToTargetGrade } from '@/lib/target-grade'
@@ -40,6 +39,10 @@ import {
   type VaultCoachWeek,
 } from '@/lib/max/vault-coach-inbox'
 import { drillHref } from '@/lib/insights/drill-link'
+import {
+  courseHubHref,
+  paperPracticeLinks,
+} from '@/lib/max/paper-practice-links'
 
 export type VaultToolLink = { label: string; href: string; note: string }
 
@@ -148,17 +151,20 @@ const BASE_TOOLS: VaultToolLink[] = [
 ]
 
 function subjectLinks(code: string): VaultToolLink[] {
+  const courseHref = courseHubHref(code)
+  const papers = paperPracticeLinks(code)
   const links: VaultToolLink[] = [
     {
-      label: `${code} courses`,
-      href: `/courses/${encodeURIComponent(code)}`,
+      label: isIbSubjectCode(code) ? `${code.replace(/^ib-/, '')} courses` : `${code} courses`,
+      href: courseHref,
       note: 'Visual lessons mapped to the syllabus.',
     },
-    {
-      label: `${code} past papers`,
-      href: `/past-papers/${encodeURIComponent(code)}`,
-      note: 'Practice hubs on MarkScheme.',
-    },
+    // Prefer licensed / correct hubs — never /past-papers/ib-*.
+    ...papers.slice(0, 3).map((p) => ({
+      label: p.label,
+      href: p.href,
+      note: p.note,
+    })),
   ]
   if (!isIbSubjectCode(code)) {
     links.push({
@@ -172,21 +178,12 @@ function subjectLinks(code: string): VaultToolLink[] {
 
 function ibLinksForCode(code: string): VaultToolLink[] {
   if (!isIbSubjectCode(code)) return []
-  // Profile codes are `ib-{slug}` e.g. ib-biology-hl.
-  const slug = code.replace(/^ib-/, '')
-  const subjectSpecific = getIbSubjectResources({ slug }).map((r) => ({
-    label: r.label,
-    href: r.href,
-    note: r.note,
+  // Licensed past-paper sources first (same list as paperPracticeLinks, full set).
+  return paperPracticeLinks(code).map((p) => ({
+    label: p.label,
+    href: p.href,
+    note: p.note,
   }))
-  return [
-    ...subjectSpecific,
-    ...IB_GLOBAL_RESOURCES.map((r) => ({
-      label: r.label,
-      href: r.href,
-      note: r.note,
-    })),
-  ]
 }
 
 function avgPct(attempts: AttemptLite[]): number | null {

@@ -85,17 +85,31 @@ export function MaxVaultPackChecklist({
         <div className="ms-vault__panel ms-vault__panel--rose !shadow-none p-3">
           <p className="ms-overline m-0 mb-2 text-[var(--ec-acc-rose)]">Three timed papers</p>
           <ul className="m-0 list-none space-y-2 pl-0">
-            {pack.timedPapers.map((p) => (
-              <li key={p.label}>
-                <Link href={p.href} className="ec-link font-semibold">
-                  {p.label}
-                </Link>
-                <span className="text-[var(--ec-text-secondary)]">
-                  {' '}
-                  · {p.minutes} min under timed conditions, then mark on MarkScheme
-                </span>
-              </li>
-            ))}
+            {pack.timedPapers.map((p) => {
+              const external = p.href.startsWith('http')
+              return (
+                <li key={p.label}>
+                  {external ? (
+                    <a
+                      href={p.href}
+                      className="ec-link font-semibold"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      {p.label} ↗
+                    </a>
+                  ) : (
+                    <Link href={p.href} className="ec-link font-semibold">
+                      {p.label}
+                    </Link>
+                  )}
+                  <span className="text-[var(--ec-text-secondary)]">
+                    {' '}
+                    · {p.minutes} min under timed conditions, then mark on MarkScheme
+                  </span>
+                </li>
+              )
+            })}
           </ul>
         </div>
       ) : null}

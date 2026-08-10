@@ -207,27 +207,41 @@ export function MaxVaultView({
       ) : null}
 
       {data.ibLinks.length > 0 ? (
-        <details className="ms-vault__section">
-          <summary className="ms-vault__extras-summary">
-            Extra IB reference links (optional)
-          </summary>
-          <div className="ms-vault__panel ms-vault__panel--blue mt-3 space-y-3">
-            <p className="text-caption m-0 text-[var(--ec-text-secondary)]">
-              Official / community references — secondary to your MarkScheme drills and
-              lessons above.
-            </p>
-            <ul className="m-0 list-none space-y-3 pl-0">
-              {data.ibLinks.map((l) => (
+        <VaultSection
+          stamp="IB"
+          eyebrow="Sit the real paper"
+          title="Licensed past papers"
+          tone="blue"
+        >
+          <p className="text-body m-0 text-[var(--ec-text-secondary)]">
+            IB papers are copyrighted — we send you to official / licensed free sources.
+            Sit the paper there, then come back and mark on MarkScheme.
+          </p>
+          <ul className="m-0 list-none space-y-3 pl-0">
+            {data.ibLinks.map((l) => {
+              const external = l.href.startsWith('http')
+              return (
                 <li key={l.href}>
-                  <a href={l.href} className="ec-link font-semibold" rel="noopener noreferrer">
-                    {l.label}
-                  </a>
+                  {external ? (
+                    <a
+                      href={l.href}
+                      className="ec-link font-semibold"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      {l.label} ↗
+                    </a>
+                  ) : (
+                    <Link href={l.href} className="ec-link font-semibold">
+                      {l.label}
+                    </Link>
+                  )}
                   <span className="block text-sm text-[var(--ec-text-secondary)]">{l.note}</span>
                 </li>
-              ))}
-            </ul>
-          </div>
-        </details>
+              )
+            })}
+          </ul>
+        </VaultSection>
       ) : null}
 
       <details className="ms-vault__section">

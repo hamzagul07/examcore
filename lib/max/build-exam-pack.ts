@@ -17,6 +17,7 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import { examCountdown } from '@/lib/dashboard/exam-date'
 import { MAX_SPRINT_WINDOW_DAYS } from '@/lib/billing/features'
 import { getSyllabusSubjectName } from '@/lib/syllabi'
+import { timedPaperSlots } from '@/lib/max/paper-practice-links'
 
 export type MaxExamPackDay = {
   day: number
@@ -50,10 +51,6 @@ function isoWeekLabel(d = new Date()): string {
   const day = start.getUTCDay() || 7
   start.setUTCDate(start.getUTCDate() - day + 1)
   return start.toISOString().slice(0, 10)
-}
-
-function paperHubHref(subjectCode: string): string {
-  return `/past-papers/${encodeURIComponent(subjectCode)}`
 }
 
 export async function buildMaxExamPack(opts: {
@@ -99,12 +96,7 @@ export async function buildMaxExamPack(opts: {
     }
   }
 
-  const hub = paperHubHref(opts.subjectCode)
-  const timedPapers = [
-    { label: `${opts.subjectCode} timed paper 1`, href: hub, minutes: 75 },
-    { label: `${opts.subjectCode} timed paper 2`, href: hub, minutes: 90 },
-    { label: `${opts.subjectCode} timed paper 3`, href: hub, minutes: 90 },
-  ]
+  const timedPapers = timedPaperSlots(opts.subjectCode)
 
   const days: MaxExamPackDay[] = []
   let drillCursor = 0

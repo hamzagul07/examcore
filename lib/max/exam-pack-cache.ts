@@ -70,7 +70,9 @@ export async function getCachedMaxExamPack(opts: {
   if (
     cached &&
     isMaxExamPack(cached.pack) &&
-    cached.pack.isSprint === sprint
+    cached.pack.isSprint === sprint &&
+    // Bust packs that still deep-link IB subjects at the Cambridge hub (404).
+    !JSON.stringify(cached.pack).includes('/past-papers/ib-')
   ) {
     return withCompletionKey(cached.pack, opts.examDate)
   }

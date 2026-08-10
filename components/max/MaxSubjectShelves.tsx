@@ -114,14 +114,36 @@ function SubjectShelfDetail({ shelf }: { shelf: MaxSubjectShelf }) {
     ...shelf.links.filter((l) => l.href.includes('/courses/')),
   ]
   const paperLinks = [
-    ...(shelf.curated?.paperPath ?? []).filter((l) => l.href.startsWith('/')),
-    ...shelf.links.filter((l) => l.href.includes('/past-papers/')),
+    ...(shelf.curated?.paperPath ?? []).filter((l) => !l.href.includes('/past-papers/ib-')),
+    ...shelf.links.filter(
+      (l) =>
+        l.href.includes('/past-papers/') ||
+        l.href.includes('/ib/past-papers/') ||
+        l.href.startsWith('https://www.ibo.org') ||
+        l.href.startsWith('https://www.revisiondojo.com') ||
+        l.href.startsWith('https://www.revisionvillage.com') ||
+        l.href.startsWith('https://www.christosnikolaidis.com') ||
+        l.href.startsWith('https://www.ibresources.cc')
+    ),
   ]
+  // Deduplicate by href
+  const seenPaper = new Set<string>()
+  const uniquePaperLinks = paperLinks.filter((l) => {
+    if (seenPaper.has(l.href)) return false
+    seenPaper.add(l.href)
+    return true
+  })
   // Technique / blog links stay secondary — Max value is in drills + courses.
   const techniqueLinks = [
     ...(shelf.curated?.techniqueLinks ?? []),
     ...(shelf.technique?.links ?? []),
   ].filter((l) => !l.href.startsWith('http'))
+
+  const isIb = shelf.code.startsWith('ib-')
+  // IB also gets licensed sources from shelf.ibLinks
+  const licensedIb = isIb
+    ? shelf.ibLinks.filter((l) => l.href.startsWith('http')).slice(0, 4)
+    : []
 
   return (
     <div className="space-y-4 border-t border-[var(--ec-border)] pt-4">
@@ -186,20 +208,36 @@ function SubjectShelfDetail({ shelf }: { shelf: MaxSubjectShelf }) {
         </div>
       ) : null}
 
-      {paperLinks.length > 0 ? (
+      {uniquePaperLinks.length > 0 || licensedIb.length > 0 ? (
         <div>
-          <p className="ms-overline m-0 mb-2 text-[var(--ec-acc-rose)]">Timed papers on MarkScheme</p>
+          <p className="ms-overline m-0 mb-2 text-[var(--ec-acc-rose)]">
+            {isIb ? 'Licensed papers + practice desk' : 'Timed papers on MarkScheme'}
+          </p>
           <ul className="m-0 list-none space-y-2 pl-0">
-            {paperLinks.slice(0, 3).map((l) => (
-              <li key={l.href}>
-                <Link href={l.href} className="ec-link font-semibold">
-                  {l.label}
-                </Link>
-                {l.note ? (
-                  <span className="block text-sm text-[var(--ec-text-secondary)]">{l.note}</span>
-                ) : null}
-              </li>
-            ))}
+            {[...licensedIb, ...uniquePaperLinks].slice(0, 5).map((l) => {
+              const external = l.href.startsWith('http')
+              return (
+                <li key={l.href}>
+                  {external ? (
+                    <a
+                      href={l.href}
+                      className="ec-link font-semibold"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      {l.label} ↗
+                    </a>
+                  ) : (
+                    <Link href={l.href} className="ec-link font-semibold">
+                      {l.label}
+                    </Link>
+                  )}
+                  {l.note ? (
+                    <span className="block text-sm text-[var(--ec-text-secondary)]">{l.note}</span>
+                  ) : null}
+                </li>
+              )
+            })}
           </ul>
         </div>
       ) : null}

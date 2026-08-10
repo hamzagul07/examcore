@@ -34,6 +34,12 @@ import {
   type VaultDiagramPad,
 } from '@/lib/max/vault-exclusives'
 import { isCommunityEnabled } from '@/lib/community/enabled'
+import { loadCompletedPackDays } from '@/lib/max/sprint-day-completion'
+import {
+  buildVaultCoachInbox,
+  type VaultCoachWeek,
+} from '@/lib/max/vault-coach-inbox'
+import { drillHref } from '@/lib/insights/drill-link'
 
 export type VaultToolLink = { label: string; href: string; note: string }
 
@@ -53,6 +59,14 @@ export type FullMarksModel = {
   totalMarks: number
   createdAt: string
   subjectCode: string | null
+  /** Truncated full-marks rewrite for inline Vault preview. */
+  rewriteSnippet: string | null
+  annotationCount: number
+  /** Rematch fields when attempt came from a past-paper mark_scheme. */
+  paperCode: string | null
+  paperSession: string | null
+  questionNumber: string | null
+  beatHref: string | null
 }
 
 export type MaxProjectedGrade = {
@@ -99,6 +113,10 @@ export type MaxVaultData = {
   communityHooks: VaultCommunityHook[]
   /** Max ownership theatre — headroom, priority, coach. */
   ownership: VaultOwnership | null
+  /** Completed day numbers for the current pack (checklist). */
+  completedDays: number[]
+  /** Recomputed weekly coach snapshots (Max ritual). */
+  coachInbox: VaultCoachWeek[]
 }
 
 export type VaultSubjectInput = {
@@ -342,7 +360,7 @@ export async function loadMaxVaultData(opts: {
   const { data: recentAttempts } = await supabase
     .from('attempts')
     .select(
-      'id, marks_earned, total_marks, created_at, question_text, source_type, ai_marking, syllabus_tags, mark_schemes ( question_number, paper_code )'
+      'id, marks_earned, total_marks, created_at, question_text, source_type, ai_marking, syllabus_tags, mark_schemes ( question_number, paper_code, paper_session )'
     )
     .eq('user_id', userId)
     .order('created_at', { ascending: false })
@@ -350,16 +368,42 @@ export async function loadMaxVaultData(opts: {
 
   const fullMarksModels: FullMarksModel[] = []
   for (const a of recentAttempts ?? []) {
-    const ai = a.ai_marking as { full_marks_rewrite?: unknown } | null
-    if (!ai?.full_marks_rewrite) continue
+    const ai = a.ai_marking as {
+      full_marks_rewrite?: {
+        rewritten_answer?: string
+        annotations?: Array<{ text: string; earns: string }>
+      }
+    } | null
+    const rewrite = ai?.full_marks_rewrite
+    if (!rewrite?.rewritten_answer) continue
     const ms = a.mark_schemes as {
       question_number?: string | null
       paper_code?: string | null
+      paper_session?: string | null
     } | null
+    const paperCode = ms?.paper_code ?? null
+    const paperSession = ms?.paper_session ?? null
+    const questionNumber = ms?.question_number ?? null
     const label =
-      a.source_type === 'past_paper' && ms?.paper_code
-        ? `Q${ms.question_number ?? '?'} — ${ms.paper_code}`
+      a.source_type === 'past_paper' && paperCode
+        ? `Q${questionNumber ?? '?'} — ${paperCode}`
         : `Attempt · ${a.total_marks} marks`
+    const snippet = rewrite.rewritten_answer.replace(/\s+/g, ' ').trim().slice(0, 160)
+    const beatHref =
+      paperCode && paperSession && questionNumber
+        ? drillHref(
+            {
+              paperCode,
+              paperSession,
+              questionNumber,
+              totalMarks: a.total_marks as number,
+              reason: 'Beat your full-marks model — remake this question.',
+              targetLabel: label,
+            },
+            'Beat your model',
+            { returnTo: 'vault' }
+          )
+        : null
     fullMarksModels.push({
       attemptId: a.id as string,
       label,
@@ -367,6 +411,12 @@ export async function loadMaxVaultData(opts: {
       totalMarks: a.total_marks as number,
       createdAt: a.created_at as string,
       subjectCode: getAttemptSubjectCode(a as AttemptWithPaper),
+      rewriteSnippet: snippet || null,
+      annotationCount: rewrite.annotations?.length ?? 0,
+      paperCode,
+      paperSession,
+      questionNumber,
+      beatHref,
     })
     if (fullMarksModels.length >= 12) break
   }
@@ -386,6 +436,26 @@ export async function loadMaxVaultData(opts: {
     isCommunityEnabled()
   )
 
+  let completedDays: number[] = []
+  if (examPack && focusCode) {
+    completedDays = await loadCompletedPackDays({
+      supabase,
+      userId,
+      subjectCode: focusCode,
+      weekLabel: examPack.weekLabel,
+    })
+  }
+
+  const coachInbox =
+    ownership?.weeklyCoach
+      ? buildVaultCoachInbox({
+          attempts,
+          targetGrade,
+          examDate: examDate ?? null,
+          weeks: 4,
+        })
+      : []
+
   return {
     subjectCode: focusCode,
     subjectName: focusName,
@@ -403,5 +473,7 @@ export async function loadMaxVaultData(opts: {
     diagramPads,
     communityHooks,
     ownership,
+    completedDays,
+    coachInbox,
   }
 }

@@ -44,10 +44,11 @@ function average(rows: AttemptLite[]): number | null {
 /** Pure: turn a user's recent attempts + profile into the report figures. */
 export function computeWeeklyReportData(
   attempts: AttemptWithPaper[],
-  profile: { target_grade: string | null; exam_date: string | null }
+  profile: { target_grade: string | null; exam_date: string | null },
+  opts?: { asOf?: Date }
 ): WeeklyReportData {
   const lite = attempts as unknown as AttemptLite[]
-  const now = Date.now()
+  const now = (opts?.asOf ?? new Date()).getTime()
   const inWindow = (a: AttemptLite, lo: number, hi: number) => {
     const t = new Date(a.created_at).getTime()
     return t >= lo && t < hi

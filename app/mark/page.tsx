@@ -3430,6 +3430,31 @@ export default function MarkPage() {
               </Link>
             )}
 
+            {practiceContext?.returnTo === 'vault' && (
+              <Link
+                href="/dashboard/vault"
+                className="ec-card group flex items-center justify-between gap-4 border-[var(--ec-brand)]/30 p-4 transition-colors hover:border-[var(--ec-brand)]/50"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="ec-ink-stamp ec-ink-stamp--inline shrink-0" aria-hidden>
+                    MX
+                  </span>
+                  <div>
+                    <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
+                      Back to Max Vault
+                    </p>
+                    <p className="mt-0.5 text-sm text-[var(--ec-text-secondary)]">
+                      Tick the day off your sprint checklist and check your rewrite bank.
+                    </p>
+                  </div>
+                </div>
+                <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-[var(--ec-brand)]">
+                  Open Vault
+                  <span className="font-mono text-xs font-bold transition-transform group-hover:translate-x-0.5" aria-hidden>-&gt;</span>
+                </span>
+              </Link>
+            )}
+
             {courseTopicContext?.returnTo ? (
               <Link
                 href={courseTopicContext.returnTo}

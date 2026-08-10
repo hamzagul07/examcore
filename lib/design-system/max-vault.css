@@ -198,12 +198,20 @@
 .ms-vault__day {
   counter-increment: vault-day;
   position: relative;
-  padding: 0.85rem 0.9rem 0.85rem 3rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.85rem 0.9rem;
   border: 1.5px solid var(--ec-border);
   background: color-mix(in srgb, var(--ec-surface-raised) 80%, transparent);
 }
 
-.ms-vault__day::before {
+.ms-vault__day:not(:has(.ms-vault__day-check)) {
+  padding-left: 3rem;
+}
+
+.ms-vault__day:not(:has(.ms-vault__day-check))::before {
   content: counter(vault-day);
   position: absolute;
   left: 0.65rem;
@@ -589,4 +597,91 @@
 
 .ms-vault__extras-summary:hover {
   color: var(--ec-brand);
+}
+
+/* Pack checklist */
+.ms-vault__day-check {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  user-select: none;
+  margin-top: 0.15rem;
+}
+
+.ms-vault__day-check input {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: var(--ec-brand);
+}
+
+.ms-vault__day-check span {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--ec-text-secondary);
+}
+
+.ms-vault__day.is-done {
+  opacity: 0.72;
+}
+
+.ms-vault__day.is-done .ms-vault__day-body > p {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+/* Rewrite bank */
+.ms-vault__model--rich {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.85rem;
+}
+
+.ms-vault__rewrite-snippet {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--ec-text-secondary);
+  font-style: italic;
+}
+
+.ms-vault__model-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+/* Coach inbox */
+.ms-vault__coach-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .ms-vault__coach-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.ms-vault__coach-card {
+  padding: 0.85rem;
+  border: 1.5px solid color-mix(in srgb, var(--ec-acc-teal) 40%, var(--ec-border));
+  background: color-mix(in srgb, var(--ec-acc-teal) 8%, transparent);
+}
+
+.ms-vault__coach-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--ec-text-secondary);
 }

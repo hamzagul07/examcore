@@ -6,7 +6,11 @@
 
 import type { Recommendation } from './types'
 
-export function drillHref(rec: Recommendation, patternLabel?: string): string {
+export function drillHref(
+  rec: Recommendation,
+  patternLabel?: string,
+  opts?: { returnTo?: 'progress' | 'vault' }
+): string {
   const params = new URLSearchParams({
     practice: '1',
     paper: rec.paperCode,
@@ -14,7 +18,7 @@ export function drillHref(rec: Recommendation, patternLabel?: string): string {
     q: rec.questionNumber,
     reason: rec.reason,
     pattern: patternLabel || rec.targetLabel,
-    return: 'progress',
+    return: opts?.returnTo ?? 'progress',
   })
   return `/mark?${params.toString()}`
 }

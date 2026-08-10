@@ -36,9 +36,13 @@ type TourContext = {
   boardLabel: string | null
   levelLabel: string | null
   targetGrade: string | null
+  focusLabel: string
+  hasEconomics: boolean
+  hasAccounting: boolean
   vaultHref: string
   markHref: string
   coursesHref: string
+  dashboardHref: string
 }
 
 function resolveSubjects(ids: string[] | null | undefined, level?: string | null): string[] {
@@ -52,6 +56,27 @@ function resolveSubjects(ids: string[] | null | undefined, level?: string | null
     out.push(label)
   }
   return out
+}
+
+/** Prefer Economics when present, but never drop the other subjects from the story. */
+function pickFocusLabel(labels: string[]): string {
+  const econ = labels.find((l) => /econ/i.test(l))
+  if (econ) return econ
+  return labels[0] || 'your subject'
+}
+
+function subjectLineForCopy(labels: string[]): string {
+  if (labels.length === 0) return 'your subjects'
+  if (labels.length === 1) return labels[0]!
+  if (labels.length === 2) return `${labels[0]} and ${labels[1]}`
+  return `${labels.slice(0, -1).join(', ')}, and ${labels[labels.length - 1]}`
+}
+
+/** Economics first in the list when present — still includes every profile subject. */
+function orderedSubjectLabels(labels: string[]): string[] {
+  const econ = labels.filter((l) => /econ/i.test(l))
+  const rest = labels.filter((l) => !/econ/i.test(l))
+  return [...econ, ...rest]
 }
 
 function subjectPills(labels: string[]): string {
@@ -89,7 +114,19 @@ function journeyVisual(subjectHint: string): string {
 }
 
 /** Mini “cinema stage” visual for Concept Cinema */
-function cinemaStageVisual(subjectLine: string): string {
+function cinemaStageVisual(subjectLabels: string[], focusLabel: string): string {
+  const tabs =
+    subjectLabels.length > 0
+      ? subjectLabels
+          .map((label, i) => {
+            const on = /econ/i.test(label) || (i === 0 && !subjectLabels.some((l) => /econ/i.test(l)))
+            return `<span style="display:inline-block;font-family:${EMAIL_SANS};font-size:11px;font-weight:700;padding:6px 10px;margin:0 4px 6px 0;border:1.5px solid ${on ? EMAIL_BRAND : EMAIL_BORDER};background:${on ? EMAIL_BRAND : '#fff'};color:${on ? '#fff' : EMAIL_INK}">${esc(label)}</span>`
+          })
+          .join('')
+      : ''
+  const beat = subjectLabels.some((l) => /econ/i.test(l))
+    ? `Switch subjects in Cinema — start with ${esc(focusLabel)} (D&S, PPC, AD–AS), then open Maths or Accounting on the same desk.`
+    : 'Live syllabus diagrams for each of your subjects — scrub, pause, then open the full lesson.'
   return `<div style="margin:0 0 22px;border:1.5px solid ${EMAIL_BORDER};background:linear-gradient(180deg,#fffdf8 0%,#f7f1e8 100%);padding:0;overflow:hidden">
     <div style="background:${EMAIL_BRAND};padding:10px 16px">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
@@ -98,13 +135,14 @@ function cinemaStageVisual(subjectLine: string): string {
       </tr></table>
     </div>
     <div style="padding:22px 18px 18px;text-align:center">
-      <div style="font-family:${EMAIL_SERIF};font-size:13px;color:${EMAIL_MUTED};margin:0 0 10px">Imagine the idea moving for ${esc(subjectLine)}</div>
-      <div style="font-family:${EMAIL_SERIF};font-size:28px;font-weight:600;letter-spacing:-.03em;color:${EMAIL_INK};line-height:1.15;margin:0 0 8px">Watch · Scrub · Understand</div>
+      <div style="margin:0 0 12px">${tabs}</div>
+      <div style="font-family:${EMAIL_SERIF};font-size:13px;color:${EMAIL_MUTED};margin:0 0 10px">Every subject gets a shelf — we open on ${esc(focusLabel)} first</div>
+      <div style="font-family:${EMAIL_SERIF};font-size:28px;font-weight:600;letter-spacing:-.03em;color:${EMAIL_INK};line-height:1.15;margin:0 0 8px">Watch · Scrub · Sit a paper</div>
       <div style="height:10px;background:#ebe4d8;border-radius:999px;margin:16px auto 6px;max-width:280px;overflow:hidden">
         <div style="height:10px;width:62%;background:${EMAIL_BRAND};border-radius:999px">&nbsp;</div>
       </div>
-      <div style="font-family:${EMAIL_SANS};font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:${EMAIL_MUTED}">Scrub the idea → teaching beat 3 of 4</div>
-      <p style="margin:14px 0 0;font-family:${EMAIL_SERIF};font-size:14.5px;line-height:1.55;color:${EMAIL_BODY}">Live syllabus diagrams — not static textbook figures. Pause when it clicks, then open the full lesson.</p>
+      <div style="font-family:${EMAIL_SANS};font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:${EMAIL_MUTED}">Scrub the idea → then open your question desk</div>
+      <p style="margin:14px 0 0;font-family:${EMAIL_SERIF};font-size:14.5px;line-height:1.55;color:${EMAIL_BODY}">${beat}</p>
     </div>
   </div>`
 }
@@ -129,51 +167,79 @@ function careBlock(greeting: string, subjects: string[], targetGrade: string | n
   )
 }
 
-function premiumCoursesBlock(subjects: string[]): string {
-  const focus =
-    subjects.length > 0
-      ? subjects.length === 1
-        ? `your ${esc(subjects[0]!)} course`
-        : `your ${esc(subjects.slice(0, -1).join(', '))} and ${esc(subjects[subjects.length - 1]!)} courses`
-      : 'your courses'
-
+function premiumCoursesBlock(ctx: TourContext): string {
+  const all = subjectLineForCopy(ctx.subjectLabels)
   return (
     sectionHeading(
-      'How your premium courses are built',
-      'This is the Max difference — personal, not one-size-fits-all.'
+      'Visual premium courses',
+      'Syllabus-mapped lessons with live diagrams — not walls of text.'
     ) +
-    `<p style="margin:0 0 14px;font-size:15.5px;line-height:1.7;color:${EMAIL_BODY}">Right now ${focus} start from the full syllabus so you are never locked out of a topic. That is the floor.</p>` +
-    `<p style="margin:0 0 14px;font-size:15.5px;line-height:1.7;color:${EMAIL_BODY}">As you mark questions, MarkScheme reads where marks leak — a shaky method, a missed definition, a topic you keep losing. Vault then <strong style="color:${EMAIL_INK}">rebuilds a premium path</strong> around those weak spots: the lessons you need next, with <strong style="color:${EMAIL_INK}">learn-with-diagrams</strong> so the idea is visible, not just described.</p>` +
-    `<p style="margin:0 0 18px;font-size:15.5px;line-height:1.7;color:${EMAIL_BODY}">Prefer watching when reading feels heavy? <strong style="color:${EMAIL_INK}">Max videos are coming soon</strong> for the same hard topics — same desk, gentler way in.</p>` +
-    journeyVisual(subjects[0] || 'your subjects')
+    `<p style="margin:0 0 14px;font-size:15.5px;line-height:1.7;color:${EMAIL_BODY}"><strong style="color:${EMAIL_INK}">${esc(all)}</strong> each start from the full syllabus so you are never locked out of a topic. That is the floor.</p>` +
+    `<p style="margin:0 0 14px;font-size:15.5px;line-height:1.7;color:${EMAIL_BODY}">Premium means <strong style="color:${EMAIL_INK}">visual</strong>: learn-with-diagram lessons, Concept Cinema next to the path, and colour that makes demand, supply, and equilibrium obvious. As you mark, Vault <strong style="color:${EMAIL_INK}">rebuilds the path</strong> per subject around where marks leak — shaky method in Maths, missing labels in Economics, soft evaluation in Accounting.</p>` +
+    `<p style="margin:0 0 18px;font-size:15.5px;line-height:1.7;color:${EMAIL_BODY}">We open your desk on <strong style="color:${EMAIL_INK}">${esc(ctx.focusLabel)}</strong> first (from your recent marks); your other subjects stay one tap away.</p>` +
+    journeyVisual(ctx.focusLabel) +
+    midCta(ctx.coursesHref, 'Open your visual courses →')
   )
 }
 
-function featureStrip(): string {
+function askAndProgressBlock(ctx: TourContext): string {
+  return (
+    sectionHeading(
+      'Ask MarkScheme · see your progress',
+      'Max is not only a Vault — it is a study partner that tracks the grade.'
+    ) +
+    `<div style="background:#f7f8fb;border:1.5px solid ${EMAIL_BORDER};padding:16px 18px;margin:0 0 10px">
+      <div style="font-family:${EMAIL_SANS};font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:${EMAIL_BRAND};margin:0 0 6px">Live now</div>
+      <div style="font-family:${EMAIL_SERIF};font-size:17px;font-weight:600;color:${EMAIL_INK};margin:0 0 4px">Ask MarkScheme</div>
+      <div style="font-family:${EMAIL_SERIF};font-size:14.5px;line-height:1.55;color:${EMAIL_BODY}">Stuck on a diagram, a mark comment, or how to evaluate? Tap <strong style="color:${EMAIL_INK}">Ask MarkScheme</strong> anywhere in the app — it knows your subjects and can talk through the next step without sending you to a random chatbot.</div>
+    </div>` +
+    `<div style="background:#f7faf8;border:1.5px solid ${EMAIL_BORDER};padding:16px 18px;margin:0 0 18px">
+      <div style="font-family:${EMAIL_SANS};font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:${EMAIL_BRAND};margin:0 0 6px">Live now</div>
+      <div style="font-family:${EMAIL_SERIF};font-size:17px;font-weight:600;color:${EMAIL_INK};margin:0 0 4px">Progress that tracks ${ctx.targetGrade ? esc(ctx.targetGrade) : 'your target'}</div>
+      <div style="font-family:${EMAIL_SERIF};font-size:14.5px;line-height:1.55;color:${EMAIL_BODY}">Your Home desk and Vault show projected grade, weak topics, sprint days done, and models to beat — so you always know what moved and what to do next${ctx.targetGrade ? ` on the road to <strong style="color:${EMAIL_INK}">${esc(ctx.targetGrade)}</strong>` : ''}.</div>
+    </div>` +
+    midCta(ctx.dashboardHref, 'See your progress desk →')
+  )
+}
+
+function featureStrip(ctx: TourContext): string {
+  const deskBody =
+    'One question desk per subject — white exam sheet, Times font, real stems. Work it, then mark answer-only. Switch tabs anytime.'
+  const cinemaBody = ctx.hasEconomics
+    ? `Tabs for ${subjectLineForCopy(ctx.subjectLabels)} — we cue ${ctx.focusLabel} first (D&S, PPC, AD–AS); Maths and Accounting stay on the same stage.`
+    : `Live diagrams for ${subjectLineForCopy(ctx.subjectLabels)} — scrub, pause, open the lesson.`
   const items = [
     {
       status: 'Live now',
-      title: 'Concept Cinema',
-      body: 'Syllabus ideas that move. Scrub, pause, open the lesson.',
+      title: 'Concept Cinema (all your subjects)',
+      body: cinemaBody,
       tint: '#fdf8f9',
     },
     {
-      status: 'Gets smarter',
-      title: 'Adaptive course path',
-      body: 'Pinned to your weak topics as your marks come in.',
+      status: 'Live now',
+      title: 'Exam-paper question desks',
+      body: deskBody,
+      tint: '#f7f8fb',
+    },
+    {
+      status: 'Visual + adaptive',
+      title: 'Premium courses',
+      body: 'Syllabus lessons with live diagrams — the path rebuilds around weak topics as you mark.',
       tint: '#f7faf8',
     },
     {
-      status: 'Coming soon',
-      title: 'Max videos',
-      body: 'When reading feels hard — watch the same topics instead.',
+      status: 'Live now',
+      title: 'Ask MarkScheme',
+      body: 'Your in-app study chat — ask about a mark, a diagram, or the next move on any subject.',
       tint: '#f8f6f2',
     },
     {
       status: 'Live now',
-      title: 'Sprint · coach · models',
-      body: 'Weekly checklist, coach inbox, full-marks models to beat.',
-      tint: '#f7f8fb',
+      title: 'Progress desk',
+      body: ctx.targetGrade
+        ? `Projected grade toward ${ctx.targetGrade}, weak topics, sprint checklist, coach inbox, full-marks models.`
+        : 'Projected grade, weak topics, sprint checklist, coach inbox, full-marks models.',
+      tint: '#faf8f4',
     },
   ]
   return items
@@ -188,46 +254,53 @@ function featureStrip(): string {
 }
 
 function buildBodyHtml(ctx: TourContext): string {
-  const subjectLine =
-    ctx.subjectLabels.length > 0 ? ctx.subjectLabels.join(' · ') : 'your subjects'
+  const ordered = orderedSubjectLabels(ctx.subjectLabels)
+  const subjectLine = ordered.length > 0 ? ordered.join(' · ') : 'your subjects'
+  const allCopy = subjectLineForCopy(ordered.length ? ordered : ctx.subjectLabels)
   const boardLine = [ctx.boardLabel, ctx.levelLabel].filter(Boolean).join(' · ')
+  const focus = ctx.focusLabel
 
   return (
     `<p style="margin:0 0 4px;font-family:${EMAIL_SERIF};font-size:17px;color:${EMAIL_INK}">Hi ${esc(ctx.greeting)},</p>` +
-    `<p style="margin:0 0 14px;font-family:${EMAIL_SERIF};font-size:24px;font-weight:600;letter-spacing:-.025em;line-height:1.25;color:${EMAIL_INK}">We built a Vault with your name on it.</p>` +
-    `<p style="margin:0 0 18px;font-size:15.5px;line-height:1.7;color:${EMAIL_BODY}">Not a newsletter. Not a dump of PDFs. A private Max desk for <strong style="color:${EMAIL_INK}">${esc(subjectLine)}</strong>${boardLine ? ` <span style="color:${EMAIL_MUTED}">(${esc(boardLine)})</span>` : ''} — arranged so the next thing you open is the thing that moves your grade.</p>` +
-    careBlock(ctx.greeting, ctx.subjectLabels, ctx.targetGrade) +
+    `<p style="margin:0 0 14px;font-family:${EMAIL_SERIF};font-size:24px;font-weight:600;letter-spacing:-.025em;line-height:1.25;color:${EMAIL_INK}">Your Max Vault is ready for ${esc(allCopy)}.</p>` +
+    `<p style="margin:0 0 18px;font-size:15.5px;line-height:1.7;color:${EMAIL_BODY}">Not a newsletter. Not a dump of PDFs. A private Max desk for <strong style="color:${EMAIL_INK}">${esc(subjectLine)}</strong>${boardLine ? ` <span style="color:${EMAIL_MUTED}">(${esc(boardLine)})</span>` : ''} — visual premium courses, Concept Cinema, exam-paper desks, <strong style="color:${EMAIL_INK}">Ask MarkScheme</strong>, and a progress desk that tracks the grade. We open on <strong style="color:${EMAIL_INK}">${esc(focus)}</strong> first; your other subjects stay one tap away.</p>` +
+    careBlock(ctx.greeting, ordered.length ? ordered : ctx.subjectLabels, ctx.targetGrade) +
     `<div style="background:${EMAIL_SURFACE};border:1.5px solid ${EMAIL_BORDER};padding:16px 18px;margin:0 0 22px">
-      <div style="font-family:${EMAIL_SANS};font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:${EMAIL_MUTED};margin:0 0 10px">Your subjects on this desk</div>
-      ${subjectPills(ctx.subjectLabels)}
+      <div style="font-family:${EMAIL_SANS};font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:${EMAIL_MUTED};margin:0 0 10px">All subjects on this desk · ${esc(focus)} first</div>
+      ${subjectPills(ordered.length ? ordered : ctx.subjectLabels)}
     </div>` +
-    cinemaStageVisual(subjectLine) +
-    midCta(ctx.vaultHref, 'Visit your Max Vault now →') +
-    premiumCoursesBlock(ctx.subjectLabels) +
+    cinemaStageVisual(ordered.length ? ordered : ctx.subjectLabels, focus) +
+    midCta(ctx.vaultHref, 'Open your Max Vault →') +
+    premiumCoursesBlock({ ...ctx, subjectLabels: ordered.length ? ordered : ctx.subjectLabels }) +
+    askAndProgressBlock(ctx) +
     sectionHeading('Everything waiting for you inside', 'Open the Vault and use each one — they are already yours.') +
-    featureStrip() +
+    featureStrip({ ...ctx, subjectLabels: ordered.length ? ordered : ctx.subjectLabels }) +
     midCta(ctx.vaultHref, 'Take me to my Vault →') +
     sectionHeading('Three caring moves this week') +
     `<div style="margin-top:4px">` +
     stepHtml(
       1,
-      'Step into your Vault.',
-      `Open Concept Cinema for ${esc(ctx.subjectLabels[0] || 'your subject')} and watch one idea all the way through.`
+      'Open Concept Cinema, then a visual course lesson.',
+      ctx.hasEconomics
+        ? `Start on ${esc(focus)} (demand & supply or AD–AS), flip to Maths or Accounting, then open the matching learn-with-diagram lesson.`
+        : `Open Concept Cinema for ${esc(focus)}, then jump into the visual premium course path.`
     ) +
     stepHtml(
       2,
-      'Mark two or three real answers.',
-      'That is how we hear where you struggle — and how your premium course path gets rebuilt.'
+      'Sit an exam-paper question — then Ask MarkScheme if stuck.',
+      'Work a white exam slip, mark answer-only, and use Ask MarkScheme to unpack a mark comment or the next evaluation step.'
     ) +
     stepHtml(
       3,
-      'Return to the lessons we pin for you.',
-      'Diagrams today. Videos coming soon when reading feels heavy.'
+      'Check your progress desk.',
+      ctx.targetGrade
+        ? `See projected grade toward ${esc(ctx.targetGrade)}, weak topics, and the sprint checklist — then return to the lessons Vault pins for you.`
+        : 'See projected grade, weak topics, and the sprint checklist — then return to the lessons Vault pins for you.'
     ) +
     `</div>` +
     `<div style="margin:26px 0 0;padding:20px 18px;background:#fff;border:1.5px solid ${EMAIL_BORDER};border-left:3px solid ${EMAIL_BRAND}">
       <p style="margin:0 0 8px;font-family:${EMAIL_SERIF};font-size:16px;font-weight:600;color:${EMAIL_INK}">We are in this with you, ${esc(ctx.greeting)}.</p>
-      <p style="margin:0;font-family:${EMAIL_SERIF};font-size:15px;line-height:1.65;color:${EMAIL_BODY}">Your Vault will keep getting sharper every time you mark. When something feels hard, come back — the diagrams (and soon the videos) are there so you never have to white-knuckle a topic alone.</p>
+      <p style="margin:0;font-family:${EMAIL_SERIF};font-size:15px;line-height:1.65;color:${EMAIL_BODY}">Your Vault covers every subject you listed — visual courses, Cinema, exam desks, Ask MarkScheme, and progress that moves when you mark. When something feels hard, come back — you do not have to white-knuckle a topic alone.</p>
     </div>` +
     `<p style="margin:22px 0 0;font-size:15px;line-height:1.65;color:${EMAIL_INK}">With care,<br/>${esc(SITE_NAME)} Max</p>` +
     `<div style="height:1px;background:${EMAIL_HAIRLINE};margin:22px 0 0;font-size:0;line-height:0">&nbsp;</div>`
@@ -235,38 +308,42 @@ function buildBodyHtml(ctx: TourContext): string {
 }
 
 function buildText(ctx: TourContext): string {
-  const subjectLine =
-    ctx.subjectLabels.length > 0 ? ctx.subjectLabels.join(', ') : 'your subjects'
+  const ordered = orderedSubjectLabels(ctx.subjectLabels)
+  const subjectLine = ordered.length > 0 ? ordered.join(', ') : 'your subjects'
+  const allCopy = subjectLineForCopy(ordered.length ? ordered : ctx.subjectLabels)
   return [
     `Hi ${ctx.greeting},`,
     '',
-    'We built a Vault with your name on it.',
+    `Your Max Vault is ready for ${allCopy}.`,
     '',
     `A private Max desk for ${subjectLine}${ctx.boardLabel ? ` (${ctx.boardLabel}${ctx.levelLabel ? ` · ${ctx.levelLabel}` : ''})` : ''}.`,
+    `We open on ${ctx.focusLabel} first (from your recent marks) — every other subject stays one tap away.`,
     ctx.targetGrade ? `Target: ${ctx.targetGrade}.` : '',
     '',
-    'We care about your grade, not just your clicks. Vault rearranges around your marks.',
+    'We care about your grade, not just your clicks. Vault rearranges around your marks — per subject.',
     '',
-    'How premium courses are built:',
-    '1) You mark real answers',
-    '2) We spot where marks leak',
-    '3) Your course path rebuilds around those weak spots — with learn-with-diagrams (videos coming soon)',
+    'Inside Max:',
+    `- Concept Cinema — tabs for ${allCopy} (we cue ${ctx.focusLabel} first)`,
+    '- Visual premium courses — syllabus lessons with live diagrams; path rebuilds from weak topics',
+    '- Exam-paper question desks — one per subject; white sheet, Times font; mark answer-only',
+    '- Ask MarkScheme — in-app study chat about marks, diagrams, and next steps',
+    `- Progress desk — projected grade${ctx.targetGrade ? ` toward ${ctx.targetGrade}` : ''}, weak topics, sprint, coach, models`,
+    ctx.hasAccounting ? '- Accounting technique links on that shelf' : '',
     '',
-    'Inside your Vault:',
-    '- Concept Cinema — ideas that move',
-    '- Adaptive course path — gets smarter as you mark',
-    '- Videos coming soon',
-    '- Sprint checklist, coach inbox, full-marks models',
-    '- Priority deep marking',
+    'Three moves this week:',
+    `1) Cinema + a visual course lesson (start on ${ctx.focusLabel})`,
+    '2) Sit an exam-paper question — Ask MarkScheme if stuck',
+    '3) Check your progress desk, then return to pinned lessons',
     '',
     `Visit your Max Vault: ${ctx.vaultHref}`,
+    `Progress desk: ${ctx.dashboardHref}`,
     `Mark: ${ctx.markHref}`,
-    `Courses: ${ctx.coursesHref}`,
+    `Visual courses: ${ctx.coursesHref}`,
     '',
     `With care,`,
     `${SITE_NAME} Max`,
   ]
-    .filter((line) => line !== undefined)
+    .filter((line) => line !== undefined && line !== '')
     .join('\n')
 }
 
@@ -278,15 +355,20 @@ function buildContext(payload: {
   targetGrade?: string | null
 }): TourContext {
   const greeting = payload.recipientName?.trim() || 'there'
+  const subjectLabels = resolveSubjects(payload.subjects, payload.level)
   return {
     greeting,
-    subjectLabels: resolveSubjects(payload.subjects, payload.level),
+    subjectLabels,
     boardLabel: payload.board?.trim() || null,
     levelLabel: payload.level?.trim() || null,
     targetGrade: payload.targetGrade?.trim() || null,
+    focusLabel: pickFocusLabel(subjectLabels),
+    hasEconomics: subjectLabels.some((l) => /econ/i.test(l)),
+    hasAccounting: subjectLabels.some((l) => /account/i.test(l)),
     vaultHref: `${SITE_URL}/dashboard/vault`,
     markHref: `${SITE_URL}/mark`,
     coursesHref: `${SITE_URL}/courses`,
+    dashboardHref: `${SITE_URL}/dashboard`,
   }
 }
 
@@ -299,10 +381,12 @@ export function buildMaxVaultTourEmail(payload: {
   targetGrade?: string | null
 }): { subject: string; preheader: string; text: string; html: string } {
   const ctx = buildContext(payload)
-  const subjectBit =
-    ctx.subjectLabels.length > 0 ? ctx.subjectLabels.slice(0, 2).join(' & ') : 'your subjects'
-  const preheader = `${ctx.greeting} — your Vault for ${subjectBit} is ready. Live diagrams, adaptive courses, videos soon.`
-  const subject = `${ctx.greeting}, we built your Max Vault for ${subjectBit}`
+  const allCopy = subjectLineForCopy(orderedSubjectLabels(ctx.subjectLabels))
+  const preheader = `${ctx.greeting} — Vault for ${allCopy}: visual courses, Cinema, Ask MarkScheme, and progress toward ${ctx.targetGrade || 'your target'}.`
+  const subject =
+    ctx.subjectLabels.length > 1
+      ? `${ctx.greeting}, your Max Vault for ${allCopy} is ready`
+      : `${ctx.greeting}, your Max Vault for ${ctx.focusLabel} is ready`
 
   return {
     subject,
@@ -314,8 +398,9 @@ export function buildMaxVaultTourEmail(payload: {
       bodyHtml: buildBodyHtml(ctx),
       cta: { label: 'Open your Max Vault →', href: ctx.vaultHref },
       secondaryLinks: [
+        { label: 'See progress', href: ctx.dashboardHref },
+        { label: 'Visual courses', href: ctx.coursesHref },
         { label: 'Mark a question', href: ctx.markHref },
-        { label: 'Open courses', href: ctx.coursesHref },
       ],
     }),
   }

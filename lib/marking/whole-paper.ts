@@ -127,27 +127,41 @@ export function aggregateWholePaperResults(
   results: QuestionMarkResult[],
   paperQuestions: PaperQuestionMeta[] = []
 ): WholePaperResult {
-  const excluded = results.filter((r) => r.status === 'marking_failed').length
+  const failed = results.filter((r) => r.status === 'marking_failed')
+  const excluded = failed.length
   const scorable = results.filter((r) => r.status !== 'marking_failed')
 
-  const attemptedForScore = scorable.filter(
-    (r) => r.status === 'attempted' || r.status === 'marking_failed'
-  )
+  // Score only successfully marked / unattempted rows — never invent totals
+  // from marking_failed (often total_marks = 0 bank-miss).
+  const attemptedForScore = scorable.filter((r) => r.status === 'attempted')
 
   const attemptedEarned = attemptedForScore.reduce((s, r) => s + r.marks_earned, 0)
   const attemptedTotal = attemptedForScore.reduce((s, r) => s + r.total_marks, 0)
 
-  const fullList =
+  const scorableList =
     paperQuestions.length > 0
       ? buildFullQuestionList(scorable, paperQuestions)
       : scorable
 
-  const fullEarned = fullList
-    .filter((r) => r.status !== 'marking_failed')
-    .reduce((s, r) => s + r.marks_earned, 0)
-  const fullTotal = fullList
-    .filter((r) => r.status !== 'marking_failed')
-    .reduce((s, r) => s + r.total_marks, 0)
+  // Keep failed questions in the displayed list so bank-miss / error guidance
+  // is visible (previously they were dropped and only a summary note remained).
+  const byNum = new Map(
+    scorableList.map((q) => [normalizeQKey(q.question_number), q])
+  )
+  for (const f of failed) {
+    byNum.set(normalizeQKey(f.question_number), f)
+  }
+  const orderedNums = sortQuestionNumbers([
+    ...scorableList.map((q) => q.question_number),
+    ...failed.map((q) => q.question_number),
+  ])
+  const fullList = [...new Set(orderedNums)]
+    .map((qn) => byNum.get(normalizeQKey(qn)))
+    .filter((q): q is QuestionMarkResult => !!q)
+
+  const scoreRows = fullList.filter((r) => r.status !== 'marking_failed')
+  const fullEarned = scoreRows.reduce((s, r) => s + r.marks_earned, 0)
+  const fullTotal = scoreRows.reduce((s, r) => s + r.total_marks, 0)
 
   const attempted_score = buildScoreBlock(attemptedEarned, attemptedTotal, paperCode)
   const full_paper_score = buildScoreBlock(fullEarned, fullTotal, paperCode)
@@ -173,10 +187,10 @@ export function aggregateWholePaperResults(
 
   let summary = show_dual_scores
     ? `On questions you attempted: ${attemptedEarned}/${attemptedTotal} (${attempted_score.percentage}%). Full paper (unattempted = 0): ${fullEarned}/${fullTotal} (${full_paper_score.percentage}%).`
-    : `You scored ${fullEarned}/${fullTotal} (${full_paper_score.percentage}%) across ${fullList.length} question(s).`
+    : `You scored ${fullEarned}/${fullTotal} (${full_paper_score.percentage}%) across ${scoreRows.length} question(s).`
 
   if (excluded > 0) {
-    summary += ` [${excluded} question${excluded > 1 ? 's' : ''} excluded due to error]`
+    summary += ` [${excluded} question${excluded > 1 ? 's' : ''} could not be marked — see details below]`
   }
   if (estimated_grade) {
     summary += ` Estimated grade: ${estimated_grade}.`

@@ -29,6 +29,7 @@ import { buildMarkingPrompt, maxTokensForStyle, looksLikeMcq } from '@/lib/marki
 import { resolveDerivedSchemeForMark } from '@/lib/marking/resolve-derived-scheme'
 import { extractJSON } from '@/lib/marking/json'
 import { normalizeQuestionNumber } from '@/lib/marking/question-number'
+import { extractTotalMarksForGate } from '@/lib/marking/question-marks'
 import { normalizeMarkingResult, coerceMarkingResult, isUsableMarkingResult } from '@/lib/marking/normalize-math'
 import { reconcileMarkResult, type CriterionMax } from '@/lib/marking/reconcile-marks'
 import {
@@ -853,28 +854,36 @@ export async function markWholePaperQuestion(params: {
     { extractionMode: 'full' }
   )
 
-  // Bank miss: do not invent a denominator via derive (remake instability).
+  // Bank miss / missing total: do not invent a denominator via derive.
   // Whole-paper items have no student total field — fail this Q clearly.
-  if (!scheme) {
+  const lockedTotal = scheme
+    ? typeof scheme.total_marks === 'number' && scheme.total_marks > 0
+      ? scheme.total_marks
+      : extractTotalMarksForGate(scheme.question_text || '')
+    : null
+
+  if (!scheme || !lockedTotal) {
+    const reason = !scheme
+      ? 'This question is not in our mark-scheme bank yet, so we cannot lock a mark total.'
+      : 'This question has no mark total in our bank, so we cannot lock a denominator.'
+    const action =
+      'Mark it as a single practice question and enter the total marks.'
     return {
       question_number: questionNumber,
       marks_earned: 0,
       total_marks: 0,
       marking_style: 'point_based',
-      summary:
-        'This question is not in our mark-scheme bank yet, so we cannot lock a mark total.',
+      summary: reason,
       status: 'marking_failed',
-      error_message:
-        'This question is not in our mark-scheme bank yet. Mark it as a single practice question and enter the total marks.',
+      error_message: `${reason} ${action}`,
       ai_marking: {
         marks_earned: 0,
         total_marks: 0,
-        summary:
-          'This question is not in our mark-scheme bank yet, so we cannot lock a mark total.',
+        summary: reason,
         weak_topics: [],
         what_to_study_next: '',
       },
-      mark_scheme_id: null,
+      mark_scheme_id: scheme?.id ?? null,
     }
   }
 
@@ -893,10 +902,7 @@ export async function markWholePaperQuestion(params: {
       paperCode,
       paperSession,
       questionNumber,
-      questionTotalMarks:
-        typeof scheme.total_marks === 'number' && scheme.total_marks > 0
-          ? scheme.total_marks
-          : null,
+      questionTotalMarks: lockedTotal,
     })
 
   const ai = toMarkingAIResult(markingResult)

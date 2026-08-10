@@ -69,6 +69,20 @@ function QuestionDetail({
 }) {
   const ai = question.ai_marking
 
+  if (question.status === 'marking_failed') {
+    return (
+      <div className="mt-4 space-y-2 border-t border-[var(--ec-border)] pt-4 text-sm text-[var(--ec-text-secondary)]">
+        <RichTextRenderer
+          text={
+            question.error_message ||
+            question.summary ||
+            'This question could not be marked.'
+          }
+        />
+      </div>
+    )
+  }
+
   // IB multi-criterion breakdown (essays / IA) — render the per-criterion detail,
   // not just the holistic band, matching the single-question view.
   if (ai.criteria_results && ai.criteria_results.length > 0) {
@@ -259,8 +273,9 @@ export function WholePaperResultView({
           <span className="ec-banner__icon inline-grid h-5 min-w-5 shrink-0 place-items-center rounded border border-[color-mix(in_srgb,var(--ec-chip-critical-text)_40%,transparent)] bg-[color-mix(in_srgb,var(--ec-chip-critical-text)_12%,transparent)] px-1 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-chip-critical-text)]" aria-hidden>!</span>
           <p className="ec-banner__meta">
             {result.questions_excluded_count} question
-            {result.questions_excluded_count > 1 ? 's' : ''} excluded due to error
-            — totals below reflect only successfully marked questions.
+            {result.questions_excluded_count > 1 ? 's' : ''} could not be marked
+            — open them below for what to do next. Totals reflect only
+            successfully marked questions.
           </p>
         </div>
       ) : null}
@@ -404,7 +419,13 @@ export function WholePaperResultView({
                   </span>
                   <span className="qt line-clamp-2">
                     {isFailed ? (
-                      'Marking failed'
+                      <MarkSnippet
+                        text={truncateMarkingPreview(
+                          q.error_message || q.summary || 'Marking failed',
+                          120,
+                          ''
+                        )}
+                      />
                     ) : (
                       <MarkSnippet
                         text={truncateMarkingPreview(q.summary, 120, '')}

@@ -267,8 +267,11 @@ export async function writeDerivedScheme(params: {
   if (!params.fingerprint || !params.scheme) return 'failed'
   try {
     const tableResult = await writeTable(params)
+    // Always mirror to Storage. Table-only writes used to vanish during the
+    // schema-cache cooldown (~60s), so remakes re-derived a different rubric.
+    const storageResult = await writeStorage(params)
     if (tableResult === 'written' || tableResult === 'exists') return tableResult
-    return await writeStorage(params)
+    return storageResult
   } catch (err) {
     console.warn('[mark] derived-scheme cache write failed', err)
     return 'failed'

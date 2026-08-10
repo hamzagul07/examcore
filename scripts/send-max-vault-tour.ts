@@ -76,7 +76,7 @@ async function loadProfileByEmail(email: string): Promise<{
       const hit = data.users.find((u) => u.email?.toLowerCase() === email.toLowerCase())
       if (hit) {
         const { data: profile } = await admin
-          .from('profiles')
+          .from('user_profiles')
           .select('full_name, subjects, board, level, target_grade')
           .eq('id', hit.id)
           .maybeSingle()
@@ -95,7 +95,7 @@ async function loadProfileByEmail(email: string): Promise<{
   }
 
   const { data: profile } = await admin
-    .from('profiles')
+    .from('user_profiles')
     .select('full_name, subjects, board, level, target_grade')
     .eq('id', user.id)
     .maybeSingle()
@@ -114,6 +114,7 @@ async function main() {
   const to = arg('--to') || 'hg9256970@gmail.com'
   const nameFlag = arg('--name')
   const subjectsFlag = arg('--subjects')
+  const targetFlag = arg('--target')
 
   const { isEmailConfigured } = await import('@/lib/email/send')
   if (!isEmailConfigured()) {
@@ -155,7 +156,7 @@ async function main() {
     subjects,
     board: profile?.board ?? 'Cambridge International',
     level: profile?.level ?? 'A-Level',
-    targetGrade: profile?.target_grade ?? null,
+    targetGrade: targetFlag || profile?.target_grade || 'A*',
     wait: true,
   })
   if (!ok) {

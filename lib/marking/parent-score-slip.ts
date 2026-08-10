@@ -58,15 +58,21 @@ export function buildParentScoreSlipText(input: ParentScoreSlipInput): string {
     lines.push('', `Topics: ${input.topics.slice(0, 5).join(', ')}`)
   }
 
-  const reportUrl =
-    input.shareUrl?.trim() || 'https://markscheme.app/mark'
-  lines.push('', 'Full report:', reportUrl)
+  const reportUrl = input.shareUrl?.trim()
+  if (reportUrl) {
+    lines.push('', 'Full report:', reportUrl)
+  } else {
+    // Never claim /mark is the report — only include a real /r link.
+    lines.push('', 'markscheme.app')
+  }
   return lines.join('\n')
 }
 
 /** Opens WhatsApp with the parent slip text prefilled (mobile + desktop WA web). */
 export function shareParentScoreSlipWhatsApp(input: ParentScoreSlipInput): void {
   if (typeof window === 'undefined') return
+  // Refuse to share without a real /r report link.
+  if (!input.shareUrl?.trim()) return
   const text = buildParentScoreSlipText(input)
   const url = `https://wa.me/?text=${encodeURIComponent(text)}`
   window.open(url, '_blank', 'noopener,noreferrer')
@@ -82,8 +88,9 @@ export async function shareParentScoreSlipNative(
   if (typeof navigator === 'undefined' || typeof navigator.share !== 'function') {
     return false
   }
+  const shareUrl = input.shareUrl?.trim()
+  if (!shareUrl) return false
   const text = buildParentScoreSlipText(input)
-  const shareUrl = input.shareUrl?.trim() || 'https://markscheme.app/mark'
   try {
     await navigator.share({
       title: "MarkScheme · Examiner's Ink",
@@ -255,6 +262,7 @@ export function openParentScoreSlip(input: ParentScoreSlipInput): void {
     return
   }
 
+  // Local print only — caller must not claim a shareable report link exists.
   const html = buildParentScoreSlipHtml(input)
   const win = window.open('', '_blank', 'noopener,noreferrer,width=520,height=720')
   if (!win) return

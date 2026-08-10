@@ -41,6 +41,20 @@ async function main() {
   assert.match(text, /Full report:/)
   assert.match(text, /markscheme\.app\/r\//)
 
+  const noLink = buildParentScoreSlipText({
+    marksEarned: 6,
+    totalMarks: 6,
+    percentage: 100,
+    bandLabel: 'Full marks',
+    marks: [{ label: 'M1', earned: true }],
+  })
+  assert.doesNotMatch(
+    noLink,
+    /Full report:/,
+    'must not claim a full report without a /r URL'
+  )
+  assert.doesNotMatch(noLink, /markscheme\.app\/mark/)
+
   console.log('share-token: all assertions passed')
 }
 

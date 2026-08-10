@@ -152,11 +152,14 @@ export function ScoreReveal({
     return () => cancelAnimationFrame(id)
   }, [animate])
 
+  // Reset whenever the attempt changes — never keep a previous /r link.
   useEffect(() => {
-    if (shareUrlProp) setShareUrl(shareUrlProp)
-  }, [shareUrlProp])
+    setShareUrl(shareUrlProp ?? null)
+    setShareError('')
+    setCopied(false)
+  }, [attemptId, shareUrlProp])
 
-  function slipInput(url?: string | null) {
+  function slipInput(url: string) {
     return {
       marksEarned,
       totalMarks,
@@ -168,7 +171,7 @@ export function ScoreReveal({
       paperRef: report?.paperRef,
       topics: report?.topics,
       summary: report?.summary,
-      shareUrl: url ?? shareUrl,
+      shareUrl: url,
       marks: marks.map((m) => ({
         label: m.label,
         earned: m.earned,
@@ -179,7 +182,12 @@ export function ScoreReveal({
 
   async function ensureShareUrl(): Promise<string | null> {
     if (shareUrl) return shareUrl
-    if (!attemptId) return null
+    if (!attemptId) {
+      setShareError(
+        'This mark was not saved, so there is no shareable report link yet.'
+      )
+      return null
+    }
     setShareBusy(true)
     setShareError('')
     try {
@@ -212,6 +220,7 @@ export function ScoreReveal({
 
   async function copySlip() {
     const url = await ensureShareUrl()
+    if (!url) return
     const text = buildParentScoreSlipText(slipInput(url))
     try {
       await navigator.clipboard.writeText(text)
@@ -234,16 +243,23 @@ export function ScoreReveal({
 
   async function printSlip() {
     const url = await ensureShareUrl()
+    if (!url) {
+      // Local print fallback — never pretend a /r link was created.
+      openParentScoreSlip(slipInput(''))
+      return
+    }
     openParentScoreSlip(slipInput(url))
   }
 
   async function whatsappSlip() {
     const url = await ensureShareUrl()
+    if (!url) return
     shareParentScoreSlipWhatsApp(slipInput(url))
   }
 
   async function nativeShareSlip() {
     const url = await ensureShareUrl()
+    if (!url) return
     const ok = await shareParentScoreSlipNative(slipInput(url))
     if (!ok) shareParentScoreSlipWhatsApp(slipInput(url))
   }

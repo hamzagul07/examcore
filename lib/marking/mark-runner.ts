@@ -852,9 +852,33 @@ export async function markWholePaperQuestion(params: {
     questionNumber,
     { extractionMode: 'full' }
   )
-  const style = scheme
-    ? resolveQuestionMarkingStyle(scheme, paperCode)
-    : 'point_based'
+
+  // Bank miss: do not invent a denominator via derive (remake instability).
+  // Whole-paper items have no student total field — fail this Q clearly.
+  if (!scheme) {
+    return {
+      question_number: questionNumber,
+      marks_earned: 0,
+      total_marks: 0,
+      marking_style: 'point_based',
+      summary:
+        'This question is not in our mark-scheme bank yet, so we cannot lock a mark total.',
+      status: 'marking_failed',
+      error_message:
+        'This question is not in our mark-scheme bank yet. Mark it as a single practice question and enter the total marks.',
+      ai_marking: {
+        marks_earned: 0,
+        total_marks: 0,
+        summary:
+          'This question is not in our mark-scheme bank yet, so we cannot lock a mark total.',
+        weak_topics: [],
+        what_to_study_next: '',
+      },
+      mark_scheme_id: null,
+    }
+  }
+
+  const style = resolveQuestionMarkingStyle(scheme, paperCode)
 
   const ocrLines =
     questionPages?.flatMap((p) => p.ocr_lines) ?? []
@@ -863,12 +887,16 @@ export async function markWholePaperQuestion(params: {
     await markSingleQuestion({
       ocrText: answerText,
       ocrLines,
-      questionText: scheme?.question_text || '',
+      questionText: scheme.question_text || '',
       markScheme: scheme,
-      markingMode: scheme ? mode : 'general_criteria_paper_not_in_db',
+      markingMode: mode,
       paperCode,
       paperSession,
       questionNumber,
+      questionTotalMarks:
+        typeof scheme.total_marks === 'number' && scheme.total_marks > 0
+          ? scheme.total_marks
+          : null,
     })
 
   const ai = toMarkingAIResult(markingResult)

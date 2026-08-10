@@ -360,7 +360,7 @@ async function markOneSplitQuestion(
       .map((p) => p.photo_url)
       .filter((u): u is string => !!u)
     const timeSpent = Math.max(1, Math.round((Date.now() - ctx.startedAt) / 1000))
-    const { data: attempt } = await supabaseAdmin
+    const { data: attempt, error: insertError } = await supabaseAdmin
       .from('attempts')
       .insert({
         mark_scheme_id: null,
@@ -383,6 +383,13 @@ async function markOneSplitQuestion(
       .select()
       .single()
 
+    if (insertError) {
+      console.error(
+        `[mark] split attempt insert failed for Q${q.question_number}:`,
+        insertError
+      )
+    }
+
     invalidateStudentMemoryCache(ctx.userId)
 
     return {
@@ -399,6 +406,12 @@ async function markOneSplitQuestion(
         answer_photo_url: ctx.answerPhotoUrl,
         ink_pages: inkPages.length ? inkPages : undefined,
         syllabus_tags: resolvedTags,
+        ...(insertError
+          ? {
+              error_message:
+                'Marked, but could not save this question to your history.',
+            }
+          : {}),
       },
       attemptId: attempt?.id ?? null,
       tags: resolvedTags,
@@ -1066,7 +1079,7 @@ export async function runSingleQuestionMark(
       .map((p) => ({ photo_url: p.photo_url as string, ocr_lines: p.lines }))
   )
 
-  const { data: attempt } = await supabaseAdmin
+  const { data: attempt, error: insertError } = await supabaseAdmin
     .from('attempts')
     .insert({
       mark_scheme_id: markScheme?.id || null,
@@ -1092,6 +1105,10 @@ export async function runSingleQuestionMark(
     })
     .select()
     .single()
+
+  if (insertError) {
+    console.error('[mark] attempt insert failed:', insertError)
+  }
 
   invalidateStudentMemoryCache(userId)
 
@@ -1154,8 +1171,12 @@ export async function runSingleQuestionMark(
     marking_mode: finalMode,
     detected_paper: detectedPaper,
     subject_code,
-    attempt_id: attempt?.id,
+    attempt_id: attempt?.id ?? null,
     share_url,
+    // Student still sees the score; share/solution/history need a saved row.
+    persist_warning: insertError
+      ? 'We marked this, but could not save it to your history. Screenshot the score if you need it — share and full solution need a saved attempt.'
+      : undefined,
     syllabus_tags: resolvedTags,
     answer_photo_url: answerPhotoUrl,
     page_photo_urls: pagePhotoUrls.length ? pagePhotoUrls : undefined,

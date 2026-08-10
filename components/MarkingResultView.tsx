@@ -91,6 +91,8 @@ export type MarkingResultData = {
   attempt_id?: string | null
   /** Durable `/r/[token]` report URL when the mark response minted one. */
   share_url?: string | null
+  /** Score shown but attempt row failed to persist — share/solution unavailable. */
+  persist_warning?: string | null
 }
 
 function sheetWork(mark: MarkAwarded): string {
@@ -393,6 +395,12 @@ export function MarkingResultView({
 
   return (
     <div className="ms-marking-result min-w-0">
+      {result.persist_warning ? (
+        <div className="ec-banner ec-banner-info mb-4" role="status">
+          <p className="ec-banner__title">Score shown — not saved</p>
+          <p className="ec-banner__meta mt-1">{result.persist_warning}</p>
+        </div>
+      ) : null}
       <div className="ms-mark-result-head">
         <div>
           {isMax ? (

@@ -35,7 +35,7 @@ const args = process.argv.slice(2)
 const SUBJECT = (args.find((a) => a.startsWith('--subject=')) || '--subject=9702').split('=')[1]
 const LIMIT = Number((args.find((a) => a.startsWith('--limit=')) || '--limit=0').split('=')[1]) || 0
 const PERSIST = args.includes('--persist')
-const MIN_CONF = 0.45
+const MIN_CONF = Number((args.find((a) => a.startsWith('--min-conf=')) || '--min-conf=0.45').split('=')[1]) || 0.45
 
 const sb = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
 const { loadSyllabusObjectivesFromJson, tagQuestions } = await import('../lib/extraction/topic-tagger.ts')
@@ -66,6 +66,8 @@ function toTaggingQuestion(row) {
 }
 
 // ---- load questions needing tags ----
+// Skip 1-mark MCQ noise — topic banks and SEO cache want 2+ mark structured items.
+const MIN_MARKS = Number((args.find((a) => a.startsWith('--min-marks=')) || '--min-marks=2').split('=')[1]) || 2
 const rows = []
 const PAGE = 1000
 for (let from = 0; ; from += PAGE) {
@@ -74,6 +76,7 @@ for (let from = 0; ; from += PAGE) {
     .like('paper_code', `${SUBJECT}%`)
     .not('question_text', 'is', null)
     .eq('syllabus_tags', '{}')
+    .gte('total_marks', MIN_MARKS)
     .range(from, from + PAGE - 1)
   const { data, error } = await q
   if (error) { console.error('query error', error.message); process.exit(1) }
@@ -94,20 +97,31 @@ const byId = new Map(pending.map((r) => [r.id, r]))
 let processed = 0
 let tagged = 0
 let wrote = 0
+let empty = 0
+let lowConf = 0
 const auditSample = []
+
+console.log(`${SUBJECT}: min-conf=${MIN_CONF} concurrency=${CONC} vertex=${process.env.USE_VERTEX_AI}`)
 
 for (let i = 0; i < questions.length; i += CHUNK) {
   const slice = questions.slice(i, i + CHUNK)
   const bulk = await tagQuestions(slice, objectives, { concurrency: CONC, batchSize: 8 })
   for (const res of bulk.results) {
+    if (!res.tags?.length) {
+      empty++
+      continue
+    }
     const codes = [...new Set(res.tags.filter((t) => t.confidence >= MIN_CONF).map((t) => t.topic_code).filter(Boolean))]
-    if (!codes.length) continue
+    if (!codes.length) {
+      lowConf++
+      continue
+    }
     tagged++
     if (auditSample.length < 20) {
       const r = byId.get(res.question_id)
       auditSample.push({
         q: (r?.question_text || '').slice(0, 90),
-        tags: codes.map((c) => `${c} (${objectives.find((o) => o.topic_code === c)?.topic_title || '?'})`),
+        tags: codes.map((c) => `${c} (${objByNum.get(c)?.topic_title || objectives.find((o) => o.topic_code === c)?.topic_title || '?'})`),
       })
     }
     if (PERSIST) {
@@ -127,9 +141,9 @@ for (let i = 0; i < questions.length; i += CHUNK) {
     }
   }
   processed += slice.length
-  console.log(`  [${processed}/${questions.length}] tagged ${tagged}, persisted ${wrote}`)
+  console.log(`  [${processed}/${questions.length}] tagged ${tagged}, persisted ${wrote}, empty ${empty}, low-conf ${lowConf}`)
 }
 
 console.log(`\n=== AUDIT SAMPLE (eyeball topic vs question) ===`)
 for (const a of auditSample) console.log(`\n  Q: ${a.q}\n  -> ${a.tags.join(' | ')}`)
-console.log(`\nProcessed ${processed} | tagged ${tagged} | ${PERSIST ? `persisted ${wrote} rows` : 'DRY (no writes)'}`)
+console.log(`\nProcessed ${processed} | tagged ${tagged} | empty ${empty} | low-conf ${lowConf} | ${PERSIST ? `persisted ${wrote} rows` : 'DRY (no writes)'}`)

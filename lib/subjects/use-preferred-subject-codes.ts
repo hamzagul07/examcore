@@ -34,7 +34,10 @@ export function usePreferredSubjectCodes(): string[] {
         )
         if (!subjectNames.length) return
 
-        const level = profile.level ?? 'A-Level'
+        const level =
+          typeof profile?.level === 'string' && profile.level
+            ? profile.level
+            : 'A-Level'
         const next = subjectNames
           .map((name) => getSubjectById(name, level)?.code)
           .filter((c): c is string => Boolean(c))

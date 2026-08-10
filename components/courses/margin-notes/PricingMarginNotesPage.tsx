@@ -444,6 +444,16 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
                   </span>
                   <span>{p.killer}</span>
                 </div>
+                <ul className="plan-feats">
+                  {p.features.map((f, i) => (
+                    <li key={i} className={f[1] ? 'yes' : 'no'}>
+                      <span className="feat-mark" aria-hidden>
+                        {f[1] ? '✓' : '—'}
+                      </span>
+                      <span>{f[0]}</span>
+                    </li>
+                  ))}
+                </ul>
                 {cta.href ? (
                   <LoadingLink
                     className={`plan-cta btn-${cta.variant === 'primary' ? 'primary' : 'ghost'}${cta.variant === 'muted' ? ' is-muted' : ''}`}
@@ -470,16 +480,6 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
                     )}
                   </button>
                 )}
-                <ul className="plan-feats">
-                  {p.features.map((f, i) => (
-                    <li key={i} className={f[1] ? 'yes' : 'no'}>
-                      <span className="feat-mark" aria-hidden>
-                        {f[1] ? '✓' : '—'}
-                      </span>
-                      <span>{f[0]}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
             )
           })}

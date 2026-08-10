@@ -12,16 +12,16 @@ export function MaxVaultTile() {
         <div className="min-w-0 space-y-1">
           <MaxBadge label="Max Resource Vault" />
           <p className="m-0 text-base font-bold text-[var(--ec-text-primary)]">
-            Your exclusive exam desk
+            Your Vault — built especially for you
           </p>
           <p className="text-body m-0 text-[var(--ec-text-secondary)]">
-            Personalised sprint pack, curated flagship resources, projected grade, and
-            full-marks models — built only for Max.
+            Live diagrams, courses that adapt to your weak topics, sprint packs, and
+            coach notes. Videos coming soon. Open it and use everything Max put here.
           </p>
         </div>
       </div>
       <Link href="/dashboard/vault" className="ms-vault-slip__cta">
-        Open Vault -&gt;
+        See what&apos;s in your Vault -&gt;
       </Link>
     </aside>
   )

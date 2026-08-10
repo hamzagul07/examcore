@@ -14,6 +14,7 @@ import { MaxVaultRewriteBank } from '@/components/max/MaxVaultRewriteBank'
 import { MaxVaultCoachInbox } from '@/components/max/MaxVaultCoachInbox'
 import type { MaxVaultData } from '@/lib/max/vault-data'
 import { MaxVaultOpenTracker } from '@/components/max/MaxVaultOpenTracker'
+import { MaxVaultGuide } from '@/components/max/MaxVaultGuide'
 
 function VaultSection({
   stamp,
@@ -71,14 +72,14 @@ export function MaxVaultView({
           {data.sprintUnlocked ? <MaxBadge label="Sprint unlocked" /> : null}
         </div>
         <h1 className="text-hero m-0 text-[var(--ec-text-primary)]">
-          Your private exam machine
+          Your Vault — built especially for you
         </h1>
         <p className="text-body mt-3 max-w-2xl text-[var(--ec-text-secondary)]">
-          Tick the sprint, open live diagrams, beat your full-marks models, and act on
-          your weekly coach — all built from{' '}
-          <strong className="text-[var(--ec-text-primary)]">your marks</strong> for{' '}
+          Max put this desk here for{' '}
           <strong className="text-[var(--ec-text-primary)]">{subjectLine}</strong>
-          {data.subjectName ? ` · sprint focus ${data.subjectName}` : ''}.
+          {data.subjectName ? ` · focus ${data.subjectName}` : ''}. Use the live
+          diagrams, adaptive courses, sprint packs, and coach inbox below — they
+          tighten around your weak topics as you mark.
           {sprintCreditsGranted
             ? ' Sprint bonus marks were just added to your account.'
             : null}
@@ -119,6 +120,10 @@ export function MaxVaultView({
         </p>
       </header>
 
+      <MaxVaultGuide
+        subjectCode={data.subjectCode}
+        hasWeakLessons={data.courseLessons.length > 0}
+      />
       <MaxEarlyAccessBanner />
       {data.ownership ? <MaxVaultOwnership ownership={data.ownership} /> : null}
       <MaxCoachBrief pack={pack} />

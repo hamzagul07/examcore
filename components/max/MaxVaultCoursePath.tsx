@@ -19,16 +19,22 @@ export function MaxVaultCoursePath({
         <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
           CR
         </span>
-        <p className="ec-eyebrow mb-0">Your course desk</p>
+        <p className="ec-eyebrow mb-0">Courses · Max path</p>
         <h2 className="m-0 text-lg font-bold text-[var(--ec-text-primary)]">
-          Fix the gaps with visual lessons
+          Courses that strengthen your weak areas
         </h2>
       </div>
       <div className="ms-vault__panel ms-vault__panel--blue space-y-4">
         <p className="text-body m-0 text-[var(--ec-text-secondary)]">
-          {subjectName
-            ? `Lessons mapped to your weakest ${subjectName} topics — open, learn, then remake the marks.`
-            : 'Lessons mapped to your weakest topics — open, learn, then remake the marks.'}
+          {lessons.length > 0
+            ? subjectName
+              ? `These lessons are already pulled from your weakest ${subjectName} topics. Keep marking — the list gets more precise.`
+              : 'These lessons are already pulled from your weakest topics. Keep marking — the list gets more precise.'
+            : 'Right now you see the normal syllabus path. Mark questions so Vault can rebuild this list around your real weak spots.'}
+        </p>
+        <p className="text-caption m-0 text-[var(--ec-text-secondary)]">
+          New in courses: <strong className="text-[var(--ec-text-primary)]">learn with live diagrams</strong>.
+          Videos are coming soon if reading feels hard.
         </p>
         {lessons.length > 0 ? (
           <ul className="ms-vault__course-grid">
@@ -39,7 +45,7 @@ export function MaxVaultCoursePath({
                     {l.topicCode}
                   </span>
                   {l.hasDiagram ? (
-                    <span className="ms-vault__pill ms-vault__pill--gold">Live diagram</span>
+                    <span className="ms-vault__pill ms-vault__pill--gold">Learn with diagram</span>
                   ) : null}
                 </div>
                 <Link href={l.href} className="ec-link mt-1 block text-base font-bold">
@@ -51,7 +57,10 @@ export function MaxVaultCoursePath({
           </ul>
         ) : (
           <p className="text-body m-0 text-[var(--ec-text-secondary)]">
-            Mark a few questions so we can pin the exact lessons that close your gaps.
+            <Link href="/mark" className="ec-link font-semibold">
+              Mark a few questions
+            </Link>{' '}
+            so we can pin the exact lessons that close your gaps.
           </p>
         )}
         {subjectCode ? (
@@ -60,7 +69,7 @@ export function MaxVaultCoursePath({
               href={`/courses/${encodeURIComponent(subjectCode)}`}
               className="ec-link font-semibold"
             >
-              Browse the full {subjectCode} course →
+              Browse the full {subjectCode} course (diagrams included) →
             </Link>
           </p>
         ) : null}

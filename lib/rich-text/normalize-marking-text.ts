@@ -186,6 +186,26 @@ export function normalizeMarkdownTables(text: string): string {
   return out.join('\n')
 }
 
+/**
+ * True when the string is examiner/prose narrative with embedded maths, not a
+ * short OCR/math fragment. Whole-wrapping prose in `$...$` makes KaTeX drop
+ * every space ("Youstatedthenature…").
+ */
+function isMarkingProse(text: string): boolean {
+  if (text.length > 100) return true
+  if (/[.!?]/.test(text) && text.split(/\s+/).filter(Boolean).length >= 6) {
+    return true
+  }
+  // Multi-sentence commas + words around an equation (demo B1 reasoning).
+  if (
+    /,\s+[a-z]/.test(text) &&
+    text.split(/\s+/).filter(Boolean).length >= 8
+  ) {
+    return true
+  }
+  return false
+}
+
 /** Wrap bare OCR/math snippets (e.g. "= 240x^2") for KaTeX when no $ delimiters. */
 export function prepareMarkingSnippet(text: string): string {
   const trimmed = text.trim()
@@ -197,6 +217,11 @@ export function prepareMarkingSnippet(text: string): string {
     trimmed.includes('\\[') ||
     trimmed.includes('$$')
   ) {
+    return normalizeMarkingText(trimmed)
+  }
+
+  // Prose with embedded algebra → wrap bare runs only; never the whole paragraph.
+  if (isMarkingProse(trimmed)) {
     return normalizeMarkingText(trimmed)
   }
 

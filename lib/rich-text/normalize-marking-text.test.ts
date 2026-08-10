@@ -1,5 +1,9 @@
 import assert from 'node:assert/strict'
-import { normalizeMarkingText, isRealMath } from './normalize-marking-text'
+import {
+  normalizeMarkingText,
+  isRealMath,
+  prepareMarkingSnippet,
+} from './normalize-marking-text'
 
 assert.ok(isRealMath('\\theta'), 'theta is math')
 assert.ok(isRealMath('\\sin x'), 'sin x is math')
@@ -47,5 +51,19 @@ assert.ok(t9.includes('\\mathrm{H2SO4^{+}}'), `nested ce: ${t9}`)
 const t10 = normalizeMarkingText('Got $\\\\frac{1}{2}$')
 assert.ok(t10.includes('\\frac{1}{2}'), `double-escape fixed: ${t10}`)
 assert.ok(!t10.includes('\\\\frac'), `no double slash left: ${t10}`)
+
+// Short bare math snippets still whole-wrap for KaTeX.
+const snip = prepareMarkingSnippet('= 240x^2')
+assert.ok(snip.startsWith('$') && snip.endsWith('$'), `short math wrap: ${snip}`)
+
+// Examiner prose with an equation must keep spaces (not one giant math node).
+const demoReasoning =
+  'You stated the nature of each point correctly, but stated it without justification. This mark needs the reasoning shown — either evaluate the second derivative (d²y/dx² = 6x − 12, giving −6 at x = 1 and +6 at x = 3) or show a sign change of dy/dx either side of each point. An unsupported assertion earns nothing here even when the conclusion is right.'
+const prose = prepareMarkingSnippet(demoReasoning)
+assert.ok(prose.includes('You stated the nature'), `prose spaces kept: ${prose.slice(0, 80)}`)
+assert.ok(
+  !prose.startsWith('$You stated') && !prose.startsWith('$Youstated'),
+  `prose not whole-wrapped: ${prose.slice(0, 40)}`
+)
 
 console.log('normalize-marking-text.test.ts: ok')

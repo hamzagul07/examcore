@@ -1,0 +1,431 @@
+/* Max Resource Vault — colourful desk built on existing MarkScheme tokens. */
+
+.ms-vault {
+  --ms-vault-glow: color-mix(in srgb, var(--ec-brand) 18%, transparent);
+}
+
+.ms-vault__hero {
+  position: relative;
+  margin-bottom: 1.75rem;
+  padding: 1.25rem 1.25rem 1.5rem;
+  border: 1.5px solid var(--ec-brand-border);
+  background:
+    radial-gradient(120% 80% at 0% 0%, var(--ms-vault-glow), transparent 55%),
+    radial-gradient(90% 70% at 100% 0%, color-mix(in srgb, var(--ec-acc-teal) 16%, transparent), transparent 50%),
+    var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.12));
+}
+
+.ms-vault__hero-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.ms-vault__chips {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .ms-vault__chips {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.ms-vault__chip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-height: 4.5rem;
+  padding: 0.7rem 0.8rem;
+  border: 1.5px solid var(--ec-border);
+  background: color-mix(in srgb, var(--ec-surface-raised) 88%, transparent);
+}
+
+.ms-vault__chip-value {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.ms-vault__chip-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ec-text-secondary);
+}
+
+.ms-vault__chip--brand {
+  border-color: var(--ec-brand-border);
+  background: var(--ec-brand-muted);
+}
+.ms-vault__chip--brand .ms-vault__chip-value {
+  color: var(--ec-brand);
+}
+
+.ms-vault__chip--gold {
+  border-color: color-mix(in srgb, var(--ec-c-math) 45%, var(--ec-border));
+  background: var(--ec-chip-warning-bg);
+}
+.ms-vault__chip--gold .ms-vault__chip-value {
+  color: var(--ec-c-math);
+}
+
+.ms-vault__chip--blue {
+  border-color: color-mix(in srgb, var(--ec-acc-blue) 45%, var(--ec-border));
+  background: var(--ec-chip-info-bg);
+}
+.ms-vault__chip--blue .ms-vault__chip-value {
+  color: var(--ec-acc-blue);
+}
+
+.ms-vault__chip--rose {
+  border-color: color-mix(in srgb, var(--ec-acc-rose) 45%, var(--ec-border));
+  background: color-mix(in srgb, var(--ec-acc-rose) 12%, transparent);
+}
+.ms-vault__chip--rose .ms-vault__chip-value {
+  color: var(--ec-acc-rose);
+}
+
+.ms-vault__section {
+  margin-bottom: 1.5rem;
+}
+
+.ms-vault__section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.65rem;
+  margin-bottom: 0.65rem;
+}
+
+.ms-vault__panel {
+  border: 1.5px solid var(--ec-border);
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
+  padding: 1rem 1.1rem;
+}
+
+.ms-vault__panel--brand {
+  border-color: var(--ec-brand-border);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--ec-brand) 8%, transparent),
+      transparent 42%
+    ),
+    var(--ec-paper, var(--ec-surface));
+}
+
+.ms-vault__panel--gold {
+  border-color: color-mix(in srgb, var(--ec-c-math) 40%, var(--ec-border));
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--ec-c-math) 10%, transparent),
+      transparent 40%
+    ),
+    var(--ec-paper, var(--ec-surface));
+}
+
+.ms-vault__panel--blue {
+  border-color: color-mix(in srgb, var(--ec-acc-blue) 40%, var(--ec-border));
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--ec-acc-blue) 10%, transparent),
+      transparent 40%
+    ),
+    var(--ec-paper, var(--ec-surface));
+}
+
+.ms-vault__panel--teal {
+  border-color: color-mix(in srgb, var(--ec-acc-teal) 40%, var(--ec-border));
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--ec-acc-teal) 10%, transparent),
+      transparent 40%
+    ),
+    var(--ec-paper, var(--ec-surface));
+}
+
+.ms-vault__panel--rose {
+  border-color: color-mix(in srgb, var(--ec-acc-rose) 40%, var(--ec-border));
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--ec-acc-rose) 10%, transparent),
+      transparent 40%
+    ),
+    var(--ec-paper, var(--ec-surface));
+}
+
+.ms-vault__grade {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem 1.25rem;
+}
+
+.ms-vault__grade-mark {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: clamp(2.4rem, 6vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.ms-vault__days {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: vault-day;
+}
+
+.ms-vault__day {
+  counter-increment: vault-day;
+  position: relative;
+  padding: 0.85rem 0.9rem 0.85rem 3rem;
+  border: 1.5px solid var(--ec-border);
+  background: color-mix(in srgb, var(--ec-surface-raised) 80%, transparent);
+}
+
+.ms-vault__day::before {
+  content: counter(vault-day);
+  position: absolute;
+  left: 0.65rem;
+  top: 0.75rem;
+  width: 1.7rem;
+  height: 1.7rem;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  font-weight: 800;
+  border: 1.5px solid currentColor;
+}
+
+.ms-vault__day--drill {
+  border-left: 4px solid var(--ec-brand);
+  color: var(--ec-brand);
+}
+.ms-vault__day--drill .ms-vault__day-body {
+  color: var(--ec-text-primary);
+}
+
+.ms-vault__day--timed {
+  border-left: 4px solid var(--ec-acc-rose);
+  color: var(--ec-acc-rose);
+}
+.ms-vault__day--timed .ms-vault__day-body {
+  color: var(--ec-text-primary);
+}
+
+.ms-vault__day--review {
+  border-left: 4px solid var(--ec-c-math);
+  color: var(--ec-c-math);
+}
+.ms-vault__day--review .ms-vault__day-body {
+  color: var(--ec-text-primary);
+}
+
+.ms-vault__day-kind {
+  display: inline-block;
+  margin-bottom: 0.2rem;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ms-vault__tool-grid {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .ms-vault__tool-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.ms-vault__tool {
+  display: block;
+  padding: 0.85rem 0.9rem;
+  border: 1.5px solid var(--ec-border);
+  text-decoration: none;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+
+.ms-vault__tool:hover {
+  border-color: var(--ec-brand-border);
+  background: var(--ec-brand-muted);
+}
+
+.ms-vault__tool:nth-child(4n + 1) {
+  border-left: 4px solid var(--ec-brand);
+}
+.ms-vault__tool:nth-child(4n + 2) {
+  border-left: 4px solid var(--ec-acc-blue);
+}
+.ms-vault__tool:nth-child(4n + 3) {
+  border-left: 4px solid var(--ec-c-math);
+}
+.ms-vault__tool:nth-child(4n + 4) {
+  border-left: 4px solid var(--ec-acc-teal);
+}
+
+.ms-vault__model {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 0.75rem;
+  padding: 0.75rem 0.85rem;
+  border: 1.5px solid color-mix(in srgb, var(--ec-brand) 28%, var(--ec-border));
+  background: color-mix(in srgb, var(--ec-brand) 6%, transparent);
+}
+
+.ms-vault__model-score {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ec-brand);
+}
+
+.ms-vault__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.ms-vault__tab {
+  min-height: 40px;
+  padding: 0.4rem 0.75rem;
+  border: 1.5px solid var(--ec-border);
+  background: transparent;
+  color: var(--ec-text-secondary);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 120ms ease, background 120ms ease, color 120ms ease;
+}
+
+.ms-vault__tab:hover {
+  border-color: var(--ec-brand-border);
+  color: var(--ec-brand);
+}
+
+.ms-vault__tab.is-active {
+  border-color: var(--ec-brand);
+  background: var(--ec-brand);
+  color: var(--ec-on-brand-text, #07130d);
+}
+
+.ms-vault__digest {
+  margin: 0.65rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.ms-vault__digest li {
+  padding: 0.55rem 0.7rem;
+  border-left: 3px solid var(--ec-c-math);
+  background: var(--ec-chip-warning-bg);
+  color: var(--ec-text-secondary);
+  font-size: 0.92rem;
+}
+
+.ms-vault-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.55rem 0.2rem 0.25rem;
+  border: 1.5px solid var(--ec-brand-border);
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.ms-vault-badge__stamp {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.35rem;
+  padding: 0.1rem 0.25rem;
+  border: 1.5px solid currentColor;
+  font-size: 0.58rem;
+  line-height: 1;
+}
+
+.ms-vault-slip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 0.85rem;
+  margin-bottom: 1.35rem;
+  padding: 1rem 1.1rem;
+  border: 1.5px solid var(--ec-brand-border);
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--ec-brand) 14%, transparent),
+      color-mix(in srgb, var(--ec-acc-teal) 10%, transparent) 55%,
+      transparent
+    ),
+    var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
+}
+
+.ms-vault-slip__body {
+  display: flex;
+  gap: 0.75rem;
+  min-width: min(100%, 18rem);
+  flex: 1;
+}
+
+.ms-vault-slip__cta {
+  align-self: center;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  border: 1.5px solid var(--ec-brand);
+  background: var(--ec-brand);
+  color: var(--ec-on-brand-text, #07130d);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.ms-vault-slip__cta:hover {
+  filter: brightness(1.05);
+}

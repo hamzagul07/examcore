@@ -19,29 +19,25 @@ export function MaxSubjectShelves({
   const active = shelves.find((s) => s.code === focusCode) ?? shelves[0]
 
   return (
-    <section className="ms-dash-section mb-6">
-      <div className="mb-3 flex flex-wrap items-center gap-2">
+    <section className="ms-vault__section">
+      <div className="ms-vault__section-head">
         <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
           SB
         </span>
         <p className="ec-eyebrow mb-0">By subject</p>
-        <h2 className="ms-dash-section__title m-0 text-[var(--ec-text-primary)]">
-          Resources on your profile
+        <h2 className="m-0 text-lg font-bold text-[var(--ec-text-primary)]">
+          Your subject shelves
         </h2>
       </div>
 
-      <div className="ec-card ec-card--paper space-y-4 p-4 sm:p-5">
+      <div className="ms-vault__panel ms-vault__panel--blue space-y-4">
         <p className="text-body m-0 text-[var(--ec-text-secondary)]">
           {active?.isFocus
             ? `Focusing on ${active.name} — weakest or selected.`
             : 'Pick a subject shelf to open its curated pack and drills.'}
         </p>
 
-        <div
-          className="flex flex-wrap gap-2"
-          role="tablist"
-          aria-label="Your subjects"
-        >
+        <div className="ms-vault__tabs" role="tablist" aria-label="Your subjects">
           {shelves.map((s) => {
             const selected = s.code === active?.code
             return (
@@ -50,11 +46,7 @@ export function MaxSubjectShelves({
                 type="button"
                 role="tab"
                 aria-selected={selected}
-                className={`min-h-[40px] border px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-wide transition-colors ${
-                  selected
-                    ? 'border-[var(--ec-brand)] bg-[var(--ec-brand)] text-[var(--ec-on-brand,#fff)]'
-                    : 'border-[var(--ec-border)] text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)] hover:text-[var(--ec-brand)]'
-                }`}
+                className={`ms-vault__tab${selected ? ' is-active' : ''}`}
                 onClick={() => {
                   router.push(`/dashboard/vault?subject=${encodeURIComponent(s.code)}`)
                 }}
@@ -122,9 +114,11 @@ function SubjectShelfDetail({ shelf }: { shelf: MaxSubjectShelf }) {
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h3 className="m-0 text-base font-bold text-[var(--ec-text-primary)]">
           {shelf.name}
-          {shelf.isFocus ? ' · focus' : ''}
+          {shelf.isFocus ? (
+            <span className="ml-2 text-[var(--ec-brand)]">· focus</span>
+          ) : null}
         </h3>
-        <span className="font-mono text-xs text-[var(--ec-text-secondary)]">
+        <span className="font-mono text-xs text-[var(--ec-acc-blue)]">
           {shelf.attemptCount} marked
           {shelf.avgPct !== null ? ` · ${Math.round(shelf.avgPct)}% avg` : ''}
         </span>
@@ -132,10 +126,10 @@ function SubjectShelfDetail({ shelf }: { shelf: MaxSubjectShelf }) {
 
       {shelf.curated ? (
         <div>
-          <p className="ms-overline m-0 mb-2">Curated Max pack</p>
+          <p className="ms-overline m-0 mb-2 text-[var(--ec-c-math)]">Curated Max pack</p>
           <p className="text-body m-0 text-[var(--ec-text-secondary)]">{shelf.curated.blurb}</p>
-          <ul className="mt-2 list-disc space-y-1 pl-5 text-[var(--ec-text-secondary)]">
-            {shelf.curated.examinerDigest.slice(0, 3).map((line) => (
+          <ul className="ms-vault__digest">
+            {shelf.curated.examinerDigest.slice(0, 4).map((line) => (
               <li key={line}>{line}</li>
             ))}
           </ul>
@@ -162,7 +156,9 @@ function SubjectShelfDetail({ shelf }: { shelf: MaxSubjectShelf }) {
 
       {shelf.technique ? (
         <div>
-          <p className="ms-overline m-0 mb-2">{shelf.technique.title}</p>
+          <p className="ms-overline m-0 mb-2 text-[var(--ec-acc-teal)]">
+            {shelf.technique.title}
+          </p>
           <ul className="m-0 list-none space-y-2 pl-0">
             {shelf.technique.links.map((l) => (
               <li key={l.href}>
@@ -180,7 +176,7 @@ function SubjectShelfDetail({ shelf }: { shelf: MaxSubjectShelf }) {
 
       {shelf.drills.length > 0 ? (
         <div>
-          <p className="ms-overline m-0 mb-2">Weak-topic drills</p>
+          <p className="ms-overline m-0 mb-2 text-[var(--ec-brand)]">Weak-topic drills</p>
           <ul className="m-0 list-none space-y-2 pl-0">
             {shelf.drills.map((d) => (
               <li key={`${d.paperCode}-${d.questionNumber}`}>

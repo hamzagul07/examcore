@@ -1,6 +1,5 @@
 /**
- * Visible Max status stamp — used on mark results, dashboard, and vault so
- * Max never feels like "Scholar with a bigger number."
+ * Visible Max status stamp — brand-coloured so Max never reads as plain Scholar.
  */
 export function MaxBadge({
   label = 'Max',
@@ -10,10 +9,8 @@ export function MaxBadge({
   className?: string
 }) {
   return (
-    <span
-      className={`inline-flex items-center gap-1 rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-[var(--ec-text-primary)] shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.08))] ${className}`.trim()}
-    >
-      <span aria-hidden className="ec-ink-stamp" style={{ fontSize: 10, padding: '2px 4px' }}>
+    <span className={`ms-vault-badge ${className}`.trim()}>
+      <span className="ms-vault-badge__stamp" aria-hidden>
         MX
       </span>
       {label}

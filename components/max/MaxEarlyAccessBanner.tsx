@@ -10,11 +10,11 @@ export function MaxEarlyAccessBanner() {
   if (!feature) return null
 
   return (
-    <div className="mb-6 flex flex-wrap items-center gap-3 border border-[var(--ec-border)] px-4 py-3">
+    <div className="ms-vault__panel ms-vault__panel--teal mb-6 flex flex-wrap items-center gap-3 !py-3">
       <MaxBadge label="Max · early access" />
       <p className="text-body m-0 text-[var(--ec-text-secondary)]">
         You&apos;re on Max early access:{' '}
-        <strong className="text-[var(--ec-text-primary)]">{feature}</strong>
+        <strong className="text-[var(--ec-acc-teal)]">{feature}</strong>
       </p>
     </div>
   )

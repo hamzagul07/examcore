@@ -144,6 +144,18 @@ export const TEACHER_NAV_ITEM: SiteNavItem = {
   variants: ['marketing', 'app', 'reading'],
 }
 
+/**
+ * Shown to Max subscribers only — Resource Vault entry in app chrome.
+ * Same pattern as TEACHER_NAV_ITEM: entitlement is known only after auth probe.
+ */
+export const MAX_VAULT_NAV_ITEM: SiteNavItem = {
+  id: 'vault',
+  href: '/dashboard/vault',
+  label: 'Vault',
+  isActive: (pathname: string) => pathname.startsWith('/dashboard/vault'),
+  variants: ['app'],
+}
+
 export function getNavItemsForVariant(variant: SiteHeaderVariant): SiteNavItem[] {
   return SITE_NAV_ITEMS.filter((item) => item.variants.includes(variant))
 }

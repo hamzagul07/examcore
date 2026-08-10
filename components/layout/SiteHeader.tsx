@@ -25,7 +25,7 @@ import {
   getSiteHeaderConfig,
   type HeaderCta,
 } from '@/lib/site-header-config'
-import { MARKETING_NAV_SECONDARY, type SiteHeaderVariant, TEACHER_NAV_ITEM } from '@/lib/site-nav'
+import { MARKETING_NAV_SECONDARY, type SiteHeaderVariant, TEACHER_NAV_ITEM, MAX_VAULT_NAV_ITEM } from '@/lib/site-nav'
 import {
   buildMarketingSignUpHref,
   buildSignInHref,
@@ -75,14 +75,26 @@ export function SiteHeader({ variant }: Props) {
   const burgerRef = useRef<HTMLButtonElement>(null)
   const mobileSheetRef = useRef<HTMLDivElement>(null)
   const { scrolled, hidden: headerHidden } = useHeaderScroll(mobileOpen)
-  const { user, loading, role } = useAuthCheck()
+  const { user, loading, role, isMax } = useAuthCheck()
   const initial = avatarInitial(user)
-  // Appended rather than baked into SITE_NAV_ITEMS: the role is only known once
-  // the auth probe returns, and a teacher otherwise has no link to their classes.
-  // Left unmemoised on purpose — React Compiler handles it, and a manual useMemo
-  // here defeats the compiler rather than helping it.
-  const navItems =
-    role === 'teacher' ? [...baseNavItems, TEACHER_NAV_ITEM] : baseNavItems
+  // Appended rather than baked into SITE_NAV_ITEMS: role / Max are only known
+  // once the auth probe returns.
+  let navItems = baseNavItems
+  if (isMax && variant === 'app') {
+    // Vault sits after Home so Max users see it first thing on the desk.
+    const homeIdx = navItems.findIndex((i) => i.id === 'home')
+    navItems =
+      homeIdx >= 0
+        ? [
+            ...navItems.slice(0, homeIdx + 1),
+            MAX_VAULT_NAV_ITEM,
+            ...navItems.slice(homeIdx + 1),
+          ]
+        : [...navItems, MAX_VAULT_NAV_ITEM]
+  }
+  if (role === 'teacher') {
+    navItems = [...navItems, TEACHER_NAV_ITEM]
+  }
   const isGuest = !loading && !user
   // Logged-in users already have the account avatar — never show them a
   // "Sign up"/"Sign in" header CTA.
@@ -122,6 +134,8 @@ export function SiteHeader({ variant }: Props) {
     : variant === 'reading'
       ? '/courses'
       : '/dashboard'
+  // When signed in on marketing pages, the wordmark should still open the desk.
+  const wordmarkHref = user && variant !== 'app' ? '/dashboard' : config.wordmarkHref
   const showMobileMenu = variant === 'app' ? !showTabBar : true
   const isDiscuss = config.tone === 'discuss'
 
@@ -130,6 +144,7 @@ export function SiteHeader({ variant }: Props) {
       ? MARKETING_NAV_SECONDARY
       : variant === 'app'
         ? [
+            ...(isMax ? [{ href: '/dashboard/vault', label: 'Max Vault' }] : []),
             { href: '/pricing', label: 'Pricing' },
             { href: '/how-it-works', label: 'How it works' },
             { href: '/faq', label: 'FAQ' },
@@ -271,7 +286,7 @@ export function SiteHeader({ variant }: Props) {
     >
       <header className="ec-nav">
         <div className="ec-nav-brand">
-          <WordmarkLink href={config.wordmarkHref} size="sm" />
+          <WordmarkLink href={wordmarkHref} size="sm" />
           {config.context ? <SiteHeaderContext context={config.context} /> : null}
         </div>
 

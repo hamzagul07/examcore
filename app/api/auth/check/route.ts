@@ -5,6 +5,8 @@ import {
 } from '@/lib/supabase-server'
 import { resolvePostAuthPath } from '@/lib/auth-redirect'
 import { isOnboardingComplete } from '@/lib/onboarding'
+import { effectiveAccess } from '@/lib/billing/access'
+import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
 
 export async function GET(request: NextRequest) {
   const { supabase, user, pendingCookies } =
@@ -25,6 +27,12 @@ export async function GET(request: NextRequest) {
     .eq('id', user.id)
     .maybeSingle()
 
+  const { data: sub } = await supabase
+    .from('user_subscriptions')
+    .select('tier, status')
+    .eq('user_id', user.id)
+    .maybeSingle()
+
   const onboarded = isOnboardingComplete(profile)
   const role = profile?.role === 'teacher' ? ('teacher' as const) : ('student' as const)
   const destination = resolvePostAuthPath(onboarded, nextParam, role)
@@ -35,6 +43,11 @@ export async function GET(request: NextRequest) {
     (typeof metadata?.full_name === 'string' && metadata.full_name.trim()) ||
     (typeof metadata?.name === 'string' && metadata.name.trim()) ||
     undefined
+
+  const access = effectiveAccess({
+    tier: (sub?.tier as SubscriptionTier) ?? 'free',
+    status: (sub?.status as SubscriptionStatus) ?? 'canceled',
+  })
 
   return jsonWithAuthCookies(
     {
@@ -47,6 +60,8 @@ export async function GET(request: NextRequest) {
       // Surfaced so the header can offer a teacher the way back to their
       // classrooms; this select already ran, so it costs nothing.
       role,
+      // Max Resource Vault nav — same probe, no extra round-trip.
+      isMax: access === 'max',
       destination,
     },
     pendingCookies

@@ -128,8 +128,10 @@ export default async function MaxVaultPage({
   })
 
   return (
-    <main className="app-shell app-shell-tabbed">
-      <MaxVaultView data={vault} sprintCreditsGranted={sprint.grantedCredits} />
+    <main className="app-shell app-shell-tabbed ms-dash-home">
+      <div className="mx-auto min-w-0 max-w-7xl rounded-none px-0 pb-8 pt-0 sm:rounded">
+        <MaxVaultView data={vault} sprintCreditsGranted={sprint.grantedCredits} />
+      </div>
       <AppSupportStrip />
     </main>
   )

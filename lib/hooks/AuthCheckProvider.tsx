@@ -19,6 +19,7 @@ type AuthCheckResponse = {
   user?: AuthCheckUser | null
   onboarded?: boolean
   role?: 'student' | 'teacher'
+  isMax?: boolean
 }
 
 type AuthCheckState = {
@@ -26,6 +27,8 @@ type AuthCheckState = {
   onboarded: boolean
   /** Which home this account has: a teacher's is their classrooms. */
   role: 'student' | 'teacher'
+  /** Max Resource Vault entitlement — drives Vault nav. */
+  isMax: boolean
   loading: boolean
 }
 
@@ -33,6 +36,7 @@ const AuthCheckContext = createContext<AuthCheckState>({
   user: null,
   onboarded: false,
   role: 'student',
+  isMax: false,
   loading: true,
 })
 
@@ -43,6 +47,7 @@ export function AuthCheckProvider({ children }: { children: ReactNode }) {
     user: null,
     onboarded: false,
     role: 'student',
+    isMax: false,
     loading: true,
   })
 
@@ -58,12 +63,19 @@ export function AuthCheckProvider({ children }: { children: ReactNode }) {
           user: data.user ?? null,
           onboarded: data.onboarded === true,
           role: data.role === 'teacher' ? 'teacher' : 'student',
+          isMax: data.isMax === true,
           loading: false,
         })
       })
       .catch(() => {
         if (!cancelled) {
-          setState({ user: null, onboarded: false, role: 'student', loading: false })
+          setState({
+            user: null,
+            onboarded: false,
+            role: 'student',
+            isMax: false,
+            loading: false,
+          })
         }
       })
 

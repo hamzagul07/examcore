@@ -269,6 +269,7 @@ const CONSISTENT_NAV_IDS: Record<SiteHeaderVariant, string[]> = {
   // text nav because it is already the prominent primary CTA button in the app
   // header — a second "mark" link was redundant, and its slot is better spent
   // on Home, which previously had no nav entry at all (only the logo chip).
+  // Max Vault is appended at render time when isMax (see SiteHeader).
   app: ['home', 'courses', 'subjects', 'community', 'progress'],
 }
 

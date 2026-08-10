@@ -106,6 +106,22 @@ export async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
+  // Signed-in users opening the marketing homepage land on their desk.
+  // Sign-in from `/` used to pass next=/ and dump them back on the landing page.
+  if (user && pathname === '/') {
+    const { data: profile } = await supabase
+      .from('user_profiles')
+      .select('onboarded, onboarding_completed, role')
+      .eq('id', user.id)
+      .maybeSingle()
+    const destination = resolvePostAuthPath(
+      isOnboardingComplete(profile),
+      null,
+      profile?.role === 'teacher' ? 'teacher' : 'student'
+    )
+    return redirectWithCookies(new URL(destination, request.url), supabaseResponse)
+  }
+
   if (matchesRoutePrefix(pathname, AUTH_ENTRY_PREFIXES)) {
     if (user) {
       const { data: profile } = await supabase

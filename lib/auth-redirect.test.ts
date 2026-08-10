@@ -23,6 +23,15 @@ function check(name: string, ok: boolean) {
 check('rejects open redirect', !isSafeNextPath('//evil.com'))
 check('rejects absolute URL', !isSafeNextPath('https://evil.com'))
 check('accepts in-app path', isSafeNextPath('/mark'))
+check('rejects marketing homepage as next', !isSafeNextPath('/'))
+check(
+  'sanitize homepage → dashboard',
+  sanitizeNextPath('/', '/dashboard') === '/dashboard'
+)
+check(
+  'onboarded with homepage next → dashboard',
+  resolvePostAuthPath(true, '/') === '/dashboard'
+)
 
 check(
   'sanitize falls back',

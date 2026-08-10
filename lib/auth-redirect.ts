@@ -1,6 +1,8 @@
 /**
  * Validate a post-auth redirect target. Only same-origin relative paths are
  * allowed — rejects protocol-relative (`//evil.com`) and absolute URLs.
+ * The marketing homepage (`/`) is never a post-login destination — signed-in
+ * users belong on the dashboard desk.
  */
 export function sanitizeNextPath(
   raw: string | null | undefined,
@@ -8,6 +10,7 @@ export function sanitizeNextPath(
 ): string {
   if (!raw) return fallback
   const trimmed = raw.trim()
+  if (trimmed === '/' || trimmed === '') return fallback
   if (
     !trimmed.startsWith('/') ||
     trimmed.startsWith('//') ||
@@ -22,6 +25,8 @@ export function sanitizeNextPath(
 export function isSafeNextPath(raw: string | null | undefined): raw is string {
   if (!raw) return false
   const trimmed = raw.trim()
+  // Homepage is safe to *visit*, but not a meaningful post-auth `next` target.
+  if (trimmed === '/') return false
   return (
     trimmed.startsWith('/') &&
     !trimmed.startsWith('//') &&
@@ -72,7 +77,7 @@ export function resolvePostAuthPath(
     const trimmed = next.trim()
     // Avoid /onboarding?next=/onboarding redirect loops after sign-in.
     if (trimmed === '/onboarding' || trimmed.startsWith('/onboarding?')) {
-      return onboarded ? '/dashboard' : '/onboarding'
+      return onboarded ? home : '/onboarding'
     }
     const authOnly = trimmed.startsWith('/auth/')
     if (onboarded || authOnly) return trimmed

@@ -4,21 +4,31 @@ import { MaxBadge } from '@/components/max/MaxBadge'
 /** Dashboard home tile that takes Max users straight into the Vault. */
 export function MaxVaultTile() {
   return (
-    <Link
-      href="/dashboard/vault"
-      className="ec-card ec-card--paper mb-6 block p-4 sm:p-5 transition-opacity hover:opacity-95"
-    >
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="space-y-2">
-          <MaxBadge label="Max Resource Vault" />
-          <p className="text-body m-0 text-[var(--ec-text-secondary)]">
-            Sprint pack, curated flagship resources, full-marks bank — open your Vault.
-          </p>
-        </div>
-        <span className="font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-brand)]">
-          Open →
+    <aside className="ms-mark-example-slip mb-6" aria-label="Max Resource Vault">
+      <div className="ms-mark-example-slip__body">
+        <span className="ec-ink-stamp" aria-hidden>
+          MX
         </span>
+        <div className="ms-mark-example-slip__copy">
+          <div className="mb-2">
+            <MaxBadge label="Max Resource Vault" />
+          </div>
+          <p className="ms-mark-example-slip__title">Your exclusive desk</p>
+          <p className="ms-mark-example-slip__lead">
+            Personalised sprint pack, curated flagship resources, and your full-marks
+            bank — one tap from Home.
+          </p>
+          <span className="ms-mark-example-slip__note" aria-hidden>
+            max only · opens on your weakest subject
+          </span>
+        </div>
       </div>
-    </Link>
+      <Link
+        href="/dashboard/vault"
+        className="ms-mark-example-slip__cta inline-flex min-h-[44px] items-center font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-brand)]"
+      >
+        Open Vault -&gt;
+      </Link>
+    </aside>
   )
 }

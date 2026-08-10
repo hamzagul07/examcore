@@ -17,43 +17,52 @@ export function MaxCoachBrief({ pack }: { pack: MaxExamPack | null }) {
   const firstDrill = firstDay?.drills[0]
 
   return (
-    <section className="ec-card ec-card--paper mb-6 space-y-3 border border-[var(--ec-brand)]/30 p-4 sm:p-5">
-      <div className="flex flex-wrap items-center gap-2">
-        <MaxBadge label="Max · early access" />
-        {feature ? (
-          <span className="text-sm text-[var(--ec-text-secondary)]">{feature}</span>
-        ) : null}
+    <aside className="ms-mark-example-slip mb-6" aria-label="Max coach brief">
+      <div className="ms-mark-example-slip__body">
+        <span className="ec-ink-stamp" aria-hidden>
+          CB
+        </span>
+        <div className="ms-mark-example-slip__copy">
+          <div className="mb-2 flex flex-wrap items-center gap-2">
+            <MaxBadge label="Max · early access" />
+            {feature ? (
+              <span className="text-caption text-[var(--ec-text-secondary)]">{feature}</span>
+            ) : null}
+          </div>
+          <p className="ms-mark-example-slip__title">This week&apos;s coach brief</p>
+          <p className="ms-mark-example-slip__lead">
+            {pack.isSprint
+              ? `Sprint mode — ${pack.daysLeft ?? '?'} day${pack.daysLeft === 1 ? '' : 's'} to exam.`
+              : `Week of ${pack.weekLabel}.`}{' '}
+            {topTopics.length > 0
+              ? `Prioritise ${topTopics.join(' and ')}.`
+              : 'Mark a few questions so we can aim the drills.'}{' '}
+            {firstDay
+              ? `Day 1: ${firstDay.focus}${
+                  firstDay.minutes ? ` (~${firstDay.minutes} min)` : ''
+                }.`
+              : null}
+          </p>
+          <span className="ms-mark-example-slip__note" aria-hidden>
+            built from your mastery · no extra ai cost
+          </span>
+        </div>
       </div>
-      <h2 className="text-lg font-bold text-[var(--ec-text-primary)] m-0">
-        This week&apos;s coach brief
-      </h2>
-      <p className="text-body m-0 text-[var(--ec-text-secondary)]">
-        {pack.isSprint
-          ? `Sprint mode — ${pack.daysLeft ?? '?'} day${pack.daysLeft === 1 ? '' : 's'} to exam.`
-          : `Week of ${pack.weekLabel}.`}{' '}
-        {topTopics.length > 0
-          ? `Prioritise ${topTopics.join(' and ')}.`
-          : 'Mark a few questions so we can aim the drills.'}{' '}
-        {firstDay
-          ? `Day 1: ${firstDay.focus}${
-              firstDay.minutes ? ` (~${firstDay.minutes} min)` : ''
-            }.`
-          : null}
-      </p>
       {firstDrill ? (
-        <p className="text-body m-0">
-          <Link href={drillHref(firstDrill)} className="ec-link font-semibold">
-            Start with {firstDrill.paperCode} Q{firstDrill.questionNumber}
-          </Link>
-          <span className="text-[var(--ec-text-secondary)]"> — {firstDrill.reason}</span>
-        </p>
+        <Link
+          href={drillHref(firstDrill)}
+          className="ms-mark-example-slip__cta inline-flex min-h-[44px] items-center font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-brand)]"
+        >
+          Start {firstDrill.paperCode} Q{firstDrill.questionNumber} -&gt;
+        </Link>
       ) : pack.timedPapers[0] ? (
-        <p className="text-body m-0">
-          <Link href={pack.timedPapers[0].href} className="ec-link font-semibold">
-            Open timed paper hub
-          </Link>
-        </p>
+        <Link
+          href={pack.timedPapers[0].href}
+          className="ms-mark-example-slip__cta inline-flex min-h-[44px] items-center font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-brand)]"
+        >
+          Open timed paper hub -&gt;
+        </Link>
       ) : null}
-    </section>
+    </aside>
   )
 }

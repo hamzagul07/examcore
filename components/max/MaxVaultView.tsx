@@ -8,24 +8,27 @@ import type { MaxVaultData } from '@/lib/max/vault-data'
 import { drillHref } from '@/lib/insights/drill-link'
 import { MaxVaultOpenTracker } from '@/components/max/MaxVaultOpenTracker'
 
-function Section({
+function DeskSection({
   stamp,
+  eyebrow,
   title,
   children,
 }: {
   stamp: string
+  eyebrow?: string
   title: string
   children: ReactNode
 }) {
   return (
-    <section className="ec-card ec-card--paper mb-6 space-y-3 p-4 sm:p-5">
-      <div className="flex items-center gap-2">
+    <section className="ms-dash-section mb-6 open">
+      <div className="mb-3 flex flex-wrap items-center gap-2">
         <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
           {stamp}
         </span>
-        <h2 className="text-lg font-bold text-[var(--ec-text-primary)] m-0">{title}</h2>
+        {eyebrow ? <p className="ec-eyebrow mb-0">{eyebrow}</p> : null}
+        <h2 className="ms-dash-section__title m-0 text-[var(--ec-text-primary)]">{title}</h2>
       </div>
-      {children}
+      <div className="ec-card ec-card--paper space-y-4 p-4 sm:p-5">{children}</div>
     </section>
   )
 }
@@ -40,28 +43,43 @@ export function MaxVaultView({
   const pack = data.examPack
   const curated = data.curated
   const projected = data.projected
+  const subjectLine =
+    data.shelves.length > 0
+      ? data.shelves.map((s) => s.name).join(' · ')
+      : 'your subjects'
 
   return (
-    <div className="mx-auto max-w-3xl space-y-2 px-4 pb-12 pt-6 sm:px-6">
+    <div className="mx-auto min-w-0 max-w-7xl px-4 pb-12 pt-6 sm:px-6">
       <MaxVaultOpenTracker subjectCode={data.subjectCode} sprint={data.sprintUnlocked} />
-      <div className="mb-4 flex flex-wrap items-center gap-3">
-        <MaxBadge label="Max Resource Vault" />
-        {data.sprintUnlocked ? <MaxBadge label="Sprint unlocked" /> : null}
-      </div>
-      <h1 className="text-title text-[var(--ec-text-primary)]">Your Max Vault</h1>
-      <p className="text-body mb-6 text-[var(--ec-text-secondary)]">
-        Resources for{' '}
-        {data.shelves.length > 0
-          ? data.shelves.map((s) => s.name).join(', ')
-          : 'your subjects'}
-        {data.subjectName ? ` — sprint focused on ${data.subjectName}` : ''}.
-        {sprintCreditsGranted
-          ? ' Sprint bonus marks were just added to your account.'
-          : null}
-      </p>
+
+      <header className="ms-dash-hero mb-8 lg:mb-10">
+        <div className="mb-3 flex flex-wrap items-center gap-2">
+          <p className="ec-eyebrow mb-0">Max desk</p>
+          <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+            MX
+          </span>
+          <MaxBadge label="Resource Vault" />
+          {data.sprintUnlocked ? <MaxBadge label="Sprint unlocked" /> : null}
+        </div>
+        <h1 className="text-hero text-[var(--ec-text-primary)]">Your Max Vault</h1>
+        <p className="text-body mt-3 max-w-2xl text-[var(--ec-text-secondary)]">
+          Built for {subjectLine}
+          {data.subjectName ? ` — sprint focused on ${data.subjectName}` : ''}.
+          {sprintCreditsGranted
+            ? ' Sprint bonus marks were just added to your account.'
+            : null}
+        </p>
+        <p className="text-caption mt-2">
+          <Link
+            href="/dashboard"
+            className="text-[var(--ec-text-secondary)] underline-offset-2 hover:text-[var(--ec-brand)] hover:underline"
+          >
+            ← Back to Home desk
+          </Link>
+        </p>
+      </header>
 
       <MaxEarlyAccessBanner />
-
       <MaxCoachBrief pack={pack} />
 
       {data.shelves.length > 0 ? (
@@ -69,7 +87,7 @@ export function MaxVaultView({
       ) : null}
 
       {projected && projected.prediction.predictedGrade !== '—' ? (
-        <Section stamp="A*" title="Projected grade">
+        <DeskSection stamp="A*" eyebrow="Form" title="Projected grade">
           <p className="text-body m-0 text-[var(--ec-text-primary)]">
             On current form you&apos;re tracking{' '}
             <strong style={{ color: projected.prediction.color }}>
@@ -93,14 +111,18 @@ export function MaxVaultView({
           <p className="text-body m-0 text-[var(--ec-text-secondary)]">
             {projected.prediction.nextLevelTip}
           </p>
-          <p className="text-sm m-0 text-[var(--ec-text-secondary)]">
-            Confidence {projected.prediction.confidence}% · Max-only dashboard widget
+          <p className="text-caption m-0">
+            Confidence {projected.prediction.confidence}% · Max-only
           </p>
-        </Section>
+        </DeskSection>
       ) : null}
 
       {pack ? (
-        <Section stamp={pack.isSprint ? 'SP' : 'WK'} title={pack.title}>
+        <DeskSection
+          stamp={pack.isSprint ? 'SP' : 'WK'}
+          eyebrow={pack.isSprint ? 'Exam sprint' : 'This week'}
+          title={pack.title}
+        >
           <p className="text-body m-0 text-[var(--ec-text-secondary)]">
             Week of {pack.weekLabel}
             {pack.daysLeft !== null
@@ -115,7 +137,7 @@ export function MaxVaultView({
           </p>
 
           {pack.isSprint && pack.timedPapers.length > 0 ? (
-            <div className="rounded border border-[var(--ec-border)] p-3">
+            <div className="border border-[var(--ec-border)] bg-[var(--ec-surface-muted,transparent)] p-3">
               <p className="ms-overline m-0 mb-2">Sprint timed papers</p>
               <ul className="m-0 list-none space-y-2 pl-0">
                 {pack.timedPapers.map((p) => (
@@ -133,7 +155,7 @@ export function MaxVaultView({
             </div>
           ) : null}
 
-          <ol className="m-0 list-decimal space-y-3 pl-5">
+          <ol className="m-0 list-decimal space-y-4 pl-5">
             {pack.days.map((day) => (
               <li key={day.day} className="text-body text-[var(--ec-text-primary)]">
                 <strong>
@@ -154,7 +176,7 @@ export function MaxVaultView({
                   </div>
                 ) : null}
                 {day.drills.length > 0 ? (
-                  <ul className="mt-1 list-none space-y-1 pl-0">
+                  <ul className="mt-2 list-none space-y-1 pl-0">
                     {day.drills.map((d) => (
                       <li key={`${d.paperCode}-${d.questionNumber}`}>
                         <Link href={drillHref(d)} className="ec-link font-semibold">
@@ -168,12 +190,11 @@ export function MaxVaultView({
               </li>
             ))}
           </ol>
-        </Section>
+        </DeskSection>
       ) : null}
 
-      {/* Curated + technique live in MaxSubjectShelves per subject — avoid duplicating here. */}
       {!curated && data.otherCuratedCodes.length > 0 ? (
-        <Section stamp="★" title="More flagship packs">
+        <DeskSection stamp="★" eyebrow="Flagship" title="More curated packs">
           <p className="text-body m-0 text-[var(--ec-text-secondary)]">
             Curated Max packs also ship for{' '}
             {data.otherCuratedCodes.map((c, i) => (
@@ -189,41 +210,41 @@ export function MaxVaultView({
             ))}
             .
           </p>
-        </Section>
+        </DeskSection>
       ) : null}
 
-      {data.fullMarksModels.length > 0 ? (
-        <Section stamp="A*" title="Your full-marks model bank">
-          <ul className="m-0 list-none space-y-2 pl-0">
+      <DeskSection stamp="A*" eyebrow="Rewrite bank" title="Your full-marks models">
+        {data.fullMarksModels.length > 0 ? (
+          <ul className="m-0 list-none space-y-3 pl-0">
             {data.fullMarksModels.map((m) => (
-              <li key={m.attemptId}>
+              <li
+                key={m.attemptId}
+                className="flex flex-wrap items-baseline justify-between gap-2 border-b border-[var(--ec-border)] pb-3 last:border-0 last:pb-0"
+              >
                 <Link
                   href={`/dashboard/attempt/${m.attemptId}`}
                   className="ec-link font-semibold"
                 >
                   {m.label}
                 </Link>
-                <span className="text-[var(--ec-text-secondary)]">
-                  {' '}
-                  · {m.marksEarned}/{m.totalMarks}
+                <span className="font-mono text-xs text-[var(--ec-text-secondary)]">
+                  {m.marksEarned}/{m.totalMarks}
                   {m.subjectCode ? ` · ${m.subjectCode}` : ''}
                 </span>
               </li>
             ))}
           </ul>
-        </Section>
-      ) : (
-        <Section stamp="A*" title="Your full-marks model bank">
+        ) : (
           <p className="text-body m-0 text-[var(--ec-text-secondary)]">
-            Mark questions where you lose marks — Max saves the annotated full-marks rewrite here
-            automatically.
+            Mark questions where you lose marks — Max saves the annotated full-marks
+            rewrite here automatically.
           </p>
-        </Section>
-      )}
+        )}
+      </DeskSection>
 
       {data.ibLinks.length > 0 ? (
-        <Section stamp="IB" title="IB legitimate resources">
-          <ul className="m-0 list-none space-y-2 pl-0">
+        <DeskSection stamp="IB" eyebrow="Legitimate sources" title="IB resources">
+          <ul className="m-0 list-none space-y-3 pl-0">
             {data.ibLinks.map((l) => (
               <li key={l.href}>
                 <a href={l.href} className="ec-link font-semibold" rel="noopener noreferrer">
@@ -233,27 +254,21 @@ export function MaxVaultView({
               </li>
             ))}
           </ul>
-        </Section>
+        </DeskSection>
       ) : null}
 
-      <Section stamp="⚙" title="Tools">
-        <ul className="m-0 list-none space-y-2 pl-0">
+      <DeskSection stamp="⚙" eyebrow="Utilities" title="Tools">
+        <ul className="m-0 grid list-none gap-3 pl-0 sm:grid-cols-2">
           {data.tools.map((l) => (
-            <li key={l.href}>
+            <li key={l.href} className="border border-[var(--ec-border)] p-3">
               <Link href={l.href} className="ec-link font-semibold">
                 {l.label}
               </Link>
-              <span className="block text-sm text-[var(--ec-text-secondary)]">{l.note}</span>
+              <span className="mt-1 block text-sm text-[var(--ec-text-secondary)]">{l.note}</span>
             </li>
           ))}
         </ul>
-      </Section>
-
-      <p className="text-sm text-[var(--ec-text-secondary)]">
-        <Link href="/dashboard" className="ec-link">
-          ← Back to dashboard
-        </Link>
-      </p>
+      </DeskSection>
     </div>
   )
 }

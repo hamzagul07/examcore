@@ -8,6 +8,7 @@ import {
   InkGlyphProgress,
   InkGlyphTick,
 } from '@/components/margin-notes'
+import { useAuthCheck } from '@/lib/hooks/useAuthCheck'
 import type { ReactNode } from 'react'
 
 type TabItem = {
@@ -21,10 +22,9 @@ type TabItem = {
 
 /**
  * Phone tab bar — four destinations (NAV-01 / Codex UI review).
- * Discuss and Account stay in the header/menu; Mark is the emphasised centre.
- * Icons are brand InkGlyph SVGs — not punctuation stamps (LOW-01).
+ * Max users get Vault in place of Learn so the exclusive surface is one tap away.
  */
-const TABS: TabItem[] = [
+const BASE_TABS: TabItem[] = [
   {
     href: '/dashboard',
     label: 'Home',
@@ -59,12 +59,23 @@ const TABS: TabItem[] = [
   },
 ]
 
+const VAULT_TAB: TabItem = {
+  href: '/dashboard/vault',
+  label: 'Vault',
+  icon: <InkGlyphBook className="ec-tabbar__svg" title="" />,
+  match: (p) => p.startsWith('/dashboard/vault'),
+}
+
 export function MobileTabBar() {
   const pathname = usePathname()
+  const { isMax } = useAuthCheck()
+  const tabs = isMax
+    ? [BASE_TABS[0], VAULT_TAB, BASE_TABS[2], BASE_TABS[3]]
+    : BASE_TABS
 
   return (
     <nav aria-label="Main navigation" className="ec-tabbar lg:hidden">
-      {TABS.map(({ href, label, icon, match, primary }) => {
+      {tabs.map(({ href, label, icon, match, primary }) => {
         const active = match(pathname)
         return (
           <LoadingLink

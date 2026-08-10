@@ -19,125 +19,160 @@ export function MaxSubjectShelves({
   const active = shelves.find((s) => s.code === focusCode) ?? shelves[0]
 
   return (
-    <section className="ec-card ec-card--paper mb-6 space-y-4 p-4 sm:p-5">
-      <div className="flex items-center gap-2">
+    <section className="ms-dash-section mb-6">
+      <div className="mb-3 flex flex-wrap items-center gap-2">
         <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
           SB
         </span>
-        <h2 className="text-lg font-bold text-[var(--ec-text-primary)] m-0">
-          Resources by your subjects
+        <p className="ec-eyebrow mb-0">By subject</p>
+        <h2 className="ms-dash-section__title m-0 text-[var(--ec-text-primary)]">
+          Resources on your profile
         </h2>
       </div>
-      <p className="text-body m-0 text-[var(--ec-text-secondary)]">
-        Built from your profile subjects
-        {active?.isFocus
-          ? ` — focusing on ${active.name} (weakest or selected).`
-          : '.'}
-      </p>
 
-      <div
-        className="flex flex-wrap gap-2"
-        role="tablist"
-        aria-label="Your subjects"
-      >
-        {shelves.map((s) => {
-          const selected = s.code === active?.code
-          return (
-            <button
-              key={s.code}
-              type="button"
-              role="tab"
-              aria-selected={selected}
-              className={`rounded border px-3 py-1.5 text-sm font-semibold transition-colors ${
-                selected
-                  ? 'border-[var(--ec-brand)] bg-[var(--ec-brand-muted,transparent)] text-[var(--ec-brand)]'
-                  : 'border-[var(--ec-border)] text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)]'
-              }`}
-              onClick={() => {
-                router.push(`/dashboard/vault?subject=${encodeURIComponent(s.code)}`)
-              }}
-            >
-              {s.name}
-              {s.avgPct !== null ? (
-                <span className="ml-1 font-mono text-[11px] opacity-80">
-                  {Math.round(s.avgPct)}%
-                </span>
-              ) : null}
-            </button>
-          )
-        })}
-      </div>
+      <div className="ec-card ec-card--paper space-y-4 p-4 sm:p-5">
+        <p className="text-body m-0 text-[var(--ec-text-secondary)]">
+          {active?.isFocus
+            ? `Focusing on ${active.name} — weakest or selected.`
+            : 'Pick a subject shelf to open its curated pack and drills.'}
+        </p>
 
-      {active ? <SubjectShelfDetail shelf={active} /> : null}
-
-      {shelves.length > 1 ? (
-        <div className="border-t border-[var(--ec-border)] pt-4">
-          <p className="ms-overline m-0 mb-2">Your other subjects</p>
-          <ul className="m-0 list-none space-y-3 pl-0">
-            {shelves
-              .filter((s) => s.code !== active?.code)
-              .map((s) => (
-                <li key={s.code} className="flex flex-wrap items-baseline justify-between gap-2">
-                  <div>
-                    <button
-                      type="button"
-                      className="ec-link font-semibold"
-                      onClick={() =>
-                        router.push(
-                          `/dashboard/vault?subject=${encodeURIComponent(s.code)}`
-                        )
-                      }
-                    >
-                      {s.name}
-                    </button>
-                    <span className="text-[var(--ec-text-secondary)]">
-                      {' '}
-                      · {s.attemptCount} marked
-                      {s.avgPct !== null ? ` · ${Math.round(s.avgPct)}%` : ''}
-                      {s.curated ? ' · curated Max pack' : ''}
-                    </span>
-                  </div>
-                  <Link
-                    href={s.links[0]?.href ?? `/past-papers/${s.code}`}
-                    className="font-mono text-[11px] font-bold uppercase tracking-wide text-[var(--ec-brand)]"
-                  >
-                    Open →
-                  </Link>
-                </li>
-              ))}
-          </ul>
+        <div
+          className="flex flex-wrap gap-2"
+          role="tablist"
+          aria-label="Your subjects"
+        >
+          {shelves.map((s) => {
+            const selected = s.code === active?.code
+            return (
+              <button
+                key={s.code}
+                type="button"
+                role="tab"
+                aria-selected={selected}
+                className={`min-h-[40px] border px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-wide transition-colors ${
+                  selected
+                    ? 'border-[var(--ec-brand)] bg-[var(--ec-brand)] text-[var(--ec-on-brand,#fff)]'
+                    : 'border-[var(--ec-border)] text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)] hover:text-[var(--ec-brand)]'
+                }`}
+                onClick={() => {
+                  router.push(`/dashboard/vault?subject=${encodeURIComponent(s.code)}`)
+                }}
+              >
+                {s.name}
+                {s.avgPct !== null ? (
+                  <span className="ml-1 opacity-80">{Math.round(s.avgPct)}%</span>
+                ) : null}
+              </button>
+            )
+          })}
         </div>
-      ) : null}
+
+        {active ? <SubjectShelfDetail shelf={active} /> : null}
+
+        {shelves.length > 1 ? (
+          <div className="border-t border-[var(--ec-border)] pt-4">
+            <p className="ms-overline m-0 mb-2">Your other subjects</p>
+            <ul className="m-0 list-none space-y-3 pl-0">
+              {shelves
+                .filter((s) => s.code !== active?.code)
+                .map((s) => (
+                  <li
+                    key={s.code}
+                    className="flex flex-wrap items-baseline justify-between gap-2"
+                  >
+                    <div>
+                      <button
+                        type="button"
+                        className="ec-link font-semibold"
+                        onClick={() =>
+                          router.push(
+                            `/dashboard/vault?subject=${encodeURIComponent(s.code)}`
+                          )
+                        }
+                      >
+                        {s.name}
+                      </button>
+                      <span className="text-[var(--ec-text-secondary)]">
+                        {' '}
+                        · {s.attemptCount} marked
+                        {s.avgPct !== null ? ` · ${Math.round(s.avgPct)}%` : ''}
+                        {s.curated ? ' · curated Max pack' : ''}
+                      </span>
+                    </div>
+                    <Link
+                      href={`/dashboard/vault?subject=${encodeURIComponent(s.code)}`}
+                      className="font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-brand)]"
+                    >
+                      Open -&gt;
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        ) : null}
+      </div>
     </section>
   )
 }
 
 function SubjectShelfDetail({ shelf }: { shelf: MaxSubjectShelf }) {
   return (
-    <div className="space-y-4 rounded border border-[var(--ec-border)] p-3 sm:p-4">
-      <div>
-        <p className="ms-overline m-0 mb-1">
-          {shelf.code}
-          {shelf.isFocus ? ' · focus' : ''}
-        </p>
-        <h3 className="text-base font-bold text-[var(--ec-text-primary)] m-0">
+    <div className="space-y-4 border-t border-[var(--ec-border)] pt-4">
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <h3 className="m-0 text-base font-bold text-[var(--ec-text-primary)]">
           {shelf.name}
+          {shelf.isFocus ? ' · focus' : ''}
         </h3>
-        <p className="text-sm m-0 mt-1 text-[var(--ec-text-secondary)]">
+        <span className="font-mono text-xs text-[var(--ec-text-secondary)]">
           {shelf.attemptCount} marked
-          {shelf.avgPct !== null ? ` · ${Math.round(shelf.avgPct)}% recent form` : ''}
-        </p>
+          {shelf.avgPct !== null ? ` · ${Math.round(shelf.avgPct)}% avg` : ''}
+        </span>
       </div>
 
       {shelf.curated ? (
         <div>
-          <p className="text-sm font-bold uppercase tracking-wide text-[var(--ec-text-primary)] m-0 mb-1">
-            Curated Max pack
-          </p>
+          <p className="ms-overline m-0 mb-2">Curated Max pack</p>
           <p className="text-body m-0 text-[var(--ec-text-secondary)]">{shelf.curated.blurb}</p>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-[var(--ec-text-secondary)]">
-            {shelf.curated.examinerDigest.slice(0, 2).map((line) => (
+            {shelf.curated.examinerDigest.slice(0, 3).map((line) => (
               <li key={line}>{line}</li>
+            ))}
+          </ul>
+          <ul className="mt-3 m-0 list-none space-y-2 pl-0">
+            {[
+              ...shelf.curated.paperPath,
+              ...shelf.curated.courseLinks,
+              ...shelf.curated.techniqueLinks,
+            ]
+              .slice(0, 6)
+              .map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="ec-link font-semibold">
+                    {l.label}
+                  </Link>
+                  {l.note ? (
+                    <span className="block text-sm text-[var(--ec-text-secondary)]">{l.note}</span>
+                  ) : null}
+                </li>
+              ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {shelf.technique ? (
+        <div>
+          <p className="ms-overline m-0 mb-2">{shelf.technique.title}</p>
+          <ul className="m-0 list-none space-y-2 pl-0">
+            {shelf.technique.links.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="ec-link font-semibold">
+                  {l.label}
+                </Link>
+                {l.note ? (
+                  <span className="block text-sm text-[var(--ec-text-secondary)]">{l.note}</span>
+                ) : null}
+              </li>
             ))}
           </ul>
         </div>
@@ -145,10 +180,8 @@ function SubjectShelfDetail({ shelf }: { shelf: MaxSubjectShelf }) {
 
       {shelf.drills.length > 0 ? (
         <div>
-          <p className="text-sm font-bold uppercase tracking-wide text-[var(--ec-text-primary)] m-0 mb-1">
-            Weak-topic drills
-          </p>
-          <ul className="m-0 list-none space-y-1 pl-0">
+          <p className="ms-overline m-0 mb-2">Weak-topic drills</p>
+          <ul className="m-0 list-none space-y-2 pl-0">
             {shelf.drills.map((d) => (
               <li key={`${d.paperCode}-${d.questionNumber}`}>
                 <Link href={drillHref(d)} className="ec-link font-semibold">
@@ -161,44 +194,15 @@ function SubjectShelfDetail({ shelf }: { shelf: MaxSubjectShelf }) {
         </div>
       ) : null}
 
-      {shelf.technique ? (
-        <div>
-          <p className="text-sm font-bold uppercase tracking-wide text-[var(--ec-text-primary)] m-0 mb-1">
-            Technique
-          </p>
-          <ul className="m-0 list-none space-y-1 pl-0">
-            {shelf.technique.links.slice(0, 4).map((l) => (
-              <li key={l.href}>
-                <Link href={l.href} className="ec-link font-semibold">
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
-
-      <div>
-        <p className="text-sm font-bold uppercase tracking-wide text-[var(--ec-text-primary)] m-0 mb-1">
-          Quick links
-        </p>
-        <ul className="m-0 list-none space-y-1 pl-0">
-          {shelf.links.map((l) => (
-            <li key={l.href}>
-              <Link href={l.href} className="ec-link font-semibold">
-                {l.label}
-              </Link>
-            </li>
-          ))}
-          {shelf.ibLinks.slice(0, 3).map((l) => (
-            <li key={l.href}>
-              <a href={l.href} className="ec-link font-semibold" rel="noopener noreferrer">
-                {l.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <ul className="m-0 flex list-none flex-wrap gap-x-4 gap-y-2 pl-0">
+        {shelf.links.map((l) => (
+          <li key={l.href}>
+            <Link href={l.href} className="ec-link text-sm font-semibold">
+              {l.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

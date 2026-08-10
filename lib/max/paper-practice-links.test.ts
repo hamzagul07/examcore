@@ -25,4 +25,11 @@ assert.equal(timed.length, 3)
 assert.ok(timed[0]?.href.includes('ibo.org') || timed[0]?.href.startsWith('http'))
 assert.ok(!timed.some((t) => t.href.includes('/past-papers/ib-')))
 
+const econTimed = timedPaperSlots('9708')
+assert.ok(econTimed.some((t) => /multiple choice/i.test(t.label)))
+assert.ok(econTimed.some((t) => /data response/i.test(t.label)))
+
+const acctTimed = timedPaperSlots('9706')
+assert.ok(acctTimed.some((t) => /structured/i.test(t.label)))
+
 console.log('paper-practice-links.test.ts: ok')

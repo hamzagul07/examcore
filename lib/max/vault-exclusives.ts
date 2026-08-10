@@ -60,7 +60,20 @@ const SHOWCASE_LESSON_SLUGS: Record<string, string[]> = {
     '12-2-respiration',
   ],
   '9618': ['1-1-data-representation', '3-2-logic-gates-and-logic-circuits', '10-1-data-types-and-records'],
-  '9708': [],
+  '9708': [
+    '1-1-scarcity-choice-and-opportunity-cost',
+    '1-5-production-possibility-curves',
+    '2-4-the-interaction-of-demand-and-supply',
+    '2-2-price-elasticity-income-elasticity-and-cross-elasticity-of-demand',
+    '4-3-aggregate-demand-and-aggregate-supply-analysis',
+    '4-2-introduction-to-the-circular-flow-of-income',
+  ],
+  '9706': [
+    '1-1-1-types-of-business-entity',
+    '1-4-3-bank-reconciliation-statements',
+    '1-6-2-calculation-and-evaluation-of-ratios',
+    '2-2-4-cost-volume-profit-analysis',
+  ],
 }
 
 function slugFromLessonHref(href: string): string {
@@ -192,6 +205,19 @@ export function buildVaultDiagramPads(
   return pads
 }
 
+function communityAskTitle(subjectCode: string, topicName: string, topicCode: string): string {
+  if (subjectCode === '9708') {
+    return `Stuck on ${topicName} (${topicCode}) — how do examiners mark diagrams and evaluation?`
+  }
+  if (subjectCode === '9706') {
+    return `Stuck on ${topicName} (${topicCode}) — what layout and evaluation do examiners want?`
+  }
+  if (subjectCode === '9709' || subjectCode === '9231') {
+    return `Stuck on ${topicName} (${topicCode}) — how do examiners award the method marks?`
+  }
+  return `Stuck on ${topicName} (${topicCode}) — what does a full-mark answer look like?`
+}
+
 export function buildVaultCommunityHooks(
   subjectCode: string | null,
   weakTopics: TopicTarget[],
@@ -205,7 +231,7 @@ export function buildVaultCommunityHooks(
       subject: subjectCode,
       kind: 'question',
       topic: t.code,
-      title: `Stuck on ${t.name} (${t.code}) — how do examiners award the method marks?`,
+      title: communityAskTitle(subjectCode, t.name, t.code),
     })
     return {
       topicName: t.name,

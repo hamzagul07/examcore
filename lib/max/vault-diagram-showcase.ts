@@ -333,20 +333,100 @@ const SHOWCASE_BY_SUBJECT: Record<string, ShowcaseSeed[]> = {
         'Demand slopes down; supply slopes up.',
         'Where they cross is equilibrium price and quantity.',
         'A demand shift moves the intersection.',
-        'A supply shift moves it the other way — label clearly.',
+        'A supply shift moves it the other way — label every axis and curve.',
       ],
     },
     {
-      slug: '2-1-demand-and-supply-curves',
-      title: 'Demand and supply curves',
-      tagline: 'Build each curve from first principles before you shift them.',
-      topicCode: '2.1',
+      slug: '1-5-production-possibility-curves',
+      title: 'Production possibility curves',
+      tagline: 'Scarcity, choice, and opportunity cost on one diagram.',
+      topicCode: '1.5',
+      chip: 'Foundation',
+      beats: [
+        'The PPC shows maximum combinations from scarce resources.',
+        'A point inside is inefficient; on the curve is efficient.',
+        'Moving along the curve reveals opportunity cost.',
+        'Outward shifts mean economic growth — more resources or better tech.',
+      ],
+    },
+    {
+      slug: '2-2-price-elasticity-income-elasticity-and-cross-elasticity-of-demand',
+      title: 'Elasticity of demand',
+      tagline: 'How much quantity responds when price (or income) changes.',
+      topicCode: '2.2',
       chip: 'Micro',
       beats: [
-        'Demand: higher price → lower quantity demanded.',
-        'Supply: higher price → higher quantity supplied.',
-        'Ceteris paribus holds other factors fixed.',
-        'Movement along vs shift of the curve — exam trap.',
+        'PED = %ΔQd / %ΔP — ignore the minus sign in the calculation story.',
+        'Inelastic demand: steep curve; total revenue rises with price.',
+        'Elastic demand: flatter curve; total revenue falls when price rises.',
+        'YED and XED extend the same responsiveness idea to income and related goods.',
+      ],
+    },
+    {
+      slug: '4-3-aggregate-demand-and-aggregate-supply-analysis',
+      title: 'AD–AS analysis',
+      tagline: 'Macro equilibrium: price level and real output on one frame.',
+      topicCode: '4.3',
+      chip: 'Macro',
+      beats: [
+        'AD = C + I + G + (X − M) — shifts when any component changes.',
+        'Short-run AS can shift with costs; long-run AS with capacity.',
+        'Equilibrium sets the price level and national output.',
+        'Evaluation: spare capacity, elasticities, and policy lags decide the size of the effect.',
+      ],
+    },
+    {
+      slug: '4-2-introduction-to-the-circular-flow-of-income',
+      title: 'Circular flow of income',
+      tagline: 'Injections and withdrawals — why national income moves.',
+      topicCode: '4.2',
+      chip: 'Macro',
+      beats: [
+        'Households and firms exchange factors and goods in a closed loop.',
+        'Injections: investment, government spending, exports.',
+        'Withdrawals: saving, tax, imports.',
+        'When injections exceed withdrawals, income rises — and vice versa.',
+      ],
+    },
+    {
+      slug: '1-1-scarcity-choice-and-opportunity-cost',
+      title: 'Scarcity, choice & opportunity cost',
+      tagline: 'The basic economic problem — every paper starts here.',
+      topicCode: '1.1',
+      chip: 'Foundation',
+      beats: [
+        'Wants are unlimited; resources are limited — that is scarcity.',
+        'Scarcity forces choice: what, how, and for whom to produce.',
+        'Opportunity cost is the next-best alternative foregone.',
+        'Examiners want the definition and a clear link to a decision.',
+      ],
+    },
+  ],
+  '9706': [
+    {
+      slug: '1-6-2-calculation-and-evaluation-of-ratios',
+      title: 'Accounting ratios',
+      tagline: 'Calculate, then evaluate — marks live in the judgement.',
+      topicCode: '1.6.2',
+      chip: 'Signature',
+      beats: [
+        'Pick the right ratio for the question stem.',
+        'Show the formula, then the figures, then the answer.',
+        'Evaluate: trend, comparison, and limitations.',
+        'Link the ratio back to liquidity, profitability, or efficiency.',
+      ],
+    },
+    {
+      slug: '1-4-3-bank-reconciliation-statements',
+      title: 'Bank reconciliation',
+      tagline: 'Cash book vs bank statement — find every timing difference.',
+      topicCode: '1.4.3',
+      chip: 'AS',
+      beats: [
+        'Start from the cash book or statement as the question asks.',
+        'Unpresented cheques and outstanding lodgements are timing items.',
+        'Errors belong on the side that made them.',
+        'The reconciled balances must agree.',
       ],
     },
   ],
@@ -382,6 +462,8 @@ const SHOWCASE_ALIAS: Record<string, string> = {
   '9700': '9700',
   '9618': '9618',
   '9708': '9708',
+  '9706': '9706',
+  accounting: '9706',
   // Edexcel UK / common board ids
   '9MA0': '9709',
   '8MA0': '9709',
@@ -544,10 +626,17 @@ export function buildVaultDiagramTheatres(
     const theatre = buildVaultDiagramTheatre(s.code, s.name)
     if (theatre) out.push(theatre)
   }
-  // Max Vault should never silently omit the cinema — fall back to maths classics.
+  // Prefer the first profile subject's family; only then Maths classics.
+  if (out.length === 0 && subjects[0]) {
+    const own = buildVaultDiagramTheatre(subjects[0].code, subjects[0].name)
+    if (own) {
+      out.push(own)
+      return out
+    }
+  }
   if (out.length === 0) {
-    const fallback = buildVaultDiagramTheatre('9709', 'Mathematics')
-    if (fallback) out.push(fallback)
+    const maths = buildVaultDiagramTheatre('9709', 'Mathematics')
+    if (maths) out.push(maths)
   }
   return out
 }

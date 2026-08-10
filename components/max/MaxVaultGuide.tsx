@@ -28,11 +28,6 @@ const FEATURES = [
     body: 'Each subject gets its own desk. For CAIE: open the question, work it, then Mark — we lock the paper so you only submit your answer against the official scheme.',
   },
   {
-    key: 'videos',
-    title: 'Videos coming soon',
-    body: 'Prefer watching when reading feels heavy? A Max video desk is on the way for the same hard topics.',
-  },
-  {
     key: 'more',
     title: 'More Max exclusives',
     body: 'Sprint checklists, full-marks models to beat, weekly coach inbox, priority marking, and community hooks — all on this page for you to use.',
@@ -40,7 +35,7 @@ const FEATURES = [
 ] as const
 
 /**
- * Orients Max members: Vault is personal, adapts with marks, diagrams live, videos soon.
+ * Orients Max members: Vault is personal, adapts with marks, diagrams live.
  */
 export function MaxVaultGuide({
   subjectCode,

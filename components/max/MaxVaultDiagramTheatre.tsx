@@ -181,7 +181,13 @@ export function MaxVaultDiagramTheatre({
               <span className="ms-vault__pill ms-vault__pill--gold">{active.chip}</span>
             </div>
 
-            <div className="ms-vault__theatre-stage ms-vault__theatre-stage--cinema">
+            <div
+              className={`ms-vault__theatre-stage ms-vault__theatre-stage--cinema${
+                theatre.subjectCode === '9708' || /econ/i.test(theatre.subjectLabel)
+                  ? ' ms-vault__theatre-stage--econ'
+                  : ''
+              }`}
+            >
               <LazyLiveDiagram
                 key={active.slug}
                 slug={active.slug}
@@ -241,6 +247,11 @@ export function MaxVaultDiagramTheatre({
                 <Link href={active.lessonHref} className="ec-btn-primary text-sm">
                   Open full lesson
                 </Link>
+                {active.topicCode ? (
+                  <a href="#ms-vault-qbank-title" className="ec-btn-ghost text-sm">
+                    Sit {active.topicCode} on your desk →
+                  </a>
+                ) : null}
               </div>
             </div>
           </div>

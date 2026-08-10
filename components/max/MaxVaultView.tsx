@@ -12,6 +12,7 @@ import { MaxVaultCommunityInvite } from '@/components/max/MaxVaultCommunityInvit
 import { MaxVaultPackChecklist } from '@/components/max/MaxVaultPackChecklist'
 import { MaxVaultRewriteBank } from '@/components/max/MaxVaultRewriteBank'
 import { MaxVaultQuestionBank } from '@/components/max/MaxVaultQuestionBank'
+import { MaxVaultPersonalBrief } from '@/components/max/MaxVaultPersonalBrief'
 import { MaxVaultCoachInbox } from '@/components/max/MaxVaultCoachInbox'
 import type { MaxVaultData } from '@/lib/max/vault-data'
 import { MaxVaultOpenTracker } from '@/components/max/MaxVaultOpenTracker'
@@ -131,6 +132,7 @@ export function MaxVaultView({
         subjectCode={data.subjectCode}
         hasWeakLessons={data.courseLessons.length > 0}
       />
+      <MaxVaultPersonalBrief brief={data.personalBrief} />
       <MaxEarlyAccessBanner />
       {data.ownership ? <MaxVaultOwnership ownership={data.ownership} /> : null}
       <MaxCoachBrief pack={pack} />

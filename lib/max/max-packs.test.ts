@@ -13,7 +13,9 @@ async function main() {
   const codes = listCuratedMaxPackCodes()
   assert.ok(codes.includes('9709'))
   assert.ok(codes.includes('9708'))
+  assert.ok(codes.includes('9706'))
   assert.ok(codes.includes('9618'))
+  assert.equal(getCuratedMaxPack('9706')?.subjectCode, '9706')
   assert.equal(getCuratedMaxPack('9709')?.subjectCode, '9709')
   assert.ok((getCuratedMaxPack('9709')?.examinerDigest.length ?? 0) >= 3)
 

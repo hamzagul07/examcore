@@ -112,7 +112,7 @@ export default async function MaxVaultPage({
   const { data: attempts } = await supabaseAdmin
     .from('attempts')
     .select(
-      'id, marks_earned, total_marks, syllabus_tags, created_at, mark_schemes ( paper_code )'
+      'id, marks_earned, total_marks, syllabus_tags, created_at, question_text, ocr_text, mark_schemes ( paper_code )'
     )
     .eq('user_id', user.id)
     .order('created_at', { ascending: false })

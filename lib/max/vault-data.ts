@@ -51,6 +51,11 @@ import {
 import type { VaultQuestionBank } from '@/lib/max/vault-question-bank'
 import { loadVaultQuestionBanks } from '@/lib/max/fetch-vault-topic-banks'
 import type { TopicTarget } from '@/lib/insights/recommendations'
+import {
+  buildVaultPersonalBrief,
+  weakTopicsFromAttemptTags,
+  type VaultPersonalBrief,
+} from '@/lib/max/vault-personal-brief'
 
 export type VaultToolLink = { label: string; href: string; note: string }
 
@@ -138,6 +143,8 @@ export type MaxVaultData = {
   questionBanks: VaultQuestionBank[]
   /** Focus subject's desk (chip / shortcuts). */
   questionBank: VaultQuestionBank | null
+  /** In-Vault personal briefing from recent marks (no email). */
+  personalBrief: VaultPersonalBrief | null
 }
 
 export type VaultSubjectInput = {
@@ -225,13 +232,14 @@ export function pickFocusSubjectCode(
   const override = overrideCode?.trim() || null
   if (override) return override
 
+  const preferred = subjects.map((s) => s.code)
   const withTree = subjects.filter((s) => hasSyllabusTree(s.code))
   if (withTree.length === 0) return subjects[0]?.code ?? null
 
   let worst: { code: string; pct: number } | null = null
   for (const s of withTree) {
     const subjectAttempts = attempts.filter(
-      (a) => getAttemptSubjectCode(a) === s.code
+      (a) => getAttemptSubjectCode(a, preferred) === s.code
     )
     if (subjectAttempts.length < 2) continue
     const pct = avgPct(subjectAttempts)
@@ -239,6 +247,13 @@ export function pickFocusSubjectCode(
     if (!worst || pct < worst.pct) worst = { code: s.code, pct }
   }
   if (worst) return worst.code
+
+  // Prefer the subject with the most recent attempt when mastery is thin.
+  for (const a of attempts) {
+    const code = getAttemptSubjectCode(a, preferred)
+    if (code && withTree.some((s) => s.code === code)) return code
+  }
+
   return withTree[0]?.code ?? subjects[0]?.code ?? null
 }
 
@@ -269,6 +284,7 @@ export async function loadMaxVaultData(opts: {
     includeCoachInbox = false,
   } = opts
 
+  const preferredCodes = subjects.map((s) => s.code)
   const focusCode = pickFocusSubjectCode(subjects, attempts, overrideCode)
   const focusName =
     subjects.find((s) => s.code === focusCode)?.name ??
@@ -284,7 +300,7 @@ export async function loadMaxVaultData(opts: {
   }
 
   const focusAttempts = focusCode
-    ? attempts.filter((a) => getAttemptSubjectCode(a) === focusCode)
+    ? attempts.filter((a) => getAttemptSubjectCode(a, preferredCodes) === focusCode)
     : []
   let focusMasteries: LeafMastery[] = []
   if (focusCode && getSyllabusByCode(focusCode)?.length) {
@@ -331,7 +347,7 @@ export async function loadMaxVaultData(opts: {
   const shelves: MaxSubjectShelf[] = []
   for (const s of shelfSubjects) {
     const subjectAttempts = attempts.filter(
-      (a) => getAttemptSubjectCode(a) === s.code
+      (a) => getAttemptSubjectCode(a, preferredCodes) === s.code
     )
     let masteries: LeafMastery[] = []
     if (getSyllabusByCode(s.code)?.length) {
@@ -339,7 +355,22 @@ export async function loadMaxVaultData(opts: {
         calculateParentMastery(subjectAttempts, s.code)
       )
     }
-    const weak = topicTargetsFromMasteries(masteries, 3)
+    let weak = topicTargetsFromMasteries(masteries, 3)
+    if (weak.length < 2) {
+      const fromTags = weakTopicsFromAttemptTags(
+        s.code,
+        subjectAttempts,
+        preferredCodes,
+        4
+      )
+      const seen = new Set(weak.map((w) => w.code))
+      for (const t of fromTags) {
+        if (seen.has(t.code)) continue
+        weak.push(t)
+        seen.add(t.code)
+        if (weak.length >= 4) break
+      }
+    }
     const drills =
       weak.length > 0
         ? await fetchTopicRecommendations(supabase, weak, 3)
@@ -386,6 +417,8 @@ export async function loadMaxVaultData(opts: {
     .limit(40)
 
   const fullMarksModels: FullMarksModel[] = []
+  const focusModels: FullMarksModel[] = []
+  const otherModels: FullMarksModel[] = []
   for (const a of recentAttempts ?? []) {
     const ai = a.ai_marking as {
       full_marks_rewrite?: {
@@ -431,32 +464,64 @@ export async function loadMaxVaultData(opts: {
             { returnTo: 'vault' }
           )
         : null
-    fullMarksModels.push({
+    const model: FullMarksModel = {
       attemptId: a.id as string,
       label,
       marksEarned: a.marks_earned as number,
       totalMarks: a.total_marks as number,
       createdAt: a.created_at as string,
-      subjectCode: getAttemptSubjectCode(a as AttemptWithPaper),
+      subjectCode: getAttemptSubjectCode(a as AttemptWithPaper, preferredCodes),
       rewriteSnippet: snippet || null,
       annotationCount: rewrite.annotations?.length ?? 0,
       paperCode,
       paperSession,
       questionNumber,
       beatHref,
-    })
-    if (fullMarksModels.length >= 12) break
+    }
+    // Prefer focus-subject models so Maths rewrites don't crowd an Economics desk.
+    if (focusCode && model.subjectCode === focusCode) focusModels.push(model)
+    else otherModels.push(model)
+  }
+  fullMarksModels.push(...focusModels.slice(0, 12))
+  if (fullMarksModels.length < 4) {
+    for (const m of otherModels) {
+      fullMarksModels.push(m)
+      if (fullMarksModels.length >= 8) break
+    }
   }
 
   const shelfCodes = new Set(subjects.map((s) => s.code))
-  const otherCuratedCodes = ['9709', '9702', '9700', '9708', '9618'].filter(
+  const otherCuratedCodes = ['9709', '9702', '9700', '9708', '9706', '9618'].filter(
     (c) => !shelfCodes.has(c)
   )
 
-  const weakForFocus = examPack?.weakTopics ?? topicTargetsFromMasteries(focusMasteries, 6)
+  let weakForFocus =
+    examPack?.weakTopics ?? topicTargetsFromMasteries(focusMasteries, 6)
+  if (focusCode && weakForFocus.length < 3) {
+    const fromTags = weakTopicsFromAttemptTags(
+      focusCode,
+      focusAttempts,
+      preferredCodes,
+      5
+    )
+    const seen = new Set(weakForFocus.map((w) => w.code))
+    for (const t of fromTags) {
+      if (seen.has(t.code)) continue
+      weakForFocus.push(t)
+      seen.add(t.code)
+      if (weakForFocus.length >= 6) break
+    }
+  }
+  // Showcase-friendly seeds when still thin (esp. Economics Max desks).
+  if (focusCode && weakForFocus.length < 2) {
+    const shelfWeak = shelves.find((s) => s.code === focusCode)?.weakTopics ?? []
+    weakForFocus = shelfWeak.length > 0 ? shelfWeak : weakForFocus
+  }
   const focusDrills = shelves.find((s) => s.isFocus)?.drills ?? []
   const courseLessons = buildVaultCourseLessons(focusCode, weakForFocus, 4)
-  const diagramPads = buildVaultDiagramPads(focusCode, courseLessons, focusDrills, 2)
+  // Economics lives on diagrams — surface more pads on the Max desk.
+  const padLimit = focusCode === '9708' || focusCode === '9706' ? 4 : 2
+  const diagramPads = buildVaultDiagramPads(focusCode, courseLessons, focusDrills, padLimit)
   const diagramTheatres = buildVaultDiagramTheatres(
     shelfSubjects.map((s) => ({ code: s.code, name: s.name }))
   )
@@ -505,6 +570,17 @@ export async function loadMaxVaultData(opts: {
   const questionBank =
     questionBanks.find((b) => b.subjectCode === focusCode) ?? questionBanks[0] ?? null
 
+  const personalBrief = buildVaultPersonalBrief({
+    focusCode,
+    focusName,
+    attempts,
+    preferredSubjectCodes: preferredCodes,
+    targetGrade,
+    nextLesson: courseLessons[0]
+      ? { href: courseLessons[0].href, title: courseLessons[0].title }
+      : null,
+  })
+
   return {
     subjectCode: focusCode,
     subjectName: focusName,
@@ -528,5 +604,6 @@ export async function loadMaxVaultData(opts: {
     coachInbox,
     questionBanks,
     questionBank,
+    personalBrief,
   }
 }

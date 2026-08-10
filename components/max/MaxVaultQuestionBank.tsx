@@ -83,7 +83,7 @@ export function MaxVaultQuestionBank({
           </h3>
           <p className="text-body mt-2 mb-0 text-[var(--ec-text-secondary)]">
             {active.board === 'cambridge'
-              ? 'Pick a topic, open a question, work it, then Mark — paper locked, answer only.'
+              ? 'Each card opens as a real exam paper — white sheet, paper font, full stem. Work it, then Mark (answer only).'
               : active.note}
           </p>
         </div>
@@ -135,11 +135,12 @@ export function MaxVaultQuestionBank({
             ))}
           </ul>
         ) : (
-          <p className="text-body m-0 text-[var(--ec-text-secondary)]">
-            Nothing queued for {active.subjectCode}
-            {topicFilter !== 'all' ? ` · ${topicFilter}` : ''} yet. Tagged papers
-            stock this desk as they land.
-          </p>
+          <EmptyDeskState
+            subjectCode={active.subjectCode}
+            subjectLabel={active.subjectLabel}
+            topicFilter={topicFilter}
+            papersHubHref={active.papersHubHref}
+          />
         )}
 
         <p className="text-caption m-0">
@@ -153,6 +154,76 @@ export function MaxVaultQuestionBank({
         </p>
       </div>
     </section>
+  )
+}
+
+function EmptyDeskState({
+  subjectCode,
+  subjectLabel,
+  topicFilter,
+  papersHubHref,
+}: {
+  subjectCode: string
+  subjectLabel: string
+  topicFilter: string
+  papersHubHref: string
+}) {
+  const bridges =
+    subjectCode === '9706'
+      ? [
+          {
+            href: '/courses/9706/1-6-2-calculation-and-evaluation-of-ratios',
+            label: 'Ratios lesson',
+          },
+          {
+            href: '/courses/9706/1-4-3-bank-reconciliation-statements',
+            label: 'Bank reconciliation',
+          },
+          {
+            href: '/courses/9706/2-2-4-cost-volume-profit-analysis',
+            label: 'Cost–volume–profit',
+          },
+        ]
+      : subjectCode === '9708'
+        ? [
+            {
+              href: '/courses/9708/2-4-the-interaction-of-demand-and-supply',
+              label: 'Demand & supply',
+            },
+            {
+              href: '/courses/9708/1-5-production-possibility-curves',
+              label: 'PPC diagrams',
+            },
+            {
+              href: '/mark?subject=9708',
+              label: 'Mark a 9708 question',
+            },
+          ]
+        : []
+
+  return (
+    <div className="space-y-3">
+      <p className="text-body m-0 text-[var(--ec-text-secondary)]">
+        {topicFilter !== 'all'
+          ? `No live questions queued for ${subjectCode} · ${topicFilter} yet.`
+          : `The ${subjectLabel} desk is still stocking tagged papers.`}{' '}
+        Use a Max lesson path below, or mark one question to seed this shelf.
+      </p>
+      <ul className="m-0 flex list-none flex-wrap gap-2 pl-0">
+        {bridges.map((b) => (
+          <li key={b.href}>
+            <Link href={b.href} className="ec-btn-secondary text-sm">
+              {b.label}
+            </Link>
+          </li>
+        ))}
+        <li>
+          <Link href={papersHubHref} className="ec-btn-secondary text-sm">
+            {subjectCode} papers
+          </Link>
+        </li>
+      </ul>
+    </div>
   )
 }
 
@@ -226,16 +297,47 @@ function QuestionDeskCard({
   }, [open, canSit, fullStem, q.paperCode, q.paperSession, q.questionNumber, q.stem])
 
   const preview = q.stem || q.reason
+  const paperId =
+    q.source === 'desk'
+      ? `${boardLabel} desk`
+      : `${q.paperCode ?? boardLabel}`
+  const sessionLine = q.paperSession || ''
+  const qLabel = q.questionNumber ? `Question ${q.questionNumber}` : 'Question'
+  const boardName =
+    board === 'cambridge'
+      ? 'Cambridge International'
+      : board === 'ib'
+        ? 'IB Diploma Programme'
+        : board === 'edexcel'
+          ? 'Pearson Edexcel'
+          : board === 'aqa'
+            ? 'AQA'
+            : boardLabel
+  const boardSub =
+    board === 'cambridge'
+      ? 'A Level · examination paper'
+      : board === 'ib'
+        ? 'Examination-style practice'
+        : `${boardLabel} · examination paper`
 
   return (
-    <div className={`ms-vault__qbank-card${open ? ' is-open' : ''}`}>
-      <div className="ms-vault__qbank-meta">
-        <span className="ms-vault__qbank-paper">
-          {q.source === 'desk'
-            ? `${boardLabel} desk`
-            : `${q.paperCode} · Q${q.questionNumber}`}
-          {q.totalMarks != null ? ` · ${q.totalMarks} marks` : ''}
-        </span>
+    <article className={`ms-vault__exam-slip${open ? ' is-open' : ''}`}>
+      <header className="ms-vault__exam-masthead">
+        <div className="ms-vault__exam-board">
+          <span className="ms-vault__exam-board-name">{boardName}</span>
+          <span className="ms-vault__exam-board-sub">{boardSub}</span>
+        </div>
+        <div className="ms-vault__exam-ids">
+          <span className="ms-vault__exam-code">{paperId}</span>
+          {sessionLine ? <span className="ms-vault__exam-session">{sessionLine}</span> : null}
+          {q.totalMarks != null ? (
+            <span className="ms-vault__exam-marks">[{q.totalMarks}]</span>
+          ) : null}
+        </div>
+      </header>
+
+      <div className="ms-vault__exam-topic-row">
+        <span className="ms-vault__exam-topic">{q.topicLabel}</span>
         <span
           className={
             q.source === 'weakness'
@@ -246,40 +348,40 @@ function QuestionDeskCard({
           {q.topicCode || (q.source === 'weakness' ? 'Your gap' : boardLabel)}
         </span>
       </div>
-      <p className="ms-vault__qbank-topic m-0">{q.topicLabel}</p>
 
       {open && canSit ? (
-        <div className="ms-vault__qbank-sit">
+        <div className="ms-vault__exam-sheet">
+          <p className="ms-vault__exam-qnum m-0">{qLabel}</p>
           {loadingStem ? (
-            <p className="ms-vault__qbank-stem m-0">Loading full question…</p>
+            <p className="ms-vault__exam-body m-0">Loading full question…</p>
           ) : fullStem ? (
-            <p className="ms-vault__qbank-stem ms-vault__qbank-stem--full m-0 whitespace-pre-wrap">
-              {fullStem}
-            </p>
+            <p className="ms-vault__exam-body m-0 whitespace-pre-wrap">{fullStem}</p>
           ) : (
-            <p className="ms-vault__qbank-stem ms-vault__qbank-stem--muted m-0">
+            <p className="ms-vault__exam-body ms-vault__exam-body--muted m-0">
               {stemError || preview}
             </p>
           )}
-          <p className="text-caption m-0 text-[var(--ec-text-secondary)]">
-            Work it on paper. Mark locks this paper — you only upload your answer.
+          <p className="ms-vault__exam-rubric m-0">
+            Answer on lined paper as in the exam. Then mark — we lock this paper so you only
+            upload your answer against the official scheme.
           </p>
           <div className="ms-vault__qbank-actions">
             <Link href={q.attemptHref} className="ec-btn-primary text-sm">
               Mark my answer →
             </Link>
             <button type="button" className="ec-btn-ghost text-sm" onClick={onToggle}>
-              Hide question
+              Fold paper
             </button>
           </div>
         </div>
       ) : (
         <>
-          <p className="ms-vault__qbank-stem m-0">{preview}</p>
+          <p className="ms-vault__exam-qnum m-0">{qLabel}</p>
+          <p className="ms-vault__exam-preview m-0">{preview}</p>
           <div className="ms-vault__qbank-actions">
             {canSit ? (
               <button type="button" className="ec-btn-primary text-sm" onClick={onToggle}>
-                Sit this question →
+                Open exam paper →
               </button>
             ) : (
               <Link href={q.attemptHref} className="ec-btn-primary text-sm">
@@ -294,6 +396,6 @@ function QuestionDeskCard({
           </div>
         </>
       )}
-    </div>
+    </article>
   )
 }

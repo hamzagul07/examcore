@@ -26,6 +26,9 @@ const SYLLABUS_SUBJECT_CODES = [
 
 export type AttemptWithPaper = AttemptLite & {
   mark_schemes?: { paper_code: string | null } | { paper_code: string | null }[] | null
+  /** Optional text cues when paper_code is missing (homework / practice scans). */
+  question_text?: string | null
+  ocr_text?: string | null
 }
 
 function paperCodeFromAttempt(attempt: AttemptWithPaper): string | null {
@@ -46,8 +49,17 @@ const TAG_INFERENCE_SUBJECT_CODES: readonly string[] = [
 ]
 
 /** Infer subject from syllabus_tags when paper_code is unavailable. */
-function subjectFromTags(tags: string[] | null | undefined): string | null {
+function subjectFromTags(
+  tags: string[] | null | undefined,
+  preferredSubjectCodes?: readonly string[] | null
+): string | null {
   if (!tags?.length) return null
+
+  const preferred = preferredSubjectCodes?.filter(Boolean) ?? []
+  const preferredRank = (code: string) => {
+    const i = preferred.indexOf(code)
+    return i === -1 ? 999 : i
+  }
 
   let bestCode: string | null = null
   let bestScore = 0
@@ -59,7 +71,13 @@ function subjectFromTags(tags: string[] | null | undefined): string | null {
     for (const tag of tags) {
       if (valid.has(tag)) score += 1
     }
-    if (score > bestScore) {
+    if (
+      score > bestScore ||
+      (score === bestScore &&
+        score > 0 &&
+        bestCode != null &&
+        preferredRank(code) < preferredRank(bestCode))
+    ) {
       bestScore = score
       bestCode = code
     }
@@ -68,8 +86,64 @@ function subjectFromTags(tags: string[] | null | undefined): string | null {
   return bestScore > 0 ? bestCode : null
 }
 
-export function getAttemptSubjectCode(attempt: AttemptWithPaper): string | null {
-  return paperCodeFromAttempt(attempt) ?? subjectFromTags(attempt.syllabus_tags)
+/** Keyword cues from homework OCR / typed stems when tags are ambiguous (e.g. 1.1). */
+function subjectFromAttemptText(attempt: AttemptWithPaper): string | null {
+  const hay = `${attempt.question_text ?? ''} ${attempt.ocr_text ?? ''}`.toLowerCase()
+  if (!hay.trim()) return null
+
+  // Accounting first — "depreciation of assets" must not hit Economics currency depreciation.
+  if (
+    /trial balance|double entry|depreciation of|non-current asset|ledger|balance sheet|cost.?volume|absorption costing|bank reconciliation|statement of financial position/.test(
+      hay
+    )
+  ) {
+    return '9706'
+  }
+
+  // Economics — avoid bare "depreciat" / commerce "differentiation" / "integration".
+  if (
+    /scarcit|opportunity cost|aggregate demand|aggregate supply|currency depreciat|exchange.?rate depreciat|marshall-lerner|macroeconomic|price elasticity|circular flow|producer surplus|consumer surplus|fiscal policy|monetary policy/.test(
+      hay
+    )
+  ) {
+    return '9708'
+  }
+
+  // Maths — require exam-math stems, not "product differentiation" / "economic integration".
+  if (
+    /quadratic|completing the square|binomial expansion|trigonometry|stationary point|dy\/dx|d\/dx|∫|definite integral|differentiate with respect|integration by|chain rule|product rule/.test(
+      hay
+    )
+  ) {
+    return '9709'
+  }
+
+  return null
+}
+
+/**
+ * Resolve attempt → subject. Prefer paper_code, then text cues, then tag voting
+ * (ties break toward the student's profile subjects when provided).
+ */
+export function getAttemptSubjectCode(
+  attempt: AttemptWithPaper,
+  preferredSubjectCodes?: readonly string[] | null
+): string | null {
+  const fromPaper = paperCodeFromAttempt(attempt)
+  if (fromPaper) return fromPaper
+  const fromText = subjectFromAttemptText(attempt)
+  const fromTags = subjectFromTags(attempt.syllabus_tags, preferredSubjectCodes)
+  if (fromText && fromTags && fromText !== fromTags) {
+    if (
+      !preferredSubjectCodes?.length ||
+      preferredSubjectCodes.includes(fromText)
+    ) {
+      return fromText
+    }
+    // Preferred list rejects the text cue — trust syllabus tags instead.
+    return fromTags
+  }
+  return fromText ?? fromTags
 }
 
 /** Resolve subject for marking UI / badges (API field, paper code, or tag voting). */

@@ -15,8 +15,8 @@ export function MaxVaultTile() {
             Your Vault — built especially for you
           </p>
           <p className="text-body m-0 text-[var(--ec-text-secondary)]">
-            Live diagrams, courses that adapt to your weak topics, sprint packs, and
-            coach notes. Videos coming soon. Open it and use everything Max put here.
+            Concept Cinema, courses that adapt to your weak topics, sprint packs, and
+            coach notes — open it and use everything Max put here for you.
           </p>
         </div>
       </div>

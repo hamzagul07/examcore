@@ -76,6 +76,20 @@ const BY_CODE: Record<string, TechniqueLink[]> = {
       href: '/blog/most-repeated-cambridge-economics-past-paper-topics-2026',
     },
   ],
+  '9706': [
+    {
+      label: 'How to get an A* in 9706 Accounting',
+      href: '/blog/how-to-get-an-a-star-in-cambridge-9706-accounting',
+    },
+    {
+      label: 'Most-repeated accounting topics',
+      href: '/blog/most-repeated-cambridge-accounting-past-paper-topics-2026',
+    },
+    {
+      label: '9706 command words',
+      href: '/blog/cambridge-9706-accounting-command-words-guide',
+    },
+  ],
   '9618': [
     {
       label: 'Most-repeated computer science topics',

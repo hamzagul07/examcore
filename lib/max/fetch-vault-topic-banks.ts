@@ -89,19 +89,59 @@ function rowToBankQuestion(
   }
 }
 
+/** Cinema / Max showcase topics — stock these on the desk even before cache order. */
+const SHOWCASE_TOPIC_CODES: Record<string, Array<{ code: string; name: string }>> = {
+  '9708': [
+    { code: '1.1', name: 'Scarcity, choice and opportunity cost' },
+    { code: '1.5', name: 'Production possibility curves' },
+    { code: '2.2', name: 'Elasticity of demand' },
+    { code: '2.4', name: 'Demand and supply interaction' },
+    { code: '4.2', name: 'Circular flow of income' },
+    { code: '4.3', name: 'Aggregate demand and aggregate supply' },
+  ],
+  '9706': [
+    { code: '1.4.3', name: 'Bank reconciliation statements' },
+    { code: '1.6.2', name: 'Calculation and evaluation of ratios' },
+    { code: '2.2.4', name: 'Cost–volume–profit analysis' },
+  ],
+}
+
+function syllabusFillTargets(subjectCode: string, limit: number): TopicTarget[] {
+  const fromCache = getTopicQuestionPages(subjectCode).map((p) => ({
+    code: p.topicCode,
+    name: p.title,
+    reason: `Syllabus topic ${p.topicCode} — build marks here.`,
+  }))
+  const showcase = (SHOWCASE_TOPIC_CODES[subjectCode] ?? []).map((t) => ({
+    code: t.code,
+    name: t.name,
+    reason: `Max cinema topic ${t.code} — sit it after watching the diagram.`,
+  }))
+  const seen = new Set<string>()
+  const merged: TopicTarget[] = []
+  for (const t of [...showcase, ...fromCache]) {
+    if (seen.has(t.code)) continue
+    seen.add(t.code)
+    merged.push(t)
+    if (merged.length >= limit) break
+  }
+  return merged
+}
+
+/**
+ * Weak topics first (personal), then cinema + syllabus fillers so a thin tag
+ * set (e.g. Economics 1.1 / 6.4 only) still stocks a full Max desk.
+ */
 function topicTargetsForSubject(
   subjectCode: string,
   weakTopics: TopicTarget[]
 ): TopicTarget[] {
-  if (weakTopics.length > 0) return weakTopics.slice(0, 5)
-  // No mastery yet — stock from topical cache titles so the desk isn't empty.
-  return getTopicQuestionPages(subjectCode)
-    .slice(0, 5)
-    .map((p) => ({
-      code: p.topicCode,
-      name: p.title,
-      reason: `Syllabus topic ${p.topicCode} — build marks here.`,
-    }))
+  const weak = weakTopics.slice(0, 5)
+  if (weak.length === 0) return syllabusFillTargets(subjectCode, 8)
+
+  const seen = new Set(weak.map((t) => t.code))
+  const fillers = syllabusFillTargets(subjectCode, 12).filter((t) => !seen.has(t.code))
+  return [...weak, ...fillers].slice(0, 10)
 }
 
 async function enrichCambridgeBank(

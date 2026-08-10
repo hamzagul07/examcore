@@ -33,8 +33,9 @@ export function MaxVaultCoursePath({
             : 'Right now you see the normal syllabus path. Mark questions so Vault can rebuild this list around your real weak spots.'}
         </p>
         <p className="text-caption m-0 text-[var(--ec-text-secondary)]">
-          New in courses: <strong className="text-[var(--ec-text-primary)]">learn with live diagrams</strong>.
-          Videos are coming soon if reading feels hard.
+          Prefer motion? Open{' '}
+          <strong className="text-[var(--ec-text-primary)]">Concept Cinema</strong> above,
+          then come back here for the syllabus path.
         </p>
         {lessons.length > 0 ? (
           <ul className="ms-vault__course-grid">

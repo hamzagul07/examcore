@@ -49,6 +49,18 @@ const PLAYBACK_BY_SLUG: Record<string, VaultDiagramPlayback> = {
   '8-1-stationary-waves': {
     durationMs: 9_500,
   },
+  // Economics — step-layered diagrams; longer beats so labels can be read.
+  '2-4-the-interaction-of-demand-and-supply': { durationMs: 12_000 },
+  '2-1-demand-and-supply-curves': { durationMs: 11_000 },
+  '1-5-production-possibility-curves': { durationMs: 11_500 },
+  '2-2-price-elasticity-income-elasticity-and-cross-elasticity-of-demand': {
+    durationMs: 12_500,
+  },
+  '4-3-aggregate-demand-and-aggregate-supply-analysis': { durationMs: 12_000 },
+  '4-2-introduction-to-the-circular-flow-of-income': { durationMs: 11_000 },
+  '1-1-scarcity-choice-and-opportunity-cost': { durationMs: 10_500 },
+  '1-6-2-calculation-and-evaluation-of-ratios': { durationMs: 10_000 },
+  '1-4-3-bank-reconciliation-statements': { durationMs: 10_000 },
 }
 
 export function getVaultDiagramPlayback(slug: string): VaultDiagramPlayback {

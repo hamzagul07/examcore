@@ -117,6 +117,48 @@ export function timedPaperSlots(subjectCode: string): Array<{
   }
 
   const hub = pastPaperHubHref(subjectCode)
+
+  // Economics: MCQ / data response / essay — names match how students sit the suite.
+  if (subjectCode === '9708') {
+    return [
+      {
+        label: '9708 Paper 1 · Multiple choice',
+        href: hub,
+        minutes: 60,
+      },
+      {
+        label: '9708 Paper 2 · Data response & essay',
+        href: hub,
+        minutes: 105,
+      },
+      {
+        label: '9708 Paper 3 / 4 · A2 essay papers',
+        href: hub,
+        minutes: 105,
+      },
+    ]
+  }
+
+  if (subjectCode === '9706') {
+    return [
+      {
+        label: '9706 Paper 1 · Multiple choice',
+        href: hub,
+        minutes: 60,
+      },
+      {
+        label: '9706 Paper 2 · Structured questions',
+        href: hub,
+        minutes: 90,
+      },
+      {
+        label: '9706 Paper 3 · Analysis & evaluation',
+        href: hub,
+        minutes: 105,
+      },
+    ]
+  }
+
   return [
     { label: `${subjectCode} timed paper 1`, href: hub, minutes: 75 },
     { label: `${subjectCode} timed paper 2`, href: hub, minutes: 90 },

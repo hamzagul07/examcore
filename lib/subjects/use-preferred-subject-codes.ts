@@ -29,18 +29,25 @@ export function usePreferredSubjectCodes(): string[] {
           .maybeSingle()
 
         // Only pin subjects the student actually chose — not board defaults.
-        const subjectNames = (profile?.subjects ?? []).filter(
-          (name): name is string => typeof name === 'string' && name.length > 0
-        )
+        // Supabase types `subjects` loosely; narrow explicitly for noImplicitAny.
+        const rawSubjects = Array.isArray(profile?.subjects)
+          ? (profile.subjects as unknown[])
+          : []
+        const subjectNames: string[] = []
+        for (const item of rawSubjects) {
+          if (typeof item === 'string' && item.length > 0) subjectNames.push(item)
+        }
         if (!subjectNames.length) return
 
         const level =
           typeof profile?.level === 'string' && profile.level
             ? profile.level
             : 'A-Level'
-        const next = subjectNames
-          .map((name) => getSubjectById(name, level)?.code)
-          .filter((c): c is string => Boolean(c))
+        const next: string[] = []
+        for (const name of subjectNames) {
+          const code = getSubjectById(name, level)?.code
+          if (code) next.push(code)
+        }
 
         if (!cancelled) setCodes(next)
       } catch {

@@ -81,3 +81,48 @@ export function hasDeepMarking(access: EffectiveAccess): boolean {
 export function hasFullMarksRewrite(access: EffectiveAccess): boolean {
   return hasPaidAccess(access)
 }
+
+/*
+ * Max-only exclusives. Scholar/Pro keep shared paid features above; these add
+ * on top so Max feels given-to without stripping the middle tier.
+ */
+
+export function isMax(access: EffectiveAccess): boolean {
+  return access === 'max'
+}
+
+/** Max Resource Vault — personalised packs, curated links, tools hub. */
+export function hasMaxResourceVault(access: EffectiveAccess): boolean {
+  return access === 'max'
+}
+
+/**
+ * Priority deep marking: Max gets higher per-question concurrency (and
+ * whole-paper batch size 2) so the same paid verify depth finishes sooner.
+ * Verify itself stays `isPaid` — Pro/Scholar keep the second-opinion pass.
+ */
+export function hasPriorityMarking(access: EffectiveAccess): boolean {
+  return access === 'max'
+}
+
+/** Full weekly examiner coach email is a Max ritual. */
+export function hasMaxWeeklyCoach(access: EffectiveAccess): boolean {
+  return access === 'max'
+}
+
+/**
+ * Early-access surfaces. Only light up UI when a real experimental flag is set
+ * so we never advertise empty early access.
+ */
+export function hasEarlyAccess(access: EffectiveAccess): boolean {
+  return access === 'max'
+}
+
+/** One-time welcome gift granted on Max (mastery) activation. */
+export const MAX_WELCOME_BONUS_CREDITS = 25
+
+/** One-time exam-sprint gift when exam_date is within 14 days. */
+export const MAX_SPRINT_BONUS_CREDITS = 15
+
+/** Days before exam_date when the Max sprint pack unlocks. */
+export const MAX_SPRINT_WINDOW_DAYS = 14

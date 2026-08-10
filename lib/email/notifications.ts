@@ -284,12 +284,21 @@ export function sendPurchaseConfirmationEmail(payload: {
       )
     : sectionHeading('What just unlocked') +
       `<div style="margin:6px 0 20px">` +
-      [
-        `<strong style="color:${EMAIL_INK}">Whole scripts, end to end.</strong> Up to ${WHOLE_PAPER_QUESTION_LIMIT} questions per upload, instead of stopping after the first ${FREE_WHOLE_PAPER_QUESTION_LIMIT}.`,
-        `<strong style="color:${EMAIL_INK}">A second-opinion pass on every mark.</strong> Each script is re-checked against the scheme before you see it, which is where the borderline marks get settled.`,
-        `<strong style="color:${EMAIL_INK}">Your answer rewritten to full marks.</strong> Annotated line by line, so you can see exactly what each addition earned.`,
-        `<strong style="color:${EMAIL_INK}">An examiner's report every Sunday</strong>, plus drills generated for whichever topics are costing you the most.`,
-      ]
+      (payload.tier === 'mastery'
+        ? [
+            `<strong style="color:${EMAIL_INK}">Max Resource Vault.</strong> Personalised sprint packs, curated flagship resources, and your full-marks model bank.`,
+            `<strong style="color:${EMAIL_INK}">+25 welcome bonus marks</strong> on your account (separate Max welcome email confirms).`,
+            `<strong style="color:${EMAIL_INK}">Priority deep marking</strong> on big multi-question scripts — Max finishes the verify pass sooner.`,
+            `<strong style="color:${EMAIL_INK}">Weekly Max coach report</strong> every Sunday with weak-topic drills.`,
+            `<strong style="color:${EMAIL_INK}">${cap ?? 250} questions a month</strong> so exam season doesn't run you out of marks.`,
+          ]
+        : [
+            `<strong style="color:${EMAIL_INK}">Whole scripts, end to end.</strong> Up to ${WHOLE_PAPER_QUESTION_LIMIT} questions per upload, instead of stopping after the first ${FREE_WHOLE_PAPER_QUESTION_LIMIT}.`,
+            `<strong style="color:${EMAIL_INK}">A second-opinion pass on every mark.</strong> Each script is re-checked against the scheme before you see it, which is where the borderline marks get settled.`,
+            `<strong style="color:${EMAIL_INK}">Your answer rewritten to full marks.</strong> Annotated line by line, so you can see exactly what each addition earned.`,
+            `<strong style="color:${EMAIL_INK}">Progress that maps the syllabus</strong> — mastery matrix, trajectory, and weak-spot drills.`,
+          ]
+      )
         .map(
           (item) =>
             `<p style="margin:0 0 10px;font-size:14.5px;line-height:1.55;color:#333">${item}</p>`
@@ -322,13 +331,24 @@ export function sendPurchaseConfirmationEmail(payload: {
     '',
     isCredits
       ? 'Credits are only spent once your monthly questions run out, so they sit there until you need them.'
-      : [
-          'What just unlocked:',
-          `- Whole scripts, up to ${WHOLE_PAPER_QUESTION_LIMIT} questions per upload (free stops after ${FREE_WHOLE_PAPER_QUESTION_LIMIT}).`,
-          '- A second-opinion pass on every mark before you see it.',
-          '- Your answer rewritten to full marks, annotated line by line.',
-          "- An examiner's report every Sunday, plus drills for your weakest topics.",
-        ].join('\n'),
+      : payload.tier === 'mastery'
+        ? [
+            'What just unlocked:',
+            '- Max Resource Vault — sprint packs, curated resources, full-marks bank.',
+            '- +25 welcome bonus marks (confirmed in a separate Max email).',
+            '- Priority deep marking on big multi-question scripts.',
+            '- Weekly Max coach report every Sunday.',
+            `- ${cap ?? 250} questions a month.`,
+            '',
+            `Open your Vault: ${SITE_URL}/dashboard/vault`,
+          ].join('\n')
+        : [
+            'What just unlocked:',
+            `- Whole scripts, up to ${WHOLE_PAPER_QUESTION_LIMIT} questions per upload (free stops after ${FREE_WHOLE_PAPER_QUESTION_LIMIT}).`,
+            '- A second-opinion pass on every mark before you see it.',
+            '- Your answer rewritten to full marks, annotated line by line.',
+            '- Progress that maps the syllabus — mastery matrix, trajectory, and weak-spot drills.',
+          ].join('\n'),
     '',
     'Payments and receipts are handled by Polar, our merchant of record. Change or cancel any time:',
     `${SITE_URL}/account/billing`,

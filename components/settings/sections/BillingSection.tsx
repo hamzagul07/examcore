@@ -112,6 +112,8 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
           ? `Renews on ${periodEnd}${billing.billingPeriod === 'yearly' ? ' (yearly billing)' : ''}.`
           : null
 
+  const isMaxPlan = billing.tier === 'mastery'
+
   return (
     <div className="space-y-6">
       <Suspense fallback={null}>
@@ -244,6 +246,24 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
           )}
         </div>
       </Card>
+
+      {isMaxPlan ? (
+        <Card variant="solid" padding="lg" as="section" className="ms-settings-section">
+          <p className="label-overline">Max exclusives</p>
+          <h2 className="text-h3 mt-2 text-[var(--ec-text-primary)]">Your Max Resource Vault</h2>
+          <ul className="text-body mt-3 list-disc space-y-1 pl-5 text-[var(--ec-text-secondary)]">
+            <li>Personalised sprint packs from your weak topics</li>
+            <li>Priority deep marking on big scripts</li>
+            <li>Weekly Max coach report</li>
+            <li>Welcome + exam-sprint bonus marks</li>
+          </ul>
+          <Link href="/dashboard/vault" className="mt-4 inline-flex">
+            <Button variant="primary" size="md" type="button">
+              Open Resource Vault →
+            </Button>
+          </Link>
+        </Card>
+      ) : null}
 
       {/* ---- Usage this period ---- */}
       <Card variant="solid" padding="lg" as="section" className="ms-settings-section">

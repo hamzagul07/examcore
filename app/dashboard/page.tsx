@@ -45,6 +45,14 @@ import {
   topicTargetsFromMasteries,
 } from '@/lib/insights/recommendations'
 import { truncateMarkingPreview } from '@/lib/rich-text/truncate-marking-preview'
+import { effectiveAccess } from '@/lib/billing/access'
+import { hasMaxResourceVault } from '@/lib/billing/features'
+import { computeBillingSummary } from '@/lib/billing/enforcement'
+import { MaxVaultTile } from '@/components/max/MaxVaultTile'
+import { MaxUsageTheatre } from '@/components/max/MaxUsageTheatre'
+import { MaxEarlyAccessBanner } from '@/components/max/MaxEarlyAccessBanner'
+import { maybeGrantMaxSprintGift } from '@/lib/max/gifts'
+import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -211,6 +219,31 @@ export default async function DashboardPage() {
   // Extra due items beyond the one promoted into nextAction.
   const moreReview = reviewItems.slice(1, 4)
 
+  const { data: subRow } = await supabase
+    .from('user_subscriptions')
+    .select('tier, status')
+    .eq('user_id', user.id)
+    .maybeSingle()
+  const access = effectiveAccess({
+    tier: (subRow?.tier as SubscriptionTier) ?? 'free',
+    status: (subRow?.status as SubscriptionStatus) ?? 'canceled',
+  })
+  const showMax = hasMaxResourceVault(access)
+  let maxUsage: { used: number; remaining: number; cap: number } | null = null
+  if (showMax) {
+    await maybeGrantMaxSprintGift(supabaseAdmin, user.id, examDate)
+    try {
+      const summary = await computeBillingSummary(user.id, supabaseAdmin)
+      maxUsage = {
+        used: summary.questions.used,
+        remaining: summary.questions.remaining,
+        cap: summary.questions.cap,
+      }
+    } catch {
+      maxUsage = null
+    }
+  }
+
   return (
     <main className="app-shell app-shell-tabbed ms-dash-home">
       <div className="mx-auto min-w-0 max-w-7xl rounded-none px-0 pb-8 pt-0 sm:rounded">
@@ -226,6 +259,12 @@ export default async function DashboardPage() {
                 firstName={greetingName}
               />
               <BillingLimitBanner className="mb-6 mt-6" />
+              {showMax ? (
+                <div className="mt-6 space-y-4 px-4 sm:px-0">
+                  <MaxEarlyAccessBanner />
+                  <MaxVaultTile />
+                </div>
+              ) : null}
             </>
           ) : (
             <>
@@ -238,6 +277,19 @@ export default async function DashboardPage() {
               {/* DB-02: one server-computed next action, then weekly status. */}
               <NextActionCard action={nextAction} />
               <BillingLimitBanner className="mb-6" />
+              {showMax ? (
+                <div className="mb-6 space-y-4">
+                  <MaxEarlyAccessBanner />
+                  <MaxVaultTile />
+                  {maxUsage ? (
+                    <MaxUsageTheatre
+                      used={maxUsage.used}
+                      remaining={maxUsage.remaining}
+                      cap={maxUsage.cap}
+                    />
+                  ) : null}
+                </div>
+              ) : null}
               <MomentumStrip summary={momentum} streak={streak} />
 
               <DashboardSection title="Continue learning" defaultOpen>

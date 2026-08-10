@@ -28,7 +28,7 @@ import {
 } from '@/lib/rate-limit'
 import { rateLimitJson } from '@/lib/http/rate-limit-response'
 import { createServiceClient } from '@/lib/supabase/service'
-import { wholePaperQuestionLimit } from '@/lib/billing/features'
+import { wholePaperQuestionLimit, hasPriorityMarking } from '@/lib/billing/features'
 import { effectiveAccess, type EffectiveAccess } from '@/lib/billing/access'
 import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
 import { ocrPdfToPages } from '@/lib/marking/pdf-pages'
@@ -222,6 +222,7 @@ export async function POST(request: NextRequest) {
       pages_ocr: pagesOcr,
       segmented_questions: enrichedSegments,
       partial_questions: [],
+      priority: hasPriorityMarking(access) ? 'max' : 'standard',
     }
 
     const { data: attempt, error: insertError } = await supabaseAdmin

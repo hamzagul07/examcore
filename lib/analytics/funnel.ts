@@ -24,6 +24,7 @@ export type FunnelEvent =
   | 'upgrade_viewed'
   | 'checkout_started'
   | 'subscription_started'
+  | 'vault_opened'
 
 export type FunnelProps = {
   subject?: string | null

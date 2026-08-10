@@ -40,9 +40,12 @@ const ROWS: Row[] = [
   { label: 'In-depth, interactive courses', cells: [false, false, true, true] },
   { label: 'Examiner-style detailed marking feedback', cells: [false, false, true, true] },
   { label: 'Detailed progress journey & analytics', cells: [false, false, true, true] },
-  { label: 'Extra revision resources & practice packs', cells: [false, false, true, true] },
-  { label: 'Projected grade estimates', cells: [false, false, false, true] },
-  { label: 'Priority marking queue', cells: [false, false, false, true] },
+  { label: 'Max Resource Vault', cells: [false, false, false, true] },
+  { label: 'Best revision resources & practice packs', cells: [false, false, false, true] },
+  { label: 'Projected grade dashboard widget', cells: [false, false, false, true] },
+  { label: 'Priority deep marking', cells: [false, false, false, true] },
+  { label: 'Max weekly coach report', cells: [false, false, false, true] },
+  { label: 'Welcome bonus marks (+25)', cells: [false, false, false, true] },
   { label: 'Early access to new features', cells: [false, false, false, true] },
 ]
 

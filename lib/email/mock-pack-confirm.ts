@@ -66,6 +66,12 @@ export function sendMockPackConfirmEmail(payload: MockPackConfirmPayload): void 
           actionLabel: 'Open →',
         }) +
         linkRow({
+          titleHtml: `<span style="font-size:15px;font-weight:600;color:${EMAIL_INK}">Want focus paths now?</span>`,
+          metaHtml: `<span style="color:${EMAIL_MUTED}">Max Resource Vault unlocks personalised packs immediately</span>`,
+          href: `${SITE_URL}/pricing`,
+          actionLabel: 'See Max →',
+        }) +
+        linkRow({
           titleHtml: `<span style="font-size:15px;font-weight:600;color:${EMAIL_INK}">Mark a question free</span>`,
           metaHtml: `<span style="color:${EMAIL_MUTED}">Scheme-aligned feedback on handwriting</span>`,
           href: markHref,

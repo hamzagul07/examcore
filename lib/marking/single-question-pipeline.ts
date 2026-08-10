@@ -135,6 +135,11 @@ export type SingleQuestionMarkInput = {
    */
   enableRewrite?: boolean
   /**
+   * Max priority deep marking — bumps per-question concurrency so large Max
+   * scripts finish sooner while still running the full verify pass.
+   */
+  priorityDeepMarking?: boolean
+  /**
    * Return the premium rewrite as a plan (on `_rewrite_plan`) instead of
    * generating it inline. Set by the streaming caller, which sends the marks
    * immediately and then fills the rewrite in with a follow-up event.
@@ -382,6 +387,8 @@ async function markSplitQuestions(params: {
   resolvedIb: ResolvedIbComponent | null
   userId: string | null
   isPaid: boolean
+  /** Max: higher concurrency while keeping full verify. */
+  priorityDeepMarking?: boolean
   answerPhotoUrl: string | null
   pagePhotoUrls: string[]
   startedAt: number
@@ -395,6 +402,7 @@ async function markSplitQuestions(params: {
     resolvedIb,
     userId,
     isPaid,
+    priorityDeepMarking = false,
     answerPhotoUrl,
     pagePhotoUrls,
     startedAt,
@@ -425,17 +433,21 @@ async function markSplitQuestions(params: {
   // Verify pass: free/guest scripts skip it above VERIFY_MAX_BATCH to stay under
   // the function timeout. Paid users get the second-opinion pass on the FULL
   // script (premium marking depth) — the route runs on Fluid Compute with a much
-  // larger maxDuration, so the extra Pro calls have headroom.
+  // larger maxDuration, so the extra Pro calls have headroom. Max bumps
+  // concurrency so the same deep pass finishes sooner ("priority deep marking").
   const verify = isPaid || capped.length <= VERIFY_MAX_BATCH
   if (!verify) {
     console.warn(
       `[mark] ${capped.length} questions > ${VERIFY_MAX_BATCH}; skipping verify pass to stay under the function timeout`
     )
   }
+  const concurrency = priorityDeepMarking
+    ? Math.min(SPLIT_CONCURRENCY + 2, 5)
+    : SPLIT_CONCURRENCY
 
   // Mark each question in isolation, with bounded concurrency (H2 + H3).
   let completed = 0
-  const outcomes = await mapWithConcurrency(capped, SPLIT_CONCURRENCY, async (q) => {
+  const outcomes = await mapWithConcurrency(capped, concurrency, async (q) => {
     const outcome = await markOneSplitQuestion(q, {
       practiceCode,
       resolvedIb,
@@ -543,6 +555,7 @@ export async function runSingleQuestionMark(
     userId,
     isPaid = false,
     enableRewrite = false,
+    priorityDeepMarking = false,
     deferRewrite = false,
     startedAt = Date.now(),
     onProgress,
@@ -737,6 +750,7 @@ export async function runSingleQuestionMark(
           resolvedIb: sharedIb,
           userId,
           isPaid,
+          priorityDeepMarking,
           answerPhotoUrl,
           pagePhotoUrls,
           startedAt,

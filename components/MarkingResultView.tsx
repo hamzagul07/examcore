@@ -27,6 +27,7 @@ import { MarkAuditPanel } from '@/components/mark/MarkAuditPanel'
 import { MarkGapPanel } from '@/components/examiner-ink/MarkGapPanel'
 import { MarkBandLadder } from '@/components/examiner-ink/MarkBandLadder'
 import { buildMarkGap, buildBandGap, inlineGhostFixes } from '@/lib/marking/mark-gap'
+import { MaxBadge } from '@/components/max/MaxBadge'
 import {
   buildPostMarkDiagnosis,
   type PostMarkDiagnosis,
@@ -138,6 +139,7 @@ export function MarkingResultView({
   attemptId,
   inkPages,
   isPaid,
+  isMax,
   primaryAction,
 }: {
   result: MarkingResultData
@@ -149,6 +151,8 @@ export function MarkingResultView({
    * flow; omit elsewhere (e.g. historical attempt view) to suppress the teaser.
    */
   isPaid?: boolean
+  /** Max plan — shows priority deep-marking stamp on the result. */
+  isMax?: boolean
   /**
    * MK-05 — “what should I do next?” sits after the mark gap / band ladder,
    * before mark-by-mark evidence, so the action isn’t buried under audit chrome.
@@ -376,6 +380,11 @@ export function MarkingResultView({
     <div className="ms-marking-result min-w-0">
       <div className="ms-mark-result-head">
         <div>
+          {isMax ? (
+            <div className="mb-3">
+              <MaxBadge label="Max · priority deep marking" />
+            </div>
+          ) : null}
           {overline ? (
             <p className="ms-overline" style={{ marginBottom: 8 }}>
               {overline}

@@ -5,22 +5,21 @@
  */
 
 import type { Recommendation } from './types'
+import { pastPaperMarkHref } from '@/lib/marking/past-paper-mark-href'
 
 export function drillHref(
   rec: Recommendation,
   patternLabel?: string,
   opts?: { returnTo?: 'progress' | 'vault' }
 ): string {
-  const params = new URLSearchParams({
-    practice: '1',
-    paper: rec.paperCode,
-    session: rec.paperSession,
-    q: rec.questionNumber,
+  return pastPaperMarkHref({
+    paperCode: rec.paperCode,
+    paperSession: rec.paperSession,
+    questionNumber: rec.questionNumber,
     reason: rec.reason,
     pattern: patternLabel || rec.targetLabel,
-    return: opts?.returnTo ?? 'progress',
+    returnTo: opts?.returnTo ?? 'progress',
   })
-  return `/mark?${params.toString()}`
 }
 
 /**

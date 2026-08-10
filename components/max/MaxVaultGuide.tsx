@@ -24,8 +24,8 @@ const FEATURES = [
   },
   {
     key: 'qbank',
-    title: 'Cambridge question bank',
-    body: 'Sit a real past-paper question, then mark it against the official Cambridge mark scheme. Weak topics float to the top as you study.',
+    title: 'Sit a question, then mark the answer',
+    body: 'Each subject gets its own desk. For CAIE: open the question, work it, then Mark — we lock the paper so you only submit your answer against the official scheme.',
   },
   {
     key: 'videos',

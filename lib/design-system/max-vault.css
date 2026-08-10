@@ -719,6 +719,29 @@
 }
 
 /* Cambridge question bank */
+.ms-vault__topic-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.ms-vault__topic-chip {
+  border: 1.5px solid color-mix(in srgb, var(--ec-acc-blue) 35%, var(--ec-border));
+  background: transparent;
+  color: var(--ec-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.65rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.ms-vault__topic-chip.is-active {
+  border-color: var(--ec-brand);
+  background: color-mix(in srgb, var(--ec-brand) 12%, transparent);
+  color: var(--ec-text-primary);
+}
+
 .ms-vault__qbank {
   display: grid;
   grid-template-columns: 1fr;
@@ -783,8 +806,31 @@
   overflow: hidden;
 }
 
+.ms-vault__qbank-stem--full {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+  color: var(--ec-text-primary);
+  max-height: 22rem;
+  overflow-y: auto;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--ec-acc-blue) 28%, var(--ec-border));
+  background: color-mix(in srgb, var(--ec-paper, #fff) 92%, var(--ec-acc-blue));
+}
+
 .ms-vault__qbank-stem--muted {
   font-style: italic;
+}
+
+.ms-vault__qbank-sit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: 0.25rem;
+}
+
+.ms-vault__qbank-card.is-open {
+  border-color: color-mix(in srgb, var(--ec-brand) 45%, var(--ec-border));
 }
 
 .ms-vault__qbank-actions {

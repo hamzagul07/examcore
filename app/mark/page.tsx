@@ -92,6 +92,7 @@ import {
   takeHandoff,
 } from '@/lib/courses/mark-handoff'
 import { parseMarkReturnPath } from '@/lib/marking/mark-return-url'
+import { normalizePaperSession } from '@/lib/marking/normalize-paper-session'
 import { applyTopicQuestionToPaperSelection } from '@/lib/marking/topic-question'
 import { CinematicMarkingExperience } from '@/components/mark/CinematicMarkingExperienceLazy'
 import { MarkingWaitOverlay } from '@/components/mark/MarkingWaitOverlay'
@@ -593,24 +594,26 @@ export default function MarkPage() {
   // "Drill this" deep-link from the insights dashboard. Preloads the exact
   // recommended question (which always exists in mark_schemes) and shows a
   // practice banner. Declared after the localStorage effects so it wins.
+  // Loads a banked past-paper question so the student only submits an answer.
   useEffect(() => {
     if (typeof window === 'undefined') return
     const sp = new URLSearchParams(window.location.search)
     if (sp.get('practice') !== '1') return
     const paper = sp.get('paper') || ''
-    const session = sp.get('session') || ''
-    const q = sp.get('q') || ''
+    const sessionRaw = sp.get('session') || ''
+    const q = sp.get('q') || sp.get('question') || ''
     const [subjectCode, componentCode] = paper.split('/')
-    if (subjectCode) setSelectedSubject(subjectCode)
-    if (componentCode) setSelectedComponent(componentCode)
-    const sessionMatch = session.match(/^(.*)\s+(\d{4})$/)
-    if (sessionMatch) {
-      setSelectedSession(sessionMatch[1])
-      setSelectedYear(Number(sessionMatch[2]))
-    } else if (session) {
-      setSelectedSession(session)
+    if (subjectCode) {
+      setSelectedSubject(subjectCode)
+      setSelectedMarkBoard(coerceMarkExamBoard(resolveBoard(subjectCode)))
     }
+    if (componentCode) setSelectedComponent(componentCode)
+    const normalized = normalizePaperSession(sessionRaw)
+    if (normalized.season) setSelectedSession(normalized.season)
+    if (normalized.year != null) setSelectedYear(normalized.year)
     if (q) setQuestionNumber(q)
+    setUploadMode('single_question')
+    setMarkIntent('past_paper')
     setShowManualPaper(true)
     setShowOptional(true)
     setPracticeContext({
@@ -2362,11 +2365,13 @@ export default function MarkPage() {
                 <p className="ms-mark-example-slip__title">
                   Practicing: {practiceContext.pattern}
                 </p>
-                {practiceContext.reason ? (
-                  <p className="ms-mark-example-slip__lead">
-                    Why this question helps: {practiceContext.reason}
-                  </p>
-                ) : null}
+                <p className="ms-mark-example-slip__lead">
+                  {practiceContext.reason
+                    ? `${practiceContext.reason} `
+                    : ''}
+                  Paper and question are locked from the bank — add your answer
+                  only; we mark against the official scheme.
+                </p>
               </div>
             </div>
           </aside>

@@ -43,8 +43,16 @@ function excerpt(text) {
   const t = (text || '').replace(/\s+/g, ' ').trim()
   return t.length > STEM_MAX ? t.slice(0, STEM_MAX).replace(/\s+\S*$/, '') + '…' : t
 }
-function markHref(code, paperCode, sessionCode, qnum) {
-  return `/mark?subject=${code}&paper=${encodeURIComponent(paperCode)}&session=${sessionCode}&question=${encodeURIComponent(qnum)}`
+function markHref(code, paperCode, sessionLabel, qnum) {
+  // Canonical answer-only deep-link: practice=1 + full session + q
+  const params = new URLSearchParams({
+    practice: '1',
+    subject: code,
+    paper: paperCode,
+    session: sessionLabel,
+    q: qnum || '1',
+  })
+  return `/mark?${params.toString()}`
 }
 
 function lessonsForSubject(code) {
@@ -90,14 +98,14 @@ for (const code of SUBJECTS) {
       title: lesson.title,
       questionCount: data.length,
       questions: data.map((r) => {
-        const sc = sessionCodeFromName(r.paper_session)
+        const label = sessionLabelFromName(r.paper_session)
         return {
           stem: excerpt(r.question_text),
           marks: r.total_marks ?? null,
-          sessionLabel: sessionLabelFromName(r.paper_session),
+          sessionLabel: label,
           paperCode: r.paper_code,
           questionNumber: r.question_number,
-          markHref: markHref(code, r.paper_code, sc, r.question_number || '1'),
+          markHref: markHref(code, r.paper_code, label || sessionCodeFromName(r.paper_session) || '', r.question_number || '1'),
         }
       }),
     })

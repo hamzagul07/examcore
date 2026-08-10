@@ -48,10 +48,9 @@ import {
   courseHubHref,
   paperPracticeLinks,
 } from '@/lib/max/paper-practice-links'
-import {
-  buildVaultQuestionBank,
-  type VaultQuestionBank,
-} from '@/lib/max/vault-question-bank'
+import type { VaultQuestionBank } from '@/lib/max/vault-question-bank'
+import { loadVaultQuestionBanks } from '@/lib/max/fetch-vault-topic-banks'
+import type { TopicTarget } from '@/lib/insights/recommendations'
 
 export type VaultToolLink = { label: string; href: string; note: string }
 
@@ -99,6 +98,8 @@ export type MaxSubjectShelf = {
   technique: TechniquePack | null
   /** Top weak-topic drills for this subject (when they have mastery). */
   drills: Recommendation[]
+  /** Weak topics used to stock this subject's question desk. */
+  weakTopics: TopicTarget[]
   links: VaultToolLink[]
   ibLinks: VaultToolLink[]
 }
@@ -133,7 +134,9 @@ export type MaxVaultData = {
   completedDays: number[]
   /** Recomputed weekly coach snapshots (Max ritual). */
   coachInbox: VaultCoachWeek[]
-  /** Cambridge (or IB) question bank — attempt + check mark scheme. */
+  /** Per-subject question desks (board-isolated). */
+  questionBanks: VaultQuestionBank[]
+  /** Focus subject's desk (chip / shortcuts). */
   questionBank: VaultQuestionBank | null
 }
 
@@ -351,6 +354,7 @@ export async function loadMaxVaultData(opts: {
       curated: getCuratedMaxPack(s.code),
       technique: getTechniquePack(s.code),
       drills,
+      weakTopics: weak,
       links: subjectLinks(s.code),
       ibLinks: ibLinksForCode(s.code),
     })
@@ -488,13 +492,18 @@ export async function loadMaxVaultData(opts: {
         })
       : []
 
-  const questionBank = buildVaultQuestionBank({
-    subjectCode: focusCode,
-    subjectLabel: focusName,
-    weakTopics: weakForFocus,
-    drills: focusDrills,
-    limit: 8,
+  const questionBanks = await loadVaultQuestionBanks({
+    supabase,
+    shelves: shelves.map((s) => ({
+      code: s.code,
+      name: s.name,
+      weakTopics: s.weakTopics,
+      drills: s.drills,
+    })),
+    focusCode,
   })
+  const questionBank =
+    questionBanks.find((b) => b.subjectCode === focusCode) ?? questionBanks[0] ?? null
 
   return {
     subjectCode: focusCode,
@@ -517,6 +526,7 @@ export async function loadMaxVaultData(opts: {
     ownership,
     completedDays,
     coachInbox,
+    questionBanks,
     questionBank,
   }
 }

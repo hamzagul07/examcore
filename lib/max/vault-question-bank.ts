@@ -1,17 +1,21 @@
 /**
- * Max Vault Cambridge question bank — real past-paper questions from
- * mark_schemes recommendations + topical stem cache, attempted via /mark
- * against the official Cambridge mark scheme.
+ * Max Vault per-subject question desks.
  *
- * Reads the topical JSON cache directly (not via lib/seo/topic-questions) so
- * Vault assembly stays free of server-only SEO import chains.
+ * Cambridge subjects get CAIE past-paper rows (mark_schemes + topical cache).
+ * Other boards never see Cambridge papers — they get their own mark desk /
+ * IB criterion drills only.
  */
 import cache from '@/lib/past-paper-topics-cache.json'
 import type { Recommendation } from '@/lib/insights/types'
 import { drillHref, topicDrillHref } from '@/lib/insights/drill-link'
 import type { TopicTarget } from '@/lib/insights/recommendations'
-import { isIbSubjectCode } from '@/lib/ib/marking-config'
+import { resolveBoard, type Board } from '@/lib/courses/board'
 import { pastPaperHubHref } from '@/lib/max/paper-practice-links'
+import { pastPaperMarkHref } from '@/lib/marking/past-paper-mark-href'
+import { normalizePaperSession } from '@/lib/marking/normalize-paper-session'
+import { edexcelMarkHref } from '@/lib/edexcel/marking'
+import { aqaMarkHref } from '@/lib/aqa/marking'
+import { oxfordaqaMarkHref } from '@/lib/oxfordaqa/marking'
 
 type TopicQuestion = {
   stem: string
@@ -31,7 +35,7 @@ type TopicQuestionPage = {
 
 const TOPIC_CACHE = cache as Record<string, TopicQuestionPage[]>
 
-function getTopicQuestionPages(code: string): TopicQuestionPage[] {
+export function getTopicQuestionPages(code: string): TopicQuestionPage[] {
   return TOPIC_CACHE[code] ?? []
 }
 
@@ -47,55 +51,105 @@ export type VaultBankQuestion = {
   totalMarks: number | null
   stem: string | null
   reason: string
-  source: 'weakness' | 'syllabus'
-  /** Attempt on /mark — checked against the Cambridge mark scheme. */
+  source: 'weakness' | 'syllabus' | 'desk'
   attemptHref: string
-  /** Browse more topical questions for this topic (when available). */
   topicHubHref: string | null
+}
+
+export type VaultTopicGroup = {
+  topicCode: string
+  topicLabel: string
+  questions: VaultBankQuestion[]
 }
 
 export type VaultQuestionBank = {
   subjectCode: string
   subjectLabel: string
-  /** Cambridge past-papers hub or IB desk. */
+  /** cambridge | ib | edexcel | aqa | oxfordaqa | ap */
+  board: Board
+  /** Short board label for UI (CAIE, Edexcel, IB, …). */
+  boardLabel: string
+  /** Section eyebrow — subject-specific, never a generic "Cambridge bank". */
+  eyebrow: string
+  /** Section title. */
+  title: string
   papersHubHref: string
+  /** Primary board mark desk when the list is thin. */
+  markDeskHref: string
   questions: VaultBankQuestion[]
-  /** Honest coverage note for empty / thin banks. */
+  /** Live topic groups (Cambridge desks after DB enrich). */
+  topics?: VaultTopicGroup[]
   note: string
 }
 
-/** Map profile subject → Cambridge topical cache code when possible. */
-export function topicalCatalogCode(subjectCode: string): string | null {
-  if (getTopicQuestionPages(subjectCode).length > 0) return subjectCode
-  if (isIbSubjectCode(subjectCode)) {
-    const base = subjectCode.replace(/^ib-/, '').replace(/-(hl|sl)$/, '')
-    const map: Record<string, string> = {
-      'maths-aa': '9709',
-      'maths-ai': '9709',
-      physics: '9702',
-      chemistry: '9701',
-      biology: '9700',
-      economics: '9708',
-    }
-    const code = map[base]
-    return code && getTopicQuestionPages(code).length > 0 ? code : null
+function boardUiLabel(board: Board): string {
+  switch (board) {
+    case 'cambridge':
+      return 'CAIE'
+    case 'ib':
+      return 'IB'
+    case 'edexcel':
+      return 'Edexcel'
+    case 'aqa':
+      return 'AQA'
+    case 'oxfordaqa':
+      return 'OxfordAQA'
+    case 'ap':
+      return 'AP'
+    default:
+      return 'Exam'
   }
-  if (/^wma|^wme|^wst|^9ma/i.test(subjectCode)) {
-    return getTopicQuestionPages('9709').length > 0 ? '9709' : null
-  }
-  if (/^wph|^9ph/i.test(subjectCode)) {
-    return getTopicQuestionPages('9702').length > 0 ? '9702' : null
-  }
-  if (/^wch|^9ch/i.test(subjectCode)) {
-    return getTopicQuestionPages('9701').length > 0 ? '9701' : null
-  }
-  if (/^wbi|^9bi/i.test(subjectCode)) {
-    return getTopicQuestionPages('9700').length > 0 ? '9700' : null
-  }
-  return null
 }
 
-function topicHubForCode(catalogCode: string, topicCode: string | null | undefined): string | null {
+function withVaultReturn(href: string): string {
+  if (href.includes('return=')) return href
+  return `${href}${href.includes('?') ? '&' : '?'}return=vault`
+}
+
+function markDeskHrefFor(board: Board, subjectCode: string): string {
+  switch (board) {
+    case 'edexcel':
+      return withVaultReturn(edexcelMarkHref(subjectCode))
+    case 'aqa':
+      return withVaultReturn(aqaMarkHref(subjectCode))
+    case 'oxfordaqa':
+      return withVaultReturn(oxfordaqaMarkHref(subjectCode))
+    case 'ib':
+      return pastPaperHubHref(subjectCode)
+    case 'ap':
+      return withVaultReturn(
+        `/mark?board=ap&subject=${encodeURIComponent(subjectCode)}`
+      )
+    case 'cambridge':
+    default:
+      return withVaultReturn(`/mark?subject=${encodeURIComponent(subjectCode)}`)
+  }
+}
+
+/** Only Cambridge syllabus codes may use the CAIE topical cache — no board aliases. */
+export function topicalCatalogCode(subjectCode: string): string | null {
+  if (resolveBoard(subjectCode) !== 'cambridge') return null
+  return getTopicQuestionPages(subjectCode).length > 0 ? subjectCode : null
+}
+
+function isCambridgePaperCode(paperCode: string): boolean {
+  return /^\d{4}(\/|\b)/.test(paperCode.trim())
+}
+
+function drillAllowedForBoard(board: Board, rec: Recommendation): boolean {
+  if (board === 'cambridge') return isCambridgePaperCode(rec.paperCode)
+  if (board === 'edexcel') {
+    // Edexcel units / papers — never CAIE 97xx rows.
+    return !isCambridgePaperCode(rec.paperCode)
+  }
+  if (board === 'aqa' || board === 'oxfordaqa' || board === 'ap') {
+    return !isCambridgePaperCode(rec.paperCode)
+  }
+  // IB uses topic drills, not past-paper recommendations.
+  return false
+}
+
+function topicHubForCambridge(catalogCode: string, topicCode: string | null | undefined): string | null {
   if (!topicCode) return `/past-papers/${encodeURIComponent(catalogCode)}`
   const page = getTopicQuestionPages(catalogCode).find((p) => p.topicCode === topicCode)
   if (page) {
@@ -124,37 +178,36 @@ function fromRecommendation(
     reason: rec.reason,
     source: 'weakness',
     attemptHref: drillHref(rec, rec.targetLabel, { returnTo: 'vault' }),
-    topicHubHref: catalogCode ? topicHubForCode(catalogCode, rec.topicCode) : null,
+    topicHubHref: catalogCode ? topicHubForCambridge(catalogCode, rec.topicCode) : null,
   }
 }
 
-/** Convert topical cache links into practice deep-links (/mark uses `q`, not `question`). */
+/** Convert topical cache rows into answer-only /mark deep-links. */
 export function topicalAttemptHref(
   q: TopicQuestion,
   opts?: { pattern?: string; reason?: string }
 ): string {
-  const params = new URLSearchParams({
-    practice: '1',
-    paper: q.paperCode,
-    session: q.sessionLabel,
-    q: q.questionNumber,
-    return: 'vault',
-    pattern: opts?.pattern || 'Cambridge question bank',
-    reason:
-      opts?.reason ||
-      'Sit this Cambridge past-paper question, then mark against the official scheme.',
-  })
-  // Prefer short session codes when markHref already has them (e.g. w24).
+  // Prefer full session label from cache; fall back to short code on markHref.
+  let session = q.sessionLabel
   try {
     const fromCache = new URL(q.markHref, 'https://markscheme.app')
-    const shortSession = fromCache.searchParams.get('session')
-    if (shortSession && !/\s+\d{4}$/.test(shortSession) && shortSession.length <= 8) {
-      params.set('session', shortSession)
+    const raw = fromCache.searchParams.get('session')
+    if (raw && !normalizePaperSession(session).year && normalizePaperSession(raw).year) {
+      session = raw
     }
   } catch {
     /* keep sessionLabel */
   }
-  return `/mark?${params.toString()}`
+  return pastPaperMarkHref({
+    paperCode: q.paperCode,
+    paperSession: session,
+    questionNumber: q.questionNumber,
+    pattern: opts?.pattern || 'Past-paper practice',
+    reason:
+      opts?.reason ||
+      'Sit this past-paper question, then mark against the official scheme.',
+    returnTo: 'vault',
+  })
 }
 
 function fromTopicCache(
@@ -177,19 +230,46 @@ function fromTopicCache(
     questionNumber: q.questionNumber,
     totalMarks: q.marks,
     stem: q.stem,
-    reason: `Cambridge ${catalogCode} topical question — sit it, then mark against the official scheme.`,
+    reason: `${catalogCode} topical question — sit it, then mark against the official CAIE scheme.`,
     source: 'syllabus',
     attemptHref: topicalAttemptHref(q, {
-      pattern: topicTitle,
-      reason: `Practice ${topicTitle} from the Cambridge topical bank.`,
+      pattern: `${catalogCode} · ${topicTitle}`,
+      reason: `Practice ${topicTitle} for ${catalogCode}.`,
     }),
     topicHubHref: `/past-papers/${encodeURIComponent(catalogCode)}/${encodeURIComponent(topicSlug)}`,
   }
 }
 
+function deskQuestion(
+  subjectCode: string,
+  subjectLabel: string,
+  boardLabel: string,
+  href: string,
+  topic: TopicTarget | null
+): VaultBankQuestion {
+  return {
+    id: `desk:${subjectCode}:${topic?.code ?? 'open'}`,
+    subjectCode,
+    subjectLabel,
+    topicCode: topic?.code ?? null,
+    topicLabel: topic?.name ?? `${boardLabel} mark desk`,
+    paperCode: subjectCode,
+    paperSession: boardLabel,
+    questionNumber: topic?.code ?? '—',
+    totalMarks: null,
+    stem: null,
+    reason:
+      topic?.reason ??
+      `Open the ${boardLabel} mark desk for ${subjectLabel} — your board, not another syllabus.`,
+    source: 'desk',
+    attemptHref: href,
+    topicHubHref: null,
+  }
+}
+
 /**
- * Build a Max-only question bank for the focus subject.
- * Prefer weakness-matched drills; fill from topical Cambridge cache.
+ * Build one subject's question desk. Board-scoped: Cambridge topical cache
+ * never fills Edexcel / AQA / IB / AP shelves.
  */
 export function buildVaultQuestionBank(opts: {
   subjectCode: string | null
@@ -201,10 +281,13 @@ export function buildVaultQuestionBank(opts: {
   const subjectCode = opts.subjectCode
   if (!subjectCode) return null
   const subjectLabel = opts.subjectLabel || subjectCode
-  const limit = opts.limit ?? 8
+  const limit = opts.limit ?? 6
+  const board = resolveBoard(subjectCode)
+  const boardLabel = boardUiLabel(board)
   const papersHubHref = pastPaperHubHref(subjectCode)
+  const markDeskHref = markDeskHrefFor(board, subjectCode)
 
-  if (isIbSubjectCode(subjectCode)) {
+  if (board === 'ib') {
     const questions: VaultBankQuestion[] = opts.weakTopics.slice(0, limit).map((t) => ({
       id: `ib:${subjectCode}:${t.code}`,
       subjectCode,
@@ -212,7 +295,7 @@ export function buildVaultQuestionBank(opts: {
       topicCode: t.code,
       topicLabel: t.name,
       paperCode: subjectCode,
-      paperSession: 'topic drill',
+      paperSession: 'IB topic',
       questionNumber: t.code,
       totalMarks: null,
       stem: null,
@@ -221,23 +304,73 @@ export function buildVaultQuestionBank(opts: {
       attemptHref: topicDrillHref(subjectCode, t.code, { returnTo: 'vault' }),
       topicHubHref: papersHubHref,
     }))
+    if (questions.length === 0) {
+      questions.push(
+        deskQuestion(subjectCode, subjectLabel, boardLabel, papersHubHref, null)
+      )
+    }
     return {
       subjectCode,
       subjectLabel,
+      board,
+      boardLabel,
+      eyebrow: `IB · ${subjectCode.replace(/^ib-/, '')}`,
+      title: `${subjectLabel} criterion drills`,
       papersHubHref,
+      markDeskHref: papersHubHref,
       questions,
       note:
-        questions.length > 0
-          ? 'IB drills generate a practice question for your weak topic, then mark it on MarkScheme.'
-          : 'Mark a few IB questions so we can pin topic drills here. Licensed past papers stay on the IB desk.',
+        questions[0]?.source === 'desk'
+          ? 'IB keeps licensed papers on the IB desk. Topic drills here mark against IB criteria — not CAIE schemes.'
+          : 'IB topic drills for this subject — marked against IB criteria, not Cambridge papers.',
     }
   }
 
+  if (board !== 'cambridge') {
+    const out: VaultBankQuestion[] = []
+    const seen = new Set<string>()
+    for (const rec of opts.drills) {
+      if (!drillAllowedForBoard(board, rec)) continue
+      const item = fromRecommendation(rec, subjectCode, subjectLabel, null)
+      if (seen.has(item.id)) continue
+      seen.add(item.id)
+      out.push(item)
+      if (out.length >= limit) break
+    }
+    if (out.length === 0) {
+      if (opts.weakTopics.length > 0) {
+        for (const t of opts.weakTopics.slice(0, Math.min(3, limit))) {
+          out.push(
+            deskQuestion(subjectCode, subjectLabel, boardLabel, markDeskHref, t)
+          )
+        }
+      } else {
+        out.push(
+          deskQuestion(subjectCode, subjectLabel, boardLabel, markDeskHref, null)
+        )
+      }
+    }
+    return {
+      subjectCode,
+      subjectLabel,
+      board,
+      boardLabel,
+      eyebrow: `${boardLabel} · ${subjectCode}`,
+      title: `${subjectLabel} practice desk`,
+      papersHubHref,
+      markDeskHref,
+      questions: out,
+      note: `${boardLabel} only — this shelf never shows Cambridge (CAIE) past papers. Mark on the ${boardLabel} desk for ${subjectCode}.`,
+    }
+  }
+
+  // Cambridge / CAIE — this subject code only (no cross-board aliases).
   const catalog = topicalCatalogCode(subjectCode)
   const out: VaultBankQuestion[] = []
   const seen = new Set<string>()
 
   for (const rec of opts.drills) {
+    if (!drillAllowedForBoard('cambridge', rec)) continue
     const item = fromRecommendation(rec, subjectCode, subjectLabel, catalog)
     if (seen.has(item.id)) continue
     seen.add(item.id)
@@ -255,6 +388,7 @@ export function buildVaultQuestionBank(opts: {
 
     for (const page of preferred) {
       for (const q of page.questions) {
+        if (!isCambridgePaperCode(q.paperCode)) continue
         const item = fromTopicCache(
           subjectCode,
           subjectLabel,
@@ -273,16 +407,50 @@ export function buildVaultQuestionBank(opts: {
     }
   }
 
-  const note =
-    out.length > 0
-      ? `Real Cambridge questions. Attempt on MarkScheme — checked against the official mark scheme${catalog ? ` for ${catalog}` : ''}.`
-      : 'Mark a few questions so we can stock this bank from your weak topics. Cambridge topical coverage expands as more papers are imported.'
-
   return {
     subjectCode,
     subjectLabel,
+    board,
+    boardLabel,
+    eyebrow: `${subjectCode} · CAIE`,
+    title: `${subjectLabel} past-paper desk`,
     papersHubHref,
+    markDeskHref,
     questions: out,
-    note,
+    note:
+      out.length > 0
+        ? `Official CAIE questions for ${subjectCode} only. Attempt, then mark against the ${subjectCode} mark scheme.`
+        : `No ${subjectCode} rows yet — mark a question once, or browse the ${subjectCode} paper hub. Other boards stay on their own shelves.`,
   }
+}
+
+/** One desk per profile subject (board-isolated). */
+export function buildVaultQuestionBanks(
+  shelves: Array<{
+    code: string
+    name: string
+    weakTopics: TopicTarget[]
+    drills: Recommendation[]
+  }>,
+  opts?: { limitPerSubject?: number; focusCode?: string | null }
+): VaultQuestionBank[] {
+  const limit = opts?.limitPerSubject ?? 6
+  const banks = shelves
+    .map((s) =>
+      buildVaultQuestionBank({
+        subjectCode: s.code,
+        subjectLabel: s.name,
+        weakTopics: s.weakTopics,
+        drills: s.drills,
+        limit,
+      })
+    )
+    .filter((b): b is VaultQuestionBank => b != null)
+
+  if (!opts?.focusCode) return banks
+  return [...banks].sort((a, b) => {
+    if (a.subjectCode === opts.focusCode) return -1
+    if (b.subjectCode === opts.focusCode) return 1
+    return a.subjectLabel.localeCompare(b.subjectLabel)
+  })
 }

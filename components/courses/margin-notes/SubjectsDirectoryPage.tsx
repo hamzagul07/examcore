@@ -1,20 +1,27 @@
 'use client'
 
-import { useEffect, useState, type CSSProperties, type ReactNode } from 'react'
+import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from 'react'
 import Link from 'next/link'
 import type { MarginNotesSubject } from '@/lib/courses/margin-notes/types'
 import { subjectProgressPercent } from '@/lib/courses/margin-notes/continue-learning'
 import { useCourseProgressRevision } from '@/components/courses/CourseProgressClient'
 import { accentCssVar } from '@/lib/courses/margin-notes/subject-meta'
 import { FamilyFilterStrip, useFamilyFilterFromUrl } from '@/components/courses/FamilyFilterStrip'
+import { preferSubjectsByCodeFirst } from '@/lib/subjects/prefer-codes'
 
 type Props = {
   subjects: MarginNotesSubject[]
   /** Quiet SEO slip after the syllabus spine (product-first). */
   seoIntro?: ReactNode
+  /** Profile subject codes — pinned to the top of the directory when present. */
+  preferredCodes?: string[]
 }
 
-export function SubjectsDirectoryPage({ subjects, seoIntro }: Props) {
+export function SubjectsDirectoryPage({
+  subjects,
+  seoIntro,
+  preferredCodes = [],
+}: Props) {
   const progressRev = useCourseProgressRevision()
   const [list, setList] = useState(subjects)
   const { fam, selectFam } = useFamilyFilterFromUrl()
@@ -28,7 +35,15 @@ export function SubjectsDirectoryPage({ subjects, seoIntro }: Props) {
     )
   }, [subjects, progressRev])
 
-  const filtered = fam === 'All' ? list : list.filter((s) => s.fam === fam)
+  const ordered = useMemo(
+    () => preferSubjectsByCodeFirst(list, preferredCodes, (s) => s.code),
+    [list, preferredCodes]
+  )
+  const pinnedYours =
+    preferredCodes.length > 0 &&
+    ordered.length > 0 &&
+    ordered[0]?.code !== list[0]?.code
+  const filtered = fam === 'All' ? ordered : ordered.filter((s) => s.fam === fam)
 
   return (
     <main className="ms-pg ms-subjects-page" data-screen-label="Subjects directory" style={{ paddingTop: 8 }}>
@@ -50,7 +65,10 @@ export function SubjectsDirectoryPage({ subjects, seoIntro }: Props) {
           className="fam-tabs"
           tabClassName="fam-tab"
         />
-        <span className="micro catalog-count">{filtered.length} subjects</span>
+        <span className="micro catalog-count">
+          {filtered.length} subjects
+          {pinnedYours && fam === 'All' ? ' · yours first' : ''}
+        </span>
       </div>
 
       {filtered.length ? (

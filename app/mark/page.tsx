@@ -80,6 +80,7 @@ import {
   resolveEdexcelUnitLabel,
 } from '@/lib/edexcel/marking'
 import { markableCodesForBoard } from '@/lib/marking/mark-board-subjects'
+import { preferSubjectCodesFirst } from '@/lib/subjects/prefer-codes'
 import { resolveBoard } from '@/lib/courses/board'
 import { MarkingModeHint } from '@/components/mark/MarkingModeHint'
 import { formatClientMarkError } from '@/lib/marking/client-mark-errors'
@@ -944,6 +945,7 @@ export default function MarkPage() {
 
   // IB catalog: subject options shown for the IB board (catalogued subjects first,
   // legacy profile codes they supersede filtered out). See /api/ib/catalog.
+  // Profile subjects are pinned to the top so the student's own courses are one tap away.
   const ibSubjectOptions = useMemo(() => {
     if (selectedMarkBoard !== 'ib') return boardFilteredSubjects
     const catalogCodes = ibCatalog.map((s) => s.code)
@@ -951,15 +953,24 @@ export default function MarkPage() {
     const legacy = boardFilteredSubjects.filter(
       (code) => !superseded.has(code.replace(/-(hl|sl)$/i, ''))
     )
-    return [...catalogCodes, ...legacy]
-  }, [selectedMarkBoard, boardFilteredSubjects, ibCatalog])
+    return preferSubjectCodesFirst(
+      [...catalogCodes, ...legacy],
+      profileSubjectCodes
+    )
+  }, [
+    selectedMarkBoard,
+    boardFilteredSubjects,
+    ibCatalog,
+    profileSubjectCodes,
+  ])
 
   // Catalog boards: units/content codes from board adapters (not CAIE profile SUBJECTS).
+  // Prefer the student's chosen units first, then the rest of the board catalog.
   const catalogBoardSubjectOptions = useMemo(() => {
     const codes = markableCodesForBoard(selectedMarkBoard)
     if (!codes) return boardFilteredSubjects
-    return codes
-  }, [selectedMarkBoard, boardFilteredSubjects])
+    return preferSubjectCodesFirst(codes, profileSubjectCodes)
+  }, [selectedMarkBoard, boardFilteredSubjects, profileSubjectCodes])
 
   const markSubjectOptions = useMemo(() => {
     if (selectedMarkBoard === 'ib') return ibSubjectOptions
@@ -1077,17 +1088,23 @@ export default function MarkPage() {
       return
     }
     const pool =
-      selectedMarkBoard === 'edexcel'
-        ? catalogBoardSubjectOptions
-        : boardFilteredSubjects.length
-          ? boardFilteredSubjects
-          : profileSelectableSubjects
-    const preferred =
       selectedMarkBoard === 'ib'
+        ? ibSubjectOptions
+        : markableCodesForBoard(selectedMarkBoard)
+          ? catalogBoardSubjectOptions
+          : boardFilteredSubjects.length
+            ? boardFilteredSubjects
+            : profileSelectableSubjects
+    // Prefer the first profile subject that appears in this board's pool.
+    // Fall back to a board default only when the profile has no match yet.
+    const fromProfile = profileSubjectCodes.find((c) => pool.includes(c))
+    const preferred =
+      fromProfile ??
+      (selectedMarkBoard === 'ib'
         ? pool[0]
         : selectedMarkBoard === 'edexcel'
           ? pool.find((c) => c === 'WMA11') ?? pool[0]
-          : pool.find((c) => c === '9709') ?? pool[0]
+          : pool.find((c) => c === '9709') ?? pool[0])
     if (preferred) {
       setSelectedSubject(preferred)
       if (boardSupportsPastPaperLookup(selectedMarkBoard)) {
@@ -1100,7 +1117,9 @@ export default function MarkPage() {
     selectedSubject,
     boardFilteredSubjects,
     catalogBoardSubjectOptions,
+    ibSubjectOptions,
     profileSelectableSubjects,
+    profileSubjectCodes,
     markIntent,
     selectedMarkBoard,
   ])

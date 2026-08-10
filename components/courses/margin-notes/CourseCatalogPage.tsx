@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import type { ReactNode } from 'react'
+import { useMemo, type ReactNode } from 'react'
 import type { MarginNotesSubject } from '@/lib/courses/margin-notes/types'
 import type { ContinueCatalogEntry } from '@/lib/courses/margin-notes/continue-learning'
 import { ContinueLearningStrip } from '@/components/courses/margin-notes/ContinueLearningStrip'
@@ -12,21 +12,46 @@ import { FamilyFilterStrip, useFamilyFilterFromUrl } from '@/components/courses/
 
 import type { IbCatalogCard } from '@/lib/courses/ib-catalog-display'
 import { IB_COURSES_CATALOG_BLURB, ibCatalogTrackSections } from '@/lib/courses/ib-catalog-display'
+import { preferSubjectsByCodeFirst } from '@/lib/subjects/prefer-codes'
 
 type Props = {
   subjects: MarginNotesSubject[]
   continueCatalog: ContinueCatalogEntry[]
   ibSubjects?: IbCatalogCard[]
   seoIntro?: ReactNode
+  /** Profile subject codes — pinned to the top when the student is signed in. */
+  preferredCodes?: string[]
 }
 
-export function CourseCatalogPage({ subjects, continueCatalog, ibSubjects = [], seoIntro }: Props) {
+export function CourseCatalogPage({
+  subjects,
+  continueCatalog,
+  ibSubjects = [],
+  seoIntro,
+  preferredCodes = [],
+}: Props) {
   const { fam, selectFam } = useFamilyFilterFromUrl()
 
-  const list = fam === 'All' ? subjects : subjects.filter((s) => s.fam === fam)
-  const totalLessons = subjects.reduce((a, s) => a + s.lessons, 0) + ibSubjects.reduce((a, s) => a + s.lessons, 0)
+  const orderedSubjects = useMemo(
+    () => preferSubjectsByCodeFirst(subjects, preferredCodes, (s) => s.code),
+    [subjects, preferredCodes]
+  )
+  const orderedIb = useMemo(
+    () => preferSubjectsByCodeFirst(ibSubjects, preferredCodes, (s) => s.code),
+    [ibSubjects, preferredCodes]
+  )
+  const pinnedYours =
+    preferredCodes.length > 0 &&
+    ((orderedSubjects.length > 0 &&
+      orderedSubjects[0]?.code !== subjects[0]?.code) ||
+      (orderedIb.length > 0 && orderedIb[0]?.code !== ibSubjects[0]?.code))
+  const list =
+    fam === 'All' ? orderedSubjects : orderedSubjects.filter((s) => s.fam === fam)
+  const totalLessons =
+    subjects.reduce((a, s) => a + s.lessons, 0) +
+    ibSubjects.reduce((a, s) => a + s.lessons, 0)
   const totalQ = subjects.reduce((a, s) => a + s.q, 0)
-  const ibTrackSections = ibCatalogTrackSections(ibSubjects)
+  const ibTrackSections = ibCatalogTrackSections(orderedIb)
 
   return (
     <main className="catalog-page ec-page-mesh" data-screen-label="Courses — catalog">
@@ -74,7 +99,8 @@ export function CourseCatalogPage({ subjects, continueCatalog, ibSubjects = [], 
             tabClassName="fam-tab"
           />
           <span className="micro catalog-count">
-            {list.length} Cambridge · {ibSubjects.length} IB
+            {list.length} Cambridge · {orderedIb.length} IB
+            {pinnedYours && fam === 'All' ? ' · yours first' : ''}
           </span>
         </div>
 

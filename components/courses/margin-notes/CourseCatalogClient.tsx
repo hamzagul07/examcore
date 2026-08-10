@@ -7,6 +7,7 @@ import { subjectProgressPercent } from '@/lib/courses/margin-notes/continue-lear
 import { useCourseProgressRevision } from '@/components/courses/CourseProgressClient'
 import { CourseCatalogPage } from '@/components/courses/margin-notes/CourseCatalogPage'
 import type { IbCatalogCard } from '@/lib/courses/ib-catalog-display'
+import { usePreferredSubjectCodes } from '@/lib/subjects/use-preferred-subject-codes'
 
 export function CourseCatalogClient({
   subjects,
@@ -23,6 +24,7 @@ export function CourseCatalogClient({
   const progressRev = useCourseProgressRevision()
   const [withProg, setWithProg] = useState(subjects)
   const [withIbProg, setWithIbProg] = useState(ibSubjects)
+  const preferredCodes = usePreferredSubjectCodes()
 
   useEffect(() => {
     setWithProg(
@@ -45,6 +47,7 @@ export function CourseCatalogClient({
       continueCatalog={continueCatalog}
       ibSubjects={withIbProg}
       seoIntro={seoIntro}
+      preferredCodes={preferredCodes}
     />
   )
 }

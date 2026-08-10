@@ -9,6 +9,7 @@ import {
   sampleVaultPlayback,
 } from '@/lib/max/vault-diagram-playback'
 import { MaxBadge } from '@/components/max/MaxBadge'
+import { MarkSnippet } from '@/components/mark/MarkSnippet'
 
 /**
  * Max Concept Cinema — continuous live diagram motion (params + teaching beats),
@@ -265,7 +266,9 @@ export function MaxVaultDiagramTheatre({
                     onClick={() => jumpToBeat(i)}
                   >
                     <span className="ms-vault__theatre-beat-n">{i + 1}</span>
-                    <span>{beat}</span>
+                    <span>
+                      <MarkSnippet text={beat} />
+                    </span>
                   </button>
                 </li>
               ))}

@@ -1,7 +1,7 @@
 export const DIAGRAM_LABEL_STYLE = {
-  fontSize: 'clamp(11px, 1.4cqi, 14px)',
+  fontSize: 'clamp(12px, 1.5cqi, 15px)',
   fill: 'var(--course-read-text, var(--ec-text-primary))',
-  fontFamily: 'system-ui, sans-serif',
+  fontFamily: 'var(--font-mono), "IBM Plex Mono", ui-monospace, monospace',
 } as const
 
 export const DIAGRAM_STROKE = 'var(--course-subject-accent, var(--ec-brand))'

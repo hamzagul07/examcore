@@ -779,8 +779,9 @@
 }
 
 .ms-vault__theatre-film-title {
+  font-family: var(--font-display), Newsreader, Georgia, serif;
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.3;
   color: var(--ec-text-primary);
   display: -webkit-box;
@@ -820,8 +821,15 @@
 .ms-vault__theatre-stage {
   min-height: 16rem;
   border: 1.5px solid var(--ec-border);
-  background: #0b1220;
+  /* Always paper — diagram SVG ink/labels are authored for light stages */
+  --course-read-text: #25221b;
+  --course-surface: #f3efe6;
+  --ec-text-primary: #25221b;
+  --ec-text-secondary: #5c564c;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--ec-c-math) 7%, #fff) 0%, #fff 45%, #faf8f4 100%);
   overflow: hidden;
+  color: #25221b;
 }
 
 .ms-vault__theatre-copy {
@@ -884,7 +892,7 @@
   height: 5.5rem;
   overflow: hidden;
   border: 1px solid var(--ec-border);
-  background: #0b1220;
+  background: #fff;
   pointer-events: none;
 }
 
@@ -952,8 +960,62 @@
 }
 
 .ms-vault__theatre-stage--cinema {
-  border-color: color-mix(in srgb, var(--ec-c-math) 35%, #1f2937);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  border-color: color-mix(in srgb, var(--ec-c-math) 40%, var(--ec-border));
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
+  padding: 0.75rem 0.85rem 0.55rem;
+}
+
+.ms-vault__theatre-stage--cinema .lesson-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-height: 100%;
+}
+
+.ms-vault__theatre-stage--cinema .lesson-diagram-svg,
+.ms-vault__theatre-stage--cinema .lesson-diagram-body {
+  width: 100%;
+  max-height: none;
+}
+
+.ms-vault__theatre-stage--cinema .lesson-diagram-svg text {
+  font-family: var(--font-mono), 'IBM Plex Mono', ui-monospace, monospace;
+  fill: var(--ec-text-primary);
+}
+
+.ms-vault__theatre-stage--cinema .lesson-diagram-caption {
+  margin: 0;
+  padding: 0.45rem 0.15rem 0.15rem;
+  font-family: var(--font-display), Newsreader, Georgia, serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--ec-text-primary);
+  border-top: 1px dashed color-mix(in srgb, var(--ec-c-math) 28%, var(--ec-border));
+}
+
+.ms-vault__theatre-stage--cinema .lesson-diagram-caption .ms-mark-snippet,
+.ms-vault__theatre-stage--cinema .lesson-diagram-caption .katex {
+  font-size: 1.02rem;
+  color: var(--ec-text-primary);
+}
+
+.ms-vault__theatre-stage--cinema .lesson-diagram-attribution {
+  margin: 0;
+  font-family: var(--font-mono), 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  color: var(--ec-text-secondary);
+}
+
+.ms-vault__theatre-beat-btn .ms-mark-snippet,
+.ms-vault__theatre-beat-btn .katex {
+  font-size: 0.95em;
+}
+
+.ms-vault__theatre-copy h3 {
+  font-family: var(--font-display), Newsreader, Georgia, serif;
+  letter-spacing: -0.01em;
 }
 
 @media (min-width: 900px) {

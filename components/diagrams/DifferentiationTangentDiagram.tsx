@@ -28,6 +28,10 @@ export function DifferentiationTangentDiagram({
   const py = originY - Math.pow(x0, Math.min(n, 3)) * scale * (n > 2 ? 0.35 : 0.55)
   const slope = n * Math.pow(x0, n - 1)
   const tangentLen = 55
+  const nRounded = Math.round(n)
+  const exp = Math.max(0, nRounded - 1)
+  const xReadout = Number(x0.toFixed(2))
+  const labelFont = 'var(--font-mono), "IBM Plex Mono", ui-monospace, monospace'
 
   // Entrance pulse on teaching-step changes only — continuous x0 scrubbing must stay smooth.
   useEffect(() => {
@@ -52,10 +56,10 @@ export function DifferentiationTangentDiagram({
     >
       <line x1={originX} y1={originY} x2={380} y2={originY} stroke={DIAGRAM_STROKE} strokeWidth="2" />
       <line x1={originX} y1={originY} x2={originX} y2={40} stroke={DIAGRAM_STROKE} strokeWidth="2" />
-      <text x="385" y="175" fontSize="12" fill={DIAGRAM_TEXT}>
+      <text x="385" y="175" fontSize="13" fill={DIAGRAM_TEXT} fontFamily={labelFont} fontWeight={600}>
         x
       </text>
-      <text x="55" y="48" fontSize="12" fill={DIAGRAM_TEXT}>
+      <text x="55" y="48" fontSize="13" fill={DIAGRAM_TEXT} fontFamily={labelFont} fontWeight={600}>
         y
       </text>
 
@@ -91,24 +95,38 @@ export function DifferentiationTangentDiagram({
 
       <text
         x="210"
-        y="24"
+        y="26"
         textAnchor="middle"
-        fontSize="13"
+        fontSize="15"
         fill={DIAGRAM_TEXT}
+        fontFamily={labelFont}
         fontWeight="700"
         opacity={layerOpacity(spec, stepIndex, 'gradient', 1, 0.35)}
       >
-        dy/dx = {n}x^{n - 1} at x = {x0}
+        dy/dx = {nRounded}x
+        <tspan baselineShift="super" fontSize="11">
+          {exp}
+        </tspan>
+        {' '}at x = {xReadout}
       </text>
       <text
         x="210"
-        y="205"
+        y="208"
         textAnchor="middle"
-        fontSize="11"
+        fontSize="13"
         fill={DIAGRAM_TEXT}
+        fontFamily={labelFont}
+        fontWeight="600"
         opacity={layerOpacity(spec, stepIndex, 'rule')}
       >
-        Power rule: d/dx(x^{n}) = {n}x^{n - 1}
+        Power rule: d/dx(x
+        <tspan baselineShift="super" fontSize="10">
+          {nRounded}
+        </tspan>
+        ) = {nRounded}x
+        <tspan baselineShift="super" fontSize="10">
+          {exp}
+        </tspan>
       </text>
     </svg>
   )

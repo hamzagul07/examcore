@@ -38,7 +38,9 @@ export function NormalDistributionDiagram({
         <text x={centerX} y={oy + 16} textAnchor="middle" fontSize="10" fill={DIAGRAM_TEXT}>μ = {mu.toFixed(1)}</text>
       </g>
       <g opacity={layerOpacity(spec, stepIndex, 'step-3')}>
-        <text x="260" y="100" fontSize="10" fill={DIAGRAM_TEXT}>σ controls spread (σ = {sigma})</text>
+        <text x="260" y="100" fontSize="10" fill={DIAGRAM_TEXT} fontFamily='var(--font-mono), "IBM Plex Mono", monospace'>
+          σ controls spread (σ = {sigma.toFixed(2)})
+        </text>
         <text x="260" y="118" fontSize="9" fill={DIAGRAM_TEXT}>68% within μ ± σ</text>
       </g>
       <g opacity={layerOpacity(spec, stepIndex, 'step-4')}>

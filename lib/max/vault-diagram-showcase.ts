@@ -49,8 +49,8 @@ const SHOWCASE_BY_SUBJECT: Record<string, ShowcaseSeed[]> = {
       beats: [
         'Start with a secant through two points on the curve.',
         'Slide the second point closer — the chord steepens toward the tangent.',
-        'The limit of that gradient is f′(x) — the instantaneous rate of change.',
-        'Examiners want the method: dy/dx, then substitute the x-value.',
+        'The limit of that gradient is $f\'(x)$ — the instantaneous rate of change.',
+        'Power rule: if $y = x^n$ then $\\dfrac{dy}{dx} = nx^{n-1}$.',
       ],
     },
     {
@@ -60,9 +60,9 @@ const SHOWCASE_BY_SUBJECT: Record<string, ShowcaseSeed[]> = {
       topicCode: '1.1',
       chip: 'Pure',
       beats: [
-        'y = ax² + bx + c starts as a stretched, shifted parabola.',
-        'Completing the square rewrites it as a(x − h)² + k.',
-        'The vertex (h, k) is the turning point — min or max.',
+        '$y = ax^2 + bx + c$ starts as a stretched, shifted parabola.',
+        'Completing the square rewrites it as $a(x - h)^2 + k$.',
+        'The vertex $(h, k)$ is the turning point — min or max.',
         'Use vertex form to solve, sketch, and find the range.',
       ],
     },
@@ -73,9 +73,9 @@ const SHOWCASE_BY_SUBJECT: Record<string, ShowcaseSeed[]> = {
       topicCode: '1.8',
       chip: 'Pure',
       beats: [
-        'Shade the region between the curve and the x-axis.',
-        'A definite integral adds thin strips from a to b.',
-        'Antiderivative F(b) − F(a) equals that signed area.',
+        'Shade the region between the curve and the $x$-axis.',
+        'A definite integral adds thin strips from $a$ to $b$.',
+        'Antiderivative $F(b) - F(a)$ equals that signed area.',
         'Watch the sign: below the axis means negative contribution.',
       ],
     },
@@ -127,10 +127,10 @@ const SHOWCASE_BY_SUBJECT: Record<string, ShowcaseSeed[]> = {
       topicCode: '17.1',
       chip: 'Signature',
       beats: [
-        'Restoring force always points toward equilibrium (F ∝ −x).',
+        'Restoring force always points toward equilibrium ($F \\propto -x$).',
         'Displacement traces a smooth sine in time.',
         'Velocity leads displacement by a quarter-cycle.',
-        'Acceleration is opposite displacement — a = −ω²x.',
+        'Acceleration is opposite displacement — $a = -\\omega^2 x$.',
       ],
     },
     {
@@ -464,13 +464,14 @@ function resolveShowcaseSubject(
 }
 
 function teachingStepsFor(slug: string, fallback?: string[]): string[] {
+  // Curated cinema beats win — they carry KaTeX-ready copy for Vault.
+  if (fallback && fallback.length >= 2) return fallback.slice(0, 6)
   const spec = getLessonDiagramSpec(slug)
   const fromSpec =
     spec?.steps
       ?.map((s) => s.caption)
       .filter((caption): caption is string => Boolean(caption)) ?? []
   if (fromSpec.length >= 2) return fromSpec.slice(0, 6)
-  if (fallback && fallback.length > 0) return fallback
   return [
     'Watch how the diagram changes as you step.',
     'Connect each move to the formula or definition.',

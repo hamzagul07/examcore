@@ -36,6 +36,7 @@ type SsePayload = {
   type: string
   content?: string
   cleanText?: string
+  status?: string
   action?: OmniAIMessage['action']
   error?: string
   code?: string
@@ -90,9 +91,40 @@ export function ChatPanel({
   const stickToBottomRef = useRef(true)
   const inputRef = useRef<HTMLInputElement>(null)
   const openerInjectedRef = useRef(false)
+  // Batch SSE text onto one rAF so KaTeX-free stream updates stay smooth.
+  const pendingChunkRef = useRef('')
+  const chunkRafRef = useRef<number | null>(null)
+  const abortRef = useRef<AbortController | null>(null)
+  const activeAssistantIdRef = useRef<string | null>(null)
 
   const isMetered = context.type !== 'landing'
   const omniSubmitBlocked = useOmniSubmitBlocked()
+
+  function cancelPendingChunks() {
+    if (chunkRafRef.current != null) {
+      cancelAnimationFrame(chunkRafRef.current)
+      chunkRafRef.current = null
+    }
+    pendingChunkRef.current = ''
+  }
+
+  function settleAssistant(
+    assistantId: string,
+    patch: Partial<OmniAIMessage> = {}
+  ) {
+    setMessages((prev) =>
+      prev.map((m) =>
+        m.id === assistantId
+          ? {
+              ...m,
+              ...patch,
+              isStreaming: false,
+              status: null,
+            }
+          : m
+      )
+    )
+  }
 
   function handleOmniQuotaExceeded(
     quota: OmniQuotaModalState,
@@ -103,6 +135,15 @@ export function ChatPanel({
     setMessages((prev) => prev.filter((m) => m.id !== userMsgId && m.id !== assistantId))
     setInput(restoreText)
     setOmniQuotaModal(quota)
+  }
+
+  function handleClearChat() {
+    abortRef.current?.abort()
+    abortRef.current = null
+    cancelPendingChunks()
+    activeAssistantIdRef.current = null
+    setIsStreaming(false)
+    clearChat()
   }
 
   // Proactive opener when sidebar opens on context-rich pages.
@@ -155,6 +196,22 @@ export function ChatPanel({
     })
   }, [messages, isStreaming])
 
+  // Abort in-flight chat when the panel unmounts (drawer closed).
+  useEffect(() => {
+    return () => {
+      abortRef.current?.abort()
+      abortRef.current = null
+      cancelPendingChunks()
+      const assistantId = activeAssistantIdRef.current
+      if (assistantId) {
+        settleAssistant(assistantId)
+        activeAssistantIdRef.current = null
+      }
+      setIsStreaming(false)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- unmount-only cleanup
+  }, [])
+
   async function sendMessage(text: string) {
     if (!text.trim() || isStreaming) return
 
@@ -173,6 +230,10 @@ export function ChatPanel({
       /* ignore */
     }
 
+    abortRef.current?.abort()
+    const controller = new AbortController()
+    abortRef.current = controller
+
     const userMsg: OmniAIMessage = {
       id: `u-${Date.now()}`,
       role: 'user',
@@ -180,21 +241,26 @@ export function ChatPanel({
     }
 
     const assistantId = `a-${Date.now()}`
+    activeAssistantIdRef.current = assistantId
     const assistantMsg: OmniAIMessage = {
       id: assistantId,
       role: 'assistant',
       content: '',
       isStreaming: true,
+      status: null,
     }
 
     setMessages((prev) => [...prev, userMsg, assistantMsg])
     setInput('')
     setIsStreaming(true)
 
+    let sawTerminalEvent = false
+
     try {
       const res = await fetch('/api/omni-ai', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
         body: JSON.stringify({
           messages: messages.slice(-8),
           context,
@@ -223,7 +289,7 @@ export function ChatPanel({
             })
         )
         setInput(text)
-        setIsStreaming(false)
+        sawTerminalEvent = true
         return
       }
 
@@ -235,6 +301,7 @@ export function ChatPanel({
           const quota = parseOmniQuotaPayload(data)
           if (quota) {
             handleOmniQuotaExceeded(quota, userMsg.id, assistantId, text)
+            sawTerminalEvent = true
             return
           }
         }
@@ -245,6 +312,97 @@ export function ChatPanel({
       const reader = res.body.getReader()
       const decoder = new TextDecoder()
       let buffer = ''
+      cancelPendingChunks()
+
+      const flushPendingChunks = () => {
+        const pending = pendingChunkRef.current
+        pendingChunkRef.current = ''
+        chunkRafRef.current = null
+        if (!pending) return
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === assistantId
+              ? { ...m, content: m.content + pending, status: null }
+              : m
+          )
+        )
+      }
+
+      const queueChunk = (content: string) => {
+        pendingChunkRef.current += content
+        if (chunkRafRef.current != null) return
+        chunkRafRef.current = requestAnimationFrame(flushPendingChunks)
+      }
+
+      const handleSsePayload = (data: SsePayload) => {
+        if (isMetered && data.type === 'error') {
+          const quota = parseOmniQuotaPayload(data)
+          if (quota) {
+            cancelPendingChunks()
+            handleOmniQuotaExceeded(quota, userMsg.id, assistantId, text)
+            sawTerminalEvent = true
+            return true
+          }
+        }
+
+        if (data.type === 'status' && data.status) {
+          setMessages((prev) =>
+            prev.map((m) =>
+              m.id === assistantId && !m.content
+                ? { ...m, status: data.status }
+                : m
+            )
+          )
+          return false
+        }
+
+        if (data.type === 'chunk' && data.content) {
+          queueChunk(data.content)
+          return false
+        }
+
+        if (data.type === 'done') {
+          cancelPendingChunks()
+          const trailing = pendingChunkRef.current
+          pendingChunkRef.current = ''
+          setMessages((prev) =>
+            prev.map((m) => {
+              if (m.id !== assistantId) return m
+              const content =
+                typeof data.cleanText === 'string'
+                  ? data.cleanText
+                  : trailing
+                    ? m.content + trailing
+                    : m.content
+              return {
+                ...m,
+                content:
+                  content.trim() ||
+                  'Sorry, something went wrong. Try again?',
+                action: data.action,
+                isStreaming: false,
+                status: null,
+              }
+            })
+          )
+          if (isMetered && typeof window !== 'undefined') {
+            window.dispatchEvent(new Event('ec:billing-refresh'))
+          }
+          sawTerminalEvent = true
+          return true
+        }
+
+        if (data.type === 'error') {
+          cancelPendingChunks()
+          settleAssistant(assistantId, {
+            content: data.error || 'Sorry, something went wrong. Try again?',
+          })
+          sawTerminalEvent = true
+          return true
+        }
+
+        return false
+      }
 
       while (true) {
         const { done, value } = await reader.read()
@@ -257,69 +415,60 @@ export function ChatPanel({
         for (const line of lines) {
           const data = parseSseLine(line)
           if (!data) continue
-
-          if (isMetered && data.type === 'error') {
-            const quota = parseOmniQuotaPayload(data)
-            if (quota) {
-              handleOmniQuotaExceeded(quota, userMsg.id, assistantId, text)
-              return
-            }
-          }
-
-          if (data.type === 'chunk' && data.content) {
-            setMessages((prev) =>
-              prev.map((m) =>
-                m.id === assistantId
-                  ? { ...m, content: m.content + data.content }
-                  : m
-              )
-            )
-          } else if (data.type === 'done') {
-            setMessages((prev) =>
-              prev.map((m) =>
-                m.id === assistantId
-                  ? {
-                      ...m,
-                      content: data.cleanText || m.content,
-                      action: data.action,
-                      isStreaming: false,
-                    }
-                  : m
-              )
-            )
-            if (isMetered && typeof window !== 'undefined') {
-              window.dispatchEvent(new Event('ec:billing-refresh'))
-            }
-          } else if (data.type === 'error') {
-            setMessages((prev) =>
-              prev.map((m) =>
-                m.id === assistantId
-                  ? {
-                      ...m,
-                      content:
-                        data.error || 'Sorry, something went wrong. Try again?',
-                      isStreaming: false,
-                    }
-                  : m
-              )
-            )
-          }
+          if (handleSsePayload(data)) return
         }
       }
-    } catch (error) {
-      console.error('Omni-AI send failed:', error)
-      setMessages((prev) =>
-        prev.map((m) =>
-          m.id === assistantId
-            ? {
-                ...m,
-                content: 'Sorry, something went wrong. Try again?',
-                isStreaming: false,
-              }
-            : m
+
+      // Flush a final partial SSE frame if the connection closed mid-line.
+      if (buffer.trim()) {
+        const data = parseSseLine(buffer.trim())
+        if (data) handleSsePayload(data)
+      }
+
+      cancelPendingChunks()
+      if (pendingChunkRef.current) {
+        const trailing = pendingChunkRef.current
+        pendingChunkRef.current = ''
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === assistantId
+              ? { ...m, content: m.content + trailing, status: null }
+              : m
+          )
         )
-      )
+      }
+
+      if (!sawTerminalEvent) {
+        // Connection closed without a done/error event — still settle so the
+        // bubble leaves plain-text streaming mode and KaTeX can render.
+        setMessages((prev) =>
+          prev.map((m) => {
+            if (m.id !== assistantId) return m
+            return {
+              ...m,
+              content:
+                m.content.trim() ||
+                'Sorry, something went wrong. Try again?',
+              isStreaming: false,
+              status: null,
+            }
+          })
+        )
+      }
+    } catch (error) {
+      if (controller.signal.aborted) {
+        settleAssistant(assistantId)
+        return
+      }
+      console.error('Omni-AI send failed:', error)
+      settleAssistant(assistantId, {
+        content: 'Sorry, something went wrong. Try again?',
+      })
     } finally {
+      if (abortRef.current === controller) abortRef.current = null
+      if (activeAssistantIdRef.current === assistantId) {
+        activeAssistantIdRef.current = null
+      }
       setIsStreaming(false)
     }
   }
@@ -341,9 +490,10 @@ export function ChatPanel({
               {messages.length > 0 && (
                 <button
                   type="button"
-                  onClick={clearChat}
+                  onClick={handleClearChat}
                   className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)]"
                   title="Clear chat"
+                  aria-label="Clear chat"
                 >
                   <span className="font-mono text-[11px] font-bold" aria-hidden>↻</span>
                 </button>

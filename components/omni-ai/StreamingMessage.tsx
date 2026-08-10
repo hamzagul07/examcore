@@ -8,6 +8,7 @@ import { InlineUpload } from '@/components/command-bar/InlineUpload'
 import { InlineCTA } from '@/components/command-bar/InlineCTA'
 import { SplitScreenPreview } from './SplitScreenPreview'
 import { StreamingCaret } from './StreamingCaret'
+import { ThinkingIndicator } from './ThinkingIndicator'
 
 interface StreamingMessageProps {
   message: OmniAIMessage
@@ -29,10 +30,15 @@ export function StreamingMessage({ message, splitPaper = false }: StreamingMessa
     message.action?.type === 'render_paper' &&
     message.action.paper
 
+  const isStreaming = Boolean(message.isStreaming)
+  const hasContent = Boolean(message.content)
+
   return (
     <div className="flex gap-3 ec-chat-message-enter">
       <div
-        className="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand)] font-mono text-[10px] font-bold tracking-wide ec-on-brand-text"
+        className={`mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand)] font-mono text-[10px] font-bold tracking-wide ec-on-brand-text ${
+          isStreaming && !hasContent ? 'ms-omni-avatar-pulse' : ''
+        }`}
         aria-hidden
       >
         MS
@@ -40,27 +46,33 @@ export function StreamingMessage({ message, splitPaper = false }: StreamingMessa
 
       <div className="min-w-0 flex-1 space-y-3">
         {!showSplitPaper && (
-          <div className="rounded border ec-border-color bg-[var(--ec-paper,var(--ec-surface-raised))] px-4 py-3 text-[var(--ec-text-primary)]"
+          <div
+            className={`ms-omni-answer ${isStreaming ? 'ms-omni-answer--streaming' : 'ms-omni-answer--settled'} rounded border ec-border-color bg-[var(--ec-paper,var(--ec-surface-raised))] px-4 py-3 text-[var(--ec-text-primary)]`}
             style={{ boxShadow: 'var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.06))' }}
           >
-            {message.isStreaming ? (
+            {isStreaming ? (
               <div className="text-sm leading-relaxed">
-                {message.content ? (
-                  <RichTextRenderer text={message.content} variant="light" />
+                {hasContent ? (
+                  // Mid-stream: plain text avoids re-parsing KaTeX on every chunk.
+                  <p className="ms-omni-stream-text whitespace-pre-wrap break-words">
+                    {message.content}
+                  </p>
                 ) : (
-                  <span className="text-[var(--ec-text-secondary)]">Thinking</span>
+                  <ThinkingIndicator status={message.status} />
                 )}
                 <StreamingCaret />
               </div>
             ) : (
-              <RichTextRenderer text={message.content} variant="light" />
+              <div className="ms-omni-answer-body">
+                <RichTextRenderer text={message.content} variant="light" />
+              </div>
             )}
           </div>
         )}
 
         {showSplitPaper && message.action?.paper && (
           <>
-            <div className="ec-card ec-card--paper hidden border ec-border-color px-4 py-3 text-[var(--ec-text-primary)] lg:block">
+            <div className="ec-card ec-card--paper ms-omni-answer ms-omni-answer--settled hidden border ec-border-color px-4 py-3 text-[var(--ec-text-primary)] lg:block">
               <RichTextRenderer text={message.content} variant="light" />
             </div>
             <SplitScreenPreview
@@ -71,7 +83,9 @@ export function StreamingMessage({ message, splitPaper = false }: StreamingMessa
         )}
 
         {!message.isStreaming && message.action && !showSplitPaper && (
-          <ActionRenderer action={message.action} />
+          <div className="ms-omni-action-enter">
+            <ActionRenderer action={message.action} />
+          </div>
         )}
       </div>
     </div>

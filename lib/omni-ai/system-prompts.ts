@@ -1,6 +1,15 @@
 import type { AIContextType } from './types'
 
-export const MARKING_AWARENESS_SECTION = `
+function markingAwarenessSection(toolsAvailable: boolean): string {
+  const lookupLine = toolsAvailable
+    ? '...use the marking context provided in this prompt for the focused attempt, or call the fetch_recent_attempts tool for older or cross-topic lookups.'
+    : '...use the marking context and student profile provided in this prompt. You do not have a lookup tool on this turn — if the needed attempt is not in context, say so and ask the student to open that result or rephrase.'
+
+  const missingContextLine = toolsAvailable
+    ? `Don't fabricate marks or feedback that don't exist in the data. If you don't have context for what they're asking about, say so and offer to look it up via fetch_recent_attempts.`
+    : `Don't fabricate marks or feedback that don't exist in the data. If you don't have context for what they're asking about, say so clearly.`
+
+  return `
 MARKING RESULTS ACCESS:
 You now have access to the student's marking results. When they ask questions like:
 - "Why did I lose M1 marks?"
@@ -9,15 +18,18 @@ You now have access to the student's marking results. When they ask questions li
 - "What's my weakest topic in Physics?"
 - "How can I improve my essay band?"
 
-...use the marking context provided in this prompt for the focused attempt, or call the fetch_recent_attempts tool for older or cross-topic lookups. Reference the actual mark scheme, the specific marks awarded/withheld, and the examiner's reasoning. Be concrete and use the conventions of the subject's exam board: for Cambridge subjects cite mark codes (M1, A1, B1) and line references; for IB subjects cite markbands, achievement levels and assessment criteria (NOT B1/M1/A1, which IB does not use). Use the exact band or criterion descriptors where applicable.
+${lookupLine} Reference the actual mark scheme, the specific marks awarded/withheld, and the examiner's reasoning. Be concrete and use the conventions of the subject's exam board: for Cambridge subjects cite mark codes (M1, A1, B1) and line references; for IB subjects cite markbands, achievement levels and assessment criteria (NOT B1/M1/A1, which IB does not use). Use the exact band or criterion descriptors where applicable.
 
 When explaining why marks were lost, walk through the specific marking criterion the student missed. Be encouraging but precise — students learn from specific feedback, not generic platitudes.
 
-Don't fabricate marks or feedback that don't exist in the data. If you don't have context for what they're asking about, say so and offer to look it up via fetch_recent_attempts.`
+${missingContextLine}`
+}
 
 export type SystemPromptOptions = {
   /** Append marking-awareness instructions and enable tool use on the API side. */
   markingAwareness?: boolean
+  /** True when this request will actually expose fetch_recent_attempts. */
+  toolsAvailable?: boolean
   /** Full attempt payload injected when user opened Omni from a result page. */
   focusedAttemptBlock?: string | null
   /** Compact profile of the student's marked work (weak topics, grade trajectory,
@@ -31,7 +43,7 @@ export function buildSystemPrompt(
 ): string {
   const markingExtra =
     options.markingAwareness || options.focusedAttemptBlock
-      ? MARKING_AWARENESS_SECTION +
+      ? markingAwarenessSection(Boolean(options.toolsAvailable)) +
         (options.focusedAttemptBlock
           ? `\n\nFOCUSED ATTEMPT (answer questions about THIS attempt unless they ask about others):\n${options.focusedAttemptBlock}`
           : '') +

@@ -25,6 +25,7 @@ import {
   loadAttemptForOmni,
 } from '@/lib/omni-ai/marking-context'
 import { OMNI_MARKING_TOOLS } from '@/lib/omni-ai/marking-tools'
+import { shouldRunMarkingToolLoop } from '@/lib/omni-ai/tool-gate'
 import type { AIContextType, OmniAIRequestBody } from '@/lib/omni-ai/types'
 import {
   checkOmniAllowance,
@@ -213,25 +214,35 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  // Tool loop is non-streaming and blocks first token. Only run when the
+  // ask likely needs history that isn't already in the prompt.
+  const toolsEnabled =
+    markingAwareness &&
+    shouldRunMarkingToolLoop(query, {
+      hasFocusedAttempt: Boolean(focusedAttemptBlock),
+    })
+
   const systemPrompt = buildSystemPrompt(context, {
     markingAwareness,
+    toolsAvailable: toolsEnabled,
     focusedAttemptBlock,
     studentMemoryBlock,
   })
 
   const stream = new ReadableStream({
     async start(controller) {
+      const encode = (data: unknown) =>
+        new TextEncoder().encode(sse(data))
+
       try {
         if (!isGeminiConfigured()) {
           controller.enqueue(
-            new TextEncoder().encode(
-              sse({
-                type: 'done',
-                cleanText:
-                  'Omni-AI is not configured. Set USE_VERTEX_AI + GOOGLE_CLOUD_PROJECT, or GEMINI_API_KEY. See docs/vertex-ai-migration.md',
-                action: { type: 'render_upload' },
-              })
-            )
+            encode({
+              type: 'done',
+              cleanText:
+                'Omni-AI is not configured. Set USE_VERTEX_AI + GOOGLE_CLOUD_PROJECT, or GEMINI_API_KEY. See docs/vertex-ai-migration.md',
+              action: { type: 'render_upload' },
+            })
           )
           controller.close()
           return
@@ -247,20 +258,41 @@ export async function POST(req: NextRequest) {
           { role: 'user', parts: [{ text: query }] },
         ]
 
-        const toolsEnabled = markingAwareness
+        let fullText = ''
+        let sentLength = 0
+        let reuseToolRoundText = false
 
         if (toolsEnabled) {
+          controller.enqueue(
+            encode({ type: 'status', status: 'Looking up your marks…' })
+          )
+
           for (let round = 0; round < 3; round++) {
             const toolResponse = await generateGeminiWithContents(contents, {
               task: 'chat',
               system: systemPrompt,
               maxOutputTokens: 1500,
+              // Chat answers shouldn't burn the output budget on hidden thinking.
+              thinkingBudget: 0,
               tools: OMNI_MARKING_TOOLS,
             })
 
             const toolUses = toolResponse.functionCalls ?? []
-            if (toolUses.length === 0) break
+            if (toolUses.length === 0) {
+              // Model answered without tools — reuse that text instead of a
+              // second full generation (the old double-generate lag).
+              const direct = toolResponse.text?.trim() ?? ''
+              if (direct) {
+                fullText = direct
+                reuseToolRoundText = true
+              }
+              break
+            }
             if (!user) break
+
+            controller.enqueue(
+              encode({ type: 'status', status: 'Looking up your marks…' })
+            )
 
             const modelParts = toolResponse.candidates?.[0]?.content?.parts
             if (modelParts?.length) {
@@ -302,23 +334,29 @@ export async function POST(req: NextRequest) {
           }
         }
 
-        let fullText = ''
-        let sentLength = 0
-
-        for await (const chunk of streamGeminiWithContents(contents, {
-          task: 'chat',
-          system: systemPrompt,
-          maxOutputTokens: 1500,
-        })) {
-          fullText += chunk
-
+        if (reuseToolRoundText) {
           const displayText = stripPartialActionTail(fullText)
-          const delta = displayText.slice(sentLength)
-          if (delta) {
+          if (displayText) {
             controller.enqueue(
-              new TextEncoder().encode(sse({ type: 'chunk', content: delta }))
+              encode({ type: 'chunk', content: displayText })
             )
             sentLength = displayText.length
+          }
+        } else {
+          for await (const chunk of streamGeminiWithContents(contents, {
+            task: 'chat',
+            system: systemPrompt,
+            maxOutputTokens: 1500,
+            thinkingBudget: 0,
+          })) {
+            fullText += chunk
+
+            const displayText = stripPartialActionTail(fullText)
+            const delta = displayText.slice(sentLength)
+            if (delta) {
+              controller.enqueue(encode({ type: 'chunk', content: delta }))
+              sentLength = displayText.length
+            }
           }
         }
 
@@ -332,24 +370,18 @@ export async function POST(req: NextRequest) {
         const finalDisplay = stripPartialActionTail(cleanText)
         const remainder = finalDisplay.slice(sentLength)
         if (remainder) {
-          controller.enqueue(
-            new TextEncoder().encode(sse({ type: 'chunk', content: remainder }))
-          )
+          controller.enqueue(encode({ type: 'chunk', content: remainder }))
         }
 
         controller.enqueue(
-          new TextEncoder().encode(
-            sse({ type: 'done', cleanText: finalDisplay, action })
-          )
+          encode({ type: 'done', cleanText: finalDisplay, action })
         )
 
         controller.close()
       } catch (error) {
         console.error('Omni-AI stream error:', error)
         controller.enqueue(
-          new TextEncoder().encode(
-            sse({ type: 'error', error: 'Stream failed. Please try again.' })
-          )
+          encode({ type: 'error', error: 'Stream failed. Please try again.' })
         )
         controller.close()
       }

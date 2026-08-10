@@ -30,6 +30,7 @@ import {
 import { dropDuplicateAdjacentPages } from '@/lib/marking/dedupe-pages'
 import { extractMarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
 import { toMarkingAIResult, aggregateWholePaperResults } from '@/lib/marking/whole-paper'
+import { invalidateStudentMemoryCache } from '@/lib/omni-ai/student-memory'
 import { extractPracticeQuestionFromScript } from '@/lib/marking/practice-question-extract'
 import { splitUploadIntoQuestions, type SplitQuestion } from '@/lib/marking/split-questions'
 import { extractStatedTotalMarks } from '@/lib/marking/question-marks'
@@ -333,6 +334,8 @@ async function markOneSplitQuestion(
       })
       .select()
       .single()
+
+    invalidateStudentMemoryCache(ctx.userId)
 
     return {
       result: {
@@ -997,6 +1000,8 @@ export async function runSingleQuestionMark(
     })
     .select()
     .single()
+
+  invalidateStudentMemoryCache(userId)
 
   const paperCodeForSubject = isPracticeQuestion
     ? `${practiceCode}/00`

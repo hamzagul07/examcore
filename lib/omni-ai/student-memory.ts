@@ -4,13 +4,41 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import { computeWeeklyReportData } from '@/lib/reports/weekly-report'
 import type { AttemptWithPaper } from '@/lib/syllabi/attempts'
 
+// Short TTL: coaching should notice a fresh mark within a minute if invalidation
+// is missed. Prefer invalidateStudentMemoryCache() after attempt writes.
+const MEMORY_TTL_MS = 60 * 1000
+const memoryCache = new Map<string, { at: number; value: string | null }>()
+
+/** Drop cached Omni student memory after a new mark lands. */
+export function invalidateStudentMemoryCache(userId: string | null | undefined) {
+  if (!userId) return
+  memoryCache.delete(userId)
+}
+
 /**
  * A compact profile of the student's marked work — weak topics, grade trajectory
  * vs target, weekly activity, exam countdown — injected into Omni's system prompt
  * so the tutor coaches with memory. Reuses the weekly-report computation. Returns
  * null when the student has no marked work yet (nothing to remember).
+ *
+ * Cached briefly per user so back-to-back chat turns don't recompute over 100
+ * attempts every message.
  */
 export async function buildStudentMemoryBlock(
+  admin: SupabaseClient,
+  userId: string
+): Promise<string | null> {
+  const cached = memoryCache.get(userId)
+  if (cached && Date.now() - cached.at < MEMORY_TTL_MS) {
+    return cached.value
+  }
+
+  const value = await computeStudentMemoryBlock(admin, userId)
+  memoryCache.set(userId, { at: Date.now(), value })
+  return value
+}
+
+async function computeStudentMemoryBlock(
   admin: SupabaseClient,
   userId: string
 ): Promise<string | null> {

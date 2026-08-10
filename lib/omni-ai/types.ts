@@ -62,6 +62,8 @@ export interface OmniAIMessage {
   content: string
   action?: OmniAIAction
   isStreaming?: boolean
+  /** Pre-stream status from the server (e.g. looking up marks). */
+  status?: string | null
 }
 
 export interface OmniAIRequestBody {

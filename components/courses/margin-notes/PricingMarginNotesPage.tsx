@@ -140,20 +140,19 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
   } {
     if (plan === 'free') {
       if (!signedIn)
-        return { label: 'Create free account', href: buildSignUpHref('/pricing'), variant: 'ghost' }
+        return { label: 'Create free account', href: buildSignUpHref('/pricing'), variant: 'primary' }
       if (currentRank === 0) return { label: 'Your current plan', variant: 'muted', disabled: true }
       return { label: 'Included', variant: 'muted', disabled: true }
     }
 
     const product = PLAN_PRODUCT[plan]
     const loading = busy === product
-    const featured = plan === 'max'
 
     if (!signedIn) {
       return {
         label: loading ? 'Opening checkout…' : `Choose ${PLAN_NAME[plan]}`,
         href: buildSignUpHref('/pricing'),
-        variant: featured ? 'primary' : 'ghost',
+        variant: 'primary',
       }
     }
 
@@ -172,7 +171,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
     return {
       label: loading ? 'Opening checkout…' : verb,
       onClick: () => void checkout(product),
-      variant: featured ? 'primary' : 'ghost',
+      variant: 'primary',
       disabled: loading,
       loading,
     }

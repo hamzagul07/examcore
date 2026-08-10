@@ -32,6 +32,10 @@ import {
   type VaultCourseLesson,
   type VaultDiagramPad,
 } from '@/lib/max/vault-exclusives'
+import {
+  buildVaultDiagramTheatre,
+  type VaultDiagramTheatre,
+} from '@/lib/max/vault-diagram-showcase'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { loadCompletedPackDays } from '@/lib/max/sprint-day-completion'
 import {
@@ -112,6 +116,8 @@ export type MaxVaultData = {
   courseLessons: VaultCourseLesson[]
   /** Live MarkScheme diagrams for weak / showcase topics. */
   diagramPads: VaultDiagramPad[]
+  /** Signature + syllabus gallery theatre. */
+  diagramTheatre: VaultDiagramTheatre | null
   /** Pre-filled Exam Room asks for weak topics (when community is on). */
   communityHooks: VaultCommunityHook[]
   /** Max ownership theatre — headroom, priority, coach. */
@@ -438,6 +444,7 @@ export async function loadMaxVaultData(opts: {
   const focusDrills = shelves.find((s) => s.isFocus)?.drills ?? []
   const courseLessons = buildVaultCourseLessons(focusCode, weakForFocus, 4)
   const diagramPads = buildVaultDiagramPads(focusCode, courseLessons, focusDrills, 2)
+  const diagramTheatre = buildVaultDiagramTheatre(focusCode)
   const communityHooks = buildVaultCommunityHooks(
     focusCode,
     weakForFocus,
@@ -481,6 +488,7 @@ export async function loadMaxVaultData(opts: {
     otherCuratedCodes,
     courseLessons,
     diagramPads,
+    diagramTheatre,
     communityHooks,
     ownership,
     completedDays,

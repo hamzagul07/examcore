@@ -6,6 +6,7 @@ import { MaxCoachBrief } from '@/components/max/MaxCoachBrief'
 import { MaxSubjectShelves } from '@/components/max/MaxSubjectShelves'
 import { MaxVaultOwnership } from '@/components/max/MaxVaultOwnership'
 import { MaxVaultDiagramPads } from '@/components/max/MaxVaultDiagramPads'
+import { MaxVaultDiagramTheatre } from '@/components/max/MaxVaultDiagramTheatre'
 import { MaxVaultCoursePath } from '@/components/max/MaxVaultCoursePath'
 import { MaxVaultCommunityInvite } from '@/components/max/MaxVaultCommunityInvite'
 import { MaxVaultPackChecklist } from '@/components/max/MaxVaultPackChecklist'
@@ -91,7 +92,9 @@ export function MaxVaultView({
             <span className="ms-vault__chip-label">Pack days done</span>
           </li>
           <li className="ms-vault__chip ms-vault__chip--gold">
-            <span className="ms-vault__chip-value">{data.diagramPads.length}</span>
+            <span className="ms-vault__chip-value">
+              {data.diagramTheatre?.catalogCount ?? data.diagramPads.length}
+            </span>
             <span className="ms-vault__chip-label">Live diagrams</span>
           </li>
           <li className="ms-vault__chip ms-vault__chip--blue">
@@ -118,6 +121,9 @@ export function MaxVaultView({
       {data.ownership ? <MaxVaultOwnership ownership={data.ownership} /> : null}
       <MaxCoachBrief pack={pack} />
 
+      {data.diagramTheatre ? (
+        <MaxVaultDiagramTheatre theatre={data.diagramTheatre} />
+      ) : null}
       <MaxVaultDiagramPads pads={data.diagramPads} subjectCode={data.subjectCode} />
       <MaxVaultCoursePath
         lessons={data.courseLessons}

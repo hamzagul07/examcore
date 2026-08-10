@@ -24,16 +24,15 @@ export function MaxVaultDiagramPads({
         <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
           FX
         </span>
-        <p className="ec-eyebrow mb-0">Only on MarkScheme</p>
+        <p className="ec-eyebrow mb-0">Built for your gaps</p>
         <h2 className="m-0 text-lg font-bold text-[var(--ec-text-primary)]">
-          Live diagram pads
+          Your weak-topic pads
         </h2>
       </div>
       <div className="ms-vault__panel ms-vault__panel--gold space-y-4">
         <p className="text-body m-0 text-[var(--ec-text-secondary)]">
-          Interactive diagrams for your weak topics — watch the idea move, then
-          mark a real past-paper question. You can&apos;t rebuild this desk from a
-          PDF.
+          Personalised from your marks — open the diagram that matches your weakest
+          topics, then remake the questions.
         </p>
         <ul className="ms-vault__diagram-grid">
           {pads.map((pad) => {

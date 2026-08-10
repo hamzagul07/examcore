@@ -14,8 +14,9 @@ type Props = {
 
 /**
  * Accessible expand/collapse using native details/summary (Codex A11Y-01).
- * Uncontrolled `defaultOpen` — controlled `open` + onToggle fought the browser
- * and could leave sections closed despite defaultOpen={true}.
+ * Uncontrolled: `open` is rendered once from `defaultOpen` and never re-applied,
+ * so the browser owns toggling. State + onToggle fought the browser and could
+ * leave sections closed despite defaultOpen={true}.
  */
 export function Disclosure({
   summary,
@@ -28,7 +29,7 @@ export function Disclosure({
   const panelId = useId()
 
   return (
-    <details className={className} defaultOpen={defaultOpen || undefined}>
+    <details className={className} open={defaultOpen || undefined}>
       <summary className={summaryClassName}>
         {summary}
         {hint ? <span className="ms-disclosure__hint">{hint}</span> : null}

@@ -2485,8 +2485,21 @@ button.note-sketch-fig:hover {
 .plan.featured { border: 1.5px solid var(--ink); border-radius: 4px; background: var(--ec-surface-warm, var(--paper, var(--surface))); box-shadow: var(--shadow-hard, 5px 5px 0 rgba(0,0,0,0.1)); }
 .plan.featured:hover { box-shadow: var(--shadow-hard, 7px 7px 0 rgba(0,0,0,0.12)); transform: translate(-1px, -2px); }
 .plan-cta { width: 100%; justify-content: center; }
-.plan-ribbon { position: absolute; top: -11px; right: 24px; background: var(--ec-accent-warm, var(--ink)); color: #241405; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; padding: 5px 12px; border-radius: 4px; }
-.plan-tag { font-size: 11px; color: var(--ink); margin-bottom: 8px; }
+.plan-ribbon {
+  position: absolute;
+  top: -11px;
+  right: 24px;
+  background: var(--ec-accent-warm, var(--ink));
+  color: #241405;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 5px 12px;
+  border-radius: 4px;
+  /* Ribbon lives inside .plan-tag for equal grid rows — keep it out of tag flow. */
+  pointer-events: none;
+}
+.plan-tag { font-size: 11px; color: var(--ink); margin-bottom: 8px; position: static; }
 .plan-name { font-size: 26px; font-weight: 500; margin: 0 0 8px; }
 .plan-price { display: flex; align-items: baseline; gap: 8px; margin-bottom: 14px; }
 .plan-was { font-family: 'IBM Plex Mono', monospace; font-size: 16px; color: var(--text-2); text-decoration: line-through; }
@@ -2495,8 +2508,8 @@ button.note-sketch-fig:hover {
 .plan-blurb { margin-bottom: 18px; min-height: 44px; }
 .plan-feats {
   list-style: none;
-  margin: 18px 0 18px;
-  padding: 18px 0 0;
+  margin: 22px 0 0;
+  padding: 22px 0 0;
   border-top: 1px dashed var(--border);
   display: flex;
   flex-direction: column;
@@ -2761,24 +2774,31 @@ button.note-sketch-fig:hover {
   color: var(--ink);
 }
 
-/* pricing — 3-up plans (Free / Scholar / Max) */
-.plans.three { grid-template-columns: repeat(3, 1fr); max-width: 1100px; gap: 18px; align-items: stretch; }
+/* pricing — 3-up plans (Free / Scholar / Max)
+   Subgrid keeps CTAs on one horizontal line in their original mid-card slot
+   (after killer, before feature list) even when blurbs differ. */
+.plans.three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* tag, name, price, eq, blurb, bestfor, killer, cta, feats */
+  grid-template-rows: repeat(9, auto);
+  max-width: 1100px;
+  gap: 18px;
+  align-items: stretch;
+}
 .plans.three .plan {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 9;
   padding: 26px 22px 28px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  height: auto;
 }
-/* Feature list grows so CTAs pin to the same baseline across cards. */
-.plans.three .plan .plan-feats { flex: 1 1 auto; margin-bottom: 0; }
 .plans.three .plan .plan-cta {
-  margin-top: auto;
-  flex-shrink: 0;
+  margin-top: 0;
+  align-self: start;
+  width: 100%;
 }
-.plans.three .plan-blurb { min-height: 4.5em; }
-.plans.three .plan-eq { min-height: 1.35em; }
 .plans.three .plan-now { font-size: 36px; letter-spacing: -0.02em; }
-/* Featured Max: lift with shadow only — scale threw CTAs off a shared baseline. */
 @media (min-width: 1024px) {
   .plans.three .plan.featured { z-index: 1; }
 }
@@ -2946,7 +2966,17 @@ button.note-sketch-fig:hover {
 .pricing-trust-item { font-size: 13.5px; color: var(--text-2); }
 
 @media (max-width: 880px) {
-  .plans.three { grid-template-columns: 1fr; max-width: 460px; }
+  /* Single column / phone picker — leave subgrid (it would stretch one card across 9 rows). */
+  .plans.three {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    max-width: 460px;
+  }
+  .plans.three .plan {
+    display: flex;
+    flex-direction: column;
+    grid-row: auto;
+  }
 }
 @media (max-width: 620px) {
   .plans.four { grid-template-columns: 1fr; max-width: 460px; }

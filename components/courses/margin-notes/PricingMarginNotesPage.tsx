@@ -428,8 +428,12 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
                 data-focus={focusPlan === p.id ? '1' : '0'}
                 data-screen-label={`Pricing — ${p.name}`}
               >
-                {p.featured ? <span className="plan-ribbon mono">MOST POPULAR</span> : null}
-                <p className="plan-tag mono">{p.tag}</p>
+                <p className="plan-tag mono">
+                  {p.featured ? (
+                    <span className="plan-ribbon mono">MOST POPULAR</span>
+                  ) : null}
+                  {p.tag}
+                </p>
                 <h3 className="plan-name serif">{p.name}</h3>
                 <div className="plan-price">
                   <span className="plan-now serif">{p.now}</span>
@@ -444,16 +448,6 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
                   </span>
                   <span>{p.killer}</span>
                 </div>
-                <ul className="plan-feats">
-                  {p.features.map((f, i) => (
-                    <li key={i} className={f[1] ? 'yes' : 'no'}>
-                      <span className="feat-mark" aria-hidden>
-                        {f[1] ? '✓' : '—'}
-                      </span>
-                      <span>{f[0]}</span>
-                    </li>
-                  ))}
-                </ul>
                 {cta.href ? (
                   <LoadingLink
                     className={`plan-cta btn-${cta.variant === 'primary' ? 'primary' : 'ghost'}${cta.variant === 'muted' ? ' is-muted' : ''}`}
@@ -480,6 +474,16 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
                     )}
                   </button>
                 )}
+                <ul className="plan-feats">
+                  {p.features.map((f, i) => (
+                    <li key={i} className={f[1] ? 'yes' : 'no'}>
+                      <span className="feat-mark" aria-hidden>
+                        {f[1] ? '✓' : '—'}
+                      </span>
+                      <span>{f[0]}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             )
           })}

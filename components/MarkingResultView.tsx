@@ -151,6 +151,7 @@ export function MarkingResultView({
   isMax,
   primaryAction,
   evidenceDefaultOpen = true,
+  moreDefaultOpen = true,
   isSample = false,
 }: {
   result: MarkingResultData
@@ -171,6 +172,8 @@ export function MarkingResultView({
   primaryAction?: ReactNode
   /** Open mark-by-mark evidence by default (pass false to start collapsed). */
   evidenceDefaultOpen?: boolean
+  /** Open “More about this mark” by default (pass false to start collapsed). */
+  moreDefaultOpen?: boolean
   /** Demo / example mark — no rewrite upsell, no “your work” chrome. */
   isSample?: boolean
 }) {
@@ -635,6 +638,7 @@ export function MarkingResultView({
         summaryClassName="ms-mark-more__summary"
         summary="More about this mark"
         hint="topics, notes, extras"
+        defaultOpen={moreDefaultOpen}
       >
         <div className="ms-mark-secondary mt-4">
           <QuestionContextCard result={result} subjectCode={badgeSubjectCode} />

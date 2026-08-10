@@ -1,6 +1,6 @@
 'use client'
 
-import { useId, useState, type ReactNode, type SyntheticEvent } from 'react'
+import { useId, type ReactNode } from 'react'
 
 type Props = {
   summary: ReactNode
@@ -14,7 +14,8 @@ type Props = {
 
 /**
  * Accessible expand/collapse using native details/summary (Codex A11Y-01).
- * Prefer this over custom buttons without aria-expanded.
+ * Uncontrolled `defaultOpen` — controlled `open` + onToggle fought the browser
+ * and could leave sections closed despite defaultOpen={true}.
  */
 export function Disclosure({
   summary,
@@ -25,14 +26,9 @@ export function Disclosure({
   hint,
 }: Props) {
   const panelId = useId()
-  const [open, setOpen] = useState(defaultOpen)
-
-  function handleToggle(e: SyntheticEvent<HTMLDetailsElement>) {
-    setOpen(e.currentTarget.open)
-  }
 
   return (
-    <details className={className} open={open} onToggle={handleToggle}>
+    <details className={className} defaultOpen={defaultOpen || undefined}>
       <summary className={summaryClassName}>
         {summary}
         {hint ? <span className="ms-disclosure__hint">{hint}</span> : null}

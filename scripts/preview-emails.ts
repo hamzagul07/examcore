@@ -319,7 +319,15 @@ async function main() {
   )
 
   await capture('max-vault-tour', () =>
-    sendMaxVaultTourEmail({ to, recipientName: 'Hamza', wait: true })
+    sendMaxVaultTourEmail({
+      to,
+      recipientName: 'Hamza',
+      subjects: ['Mathematics', 'Physics', 'Chemistry'],
+      board: 'Cambridge International',
+      level: 'A-Level',
+      targetGrade: 'A*',
+      wait: true,
+    })
   )
 
   await capture('max-welcome', () =>

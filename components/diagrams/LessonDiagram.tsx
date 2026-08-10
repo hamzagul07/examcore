@@ -1,10 +1,13 @@
-'use client'
-
 import type { ComponentType } from 'react'
 import type { LessonDiagramMeta } from '@/lib/courses/lesson-diagrams'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 import { MarkSnippet } from '@/components/mark/MarkSnippet'
 
+/**
+ * Server-safe shell: may receive a client diagram `Component` from a Server
+ * page (e.g. /dev/diagrams). Keep this file free of "use client" so that
+ * function components are not serialized across the RSC boundary.
+ */
 export function LessonDiagram({
   Component,
   meta,

@@ -43,10 +43,10 @@ export function PostMarkNextSteps({
             </div>
           </div>
           <Link
-            href="/dashboard/progress"
+            href="/dashboard/review"
             className="ms-mark-example-slip__cta inline-flex min-h-[44px] items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-brand)]"
           >
-            View progress -&gt;
+            See what&apos;s due -&gt;
           </Link>
         </aside>
       )}

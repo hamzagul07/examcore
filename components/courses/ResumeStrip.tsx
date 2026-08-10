@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { resumeMessage, type Resume } from '@/lib/courses/lesson-resume'
+import { resumeCheckCta, resumeMessage, type Resume } from '@/lib/courses/lesson-resume'
 
 /**
  * The one sentence worth showing someone who has been here before.
@@ -38,7 +38,7 @@ export function ResumeStrip({
         ) : null}
         {state.kind === 'check' ? (
           <button type="button" className="resume-strip-cta" onClick={() => onJump(state.checkId)}>
-            Go to quick check →
+            {resumeCheckCta(state.checkId)}
           </button>
         ) : null}
         {state.kind === 'complete' && practiceHref ? (

@@ -47,14 +47,31 @@ function stickyChromeHeight(): number {
   return bottom
 }
 
+/** Study immersion owns its own scrollport — jumps must use that, not the window. */
+function studyScrollRoot(): HTMLElement | null {
+  return document.querySelector<HTMLElement>('.lesson-page[data-study="on"]')
+}
+
 /** Scroll an element to just below the sticky chrome. */
 export function scrollToElement(el: Element) {
-  const y =
-    el.getBoundingClientRect().top + window.scrollY - stickyChromeHeight() - JUMP_GAP
   const smooth =
     typeof window !== 'undefined' &&
     !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  window.scrollTo({ top: y, behavior: smooth ? 'smooth' : 'instant' })
+  const behavior: ScrollBehavior = smooth ? 'smooth' : 'instant'
+  const root = studyScrollRoot()
+  if (root && root.contains(el)) {
+    const y =
+      el.getBoundingClientRect().top -
+      root.getBoundingClientRect().top +
+      root.scrollTop -
+      stickyChromeHeight() -
+      JUMP_GAP
+    root.scrollTo({ top: Math.max(0, y), behavior })
+    return
+  }
+  const y =
+    el.getBoundingClientRect().top + window.scrollY - stickyChromeHeight() - JUMP_GAP
+  window.scrollTo({ top: y, behavior })
 }
 
 export function jumpTo(id: string) {
@@ -470,18 +487,17 @@ export function QuickCheck({
               <span className="qc-recall-mark" aria-hidden>
                 ✓
               </span>
-              Saved. This lesson comes back{' '}
-              <b>{describeInterval(recall.intervalDays)}</b> — timed for just
-              before you would start forgetting it.
+              Comes back <b>{describeInterval(recall.intervalDays)}</b>. Marking
+              it once is stronger than checking it again.
             </>
           ) : (
             <>
               <span className="qc-recall-mark" aria-hidden>
                 ✓
               </span>
-              Nice work. Signed-in students get this lesson back{' '}
-              <b>{describeInterval(FIRST_INTERVAL_DAYS)}</b>, timed for just
-              before you would start forgetting it.
+              Sign in and this lesson returns in about{' '}
+              {FIRST_INTERVAL_DAYS === 3 ? '3 days' : describeInterval(FIRST_INTERVAL_DAYS)}{' '}
+              — right before it fades.
             </>
           )}
         </p>
@@ -635,12 +651,42 @@ export function QuickCheck({
   )
 }
 
-export function Flashcards({ cards }: { cards: NonNullable<MarginNotesLesson['flashcards']> }) {
+/**
+ * Revision flashcards — guess first, then flip.
+ *
+ * Soft gate only: flip is always available. The gain is generating a guess
+ * before seeing the model answer (same self-explanation idea as quick check).
+ * The card itself stays a flip surface; the guess lives in a paper strip under
+ * it so a textarea never ends up inside a <button>.
+ */
+export function Flashcards({
+  cards,
+  practiceHref,
+  onDeckComplete,
+}: {
+  cards: NonNullable<MarginNotesLesson['flashcards']>
+  practiceHref?: string | null
+  /** Fired once when every card has been flipped at least once. */
+  onDeckComplete?: () => void
+}) {
   const zoneRef = useRef<HTMLDivElement>(null)
   const [i, setI] = useState(0)
   const [flip, setFlip] = useState(false)
   const [busy, setBusy] = useState(false)
+  const [drafts, setDrafts] = useState<Record<number, string>>({})
+  const [seen, setSeen] = useState<Record<number, boolean>>({})
+  const completedRef = useRef(false)
   const c = cards[i]
+  const draft = drafts[i] ?? ''
+  const tried = draft.trim().length > 0
+  const deckDone = Object.keys(seen).length >= cards.length
+
+  useEffect(() => {
+    if (!deckDone || completedRef.current) return
+    completedRef.current = true
+    onDeckComplete?.()
+  }, [deckDone, onDeckComplete])
+
   const go = useCallback(
     (d: number) => {
       if (busy) return
@@ -654,9 +700,13 @@ export function Flashcards({ cards }: { cards: NonNullable<MarginNotesLesson['fl
   const toggleFlip = useCallback(() => {
     if (busy) return
     setBusy(true)
-    setFlip((f) => !f)
+    setFlip((f) => {
+      const next = !f
+      if (next) setSeen((s) => ({ ...s, [i]: true }))
+      return next
+    })
     window.setTimeout(() => setBusy(false), 320)
-  }, [busy])
+  }, [busy, i])
 
   // CO-02: arrows / space only when focus is inside this widget — never steal
   // page scroll because the deck is merely on screen.
@@ -676,7 +726,6 @@ export function Flashcards({ cards }: { cards: NonNullable<MarginNotesLesson['fl
         go(1)
       } else if (e.key === ' ' || e.key === 'Spacebar') {
         if (active instanceof HTMLButtonElement && active.classList.contains('fcard')) {
-          // Native button activation handles flip via click.
           return
         }
         e.preventDefault()
@@ -708,18 +757,54 @@ export function Flashcards({ cards }: { cards: NonNullable<MarginNotesLesson['fl
           <span className="fcard-text serif">
             <CourseRichText content={c.q} variant="flashcard" />
           </span>
-          <span className="fcard-hint micro">TAP OR SPACE TO FLIP</span>
+          <span className="fcard-hint micro">
+            {tried ? 'FLIP TO COMPARE' : 'TYPE A GUESS, THEN FLIP'}
+          </span>
         </div>
         <div className="fcard-face fcard-back">
-          <span className="micro fcard-answer-label">
-            ANSWER
-          </span>
+          <span className="micro fcard-answer-label">ANSWER</span>
           <span className="fcard-text serif">
             <CourseRichText content={c.a} variant="flashcard" />
           </span>
           <span className="fcard-hint micro">TAP OR SPACE TO FLIP BACK</span>
         </div>
       </button>
+
+      {!flip ? (
+        <div className="fc-guess">
+          <label className="fc-guess-label micro" htmlFor={`fc-guess-${i}`}>
+            Your guess — write it before you look
+          </label>
+          <textarea
+            id={`fc-guess-${i}`}
+            className="fc-guess-input"
+            rows={2}
+            value={draft}
+            placeholder="In your own words…"
+            onChange={(e) => setDrafts((d) => ({ ...d, [i]: e.target.value }))}
+          />
+          <div className="fc-guess-actions">
+            <button type="button" className="fc-guess-flip" onClick={toggleFlip} disabled={busy}>
+              {tried ? 'Flip to compare' : 'Flip without writing'}
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="fc-compare" role="status">
+          {tried ? (
+            <div className="fc-compare-mine">
+              <span className="micro qc-col-label">YOU GUESSED</span>
+              <p className="fc-compare-text">{draft.trim()}</p>
+            </div>
+          ) : null}
+          <p className="micro fc-compare-hint">
+            {tried
+              ? 'What did the answer have that you missed?'
+              : 'Next time, try a guess first — retrieval beats re-reading.'}
+          </p>
+        </div>
+      )}
+
       <div className="fc-nav">
         <button type="button" className="fc-arrow" onClick={() => go(-1)} aria-label="Previous card" disabled={busy}>
           ←
@@ -732,14 +817,42 @@ export function Flashcards({ cards }: { cards: NonNullable<MarginNotesLesson['fl
           →
         </button>
       </div>
+
+      {deckDone && practiceHref ? (
+        <div className="fc-done">
+          <span className="fc-done-tag mono">DECK</span>
+          <p className="body-2 fc-done-lead">Deck done. Retrieval beats re-reading.</p>
+          <Link className="fc-done-cta" href={practiceHref}>
+            Mark a question on this topic →
+          </Link>
+        </div>
+      ) : null}
     </div>
   )
 }
 
-export function SecHead({ k, title, sub }: { k: string; title: string; sub?: string }) {
+export function SecHead({
+  k,
+  title,
+  sub,
+  bloom,
+}: {
+  k: string
+  title: string
+  sub?: string
+  /** Quiet Bloom verb — not a taxonomy dashboard. */
+  bloom?: string
+}) {
   return (
     <div className="lsec-head">
-      <span className="lsec-k mono">{k}</span>
+      <div className="lsec-k-row">
+        <span className="lsec-k mono">{k}</span>
+        {bloom ? (
+          <span className="lsec-bloom mono" title="Thinking level">
+            {bloom}
+          </span>
+        ) : null}
+      </div>
       <h2 className="lsec-title serif">{title}</h2>
       {sub ? <p className="body-2 lsec-sub">{sub}</p> : null}
     </div>

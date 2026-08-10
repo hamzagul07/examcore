@@ -6,6 +6,7 @@ import Link from 'next/link'
 
 import { ClassroomSummary } from '@/components/teacher/ClassroomSummary'
 import { ClassBlindspots } from '@/components/teacher/ClassBlindspots'
+import { ClassDueList } from '@/components/teacher/ClassDueList'
 import { GradeRiskMatrix } from '@/components/teacher/GradeRiskMatrix'
 import { ReviewQueueList } from '@/components/teacher/ReviewQueueList'
 import { InviteCard } from '@/components/teacher/InviteCard'
@@ -48,6 +49,7 @@ interface RosterStudent {
   name: string
   attemptCount: number
   accuracy: number
+  dueCount?: number
 }
 
 async function fetchJson(url: string): Promise<{ ok: boolean; data: unknown }> {
@@ -286,10 +288,20 @@ export default function ClassroomPage() {
                     <span className="block font-medium text-[var(--ec-text-primary)]">{s.name}</span>
                     <span className="block text-xs text-[var(--ec-text-secondary)]">
                       {attemptSummary(s.attemptCount, s.accuracy)}
+                      {(s.dueCount ?? 0) > 0
+                        ? ` · ${s.dueCount} due`
+                        : ''}
                     </span>
                   </span>
-                  <span className="font-mono text-[11px] font-bold text-[var(--ec-brand)]" aria-hidden>
-                    -&gt;
+                  <span className="ms-teacher-roster__trail">
+                    {(s.dueCount ?? 0) > 0 ? (
+                      <span className="ms-roster-due" aria-label={`${s.dueCount} topics due`}>
+                        {s.dueCount} due
+                      </span>
+                    ) : null}
+                    <span className="font-mono text-[11px] font-bold text-[var(--ec-brand)]" aria-hidden>
+                      →
+                    </span>
                   </span>
                 </Link>
               </li>
@@ -300,6 +312,10 @@ export default function ClassroomPage() {
 
       <div className="mb-8">
         <ClassBlindspots classroomId={id} blindspots={data.blindspots.topics || []} />
+      </div>
+
+      <div className="mb-8">
+        <ClassDueList classroomId={id} />
       </div>
 
       <div className="mb-8">

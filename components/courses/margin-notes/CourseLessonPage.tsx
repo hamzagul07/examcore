@@ -19,16 +19,14 @@ import { CourseRichText } from '@/components/courses/CourseRichText'
 import { ExplainBlock } from '@/components/courses/ExplainBlock'
 import { FeatureHint, markHintUsed } from '@/components/courses/FeatureHint'
 import { ResumeStrip } from '@/components/courses/ResumeStrip'
-import { StudyStages, StudyStageFooter } from '@/components/courses/StudyStages'
 import { Highlighter, useHighlights } from '@/components/courses/Highlighter'
 import { HighlightRecap } from '@/components/courses/HighlightRecap'
+import { stagesPresent, stageForSection, STUDY_PREF_KEY } from '@/lib/courses/study-mode'
 import {
-  stagesPresent,
-  stageForSection,
-  stepStage,
-  STUDY_PREF_KEY,
-} from '@/lib/courses/study-mode'
-import type { StageId } from '@/lib/courses/lesson-stages'
+  VISUAL_NOTES_PREF_KEY,
+  buildNoteSketch,
+} from '@/lib/courses/visual-notes'
+import { NoteSketchCard } from '@/components/courses/margin-notes/NoteSketchCard'
 import { resumeState } from '@/lib/courses/lesson-resume'
 import { HINT_KEYS, type HintKey } from '@/lib/courses/first-run'
 import { CriterionLadder } from '@/components/courses/CriterionLadder'
@@ -46,7 +44,6 @@ import type { EffectiveAccess } from '@/lib/billing/access'
 import { INTERACTIVE_DIAGRAMS_FREE, QUICK_CHECK_FREE } from '@/lib/billing/features'
 import {
   jumpTo,
-  scrollToElement,
   lessonTopicHref,
   FormulaCard,
   Worked,
@@ -60,6 +57,8 @@ import {
   LessonCheckpoint,
   LessonMasteryBand,
 } from './lesson-blocks'
+import { TeachBack } from './TeachBack'
+import { bloomLabelForSection } from '@/lib/courses/bloom'
 
 type Props = {
   lesson: MarginNotesLesson
@@ -138,6 +137,8 @@ export function CourseLessonPage({
 
   const [mode, setMode] = useState<'learn' | 'papers'>('learn')
   const [simpler, setSimpler] = useState(false)
+  /** Experiment: dual-code notes with a sketch panel beside the prose. */
+  const [visualNotes, setVisualNotes] = useState(false)
   const [step, setStep] = useState(1)
   const [active, setActive] = useState('')
 
@@ -235,6 +236,11 @@ export function CourseLessonPage({
         { id: 'cmap', label: 'Concept map', on: !!L.conceptMap && !premiumHidden },
         { id: 'glossary', label: 'Glossary', on: !!L.glossary?.length },
         { id: 'quiz', label: 'Quick check', on: !!L.quiz?.length && !quizLocked },
+        {
+          id: 'teachback',
+          label: 'Teach it back',
+          on: Boolean(L.code && L.lessonSlug),
+        },
         { id: 'cards', label: 'Flashcards', on: !!L.flashcards?.length && !premiumHidden },
         { id: 'takeaways', label: 'Key takeaways', on: !!L.takeaways?.length },
         { id: 'practice', label: 'Practice', on: !!L.practice && !premiumHidden },
@@ -257,39 +263,37 @@ export function CourseLessonPage({
   )
 
   // What to say to somebody who has been here before. Silent on a first visit.
-  const resume = useMemo(
-    () =>
-      resumeState(toc, readIds, {
-        checkId: L.quiz?.length && !quizLocked ? 'quiz' : undefined,
-        checkDone: readIds.has('quiz'),
-      }),
-    [L.quiz?.length, quizLocked, readIds, toc]
-  )
+  // Prefer unfinished retrieval (quiz → teach-back → cards) over rereading.
+  const resume = useMemo(() => {
+    const retrievalIds = [
+      L.quiz?.length && !quizLocked ? 'quiz' : null,
+      L.code && L.lessonSlug ? 'teachback' : null,
+      L.flashcards?.length && !premiumHidden ? 'cards' : null,
+    ].filter((id): id is string => !!id)
+    return resumeState(toc, readIds, { retrievalIds })
+  }, [
+    L.quiz?.length,
+    L.code,
+    L.lessonSlug,
+    L.flashcards?.length,
+    quizLocked,
+    premiumHidden,
+    readIds,
+    toc,
+  ])
 
   useEffect(() => {
     setActive((prev) => (toc.some((t) => t.id === prev) ? prev : toc[0]?.id ?? ''))
   }, [toc])
 
   // ── Study mode ────────────────────────────────────────────────────────────
-  // The same page, walked one stage at a time. Off by default and hidden purely
-  // in CSS, so the served HTML is byte-identical either way and the indexed
-  // lesson URLs keep every word crawlers see today.
+  // Immersive full-screen reading of the SAME lesson as OFF — one continuous
+  // scroll, no wizard, no stage chrome. Served HTML stays identical for SEO.
   const articleRef = useRef<HTMLElement | null>(null)
   const [study, setStudy] = useState(false)
-  const [stage, setStage] = useState<StageId | null>(null)
 
-  const stages = useMemo(() => stagesPresent(toc.map((t) => t.id)), [toc])
-
-  // A stage counts as done when every section in it is done, so the ticks come
-  // from the same progress the document mode shows.
-  const doneStages = useMemo(() => {
-    const out = new Set<StageId>()
-    for (const s of stages) {
-      const inStage = toc.filter((t) => stageForSection(t.id) === s)
-      if (inStage.length && inStage.every((t) => readIds.has(t.id))) out.add(s)
-    }
-    return out
-  }, [readIds, stages, toc])
+  const tocIds = useMemo(() => toc.map((t) => t.id), [toc])
+  const stages = useMemo(() => stagesPresent(tocIds), [tocIds])
 
   useEffect(() => {
     try {
@@ -299,7 +303,7 @@ export function CourseLessonPage({
       } else if (pref === '0') {
         setStudy(false)
       } else {
-        // No saved preference: phone defaults to staged Study (CO-02); desktop stays document.
+        // Phone defaults to immersion; desktop stays the normal lesson shell.
         setStudy(window.matchMedia('(max-width: 860px)').matches)
       }
     } catch {
@@ -307,23 +311,42 @@ export function CourseLessonPage({
     }
   }, [])
 
-  // Land on the first unfinished stage rather than always at the start —
-  // reopening a lesson should not make you click past what you already did.
+  // Tell the document shell (site nav) study is open — whole-screen focus.
   useEffect(() => {
-    if (!study || !stages.length) return
-    setStage((prev) => {
-      if (prev && stages.includes(prev)) return prev
-      // An inbound #hash names the section somebody was sent here for, so its
-      // stage beats "where you left off". Resolved here rather than in the
-      // scroll handler because that races with this effect on a cold load.
-      const hash = window.location.hash.replace('#', '')
-      const hashStage = hash ? stageForSection(hash) : null
-      if (hashStage && stages.includes(hashStage)) return hashStage
-      return stages.find((s) => !doneStages.has(s)) ?? stages[0]!
-    })
-  }, [doneStages, stages, study])
+    document.documentElement.dataset.lessonStudy = study ? 'on' : 'off'
+    return () => {
+      delete document.documentElement.dataset.lessonStudy
+    }
+  }, [study])
 
-  const activeStage = study ? stage : null
+  useEffect(() => {
+    try {
+      setVisualNotes(window.localStorage.getItem(VISUAL_NOTES_PREF_KEY) === '1')
+    } catch {
+      /* private mode */
+    }
+  }, [])
+
+  const toggleVisualNotes = useCallback(() => {
+    setVisualNotes((prev) => {
+      const next = !prev
+      try {
+        window.localStorage.setItem(VISUAL_NOTES_PREF_KEY, next ? '1' : '0')
+      } catch {
+        /* ignore */
+      }
+      return next
+    })
+  }, [])
+
+  const lsecProps = useCallback(
+    (id: string) => ({
+      id,
+      className: 'lsec',
+      'data-stage': stageForSection(id) ?? undefined,
+    }),
+    []
+  )
 
   // Highlights. Painted with the CSS Custom Highlight API rather than wrapped
   // in <mark>, so nothing is inserted into DOM that React owns — see
@@ -335,20 +358,7 @@ export function CourseLessonPage({
     repaint: repaintHighlights,
   } = useHighlights(L.lessonSlug, articleRef)
 
-  // Only hints for features this lesson actually has. One shows at a time; the
-  // rest wait for another visit.
-  // What the contents lists show. In study mode the rail is the top-level
-  // navigation and this becomes "sections in this step" — listing sections that
-  // are hidden meant two navigations stacked, one of them describing a page
-  // that was not on screen. Progress, resume and the stage set deliberately
-  // keep using the full toc: what you navigate is not what you have done.
-  const tocForNav = useMemo(() => {
-    if (!activeStage) return toc
-    return toc.filter((t) => {
-      const s = stageForSection(t.id)
-      return !s || s === activeStage
-    })
-  }, [activeStage, toc])
+  const tocForNav = toc
 
   const mobileNavIndex = useMemo(() => {
     const idx = tocForNav.findIndex((t) => t.id === active)
@@ -378,30 +388,20 @@ export function CourseLessonPage({
   ])
 
 
-  // Switching stage swaps most of the page out, so the old scroll position is
-  // meaningless — turning study mode on halfway down a lesson would otherwise
-  // strand you in blank space below content that no longer exists.
-  //
-  // The scroll has to happen AFTER React has committed the new stage, not
-  // inside the state updater: the document collapses from every section to one,
-  // and anything measuring during the old layout scrolls to a stale position.
-  // An effect keyed on the stage is the only point where the measurement is
-  // guaranteed to match what is on screen.
-  const wantsScrollRef = useRef(false)
-
-  useEffect(() => {
-    if (!wantsScrollRef.current) return
-    wantsScrollRef.current = false
-    const el = articleRef.current
-    if (el) scrollToElement(el)
-  }, [study, stage])
-
   const toggleStudy = useCallback(() => {
     const next = !study
     setStudy(next)
     if (next) {
       markHintUsed(HINT_KEYS.studyMode)
-      wantsScrollRef.current = true
+      // Fixed overlay mounts next frame — start at the reading surface.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const root = document.querySelector<HTMLElement>(
+            '.lesson-page[data-study="on"]'
+          )
+          if (root) root.scrollTop = 0
+        })
+      })
     }
     try {
       window.localStorage.setItem(STUDY_PREF_KEY, next ? '1' : '0')
@@ -410,44 +410,36 @@ export function CourseLessonPage({
     }
   }, [study])
 
-  const goStage = useCallback((next: StageId) => {
-    wantsScrollRef.current = true
-    setStage(next)
-  }, [])
-
-  const stepStudyStage = useCallback(
-    (delta: number) => {
-      if (!stage) return
-      goStage(stepStage(stages, stage, delta))
-    },
-    [goStage, stage, stages]
-  )
-
-
+  // Esc exits immersion — but never while typing in an input / teach-back box.
+  useEffect(() => {
+    if (!study) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      const t = e.target
+      if (
+        t instanceof HTMLElement &&
+        (t.tagName === 'TEXTAREA' ||
+          t.tagName === 'INPUT' ||
+          t.isContentEditable ||
+          t.closest('[role="textbox"]'))
+      ) {
+        return
+      }
+      toggleStudy()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [study, toggleStudy])
 
   const tocPct = useMemo(() => {
     if (isDone) return 100
     return lessonPercent
   }, [isDone, lessonPercent])
 
-  // The single choke point for every jump: the contents rail, the resume strip
-  // and #hash deep-links all land here. In study mode the target may be in a
-  // stage that is currently hidden, so open that stage first — otherwise those
-  // are dead clicks, and an inbound link to #quiz would appear to do nothing.
-  const scrollToSection = useCallback(
-    (id: string) => {
-      const target = study ? stageForSection(id) : null
-      if (target && target !== stage) {
-        setStage(target)
-        // Scroll after the section has been painted, not before.
-        requestAnimationFrame(() => requestAnimationFrame(() => jumpTo(id)))
-      } else {
-        jumpTo(id)
-      }
-      setActive(id)
-    },
-    [stage, study]
-  )
+  const scrollToSection = useCallback((id: string) => {
+    jumpTo(id)
+    setActive(id)
+  }, [])
 
   useEffect(() => {
     saveLastLesson(L.code, L.slug)
@@ -457,13 +449,7 @@ export function CourseLessonPage({
     if (searchParams.get('mode') === 'papers' && practiceCount > 0) setMode('papers')
   }, [searchParams, practiceCount])
 
-  // Inbound #hash, handled once.
-  //
-  // Guarded because scrollToSection now changes identity whenever the study
-  // stage does, and without the guard this effect re-fired on every stage
-  // change and dragged the reader back to the original anchor — which also
-  // reset the stage, since jumping to a section opens the stage that owns it.
-  // Navigating away from a deep link has to be allowed to stick.
+  // Inbound #hash, handled once per lesson mount.
   const hashHandledRef = useRef(false)
   useEffect(() => {
     if (mode !== 'learn' || typeof window === 'undefined') return
@@ -478,22 +464,29 @@ export function CourseLessonPage({
   // (A scroll listener used to compute a percentage here. Progress now comes
   // from useLessonProgress — sections worked through, not scroll depth.)
 
+  // Stable key so the effect deps never change length under HMR.
+  const tocObserveKey = tocIds.join('|')
   useEffect(() => {
     if (mode !== 'learn') return
+    // Study immersion scrolls inside .lesson-page, not the window.
+    const root = study
+      ? document.querySelector<HTMLElement>('.lesson-page[data-study="on"]')
+      : null
     const obs = new IntersectionObserver(
       (ents) => {
         ents.forEach((e) => {
           if (e.isIntersecting) setActive(e.target.id)
         })
       },
-      { rootMargin: '-30% 0px -60% 0px' }
+      { root: root ?? null, rootMargin: '-30% 0px -60% 0px' }
     )
-    toc.forEach((t) => {
-      const el = document.getElementById(t.id)
+    for (const id of tocObserveKey.split('|')) {
+      if (!id) continue
+      const el = document.getElementById(id)
       if (el) obs.observe(el)
-    })
+    }
     return () => obs.disconnect()
-  }, [mode, toc])
+  }, [mode, tocObserveKey, study])
 
   const topicLink = (topic: { slug: string; n: string; t: string }) => {
     const base = lessonTopicHref(L.code, topic, basePath)
@@ -503,6 +496,8 @@ export function CourseLessonPage({
   return (
     <main
       className="lesson-page"
+      data-study={study ? 'on' : 'off'}
+      data-visual-notes={visualNotes ? 'on' : 'off'}
       data-screen-label={`Lesson — ${L.name}`}
       // Both names: --acc-lesson is what the existing lesson CSS reads, --hub-acc
       // is what the shared course components (hero wash, section rules, hints,
@@ -511,7 +506,7 @@ export function CourseLessonPage({
       style={{ '--acc-lesson': acc, '--hub-acc': acc } as React.CSSProperties}
     >
       <ReadingProgress accent={acc} />
-      <div className="pg">
+      <div className="pg lesson-crumb">
         <Breadcrumb
           items={[
             coursesCrumb,
@@ -651,34 +646,43 @@ export function CourseLessonPage({
       <div className="lesson-modebar-wrap">
         <div className="pg lesson-modebar">
           <div className="mode-tabs" role="tablist" aria-label="Lesson view">
-            <button
-              type="button"
-              role="tab"
-              id="lesson-tab-learn"
-              aria-selected={mode === 'learn'}
-              aria-controls="lesson-panel-learn"
-              className={`mode-tab${mode === 'learn' ? ' on' : ''}`}
-              onClick={() => setLessonMode('learn')}
-            >
-              Learn <span className="mode-sub">visuals + notes</span>
-            </button>
-            <button
-              type="button"
-              role="tab"
-              id="lesson-tab-papers"
-              aria-selected={mode === 'papers'}
-              aria-controls="lesson-panel-papers"
-              className={`mode-tab${mode === 'papers' ? ' on' : ''}`}
-              onClick={() => setLessonMode('papers')}
-            >
-              Past papers
-              {practiceCount > 1 ? (
-                <span className="mode-count mono">{practiceCount}</span>
-              ) : null}
-              <span className="mode-sub">
-                {practiceCount > 1 ? 'questions' : 'try questions'}
-              </span>
-            </button>
+            {study ? (
+              <p className="study-focus-title mono" id="lesson-study-focus">
+                <span className="study-focus-k">STUDY</span>
+                <span className="study-focus-name">{L.name}</span>
+              </p>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  role="tab"
+                  id="lesson-tab-learn"
+                  aria-selected={mode === 'learn'}
+                  aria-controls="lesson-panel-learn"
+                  className={`mode-tab${mode === 'learn' ? ' on' : ''}`}
+                  onClick={() => setLessonMode('learn')}
+                >
+                  Learn <span className="mode-sub">visuals + notes</span>
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  id="lesson-tab-papers"
+                  aria-selected={mode === 'papers'}
+                  aria-controls="lesson-panel-papers"
+                  className={`mode-tab${mode === 'papers' ? ' on' : ''}`}
+                  onClick={() => setLessonMode('papers')}
+                >
+                  Past papers
+                  {practiceCount > 1 ? (
+                    <span className="mode-count mono">{practiceCount}</span>
+                  ) : null}
+                  <span className="mode-sub">
+                    {practiceCount > 1 ? 'questions' : 'try questions'}
+                  </span>
+                </button>
+              </>
+            )}
           </div>
           <div className="mode-right">
             {mode === 'learn' && stages.length > 1 ? (
@@ -687,7 +691,8 @@ export function CourseLessonPage({
                   STUDY MODE
                 </span>
                 <span id="lesson-study-hint" className="sr-only">
-                  Walk the lesson one step at a time instead of one long page
+                  Full-screen reading of this lesson. Same content — just scroll.
+                  Press Escape to exit.
                 </span>
                 <SegmentedControl
                   className="ink-seg"
@@ -716,6 +721,31 @@ export function CourseLessonPage({
                   aria-labelledby="lesson-simpler-label"
                   value={simpler ? 'on' : 'off'}
                   onChange={(v) => setSimpler(v === 'on')}
+                  options={[
+                    { value: 'off', label: 'OFF' },
+                    { value: 'on', label: 'ON' },
+                  ]}
+                />
+              </div>
+            ) : null}
+            {mode === 'learn' && L.notes && L.notes.length > 0 ? (
+              <div className="ink-toggle">
+                <span className="micro" id="lesson-visual-notes-label">
+                  DIAGRAM NOTES
+                </span>
+                <span id="lesson-visual-notes-hint" className="sr-only">
+                  Experiment: put a sketch of each note beside the prose. Same
+                  words — dual coded. Tell us if it helps.
+                </span>
+                <SegmentedControl
+                  className="ink-seg"
+                  optionClassName="ink-seg-opt"
+                  aria-labelledby="lesson-visual-notes-label"
+                  aria-describedby="lesson-visual-notes-hint"
+                  value={visualNotes ? 'on' : 'off'}
+                  onChange={(v) => {
+                    if ((v === 'on') !== visualNotes) toggleVisualNotes()
+                  }}
                   options={[
                     { value: 'off', label: 'OFF' },
                     { value: 'on', label: 'ON' },
@@ -883,11 +913,7 @@ export function CourseLessonPage({
             ) : null}
           </aside>
 
-          <article
-            className="lesson-article"
-            ref={articleRef}
-            data-study-stage={activeStage ?? undefined}
-          >
+          <article className="lesson-article" ref={articleRef}>
             {simpler ? (
               <div className="simpler-banner">
                 <span className="hand">plain-English mode on — no jargon, no fear ✎</span>
@@ -914,17 +940,8 @@ export function CourseLessonPage({
             <FeatureHint hintKey={HINT_KEYS.studyMode} available={availableHints} />
             <FeatureHint hintKey={HINT_KEYS.highlight} available={availableHints} />
 
-            {activeStage ? (
-              <StudyStages
-                stages={stages}
-                active={activeStage}
-                doneStages={doneStages}
-                onSelect={goStage}
-              />
-            ) : null}
-
             {L.simple ? (
-              <section id="simple" className="lsec" data-stage={stageForSection('simple') ?? undefined}>
+              <section {...lsecProps('simple')}>
                 <SecHead
                   k="01"
                   title="In simple terms"
@@ -960,7 +977,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.subtopics?.length ? (
-              <section id="syllabus" className="lsec" data-stage={stageForSection('syllabus') ?? undefined}>
+              <section {...lsecProps('syllabus')}>
                 <SecHead
                   k="·"
                   title="What this topic covers"
@@ -987,7 +1004,7 @@ export function CourseLessonPage({
             ) : null}
 
             {criterionLadder ? (
-              <section id="criteria" className="lsec" data-stage={stageForSection('criteria') ?? undefined}>
+              <section {...lsecProps('criteria')}>
                 <SecHead
                   k="·"
                   title="How it’s marked"
@@ -1002,7 +1019,7 @@ export function CourseLessonPage({
               data-sync={stepSyncEnabled ? 'on' : 'off'}
             >
             {L.hasDiagram ? (
-              <section id="visual" className="lsec" data-stage={stageForSection('visual') ?? undefined}>
+              <section {...lsecProps('visual')}>
                 <SecHead
                   k="02"
                   title="Explore the concept"
@@ -1038,7 +1055,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.figures?.length ? (
-              <section id="figures" className="lsec" data-stage={stageForSection('figures') ?? undefined}>
+              <section {...lsecProps('figures')}>
                 <SecHead
                   k="·"
                   title="Figures"
@@ -1053,7 +1070,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.formulas?.length ? (
-              <section id="formulas" className="lsec" data-stage={stageForSection('formulas') ?? undefined}>
+              <section {...lsecProps('formulas')}>
                 <SecHead
                   k="03"
                   title="Key formulas"
@@ -1068,7 +1085,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.comparisonTable ? (
-              <section id="compare" className="lsec" data-stage={stageForSection('compare') ?? undefined}>
+              <section {...lsecProps('compare')}>
                 <SecHead
                   k="·"
                   title={L.comparisonTable.title}
@@ -1080,7 +1097,7 @@ export function CourseLessonPage({
 
 
             {L.notes?.length ? (
-              <section id="notes" className="lsec" data-stage={stageForSection('notes') ?? undefined}>
+              <section {...lsecProps('notes')}>
                 <SecHead
                   k="04"
                   title="Full topic notes"
@@ -1091,9 +1108,39 @@ export function CourseLessonPage({
                   }
                 />
                 <FeatureHint hintKey={HINT_KEYS.explain} available={availableHints} />
+                {visualNotes ? (
+                  <p className="visual-notes-banner micro" role="status">
+                    <span className="mono">EXPERIMENT</span>
+                    Diagram notes on — same words, sketch beside each block.
+                    Toggle off anytime and tell us if it helps.
+                  </p>
+                ) : null}
                 <div className="notes-body">
-                  {L.notes.map((n, i) => (
+                  {L.notes.map((n, i) => {
+                    const stepMeta = L.steps?.[i]
+                    const sketch = visualNotes
+                      ? buildNoteSketch(n, {
+                          noteIndex: i,
+                          stepTitle: stepMeta?.title,
+                          stepBody: stepMeta?.body,
+                        })
+                      : null
+                    return (
                     <div key={i} className="note-block" ref={registerNoteBlock(i)}>
+                      {sketch ? (
+                        <NoteSketchCard
+                          sketch={sketch}
+                          onOpenFig={
+                            L.hasDiagram && !diagramsLocked
+                              ? () => {
+                                  setStep(i + 1)
+                                  scrollToSection('visual')
+                                }
+                              : undefined
+                          }
+                        />
+                      ) : null}
+                      <div className="note-prose">
                       <h3 className="note-h serif">{n.h}</h3>
                       {(simpler && L.simple?.simplerByHeading?.[n.h]
                         ? L.simple.simplerByHeading[n.h]
@@ -1134,15 +1181,17 @@ export function CourseLessonPage({
                         lessonSlug={L.lessonSlug}
                         block={n}
                       />
+                      </div>
                     </div>
-                  ))}
+                    )
+                  })}
                 </div>
               </section>
             ) : null}
             </div>
 
             {L.worked?.length ? (
-              <section id="worked" className="lsec" data-stage={stageForSection('worked') ?? undefined}>
+              <section {...lsecProps('worked')}>
                 <SecHead
                   k="05"
                   title="Worked examples"
@@ -1158,7 +1207,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.conceptMap && !premiumHidden ? (
-              <section id="cmap" className="lsec" data-stage={stageForSection('cmap') ?? undefined}>
+              <section {...lsecProps('cmap')}>
                 <SecHead
                   k="06"
                   title="How it all connects"
@@ -1169,22 +1218,23 @@ export function CourseLessonPage({
             ) : null}
 
             {L.glossary?.length ? (
-              <section id="glossary" className="lsec" data-stage={stageForSection('glossary') ?? undefined}>
+              <section {...lsecProps('glossary')}>
                 <SecHead
                   k="07"
                   title="Glossary"
-                  sub="Try to recall each definition before you reveal it."
+                  sub="Key terms for this topic — skim now; the Check step will test them."
                 />
                 <Glossary items={L.glossary} />
               </section>
             ) : null}
 
             {L.quiz?.length && !quizLocked ? (
-              <section id="quiz" className="lsec" data-stage={stageForSection('quiz') ?? undefined}>
+              <section {...lsecProps('quiz')}>
                 <SecHead
                   k="08"
                   title="Quick check"
                   sub="Write your answer first, then compare it with the model one — the gap is what you would have lost."
+                  bloom={bloomLabelForSection('quiz')}
                 />
                 <FeatureHint hintKey={HINT_KEYS.quickCheck} available={availableHints} />
                 <QuickCheck
@@ -1200,19 +1250,42 @@ export function CourseLessonPage({
               </section>
             ) : null}
 
-            {L.flashcards?.length && !premiumHidden ? (
-              <section id="cards" className="lsec" data-stage={stageForSection('cards') ?? undefined}>
+            {L.code && L.lessonSlug ? (
+              <section {...lsecProps('teachback')}>
                 <SecHead
                   k="09"
-                  title="Revision flashcards"
-                  sub="Flip the card. Test yourself before the exam."
+                  title="Teach it back"
+                  sub="If you can explain it simply, you own it — gaps here are marks you’d lose."
+                  bloom={bloomLabelForSection('teachback')}
                 />
-                <Flashcards cards={L.flashcards} />
+                <TeachBack
+                  subjectCode={L.code}
+                  lessonSlug={L.lessonSlug}
+                  practiceHref={quizPracticeHref}
+                  practiceRef={quizPractice?.ref}
+                  onComplete={() => markInteracted('teachback')}
+                />
+              </section>
+            ) : null}
+
+            {L.flashcards?.length && !premiumHidden ? (
+              <section {...lsecProps('cards')}>
+                <SecHead
+                  k="09b"
+                  title="Revision flashcards"
+                  sub="Guess first, then flip — retrieval beats re-reading."
+                  bloom={bloomLabelForSection('cards')}
+                />
+                <Flashcards
+                  cards={L.flashcards}
+                  practiceHref={quizPracticeHref}
+                  onDeckComplete={() => markInteracted('cards')}
+                />
               </section>
             ) : null}
 
             {L.takeaways?.length ? (
-              <section id="takeaways" className="lsec" data-stage={stageForSection('takeaways') ?? undefined}>
+              <section {...lsecProps('takeaways')}>
                 <SecHead
                   k="10"
                   title="Key takeaways"
@@ -1233,7 +1306,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.practice ? (
-              <section id="practice" className="lsec" data-stage={stageForSection('practice') ?? undefined}>
+              <section {...lsecProps('practice')}>
                 <SecHead
                   k="11"
                   title="Practice — then mark it"
@@ -1257,7 +1330,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.resources?.length ? (
-              <section id="resources" className="lsec" data-stage={stageForSection('resources') ?? undefined}>
+              <section {...lsecProps('resources')}>
                 <SecHead
                   k="·"
                   title="Extra simulations & links"
@@ -1282,7 +1355,7 @@ export function CourseLessonPage({
             ) : null}
 
             {L.faqs?.length ? (
-              <section id="faqs" className="lsec" data-stage={stageForSection('faqs') ?? undefined}>
+              <section {...lsecProps('faqs')}>
                 <SecHead k="·" title="Frequently asked" />
                 <div className="faqs">
                   {L.faqs.map((f, i) => (
@@ -1299,7 +1372,7 @@ export function CourseLessonPage({
             />
 
             {L.practiceQuestions?.length || L.practice ? (
-              <section id="checkpoint" className="lsec" data-stage={stageForSection('checkpoint') ?? undefined}>
+              <section {...lsecProps('checkpoint')}>
                 <SecHead
                   k="✓"
                   title="Checkpoint"
@@ -1315,14 +1388,6 @@ export function CourseLessonPage({
             ) : null}
 
             <HighlightRecap list={highlights} onJump={scrollToSection} />
-
-            {activeStage ? (
-              <StudyStageFooter
-                stages={stages}
-                active={activeStage}
-                onStep={stepStudyStage}
-              />
-            ) : null}
 
             <div className="lesson-end">
             <LessonEndBlock
@@ -1361,7 +1426,7 @@ export function CourseLessonPage({
         supported={hlSupported}
         repaint={repaintHighlights}
         rootRef={articleRef}
-        repaintKey={`${activeStage ?? 'doc'}|${simpler}|${mode}`}
+        repaintKey={`${study ? 'study' : 'doc'}|${simpler}|${mode}`}
       />
     </main>
   )

@@ -38,13 +38,13 @@ export default async function ReviewPage() {
 
   return (
     <div className="mx-auto max-w-[var(--ec-content-max,860px)] px-4 py-10 sm:px-6">
-      <p className="ec-eyebrow mb-2">Spaced review</p>
+      <p className="ec-eyebrow mb-2">Due today</p>
       <h1 className="text-hero mb-3">
         Review your <span className="ec-text-gradient">misses</span>
       </h1>
       <p className="mb-8 leading-relaxed text-[var(--ec-text-secondary)]">
-        The topics you scored lowest on, ranked by how overdue they are. Re-practise
-        one, get marked, and it drops down the list.
+        Weak topics and lessons you checked but haven&apos;t marked yet — oldest
+        first. Close one, and it drops down the list.
       </p>
 
       {readiness.length > 0 ? (
@@ -118,8 +118,7 @@ export default async function ReviewPage() {
           </h2>
           <p className="mb-5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
             Get marked on one question per subject and this page fills in with your
-            predicted grade, how you lose marks, and a spaced plan of exactly what to
-            fix.
+            predicted grade, how you lose marks, and what to fix next.
           </p>
           {startSubjects.length > 0 ? (
             <div className="flex flex-wrap gap-2">
@@ -142,8 +141,8 @@ export default async function ReviewPage() {
       ) : items.length === 0 ? (
         <div className="ec-card ec-card--paper p-6 text-center">
           <p className="mb-4 text-[var(--ec-text-secondary)]">
-            You&apos;re all caught up — nothing due for review right now. Keep marking
-            to surface new weak spots.
+            You&apos;re clear — nothing due. Mark something new to find the next weak
+            spot.
           </p>
           <Link href="/mark" className="ec-btn-primary">
             Mark a question →
@@ -167,7 +166,9 @@ export default async function ReviewPage() {
                           : 'bg-[color-mix(in_srgb,#e0a13a_18%,var(--ec-surface))] text-[#a06a11]'
                     }`}
                   >
-                    {it.source === 'recall' ? 'Recall' : LEVEL_LABEL[it.level] ?? it.level}
+                    {it.source === 'recall'
+                      ? 'Not yet marked'
+                      : LEVEL_LABEL[it.level] ?? it.level}
                   </span>
                   <span className="text-xs font-medium text-[var(--ec-text-secondary)]">
                     {it.subjectLabel} · {it.code}
@@ -181,13 +182,13 @@ export default async function ReviewPage() {
                 <p className="mt-0.5 text-[13px] text-[var(--ec-text-secondary)]">
                   {it.source === 'recall' ? (
                     <>
-                      You answered this lesson&rsquo;s quick check
+                      Quick check done
                       {it.daysSince < 999
                         ? it.daysSince === 0
                           ? ' today'
                           : ` ${it.daysSince}d ago`
                         : ''}{' '}
-                      · not yet marked
+                      · still unmarked
                     </>
                   ) : (
                     <>
@@ -219,14 +220,14 @@ export default async function ReviewPage() {
                     href={it.lessonHref}
                     className="ec-btn-ghost ec-btn-ghost--sm whitespace-nowrap"
                   >
-                    Study
+                    {it.source === 'recall' ? 'Revisit lesson' : 'Study'}
                   </Link>
                 ) : null}
                 <Link
                   href={it.practiceHref}
                   className="ec-btn-primary ec-btn-primary--sm whitespace-nowrap"
                 >
-                  Review now →
+                  {it.source === 'recall' ? 'Mark one →' : 'Review now →'}
                 </Link>
               </div>
             </li>

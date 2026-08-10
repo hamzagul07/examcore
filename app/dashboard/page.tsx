@@ -29,6 +29,7 @@ import { ContinueWork } from '@/components/dashboard/ContinueWork'
 import { ActiveSubjects } from '@/components/dashboard/ActiveSubjects'
 import { NewUserHome } from '@/components/dashboard/NewUserHome'
 import { NextActionCard } from '@/components/dashboard/NextActionCard'
+import { MarksLeakingStrip } from '@/components/dashboard/MarksLeakingStrip'
 import { DashboardSection } from '@/components/dashboard/DashboardSection'
 import { computeStreak } from '@/lib/dashboard/streak'
 import { MomentumStrip } from '@/components/dashboard/MomentumStrip'
@@ -215,6 +216,9 @@ export default async function DashboardPage() {
   // lessons whose quick check the student completed, and those students are
   // exactly the ones who used to see an empty review section forever.
   const reviewItems = await buildReviewQueue(user.id)
+  // Recall-only students have real due work even with zero marks — show the
+  // returning home (Due card) instead of the first-mark funnel.
+  const showReturningHome = !isEmpty || reviewItems.length > 0
   const nextAction = buildNextAction({ reviewItems, recommendations })
   // Extra due items beyond the one promoted into nextAction.
   const moreReview = reviewItems.slice(1, 4)
@@ -248,7 +252,7 @@ export default async function DashboardPage() {
     <main className="app-shell app-shell-tabbed ms-dash-home">
       <div className="mx-auto min-w-0 max-w-7xl rounded-none px-0 pb-8 pt-0 sm:rounded">
         <DashboardEntry>
-          {isEmpty ? (
+          {!showReturningHome ? (
             <>
               {/* DB-01: first-mark CTA before any billing/approaching chrome. */}
               <NewUserHome
@@ -276,6 +280,15 @@ export default async function DashboardPage() {
               />
               {/* DB-02: one server-computed next action, then weekly status. */}
               <NextActionCard action={nextAction} />
+              {primaryCode ? (
+                <MarksLeakingStrip
+                  subjectCode={primaryCode}
+                  subjectLabel={continueSubjectLabel}
+                  critical={masteries
+                    .filter((m) => m.level === 'critical')
+                    .sort((a, b) => a.percentage - b.percentage)}
+                />
+              ) : null}
               <BillingLimitBanner className="mb-6" />
               {showMax ? (
                 <div className="mb-6 space-y-4">
@@ -319,12 +332,12 @@ export default async function DashboardPage() {
                     <div className="mb-3 flex items-center justify-between gap-3">
                       <div className="flex items-center gap-2">
                         <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
-                          RV
+                          DUE
                         </span>
                         <div>
-                          <p className="ec-eyebrow mb-0">More due</p>
+                          <p className="ec-eyebrow mb-0">Also due</p>
                           <h3 className="text-lg font-bold text-[var(--ec-text-primary)]">
-                            Other review items
+                            More topics waiting
                           </h3>
                         </div>
                       </div>
@@ -332,7 +345,7 @@ export default async function DashboardPage() {
                         href="/dashboard/review"
                         className="whitespace-nowrap font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-brand)]"
                       >
-                        See all -&gt;
+                        See all →
                       </Link>
                     </div>
                     <ul className="ms-review-slip__list">
@@ -344,7 +357,7 @@ export default async function DashboardPage() {
                               <span className="text-[var(--ec-text-secondary)]">· {it.subjectLabel}</span>
                             </span>
                             <span className="shrink-0 font-mono text-[11px] font-bold text-[var(--ec-brand)]">
-                              Review -&gt;
+                              {it.source === 'recall' ? 'Mark →' : 'Review →'}
                             </span>
                           </Link>
                         </li>

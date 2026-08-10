@@ -383,6 +383,8 @@ function buildConfig(opts: GeminiTextOptions, abortSignal: AbortSignal) {
     'marking',
     'structured-extraction',
     'json-repair-retry',
+    // Teach-back must return parseable JSON or the UI shows a dead-end 502.
+    'teach-back',
   ])
 
   return {

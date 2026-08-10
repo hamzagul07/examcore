@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import { WeakSpotDrillCard } from '@/components/insights/WeakSpotDrillCard'
+import { topicDrillHref } from '@/lib/insights/drill-link'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import { AskOmniAboutMark } from '@/components/omni-ai/AskOmniAboutMark'
 import { SyllabusTopicBadge } from '@/components/SyllabusTopicBadge'
@@ -497,6 +498,22 @@ export function MarkingResultView({
         <div className="ms-mark-primary-action mt-7">{primaryAction}</div>
       ) : null}
 
+      {/* Soft Zeigarnik closer — real marks only, never sample/demo results. */}
+      {!isSample ? (
+        <MarkDueLoop
+          subjectCode={badgeSubjectCode}
+          topicCode={result.syllabus_tags?.[0] ?? null}
+          hasWeakSignal={
+            !!(
+              (result.syllabus_tags && result.syllabus_tags.length > 0) ||
+              (result.ai_marking?.weak_topics &&
+                result.ai_marking.weak_topics.length > 0)
+            )
+          }
+          lostMarks={lostMarks}
+        />
+      ) : null}
+
       {hasStructuredResult || showAudit || hasCriteria ? (
         <Disclosure
           className="ms-mark-evidence mt-7"
@@ -749,6 +766,53 @@ function FullMarksRewritePanel({
           </ul>
         </div>
       )}
+    </div>
+  )
+}
+
+function MarkDueLoop({
+  subjectCode,
+  topicCode,
+  hasWeakSignal,
+  lostMarks,
+}: {
+  subjectCode?: string
+  topicCode: string | null
+  hasWeakSignal: boolean
+  lostMarks: boolean
+}) {
+  const drillHref =
+    subjectCode && topicCode
+      ? topicDrillHref(subjectCode, topicCode, { returnTo: 'progress' })
+      : null
+  const showDrill = lostMarks && !!drillHref
+
+  return (
+    <div className="ms-mark-due-loop mt-6">
+      <p className="ms-micro" style={{ marginBottom: 8 }}>
+        DUE LIST
+      </p>
+      <p className="text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+        {hasWeakSignal || lostMarks
+          ? 'This topic can come back on your due list. Close it with one more mark while it is warm.'
+          : "Nothing else due. Tomorrow's win is one new mark."}
+      </p>
+      <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+        {showDrill ? (
+          <Link
+            href={drillHref}
+            className="inline-flex min-h-[40px] items-center font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-brand)]"
+          >
+            Mark this topic again →
+          </Link>
+        ) : null}
+        <Link
+          href="/dashboard/review"
+          className="inline-flex min-h-[40px] items-center font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-text-secondary)] hover:text-[var(--ec-brand)]"
+        >
+          See what&apos;s due →
+        </Link>
+      </div>
     </div>
   )
 }

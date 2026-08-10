@@ -19,6 +19,7 @@ interface StudentCardProps {
   predictedGrade: string
   quadrant: StudentQuadrantMetric['quadrant']
   classroomId: string
+  dueCount?: number
 }
 
 export function StudentCard({
@@ -29,6 +30,7 @@ export function StudentCard({
   predictedGrade,
   quadrant,
   classroomId,
+  dueCount = 0,
 }: StudentCardProps) {
   return (
     <Link
@@ -42,9 +44,19 @@ export function StudentCard({
             {attemptSummary(attemptCount, accuracy)}
           </p>
         </div>
-        <span className="rounded-lg ec-tint-success-chip px-2 py-1 text-sm font-bold">
-          {predictedGrade}
-        </span>
+        <div className="flex shrink-0 flex-col items-end gap-1.5">
+          <span className="rounded-lg ec-tint-success-chip px-2 py-1 text-sm font-bold">
+            {predictedGrade}
+          </span>
+          {dueCount > 0 ? (
+            <span
+              className="ms-roster-due"
+              title={`${dueCount} topic${dueCount === 1 ? '' : 's'} due`}
+            >
+              {dueCount} due
+            </span>
+          ) : null}
+        </div>
       </div>
       <div className="mt-3 text-xs text-[var(--ec-text-secondary)]">
         {QUADRANT_LABELS[quadrant]}

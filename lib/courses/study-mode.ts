@@ -1,18 +1,9 @@
 import type { StageId } from '@/lib/courses/lesson-stages'
 
 /**
- * Study mode: the same lesson, presented one stage at a time.
- *
- * Critically this is a PRESENTATION mode, not a second renderer. Every section
- * still renders into the DOM exactly as it does today and inactive ones are
- * hidden in CSS, so the served HTML — and therefore the 871 indexed lesson URLs
- * — are completely unchanged. The prototype at /dev/lesson-path rendered only
- * the active stage, which would have hidden four fifths of the content from
- * crawlers; that is why it stayed a prototype.
- *
- * Pure, so the section→stage mapping is testable and every section is provably
- * accounted for. A section that belonged to no stage would simply vanish in
- * study mode, which is the failure worth guarding against.
+ * Study mode maps lesson sections to a learning path for analytics / TOC
+ * stage chips. The live UX is immersive full-screen reading of the same
+ * document — not a hide/show wizard. Content always stays in the DOM for SEO.
  */
 
 /** Section id → the stage it belongs to. Order within a stage follows the page. */
@@ -28,9 +19,10 @@ const SECTION_STAGE: Record<string, StageId> = {
   compare: 'read',
   notes: 'read',
   cmap: 'read',
+  glossary: 'read',
 
-  glossary: 'check',
   quiz: 'check',
+  teachback: 'check',
   cards: 'check',
 
   worked: 'prove',
@@ -43,21 +35,46 @@ const SECTION_STAGE: Record<string, StageId> = {
 
 export const STAGE_ORDER: readonly StageId[] = ['orient', 'see', 'read', 'check', 'prove']
 
+export const STAGE_LABEL: Record<StageId, string> = {
+  orient: 'Get set',
+  see: 'See it',
+  read: 'Read',
+  check: 'Check yourself',
+  prove: 'Prove it',
+}
+
+export const STAGE_STRIP: Record<StageId, string> = {
+  orient: 'Get set',
+  see: 'See it',
+  read: 'Read',
+  check: 'Check',
+  prove: 'Prove',
+}
+
+export const STAGE_SUB: Record<StageId, string> = {
+  orient: 'what this topic is',
+  see: 'picture the idea',
+  read: 'the notes & terms',
+  check: 'write before you look',
+  prove: 'a real exam question',
+}
+
+export const STAGE_COACH: Record<StageId, string> = {
+  orient: 'Skim the big idea — don’t memorise yet.',
+  see: 'Watch how it moves. Then the notes will stick.',
+  read: 'Read once carefully. Checking comes next.',
+  check: 'Produce answers. Gaps here are marks you’d lose.',
+  prove: 'Mark a real question — that closes the loop.',
+}
+
 export function stageForSection(id: string): StageId | null {
   return SECTION_STAGE[id] ?? null
 }
 
-/** Every section id the mapping knows — used by the test to prove coverage. */
 export function mappedSectionIds(): string[] {
   return Object.keys(SECTION_STAGE)
 }
 
-/**
- * The stages this lesson actually has, in order.
- *
- * Built from the sections present rather than a fixed list, so a lesson with no
- * diagram never shows an empty "See" step.
- */
 export function stagesPresent(sectionIds: readonly string[]): StageId[] {
   const present = new Set<StageId>()
   for (const id of sectionIds) {
@@ -67,12 +84,7 @@ export function stagesPresent(sectionIds: readonly string[]): StageId[] {
   return STAGE_ORDER.filter((s) => present.has(s))
 }
 
-/**
- * Sections that belong to no stage are shown in EVERY stage rather than hidden.
- *
- * Failing open matters here: a section added later without a mapping entry
- * should look slightly out of place, not disappear from the lesson entirely.
- */
+/** Kept for mapping honesty in tests — immersion shows every section. */
 export function isSectionVisible(sectionId: string, activeStage: StageId | null): boolean {
   if (!activeStage) return true
   const stage = stageForSection(sectionId)
@@ -91,18 +103,28 @@ export function stepStage(
   return stages[next] ?? current
 }
 
-/**
- * The preference is remembered globally, not per lesson.
- *
- * Somebody who wants to be walked through one lesson wants it for the next one
- * too; making them re-enable it every time would make the mode feel like a toy.
- */
+export function firstSectionForStage(
+  sectionIds: readonly string[],
+  stage: StageId
+): string | null {
+  return sectionIds.find((id) => stageForSection(id) === stage) ?? null
+}
+
+export function stageChapterMark(
+  sectionId: string,
+  sectionIds: readonly string[],
+  stages: readonly StageId[]
+): { label: string; first: boolean } | null {
+  const stage = stageForSection(sectionId)
+  if (!stage || !stages.includes(stage)) return null
+  if (firstSectionForStage(sectionIds, stage) !== sectionId) return null
+  const n = stages.indexOf(stage)
+  return {
+    label: `${String(n + 1).padStart(2, '0')} · ${STAGE_LABEL[stage].toUpperCase()}`,
+    first: n === 0,
+  }
+}
+
 export const STUDY_PREF_KEY = 'ms:study-mode'
 
-export const STAGE_LABEL: Record<StageId, string> = {
-  orient: 'Orient',
-  see: 'See',
-  read: 'Read',
-  check: 'Check',
-  prove: 'Prove',
-}
+export const CHECK_RETRIEVAL_IDS = ['quiz', 'teachback', 'cards'] as const

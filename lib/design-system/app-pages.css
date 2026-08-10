@@ -319,6 +319,93 @@
   border-left: 4px solid var(--ec-brand);
 }
 
+.ms-next-action__loop {
+  margin: 0;
+  padding-top: 14px;
+  border-top: 1px dashed color-mix(in srgb, var(--ec-border) 90%, transparent);
+}
+
+.ms-next-action__loop-link {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-brand);
+  text-decoration: none;
+}
+
+.ms-next-action__loop-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ms-mark-due-loop {
+  padding: 18px 20px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.06));
+  border-left: 4px solid var(--ec-brand);
+}
+
+.ms-leaking {
+  position: relative;
+  overflow: hidden;
+  padding: 20px 22px;
+  background: var(--ec-paper, var(--ec-surface));
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
+}
+
+.ms-leaking::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 0%,
+    var(--ec-logo-crimson, var(--ec-ink-crimson)) 40%,
+    var(--ec-brand) 40%,
+    var(--ec-brand) 100%
+  );
+  pointer-events: none;
+}
+
+.ms-leaking__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ms-leaking__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 52px;
+  padding: 12px 0;
+  border-bottom: 1px dashed color-mix(in srgb, var(--ec-border) 85%, transparent);
+  text-decoration: none;
+  color: inherit;
+}
+
+.ms-leaking__list li:last-child .ms-leaking__row {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ms-leaking__row:hover {
+  color: var(--ec-brand);
+}
+
 .ms-grade-trajectory__chart {
   border-left: 4px solid var(--ec-brand);
 }

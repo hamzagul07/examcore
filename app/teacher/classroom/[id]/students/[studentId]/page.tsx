@@ -16,6 +16,7 @@ import {
 } from '@/components/teacher/TeacherPageChrome'
 import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
 import type { StudentQuadrantMetric } from '@/lib/teacher-analytics'
+import { StudentDueList } from '@/components/teacher/StudentDueList'
 
 export default function StudentDetailPage() {
   const { id, studentId } = useParams<{ id: string; studentId: string }>()
@@ -149,6 +150,14 @@ export default function StudentDetailPage() {
             {percentOrDash(student.coverage, student.attemptCount)}
           </div>
         </div>
+      </div>
+
+      <div className="mb-8">
+        <StudentDueList
+          classroomId={id}
+          studentId={studentId}
+          studentName={student.name}
+        />
       </div>
 
       {student.biggestDeficit && (

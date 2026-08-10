@@ -20,6 +20,7 @@ interface Student {
   predictedGrade: string
   quadrant: StudentQuadrantMetric['quadrant']
   coverage: number
+  dueCount?: number
 }
 
 export default function ClassroomStudentsPage() {
@@ -126,6 +127,7 @@ export default function ClassroomStudentsPage() {
               predictedGrade={s.predictedGrade}
               quadrant={s.quadrant}
               classroomId={id}
+              dueCount={s.dueCount ?? 0}
             />
           ))}
         </div>

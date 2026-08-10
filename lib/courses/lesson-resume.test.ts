@@ -50,6 +50,51 @@ check(
   skipped.kind === 'continue' && skipped.nextId === 'visual'
 )
 
+// ── Retrieval next (quiz / teach-back / cards) ──────────────────────────────
+const toRetrieval = resumeState(toc, seen('simple', 'visual', 'notes'), {
+  retrievalIds: ['quiz', 'teachback', 'cards'],
+})
+check('next retrieval is check kind', toRetrieval.kind === 'check')
+check(
+  'check points at quiz',
+  toRetrieval.kind === 'check' && toRetrieval.checkId === 'quiz'
+)
+
+const withTeach = [
+  ...toc.slice(0, 3),
+  { id: 'teachback', label: 'Teach it back' },
+]
+const toTeach = resumeState(withTeach, seen('simple', 'visual', 'notes'), {
+  retrievalIds: ['quiz', 'teachback', 'cards'],
+})
+check(
+  'teach-back surfaces when quiz absent',
+  toTeach.kind === 'check' && toTeach.checkId === 'teachback'
+)
+
+// Priority order beats TOC order once reading before retrieval is done.
+const messyToc: TocEntry[] = [
+  { id: 'simple', label: 'Simple explanation' },
+  { id: 'notes', label: 'Full notes' },
+  { id: 'cards', label: 'Flashcards' },
+  { id: 'teachback', label: 'Teach it back' },
+  { id: 'quiz', label: 'Quick check' },
+]
+const priority = resumeState(messyToc, seen('simple', 'notes'), {
+  retrievalIds: ['quiz', 'teachback', 'cards'],
+})
+check(
+  'retrieval priority prefers quiz over earlier cards',
+  priority.kind === 'check' && priority.checkId === 'quiz'
+)
+const afterQuiz = resumeState(messyToc, seen('simple', 'notes', 'quiz'), {
+  retrievalIds: ['quiz', 'teachback', 'cards'],
+})
+check(
+  'after quiz prefers teach-back over earlier cards',
+  afterQuiz.kind === 'check' && afterQuiz.checkId === 'teachback'
+)
+
 // ── Everything read ─────────────────────────────────────────────────────────
 const all = seen('simple', 'visual', 'notes', 'quiz')
 
@@ -72,6 +117,12 @@ check('continue names the section', !!msg && msg.body.includes('Full notes'))
 check('continue counts honestly', !!msg && msg.body.includes('2 of 4'))
 check('none has no message', resumeMessage({ kind: 'none' }) === null)
 check('check has a message', !!resumeMessage({ kind: 'check', total: 4, checkId: 'quiz' }))
+check(
+  'teach-back copy',
+  !!resumeMessage({ kind: 'check', total: 4, checkId: 'teachback' })?.body.includes(
+    'Teach the topic'
+  )
+)
 check('complete has a message', !!resumeMessage({ kind: 'complete', total: 4 }))
 
 if (failed > 0) process.exit(1)

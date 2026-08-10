@@ -25,8 +25,8 @@ const COPY: Record<HintKey, { title: string; body: string }> = {
     body: 'Every section has Simpler, Why? and Show me underneath. Tap one and this exact paragraph gets explained again — in plainer words, from first principles, or with a worked example.',
   },
   [HINT_KEYS.studyMode]: {
-    title: 'This page is longer than it needs to be',
-    body: 'Turn on Study mode, top right, and the lesson comes one step at a time instead of all at once — orient, see it, read it, test yourself, then do a real question. Nothing is removed; you can switch back whenever.',
+    title: 'Want the whole screen?',
+    body: 'Turn on Study mode (top right). Same lesson — full-screen, just scroll. Press Escape or switch OFF to exit.',
   },
   [HINT_KEYS.highlight]: {
     title: 'You can mark this page up',

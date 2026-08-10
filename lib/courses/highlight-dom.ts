@@ -82,7 +82,7 @@ export function ensureHighlightStyles(): void {
  * words after a reload is worse than no highlight at all.
  */
 const SKIP_SELECTOR =
-  'button, input, textarea, select, svg, script, style, .katex, .katex-display, [data-no-highlight], .feature-hint, .study-rail, .qc-progress, .lesson-hl-recap'
+  'button, input, textarea, select, svg, script, style, .katex, .katex-display, [data-no-highlight], .feature-hint, .study-path, .study-chrome, .study-rail, .qc-progress, .lesson-hl-recap'
 
 export type TextBit = { node: Text; start: number; end: number }
 

@@ -52,7 +52,7 @@ export function sendReviewDigestEmail(payload: {
           `<span style="font-size:15px;font-weight:600;color:${EMAIL_INK}">${esc(t.name)}</span>` +
           `<span style="color:${EMAIL_MUTED}"> · ${esc(t.subjectLabel)}</span>`,
         href: `${SITE_URL}${topicDrillHref(t.subjectCode, t.topicCode)}`,
-        actionLabel: 'Drill it →',
+        actionLabel: 'Mark one →',
       })
     )
     .join('')
@@ -65,30 +65,30 @@ export function sendReviewDigestEmail(payload: {
   const bodyHtml =
     `<p style="margin:0 0 4px;font-size:16px;color:${EMAIL_INK}">Hi ${esc(greeting)},</p>` +
     `<p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#555">${n} ${
-      n === 1 ? 'topic has' : 'topics have'
-    } come round for review. These are spaced to land just as the material starts to fade — answering one question on each is enough to reset the clock.</p>` +
-    sectionHeading('Due now', 'One question each. Two minutes a topic.') +
+      n === 1 ? 'topic is' : 'topics are'
+    } due. Close one before it fades — a single marked question resets the clock.</p>` +
+    sectionHeading('Due today', 'One question each. Two minutes a topic.') +
     linkRowTable(rows) +
     overflowHtml +
     `<div style="height:22px"></div>` +
     noteHtml(
-      'Reviewing a topic you still know is not wasted — that is the repetition that makes it survive to the exam.'
+      'Marking a topic you still know is not wasted — that is the repetition that makes it survive to the exam.'
     )
 
   const text = [
     `Hi ${greeting},`,
     '',
-    `${n} ${n === 1 ? 'topic has' : 'topics have'} come round for review. One question each is enough to reset the clock:`,
+    `${n} ${n === 1 ? 'topic is' : 'topics are'} due. One marked question each is enough to reset the clock:`,
     '',
     ...listed.map(
       (t) =>
         `- ${t.name} (${t.subjectLabel}): ${SITE_URL}${topicDrillHref(t.subjectCode, t.topicCode)}`
     ),
-    overflow > 0 ? `+ ${overflow} more on your review page.` : '',
+    overflow > 0 ? `+ ${overflow} more on your due list.` : '',
     '',
     `All of them: ${reviewUrl}`,
     '',
-    `Turn off review reminders: ${unsubscribeHref}`,
+    `Turn off due reminders: ${unsubscribeHref}`,
     '',
     '— MarkScheme',
   ]
@@ -97,19 +97,19 @@ export function sendReviewDigestEmail(payload: {
 
   const preheader =
     listed.length > 0
-      ? `Starting with ${listed[0].name}. One question each.`
+      ? `${listed[0].name} is due. One question closes it.`
       : 'A few minutes keeps your weak topics sharp.'
 
   sendEmailAsync({
     to,
-    subject: `${n} ${n === 1 ? 'topic is' : 'topics are'} due for review`,
+    subject: `${n} ${n === 1 ? 'topic is' : 'topics are'} due today`,
     preheader,
     text,
     html: renderBrandedEmailHtml({
       preheader,
       bodyHtml,
-      cta: { label: 'Open your review page →', href: reviewUrl },
-      unsubscribe: { label: 'Turn off review reminders', href: unsubscribeHref },
+      cta: { label: 'Open your due list →', href: reviewUrl },
+      unsubscribe: { label: 'Turn off due reminders', href: unsubscribeHref },
     }),
     unsubscribeHref,
   })

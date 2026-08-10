@@ -52,6 +52,7 @@ export type GeminiTask =
   | 'ocr' // handwriting / paper OCR
   | 'solution' // model worked solutions
   | 'explain-block' // per-paragraph course lesson explanation (cached, latency-sensitive)
+  | 'teach-back' // Feynman-style gap check on a student's explanation (per-user, Flash)
 
 const PRO_TASKS: ReadonlySet<GeminiTask> = new Set([
   'content-generation',

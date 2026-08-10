@@ -526,8 +526,211 @@
   }
 }
 
+/* Class due list — topics cooling off across the roster */
+.ms-class-due__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px 20px;
+  margin-bottom: 1.25rem;
+}
+
+.ms-class-due__title {
+  margin: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ec-text-primary);
+  line-height: 1.25;
+}
+
+.ms-class-due__sub {
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+  max-width: 36rem;
+}
+
+.ms-class-due__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.ms-class-due__row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'main pct'
+    'bar pct';
+  gap: 0.35rem 0.75rem;
+  align-items: center;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px dashed color-mix(in srgb, var(--ec-border) 85%, transparent);
+}
+
+.ms-class-due__list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ms-class-due__row-main { grid-area: main; min-width: 0; }
+.ms-class-due__name {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+}
+.ms-class-due__code {
+  font-weight: 500;
+  color: var(--ec-text-secondary);
+  font-size: 0.85rem;
+}
+.ms-class-due__meta {
+  margin: 0.2rem 0 0;
+  font-size: 0.78rem;
+  color: var(--ec-text-secondary);
+  line-height: 1.4;
+}
+.ms-class-due__bar {
+  grid-area: bar;
+  height: 0.4rem;
+  border-radius: 4px;
+  background: var(--ec-surface-raised);
+  overflow: hidden;
+}
+.ms-class-due__fill {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--ec-logo-crimson, var(--ec-ink-crimson, var(--ec-brand)));
+}
+.ms-class-due__pct {
+  grid-area: pct;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ec-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+.ms-class-due__act {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ec-border);
+}
+
+.ms-roster-due {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ec-logo-crimson, var(--ec-ink-crimson, #c53a3f));
+  border: 1px solid color-mix(in srgb, var(--ec-logo-crimson, #c53a3f) 35%, transparent);
+  background: color-mix(in srgb, var(--ec-logo-crimson, #c53a3f) 10%, transparent);
+  border-radius: 2px;
+  padding: 3px 7px;
+  white-space: nowrap;
+}
+
+.ms-teacher-roster__trail {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Per-student due on teacher profile */
+.ms-student-due__title {
+  margin: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ec-text-primary);
+  line-height: 1.25;
+}
+
+.ms-student-due__sub {
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.ms-student-due__list {
+  list-style: none;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ms-student-due__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 52px;
+  padding: 12px 0;
+  border-bottom: 1px dashed color-mix(in srgb, var(--ec-border) 85%, transparent);
+}
+
+.ms-student-due__list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ms-student-due__name {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+}
+
+.ms-student-due__code {
+  font-weight: 500;
+  color: var(--ec-text-secondary);
+  font-size: 0.85rem;
+}
+
+.ms-student-due__meta {
+  margin: 0.2rem 0 0;
+  font-size: 0.78rem;
+  color: var(--ec-text-secondary);
+}
+
+.ms-student-due__badge {
+  flex-shrink: 0;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ec-brand);
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 35%, transparent);
+  background: color-mix(in srgb, var(--ec-brand) 10%, transparent);
+  border-radius: 2px;
+  padding: 4px 8px;
+}
+
+.ms-student-due__badge--recall {
+  color: var(--ec-text-secondary);
+  border-color: var(--ec-border);
+  background: var(--ec-surface-raised);
+}
+
 /* Printed gap report: a head of department takes this into a department
- * meeting, so it must not waste the page on app chrome. */
+   * meeting, so it must not waste the page on app chrome. */
 @media print {
   .ms-teacher-layout nav,
   .ms-teacher-print-hide {

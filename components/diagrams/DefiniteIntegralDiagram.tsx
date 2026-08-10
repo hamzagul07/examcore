@@ -27,12 +27,13 @@ export function DefiniteIntegralDiagram({
 
   const curve = (x: number) => originY - (0.15 * (x - originX) * (x - originX)) / scale - 20
 
+  // Pulse on step change only — live a/b scrubbing should not flash the shade.
   useEffect(() => {
     const shade = shadeRef.current
     if (!shade || typeof window === 'undefined') return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     gsap.fromTo(shade, { opacity: 0.2 }, { opacity: 0.45, duration: 0.4, ease: 'power2.out' })
-  }, [stepIndex, a, b])
+  }, [stepIndex])
 
   return (
     <svg

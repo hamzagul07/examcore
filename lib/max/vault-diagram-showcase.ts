@@ -121,16 +121,16 @@ const SHOWCASE_BY_SUBJECT: Record<string, ShowcaseSeed[]> = {
   ],
   '9702': [
     {
-      slug: '14-3-specific-heat-capacity-and-specific-latent-heat',
-      title: 'Heating curve — phase change live',
-      tagline: 'Temperature flatlines while energy still pours in. Latent heat, finally visual.',
-      topicCode: '14.3',
+      slug: '17-1-simple-harmonic-oscillations',
+      title: 'SHM — a point riding the wave',
+      tagline: 'Watch amplitude breathe. Displacement, velocity and a = −ω²x click because they move.',
+      topicCode: '17.1',
       chip: 'Signature',
       beats: [
-        'Heat raises temperature on the sloping parts (c = Q / mΔθ).',
-        'During melting/boiling the line is flat — energy goes into breaking bonds.',
-        'That flat energy is latent heat (L = Q / m).',
-        'Examiners love: identify which segment is c vs L.',
+        'Restoring force always points toward equilibrium (F ∝ −x).',
+        'Displacement traces a smooth sine in time.',
+        'Velocity leads displacement by a quarter-cycle.',
+        'Acceleration is opposite displacement — a = −ω²x.',
       ],
     },
     {
@@ -147,16 +147,16 @@ const SHOWCASE_BY_SUBJECT: Record<string, ShowcaseSeed[]> = {
       ],
     },
     {
-      slug: '17-1-simple-harmonic-oscillations',
-      title: 'SHM — restoring force to sine wave',
-      tagline: 'Displacement, velocity, acceleration dance out of phase on one stage.',
-      topicCode: '17.1',
-      chip: 'Oscillations',
+      slug: '14-3-specific-heat-capacity-and-specific-latent-heat',
+      title: 'Heating curve — phase change live',
+      tagline: 'Temperature flatlines while energy still pours in. Latent heat, finally visual.',
+      topicCode: '14.3',
+      chip: 'Thermal',
       beats: [
-        'Restoring force points toward equilibrium (F ∝ −x).',
-        'Displacement is a sine (or cosine) in time.',
-        'Velocity leads displacement by 90°.',
-        'Acceleration is opposite to displacement — a = −ω²x.',
+        'Heat raises temperature on the sloping parts (c = Q / mΔθ).',
+        'During melting/boiling the line is flat — energy goes into breaking bonds.',
+        'That flat energy is latent heat (L = Q / m).',
+        'Examiners love: identify which segment is c vs L.',
       ],
     },
     {
@@ -366,7 +366,7 @@ const SHOWCASE_BY_SUBJECT: Record<string, ShowcaseSeed[]> = {
   ],
 }
 
-/** IB / aliases → showcase catalog family. */
+/** Explicit aliases → showcase catalog family (CAIE course content powers the visuals). */
 const SHOWCASE_ALIAS: Record<string, string> = {
   'maths-aa': '9709',
   'maths-ai': '9709',
@@ -376,34 +376,87 @@ const SHOWCASE_ALIAS: Record<string, string> = {
   'computer-science': '9618',
   economics: '9708',
   '9231': '9231',
-  // Common CAIE companions
   '9709': '9709',
   '9702': '9702',
   '9701': '9701',
   '9700': '9700',
   '9618': '9618',
   '9708': '9708',
+  // Edexcel UK / common board ids
+  '9MA0': '9709',
+  '8MA0': '9709',
+  '9PH0': '9702',
+  '9CH0': '9701',
+  '9BI0': '9700',
+  '9EC0': '9708',
+  'aqa-mathematics': '9709',
+  'aqa-physics': '9702',
+  'aqa-chemistry': '9701',
+  'aqa-biology': '9700',
+  'aqa-economics': '9708',
+  'aqa-computer-science': '9618',
+  'oxaqa-mathematics': '9709',
+  'oxaqa-physics': '9702',
+  'oxaqa-chemistry': '9701',
+  'oxaqa-biology': '9700',
+  'ap-calculus-ab': '9709',
+  'ap-calculus-bc': '9709',
+  'ap-physics-1': '9702',
+  'ap-physics-2': '9702',
+  'ap-physics-c-mechanics': '9702',
+  'ap-chemistry': '9701',
+  'ap-biology': '9700',
+  'ap-computer-science-a': '9618',
+  'ap-microeconomics': '9708',
+  'ap-macroeconomics': '9708',
+}
+
+/** Map any board subject code/name onto a CAIE showcase catalog when possible. */
+function inferCatalogCode(
+  subjectCode: string,
+  displayName?: string | null
+): string | null {
+  if (SHOWCASE_BY_SUBJECT[subjectCode]) return subjectCode
+  if (SHOWCASE_ALIAS[subjectCode]) return SHOWCASE_ALIAS[subjectCode]
+
+  if (isIbSubjectCode(subjectCode)) {
+    const base = subjectCode.replace(/^ib-/, '').replace(/-(hl|sl)$/, '')
+    return SHOWCASE_ALIAS[base] ?? null
+  }
+
+  const c = subjectCode.toLowerCase()
+  const n = (displayName || '').toLowerCase()
+
+  // Pearson IAL unit prefixes
+  if (/^wma|^wme|^wst|^9ma|^8ma/.test(c)) return '9709'
+  if (/^wph|^9ph|^8ph/.test(c)) return '9702'
+  if (/^wch|^9ch|^8ch/.test(c)) return '9701'
+  if (/^wbi|^9bi|^8bi/.test(c)) return '9700'
+  if (/^wec|^9ec|^8ec/.test(c)) return '9708'
+  if (/^wcs|computer|comp-sci|computing|4cp/.test(c)) return '9618'
+
+  const hay = `${c} ${n}`
+  if (/further\s*math|math|calculus|pure/.test(hay)) return '9709'
+  if (/physic/.test(hay)) return '9702'
+  if (/chem/.test(hay)) return '9701'
+  if (/\bbio/.test(hay)) return '9700'
+  if (/econ/.test(hay)) return '9708'
+  if (/computer|computing|comp\s*sci/.test(hay)) return '9618'
+
+  return null
 }
 
 function resolveShowcaseSubject(
   subjectCode: string,
   displayName?: string | null
 ): { catalogCode: string; label: string } {
-  if (SHOWCASE_BY_SUBJECT[subjectCode]) {
-    return {
-      catalogCode: subjectCode,
-      label: displayName || getSyllabusSubjectName(subjectCode) || subjectCode,
-    }
-  }
+  const catalogCode = inferCatalogCode(subjectCode, displayName) ?? subjectCode
   if (isIbSubjectCode(subjectCode)) {
-    const base = subjectCode.replace(/^ib-/, '').replace(/-(hl|sl)$/, '')
-    const catalogCode = SHOWCASE_ALIAS[base] ?? subjectCode
     return {
       catalogCode,
       label: displayName || subjectCode.replace(/^ib-/, '').replace(/-/g, ' '),
     }
   }
-  const catalogCode = SHOWCASE_ALIAS[subjectCode] ?? subjectCode
   return {
     catalogCode,
     label: displayName || getSyllabusSubjectName(subjectCode) || subjectCode,
@@ -478,7 +531,7 @@ export function buildVaultDiagramTheatre(
   }
 }
 
-/** One theatre per profile subject that has a curated syllabus visual set. */
+/** One theatre per profile subject that maps to a curated visual family. */
 export function buildVaultDiagramTheatres(
   subjects: Array<{ code: string; name: string }>
 ): VaultDiagramTheatre[] {
@@ -489,6 +542,11 @@ export function buildVaultDiagramTheatres(
     seen.add(s.code)
     const theatre = buildVaultDiagramTheatre(s.code, s.name)
     if (theatre) out.push(theatre)
+  }
+  // Max Vault should never silently omit the cinema — fall back to maths classics.
+  if (out.length === 0) {
+    const fallback = buildVaultDiagramTheatre('9709', 'Mathematics')
+    if (fallback) out.push(fallback)
   }
   return out
 }

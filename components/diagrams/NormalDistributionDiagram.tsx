@@ -14,17 +14,19 @@ export function NormalDistributionDiagram({
 }: LessonDiagramComponentProps) {
   const spec = getLessonDiagramSpec(lessonSlug) ?? getLessonDiagramSpec(DEFAULT_SLUG)
   const mu = params?.mu ?? 0
-  const sigma = params?.sigma ?? 1
+  const sigma = Math.max(0.45, params?.sigma ?? 1)
   const ox = 60
   const oy = 160
-  const scale = 40
+  const centerX = 210 + mu * 48
+  const halfWidth = 110 * sigma
+  const peakY = oy - Math.min(110, 95 / Math.sqrt(sigma))
 
   return (
     <svg viewBox="0 0 420 220" className={`lesson-diagram-svg ${className}`.trim()} role="img" aria-label="Normal distribution bell curve">
       <line x1={ox} y1={oy} x2={380} y2={oy} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
       <g opacity={layerOpacity(spec, stepIndex, 'step-1')}>
         <path
-          d={`M ${ox} ${oy} Q ${ox + 80} ${oy - 90} ${ox + 160} ${oy - 95} T ${ox + 320} ${oy}`}
+          d={`M ${centerX - halfWidth} ${oy} Q ${centerX - halfWidth * 0.45} ${peakY + 20} ${centerX} ${peakY} T ${centerX + halfWidth} ${oy}`}
           fill="color-mix(in srgb, var(--ec-brand) 12%, var(--course-surface))"
           stroke={DIAGRAM_STROKE}
           strokeWidth="2"
@@ -32,8 +34,8 @@ export function NormalDistributionDiagram({
         <text x="210" y="24" textAnchor="middle" fontSize="11" fill={DIAGRAM_TEXT} fontWeight="600">X ~ N(μ, σ²)</text>
       </g>
       <g opacity={layerOpacity(spec, stepIndex, 'step-2')}>
-        <line x1={ox + 160} y1={oy - 95} x2={ox + 160} y2={oy} stroke={DIAGRAM_STROKE} strokeWidth="2" strokeDasharray="4 3" />
-        <text x={ox + 160} y={oy + 16} textAnchor="middle" fontSize="10" fill={DIAGRAM_TEXT}>μ = {mu}</text>
+        <line x1={centerX} y1={peakY} x2={centerX} y2={oy} stroke={DIAGRAM_STROKE} strokeWidth="2" strokeDasharray="4 3" />
+        <text x={centerX} y={oy + 16} textAnchor="middle" fontSize="10" fill={DIAGRAM_TEXT}>μ = {mu.toFixed(1)}</text>
       </g>
       <g opacity={layerOpacity(spec, stepIndex, 'step-3')}>
         <text x="260" y="100" fontSize="10" fill={DIAGRAM_TEXT}>σ controls spread (σ = {sigma})</text>

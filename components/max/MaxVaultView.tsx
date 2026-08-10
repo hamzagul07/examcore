@@ -97,7 +97,7 @@ export function MaxVaultView({
                 data.diagramTheatre?.catalogCount ||
                 data.diagramPads.length}
             </span>
-            <span className="ms-vault__chip-label">Syllabus diagrams</span>
+            <span className="ms-vault__chip-label">Concept cinema</span>
           </li>
           <li className="ms-vault__chip ms-vault__chip--blue">
             <span className="ms-vault__chip-value">{data.fullMarksModels.length}</span>

@@ -29,6 +29,7 @@ export function DifferentiationTangentDiagram({
   const slope = n * Math.pow(x0, n - 1)
   const tangentLen = 55
 
+  // Entrance pulse on teaching-step changes only — continuous x0 scrubbing must stay smooth.
   useEffect(() => {
     const line = tangentRef.current
     const point = pointRef.current
@@ -40,7 +41,7 @@ export function DifferentiationTangentDiagram({
       { opacity: 0.5 },
       { opacity: 1, duration: 0.35, ease: 'power2.out' }
     )
-  }, [stepIndex, x0, n])
+  }, [stepIndex])
 
   return (
     <svg

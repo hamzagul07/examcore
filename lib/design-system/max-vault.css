@@ -686,7 +686,7 @@
   color: var(--ec-text-secondary);
 }
 
-/* Diagram theatre — signature showpiece + syllabus gallery */
+/* Concept cinema — continuous live diagram stage */
 .ms-vault__theatre {
   border: 1.5px solid color-mix(in srgb, var(--ec-c-math) 45%, var(--ec-border));
   background:
@@ -700,9 +700,17 @@
   gap: 1.25rem;
 }
 
+.ms-vault__theatre--cinema {
+  gap: 1rem;
+}
+
 .ms-vault__theatre-hero {
   display: grid;
   gap: 1rem;
+}
+
+.ms-vault__theatre-hero--cinema {
+  gap: 1.15rem;
 }
 
 @media (min-width: 900px) {
@@ -710,9 +718,96 @@
     grid-template-columns: 1.35fr 1fr;
     align-items: start;
   }
+  .ms-vault__theatre-hero--cinema {
+    grid-template-columns: 1.55fr 1fr;
+  }
   .ms-vault__theatre-badges {
     grid-column: 1 / -1;
   }
+  .ms-vault__theatre-hero--cinema .ms-vault__theatre-badges {
+    grid-column: auto;
+  }
+}
+
+.ms-vault__theatre-stage-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.ms-vault__theatre-filmstrip {
+  display: flex;
+  gap: 0.55rem;
+  overflow-x: auto;
+  padding-bottom: 0.15rem;
+  scrollbar-width: thin;
+}
+
+.ms-vault__theatre-film {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  width: min(14rem, 72vw);
+  min-height: 44px;
+  padding: 0.65rem 0.75rem;
+  text-align: left;
+  border: 1.5px solid var(--ec-border);
+  background: color-mix(in srgb, var(--ec-surface-raised) 90%, transparent);
+  cursor: pointer;
+}
+
+.ms-vault__theatre-film:hover {
+  border-color: var(--ec-brand-border);
+}
+
+.ms-vault__theatre-film.is-active {
+  border-color: var(--ec-c-math);
+  background: color-mix(in srgb, var(--ec-c-math) 10%, var(--ec-surface-raised));
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ec-c-math) 22%, transparent);
+}
+
+.ms-vault__theatre-film-topic {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ec-c-math);
+}
+
+.ms-vault__theatre-film-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ec-text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ms-vault__theatre-scrub {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.ms-vault__theatre-scrub-label {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-vault__theatre-scrub-input {
+  width: 100%;
+  accent-color: var(--ec-c-math);
+  cursor: pointer;
 }
 
 .ms-vault__theatre-badges {
@@ -851,13 +946,20 @@
   color: var(--ec-text-secondary);
 }
 
-.ms-vault__theatre-stage--xl {
+.ms-vault__theatre-stage--xl,
+.ms-vault__theatre-stage--cinema {
   min-height: 18rem;
 }
 
+.ms-vault__theatre-stage--cinema {
+  border-color: color-mix(in srgb, var(--ec-c-math) 35%, #1f2937);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
 @media (min-width: 900px) {
-  .ms-vault__theatre-stage--xl {
-    min-height: 22rem;
+  .ms-vault__theatre-stage--xl,
+  .ms-vault__theatre-stage--cinema {
+    min-height: 24rem;
   }
 }
 

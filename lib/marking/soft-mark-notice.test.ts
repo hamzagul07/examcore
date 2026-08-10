@@ -21,6 +21,13 @@ assert.ok(
     "We couldn't read your handwriting. Try a clearer photo."
   ).includes('handwriting')
 )
+assert.equal(
+  softNoticeForMarkFailure(
+    'Add the mark total on each question (e.g. [6] on the stem), or mark one question at a time with the total entered.'
+  ),
+  'Add the mark total on each question (e.g. [6] on the stem), or mark one question at a time with the total entered.',
+  'actionable API copy must surface, not the generic retry line'
+)
 assert.ok(isTotalMarksClientMessage('could not read the total marks from your question'))
 
 console.log('soft-mark-notice: all assertions passed')

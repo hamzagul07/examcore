@@ -11,10 +11,13 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 import type { DerivedMarkScheme } from '@/lib/marking/derive-scheme'
 
 const STORAGE_BUCKET = 'derived-mark-schemes'
+/** After a "table missing / schema cache" miss, retry the table again later. */
+const TABLE_COOLDOWN_MS = 60_000
 
 let _admin: SupabaseClient | null = null
 let _bucketReady: Promise<void> | null = null
-let _tableAvailable: boolean | null = null
+/** Epoch ms — while Date.now() < this, skip table and use Storage. */
+let _tableCooldownUntil = 0
 
 function admin(): SupabaseClient {
   if (_admin) return _admin
@@ -25,12 +28,32 @@ function admin(): SupabaseClient {
   return _admin
 }
 
+function tableCoolingDown(): boolean {
+  return Date.now() < _tableCooldownUntil
+}
+
+function markTableUnavailableTemporarily(): void {
+  _tableCooldownUntil = Date.now() + TABLE_COOLDOWN_MS
+}
+
+function markTableAvailable(): void {
+  _tableCooldownUntil = 0
+}
+
+/** Test-only: clear cooldown / cached client state between cases. */
+export function resetDerivedSchemeCacheStateForTests(): void {
+  _tableCooldownUntil = 0
+  _bucketReady = null
+}
+
 export type CachedDerivedScheme = {
   fingerprint: string
   scheme: DerivedMarkScheme
   total_marks: number
   source: 'cache' | 'fresh'
 }
+
+export type WriteDerivedSchemeResult = 'written' | 'exists' | 'failed'
 
 type StoredPayload = {
   fingerprint: string
@@ -72,10 +95,14 @@ function storagePath(fingerprint: string): string {
   return `${fingerprint}.json`
 }
 
+function isTableMissingError(message: string): boolean {
+  return /schema cache|does not exist|Could not find the table/i.test(message)
+}
+
 async function lookupTable(
   fingerprint: string
 ): Promise<CachedDerivedScheme | null> {
-  if (_tableAvailable === false) return null
+  if (tableCoolingDown()) return null
   try {
     const { data, error } = await admin()
       .from('derived_mark_schemes')
@@ -83,12 +110,12 @@ async function lookupTable(
       .eq('fingerprint', fingerprint)
       .maybeSingle()
     if (error) {
-      if (/schema cache|does not exist|Could not find the table/i.test(error.message)) {
-        _tableAvailable = false
+      if (isTableMissingError(error.message)) {
+        markTableUnavailableTemporarily()
       }
       return null
     }
-    _tableAvailable = true
+    markTableAvailable()
     if (!data?.scheme || !isValidScheme(data.scheme)) return null
     const hits = typeof data.hit_count === 'number' ? data.hit_count : 0
     void admin()
@@ -158,8 +185,8 @@ async function writeTable(params: {
   totalMarks: number
   subjectCode?: string | null
   examSystem?: string | null
-}): Promise<boolean> {
-  if (_tableAvailable === false) return false
+}): Promise<WriteDerivedSchemeResult | 'unavailable'> {
+  if (tableCoolingDown()) return 'unavailable'
   try {
     // Insert-only: never overwrite an existing fingerprint.
     const { error } = await admin().from('derived_mark_schemes').insert({
@@ -172,20 +199,20 @@ async function writeTable(params: {
     })
     if (error) {
       if (error.code === '23505' || /duplicate key/i.test(error.message)) {
-        _tableAvailable = true
-        return true
+        markTableAvailable()
+        return 'exists'
       }
-      if (/schema cache|does not exist|Could not find the table/i.test(error.message)) {
-        _tableAvailable = false
-        return false
+      if (isTableMissingError(error.message)) {
+        markTableUnavailableTemporarily()
+        return 'unavailable'
       }
       console.warn('[mark] derived-scheme table write failed', error.message)
-      return false
+      return 'failed'
     }
-    _tableAvailable = true
-    return true
+    markTableAvailable()
+    return 'written'
   } catch {
-    return false
+    return 'failed'
   }
 }
 
@@ -195,31 +222,38 @@ async function writeStorage(params: {
   totalMarks: number
   subjectCode?: string | null
   examSystem?: string | null
-}): Promise<void> {
-  await ensureStorageBucket()
-  const path = storagePath(params.fingerprint)
-  const payload: StoredPayload = {
-    fingerprint: params.fingerprint,
-    scheme: params.scheme,
-    total_marks: params.totalMarks,
-    subject_code: params.subjectCode ?? null,
-    exam_system: params.examSystem ?? null,
-    created_at: new Date().toISOString(),
-  }
-  // Insert-only (upsert: false): remakes must keep the first rubric.
-  const { error } = await admin()
-    .storage.from(STORAGE_BUCKET)
-    .upload(path, JSON.stringify(payload), {
-      contentType: 'application/json',
-      upsert: false,
-    })
-  if (
-    error &&
-    !/already exists|Duplicate|The resource already exists|409/i.test(
-      error.message
-    )
-  ) {
+}): Promise<WriteDerivedSchemeResult> {
+  try {
+    await ensureStorageBucket()
+    const path = storagePath(params.fingerprint)
+    const payload: StoredPayload = {
+      fingerprint: params.fingerprint,
+      scheme: params.scheme,
+      total_marks: params.totalMarks,
+      subject_code: params.subjectCode ?? null,
+      exam_system: params.examSystem ?? null,
+      created_at: new Date().toISOString(),
+    }
+    // Insert-only (upsert: false): remakes must keep the first rubric.
+    const { error } = await admin()
+      .storage.from(STORAGE_BUCKET)
+      .upload(path, JSON.stringify(payload), {
+        contentType: 'application/json',
+        upsert: false,
+      })
+    if (!error) return 'written'
+    if (
+      /already exists|Duplicate|The resource already exists|409/i.test(
+        error.message
+      )
+    ) {
+      return 'exists'
+    }
     console.warn('[mark] derived-scheme storage write failed', error.message)
+    return 'failed'
+  } catch (err) {
+    console.warn('[mark] derived-scheme storage write failed', err)
+    return 'failed'
   }
 }
 
@@ -229,13 +263,14 @@ export async function writeDerivedScheme(params: {
   totalMarks: number
   subjectCode?: string | null
   examSystem?: string | null
-}): Promise<void> {
-  if (!params.fingerprint || !params.scheme) return
+}): Promise<WriteDerivedSchemeResult> {
+  if (!params.fingerprint || !params.scheme) return 'failed'
   try {
-    const wroteTable = await writeTable(params)
-    if (wroteTable) return
-    await writeStorage(params)
+    const tableResult = await writeTable(params)
+    if (tableResult === 'written' || tableResult === 'exists') return tableResult
+    return await writeStorage(params)
   } catch (err) {
     console.warn('[mark] derived-scheme cache write failed', err)
+    return 'failed'
   }
 }

@@ -158,6 +158,62 @@ async function main() {
     assert.equal(writes, 0, 'unstable schemes must not be cached')
   }
 
+  {
+    // Concurrent first write: loser must adopt the winner's locked rubric.
+    const winnerScheme: DerivedMarkScheme = {
+      type: 'point_based',
+      total_marks: 6,
+      expected_answer: 'winner',
+      marks: Array.from({ length: 6 }, (_, i) => ({
+        code: 'M1',
+        marks: 1,
+        description: `winner ${i + 1}`,
+      })),
+    }
+    const loserScheme: DerivedMarkScheme = {
+      type: 'point_based',
+      total_marks: 6,
+      expected_answer: 'loser',
+      marks: Array.from({ length: 6 }, (_, i) => ({
+        code: 'A1',
+        marks: 1,
+        description: `loser ${i + 1}`,
+      })),
+    }
+    let fpStored: string | null = null
+    const resolved = await resolveDerivedSchemeForMark(
+      {
+        questionText: 'Prepare a marginal costing statement. [6]',
+        totalMarks: 6,
+        subjectName: 'Accounting',
+        board: 'Cambridge International',
+        subjectCode: '9706',
+        mathConventions: false,
+      },
+      {
+        lookup: async (fp) => {
+          if (fpStored && fp === fpStored) {
+            return {
+              fingerprint: fp,
+              scheme: winnerScheme,
+              total_marks: 6,
+              source: 'cache' as const,
+            }
+          }
+          return null
+        },
+        write: async (params) => {
+          fpStored = params.fingerprint
+          return 'exists'
+        },
+        derive: async () => ({ scheme: loserScheme, total: 6 }),
+      }
+    )
+    assert.ok(resolved)
+    assert.equal(resolved!.source, 'cache')
+    assert.equal(resolved!.scheme.expected_answer, 'winner')
+  }
+
   console.log('resolve-derived-scheme: all assertions passed')
 }
 

@@ -47,46 +47,87 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
   }
 
-  const board = (body.board || '').trim()
-  let level = (body.level || '').trim()
+  // Post-mark prompts (target grade / exam date) send only that field. Load the
+  // stored profile so board/level/subjects stay intact and optional picks don't
+  // force a full setup rewrite.
+  const { data: existing, error: loadError } = await supabase
+    .from('user_profiles')
+    .select('board, level, subjects')
+    .eq('id', user.id)
+    .maybeSingle()
+
+  if (loadError) {
+    console.error('[account] load profile failed:', loadError)
+    return NextResponse.json(
+      { error: 'Could not save your changes. Try again in a moment.' },
+      { status: 500 }
+    )
+  }
+
+  const touchingSetup =
+    'board' in body || 'level' in body || 'subjects' in body
+
+  const board = touchingSetup
+    ? (body.board || '').trim()
+    : String(existing?.board || '').trim()
+  let level = touchingSetup
+    ? (body.level || '').trim()
+    : String(existing?.level || '').trim()
   if (isIbBoard(board)) {
     level = IB_DIPLOMA_LEVEL
   }
-  const subjects = Array.isArray(body.subjects)
-    ? Array.from(new Set(body.subjects.map((s) => String(s).trim()).filter(Boolean)))
-    : []
+  const subjects = touchingSetup
+    ? Array.isArray(body.subjects)
+      ? Array.from(
+          new Set(body.subjects.map((s) => String(s).trim()).filter(Boolean))
+        )
+      : []
+    : Array.isArray(existing?.subjects)
+      ? (existing.subjects as string[]).map((s) => String(s).trim()).filter(Boolean)
+      : []
 
-  if (!ENABLED_BOARD_IDS.has(board)) {
-    return NextResponse.json(
-      { error: 'Pick a supported exam board.' },
-      { status: 400 }
-    )
-  }
-  if (!ENABLED_LEVEL_IDS.has(level)) {
-    return NextResponse.json(
-      { error: 'Pick a supported level.' },
-      { status: 400 }
-    )
-  }
-  if (subjects.length === 0) {
-    return NextResponse.json(
-      { error: 'Pick at least one subject.' },
-      { status: 400 }
-    )
-  }
-  if (subjects.length > 4) {
-    return NextResponse.json(
-      { error: 'Pick up to four subjects.' },
-      { status: 400 }
-    )
-  }
-  for (const s of subjects) {
-    if (!isSubjectValidForProfile(board, level, s)) {
+  if (touchingSetup) {
+    if (!ENABLED_BOARD_IDS.has(board)) {
       return NextResponse.json(
-        { error: `Subject "${s}" is not supported for ${board} ${level} yet.` },
+        { error: 'Pick a supported exam board.' },
         { status: 400 }
       )
     }
+    if (!ENABLED_LEVEL_IDS.has(level)) {
+      return NextResponse.json(
+        { error: 'Pick a supported level.' },
+        { status: 400 }
+      )
+    }
+    if (subjects.length === 0) {
+      return NextResponse.json(
+        { error: 'Pick at least one subject.' },
+        { status: 400 }
+      )
+    }
+    if (subjects.length > 4) {
+      return NextResponse.json(
+        { error: 'Pick up to four subjects.' },
+        { status: 400 }
+      )
+    }
+    for (const s of subjects) {
+      if (!isSubjectValidForProfile(board, level, s)) {
+        return NextResponse.json(
+          { error: `Subject "${s}" is not supported for ${board} ${level} yet.` },
+          { status: 400 }
+        )
+      }
+    }
+  } else if (!board) {
+    // Soft asks need a board already on the profile to validate target grades.
+    return NextResponse.json(
+      {
+        error:
+          'Add your exam board in Settings before setting a target grade.',
+      },
+      { status: 400 }
+    )
   }
 
   // Only fields present in the request body are written — an omitted key keeps
@@ -94,11 +135,15 @@ export async function POST(request: NextRequest) {
   // date whenever another settings form saved.)
   const patch: Record<string, unknown> = {
     id: user.id,
-    board,
-    level,
-    subjects,
-    onboarded: true,
     updated_at: new Date().toISOString(),
+  }
+
+  if (touchingSetup) {
+    patch.board = board
+    patch.level = level
+    patch.subjects = subjects
+    // Account edits should not silently un-onboard a user.
+    patch.onboarded = true
   }
 
   if ('full_name' in body) {
@@ -151,8 +196,6 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  // Account edits should not silently un-onboard a user. Preserve onboarded=true
-  // (which is also our gate for /onboarding redirects).
   const { error } = await supabase
     .from('user_profiles')
     .upsert(patch, { onConflict: 'id' })

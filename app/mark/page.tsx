@@ -2163,6 +2163,7 @@ export default function MarkPage() {
               billingSummary ? hasPaidAccess(billingSummary.access) : undefined
             }
             isMax={billingSummary ? isMax(billingSummary.access) : undefined}
+            evidenceDefaultOpen
             inkPages={
               result.ink_pages ??
               (result.answer_photo_url && result.line_references?.length
@@ -2175,6 +2176,11 @@ export default function MarkPage() {
                 : undefined)
             }
           />
+          {result.attempt_id ? (
+            <div className="mt-6">
+              <SolutionSection attemptId={result.attempt_id} />
+            </div>
+          ) : null}
         </ResultScreen>
       ) : null
 
@@ -3574,7 +3580,7 @@ export default function MarkPage() {
                     : undefined
               }
               isSample={showingExample}
-              evidenceDefaultOpen={showingExample}
+              evidenceDefaultOpen
               inkPages={
                 result.ink_pages ??
                 (result.answer_photo_url && result.line_references?.length

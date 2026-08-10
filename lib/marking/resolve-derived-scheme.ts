@@ -12,6 +12,7 @@ import {
 import {
   lookupDerivedScheme,
   writeDerivedScheme,
+  type WriteDerivedSchemeResult,
 } from '@/lib/marking/derived-scheme-cache'
 import { schemeFingerprint } from '@/lib/marking/scheme-fingerprint'
 
@@ -24,7 +25,9 @@ export type ResolvedDerivedScheme = {
 
 export type ResolveDerivedSchemeDeps = {
   lookup?: typeof lookupDerivedScheme
-  write?: typeof writeDerivedScheme
+  write?: (
+    ...args: Parameters<typeof writeDerivedScheme>
+  ) => Promise<WriteDerivedSchemeResult | void>
   derive?: typeof deriveMarkScheme
 }
 
@@ -80,13 +83,25 @@ export async function resolveDerivedSchemeForMark(
   // Never persist a heavily padded / reshaped rubric — remakes would lock in
   // a bad allocation. Still return it for this run so marking can proceed.
   if (fingerprint && knownTotal && !derived.unstable) {
-    await write({
+    const writeResult = await write({
       fingerprint,
       scheme: derived.scheme,
       totalMarks: derived.total,
       subjectCode: params.subjectCode,
       examSystem: params.examSystem,
     })
+    // Another request won the insert race — mark against the locked winner.
+    if (writeResult === 'exists') {
+      const winner = await lookup(fingerprint)
+      if (winner) {
+        return {
+          scheme: winner.scheme,
+          total: winner.total_marks,
+          fingerprint,
+          source: 'cache',
+        }
+      }
+    }
   }
 
   return {

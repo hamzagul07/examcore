@@ -6,6 +6,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { MarkdownWithMath } from '@/components/MarkdownWithMath'
 import { Skeleton } from '@/components/ui/Skeleton'
 
+const UUID_RE =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+
 type Props = {
   attemptId: string
   /** If the solution is already stored in the DB, pass it in to skip the API call. */
@@ -17,6 +20,13 @@ type Props = {
    * expands. Defaults to false (auto-expand on first reveal).
    */
   startCollapsed?: boolean
+}
+
+function mapClientError(raw: string): string {
+  if (/did not match the expected pattern/i.test(raw)) {
+    return 'Could not generate the solution just now. Please try again.'
+  }
+  return raw
 }
 
 export function SolutionSection({
@@ -34,21 +44,35 @@ export function SolutionSection({
   async function generate() {
     setLoading(true)
     setError('')
+    if (!attemptId || !UUID_RE.test(attemptId)) {
+      setError('This mark has no saved attempt id yet. Try marking again.')
+      setLoading(false)
+      return
+    }
     try {
       const res = await fetch('/api/mark/solution', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ attempt_id: attemptId }),
       })
-      const data = await res.json()
-      if (!res.ok || !data.solution) {
-        setError(data.error || 'Could not generate a solution.')
+      const data = (await res.json().catch(() => null)) as {
+        solution?: string
+        error?: string
+      } | null
+      if (!res.ok || !data?.solution) {
+        setError(
+          mapClientError(data?.error || 'Could not generate a solution.')
+        )
         return
       }
       setSolution(data.solution)
       setVisible(true)
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Network error')
+      setError(
+        mapClientError(
+          e instanceof Error ? e.message : 'Network error — try again.'
+        )
+      )
     } finally {
       setLoading(false)
     }
@@ -71,11 +95,11 @@ export function SolutionSection({
           </div>
           <div className="flex-1">
             <p className="font-semibold tracking-tight text-[var(--ec-text-primary)]">
-              Worked solution available
+              Full-marks exam answer ready
             </p>
             <p className="text-sm text-[var(--ec-text-secondary)]">
-              We&apos;ve already written out a step-by-step solution for this
-              question.
+              Written like a strong student script — clear working, correct final
+              answer.
             </p>
           </div>
           <motion.button
@@ -87,7 +111,7 @@ export function SolutionSection({
             className="ec-btn-secondary text-sm"
             style={{ padding: '10px 16px' }}
           >
-            View solution
+            View answer
           </motion.button>
         </div>
       </motion.div>
@@ -105,7 +129,7 @@ export function SolutionSection({
       >
         <div className="relative">
           <p className="ec-label-tech mb-6 justify-center" style={{ display: 'inline-flex' }}>
-            WORKED SOLUTION
+            MODEL EXAM ANSWER
           </p>
           <motion.div
             animate={{ rotate: [0, 5, -5, 0] }}
@@ -117,11 +141,11 @@ export function SolutionSection({
             </span>
           </motion.div>
           <h3 className="landing-h3">
-            Want to see <em>how it&apos;s done?</em>
+            Want the <em>full-marks script?</em>
           </h3>
           <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-            Get a step-by-step worked solution to learn from. Generated once,
-            saved forever for revision.
+            A clear exam-style answer — the working a strong student would write
+            in the booklet. Generated once, saved for revision.
           </p>
           <motion.button
             type="button"
@@ -138,7 +162,7 @@ export function SolutionSection({
             {loading ? (
               <>
                 <Loader2 className="h-5 w-5 animate-spin" />
-                Generating solution...
+                Writing exam answer…
               </>
             ) : (
               <>
@@ -172,7 +196,7 @@ export function SolutionSection({
     )
   }
 
-  // Solution loaded + visible — render it.
+  // Solution loaded + visible — render like an answer booklet page.
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -187,13 +211,20 @@ export function SolutionSection({
           </span>
         </div>
         <div>
-          <p className="ec-label-tech mb-1">WORKED SOLUTION</p>
+          <p className="ec-label-tech mb-1">MODEL EXAM ANSWER</p>
           <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)]">
-            Step-by-step
+            Full-marks script
           </h2>
         </div>
       </div>
-      <MarkdownWithMath content={solution} />
+      <div className="ms-solution-script rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface))] px-4 py-5 sm:px-6 sm:py-6">
+        <p className="mb-4 font-mono text-[11px] uppercase tracking-wide text-[var(--ec-text-secondary)]">
+          Answer booklet · clear working · final answer at the end
+        </p>
+        <div className="ms-solution-script__body text-[15px] leading-relaxed text-[var(--ec-text-primary)]">
+          <MarkdownWithMath content={solution} />
+        </div>
+      </div>
     </motion.div>
   )
 }

@@ -5,6 +5,7 @@
  * Actionable client/OCR messages are kept (softened) so students know what to
  * fix; opaque model/infra failures collapse to the generic retry line.
  */
+
 export const SOFT_MARK_RETRY_NOTICE =
   "We couldn't finish marking this time. Your upload is still here — tap Mark again when you're ready."
 
@@ -38,6 +39,9 @@ const ACTIONABLE_PATTERNS: Array<{ test: RegExp; notice: string }> = [
   },
 ]
 
+const INFRA_NOISE =
+  /gemini|vertex|timeout|ETIMEDOUT|429|resource exhausted|overloaded|ECONN|fetch failed|TypeError|Internal server|status 5\d\d|did not match the expected pattern/i
+
 export function isTotalMarksClientMessage(message: string): boolean {
   return /total marks for this question|read the total marks/i.test(message)
 }
@@ -48,6 +52,17 @@ export function softNoticeForMarkFailure(
   if (!message) return SOFT_MARK_RETRY_NOTICE
   for (const { test, notice } of ACTIONABLE_PATTERNS) {
     if (test.test(message)) return notice
+  }
+  if (INFRA_NOISE.test(message)) return SOFT_MARK_RETRY_NOTICE
+
+  // Keep short human validation copy so students know what to fix.
+  const trimmed = message.trim()
+  if (
+    trimmed.length > 0 &&
+    trimmed.length <= 220 &&
+    !/at \w+\s*\(|^\s*Error:|stack/i.test(trimmed)
+  ) {
+    return trimmed
   }
   return SOFT_MARK_RETRY_NOTICE
 }

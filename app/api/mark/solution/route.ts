@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { generateGeminiText } from '@/lib/ai/gemini-text'
+import { buildSolutionSchemeHints } from '@/lib/marking/solution-scheme-hints'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 
 export const maxDuration = 60
+
+const UUID_RE =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -17,6 +21,19 @@ type AttemptRow = {
   ocr_text: string | null
   full_solution: string | null
   mark_scheme_id: string | null
+  total_marks: number | null
+  marks_earned: number | null
+  ai_marking: {
+    marks_awarded?: Array<{
+      type?: string
+      earned?: boolean
+      reasoning?: string
+      line_reference?: string
+      description?: string
+    }>
+    total_marks?: number
+    summary?: string
+  } | null
   mark_schemes: {
     question_text: string | null
     total_marks: number | null
@@ -24,24 +41,95 @@ type AttemptRow = {
   } | null
 }
 
+function friendlyError(err: unknown): string {
+  const message = err instanceof Error ? err.message : String(err || '')
+  // Browser/runtime cookie + URLPattern noise — never show raw to students.
+  if (/did not match the expected pattern/i.test(message)) {
+    return 'Could not generate the solution just now. Please try again.'
+  }
+  if (/timeout|ETIMEDOUT|aborted/i.test(message)) {
+    return 'Solution generation timed out. Please try again.'
+  }
+  if (/429|resource exhausted|rate/i.test(message)) {
+    return 'The marker is busy. Wait a few seconds and try again.'
+  }
+  return message || 'Could not generate a solution.'
+}
+
+function buildSchemeHints(attempt: AttemptRow): string {
+  return buildSolutionSchemeHints({
+    officialScheme: attempt.mark_schemes?.mark_scheme,
+    officialTotal: attempt.mark_schemes?.total_marks,
+    awards: attempt.ai_marking?.marks_awarded,
+    attemptTotal: attempt.total_marks,
+    aiTotal: attempt.ai_marking?.total_marks,
+  })
+}
+
+function buildSolutionPrompt(params: {
+  questionText: string
+  schemeBlock: string
+  studentWorking: string
+}): string {
+  const workingBlock = params.studentWorking
+    ? `
+The student already submitted this working (may be incomplete or wrong). Write a CLEAN full-marks version they can learn from — do not copy their mistakes:
+"""
+${params.studentWorking.slice(0, 3500)}
+"""
+`
+    : ''
+
+  return `You write FULL-MARKS exam answers for Cambridge / IB students.
+
+Tone and shape — critical:
+- Write as a strong student sitting the real exam: clear, calm, correct.
+- Show the answer they would put on the answer booklet / lined paper.
+- Use short labels and neat columns where Accounting / Business needs a statement.
+- Show brief workings in brackets or under the figures (e.g. 10,000 × \$30).
+- NO tutor voice ("you should", "remember that", "Step 1: first we…").
+- NO examiner codes (M1, A1, B1) and no "why this earns the mark" commentary.
+- NO preamble ("Here is the solution").
+- Keep it understandable for a 16–18 year old: plain words, correct terms, no waffle.
+
+Question:
+${params.questionText}
+${workingBlock}
+${params.schemeBlock}
+
+Format (markdown only):
+- Start with a one-line title like **Marginal costing statement — Option A** (adapt to the question).
+- Then the worked answer itself (statement, calculation steps, or short paragraphs).
+- Use \$...\$ / \$\$...\$\$ for maths when needed.
+- End with a single bold line: **Answer: …** (the final figure, conclusion, or required output).
+
+Return ONLY that exam answer as markdown.`
+}
+
 export async function POST(request: NextRequest) {
   try {
     let attemptId: string | undefined
     try {
       const body = await request.json()
-      attemptId = body?.attempt_id
+      attemptId = typeof body?.attempt_id === 'string' ? body.attempt_id.trim() : undefined
     } catch {
       return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
     }
 
-    if (!attemptId || typeof attemptId !== 'string') {
+    if (!attemptId) {
       return NextResponse.json(
         { error: 'attempt_id is required' },
         { status: 400 }
       )
     }
 
-    // Auth: only the owner can generate/read a solution for their attempt.
+    if (!UUID_RE.test(attemptId)) {
+      return NextResponse.json(
+        { error: 'That attempt could not be found. Mark the question again, then open the solution.' },
+        { status: 400 }
+      )
+    }
+
     const { user, pendingCookies } = await authenticateRouteRequest(request)
     if (!user) {
       return jsonWithAuthCookies({ error: 'Not signed in' }, pendingCookies, {
@@ -49,19 +137,27 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    // Fetch the attempt + joined mark scheme via service role.
     const { data: attempt, error: fetchError } = await supabaseAdmin
       .from('attempts')
       .select(
         `
         id, user_id, question_text, ocr_text, full_solution, mark_scheme_id,
+        total_marks, marks_earned, ai_marking,
         mark_schemes ( question_text, total_marks, mark_scheme )
       `
       )
       .eq('id', attemptId)
       .maybeSingle<AttemptRow>()
 
-    if (fetchError || !attempt) {
+    if (fetchError) {
+      console.error('[solution] fetch failed:', fetchError)
+      return NextResponse.json(
+        { error: 'Could not load this attempt. Try again.' },
+        { status: 500 }
+      )
+    }
+
+    if (!attempt) {
       return NextResponse.json({ error: 'Attempt not found' }, { status: 404 })
     }
 
@@ -69,15 +165,23 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
-    // Cache hit — return stored solution.
     if (attempt.full_solution && attempt.full_solution.trim().length > 0) {
-      return NextResponse.json({ solution: attempt.full_solution, cached: true })
+      return jsonWithAuthCookies(
+        { solution: attempt.full_solution, cached: true },
+        pendingCookies
+      )
     }
 
-    // Compose the question + scheme context for Gemini.
-    const questionText =
-      attempt.question_text || attempt.mark_schemes?.question_text || ''
-    if (!questionText || questionText.trim().length < 5) {
+    const questionText = (
+      attempt.question_text ||
+      attempt.mark_schemes?.question_text ||
+      ''
+    ).trim()
+
+    // Freeform uploads sometimes store a thin stem; OCR + mark points still
+    // carry enough to write a model script.
+    const studentWorking = (attempt.ocr_text || '').trim()
+    if (questionText.length < 5 && studentWorking.length < 20) {
       return NextResponse.json(
         {
           error:
@@ -87,41 +191,25 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const markSchemeBlock = attempt.mark_schemes?.mark_scheme
-      ? `Marking criteria (for reference, to ensure your solution earns full marks):
-${JSON.stringify(attempt.mark_schemes.mark_scheme, null, 2)}
+    const effectiveQuestion =
+      questionText.length >= 5
+        ? questionText
+        : `Exam question (wording recovered from the script / mark points):\n${studentWorking.slice(0, 1200)}`
 
-Total marks available: ${attempt.mark_schemes.total_marks ?? '(unknown)'}
-`
-      : ''
-
-    const prompt = `You are an expert exam tutor and examiner across Cambridge and IB subjects. Produce a complete model answer / worked solution to the following exam question that would earn full marks. Work out the SUBJECT and QUESTION TYPE from the question and the marking criteria yourself — do NOT assume it is mathematics.
-
-Question:
-${questionText}
-
-${markSchemeBlock}
-
-Adapt the format to the question type:
-
-- CALCULATION / MATHS / NUMERICAL-SCIENCE questions: show EVERY step, briefly explain the reasoning before each major step, and use proper LaTeX maths notation — wrap inline maths in $...$ and displayed equations in $$...$$ (e.g. $x^2$, $\\frac{a}{b}$, $\\binom{6}{2}$, $\\sqrt{16}$, \\pi). Never write maths as plain text. End with the final answer in **bold**.
-
-- ESSAY / EXTENDED-WRITTEN questions (e.g. Theory of Knowledge, History, English Literature, Economics or Business essays, Psychology): give a strong MODEL ANSWER or a detailed answer plan — a clear thesis and line of argument, the key points/paragraphs that earn the marks, specific evidence or examples to use, and the evaluation/judgement the question demands. Reference the marking criteria or markbands where given.
-
-- STRUCTURED / SHORT-ANSWER / DATA questions: give the model answer point by point, matching how the marks are awarded, using correct subject terminology.
-
-General requirements:
-1. Make it genuinely educational — the student should learn HOW to produce the answer, not just see it.
-2. Structure as markdown with clear headers (### Step 1 / ### Point 1 / ### Paragraph 1, whichever fits); end with the final answer or conclusion in **bold**, and optionally a short "**Why this works**" note.
-3. Student-friendly tone: address the student as "you"/"we", be clear and patient. Avoid examiner codes (B1/M1/A1) — that is for marking, not teaching.
-
-OUTPUT FORMAT:
-Return ONLY the model answer as plain markdown. Do NOT wrap in JSON. Do NOT include any preamble like "Here is the solution:". Start directly with a one-sentence overview of the approach.`
-
-    const solution = await generateGeminiText(prompt, {
-      task: 'solution',
-      maxOutputTokens: 4000,
+    const prompt = buildSolutionPrompt({
+      questionText: effectiveQuestion,
+      schemeBlock: buildSchemeHints(attempt),
+      studentWorking:
+        studentWorking && studentWorking !== questionText ? studentWorking : '',
     })
+
+    const solution = (
+      await generateGeminiText(prompt, {
+        task: 'solution',
+        maxOutputTokens: 5000,
+        temperature: 0.2,
+      })
+    ).trim()
 
     if (!solution) {
       return NextResponse.json(
@@ -130,21 +218,18 @@ Return ONLY the model answer as plain markdown. Do NOT wrap in JSON. Do NOT incl
       )
     }
 
-    // Persist for next time.
     const { error: updateError } = await supabaseAdmin
       .from('attempts')
       .update({ full_solution: solution })
       .eq('id', attempt.id)
 
     if (updateError) {
-      // Log but don't fail — the user still gets the generated solution.
-      console.error('Failed to persist full_solution:', updateError)
+      console.error('[solution] Failed to persist full_solution:', updateError)
     }
 
-    return NextResponse.json({ solution, cached: false })
+    return jsonWithAuthCookies({ solution, cached: false }, pendingCookies)
   } catch (err) {
-    console.error('Solution generation error:', err)
-    const message = err instanceof Error ? err.message : 'Unknown error'
-    return NextResponse.json({ error: message }, { status: 500 })
+    console.error('[solution] generation error:', err)
+    return NextResponse.json({ error: friendlyError(err) }, { status: 500 })
   }
 }

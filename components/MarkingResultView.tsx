@@ -144,7 +144,7 @@ export function MarkingResultView({
   isPaid,
   isMax,
   primaryAction,
-  evidenceDefaultOpen = false,
+  evidenceDefaultOpen = true,
   isSample = false,
 }: {
   result: MarkingResultData
@@ -163,7 +163,7 @@ export function MarkingResultView({
    * before mark-by-mark evidence, so the action isn’t buried under audit chrome.
    */
   primaryAction?: ReactNode
-  /** Sample marks open evidence so visitors see ink/sheet without hunting. */
+  /** Open mark-by-mark evidence by default (pass false to start collapsed). */
   evidenceDefaultOpen?: boolean
   /** Demo / example mark — no rewrite upsell, no “your work” chrome. */
   isSample?: boolean

@@ -38,9 +38,16 @@ export function applyAuthCookies(
   response: NextResponse,
   cookiesToSet: SupabaseAuthCookie[]
 ) {
-  cookiesToSet.forEach(({ name, value, options }) => {
-    response.cookies.set(name, value, options)
-  })
+  for (const { name, value, options } of cookiesToSet) {
+    try {
+      response.cookies.set(name, value, options)
+    } catch (err) {
+      // Edge cookie grammar is strict — a bad refresh token value used to
+      // surface as "The string did not match the expected pattern" on
+      // otherwise-successful routes (e.g. full solution).
+      console.error('[auth-cookies] skipped invalid cookie', name, err)
+    }
+  }
   return response
 }
 

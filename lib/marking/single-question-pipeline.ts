@@ -35,6 +35,7 @@ import { extractPracticeQuestionFromScript } from '@/lib/marking/practice-questi
 import { splitUploadIntoQuestions, type SplitQuestion } from '@/lib/marking/split-questions'
 import { extractTotalMarksForGate } from '@/lib/marking/question-marks'
 import { resolveRequiredQuestionTotal } from '@/lib/marking/require-question-total'
+import { resolveSplitQuestionTotalMarks } from '@/lib/marking/split-question-total'
 import type {
   MarkIntent,
   MarkingMode,
@@ -284,9 +285,8 @@ async function markOneSplitQuestion(
     pageSources: PageInkSource[]
     verify: boolean
     /**
-     * Student-supplied total — only applied when this split has exactly one
-     * question (combined-script single-Q path). Multi-Q scripts use per-question
-     * extract / splitter totals so one script-level hint can't stamp every item.
+     * Student-supplied total for the upload. Applied only when
+     * `singleQuestionSplit` is true (see resolveSplitQuestionTotalMarks).
      */
     fallbackQuestionMarks?: number | null
     singleQuestionSplit?: boolean
@@ -302,18 +302,39 @@ async function markOneSplitQuestion(
       ? q.answer_text
       : ctx.fullScriptText
 
-  // Lock denominator: extract from the stem first, then splitter model total,
-  // then (single-Q only) the student-entered total. Never invent in derive.
+  // Lock denominator. Single-Q combined scripts: student total wins (same as
+  // the main freeform gate). Multi-Q: only per-question extract/splitter —
+  // never stamp one script-level hint onto every item.
   const extracted = extractTotalMarksForGate(q.question_text)
   const splitterTotal =
     typeof q.total_marks === 'number' && q.total_marks > 0 ? q.total_marks : null
   const studentTotal =
-    ctx.singleQuestionSplit &&
     typeof ctx.fallbackQuestionMarks === 'number' &&
     ctx.fallbackQuestionMarks > 0
       ? ctx.fallbackQuestionMarks
       : null
-  const questionTotalMarks = extracted ?? splitterTotal ?? studentTotal
+  const questionTotalMarks = resolveSplitQuestionTotalMarks({
+    extracted,
+    splitterTotal,
+    studentTotal,
+    singleQuestionSplit: !!ctx.singleQuestionSplit,
+  })
+
+  if (!questionTotalMarks) {
+    return {
+      result: placeholderQuestionResult(
+        q,
+        'marking_failed',
+        ctx.singleQuestionSplit
+          ? 'Enter the total marks for this question so we mark out of the right number.'
+          : 'Add the mark total on each question (e.g. [6] on the stem), or mark one question at a time with the total entered.',
+        ctx.answerPhotoUrl,
+        'missing_question_total'
+      ),
+      attemptId: null,
+      tags: [],
+    }
+  }
 
   try {
     const { markingResult, lineReferences, errorClassifications, resolvedTags } =

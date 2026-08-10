@@ -412,7 +412,10 @@ function resolveShowcaseSubject(
 
 function teachingStepsFor(slug: string, fallback?: string[]): string[] {
   const spec = getLessonDiagramSpec(slug)
-  const fromSpec = spec?.steps?.map((s) => s.caption).filter(Boolean) ?? []
+  const fromSpec =
+    spec?.steps
+      ?.map((s) => s.caption)
+      .filter((caption): caption is string => Boolean(caption)) ?? []
   if (fromSpec.length >= 2) return fromSpec.slice(0, 6)
   if (fallback && fallback.length > 0) return fallback
   return [

@@ -14,10 +14,19 @@ const READING_SHELL_PREFIXES = [
   '/pricing',
 ] as const
 
-/** Routes using MarketingHeader/Footer when not in reading shell. */
+/**
+ * Routes using marketing SiteHeader/Footer when not in the reading shell.
+ * Board hubs (/edexcel, /caie, …) live under app/(marketing) and must be here
+ * so RootHeader suppresses the student AppHeader (avoids double chrome).
+ */
 const MARKETING_PREFIXES = [
   '/subjects',
   '/ib',
+  '/caie',
+  '/edexcel',
+  '/oxfordaqa',
+  '/aqa',
+  '/ap',
   '/how-it-works',
   '/pricing',
   '/faq',
@@ -37,6 +46,13 @@ const MARKETING_PREFIXES = [
   '/cookies',
   '/community',
   '/u',
+  '/results-2026',
+  '/for-teachers',
+  '/questions',
+  '/markscheme',
+  '/challenge',
+  '/changelog',
+  '/email',
 ] as const
 
 const AUTH_PREFIX = '/auth'
@@ -53,7 +69,7 @@ const NO_APP_CHROME_PREFIXES = [
   // "Mark a question", a credits chip, "progress" — above a form asking what
   // they teach.
   '/for-teachers/start',
-]
+] as const
 
 function matchesPrefix(pathname: string, prefix: string) {
   return pathname === prefix || pathname.startsWith(prefix + '/')
@@ -66,6 +82,8 @@ export function isMarginNotesShellPath(pathname: string): boolean {
 
 export function getSiteChromeVariant(pathname: string): SiteChromeVariant {
   if (pathname === '/') return 'marketing'
+  // Owns its own teacher chrome — must not inherit marketing SiteHeader.
+  if (matchesPrefix(pathname, '/for-teachers/start')) return 'none'
   if (READING_SHELL_PREFIXES.some((p) => matchesPrefix(pathname, p))) return 'reading'
   if (MARKETING_PREFIXES.some((p) => matchesPrefix(pathname, p))) return 'marketing'
   return 'none'
@@ -94,6 +112,11 @@ export const MARKETING_ROUTES = [
   '/',
   '/subjects',
   '/ib',
+  '/caie',
+  '/edexcel',
+  '/oxfordaqa',
+  '/aqa',
+  '/ap',
   '/how-it-works',
   '/pricing',
   '/faq',
@@ -113,4 +136,11 @@ export const MARKETING_ROUTES = [
   '/cookies',
   '/community',
   '/u',
+  '/results-2026',
+  '/for-teachers',
+  '/questions',
+  '/markscheme',
+  '/challenge',
+  '/changelog',
+  '/email',
 ] as const

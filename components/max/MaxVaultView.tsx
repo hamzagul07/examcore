@@ -11,6 +11,7 @@ import { MaxVaultCoursePath } from '@/components/max/MaxVaultCoursePath'
 import { MaxVaultCommunityInvite } from '@/components/max/MaxVaultCommunityInvite'
 import { MaxVaultPackChecklist } from '@/components/max/MaxVaultPackChecklist'
 import { MaxVaultRewriteBank } from '@/components/max/MaxVaultRewriteBank'
+import { MaxVaultQuestionBank } from '@/components/max/MaxVaultQuestionBank'
 import { MaxVaultCoachInbox } from '@/components/max/MaxVaultCoachInbox'
 import type { MaxVaultData } from '@/lib/max/vault-data'
 import { MaxVaultOpenTracker } from '@/components/max/MaxVaultOpenTracker'
@@ -77,9 +78,9 @@ export function MaxVaultView({
         <p className="text-body mt-3 max-w-2xl text-[var(--ec-text-secondary)]">
           Max put this desk here for{' '}
           <strong className="text-[var(--ec-text-primary)]">{subjectLine}</strong>
-          {data.subjectName ? ` · focus ${data.subjectName}` : ''}. Use the live
-          diagrams, adaptive courses, sprint packs, and coach inbox below — they
-          tighten around your weak topics as you mark.
+          {data.subjectName ? ` · focus ${data.subjectName}` : ''}. Use the
+          Cambridge question bank, live diagrams, adaptive courses, sprint packs,
+          and coach inbox below — they tighten around your weak topics as you mark.
           {sprintCreditsGranted
             ? ' Sprint bonus marks were just added to your account.'
             : null}
@@ -101,6 +102,12 @@ export function MaxVaultView({
             <span className="ms-vault__chip-label">Concept cinema</span>
           </li>
           <li className="ms-vault__chip ms-vault__chip--blue">
+            <span className="ms-vault__chip-value">
+              {data.questionBank?.questions.length ?? 0}
+            </span>
+            <span className="ms-vault__chip-label">Bank questions</span>
+          </li>
+          <li className="ms-vault__chip ms-vault__chip--teal">
             <span className="ms-vault__chip-value">{data.fullMarksModels.length}</span>
             <span className="ms-vault__chip-label">Models to beat</span>
           </li>
@@ -145,6 +152,7 @@ export function MaxVaultView({
         subjectCode={data.subjectCode}
         subjectName={data.subjectName}
       />
+      <MaxVaultQuestionBank bank={data.questionBank} />
 
       {projected && projected.prediction.predictedGrade !== '—' ? (
         <VaultSection stamp="A*" eyebrow="Live form" title="Projected grade" tone="brand">

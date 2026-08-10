@@ -89,6 +89,14 @@
   color: var(--ec-acc-blue);
 }
 
+.ms-vault__chip--teal {
+  border-color: color-mix(in srgb, var(--ec-acc-teal) 45%, var(--ec-border));
+  background: color-mix(in srgb, var(--ec-acc-teal) 10%, transparent);
+}
+.ms-vault__chip--teal .ms-vault__chip-value {
+  color: var(--ec-acc-teal);
+}
+
 .ms-vault__chip--rose {
   border-color: color-mix(in srgb, var(--ec-acc-rose) 45%, var(--ec-border));
   background: color-mix(in srgb, var(--ec-acc-rose) 12%, transparent);
@@ -708,6 +716,82 @@
 .ms-vault__day.is-done .ms-vault__day-body > p {
   text-decoration: line-through;
   text-decoration-thickness: 1px;
+}
+
+/* Cambridge question bank */
+.ms-vault__qbank {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .ms-vault__qbank {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.ms-vault__qbank-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.85rem;
+  border: 1.5px solid color-mix(in srgb, var(--ec-acc-blue) 40%, var(--ec-border));
+  background: color-mix(in srgb, var(--ec-acc-blue) 7%, transparent);
+}
+
+.ms-vault__qbank-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 0.75rem;
+}
+
+.ms-vault__qbank-paper {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ec-text-secondary);
+}
+
+.ms-vault__qbank-tag {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ec-acc-blue);
+}
+
+.ms-vault__qbank-tag--weak {
+  color: var(--ec-acc-rose, #c45c5c);
+}
+
+.ms-vault__qbank-topic {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ec-text-primary);
+}
+
+.ms-vault__qbank-stem {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--ec-text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ms-vault__qbank-stem--muted {
+  font-style: italic;
+}
+
+.ms-vault__qbank-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
 }
 
 /* Rewrite bank */

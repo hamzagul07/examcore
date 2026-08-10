@@ -48,6 +48,10 @@ import {
   courseHubHref,
   paperPracticeLinks,
 } from '@/lib/max/paper-practice-links'
+import {
+  buildVaultQuestionBank,
+  type VaultQuestionBank,
+} from '@/lib/max/vault-question-bank'
 
 export type VaultToolLink = { label: string; href: string; note: string }
 
@@ -129,6 +133,8 @@ export type MaxVaultData = {
   completedDays: number[]
   /** Recomputed weekly coach snapshots (Max ritual). */
   coachInbox: VaultCoachWeek[]
+  /** Cambridge (or IB) question bank — attempt + check mark scheme. */
+  questionBank: VaultQuestionBank | null
 }
 
 export type VaultSubjectInput = {
@@ -482,6 +488,14 @@ export async function loadMaxVaultData(opts: {
         })
       : []
 
+  const questionBank = buildVaultQuestionBank({
+    subjectCode: focusCode,
+    subjectLabel: focusName,
+    weakTopics: weakForFocus,
+    drills: focusDrills,
+    limit: 8,
+  })
+
   return {
     subjectCode: focusCode,
     subjectName: focusName,
@@ -503,5 +517,6 @@ export async function loadMaxVaultData(opts: {
     ownership,
     completedDays,
     coachInbox,
+    questionBank,
   }
 }

@@ -168,7 +168,8 @@ export function salvageTeachBackResponse(raw: string): TeachBackResult | null {
     | undefined
   if (!verdict) return null
 
-  const summaryMatch = raw.match(/"summary"\s*:\s*"((?:\\.|[^"\\])*)"?/s)
+  // Avoid /s (dotAll) — tsconfig target is ES2017; [\s\S] covers newlines in escapes.
+  const summaryMatch = raw.match(/"summary"\s*:\s*"((?:\\[\s\S]|[^"\\])*)"?/)
   let summary = ''
   if (summaryMatch?.[1]) {
     summary = summaryMatch[1]

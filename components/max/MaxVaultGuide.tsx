@@ -23,6 +23,11 @@ const FEATURES = [
     body: 'Open Concept Cinema and lesson pads — ideas move on screen instead of sitting as static textbook figures.',
   },
   {
+    key: 'qbank',
+    title: 'Cambridge question bank',
+    body: 'Sit a real past-paper question, then mark it against the official Cambridge mark scheme. Weak topics float to the top as you study.',
+  },
+  {
     key: 'videos',
     title: 'Videos coming soon',
     body: 'Prefer watching when reading feels heavy? A Max video desk is on the way for the same hard topics.',

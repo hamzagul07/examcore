@@ -10,6 +10,18 @@
  * answer "what do I actually get back?" before asking for any commitment.
  */
 
+export type MarkExampleBoardKind = 'cambridge' | 'ib' | 'other'
+
+function sampleLead(board: MarkExampleBoardKind): string {
+  if (board === 'ib') {
+    return 'A Maths AA answer, marked with IB method / accuracy / reasoning notation. Yours will look like this, against your own paper.'
+  }
+  if (board === 'other') {
+    return 'A Cambridge A-Level Maths example — same mark-by-mark format you get on your board. Yours will look like this, against your own paper.'
+  }
+  return 'A real A-Level Maths answer, marked against the official scheme. Yours will look like this, against your own paper.'
+}
+
 /** Shown above the upload form while there is nothing to display yet. */
 export function MarkExampleInvite({
   onOpen,
@@ -59,8 +71,10 @@ export function MarkExampleInvite({
  */
 export function MarkExampleBanner({
   onDismiss,
+  board = 'cambridge',
 }: {
   onDismiss: () => void
+  board?: MarkExampleBoardKind
 }) {
   return (
     <aside
@@ -75,10 +89,7 @@ export function MarkExampleBanner({
           <p className="ms-mark-example-slip__title">
             This is an example — not your work
           </p>
-          <p className="ms-mark-example-slip__lead">
-            A real A-Level Maths answer, marked against the official scheme.
-            Yours will look like this, against your own paper.
-          </p>
+          <p className="ms-mark-example-slip__lead">{sampleLead(board)}</p>
           <span className="ms-mark-example-slip__note" aria-hidden>
             sample slip — close it when you&apos;re ready
           </span>

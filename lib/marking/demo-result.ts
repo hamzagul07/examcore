@@ -1,4 +1,5 @@
 import type { MarkingResultData } from '@/components/MarkingResultView'
+import { DEMO_INK, DEMO_SCRIPT_IMAGE } from '@/lib/marking/demo-ink'
 
 /**
  * A finished mark, shown instantly and with no upload.
@@ -105,6 +106,12 @@ export const DEMO_MARK_RESULT: MarkingResultData = {
     paper_code: '9709/12',
     paper_session: 'May/June 2023',
   },
+  ink_pages: [
+    {
+      photo_url: DEMO_SCRIPT_IMAGE,
+      line_references: DEMO_INK,
+    },
+  ],
 }
 
 /** Query flag that opens the example straight away (used by onboarding). */

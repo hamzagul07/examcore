@@ -38,7 +38,10 @@ export function FirstMarkPreview({ board = null }: Props) {
               : 'A real A-Level Maths answer, marked against the official scheme.'}
           </p>
         </div>
-        <Link href="/mark?example=1" className="ms-first-mark__link">
+        <Link
+          href={ib ? '/mark?example=1&board=ib' : '/mark?example=1'}
+          className="ms-first-mark__link"
+        >
           See the full example -&gt;
         </Link>
       </div>

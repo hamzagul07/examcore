@@ -84,6 +84,8 @@ export type MarkingResultData = {
   mark_scheme_meta?: MarkSchemeMeta | null
   mark_scheme_rubric?: MarkSchemeRubric | null
   time_spent_seconds?: number | null
+  /** Optional stamped script pages (sample marks + persisted attempts). */
+  ink_pages?: Array<{ photo_url: string; line_references: LineReference[] }>
 }
 
 function sheetWork(mark: MarkAwarded): string {
@@ -141,6 +143,8 @@ export function MarkingResultView({
   isPaid,
   isMax,
   primaryAction,
+  evidenceDefaultOpen = false,
+  isSample = false,
 }: {
   result: MarkingResultData
   attemptId?: string | null
@@ -158,6 +162,10 @@ export function MarkingResultView({
    * before mark-by-mark evidence, so the action isn’t buried under audit chrome.
    */
   primaryAction?: ReactNode
+  /** Sample marks open evidence so visitors see ink/sheet without hunting. */
+  evidenceDefaultOpen?: boolean
+  /** Demo / example mark — no rewrite upsell, no “your work” chrome. */
+  isSample?: boolean
 }) {
   const [showOCR, setShowOCR] = useState(false)
   const marksAwarded = result.ai_marking?.marks_awarded
@@ -201,9 +209,11 @@ export function MarkingResultView({
     : null
   // Free upsell teaser for the full-marks rewrite: only on the live mark flow
   // (isPaid === false), when marks were lost and the style is rewritable.
+  // Never on the sample — it is not "your" answer and has no rewrite payload.
   const lostMarks =
     result.total_marks > 0 && result.marks_earned < result.total_marks
   const showRewriteTeaser =
+    !isSample &&
     isPaid === false &&
     !result.ai_marking?.full_marks_rewrite &&
     lostMarks &&
@@ -491,6 +501,7 @@ export function MarkingResultView({
         <Disclosure
           className="ms-mark-evidence mt-7"
           summaryClassName="ms-mark-evidence__summary"
+          defaultOpen={evidenceDefaultOpen}
           summary={
             <>
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
@@ -518,7 +529,11 @@ export function MarkingResultView({
                 ) : null}
 
                 <ExamSheet
-                  head="Your script, with Examiner's Ink"
+                  head={
+                    isSample
+                      ? "Sample script, with Examiner's Ink"
+                      : "Your script, with Examiner's Ink"
+                  }
                   headRight="tap a line"
                   tally={`${result.marks_earned} / ${result.total_marks}`}
                   cite={
@@ -663,7 +678,8 @@ export function MarkingResultView({
                 onClick={() => setShowOCR(!showOCR)}
                 className="font-mono text-xs font-medium text-[var(--ec-text-secondary)] underline ec-link-muted"
               >
-                {showOCR ? 'HIDE' : 'SHOW'} WHAT THE AI READ FROM YOUR HANDWRITING
+                {showOCR ? 'HIDE' : 'SHOW'} WHAT THE AI READ FROM{' '}
+                {isSample ? 'THE SAMPLE SCRIPT' : 'YOUR HANDWRITING'}
               </button>
               {showOCR && (
                 <pre className="ec-card ec-card--paper mt-2 max-w-full overflow-x-auto break-words whitespace-pre-wrap border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] p-4 font-mono text-xs text-[var(--ec-text-secondary)]">

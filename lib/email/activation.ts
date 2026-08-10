@@ -155,7 +155,9 @@ export function sendActivationProofEmail(payload: ActivationPayload): void {
   const p = resolveStudentProfile(payload)
   // No upload required — the example is a finished mark, which is the whole
   // point for someone who has not been willing to photograph anything yet.
-  const exampleHref = `${SITE_URL}/mark?example=1`
+  const exampleHref = p.ib
+    ? `${SITE_URL}/mark?example=1&board=ib`
+    : `${SITE_URL}/mark?example=1`
   const scheme = p.ib ? 'IB criteria' : 'the Cambridge scheme'
 
   const preheader = 'A finished mark, no upload needed — see what the feedback actually looks like.'
@@ -166,9 +168,9 @@ export function sendActivationProofEmail(payload: ActivationPayload): void {
     sectionHeading('What comes back', 'On a real answer, marked against ' + scheme) +
     `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 20px">
       ${[
-        ['Marks where they were earned', 'Annotated on your own handwriting, line by line — not a paragraph at the bottom.'],
+        ['Marks where they were earned', 'Annotated on the script, line by line — not a paragraph at the bottom.'],
         ['The marks you missed', 'Named, with what the scheme wanted instead.'],
-        ['Your answer at full marks', 'Rewritten so you can see the distance between the two.'],
+        ['On your own work', 'When marks were lost, a full-marks rewrite so you can see the distance.'],
       ]
         .map(
           ([title, body]) =>
@@ -189,9 +191,9 @@ export function sendActivationProofEmail(payload: ActivationPayload): void {
     'Uploading your own work first is a fair thing to be unsure about. Here is a finished mark instead — nothing to submit.',
     '',
     `What comes back, on a real answer marked against ${scheme}:`,
-    '- Marks annotated where they were earned, on the handwriting itself.',
+    '- Marks annotated where they were earned, on the script itself.',
     '- The marks you missed, named, with what the scheme wanted instead.',
-    '- Your answer rewritten to full marks, so you can see the distance.',
+    '- On your own work, a full-marks rewrite when marks were lost.',
     '',
     `See a marked answer: ${exampleHref}`,
     '',

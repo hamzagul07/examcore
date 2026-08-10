@@ -63,6 +63,7 @@ import {
   DEMO_MARK_RESULT,
   DEMO_MARK_QUERY_PARAM,
 } from '@/lib/marking/demo-result'
+import { DEMO_MARK_RESULT_IB } from '@/lib/marking/demo-result-ib'
 import { PastPaperSelectorFields } from '@/components/mark/PastPaperSelectorFields'
 import {
   MarkBoardPicker,
@@ -1729,12 +1730,28 @@ export default function MarkPage() {
   )
 
   const openExample = useCallback(() => {
-    setResult(DEMO_MARK_RESULT as MarkingResult)
+    const urlBoard =
+      typeof window !== 'undefined'
+        ? new URLSearchParams(window.location.search).get('board')?.trim().toLowerCase()
+        : null
+    // Prefer ?board= so IB deep links win before profile state catches up.
+    const board: MarkExamBoard = isUrlMarkBoard(urlBoard)
+      ? urlBoard
+      : selectedMarkBoard
+    const fixture = board === 'ib' ? DEMO_MARK_RESULT_IB : DEMO_MARK_RESULT
+    setResult(fixture as MarkingResult)
     setShowingExample(true)
     setErrorMsg('')
     setMarkStreamError(null)
-    if (typeof window !== 'undefined') window.scrollTo({ top: 0 })
-  }, [])
+    // Keep deep-link / refresh in sync with the sample (and IB board).
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href)
+      url.searchParams.set(DEMO_MARK_QUERY_PARAM, '1')
+      if (board === 'ib') url.searchParams.set('board', 'ib')
+      window.history.replaceState(null, '', url.toString())
+      window.scrollTo({ top: 0 })
+    }
+  }, [selectedMarkBoard])
 
   const closeExample = useCallback(() => {
     setResult(null)
@@ -3374,7 +3391,19 @@ export default function MarkPage() {
 
         {result && !result.whole_paper && (
           <div className="space-y-8">
-            {showingExample && <MarkExampleBanner onDismiss={closeExample} />}
+            {showingExample && (
+              <MarkExampleBanner
+                onDismiss={closeExample}
+                board={
+                  result.subject_code === 'ib-maths-aa' ||
+                  selectedMarkBoard === 'ib'
+                    ? 'ib'
+                    : selectedMarkBoard === 'cambridge'
+                      ? 'cambridge'
+                      : 'other'
+                }
+              />
+            )}
 
             {practiceContext?.returnTo === 'progress' && (
               <Link
@@ -3430,9 +3459,21 @@ export default function MarkPage() {
               result={result}
               attemptId={result.attempt_id ?? null}
               isPaid={
-                billingSummary ? hasPaidAccess(billingSummary.access) : undefined
+                showingExample
+                  ? undefined
+                  : billingSummary
+                    ? hasPaidAccess(billingSummary.access)
+                    : undefined
               }
-              isMax={billingSummary ? isMax(billingSummary.access) : undefined}
+              isMax={
+                showingExample
+                  ? undefined
+                  : billingSummary
+                    ? isMax(billingSummary.access)
+                    : undefined
+              }
+              isSample={showingExample}
+              evidenceDefaultOpen={showingExample}
               inkPages={
                 result.ink_pages ??
                 (result.answer_photo_url && result.line_references?.length

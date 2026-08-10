@@ -68,7 +68,7 @@ export async function buildMaxExamPack(opts: {
   const subjectLabel =
     getSyllabusSubjectName(opts.subjectCode) ?? opts.subjectCode
 
-  let drills: Recommendation[] =
+  const drills: Recommendation[] =
     weakTopics.length > 0
       ? await fetchTopicRecommendations(
           opts.supabase,

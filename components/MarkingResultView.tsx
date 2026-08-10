@@ -87,6 +87,10 @@ export type MarkingResultData = {
   time_spent_seconds?: number | null
   /** Optional stamped script pages (sample marks + persisted attempts). */
   ink_pages?: Array<{ photo_url: string; line_references: LineReference[] }>
+  /** Persisted attempt — powers solution + shareable parent report. */
+  attempt_id?: string | null
+  /** Durable `/r/[token]` report URL when the mark response minted one. */
+  share_url?: string | null
 }
 
 function sheetWork(mark: MarkAwarded): string {
@@ -412,6 +416,8 @@ export function MarkingResultView({
             percentage={percentage}
             grade={grade?.grade ?? null}
             nextGrade={nextGradeStep}
+            attemptId={attemptId ?? result.attempt_id ?? null}
+            shareUrl={result.share_url ?? null}
             activeMarkId={String(
               marks[selectedIndex]?.mark_id ?? selectedIndex
             )}
@@ -428,7 +434,9 @@ export function MarkingResultView({
                 getSubjectByCode(badgeSubjectCode ?? '')?.label ??
                 badgeSubjectCode ??
                 null,
+              subjectCode: badgeSubjectCode ?? null,
               paperRef: overline,
+              summary: result.ai_marking?.summary ?? null,
               topics: [
                 ...(result.ai_marking?.weak_topics ?? []),
                 ...(result.syllabus_tags ?? []).map(String),

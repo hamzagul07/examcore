@@ -20,6 +20,10 @@ export type ParentScoreSlipInput = {
   paperRef?: string | null
   topics?: string[]
   marks?: ParentScoreSlipMark[]
+  /** Short examiner summary — shown on the full report page, not the WA teaser. */
+  summary?: string | null
+  /** Public report URL — preferred share target over bare /mark. */
+  shareUrl?: string | null
 }
 
 function esc(s: string): string {
@@ -54,7 +58,9 @@ export function buildParentScoreSlipText(input: ParentScoreSlipInput): string {
     lines.push('', `Topics: ${input.topics.slice(0, 5).join(', ')}`)
   }
 
-  lines.push('', 'markscheme.app/mark')
+  const reportUrl =
+    input.shareUrl?.trim() || 'https://markscheme.app/mark'
+  lines.push('', 'Full report:', reportUrl)
   return lines.join('\n')
 }
 
@@ -77,11 +83,12 @@ export async function shareParentScoreSlipNative(
     return false
   }
   const text = buildParentScoreSlipText(input)
+  const shareUrl = input.shareUrl?.trim() || 'https://markscheme.app/mark'
   try {
     await navigator.share({
       title: "MarkScheme · Examiner's Ink",
       text,
-      url: 'https://markscheme.app/mark',
+      url: shareUrl,
     })
     return true
   } catch {
@@ -89,13 +96,12 @@ export async function shareParentScoreSlipNative(
   }
 }
 
-/** Opens a print-ready parent report window. */
-export function openParentScoreSlip(input: ParentScoreSlipInput): void {
-  if (typeof window === 'undefined') return
-
-  const lost = (input.marks ?? []).filter((m) => !m.earned).slice(0, 6)
+/** Print-ready HTML for the parent report (also used by the public /r page). */
+export function buildParentScoreSlipHtml(input: ParentScoreSlipInput): string {
+  const lost = (input.marks ?? []).filter((m) => !m.earned).slice(0, 8)
   const earned = (input.marks ?? []).filter((m) => m.earned).length
   const topics = (input.topics ?? []).slice(0, 6)
+  const summary = input.summary?.trim()
 
   const lostRows = lost.length
     ? `<section class="block">
@@ -111,10 +117,29 @@ export function openParentScoreSlip(input: ParentScoreSlipInput): void {
       </section>`
     : `<section class="block"><p class="ok">Every mark point earned on this attempt.</p></section>`
 
+  const earnedRows =
+    earned > 0
+      ? `<section class="block">
+        <h2>Marks earned</h2>
+        <ul>${(input.marks ?? [])
+          .filter((m) => m.earned)
+          .slice(0, 12)
+          .map(
+            (m) =>
+              `<li><span class="stamp okstamp">${esc(m.label)}</span> earned</li>`,
+          )
+          .join('')}</ul>
+      </section>`
+      : ''
+
   const topicChips = topics.length
     ? `<section class="block"><h2>Topics touched</h2><div class="chips">${topics
         .map((t) => `<span class="chip">${esc(t)}</span>`)
         .join('')}</div></section>`
+    : ''
+
+  const summaryBlock = summary
+    ? `<section class="block"><h2>Examiner note</h2><p class="summary">${esc(summary)}</p></section>`
     : ''
 
   const nextLine =
@@ -124,7 +149,7 @@ export function openParentScoreSlip(input: ParentScoreSlipInput): void {
         } from ${esc(input.nextGrade.nextGrade)}</p>`
       : ''
 
-  const html = `<!doctype html>
+  return `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -173,7 +198,9 @@ export function openParentScoreSlip(input: ParentScoreSlipInput): void {
     padding: 2px 6px; border: 1px solid; margin-right: 6px;
   }
   .stamp.lost { color: #a23e3e; border-color: rgba(162,62,62,0.45); background: rgba(176,72,72,0.08); }
+  .stamp.okstamp { color: #19774d; border-color: rgba(30,138,94,0.45); background: rgba(25,119,77,0.08); }
   .why { color: #5c6470; }
+  .summary { margin: 0; font-size: 14px; line-height: 1.5; color: #25221b; }
   .ok { margin: 0; font-size: 14px; color: #19774d; }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; }
   .chip {
@@ -190,7 +217,7 @@ export function openParentScoreSlip(input: ParentScoreSlipInput): void {
 </head>
 <body>
   <article class="slip">
-    <div class="eyebrow">Examiner's Ink · parent slip</div>
+    <div class="eyebrow">Examiner's Ink · parent report</div>
     <h1>Effort on the page</h1>
     <p class="meta">
       ${input.subjectLabel ? esc(input.subjectLabel) : 'Marked attempt'}
@@ -204,21 +231,38 @@ export function openParentScoreSlip(input: ParentScoreSlipInput): void {
       <span>${earned} earned</span>
       <span>${lost.length} missed</span>
     </div>
+    ${summaryBlock}
     ${lostRows}
+    ${earnedRows}
     ${topicChips}
     <p class="foot">
       Your student marked this on <strong>MarkScheme</strong> — examiner-style
-      feedback against the real scheme. A tutor marks one essay an hour;
-      this marks every question they write.
+      feedback against the scheme. Open the link anytime — no account needed.
       <br/>markscheme.app
     </p>
   </article>
-  <script>window.onload=function(){window.focus();window.print()}</script>
 </body>
 </html>`
+}
 
+/** Opens a print-ready parent report window. */
+export function openParentScoreSlip(input: ParentScoreSlipInput): void {
+  if (typeof window === 'undefined') return
+
+  // Prefer the durable public report URL when we have one.
+  if (input.shareUrl?.trim()) {
+    window.open(input.shareUrl.trim(), '_blank', 'noopener,noreferrer')
+    return
+  }
+
+  const html = buildParentScoreSlipHtml(input)
   const win = window.open('', '_blank', 'noopener,noreferrer,width=520,height=720')
   if (!win) return
-  win.document.write(html)
+  win.document.write(
+    html.replace(
+      '</body>',
+      '<script>window.onload=function(){window.focus();window.print()}<\/script></body>',
+    ),
+  )
   win.document.close()
 }

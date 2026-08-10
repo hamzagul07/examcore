@@ -555,6 +555,19 @@ async function markSplitQuestions(params: {
     }
   }
 
+  let share_url: string | null = null
+  if (attemptIds[0]) {
+    try {
+      const { markShareUrlForAttempt } = await import('@/lib/marking/share-token')
+      share_url = markShareUrlForAttempt(attemptIds[0], {
+        subjectCode: subject_code,
+        paperRef: `${capped.length} questions`,
+      })
+    } catch (err) {
+      console.warn('[mark] share url mint failed', err)
+    }
+  }
+
   return {
     upload_mode: 'whole_paper',
     multi_question: true,
@@ -563,6 +576,7 @@ async function markSplitQuestions(params: {
     total_marks: whole.total_marks,
     subject_code,
     attempt_id: attemptIds[0] ?? null,
+    share_url,
     // All persisted attempt ids (one per question) — the route charges one mark
     // per question using these.
     question_attempt_ids: attemptIds,
@@ -1116,6 +1130,21 @@ export async function runSingleQuestionMark(
     ? extractMarkSchemeRubric(markScheme.mark_scheme, markScheme.marking_type)
     : null
 
+  let share_url: string | null = null
+  if (attempt?.id) {
+    try {
+      const { markShareUrlForAttempt } = await import('@/lib/marking/share-token')
+      share_url = markShareUrlForAttempt(attempt.id, {
+        subjectCode: subject_code,
+        paperRef: detectedPaper
+          ? `${detectedPaper.paper_code} ${detectedPaper.paper_session} Q${detectedPaper.question_number}`
+          : null,
+      })
+    } catch (err) {
+      console.warn('[mark] share url mint failed', err)
+    }
+  }
+
   return {
     marks_earned: markingResult.marks_earned,
     total_marks: markingResult.total_marks,
@@ -1126,6 +1155,7 @@ export async function runSingleQuestionMark(
     detected_paper: detectedPaper,
     subject_code,
     attempt_id: attempt?.id,
+    share_url,
     syllabus_tags: resolvedTags,
     answer_photo_url: answerPhotoUrl,
     page_photo_urls: pagePhotoUrls.length ? pagePhotoUrls : undefined,

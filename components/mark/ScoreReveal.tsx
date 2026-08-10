@@ -94,6 +94,8 @@ export type ScoreRevealReport = {
   subjectLabel?: string | null
   paperRef?: string | null
   topics?: string[]
+  subjectCode?: string | null
+  summary?: string | null
 }
 
 export function ScoreReveal({
@@ -107,6 +109,8 @@ export function ScoreReveal({
   activeMarkId = null,
   shareable = true,
   report,
+  attemptId = null,
+  shareUrl: shareUrlProp = null,
 }: {
   marksEarned: number
   totalMarks: number
@@ -122,6 +126,10 @@ export function ScoreReveal({
   shareable?: boolean
   /** Extra context for the parent/tutor artefact. */
   report?: ScoreRevealReport
+  /** Persist attempt — used to mint a durable `/r/[token]` report link. */
+  attemptId?: string | null
+  /** Precomputed share URL from the mark response (optional). */
+  shareUrl?: string | null
 }) {
   const reduced = usePrefersReducedMotion()
   const animate = !reduced
@@ -130,6 +138,9 @@ export function ScoreReveal({
   const ink = BAND_INK[band]
   const label = bandLabel(pct, marksEarned, totalMarks)
   const [copied, setCopied] = useState(false)
+  const [shareUrl, setShareUrl] = useState<string | null>(shareUrlProp)
+  const [shareBusy, setShareBusy] = useState(false)
+  const [shareError, setShareError] = useState('')
   const fullMarks = totalMarks > 0 && marksEarned >= totalMarks
   const stampText = grade?.trim() || (fullMarks ? 'DONE' : label === 'Strong' ? 'OK' : 'MARK')
 
@@ -141,7 +152,11 @@ export function ScoreReveal({
     return () => cancelAnimationFrame(id)
   }, [animate])
 
-  function slipInput() {
+  useEffect(() => {
+    if (shareUrlProp) setShareUrl(shareUrlProp)
+  }, [shareUrlProp])
+
+  function slipInput(url?: string | null) {
     return {
       marksEarned,
       totalMarks,
@@ -152,6 +167,8 @@ export function ScoreReveal({
       subjectLabel: report?.subjectLabel,
       paperRef: report?.paperRef,
       topics: report?.topics,
+      summary: report?.summary,
+      shareUrl: url ?? shareUrl,
       marks: marks.map((m) => ({
         label: m.label,
         earned: m.earned,
@@ -160,8 +177,42 @@ export function ScoreReveal({
     }
   }
 
+  async function ensureShareUrl(): Promise<string | null> {
+    if (shareUrl) return shareUrl
+    if (!attemptId) return null
+    setShareBusy(true)
+    setShareError('')
+    try {
+      const res = await fetch('/api/mark/share', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          attempt_id: attemptId,
+          subject_code: report?.subjectCode ?? null,
+          paper_ref: report?.paperRef ?? null,
+        }),
+      })
+      const data = (await res.json().catch(() => null)) as {
+        url?: string
+        error?: string
+      } | null
+      if (!res.ok || !data?.url) {
+        setShareError(data?.error || 'Could not create a share link.')
+        return null
+      }
+      setShareUrl(data.url)
+      return data.url
+    } catch {
+      setShareError('Could not create a share link. Check your connection.')
+      return null
+    } finally {
+      setShareBusy(false)
+    }
+  }
+
   async function copySlip() {
-    const text = buildParentScoreSlipText(slipInput())
+    const url = await ensureShareUrl()
+    const text = buildParentScoreSlipText(slipInput(url))
     try {
       await navigator.clipboard.writeText(text)
       setCopied(true)
@@ -181,17 +232,20 @@ export function ScoreReveal({
     }
   }
 
-  function printSlip() {
-    openParentScoreSlip(slipInput())
+  async function printSlip() {
+    const url = await ensureShareUrl()
+    openParentScoreSlip(slipInput(url))
   }
 
-  function whatsappSlip() {
-    shareParentScoreSlipWhatsApp(slipInput())
+  async function whatsappSlip() {
+    const url = await ensureShareUrl()
+    shareParentScoreSlipWhatsApp(slipInput(url))
   }
 
   async function nativeShareSlip() {
-    const ok = await shareParentScoreSlipNative(slipInput())
-    if (!ok) shareParentScoreSlipWhatsApp(slipInput())
+    const url = await ensureShareUrl()
+    const ok = await shareParentScoreSlipNative(slipInput(url))
+    if (!ok) shareParentScoreSlipWhatsApp(slipInput(url))
   }
 
   const paperRef = report?.paperRef?.trim()
@@ -247,29 +301,51 @@ export function ScoreReveal({
               <button
                 type="button"
                 className={`ms-score-reveal__share${copied ? ' is-copied' : ''}`}
+                disabled={shareBusy}
                 onClick={() => void copySlip()}
               >
                 <span aria-hidden>{copied ? 'OK' : 'CP'}</span>
-                {copied ? 'Slip copied' : 'Copy slip'}
-              </button>
-              <button type="button" className="ms-score-reveal__share" onClick={printSlip}>
-                <span aria-hidden>PR</span>
-                Parent report
+                {copied ? 'Report link copied' : 'Copy report'}
               </button>
               <button
                 type="button"
                 className="ms-score-reveal__share"
+                disabled={shareBusy}
+                onClick={() => void printSlip()}
+              >
+                <span aria-hidden>PR</span>
+                {shareBusy ? 'Preparing…' : 'Parent report'}
+              </button>
+              <button
+                type="button"
+                className="ms-score-reveal__share"
+                disabled={shareBusy}
                 onClick={() => void nativeShareSlip()}
               >
                 <span aria-hidden>SH</span>
                 Share
               </button>
-              <button type="button" className="ms-score-reveal__share" onClick={whatsappSlip}>
+              <button
+                type="button"
+                className="ms-score-reveal__share"
+                disabled={shareBusy}
+                onClick={() => void whatsappSlip()}
+              >
                 <span aria-hidden>WA</span>
                 WhatsApp
               </button>
             </div>
           )}
+          {shareError ? (
+            <p className="mt-2 text-xs text-[var(--ec-chip-critical-text,#bb2a25)]">
+              {shareError}
+            </p>
+          ) : null}
+          {shareUrl ? (
+            <p className="mt-2 break-all font-mono text-[11px] text-[var(--ec-text-secondary)]">
+              Report link: {shareUrl}
+            </p>
+          ) : null}
         </div>
       </div>
 

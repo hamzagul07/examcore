@@ -83,7 +83,11 @@ import { markableCodesForBoard } from '@/lib/marking/mark-board-subjects'
 import { preferSubjectCodesFirst } from '@/lib/subjects/prefer-codes'
 import { resolveBoard } from '@/lib/courses/board'
 import { MarkingModeHint } from '@/components/mark/MarkingModeHint'
-import { formatClientMarkError } from '@/lib/marking/client-mark-errors'
+import {
+  SOFT_MARK_RETRY_NOTICE,
+  SOFT_TOTAL_MARKS_NOTICE,
+  softNoticeForMarkFailure,
+} from '@/lib/marking/soft-mark-notice'
 import { normalizeQuestionNumber } from '@/lib/marking/question-number'
 import {
   MARK_HANDOFF_PARAM,
@@ -235,6 +239,8 @@ export default function MarkPage() {
   const markAbortRef = useRef<AbortController | null>(null)
   const [errorMsg, setErrorMsg] = useState('')
   const [errorRetryable, setErrorRetryable] = useState(false)
+  /** Calm recovery after an unfinished mark — not framed as an error alert. */
+  const [softMarkNotice, setSoftMarkNotice] = useState<string | null>(null)
   const [firstMarkCelebration, setFirstMarkCelebration] = useState(false)
   const [upgradeModal, setUpgradeModal] = useState<UpgradeModalState | null>(null)
   const [showFreeNudge, setShowFreeNudge] = useState(false)
@@ -1232,6 +1238,28 @@ export default function MarkPage() {
     !questionPhoto &&
     !isManualFilled
 
+  // The tailored IB "Marks available" input already covers points-based IB
+  // components — don't show a second marks field on top of it.
+  const ibPointsMarksShown =
+    (isPracticeMode || isCombinedMode) &&
+    !!catalogSubject &&
+    !!ibComponentKey &&
+    selectedCatalogComponent?.assessment_model === 'points'
+  // Show a per-question "total marks" control whenever no banked scheme total
+  // is available (including paper selected but missing from the DB). Hidden
+  // only when the official scheme is confirmed in-DB or IB points already cover it.
+  const hasBankedSchemeTotal = isManualFilled && schemeInDb === true
+  const showTotalMarksField =
+    uploadMode === 'single_question' &&
+    !hasBankedSchemeTotal &&
+    !ibPointsMarksShown
+  const parsedTotalMarksInput = (() => {
+    const n = Number(totalMarksInput.trim())
+    return Number.isFinite(n) && n > 0 && n <= 100 ? Math.round(n) : null
+  })()
+  const totalMarksSatisfied =
+    !showTotalMarksField || marksInQuestion || parsedTotalMarksInput !== null
+
   // Why the submit button is disabled, in words — shown under the button so a
   // greyed-out CTA never leaves the user guessing.
   const submitDisabledReason = !hasAnswer
@@ -1250,21 +1278,9 @@ export default function MarkPage() {
               ? 'Pick a subject above so we mark with the right criteria.'
               : isPracticeMode && !hasPracticeQuestion
                 ? 'Add the question (photo, PDF, or text) so we know what to mark against.'
-                : null
-
-  // The tailored IB "Marks available" input already covers points-based IB
-  // components — don't show a second marks field on top of it.
-  const ibPointsMarksShown =
-    (isPracticeMode || isCombinedMode) &&
-    !!catalogSubject &&
-    !!ibComponentKey &&
-    selectedCatalogComponent?.assessment_model === 'points'
-  // Show a per-question "total marks" control on every single-question upload
-  // where the total would otherwise be inferred by the model. Hidden when an
-  // official mark scheme supplies the total (isManualFilled) or the IB points
-  // input is already shown.
-  const showTotalMarksField =
-    uploadMode === 'single_question' && !isManualFilled && !ibPointsMarksShown
+                : !totalMarksSatisfied
+                  ? 'Enter the total marks for this question, or tick that they are shown in the question.'
+                  : null
 
   const wholePaperCode =
     selectedSubject && selectedComponent
@@ -1467,11 +1483,22 @@ export default function MarkPage() {
         }
       }
 
+      if (showTotalMarksField && !marksInQuestion) {
+        const n = Number(totalMarksInput.trim())
+        if (!Number.isFinite(n) || n <= 0 || n > 100) {
+          setLoading(false)
+          releaseSubmit()
+          setSoftMarkNotice(SOFT_TOTAL_MARKS_NOTICE)
+          return
+        }
+      }
+
       setMarkProgress({ percent: 5, stage: 'reading_work' })
       setMarkContext(null)
       setMarkStreamError(null)
       setErrorMsg('')
       setErrorRetryable(false)
+      setSoftMarkNotice(null)
       setResult(null)
       setShowingExample(false)
       setPendingResult(null)
@@ -1525,9 +1552,12 @@ export default function MarkPage() {
 
       // Per-question total marks: send the user-entered denominator unless they
       // ticked "the marks are shown in my question" (then the marker reads it
-      // from the question image/text). The backend still prefers an official
-      // mark-scheme total over this when one is available.
-      if (showTotalMarksField && !marksInQuestion && totalMarksInput.trim()) {
+      // from the question image/text and rejects if nothing is stated). The
+      // backend still prefers an official mark-scheme total over this when one
+      // is available.
+      if (showTotalMarksField && marksInQuestion) {
+        formData.append('marks_in_question', '1')
+      } else if (showTotalMarksField && totalMarksInput.trim()) {
         formData.append('total_marks_available', totalMarksInput.trim())
       }
 
@@ -1605,11 +1635,17 @@ export default function MarkPage() {
           setUpgradeModal({ variant: 'anonymous' })
           return
         }
-        setErrorMsg(
-          data.error ||
-            'Marking failed — please try again. If it keeps happening, re-upload a clearer photo or PDF.'
+        setLoading(false)
+        releaseSubmit()
+        setMarkProgress(null)
+        setMarkStreamError(null)
+        setErrorMsg('')
+        setSoftMarkNotice(
+          softNoticeForMarkFailure(
+            data.error ||
+              'Marking failed — please try again. If it keeps happening, re-upload a clearer photo or PDF.'
+          )
         )
-        setErrorRetryable(data.retryable ?? true)
         return
       }
 
@@ -1625,6 +1661,9 @@ export default function MarkPage() {
         setErrorRetryable,
         setLoading,
         questionNumber,
+        onSoftMarkFailure: (serverMessage: string) => {
+          setSoftMarkNotice(softNoticeForMarkFailure(serverMessage))
+        },
       }
 
       const consumeStreamPart = (part: string): boolean => {
@@ -1672,13 +1711,13 @@ export default function MarkPage() {
             releaseSubmit()
             return
           }
-          const { message, retryable } = formatClientMarkError(streamErr)
           setLoading(false)
           releaseSubmit()
           setMarkProgress(null)
-          setMarkStreamError(message)
-          setErrorMsg(message)
-          setErrorRetryable(retryable)
+          setMarkStreamError(null)
+          setErrorMsg('')
+          setSoftMarkNotice(SOFT_MARK_RETRY_NOTICE)
+          console.warn('[mark] stream failed before result', streamErr)
           return
         }
         const { done, value } = chunk
@@ -1709,8 +1748,8 @@ export default function MarkPage() {
         setMarkProgress(null)
         setMarkContext(null)
         setMarkStreamError(null)
-        setErrorMsg('Marking finished without a result. Your photos are still here.')
-        setErrorRetryable(true)
+        setErrorMsg('')
+        setSoftMarkNotice(SOFT_MARK_RETRY_NOTICE)
       }
     } catch (err) {
       // An abort means a newer mark took over (or the page tore down) — the
@@ -1719,10 +1758,11 @@ export default function MarkPage() {
       setLoading(false)
       submittingRef.current = false
       setMarkProgress(null)
-      const { message, retryable } = formatClientMarkError(err)
-      setMarkStreamError(message)
-      setErrorMsg(message)
-      setErrorRetryable(retryable)
+      console.warn('[mark] mark request failed', err)
+      setMarkStreamError(null)
+      setErrorMsg('')
+      setErrorRetryable(false)
+      setSoftMarkNotice(SOFT_MARK_RETRY_NOTICE)
     }
   }
 
@@ -1928,6 +1968,7 @@ export default function MarkPage() {
     setMarkStreamError(null)
     setErrorMsg('')
     setErrorRetryable(false)
+    setSoftMarkNotice(null)
     setV2OneAnswerMarking(true)
     void handleSubmit({
       preventDefault: () => {},
@@ -1946,6 +1987,7 @@ export default function MarkPage() {
     pendingResultRef.current = null
     setErrorMsg('')
     setErrorRetryable(false)
+    setSoftMarkNotice(null)
     markFlowRef.current?.cancelMarking()
   }
 
@@ -1993,9 +2035,10 @@ export default function MarkPage() {
         }}
         hideMarkAnother
         onPhaseChange={setV2WpPhase}
-        onError={(msg, retryable) => {
-          setErrorMsg(msg)
-          setErrorRetryable(!!retryable)
+        onError={(msg) => {
+          setErrorMsg('')
+          setErrorRetryable(false)
+          setSoftMarkNotice(softNoticeForMarkFailure(msg))
         }}
         onReset={() => {
           setV2WholePaperSeed(null)
@@ -2200,7 +2243,7 @@ export default function MarkPage() {
               ),
             }}
             submitting={loading}
-            submitError={errorMsg || null}
+            submitError={softMarkNotice || errorMsg || null}
             hostSlot={hostSlot}
             onSubmit={(payload) => {
               if (payload.draft.scope === 'whole_paper') {
@@ -3217,8 +3260,8 @@ export default function MarkPage() {
                       </label>
                       <p className="text-xs ec-text-secondary">
                         {marksInQuestion
-                          ? 'We’ll read the mark total from your question image or text.'
-                          : 'Enter the mark total so we mark out of the right number. Leave blank and we’ll try to read it from your question.'}
+                          ? 'We’ll read the mark total from your question image or text. If we can’t find it, you’ll need to enter it.'
+                          : 'Enter the mark total so we mark out of the right number. Required when the question isn’t in our past-paper bank.'}
                       </p>
                     </div>
                   )}
@@ -3241,7 +3284,8 @@ export default function MarkPage() {
                       submitBlocked ||
                       (isPracticeMode &&
                         (!selectedSubject || !hasPracticeQuestion)) ||
-                      (isCombinedMode && !selectedSubject)
+                      (isCombinedMode && !selectedSubject) ||
+                      !totalMarksSatisfied
                     }
                     pulse={
                       hasAnswer &&
@@ -3280,7 +3324,15 @@ export default function MarkPage() {
             )}
             </div>
 
-            {errorMsg && !loading && !markStreamError && (
+            {softMarkNotice && !loading && !markStreamError && (
+              <p
+                className="mt-4 text-center text-sm leading-relaxed text-[var(--ec-text-secondary)]"
+                role="status"
+              >
+                {softMarkNotice}
+              </p>
+            )}
+            {errorMsg && !loading && !markStreamError && !softMarkNotice && (
               <FormErrorAlert
                 message={errorMsg}
                 variant={errorRetryable ? 'warning' : 'error'}

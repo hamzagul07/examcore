@@ -1,5 +1,10 @@
 import assert from 'node:assert/strict'
-import { parseDerivedScheme, buildDeriveSchemePrompt } from './derive-scheme'
+import {
+  parseDerivedScheme,
+  buildDeriveSchemePrompt,
+  adjustMarksToKnownTotal,
+  isUnstableDerivedScheme,
+} from './derive-scheme'
 
 // --- Known total wins as the denominator, even if the model's total disagrees ---
 {
@@ -68,6 +73,82 @@ assert.equal(parseDerivedScheme(null, 5), null, 'null → null')
     mathConventions: false,
   })
   assert.ok(noTotal.includes('Read the total marks from the question'), 'infer-total instruction')
+}
+
+// --- Known total forces mark-point sum to match (over / under) ---
+{
+  const over = parseDerivedScheme(
+    {
+      total_marks: 20,
+      marks: Array.from({ length: 20 }, (_, i) => ({
+        code: 'M1',
+        marks: 1,
+        description: `p${i}`,
+      })),
+    },
+    18
+  )
+  assert.ok(over)
+  assert.equal(over!.total, 18, 'known total wins')
+  assert.equal(
+    over!.scheme.marks.reduce((s, m) => s + m.marks, 0),
+    18,
+    'points shaved/dropped to sum to 18'
+  )
+}
+
+{
+  const under = parseDerivedScheme(
+    {
+      total_marks: 9,
+      marks: [
+        { code: 'M1', marks: 1, description: 'a' },
+        { code: 'A1', marks: 1, description: 'b' },
+      ],
+    },
+    9
+  )
+  assert.ok(under)
+  assert.equal(
+    under!.scheme.marks.reduce((s, m) => s + m.marks, 0),
+    9,
+    'points padded to sum to 9'
+  )
+}
+
+{
+  const adjusted = adjustMarksToKnownTotal(
+    [
+      { code: 'M1', marks: 1, description: 'a' },
+      { code: 'M1', marks: 1, description: 'b' },
+      { code: 'A1', marks: 1, description: 'c' },
+    ],
+    5
+  )
+  assert.equal(
+    adjusted.reduce((s, m) => s + m.marks, 0),
+    5,
+    'adjustMarksToKnownTotal pads last point'
+  )
+}
+
+{
+  const under = parseDerivedScheme(
+    {
+      total_marks: 2,
+      marks: [
+        { code: 'M1', marks: 1, description: 'a' },
+        { code: 'A1', marks: 1, description: 'b' },
+      ],
+    },
+    18
+  )
+  assert.ok(under)
+  assert.equal(under!.unstable, true, 'heavy padding marks scheme unstable')
+  assert.ok(
+    isUnstableDerivedScheme(under!.scheme.marks, 18),
+    'helper agrees scheme is unstable'
+  )
 }
 
 console.log('derive-scheme: all assertions passed')

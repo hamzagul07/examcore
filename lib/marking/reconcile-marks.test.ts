@@ -180,4 +180,22 @@ import { reconcileMarkResult } from './reconcile-marks'
   assert.equal(out.marks_earned, 3, 'earned unchanged when within total')
 }
 
+// --- Points: complete award list wins over a drifted headline earned ---
+{
+  const awards = Array.from({ length: 18 }, (_, i) => ({
+    type: i < 14 ? 'M1' : 'A1',
+    earned: i < 14,
+  }))
+  const out = reconcileMarkResult(
+    {
+      marks_awarded: awards,
+      marks_earned: 18, // verify drift: claimed full marks
+      total_marks: 18,
+    },
+    { authoritativeTotal: 18 }
+  )
+  assert.equal(out.total_marks, 18)
+  assert.equal(out.marks_earned, 14, 'earned recomputed from award ticks')
+}
+
 console.log('reconcile-marks: all assertions passed')

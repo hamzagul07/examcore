@@ -34,6 +34,8 @@ async function main() {
     "We couldn't find a question in your upload. Add a photo of the question, type it below, or pick the paper — then we can mark it.",
     'Please select a subject for your question.',
     'Add your question — type it or upload a photo — before we can mark your answer.',
+    'Enter the total marks for this question so we mark out of the right number.',
+    'We could not read the total marks from your question. Enter the total marks for this question (e.g. 18) and try again.',
   ]
   for (const message of clientMessages) {
     const c = classifyMarkingError(new Error(message))

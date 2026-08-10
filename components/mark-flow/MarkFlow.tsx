@@ -76,16 +76,46 @@ function canContinue(
       !!draft.paperSession?.trim() &&
       !!draft.questionNumber?.trim()
     if (!hasPaper) return false
+    // Required even for past paper: if the scheme is missing from the bank the
+    // server rejects without a total after a long wait. When a banked scheme
+    // exists it still wins over this hint.
+    if (
+      !(
+        typeof draft.totalMarksHint === 'number' &&
+        draft.totalMarksHint > 0 &&
+        draft.totalMarksHint <= 100
+      )
+    ) {
+      return false
+    }
   } else if (draft.practiceKind === 'combined_script') {
     if (!draft.subjectCode?.trim()) return false
     // Typed-only has no page to recover the printed question from.
     if (draft.inputKind === 'typed') return false
+    if (
+      !(
+        typeof draft.totalMarksHint === 'number' &&
+        draft.totalMarksHint > 0 &&
+        draft.totalMarksHint <= 100
+      )
+    ) {
+      return false
+    }
     return pages.length > 0 || !!pdf
-  } else {
+  } else if (draft.questionSource === 'practice') {
     if (!draft.subjectCode?.trim()) return false
     const hasQuestion =
       draft.questionText.trim().length >= 10 || !!questionPhoto
     if (!hasQuestion) return false
+    if (
+      !(
+        typeof draft.totalMarksHint === 'number' &&
+        draft.totalMarksHint > 0 &&
+        draft.totalMarksHint <= 100
+      )
+    ) {
+      return false
+    }
   }
   if (draft.inputKind === 'typed') return draft.typedAnswer.trim().length > 0
   return pages.length > 0 || !!pdf

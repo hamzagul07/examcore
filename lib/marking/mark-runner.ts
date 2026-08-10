@@ -26,7 +26,7 @@ import { resolveEdexcelMarkingSubjectName, getEdexcelUnitMeta } from '@/lib/edex
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import { parsePaperCode } from '@/lib/marking/component-types'
 import { buildMarkingPrompt, maxTokensForStyle, looksLikeMcq } from '@/lib/marking/build-marking-prompt'
-import { deriveMarkScheme } from '@/lib/marking/derive-scheme'
+import { resolveDerivedSchemeForMark } from '@/lib/marking/resolve-derived-scheme'
 import { extractJSON } from '@/lib/marking/json'
 import { normalizeQuestionNumber } from '@/lib/marking/question-number'
 import { normalizeMarkingResult, coerceMarkingResult, isUsableMarkingResult } from '@/lib/marking/normalize-math'
@@ -575,9 +575,12 @@ export async function markSingleQuestion(params: {
   // Derive-then-mark: for point-based questions with no real per-question scheme,
   // first have the model produce the scheme (correct answer + M/A allocation, with
   // a self-check), then mark the student against it. Skips MCQ and any question
-  // that already has an official/catalogued scheme.
+  // that already has an official/catalogued scheme. Cached by question fingerprint
+  // so remakes reuse the same rubric (Pro+thinking is not seed-stable).
   let derivedScheme: string | null = null
   let derivedTotal: number | null = null
+  let derivedSchemeFingerprint: string | null = null
+  let derivedSchemeSource: 'cache' | 'fresh' | null = null
   const hasRealScheme =
     (isOfficial && !!effectiveMarkScheme) || resolvedIb?.officialScheme != null
   if (
@@ -587,20 +590,26 @@ export async function markSingleQuestion(params: {
     questionText.trim().length >= 8
   ) {
     onStage?.('deriving_scheme')
-    const derived = await deriveMarkScheme({
-      subjectName,
-      board: markingBoardLabel(subjectCode, { resolvedIb }),
+    const boardLabel = markingBoardLabel(subjectCode, { resolvedIb })
+    const knownTotal =
+      typeof questionTotalMarks === 'number' && questionTotalMarks > 0
+        ? questionTotalMarks
+        : null
+    const resolved = await resolveDerivedSchemeForMark({
       questionText,
-      totalMarks:
-        typeof questionTotalMarks === 'number' && questionTotalMarks > 0
-          ? questionTotalMarks
-          : null,
+      totalMarks: knownTotal,
+      subjectName,
+      board: boardLabel,
+      subjectCode,
+      examSystem: resolvedIb ? 'ib' : null,
       mathConventions:
         isMathSubjectCode(subjectCode ?? '') || /math/i.test(subjectName),
     })
-    if (derived) {
-      derivedScheme = JSON.stringify(derived.scheme)
-      derivedTotal = derived.total
+    if (resolved) {
+      derivedScheme = JSON.stringify(resolved.scheme)
+      derivedTotal = resolved.total
+      derivedSchemeFingerprint = resolved.fingerprint
+      derivedSchemeSource = resolved.source
     }
   }
 
@@ -811,6 +820,11 @@ export async function markSingleQuestion(params: {
     }
   } else {
     resolvedTags = modelTags
+  }
+
+  if (derivedSchemeFingerprint || derivedSchemeSource) {
+    markingResult.derived_scheme_fingerprint = derivedSchemeFingerprint
+    markingResult.derived_scheme_source = derivedSchemeSource
   }
 
   return {

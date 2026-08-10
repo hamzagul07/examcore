@@ -33,7 +33,8 @@ import { toMarkingAIResult, aggregateWholePaperResults } from '@/lib/marking/who
 import { invalidateStudentMemoryCache } from '@/lib/omni-ai/student-memory'
 import { extractPracticeQuestionFromScript } from '@/lib/marking/practice-question-extract'
 import { splitUploadIntoQuestions, type SplitQuestion } from '@/lib/marking/split-questions'
-import { extractStatedTotalMarks } from '@/lib/marking/question-marks'
+import { extractTotalMarksForGate } from '@/lib/marking/question-marks'
+import { resolveRequiredQuestionTotal } from '@/lib/marking/require-question-total'
 import type {
   MarkIntent,
   MarkingMode,
@@ -121,6 +122,12 @@ export type SingleQuestionMarkInput = {
   ibLevel?: string | null
   /** Optional student-supplied total marks for this question. */
   questionMarks?: number | null
+  /**
+   * Student ticked "marks are shown in the question" — we must extract the
+   * total from question text after OCR/resolve. If extraction fails, reject
+   * rather than inventing a denominator.
+   */
+  marksInQuestion?: boolean
   userId: string | null
   /**
    * Paid entitlement for this mark. Drives premium marking depth — currently the
@@ -276,6 +283,13 @@ async function markOneSplitQuestion(
     fullScriptText: string
     pageSources: PageInkSource[]
     verify: boolean
+    /**
+     * Student-supplied total — only applied when this split has exactly one
+     * question (combined-script single-Q path). Multi-Q scripts use per-question
+     * extract / splitter totals so one script-level hint can't stamp every item.
+     */
+    fallbackQuestionMarks?: number | null
+    singleQuestionSplit?: boolean
   }
 ): Promise<SplitQuestionOutcome> {
   // H1: never mark the question STEM as the answer. When the per-question answer
@@ -288,6 +302,19 @@ async function markOneSplitQuestion(
       ? q.answer_text
       : ctx.fullScriptText
 
+  // Lock denominator: extract from the stem first, then splitter model total,
+  // then (single-Q only) the student-entered total. Never invent in derive.
+  const extracted = extractTotalMarksForGate(q.question_text)
+  const splitterTotal =
+    typeof q.total_marks === 'number' && q.total_marks > 0 ? q.total_marks : null
+  const studentTotal =
+    ctx.singleQuestionSplit &&
+    typeof ctx.fallbackQuestionMarks === 'number' &&
+    ctx.fallbackQuestionMarks > 0
+      ? ctx.fallbackQuestionMarks
+      : null
+  const questionTotalMarks = extracted ?? splitterTotal ?? studentTotal
+
   try {
     const { markingResult, lineReferences, errorClassifications, resolvedTags } =
       await markSingleQuestion({
@@ -298,7 +325,7 @@ async function markOneSplitQuestion(
         markingMode: 'general_criteria_practice',
         paperCode: `${ctx.practiceCode}/00`,
         resolvedIb: resolvedIbForQuestion(ctx.resolvedIb, q.question_number),
-        questionTotalMarks: q.total_marks,
+        questionTotalMarks,
         verify: ctx.verify,
       })
 
@@ -398,6 +425,8 @@ async function markSplitQuestions(params: {
   fullScriptText: string
   pageSources: PageInkSource[]
   onProgress?: SingleQuestionMarkInput['onProgress']
+  /** Student-entered total from the upload form (used when split length is 1). */
+  questionMarks?: number | null
 }): Promise<Record<string, unknown>> {
   const {
     split,
@@ -412,6 +441,7 @@ async function markSplitQuestions(params: {
     fullScriptText,
     pageSources,
     onProgress,
+    questionMarks = null,
   } = params
 
   // H3/L2: cap the number of questions so one upload can't fan out into an
@@ -450,6 +480,7 @@ async function markSplitQuestions(params: {
 
   // Mark each question in isolation, with bounded concurrency (H2 + H3).
   let completed = 0
+  const singleQuestionSplit = capped.length === 1
   const outcomes = await mapWithConcurrency(capped, concurrency, async (q) => {
     const outcome = await markOneSplitQuestion(q, {
       practiceCode,
@@ -460,6 +491,8 @@ async function markSplitQuestions(params: {
       fullScriptText,
       verify,
       pageSources,
+      fallbackQuestionMarks: questionMarks,
+      singleQuestionSplit,
     })
     completed += 1
     emit(onProgress, 'marking', Math.round(50 + (45 * completed) / capped.length))
@@ -555,6 +588,7 @@ export async function runSingleQuestionMark(
     ibComponentKey,
     ibLevel,
     questionMarks,
+    marksInQuestion = false,
     userId,
     isPaid = false,
     enableRewrite = false,
@@ -764,6 +798,7 @@ export async function runSingleQuestionMark(
             .filter((p) => p.photo_url)
             .map((p) => ({ photo_url: p.photo_url!, ocr_lines: p.lines })),
           onProgress,
+          questionMarks,
         })
       }
       // Exactly one question detected — keep its number so an ingested official
@@ -910,6 +945,30 @@ export async function runSingleQuestionMark(
   // onStage, and it may start with 'deriving_scheme' (48%). Emitting 'marking'
   // (62%) first made the bar and the headline visibly run BACKWARDS on every
   // derive-path mark, which is most practice and freeform uploads.
+  //
+  // Freeform / no-scheme path: lock the denominator before derive. User total
+  // wins, then deterministic extract from the question text. Inventing a total
+  // in the model caused remakes of the same stem to mark out of 9 vs 18.
+  const hasOfficialSchemeTotal =
+    !!markScheme &&
+    typeof markScheme.total_marks === 'number' &&
+    markScheme.total_marks > 0
+  const hasIbCatalogTotal =
+    resolvedIb?.assessmentModel === 'criteria' &&
+    Array.isArray(resolvedIb.criteria) &&
+    resolvedIb.criteria.length > 0
+  const totalGate = resolveRequiredQuestionTotal({
+    questionMarks,
+    extractedTotal: extractTotalMarksForGate(questionText),
+    hasOfficialSchemeTotal,
+    hasIbCatalogTotal,
+    marksInQuestion,
+  })
+  if (!totalGate.ok) {
+    throw new Error(totalGate.message)
+  }
+  const resolvedQuestionTotal = totalGate.total
+
   const {
     markingResult,
     lineReferences,
@@ -932,9 +991,7 @@ export async function runSingleQuestionMark(
     // detected — keeps freeform marks resolvable for mastery/review.
     fallbackSubjectCode: manualSubjectCode ?? fallbackSubjectCode ?? null,
     resolvedIb,
-    // User-entered marks win; otherwise read the total stated in the question
-    // text (deterministic) before falling back to model inference in the marker.
-    questionTotalMarks: questionMarks ?? extractStatedTotalMarks(questionText),
+    questionTotalMarks: resolvedQuestionTotal,
     // Premium: full-marks rewrite on the focused single-question path only.
     rewrite: enableRewrite,
     // When streaming, hand the rewrite back as a plan so the caller can deliver

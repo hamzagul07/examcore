@@ -34,8 +34,8 @@ import { extractJSON } from '@/lib/marking/json'
  * the same question can still be marked against different rubrics. Kept
  * because it costs nothing and does work wherever thinking is off, but it does
  * not solve the problem it was added for. Caching derived schemes is the only
- * route left to a stable rubric — see the marking-accuracy memory for the
- * trade-off that has to be decided first.
+ * route left to a stable rubric — see `resolve-derived-scheme.ts` +
+ * `derived_mark_schemes` (fingerprint → JSON).
  */
 const DERIVE_SCHEME_SEED = 20260728
 
@@ -57,11 +57,95 @@ export type DeriveResult = {
   scheme: DerivedMarkScheme
   /** The denominator this derivation settled on (known total wins over the model's). */
   total: number
+  /**
+   * True when we had to heavily reshape the model's points to hit the known
+   * total (e.g. pad one point to absorb most of an 18-mark question). Callers
+   * should mark against it for this run but MUST NOT cache it.
+   */
+  unstable?: boolean
+}
+
+/**
+ * A derived scheme is too distorted to cache when a single point owns more than
+ * half the total while there are far fewer points than marks — classic symptom
+ * of under-derivation padded into one bloated A1.
+ */
+export function isUnstableDerivedScheme(
+  marks: DerivedMarkPoint[],
+  total: number
+): boolean {
+  if (!(total > 0) || marks.length === 0) return true
+  const maxPoint = Math.max(...marks.map((m) => m.marks))
+  if (maxPoint > Math.ceil(total / 2) && marks.length < Math.max(3, Math.ceil(total / 3))) {
+    return true
+  }
+  return false
 }
 
 function num(value: unknown): number | null {
   const n = typeof value === 'number' ? value : Number(value)
   return Number.isFinite(n) ? n : null
+}
+
+/**
+ * Force mark points to sum exactly to `knownTotal`. Prefer dropping/shaving
+ * trailing 1-mark fluff when over; pad the last point when under. Never changes
+ * the known total — callers lock that before derive.
+ */
+export function adjustMarksToKnownTotal(
+  marks: DerivedMarkPoint[],
+  knownTotal: number
+): DerivedMarkPoint[] {
+  if (!(knownTotal > 0 && knownTotal <= 100)) return marks
+
+  const out: DerivedMarkPoint[] = marks
+    .map((m) => ({
+      ...m,
+      marks: Math.max(1, Math.round(Number(m.marks) || 1)),
+    }))
+    .filter((m) => m.description !== undefined)
+
+  if (out.length === 0) {
+    return [
+      {
+        code: 'M1',
+        marks: knownTotal,
+        description: 'Award for a complete correct response',
+      },
+    ]
+  }
+
+  const sumOf = () => out.reduce((s, m) => s + m.marks, 0)
+
+  while (sumOf() > knownTotal && out.length > 1) {
+    let oneMarkIdx = -1
+    for (let i = out.length - 1; i >= 0; i--) {
+      if (out[i].marks === 1) {
+        oneMarkIdx = i
+        break
+      }
+    }
+    if (oneMarkIdx >= 0 && sumOf() - 1 >= knownTotal) {
+      out.splice(oneMarkIdx, 1)
+      continue
+    }
+    const last = out[out.length - 1]
+    if (last.marks > 1) {
+      last.marks -= 1
+    } else {
+      out.pop()
+    }
+  }
+
+  const sum = sumOf()
+  if (sum < knownTotal) {
+    out[out.length - 1].marks += knownTotal - sum
+  } else if (sum > knownTotal) {
+    out[0].marks = knownTotal
+    out.splice(1)
+  }
+
+  return out
 }
 
 /**
@@ -76,7 +160,7 @@ export function parseDerivedScheme(
   if (!raw || typeof raw !== 'object') return null
   const obj = raw as Record<string, unknown>
 
-  const marks: DerivedMarkPoint[] = Array.isArray(obj.marks)
+  let marks: DerivedMarkPoint[] = Array.isArray(obj.marks)
     ? (obj.marks as unknown[])
         .map((m) => {
           if (!m || typeof m !== 'object') return null
@@ -104,6 +188,12 @@ export function parseDerivedScheme(
     (modelTotal && modelTotal > 0 && modelTotal) ||
     derivedSum
 
+  if (knownTotal && knownTotal > 0) {
+    marks = adjustMarksToKnownTotal(marks, knownTotal)
+  }
+
+  const unstable = isUnstableDerivedScheme(marks, total)
+
   return {
     scheme: {
       type: 'point_based',
@@ -117,6 +207,7 @@ export function parseDerivedScheme(
       marks,
     },
     total,
+    unstable: unstable || undefined,
   }
 }
 
@@ -149,16 +240,24 @@ ${totalLine}
 QUESTION:
 ${questionText}
 
+Keep "verification_note" to ONE short sentence. Prefer complete JSON over long notes.
+
 Output valid JSON ONLY, no prose:
 {
   "expected_answer": "the correct final answer(s)",
-  "verification_note": "how you double-checked the answer",
+  "verification_note": "brief check",
   "total_marks": ${hasTotal ? totalMarks : 0},
   "marks": [
     { "code": "M1", "marks": 1, "description": "what earns this mark" }
   ]
 }`
 }
+
+/** Pro thinking draws from the same budget as output — 2048 was truncating
+ * mid-JSON so parseDerivedScheme saw no marks and every freeform remake fell
+ * back to single-pass (no cache). Match the point-based mark budget. */
+const DERIVE_OUTPUT_TOKENS = 10000
+const DERIVE_RETRY_OUTPUT_TOKENS = 14000
 
 /**
  * Derive a mark scheme for a single question. Returns null on any failure so the
@@ -172,21 +271,28 @@ export async function deriveMarkScheme(params: {
   mathConventions: boolean
 }): Promise<DeriveResult | null> {
   if (!params.questionText || params.questionText.trim().length < 8) return null
-  try {
-    const { text } = await generateGeminiTextWithMeta(
-      buildDeriveSchemePrompt(params),
-      {
-        task: 'marking',
-        model: GEMINI_PRO_MODEL,
-        temperature: 0,
-        // Intended to stabilise the rubric. It does not, on Pro with thinking
-        // — see DERIVE_SCHEME_SEED above for the measurement.
-        seed: DERIVE_SCHEME_SEED,
-        maxOutputTokens: 2048,
-      }
-    )
+  const prompt = buildDeriveSchemePrompt(params)
+
+  const attempt = async (maxOutputTokens: number): Promise<DeriveResult | null> => {
+    const { text } = await generateGeminiTextWithMeta(prompt, {
+      task: 'marking',
+      model: GEMINI_PRO_MODEL,
+      temperature: 0,
+      // Intended to stabilise the rubric. It does not, on Pro with thinking
+      // — see DERIVE_SCHEME_SEED above for the measurement.
+      seed: DERIVE_SCHEME_SEED,
+      maxOutputTokens,
+    })
     if (!text.trim()) return null
     return parseDerivedScheme(extractJSON(text), params.totalMarks)
+  }
+
+  try {
+    const first = await attempt(DERIVE_OUTPUT_TOKENS)
+    if (first) return first
+    // Truncated / empty marks JSON — retry once with more headroom.
+    console.warn('[mark] derive-scheme parse empty; retrying with larger budget')
+    return await attempt(DERIVE_RETRY_OUTPUT_TOKENS)
   } catch (err) {
     console.warn('[mark] derive-scheme failed; falling back to single-pass', err)
     return null

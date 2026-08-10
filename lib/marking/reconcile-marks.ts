@@ -235,13 +235,53 @@ function reconcileBand(
 }
 
 /**
- * Point-based / general: fix only the denominator from the authoritative source
- * and clamp earned. Cambridge point codes can be worth >1 mark each, so we do
- * NOT recompute earned by counting entries here — that would change established
- * point-marking semantics. The earned value is clamped by the caller's final net.
+ * Sum discrete point awards. Prefer an explicit `marks` weight per entry; else
+ * each row is worth 1 (Cambridge M1/A1 style). Returns null when the breakdown
+ * is missing or incomplete (so callers keep M3 scaling / model earned).
+ */
+function sumPointAwards(
+  awards: AnyRecord[],
+  authoritative: number
+): number | null {
+  if (!awards.length) return null
+  if (!awards.every((m) => typeof m.earned === 'boolean')) return null
+
+  let available = 0
+  let earned = 0
+  for (const m of awards) {
+    const weightRaw = num(m.marks)
+    const weight =
+      weightRaw !== null && weightRaw > 0 ? Math.round(weightRaw) : 1
+    available += weight
+    if (m.earned === true) earned += weight
+  }
+
+  // Only trust the breakdown when it covers the real total — otherwise the
+  // model likely emitted a partial list alongside a headline score.
+  if (available !== authoritative) return null
+  return clamp(earned, 0, authoritative)
+}
+
+/**
+ * Point-based / general: fix the denominator from the authoritative source.
+ * When `marks_awarded` is a complete point list (weights sum to the total),
+ * recompute `marks_earned` from those awards so verify drift can't leave the
+ * headline disagreeing with the ticks. Otherwise keep M3 ratio scaling.
  */
 function reconcilePoints(result: AnyRecord, authoritative: number | null): void {
   if (authoritative === null) return
+
+  const awards = Array.isArray(result.marks_awarded)
+    ? (result.marks_awarded as AnyRecord[])
+    : null
+  if (awards) {
+    const fromAwards = sumPointAwards(awards, authoritative)
+    if (fromAwards !== null) {
+      result.total_marks = authoritative
+      result.marks_earned = fromAwards
+      return
+    }
+  }
 
   // M3: if the model marked against a LARGER total than the authoritative one
   // (e.g. it scored 5/10 but the real total is 5), a plain clamp would show a

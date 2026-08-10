@@ -355,6 +355,27 @@ export function CaptureScreen({
                   />
                 </div>
               </details>
+              <Field
+                label="Total marks"
+                hint="Required — used when this paper isn’t in our bank yet. Banked schemes still win when present."
+                inputProps={{
+                  type: 'number',
+                  min: 1,
+                  max: 100,
+                  inputMode: 'numeric',
+                  value: draft.totalMarksHint ?? '',
+                  onChange: (e) => {
+                    const n = Number(e.target.value)
+                    onPatchDraft({
+                      totalMarksHint:
+                        e.target.value && Number.isFinite(n) && n > 0
+                          ? n
+                          : null,
+                    })
+                  },
+                  placeholder: 'e.g. 8',
+                }}
+              />
             </div>
           ) : (
             <div className="space-y-4">
@@ -431,11 +452,11 @@ export function CaptureScreen({
                 </div>
               ) : null}
               <Field
-                label="Total marks (optional)"
+                label="Total marks"
                 hint={
                   isCombined
-                    ? 'If the script shows a total (or [n] per question), enter it — improves scoring'
-                    : 'If the question shows [n], enter n — improves scoring'
+                    ? 'Required — enter the mark total for the script (or the main question) so we mark out of the right number'
+                    : 'Required — enter the mark total shown on the question (e.g. 18)'
                 }
                 inputProps={{
                   type: 'number',

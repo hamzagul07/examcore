@@ -63,6 +63,11 @@ export type MarkStreamContext = {
   setErrorRetryable: Dispatch<SetStateAction<boolean>>
   setLoading: Dispatch<SetStateAction<boolean>>
   questionNumber: string
+  /**
+   * Soft recovery instead of the full-screen / FormErrorAlert failure path.
+   * When set, stream errors clear the wait chrome and surface a calm notice.
+   */
+  onSoftMarkFailure?: (serverMessage: string) => void
 }
 
 export function handleMarkStreamEvent(
@@ -97,12 +102,20 @@ export function handleMarkStreamEvent(
   }
   if (event.type === 'error') {
     const msg = event.error || 'Marking failed.'
-    ctx.setMarkStreamError(msg)
-    ctx.setErrorMsg(msg)
-    ctx.setErrorRetryable(!!event.retryable)
     ctx.setLoading(false)
     ctx.setMarkProgress(null)
     ctx.setMarkContext(null)
+    // Prefer soft recovery: close the wait chrome, keep uploads, no error alert.
+    if (ctx.onSoftMarkFailure) {
+      ctx.setMarkStreamError(null)
+      ctx.setErrorMsg('')
+      ctx.setErrorRetryable(false)
+      ctx.onSoftMarkFailure(msg)
+      return 'error'
+    }
+    ctx.setMarkStreamError(msg)
+    ctx.setErrorMsg(msg)
+    ctx.setErrorRetryable(!!event.retryable)
     return 'error'
   }
   return 'continue'

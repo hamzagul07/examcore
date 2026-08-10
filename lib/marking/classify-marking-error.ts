@@ -34,6 +34,8 @@ const CLIENT_HINTS = [
   'Add your question',
   'Add the question',
   'find a question in your upload',
+  'total marks for this question',
+  'read the total marks',
 ]
 
 export function classifyMarkingError(err: unknown): ClassifiedMarkingError {

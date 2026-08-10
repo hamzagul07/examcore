@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import {
   extractStatedTotalMarks,
   extractExplicitTotalMarks,
+  extractTotalMarksForGate,
 } from './question-marks'
 
 // --- extractExplicitTotalMarks: explicit only, NEVER part-sum ---
@@ -51,5 +52,27 @@ assert.equal(extractStatedTotalMarks(null), null, 'null → null')
 // --- Guardrails: implausible values rejected ---
 assert.equal(extractStatedTotalMarks('Maximum mark: 0'), null, 'zero rejected')
 assert.equal(extractStatedTotalMarks('Maximum mark: 999'), null, 'over 100 rejected')
+
+// --- Gate extractor: lone Cambridge "[n]" is a total ---
+assert.equal(
+  extractTotalMarksForGate('Solve the quadratic.\n[5]'),
+  5,
+  'lone trailing [5] is the question total'
+)
+assert.equal(
+  extractTotalMarksForGate('Find dy/dx. [18]'),
+  18,
+  'lone [18] after the stem'
+)
+assert.equal(
+  extractTotalMarksForGate('The interval [0, 2] is closed.'),
+  null,
+  'interval [0, 2] is not a mark total'
+)
+assert.equal(
+  extractTotalMarksForGate('(a) [2]\n(b) [3]'),
+  5,
+  'gate still sums multi-part bare markers'
+)
 
 console.log('question-marks: all assertions passed')

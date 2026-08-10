@@ -150,30 +150,27 @@ function MarkingStoppedCard({
 }: {
   error: string
 } & MarkingWaitErrorActions) {
+  // Soft framing — never dump raw infra errors. Actionable client/OCR copy is
+  // already softened by softNoticeForMarkFailure before it reaches here.
+  const body =
+    error.trim() ||
+    "We couldn't finish marking this time. Your upload is still here — tap Mark again when you're ready."
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       className="ms-mark-wait ms-mark-wait--stopped"
-      role="alert"
+      role="status"
     >
       <div className="ms-mark-wait__cap">
-        <p className="ms-mark-wait__label">Marking stopped</p>
-        <span className="ec-ink-stamp ec-ink-stamp--crimson" aria-hidden>
-          X
-        </span>
+        <p className="ms-mark-wait__label">Still ready</p>
       </div>
       <h2 id="marking-wait-title" className="ms-mark-wait__headline" tabIndex={-1}>
-        Couldn&apos;t finish this script
+        Let&apos;s try that again
       </h2>
-      <p className="mt-3 text-base leading-relaxed text-[var(--ec-text-primary)]">
-        {error}
+      <p className="mt-3 text-base leading-relaxed text-[var(--ec-text-secondary)]">
+        {body}
       </p>
-      {onRetry && (
-        <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">
-          Your photos are still uploaded — you won&apos;t need to add them again.
-        </p>
-      )}
       <span className="ms-mark-wait__note" aria-hidden>
         photos stay — try again or go back
       </span>

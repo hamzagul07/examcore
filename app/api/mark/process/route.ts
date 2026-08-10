@@ -310,6 +310,11 @@ async function handleMarkRequest(request: NextRequest) {
       Number(totalMarksRaw) > 0
         ? Math.round(Number(totalMarksRaw))
         : null
+    // Escape hatch: student says the marks are printed in the question — pipeline
+    // extracts after OCR/text resolve and rejects if nothing is stated.
+    const marksInQuestion =
+      formData.get('marks_in_question') === '1' ||
+      formData.get('marks_in_question') === 'true'
     const manualSubjectCode = manualPaperCode?.split('/')[0]
     const streamRequested = formData.get('stream') === '1'
 
@@ -413,6 +418,7 @@ async function handleMarkRequest(request: NextRequest) {
           markIntent === 'combined_script'
             ? ibMarksAvailable
             : null) ?? totalMarksAvailable,
+        marksInQuestion,
         userId,
         isPaid,
         enableRewrite,

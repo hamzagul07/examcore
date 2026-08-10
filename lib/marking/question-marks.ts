@@ -79,3 +79,28 @@ export function extractStatedTotalMarks(
 
   return null
 }
+
+/**
+ * Total for the freeform / "marks are in the question" gate.
+ *
+ * Same as `extractStatedTotalMarks`, but also accepts a lone whole-question
+ * bare marker like `[18]` at the end of the stem — the common Cambridge form
+ * when there are no per-part brackets. Still rejects a lone mid-text `[n]` that
+ * looks like an interval start (followed by a comma).
+ */
+export function extractTotalMarksForGate(
+  text: string | null | undefined
+): number | null {
+  if (!text) return null
+  const stated = extractStatedTotalMarks(text)
+  if (stated !== null) return stated
+
+  // Lone "[18]" / "[5]" as the question's only mark annotation.
+  const bare = [...text.matchAll(/\[\s*(\d{1,2})\s*\]/g)]
+  if (bare.length !== 1) return null
+  const match = bare[0]
+  const after = text.slice((match.index ?? 0) + match[0].length)
+  // Interval like "[0, 2]" — not a mark total.
+  if (/^\s*,/.test(after)) return null
+  return toValid(match[1])
+}

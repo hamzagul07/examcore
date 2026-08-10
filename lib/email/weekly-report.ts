@@ -145,10 +145,10 @@ function buildBodyHtml(greeting: string, d: WeeklyReportData): string {
 function buildText(
   greeting: string,
   d: WeeklyReportData,
-  dashboardUrl: string,
+  vaultUrl: string,
   unsubscribeHref: string
 ): string {
-  const lines: string[] = [`Hi ${greeting},`, '', 'Your week in review:']
+  const lines: string[] = [`Hi ${greeting},`, '', 'Your Max weekly coach report:']
   const avg = d.avgPctThisWeek !== null ? ` at a ${Math.round(d.avgPctThisWeek)}% average` : ''
   lines.push(`- Marked ${d.marksThisWeek} question${d.marksThisWeek === 1 ? '' : 's'} this week${avg}.`)
   if (d.predictedGrade) {
@@ -171,11 +171,11 @@ function buildText(
   }
   lines.push(
     '',
-    `Open your dashboard: ${dashboardUrl}`,
+    `Open your Max Vault: ${vaultUrl}`,
     '',
     `Unsubscribe from weekly reports: ${unsubscribeHref}`,
     '',
-    '— Your MarkScheme examiner'
+    '— Your MarkScheme Max coach'
   )
   return lines.join('\n')
 }
@@ -192,20 +192,20 @@ export function sendWeeklyReportEmail(payload: {
 }): void {
   const { to, recipientName, data, unsubscribeHref } = payload
   const greeting = recipientName?.trim() || 'there'
-  const dashboardUrl = `${SITE_URL}/dashboard`
+  const vaultUrl = `${SITE_URL}/dashboard/vault`
 
   const primaryCta =
     data.weakTopics.length > 0
-      ? { label: 'Practice your weak spots →', href: dashboardUrl }
-      : { label: 'Open your dashboard →', href: dashboardUrl }
+      ? { label: 'Open Max Vault drills →', href: vaultUrl }
+      : { label: 'Open your Max Vault →', href: vaultUrl }
 
   const preheader = data.weakestTopicName
-    ? `This week's fix: ${data.weakestTopicName}.`
-    : 'Your progress this week — and your next move.'
+    ? `Max coach: this week's fix is ${data.weakestTopicName}.`
+    : 'Your Max weekly coach report — progress and next move.'
 
   const bodyHtml =
     buildBodyHtml(greeting, data) +
-    `<p style="margin:22px 0 0;font-size:15px;color:${INK}">— Your MarkScheme examiner</p>`
+    `<p style="margin:22px 0 0;font-size:15px;color:${INK}">— Your MarkScheme Max coach</p>`
 
   const html = renderBrandedEmailHtml({
     preheader,
@@ -216,9 +216,9 @@ export function sendWeeklyReportEmail(payload: {
 
   sendEmailAsync({
     to,
-    subject: 'Your week in review',
+    subject: 'Your Max weekly coach report',
     preheader,
-    text: buildText(greeting, data, dashboardUrl, unsubscribeHref),
+    text: buildText(greeting, data, vaultUrl, unsubscribeHref),
     html,
     unsubscribeHref,
   })

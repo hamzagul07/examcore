@@ -260,16 +260,16 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
         ['In-depth courses + mapped board study paths', true],
         ['Examiner-style detailed marking feedback', true],
         ['Topic mastery matrix & progress journey', true],
-        ['Extra revision resources & practice packs', true],
       ],
     },
     {
       id: 'max',
       name: 'Max',
       tag: 'Exam season',
-      bestFor: 'Daily paper marking before exams',
-      blurb: 'Maximum marking headroom when you\'re sitting papers every day — plus projected grades and priority queue.',
-      killer: `${MAX_Q} questions / month + projected grades`,
+      bestFor: 'Daily papers + the strongest resources',
+      blurb:
+        "Won't run out in exam season — Resource Vault, personalised packs, priority deep marking, and the weekly Max coach report.",
+      killer: `${MAX_Q} questions / month · Resource Vault · priority marking`,
       now: maxPrice.now,
       per: maxPrice.per,
       sub: maxPrice.sub,
@@ -277,9 +277,12 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
         ['Everything in Scholar', true],
         [`${MAX_Q} marked questions / month`, true],
         [`${MAX_OMNI} study-chat messages / month`, true],
-        ['Projected grade estimates', true],
-        ['Priority marking queue', true],
-        ['Early access to new features', true],
+        ['Max Resource Vault (best packs, first)', true],
+        ['Projected grade dashboard + gap-to-target', true],
+        ['Priority deep marking', true],
+        ['Max weekly coach report', true],
+        ['Welcome bonus +25 marks', true],
+        ['Early access when new features ship', true],
       ],
     },
   ]
@@ -328,7 +331,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
   const faqs = [
     {
       q: 'Which plan should I pick?',
-      a: `Pro is ideal if you're focusing on one subject and want whole-paper marking plus past-paper practice — ${PRO_Q} questions a month is enough for weekly papers. Scholar is our most popular pick: you get ${SCH_Q} questions, in-depth courses (including Edexcel, OxfordAQA, AQA, and AP study paths into board-dialect marking), detailed examiner feedback, and the full progress journey. Max is for exam season when you're marking daily — ${MAX_Q} questions, projected grades, and priority queue.`,
+      a: `Pro is ideal if you're focusing on one subject and want whole-paper marking plus past-paper practice — ${PRO_Q} questions a month is enough for weekly papers. Scholar is our most popular pick: you get ${SCH_Q} questions, in-depth courses (including Edexcel, OxfordAQA, AQA, and AP study paths into board-dialect marking), detailed examiner feedback, and the full progress journey. Max is for exam season when you're marking daily — ${MAX_Q} questions, the Resource Vault with the best packs, priority deep marking, and the weekly Max coach report.`,
     },
     {
       q: 'Can I try it without paying?',

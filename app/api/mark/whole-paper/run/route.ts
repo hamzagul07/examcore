@@ -27,6 +27,8 @@ import { clientIp, checkAnonymousMarkRateLimit, incrementAnonymousMarkRateLimit 
 import { signMarkPayloadForClient } from '@/lib/storage/answer-photos'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { requireTeacher } from '@/lib/teacher-auth'
+import { effectiveAccess } from '@/lib/billing/access'
+import { hasPriorityMarking } from '@/lib/billing/features'
 
 // Marks up to 15 questions; give headroom like /mark/process. Kept in sync with
 // vercel.json (which overrides this in production). 800s needs Fluid Compute.
@@ -116,6 +118,7 @@ export async function POST(request: NextRequest) {
       message: 'Marking your answers…',
       questions_completed: 0,
       questions_total: segments.length,
+      priority: job.priority ?? 'standard',
     }
 
     // Atomically claim the job: flip phase→'marking' only if it is not already
@@ -162,59 +165,85 @@ export async function POST(request: NextRequest) {
 
     const results: QuestionMarkResult[] = []
 
-    for (let i = 0; i < segments.length; i++) {
-      const seg = segments[i]
+    // Max priority deep marking: mark two questions at a time so whole papers
+    // finish sooner while Pro/Scholar stay sequential (safer under load).
+    const priorityDeep =
+      !!reservation &&
+      hasPriorityMarking(
+        effectiveAccess({
+          tier: reservation.allowance.tier,
+          status: reservation.allowance.status,
+        })
+      )
+    if (priorityDeep) markingState.priority = 'max'
+    const batchSize = priorityDeep ? 2 : 1
+
+    for (let i = 0; i < segments.length; i += batchSize) {
+      const batch = segments.slice(i, i + batchSize)
       const remaining = segments.length - i
       const estRemaining = estimateMarkingSeconds(remaining)
 
       await updateJob(attemptId, {
         ...markingState,
         phase: 'marking',
-        message: `Marking question ${i + 1} of ${segments.length}…`,
-        current_question: seg.question_number,
+        message: priorityDeep
+          ? `Max priority · marking questions ${i + 1}–${Math.min(i + batch.length, segments.length)} of ${segments.length}…`
+          : `Marking question ${i + 1} of ${segments.length}…`,
+        current_question: batch[0]?.question_number,
         questions_completed: i,
         questions_total: segments.length,
         estimated_seconds_remaining: estRemaining,
         partial_questions: results,
       })
 
-      const questionPages =
-        seg.page_indices?.length && pagesOcr.length
-          ? seg.page_indices
-              .map((i) => pagesOcr[i])
-              .filter((p): p is NonNullable<typeof p> => !!p)
-          : pagesForQuestion(seg.question_number, pagesOcr)
+      const batchResults = await Promise.all(
+        batch.map(async (seg) => {
+          const questionPages =
+            seg.page_indices?.length && pagesOcr.length
+              ? seg.page_indices
+                  .map((idx) => pagesOcr[idx])
+                  .filter((p): p is NonNullable<typeof p> => !!p)
+              : pagesForQuestion(seg.question_number, pagesOcr)
 
-      const qResult = await markWholePaperQuestionSafe({
-        paperCode,
-        paperSession,
-        questionNumber: seg.question_number,
-        answerText: seg.answer_text,
-        questionPages,
-      })
-      results.push({ ...qResult, answer_text: seg.answer_text })
+          const qResult = await markWholePaperQuestionSafe({
+            paperCode,
+            paperSession,
+            questionNumber: seg.question_number,
+            answerText: seg.answer_text,
+            questionPages,
+          })
+          return { seg, qResult: { ...qResult, answer_text: seg.answer_text } }
+        })
+      )
 
-      const tags =
-        qResult.syllabus_tags ??
-        qResult.ai_marking?.syllabus_tags ??
-        []
+      for (const { seg, qResult } of batchResults) {
+        results.push(qResult)
+        const tags =
+          qResult.syllabus_tags ??
+          qResult.ai_marking?.syllabus_tags ??
+          []
 
-      await updateJob(attemptId, {
-        ...markingState,
-        phase: 'marking',
-        message: `Marking question ${i + 1} of ${segments.length}…`,
-        current_question: seg.question_number,
-        questions_completed: i + 1,
-        questions_total: segments.length,
-        estimated_seconds_remaining: estimateMarkingSeconds(segments.length - i - 1),
-        partial_questions: results,
-        loading_context: {
-          paper_code: paperCode,
-          paper_session: paperSession,
-          question_number: seg.question_number,
-          syllabus_tags: tags.length ? tags : undefined,
-        },
-      })
+        await updateJob(attemptId, {
+          ...markingState,
+          phase: 'marking',
+          message: priorityDeep
+            ? `Max priority · marked ${results.length} of ${segments.length}…`
+            : `Marking question ${results.length} of ${segments.length}…`,
+          current_question: seg.question_number,
+          questions_completed: results.length,
+          questions_total: segments.length,
+          estimated_seconds_remaining: estimateMarkingSeconds(
+            segments.length - results.length
+          ),
+          partial_questions: results,
+          loading_context: {
+            paper_code: paperCode,
+            paper_session: paperSession,
+            question_number: seg.question_number,
+            syllabus_tags: tags.length ? tags : undefined,
+          },
+        })
+      }
     }
 
     const wholePaper = aggregateWholePaperResults(

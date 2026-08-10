@@ -107,7 +107,8 @@ import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
 import { GuestMarkNotice } from '@/components/billing/GuestMarkNotice'
 import { MarkUsageIndicator } from '@/components/billing/MarkUsageIndicator'
 import { capForTier } from '@/lib/billing/caps'
-import { FREE_WHOLE_PAPER_QUESTION_LIMIT, hasPaidAccess } from '@/lib/billing/features'
+import { FREE_WHOLE_PAPER_QUESTION_LIMIT, hasPaidAccess, isMax } from '@/lib/billing/features'
+import { MaxBadge } from '@/components/max/MaxBadge'
 import {
   questionUsageMessage,
   type BillingSummaryClient,
@@ -2079,6 +2080,7 @@ export default function MarkPage() {
             isPaid={
               billingSummary ? hasPaidAccess(billingSummary.access) : undefined
             }
+            isMax={billingSummary ? isMax(billingSummary.access) : undefined}
             inkPages={
               result.ink_pages ??
               (result.answer_photo_url && result.line_references?.length
@@ -2100,6 +2102,11 @@ export default function MarkPage() {
         aria-labelledby="mark-flow-marking-title"
         aria-busy="true"
       >
+        {billingSummary && isMax(billingSummary.access) ? (
+          <div className="mb-3">
+            <MaxBadge label="Max · priority deep marking" />
+          </div>
+        ) : null}
         {showWaitChrome ? <MarkingScreenHeader scope="one_answer" /> : null}
         {cinematicActive || markStreamError ? (
           <CinematicMarkingExperience
@@ -2126,7 +2133,9 @@ export default function MarkPage() {
           />
         ) : (
           <p className="text-sm text-[var(--ec-text-secondary)]" role="status">
-            Starting the mark…
+            {billingSummary && isMax(billingSummary.access)
+              ? 'Max priority — starting deep mark…'
+              : 'Starting the mark…'}
           </p>
         )}
       </section>
@@ -3349,6 +3358,7 @@ export default function MarkPage() {
             <WholePaperResultView
               result={result.whole_paper}
               attemptId={result.attempt_id ?? null}
+              isMax={billingSummary ? isMax(billingSummary.access) : undefined}
             />
             <div className="flex flex-wrap gap-3">
               <button
@@ -3422,6 +3432,7 @@ export default function MarkPage() {
               isPaid={
                 billingSummary ? hasPaidAccess(billingSummary.access) : undefined
               }
+              isMax={billingSummary ? isMax(billingSummary.access) : undefined}
               inkPages={
                 result.ink_pages ??
                 (result.answer_photo_url && result.line_references?.length

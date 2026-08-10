@@ -43,7 +43,7 @@ import {
   type MarkReservation,
 } from '@/lib/billing/enforcement'
 import { effectiveAccess } from '@/lib/billing/access'
-import { hasPaidAccess, hasFullMarksRewrite } from '@/lib/billing/features'
+import { hasPaidAccess, hasFullMarksRewrite, hasPriorityMarking } from '@/lib/billing/features'
 import {
   checkAnonymousMarkRateLimit,
   clientIp,
@@ -353,6 +353,7 @@ async function handleMarkRequest(request: NextRequest) {
       : 'free'
     const isPaid = hasPaidAccess(markAccess)
     const enableRewrite = hasFullMarksRewrite(markAccess)
+    const priorityDeepMarking = hasPriorityMarking(markAccess)
 
     // Open the reliability row before the first model call, so a run that dies
     // mid-pipeline still leaves evidence behind.
@@ -415,6 +416,7 @@ async function handleMarkRequest(request: NextRequest) {
         userId,
         isPaid,
         enableRewrite,
+        priorityDeepMarking,
         startedAt: startTime,
       }
 

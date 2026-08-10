@@ -253,6 +253,8 @@ export type WholePaperJobProgress = {
   current_question?: string
   estimated_seconds_remaining?: number
   loading_context?: WholePaperLoadingContext
+  /** Max priority deep marking — higher concurrency / batch size. */
+  priority?: 'max' | 'standard'
   result?: WholePaperResult
   error?: string
 }

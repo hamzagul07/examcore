@@ -6,6 +6,7 @@ import { resolvePolarProduct } from '@/lib/polar/products'
 import { notifyPurchaseEmails } from '@/lib/email/notifications'
 import { runAfterResponse } from '@/lib/after-response'
 import { tierMarketingName } from '@/lib/billing/caps'
+import { grantMaxWelcomeGift } from '@/lib/max/gifts'
 import type { SubscriptionTier } from '@/lib/database.types'
 
 export const runtime = 'nodejs' // not edge — needs the raw body
@@ -209,7 +210,7 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
     case 'subscription.past_due': {
       const sub = event.data as unknown as PolarSubscription
       const { ok, userId, tier } = await syncSubscription(supabase, sub)
-      // Only greet on activation, not on every update.
+      // Purchase greeting only on activation — not on every update/cancel flag flip.
       if (ok && userId && event.type === 'subscription.active') {
         runAfterResponse('purchase-emails-subscription', () =>
           notifyPurchaseEmails(supabase, userId, {
@@ -220,6 +221,19 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
             tier,
             providerRef: sub.id,
           })
+        )
+      }
+      // Max welcome gift: new Max checkouts fire `subscription.active`; Pro/Scholar
+      // → Max upgrades sync via `subscription.updated`. grantMaxWelcomeGift is
+      // idempotent per user so both paths are safe.
+      if (
+        ok &&
+        userId &&
+        tier === 'mastery' &&
+        (event.type === 'subscription.active' || event.type === 'subscription.updated')
+      ) {
+        runAfterResponse('max-welcome-gift', () =>
+          grantMaxWelcomeGift(supabase, userId)
         )
       }
       break

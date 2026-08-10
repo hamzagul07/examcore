@@ -153,9 +153,10 @@ export function computeWeeklyReportData(
 }
 
 /**
- * Weekly examiner report for PREMIUM users. Computes each report; sends email
- * only when WEEKLY_REPORT_SEND=true (otherwise logs a dry-run line). Opt-out is
- * `email_weekly_report` + the one-click `weekly` unsubscribe token.
+ * Weekly Max coach report. Max-only ritual — Pro/Scholar keep in-app progress;
+ * the full Sunday examiner email is an exclusive Max gift. Sends only when
+ * WEEKLY_REPORT_SEND=true (otherwise dry-run). Opt-out via `email_weekly_report`
+ * + one-click `weekly` unsubscribe token.
  */
 export async function sendWeeklyReportBatch(): Promise<{
   sent: number
@@ -169,7 +170,7 @@ export async function sendWeeklyReportBatch(): Promise<{
   const { data: subs } = await admin
     .from('user_subscriptions')
     .select('user_id, tier, status')
-    .neq('tier', 'free')
+    .eq('tier', 'mastery')
     .in('status', ['active', 'trialing', 'past_due'])
 
   let sent = 0

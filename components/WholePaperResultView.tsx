@@ -9,6 +9,7 @@ import { ExaminerInkPerPage } from '@/components/examiner-ink/ExaminerInkPerPage
 import type { LineReference } from '@/components/examiner-ink/ExaminerInkOverlay'
 import type { QuestionMarkResult, WholePaperResult } from '@/lib/marking/types'
 import { truncateMarkingPreview } from '@/lib/rich-text/truncate-marking-preview'
+import { MaxBadge } from '@/components/max/MaxBadge'
 
 function scoreBarColor(pct: number, skipped: boolean): string {
   if (skipped) return 'var(--ec-text-faint)'
@@ -218,11 +219,13 @@ export function WholePaperResultView({
   result,
   attemptId,
   onRetryQuestion,
+  isMax,
 }: {
   result: WholePaperResult
   attemptId?: string | null
   answerPhotoUrl?: string | null
   onRetryQuestion?: (questionNumber: string) => void
+  isMax?: boolean
 }) {
   const [expanded, setExpanded] = useState<string | null>(null)
   const [retrying, setRetrying] = useState<string | null>(null)
@@ -264,6 +267,11 @@ export function WholePaperResultView({
 
       <div className="ms-mark-result-head">
         <div>
+          {isMax ? (
+            <div className="mb-3">
+              <MaxBadge label="Max · priority deep marking" />
+            </div>
+          ) : null}
           {overlineParts.length ? (
             <p className="ms-overline" style={{ marginBottom: 8 }}>
               {overlineParts.join(' · ')}

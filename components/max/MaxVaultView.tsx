@@ -170,7 +170,11 @@ export function MaxVaultView({
           title={pack.title}
           tone={pack.isSprint ? 'rose' : 'teal'}
         >
-          <MaxVaultPackChecklist pack={pack} initialCompleted={data.completedDays} />
+          <MaxVaultPackChecklist
+            key={`${pack.subjectCode}:${pack.completionKey || pack.weekLabel}`}
+            pack={pack}
+            initialCompleted={data.completedDays}
+          />
         </VaultSection>
       ) : null}
 

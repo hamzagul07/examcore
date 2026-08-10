@@ -14,8 +14,8 @@ export function appendMarkReturnUrl(href: string, returnPath: string): string {
 }
 
 /**
- * Safe lesson return from /mark. Allows `/courses/...` plus an optional query
- * (e.g. `?board=edexcel&unit=WMA11` so the Edexcel study bridge survives).
+ * Safe return from /mark. Allows lesson paths (`/courses/...`) and a small set of
+ * dashboard desks so Vault / insights can deep-link students back after marking.
  */
 export function parseMarkReturnPath(raw: string | null | undefined): string | null {
   if (!raw?.trim()) return null
@@ -24,8 +24,12 @@ export function parseMarkReturnPath(raw: string | null | undefined): string | nu
   try {
     const url = new URL(trimmed, 'https://markscheme.app')
     if (url.origin !== 'https://markscheme.app') return null
-    if (!url.pathname.startsWith('/courses/')) return null
-    // Drop hash — return should land on the lesson with board context, not mid-section.
+    const path = url.pathname
+    const allowed =
+      path.startsWith('/courses/') ||
+      path === '/dashboard/vault' ||
+      path.startsWith('/dashboard/progress')
+    if (!allowed) return null
     return `${url.pathname}${url.search}`
   } catch {
     return null

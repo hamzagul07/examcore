@@ -33,6 +33,18 @@ function isMaxExamPack(value: unknown): value is MaxExamPack {
   )
 }
 
+/** Backfill completionKey for packs cached before the field existed. */
+function withCompletionKey(pack: MaxExamPack, examDate?: string | null): MaxExamPack {
+  if (pack.completionKey) return pack
+  const examKey = examDate?.trim().slice(0, 10) || null
+  return {
+    ...pack,
+    completionKey: pack.isSprint
+      ? `sprint:${examKey ?? 'open'}`
+      : pack.weekLabel,
+  }
+}
+
 /**
  * Load a cached pack for this ISO week, or build + upsert one.
  * Cache miss / invalid row / write failure all fall through to a fresh build.
@@ -60,7 +72,7 @@ export async function getCachedMaxExamPack(opts: {
     isMaxExamPack(cached.pack) &&
     cached.pack.isSprint === sprint
   ) {
-    return cached.pack
+    return withCompletionKey(cached.pack, opts.examDate)
   }
 
   const pack = await buildMaxExamPack({

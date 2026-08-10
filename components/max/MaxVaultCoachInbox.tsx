@@ -57,7 +57,9 @@ export function MaxVaultCoachInbox({ weeks }: { weeks: VaultCoachWeek[] }) {
                   {w.data.weakTopics.map((t) => (
                     <li key={`${t.subjectCode}-${t.topicCode}`}>
                       <Link
-                        href={topicDrillHref(t.subjectCode, t.topicCode)}
+                        href={topicDrillHref(t.subjectCode, t.topicCode, {
+                          returnTo: 'vault',
+                        })}
                         className="ec-link font-semibold"
                       >
                         Drill {t.name}

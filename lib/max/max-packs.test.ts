@@ -66,18 +66,21 @@ async function main() {
   assert.equal(pack.subjectCode, '9709')
   assert.equal(pack.isSprint, false)
   assert.equal(pack.days.length, 7)
+  assert.equal(pack.completionKey, pack.weekLabel)
   assert.ok(pack.days.some((d) => d.kind === 'drill' || d.kind === 'timed_paper'))
 
   const soon = new Date()
   soon.setUTCDate(soon.getUTCDate() + 7)
+  const examIso = soon.toISOString().slice(0, 10)
   const sprint = await buildMaxExamPack({
     supabase: fakeSupabase,
     subjectCode: '9709',
     masteries: mastery,
-    examDate: soon.toISOString().slice(0, 10),
+    examDate: examIso,
   })
   assert.equal(sprint.isSprint, true)
   assert.equal(sprint.days.length, 14)
+  assert.equal(sprint.completionKey, `sprint:${examIso}`)
   assert.equal(sprint.timedPapers.length, 3)
   assert.ok(sprint.days.some((d) => d.kind === 'timed_paper'))
   assert.ok(sprint.days.some((d) => d.kind === 'review'))

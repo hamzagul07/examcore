@@ -54,7 +54,14 @@ export function MaxVaultRewriteBank({ models }: { models: FullMarksModel[] }) {
                     <Link href={m.beatHref} className="ec-btn-primary text-sm">
                       Beat this model →
                     </Link>
-                  ) : null}
+                  ) : (
+                    <Link
+                      href={`/dashboard/attempt/${m.attemptId}`}
+                      className="ec-btn-primary text-sm"
+                    >
+                      Rematch from attempt →
+                    </Link>
+                  )}
                 </div>
               </li>
             ))}

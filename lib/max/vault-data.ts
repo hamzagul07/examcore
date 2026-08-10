@@ -239,6 +239,8 @@ export async function loadMaxVaultData(opts: {
   /** Recent attempts across subjects (newest first). */
   attempts: AttemptWithPaper[]
   ownership?: VaultOwnership | null
+  /** When true, build coach inbox even if ownership summary failed. */
+  includeCoachInbox?: boolean
 }): Promise<MaxVaultData> {
   const {
     supabase,
@@ -249,6 +251,7 @@ export async function loadMaxVaultData(opts: {
     targetGrade = null,
     attempts,
     ownership = null,
+    includeCoachInbox = false,
   } = opts
 
   const focusCode = pickFocusSubjectCode(subjects, attempts, overrideCode)
@@ -376,11 +379,19 @@ export async function loadMaxVaultData(opts: {
     } | null
     const rewrite = ai?.full_marks_rewrite
     if (!rewrite?.rewritten_answer) continue
-    const ms = a.mark_schemes as {
-      question_number?: string | null
-      paper_code?: string | null
-      paper_session?: string | null
-    } | null
+    const msRaw = a.mark_schemes as
+      | {
+          question_number?: string | null
+          paper_code?: string | null
+          paper_session?: string | null
+        }
+      | Array<{
+          question_number?: string | null
+          paper_code?: string | null
+          paper_session?: string | null
+        }>
+      | null
+    const ms = Array.isArray(msRaw) ? msRaw[0] ?? null : msRaw
     const paperCode = ms?.paper_code ?? null
     const paperSession = ms?.paper_session ?? null
     const questionNumber = ms?.question_number ?? null
@@ -438,16 +449,18 @@ export async function loadMaxVaultData(opts: {
 
   let completedDays: number[] = []
   if (examPack && focusCode) {
-    completedDays = await loadCompletedPackDays({
+    const validDays = new Set(examPack.days.map((d) => d.day))
+    const loaded = await loadCompletedPackDays({
       supabase,
       userId,
       subjectCode: focusCode,
-      weekLabel: examPack.weekLabel,
+      weekLabel: examPack.completionKey || examPack.weekLabel,
     })
+    completedDays = loaded.filter((n) => validDays.has(n))
   }
 
   const coachInbox =
-    ownership?.weeklyCoach
+    includeCoachInbox || ownership?.weeklyCoach
       ? buildVaultCoachInbox({
           attempts,
           targetGrade,

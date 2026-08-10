@@ -157,7 +157,9 @@ export function buildVaultDiagramPads(
       slug: lesson.slug,
       lessonHref: lesson.href,
       reason: lesson.reason,
-      markHref: drill ? drillHref(drill) : null,
+      markHref: drill
+        ? drillHref(drill, undefined, { returnTo: 'vault' })
+        : null,
       markLabel: drill
         ? `${drill.paperCode} Q${drill.questionNumber}`
         : null,

@@ -142,6 +142,7 @@ export default async function MaxVaultPage({
     targetGrade: (profile?.target_grade as string | null) ?? null,
     attempts: (attempts || []) as AttemptWithPaper[],
     ownership,
+    includeCoachInbox: hasMaxWeeklyCoach(access),
   })
 
   return (

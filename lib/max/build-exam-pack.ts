@@ -32,6 +32,11 @@ export type MaxExamPack = {
   subjectCode: string
   title: string
   weekLabel: string
+  /**
+   * Stable key for day-completion persistence.
+   * Weekly packs use ISO week; sprints use exam date so ticks survive week rollover.
+   */
+  completionKey: string
   isSprint: boolean
   daysLeft: number | null
   weakTopics: TopicTarget[]
@@ -159,10 +164,17 @@ export async function buildMaxExamPack(opts: {
     })
   }
 
+  const weekLabel = isoWeekLabel()
+  const examKey = opts.examDate?.trim().slice(0, 10) || null
+  const completionKey = isSprint
+    ? `sprint:${examKey ?? 'open'}`
+    : weekLabel
+
   return {
     subjectCode: opts.subjectCode,
     title: isSprint ? 'Max Sprint Pack' : "This week's Max pack",
-    weekLabel: isoWeekLabel(),
+    weekLabel,
+    completionKey,
     isSprint,
     daysLeft,
     weakTopics,

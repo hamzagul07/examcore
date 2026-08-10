@@ -35,7 +35,7 @@ export function MaxVaultPackChecklist({
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               subjectCode: pack.subjectCode,
-              weekLabel: pack.weekLabel,
+              weekLabel: pack.completionKey || pack.weekLabel,
               dayNumber,
               completed: next,
             }),
@@ -55,10 +55,11 @@ export function MaxVaultPackChecklist({
         }
       })
     },
-    [pack.subjectCode, pack.weekLabel]
+    [pack.subjectCode, pack.completionKey, pack.weekLabel]
   )
 
-  const doneCount = completed.size
+  const validDays = pack.days.map((d) => d.day)
+  const doneCount = validDays.filter((d) => completed.has(d)).length
   const total = pack.days.length
 
   return (

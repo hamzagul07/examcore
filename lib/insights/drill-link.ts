@@ -28,11 +28,18 @@ export function drillHref(
  * /mark generates one for this topic (see /api/mark/topic-question). Matches the
  * existing `subject`+`topic` course-lesson deep-link the mark page already reads.
  */
-export function topicDrillHref(subjectCode: string, topicCode: string): string {
+export function topicDrillHref(
+  subjectCode: string,
+  topicCode: string,
+  opts?: { returnTo?: 'progress' | 'vault' }
+): string {
   const params = new URLSearchParams({
     subject: subjectCode,
     topic: topicCode,
-    return: 'progress',
+    return:
+      opts?.returnTo === 'vault'
+        ? '/dashboard/vault'
+        : '/dashboard/progress?tab=insights',
   })
   return `/mark?${params.toString()}`
 }

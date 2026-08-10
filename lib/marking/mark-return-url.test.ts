@@ -19,6 +19,12 @@ check(
   parseMarkReturnPath('/courses/9709/1-1-quadratics?board=edexcel&unit=WMA11#visual') ===
     '/courses/9709/1-1-quadratics?board=edexcel&unit=WMA11'
 )
+check('allows vault desk', parseMarkReturnPath('/dashboard/vault') === '/dashboard/vault')
+check(
+  'allows progress desk',
+  parseMarkReturnPath('/dashboard/progress?tab=insights') ===
+    '/dashboard/progress?tab=insights'
+)
 check('rejects external', parseMarkReturnPath('https://evil.com/courses/x') === null)
 check('rejects protocol-relative', parseMarkReturnPath('//evil.com/courses/x') === null)
 check('rejects non-courses', parseMarkReturnPath('/mark?board=edexcel') === null)

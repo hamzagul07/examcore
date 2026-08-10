@@ -12,6 +12,7 @@ import { getIbCatalogCards } from '@/lib/courses/ib-catalog-display.server'
 import { IB_COURSES_CATALOG_BLURB } from '@/lib/courses/ib-catalog-display'
 import { ibCatalogSlug } from '@/lib/ib/slug-resolve'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
+import { IbSubjectDirectoryClient } from '@/components/subjects/IbSubjectDirectoryClient'
 
 const PATH = '/ib/subjects'
 
@@ -31,6 +32,17 @@ export default function IbSubjectsPage() {
   const catalogCards = getIbCatalogCards()
   const courseByCatalogSlug = new Map(catalogCards.map((c) => [ibCatalogSlug(c.code), c]))
   const totalLessons = catalogCards.reduce((a, c) => a + c.lessons, 0)
+  const metaBySlug = Object.fromEntries(
+    subjects.map((s) => {
+      const course = courseByCatalogSlug.get(s.slug)
+      return [
+        s.slug,
+        `${s.papers.join(' · ')}${
+          course ? ` · Free course · ${course.lessons} lessons` : ''
+        }`,
+      ]
+    })
+  )
 
   return (
     <MarketingPageShell>
@@ -86,41 +98,11 @@ export default function IbSubjectsPage() {
           </p>
         ) : null}
 
-        {grouped.map((g) => (
-          <section key={g.group} style={{ marginTop: 36 }} aria-labelledby={`g-${g.groupNumber}`}>
-            <h2 id={`g-${g.groupNumber}`} className="ms-h3" style={{ marginBottom: 14 }}>
-              Group {g.groupNumber} · {g.group}
-            </h2>
-            <ul className="ms-pp-grid">
-              {g.subjects.map((s) => {
-                const course = courseByCatalogSlug.get(s.slug)
-                return (
-                <li key={s.slug}>
-                  <Link
-                    href={`/ib/subjects/${s.slug}`}
-                    className="ms-pp-card subject-accented"
-                    style={{ '--acc': s.accent } as CSSProperties}
-                  >
-                    <span className="ms-pp-glyph" aria-hidden>
-                      {s.level}
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="ms-pp-title">{s.name}</span>
-                      <span className="ms-pp-meta">
-                        {s.papers.join(' · ')}
-                        {course ? ` · Free course · ${course.lessons} lessons` : ''}
-                      </span>
-                    </span>
-                    <span className="ms-pp-cta" aria-hidden>
-                      -&gt;
-                    </span>
-                  </Link>
-                </li>
-                )
-              })}
-            </ul>
-          </section>
-        ))}
+        <IbSubjectDirectoryClient
+          grouped={grouped}
+          hrefPrefix="/ib/subjects"
+          metaBySlug={metaBySlug}
+        />
 
         <HubSeoIntro
           quiet

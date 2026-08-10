@@ -4,6 +4,7 @@ import {
   expandSubjectCodeAliases,
   preferSubjectCodesFirst,
   preferSubjectsByCodeFirst,
+  splitPreferredSubjects,
 } from './prefer-codes'
 
 describe('expandSubjectCodeAliases', () => {
@@ -83,6 +84,26 @@ describe('preferSubjectsByCodeFirst', () => {
         { code: 'chemistry-hl', name: 'Chemistry' },
         { code: 'physics-hl', name: 'Physics' },
       ]
+    )
+  })
+})
+
+describe('splitPreferredSubjects', () => {
+  it('returns matched subjects separately without duplicating the rest', () => {
+    const items = [
+      { code: '9709', name: 'Maths' },
+      { code: '9702', name: 'Physics' },
+      { code: '9701', name: 'Chemistry' },
+    ]
+    assert.deepEqual(
+      splitPreferredSubjects(items, ['9702'], (s) => s.code),
+      {
+        yours: [{ code: '9702', name: 'Physics' }],
+        rest: [
+          { code: '9709', name: 'Maths' },
+          { code: '9701', name: 'Chemistry' },
+        ],
+      }
     )
   })
 })

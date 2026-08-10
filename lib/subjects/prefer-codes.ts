@@ -63,7 +63,23 @@ export function preferSubjectsByCodeFirst<T>(
   preferredCodes: readonly string[],
   getCode: (item: T) => string
 ): T[] {
-  if (!preferredCodes.length || !items.length) return [...items]
+  const { yours, rest } = splitPreferredSubjects(items, preferredCodes, getCode)
+  return yours.length ? [...yours, ...rest] : [...items]
+}
+
+/**
+ * Split a catalog into the student's matched subjects (profile order) and the
+ * remainder — useful for hub pages that keep level/group sections below a
+ * "Your subjects" pin.
+ */
+export function splitPreferredSubjects<T>(
+  items: readonly T[],
+  preferredCodes: readonly string[],
+  getCode: (item: T) => string
+): { yours: T[]; rest: T[] } {
+  if (!preferredCodes.length || !items.length) {
+    return { yours: [], rest: [...items] }
+  }
 
   const byCode = new Map<string, T>()
   for (const item of items) {
@@ -72,7 +88,7 @@ export function preferSubjectsByCodeFirst<T>(
   }
 
   const seen = new Set<string>()
-  const head: T[] = []
+  const yours: T[] = []
   for (const pref of preferredCodes) {
     const matchCode = expandSubjectCodeAliases(pref).find(
       (alias) => byCode.has(alias) && !seen.has(alias)
@@ -80,10 +96,12 @@ export function preferSubjectsByCodeFirst<T>(
     if (!matchCode) continue
     const item = byCode.get(matchCode)
     if (!item) continue
-    head.push(item)
+    yours.push(item)
     seen.add(matchCode)
   }
 
-  if (head.length === 0) return [...items]
-  return [...head, ...items.filter((item) => !seen.has(getCode(item)))]
+  return {
+    yours,
+    rest: items.filter((item) => !seen.has(getCode(item))),
+  }
 }

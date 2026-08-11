@@ -3,6 +3,7 @@ import 'server-only'
 import { createServiceClient } from '@/lib/supabase-server'
 import { THREAD_CLICK_PREFIX } from '@/lib/community/thread-clicks'
 import { isOfficialUsername } from '@/lib/community/official'
+import { communityPostHref } from '@/lib/community/post-url'
 
 /** Seeded/official accounts, so "real activity" means what it says. */
 const BOT_PREFIX = 'a10000'
@@ -20,6 +21,8 @@ export type WaitingItem = {
   title: string
   author: string
   ageDays: number
+  /** Canonical path, so the report links where a reader would actually land. */
+  href: string
   /** False for one-liners with nothing to answer ("anyone?", "yo?"). */
   substantive: boolean
 }
@@ -69,6 +72,7 @@ type PostRow = {
   created_at: string
   body_md: string | null
   attachments: unknown[] | null
+  subject_code: string
 }
 type QuestionRow = { id: string; author_id: string; title: string; created_at: string; body_md: string | null }
 type CommentRow = { post_id: string; author_id: string; created_at: string }
@@ -107,7 +111,7 @@ export async function communityFunnelReport(days: number): Promise<FunnelReport>
     fetchAll<PostRow>('posts', (from, to) =>
       admin
         .from('community_posts')
-        .select('id, author_id, title, created_at, body_md, attachments')
+        .select('id, author_id, title, created_at, body_md, attachments, subject_code')
         .eq('status', 'published')
         .range(from, to)
     ),
@@ -242,6 +246,7 @@ export async function communityFunnelReport(days: number): Promise<FunnelReport>
         title: p.title,
         author: names.get(p.author_id) ?? 'someone',
         ageDays: ageDays(p.created_at),
+        href: communityPostHref({ id: p.id, subjectCode: p.subject_code, title: p.title }),
         substantive: isSubstantive(p.title, p.body_md, p.attachments),
       })),
     ...allQuestions
@@ -252,6 +257,7 @@ export async function communityFunnelReport(days: number): Promise<FunnelReport>
         title: q.title,
         author: names.get(q.author_id) ?? 'someone',
         ageDays: ageDays(q.created_at),
+        href: `/community/questions/${q.id}`,
         substantive: isSubstantive(q.title, q.body_md),
       })),
   ].sort((a, b) => Number(b.substantive) - Number(a.substantive) || b.ageDays - a.ageDays)
@@ -298,7 +304,7 @@ export function formatFunnelReport(r: FunnelReport): string {
     out.push(`\n⚠ ${answerable.length} real ${answerable.length === 1 ? 'person is' : 'people are'} waiting for an answer`)
     for (const w of answerable.slice(0, 12)) {
       const age = w.ageDays === 0 ? 'today' : `${w.ageDays}d ago`
-      const href = w.kind === 'post' ? `/community/posts/${w.id}` : `/community/questions/${w.id}`
+      const href = w.kind === 'post' ? w.href : `/community/questions/${w.id}`
       out.push(`    ${age.padStart(7)}  u/${w.author.padEnd(16)} ${w.title.slice(0, 44)}`)
       out.push(`             ${href}`)
     }

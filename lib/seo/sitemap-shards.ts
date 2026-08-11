@@ -22,6 +22,9 @@ import { getAllIbTopicPracticeParams } from '@/lib/seo/ib-topic-practice'
 import { getCourseLessons, getCourseSubjectCodes } from '@/lib/courses'
 import { getCommunitySubjects } from '@/lib/community/subjects'
 import { listPublishedQuestionRefs } from '@/lib/community/qa'
+import { listPostRefs } from '@/lib/community/posts'
+import { communityPostHref } from '@/lib/community/post-url'
+import { isIndexablePost } from '@/lib/community/indexable'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import {
   getAllCaieHubParams,
@@ -466,7 +469,18 @@ export async function buildSitemapShard(
         changeFrequency: 'weekly' as const,
         priority: 0.7,
       }))
-      return [...subjects, ...qs]
+      // Discussion threads were missing from every shard, so the only way in
+      // was a crawler following a link. Only the indexable ones are listed —
+      // asking Google to crawl a page we mark noindex wastes both our budgets.
+      const posts = (await listPostRefs())
+        .filter((p) => isIndexablePost(p))
+        .map((p) => ({
+          url: `${base}${communityPostHref(p)}`,
+          lastModified: p.updatedAt ? new Date(p.updatedAt) : n,
+          changeFrequency: 'weekly' as const,
+          priority: 0.7,
+        }))
+      return [...subjects, ...qs, ...posts]
     }
 
     default:

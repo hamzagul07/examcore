@@ -3,6 +3,7 @@ import { clampNoteContent, stripRawHtml } from '@/lib/community/sanitize'
 import type { CommunityAttachment } from '@/lib/community/uploads'
 import { authorAccessMap } from '@/lib/community/author-access'
 import { rankHot } from '@/lib/community/rank'
+import type { PostUrlParts } from '@/lib/community/post-url'
 import type { EffectiveAccess } from '@/lib/billing/access'
 
 export type Board = 'cambridge' | 'ib'
@@ -147,6 +148,102 @@ export async function listPosts(params: {
   )
 
   return isHot ? rankHot(posts).slice(0, limit) : posts
+}
+
+/**
+ * Resolve the 8-hex short id used in public URLs.
+ *
+ * Expressed as a range over the primary key rather than a LIKE on the id cast
+ * to text: `b5000001…` is every uuid between b5000001-0000-… and b5000001-ffff-…,
+ * so this is an index scan on the PK and needs no extra index to stay fast.
+ */
+/**
+ * Everything indexable, for the sitemap.
+ *
+ * Publisher-authored and thin posts are filtered by the caller via
+ * `isIndexablePost` — listing a page we mark noindex would ask Google to crawl
+ * something we have told it to ignore.
+ */
+export async function listPostRefs(): Promise<
+  (PostUrlParts & {
+    updatedAt: string | null
+    authorId: string
+    authorUsername: string | null
+    bodyMd: string
+    peerReplyCount: number
+  })[]
+> {
+  const admin = createServiceClient()
+  const { data } = await admin
+    .from('community_posts')
+    .select('id, author_id, subject_code, title, body_md, comment_count, updated_at')
+    .eq('status', 'published')
+    .order('updated_at', { ascending: false })
+    .limit(5000)
+
+  const rows = (data ?? []) as {
+    id: string
+    author_id: string
+    subject_code: string
+    title: string
+    body_md: string
+    comment_count: number
+    updated_at: string | null
+  }[]
+  const [names, { data: commentRows }] = await Promise.all([
+    usernameMap(admin, rows.map((r) => r.author_id)),
+    admin
+      .from('community_comments')
+      .select('post_id, author_id')
+      .eq('status', 'published')
+      .in('post_id', rows.map((r) => r.id).slice(0, 500)),
+  ])
+
+  // Self-replies excluded: a thread the author bumped alone is not discussion,
+  // and indexing it would put an empty page in front of a searcher.
+  const authorById = new Map(rows.map((r) => [r.id, r.author_id]))
+  const peerReplies = new Map<string, number>()
+  for (const c of commentRows ?? []) {
+    const postId = c.post_id as string
+    if (authorById.get(postId) === c.author_id) continue
+    peerReplies.set(postId, (peerReplies.get(postId) ?? 0) + 1)
+  }
+
+  return rows.map((r) => ({
+    id: r.id,
+    subjectCode: r.subject_code,
+    title: r.title,
+    updatedAt: r.updated_at,
+    authorId: r.author_id,
+    authorUsername: names.get(r.author_id) ?? null,
+    bodyMd: r.body_md ?? '',
+    peerReplyCount: peerReplies.get(r.id) ?? 0,
+  }))
+}
+
+export async function getPostByShortId(shortId: string): Promise<CommunityPost | null> {
+  const short = shortId.toLowerCase()
+  if (!/^[0-9a-f]{8}$/.test(short)) return null
+
+  const admin = createServiceClient()
+  const { data } = await admin
+    .from('community_posts')
+    .select(SELECT)
+    .gte('id', `${short}-0000-0000-0000-000000000000`)
+    .lte('id', `${short}-ffff-ffff-ffff-ffffffffffff`)
+    .limit(2)
+
+  const rows = (data ?? []) as Row[]
+  // Two posts sharing eight hex characters is a 1-in-4-billion accident; if it
+  // ever happens, refusing beats silently showing the wrong thread.
+  if (rows.length !== 1) return null
+
+  const row = rows[0]
+  const [names, access] = await Promise.all([
+    usernameMap(admin, [row.author_id]),
+    authorAccessMap(admin, [row.author_id]),
+  ])
+  return mapRow(row, names.get(row.author_id) ?? null, access.get(row.author_id) ?? 'free')
 }
 
 export async function getPost(id: string): Promise<CommunityPost | null> {

@@ -19,6 +19,8 @@ export type RankableThread = {
   flair: string | null
   is_pinned: boolean
   created_at: string
+  subject_code?: string
+  title?: string
 }
 
 function flairRank(flair: string | null): number {

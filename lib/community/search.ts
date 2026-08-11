@@ -1,4 +1,5 @@
 import { createServiceClient } from '@/lib/supabase-server'
+import { communityPostHref } from '@/lib/community/post-url'
 
 export type SearchHit = {
   id: string
@@ -38,7 +39,11 @@ export async function searchCommunity(params: {
     id: row.id as string,
     kind: row.kind as SearchHit['kind'],
     title: row.title as string,
-    href: `/community/posts/${row.id}`,
+    href: communityPostHref({
+      id: row.id as string,
+      subjectCode: row.subject_code as string,
+      title: row.title as string,
+    }),
     subjectCode: row.subject_code as string,
     score: (row.score as number) ?? 0,
     commentCount: (row.comment_count as number) ?? 0,

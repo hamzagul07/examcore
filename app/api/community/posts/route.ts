@@ -7,6 +7,7 @@ import { postsInLast24h } from '@/lib/community/require-username'
 import type { CommunityAttachment } from '@/lib/community/uploads'
 import { attachmentKindForMime } from '@/lib/community/uploads'
 import { ensureUsername } from '@/lib/community/ensure-username'
+import { communityPostHref } from '@/lib/community/post-url'
 
 const DAILY_POST_CAP = 25
 
@@ -127,6 +128,13 @@ export async function POST(request: NextRequest) {
       ok: true,
       id: result.id,
       status: result.status,
+      // The canonical URL comes from the server so the composer never has to
+      // rebuild it from parts it may not have.
+      href: communityPostHref({
+        id: result.id,
+        subjectCode: body.subjectCode!,
+        title: (body.title || '').trim(),
+      }),
       ...(usernameAssigned ? { assignedUsername: username } : {}),
     },
     pendingCookies

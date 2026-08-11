@@ -6,6 +6,7 @@ import { sendCommunityDigestEmail } from '@/lib/email/community'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { unsubscribeUrl } from '@/lib/community/email-unsubscribe'
 import { SITE_URL } from '@/lib/site-config'
+import { communityPostHref } from '@/lib/community/post-url'
 
 const DIGEST_INTERVAL_MS = 7 * 24 * 60 * 60 * 1000
 
@@ -58,7 +59,7 @@ export async function sendCommunityDigestBatch(): Promise<{ sent: number; skippe
       unsubscribeHref: unsubscribeUrl(row.id as string, 'digest'),
       posts: posts.map((p) => ({
         title: p.title,
-        href: `${SITE_URL}/community/posts/${p.id}`,
+        href: `${SITE_URL}${communityPostHref(p)}`,
         score: p.score,
         commentCount: p.commentCount,
         subjectCode: p.subjectCode,

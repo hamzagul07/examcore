@@ -4,10 +4,16 @@ import type { CSSProperties } from 'react'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { createClient } from '@/lib/supabase-server'
-import { getPost, getUserPostVotes } from '@/lib/community/posts'
+import { getPostByShortId, getUserPostVotes } from '@/lib/community/posts'
 import { isOfficialUsername } from '@/lib/community/official'
 import { AuthorBadge } from '@/components/community/AuthorBadge'
-import { getCommentTree, collectCommentIds, getUserCommentVotes } from '@/lib/community/comments'
+import {
+  getCommentTree,
+  collectCommentIds,
+  getUserCommentVotes,
+  countPeerReplies,
+  peerReplyCountForPost,
+} from '@/lib/community/comments'
 import { signAttachments } from '@/lib/community/uploads'
 import { findCommunitySubject } from '@/lib/community/subjects'
 import { communityComposerFlags } from '@/lib/community/composer-flags'
@@ -17,6 +23,9 @@ import { VoteBox } from '@/components/community/reddit/VoteBox'
 import { CommentTree } from '@/components/community/reddit/CommentTree'
 import { PostAttachments } from '@/components/community/reddit/PostAttachments'
 import { SubjectSidebar } from '@/components/community/reddit/Sidebar'
+import { communityPostHref, shortIdFromSlug } from '@/lib/community/post-url'
+import { CommunityPostJsonLd } from '@/components/seo/CommunityPostJsonLd'
+import { isIndexablePost } from '@/lib/community/indexable'
 
 export const dynamic = 'force-dynamic'
 
@@ -26,23 +35,54 @@ const KIND_LABEL: Record<string, string> = {
   resource: 'Resource',
 }
 
-type PageProps = { params: Promise<{ id: string }> }
+type PageProps = { params: Promise<{ subject: string; slug: string }> }
+
+async function loadPost(slug: string) {
+  const shortId = shortIdFromSlug(slug)
+  return shortId ? getPostByShortId(shortId) : null
+}
 
 export async function generateMetadata({ params }: PageProps) {
-  const { id } = await params
-  const post = await getPost(id)
+  const { slug } = await params
+  const post = await loadPost(slug)
+  if (!post) {
+    return createPageMetadata({
+      title: 'Post — Exam Room',
+      description: 'Community post.',
+      path: '/community',
+      index: false,
+    })
+  }
+
   return createPageMetadata({
-    title: post ? `${post.title} — Exam Room` : 'Post — Exam Room',
-    description: post ? post.bodyMd.slice(0, 150) : 'Community post.',
-    path: `/community/posts/${id}`,
+    title: `${post.title} — Exam Room`,
+    description: post.bodyMd.slice(0, 150) || post.title,
+    path: communityPostHref(post),
+    // Publisher-authored threads and one-line posts stay out of the index:
+    // thin, non-user-generated pages drag on the quality signals of the ones
+    // that should rank, and Google's forum guidance excludes them anyway.
+    index: isIndexablePost({
+      ...post,
+      peerReplyCount: await peerReplyCountForPost(post.id, post.authorId),
+    }),
   })
 }
 
 export default async function PostDetailPage({ params }: PageProps) {
   if (!isCommunityEnabled()) redirect('/community')
-  const { id } = await params
-  const post = await getPost(id)
+  const { slug } = await params
+  const post = await loadPost(slug)
   if (!post || post.status === 'removed') notFound()
+
+  // A drifted slug or subject — a title edit, a hand-shortened link, a thread
+  // moved between rooms — still serves the post, with the canonical tag in the
+  // head pointing at the right URL. This is Reddit's own behaviour, and here it
+  // is also the only correct option: community/loading.tsx puts a Suspense
+  // boundary above these pages, so the shell is already flushed by the time the
+  // post is loaded, and redirect() at that point can only emit a
+  // <meta http-equiv="refresh"> — a soft redirect Google honours loosely and
+  // which costs the reader a second round trip. The canonical consolidates the
+  // duplicates properly and the content arrives immediately.
 
   const supabase = await createClient()
   const {
@@ -59,6 +99,10 @@ export default async function PostDetailPage({ params }: PageProps) {
     getCommentTree(post.id),
     user ? getUserPostVotes(user.id, [post.id]) : Promise.resolve({} as Record<string, number>),
   ])
+  // Replies from anyone but the author — what decides whether this thread is a
+  // discussion or a person talking to themselves.
+  const peerReplyCount = countPeerReplies(comments, post.authorId)
+
   const commentIds = collectCommentIds(comments)
   const commentVotes = user ? await getUserCommentVotes(user.id, commentIds) : {}
 
@@ -68,6 +112,7 @@ export default async function PostDetailPage({ params }: PageProps) {
 
   return (
     <div className="rc-page rc-page--thread" style={{ '--sc': accent } as CSSProperties}>
+      <CommunityPostJsonLd post={post} peerReplyCount={peerReplyCount} />
       <div className="rc-layout">
         <main className="rc-main">
           <Link href={`/community/s/${post.subjectCode}`} className="rc-back">← s/{post.subjectCode}</Link>

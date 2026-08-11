@@ -70,6 +70,33 @@ async function usernameMap(admin: Admin, ids: string[]) {
   return new Map<string, string | null>((data ?? []).map((p) => [p.id, p.username]))
 }
 
+/**
+ * Replies from anyone other than the thread's author.
+ *
+ * The distinction that separates a discussion from somebody bumping their own
+ * post — three of the emptiest threads on the site have a non-zero comment
+ * count made entirely of the author replying to themselves.
+ */
+export function countPeerReplies(nodes: CommentNode[], postAuthorId: string): number {
+  return nodes.reduce(
+    (sum, n) =>
+      sum + (n.authorId === postAuthorId ? 0 : 1) + countPeerReplies(n.replies, postAuthorId),
+    0
+  )
+}
+
+/** Peer-reply count straight from the database, for metadata that has no tree. */
+export async function peerReplyCountForPost(postId: string, postAuthorId: string): Promise<number> {
+  const admin = createServiceClient()
+  const { count } = await admin
+    .from('community_comments')
+    .select('id', { count: 'exact', head: true })
+    .eq('post_id', postId)
+    .eq('status', 'published')
+    .neq('author_id', postAuthorId)
+  return count ?? 0
+}
+
 /** Load all comments for a post and assemble a sorted tree (top score first). */
 export async function getCommentTree(postId: string): Promise<CommentNode[]> {
   const admin = createServiceClient()

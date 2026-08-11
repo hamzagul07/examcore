@@ -4,6 +4,7 @@ import { isCommunityEnabled } from '@/lib/community/enabled'
 import { listPosts } from '@/lib/community/posts'
 import { findCommunitySubject } from '@/lib/community/subjects'
 import { compactCount } from '@/lib/community/format'
+import { communityPostHref } from '@/lib/community/post-url'
 
 /**
  * Prominent community entry card for course/subject/attempt pages.
@@ -47,7 +48,7 @@ export async function CommunityEntry({
       {posts.length ? (
         <div className="rc-entry-posts">
           {posts.map((p) => (
-            <Link key={p.id} href={`/community/posts/${p.id}`} className="rc-entry-post" style={{ '--sc': accent } as CSSProperties}>
+            <Link key={p.id} href={communityPostHref(p)} className="rc-entry-post" style={{ '--sc': accent } as CSSProperties}>
               <span className="rc-entry-post-score">{compactCount(p.score)}</span>
               <span className="rc-entry-post-title">{p.title}</span>
               <span className="rc-entry-post-comments">{p.commentCount} #</span>

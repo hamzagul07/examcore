@@ -7,6 +7,7 @@ import { timeAgo } from '@/lib/community/format'
 import { isOfficialUsername } from '@/lib/community/official'
 import { AuthorBadge } from '@/components/community/AuthorBadge'
 import { VoteBox } from './VoteBox'
+import { communityPostHref } from '@/lib/community/post-url'
 
 const KIND_LABEL: Record<string, string> = {
   discussion: 'Discussion',
@@ -37,7 +38,7 @@ export function PostCard({
   const subject = findCommunitySubject(post.subjectCode)
   const accent = subject?.accent ?? 'var(--ec-brand)'
   const boardMeta = communityBoardMeta(post.board)
-  const href = `/community/posts/${post.id}`
+  const href = communityPostHref(post)
   const body = snippet(post.bodyMd)
   const imageCount = post.attachments.filter((a) => a.kind === 'image').length
   const fileCount = post.attachments.length - imageCount

@@ -3,6 +3,7 @@ import 'server-only'
 import { createServiceClient } from '@/lib/supabase-server'
 import { A_LEVEL_RESULTS_UTC } from '@/lib/seo/results-day'
 import { pickResultsThread, RESULTS_FLAIRS } from '@/lib/community/results-thread-rank'
+import { communityPostHref } from '@/lib/community/post-url'
 
 /** Where a reader should land when they click "post in the thread" for a subject. */
 export type ThreadTarget = {
@@ -33,7 +34,7 @@ export async function resolveResultsThread(subjectCode: string | null): Promise<
   const admin = createServiceClient()
   let query = admin
     .from('community_posts')
-    .select('id, flair, is_pinned, created_at')
+    .select('id, flair, is_pinned, created_at, subject_code, title')
     .eq('status', 'published')
     .in('flair', RESULTS_FLAIRS as unknown as string[])
 
@@ -47,5 +48,12 @@ export async function resolveResultsThread(subjectCode: string | null): Promise<
   const best = pickResultsThread(data ?? [], A_LEVEL_RESULTS_UTC)
   if (!best) return fallback(subjectCode)
 
-  return { href: `/community/posts/${best.id}`, exact: true }
+  return {
+    href: communityPostHref({
+      id: best.id,
+      subjectCode: best.subject_code ?? '',
+      title: best.title ?? '',
+    }),
+    exact: true,
+  }
 }

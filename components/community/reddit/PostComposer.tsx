@@ -252,7 +252,7 @@ export function PostComposer({
         return
       }
       clearComposerDraft()
-      router.push(`/community/posts/${data.id}`)
+      router.push(data.href ?? `/community/posts/${data.id}`)
       router.refresh()
     } catch {
       setError('Something went wrong. Try again.')

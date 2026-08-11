@@ -17,6 +17,9 @@
     "app/api/cron/community-digest/route.ts": {
       "maxDuration": 120
     },
+    "app/api/cron/community-waiting/route.ts": {
+      "maxDuration": 120
+    },
     "app/api/cron/weekly-report/route.ts": {
       "maxDuration": 300
     },
@@ -37,6 +40,10 @@
     {
       "path": "/api/cron/community-digest",
       "schedule": "0 9 * * 1"
+    },
+    {
+      "path": "/api/cron/community-waiting",
+      "schedule": "0 8 * * *"
     },
     {
       "path": "/api/cron/weekly-report",

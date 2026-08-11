@@ -5,6 +5,18 @@ import { createServiceClient } from '@/lib/supabase-server'
 /** Prefix for results-thread CTA clicks, mirroring `/__funnel/<event>/<board>`. */
 export const THREAD_CLICK_PREFIX = '/__cta/results-thread'
 
+/**
+ * Crude but sufficient: the point is to keep obvious crawlers out of a metric
+ * a person will act on, not to win an arms race. A missing user-agent counts as
+ * a bot — every real browser sends one.
+ */
+const BOT_UA = /bot|crawler|spider|crawling|slurp|bingpreview|headless|lighthouse|curl|wget|python-requests|axios|node-fetch/i
+
+export function isLikelyBot(userAgent: string | null | undefined): boolean {
+  if (!userAgent) return true
+  return BOT_UA.test(userAgent)
+}
+
 /** Keeps a hand-typed utm_source from becoming an unbounded path segment. */
 function segment(raw: string | null | undefined, fallback: string): string {
   const clean = (raw ?? '')

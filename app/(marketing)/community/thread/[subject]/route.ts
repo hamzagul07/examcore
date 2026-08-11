@@ -4,7 +4,7 @@ import { isCommunityEnabled } from '@/lib/community/enabled'
 import { findCommunitySubject } from '@/lib/community/subjects'
 import { getGradeBoundaryCalculatorCodes } from '@/lib/seo/programmatic-subjects'
 import { resolveResultsThread } from '@/lib/community/results-thread'
-import { recordResultsThreadClick } from '@/lib/community/thread-clicks'
+import { recordResultsThreadClick, isLikelyBot } from '@/lib/community/thread-clicks'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -56,15 +56,24 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   // pathname only, so the utm_source the CTA sets is dropped on arrival and
   // there would be no way to tell which page earned the click. Every click
   // passes through this handler, including from readers with no JS.
-  after(async () => {
-    await recordResultsThreadClick({
-      source: request.nextUrl.searchParams.get('utm_source'),
-      subject,
-      landedOnThread: target.exact,
+  // Bots still follow the link even with the header above — that only stops
+  // indexing, not fetching — so keep them out of the numbers at the source.
+  if (!isLikelyBot(request.headers.get('user-agent'))) {
+    after(async () => {
+      await recordResultsThreadClick({
+        source: request.nextUrl.searchParams.get('utm_source'),
+        subject,
+        landedOnThread: target.exact,
+      })
     })
-  })
+  }
 
   // 302, not 308: which thread is "the" thread changes during results week and
   // a permanent redirect would stick in browser caches past its usefulness.
-  return NextResponse.redirect(destination, { status: 302 })
+  const response = NextResponse.redirect(destination, { status: 302 })
+  // This hop is a piece of instrumentation, not a page. Crawlers reaching it
+  // from the CTA on indexed marketing pages would spend crawl budget on
+  // redirects and, worse, land in the click log as readers who never existed.
+  response.headers.set('X-Robots-Tag', 'noindex, nofollow')
+  return response
 }

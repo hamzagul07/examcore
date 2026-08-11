@@ -88,7 +88,12 @@ export function ResultsThreadCta({ source, subjectCode = null, className = '' }:
           {copy.body}
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
-          <Link href={href} className="ec-btn-primary ec-btn-primary--sm">
+          {/* prefetch={false} is load-bearing: this href is a route handler that
+              reads the database and records the click. Next prefetches a Link
+              when it scrolls into viewport, so the default would fire the whole
+              thing on every impression — turning the click metric into a scroll
+              metric and doing a write per reader who never clicked. */}
+          <Link href={href} prefetch={false} className="ec-btn-primary ec-btn-primary--sm">
             Post in the thread
             <span className="h-4 w-4" aria-hidden>-&gt;</span>
           </Link>

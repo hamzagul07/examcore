@@ -18,6 +18,7 @@
     "community:funnel": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/community-funnel.ts",
     "community:seed-threads": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/seed-results-threads.ts",
     "community:unpin-stale": "tsx scripts/unpin-stale-pins.ts",
+    "community:invites": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/community-invites.ts",
     "test:channels": "tsx scripts/verify-channel-classifier.ts",
     "test:grants": "tsx scripts/verify-column-grants.ts",
     "teacher:grant": "tsx scripts/grant-teacher-seat.ts",

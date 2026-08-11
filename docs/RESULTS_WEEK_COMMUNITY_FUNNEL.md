@@ -45,7 +45,11 @@ node scripts/seed-results-thread-first-replies.mjs
 pnpm community:unpin-stale --dry
 pnpm community:unpin-stale
 
-# 5. Check whether any of it worked.
+# 5. Print a message per subject to send to people who sat it.
+pnpm community:invites
+pnpm community:invites 0580 0610   # or just these
+
+# 6. Check whether any of it worked.
 pnpm community:funnel 7
 ```
 
@@ -56,6 +60,17 @@ Every one is idempotent and has a `--dry`. Step 2 also repairs threads whose
 `scripts/unpin-stale-pins.ts` and `lib/community/results-thread-rank.ts` marks
 the current series. **Move it when a new series publishes** — it is what makes
 "this cycle" mean anything.
+
+## The part that is not code
+
+A community needs 10–20 people to feel alive, not thousands, and the strongest
+predictor of somebody posting a second time is how fast their first post was
+answered. `pnpm community:invites` prints one message per live thread to send to
+someone who actually sat that subject; the daily 08:00 alert
+(`/api/cron/community-waiting`) names anyone still waiting.
+
+Real people posting real marks. Invented ones would sink the whole thing —
+first-hand specificity is the only reason forum pages rank at all.
 
 ## What `pnpm community:funnel` tells you
 

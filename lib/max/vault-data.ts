@@ -16,6 +16,10 @@ import { getCachedMaxExamPack } from '@/lib/max/exam-pack-cache'
 import { getTechniquePack, type TechniquePack } from '@/lib/max/technique-packs'
 import { isIbSubjectCode } from '@/lib/ib/marking-config'
 import { ibCoursePath, ibSubjectForSlug } from '@/lib/ib/slug-resolve'
+import {
+  loadVaultIbAssessment,
+  type VaultIbAssessment,
+} from '@/lib/max/vault-ib-assessment'
 import { predictGrade, type GradePrediction } from '@/lib/prediction'
 import { gapToTargetGrade } from '@/lib/target-grade'
 import { getSyllabusByCode, getSyllabusSubjectName, hasSyllabusTree } from '@/lib/syllabi'
@@ -121,6 +125,8 @@ export type MaxVaultData = {
   projected: MaxProjectedGrade | null
   tools: VaultToolLink[]
   ibLinks: VaultToolLink[]
+  /** How this IB subject is assessed — components, criteria and weights. */
+  ibAssessment: VaultIbAssessment | null
   fullMarksModels: FullMarksModel[]
   sprintUnlocked: boolean
   otherCuratedCodes: string[]
@@ -449,6 +455,11 @@ export async function loadMaxVaultData(opts: {
   }
 
   const ibLinks = focusCode ? ibLinksForCode(focusCode) : []
+  // Never let a catalog miss take the whole vault down — the desk is still
+  // worth rendering without the assessment breakdown.
+  const ibAssessment = focusCode
+    ? await loadVaultIbAssessment(focusCode).catch(() => null)
+    : null
 
   const { data: recentAttempts } = await supabase
     .from('attempts')
@@ -634,6 +645,7 @@ export async function loadMaxVaultData(opts: {
     projected,
     tools,
     ibLinks,
+    ibAssessment,
     fullMarksModels,
     sprintUnlocked: examPack?.isSprint ?? false,
     otherCuratedCodes,

@@ -240,6 +240,74 @@ export function MaxVaultView({
         </VaultSection>
       ) : null}
 
+      {data.ibAssessment ? (
+        <VaultSection
+          stamp="IA"
+          eyebrow="How this subject is marked"
+          title={`Assessment structure — ${data.ibAssessment.level}`}
+          tone="blue"
+        >
+          <p className="text-body m-0 text-[var(--ec-text-secondary)]">
+            IB marks against criteria, not a raw-mark threshold. These are the
+            components you sit and what each one is worth.
+          </p>
+
+          <ul className="m-0 mt-4 list-none space-y-2 pl-0">
+            {data.ibAssessment.components.map((c) => (
+              <li
+                key={`${c.key}-${c.label}`}
+                className="flex items-baseline justify-between gap-4 border-b border-[var(--ec-border-subtle)] pb-2"
+              >
+                <span className="font-semibold">{c.label}</span>
+                <span className="text-body-2 whitespace-nowrap text-[var(--ec-text-secondary)]">
+                  {c.maxMarks !== null ? `${c.maxMarks} marks` : '—'}
+                  {c.model === 'criteria' ? ' · criteria' : ''}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          {data.ibAssessment.headline ? (
+            <div className="mt-6">
+              <p className="ms-overline m-0" style={{ color: 'var(--ec-brand)' }}>
+                {data.ibAssessment.headline.label} — where the marks sit
+              </p>
+              <p className="text-body-2 mt-1 mb-3 text-[var(--ec-text-secondary)]">
+                The part you can still change after the papers are over. Biggest
+                criterion first.
+              </p>
+              <ul className="m-0 list-none space-y-3 pl-0">
+                {[...data.ibAssessment.headline.criteria]
+                  .sort((a, b) => b.maxMarks - a.maxMarks)
+                  .map((cr) => (
+                    <li key={cr.letter}>
+                      <div className="flex items-baseline justify-between gap-4">
+                        <span className="font-semibold">
+                          {cr.letter} · {cr.name}
+                        </span>
+                        <span className="text-body-2 whitespace-nowrap text-[var(--ec-text-secondary)]">
+                          {cr.maxMarks} marks
+                        </span>
+                      </div>
+                      {/* Weight is the actionable part: it tells you where to
+                          spend the next hour of coursework time. */}
+                      <div
+                        className="mt-1 h-[3px] w-full rounded-full bg-[var(--ec-border-subtle)]"
+                        aria-hidden
+                      >
+                        <div
+                          className="h-full rounded-full bg-[var(--ec-brand)]"
+                          style={{ width: `${Math.round(cr.share * 100)}%` }}
+                        />
+                      </div>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          ) : null}
+        </VaultSection>
+      ) : null}
+
       {data.ibLinks.length > 0 ? (
         <VaultSection
           stamp="IB"

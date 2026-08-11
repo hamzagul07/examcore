@@ -81,6 +81,40 @@ const REMARK_REPLY = {
   ].join('\n'),
 }
 
+/**
+ * Hand-written answers to specific questions, kept here so they exist in git
+ * rather than only in the database.
+ *
+ * Keyed by id rather than generated, because the generation would be wrong: this
+ * question is filed under 9706 and asks about maths. Reading the title is the
+ * only way to know it wants 9709, and no rule derived from subject_code would
+ * get there.
+ */
+const QUESTION_ANSWERS = [
+  {
+    questionId: '1b94ee1c-6587-46f3-9811-287ae2125674',
+    note: '9709 thresholds — question is tagged 9706 but asks about maths',
+    body: [
+      'Sorry this sat unanswered — here are the numbers.',
+      '',
+      'For **9709 Mathematics**, June 2026, the A grade thresholds by paper:',
+      '',
+      '- **Paper 1 (11)** — 59/75',
+      '- **Paper 2 (21)** — 40/50',
+      '- **Paper 3 (31)** — 56/75',
+      '- **Paper 4 (41)** — 43/50',
+      '- **Paper 5 (50)** — 63/75',
+      '- **Paper 6 (60)** — 63/75',
+      '',
+      'Full table, including B down to E: [9709 grade boundaries](/blog/cambridge-9709-mathematics-grade-boundaries-2026)',
+      '',
+      'One thing worth knowing: these are **component** thresholds. Your overall grade comes from your total across the papers you sat, not from any single one — so a paper below the A line does not on its own mean you missed the A.',
+      '',
+      'If you post your papers and raw marks, we can work out exactly how far off you were.',
+    ].join('\n'),
+  },
+]
+
 const DATA_DIR = path.join(process.cwd(), 'content', 'data', 'grade-boundaries')
 
 function loadSession(code) {
@@ -234,6 +268,46 @@ async function main() {
     if (voteError) throw voteError
 
     console.log(`• replied            ${label}`)
+    posted++
+  }
+
+  for (const answer of QUESTION_ANSWERS) {
+    const { count, error: countError } = await db
+      .from('community_answers')
+      .select('id', { count: 'exact', head: true })
+      .eq('question_id', answer.questionId)
+      .eq('author_id', authorId)
+    if (countError) throw countError
+    if (count > 0) {
+      console.log(`• skip (has answer)  q/${answer.questionId.slice(0, 8)} — ${answer.note}`)
+      skipped++
+      continue
+    }
+
+    if (DRY) {
+      console.log(`\n• would answer       q/${answer.questionId.slice(0, 8)} — ${answer.note}\n${answer.body}\n`)
+      posted++
+      continue
+    }
+
+    const { data: inserted, error: insertError } = await db
+      .from('community_answers')
+      .insert({
+        question_id: answer.questionId,
+        author_id: authorId,
+        body_md: answer.body,
+        status: 'published',
+      })
+      .select('id')
+      .single()
+    if (insertError) throw insertError
+
+    const { error: voteError } = await db
+      .from('community_answer_votes')
+      .insert({ answer_id: inserted.id, user_id: authorId, value: 1 })
+    if (voteError) throw voteError
+
+    console.log(`• answered           q/${answer.questionId.slice(0, 8)} — ${answer.note}`)
     posted++
   }
 

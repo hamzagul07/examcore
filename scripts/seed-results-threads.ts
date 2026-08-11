@@ -68,11 +68,39 @@ async function main() {
   // thread for this cycle.
   const { data: existing } = await db
     .from('community_posts')
-    .select('subject_code')
+    .select('id, subject_code, author_id, hot_rank')
     .eq('status', 'published')
     .eq('flair', FLAIR)
     .gte('created_at', CYCLE_START)
   const covered = new Set((existing ?? []).map((r) => r.subject_code as string))
+
+  // Repair pass. hot_rank is computed by the vote trigger, so a thread created
+  // without its author's upvote keeps the column default of 0 and sorts to the
+  // bottom of the hot feed. An earlier version of this script did exactly that
+  // to twelve threads; this heals them rather than leaving the fix as a one-off
+  // statement nobody can find later.
+  let repaired = 0
+  for (const row of existing ?? []) {
+    if (Number(row.hot_rank) !== 0) continue
+    const { count } = await db
+      .from('community_post_votes')
+      .select('post_id', { count: 'exact', head: true })
+      .eq('post_id', row.id as string)
+      .eq('user_id', row.author_id as string)
+    if (count) continue
+
+    if (DRY) {
+      console.log(`• would repair rank   ${row.subject_code}`)
+      repaired++
+      continue
+    }
+    const { error: voteError } = await db
+      .from('community_post_votes')
+      .insert({ post_id: row.id as string, user_id: row.author_id as string, value: 1 })
+    if (voteError) throw voteError
+    console.log(`• repaired rank       ${row.subject_code}`)
+    repaired++
+  }
 
   let created = 0
   let skipped = 0
@@ -168,7 +196,8 @@ async function main() {
     created++
   }
 
-  console.log(`\n${DRY ? '[dry] ' : ''}${created} opened, ${skipped} skipped.`)
+  const repairNote = repaired ? `, ${repaired} rank${repaired === 1 ? '' : 's'} repaired` : ''
+  console.log(`\n${DRY ? '[dry] ' : ''}${created} opened, ${skipped} skipped${repairNote}.`)
   if (created && !DRY) {
     console.log('Next: node scripts/seed-results-thread-first-replies.mjs')
   }

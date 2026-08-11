@@ -54,10 +54,20 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: 'No valid fields to update.' }, { status: 400 })
   }
 
+  // Upsert, not update: 45 accounts have no user_profiles row yet — a profile
+  // is written at onboarding, and nothing stops someone signing in and going
+  // straight to the community. An UPDATE against a missing row matches nothing
+  // and reports no error, so the reply was `ok: true` and the preference was
+  // silently dropped. For an email opt-in that means telling somebody we had
+  // recorded their consent when we had not.
+  //
+  // Safe under RLS ("Users insert own profile") and under the column grants:
+  // every field written here is insertable by `authenticated`. `role` is
+  // deliberately absent — its grant is revoked, and including it would make
+  // PostgREST reject the whole statement.
   const { error } = await supabase
     .from('user_profiles')
-    .update({ ...patch, updated_at: new Date().toISOString() })
-    .eq('id', user.id)
+    .upsert({ id: user.id, ...patch, updated_at: new Date().toISOString() }, { onConflict: 'id' })
 
   if (error) {
     console.error('[account/preferences] update failed:', error)

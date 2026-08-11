@@ -13,6 +13,7 @@ import {
 } from '@/lib/seo/programmatic-subjects'
 import { getOfficialBoundaries } from '@/lib/seo/grade-boundaries-data'
 import { getSubjectGuideSlugForCode } from '@/lib/seo/subject-guides'
+import { ResultsThreadCta } from '@/components/community/ResultsThreadCta'
 import { MockPackEmailCapture } from '@/components/tools/MockPackEmailCapture'
 import { WillMyGradeHold } from '@/components/tools/WillMyGradeHold'
 import { FunnelLandingView } from '@/components/analytics/FunnelLandingView'
@@ -134,19 +135,22 @@ export default async function Results2026CaiePage({ params }: Props) {
           </>
         }
         after={
-          <section className="ms-tool-instrument__faq" aria-labelledby="results-code-faq">
-            <h2 id="results-code-faq" className="ms-tool-instrument__faq-title">
-              FAQ
-            </h2>
-            <dl className="ms-tool-faq">
-              {faqs.map((f) => (
-                <div key={f.q}>
-                  <dt>{f.q}</dt>
-                  <dd className="ms-body-2">{f.a}</dd>
-                </div>
-              ))}
-            </dl>
-          </section>
+          <>
+            <ResultsThreadCta source="results-2026-subject" subjectCode={code} className="mb-8" />
+            <section className="ms-tool-instrument__faq" aria-labelledby="results-code-faq">
+              <h2 id="results-code-faq" className="ms-tool-instrument__faq-title">
+                FAQ
+              </h2>
+              <dl className="ms-tool-faq">
+                {faqs.map((f) => (
+                  <div key={f.q}>
+                    <dt>{f.q}</dt>
+                    <dd className="ms-body-2">{f.a}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          </>
         }
       >
         <ResultsDayBanner subjectCode={code} className="mb-8" />

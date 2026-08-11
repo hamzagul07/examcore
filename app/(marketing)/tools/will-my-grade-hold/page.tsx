@@ -11,6 +11,7 @@ import {
   getGradeBoundaryCalculatorPages,
   isValidMarkingSubjectCode,
 } from '@/lib/seo/programmatic-subjects'
+import { ResultsThreadCta } from '@/components/community/ResultsThreadCta'
 import { ToolInstrumentShell } from '@/components/tools/ToolInstrumentShell'
 import { ToolsDeskArtefact } from '@/components/tools/ToolsDeskArtefact'
 
@@ -101,19 +102,22 @@ export default async function WillMyGradeHoldPage({ searchParams }: Props) {
           { name: 'Will my grade hold?', path },
         ]}
         after={
-          <section className="ms-tool-instrument__faq" aria-labelledby="grade-hold-faq">
-            <h2 id="grade-hold-faq" className="ms-tool-instrument__faq-title">
-              FAQ
-            </h2>
-            <dl className="ms-tool-faq">
-              {FAQS.map((f) => (
-                <div key={f.q}>
-                  <dt>{f.q}</dt>
-                  <dd className="ms-body-2">{f.a}</dd>
-                </div>
-              ))}
-            </dl>
-          </section>
+          <>
+            <ResultsThreadCta source="will-my-grade-hold" subjectCode={code} className="mb-8" />
+            <section className="ms-tool-instrument__faq" aria-labelledby="grade-hold-faq">
+              <h2 id="grade-hold-faq" className="ms-tool-instrument__faq-title">
+                FAQ
+              </h2>
+              <dl className="ms-tool-faq">
+                {FAQS.map((f) => (
+                  <div key={f.q}>
+                    <dt>{f.q}</dt>
+                    <dd className="ms-body-2">{f.a}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          </>
         }
       >
         <ResultsDayBanner subjectCode={code} className="mb-6" />

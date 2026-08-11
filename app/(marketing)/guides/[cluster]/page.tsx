@@ -281,6 +281,11 @@ export default async function ClusterGuidePage({ params }: Props) {
           </section>
         ) : null}
 
+        {/* The hub has no syllabus in context, so this resolves to the pinned
+            cross-subject thread. Placed after the tables and the FAQ: the ask
+            only works once the reader has the number they came for. */}
+        {isGradeBoundaries && <ResultsThreadCta source="guides-grade-boundaries" className="mt-12" />}
+
         <div className="ms-hub-card ec-card--paper mt-12 text-center">
           <h2 className="ms-h3">
             {isGradeBoundaries ? 'Stress-test your grade' : 'Ready to mark a paper?'}

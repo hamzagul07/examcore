@@ -450,6 +450,11 @@ const SHOWCASE_BY_SUBJECT: Record<string, ShowcaseSeed[]> = {
 const SHOWCASE_ALIAS: Record<string, string> = {
   'maths-aa': '9709',
   'maths-ai': '9709',
+  // IB codes are `ib-math-aa-hl` — singular "math" — so they never matched the
+  // "maths-" spellings above and fell through to the generic fallback instead
+  // of a theatre labelled with the student's own subject.
+  'math-aa': '9709',
+  'math-ai': '9709',
   physics: '9702',
   chemistry: '9701',
   biology: '9700',
@@ -503,7 +508,12 @@ function inferCatalogCode(
 
   if (isIbSubjectCode(subjectCode)) {
     const base = subjectCode.replace(/^ib-/, '').replace(/-(hl|sl)$/, '')
-    return SHOWCASE_ALIAS[base] ?? null
+    const aliased = SHOWCASE_ALIAS[base]
+    // Falls through on a miss rather than returning null. This used to bail
+    // here, so any IB subject whose base name was not an explicit alias
+    // (ib-psychology-hl → "psychology") got no diagram theatre at all and never
+    // reached the name matching below, which would have caught it.
+    if (aliased) return aliased
   }
 
   const c = subjectCode.toLowerCase()

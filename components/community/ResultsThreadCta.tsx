@@ -60,7 +60,13 @@ export function ResultsThreadCta({ source, subjectCode = null, className = '' }:
     },
   }[phase]
 
-  const href = `/community?utm_source=${encodeURIComponent(source)}&utm_medium=internal&utm_campaign=results-2026`
+  // Deep-links the thread rather than the feed home: the button says "post in
+  // the thread", so dropping the reader on a mixed feed loses exactly the
+  // intent the copy just built. /community/thread/<code> resolves which thread
+  // that is at click time; hub pages with no syllabus in context use the
+  // reserved "results" slug and get the pinned cross-subject thread.
+  const utm = `utm_source=${encodeURIComponent(source)}&utm_medium=internal&utm_campaign=results-2026`
+  const href = `/community/thread/${encodeURIComponent(subjectCode ?? 'results')}?${utm}`
 
   return (
     <aside

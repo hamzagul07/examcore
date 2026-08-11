@@ -22,6 +22,7 @@
     "outreach": "tsx scripts/outreach.ts",
     "test:billing": "cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/teacher-seat.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/scholar-access.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/max-features.test.ts",
     "email:preview": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/preview-emails.ts",
+    "profile:nudge": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/send-profile-completion.ts",
     "email:max-vault-tour": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/send-max-vault-tour.ts",
     "test:email": "cross-env NODE_OPTIONS=--conditions=react-server tsx lib/community/email-unsubscribe.test.ts && tsx lib/max/lifecycle-timing.test.ts",
     "campaign:send": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/send-campaign.ts",

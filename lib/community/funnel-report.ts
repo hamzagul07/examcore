@@ -2,6 +2,7 @@ import 'server-only'
 
 import { createServiceClient } from '@/lib/supabase-server'
 import { THREAD_CLICK_PREFIX } from '@/lib/community/thread-clicks'
+import { isOfficialUsername } from '@/lib/community/official'
 
 /** Seeded/official accounts, so "real activity" means what it says. */
 const BOT_PREFIX = 'a10000'
@@ -178,15 +179,27 @@ export async function communityFunnelReport(days: number): Promise<FunnelReport>
   // A reply from the author themselves does not count: several of these are
   // someone bumping their own post because nobody came.
   const names = new Map(allProfiles.map((p) => [p.id, p.username]))
+
+  /**
+   * The badged team accounts count as an answer; the seeded student personas do
+   * not. Answering as the platform, under a visible Official badge, is the team
+   * doing its job — leaving that thread on a "nobody replied" list would send
+   * someone to answer it twice. A persona pretending to be a peer is the thing
+   * this list exists to catch, so it still counts as silence.
+   */
+  const isTeam = (id: string) => isOfficialUsername(names.get(id) ?? null)
+  const counts = (replierId: string, authorId: string) =>
+    replierId !== authorId && (isTeam(replierId) || !isBot(replierId))
+
   const answeredPosts = new Set<string>()
   for (const c of allComments) {
     const post = allPosts.find((p) => p.id === c.post_id)
-    if (post && !isBot(c.author_id) && c.author_id !== post.author_id) answeredPosts.add(c.post_id)
+    if (post && counts(c.author_id, post.author_id)) answeredPosts.add(c.post_id)
   }
   const answeredQuestions = new Set<string>()
   for (const a of allAnswers) {
     const q = allQuestions.find((x) => x.id === a.question_id)
-    if (q && !isBot(a.author_id) && a.author_id !== q.author_id) answeredQuestions.add(a.question_id)
+    if (q && counts(a.author_id, q.author_id)) answeredQuestions.add(a.question_id)
   }
 
   const now = Date.now()

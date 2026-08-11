@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useAuthCheck } from '@/lib/hooks/useAuthCheck'
 import { CommunityMarkdown } from '@/components/community/CommunityMarkdown'
 import { DigestOptIn } from '@/components/community/DigestOptIn'
+import { isOfficialUsername } from '@/lib/community/official'
 
 const ANSWERED_KEY = 'ms:community:answered'
 
@@ -160,6 +161,9 @@ export function QuestionThread({
               </div>
               <div className="community-answer-foot">
                 <span className="community-note-meta">{a.authorUsername ? `@${a.authorUsername}` : 'a student'}</span>
+                {isOfficialUsername(a.authorUsername) ? (
+                  <span className="rc-official-badge" title="Official MarkScheme account">✓ Official</span>
+                ) : null}
                 {isOwner && !a.isAccepted ? (
                   <button type="button" className="ec-btn-underline text-sm" onClick={() => accept(a.id)}>
                     Accept this answer

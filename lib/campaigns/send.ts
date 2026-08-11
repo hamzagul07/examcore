@@ -3,7 +3,7 @@ import 'server-only'
 import { createServiceClient } from '@/lib/supabase-server'
 import { subscribeUrl, unsubscribeUrl } from '@/lib/community/email-unsubscribe'
 import { sendBroadcastEmail } from '@/lib/email/broadcast'
-import { getSegment, type Recipient } from '@/lib/campaigns/audience'
+import { getSegment, SEGMENTS, type Recipient, type SegmentId } from '@/lib/campaigns/audience'
 
 /**
  * Campaign sender.
@@ -18,6 +18,9 @@ import { getSegment, type Recipient } from '@/lib/campaigns/audience'
  * is mailing someone twice, not missing a row: an unrecorded success gets
  * retried on the next run, which is recoverable; a recorded failure is not.
  */
+
+/** Not a real user. Unsubscribe links in a preview must not touch a live row. */
+const PREVIEW_USER_ID = '00000000-0000-4000-8000-000000000000'
 
 export type CampaignRunResult = {
   slug: string
@@ -41,6 +44,42 @@ export type CampaignRow = {
   cta_label: string | null
   cta_href: string | null
   status: string
+}
+
+/**
+ * Send exactly one real copy of a campaign to one address.
+ *
+ * For reading the thing as it will actually arrive — rendered, with the CTA
+ * live — before deciding whether hundreds of students should get it. It never
+ * touches the audience, never marks the campaign as started, and records
+ * nothing, so previewing twice is free and previewing cannot be mistaken for a
+ * send.
+ */
+export async function previewCampaign(opts: {
+  slug: string
+  to: string
+}): Promise<{ slug: string; to: string; delivered: boolean }> {
+  const admin = createServiceClient()
+  const { data: campaign } = await admin
+    .from('campaigns')
+    .select('id, slug, subject, preheader, body, audience, cta_label, cta_href, status')
+    .eq('slug', opts.slug)
+    .maybeSingle()
+
+  if (!campaign) throw new Error(`no campaign with slug "${opts.slug}"`)
+  const c = campaign as CampaignRow
+
+  const kind = SEGMENTS[c.audience as SegmentId]?.unsubscribeKind ?? 'updates'
+  // A placeholder recipient: the preview must render the same code path the
+  // real send uses, tokens and all, or it is not a preview of anything.
+  const recipient: Recipient = {
+    userId: PREVIEW_USER_ID,
+    email: opts.to,
+    name: 'Preview',
+  }
+
+  const delivered = await deliver(c, recipient, kind)
+  return { slug: c.slug, to: opts.to, delivered }
 }
 
 export async function runCampaign(opts: {

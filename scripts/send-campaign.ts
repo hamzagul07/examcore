@@ -7,13 +7,19 @@
  *
  *   pnpm campaign:list
  *   pnpm campaign:send -- --slug=august-update
+ *   pnpm campaign:send -- --slug=august-update --to=me@example.com
  *   pnpm campaign:send -- --slug=august-update --live --confirm=august-update
  *
  * Options:
  *   --slug=<slug>      campaign to run (required)
  *   --limit=<n>        max recipients this run (default 50)
- *   --live             actually send
+ *   --to=<email>       send one real copy to this address and nobody else
+ *   --live             actually send to the audience
  *   --confirm=<slug>   must equal --slug when --live is set
+ *
+ * --to and --live are mutually exclusive. Reading a draft and mailing hundreds
+ * of students should never be one keystroke apart, and a preview that could
+ * silently become a broadcast is the exact mistake worth designing out.
  */
 import { readFileSync } from 'node:fs'
 
@@ -46,7 +52,22 @@ async function main() {
     process.exit(1)
   }
 
+  const previewTo = arg('to')
   const live = has('live')
+
+  if (previewTo && live) {
+    console.error('Refusing to run: --to is a preview and --live is a broadcast. Pick one.')
+    process.exit(1)
+  }
+
+  if (previewTo) {
+    const { previewCampaign } = await import('@/lib/campaigns/send')
+    const result = await previewCampaign({ slug, to: previewTo })
+    console.log(JSON.stringify(result, null, 2))
+    console.log(`\nPreview sent to ${previewTo}. Nobody else received it.`)
+    return
+  }
+
   if (live && arg('confirm') !== slug) {
     console.error(
       `Refusing to send live: pass --confirm=${slug} to confirm you mean this campaign.`

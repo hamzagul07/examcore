@@ -68,8 +68,41 @@ async function main() {
   const { data: authUser } = await admin.auth.admin.getUserById(userId)
   const realEmail = authUser?.user?.email ?? null
 
+  // Pull the real Vault facts so the email describes what is actually sitting
+  // there. Anything that fails to resolve is simply left unclaimed.
+  const { loadVaultIbAssessment } = await import('@/lib/max/vault-ib-assessment')
+  const { buildVaultDiagramTheatre } = await import('@/lib/max/vault-diagram-showcase')
+  const { getSubjectById } = await import('@/lib/profile-options')
+
+  const primary = (profile.subjects as string[] | null)?.[0] ?? null
+  const primaryOpt = primary
+    ? getSubjectById(primary, (profile.level as string | null) ?? undefined)
+    : null
+  const primaryCode = primaryOpt?.code ?? primary
+
+  let vault = null
+  if (primaryCode) {
+    const theatre = buildVaultDiagramTheatre(primaryCode, primaryOpt?.label ?? null)
+    const assessment = await loadVaultIbAssessment(primaryCode).catch(() => null)
+    const head = assessment?.headline ?? null
+    const top = head
+      ? ([...head.criteria].sort((a, b) => b.maxMarks - a.maxMarks)[0] ?? null)
+      : null
+    vault = {
+      subjectLabel: primaryOpt?.label ?? theatre?.subjectLabel ?? null,
+      diagrams: theatre?.catalogCount ?? 0,
+      signature: theatre?.signature?.title ?? null,
+      assessmentLabel: head?.label ?? null,
+      assessmentMarks: head?.maxMarks ?? null,
+      topCriterion: top
+        ? { letter: top.letter, name: top.name, marks: top.maxMarks, share: top.share }
+        : null,
+    }
+  }
+
   const payload = {
     to: reviewTo ?? realEmail ?? '',
+    vault,
     recipientName: profile.full_name as string | null,
     subjects: (profile.subjects as string[] | null) ?? [],
     level: (profile.level as string | null) ?? null,

@@ -7,8 +7,10 @@ import {
   EMAIL_MUTED,
   EMAIL_SANS,
   EMAIL_SERIF,
+  calloutHtml,
   escapeHtml as esc,
   renderBrandedEmailHtml,
+  sectionHeading,
   stepHtml,
 } from '@/lib/email/templates'
 import { getSubjectById } from '@/lib/profile-options'
@@ -25,6 +27,24 @@ import { SITE_URL } from '@/lib/site-config'
  * never with a feature list.
  */
 
+/**
+ * Facts pulled from the student's own Vault, so the email describes what is
+ * actually sitting there rather than a generic feature list. Everything here is
+ * optional: a claim we cannot substantiate is simply not made.
+ */
+export type ProfileCompletionVault = {
+  subjectLabel: string | null
+  /** Live diagrams catalogued for their subject. */
+  diagrams: number
+  /** Signature diagram title, e.g. "Logic gates — truth to circuit". */
+  signature: string | null
+  /** Criterion-marked component, e.g. "Solution (SL/HL)". */
+  assessmentLabel: string | null
+  assessmentMarks: number | null
+  /** Heaviest criterion on that component. */
+  topCriterion: { letter: string; name: string; marks: number; share: number } | null
+}
+
 export type ProfileCompletionPayload = {
   to: string
   recipientName?: string | null
@@ -35,6 +55,7 @@ export type ProfileCompletionPayload = {
   hasExamDate: boolean
   /** How many subjects this qualification normally involves, if known. */
   expectedSubjects?: number | null
+  vault?: ProfileCompletionVault | null
   wait?: boolean
 }
 
@@ -103,16 +124,71 @@ export function buildProfileCompletionEmail(payload: ProfileCompletionPayload): 
     )
   }
 
+  const v = payload.vault ?? null
+  const para = (inner: string, muted = false) =>
+    `<p style="margin:0 0 16px;font-family:${EMAIL_SERIF};font-size:${muted ? 15 : 16}px;line-height:1.65;color:${muted ? EMAIL_MUTED : EMAIL_BODY}">${inner}</p>`
+
+  /** What is already waiting for them, stated only where we have the facts. */
+  const vaultBullets: string[] = []
+  if (v?.assessmentLabel && v.topCriterion) {
+    const pct = Math.round(v.topCriterion.share * 100)
+    vaultBullets.push(
+      `<strong>${esc(v.assessmentLabel)}</strong>, broken into the criteria it is actually marked on — ${esc(v.topCriterion.letter)} ${esc(v.topCriterion.name)} alone is ${pct}% of it. It is the biggest thing you can still change once the papers are done.`
+    )
+  }
+  if (v?.diagrams) {
+    vaultBullets.push(
+      v.signature
+        ? `<strong>${v.diagrams} live diagrams</strong> for ${esc(v.subjectLabel || 'your subject')} — including ${esc(v.signature)} — that you can pull apart rather than stare at.`
+        : `<strong>${v.diagrams} live diagrams</strong> for ${esc(v.subjectLabel || 'your subject')}.`
+    )
+  }
+  vaultBullets.push(
+    'A <strong>question desk</strong> stocked from the topics your own marking says are weakest, not a generic revision list.'
+  )
+  vaultBullets.push(
+    'IB technique that is actually IB — command terms, the IA, criterion bands, and what your grades become out of 45.'
+  )
+
+  const vaultHtml = `
+    ${sectionHeading('Your Vault', 'Already built, waiting on the profile')}
+    <ul style="margin:0 0 6px;padding:0 0 0 18px;font-family:${EMAIL_SERIF};font-size:15.5px;line-height:1.6;color:${EMAIL_BODY}">
+      ${vaultBullets.map((b) => `<li style="margin:0 0 10px">${b}</li>`).join('')}
+    </ul>`
+
+  const differentHtml = `
+    ${sectionHeading('Why this is not the other tools', '')}
+    ${para(
+      'Most of them read your answer and tell you it looks good. We mark it against the scheme, mark by mark, and then name every one you did not get and the exact words that would have earned it. You also get your own answer rewritten to full marks, annotated so you can see what each addition buys.'
+    )}
+    ${para(
+      'That is the whole product. Not a chatbot with an exam skin on it.',
+      true
+    )}`
+
+  const askHtml = `
+    ${calloutHtml(
+      `<p style="margin:0 0 8px;font-family:${EMAIL_SANS};font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:${EMAIL_BRAND}">One thing back</p>
+       <p style="margin:0;font-family:${EMAIL_SERIF};font-size:15.5px;line-height:1.6;color:${EMAIL_BODY}">
+         You are one of the first people paying for this, so your answer changes what gets built next.
+         <strong>What is your IA on?</strong> Reply to this email and I will point your Vault at it — and tell me the one thing that would make this worth twice what you pay.
+       </p>`
+    )}`
+
   const bodyHtml = `
-    <p style="margin:0 0 16px;font-family:${EMAIL_SERIF};font-size:16px;line-height:1.65;color:${EMAIL_BODY}">${greeting}</p>
-    <p style="margin:0 0 20px;font-family:${EMAIL_SERIF};font-size:16px;line-height:1.65;color:${EMAIL_BODY}">
-      You are set up and marking, but your profile is missing a couple of things — and until they are there, you are getting a thinner version of what you are paying for.
-    </p>
+    ${para(greeting)}
+    ${para(
+      'You are set up and marking, but your profile is missing a couple of things — and until they are there, you are getting a thinner version of what you are paying for.'
+    )}
     ${haveLine ? `<div style="margin:0 0 22px">${haveLine}</div>` : ''}
     ${steps.join('')}
-    <p style="margin:22px 0 0;font-family:${EMAIL_SERIF};font-size:15px;line-height:1.6;color:${EMAIL_MUTED}">
-      Both live on your profile and take about two minutes. Everything you have marked so far stays exactly where it is.
-    </p>`
+    ${para(
+      'Both live on your profile and take about two minutes. Everything you have marked so far stays exactly where it is.',
+      true
+    )}
+    ${vaultHtml}
+    ${differentHtml}
+    ${askHtml}`
 
   const text = [
     greeting,
@@ -129,6 +205,22 @@ export function buildProfileCompletionEmail(payload: ProfileCompletionPayload): 
       : '',
     '',
     'Both take about two minutes. Everything you have marked so far stays where it is.',
+    '',
+    'YOUR VAULT — already built, waiting on the profile',
+    v?.assessmentLabel && v.topCriterion
+      ? `• ${v.assessmentLabel}, broken into the criteria it is marked on — ${v.topCriterion.letter} ${v.topCriterion.name} alone is ${Math.round(v.topCriterion.share * 100)}% of it.`
+      : '',
+    v?.diagrams
+      ? `• ${v.diagrams} live diagrams for ${v.subjectLabel ?? 'your subject'}${v.signature ? ` — including ${v.signature}` : ''}.`
+      : '',
+    '• A question desk stocked from the topics your own marking says are weakest.',
+    '• IB technique that is actually IB — command terms, the IA, criterion bands, points out of 45.',
+    '',
+    'WHY THIS IS NOT THE OTHER TOOLS',
+    'Most of them read your answer and tell you it looks good. We mark it against the scheme, mark by mark, then name every mark you did not get and the exact words that would have earned it — plus your own answer rewritten to full marks, annotated.',
+    '',
+    'ONE THING BACK',
+    'You are one of the first people paying for this, so your answer changes what gets built next. What is your IA on? Reply and I will point your Vault at it — and tell me the one thing that would make this worth twice what you pay.',
   ]
     .filter((l) => l !== '')
     .join('\n')

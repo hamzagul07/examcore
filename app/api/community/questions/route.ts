@@ -6,6 +6,7 @@ import {
 } from '@/lib/supabase-server'
 import { createQuestion, listQuestions } from '@/lib/community/qa'
 import type { Board } from '@/lib/community/notes'
+import { ensureUsername } from '@/lib/community/ensure-username'
 
 const DAILY_CAP = 20
 
@@ -40,8 +41,12 @@ export async function POST(request: NextRequest) {
   }
   const admin = createServiceClient()
   const { data: profile } = await admin.from('user_profiles').select('username').eq('id', user.id).maybeSingle()
-  if (!profile?.username) {
-    return jsonWithAuthCookies({ error: 'Choose a username first.', code: 'no_username' }, pendingCookies, { status: 400 })
+  if (!profile?.username && !(await ensureUsername(user.id)).username) {
+    return jsonWithAuthCookies(
+      { error: 'Could not set up your public name — try again.' },
+      pendingCookies,
+      { status: 500 }
+    )
   }
   const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
   const { count } = await admin

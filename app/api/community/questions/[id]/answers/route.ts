@@ -5,6 +5,7 @@ import {
   createServiceClient,
 } from '@/lib/supabase-server'
 import { createAnswer } from '@/lib/community/qa'
+import { ensureUsername } from '@/lib/community/ensure-username'
 
 export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { user, pendingCookies } = await authenticateRouteRequest(request)
@@ -18,8 +19,12 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
   }
   const admin = createServiceClient()
   const { data: profile } = await admin.from('user_profiles').select('username').eq('id', user.id).maybeSingle()
-  if (!profile?.username) {
-    return jsonWithAuthCookies({ error: 'Choose a username first.', code: 'no_username' }, pendingCookies, { status: 400 })
+  if (!profile?.username && !(await ensureUsername(user.id)).username) {
+    return jsonWithAuthCookies(
+      { error: 'Could not set up your public name — try again.' },
+      pendingCookies,
+      { status: 500 }
+    )
   }
   const result = await createAnswer({
     questionId: id,

@@ -3,9 +3,10 @@ import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-se
 import { createPost, listPosts, type Board, type PostKind, type PostSort } from '@/lib/community/posts'
 import { moderatePostAfterInsert } from '@/lib/community/moderate-async'
 import { notifyMentions } from '@/lib/community/notify'
-import { getUserUsername, postsInLast24h } from '@/lib/community/require-username'
+import { postsInLast24h } from '@/lib/community/require-username'
 import type { CommunityAttachment } from '@/lib/community/uploads'
 import { attachmentKindForMime } from '@/lib/community/uploads'
+import { ensureUsername } from '@/lib/community/ensure-username'
 
 const DAILY_POST_CAP = 25
 
@@ -63,12 +64,12 @@ export async function POST(request: NextRequest) {
     ? (body.kind as PostKind)
     : 'discussion'
 
-  const username = await getUserUsername(user.id)
+  const { username, assigned: usernameAssigned } = await ensureUsername(user.id)
   if (!username) {
     return jsonWithAuthCookies(
-      { error: 'Choose a username before posting.', code: 'no_username' },
+      { error: 'Could not set up your public name — try again.' },
       pendingCookies,
-      { status: 400 }
+      { status: 500 }
     )
   }
 
@@ -120,7 +121,14 @@ export async function POST(request: NextRequest) {
   })
 
   return jsonWithAuthCookies(
-    { ok: true, id: result.id, status: result.status },
+    // Only present on the contribution that created the handle, so the client
+    // can tell them what name just went public.
+    {
+      ok: true,
+      id: result.id,
+      status: result.status,
+      ...(usernameAssigned ? { assignedUsername: username } : {}),
+    },
     pendingCookies
   )
 }

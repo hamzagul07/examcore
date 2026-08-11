@@ -7,6 +7,7 @@ import type { CommentNode } from '@/lib/community/comments'
 import { CommunityMarkdown } from '@/components/community/CommunityMarkdown'
 import { timeAgo } from '@/lib/community/format'
 import { isOfficialUsername } from '@/lib/community/official'
+import { DigestOptIn } from '@/components/community/DigestOptIn'
 import { VoteBox } from './VoteBox'
 
 type Props = {
@@ -16,6 +17,8 @@ type Props = {
   userVotes: Record<string, number>
   signedIn: boolean
   locked?: boolean
+  /** Signed in and not yet subscribed — we may offer the digest after they post. */
+  offerDigest?: boolean
 }
 
 const DRAFT_PREFIX = 'ms:community:draft:'
@@ -42,10 +45,17 @@ function takeDraft(key: string): string | null {
   }
 }
 
-export function CommentTree({ postId, subjectName, comments, userVotes, signedIn, locked }: Props) {
+export function CommentTree({ postId, subjectName, comments, userVotes, signedIn, locked, offerDigest }: Props) {
   return (
     <div className="rc-comments">
-      <CommentComposer postId={postId} subjectName={subjectName} signedIn={signedIn} locked={locked} topLevel />
+      <CommentComposer
+        postId={postId}
+        subjectName={subjectName}
+        signedIn={signedIn}
+        locked={locked}
+        offerDigest={offerDigest}
+        topLevel
+      />
       <div className="rc-comments-count">
         {countComments(comments)} comment{countComments(comments) === 1 ? '' : 's'}
       </div>
@@ -175,6 +185,7 @@ function CommentComposer({
   signedIn,
   topLevel,
   locked,
+  offerDigest,
   onDone,
 }: {
   postId: string
@@ -183,13 +194,14 @@ function CommentComposer({
   signedIn: boolean
   topLevel?: boolean
   locked?: boolean
+  offerDigest?: boolean
   onDone?: () => void
 }) {
   const router = useRouter()
   const draftKey = `${DRAFT_PREFIX}${postId}:${parentId ?? 'top'}`
   const [body, setBody] = useState('')
-  const [needUsername, setNeedUsername] = useState(false)
-  const [username, setUsername] = useState('')
+  const [assignedUsername, setAssignedUsername] = useState('')
+  const [showDigestOptIn, setShowDigestOptIn] = useState(false)
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
@@ -221,20 +233,6 @@ function CommentComposer({
 
     setSubmitting(true)
     try {
-      if (needUsername) {
-        const ures = await fetch('/api/community/username', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username }),
-        })
-        const udata = await ures.json()
-        if (!ures.ok) {
-          setError(udata.error || 'Could not set username.')
-          setSubmitting(false)
-          return
-        }
-        setNeedUsername(false)
-      }
       const res = await fetch(`/api/community/posts/${postId}/comments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -242,17 +240,17 @@ function CommentComposer({
       })
       const data = await res.json()
       if (!res.ok) {
-        if (data.code === 'no_username') {
-          setNeedUsername(true)
-          setError('Choose a username to comment under.')
-          setSubmitting(false)
-          return
-        }
         setError(data.error || 'Could not post your comment.')
         setSubmitting(false)
         return
       }
       setBody('')
+      // First contribution: the server just gave them a public handle. Say so
+      // rather than letting them discover their own name on the post.
+      if (data.assignedUsername) setAssignedUsername(data.assignedUsername)
+      // Asked only after the comment lands, so the offer follows a
+      // contribution instead of standing between them and posting one.
+      if (offerDigest) setShowDigestOptIn(true)
       onDone?.()
       router.refresh()
     } catch {
@@ -270,14 +268,12 @@ function CommentComposer({
         onChange={(e) => setBody(e.target.value)}
         rows={parentId ? 3 : 4}
       />
-      {needUsername ? (
-        <input
-          className="rc-input"
-          value={username}
-          onChange={(e) => setUsername(e.target.value.toLowerCase())}
-          placeholder="Pick a public username"
-          maxLength={20}
-        />
+      {showDigestOptIn ? <DigestOptIn onDone={() => setShowDigestOptIn(false)} /> : null}
+      {assignedUsername ? (
+        <p className="rc-comment-composer-note ms-body-2">
+          Posted as <strong>u/{assignedUsername}</strong> — rename it any time in{' '}
+          <Link href="/account/profile" className="ec-link">your account</Link>.
+        </p>
       ) : null}
       {error ? <p className="rc-error">{error}</p> : null}
       <div className="rc-comment-composer-actions">

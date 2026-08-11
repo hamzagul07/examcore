@@ -56,8 +56,6 @@ export function QuestionThread({ question, answers: initial }: { question: Quest
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
   const [info, setInfo] = useState('')
-  const [needUsername, setNeedUsername] = useState(false)
-  const [username, setUsername] = useState('')
   const isOwner = !!user && user.id === question.authorId
 
   async function postAnswer() {
@@ -65,19 +63,6 @@ export function QuestionThread({ question, answers: initial }: { question: Quest
     setInfo('')
     setSubmitting(true)
     try {
-      if (needUsername) {
-        const ures = await fetch('/api/community/username', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username }),
-        })
-        if (!ures.ok) {
-          setError((await ures.json()).error || 'Could not set username.')
-          setSubmitting(false)
-          return
-        }
-        setNeedUsername(false)
-      }
       const res = await fetch(`/api/community/questions/${question.id}/answers`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -85,10 +70,7 @@ export function QuestionThread({ question, answers: initial }: { question: Quest
       })
       const data = await res.json()
       if (!res.ok) {
-        if (data.code === 'no_username') {
-          setNeedUsername(true)
-          setError('Choose a public username to post under.')
-        } else setError(data.error || 'Could not post.')
+        setError(data.error || 'Could not post.')
         setSubmitting(false)
         return
       }
@@ -162,12 +144,6 @@ export function QuestionThread({ question, answers: initial }: { question: Quest
       </h3>
       {user ? (
         <div className="community-editor">
-          {needUsername ? (
-            <label className="community-field">
-              <span className="community-label">Pick a public username</span>
-              <input className="community-input" value={username} onChange={(e) => setUsername(e.target.value.toLowerCase())} maxLength={20} />
-            </label>
-          ) : null}
           <textarea
             className="community-textarea"
             value={body}

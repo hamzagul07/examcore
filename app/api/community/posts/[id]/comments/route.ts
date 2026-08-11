@@ -5,7 +5,7 @@ import {
   moderateCommentAfterInsert,
 } from '@/lib/community/moderate-async'
 import { notifyCommentActivity, notifyMentions } from '@/lib/community/notify'
-import { getUserUsername } from '@/lib/community/require-username'
+import { ensureUsername } from '@/lib/community/ensure-username'
 
 /** GET /api/community/posts/[id]/comments — full comment tree. */
 export async function GET(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
@@ -26,12 +26,12 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     return jsonWithAuthCookies({ error: 'Invalid request body.' }, pendingCookies, { status: 400 })
   }
 
-  const username = await getUserUsername(user.id)
+  const { username, assigned: usernameAssigned } = await ensureUsername(user.id)
   if (!username) {
     return jsonWithAuthCookies(
-      { error: 'Choose a username before commenting.', code: 'no_username' },
+      { error: 'Could not set up your public name — try again.' },
       pendingCookies,
-      { status: 400 }
+      { status: 500 }
     )
   }
 
@@ -63,5 +63,15 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     })
   })
 
-  return jsonWithAuthCookies({ ok: true, id: result.id, status: result.status }, pendingCookies)
+  return jsonWithAuthCookies(
+    // Only present on the contribution that created the handle, so the client
+    // can tell them what name just went public.
+    {
+      ok: true,
+      id: result.id,
+      status: result.status,
+      ...(usernameAssigned ? { assignedUsername: username } : {}),
+    },
+    pendingCookies
+  )
 }

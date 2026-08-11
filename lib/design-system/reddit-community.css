@@ -806,6 +806,16 @@
 }
 .rc-comment-signin { padding: 8px 0; }
 
+/* Shown after a comment lands, never before it. */
+.rc-digest-optin {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-top: 12px; padding: 12px 14px;
+  background: var(--ec-surface-raised); border: 1px solid var(--ec-border);
+  border-radius: 4px;
+}
+.rc-digest-optin__actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.rc-digest-optin--done { color: var(--ec-text-secondary); }
+
 /* ── Composer ──────────────────────────────────────────────────────────── */
 .rc-composer { display: flex; flex-direction: column; gap: 16px; }
 .rc-composer-h1 { font-size: 22px; font-weight: 900; color: var(--ec-text-primary); }

@@ -91,8 +91,6 @@ export function PostComposer({
   const [flair, setFlair] = useState('')
   const [attachments, setAttachments] = useState<CommunityAttachment[]>([])
   const [uploading, setUploading] = useState(false)
-  const [needUsername, setNeedUsername] = useState(false)
-  const [username, setUsername] = useState('')
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [draftRestored, setDraftRestored] = useState(false)
@@ -184,7 +182,6 @@ export function PostComposer({
         if (res.ok && data.attachment) {
           setAttachments((prev) => [...prev, data.attachment])
         } else {
-          if (data.code === 'no_username') setNeedUsername(true)
           setError(data.error || 'Upload failed.')
         }
       } catch {
@@ -215,20 +212,6 @@ export function PostComposer({
     }
     setSubmitting(true)
     try {
-      if (needUsername) {
-        const ures = await fetch('/api/community/username', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username }),
-        })
-        const udata = await ures.json()
-        if (!ures.ok) {
-          setError(udata.error || 'Could not set username.')
-          setSubmitting(false)
-          return
-        }
-        setNeedUsername(false)
-      }
       const res = await fetch('/api/community/posts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -245,12 +228,6 @@ export function PostComposer({
       })
       const data = await res.json()
       if (!res.ok) {
-        if (data.code === 'no_username') {
-          setNeedUsername(true)
-          setError('Choose a username to post under.')
-          setSubmitting(false)
-          return
-        }
         setError(data.error || 'Could not publish your post.')
         setSubmitting(false)
         return
@@ -481,19 +458,6 @@ export function PostComposer({
             </ul>
           ) : null}
         </div>
-
-        {needUsername ? (
-          <label className="rc-field">
-            <span className="rc-label">Pick a public username</span>
-            <input
-              className="rc-input"
-              value={username}
-              onChange={(e) => setUsername(e.target.value.toLowerCase())}
-              placeholder="e.g. studymaster_21"
-              maxLength={20}
-            />
-          </label>
-        ) : null}
 
         {error ? <FormErrorAlert message={error} className="rc-error-alert" /> : null}
 

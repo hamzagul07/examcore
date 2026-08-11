@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
-import { getUserUsername } from '@/lib/community/require-username'
 import { attachmentKindForMime, uploadCommunityFile } from '@/lib/community/uploads'
+import { ensureUsername } from '@/lib/community/ensure-username'
 
 export const maxDuration = 60
 
@@ -12,12 +12,12 @@ export async function POST(request: NextRequest) {
   const { user, pendingCookies } = await authenticateRouteRequest(request)
   if (!user) return jsonWithAuthCookies({ error: 'Sign in to upload.' }, pendingCookies, { status: 401 })
 
-  const username = await getUserUsername(user.id)
+  const { username } = await ensureUsername(user.id)
   if (!username) {
     return jsonWithAuthCookies(
-      { error: 'Choose a username before uploading.', code: 'no_username' },
+      { error: 'Could not set up your public name — try again.' },
       pendingCookies,
-      { status: 400 }
+      { status: 500 }
     )
   }
 

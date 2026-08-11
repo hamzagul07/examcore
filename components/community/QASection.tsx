@@ -150,28 +150,12 @@ function AskForm({
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
   const [info, setInfo] = useState('')
-  const [needUsername, setNeedUsername] = useState(false)
-  const [username, setUsername] = useState('')
 
   async function submit() {
     setError('')
     setInfo('')
     setSubmitting(true)
     try {
-      if (needUsername) {
-        const ures = await fetch('/api/community/username', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username }),
-        })
-        const udata = await ures.json()
-        if (!ures.ok) {
-          setError(udata.error || 'Could not set username.')
-          setSubmitting(false)
-          return
-        }
-        setNeedUsername(false)
-      }
       const res = await fetch('/api/community/questions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -179,12 +163,6 @@ function AskForm({
       })
       const data = await res.json()
       if (!res.ok) {
-        if (data.code === 'no_username') {
-          setNeedUsername(true)
-          setError('Choose a public username to post under.')
-          setSubmitting(false)
-          return
-        }
         setError(data.error || 'Could not post your question.')
         setSubmitting(false)
         return
@@ -203,12 +181,6 @@ function AskForm({
 
   return (
     <div className="community-editor">
-      {needUsername ? (
-        <label className="community-field">
-          <span className="community-label">Pick a public username</span>
-          <input className="community-input" value={username} onChange={(e) => setUsername(e.target.value.toLowerCase())} placeholder="e.g. studymaster_21" maxLength={20} />
-        </label>
-      ) : null}
       <label className="community-field">
         <span className="community-label">Question</span>
         <input className="community-input" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Why is enthalpy of solution sometimes positive?" maxLength={160} />

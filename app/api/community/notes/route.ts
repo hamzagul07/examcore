@@ -5,6 +5,7 @@ import {
   createServiceClient,
 } from '@/lib/supabase-server'
 import { createNote, listNotes, type Board } from '@/lib/community/notes'
+import { ensureUsername } from '@/lib/community/ensure-username'
 
 const DAILY_NOTE_CAP = 10
 
@@ -57,11 +58,11 @@ export async function POST(request: NextRequest) {
     .select('username')
     .eq('id', user.id)
     .maybeSingle()
-  if (!profile?.username) {
+  if (!profile?.username && !(await ensureUsername(user.id)).username) {
     return jsonWithAuthCookies(
-      { error: 'Choose a username before contributing.', code: 'no_username' },
+      { error: 'Could not set up your public name — try again.' },
       pendingCookies,
-      { status: 400 }
+      { status: 500 }
     )
   }
 

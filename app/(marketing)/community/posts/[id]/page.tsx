@@ -60,6 +60,18 @@ export default async function PostDetailPage({ params }: PageProps) {
   const commentIds = collectCommentIds(comments)
   const commentVotes = user ? await getUserCommentVotes(user.id, commentIds) : {}
 
+  // Whether we may offer the weekly digest after they comment. ON-02 keeps it
+  // opt-in, so the offer only appears for someone who has not already said yes.
+  let offerDigest = false
+  if (user) {
+    const { data: prefs } = await supabase
+      .from('user_profiles')
+      .select('email_community_digest')
+      .eq('id', user.id)
+      .maybeSingle()
+    offerDigest = !prefs?.email_community_digest
+  }
+
   return (
     <div className="rc-page rc-page--thread" style={{ '--sc': accent } as CSSProperties}>
       <div className="rc-layout">
@@ -126,6 +138,7 @@ export default async function PostDetailPage({ params }: PageProps) {
               userVotes={commentVotes}
               signedIn={!!user}
               locked={post.isLocked}
+              offerDigest={offerDigest}
             />
           </article>
         </main>

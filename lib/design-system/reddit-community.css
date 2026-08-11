@@ -799,6 +799,11 @@
   box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.04));
 }
 .rc-comment-composer-actions { display: flex; justify-content: flex-end; gap: 8px; }
+/* Sits under the actions so the account requirement is read after the box, not
+   before it — the box is what invites the reply. */
+.rc-comment-composer-note {
+  margin: 0; font-size: 13px; color: var(--ec-text-secondary); text-align: right;
+}
 .rc-comment-signin { padding: 8px 0; }
 
 /* ── Composer ──────────────────────────────────────────────────────────── */

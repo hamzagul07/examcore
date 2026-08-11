@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import type { CommentNode } from '@/lib/community/comments'
@@ -16,6 +16,30 @@ type Props = {
   userVotes: Record<string, number>
   signedIn: boolean
   locked?: boolean
+}
+
+const DRAFT_PREFIX = 'ms:community:draft:'
+
+/** Hold a comment across the sign-in round trip. Best-effort: a full or
+ *  disabled localStorage must never block posting. */
+function saveDraft(key: string, value: string) {
+  try {
+    window.localStorage.setItem(key, value)
+  } catch {
+    /* nothing to do — they keep the text on screen if they come back */
+  }
+}
+
+/** Read a draft and clear it, so it restores once rather than resurrecting
+ *  after the comment is posted. */
+function takeDraft(key: string): string | null {
+  try {
+    const value = window.localStorage.getItem(key)
+    if (value) window.localStorage.removeItem(key)
+    return value
+  } catch {
+    return null
+  }
 }
 
 export function CommentTree({ postId, subjectName, comments, userVotes, signedIn, locked }: Props) {
@@ -162,29 +186,39 @@ function CommentComposer({
   onDone?: () => void
 }) {
   const router = useRouter()
+  const draftKey = `${DRAFT_PREFIX}${postId}:${parentId ?? 'top'}`
   const [body, setBody] = useState('')
   const [needUsername, setNeedUsername] = useState(false)
   const [username, setUsername] = useState('')
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
+  // Restore whatever they had typed before we sent them to sign in. Runs on
+  // mount rather than in useState so the server and first client render agree.
+  useEffect(() => {
+    const draft = takeDraft(draftKey)
+    if (draft) setBody(draft)
+  }, [draftKey])
+
   if (locked && topLevel) {
     return <p className="rc-comments-empty">This thread is locked.</p>
   }
-  if (!signedIn && topLevel) {
-    return (
-      <div className="rc-comment-signin">
-        <Link href={`/auth/signin?next=/community/posts/${postId}`} className="rc-btn rc-btn-primary">
-          Sign in to comment
-        </Link>
-      </div>
-    )
-  }
-  if (!signedIn) return null
 
   async function submit() {
     setError('')
     if (body.trim().length < 1) return
+
+    // Signed-out readers get the box, not a wall. Typing is the commitment —
+    // asking for an account before they have written anything loses people who
+    // would have posted, and a "Sign in to comment" button gives them nothing
+    // to react to. The draft is held so signing in does not cost them the
+    // answer they just wrote.
+    if (!signedIn) {
+      saveDraft(draftKey, body)
+      router.push(`/auth/signin?next=${encodeURIComponent(`/community/posts/${postId}`)}`)
+      return
+    }
+
     setSubmitting(true)
     try {
       if (needUsername) {
@@ -251,9 +285,20 @@ function CommentComposer({
           <button type="button" className="rc-btn rc-btn-ghost" onClick={() => onDone?.()}>Cancel</button>
         ) : null}
         <button type="button" className="rc-btn rc-btn-primary" onClick={submit} disabled={submitting || !body.trim()}>
-          {submitting ? 'Posting…' : parentId ? 'Reply' : 'Comment'}
+          {submitting
+            ? 'Posting…'
+            : !signedIn
+              ? 'Sign in to post'
+              : parentId
+                ? 'Reply'
+                : 'Comment'}
         </button>
       </div>
+      {!signedIn ? (
+        <p className="rc-comment-composer-note ms-body-2">
+          You will need an account to post — we keep what you have written.
+        </p>
+      ) : null}
     </div>
   )
 }

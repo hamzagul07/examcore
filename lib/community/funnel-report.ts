@@ -168,7 +168,12 @@ export async function communityFunnelReport(days: number): Promise<FunnelReport>
   ).size
   const siteSessions = new Set(views.filter((v) => v.session_id).map((v) => v.session_id)).size
 
-  const inWindow = (iso: string) => iso >= since
+  // Parsed, not string-compared. PostgREST returns "+00:00" where toISOString()
+  // writes "Z", and the fractional-second widths differ too — comparing those
+  // as text happens to work today and is one format change from silently
+  // dropping rows out of the window.
+  const sinceMs = Date.parse(since)
+  const inWindow = (iso: string) => Date.parse(iso) >= sinceMs
   const humanPosts = allPosts.filter((p) => !isBot(p.author_id) && inWindow(p.created_at))
   const humanComments = allComments.filter((c) => !isBot(c.author_id) && inWindow(c.created_at))
   const contributors = new Set([

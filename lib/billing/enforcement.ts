@@ -112,20 +112,22 @@ async function loadBillingContext(
   const status = (sub?.status ?? 'active') as SubscriptionStatus
   // The granted seat, not the self-declared `role` column.
   const is_teacher = isVerifiedTeacher(profile?.teacher_verified_at)
-  const comp = compedAccess(userId)
   const access = effectiveAccess({
     tier,
     status,
     teacherVerified: is_teacher,
-    accessOverride: comp,
+    accessOverride: compedAccess(userId),
   })
   // Caps come from the ACTUAL paid tier now that Pro/Scholar/Max are distinct
   // (student=Pro, scholar=Scholar, mastery=Max); free gets free caps.
-  // A comped user is granted the matching tier's allowance too, otherwise they
-  // would be handed Max features and then stopped by a Scholar cap.
-  const comp_tier: SubscriptionTier | null = comp === 'max' ? 'mastery' : null
-  const cap_tier: SubscriptionTier =
-    access === 'free' ? 'free' : (comp_tier ?? tier)
+  //
+  // Deliberately NOT raised by a comp. A comp grants the experience, not the
+  // consumption: marking and study chat cost real money per use, and the
+  // subscriber is paying Scholar for them. Keeping the cap on the paid tier is
+  // also what makes the billing page stay honest — it reads the same tier, so
+  // it shows Scholar and the Scholar allowance rather than quietly implying
+  // they bought Max.
+  const cap_tier: SubscriptionTier = access === 'free' ? 'free' : tier
   return {
     tier,
     cap_tier,

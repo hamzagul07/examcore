@@ -117,4 +117,18 @@ assert.equal(
   'and sees the whole shelf, not one subject'
 )
 
+// A comp grants the experience, never the consumption. Marking and chat cost
+// real money per use and the subscriber pays Scholar for them — and keeping the
+// cap on the paid tier is what lets the billing page keep saying Scholar.
+assert.equal(
+  capForAccess('max', 'scholar'),
+  120,
+  'a comped Scholar keeps the Scholar marking allowance'
+)
+assert.equal(
+  omniCapForAccess('max', 'scholar'),
+  150,
+  'a comped Scholar keeps the Scholar chat allowance'
+)
+
 console.log('scholar-access.test.ts — all assertions passed')

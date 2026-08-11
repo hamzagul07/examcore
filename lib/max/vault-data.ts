@@ -15,6 +15,7 @@ import type { MaxExamPack } from '@/lib/max/build-exam-pack'
 import { getCachedMaxExamPack } from '@/lib/max/exam-pack-cache'
 import { getTechniquePack, type TechniquePack } from '@/lib/max/technique-packs'
 import { isIbSubjectCode } from '@/lib/ib/marking-config'
+import { ibCoursePath, ibSubjectForSlug } from '@/lib/ib/slug-resolve'
 import { predictGrade, type GradePrediction } from '@/lib/prediction'
 import { gapToTargetGrade } from '@/lib/target-grade'
 import { getSyllabusByCode, getSyllabusSubjectName, hasSyllabusTree } from '@/lib/syllabi'
@@ -203,12 +204,54 @@ function subjectLinks(code: string): VaultToolLink[] {
 
 function ibLinksForCode(code: string): VaultToolLink[] {
   if (!isIbSubjectCode(code)) return []
+
   // Licensed past-paper sources first (same list as paperPracticeLinks, full set).
-  return paperPracticeLinks(code).map((p) => ({
+  const links: VaultToolLink[] = paperPracticeLinks(code).map((p) => ({
     label: p.label,
     href: p.href,
     note: p.note,
   }))
+
+  /*
+   * Then the IB-shaped surfaces we own. Without these the shelf was papers and
+   * nothing else, which quietly made an IB desk a Cambridge desk with a
+   * different link list — no route to the criteria their work is actually
+   * marked against, and no points arithmetic, which is the thing an IB student
+   * is really tracking.
+   */
+  const slug = code.replace(/^ib-/, '')
+  const registered = ibSubjectForSlug(slug)
+
+  if (registered) {
+    links.push({
+      label: `${registered.name} — course`,
+      href: ibCoursePath(slug),
+      note: 'Lessons rebuilt around the gaps in your marking',
+    })
+    links.push({
+      label: `${registered.name} — subject hub`,
+      href: `/ib/subjects/${slug}`,
+      note: 'Assessment structure, components and weightings',
+    })
+  }
+
+  links.push({
+    label: 'Topic practice',
+    href: '/ib/topic-practice',
+    note: 'Drill a single topic instead of a whole paper',
+  })
+  links.push({
+    label: 'Command terms',
+    href: '/tools/command-words',
+    note: 'Compare, contrast and distinguish want different answers',
+  })
+  links.push({
+    label: 'Points calculator',
+    href: '/tools/ib-points-calculator',
+    note: 'Grades to the /45 that offers are written in',
+  })
+
+  return links
 }
 
 function avgPct(attempts: AttemptLite[]): number | null {

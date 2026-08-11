@@ -13,6 +13,9 @@
  *   # override the name when the signup name is not what they go by
  *   pnpm profile:nudge -- --user=<uuid> --name="Kunli Cao" --dry-run
  *
+ *   # drop the name entirely when it cannot be trusted (addresses by plan)
+ *   pnpm profile:nudge -- --user=<uuid> --no-name --dry-run
+ *
  * `--live` is the only way to reach the real address, and it refuses to run
  * alongside `--to`. Reviewing a draft and mailing a customer should never be
  * one keystroke apart.
@@ -88,8 +91,12 @@ async function main() {
   // --name wins over both. The signup name is whatever the OAuth provider
   // handed us and is not always what the person is actually called; getting a
   // customer's own name wrong is worse than not using one.
-  const displayName =
-    arg('name')?.trim() || (profile.full_name as string | null)?.trim() || metaName
+  // --no-name suppresses the signup name entirely, for when the provider's
+  // name is not trusted to be what the person actually goes by. The email then
+  // addresses them by plan instead of guessing.
+  const displayName = has('no-name')
+    ? null
+    : arg('name')?.trim() || (profile.full_name as string | null)?.trim() || metaName
 
   // Named only while the subscription is actually live — telling a lapsed
   // account it is "on Scholar" is a worse mistake than saying nothing.
@@ -102,48 +109,18 @@ async function main() {
       ? tierMarketingName(sub.tier as never)
       : null
 
-  // Pull the real Vault facts so the email describes what is actually sitting
-  // there. Anything that fails to resolve is simply left unclaimed.
-  const { loadVaultIbAssessment } = await import('@/lib/max/vault-ib-assessment')
-  const { buildVaultDiagramTheatre } = await import('@/lib/max/vault-diagram-showcase')
-  const { getSubjectById } = await import('@/lib/profile-options')
-
-  const primary = (profile.subjects as string[] | null)?.[0] ?? null
-  const primaryOpt = primary
-    ? getSubjectById(primary, (profile.level as string | null) ?? undefined)
-    : null
-  const primaryCode = primaryOpt?.code ?? primary
-
-  let vault = null
-  if (primaryCode) {
-    const theatre = buildVaultDiagramTheatre(primaryCode, primaryOpt?.label ?? null)
-    const assessment = await loadVaultIbAssessment(primaryCode).catch(() => null)
-    const head = assessment?.headline ?? null
-    const top = head
-      ? ([...head.criteria].sort((a, b) => b.maxMarks - a.maxMarks)[0] ?? null)
-      : null
-    vault = {
-      subjectLabel: primaryOpt?.label ?? theatre?.subjectLabel ?? null,
-      diagrams: theatre?.catalogCount ?? 0,
-      signature: theatre?.signature?.title ?? null,
-      assessmentLabel: head?.label ?? null,
-      assessmentMarks: head?.maxMarks ?? null,
-      topCriterion: top
-        ? { letter: top.letter, name: top.name, marks: top.maxMarks, share: top.share }
-        : null,
-    }
-  }
-
-  const payload = {
-    to: reviewTo ?? realEmail ?? '',
-    vault,
-    recipientName: displayName,
-    subjects: (profile.subjects as string[] | null) ?? [],
-    level: (profile.level as string | null) ?? null,
-    board: (profile.board as string | null) ?? null,
-    hasExamDate: Boolean(profile.exam_date),
-    expectedSubjects: EXPECTED_SUBJECTS[String(profile.level ?? '')] ?? null,
-    planLabel,
+  // Same assembly the Polar webhook uses, so the hand-sent email and the
+  // automatic Day-0 one can never drift apart.
+  const { buildScholarVaultPayload } = await import('@/lib/email/scholar-vault-welcome')
+  const payload = await buildScholarVaultPayload(
+    admin,
+    userId,
+    reviewTo ?? realEmail ?? '',
+    { recipientName: displayName, planLabel }
+  )
+  if (!payload) {
+    console.error(`No profile for ${userId}`)
+    process.exit(1)
   }
 
   const { subject, text } = buildProfileCompletionEmail(payload)

@@ -6,6 +6,7 @@ import { createPageMetadata } from '@/lib/seo/metadata'
 import { createClient } from '@/lib/supabase-server'
 import { getPost, getUserPostVotes } from '@/lib/community/posts'
 import { isOfficialUsername } from '@/lib/community/official'
+import { AuthorBadge } from '@/components/community/AuthorBadge'
 import { getCommentTree, collectCommentIds, getUserCommentVotes } from '@/lib/community/comments'
 import { signAttachments } from '@/lib/community/uploads'
 import { findCommunitySubject } from '@/lib/community/subjects'
@@ -63,13 +64,17 @@ export default async function PostDetailPage({ params }: PageProps) {
   // Whether we may offer the weekly digest after they comment. ON-02 keeps it
   // opt-in, so the offer only appears for someone who has not already said yes.
   let offerDigest = false
+  // Signed in but unnamed: the composer offers them the choice before we fall
+  // back to generating one.
+  let needsUsername = false
   if (user) {
     const { data: prefs } = await supabase
       .from('user_profiles')
-      .select('email_community_digest')
+      .select('email_community_digest, username')
       .eq('id', user.id)
       .maybeSingle()
     offerDigest = !prefs?.email_community_digest
+    needsUsername = !prefs?.username
   }
 
   return (
@@ -106,6 +111,7 @@ export default async function PostDetailPage({ params }: PageProps) {
                     {isOfficialUsername(post.authorUsername) ? (
                       <span className="rc-official-badge" title="Official MarkScheme account">✓ Official</span>
                     ) : null}
+                    <AuthorBadge access={post.authorAccess} />
                   </span>
                   <span className="rc-dot">·</span>
                   <span className="rc-meta-muted">{timeAgo(post.createdAt)}</span>
@@ -139,6 +145,7 @@ export default async function PostDetailPage({ params }: PageProps) {
               signedIn={!!user}
               locked={post.isLocked}
               offerDigest={offerDigest}
+              needsUsername={needsUsername}
             />
           </article>
         </main>

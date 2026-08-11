@@ -5,6 +5,7 @@ import { findCommunitySubject } from '@/lib/community/subjects'
 import { communityBoardMeta } from '@/lib/community/boards'
 import { timeAgo } from '@/lib/community/format'
 import { isOfficialUsername } from '@/lib/community/official'
+import { AuthorBadge } from '@/components/community/AuthorBadge'
 import { VoteBox } from './VoteBox'
 
 const KIND_LABEL: Record<string, string> = {
@@ -66,6 +67,7 @@ export function PostCard({
                 ✓ Official
               </span>
             ) : null}
+            <AuthorBadge access={post.authorAccess} />
           </span>
           <span className="rc-dot">·</span>
           <span className="rc-meta-muted">{timeAgo(post.createdAt)}</span>

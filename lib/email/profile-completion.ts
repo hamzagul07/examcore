@@ -94,7 +94,11 @@ export function buildProfileCompletionEmail(payload: ProfileCompletionPayload): 
     rawFirst && /^[a-z]/.test(rawFirst)
       ? rawFirst[0].toUpperCase() + rawFirst.slice(1)
       : rawFirst
-  const greeting = name ? `Hi ${esc(name)},` : 'Hi,'
+  // With no name we can trust, address them by their plan rather than leaving a
+  // bare "Hi," — which reads like an unfinished mail merge, and is exactly the
+  // impression an early subscriber should not get.
+  const address = name ?? payload.planLabel?.trim() ?? null
+  const greeting = address ? `Hi ${esc(address)},` : 'Hi,'
   const levelLabel = payload.level?.trim() || null
   const expected = payload.expectedSubjects ?? null
 
@@ -102,9 +106,10 @@ export function buildProfileCompletionEmail(payload: ProfileCompletionPayload): 
   const needsSubjects = missingSubjects > 0 || labels.length <= 1
   const needsDate = !payload.hasExamDate
 
-  const firstName = name
-  const subject = firstName
-    ? `${firstName}, your Vault is ready — two minutes to finish setting it up`
+  // Only a real name goes in the subject line. "Scholar, your Vault is ready"
+  // announces itself as automated before the email is even opened.
+  const subject = name
+    ? `${name}, your Vault is ready — two minutes to finish setting it up`
     : 'Your Vault is ready — two minutes to finish setting it up'
 
   const haveLine =
@@ -193,9 +198,14 @@ export function buildProfileCompletionEmail(payload: ProfileCompletionPayload): 
    */
   const vaultButton = `<p style="margin:22px 0 0"><a href="${SITE_URL}/dashboard/vault" style="display:inline-block;font-family:${EMAIL_SANS};background:${EMAIL_BRAND};color:#fff;text-decoration:none;font-weight:600;font-size:14px;letter-spacing:.02em;padding:15px 30px;border-radius:3px">Open your Vault</a></p>`
 
+  // When the greeting already used the plan as the form of address, naming it
+  // again in the next sentence reads as a template seam.
+  const planNamedInGreeting = !name && Boolean(payload.planLabel)
   const planLine = payload.planLabel
     ? para(
-        `You are on <strong>${esc(payload.planLabel)}</strong> — welcome. You are in with the students who work the same way you do: marking real answers against the real scheme instead of guessing at what an examiner wanted.`
+        planNamedInGreeting
+          ? 'Welcome. You are in with the students who work the same way you do: marking real answers against the real scheme instead of guessing at what an examiner wanted.'
+          : `You are on <strong>${esc(payload.planLabel)}</strong> — welcome. You are in with the students who work the same way you do: marking real answers against the real scheme instead of guessing at what an examiner wanted.`
       )
     : ''
 
@@ -233,7 +243,9 @@ export function buildProfileCompletionEmail(payload: ProfileCompletionPayload): 
     greeting,
     '',
     payload.planLabel
-      ? `You are on ${payload.planLabel} — welcome. You are in with the students who work the same way you do: marking real answers against the real scheme instead of guessing at what an examiner wanted.`
+      ? planNamedInGreeting
+        ? 'Welcome. You are in with the students who work the same way you do: marking real answers against the real scheme instead of guessing at what an examiner wanted.'
+        : `You are on ${payload.planLabel} — welcome. You are in with the students who work the same way you do: marking real answers against the real scheme instead of guessing at what an examiner wanted.`
       : '',
     '',
     'Your Vault is built and waiting. There are just a couple of things missing from your profile, and until they are there you are seeing a thinner version of it than you should be.',

@@ -1,6 +1,9 @@
 import { createServiceClient } from '@/lib/supabase-server'
 import { clampNoteContent, stripRawHtml } from '@/lib/community/sanitize'
 import type { CommunityAttachment } from '@/lib/community/uploads'
+import { authorAccessMap } from '@/lib/community/author-access'
+import { rankHot } from '@/lib/community/rank'
+import type { EffectiveAccess } from '@/lib/billing/access'
 
 export type Board = 'cambridge' | 'ib'
 export type PostKind = 'discussion' | 'question' | 'resource'
@@ -10,6 +13,8 @@ export type CommunityPost = {
   id: string
   authorId: string
   authorUsername: string | null
+  /** Subscription level, resolved live — drives the badge and the feed boost. */
+  authorAccess: EffectiveAccess
   board: Board
   subjectCode: string
   topicCode: string | null
@@ -64,11 +69,12 @@ async function usernameMap(admin: Admin, ids: string[]) {
   return new Map<string, string | null>((data ?? []).map((p) => [p.id, p.username]))
 }
 
-function mapRow(r: Row, username: string | null): CommunityPost {
+function mapRow(r: Row, username: string | null, access: EffectiveAccess = 'free'): CommunityPost {
   return {
     id: r.id,
     authorId: r.author_id,
     authorUsername: username,
+    authorAccess: access,
     board: r.board,
     subjectCode: r.subject_code,
     topicCode: r.topic_code,
@@ -122,12 +128,25 @@ export async function listPosts(params: {
     q = q.order('comment_count', { ascending: false }).order('created_at', { ascending: false })
   else q = q.order('is_pinned', { ascending: false }).order('hot_rank', { ascending: false })
 
-  q = q.limit(Math.min(params.limit ?? 25, 100))
+  const limit = Math.min(params.limit ?? 25, 100)
+  // `hot` is re-ranked below with the subscriber boost, so pull a wider window
+  // first — otherwise a boosted post sitting just outside the DB's top N could
+  // never climb into it. The other sorts are exact as the DB returns them.
+  const isHot = sort === 'hot'
+  q = q.limit(isHot ? Math.min(limit * 3, 300) : limit)
 
   const { data } = await q
   const rows = (data ?? []) as Row[]
-  const names = await usernameMap(admin, rows.map((r) => r.author_id))
-  return rows.map((r) => mapRow(r, names.get(r.author_id) ?? null))
+  const authorIds = rows.map((r) => r.author_id)
+  const [names, access] = await Promise.all([
+    usernameMap(admin, authorIds),
+    authorAccessMap(admin, authorIds),
+  ])
+  const posts = rows.map((r) =>
+    mapRow(r, names.get(r.author_id) ?? null, access.get(r.author_id) ?? 'free')
+  )
+
+  return isHot ? rankHot(posts).slice(0, limit) : posts
 }
 
 export async function getPost(id: string): Promise<CommunityPost | null> {
@@ -135,8 +154,11 @@ export async function getPost(id: string): Promise<CommunityPost | null> {
   const { data } = await admin.from('community_posts').select(SELECT).eq('id', id).maybeSingle()
   if (!data) return null
   const row = data as Row
-  const names = await usernameMap(admin, [row.author_id])
-  return mapRow(row, names.get(row.author_id) ?? null)
+  const [names, access] = await Promise.all([
+    usernameMap(admin, [row.author_id]),
+    authorAccessMap(admin, [row.author_id]),
+  ])
+  return mapRow(row, names.get(row.author_id) ?? null, access.get(row.author_id) ?? 'free')
 }
 
 export type CreatePostInput = {

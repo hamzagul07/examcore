@@ -6,6 +6,7 @@ import { resolvePolarProduct } from '@/lib/polar/products'
 import { notifyPurchaseEmails } from '@/lib/email/notifications'
 import { runAfterResponse } from '@/lib/after-response'
 import { tierMarketingName } from '@/lib/billing/caps'
+import { sendScholarVaultWelcome } from '@/lib/email/scholar-vault-welcome'
 import { grantMaxWelcomeGift } from '@/lib/max/gifts'
 import type { SubscriptionTier } from '@/lib/database.types'
 
@@ -213,7 +214,9 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
       // Purchase greeting only on activation — not on every update/cancel flag flip.
       if (ok && userId && event.type === 'subscription.active') {
         // Max gets grantMaxWelcomeGift (Vault + bonus) — one Day-0 student email.
-        const skipStudentEmail = tier === 'mastery'
+        // Both paid tiers now send their own Day-0 email, so the generic
+        // "your plan is now active" line would be a second, worse message.
+        const skipStudentEmail = tier === 'mastery' || tier === 'scholar'
         runAfterResponse('purchase-emails-subscription', () =>
           notifyPurchaseEmails(
             supabase,
@@ -241,6 +244,15 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
       ) {
         runAfterResponse('max-welcome-gift', () =>
           grantMaxWelcomeGift(supabase, userId)
+        )
+      }
+      // Scholar's Day-0: what is already in their Vault, and the two profile
+      // fields that decide how much of it they see. Claim-guarded, so a webhook
+      // retry cannot mail twice. Only on `.active` — an upgrade into Scholar
+      // from Pro is a plan change, not a welcome.
+      if (ok && userId && tier === 'scholar' && event.type === 'subscription.active') {
+        runAfterResponse('scholar-vault-welcome', () =>
+          sendScholarVaultWelcome(supabase, userId, tier)
         )
       }
       break

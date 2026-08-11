@@ -545,6 +545,47 @@
   border-radius: 4px;
   vertical-align: middle;
 }
+/* ── Subscription badges ───────────────────────────────────────────────────
+   Built from theme tokens rather than fixed hues so they follow every
+   [data-ec-theme]. Weight descends with tier: Max is filled, Scholar is
+   tinted, Pro is a quiet outline. Free renders nothing, which is what keeps
+   the badge meaning something. */
+.rc-tier-badge {
+  display: inline-flex; align-items: center; gap: 3px;
+  margin-left: 6px;
+  padding: 1px 7px;
+  font-size: 0.66rem; font-weight: 700; letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  border-radius: 4px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.rc-tier-badge__gem { font-size: 0.6em; line-height: 1; }
+
+.rc-tier-badge--max {
+  color: var(--ec-on-brand, #06231a);
+  background: var(--ec-brand-gradient, var(--ec-brand));
+  border: 1px solid var(--ec-brand-deep, var(--ec-brand));
+  /* The only badge that lifts off the surface — Max should be the one people
+     notice across a thread without having to read it. */
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--ec-brand) 45%, transparent);
+}
+.rc-tier-badge--scholar {
+  color: var(--ec-brand-deep, var(--ec-brand));
+  background: color-mix(in srgb, var(--ec-brand) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 40%, transparent);
+}
+.rc-tier-badge--pro {
+  color: var(--ec-text-secondary);
+  background: transparent;
+  border: 1px solid var(--ec-border);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rc-tier-badge--max { transition: box-shadow 160ms ease; }
+}
+
 .rc-empty-sub {
   max-width: 46ch;
   font-size: 0.9rem;

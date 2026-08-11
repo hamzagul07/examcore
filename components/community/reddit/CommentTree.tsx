@@ -7,6 +7,7 @@ import type { CommentNode } from '@/lib/community/comments'
 import { CommunityMarkdown } from '@/components/community/CommunityMarkdown'
 import { timeAgo } from '@/lib/community/format'
 import { isOfficialUsername } from '@/lib/community/official'
+import { AuthorBadge } from '@/components/community/AuthorBadge'
 import { DigestOptIn } from '@/components/community/DigestOptIn'
 import { VoteBox } from './VoteBox'
 
@@ -19,6 +20,8 @@ type Props = {
   locked?: boolean
   /** Signed in and not yet subscribed — we may offer the digest after they post. */
   offerDigest?: boolean
+  /** Signed in with no public name yet — offer them the choice before we generate one. */
+  needsUsername?: boolean
 }
 
 const DRAFT_PREFIX = 'ms:community:draft:'
@@ -45,7 +48,16 @@ function takeDraft(key: string): string | null {
   }
 }
 
-export function CommentTree({ postId, subjectName, comments, userVotes, signedIn, locked, offerDigest }: Props) {
+export function CommentTree({
+  postId,
+  subjectName,
+  comments,
+  userVotes,
+  signedIn,
+  locked,
+  offerDigest,
+  needsUsername,
+}: Props) {
   return (
     <div className="rc-comments">
       <CommentComposer
@@ -54,6 +66,7 @@ export function CommentTree({ postId, subjectName, comments, userVotes, signedIn
         signedIn={signedIn}
         locked={locked}
         offerDigest={offerDigest}
+        needsUsername={needsUsername}
         topLevel
       />
       <div className="rc-comments-count">
@@ -123,6 +136,7 @@ function CommentItem({
             {isOfficialUsername(node.authorUsername) ? (
               <span className="rc-official-badge" title="Official MarkScheme account">✓ Official</span>
             ) : null}
+            <AuthorBadge access={node.authorAccess} />
             <span className="rc-dot">·</span>
             <span className="rc-meta-muted">{timeAgo(node.createdAt)}</span>
           </div>
@@ -186,6 +200,7 @@ function CommentComposer({
   topLevel,
   locked,
   offerDigest,
+  needsUsername,
   onDone,
 }: {
   postId: string
@@ -195,6 +210,7 @@ function CommentComposer({
   topLevel?: boolean
   locked?: boolean
   offerDigest?: boolean
+  needsUsername?: boolean
   onDone?: () => void
 }) {
   const router = useRouter()
@@ -202,6 +218,7 @@ function CommentComposer({
   const [body, setBody] = useState('')
   const [assignedUsername, setAssignedUsername] = useState('')
   const [showDigestOptIn, setShowDigestOptIn] = useState(false)
+  const [chosenUsername, setChosenUsername] = useState('')
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
@@ -233,6 +250,21 @@ function CommentComposer({
 
     setSubmitting(true)
     try {
+      // They typed a name, so claim it first. Left blank, the server generates
+      // one — the field is an offer, not another gate.
+      if (needsUsername && chosenUsername.trim()) {
+        const ures = await fetch('/api/community/username', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: chosenUsername.trim() }),
+        })
+        const udata = await ures.json()
+        if (!ures.ok) {
+          setError(udata.error || 'Could not save that name.')
+          setSubmitting(false)
+          return
+        }
+      }
       const res = await fetch(`/api/community/posts/${postId}/comments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -274,6 +306,21 @@ function CommentComposer({
           Posted as <strong>u/{assignedUsername}</strong> — rename it any time in{' '}
           <Link href="/account/profile" className="ec-link">your account</Link>.
         </p>
+      ) : null}
+      {needsUsername && !assignedUsername ? (
+        <label className="rc-username-pick">
+          <span className="rc-username-pick__label">
+            Public name <span className="rc-username-pick__hint">— optional, we pick one if you skip it</span>
+          </span>
+          <input
+            className="rc-input"
+            value={chosenUsername}
+            onChange={(e) => setChosenUsername(e.target.value.toLowerCase())}
+            placeholder="e.g. maths_mo"
+            maxLength={20}
+            autoComplete="off"
+          />
+        </label>
       ) : null}
       {error ? <p className="rc-error">{error}</p> : null}
       <div className="rc-comment-composer-actions">

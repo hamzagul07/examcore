@@ -7,9 +7,15 @@ import {
   defaultSubjectsForProfile,
   getSubjectById,
 } from '@/lib/profile-options'
-import { hasSyllabusTree } from '@/lib/syllabi'
+import { hasSyllabusTree, getSyllabusSubjectName } from '@/lib/syllabi'
 import { effectiveAccess } from '@/lib/billing/access'
-import { hasMaxResourceVault, hasMaxWeeklyCoach } from '@/lib/billing/features'
+import {
+  hasResourceVault,
+  hasMaxWeeklyCoach,
+  hasPriorityMarking,
+  vaultSubjectLimit,
+} from '@/lib/billing/features'
+import { pickFocusSubjectCode } from '@/lib/max/vault-data'
 import { loadMaxVaultData, type VaultSubjectInput } from '@/lib/max/vault-data'
 import { maybeGrantMaxSprintGift } from '@/lib/max/gifts'
 import { computeBillingSummary } from '@/lib/billing/enforcement'
@@ -60,7 +66,7 @@ export default async function MaxVaultPage({
     status: (sub?.status as SubscriptionStatus) ?? 'canceled',
   })
 
-  if (!hasMaxResourceVault(access)) {
+  if (!hasResourceVault(access)) {
     return (
       <main className="app-shell app-shell-tabbed">
         <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
@@ -118,6 +124,29 @@ export default async function MaxVaultPage({
     .order('created_at', { ascending: false })
     .limit(200)
 
+  // Scholar is one subject done properly, so the shelf is narrowed to its focus
+  // before anything is built — the desk, packs and briefs are the full Max ones,
+  // just for that subject. `?subject=` still retargets which one, so this is a
+  // scope difference the student controls, not a lockout.
+  const subjectLimit = vaultSubjectLimit(access)
+  const scopedSubjects =
+    subjectLimit === null
+      ? subjects
+      : (() => {
+          const focus = pickFocusSubjectCode(
+            subjects,
+            (attempts || []) as AttemptWithPaper[],
+            subjectOverride
+          )
+          const kept = subjects.filter((s) => s.code === focus)
+          // An override can name a subject that is not on the profile; keep it
+          // rather than handing back an empty vault.
+          if (kept.length) return kept.slice(0, subjectLimit)
+          return focus
+            ? [{ code: focus, name: getSyllabusSubjectName(focus) ?? focus }]
+            : subjects.slice(0, subjectLimit)
+        })()
+
   let ownership = null
   try {
     const summary = await computeBillingSummary(user.id, supabaseAdmin)
@@ -126,7 +155,9 @@ export default async function MaxVaultPage({
       marksRemaining: summary.questions.remaining,
       marksCap: summary.questions.cap,
       credits: summary.credit_balance,
-      priorityMarking: true,
+      // Was hardcoded true when only Max could reach this page. Scholar can now,
+      // and priority marking is still a Max exclusive — so claim it truthfully.
+      priorityMarking: hasPriorityMarking(access),
       weeklyCoach: hasMaxWeeklyCoach(access),
     }
   } catch {
@@ -136,7 +167,7 @@ export default async function MaxVaultPage({
   const vault = await loadMaxVaultData({
     supabase: supabaseAdmin,
     userId: user.id,
-    subjects,
+    subjects: scopedSubjects,
     focusCode: subjectOverride,
     examDate,
     targetGrade: (profile?.target_grade as string | null) ?? null,

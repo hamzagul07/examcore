@@ -20,7 +20,7 @@
     "teacher:grant": "tsx scripts/grant-teacher-seat.ts",
     "cohort:gaps": "tsx scripts/cohort-gap-report.ts",
     "outreach": "tsx scripts/outreach.ts",
-    "test:billing": "cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/teacher-seat.test.ts",
+    "test:billing": "cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/teacher-seat.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/scholar-access.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/max-features.test.ts",
     "email:preview": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/preview-emails.ts",
     "email:max-vault-tour": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/send-max-vault-tour.ts",
     "test:email": "cross-env NODE_OPTIONS=--conditions=react-server tsx lib/community/email-unsubscribe.test.ts && tsx lib/max/lifecycle-timing.test.ts",

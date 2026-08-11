@@ -96,6 +96,36 @@ export function hasMaxResourceVault(access: EffectiveAccess): boolean {
   return access === 'max'
 }
 
+/*
+ * Vault access, by scope rather than by quantity.
+ *
+ * Scholar is sold as "one subject, done properly" and Max as "every subject you
+ * take". So Scholar gets the real Vault — the same desk, packs and briefs — for
+ * a single focus subject, rather than a thinner version of all of them. That
+ * makes the upgrade an expansion (you picked up a second subject) instead of a
+ * punishment (you ran out), which is the only upgrade prompt that does not land
+ * hardest right before exams.
+ */
+
+/** Anyone who can open the Vault at all. */
+export function hasResourceVault(access: EffectiveAccess): boolean {
+  return access === 'max' || access === 'scholar'
+}
+
+/**
+ * How many subjects the Vault will build a desk for. `null` means no limit.
+ * Scholar is capped at its focus subject; everything else that can open the
+ * Vault gets the full shelf.
+ */
+export function vaultSubjectLimit(access: EffectiveAccess): number | null {
+  return access === 'scholar' ? 1 : null
+}
+
+/** Whether the Vault should offer a subject switcher, or lock to the focus. */
+export function canSwitchVaultSubject(access: EffectiveAccess): boolean {
+  return vaultSubjectLimit(access) === null
+}
+
 /**
  * Priority deep marking: Max gets higher per-question concurrency (and
  * whole-paper batch size 2) so the same paid verify depth finishes sooner.

@@ -38,7 +38,7 @@ assert.equal(
 )
 assert.equal(
   effectiveAccess({ tier: 'scholar', status: 'active', teacherVerified: true }),
-  'pro',
+  'scholar',
   'a paying teacher keeps their paid access level'
 )
 

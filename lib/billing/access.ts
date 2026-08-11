@@ -2,14 +2,24 @@ import type { SubscriptionTier, SubscriptionStatus } from '@/lib/database.types'
 
 /**
  * Effective access level — the single concept the whole app gates on.
- * Marketing names: free / Pro / Max.
+ * Marketing names: free / Pro (legacy) / Scholar / Max.
+ *
+ * `scholar` used to collapse into `pro`, which meant the app could not tell a
+ * Scholar subscriber from a legacy Pro one or a teacher seat — so Scholar could
+ * only ever be "Max with smaller numbers" and never hold a feature of its own.
+ * It is its own level now.
+ *
+ * Ordering note for anyone adding a gate: paid-or-not checks must be written
+ * `access !== 'free'`, and Max exclusives `access === 'max'`. There are
+ * deliberately no `access === 'pro'` comparisons anywhere — that is what made
+ * adding this level safe, and it is worth keeping true.
  *
  * There is no trial. The 7-day no-card reverse trial and the Scholar/Max
  * checkout trial were both removed; access is now paid or it is free.
  * `trialing` stays in ACTIVE_STATUSES only because Polar can still report it
  * for subscriptions created before the checkout trial was switched off.
  */
-export type EffectiveAccess = 'free' | 'pro' | 'max'
+export type EffectiveAccess = 'free' | 'pro' | 'scholar' | 'max'
 
 // `past_due` keeps access during Polar's payment-recovery (dunning) window — a
 // temporary card decline shouldn't instantly lock the user out. Access is only
@@ -33,8 +43,10 @@ export function effectiveAccess(opts: {
   // that the class arrives with it. Floored rather than assigned, so a teacher
   // who does pay for Max keeps Max.
   if (!paidActive) return opts.teacherVerified ? 'pro' : 'free'
-  // mastery → Max; scholar (and legacy `student`) → Pro.
-  return opts.tier === 'mastery' ? 'max' : 'pro'
+  // mastery → Max; scholar → Scholar; legacy `student` → Pro.
+  if (opts.tier === 'mastery') return 'max'
+  if (opts.tier === 'scholar') return 'scholar'
+  return 'pro'
 }
 
 /**

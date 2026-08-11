@@ -388,14 +388,19 @@
     bottom: calc(92px + env(safe-area-inset-bottom, 0px));
   }
 
-  .ms-omni-panel {
+  /* These offsets dock the panel above the FAB, so they must reach only the
+     floating popover. The landing sheet and the drawer set `bottom: auto`
+     earlier in this file, and an unqualified `.ms-omni-panel` here would win on
+     source order and lift both off the bottom edge of the screen. */
+  .ms-omni-panel:not(.ms-omni-panel--landing):not(.ms-omni-panel--drawer) {
     right: 12px;
     left: 12px;
     width: auto;
     bottom: calc(88px + env(safe-area-inset-bottom, 0px));
   }
 
-  body:has(.ec-tabbar) .ms-omni-panel {
+  body:has(.ec-tabbar)
+    .ms-omni-panel:not(.ms-omni-panel--landing):not(.ms-omni-panel--drawer) {
     bottom: calc(152px + env(safe-area-inset-bottom, 0px));
   }
 

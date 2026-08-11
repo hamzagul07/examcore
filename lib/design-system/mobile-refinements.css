@@ -526,7 +526,10 @@
     padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
   }
 
-  .ms-omni-panel {
+  /* Caps the floating popover so it clears the FAB. The drawer is meant to be
+     full height (`--drawer` sets `max-height: none`), so it has to be excluded
+     here or this rule wins on load order and strands it 480px tall. */
+  .ms-omni-panel:not(.ms-omni-panel--landing):not(.ms-omni-panel--drawer) {
     max-height: min(480px, calc(100dvh - 168px - env(safe-area-inset-bottom, 0px)));
   }
 }

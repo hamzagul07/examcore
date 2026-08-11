@@ -55,6 +55,10 @@
   align-items: flex-start;
   gap: 12px;
   height: 100%;
+  /* Grid items default to min-width: auto, so a slip holding a non-wrapping
+     <pre> stretched its track far past the viewport instead of letting the
+     <pre> scroll inside itself. */
+  min-width: 0;
   padding: 14px 14px 14px 12px;
   background: var(--ec-paper, var(--ec-surface));
   border: 1.5px solid var(--ec-border);
@@ -233,6 +237,18 @@
   .ms-board-index--guides,
   .ms-board-index--4 {
     grid-template-columns: 1fr;
+  }
+
+  /* Badge, label and Copy button do not share one phone-width row: the label
+     was squeezed to ~116px and broke to three words a line. Let the button
+     drop to its own line instead. */
+  .ms-board-slip--stack .ms-board-slip__main {
+    flex-wrap: wrap;
+  }
+
+  .ms-board-slip--stack .ms-board-slip__body {
+    flex-basis: 0;
+    min-width: 140px;
   }
 }
 
@@ -2199,7 +2215,11 @@
   border-radius: 4px;
   background: var(--ec-paper, var(--ec-surface));
   box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
-  overflow: hidden;
+  /* Scroll rather than clip: a three-column table does not fit a phone, and
+     `overflow: hidden` here silently cut off the last column with no way to
+     reach it (it also beat the `overflow-x-auto` utility set on the element). */
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .compare-table-head th {

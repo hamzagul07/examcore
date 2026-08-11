@@ -5,6 +5,7 @@ import { subscribeUrl, unsubscribeUrl } from '@/lib/community/email-unsubscribe'
 import { sendBroadcastEmail } from '@/lib/email/broadcast'
 import { thresholdStripHtml, thresholdStripText } from '@/lib/email/threshold-strip'
 import { getOfficialBoundaries } from '@/lib/seo/grade-boundaries-data'
+import { getGradeBoundaryCalculatorPages } from '@/lib/seo/programmatic-subjects'
 import { isJune2026Session } from '@/lib/seo/results-day'
 import { getSegment, SEGMENTS, type Recipient, type SegmentId } from '@/lib/campaigns/audience'
 
@@ -188,6 +189,68 @@ function fillPlaceholders(text: string, r: Recipient, kind: 'updates' | 'activat
     // Their actual subjects. A campaign that can name them is a letter; one
     // that cannot is a broadcast, and reads like one.
     .replaceAll('{{subjects}}', formatSubjects(r.subjects))
+    .replaceAll('{{focus_headline}}', focusHeadline(focusFor(r)))
+}
+
+/**
+ * The subject this recipient's email is built around.
+ *
+ * Their first listed subject that we hold June 2026 tables for, matched on the
+ * label the boundary pages already use — "Physics", "Further Mathematics" — which
+ * is exactly what onboarding stores. The biggest paper is chosen because it is
+ * the one carrying the most marks and so the one they care most about.
+ *
+ * Null when nothing matches, which happens for an IGCSE-only list: those tables
+ * do not publish until 18 August, and quoting an A-Level figure at somebody who
+ * did not sit A-Levels is worse than not personalising at all.
+ */
+function focusFor(r: Recipient): { name: string; component: MarkComponentLike } | null {
+  // Every code sharing a label, not just one. "Physics" is 9702 at A-Level and
+  // also 0625 and 5054 at IGCSE and O-Level, so a label→code map keeps whichever
+  // came last and silently answers with a syllabus that has no June 2026 table.
+  // That quietly cost the four biggest subjects — Maths, Chemistry, Physics and
+  // Biology — their personalisation, which is exactly the half that matters.
+  const byLabel = new Map<string, string[]>()
+  for (const s of getGradeBoundaryCalculatorPages()) {
+    const key = s.label.toLowerCase()
+    byLabel.set(key, [...(byLabel.get(key) ?? []), s.code])
+  }
+
+  for (const subject of r.subjects) {
+    for (const code of byLabel.get(subject.trim().toLowerCase()) ?? []) {
+      const session = getOfficialBoundaries(code)?.sessions.find((x) => isJune2026Session(x.session))
+      const usable = (session?.components ?? []).filter(
+        (c) => Number.isFinite(c.max) && Number.isFinite(c.thresholds?.A)
+      )
+      if (!usable.length) continue
+      const biggest = [...usable].sort(
+        (a, b) => b.max - a.max || a.component.localeCompare(b.component)
+      )[0]
+      return { name: subject.trim(), component: { ...biggest, code } }
+    }
+  }
+  return null
+}
+
+type MarkComponentLike = {
+  code: string
+  component: string
+  paper: string
+  max: number
+  thresholds: Record<string, number>
+}
+
+/**
+ * The whole personalised clause as one token.
+ *
+ * A single token rather than several, so the sentence is always coherent: with
+ * separate {{subject}} and {{mark}} tokens a recipient we cannot place ends up
+ * reading "In your subjects, an A was — out of —".
+ */
+function focusHeadline(focus: ReturnType<typeof focusFor>): string {
+  if (!focus) return 'Your grades are out. How close were you?'
+  const { thresholds, max } = focus.component
+  return `In ${focus.name}, an A was ${thresholds.A} out of ${max}. Where were you?`
 }
 
 /**
@@ -197,15 +260,26 @@ function fillPlaceholders(text: string, r: Recipient, kind: 'updates' | 'activat
  * the email cannot drift from the tables the site publishes. A campaign with no
  * entry here simply has no {{visual}} to fill and the marker is dropped.
  */
-function campaignVisual(slug: string): { html: string; text: string } | undefined {
+function campaignVisual(
+  slug: string,
+  focus: ReturnType<typeof focusFor>
+): { html: string; text: string } | undefined {
   if (slug !== 'results-2026-post-your-marks') return undefined
 
-  const session = getOfficialBoundaries('9702')?.sessions.find((s) => isJune2026Session(s.session))
-  const component = session?.components.find((c) => c.component === '41')
+  // Their own paper where we can place them; Physics as the stand-in otherwise,
+  // and the caption names it either way so nothing is implied about their marks.
+  const component =
+    focus?.component ??
+    (() => {
+      const session = getOfficialBoundaries('9702')?.sessions.find((x) => isJune2026Session(x.session))
+      const c = session?.components.find((x) => x.component === '41')
+      return c ? { ...c, code: '9702' } : null
+    })()
   if (!component) return undefined
 
+  const name = focus?.name ?? 'Physics'
   const opts = {
-    caption: '9702 Physics · Paper 4 · June 2026',
+    caption: `${component.code} ${name} · ${component.paper} · June 2026`,
     max: component.max,
     bands: (['A', 'B', 'C', 'D', 'E'] as const)
       .filter((g) => Number.isFinite(component.thresholds[g]))
@@ -236,7 +310,7 @@ async function deliver(
       : null
   try {
     return await sendBroadcastEmail({
-      visual: campaignVisual(c.slug),
+      visual: campaignVisual(c.slug, focusFor(r)),
       to: r.email,
       recipientName: r.name,
       subject: fillPlaceholders(c.subject, r, kind),

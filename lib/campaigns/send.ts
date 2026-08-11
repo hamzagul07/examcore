@@ -6,6 +6,8 @@ import { sendBroadcastEmail } from '@/lib/email/broadcast'
 import { thresholdStripHtml, thresholdStripText } from '@/lib/email/threshold-strip'
 import { getOfficialBoundaries } from '@/lib/seo/grade-boundaries-data'
 import { getGradeBoundaryCalculatorPages } from '@/lib/seo/programmatic-subjects'
+import { getIbSubjects } from '@/lib/ib/catalog'
+import { iaName, shortIbLabel, CORE_COMPONENTS } from '@/lib/community/ia-names'
 import { isJune2026Session } from '@/lib/seo/results-day'
 import { getSegment, SEGMENTS, type Recipient, type SegmentId } from '@/lib/campaigns/audience'
 
@@ -192,6 +194,13 @@ function fillPlaceholders(text: string, r: Recipient, kind: 'updates' | 'activat
     .replaceAll('{{focus_headline}}', focusHeadline(focusFor(r)))
 }
 
+/** IB headline, resolved before send because the lookup is async. */
+function ibHeadline(focus: { label: string; ia: string } | null): string {
+  if (!focus) return 'Your IA question: get it right before it costs you months'
+  // Em dash, not a colon: several official IB names contain one already.
+  return `${focus.label} — is your ${focus.ia} question workable?`
+}
+
 /**
  * The subject this recipient's email is built around.
  *
@@ -238,6 +247,38 @@ type MarkComponentLike = {
   paper: string
   max: number
   thresholds: Record<string, number>
+}
+
+/**
+ * The IB subject this recipient's email is built around.
+ *
+ * Their first subject that has a live IA thread — matched against real threads
+ * rather than the catalog, so the email never names a room we did not open.
+ * Core components are skipped: the EE is a research essay and TOK an essay on a
+ * prescribed title, and calling either an IA is the kind of error an IB student
+ * spots in the subject line.
+ */
+async function ibFocusFor(r: Recipient): Promise<{ label: string; ia: string } | null> {
+  const admin = createServiceClient()
+  const { data } = await admin
+    .from('community_posts')
+    .select('subject_code')
+    .eq('status', 'published')
+    .eq('board', 'ib')
+    .eq('flair', 'IA')
+  const live = new Set((data ?? []).map((t) => t.subject_code as string))
+  if (!live.size) return null
+
+  const catalog = new Map(getIbSubjects().map((s) => [s.slug, s]))
+
+  for (const raw of r.subjects) {
+    const slug = raw.replace(/^ib-/, '')
+    if (CORE_COMPONENTS.has(slug) || !live.has(slug)) continue
+    const subject = catalog.get(slug)
+    if (!subject) continue
+    return { label: shortIbLabel(subject.name, subject.level), ia: iaName(slug) }
+  }
+  return null
 }
 
 /**
@@ -304,6 +345,10 @@ async function deliver(
   r: Recipient,
   kind: 'updates' | 'activation'
 ): Promise<boolean> {
+  // Resolved here rather than in fillPlaceholders because it needs a query, and
+  // a token that silently costs a round trip per substitution is a trap.
+  const ibFocus = c.audience === 'ib_ia_season' ? await ibFocusFor(r) : null
+  const withIb = (text: string) => text.replaceAll('{{ib_headline}}', ibHeadline(ibFocus))
   const cta =
     c.cta_label && c.cta_href
       ? { label: c.cta_label, href: fillPlaceholders(c.cta_href, r, kind) }
@@ -313,9 +358,9 @@ async function deliver(
       visual: campaignVisual(c.slug, focusFor(r)),
       to: r.email,
       recipientName: r.name,
-      subject: fillPlaceholders(c.subject, r, kind),
+      subject: withIb(fillPlaceholders(c.subject, r, kind)),
       preheader: c.preheader,
-      body: fillPlaceholders(c.body, r, kind),
+      body: withIb(fillPlaceholders(c.body, r, kind)),
       cta,
       unsubscribeHref: unsubscribeUrl(r.userId, kind),
       unsubscribeLabel:

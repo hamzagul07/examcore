@@ -34,6 +34,7 @@ export type SegmentId =
   | 'paying'
   | 'repermission'
   | 'cambridge_results'
+  | 'ib_ia_season'
 
 export type Segment = {
   id: SegmentId
@@ -142,6 +143,19 @@ export const SEGMENTS: Record<SegmentId, Segment> = {
           .eq('board', 'Cambridge International')
           .eq('onboarded', true)
           .neq('email_activation', false)
+      )
+      return toRecipients(rows, users)
+    },
+  },
+
+  ib_ia_season: {
+    id: 'ib_ia_season',
+    description:
+      'IB students, start of the IB year. IA timing they need — lifecycle, not marketing.',
+    unsubscribeKind: 'activation',
+    resolve: async () => {
+      const { rows, users } = await profilesWith((q) =>
+        q.eq('board', 'IB').eq('onboarded', true).neq('email_activation', false)
       )
       return toRecipients(rows, users)
     },

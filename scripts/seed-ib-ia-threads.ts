@@ -29,34 +29,6 @@ const TOP = Number(process.argv.find((a) => a.startsWith('--top='))?.slice(6) ??
 const OFFICIAL_USERNAME = 'markscheme_answers'
 const FLAIR = 'IA'
 
-/**
- * What the IA is called, where our own published guides say so.
- *
- * Getting this wrong is instantly obvious to a student and costs the thread its
- * credibility, so anything not verified from our content falls back to "IA" —
- * which is what everyone calls it anyway.
- */
-const IA_NAME: Record<string, string> = {
-  'maths-aa': 'Exploration',
-  'maths-ai': 'Exploration',
-  chemistry: 'scientific investigation',
-  biology: 'scientific investigation',
-  physics: 'scientific investigation',
-  economics: 'commentary',
-}
-
-/**
- * Core components, which do not have an IA at all.
- *
- * The Extended Essay is a 4,000-word research essay and TOK is an essay on a
- * prescribed title plus an exhibition. Calling either "your IA" is wrong in a
- * way every IB student would catch on sight, so the generic loop skips them.
- * EE gets its own wording below; TOK is left alone because the prescribed
- * titles change by session and a thread that names the wrong ones is worse
- * than no thread.
- */
-const CORE_COMPONENTS = new Set(['extended-essay', 'tok', 'cas'])
-
 /** Hand-written, because the EE is a research essay and not an assessment task. */
 const EE_THREAD = {
   slug: 'extended-essay',
@@ -77,21 +49,12 @@ const EE_THREAD = {
   ].join('\n'),
 }
 
-/** "an IA", "a commentary" — the fallback name starts with a vowel sound. */
-function article(word: string): string {
-  return /^[aeiou]/i.test(word) ? 'an' : 'a'
-}
-
-/** Strip the level so maths-aa-hl and maths-aa-sl share a base. */
-function subjectBase(slug: string): string {
-  return slug.replace(/-(hl|sl)$/, '')
-}
-
 async function main() {
   const fs = await import('fs')
   const path = await import('path')
   const { createClient } = await import('@supabase/supabase-js')
   const { getIbSubjects } = await import('../lib/ib/catalog')
+  const { iaName, iaArticle, subjectBase, CORE_COMPONENTS } = await import('../lib/community/ia-names')
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY
@@ -156,14 +119,14 @@ async function main() {
     }
 
     const base = subjectBase(slug)
-    const iaName = IA_NAME[base] ?? 'IA'
+    const ia = iaName(slug)
     const guide = [`ib-${base}-ia-ideas`, `ib-${base.replace(/-a-.*/, '-a')}-ia-ideas`].find((s) =>
       blogSlugs.has(s)
     )
 
-    const title = `${subject.name} ${subject.level}: what are you doing your ${iaName} on?`
+    const title = `${subject.name} ${subject.level}: what are you doing your ${ia} on?`
     const body = [
-      `If you are picking ${article(iaName)} ${iaName} topic this term, post the question you are considering and we will tell you honestly whether it is workable.`,
+      `If you are picking ${iaArticle(ia)} ${ia} topic this term, post the question you are considering and we will tell you honestly whether it is workable.`,
       '',
       'Worth saying up front what usually goes wrong:',
       '',
@@ -171,7 +134,7 @@ async function main() {
       `- **No data you can actually get.** The idea is fine, the measurements are not available, and you find out three weeks in.`,
       `- **Nothing of you in it.** The ones that read well are the ones the student actually cared about.`,
       '',
-      ...(guide ? [`Ideas to start from: [${subject.name} ${iaName} ideas](/blog/${guide})`, ''] : []),
+      ...(guide ? [`Ideas to start from: [${subject.name} ${ia} ideas](/blog/${guide})`, ''] : []),
       `Post your draft question — the earlier the better, because changing it in October is cheap and changing it in February is not.`,
     ].join('\n')
 

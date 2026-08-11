@@ -3,6 +3,9 @@ import 'server-only'
 import { createServiceClient } from '@/lib/supabase-server'
 import { subscribeUrl, unsubscribeUrl } from '@/lib/community/email-unsubscribe'
 import { sendBroadcastEmail } from '@/lib/email/broadcast'
+import { thresholdStripHtml, thresholdStripText } from '@/lib/email/threshold-strip'
+import { getOfficialBoundaries } from '@/lib/seo/grade-boundaries-data'
+import { isJune2026Session } from '@/lib/seo/results-day'
 import { getSegment, SEGMENTS, type Recipient, type SegmentId } from '@/lib/campaigns/audience'
 
 /**
@@ -187,6 +190,30 @@ function fillPlaceholders(text: string, r: Recipient, kind: 'updates' | 'activat
     .replaceAll('{{subjects}}', formatSubjects(r.subjects))
 }
 
+/**
+ * The visual a campaign draws, if it draws one.
+ *
+ * Keyed by slug and built from the verified threshold files, so the picture in
+ * the email cannot drift from the tables the site publishes. A campaign with no
+ * entry here simply has no {{visual}} to fill and the marker is dropped.
+ */
+function campaignVisual(slug: string): { html: string; text: string } | undefined {
+  if (slug !== 'results-2026-post-your-marks') return undefined
+
+  const session = getOfficialBoundaries('9702')?.sessions.find((s) => isJune2026Session(s.session))
+  const component = session?.components.find((c) => c.component === '41')
+  if (!component) return undefined
+
+  const opts = {
+    caption: '9702 Physics · Paper 4 · June 2026',
+    max: component.max,
+    bands: (['A', 'B', 'C', 'D', 'E'] as const)
+      .filter((g) => Number.isFinite(component.thresholds[g]))
+      .map((g) => ({ grade: g, at: component.thresholds[g] })),
+  }
+  return { html: thresholdStripHtml(opts), text: thresholdStripText(opts) }
+}
+
 /** "Physics, Chemistry and Maths" — an English list, not a CSV dump. */
 function formatSubjects(subjects: string[]): string {
   const clean = subjects
@@ -209,6 +236,7 @@ async function deliver(
       : null
   try {
     return await sendBroadcastEmail({
+      visual: campaignVisual(c.slug),
       to: r.email,
       recipientName: r.name,
       subject: fillPlaceholders(c.subject, r, kind),

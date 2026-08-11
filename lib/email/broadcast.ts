@@ -18,6 +18,13 @@ import {
  * that must know whether each send succeeded before recording it. Firing and
  * forgetting would let campaign_sends claim deliveries that never happened.
  */
+/** Split on the first occurrence only; a second marker stays as literal text. */
+function splitOnce(text: string, marker: string): [string, string | null] {
+  const at = text.indexOf(marker)
+  if (at === -1) return [text, null]
+  return [text.slice(0, at).trimEnd(), text.slice(at + marker.length).trimStart()]
+}
+
 export async function sendBroadcastEmail(payload: {
   to: string
   recipientName?: string | null
@@ -25,6 +32,15 @@ export async function sendBroadcastEmail(payload: {
   preheader?: string | null
   /** Plain text, blank line between paragraphs. */
   body: string
+  /**
+   * Optional block dropped where the body says {{visual}}.
+   *
+   * A marker rather than raw HTML in the body: campaign copy is authored as
+   * plain text and escaped on the way out, which is what keeps a campaign from
+   * being an HTML injection point. This lets a campaign place a known visual
+   * without being able to write markup.
+   */
+  visual?: { html: string; text: string }
   cta?: { label: string; href: string } | null
   unsubscribeHref: string
   unsubscribeLabel: string
@@ -35,14 +51,25 @@ export async function sendBroadcastEmail(payload: {
 
   const preheader = payload.preheader?.trim() || undefined
 
+  const MARKER = '{{visual}}'
+  const [beforeVisual, afterVisual] = payload.visual
+    ? splitOnce(payload.body, MARKER)
+    : [payload.body.replaceAll(MARKER, ''), null]
+
   const bodyHtml =
     `<p style="margin:0 0 16px;font-size:16px;color:${EMAIL_INK}">${esc(greeting)}</p>` +
-    textToProseParagraphs(payload.body)
+    textToProseParagraphs(beforeVisual) +
+    (payload.visual && afterVisual !== null ? payload.visual.html : '') +
+    (afterVisual !== null ? textToProseParagraphs(afterVisual) : '')
 
   const text = [
     greeting,
     '',
-    payload.body,
+    // The picture is data, so the text part gets the same data as a list rather
+    // than a hole where a visual used to be.
+    payload.visual && afterVisual !== null
+      ? `${beforeVisual}\n\n${payload.visual.text}\n\n${afterVisual}`
+      : beforeVisual,
     ...(payload.cta ? ['', `${payload.cta.label}: ${payload.cta.href}`] : []),
     '',
     `${payload.unsubscribeLabel}: ${payload.unsubscribeHref}`,

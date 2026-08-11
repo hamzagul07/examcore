@@ -308,6 +308,65 @@ const SHOWCASE_BY_SUBJECT: Record<string, ShowcaseSeed[]> = {
         'Two’s complement stores signed integers.',
       ],
     },
+    /*
+     * The four below were already built but never showcased, and they are the
+     * ones that carry an IB Computer Science desk: Networks and Computer
+     * organisation are whole IB topics, and algorithms sit under computational
+     * thinking. Without them an IB CS student saw three diagrams, none of which
+     * covered a topic their course spends a term on.
+     */
+    {
+      slug: '2-1-networks-including-the-internet',
+      title: 'Networks — packets across the internet',
+      tagline: 'Watch a message split, route, and reassemble.',
+      topicCode: '2.1',
+      chip: 'Networks',
+      beats: [
+        'Data is split into packets before it travels.',
+        'Each packet carries addressing and a sequence number.',
+        'Packets can take different routes to the same place.',
+        'The receiver reorders them and asks again for anything lost.',
+      ],
+    },
+    {
+      slug: '19-1-algorithms',
+      title: 'Algorithms — step by step',
+      tagline: 'Trace the loop instead of memorising the output.',
+      topicCode: '19.1',
+      chip: 'Thinking',
+      beats: [
+        'An algorithm is finite, ordered and unambiguous.',
+        'Trace tables show the state after every pass.',
+        'Compare by the work done as input grows, not by clock time.',
+        'The same problem has many correct algorithms.',
+      ],
+    },
+    {
+      slug: '15-1-processors-parallel-processing-and-virtual-machines',
+      title: 'Processor — fetch, decode, execute',
+      tagline: 'One cycle, stepped through register by register.',
+      topicCode: '15.1',
+      chip: 'Organisation',
+      beats: [
+        'Fetch: the instruction moves from memory into the CPU.',
+        'Decode: the control unit works out what it means.',
+        'Execute: the ALU does the work and stores the result.',
+        'Registers hold what the cycle needs right now.',
+      ],
+    },
+    {
+      slug: '15-2-boolean-algebra-and-logic-circuits',
+      title: 'Boolean algebra — simplify the circuit',
+      tagline: 'Fewer gates, identical truth table.',
+      topicCode: '15.2',
+      chip: 'Logic',
+      beats: [
+        'A Boolean expression and a circuit are the same object.',
+        'De Morgan’s laws swap AND and OR through a NOT.',
+        'Simplifying removes gates without changing behaviour.',
+        'Check any simplification against the truth table.',
+      ],
+    },
     {
       slug: '10-1-data-types-and-records',
       title: 'Data types & records',

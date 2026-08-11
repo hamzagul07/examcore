@@ -194,6 +194,20 @@ function fillPlaceholders(text: string, r: Recipient, kind: 'updates' | 'activat
     .replaceAll('{{focus_headline}}', focusHeadline(focusFor(r)))
 }
 
+/**
+ * Where the IB call-to-action points.
+ *
+ * Their own subject's thread, not the feed. The first version of this campaign
+ * shipped pointing at /community, which is the mixed firehose — the exact dead
+ * end the thread route exists to remove, and it also bypasses the click log, so
+ * the campaign could not be measured either. cta_href runs through the same
+ * substitution as the body, so there was never a reason for it to be generic.
+ */
+function ibThreadHref(focus: { slug: string } | null): string {
+  const base = focus ? `/community/thread/${focus.slug}` : '/community'
+  return `https://markscheme.app${base}?utm_source=campaign&utm_medium=email&utm_campaign=ib-ia-2026`
+}
+
 /** IB headline, resolved before send because the lookup is async. */
 function ibHeadline(focus: { label: string; ia: string } | null): string {
   if (!focus) return 'Your IA question: get it right before it costs you months'
@@ -258,7 +272,7 @@ type MarkComponentLike = {
  * prescribed title, and calling either an IA is the kind of error an IB student
  * spots in the subject line.
  */
-async function ibFocusFor(r: Recipient): Promise<{ label: string; ia: string } | null> {
+async function ibFocusFor(r: Recipient): Promise<{ slug: string; label: string; ia: string } | null> {
   const admin = createServiceClient()
   const { data } = await admin
     .from('community_posts')
@@ -276,7 +290,7 @@ async function ibFocusFor(r: Recipient): Promise<{ label: string; ia: string } |
     if (CORE_COMPONENTS.has(slug) || !live.has(slug)) continue
     const subject = catalog.get(slug)
     if (!subject) continue
-    return { label: shortIbLabel(subject.name, subject.level), ia: iaName(slug) }
+    return { slug, label: shortIbLabel(subject.name, subject.level), ia: iaName(slug) }
   }
   return null
 }
@@ -348,10 +362,13 @@ async function deliver(
   // Resolved here rather than in fillPlaceholders because it needs a query, and
   // a token that silently costs a round trip per substitution is a trap.
   const ibFocus = c.audience === 'ib_ia_season' ? await ibFocusFor(r) : null
-  const withIb = (text: string) => text.replaceAll('{{ib_headline}}', ibHeadline(ibFocus))
+  const withIb = (text: string) =>
+    text
+      .replaceAll('{{ib_headline}}', ibHeadline(ibFocus))
+      .replaceAll('{{ib_thread}}', ibThreadHref(ibFocus))
   const cta =
     c.cta_label && c.cta_href
-      ? { label: c.cta_label, href: fillPlaceholders(c.cta_href, r, kind) }
+      ? { label: c.cta_label, href: withIb(fillPlaceholders(c.cta_href, r, kind)) }
       : null
   try {
     return await sendBroadcastEmail({

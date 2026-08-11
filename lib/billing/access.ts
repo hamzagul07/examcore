@@ -37,16 +37,45 @@ export function effectiveAccess(opts: {
    * anyone claim a plan by ticking a box.
    */
   teacherVerified?: boolean
+  /**
+   * A manual entitlement grant (see lib/billing/comp.ts). Floors access, never
+   * lowers it, so comping someone can never take away what they pay for.
+   */
+  accessOverride?: EffectiveAccess | null
 }): EffectiveAccess {
   const paidActive = opts.tier !== 'free' && ACTIVE_STATUSES.includes(opts.status)
   // A teacher seat is a distribution cost, not a customer: it is given away so
   // that the class arrives with it. Floored rather than assigned, so a teacher
   // who does pay for Max keeps Max.
-  if (!paidActive) return opts.teacherVerified ? 'pro' : 'free'
-  // mastery → Max; scholar → Scholar; legacy `student` → Pro.
-  if (opts.tier === 'mastery') return 'max'
-  if (opts.tier === 'scholar') return 'scholar'
-  return 'pro'
+  const earned: EffectiveAccess = !paidActive
+    ? opts.teacherVerified
+      ? 'pro'
+      : 'free'
+    : // mastery → Max; scholar → Scholar; legacy `student` → Pro.
+      opts.tier === 'mastery'
+      ? 'max'
+      : opts.tier === 'scholar'
+        ? 'scholar'
+        : 'pro'
+
+  return floorAccess(earned, opts.accessOverride ?? null)
+}
+
+/** free < pro < scholar < max. Used to floor rather than replace access. */
+const ACCESS_RANK: Record<EffectiveAccess, number> = {
+  free: 0,
+  pro: 1,
+  scholar: 2,
+  max: 3,
+}
+
+/** Returns whichever level is higher, so a grant can never demote anyone. */
+export function floorAccess(
+  earned: EffectiveAccess,
+  granted: EffectiveAccess | null
+): EffectiveAccess {
+  if (!granted) return earned
+  return ACCESS_RANK[granted] > ACCESS_RANK[earned] ? granted : earned
 }
 
 /**

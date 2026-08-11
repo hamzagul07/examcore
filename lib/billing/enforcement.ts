@@ -21,6 +21,7 @@ import {
   isVerifiedTeacher,
   type EffectiveAccess,
 } from './access'
+import { compedAccess } from './comp'
 import type { SubscriptionTier, SubscriptionStatus } from '@/lib/database.types'
 import { notifyAdminMark } from '@/lib/email/notifications'
 import { runAfterResponse } from '@/lib/after-response'
@@ -111,10 +112,20 @@ async function loadBillingContext(
   const status = (sub?.status ?? 'active') as SubscriptionStatus
   // The granted seat, not the self-declared `role` column.
   const is_teacher = isVerifiedTeacher(profile?.teacher_verified_at)
-  const access = effectiveAccess({ tier, status, teacherVerified: is_teacher })
+  const comp = compedAccess(userId)
+  const access = effectiveAccess({
+    tier,
+    status,
+    teacherVerified: is_teacher,
+    accessOverride: comp,
+  })
   // Caps come from the ACTUAL paid tier now that Pro/Scholar/Max are distinct
   // (student=Pro, scholar=Scholar, mastery=Max); free gets free caps.
-  const cap_tier: SubscriptionTier = access === 'free' ? 'free' : tier
+  // A comped user is granted the matching tier's allowance too, otherwise they
+  // would be handed Max features and then stopped by a Scholar cap.
+  const comp_tier: SubscriptionTier | null = comp === 'max' ? 'mastery' : null
+  const cap_tier: SubscriptionTier =
+    access === 'free' ? 'free' : (comp_tier ?? tier)
   return {
     tier,
     cap_tier,

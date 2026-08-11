@@ -80,4 +80,41 @@ assert.equal(omniCapForAccess('scholar', 'scholar'), 150, 'Scholar chat cap unch
 assert.equal(capForAccess('max', 'mastery'), 250, 'Max marking cap unchanged')
 assert.equal(capForAccess('free', 'free'), 5, 'free cap unchanged')
 
+// --- comps floor access, never lower it --------------------------------------
+// Used to hand an early Scholar the fuller experience while the tier is built.
+
+assert.equal(
+  effectiveAccess({ tier: 'scholar', status: 'active', accessOverride: 'max' }),
+  'max',
+  'a comped Scholar gets Max-level access'
+)
+assert.equal(
+  effectiveAccess({ tier: 'mastery', status: 'active', accessOverride: 'scholar' }),
+  'max',
+  'a comp never demotes someone who already pays for more'
+)
+assert.equal(
+  effectiveAccess({ tier: 'scholar', status: 'active', accessOverride: null }),
+  'scholar',
+  'no comp leaves access untouched'
+)
+assert.equal(
+  effectiveAccess({ tier: 'free', status: 'canceled', accessOverride: 'max' }),
+  'max',
+  'a comp can lift a free account, for a granted trial'
+)
+assert.ok(
+  hasResourceVault(
+    effectiveAccess({ tier: 'scholar', status: 'active', accessOverride: 'max' })
+  ),
+  'a comped Scholar opens the full vault'
+)
+assert.equal(
+  vaultSubjectLimit(
+    effectiveAccess({ tier: 'scholar', status: 'active', accessOverride: 'max' })
+  ),
+  null,
+  'and sees the whole shelf, not one subject'
+)
+
 console.log('scholar-access.test.ts — all assertions passed')

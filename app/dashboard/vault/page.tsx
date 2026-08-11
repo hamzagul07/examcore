@@ -9,6 +9,7 @@ import {
 } from '@/lib/profile-options'
 import { hasSyllabusTree, getSyllabusSubjectName } from '@/lib/syllabi'
 import { effectiveAccess } from '@/lib/billing/access'
+import { compedAccess } from '@/lib/billing/comp'
 import {
   hasResourceVault,
   hasMaxWeeklyCoach,
@@ -64,6 +65,7 @@ export default async function MaxVaultPage({
   const access = effectiveAccess({
     tier: (sub?.tier as SubscriptionTier) ?? 'free',
     status: (sub?.status as SubscriptionStatus) ?? 'canceled',
+    accessOverride: compedAccess(user.id),
   })
 
   if (!hasResourceVault(access)) {

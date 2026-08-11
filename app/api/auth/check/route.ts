@@ -6,6 +6,7 @@ import {
 import { resolvePostAuthPath } from '@/lib/auth-redirect'
 import { isOnboardingComplete } from '@/lib/onboarding'
 import { effectiveAccess } from '@/lib/billing/access'
+import { compedAccess } from '@/lib/billing/comp'
 import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
 
 export async function GET(request: NextRequest) {
@@ -47,6 +48,7 @@ export async function GET(request: NextRequest) {
   const access = effectiveAccess({
     tier: (sub?.tier as SubscriptionTier) ?? 'free',
     status: (sub?.status as SubscriptionStatus) ?? 'canceled',
+    accessOverride: compedAccess(user.id),
   })
 
   return jsonWithAuthCookies(

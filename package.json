@@ -19,6 +19,7 @@
     "community:seed-threads": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/seed-results-threads.ts",
     "community:unpin-stale": "tsx scripts/unpin-stale-pins.ts",
     "community:invites": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/community-invites.ts",
+    "community:seed-ib": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/seed-ib-ia-threads.ts",
     "test:channels": "tsx scripts/verify-channel-classifier.ts",
     "test:grants": "tsx scripts/verify-column-grants.ts",
     "teacher:grant": "tsx scripts/grant-teacher-seat.ts",

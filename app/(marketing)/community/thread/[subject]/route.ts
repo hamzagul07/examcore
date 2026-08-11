@@ -3,7 +3,7 @@ import { NextRequest, NextResponse, after } from 'next/server'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { findCommunitySubject } from '@/lib/community/subjects'
 import { getGradeBoundaryCalculatorCodes } from '@/lib/seo/programmatic-subjects'
-import { resolveResultsThread } from '@/lib/community/results-thread'
+import { resolveSubjectThread } from '@/lib/community/results-thread'
 import { recordResultsThreadClick, isLikelyBot } from '@/lib/community/thread-clicks'
 
 export const runtime = 'nodejs'
@@ -42,9 +42,12 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   const known =
     anySubject ||
     !!findCommunitySubject(subject) ||
+    // Base IB slugs — the blog says `chemistry`, the rooms are `chemistry-hl`.
+    !!findCommunitySubject(`${subject}-hl`) ||
+    !!findCommunitySubject(`${subject}-sl`) ||
     getGradeBoundaryCalculatorCodes().includes(subject)
   const target = known
-    ? await resolveResultsThread(anySubject ? null : subject)
+    ? await resolveSubjectThread(anySubject ? null : subject)
     : { href: '/community', exact: false }
 
   const destination = new URL(target.href, origin)

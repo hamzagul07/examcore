@@ -32,6 +32,17 @@ import { BlogBreadcrumbs } from '@/components/blog/BlogBreadcrumbs'
 import { BlogShareButtons } from '@/components/blog/BlogShareButtons'
 import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
 import { ResultsThreadCta } from '@/components/community/ResultsThreadCta'
+import { IbThreadCta } from '@/components/community/IbThreadCta'
+
+/**
+ * Both halves of the IA content: 15 `-ia-guide` posts and 14 `-ia-ideas` ones.
+ * `isIbIaGuideSlug` covers only the first, and is used elsewhere to build the
+ * guides index, so it is left alone rather than widened underneath its other
+ * caller.
+ */
+function isIbIaPage(slug: string): boolean {
+  return slug.startsWith('ib-') && (slug.endsWith('-ia-guide') || slug.endsWith('-ia-ideas'))
+}
 import { getSyllabusSubjectName } from '@/lib/syllabi'
 import { SITE_URL } from '@/lib/site-config'
 
@@ -116,6 +127,13 @@ export default async function BlogPostPage({ params }: Props) {
             has the answer they came for. */}
         {showResultsDayBanner ? (
           <ResultsThreadCta source="blog" subjectCode={subjectCode} className="mt-8" />
+        ) : null}
+
+        {/* Same placement logic as the results banner: after the guide, once the
+            reader has what they came for. An IA guide ends exactly where the
+            useful question starts. */}
+        {!showResultsDayBanner && isIbIaPage(slug) && post.subject ? (
+          <IbThreadCta subject={post.subject} source="blog-ib-ia" className="mt-8" />
         ) : null}
 
         <BlogSourcesBlock slug={slug} />

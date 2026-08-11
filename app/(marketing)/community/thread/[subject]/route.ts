@@ -2,6 +2,7 @@ import { NextRequest, NextResponse, after } from 'next/server'
 
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { findCommunitySubject } from '@/lib/community/subjects'
+import { getGradeBoundaryCalculatorCodes } from '@/lib/seo/programmatic-subjects'
 import { resolveResultsThread } from '@/lib/community/results-thread'
 import { recordResultsThreadClick } from '@/lib/community/thread-clicks'
 
@@ -31,7 +32,17 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   // "results" is the reserved subject-less slug the hub pages use — they have
   // results-week intent but no syllabus in context.
   const anySubject = subject === 'results'
-  const known = anySubject || !!findCommunitySubject(subject)
+  // A syllabus counts as known if it has a community room OR a boundary page.
+  // IGCSE codes have the second and not the first — the course catalog the
+  // rooms are built from is A-Level — so without this every reader arriving
+  // from an IGCSE boundary post lands on the mixed feed, which is exactly the
+  // dead end the CTA was built to remove. Matched against the fixed code list
+  // rather than by probing the data directory, so a hand-edited URL cannot
+  // steer a filesystem read.
+  const known =
+    anySubject ||
+    !!findCommunitySubject(subject) ||
+    getGradeBoundaryCalculatorCodes().includes(subject)
   const target = known
     ? await resolveResultsThread(anySubject ? null : subject)
     : { href: '/community', exact: false }

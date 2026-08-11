@@ -23,6 +23,8 @@ export type Recipient = {
   userId: string
   email: string
   name: string | null
+  /** Their own subjects, so a campaign can name them instead of guessing. */
+  subjects: string[]
 }
 
 export type SegmentId =
@@ -87,6 +89,7 @@ type ProfileRow = {
   full_name: string | null
   email_product_updates: boolean | null
   email_activation: boolean | null
+  subjects: string[] | null
   onboarded: boolean | null
   board: string | null
 }
@@ -94,7 +97,7 @@ type ProfileRow = {
 function profileQuery() {
   return createServiceClient()
     .from('user_profiles')
-    .select('id, full_name, email_product_updates, email_activation, onboarded, board')
+    .select('id, full_name, email_product_updates, email_activation, onboarded, board, subjects')
 }
 
 function toRecipients(rows: ProfileRow[], users: Map<string, AuthUser>): Recipient[] {
@@ -102,7 +105,7 @@ function toRecipients(rows: ProfileRow[], users: Map<string, AuthUser>): Recipie
   for (const r of rows) {
     const u = users.get(r.id)
     if (!u || !u.confirmed) continue
-    out.push({ userId: r.id, email: u.email, name: r.full_name })
+    out.push({ userId: r.id, email: u.email, name: r.full_name, subjects: r.subjects ?? [] })
   }
   return out
 }

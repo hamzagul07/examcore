@@ -76,6 +76,8 @@ export async function previewCampaign(opts: {
     userId: PREVIEW_USER_ID,
     email: opts.to,
     name: 'Preview',
+    // Stand-ins so a preview shows the shape a real recipient would see.
+    subjects: ['Physics', 'Chemistry', 'Mathematics'],
   }
 
   const delivered = await deliver(c, recipient, kind)
@@ -180,6 +182,20 @@ function fillPlaceholders(text: string, r: Recipient, kind: 'updates' | 'activat
     .replaceAll('{{subscribe_url}}', subscribeUrl(r.userId, kind))
     .replaceAll('{{unsubscribe_url}}', unsubscribeUrl(r.userId, kind))
     .replaceAll('{{first_name}}', r.name?.trim().split(/\s+/)[0] ?? 'there')
+    // Their actual subjects. A campaign that can name them is a letter; one
+    // that cannot is a broadcast, and reads like one.
+    .replaceAll('{{subjects}}', formatSubjects(r.subjects))
+}
+
+/** "Physics, Chemistry and Maths" — an English list, not a CSV dump. */
+function formatSubjects(subjects: string[]): string {
+  const clean = subjects
+    .map((s) => s.replace(/^ib-/, '').replace(/-/g, ' ').trim())
+    .filter(Boolean)
+    .slice(0, 4)
+  if (!clean.length) return 'your subjects'
+  if (clean.length === 1) return clean[0]
+  return `${clean.slice(0, -1).join(', ')} and ${clean[clean.length - 1]}`
 }
 
 async function deliver(
@@ -195,7 +211,7 @@ async function deliver(
     return await sendBroadcastEmail({
       to: r.email,
       recipientName: r.name,
-      subject: c.subject,
+      subject: fillPlaceholders(c.subject, r, kind),
       preheader: c.preheader,
       body: fillPlaceholders(c.body, r, kind),
       cta,

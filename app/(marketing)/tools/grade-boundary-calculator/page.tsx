@@ -12,6 +12,7 @@ import {
   buildSubjectPageCopy,
 } from '@/lib/seo/programmatic-subjects'
 import { ToolsDeskArtefact } from '@/components/tools/ToolsDeskArtefact'
+import { ResultsThreadCta } from '@/components/community/ResultsThreadCta'
 import { ToolInstrumentShell } from '@/components/tools/ToolInstrumentShell'
 
 const PATH = '/tools/grade-boundary-calculator'
@@ -84,6 +85,7 @@ export default function GradeCalculatorPage() {
         ]}
         after={
           <>
+            <ResultsThreadCta source="grade-boundary-calculator" className="mb-8" />
             <section className="ms-tool-instrument__faq" aria-labelledby="gb-faq">
               <h2 id="gb-faq" className="ms-tool-instrument__faq-title">
                 FAQ

@@ -17,6 +17,7 @@ import { MarketingHero, MarketingPageShell, MarketingSection } from '@/component
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { BlogPostCard } from '@/components/blog/BlogPostCard'
 import { GradeBoundaryHubPanel } from '@/components/seo/GradeBoundaryHubPanel'
+import { ResultsThreadCta } from '@/components/community/ResultsThreadCta'
 import { IbResultsSpotlight } from '@/components/seo/IbResultsSpotlight'
 import { enrichPostMeta } from '@/lib/blog/meta'
 import { SITE_URL } from '@/lib/site-config'

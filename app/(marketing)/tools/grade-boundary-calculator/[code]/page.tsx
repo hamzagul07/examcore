@@ -15,6 +15,7 @@ import {
 } from '@/lib/seo/programmatic-subjects'
 import { getSubjectGuideSlugForCode } from '@/lib/seo/subject-guides'
 import { getOfficialBoundaries } from '@/lib/seo/grade-boundaries-data'
+import { ResultsThreadCta } from '@/components/community/ResultsThreadCta'
 import { ToolInstrumentShell } from '@/components/tools/ToolInstrumentShell'
 import { ToolsDeskArtefact } from '@/components/tools/ToolsDeskArtefact'
 
@@ -106,19 +107,22 @@ export default async function SubjectGradeCalculatorPage({ params }: Props) {
           { name: `${code}`, path },
         ]}
         after={
-          <section className="ms-tool-instrument__faq" aria-labelledby="gb-code-faq">
-            <h2 id="gb-code-faq" className="ms-tool-instrument__faq-title">
-              FAQ
-            </h2>
-            <dl className="ms-tool-faq">
-              {faqs.map((f) => (
-                <div key={f.q}>
-                  <dt>{f.q}</dt>
-                  <dd className="ms-body-2">{f.a}</dd>
-                </div>
-              ))}
-            </dl>
-          </section>
+          <>
+            <ResultsThreadCta source="grade-calculator-subject" subjectCode={code} className="mb-8" />
+            <section className="ms-tool-instrument__faq" aria-labelledby="gb-code-faq">
+              <h2 id="gb-code-faq" className="ms-tool-instrument__faq-title">
+                FAQ
+              </h2>
+              <dl className="ms-tool-faq">
+                {faqs.map((f) => (
+                  <div key={f.q}>
+                    <dt>{f.q}</dt>
+                    <dd className="ms-body-2">{f.a}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          </>
         }
       >
         <ResultsDayBanner subjectCode={code} className="mb-6" />

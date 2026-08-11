@@ -1,15 +1,8 @@
 import 'server-only'
 
 import { createServiceClient } from '@/lib/supabase-server'
-
-/**
- * Flairs that mark a thread as part of the results-week conversation.
- *
- * Ordered by how well the thread answers "I have my grade, now what?" — a
- * boundary thread beats a generic results-day thread because the reader
- * arriving from a threshold page already has a raw mark in hand.
- */
-const RESULTS_FLAIRS = ['Grade boundaries', 'Results day', 'Results'] as const
+import { A_LEVEL_RESULTS_UTC } from '@/lib/seo/results-day'
+import { pickResultsThread, RESULTS_FLAIRS } from '@/lib/community/results-thread-rank'
 
 /** Where a reader should land when they click "post in the thread" for a subject. */
 export type ThreadTarget = {
@@ -18,10 +11,13 @@ export type ThreadTarget = {
   exact: boolean
 }
 
-function flairRank(flair: string | null): number {
-  if (!flair) return RESULTS_FLAIRS.length
-  const i = RESULTS_FLAIRS.indexOf(flair as (typeof RESULTS_FLAIRS)[number])
-  return i === -1 ? RESULTS_FLAIRS.length : i
+function fallback(subjectCode: string | null): ThreadTarget {
+  // A subject at least has a room where every post is about their syllabus;
+  // without one, the feed is all that is left.
+  return {
+    href: subjectCode ? `/community/s/${subjectCode}` : '/community',
+    exact: false,
+  }
 }
 
 /**
@@ -48,22 +44,8 @@ export async function resolveResultsThread(subjectCode: string | null): Promise<
 
   const { data } = await query.order('created_at', { ascending: false }).limit(10)
 
-  const rows = data ?? []
-  if (!rows.length) {
-    // Nothing to land on. A subject at least has a room where every post is
-    // about their syllabus; without one, the feed is all that is left.
-    return {
-      href: subjectCode ? `/community/s/${subjectCode}` : '/community',
-      exact: false,
-    }
-  }
-
-  const best = [...rows].sort((a, b) => {
-    if (a.is_pinned !== b.is_pinned) return a.is_pinned ? -1 : 1
-    const byFlair = flairRank(a.flair) - flairRank(b.flair)
-    if (byFlair !== 0) return byFlair
-    return String(b.created_at).localeCompare(String(a.created_at))
-  })[0]
+  const best = pickResultsThread(data ?? [], A_LEVEL_RESULTS_UTC)
+  if (!best) return fallback(subjectCode)
 
   return { href: `/community/posts/${best.id}`, exact: true }
 }

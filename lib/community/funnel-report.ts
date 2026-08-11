@@ -19,6 +19,8 @@ export type WaitingItem = {
   title: string
   author: string
   ageDays: number
+  /** False for one-liners with nothing to answer ("anyone?", "yo?"). */
+  substantive: boolean
 }
 
 export type FunnelReport = {
@@ -97,20 +99,33 @@ export async function communityFunnelReport(days: number): Promise<FunnelReport>
     ),
     // Deliberately not windowed by `days`: a student ignored in July is still
     // ignored today, and the whole point is that nobody noticed.
-    fetchAll<{ id: string; author_id: string; title: string; created_at: string }>((from, to) =>
+    fetchAll<{
+      id: string
+      author_id: string
+      title: string
+      created_at: string
+      body_md: string | null
+      attachments: unknown[] | null
+    }>((from, to) =>
       admin
         .from('community_posts')
-        .select('id, author_id, title, created_at')
+        .select('id, author_id, title, created_at, body_md, attachments')
         .eq('status', 'published')
         .range(from, to)
     ),
     fetchAll<{ post_id: string; author_id: string }>((from, to) =>
       admin.from('community_comments').select('post_id, author_id').eq('status', 'published').range(from, to)
     ),
-    fetchAll<{ id: string; author_id: string; title: string; created_at: string }>((from, to) =>
+    fetchAll<{
+      id: string
+      author_id: string
+      title: string
+      created_at: string
+      body_md: string | null
+    }>((from, to) =>
       admin
         .from('community_questions')
-        .select('id, author_id, title, created_at')
+        .select('id, author_id, title, created_at, body_md')
         .eq('status', 'published')
         .range(from, to)
     ),
@@ -177,6 +192,26 @@ export async function communityFunnelReport(days: number): Promise<FunnelReport>
   const now = Date.now()
   const ageDays = (iso: string) => Math.floor((now - Date.parse(iso)) / 86_400_000)
 
+  /**
+   * Is there anything here a person could actually answer?
+   *
+   * Several of the oldest unanswered posts are "anyone?", "yo?" and an empty
+   * body — someone trying the product out, not a student left hanging. Listing
+   * those with the same weight as a real question trains you to ignore the
+   * list, which defeats the point of having one.
+   */
+  const isSubstantive = (title: string, body: string | null, attachments?: unknown[] | null) => {
+    const text = (body ?? '').trim()
+    if (text.length >= 40) return true
+    if (attachments?.length) return true
+    // A short body that asks something is still worth answering — "I got 3 A's,
+    // how about you?" is 35 characters and is exactly the post you want to
+    // reply to. The length floor is what keeps "anyone?" and "yo?" out.
+    if (text.length >= 20 && text.includes('?')) return true
+    // Or the title carries the question on its own.
+    return title.trim().length >= 25 && /\?|how|what|why|when|which/i.test(title)
+  }
+
   const waiting: WaitingItem[] = [
     ...allPosts
       .filter((p) => !isBot(p.author_id) && !answeredPosts.has(p.id))
@@ -186,6 +221,7 @@ export async function communityFunnelReport(days: number): Promise<FunnelReport>
         title: p.title,
         author: names.get(p.author_id) ?? 'someone',
         ageDays: ageDays(p.created_at),
+        substantive: isSubstantive(p.title, p.body_md, p.attachments),
       })),
     ...allQuestions
       .filter((q) => !isBot(q.author_id) && !answeredQuestions.has(q.id))
@@ -195,8 +231,9 @@ export async function communityFunnelReport(days: number): Promise<FunnelReport>
         title: q.title,
         author: names.get(q.author_id) ?? 'someone',
         ageDays: ageDays(q.created_at),
+        substantive: isSubstantive(q.title, q.body_md),
       })),
-  ].sort((a, b) => b.ageDays - a.ageDays)
+  ].sort((a, b) => Number(b.substantive) - Number(a.substantive) || b.ageDays - a.ageDays)
 
   const rank = (m: Map<string, SourceRow>) => [...m.values()].sort((a, b) => b.clicks - a.clicks)
 
@@ -233,17 +270,23 @@ export function formatFunnelReport(r: FunnelReport): string {
 
   // Top of the report on purpose. Six of the first seven real posts never got a
   // peer reply, and that — not discovery — is what ended the June burst.
-  if (r.waiting.length) {
-    out.push(`\n⚠ ${r.waiting.length} real ${r.waiting.length === 1 ? 'person is' : 'people are'} waiting for an answer`)
-    for (const w of r.waiting.slice(0, 12)) {
+  const answerable = r.waiting.filter((w) => w.substantive)
+  const thin = r.waiting.length - answerable.length
+
+  if (answerable.length) {
+    out.push(`\n⚠ ${answerable.length} real ${answerable.length === 1 ? 'person is' : 'people are'} waiting for an answer`)
+    for (const w of answerable.slice(0, 12)) {
       const age = w.ageDays === 0 ? 'today' : `${w.ageDays}d ago`
       const href = w.kind === 'post' ? `/community/posts/${w.id}` : `/community/questions/${w.id}`
       out.push(`    ${age.padStart(7)}  u/${w.author.padEnd(16)} ${w.title.slice(0, 44)}`)
       out.push(`             ${href}`)
     }
-    if (r.waiting.length > 12) out.push(`    …and ${r.waiting.length - 12} more`)
+    if (answerable.length > 12) out.push(`    …and ${answerable.length - 12} more`)
   } else {
-    out.push('\n✓ Every real post and question has an answer.')
+    out.push('\n✓ Nothing answerable is waiting.')
+  }
+  if (thin) {
+    out.push(`  (${thin} more unanswered, but too thin to answer — "anyone?", "yo?", empty bodies)`)
   }
 
   out.push(`\nCTA clicks through to a thread: ${r.clicks.total}`)

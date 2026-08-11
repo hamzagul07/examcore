@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: 9489 grade boundaries, 9489 grade boundaries 2026, Cambridge History grade boundaries, 9489 history thresholds, 9489 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-07
+updated: 2026-08-11
 featured: true
 informationGain: synthesis
 ---

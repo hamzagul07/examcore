@@ -3,10 +3,13 @@ import 'server-only'
 import Link from 'next/link'
 
 import { getResultsDayPhase } from '@/lib/seo/results-day'
+import { anyJune2026DataAvailable, hasJune2026Session } from '@/lib/seo/grade-boundaries-data'
 
 type Props = {
   /** Where the block sits, so the UTM can tell blog from hub traffic. */
   source: string
+  /** Subject in context, so the copy only claims data we actually hold. */
+  subjectCode?: string | null
   className?: string
 }
 
@@ -18,8 +21,15 @@ type Props = {
  * land the question becomes what to do about the gap. A single evergreen
  * "join our community" would be ignored in both phases.
  */
-export function ResultsThreadCta({ source, className = '' }: Props) {
+export function ResultsThreadCta({ source, subjectCode = null, className = '' }: Props) {
   const phase = getResultsDayPhase()
+
+  // "Stop guessing at the gap" is only true if we hold the June 2026 numbers
+  // for this subject. IGCSE codes still have nothing until 18 August, so
+  // without this check the post-threshold copy would overpromise on them.
+  const boundariesLive = subjectCode
+    ? hasJune2026Session(subjectCode)
+    : anyJune2026DataAvailable()
 
   const copy = {
     'pre-alevel': {
@@ -32,11 +42,17 @@ export function ResultsThreadCta({ source, className = '' }: Props) {
       title: 'Your grade is out. The boundaries are not.',
       body: 'Threshold tables usually land around 13 August. Post your subject code and raw marks in the thread and we will work out what the boundary would have to do for your grade to move.',
     },
-    'threshold-week': {
-      overline: 'Community · thresholds live',
-      title: 'Now you can stop guessing at the gap.',
-      body: 'Post your component and raw mark. We work out how far you were from the grade above and below — one mark off is a completely different week from fifteen.',
-    },
+    'threshold-week': boundariesLive
+      ? {
+          overline: 'Community · thresholds live',
+          title: 'Now you can stop guessing at the gap.',
+          body: 'The June 2026 thresholds are in. Post your component and raw mark and we work out how far you were from the grade above and below — one mark off is a completely different week from fifteen.',
+        }
+      : {
+          overline: 'Community · open thread',
+          title: 'Your grade is out. These thresholds are not.',
+          body: 'A Level tables are live but this series has not published yet. Post your subject and raw marks in the thread and you get the boundary read the moment the table lands.',
+        },
     'post-igcse': {
       overline: 'Community · open thread',
       title: 'Still deciding on a remark or a resit?',

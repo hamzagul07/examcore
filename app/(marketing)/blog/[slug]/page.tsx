@@ -115,7 +115,7 @@ export default async function BlogPostPage({ params }: Props) {
         {/* After the article, not before it: the ask converts once the reader
             has the answer they came for. */}
         {showResultsDayBanner ? (
-          <ResultsThreadCta source="blog" className="mt-8" />
+          <ResultsThreadCta source="blog" subjectCode={subjectCode} className="mt-8" />
         ) : null}
 
         <BlogSourcesBlock slug={slug} />

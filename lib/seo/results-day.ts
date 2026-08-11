@@ -12,8 +12,16 @@ export const CAMBRIDGE_RESULTS_DAY_SLUG = 'cambridge-results-day-august-2026-gui
 /** AS & A Level results — Tuesday 11 August 2026, 06:00 GMT */
 export const A_LEVEL_RESULTS_UTC = Date.parse('2026-08-11T06:00:00.000Z')
 
-/** Grade threshold tables for the June series — typically ~13 August */
-export const THRESHOLDS_PUBLISH_UTC = Date.parse('2026-08-13T06:00:00.000Z')
+/**
+ * Grade threshold tables for the June series.
+ *
+ * Cambridge published these alongside results on 11 August 2026, not on the
+ * ~13 August this previously assumed — verified against the live PDFs on the
+ * June 2026 threshold tables page. Leaving the later date made every
+ * results page tell students the boundaries were not out while they were
+ * holding them.
+ */
+export const THRESHOLDS_PUBLISH_UTC = Date.parse('2026-08-11T06:00:00.000Z')
 
 /** IGCSE & O Level results — Tuesday 18 August 2026, 06:00 GMT */
 export const IGCSE_RESULTS_UTC = Date.parse('2026-08-18T06:00:00.000Z')

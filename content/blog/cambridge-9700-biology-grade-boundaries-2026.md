@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: 9700 grade boundaries, 9700 grade boundaries 2026, Cambridge Biology grade boundaries, 9700 biology thresholds, 9700 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-07
+updated: 2026-08-11
 featured: true
 informationGain: synthesis
 ---

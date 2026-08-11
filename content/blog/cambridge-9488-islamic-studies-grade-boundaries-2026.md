@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: 9488 grade boundaries, 9488 grade boundaries 2026, Cambridge Islamic Studies grade boundaries, 9488 islamic-studies thresholds, 9488 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-07
+updated: 2026-08-11
 featured: true
 informationGain: synthesis
 ---

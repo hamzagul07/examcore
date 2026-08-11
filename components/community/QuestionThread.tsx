@@ -1,8 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAuthCheck } from '@/lib/hooks/useAuthCheck'
 import { CommunityMarkdown } from '@/components/community/CommunityMarkdown'
+import { DigestOptIn } from '@/components/community/DigestOptIn'
+
+const ANSWERED_KEY = 'ms:community:answered'
 
 type Answer = {
   id: string
@@ -49,13 +52,22 @@ function VoteButton({ kind, id, count }: { kind: 'questions' | 'answers'; id: st
   )
 }
 
-export function QuestionThread({ question, answers: initial }: { question: Question; answers: Answer[] }) {
+export function QuestionThread({
+  question,
+  answers: initial,
+  offerDigest,
+}: {
+  question: Question
+  answers: Answer[]
+  offerDigest?: boolean
+}) {
   const { user } = useAuthCheck()
   const [answers, setAnswers] = useState(initial)
   const [body, setBody] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
   const [info, setInfo] = useState('')
+  const [showDigestOptIn, setShowDigestOptIn] = useState(false)
   const isOwner = !!user && user.id === question.authorId
 
   async function postAnswer() {
@@ -79,12 +91,32 @@ export function QuestionThread({ question, answers: initial }: { question: Quest
         setSubmitting(false)
         return
       }
+      // Posting an answer reloads the page, which would wipe an inline offer.
+      // Leaving a marker means the ask survives the reload and still lands
+      // after the contribution rather than in front of it.
+      try {
+        sessionStorage.setItem(ANSWERED_KEY, '1')
+      } catch {
+        /* offer is a nicety — never block the answer on storage */
+      }
       window.location.reload()
     } catch {
       setError('Something went wrong.')
       setSubmitting(false)
     }
   }
+
+  useEffect(() => {
+    if (!offerDigest) return
+    try {
+      if (sessionStorage.getItem(ANSWERED_KEY)) {
+        sessionStorage.removeItem(ANSWERED_KEY)
+        setShowDigestOptIn(true)
+      }
+    } catch {
+      /* ignore */
+    }
+  }, [offerDigest])
 
   async function accept(answerId: string) {
     const res = await fetch(`/api/community/questions/${question.id}/accept`, {
@@ -144,6 +176,7 @@ export function QuestionThread({ question, answers: initial }: { question: Quest
       </h3>
       {user ? (
         <div className="community-editor">
+          {showDigestOptIn ? <DigestOptIn onDone={() => setShowDigestOptIn(false)} /> : null}
           <textarea
             className="community-textarea"
             value={body}

@@ -39,16 +39,47 @@ const OFFICIAL_USERNAME = 'markscheme_answers'
 /** Threads created on or after A-Level results — this series, not the last one. */
 const CYCLE_START = '2026-08-11T06:00:00.000Z'
 /**
- * Boundaries threads only.
+ * Which threads get a first reply, and what kind.
  *
- * A threshold worked example is the right first reply on "post your
- * components" and the wrong one on "is a remark worth it?" — that thread asks
- * a different question, and answering it with arithmetic would read as a bot
- * pasting the same block everywhere. It also keeps one reply per subject: both
- * 9709 threads would otherwise get identical text.
+ * A threshold worked example is the right opener on "post your components" and
+ * the wrong one on "is a remark worth it?" — that thread asks a different
+ * question, and answering it with arithmetic would read as a bot pasting the
+ * same block everywhere. Boundaries threads get the generated example; the
+ * remark thread gets the hand-written one below.
  */
-const REPLY_FLAIRS = ['Grade boundaries']
+const REPLY_FLAIRS = ['Grade boundaries', 'Results day']
 const SERIES = 'June 2026'
+
+/**
+ * Hand-written, not generated. Every date and rule here comes from our own EAR
+ * guide, which is sourced to Cambridge's help article — a first reply that
+ * invents a deadline would do real damage on a thread people are using to
+ * decide whether to spend money.
+ *
+ * Matched on title rather than flair because "Results day" is a broad flair and
+ * this text only answers the remark question.
+ */
+const REMARK_REPLY = {
+  match: /remark/i,
+  body: [
+    '**The dates decide this more than the arithmetic does.**',
+    '',
+    '- The final EAR deadline for the June 2026 series is **20 September 2026**.',
+    '- Your centre\'s own deadline is usually **earlier** — often mid-August to early September.',
+    '- You cannot apply yourself. Your exams officer or centre submits it, so the first move is talking to them, not deciding alone.',
+    '',
+    'Two different services, and people often buy the wrong one:',
+    '',
+    '- A **clerical re-check** verifies totals and transcription. This is the one to ask for if your component marks do not add up to your reported total.',
+    '- A **review of marking** has an examiner re-read the script against the scheme. This is the one for "I think this essay was marked harshly" — and it is the one where your mark can move **down**.',
+    '',
+    'Cambridge aims to respond within 30 days, and August to September is the queue.',
+    '',
+    'Full detail, including who submits and how fees usually work: [the EAR guide](/blog/cambridge-enquiry-about-results-ear-guide-2026).',
+    '',
+    'If you post your component, your raw mark and the published threshold, we can at least tell you the exact size of the gap you would be paying to close.',
+  ].join('\n'),
+}
 
 const DATA_DIR = path.join(process.cwd(), 'content', 'data', 'grade-boundaries')
 
@@ -120,7 +151,7 @@ async function main() {
 
   const { data: threads, error: threadError } = await db
     .from('community_posts')
-    .select('id, subject_code, title, is_locked')
+    .select('id, subject_code, title, flair, is_locked')
     .eq('status', 'published')
     .in('flair', REPLY_FLAIRS)
     .gte('created_at', CYCLE_START)
@@ -156,16 +187,21 @@ async function main() {
       continue
     }
 
-    const session = loadSession(thread.subject_code)
-    if (!session) {
-      console.log(`• skip (no ${SERIES} data) ${label}`)
-      skipped++
-      continue
+    let body = null
+    if (thread.flair === 'Grade boundaries') {
+      const session = loadSession(thread.subject_code)
+      if (!session) {
+        console.log(`• skip (no ${SERIES} data) ${label}`)
+        skipped++
+        continue
+      }
+      body = buildReply(thread.subject_code, session)
+    } else if (REMARK_REPLY.match.test(thread.title)) {
+      body = REMARK_REPLY.body
     }
 
-    const body = buildReply(thread.subject_code, session)
     if (!body) {
-      console.log(`• skip (no usable component) ${label}`)
+      console.log(`• skip (nothing to say) ${label}`)
       skipped++
       continue
     }

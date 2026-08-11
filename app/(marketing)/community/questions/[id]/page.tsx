@@ -6,6 +6,8 @@ import { QuestionThread } from '@/components/community/QuestionThread'
 import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
 import { CommunityQaJsonLd } from '@/components/seo/CommunityQaJsonLd'
 import { createPageMetadata } from '@/lib/seo/metadata'
+import { createClient } from '@/lib/supabase-server'
+import { communityComposerFlags } from '@/lib/community/composer-flags'
 
 export const dynamic = 'force-dynamic'
 
@@ -28,6 +30,13 @@ export default async function QuestionPage({ params }: Props) {
   const data = await getQuestion(id)
   if (!data || data.question.status !== 'published') notFound()
   const { question, answers } = data
+
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  const { offerDigest } = await communityComposerFlags(user?.id)
+
   const subjectHref =
     question.board === 'ib' ? `/ib/subjects/${question.subjectCode}` : `/subjects/${question.subjectCode}`
 
@@ -52,6 +61,7 @@ export default async function QuestionPage({ params }: Props) {
             subjectName: question.subjectCode,
           }}
           answers={answers}
+          offerDigest={offerDigest}
         />
       </div>
     </MarketingPageShell>

@@ -10,6 +10,7 @@ import { AuthorBadge } from '@/components/community/AuthorBadge'
 import { getCommentTree, collectCommentIds, getUserCommentVotes } from '@/lib/community/comments'
 import { signAttachments } from '@/lib/community/uploads'
 import { findCommunitySubject } from '@/lib/community/subjects'
+import { communityComposerFlags } from '@/lib/community/composer-flags'
 import { timeAgo } from '@/lib/community/format'
 import { CommunityMarkdown } from '@/components/community/CommunityMarkdown'
 import { VoteBox } from '@/components/community/reddit/VoteBox'
@@ -61,21 +62,9 @@ export default async function PostDetailPage({ params }: PageProps) {
   const commentIds = collectCommentIds(comments)
   const commentVotes = user ? await getUserCommentVotes(user.id, commentIds) : {}
 
-  // Whether we may offer the weekly digest after they comment. ON-02 keeps it
-  // opt-in, so the offer only appears for someone who has not already said yes.
-  let offerDigest = false
-  // Signed in but unnamed: the composer offers them the choice before we fall
-  // back to generating one.
-  let needsUsername = false
-  if (user) {
-    const { data: prefs } = await supabase
-      .from('user_profiles')
-      .select('email_community_digest, username')
-      .eq('id', user.id)
-      .maybeSingle()
-    offerDigest = !prefs?.email_community_digest
-    needsUsername = !prefs?.username
-  }
+  // ON-02 keeps the digest opt-in, so the offer only appears for someone who
+  // has not already said yes.
+  const { offerDigest, needsUsername } = await communityComposerFlags(user?.id)
 
   return (
     <div className="rc-page rc-page--thread" style={{ '--sc': accent } as CSSProperties}>

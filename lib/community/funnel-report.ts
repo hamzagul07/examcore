@@ -13,12 +13,22 @@ export type SourceRow = {
   toFallback: number
 }
 
+export type WaitingItem = {
+  kind: 'post' | 'question'
+  id: string
+  title: string
+  author: string
+  ageDays: number
+}
+
 export type FunnelReport = {
   days: number
   clicks: { total: number; toThread: number; bySource: SourceRow[]; bySubject: SourceRow[] }
   reach: { communityViews: number; communitySessions: number; siteSessions: number }
   activity: { posts: number; comments: number; contributors: number }
   accounts: { namedTotal: number; profiles: number; digestOn: number }
+  /** Real students whose post or question nobody has answered. */
+  waiting: WaitingItem[]
 }
 
 function isBot(id: string | null | undefined): boolean {
@@ -53,7 +63,8 @@ export async function communityFunnelReport(days: number): Promise<FunnelReport>
   const admin = createServiceClient()
   const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString()
 
-  const [clicks, views, posts, comments, profiles] = await Promise.all([
+  const [clicks, views, posts, comments, profiles, allPosts, allComments, allQuestions, allAnswers, allProfiles] =
+    await Promise.all([
     fetchAll<{ path: string; referrer: string | null }>((from, to) =>
       admin
         .from('page_events')
@@ -83,6 +94,31 @@ export async function communityFunnelReport(days: number): Promise<FunnelReport>
     ),
     fetchAll<{ username: string | null; email_community_digest: boolean }>((from, to) =>
       admin.from('user_profiles').select('username, email_community_digest').range(from, to)
+    ),
+    // Deliberately not windowed by `days`: a student ignored in July is still
+    // ignored today, and the whole point is that nobody noticed.
+    fetchAll<{ id: string; author_id: string; title: string; created_at: string }>((from, to) =>
+      admin
+        .from('community_posts')
+        .select('id, author_id, title, created_at')
+        .eq('status', 'published')
+        .range(from, to)
+    ),
+    fetchAll<{ post_id: string; author_id: string }>((from, to) =>
+      admin.from('community_comments').select('post_id, author_id').eq('status', 'published').range(from, to)
+    ),
+    fetchAll<{ id: string; author_id: string; title: string; created_at: string }>((from, to) =>
+      admin
+        .from('community_questions')
+        .select('id, author_id, title, created_at')
+        .eq('status', 'published')
+        .range(from, to)
+    ),
+    fetchAll<{ question_id: string; author_id: string }>((from, to) =>
+      admin.from('community_answers').select('question_id, author_id').eq('status', 'published').range(from, to)
+    ),
+    fetchAll<{ id: string; username: string | null }>((from, to) =>
+      admin.from('user_profiles').select('id, username').range(from, to)
     ),
   ])
 
@@ -123,6 +159,45 @@ export async function communityFunnelReport(days: number): Promise<FunnelReport>
     ...humanComments.map((c) => c.author_id),
   ]).size
 
+  // Waiting = a real student's thread that no other real person has answered.
+  // A reply from the author themselves does not count: several of these are
+  // someone bumping their own post because nobody came.
+  const names = new Map(allProfiles.map((p) => [p.id, p.username]))
+  const answeredPosts = new Set<string>()
+  for (const c of allComments) {
+    const post = allPosts.find((p) => p.id === c.post_id)
+    if (post && !isBot(c.author_id) && c.author_id !== post.author_id) answeredPosts.add(c.post_id)
+  }
+  const answeredQuestions = new Set<string>()
+  for (const a of allAnswers) {
+    const q = allQuestions.find((x) => x.id === a.question_id)
+    if (q && !isBot(a.author_id) && a.author_id !== q.author_id) answeredQuestions.add(a.question_id)
+  }
+
+  const now = Date.now()
+  const ageDays = (iso: string) => Math.floor((now - Date.parse(iso)) / 86_400_000)
+
+  const waiting: WaitingItem[] = [
+    ...allPosts
+      .filter((p) => !isBot(p.author_id) && !answeredPosts.has(p.id))
+      .map((p) => ({
+        kind: 'post' as const,
+        id: p.id,
+        title: p.title,
+        author: names.get(p.author_id) ?? 'someone',
+        ageDays: ageDays(p.created_at),
+      })),
+    ...allQuestions
+      .filter((q) => !isBot(q.author_id) && !answeredQuestions.has(q.id))
+      .map((q) => ({
+        kind: 'question' as const,
+        id: q.id,
+        title: q.title,
+        author: names.get(q.author_id) ?? 'someone',
+        ageDays: ageDays(q.created_at),
+      })),
+  ].sort((a, b) => b.ageDays - a.ageDays)
+
   const rank = (m: Map<string, SourceRow>) => [...m.values()].sort((a, b) => b.clicks - a.clicks)
 
   return {
@@ -140,6 +215,7 @@ export async function communityFunnelReport(days: number): Promise<FunnelReport>
       profiles: profiles.length,
       digestOn: profiles.filter((p) => p.email_community_digest).length,
     },
+    waiting,
   }
 }
 
@@ -154,6 +230,21 @@ export function formatFunnelReport(r: FunnelReport): string {
 
   out.push(`\nExam Room funnel — last ${r.days} day${r.days === 1 ? '' : 's'}`)
   out.push('─'.repeat(58))
+
+  // Top of the report on purpose. Six of the first seven real posts never got a
+  // peer reply, and that — not discovery — is what ended the June burst.
+  if (r.waiting.length) {
+    out.push(`\n⚠ ${r.waiting.length} real ${r.waiting.length === 1 ? 'person is' : 'people are'} waiting for an answer`)
+    for (const w of r.waiting.slice(0, 12)) {
+      const age = w.ageDays === 0 ? 'today' : `${w.ageDays}d ago`
+      const href = w.kind === 'post' ? `/community/posts/${w.id}` : `/community/questions/${w.id}`
+      out.push(`    ${age.padStart(7)}  u/${w.author.padEnd(16)} ${w.title.slice(0, 44)}`)
+      out.push(`             ${href}`)
+    }
+    if (r.waiting.length > 12) out.push(`    …and ${r.waiting.length - 12} more`)
+  } else {
+    out.push('\n✓ Every real post and question has an answer.')
+  }
 
   out.push(`\nCTA clicks through to a thread: ${r.clicks.total}`)
   if (r.clicks.total) {

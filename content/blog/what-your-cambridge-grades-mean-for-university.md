@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: Cambridge grades for university, A Level grades university offers, conditional offer, Cambridge International university, missed offer grade
 category: revision
 author: hamza-gul
-updated: 2026-06-19
+updated: 2026-08-11
 informationGain: synthesis
 ---
 
@@ -37,7 +37,7 @@ UCAS provides an official table that allocates points to each A Level grade; for
 ### My AS grades are not what I hoped for. Will this ruin my university application?
 Not necessarily. While good AS grades strengthen your application, universities understand they are not the final result. Your application will also be assessed on your school's predicted A Level grades, your personal statement, and your academic reference. Use disappointing AS results as valuable feedback to identify areas for improvement and focus your efforts for the A2 components.
 
-### How quickly do I need to act after results day on 13 August 2026?
+### How quickly do I need to act after results day on 11 August 2026?
 It is essential to act very quickly, as the window for key decisions is short. Deadlines for requesting an **Enquiry About Results** or priority remark are very tight, and places in systems like UK **Clearing** are filled on a first-come, first-served basis. Contacting your firm or insurance choice university if you have narrowly missed your grades should be done on results day itself. 
 
 ## Bottom line

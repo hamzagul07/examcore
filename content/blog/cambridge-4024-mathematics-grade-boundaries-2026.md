@@ -1,23 +1,23 @@
 ---
 title: Cambridge 4024 Mathematics Grade Boundaries 2026
-description: 4024 O-Level Mathematics grade boundaries 2026 — O-Level grades 18 August, threshold tables ~13 August. Estimate both papers with the calculator.
+description: 4024 O-Level Mathematics grade boundaries 2026 — O-Level grades 18 August, threshold tables after the 18 August results. Estimate both papers with the calculator.
 date: 2026-06-19
 keywords: 4024 grade boundaries, 4024 grade boundaries 2026, Cambridge Mathematics grade boundaries, 4024 mathematics thresholds, 4024 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-07
+updated: 2026-08-11
 featured: true
 informationGain: synthesis
 ---
 
-Official **4024 Mathematics** grade boundaries for **June 2026** publish in August — **O-Level grades 18 August 2026**, component **threshold tables around 13 August**. Estimate with marked past papers via the [4024 calculator](/tools/grade-boundary-calculator/4024).
+Official **4024 Mathematics** grade boundaries for **June 2026** publish in August — **O-Level grades 18 August 2026**, component **threshold tables following the 18 August results**. Estimate with marked past papers via the [4024 calculator](/tools/grade-boundary-calculator/4024).
 
 ## Quick answer
 
 | Question | Answer |
 |----------|--------|
 | When are June 2026 **O-Level grades** released? | **18 August 2026** (06:00 GMT) |
-| When are **threshold tables** published? | **~13 August 2026** |
+| When are **threshold tables** published? | **after the 18 August results** |
 | Papers? | Non-calculator + calculator (both count to total) |
 | Marking style? | **Method marks** — show working for M marks |
 | Estimate tool | [4024 grade calculator](/tools/grade-boundary-calculator/4024) |
@@ -42,7 +42,7 @@ Cambridge sets **4024** thresholds **after** all scripts are marked so each grad
 
 ### When are official June 2026 boundaries released?
 
-Threshold PDFs **~13 August**; final grades on your statement **18 August**.
+Threshold PDFs follow the series release; final grades on your statement **18 August**.
 
 ### Can one weak paper be offset?
 
@@ -54,7 +54,7 @@ No — raw thresholds change every session.
 
 ## Related subjects
 
-O-Level and IGCSE grades release **18 August**; component thresholds usually drop **~13 August**. Never copy numbers between syllabus codes. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Use each calculator only for its matching entry code on the statement of entry.
+O-Level and IGCSE grades release **18 August**; component thresholds usually drop **after the 18 August results**. Never copy numbers between syllabus codes. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Use each calculator only for its matching entry code on the statement of entry.
 
 - [4037 Additional Maths](/blog/cambridge-4037-additional-mathematics-grade-boundaries-2026)
 - [9709 A-Level Maths](/blog/cambridge-9709-mathematics-grade-boundaries-2026)
@@ -62,5 +62,5 @@ O-Level and IGCSE grades release **18 August**; component thresholds usually dro
 
 ## Bottom line
 
-**4024 grade boundaries 2026** publish in August — **18 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [4024 calculator](/tools/grade-boundary-calculator/4024) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
+**4024 grade boundaries 2026** publish in August — **18 August** for grades on your statement, **after the 18 August results** for component threshold PDFs. Until then, marked past papers plus the [4024 calculator](/tools/grade-boundary-calculator/4024) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
 

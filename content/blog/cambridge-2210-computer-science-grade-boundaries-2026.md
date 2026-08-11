@@ -1,23 +1,23 @@
 ---
 title: Cambridge 2210 Computer Science Grade Boundaries 2026
-description: 2210 O-Level Computer Science grade boundaries 2026 — O-Level results 18 August, threshold tables ~13 August for components. Estimate with the calculator.
+description: 2210 O-Level Computer Science grade boundaries 2026 — O-Level results 18 August, threshold tables after the 18 August results for components. Estimate with the calculator.
 date: 2026-06-19
 keywords: 2210 grade boundaries, 2210 grade boundaries 2026, Cambridge Computer Science grade boundaries, 2210 computer-science thresholds, 2210 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-07
+updated: 2026-08-11
 featured: true
 informationGain: synthesis
 ---
 
-Official **2210 Computer Science** grade boundaries for **June 2026** publish in August — **O-Level grades 18 August 2026**, component **threshold tables typically around 13 August**. Estimate with marked past papers via the [2210 calculator](/tools/grade-boundary-calculator/2210).
+Official **2210 Computer Science** grade boundaries for **June 2026** publish in August — **O-Level grades 18 August 2026**, component **threshold tables typically after the 18 August results**. Estimate with marked past papers via the [2210 calculator](/tools/grade-boundary-calculator/2210).
 
 ## Quick answer
 
 | Question | Answer |
 |----------|--------|
 | When are June 2026 **O-Level grades** released? | **18 August 2026** (06:00 GMT) |
-| When are **threshold tables** published? | **~13 August 2026** (component PDFs) |
+| When are **threshold tables** published? | **after the 18 August results** (component PDFs) |
 | Marking style? | **Point marks** — pseudocode, traces, technical terms |
 | Papers? | P1 Theory, P2 Problem-solving & programming |
 | Estimate tool | [2210 grade calculator](/tools/grade-boundary-calculator/2210) |
@@ -46,7 +46,7 @@ No — boundaries are **raw marks** set per session after marking; harder papers
 
 ### Where are official June 2026 tables?
 
-Cambridge grade threshold PDFs publish **~13 August**; grades on your statement **18 August**. See [2210 on MarkScheme](/subjects/2210) and the [2210 calculator](/tools/grade-boundary-calculator/2210).
+Cambridge grade threshold PDFs publish **after the 18 August results**; grades on your statement **18 August**. See [2210 on MarkScheme](/subjects/2210) and the [2210 calculator](/tools/grade-boundary-calculator/2210).
 
 ### How do I estimate before results?
 
@@ -54,12 +54,12 @@ Mark a recent O-Level paper to the scheme, then compare raw marks to June 2024/2
 
 ## Related subjects
 
-O-Level and IGCSE grades release **18 August**; component thresholds usually drop **~13 August**. Never copy numbers between syllabus codes. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Use each calculator only for its matching entry code on the statement of entry.
+O-Level and IGCSE grades release **18 August**; component thresholds usually drop **after the 18 August results**. Never copy numbers between syllabus codes. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Use each calculator only for its matching entry code on the statement of entry.
 
 - [9618 A-Level CS](/blog/cambridge-9618-computer-science-grade-boundaries-2026)
 - [4024 O-Level Maths](/blog/cambridge-4024-o-level-mathematics-grade-boundaries-2026)
 
 ## Bottom line
 
-**2210 grade boundaries 2026** publish in August — **18 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [2210 calculator](/tools/grade-boundary-calculator/2210) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
+**2210 grade boundaries 2026** publish in August — **18 August** for grades on your statement, **after the 18 August results** for component threshold PDFs. Until then, marked past papers plus the [2210 calculator](/tools/grade-boundary-calculator/2210) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
 

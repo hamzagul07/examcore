@@ -5,14 +5,14 @@ date: 2026-06-19
 keywords: Cambridge grade boundaries, how to read grade boundaries, grade thresholds Cambridge, raw marks to grade, A Level grade boundaries
 category: mark-schemes
 author: hassan
-updated: 2026-06-19
+updated: 2026-08-11
 informationGain: synthesis
 ---
 
 Cambridge grade boundaries, officially called **grade thresholds**, are the minimum number of raw marks you need to achieve a particular grade. Published on results day for each exam session, these tables show you exactly what was required for an A*, A, B, and so on, for your specific syllabus. Understanding them is the key to accurately interpreting your performance.
 
 ## Find the correct grade threshold table
-On results day—for instance, 13 August 2026 for the June 2026 series—Cambridge publishes the threshold tables. You can find them on the public Cambridge International website under 'Grade threshold tables' or get them from your school's exams officer. It is essential you select the correct document for your syllabus code (e.g., 9701 Chemistry), the year, and the exam session (June or November).
+On results day—for instance, 11 August 2026 for the June 2026 AS & A Level series—Cambridge publishes the threshold tables. You can find them on the public Cambridge International website under 'Grade threshold tables' or get them from your school's exams officer. It is essential you select the correct document for your syllabus code (e.g., 9701 Chemistry), the year, and the exam session (June or November).
 
 ## Understand the table structure
 Each table lists the syllabus components (e.g., Paper 1, Paper 2) and their maximum raw mark. Below this, you'll see rows for each grade: `A*`, `A`, `B`, `C`, `D`, `E` for A Level, and `a`, `b`, `c`, `d`, `e` for AS Level. The numbers in the table are the **minimum raw marks** needed for that grade; they are not percentages.

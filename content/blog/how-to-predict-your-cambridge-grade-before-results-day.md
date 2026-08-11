@@ -1,15 +1,15 @@
 ---
 title: How to predict your Cambridge grade before results day
-description: Estimate your Cambridge grade before 13 August 2026: total your raw marks, compare them with recent published thresholds, and use a grade boundary calculator.
+description: Estimate your Cambridge grade before 11 August 2026: total your raw marks, compare them with recent published thresholds, and use a grade boundary calculator.
 date: 2026-06-19
 keywords: predict Cambridge grade, estimate exam grade, grade before results day, raw marks to grade, Cambridge results 2026
 category: mark-schemes
 author: hamza-gul
-updated: 2026-06-19
+updated: 2026-08-11
 informationGain: synthesis
 ---
 
-Waiting for Cambridge results day can be a nerve-wracking experience, but you don't have to be completely in the dark. While you can't know your exact grade until the official thresholds are released on 13 August 2026, you can create a highly accurate estimate. This involves marking your own exam papers and comparing your raw scores against the grade boundaries from recent past sessions.
+Waiting for Cambridge results day can be a nerve-wracking experience, but you don't have to be completely in the dark. While you can't know your exact grade until the official thresholds were released on 11 August 2026, you can create a highly accurate estimate. This involves marking your own exam papers and comparing your raw scores against the grade boundaries from recent past sessions.
 
 ## Step 1: Gather your materials
 To begin, you'll need three things for each exam paper you sat: a clean copy of the question paper, the official mark scheme, and a way to record your marks. You can find these resources on the Cambridge website or by using a dedicated tool to [mark a past paper](/mark). Using the official mark scheme is non-negotiable, as it's the exact document examiners use to award marks.

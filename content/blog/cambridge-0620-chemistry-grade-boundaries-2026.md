@@ -1,23 +1,23 @@
 ---
 title: Cambridge 0620 Chemistry Grade Boundaries 2026
-description: 0620 IGCSE Chemistry grade boundaries 2026 — IGCSE grades 18 August, threshold tables ~13 August. Estimate MCQ and theory papers with the calculator.
+description: 0620 IGCSE Chemistry grade boundaries 2026 — IGCSE grades 18 August, threshold tables after the 18 August results. Estimate MCQ and theory papers with the calculator.
 date: 2026-06-19
 keywords: 0620 grade boundaries, 0620 grade boundaries 2026, Cambridge IGCSE Chemistry grade boundaries, 0620 chemistry thresholds, 0620 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-07
+updated: 2026-08-11
 featured: true
 informationGain: synthesis
 ---
 
-Official **0620 Chemistry** grade boundaries for **June 2026** publish in August — **IGCSE grades 18 August 2026**, component **threshold tables around 13 August**. Estimate with marked past papers via the [0620 calculator](/tools/grade-boundary-calculator/0620).
+Official **0620 Chemistry** grade boundaries for **June 2026** publish in August — **IGCSE grades 18 August 2026**, component **threshold tables following the 18 August results**. Estimate with marked past papers via the [0620 calculator](/tools/grade-boundary-calculator/0620).
 
 ## Quick answer
 
 | Question | Answer |
 |----------|--------|
 | When are June 2026 **IGCSE grades** released? | **18 August 2026** (06:00 GMT) |
-| When are **threshold tables** published? | **~13 August 2026** |
+| When are **threshold tables** published? | **after the 18 August results** |
 | Papers? | MCQ + theory + practical / alternative to practical (check your entry) |
 | Marking style? | **Equations, moles, and precise terms** on structured Qs |
 | Estimate tool | [0620 grade calculator](/tools/grade-boundary-calculator/0620) |
@@ -51,7 +51,7 @@ Confirm your entry with your exams officer — mixing tiers is not allowed.
 
 ### When are official boundaries released?
 
-Threshold PDFs **~13 August**; grades **18 August**.
+Threshold PDFs follow the series release; grades **18 August**.
 
 ### Is 80% always an A*?
 
@@ -71,4 +71,4 @@ Each science code has its own threshold PDF — use these guides for revision li
 
 ## Bottom line
 
-**0620 grade boundaries 2026** land **18 August** (grades) with threshold PDFs **~13 August**. Marked past papers with strict equation marking, then the [0620 calculator](/tools/grade-boundary-calculator/0620), outperform any leaked spreadsheet — save component codes when Cambridge publishes the official row. Your exams officer confirms component codes on the statement of entry.
+**0620 grade boundaries 2026** land **18 August** (grades) with threshold PDFs **after the 18 August results**. Marked past papers with strict equation marking, then the [0620 calculator](/tools/grade-boundary-calculator/0620), outperform any leaked spreadsheet — save component codes when Cambridge publishes the official row. Your exams officer confirms component codes on the statement of entry.

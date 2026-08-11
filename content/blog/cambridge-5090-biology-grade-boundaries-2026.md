@@ -1,23 +1,23 @@
 ---
 title: Cambridge 5090 Biology Grade Boundaries 2026
-description: 5090 O-Level Biology grade boundaries 2026 — O-Level grades 18 August, threshold tables ~13 August. Estimate MCQ and theory papers with the calculator.
+description: 5090 O-Level Biology grade boundaries 2026 — O-Level grades 18 August, threshold tables after the 18 August results. Estimate MCQ and theory papers with the calculator.
 date: 2026-06-19
 keywords: 5090 grade boundaries, 5090 grade boundaries 2026, Cambridge Biology grade boundaries, 5090 biology thresholds, 5090 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-07
+updated: 2026-08-11
 featured: true
 informationGain: synthesis
 ---
 
-Official **5090 Biology** grade boundaries for **June 2026** publish in August — **O-Level grades 18 August 2026**, component **threshold tables around 13 August**. Estimate with marked past papers via the [5090 calculator](/tools/grade-boundary-calculator/5090).
+Official **5090 Biology** grade boundaries for **June 2026** publish in August — **O-Level grades 18 August 2026**, component **threshold tables following the 18 August results**. Estimate with marked past papers via the [5090 calculator](/tools/grade-boundary-calculator/5090).
 
 ## Quick answer
 
 | Question | Answer |
 |----------|--------|
 | When are June 2026 **O-Level grades** released? | **18 August 2026** (06:00 GMT) |
-| When are **threshold tables** published? | **~13 August 2026** |
+| When are **threshold tables** published? | **after the 18 August results** |
 | Papers? | MCQ + theory (check your entry) |
 | Marking style? | **Precise terminology** on structured Qs |
 | Estimate tool | [5090 grade calculator](/tools/grade-boundary-calculator/5090) |
@@ -42,7 +42,7 @@ Cambridge sets **5090** thresholds **after** all scripts are marked so each grad
 
 ### When are official boundaries released?
 
-Threshold PDFs **~13 August**; grades **18 August**.
+Threshold PDFs follow the series release; grades **18 August**.
 
 ### Is 80% always an A*?
 
@@ -54,7 +54,7 @@ Confirm your **5090** code on your statement of entry — papers differ from 061
 
 ## Related subjects
 
-O-Level and IGCSE grades release **18 August**; component thresholds usually drop **~13 August**. Never copy numbers between syllabus codes. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Use each calculator only for its matching entry code on the statement of entry.
+O-Level and IGCSE grades release **18 August**; component thresholds usually drop **after the 18 August results**. Never copy numbers between syllabus codes. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Use each calculator only for its matching entry code on the statement of entry.
 
 - [5070 Chemistry](/blog/cambridge-5070-chemistry-grade-boundaries-2026)
 - [5054 Physics](/blog/cambridge-5054-physics-grade-boundaries-2026)
@@ -63,5 +63,5 @@ O-Level and IGCSE grades release **18 August**; component thresholds usually dro
 
 ## Bottom line
 
-**5090 grade boundaries 2026** publish in August — **18 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [5090 calculator](/tools/grade-boundary-calculator/5090) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
+**5090 grade boundaries 2026** publish in August — **18 August** for grades on your statement, **after the 18 August results** for component threshold PDFs. Until then, marked past papers plus the [5090 calculator](/tools/grade-boundary-calculator/5090) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
 

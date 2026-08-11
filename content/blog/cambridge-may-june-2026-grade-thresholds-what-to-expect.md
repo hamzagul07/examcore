@@ -2,7 +2,7 @@
 title: Cambridge May/June 2026 grade thresholds — what to expect
 description: Honest guide to June 2026 Cambridge grade thresholds — when they publish, how leaks and assessed marks affect grading, and why prediction posts mislead students.
 date: 2026-07-06
-updated: 2026-07-06
+updated: 2026-08-11
 category: editorial
 featured: true
 keywords: Cambridge grade thresholds June 2026, May June 2026 boundaries, Cambridge threshold predictions, grade boundaries after leaks, Cambridge 2026 grading
@@ -17,7 +17,7 @@ Search traffic spikes every June for **"Cambridge grade thresholds 2026 predicti
 | Question | Answer |
 |----------|--------|
 | When are June 2026 **grades** released? | AS/A-Level **11 August** 2026 (06:00 GMT) |
-| When are **threshold tables** published? | **~13 August** 2026 (component PDFs) |
+| When are **threshold tables** published? | **Published 11 August 2026** (component PDFs) |
 | Can anyone predict them accurately beforehand? | **No** — depends on global cohort performance |
 | Do paper leaks lower thresholds? | **Not guaranteed** — voids and assessed marks change the picture |
 | Where are official tables? | Cambridge PDFs + our [calculator](/tools/grade-boundary-calculator) |
@@ -48,9 +48,9 @@ Search traffic spikes every June for **"Cambridge grade thresholds 2026 predicti
 | Islamic Studies | 9488 | [9488 boundaries](/blog/cambridge-9488-islamic-studies-grade-boundaries-2026) |
 | Literature in English | 9695 | [9695 boundaries](/blog/cambridge-9695-literature-in-english-grade-boundaries-2026) |
 
-**O-Level (grades 18 August; thresholds ~13 August):** [4024](/blog/cambridge-4024-mathematics-grade-boundaries-2026) — [4037](/blog/cambridge-4037-additional-mathematics-grade-boundaries-2026) — [2281](/blog/cambridge-2281-economics-grade-boundaries-2026) — [7115](/blog/cambridge-7115-business-studies-grade-boundaries-2026) — [7707](/blog/cambridge-7707-accounting-grade-boundaries-2026) — [2210](/blog/cambridge-2210-computer-science-grade-boundaries-2026) — [5090](/blog/cambridge-5090-biology-grade-boundaries-2026) — [5070](/blog/cambridge-5070-chemistry-grade-boundaries-2026) — [5054](/blog/cambridge-5054-physics-grade-boundaries-2026)
+**O-Level (grades 18 August; thresholds follow the results):** [4024](/blog/cambridge-4024-mathematics-grade-boundaries-2026) — [4037](/blog/cambridge-4037-additional-mathematics-grade-boundaries-2026) — [2281](/blog/cambridge-2281-economics-grade-boundaries-2026) — [7115](/blog/cambridge-7115-business-studies-grade-boundaries-2026) — [7707](/blog/cambridge-7707-accounting-grade-boundaries-2026) — [2210](/blog/cambridge-2210-computer-science-grade-boundaries-2026) — [5090](/blog/cambridge-5090-biology-grade-boundaries-2026) — [5070](/blog/cambridge-5070-chemistry-grade-boundaries-2026) — [5054](/blog/cambridge-5054-physics-grade-boundaries-2026)
 
-**IGCSE (grades 18 August; thresholds ~13 August):** [0580 Maths](/blog/cambridge-0580-mathematics-grade-boundaries-2026) — [0610 Biology](/blog/cambridge-0610-biology-grade-boundaries-2026) — [0620 Chemistry](/blog/cambridge-0620-chemistry-grade-boundaries-2026) — [0625 Physics](/blog/cambridge-0625-physics-grade-boundaries-2026) — [0460 Geography](/blog/cambridge-0460-geography-grade-boundaries-2026)
+**IGCSE (grades 18 August; thresholds follow the results):** [0580 Maths](/blog/cambridge-0580-mathematics-grade-boundaries-2026) — [0610 Biology](/blog/cambridge-0610-biology-grade-boundaries-2026) — [0620 Chemistry](/blog/cambridge-0620-chemistry-grade-boundaries-2026) — [0625 Physics](/blog/cambridge-0625-physics-grade-boundaries-2026) — [0460 Geography](/blog/cambridge-0460-geography-grade-boundaries-2026)
 
 Full index: [/guides/grade-boundaries](/guides/grade-boundaries)
 

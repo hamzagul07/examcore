@@ -1,23 +1,23 @@
 ---
 title: Cambridge 0990 First Language English Grade Boundaries 2026
-description: 0990 IGCSE First Language English (9 — 1) grade boundaries 2026 — IGCSE grades 18 August, threshold tables ~13 August
+description: 0990 IGCSE First Language English (9 — 1) grade boundaries 2026 — IGCSE grades 18 August, threshold tables after the 18 August results
 date: 2026-06-19
 keywords: 0990 grade boundaries, 0990 grade boundaries 2026, Cambridge IGCSE English grade boundaries, 0990 English thresholds, 0990 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-07
+updated: 2026-08-11
 featured: true
 informationGain: synthesis
 ---
 
-Official **0990 First Language English (9 — 1)** grade boundaries for **June 2026** publish in August — **IGCSE grades 18 August 2026**, component **threshold tables around 13 August**. Estimate with marked past papers via the [0990 calculator](/tools/grade-boundary-calculator/0990).
+Official **0990 First Language English (9 — 1)** grade boundaries for **June 2026** publish in August — **IGCSE grades 18 August 2026**, component **threshold tables following the 18 August results**. Estimate with marked past papers via the [0990 calculator](/tools/grade-boundary-calculator/0990).
 
 ## Quick answer
 
 | Question | Answer |
 |----------|--------|
 | When are June 2026 **IGCSE grades** released? | **18 August 2026** (06:00 GMT) |
-| When are **threshold tables** published? | **~13 August 2026** |
+| When are **threshold tables** published? | **after the 18 August results** |
 | Grading scale? | **9 — 1** (not A* — G) |
 | Papers? | Reading (P1) + Directed writing / composition (P2); coursework route optional |
 | Marking style? | **Band descriptors** on extended responses — quote and analyse |
@@ -45,7 +45,7 @@ Revision: [0500/0990 most-tested skills](/blog/most-repeated-cambridge-english-p
 
 ### When are official boundaries released?
 
-Threshold PDFs **~13 August**; grades **18 August**.
+Threshold PDFs follow the series release; grades **18 August**.
 
 ### Is 70% always a grade 9?
 
@@ -65,4 +65,4 @@ English pathways split by syllabus code — confirm **0990** on your statement b
 
 ## Bottom line
 
-**0990 grade boundaries 2026** arrive **18 August** (grades) with thresholds **~13 August**. Mark reading and writing papers to **band descriptors**, then use the [0990 calculator](/tools/grade-boundary-calculator/0990) with June 2024/2023 — official component rows beat any shared Google Sheet or Telegram leak. Your exams officer confirms component codes on the statement of entry.
+**0990 grade boundaries 2026** arrive **18 August** (grades) with thresholds **after the 18 August results**. Mark reading and writing papers to **band descriptors**, then use the [0990 calculator](/tools/grade-boundary-calculator/0990) with June 2024/2023 — official component rows beat any shared Google Sheet or Telegram leak. Your exams officer confirms component codes on the statement of entry.

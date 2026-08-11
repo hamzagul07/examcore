@@ -1,15 +1,15 @@
 ---
 title: What to do while waiting for Cambridge results
-description: The wait between Cambridge exams and 13 August 2026 results is long. Here is how to stay calm, stay productive, and prepare for every grade outcome.
+description: The wait between Cambridge exams and 11 August 2026 results is long. Here is how to stay calm, stay productive, and prepare for every grade outcome.
 date: 2026-06-19
 keywords: waiting for Cambridge results, after Cambridge exams, results day August 2026, exam results wait, what to do after exams
 category: revision
 author: hamza-gul
-updated: 2026-06-19
+updated: 2026-08-11
 informationGain: synthesis
 ---
 
-The long wait between finishing your Cambridge exams and results day can be more stressful than the exams themselves. With results for the June 2026 series released on **13 August 2026**, the key is to use this time constructively, focusing on what you can control while letting go of what you can't. This period is an opportunity for rest, personal growth, and strategic planning.
+The long wait between finishing your Cambridge exams and results day can be more stressful than the exams themselves. With AS & A Level results for the June 2026 series released on **11 August 2026**, the key is to use this time constructively, focusing on what you can control while letting go of what you can't. This period is an opportunity for rest, personal growth, and strategic planning.
 
 ## Acknowledge the Wait (and Let It Go)
 
@@ -33,13 +33,13 @@ A great way to manage anxiety is to have a clear plan. Instead of fixating on on
 
 ## Estimate Your Grade (with a Big Pinch of Salt)
 
-If you know your raw marks from mock exams or self-marked papers, it’s tempting to try and predict your grade. You can use our [grade boundary calculator](/tools/grade-boundary-calculator) to see how your raw mark might have translated to a grade in previous years. However, you must treat this as a very rough estimate. **Grade boundaries** are set each year after marking is complete to ensure fairness, and they can and do change. Using old boundaries can be a useful guide, but don't let it create false hope or unnecessary panic; the only numbers that matter are the ones released on 13 August.
+If you know your raw marks from mock exams or self-marked papers, it’s tempting to try and predict your grade. You can use our [grade boundary calculator](/tools/grade-boundary-calculator) to see how your raw mark might have translated to a grade in previous years. However, you must treat this as a very rough estimate. **Grade boundaries** are set each year after marking is complete to ensure fairness, and they can and do change. Using old boundaries can be a useful guide, but don't let it create false hope or unnecessary panic; the only numbers that matter are the official ones released on 11 August.
 
 ## Frequently asked questions
 
 ### When are the June 2026 Cambridge International results released?
 
-Cambridge International will release results to schools on 12 August 2026. You will be able to access your results directly from Cambridge or through your school on **Thursday, 13 August 2026**. Check with your school's exams officer for the exact time and method they will use to distribute them.
+You can access your AS & A Level results directly from Cambridge or through your school from **Tuesday, 11 August 2026**. Check with your school's exams officer for the exact time and method they will use to distribute them.
 
 ### What should I do if my results are not what I expected?
 

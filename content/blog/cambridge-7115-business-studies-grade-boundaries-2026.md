@@ -1,23 +1,23 @@
 ---
 title: Cambridge 7115 Business Studies Grade Boundaries 2026
-description: 7115 O-Level Business grade boundaries 2026 — O-Level grades 18 August, threshold tables ~13 August. Estimate case-study papers with the calculator.
+description: 7115 O-Level Business grade boundaries 2026 — O-Level grades 18 August, threshold tables after the 18 August results. Estimate case-study papers with the calculator.
 date: 2026-06-19
 keywords: 7115 grade boundaries, 7115 grade boundaries 2026, Cambridge Business Studies grade boundaries, 7115 business-studies thresholds, 7115 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-07
+updated: 2026-08-11
 featured: true
 informationGain: synthesis
 ---
 
-Official **7115 Business Studies** grade boundaries for **June 2026** publish in August — **O-Level grades 18 August 2026**, component **threshold tables around 13 August**. Estimate with marked case studies via the [7115 calculator](/tools/grade-boundary-calculator/7115).
+Official **7115 Business Studies** grade boundaries for **June 2026** publish in August — **O-Level grades 18 August 2026**, component **threshold tables following the 18 August results**. Estimate with marked case studies via the [7115 calculator](/tools/grade-boundary-calculator/7115).
 
 ## Quick answer
 
 | Question | Answer |
 |----------|--------|
 | When are June 2026 **O-Level grades** released? | **18 August 2026** (06:00 GMT) |
-| When are **threshold tables** published? | **~13 August 2026** |
+| When are **threshold tables** published? | **after the 18 August results** |
 | Papers? | Structured Qs + **case study** (application-heavy) |
 | Marking style? | Application, analysis, evaluation to case data |
 | Estimate tool | [7115 grade calculator](/tools/grade-boundary-calculator/7115) |
@@ -42,7 +42,7 @@ Cambridge sets **7115** thresholds **after** all scripts are marked so each grad
 
 ### When are official June 2026 boundaries released?
 
-Threshold PDFs **~13 August**; grades **18 August**.
+Threshold PDFs follow the series release; grades **18 August**.
 
 ### Do boundaries drop if the exam is harder?
 
@@ -54,7 +54,7 @@ Cambridge PDFs + [7115 on MarkScheme](/subjects/7115).
 
 ## Related subjects
 
-O-Level and IGCSE grades release **18 August**; component thresholds usually drop **~13 August**. Never copy numbers between syllabus codes. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Use each calculator only for its matching entry code on the statement of entry.
+O-Level and IGCSE grades release **18 August**; component thresholds usually drop **after the 18 August results**. Never copy numbers between syllabus codes. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Use each calculator only for its matching entry code on the statement of entry.
 
 - [9609 A-Level Business](/blog/cambridge-9609-business-grade-boundaries-2026)
 - [2281 O-Level Economics](/blog/cambridge-2281-economics-grade-boundaries-2026)
@@ -62,5 +62,5 @@ O-Level and IGCSE grades release **18 August**; component thresholds usually dro
 
 ## Bottom line
 
-**7115 grade boundaries 2026** publish in August — **18 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [7115 calculator](/tools/grade-boundary-calculator/7115) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
+**7115 grade boundaries 2026** publish in August — **18 August** for grades on your statement, **after the 18 August results** for component threshold PDFs. Until then, marked past papers plus the [7115 calculator](/tools/grade-boundary-calculator/7115) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
 

@@ -1,23 +1,23 @@
 ---
 title: Cambridge 5054 Physics Grade Boundaries 2026
-description: 5054 O-Level Physics grade boundaries 2026 — O-Level grades 18 August, threshold tables ~13 August. Estimate structured and MCQ papers with the calculator.
+description: 5054 O-Level Physics grade boundaries 2026 — O-Level grades 18 August, threshold tables after the 18 August results. Estimate structured and MCQ papers with the calculator.
 date: 2026-06-19
 keywords: 5054 grade boundaries, 5054 grade boundaries 2026, Cambridge Physics grade boundaries, 5054 physics thresholds, 5054 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-07
+updated: 2026-08-11
 featured: true
 informationGain: synthesis
 ---
 
-Official **5054 Physics** grade boundaries for **June 2026** publish in August — **O-Level grades 18 August 2026**, component **threshold tables around 13 August**. Estimate with marked past papers via the [5054 calculator](/tools/grade-boundary-calculator/5054).
+Official **5054 Physics** grade boundaries for **June 2026** publish in August — **O-Level grades 18 August 2026**, component **threshold tables following the 18 August results**. Estimate with marked past papers via the [5054 calculator](/tools/grade-boundary-calculator/5054).
 
 ## Quick answer
 
 | Question | Answer |
 |----------|--------|
 | When are June 2026 **O-Level grades** released? | **18 August 2026** (06:00 GMT) |
-| When are **threshold tables** published? | **~13 August 2026** |
+| When are **threshold tables** published? | **after the 18 August results** |
 | Papers? | MCQ + structured theory (check entry) |
 | Marking style? | **Diagrams + algebra** — formula then substitute |
 | Estimate tool | [5054 grade calculator](/tools/grade-boundary-calculator/5054) |
@@ -42,7 +42,7 @@ Cambridge sets **5054** thresholds **after** all scripts are marked so each grad
 
 ### When are official boundaries released?
 
-Threshold PDFs **~13 August**; grades **18 August**.
+Threshold PDFs follow the series release; grades **18 August**.
 
 ### Component vs overall grade?
 
@@ -54,7 +54,7 @@ Confirm your syllabus code — this guide is for **5054 O-Level**.
 
 ## Related subjects
 
-O-Level and IGCSE grades release **18 August**; component thresholds usually drop **~13 August**. Never copy numbers between syllabus codes. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Use each calculator only for its matching entry code on the statement of entry.
+O-Level and IGCSE grades release **18 August**; component thresholds usually drop **after the 18 August results**. Never copy numbers between syllabus codes. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Use each calculator only for its matching entry code on the statement of entry.
 
 - [5090 Biology](/blog/cambridge-5090-biology-grade-boundaries-2026)
 - [5070 Chemistry](/blog/cambridge-5070-chemistry-grade-boundaries-2026)
@@ -63,5 +63,5 @@ O-Level and IGCSE grades release **18 August**; component thresholds usually dro
 
 ## Bottom line
 
-**5054 grade boundaries 2026** publish in August — **18 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [5054 calculator](/tools/grade-boundary-calculator/5054) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
+**5054 grade boundaries 2026** publish in August — **18 August** for grades on your statement, **after the 18 August results** for component threshold PDFs. Until then, marked past papers plus the [5054 calculator](/tools/grade-boundary-calculator/5054) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
 

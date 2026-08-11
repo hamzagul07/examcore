@@ -1,23 +1,23 @@
 ---
 title: Cambridge 0625 Physics Grade Boundaries 2026
-description: 0625 IGCSE Physics grade boundaries 2026 — IGCSE grades 18 August, threshold tables ~13 August. Estimate MCQ and theory papers with the calculator.
+description: 0625 IGCSE Physics grade boundaries 2026 — IGCSE grades 18 August, threshold tables after the 18 August results. Estimate MCQ and theory papers with the calculator.
 date: 2026-06-19
 keywords: 0625 grade boundaries, 0625 grade boundaries 2026, Cambridge IGCSE Physics grade boundaries, 0625 physics thresholds, 0625 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-07
+updated: 2026-08-11
 featured: true
 informationGain: synthesis
 ---
 
-Official **0625 Physics** grade boundaries for **June 2026** publish in August — **IGCSE grades 18 August 2026**, component **threshold tables around 13 August**. Estimate with marked past papers via the [0625 calculator](/tools/grade-boundary-calculator/0625).
+Official **0625 Physics** grade boundaries for **June 2026** publish in August — **IGCSE grades 18 August 2026**, component **threshold tables following the 18 August results**. Estimate with marked past papers via the [0625 calculator](/tools/grade-boundary-calculator/0625).
 
 ## Quick answer
 
 | Question | Answer |
 |----------|--------|
 | When are June 2026 **IGCSE grades** released? | **18 August 2026** (06:00 GMT) |
-| When are **threshold tables** published? | **~13 August 2026** |
+| When are **threshold tables** published? | **after the 18 August results** |
 | Papers? | MCQ + theory + practical / alternative to practical (check your entry) |
 | Marking style? | **Show working** — method marks on calculations |
 | Estimate tool | [0625 grade calculator](/tools/grade-boundary-calculator/0625) |
@@ -51,7 +51,7 @@ Confirm your entry with your exams officer — mixing tiers is not allowed.
 
 ### When are official boundaries released?
 
-Threshold PDFs **~13 August**; grades **18 August**.
+Threshold PDFs follow the series release; grades **18 August**.
 
 ### Is 80% always an A*?
 

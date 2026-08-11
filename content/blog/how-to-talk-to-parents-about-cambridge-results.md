@@ -1,18 +1,18 @@
 ---
 title: How to talk to parents about Cambridge results
-description: Dreading the results conversation? Here is how to prepare your parents before 13 August 2026, frame the outcome honestly, and agree a plan together.
+description: Dreading the results conversation? Here is how to prepare your parents before 11 August 2026, frame the outcome honestly, and agree a plan together.
 date: 2026-06-19
 keywords: talk to parents about results, exam results parents, results day parents, telling parents grades, Cambridge results conversation
 category: study-skills
 author: hamza-gul
-updated: 2026-06-19
+updated: 2026-08-11
 informationGain: synthesis
 ---
 
 Talking to your parents about your Cambridge results is most effective when you prepare beforehand. By setting expectations early and having a clear plan for every possible outcome, you can turn a potentially stressful conversation into a productive discussion about your next steps. This approach shows maturity and shifts the focus from the grades themselves to the future path.
 
 ## Set expectations before results day
-Weeks before the **13 August 2026** results release, start a conversation about how the exams felt. Be honest about which papers you found straightforward and which were more challenging. Remind them that grade boundaries are set after marking to ensure fairness and are unknown until results day itself, so predicting exact grades is impossible. This context helps manage expectations and reduces the risk of shock, as detailed in our full [results day guide](/blog/cambridge-results-day-august-2026-guide).
+Weeks before the **11 August 2026** results release, start a conversation about how the exams felt. Be honest about which papers you found straightforward and which were more challenging. Remind them that grade boundaries are set after marking to ensure fairness and are unknown until results day itself, so predicting exact grades is impossible. This context helps manage expectations and reduces the risk of shock, as detailed in our full [results day guide](/blog/cambridge-results-day-august-2026-guide).
 
 ## Prepare a plan for each outcome
 Walk into the conversation with a clear, three-part plan based on your results. If your grades are strong, your plan is to confirm your university offer and finalise any accommodation. If your grades are on-target, the plan is to proceed as expected. If your grades are lower than hoped, you will present the concrete options you have already researched, turning a moment of disappointment into a proactive problem-solving session.

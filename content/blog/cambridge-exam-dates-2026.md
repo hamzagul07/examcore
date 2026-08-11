@@ -5,11 +5,11 @@ date: 2026-06-19
 keywords: Cambridge exam dates 2026, Cambridge 2026 timetable, June 2026 exams, Cambridge results day 2026, A Level exam dates 2026
 category: revision
 author: hassan
-updated: 2026-06-19
+updated: 2026-08-11
 informationGain: synthesis
 ---
 
-Cambridge International has confirmed its key dates for the 2026 exam year, including the three main exam series and the results release day for the crucial May/June session. While specific paper dates vary by region, the overall schedule provides a clear framework for students planning their IGCSE, O Level, and A Level preparations. The results for the May/June 2026 exam series will be released to schools on **13 August 2026**.
+Cambridge International has confirmed its key dates for the 2026 exam year, including the three main exam series and the results release day for the crucial May/June session. While specific paper dates vary by region, the overall schedule provides a clear framework for students planning their IGCSE, O Level, and A Level preparations. AS & A Level results for the May/June 2026 series were released on **11 August 2026**, with IGCSE and O Level results following on **18 August 2026**.
 
 ## Understanding the Cambridge Exam Series
 
@@ -29,7 +29,7 @@ The February/March exam series is a more specialised session with limited availa
 
 ## Confirmed Results Release Dates for 2026
 
-Cambridge International releases results to schools on a specific date, allowing them to process the data before releasing it to students. For the **May/June 2026** series, results will be made available to schools on **Thursday, 13 August 2026**. Students typically receive their results from their school on the same day or shortly after.
+Cambridge International releases results to schools on a specific date, allowing them to process the data before releasing it to students. For the **May/June 2026** series, AS & A Level results were released on **Tuesday, 11 August 2026**, and IGCSE and O Level results follow on **Tuesday, 18 August 2026**. Students typically receive results from their school on the day or shortly after.
 
 For the other series, the release dates follow a predictable pattern:
 *   **February/March 2026** results are typically released in late **May 2026**.
@@ -63,4 +63,4 @@ Effective revision should begin months, not weeks, before your first exam. For t
 
 ## Bottom line
 
-For the 2026 exam year, your most important tasks are to confirm which series you are sitting, secure your personal Statement of Entry from your school, and note the relevant results day. The key confirmed date is the release of May/June 2026 results on **13 August 2026**. With these dates as your guideposts, you can build a robust and effective plan for your exam success.
+For the 2026 exam year, your most important tasks are to confirm which series you are sitting, secure your personal Statement of Entry from your school, and note the relevant results day. The key confirmed dates are AS & A Level results on **11 August 2026** and IGCSE / O Level results on **18 August 2026**. With these dates as your guideposts, you can build a robust and effective plan for your exam success.

@@ -2,7 +2,7 @@
 title: After Cambridge exams — results prep checklist (2026)
 description: Finished May/June 2026 exams? What to do before results day — predict grades honestly, save evidence, plan remarks and November resits without anxiety scrolling.
 date: 2026-07-06
-updated: 2026-07-06
+updated: 2026-08-11
 category: editorial
 featured: true
 spotlight: true
@@ -18,7 +18,7 @@ The weeks **after** your last Cambridge paper are dangerous: either you forget e
 | Question | Answer |
 |----------|--------|
 | When are June 2026 results? | AS/A-Level **11 August**; IGCSE/O Level **18 August** (06:00 GMT) |
-| When are threshold tables? | **~13 August** (A-Level components) |
+| When are threshold tables? | **Published 11 August** (A-Level components) |
 | Can I predict my grade now? | [Will my grade hold?](/tools/will-my-grade-hold) + marked mocks — not TikTok thresholds |
 | Results Day hub | [Results Day 2026](/results-2026) |
 | Should I revise for retakes already? | Light **technique** review only; rest first |

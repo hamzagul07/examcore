@@ -1,6 +1,6 @@
 ---
 title: Cambridge 9990 Psychology Grade Boundaries 2026
-description: 9990 Psychology A-Level grade boundaries 2026 — grades 11 August, threshold tables ~13 August. Estimate across Papers 1–4 with the calculator.
+description: 9990 Psychology A-Level grade boundaries 2026 — grades and official component thresholds both published 11 August. Estimate across Papers 1–4 with the calculator.
 date: 2026-06-19
 keywords: 9990 grade boundaries, 9990 grade boundaries 2026, Cambridge Psychology grade boundaries, 9990 psychology thresholds, 9990 raw marks to grade
 category: mark-schemes
@@ -10,19 +10,44 @@ featured: true
 informationGain: synthesis
 ---
 
-Official **9990 Psychology** grade boundaries for **June 2026** publish in August — **grades 11 August 2026**, component **threshold tables around 13 August**. Estimate with marked past papers via the [9990 calculator](/tools/grade-boundary-calculator/9990).
+Official **9990 Psychology** grade boundaries for **June 2026** are published — **grades 11 August 2026**, component **threshold tables published 11 August**. The official component figures are below, and in the [9990 calculator](/tools/grade-boundary-calculator/9990).
 
 ## Quick answer
 
 | Question | Answer |
 |----------|--------|
 | When are June 2026 **grades** released? | **11 August 2026** (06:00 GMT) |
-| When are **threshold tables** published? | **~13 August 2026** |
+| When are **threshold tables** published? | **11 August 2026** |
 | Papers? | P1–P4 (core studies, approaches, specialist options) |
 | A-Level weighting? | Each paper typically **25%** of final total |
 | Estimate tool | [9990 grade calculator](/tools/grade-boundary-calculator/9990) |
 
 [Post-exam prep](/blog/cambridge-post-exam-results-prep-2026) · [Results day guide](/blog/cambridge-results-day-august-2026-guide)
+
+## June 2026 thresholds (official)
+
+Verified against the official Cambridge component threshold table for the June 2026 series.
+
+| Component | Max raw mark | A | B | C | D | E |
+|---|---|---|---|---|---|---|
+| 11 | 60 | 36 | 32 | 28 | 24 | 20 |
+| 12 | 60 | 38 | 33 | 28 | 24 | 20 |
+| 13 | 60 | 37 | 32 | 28 | 24 | 20 |
+| 21 | 60 | 37 | 35 | 31 | 28 | 25 |
+| 22 | 60 | 39 | 37 | 33 | 29 | 25 |
+| 23 | 60 | 37 | 34 | 29 | 25 | 21 |
+| 31 | 60 | 26 | 22 | 18 | 14 | 10 |
+| 32 | 60 | 29 | 24 | 20 | 16 | 12 |
+| 33 | 60 | 26 | 22 | 18 | 14 | 10 |
+| 41 | 60 | 30 | 25 | 21 | 17 | 12 |
+| 42 | 60 | 35 | 31 | 28 | 25 | 21 |
+| 43 | 60 | 30 | 25 | 21 | 17 | 12 |
+| 50 | 75 | 51 | 43 | 35 | 27 | 20 |
+| 60 | 75 | 51 | 43 | 35 | 28 | 20 |
+
+Grade A\* is not awarded on an individual component — it exists only at syllabus level, from the weighted aggregate across the papers you entered.
+
+Source: [Cambridge June 2026 grade threshold table](https://www.cambridgeinternational.org/Images/761537-psychology-9990-june-2026-grade-threshold-table.pdf).
 
 ## What are grade boundaries?
 
@@ -36,13 +61,13 @@ Cambridge sets **9990** thresholds **after** all scripts are marked so each grad
 
 1. Complete a recent A-Level paper under timed conditions for your exact entry route.  
 2. Mark strictly to the official scheme — log every lost mark before convincing yourself an answer "basically counts".  
-3. Compare component raw marks to June 2024/2023 in the [9990 calculator](/tools/grade-boundary-calculator/9990) until the verified June 2026 PDF loads.
+3. Compare component raw marks to June 2026 in the [9990 calculator](/tools/grade-boundary-calculator/9990) against the official June 2026 table above.
 
 ## Frequently asked questions
 
 ### When are official 2026 boundaries released?
 
-Grades **11 August**; tables **~13 August** on Cambridge International — [9990 subject page](/subjects/9990).
+Grades **11 August**; tables **11 August** on Cambridge International — [9990 subject page](/subjects/9990).
 
 ### Where are past boundaries?
 
@@ -54,7 +79,7 @@ Yes — strong papers elsewhere can lift your **weighted** total if overall raw 
 
 ## Related subjects
 
-A-Level boundaries publish with **11 August** grades and **~13 August** threshold PDFs — each syllabus code is separate. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
+A-Level boundaries published on **11 August**, grades and threshold PDFs together — each syllabus code is separate. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
 
 - [9699 Sociology](/blog/cambridge-9699-sociology-grade-boundaries-2026)
 - [9708 Economics](/blog/cambridge-9708-economics-grade-boundaries-2026)
@@ -62,5 +87,5 @@ A-Level boundaries publish with **11 August** grades and **~13 August** threshol
 
 ## Bottom line
 
-**9990 grade boundaries 2026** publish in August — **11 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [9990 calculator](/tools/grade-boundary-calculator/9990) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
+**9990 grade boundaries 2026** were published on **11 August 2026**, grades and component threshold PDFs together. Every component figure is in the table above, and in the [9990 calculator](/tools/grade-boundary-calculator/9990). No rumour spreadsheet required. Match your component codes on the statement to the rows above. Your exams officer confirms entries on the statement.
 

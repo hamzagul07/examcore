@@ -1,23 +1,23 @@
 ---
 title: Cambridge 2281 Economics Grade Boundaries 2026
-description: 2281 O-Level Economics grade boundaries 2026 — O-Level grades 18 August, threshold tables ~13 August. Estimate Papers 1–2 with the calculator.
+description: 2281 O-Level Economics grade boundaries 2026 — O-Level grades 18 August, threshold tables after the 18 August results. Estimate Papers 1–2 with the calculator.
 date: 2026-06-19
 keywords: 2281 grade boundaries, 2281 grade boundaries 2026, Cambridge Economics grade boundaries, 2281 economics thresholds, 2281 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-07
+updated: 2026-08-11
 featured: true
 informationGain: synthesis
 ---
 
-Official **2281 Economics** grade boundaries for **June 2026** publish in August — **O-Level grades 18 August 2026**, component **threshold tables around 13 August**. Estimate with marked past papers via the [2281 calculator](/tools/grade-boundary-calculator/2281).
+Official **2281 Economics** grade boundaries for **June 2026** publish in August — **O-Level grades 18 August 2026**, component **threshold tables following the 18 August results**. Estimate with marked past papers via the [2281 calculator](/tools/grade-boundary-calculator/2281).
 
 ## Quick answer
 
 | Question | Answer |
 |----------|--------|
 | When are June 2026 **O-Level grades** released? | **18 August 2026** (06:00 GMT) |
-| When are **threshold tables** published? | **~13 August 2026** |
+| When are **threshold tables** published? | **after the 18 August results** |
 | Papers? | P1 (multiple choice) + P2 (structured/data response) |
 | Marking style? | Knowledge, application, diagrams, evaluation |
 | Estimate tool | [2281 grade calculator](/tools/grade-boundary-calculator/2281) |
@@ -42,7 +42,7 @@ Cambridge sets **2281** thresholds **after** all scripts are marked so each grad
 
 ### When are official boundaries released?
 
-Threshold PDFs **~13 August**; grades on your statement **18 August**.
+Threshold PDFs follow the series release; grades on your statement **18 August**.
 
 ### Is an A always 80%?
 
@@ -54,7 +54,7 @@ Name the scenario, draw the diagram, evaluate both sides — [2281 course](/cour
 
 ## Related subjects
 
-O-Level and IGCSE grades release **18 August**; component thresholds usually drop **~13 August**. Never copy numbers between syllabus codes. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Use each calculator only for its matching entry code on the statement of entry.
+O-Level and IGCSE grades release **18 August**; component thresholds usually drop **after the 18 August results**. Never copy numbers between syllabus codes. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Use each calculator only for its matching entry code on the statement of entry.
 
 - [9708 A-Level Economics](/blog/cambridge-9708-economics-grade-boundaries-2026)
 - [4024 O-Level Maths](/blog/cambridge-4024-mathematics-grade-boundaries-2026)
@@ -62,5 +62,5 @@ O-Level and IGCSE grades release **18 August**; component thresholds usually dro
 
 ## Bottom line
 
-**2281 grade boundaries 2026** publish in August — **18 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [2281 calculator](/tools/grade-boundary-calculator/2281) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
+**2281 grade boundaries 2026** publish in August — **18 August** for grades on your statement, **after the 18 August results** for component threshold PDFs. Until then, marked past papers plus the [2281 calculator](/tools/grade-boundary-calculator/2281) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
 

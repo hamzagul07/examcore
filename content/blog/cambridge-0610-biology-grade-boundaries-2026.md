@@ -1,23 +1,23 @@
 ---
 title: Cambridge 0610 Biology Grade Boundaries 2026
-description: 0610 IGCSE Biology grade boundaries 2026 — IGCSE grades 18 August, threshold tables ~13 August. Estimate MCQ and theory papers with the calculator.
+description: 0610 IGCSE Biology grade boundaries 2026 — IGCSE grades 18 August, threshold tables after the 18 August results. Estimate MCQ and theory papers with the calculator.
 date: 2026-06-19
 keywords: 0610 grade boundaries, 0610 grade boundaries 2026, Cambridge IGCSE Biology grade boundaries, 0610 biology thresholds, 0610 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-07
+updated: 2026-08-11
 featured: true
 informationGain: synthesis
 ---
 
-Official **0610 Biology** grade boundaries for **June 2026** publish in August — **IGCSE grades 18 August 2026**, component **threshold tables around 13 August**. Estimate with marked past papers via the [0610 calculator](/tools/grade-boundary-calculator/0610).
+Official **0610 Biology** grade boundaries for **June 2026** publish in August — **IGCSE grades 18 August 2026**, component **threshold tables following the 18 August results**. Estimate with marked past papers via the [0610 calculator](/tools/grade-boundary-calculator/0610).
 
 ## Quick answer
 
 | Question | Answer |
 |----------|--------|
 | When are June 2026 **IGCSE grades** released? | **18 August 2026** (06:00 GMT) |
-| When are **threshold tables** published? | **~13 August 2026** |
+| When are **threshold tables** published? | **after the 18 August results** |
 | Papers? | MCQ + theory + practical / alternative to practical (check your entry) |
 | Marking style? | **Precise terminology** on structured Qs |
 | Estimate tool | [0610 grade calculator](/tools/grade-boundary-calculator/0610) |
@@ -51,7 +51,7 @@ Confirm your entry with your exams officer — mixing tiers is not allowed.
 
 ### When are official boundaries released?
 
-Threshold PDFs **~13 August**; grades **18 August**.
+Threshold PDFs follow the series release; grades **18 August**.
 
 ### Is 80% always an A*?
 
@@ -63,7 +63,7 @@ Confirm your **0610** code on your statement of entry — papers differ from 509
 
 ## Related subjects
 
-IGCSE sciences share the August results window (**18 August** grades, **~13 August** thresholds) but each syllabus code has its own PDF — cross-link for revision planning, not for copying numbers. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
+IGCSE sciences share the August results window (**18 August** grades, thresholds to follow) but each syllabus code has its own PDF — cross-link for revision planning, not for copying numbers. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
 
 - [0620 Chemistry](/blog/cambridge-0620-chemistry-grade-boundaries-2026)
 - [0625 Physics](/blog/cambridge-0625-physics-grade-boundaries-2026)

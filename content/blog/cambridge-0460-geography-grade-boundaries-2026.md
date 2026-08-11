@@ -1,23 +1,23 @@
 ---
 title: Cambridge 0460 Geography Grade Boundaries 2026
-description: 0460 IGCSE Geography grade boundaries 2026 — IGCSE grades 18 August, threshold tables ~13 August. Estimate themes, skills and fieldwork papers with the calculator.
+description: 0460 IGCSE Geography grade boundaries 2026 — IGCSE grades 18 August, threshold tables after the 18 August results. Estimate themes, skills and fieldwork papers with the calculator.
 date: 2026-06-19
 keywords: 0460 grade boundaries, 0460 grade boundaries 2026, Cambridge IGCSE Geography grade boundaries, 0460 geography thresholds, 0460 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-07
+updated: 2026-08-11
 featured: true
 informationGain: synthesis
 ---
 
-Official **0460 Geography** grade boundaries for **June 2026** publish in August — **IGCSE grades 18 August 2026**, component **threshold tables around 13 August**. Estimate with marked past papers via the [0460 calculator](/tools/grade-boundary-calculator/0460).
+Official **0460 Geography** grade boundaries for **June 2026** publish in August — **IGCSE grades 18 August 2026**, component **threshold tables following the 18 August results**. Estimate with marked past papers via the [0460 calculator](/tools/grade-boundary-calculator/0460).
 
 ## Quick answer
 
 | Question | Answer |
 |----------|--------|
 | When are June 2026 **IGCSE grades** released? | **18 August 2026** (06:00 GMT) |
-| When are **threshold tables** published? | **~13 August 2026** |
+| When are **threshold tables** published? | **after the 18 August results** |
 | Papers? | Themes (P1) + skills (P2) + coursework or P4 |
 | Marking style? | **Point marks + LoR essays** — named case studies |
 | Estimate tool | [0460 grade calculator](/tools/grade-boundary-calculator/0460) |
@@ -44,7 +44,7 @@ Revision: [0460 past papers](/blog/cambridge-0460-igcse-geography-past-papers-gu
 
 ### When are official June 2026 boundaries released?
 
-Threshold PDFs **~13 August**; final grades on your statement **18 August**.
+Threshold PDFs follow the series release; final grades on your statement **18 August**.
 
 ### Coursework vs Paper 4 — same boundaries?
 
@@ -64,4 +64,4 @@ Geography spans IGCSE and A-Level codes — each has separate threshold tables, 
 
 ## Bottom line
 
-**0460 grade boundaries 2026** publish **18 August** for grades and **~13 August** for component PDFs. **Named places and skills practice** plus the [0460 calculator](/tools/grade-boundary-calculator/0460) beat viral threshold spreadsheets — build an evidence file from marked mocks before results day. Your exams officer confirms component codes on the statement of entry.
+**0460 grade boundaries 2026** publish **18 August** for grades and **after the 18 August results** for component PDFs. **Named places and skills practice** plus the [0460 calculator](/tools/grade-boundary-calculator/0460) beat viral threshold spreadsheets — build an evidence file from marked mocks before results day. Your exams officer confirms component codes on the statement of entry.

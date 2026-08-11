@@ -26,6 +26,10 @@ import { SubjectSidebar } from '@/components/community/reddit/Sidebar'
 import { communityPostHref, shortIdFromSlug } from '@/lib/community/post-url'
 import { CommunityPostJsonLd } from '@/components/seo/CommunityPostJsonLd'
 import { isIndexablePost } from '@/lib/community/indexable'
+import { getOfficialBoundaries } from '@/lib/seo/grade-boundaries-data'
+import { isJune2026Session } from '@/lib/seo/results-day'
+import { usableComponents, type MarkComponent } from '@/lib/community/mark-share'
+import { MarkShareForm } from '@/components/community/MarkShareForm'
 
 export const dynamic = 'force-dynamic'
 
@@ -103,6 +107,17 @@ export default async function PostDetailPage({ params }: PageProps) {
   // discussion or a person talking to themselves.
   const peerReplyCount = countPeerReplies(comments, post.authorId)
 
+  // Only on threads that asked for marks, and only when we hold the tables
+  // they would be measured against — a form that cannot compute the gap is just
+  // another empty box.
+  const markComponents: MarkComponent[] =
+    post.flair === 'Grade boundaries'
+      ? usableComponents(
+          (getOfficialBoundaries(post.subjectCode)?.sessions.find((x) => isJune2026Session(x.session))
+            ?.components ?? []) as MarkComponent[]
+        )
+      : []
+
   const commentIds = collectCommentIds(comments)
   const commentVotes = user ? await getUserCommentVotes(user.id, commentIds) : {}
 
@@ -170,6 +185,15 @@ export default async function PostDetailPage({ params }: PageProps) {
             </div>
 
             <div className="rc-post-divider" />
+
+            {markComponents.length ? (
+              <MarkShareForm
+                postId={post.id}
+                subjectCode={post.subjectCode}
+                components={markComponents}
+                signedIn={!!user}
+              />
+            ) : null}
 
             <CommentTree
               postId={post.id}

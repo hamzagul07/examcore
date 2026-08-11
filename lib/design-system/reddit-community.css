@@ -847,6 +847,40 @@
 }
 .rc-comment-signin { padding: 8px 0; }
 
+/* ── Share a mark ──────────────────────────────────────────────────────────
+   Sits above the comment box on threshold threads: two fields instead of a
+   paragraph, because the ask on those threads is a number, not an opinion. */
+.rc-markshare {
+  display: flex; flex-direction: column; gap: 10px;
+  margin: 14px 0 18px; padding: 14px 16px;
+  background: var(--ec-surface-raised); border: 1px solid var(--ec-border);
+  border-left: 3px solid var(--ec-brand);
+  border-radius: 4px;
+}
+.rc-markshare__title {
+  margin: 0; font-size: 0.9rem; font-weight: 650; color: var(--ec-text-primary);
+}
+.rc-markshare__row { display: flex; flex-wrap: wrap; gap: 10px; }
+.rc-markshare__field { display: flex; flex-direction: column; gap: 4px; flex: 1 1 14rem; min-width: 0; }
+.rc-markshare__field--mark { flex: 0 1 9rem; }
+.rc-markshare__label {
+  font-size: 0.75rem; font-weight: 600; color: var(--ec-text-secondary);
+}
+/* The payoff, shown before they commit rather than after. */
+.rc-markshare__preview {
+  margin: 0; padding: 8px 10px;
+  font-size: 0.9rem;
+  background: color-mix(in srgb, var(--ec-brand) 10%, transparent);
+  border-radius: 3px;
+}
+.rc-markshare__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.rc-markshare__hint { font-size: 0.8rem; color: var(--ec-text-faint); }
+.rc-markshare--done { flex-direction: row; align-items: center; justify-content: space-between; }
+
+@media (max-width: 34rem) {
+  .rc-markshare__field, .rc-markshare__field--mark { flex: 1 1 100%; }
+}
+
 /* Offered, not required — the generator covers anyone who skips it. */
 .rc-username-pick { display: flex; flex-direction: column; gap: 5px; }
 .rc-username-pick__label {

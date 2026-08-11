@@ -65,6 +65,7 @@ export function PostComposer({
   initialTitle,
   initialBody,
   signedIn,
+  needsUsername,
 }: {
   subjects: SubjectOpt[]
   /** Top subject room ids per board (by post activity). */
@@ -76,8 +77,11 @@ export function PostComposer({
   initialTitle?: string
   initialBody?: string
   signedIn: boolean
+  /** Signed in with no public name yet — offer the choice before generating one. */
+  needsUsername?: boolean
 }) {
   const router = useRouter()
+  const [chosenUsername, setChosenUsername] = useState('')
   const fileRef = useRef<HTMLInputElement>(null)
   const [kind, setKind] = useState<Kind>(initialKind ?? 'discussion')
   const [board, setBoard] = useState<Board | ''>(() => {
@@ -212,6 +216,21 @@ export function PostComposer({
     }
     setSubmitting(true)
     try {
+      // Typed a name? Claim it first. Blank falls through to the generator, so
+      // this stays an offer rather than another gate.
+      if (needsUsername && chosenUsername.trim()) {
+        const ures = await fetch('/api/community/username', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: chosenUsername.trim() }),
+        })
+        const udata = await ures.json()
+        if (!ures.ok) {
+          setError(udata.error || 'Could not save that name.')
+          setSubmitting(false)
+          return
+        }
+      }
       const res = await fetch('/api/community/posts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -458,6 +477,22 @@ export function PostComposer({
             </ul>
           ) : null}
         </div>
+
+        {needsUsername ? (
+          <label className="rc-field rc-username-pick">
+            <span className="rc-username-pick__label">
+              Public name <span className="rc-username-pick__hint">— optional, we pick one if you skip it</span>
+            </span>
+            <input
+              className="rc-input"
+              value={chosenUsername}
+              onChange={(e) => setChosenUsername(e.target.value.toLowerCase())}
+              placeholder="e.g. maths_mo"
+              maxLength={20}
+              autoComplete="off"
+            />
+          </label>
+        ) : null}
 
         {error ? <FormErrorAlert message={error} className="rc-error-alert" /> : null}
 

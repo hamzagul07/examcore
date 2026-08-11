@@ -847,6 +847,13 @@
 }
 .rc-comment-signin { padding: 8px 0; }
 
+/* Offered, not required — the generator covers anyone who skips it. */
+.rc-username-pick { display: flex; flex-direction: column; gap: 5px; }
+.rc-username-pick__label {
+  font-size: 0.78rem; font-weight: 600; color: var(--ec-text-secondary);
+}
+.rc-username-pick__hint { font-weight: 400; color: var(--ec-text-faint); }
+
 /* Shown after a comment lands, never before it. */
 .rc-digest-optin {
   display: flex; flex-direction: column; gap: 10px;

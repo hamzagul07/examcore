@@ -42,6 +42,14 @@ export default async function SubmitPage({ searchParams }: PageProps) {
     accent: s.accent,
     glyph: s.glyph,
   }))
+  // Same offer as the comment composer: name yourself, or let us.
+  const { data: profile } = await supabase
+    .from('user_profiles')
+    .select('username')
+    .eq('id', user.id)
+    .maybeSingle()
+  const needsUsername = !profile?.username
+
   const counts = await getPostCountsBySubject()
   const popularByBoard = popularSubjectIdsByBoard(subjects, counts)
 
@@ -64,6 +72,7 @@ export default async function SubmitPage({ searchParams }: PageProps) {
         initialTitle={sp.title?.slice(0, 200)}
         initialBody={sp.body?.slice(0, 20000)}
         signedIn={!!user}
+        needsUsername={needsUsername}
       />
     </div>
   )

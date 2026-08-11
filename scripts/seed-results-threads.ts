@@ -139,17 +139,30 @@ async function main() {
       continue
     }
 
-    const { error } = await db.from('community_posts').insert({
-      author_id: authorId,
-      board: 'cambridge',
-      subject_code: code,
-      kind: 'discussion',
-      flair: FLAIR,
-      title,
-      body_md: bodyMd,
-      status: 'published',
-    })
+    const { data: inserted, error } = await db
+      .from('community_posts')
+      .insert({
+        author_id: authorId,
+        board: 'cambridge',
+        subject_code: code,
+        kind: 'discussion',
+        flair: FLAIR,
+        title,
+        body_md: bodyMd,
+        status: 'published',
+      })
+      .select('id')
+      .single()
     if (error) throw error
+
+    // The author's own upvote, exactly as createPost does it. Without this the
+    // vote trigger never fires and hot_rank keeps its default of 0, which sorts
+    // the thread to the bottom of the hot feed — invisible the moment the room
+    // holds more posts than the feed's fetch window.
+    const { error: voteError } = await db
+      .from('community_post_votes')
+      .insert({ post_id: inserted.id, user_id: authorId, value: 1 })
+    if (voteError) throw voteError
 
     console.log(`• opened              ${code} ${label}`)
     created++

@@ -218,6 +218,10 @@ function CommentComposer({
   const [body, setBody] = useState('')
   const [assignedUsername, setAssignedUsername] = useState('')
   const [showDigestOptIn, setShowDigestOptIn] = useState(false)
+  // Once they have answered the digest ask — either way — it stays answered for
+  // this visit. `offerDigest` is resolved when the page renders, so without
+  // this a second comment re-asks somebody who just said no.
+  const [digestSettled, setDigestSettled] = useState(false)
   const [chosenUsername, setChosenUsername] = useState('')
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
@@ -282,7 +286,7 @@ function CommentComposer({
       if (data.assignedUsername) setAssignedUsername(data.assignedUsername)
       // Asked only after the comment lands, so the offer follows a
       // contribution instead of standing between them and posting one.
-      if (offerDigest) setShowDigestOptIn(true)
+      if (offerDigest && !digestSettled) setShowDigestOptIn(true)
       onDone?.()
       router.refresh()
     } catch {
@@ -300,7 +304,14 @@ function CommentComposer({
         onChange={(e) => setBody(e.target.value)}
         rows={parentId ? 3 : 4}
       />
-      {showDigestOptIn ? <DigestOptIn onDone={() => setShowDigestOptIn(false)} /> : null}
+      {showDigestOptIn ? (
+        <DigestOptIn
+          onDone={() => {
+            setShowDigestOptIn(false)
+            setDigestSettled(true)
+          }}
+        />
+      ) : null}
       {assignedUsername ? (
         <p className="rc-comment-composer-note ms-body-2">
           Posted as <strong>u/{assignedUsername}</strong> — rename it any time in{' '}

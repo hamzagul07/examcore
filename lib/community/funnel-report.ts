@@ -38,21 +38,42 @@ function isBot(id: string | null | undefined): boolean {
   return !!id && id.startsWith(BOT_PREFIX)
 }
 
-/** PostgREST caps a select at 1000 rows and says nothing about it — a week of
- *  page_events is several times that, so the totals came out silently wrong
- *  until this paged through them. */
+/**
+ * Read every row, not the first thousand.
+ *
+ * PostgREST caps a select at 1000 rows and says nothing about it — a week of
+ * page_events is several times that, so the totals came out silently wrong
+ * until this paged through them. Errors throw rather than truncate: a report
+ * that quietly under-counts is worse than one that fails, because the numbers
+ * it invents look plausible.
+ */
 async function fetchAll<T>(
-  page: (from: number, to: number) => PromiseLike<{ data: T[] | null }>
+  label: string,
+  page: (from: number, to: number) => PromiseLike<{ data: T[] | null; error: { message: string } | null }>
 ): Promise<T[]> {
   const SIZE = 1000
   const out: T[] = []
   for (let from = 0; ; from += SIZE) {
-    const { data } = await page(from, from + SIZE - 1)
+    const { data, error } = await page(from, from + SIZE - 1)
+    if (error) throw new Error(`funnel report: reading ${label} failed — ${error.message}`)
     const batch = data ?? []
     out.push(...batch)
     if (batch.length < SIZE) return out
   }
 }
+
+type PostRow = {
+  id: string
+  author_id: string
+  title: string
+  created_at: string
+  body_md: string | null
+  attachments: unknown[] | null
+}
+type QuestionRow = { id: string; author_id: string; title: string; created_at: string; body_md: string | null }
+type CommentRow = { post_id: string; author_id: string; created_at: string }
+type AnswerRow = { question_id: string; author_id: string; created_at: string }
+type ProfileRow = { id: string; username: string | null; email_community_digest: boolean }
 
 /**
  * How the results-week funnel is actually performing.
@@ -61,14 +82,18 @@ async function fetchAll<T>(
  * boundary pages move anybody into the Exam Room, and did any of them talk.
  * Clicks come from the synthetic /__cta rows the redirect writes, because
  * page_events drops query strings and the utm_source would otherwise vanish.
+ *
+ * Posts, comments and profiles are read once in full and windowed in memory.
+ * The "who is waiting" list deliberately ignores the window — a student
+ * ignored in July is still ignored — so fetching each table twice bought
+ * nothing but round trips.
  */
 export async function communityFunnelReport(days: number): Promise<FunnelReport> {
   const admin = createServiceClient()
   const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString()
 
-  const [clicks, views, posts, comments, profiles, allPosts, allComments, allQuestions, allAnswers, allProfiles] =
-    await Promise.all([
-    fetchAll<{ path: string; referrer: string | null }>((from, to) =>
+  const [clicks, views, allPosts, allComments, allQuestions, allAnswers, profiles] = await Promise.all([
+    fetchAll<{ path: string; referrer: string | null }>('cta clicks', (from, to) =>
       admin
         .from('page_events')
         .select('path, referrer')
@@ -76,65 +101,39 @@ export async function communityFunnelReport(days: number): Promise<FunnelReport>
         .gte('created_at', since)
         .range(from, to)
     ),
-    fetchAll<{ path: string; session_id: string | null }>((from, to) =>
+    fetchAll<{ path: string; session_id: string | null }>('page views', (from, to) =>
       admin.from('page_events').select('path, session_id').gte('created_at', since).range(from, to)
     ),
-    fetchAll<{ author_id: string }>((from, to) =>
-      admin
-        .from('community_posts')
-        .select('author_id')
-        .eq('status', 'published')
-        .gte('created_at', since)
-        .range(from, to)
-    ),
-    fetchAll<{ author_id: string }>((from, to) =>
-      admin
-        .from('community_comments')
-        .select('author_id')
-        .eq('status', 'published')
-        .gte('created_at', since)
-        .range(from, to)
-    ),
-    fetchAll<{ username: string | null; email_community_digest: boolean }>((from, to) =>
-      admin.from('user_profiles').select('username, email_community_digest').range(from, to)
-    ),
-    // Deliberately not windowed by `days`: a student ignored in July is still
-    // ignored today, and the whole point is that nobody noticed.
-    fetchAll<{
-      id: string
-      author_id: string
-      title: string
-      created_at: string
-      body_md: string | null
-      attachments: unknown[] | null
-    }>((from, to) =>
+    fetchAll<PostRow>('posts', (from, to) =>
       admin
         .from('community_posts')
         .select('id, author_id, title, created_at, body_md, attachments')
         .eq('status', 'published')
         .range(from, to)
     ),
-    fetchAll<{ post_id: string; author_id: string }>((from, to) =>
-      admin.from('community_comments').select('post_id, author_id').eq('status', 'published').range(from, to)
+    fetchAll<CommentRow>('comments', (from, to) =>
+      admin
+        .from('community_comments')
+        .select('post_id, author_id, created_at')
+        .eq('status', 'published')
+        .range(from, to)
     ),
-    fetchAll<{
-      id: string
-      author_id: string
-      title: string
-      created_at: string
-      body_md: string | null
-    }>((from, to) =>
+    fetchAll<QuestionRow>('questions', (from, to) =>
       admin
         .from('community_questions')
         .select('id, author_id, title, created_at, body_md')
         .eq('status', 'published')
         .range(from, to)
     ),
-    fetchAll<{ question_id: string; author_id: string }>((from, to) =>
-      admin.from('community_answers').select('question_id, author_id').eq('status', 'published').range(from, to)
+    fetchAll<AnswerRow>('answers', (from, to) =>
+      admin
+        .from('community_answers')
+        .select('question_id, author_id, created_at')
+        .eq('status', 'published')
+        .range(from, to)
     ),
-    fetchAll<{ id: string; username: string | null }>((from, to) =>
-      admin.from('user_profiles').select('id, username').range(from, to)
+    fetchAll<ProfileRow>('profiles', (from, to) =>
+      admin.from('user_profiles').select('id, username, email_community_digest').range(from, to)
     ),
   ])
 
@@ -162,23 +161,22 @@ export async function communityFunnelReport(days: number): Promise<FunnelReport>
     }
   }
 
-  const communityViews = views.filter((v) => String(v.path).startsWith('/community')).length
+  const isCommunity = (path: string) => path.startsWith('/community')
+  const communityViews = views.filter((v) => isCommunity(String(v.path))).length
   const communitySessions = new Set(
-    views.filter((v) => String(v.path).startsWith('/community') && v.session_id).map((v) => v.session_id)
+    views.filter((v) => isCommunity(String(v.path)) && v.session_id).map((v) => v.session_id)
   ).size
   const siteSessions = new Set(views.filter((v) => v.session_id).map((v) => v.session_id)).size
 
-  const humanPosts = posts.filter((p) => !isBot(p.author_id))
-  const humanComments = comments.filter((c) => !isBot(c.author_id))
+  const inWindow = (iso: string) => iso >= since
+  const humanPosts = allPosts.filter((p) => !isBot(p.author_id) && inWindow(p.created_at))
+  const humanComments = allComments.filter((c) => !isBot(c.author_id) && inWindow(c.created_at))
   const contributors = new Set([
     ...humanPosts.map((p) => p.author_id),
     ...humanComments.map((c) => c.author_id),
   ]).size
 
-  // Waiting = a real student's thread that no other real person has answered.
-  // A reply from the author themselves does not count: several of these are
-  // someone bumping their own post because nobody came.
-  const names = new Map(allProfiles.map((p) => [p.id, p.username]))
+  const names = new Map(profiles.map((p) => [p.id, p.username]))
 
   /**
    * The badged team accounts count as an answer; the seeded student personas do
@@ -191,15 +189,20 @@ export async function communityFunnelReport(days: number): Promise<FunnelReport>
   const counts = (replierId: string, authorId: string) =>
     replierId !== authorId && (isTeam(replierId) || !isBot(replierId))
 
+  // Indexed rather than scanned: this is O(posts x comments) with .find(), which
+  // is fine at 60 rows and is not at 60,000.
+  const postAuthor = new Map(allPosts.map((p) => [p.id, p.author_id]))
+  const questionAuthor = new Map(allQuestions.map((q) => [q.id, q.author_id]))
+
   const answeredPosts = new Set<string>()
   for (const c of allComments) {
-    const post = allPosts.find((p) => p.id === c.post_id)
-    if (post && counts(c.author_id, post.author_id)) answeredPosts.add(c.post_id)
+    const author = postAuthor.get(c.post_id)
+    if (author && counts(c.author_id, author)) answeredPosts.add(c.post_id)
   }
   const answeredQuestions = new Set<string>()
   for (const a of allAnswers) {
-    const q = allQuestions.find((x) => x.id === a.question_id)
-    if (q && counts(a.author_id, q.author_id)) answeredQuestions.add(a.question_id)
+    const author = questionAuthor.get(a.question_id)
+    if (author && counts(a.author_id, author)) answeredQuestions.add(a.question_id)
   }
 
   const now = Date.now()

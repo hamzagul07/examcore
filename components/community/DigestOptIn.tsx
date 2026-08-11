@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 /**
  * One-click opt-in to the weekly subject digest, offered right after someone
@@ -11,9 +11,35 @@ import { useState } from 'react'
  * nobody. This asks instead at the only moment the answer is obviously yes:
  * they have just posted into a subject and have a reason to want to hear back
  * from it. The click itself is the consent.
+ *
+ * "No thanks" is remembered locally, so declining once is not re-asked on every
+ * later visit. Only the refusal is stored client-side; the subscription itself
+ * lives on the profile, where it can actually be honoured.
  */
+const DECLINED_KEY = 'ms:community:digest-declined'
+
 export function DigestOptIn({ onDone }: { onDone?: () => void }) {
   const [state, setState] = useState<'idle' | 'saving' | 'on' | 'error'>('idle')
+  const [declinedBefore, setDeclinedBefore] = useState(false)
+
+  // Read after mount, never during render — localStorage is not available on
+  // the server and reading it inline would desync the first paint.
+  useEffect(() => {
+    try {
+      if (window.localStorage.getItem(DECLINED_KEY)) setDeclinedBefore(true)
+    } catch {
+      /* storage unavailable — just ask */
+    }
+  }, [])
+
+  function decline() {
+    try {
+      window.localStorage.setItem(DECLINED_KEY, '1')
+    } catch {
+      /* the session-level guard still stops a repeat ask on this page */
+    }
+    onDone?.()
+  }
 
   async function turnOn() {
     setState('saving')
@@ -34,6 +60,10 @@ export function DigestOptIn({ onDone }: { onDone?: () => void }) {
     }
   }
 
+  // They already said no on a previous visit. Asking again is how a helpful
+  // prompt turns into nagging.
+  if (declinedBefore && state === 'idle') return null
+
   if (state === 'on') {
     return (
       <p className="rc-digest-optin rc-digest-optin--done ms-body-2">
@@ -51,7 +81,7 @@ export function DigestOptIn({ onDone }: { onDone?: () => void }) {
         <button type="button" className="rc-btn rc-btn-primary" onClick={turnOn} disabled={state === 'saving'}>
           {state === 'saving' ? 'Turning on…' : 'Email me the roundup'}
         </button>
-        <button type="button" className="rc-btn rc-btn-ghost" onClick={() => onDone?.()}>
+        <button type="button" className="rc-btn rc-btn-ghost" onClick={decline}>
           No thanks
         </button>
       </div>

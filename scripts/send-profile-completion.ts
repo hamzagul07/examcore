@@ -10,6 +10,9 @@
  *   # send to the actual subscriber
  *   pnpm profile:nudge -- --user=<uuid> --live
  *
+ *   # override the name when the signup name is not what they go by
+ *   pnpm profile:nudge -- --user=<uuid> --name="Kunli Cao" --dry-run
+ *
  * `--live` is the only way to reach the real address, and it refuses to run
  * alongside `--to`. Reviewing a draft and mailing a customer should never be
  * one keystroke apart.
@@ -54,6 +57,12 @@ async function main() {
   )
 
   const admin = createServiceClient()
+  const { data: sub } = await admin
+    .from('user_subscriptions')
+    .select('tier, status')
+    .eq('user_id', userId)
+    .maybeSingle()
+
   const { data: profile, error } = await admin
     .from('user_profiles')
     .select('full_name, subjects, level, board, exam_date')
@@ -67,6 +76,31 @@ async function main() {
 
   const { data: authUser } = await admin.auth.admin.getUserById(userId)
   const realEmail = authUser?.user?.email ?? null
+
+  // OAuth signups land their name in auth metadata and never write it to
+  // user_profiles, so reading only the profile silently drops personalisation
+  // for exactly the accounts that have a name to use.
+  const meta = (authUser?.user?.user_metadata ?? {}) as Record<string, unknown>
+  const metaName =
+    [meta.full_name, meta.name, meta.given_name].find(
+      (v): v is string => typeof v === 'string' && v.trim().length > 0
+    ) ?? null
+  // --name wins over both. The signup name is whatever the OAuth provider
+  // handed us and is not always what the person is actually called; getting a
+  // customer's own name wrong is worse than not using one.
+  const displayName =
+    arg('name')?.trim() || (profile.full_name as string | null)?.trim() || metaName
+
+  // Named only while the subscription is actually live — telling a lapsed
+  // account it is "on Scholar" is a worse mistake than saying nothing.
+  const { tierMarketingName } = await import('@/lib/billing/caps')
+  const { ACTIVE_STATUSES } = await import('@/lib/billing/access')
+  const planLabel =
+    sub?.tier &&
+    sub.tier !== 'free' &&
+    ACTIVE_STATUSES.includes(sub.status as never)
+      ? tierMarketingName(sub.tier as never)
+      : null
 
   // Pull the real Vault facts so the email describes what is actually sitting
   // there. Anything that fails to resolve is simply left unclaimed.
@@ -103,12 +137,13 @@ async function main() {
   const payload = {
     to: reviewTo ?? realEmail ?? '',
     vault,
-    recipientName: profile.full_name as string | null,
+    recipientName: displayName,
     subjects: (profile.subjects as string[] | null) ?? [],
     level: (profile.level as string | null) ?? null,
     board: (profile.board as string | null) ?? null,
     hasExamDate: Boolean(profile.exam_date),
     expectedSubjects: EXPECTED_SUBJECTS[String(profile.level ?? '')] ?? null,
+    planLabel,
   }
 
   const { subject, text } = buildProfileCompletionEmail(payload)

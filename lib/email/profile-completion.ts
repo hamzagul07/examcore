@@ -55,6 +55,10 @@ export type ProfileCompletionPayload = {
   hasExamDate: boolean
   /** How many subjects this qualification normally involves, if known. */
   expectedSubjects?: number | null
+  /** Marketing plan name, e.g. "Scholar". Stated as fact, never as a promise
+   * about which features that plan includes — entitlements move, and an email
+   * is the worst place to make a commitment the pricing page has to keep. */
+  planLabel?: string | null
   vault?: ProfileCompletionVault | null
   wait?: boolean
 }
@@ -82,7 +86,14 @@ export function buildProfileCompletionEmail(payload: ProfileCompletionPayload): 
   text: string
 } {
   const labels = resolveLabels(payload.subjects, payload.level)
-  const name = payload.recipientName?.trim()?.split(/\s+/)[0] || null
+  // Sign-up names arrive however the student typed them — "tony lai" reads like
+  // a database row, not a greeting, so the first letter is normalised. Names
+  // already capitalised, and anything unusual like "McRae", are left alone.
+  const rawFirst = payload.recipientName?.trim()?.split(/\s+/)[0] || null
+  const name =
+    rawFirst && /^[a-z]/.test(rawFirst)
+      ? rawFirst[0].toUpperCase() + rawFirst.slice(1)
+      : rawFirst
   const greeting = name ? `Hi ${esc(name)},` : 'Hi,'
   const levelLabel = payload.level?.trim() || null
   const expected = payload.expectedSubjects ?? null
@@ -91,11 +102,10 @@ export function buildProfileCompletionEmail(payload: ProfileCompletionPayload): 
   const needsSubjects = missingSubjects > 0 || labels.length <= 1
   const needsDate = !payload.hasExamDate
 
-  const subject = needsSubjects && needsDate
-    ? 'Two things missing from your profile (2 minutes)'
-    : needsSubjects
-      ? 'Your other subjects are missing from your profile'
-      : 'Add your exam date and we can plan backwards from it'
+  const firstName = name
+  const subject = firstName
+    ? `${firstName}, your Vault is ready — two minutes to finish setting it up`
+    : 'Your Vault is ready — two minutes to finish setting it up'
 
   const haveLine =
     labels.length > 0
@@ -170,15 +180,41 @@ export function buildProfileCompletionEmail(payload: ProfileCompletionPayload): 
     ${calloutHtml(
       `<p style="margin:0 0 8px;font-family:${EMAIL_SANS};font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:${EMAIL_BRAND}">One thing back</p>
        <p style="margin:0;font-family:${EMAIL_SERIF};font-size:15.5px;line-height:1.6;color:${EMAIL_BODY}">
-         You are one of the first people paying for this, so your answer changes what gets built next.
-         <strong>What is your IA on?</strong> Reply to this email and I will point your Vault at it — and tell me the one thing that would make this worth twice what you pay.
+         <strong>What is your IA on?</strong> Reply to this email and I will point your Vault straight at it —
+         the criteria, the diagrams, the practice. And tell me the one thing that would make this better for you,
+         because that is what decides what gets built next.
        </p>`
     )}`
 
+  /**
+   * A second button, matching the primary CTA's styling. The Vault is the thing
+   * worth seeing, but the profile is the thing that has to be done first — so
+   * this sits after the Vault section rather than competing at the top.
+   */
+  const vaultButton = `<p style="margin:22px 0 0"><a href="${SITE_URL}/dashboard/vault" style="display:inline-block;font-family:${EMAIL_SANS};background:${EMAIL_BRAND};color:#fff;text-decoration:none;font-weight:600;font-size:14px;letter-spacing:.02em;padding:15px 30px;border-radius:3px">Open your Vault</a></p>`
+
+  const planLine = payload.planLabel
+    ? para(
+        `You are on <strong>${esc(payload.planLabel)}</strong> — welcome. You are in with the students who work the same way you do: marking real answers against the real scheme instead of guessing at what an examiner wanted.`
+      )
+    : ''
+
+  const communityHtml = `
+    ${sectionHeading('The community', 'Other IB students, same week as you')}
+    ${para(
+      `There is an IB room where students post what they are stuck on and what came back when they marked it — IAs, criteria, papers, and the arguments about which is harder. Somebody there is doing your subject. <a href="${SITE_URL}/community" style="color:${EMAIL_BRAND};font-weight:700;text-decoration:none">Have a look</a>.`
+    )}`
+
+  const comingHtml = para(
+    'The IB side gets added to constantly — criteria, diagrams, question desks, subject by subject. If something you need is not there, tell me and it gets built.',
+    true
+  )
+
   const bodyHtml = `
     ${para(greeting)}
+    ${planLine}
     ${para(
-      'You are set up and marking, but your profile is missing a couple of things — and until they are there, you are getting a thinner version of what you are paying for.'
+      'Your Vault is built and waiting. There are just a couple of things missing from your profile, and until they are there you are seeing a thinner version of it than you should be.'
     )}
     ${haveLine ? `<div style="margin:0 0 22px">${haveLine}</div>` : ''}
     ${steps.join('')}
@@ -187,13 +223,20 @@ export function buildProfileCompletionEmail(payload: ProfileCompletionPayload): 
       true
     )}
     ${vaultHtml}
+    ${vaultButton}
     ${differentHtml}
+    ${communityHtml}
+    ${comingHtml}
     ${askHtml}`
 
   const text = [
     greeting,
     '',
-    'You are set up and marking, but your profile is missing a couple of things — and until they are there, you are getting a thinner version of what you are paying for.',
+    payload.planLabel
+      ? `You are on ${payload.planLabel} — welcome. You are in with the students who work the same way you do: marking real answers against the real scheme instead of guessing at what an examiner wanted.`
+      : '',
+    '',
+    'Your Vault is built and waiting. There are just a couple of things missing from your profile, and until they are there you are seeing a thinner version of it than you should be.',
     '',
     labels.length ? `On your profile now: ${labels.join(', ')}` : '',
     '',
@@ -216,11 +259,18 @@ export function buildProfileCompletionEmail(payload: ProfileCompletionPayload): 
     '• A question desk stocked from the topics your own marking says are weakest.',
     '• IB technique that is actually IB — command terms, the IA, criterion bands, points out of 45.',
     '',
+    `Open your Vault: ${SITE_URL}/dashboard/vault`,
+    '',
     'WHY THIS IS NOT THE OTHER TOOLS',
     'Most of them read your answer and tell you it looks good. We mark it against the scheme, mark by mark, then name every mark you did not get and the exact words that would have earned it — plus your own answer rewritten to full marks, annotated.',
     '',
+    'THE COMMUNITY',
+    `There is an IB room where students post what they are stuck on and what came back when they marked it — IAs, criteria, papers. Somebody there is doing your subject: ${SITE_URL}/community`,
+    '',
+    'The IB side gets added to constantly — criteria, diagrams, question desks, subject by subject. If something you need is not there, tell me and it gets built.',
+    '',
     'ONE THING BACK',
-    'You are one of the first people paying for this, so your answer changes what gets built next. What is your IA on? Reply and I will point your Vault at it — and tell me the one thing that would make this worth twice what you pay.',
+    'What is your IA on? Reply and I will point your Vault straight at it — the criteria, the diagrams, the practice. And tell me the one thing that would make this better for you, because that is what decides what gets built next.',
   ]
     .filter((l) => l !== '')
     .join('\n')

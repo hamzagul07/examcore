@@ -31,6 +31,7 @@ import { BlogRelatedGrid } from '@/components/blog/BlogRelatedGrid'
 import { BlogBreadcrumbs } from '@/components/blog/BlogBreadcrumbs'
 import { BlogShareButtons } from '@/components/blog/BlogShareButtons'
 import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
+import { ResultsThreadCta } from '@/components/community/ResultsThreadCta'
 import { getSyllabusSubjectName } from '@/lib/syllabi'
 import { SITE_URL } from '@/lib/site-config'
 
@@ -110,6 +111,12 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
 
         <BlogShareButtons url={`${SITE_URL}/blog/${slug}`} title={post.title} />
+
+        {/* After the article, not before it: the ask converts once the reader
+            has the answer they came for. */}
+        {showResultsDayBanner ? (
+          <ResultsThreadCta source="blog" className="mt-8" />
+        ) : null}
 
         <BlogSourcesBlock slug={slug} />
         <BlogFollowUpChain slug={slug} />

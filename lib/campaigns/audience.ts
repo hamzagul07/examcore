@@ -31,6 +31,7 @@ export type SegmentId =
   | 'active_markers'
   | 'paying'
   | 'repermission'
+  | 'cambridge_results'
 
 export type Segment = {
   id: SegmentId
@@ -87,12 +88,13 @@ type ProfileRow = {
   email_product_updates: boolean | null
   email_activation: boolean | null
   onboarded: boolean | null
+  board: string | null
 }
 
 function profileQuery() {
   return createServiceClient()
     .from('user_profiles')
-    .select('id, full_name, email_product_updates, email_activation, onboarded')
+    .select('id, full_name, email_product_updates, email_activation, onboarded, board')
 }
 
 function toRecipients(rows: ProfileRow[], users: Map<string, AuthUser>): Recipient[] {
@@ -122,6 +124,22 @@ export const SEGMENTS: Record<SegmentId, Segment> = {
     unsubscribeKind: 'updates',
     resolve: async () => {
       const { rows, users } = await profilesWith((q) => q.eq('email_product_updates', true))
+      return toRecipients(rows, users)
+    },
+  },
+
+  cambridge_results: {
+    id: 'cambridge_results',
+    description:
+      'Cambridge students, results week. Timing + deadlines they need — lifecycle, not marketing.',
+    unsubscribeKind: 'activation',
+    resolve: async () => {
+      const { rows, users } = await profilesWith((q) =>
+        q
+          .eq('board', 'Cambridge International')
+          .eq('onboarded', true)
+          .neq('email_activation', false)
+      )
       return toRecipients(rows, users)
     },
   },

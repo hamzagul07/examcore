@@ -15,6 +15,7 @@ import {
 import { daysUntil } from '@/lib/seo/results-day'
 import { ToolInstrumentShell } from '@/components/tools/ToolInstrumentShell'
 import { ToolsDeskArtefact } from '@/components/tools/ToolsDeskArtefact'
+import { ResultsThreadCta } from '@/components/community/ResultsThreadCta'
 
 export const metadata = getPageMetadata('/results-2026', {
   title: 'Cambridge Results Day 2026 — boundaries, remarks, mocks',
@@ -109,6 +110,8 @@ export default function Results2026Page() {
           </>
         }
         after={
+          <>
+          <ResultsThreadCta source="results-2026" className="mb-8" />
           <section className="ms-tool-instrument__faq" aria-labelledby="results-faq">
             <h2 id="results-faq" className="ms-tool-instrument__faq-title">
               FAQ
@@ -122,6 +125,7 @@ export default function Results2026Page() {
               ))}
             </dl>
           </section>
+          </>
         }
       >
         <h2 className="ms-h2">Key dates</h2>

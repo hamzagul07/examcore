@@ -4,6 +4,7 @@
  *   pnpm activation:nudge -- --user=<uuid> --dry-run
  *   pnpm activation:nudge -- --user=<uuid> --to=you@example.com
  *   pnpm activation:nudge -- --user=<uuid> --live
+ *   pnpm activation:nudge -- --user=<uuid> --name="Toney" --live
  *
  * Refuses to mail the real address without --live, and refuses --live with
  * --to. It also refuses to send to anyone who has already marked — the whole
@@ -65,8 +66,11 @@ async function main() {
   const { data: authUser } = await admin.auth.admin.getUserById(userId)
   const realEmail = authUser?.user?.email ?? null
 
+  // --name wins; otherwise address them by plan rather than by a signup name
+  // we may not be able to trust.
   const address =
-    sub?.tier && sub.tier !== 'free' ? tierMarketingName(sub.tier as never) : null
+    arg('name')?.trim() ||
+    (sub?.tier && sub.tier !== 'free' ? tierMarketingName(sub.tier as never) : null)
   const level = (profile?.level as string | null) ?? null
 
   const { subject, text } = buildPaidActivationEmail({

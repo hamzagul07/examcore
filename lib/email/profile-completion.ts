@@ -17,6 +17,14 @@ import { getSubjectById } from '@/lib/profile-options'
 import { SITE_URL } from '@/lib/site-config'
 
 /**
+ * Subjects are only editable through the onboarding wizard — /account/profile
+ * renders a username and a name field and passes subjects straight through
+ * with no picker. Linking there told students to do something the page cannot
+ * do. `?rerun=1` pre-fills the wizard from their saved profile.
+ */
+const SUBJECTS_HREF = `${SITE_URL}/onboarding?rerun=1`
+
+/**
  * Nudge a subscriber whose profile is too thin for the product to personalise.
  *
  * Written for the case where someone pays and then gets a worse experience than
@@ -253,7 +261,7 @@ export function buildProfileCompletionEmail(payload: ProfileCompletionPayload): 
     labels.length ? `On your profile now: ${labels.join(', ')}` : '',
     '',
     needsSubjects
-      ? `1. Add the rest of your subjects${expected ? ` (${levelLabel ?? 'your course'} is usually ${expected})` : ''}. Each one gets its own desk, question bank and diagrams: ${SITE_URL}/account/profile`
+      ? `1. Add the rest of your subjects${expected ? ` (${levelLabel ?? 'your course'} is usually ${expected})` : ''}. Each one gets its own desk, question bank and diagrams: ${SUBJECTS_HREF}`
       : '',
     needsDate
       ? `${needsSubjects ? '2' : '1'}. Set your exam date so we can count backwards, and so the sprint pack unlocks before your first paper: ${SITE_URL}/account/exam`
@@ -294,7 +302,7 @@ export function buildProfileCompletionEmail(payload: ProfileCompletionPayload): 
       : 'Add your exam date so we can plan backwards from it.',
     bodyHtml,
     cta: needsSubjects
-      ? { label: 'Add your subjects', href: `${SITE_URL}/account/profile` }
+      ? { label: 'Add your subjects', href: SUBJECTS_HREF }
       : { label: 'Set your exam date', href: `${SITE_URL}/account/exam` },
     secondaryLinks: needsSubjects && needsDate
       ? [{ label: 'Set your exam date', href: `${SITE_URL}/account/exam` }]

@@ -57,6 +57,13 @@ function totalStepsFor(rerun: boolean) {
 /** sessionStorage key for the in-progress wizard draft (first-run only). */
 const DRAFT_KEY = 'ms-onboarding-draft'
 
+/**
+ * Subjects a student may file. Shared by the picker, the limit copy and the
+ * draft restore — those had drifted apart, and the restore was the one that
+ * silently lost data.
+ */
+const MAX_SUBJECTS = 4
+
 type WizardDraft = {
   step: number
   board: string
@@ -157,7 +164,10 @@ export function OnboardingWizard({
       setStep(Math.min(Math.max(draft.step, 1), totalStepsFor(false)))
       setBoard(draft.board)
       setLevel(draft.level)
-      setSubjects(draft.subjects.slice(0, 1))
+      // Was slice(0, 1) while the picker allowed four and the draft saved all
+      // four: selecting four subjects and then refreshing mid-onboarding threw
+      // three of them away without saying so.
+      setSubjects(draft.subjects.slice(0, MAX_SUBJECTS))
       setStage(draft.stage)
       setExamDate(draft.examDate)
       setTargetGrade(draft.targetGrade ?? null)
@@ -210,7 +220,7 @@ export function OnboardingWizard({
       if (prev.includes(id)) return prev.filter((s) => s !== id)
       // ON-01: first run needs one subject to open Mark — swapping replaces.
       if (!rerun) return [id]
-      if (prev.length >= 4) return prev
+      if (prev.length >= MAX_SUBJECTS) return prev
       return [...prev, id]
     })
     setErrorMsg('')
@@ -738,7 +748,7 @@ function StepSubjects({
               <ul className="ms-ob-file-list">
                 {items.map((subject) => {
                   const active = selected.includes(subject.id)
-                  const atLimit = !active && selected.length >= 4
+                  const atLimit = !active && selected.length >= MAX_SUBJECTS
                   const codeLabel = ib
                     ? subject.label.split(' ').slice(-1)[0]?.slice(0, 4).toUpperCase() || 'IB'
                     : subject.code
@@ -771,7 +781,7 @@ function StepSubjects({
           Tap another subject to switch. You can file more after your first mark.
         </p>
       ) : null}
-      {!firstRun && selected.length >= 4 ? (
+      {!firstRun && selected.length >= MAX_SUBJECTS ? (
         <p className="ms-micro mt-3">Maximum four subjects — deselect one to change.</p>
       ) : null}
 

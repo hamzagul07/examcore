@@ -45,6 +45,14 @@ export async function buildScholarVaultPayload(
     .maybeSingle()
   if (!profile) return null
 
+  // A Day-0 welcome always sees zero, but the same builder is used for later
+  // nudges — and telling someone they are "set up and marking" when they have
+  // never marked is the kind of line that loses a subscriber's trust cheaply.
+  const { count: attempts } = await supabase
+    .from('attempts')
+    .select('id', { count: 'exact', head: true })
+    .eq('user_id', userId)
+
   const subjects = (profile.subjects as string[] | null) ?? []
   const level = (profile.level as string | null) ?? null
 
@@ -80,6 +88,7 @@ export async function buildScholarVaultPayload(
     level,
     board: (profile.board as string | null) ?? null,
     hasExamDate: Boolean(profile.exam_date),
+    hasMarked: (attempts ?? 0) > 0,
     expectedSubjects: EXPECTED_SUBJECTS[String(level ?? '')] ?? null,
     planLabel: opts.planLabel ?? null,
     vault,

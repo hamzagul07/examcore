@@ -61,6 +61,8 @@ export type ProfileCompletionPayload = {
   level?: string | null
   board?: string | null
   hasExamDate: boolean
+  /** Whether they have marked anything yet. The Day-0 send always sees false. */
+  hasMarked?: boolean
   /** How many subjects this qualification normally involves, if known. */
   expectedSubjects?: number | null
   /** Marketing plan name, e.g. "Scholar". Stated as fact, never as a promise
@@ -232,7 +234,9 @@ export function buildProfileCompletionEmail(payload: ProfileCompletionPayload): 
     ${para(greeting)}
     ${planLine}
     ${para(
-      'Your Vault is built and waiting. There are just a couple of things missing from your profile, and until they are there you are seeing a thinner version of it than you should be.'
+      payload.hasMarked
+        ? 'Your Vault is built and waiting. There are just a couple of things missing from your profile, and until they are there you are seeing a thinner version of it than you should be.'
+        : 'Your Vault is built and waiting, and the fastest way to fill it is to mark one answer. Everything in it — the weak topics, the question desk, the rewrite — is built out of what your own marking shows. Until you mark something it can only guess.'
     )}
     ${haveLine ? `<div style="margin:0 0 22px">${haveLine}</div>` : ''}
     ${steps.join('')}
@@ -256,7 +260,9 @@ export function buildProfileCompletionEmail(payload: ProfileCompletionPayload): 
         : `You are on ${payload.planLabel} — welcome. You are in with the students who work the same way you do: marking real answers against the real scheme instead of guessing at what an examiner wanted.`
       : '',
     '',
-    'Your Vault is built and waiting. There are just a couple of things missing from your profile, and until they are there you are seeing a thinner version of it than you should be.',
+    payload.hasMarked
+      ? 'Your Vault is built and waiting. There are just a couple of things missing from your profile, and until they are there you are seeing a thinner version of it than you should be.'
+      : 'Your Vault is built and waiting, and the fastest way to fill it is to mark one answer. Everything in it is built out of what your own marking shows — until you mark something it can only guess.',
     '',
     labels.length ? `On your profile now: ${labels.join(', ')}` : '',
     '',
@@ -301,12 +307,17 @@ export function buildProfileCompletionEmail(payload: ProfileCompletionPayload): 
       ? 'Your other subjects are missing — each one gets its own desk.'
       : 'Add your exam date so we can plan backwards from it.',
     bodyHtml,
-    cta: needsSubjects
+    cta: !payload.hasMarked
+      ? { label: 'Mark your first answer', href: `${SITE_URL}/mark` }
+      : needsSubjects
       ? { label: 'Add your subjects', href: SUBJECTS_HREF }
       : { label: 'Set your exam date', href: `${SITE_URL}/account/exam` },
-    secondaryLinks: needsSubjects && needsDate
-      ? [{ label: 'Set your exam date', href: `${SITE_URL}/account/exam` }]
-      : [],
+    secondaryLinks: [
+      ...(!payload.hasMarked && needsSubjects
+        ? [{ label: 'Add your subjects', href: SUBJECTS_HREF }]
+        : []),
+      ...(needsDate ? [{ label: 'Set your exam date', href: `${SITE_URL}/account/exam` }] : []),
+    ],
   })
 
   return { subject, html, text }

@@ -28,6 +28,7 @@
     "test:billing": "cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/teacher-seat.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/scholar-access.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/max-features.test.ts",
     "email:preview": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/preview-emails.ts",
     "profile:nudge": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/send-profile-completion.ts",
+    "activation:nudge": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/send-activation-nudge.ts",
     "email:max-vault-tour": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/send-max-vault-tour.ts",
     "test:email": "cross-env NODE_OPTIONS=--conditions=react-server tsx lib/community/email-unsubscribe.test.ts && tsx lib/max/lifecycle-timing.test.ts",
     "test:community": "tsx lib/community/sanitize.test.ts && tsx lib/community/results-thread-rank.test.ts && tsx lib/community/username-generate.test.ts && tsx lib/community/rank.test.ts && tsx lib/community/post-url.test.ts && tsx lib/community/mark-share.test.ts",

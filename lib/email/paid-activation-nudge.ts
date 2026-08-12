@@ -11,6 +11,7 @@ import {
   renderBrandedEmailHtml,
 } from '@/lib/email/templates'
 import { SITE_URL } from '@/lib/site-config'
+import { MAX_PROFILE_SUBJECTS } from '@/lib/profile-options'
 import { tierMarketingName } from '@/lib/billing/caps'
 import type { SubscriptionTier } from '@/lib/database.types'
 
@@ -52,9 +53,9 @@ export function buildPaidActivationEmail(payload: PaidActivationPayload): {
   const expected = payload.expectedSubjects ?? null
   const count = payload.subjectCount ?? 0
   const subjectsLine =
-    expected && count > 0 && count < expected
+    count > 0 && count < MAX_PROFILE_SUBJECTS
       ? para(
-          `While you are there, add your other subjects — ${esc(payload.levelLabel || 'your course')} is usually ${expected} and you have ${count === 1 ? 'one' : count} saved, so the Vault is building ${count === 1 ? 'one desk' : `${count} desks`} instead of ${expected}. <a href="${SUBJECTS_HREF}" style="color:#9f1239;font-weight:700;text-decoration:none">Add your subjects</a>.`,
+          `While you are there, add your other subjects — you have ${count === 1 ? 'one' : count} saved and can file up to ${MAX_PROFILE_SUBJECTS}, so the Vault is building ${count === 1 ? 'one desk' : `${count} desks`} instead of ${MAX_PROFILE_SUBJECTS}. <a href="${SUBJECTS_HREF}" style="color:#9f1239;font-weight:700;text-decoration:none">Add your subjects</a>.`,
           true
         )
       : para(
@@ -81,8 +82,8 @@ export function buildPaidActivationEmail(payload: PaidActivationPayload): {
     '',
     `Mark your first answer: ${SITE_URL}/mark`,
     '',
-    expected && count > 0 && count < expected
-      ? `While you are there, add your other subjects — ${payload.levelLabel || 'your course'} is usually ${expected} and you have ${count} saved, so the Vault is building ${count === 1 ? 'one desk' : `${count} desks`} instead of ${expected}: ${SUBJECTS_HREF}`
+    count > 0 && count < MAX_PROFILE_SUBJECTS
+      ? `While you are there, add your other subjects — you have ${count} saved and can file up to ${MAX_PROFILE_SUBJECTS}, so the Vault is building ${count === 1 ? 'one desk' : `${count} desks`} instead of ${MAX_PROFILE_SUBJECTS}: ${SUBJECTS_HREF}`
       : `While you are there, add your subjects so the Vault builds a desk for each one: ${SUBJECTS_HREF}`,
   ].join('\n')
 

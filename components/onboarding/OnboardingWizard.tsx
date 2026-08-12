@@ -34,6 +34,7 @@ import {
   isAqaBoard,
   isApBoard,
   levelsForBoard,
+  MAX_PROFILE_SUBJECTS,
 } from '@/lib/profile-options'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
 import { postOnboardingHref, sanitizeNextPath } from '@/lib/auth-redirect'
@@ -57,12 +58,8 @@ function totalStepsFor(rerun: boolean) {
 /** sessionStorage key for the in-progress wizard draft (first-run only). */
 const DRAFT_KEY = 'ms-onboarding-draft'
 
-/**
- * Subjects a student may file. Shared by the picker, the limit copy and the
- * draft restore — those had drifted apart, and the restore was the one that
- * silently lost data.
- */
-const MAX_SUBJECTS = 4
+/** Shared with the emails so the two cannot disagree about the limit. */
+const MAX_SUBJECTS = MAX_PROFILE_SUBJECTS
 
 type WizardDraft = {
   step: number
@@ -218,8 +215,9 @@ export function OnboardingWizard({
   function toggleSubject(id: string) {
     setSubjects((prev) => {
       if (prev.includes(id)) return prev.filter((s) => s !== id)
-      // ON-01: first run needs one subject to open Mark — swapping replaces.
-      if (!rerun) return [id]
+      // First run used to replace rather than add, so a new student could only
+      // ever leave onboarding with one subject — and most take three or four.
+      // One is still enough to continue; it is no longer the ceiling.
       if (prev.length >= MAX_SUBJECTS) return prev
       return [...prev, id]
     })
@@ -636,11 +634,11 @@ function StepSubjects({
             What are you <em>marking</em>?
           </h1>
           <p className="ms-lead" style={{ marginTop: 12 }}>
-            Pick the board and the subject you&apos;re marking now. One is enough —
-            add more later in account settings or when you open courses.
+            Pick your board, then the subjects you&apos;re studying — up to four.
+            One is enough to get started; the rest can wait.
           </p>
           <p className="ms-ob-hero-note" style={{ marginTop: 10 }} aria-hidden>
-            one subject — then the marker
+            your subjects — then the marker
           </p>
         </>
       ) : (
@@ -776,13 +774,15 @@ function StepSubjects({
           )
         })}
       </div>
-      {firstRun && selected.length === 1 ? (
+      {selected.length > 0 && selected.length < MAX_SUBJECTS ? (
         <p className="ms-micro mt-3">
-          Tap another subject to switch. You can file more after your first mark.
+          Add up to {MAX_SUBJECTS} — each one gets its own desk, question bank and diagrams.
         </p>
       ) : null}
-      {!firstRun && selected.length >= MAX_SUBJECTS ? (
-        <p className="ms-micro mt-3">Maximum four subjects — deselect one to change.</p>
+      {selected.length >= MAX_SUBJECTS ? (
+        <p className="ms-micro mt-3">
+          Maximum {MAX_SUBJECTS} subjects — deselect one to change.
+        </p>
       ) : null}
 
       {firstRun && onToggleOptionalPlanning ? (

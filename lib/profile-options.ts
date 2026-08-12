@@ -52,6 +52,13 @@ export const BOARDS: ProfileOption[] = [
   { id: 'AP', label: 'AP (College Board)', enabled: true },
 ]
 
+/**
+ * Subjects a student may file. Lives here rather than in the wizard because the
+ * emails quote it too — they were telling IB students to add "usually 6" while
+ * the picker capped at 4.
+ */
+export const MAX_PROFILE_SUBJECTS = 4
+
 export const IB_BOARD_ID = 'IB'
 export const EDEXCEL_BOARD_ID = 'Edexcel'
 export const OXFORDAQA_BOARD_ID = 'OxfordAQA'

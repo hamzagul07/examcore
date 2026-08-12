@@ -13,7 +13,7 @@ import {
   sectionHeading,
   stepHtml,
 } from '@/lib/email/templates'
-import { getSubjectById } from '@/lib/profile-options'
+import { getSubjectById, MAX_PROFILE_SUBJECTS } from '@/lib/profile-options'
 import { SITE_URL } from '@/lib/site-config'
 
 /**
@@ -134,7 +134,7 @@ export function buildProfileCompletionEmail(payload: ProfileCompletionPayload): 
         steps.length + 1,
         'Add the rest of your subjects',
         levelLabel
-          ? `You have ${labels.length === 1 ? 'one subject' : `${labels.length} subjects`} saved${expected ? ` — ${levelLabel} is usually ${expected}` : ''}. Each one you add gets its own desk, its own question bank and its own diagrams.`
+          ? `You have ${labels.length === 1 ? 'one subject' : `${labels.length} subjects`} saved, and can file up to ${MAX_PROFILE_SUBJECTS}. Each one you add gets its own desk, its own question bank and its own diagrams.`
           : 'Each subject you add gets its own desk, its own question bank and its own diagrams.'
       )
     )
@@ -267,7 +267,7 @@ export function buildProfileCompletionEmail(payload: ProfileCompletionPayload): 
     labels.length ? `On your profile now: ${labels.join(', ')}` : '',
     '',
     needsSubjects
-      ? `1. Add the rest of your subjects${expected ? ` (${levelLabel ?? 'your course'} is usually ${expected})` : ''}. Each one gets its own desk, question bank and diagrams: ${SUBJECTS_HREF}`
+      ? `1. Add the rest of your subjects — you can file up to ${MAX_PROFILE_SUBJECTS}. Each one gets its own desk, question bank and diagrams: ${SUBJECTS_HREF}`
       : '',
     needsDate
       ? `${needsSubjects ? '2' : '1'}. Set your exam date so we can count backwards, and so the sprint pack unlocks before your first paper: ${SITE_URL}/account/exam`

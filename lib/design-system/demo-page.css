@@ -1,0 +1,1543 @@
+/* /demo — the worked example account.
+ *
+ * Every colour here resolves through the ec-* tokens, so the page follows the
+ * zen / late-night themes without a single hard-coded hex. The layout borrows
+ * the marking margin: a numbered rail down the left of each exhibit, the real
+ * dashboard component on paper in the middle, and the free-tier counterpart
+ * marked underneath in crimson — the same dual-ink split the product uses for
+ * marks awarded and marks lost.
+ */
+
+.demo-page {
+  background: var(--ec-canvas);
+  padding: 0 0 96px;
+}
+
+.demo-page__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------------------------------------------------------------- hero --- */
+
+.demo-hero {
+  padding: 72px 0 40px;
+  max-width: 46rem;
+}
+
+.demo-hero__eyebrow {
+  margin-bottom: 18px;
+}
+
+.demo-hero__title {
+  font-size: clamp(2.1rem, 5vw, 3.15rem);
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+  text-wrap: balance;
+  margin: 0 0 20px;
+}
+
+.demo-hero__lede {
+  font-size: 1.09rem;
+  line-height: 1.62;
+  color: var(--ec-text-secondary);
+  text-wrap: pretty;
+  margin: 0 0 28px;
+}
+
+/* -------------------------------------------------------------- ribbon --- */
+
+/* Unmissable, because the numbers below are invented and must never read as
+   the visitor's own. Dashed rather than solid so it reads as a stamp on the
+   page instead of another product panel. */
+.demo-ribbon {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 18px;
+  border: 1.5px dashed color-mix(in srgb, var(--ec-ink-crimson) 55%, transparent);
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--ec-ink-crimson) 6%, transparent);
+}
+
+.demo-ribbon__stamp {
+  flex-shrink: 0;
+  color: var(--ec-ink-crimson);
+}
+
+.demo-ribbon__text {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+.demo-ribbon__text strong {
+  color: var(--ec-ink-crimson);
+  font-weight: 650;
+}
+
+/* ------------------------------------------------------------- persona --- */
+
+/* Reads as an exam cover sheet: candidate, subject, target, deadline. */
+.demo-persona {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px 48px;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 48px 0 16px;
+  padding: 28px 0 26px;
+  border-top: 1.5px solid var(--ec-border-strong);
+  border-bottom: 1px solid var(--ec-border);
+}
+
+.demo-persona__eyebrow {
+  margin-bottom: 10px;
+}
+
+.demo-persona__name {
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  color: var(--ec-text-primary);
+  margin: 0 0 8px;
+  text-wrap: balance;
+}
+
+.demo-persona__sub {
+  margin: 0;
+  font-size: 0.98rem;
+  color: var(--ec-text-secondary);
+}
+
+.demo-persona__sub strong {
+  color: var(--ec-text-primary);
+  font-weight: 650;
+}
+
+.demo-persona__stats {
+  display: flex;
+  gap: 36px;
+  margin: 0;
+}
+
+.demo-persona__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.demo-persona__stat dt {
+  order: 2;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.demo-persona__stat dd {
+  order: 1;
+  margin: 0;
+  font-size: 1.9rem;
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--ec-brand);
+}
+
+/* --------------------------------------------------------------- plans --- */
+
+/* Price sits third on the page, above the proof rather than eight scenes below
+   it — the two questions on arrival are what it costs and what free gets. */
+.demo-plans {
+  margin-top: 40px;
+  padding: 24px 26px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-bg-soft);
+}
+
+.demo-plans__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.demo-plans__eyebrow {
+  margin-bottom: 0;
+}
+
+.demo-plans__toggle {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 3px;
+  background: var(--ec-paper, var(--ec-surface));
+}
+
+.demo-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  color: var(--ec-text-secondary);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.demo-toggle--on {
+  background: var(--ec-text-primary);
+  color: var(--ec-canvas);
+}
+
+.demo-toggle__save {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 2px;
+  background: var(--ec-brand);
+  color: var(--ec-on-brand-text, var(--ec-canvas));
+}
+
+.demo-plans__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.demo-plan {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 18px 16px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+}
+
+.demo-plan--pick {
+  border-color: var(--ec-brand);
+  box-shadow: var(--ec-shadow-hard);
+}
+
+.demo-plan__name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.demo-plan--pick .demo-plan__name {
+  color: var(--ec-brand);
+}
+
+.demo-plan__flag {
+  padding: 2px 6px;
+  border-radius: 2px;
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+}
+
+.demo-plan__price {
+  margin: 0;
+  font-size: 1.9rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--ec-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.demo-plan__unit {
+  margin-left: 3px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ec-text-faint);
+}
+
+.demo-plan__line {
+  flex: 1;
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+  text-wrap: pretty;
+}
+
+.demo-plan__cta {
+  margin-top: 4px;
+  text-align: center;
+}
+
+.demo-plans__foot {
+  margin: 16px 0 0;
+  font-size: 0.85rem;
+  color: var(--ec-text-faint);
+}
+
+/* ----------------------------------------------------------- section nav --- */
+
+/* The page is long on purpose — every scene is a separate proof and they all
+   stay rendered. This rides the top so the length costs navigation rather than
+   content, and shows the whole shape at a glance. */
+.demo-nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  margin-top: 44px;
+  padding: 12px 0 10px;
+  background: color-mix(in srgb, var(--ec-canvas) 94%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1.5px solid var(--ec-border-strong);
+}
+
+.demo-nav__title {
+  margin: 0 0 8px;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.demo-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.demo-navlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 11px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 3px;
+  background: var(--ec-paper, var(--ec-surface));
+  color: var(--ec-text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.demo-navlink:hover {
+  border-color: var(--ec-brand-border);
+  color: var(--ec-text-primary);
+}
+
+.demo-navlink--on {
+  border-color: var(--ec-text-primary);
+  background: var(--ec-text-primary);
+  color: var(--ec-canvas);
+  font-weight: 650;
+}
+
+.demo-navlink__n {
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: var(--ec-brand);
+}
+
+.demo-navlink--on .demo-navlink__n {
+  color: var(--ec-canvas);
+  opacity: 0.72;
+}
+
+.demo-navlink__tag {
+  padding: 2px 5px;
+  border-radius: 2px;
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.demo-navlink__tag--free {
+  background: color-mix(in srgb, var(--ec-text-faint) 16%, transparent);
+  color: var(--ec-text-faint);
+}
+
+.demo-navlink--on .demo-navlink__tag {
+  background: color-mix(in srgb, var(--ec-canvas) 22%, transparent);
+  color: var(--ec-canvas);
+}
+
+/* Sticky bar would otherwise cover the heading a jump lands on. */
+
+/* --------------------------------------------------------------- scene --- */
+
+.demo-scene {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 0 20px;
+  padding: 64px 0 0;
+  /* Clears the sticky nav when a ?scene= jump lands on this heading. */
+  scroll-margin-top: 104px;
+}
+
+.demo-scene__head {
+  display: contents;
+}
+
+/* The rail: exhibit number, then a hairline running the height of the scene. */
+.demo-scene__marker {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.demo-scene__n {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  padding: 7px 8px;
+  border: 1.5px solid var(--ec-brand-border);
+  border-radius: 2px;
+  color: var(--ec-brand);
+  background: var(--ec-brand-muted);
+}
+
+.demo-scene__rule {
+  flex: 1;
+  width: 1px;
+  background: var(--ec-border);
+}
+
+.demo-scene__intro {
+  grid-column: 2;
+  max-width: 44rem;
+  margin-bottom: 26px;
+}
+
+.demo-scene__label {
+  margin-bottom: 12px;
+}
+
+.demo-scene__title {
+  font-size: clamp(1.45rem, 3vw, 1.95rem);
+  line-height: 1.22;
+  font-weight: 600;
+  letter-spacing: -0.014em;
+  color: var(--ec-text-primary);
+  margin: 0 0 12px;
+  text-wrap: balance;
+}
+
+.demo-scene__claim {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.62;
+  color: var(--ec-text-secondary);
+  text-wrap: pretty;
+}
+
+/* The stage the real component sits on. Inset so the seeded panels read as
+   exhibits placed on the page rather than as the page's own furniture. */
+.demo-scene__stage {
+  grid-column: 2;
+  position: relative;
+  padding: 34px 22px 22px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-bg-soft);
+  box-shadow: var(--ec-shadow-hard);
+  overflow-x: auto;
+}
+
+.demo-scene__tag {
+  position: absolute;
+  top: 10px;
+  left: 22px;
+  margin: 0;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+/* What a free account sees in this exact slot — the argument of the page. */
+.demo-scene__free {
+  grid-column: 2;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 18px 0 0;
+  padding-top: 16px;
+  border-top: 1px dashed var(--ec-border);
+  max-width: 44rem;
+  font-size: 0.93rem;
+  line-height: 1.58;
+  color: var(--ec-text-secondary);
+}
+
+.demo-scene__free-stamp {
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 4px 6px;
+  border: 1.5px solid color-mix(in srgb, var(--ec-ink-crimson) 45%, transparent);
+  border-radius: 2px;
+  color: var(--ec-ink-crimson);
+  background: color-mix(in srgb, var(--ec-ink-crimson) 7%, transparent);
+}
+
+/* Stacked panels inside one stage (coverage + matrix). */
+.demo-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ---------------------------------------------------------------- drill --- */
+
+.demo-drill {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.demo-drill__note {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+.demo-drill__note a {
+  color: var(--ec-brand-deep, var(--ec-brand));
+  text-underline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------- email --- */
+
+/* Shaped like an inbox row, because that is where the report actually lands. */
+.demo-email {
+  max-width: 34rem;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  overflow: hidden;
+}
+
+.demo-email__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--ec-border);
+  background: var(--ec-surface-muted);
+}
+
+.demo-email__from {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ec-brand);
+}
+
+.demo-email__meta {
+  font-size: 0.72rem;
+  color: var(--ec-text-faint);
+}
+
+.demo-email__body {
+  padding: 22px 20px 20px;
+}
+
+.demo-email__subject {
+  font-size: 1.22rem;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ec-text-primary);
+  margin: 0 0 20px;
+  text-wrap: balance;
+}
+
+.demo-email__figures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 30px;
+  padding: 16px 0;
+  border-top: 1px solid var(--ec-paper-rule);
+  border-bottom: 1px solid var(--ec-paper-rule);
+  margin-bottom: 18px;
+}
+
+.demo-email__figure {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.demo-email__figure-n {
+  font-size: 1.55rem;
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--ec-text-primary);
+}
+
+.demo-email__figure-l {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--ec-text-faint);
+}
+
+.demo-email__delta {
+  margin-left: 6px;
+  font-weight: 700;
+}
+
+.demo-email__delta--up {
+  color: var(--ec-brand);
+}
+
+.demo-email__delta--down {
+  color: var(--ec-ink-crimson);
+}
+
+.demo-email__line {
+  margin: 0 0 12px;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--ec-text-secondary);
+}
+
+.demo-email__line strong {
+  color: var(--ec-text-primary);
+  font-weight: 650;
+}
+
+.demo-email__cta {
+  margin: 16px 0 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ec-brand);
+}
+
+/* ---------------------------------------------------------------- close --- */
+
+.demo-close {
+  margin-top: 88px;
+  padding-top: 40px;
+  border-top: 1.5px solid var(--ec-border-strong);
+  max-width: 44rem;
+}
+
+.demo-close__eyebrow {
+  margin-bottom: 14px;
+}
+
+.demo-close__title {
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  line-height: 1.16;
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  color: var(--ec-text-primary);
+  margin: 0 0 16px;
+  text-wrap: balance;
+}
+
+.demo-close__body {
+  margin: 0 0 26px;
+  font-size: 1.03rem;
+  line-height: 1.62;
+  color: var(--ec-text-secondary);
+  text-wrap: pretty;
+}
+
+.demo-close__body strong {
+  color: var(--ec-text-primary);
+  font-weight: 650;
+}
+
+.demo-close__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.demo-close__foot {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--ec-text-faint);
+}
+
+/* --------------------------------------------------------------- strip --- */
+
+/* Mastery level is a STATUS, not a magnitude, so it uses the reserved status
+   chips rather than a colour ramp — and never colour alone: every group carries
+   its count and its label as text. */
+.demo-strip {
+  margin: 20px 0 0;
+  padding: 18px 0 0;
+  border-top: 1px solid var(--ec-border);
+}
+
+.demo-strip__title {
+  margin: 0 0 12px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.demo-strip__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.demo-strip__chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  font-size: 0.84rem;
+}
+
+.demo-strip__n {
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* -------------------------------------------------------------- lesson --- */
+
+.demo-lesson {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.demo-lesson__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+}
+
+.demo-lesson__badge {
+  padding: 5px 9px;
+  border: 1.5px solid var(--ec-brand-border);
+  border-radius: 2px;
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.demo-lesson__facts {
+  font-size: 0.76rem;
+  color: var(--ec-text-faint);
+}
+
+/* ---------------------------------------------------------- flashcards --- */
+
+.demo-cards__hint {
+  margin: 0 0 14px;
+  font-size: 0.88rem;
+  color: var(--ec-text-secondary);
+}
+
+.demo-cards__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.demo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  min-height: 168px;
+  padding: 16px 16px 14px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.demo-card:hover {
+  border-color: var(--ec-brand-border);
+  transform: translateY(-1px);
+}
+
+.demo-card--flipped {
+  border-color: var(--ec-brand-border);
+  background: var(--ec-brand-muted);
+}
+
+.demo-card__side {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--ec-text-faint);
+}
+
+.demo-card--flipped .demo-card__side {
+  color: var(--ec-brand);
+}
+
+.demo-card__text {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ec-text-primary);
+  text-wrap: pretty;
+}
+
+.demo-card__turn {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--ec-brand);
+}
+
+/* --------------------------------------------------------- exam paper --- */
+
+/* Set like a real Cambridge paper, because recognition is the point: serif
+   stems, numbers hanging in the margin, marks ranged right in brackets. The
+   crimson note under each question is the one thing a paper does not have —
+   and it is the actual product, so it gets the marking ink. */
+.demo-paper {
+  background: var(--ec-paper, var(--ec-surface));
+  border: 1.5px solid var(--ec-border);
+  border-radius: 3px;
+  padding: 28px 30px 24px;
+}
+
+.demo-paper__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--ec-text-primary);
+}
+
+.demo-paper__level {
+  margin: 0 0 4px;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.demo-paper__subject {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ec-text-primary);
+}
+
+.demo-paper__codes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  font-size: 0.76rem;
+  color: var(--ec-text-secondary);
+  text-align: right;
+}
+
+.demo-paper__code {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ec-text-primary);
+  letter-spacing: 0.02em;
+}
+
+.demo-paper__rubric {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 16px 0 4px;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.demo-paper__total {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+  white-space: nowrap;
+}
+
+.demo-paper__questions {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Question number hangs in its own margin column, as on the paper. */
+.demo-paper__q {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0 12px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--ec-paper-rule);
+}
+
+.demo-paper__q:last-child {
+  border-bottom: 0;
+}
+
+.demo-paper__n {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.55;
+  color: var(--ec-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.demo-paper__part {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0 8px;
+  margin-bottom: 12px;
+}
+
+/* A single-part question has no (a) label — let the stem take the full width. */
+.demo-paper__part:has(> .demo-paper__text:first-child) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.demo-paper__label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--ec-text-secondary);
+}
+
+.demo-paper__text {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.62;
+  color: var(--ec-text-primary);
+  text-wrap: pretty;
+}
+
+/* Marks ranged right on the last line, the way the paper prints them. */
+.demo-paper__marks {
+  float: right;
+  margin-left: 14px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ec-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.demo-paper__why {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-left: 2px solid var(--ec-ink-crimson);
+  background: color-mix(in srgb, var(--ec-ink-crimson) 5%, transparent);
+  font-size: 0.87rem;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+.demo-paper__why strong {
+  color: var(--ec-ink-crimson);
+  font-weight: 650;
+}
+
+.demo-paper__why-stamp {
+  flex-shrink: 0;
+  padding: 2px 6px;
+  border: 1.5px solid color-mix(in srgb, var(--ec-ink-crimson) 45%, transparent);
+  border-radius: 2px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--ec-ink-crimson);
+}
+
+.demo-paper__foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 2px solid var(--ec-text-primary);
+}
+
+.demo-paper__foot-note {
+  margin: 0;
+  flex: 1 1 18rem;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+.demo-paper__foot-cta {
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------ max offer --- */
+
+.demo-max__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.demo-max__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 16px 14px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+}
+
+.demo-max__stamp {
+  flex-shrink: 0;
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.1rem;
+  padding: 5px 7px;
+  border: 1.5px solid var(--ec-brand-border);
+  border-radius: 2px;
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.demo-max__title {
+  margin: 0 0 5px;
+  font-size: 0.97rem;
+  font-weight: 650;
+  line-height: 1.35;
+  color: var(--ec-text-primary);
+  text-wrap: balance;
+}
+
+.demo-max__body {
+  margin: 0;
+  font-size: 0.89rem;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+  text-wrap: pretty;
+}
+
+.demo-max__foot {
+  margin: 16px 0 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ec-text-secondary);
+}
+
+.demo-max__foot a {
+  color: var(--ec-brand-deep, var(--ec-brand));
+  text-underline-offset: 2px;
+}
+
+/* -------------------------------------------------------------- anchor --- */
+
+/* The price comparison a parent is already making. Sits after the argument,
+   never before it — an anchor lands only once there is something to weigh. */
+.demo-anchor {
+  margin-top: 88px;
+  padding: 32px 30px;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard);
+  max-width: 46rem;
+}
+
+.demo-anchor__eyebrow {
+  margin-bottom: 14px;
+}
+
+.demo-anchor__line {
+  margin: 0 0 14px;
+  font-size: clamp(1.2rem, 2.6vw, 1.5rem);
+  line-height: 1.34;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ec-text-primary);
+  text-wrap: balance;
+}
+
+.demo-anchor__body {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.62;
+  color: var(--ec-text-secondary);
+  text-wrap: pretty;
+}
+
+.demo-anchor__line strong,
+.demo-anchor__body strong {
+  color: var(--ec-brand);
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------- ladder --- */
+
+.demo-ladder {
+  margin-top: 64px;
+  max-width: 46rem;
+}
+
+.demo-ladder__eyebrow {
+  margin-bottom: 12px;
+}
+
+.demo-ladder__title {
+  font-size: clamp(1.45rem, 3vw, 1.9rem);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.014em;
+  color: var(--ec-text-primary);
+  margin: 0 0 24px;
+  text-wrap: balance;
+}
+
+.demo-ladder__scroll {
+  overflow-x: auto;
+}
+
+.demo-ladder__table {
+  width: 100%;
+  min-width: 26rem;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.demo-ladder__table thead th {
+  padding: 0 0 10px;
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+  border-bottom: 1.5px solid var(--ec-border-strong);
+}
+
+.demo-ladder__table thead th:first-child {
+  text-align: left;
+  width: 46%;
+}
+
+/* Price sits under the tier name in the header, so the comparison and the cost
+   are read together rather than a scroll apart. */
+.demo-ladder__price-head {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ec-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The tier most students want, marked once rather than shouted. */
+.demo-ladder__col--pick {
+  background: var(--ec-brand-muted);
+}
+
+.demo-ladder__table thead th.demo-ladder__col--pick {
+  border-bottom-color: var(--ec-brand);
+}
+
+.demo-ladder__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.demo-ladder__table tbody th {
+  padding: 11px 12px 11px 0;
+  text-align: left;
+  font-weight: 450;
+  color: var(--ec-text-secondary);
+  border-bottom: 1px solid var(--ec-border);
+}
+
+.demo-ladder__table tbody td {
+  padding: 11px 0;
+  text-align: center;
+  border-bottom: 1px solid var(--ec-border);
+}
+
+.demo-ladder__yes {
+  color: var(--ec-brand);
+  font-weight: 700;
+}
+
+.demo-ladder__no {
+  color: var(--ec-text-faint);
+}
+
+.demo-ladder__val {
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ec-text-primary);
+}
+
+.demo-ladder__price {
+  margin-top: 24px;
+  padding: 20px 22px;
+  border: 1.5px solid var(--ec-brand-border);
+  border-radius: 4px;
+  background: var(--ec-brand-muted);
+}
+
+.demo-ladder__price-line {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ec-text-primary);
+}
+
+.demo-ladder__price-line strong {
+  font-weight: 700;
+}
+
+.demo-ladder__price-foot {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+/* ---------------------------------------------------- in-app mastery lock --- */
+
+/* Used on /dashboard/progress, not on /demo, but it is part of the same preview
+   system so it lives beside it.
+   The governing rule: a blur may hide DETAIL, never SHAPE. The reader has to be
+   able to count the rows and see which are green and which are red — that is
+   the thing being sold — while being unable to read the numbers. The previous
+   treatment (opacity .35 under a 72% scrim) erased both. */
+.ms-mastery-lock {
+  position: relative;
+  overflow: hidden;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-hard);
+}
+
+.ms-mastery-lock__under {
+  filter: blur(3px) saturate(1.05);
+  opacity: 0.62;
+  pointer-events: none;
+  user-select: none;
+  /* Keep the panel tall enough to read as a dashboard, without letting a long
+     matrix push the lock panel off screen. */
+  max-height: 620px;
+  overflow: hidden;
+}
+
+.ms-mastery-lock__scrim {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  /* Lighter in the corners so the shape underneath survives, densest behind
+     the copy so the copy stays legible. */
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--ec-canvas) 88%, transparent) 0%,
+    color-mix(in srgb, var(--ec-canvas) 62%, transparent) 100%
+  );
+}
+
+.ms-mastery-lock__panel {
+  max-width: 30rem;
+  padding: 24px 26px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard);
+  text-align: center;
+}
+
+.ms-mastery-lock__stamp {
+  display: inline-flex;
+  margin-bottom: 12px;
+  color: var(--ec-brand);
+}
+
+.ms-mastery-lock__title {
+  font-size: 1.2rem;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ec-text-primary);
+  margin: 0 0 10px;
+  text-wrap: balance;
+}
+
+.ms-mastery-lock__body {
+  margin: 0 0 18px;
+  font-size: 0.94rem;
+  line-height: 1.58;
+  color: var(--ec-text-secondary);
+  text-wrap: pretty;
+}
+
+.ms-mastery-lock__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.ms-mastery-lock__cta {
+  white-space: nowrap;
+}
+
+.ms-mastery-lock__foot {
+  margin: 14px 0 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+/* "See a full account" link in the pricing hero — every plan on that page is
+   priced on features the reader has not seen. */
+.pricing-see-demo {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 0.95rem;
+  font-weight: 650;
+  color: var(--ec-brand-deep, var(--ec-brand));
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.pricing-see-demo:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* Secondary "see it filled in" link on the lesson upsell card. */
+.lesson-upsell-see {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ec-brand-deep, var(--ec-brand));
+  text-underline-offset: 2px;
+}
+
+/* ------------------------------------------------------------- narrow --- */
+
+@media (max-width: 780px) {
+  .demo-page__inner {
+    padding: 0 18px;
+  }
+
+  .demo-hero {
+    padding-top: 48px;
+  }
+
+  /* Eight links wrap to three rows on a phone, and the sticky bar then eats a
+     third of the viewport on every scroll. One row that scrolls sideways keeps
+     the bar the same height whatever the section count. The negative margin
+     bleeds it to the screen edges so the row reads as continuing off-screen
+     rather than being clipped mid-item; the matching padding keeps the first
+     and last links clear of the edge. */
+  .demo-nav__list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    margin: 0 -18px;
+    padding: 2px 18px 4px;
+    scrollbar-width: none;
+  }
+
+  .demo-nav__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .demo-navlink {
+    flex-shrink: 0;
+  }
+
+  /* The rail costs more than it earns on a phone: the number moves inline
+     above the label and the exhibit gets the full width. */
+  .demo-scene {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    padding-top: 52px;
+  }
+
+  .demo-scene__marker {
+    grid-column: 1;
+    grid-row: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-top: 0;
+  }
+
+  .demo-scene__rule {
+    flex: 1;
+    width: auto;
+    height: 1px;
+  }
+
+  .demo-scene__intro,
+  .demo-scene__stage,
+  .demo-scene__free {
+    grid-column: 1;
+  }
+
+  .demo-scene__stage {
+    padding: 32px 14px 16px;
+  }
+
+  .demo-scene__tag {
+    left: 14px;
+  }
+
+  .demo-persona {
+    gap: 22px;
+  }
+
+  .demo-persona__stats {
+    gap: 26px;
+  }
+
+  .demo-persona__stat dd {
+    font-size: 1.55rem;
+  }
+
+  .demo-anchor {
+    margin-top: 64px;
+    padding: 24px 20px;
+  }
+
+  .demo-ladder__table thead th:first-child {
+    width: 52%;
+  }
+
+  .ms-mastery-lock__under {
+    max-height: 460px;
+  }
+
+  .ms-mastery-lock__panel {
+    padding: 20px 18px;
+  }
+
+  .ms-mastery-lock__actions {
+    flex-direction: column;
+  }
+
+  .ms-mastery-lock__cta {
+    width: 100%;
+  }
+
+  .demo-paper {
+    padding: 20px 16px 18px;
+  }
+
+  .demo-paper__codes {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .demo-paper__q {
+    grid-template-columns: 1.4rem minmax(0, 1fr);
+    gap: 0 8px;
+  }
+
+  .demo-paper__part {
+    grid-template-columns: 1.6rem minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-navlink,
+  .demo-card {
+    transition: none;
+  }
+
+  .demo-card:hover {
+    transform: none;
+  }
+}

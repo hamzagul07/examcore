@@ -1,6 +1,7 @@
 'use client'
 
 import { Suspense, useState } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 import { Breadcrumb } from '@/components/courses/margin-notes/Breadcrumb'
@@ -354,6 +355,12 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
               Cinema that moves the idea, priority stamps on long papers, and a Sunday
               coach that keeps you honest until the hall.
             </p>
+            {/* Every plan below is priced on features a visitor has never seen,
+                because the paid half is computed from a marking history they do
+                not have yet. This is the only page where they can look at one. */}
+            <Link href="/demo" className="pricing-see-demo">
+              See a full account before you pick →
+            </Link>
           </div>
           <div className="pricing-hero-sheet" aria-hidden>
             <ExamSheet

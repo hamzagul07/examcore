@@ -13,14 +13,26 @@ export function WeakSpotDrillCard({
   subjectCode,
   title = 'Drill this next',
   className = '',
+  drill: seededDrill,
 }: {
   subjectCode?: string
   title?: string
   className?: string
+  /**
+   * Pre-resolved drill, which skips the fetch entirely.
+   *
+   * `/api/insights/next-drill` derives the drill from the caller's own attempts
+   * and returns null for anyone signed out — so the seeded student on /demo
+   * could never render this card. Passing the drill in lets the marketing tour
+   * use the real component rather than a copy of it, which is the point: a
+   * screenshot drifts from the product, this cannot.
+   */
+  drill?: NextDrill | null
 }) {
-  const [drill, setDrill] = useState<NextDrill | null>(null)
+  const [drill, setDrill] = useState<NextDrill | null>(seededDrill ?? null)
 
   useEffect(() => {
+    if (seededDrill) return
     let active = true
     const qs = subjectCode
       ? `?subject=${encodeURIComponent(subjectCode)}`
@@ -36,7 +48,7 @@ export function WeakSpotDrillCard({
     return () => {
       active = false
     }
-  }, [subjectCode])
+  }, [subjectCode, seededDrill])
 
   if (!drill) return null
 

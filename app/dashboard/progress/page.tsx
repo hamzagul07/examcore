@@ -44,6 +44,7 @@ import { AttemptsList, type AttemptListRow } from '@/components/progress/Attempt
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
 import { MasteryDashboardTeaser } from '@/components/billing/MasteryDashboardTeaser'
+import { MasteryPreviewDemo } from '@/components/billing/MasteryPreviewDemo'
 import { hasPaidAccess } from '@/lib/billing/features'
 import { effectiveAccess } from '@/lib/billing/access'
 import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
@@ -338,10 +339,19 @@ export default async function ProgressPage({ searchParams }: PageProps) {
       </p>
     </div>
   )
+  // Behind the lock, show the student their own map whenever one exists — it is
+  // theirs, which is always more persuasive than a stranger's. Only when they
+  // have marked nothing (the majority of free accounts) does the teaser fall
+  // back to the seeded example, so the blur is covering a real mastery map
+  // instead of three empty placeholders.
   const topicsNode = masteryUnlocked ? (
     topicsInner
-  ) : (
+  ) : attempts.length > 0 ? (
     <MasteryDashboardTeaser>{topicsInner}</MasteryDashboardTeaser>
+  ) : (
+    <MasteryDashboardTeaser isPreview>
+      <MasteryPreviewDemo />
+    </MasteryDashboardTeaser>
   )
 
   const attemptsNode = <AttemptsList attempts={filteredRaw} />

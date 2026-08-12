@@ -894,15 +894,23 @@ function FullMarksRewriteTeaser({
         <div className="h-3 w-4/5 rounded bg-[var(--ec-border)]" />
         <div className="h-3 w-3/4 rounded bg-[var(--ec-border)]" />
       </div>
-      <Link
-        href="/pricing"
-        className="ec-btn ec-btn-primary mt-5 inline-flex items-center gap-1.5"
-      >
-        <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
-          {gradeStamp}
-        </span>
-        Unlock full-marks rewrites
-      </Link>
+      <div className="mt-5 flex flex-wrap items-center gap-3">
+        <Link
+          href="/pricing"
+          className="ec-btn ec-btn-primary inline-flex items-center gap-1.5"
+        >
+          <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+            {gradeStamp}
+          </span>
+          Unlock full-marks rewrites
+        </Link>
+        {/* The panel above is four grey bars — it signals that something is
+            hidden without showing what. This is the way to actually see one:
+            a finished rewrite on a real answer, annotated mark by mark. */}
+        <Link href="/demo?scene=mark" className="ec-btn ec-btn-ghost">
+          See a real one first →
+        </Link>
+      </div>
     </div>
   )
 }

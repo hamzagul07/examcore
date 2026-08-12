@@ -174,6 +174,10 @@ export async function buildSitemapShard(
         '/changelog',
         '/pricing',
         '/how-it-works',
+        // The worked example account. Indexable and canonical, and the page the
+        // locked gates send readers to — it needs to be crawlable in its own
+        // right rather than only reachable from a free-tier UI state.
+        '/demo',
         '/community',
         '/community/questions',
         '/community/subjects',

@@ -13,6 +13,10 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
+// Every other script in the repo loads this; without it the extractor dies on
+// "GEMINI_API_KEY is not configured" after spending a minute parsing the PDF.
+process.loadEnvFile?.('.env.local')
+
 const [, , pdfPath, subjectCode, outPath, firstArg, lastArg] = process.argv
 if (!pdfPath || !subjectCode || !outPath) {
   console.error('usage: extract-ib-criteria.mjs <guide.pdf> <subject-code> <out.json> [firstPage] [lastPage]')

@@ -3,7 +3,9 @@ import {
   noteRequestRetry,
   remainingRequestMs,
   RequestDeadlineExceededError,
+  setRequestBackendOverride,
 } from '@/lib/ai/request-deadline'
+import { fallbackGeminiBackend } from '@/lib/ai/gemini-config'
 
 const GEMINI_RETRYABLE_STATUS = [429, 500, 502, 503, 504]
 
@@ -136,6 +138,30 @@ function retryDelayMs(
   return Math.min(baseDelayMs * 2 ** attempt, 12_000) + Math.random() * 500
 }
 
+/** Provider is up but has no capacity for us — the class of error another
+ * provider can serve immediately. Distinct from a 500, which is a fault. */
+function isCapacityError(err: unknown, status: number | undefined): boolean {
+  if (status === 429 || status === 503) return true
+  return /RESOURCE_EXHAUSTED|UNAVAILABLE|overloaded|high demand|rate.?limit/i.test(
+    errorMessage(err)
+  )
+}
+
+/**
+ * Move this request onto the other Gemini backend, once.
+ *
+ * Returns false when there is no credentialed alternative, when we have already
+ * switched, or when there is no request scope to carry the override — in every
+ * one of those cases the caller falls through to the normal backoff.
+ */
+function failOverGeminiBackend(label: string): boolean {
+  const fallback = fallbackGeminiBackend()
+  if (!fallback) return false
+  if (!setRequestBackendOverride(fallback)) return false
+  console.warn(`[${label}] capacity error — failing over to ${fallback}`)
+  return true
+}
+
 async function withApiRetry<T>(
   fn: () => Promise<T>,
   retryableStatus: number[],
@@ -165,6 +191,18 @@ async function withApiRetry<T>(
       if (!isRetryable || attempt === maxRetries) break
 
       if (isGeminiQuotaExhausted(err)) break
+
+      // Capacity failure: re-route rather than nap. Sleeping is the right answer
+      // only when there is nowhere else to go — waiting out a 429 on one
+      // provider while a second credentialed provider sits idle is what turned
+      // a 128s mark into a 384s one. Costs a retry slot, but no wall-clock.
+      if (isCapacityError(err, status) && failOverGeminiBackend(label)) {
+        _totalRetries++
+        if (status === 429) _rateLimitRetries++
+        _lastRetryLabel = label
+        noteRequestRetry()
+        continue
+      }
 
       const delay = retryDelayMs(err, attempt, baseDelayMs)
 

@@ -22,8 +22,6 @@ import {
 import { normalizeErrorClassification } from '@/lib/error-classifications'
 import { isMathSubjectCode } from '@/lib/marking/math-subjects'
 import { markingBoardLabel } from '@/lib/marking/exam-board'
-import { resolveEdexcelMarkingSubjectName, getEdexcelUnitMeta } from '@/lib/edexcel/marking'
-import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import { parsePaperCode } from '@/lib/marking/component-types'
 import { buildMarkingPrompt, maxTokensForStyle, looksLikeMcq } from '@/lib/marking/build-marking-prompt'
 import { resolveDerivedSchemeForMark } from '@/lib/marking/resolve-derived-scheme'
@@ -91,9 +89,9 @@ import type { ExtractionMode } from '@/lib/marking/storage-extract'
 import {
   getIbMarkingProfile,
   isIbSubjectCode,
-  resolveSubjectLabel,
   ibPracticeMarkingStyle,
 } from '@/lib/ib/marking-config'
+import { resolveMarkingSubjectName } from '@/lib/marking/subject-name'
 import { buildIbPracticeMarkScheme } from '@/lib/marking/ib-practice-scheme'
 
 export const supabaseAdmin = createClient(
@@ -485,6 +483,16 @@ export async function markSingleQuestion(params: {
   /** Progress ping as each long stage begins, so the client bar keeps moving
    * through derive → mark → verify instead of freezing for ~2 minutes. */
   onStage?: (stage: MarkProgressStage) => void
+  /**
+   * First-pass score, handed over before the verify pass spends another Pro
+   * call. Only fires when verify is actually going to run — when it is not, the
+   * finished result is already moments away and a provisional number would just
+   * be the same figure twice.
+   */
+  onProvisionalScore?: (score: {
+    marks_earned: number
+    total_marks: number
+  }) => void
 }): Promise<{
   markingResult: Record<string, unknown>
   lineReferences: ReturnType<typeof buildLineReferences>
@@ -508,6 +516,7 @@ export async function markSingleQuestion(params: {
     rewrite = false,
     deferRewrite = false,
     onStage,
+    onProvisionalScore,
   } = params
 
   let markingMode = initialMode
@@ -520,13 +529,8 @@ export async function markSingleQuestion(params: {
       : parsed?.subjectCode ?? inferredSubject ?? fallbackSubjectCode ?? null
   const ibProfile = rawSubjectCode ? getIbMarkingProfile(rawSubjectCode) : null
   const subjectCode = rawSubjectCode
-  const subjectName = subjectCode
-    ? getEdexcelUnitMeta(subjectCode)
-      ? resolveEdexcelMarkingSubjectName(subjectCode)
-      : resolveSubjectLabel(subjectCode) !== subjectCode
-        ? resolveSubjectLabel(subjectCode)
-        : SUBJECT_CODE_MAP[subjectCode] || subjectCode
-    : 'A-Level'
+  const subjectName = resolveMarkingSubjectName(subjectCode)
+
 
   let effectiveMarkScheme = markScheme
   let markingStyle: MarkingStyle =
@@ -679,6 +683,22 @@ export async function markSingleQuestion(params: {
     (markingStyle === 'point_based' || markingStyle === 'level_of_response') &&
     hasBreakdown
   ) {
+    // Hand over the number now. Verify can still move it — that is the whole
+    // point of the pass — so the client shows it as a first read being checked,
+    // never as the finished mark.
+    const provisionalEarned = Number(markingResult.marks_earned)
+    const provisionalTotal = Number(markingResult.total_marks)
+    if (
+      Number.isFinite(provisionalEarned) &&
+      Number.isFinite(provisionalTotal) &&
+      provisionalTotal > 0
+    ) {
+      onProvisionalScore?.({
+        marks_earned: provisionalEarned,
+        total_marks: provisionalTotal,
+      })
+    }
+
     try {
       onStage?.('verifying')
       const verifyBoard = markingBoardLabel(subjectCode, { resolvedIb })

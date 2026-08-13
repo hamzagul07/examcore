@@ -64,8 +64,66 @@ async function main() {
   const { sendMaxVaultTourEmail } = await import('@/lib/email/max-vault-tour')
   const { sendMaxWelcomeEmail } = await import('@/lib/email/max-welcome')
 
+  const { sendMarkReadyEmail, sendMarkFailedEmail } = await import(
+    '@/lib/email/mark-ready'
+  )
+
   const to = 'student@example.com'
   const unsubscribeHref = 'https://markscheme.app/unsubscribe?token=preview'
+
+  // Mark-ready: the three shapes worth eyeballing are a plain score, an
+  // over-confident prediction (the case the feature is really for) and an
+  // under-confident one.
+  await capture('mark-ready', () =>
+    sendMarkReadyEmail({
+      to,
+      recipientName: 'Amara',
+      attemptId: '00000000-0000-4000-8000-000000000001',
+      marksEarned: 5,
+      totalMarks: 8,
+      subjectLabel: 'Business Studies',
+      paperRef: '9708/22',
+      unsubscribeHref,
+    })
+  )
+
+  await capture('mark-ready-overpredicted', () =>
+    sendMarkReadyEmail({
+      to,
+      recipientName: 'Sam',
+      attemptId: '00000000-0000-4000-8000-000000000002',
+      marksEarned: 4,
+      totalMarks: 10,
+      subjectLabel: 'Economics',
+      paperRef: '9708/32',
+      predictedMarks: 8,
+      unsubscribeHref,
+    })
+  )
+
+  // The other half of the promise: they were told to close the tab, and then
+  // the mark failed. This is what stops that becoming silence.
+  await capture('mark-failed', () =>
+    sendMarkFailedEmail({
+      to,
+      recipientName: 'Amara',
+      subjectLabel: 'Economics',
+      paperRef: '9708/22',
+      unsubscribeHref,
+    })
+  )
+
+  await capture('mark-ready-underpredicted', () =>
+    sendMarkReadyEmail({
+      to,
+      recipientName: null,
+      attemptId: '00000000-0000-4000-8000-000000000003',
+      marksEarned: 9,
+      totalMarks: 10,
+      predictedMarks: 6,
+      unsubscribeHref,
+    })
+  )
 
   await capture('welcome-ib', () =>
     sendWelcomeEmail({

@@ -177,11 +177,24 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
     'Paper 1': 'mixed',
     'Paper 2': 'level_of_response',
   }, 'IB Business Management HL — case study and extended response.'),
+  // SL twin. Paper 1 is a shared component at both levels; Paper 2 is SL-sized
+  // (40 marks against 50); Paper 3 is HL-only.
+  profile('business-management-sl', 'Business Management', 'SL', 'Individuals and Societies', 'level_of_response', 15, {
+    'Paper 1': 'mixed',
+    'Paper 2': 'level_of_response',
+  }, 'IB Business Management SL — case study and extended response.'),
   profile('psychology-hl', 'Psychology', 'HL', 'Individuals and Societies', 'level_of_response', 22, {
     'Paper 1': 'mixed',
     'Paper 2': 'level_of_response',
     'Paper 3': 'level_of_response',
   }, 'IB Psychology HL — ERQs marked with markbands per approach/option.'),
+  // SL twin. Papers 1 and 2 are the same components as HL (Paper 2 is one ERQ
+  // at SL against two at HL — 22 marks either way, which is why the practice
+  // question size is unchanged); Paper 3 is HL-only.
+  profile('psychology-sl', 'Psychology', 'SL', 'Individuals and Societies', 'level_of_response', 22, {
+    'Paper 1': 'mixed',
+    'Paper 2': 'level_of_response',
+  }, 'IB Psychology SL — ERQs marked with markbands per approach.'),
   profile('history-hl', 'History', 'HL', 'Individuals and Societies', 'level_of_response', 22, {
     'Paper 1': 'mixed',
     'Paper 2': 'level_of_response',
@@ -247,16 +260,33 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
     'Paper 2': 'mixed',
     'Paper 3': 'mixed',
   }, 'IB Computer Science HL — pseudocode and explanation questions.'),
+  // SL twin. Papers 1 and 2 exist at both levels (SL is shorter — 70/45 marks
+  // against 100/65); Paper 3, the HL case study, is HL-only.
+  profile('computer-science-sl', 'Computer Science', 'SL', 'Sciences', 'mixed', 12, {
+    'Paper 1': 'mixed',
+    'Paper 2': 'mixed',
+  }, 'IB Computer Science SL — pseudocode and explanation questions.'),
   profile('maths-aa-hl', 'Mathematics: Analysis and Approaches', 'HL', 'Mathematics', 'point_based', 10, {
     'Paper 1': 'point_based',
     'Paper 2': 'point_based',
     'Paper 3': 'point_based',
   }, 'IB Maths AA HL — method and accuracy marks.'),
+  // SL twin. Papers 1 and 2 at 80 marks each against 110 at HL; Paper 3 is
+  // HL-only. Per-question method/accuracy marking is identical at both levels,
+  // so the practice question size does not change.
+  profile('maths-aa-sl', 'Mathematics: Analysis and Approaches', 'SL', 'Mathematics', 'point_based', 10, {
+    'Paper 1': 'point_based',
+    'Paper 2': 'point_based',
+  }, 'IB Maths AA SL — method and accuracy marks.'),
   profile('maths-ai-hl', 'Mathematics: Applications and Interpretation', 'HL', 'Mathematics', 'point_based', 10, {
     'Paper 1': 'point_based',
     'Paper 2': 'point_based',
     'Paper 3': 'point_based',
   }, 'IB Maths AI HL — modelling and interpretation marks.'),
+  profile('maths-ai-sl', 'Mathematics: Applications and Interpretation', 'SL', 'Mathematics', 'point_based', 10, {
+    'Paper 1': 'point_based',
+    'Paper 2': 'point_based',
+  }, 'IB Maths AI SL — modelling and interpretation marks.'),
 
   // ── Core ───────────────────────────────────────────────────────────────────
   profile(

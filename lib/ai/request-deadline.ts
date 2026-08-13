@@ -19,12 +19,33 @@ import { AsyncLocalStorage } from 'node:async_hooks'
  * in one process and each needs its own deadline.
  */
 
+/** Gemini backends, mirrored here so this module stays free of AI imports. */
+export type GeminiBackendId = 'vertex' | 'api-key'
+
 type DeadlineContext = {
   deadlineAt: number
   /** Gemini retries during THIS request. Request-scoped so it is immune to the
    * module-global retry counter, which extraction jobs reset mid-run — that
    * reset made mark_runs.gemini_retries report 0 during an actual retry storm. */
   retries: number
+  /**
+   * Backend this request has failed over to, if any.
+   *
+   * Request-scoped for the same reason the deadline is: one mark hitting a 429
+   * on Vertex must not move every other in-flight mark onto the API key. Null
+   * until a capacity error actually forces the switch.
+   */
+  backendOverride: GeminiBackendId | null
+  /**
+   * Whether this request has already spent its one failover.
+   *
+   * Without it, two providers that are both busy get ping-ponged between: each
+   * switch is refused only when it targets the backend we are currently on, so
+   * A→B→A→B is legal and every hop skips the backoff. That burns the retry
+   * budget in seconds and fails a mark that waiting would have completed.
+   * One re-route, then back to honest backoff.
+   */
+  backendSwitched: boolean
 }
 
 const deadlineStore = new AsyncLocalStorage<DeadlineContext>()
@@ -41,12 +62,41 @@ export function requestRetryCount(): number | null {
   return deadlineStore.getStore()?.retries ?? null
 }
 
+/** The backend this request has failed over to, or null for the configured one. */
+export function requestBackendOverride(): GeminiBackendId | null {
+  return deadlineStore.getStore()?.backendOverride ?? null
+}
+
+/**
+ * Move this request onto `backend` for its remaining model calls.
+ *
+ * Returns false outside a request scope, when the request is already on that
+ * backend, or when it has already failed over once — a request gets exactly one
+ * re-route, after which a capacity error means both providers are busy and
+ * waiting is the only honest answer.
+ */
+export function setRequestBackendOverride(backend: GeminiBackendId): boolean {
+  const ctx = deadlineStore.getStore()
+  if (!ctx || ctx.backendSwitched || ctx.backendOverride === backend) return false
+  ctx.backendOverride = backend
+  ctx.backendSwitched = true
+  return true
+}
+
 /** Run `fn` with a wall-clock budget of `budgetMs` from now. */
 export function withRequestDeadline<T>(
   budgetMs: number,
   fn: () => Promise<T>
 ): Promise<T> {
-  return deadlineStore.run({ deadlineAt: Date.now() + budgetMs, retries: 0 }, fn)
+  return deadlineStore.run(
+    {
+      deadlineAt: Date.now() + budgetMs,
+      retries: 0,
+      backendOverride: null,
+      backendSwitched: false,
+    },
+    fn
+  )
 }
 
 /** Milliseconds left in the current request budget, or null when unbounded. */

@@ -32,7 +32,6 @@ import { wholePaperQuestionLimit, hasPriorityMarking } from '@/lib/billing/featu
 import { effectiveAccess, type EffectiveAccess } from '@/lib/billing/access'
 import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
 import { ocrPdfToPages } from '@/lib/marking/pdf-pages'
-import { getMarkingGenAI } from '@/lib/marking/mark-runner'
 import { detectQuestionFromPageText } from '@/lib/marking/page-detection'
 import type { WholePaperJobState } from '@/lib/marking/whole-paper-shared'
 import {
@@ -131,7 +130,7 @@ export async function POST(request: NextRequest) {
 
     if (pdfFile?.size) {
       const pdfBytes = await pdfFile.arrayBuffer()
-      const pages = await ocrPdfToPages(pdfBytes, getMarkingGenAI())
+      const pages = await ocrPdfToPages(pdfBytes)
       for (const p of pages) {
         const label = detectQuestionFromPageText(p.full_text)
         detectedLabels.push(label)

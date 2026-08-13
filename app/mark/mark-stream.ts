@@ -29,6 +29,13 @@ export type MarkStreamEvent = {
   /** Which attempt the rewrite belongs to — checked before patching, since a
    * slow rewrite can arrive after the user has moved on to another mark. */
   attempt_id?: string | null
+  /** Telemetry row id for this run, sent first so the wait screen can post a
+   * predicted score back before any attempt row exists. */
+  mark_run_id?: string | null
+  /** First-pass marks, delivered before the verify pass. Shown as a read being
+   * checked — never as the final mark, which verify can still move. */
+  marks_earned?: number
+  total_marks?: number
   error?: string
   retryable?: boolean
 }
@@ -50,6 +57,10 @@ export function parseMarkStreamPart(part: string): MarkStreamEvent | null {
 }
 
 export type MarkStreamContext = {
+  setMarkRunId: Dispatch<SetStateAction<string | null>>
+  setProvisionalScore: Dispatch<
+    SetStateAction<{ marksEarned: number; totalMarks: number } | null>
+  >
   setMarkProgress: Dispatch<
     SetStateAction<{
       percent: number
@@ -74,6 +85,19 @@ export function handleMarkStreamEvent(
   event: MarkStreamEvent,
   ctx: MarkStreamContext
 ): 'continue' | 'error' | 'result' {
+  if (event.type === 'run') {
+    ctx.setMarkRunId(event.mark_run_id ?? null)
+  }
+  if (
+    event.type === 'provisional_score' &&
+    typeof event.marks_earned === 'number' &&
+    typeof event.total_marks === 'number'
+  ) {
+    ctx.setProvisionalScore({
+      marksEarned: event.marks_earned,
+      totalMarks: event.total_marks,
+    })
+  }
   if (event.type === 'progress' && event.stage && event.percent != null) {
     const stage = event.stage
     const percent = event.percent

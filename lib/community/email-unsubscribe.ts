@@ -12,6 +12,7 @@ export type UnsubscribeKind =
   | 'streak'
   | 'activation'
   | 'updates'
+  | 'mark_ready'
 
 function secret(): string {
   return (
@@ -46,7 +47,8 @@ export function verifyUnsubscribeToken(
         kind !== 'weekly' &&
         kind !== 'streak' &&
         kind !== 'activation' &&
-        kind !== 'updates') ||
+        kind !== 'updates' &&
+        kind !== 'mark_ready') ||
       !exp ||
       !sig
     )
@@ -130,6 +132,8 @@ export function unsubscribeColumnPatch(kind: UnsubscribeKind): Record<string, bo
       return { email_activation: false }
     case 'updates':
       return { email_product_updates: false }
+    case 'mark_ready':
+      return { email_mark_ready: false }
     default:
       return { email_community_digest: false }
   }
@@ -151,6 +155,8 @@ export function unsubscribeLabel(kind: UnsubscribeKind): string {
       return 'getting-started emails'
     case 'updates':
       return 'product update emails'
+    case 'mark_ready':
+      return 'emails telling you a mark has finished'
     default:
       return 'Exam Room weekly digest'
   }

@@ -1,5 +1,8 @@
-import type { GoogleGenAI } from '@google/genai'
-import { GEMINI_FLASH_MODEL, withGeminiCallTimeout } from '@/lib/ai/gemini-text'
+import {
+  GEMINI_FLASH_MODEL,
+  getGeminiClient,
+  withGeminiCallTimeout,
+} from '@/lib/ai/gemini-text'
 import { withGeminiRetry } from './gemini-retry'
 import { parseOcrAnswer } from './ocr'
 import type { OcrLine } from '@/lib/examiner-ink-positioning'
@@ -26,9 +29,17 @@ export type PdfPageOcr = {
   lines: OcrLine[]
 }
 
+/**
+ * The client is resolved per attempt, inside the retry loop.
+ *
+ * It used to arrive as a parameter, resolved once by the caller — which meant a
+ * capacity failover had no effect here: every retry went back to the provider
+ * that had just refused. PDF OCR is the worst place for that. The slowest run
+ * on record (731s, five retries, dead at `reading_work`) was a PDF, because a
+ * whole script is one large multimodal call and the retries are expensive.
+ */
 export async function ocrPdfToPages(
-  pdfBytes: ArrayBuffer,
-  genAI: GoogleGenAI
+  pdfBytes: ArrayBuffer
 ): Promise<PdfPageOcr[]> {
   const base64 = Buffer.from(pdfBytes).toString('base64')
   const response = await withGeminiRetry(
@@ -37,7 +48,7 @@ export async function ocrPdfToPages(
       // the gemini-text helpers, so without this it is invisible to the
       // request budget and can hang for the client's full baked-in timeout.
       withGeminiCallTimeout((signal) =>
-        genAI.models.generateContent({
+        getGeminiClient().models.generateContent({
           model: GEMINI_FLASH_MODEL,
           contents: [
             {
@@ -84,16 +95,16 @@ export async function ocrPdfToPages(
 }
 
 /** Flatten a PDF into plain text (e.g. question sheet OCR). */
+/** Same per-attempt client resolution as `ocrPdfToPages`, for the same reason. */
 export async function ocrPdfToPlainText(
   pdfBytes: ArrayBuffer,
-  genAI: GoogleGenAI,
   prompt: string
 ): Promise<string> {
   const base64 = Buffer.from(pdfBytes).toString('base64')
   const response = await withGeminiRetry(
     () =>
       withGeminiCallTimeout((signal) =>
-        genAI.models.generateContent({
+        getGeminiClient().models.generateContent({
           model: GEMINI_FLASH_MODEL,
           contents: [
             {

@@ -3,6 +3,8 @@ import {
   MARK_RUN_STALE_MINUTES,
   sweepStaleMarkRuns,
 } from '@/lib/marking/mark-run-log'
+import { notifyMarkFailed } from '@/lib/marking/notify-mark-ready'
+import { namedSubjectOrNull } from '@/lib/marking/subject-name'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -27,12 +29,35 @@ export async function GET(request: NextRequest) {
   }
 
   const swept = await sweepStaleMarkRuns()
-  if (swept > 0) {
-    console.warn(`[mark-run-sweep] ${swept} run(s) never settled — marked abandoned`)
+  if (swept.length > 0) {
+    console.warn(
+      `[mark-run-sweep] ${swept.length} run(s) never settled — marked abandoned`
+    )
   }
+
+  // The students in this set were told they could close the tab, and then the
+  // function died before anything could tell them otherwise. This sweep is the
+  // only place left that knows. Guests are skipped — there is no address.
+  const owed = swept.filter((run) => run.client_disconnected && run.user_id)
+  let notified = 0
+  for (const run of owed) {
+    const sent = await notifyMarkFailed({
+      userId: run.user_id,
+      subjectLabel: namedSubjectOrNull(run.subject_code),
+    })
+    if (sent) notified += 1
+  }
+  if (owed.length > 0) {
+    console.warn(
+      `[mark-run-sweep] ${notified}/${owed.length} abandoned run(s) notified`
+    )
+  }
+
   return NextResponse.json({
     ok: true,
-    swept,
+    swept: swept.length,
+    owed_notification: owed.length,
+    notified,
     stale_after_minutes: MARK_RUN_STALE_MINUTES,
   })
 }

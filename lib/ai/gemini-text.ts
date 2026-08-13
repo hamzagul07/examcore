@@ -21,7 +21,7 @@ import {
   getGoogleCloudProject,
   getVertexLocation,
   isGeminiBackendConfigured,
-  isVertexAIEnabled,
+  type GeminiBackendId,
 } from '@/lib/ai/gemini-config'
 import {
   GEMINI_FLASH_MODEL,
@@ -64,36 +64,49 @@ export function getGeminiApiKeyLegacy(): string | undefined {
 export const DEFAULT_GEMINI_CALL_TIMEOUT_MS = 120_000
 
 let _defaultCallTimeoutMs = DEFAULT_GEMINI_CALL_TIMEOUT_MS
-let _client: GoogleGenAI | null = null
-let _clientBackend: 'vertex' | 'api-key' | null = null
+/**
+ * One cached client per backend rather than one cached client full stop.
+ *
+ * A single slot thrashed the moment failover existed: two concurrent marks on
+ * different backends would evict each other's client on every call.
+ */
+const _clients = new Map<GeminiBackendId, GoogleGenAI>()
 
-/** Set per-request Gemini timeout for this process (resets cached client). */
+/** Set per-request Gemini timeout for this process (resets cached clients). */
 export function setGeminiCallTimeoutMs(ms: number): void {
   if (!Number.isFinite(ms) || ms < 1_000) {
     throw new Error(`Invalid Gemini call timeout: ${ms}ms (minimum 1000)`)
   }
   _defaultCallTimeoutMs = Math.floor(ms)
-  _client = null
-  _clientBackend = null
+  _clients.clear()
 }
 
 export function getGeminiCallTimeoutMs(): number {
   return _defaultCallTimeoutMs
 }
 
+/**
+ * Client for the backend this request is currently on — which is the configured
+ * backend until a capacity error fails the request over to the other one.
+ *
+ * Callers must resolve this *inside* the retry loop, never once above it, or a
+ * failover cannot take effect until the next request.
+ */
 export function getGeminiClient(): GoogleGenAI {
   assertGeminiConfigured()
   const backend = geminiBackendLabel()
 
-  if (_client && _clientBackend === backend) return _client
+  const cached = _clients.get(backend)
+  if (cached) return cached
 
-  if (isVertexAIEnabled()) {
+  let client: GoogleGenAI
+  if (backend === 'vertex') {
     ensureVertexApplicationCredentials()
     const project = getGoogleCloudProject()
     if (!project) {
       throw new Error('GOOGLE_CLOUD_PROJECT is required when USE_VERTEX_AI=true')
     }
-    _client = new GoogleGenAI({
+    client = new GoogleGenAI({
       vertexai: true,
       project,
       location: getVertexLocation(),
@@ -105,14 +118,14 @@ export function getGeminiClient(): GoogleGenAI {
   } else {
     const key = getGeminiApiKey()
     if (!key) throw new Error('GEMINI_API_KEY is not configured')
-    _client = new GoogleGenAI({
+    client = new GoogleGenAI({
       apiKey: key,
       httpOptions: { timeout: _defaultCallTimeoutMs },
     })
   }
 
-  _clientBackend = backend
-  return _client
+  _clients.set(backend, client)
+  return client
 }
 
 export function isGeminiConfigured(): boolean {
@@ -243,14 +256,15 @@ export async function generateGeminiTextWithMeta(
   prompt: string,
   opts: GeminiTextOptions = {}
 ): Promise<GeminiTextResult> {
-  const client = getGeminiClient()
   const model = resolveModel(opts)
   const timeoutMs = resolveCallTimeoutMs(opts)
   const label = `gemini-text:${model}:${geminiBackendLabel()}`
+  // Client resolved per attempt, not once: a failover mid-retry must take
+  // effect on the very next attempt.
   const response = await withMetrics(label, model, opts, () =>
     withGeminiAbortTimeout(
       (signal) =>
-        client.models.generateContent({
+        getGeminiClient().models.generateContent({
           model,
           contents: [{ role: 'user', parts: [{ text: prompt }] }],
           config: buildConfig(opts, signal),
@@ -268,14 +282,13 @@ export async function generateGeminiChatText(
   messages: GeminiChatMessage[],
   opts: GeminiTextOptions = {}
 ): Promise<string> {
-  const client = getGeminiClient()
   const model = resolveModel(opts)
   const timeoutMs = resolveCallTimeoutMs(opts)
   const label = `gemini-chat:${model}:${geminiBackendLabel()}`
   const response = await withMetrics(label, model, opts, () =>
     withGeminiAbortTimeout(
       (signal) =>
-        client.models.generateContent({
+        getGeminiClient().models.generateContent({
           model,
           contents: toGeminiContents(messages),
           config: buildConfig(opts, signal),
@@ -290,14 +303,13 @@ export async function generateGeminiWithContents(
   contents: Content[],
   opts: GeminiTextOptions = {}
 ): Promise<GenerateContentResponse> {
-  const client = getGeminiClient()
   const model = resolveModel(opts)
   const timeoutMs = resolveCallTimeoutMs(opts)
   const label = `gemini-contents:${model}:${geminiBackendLabel()}`
   return withMetrics(label, model, opts, () =>
     withGeminiAbortTimeout(
       (signal) =>
-        client.models.generateContent({
+        getGeminiClient().models.generateContent({
           model,
           contents,
           config: buildConfig(opts, signal),
@@ -311,14 +323,13 @@ export async function* streamGeminiWithContents(
   contents: Content[],
   opts: GeminiTextOptions = {}
 ): AsyncGenerator<string> {
-  const client = getGeminiClient()
   const model = resolveModel(opts)
   const timeoutMs = resolveCallTimeoutMs(opts)
   const stream = await withGeminiRetry(
     () =>
       withGeminiAbortTimeout(
         (signal) =>
-          client.models.generateContentStream({
+          getGeminiClient().models.generateContentStream({
             model,
             contents,
             config: buildConfig(opts, signal),

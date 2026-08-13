@@ -19,6 +19,17 @@ export type MarkContextPayload = {
 export type MarkProgressEvent =
   | { type: 'progress'; stage: MarkProgressStage; percent: number }
   | ({ type: 'context' } & MarkContextPayload)
+  /**
+   * The first-pass score, sent before the second-opinion verify runs.
+   *
+   * Perceived waiting is set by time-to-first-real-output, not by total time,
+   * and until now those were the same moment — nothing but a progress bar
+   * existed until the whole pipeline finished. The number lands here, roughly a
+   * verify pass earlier, while the breakdown, the ink overlay and the rewrite
+   * still arrive only once they are final. Nothing provisional is ever
+   * presented as finished.
+   */
+  | { type: 'provisional_score'; marks_earned: number; total_marks: number }
   | { type: 'result'; payload: Record<string, unknown> }
   /** Premium full-marks rewrite, produced AFTER the result so it never delays
    * the score. Patches the already-delivered result in place. */

@@ -58,6 +58,15 @@ import {
   MarkExampleInvite,
 } from '@/components/mark/MarkExample'
 import { MarkFeedbackPrompt } from '@/components/mark/MarkFeedbackPrompt'
+import { PredictScorePrompt } from '@/components/mark/PredictScorePrompt'
+import {
+  clearPendingMark,
+  notePendingMark,
+} from '@/lib/marking/pending-mark'
+import { LeaveNoticeCard } from '@/components/mark/LeaveNotice'
+import { PredictionGap } from '@/components/mark/PredictionGap'
+import { ExaminerAdjustmentNote } from '@/components/mark/ExaminerAdjustmentNote'
+import { ProvisionalScoreCard } from '@/components/mark/ProvisionalScoreCard'
 import { GuestConversionPrompt } from '@/components/mark/GuestConversionPrompt'
 import {
   DEMO_MARK_RESULT,
@@ -179,6 +188,9 @@ type MarkingResult = MarkingResultData & {
   whole_paper?: WholePaperResult
   /** Set when a scanned script was split into several separately-marked questions. */
   multi_question?: boolean
+  /** What the student predicted during the wait, echoed back so a reload of the
+   * result still shows the gap. */
+  predicted_marks?: number | null
   _allowance?: AllowanceBlock
 }
 
@@ -217,6 +229,20 @@ export default function MarkPage() {
   const [markContext, setMarkContext] = useState<MarkContextPayload | null>(
     null
   )
+  /** Telemetry row for the in-flight mark. Arrives first on the stream and is
+   * what the wait-time score prediction is filed against. */
+  const [markRunId, setMarkRunId] = useState<string | null>(null)
+  /** What the student predicted this run, held so the reveal can show the gap
+   * without waiting on a round trip. */
+  const [predictedMarks, setPredictedMarks] = useState<number | null>(null)
+  /** Skip pressed on the prediction prompt. Held here, not in the prompt, so
+   * one place decides whether the leave notice needs its own card. */
+  const [predictionDismissed, setPredictionDismissed] = useState(false)
+  /** First-pass marks, in ahead of the verify pass. Shown as provisional. */
+  const [provisionalScore, setProvisionalScore] = useState<{
+    marksEarned: number
+    totalMarks: number
+  } | null>(null)
   const [markStreamError, setMarkStreamError] = useState<string | null>(null)
   const [result, setResult] = useState<MarkingResult | null>(null)
   // Sprint 46: the final payload is buffered here the instant marking finishes,
@@ -405,11 +431,25 @@ export default function MarkPage() {
     }
   }, [cinematicActive, markStreamError])
 
+  /**
+   * A single-question mark already in flight for a signed-in student is no
+   * longer at risk: the server finishes it whether or not the tab is open, and
+   * emails the result. Warning them here would contradict the wait screen,
+   * which is now telling them to go and do something else.
+   *
+   * Whole-paper uploads are excluded — those still live in the browser until
+   * their own flow submits them.
+   */
+  const markSurvivesLeaving =
+    cinematicActive && !!billingSummary?.signedIn && !wholePaperUnsaved
+
   // Uploaded photos only live in memory — warn before a refresh/close discards
   // them. Includes whole-paper uploads held in WholePaperFlow (MK-03).
   // Skipped once results are in (nothing left to lose).
   const hasUnsavedUploads =
-    ((answerPages.length > 0 || !!answerPdf || wholePaperUnsaved) && !result)
+    (answerPages.length > 0 || !!answerPdf || wholePaperUnsaved) &&
+    !result &&
+    !markSurvivesLeaving
   useEffect(() => {
     if (!hasUnsavedUploads || typeof window === 'undefined') return
     const warn = (e: BeforeUnloadEvent) => {
@@ -1495,6 +1535,12 @@ export default function MarkPage() {
 
       setMarkProgress({ percent: 5, stage: 'reading_work' })
       setMarkContext(null)
+      // A new run gets a new prediction; carrying the last one over would show
+      // a gap against an answer the student never predicted.
+      setMarkRunId(null)
+      setPredictedMarks(null)
+      setPredictionDismissed(false)
+      setProvisionalScore(null)
       setMarkStreamError(null)
       setErrorMsg('')
       setErrorRetryable(false)
@@ -1654,6 +1700,20 @@ export default function MarkPage() {
       let buffer = ''
       let finalPayload: MarkingResult | null = null
       const streamCtx = {
+        setMarkRunId: ((value) => {
+          setMarkRunId(value)
+          // Filed the moment the run exists, not when the student leaves —
+          // there is no event for "about to navigate away" we can trust.
+          //
+          // Signed-in only, for the same reason the leave notice is: a guest's
+          // result page redirects to sign-in, so announcing their finished mark
+          // would walk them into a login wall that did not exist when they
+          // started. Guests are told nothing and asked to stay.
+          if (typeof value === 'string' && billingSummary?.signedIn) {
+            notePendingMark({ markRunId: value, startedAt: Date.now() })
+          }
+        }) as typeof setMarkRunId,
+        setProvisionalScore,
         setMarkProgress,
         setMarkContext,
         setMarkStreamError,
@@ -1678,8 +1738,15 @@ export default function MarkPage() {
           return false
         }
         const outcome = handleMarkStreamEvent(event, streamCtx)
-        if (outcome === 'error') return true
+        // Either way the student is here and has been told the outcome, so the
+        // cross-page announcement must stand down — otherwise they navigate on
+        // and get told again about a mark they just watched land.
+        if (outcome === 'error') {
+          clearPendingMark()
+          return true
+        }
         if (outcome === 'result' && event.payload) {
+          clearPendingMark()
           finalPayload = event.payload as MarkingResult
           // Begin the reveal the moment the marks land. The stream may stay
           // open afterwards for the rewrite; waiting for it to close would
@@ -2131,6 +2198,57 @@ export default function MarkPage() {
     )
   }
 
+  /**
+   * What sits under the wait animation on BOTH flows.
+   *
+   * MarkFlow v2 is still opt-in (`?flow=v2` or localStorage), so anything
+   * rendered only inside its branch is invisible to almost every real student —
+   * which is exactly what happened to the first cut of this. Defined once here
+   * and rendered by both paths.
+   *
+   * The prompt is replaced by the first-pass score rather than shown alongside
+   * it: predicting after seeing a number, even a provisional one, is not a
+   * prediction.
+   */
+  const waitExtras = (() => {
+    if (markStreamError || pendingResult) return null
+    // Guests have no inbox and no saved result, so they genuinely do have to
+    // stay — the notice is only true for signed-in students.
+    const canEmail = !!billingSummary?.signedIn
+
+    if (provisionalScore) {
+      return (
+        <>
+          <ProvisionalScoreCard
+            marksEarned={provisionalScore.marksEarned}
+            totalMarks={provisionalScore.totalMarks}
+          />
+          {canEmail && <LeaveNoticeCard />}
+        </>
+      )
+    }
+
+    // The prompt carries the notice when it renders, so the two share one card.
+    // When it cannot render — no run id because telemetry failed, or the student
+    // skipped — the notice still has to appear on its own, because it is the
+    // part that actually answers a three-minute wait.
+    const promptWillRender = !!markRunId && !predictionDismissed
+    return (
+      <>
+        {promptWillRender && (
+          <PredictScorePrompt
+            markRunId={markRunId}
+            totalMarks={Number(totalMarksInput.trim()) || null}
+            showLeaveNotice={canEmail}
+            onPredicted={setPredictedMarks}
+            onDismiss={() => setPredictionDismissed(true)}
+          />
+        )}
+        {canEmail && !promptWillRender && <LeaveNoticeCard />}
+      </>
+    )
+  })()
+
   // R1: Capture → Confirm → wait → result on one MarkFlow instance.
   if (
     markFlowV2 &&
@@ -2156,6 +2274,16 @@ export default function MarkPage() {
             setErrorMsg('')
           }}
         >
+          <ExaminerAdjustmentNote
+            provisional={provisionalScore?.marksEarned ?? null}
+            final={result.marks_earned ?? null}
+            total={result.total_marks ?? null}
+          />
+          <PredictionGap
+            predicted={result.predicted_marks ?? predictedMarks}
+            earned={result.marks_earned ?? null}
+            total={result.total_marks ?? null}
+          />
           <MarkingResultView
             result={result}
             attemptId={result.attempt_id ?? null}
@@ -2226,6 +2354,7 @@ export default function MarkPage() {
               : 'Starting the mark…'}
           </p>
         )}
+        {waitExtras}
       </section>
     ) : null
 
@@ -3433,6 +3562,7 @@ export default function MarkPage() {
                     !!answerPdfError
                   }
                 />
+                {waitExtras}
               </MarkingWaitOverlay>
             </motion.div>
           ) : null}
@@ -3561,6 +3691,23 @@ export default function MarkPage() {
                 </span>
               </Link>
             ) : null}
+
+            {/* Not on the worked example — there is no prediction behind a
+                sample answer the student never attempted. */}
+            {!showingExample && (
+              <>
+                <ExaminerAdjustmentNote
+                  provisional={provisionalScore?.marksEarned ?? null}
+                  final={result.marks_earned ?? null}
+                  total={result.total_marks ?? null}
+                />
+                <PredictionGap
+                  predicted={result.predicted_marks ?? predictedMarks}
+                  earned={result.marks_earned ?? null}
+                  total={result.total_marks ?? null}
+                />
+              </>
+            )}
 
             <MarkingResultView
               result={result}

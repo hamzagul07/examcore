@@ -17,7 +17,6 @@ import {
   uploadAnswerPhoto,
   ocrImage,
   questionPhotoOcrPrompt,
-  getMarkingGenAI,
 } from '@/lib/marking/mark-runner'
 import { ocrPdfToPages, ocrPdfToPlainText } from '@/lib/marking/pdf-pages'
 import { buildDetectionPrompt } from '@/lib/marking/prompts'
@@ -84,7 +83,6 @@ async function ocrQuestionFile(
   if (isPdfFile(file)) {
     return ocrPdfToPlainText(
       await file.arrayBuffer(),
-      getMarkingGenAI(),
       questionPhotoOcrPrompt(subjectHint)
     )
   }
@@ -734,10 +732,7 @@ export async function runSingleQuestionMark(
     // no photo to overlay them on.
     pageOcrResults.push({ full_text: typedAnswer, lines: [], photo_url: null })
   } else if (answerPdf?.size) {
-    const pdfPages = await ocrPdfToPages(
-      await answerPdf.arrayBuffer(),
-      getMarkingGenAI()
-    )
+    const pdfPages = await ocrPdfToPages(await answerPdf.arrayBuffer())
     for (const p of pdfPages) {
       pageOcrResults.push({
         full_text: p.full_text,
@@ -1048,6 +1043,10 @@ export async function runSingleQuestionMark(
     // Keep the progress bar honest through derive → mark → verify, the ~2
     // minutes that previously showed no movement at all.
     onStage: (stage) => emit(onProgress, stage),
+    // Straight through to the client: the score is what they are waiting for,
+    // and it is ready a verify pass before everything else is.
+    onProvisionalScore: (score) =>
+      onProgress?.({ type: 'provisional_score', ...score }),
   })
 
   if (resolvedTags.length > 0 || detectedPaper || hasManualSelection) {

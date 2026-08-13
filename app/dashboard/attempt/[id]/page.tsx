@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import { PredictionGap } from '@/components/mark/PredictionGap'
 import {
   MarkingResultView,
   type MarkingResultData,
@@ -38,6 +39,7 @@ type AttemptRow = {
   mark_scheme_id: string | null
   answer_photo_url: string | null
   line_references: LineReference[] | null
+  predicted_marks: number | null
   mark_schemes: {
     paper_code: string | null
     paper_session: string | null
@@ -149,6 +151,7 @@ export default async function AttemptDetailPage({
       id, user_id, source_type, question_text, ocr_text, ai_marking,
       marks_earned, total_marks, full_solution, syllabus_tags, created_at,
       mark_scheme_id, answer_photo_url, line_references, time_spent_seconds,
+      predicted_marks,
       mark_schemes (
         paper_code, paper_session, question_number, question_text,
         total_marks, marking_type, mark_scheme, syllabus_tags
@@ -276,6 +279,16 @@ export default async function AttemptDetailPage({
                 <> · {result.detected_paper.paper_session}</>
               )}
           </p>
+        </div>
+
+        {/* Predicted vs awarded, for the student who came here from the
+            "your mark is ready" email and never saw the live reveal. */}
+        <div className="animate-entry stagger-2">
+          <PredictionGap
+            predicted={attempt.predicted_marks}
+            earned={attempt.marks_earned}
+            total={attempt.total_marks}
+          />
         </div>
 
         {/* Marking result (re-render of the original feedback) */}

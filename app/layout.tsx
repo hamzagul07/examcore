@@ -8,6 +8,7 @@ import { RootHeader } from "@/components/layout/RootHeader";
 import { RootFooter } from "@/components/layout/RootFooter";
 import { MobileTabBarGate } from "@/components/layout/MobileTabBarGate";
 import { NavigationLoader } from "@/components/ui/NavigationLoader";
+import { PendingMarkWatcher } from "@/components/mark/PendingMarkWatcher";
 import { InternalNavigationCapture } from "@/components/ui/InternalNavigationCapture";
 import { ScrollToTopOnRoute } from "@/components/ui/ScrollToTopOnRoute";
 import { OmniFABGate } from "@/components/omni-ai/OmniFABGate";
@@ -148,6 +149,10 @@ export default function RootLayout({
               <RootFooter />
               <MobileTabBarGate />
               <OmniFABGate />
+              {/* Announces a mark that finished while the student was reading
+                  something else. Mounted app-wide because the whole point is
+                  that it works away from /mark. */}
+              <PendingMarkWatcher />
             </AppChrome>
             <OmniAILazy />
           </OmniAIProviders>

@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { after, NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { GEMINI_FLASH_MODEL, generateGeminiText, generateGeminiWithContents } from '@/lib/ai/gemini-text'
 import { geminiBackendLabel } from '@/lib/ai/gemini-config'
@@ -57,11 +57,15 @@ import type { FullMarksRewritePlan } from '@/lib/marking/mark-runner'
 import {
   openMarkRun,
   noteMarkRunStage,
+  noteMarkRunDisconnect,
+  readMarkRunPrediction,
   settleMarkRunSuccess,
   settleMarkRunError,
   type MarkRunHandle,
 } from '@/lib/marking/mark-run-log'
+import { namedSubjectOrNull } from '@/lib/marking/subject-name'
 import { resolveMarkRunExamSystem } from '@/lib/marking/resolve-exam-system'
+import { notifyMarkFailed, notifyMarkReady } from '@/lib/marking/notify-mark-ready'
 
 // Multi-question scanned scripts (derive → mark → verify per question) can run
 // 200–300s+; give generous headroom. NOTE: vercel.json's functions config for
@@ -141,6 +145,46 @@ async function streamDeferredRewrite(
   } catch (err) {
     console.warn('[mark/process] deferred rewrite failed (result already sent)', err)
   }
+}
+
+/**
+ * Close the SSE stream without caring whether the client is still there.
+ *
+ * Closing a controller the browser has already cancelled throws, and now that a
+ * disconnect no longer aborts the run, that throw lands *after* the mark has
+ * succeeded — turning a completed, charged, emailed mark into an unhandled
+ * error inside the stream. There is nothing to report: the reader is gone.
+ */
+function closeStream(controller: ReadableStreamDefaultController): void {
+  try {
+    controller.close()
+  } catch {
+    /* already closed by the client */
+  }
+}
+
+/**
+ * Move the wait-time prediction from the run onto the finished attempt.
+ *
+ * Returns it too, so the reveal can show the gap without a second round trip.
+ * Best-effort throughout: this is a teaching flourish on top of a mark that has
+ * already been paid for and produced.
+ */
+async function settlePrediction(
+  markRun: MarkRunHandle | null,
+  attemptId: string | null
+): Promise<number | null> {
+  const predicted = await readMarkRunPrediction(markRun)
+  if (predicted == null || !attemptId) return predicted
+  try {
+    await supabaseAdmin
+      .from('attempts')
+      .update({ predicted_marks: predicted })
+      .eq('id', attemptId)
+  } catch (err) {
+    console.warn('[mark/process] prediction copy failed', err)
+  }
+  return predicted
 }
 
 async function ocrImage(file: File, prompt: string): Promise<string> {
@@ -440,18 +484,45 @@ async function handleMarkRequest(request: NextRequest) {
 
       if (streamRequested) {
         const encoder = new TextEncoder()
+        /**
+         * Whether the student is still on the page.
+         *
+         * This used to be fatal rather than merely known: `send` threw the
+         * moment the tab closed, the throw unwound the pipeline, and a mark
+         * that was already paid for and two thirds finished was thrown away —
+         * which is why the page had to nail the student down with a
+         * beforeunload warning for three minutes. Now the run finishes without
+         * them and the result is emailed.
+         */
+        let clientGone = false
+        const markLeft = () => {
+          if (clientGone) return
+          clientGone = true
+          noteMarkRunDisconnect(markRun)
+        }
         const stream = new ReadableStream({
           async start(controller) {
-            const send = (data: unknown) =>
-              controller.enqueue(encoder.encode(formatSseEvent(data)))
+            const send = (data: unknown) => {
+              if (clientGone) return
+              try {
+                controller.enqueue(encoder.encode(formatSseEvent(data)))
+              } catch {
+                // Backstop for a disconnect `cancel` did not report.
+                markLeft()
+              }
+            }
             const heartbeat = setInterval(() => {
               try {
                 controller.enqueue(encoder.encode(': heartbeat\n\n'))
               } catch {
                 clearInterval(heartbeat)
+                markLeft()
               }
             }, 12_000)
             try {
+              // First thing on the wire: the run id, so the wait screen can
+              // post back a predicted score before the result exists.
+              send({ type: 'run', mark_run_id: markRun?.id ?? null })
               const payload = await runSingleQuestionMark({
                 ...pipelineInput,
                 deferRewrite: true,
@@ -485,6 +556,45 @@ async function handleMarkRequest(request: NextRequest) {
                 }),
               })
 
+              // Deliberately AFTER the result. The prediction lives on a row
+              // this invocation never wrote, so reading it costs a round trip —
+              // and putting a round trip in front of the score, in the middle of
+              // work whose entire purpose is to reveal the score sooner, would
+              // be self-defeating. The page shows the gap from what it captured
+              // locally; this write is for the attempt page and the email.
+              const predictedMarks = await settlePrediction(
+                markRun,
+                (payload as { attempt_id?: string })?.attempt_id ?? null
+              )
+
+              // Nobody there to read it. The mark is saved and the attempt page
+              // will show it in full — mail carries the score and the link.
+              //
+              // Handed to `after()` rather than awaited: the client has already
+              // gone, so the platform is free to start tearing this invocation
+              // down, and a bare await would race that teardown. This is the
+              // one hop the notification cannot afford to lose.
+              if (clientGone) {
+                const done = payload as Record<string, unknown>
+                const notice = {
+                  userId,
+                  attemptId: (done.attempt_id as string | null) ?? null,
+                  marksEarned: (done.marks_earned as number | null) ?? null,
+                  totalMarks: (done.total_marks as number | null) ?? null,
+                  subjectLabel: namedSubjectOrNull(
+                    done.subject_code as string | null
+                  ),
+                  paperRef: (done.paper_code as string | null) ?? null,
+                  predictedMarks: predictedMarks,
+                }
+                try {
+                  after(() => notifyMarkReady(notice))
+                } catch {
+                  // No request scope to defer to (tests, scripts): send inline.
+                  await notifyMarkReady(notice)
+                }
+              }
+
               // Premium full-marks rewrite, generated only now that the score is
               // on screen. Best-effort: any failure just means no rewrite panel.
               if (rewritePlan) {
@@ -494,7 +604,7 @@ async function handleMarkRequest(request: NextRequest) {
                   send
                 )
               }
-              controller.close()
+              closeStream(controller)
             } catch (err: unknown) {
               await releaseReservation()
               const classified = classifyMarkingError(err)
@@ -506,10 +616,35 @@ async function handleMarkRequest(request: NextRequest) {
                 retryable: classified.retryable,
                 status: classified.status,
               })
-              controller.close()
+              // They were told they could leave, so the promise has to be kept
+              // in both directions. Silence after "we'll email you" leaves them
+              // waiting on mail that is never coming, and we never find out
+              // because they never come back to see the error.
+              if (clientGone) {
+                // Only what the request itself told us — a failed run has no
+                // detected paper or resolved subject to draw on.
+                const failure = {
+                  userId,
+                  subjectLabel: namedSubjectOrNull(
+                    pipelineInput.fallbackSubjectCode ?? manualSubjectCode ?? null
+                  ),
+                  paperRef: pipelineInput.manualPaperCode ?? null,
+                }
+                try {
+                  after(() => notifyMarkFailed(failure))
+                } catch {
+                  await notifyMarkFailed(failure)
+                }
+              }
+              closeStream(controller)
             } finally {
               clearInterval(heartbeat)
             }
+          },
+          /** The prompt disconnect signal — fires when the browser drops the
+           * stream, well before an enqueue would throw. */
+          cancel() {
+            markLeft()
           },
         })
         return new Response(stream, { headers: SSE_HEADERS })

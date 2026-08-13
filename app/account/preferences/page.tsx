@@ -15,6 +15,7 @@ export default async function PreferencesSettingsPage() {
       initialCommunityThreads={notifications.emailCommunityThreads}
       initialReviewDigest={notifications.emailReviewDigest}
       initialWeeklyReport={notifications.emailWeeklyReport}
+      initialMarkReady={notifications.emailMarkReady}
     />
   )
 }

@@ -5,6 +5,13 @@
  * API key: GEMINI_API_KEY (default when USE_VERTEX_AI is unset/false)
  */
 
+import {
+  requestBackendOverride,
+  type GeminiBackendId,
+} from '@/lib/ai/request-deadline'
+
+export type { GeminiBackendId }
+
 export const VERTEX_AI_REGION = 'us-central1' as const
 
 export function isVertexAIEnabled(): boolean {
@@ -24,21 +31,50 @@ export function getGeminiApiKey(): string | undefined {
   return process.env.GEMINI_API_KEY?.trim() || undefined
 }
 
-export function geminiBackendLabel(): 'vertex' | 'api-key' {
+/** The backend this deployment is configured for, ignoring any failover. */
+export function configuredGeminiBackend(): GeminiBackendId {
   return isVertexAIEnabled() ? 'vertex' : 'api-key'
+}
+
+/**
+ * The backend to actually call right now.
+ *
+ * Honours a request-scoped failover, so everything downstream — client, metrics
+ * label, error reporting — follows the switch from a single source of truth
+ * rather than each having to be told about it.
+ */
+export function geminiBackendLabel(): GeminiBackendId {
+  return requestBackendOverride() ?? configuredGeminiBackend()
+}
+
+export function isBackendCredentialed(backend: GeminiBackendId): boolean {
+  return backend === 'vertex'
+    ? Boolean(getGoogleCloudProject())
+    : Boolean(getGeminiApiKey())
+}
+
+/**
+ * The other backend, when it is credentialed and we are not already on it.
+ *
+ * This is what makes a 429 cost one re-route instead of a backoff nap. Measured
+ * over the first 28 marks, runs that hit a retry averaged 384s against 128s for
+ * runs that did not — the wait was overwhelmingly spent sleeping on a provider
+ * that had already said no, while a second credentialed provider sat idle.
+ */
+export function fallbackGeminiBackend(): GeminiBackendId | null {
+  const other: GeminiBackendId =
+    geminiBackendLabel() === 'vertex' ? 'api-key' : 'vertex'
+  return isBackendCredentialed(other) ? other : null
 }
 
 /** True when the active backend has the credentials it needs. */
 export function isGeminiBackendConfigured(): boolean {
-  if (isVertexAIEnabled()) {
-    return Boolean(getGoogleCloudProject())
-  }
-  return Boolean(getGeminiApiKey())
+  return isBackendCredentialed(geminiBackendLabel())
 }
 
 export function assertGeminiConfigured(): void {
   if (isGeminiBackendConfigured()) return
-  if (isVertexAIEnabled()) {
+  if (geminiBackendLabel() === 'vertex') {
     throw new Error(
       'Vertex AI not configured: set USE_VERTEX_AI=true, GOOGLE_CLOUD_PROJECT, and GOOGLE_APPLICATION_CREDENTIALS (service account JSON path)'
     )

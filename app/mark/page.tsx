@@ -59,8 +59,10 @@ import {
 } from '@/components/mark/MarkExample'
 import { MarkFeedbackPrompt } from '@/components/mark/MarkFeedbackPrompt'
 import { PredictScorePrompt } from '@/components/mark/PredictScorePrompt'
+import { RunningElsewhereNotice } from '@/components/mark/RunningElsewhereNotice'
 import {
   clearPendingMark,
+  noteFinishedMark,
   notePendingMark,
 } from '@/lib/marking/pending-mark'
 import { LeaveNoticeCard } from '@/components/mark/LeaveNotice'
@@ -235,6 +237,24 @@ export default function MarkPage() {
   /** What the student predicted this run, held so the reveal can show the gap
    * without waiting on a round trip. */
   const [predictedMarks, setPredictedMarks] = useState<number | null>(null)
+  /**
+   * Whether this page is still on screen.
+   *
+   * The marking request outlives the component: navigating away does not abort
+   * it, so its handler keeps running with no UI attached. This ref is how that
+   * handler tells "the student is watching this land" from "the student left
+   * and needs to be told some other way".
+   */
+  const markPageMountedRef = useRef(true)
+  /** Run id of the mark in flight, readable from the detached stream handler. */
+  const currentMarkRunIdRef = useRef<string | null>(null)
+  useEffect(() => {
+    markPageMountedRef.current = true
+    return () => {
+      markPageMountedRef.current = false
+    }
+  }, [])
+
   /** Skip pressed on the prediction prompt. Held here, not in the prompt, so
    * one place decides whether the leave notice needs its own card. */
   const [predictionDismissed, setPredictionDismissed] = useState(false)
@@ -1710,6 +1730,7 @@ export default function MarkPage() {
           // would walk them into a login wall that did not exist when they
           // started. Guests are told nothing and asked to stay.
           if (typeof value === 'string' && billingSummary?.signedIn) {
+            currentMarkRunIdRef.current = value
             notePendingMark({ markRunId: value, startedAt: Date.now() })
           }
         }) as typeof setMarkRunId,
@@ -1738,15 +1759,40 @@ export default function MarkPage() {
           return false
         }
         const outcome = handleMarkStreamEvent(event, streamCtx)
-        // Either way the student is here and has been told the outcome, so the
-        // cross-page announcement must stand down — otherwise they navigate on
-        // and get told again about a mark they just watched land.
+        // Whether the student is still on this page decides who tells them.
+        //
+        // Navigating away in the app does not abort the request — the browser
+        // holds the connection open, so the server sees a live client and never
+        // emails. That leaves this handler, running inside an unmounted
+        // component, as the only thing that knows the mark landed. Clearing the
+        // pending record here (as it first did) threw that away and the student
+        // was told by nobody at all.
         if (outcome === 'error') {
-          clearPendingMark()
+          if (markPageMountedRef.current) clearPendingMark()
+          else if (currentMarkRunIdRef.current) {
+            noteFinishedMark({
+              markRunId: currentMarkRunIdRef.current,
+              attemptId: null,
+              marksEarned: null,
+              totalMarks: null,
+              ok: false,
+            })
+          }
           return true
         }
         if (outcome === 'result' && event.payload) {
-          clearPendingMark()
+          const landed = event.payload as MarkingResult
+          if (markPageMountedRef.current) {
+            clearPendingMark()
+          } else if (currentMarkRunIdRef.current) {
+            noteFinishedMark({
+              markRunId: currentMarkRunIdRef.current,
+              attemptId: landed.attempt_id ?? null,
+              marksEarned: landed.marks_earned ?? null,
+              totalMarks: landed.total_marks ?? null,
+              ok: true,
+            })
+          }
           finalPayload = event.payload as MarkingResult
           // Begin the reveal the moment the marks land. The stream may stay
           // open afterwards for the rewrite; waiting for it to close would
@@ -2360,11 +2406,13 @@ export default function MarkPage() {
 
     const hostSlot = resultSlot ?? waitSlot
 
+
     return (
       <main className="app-shell app-shell-tabbed ms-mark-shell">
         <div
           className={`ms-mark-pg min-w-0 ${waitOpen || result ? '' : 'ms-mark-pg--narrow'}`}
         >
+          <RunningElsewhereNotice liveHere={waitOpen || !!result} />
           <MarkFlow
             ref={markFlowRef}
             board={selectedMarkBoard}
@@ -2506,6 +2554,7 @@ export default function MarkPage() {
       <div
         className={`ms-mark-pg min-w-0 ${result ? '' : 'ms-mark-pg--narrow'}`}
       >
+        <RunningElsewhereNotice liveHere={waitOpen || !!result} />
         {!result && (
           <header className="ms-mark-hero ms-fade-in">
             <div className="mb-2 flex items-center gap-2">

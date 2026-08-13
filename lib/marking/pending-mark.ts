@@ -11,6 +11,7 @@
  */
 
 const KEY = 'ms-pending-mark'
+const DONE_KEY = 'ms-finished-mark'
 
 export type PendingMark = {
   markRunId: string
@@ -72,4 +73,68 @@ export function notePendingMark(entry: PendingMark): void {
   if (typeof window !== 'undefined') {
     window.dispatchEvent(new Event(PENDING_MARK_EVENT))
   }
+}
+
+/**
+ * A mark that finished while nobody was looking at the page it started on.
+ *
+ * Navigating away inside the app does NOT abort the marking request — the
+ * browser keeps the connection open, so the server sees a perfectly healthy
+ * client and never emails. The result therefore lands in a handler whose
+ * component has been unmounted, where it would set state nobody is rendering
+ * and then vanish. Writing it here is what turns that into something the
+ * student can still be told about.
+ */
+export type FinishedMark = {
+  markRunId: string
+  attemptId: string | null
+  marksEarned: number | null
+  totalMarks: number | null
+  ok: boolean
+  finishedAt: number
+}
+
+/** Long enough to survive a page load, short enough not to resurface tomorrow. */
+export const FINISHED_MARK_TTL_MS = 60 * 60_000
+
+export function readFinishedMark(): FinishedMark | null {
+  if (typeof window === 'undefined') return null
+  try {
+    const raw = window.localStorage.getItem(DONE_KEY)
+    if (!raw) return null
+    const parsed = JSON.parse(raw) as FinishedMark
+    if (!parsed?.markRunId) return null
+    if (Date.now() - parsed.finishedAt > FINISHED_MARK_TTL_MS) {
+      clearFinishedMark()
+      return null
+    }
+    return parsed
+  } catch {
+    return null
+  }
+}
+
+export function clearFinishedMark(): void {
+  if (typeof window === 'undefined') return
+  try {
+    window.localStorage.removeItem(DONE_KEY)
+  } catch {
+    /* nothing to do */
+  }
+}
+
+/** Record a finished mark and wake any watcher. Clears the pending entry, since
+ * the run it referred to is the one that just landed. */
+export function noteFinishedMark(entry: Omit<FinishedMark, 'finishedAt'>): void {
+  if (typeof window === 'undefined') return
+  clearPendingMark()
+  try {
+    window.localStorage.setItem(
+      DONE_KEY,
+      JSON.stringify({ ...entry, finishedAt: Date.now() })
+    )
+  } catch {
+    /* private mode / quota */
+  }
+  window.dispatchEvent(new Event(PENDING_MARK_EVENT))
 }

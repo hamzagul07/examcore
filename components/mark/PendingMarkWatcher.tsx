@@ -5,7 +5,9 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import {
+  clearFinishedMark,
   clearPendingMark,
+  readFinishedMark,
   readPendingMark,
   PENDING_MARK_EVENT,
   type PendingMark,
@@ -44,8 +46,26 @@ export function PendingMarkWatcher() {
   const timer = useRef<ReturnType<typeof setInterval> | null>(null)
 
   // Pick up a run started in this tab, or one already in storage from another.
+  //
+  // A finished record wins outright: the stream handler already knows the
+  // outcome, so there is nothing to poll for and the banner can appear at once.
   useEffect(() => {
-    const sync = () => setPending(readPendingMark())
+    const sync = () => {
+      const done = readFinishedMark()
+      if (done) {
+        clearFinishedMark()
+        setSettled({
+          attemptId: done.attemptId,
+          marksEarned: done.marksEarned,
+          totalMarks: done.totalMarks,
+          ok: done.ok && !!done.attemptId,
+        })
+        setDismissed(false)
+        setPending(null)
+        return
+      }
+      setPending(readPendingMark())
+    }
     sync()
     window.addEventListener(PENDING_MARK_EVENT, sync)
     window.addEventListener('storage', sync)
@@ -99,8 +119,10 @@ export function PendingMarkWatcher() {
     }
     if (!pending) return
 
-    // On /mark the live stream is already telling the student what is
-    // happening; a second announcement of the same event would be noise.
+    // Polling is suppressed on /mark, where a live stream is already reporting
+    // progress — but only polling. A finished record still announces there,
+    // because coming back to /mark and finding a blank form with no word on the
+    // mark you started is precisely the gap this exists to close.
     if (pathname?.startsWith('/mark')) return
 
     const tick = () => {

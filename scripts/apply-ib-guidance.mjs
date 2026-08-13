@@ -39,33 +39,40 @@ async function main() {
     process.env.SUPABASE_SERVICE_ROLE_KEY
   )
 
-  const { data: comp } = await db
+  // A component key is not unique: HL and SL are separate rows sharing one key
+  // wherever the levels sit different papers. Guidance about how a criterion is
+  // applied is normally level-agnostic, so it goes to every matching row —
+  // reported, not silent — and `--level` narrows it when it genuinely differs.
+  const levelArg = args.includes('--level') ? args[args.indexOf('--level') + 1] : null
+  let q = db
     .from('ib_component')
-    .select('id, label')
+    .select('id, label, level')
     .eq('subject_code', subjectCode)
     .eq('component_key', componentKey)
-    .maybeSingle()
+  if (levelArg) q = q.eq('level', levelArg)
+  const { data: comps, error: compErr } = await q
+  if (compErr) throw new Error(`component lookup: ${compErr.message}`)
 
-  if (!comp) {
+  if (!comps?.length) {
     console.error(
-      `[guidance] refusing: ${subjectCode}/${componentKey} is not in the catalogue. Ingest the criteria first.`
+      `[guidance] refusing: ${subjectCode}/${componentKey}${levelArg ? ` (${levelArg})` : ''} is not in the catalogue. Ingest the criteria first.`
     )
     process.exit(1)
   }
 
-  const { data: criteria } = await db
+  const { data: allCriteria } = await db
     .from('ib_criterion')
-    .select('id, letter')
-    .eq('component_id', comp.id)
-  const byLetter = new Map((criteria ?? []).map((c) => [c.letter, c.id]))
+    .select('id, letter, component_id')
+    .in('component_id', comps.map((c) => c.id))
 
   const plan = []
   if (g.component_guidance?.trim()) {
-    plan.push(`component ${comp.label}: ${g.component_guidance.trim().slice(0, 90)}…`)
+    plan.push(`component: ${g.component_guidance.trim().slice(0, 90)}…`)
   }
   let bandWrites = 0
+  const letters = new Set((allCriteria ?? []).map((c) => c.letter))
   for (const c of g.criteria ?? []) {
-    if (!byLetter.has(c.letter)) {
+    if (!letters.has(c.letter)) {
       console.error(`[guidance] warning: criterion ${c.letter} not in catalogue — skipped`)
       continue
     }
@@ -77,9 +84,11 @@ async function main() {
     }
   }
 
-  console.log(`\n${subjectCode}/${componentKey} — ${comp.label}`)
+  console.log(
+    `\n${subjectCode}/${componentKey} — ${comps.length} component row(s): ${comps.map((c) => `${c.label} [${c.level}]`).join(', ')}`
+  )
   for (const p of plan) console.log(`  ${p}`)
-  console.log(`  ${bandWrites} band-level note(s)`)
+  console.log(`  ${bandWrites} band-level note(s) per component`)
 
   if (!APPLY) {
     console.log('\nDry run. Nothing written. Re-run with --apply.\n')
@@ -90,32 +99,39 @@ async function main() {
     const { error } = await db
       .from('ib_component')
       .update({ marking_guidance: g.component_guidance.trim() })
-      .eq('id', comp.id)
+      .in('id', comps.map((c) => c.id))
     if (error) throw new Error(`component: ${error.message}`)
   }
 
   let written = 0
-  for (const c of g.criteria ?? []) {
-    const critId = byLetter.get(c.letter)
-    if (!critId) continue
-    if (c.guidance?.trim()) {
-      const { error } = await db
-        .from('ib_criterion')
-        .update({ marking_guidance: c.guidance.trim() })
-        .eq('id', critId)
-      if (error) throw new Error(`criterion ${c.letter}: ${error.message}`)
-      written++
-    }
-    for (const b of c.bands ?? []) {
-      if (!b.guidance?.trim()) continue
-      const { error } = await db
-        .from('ib_criterion_band')
-        .update({ marking_guidance: b.guidance.trim() })
-        .eq('criterion_id', critId)
-        .eq('marks_min', b.marks_min)
-        .eq('marks_max', b.marks_max)
-      if (error) throw new Error(`band ${c.letter} ${b.marks_min}-${b.marks_max}: ${error.message}`)
-      written++
+  for (const comp of comps) {
+    const byLetter = new Map(
+      (allCriteria ?? [])
+        .filter((c) => c.component_id === comp.id)
+        .map((c) => [c.letter, c.id])
+    )
+    for (const c of g.criteria ?? []) {
+      const critId = byLetter.get(c.letter)
+      if (!critId) continue
+      if (c.guidance?.trim()) {
+        const { error } = await db
+          .from('ib_criterion')
+          .update({ marking_guidance: c.guidance.trim() })
+          .eq('id', critId)
+        if (error) throw new Error(`criterion ${c.letter}: ${error.message}`)
+        written++
+      }
+      for (const b of c.bands ?? []) {
+        if (!b.guidance?.trim()) continue
+        const { error } = await db
+          .from('ib_criterion_band')
+          .update({ marking_guidance: b.guidance.trim() })
+          .eq('criterion_id', critId)
+          .eq('marks_min', b.marks_min)
+          .eq('marks_max', b.marks_max)
+        if (error) throw new Error(`band ${c.letter} ${b.marks_min}-${b.marks_max}: ${error.message}`)
+        written++
+      }
     }
   }
 

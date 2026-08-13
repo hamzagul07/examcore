@@ -43,10 +43,7 @@ import type {
   ResolvedIbComponent,
 } from '@/lib/marking/types'
 import { coerceMarkingStyle } from '@/lib/marking/types'
-import {
-  IB_CORE_LEVEL,
-  resolveIbCoreComponent,
-} from '@/lib/ib/core-components'
+import { resolveIbCoreComponent } from '@/lib/ib/core-components'
 import {
   resolveComponentForMarking,
   splitLegacyIbCode,
@@ -187,10 +184,10 @@ async function resolvePracticeIb(
 ): Promise<ResolvedIbComponent | null> {
   if (!practiceCode.startsWith('ib-')) return null
 
-  // TOK and the Extended Essay have no level and no component picker, so both
-  // guards below used to reject them outright and their marking fell back to a
-  // placeholder rubric — while the real, source-cited descriptors sat unused in
-  // the catalogue. Resolve them from their known component instead.
+  // Portfolio-shaped subjects — TOK, the Extended Essay, Visual Arts — have no
+  // component picker, so the guards below used to reject them outright and
+  // their marking fell back to a placeholder rubric while the real,
+  // source-cited descriptors sat unused in the catalogue.
   const core = ibComponentKey?.trim()
     ? null
     : resolveIbCoreComponent(practiceCode, questionText)
@@ -198,7 +195,7 @@ async function resolvePracticeIb(
     try {
       return await resolveComponentForMarking(
         core.subjectCode,
-        IB_CORE_LEVEL,
+        core.level,
         core.componentKey
       )
     } catch (err) {

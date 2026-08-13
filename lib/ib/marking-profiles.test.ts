@@ -79,10 +79,22 @@ function main() {
       `${p.code} needs a practice mark total — it is the denominator of a generated question`
     )
     if (p.criteria?.length) {
-      // Criteria totals feed the authoritative denominator in reconcile-marks,
-      // so a zero-mark criterion would silently distort a score.
       for (const c of p.criteria) {
+        // Criteria totals feed the authoritative denominator in reconcile-marks,
+        // so a zero-mark criterion would silently distort a score.
         assert.ok(c.maxMarks > 0, `${p.code} criterion ${c.id} needs a max`)
+        // The rule this file exists to hold: static profiles describe the SHAPE
+        // of an assessment, never its band descriptors. Every profile here once
+        // carried the same generic five-level text under real-sounding
+        // criterion names, so a student could be told they scored 5/8 on
+        // "Artistic intention" against wording the IB never wrote. Band
+        // descriptors come from `ib_criterion_band`, verbatim and cited, or
+        // they do not come at all.
+        assert.equal(
+          c.bands,
+          undefined,
+          `${p.code} criterion ${c.id} carries inline bands — descriptors must come from the catalogue`
+        )
       }
     }
   }

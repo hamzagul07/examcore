@@ -45,19 +45,10 @@ export type IbMarkingProfile = {
   markingBlurb: string
 }
 
-const LOR_BANDS_5: IbCriterionBand[] = [
-  { level: 0, descriptor: 'Work does not reach the standard described by levels 1–5.' },
-  { level: 1, descriptor: 'Limited engagement with the task; descriptive with little analysis.' },
-  { level: 2, descriptor: 'Some relevant points; analysis is superficial or uneven.' },
-  { level: 3, descriptor: 'Adequate response; analysis is clear but not sustained.' },
-  { level: 4, descriptor: 'Good response; analysis is mostly convincing with some evaluation.' },
-  { level: 5, descriptor: 'Excellent response; sustained, convincing analysis and evaluation.' },
-]
-
 /**
  * Extended Essay criteria — shape only; the bands are catalogued.
  *
- * These carried `LOR_BANDS_5`, a generic five-level scale, where the IB uses
+ * These carried a generic five-level band scale, where the IB uses
  * four bands per criterion with descriptors averaging ~470 characters. Marking
  * an EE against the generic version was strictly worse than the verbatim text
  * already stored in `ib_criterion_band`, which is what marking now reads.
@@ -82,46 +73,27 @@ const TOK_ESSAY_CRITERIA: IbCriterion[] = [
   { id: 'A', name: 'Theory of knowledge essay', maxMarks: 10 },
 ]
 
-const VA_COMPARATIVE: IbCriterion[] = [
-  { id: 'A', name: 'Identification and analysis of formal qualities', maxMarks: 6, bands: LOR_BANDS_5 },
-  { id: 'B', name: 'Analysis and understanding of function and purpose', maxMarks: 6, bands: LOR_BANDS_5 },
-  { id: 'C', name: 'Analysis and evaluation of cultural significance', maxMarks: 6, bands: LOR_BANDS_5 },
-  { id: 'D', name: 'Presentation and subject-specific language', maxMarks: 6, bands: LOR_BANDS_5 },
-]
-
-const FILM_COMPARATIVE: IbCriterion[] = [
-  { id: 'A', name: 'Identification and analysis of film elements', maxMarks: 6, bands: LOR_BANDS_5 },
-  { id: 'B', name: 'Understanding of cultural contexts', maxMarks: 6, bands: LOR_BANDS_5 },
-  { id: 'C', name: 'Comparison and synthesis', maxMarks: 6, bands: LOR_BANDS_5 },
-  { id: 'D', name: 'Presentation and use of film terminology', maxMarks: 6, bands: LOR_BANDS_5 },
-]
-
-const THEATRE_CRITERIA: IbCriterion[] = [
-  { id: 'A', name: 'Artistic intention and theatrical vision', maxMarks: 8, bands: LOR_BANDS_5 },
-  { id: 'B', name: 'Theatrical choices and techniques', maxMarks: 8, bands: LOR_BANDS_5 },
-  { id: 'C', name: 'Performance and production skills', maxMarks: 4, bands: LOR_BANDS_5 },
-]
-
-const MUSIC_CRITERIA: IbCriterion[] = [
-  { id: 'A', name: 'Contextual understanding and inquiry', maxMarks: 6, bands: LOR_BANDS_5 },
-  { id: 'B', name: 'Musical analysis and experimentation', maxMarks: 8, bands: LOR_BANDS_5 },
-  { id: 'C', name: 'Presentation and reflection', maxMarks: 6, bands: LOR_BANDS_5 },
-]
-
-const DANCE_CRITERIA: IbCriterion[] = [
-  { id: 'A', name: 'Composition and choreographic choices', maxMarks: 10, bands: LOR_BANDS_5 },
-  { id: 'B', name: 'Analysis and justification', maxMarks: 10, bands: LOR_BANDS_5 },
-]
-
-const CAS_LO_CRITERIA: IbCriterion[] = [
-  { id: 'LO1', name: 'Strengths and growth', maxMarks: 2, bands: LOR_BANDS_5 },
-  { id: 'LO2', name: 'Challenge and skills', maxMarks: 2, bands: LOR_BANDS_5 },
-  { id: 'LO3', name: 'Initiative and planning', maxMarks: 2, bands: LOR_BANDS_5 },
-  { id: 'LO4', name: 'Commitment and perseverance', maxMarks: 2, bands: LOR_BANDS_5 },
-  { id: 'LO5', name: 'Collaboration', maxMarks: 2, bands: LOR_BANDS_5 },
-  { id: 'LO6', name: 'Global engagement', maxMarks: 2, bands: LOR_BANDS_5 },
-  { id: 'LO7', name: 'Ethics of choices and actions', maxMarks: 2, bands: LOR_BANDS_5 },
-]
+/**
+ * Group 6 and CAS: no rubric here, on purpose.
+ *
+ * These subjects used to declare criteria — "Artistic intention and theatrical
+ * vision /8", "Composition and choreographic choices /10" — carrying the same
+ * generic five-level band text as every other subject. None of it is sourced.
+ * Unlike Visual Arts, which is catalogued and now marks against its real
+ * descriptors, Film, Theatre, Music, Dance and CAS have no rows in
+ * `ib_criterion_band` at all, so there was nothing to check those numbers
+ * against and no way to correct them.
+ *
+ * An invented rubric is worse than an honest generic one precisely because it
+ * looks authoritative: a student told they scored 5/8 on "Artistic intention"
+ * reasonably believes an examiner would recognise that criterion. Without the
+ * source text these fall back to the openly-labelled generic band scale, which
+ * gives a defensible mark and does not put words in the IB's mouth.
+ *
+ * The fix is to ingest the real descriptors into the catalogue — the same
+ * pipeline that already holds Visual Arts, TOK and the EE — not to re-add
+ * plausible-looking constants here.
+ */
 
 function profile(
   slug: string,
@@ -334,8 +306,7 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
     'level_of_response',
     14,
     { Portfolio: 'level_of_response' },
-    'CAS reflections and learning outcomes — formative criterion-style feedback against all seven LOs.',
-    CAS_LO_CRITERIA
+    'CAS reflections and learning outcomes — formative criterion-style feedback against all seven LOs.'
   ),
 
   // ── Group 6 — The Arts ─────────────────────────────────────────────────────
@@ -351,8 +322,7 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
       'Process portfolio': 'level_of_response',
       Exhibition: 'level_of_response',
     },
-    'Visual Arts HL — comparative study, process portfolio, and exhibition criteria.',
-    VA_COMPARATIVE
+    'Visual Arts HL — comparative study, process portfolio, and exhibition criteria.'
   ),
   profile(
     'visual-arts-sl',
@@ -366,8 +336,7 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
       'Process portfolio': 'level_of_response',
       Exhibition: 'level_of_response',
     },
-    'Visual Arts SL — same components with reduced breadth expectations.',
-    VA_COMPARATIVE
+    'Visual Arts SL — same components with reduced breadth expectations.'
   ),
   profile(
     'theatre-hl',
@@ -382,8 +351,7 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
       'Research presentation': 'level_of_response',
       'Collaborative project': 'level_of_response',
     },
-    'Theatre HL — solo piece, director\'s notebook, research presentation, collaborative project.',
-    THEATRE_CRITERIA
+    'Theatre HL — solo piece, director\'s notebook, research presentation, collaborative project.'
   ),
   profile(
     'theatre-sl',
@@ -397,8 +365,7 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
       'Director\'s notebook': 'level_of_response',
       'Research presentation': 'level_of_response',
     },
-    'Theatre SL — performance and research components with IB assessment criteria.',
-    THEATRE_CRITERIA
+    'Theatre SL — performance and research components with IB assessment criteria.'
   ),
   profile(
     'music-hl',
@@ -412,8 +379,7 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
       'Experimenting with music': 'level_of_response',
       'Presenting music': 'level_of_response',
     },
-    'Music HL — inquiry, experimentation, and presentation criteria.',
-    MUSIC_CRITERIA
+    'Music HL — inquiry, experimentation, and presentation criteria.'
   ),
   profile(
     'music-sl',
@@ -427,8 +393,7 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
       'Experimenting with music': 'level_of_response',
       'Presenting music': 'level_of_response',
     },
-    'Music SL — musical analysis and creating criteria.',
-    MUSIC_CRITERIA
+    'Music SL — musical analysis and creating criteria.'
   ),
   profile(
     'film-hl',
@@ -443,8 +408,7 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
       'Film portfolio': 'level_of_response',
       'Collaborative project': 'level_of_response',
     },
-    'Film HL — analysis, comparison, portfolio, and collaborative filmmaking.',
-    FILM_COMPARATIVE
+    'Film HL — analysis, comparison, portfolio, and collaborative filmmaking.'
   ),
   profile(
     'film-sl',
@@ -458,8 +422,7 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
       'Comparative study': 'level_of_response',
       'Film portfolio': 'level_of_response',
     },
-    'Film SL — textual analysis and portfolio criteria.',
-    FILM_COMPARATIVE
+    'Film SL — textual analysis and portfolio criteria.'
   ),
   profile(
     'dance-hl',
@@ -473,8 +436,7 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
       'Dance investigation': 'level_of_response',
       'Performance': 'level_of_response',
     },
-    'Dance HL — composition, investigation, and performance criteria.',
-    DANCE_CRITERIA
+    'Dance HL — composition, investigation, and performance criteria.'
   ),
   profile(
     'dance-sl',
@@ -488,8 +450,7 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
       'Dance investigation': 'level_of_response',
       'Performance': 'level_of_response',
     },
-    'Dance SL — choreography and analysis markbands.',
-    DANCE_CRITERIA
+    'Dance SL — choreography and analysis markbands.'
   ),
 ]
 

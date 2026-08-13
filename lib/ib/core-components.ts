@@ -1,58 +1,97 @@
 /**
- * Catalogued components for the IB core — TOK and the Extended Essay.
+ * Which catalogued component to mark against when the UI never asked.
  *
- * These are the only markable subjects with no HL/SL level and no component
- * picker in the UI, which is exactly why their marking silently fell through to
- * a hardcoded placeholder rubric: `resolvePracticeIb` bails when a code carries
- * no `-hl`/`-sl` suffix, so the verbatim, source-cited descriptors sitting in
- * `ib_criterion_band` were never reached.
+ * The component picker only appears for subjects whose assessment is a numbered
+ * paper. Everything portfolio-shaped — TOK, the Extended Essay, Visual Arts —
+ * has no picker, and `resolvePracticeIb` refuses to resolve without a component
+ * key (and, for the core, without an HL/SL level). So the verbatim, source-cited
+ * descriptors in `ib_criterion_band` were unreachable for exactly the subjects
+ * whose marking depends most on them, and a hardcoded placeholder marked
+ * instead.
  *
- * Mapping them here restores the real rubric. It matters more for these two
- * than for anything else in the diploma: a TOK essay is a single holistic
- * 10-mark judgement and an EE is 34 marks across five criteria, so a wrong
- * rubric is not a rounding error — it is a different exam.
+ * Mapping the default here restores the real rubric. Where a subject has
+ * several components that are genuinely different assessments, the most common
+ * submission is the default and the others are chosen only on an explicit
+ * textual signal — a guess between them would mark a student against the wrong
+ * assessment entirely, which is worse than the generic fallback.
  */
 
-export type IbCoreComponent = {
+export type IbDefaultComponent = {
   /** Subject code as the catalogue stores it. */
   subjectCode: string
   componentKey: string
+  /** Level the catalogue lookup should filter on. */
+  level: 'HL' | 'SL'
 }
 
 /**
  * Level is meaningless for the core — every core component is stored as
- * `level: 'both'`, and `levelMatches` accepts either — but the catalogue
+ * `level: 'both'` and `levelMatches` accepts either — but the catalogue
  * accessor demands one, so pick a side and be explicit about why.
  */
 export const IB_CORE_LEVEL = 'SL' as const
 
+function levelFromProfileCode(code: string): 'HL' | 'SL' | null {
+  const m = code.match(/-(hl|sl)$/i)
+  return m ? (m[1].toUpperCase() as 'HL' | 'SL') : null
+}
+
 /**
- * Which component a core submission should be marked against.
- *
- * TOK has two, and they are not interchangeable: the essay responds to a
- * prescribed title, the exhibition explains three objects against an IA prompt.
- * The essay is the default because it is the far more common submission; the
- * exhibition is chosen only on an explicit signal rather than a guess, since
- * marking an essay against exhibition descriptors would be worse than the
- * generic fallback.
+ * The component a submission for `profileCode` should be marked against, or
+ * null when the subject has no catalogued default and should fall back.
  */
 export function resolveIbCoreComponent(
-  subjectCode: string,
+  profileCode: string,
   questionText?: string | null
-): IbCoreComponent | null {
-  const code = subjectCode.trim().toLowerCase()
+): IbDefaultComponent | null {
+  const code = profileCode.trim().toLowerCase()
+  const text = questionText ?? ''
 
   if (code === 'ib-extended-essay') {
-    return { subjectCode: 'ib-extended-essay', componentKey: 'ee' }
+    return {
+      subjectCode: 'ib-extended-essay',
+      componentKey: 'ee',
+      level: IB_CORE_LEVEL,
+    }
   }
 
   if (code === 'ib-tok') {
-    const looksLikeExhibition = /\bexhibition\b|\bIA prompt\b|three objects/i.test(
-      questionText ?? ''
-    )
+    // The essay responds to a prescribed title; the exhibition explains three
+    // objects against an IA prompt. Not interchangeable.
+    const isExhibition = /\bexhibition\b|\bIA prompt\b|three objects/i.test(text)
     return {
       subjectCode: 'ib-tok',
-      componentKey: looksLikeExhibition ? 'tok_exhibition' : 'tok_essay',
+      componentKey: isExhibition ? 'tok_exhibition' : 'tok_essay',
+      level: IB_CORE_LEVEL,
+    }
+  }
+
+  if (code.startsWith('ib-visual-arts')) {
+    const level = levelFromProfileCode(code)
+    if (!level) return null
+    // Visual Arts has three parts and the catalogue keys two of them by level.
+    // The comparative study is the default because it is the written component
+    // a student can actually submit for text marking; the exhibition's
+    // curatorial rationale and the process portfolio are recognised only when
+    // named.
+    if (/process portfolio/i.test(text)) {
+      return {
+        subjectCode: 'ib-visual-arts',
+        componentKey: 'process_portfolio',
+        level,
+      }
+    }
+    if (/\bexhibition\b|curatorial rationale/i.test(text)) {
+      return {
+        subjectCode: 'ib-visual-arts',
+        componentKey: `exhibition_${level.toLowerCase()}`,
+        level,
+      }
+    }
+    return {
+      subjectCode: 'ib-visual-arts',
+      componentKey: `comparative_study_${level.toLowerCase()}`,
+      level,
     }
   }
 

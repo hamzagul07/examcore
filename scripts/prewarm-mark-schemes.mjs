@@ -452,6 +452,11 @@ async function main() {
   let warmed = 0
   let cached = 0
   let failed = 0
+  // A paper whose PDFs are not in storage is not a failure — it is a session
+  // that has not been synced yet, and counting it alongside real extraction
+  // errors makes a healthy run look broken. Adding the current session to the
+  // defaults guarantees a batch of these until those papers land.
+  let missing = 0
   let warmRemaining = WARM_LIMIT
 
   console.log(
@@ -495,14 +500,21 @@ async function main() {
       warmRemaining--
       console.log(`[ok] ${key} — ${count} questions`)
     } catch (err) {
-      failed++
       const msg = err instanceof Error ? err.message : String(err)
-      log.failed[key] = msg
-      saveLog(log)
-      console.error(`[fail] ${key}: ${msg}`)
+      if (/PDF missing|Object not found/i.test(msg)) {
+        missing++
+        console.log(`[not-synced] ${key}`)
+      } else {
+        failed++
+        log.failed[key] = msg
+        saveLog(log)
+        console.error(`[fail] ${key}: ${msg}`)
+      }
     }
 
     if (warmRemaining <= 0) break
+    // Nothing was asked of Gemini for an unsynced paper, so there is nothing to
+    // pace against — waiting there just makes a no-op run take an hour.
     if (warmed > 0 || failed > 0) {
       console.log(`Waiting ${PACE_MS / 1000}s before next paper…`)
       await new Promise((r) => setTimeout(r, PACE_MS))
@@ -512,6 +524,7 @@ async function main() {
   console.log('\n--- Summary ---')
   console.log(`Pre-warmed: ${warmed}`)
   console.log(`Already cached: ${cached}`)
+  console.log(`Not synced (no PDF in storage): ${missing}`)
   console.log(`Failed: ${failed}`)
   console.log(`Log: ${LOG_PATH}`)
 }

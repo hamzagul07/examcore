@@ -17,6 +17,17 @@
  * or replace the descriptor it accompanies — the prompt sends both.
  *
  * Writes JSON for review. Applying is a separate, deliberate step.
+ *
+ * WHY NOT SUBJECT REPORTS. They would be the natural source for exam papers —
+ * teacher support material turns out to be overwhelmingly about internal
+ * assessment (Economics devotes 24 pages to the commentary and 3 to the papers),
+ * so the papers get little from this route. Subject reports carry exactly the
+ * missing thing: what candidates actually got wrong and what separated strong
+ * answers. The archive here holds 1,418 of them and stops at November 2018,
+ * which predates every current guide in the catalogue — Economics 2022, TOK
+ * 2022, Business Management 2024, the sciences 2025. Examiner commentary on a
+ * syllabus nobody sits is worse than none, so the avenue is closed until newer
+ * reports exist. Checked 2026-08; re-check if the archive is topped up.
  */
 import fs from 'node:fs'
 import path from 'node:path'

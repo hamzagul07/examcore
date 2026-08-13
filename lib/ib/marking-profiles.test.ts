@@ -83,7 +83,6 @@ function main() {
       // so a zero-mark criterion would silently distort a score.
       for (const c of p.criteria) {
         assert.ok(c.maxMarks > 0, `${p.code} criterion ${c.id} needs a max`)
-        assert.ok(c.bands.length > 0, `${p.code} criterion ${c.id} needs bands`)
       }
     }
   }

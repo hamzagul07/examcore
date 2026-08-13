@@ -92,6 +92,7 @@ import {
   ibPracticeMarkingStyle,
 } from '@/lib/ib/marking-config'
 import { resolveMarkingSubjectName } from '@/lib/marking/subject-name'
+import { looksLikeExtendedResponse } from '@/lib/marking/question-style'
 import { buildIbPracticeMarkScheme } from '@/lib/marking/ib-practice-scheme'
 
 export const supabaseAdmin = createClient(
@@ -588,6 +589,24 @@ export async function markSingleQuestion(params: {
   let derivedSchemeSource: 'cache' | 'fresh' | null = null
   const hasRealScheme =
     (isOfficial && !!effectiveMarkScheme) || resolvedIb?.officialScheme != null
+
+  // An extended-response question with no published scheme must be banded, not
+  // point-hunted. Left as point_based it would derive a list of discrete award
+  // points — a whole Pro call — and then fail to match any of them against
+  // continuous prose, which is how a competent 12-mark essay scored zero.
+  // Never overrides a real scheme: if the board says how to mark it, that wins.
+  if (
+    markingStyle === 'point_based' &&
+    !hasRealScheme &&
+    looksLikeExtendedResponse({
+      questionText,
+      totalMarks: questionTotalMarks ?? null,
+      subjectCode,
+    })
+  ) {
+    markingStyle = 'level_of_response'
+  }
+
   if (
     markingStyle === 'point_based' &&
     !hasRealScheme &&

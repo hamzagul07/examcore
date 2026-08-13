@@ -44,6 +44,10 @@ import type {
 } from '@/lib/marking/types'
 import { coerceMarkingStyle } from '@/lib/marking/types'
 import {
+  IB_CORE_LEVEL,
+  resolveIbCoreComponent,
+} from '@/lib/ib/core-components'
+import {
   resolveComponentForMarking,
   splitLegacyIbCode,
   normalizeIbQuestionNumber,
@@ -177,9 +181,33 @@ function emitContext(
 async function resolvePracticeIb(
   practiceCode: string,
   ibComponentKey: string | null | undefined,
-  ibLevel: string | null | undefined
+  ibLevel: string | null | undefined,
+  /** Used only to tell a TOK essay from a TOK exhibition. */
+  questionText?: string | null
 ): Promise<ResolvedIbComponent | null> {
-  if (!practiceCode.startsWith('ib-') || !ibComponentKey) return null
+  if (!practiceCode.startsWith('ib-')) return null
+
+  // TOK and the Extended Essay have no level and no component picker, so both
+  // guards below used to reject them outright and their marking fell back to a
+  // placeholder rubric — while the real, source-cited descriptors sat unused in
+  // the catalogue. Resolve them from their known component instead.
+  const core = ibComponentKey?.trim()
+    ? null
+    : resolveIbCoreComponent(practiceCode, questionText)
+  if (core) {
+    try {
+      return await resolveComponentForMarking(
+        core.subjectCode,
+        IB_CORE_LEVEL,
+        core.componentKey
+      )
+    } catch (err) {
+      console.warn('[mark] IB core catalog resolve failed; using fallback', err)
+      return null
+    }
+  }
+
+  if (!ibComponentKey) return null
   const { subjectCode: catSubject, level: legacyLevel } =
     splitLegacyIbCode(practiceCode)
   const rawLevel = (ibLevel?.trim().toUpperCase() || legacyLevel) as
@@ -822,7 +850,8 @@ export async function runSingleQuestionMark(
         const sharedIb = await resolvePracticeIb(
           practiceCode,
           ibComponentKey,
-          ibLevel
+          ibLevel,
+          ocrText
         )
         return await markSplitQuestions({
           split,
@@ -866,7 +895,12 @@ export async function runSingleQuestionMark(
 
     // M1: if the upload carries an IB component + level and the subject is
     // catalogued, resolve it. Non-catalogued subjects return null → unchanged path.
-    resolvedIb = await resolvePracticeIb(practiceCode, ibComponentKey, ibLevel)
+    resolvedIb = await resolvePracticeIb(
+      practiceCode,
+      ibComponentKey,
+      ibLevel,
+      questionTextInput || ocrText
+    )
     // Attach the official points scheme for this single question when one is
     // ingested (parity with the multi-question path); else derive-then-mark.
     if (singleQuestionNumber) {

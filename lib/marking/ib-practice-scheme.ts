@@ -3,6 +3,19 @@ import type { MarkSchemeRow, MarkingStyle } from '@/lib/marking/types'
 
 const IB_BOARD = 'IB Diploma'
 
+/**
+ * Only criteria that carry their own bands can act as a rubric.
+ *
+ * TOK and the Extended Essay deliberately no longer do: their bands are the
+ * verbatim, source-cited ones in `ib_criterion_band`, reached through the
+ * catalogue. If that lookup fails we fall back to the generic band scale below,
+ * which is honestly generic — rather than a paraphrased rubric wearing the
+ * IB's name.
+ */
+function hasUsableBands(criteria: IbCriterion[]): boolean {
+  return criteria.length > 0 && criteria.every((c) => (c.bands?.length ?? 0) > 0)
+}
+
 function criteriaToMarkSchemeJson(criteria: IbCriterion[]): Record<string, unknown> {
   return {
     type: 'level_of_response',
@@ -11,7 +24,7 @@ function criteriaToMarkSchemeJson(criteria: IbCriterion[]): Record<string, unkno
       id: c.id,
       name: c.name,
       max_marks: c.maxMarks,
-      bands: c.bands.map((b) => ({
+      bands: (c.bands ?? []).map((b) => ({
         level: b.level,
         descriptor: b.descriptor,
       })),
@@ -26,7 +39,7 @@ export function buildIbPracticeMarkScheme(
 ): MarkSchemeRow {
   const style: MarkingStyle = profile.practiceStyle
   const total = profile.practiceMaxMarks
-  const ms = profile.criteria?.length
+  const ms = profile.criteria && hasUsableBands(profile.criteria)
     ? criteriaToMarkSchemeJson(profile.criteria)
     : {
         type: style,

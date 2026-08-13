@@ -35,6 +35,10 @@ export function looksLikeMcq(questionText: string): boolean {
 import type { MarkSchemeRow } from './types'
 import { parsePaperCode } from './component-types'
 import { buildSyllabusTaggingBlock } from '@/lib/syllabi'
+import {
+  buildGenericBandScale,
+  looksLikeExtendedResponse,
+} from '@/lib/marking/question-style'
 
 export function buildMarkingPrompt(params: {
   markScheme: MarkSchemeRow | null
@@ -185,6 +189,28 @@ export function buildMarkingPrompt(params: {
   }
 
   if (!markScheme) {
+    // Essay first. This branch used to return a point-based prompt for every
+    // schemeless question regardless of the resolved style, which is how
+    // "Evaluate the view that…" ended up checked against a list of discrete
+    // award points and scored zero. Banding it against a scale that is openly
+    // generic beats point-hunting continuous prose.
+    if (
+      looksLikeExtendedResponse({
+        questionText,
+        totalMarks: questionTotalMarks ?? null,
+        subjectCode,
+      })
+    ) {
+      return buildLorMarkingPrompt(
+        subjectName,
+        questionText,
+        questionTotalMarks as number,
+        JSON.stringify(buildGenericBandScale(questionTotalMarks as number), null, 2),
+        ocrText,
+        syllabusBlock
+      )
+    }
+
     // No official scheme: use the student-supplied total when given, otherwise
     // let the model read the mark allocation from the question (0 = infer). Never
     // fall back to a fixed denominator — that was the source of wrong totals.

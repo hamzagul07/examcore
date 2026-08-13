@@ -15,7 +15,17 @@ export type IbCriterion = {
   id: string
   name: string
   maxMarks: number
-  bands: IbCriterionBand[]
+  /**
+   * Omitted when the authoritative bands live in the catalogue
+   * (`ib_criterion_band`) rather than here.
+   *
+   * A criterion without bands still describes the shape of the assessment —
+   * how many marks, under what heading — which is all the practice-question
+   * generator needs. What it deliberately cannot do is act as a marking rubric,
+   * because a paraphrased band descriptor marks a student against a standard
+   * the IB never wrote.
+   */
+  bands?: IbCriterionBand[]
 }
 
 export type IbMarkingProfile = {
@@ -44,27 +54,32 @@ const LOR_BANDS_5: IbCriterionBand[] = [
   { level: 5, descriptor: 'Excellent response; sustained, convincing analysis and evaluation.' },
 ]
 
+/**
+ * Extended Essay criteria — shape only; the bands are catalogued.
+ *
+ * These carried `LOR_BANDS_5`, a generic five-level scale, where the IB uses
+ * four bands per criterion with descriptors averaging ~470 characters. Marking
+ * an EE against the generic version was strictly worse than the verbatim text
+ * already stored in `ib_criterion_band`, which is what marking now reads.
+ */
 const EE_CRITERIA: IbCriterion[] = [
-  { id: 'A', name: 'Focus and method', maxMarks: 6, bands: LOR_BANDS_5 },
-  { id: 'B', name: 'Knowledge and understanding', maxMarks: 6, bands: LOR_BANDS_5 },
-  { id: 'C', name: 'Critical thinking', maxMarks: 12, bands: LOR_BANDS_5 },
-  { id: 'D', name: 'Presentation', maxMarks: 4, bands: LOR_BANDS_5 },
-  { id: 'E', name: 'Engagement', maxMarks: 6, bands: LOR_BANDS_5 },
+  { id: 'A', name: 'Focus and method', maxMarks: 6 },
+  { id: 'B', name: 'Knowledge and understanding', maxMarks: 6 },
+  { id: 'C', name: 'Critical thinking', maxMarks: 12 },
+  { id: 'D', name: 'Presentation', maxMarks: 4 },
+  { id: 'E', name: 'Engagement', maxMarks: 6 },
 ]
 
+/**
+ * TOK essay — ONE holistic criterion out of 10.
+ *
+ * This used to declare two criteria of five marks each, which is not how the
+ * TOK essay is assessed and not what the catalogue holds: the IB marks it as a
+ * single global-impression judgement against six bands. Splitting it in two
+ * invented an assessment structure and then marked students against it.
+ */
 const TOK_ESSAY_CRITERIA: IbCriterion[] = [
-  {
-    id: 'A',
-    name: 'Understanding knowledge questions',
-    maxMarks: 5,
-    bands: LOR_BANDS_5,
-  },
-  {
-    id: 'B',
-    name: 'Quality of analysis of knowledge questions',
-    maxMarks: 5,
-    bands: LOR_BANDS_5,
-  },
+  { id: 'A', name: 'Theory of knowledge essay', maxMarks: 10 },
 ]
 
 const VA_COMPARATIVE: IbCriterion[] = [

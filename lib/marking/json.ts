@@ -56,16 +56,56 @@ function* iterJsonObjectCandidates(text: string): Generator<string> {
   yield trimmed
 }
 
+/**
+ * Escape backslashes that JSON does not recognise, leaving real escapes alone.
+ *
+ * Models writing mark schemes emit LaTeX inside JSON strings — `"$61.5(\%)$"`,
+ * `\frac`, `\left` — and a lone backslash before anything outside
+ * `"\/bfnrtu` is not a legal JSON escape, so the whole document fails to parse
+ * on one percent sign. `jsonrepair` then "fixes" it into a shape without the
+ * key the caller wanted, so the failure surfaced as "all extracted questions
+ * failed validation" for a paper whose extraction was in fact perfect: 57KB of
+ * complete, correct JSON, thrown away over `\%`.
+ *
+ * Scanned left to right so a valid escape is consumed whole. A naive
+ * `replace(/\\(?!["\\/bfnrtu])/g, …)` corrupts `\\%`, whose first
+ * backslash is legal and whose second then looks lone.
+ */
+const JSON_ESCAPE_SCAN = new RegExp(
+  // A legal escape, captured, OR a lone backslash that is not one.
+  '\\\\(["\\\\/bfnrtu]|u[0-9a-fA-F]{4})|\\\\',
+  'g'
+)
+
+function escapeInvalidJsonEscapes(input: string): string {
+  return input.replace(JSON_ESCAPE_SCAN, (match, valid: string | undefined) =>
+    valid ? match : '\\\\'
+  )
+}
+
 function tryParseJson(candidate: string): unknown | null {
   const jsonString = candidate.trim()
   if (!jsonString) return null
   try {
     return JSON.parse(jsonString)
   } catch {
+    // Repair invalid escapes BEFORE jsonrepair sees the string. jsonrepair is
+    // good at missing commas and trailing junk, and destructive on this — it
+    // returns an object rather than an error, which is why nothing upstream
+    // noticed.
     try {
-      return JSON.parse(jsonrepair(jsonString))
+      return JSON.parse(escapeInvalidJsonEscapes(jsonString))
     } catch {
-      return null
+      /* fall through to jsonrepair */
+    }
+    try {
+      return JSON.parse(jsonrepair(escapeInvalidJsonEscapes(jsonString)))
+    } catch {
+      try {
+        return JSON.parse(jsonrepair(jsonString))
+      } catch {
+        return null
+      }
     }
   }
 }
@@ -84,7 +124,12 @@ function scoreJsonCandidate(parsed: unknown): number {
   if (obj.band_result && typeof obj.band_result === 'object') score += 30
   if (typeof obj.full_text === 'string') score += 15
   if (Array.isArray(obj.lines)) score += 10
-  if (Array.isArray(obj.questions)) score += 10
+  // The wrapper must outrank the things it contains. A paper extraction is
+  // `{questions:[…]}` and each question carries its own numeric `total_marks`,
+  // which scores +25 below — so at +10 a single question (30) beat the document
+  // holding all forty of them (12), and `extractJSON` confidently returned one
+  // question as if it were the paper. Same shape of fix as `objectives`.
+  if (Array.isArray(obj.questions)) score += 100 + obj.questions.length
   // Syllabus-extraction payload: the wrapper {syllabus_year, objectives:[…]}
   // must outrank an individual objective object (which has more keys).
   if (Array.isArray(obj.objectives)) score += 100 + obj.objectives.length

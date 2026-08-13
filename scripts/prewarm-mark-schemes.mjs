@@ -3,7 +3,15 @@
  * Pre-extract full mark schemes for high-traffic papers into mark_schemes.
  *
  * Run: pnpm prewarm-schemes
- *      pnpm prewarm-schemes --dry-run   (first 3 uncached papers only)
+ *      pnpm prewarm-schemes --dry-run      (list targets; writes nothing)
+ *      pnpm prewarm-schemes --limit=3      (warm 3 papers for real)
+ *      pnpm prewarm-schemes --from-demand  (target what students actually mark)
+ *
+ * A cached scheme is the difference between a mark that looks one up and a mark
+ * that spends a Gemini Pro call deriving one — the most expensive stage there
+ * is. `--from-demand` reads mark_runs and warms the subjects being marked, in
+ * volume order, instead of a list that was written once and has since drifted
+ * behind what students study.
  */
 
 import { createClient } from '@supabase/supabase-js'
@@ -22,7 +30,17 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const LOG_PATH = join(__dirname, 'prewarm-log.json')
 
+/**
+ * `--dry-run` lists what would be warmed and writes nothing.
+ *
+ * It used to extract three papers for real — spending Gemini and writing to
+ * mark_schemes — which is the opposite of what the flag says and of what anyone
+ * reaches for it to find out. The "do a few for real" behaviour still exists,
+ * under a name that admits it.
+ */
 const DRY_RUN = process.argv.includes('--dry-run')
+const LIMIT_ARG = process.argv.find((a) => a.startsWith('--limit='))
+const WARM_LIMIT = LIMIT_ARG ? Math.max(1, Number(LIMIT_ARG.split('=')[1])) : Infinity
 // Seconds between papers; overridable with --pace=10 (min 2s).
 const PACE_ARG = process.argv.find((a) => a.startsWith('--pace='))
 const PACE_MS = PACE_ARG ? Math.max(2000, Number(PACE_ARG.split('=')[1]) * 1000) : 30_000
@@ -39,7 +57,7 @@ const SUBJECT_NAMES = {
 const SESSION_ARG = process.argv.find((a) => a.startsWith('--sessions='))
 const SESSIONS = SESSION_ARG
   ? SESSION_ARG.split('=')[1].split(',').map((s) => s.trim()).filter(Boolean)
-  : ['s24', 'w24', 's25']
+  : ['s24', 'w24', 's25', 'w25', 's26']
 
 const PAPER_SETS = [
   {
@@ -66,6 +84,57 @@ const PAPER_SETS = [
     components: ['11', '12', '13', '21', '22', '31', '32'],
   },
 ]
+
+/**
+ * Components to try for a subject nobody listed explicitly. Deliberately the
+ * common Cambridge spread rather than a guess per subject: a component that
+ * does not exist simply finds no PDF and is skipped, which costs a lookup,
+ * while a missing one costs every student of that paper a live scheme
+ * derivation.
+ */
+const DEFAULT_COMPONENTS = ['11', '12', '13', '21', '22', '31', '32', '41', '42']
+
+/**
+ * Prewarm what students actually mark, rather than what someone listed once.
+ *
+ * The hardcoded set above covers five subjects and, until now, sessions ending
+ * at s25 — while `deriving_scheme` is the single most expensive stage of a mark
+ * and runs precisely when no official scheme was found. Marking demand has
+ * since included 9706, 9609, 9084 and 9488, none of which could ever be warmed
+ * because they were not on the list.
+ */
+async function demandPaperSets() {
+  const db = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_ROLE_KEY
+  )
+  const { data, error } = await db
+    .from('mark_runs')
+    .select('subject_code')
+    .not('subject_code', 'is', null)
+  if (error) throw new Error(error.message)
+
+  const counts = new Map()
+  for (const row of data ?? []) {
+    const code = String(row.subject_code)
+    // Cambridge syllabus codes only — IB subjects have no PDF mark schemes to
+    // extract, which is why their marking derives instead.
+    if (!/^\d{4}$/.test(code)) continue
+    counts.set(code, (counts.get(code) ?? 0) + 1)
+  }
+
+  const listed = new Map(PAPER_SETS.map((p) => [p.subject, p]))
+  const ordered = [...counts.entries()].sort((a, b) => b[1] - a[1])
+  const sets = []
+  for (const [subject, marks] of ordered) {
+    sets.push(listed.get(subject) ?? { subject, components: DEFAULT_COMPONENTS })
+    console.error(`[prewarm] demand: ${subject} — ${marks} mark(s)${listed.has(subject) ? '' : ' (not previously listed)'}`)
+  }
+  // Keep listed-but-unmarked subjects last: still worth warming, just after the
+  // ones costing students time today.
+  for (const p of PAPER_SETS) if (!counts.has(p.subject)) sets.push(p)
+  return sets
+}
 
 const GEMINI_RETRYABLE = [429, 500, 503]
 const OVERLOAD_PATTERN =
@@ -240,9 +309,11 @@ const ONLY_SUBJECTS = SUBJECT_ARG
   ? new Set(SUBJECT_ARG.split('=')[1].split(',').map((s) => s.trim()).filter(Boolean))
   : null
 
-function buildPaperList() {
+const FROM_DEMAND = process.argv.includes('--from-demand')
+
+function buildPaperList(paperSets = PAPER_SETS) {
   const list = []
-  for (const { subject, components } of PAPER_SETS) {
+  for (const { subject, components } of paperSets) {
     if (ONLY_SUBJECTS && !ONLY_SUBJECTS.has(subject)) continue
     for (const session of SESSIONS) {
       const paperSession = sessionCodeToName(session)
@@ -376,20 +447,21 @@ async function main() {
   }
 
   const log = loadLog()
-  const papers = buildPaperList()
+  const paperSets = FROM_DEMAND ? await demandPaperSets() : PAPER_SETS
+  const papers = buildPaperList(paperSets)
   let warmed = 0
   let cached = 0
   let failed = 0
-  let dryRunRemaining = DRY_RUN ? 3 : Infinity
+  let warmRemaining = WARM_LIMIT
 
   console.log(
     DRY_RUN
-      ? `Dry run: up to ${dryRunRemaining} extractions`
-      : `Pre-warming ${papers.length} paper slots…`
+      ? `Dry run — listing ${papers.length} paper slot(s). Nothing will be written.`
+      : `Pre-warming ${papers.length} paper slots${WARM_LIMIT === Infinity ? '' : ` (limit ${WARM_LIMIT})`}…`
   )
 
   for (const paper of papers) {
-    if (DRY_RUN && dryRunRemaining <= 0) break
+    if (warmRemaining <= 0) break
 
     const key = paperKey(paper.paperCode, paper.paperSession)
     if (log.completed.includes(key)) {
@@ -406,7 +478,12 @@ async function main() {
       continue
     }
 
-    if (DRY_RUN && dryRunRemaining <= 0) break
+    if (warmRemaining <= 0) break
+
+    if (DRY_RUN) {
+      console.log(`[would warm] ${key}`)
+      continue
+    }
 
     console.log(`[extract] ${key}…`)
     try {
@@ -415,7 +492,7 @@ async function main() {
       if (log.failed[key]) delete log.failed[key]
       saveLog(log)
       warmed++
-      dryRunRemaining--
+      warmRemaining--
       console.log(`[ok] ${key} — ${count} questions`)
     } catch (err) {
       failed++
@@ -425,7 +502,7 @@ async function main() {
       console.error(`[fail] ${key}: ${msg}`)
     }
 
-    if (DRY_RUN && dryRunRemaining <= 0) break
+    if (warmRemaining <= 0) break
     if (warmed > 0 || failed > 0) {
       console.log(`Waiting ${PACE_MS / 1000}s before next paper…`)
       await new Promise((r) => setTimeout(r, PACE_MS))

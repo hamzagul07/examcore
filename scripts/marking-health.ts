@@ -108,10 +108,22 @@ async function main() {
       .map(([stage, v]) => ({ stage, avg: v.total / v.runs, runs: v.runs }))
       .sort((a, b) => b.avg - a.avg)
     const worst = ranked[0].avg
-    console.log('\nWhere the wait goes (mean per run)')
+    // The sample size belongs next to the number, not implied by it. Only runs
+    // recorded since the timing migration carry stages, so this table can read
+    // as an aggregate while resting on a single run — which is how a one-off
+    // gets mistaken for a distribution and sends someone optimising the wrong
+    // stage.
+    const timed = ok.filter((r) => r.stage_timings).length
+    console.log(`\nWhere the wait goes (mean per run, n=${timed})`)
+    if (timed < 10) {
+      console.log(
+        `  ⚠ ${timed} run(s) only — indicative, not a distribution. Do not steer by this yet.`
+      )
+    }
     for (const s of ranked) {
       console.log(
-        `  ${s.stage.padEnd(16)} ${secs(s.avg).padStart(5)}  ${bar(s.avg, worst)}`
+        `  ${s.stage.padEnd(16)} ${secs(s.avg).padStart(5)}  ${bar(s.avg, worst)}` +
+          (s.runs !== timed ? `  (n=${s.runs})` : '')
       )
     }
   } else {

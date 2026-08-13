@@ -63,6 +63,13 @@ export type MarkingResultData = {
     band_result?: LorBandResult
     criteria_results?: IbCriterionResult[]
     marking_style?: MarkingStyle
+    /** Which published IB guide this was marked against, when the rubric came
+     * from the catalogue rather than a generic scale. */
+    guide_notice?: {
+      label: string
+      caution?: string
+      status: 'current' | 'final-session' | 'withdrawn' | 'unknown'
+    }
     full_marks_rewrite?: {
       rewritten_answer: string
       annotations: Array<{ text: string; earns: string }>
@@ -475,6 +482,18 @@ export function MarkingResultView({
       </div>
 
       <div className="ms-mark-authority mt-4">{markingModeBanner}</div>
+
+      {/* Which published guide this rubric came from. Shown only when it
+          changes what the student should do with the feedback — a current
+          guide needs no announcement, a withdrawn one does. */}
+      {result.ai_marking.guide_notice?.caution ? (
+        <p
+          className="mt-3 rounded-md border border-[var(--ec-border)] bg-[var(--ec-surface)] p-3 text-sm text-[var(--ec-text-secondary)]"
+          role="note"
+        >
+          {result.ai_marking.guide_notice.caution}
+        </p>
+      ) : null}
 
       {bandLadderShown && bandGap ? (
         <div className="mt-6">

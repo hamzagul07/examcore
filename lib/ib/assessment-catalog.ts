@@ -25,6 +25,8 @@ export type IbSubjectRow = {
   level_scope: 'HL_SL' | 'HL_only' | 'SL_only' | 'Core'
   guide_version: string
   first_assessment_year: number | null
+  /** Final session this guide is assessed in; null when no end date is published. */
+  last_assessment_year?: number | null
   source_document_id: string | null
 }
 
@@ -254,6 +256,13 @@ export async function resolveComponentForMarking(
     level,
     assessmentModel: component.assessment_model,
     maxMarks: component.max_marks,
+    guide: {
+      version: subject?.guide_version ?? null,
+      firstAssessmentYear: subject?.first_assessment_year ?? null,
+      lastAssessmentYear:
+        (subject as { last_assessment_year?: number | null } | null)
+          ?.last_assessment_year ?? null,
+    },
   }
 
   if (component.assessment_model === 'points') {

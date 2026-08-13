@@ -1,8 +1,13 @@
 /**
  * Apply a reviewed IB criteria extraction into the catalogue.
  *
- *   node scripts/apply-ib-criteria.mjs <extract.json> --guide "Theatre Guide 2017" \
- *        --group "The Arts" --scope HL_SL --first-assessment 2017 [--name "Theatre"] [--apply]
+ *   node scripts/apply-ib-criteria.mjs <extract.json> --guide "Film Guide 2023" \
+ *        --group "The Arts" --scope HL_SL --first-assessment 2023 \
+ *        --confirm-current [--name "Film"] [--apply]
+ *
+ * Currency is not optional: pass --last-assessment <year> when the guide has
+ * been replaced, or --confirm-current when it has no published end date. The
+ * guide will not tell you which — the IB's curriculum-update pages will.
  *
  * The other half of `extract-ib-criteria.mjs`, which deliberately stops at JSON
  * because a wrong rubric in front of a student is worse than no rubric. Without
@@ -126,6 +131,32 @@ async function main() {
     process.exit(1)
   }
 
+  // Currency gate. This is the check whose absence let a Theatre 2017 rubric —
+  // last assessed in 2023, four criteria where the current course has three,
+  // and an internal assessment that no longer exists — go live against real
+  // students. A guide's cover states when it started, never when it stopped, so
+  // the end date has to be supplied deliberately and is refused by default when
+  // it has passed.
+  const lastAssessment = opt('last-assessment') ? Number(opt('last-assessment')) : null
+  const thisSession = new Date().getFullYear()
+  if (lastAssessment != null && lastAssessment < thisSession && !flag('allow-withdrawn')) {
+    console.error(
+      `[apply] refusing: this guide was last assessed in ${lastAssessment}, before the ${thisSession} session.\n` +
+        '        Students studying now sit a newer guide. Ingest that one, or pass\n' +
+        '        --allow-withdrawn if this is deliberately for past-paper revision.'
+    )
+    process.exit(1)
+  }
+  if (lastAssessment == null && !flag('confirm-current')) {
+    console.error(
+      '[apply] refusing: no --last-assessment given.\n' +
+        '        Check the IB curriculum-update pages for whether this guide has been\n' +
+        '        replaced — the guide itself will not say. Then pass --last-assessment <year>,\n' +
+        '        or --confirm-current if it has no published end date.'
+    )
+    process.exit(1)
+  }
+
   console.log(`\n${subjectCode} — from ${extract.source}`)
   for (const c of components) {
     const bands = (c.criteria ?? []).reduce((n, cr) => n + (cr.bands?.length ?? 0), 0)
@@ -158,6 +189,7 @@ async function main() {
       subject_code: subjectCode,
       cycle_version: opt('cycle') ?? String(firstAssessment ?? 'unknown'),
       first_assessment_year: firstAssessment,
+      last_assessment_year: lastAssessment,
       storage_path: extract.source,
       notes: `Extracted from pages ${extract.pagesUsed?.join('-')} on ${extract.extractedAt}. ${extract.bandsChecked} bands, ${extract.bandsNotFoundVerbatim} not found verbatim.`,
     })
@@ -173,6 +205,7 @@ async function main() {
       level_scope: opt('scope') ?? 'HL_SL',
       guide_version: opt('cycle') ?? String(firstAssessment ?? 'unknown'),
       first_assessment_year: firstAssessment,
+      last_assessment_year: lastAssessment,
       source_document_id: doc.id,
     },
     { onConflict: 'code' }

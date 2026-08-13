@@ -93,6 +93,7 @@ import {
 } from '@/lib/ib/marking-config'
 import { resolveMarkingSubjectName } from '@/lib/marking/subject-name'
 import { looksLikeExtendedResponse } from '@/lib/marking/question-style'
+import { describeGuide } from '@/lib/marking/guide-provenance'
 import { buildIbPracticeMarkScheme } from '@/lib/marking/ib-practice-scheme'
 
 export const supabaseAdmin = createClient(
@@ -764,6 +765,14 @@ export async function markSingleQuestion(params: {
     markingResult.marking_style,
     markingStyle
   )
+
+  // Say which published guide this was judged against. Only attached when the
+  // rubric actually came from the catalogue — a generic band scale has no guide
+  // to name, and claiming one would be the misattribution this exists to stop.
+  const guideNotice = describeGuide(resolvedIb ?? null)
+  if (guideNotice) {
+    markingResult.guide_notice = guideNotice
+  }
 
   // Premium: rewrite the student's own answer into a full-marks response. Only
   // when marks were actually lost and the style benefits (skip MCQ — nothing to

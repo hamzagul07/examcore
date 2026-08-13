@@ -66,6 +66,21 @@ export type ResolvedIbComponent = {
    * number — lets a multi-question mark pick the right scheme per question. */
   officialSchemesByQuestion?: Record<string, unknown>
 
+  /**
+   * Which published guide this rubric came from.
+   *
+   * Carried so a mark can say what it was judged against. A guide's own cover
+   * states when it started and never when it stopped, so a withdrawn rubric
+   * used to be indistinguishable from a live one — that is how a Theatre 2017
+   * rubric, last assessed in 2023, ended up marking students.
+   */
+  guide?: {
+    version: string | null
+    firstAssessmentYear: number | null
+    /** Null means no published end date found — NOT "verified current". */
+    lastAssessmentYear: number | null
+  }
+
   /** Criteria model (M3): not consumed yet. */
   criteria?: Array<{
     letter: string

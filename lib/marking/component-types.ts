@@ -77,10 +77,19 @@ const COMPONENT_OVERRIDES: Record<string, MarkingStyle> = {
   '9699/31': 'level_of_response', '9699/32': 'level_of_response', '9699/33': 'level_of_response',
   '9699/41': 'level_of_response', '9699/42': 'level_of_response', '9699/43': 'level_of_response',
 
-  // Economics 9708
-  '9708/11': 'mixed', '9708/12': 'mixed', '9708/13': 'mixed',
-  '9708/21': 'point_based', '9708/22': 'point_based', '9708/23': 'point_based',
-  '9708/31': 'level_of_response', '9708/32': 'level_of_response', '9708/33': 'level_of_response',
+  // Economics 9708.
+  //
+  // Corrected against 682 extracted mark schemes, which disagreed with the
+  // previous entries on every AS/A-Level paper except 4. Papers 1 and 3 are
+  // multiple choice — 339 and 240 extracted rows respectively, every one of
+  // them carrying an answer key and none a marks array. Paper 3 had been
+  // declared level_of_response, so a student marking it without a cached scheme
+  // was handed an essay-marking prompt for a multiple-choice paper. Paper 2
+  // genuinely mixes point-based and level-of-response questions rather than
+  // being purely point-based.
+  '9708/11': 'mcq', '9708/12': 'mcq', '9708/13': 'mcq',
+  '9708/21': 'mixed', '9708/22': 'mixed', '9708/23': 'mixed',
+  '9708/31': 'mcq', '9708/32': 'mcq', '9708/33': 'mcq',
   '9708/41': 'level_of_response', '9708/42': 'level_of_response', '9708/43': 'level_of_response',
 
   // Business 9609

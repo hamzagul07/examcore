@@ -17,6 +17,7 @@
 import { createClient } from '@supabase/supabase-js'
 import { GoogleGenAI } from '@google/genai'
 import { GEMINI_FLASH_MODEL } from '../lib/ai/gemini-models.mjs'
+import { getComponentMarkingType } from '../lib/marking/component-types.ts'
 import { jsonrepair } from 'jsonrepair'
 import {
   readFileSync,
@@ -175,9 +176,18 @@ function sessionCodeToName(code) {
   return `${season} ${year}`
 }
 
-function resolveMarkingType(subjectCode) {
-  if (subjectCode === '9708') return 'mixed'
-  return 'point_based'
+/**
+ * Ask the app, not a second opinion kept here.
+ *
+ * This used to hardcode "9708 is mixed, everything else is point_based", which
+ * disagreed with `component-types.ts` on 56 of 117 component slots — every
+ * science Paper 1 is multiple choice and was being extracted with a
+ * point-based prompt. Two sources of truth for the same question is how one of
+ * them silently goes stale, and the divergence is what exposed a real error in
+ * the other: Economics Paper 3 was declared level_of_response and is MCQ.
+ */
+function resolveMarkingType(subjectCode, component) {
+  return getComponentMarkingType(subjectCode, component ?? '')
 }
 
 function buildExtractionPrompt(markingType) {
@@ -375,7 +385,7 @@ async function extractFullPaper(paper) {
 
   const qpBase64 = Buffer.from(await qpRes.data.arrayBuffer()).toString('base64')
   const msBase64 = Buffer.from(await msRes.data.arrayBuffer()).toString('base64')
-  const markingType = resolveMarkingType(subject)
+  const markingType = resolveMarkingType(subject, component)
   const prompt = buildExtractionPrompt(markingType)
 
   const extractionText = await withGeminiRetry(
@@ -457,6 +467,7 @@ async function main() {
   // errors makes a healthy run look broken. Adding the current session to the
   // defaults guarantees a batch of these until those papers land.
   let missing = 0
+  let wouldWarm = 0
   let warmRemaining = WARM_LIMIT
 
   console.log(
@@ -486,6 +497,7 @@ async function main() {
     if (warmRemaining <= 0) break
 
     if (DRY_RUN) {
+      wouldWarm++
       console.log(`[would warm] ${key}`)
       continue
     }
@@ -522,7 +534,9 @@ async function main() {
   }
 
   console.log('\n--- Summary ---')
-  console.log(`Pre-warmed: ${warmed}`)
+  // A dry run warms nothing by definition, so reporting "Pre-warmed: 0" reads
+  // as "found nothing to do" when the answer is the opposite.
+  console.log(DRY_RUN ? `Would warm: ${wouldWarm}` : `Pre-warmed: ${warmed}`)
   console.log(`Already cached: ${cached}`)
   console.log(`Not synced (no PDF in storage): ${missing}`)
   console.log(`Failed: ${failed}`)

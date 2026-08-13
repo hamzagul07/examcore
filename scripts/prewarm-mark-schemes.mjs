@@ -18,6 +18,7 @@ import { createClient } from '@supabase/supabase-js'
 import { GoogleGenAI } from '@google/genai'
 import { GEMINI_FLASH_MODEL } from '../lib/ai/gemini-models.mjs'
 import { getComponentMarkingType } from '../lib/marking/component-types.ts'
+import { extractJSON } from '../lib/marking/json.ts'
 import { fetchAllRows } from '../lib/supabase/fetch-all.ts'
 import { jsonrepair } from 'jsonrepair'
 import {
@@ -218,17 +219,31 @@ Output ONLY this JSON, no markdown, no commentary:
 {"paper_marking_type":"${markingType}","questions":[ … ]}`
 }
 
-function extractJSON(text) {
-  const jsonMatch =
-    text.match(/```json\n([\s\S]*?)\n```/) ||
-    text.match(/```\n([\s\S]*?)\n```/) ||
-    text.match(/{[\s\S]*}/)
-  const jsonString = jsonMatch ? jsonMatch[1] || jsonMatch[0] : text
-  try {
-    return JSON.parse(jsonString)
-  } catch {
-    return JSON.parse(jsonrepair(jsonString))
-  }
+// extractJSON lives in lib/marking/json.ts. A local copy used to sit here, and
+// it is the reason 9700/42 was reported three times as "all extracted questions
+// failed validation": the shared version learned to repair the invalid JSON
+// escapes that LaTeX in a mark scheme produces, and this copy never did, so the
+// fix reached live marking and not the cache that feeds it. Third piece of
+// duplicated logic found in this one script, after the marking-type map and the
+// row-cap assumption.
+
+/**
+ * Accept the shape the model actually returns, not only the one it was asked for.
+ *
+ * The prompt specifies `{"type":"point_based","marks":[…]}` and the model
+ * sometimes emits the bare array instead — `"mark_scheme": [ {id:1,…} ]`. The
+ * content is right and complete; only the wrapper is missing. Validation then
+ * looked for `ms.marks`, found nothing, and rejected every question in the
+ * paper, which surfaced as "all extracted questions failed validation" on a
+ * perfectly good 40-question extraction.
+ *
+ * Wrapping is lossless: the array IS the list the wrapper would have held.
+ * Rejecting a paper over a missing pair of braces is not.
+ */
+function normaliseMarkScheme(ms, markingType) {
+  if (!Array.isArray(ms)) return ms
+  if (markingType === 'level_of_response') return { type: markingType, bands: ms }
+  return { type: markingType === 'mixed' ? 'point_based' : markingType, marks: ms }
 }
 
 function validateQuestion(q, paperMarkingType) {
@@ -238,8 +253,8 @@ function validateQuestion(q, paperMarkingType) {
   const totalMarks =
     typeof q.total_marks === 'number' ? q.total_marks : Number(q.total_marks)
   if (!Number.isFinite(totalMarks) || totalMarks <= 0) return false
-  const ms = q.mark_scheme
-  if (!ms || typeof ms !== 'object') return false
+  const ms = normaliseMarkScheme(q.mark_scheme, paperMarkingType)
+  if (!ms || typeof ms !== 'object' || Array.isArray(ms)) return false
   const qType = ms.type || paperMarkingType
   if (qType === 'mcq') {
     return !!(ms.answer_key && Object.keys(ms.answer_key).length > 0)
@@ -401,19 +416,38 @@ async function extractFullPaper(paper) {
             ],
           },
         ],
-        // Deterministic, untruncated, clean JSON — prevents the flaky
-        // "all questions failed validation" caused by variable/truncated output.
+        // Deterministic, untruncated, clean JSON.
+        //
+        // The ceiling has to cover thinking as well as output: a 40-question
+        // paper measured 16,024 output tokens against 7,262 of thinking, and
+        // both count here. At 32,768 a paper that thought harder than average
+        // ran out mid-JSON, and the truncation surfaced downstream as "all
+        // extracted questions failed validation" — which sent three separate
+        // investigations at the validator instead of at the token budget.
         config: {
           temperature: 0,
-          maxOutputTokens: 32768,
+          maxOutputTokens: 65536,
           responseMimeType: 'application/json',
         },
       })
+      // Say truncated when truncated. Everything downstream reads a cut-off
+      // response as malformed content, which is true but useless.
+      const finish = res.candidates?.[0]?.finishReason
+      if (finish === 'MAX_TOKENS') {
+        const usage = res.usageMetadata ?? {}
+        throw new Error(
+          `Response truncated at the token ceiling (output ${usage.candidatesTokenCount ?? '?'}, thoughts ${usage.thoughtsTokenCount ?? '?'})`
+        )
+      }
       return res.text || ''
     },
     'pdf-extraction'
   )
 
+  if (process.env.PREWARM_DUMP) {
+    writeFileSync(process.env.PREWARM_DUMP, extractionText)
+    console.error(`[debug] raw response -> ${process.env.PREWARM_DUMP} (${extractionText.length} chars)`)
+  }
   const parsed = extractJSON(extractionText)
   if (!parsed?.questions?.length) {
     throw new Error('Extraction returned no questions')
@@ -430,7 +464,7 @@ async function extractFullPaper(paper) {
       question_text: typeof q.question_text === 'string' ? q.question_text : '',
       total_marks:
         typeof q.total_marks === 'number' ? q.total_marks : Number(q.total_marks),
-      mark_scheme: q.mark_scheme,
+      mark_scheme: normaliseMarkScheme(q.mark_scheme, markingType),
       marking_type: questionMarkingType(q, markingType),
       subject: subjectName,
       board: 'Cambridge International',
@@ -438,7 +472,23 @@ async function extractFullPaper(paper) {
   }
 
   if (rows.length === 0) {
-    throw new Error('All extracted questions failed validation')
+    // Say WHY, not just that. This message sent three separate investigations
+    // at the validator, the JSON escapes and the token ceiling in turn, while
+    // the actual reason was never printed.
+    const seen = parsed.questions.length
+    const sample = parsed.questions.slice(0, 3).map((q) => {
+      const ms = q?.mark_scheme
+      return {
+        n: q?.question_number,
+        total: q?.total_marks,
+        msKeys: ms && typeof ms === 'object' ? Object.keys(ms) : typeof ms,
+        msType: ms?.type,
+        paperType: markingType,
+      }
+    })
+    throw new Error(
+      `All ${seen} extracted questions failed validation — ${JSON.stringify(sample)}`
+    )
   }
 
   const { error } = await supabase

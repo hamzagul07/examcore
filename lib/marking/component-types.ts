@@ -87,6 +87,11 @@ const COMPONENT_OVERRIDES: Record<string, MarkingStyle> = {
   // was handed an essay-marking prompt for a multiple-choice paper. Paper 2
   // genuinely mixes point-based and level-of-response questions rather than
   // being purely point-based.
+  // Accounting 9706. Paper 1 is multiple choice — 90 extracted rows across
+  // three components, every one an answer key. The subject default is
+  // point_based, which is right for papers 2-4 and wrong for paper 1.
+  '9706/11': 'mcq', '9706/12': 'mcq', '9706/13': 'mcq',
+
   '9708/11': 'mcq', '9708/12': 'mcq', '9708/13': 'mcq',
   '9708/21': 'mixed', '9708/22': 'mixed', '9708/23': 'mixed',
   '9708/31': 'mcq', '9708/32': 'mcq', '9708/33': 'mcq',

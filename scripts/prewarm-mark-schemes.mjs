@@ -18,6 +18,7 @@ import { createClient } from '@supabase/supabase-js'
 import { GoogleGenAI } from '@google/genai'
 import { GEMINI_FLASH_MODEL } from '../lib/ai/gemini-models.mjs'
 import { getComponentMarkingType } from '../lib/marking/component-types.ts'
+import { fetchAllRows } from '../lib/supabase/fetch-all.ts'
 import { jsonrepair } from 'jsonrepair'
 import {
   readFileSync,
@@ -109,14 +110,12 @@ async function demandPaperSets() {
     process.env.NEXT_PUBLIC_SUPABASE_URL,
     process.env.SUPABASE_SERVICE_ROLE_KEY
   )
-  const { data, error } = await db
-    .from('mark_runs')
-    .select('subject_code')
-    .not('subject_code', 'is', null)
-  if (error) throw new Error(error.message)
+  // Paged: an unpaged select stops at PostgREST's 1,000-row cap, which would
+  // quietly narrow "what students actually mark" to the oldest thousand runs.
+  const rows = await fetchAllRows(db, 'mark_runs', 'subject_code')
 
   const counts = new Map()
-  for (const row of data ?? []) {
+  for (const row of rows) {
     const code = String(row.subject_code)
     // Cambridge syllabus codes only — IB subjects have no PDF mark schemes to
     // extract, which is why their marking derives instead.

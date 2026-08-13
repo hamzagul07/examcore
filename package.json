@@ -26,6 +26,7 @@
     "cohort:gaps": "tsx scripts/cohort-gap-report.ts",
     "marking:health": "tsx scripts/marking-health.ts",
     "ib:currency": "tsx scripts/ib-currency.ts",
+    "audit:component-types": "tsx scripts/audit-component-types.ts",
     "ib:guidance": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/extract-ib-guidance.mjs",
     "outreach": "tsx scripts/outreach.ts",
     "test:billing": "cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/teacher-seat.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/scholar-access.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/max-features.test.ts",

@@ -52,16 +52,16 @@ async function main() {
   const days = Number(process.argv[2]) || 30
   const since = new Date(Date.now() - days * 86_400_000).toISOString()
 
-  const { data, error } = await service
-    .from('mark_runs')
-    .select(
-      'status, duration_ms, gemini_retries, last_stage, error_code, client_disconnected, predicted_marks, stage_timings, has_pdf, is_paid'
-    )
-    .gte('started_at', since)
-    .limit(5000)
-  if (error) throw new Error(error.message)
-
-  const rows = (data ?? []) as Row[]
+  // Paged rather than `.limit(5000)`, which PostgREST silently caps at 1,000.
+  // Harmless at today's volumes and quietly wrong at tomorrow's — a report that
+  // stops counting at a thousand runs looks like a plateau, not a truncation.
+  const { fetchAllRows } = await import('../lib/supabase/fetch-all')
+  const all = await fetchAllRows<Row & { started_at: string }>(
+    service,
+    'mark_runs',
+    'started_at, status, duration_ms, gemini_retries, last_stage, error_code, client_disconnected, predicted_marks, stage_timings, has_pdf, is_paid'
+  )
+  const rows = all.filter((r) => r.started_at >= since) as Row[]
   if (!rows.length) {
     console.log(`No marks in the last ${days} days.`)
     return

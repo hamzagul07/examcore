@@ -41,6 +41,15 @@ function main() {
   // Paper 4 is the essay paper and was never in dispute.
   assert.equal(t('9708', '41'), 'level_of_response')
 
+  // --- Accounting 9706 paper 1 is multiple choice -----------------------------
+  // 90 extracted rows, every one an answer key. The subject default is
+  // point_based and was being applied to paper 1 as well.
+  for (const c of ['11', '12', '13']) {
+    assert.equal(t('9706', c), 'mcq', `9706/${c} is multiple choice`)
+  }
+  // The rest of Accounting genuinely is point-based.
+  assert.equal(t('9706', '21'), 'point_based')
+
   // --- science paper 1s are multiple choice ----------------------------------
   // Confirmed by extraction: every cached row for these carries an answer key.
   for (const subject of ['9700', '9701', '9702']) {

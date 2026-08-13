@@ -51,36 +51,20 @@ function main() {
     'the process portfolio is stored level-agnostic'
   )
 
-  // --- film and theatre, now catalogued ----------------------------------------
-  assert.equal(
-    r('ib-film-hl', 'Analyse this extract from the film.')?.componentKey,
-    'textual_analysis',
-    'textual analysis is the only Film task submittable as text alone'
-  )
-  assert.equal(
-    r('ib-film-sl', 'My comparative study of two films.')?.componentKey,
-    'comparative_study'
-  )
-  assert.equal(
-    r('ib-theatre-sl', 'My director\'s notebook for this play.')?.componentKey,
-    'directors_notebook'
-  )
-  assert.equal(
-    r('ib-theatre-hl', 'My solo theatre piece on this theorist.')?.componentKey,
-    'solo_theatre_piece',
-    'the solo piece is HL-only and must be reachable at HL'
-  )
-  assert.equal(
-    r('ib-theatre-sl', 'My solo theatre piece on this theorist.')?.componentKey,
-    'directors_notebook',
-    'SL must never be routed to the HL-only solo piece'
-  )
-
   // --- subjects still without catalogued descriptors ---------------------------
-  // Music's guide in the repo is the superseded 2011 syllabus and Dance is
-  // unverified; CAS is not mark-assessed at all. Returning a component for any
-  // of them would point the marker at a rubric that is not there.
-  for (const code of ['ib-music-sl', 'ib-dance-hl', 'ib-cas', 'ib-biology-hl']) {
+  // Every guide in the repo for these is superseded — Theatre 2017 was last
+  // assessed in 2023, Film 2019 by a 2023 second edition, Music 2011 by a 2022
+  // syllabus — Dance is unverified, and CAS is not mark-assessed at all.
+  // Returning a component for any of them points the marker at a rubric that is
+  // either absent or withdrawn.
+  for (const code of [
+    'ib-film-hl',
+    'ib-theatre-hl',
+    'ib-music-sl',
+    'ib-dance-hl',
+    'ib-cas',
+    'ib-biology-hl',
+  ]) {
     assert.equal(r(code, 'anything'), null, `${code} has no catalogued default`)
   }
 

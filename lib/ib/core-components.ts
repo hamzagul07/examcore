@@ -39,6 +39,13 @@ function levelFromProfileCode(code: string): 'HL' | 'SL' | null {
 /**
  * The component a submission for `profileCode` should be marked against, or
  * null when the subject has no catalogued default and should fall back.
+ *
+ * Film and Theatre were briefly mapped here and have been withdrawn: the guides
+ * in the repo are superseded (Theatre 2017 was last assessed in 2023, Film 2019
+ * by a 2023 second edition), so their catalogue rows were removed. Do not
+ * re-add a mapping before the current guide is ingested — a route to a
+ * component that does not exist silently costs the rubric, and a route to a
+ * withdrawn one costs more than that.
  */
 export function resolveIbCoreComponent(
   profileCode: string,
@@ -93,42 +100,6 @@ export function resolveIbCoreComponent(
       componentKey: `comparative_study_${level.toLowerCase()}`,
       level,
     }
-  }
-
-  if (code.startsWith('ib-film')) {
-    const level = levelFromProfileCode(code) ?? IB_CORE_LEVEL
-    if (/\bfilm reel\b|\breel\b/i.test(text)) {
-      return { subjectCode: 'ib-film', componentKey: 'film_reel', level }
-    }
-    if (/\bportfolio\b/i.test(text)) {
-      return { subjectCode: 'ib-film', componentKey: 'film_portfolio', level }
-    }
-    if (/comparative study/i.test(text)) {
-      return { subjectCode: 'ib-film', componentKey: 'comparative_study', level }
-    }
-    // Textual analysis is the default: it is the written analysis of a single
-    // extract, and the only Film component a student can plausibly submit as
-    // text without the film itself.
-    return { subjectCode: 'ib-film', componentKey: 'textual_analysis', level }
-  }
-
-  if (code.startsWith('ib-theatre')) {
-    const level = levelFromProfileCode(code) ?? IB_CORE_LEVEL
-    // The solo theatre piece is HL-only; offering it at SL would mark a student
-    // against a component they do not sit.
-    if (level === 'HL' && /solo (theatre )?piece/i.test(text)) {
-      return { subjectCode: 'ib-theatre', componentKey: 'solo_theatre_piece', level }
-    }
-    if (/collaborative project/i.test(text)) {
-      return { subjectCode: 'ib-theatre', componentKey: 'collaborative_project', level }
-    }
-    if (/research presentation/i.test(text)) {
-      return { subjectCode: 'ib-theatre', componentKey: 'research_presentation', level }
-    }
-    // The director's notebook is the default — it is the written component, and
-    // all four Theatre tasks are marked out of 32 against four criteria, so a
-    // mis-pick costs the right descriptors rather than the right denominator.
-    return { subjectCode: 'ib-theatre', componentKey: 'directors_notebook', level }
   }
 
   return null

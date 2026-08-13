@@ -119,6 +119,11 @@ export function buildMarkingPrompt(params: {
         type: 'criterion',
         assessment: 'criterion',
         total_marks: total,
+        // How the component is marked as a whole. For a holistic component this
+        // is the instruction that matters most — without it a marker defaults
+        // to hunting the descriptor for boxes to tick, which is exactly what
+        // the IB tells examiners not to do.
+        examiner_approach: resolvedIb.componentGuidance ?? undefined,
         criteria: resolvedIb.criteria.map((c) => ({
           id: c.letter,
           name: c.name,
@@ -130,7 +135,13 @@ export function buildMarkingPrompt(params: {
           bands: c.bands.map((b) => ({
             marks_min: b.min,
             marks_max: b.max,
-            descriptor: b.guidance?.trim() || b.descriptor,
+            // The verbatim descriptor is the standard and is always sent. Any
+            // operational guidance rides ALONGSIDE it rather than in its place:
+            // guidance says how to apply a level, and a rendering that replaced
+            // the IB's own wording would quietly make an in-house paraphrase
+            // the thing a student is judged against.
+            descriptor: b.descriptor,
+            examiner_guidance: b.guidance?.trim() || undefined,
           })),
         })),
       },

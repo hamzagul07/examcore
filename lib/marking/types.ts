@@ -58,6 +58,15 @@ export type ResolvedIbComponent = {
   level: IbLevel
   assessmentModel: 'points' | 'criteria'
   maxMarks: number | null
+  /**
+   * Operational examiner brief for the component as a whole.
+   *
+   * Teacher support material discusses assessment holistically far more than
+   * band by band — for the TOK essay it is the only level at which real
+   * guidance exists, and it carries the instruction that matters most: the mark
+   * is a global judgement and not a checklist.
+   */
+  componentGuidance?: string
   /** Points model: subject-level conventions + any matched per-question official scheme. */
   pointsConventions?: { accept?: string; ecf?: string }
   /** Official markpoints for the specific question being marked (null until matched). */

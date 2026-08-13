@@ -180,7 +180,12 @@ export async function getPointsScheme(componentId: string): Promise<IbPointsSche
  * The verbatim descriptor remains the source of truth for student-facing citation.
  */
 export function rubricText(band: Pick<IbCriterionBandRow, 'descriptor' | 'marking_guidance'>): string {
-  return band.marking_guidance?.trim() || band.descriptor
+  // Both, descriptor first. This used to return guidance INSTEAD of the
+  // descriptor, which made an in-house operational rendering the text a student
+  // was judged against and silently dropped the IB's own wording — the opposite
+  // of why these are stored verbatim.
+  const guidance = band.marking_guidance?.trim()
+  return guidance ? `${band.descriptor}\n\nApplying this level: ${guidance}` : band.descriptor
 }
 
 /**
@@ -256,6 +261,9 @@ export async function resolveComponentForMarking(
     level,
     assessmentModel: component.assessment_model,
     maxMarks: component.max_marks,
+    componentGuidance:
+      (component as { marking_guidance?: string | null }).marking_guidance?.trim() ||
+      undefined,
     guide: {
       version: subject?.guide_version ?? null,
       firstAssessmentYear: subject?.first_assessment_year ?? null,

@@ -19,7 +19,10 @@ import { GoogleGenAI } from '@google/genai'
 import { GEMINI_FLASH_MODEL } from '../lib/ai/gemini-models.mjs'
 import { getComponentMarkingType } from '../lib/marking/component-types.ts'
 import { extractJSON } from '../lib/marking/json.ts'
-import { buildExtractionPrompt } from '../lib/marking/extraction-prompts.ts'
+import {
+  buildExtractionPrompt,
+  questionMarkingType,
+} from '../lib/marking/extraction-prompts.ts'
 import { fetchAllRows } from '../lib/supabase/fetch-all.ts'
 import { jsonrepair } from 'jsonrepair'
 import {
@@ -346,19 +349,11 @@ function validateQuestion(q, paperMarkingType) {
   return true
 }
 
-function questionMarkingType(q, paperMarkingType) {
-  const ms = q.mark_scheme
-  const qStyle = ms?.type ?? q.marking_type
-  if (
-    qStyle === 'mcq' ||
-    qStyle === 'point_based' ||
-    qStyle === 'level_of_response' ||
-    qStyle === 'mixed'
-  ) {
-    return qStyle
-  }
-  return paperMarkingType === 'mixed' ? 'point_based' : paperMarkingType
-}
+// questionMarkingType lives in lib/marking/extraction-prompts.ts. The copy that
+// was here had already drifted: the shared one resolves a mixed paper's
+// question from `mark_scheme.question_style` when the model puts the style
+// there instead of in `type`, and this one did not, so those questions were
+// silently filed as point_based. Fifth duplicate found in this file.
 
 async function withGeminiRetry(fn, label = 'gemini') {
   const maxRetries = 4

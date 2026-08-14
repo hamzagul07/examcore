@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Newsreader, Instrument_Sans, IBM_Plex_Mono, Caveat } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import "./fonts/handwritten.css";
 import { ThemeProvider } from "@/lib/design-system/ThemeProvider";
@@ -30,10 +30,27 @@ import {
 
 const EC_THEME_BOOT_SCRIPT = `(function(){try{var t=localStorage.getItem('ec-theme');var ec=t==='late-night'?'late-night':'zen';document.documentElement.setAttribute('data-ec-theme',ec);document.documentElement.setAttribute('data-theme',t==='late-night'?'night':'paper');}catch(e){document.documentElement.setAttribute('data-theme','paper');}})();`;
 
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
+/**
+ * Self-hosted rather than fetched from Google at build time.
+ *
+ * `next/font/google` downloads each family during the build, and that fetch
+ * failed three times in roughly ten builds — twelve "Can't resolve
+ * @vercel/turbopack-next/internal/font/google/font" errors, always passing on a
+ * retry, including once with nothing else running. A build that depends on a
+ * third-party network call is a build that fails for reasons no commit caused.
+ *
+ * These are the same latin woff2 files Google serves, at the same weights and
+ * styles as before. All four families are OFL-licensed, which permits
+ * redistribution — see app/fonts/files/OFL.txt.
+ *
+ * Newsreader and Caveat and Instrument Sans are variable, so one file covers the
+ * whole 400-700 range; IBM Plex Mono is static and needs a file per weight.
+ */
+const newsreader = localFont({
+  src: [
+    { path: "./fonts/files/newsreader-normal.woff2", weight: "400 700", style: "normal" },
+    { path: "./fonts/files/newsreader-italic.woff2", weight: "400 700", style: "italic" },
+  ],
   display: "swap",
   variable: "--font-display",
 });
@@ -41,25 +58,26 @@ const newsreader = Newsreader({
 // Only the hero display font (Newsreader, the mobile LCP element) is preloaded.
 // The rest still load on demand via `swap`, but stop competing for throttled
 // bandwidth against the LCP font's preload.
-const instrumentSans = Instrument_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+const instrumentSans = localFont({
+  src: [{ path: "./fonts/files/instrument-sans.woff2", weight: "400 700", style: "normal" }],
   display: "swap",
   preload: false,
   variable: "--font-sans",
 });
 
-const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+const ibmPlexMono = localFont({
+  src: [
+    { path: "./fonts/files/ibm-plex-mono-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/files/ibm-plex-mono-500.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/files/ibm-plex-mono-600.woff2", weight: "600", style: "normal" },
+  ],
   display: "swap",
   preload: false,
   variable: "--font-mono",
 });
 
-const caveat = Caveat({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+const caveat = localFont({
+  src: [{ path: "./fonts/files/caveat.woff2", weight: "400 700", style: "normal" }],
   display: "swap",
   preload: false,
   variable: "--font-caveat",

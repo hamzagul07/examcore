@@ -19,6 +19,7 @@ import { GoogleGenAI } from '@google/genai'
 import { GEMINI_FLASH_MODEL } from '../lib/ai/gemini-models.mjs'
 import { getComponentMarkingType } from '../lib/marking/component-types.ts'
 import { extractJSON } from '../lib/marking/json.ts'
+import { buildExtractionPrompt } from '../lib/marking/extraction-prompts.ts'
 import { fetchAllRows } from '../lib/supabase/fetch-all.ts'
 import { jsonrepair } from 'jsonrepair'
 import {
@@ -190,33 +191,47 @@ function resolveMarkingType(subjectCode, component) {
   return getComponentMarkingType(subjectCode, component ?? '')
 }
 
-function buildExtractionPrompt(markingType) {
-  return `You are extracting a Cambridge International A-Level mark scheme from two official PDFs:
+/**
+ * Which extraction prompt to use.
+ *
+ * The shared prompt in lib/marking/extraction-prompts.ts is what live lazy
+ * extraction uses, and it is better for structured papers: it returns
+ * mark_scheme as the documented {type, marks[]} wrapper where the local copy
+ * drew a bare array often enough to fail a whole paper, and switching rescued
+ * two papers this cache had never managed to extract at all.
+ *
+ * It is not usable for multiple choice here, and the reason is structural
+ * rather than a defect. It asks for ONE complete answer key per paper, because
+ * lazy extraction reads a paper as a unit; this cache stores one row per
+ * question. Under it, MCQ rows arrive with no mark_scheme and a thirty question
+ * paper fails whole. So MCQ keeps a local prompt that asks per question.
+ *
+ * This is duplication with a reason, unlike the marking-type map, the row-cap
+ * assumption and the JSON parser, which were the same logic drifting apart.
+ * Collapsing it properly means teaching the shared prompt to emit per-question
+ * keys, which changes live extraction and wants its own verification.
+ */
+function mcqExtractionPrompt() {
+  return `You are extracting a Cambridge International A-Level multiple-choice mark scheme from two official PDFs:
 - PDF 1 = the QUESTION PAPER (problem statements)
-- PDF 2 = the MARK SCHEME (marking criteria)
+- PDF 2 = the MARK SCHEME (the answer key)
 
-For EVERY question and sub-part (1, 2(a), 2(b), 3(a)(i), …), cross-reference both PDFs and output an object with EXACTLY these fields:
-- "question_number": string, exactly as printed (e.g. "2(a)", "3(b)(i)")
-- "question_text": string — the full problem statement from the question paper
-- "total_marks": a number greater than 0
-- "marking_type": one of "point_based" | "level_of_response" | "mcq"
-- "mark_scheme": an object whose shape MUST match the marking_type EXACTLY:
+For EVERY question, output an object with EXACTLY these fields:
+- "question_number": string, exactly as printed (e.g. "1", "23")
+- "question_text": string — the full question from the question paper, including its options
+- "total_marks": the number 1
+- "marking_type": "mcq"
+- "mark_scheme": {"type":"mcq","answer_key":{"<this question's number>":"<the letter>"}}
 
-  point_based →
-  {"type":"point_based","marks":[{"id":1,"type":"M1","value":1,"description":"what earns this mark","ecf_from":null,"acceptable_forms":null}, …]}
-  • one entry per awardable mark point; "type" is the mark code (M1, A1, B1, DM1, …); "value" is the marks for that point; the "marks" array MUST be non-empty.
-
-  level_of_response →
-  {"type":"level_of_response","bands":[{"level":4,"marks_min":9,"marks_max":10,"descriptor":"the level descriptor"}, …]}
-  • one entry per band/level; "bands" MUST be non-empty.
-
-  mcq →
-  {"type":"mcq","answer_key":{"1":"B","2":"C", …}}
-
-Most ${markingType === 'mixed' ? 'Economics ' : ''}questions are ${markingType === 'mixed' ? 'point_based (data response / short answers) OR level_of_response (essays) — choose per question from what the mark scheme shows' : markingType}. Be thorough: extract EVERY question and sub-part, skip none.
+The answer_key on each question must contain ONLY that question's own answer.
+Extract EVERY question; skip none.
 
 Output ONLY this JSON, no markdown, no commentary:
-{"paper_marking_type":"${markingType}","questions":[ … ]}`
+{"paper_marking_type":"mcq","questions":[ … ]}`
+}
+
+function extractionPromptFor(markingType) {
+  return markingType === 'mcq' ? mcqExtractionPrompt() : buildExtractionPrompt(markingType)
 }
 
 // extractJSON lives in lib/marking/json.ts. A local copy used to sit here, and
@@ -240,6 +255,34 @@ Output ONLY this JSON, no markdown, no commentary:
  * Wrapping is lossless: the array IS the list the wrapper would have held.
  * Rejecting a paper over a missing pair of braces is not.
  */
+/**
+ * Fan a paper-wide MCQ answer key out to the questions it answers.
+ *
+ * The shared extraction prompt asks for one complete key per paper —
+ * `{"type":"mcq","answer_key":{"1":"C","2":"B",…}}` — because live lazy
+ * extraction reads a paper as a unit. This cache stores one row per question,
+ * so without this the rows arrive with no mark_scheme at all and a thirty
+ * question paper fails whole.
+ *
+ * Only fills gaps: a question that already carries its own scheme keeps it.
+ */
+function spreadMcqAnswerKey(questions, markingType) {
+  if (markingType !== 'mcq') return questions
+  const combined = {}
+  for (const q of questions) {
+    const key = q?.mark_scheme?.answer_key
+    if (key && typeof key === 'object' && !Array.isArray(key)) Object.assign(combined, key)
+  }
+  if (Object.keys(combined).length === 0) return questions
+  return questions.map((q) => {
+    if (q?.mark_scheme?.answer_key || q?.mark_scheme?.correct_option) return q
+    const n = String(q?.question_number ?? '').trim()
+    const letter = combined[n]
+    if (!letter) return q
+    return { ...q, mark_scheme: { type: 'mcq', answer_key: { [n]: letter } } }
+  })
+}
+
 function normaliseMarkScheme(ms, markingType, questionNumber) {
   if (Array.isArray(ms)) {
     if (markingType === 'level_of_response') return { type: markingType, bands: ms }
@@ -435,7 +478,7 @@ async function extractFullPaper(paper) {
   const qpBase64 = Buffer.from(await qpRes.data.arrayBuffer()).toString('base64')
   const msBase64 = Buffer.from(await msRes.data.arrayBuffer()).toString('base64')
   const markingType = resolveMarkingType(subject, component)
-  const prompt = buildExtractionPrompt(markingType)
+  const prompt = extractionPromptFor(markingType)
 
   const extractionText = await withGeminiRetry(
     async () => {
@@ -490,7 +533,8 @@ async function extractFullPaper(paper) {
 
   const subjectName = SUBJECT_NAMES[subject] || 'Unknown'
   const rows = []
-  for (const q of parsed.questions) {
+  const questions = spreadMcqAnswerKey(parsed.questions, markingType)
+  for (const q of questions) {
     if (!validateQuestion(q, markingType)) continue
     rows.push({
       paper_code: paperCode,

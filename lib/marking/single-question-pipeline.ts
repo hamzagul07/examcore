@@ -33,6 +33,7 @@ import { invalidateStudentMemoryCache } from '@/lib/omni-ai/student-memory'
 import { extractPracticeQuestionFromScript } from '@/lib/marking/practice-question-extract'
 import { splitUploadIntoQuestions, type SplitQuestion } from '@/lib/marking/split-questions'
 import { extractTotalMarksForGate } from '@/lib/marking/question-marks'
+import { stripNullBytes } from '@/lib/marking/strip-null-bytes'
 import { resolveRequiredQuestionTotal } from '@/lib/marking/require-question-total'
 import { resolveSplitQuestionTotalMarks } from '@/lib/marking/split-question-total'
 import type {
@@ -385,7 +386,7 @@ async function markOneSplitQuestion(
     const timeSpent = Math.max(1, Math.round((Date.now() - ctx.startedAt) / 1000))
     const { data: attempt, error: insertError } = await supabaseAdmin
       .from('attempts')
-      .insert({
+      .insert(stripNullBytes({
         mark_scheme_id: null,
         source_type: 'other',
         user_id: ctx.userId,
@@ -402,7 +403,7 @@ async function markOneSplitQuestion(
         answer_photo_url: ctx.answerPhotoUrl,
         error_classifications: errorClassifications,
         line_references: lineReferences,
-      })
+      }))
       .select()
       .single()
 
@@ -1109,9 +1110,12 @@ export async function runSingleQuestionMark(
       .map((p) => ({ photo_url: p.photo_url as string, ocr_lines: p.lines }))
   )
 
+  // A NUL anywhere in the transcript or the model's JSON fails the whole insert
+  // with 22P05, and the failure below is only logged — so the student would be
+  // shown a mark that was never saved.
   const { data: attempt, error: insertError } = await supabaseAdmin
     .from('attempts')
-    .insert({
+    .insert(stripNullBytes({
       mark_scheme_id: markScheme?.id || null,
       source_type: finalMode === 'official_mark_scheme' ? 'past_paper' : 'other',
       user_id: userId,
@@ -1132,7 +1136,7 @@ export async function runSingleQuestionMark(
       answer_photo_url: answerPhotoUrl,
       error_classifications: errorClassifications,
       line_references: lineReferences,
-    })
+    }))
     .select()
     .single()
 

@@ -24,12 +24,17 @@
  * for whether the marks separate. Shape assertions cannot catch a marker that
  * awards everyone eleven out of twelve. Slower and costs more, so opt-in.
  *
- * Expect the point-based set to fail occasionally, and read it as a finding
- * rather than as flakiness to tune away. The answer "a = 4, b = 7, c = 9" has
- * exactly one correct component against a scheme that awards B1 for it, and has
- * been observed scoring both 1/3 and 0/3 on separate runs of identical input.
- * A marker that sometimes drops a mark the scheme plainly awards is the thing
- * worth knowing about; widening the expected range would hide it.
+ * The point-based expectations are exact on purpose: against a published scheme
+ * each mark point is objectively checkable, so a mismatch is a real defect and
+ * not noise to be tuned away by widening a range.
+ *
+ * They earned that exactness the hard way. Before `manualPaperSession` and
+ * `manualQuestionNumber` were pinned, every answer in that set marked precisely
+ * one low — 2/3, 1/3, 0/3 where 3, 2, 1 were right — and I read it as the marker
+ * intermittently dropping a mark the scheme awards. It was not. An unpinned
+ * lookup resolved a different question's scheme, and four cases wrong by exactly
+ * one is a wrong scheme rather than an unreliable examiner. Pinned, the set
+ * returns 3, 2, 1 and 0 exactly.
  */
 process.loadEnvFile?.('.env.local')
 
@@ -74,6 +79,9 @@ type Discrimination = {
   name: string
   questionTextInput: string
   manualPaperCode: string
+  /** Set when the case depends on a specific cached paper session. */
+  manualPaperSession?: string | null
+  manualQuestionNumber?: string | null
   questionMarks: number
   subject: string
   /** Answers in descending quality, each with the mark range it should land in. */
@@ -82,10 +90,36 @@ type Discrimination = {
 
 const DISCRIMINATION: Discrimination[] = [
   {
+    // The only set with no judgement in it at all: the published answer key is
+    // exact ground truth, so a wrong mark here is unambiguous. Worth having
+    // because MCQ is the largest slice of the cache — every science and
+    // Economics Paper 1, and Economics Paper 3 — and was the last marking path
+    // with no end-to-end check. It is also where a stored-shape bug hid: 150
+    // rows held a bare letter where a question-to-answer map belonged.
+    name: 'multiple choice against a published answer key',
+    questionTextInput: '',
+    manualPaperCode: '9708/11',
+    manualPaperSession: 'May/June 2024',
+    manualQuestionNumber: '1',
+    questionMarks: 1,
+    subject: '9708',
+    answers: [
+      { label: 'the key says C, answered C', answer: 'C', min: 1, max: 1 },
+      { label: 'the key says C, answered B', answer: 'B', min: 0, max: 0 },
+    ],
+  },
+  {
     name: 'point-based against a cached official scheme',
     questionTextInput:
       'The diagram shows the curve with equation y = a sin(bx)+c for 0 ≤ x ≤ 2π, where a, b and c are positive constants. State the values of a, b and c.',
     manualPaperCode: '9709/12',
+    // Session and question number are load-bearing, not decoration. Without
+    // them the lookup resolves some other question's scheme and every answer
+    // marks one low — which looked exactly like the marker dropping a mark, and
+    // was reported as such before the pattern gave it away: all four cases off
+    // by precisely one is a wrong scheme, not an unreliable examiner.
+    manualPaperSession: 'October/November 2024',
+    manualQuestionNumber: '1(a)',
     questionMarks: 3,
     subject: '9709',
     // One B1 each for a=4, b=2, c=3. Exact, so the expected mark is exact too.
@@ -223,8 +257,8 @@ async function main() {
           questionPhoto: null,
           questionTextInput: set.questionTextInput,
           manualPaperCode: set.manualPaperCode,
-          manualPaperSession: null,
-          manualQuestionNumber: null,
+          manualPaperSession: set.manualPaperSession ?? null,
+          manualQuestionNumber: set.manualQuestionNumber ?? null,
           markIntent: 'past_paper',
           fallbackSubjectCode: set.subject,
           questionMarks: set.questionMarks,

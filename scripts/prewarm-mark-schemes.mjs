@@ -240,10 +240,37 @@ Output ONLY this JSON, no markdown, no commentary:
  * Wrapping is lossless: the array IS the list the wrapper would have held.
  * Rejecting a paper over a missing pair of braces is not.
  */
-function normaliseMarkScheme(ms, markingType) {
-  if (!Array.isArray(ms)) return ms
-  if (markingType === 'level_of_response') return { type: markingType, bands: ms }
-  return { type: markingType === 'mixed' ? 'point_based' : markingType, marks: ms }
+function normaliseMarkScheme(ms, markingType, questionNumber) {
+  if (Array.isArray(ms)) {
+    if (markingType === 'level_of_response') return { type: markingType, bands: ms }
+    return { type: markingType === 'mixed' ? 'point_based' : markingType, marks: ms }
+  }
+  if (!ms || typeof ms !== 'object') return ms
+
+  // Multiple choice, per question. The prompt asks for a paper-wide
+  // `answer_key` map, and the model often answers per row with
+  // `{"type":"mcq","correct_option":"B"}` — which for a row that already knows
+  // its own question number is arguably the better structure, and which
+  // validation rejected outright. A whole 30-question Accounting paper was
+  // discarded for it.
+  if (!ms.answer_key && typeof ms.correct_option === 'string' && questionNumber) {
+    const { correct_option: option, ...rest } = ms
+    return { ...rest, type: 'mcq', answer_key: { [String(questionNumber).trim()]: option } }
+  }
+
+  // A bare letter where a map belongs: `{"type":"mcq","answer_key":"A"}`. This
+  // reached the database because the check was `Object.keys(answer_key).length`
+  // and Object.keys("A") is ["0"] — so a string satisfied a test meant to prove
+  // the map was populated, and thirty rows of a paper stored an answer key that
+  // marking cannot look a question up in.
+  if (typeof ms.answer_key === 'string' && questionNumber) {
+    return {
+      ...ms,
+      type: 'mcq',
+      answer_key: { [String(questionNumber).trim()]: ms.answer_key },
+    }
+  }
+  return ms
 }
 
 function validateQuestion(q, paperMarkingType) {
@@ -253,11 +280,19 @@ function validateQuestion(q, paperMarkingType) {
   const totalMarks =
     typeof q.total_marks === 'number' ? q.total_marks : Number(q.total_marks)
   if (!Number.isFinite(totalMarks) || totalMarks <= 0) return false
-  const ms = normaliseMarkScheme(q.mark_scheme, paperMarkingType)
+  const ms = normaliseMarkScheme(q.mark_scheme, paperMarkingType, q.question_number)
   if (!ms || typeof ms !== 'object' || Array.isArray(ms)) return false
   const qType = ms.type || paperMarkingType
   if (qType === 'mcq') {
-    return !!(ms.answer_key && Object.keys(ms.answer_key).length > 0)
+    // Must be a real map. A string passes `Object.keys(...).length > 0` and is
+    // useless to a marker trying to look up a question number.
+    const key = ms.answer_key
+    return !!(
+      key &&
+      typeof key === 'object' &&
+      !Array.isArray(key) &&
+      Object.keys(key).length > 0
+    )
   }
   if (qType === 'level_of_response') {
     return Array.isArray(ms.bands) && ms.bands.length > 0
@@ -464,7 +499,7 @@ async function extractFullPaper(paper) {
       question_text: typeof q.question_text === 'string' ? q.question_text : '',
       total_marks:
         typeof q.total_marks === 'number' ? q.total_marks : Number(q.total_marks),
-      mark_scheme: normaliseMarkScheme(q.mark_scheme, markingType),
+      mark_scheme: normaliseMarkScheme(q.mark_scheme, markingType, q.question_number),
       marking_type: questionMarkingType(q, markingType),
       subject: subjectName,
       board: 'Cambridge International',

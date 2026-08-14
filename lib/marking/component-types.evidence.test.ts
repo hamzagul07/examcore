@@ -33,10 +33,11 @@ function main() {
       `9708/${c} is multiple choice — declaring it level_of_response marked lettered answers as essays`
     )
   }
-  // Paper 2 carries both point-based and level-of-response questions, so it is
-  // genuinely mixed rather than purely one or the other.
+  // Paper 2 carries both styles and is point-dominant (37 of 53 rows). It stays
+  // point_based rather than `mixed`, because `mixed` skips the verify pass and
+  // then prompts point-based regardless — the imprecision without the check.
   for (const c of ['21', '22']) {
-    assert.equal(t('9708', c), 'mixed', `9708/${c} mixes point and band marking`)
+    assert.equal(t('9708', c), 'point_based', `9708/${c} is point-dominant`)
   }
   // Paper 4 is the essay paper and was never in dispute.
   assert.equal(t('9708', '41'), 'level_of_response')
@@ -49,6 +50,13 @@ function main() {
   }
   // The rest of Accounting genuinely is point-based.
   assert.equal(t('9706', '21'), 'point_based')
+
+  // --- Business Studies 9609 paper 2 -----------------------------------------
+  // 48 extracted rows, 34 point-marked to 14 band-marked: point-dominant, so
+  // point_based for the same reason as 9708/2x.
+  for (const c of ['21', '22']) {
+    assert.equal(t('9609', c), 'point_based', `9609/${c} is point-dominant`)
+  }
 
   // --- science paper 1s are multiple choice ----------------------------------
   // Confirmed by extraction: every cached row for these carries an answer key.

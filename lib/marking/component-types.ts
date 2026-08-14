@@ -93,12 +93,19 @@ const COMPONENT_OVERRIDES: Record<string, MarkingStyle> = {
   '9706/11': 'mcq', '9706/12': 'mcq', '9706/13': 'mcq',
 
   '9708/11': 'mcq', '9708/12': 'mcq', '9708/13': 'mcq',
-  '9708/21': 'mixed', '9708/22': 'mixed', '9708/23': 'mixed',
+  // Paper 2 is data response plus essay, but it is point-dominant (37 of 53
+  // extracted rows) and `mixed` is not a free label: it skips the verify pass
+  // and falls through to point-based prompting anyway, so it buys the imprecision
+  // without the second opinion. The dominant style is the better fallback, and
+  // the essay questions inside it are picked up by the extended-response router.
+  '9708/21': 'point_based', '9708/22': 'point_based', '9708/23': 'point_based',
   '9708/31': 'mcq', '9708/32': 'mcq', '9708/33': 'mcq',
   '9708/41': 'level_of_response', '9708/42': 'level_of_response', '9708/43': 'level_of_response',
 
   // Business 9609
   '9609/11': 'mixed', '9609/12': 'mixed', '9609/13': 'mixed',
+  // Paper 2 is the case study: 48 extracted rows, 34 point-marked to 14
+  // band-marked. Point-dominant, so point_based for the same reason as 9708/2x.
   '9609/21': 'point_based', '9609/22': 'point_based', '9609/23': 'point_based',
   '9609/31': 'mixed', '9609/32': 'mixed', '9609/33': 'mixed',
   '9609/41': 'level_of_response', '9609/42': 'level_of_response', '9609/43': 'level_of_response',

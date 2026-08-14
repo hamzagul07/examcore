@@ -24,25 +24,41 @@ export {}
 type Shape = { mcq: number; point: number; lor: number }
 
 /**
- * Below this share, a minority shape is treated as noise rather than evidence
- * of a genuinely mixed paper — one stray band in a hundred point-marked
- * questions is an extraction artefact, not a marking style.
+ * A minority style above this share is worth mentioning, but never worth
+ * changing the map for.
+ *
+ * `mixed` is not a free label. On the only path where the map is consulted at
+ * all — no cached scheme for the question — it skips the verify pass and then
+ * prompts point-based anyway, so it buys the imprecision of both styles and the
+ * check of neither. The dominant style is always the better fallback, and a
+ * genuine essay inside a point-dominant paper is caught by the
+ * extended-response router instead.
  */
-const MIXED_THRESHOLD = 0.15
+const MINORITY_NOTE_THRESHOLD = 0.15
 /** Fewer rows than this is too little to contradict a hand-written entry. */
 const MIN_ROWS = 5
 
-function evidencedType(s: Shape): 'mcq' | 'point_based' | 'level_of_response' | 'mixed' {
-  const total = s.mcq + s.point + s.lor
-  const shares = [
+function rankShapes(s: Shape) {
+  return [
     { type: 'mcq' as const, n: s.mcq },
     { type: 'point_based' as const, n: s.point },
     { type: 'level_of_response' as const, n: s.lor },
   ].sort((a, b) => b.n - a.n)
+}
 
-  const significant = shares.filter((x) => x.n / total >= MIXED_THRESHOLD)
-  if (significant.length > 1) return 'mixed'
-  return shares[0].type
+/** The style the map should declare: whichever the schemes mostly are. */
+function evidencedType(s: Shape): 'mcq' | 'point_based' | 'level_of_response' {
+  return rankShapes(s)[0].type
+}
+
+/** A second style worth knowing about, without being worth switching to. */
+function minorityNote(s: Shape): string | null {
+  const total = s.mcq + s.point + s.lor
+  const [, second] = rankShapes(s)
+  if (!second || second.n === 0) return null
+  const share = second.n / total
+  if (share < MINORITY_NOTE_THRESHOLD) return null
+  return `${second.type} in ${Math.round(share * 100)}% of rows`
 }
 
 async function main() {
@@ -73,6 +89,7 @@ async function main() {
   }
 
   const mismatches: string[] = []
+  const notes: string[] = []
   let checked = 0
   let thin = 0
 
@@ -88,12 +105,11 @@ async function main() {
     checked++
     const claimed = getComponentMarkingType(subject, component)
     const evidenced = evidencedType(shape)
-    // A paper the map calls `mixed` is not contradicted by evidence of one
-    // style: mixed means "expect either", and a single session may only contain
-    // one. The reverse — the map naming one style where the schemes show two —
-    // is a real disagreement.
-    if (claimed === evidenced) continue
-    if (claimed === 'mixed' && evidenced !== 'mixed') continue
+    const note = minorityNote(shape)
+    if (note) notes.push(`  ${paperCode.padEnd(10)} mostly ${evidenced}, also ${note}`)
+    // `mixed` in the map is never contradicted by evidence of one style, and is
+    // never recommended by this audit either — see MINORITY_NOTE_THRESHOLD.
+    if (claimed === evidenced || claimed === 'mixed') continue
 
     mismatches.push(
       `  ${paperCode.padEnd(10)} map says ${claimed.padEnd(18)} schemes say ${evidenced.padEnd(18)} ` +
@@ -106,6 +122,12 @@ async function main() {
       (thin ? `, ${thin} skipped as too thin` : '') +
       '\n'
   )
+
+  if (notes.length) {
+    console.log('Papers carrying a second marking style (informational):')
+    for (const n of notes) console.log(n)
+    console.log('')
+  }
 
   if (!mismatches.length) {
     console.log('The map agrees with every mark scheme in the cache.\n')

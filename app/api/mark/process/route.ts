@@ -57,6 +57,7 @@ import type { FullMarksRewritePlan } from '@/lib/marking/mark-runner'
 import {
   openMarkRun,
   noteMarkRunStage,
+  noteMarkRunVerify,
   noteMarkRunDisconnect,
   readMarkRunPrediction,
   settleMarkRunSuccess,
@@ -528,6 +529,12 @@ async function handleMarkRequest(request: NextRequest) {
                 deferRewrite: true,
                 onProgress: (ev) => {
                   if (ev.type === 'progress') noteMarkRunStage(markRun, ev.stage)
+                  // The first-pass score, before the verify pass can overwrite
+                  // it. Recorded against the final mark so the two can be
+                  // compared rather than only the survivor being kept.
+                  if (ev.type === 'provisional_score') {
+                    noteMarkRunVerify(markRun, { firstPass: ev.marks_earned })
+                  }
                   send(ev)
                 },
               })
@@ -536,6 +543,9 @@ async function handleMarkRequest(request: NextRequest) {
                 (payload as { attempt_id?: string })?.attempt_id ?? null,
                 'mark_single'
               )
+              noteMarkRunVerify(markRun, {
+                final: (payload as { marks_earned?: number })?.marks_earned ?? null,
+              })
               await settleRunSuccess(
                 (payload as { attempt_id?: string })?.attempt_id ?? null
               )

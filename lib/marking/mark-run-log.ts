@@ -116,6 +116,37 @@ function chargeElapsedToCurrentStage(handle: MarkRunHandle): void {
 }
 
 /**
+ * Record what the first marking pass scored, and what survived verification.
+ *
+ * The verify result replaces the first pass unconditionally and in either
+ * direction, and nothing recorded that they had disagreed — so whether that
+ * second opinion improves marks or degrades them was unanswerable except by
+ * anecdote. Two observed cases point opposite ways: an essay moved 10 to 11 out
+ * of 12, and a three-mark question moved 1 to 0 against a scheme that plainly
+ * awards the mark.
+ *
+ * Fire-and-forget, like the stage flush. Telemetry must not be able to fail a
+ * mark.
+ */
+export function noteMarkRunVerify(
+  handle: MarkRunHandle | null,
+  marks: { firstPass?: number | null; final?: number | null }
+): void {
+  if (!handle?.id) return
+  const patch: Record<string, number> = {}
+  if (typeof marks.firstPass === 'number') patch.first_pass_marks = marks.firstPass
+  if (typeof marks.final === 'number') patch.final_marks = marks.final
+  if (Object.keys(patch).length === 0) return
+  void supabaseAdmin
+    .from('mark_runs')
+    .update(patch)
+    .eq('id', handle.id)
+    .then(undefined, (err: unknown) =>
+      console.warn('[mark-run] verify delta flush failed', err)
+    )
+}
+
+/**
  * The client left before the result could be sent — the run itself continues
  * server-side, and the mark is emailed instead.
  *

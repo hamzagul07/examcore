@@ -28,6 +28,8 @@ type Row = {
   client_disconnected: boolean | null
   predicted_marks: number | null
   stage_timings: Record<string, number> | null
+  first_pass_marks: number | null
+  final_marks: number | null
   has_pdf: boolean | null
   is_paid: boolean | null
 }
@@ -59,7 +61,7 @@ async function main() {
   const all = await fetchAllRows<Row & { started_at: string }>(
     service,
     'mark_runs',
-    'started_at, status, duration_ms, gemini_retries, last_stage, error_code, client_disconnected, predicted_marks, stage_timings, has_pdf, is_paid'
+    'started_at, status, duration_ms, gemini_retries, last_stage, error_code, client_disconnected, predicted_marks, stage_timings, has_pdf, is_paid, first_pass_marks, final_marks'
   )
   const rows = all.filter((r) => r.started_at >= since) as Row[]
   if (!rows.length) {
@@ -145,6 +147,33 @@ async function main() {
   if (clean.length && retried.length) {
     console.log(
       `  → a retried mark costs ${(mean(retried) / mean(clean)).toFixed(1)}× a clean one`
+    )
+  }
+
+  // --- what the verify pass actually does --------------------------------------
+  // It replaces the first pass unconditionally and in either direction, so this
+  // is the only record that the two ever disagreed. A second opinion that mostly
+  // moves marks down is a different product from one that mostly moves them up,
+  // and until now nothing said which this was.
+  const verified = ok.filter(
+    (r) => typeof r.first_pass_marks === 'number' && typeof r.final_marks === 'number'
+  )
+  if (verified.length) {
+    const moved = verified.filter((r) => r.final_marks !== r.first_pass_marks)
+    const up = moved.filter((r) => (r.final_marks ?? 0) > (r.first_pass_marks ?? 0))
+    const down = moved.filter((r) => (r.final_marks ?? 0) < (r.first_pass_marks ?? 0))
+    const net = moved.reduce(
+      (sum, r) => sum + ((r.final_marks ?? 0) - (r.first_pass_marks ?? 0)),
+      0
+    )
+    console.log('\nWhat the verify pass changed')
+    console.log(
+      `  moved ${moved.length} of ${verified.length} mark(s) (${Math.round((moved.length / verified.length) * 100)}%)`
+    )
+    console.log(`  up ${up.length} · down ${down.length} · net ${net > 0 ? '+' : ''}${net} mark(s)`)
+  } else {
+    console.log(
+      '\nWhat the verify pass changed: no runs recorded a first-pass score yet.'
     )
   }
 

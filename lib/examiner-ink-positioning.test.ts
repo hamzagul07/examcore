@@ -82,3 +82,48 @@ function main() {
 }
 
 main()
+
+/**
+ * A mark may not quote a student saying something they did not say.
+ *
+ * From a real attempt: a 2-mark "show that" scored 0/2, with M1 withheld and
+ * `line_reference: "Wp*d + R*d = WB*d"` — a line absent from all 694 characters
+ * of the transcript. The prompt requires the reference to be copied from the
+ * student's answer; a model that has lost the thread invents one instead, and
+ * the invention was stored and shown as if it were their working.
+ */
+function invented_line_references_are_not_echoed_back() {
+  const ocrLines = [
+    { text: '2 clockwise anticlockwise', bbox: { top: 10, left: 5, width: 40, height: 4 } },
+    { text: 'WprR = W+R', bbox: { top: 20, left: 5, width: 30, height: 4 } },
+  ]
+
+  const refs = buildLineReferences(
+    [
+      { mark_id: 1, type: 'M1', earned: false, line_reference: 'Wp*d + R*d = WB*d', margin_note: 'Not the correct moment equation.' },
+      { mark_id: 2, type: 'A1', earned: false, line_reference: 'WprR = W+R', margin_note: 'Missing steps.' },
+    ],
+    ocrLines
+  )
+
+  assert.equal(refs[0].snippet, '', 'a citation absent from the script must not be shown back')
+  assert.equal(refs[0].bbox, null, 'and must not be positioned on the handwriting')
+  assert.equal(refs[0].unmatched_reference, true, 'it is flagged, not silently dropped')
+  assert.equal(refs[0].margin_note, 'Not the correct moment equation.', 'the examiner note survives')
+
+  assert.equal(refs[1].snippet, 'WprR = W+R', 'a citation that IS in the script is kept')
+  assert.equal(refs[1].unmatched_reference, false)
+
+  // With no OCR lines there is nothing to check against, so nothing is claimed:
+  // the snippet is preserved rather than blamed on a model that may be right.
+  const noLines = buildLineReferences(
+    [{ mark_id: 1, type: 'M1', earned: true, line_reference: 'x = 5' }],
+    []
+  )
+  assert.equal(noLines[0].snippet, 'x = 5', 'without OCR lines the snippet is kept')
+  assert.equal(noLines[0].unmatched_reference, false, 'and nothing is flagged')
+
+  console.log('invented line references: ok')
+}
+
+invented_line_references_are_not_echoed_back()

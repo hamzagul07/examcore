@@ -46,7 +46,25 @@ export interface LineReference {
   margin_note: string | null
   error_classification: ErrorClassification
   bbox: OcrBoundingBox | null
+  /**
+   * The line the mark cites, ONLY when it was found in the student's script.
+   *
+   * Empty when the model cited something that is not there. The prompt requires
+   * this to be copied from the transcribed answer, but a model that has lost the
+   * thread invents one — a real 0/2 withheld M1 quoting `Wp*d + R*d = WB*d`,
+   * a line the student never wrote, and put "this is not the correct moment
+   * equation" in the margin against it. Showing that back quotes a student
+   * saying something they did not say, which is worse than showing nothing.
+   */
   snippet: string
+  /**
+   * True when the model cited a line that matched nothing in the script.
+   *
+   * Kept as a signal rather than silently dropped: every mark on a script
+   * failing to match is the shape of a mark made against text the model
+   * imagined, which is exactly the run a human should look at.
+   */
+  unmatched_reference?: boolean
 }
 
 /** Strip whitespace, lowercase, drop punctuation so noisy strings match. */
@@ -147,7 +165,11 @@ export function buildLineReferences(
       margin_note: marginNote,
       error_classification: classification,
       bbox: bestMatch && bestScore >= MATCH_THRESHOLD ? bestMatch.bbox : null,
-      snippet,
+      // Only echo the citation back when the script actually contains it. With
+      // no OCR lines to check against we cannot tell invented from unmatched,
+      // so the snippet is kept and nothing is claimed either way.
+      snippet: lines.length === 0 || bestScore >= MATCH_THRESHOLD ? snippet : '',
+      unmatched_reference: lines.length > 0 && !!snippet && bestScore < MATCH_THRESHOLD,
     }
   })
 }

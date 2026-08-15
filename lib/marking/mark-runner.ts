@@ -822,6 +822,35 @@ export async function markSingleQuestion(params: {
     ocrLines
   )
 
+  // Refuse to withhold a mark on evidence that is not in the script.
+  //
+  // OCR fails without erroring: a photo too blurry to read comes back as fluent
+  // nonsense ("WPOT IRR WBET INBRR") rather than empty, so the "no handwriting
+  // detected" path never fires and the model marks the noise. On a real script a
+  // 2-mark "show that" scored 0/2 with M1 withheld against `Wp*d + R*d = WB*d`,
+  // a line absent from the whole transcript, and "this is not the correct moment
+  // equation" written in the margin beside it.
+  //
+  // The test is deliberately one-sided. I first wrote it as "every citation
+  // unmatched" and checked it against that attempt: one of the two DID match, so
+  // it would not have fired on the case that prompted it. What distinguishes
+  // harm is direction, not volume. A fuzzy citation on a mark that was awarded
+  // costs the student nothing; a mark refused on words they never wrote is the
+  // injury, and one is enough.
+  //
+  // The cost of a false positive is a re-upload. The cost of a false negative is
+  // a confident zero a student cannot argue with, because the thing it quotes
+  // does not exist. The wording routes to the existing "we couldn't read your
+  // handwriting" notice, which is the true thing to tell them.
+  const inventedWithholding = lineReferences.some(
+    (r) => r.unmatched_reference === true && r.earned === false
+  )
+  if (inventedWithholding) {
+    throw new Error(
+      'No handwriting could be matched: a withheld mark cited a line absent from the transcript.'
+    )
+  }
+
   const errorClassifications = Array.isArray(markingResult?.marks_awarded)
     ? markingResult.marks_awarded.map((m: Record<string, unknown>, idx: number) => {
         const classification = normalizeErrorClassification(

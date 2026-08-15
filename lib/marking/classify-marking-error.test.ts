@@ -67,6 +67,20 @@ async function main() {
   assert.equal(unknown.status, 500)
   assert.equal(unknown.retryable, true)
 
+  // The unmoored-marking gate throws this when a WITHHELD mark cites a line
+  // that is not in the transcript. It must land on the handwriting notice: the
+  // true cause is a photo we could not read, and "try a flatter photo" is the
+  // one instruction that actually helps. If this stops matching, the student
+  // gets "something went wrong" for a problem they can fix in ten seconds.
+  const unmoored = classifyMarkingError(
+    new Error(
+      'No handwriting could be matched: a withheld mark cited a line absent from the transcript.'
+    )
+  )
+  assert.equal(unmoored.code, 'ocr_empty')
+  assert.match(unmoored.message, /couldn't read your handwriting/i)
+  assert.equal(unmoored.retryable, false, 'retrying the same unreadable photo cannot help')
+
   console.log('classify-marking-error.test.ts: ok')
 }
 

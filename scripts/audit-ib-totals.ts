@@ -29,7 +29,11 @@
  * This script cannot tell them apart — that needs the guide — so it reports the
  * gap and leaves the judgement to a human holding the PDF.
  *
- * Exits non-zero on any mismatch.
+ * Exits non-zero on any NEW mismatch. Three are known and waiting on guides we
+ * do not have (see KNOWN below) — they are still printed, but they do not fail
+ * the run, because a check that is permanently red is one people stop reading.
+ * Fix one and remove its line; the run stays green. Introduce a fourth and it
+ * goes red immediately, which is the whole point.
  */
 process.loadEnvFile?.('.env.local')
 
@@ -57,6 +61,22 @@ type BandRow = {
   criterion_id: string
   marks_min: number | null
   marks_max: number | null
+}
+
+/**
+ * Mismatches that already existed when this check was written, each waiting on a
+ * document nobody has. Keyed `subject_code/component_key/level`.
+ *
+ * Deliberately not a blanket "ignore economics": the key includes the level, so
+ * economics paper 2 breaking at HL in some new way would still be caught.
+ */
+const KNOWN: Record<string, string> = {
+  'ib-economics/paper_2/SL':
+    'Only part (g) (15 marks) is catalogued; parts (a)-(f) are point-marked. Needs the economics guide to model properly.',
+  'ib-economics/paper_2/HL':
+    'Only part (g) (15 marks) is catalogued; parts (a)-(f) are point-marked. Needs the economics guide to model properly.',
+  'ib-business-management/paper_3/HL':
+    'Four criteria sum to 17 against a component of 25. Needs the business management guide.',
 }
 
 async function main() {
@@ -96,6 +116,7 @@ async function main() {
   }
 
   const problems: string[] = []
+  const known: string[] = []
   let checked = 0
   let noCriteria = 0
 
@@ -119,6 +140,14 @@ async function main() {
     const sum = rows.reduce((s, r) => s + (r.max_marks ?? 0), 0)
     if (sum !== comp.max_marks) {
       const gap = comp.max_marks - sum
+      const knownKey = `${comp.subject_code}/${comp.component_key}/${comp.level ?? '?'}`
+      if (KNOWN[knownKey]) {
+        known.push(
+          `${comp.subject_code}  ${comp.component_key} (${comp.level ?? '?'})  ` +
+            `${comp.max_marks} vs ${sum}  — ${KNOWN[knownKey]}`
+        )
+        continue
+      }
       problems.push(
         `${comp.subject_code}  ${comp.component_key} (${comp.level ?? '?'})  ` +
           `component says ${comp.max_marks}, ${rows.length} criteria sum to ${sum}  ` +
@@ -174,8 +203,15 @@ async function main() {
     process.exitCode = 1
   }
 
+  if (known.length) {
+    console.log(`KNOWN, NOT FAILING (${known.length})`)
+    console.log('  Already wrong before this check existed, each waiting on a guide.\n')
+    for (const k of known) console.log(`  ${k}`)
+    console.log('')
+  }
+
   if (problems.length === 0) {
-    console.log('Every component total matches the sum of its criteria.\n')
+    console.log('No new mismatches.\n')
     return
   }
 

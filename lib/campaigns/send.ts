@@ -10,6 +10,7 @@ import { getIbSubjects } from '@/lib/ib/catalog'
 import { iaName, shortIbLabel, CORE_COMPONENTS } from '@/lib/community/ia-names'
 import { isJune2026Session } from '@/lib/seo/results-day'
 import { getSegment, SEGMENTS, type Recipient, type SegmentId } from '@/lib/campaigns/audience'
+import { markBreakdownHtml, markBreakdownText } from '@/lib/email/mark-breakdown-strip'
 
 /**
  * Campaign sender.
@@ -319,6 +320,28 @@ function campaignVisual(
   slug: string,
   focus: ReturnType<typeof focusFor>
 ): { html: string; text: string } | undefined {
+  // Both August campaigns claim marking comes back broken down point by point
+  // rather than as an impression. Drawing one question makes that checkable in
+  // two seconds instead of asking for the sentence to be believed. Invented
+  // wording, not a real student's script and not a scheme quoted verbatim — the
+  // shape is the claim, and the shape is what is shown.
+  if (
+    slug === 'never-marked-waiting-is-fixed-2026-08' ||
+    slug === 'marking-does-not-need-you-2026-08'
+  ) {
+    const opts = {
+      caption: 'Economics 9708 · Paper 2 · a 4-mark question',
+      question: 'Explain two reasons why demand for a normal good may rise. [4]',
+      points: [
+        { code: 'B1', detail: 'Identifies a rise in real income', awarded: true },
+        { code: 'B1', detail: 'Explains the link to a normal good', awarded: true },
+        { code: 'B1', detail: 'Identifies a second valid reason', awarded: true },
+        { code: 'B1', detail: 'No explanation of the second reason given', awarded: false },
+      ],
+    }
+    return { html: markBreakdownHtml(opts), text: markBreakdownText(opts) }
+  }
+
   if (slug !== 'results-2026-post-your-marks') return undefined
 
   // Their own paper where we can place them; Physics as the stand-in otherwise,

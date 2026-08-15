@@ -89,6 +89,9 @@ async function main() {
   const mismatches = []
   const repeated = []
   for (const c of components) {
+    // A point-marked paper has no criteria by definition; its marks live in the
+    // markscheme, not in this table. Summing them to nothing is not a mismatch.
+    if (c.assessment_model === 'points') continue
     const sum = (c.criteria ?? []).reduce((n, cr) => n + (cr.max_marks ?? 0), 0)
     if (c.max_marks == null || sum === c.max_marks) continue
     if (sum > 0 && c.max_marks % sum === 0) {
@@ -181,7 +184,7 @@ async function main() {
         console.error(
           `  - ${d.component_key} (${d.level}, ${d.assessment_model})` +
             (d.assessment_model === 'points'
-              ? '  ← point-marked; this script cannot write it back'
+              ? '  ← point-marked: add it to the extraction as {assessment_model:"points"} with its total'
               : '')
         )
       }
@@ -311,7 +314,11 @@ async function main() {
         component_key: c.component_key,
         label: c.label,
         level: c.level,
-        assessment_model: 'criteria',
+        // Point-marked papers carry no criteria to extract, but they still have
+        // to exist or they stop resolving. A component may declare itself
+        // 'points' and be written as a bare row; anything else is criteria, as
+        // every extraction was before this.
+        assessment_model: c.assessment_model === 'points' ? 'points' : 'criteria',
         max_marks: c.max_marks,
         source_document_id: doc.id,
       })

@@ -34,8 +34,18 @@ our catalogue).
 
 ## Getting them onto disk
 
-`curl` cannot: ibo.org answers 403 to non-browser clients on TLS fingerprint, so
-a browser user-agent does not help. They download normally in a real browser.
+Save them from a browser you are actually using. Nothing automated gets through:
+
+| Tried | Result |
+|---|---|
+| `curl`, with and without a browser user-agent | 403 |
+| Playwright driving real Chrome (`channel: 'chrome'`) | 403, including same-origin `fetch` from a loaded ibo.org page |
+| Chrome extension, ordinary browsing session | 200, full PDFs |
+
+So the check is on **automation**, not on headers or TLS fingerprint — a driven
+browser fails where the same browser passes by hand. Do not add a stealth/evasion
+layer to get around this; these are seven public PDFs and saving them by hand
+takes about two minutes.
 
 Once a PDF is anywhere on disk:
 

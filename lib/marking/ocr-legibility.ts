@@ -16,6 +16,12 @@
  *      does not contain 木村. This is the model reaching for tokens rather than
  *      reading marks on paper.
  *
+ *   3. A run of consecutive ALL-CAPS words. "WPOT IRR WBET INBRR" is four in a
+ *      row; exam prose has the odd EMF or RHS but almost never three together.
+ *      This was added after the first version missed a re-read of the same
+ *      script: without the CJK glyph, only two words lacked a vowel (WBET and
+ *      INBRR contain E and I), so the vowel rule alone let it through.
+ *
  * Deliberately conservative: this triggers a second, more expensive read, and a
  * false positive costs money while a false negative costs a student a wrong
  * mark. Both signals must be more than incidental before it fires.
@@ -30,8 +36,19 @@ const MIN_RUN = 4
  */
 const LEGITIMATE = new Set(['sqrt', 'cosh', 'sinh', 'tanh', 'nth', 'rhs', 'lhs', 'mgh'])
 
+/** Capitalised terms that legitimately appear in exam answers. */
+const KNOWN_CAPS = new Set([
+  'EMF', 'RHS', 'LHS', 'KE', 'PE', 'GPE', 'SHM', 'IUPAC', 'DNA', 'RNA', 'ATP',
+  'PV', 'NTP', 'STP', 'AC', 'DC', 'SI', 'OK', 'PH', 'UV', 'IR', 'GDP', 'AD', 'AS',
+])
+
+/** Consecutive all-caps words this many in a row is a guessed read, not prose. */
+const MAX_CAPS_RUN = 3
+
 export type LegibilityVerdict = {
   illegible: boolean
+  /** Longest run of consecutive unknown ALL-CAPS words. */
+  longestCapsRun?: number
   /** Why, for logs and telemetry — never shown to a student. */
   reason: string | null
   vowellessRuns: number
@@ -59,6 +76,15 @@ export function assessOcrLegibility(text: string | null | undefined): Legibility
   const hasNonLatinScript = nonLatin.test(source)
 
   const tokens = source.match(/[A-Za-z]+/g) ?? []
+
+  // Longest run of consecutive all-caps words that are not known abbreviations.
+  let longestCapsRun = 0
+  let run = 0
+  for (const t of tokens) {
+    const isShout = t.length >= 3 && t === t.toUpperCase() && !KNOWN_CAPS.has(t)
+    run = isShout ? run + 1 : 0
+    if (run > longestCapsRun) longestCapsRun = run
+  }
   const alphabeticTokens = tokens.length
   const vowellessRuns = tokens.filter(
     (t) => t.length >= MIN_RUN && !/[aeiouAEIOU]/.test(t) && !LEGITIMATE.has(t.toLowerCase())
@@ -70,6 +96,18 @@ export function assessOcrLegibility(text: string | null | undefined): Legibility
     return {
       illegible: true,
       reason: 'non-Latin script in a Latin-script answer',
+      longestCapsRun,
+      vowellessRuns,
+      alphabeticTokens,
+      hasNonLatinScript,
+    }
+  }
+
+  if (longestCapsRun >= MAX_CAPS_RUN) {
+    return {
+      illegible: true,
+      reason: `${longestCapsRun} consecutive all-caps words`,
+      longestCapsRun,
       vowellessRuns,
       alphabeticTokens,
       hasNonLatinScript,
@@ -83,11 +121,12 @@ export function assessOcrLegibility(text: string | null | undefined): Legibility
     return {
       illegible: true,
       reason: `${vowellessRuns} of ${alphabeticTokens} words have no vowel`,
+      longestCapsRun,
       vowellessRuns,
       alphabeticTokens,
       hasNonLatinScript,
     }
   }
 
-  return { ...empty, vowellessRuns, alphabeticTokens, hasNonLatinScript }
+  return { ...empty, longestCapsRun, vowellessRuns, alphabeticTokens, hasNonLatinScript }
 }

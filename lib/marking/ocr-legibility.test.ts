@@ -13,7 +13,27 @@ function main() {
   assert.equal(bad.illegible, true, 'the transcript that produced a wrong 0/2 must be caught')
   assert.ok(bad.reason, 'and must say why')
 
+  // The SAME script re-read, without the CJK glyph. The first version of this
+  // check passed it: only WPOT and WprR lack a vowel, because WBET and INBRR
+  // contain E and I, so the count fell below the threshold. The (b)(i) working
+  // is still plainly unread, so it must still be caught.
+  const reread = assessOcrLegibility(
+    '2 clockutise anticlockwise\nWPOT IRR WBET INBRR\nWprR\n=\nWB-R\nW+R\n' +
+      "R = 17.658\n17.7\nHooke's Law\nThe state at which object has ability to " +
+      "restore it's original shape after streching. It does not obey hooke's law"
+  )
+  assert.equal(reread.illegible, true, 're-read of the same unread working must still be caught')
+  assert.match(reread.reason ?? '', /consecutive all-caps/, 'caught by the caps run, not the CJK glyph')
+
   // --- things that must NOT be called illegible --------------------------------
+
+  // Real abbreviations, including several close together. Exam answers do shout
+  // occasionally, and that must not read as a failed transcription.
+  const abbreviations = assessOcrLegibility(
+    'The EMF of the cell drives the current. Using KE and PE, the SHM equation on ' +
+      'the RHS gives the amplitude. DNA and ATP are named in the IUPAC guidance.'
+  )
+  assert.equal(abbreviations.illegible, false, 'known abbreviations are not gibberish')
   const maths = assessOcrLegibility(
     '3x + 7 = 22 so 3x = 15 therefore x = 5. Substituting gives y = 2x^2 - 4x + 1 ' +
       'and sqrt(16) = 4, so the stationary point is at x = 1.'

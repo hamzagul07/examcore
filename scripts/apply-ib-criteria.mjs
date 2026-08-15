@@ -197,11 +197,27 @@ async function main() {
     .single()
   if (docErr) throw new Error(`source document: ${docErr.message}`)
 
+  // Re-applying an existing subject must not quietly rewrite how it presents.
+  // This is an upsert, so every column named here is written every time: without
+  // the existing row as a fallback, a re-ingest renamed "Philosophy" to
+  // "philosophy" (which the student sees, in "marked against the IB … guide")
+  // and would have refiled it under the default subject group, "The Arts".
+  const { data: existingSubject } = await db
+    .from('ib_subject')
+    .select('name, subject_group')
+    .eq('code', subjectCode)
+    .maybeSingle()
+
+  const derivedName = subjectCode
+    .replace(/^ib-/, '')
+    .replace(/-/g, ' ')
+    .replace(/^./, (ch) => ch.toUpperCase())
+
   const { error: subjErr } = await db.from('ib_subject').upsert(
     {
       code: subjectCode,
-      name: opt('name') ?? subjectCode.replace(/^ib-/, '').replace(/-/g, ' '),
-      subject_group: opt('group') ?? 'The Arts',
+      name: opt('name') ?? existingSubject?.name ?? derivedName,
+      subject_group: opt('group') ?? existingSubject?.subject_group ?? 'The Arts',
       level_scope: opt('scope') ?? 'HL_SL',
       guide_version: opt('cycle') ?? String(firstAssessment ?? 'unknown'),
       first_assessment_year: firstAssessment,

@@ -34,6 +34,7 @@ import {
   tryExtractFromStorage,
   resolveQuestionMarkingStyle,
 } from '@/lib/marking/storage-extract'
+import { assessOcrLegibility } from '@/lib/marking/ocr-legibility'
 import {
   ANSWER_OCR_PROMPT_MATH,
   ANSWER_OCR_PROMPT_GENERAL,
@@ -206,7 +207,47 @@ export async function ocrTextFromBuffer(
     ],
     { task: 'ocr', model: GEMINI_FLASH_MODEL, temperature: 0 }
   )
-  return parseOcrAnswer(response.text || '')
+  const first = parseOcrAnswer(response.text || '')
+
+  // Flash reads most handwriting fine and is what makes marking affordable. When
+  // it cannot, it does not say so — it returns confident nonsense, and everything
+  // downstream marks that. A real script came back as "WPOT IRR WBET INBRR" and
+  // was scored 0/2 against it, so the failure is worth one more read rather than
+  // an apology.
+  //
+  // Escalation is the fix; refusing was only the guard. Pro is several times the
+  // cost, which is why this is gated on a signal rather than run for everyone,
+  // and why the cheaper read is kept when the second one is no better.
+  const verdict = assessOcrLegibility(first.full_text)
+  if (!verdict.illegible) return first
+
+  console.warn('[ocr] flash transcription looks unread, retrying on pro', {
+    reason: verdict.reason,
+  })
+  try {
+    const retry = await generateGeminiWithContents(
+      [
+        {
+          role: 'user',
+          parts: [
+            { inlineData: { mimeType, data: base64 } },
+            { text: prompt },
+          ],
+        },
+      ],
+      { task: 'ocr', model: GEMINI_PRO_MODEL, temperature: 0 }
+    )
+    const second = parseOcrAnswer(retry.text || '')
+    // Keep the better read. If Pro is no more legible the photo is genuinely
+    // unreadable, and the withheld-mark gate will stop it becoming a wrong
+    // score — but there is no reason to pay for the worse transcript as well.
+    return assessOcrLegibility(second.full_text).illegible ? first : second
+  } catch (err) {
+    // A failed retry must not fail the mark; the first read still stands, and
+    // the gate downstream is what protects the student.
+    console.warn('[ocr] pro retry failed, keeping the first read', err)
+    return first
+  }
 }
 
 export async function uploadAnswerPhoto(

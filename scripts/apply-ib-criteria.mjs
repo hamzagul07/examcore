@@ -116,6 +116,23 @@ async function main() {
     if (!c.component_key || !c.label || !c.level) {
       problems.push(`${c.component_key ?? '(no key)'}: missing key, label or level`)
     }
+    // ib_criterion is UNIQUE(component_id, letter), so check the letters this
+    // run would actually write — the same expression the insert uses, not the
+    // ones in the file. A guide whose sections are answered more than once
+    // (psychology paper 1 has two questions per section) is duplicated from one
+    // extracted criterion, and each copy carries the original's letter.
+    const seen = new Map()
+    ;(c.criteria ?? []).forEach((cr, i) => {
+      const letter = cr.letter?.trim() || String.fromCharCode(65 + i)
+      if (seen.has(letter)) {
+        problems.push(
+          `${c.component_key}/${letter}: two criteria would take the same letter ` +
+            `("${seen.get(letter)}" and "${cr.name ?? '?'}") — clear .letter to have them assigned by position`
+        )
+      }
+      seen.set(letter, cr.name ?? '?')
+    })
+
     for (const cr of c.criteria ?? []) {
       if (cr.max_marks == null) problems.push(`${c.component_key}/${cr.letter ?? '?'}: criterion has no max_marks`)
       for (const b of cr.bands ?? []) {

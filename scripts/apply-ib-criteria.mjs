@@ -148,6 +148,52 @@ async function main() {
     process.exit(1)
   }
 
+  // Applying deletes every component of the subject and writes back only what
+  // this extraction holds — and this script can only write criteria-model
+  // components. Eleven subjects mix point-marked papers with a criteria-model
+  // IA, so an IA-only extraction of one of them silently deletes its papers:
+  // computer science would go from six components to one, and paper 1 would
+  // stop resolving with nothing logged.
+  //
+  // Refuse instead. Dropping a component is sometimes correct — the 2027
+  // computer science course really does remove paper 3 — so this is a
+  // confirmation, not a prohibition.
+  {
+    const { createClient } = await import('@supabase/supabase-js')
+    const db = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE_KEY
+    )
+    const { data: existing } = await db
+      .from('ib_component')
+      .select('component_key, level, assessment_model')
+      .eq('subject_code', subjectCode)
+    const incoming = new Set(components.map((c) => c.component_key))
+    // Matched on key alone: consolidating separate SL and HL rows into one
+    // 'both' row is a legitimate re-shape, not a removal.
+    const dropped = (existing ?? []).filter((e) => !incoming.has(e.component_key))
+    if (dropped.length && !flag('drop-missing')) {
+      console.error(
+        `[apply] refusing: ${dropped.length} existing component(s) are not in this extraction\n` +
+          '        and would be deleted:'
+      )
+      for (const d of dropped) {
+        console.error(
+          `  - ${d.component_key} (${d.level}, ${d.assessment_model})` +
+            (d.assessment_model === 'points'
+              ? '  ← point-marked; this script cannot write it back'
+              : '')
+        )
+      }
+      console.error(
+        '\n        If the course really dropped them, re-run with --drop-missing.\n' +
+          '        If not, the extraction is short: point-marked papers have no\n' +
+          '        criteria to extract and must be carried some other way.\n'
+      )
+      process.exit(1)
+    }
+  }
+
   // Currency gate. This is the check whose absence let a Theatre 2017 rubric —
   // last assessed in 2023, four criteria where the current course has three,
   // and an internal assessment that no longer exists — go live against real

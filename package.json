@@ -28,6 +28,7 @@
     "mark:smoke": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/mark-smoke.ts",
     "ib:currency": "tsx scripts/ib-currency.ts",
     "audit:component-types": "tsx scripts/audit-component-types.ts",
+    "audit:ib-totals": "tsx scripts/audit-ib-totals.ts",
     "ib:guidance": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/extract-ib-guidance.mjs",
     "outreach": "tsx scripts/outreach.ts",
     "test:billing": "cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/teacher-seat.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/scholar-access.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/max-features.test.ts",

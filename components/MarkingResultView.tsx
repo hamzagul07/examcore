@@ -483,16 +483,28 @@ export function MarkingResultView({
 
       <div className="ms-mark-authority mt-4">{markingModeBanner}</div>
 
-      {/* Which published guide this rubric came from. Shown only when it
-          changes what the student should do with the feedback — a current
-          guide needs no announcement, a withdrawn one does. */}
-      {result.ai_marking.guide_notice?.caution ? (
-        <p
-          className="mt-3 rounded-md border border-[var(--ec-border)] bg-[var(--ec-surface)] p-3 text-sm text-[var(--ec-text-secondary)]"
-          role="note"
-        >
-          {result.ai_marking.guide_notice.caution}
-        </p>
+      {/* Which published guide this rubric came from.
+          The label is always shown, quietly. It used to appear only alongside a
+          caution, which meant a current guide said nothing at all — and silence
+          is exactly what an unchecked guide looks like too, so the student could
+          not tell "we verified this is current" from "nobody has looked". Naming
+          it every time is also the only way the claim is checkable from outside.
+          The caution stays louder, because it is the part that changes what the
+          student should do with the feedback. */}
+      {result.ai_marking.guide_notice ? (
+        <div className="mt-3">
+          <p className="text-xs text-[var(--ec-text-secondary)]">
+            Marked against: {result.ai_marking.guide_notice.label}
+          </p>
+          {result.ai_marking.guide_notice.caution ? (
+            <p
+              className="mt-2 rounded-md border border-[var(--ec-border)] bg-[var(--ec-surface)] p-3 text-sm text-[var(--ec-text-secondary)]"
+              role="note"
+            >
+              {result.ai_marking.guide_notice.caution}
+            </p>
+          ) : null}
+        </div>
       ) : null}
 
       {bandLadderShown && bandGap ? (

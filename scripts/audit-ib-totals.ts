@@ -46,10 +46,17 @@ type ComponentRow = {
 }
 
 type CriterionRow = {
+  id: string
   component_id: string
   letter: string | null
   name: string | null
   max_marks: number | null
+}
+
+type BandRow = {
+  criterion_id: string
+  marks_min: number | null
+  marks_max: number | null
 }
 
 async function main() {
@@ -73,7 +80,12 @@ async function main() {
   const criteria = await fetchAllRows<CriterionRow>(
     service,
     'ib_criterion',
-    'component_id, letter, name, max_marks'
+    'id, component_id, letter, name, max_marks'
+  )
+  const bands = await fetchAllRows<BandRow>(
+    service,
+    'ib_criterion_band',
+    'criterion_id, marks_min, marks_max'
   )
 
   const byComponent = new Map<string, CriterionRow[]>()
@@ -118,10 +130,49 @@ async function main() {
     }
   }
 
+  // A criterion is only markable if its bands reach both ends. A ladder that
+  // stops short of the maximum cannot award full marks; one that starts at 1
+  // cannot award zero, which floors a response that meets nothing — the whole
+  // extended essay was like that, generous on five criteria at once, because
+  // its guide states the zero case as a note above the table rather than as a
+  // row in it.
+  const bandsByCriterion = new Map<string, BandRow[]>()
+  for (const b of bands) {
+    const list = bandsByCriterion.get(b.criterion_id) ?? []
+    list.push(b)
+    bandsByCriterion.set(b.criterion_id, list)
+  }
+  const ladderProblems: string[] = []
+  const componentById = new Map(components.map((c) => [c.id, c]))
+  for (const cr of criteria) {
+    const comp = componentById.get(cr.component_id)
+    if (!comp) continue
+    const rows = bandsByCriterion.get(cr.id) ?? []
+    const where = `${comp.subject_code}  ${comp.component_key} (${comp.level ?? '?'})  ${cr.letter ?? '-'} ${cr.name ?? ''}`
+    if (rows.length === 0) {
+      ladderProblems.push(`${where}: no bands — nothing for a marker to choose`)
+      continue
+    }
+    const lo = Math.min(...rows.map((r) => r.marks_min ?? 0))
+    const hi = Math.max(...rows.map((r) => r.marks_max ?? 0))
+    if (lo > 0) ladderProblems.push(`${where}: bands start at ${lo}, so 0 cannot be awarded`)
+    if (cr.max_marks != null && hi !== cr.max_marks) {
+      ladderProblems.push(`${where}: bands reach ${hi} but the criterion is out of ${cr.max_marks}`)
+    }
+  }
+
   console.log(
     `\nIB COMPONENT TOTALS — ${checked} component(s) with criteria checked, ` +
       `${noCriteria} without criteria skipped\n`
   )
+
+  if (ladderProblems.length) {
+    console.log(`BAND LADDER (${ladderProblems.length})`)
+    console.log('  A criterion whose bands do not reach both ends cannot award both ends.\n')
+    for (const p of ladderProblems) console.log(`  ${p}`)
+    console.log('')
+    process.exitCode = 1
+  }
 
   if (problems.length === 0) {
     console.log('Every component total matches the sum of its criteria.\n')

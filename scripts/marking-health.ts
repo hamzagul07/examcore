@@ -23,6 +23,8 @@ type Row = {
   status: string
   duration_ms: number | null
   gemini_retries: number | null
+  ocr_escalations: number | null
+  ocr_escalations_kept: number | null
   last_stage: string | null
   error_code: string | null
   client_disconnected: boolean | null
@@ -61,7 +63,7 @@ async function main() {
   const all = await fetchAllRows<Row & { started_at: string }>(
     service,
     'mark_runs',
-    'started_at, status, duration_ms, gemini_retries, last_stage, error_code, client_disconnected, predicted_marks, stage_timings, has_pdf, is_paid, first_pass_marks, final_marks'
+    'started_at, status, duration_ms, gemini_retries, ocr_escalations, ocr_escalations_kept, last_stage, error_code, client_disconnected, predicted_marks, stage_timings, has_pdf, is_paid, first_pass_marks, final_marks'
   )
   const rows = all.filter((r) => r.started_at >= since) as Row[]
   if (!rows.length) {
@@ -148,6 +150,29 @@ async function main() {
     console.log(
       `  → a retried mark costs ${(mean(retried) / mean(clean)).toFixed(1)}× a clean one`
     )
+  }
+
+  // --- was the stronger OCR read needed, and did it help? ----------------------
+  //
+  // The escalation trigger was built from one script. Firing on almost nothing
+  // means it is still too tight — the first version of it missed the very case
+  // it was written for. Firing often but rarely keeping the second read means
+  // it is too loose and the second call is being bought for nothing.
+  const withOcr = rows.filter((r) => r.ocr_escalations != null)
+  const escalated = withOcr.filter((r) => (r.ocr_escalations ?? 0) > 0)
+  if (withOcr.length === 0) {
+    console.log('\nStronger OCR read: no runs recorded it yet.')
+  } else {
+    const tried = escalated.reduce((n, r) => n + (r.ocr_escalations ?? 0), 0)
+    const kept = escalated.reduce((n, r) => n + (r.ocr_escalations_kept ?? 0), 0)
+    console.log('\nStronger OCR read')
+    console.log(
+      `  ${escalated.length} of ${withOcr.length} run(s) escalated — ${tried} read(s) re-run, ` +
+        `${kept} rescued, ${tried - kept} spent on photos still unreadable`
+    )
+    if (escalated.length === 0) {
+      console.log('  Nothing has tripped it. Either photos are fine, or it is still too tight.')
+    }
   }
 
   // --- what the verify pass actually does --------------------------------------

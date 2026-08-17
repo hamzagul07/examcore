@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import { getGeminiRetryStats } from '@/lib/marking/gemini-retry'
-import { requestRetryCount } from '@/lib/ai/request-deadline'
+import { requestOcrEscalations, requestRetryCount } from '@/lib/ai/request-deadline'
 import type { MarkingErrorCode } from '@/lib/marking/classify-marking-error'
 import type { MarkProgressStage } from '@/lib/marking/mark-progress'
 
@@ -248,6 +248,10 @@ async function settleMarkRun(
   outcome: Record<string, unknown>
 ): Promise<void> {
   chargeElapsedToCurrentStage(handle)
+  // Read at settle rather than held on the handle: the counter is request-scoped
+  // so it already belongs to this mark, and reading it here means the OCR path
+  // never has to know a mark_runs row exists.
+  const ocr = requestOcrEscalations()
   const base = {
     ...outcome,
     last_stage: handle.lastStage,
@@ -261,9 +265,14 @@ async function settleMarkRun(
       ...base,
       stage_timings: handle.stageMs,
       client_disconnected: handle.clientDisconnected,
+      ocr_escalations: ocr?.tried ?? null,
+      ocr_escalations_kept: ocr?.kept ?? null,
     })
     .eq('id', handle.id!)
-  if (result.error && /stage_timings|client_disconnected/i.test(result.error.message ?? '')) {
+  if (
+    result.error &&
+    /stage_timings|client_disconnected|ocr_escalations/i.test(result.error.message ?? '')
+  ) {
     result = await supabaseAdmin.from('mark_runs').update(base).eq('id', handle.id!)
   }
   if (result.error) throw result.error

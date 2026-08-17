@@ -46,6 +46,19 @@ type DeadlineContext = {
    * One re-route, then back to honest backoff.
    */
   backendSwitched: boolean
+
+  /**
+   * How many OCR reads this request escalated from Flash to Pro, and how many
+   * of those the stronger read actually rescued.
+   *
+   * Scoped like `retries` and for the same reason: several marks are in flight
+   * at once, so a module global would attribute one student's bad photo to
+   * whoever else happened to be marking. Counted because the escalation was
+   * added on a single script — Flash failed it twice, Pro read it cleanly — and
+   * one case cannot say whether the trigger is too tight or too loose.
+   */
+  ocrEscalations: number
+  ocrEscalationsKept: number
 }
 
 const deadlineStore = new AsyncLocalStorage<DeadlineContext>()
@@ -55,6 +68,22 @@ const deadlineStore = new AsyncLocalStorage<DeadlineContext>()
 export function noteRequestRetry(): void {
   const ctx = deadlineStore.getStore()
   if (ctx) ctx.retries += 1
+}
+
+/** Record that a transcription was escalated to the stronger model. `kept` says
+ * whether the second read was legible enough to use; a rescue and a wasted call
+ * cost the same and must not be counted the same. No-op outside a request. */
+export function noteOcrEscalation(kept: boolean): void {
+  const ctx = deadlineStore.getStore()
+  if (!ctx) return
+  ctx.ocrEscalations += 1
+  if (kept) ctx.ocrEscalationsKept += 1
+}
+
+/** OCR escalations in the current request: {tried, kept}, or null outside one. */
+export function requestOcrEscalations(): { tried: number; kept: number } | null {
+  const ctx = deadlineStore.getStore()
+  return ctx ? { tried: ctx.ocrEscalations, kept: ctx.ocrEscalationsKept } : null
 }
 
 /** Retries seen in the current request, or null when unbounded (no request). */
@@ -94,6 +123,8 @@ export function withRequestDeadline<T>(
       retries: 0,
       backendOverride: null,
       backendSwitched: false,
+      ocrEscalations: 0,
+      ocrEscalationsKept: 0,
     },
     fn
   )

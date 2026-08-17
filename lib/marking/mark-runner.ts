@@ -35,6 +35,7 @@ import {
   resolveQuestionMarkingStyle,
 } from '@/lib/marking/storage-extract'
 import { assessOcrLegibility } from '@/lib/marking/ocr-legibility'
+import { noteOcrEscalation } from '@/lib/ai/request-deadline'
 import {
   ANSWER_OCR_PROMPT_MATH,
   ANSWER_OCR_PROMPT_GENERAL,
@@ -238,13 +239,16 @@ export async function ocrTextFromBuffer(
       { task: 'ocr', model: GEMINI_PRO_MODEL, temperature: 0 }
     )
     const second = parseOcrAnswer(retry.text || '')
+    const rescued = !assessOcrLegibility(second.full_text).illegible
+    noteOcrEscalation(rescued)
     // Keep the better read. If Pro is no more legible the photo is genuinely
     // unreadable, and the withheld-mark gate will stop it becoming a wrong
     // score — but there is no reason to pay for the worse transcript as well.
-    return assessOcrLegibility(second.full_text).illegible ? first : second
+    return rescued ? second : first
   } catch (err) {
     // A failed retry must not fail the mark; the first read still stands, and
     // the gate downstream is what protects the student.
+    noteOcrEscalation(false)
     console.warn('[ocr] pro retry failed, keeping the first read', err)
     return first
   }

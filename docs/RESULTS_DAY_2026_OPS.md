@@ -89,7 +89,7 @@ Full list: `node scripts/gsc-indexing-urls.mjs --tier 1`
 
 ### B. Results morning (11 Aug) — Instagram / X
 
-> AS & A Level grades are out (06:00 GMT). Component thresholds usually follow ~13 Aug.  
+> AS & A Level grades are out (05:00 GMT). Component thresholds usually follow ~13 Aug.  
 > Statement first. Then: will my grade hold if the PDF moves a mark either way?  
 > → markscheme.app/results-2026  
 > → markscheme.app/tools/will-my-grade-hold
@@ -141,7 +141,7 @@ or Cambridge posts where comments say "I'm on IAL / Pearson."
 Hi {{first_name}},
 
 Cambridge AS & A Level grades for the June 2026 series land **11 August**
-(06:00 GMT). Component grade threshold tables usually follow around **13 August**.
+(05:00 GMT). Component grade threshold tables usually follow around **13 August**.
 
 Do this instead of doom-scrolling:
 
@@ -188,7 +188,7 @@ UTM: `?utm_source=reddit&utm_medium=barnacle&utm_campaign=results-2026`
 
 ### r/igcse — "results day when?"
 
-> IGCSE / O Level grades for June 2026 are **18 August** (06:00 GMT); A Level
+> IGCSE / O Level grades for June 2026 are **18 August** (05:00 GMT); A Level
 > was 11 Aug. Threshold tables for the series often appear mid-August before
 > IGCSE release. Calm checklist:
 > https://markscheme.app/blog/cambridge-results-day-august-2026-guide?utm_source=reddit&utm_medium=barnacle&utm_campaign=results-2026

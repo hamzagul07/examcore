@@ -16,7 +16,7 @@ Official **0990 First Language English (9 — 1)** grade boundaries for **June 2
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **IGCSE grades** released? | **18 August 2026** (06:00 GMT) |
+| When are June 2026 **IGCSE grades** released? | **18 August 2026** (05:00 GMT) |
 | When are **threshold tables** published? | **after the 18 August results** |
 | Grading scale? | **9 — 1** (not A* — G) |
 | Papers? | Reading (P1) + Directed writing / composition (P2); coursework route optional |

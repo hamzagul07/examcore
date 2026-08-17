@@ -16,7 +16,7 @@ Official **4037 Additional Mathematics** grade boundaries for **June 2026** publ
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **O-Level grades** released? | **18 August 2026** (06:00 GMT) |
+| When are June 2026 **O-Level grades** released? | **18 August 2026** (05:00 GMT) |
 | When are **threshold tables** published? | **after the 18 August results** |
 | Marking style? | **B/M/A marks** — proofs, calculus, trig |
 | Typical papers? | Two structured papers (check entry) |

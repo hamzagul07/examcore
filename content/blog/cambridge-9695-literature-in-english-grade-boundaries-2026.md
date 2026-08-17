@@ -16,7 +16,7 @@ Official **9695 Literature in English** grade boundaries for **June 2026** are p
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **A-Level grades** released? | **11 August 2026** (06:00 GMT) |
+| When are June 2026 **A-Level grades** released? | **11 August 2026** (05:00 GMT) |
 | When are **threshold tables** published? | **11 August 2026** |
 | Papers? | Passage-based, essay, Shakespeare, unseen (check your entry) |
 | Marking style? | **Level-of-response bands** — informed personal response |

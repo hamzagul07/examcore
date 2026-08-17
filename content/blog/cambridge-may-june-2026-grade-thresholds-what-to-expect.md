@@ -16,7 +16,7 @@ Search traffic spikes every June for **"Cambridge grade thresholds 2026 predicti
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **grades** released? | AS/A-Level **11 August** 2026 (06:00 GMT) |
+| When are June 2026 **grades** released? | AS/A-Level **11 August** 2026 (05:00 GMT) |
 | When are **threshold tables** published? | **Published 11 August 2026** (component PDFs) |
 | Can anyone predict them accurately beforehand? | **No** — depends on global cohort performance |
 | Do paper leaks lower thresholds? | **Not guaranteed** — voids and assessed marks change the picture |

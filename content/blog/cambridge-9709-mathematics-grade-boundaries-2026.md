@@ -16,7 +16,7 @@ Official **9709 Mathematics** grade boundaries for the **June 2026** series are 
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **grades** released? | **11 August 2026** (06:00 GMT) — AS & A Level |
+| When are June 2026 **grades** released? | **11 August 2026** (05:00 GMT) — AS & A Level |
 | When are **threshold tables** published? | **11 August 2026** — per-component raw marks |
 | What is a grade boundary? | Minimum **raw mark** for each grade (A*, A, B…) per paper |
 | Can I predict 2026 thresholds? | Use **June/Nov 2025** sessions as a bracket — not a guarantee |

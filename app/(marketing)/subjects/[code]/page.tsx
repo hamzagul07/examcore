@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: Props) {
 const SUBJECT_FAQ = (label: string, code: string, level: string) => [
   {
     q: `When are Cambridge ${code} results 2026?`,
-    a: `AS & A Level grades for the June 2026 series release 11 August 2026 (06:00 GMT). Component grade threshold tables typically follow around 13 August. IGCSE/O Level grades release 18 August. Subject checklist: /results-2026/caie/${code}.`,
+    a: `AS & A Level grades for the June 2026 series release 11 August 2026 (05:00 GMT). Component grade threshold tables typically follow around 13 August. IGCSE/O Level grades release 18 August. Subject checklist: /results-2026/caie/${code}.`,
   },
   {
     q: `How do I check if my ${code} grade will hold?`,

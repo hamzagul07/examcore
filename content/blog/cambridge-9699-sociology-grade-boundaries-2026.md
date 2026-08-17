@@ -16,7 +16,7 @@ Official **9699 Sociology** grade boundaries for **June 2026** are published —
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **grades** released? | **11 August 2026** (06:00 GMT) |
+| When are June 2026 **grades** released? | **11 August 2026** (05:00 GMT) |
 | When are **threshold tables** published? | **11 August 2026** |
 | Marking style? | **Levels of response** — theory, application, evaluation |
 | Papers? | P1–P4 (socialisation, family, education, globalisation/media/religion) |

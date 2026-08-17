@@ -33,7 +33,7 @@ export const metadata = getPageMetadata('/results-2026', {
 const FAQS = [
   {
     q: 'When are Cambridge AS & A Level results 2026?',
-    a: 'AS & A Level results for the June 2026 series are released on Tuesday 11 August 2026 at 06:00 GMT. Grade threshold tables typically follow around 13 August.',
+    a: 'AS & A Level results for the June 2026 series are released on Tuesday 11 August 2026 at 05:00 GMT. Grade threshold tables typically follow around 13 August.',
   },
   {
     q: 'How do I check if my grade will hold?',

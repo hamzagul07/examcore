@@ -44,7 +44,7 @@ export function GradeBoundaryHubPanel() {
           <tbody>
             <tr>
               <td>When are June 2026 grades?</td>
-              <td>AS &amp; A Level <strong>11 Aug</strong>; IGCSE/O Level <strong>18 Aug</strong> (06:00 GMT)</td>
+              <td>AS &amp; A Level <strong>11 Aug</strong>; IGCSE/O Level <strong>18 Aug</strong> (05:00 GMT)</td>
             </tr>
             <tr>
               <td>When are threshold tables / expected boundaries?</td>

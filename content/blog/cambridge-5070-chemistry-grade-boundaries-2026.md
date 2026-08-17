@@ -16,7 +16,7 @@ Official **5070 Chemistry** grade boundaries for **June 2026** publish in August
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **O-Level grades** released? | **18 August 2026** (06:00 GMT) |
+| When are June 2026 **O-Level grades** released? | **18 August 2026** (05:00 GMT) |
 | When are **threshold tables** published? | **after the 18 August results** |
 | Papers? | Theory + alternative to practical (check entry) |
 | Marking style? | **Equations, moles, observations** — show working |

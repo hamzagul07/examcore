@@ -16,7 +16,7 @@ Official **9702 Physics** grade boundaries for **June 2026** are published — *
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **grades** released? | **11 August 2026** (06:00 GMT) |
+| When are June 2026 **grades** released? | **11 August 2026** (05:00 GMT) |
 | When are **threshold tables** published? | **11 August 2026** |
 | Key papers? | P1 MCQ, P2 AS theory, P4 A2 theory, P3/P5 practical |
 | Raw mark vs UMS? | Cambridge A-Level uses **raw marks** — not UMS |

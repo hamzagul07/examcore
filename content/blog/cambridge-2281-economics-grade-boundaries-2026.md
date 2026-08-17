@@ -16,7 +16,7 @@ Official **2281 Economics** grade boundaries for **June 2026** publish in August
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **O-Level grades** released? | **18 August 2026** (06:00 GMT) |
+| When are June 2026 **O-Level grades** released? | **18 August 2026** (05:00 GMT) |
 | When are **threshold tables** published? | **after the 18 August results** |
 | Papers? | P1 (multiple choice) + P2 (structured/data response) |
 | Marking style? | Knowledge, application, diagrams, evaluation |

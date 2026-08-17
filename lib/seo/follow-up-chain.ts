@@ -217,7 +217,7 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
     {
       question: 'When are O-Level and IGCSE June 2026 results?',
       answer:
-        'IGCSE and O Level grades release 18 August 2026 (06:00 GMT) — component threshold PDFs still publish around 13 August.',
+        'IGCSE and O Level grades release 18 August 2026 (05:00 GMT) — component threshold PDFs still publish around 13 August.',
       href: '/blog/cambridge-4024-mathematics-grade-boundaries-2026',
     },
     {

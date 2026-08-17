@@ -1,5 +1,4 @@
 import { getSubjectColor } from '@/lib/design-system/subject-colors'
-import { getCourseCatalog } from '@/lib/courses'
 
 export type LandingSubjectPreview = {
   code: string
@@ -27,28 +26,16 @@ export function landingSubjectAccent(code: string): string {
   return getSubjectColor(code)
 }
 
-export function landingCourseMiniCards() {
-  const catalog = getCourseCatalog()
-  const codes = ['9709', '9702', '9701', '9700'] as const
-  const names: Record<string, string> = {
-    '9709': 'Mathematics',
-    '9702': 'Physics',
-    '9701': 'Chemistry',
-    '9700': 'Biology',
-  }
-
-  return codes.map((code) => {
-    const course = catalog.find((c) => c.code === code)
-    const lessons = course?.publishedCount ?? course?.lessonCount ?? 0
-    const questions = lessons > 0 ? Math.round(lessons * 5.8) : 0
-    return {
-      code,
-      name: names[code],
-      meta:
-        lessons > 0
-          ? `${lessons} lessons · ${questions} questions`
-          : 'Course coming soon',
-      href: course?.path ?? `/courses/${code}`,
-    }
-  })
-}
+/*
+ * `landingCourseMiniCards()` used to live here. It was never called, but its
+ * `getCourseCatalog` import was load-bearing in the worst way: this module is
+ * pulled in by the landing page, and `@/lib/courses` re-exports
+ * attach-lesson-visuals → interactive-embeds → lesson-diagrams, which statically
+ * imports 51 "use client" diagram components. Those dragged diagram-specs.ts
+ * (192 KB) and subject-visuals.ts into the landing page's client bundle —
+ * ~198 KB of JavaScript that shipped, parsed, and ran on every visit to a page
+ * that renders no diagrams at all.
+ *
+ * If mini cards come back, read the catalog in the server component that renders
+ * them, not from a module the landing page imports for a hardcoded array.
+ */

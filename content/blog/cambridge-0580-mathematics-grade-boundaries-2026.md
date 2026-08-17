@@ -16,7 +16,7 @@ Official **0580 Mathematics** grade boundaries for **June 2026** publish in Augu
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **IGCSE grades** released? | **18 August 2026** (06:00 GMT) |
+| When are June 2026 **IGCSE grades** released? | **18 August 2026** (05:00 GMT) |
 | When are **threshold tables** published? | **after the 18 August results** |
 | Core vs Extended? | **Core** (P1+P3) targets grades C — G; **Extended** (P2+P4) targets A* — E |
 | Marking style? | **Method marks** — show working for M marks on structured questions |

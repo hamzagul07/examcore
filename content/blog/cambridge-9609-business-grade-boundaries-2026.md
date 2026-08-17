@@ -16,7 +16,7 @@ Official **9609 Business** grade boundaries for **June 2026** are published — 
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **grades** released? | **11 August 2026** (06:00 GMT) |
+| When are June 2026 **grades** released? | **11 August 2026** (05:00 GMT) |
 | When are **threshold tables** published? | **11 August 2026** |
 | How are essays marked? | **Level-of-response** — Application, Analysis, Evaluation |
 | Papers? | Case study + essay components (check your entry) |

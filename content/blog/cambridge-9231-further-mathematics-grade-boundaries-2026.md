@@ -16,7 +16,7 @@ Official **9231 Further Mathematics** grade boundaries for **June 2026** are pub
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **grades** released? | **11 August 2026** (06:00 GMT) |
+| When are June 2026 **grades** released? | **11 August 2026** (05:00 GMT) |
 | When are **threshold tables** published? | **11 August 2026** |
 | Marking style? | **B/M/A marks** — method marks even when final answer wrong |
 | Typical entry? | **Paper 1 (Further Pure)** + Paper 3 (Mechanics) or Paper 4 (Stats) |

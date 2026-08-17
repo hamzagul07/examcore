@@ -16,7 +16,7 @@ Official **9618 Computer Science** grade boundaries for **June 2026** are publis
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **grades** released? | **11 August 2026** (06:00 GMT) |
+| When are June 2026 **grades** released? | **11 August 2026** (05:00 GMT) |
 | When are **threshold tables** published? | **11 August 2026** |
 | Marking style? | **Point marks** — precise terms, trace tables, pseudocode |
 | Papers? | P1 Theory, P2 Problem-solving, P3 Advanced theory |

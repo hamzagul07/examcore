@@ -16,7 +16,7 @@ Official **9700 Biology** grade boundaries for **June 2026** are published — *
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **grades** released? | **11 August 2026** (06:00 GMT) |
+| When are June 2026 **grades** released? | **11 August 2026** (05:00 GMT) |
 | When are **threshold tables** published? | **11 August 2026** |
 | Papers in 9700? | P1 MCQ, P2 AS structured, P4 A2 structured, P3 or P5 practical |
 | Passing vs top grade? | Boundaries set per component — overall grade from weighted total |

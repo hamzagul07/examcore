@@ -107,7 +107,7 @@ Reply only where you can add **specific, accurate** help — not every thread.
 
 ### 4 — Cambridge “when are A-Level results”
 
-> Cambridge June 2026: **AS & A Level grades 11 August 2026** (06:00 GMT). **IGCSE & O Level 18 August**. Component threshold PDFs usually drop **~13 August** — different from the grade on your statement.  
+> Cambridge June 2026: **AS & A Level grades 11 August 2026** (05:00 GMT). **IGCSE & O Level 18 August**. Component threshold PDFs usually drop **~13 August** — different from the grade on your statement.  
 > Hour-by-hour checklist: https://markscheme.app/blog/cambridge-results-day-august-2026-guide?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026
 
 ### 5 — Fake threshold spreadsheet / Telegram leak

@@ -16,7 +16,7 @@ Official **5090 Biology** grade boundaries for **June 2026** publish in August â
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **O-Level grades** released? | **18 August 2026** (06:00 GMT) |
+| When are June 2026 **O-Level grades** released? | **18 August 2026** (05:00 GMT) |
 | When are **threshold tables** published? | **after the 18 August results** |
 | Papers? | MCQ + theory (check your entry) |
 | Marking style? | **Precise terminology** on structured Qs |

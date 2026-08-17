@@ -35,7 +35,7 @@ export function getResultsDeadlines(): ResultsDeadline[] {
     {
       id: 'a-level',
       label: 'AS & A Level results',
-      when: '11 August 2026 · 06:00 GMT',
+      when: '11 August 2026 · 05:00 GMT',
       utc: A_LEVEL_RESULTS_UTC,
       detail: 'Statement of results available via schools and Cambridge Direct.',
     },
@@ -49,7 +49,7 @@ export function getResultsDeadlines(): ResultsDeadline[] {
     {
       id: 'igcse',
       label: 'IGCSE & O Level results',
-      when: '18 August 2026 · 06:00 GMT',
+      when: '18 August 2026 · 05:00 GMT',
       utc: IGCSE_RESULTS_UTC,
       detail: 'Separate release for IGCSE / O Level syllabuses.',
     },
@@ -63,7 +63,7 @@ export function getResultsHubCopy(now = new Date()) {
     return {
       overline: `${JUNE_2026_SERIES} · ${days} day${days === 1 ? '' : 's'}`,
       title: 'Cambridge Results Day 2026',
-      lead: 'AS & A Level results land 11 August 2026 (06:00 GMT). Check boundaries, interpret your statement, plan remarks or retakes, and capture a November mock pack — then practise the topics that decide the next grade.',
+      lead: 'AS & A Level results land 11 August 2026 (05:00 GMT). Check boundaries, interpret your statement, plan remarks or retakes, and capture a November mock pack — then practise the topics that decide the next grade.',
     }
   }
   if (phase === 'alevel-results') {

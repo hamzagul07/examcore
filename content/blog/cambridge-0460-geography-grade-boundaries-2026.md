@@ -16,7 +16,7 @@ Official **0460 Geography** grade boundaries for **June 2026** publish in August
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **IGCSE grades** released? | **18 August 2026** (06:00 GMT) |
+| When are June 2026 **IGCSE grades** released? | **18 August 2026** (05:00 GMT) |
 | When are **threshold tables** published? | **after the 18 August results** |
 | Papers? | Themes (P1) + skills (P2) + coursework or P4 |
 | Marking style? | **Point marks + LoR essays** — named case studies |

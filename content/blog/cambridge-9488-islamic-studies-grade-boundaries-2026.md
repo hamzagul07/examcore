@@ -16,7 +16,7 @@ Official **9488 Islamic Studies** grade boundaries for **June 2026** are publish
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **grades** released? | **11 August 2026** (06:00 GMT) |
+| When are June 2026 **grades** released? | **11 August 2026** (05:00 GMT) |
 | When are **threshold tables** published? | **11 August 2026** |
 | Marking style? | **Levels of response** — knowledge, analysis, evaluation |
 | Papers? | Source/textual analysis + essay papers (check entry) |

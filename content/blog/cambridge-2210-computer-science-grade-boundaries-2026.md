@@ -16,7 +16,7 @@ Official **2210 Computer Science** grade boundaries for **June 2026** publish in
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **O-Level grades** released? | **18 August 2026** (06:00 GMT) |
+| When are June 2026 **O-Level grades** released? | **18 August 2026** (05:00 GMT) |
 | When are **threshold tables** published? | **after the 18 August results** (component PDFs) |
 | Marking style? | **Point marks** — pseudocode, traces, technical terms |
 | Papers? | P1 Theory, P2 Problem-solving & programming |

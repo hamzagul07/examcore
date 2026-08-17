@@ -16,7 +16,7 @@ Official **9701 Chemistry** grade boundaries for **June 2026** are published —
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **grades** released? | **11 August 2026** (06:00 GMT) |
+| When are June 2026 **grades** released? | **11 August 2026** (05:00 GMT) |
 | When are **threshold tables** published? | **11 August 2026** |
 | Papers? | P1 MCQ, P2 AS, P4 A2, P3/P5 practical |
 | Common mark loss? | Mole calculations and organic mechanisms — use **ECF** |

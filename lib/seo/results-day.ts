@@ -9,8 +9,10 @@ export const JUNE_2026_SERIES = 'June 2026' as const
 /** Featured hub slug during A-Level results + threshold week (August). */
 export const CAMBRIDGE_RESULTS_DAY_SLUG = 'cambridge-results-day-august-2026-guide'
 
-/** AS & A Level results — Tuesday 11 August 2026, 06:00 GMT */
-export const A_LEVEL_RESULTS_UTC = Date.parse('2026-08-11T06:00:00.000Z')
+/** AS & A Level results — Tuesday 11 August 2026, 05:00 GMT (06:00 BST).
+ * Cambridge publishes this in GMT/UTC; UK sites quote 06:00 because that is BST.
+ * Both are the same moment — do not "correct" this to 06:00 GMT. */
+export const A_LEVEL_RESULTS_UTC = Date.parse('2026-08-11T05:00:00.000Z')
 
 /**
  * Grade threshold tables for the June series.
@@ -21,10 +23,10 @@ export const A_LEVEL_RESULTS_UTC = Date.parse('2026-08-11T06:00:00.000Z')
  * results page tell students the boundaries were not out while they were
  * holding them.
  */
-export const THRESHOLDS_PUBLISH_UTC = Date.parse('2026-08-11T06:00:00.000Z')
+export const THRESHOLDS_PUBLISH_UTC = Date.parse('2026-08-11T05:00:00.000Z')
 
-/** IGCSE & O Level results — Tuesday 18 August 2026, 06:00 GMT */
-export const IGCSE_RESULTS_UTC = Date.parse('2026-08-18T06:00:00.000Z')
+/** IGCSE & O Level results — Tuesday 18 August 2026, 05:00 GMT (06:00 BST, 10:00 PKT). */
+export const IGCSE_RESULTS_UTC = Date.parse('2026-08-18T05:00:00.000Z')
 
 export type ResultsDayPhase =
   | 'pre-alevel'
@@ -105,7 +107,7 @@ export function getResultsDayBannerCopy(ctx: BannerContext): ResultsDayBannerCop
         title: 'Finished exams? Prep for results day now',
         body: code
           ? `AS & A Level results land 11 August 2026; grade threshold tables for ${code} follow around 13 August. Build your evidence file and honest grade estimate before then.`
-          : 'AS & A Level results land 11 August 2026 (06:00 GMT). Use the gap after exams to predict grades honestly, save marked scripts, and plan remarks — not leak rumours.',
+          : 'AS & A Level results land 11 August 2026 (05:00 GMT). Use the gap after exams to predict grades honestly, save marked scripts, and plan remarks — not leak rumours.',
         primaryHref: code ? `/results-2026/caie/${code}` : '/results-2026',
         primaryLabel: 'Results Day 2026 hub',
         secondaryHref: code

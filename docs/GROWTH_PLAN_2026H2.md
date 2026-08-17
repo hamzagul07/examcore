@@ -124,7 +124,7 @@ trajectory to target grade, weekly examiner report.
 
 ## 4. Timing — the calendar decides the plan
 
-- **11 Aug 2026** — Cambridge June-series results, 06:00 GMT. Two weeks away.
+- **11 Aug 2026** — Cambridge June-series results, 05:00 GMT. Two weeks away.
   Your single most-read page is already
   `/blog/cambridge-may-june-2026-grade-thresholds-what-to-expect` (40 sessions),
   and 6 of your top 20 posts are grade-boundary pages. Demand is arriving.

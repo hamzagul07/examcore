@@ -11,14 +11,14 @@ informationGain: synthesis
 author: founder
 ---
 
-Results day is a **timestamp**, not a verdict on your future. Cambridge releases grades in two waves after the June 2026 series — and what you do in the **48 hours after** matters more than refreshing the portal at 06:00 GMT.
+Results day is a **timestamp**, not a verdict on your future. Cambridge releases grades in two waves after the June 2026 series — and what you do in the **48 hours after** matters more than refreshing the portal at 05:00 GMT.
 
 ## Quick answer
 
 | Question | Answer |
 |----------|--------|
-| When are AS/A-Level grades? | **11 August 2026** (06:00 GMT) |
-| When are IGCSE/O-Level grades? | **18 August 2026** (06:00 GMT) |
+| When are AS/A-Level grades? | **11 August 2026** (05:00 GMT) |
+| When are IGCSE/O-Level grades? | **18 August 2026** (05:00 GMT) |
 | When are threshold PDFs? | **Published 11 August** (A Level components) |
 | Where to log in? | School portal / [myresults.cie.org.uk](https://myresults.cie.org.uk) |
 | EAR deadline (June series)? | **20 September 2026** (school cut-offs often mid-August) |
@@ -28,9 +28,9 @@ Results day is a **timestamp**, not a verdict on your future. Cambridge releases
 
 | Qualification | Results release (Cambridge key dates) |
 |---------------|-------------------------------------|
-| Cambridge International AS & A Level | **Tuesday 11 August 2026** (06:00 GMT / UTC) |
+| Cambridge International AS & A Level | **Tuesday 11 August 2026** (05:00 GMT / UTC) |
 | Cambridge IPQ | **11 August 2026** |
-| Cambridge IGCSE | **Tuesday 18 August 2026** (06:00 GMT / UTC) |
+| Cambridge IGCSE | **Tuesday 18 August 2026** (05:00 GMT / UTC) |
 | Cambridge O Level | **18 August 2026** |
 | Cambridge ICE / International Certificate | **18 August 2026** |
 

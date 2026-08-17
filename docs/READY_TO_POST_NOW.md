@@ -70,7 +70,7 @@ Log the thread URL in [OUTREACH_TRACKER.md](./OUTREACH_TRACKER.md) after posting
 ## 5) 11 Aug morning (schedule now)
 
 ```
-AS & A Level grades are out (06:00 GMT). Component thresholds usually follow ~13 Aug.
+AS & A Level grades are out (05:00 GMT). Component thresholds usually follow ~13 Aug.
 Statement first. Then: will my grade hold if the PDF moves a mark either way?
 → markscheme.app/results-2026?utm_source=instagram&utm_medium=organic&utm_campaign=results-2026
 → markscheme.app/tools/will-my-grade-hold?utm_source=instagram&utm_medium=organic&utm_campaign=results-2026

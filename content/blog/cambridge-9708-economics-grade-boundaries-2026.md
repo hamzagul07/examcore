@@ -16,7 +16,7 @@ Official **9708 Economics** grade boundaries for **June 2026** are published —
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 **grades** released? | **11 August 2026** (06:00 GMT) |
+| When are June 2026 **grades** released? | **11 August 2026** (05:00 GMT) |
 | When are **threshold tables** published? | **11 August 2026** |
 | Paper types? | P1/P3 MCQ; P2/P4 data response + **essay bands** |
 | Final grade from percentages? | **No** — weighted **raw marks** combined, then compared to overall threshold |

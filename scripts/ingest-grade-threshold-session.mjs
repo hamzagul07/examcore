@@ -133,6 +133,20 @@ function main() {
       console.error(`${args.code} already has June 2026 — remove or edit manually before re-ingesting.`)
       process.exit(1)
     }
+    // Refuse a session the file already holds. Sessions are prepended, so a
+    // repeat does not overwrite — it silently gives the syllabus two June 2025
+    // rows, and the newest-first ordering that every consumer relies on stops
+    // meaning anything. Easy to do on results day when the same PDF is open in
+    // three tabs.
+    const already = (data.sessions ?? []).find(
+      (s) => String(s.session).trim().toLowerCase() === String(session.session).trim().toLowerCase()
+    )
+    if (already) {
+      console.error(
+        `${args.code} already has ${already.session} — ingesting it again would duplicate the row, not replace it.`
+      )
+      process.exit(1)
+    }
     data.sessions = [session, ...(data.sessions ?? [])]
   } else {
     console.error(`No existing ${outFile} — create base file with code/subject/level first.`)
@@ -140,7 +154,12 @@ function main() {
   }
 
   if (args.dryRun) {
-    console.log(`[dry-run] Would prepend June 2026 session to ${args.code} (${session.components.length} components)`)
+    // Print the session actually being ingested, not the one we expect. The
+    // hardcoded "June 2026" here read as confirmation while happily describing a
+    // June 2025 file, which is the opposite of what a dry run is for.
+    console.log(
+      `[dry-run] Would prepend ${session.session} to ${args.code} (${session.components.length} components)`
+    )
     return
   }
 

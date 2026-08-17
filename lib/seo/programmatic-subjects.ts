@@ -31,6 +31,28 @@ const GRADE_BOUNDARY_ONLY_SUBJECTS: SubjectOption[] = [
   // no boundary page for either. Marking is off — these are essay papers we do
   // not hold schemes for — but the thresholds are published like any other
   // syllabus, so the calculator and the boundary pages work.
+  // English Language and First Language Urdu sit alongside Pakistan Studies and
+  // Islamiyat as near-universal O Level entries here, and had no page either.
+  {
+    id: 'English Language',
+    label: 'English Language',
+    code: '1123',
+    group: 'Languages',
+    levels: ['O-Level'],
+    enabled: true,
+    markingEnabled: false,
+    markingType: 'level_of_response',
+  },
+  {
+    id: 'First Language Urdu',
+    label: 'First Language Urdu',
+    code: '3247',
+    group: 'Languages',
+    levels: ['O-Level'],
+    enabled: true,
+    markingEnabled: false,
+    markingType: 'level_of_response',
+  },
   {
     id: 'Pakistan Studies',
     label: 'Pakistan Studies',

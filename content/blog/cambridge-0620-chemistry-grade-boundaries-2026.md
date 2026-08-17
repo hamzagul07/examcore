@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: 0620 grade boundaries, 0620 grade boundaries 2026, Cambridge IGCSE Chemistry grade boundaries, 0620 chemistry thresholds, 0620 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-08-11
+updated: 2026-08-17
 featured: true
 informationGain: synthesis
 ---

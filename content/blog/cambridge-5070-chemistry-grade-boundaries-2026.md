@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: 5070 grade boundaries, 5070 grade boundaries 2026, Cambridge Chemistry grade boundaries, 5070 chemistry thresholds, 5070 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-08-11
+updated: 2026-08-17
 featured: true
 informationGain: synthesis
 ---

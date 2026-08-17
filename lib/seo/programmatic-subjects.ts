@@ -26,6 +26,31 @@ export function isValidMarkingSubjectCode(code: string): boolean {
  * marking yet — still need per-code calculator pages linked from blog posts.
  */
 const GRADE_BOUNDARY_ONLY_SUBJECTS: SubjectOption[] = [
+  // Pakistan Studies and Islamiyat are close to universal for Cambridge O Level
+  // candidates in Pakistan, which is where most of these readers sit, and we had
+  // no boundary page for either. Marking is off — these are essay papers we do
+  // not hold schemes for — but the thresholds are published like any other
+  // syllabus, so the calculator and the boundary pages work.
+  {
+    id: 'Pakistan Studies',
+    label: 'Pakistan Studies',
+    code: '2059',
+    group: 'Humanities & Social Sciences',
+    levels: ['O-Level'],
+    enabled: true,
+    markingEnabled: false,
+    markingType: 'level_of_response',
+  },
+  {
+    id: 'Islamiyat',
+    label: 'Islamiyat',
+    code: '2058',
+    group: 'Humanities & Social Sciences',
+    levels: ['O-Level'],
+    enabled: true,
+    markingEnabled: false,
+    markingType: 'level_of_response',
+  },
   {
     id: 'Mathematics',
     label: 'Mathematics',

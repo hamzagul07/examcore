@@ -64,6 +64,10 @@ Estimate with recent sessions until official tables publish:
 | Physics | 5054 | [5054 boundaries](/blog/cambridge-5054-physics-grade-boundaries-2026) |
 | Additional Maths | 4037 | [4037 boundaries](/blog/cambridge-4037-additional-mathematics-grade-boundaries-2026) |
 | Accounting | 7707 | [7707 boundaries](/blog/cambridge-7707-accounting-grade-boundaries-2026) |
+| Pakistan Studies | 2059 | [2059 boundaries](/blog/cambridge-2059-pakistan-studies-grade-boundaries-2026) |
+| Islamiyat | 2058 | [2058 boundaries](/blog/cambridge-2058-islamiyat-grade-boundaries-2026) |
+| English Language | 1123 | [1123 boundaries](/blog/cambridge-1123-english-language-grade-boundaries-2026) |
+| First Language Urdu | 3247 | [3247 boundaries](/blog/cambridge-3247-first-language-urdu-grade-boundaries-2026) |
 | Geography | 0460 | [0460 boundaries](/blog/cambridge-0460-geography-grade-boundaries-2026) |
 | Mathematics | 0580 | [0580 boundaries](/blog/cambridge-0580-mathematics-grade-boundaries-2026) |
 | Biology | 0610 | [0610 boundaries](/blog/cambridge-0610-biology-grade-boundaries-2026) |

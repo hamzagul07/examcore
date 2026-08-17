@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: 7115 grade boundaries, 7115 grade boundaries 2026, Cambridge Business Studies grade boundaries, 7115 business-studies thresholds, 7115 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-08-11
+updated: 2026-08-17
 featured: true
 informationGain: synthesis
 ---

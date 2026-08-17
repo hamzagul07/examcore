@@ -66,7 +66,14 @@ function parseComponents(text) {
 function parseHeading(text) {
   const session = text.match(/Grade thresholds\s*[–-]\s*(\w+\s+\d{4})/i)?.[1] ?? null
   const syllabus = text.match(/Syllabus\s+(\d{4})/i)?.[1] ?? null
-  const subject = text.match(/Cambridge\s+(?:International\s+)?(?:O Level|IGCSE(?:™)?|AS & A Level)\s+([A-Za-z&' ]+?)\s*\((\d{4})\)/)?.[1]?.trim() ?? null
+  // IGCSE headings read "Cambridge IGCSE ™ Mathematics (without Coursework)
+  // (0580)" — spaced trademark, and a name that itself contains brackets. The
+  // first version stopped at the first bracket and returned nothing, which was
+  // only cosmetic (the syllabus guard reads "Syllabus 0580" separately and did
+  // fire) but made the output say which file it had read for O Level and stay
+  // silent for IGCSE, exactly where a reader wants confirmation.
+  const subject =
+    text.match(/Cambridge\s+(?:International\s+)?(?:O Level|IGCSE\s*™?|AS & A Level)\s+(.+?)\s*\((\d{4})\)/)?.[1]?.trim() ?? null
   return { session, syllabus, subject }
 }
 

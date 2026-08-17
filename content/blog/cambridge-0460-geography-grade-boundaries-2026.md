@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: 0460 grade boundaries, 0460 grade boundaries 2026, Cambridge IGCSE Geography grade boundaries, 0460 geography thresholds, 0460 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-08-11
+updated: 2026-08-17
 featured: true
 informationGain: synthesis
 ---

@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: 0990 grade boundaries, 0990 grade boundaries 2026, Cambridge IGCSE English grade boundaries, 0990 English thresholds, 0990 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-08-11
+updated: 2026-08-17
 featured: true
 informationGain: synthesis
 ---

@@ -5,8 +5,24 @@ import { BRAND_ENTITY, getBrandSameAs, getFounderSameAs, getWikidataEntityUrl, W
 
 export type JsonLd = Record<string, unknown>
 
+/**
+ * Serialise for injection inside a `<script>` tag.
+ *
+ * `JSON.stringify` escapes quotes and backslashes but NOT `<`, so a community
+ * question titled `</script><script>…</script>` closed the JSON-LD block and ran
+ * as markup on /community/questions, a public indexed page. Titles reach this
+ * sink unfiltered — `stripRawHtml()` is applied to post bodies, never to titles,
+ * and 200 characters is ample for a working payload.
+ *
+ * Escaping to `<` keeps the JSON semantically identical (parsers decode it
+ * back) while making it impossible to terminate the element early. `&` is
+ * included so the output is also safe inside an HTML-escaping context.
+ */
 export function jsonLdScript(data: JsonLd | JsonLd[]) {
   return JSON.stringify(data)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/&/g, '\\u0026')
 }
 
 export function organizationNode(): JsonLd {

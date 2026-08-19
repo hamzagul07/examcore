@@ -1,4 +1,5 @@
 import type { MarkingStyle } from './types'
+import { questionNumbersMatch } from './question-number'
 
 export const MATH_NOTATION_BLOCK = `MATH NOTATION IN EXTRACTED TEXT:
 For question_text, mark scheme descriptions, and any extracted math, wrap every mathematical expression in LaTeX delimiters so it renders as math (the text is displayed with KaTeX, which requires $ delimiters), NOT as plain text:
@@ -218,34 +219,105 @@ For mixed papers, mark_scheme structure:
 
 export function validateExtractedQuestion(
   q: Record<string, unknown>,
-  paperMarkingType: MarkingStyle
+  paperMarkingType: MarkingStyle,
+  requestedQuestion?: string
 ): boolean {
   if (typeof q.question_number !== 'string' || !q.question_number.trim()) {
     return false
   }
+  if (
+    requestedQuestion &&
+    !questionNumbersMatch(q.question_number, requestedQuestion)
+  ) {
+    return false
+  }
   const totalMarks =
     typeof q.total_marks === 'number' ? q.total_marks : Number(q.total_marks)
-  if (!Number.isFinite(totalMarks) || totalMarks <= 0) return false
+  if (!Number.isInteger(totalMarks) || totalMarks <= 0) return false
 
   const ms = q.mark_scheme as Record<string, unknown> | undefined
   if (!ms || typeof ms !== 'object') return false
 
-  const qType = (ms.type as string) || paperMarkingType
+  const declaredType = (ms.type as string) || paperMarkingType
+  const qType =
+    declaredType === 'mixed' && typeof ms.question_style === 'string'
+      ? ms.question_style
+      : declaredType
 
-  if (qType === 'mcq') {
-    const key = ms.answer_key
-    return !!(key && typeof key === 'object' && Object.keys(key as object).length > 0)
+  if (qType === 'mcq') return validatesAsMcq(ms)
+  if (qType === 'level_of_response') return validatesAsLor(ms, totalMarks)
+  if (qType === 'point_based') return validatesAsPointBased(ms, totalMarks)
+
+  // `mixed` with no declared question_style. The prompt asks for one, so its
+  // absence means the model ignored the schema — but a blanket reject throws
+  // away extractions whose sub-structure is complete and unambiguous, and 32
+  // components are mapped mixed, so that lands on real papers. Infer the style
+  // from the structure present and hold it to that style's FULL checks. This is
+  // stricter than the `return true` it replaces, which accepted any shape at all.
+  if (validatesAsMcq(ms)) return true
+  if (Array.isArray(ms.bands)) return validatesAsLor(ms, totalMarks)
+  if (Array.isArray(ms.marks)) return validatesAsPointBased(ms, totalMarks)
+  return false
+}
+
+function validatesAsMcq(ms: Record<string, unknown>): boolean {
+  const key = ms.answer_key
+  return !!(key && typeof key === 'object' && Object.keys(key as object).length > 0)
+}
+
+/**
+ * Bands must tile 0..total exactly. A scheme whose bands stop at 6 on an 8-mark
+ * question cannot award 7 or 8, so it silently caps every strong answer.
+ */
+function validatesAsLor(ms: Record<string, unknown>, totalMarks: number): boolean {
+  const bands = ms.bands
+  if (!Array.isArray(bands) || bands.length === 0) return false
+  const ranges: Array<{ min: number; max: number }> = []
+  for (const band of bands) {
+    if (!band || typeof band !== 'object' || Array.isArray(band)) return false
+    const row = band as Record<string, unknown>
+    const min = row.marks_min
+    const max = row.marks_max
+    if (
+      typeof min !== 'number' ||
+      typeof max !== 'number' ||
+      !Number.isInteger(min) ||
+      !Number.isInteger(max) ||
+      min < 0 ||
+      max < min ||
+      max > totalMarks
+    ) {
+      return false
+    }
+    ranges.push({ min, max })
   }
-  if (qType === 'level_of_response') {
-    const bands = ms.bands
-    return Array.isArray(bands) && bands.length > 0
+  ranges.sort((a, b) => a.min - b.min)
+  if (ranges[0]?.min !== 0 || ranges.at(-1)?.max !== totalMarks) return false
+  return ranges.every(
+    (range, index) => index === 0 || range.min === ranges[index - 1].max + 1
+  )
+}
+
+/**
+ * Point weights must sum to the question total. A five-point extraction cached
+ * against an eight-mark question marks every future submission out of five.
+ */
+function validatesAsPointBased(
+  ms: Record<string, unknown>,
+  totalMarks: number
+): boolean {
+  const marks = ms.marks
+  if (!Array.isArray(marks) || marks.length === 0) return false
+  let weight = 0
+  for (const mark of marks) {
+    if (!mark || typeof mark !== 'object' || Array.isArray(mark)) return false
+    const value = (mark as Record<string, unknown>).value
+    if (typeof value !== 'number' || !Number.isInteger(value) || value <= 0) {
+      return false
+    }
+    weight += value
   }
-  if (qType === 'point_based') {
-    const marks = ms.marks
-    return Array.isArray(marks) && marks.length > 0
-  }
-  // mixed — accept if any valid sub-structure
-  return true
+  return weight === totalMarks
 }
 
 export function questionMarkingType(

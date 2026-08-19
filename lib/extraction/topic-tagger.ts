@@ -132,18 +132,36 @@ export function normalizeConfidence(value: unknown): number | null {
   return null
 }
 
+/**
+ * Batch tagging answers with a top-level array, but `extractJSON` scores arrays
+ * at zero and returns the best-scoring *object* it can find — so it handed back
+ * a single row (or a single tag) and `Array.isArray` rejected it, leaving every
+ * batch silently untagged. Read the array here rather than teach the shared
+ * extractor to prefer arrays, which would change all thirty of its callers.
+ */
+function parseTaggingRows(raw: string): unknown[] {
+  const trimmed = raw.trim()
+  if (!trimmed) return []
+  const fence =
+    trimmed.match(/```json\s*([\s\S]*?)```/i) ||
+    trimmed.match(/```\s*([\s\S]*?)```/)
+  const body = (fence?.[1] ?? trimmed).trim()
+  const start = body.indexOf('[')
+  const end = body.lastIndexOf(']')
+  if (start === -1 || end <= start) return []
+  try {
+    const parsed: unknown = JSON.parse(body.slice(start, end + 1))
+    return Array.isArray(parsed) ? parsed : []
+  } catch {
+    return []
+  }
+}
+
 export function parseBatchTaggingResponse(
   raw: string
 ): Map<number, RawTopicTag[]> {
   const out = new Map<number, RawTopicTag[]>()
-  let parsed: unknown
-  try {
-    parsed = extractJSON(raw)
-  } catch {
-    return out
-  }
-
-  const rows = Array.isArray(parsed) ? parsed : []
+  const rows = parseTaggingRows(raw)
   for (const item of rows) {
     if (!item || typeof item !== 'object') continue
     const row = item as Record<string, unknown>

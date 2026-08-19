@@ -1,5 +1,9 @@
 import assert from 'node:assert/strict'
-import { buildLineReferences } from '@/lib/examiner-ink-positioning'
+import {
+  buildLineReferences,
+  hasUnmatchedWithholding,
+  allReferencesUnmatched,
+} from '@/lib/examiner-ink-positioning'
 
 function main() {
   // The bug this guards: two marks share a stamp code ("M1"), so selecting by
@@ -114,14 +118,69 @@ function invented_line_references_are_not_echoed_back() {
   assert.equal(refs[1].snippet, 'WprR = W+R', 'a citation that IS in the script is kept')
   assert.equal(refs[1].unmatched_reference, false)
 
-  // With no OCR lines there is nothing to check against, so nothing is claimed:
-  // the snippet is preserved rather than blamed on a model that may be right.
+  // Typed answers have no OCR lines, but their canonical text still proves
+  // whether an awarded M1 cites something the student actually wrote.
   const noLines = buildLineReferences(
-    [{ mark_id: 1, type: 'M1', earned: true, line_reference: 'x = 5' }],
-    []
+    [
+      { mark_id: 1, type: 'M1', earned: true, line_reference: 'x = 5' },
+      { mark_id: 2, type: 'M1', earned: true, line_reference: 'x = 9' },
+      { mark_id: 3, type: 'B1', earned: true, line_reference: '' },
+    ],
+    [],
+    'After simplifying, x = 5.'
   )
-  assert.equal(noLines[0].snippet, 'x = 5', 'without OCR lines the snippet is kept')
-  assert.equal(noLines[0].unmatched_reference, false, 'and nothing is flagged')
+  assert.equal(noLines[0].snippet, 'x = 5', 'typed citation found in answer is kept')
+  assert.equal(noLines[0].unmatched_reference, false)
+  assert.equal(noLines[1].snippet, '', 'invented awarded evidence is not echoed back')
+  assert.equal(noLines[1].unmatched_reference, true)
+  assert.equal(
+    noLines[2].unmatched_reference,
+    false,
+    'an evidence-free mark point remains valid'
+  )
+
+  // One fuzzy citation on an AWARDED mark must not fail the run: the student
+  // keeps a mark they were given, and the cost of throwing is a re-upload spent
+  // correcting something in their favour.
+  assert.equal(
+    hasUnmatchedWithholding(noLines),
+    false,
+    'no withheld mark cited absent text, so the one-sided rule stays quiet'
+  )
+  assert.equal(
+    allReferencesUnmatched(noLines),
+    false,
+    'one invented citation among several is sloppy quoting, not wholesale invention'
+  )
+
+  // A withheld mark citing absent text is the injury the one-sided rule exists
+  // for: one is enough.
+  const withheld = buildLineReferences(
+    [{ mark_id: 1, type: 'M1', earned: false, line_reference: 'x = 9' }],
+    [],
+    'After simplifying, x = 5.'
+  )
+  assert.equal(
+    hasUnmatchedWithholding(withheld),
+    true,
+    'a mark refused on words the student never wrote fails the run'
+  )
+
+  // Every citation missing is the model marking text it imagined, which is where
+  // invented evidence starts inflating a score rather than decorating one.
+  const allInvented = buildLineReferences(
+    [
+      { mark_id: 1, type: 'M1', earned: true, line_reference: 'x = 9' },
+      { mark_id: 2, type: 'A1', earned: true, line_reference: 'y = 12' },
+    ],
+    [],
+    'After simplifying, x = 5.'
+  )
+  assert.equal(
+    allReferencesUnmatched(allInvented),
+    true,
+    'wholesale invention on awarded marks fails the run'
+  )
 
   console.log('invented line references: ok')
 }

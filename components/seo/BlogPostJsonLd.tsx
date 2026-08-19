@@ -1,3 +1,4 @@
+import { jsonLdScript } from '@/lib/seo/structured-data'
 import { SITE_NAME, SITE_URL } from '@/lib/site-config'
 
 /**
@@ -36,7 +37,7 @@ export function BlogIndexJsonLd({
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(payload) }}
+      dangerouslySetInnerHTML={{ __html: jsonLdScript(payload) }}
     />
   )
 }

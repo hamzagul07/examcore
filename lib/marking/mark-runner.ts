@@ -17,6 +17,8 @@ const VERIFY_MARKING = true
 import { normalizeSyllabusTagsForSubject, type SyllabusCode } from '@/lib/syllabi'
 import {
   buildLineReferences,
+  hasUnmatchedWithholding,
+  allReferencesUnmatched,
   type OcrLine,
 } from '@/lib/examiner-ink-positioning'
 import { normalizeErrorClassification } from '@/lib/error-classifications'
@@ -30,6 +32,7 @@ import { normalizeQuestionNumber } from '@/lib/marking/question-number'
 import { extractTotalMarksForGate } from '@/lib/marking/question-marks'
 import { normalizeMarkingResult, coerceMarkingResult, isUsableMarkingResult } from '@/lib/marking/normalize-math'
 import { reconcileMarkResult, type CriterionMax } from '@/lib/marking/reconcile-marks'
+import { isCompleteComparableVerifyResult } from '@/lib/marking/verify-result'
 import {
   tryExtractFromStorage,
   resolveQuestionMarkingStyle,
@@ -784,14 +787,24 @@ export async function markSingleQuestion(params: {
         priorResultJson: JSON.stringify(markingResult),
         totalMarks: authoritativeTotal,
       })
-      const verified = reconcileMarkResult(
-        normalizeMarkingResult(
-          await runGeminiMarking(verifyPrompt, maxTokensForStyle(markingStyle))
-        ),
-        { authoritativeTotal, criterionMax }
+      const normalizedVerified = normalizeMarkingResult(
+        await runGeminiMarking(verifyPrompt, maxTokensForStyle(markingStyle))
       )
-      if (isUsableMarkingResult(verified)) {
-        markingResult = verified
+      if (
+        isCompleteComparableVerifyResult(
+          markingResult,
+          normalizedVerified,
+          markingStyle
+        )
+      ) {
+        markingResult = reconcileMarkResult(normalizedVerified, {
+          authoritativeTotal,
+          criterionMax,
+        })
+      } else {
+        // The first/final telemetry pair records the retained score; this was
+        // added after a summary-only verifier changed a correct 7/8 into 0/8.
+        console.warn('[mark] verify pass incomplete; keeping first-pass result')
       }
     } catch (err) {
       // Out of budget means the run is over, not that verify alone failed.
@@ -864,10 +877,11 @@ export async function markSingleQuestion(params: {
     Array.isArray(markingResult?.marks_awarded)
       ? markingResult.marks_awarded
       : [],
-    ocrLines
+    ocrLines,
+    ocrText
   )
 
-  // Refuse to withhold a mark on evidence that is not in the script.
+  // Refuse any judgement based on evidence that is not in the script.
   //
   // OCR fails without erroring: a photo too blurry to read comes back as fluent
   // nonsense ("WPOT IRR WBET INBRR") rather than empty, so the "no handwriting
@@ -876,23 +890,32 @@ export async function markSingleQuestion(params: {
   // a line absent from the whole transcript, and "this is not the correct moment
   // equation" written in the margin beside it.
   //
-  // The test is deliberately one-sided. I first wrote it as "every citation
-  // unmatched" and checked it against that attempt: one of the two DID match, so
-  // it would not have fired on the case that prompted it. What distinguishes
-  // harm is direction, not volume. A fuzzy citation on a mark that was awarded
-  // costs the student nothing; a mark refused on words they never wrote is the
-  // injury, and one is enough.
+  // The withholding test is deliberately one-sided. I first wrote it as "every
+  // citation unmatched" and checked it against that attempt: one of the two DID
+  // match, so it would not have fired on the case that prompted it. What
+  // distinguishes harm is direction, not volume. A fuzzy citation on a mark that
+  // was awarded costs the student nothing; a mark refused on words they never
+  // wrote is the injury, and one is enough.
   //
   // The cost of a false positive is a re-upload. The cost of a false negative is
   // a confident zero a student cannot argue with, because the thing it quotes
   // does not exist. The wording routes to the existing "we couldn't read your
   // handwriting" notice, which is the true thing to tell them.
-  const inventedWithholding = lineReferences.some(
-    (r) => r.unmatched_reference === true && r.earned === false
-  )
-  if (inventedWithholding) {
+  if (hasUnmatchedWithholding(lineReferences)) {
     throw new Error(
       'No handwriting could be matched: a withheld mark cited a line absent from the transcript.'
+    )
+  }
+
+  // Added later, and deliberately NOT the mirror of the rule above. An invented
+  // line can also supply an M1 the student never earned, and that inflation is
+  // just as wrong — but failing a run over a single fuzzy quote on an awarded
+  // mark would spend a student's re-upload to correct a mark in their favour.
+  // Wholesale invention is the separable case: when every citation on the script
+  // missed, the model was marking text it imagined, not quoting sloppily.
+  if (allReferencesUnmatched(lineReferences)) {
+    throw new Error(
+      'No handwriting could be matched: every mark cited a line absent from the transcript.'
     )
   }
 

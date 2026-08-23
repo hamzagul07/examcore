@@ -5,19 +5,34 @@ export class AdaptiveConcurrency {
   private readonly ceiling: number
   private windowCalls = 0
   private window429s = 0
-  private lastAdjustAt = Date.now()
+  private lastAdjustAt: number
   private readonly adjustIntervalMs: number
   private readonly rateThreshold: number
+  /**
+   * Injectable so a test can decide when the window elapses. Reading the wall
+   * clock made the throttle test race the scheduler: a hundred recordApiOutcome
+   * calls finish inside a millisecond, so with a 1ms window no adjustment ever
+   * fired and the assertion failed on fast machines and passed on slow ones.
+   */
+  private readonly now: () => number
 
   constructor(
     initial: number,
-    opts: { min?: number; max?: number; adjustIntervalMs?: number; rateThreshold?: number } = {}
+    opts: {
+      min?: number
+      max?: number
+      adjustIntervalMs?: number
+      rateThreshold?: number
+      now?: () => number
+    } = {}
   ) {
     this.floor = opts.min ?? 2
     this.ceiling = opts.max ?? initial
     this.adjustIntervalMs = opts.adjustIntervalMs ?? 60_000
     this.rateThreshold = opts.rateThreshold ?? 0.1
     this.current = Math.min(this.ceiling, Math.max(this.floor, initial))
+    this.now = opts.now ?? (() => Date.now())
+    this.lastAdjustAt = this.now()
   }
 
   get value(): number {
@@ -32,7 +47,7 @@ export class AdaptiveConcurrency {
   }
 
   private maybeAdjust(): void {
-    const now = Date.now()
+    const now = this.now()
     if (now - this.lastAdjustAt < this.adjustIntervalMs) return
     if (this.windowCalls === 0) {
       this.lastAdjustAt = now

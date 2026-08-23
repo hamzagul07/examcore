@@ -8,6 +8,7 @@ import { runAfterResponse } from '@/lib/after-response'
 import { tierMarketingName } from '@/lib/billing/caps'
 import { sendScholarVaultWelcome } from '@/lib/email/scholar-vault-welcome'
 import { grantMaxWelcomeGift } from '@/lib/max/gifts'
+import { refundedCreditShare } from '@/lib/billing/refund-share'
 import type { SubscriptionTier } from '@/lib/database.types'
 
 export const runtime = 'nodejs' // not edge — needs the raw body
@@ -15,6 +16,16 @@ export const dynamic = 'force-dynamic'
 
 // The validated event union. We only act on a few types; the rest are ACKed.
 type PolarEvent = ReturnType<typeof validateEvent>
+
+/**
+ * How long an unfinished claim is assumed to belong to a live request.
+ *
+ * Comfortably longer than the 300s any billing handler can take (this route has
+ * no maxDuration override, so it sits on the platform default well under that),
+ * and short enough that a delivery abandoned by a killed invocation is
+ * recoverable on one of Polar's retries rather than stuck for good.
+ */
+const CLAIM_LEASE_MS = 10 * 60 * 1000
 
 export async function POST(req: NextRequest) {
   const secret = process.env.POLAR_WEBHOOK_SECRET
@@ -65,20 +76,67 @@ export async function POST(req: NextRequest) {
     id: eventId,
     type: event.type,
     payload: event as unknown as Record<string, unknown>,
+    // NULL until the handler returns. The column used to default to now() at
+    // insert time, which recorded the claim rather than the completion and so
+    // could not tell "done" from "started and never finished".
+    processed_at: null,
   })
 
   if (claimError) {
     if (claimError.code === '23505') {
-      // Already claimed/processed — duplicate delivery.
-      return NextResponse.json({ received: true, duplicate: true })
+      // Claimed already — but by a finished run, or by one that died?
+      //
+      // Deleting the claim in the catch below covers a thrown error. It cannot
+      // cover termination: when Vercel kills the invocation between the claim
+      // and the grant, no catch runs, the row stays, and Polar's retry was
+      // being discarded as a duplicate — leaving a paying customer with nothing
+      // and no record that it had happened.
+      const { data: existing } = await supabase
+        .from('polar_webhook_events')
+        .select('processed_at, claimed_at')
+        .eq('id', eventId)
+        .maybeSingle()
+
+      if (existing?.processed_at) {
+        return NextResponse.json({ received: true, duplicate: true })
+      }
+
+      // Unfinished. Inside the lease window another request is probably still
+      // working on it, so ask Polar to come back rather than run it twice.
+      const cutoff = new Date(Date.now() - CLAIM_LEASE_MS).toISOString()
+      const { data: takenOver } = await supabase
+        .from('polar_webhook_events')
+        .update({ claimed_at: new Date().toISOString() })
+        .eq('id', eventId)
+        .is('processed_at', null)
+        .lt('claimed_at', cutoff)
+        .select('id')
+
+      if (!takenOver || takenOver.length === 0) {
+        console.warn('[polar-webhook] claim held by a live request:', eventId)
+        return NextResponse.json(
+          { error: 'Event still processing' },
+          { status: 409 }
+        )
+      }
+      // The conditional update is atomic, so exactly one retry wins the takeover
+      // and the rest get the 409 above. Fall through and reprocess.
+      console.warn('[polar-webhook] recovering an abandoned claim:', eventId)
+    } else {
+      // Couldn't claim (transient DB error) — 500 so Polar retries.
+      console.error('[polar-webhook] claim insert failed:', claimError.message)
+      return NextResponse.json({ error: claimError.message }, { status: 500 })
     }
-    // Couldn't claim (transient DB error) — 500 so Polar retries.
-    console.error('[polar-webhook] claim insert failed:', claimError.message)
-    return NextResponse.json({ error: claimError.message }, { status: 500 })
   }
 
   try {
     await handlePolarEvent(event, supabase)
+    // Only now is the delivery genuinely done, and only now may a later
+    // delivery of the same event be dismissed as a duplicate.
+    await supabase
+      .from('polar_webhook_events')
+      .update({ processed_at: new Date().toISOString() })
+      .eq('id', eventId)
     return NextResponse.json({ received: true })
   } catch (err) {
     console.error('[polar-webhook] processing error:', err)
@@ -98,6 +156,7 @@ export async function POST(req: NextRequest) {
 function isoOrNull(d: Date | null | undefined): string | null {
   return d ? new Date(d).toISOString() : null
 }
+
 
 async function findUserIdByPolarCustomer(
   supabase: SupabaseClient,
@@ -276,7 +335,23 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
         )
         break
       }
-      const { error } = await supabase
+      // Revoke ONLY the subscription this event is about.
+      //
+      // The update used to match on user_id alone, so it downgraded whatever
+      // row was there regardless of which subscription had ended. Cancel Pro,
+      // buy Max, and a `subscription.revoked` for the old Pro arriving after the
+      // new Max activation reset a paying customer to free. Webhook ordering is
+      // not guaranteed and this needs no unusual delay to happen.
+      //
+      // `null` is allowed through for rows written before polar_subscription_id
+      // was recorded; without that, a legacy subscriber could never be revoked.
+      // Polar ids are opaque slugs — checked here because the value is
+      // interpolated into a PostgREST filter string, where a comma would change
+      // the meaning of the expression rather than just fail to match.
+      if (!/^[A-Za-z0-9_-]+$/.test(sub.id)) {
+        throw new Error(`subscription.revoked: unexpected subscription id ${sub.id}`)
+      }
+      const { data: revoked, error } = await supabase
         .from('user_subscriptions')
         .update({
           tier: 'free',
@@ -286,7 +361,15 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
           updated_at: new Date().toISOString(),
         })
         .eq('user_id', userId)
+        .or(`polar_subscription_id.eq.${sub.id},polar_subscription_id.is.null`)
+        .select('user_id')
       if (error) throw new Error(`subscription.revoked update failed: ${error.message}`)
+      if (!revoked || revoked.length === 0) {
+        // Not an error: the customer holds a different, newer subscription.
+        console.warn(
+          `[polar-webhook] subscription.revoked ${sub.id}: superseded, access left intact.`
+        )
+      }
       break
     }
 
@@ -348,15 +431,22 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
 
     case 'order.refunded': {
       // Claw back credits when a one-time credit pack is refunded. Subscription
-      // refunds are handled by subscription.revoked (access), not here. Partial
-      // refunds still claw back the full pack (floored at the current balance);
-      // spent credits can't be reclaimed.
+      // refunds are handled by subscription.revoked (access), not here.
+      //
+      // The reversal is now proportional to the money actually returned. It used
+      // to remove the whole pack on any refund, so a 10% goodwill refund on a
+      // 500-credit pack took up to 500 credits — the customer paid for 450 and
+      // kept none of them. Spent credits still can't be reclaimed; the RPC
+      // floors the balance at zero.
       const order = event.data as unknown as {
         id: string
         productId: string | null
         customerId: string
         customer?: { externalId?: string | null } | null
         metadata?: Record<string, unknown> | null
+        refundedAmount?: number | null
+        totalAmount?: number | null
+        amount?: number | null
       }
 
       if (!order.productId) break
@@ -378,13 +468,28 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
         break
       }
 
+      const creditsToReverse = refundedCreditShare(
+        resolved.credits,
+        order.refundedAmount,
+        order.totalAmount ?? order.amount
+      )
+      if (creditsToReverse <= 0) {
+        console.warn(
+          `[polar-webhook] order.refunded ${order.id}: refund too small to reverse a credit.`
+        )
+        break
+      }
+
       const { error } = await supabase.rpc('apply_credit_refund', {
         p_user_id: userId,
-        p_credits: resolved.credits,
+        p_credits: creditsToReverse,
         p_metadata: {
           polar_order_id: order.id,
           product: resolved.productKey,
           reason: 'refund',
+          pack_credits: resolved.credits,
+          refunded_amount: order.refundedAmount ?? null,
+          order_amount: order.totalAmount ?? order.amount ?? null,
         },
       })
       if (error) throw new Error(`apply_credit_refund failed: ${error.message}`)

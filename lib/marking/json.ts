@@ -133,6 +133,13 @@ function scoreJsonCandidate(parsed: unknown): number {
   // Syllabus-extraction payload: the wrapper {syllabus_year, objectives:[…]}
   // must outrank an individual objective object (which has more keys).
   if (Array.isArray(obj.objectives)) score += 100 + obj.objectives.length
+  // Topic tagging: {tags:[…]} wraps objects carrying objective_number and
+  // confidence, so a single tag (2 keys) beat the wrapper holding them (1 key)
+  // and every tagging response came back as one tag with no `tags` key —
+  // parseTaggingResponse then returned nothing at all. Third instance of the
+  // same bug after `questions` and `objectives`; topic-tagger.test.ts has been
+  // failing on main the whole time, unseen because CI never ran it.
+  if (Array.isArray(obj.tags)) score += 100 + obj.tags.length
   return score
 }
 

@@ -9,6 +9,7 @@ import {
   buildIbLorMarkingPrompt,
   buildIbCriterionMarkingPrompt,
   buildIbCatalogPointsPrompt,
+  INJECTION_GUARD_BLOCK,
 } from './prompts'
 import { isIbSubjectCode, ibUsesCriterionRubrics } from '@/lib/ib/marking-config'
 import { isEdexcelSubjectCode } from '@/lib/marking/exam-board'
@@ -40,7 +41,7 @@ import {
   looksLikeExtendedResponse,
 } from '@/lib/marking/question-style'
 
-export function buildMarkingPrompt(params: {
+type BuildMarkingPromptParams = {
   markScheme: MarkSchemeRow | null
   markingStyle: MarkingStyle
   ocrText: string
@@ -54,7 +55,18 @@ export function buildMarkingPrompt(params: {
   questionTotalMarks?: number | null
   /** Derive-then-mark: a mark scheme derived for this question (JSON string) when no official one exists. */
   derivedScheme?: string | null
-}): string {
+}
+
+/**
+ * Public entry point. Prepends the untrusted-input guard once — every marking
+ * path funnels through here, so the guard covers all styles/boards without
+ * touching the individual (regression-tuned) builder bodies.
+ */
+export function buildMarkingPrompt(params: BuildMarkingPromptParams): string {
+  return `${INJECTION_GUARD_BLOCK}\n\n${buildMarkingPromptBody(params)}`
+}
+
+function buildMarkingPromptBody(params: BuildMarkingPromptParams): string {
   const {
     markScheme,
     markingStyle,

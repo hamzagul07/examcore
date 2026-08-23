@@ -205,7 +205,7 @@ function GradeCard({
   block: {
     marks_earned: number
     total_marks: number
-    percentage: number
+    percentage?: number
     estimated_grade?: string
     grade_note?: string
   }
@@ -222,7 +222,8 @@ function GradeCard({
         </div>
       )}
       <p className="ms-body-2" style={{ marginTop: 10 }}>
-        {block.marks_earned}/{block.total_marks} marks ({block.percentage}%)
+        {block.marks_earned}/{block.total_marks} marks
+        {block.percentage !== undefined ? ` (${block.percentage}%)` : ' — incomplete'}
         {block.grade_note ? ` — ${block.grade_note}` : null}
       </p>
     </div>
@@ -275,7 +276,7 @@ export function WholePaperResultView({
             {result.questions_excluded_count} question
             {result.questions_excluded_count > 1 ? 's' : ''} could not be marked
             — open them below for what to do next. Totals reflect only
-            successfully marked questions.
+            successfully marked questions; percentage and grade are withheld.
           </p>
         </div>
       ) : null}
@@ -294,7 +295,9 @@ export function WholePaperResultView({
           ) : null}
           <h2 id="mark-result-heading" className="ms-h2" style={{ marginBottom: 0 }} tabIndex={-1}>
             {primaryScore.marks_earned} / {primaryScore.total_marks}
-            {primaryScore.estimated_grade ? (
+            {result.is_incomplete ? (
+              <> — <em>marking incomplete.</em></>
+            ) : primaryScore.estimated_grade ? (
               <>
                 {' '}
                 — <em>projected grade {primaryScore.estimated_grade.replace(/^~/, '')}.</em>
@@ -324,7 +327,7 @@ export function WholePaperResultView({
             </>
           ) : (
             <GradeCard
-              label="Projected grade"
+              label={result.is_incomplete ? 'Marked questions' : 'Projected grade'}
               block={{
                 marks_earned: result.marks_earned,
                 total_marks: result.total_marks,
@@ -497,6 +500,7 @@ export function WholePaperResultView({
             <span className="font-mono text-sm font-bold text-[var(--ec-brand)]">
               TOTAL {primaryScore.marks_earned} / {primaryScore.total_marks}
               {showDual ? ' ATTEMPTED' : ''}
+              {result.is_incomplete ? ' — INCOMPLETE' : ''}
             </span>
             {primaryScore.estimated_grade ? (
               <span className="ms-grade-pill">

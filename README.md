@@ -90,7 +90,7 @@ Point uptime monitoring at `GET /api/health`.
 | `/mark` | Upload and mark answers |
 | `/dashboard` | Home + progress |
 | `/account/*` | Settings (profile, study setup, billing, privacy) |
-| `/pricing` | Plans — Scholar & Max start with a 7-day free trial |
+| `/pricing` | Plans — Free, Scholar, Max. No trial: access is paid or free (trials removed 2026-08-07, `20260807_remove_trials.sql`) |
 
 ## Scripts
 

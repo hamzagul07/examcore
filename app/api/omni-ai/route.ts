@@ -155,8 +155,16 @@ export async function POST(req: NextRequest) {
     await incrementAnonymousOmniRateLimit(supabaseService, ip, null, guestCheck.count)
   }
 
-  // Landing demo chat stays unrestricted; in-app Omni is metered for signed-in users.
-  if (user && context.type !== 'landing') {
+  // Every signed-in message is metered, wherever it was sent from.
+  //
+  // This used to skip metering when `context.type === 'landing'`, but `context`
+  // is read straight off the request body — so a free-tier account could post
+  // `{"context":{"type":"landing"}}` and chat without limit, and authenticating
+  // actually REMOVED the cap, since the persisted guest limit above only applies
+  // when there is no user. The exemption was never needed for its stated purpose
+  // either: the landing demo is unmetered for guests via that guest branch, and a
+  // signed-in visitor on the landing page is still using their own account quota.
+  if (user) {
     const omniAllowance = await checkOmniAllowance(user.id)
     if (omniAllowance.blocked_by_mode) {
       const body = omniQuotaExceededBody(omniAllowance)

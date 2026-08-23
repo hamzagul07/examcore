@@ -24,6 +24,7 @@ import {
 } from '@/lib/billing/enforcement'
 import {
   checkAnonymousMarkRateLimit,
+  incrementAnonymousMarkRateLimit,
   clientIp,
 } from '@/lib/rate-limit'
 import { rateLimitJson } from '@/lib/http/rate-limit-response'
@@ -58,6 +59,24 @@ export async function POST(request: NextRequest) {
     if (!rateCheck.allowed) {
       return rateLimitJson(rateCheck.message)
     }
+    // Consume the guest slot HERE, where the spending starts.
+    //
+    // This route was checking the cap and never incrementing it, while
+    // whole-paper/run incremented it and never enforced it — and only after the
+    // paper had already been marked. So the two halves of one limit never met:
+    // a guest could call init N times (the counter stayed at 0, so every call
+    // passed), collect N attempt ids, and run them all. ANON_DAILY_MARK_LIMIT = 1
+    // was unbounded in practice.
+    //
+    // Init is the right place to charge because init is where the money goes: a
+    // Gemini OCR call per page plus a segmentation call, all before run() is
+    // ever reached. A guest who inits and abandons has still spent that.
+    await incrementAnonymousMarkRateLimit(
+      supabaseAdmin,
+      ip,
+      userId,
+      rateCheck.count
+    )
 
     let allowance: Awaited<ReturnType<typeof computeAllowance>> | null = null
     // Gate on effectiveAccess (paid tiers only).

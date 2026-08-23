@@ -221,7 +221,7 @@ export type QuestionMarkResult = {
 export type WholePaperScoreBlock = {
   marks_earned: number
   total_marks: number
-  percentage: number
+  percentage?: number
   estimated_grade?: string
   grade_note?: string
 }
@@ -230,7 +230,7 @@ export type WholePaperResult = {
   upload_mode: 'whole_paper'
   marks_earned: number
   total_marks: number
-  percentage: number
+  percentage?: number
   estimated_grade?: string
   grade_note?: string
   /** Score on attempted questions only */
@@ -238,6 +238,8 @@ export type WholePaperResult = {
   /** Score treating unattempted questions as zero */
   full_paper_score?: WholePaperScoreBlock
   show_dual_scores?: boolean
+  /** A submitted question failed to mark, so percentage/grade are withheld. */
+  is_incomplete?: boolean
   questions_excluded_count?: number
   questions: QuestionMarkResult[]
   summary: string

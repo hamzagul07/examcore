@@ -51,8 +51,11 @@ const result = aggregateWholePaperResults('9709/21', 'MJ25', [
 ])
 
 assert.equal(result.questions_excluded_count, 1)
+assert.equal(result.is_incomplete, true)
 assert.equal(result.marks_earned, 5)
 assert.equal(result.total_marks, 6)
+assert.equal(result.percentage, undefined, 'an incomplete result must not publish a percentage')
+assert.equal(result.estimated_grade, undefined, 'an incomplete result must not project a grade')
 assert.equal(result.questions.length, 3)
 assert.equal(result.questions[1]?.status, 'marking_failed')
 assert.ok(
@@ -67,5 +70,29 @@ assert.ok(
   !result.summary.includes('excluded due to error'),
   'old exclusion wording must not return'
 )
+assert.ok(!result.summary.includes('%'), 'incomplete summary must not present a percentage')
+
+// Nine perfect model calls and one failure used to headline 100% / A* by
+// shrinking the denominator to 45. No projection is safer until Q10 is marked.
+{
+  const questions = Array.from({ length: 9 }, (_, index) =>
+    attempted(String(index + 1), 5, 5)
+  )
+  const unmarked = failed('10', 'The marking model timed out.')
+  unmarked.total_marks = 5
+  unmarked.ai_marking.total_marks = 5
+  const incomplete = aggregateWholePaperResults(
+    '9709/21',
+    'MJ25',
+    [...questions, unmarked]
+  )
+
+  assert.equal(incomplete.marks_earned, 45)
+  assert.equal(incomplete.total_marks, 45)
+  assert.equal(incomplete.percentage, undefined)
+  assert.equal(incomplete.estimated_grade, undefined)
+  assert.equal(incomplete.full_paper_score?.percentage, undefined)
+  assert.equal(incomplete.is_incomplete, true)
+}
 
 console.log('whole-paper: all assertions passed')

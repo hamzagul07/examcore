@@ -51,8 +51,15 @@ export function parseWholePaperSegment(raw: string): {
 function buildScoreBlock(
   marksEarned: number,
   totalMarks: number,
-  paperCode?: string
+  paperCode?: string,
+  includeProjection = true
 ): WholePaperScoreBlock {
+  if (!includeProjection) {
+    return {
+      marks_earned: marksEarned,
+      total_marks: totalMarks,
+    }
+  }
   const percentage =
     totalMarks > 0 ? Math.round((marksEarned / totalMarks) * 100) : 0
   let estimated_grade: string | undefined
@@ -129,6 +136,7 @@ export function aggregateWholePaperResults(
 ): WholePaperResult {
   const failed = results.filter((r) => r.status === 'marking_failed')
   const excluded = failed.length
+  const isIncomplete = excluded > 0
   const scorable = results.filter((r) => r.status !== 'marking_failed')
 
   // Score only successfully marked / unattempted rows — never invent totals
@@ -163,8 +171,18 @@ export function aggregateWholePaperResults(
   const fullEarned = scoreRows.reduce((s, r) => s + r.marks_earned, 0)
   const fullTotal = scoreRows.reduce((s, r) => s + r.total_marks, 0)
 
-  const attempted_score = buildScoreBlock(attemptedEarned, attemptedTotal, paperCode)
-  const full_paper_score = buildScoreBlock(fullEarned, fullTotal, paperCode)
+  const attempted_score = buildScoreBlock(
+    attemptedEarned,
+    attemptedTotal,
+    paperCode,
+    !isIncomplete
+  )
+  const full_paper_score = buildScoreBlock(
+    fullEarned,
+    fullTotal,
+    paperCode,
+    !isIncomplete
+  )
 
   const show_dual_scores =
     attemptedTotal > 0 &&
@@ -185,9 +203,13 @@ export function aggregateWholePaperResults(
     ? attempted_score.grade_note
     : full_paper_score.grade_note
 
-  let summary = show_dual_scores
-    ? `On questions you attempted: ${attemptedEarned}/${attemptedTotal} (${attempted_score.percentage}%). Full paper (unattempted = 0): ${fullEarned}/${fullTotal} (${full_paper_score.percentage}%).`
-    : `You scored ${fullEarned}/${fullTotal} (${full_paper_score.percentage}%) across ${scoreRows.length} question(s).`
+  let summary = isIncomplete
+    ? show_dual_scores
+      ? `Marking incomplete. Successfully marked questions you attempted: ${attemptedEarned}/${attemptedTotal}. Full paper score so far (unattempted = 0): ${fullEarned}/${fullTotal}. No percentage or grade is projected until every attempted question is marked.`
+      : `Marking incomplete: ${fullEarned}/${fullTotal} across ${scoreRows.length} successfully marked question(s). No percentage or grade is projected until every attempted question is marked.`
+    : show_dual_scores
+      ? `On questions you attempted: ${attemptedEarned}/${attemptedTotal} (${attempted_score.percentage}%). Full paper (unattempted = 0): ${fullEarned}/${fullTotal} (${full_paper_score.percentage}%).`
+      : `You scored ${fullEarned}/${fullTotal} (${full_paper_score.percentage}%) across ${scoreRows.length} question(s).`
 
   if (excluded > 0) {
     summary += ` [${excluded} question${excluded > 1 ? 's' : ''} could not be marked — see details below]`
@@ -206,6 +228,7 @@ export function aggregateWholePaperResults(
     attempted_score: show_dual_scores ? attempted_score : undefined,
     full_paper_score,
     show_dual_scores,
+    is_incomplete: isIncomplete || undefined,
     questions_excluded_count: excluded > 0 ? excluded : undefined,
     questions: fullList,
     summary,

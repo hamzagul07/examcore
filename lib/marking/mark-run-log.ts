@@ -125,6 +125,12 @@ function chargeElapsedToCurrentStage(handle: MarkRunHandle): void {
  * of 12, and a three-mark question moved 1 to 0 against a scheme that plainly
  * awards the mark.
  *
+ * The pair now also records when a verify response was REJECTED as incomplete
+ * (see verify-result.ts): both columns retain the first-pass score. That gate
+ * exists because a summary-only response could replace a correct 7/8 with a
+ * coerced 0/8 — which is the extreme of the same variance these two columns were
+ * added to measure.
+ *
  * Fire-and-forget, like the stage flush. Telemetry must not be able to fail a
  * mark.
  */

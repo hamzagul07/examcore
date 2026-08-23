@@ -404,7 +404,7 @@ export async function loadMaxVaultData(opts: {
         calculateParentMastery(subjectAttempts, s.code)
       )
     }
-    let weak = topicTargetsFromMasteries(masteries, 3)
+    const weak = topicTargetsFromMasteries(masteries, 3)
     if (weak.length < 2) {
       const fromTags = weakTopicsFromAttemptTags(
         s.code,

@@ -23,7 +23,6 @@ import {
   quotaExceededBody,
   type MarkReservation,
 } from '@/lib/billing/enforcement'
-import { clientIp, checkAnonymousMarkRateLimit, incrementAnonymousMarkRateLimit } from '@/lib/rate-limit'
 import { signMarkPayloadForClient } from '@/lib/storage/answer-photos'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { requireTeacher } from '@/lib/teacher-auth'
@@ -85,6 +84,23 @@ export async function POST(request: NextRequest) {
       if (attempt.user_id !== user.id) {
         const teacherCheck = await requireTeacher(supabaseAuth, user.id)
         if (!teacherCheck.ok) {
+          return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+        }
+        // Scope to the teacher's own classroom — see whole-paper/retry, which
+        // documents why requireTeacher() alone is not enough (`role` is
+        // self-assignable via the public onboarding action).
+        //
+        // This route is the worse of the two that were missing it: the run is
+        // reserved against `attempt.user_id`, not the caller, and the claim
+        // writes marks_earned: 0 before marking starts. So without this re-read
+        // a self-declared teacher could burn a paying student's quota AND
+        // overwrite their marks, using nothing but the attempt UUID.
+        const { data: scoped } = await supabaseAuth
+          .from('attempts')
+          .select('id')
+          .eq('id', attempt.id)
+          .maybeSingle()
+        if (!scoped) {
           return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
         }
       }
@@ -280,17 +296,15 @@ export async function POST(request: NextRequest) {
       })
       .eq('id', attemptId)
 
-    // Whole paper = exactly 1 mark, recorded on completion success only.
-    if (!markUserId) {
-      const ip = clientIp(request)
-      const rateCheck = await checkAnonymousMarkRateLimit(supabaseAdmin, ip, null)
-      await incrementAnonymousMarkRateLimit(
-        supabaseAdmin,
-        ip,
-        null,
-        rateCheck.allowed ? rateCheck.count : 0
-      )
-    }
+    // Guests are charged at whole-paper/init, not here.
+    //
+    // This block used to increment the IP counter after the paper had already
+    // been marked, and never blocked on it — while init checked the counter and
+    // never incremented it. Charging on completion is the wrong end regardless:
+    // init has already spent an OCR call per page plus segmentation by the time
+    // run() is reached, so a guest who abandons after init cost real money and
+    // paid nothing. The slot is now taken at init, and taking it twice would
+    // charge one paper against two days of a one-per-day allowance.
     let allowanceBlock: ReturnType<typeof allowanceForResponse> | undefined
     if (markUserId) {
       if (!reservationSettled) {

@@ -78,8 +78,17 @@ export async function generateIbPracticeQuestion(
   if (!profile) return null
 
   const topic = getSyllabusTopicByCode(subjectCode, topicCode)
-  const topicName = topic?.name ?? topicCode
-  const component = topic?.paper ?? null
+  // Refuse an unknown topic instead of falling back to the raw code.
+  //
+  // `topicCode` arrives from a query string, and the old `?? topicCode` put it
+  // verbatim into the prompt twice — so an arbitrary string became arbitrary
+  // prompt text. Worse, the cache is keyed on (subject_code, topic_code), so
+  // every distinct string was a guaranteed miss: a fresh Gemini 2.5 Pro call at
+  // up to 24k output tokens, plus a row insert, per request. Validating here as
+  // well as at the route keeps the guarantee if another caller appears.
+  if (!topic) return null
+  const topicName = topic.name
+  const component = topic.paper ?? null
   const marks = targetMarks(profile)
   const prompt = buildPrompt(profile, topicName, component, marks)
 

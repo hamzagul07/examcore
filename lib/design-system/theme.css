@@ -43,6 +43,18 @@
   /* Fixed logo tick — matches lib/brand/logo-mark.ts LOGO_COLORS.brand */
   --ec-error-ink: var(--ec-logo-crimson, #bb2a25);
   --ec-score-low: var(--ec-chip-critical-text, #a23e3e);
+  /* Semantic status tokens. These were REFERENCED and never defined, so every
+     call site fell through to its inline fallback — Tailwind amber-400/red-400,
+     which on the zen canvas (#faf9f6) measured 1.7:1 and 3.0:1 against a 4.5:1
+     requirement. The worst-placed instance was MarkUsageIndicator: the "you are
+     out of marks" line, whose entire job is to sell an upgrade, was the least
+     readable text on the page. Defined per theme so both stay legible. */
+  --ec-error: #e06c6c;
+  --ec-danger: #e06c6c;
+  --ec-warning: #e8b563;
+  --ec-score-high: #00f5a0;
+  --ec-score-mid: #e8b563;
+  --ec-brand-soft: rgba(0, 245, 160, 0.14);
   --ec-logo-crimson: #bb2a25;
   --ec-pen: #9eb0f5;
   --ec-on-brand-text: #07130d;
@@ -160,6 +172,16 @@
   --ec-brand-gradient: linear-gradient(135deg, #19774d 0%, #17a86b 100%);
   --ec-ink-crimson: #a23e3e;
   --ec-ink-red: #a23e3e;
+  /* Semantic status tokens — see the late-night block for why these exist.
+     Values are the existing examiner crimson (already used as body-weight text
+     on this canvas) and a dark amber, both chosen to clear 4.5:1 on #faf9f6
+     rather than the amber-400/red-400 the missing tokens were falling back to. */
+  --ec-error: #a23e3e;
+  --ec-danger: #a23e3e;
+  --ec-warning: #8a5300;
+  --ec-score-high: #19774d;
+  --ec-score-mid: #8a5300;
+  --ec-brand-soft: rgba(25, 119, 77, 0.08);
   /* Fixed logo tick — matches lib/brand/logo-mark.ts LOGO_COLORS.brand */
   --ec-logo-crimson: #bb2a25;
   --ec-pen: #2b3a8c;
@@ -247,6 +269,28 @@ body {
 
 /* ============ Typography scale ============ */
 :root {
+  /* Theme-independent tokens that were referenced and never defined, so each
+     call site silently used its inline fallback. The two font aliases are real
+     rendering bugs rather than contrast ones: the exam countdown and the IB
+     points calculator asked for --ec-font-mono, got nothing, and fell back to
+     generic ui-monospace instead of the self-hosted IBM Plex Mono the rest of
+     the app uses. --ec-content-max backs eleven layout call sites. */
+  --ec-font-mono: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  --ec-font-display: var(--font-display, 'Newsreader', Georgia, serif);
+  --ec-content-max: 960px;
+  /* Aliases onto the per-theme tokens they were always meant to name. --ec-bg
+     was used with NO fallback on the public shared-mark page (/r/[token]) and in
+     the embed shell, so those surfaces were painting an unset background — the
+     one page students screenshot and pass around. */
+  --ec-bg: var(--ec-canvas);
+  --ec-on-brand: var(--ec-on-brand-text);
+  /* --ec-shadow-cta fell back to --ec-shadow-pop, which was also undefined, so
+     the whole box-shadow declaration was invalid and no shadow rendered. Both
+     follow the house hard-offset convention rather than a blur. */
+  --ec-shadow-pop: var(--ec-shadow-hard);
+  --ec-shadow-cta: var(--ec-shadow-hard);
+  --ec-z-dropdown: 80;
+
   --text-display: clamp(2.75rem, 6vw, 4.75rem);
   --text-hero: clamp(2.75rem, 6vw, 4.75rem);
   --text-headline: clamp(1.875rem, 4vw, 2.75rem);

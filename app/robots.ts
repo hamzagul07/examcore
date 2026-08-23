@@ -14,6 +14,10 @@ const PRIVATE_PREFIXES = [
   '/admin',
   '/embed/',
   '/challenge/',
+  // Design previews. They 404 in production (app/dev/layout.tsx), but a crawler
+  // that saw them before that landed should be told to drop them, and the
+  // ENABLE_DEV_PAGES escape hatch must not put them back in the index.
+  '/dev',
 ]
 
 const PUBLIC_ALLOW = [

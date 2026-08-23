@@ -35,6 +35,9 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: Test
+        run: pnpm test
+
       - name: GEO lint (quick answer + llms sync)
         run: pnpm seo:quick-answer-lint && pnpm seo:geo-sync-check
 

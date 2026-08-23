@@ -42,6 +42,24 @@ export async function GET(request: NextRequest) {
       if (!teacherCheck.ok) {
         return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
       }
+      // Scope to the teacher's own classroom: the attempt was fetched with the
+      // service client (no RLS), so re-read it through the RLS-scoped client —
+      // a row returns only when this student is in their classroom.
+      //
+      // requireTeacher() alone is not an authorisation boundary here. It answers
+      // "is this account a teacher", and `role` is self-assignable through the
+      // public onboarding action, so without this re-read any signed-in user who
+      // set role=teacher could read another student's marks AND the signed URLs
+      // to photographs of their handwriting. Copied from whole-paper/retry,
+      // which has documented the same reasoning since it was fixed there.
+      const { data: scoped } = await supabaseAuth
+        .from('attempts')
+        .select('id')
+        .eq('id', attempt.id)
+        .maybeSingle()
+      if (!scoped) {
+        return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+      }
     }
   }
 

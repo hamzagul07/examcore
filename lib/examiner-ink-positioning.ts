@@ -129,10 +129,14 @@ const MIN_CONTAINMENT_CHARS = 3
  */
 export function buildLineReferences(
   marksAwarded: MarkAwardedWithRefs[] | null | undefined,
-  ocrLines: OcrLine[] | null | undefined
+  ocrLines: OcrLine[] | null | undefined,
+  canonicalAnswerText?: string | null
 ): LineReference[] {
   if (!Array.isArray(marksAwarded) || marksAwarded.length === 0) return []
   const lines = Array.isArray(ocrLines) ? ocrLines : []
+  const answerText =
+    typeof canonicalAnswerText === 'string' ? canonicalAnswerText.trim() : ''
+  const hasValidationSource = lines.length > 0 || answerText.length > 0
 
   return marksAwarded.map((mark, idx) => {
     const stamp = pickStampCode(mark, idx)
@@ -153,6 +157,8 @@ export function buildLineReferences(
           bestMatch = line
         }
       }
+    } else if (snippet && answerText) {
+      bestScore = similarity(snippet, answerText)
     }
 
     return {
@@ -165,13 +171,38 @@ export function buildLineReferences(
       margin_note: marginNote,
       error_classification: classification,
       bbox: bestMatch && bestScore >= MATCH_THRESHOLD ? bestMatch.bbox : null,
-      // Only echo the citation back when the script actually contains it. With
-      // no OCR lines to check against we cannot tell invented from unmatched,
-      // so the snippet is kept and nothing is claimed either way.
-      snippet: lines.length === 0 || bestScore >= MATCH_THRESHOLD ? snippet : '',
-      unmatched_reference: lines.length > 0 && !!snippet && bestScore < MATCH_THRESHOLD,
+      // Typed answers have no positioned OCR lines, so their canonical answer
+      // text is the evidence source; skipping it let invented awarded M1s pass.
+      snippet: !hasValidationSource || bestScore >= MATCH_THRESHOLD ? snippet : '',
+      unmatched_reference:
+        hasValidationSource && !!snippet && bestScore < MATCH_THRESHOLD,
     }
   })
+}
+
+/** A withheld mark citing absent text. One is enough — see mark-runner. */
+export function hasUnmatchedWithholding(lineReferences: LineReference[]): boolean {
+  return lineReferences.some(
+    (reference) =>
+      reference.unmatched_reference === true && reference.earned === false
+  )
+}
+
+/**
+ * Every citation on the script missed.
+ *
+ * One fuzzy quote against an awarded mark is noise, and failing the run over it
+ * costs a student a re-upload for nothing. All of them missing is a different
+ * animal: it is the shape of a model marking text it imagined, which is where
+ * invented evidence starts inflating a score rather than just decorating one.
+ * Two citations minimum, so a single-mark question cannot trip it.
+ */
+export function allReferencesUnmatched(lineReferences: LineReference[]): boolean {
+  const cited = lineReferences.filter(
+    (reference) => !!reference.snippet || reference.unmatched_reference === true
+  )
+  if (cited.length < 2) return false
+  return cited.every((reference) => reference.unmatched_reference === true)
 }
 
 /**

@@ -99,7 +99,20 @@ export async function tryExtractFromStorage(
     const rows: Record<string, unknown>[] = []
 
     for (const q of parsed.questions as Record<string, unknown>[]) {
-      if (!validateExtractedQuestion(q, paperMarkingType)) continue
+      if (
+        !validateExtractedQuestion(
+          q,
+          paperMarkingType,
+          mode === 'targeted' ? targetQuestion : undefined
+        )
+      ) {
+        // A five-point extraction for an eight-mark question used to become a
+        // shared permanent rubric; name every rejected row in server telemetry.
+        console.error(
+          `Rejected extracted mark scheme for question ${String(q.question_number ?? '(missing)')}`
+        )
+        continue
+      }
       if (
         mode === 'targeted' &&
         !questionNumbersMatch(String(q.question_number), targetQuestion)

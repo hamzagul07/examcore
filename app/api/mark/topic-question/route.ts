@@ -26,6 +26,18 @@ export async function GET(request: NextRequest) {
     const topicName = topicMeta?.name ?? topicCode
 
     if (isIbSubjectCode(subjectCode)) {
+      // Validate before you spend — the same gate /api/courses/explain applies
+      // before it will generate. Everything below this line can reach a Gemini
+      // 2.5 Pro call, and this route is unauthenticated by design (guests mark),
+      // so an unchecked topic string is an anonymous, unmetered bill. A real
+      // syllabus topic is one of a finite set that caches after first use; an
+      // arbitrary one never hits the cache at all.
+      if (!topicMeta) {
+        return NextResponse.json(
+          { error: 'Unknown topic for this subject' },
+          { status: 404 }
+        )
+      }
       const profile = getIbMarkingProfile(subjectCode)
       // Hand the student a real, generated exam question for this topic (cached).
       // Falls back to the framing stub if generation is unavailable — no regression.

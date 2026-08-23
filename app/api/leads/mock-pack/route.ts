@@ -79,7 +79,25 @@ export async function POST(request: Request) {
     .eq('source', source)
     .maybeSingle()
 
+  // Attribution is per (email, source) — that unique pair is the point of the
+  // index, and it is how we learn which surface actually builds the list.
+  // Whether to EMAIL is a different question, and must be per person.
+  //
+  // The capture used to live only on results-2026/* and two tools pages, where
+  // hitting two sources was unlikely. It is now on the blog and the IB hubs,
+  // which are the two largest surfaces on the site, so the same student landing
+  // on both is the normal case rather than the edge one — and keying the confirm
+  // email off the per-source row would send it to them twice. For a list whose
+  // stated promise is "not a sales drip", that is the wrong first impression.
+  const { data: everCaptured } = await admin
+    .from('marketing_leads')
+    .select('id')
+    .eq('email', email)
+    .limit(1)
+    .maybeSingle()
+
   const isNew = !existing
+  const firstEverCapture = !everCaptured
   const { error } = existing
     ? await admin.from('marketing_leads').update(row).eq('id', existing.id)
     : await admin.from('marketing_leads').insert(row)
@@ -92,8 +110,9 @@ export async function POST(request: Request) {
     )
   }
 
-  // Confirm only on first capture — re-submits should not re-mail.
-  if (isNew) {
+  // Confirm once per person, not once per surface. Re-submits and second-source
+  // captures both stay silent; the row is still written either way.
+  if (firstEverCapture) {
     sendMockPackConfirmEmail({
       email,
       syllabusCode,

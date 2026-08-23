@@ -19,6 +19,7 @@ import { SubjectChapters } from '@/components/subjects/SubjectChapters'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { MarketingBreadcrumbs } from '@/components/seo/MarketingBreadcrumbs'
+import { MockPackEmailCapture } from '@/components/tools/MockPackEmailCapture'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -339,6 +340,11 @@ export default async function IbSubjectPage({ params }: Props) {
             </Link>
           </nav>
         ) : null}
+
+        {/* Same reasoning as the past-papers hub: IB carries ~39% of sessions
+            and this page had no conversion ask on it. Outside the related-links
+            nav so it renders whether or not there are sibling subjects. */}
+        <MockPackEmailCapture source="ib-subject" className="mt-12" />
       </div>
     </>
   )

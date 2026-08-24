@@ -88,7 +88,9 @@ export function DemoPlanStrip({
 
         <li className="demo-plan demo-plan--pick">
           <p className="demo-plan__name mono">
-            Scholar<span className="demo-plan__flag">Most students</span>
+            {/* Flag said "Most students" — an unbacked popularity claim at the
+                current subscriber count. Reinstate when the numbers say so. */}
+            Scholar<span className="demo-plan__flag">Whole papers</span>
           </p>
           <p className="demo-plan__price">
             {scholarPrice}

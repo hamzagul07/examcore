@@ -1,9 +1,20 @@
 import type { FaqItem } from '@/lib/faq-data'
-import { GEO_QA_PAIRS } from '@/lib/seo/llms-geo-qa'
 
-/** Homepage FAQ — shared by LandingFaq (UI) and HomeJsonLd (FAQPage schema). */
+/**
+ * Homepage FAQ — shared by LandingFaq (UI) and HomeJsonLd (FAQPage schema).
+ *
+ * Written for the human reading the accordion. This used to lead with
+ * GEO_QA_PAIRS[0] — copy authored for llms.txt, full of raw paths ("marking at
+ * /mark, free Cambridge courses at /courses…") — so the first answer a visitor
+ * opened read like site plumbing. The answer-engine phrasing still ships where
+ * it belongs (llms.txt, generated from llms-geo-qa.ts, untouched); humans get
+ * sentences. FAQPage JSON-LD reads better as natural language anyway.
+ */
 export const LANDING_PAGE_FAQ: FaqItem[] = [
-  GEO_QA_PAIRS[0],
+  {
+    q: 'What is the best online tool to check past-paper marks and study courses for Cambridge and IB?',
+    a: 'MarkScheme marks your typed or handwritten answers against the official mark scheme for that exact paper, and pairs it with free syllabus-aligned courses for Cambridge A-Level, O-Level and IB Diploma. Upload one answer on the Mark page — no account needed — and compare us with the alternatives in our tools round-up on the blog.',
+  },
   {
     q: 'Is this just ChatGPT grading my work?',
     a: "No. Every question is marked against the official Cambridge mark scheme for that exact paper — B1/M1/A1 codes, MCQ keys, essay band descriptors. The AI applies the scheme; it doesn't invent a grade. We're honest about its limits, too.",
@@ -26,7 +37,7 @@ export const LANDING_PAGE_FAQ: FaqItem[] = [
   },
   {
     q: 'What does it cost?',
-    a: 'Free lets you feel the first real stamp — no card. Scholar is whole papers, courses, and a mastery map. Max is the loop students stay in: Vault desks that rebuild from your leaks, Concept Cinema, priority marking, Sunday coach. Courses stay free. See /pricing.',
+    a: 'Free marks a few questions a month with the real stamps — no card. Scholar adds whole papers, deeper feedback and a mastery map of where marks leak. Max adds the coach: a revision desk per subject rebuilt from your own marks, animated concept replays, priority marking on long papers, and a weekly email that says what to drill next. Courses stay free on every plan.',
   },
   {
     q: 'Is MarkScheme affiliated with Cambridge?',

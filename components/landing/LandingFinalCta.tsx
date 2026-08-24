@@ -23,10 +23,13 @@ export function LandingFinalCta({ markHref }: LandingFinalCtaProps) {
               <InkScribble>Then you can&apos;t unsee it.</InkScribble>
             </em>
           </h2>
+          {/* "a desk, a Cinema beat, and a Sunday coach" was three internal
+              names with no definitions in the closing pitch. Plain benefits
+              here; the names get introduced with their gloss on /pricing. */}
           <p className="ms-lead ms-final-cta__lead">
-            The stamp lands. The leak appears. Suddenly revision has a target — and Max turns
-            that target into a desk, a Cinema beat, and a Sunday coach. Start free. Keep every
-            script.
+            The stamp lands. The leak appears. Suddenly revision has a target — and Max builds
+            the plan around it: a revision desk per subject, animated concept replays, a weekly
+            coach email. Start free. Keep every script.
           </p>
           <div className="ms-cta-row ms-cta-row--center ms-final-cta__actions">
             <LoadingLink

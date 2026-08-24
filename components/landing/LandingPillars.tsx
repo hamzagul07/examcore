@@ -1,3 +1,4 @@
+import { CTA_MARK } from '@/lib/copy/product-lexicon'
 import type { ReactNode } from 'react'
 import Link from 'next/link'
 import { LoadingLink } from '@/components/ui/LoadingLink'
@@ -62,7 +63,7 @@ const PILLARS: Pillar[] = [
       'Typed answers, photos, camera, and multi-page PDF uploads',
     ],
     href: '/mark',
-    cta: 'Mark a question — free',
+    cta: CTA_MARK,
     featured: true,
     anchorId: 'marking-detail',
   },

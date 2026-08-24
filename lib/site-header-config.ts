@@ -1,3 +1,4 @@
+import { CTA_MARK_COMPACT } from '@/lib/copy/product-lexicon'
 import type { SiteHeaderVariant, SiteNavItem } from '@/lib/site-nav'
 import { SITE_NAV_ITEMS } from '@/lib/site-nav'
 import { getIbSubject } from '@/lib/ib/catalog'
@@ -165,7 +166,7 @@ export function getSiteHeaderConfig(
       wordmarkHref: '/dashboard',
       navItemIds: ['home', 'courses', 'subjects', 'community', 'progress'],
       context: { label: 'Home', href: '/dashboard', glyph: '◆' },
-      primaryCta: { label: 'Mark a question', href: '/mark', style: 'primary' },
+      primaryCta: { label: CTA_MARK_COMPACT, href: '/mark', style: 'primary' },
     }
   }
 
@@ -193,7 +194,7 @@ export function getSiteHeaderConfig(
       wordmarkHref: '/',
       navItemIds: ['courses', 'subjects', 'mark', 'community', 'pricing'],
       context: coursesContext(pathname),
-      primaryCta: { label: 'Mark a question', href: '/mark', style: 'primary' },
+      primaryCta: { label: CTA_MARK_COMPACT, href: '/mark', style: 'primary' },
       secondaryCta: { label: 'All subjects', href: '/subjects', style: 'ghost' },
     }
   }
@@ -251,7 +252,7 @@ export function getSiteHeaderConfig(
     transparentShell,
     wordmarkHref: '/',
     navItemIds: ['mark', 'courses', 'subjects', 'community', 'pricing'],
-    primaryCta: { label: 'Mark a question', href: '/mark', style: 'primary' },
+    primaryCta: { label: CTA_MARK_COMPACT, href: '/mark', style: 'primary' },
   }
 }
 

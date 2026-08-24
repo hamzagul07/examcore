@@ -1,5 +1,6 @@
 ﻿'use client'
 
+import { CTA_MARK } from '@/lib/copy/product-lexicon'
 import { useEffect } from 'react'
 import { LoadingLink } from '@/components/ui/LoadingLink'
 import { trackFunnelEvent } from '@/lib/analytics/funnel'
@@ -70,7 +71,7 @@ export function LandingHero({ markHref }: LandingHeroProps) {
             loadingText="Opening mark…"
             onNavigate={() => trackFunnelEvent('mark_cta_clicked', { source: 'home_hero' })}
           >
-            Feel the first stamp — free
+            {CTA_MARK}
           </LoadingLink>
           {/* One dominant CTA — the other paths are quiet text links so the
               primary action doesn't compete with two more buttons. */}

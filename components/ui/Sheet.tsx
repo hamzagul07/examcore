@@ -1,10 +1,11 @@
 'use client'
 
-import { useEffect, useId, useState, type ReactNode } from 'react'
+import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { useBodyScrollLock } from '@/lib/hooks/useBodyScrollLock'
+import { useFocusTrap } from '@/lib/hooks/useFocusTrap'
 
 export type SheetProps = {
   open: boolean
@@ -37,7 +38,14 @@ export function Sheet({
 }: SheetProps) {
   const titleId = useId()
   const [mounted, setMounted] = useState(false)
+  const panelRef = useRef<HTMLDivElement>(null)
   useBodyScrollLock(open)
+  // This primitive backs UpgradeModal, CelebrationModal, Dialog and the capture
+  // screen — and it had Escape, scroll-lock and aria-modal but no focus trap,
+  // so keyboard and screen-reader users tabbed straight through the paywall
+  // into the page behind it. The hook already existed (SiteHeader and
+  // MarkingWaitOverlay use it correctly); every Sheet consumer inherits it here.
+  useFocusTrap(open, panelRef)
 
   useEffect(() => {
     setMounted(true)
@@ -72,6 +80,7 @@ export function Sheet({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.2 }}
+            ref={panelRef}
             role="dialog"
             aria-modal="true"
             aria-labelledby={labelledById ?? (title ? titleId : undefined)}

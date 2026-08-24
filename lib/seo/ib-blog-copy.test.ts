@@ -2,7 +2,32 @@ import fs from 'fs'
 import path from 'path'
 
 const BLOG_DIR = path.join(process.cwd(), 'content/blog')
-const IB_APP_DIR = path.join(process.cwd(), 'app/(marketing)/ib')
+const MARKETING_APP_DIR = path.join(process.cwd(), 'app/(marketing)')
+
+/**
+ * The IB pages by ROUTE, not by directory.
+ *
+ * This used to walk `app/(marketing)/ib` directly, which broke the moment that
+ * subtree was split across route groups — `/ib/courses` and `/ib/subjects` use
+ * the reading shell while the rest use marketing chrome, so the files now live
+ * under `(reading)/ib` and `(chrome)/ib`. Route groups are parenthesised and
+ * absent from the URL, so stripping them recovers the route the file serves and
+ * the check survives any future regrouping.
+ */
+function routePathOf(fullPath: string): string {
+  return path
+    .relative(MARKETING_APP_DIR, fullPath)
+    .split(path.sep)
+    .filter((seg) => !(seg.startsWith('(') && seg.endsWith(')')))
+    .join('/')
+}
+
+function ibAppFiles(): string[] {
+  return walkTsx(MARKETING_APP_DIR).filter((f) => {
+    const route = routePathOf(f)
+    return route === 'ib' || route.startsWith('ib/')
+  })
+}
 
 const FORBIDDEN = [/cambridge/i, /cambridgeinternational/i, /\/blog\/cambridge-/i]
 
@@ -34,7 +59,7 @@ for (const file of ibBlogFiles()) {
   }
 }
 
-for (const file of walkTsx(IB_APP_DIR)) {
+for (const file of ibAppFiles()) {
   const rel = path.relative(process.cwd(), file)
   const text = fs.readFileSync(file, 'utf8')
   for (const pattern of FORBIDDEN) {
@@ -120,5 +145,5 @@ if (failed > 0) {
 }
 
 console.log(
-  `OK: ${ibBlogFiles().length} IB blog posts, ${walkTsx(IB_APP_DIR).length} IB hub pages and ${BLOG_ARTICLE_COMPONENTS.length} blog-article components contain no Cambridge references`
+  `OK: ${ibBlogFiles().length} IB blog posts, ${ibAppFiles().length} IB hub pages and ${BLOG_ARTICLE_COMPONENTS.length} blog-article components contain no Cambridge references`
 )

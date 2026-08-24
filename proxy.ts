@@ -91,8 +91,15 @@ export async function proxy(request: NextRequest) {
           cookiesToSet.forEach(({ name, value }) =>
             request.cookies.set(name, value)
           )
-          // Keep the forwarded request (with x-pathname) so marketing chrome
-          // does not fall back to "/" and double up with RootHeader's AppHeader.
+          // Keep the forwarded request so the session refresh below sees the
+          // same headers the route will.
+          //
+          // `x-pathname` (set above) no longer has a reader: marketing chrome
+          // used to resolve its variant from it at request time, which opted the
+          // whole route group out of static generation. That decision now lives
+          // in the route tree — app/(marketing)/(reading|chrome|bare). The header
+          // is left in place because unsetting it means reworking this forwarded
+          // request, which is on the auth path, for no gain.
           supabaseResponse = NextResponse.next({ request: forwardedRequest })
           cookiesToSet.forEach(({ name, value, options }) =>
             supabaseResponse.cookies.set(name, value, options)

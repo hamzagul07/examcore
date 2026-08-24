@@ -19,7 +19,6 @@ export {
   LessonPageSkeleton,
   SubjectsPageSkeleton,
 } from './MarginNotesSkeletons'
-export { MarketingLayoutChrome } from './MarketingLayoutChrome'
 export { PricingMarginNotesPage } from './PricingMarginNotesPage'
 export { PricingPageSkeleton } from './PricingPageSkeleton'
 export { ProgressDashboardPage } from './ProgressDashboardPage'

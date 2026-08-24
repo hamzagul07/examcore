@@ -22,6 +22,7 @@ import { IbResources } from '@/components/ib/IbResources'
 import { getIbCourse } from '@/lib/courses/ib'
 import { getIbTopicPracticePages } from '@/lib/seo/ib-topic-practice'
 import { MarketingBreadcrumbs } from '@/components/seo/MarketingBreadcrumbs'
+import { MockPackEmailCapture } from '@/components/tools/MockPackEmailCapture'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -262,6 +263,11 @@ export default async function IbPastPaperSubjectPage({ params }: Props) {
         </section>
 
         <IbResources resources={getIbResources(subject)} heading={`Best free IB ${subject.name} resources`} />
+
+        {/* IB is ~39% of sessions and this hub ended on related links with no
+            ask at all. A student browsing past papers in August is the exact
+            reader the November mock pack is for. */}
+        <MockPackEmailCapture source="ib-past-papers" className="mt-12" />
 
         <nav className="mt-12 border-t border-[var(--ec-border)] pt-8" aria-label="More IB past papers">
           <p className="ms-micro" style={{ marginBottom: 12 }}>

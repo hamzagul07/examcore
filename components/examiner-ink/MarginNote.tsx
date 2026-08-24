@@ -63,7 +63,14 @@ export function MarginNote({ note, flip = false, layout = 'side' }: MarginNotePr
       initial={{ opacity: 0, x: flip ? 10 : -10 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 0.3, duration: 0.35 }}
-      className={`absolute top-full ${flip ? 'right-full mr-3' : 'left-full ml-3'} mt-1 max-w-[220px]`}
+      // w-max matters: an absolutely-positioned box anchored at right-full /
+      // left-full gets its shrink-to-fit width from the distance to the
+      // container edge, not from its content. A note flipped left beside a
+      // full-width line had ~2% of the sheet available, so it wrapped one
+      // letter per line — a vertical "c/o/r/r/e/c/t" column down the paper.
+      // w-max sizes it by content (capped at 220px) and lets it hang into the
+      // margin, which is what a margin note is.
+      className={`absolute top-full ${flip ? 'right-full mr-3' : 'left-full ml-3'} mt-1 w-max max-w-[220px]`}
     >
       <div className="relative">
         <svg

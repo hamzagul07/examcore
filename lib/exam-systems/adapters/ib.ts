@@ -24,7 +24,7 @@ export const ibExamSystem: ExamSystem = {
   gradeModel: 'markbands',
   markingDialect: 'criterion_bands',
   assessmentStyle: 'diploma',
-  markPickerHint: 'Criterion bands, scanned scripts & PDF drops',
+  markPickerHint: 'Marked against IB criterion bands — photos, scans & PDFs',
   ownsSubjectCode(code) {
     // Anything non-numeric that is not claimed by a future explicit registry.
     // Numeric CAIE codes are never IB.

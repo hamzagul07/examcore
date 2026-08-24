@@ -41,7 +41,7 @@ export const edexcelExamSystem: ExamSystem = {
   gradeModel: 'ums',
   markingDialect: 'point_method',
   assessmentStyle: 'modular',
-  markPickerHint: 'IAL Maths, Physics, Chemistry & Biology units — method, accuracy & follow-through',
+  markPickerHint: "IAL Maths, Physics, Chemistry & Biology — marked with Edexcel's own method & accuracy marks",
   ownsSubjectCode(code) {
     return isEdexcelUnitCode(code)
   },

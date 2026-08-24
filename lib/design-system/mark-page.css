@@ -1524,6 +1524,20 @@
   opacity: 0.85;
 }
 
+/* Desktop: one compact row of six, not two rows of tall cards. The picker was
+   the first interaction on /mark and pushed the actual capture form below the
+   fold — a wall of board decisions before the thing the visitor came to do. */
+@media (min-width: 1024px) {
+  .ms-mark-board-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .ms-mark-board-option {
+    padding: 10px 12px;
+    gap: 3px;
+  }
+}
+
 .ms-mark-board-option:has(input:focus-visible) {
   outline: 2px solid var(--ec-brand);
   outline-offset: 2px;
@@ -2935,6 +2949,11 @@
   font-size: 15px;
   line-height: 1.62;
   color: var(--ec-text-primary);
+  /* The examiner's reasoning ran the full section width — ~150 characters a
+     line on a 1568px screen, far past the reading measure the design system
+     already defines. This is the sentence the demo exists to make people read;
+     cap it where eyes can track it. */
+  max-width: var(--ec-reading-measure, 68ch);
 }
 
 @media (max-width: 900px) {

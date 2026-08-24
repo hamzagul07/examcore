@@ -28,6 +28,7 @@ import { BlogReadingProgress } from '@/components/blog/BlogReadingProgress'
 import { BlogChunkedArticle } from '@/components/blog/BlogChunkedArticle'
 import { BlogTableOfContents } from '@/components/blog/BlogTableOfContents'
 import { BlogRelatedGrid } from '@/components/blog/BlogRelatedGrid'
+import { MockPackEmailCapture } from '@/components/tools/MockPackEmailCapture'
 import { BlogBreadcrumbs } from '@/components/blog/BlogBreadcrumbs'
 import { BlogShareButtons } from '@/components/blog/BlogShareButtons'
 import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
@@ -145,6 +146,28 @@ export default async function BlogPostPage({ params }: Props) {
           subjectName={subjectName}
           slug={slug}
         />
+
+        {/* The November list, built where the readers actually are.
+
+            This capture used to live only on results-2026/* and two tools pages
+            — traffic that peaked on results day and is now falling — while the
+            blog carries ~40% of sessions and never saw it. Mock season is when
+            marking is used and when this list converts, so every week it was
+            absent is capture that cannot be recovered later.
+
+            Deliberately AFTER BlogPostCta, not instead of it. Marking a question
+            is still the better ask for a reader who is revising today; this is
+            the fallback for the one who isn't, which is most of a blog audience
+            in August. Suppressed where a thread CTA already ran, so results and
+            IA guides don't stack three asks in a row. */}
+        {!showResultsDayBanner && !(isIbIaPage(slug) && post.subject) ? (
+          <MockPackEmailCapture
+            source="blog"
+            syllabusCode={subjectCode}
+            className="mt-8"
+          />
+        ) : null}
+
         <BlogRelatedGrid posts={related} clusterId={cluster.id} />
       </article>
     </MarketingPageShell>

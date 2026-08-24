@@ -1,5 +1,9 @@
 'use client'
 
+import {
+  CTA_MARK_PAPER,
+  markCtaLabel as buildMarkCtaLabel,
+} from '@/lib/copy/product-lexicon'
 import Link from 'next/link'
 import { buildSignUpHref } from '@/lib/auth-redirect'
 import { trackFunnelEvent } from '@/lib/analytics/funnel'
@@ -55,12 +59,14 @@ export function BlogPostCta({
           ? `${subjectCode} ${subjectName}`
           : subjectCode
         : 'exam season'
+  // Qualified where we know the board or subject, canonical where we don't.
+  // The unqualified case used to append ", no account", which made it a sixth
+  // phrasing of the same button — the "no account" promise already lives in the
+  // hero micro line and the body copy below.
   const markCtaLabel =
     markBoard === 'edexcel'
-      ? 'Mark an Edexcel IAL question — free'
-      : subjectCode
-        ? `Mark a ${subjectCode} question — free`
-        : 'Mark a question — free, no account'
+      ? buildMarkCtaLabel('Edexcel IAL')
+      : buildMarkCtaLabel(subjectCode)
   const showEdexcelBridge = showEdexcelBridgeForBlogSlug(slug)
   const edexcelMarkCta = edexcelMarkHref('WMA11')
 
@@ -199,7 +205,7 @@ export function BlogPostCta({
                   href={markHref}
                   className="ec-btn-ghost min-h-[44px] flex-1 justify-center"
                 >
-                  Mark a paper free
+                  {CTA_MARK_PAPER}
                 </Link>
               </>
             ) : null}

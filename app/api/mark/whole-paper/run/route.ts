@@ -28,10 +28,19 @@ import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-se
 import { requireTeacher } from '@/lib/teacher-auth'
 import { effectiveAccess } from '@/lib/billing/access'
 import { hasPriorityMarking } from '@/lib/billing/features'
+import { withRequestDeadline } from '@/lib/ai/request-deadline'
 
 // Marks up to 15 questions; give headroom like /mark/process. Kept in sync with
 // vercel.json (which overrides this in production). 800s needs Fluid Compute.
 export const maxDuration = 800
+
+/**
+ * Wall-clock budget, mirroring mark/process. The reserve is what the handler
+ * needs to release its reservation and write a terminal job state; erring high
+ * simply means the guard never fires, erring low kills working marks.
+ */
+const WHOLE_PAPER_BUDGET_RESERVE_MS = 20_000
+const WHOLE_PAPER_BUDGET_MS = maxDuration * 1000 - WHOLE_PAPER_BUDGET_RESERVE_MS
 
 async function updateJob(attemptId: string, state: WholePaperJobState) {
   await supabaseAdmin
@@ -44,7 +53,21 @@ async function updateJob(attemptId: string, state: WholePaperJobState) {
     .eq('id', attemptId)
 }
 
+/**
+ * Everything runs inside a wall-clock budget so retry loops fail HERE, in a
+ * handler that can release the reservation and settle the job — instead of
+ * being killed mid-run with the attempt stuck in `marking` and the reservation
+ * never released, waiting on the half-hourly mark-run-sweep to notice.
+ *
+ * mark/process has had this since it was written; whole-paper never did, and it
+ * is the route with more nested retry loops beneath it: up to 15 questions, each
+ * able to derive a scheme, mark, verify, escalate OCR and retry underneath that.
+ */
 export async function POST(request: NextRequest) {
+  return withRequestDeadline(WHOLE_PAPER_BUDGET_MS, () => handleRun(request))
+}
+
+async function handleRun(request: NextRequest) {
   const startTime = Date.now()
   let attemptId: string | null = null
   let reservation: MarkReservation | null = null

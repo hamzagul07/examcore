@@ -1,3 +1,4 @@
+import { CTA_MARK } from '@/lib/copy/product-lexicon'
 import Link from 'next/link'
 
 /**
@@ -372,7 +373,7 @@ export function DemoClose({
       </p>
       <div className="demo-close__actions">
         <Link href="/mark" className="ec-btn-primary demo-close__cta">
-          Mark a question free
+          {CTA_MARK}
         </Link>
         <Link href="/pricing" className="ec-btn-ghost demo-close__cta">
           See plans

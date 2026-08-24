@@ -1,3 +1,4 @@
+import { CTA_MARK } from '@/lib/copy/product-lexicon'
 import { LoadingLink } from '@/components/ui/LoadingLink'
 import {
   ExamSheet,
@@ -33,7 +34,7 @@ export function LandingFinalCta({ markHref }: LandingFinalCtaProps) {
               className="ec-btn-primary brand-pulse"
               loadingText="Opening mark…"
             >
-              Mark one question free
+              {CTA_MARK}
             </LoadingLink>
             <LoadingLink href="/pricing#plans" className="ec-btn-ghost ec-btn-ghost--sm">
               Unlock Max

@@ -17,6 +17,7 @@ import {
 } from '@/lib/rate-limit'
 import { rateLimitJson } from '@/lib/http/rate-limit-response'
 import { computeAllowance, quotaExceededBody } from '@/lib/billing/enforcement'
+import { withRequestDeadline } from '@/lib/ai/request-deadline'
 
 // Re-marks one question (derive → mark → verify); headroom for the verify pass.
 export const maxDuration = 800
@@ -26,7 +27,14 @@ export const maxDuration = 800
 // scripted into free unlimited marking.
 const MAX_RETRIES_PER_ATTEMPT = 15
 
+/** Same wall-clock budget as the other marking routes. */
+const RETRY_BUDGET_MS = maxDuration * 1000 - 20_000
+
 export async function POST(request: NextRequest) {
+  return withRequestDeadline(RETRY_BUDGET_MS, () => handleRetry(request))
+}
+
+async function handleRetry(request: NextRequest) {
   try {
     const body = await request.json()
     const attemptId = body.attempt_id as string
@@ -97,8 +105,28 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Not a whole-paper result' }, { status: 400 })
     }
 
-    const retryCount = existing.retry_count ?? 0
-    if (retryCount >= MAX_RETRIES_PER_ATTEMPT) {
+    // Claim a retry slot BEFORE any AI work.
+    //
+    // This used to read the count out of ai_marking, do the full derive → mark →
+    // verify, and write count + 1 afterwards. Twenty concurrent retries all read
+    // the same value, all did the billable work, and last-write-wins left the
+    // counter at one — so the cap this endpoint exists to enforce never bound.
+    //
+    // The RPC is a single UPDATE ... WHERE ... RETURNING, so Postgres serialises
+    // callers on the row and exactly one crosses the limit. A null result means
+    // the attempt is at the cap and no Gemini call may be made.
+    const { data: claimedCount, error: claimError } = await supabaseAdmin.rpc(
+      'claim_whole_paper_retry',
+      { p_attempt_id: attemptId, p_max: MAX_RETRIES_PER_ATTEMPT }
+    )
+    if (claimError) {
+      console.error('[whole-paper/retry] claim failed:', claimError.message)
+      return NextResponse.json(
+        { error: 'Could not start the re-mark. Try again in a moment.' },
+        { status: 500 }
+      )
+    }
+    if (claimedCount === null || claimedCount === undefined) {
       return NextResponse.json(
         {
           error:
@@ -162,7 +190,9 @@ export async function POST(request: NextRequest) {
       paperQuestions
     )
     wholePaper.pages_ocr = storedPages
-    wholePaper.retry_count = retryCount + 1
+    // Mirrored for display only — whole_paper_retry_count is what the cap is
+    // enforced against, and it was already incremented by the claim above.
+    wholePaper.retry_count = claimedCount as number
 
     await supabaseAdmin
       .from('attempts')

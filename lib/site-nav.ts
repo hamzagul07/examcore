@@ -234,6 +234,13 @@ export const FOOTER_SUBJECT_LINKS = [
 export const FOOTER_COMPANY_LINKS = [
   { href: '/about', label: 'The story' },
   { href: '/how-it-works', label: 'How it works' },
+  // Next to "How it works" because that is the question it answers. /demo is a
+  // worked example account covering the mastery map, gap drills, weekly report
+  // and Vault, and it was linked only from /pricing, the post-mark result and a
+  // Max teaser — all of them downstream of a visitor who has already converted
+  // once. Deliberately not promoted into the main nav, which is five items and
+  // already the right size on a phone.
+  { href: '/demo', label: 'See a worked example' },
   { href: '/for-teachers', label: 'For teachers' },
   { href: '/faq', label: 'FAQ' },
   { href: '/changelog', label: 'Changelog' },

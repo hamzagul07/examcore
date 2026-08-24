@@ -15,6 +15,21 @@ declare global {
 export type FunnelEvent =
   | 'landing_view'
   | 'mark_cta_clicked'
+  /**
+   * The marked example on /mark was opened.
+   *
+   * MarkExample exists because of a measurement — most people who opened /mark
+   * spent about a minute and left without uploading anything, so they bounced
+   * off an empty uploader rather than off the wait. The fix for that was never
+   * instrumented, so whether it works has been unanswerable.
+   *
+   * It also settles a real placement question. MK-01 puts the example BELOW the
+   * capture path so the first viewport leads with upload rather than banners,
+   * which is a sound instinct about banner blindness — but the bounce it treats
+   * happens at the uploader, above where the antidote sits. With this event and
+   * `answer_input_started`, that is an A/B test rather than an argument.
+   */
+  | 'example_opened'
   | 'answer_input_started'
   | 'answer_submitted'
   | 'mark_result_viewed'

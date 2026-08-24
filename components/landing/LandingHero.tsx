@@ -73,10 +73,18 @@ export function LandingHero({ markHref }: LandingHeroProps) {
           >
             {CTA_MARK}
           </LoadingLink>
-          {/* One dominant CTA — the other paths are quiet text links so the
-              primary action doesn't compete with two more buttons. */}
-          <LoadingLink href="/pricing#plans" className="ec-btn-underline" loadingText="Loading pricing…">
-            See what Max unlocks
+          {/* One dominant CTA — the other paths stay quiet text links so the
+              primary action doesn't compete with two more buttons.
+
+              This one pointed at /pricing#plans, which asks a first-time visitor
+              to weigh plans before they have seen what the paid half does. /demo
+              is a worked example account — mastery map, gap drills, weekly
+              report, Vault — i.e. the coach, which is what paid actually sells.
+              It was reachable only from /pricing, the post-mark result, and a
+              Max teaser: all downstream of someone who has already marked or
+              already priced. Pricing stays one tap away in the nav. */}
+          <LoadingLink href="/demo" className="ec-btn-underline" loadingText="Loading demo…">
+            See the full product
           </LoadingLink>
           <LoadingLink href="/courses" className="ec-btn-underline" loadingText="Loading courses…">
             Free courses

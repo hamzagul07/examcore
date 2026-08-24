@@ -1914,6 +1914,11 @@ export default function MarkPage() {
       ? urlBoard
       : selectedMarkBoard
     const fixture = board === 'ib' ? DEMO_MARK_RESULT_IB : DEMO_MARK_RESULT
+    // Whether showing a marked example actually rescues the people who bounce
+    // off an empty uploader has never been measurable, because opening it fired
+    // nothing. Paired with answer_input_started it answers that, and it tells us
+    // whether MK-01's below-the-fold placement is helping or hiding it.
+    trackFunnelEvent('example_opened', { board, source: 'mark_page' })
     setResult(fixture as MarkingResult)
     setShowingExample(true)
     setErrorMsg('')

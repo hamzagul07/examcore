@@ -29,8 +29,12 @@ export default function MarkLayout({ children }: { children: ReactNode }) {
           markingHowToJsonLd(),
         ]}
       />
-      <MarkSeoIntro />
       {children}
+      {/* Crawler intro + FAQ. Sat ABOVE the app before, so the first strip of
+          /mark was a grey "About MarkScheme marking" details band — plumbing
+          before product. The content (sr-only h1 included) stays in the HTML
+          for seo-ssr-check and crawlers; humans start at the marking desk. */}
+      <MarkSeoIntro />
     </>
   )
 }

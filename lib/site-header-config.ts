@@ -183,7 +183,12 @@ export function getSiteHeaderConfig(
         href: '/auth/signup',
         style: 'primary',
       },
-      secondaryCta: { label: 'Free courses', href: '/courses', style: 'warm' },
+      // Was style: 'warm' — a second filled button. The landing header ran
+      // three actions (peach Free courses, green Sign up, sign in) above a hero
+      // whose own primary CTA sat below the fold on short laptops, so the page
+      // pushed three different first steps at once. One filled CTA per header;
+      // courses stay a click away as a quiet link.
+      secondaryCta: { label: 'Free courses', href: '/courses', style: 'ghost' },
     }
   }
 

@@ -52,7 +52,10 @@ export function LandingFinalCta({ markHref }: LandingFinalCtaProps) {
         </div>
 
         <div className="ms-final-cta__sheet" aria-hidden>
-          <MarginNote className="ms-final-cta__note" style={{ top: '-22px', right: '6%' }}>
+          {/* Was top-right — exactly where ExamSheet renders its tally chip, so
+              the handwriting collided with "? / ?" at desktop widths. The
+              sheet's top-left corner is empty. */}
+          <MarginNote className="ms-final-cta__note" style={{ top: '-24px', left: '6%' }}>
             your turn
           </MarginNote>
           <ExamSheet

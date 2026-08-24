@@ -213,6 +213,28 @@
   margin-top: 30px;
 }
 
+/* Short laptop viewports (1366×768-class windows, ~700px of page height after
+   the header): the hero at full display size pushed the primary CTA below the
+   fold, so the most prominent visible action was the header's "Sign up" —
+   commitment asked before any value shown. Cap the headline and tighten the
+   vertical rhythm ONLY when the viewport is short; tall screens keep the full
+   size. Width-gated so phones (which stack and scroll naturally) are untouched. */
+@media (min-width: 1024px) and (max-height: 820px) {
+  .ms-hero {
+    padding-top: 36px;
+    gap: 48px;
+  }
+  .ms-hero .ms-h-display {
+    font-size: clamp(38px, 4.4vw, 58px);
+  }
+  .ms-hero-lead {
+    margin: 18px 0 24px;
+  }
+  .ms-hero-micro {
+    margin-top: 20px;
+  }
+}
+
 .ms-landing-spotlight {
   padding-top: 0;
   padding-bottom: 48px;

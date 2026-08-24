@@ -32,7 +32,7 @@ export const oxfordaqaExamSystem: ExamSystem = {
   gradeModel: 'raw_marks',
   markingDialect: 'point_method',
   assessmentStyle: 'linear',
-  markPickerHint: 'IAL Maths, Physics, Chemistry & Biology — linear papers, point/method dialect',
+  markPickerHint: "IAL Maths, Physics, Chemistry & Biology — marked in OxfordAQA's own codes",
   ownsSubjectCode(code) {
     return isOxfordaqaContentCode(code)
   },

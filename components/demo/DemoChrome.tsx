@@ -317,8 +317,10 @@ export function DemoLadder({
       </div>
 
       <div className="demo-ladder__price">
+        {/* "Most students want Scholar" was a popularity claim the subscriber
+            numbers don't back. Say what Scholar is for instead. */}
         <p className="demo-ladder__price-line">
-          Most students want <strong>Scholar</strong> —{' '}
+          Marking whole papers weekly? That is <strong>Scholar</strong> —{' '}
           {plans.scholarMonthly} a month, or{' '}
           <strong>{plans.scholarYearly} for the whole exam year</strong>.
         </p>

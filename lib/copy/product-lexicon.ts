@@ -35,6 +35,27 @@ export function markCtaLabel(qualifier?: string | null): string {
   return q ? `Mark a${/^[AEIOU]/i.test(q) ? 'n' : ''} ${q} question — free` : CTA_MARK
 }
 
+/**
+ * Plain-English glosses for the named product features.
+ *
+ * The rule these exist to enforce: metaphor lives in headlines; anywhere a
+ * decision is made — buttons, plan cards, feature lists, FAQ — a product name
+ * appears only WITH its gloss the first time a page uses it. The pricing page
+ * was naming Vault, Cinema and the Sunday coach with no definition anywhere,
+ * and pricing is the page a parent reads before typing a card number.
+ *
+ * Each line is grounded in what the feature actually does (features.ts, the
+ * Max vault components), so the gloss is a description, not more poetry.
+ */
+export const GLOSS_VAULT =
+  'a revision desk per subject, rebuilt from your own marked answers'
+export const GLOSS_CINEMA =
+  'animated diagrams you can play and scrub until the idea clicks'
+export const GLOSS_SUNDAY_COACH =
+  'a weekly email that reads your marks back to you and says what to drill'
+export const GLOSS_EXAMINERS_INK =
+  'your answer with scheme codes stamped in the margin, and the reason beside each'
+
 /** One student response (typed or photo). */
 export const TERM_ANSWER = 'answer'
 

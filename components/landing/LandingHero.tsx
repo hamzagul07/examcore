@@ -60,9 +60,12 @@ export function LandingHero({ markHref }: LandingHeroProps) {
           just left the room.
           <MarginNote style={{ top: '-44px', right: '-10px' }}>this step earns M1!</MarginNote>
         </h1>
+        {/* No tier names in the first sentences a stranger reads — "Max" meant
+            nothing here before the product does. The benefit stays; the brand
+            name waits until the visitor knows what a leak is. */}
         <p className="ms-lead ms-hero-lead">
           Type it or photograph the page. Green for marks earned. Crimson where they slipped.
-          Real scheme codes in your margins — then Max rebuilds the path around every leak.
+          Real scheme codes in your margins — then your revision rebuilds around every leak.
         </p>
         <div className="ms-hero-ctas">
           <LoadingLink

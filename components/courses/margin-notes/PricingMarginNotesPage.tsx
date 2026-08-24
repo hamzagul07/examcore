@@ -5,6 +5,11 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 import { Breadcrumb } from '@/components/courses/margin-notes/Breadcrumb'
+import {
+  GLOSS_VAULT,
+  GLOSS_CINEMA,
+  GLOSS_SUNDAY_COACH,
+} from '@/lib/copy/product-lexicon'
 import { InkScribble } from '@/components/courses/margin-notes/HandAnnotations'
 import { ExamSheet, ExamSheetLine } from '@/components/margin-notes'
 import { CourseRichText } from '@/components/courses/CourseRichText'
@@ -204,7 +209,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
       sub: null,
       features: [
         ['All lessons, notes & worked examples', true],
-        ['Edexcel, OxfordAQA, AQA & AP study paths → board-dialect mark', true],
+        ["Edexcel, OxfordAQA, AQA & AP study paths — marked in your board's own codes", true],
         [`${FREE_Q} marked questions / month`, true],
         [`${FREE_OMNI} study-chat messages / month`, true],
         [
@@ -243,10 +248,11 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
     {
       id: 'max',
       name: 'Max',
-      tag: 'Most popular',
-      bestFor: 'The loop you can\'t stop once it clicks',
-      blurb:
-        'Stamp a script. Watch the Vault rebuild around the leak. Scrub Cinema until the idea moves. Sit the next desk. Sunday, the coach tells you if the week was honest. Exam season volume — with priority when the paper is long.',
+      // Was "Most popular" — a claim the subscriber numbers do not back yet.
+      // Reinstate the day the data does.
+      tag: 'The full coach',
+      bestFor: 'Marking plus the coach built from it',
+      blurb: `The coach on top of the marking. The Vault — ${GLOSS_VAULT}. Concept Cinema — ${GLOSS_CINEMA}. A sprint pack near the exam, priority marking on long papers, and the Sunday coach — ${GLOSS_SUNDAY_COACH}.`,
       killer: `${MAX_Q} questions · Vault · Cinema · Sunday coach`,
       now: maxPrice.now,
       per: maxPrice.per,
@@ -256,7 +262,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
         ['Everything in Scholar', true],
         [`${MAX_Q} marked questions / month`, true],
         [`${MAX_OMNI} study-chat messages / month`, true],
-        ['Max Resource Vault — desks, packs, Cinema', true],
+        ['Resource Vault — a desk per subject, with Concept Cinema', true],
         ['Personalised sprint pack near your exam', true],
         ['Priority deep marking on big scripts', true],
         ['Weekly Max coach report (Sundays)', true],
@@ -275,8 +281,8 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
     },
     {
       stamp: 'MX',
-      title: 'Max makes the next paper addictive',
-      body: 'Every leak feeds a Vault desk, a Cinema beat, a sprint pack, a Sunday report — revision that pulls you back because it finally has a target.',
+      title: 'Every miss becomes the plan',
+      body: "Each leak updates a Vault desk, queues a Cinema replay, shapes the sprint pack, and shows up in Sunday's report — revision that pulls you back because it finally has a target.",
     },
     {
       stamp: 'Q·P',
@@ -327,7 +333,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
     },
     {
       q: 'Do you have Edexcel, OxfordAQA, AQA, or AP courses?',
-      a: 'Native lesson JSON is Cambridge and IB. For Edexcel IAL, OxfordAQA IAL, UK AQA Maths/Physics, and AP Calculus AB / Physics 1 we give free study paths: our own visual CAIE lessons tagged to your board, then mark in that board\'s dialect (FRQ guidelines for AP). You are not buying a scraped third-party course — you are buying the marking loop that converts.',
+      a: 'Native lesson JSON is Cambridge and IB. For Edexcel IAL, OxfordAQA IAL, UK AQA Maths/Physics, and AP Calculus AB / Physics 1 we give free study paths: our own visual CAIE lessons tagged to your board, then marking in that board\'s own codes (FRQ guidelines for AP). You are not buying a scraped third-party course — you are buying marking that speaks your board\'s language.',
     },
     {
       q: 'Can I cancel anytime?',
@@ -345,15 +351,22 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
 
         <header className="pricing-hero pricing-hero--artefact">
           <div className="pricing-hero-copy">
-            <p className="overline">Pricing · the stamp that starts the hunger</p>
+            <p className="overline">Pricing · ink first, decide later</p>
             <h1 className="h-display pricing-title">
               Once you see the leak, you will want the <em>machine.</em>
             </h1>
+            {/* The headline keeps the voice; the lead is where a parent decides,
+                so every named feature carries its plain gloss (product-lexicon).
+                This paragraph previously read "Max is the craving — Vault desks
+                that rebuild, Cinema that moves the idea… until the hall": four
+                product names, zero definitions, on the page where the card
+                number gets typed. */}
             <p className="lead pricing-lead">
-              Free lets the ink land. Scholar makes weekly prep feel examiner-real.{' '}
-              <InkScribble>Max</InkScribble> is the craving — Vault desks that rebuild,
-              Cinema that moves the idea, priority stamps on long papers, and a Sunday
-              coach that keeps you honest until the hall.
+              Free lets the ink land. Scholar adds whole papers, examiner-depth
+              feedback and a mastery map of exactly where marks leak.{' '}
+              <InkScribble>Max</InkScribble> adds the coach: the Vault —{' '}
+              {GLOSS_VAULT} — Concept Cinema ({GLOSS_CINEMA}), priority marking
+              on long papers, and the Sunday coach, {GLOSS_SUNDAY_COACH}.
             </p>
             {/* Every plan below is priced on features a visitor has never seen,
                 because the paid half is computed from a marking history they do
@@ -367,7 +380,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
               head="Your script · sample"
               headRight="Max record"
               tally="4 / 5"
-              cite="Every stamp feeds the Vault — that is the addiction"
+              cite="Every stamp updates the Vault — the miss becomes the plan"
             >
               <ExamSheetLine work="method clear — chain rule" mark="M1 ✓" ok stampDelayMs={120} />
               <ExamSheetLine work="both stationary points" mark="A1 ✓" ok stampDelayMs={320} />
@@ -436,8 +449,11 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
                 data-screen-label={`Pricing — ${p.name}`}
               >
                 <p className="plan-tag mono">
+                  {/* Ribbon said MOST POPULAR — an unbacked popularity claim at
+                      the current subscriber count. Reinstate when the data says
+                      so; until then the ribbon states what the plan IS. */}
                   {p.featured ? (
-                    <span className="plan-ribbon mono">MOST POPULAR</span>
+                    <span className="plan-ribbon mono">EVERYTHING INCLUDED</span>
                   ) : null}
                   {p.tag}
                 </p>

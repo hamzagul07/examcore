@@ -28,6 +28,7 @@ import {
   clientIp,
 } from '@/lib/rate-limit'
 import { rateLimitJson } from '@/lib/http/rate-limit-response'
+import { withRequestDeadline } from '@/lib/ai/request-deadline'
 import { createServiceClient } from '@/lib/supabase/service'
 import { wholePaperQuestionLimit, hasPriorityMarking } from '@/lib/billing/features'
 import { effectiveAccess, type EffectiveAccess } from '@/lib/billing/access'
@@ -43,9 +44,22 @@ import {
 // OCR + segmentation of a full paper can be heavy; match the marking routes.
 export const maxDuration = 800
 
+/**
+ * Same wall-clock budget as whole-paper/run and mark/process. Init spends a
+ * Gemini OCR call per page plus a segmentation call, so it is a long request
+ * with retry loops under it and no reason to be the one route that gets killed
+ * abruptly instead of failing cleanly.
+ */
+const INIT_BUDGET_RESERVE_MS = 20_000
+const INIT_BUDGET_MS = maxDuration * 1000 - INIT_BUDGET_RESERVE_MS
+
 type PageAssignment = { index: number; question_number: string | null }
 
 export async function POST(request: NextRequest) {
+  return withRequestDeadline(INIT_BUDGET_MS, () => handleInit(request))
+}
+
+async function handleInit(request: NextRequest) {
   try {
     // Read auth from request.cookies (+ bearer) — cookies() from next/headers
     // can come back empty on this streaming multipart POST, which silently

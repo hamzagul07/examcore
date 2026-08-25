@@ -70,6 +70,7 @@ export function LandingHero({ markHref }: LandingHeroProps) {
         <div className="ms-hero-ctas">
           <LoadingLink
             href={markHref}
+            prefetch={false}
             className="ec-btn-primary brand-pulse"
             loadingText="Opening mark…"
             onNavigate={() => trackFunnelEvent('mark_cta_clicked', { source: 'home_hero' })}
@@ -86,10 +87,10 @@ export function LandingHero({ markHref }: LandingHeroProps) {
               It was reachable only from /pricing, the post-mark result, and a
               Max teaser: all downstream of someone who has already marked or
               already priced. Pricing stays one tap away in the nav. */}
-          <LoadingLink href="/demo" className="ec-btn-underline" loadingText="Loading demo…">
+          <LoadingLink href="/demo" prefetch={false} className="ec-btn-underline" loadingText="Loading demo…">
             See the full product
           </LoadingLink>
-          <LoadingLink href="/courses" className="ec-btn-underline" loadingText="Loading courses…">
+          <LoadingLink href="/courses" prefetch={false} className="ec-btn-underline" loadingText="Loading courses…">
             Free courses
           </LoadingLink>
         </div>

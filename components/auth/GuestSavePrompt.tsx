@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { LoadingLink } from '@/components/ui/LoadingLink'
 import { buildContentGateSignUpHref } from '@/lib/auth-redirect'
+import { useAuthCheck } from '@/lib/hooks/useAuthCheck'
+import { hasGuestBrowseCookie, isSearchEngineCrawler } from '@/lib/guest-browse'
 
 const DISMISS_KEY = 'ms:savePrompt:dismissedAt'
 /** A dismissal is respected for a fortnight — long enough not to nag. */
@@ -37,10 +39,17 @@ function recentlyDismissed(): boolean {
  *
  * Dismissal is remembered for a fortnight. If someone says no, that is an
  * answer, not an invitation to ask again on the next page.
+ *
+ * Eligibility (signed-out, no guest-browse cookie, not a rendering crawler) is
+ * decided HERE, client-side, at earn time. It used to be decided server-side in
+ * GuestSignupGate — which made every gated content route dynamic and killed CDN
+ * caching for the whole lesson library. By earn time (45s in) the shared auth
+ * context has long resolved, so the check costs nothing.
  */
 export function GuestSavePrompt() {
   const pathname = usePathname()
   const [show, setShow] = useState(false)
+  const { user, loading: authLoading } = useAuthCheck()
 
   const earn = useCallback(() => {
     if (recentlyDismissed()) return
@@ -90,6 +99,13 @@ export function GuestSavePrompt() {
   }, [])
 
   if (!show) return null
+  // Signed-in readers have nothing to save that isn't already saved; a visitor
+  // who chose "browse without an account" gave their answer for this session;
+  // a JS-rendering crawler (Googlebot) must never index the nudge as content.
+  // Checked at render, not earn, so signing in mid-read retracts the prompt.
+  if (authLoading || user) return null
+  if (hasGuestBrowseCookie()) return null
+  if (typeof navigator !== 'undefined' && isSearchEngineCrawler(navigator.userAgent)) return null
 
   return (
     <aside className="ms-save-prompt" role="complementary" aria-label="Save your progress">

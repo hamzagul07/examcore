@@ -1,8 +1,6 @@
 import { notFound } from 'next/navigation'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import {
-  getAllCourseLessonPaths,
-  getCourseLesson,
   getCourseLessons,
   getCourseSubject,
   loadPaperScopedLesson,
@@ -75,13 +73,6 @@ type Props = {
 
 type ResolvedLesson =
   | {
-      mode: 'flat'
-      lessonSlug: string
-      lesson: CourseLesson
-      paperDir: null
-      paperNumber: null
-    }
-  | {
       mode: 'paper'
       lessonSlug: string
       lesson: CourseLesson
@@ -94,13 +85,9 @@ function resolveLesson(
   slug: string[],
   preferPublished: boolean
 ): ResolvedLesson | null {
-  if (slug.length === 1) {
-    const lessonSlug = slug[0]
-    const lesson = getCourseLesson(code, lessonSlug)
-    if (!lesson) return null
-    return { mode: 'flat', lessonSlug, lesson, paperDir: null, paperNumber: null }
-  }
-
+  // Flat lessons (1 segment) are served by the static [lessonSlug] route,
+  // which Next prefers for single-segment paths. Only paper-pilot paths
+  // (2 segments) resolve here.
   if (slug.length === 2 && /^paper-\d+$/.test(slug[0])) {
     const paperDir = slug[0]
     const lessonSlug = slug[1]
@@ -119,11 +106,7 @@ function resolveLesson(
 }
 
 export async function generateStaticParams() {
-  const flat = getAllCourseLessonPaths().map(({ code, slug }) => ({
-    code,
-    slug: [slug],
-  }))
-  return [...flat, ...getPaperPilotStaticParams()]
+  return getPaperPilotStaticParams()
 }
 
 export async function generateMetadata({ params, searchParams }: Props) {

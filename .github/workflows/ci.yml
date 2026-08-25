@@ -53,6 +53,9 @@ jobs:
           ANTHROPIC_API_KEY: sk-ant-placeholder
           GEMINI_API_KEY: placeholder
 
+      - name: Prerender regression (static route guard)
+        run: pnpm check:prerender
+
       - name: SEO regression (SSR + sitemap)
         run: |
           pnpm start --port 3099 &

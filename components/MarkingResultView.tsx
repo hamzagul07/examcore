@@ -160,6 +160,7 @@ export function MarkingResultView({
   evidenceDefaultOpen = true,
   moreDefaultOpen = true,
   isSample = false,
+  afterScore,
 }: {
   result: MarkingResultData
   attemptId?: string | null
@@ -172,6 +173,8 @@ export function MarkingResultView({
   isPaid?: boolean
   /** Max plan — shows priority deep-marking stamp on the result. */
   isMax?: boolean
+  /** Rendered directly under the score block — the highest-attention slot. */
+  afterScore?: ReactNode
   /**
    * MK-05 — “what should I do next?” sits after the mark gap / band ladder,
    * before mark-by-mark evidence, so the action isn’t buried under audit chrome.
@@ -469,6 +472,13 @@ export function MarkingResultView({
           />
         </div>
       </div>
+
+      {/* Directly under the score, above the verdict. The feedback prompt used
+          to mount at the very bottom of the page, below the breakdown, the ink
+          and the solution — measured result: 111 marks in 30 days produced one
+          rating, ever. The score is the moment a student knows whether it felt
+          fair; the ask has to live where that moment happens. */}
+      {afterScore ?? null}
 
       {/* MK-05 outcome layer: score → verdict → recover → act → evidence. */}
       <div className="ms-mark-verdict mt-5">

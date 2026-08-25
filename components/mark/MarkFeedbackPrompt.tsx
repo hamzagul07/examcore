@@ -178,7 +178,7 @@ export function MarkFeedbackPrompt({ attemptId }: { attemptId: string }) {
               onChange={(e) => setComment(e.target.value)}
               rows={3}
               maxLength={1000}
-              placeholder="Optional — what did the feedback actually help you see?"
+              placeholder="e.g. it caught the justification mark I always drop"
               className="ec-input mt-2 w-full resize-y text-sm"
             />
           </label>

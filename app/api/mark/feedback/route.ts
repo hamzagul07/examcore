@@ -67,28 +67,44 @@ export async function POST(request: NextRequest) {
       : null
 
   const { user, pendingCookies } = await authenticateRouteRequest(request)
-  if (!user) {
-    return jsonWithAuthCookies(
-      { error: 'Sign in to leave feedback' },
-      pendingCookies,
-      { status: 401 }
-    )
-  }
 
-  // Ownership check — feedback is only meaningful from the person who was
-  // marked, and this stops one user rating another's attempt.
   const { data: attempt } = await supabaseAdmin
     .from('attempts')
     .select('id, user_id, marks_earned, total_marks, syllabus_tags, ai_marking')
     .eq('id', attemptId)
     .maybeSingle()
 
-  if (!attempt || attempt.user_id !== user.id) {
+  if (!attempt) {
     return jsonWithAuthCookies(
       { error: 'Attempt not found' },
       pendingCookies,
       { status: 404 }
     )
+  }
+
+  // Ownership. An owned attempt may only be rated by its owner — this stops
+  // one user rating another's attempt. A GUEST attempt (user_id null) may be
+  // rated on possession of its unguessable id, the same documented gate as the
+  // prediction and run-status routes. This used to require sign-in outright,
+  // which silently excluded most markers: measured over the prompt's first
+  // month, 111 marks produced one rating, ever. Abuse is bounded without a
+  // rate limit because the upsert below keys on attempt_id — one row per
+  // attempt, and each attempt id costs a real, rate-limited mark to obtain.
+  if (attempt.user_id) {
+    if (!user) {
+      return jsonWithAuthCookies(
+        { error: 'Sign in to leave feedback' },
+        pendingCookies,
+        { status: 401 }
+      )
+    }
+    if (attempt.user_id !== user.id) {
+      return jsonWithAuthCookies(
+        { error: 'Attempt not found' },
+        pendingCookies,
+        { status: 404 }
+      )
+    }
   }
 
   const markingMode =
@@ -105,7 +121,7 @@ export async function POST(request: NextRequest) {
     .upsert(
       {
         attempt_id: attemptId,
-        user_id: user.id,
+        user_id: attempt.user_id,
         rating,
         reason,
         comment,

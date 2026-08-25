@@ -3765,6 +3765,11 @@ export default function MarkPage() {
 
             <MarkingResultView
               result={result}
+              afterScore={
+                !showingExample && result.attempt_id ? (
+                  <MarkFeedbackPrompt attemptId={result.attempt_id} />
+                ) : null
+              }
               attemptId={result.attempt_id ?? null}
               isPaid={
                 showingExample
@@ -3857,16 +3862,13 @@ export default function MarkPage() {
               <SolutionSection attemptId={result.attempt_id} />
             )}
 
-            {/* Asked once per attempt, while the marking is still on screen —
-                the only place a student can judge whether it was fair. Signed-in
-                only: /api/mark/feedback authenticates and checks attempt
-                ownership, and a guest attempt has no owner, so showing this to
-                guests would offer a button that can only ever 401. */}
-            {!showingExample &&
-              result.attempt_id &&
-              billingSummary?.signedIn && (
-                <MarkFeedbackPrompt attemptId={result.attempt_id} />
-              )}
+            {/* The feedback prompt now renders in MarkingResultView's
+                afterScore slot — directly under the score, where the fairness
+                judgement actually happens. It mounted here at the bottom of the
+                page for a month: 111 marks, one rating. Guests included now —
+                the API accepts a rating on a guest attempt gated by possession
+                of its unguessable id, the same documented pattern as the
+                prediction and run-status routes. */}
           </div>
         )}
       </div>

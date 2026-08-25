@@ -199,6 +199,7 @@ export function SiteHeader({ variant }: Props) {
     ) : (
       <LoadingLink
         href={config.primaryCta.href}
+        prefetch={false}
         className={className}
         loadingText="Opening…"
         onNavigate={onNavigate}
@@ -222,6 +223,7 @@ export function SiteHeader({ variant }: Props) {
       return (
         <Link
           href="/account"
+          prefetch={false}
           title="Account"
           className="ec-avatar-btn hidden min-[901px]:grid"
         >
@@ -232,6 +234,7 @@ export function SiteHeader({ variant }: Props) {
     return (
       <LoadingLink
         href={signInHref}
+        prefetch={false}
         variant="inline"
         loadingText="Signing in…"
         className="ec-nav-link ec-nav-signin"
@@ -321,6 +324,7 @@ export function SiteHeader({ variant }: Props) {
               {visibleSecondaryCta ? (
                 <LoadingLink
                   href={visibleSecondaryCta.href}
+                  prefetch={false}
                   className={cn(
                     CTA_CLASS[visibleSecondaryCta.style],
                     'hidden min-[901px]:inline-flex'
@@ -417,6 +421,7 @@ export function SiteHeader({ variant }: Props) {
                   {visibleSecondaryCta ? (
                     <LoadingLink
                       href={visibleSecondaryCta.href}
+                      prefetch={false}
                       className={cn('ec-nav-mobile-secondary', CTA_CLASS[visibleSecondaryCta.style])}
                       loadingText="Opening…"
                       onNavigate={navigateFromMenu}
@@ -439,10 +444,10 @@ export function SiteHeader({ variant }: Props) {
                   {variant === 'marketing' || variant === 'reading' ? (
                     isGuest ? (
                       <div className="ec-nav-mobile-auth">
-                        <Link href={signInHref} onClick={navigateFromMenu}>
+                        <Link href={signInHref} prefetch={false} onClick={navigateFromMenu}>
                           Sign in
                         </Link>
-                        <Link href={buildMarketingSignUpHref()} onClick={navigateFromMenu}>
+                        <Link href={buildMarketingSignUpHref()} prefetch={false} onClick={navigateFromMenu}>
                           Create free account
                         </Link>
                       </div>

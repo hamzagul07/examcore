@@ -14,6 +14,7 @@ export function SiteHeaderContext({
   return (
     <LoadingLink
       href={context.href}
+      prefetch={false}
       variant="inline"
       loadingText="Opening…"
       className={cn('ec-nav-context', className)}

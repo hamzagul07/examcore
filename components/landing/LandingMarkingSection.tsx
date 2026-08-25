@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Chip } from '@/components/margin-notes'
+import { InkDemoVideo } from '@/components/marketing/InkDemoVideo'
 
 const STEPS = [
   {
@@ -43,6 +44,11 @@ export function LandingMarkingSection() {
         Not a chatbot guessing. The real scheme for that paper — B1, M1, A1 — stamped onto{' '}
         <em>your</em> lines, so the next attempt hits what this one missed.
       </p>
+
+      {/* The whole journey in 38 seconds — snap, upload, stamps, the withheld
+          mark and its reason. Lazy-mounted: costs a 55 KB poster until the
+          viewer scrolls near. */}
+      <InkDemoVideo className="mx-auto mt-10 max-w-[880px]" />
 
       <div className="ms-steps">
         {STEPS.map((step, i) => (

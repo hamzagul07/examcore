@@ -9,6 +9,7 @@ import { markingHowToJsonLd } from '@/lib/seo/marking-how-to'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { Hero } from '@/components/marketing/Hero'
 import { LandingScreenshotSteps } from '@/components/landing/LandingScreenshotSteps'
+import { InkDemoVideo } from '@/components/marketing/InkDemoVideo'
 import { LandingSectionReveal } from '@/components/landing/LandingSectionReveal'
 import { ToolInstrumentShell } from '@/components/tools/ToolInstrumentShell'
 
@@ -106,6 +107,10 @@ export default async function HowItWorksPage() {
           </>
         }
       >
+        {/* The 38-second film first — the whole journey before the step-by-step
+            stills. Lazy-mounted; costs a 55 KB poster until scrolled near. */}
+        <InkDemoVideo className="mx-auto mb-12 max-w-[960px]" />
+
         <LandingScreenshotSteps />
 
         <div className="mt-12" id="marking-demo">

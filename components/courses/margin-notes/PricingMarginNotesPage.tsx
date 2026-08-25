@@ -16,6 +16,7 @@ import { CourseRichText } from '@/components/courses/CourseRichText'
 import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
 import { LoadingLink } from '@/components/ui/LoadingLink'
 import type { PricingDisplay, SubscriptionDisplayPrices } from '@/lib/billing/display-prices'
+import type { Testimonial } from '@/lib/marketing/testimonials'
 import type { RegionChoice } from '@/lib/billing/region-cookie'
 import type { SubscriptionTier } from '@/lib/database.types'
 import { formatMoney } from '@/lib/billing/format'
@@ -52,6 +53,8 @@ type Props = {
   signedIn: boolean
   currentTier: SubscriptionTier | null
   region: RegionChoice
+  /** Approved student quotes (two-gate: consent + approval). Empty until supply exists. */
+  testimonials?: Testimonial[]
 }
 
 /** Sell surface: Free / Scholar / Max. Pro (`student`) is legacy-only. */
@@ -73,7 +76,7 @@ const SCH_OMNI = omniCapForTier('scholar')
 const MAX_Q = capForTier('mastery')
 const MAX_OMNI = omniCapForTier('mastery')
 
-export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props) {
+export function PricingMarginNotesPage({ display, signedIn, currentTier, testimonials }: Props) {
   const router = useRouter()
   const [period, setPeriod] = useState<Period>('yearly')
   const [focusPlan, setFocusPlan] = useState<PlanId>('max')
@@ -334,6 +337,14 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
     {
       q: 'Do you have Edexcel, OxfordAQA, AQA, or AP courses?',
       a: 'Native lesson JSON is Cambridge and IB. For Edexcel IAL, OxfordAQA IAL, UK AQA Maths/Physics, and AP Calculus AB / Physics 1 we give free study paths: our own visual CAIE lessons tagged to your board, then marking in that board\'s own codes (FRQ guidelines for AP). You are not buying a scraped third-party course — you are buying marking that speaks your board\'s language.',
+    },
+    {
+      q: "What happens when I use up the free 5 marks?",
+      a: "Marking pauses until your month resets — nothing is deleted, and every marked answer stays on your desk. Upgrade mid-month and marking resumes immediately on the plan's allowance.",
+    },
+    {
+      q: "I'm a student — can a parent pay?",
+      a: "Yes, and most do: hand them this page. Checkout is a normal card payment through our billing partner, they don't need an account of their own, and every mark comes with a score slip made for sharing home.",
     },
     {
       q: 'Can I cancel anytime?',
@@ -598,6 +609,25 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier }: Props
             <PlanComparisonMatrix nested />
           </div>
         </details>
+
+        {/* Student quotes where money decides. Supply-gated: renders nothing
+            until feedback quotes are approved — an empty "loved by students"
+            shell would cost more trust than silence. */}
+        {testimonials?.length ? (
+          <section className="pricing-why" aria-label="What students say">
+            <h2 className="h3 section-title">Left by students, after their own mark</h2>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {testimonials.map((t) => (
+                <figure key={t.id} className="rounded-xl border-2 border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4">
+                  <blockquote className="text-sm leading-relaxed text-[var(--ec-text-primary)]">
+                    &ldquo;{t.quote}&rdquo;
+                  </blockquote>
+                  <figcaption className="mt-2 text-xs text-[var(--ec-text-secondary)]">— {t.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <div className="pricing-faqs">
           <h2 className="h3 section-title">Honest answers</h2>

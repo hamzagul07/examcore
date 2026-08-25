@@ -37,6 +37,8 @@ export type FunnelEvent =
   | 'signup_completed'
   | 'lead_captured'
   | 'upgrade_viewed'
+  /** A contextual premium card's CTA was clicked (see PostMarkPremiumCard). */
+  | 'upsell_clicked'
   | 'checkout_started'
   | 'subscription_started'
   | 'vault_opened'

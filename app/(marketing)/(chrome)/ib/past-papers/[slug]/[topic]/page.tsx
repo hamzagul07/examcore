@@ -20,6 +20,7 @@ import {
 } from '@/lib/seo/ib-topic-practice'
 import { MarketingBreadcrumbs } from '@/components/seo/MarketingBreadcrumbs'
 import { GuestSignupGate } from '@/components/auth/GuestSignupGate'
+import { PremiumNudge } from '@/components/billing/PremiumNudge'
 
 type Props = { params: Promise<{ slug: string; topic: string }> }
 
@@ -207,6 +208,8 @@ export default async function IbTopicPracticePage({ params }: Props) {
             </Link>
           </nav>
         ) : null}
+        {/* Premium at the end of the guide — client-gated, page stays static. */}
+        <PremiumNudge surface="guide" />
         </GuestSignupGate>
       </div>
     </MarketingPageShell>

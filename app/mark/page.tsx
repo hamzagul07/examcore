@@ -116,6 +116,7 @@ import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
 import { UpgradeModal } from '@/components/billing/UpgradeModal'
+import { PostMarkPremiumCard } from '@/components/billing/PostMarkPremiumCard'
 import {
   rememberFunnelBoard,
   trackAnswerInputStarted,
@@ -289,7 +290,6 @@ export default function MarkPage() {
   const [softMarkNotice, setSoftMarkNotice] = useState<string | null>(null)
   const [firstMarkCelebration, setFirstMarkCelebration] = useState(false)
   const [upgradeModal, setUpgradeModal] = useState<UpgradeModalState | null>(null)
-  const [showFreeNudge, setShowFreeNudge] = useState(false)
   const [billingSummary, setBillingSummary] = useState<BillingSummaryClient | null>(null)
   const [billingSummaryError, setBillingSummaryError] = useState(false)
   // Set when the user arrived via a "Drill this" link from the insights
@@ -2042,9 +2042,10 @@ export default function MarkPage() {
   // Apply the `_allowance` block from a successful mark: refresh the header chip,
   // set the approaching-limit banner (only set by the API in warn/enforce), and
   // nudge free users to explore plans (any mode).
-  function handleAllowance(block?: AllowanceBlock) {
+  function handleAllowance(_block?: AllowanceBlock) {
+    // The refreshed summary is what PostMarkPremiumCard renders from — the
+    // card itself decides free-meter vs paid-warning vs nothing.
     refreshBillingSummary()
-    if (block?.tier === 'free') setShowFreeNudge(true)
   }
 
   // V2 treats any in-flight mark as wait (covers the gap before markProgress lands).
@@ -3845,13 +3846,11 @@ export default function MarkPage() {
                       onMarkAnother={handleMarkAnotherAttempt}
                       onMarkNewQuestion={handleMarkNewQuestion}
                     />
-                    {showFreeNudge ? (
-                      <p className="pt-1 text-center text-sm text-[var(--ec-text-secondary)]">
-                        Want to mark more?{' '}
-                        <Link href="/pricing" className="ec-link">
-                          See plans →
-                        </Link>
-                      </p>
+                    {/* Premium, visible in the flow — meter + one concrete line,
+                        replacing a bare "see plans" whisper. Guests get
+                        GuestConversionPrompt above instead. */}
+                    {!showingExample ? (
+                      <PostMarkPremiumCard summary={billingSummary} />
                     ) : null}
                   </>
                 )

@@ -1,3 +1,4 @@
+import { getApprovedTestimonials } from '@/lib/marketing/testimonials'
 import { Suspense } from 'react'
 import { cookies, headers } from 'next/headers'
 import { getPageMetadata } from '@/lib/seo/page-meta'
@@ -46,10 +47,16 @@ async function PricingWithAccount({
   region: RegionChoice
   accountPromise: ReturnType<typeof loadPricingAccount>
 }) {
-  const { signedIn, currentTier } = await accountPromise
+  const [{ signedIn, currentTier }, testimonials] = await Promise.all([
+    accountPromise,
+    // Student quotes on the page where money decides — same two-gate supply
+    // (consent + approval) as the landing; renders nothing until quotes exist.
+    getApprovedTestimonials(3),
+  ])
   return (
     <PricingMarginNotesPage
       display={display}
+      testimonials={testimonials}
       signedIn={signedIn}
       currentTier={currentTier}
       region={region}

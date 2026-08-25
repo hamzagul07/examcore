@@ -43,6 +43,13 @@ export function WordmarkLink({
   return (
     <LoadingLink
       href={href}
+      // The wordmark renders in the header AND footer of every page and points
+      // at the landing (or the dashboard when signed in) — both chunk-heavy
+      // routes. Its viewport prefetch was the last big source of the mid-scroll
+      // eval storm: ~700KB of JS plus the full prefetched RSC payload of a
+      // static route, decoded as a 2s+ main-thread task. A "go home" affordance
+      // is clicked rarely; it does not need to be pre-warmed on every page.
+      prefetch={false}
       variant="inline"
       loadingText="Home"
       className={cn(

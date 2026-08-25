@@ -8,19 +8,17 @@ Sentry.init({
 })
 
 // Session Replay is a large integration (~100+ KiB, and its rrweb recording is
-// hundreds of ms of main-thread work) that does nothing until an error fires. We
-// keep it out of the first-load bundle AND off the initial main thread by loading
-// it only on the first real user interaction — by which point the page is
-// interactive and a few hundred ms of setup is invisible. Trade-off: an error
-// before the user ever touches the page won't have a replay attached — acceptable
-// given session replays are already sampled at 0.
+// hundreds of ms of main-thread work) that does nothing until an error fires.
+// It used to load on the first user interaction — but 'scroll' was one of the
+// trigger events, so its ~1s of chunked setup landed on the visitor's FIRST
+// scroll, stacking with the landing demo's lazy mount into one multi-second
+// freeze (the B5 jank). Idle is the one moment guaranteed not to compete with
+// an interaction, and for a reader it usually arrives BEFORE their first
+// touch. Trade-off unchanged from the interaction version: an error before
+// the integration loads has no replay attached — acceptable given session
+// replays are already sampled at 0.
 if (typeof window !== 'undefined' && sentryBaseOptions.enabled) {
-  const events = ['pointerdown', 'keydown', 'touchstart', 'scroll'] as const
-  let loaded = false
   const loadReplay = () => {
-    if (loaded) return
-    loaded = true
-    events.forEach((e) => window.removeEventListener(e, loadReplay))
     import('@/lib/sentry/replay')
       .then(({ makeReplayIntegration }) => {
         Sentry.getClient()?.addIntegration(makeReplayIntegration())
@@ -29,9 +27,11 @@ if (typeof window !== 'undefined' && sentryBaseOptions.enabled) {
         /* Replay is best-effort — never let it break the app. */
       })
   }
-  events.forEach((e) =>
-    window.addEventListener(e, loadReplay, { once: true, passive: true }),
-  )
+  if (typeof requestIdleCallback !== 'undefined') {
+    requestIdleCallback(loadReplay, { timeout: 15000 })
+  } else {
+    window.setTimeout(loadReplay, 8000)
+  }
 }
 
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart

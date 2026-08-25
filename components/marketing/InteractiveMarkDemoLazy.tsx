@@ -39,7 +39,23 @@ export function InteractiveMarkDemoLazy() {
       { rootMargin: '300px 0px' },
     )
     io.observe(el)
-    return () => io.disconnect()
+
+    // Pre-mount during post-hydration idle as well. Measured on a 4x-throttled
+    // CPU, this section's chunk-eval + mount is a single ~3s main-thread task —
+    // and with the IO alone (the section sits just under the hero) it landed
+    // exactly on the visitor's FIRST scroll, which is the freeze B5 chased.
+    // Mounting while they are still reading the hero moves the same cost to a
+    // moment nobody is interacting. The demo's own in-view gate keeps its ink
+    // animation waiting for actual visibility, so nothing plays early. The IO
+    // stays as the trigger for people who scroll before idle arrives.
+    let idleId: number | undefined
+    if (typeof requestIdleCallback !== 'undefined') {
+      idleId = requestIdleCallback(() => setShow(true), { timeout: 6000 })
+    }
+    return () => {
+      io.disconnect()
+      if (idleId !== undefined) cancelIdleCallback(idleId)
+    }
   }, [])
 
   return <div ref={ref}>{show ? <InteractiveMarkDemo /> : <DemoSkeleton />}</div>

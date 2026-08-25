@@ -2486,18 +2486,19 @@ button.note-sketch-fig:hover {
 .plan.featured:hover { box-shadow: var(--shadow-hard, 7px 7px 0 rgba(0,0,0,0.12)); transform: translate(-1px, -2px); }
 .plan-cta { width: 100%; justify-content: center; }
 .plan-ribbon {
-  position: absolute;
-  top: -11px;
-  right: 24px;
+  /* Was absolute at top:-11px — it overhung the card edge, collided with the
+     featured card's accent stripe, and clipped on small screens. In-flow chip:
+     nothing to clip, works at every width. */
+  display: inline-block;
   background: var(--ec-accent-warm, var(--ink));
   color: #241405;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  padding: 5px 12px;
+  padding: 4px 10px;
   border-radius: 4px;
-  /* Ribbon lives inside .plan-tag for equal grid rows — keep it out of tag flow. */
-  pointer-events: none;
+  margin-right: 8px;
+  vertical-align: middle;
 }
 .plan-tag { font-size: 11px; color: var(--ink); margin-bottom: 8px; position: static; }
 .plan-name { font-size: 26px; font-weight: 500; margin: 0 0 8px; }
@@ -3632,6 +3633,18 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--ink); outline-o
   .catalog-hero-meta { grid-template-columns: 1fr 1fr 1fr; }
   .pg { padding: 0 18px; }
   .lesson-modebar { padding: 8px 16px; }
+  /* The three ink toggles (study mode / simpler / diagram notes) overflowed
+     the 390px bar and the third clipped mid-button. Scroll, never clip. */
+  .mode-right {
+    flex: 1 1 100%;
+    min-width: 0;
+    overflow-x: auto;
+    justify-content: flex-start;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .mode-right::-webkit-scrollbar { display: none; }
+  .mode-right .ink-toggle { flex-shrink: 0; }
   .ink-toggle .micro { font-size: 9px; }
   .mode-tab { font-size: 15px; padding: 6px 10px; }
   .hub-hero { padding: 28px 0; }

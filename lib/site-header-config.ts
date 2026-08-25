@@ -138,6 +138,14 @@ function coursesContext(pathname: string): HeaderContext | undefined {
   return undefined
 }
 
+// One nav per variant — the docstring below promised this, the per-tone lists
+// above it never delivered: tabs reordered on every section change (Courses
+// first on /courses, Community first on /community…), which reads as the
+// header shuffling under the visitor. Tones keep their context chip + CTAs;
+// the tab rail itself never moves.
+const MARKETING_NAV = ['mark', 'courses', 'subjects', 'community', 'pricing']
+const APP_NAV = ['home', 'courses', 'subjects', 'community', 'progress']
+
 export function getSiteHeaderConfig(
   pathname: string,
   variant: SiteHeaderVariant
@@ -151,7 +159,7 @@ export function getSiteHeaderConfig(
         tone,
         transparentShell,
         wordmarkHref: '/dashboard',
-        navItemIds: ['mark', 'courses', 'progress', 'community'],
+        navItemIds: APP_NAV,
         context: { label: 'Mark a paper', href: '/mark', glyph: '✓' },
         primaryCta: {
           label: 'My progress',
@@ -164,7 +172,7 @@ export function getSiteHeaderConfig(
       tone: 'default',
       transparentShell: false,
       wordmarkHref: '/dashboard',
-      navItemIds: ['home', 'courses', 'subjects', 'community', 'progress'],
+      navItemIds: APP_NAV,
       context: { label: 'Home', href: '/dashboard', glyph: '◆' },
       primaryCta: { label: CTA_MARK_COMPACT, href: '/mark', style: 'primary' },
     }
@@ -175,7 +183,7 @@ export function getSiteHeaderConfig(
       tone,
       transparentShell,
       wordmarkHref: '/',
-      navItemIds: ['mark', 'courses', 'subjects', 'community', 'pricing'],
+      navItemIds: MARKETING_NAV,
       context: { label: 'Cambridge & IB', href: '/subjects', glyph: '◇' },
       primaryCta: {
         label: 'Sign up — no card',
@@ -197,7 +205,7 @@ export function getSiteHeaderConfig(
       tone,
       transparentShell,
       wordmarkHref: '/',
-      navItemIds: ['courses', 'subjects', 'mark', 'community', 'pricing'],
+      navItemIds: MARKETING_NAV,
       context: coursesContext(pathname),
       primaryCta: { label: CTA_MARK_COMPACT, href: '/mark', style: 'primary' },
       secondaryCta: { label: 'All subjects', href: '/subjects', style: 'ghost' },
@@ -210,7 +218,7 @@ export function getSiteHeaderConfig(
       tone,
       transparentShell,
       wordmarkHref: '/',
-      navItemIds: ['community', 'mark', 'courses', 'subjects'],
+      navItemIds: MARKETING_NAV,
       context: communityContext(pathname),
       primaryCta: onSubmit
         ? {
@@ -241,7 +249,7 @@ export function getSiteHeaderConfig(
       tone,
       transparentShell,
       wordmarkHref: '/',
-      navItemIds: ['pricing', 'mark', 'courses', 'community'],
+      navItemIds: MARKETING_NAV,
       context: { label: 'Plans', href: '/pricing', glyph: '◇' },
       primaryCta: {
         label: 'Get started free',
@@ -256,7 +264,7 @@ export function getSiteHeaderConfig(
     tone: 'default',
     transparentShell,
     wordmarkHref: '/',
-    navItemIds: ['mark', 'courses', 'subjects', 'community', 'pricing'],
+    navItemIds: MARKETING_NAV,
     primaryCta: { label: CTA_MARK_COMPACT, href: '/mark', style: 'primary' },
   }
 }

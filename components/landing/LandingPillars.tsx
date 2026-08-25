@@ -282,7 +282,7 @@ export function LandingPillars() {
                   </Link>
                 ) : null}
                 {pillar.secondaryHref && communityLive ? (
-                  <Link href={pillar.secondaryHref} className="ec-btn-underline" style={{ fontSize: 14 }}>
+                  <Link href={pillar.secondaryHref} prefetch={false} className="ec-btn-underline" style={{ fontSize: 14 }}>
                     {pillar.secondaryCta} →
                   </Link>
                 ) : null}

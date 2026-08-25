@@ -20,11 +20,11 @@ export function HomeGeoIntro() {
             browse past papers, and ask doubts in Exam Room subject communities.
           </p>
           <p className="home-geo-cta">
-            <Link href="/mark">Mark a paper free</Link>
+            <Link href="/mark" prefetch={false}>Mark a paper free</Link>
             <span aria-hidden="true">{SEP}</span>
-            <Link href="/courses">Cambridge courses</Link>
+            <Link href="/courses" prefetch={false}>Cambridge courses</Link>
             <span aria-hidden="true">{SEP}</span>
-            <Link href="/ib/courses">IB courses</Link>
+            <Link href="/ib/courses" prefetch={false}>IB courses</Link>
           </p>
         </div>
       </details>

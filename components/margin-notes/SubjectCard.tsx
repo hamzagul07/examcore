@@ -21,7 +21,7 @@ export function SubjectCard({ subject }: SubjectCardProps) {
       <div className="ms-body">
         <h3 className="ms-sname">
           {/* Stretched primary link: covers the whole card via ::after (see .ms-scard-link) */}
-          <Link href={`/subjects/${subject.code}`} className="ms-scard-link">
+          <Link href={`/subjects/${subject.code}`} prefetch={false} className="ms-scard-link">
             {subject.name}
           </Link>
         </h3>
@@ -42,9 +42,9 @@ export function SubjectCard({ subject }: SubjectCardProps) {
           </span>
         </div>
         <div className="ms-slinks">
-          <Link href={`/subjects/${subject.code}`}>Past papers →</Link>
+          <Link href={`/subjects/${subject.code}`} prefetch={false}>Past papers →</Link>
           {subject.course ? (
-            <Link href={`/courses/${subject.code}`}>Course →</Link>
+            <Link href={`/courses/${subject.code}`} prefetch={false}>Course →</Link>
           ) : null}
         </div>
       </div>

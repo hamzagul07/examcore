@@ -261,6 +261,7 @@ export function SiteHeader({ variant }: Props) {
         <LoadingLink
           key={item.id}
           href={item.href}
+          prefetch={false}
           variant="inline"
           loadingText="Opening…"
           className={cn('ec-nav-link', active && 'ec-nav-link--active')}

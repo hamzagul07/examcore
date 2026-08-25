@@ -29,7 +29,7 @@ const routeSet = new Set(routes)
 /** Keystone pages: each stands for a rendering-mode fix that must not regress. */
 const EXACT = [
   '/', // landing (finding 51)
-  '/pricing',
+  // NOT /pricing: it is force-dynamic by design (signed-in tier, region currency).
   '/courses', // hub h1 fix — useSearchParams bail
   '/subjects',
   '/courses/9709/1-2-functions', // flat lesson — GuestSignupGate + route split
@@ -37,11 +37,14 @@ const EXACT = [
 ]
 
 /** Family floors: fail if a whole surface quietly stops prerendering. */
+// Floors ≈ 75% of the counts CI measured on the first guarded build
+// (798 / 716 / 4803 / 871) — content grows, rarely shrinks; a dip below
+// these means a real regression, not authoring churn.
 const FLOORS = [
-  { label: 'CAIE flat lessons  /courses/{code}/{slug}', re: /^\/courses\/[^/]+\/[^/]+$/, min: 1000 },
-  { label: 'past-paper topics  /past-papers/{code}/{topic}', re: /^\/past-papers\/[^/]+\/[^/]+$/, min: 100 },
-  { label: 'IB lessons         /ib/courses/{slug}/…', re: /^\/ib\/courses\/[^/]+\/.+$/, min: 100 },
-  { label: 'IB paper topics    /ib/past-papers/{slug}/{topic}', re: /^\/ib\/past-papers\/[^/]+\/[^/]+$/, min: 50 },
+  { label: 'CAIE flat lessons  /courses/{code}/{slug}', re: /^\/courses\/[^/]+\/[^/]+$/, min: 600 },
+  { label: 'past-paper topics  /past-papers/{code}/{topic}', re: /^\/past-papers\/[^/]+\/[^/]+$/, min: 500 },
+  { label: 'IB lessons         /ib/courses/{slug}/…', re: /^\/ib\/courses\/[^/]+\/.+$/, min: 3500 },
+  { label: 'IB paper topics    /ib/past-papers/{slug}/{topic}', re: /^\/ib\/past-papers\/[^/]+\/[^/]+$/, min: 600 },
 ]
 
 let failed = false

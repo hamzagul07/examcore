@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, MotionConfig, motion } from 'framer-motion'
 import { AlertCircle, Eye } from 'lucide-react'
 import { MathText } from '@/components/MathText'
 import { MarginNote } from './MarginNote'
@@ -203,6 +203,10 @@ export function ExaminerInkOverlay({
     positioned.some((line) => lineRefKey(line) === activeRefId)
 
   return (
+    // reducedMotion="user": every stamp/margin-note/underline spring under
+    // this overlay collapses to its final state for prefers-reduced-motion
+    // readers — none of the ink components check the setting themselves.
+    <MotionConfig reducedMotion="user">
     <div className="space-y-5">
       <div
         ref={containerRef}
@@ -276,6 +280,7 @@ export function ExaminerInkOverlay({
         decision below.
       </p>
     </div>
+    </MotionConfig>
   )
 }
 

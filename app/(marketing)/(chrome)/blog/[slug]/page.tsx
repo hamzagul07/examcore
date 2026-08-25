@@ -13,6 +13,7 @@ import {
 } from '@/lib/seo/subject-guides'
 import { BlogFollowUpChain } from '@/components/blog/BlogFollowUpChain'
 import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
+import { PremiumNudge } from '@/components/billing/PremiumNudge'
 import { BlogPostCta } from '@/components/seo/BlogPostCta'
 import { BlogMarkExample } from '@/components/blog/BlogMarkExample'
 import { BlogPostGraphJsonLd } from '@/components/seo/BlogPostGraphJsonLd'
@@ -167,6 +168,10 @@ export default async function BlogPostPage({ params }: Props) {
             className="mt-8"
           />
         ) : null}
+
+        {/* Premium, discoverable at the end of the read — client-gated to
+            free/signed-out so the post stays static. */}
+        <PremiumNudge surface="blog" />
 
         <BlogRelatedGrid posts={related} clusterId={cluster.id} />
       </article>

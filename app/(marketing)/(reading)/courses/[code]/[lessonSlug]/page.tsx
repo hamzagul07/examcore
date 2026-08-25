@@ -18,6 +18,7 @@ import { CourseLessonClient } from '@/components/courses/margin-notes/CourseLess
 import { getStudyBridgesForLesson } from '@/lib/curriculum-graph/study-bridges'
 import { getCriterionLadder } from '@/lib/courses/criterion-ladder.server'
 import { GuestSignupGate } from '@/components/auth/GuestSignupGate'
+import { PremiumNudge } from '@/components/billing/PremiumNudge'
 import { stripLessonsForNav } from '@/lib/courses/lesson-nav'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 import { isCommunityEnabled } from '@/lib/community/enabled'
@@ -179,6 +180,10 @@ export default async function CourseLessonFlatPage({ params }: Props) {
           }
         />
       </GuestSignupGate>
+
+      {/* Founder ask: premium discoverable on content surfaces. Client-gated to
+          free/signed-out, so the page stays static. */}
+      {!isPilotLesson ? <PremiumNudge surface="lesson" /> : null}
 
       {/* Search-intent intro. Deliberately BELOW the lesson: it is written for
           crawlers, and a student landing here should meet their lesson first,

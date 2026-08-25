@@ -18,6 +18,7 @@ import {
 import { getCatalogSubject } from '@/lib/subjects-catalog'
 import { getCourseSubject } from '@/lib/courses'
 import { GuestSignupGate } from '@/components/auth/GuestSignupGate'
+import { PremiumNudge } from '@/components/billing/PremiumNudge'
 import { caieLessonPath } from '@/lib/seo/caie-graph'
 
 type Props = { params: Promise<{ code: string; topic: string }> }
@@ -232,6 +233,8 @@ export default async function TopicQuestionsPage({ params }: Props) {
             </Link>
           </nav>
         ) : null}
+        {/* Premium at the end of the guide — client-gated, page stays static. */}
+        <PremiumNudge surface="guide" />
         </GuestSignupGate>
       </div>
     </MarketingPageShell>

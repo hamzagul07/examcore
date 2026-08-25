@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState, useCallback, useRef } from 'react'
 import Link from 'next/link'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import type { MarginNotesLesson } from '@/lib/courses/margin-notes/types'
 import { accentCssVar } from '@/lib/courses/margin-notes/subject-meta'
 import type { AccentToken } from '@/lib/courses/margin-notes/types'
@@ -78,6 +78,12 @@ type Props = {
   /** Board study-path override — flips practice CTAs to that board's mark URL. */
   markHrefOverride?: string | null
   markCtaLabel?: string
+  /**
+   * Board study query (?board&unit/subject), read from location.search by the
+   * client parent AFTER mount — never from useSearchParams, which would bail
+   * the whole prerendered route into client-side rendering.
+   */
+  studyQuery?: { board: string | null; unit: string | null; subject: string | null } | null
 }
 
 export function CourseLessonPage({
@@ -92,6 +98,7 @@ export function CourseLessonPage({
   criterionLadder,
   markHrefOverride,
   markCtaLabel,
+  studyQuery,
 }: Props) {
   // Free tier sees notes + formulas only — live diagrams, practice, and
   // interactive blocks are gated. SSR keeps access undefined → unlocked for SEO.
@@ -113,7 +120,6 @@ export function CourseLessonPage({
   const quizLocked = premiumHidden && !QUICK_CHECK_FREE
   const acc = accentCssVar(subjectAcc)
   const pathname = usePathname()
-  const searchParams = useSearchParams()
   const router = useRouter()
   const { done, toggle } = useCourseProgress(L.code)
   const isDone = done.has(L.slug)
@@ -178,22 +184,22 @@ export function CourseLessonPage({
   const setLessonMode = useCallback(
     (next: 'learn' | 'papers') => {
       setMode(next)
-      const params = new URLSearchParams(searchParams.toString())
+      const params = new URLSearchParams(window.location.search)
       if (next === 'papers') params.set('mode', 'papers')
       else params.delete('mode')
       const qs = params.toString()
       router.replace(`${pathname}${qs ? `?${qs}` : ''}`, { scroll: false })
     },
-    [pathname, router, searchParams]
+    [pathname, router]
   )
 
   // Hand-off after the last quick check: the student has just produced answers,
   // which is the closest they get to attempting a real question without doing it.
   // Keep board/unit query on return so Edexcel study bridge survives /mark.
   const lessonReturnPath = useMemo(() => {
-    const board = searchParams.get('board')?.toLowerCase()
-    const unit = searchParams.get('unit')?.trim().toUpperCase()
-    const subject = searchParams.get('subject')?.trim().toLowerCase()
+    const board = studyQuery?.board ?? null
+    const unit = studyQuery?.unit ?? null
+    const subject = studyQuery?.subject ?? null
     if (board === 'edexcel' && unit) {
       return `${pathname}?board=edexcel&unit=${encodeURIComponent(unit)}`
     }
@@ -207,7 +213,7 @@ export function CourseLessonPage({
       return `${pathname}?board=ap&subject=${encodeURIComponent(subject)}`
     }
     return pathname
-  }, [pathname, searchParams])
+  }, [pathname, studyQuery])
 
   const quizPractice = L.practiceQuestions?.[0] ?? L.practice ?? null
   // Deliberately NOT gated on `locked`. The href is a /mark deep link, and
@@ -218,7 +224,7 @@ export function CourseLessonPage({
     ? markHrefOverride ??
       appendMarkReturn(quizPractice.href, lessonReturnPath, L.point)
     : null
-  const studyBoard = searchParams.get('board')?.toLowerCase()
+  const studyBoard = studyQuery?.board ?? undefined
   const boardStudyVisit = Boolean(markHrefOverride)
 
   const toc = useMemo(
@@ -446,8 +452,11 @@ export function CourseLessonPage({
   }, [L.code, L.slug])
 
   useEffect(() => {
-    if (searchParams.get('mode') === 'papers' && practiceCount > 0) setMode('papers')
-  }, [searchParams, practiceCount])
+    // Initial-load deep link only (?mode=papers). Read off location so the
+    // page can prerender; later toggles go through setLessonMode directly.
+    const mode = new URLSearchParams(window.location.search).get('mode')
+    if (mode === 'papers' && practiceCount > 0) setMode('papers')
+  }, [practiceCount])
 
   // Inbound #hash, handled once per lesson mount.
   const hashHandledRef = useRef(false)

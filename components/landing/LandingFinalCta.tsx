@@ -34,6 +34,7 @@ export function LandingFinalCta({ markHref }: LandingFinalCtaProps) {
           <div className="ms-cta-row ms-cta-row--center ms-final-cta__actions">
             <LoadingLink
               href={markHref}
+              prefetch={false}
               className="ec-btn-primary brand-pulse"
               loadingText="Opening mark…"
             >
@@ -42,7 +43,7 @@ export function LandingFinalCta({ markHref }: LandingFinalCtaProps) {
             <LoadingLink href="/pricing#plans" className="ec-btn-ghost ec-btn-ghost--sm">
               Unlock Max
             </LoadingLink>
-            <LoadingLink href="/courses" className="ec-btn-ghost ec-btn-ghost--sm">
+            <LoadingLink href="/courses" prefetch={false} className="ec-btn-ghost ec-btn-ghost--sm">
               Free courses
             </LoadingLink>
           </div>

@@ -261,6 +261,7 @@ export function LandingPillars() {
               <div className="ms-pillar-actions">
                 <LoadingLink
                   href={discussOff ? '/community' : pillar.href}
+                  prefetch={false}
                   className={
                     pillar.featured
                       ? 'ec-btn-primary ec-btn-primary--sm'

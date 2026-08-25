@@ -1,3 +1,9 @@
+// prefetch={false} on every footer link: the footer renders on every page and
+// links into the chunk-heaviest routes (/mark, courses, subjects). Next 16's
+// viewport prefetch under Turbopack EVALUATES the target route's JS, so the
+// default turned "footer scrolled into view" into ~1MB of main-thread work
+// mid-scroll (measured 3.4s on a 4x-throttled CPU). Footer links are reference
+// navigation — a ~300ms slower click beats a frozen scroll on every page.
 import Link from 'next/link'
 import type { SVGProps } from 'react'
 import { WordmarkLink } from '@/components/layout/Wordmark'
@@ -84,7 +90,7 @@ export function SiteFooter({ variant }: Props) {
       <footer className="footer">
         <div className="footer-inner">
           <div className="footer-brand">
-            <Link className="wordmark footer-wordmark" href="/courses">
+            <Link prefetch={false} className="wordmark footer-wordmark" href="/courses">
               MarkScheme<i>.</i>
             </Link>
             <p className="body-2 footer-tagline">
@@ -100,26 +106,26 @@ export function SiteFooter({ variant }: Props) {
             {FOOTER_PRODUCT_LINKS.filter((l) =>
               ['/mark', '/courses', '/ib', '/edexcel', '/pricing'].includes(l.href)
             ).map((link) => (
-              <Link key={link.href} href={link.href}>
+              <Link prefetch={false} key={link.href} href={link.href}>
                 {link.label}
               </Link>
             ))}
-            <Link href="/dashboard/progress">Progress</Link>
+            <Link prefetch={false} href="/dashboard/progress">Progress</Link>
           </div>
           <div className="footer-col">
             <h4>Subjects</h4>
-            <Link href="/subjects/9702">9702 Physics</Link>
-            <Link href="/subjects/9709">9709 Mathematics</Link>
-            <Link href="/edexcel/international-a-level/mathematics">Edexcel IAL Maths</Link>
-            <Link href="/ib/subjects/tok">IB TOK</Link>
-            <Link href="/ib/subjects/biology-hl">IB Biology HL</Link>
-            <Link href="/subjects">Cambridge subjects</Link>
-            <Link href="/ib/subjects">IB subjects</Link>
+            <Link prefetch={false} href="/subjects/9702">9702 Physics</Link>
+            <Link prefetch={false} href="/subjects/9709">9709 Mathematics</Link>
+            <Link prefetch={false} href="/edexcel/international-a-level/mathematics">Edexcel IAL Maths</Link>
+            <Link prefetch={false} href="/ib/subjects/tok">IB TOK</Link>
+            <Link prefetch={false} href="/ib/subjects/biology-hl">IB Biology HL</Link>
+            <Link prefetch={false} href="/subjects">Cambridge subjects</Link>
+            <Link prefetch={false} href="/ib/subjects">IB subjects</Link>
           </div>
           <div className="footer-col">
             <h4>Company</h4>
             {FOOTER_COMPANY_LINKS.map((link) => (
-              <Link key={link.href + link.label} href={link.href}>
+              <Link prefetch={false} key={link.href + link.label} href={link.href}>
                 {link.label}
               </Link>
             ))}
@@ -128,7 +134,7 @@ export function SiteFooter({ variant }: Props) {
         <div className="footer-legal">
           <nav className="footer-legal-links" aria-label="Legal">
             {FOOTER_LEGAL_LINKS.map((link) => (
-              <Link key={link.href} href={link.href}>
+              <Link prefetch={false} key={link.href} href={link.href}>
                 {link.label}
               </Link>
             ))}
@@ -158,7 +164,7 @@ export function SiteFooter({ variant }: Props) {
         <div className="ec-ms-footer__col">
           <h4 className="ec-ms-footer__label">Product</h4>
           {FOOTER_PRODUCT_LINKS.map((link) => (
-            <Link key={link.href} href={link.href}>
+            <Link prefetch={false} key={link.href} href={link.href}>
               {link.label}
             </Link>
           ))}
@@ -167,7 +173,7 @@ export function SiteFooter({ variant }: Props) {
         <div className="ec-ms-footer__col">
           <h4 className="ec-ms-footer__label">Subjects</h4>
           {FOOTER_SUBJECT_LINKS.map((link) => (
-            <Link key={link.href + link.label} href={link.href}>
+            <Link prefetch={false} key={link.href + link.label} href={link.href}>
               {link.label}
             </Link>
           ))}
@@ -176,7 +182,7 @@ export function SiteFooter({ variant }: Props) {
         <div className="ec-ms-footer__col">
           <h4 className="ec-ms-footer__label">Company</h4>
           {FOOTER_COMPANY_LINKS.map((link) => (
-            <Link key={link.href + link.label} href={link.href}>
+            <Link prefetch={false} key={link.href + link.label} href={link.href}>
               {link.label}
             </Link>
           ))}
@@ -186,7 +192,7 @@ export function SiteFooter({ variant }: Props) {
       <div className="ec-ms-footer__legal">
         <nav className="ec-ms-footer__legal-links" aria-label="Legal">
           {FOOTER_LEGAL_LINKS.map((link) => (
-            <Link key={link.href} href={link.href}>
+            <Link prefetch={false} key={link.href} href={link.href}>
               {link.label}
             </Link>
           ))}

@@ -14,7 +14,7 @@ export function LandingSubjects() {
             Fifteen papers. <em>One place.</em>
           </h2>
         </div>
-        <Link href="/subjects" className="ec-btn-ghost ec-btn-ghost--sm">
+        <Link href="/subjects" prefetch={false} className="ec-btn-ghost ec-btn-ghost--sm">
           All subjects &amp; levels →
         </Link>
       </div>

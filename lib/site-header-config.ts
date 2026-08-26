@@ -146,6 +146,19 @@ function coursesContext(pathname: string): HeaderContext | undefined {
 const MARKETING_NAV = ['mark', 'courses', 'subjects', 'community', 'pricing']
 const APP_NAV = ['home', 'courses', 'subjects', 'community', 'progress']
 
+// One CTA cluster to match the one nav rail: the right side of the header used
+// to relabel per section (Free courses / All subjects / Subject rooms /
+// Compare plans…), which read as the header shuffling even after the tab rail
+// was fixed. Signed-out visitors get the same signup ask everywhere; signed-in
+// users see the avatar instead (auth CTAs auto-hide in SiteHeader). Each page's
+// own content carries its contextual CTAs.
+const MARKETING_CTA: SiteHeaderConfig['primaryCta'] = {
+  label: 'Sign up — no card',
+  shortLabel: 'Sign up',
+  href: '/auth/signup',
+  style: 'primary',
+}
+
 export function getSiteHeaderConfig(
   pathname: string,
   variant: SiteHeaderVariant
@@ -185,18 +198,7 @@ export function getSiteHeaderConfig(
       wordmarkHref: '/',
       navItemIds: MARKETING_NAV,
       context: { label: 'Cambridge & IB', href: '/subjects', glyph: '◇' },
-      primaryCta: {
-        label: 'Sign up — no card',
-        shortLabel: 'Sign up',
-        href: '/auth/signup',
-        style: 'primary',
-      },
-      // Was style: 'warm' — a second filled button. The landing header ran
-      // three actions (peach Free courses, green Sign up, sign in) above a hero
-      // whose own primary CTA sat below the fold on short laptops, so the page
-      // pushed three different first steps at once. One filled CTA per header;
-      // courses stay a click away as a quiet link.
-      secondaryCta: { label: 'Free courses', href: '/courses', style: 'ghost' },
+      primaryCta: MARKETING_CTA,
     }
   }
 
@@ -207,40 +209,18 @@ export function getSiteHeaderConfig(
       wordmarkHref: '/',
       navItemIds: MARKETING_NAV,
       context: coursesContext(pathname),
-      primaryCta: { label: CTA_MARK_COMPACT, href: '/mark', style: 'primary' },
-      secondaryCta: { label: 'All subjects', href: '/subjects', style: 'ghost' },
+      primaryCta: MARKETING_CTA,
     }
   }
 
   if (tone === 'discuss') {
-    const onSubmit = pathname.startsWith('/community/submit')
     return {
       tone,
       transparentShell,
       wordmarkHref: '/',
       navItemIds: MARKETING_NAV,
       context: communityContext(pathname),
-      primaryCta: onSubmit
-        ? {
-            label: 'Back to Exam Room',
-            shortLabel: 'Feed',
-            href: '/community',
-            style: 'ghost',
-          }
-        : {
-            label: 'Create a post',
-            shortLabel: 'New post',
-            href: '/community/submit',
-            style: 'primary',
-          },
-      secondaryCta: onSubmit
-        ? undefined
-        : {
-            label: 'Subject rooms',
-            shortLabel: 'Rooms',
-            href: '/community/subjects',
-            style: 'ghost',
-          },
+      primaryCta: MARKETING_CTA,
     }
   }
 
@@ -251,12 +231,7 @@ export function getSiteHeaderConfig(
       wordmarkHref: '/',
       navItemIds: MARKETING_NAV,
       context: { label: 'Plans', href: '/pricing', glyph: '◇' },
-      primaryCta: {
-        label: 'Get started free',
-        href: '/auth/signup?next=/pricing',
-        style: 'primary',
-      },
-      secondaryCta: { label: 'Compare plans', href: '/pricing#plans', style: 'ghost' },
+      primaryCta: { ...MARKETING_CTA, href: '/auth/signup?next=/pricing' },
     }
   }
 
@@ -265,7 +240,7 @@ export function getSiteHeaderConfig(
     transparentShell,
     wordmarkHref: '/',
     navItemIds: MARKETING_NAV,
-    primaryCta: { label: CTA_MARK_COMPACT, href: '/mark', style: 'primary' },
+    primaryCta: MARKETING_CTA,
   }
 }
 

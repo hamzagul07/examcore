@@ -28,7 +28,10 @@ import {
   SITE_URL,
 } from "@/lib/site-config";
 
-const EC_THEME_BOOT_SCRIPT = `(function(){try{var t=localStorage.getItem('ec-theme');var ec=t==='late-night'?'late-night':'zen';document.documentElement.setAttribute('data-ec-theme',ec);document.documentElement.setAttribute('data-theme',t==='late-night'?'night':'paper');}catch(e){document.documentElement.setAttribute('data-theme','paper');}})();`;
+// Also paints the root background inline: the pre-stylesheet frame otherwise
+// takes the UA's canvas color — dark for dark-OS visitors — which flashed a
+// dark blank before the 799KB stylesheet parsed to paper.
+const EC_THEME_BOOT_SCRIPT = `(function(){try{var t=localStorage.getItem('ec-theme');var n=t==='late-night';var ec=n?'late-night':'zen';var r=document.documentElement;r.setAttribute('data-ec-theme',ec);r.setAttribute('data-theme',n?'night':'paper');r.style.backgroundColor=n?'#14120d':'#faf9f6';}catch(e){var r=document.documentElement;r.setAttribute('data-theme','paper');r.style.backgroundColor='#faf9f6';}})();`;
 
 /**
  * Self-hosted rather than fetched from Google at build time.

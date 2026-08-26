@@ -100,6 +100,12 @@ export function isAuthPath(pathname: string): boolean {
 }
 
 export function shouldShowAppHeader(pathname: string): boolean {
+  // During static prerender usePathname() can yield '' — and an unknown path
+  // must NEVER mean app chrome: this exact hole SSR'd the app header+footer
+  // onto every static marketing page, doubling the chrome for the ~1.4s until
+  // hydration deleted it (the refresh flash). App routes are dynamic and
+  // always carry a real pathname at request time.
+  if (!pathname) return false
   if (isMarketingPath(pathname)) return false
   if (isAuthPath(pathname)) return false
   if (NO_APP_CHROME_PREFIXES.some((p) => matchesPrefix(pathname, p))) return false

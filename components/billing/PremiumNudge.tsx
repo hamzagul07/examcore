@@ -36,24 +36,35 @@ import { useBillingAccess } from '@/lib/hooks/useBillingAccess'
 const QUIET_KEY = 'ms:premiumNudge:quietUntil'
 const QUIET_DAYS = 14
 const SESSION_KEY = 'ms:premiumToast:shown'
-/** Reading time before a plans ask is plausibly welcome. */
-const EARN_MS = 20_000
-const EARN_SCROLL = 0.3
+/**
+ * Founder direction (late Aug): a first-time visitor must actually meet this —
+ * the original 20s / a third of the page meant nobody did. A short beat keeps
+ * it from feeling like a popup ambush; after that, effectively everyone
+ * reading sees it once.
+ */
+const EARN_MS = 7_000
+const EARN_SCROLL = 0.12
 
 type Surface = 'lesson' | 'guide' | 'blog'
 
+/**
+ * Curiosity first, invoice second. The toast's job for a first-time reader is
+ * to make them want the marking itself — the free try is the primary action,
+ * plans ride quietly behind it. (upgrade_viewed / mark_cta_clicked /
+ * upsell_clicked per surface tell the readout which door people take.)
+ */
 const COPY: Record<Surface, { title: string; body: string }> = {
   lesson: {
-    title: 'Read it. Now get it marked.',
-    body: 'This topic has real past-paper questions — write one, and the examiner’s ink lands on your own working, scheme codes in the margin. Plans take marking to 50–250 questions a month.',
+    title: 'This topic is markable.',
+    body: 'Write one past-paper answer from this lesson and an examiner’s ink lands on it — the exact code beside every mark you keep, and every one that leaks. One question is free, no card.',
   },
   guide: {
-    title: 'Reading is half.',
-    body: 'The other half is your own handwriting with scheme codes stamped on it — the reason beside every mark you dropped. That is what MarkScheme plans are for.',
+    title: 'Most students lose marks they knew.',
+    body: 'Not from ignorance — from method slips no one ever pointed at. Snap one answer and the examiner’s ink shows you the code and the reason. One question is free, no card.',
   },
   blog: {
-    title: 'Your next past paper, marked.',
-    body: 'MarkScheme stamps the real mark scheme onto your handwritten answer and shows the reason beside every mark — free to try, plans when it sticks.',
+    title: 'Most students lose marks they knew.',
+    body: 'Not from ignorance — from method slips no one ever pointed at. Snap one past-paper answer and the examiner’s ink shows you the code and the reason. One question is free, no card.',
   },
 }
 
@@ -166,17 +177,27 @@ export function PremiumNudge({ surface }: { surface: Surface }) {
           </div>
           <div className="ms-save-prompt-actions">
             <Link
-              href="/pricing"
+              href="/mark"
               prefetch={false}
               className="ec-btn-primary ms-save-prompt-cta inline-flex items-center gap-2"
+              onClick={() =>
+                trackFunnelEvent('mark_cta_clicked', { source: `nudge_float_${surface}` })
+              }
+            >
+              Mark one free
+              <span className="font-mono text-[11px] font-bold" aria-hidden>
+                -&gt;
+              </span>
+            </Link>
+            <Link
+              href="/pricing"
+              prefetch={false}
+              className="ec-btn-underline text-sm"
               onClick={() =>
                 trackFunnelEvent('upsell_clicked', { source: `nudge_float_${surface}` })
               }
             >
               See plans
-              <span className="font-mono text-[11px] font-bold" aria-hidden>
-                -&gt;
-              </span>
             </Link>
             <button type="button" className="ms-save-prompt-dismiss" onClick={dismissAll}>
               Not now
@@ -207,16 +228,28 @@ export function PremiumNudge({ surface }: { surface: Surface }) {
           <p className="mt-1.5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
             {copy.body}
           </p>
-          <Link
-            href="/pricing"
-            prefetch={false}
-            className="ec-btn-primary ec-btn-primary--sm mt-3 inline-flex"
-            onClick={() =>
-              trackFunnelEvent('upsell_clicked', { source: `nudge_${surface}` })
-            }
-          >
-            See plans →
-          </Link>
+          <div className="mt-3 flex items-center gap-4">
+            <Link
+              href="/mark"
+              prefetch={false}
+              className="ec-btn-primary ec-btn-primary--sm inline-flex"
+              onClick={() =>
+                trackFunnelEvent('mark_cta_clicked', { source: `nudge_${surface}` })
+              }
+            >
+              Mark one free →
+            </Link>
+            <Link
+              href="/pricing"
+              prefetch={false}
+              className="ec-btn-underline text-sm"
+              onClick={() =>
+                trackFunnelEvent('upsell_clicked', { source: `nudge_${surface}` })
+              }
+            >
+              See plans
+            </Link>
+          </div>
         </aside>
       ) : null}
     </>

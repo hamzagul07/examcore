@@ -10,6 +10,14 @@ concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+# Minute budget: the repo is going private, which caps Actions at the free
+# 2,000 min/month. The ~23-min production build (14k static pages) is the
+# whole bill — and Vercel already builds every push on its own infra. So PRs
+# run only the fast checks (~5 min) and the build + the guards that need a
+# built .next (prerender manifest, SSR/sitemap scans) run on pushes to main.
+# Trade: a prerender/SEO regression surfaces ~25 min after merge instead of
+# on the PR — detection timing is effectively unchanged (CI never gated the
+# Vercel deploy), and the revert path is the same.
 jobs:
   quality:
     runs-on: ubuntu-latest
@@ -45,6 +53,7 @@ jobs:
         run: pnpm course:verify-changed -- --base origin/main
 
       - name: Build
+        if: github.event_name == 'push'
         run: pnpm build
         env:
           NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
@@ -54,9 +63,11 @@ jobs:
           GEMINI_API_KEY: placeholder
 
       - name: Prerender regression (static route guard)
+        if: github.event_name == 'push'
         run: pnpm check:prerender
 
       - name: SEO regression (SSR + sitemap)
+        if: github.event_name == 'push'
         run: |
           pnpm start --port 3099 &
           SERVER_PID=$!

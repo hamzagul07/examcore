@@ -57,6 +57,9 @@ const MARKETING_PREFIXES = [
 
 const AUTH_PREFIX = '/auth'
 
+/** The student app's actual surfaces — the ONLY routes that get app chrome. */
+const APP_CHROME_PREFIXES = ['/dashboard', '/mark', '/account']
+
 /** Routes with their own chrome — no student app header or mobile tab bar. */
 const NO_APP_CHROME_PREFIXES = [
   '/onboarding',
@@ -106,10 +109,15 @@ export function shouldShowAppHeader(pathname: string): boolean {
   // hydration deleted it (the refresh flash). App routes are dynamic and
   // always carry a real pathname at request time.
   if (!pathname) return false
-  if (isMarketingPath(pathname)) return false
-  if (isAuthPath(pathname)) return false
   if (NO_APP_CHROME_PREFIXES.some((p) => matchesPrefix(pathname, p))) return false
-  return true
+  // Allowlist, not subtraction. The old shape ("app unless marketing") meant
+  // any pathname the gate didn't recognise got app chrome — and during static
+  // prerender usePathname() yields values that match nothing (the '' guard
+  // above caught one; production showed '/' and every lesson page still baking
+  // the app header from another). Whatever the prerenderer reports, an unknown
+  // path now gets NO app chrome; the marketing shells render their own header
+  // server-side in the route tree, immune to all of this.
+  return APP_CHROME_PREFIXES.some((p) => matchesPrefix(pathname, p))
 }
 
 export function shouldShowMobileTabBar(pathname: string): boolean {

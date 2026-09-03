@@ -3290,3 +3290,65 @@
     animation: none;
   }
 }
+
+
+/* "No question to hand?" — the starter-question invitation.
+
+   Sits above step 1 because the people it is for never reach step 1: 1,207 of
+   1,300 sessions opened /mark last month and typed nothing. Quiet enough that
+   a student who brought their own work reads past it, present enough that one
+   who brought nothing has somewhere to go. */
+.ms-starter-invite {
+  margin: 0 0 18px;
+  padding: 14px 16px;
+  border: 1px dashed var(--ec-border, #d8d4c8);
+  border-radius: 10px;
+  background: var(--ec-surface, #fff);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+.ms-starter-invite-lead {
+  flex: 1 1 260px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ec-text-secondary, #555);
+}
+.ms-starter-invite-lead strong {
+  color: var(--ec-text-primary, #141413);
+}
+.ms-starter-invite-cta {
+  flex: 0 0 auto;
+  min-height: 44px;
+}
+.ms-starter-invite-ref {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  white-space: nowrap;
+  color: var(--ec-text-primary, #141413);
+}
+.ms-starter-invite-question {
+  flex: 1 1 100%;
+  margin: 0;
+  padding: 10px 12px;
+  border-left: 3px solid var(--ec-brand, #19774d);
+  background: var(--ec-paper, var(--ec-surface, #fff));
+  font-size: 15px;
+  line-height: 1.55;
+  white-space: pre-line;
+  color: var(--ec-text-primary, #141413);
+}
+.ms-starter-invite-note {
+  flex: 1 1 100%;
+  margin: 0;
+  font-size: 12px;
+  color: var(--ec-text-secondary, #555);
+}
+@media (max-width: 560px) {
+  .ms-starter-invite-cta {
+    width: 100%;
+    justify-content: center;
+  }
+}

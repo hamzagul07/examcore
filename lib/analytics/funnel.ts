@@ -62,6 +62,16 @@ export type FunnelEvent =
    * un-arguable. This is the numerator that was missing.
    */
   | 'checkout_signup_required'
+  /**
+   * A visitor with nothing in hand took a real past-paper question.
+   *
+   * The counterweight to `example_opened`: one is reading what marking looks
+   * like, the other is attempting it. 1,300 sessions opened /mark in 30 days,
+   * 93 wrote anything and 16 opened the example — so the size of this number
+   * against those is the test of whether handing over a question is what the
+   * other 1,207 were missing.
+   */
+  | 'starter_question_taken'
 
 export type FunnelProps = {
   subject?: string | null

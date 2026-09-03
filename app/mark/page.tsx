@@ -116,6 +116,7 @@ import {
 } from '@/lib/marking/require-question-total'
 import { normalizePaperSession } from '@/lib/marking/normalize-paper-session'
 import { applyTopicQuestionToPaperSelection } from '@/lib/marking/topic-question'
+import { StarterQuestionInvite } from '@/components/mark/StarterQuestionInvite'
 import { CinematicMarkingExperience } from '@/components/mark/CinematicMarkingExperienceLazy'
 import { MarkingWaitOverlay } from '@/components/mark/MarkingWaitOverlay'
 import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
@@ -1238,6 +1239,50 @@ export default function MarkPage() {
   const hasAnswerUpload = answerPages.length > 0 || !!answerPdf
   /** An answer is an answer whether it was photographed or typed. */
   const hasAnswer = hasAnswerUpload || hasTypedAnswer
+
+  /**
+   * Nothing brought, nothing chosen — the state 1,207 of 1,300 /mark sessions
+   * were in last month when they left without typing a character.
+   *
+   * Narrow on purpose: the moment anything is typed, uploaded or selected, the
+   * student has their own work in hand and an offer of someone else's question
+   * would be in the way.
+   */
+  const formIsEmpty =
+    !hasAnswer &&
+    !questionPhoto &&
+    !questionTextInput.trim() &&
+    !questionNumber.trim() &&
+    !isCombinedMode
+
+  /** Load a real banked question into the form, exactly as a topic deep link does. */
+  function applyStarterQuestion(q: {
+    paper_code: string
+    paper_session: string
+    question_number: string
+    question_text: string
+    total_marks: number
+  }) {
+    const selection = applyTopicQuestionToPaperSelection({
+      paper_code: q.paper_code,
+      paper_session: q.paper_session,
+      question_number: q.question_number,
+    })
+    if (!selection) return
+    setUploadMode('single_question')
+    setMarkIntent('past_paper')
+    setSelectedSubject(selection.subject)
+    setSelectedMarkBoard(coerceMarkExamBoard(resolveBoard(selection.subject)))
+    setSelectedComponent(selection.component)
+    setSelectedSession(selection.session)
+    setSelectedYear(selection.year)
+    setQuestionNumber(selection.questionNumber)
+    setQuestionTextInput(q.question_text)
+    setTotalMarksInput(String(q.total_marks))
+    setMarksInQuestion(false)
+    setShowManualPaper(true)
+    setShowOptional(true)
+  }
 
   const markModeCallout = useMemo(() => {
     if (uploadMode === 'whole_paper') {
@@ -3029,6 +3074,17 @@ export default function MarkPage() {
 
             <div className="ms-upload-grid ms-fade-in ms-stag-2">
               <div className="ms-mark-upload-zone ec-section-tint ec-section-tint--learn">
+                {/* Above step 1, because the people this is for never reach
+                    step 1: 1,207 of 1,300 sessions last month opened this page
+                    and typed nothing. It disappears the moment they have work
+                    of their own in hand. */}
+                {formIsEmpty ? (
+                  <StarterQuestionInvite
+                    subject={selectedSubject || null}
+                    onLoad={applyStarterQuestion}
+                  />
+                ) : null}
+
                 <StepLabel
                   number={1}
                   label={

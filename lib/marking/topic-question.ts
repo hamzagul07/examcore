@@ -119,7 +119,18 @@ function parsePaperSession(
   return null
 }
 
-export function applyTopicQuestionToPaperSelection(match: TopicQuestionMatch): {
+/**
+ * Takes only the paper reference it actually reads.
+ *
+ * It used to demand a whole TopicQuestionMatch — including `matched_topic`,
+ * which it ignores. A starter question has no topic, and inventing one to
+ * satisfy the signature would put a false tag in the data to please the
+ * compiler.
+ */
+export function applyTopicQuestionToPaperSelection(
+  match: Pick<TopicQuestionMatch, 'paper_code' | 'paper_session' | 'question_number'> &
+    Partial<TopicQuestionMatch>
+): {
   subject: string
   component: string
   session: string

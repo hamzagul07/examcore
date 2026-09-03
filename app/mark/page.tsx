@@ -97,6 +97,7 @@ import { MarkingModeHint } from '@/components/mark/MarkingModeHint'
 import {
   SOFT_MARK_RETRY_NOTICE,
   SOFT_TOTAL_MARKS_NOTICE,
+  isTotalMarksClientMessage,
   softNoticeForMarkFailure,
 } from '@/lib/marking/soft-mark-notice'
 import { normalizeQuestionNumber } from '@/lib/marking/question-number'
@@ -108,6 +109,11 @@ import {
   takeHandoff,
 } from '@/lib/courses/mark-handoff'
 import { parseMarkReturnPath } from '@/lib/marking/mark-return-url'
+import { takePracticeAnswer } from '@/lib/marking/practice-answer'
+import {
+  questionTotalPromiseIsBroken,
+  QUESTION_TOTAL_PROMISE_BROKEN_MESSAGE,
+} from '@/lib/marking/require-question-total'
 import { normalizePaperSession } from '@/lib/marking/normalize-paper-session'
 import { applyTopicQuestionToPaperSelection } from '@/lib/marking/topic-question'
 import { CinematicMarkingExperience } from '@/components/mark/CinematicMarkingExperienceLazy'
@@ -658,6 +664,28 @@ export default function MarkPage() {
     }
   }, [])
 
+  // An answer written somewhere else on the site, carried in sessionStorage.
+  //
+  // One effect rather than one per link shape. The three surfaces that offer a
+  // box — the Cambridge topic pages (?practice=1&paper=…), the IB topic pages
+  // (?subject=&topic=) and the IB subject pages (?subject= alone) — all land on
+  // a different branch below, and duplicating the read in each of them meant
+  // the newest surface silently dropped the answer the student had just typed.
+  //
+  // Declared first so it wins the race, and read once: reloading /mark, or
+  // coming back to it later, must not refill the box with an answer already
+  // dealt with.
+  //
+  // Skipped for a lesson quick check, which carries its own question AND answer
+  // under a different key; a leftover practice answer must not overwrite it.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const sp = new URLSearchParams(window.location.search)
+    if (sp.get(MARK_HANDOFF_PARAM) === MARK_HANDOFF_VALUE) return
+    const carriedAnswer = takePracticeAnswer()
+    if (carriedAnswer) setAnswerTextInput(carriedAnswer)
+  }, [])
+
   // "Drill this" deep-link from the insights dashboard. Preloads the exact
   // recommended question (which always exists in mark_schemes) and shows a
   // practice banner. Declared after the localStorage effects so it wins.
@@ -683,6 +711,17 @@ export default function MarkPage() {
     setMarkIntent('past_paper')
     setShowManualPaper(true)
     setShowOptional(true)
+    // The carried answer is read by its own effect above, which covers every
+    // link shape rather than just this one.
+    //
+    // The topic page knows the question's total. "We could not read the total
+    // marks from your question" is the commonest recorded mark failure, and it
+    // fires only AFTER the student has waited — so take the number when it is
+    // offered. Ignored downstream when the banked scheme supplies its own.
+    const carriedMarks = Number(sp.get('marks'))
+    if (Number.isFinite(carriedMarks) && carriedMarks > 0 && carriedMarks <= 100) {
+      setTotalMarksInput(String(Math.round(carriedMarks)))
+    }
     setPracticeContext({
       pattern: sp.get('pattern') || 'this pattern',
       reason: sp.get('reason') || '',
@@ -1317,8 +1356,40 @@ export default function MarkPage() {
     const n = Number(totalMarksInput.trim())
     return Number.isFinite(n) && n > 0 && n <= 100 ? Math.round(n) : null
   })()
+  // "The marks are shown in the question" is a promise, and whenever the
+  // question is text in this form it is checkable right here — by the same
+  // deterministic extractor the server runs at the gate.
+  //
+  // Of 23 recorded marking failures, 13 were a missing total, and 12 of those
+  // 13 had this box ticked against a question with no marks written in it. The
+  // wait before being told ran from 2 seconds to 184. None of that round trip
+  // was ever necessary for a typed question.
+  //
+  // Deliberately computed WITHOUT the typed total. It decides whether the
+  // number field is on screen, and a visibility condition that depends on the
+  // value inside the field unmounts it on the first digit — the student types
+  // "1" of "18" and the input disappears under them.
+  //
+  // An answer upload is always a way out: the practice path mines the answer
+  // transcript for a question, and the upload-only past-paper path transcribes
+  // the printed stem alongside the working. Either can still turn up the number.
+  const marksPromiseUnkeepable =
+    showTotalMarksField &&
+    questionTotalPromiseIsBroken({
+      marksInQuestion,
+      questionText: questionTextInput,
+      hasQuestionImage: !!questionPhoto,
+      mayRecoverQuestionFromUpload: hasAnswerUpload,
+      questionMarks: null,
+      hasSchemeTotal: hasBankedSchemeTotal,
+    })
+  // Blocking stops the moment they supply the number the message asked for.
+  const marksPromiseBroken =
+    marksPromiseUnkeepable && parsedTotalMarksInput === null
   const totalMarksSatisfied =
-    !showTotalMarksField || marksInQuestion || parsedTotalMarksInput !== null
+    !showTotalMarksField ||
+    parsedTotalMarksInput !== null ||
+    (marksInQuestion && !marksPromiseUnkeepable)
 
   // Why the submit button is disabled, in words — shown under the button so a
   // greyed-out CTA never leaves the user guessing.
@@ -1338,9 +1409,11 @@ export default function MarkPage() {
               ? 'Pick a subject above so we mark with the right criteria.'
               : isPracticeMode && !hasPracticeQuestion
                 ? 'Add the question (photo, PDF, or text) so we know what to mark against.'
-                : !totalMarksSatisfied
-                  ? 'Enter the total marks for this question, or tick that they are shown in the question.'
-                  : null
+                : marksPromiseBroken
+                  ? QUESTION_TOTAL_PROMISE_BROKEN_MESSAGE
+                  : !totalMarksSatisfied
+                    ? 'Enter the total marks for this question, or tick that they are shown in the question.'
+                    : null
 
   const wholePaperCode =
     selectedSubject && selectedComponent
@@ -1621,10 +1694,18 @@ export default function MarkPage() {
       // from the question image/text and rejects if nothing is stated). The
       // backend still prefers an official mark-scheme total over this when one
       // is available.
-      if (showTotalMarksField && marksInQuestion) {
-        formData.append('marks_in_question', '1')
-      } else if (showTotalMarksField && totalMarksInput.trim()) {
-        formData.append('total_marks_available', totalMarksInput.trim())
+      if (showTotalMarksField) {
+        // The typed number wins whenever there is one. It used to be dropped
+        // whenever the box was ticked, so a student who ticked "the marks are
+        // in my question", was told the marks were not in it, and typed the
+        // total as instructed still sent nothing — and got the same error
+        // back, with no way out but unticking a box nobody told them about.
+        if (parsedTotalMarksInput !== null) {
+          formData.append('total_marks_available', String(parsedTotalMarksInput))
+        }
+        if (marksInQuestion) {
+          formData.append('marks_in_question', '1')
+        }
       }
 
       if (isPracticeMode && selectedSubject) {
@@ -1706,11 +1787,9 @@ export default function MarkPage() {
         setMarkProgress(null)
         setMarkStreamError(null)
         setErrorMsg('')
-        setSoftMarkNotice(
-          softNoticeForMarkFailure(
-            data.error ||
-              'Marking failed — please try again. If it keeps happening, re-upload a clearer photo or PDF.'
-          )
+        showMarkFailure(
+          data.error ||
+            'Marking failed — please try again. If it keeps happening, re-upload a clearer photo or PDF.'
         )
         return
       }
@@ -1743,7 +1822,7 @@ export default function MarkPage() {
         setLoading,
         questionNumber,
         onSoftMarkFailure: (serverMessage: string) => {
-          setSoftMarkNotice(softNoticeForMarkFailure(serverMessage))
+          showMarkFailure(serverMessage)
         },
       }
 
@@ -2001,6 +2080,24 @@ export default function MarkPage() {
       }, 50)
     })
   }, [selectedSubject])
+
+  /**
+   * Show a failed mark, and leave the student able to act on it.
+   *
+   * When the marker reports it could not read the total from the question, the
+   * "the marks are shown in my question" tick has just been tested against the
+   * real thing and failed — so clearing it is simply true, and it brings the
+   * number field back. Without that the notice ("enter the total, then tap Mark
+   * again") points at a field the tick itself is hiding. Production has four
+   * recorded retries that hit the identical error a second time, ~45s each,
+   * because re-submitting unchanged was the only move the UI allowed.
+   */
+  function showMarkFailure(serverMessage: string) {
+    setSoftMarkNotice(softNoticeForMarkFailure(serverMessage))
+    if (isTotalMarksClientMessage(serverMessage)) {
+      setMarksInQuestion(false)
+    }
+  }
 
   function resetForm() {
     setResult(null)
@@ -3423,7 +3520,9 @@ export default function MarkPage() {
                       >
                         Total marks for this question
                       </Label>
-                      {!marksInQuestion && (
+                      {/* Shown again when the tick cannot be honoured: the
+                          question is typed and the number is not in it. */}
+                      {(!marksInQuestion || marksPromiseUnkeepable) && (
                         <input
                           id="total-marks"
                           type="number"
@@ -3449,9 +3548,13 @@ export default function MarkPage() {
                         </span>
                       </label>
                       <p className="text-xs ec-text-secondary">
-                        {marksInQuestion
-                          ? 'We’ll read the mark total from your question image or text. If we can’t find it, you’ll need to enter it.'
-                          : 'Enter the mark total so we mark out of the right number. Required when the question isn’t in our past-paper bank.'}
+                        {/* The field stays put once the promise breaks, but
+                            the instruction stops once it has been followed. */}
+                        {marksPromiseBroken
+                          ? QUESTION_TOTAL_PROMISE_BROKEN_MESSAGE
+                          : marksInQuestion
+                            ? 'We’ll read the mark total from your question image or text. If we can’t find it, you’ll need to enter it.'
+                            : 'Enter the mark total so we mark out of the right number. Required when the question isn’t in our past-paper bank.'}
                       </p>
                     </div>
                   )}

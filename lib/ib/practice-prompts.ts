@@ -33,3 +33,36 @@ export function ibPracticeCriteriaSummary(subjectCode: string): string | null {
   if (!profile?.criteria?.length) return profile?.markingBlurb ?? null
   return profile.criteria.map((c) => `${c.id}: ${c.name}`).join(' · ')
 }
+
+/**
+ * Subject-level practice prompt, for pages that know the subject but not a topic.
+ *
+ * The IB subject past-paper pages (`/ib/past-papers/[slug]`) invite a student to
+ * paste a response they have already written. Their deep link carries only a
+ * subject, and /mark's practice marking refuses to start without a question —
+ * so an answer arriving with no question strands the student on a blocked
+ * submit button, having just done the writing. This gives that path a real
+ * question to travel with.
+ *
+ * Deliberately not tied to a topic: the student chose what to write about, and
+ * naming a syllabus point they did not answer would tell the examiner the wrong
+ * thing about their work.
+ */
+export function buildIbSubjectPracticePrompt(subjectCode: string): string {
+  const profile = getIbMarkingProfile(subjectCode)
+  if (!profile) {
+    return `IB practice\n\nPaste or upload your response for examiner feedback.`
+  }
+
+  const criteriaHint = profile.criteria?.length
+    ? `Marked against: ${profile.criteria.map((c) => `${c.id} ${c.name} (/${c.maxMarks})`).join('; ')}.`
+    : profile.markingBlurb
+
+  return `${profile.name} — criterion practice
+
+Submit your own written response for IB examiner feedback.
+
+${criteriaHint}
+
+Paste your response below (essay extract, exhibition commentary, comparative analysis, reflection, etc.) or upload a photo of handwritten work.`
+}

@@ -30,6 +30,8 @@ type Props = {
   milestone?: string
   courseCatalog: { code: string; name: string; lessonCount: number }[]
   detailedSection?: React.ReactNode
+  /** The parent-report share card — omitted until there is work worth showing. */
+  parentShare?: React.ReactNode
 }
 
 export function ProgressDashboardPage({
@@ -42,6 +44,7 @@ export function ProgressDashboardPage({
   milestone,
   courseCatalog,
   detailedSection,
+  parentShare,
 }: Props) {
   const progressRev = useCourseProgressRevision()
   const { user, loading: authLoading } = useAuthCheck()
@@ -116,6 +119,9 @@ export function ProgressDashboardPage({
               </div>
             ))}
           </div>
+
+          {/* Under the effort figures, because that is what it is about. */}
+          {parentShare ?? null}
 
           <div className="dash-cols">
             <section className="dash-main">

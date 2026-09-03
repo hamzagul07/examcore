@@ -36,6 +36,9 @@ const CLIENT_HINTS = [
   'find a question in your upload',
   'total marks for this question',
   'read the total marks',
+  // The pre-gate's wording: raised before anything is read, when the student
+  // said the marks were in a typed question that has none in it.
+  'mark total is not written',
 ]
 
 export function classifyMarkingError(err: unknown): ClassifiedMarkingError {

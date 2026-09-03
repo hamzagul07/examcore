@@ -231,6 +231,62 @@ export function notifyAdminPurchase(payload: {
   })
 }
 
+/**
+ * A student said a mark was unfair.
+ *
+ * CONVERSION_PSYCHOLOGY.md and the conversion diagnosis both put this above
+ * everything downstream: if students do not trust the mark, no amount of
+ * funnel work matters. The signal was being written to `console.warn` with a
+ * comment saying these are "worth reading by hand" — which nobody does, and
+ * both of the two down-ratings ever left had sat unread.
+ *
+ * An email per down-rating is the right size while the volume is this small:
+ * two in the lifetime of the product. If it ever becomes noisy, that is itself
+ * the news, and the fix is a digest rather than silence.
+ *
+ * The attempt id is included rather than a share link — the operator already
+ * has database access, and minting a public 120-day link to a student's marked
+ * work to save one query is not a trade worth making.
+ */
+export function notifyAdminMarkUnfair(payload: {
+  attemptId: string
+  reason: string | null
+  comment: string | null
+  marksEarned: number | null
+  totalMarks: number | null
+  subjectCode: string | null
+  markingMode: string | null
+  /** Null for a guest — most marking is anonymous. */
+  userId: string | null
+}): void {
+  const score =
+    payload.marksEarned !== null && payload.totalMarks !== null
+      ? `${payload.marksEarned}/${payload.totalMarks}`
+      : 'unknown'
+  sendEmailAsync({
+    to: adminNotifyAddress(),
+    subject: `[${SITE_NAME}] Mark rated unfair${payload.reason ? ` — ${payload.reason}` : ''}`,
+    preheader: `${score}${payload.subjectCode ? ` · ${payload.subjectCode}` : ''}`,
+    text: [
+      'A student rated a mark unfair.',
+      '',
+      `Reason: ${payload.reason ?? 'not given'}`,
+      `Score given: ${score}`,
+      `Subject: ${payload.subjectCode ?? 'unknown'}`,
+      `Marking mode: ${payload.markingMode ?? 'unknown'}`,
+      `Attempt ID: ${payload.attemptId}`,
+      payload.userId ? `User ID: ${payload.userId}` : 'Guest (not signed in)',
+      '',
+      payload.comment ? 'What they said:' : 'No comment left.',
+      payload.comment ? payload.comment.replace(/^/gm, '> ') : '',
+      '',
+      'Re-run this one by hand before assuming the marker was right.',
+    ]
+      .filter((line) => line !== '')
+      .join('\n'),
+  })
+}
+
 export function notifyAdminWaitlistSignup(payload: {
   email: string
   whatsapp: string

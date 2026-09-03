@@ -49,6 +49,9 @@ import { hasPaidAccess } from '@/lib/billing/features'
 import { effectiveAccess } from '@/lib/billing/access'
 import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
 import { ProgressDashboardPage } from '@/components/courses/margin-notes/ProgressDashboardPage'
+import { ParentShareLink } from '@/components/reports/ParentShareLink'
+import { progressShareUrlForUser } from '@/lib/marking/share-token'
+import { MIN_ATTEMPTS_FOR_AVERAGE } from '@/lib/reports/parent-report'
 
 import {
   resolveDashboardState,
@@ -369,6 +372,28 @@ export default async function ProgressPage({ searchParams }: PageProps) {
     </>
   )
 
+  // The parent funnel — CONVERSION_PSYCHOLOGY.md §8. Withheld until there is
+  // work worth showing: a report of one question makes the student look worse
+  // than sending nothing, and it is the student who decides to send it.
+  //
+  // Counted, not measured off `allAttempts` — that query is capped at 200, and
+  // the report the link opens counts the rows properly. A student with 300
+  // marked questions being told "200" here and shown "300" there reads as the
+  // product not knowing what it is talking about, on the one screen whose whole
+  // job is to be credible to somebody else.
+  const { count: marksCompletedCount } = await supabaseAdmin
+    .from('attempts')
+    .select('id', { count: 'exact', head: true })
+    .eq('user_id', user.id)
+  const marksCompleted = marksCompletedCount ?? allAttempts.length
+  const parentShare =
+    marksCompleted >= MIN_ATTEMPTS_FOR_AVERAGE ? (
+      <ParentShareLink
+        url={progressShareUrlForUser(user.id)}
+        marksCompleted={marksCompleted}
+      />
+    ) : null
+
   const courseCatalog = getCourseCatalog().map((c) => ({
     code: c.code,
     name: c.name,
@@ -387,6 +412,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
         milestone={adaptMilestone(actionItems, heroInsight.body)}
         courseCatalog={courseCatalog}
         detailedSection={detailedSection}
+        parentShare={parentShare}
       />
       <DrillToast />
       {analyticsAvailable ? (

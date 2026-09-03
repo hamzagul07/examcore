@@ -2760,6 +2760,97 @@ button.note-sketch-fig:hover {
   .pricing-why-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
 }
 
+/* The pointer to #credits, sitting directly under the plan grid.
+
+   Quiet by design: it is the fallback for someone who has just declined the
+   plans, so it must be findable without competing with them. Centred and
+   measure-limited so it reads as a sentence rather than a fourth plan. */
+.pricing-credits-jump {
+  margin: 18px auto 0;
+  max-width: 56ch;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ec-text-secondary, #555);
+}
+.pricing-credits-jump a {
+  font-weight: 700;
+  color: var(--ec-text-primary, #141413);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--ec-brand, currentColor);
+}
+.pricing-credits-jump a:hover {
+  color: var(--ec-brand, #141413);
+}
+/* The anchor jumps mid-page; without this the heading lands under the sticky
+   header on the browsers that have one. */
+.pricing-credits {
+  scroll-margin-top: 88px;
+}
+
+/* pricing — one-time credit packs (#credits)
+   Reuses .pricing-why-card so a pack reads as the same object as a plan
+   reason; only the price stack and the CTA are specific to it. */
+.pricing-credits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  text-align: left;
+  align-items: stretch;
+}
+.pricing-credits-grid .pricing-why-card {
+  display: flex;
+  flex-direction: column;
+}
+.pricing-credits-count {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 34px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0 0 2px;
+  font-variant-numeric: tabular-nums;
+}
+.pricing-credits-unit {
+  font-size: 17px;
+  letter-spacing: 0;
+  color: var(--text-2);
+}
+.pricing-credits-price {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.pricing-credits-each {
+  font-size: 13px;
+  color: var(--text-2);
+  margin: 2px 0 12px;
+  font-variant-numeric: tabular-nums;
+}
+/* Blurbs differ in length; the button stays on one baseline across the row. */
+.pricing-credits-grid .pricing-why-card-body {
+  flex: 1 1 auto;
+  margin-bottom: 16px;
+}
+.pricing-credits-cta {
+  width: 100%;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.pricing-credits-note {
+  margin-top: 18px;
+  color: var(--text-2);
+}
+@media (max-width: 880px) {
+  .pricing-credits-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+}
+
 /* pricing — trust strip with icons */
 .pricing-trust-item {
   display: inline-flex;

@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
@@ -21,6 +21,7 @@ import type { RegionChoice } from '@/lib/billing/region-cookie'
 import type { SubscriptionTier } from '@/lib/database.types'
 import { formatMoney } from '@/lib/billing/format'
 import { capForTier, omniCapForTier } from '@/lib/billing/caps'
+import { creditsForProduct } from '@/lib/billing/pricing'
 import { INTERACTIVE_DIAGRAMS_FREE } from '@/lib/billing/features'
 import { buildSignUpHref } from '@/lib/auth-redirect'
 import { trackFunnelEvent } from '@/lib/analytics/funnel'
@@ -61,6 +62,42 @@ type Props = {
 type PlanId = 'free' | 'scholar' | 'max'
 type PaidPlan = Exclude<PlanId, 'free'>
 type PaidProduct = 'scholar' | 'mastery'
+type CreditProduct = 'credits_25' | 'credits_100' | 'credits_500'
+
+/**
+ * One-time credit packs — the #credits section this page has been linked to
+ * from five places without ever having.
+ *
+ * `CreditChip`, `MarkUsageIndicator`, `BillingBlockedBanner`, `BillingSection`
+ * and the paywall modal itself all point at /pricing#credits. The anchor did
+ * not exist, so every "Top up credits" button in the product scrolled to the
+ * top of this page and sold nothing — while the whole server path (checkout
+ * accepts the products, the webhook grants them, refunds prorate) was already
+ * built and configured in production.
+ *
+ * Kept in `pricing.ts` order so the counts stay the single source of truth.
+ */
+const CREDIT_PACKS: ReadonlyArray<{
+  product: CreditProduct
+  credits: number
+  blurb: string
+}> = [
+  {
+    product: 'credits_25',
+    credits: creditsForProduct('credits_25'),
+    blurb: 'A fortnight of steady practice.',
+  },
+  {
+    product: 'credits_100',
+    credits: creditsForProduct('credits_100'),
+    blurb: 'A full mock season, one paper at a time.',
+  },
+  {
+    product: 'credits_500',
+    credits: creditsForProduct('credits_500'),
+    blurb: 'A whole course, start to exam.',
+  },
+]
 
 const PLAN_PRODUCT: Record<PaidPlan, PaidProduct> = {
   scholar: 'scholar',
@@ -68,6 +105,24 @@ const PLAN_PRODUCT: Record<PaidPlan, PaidProduct> = {
 }
 const PLAN_NAME: Record<PlanId, string> = { free: 'Free', scholar: 'Scholar', max: 'Max' }
 const TIER_RANK: Record<string, number> = { free: 0, student: 1, scholar: 2, mastery: 3 }
+
+/**
+ * Carries which product a signed-out visitor asked for, through signup.
+ *
+ * Without it, "Choose Scholar" sent them to a registration form and returned
+ * them to a bare /pricing — where they had to find the plan and decide a second
+ * time. 59% of pricing sessions are signed out, so that was the majority
+ * experience of trying to buy.
+ */
+const RESUME_PARAM = 'resume'
+
+const RESUMABLE: readonly string[] = [
+  'scholar',
+  'mastery',
+  'credits_25',
+  'credits_100',
+  'credits_500',
+]
 
 const FREE_Q = capForTier('free')
 const FREE_OMNI = omniCapForTier('free')
@@ -86,9 +141,46 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier, testimo
   const currentRank = TIER_RANK[currentTier ?? 'free'] ?? 0
   const onLegacyPro = currentTier === 'student'
 
-  async function checkout(product: PaidProduct) {
+  /**
+   * Send a signed-out buyer to signup, remembering what they came for.
+   *
+   * Two things were wrong here. The intent was discarded — they returned to a
+   * bare /pricing and had to choose again — and the click was never counted,
+   * because the only checkout event fires after the signed-in branch. The
+   * result was a wall whose cost could not be argued about because it had no
+   * number attached.
+   */
+  function requireSignup(product: PaidProduct | CreditProduct) {
+    trackFunnelEvent('checkout_signup_required', { source: product })
+    // Credit buyers land back on the pack list, not the plan grid.
+    const anchor = product.startsWith('credits_') ? '#credits' : ''
+    router.push(
+      buildSignUpHref(`/pricing?${RESUME_PARAM}=${encodeURIComponent(product)}${anchor}`)
+    )
+  }
+
+  // Coming back from signup with a product in hand: open its checkout rather
+  // than making them find the plan and decide a second time.
+  const resumed = useRef(false)
+  useEffect(() => {
+    if (resumed.current || !signedIn) return
+    const url = new URL(window.location.href)
+    const product = url.searchParams.get(RESUME_PARAM)
+    if (!product || !RESUMABLE.includes(product)) return
+    resumed.current = true
+    // Strip it first: a refresh, or a back-navigation after cancelling at
+    // Polar, must not reopen checkout unasked.
+    url.searchParams.delete(RESUME_PARAM)
+    window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
+    void checkout(product as PaidProduct | CreditProduct)
+    // Runs once per mount on a value read from the URL; re-running on every
+    // render of `checkout` would fight the strip above.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [signedIn])
+
+  async function checkout(product: PaidProduct | CreditProduct) {
     if (!signedIn) {
-      router.push(buildSignUpHref('/pricing'))
+      requireSignup(product)
       return
     }
     setBusy(product)
@@ -100,6 +192,8 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier, testimo
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           product,
+          // Ignored server-side for one-time packs (isSubscriptionProduct gate),
+          // sent unconditionally so there is one request shape to reason about.
           billing_period: period,
           return_url: '/account/billing',
         }),
@@ -158,9 +252,12 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier, testimo
     const loading = busy === product
 
     if (!signedIn) {
+      // Says what it does. It used to read "Choose Scholar" and deliver a
+      // registration form — the credits CTA below has always been honest about
+      // this, and the plans should match it.
       return {
-        label: loading ? 'Opening checkout…' : `Choose ${PLAN_NAME[plan]}`,
-        href: buildSignUpHref('/pricing'),
+        label: `Sign up to choose ${PLAN_NAME[plan]}`,
+        onClick: () => requireSignup(product),
         variant: 'primary',
       }
     }
@@ -523,6 +620,29 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier, testimo
           })}
         </div>
 
+        {/* The cheapest way in, offered where the subscription is refused —
+            not five sections below it.
+
+            Of three sales this product has ever made, one is a credit pack, and
+            the #credits anchor those packs live behind did not exist until
+            today. A visitor who balks at a monthly price had no way of learning
+            a one-off existed: it sat under the trust strip, the value strip and
+            the whole "why" section. Traffic peaks at 05:00 UTC — this audience
+            is largely UTC+4 to UTC+8, where a recurring card charge in USD is a
+            far bigger ask than ten dollars once. */}
+        <p className="pricing-credits-jump">
+          Not ready for a subscription?{' '}
+          <a
+            href="#credits"
+            onClick={() =>
+              trackFunnelEvent('upsell_clicked', { source: 'pricing_credits_jump' })
+            }
+          >
+            Buy marks outright, from {formatMoney(display.credits.credits_25.amountCents, cur)}
+          </a>{' '}
+          — they never expire, and no card stays on file.
+        </p>
+
         <div className="pricing-trust">
           <span className="pricing-trust-item">
             <span className="pricing-trust-tick" aria-hidden>
@@ -599,6 +719,66 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier, testimo
               {ctaFor('max').label} <span className="h-4 w-4" aria-hidden>-&gt;</span>
             </button>
           </div>
+        </section>
+
+        {/* The destination of every "Top up credits" link in the product.
+            Five components have pointed at #credits since before this section
+            existed; keep the id even if the layout moves. */}
+        <section
+          className="pricing-why pricing-credits"
+          id="credits"
+          aria-labelledby="pricing-credits-heading"
+        >
+          <p className="overline pricing-why-kicker">No subscription</p>
+          <h2 id="pricing-credits-heading" className="h3 section-title pricing-why-title">
+            Or buy marks <em>outright.</em>
+          </h2>
+          <p className="lead pricing-why-lead">
+            One credit marks one question, against the same real mark scheme. Your monthly
+            allowance is always spent first — credits only come out once it is gone, and
+            they never expire.
+          </p>
+
+          <div className="pricing-credits-grid">
+            {CREDIT_PACKS.map((pack) => {
+              const price = display.credits[pack.product]
+              const loading = busy === pack.product
+              const perMark = Math.round(price.amountCents / pack.credits)
+              return (
+                <div key={pack.product} className="pricing-why-card pricing-why-card--paper">
+                  <p className="pricing-credits-count">
+                    {pack.credits}
+                    <span className="pricing-credits-unit"> marks</span>
+                  </p>
+                  <p className="pricing-credits-price">{formatMoney(price.amountCents, cur)}</p>
+                  <p className="pricing-credits-each">
+                    {formatMoney(perMark, cur)} a mark
+                  </p>
+                  <p className="body-2 pricing-why-card-body">{pack.blurb}</p>
+                  <button
+                    type="button"
+                    className="btn-primary pricing-credits-cta"
+                    onClick={() => void checkout(pack.product)}
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <ButtonLoadingState mode="shimmer" loadingText="Opening checkout…">
+                        Opening checkout…
+                      </ButtonLoadingState>
+                    ) : signedIn ? (
+                      `Buy ${pack.credits} marks`
+                    ) : (
+                      'Sign up to buy'
+                    )}
+                  </button>
+                </div>
+              )
+            })}
+          </div>
+
+          <p className="micro pricing-credits-note">
+            One-time payment · no renewal · credits stay until you use them
+          </p>
         </section>
 
         <details className="pricing-matrix-disclosure">

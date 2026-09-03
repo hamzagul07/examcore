@@ -140,9 +140,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ received: true })
   } catch (err) {
     console.error('[polar-webhook] processing error:', err)
-    // Release the claim so Polar's retry can reprocess. Each event performs a
-    // single atomic side effect, so re-running after a thrown error is safe
-    // (the throw means the side effect had not been applied).
+    // Release the claim so Polar's retry can reprocess.
+    //
+    // Re-running is safe because every handler below is idempotent in its own
+    // right — NOT because a throw proves the side effect never landed. It does
+    // not: apply_credit_topup can commit and the `processed_at` stamp on the
+    // next line can then fail, and the lease takeover above deliberately re-runs
+    // a handler whose invocation was killed at an unknown point. Any new side
+    // effect added here needs its own natural key (the credit RPCs key on
+    // polar_order_id; the Max gift and Scholar welcome hold ledger claims).
     await supabase.from('polar_webhook_events').delete().eq('id', eventId)
     const message = err instanceof Error ? err.message : 'unknown'
     return NextResponse.json({ error: message }, { status: 500 })
@@ -406,9 +412,16 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
         break
       }
 
-      // Atomic balance bump + usage_events log. Idempotency guaranteed by the
-      // outer event-id dedup.
-      const { error } = await supabase.rpc('apply_credit_topup', {
+      // Atomic balance bump + usage_events log, idempotent on the Polar order id
+      // (ux_usage_events_credit_order). NOT on the outer event-id claim: that
+      // claim is deleted on a throw and can be taken over after its lease
+      // expires, so the handler must assume it may run twice for one order.
+      //
+      // try_apply_credit_topup is the same operation returning whether THIS call
+      // was the one that applied it. The receipt rides on that answer, so a
+      // redelivery or a recovered claim re-runs the grant harmlessly and does not
+      // send a paying customer a second confirmation for one purchase.
+      const { data: applied, error } = await supabase.rpc('try_apply_credit_topup', {
         p_user_id: userId,
         p_credits: resolved.credits,
         p_metadata: {
@@ -416,7 +429,15 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
           product: resolved.productKey,
         },
       })
-      if (error) throw new Error(`apply_credit_topup failed: ${error.message}`)
+      if (error) throw new Error(`try_apply_credit_topup failed: ${error.message}`)
+      if (applied === false) {
+        // Already credited by an earlier delivery of this order. Nothing to do,
+        // and nothing to say to the customer.
+        console.warn(
+          `[polar-webhook] order.paid ${order.id}: already credited, skipping receipt.`
+        )
+        break
+      }
 
       runAfterResponse('purchase-emails-credits', () =>
         notifyPurchaseEmails(supabase, userId, {

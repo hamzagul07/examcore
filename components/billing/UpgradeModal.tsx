@@ -82,7 +82,16 @@ export function UpgradeModal({
       <h2 className="text-headline text-[var(--ec-text-primary)]">{title}</h2>
       <p className="text-body mt-2 text-[var(--ec-text-secondary)]">
         {isAnon
-          ? `Create a free account to keep marking — ${capForTier('free')} free questions and ${omniCapForTier('free')} study chat messages every month, no card required.`
+          ? // Leads with what an account KEEPS, not with a monthly quota.
+            //
+            // A guest gets one mark a day; a free account gets five a month. To
+            // anyone who came back yesterday that is a smaller number, and this
+            // line was quoting it to them at the exact moment they decide —
+            // advertising the downgrade in writing. The marked script on screen
+            // is the thing they are about to lose and the thing an account
+            // saves, so that is what the sentence is about now. The allowance
+            // is still stated, second, and honestly.
+            `Your marked script is on screen and it disappears when you close this tab. A free account keeps it, with your history and progress — ${capForTier('free')} questions a month, no card required.`
           : variant === 'omni_cap'
             ? 'Upgrade to keep using Ask MarkScheme about your work, or top up credits.'
             : 'Upgrade or grab a credit top-up to keep marking now.'}

@@ -19,7 +19,18 @@ export function SeoAnalytics() {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${id}', { anonymize_ip: true });
+          var cfg = { anonymize_ip: true };
+          // /r/<token> and /p/<token> put a signed, 120-day bearer credential in
+          // the path. GA4's automatic page_view would ship it to Google, where
+          // anyone with report or BigQuery access could replay the link and read
+          // a student's marked script or progress report. Redact the segment;
+          // every other page keeps GA's own defaults, hash and all.
+          var m = location.pathname.match(/^\/(p|r)\/[^/]+/);
+          if (m) {
+            cfg.page_path = '/' + m[1] + '/[token]';
+            cfg.page_location = location.origin + cfg.page_path;
+          }
+          gtag('config', '${id}', cfg);
         `}
       </Script>
     </>

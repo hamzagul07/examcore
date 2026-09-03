@@ -106,6 +106,20 @@ export function PremiumNudge({ surface }: { surface: Surface }) {
   const free = access === 'free'
   const signedIn = summary?.signedIn === true
   const showInline = mounted && !dismissed && free && !quiet()
+  /**
+   * Whether to offer plans at all.
+   *
+   * Measured over 90 days: this card was seen by 1,725 sessions, 1,673 of them
+   * signed out, and "See plans" was clicked by 4. The "Mark one free" button
+   * beside it took ~66. A signed-out reader has marked nothing, so the link
+   * asks them to price something they have never seen — and if they do click,
+   * /pricing sends them to a registration form rather than a checkout.
+   *
+   * So it is offered only to signed-in free users, who have an account to
+   * attach a plan to and are the only ones who can act on it. Everyone else
+   * gets the whole card for the invitation that actually works.
+   */
+  const showPlansLink = free && signedIn
   // The save prompt owns the floating slot for signed-out readers on gated
   // content; the blog has no save prompt, so the toast may float there.
   const floatEligible = free && (signedIn || surface === 'blog')
@@ -142,17 +156,23 @@ export function PremiumNudge({ surface }: { surface: Surface }) {
     }
   }, [mounted, floatEligible])
 
+  // `upgrade_viewed` has to mean "a premium offer was shown", and it did not:
+  // it fired on every impression of this card, including the 97% that carry no
+  // plans link and whose headline is about marking, not price. That inflated
+  // the metric to 1,725 sessions and made "premium is pitched 22x more often
+  // than a mark result is seen" a comparison against the wrong thing. The
+  // card's own pull is still measured by `mark_cta_clicked`.
   useEffect(() => {
-    if (!showInline || seenInlineRef.current) return
+    if (!showInline || !showPlansLink || seenInlineRef.current) return
     seenInlineRef.current = true
     trackFunnelEvent('upgrade_viewed', { source: `nudge_${surface}` })
-  }, [showInline, surface])
+  }, [showInline, showPlansLink, surface])
 
   useEffect(() => {
-    if (!floating || seenFloatRef.current) return
+    if (!floating || !showPlansLink || seenFloatRef.current) return
     seenFloatRef.current = true
     trackFunnelEvent('upgrade_viewed', { source: `nudge_float_${surface}` })
-  }, [floating, surface])
+  }, [floating, showPlansLink, surface])
 
   const dismissAll = useCallback(() => {
     setDismissed(true)
@@ -169,7 +189,7 @@ export function PremiumNudge({ surface }: { surface: Surface }) {
         <aside
           className="ms-save-prompt"
           role="complementary"
-          aria-label="MarkScheme plans"
+          aria-label={showPlansLink ? 'MarkScheme plans' : 'Mark a question free'}
         >
           <div className="ms-save-prompt-body">
             <p className="ms-save-prompt-title">{copy.title}</p>
@@ -189,16 +209,18 @@ export function PremiumNudge({ surface }: { surface: Surface }) {
                 -&gt;
               </span>
             </Link>
-            <Link
-              href="/pricing"
-              prefetch={false}
-              className="ec-btn-underline text-sm"
-              onClick={() =>
-                trackFunnelEvent('upsell_clicked', { source: `nudge_float_${surface}` })
-              }
-            >
-              See plans
-            </Link>
+            {showPlansLink ? (
+              <Link
+                href="/pricing"
+                prefetch={false}
+                className="ec-btn-underline text-sm"
+                onClick={() =>
+                  trackFunnelEvent('upsell_clicked', { source: `nudge_float_${surface}` })
+                }
+              >
+                See plans
+              </Link>
+            ) : null}
             <button type="button" className="ms-save-prompt-dismiss" onClick={dismissAll}>
               Not now
             </button>
@@ -210,7 +232,7 @@ export function PremiumNudge({ surface }: { surface: Surface }) {
         <aside
           className="mx-auto my-10 max-w-[var(--ec-reading-measure,68ch)] rounded-xl border-2 border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-5 py-4"
           style={{ boxShadow: 'var(--ec-shadow-hard, 4px 4px 0 rgba(0,0,0,0.10))' }}
-          aria-label="MarkScheme plans"
+          aria-label={showPlansLink ? 'MarkScheme plans' : 'Mark a question free'}
         >
           <div className="flex items-start justify-between gap-3">
             <p className="font-serif text-lg font-bold text-[var(--ec-text-primary)]">
@@ -239,16 +261,18 @@ export function PremiumNudge({ surface }: { surface: Surface }) {
             >
               Mark one free →
             </Link>
-            <Link
-              href="/pricing"
-              prefetch={false}
-              className="ec-btn-underline text-sm"
-              onClick={() =>
-                trackFunnelEvent('upsell_clicked', { source: `nudge_${surface}` })
-              }
-            >
-              See plans
-            </Link>
+            {showPlansLink ? (
+              <Link
+                href="/pricing"
+                prefetch={false}
+                className="ec-btn-underline text-sm"
+                onClick={() =>
+                  trackFunnelEvent('upsell_clicked', { source: `nudge_${surface}` })
+                }
+              >
+                See plans
+              </Link>
+            ) : null}
           </div>
         </aside>
       ) : null}

@@ -14,7 +14,30 @@ import type { SupabaseClient } from '@supabase/supabase-js'
  * having an account.
  */
 export const ANON_DAILY_MARK_LIMIT = 1
-export const ANON_DAILY_OMNI_LIMIT = 60
+
+/**
+ * Guest study-chat messages per IP per day.
+ *
+ * Was 60, which left study chat inverted long after marks were fixed. That
+ * number was never a ladder decision: it was set on 2026-07-05 as an abuse
+ * guard, replacing an in-memory hourly bucket, and the 2026-07-28 ladder pass
+ * above only ever looked at marks. So a guest kept ~1,800 messages a month
+ * against 10/month for a signed-in free account — signing up was a 180×
+ * downgrade — and six times what a $35 Max subscriber gets at 300/month.
+ *
+ * Five is the same "taste" judgement the mark limit makes, adjusted for the
+ * fact that chat is conversational: one message cannot show what the thing
+ * does, a short exchange can. Within a session the account is now strictly
+ * better — 10 for the month against 5 for the day.
+ *
+ * Two things this deliberately accepts:
+ *  - A guest returning on separate days still out-accrues the monthly free
+ *    account, exactly as with marks. The daily reset makes it a poor
+ *    substitute for an account, and the typical guest is one session.
+ *  - The cap is per IP, so a school shares it (see the note on
+ *    checkAnonymousMarkRateLimit). That is why this is 5 and not 1.
+ */
+export const ANON_DAILY_OMNI_LIMIT = 5
 const ANON_DAILY_CONTACT_LIMIT = 5
 const AUTH_DAILY_CONTACT_LIMIT = 20
 const DAILY_SIGNUP_LIMIT = 3

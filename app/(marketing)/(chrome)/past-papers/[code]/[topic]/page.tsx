@@ -19,6 +19,9 @@ import { getCatalogSubject } from '@/lib/subjects-catalog'
 import { getCourseSubject } from '@/lib/courses'
 import { GuestSignupGate } from '@/components/auth/GuestSignupGate'
 import { PremiumNudge } from '@/components/billing/PremiumNudge'
+import { TopicQuestionAnswer } from '@/components/seo/TopicQuestionAnswer'
+import { withTotalMarks } from '@/lib/marking/practice-answer'
+import { BlogMarkExample } from '@/components/blog/BlogMarkExample'
 import { caieLessonPath } from '@/lib/seo/caie-graph'
 
 type Props = { params: Promise<{ code: string; topic: string }> }
@@ -152,18 +155,43 @@ export default async function TopicQuestionsPage({ params }: Props) {
           {page.questions.length > 0 ? (
             <>
               <ul className="ms-tq-list">
-                {page.questions.map((q, i) => (
+                {page.questions.map((q, i) => {
+                  // The cache knows this question's total, and "we could not
+                  // read the total marks" is the commonest way a mark fails.
+                  // Carrying it means the marker never has to read it off an
+                  // image on this path.
+                  const href = withTotalMarks(q.markHref, q.marks)
+                  return (
                   <li key={`${q.paperCode}-${q.questionNumber}-${i}`} className="ms-sd-card ms-sd-card-pad ms-tq-item">
                     <div className="ms-tq-meta">
                       <span className="ms-tq-paper">{q.paperCode} · {q.sessionLabel}</span>
                       <span className="ms-tq-marks">{q.marks} marks</span>
                     </div>
                     <p className="ms-tq-stem">{q.stem}</p>
-                    <Link href={q.markHref} className="ec-btn-underline text-sm">
-                      Practise the full question →
-                    </Link>
+                    <div className="ms-tq-cta-row">
+                      {/* Writing happens here; the answer travels to /mark. */}
+                      <TopicQuestionAnswer
+                        markHref={href}
+                        subject={code}
+                        board="cambridge"
+                        label={`${q.paperCode} Q${q.questionNumber}`}
+                      />
+                      {/* Kept: the stem above is a shortened preview, so
+                          opening the full question first is a real need.
+                          prefetch={false} for the reason the header sweep
+                          gives — a dozen of these would pull the /mark chunk
+                          into a prerendered SEO page on first scroll. */}
+                      <Link
+                        href={href}
+                        className="ec-btn-underline text-sm"
+                        prefetch={false}
+                      >
+                        Open the full question →
+                      </Link>
+                    </div>
                   </li>
-                ))}
+                  )
+                })}
               </ul>
               <p className="ms-micro" style={{ marginTop: 14, color: 'var(--ec-text-faint)' }}>
                 Question stems are shortened previews. Open a question to attempt the full version and have it marked.
@@ -184,6 +212,13 @@ export default async function TopicQuestionsPage({ params }: Props) {
             </div>
           )}
         </section>
+
+        {/* What comes back. The pages that ask a student to write showed no
+            evidence of what marking produces, while every blog post — the
+            worst-converting surface there is — has carried this example all
+            along. Same artefact, so it is recognisable wherever they meet it.
+            No CTA: the box above is the CTA. */}
+        <BlogMarkExample board="cambridge" showCta={false} />
 
         <HubSeoIntro
           quiet

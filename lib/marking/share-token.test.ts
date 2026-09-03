@@ -8,6 +8,9 @@ async function main() {
     createMarkShareToken,
     verifyMarkShareToken,
     markShareUrl,
+    createProgressShareToken,
+    verifyProgressShareToken,
+    progressShareUrl,
   } = await import('./share-token')
 
   const attemptId = 'b0b7f880-6d67-43b4-b62e-5a8ba75b44cd'
@@ -54,6 +57,30 @@ async function main() {
     'must not claim a full report without a /r URL'
   )
   assert.doesNotMatch(noLink, /markscheme\.app\/mark/)
+
+  // ── Progress links (the parent report) ────────────────────────────────────
+  const userId = 'f4b5a4f0-91b1-4d3a-9a53-2c9b0e0d1f22'
+  const progress = createProgressShareToken(userId)
+  const verifiedProgress = verifyProgressShareToken(progress)
+  assert.ok(verifiedProgress)
+  assert.equal(verifiedProgress!.userId, userId)
+
+  assert.equal(verifyProgressShareToken('nope'), null)
+  assert.equal(verifyProgressShareToken(progress.slice(0, -2) + 'xx'), null)
+  assert.ok(progressShareUrl(progress).startsWith('https://markscheme.app/p/'))
+
+  // Both link types are signed with the same secret, so each verifier must
+  // refuse the other's token on the `k` discriminator rather than on luck.
+  assert.equal(
+    verifyMarkShareToken(progress),
+    null,
+    'a progress link must not verify as a mark link'
+  )
+  assert.equal(
+    verifyProgressShareToken(token),
+    null,
+    'a mark link must not verify as a progress link'
+  )
 
   console.log('share-token: all assertions passed')
 }

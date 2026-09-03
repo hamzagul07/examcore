@@ -609,6 +609,92 @@
   margin: 0 0 10px;
 }
 
+/* Topic question — answer it in place (see TopicQuestionAnswer.tsx).
+   The invitation has to read as the primary action on the card, because the
+   measured drop is students never starting to write at all. */
+.ms-tq-open {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid color-mix(in srgb, var(--sc, var(--ec-brand)) 45%, transparent);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--sc, var(--ec-brand)) 8%, transparent);
+  color: var(--sc, var(--ec-brand));
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 140ms ease, border-color 140ms ease;
+}
+.ms-tq-open:hover {
+  background: color-mix(in srgb, var(--sc, var(--ec-brand)) 14%, transparent);
+  border-color: var(--sc, var(--ec-brand));
+}
+.ms-tq-answer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+.ms-tq-answer-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+.ms-tq-answer-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--ec-border);
+  border-radius: 6px;
+  background: var(--ec-surface);
+  color: var(--ec-text-primary);
+  font: inherit;
+  font-size: 15px;
+  line-height: 1.55;
+  resize: vertical;
+}
+.ms-tq-answer-input:focus-visible {
+  outline: 2px solid var(--sc, var(--ec-brand));
+  outline-offset: 1px;
+  border-color: transparent;
+}
+.ms-tq-answer-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.ms-tq-answer-go {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.ms-tq-answer-go:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.ms-tq-answer-note {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--ec-text-secondary);
+}
+.ms-tq-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+/* Once the box is open it owns the card, so the secondary link drops below. */
+.ms-tq-cta-row:has(.ms-tq-answer) {
+  display: block;
+}
+.ms-tq-cta-row:has(.ms-tq-answer) .ec-btn-underline {
+  margin-top: 12px;
+  display: inline-block;
+}
+
 /* Topic index — question-paper contents, not chip cloud */
 .ms-pp-topic-grid {
   display: grid;

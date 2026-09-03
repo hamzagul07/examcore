@@ -392,9 +392,44 @@ still works in year three.
 3. ✅ **Un-invert the quota ladder** (Growth Plan §2.1) — without this, none of the
    above can work
 4. ✅ **Post-mark ask at the peak** (§6) — `MarkingResultView`
-5. **Feedback collection on** (§7) — two weeks to real proof
+5. **Feedback collection on** (§7) — ⏳ the ask ships (#65) and is collecting,
+   but n=2. Steps 2 and 3 (publish the aggregate, three real quotes) need
+   volume that does not exist until activation moves.
 6. **IB trajectory** (§4) — 39% of traffic currently has no goal gradient
-7. **Parent-shareable report** (§8) — the missing funnel
+7. ✅ **Parent-shareable report** (§8) — shipped 2026-09-03, see below
+
+### Shipped 2026-09-03 — activation, then the parent funnel
+
+Built against the 29 Aug production read (`docs/` has no copy of it; the numbers
+below are quoted where the code depends on them). The finding that ordered the
+work: the paywall has fired ~once since May, and the upgrade pitch is shown 22×
+more often than a mark result is seen — so nothing about the *offer* could have
+been the constraint.
+
+- **The answer box moved to the question.** `components/seo/TopicQuestionAnswer.tsx`
+  on both topic-page families — Cambridge `/past-papers/[code]/[topic]` and the
+  IB twin `/ib/past-papers/[slug]/[topic]`. 1,891 sessions landed on a product
+  surface in 30 days and 86 began an answer; the drop was the navigation, not
+  the marker. The answer travels in sessionStorage
+  (`lib/marking/practice-answer.ts`); the question deliberately does not.
+- **`withTotalMarks`** carries the question's mark total into the deep link.
+  "We could not read the total marks from your question" was 11 of 17 recorded
+  mark failures, and it fires only *after* the student has waited.
+- **The quota ladder un-inverted.** `ANON_DAILY_OMNI_LIMIT` 60 → 5. A guest was
+  getting ~1,800 study-chat messages a month against a free account's 10 — a
+  180× downgrade for signing up, and 6× what a $35 Max subscriber gets.
+- **`/pricing#credits` exists.** Five components linked to that anchor,
+  including the secondary button inside the paywall modal; it was nowhere in the
+  codebase, so every "Top up credits" button scrolled to the top of the page.
+  The packs were fully built server-side the whole time.
+- **The parent report** — this item. `lib/reports/parent-report.ts` (pure,
+  tested) → `/p/[token]`, a signed link the student generates from
+  `/dashboard/progress`. It leads with effort (questions marked, active days)
+  and only then shows target, gap and weak topics. It contains no answers, no
+  examiner comments and no individual scores, because a report that can
+  embarrass its subject does not get shared. New funnel events
+  `parent_report_shared` / `parent_report_viewed`; the ratio between them is
+  the test of whether students actually send it.
 
 ### Shipped 2026-07-28
 

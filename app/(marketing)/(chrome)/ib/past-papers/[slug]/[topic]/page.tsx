@@ -21,6 +21,8 @@ import {
 import { MarketingBreadcrumbs } from '@/components/seo/MarketingBreadcrumbs'
 import { GuestSignupGate } from '@/components/auth/GuestSignupGate'
 import { PremiumNudge } from '@/components/billing/PremiumNudge'
+import { TopicQuestionAnswer } from '@/components/seo/TopicQuestionAnswer'
+import { BlogMarkExample } from '@/components/blog/BlogMarkExample'
 
 type Props = { params: Promise<{ slug: string; topic: string }> }
 
@@ -146,9 +148,35 @@ export default async function IbTopicPracticePage({ params }: Props) {
             <p className="ms-body-2 whitespace-pre-line" style={{ color: 'var(--ec-text-secondary)' }}>
               {page.practicePrompt}
             </p>
-            <Link href={page.markHref} className="ec-btn-primary mt-4 inline-flex px-5 py-2.5 text-sm">
-              Upload your answer for marking →
-            </Link>
+            <div className="ms-tq-cta-row" style={{ marginTop: 16 }}>
+              {/* The writing happens here. This page converts 2.2% of its
+                  sessions into signups against 0.08% for the grade-boundary
+                  posts — it is the surface where "I am about to revise" is
+                  already true, so the box belongs on it rather than one
+                  navigation away. Open by default: there is one task on this
+                  page, and a disclosure in front of it is only a click. */}
+              <TopicQuestionAnswer
+                markHref={page.markHref}
+                subject={syllabusCode}
+                board="ib"
+                label={`${page.title} (${page.topicCode})`}
+                defaultOpen
+                rows={10}
+                placeholder="Paste your response — an essay extract, a commentary, a reflection. The examiner marks what you actually wrote."
+                readyNote="Marked band by band against the official IB assessment criteria. No account needed for your first one."
+                source="ib_topic_task_inline"
+              />
+              {/* Handwritten work still needs the uploader. prefetch={false}
+                  for the reason the header sweep gives — this is a prerendered
+                  SEO page and /mark is the heaviest route in the app. */}
+              <Link
+                href={page.markHref}
+                className="ec-btn-underline text-sm"
+                prefetch={false}
+              >
+                Or upload a photo of handwritten work →
+              </Link>
+            </div>
           </div>
           {page.criteriaSummary ? (
             <p className="ms-micro mt-3" style={{ color: 'var(--ec-brand)' }}>
@@ -156,6 +184,13 @@ export default async function IbTopicPracticePage({ params }: Props) {
             </p>
           ) : null}
         </section>
+
+        {/* What comes back. The pages that ask a student to write showed no
+            evidence of what marking produces, while every blog post — the
+            worst-converting surface there is — has carried this example all
+            along. Same artefact, so it is recognisable wherever they meet it.
+            No CTA: the box above is the CTA. */}
+        <BlogMarkExample board="ib" showCta={false} />
 
         <HubSeoIntro
           quiet

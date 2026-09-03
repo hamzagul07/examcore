@@ -13,9 +13,28 @@ export const SOFT_MARK_RETRY_NOTICE =
 export const SOFT_TOTAL_MARKS_NOTICE =
   'Add the total marks for this question (or tick that they are shown in the question), then tap Mark again.'
 
+/**
+ * The marker read the question and the total was not in it.
+ *
+ * Distinct from the nudge above because it must NOT re-offer "or tick that
+ * they are shown in the question": that tick is what has just been tested
+ * against the real question and failed. Production has four recorded retries
+ * that failed a second time with the identical message, at ~45s each — the
+ * student was told to add the total while the field to add it in was hidden by
+ * their own tick, so re-submitting unchanged was the only move the UI left.
+ */
+export const SOFT_TOTAL_MARKS_NOT_FOUND_NOTICE =
+  'We read your question and could not find the mark total in it. Enter the total below, then tap Mark again.'
+
 const ACTIONABLE_PATTERNS: Array<{ test: RegExp; notice: string }> = [
+  // Most specific first: "we looked and it wasn't there" outranks "you have
+  // not given us one".
   {
-    test: /total marks for this question|read the total marks/i,
+    test: /read the total marks|mark total is not written/i,
+    notice: SOFT_TOTAL_MARKS_NOT_FOUND_NOTICE,
+  },
+  {
+    test: /total marks for this question/i,
     notice: SOFT_TOTAL_MARKS_NOTICE,
   },
   {
@@ -43,7 +62,9 @@ const INFRA_NOISE =
   /gemini|vertex|timeout|ETIMEDOUT|429|resource exhausted|overloaded|ECONN|fetch failed|TypeError|Internal server|status 5\d\d|did not match the expected pattern/i
 
 export function isTotalMarksClientMessage(message: string): boolean {
-  return /total marks for this question|read the total marks/i.test(message)
+  return /total marks for this question|read the total marks|mark total is not written/i.test(
+    message
+  )
 }
 
 export function softNoticeForMarkFailure(

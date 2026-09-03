@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { revalidateTag } from 'next/cache'
 import { createClient } from '@supabase/supabase-js'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
+import { notifyAdminMarkUnfair } from '@/lib/email/notifications'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -157,12 +158,26 @@ export async function POST(request: NextRequest) {
   revalidateTag('testimonials', 'max')
 
   if (rating === 'down') {
-    // Surface unfair marks in logs immediately — these are the ones worth
-    // reading by hand while the volume is still small enough to do so.
     console.warn('[mark/feedback] marked unfair', {
       attempt_id: attemptId,
       reason,
       has_comment: !!comment,
+    })
+    // The log line above said these were "worth reading by hand". Nobody reads
+    // Vercel logs by hand, and both of the two down-ratings ever left had sat
+    // there unseen — one of them citing the wrong mark scheme, which is the
+    // single most important thing that can go wrong here. Mail it.
+    notifyAdminMarkUnfair({
+      attemptId,
+      reason,
+      comment,
+      marksEarned: attempt.marks_earned ?? null,
+      totalMarks: attempt.total_marks ?? null,
+      subjectCode: Array.isArray(attempt.syllabus_tags)
+        ? (attempt.syllabus_tags[0] ?? null)
+        : null,
+      markingMode,
+      userId: attempt.user_id ?? null,
     })
   }
 

@@ -23,6 +23,9 @@ import { getIbCourse } from '@/lib/courses/ib'
 import { getIbTopicPracticePages } from '@/lib/seo/ib-topic-practice'
 import { MarketingBreadcrumbs } from '@/components/seo/MarketingBreadcrumbs'
 import { MockPackEmailCapture } from '@/components/tools/MockPackEmailCapture'
+import { TopicQuestionAnswer } from '@/components/seo/TopicQuestionAnswer'
+import { buildIbSubjectPracticePrompt } from '@/lib/ib/practice-prompts'
+import { BlogMarkExample } from '@/components/blog/BlogMarkExample'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -74,6 +77,12 @@ export default async function IbPastPaperSubjectPage({ params }: Props) {
     .slice(0, 10)
   const topicPages = getIbTopicPracticePages(slug)
   const course = getIbCourse(slug)
+  // IB marking codes are level-independent (ib-chemistry, not ib-chemistry-hl);
+  // strip the -hl/-sl the past-paper slug carries so /mark pre-selects the
+  // subject instead of landing on a blank picker. One derivation, shared by the
+  // inline answer box and the SEO block's link.
+  const markSubjectCode = slug.replace(/-(hl|sl)$/i, '')
+  const markHref = `/mark?subject=ib-${markSubjectCode}`
   const breadcrumbs = [
     { name: 'Home', path: '/' },
     { name: 'IB', path: '/ib' },
@@ -163,8 +172,57 @@ export default async function IbPastPaperSubjectPage({ params }: Props) {
           </Link>
         </div>
 
+        {/* The writing happens here, above the archive.
+            Measured over the 30 days to 2026-09-03: the IB subject past-paper
+            pages took ~2,700 sessions, twice the topic pages beneath them, and
+            they are the same audience that converts to signup at 2.2% against
+            0.08% for the grade-boundary posts. Until now the only way to mark
+            anything from this page was a link in the SEO block near the
+            bottom. */}
+        <section aria-labelledby="ib-mark-now" style={{ marginTop: 28 }}>
+          <h2 id="ib-mark-now" className="ms-h3" style={{ marginBottom: 6 }}>
+            Already written something? Get it marked.
+          </h2>
+          <p
+            className="ms-body-2"
+            style={{ marginBottom: 16, color: 'var(--ec-text-secondary)', maxWidth: '54ch' }}
+          >
+            Paste a response you have already written for {short} {subject.level} — an
+            essay, a commentary, a reflection — and it is marked band by band
+            against the official IB assessment criteria.
+          </p>
+          <div className="ms-sd-card ms-sd-card-pad">
+            <TopicQuestionAnswer
+              markHref={markHref}
+              subject={`ib-${markSubjectCode}`}
+              board="ib"
+              label={`IB ${short} ${subject.level}`}
+              fieldLabel={`Your ${short} ${subject.level} response`}
+              defaultOpen
+              rows={10}
+              placeholder="Paste your response — the examiner marks what you actually wrote."
+              readyNote="Marked band by band against the official IB assessment criteria. No account needed for your first one."
+              source="ib_subject_inline"
+              // The question travels with the answer here. Without it /mark
+              // opens in practice mode with nothing to mark against and refuses
+              // to submit — which is what the bare ?subject= link on this page
+              // has always done, only now the student has already written.
+              question={buildIbSubjectPracticePrompt(`ib-${slug}`)}
+              handoffSubjectCode={`ib-${slug}`}
+              returnPath={copy.path}
+            />
+          </div>
+        </section>
+
+        {/* What comes back. The pages that ask a student to write showed no
+            evidence of what marking produces, while every blog post — the
+            worst-converting surface there is — has carried this example all
+            along. Same artefact, so it is recognisable wherever they meet it.
+            No CTA: the box above is the CTA. */}
+        <BlogMarkExample board="ib" showCta={false} />
+
         {topicPages.length ? (
-          <section aria-labelledby="ib-topic-practice" style={{ marginTop: 32 }}>
+          <section aria-labelledby="ib-topic-practice" style={{ marginTop: 40 }}>
             <h2 id="ib-topic-practice" className="ms-h3" style={{ marginBottom: 6 }}>
               Practice by topic
             </h2>
@@ -225,10 +283,7 @@ export default async function IbPastPaperSubjectPage({ params }: Props) {
           paragraph={`Every recent ${subject.name} exam series we cover (${ibYearRange()}), each with ${subject.papers.join(', ')}. Practise a paper, then mark it against the IB band descriptors — that's where the grade is won.`}
           links={[
             {
-              // IB marking codes are level-independent (ib-chemistry, not
-              // ib-chemistry-hl); strip the -hl/-sl the past-paper slug carries so
-              // /mark pre-selects the subject instead of landing on a blank picker.
-              href: `/mark?subject=ib-${slug.replace(/-(hl|sl)$/i, '')}`,
+              href: markHref,
               label: 'Get feedback on your answer →',
               variant: 'primary',
             },

@@ -4,6 +4,11 @@ import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-se
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
+/** What the Desk shows when it does not ask for a size. */
+const DEFAULT_ATTEMPTS_LIMIT = 50
+/** Upper bound, so a hand-written `?limit=100000` cannot ask for everything. */
+const MAX_ATTEMPTS_LIMIT = 100
+
 /**
  * The signed-in student's marked attempts, newest first.
  *
@@ -22,10 +27,17 @@ export async function GET(request: NextRequest) {
     })
   }
 
-  const limitParam = Number(request.nextUrl.searchParams.get('limit'))
-  const limit = Number.isFinite(limitParam)
-    ? Math.min(Math.max(Math.trunc(limitParam), 1), 100)
-    : 50
+  // `Number(null)` is 0, not NaN. Reading the parameter straight into Number()
+  // therefore made an ABSENT `?limit` finite, clamp to 1, and return a single
+  // attempt — the Desk asked for a history and got one row, with no error to
+  // show for it. The 50 default only ever applied to garbage like `?limit=abc`.
+  // Read the raw string first so "not supplied" and "supplied as junk" are the
+  // same case, and both land on the default.
+  const rawLimit = request.nextUrl.searchParams.get('limit')?.trim()
+  const parsedLimit = rawLimit ? Number(rawLimit) : Number.NaN
+  const limit = Number.isFinite(parsedLimit)
+    ? Math.min(Math.max(Math.trunc(parsedLimit), 1), MAX_ATTEMPTS_LIMIT)
+    : DEFAULT_ATTEMPTS_LIMIT
 
   const { data, error } = await supabase
     .from('attempts')

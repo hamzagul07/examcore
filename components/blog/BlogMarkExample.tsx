@@ -22,16 +22,26 @@ import { DEMO_MARK_RESULT_IB } from '@/lib/marking/demo-result-ib'
  *
  * Same DEMO_MARK_RESULT as the landing page, the new-user home and
  * /mark?example=1 — one artefact, recognisable wherever a reader meets it.
+ *
+ * No longer blog-only despite the name and the folder: it also runs on the
+ * past-paper topic and IB subject pages, which ask a student to write an answer
+ * and, until this was added, showed them nothing of what comes back. Those
+ * pages pass `showCta={false}` — the answer box is already on screen, and a
+ * second "mark your own answer" button next to it competes with the thing it is
+ * meant to be selling.
  */
 
 export function BlogMarkExample({
   slug,
   board = 'cambridge',
+  showCta = true,
 }: {
   slug?: string | null
   /** IB articles get the IB demo. Edexcel IAL posts reuse the point-method demo
    * (method/accuracy) and deep-link into Edexcel marking. */
   board?: 'cambridge' | 'ib' | 'edexcel'
+  /** Off where an answer box is already on the page — see the note above. */
+  showCta?: boolean
 }) {
   const r = board === 'ib' ? DEMO_MARK_RESULT_IB : DEMO_MARK_RESULT
   const marks = r.ai_marking.marks_awarded
@@ -89,13 +99,15 @@ export function BlogMarkExample({
         </blockquote>
       )}
 
-      <p className="ms-blog-mark-example__cta">
-        <Link href={href} className="ec-btn-primary inline-flex text-sm">
-          Mark your own answer
-          <span className="ml-1 h-4 w-4" aria-hidden>-&gt;</span>
-        </Link>
-        <span>Free — no account needed for your first one.</span>
-      </p>
+      {showCta ? (
+        <p className="ms-blog-mark-example__cta">
+          <Link href={href} className="ec-btn-primary inline-flex text-sm">
+            Mark your own answer
+            <span className="ml-1 h-4 w-4" aria-hidden>-&gt;</span>
+          </Link>
+          <span>Free — no account needed for your first one.</span>
+        </p>
+      ) : null}
     </aside>
   )
 }

@@ -30,9 +30,13 @@ const noContent = () => new NextResponse(null, { status: 204 })
  * biggest leak in the product, was invisible.
  *
  * Privacy: the only identifier stored is a random `session_id` the client keeps
- * in sessionStorage. No IP, no fingerprint, nothing persisted past the tab. The
- * per-session daily cap is enforced inside `record_page_event` so this stays a
- * single round-trip. Best-effort throughout — never surfaced to the user.
+ * in sessionStorage, plus a two-letter country code from the edge. No IP is
+ * read or retained, no fingerprint, nothing persisted past the tab. The country
+ * exists because pricing was being decided with no idea where anyone is — a
+ * single worldwide $19.99 against traffic that peaks at 05:00 UTC — and it is
+ * the coarsest signal that answers it. The per-session daily cap is enforced
+ * inside `record_page_event` so this stays a single round-trip. Best-effort
+ * throughout — never surfaced to the user.
  */
 export async function POST(req: NextRequest) {
   const raw = await req.text()
@@ -83,6 +87,15 @@ export async function POST(req: NextRequest) {
   // discard the event.
   const { user } = await authenticateRouteRequest(req)
 
+  // Set by Vercel's edge on every request; absent locally and on other hosts,
+  // which simply means no country rather than a bad one. Shape-checked here and
+  // again in the RPC — the header is attacker-controllable in principle, and a
+  // forged value would quietly skew the one number this exists to answer.
+  const countryHeader = req.headers.get('x-vercel-ip-country')?.trim() ?? ''
+  const country = /^[A-Za-z]{2}$/.test(countryHeader)
+    ? countryHeader.toUpperCase()
+    : null
+
   const service = createServiceClient()
   const { error } = await service.rpc('record_page_event', {
     p_session_id: sessionId,
@@ -95,6 +108,7 @@ export async function POST(req: NextRequest) {
     p_utm_campaign: utm(body.utmCampaign),
     p_utm_content: utm(body.utmContent),
     p_utm_term: utm(body.utmTerm),
+    p_country: country,
   })
   if (error) console.error('[track] record failed:', error.message)
 

@@ -34,7 +34,12 @@ import { extractPracticeQuestionFromScript } from '@/lib/marking/practice-questi
 import { splitUploadIntoQuestions, type SplitQuestion } from '@/lib/marking/split-questions'
 import { extractTotalMarksForGate } from '@/lib/marking/question-marks'
 import { stripNullBytes } from '@/lib/marking/strip-null-bytes'
-import { resolveRequiredQuestionTotal } from '@/lib/marking/require-question-total'
+import {
+  resolveRequiredQuestionTotal,
+  questionTotalPromiseIsBroken,
+  QUESTION_TOTAL_PROMISE_BROKEN_MESSAGE,
+} from '@/lib/marking/require-question-total'
+import { isIbSubjectCode } from '@/lib/ib/marking-config'
 import { resolveSplitQuestionTotalMarks } from '@/lib/marking/split-question-total'
 import type {
   MarkIntent,
@@ -705,6 +710,47 @@ export async function runSingleQuestionMark(
       !hasManualSelection &&
       !questionTextInput.trim() &&
       !questionPhoto)
+
+  // Denominator check, before anything is read.
+  //
+  // The real gate is far below, after the work has been transcribed — which is
+  // right when the total has to come off a photographed question, and pure
+  // waste when it cannot possibly be found. Of 23 recorded failures, 13 were a
+  // missing total; the longest waited 184 seconds to be told.
+  //
+  // Narrow on purpose. It runs only where NO scheme can supply a denominator
+  // later: the practice path on a non-IB subject, where the marker always
+  // derives and there is no catalog total. On the past-paper path a scheme may
+  // still be found by detection or a cold extract, and on IB a criteria catalog
+  // may carry the total, so both fall through to the gate below untouched.
+  // /mark performs the same check in the form, where it costs no round trip at
+  // all; this is the backstop for everything that posts here directly.
+  //
+  // An upload is always a way out. The practice path below mines the answer
+  // transcript for a question unconditionally (extractPracticeQuestionFromScript)
+  // and overwrites the typed one when it finds a better stem — so a student who
+  // typed a paraphrase and photographed the printed question as part of their
+  // working really can have "[6]" recovered from the page. Pre-judging that as
+  // unrecoverable would refuse a mark that succeeds today, which is a worse bug
+  // than the one this gate exists to fix. Only a typed answer with nothing
+  // uploaded is certain.
+  const hasAnswerUpload = pageFiles.length > 0 || !!answerPdf?.size
+  if (
+    isPracticeQuestion &&
+    !isCombinedScript &&
+    practiceCode &&
+    !isIbSubjectCode(practiceCode) &&
+    questionTotalPromiseIsBroken({
+      marksInQuestion,
+      questionText: questionTextInput,
+      hasQuestionImage: !!questionPhoto,
+      mayRecoverQuestionFromUpload: hasAnswerUpload,
+      questionMarks,
+      hasSchemeTotal: false,
+    })
+  ) {
+    throw new Error(QUESTION_TOTAL_PROMISE_BROKEN_MESSAGE)
+  }
 
   emit(onProgress, 'reading_work')
 

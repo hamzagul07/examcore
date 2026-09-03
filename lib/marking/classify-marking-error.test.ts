@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { QUESTION_TOTAL_PROMISE_BROKEN_MESSAGE } from './require-question-total'
 
 // classify-marking-error pulls in mark-runner (for MarkingParseError), which
 // constructs Supabase clients at module load. Placeholders + dynamic import
@@ -36,6 +37,10 @@ async function main() {
     'Add your question — type it or upload a photo — before we can mark your answer.',
     'Enter the total marks for this question so we mark out of the right number.',
     'We could not read the total marks from your question. Enter the total marks for this question (e.g. 18) and try again.',
+    // Raised by the pre-gate, before anything is read. Must classify the same
+    // way as the post-OCR wording it replaces, or a student who typed a
+    // question with no marks in it gets a retry button and a 500.
+    QUESTION_TOTAL_PROMISE_BROKEN_MESSAGE,
   ]
   for (const message of clientMessages) {
     const c = classifyMarkingError(new Error(message))

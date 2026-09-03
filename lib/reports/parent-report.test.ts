@@ -111,6 +111,44 @@ const asOf = { asOf: NOW }
   )
 }
 
+// ── A windowed history must say so ──────────────────────────────────────────
+// The route reads at most 500 rows but counts the total exactly. Left
+// unstated, a report reads "800 questions" beside a subject list covering the
+// last 500 — wrong in the direction that flatters us.
+{
+  const rows = [1, 2, 3].map((d) => attempt({ daysAgo: d }))
+  const windowed = buildParentReport(rows, NO_PROFILE, {
+    ...asOf,
+    totalMarksCompleted: 812,
+  })
+  check('the headline is the true total', windowed.marksCompleted === 812)
+  check('and the breakdown admits its window', windowed.detailIsWindowed === true)
+  check('naming how many rows it saw', windowed.detailWindowSize === 3)
+
+  const whole = buildParentReport(rows, NO_PROFILE, { ...asOf, totalMarksCompleted: 3 })
+  check('nothing to disclose when the count matches', whole.detailIsWindowed === false)
+  check('and no window size', whole.detailWindowSize === null)
+
+  const uncounted = buildParentReport(rows, NO_PROFILE, asOf)
+  check('no count given is not windowed', uncounted.detailIsWindowed === false)
+}
+
+// ── The start date must be the real one, not the oldest row that fitted ─────
+{
+  const rows = [1, 2, 3].map((d) => attempt({ daysAgo: d }))
+  const r = buildParentReport(rows, NO_PROFILE, {
+    ...asOf,
+    totalMarksCompleted: 812,
+    firstMarkedAt: daysAgo(400),
+  })
+  check('the supplied start date wins', r.firstMarkedAt === daysAgo(400))
+  check('the last mark still comes from the rows', r.lastMarkedAt === daysAgo(1))
+  check(
+    'without one it falls back to the oldest row held',
+    buildParentReport(rows, NO_PROFILE, asOf).firstMarkedAt === daysAgo(3)
+  )
+}
+
 // ── The average is marks-weighted, not a mean of percentages ────────────────
 // A 1-mark question answered wrong must not cost as much as a 20-mark essay.
 {

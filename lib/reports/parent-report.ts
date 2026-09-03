@@ -76,6 +76,19 @@ export type ParentProgressReport = {
   /** ISO timestamps, so the page can say how long this has been going on. */
   firstMarkedAt: string | null
   lastMarkedAt: string | null
+  /**
+   * True when the caller could only hand over a window of the history.
+   *
+   * `marksCompleted` is an exact all-time count, but everything derived —
+   * subjects, averages, weak topics — is computed from the rows actually
+   * supplied. Past the caller's page size those disagree, and a report that
+   * says "800 questions" beside a subject list covering the last 500 is
+   * quietly wrong in the direction that flatters us. The page states the
+   * window instead of hiding it.
+   */
+  detailIsWindowed: boolean
+  /** How many rows the breakdown was computed from, when windowed. */
+  detailWindowSize: number | null
   subjects: ParentReportSubject[]
   averagePercentage: number | null
   /** Percentage points against the preceding window; null without both. */
@@ -134,6 +147,15 @@ export function buildParentReport(
      * questions is the one number here that must not be wrong.
      */
     totalMarksCompleted?: number
+    /**
+     * The true earliest mark, when the caller's query was capped.
+     *
+     * Without it "since March" is read off the oldest row that happened to fit
+     * in the page, which for a busy student is a date months after they
+     * actually started — the one figure on this page a parent is most likely
+     * to check against their own memory.
+     */
+    firstMarkedAt?: string | null
   }
 ): ParentProgressReport {
   const lite = attempts as unknown as AttemptLite[]
@@ -149,7 +171,8 @@ export function buildParentReport(
   const days = new Set(recent.map((a) => new Date(msOf(a)).toDateString()))
 
   const times = dated.map(msOf).sort((x, y) => x - y)
-  const firstMarkedAt = times.length ? new Date(times[0]).toISOString() : null
+  const firstMarkedAt =
+    opts?.firstMarkedAt ?? (times.length ? new Date(times[0]).toISOString() : null)
   const lastMarkedAt = times.length
     ? new Date(times[times.length - 1]).toISOString()
     : null
@@ -211,16 +234,23 @@ export function buildParentReport(
   }
   ranked.sort((a, b) => a.percentage - b.percentage)
 
+  // The exact count wins when the caller supplied one, and can only ever be
+  // larger than what we hold — a smaller value would mean a stale count
+  // subtracting from work we can see.
+  const totalMarksCompleted =
+    typeof opts?.totalMarksCompleted === 'number' &&
+    opts.totalMarksCompleted >= attempts.length
+      ? opts.totalMarksCompleted
+      : attempts.length
+
   const avgRecent = weightedAverage(recent)
   const avgPrior = weightedAverage(prior)
   const countdown = examCountdown(profile.exam_date)
 
   return {
-    marksCompleted:
-      typeof opts?.totalMarksCompleted === 'number' &&
-      opts.totalMarksCompleted >= attempts.length
-        ? opts.totalMarksCompleted
-        : attempts.length,
+    marksCompleted: totalMarksCompleted,
+    detailIsWindowed: totalMarksCompleted > attempts.length,
+    detailWindowSize: totalMarksCompleted > attempts.length ? attempts.length : null,
     marksRecent: recent.length,
     activeDaysRecent: days.size,
     firstMarkedAt,

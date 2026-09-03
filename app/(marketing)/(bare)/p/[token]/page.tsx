@@ -37,12 +37,6 @@ function admin() {
   )
 }
 
-function firstNameOf(fullName: unknown): string | null {
-  if (typeof fullName !== 'string') return null
-  const first = fullName.trim().split(/\s+/)[0]
-  return first ? first.slice(0, 40) : null
-}
-
 /**
  * Cached for the render pass: generateMetadata and the page body both need the
  * report, and without this every view runs two profile reads and two 500-row
@@ -54,13 +48,18 @@ const loadReport = cache(async (rawToken: string) => {
 
   const db = admin()
 
+  // No full_name. This link is a non-revocable bearer URL that will end up in a
+  // family group chat, and a first name is a personal identifier the student
+  // never opted into publishing. The report already says it carries no personal
+  // details; including a name made that untrue. The recipient knows whose link
+  // it is — their child sent it to them.
   const { data: profile } = await db
     .from('user_profiles')
-    .select('full_name, target_grade, exam_date')
+    .select('target_grade, exam_date')
     .eq('id', verified.userId)
     .maybeSingle()
 
-  const [{ data: rawAttempts }, { count }] = await Promise.all([
+  const [{ data: rawAttempts }, { count }, { data: earliest }] = await Promise.all([
     db
       .from('attempts')
       .select(
@@ -75,6 +74,16 @@ const loadReport = cache(async (rawToken: string) => {
       .from('attempts')
       .select('id', { count: 'exact', head: true })
       .eq('user_id', verified.userId),
+    // And the true start date, for the same reason: past ATTEMPT_LIMIT the
+    // oldest row in the page is not the oldest row there is, and "since March"
+    // is the figure a parent is most likely to check against their own memory.
+    db
+      .from('attempts')
+      .select('created_at')
+      .eq('user_id', verified.userId)
+      .order('created_at', { ascending: true })
+      .limit(1)
+      .maybeSingle(),
   ])
 
   const attempts = (rawAttempts ?? []) as unknown as AttemptWithPaper[]
@@ -89,12 +98,13 @@ const loadReport = cache(async (rawToken: string) => {
       target_grade: (profile?.target_grade as string | null) ?? null,
       exam_date: (profile?.exam_date as string | null) ?? null,
     },
-    { totalMarksCompleted: count ?? undefined }
+    {
+      totalMarksCompleted: count ?? undefined,
+      firstMarkedAt: (earliest?.created_at as string | undefined) ?? null,
+    }
   )
 
-  // First name only, and only because the student chose to send this link to
-  // someone who already knows them. Nothing else from the profile is used.
-  return { report, studentFirstName: firstNameOf(profile?.full_name) }
+  return { report }
 })
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -107,9 +117,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!loaded) {
     return { title: 'Progress report · MarkScheme', robots }
   }
-  const { report, studentFirstName } = loaded
-  const who = studentFirstName ? `${studentFirstName}'s` : 'A student'
-  const title = `${who} exam practice · ${report.marksCompleted} questions marked`
+  const { report } = loaded
+  const title = `Exam practice · ${report.marksCompleted} questions marked`
   return {
     title,
     description: `${report.marksCompleted} exam questions marked against the official mark scheme.`,
@@ -124,10 +133,9 @@ export default async function ParentProgressPage({ params }: Props) {
   const loaded = await loadReport(token)
   if (!loaded) notFound()
 
-  const { report, studentFirstName } = loaded
+  const { report } = loaded
   const prices = await getPricingDisplay()
   const yearly = formatMoney(prices.scholar.yearly.amountCents, prices.currency)
-  const who = studentFirstName ?? 'They'
 
   return (
     <main className="app-shell min-h-screen bg-[var(--ec-bg)] px-4 py-10 sm:py-14">
@@ -136,7 +144,7 @@ export default async function ParentProgressPage({ params }: Props) {
           Shared progress report · markscheme.app
         </p>
 
-        <ParentProgressReportCard report={report} studentFirstName={studentFirstName} />
+        <ParentProgressReportCard report={report} />
         <ParentReportViewTracker />
 
         {/* The ask, aimed at the person reading — §8b. The comparison is one a
@@ -147,8 +155,8 @@ export default async function ParentProgressPage({ params }: Props) {
             A tutor marks one paper an hour.
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-            MarkScheme marks every question {who === 'They' ? 'they write' : `${who} writes`},
-            all year, against the official Cambridge and IB mark schemes — with the
+            MarkScheme marks every question they write, all year, against the
+            official Cambridge and IB mark schemes — with the
             marks shown where they were won and lost. {yearly} for the exam year.
             Compare that with an hour of private tutoring.
           </p>

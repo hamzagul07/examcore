@@ -6,9 +6,11 @@ import type { ParentProgressReport } from '@/lib/reports/parent-report'
  * Written for a reader who has never seen the product, is not the one revising,
  * and wants one question answered: is the work actually happening? So the
  * effort figures lead and the grade talk follows. Nothing here can embarrass
- * its subject — no individual scores, no examiner comments, nothing they wrote
- * — because a report that can embarrass its subject does not get shared, and an
- * unshared report converts nobody.
+ * its subject — no individual scores, no examiner comments, nothing they wrote,
+ * and no name — because a report that can embarrass its subject does not get
+ * shared, and an unshared report converts nobody. The name was here until
+ * review pointed out that a first name on a non-revocable bearer URL is a
+ * personal identifier the student never opted into publishing.
  *
  * Server-rendered: it is a document, not an app.
  */
@@ -26,14 +28,10 @@ function plural(n: number, one: string, many = `${one}s`): string {
 
 export function ParentProgressReportCard({
   report,
-  studentFirstName,
 }: {
   report: ParentProgressReport
-  /** First name only, and only when the student chose to include it. */
-  studentFirstName?: string | null
 }) {
   const since = formatMonth(report.firstMarkedAt)
-  const who = studentFirstName?.trim() || null
   const subjectLine = report.subjects
     .slice(0, 4)
     .map((s) => s.label)
@@ -46,7 +44,6 @@ export function ParentProgressReportCard({
         The work behind the grade
       </h1>
       <p className="mt-2 font-mono text-xs text-[var(--ec-text-secondary)]">
-        {who ? `${who} · ` : ''}
         {subjectLine || 'Exam practice'}
         {since ? ` · since ${since}` : ''}
       </p>
@@ -182,6 +179,13 @@ export function ParentProgressReportCard({
         Every figure here comes from answers marked against the real Cambridge or
         IB mark scheme for that question — the same scheme an examiner uses. No
         answers, comments or personal details are included in this report.
+        {report.detailIsWindowed && report.detailWindowSize ? (
+          <>
+            {' '}
+            The total above is all time; the averages, subjects and topics are
+            drawn from the most recent {report.detailWindowSize} questions.
+          </>
+        ) : null}
       </p>
     </article>
   )

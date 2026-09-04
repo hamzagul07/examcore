@@ -1241,6 +1241,22 @@ export default function MarkPage() {
   const hasAnswer = hasAnswerUpload || hasTypedAnswer
 
   /**
+   * Whether offering another question is an offer and not a trap.
+   *
+   * A guest has one mark a day and a free student at the cap has none left, so
+   * both would click "mark this one too", write a second answer and be walled
+   * for it — having invested the writing first. That is the dead end this whole
+   * flow exists to remove, and the post-mark card would have rebuilt it.
+   *
+   * Credits count: they are exactly the thing that buys another mark, and
+   * someone holding them can take the offer.
+   */
+  const canMarkAgain =
+    !showingExample &&
+    !!billingSummary?.signedIn &&
+    (billingSummary.questions.remaining > 0 || billingSummary.credit_balance > 0)
+
+  /**
    * Nothing brought, nothing chosen — the state 1,207 of 1,300 /mark sessions
    * were in last month when they left without typing a character.
    *
@@ -4014,7 +4030,7 @@ export default function MarkPage() {
                         all; this is the step that closes that gap.
                         Aimed at the tags on the answer just marked, so the next
                         one lands on what they actually lost marks on. */}
-                    {!showingExample ? (
+                    {canMarkAgain ? (
                       <StarterQuestionInvite
                         variant="next"
                         subject={selectedSubject || null}

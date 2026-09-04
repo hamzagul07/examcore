@@ -28,10 +28,24 @@ export type StarterQuestionPayload = {
  */
 export function StarterQuestionInvite({
   subject,
+  topic,
+  variant = 'cold',
   onLoad,
 }: {
   /** The chosen subject, when there is one. Otherwise the server picks. */
   subject?: string | null
+  /**
+   * A syllabus topic to prefer — the tags from the answer just marked.
+   *
+   * This is what turns the card from a cold start into a next step: the
+   * question that follows lands on what they just lost marks on.
+   */
+  topic?: string | null
+  /**
+   * `cold` is the empty form. `next` is straight after a result, where the
+   * student has momentum and the offer is a continuation rather than a rescue.
+   */
+  variant?: 'cold' | 'next'
   onLoad: (question: StarterQuestionPayload) => void
 }) {
   const [question, setQuestion] = useState<StarterQuestionPayload | null>(null)
@@ -43,8 +57,11 @@ export function StarterQuestionInvite({
   // asked for nothing is worse than no offer.
   useEffect(() => {
     let cancelled = false
-    const url = subject
-      ? `/api/mark/starter-question?subject=${encodeURIComponent(subject)}`
+    const qs = new URLSearchParams()
+    if (subject) qs.set('subject', subject)
+    if (topic) qs.set('topic', topic)
+    const url = qs.size
+      ? `/api/mark/starter-question?${qs.toString()}`
       : '/api/mark/starter-question'
     fetch(url)
       .then((r) => r.json())
@@ -67,14 +84,17 @@ export function StarterQuestionInvite({
     return () => {
       cancelled = true
     }
-  }, [subject])
+  }, [subject, topic])
 
   if (!question) return null
 
+  const isNext = variant === 'next'
+
   return (
-    <div className="ms-starter-invite">
+    <div className={`ms-starter-invite${isNext ? ' is-next' : ''}`}>
       <p className="ms-starter-invite-lead">
-        <strong>No question to hand?</strong> Here is a real one —{' '}
+        <strong>{isNext ? 'Your next question.' : 'No question to hand?'}</strong>{' '}
+        {isNext ? 'Same subject, straight on from that one —' : 'Here is a real one —'}{' '}
         <span className="ms-starter-invite-ref">
           {question.paper_code} Q{question.question_number}, {question.total_marks}{' '}
           {question.total_marks === 1 ? 'mark' : 'marks'}
@@ -89,11 +109,12 @@ export function StarterQuestionInvite({
         onClick={() => {
           trackFunnelEvent('starter_question_taken', {
             subject: question.paper_code.split('/')[0] ?? null,
+            source: isNext ? 'post_mark' : 'empty_form',
           })
           onLoad(question)
         }}
       >
-        Answer this one &rarr;
+        {isNext ? 'Mark this one too →' : 'Answer this one →'}
       </button>
     </div>
   )

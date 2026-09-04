@@ -3394,3 +3394,14 @@
   font-size: 12px;
   color: var(--ec-text-secondary, #555);
 }
+
+/* The post-mark variant of the starter card.
+
+   Same object as the empty-form invitation, read differently: there the
+   student is stuck, here they have momentum and the offer is a continuation.
+   Solid brand edge rather than the dashed "nothing here yet" border. */
+.ms-starter-invite.is-next {
+  border-style: solid;
+  border-color: var(--ec-brand, #19774d);
+  margin-top: 16px;
+}

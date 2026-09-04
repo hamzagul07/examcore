@@ -20,10 +20,14 @@ export const dynamic = 'force-dynamic'
  * /api/mark/topic-question has to guard against.
  */
 export async function GET(request: NextRequest) {
-  const subject = new URL(request.url).searchParams.get('subject')
+  const params = new URL(request.url).searchParams
+  const subject = params.get('subject')
+  // Set after a mark: the tags on the answer just marked, so the next question
+  // lands on what they actually lost marks on.
+  const topic = params.get('topic')
 
   try {
-    const question = await findStarterQuestion(supabaseAdmin, subject)
+    const question = await findStarterQuestion(supabaseAdmin, subject, topic)
     if (!question) {
       // Not an error: a subject with no banked scheme simply has nothing to
       // offer, and the caller hides the invitation rather than showing a

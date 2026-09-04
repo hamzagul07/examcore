@@ -4005,6 +4005,29 @@ export default function MarkPage() {
                       onMarkAnother={handleMarkAnotherAttempt}
                       onMarkNewQuestion={handleMarkNewQuestion}
                     />
+                    {/* The next question, already chosen.
+                        "Mark a new question" resets to an empty form, which put
+                        the student back at the problem the starter card exists
+                        to solve — bring your own question — at every mark, not
+                        just the first. An active user averages 3.4 marks a month
+                        against a five-mark cap, so most never reach the wall at
+                        all; this is the step that closes that gap.
+                        Aimed at the tags on the answer just marked, so the next
+                        one lands on what they actually lost marks on. */}
+                    {!showingExample ? (
+                      <StarterQuestionInvite
+                        variant="next"
+                        subject={selectedSubject || null}
+                        topic={result.syllabus_tags?.[0] ?? null}
+                        onLoad={(q) => {
+                          // Reset FIRST. handleMarkNewQuestion clears the
+                          // question text and number, so applying before it
+                          // would wipe the question we just loaded.
+                          handleMarkNewQuestion()
+                          applyStarterQuestion(q)
+                        }}
+                      />
+                    ) : null}
                     {/* Premium, visible in the flow — meter + one concrete line,
                         replacing a bare "see plans" whisper. Guests get
                         GuestConversionPrompt above instead. */}

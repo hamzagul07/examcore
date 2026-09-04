@@ -17,6 +17,7 @@
  * The decisions live here, pure and tested; the query is a thin wrapper.
  */
 import type { SupabaseClient } from '@supabase/supabase-js'
+import { findQuestionForTopic } from '@/lib/marking/topic-question'
 
 /**
  * Cambridge Maths. It has 800 usable starters against 381 for the next subject,
@@ -144,9 +145,31 @@ export function pickStarter(
  */
 export async function findStarterQuestion(
   supabase: SupabaseClient,
-  requestedSubject?: string | null
+  requestedSubject?: string | null,
+  /**
+   * A syllabus topic to prefer, when there is one.
+   *
+   * After a mark, the answer's own tags say what the student just lost marks
+   * on, and the next question is far better spent there than at random. Only a
+   * preference: a topic whose banked questions are all sub-parts yields nothing
+   * usable, and a random whole question beats an unanswerable fragment on the
+   * right topic.
+   */
+  topicCode?: string | null
 ): Promise<StarterQuestion | null> {
   const subject = starterSubject(requestedSubject)
+
+  const topic = topicCode?.trim()
+  if (topic) {
+    try {
+      const match = await findQuestionForTopic(supabase, subject, topic)
+      const onTopic = match ? toStarterQuestion(match) : null
+      if (onTopic) return onTopic
+    } catch {
+      // A topic lookup failing is not a reason to offer nothing at all.
+    }
+  }
+
   const { data, error } = await supabase
     .from('mark_schemes')
     .select('paper_code, paper_session, question_number, question_text, total_marks')

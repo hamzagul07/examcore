@@ -3352,3 +3352,45 @@
     justify-content: center;
   }
 }
+
+
+/* The last free mark of the month.
+
+   Deliberately weightier than the running allowance card it replaces: this is
+   the only moment in the product where the wall is actually reached, and three
+   students reached it and left without ever seeing a paywall, because nothing
+   blocks until a sixth attempt that never came. */
+.ms-postmark-exhausted {
+  border: 2px solid var(--ec-brand, #19774d);
+  border-radius: 12px;
+  background: var(--ec-surface-raised, var(--ec-surface, #fff));
+  padding: 18px 18px 16px;
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
+}
+.ms-postmark-exhausted-label {
+  margin: 0 0 6px;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-brand, #19774d);
+}
+.ms-postmark-exhausted-body {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ec-text-primary, #141413);
+}
+.ms-postmark-exhausted-actions {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+.ms-postmark-exhausted-note {
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: var(--ec-text-secondary, #555);
+}

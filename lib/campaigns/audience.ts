@@ -75,14 +75,30 @@ async function loadAuthUsers(): Promise<Map<string, AuthUser>> {
   return byId
 }
 
+/**
+ * Addresses that have hard-bounced or filed a spam complaint.
+ *
+ * Loaded once per audience resolution rather than per recipient: a few hundred
+ * rows at most, and the alternative is a query inside a loop.
+ */
+async function suppressedAddresses(): Promise<Set<string>> {
+  const admin = createServiceClient()
+  const { data, error } = await admin.from('email_suppressions').select('email')
+  // A failure here must not become a silent full send. Suppression is the
+  // thing protecting the sending domain, so if it cannot be read the caller
+  // should stop rather than mail everyone.
+  if (error) throw new Error(`suppression list unreadable: ${error.message}`)
+  return new Set((data ?? []).map((r) => String(r.email).toLowerCase()))
+}
+
 /** Profile rows joined to a confirmed address. Unconfirmed addresses bounce. */
 async function profilesWith(
   filter: (q: ReturnType<typeof profileQuery>) => ReturnType<typeof profileQuery>
-): Promise<{ rows: ProfileRow[]; users: Map<string, AuthUser> }> {
+): Promise<{ rows: ProfileRow[]; users: Map<string, AuthUser>; suppressed: Set<string> }> {
   const { data, error } = await filter(profileQuery())
   if (error) throw new Error(`audience query failed: ${error.message}`)
-  const users = await loadAuthUsers()
-  return { rows: (data ?? []) as ProfileRow[], users }
+  const [users, suppressed] = await Promise.all([loadAuthUsers(), suppressedAddresses()])
+  return { rows: (data ?? []) as ProfileRow[], users, suppressed }
 }
 
 type ProfileRow = {
@@ -101,11 +117,19 @@ function profileQuery() {
     .select('id, full_name, email_product_updates, email_activation, onboarded, board, subjects')
 }
 
-function toRecipients(rows: ProfileRow[], users: Map<string, AuthUser>): Recipient[] {
+function toRecipients(
+  rows: ProfileRow[],
+  users: Map<string, AuthUser>,
+  suppressed: Set<string> = new Set()
+): Recipient[] {
   const out: Recipient[] = []
   for (const r of rows) {
     const u = users.get(r.id)
     if (!u || !u.confirmed) continue
+    // A hard bounce or a spam complaint removes an address from every segment,
+    // including the lifecycle ones nobody can opt out of. Consent is about
+    // whether they want it; this is about whether it can be delivered at all.
+    if (suppressed.has(u.email.toLowerCase())) continue
     out.push({ userId: r.id, email: u.email, name: r.full_name, subjects: r.subjects ?? [] })
   }
   return out
@@ -127,8 +151,8 @@ export const SEGMENTS: Record<SegmentId, Segment> = {
     description: 'Opted in to product updates. The newsletter list.',
     unsubscribeKind: 'updates',
     resolve: async () => {
-      const { rows, users } = await profilesWith((q) => q.eq('email_product_updates', true))
-      return toRecipients(rows, users)
+      const { rows, users, suppressed } = await profilesWith((q) => q.eq('email_product_updates', true))
+      return toRecipients(rows, users, suppressed)
     },
   },
 
@@ -138,13 +162,13 @@ export const SEGMENTS: Record<SegmentId, Segment> = {
       'Cambridge students, results week. Timing + deadlines they need — lifecycle, not marketing.',
     unsubscribeKind: 'activation',
     resolve: async () => {
-      const { rows, users } = await profilesWith((q) =>
+      const { rows, users, suppressed } = await profilesWith((q) =>
         q
           .eq('board', 'Cambridge International')
           .eq('onboarded', true)
           .neq('email_activation', false)
       )
-      return toRecipients(rows, users)
+      return toRecipients(rows, users, suppressed)
     },
   },
 
@@ -154,10 +178,10 @@ export const SEGMENTS: Record<SegmentId, Segment> = {
       'IB students, start of the IB year. IA timing they need — lifecycle, not marketing.',
     unsubscribeKind: 'activation',
     resolve: async () => {
-      const { rows, users } = await profilesWith((q) =>
+      const { rows, users, suppressed } = await profilesWith((q) =>
         q.eq('board', 'IB').eq('onboarded', true).neq('email_activation', false)
       )
-      return toRecipients(rows, users)
+      return toRecipients(rows, users, suppressed)
     },
   },
 
@@ -167,13 +191,14 @@ export const SEGMENTS: Record<SegmentId, Segment> = {
       'Finished onboarding, has never marked anything. Re-engagement — lifecycle, not marketing.',
     unsubscribeKind: 'activation',
     resolve: async () => {
-      const { rows, users } = await profilesWith((q) =>
+      const { rows, users, suppressed } = await profilesWith((q) =>
         q.eq('onboarded', true).neq('email_activation', false)
       )
       const marked = await markerIds()
       return toRecipients(
         rows.filter((r) => !marked.has(r.id)),
-        users
+        users,
+        suppressed
       )
     },
   },
@@ -184,11 +209,12 @@ export const SEGMENTS: Record<SegmentId, Segment> = {
     unsubscribeKind: 'updates',
     resolve: async () => {
       const since = new Date(Date.now() - 30 * 86_400_000).toISOString()
-      const { rows, users } = await profilesWith((q) => q.eq('email_product_updates', true))
+      const { rows, users, suppressed } = await profilesWith((q) => q.eq('email_product_updates', true))
       const recent = await markerIds(since)
       return toRecipients(
         rows.filter((r) => recent.has(r.id)),
-        users
+        users,
+        suppressed
       )
     },
   },
@@ -206,10 +232,11 @@ export const SEGMENTS: Record<SegmentId, Segment> = {
         .in('status', ['active', 'trialing', 'past_due'])
       if (error) throw new Error(`subscriptions query failed: ${error.message}`)
       const paid = new Set((subs ?? []).map((s) => s.user_id as string))
-      const { rows, users } = await profilesWith((q) => q.eq('email_product_updates', true))
+      const { rows, users, suppressed } = await profilesWith((q) => q.eq('email_product_updates', true))
       return toRecipients(
         rows.filter((r) => paid.has(r.id)),
-        users
+        users,
+        suppressed
       )
     },
   },
@@ -233,8 +260,8 @@ export const SEGMENTS: Record<SegmentId, Segment> = {
       'ONE-TIME ONLY: confirmed accounts that have never answered the product-updates question.',
     unsubscribeKind: 'updates',
     resolve: async () => {
-      const { rows, users } = await profilesWith((q) => q.neq('email_product_updates', true))
-      return toRecipients(rows, users)
+      const { rows, users, suppressed } = await profilesWith((q) => q.neq('email_product_updates', true))
+      return toRecipients(rows, users, suppressed)
     },
   },
 }

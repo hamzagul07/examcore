@@ -315,6 +315,12 @@ async function handleMarkRequest(request: NextRequest) {
     const manualPaperCode = formData.get('manual_paper_code') as string | null
     const manualPaperSession = formData.get('manual_paper_session') as string | null
     const manualQuestionNumber = formData.get('manual_question_number') as string | null
+    // Optional client idempotency key (mobile): 8-64 url-safe chars.
+    const clientRequestIdRaw = (formData.get('client_request_id') as string | null)?.trim()
+    const clientRequestId =
+      clientRequestIdRaw && /^[A-Za-z0-9_-]{8,64}$/.test(clientRequestIdRaw)
+        ? clientRequestIdRaw
+        : null
     const uploadModeRaw = formData.get('upload_mode') as string | null
     const uploadMode: UploadMode =
       uploadModeRaw === 'whole_paper' ? 'whole_paper' : 'single_question'
@@ -381,6 +387,24 @@ async function handleMarkRequest(request: NextRequest) {
       )
     }
 
+    // A retry of an upload the server already accepted (the client lost the
+    // connection before the run id arrived) must find the original run, not
+    // start — and charge — a second one.
+    if (clientRequestId) {
+      const { data: existingRun } = await supabaseAdmin
+        .from('mark_runs')
+        .select('id, status')
+        .eq('client_request_id', clientRequestId)
+        .maybeSingle()
+      if (existingRun && (existingRun.status === 'running' || existingRun.status === 'success')) {
+        return NextResponse.json({
+          duplicate: true,
+          mark_run_id: existingRun.id,
+          status: existingRun.status,
+        })
+      }
+    }
+
     if (userId) {
       reservation = await reserveMarkUsage(
         userId,
@@ -418,6 +442,7 @@ async function handleMarkRequest(request: NextRequest) {
       pageCount: pageFiles.length,
       hasPdf: !!answerPdf?.size,
       isPaid,
+      clientRequestId,
       subjectCode: subjectCodeForRun,
       examSystem: resolveMarkRunExamSystem({
         explicit: examSystemExplicit,

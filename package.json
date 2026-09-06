@@ -32,7 +32,7 @@
     "audit:ib-totals": "tsx scripts/audit-ib-totals.ts",
     "ib:guidance": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/extract-ib-guidance.mjs",
     "outreach": "tsx scripts/outreach.ts",
-    "test:billing": "cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/teacher-seat.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/scholar-access.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/max-features.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/refund-share.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/first-mark-premium.test.ts",
+    "test:billing": "cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/teacher-seat.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/scholar-access.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/max-features.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/refund-share.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/first-mark-premium.test.ts && cross-env NODE_OPTIONS=--conditions=react-server tsx lib/billing/pricing-ladder.test.ts",
     "email:preview": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/preview-emails.ts",
     "profile:nudge": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/send-profile-completion.ts",
     "activation:nudge": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/send-activation-nudge.ts",

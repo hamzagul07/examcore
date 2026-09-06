@@ -58,10 +58,17 @@ type Props = {
   testimonials?: Testimonial[]
 }
 
-/** Sell surface: Free / Scholar / Max. Pro (`student`) is legacy-only. */
-type PlanId = 'free' | 'scholar' | 'max'
+/**
+ * Sell surface: Free / Starter / Scholar / Max.
+ *
+ * Starter (`student`) used to be legacy-only and hidden, which left the first
+ * paid step on the whole site at $19.99. Of everyone who reached checkout, 25%
+ * bought — but only 8 sessions in 30 days reached it. The gap between $0 and
+ * $19.99 is the thing being fixed here, not the height of Scholar.
+ */
+type PlanId = 'free' | 'starter' | 'scholar' | 'max'
 type PaidPlan = Exclude<PlanId, 'free'>
-type PaidProduct = 'scholar' | 'mastery'
+type PaidProduct = 'student' | 'scholar' | 'mastery'
 type CreditProduct = 'credits_25' | 'credits_100' | 'credits_500'
 
 /**
@@ -100,10 +107,16 @@ const CREDIT_PACKS: ReadonlyArray<{
 ]
 
 const PLAN_PRODUCT: Record<PaidPlan, PaidProduct> = {
+  starter: 'student',
   scholar: 'scholar',
   max: 'mastery',
 }
-const PLAN_NAME: Record<PlanId, string> = { free: 'Free', scholar: 'Scholar', max: 'Max' }
+const PLAN_NAME: Record<PlanId, string> = {
+  free: 'Free',
+  starter: 'Starter',
+  scholar: 'Scholar',
+  max: 'Max',
+}
 const TIER_RANK: Record<string, number> = { free: 0, student: 1, scholar: 2, mastery: 3 }
 
 /**
@@ -117,6 +130,7 @@ const TIER_RANK: Record<string, number> = { free: 0, student: 1, scholar: 2, mas
 const RESUME_PARAM = 'resume'
 
 const RESUMABLE: readonly string[] = [
+  'student',
   'scholar',
   'mastery',
   'credits_25',
@@ -126,6 +140,8 @@ const RESUMABLE: readonly string[] = [
 
 const FREE_Q = capForTier('free')
 const FREE_OMNI = omniCapForTier('free')
+const STA_Q = capForTier('student')
+const STA_OMNI = omniCapForTier('student')
 const SCH_Q = capForTier('scholar')
 const SCH_OMNI = omniCapForTier('scholar')
 const MAX_Q = capForTier('mastery')
@@ -139,7 +155,6 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier, testimo
   const [notice, setNotice] = useState<string | null>(null)
   const cur = display.currency
   const currentRank = TIER_RANK[currentTier ?? 'free'] ?? 0
-  const onLegacyPro = currentTier === 'student'
 
   /**
    * Send a signed-out buyer to signup, remembering what they came for.
@@ -230,6 +245,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier, testimo
     }
   }
 
+  const starterPrice = priceBlock(display.student)
   const scholarPrice = priceBlock(display.scholar)
   const maxPrice = priceBlock(display.mastery)
 
@@ -323,6 +339,28 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier, testimo
       ],
     },
     {
+      id: 'starter',
+      name: 'Starter',
+      tag: 'The first real step',
+      bestFor: 'A few questions a week, properly marked',
+      blurb:
+        'Five marks a month runs out in one sitting. This is the plan for steady weekly practice — every mark checked twice, and your own answer rewritten to full marks when you drop one.',
+      killer: `${STA_Q} questions · deep marking · full-marks rewrite`,
+      now: starterPrice.now,
+      per: starterPrice.per,
+      sub: starterPrice.sub,
+      features: [
+        ['Everything in Free', true],
+        [`${STA_Q} marked questions / month`, true],
+        [`${STA_OMNI} study-chat messages / month`, true],
+        ['Second-opinion verify pass on every mark', true],
+        ['Your answer rewritten to full marks', true],
+        ['Whole-paper marking — up to 15 questions', false],
+        ['Topic mastery matrix & progress journey', false],
+        ['Max Resource Vault & weekly coach', false],
+      ],
+    },
+    {
       id: 'scholar',
       name: 'Scholar',
       tag: 'Serious weekly pace',
@@ -334,7 +372,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier, testimo
       per: scholarPrice.per,
       sub: scholarPrice.sub,
       features: [
-        ['Everything in Free', true],
+        ['Everything in Starter', true],
         [`${SCH_Q} marked questions / month`, true],
         [`${SCH_OMNI} study-chat messages / month`, true],
         ['Whole-paper marking — up to 15 questions', true],
@@ -503,18 +541,11 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier, testimo
           </div>
         </header>
 
-        {onLegacyPro ? (
-          <StatusMessage tone="info" className="pricing-notice">
-            You are on Pro (no longer offered to new subscribers). Upgrade to Scholar or Max
-            anytime — or manage billing in your account.
-          </StatusMessage>
-        ) : null}
-
         <div className="pricing-controls">
           <p className="pricing-allowance-lead">
             How many answers do you mark each month?{' '}
             <span className="mono">
-              Free {FREE_Q} · Scholar {SCH_Q} · Max {MAX_Q}
+              Free {FREE_Q} · Starter {STA_Q} · Scholar {SCH_Q} · Max {MAX_Q}
             </span>
           </p>
           <SegmentedControl
@@ -545,7 +576,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier, testimo
           options={plans.map((p) => ({ value: p.id, label: p.name }))}
         />
 
-        <div className="plans three" id="plans">
+        <div className="plans four" id="plans">
           {plans.map((p) => {
             const cta = ctaFor(p.id)
             return (

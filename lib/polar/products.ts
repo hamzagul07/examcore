@@ -117,9 +117,20 @@ export const DISPLAY_PRICES_USD: {
   credits_100: number
   credits_500: number
 } = {
-  // Pro (legacy / not sold on /pricing) · Scholar · Max.
+  // Starter · Scholar · Max.
   // Annual list price = 10× monthly (~17% vs paying monthly for a year).
-  student: { monthly: 1100, yearly: 11000 }, // Pro  $11 / $110 (legacy)
+  //
+  // `student` was the legacy Pro tier at $11/50 and was not sold anywhere: the
+  // pricing page offered Free → Scholar with nothing between them, so the first
+  // paid step on the site was $19.99. Against traffic that is mostly teenagers
+  // in Brazil, India, Bangladesh, Pakistan, Indonesia and Vietnam, that is not
+  // a step, it is a cliff — and the funnel showed it. Of everyone who reached
+  // checkout, 25% bought; only 8 sessions in 30 days ever got there.
+  //
+  // Repriced rather than added, because the tier, the Polar product mapping,
+  // the webhook grant and the enforcement path all already existed and nobody
+  // held the tier (0 subscribers on 2026-09-06), so nothing is demoted.
+  student: { monthly: 599, yearly: 5990 }, // Starter $5.99 / $59.90
   scholar: { monthly: 1999, yearly: 19900 }, // Scholar $19.99 / $199
   mastery: { monthly: 3500, yearly: 35000 }, // Max  $35 / $350
   credits_25: 1000,

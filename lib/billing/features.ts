@@ -141,6 +141,42 @@ export function hasMaxWeeklyCoach(access: EffectiveAccess): boolean {
 }
 
 /**
+ * The first mark a signed-in student ever runs is marked as if they were paid:
+ * second-opinion verify pass and rewrite-to-full-marks, both normally Pro+.
+ *
+ * Why this rather than another trial. Two timed trials have been built and
+ * removed (20260705, then 20260807 after 194 accounts produced 2 subscribers),
+ * so a third would be the same experiment with the same answer. A timer sells
+ * "you have 7 days left", which is a deadline; this sells "the thing you just
+ * held is not what you get next time", which is a comparison the student makes
+ * with their own script in front of them. Loss frames convert roughly twice as
+ * hard as gain frames, and this is the only version of one the product can run
+ * without a countdown.
+ *
+ * It costs one extra verify pass and one rewrite per account, once, and only
+ * for accounts that reach a first mark at all — measured over 60 days that is
+ * 17 people. The upside is that the premium tier stops being invisible: today
+ * every premium feature is gated behind a subscription nobody has bought, so
+ * literally no user has ever seen one.
+ *
+ * Deliberately not extended to guests. A guest has no record to lose and no
+ * account to come back to, so the loss frame has nothing to bite on — and the
+ * guest allowance is one mark a day, which would make every guest mark premium.
+ */
+export function hasFirstMarkPremium(opts: {
+  access: EffectiveAccess
+  /** False for guests — the boost is an account benefit. */
+  signedIn: boolean
+  /** No attempt has ever been recorded for this account. */
+  isFirstEverMark: boolean
+}): boolean {
+  if (!opts.signedIn || !opts.isFirstEverMark) return false
+  // Paid users already have both features; saying "yes" here would be harmless
+  // but would also label their result as a one-off, which is a lie.
+  return !hasPaidAccess(opts.access)
+}
+
+/**
  * Early-access surfaces. Only light up UI when a real experimental flag is set
  * so we never advertise empty early access.
  */

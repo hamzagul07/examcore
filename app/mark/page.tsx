@@ -38,6 +38,7 @@ import {
   defaultSubjectsForProfile,
 } from '@/lib/profile-options'
 import { getIbMarkableSubjectCodes, resolveSubjectLabel, isIbSubjectCode } from '@/lib/ib/marking-config'
+import { subjectLacksBankedScheme } from '@/lib/marking/scheme-coverage'
 import { ibPracticeCriteriaSummary } from '@/lib/ib/practice-prompts'
 import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
 import { WholePaperResultView } from '@/components/WholePaperResultView'
@@ -58,6 +59,7 @@ import {
   MarkExampleInvite,
 } from '@/components/mark/MarkExample'
 import { MarkFeedbackPrompt } from '@/components/mark/MarkFeedbackPrompt'
+import { FirstMarkPremiumNote } from '@/components/billing/FirstMarkPremiumNote'
 import { PredictScorePrompt } from '@/components/mark/PredictScorePrompt'
 import { RunningElsewhereNotice } from '@/components/mark/RunningElsewhereNotice'
 import {
@@ -179,11 +181,21 @@ type SessionInfo = {
   year: number
   season: string
   components: string[]
+  /** Components here we hold an extracted mark scheme for, not just a PDF. */
+  schemeComponents?: string[]
 }
 
 type SubjectInfo = {
   subject: string
   sessions: Record<string, SessionInfo>
+  /**
+   * Whether any structured mark scheme exists for this subject.
+   *
+   * Optional because a cached payload from before /api/papers/available started
+   * reporting it has no opinion — and "no opinion" must not read as "no scheme"
+   * or every subject would be treated as uncovered.
+   */
+  hasSchemes?: boolean
 }
 
 type AvailablePapers = Record<string, SubjectInfo>
@@ -202,6 +214,12 @@ type MarkingResult = MarkingResultData & {
    * result still shows the gap. */
   predicted_marks?: number | null
   _allowance?: AllowanceBlock
+  /**
+   * This account's first ever mark, run with the paid depth (verify pass +
+   * full-marks rewrite). Set by the API on that one run only — see
+   * hasFirstMarkPremium.
+   */
+  _first_mark_premium?: boolean
 }
 
 type UpgradeModalState = {
@@ -1447,10 +1465,33 @@ export default function MarkPage() {
   // Blocking stops the moment they supply the number the message asked for.
   const marksPromiseBroken =
     marksPromiseUnkeepable && parsedTotalMarksInput === null
+
+  /**
+   * The subject was offered from PDF storage but nothing structured backs it.
+   *
+   * `/api/papers/available` lists a component when both the question paper and
+   * the mark scheme PDF exist, while marking against the official scheme needs
+   * extracted `mark_schemes` rows — and extraction has only been run for ten
+   * subjects. A student picking one of the others (4024, 5070, 2281, 9699,
+   * 9990) was being offered a past paper we cannot mark officially.
+   *
+   * Explicit `=== false`: undefined means the payload predates this field and
+   * has no opinion, which must not be read as "no scheme".
+   */
+  const subjectHasNoBankedScheme =
+    !!selectedSubject &&
+    subjectLacksBankedScheme(availablePapers?.[selectedSubject])
+
   const totalMarksSatisfied =
     !showTotalMarksField ||
     parsedTotalMarksInput !== null ||
-    (marksInQuestion && !marksPromiseUnkeepable)
+    // "The marks are shown in the question" is normally allowed to stand — a
+    // photo we have not read could carry the number. But when no structured
+    // scheme exists for the subject, reading it off the image is the ONLY route
+    // left, and that route is where half of all marking failures happen: 13 of
+    // 26 over 60 days, each after a wait of up to three minutes. Asking for a
+    // number the student can read off their own paper is the cheaper trade.
+    (marksInQuestion && !marksPromiseUnkeepable && !subjectHasNoBankedScheme)
 
   // Why the submit button is disabled, in words — shown under the button so a
   // greyed-out CTA never leaves the user guessing.
@@ -1473,7 +1514,9 @@ export default function MarkPage() {
                 : marksPromiseBroken
                   ? QUESTION_TOTAL_PROMISE_BROKEN_MESSAGE
                   : !totalMarksSatisfied
-                    ? 'Enter the total marks for this question, or tick that they are shown in the question.'
+                    ? subjectHasNoBankedScheme
+                      ? 'We don\u2019t hold the official scheme for this subject yet, so we can\u2019t confirm the total ourselves \u2014 type it in (e.g. 18) and we\u2019ll mark out of that.'
+                      : 'Enter the total marks for this question, or tick that they are shown in the question.'
                     : null
 
   const wholePaperCode =
@@ -3506,7 +3549,12 @@ export default function MarkPage() {
                       ? 'official'
                       : isManualFilled && schemeInDb === false
                         ? 'missing_paper'
-                        : 'general'
+                        : // Known from the subject alone, so it lands when the
+                          // subject is picked rather than after the whole paper
+                          // has been filled in and the question number typed.
+                          subjectHasNoBankedScheme
+                          ? 'no_subject_scheme'
+                          : 'general'
                   }
                 />
               ) : null}
@@ -3942,8 +3990,15 @@ export default function MarkPage() {
             <MarkingResultView
               result={result}
               afterScore={
-                !showingExample && result.attempt_id ? (
-                  <MarkFeedbackPrompt attemptId={result.attempt_id} />
+                !showingExample ? (
+                  <>
+                    {/* Directly under the score, while the verify pass and the
+                        rewrite it is describing are both still on screen. */}
+                    {result._first_mark_premium ? <FirstMarkPremiumNote /> : null}
+                    {result.attempt_id ? (
+                      <MarkFeedbackPrompt attemptId={result.attempt_id} />
+                    ) : null}
+                  </>
                 ) : null
               }
               attemptId={result.attempt_id ?? null}

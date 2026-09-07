@@ -393,7 +393,19 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier, testimo
       // Reinstate the day the data does.
       tag: 'The full coach',
       bestFor: 'Marking plus the coach built from it',
-      blurb: `The coach on top of the marking. The Vault — ${GLOSS_VAULT}. Concept Cinema — ${GLOSS_CINEMA}. A sprint pack near the exam, priority marking on long papers, and the Sunday coach — ${GLOSS_SUNDAY_COACH}.`,
+      // Deliberately does NOT inline GLOSS_VAULT / GLOSS_CINEMA /
+      // GLOSS_SUNDAY_COACH. It used to, which made it seven lines against three
+      // for every other card — and the cards share subgrid rows so all four CTAs
+      // land on one line, so this one blurb was setting the row height and
+      // leaving a dead band of whitespace in Free, Starter and Scholar.
+      //
+      // Nothing is lost: the feature list directly below names the Vault, the
+      // sprint pack, priority marking and the Sunday report, and the Max section
+      // further down the page spells all three glosses out in full. This was the
+      // third statement of the same content on one page. It carries the idea
+      // instead — the loop that the features serve.
+      blurb:
+        'The coach on top of the marking. Every mark you drop rebuilds a revision desk, queues a replay, and turns up in Sunday\'s report — so revision finally has a target instead of a reading list.',
       killer: `${MAX_Q} questions · Vault · Cinema · Sunday coach`,
       now: maxPrice.now,
       per: maxPrice.per,

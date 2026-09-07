@@ -345,7 +345,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier, testimo
       bestFor: 'A few questions a week, properly marked',
       blurb:
         'Five marks a month runs out in one sitting. This is the plan for steady weekly practice — every mark checked twice, and your own answer rewritten to full marks when you drop one.',
-      killer: `${STA_Q} questions · deep marking · full-marks rewrite`,
+      killer: `${STA_Q} questions · full-marks rewrite`,
       now: starterPrice.now,
       per: starterPrice.per,
       sub: starterPrice.sub,
@@ -353,7 +353,10 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier, testimo
         ['Everything in Free', true],
         [`${STA_Q} marked questions / month`, true],
         [`${STA_OMNI} study-chat messages / month`, true],
-        ['Second-opinion verify pass on every mark', true],
+        // NOT "on every mark": markSingleQuestion defaults verify = true for
+        // everyone, and isPaid gates the pass only on scripts split into more
+        // than VERIFY_MAX_BATCH (3) questions. The narrow claim is the true one.
+        ['Second-opinion pass on scripts over 3 questions', true],
         ['Your answer rewritten to full marks', true],
         ['Whole-paper marking — up to 15 questions', false],
         ['Topic mastery matrix & progress journey', false],

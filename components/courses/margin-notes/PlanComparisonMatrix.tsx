@@ -44,7 +44,15 @@ const ROWS: Row[] = [
     label: 'Live interactive diagrams',
     cells: [INTERACTIVE_DIAGRAMS_FREE, true, true, true],
   },
-  { label: 'Second-opinion verify pass on every mark', cells: [false, true, true, true] },
+  // Free already gets the verify pass on an ordinary single question — the
+  // pipeline defaults verify = true and only skips it, for free and guest
+  // runs, once a script splits into more than three questions. So this row is
+  // about long scripts, and saying "every mark" would be selling the free tier
+  // its own behaviour.
+  {
+    label: 'Second-opinion pass on scripts over 3 questions',
+    cells: [false, true, true, true],
+  },
   { label: 'Your answer rewritten to full marks', cells: [false, true, true, true] },
   { label: 'Whole-paper marking', cells: [false, false, true, true] },
   {

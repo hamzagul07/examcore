@@ -275,6 +275,9 @@ export function SiteHeader({ variant }: Props) {
           variant="inline"
           loadingText="Opening…"
           className={cn('ec-nav-link', active && 'ec-nav-link--active')}
+          // Styling hook so a single item can be dropped at a width where the
+          // row cannot hold it — see the 901-1100px rule for 'for-teachers'.
+          data-nav-id={item.id}
           aria-current={active ? 'page' : undefined}
         >
           {item.label.toLowerCase()}

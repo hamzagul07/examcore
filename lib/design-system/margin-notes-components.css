@@ -960,6 +960,19 @@
     }
   }
 
+  /* The desktop nav appears at 901px and fits six items. "Teachers" is the
+     seventh, and between 901px and 1100px it does not fit: measured at 1024px
+     the theme toggle sat 32px on top of it, and at 960px the row collided with
+     the Sign up button too. Forcing nowrap only converted the old wrap into
+     that overlap, so the item is dropped in the band instead — which is exactly
+     the six-item header this page had before it was added. /for-teachers stays
+     reachable from the footer there, and the burger carries it below 901px. */
+  @media (min-width: 901px) and (max-width: 1100px) {
+    .ec-nav-link[data-nav-id='for-teachers'] {
+      display: none;
+    }
+  }
+
   @media (min-width: 901px) {
     .ec-nav-links {
       display: flex;

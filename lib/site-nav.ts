@@ -123,7 +123,10 @@ export const SITE_NAV_ITEMS: SiteNavItem[] = [
     // for someone who does not have an account yet.
     id: 'for-teachers',
     href: '/for-teachers',
-    label: 'For teachers',
+    // One word, because this is the seventh item in the row and the two-word
+    // version was what pushed the nav over at 1024px. "Teachers" beside
+    // "Community" reads as the section it is.
+    label: 'Teachers',
     variants: ['marketing', 'reading'],
     isActive: (p) => p === '/for-teachers' || p.startsWith('/for-teachers/'),
   },

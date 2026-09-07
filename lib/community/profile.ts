@@ -9,6 +9,7 @@ export type PublicProfile = {
   avatarUrl: string | null
   createdAt: string | null
   postCount: number
+  flair: string | null
   topSubjects: { subjectCode: string; reputation: number }[]
 }
 
@@ -19,6 +20,7 @@ async function enrich(row: {
   reputation: number | null
   avatar_url: string | null
   created_at: string | null
+  flair: string | null
 }): Promise<PublicProfile | null> {
   if (!row.username) return null
   const admin = createServiceClient()
@@ -43,6 +45,7 @@ async function enrich(row: {
     avatarUrl: row.avatar_url ?? null,
     createdAt: row.created_at ?? null,
     postCount: count ?? 0,
+    flair: row.flair ?? null,
     topSubjects: (reps ?? []).map((r) => ({
       subjectCode: r.subject_code as string,
       reputation: r.reputation as number,
@@ -55,7 +58,7 @@ export async function getProfileById(userId: string): Promise<PublicProfile | nu
   const admin = createServiceClient()
   const { data } = await admin
     .from('user_profiles')
-    .select('id, username, bio, reputation, avatar_url, created_at')
+    .select('id, username, bio, reputation, avatar_url, created_at, flair')
     .eq('id', userId)
     .maybeSingle()
   if (!data) return null
@@ -67,7 +70,7 @@ export async function getProfileByUsername(username: string): Promise<PublicProf
   const admin = createServiceClient()
   const { data } = await admin
     .from('user_profiles')
-    .select('id, username, bio, reputation, avatar_url, created_at')
+    .select('id, username, bio, reputation, avatar_url, created_at, flair')
     .eq('username', normalizeUsername(username))
     .maybeSingle()
   if (!data || !data.username) return null

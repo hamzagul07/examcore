@@ -1,6 +1,14 @@
 import assert from 'node:assert/strict'
 import { capForTier, omniCapForTier, tierMarketingName } from '@/lib/billing/caps'
 import { DISPLAY_PRICES_USD } from '@/lib/polar/products'
+import {
+  hasFullMarksRewrite,
+  hasPaidAccess,
+  hasScholarFeatures,
+  wholePaperQuestionLimit,
+} from '@/lib/billing/features'
+import { effectiveAccess } from '@/lib/billing/access'
+import { pricingSeoDescription } from '@/lib/billing/pricing-copy'
 
 /**
  * The ladder has to rise in both directions at once, and it is easy to break by
@@ -70,6 +78,59 @@ assert.ok(
   DISPLAY_PRICES_USD.student.monthly < DISPLAY_PRICES_USD.scholar.monthly / 2,
   'Starter must be well under half of Scholar, or it is not an entry step'
 )
+
+/**
+ * The FEATURE ladder, which the price ladder above cannot see.
+ *
+ * Starter shipped able to reach whole-paper marking, the course library and the
+ * mastery matrix — everything Scholar sells bar the mark cap — because every
+ * paid gate was written `access !== 'free'` while the pricing page showed all
+ * three as excluded. The table above passed the whole time: it pins price and
+ * caps and knows nothing about features.
+ *
+ * These assert the two claims the comparison matrix makes at the point of sale.
+ */
+assert.equal(hasPaidAccess('pro'), true, 'Starter is paid')
+assert.equal(hasFullMarksRewrite('pro'), true, 'Starter buys the rewrite it is sold on')
+assert.equal(
+  hasScholarFeatures('pro'),
+  false,
+  'Starter must NOT reach Scholar features, or $5.99 buys what $19.99 buys'
+)
+assert.equal(hasScholarFeatures('scholar'), true)
+assert.equal(hasScholarFeatures('max'), true)
+assert.equal(hasScholarFeatures('free'), false)
+
+// Whole-paper marking is the most expensive of the three to give away.
+assert.equal(
+  wholePaperQuestionLimit('pro'),
+  wholePaperQuestionLimit('free'),
+  'Starter gets the free preview slice, as its plan card says'
+)
+assert.ok(
+  wholePaperQuestionLimit('scholar') > wholePaperQuestionLimit('pro'),
+  'Scholar must actually buy more of a paper than Starter'
+)
+
+// A teacher seat resolves to scholar precisely so this stays true: the seat
+// exists to get a class set marked, and gating whole papers at Scholar while
+// teachers sat on `pro` would have removed exactly that.
+assert.equal(
+  hasScholarFeatures(
+    effectiveAccess({ tier: 'free', status: 'active', teacherVerified: true })
+  ),
+  true,
+  'a teacher seat can still mark a whole class set'
+)
+
+// The pricing meta description must fit the SERP cap the SEO helper enforces —
+// naming a new tier in it is exactly how it silently grew past 160 before.
+const seoDesc = pricingSeoDescription()
+assert.ok(
+  seoDesc.length <= 160,
+  `pricing meta description is ${seoDesc.length} chars, over the 160 cap`
+)
+assert.ok(seoDesc.includes('Starter'), 'the entry tier has to be named in it')
 
 // The brand names the sell surface renders.
 assert.equal(tierMarketingName('free'), 'Free')

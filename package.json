@@ -23,7 +23,7 @@
     "community:seed-ib": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/seed-ib-ia-threads.ts",
     "test:channels": "tsx scripts/verify-channel-classifier.ts",
     "test:grants": "tsx scripts/verify-column-grants.ts",
-    "teacher:grant": "tsx scripts/grant-teacher-seat.ts",
+    "teacher:grant": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/grant-teacher-seat.ts",
     "cohort:gaps": "tsx scripts/cohort-gap-report.ts",
     "marking:health": "tsx scripts/marking-health.ts",
     "mark:smoke": "cross-env NODE_OPTIONS=--conditions=react-server tsx scripts/mark-smoke.ts",

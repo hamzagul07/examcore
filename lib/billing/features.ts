@@ -52,8 +52,13 @@ export const FREE_WHOLE_PAPER_QUESTION_LIMIT = 3
 /** Paid / preview cap for whole-paper segmentation. */
 export const WHOLE_PAPER_QUESTION_LIMIT = 15
 
+/**
+ * Whole-paper marking is a Scholar feature, so Starter gets the same preview
+ * slice as Free rather than the full script — which is what both the plan card
+ * and the comparison matrix have always said it gets.
+ */
 export function wholePaperQuestionLimit(access: EffectiveAccess): number {
-  return hasPaidAccess(access)
+  return hasScholarFeatures(access)
     ? WHOLE_PAPER_QUESTION_LIMIT
     : FREE_WHOLE_PAPER_QUESTION_LIMIT
 }
@@ -82,9 +87,27 @@ export function hasFullMarksRewrite(access: EffectiveAccess): boolean {
   return hasPaidAccess(access)
 }
 
+/**
+ * Scholar and above — the features Starter does NOT buy.
+ *
+ * The line that separates the $5.99 plan from the $19.99 one. Without it every
+ * paid gate was `access !== 'free'`, so Starter reached whole-paper marking,
+ * the course library and the mastery matrix — everything Scholar sells except
+ * the mark cap — while the pricing page showed all three as excluded. That made
+ * the comparison table wrong at the point of sale and left Scholar charging
+ * 3.3x for allowance alone.
+ *
+ * Teacher seats resolve to `scholar` (see ./access), so a teacher marking a
+ * class set keeps whole papers. That is the whole reason the seat was moved off
+ * `pro`.
+ */
+export function hasScholarFeatures(access: EffectiveAccess): boolean {
+  return access === 'scholar' || access === 'max'
+}
+
 /*
- * Max-only exclusives. Scholar/Pro keep shared paid features above; these add
- * on top so Max feels given-to without stripping the middle tier.
+ * Max-only exclusives. Scholar/Starter keep shared paid features above; these
+ * add on top so Max feels given-to without stripping the middle tier.
  */
 
 export function isMax(access: EffectiveAccess): boolean {

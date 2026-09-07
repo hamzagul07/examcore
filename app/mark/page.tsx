@@ -3989,12 +3989,20 @@ export default function MarkPage() {
 
             <MarkingResultView
               result={result}
+              firstMarkPremium={!!result._first_mark_premium}
               afterScore={
                 !showingExample ? (
                   <>
-                    {/* Directly under the score, while the verify pass and the
-                        rewrite it is describing are both still on screen. */}
-                    {result._first_mark_premium ? <FirstMarkPremiumNote /> : null}
+                    {/* Only once the rewrite is actually attached. The note
+                        describes that panel, and on the streaming path it
+                        arrives 15-30s after the score — while the pipeline skips
+                        it entirely for MCQs and for full-marks answers. Showing
+                        the note before or without it promises something that is
+                        not on the page. */}
+                    {result._first_mark_premium &&
+                    result.ai_marking?.full_marks_rewrite ? (
+                      <FirstMarkPremiumNote />
+                    ) : null}
                     {result.attempt_id ? (
                       <MarkFeedbackPrompt attemptId={result.attempt_id} />
                     ) : null}

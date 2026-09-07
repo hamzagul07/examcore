@@ -95,6 +95,12 @@ async function loadSchemeCoverage(): Promise<Set<string>> {
     const { data, error } = await supabaseAdmin
       .from('mark_schemes')
       .select('paper_code, paper_session')
+      // OFFSET paging over an unordered relation can repeat and skip rows —
+      // Postgres promises no order without ORDER BY, and a plan change or a
+      // concurrent extraction write is enough to shuffle it. A skipped pair
+      // drops a real paper out of the coverage set, which reports a subject we
+      // DO hold as uncovered and forces every student in it to type a total.
+      .order('id')
       .range(from, from + PAGE - 1)
 
     if (error) {

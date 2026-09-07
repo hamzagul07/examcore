@@ -31,7 +31,7 @@ assert.equal(
 assert.equal(
   effectiveAccess({ tier: 'student', status: 'active' }),
   'pro',
-  'legacy Pro still resolves to pro'
+  'the student tier (Starter) resolves to pro'
 )
 assert.equal(
   effectiveAccess({ tier: 'scholar', status: 'canceled' }),
@@ -55,7 +55,7 @@ assert.ok(hasFullMarksRewrite('scholar'), 'Scholar keeps rewrite-to-full-marks')
 
 assert.ok(hasResourceVault('scholar'), 'Scholar can open the Vault')
 assert.ok(hasResourceVault('max'), 'Max can open the Vault')
-assert.ok(!hasResourceVault('pro'), 'legacy Pro cannot')
+assert.ok(!hasResourceVault('pro'), 'Starter cannot')
 assert.ok(!hasResourceVault('free'), 'free cannot')
 
 assert.equal(vaultSubjectLimit('scholar'), 1, 'Scholar sees one subject desk')

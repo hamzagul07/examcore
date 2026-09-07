@@ -971,6 +971,20 @@
     .ec-nav-link[data-nav-id='for-teachers'] {
       display: none;
     }
+
+    /* Tighten the remaining links so the row fits its container.
+       Measured on main, before "Teachers" existed: the five-item nav wants
+       439px and the flex track gives it 421px at 960, 402 at 940 and 368 at
+       905 — so it overflowed and slid under the theme toggle, by 6px at 960
+       growing to 59px just above the burger breakpoint. 14px of side padding
+       per link is 140px of the 439; halving it returns ~70px, which is the
+       whole shortfall.
+       The alternative was moving the 900px burger breakpoint, but that value
+       is the site-wide mobile line used by a dozen stylesheets, so changing it
+       to fix one header would have rippled everywhere. */
+    .ec-nav-link {
+      padding-inline: 7px;
+    }
   }
 
   @media (min-width: 901px) {

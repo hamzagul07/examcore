@@ -105,6 +105,7 @@ export async function listPosts(params: {
   subjectCode?: string
   subjectCodes?: string[]
   ids?: string[]
+  authorIds?: string[]
   topicCode?: string
   lessonSlug?: string
   questionId?: string
@@ -125,6 +126,7 @@ export async function listPosts(params: {
   if (params.questionId) q = q.eq('question_id', params.questionId)
   if (params.kind) q = q.eq('kind', params.kind)
   if (params.authorId) q = q.eq('author_id', params.authorId)
+  if (params.authorIds?.length) q = q.in('author_id', params.authorIds)
 
   const sort = params.sort ?? 'hot'
   if (sort === 'new') q = q.order('created_at', { ascending: false })

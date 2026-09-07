@@ -27,6 +27,9 @@ export async function GET(request: NextRequest) {
     lessonSlug: sp.get('lesson') || undefined,
     questionId: sp.get('question') || undefined,
     authorId: sp.get('author') || undefined,
+    authorIds: sp.get('authors')
+      ? sp.get('authors')!.split(',').map((a) => a.trim()).filter(Boolean).slice(0, 100)
+      : undefined,
     kind: ['discussion', 'question', 'resource'].includes(kind || '') ? (kind as PostKind) : undefined,
     sort: ['hot', 'new', 'top', 'rising'].includes(sort || '') ? (sort as PostSort) : 'hot',
     limit: Math.min(Number(sp.get('limit')) || 25, 100),

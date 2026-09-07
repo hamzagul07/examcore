@@ -2497,7 +2497,6 @@ button.note-sketch-fig:hover {
   letter-spacing: 0.1em;
   padding: 4px 10px;
   border-radius: 4px;
-  margin-right: 8px;
   vertical-align: middle;
 }
 .plan-tag { font-size: 11px; color: var(--ink); margin-bottom: 8px; position: static; }
@@ -2896,15 +2895,22 @@ button.note-sketch-fig:hover {
 }
 
 /* pricing — 4-up plans (Free / Starter / Scholar / Max) */
-.plans.four { grid-template-columns: repeat(4, 1fr); max-width: 1240px; gap: 16px; }
+/* minmax(0, 1fr), not 1fr: a bare `1fr` is `minmax(auto, 1fr)`, so a track
+   whose content cannot shrink pushes past its share and steals width from the
+   others. Measured at 1440px it gave 249/289/296/260 instead of four equal
+   columns, and at 1100px it crushed Max to 161px against 296 for Scholar. */
+.plans.four { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 1240px; gap: 16px; }
 .plans.four .plan { padding: 22px 18px 26px; display: flex; flex-direction: column; }
 .plans.four .plan .plan-cta { margin-top: auto; }
 .plans.four .plan-name { font-size: 22px; }
 .plans.four .plan-now { font-size: 30px; }
 .plans.four .plan-feats { font-size: 13.5px; padding-top: 18px; }
 .plans.four .plan-blurb { min-height: auto; }
-@media (max-width: 1080px) {
-  .plans.four { grid-template-columns: repeat(2, 1fr); max-width: 720px; }
+/* Four cards need ~1200px to stay legible; below that they go 2-up. The old
+   1080 breakpoint left a band around 1100-1200 where all four were on one row
+   at ~250px each with the featured card scaled up over them. */
+@media (max-width: 1200px) {
+  .plans.four { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 720px; }
 }
 
 .pricing-trialbar {
@@ -3957,15 +3963,30 @@ a.scard, a.continue, a.topic-row, a.pn-btn, a.related-card, a.subj-row, a.dash-c
   box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.1));
 }
 
-/* Plan grid — featured column rises above its neighbours on desktop */
+/* Plan grid — featured column rises above its neighbours on the 4-up layout.
+   The min-width has to match the 4-up breakpoint exactly. It was 1024px while
+   the grid dropped to 2-up at 1200px, so between those the featured card scaled
+   4.5% inside a two-ROW layout: ~25px of vertical growth against an 18px row
+   gap, which put Max on top of the card above it. Measured overlap at 1100px. */
 .plans.four { gap: 18px; align-items: stretch; }
-@media (min-width: 1024px) {
+@media (min-width: 1201px) {
   .plans.four .plan.featured { transform: scale(1.045); z-index: 1; }
   .plans.four .plan.featured:hover { transform: scale(1.045) translateY(-3px); }
 }
 
 /* Tier dot beside the plan tag — ties the tag to the accent tab above it */
-.plan-tag { display: inline-flex; align-items: center; gap: 7px; }
+/* wrap: the ribbon and the tag share one row, and at the 4-up card width
+   (~270px, down from ~350px when this was a 3-up grid) "EVERYTHING INCLUDED"
+   plus "The full coach" no longer fit beside each other — the tag text was
+   breaking mid-phrase against the chip. Wrapping drops it cleanly to its own
+   line instead. */
+.plan-tag {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  row-gap: 5px;
+}
 .plan-tag::before {
   content: '';
   width: 8px;

@@ -3405,3 +3405,69 @@
   border-color: var(--ec-brand, #19774d);
   margin-top: 16px;
 }
+
+/* ---------------------------------------------------------------------------
+ * First-mark premium note
+ *
+ * Sits under the score on one run per account — the first. Styled as a margin
+ * note rather than a promotion: it is describing what the student is already
+ * looking at, and a banner that looks like an advert gets skipped past exactly
+ * when the claim it makes is checkable.
+ * ------------------------------------------------------------------------ */
+
+.ms-first-mark-note {
+  margin-top: 1.5rem;
+  padding: 18px 20px 16px;
+  background: var(--ec-paper, var(--ec-surface));
+  border: 1px solid var(--ec-border);
+  border-left: 3px solid var(--ec-brand);
+  border-radius: 4px;
+}
+
+.ms-first-mark-note__head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.ms-first-mark-note__lead {
+  color: var(--ec-text-secondary);
+  line-height: 1.6;
+}
+
+.ms-first-mark-note__list {
+  margin: 0.9rem 0 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  color: var(--ec-text-secondary);
+  line-height: 1.55;
+  list-style: disc;
+}
+
+.ms-first-mark-note__list strong {
+  color: var(--ec-text-primary);
+}
+
+.ms-first-mark-note__foot {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--ec-text-secondary);
+  line-height: 1.55;
+}
+
+.ms-first-mark-note__cta {
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+}
+
+@media (max-width: 640px) {
+  .ms-first-mark-note {
+    padding: 16px 14px 14px;
+  }
+}

@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { effectiveAccess, isVerifiedTeacher } from '@/lib/billing/access'
 import { capForAccess, omniCapForAccess, teacherMarkCap } from '@/lib/billing/caps'
+import { hasScholarFeatures } from '@/lib/billing/features'
 import { quotaExceededBody } from '@/lib/billing/enforcement'
 
 // --- a granted seat is not the same thing as a self-declared role -------------
@@ -23,10 +24,21 @@ assert.equal(
   'free',
   'declaring yourself a teacher grants nothing'
 )
+// Scholar, not pro. `pro` now carries the Starter tier, and gating Scholar
+// features against it would have taken whole-paper marking — the thing a
+// teacher marking a class set needs most — away from the seat that exists to
+// put this in front of a class. See lib/billing/access.ts.
 assert.equal(
   effectiveAccess({ tier: 'free', status: 'active', teacherVerified: true }),
-  'pro',
-  'a granted seat gets pro access without paying'
+  'scholar',
+  'a granted seat gets scholar access without paying'
+)
+assert.equal(
+  hasScholarFeatures(
+    effectiveAccess({ tier: 'free', status: 'active', teacherVerified: true })
+  ),
+  true,
+  'a teacher can mark a whole class set, which is the point of the seat'
 )
 
 // --- a seat floors access, it never lowers it ---------------------------------
@@ -46,7 +58,7 @@ assert.equal(
 // distribution channel whether or not they ever paid.
 assert.equal(
   effectiveAccess({ tier: 'scholar', status: 'canceled', teacherVerified: true }),
-  'pro',
+  'scholar',
   'a lapsed subscription falls back to the seat, not to free'
 )
 assert.equal(

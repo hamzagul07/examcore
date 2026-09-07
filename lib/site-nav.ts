@@ -106,6 +106,31 @@ export const SITE_NAV_ITEMS: SiteNavItem[] = [
     isActive: (p) => p === '/pricing',
   },
   {
+    // Promoted out of the footer on 2026-09-06. It had been reachable only from
+    // FOOTER_COMPANY_LINKS, and the measurement was unambiguous: 43 sessions
+    // reached /for-teachers in 30 days against 16,931 sessions on the site —
+    // a quarter of one percent — and 0 teachers ever got a seat.
+    //
+    // This is the seventh primary item, against a note elsewhere in this file
+    // that the nav was "five items and already the right size on a phone." That
+    // note is worth overriding here and nowhere else: a teacher brings a class,
+    // so the item does not compete with the student links for value the way
+    // another student link would. Phone width is unaffected — the header
+    // collapses to the burger sheet, which already carries more than this.
+    //
+    // Note this is a different item from TEACHER_NAV_ITEM below: that one is
+    // "Classrooms" for someone who already teaches here. This one is the pitch,
+    // for someone who does not have an account yet.
+    id: 'for-teachers',
+    href: '/for-teachers',
+    // One word, because this is the seventh item in the row and the two-word
+    // version was what pushed the nav over at 1024px. "Teachers" beside
+    // "Community" reads as the section it is.
+    label: 'Teachers',
+    variants: ['marketing', 'reading'],
+    isActive: (p) => p === '/for-teachers' || p.startsWith('/for-teachers/'),
+  },
+  {
     id: 'progress',
     href: '/dashboard/progress',
     label: 'Progress',

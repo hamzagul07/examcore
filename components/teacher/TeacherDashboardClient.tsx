@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import { useCallback, useState, type ReactNode } from 'react'
 import Link from 'next/link'
 import { TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
 import { formatInviteCode } from '@/lib/teacher/invite-code'
@@ -9,6 +9,12 @@ import type { TeacherClassroomRow } from '@/lib/teacher/list-classrooms'
 
 type Props = {
   initial: { classrooms: TeacherClassroomRow[] } | { error: string }
+  /**
+   * The seat notice, rendered by the server page (it needs the caps and the
+   * verified flag, neither of which this island should fetch). Null once the
+   * teacher holds a seat, which is the steady state.
+   */
+  seatCard?: ReactNode
 }
 
 function isDemoClassroom(c: TeacherClassroomRow): boolean {
@@ -16,7 +22,7 @@ function isDemoClassroom(c: TeacherClassroomRow): boolean {
   return hay.includes('demo') || hay.includes('example class')
 }
 
-export function TeacherDashboardClient({ initial }: Props) {
+export function TeacherDashboardClient({ initial, seatCard }: Props) {
   const [classrooms, setClassrooms] = useState(
     'classrooms' in initial ? initial.classrooms : []
   )
@@ -93,6 +99,10 @@ export function TeacherDashboardClient({ initial }: Props) {
           </Link>
         ) : null}
       </header>
+
+      {/* Before the classrooms: a teacher on the free allowance will hit the
+          wall on their sixth script, and that matters more than the list. */}
+      {seatCard}
 
       {error ? (
         <div className="ms-teacher-error mb-6" role="alert">

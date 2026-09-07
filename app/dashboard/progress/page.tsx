@@ -45,7 +45,7 @@ import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
 import { MasteryDashboardTeaser } from '@/components/billing/MasteryDashboardTeaser'
 import { MasteryPreviewDemo } from '@/components/billing/MasteryPreviewDemo'
-import { hasPaidAccess } from '@/lib/billing/features'
+import { hasScholarFeatures } from '@/lib/billing/features'
 import { effectiveAccess } from '@/lib/billing/access'
 import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
 import { ProgressDashboardPage } from '@/components/courses/margin-notes/ProgressDashboardPage'
@@ -108,7 +108,10 @@ export default async function ProgressPage({ searchParams }: PageProps) {
     .eq('user_id', user.id)
     .maybeSingle()
 
-  const masteryUnlocked = hasPaidAccess(
+  // Scholar and above, not merely paid: the mastery matrix is one of the three
+  // things the pricing page sells Scholar on, and Starter is shown it as
+  // excluded. Teacher seats resolve to scholar, so a teacher still sees it.
+  const masteryUnlocked = hasScholarFeatures(
     effectiveAccess({
       tier: (subscription?.tier ?? 'free') as SubscriptionTier,
       status: (subscription?.status ?? 'canceled') as SubscriptionStatus,

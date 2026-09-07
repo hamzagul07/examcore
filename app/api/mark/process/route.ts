@@ -43,7 +43,13 @@ import {
   type MarkReservation,
 } from '@/lib/billing/enforcement'
 import { effectiveAccess } from '@/lib/billing/access'
-import { hasPaidAccess, hasFullMarksRewrite, hasPriorityMarking } from '@/lib/billing/features'
+import {
+  hasPaidAccess,
+  hasFirstMarkPremium,
+  hasFullMarksRewrite,
+  hasPriorityMarking,
+} from '@/lib/billing/features'
+import { isFirstEverMark } from '@/lib/marking/first-mark'
 import {
   checkAnonymousMarkRateLimit,
   clientIp,
@@ -426,7 +432,26 @@ async function handleMarkRequest(request: NextRequest) {
         })
       : 'free'
     const isPaid = hasPaidAccess(markAccess)
-    const enableRewrite = hasFullMarksRewrite(markAccess)
+
+    // The one mark that is premium without being paid for. A signed-in student
+    // who has never marked anything gets the verify pass and the rewrite on
+    // this run only, so the paid product is experienced once instead of being
+    // described. See hasFirstMarkPremium for why this replaced the trial.
+    const firstMarkPremium = hasFirstMarkPremium({
+      access: markAccess,
+      signedIn: !!userId,
+      isFirstEverMark: userId
+        ? await isFirstEverMark(supabaseAdmin, userId)
+        : false,
+    })
+
+    // Depth of marking vs. who paid. `isPaid` stays the billing truth — it is
+    // what mark_runs records and what the allowance was charged against — while
+    // `deepMarking` is what the pipeline acts on. Conflating them would log a
+    // free student's first mark as a paid run and quietly corrupt the only
+    // table that answers "does paid marking actually differ".
+    const deepMarking = isPaid || firstMarkPremium
+    const enableRewrite = hasFullMarksRewrite(markAccess) || firstMarkPremium
     const priorityDeepMarking = hasPriorityMarking(markAccess)
 
     // Open the reliability row before the first model call, so a run that dies
@@ -490,7 +515,8 @@ async function handleMarkRequest(request: NextRequest) {
             : null) ?? totalMarksAvailable,
         marksInQuestion,
         userId,
-        isPaid,
+        // Depth, not entitlement — a first mark is deep without being paid.
+        isPaid: deepMarking,
         enableRewrite,
         priorityDeepMarking,
         startedAt: startTime,
@@ -588,6 +614,9 @@ async function handleMarkRequest(request: NextRequest) {
                   _allowance: reservation
                     ? allowanceForResponse(reservation.allowance, marksCharged)
                     : undefined,
+                  // Only set on the one run it was true for, so the result can
+                  // say what this mark got that the next one will not.
+                  _first_mark_premium: firstMarkPremium || undefined,
                 }),
               })
 
@@ -709,6 +738,7 @@ async function handleMarkRequest(request: NextRequest) {
             _allowance: reservation
               ? allowanceForResponse(reservation.allowance, marksCharged)
               : undefined,
+            _first_mark_premium: firstMarkPremium || undefined,
           })
         )
       } catch (err: unknown) {

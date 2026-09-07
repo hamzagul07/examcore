@@ -252,8 +252,12 @@ export function getSiteHeaderConfig(
  * as the top-right avatar, so it is not also a primary tab.
  */
 const CONSISTENT_NAV_IDS: Record<SiteHeaderVariant, string[]> = {
-  marketing: ['mark', 'courses', 'subjects', 'community', 'pricing'],
-  reading: ['mark', 'courses', 'subjects', 'community', 'pricing'],
+  // 'for-teachers' has to be listed HERE, not just in SITE_NAV_ITEMS: this
+  // allowlist is what the headers actually render, and an item missing from it
+  // is silently dropped however well-formed its definition is. Adding it to
+  // SITE_NAV_ITEMS alone shipped as a no-op.
+  marketing: ['mark', 'courses', 'subjects', 'community', 'pricing', 'for-teachers'],
+  reading: ['mark', 'courses', 'subjects', 'community', 'pricing', 'for-teachers'],
   // Home + Progress are both present and distinct. 'mark' is dropped from the
   // text nav because it is already the prominent primary CTA button in the app
   // header — a second "mark" link was redundant, and its slot is better spent

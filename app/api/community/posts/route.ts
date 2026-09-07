@@ -20,6 +20,9 @@ export async function GET(request: NextRequest) {
   const posts = await listPosts({
     board: board === 'cambridge' || board === 'ib' ? (board as Board) : undefined,
     subjectCode: sp.get('subject') || undefined,
+    subjectCodes: sp.get('subjects')
+      ? sp.get('subjects')!.split(',').map((c) => c.trim()).filter(Boolean).slice(0, 40)
+      : undefined,
     topicCode: sp.get('topic') || undefined,
     lessonSlug: sp.get('lesson') || undefined,
     questionId: sp.get('question') || undefined,

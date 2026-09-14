@@ -54,6 +54,10 @@ import {
 } from '@/lib/marking/full-marks-rewrite'
 import type { MarkProgressStage } from '@/lib/marking/mark-progress'
 import { isRequestDeadlineError } from '@/lib/ai/request-deadline'
+import {
+  bandJustificationText,
+  findBandContradiction,
+} from '@/lib/marking/contradicted-band'
 
 /** Everything `generateFullMarksRewrite` needs, captured so the rewrite can be
  * run after the marks have already been streamed to the user. */
@@ -812,6 +816,72 @@ export async function markSingleQuestion(params: {
       // still be killed — surface it so the caller can fail cleanly.
       if (isRequestDeadlineError(err)) throw err
       console.warn('[mark] verify pass failed; keeping first-pass result', err)
+    }
+  }
+
+  // Reject a judgment that contradicts the answer we sent.
+  //
+  // Reconciliation makes the model's arithmetic trustworthy; nothing made its
+  // PREMISE checkable. On 2026-09-14 a student's 2,043-character French essay
+  // came back 1/12, justified as "a fragment, stopping mid-sentence after only
+  // two lines" — internally consistent arithmetic on an input that did not
+  // exist. The same text scored 8/12 six minutes later, so this is variance
+  // landing somewhere catastrophic rather than a marking philosophy.
+  //
+  // A re-sample is the right remedy precisely because the cause is variance:
+  // the prompt was fine, this draw was not. Bounded to one extra call, fired
+  // only on a contradicted bottom-band award, so the normal path is untouched.
+  {
+    const contradiction = findBandContradiction({
+      justification: bandJustificationText(
+        markingResult.band_result,
+        markingResult.summary
+      ),
+      answerChars: ocrText.trim().length,
+      marksAwarded: Number(markingResult.marks_earned),
+      marksAvailable: Number(markingResult.total_marks),
+    })
+
+    if (contradiction.contradicted) {
+      console.warn(
+        `[mark] band result contradicts a ${ocrText.trim().length}-char answer ` +
+          `(claimed: "${contradiction.claim}") — re-marking once`
+      )
+      try {
+        const reMarked = reconcileMarkResult(
+          normalizeMarkingResult(
+            await runGeminiMarking(markingPrompt, maxTokensForStyle(markingStyle))
+          ),
+          { authoritativeTotal, criterionMax }
+        )
+        const stillWrong = findBandContradiction({
+          justification: bandJustificationText(
+            reMarked.band_result,
+            reMarked.summary
+          ),
+          answerChars: ocrText.trim().length,
+          marksAwarded: Number(reMarked.marks_earned),
+          marksAvailable: Number(reMarked.total_marks),
+        })
+        if (!stillWrong.contradicted) {
+          console.warn(
+            `[mark] re-mark resolved the contradiction ` +
+              `(${markingResult.marks_earned} -> ${reMarked.marks_earned})`
+          )
+          markingResult = reMarked
+        } else {
+          // Two independent draws both describing an answer that is not there
+          // is no longer variance. Keep the result rather than loop, and leave
+          // the evidence in the payload so it can be surfaced and counted.
+          console.error(
+            '[mark] re-mark contradicts the answer too; keeping it and flagging'
+          )
+          markingResult.answer_read_warning = true
+        }
+      } catch (err) {
+        if (isRequestDeadlineError(err)) throw err
+        console.warn('[mark] contradiction re-mark failed; keeping result', err)
+      }
     }
   }
 

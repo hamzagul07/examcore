@@ -4,6 +4,12 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import { createServiceClient } from '@/lib/supabase/service'
 import { grantsAccess, resolveEntitlement } from '@/lib/billing/entitlement-source'
 import { FALLBACK_PAID_TIER, tierForStoreProduct } from '@/lib/store/products'
+import {
+  isSupabaseUserId,
+  isoOrNull,
+  stateForEvent,
+  storeName,
+} from '@/lib/store/revenuecat-events'
 import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
 
 export const runtime = 'nodejs'
@@ -24,8 +30,6 @@ export const dynamic = 'force-dynamic'
 /** Matches the Polar route: long enough for any handler, short enough to recover. */
 const CLAIM_LEASE_MS = 10 * 60 * 1000
 
-const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
-
 type RevenueCatEvent = {
   id?: string
   type?: string
@@ -42,60 +46,6 @@ type RevenueCatEvent = {
   cancel_reason?: string | null
   transferred_from?: string[]
   transferred_to?: string[]
-}
-
-function isoOrNull(ms: number | null | undefined): string | null {
-  return typeof ms === 'number' && Number.isFinite(ms) ? new Date(ms).toISOString() : null
-}
-
-function storeName(store: string | undefined): string {
-  switch ((store ?? '').toUpperCase()) {
-    case 'APP_STORE':
-    case 'MAC_APP_STORE':
-      return 'app_store'
-    case 'PLAY_STORE':
-      return 'play_store'
-    case 'STRIPE':
-      return 'stripe'
-    case 'PROMOTIONAL':
-      return 'promotional'
-    default:
-      return 'unknown'
-  }
-}
-
-/**
- * How each event type leaves the subscription.
- *
- * `null` means "this event does not describe entitlement" (TEST, TRANSFER —
- * handled separately). CANCELLATION deliberately keeps `active`: like Polar's
- * cancel-at-period-end, the student keeps access until it expires, and the later
- * EXPIRATION is what removes it.
- */
-function stateForEvent(
-  type: string
-): { status: SubscriptionStatus; cancelAtPeriodEnd: boolean; entitled: boolean } | null {
-  switch (type) {
-    case 'INITIAL_PURCHASE':
-    case 'RENEWAL':
-    case 'UNCANCELLATION':
-    case 'NON_RENEWING_PURCHASE':
-    case 'SUBSCRIPTION_EXTENDED':
-    case 'TEMPORARY_ENTITLEMENT_GRANT':
-    case 'PRODUCT_CHANGE':
-      return { status: 'active', cancelAtPeriodEnd: false, entitled: true }
-    case 'CANCELLATION':
-    case 'SUBSCRIPTION_PAUSED':
-      return { status: 'active', cancelAtPeriodEnd: true, entitled: true }
-    case 'BILLING_ISSUE':
-      // Dunning. past_due is in ACTIVE_STATUSES, so access continues — the same
-      // grace the web subscribers get.
-      return { status: 'past_due', cancelAtPeriodEnd: false, entitled: true }
-    case 'EXPIRATION':
-      return { status: 'canceled', cancelAtPeriodEnd: false, entitled: false }
-    default:
-      return null
-  }
 }
 
 function authorised(req: NextRequest, secret: string): boolean {
@@ -200,7 +150,7 @@ async function handleEvent(event: RevenueCatEvent, type: string, supabase: Supab
   if (type === 'TRANSFER') {
     // The entitlement moved to another app_user_id. Clear it from everyone it
     // left; the destination gets its own event with its own entitlement state.
-    const from = (event.transferred_from ?? []).filter((id) => UUID_RE.test(id))
+    const from = (event.transferred_from ?? []).filter(isSupabaseUserId)
     for (const userId of from) {
       await writeStoreSubscription(supabase, userId, {
         store: storeName(event.store),
@@ -228,7 +178,7 @@ async function handleEvent(event: RevenueCatEvent, type: string, supabase: Supab
   }
 
   const userId = event.app_user_id ?? event.original_app_user_id ?? ''
-  if (!UUID_RE.test(userId)) {
+  if (!isSupabaseUserId(userId)) {
     // Anonymous ids ($RCAnonymousID:…) mean the purchase happened before the
     // student signed in. Nothing to grant, and retrying will not change that, so
     // ACK rather than making RevenueCat redeliver forever.

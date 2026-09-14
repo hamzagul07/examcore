@@ -82,13 +82,18 @@ handler now claims `provider: 'polar'` on sync and filters on it when revoking.
 4. **Name the store products so they map to a tier.** `lib/store/products.ts`
    matches on a substring of the product id:
 
-   | Product id contains | Tier | Brand |
+   | Product id contains the word | Tier | Brand |
    | --- | --- | --- |
    | `starter` / `student` / `pro` | `student` | Starter |
    | `scholar` | `scholar` | Scholar |
    | `max` / `mastery` | `mastery` | Max |
 
    e.g. `markscheme_starter_monthly`, `markscheme_scholar_yearly`.
+
+   Matching is on whole **tokens** (the id is split on anything that is not a
+   letter or digit), not substrings — otherwise `pro` matches "product" and
+   "promotional", and `max` matches "maximum", so an id like
+   `com.markscheme.app.product.free_trial` would hand out a paid tier.
 
    An unmapped product that RevenueCat says is entitled grants
    `FALLBACK_PAID_TIER` (Starter) and logs an error. RevenueCat has already

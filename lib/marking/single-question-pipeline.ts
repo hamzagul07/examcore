@@ -58,7 +58,10 @@ import type {
 } from '@/lib/marking/types'
 import { coerceMarkingStyle } from '@/lib/marking/types'
 import { resolveIbCoreComponent } from '@/lib/ib/core-components'
-import { catalogSubjectCode } from '@/lib/ib/catalog-subject-code'
+import {
+  catalogSubjectCode,
+  componentIsPerQuestionSlots,
+} from '@/lib/ib/catalog-subject-code'
 import {
   resolveComponentForMarking,
   splitLegacyIbCode,
@@ -227,6 +230,20 @@ async function resolvePracticeIb(
   // subject that does not exist, returned null, and marking fell back to a
   // holistic band with the verbatim criteria sitting unused in the catalogue.
   const catSubject = catalogSubjectCode(rawSubject)
+  // Some catalogued components report `criteria` but their rows are the paper's
+  // questions, not the dimensions of one answer (Psychology papers, Economics
+  // papers). Marking a single practice response against those scores it out of
+  // the whole paper and judges it for questions it was never asked — production
+  // shows Economics practice answers marked out of 25, the sum of both parts.
+  // The holistic fallback is closer to right until a practice answer can be
+  // tied to one slot.
+  if (componentIsPerQuestionSlots(catSubject, ibComponentKey.trim())) {
+    console.warn(
+      `[mark] ${catSubject}/${ibComponentKey} criteria are per-question slots; ` +
+        'using the practice fallback rather than a whole-paper rubric'
+    )
+    return null
+  }
   const rawLevel = (ibLevel?.trim().toUpperCase() || legacyLevel) as
     | IbSelectableLevel
     | null

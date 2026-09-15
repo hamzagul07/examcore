@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import {
   catalogSubjectCode,
+  componentIsPerQuestionSlots,
   isAliasedCatalogSubject,
 } from '@/lib/ib/catalog-subject-code'
 import { resolveIbCoreComponent } from '@/lib/ib/core-components'
@@ -133,5 +134,46 @@ for (const code of ['ib-biology-hl', 'ib-business-management-hl', 'ib-tok']) {
     `${code} must not resolve as Language B`
   )
 }
+
+// --- per-question-slot components ---------------------------------------------
+//
+// These report assessment_model 'criteria' but their rows are the paper's
+// questions. Production shows Economics practice answers marked out of 25 —
+// "Part (a) 10-mark question" plus "Part (b) 15-mark question" — for a single
+// essay. The holistic fallback is closer to right than a whole-paper rubric.
+
+for (const [subject, component] of [
+  ['ib-psychology', 'paper_1'],
+  ['ib-psychology', 'paper_2'],
+  ['ib-psychology', 'paper_3'],
+  ['ib-economics', 'paper_1'],
+  ['ib-economics', 'paper_2'],
+] as const) {
+  assert.equal(
+    componentIsPerQuestionSlots(subject, component),
+    true,
+    `${subject}/${component} must not supply a single answer's rubric`
+  )
+}
+
+// The IA components ARE real criteria (Diagrams, Terminology, Evaluation;
+// Introduction, Research methodology, Discussion) and must stay usable.
+assert.equal(componentIsPerQuestionSlots('ib-psychology', 'ia'), false)
+assert.equal(componentIsPerQuestionSlots('ib-economics', 'ia_commentary_1'), false)
+assert.equal(componentIsPerQuestionSlots('ib-economics', 'ia_portfolio'), false)
+
+// Everything else is unaffected — especially the two subjects this branch wired
+// up, whose criteria are genuine assessment dimensions.
+assert.equal(componentIsPerQuestionSlots('ib-language-b', 'paper_1'), false)
+assert.equal(componentIsPerQuestionSlots('ib-lang-a-langlit', 'paper_1'), false)
+assert.equal(componentIsPerQuestionSlots('ib-lang-a-langlit', 'paper_2'), false)
+assert.equal(componentIsPerQuestionSlots('ib-tok', 'tok_essay'), false)
+assert.equal(componentIsPerQuestionSlots('ib-visual-arts', 'comparative_study_hl'), false)
+
+assert.equal(
+  componentIsPerQuestionSlots('  IB-Economics  ', '  Paper_1  '),
+  true,
+  'trims and lowercases both sides'
+)
 
 console.log('catalog-subject-code.test.ts: ok')

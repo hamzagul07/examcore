@@ -53,3 +53,50 @@ export function catalogSubjectCode(profileSubjectCode: string): string {
 export function isAliasedCatalogSubject(profileSubjectCode: string): boolean {
   return profileSubjectCode.trim().toLowerCase() in CATALOG_SUBJECT_CODE
 }
+
+/**
+ * Components whose catalogued "criteria" are per-question slots, not assessment
+ * criteria — so they must never supply the rubric for a single practice answer.
+ *
+ * `assessment_model = 'criteria'` is not the test. Reading the criterion NAMES
+ * is:
+ *
+ *   psychology paper_1   "Paper 1 Section A: question 1" (4)
+ *                        "Paper 1 Section A: question 2" (4)
+ *                        "Paper 1 Section C" (15)
+ *   economics  paper_1   "Part (a) 10-mark question" (10)
+ *                        "Part (b) 15-mark question" (15)
+ *
+ * Each row is a question on the paper. A student practising one essay against
+ * that rubric is marked out of the whole paper and judged for the questions
+ * they were never asked — production already shows Economics practice answers
+ * marked out of 25, the sum of both parts.
+ *
+ * Their real criteria — Diagrams, Terminology, Evaluation; Introduction,
+ * Research methodology, Discussion — live on the IA components, which a practice
+ * upload is not. Until a single practice answer can be tied to one slot, the
+ * holistic profile fallback is closer to right than a rubric for a paper the
+ * student did not sit.
+ *
+ * Keyed by catalogue subject code, so it is checked after `catalogSubjectCode`.
+ */
+const PER_QUESTION_SLOT_COMPONENTS: Record<string, readonly string[]> = {
+  'ib-psychology': ['paper_1', 'paper_2', 'paper_3'],
+  'ib-economics': ['paper_1', 'paper_2'],
+}
+
+/**
+ * True when this component's criteria describe a whole paper's questions rather
+ * than the dimensions of one answer.
+ *
+ * Takes the catalogue subject code (post-mapping), because that is the level at
+ * which the catalogue stores components.
+ */
+export function componentIsPerQuestionSlots(
+  catalogSubject: string,
+  componentKey: string
+): boolean {
+  const subject = catalogSubject.trim().toLowerCase()
+  const key = componentKey.trim().toLowerCase()
+  return (PER_QUESTION_SLOT_COMPONENTS[subject] ?? []).includes(key)
+}

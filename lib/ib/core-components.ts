@@ -21,15 +21,23 @@
  * written submission cannot be, not by picking the likeliest.
  *
  * Deliberately NOT mapped, and why:
- *   - Language A: Lang-Lit — paper_1 (guided analysis of an unseen text) and
- *     paper_2 (comparative essay on studied works) are both criteria-marked
- *     written papers with different criteria. Nothing in a submission separates
- *     them reliably, so a default would mark against the wrong assessment.
+ *   - Psychology, Economics — their paper components LOOK criteria-marked and
+ *     are not. The rows are per-question slots for a whole paper: Psychology
+ *     paper_1 is "Section A: question 1" (4), "Section A: question 2" (4),
+ *     "Section B: question 1" (6) … and Economics paper_1 is "Part (a) 10-mark
+ *     question" and "Part (b) 15-mark question". Marking one practice answer
+ *     against those would score it against a rubric expecting five questions
+ *     and a 35-mark denominator. Their genuine criteria live on the IA
+ *     components, which a practice upload is not. Do not wire these up on the
+ *     strength of `assessment_model = 'criteria'` alone — read the criterion
+ *     NAMES first.
  *   - Philosophy — paper_1's catalogue max is the whole paper (3 essays at HL),
  *     so a single practice essay has no matching denominator.
  *   - Business Management, Geography — their written papers are points-marked;
  *     the criteria components are the IA and HL paper 3, which a practice
  *     upload is unlikely to be.
+ *   - English A: Literature — a different subject from Language and Literature,
+ *     with its own guide, and not in the catalogue at all.
  */
 
 export type IbDefaultComponent = {
@@ -138,6 +146,37 @@ export function resolveIbCoreComponent(
     const level = levelFromProfileCode(code)
     if (!level) return null
     return { subjectCode: 'ib-language-b', componentKey: 'paper_1', level }
+  }
+
+  // Language A: Language and Literature. Every component here carries real
+  // assessment criteria for a single piece of writing — A understanding,
+  // B analysis and evaluation, C focus and organisation, D language — so
+  // marking against them is sound wherever we land.
+  //
+  // `io` is an individual oral, excluded by modality as in Language B.
+  // `hl_essay` shares Paper 1's shape exactly (A-D, 5 each, 20 total), so
+  // confusing the two costs almost nothing. Paper 1 and Paper 2 are the pair
+  // that matter: Paper 1 is guided analysis of ONE unseen text, Paper 2 a
+  // COMPARATIVE essay on two studied works, marked A:10 B:10 C:5 D:5 out of 30.
+  // Paper 1 is the default because guided analysis is the ordinary practice
+  // exercise; Paper 2 is taken only on an explicit comparative signal, which is
+  // the same test the TOK essay/exhibition split uses above.
+  //
+  // Deliberately matches lang-lit ONLY. English A: Literature is a different
+  // subject with its own guide and is not in the catalogue — routing it here
+  // would mark a Literature student against Language and Literature criteria.
+  if (/^ib-english-a-lang-lit-(hl|sl)$/.test(code)) {
+    const level = levelFromProfileCode(code)
+    if (!level) return null
+    const isComparative =
+      /\bcompare\b|\bcomparison\b|\bcomparative\b|both works|two works|two texts|each of the works/i.test(
+        text
+      )
+    return {
+      subjectCode: 'ib-lang-a-langlit',
+      componentKey: isComparative ? 'paper_2' : 'paper_1',
+      level,
+    }
   }
 
   return null

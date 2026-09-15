@@ -61,10 +61,56 @@ assert.equal(
   'ib-visual-arts'
 )
 
+// --- Language A: Language and Literature -------------------------------------
+//
+// Paper 1 is guided analysis of one unseen text; Paper 2 a comparative essay on
+// two studied works. Same test as the TOK essay/exhibition split: default to the
+// ordinary practice exercise, switch only on an explicit signal.
+
+assert.deepEqual(
+  resolveIbCoreComponent('ib-english-a-lang-lit-sl'),
+  { subjectCode: 'ib-lang-a-langlit', componentKey: 'paper_1', level: 'SL' },
+  'guided analysis is the default'
+)
+for (const prompt of [
+  'Compare and contrast the presentation of power in both works.',
+  'In which two works does the writer use structure to…',
+  'Write a comparative essay on the two texts.',
+]) {
+  assert.equal(
+    resolveIbCoreComponent('ib-english-a-lang-lit-hl', prompt)?.componentKey,
+    'paper_2',
+    `a comparative prompt takes Paper 2: "${prompt.slice(0, 32)}…"`
+  )
+}
+assert.equal(
+  resolveIbCoreComponent(
+    'ib-english-a-lang-lit-hl',
+    'Analyse how the writer presents the narrator in this extract.'
+  )?.componentKey,
+  'paper_1',
+  'a single-text prompt stays on Paper 1'
+)
+
+// English A: LITERATURE is a different subject with its own guide and no
+// catalogue rows. Routing it to Language and Literature would mark a student
+// against criteria from a subject they do not take.
+assert.equal(resolveIbCoreComponent('ib-english-a-literature-hl'), null)
+assert.equal(resolveIbCoreComponent('ib-english-a-literature-sl'), null)
+
 // Subjects deliberately left unmapped stay unmapped — a default for these would
 // mark against the wrong assessment. See the note in core-components.ts.
+//
+// Psychology and Economics matter most here: their components report
+// assessment_model 'criteria', but the rows are per-question slots for a whole
+// paper ("Section A: question 1", "Part (a) 10-mark question"), not assessment
+// criteria. Wiring them would mark one practice answer against a five-question
+// rubric.
 for (const code of [
-  'ib-english-a-lang-lit-sl',
+  'ib-psychology-hl',
+  'ib-psychology-sl',
+  'ib-economics-hl',
+  'ib-economics-sl',
   'ib-philosophy-hl',
   'ib-business-management-sl',
   'ib-geography-hl',

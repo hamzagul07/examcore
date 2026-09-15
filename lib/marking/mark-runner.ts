@@ -54,6 +54,14 @@ import {
 } from '@/lib/marking/full-marks-rewrite'
 import type { MarkProgressStage } from '@/lib/marking/mark-progress'
 import { isRequestDeadlineError } from '@/lib/ai/request-deadline'
+import {
+  bandJustificationText,
+  findBandContradiction,
+} from '@/lib/marking/contradicted-band'
+import {
+  needsTiebreak,
+  pickMedianCandidate,
+} from '@/lib/marking/mark-tiebreak'
 
 /** Everything `generateFullMarksRewrite` needs, captured so the rewrite can be
  * run after the marks have already been streamed to the user. */
@@ -797,10 +805,63 @@ export async function markSingleQuestion(params: {
           markingStyle
         )
       ) {
-        markingResult = reconcileMarkResult(normalizedVerified, {
+        const verified = reconcileMarkResult(normalizedVerified, {
           authoritativeTotal,
           criterionMax,
         })
+
+        // On essays the second sample must not simply win. Measured across
+        // every run recording both passes: point_based agreed 28 times in 32
+        // and never moved more than a mark, while level_of_response agreed only
+        // 13 times in 38 — 13 downward against 12 upward, which is two draws
+        // from one distribution rather than a correction, with a spread
+        // reaching 8 marks. "Whichever ran last" is not a mark.
+        //
+        // A third draw and the median is the cheapest thing that reduces the
+        // variance instead of moving it around, and one bad draw can no longer
+        // decide the outcome. Only on a real disagreement, because a third of
+        // essays already agree and this sits in front of a student who has
+        // waited ~150 seconds.
+        const tie = needsTiebreak({
+          style: markingStyle,
+          firstMarks: Number(markingResult.marks_earned),
+          verifyMarks: Number(verified.marks_earned),
+        })
+
+        if (tie.needed) {
+          try {
+            console.warn(
+              `[mark] passes ${tie.delta} marks apart on an essay ` +
+                `(${markingResult.marks_earned} vs ${verified.marks_earned}) — third opinion`
+            )
+            const third = reconcileMarkResult(
+              normalizeMarkingResult(
+                await runGeminiMarking(verifyPrompt, maxTokensForStyle(markingStyle))
+              ),
+              { authoritativeTotal, criterionMax }
+            )
+            const chosen = pickMedianCandidate([
+              { marks: Number(markingResult.marks_earned), payload: markingResult },
+              { marks: Number(verified.marks_earned), payload: verified },
+              { marks: Number(third.marks_earned), payload: third },
+            ])
+            console.warn(
+              `[mark] median of ${markingResult.marks_earned}/` +
+                `${verified.marks_earned}/${third.marks_earned} = ${chosen.marks}`
+            )
+            // The payload travels with the number, so the justification the
+            // student reads is the one that argued for the mark they got.
+            markingResult = chosen.payload
+          } catch (err) {
+            if (isRequestDeadlineError(err)) throw err
+            // Falling back to the verified result is the behaviour that shipped
+            // before this existed, so a failed third opinion costs nothing.
+            console.warn('[mark] third opinion failed; keeping verify result', err)
+            markingResult = verified
+          }
+        } else {
+          markingResult = verified
+        }
       } else {
         // The first/final telemetry pair records the retained score; this was
         // added after a summary-only verifier changed a correct 7/8 into 0/8.
@@ -812,6 +873,72 @@ export async function markSingleQuestion(params: {
       // still be killed — surface it so the caller can fail cleanly.
       if (isRequestDeadlineError(err)) throw err
       console.warn('[mark] verify pass failed; keeping first-pass result', err)
+    }
+  }
+
+  // Reject a judgment that contradicts the answer we sent.
+  //
+  // Reconciliation makes the model's arithmetic trustworthy; nothing made its
+  // PREMISE checkable. On 2026-09-14 a student's 2,043-character French essay
+  // came back 1/12, justified as "a fragment, stopping mid-sentence after only
+  // two lines" — internally consistent arithmetic on an input that did not
+  // exist. The same text scored 8/12 six minutes later, so this is variance
+  // landing somewhere catastrophic rather than a marking philosophy.
+  //
+  // A re-sample is the right remedy precisely because the cause is variance:
+  // the prompt was fine, this draw was not. Bounded to one extra call, fired
+  // only on a contradicted bottom-band award, so the normal path is untouched.
+  {
+    const contradiction = findBandContradiction({
+      justification: bandJustificationText(
+        markingResult.band_result,
+        markingResult.summary
+      ),
+      answerChars: ocrText.trim().length,
+      marksAwarded: Number(markingResult.marks_earned),
+      marksAvailable: Number(markingResult.total_marks),
+    })
+
+    if (contradiction.contradicted) {
+      console.warn(
+        `[mark] band result contradicts a ${ocrText.trim().length}-char answer ` +
+          `(claimed: "${contradiction.claim}") — re-marking once`
+      )
+      try {
+        const reMarked = reconcileMarkResult(
+          normalizeMarkingResult(
+            await runGeminiMarking(markingPrompt, maxTokensForStyle(markingStyle))
+          ),
+          { authoritativeTotal, criterionMax }
+        )
+        const stillWrong = findBandContradiction({
+          justification: bandJustificationText(
+            reMarked.band_result,
+            reMarked.summary
+          ),
+          answerChars: ocrText.trim().length,
+          marksAwarded: Number(reMarked.marks_earned),
+          marksAvailable: Number(reMarked.total_marks),
+        })
+        if (!stillWrong.contradicted) {
+          console.warn(
+            `[mark] re-mark resolved the contradiction ` +
+              `(${markingResult.marks_earned} -> ${reMarked.marks_earned})`
+          )
+          markingResult = reMarked
+        } else {
+          // Two independent draws both describing an answer that is not there
+          // is no longer variance. Keep the result rather than loop, and leave
+          // the evidence in the payload so it can be surfaced and counted.
+          console.error(
+            '[mark] re-mark contradicts the answer too; keeping it and flagging'
+          )
+          markingResult.answer_read_warning = true
+        }
+      } catch (err) {
+        if (isRequestDeadlineError(err)) throw err
+        console.warn('[mark] contradiction re-mark failed; keeping result', err)
+      }
     }
   }
 

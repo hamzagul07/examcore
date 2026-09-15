@@ -27,6 +27,14 @@ import {
   type PageInkSource,
 } from '@/lib/marking/ink-per-page'
 import { dropDuplicateAdjacentPages } from '@/lib/marking/dedupe-pages'
+import {
+  applyPageOrder,
+  buildPageOrderPrompt,
+  describePageOrder,
+  isUploadOrder,
+  parsePageOrder,
+  shouldCheckPageOrder,
+} from '@/lib/marking/page-order'
 import { extractMarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
 import { toMarkingAIResult, aggregateWholePaperResults } from '@/lib/marking/whole-paper'
 import { invalidateStudentMemoryCache } from '@/lib/omni-ai/student-memory'
@@ -50,6 +58,10 @@ import type {
 } from '@/lib/marking/types'
 import { coerceMarkingStyle } from '@/lib/marking/types'
 import { resolveIbCoreComponent } from '@/lib/ib/core-components'
+import {
+  catalogSubjectCode,
+  componentIsPerQuestionSlots,
+} from '@/lib/ib/catalog-subject-code'
 import {
   resolveComponentForMarking,
   splitLegacyIbCode,
@@ -211,8 +223,27 @@ async function resolvePracticeIb(
   }
 
   if (!ibComponentKey) return null
-  const { subjectCode: catSubject, level: legacyLevel } =
+  const { subjectCode: rawSubject, level: legacyLevel } =
     splitLegacyIbCode(practiceCode)
+  // `ib-french-b` is not a catalogue subject — every Language B language shares
+  // the single `ib-language-b` guide. Without this the lookup asked for a
+  // subject that does not exist, returned null, and marking fell back to a
+  // holistic band with the verbatim criteria sitting unused in the catalogue.
+  const catSubject = catalogSubjectCode(rawSubject)
+  // Some catalogued components report `criteria` but their rows are the paper's
+  // questions, not the dimensions of one answer (Psychology papers, Economics
+  // papers). Marking a single practice response against those scores it out of
+  // the whole paper and judges it for questions it was never asked — production
+  // shows Economics practice answers marked out of 25, the sum of both parts.
+  // The holistic fallback is closer to right until a practice answer can be
+  // tied to one slot.
+  if (componentIsPerQuestionSlots(catSubject, ibComponentKey.trim())) {
+    console.warn(
+      `[mark] ${catSubject}/${ibComponentKey} criteria are per-question slots; ` +
+        'using the practice fallback rather than a whole-paper rubric'
+    )
+    return null
+  }
   const rawLevel = (ibLevel?.trim().toUpperCase() || legacyLevel) as
     | IbSelectableLevel
     | null
@@ -835,6 +866,40 @@ export async function runSingleQuestionMark(
     pageOcrResults.push(...deduped)
   }
 
+  // Read the pages in the order they were WRITTEN, not the order they were
+  // photographed. `[Page N]` has always been the upload index, so a student who
+  // photographs the second sheet first has their conclusion marked as their
+  // opening — which on 2026-09-14 turned an 8/12 IB French diary entry into a
+  // 1/12. The uploader has always offered drag-to-reorder; the gap is that
+  // nobody knows their photos are out of order, because nothing checked.
+  //
+  // Bounded: multi-page uploads only, every page substantial, one small call,
+  // and any failure at all keeps the uploaded order. A confident wrong
+  // reordering would be worse than the problem it replaces.
+  let pageOrderApplied: number[] | null = null
+  if (shouldCheckPageOrder(pageOcrResults.map((p) => p.full_text))) {
+    try {
+      const raw = await generateGeminiText(
+        buildPageOrderPrompt(pageOcrResults.map((p) => p.full_text)),
+        { task: 'structured-extraction', maxOutputTokens: 64 }
+      )
+      const order = parsePageOrder(raw, pageOcrResults.length)
+      if (order && !isUploadOrder(order)) {
+        const reordered = applyPageOrder([...pageOcrResults], order)
+        pageOcrResults.length = 0
+        pageOcrResults.push(...reordered)
+        pageOrderApplied = order
+        console.warn(
+          `[mark] pages read out of order; reading as ${describePageOrder(order)}`
+        )
+      }
+    } catch (err) {
+      // Never fatal. The mark is worth more than the ordering, and the uploaded
+      // order is exactly what shipped before this existed.
+      console.warn('[mark] page-order check failed; keeping upload order', err)
+    }
+  }
+
   emit(onProgress, 'reading_work')
 
   const ocrText = pageOcrResults
@@ -1264,6 +1329,11 @@ export async function runSingleQuestionMark(
     ink_pages: answerPages.length ? answerPages : undefined,
     error_classifications: errorClassifications,
     upload_mode: 'single_question',
+    // Present only when we changed the reading order. The student has to be
+    // told: they photographed the pages, so if we guessed wrong they are the
+    // only one who can see it, and a silent reorder of somebody's work is not
+    // a thing to do quietly.
+    page_order: pageOrderApplied ?? undefined,
     time_spent_seconds: timeSpentSeconds,
     // Internal: consumed and stripped by the route before the payload is sent.
     _rewrite_plan: rewritePlan ?? undefined,

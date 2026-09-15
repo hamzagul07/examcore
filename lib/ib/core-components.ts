@@ -165,6 +165,15 @@ export function resolveIbCoreComponent(
   // Deliberately matches lang-lit ONLY. English A: Literature is a different
   // subject with its own guide and is not in the catalogue — routing it here
   // would mark a Literature student against Language and Literature criteria.
+  //
+  // Guide currency: the catalogued Lang-Lit criteria come from the 2021 guide,
+  // last assessed 2025, so a student working now sits a newer one. That is not
+  // a reason to withhold the rubric — describeGuide() marks the result
+  // `withdrawn` and MarkingResultView shows the caution, so the student is told
+  // which guide judged them. Real criteria plus an honest notice beats the
+  // holistic band and silence this replaced. It IS a reason to keep the notice:
+  // without it this becomes the silent route to a withdrawn guide that the
+  // Film/Theatre note above forbids.
   if (/^ib-english-a-lang-lit-(hl|sl)$/.test(code)) {
     const level = levelFromProfileCode(code)
     if (!level) return null

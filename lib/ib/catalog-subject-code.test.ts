@@ -5,6 +5,7 @@ import {
   isAliasedCatalogSubject,
 } from '@/lib/ib/catalog-subject-code'
 import { resolveIbCoreComponent } from '@/lib/ib/core-components'
+import { describeGuide } from '@/lib/marking/guide-provenance'
 
 // --- the mapping that was missing on the marking path -------------------------
 //
@@ -190,5 +191,43 @@ assert.equal(
   true,
   'trims and lowercases both sides'
 )
+
+// --- the two mapped guides, and why one of them is still acceptable ----------
+//
+// These years are what `ib_source_document` holds for the guides behind the
+// criteria this file routes to. They are asserted here because the Lang-Lit
+// mapping is only defensible while the withdrawn caution fires: without it,
+// routing a student to a superseded rubric silently is exactly what
+// core-components.ts warns against ("a route to a withdrawn one costs more").
+//
+//   ib-language-b      Language B guide 2020, last assessed 2028   -> current
+//   ib-lang-a-langlit  Lang-Lit guide 2021,  last assessed 2025    -> withdrawn
+//
+// If a newer Lang-Lit guide is ingested, these years change and this test
+// should be updated with them — it is a record of what students are being
+// marked against, not a constraint on the catalogue.
+const SESSION = 2026
+
+const guideFor = (first: number, last: number | null) => ({
+  subjectName: 'Test Subject',
+  guide: { version: null, firstAssessmentYear: first, lastAssessmentYear: last },
+})
+
+const languageB = describeGuide(guideFor(2020, 2028), SESSION)!
+assert.equal(
+  languageB.status,
+  'current',
+  'Language B — the French fix — routes to a guide still in force'
+)
+assert.equal(languageB.caution, undefined, 'a current guide needs no caution')
+
+const langLit = describeGuide(guideFor(2021, 2025), SESSION)!
+assert.equal(langLit.status, 'withdrawn')
+assert.ok(
+  langLit.caution,
+  'the Lang-Lit mapping is acceptable ONLY because this caution reaches the ' +
+    'student — see MarkingResultView, which renders guide_notice.caution'
+)
+assert.match(langLit.caution!, /last assessed in 2025/)
 
 console.log('catalog-subject-code.test.ts: ok')

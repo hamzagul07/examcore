@@ -14,6 +14,22 @@
  * submission is the default and the others are chosen only on an explicit
  * textual signal — a guess between them would mark a student against the wrong
  * assessment entirely, which is worse than the generic fallback.
+ *
+ * Subjects whose picker exists but is optional belong here too: a student who
+ * skips it lands in the same place as one who was never asked. Language B is
+ * mapped on that basis; its default is reached by eliminating the components a
+ * written submission cannot be, not by picking the likeliest.
+ *
+ * Deliberately NOT mapped, and why:
+ *   - Language A: Lang-Lit — paper_1 (guided analysis of an unseen text) and
+ *     paper_2 (comparative essay on studied works) are both criteria-marked
+ *     written papers with different criteria. Nothing in a submission separates
+ *     them reliably, so a default would mark against the wrong assessment.
+ *   - Philosophy — paper_1's catalogue max is the whole paper (3 essays at HL),
+ *     so a single practice essay has no matching denominator.
+ *   - Business Management, Geography — their written papers are points-marked;
+ *     the criteria components are the IA and HL paper 3, which a practice
+ *     upload is unlikely to be.
  */
 
 export type IbDefaultComponent = {
@@ -100,6 +116,28 @@ export function resolveIbCoreComponent(
       componentKey: `comparative_study_${level.toLowerCase()}`,
       level,
     }
+  }
+
+  // Language B — every language shares the `ib-language-b` guide.
+  //
+  // This one is not portfolio-shaped: the picker does appear. It is here
+  // because skipping an optional picker and never being offered one leave the
+  // student in exactly the same place — marked against a holistic band while
+  // the verbatim criteria sit in the catalogue. On 2026-09-14 that turned an IB
+  // French B Paper 1 diary entry worth 8/12 into 1/12.
+  //
+  // Paper 1 is chosen by elimination rather than by guessing, which is what the
+  // rule at the top of this file demands. Of the three components only two are
+  // criteria-marked: paper_1 (productive writing, A:12 B:12 C:6 out of 30) and
+  // io. `io` is an individual ORAL — it needs a recording, and a typed or
+  // photographed text cannot be one. paper_2 is receptive skills and is
+  // points-marked, so it carries no criteria to mark against. A written
+  // practice submission in Language B is therefore Paper 1, and no other
+  // component is a candidate for it.
+  if (/^ib-[a-z]+-b(-(hl|sl))?$/.test(code)) {
+    const level = levelFromProfileCode(code)
+    if (!level) return null
+    return { subjectCode: 'ib-language-b', componentKey: 'paper_1', level }
   }
 
   return null

@@ -58,6 +58,7 @@ import type {
 } from '@/lib/marking/types'
 import { coerceMarkingStyle } from '@/lib/marking/types'
 import { resolveIbCoreComponent } from '@/lib/ib/core-components'
+import { catalogSubjectCode } from '@/lib/ib/catalog-subject-code'
 import {
   resolveComponentForMarking,
   splitLegacyIbCode,
@@ -219,8 +220,13 @@ async function resolvePracticeIb(
   }
 
   if (!ibComponentKey) return null
-  const { subjectCode: catSubject, level: legacyLevel } =
+  const { subjectCode: rawSubject, level: legacyLevel } =
     splitLegacyIbCode(practiceCode)
+  // `ib-french-b` is not a catalogue subject — every Language B language shares
+  // the single `ib-language-b` guide. Without this the lookup asked for a
+  // subject that does not exist, returned null, and marking fell back to a
+  // holistic band with the verbatim criteria sitting unused in the catalogue.
+  const catSubject = catalogSubjectCode(rawSubject)
   const rawLevel = (ibLevel?.trim().toUpperCase() || legacyLevel) as
     | IbSelectableLevel
     | null

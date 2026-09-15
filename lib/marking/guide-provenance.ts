@@ -20,7 +20,13 @@ export type GuideNotice = {
   /** Set only when the guide is spent or nearly so. */
   caution?: string
   /** For filtering and reporting; not shown as-is. */
-  status: 'current' | 'final-session' | 'withdrawn' | 'unknown'
+  status:
+    | 'current'
+    | 'final-session'
+    | 'withdrawn'
+    /** Ingested from a guide whose first assessment is still ahead. */
+    | 'not-yet-in-force'
+    | 'unknown'
 }
 
 export function describeGuide(
@@ -37,6 +43,27 @@ export function describeGuide(
     `IB ${resolved.subjectName} guide` +
     (first ? `, first assessed ${first}` : '') +
     (last ? `, last assessed ${last}` : '')
+
+  // A guide whose first assessment is still ahead of this session is not the
+  // student's guide yet — they sit the previous one. The catalogue holds
+  // several of these: Psychology, Visual Arts, Computer Science, Design
+  // Technology and the Extended Essay are all ingested from 2027-cycle guides,
+  // and two of them (Visual Arts, the EE) are routed to by default. Until now
+  // that fell through to `unknown` and said nothing, because the check below
+  // only ever looked at the END date.
+  //
+  // Same principle as the withdrawn case: mark against it anyway, since a
+  // student who has started the new course wants the new rubric, but never
+  // silently — the one sitting exams this year has to be able to tell.
+  if (first != null && first > session) {
+    return {
+      label,
+      status: 'not-yet-in-force',
+      caution:
+        `This was marked against the ${resolved.subjectName} guide first assessed in ${first}. ` +
+        `If you sit exams before ${first} you are on the previous guide, and some of these criteria will not apply to you.`,
+    }
+  }
 
   // No published end date is not the same as verified current: it is also what
   // a subject nobody has checked looks like. Neither claims nor cautions.

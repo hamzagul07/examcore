@@ -15,6 +15,44 @@ function main() {
     guide: { version: '2016', firstAssessmentYear: first, lastAssessmentYear: last },
   })
 
+  // --- not yet in force --------------------------------------------------------
+  //
+  // The catalogue holds 2027-cycle guides for Psychology, Visual Arts, Computer
+  // Science, Design Technology and the Extended Essay, two of which are routed
+  // to by default. A student marking in 2026 sits the PREVIOUS guide. This case
+  // used to fall through to `unknown` and say nothing, because the checks below
+  // only ever looked at the end date.
+  const future = describeGuide(g(null, 2027), 2026)!
+  assert.equal(future.status, 'not-yet-in-force')
+  assert.ok(future.caution, 'a guide that is not theirs yet must say so')
+  assert.match(future.caution!, /first assessed in 2027/)
+  assert.match(future.caution!, /sit exams before 2027/)
+
+  // It must win over `unknown`: a null end date is exactly what these rows have,
+  // so checking the end date first is what hid them.
+  assert.notEqual(describeGuide(g(null, 2027), 2026)!.status, 'unknown')
+
+  // The session it starts is not "ahead" — that student is on it.
+  assert.notEqual(describeGuide(g(null, 2027), 2027)!.status, 'not-yet-in-force')
+  assert.equal(describeGuide(g(null, 2027), 2027)!.status, 'unknown')
+
+  // A guide already in force with no end date keeps saying nothing, which is
+  // the honest answer for a subject nobody has checked.
+  assert.equal(describeGuide(g(null, 2016), 2026)!.status, 'unknown')
+  assert.equal(describeGuide(g(null, 2016), 2026)!.caution, undefined)
+
+  // A missing first-assessment year cannot place the guide either way.
+  assert.equal(
+    describeGuide(
+      {
+        subjectName: 'Visual Arts',
+        guide: { version: null, firstAssessmentYear: null, lastAssessmentYear: null },
+      },
+      2026
+    )!.status,
+    'unknown'
+  )
+
   // --- withdrawn ---------------------------------------------------------------
   const withdrawn = describeGuide(g(2023), 2026)!
   assert.equal(withdrawn.status, 'withdrawn')

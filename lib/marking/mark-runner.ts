@@ -58,6 +58,10 @@ import {
   bandJustificationText,
   findBandContradiction,
 } from '@/lib/marking/contradicted-band'
+import {
+  needsTiebreak,
+  pickMedianCandidate,
+} from '@/lib/marking/mark-tiebreak'
 
 /** Everything `generateFullMarksRewrite` needs, captured so the rewrite can be
  * run after the marks have already been streamed to the user. */
@@ -801,10 +805,63 @@ export async function markSingleQuestion(params: {
           markingStyle
         )
       ) {
-        markingResult = reconcileMarkResult(normalizedVerified, {
+        const verified = reconcileMarkResult(normalizedVerified, {
           authoritativeTotal,
           criterionMax,
         })
+
+        // On essays the second sample must not simply win. Measured across
+        // every run recording both passes: point_based agreed 28 times in 32
+        // and never moved more than a mark, while level_of_response agreed only
+        // 13 times in 38 — 13 downward against 12 upward, which is two draws
+        // from one distribution rather than a correction, with a spread
+        // reaching 8 marks. "Whichever ran last" is not a mark.
+        //
+        // A third draw and the median is the cheapest thing that reduces the
+        // variance instead of moving it around, and one bad draw can no longer
+        // decide the outcome. Only on a real disagreement, because a third of
+        // essays already agree and this sits in front of a student who has
+        // waited ~150 seconds.
+        const tie = needsTiebreak({
+          style: markingStyle,
+          firstMarks: Number(markingResult.marks_earned),
+          verifyMarks: Number(verified.marks_earned),
+        })
+
+        if (tie.needed) {
+          try {
+            console.warn(
+              `[mark] passes ${tie.delta} marks apart on an essay ` +
+                `(${markingResult.marks_earned} vs ${verified.marks_earned}) — third opinion`
+            )
+            const third = reconcileMarkResult(
+              normalizeMarkingResult(
+                await runGeminiMarking(verifyPrompt, maxTokensForStyle(markingStyle))
+              ),
+              { authoritativeTotal, criterionMax }
+            )
+            const chosen = pickMedianCandidate([
+              { marks: Number(markingResult.marks_earned), payload: markingResult },
+              { marks: Number(verified.marks_earned), payload: verified },
+              { marks: Number(third.marks_earned), payload: third },
+            ])
+            console.warn(
+              `[mark] median of ${markingResult.marks_earned}/` +
+                `${verified.marks_earned}/${third.marks_earned} = ${chosen.marks}`
+            )
+            // The payload travels with the number, so the justification the
+            // student reads is the one that argued for the mark they got.
+            markingResult = chosen.payload
+          } catch (err) {
+            if (isRequestDeadlineError(err)) throw err
+            // Falling back to the verified result is the behaviour that shipped
+            // before this existed, so a failed third opinion costs nothing.
+            console.warn('[mark] third opinion failed; keeping verify result', err)
+            markingResult = verified
+          }
+        } else {
+          markingResult = verified
+        }
       } else {
         // The first/final telemetry pair records the retained score; this was
         // added after a summary-only verifier changed a correct 7/8 into 0/8.

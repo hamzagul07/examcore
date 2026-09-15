@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { createClient as createServerClient } from '@/lib/supabase-server'
+import { authenticateRouteRequest } from '@/lib/supabase-server'
 import { getSyllabusByCode } from '@/lib/syllabi'
 import {
   getAttemptSubjectCode,
@@ -40,10 +40,8 @@ const supabaseAdmin = createClient(
 export async function GET(request: NextRequest) {
   const subject = request.nextUrl.searchParams.get('subject')?.trim() || null
 
-  const supabase = await createServerClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  // Bearer-capable auth so the mobile app's drill card works too.
+  const { supabase, user } = await authenticateRouteRequest(request)
   if (!user) return NextResponse.json({ drill: null })
 
   // Premium gate (defense in depth — callers may also gate on isPaid).

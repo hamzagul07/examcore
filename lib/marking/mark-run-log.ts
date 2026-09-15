@@ -51,6 +51,9 @@ export type MarkRunOpenInput = {
   subjectCode: string | null
   /** ExamSystemId — cambridge | ib | edexcel (nullable for legacy rows). */
   examSystem?: string | null
+  /** Client-generated idempotency key — lets a retried upload find its
+   * original run instead of starting (and charging) a second one. */
+  clientRequestId?: string | null
 }
 
 /** Open a run row. Returns a handle with a null id if logging is unavailable —
@@ -76,6 +79,7 @@ export async function openMarkRun(
     has_pdf: input.hasPdf,
     is_paid: input.isPaid,
     subject_code: input.subjectCode,
+    client_request_id: input.clientRequestId ?? null,
   }
   try {
     // Prefer board-aware insert; fall back if migration not applied yet.

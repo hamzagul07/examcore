@@ -9,10 +9,15 @@ import type { SubscriptionTier, SubscriptionStatus } from '@/lib/database.types'
  * only ever be "Max with smaller numbers" and never hold a feature of its own.
  * It is its own level now.
  *
- * Ordering note for anyone adding a gate: paid-or-not checks must be written
- * `access !== 'free'`, and Max exclusives `access === 'max'`. There are
- * deliberately no `access === 'pro'` comparisons anywhere — that is what made
- * adding this level safe, and it is worth keeping true.
+ * Ordering note for anyone adding a gate: paid-or-not checks are
+ * `access !== 'free'`, Max exclusives `access === 'max'`, and anything Scholar
+ * and above goes through `hasScholarFeatures` in ./features rather than being
+ * written out by hand.
+ *
+ * `pro` now means exactly one thing — the Starter tier — because teacher seats
+ * float to `scholar` (below). While it meant both, no comparison against it was
+ * safe, which is why the paid gates were all `!== 'free'` and why Starter
+ * initially shipped able to reach every Scholar feature.
  *
  * There is no trial. The 7-day no-card reverse trial and the Scholar/Max
  * checkout trial were both removed; access is now paid or it is free.
@@ -47,9 +52,21 @@ export function effectiveAccess(opts: {
   // A teacher seat is a distribution cost, not a customer: it is given away so
   // that the class arrives with it. Floored rather than assigned, so a teacher
   // who does pay for Max keeps Max.
+  //
+  // Scholar, not Pro. `pro` used to mean two unrelated things — a teacher seat
+  // and the legacy Pro tier — which is precisely why no `access === 'pro'`
+  // comparison was safe to write, and therefore why every paid feature had to
+  // be gated on the blunt `!== 'free'`. Now that `pro` carries the Starter tier
+  // ($5.99, sold on /pricing), the two have to be told apart: gating whole-paper
+  // marking at Scholar while teachers sat on `pro` would have taken class-set
+  // marking away from the exact people the seat exists to reach.
+  //
+  // Nobody loses anything — floorAccess ranks scholar above pro, so this only
+  // ever raises a teacher's access — and it costs nothing, because a teacher's
+  // marking allowance is already its own number (teacherMarkCap).
   const earned: EffectiveAccess = !paidActive
     ? opts.teacherVerified
-      ? 'pro'
+      ? 'scholar'
       : 'free'
     : // mastery → Max; scholar → Scholar; legacy `student` → Pro.
       opts.tier === 'mastery'

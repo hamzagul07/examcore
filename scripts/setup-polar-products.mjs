@@ -2,9 +2,20 @@
 /**
  * One-time Polar product creation (replaces scripts/setup-stripe-products.mjs).
  *
- * Run AFTER setting POLAR_ACCESS_TOKEN (sandbox) in .env.local:
- *   node scripts/setup-polar-products.mjs
- *   node scripts/setup-polar-products.mjs --dry-run   # print plan, no writes
+ * Run AFTER setting POLAR_ACCESS_TOKEN in .env.local:
+ *   node scripts/setup-polar-products.mjs --dry-run          # print plan, no writes
+ *   node scripts/setup-polar-products.mjs --only=student     # one product family
+ *   node scripts/setup-polar-products.mjs --yes-production   # required on production
+ *
+ * ⚠ `--only` matters more than it looks. Without it this touches all nine
+ * products, and for ones that already exist it calls products.update(), which
+ * ARCHIVES the live price and attaches a new one. `scholar` and `mastery` have
+ * real subscribers on them; re-pricing those to apply a change to `student`
+ * would be an unforced error. Pass --only=student when Starter is what changed.
+ *
+ * ⚠ POLAR_SERVER decides which Polar you are writing to, and it defaults to
+ * `sandbox`. Product IDs from sandbox are meaningless in production and vice
+ * versa, so check the banner the script prints before pasting anything.
  *
  * What it does:
  *   1. Creates one Polar product per (subscription tier x billing period) and
@@ -26,6 +37,24 @@ import { fileURLToPath } from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const DRY_RUN = process.argv.includes('--dry-run')
+const YES_PRODUCTION = process.argv.includes('--yes-production')
+
+/**
+ * Which product families to touch. Empty = all of them, which is only right on
+ * a first run against an empty organisation.
+ */
+const ONLY = (() => {
+  const arg = process.argv.find((a) => a.startsWith('--only='))
+  if (!arg) return null
+  const keys = arg
+    .slice('--only='.length)
+    .split(',')
+    .map((k) => k.trim())
+    .filter(Boolean)
+  return keys.length ? new Set(keys) : null
+})()
+
+const selected = (key) => !ONLY || ONLY.has(key)
 
 function loadEnvFile(filename) {
   const path = join(ROOT, filename)
@@ -53,10 +82,10 @@ loadEnvFile('.env.local')
 // Mirrors the previous tier-A pricing. Single price per product; Polar (MoR)
 // presents it in the buyer's local currency at checkout.
 
-// Marketing: Scholar / Max (Pro/student kept in Polar for legacy subs).
+// Marketing: Starter / Scholar / Max. `student` carries Starter (was Pro).
 // Annual list = 10× monthly. Amounts in USD cents.
 const SUBSCRIPTIONS = [
-  { key: 'student', name: 'MarkScheme Pro', monthly: 1100, yearly: 11000 },
+  { key: 'student', name: 'MarkScheme Starter', monthly: 599, yearly: 5990 },
   { key: 'scholar', name: 'MarkScheme Scholar', monthly: 1999, yearly: 19900 },
   { key: 'mastery', name: 'MarkScheme Max', monthly: 3500, yearly: 35000 },
 ]
@@ -161,15 +190,40 @@ async function ensureProduct({ productKey, name, period, amountCents }, existing
 }
 
 async function main() {
-  console.log(
-    `${DRY_RUN ? '[DRY RUN] ' : ''}Setting up Polar products on "${server}"...\n`
-  )
+  // Loud, because the two ways to get this wrong are both silent: writing to
+  // the wrong Polar, and re-pricing a product somebody is subscribed to.
+  console.log('='.repeat(64))
+  console.log(`  Polar server : ${server.toUpperCase()}${DRY_RUN ? '  [DRY RUN — no writes]' : ''}`)
+  console.log(`  Touching     : ${ONLY ? [...ONLY].join(', ') : 'ALL 9 PRODUCTS'}`)
+  console.log('='.repeat(64) + '\n')
 
-  const existing = DRY_RUN ? new Map() : await loadExisting()
+  if (server === 'production' && !DRY_RUN && !YES_PRODUCTION) {
+    console.error(
+      'Refusing to write to PRODUCTION without --yes-production.\n' +
+        'Re-run with --dry-run first, check the plan, then add --yes-production.'
+    )
+    process.exit(1)
+  }
+
+  if (!ONLY && !DRY_RUN) {
+    console.warn(
+      '⚠ No --only filter: existing products will be UPDATED, which archives\n' +
+        '  their current price and attaches a new one. If anyone is subscribed\n' +
+        '  to scholar or mastery, pass --only=student instead.\n'
+    )
+  }
+
+  // Listing is a read, so a dry run does it too. It used to skip the lookup and
+  // therefore reported "would create" for every product — including ones that
+  // already exist and would in fact be UPDATED, archiving their live price.
+  // A preview that cannot tell those two apart is worse than none, because the
+  // dangerous case is the one it hid.
+  const existing = await loadExisting()
   const envLines = {}
   const output = { createdAt: new Date().toISOString(), server, dryRun: DRY_RUN, products: {} }
 
   for (const sub of SUBSCRIPTIONS) {
+    if (!selected(sub.key)) continue
     console.log(`Subscription: ${sub.key}`)
     for (const period of ['monthly', 'yearly']) {
       const id = await ensureProduct(
@@ -187,6 +241,7 @@ async function main() {
   }
 
   for (const credit of CREDITS) {
+    if (!selected(credit.key)) continue
     console.log(`Credit pack: ${credit.key}`)
     const id = await ensureProduct(
       {
@@ -201,7 +256,13 @@ async function main() {
     output.products[credit.key] = { id, amountCents: credit.amount }
   }
 
-  const outPath = join(__dirname, 'polar-products-output.json')
+  // A filtered run holds only the products it touched, so it is written beside
+  // the full record rather than replacing it — otherwise `--only=student` would
+  // erase the ids of everything else from the file.
+  const outPath = join(
+    __dirname,
+    ONLY ? `polar-products-output.${[...ONLY].join('-')}.json` : 'polar-products-output.json'
+  )
   writeFileSync(outPath, JSON.stringify(output, null, 2))
 
   console.log('\n--- Paste these into .env.local ---\n')

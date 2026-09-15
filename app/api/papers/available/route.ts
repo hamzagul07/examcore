@@ -10,6 +10,10 @@ const supabaseAdmin = createClient(
 
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import { ALL_PAPER_STORAGE_PREFIXES } from '@/lib/paper-storage'
+import {
+  schemeCoverageKey,
+  schemeSessionLabel,
+} from '@/lib/marking/scheme-coverage'
 
 const SEASON_MAP: Record<string, string> = {
   s: 'May/June',
@@ -23,11 +27,30 @@ type SessionInfo = {
   year: number
   season: string
   components: string[]
+  /**
+   * The components in this session we hold a STRUCTURED mark scheme for, as
+   * opposed to a mark scheme PDF.
+   *
+   * These are not the same thing and conflating them is what made the marking
+   * page dishonest. `components` comes from storage: a component is listed when
+   * both `qp_` and `ms_` PDFs exist. But marking against the official scheme
+   * needs the extracted `mark_schemes` rows, and extraction has only ever been
+   * run for 10 subjects. So a student could select 4024 or 5070 — offered,
+   * because the PDFs are there — and then be asked to type the total marks
+   * themselves after a three-minute wait, because nothing structured existed to
+   * mark against.
+   *
+   * Measured over 60 days: past-paper runs failed at 32%, and half of those
+   * failures were "we could not read the total marks from your question".
+   */
+  schemeComponents: string[]
 }
 
 type SubjectInfo = {
   subject: string
   sessions: Record<string, SessionInfo>
+  /** Any structured mark scheme at all for this subject. */
+  hasSchemes: boolean
 }
 
 type AvailableMap = Record<string, SubjectInfo>
@@ -54,8 +77,54 @@ async function listFolder(path: string): Promise<string[]> {
   return data.map((d) => d.name)
 }
 
+/**
+ * Every (paper_code, session) pair we hold an extracted mark scheme for, as
+ * `"9709/12|May/June 2024"`.
+ *
+ * Paged explicitly: PostgREST caps a plain select at 1,000 rows, and silently
+ * returning the first page would report most of the catalogue as uncovered —
+ * the exact failure this set exists to prevent, inverted. Fails OPEN (empty
+ * set) so a database wobble degrades to today's behaviour rather than telling
+ * every student their subject is unsupported.
+ */
+async function loadSchemeCoverage(): Promise<Set<string>> {
+  const covered = new Set<string>()
+  const PAGE = 1000
+
+  for (let from = 0; from < 100_000; from += PAGE) {
+    const { data, error } = await supabaseAdmin
+      .from('mark_schemes')
+      .select('paper_code, paper_session')
+      // OFFSET paging over an unordered relation can repeat and skip rows —
+      // Postgres promises no order without ORDER BY, and a plan change or a
+      // concurrent extraction write is enough to shuffle it. A skipped pair
+      // drops a real paper out of the coverage set, which reports a subject we
+      // DO hold as uncovered and forces every student in it to type a total.
+      .order('id')
+      .range(from, from + PAGE - 1)
+
+    if (error) {
+      console.error('papers/available scheme coverage:', error.message)
+      return new Set()
+    }
+    if (!data?.length) break
+
+    for (const row of data) {
+      if (row.paper_code && row.paper_session) {
+        // Same shape schemeCoverageKey() produces, assembled from the two
+        // columns it is keyed on.
+        covered.add(`${row.paper_code}|${row.paper_session}`)
+      }
+    }
+    if (data.length < PAGE) break
+  }
+
+  return covered
+}
+
 async function buildAvailableMap(): Promise<AvailableMap> {
   const result: AvailableMap = {}
+  const schemeCoverage = await loadSchemeCoverage()
 
   for (const storagePrefix of ALL_PAPER_STORAGE_PREFIXES) {
     const subjectFolders = await listFolder(storagePrefix)
@@ -94,10 +163,21 @@ async function buildAvailableMap(): Promise<AvailableMap> {
               .sort()
 
             if (components.length > 0) {
+              const sessionLabel = schemeSessionLabel(
+                parsedSession.season,
+                parsedSession.year
+              )
+              const schemeComponents = components.filter((component) =>
+                schemeCoverage.has(
+                  schemeCoverageKey(subjectCode, component, sessionLabel)
+                )
+              )
+
               sessions[sessionCode] = {
                 year: parsedSession.year,
                 season: parsedSession.season,
                 components,
+                schemeComponents,
               }
             }
           })
@@ -107,6 +187,9 @@ async function buildAvailableMap(): Promise<AvailableMap> {
           result[subjectCode] = {
             subject: SUBJECT_CODE_MAP[subjectCode] || `Subject ${subjectCode}`,
             sessions,
+            hasSchemes: Object.values(sessions).some(
+              (session) => session.schemeComponents.length > 0
+            ),
           }
         }
       })

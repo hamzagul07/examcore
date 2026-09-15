@@ -960,6 +960,33 @@
     }
   }
 
+  /* The desktop nav appears at 901px and fits six items. "Teachers" is the
+     seventh, and between 901px and 1100px it does not fit: measured at 1024px
+     the theme toggle sat 32px on top of it, and at 960px the row collided with
+     the Sign up button too. Forcing nowrap only converted the old wrap into
+     that overlap, so the item is dropped in the band instead — which is exactly
+     the six-item header this page had before it was added. /for-teachers stays
+     reachable from the footer there, and the burger carries it below 901px. */
+  @media (min-width: 901px) and (max-width: 1100px) {
+    .ec-nav-link[data-nav-id='for-teachers'] {
+      display: none;
+    }
+
+    /* Tighten the remaining links so the row fits its container.
+       Measured on main, before "Teachers" existed: the five-item nav wants
+       439px and the flex track gives it 421px at 960, 402 at 940 and 368 at
+       905 — so it overflowed and slid under the theme toggle, by 6px at 960
+       growing to 59px just above the burger breakpoint. 14px of side padding
+       per link is 140px of the 439; halving it returns ~70px, which is the
+       whole shortfall.
+       The alternative was moving the 900px burger breakpoint, but that value
+       is the site-wide mobile line used by a dozen stylesheets, so changing it
+       to fix one header would have rippled everywhere. */
+    .ec-nav-link {
+      padding-inline: 7px;
+    }
+  }
+
   @media (min-width: 901px) {
     .ec-nav-links {
       display: flex;

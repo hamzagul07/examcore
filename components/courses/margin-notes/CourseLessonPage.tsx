@@ -41,7 +41,7 @@ import { SegmentedControl } from '@/components/ui/SegmentedControl'
 import { buildSignInHref } from '@/lib/auth-redirect'
 import { LessonUpsell } from '@/components/billing/LessonUpsell'
 import type { EffectiveAccess } from '@/lib/billing/access'
-import { INTERACTIVE_DIAGRAMS_FREE, QUICK_CHECK_FREE } from '@/lib/billing/features'
+import { INTERACTIVE_DIAGRAMS_FREE, QUICK_CHECK_FREE, hasScholarFeatures } from '@/lib/billing/features'
 import {
   jumpTo,
   lessonTopicHref,
@@ -109,7 +109,11 @@ export function CourseLessonPage({
     setClientMounted(true)
   }, [])
   const accessPending = clientMounted && access === undefined
-  const locked = access === 'free'
+  // Scholar and above. The course library is sold as a Scholar feature and shown
+  // as excluded on the Starter card, so `!== 'free'` would have handed the whole
+  // library to the $5.99 tier. `access` is undefined until the probe resolves,
+  // which accessPending below already covers.
+  const locked = access !== undefined && !hasScholarFeatures(access)
   // Hide premium interactive blocks until access resolves (and for free tier).
   const premiumHidden = locked || accessPending
   // Interactive diagrams are free during launch (see INTERACTIVE_DIAGRAMS_FREE),

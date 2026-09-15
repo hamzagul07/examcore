@@ -746,3 +746,67 @@
     box-shadow: none !important;
   }
 }
+
+/* ---------------------------------------------------------------------------
+ * Teacher seat request — the card that tells a teacher they have no seat
+ *
+ * Sits at the top of the desk rather than in a settings page, because the
+ * teacher does not know they have a problem: they were told marking their class
+ * was free and are silently on the 5-a-month free allowance. It is styled as a
+ * notice, not a promotion — there is nothing to sell here, the seat is free.
+ * ------------------------------------------------------------------------ */
+
+.ms-teacher-seat {
+  position: relative;
+  margin-bottom: 2rem;
+  padding: 22px 22px 20px;
+  background: var(--ec-paper, var(--ec-surface));
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-logo-crimson, var(--ec-ink-crimson));
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
+}
+
+/* Once the request is in, the urgency is gone — the crimson edge would keep
+   shouting at a teacher who has already done the only thing they can do. */
+.ms-teacher-seat--pending {
+  border-left-color: var(--ec-brand);
+  box-shadow: none;
+}
+
+.ms-teacher-seat__title {
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-seat__lead {
+  margin-top: 0.6rem;
+  max-width: 46rem;
+  color: var(--ec-text-secondary);
+  line-height: 1.6;
+}
+
+.ms-teacher-seat__cta {
+  margin-top: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+}
+
+/* The shared form block already carries a 2rem top margin for the setup screen,
+   which is too much inside a notice this size. */
+.ms-teacher-seat__form {
+  margin-top: 1.25rem;
+  gap: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .ms-teacher-seat {
+    padding: 18px 16px 16px;
+  }
+}

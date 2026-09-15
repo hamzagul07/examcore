@@ -4,7 +4,13 @@ import type { MarkExamBoard } from '@/components/mark/MarkBoardPicker'
 import { getExamSystem } from '@/lib/exam-systems'
 
 type Props = {
-  mode: 'official' | 'general' | 'practice' | 'missing_paper' | 'combined'
+  mode:
+    | 'official'
+    | 'general'
+    | 'practice'
+    | 'missing_paper'
+    | 'no_subject_scheme'
+    | 'combined'
   markBoard?: MarkExamBoard
 }
 
@@ -42,6 +48,18 @@ function missingBody(board: MarkExamBoard): string {
     return 'This session is not cached yet — we mark with Edexcel IAL conventions. Add a question photo or PDF for better accuracy.'
   }
   return `This session is not cached yet — we mark with general ${label} conventions. Add a question photo or PDF for better accuracy.`
+}
+
+/**
+ * Nothing structured exists for this subject at all — distinct from
+ * `missing_paper`, which is one uncached session of a subject we do hold.
+ *
+ * Says what we can still do rather than only what we cannot: the marking works,
+ * it just needs the denominator from the student instead of from the scheme.
+ */
+function noSubjectSchemeBody(board: MarkExamBoard): string {
+  const label = boardShort(board)
+  return `We hold the papers for this subject but not the extracted scheme yet, so enter the total marks and we'll mark your working with ${label} conventions.`
 }
 
 function practiceBody(board: MarkExamBoard): string {
@@ -95,6 +113,11 @@ export function MarkingModeHint({ mode, markBoard = 'cambridge' }: Props) {
       ? { title: 'Official mark scheme', body: officialBody(markBoard) }
       : mode === 'missing_paper'
         ? { title: 'Paper not in database', body: missingBody(markBoard) }
+        : mode === 'no_subject_scheme'
+          ? {
+              title: 'Scheme not extracted yet',
+              body: noSubjectSchemeBody(markBoard),
+            }
         : mode === 'practice'
           ? { title: 'Your own question', body: practiceBody(markBoard) }
           : mode === 'combined'

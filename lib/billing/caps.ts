@@ -7,7 +7,12 @@ import type { EffectiveAccess } from './access'
  */
 export const TIER_MONTHLY_CAPS: Record<SubscriptionTier, number> = {
   free: 5,
-  student: 50, // Pro
+  // Starter. Sized so the ladder still rises in value per mark as it rises in
+  // price — 24c a mark here against 17c on Scholar — and so the step up has a
+  // reason that is not just "more". A student marking a couple of questions a
+  // week fits inside 25; one working through whole papers does not, and that is
+  // exactly the person Scholar is for.
+  student: 25,
   scholar: 120, // Scholar
   mastery: 250, // Max
 }
@@ -15,7 +20,7 @@ export const TIER_MONTHLY_CAPS: Record<SubscriptionTier, number> = {
 /** Monthly in-app study chat message caps per tier (landing demo chat is not metered). */
 export const TIER_OMNI_CAPS: Record<SubscriptionTier, number> = {
   free: 10,
-  student: 80, // Pro
+  student: 40, // Starter
   scholar: 150, // Scholar
   mastery: 300, // Max
 }
@@ -91,7 +96,11 @@ export function capLabel(tier: SubscriptionTier): string {
 
 /**
  * Marketing-facing plan name for a tier. The DB enum (free/student/scholar/
- * mastery) maps to the three paid brands: Pro / Scholar / Max.
+ * mastery) maps to the three paid brands: Starter / Scholar / Max.
+ *
+ * `student` was branded Pro and sold nowhere. Renaming it is safe because no
+ * account held the tier when it was repriced (2026-09-06) — had one existed,
+ * they would have seen their plan renamed under them.
  */
 export function tierMarketingName(tier: SubscriptionTier): string {
   switch (tier) {
@@ -100,7 +109,7 @@ export function tierMarketingName(tier: SubscriptionTier): string {
     case 'scholar':
       return 'Scholar'
     case 'student':
-      return 'Pro'
+      return 'Starter'
     default:
       return 'Free'
   }

@@ -93,7 +93,14 @@ export function SiteHeader({ variant }: Props) {
         : [...navItems, MAX_VAULT_NAV_ITEM]
   }
   if (role === 'teacher') {
-    navItems = [...navItems, TEACHER_NAV_ITEM]
+    // "For teachers" is the pitch, for a visitor who does not teach here yet.
+    // Someone who already has classrooms wants the classrooms, so it is swapped
+    // out rather than shown alongside — two teacher links in one nav reads as a
+    // mistake, and the pitch is the one they have already accepted.
+    navItems = [
+      ...navItems.filter((i) => i.id !== 'for-teachers'),
+      TEACHER_NAV_ITEM,
+    ]
   }
   const isGuest = !loading && !user
   // Logged-in users already have the account avatar — never show them a
@@ -268,6 +275,9 @@ export function SiteHeader({ variant }: Props) {
           variant="inline"
           loadingText="Opening…"
           className={cn('ec-nav-link', active && 'ec-nav-link--active')}
+          // Styling hook so a single item can be dropped at a width where the
+          // row cannot hold it — see the 901-1100px rule for 'for-teachers'.
+          data-nav-id={item.id}
           aria-current={active ? 'page' : undefined}
         >
           {item.label.toLowerCase()}

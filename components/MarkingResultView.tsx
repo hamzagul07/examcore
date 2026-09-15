@@ -160,6 +160,7 @@ export function MarkingResultView({
   evidenceDefaultOpen = true,
   moreDefaultOpen = true,
   isSample = false,
+  firstMarkPremium = false,
   afterScore,
 }: {
   result: MarkingResultData
@@ -186,6 +187,11 @@ export function MarkingResultView({
   moreDefaultOpen?: boolean
   /** Demo / example mark — no rewrite upsell, no “your work” chrome. */
   isSample?: boolean
+  /**
+   * This run got the one-off first-mark treatment, so the rewrite is coming (or
+   * is already here) and the upsell for it must not appear.
+   */
+  firstMarkPremium?: boolean
 }) {
   const [showOCR, setShowOCR] = useState(false)
   const marksAwarded = result.ai_marking?.marks_awarded
@@ -232,9 +238,14 @@ export function MarkingResultView({
   // Never on the sample — it is not "your" answer and has no rewrite payload.
   const lostMarks =
     result.total_marks > 0 && result.marks_earned < result.total_marks
+  // `firstMarkPremium` suppresses it: on the streaming path the score arrives
+  // first and the rewrite lands 15-30s later, so between the two this teaser —
+  // "upgrade to get the rewrite" — would render directly beneath the first-mark
+  // note saying the rewrite already happened, then vanish when it arrives.
   const showRewriteTeaser =
     !isSample &&
     isPaid === false &&
+    !firstMarkPremium &&
     !result.ai_marking?.full_marks_rewrite &&
     lostMarks &&
     result.ai_marking?.marking_style !== 'mcq'

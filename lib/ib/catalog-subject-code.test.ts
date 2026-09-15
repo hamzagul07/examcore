@@ -148,6 +148,13 @@ for (const [subject, component] of [
   ['ib-psychology', 'paper_3'],
   ['ib-economics', 'paper_1'],
   ['ib-economics', 'paper_2'],
+  // "Section A—Core theme" (25) + two optional-theme essays: Paper 1 HL is
+  // three essays out of 75.
+  ['ib-philosophy', 'paper_1'],
+  ['ib-philosophy', 'paper_2'],
+  ['ib-philosophy', 'paper_3'],
+  // "Paper 3 HL part a" (12), "part b" (16).
+  ['ib-geography', 'paper_3'],
 ] as const) {
   assert.equal(
     componentIsPerQuestionSlots(subject, component),
@@ -168,6 +175,14 @@ assert.equal(componentIsPerQuestionSlots('ib-language-b', 'paper_1'), false)
 assert.equal(componentIsPerQuestionSlots('ib-lang-a-langlit', 'paper_1'), false)
 assert.equal(componentIsPerQuestionSlots('ib-lang-a-langlit', 'paper_2'), false)
 assert.equal(componentIsPerQuestionSlots('ib-tok', 'tok_essay'), false)
+// Business Management's HL paper 3 IS criteria-marked — Use of resource
+// materials, Tools and theories, Evaluation, Sequencing of ideas. A blanket
+// rule excluding every `paper_*` would have blocked it, which is why the list
+// is built by reading criterion names rather than by component type.
+assert.equal(componentIsPerQuestionSlots('ib-business-management', 'paper_3'), false)
+assert.equal(componentIsPerQuestionSlots('ib-philosophy', 'ia'), false)
+assert.equal(componentIsPerQuestionSlots('ib-geography', 'ia'), false)
+assert.equal(componentIsPerQuestionSlots('ib-biology', 'ia'), false)
 assert.equal(componentIsPerQuestionSlots('ib-visual-arts', 'comparative_study_hl'), false)
 
 assert.equal(

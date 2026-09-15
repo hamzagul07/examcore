@@ -78,11 +78,26 @@ export function isAliasedCatalogSubject(profileSubjectCode: string): boolean {
  * holistic profile fallback is closer to right than a rubric for a paper the
  * student did not sit.
  *
+ * Every criterion name across all 17 catalogued subjects was read to build this
+ * list, and the split does not follow component type. It is broadly true that
+ * IA and portfolio components carry real criteria while exam papers carry
+ * slots — but Business Management's HL paper 3 is genuinely criteria-marked
+ * (Use of resource materials, Tools and theories, Evaluation, Sequencing of
+ * ideas), and Language B and Lang-Lit's papers are too. A blanket rule on
+ * `paper_*` would have blocked all three. There is no shortcut here: adding a
+ * subject means reading its criterion names.
+ *
  * Keyed by catalogue subject code, so it is checked after `catalogSubjectCode`.
  */
 const PER_QUESTION_SLOT_COMPONENTS: Record<string, readonly string[]> = {
   'ib-psychology': ['paper_1', 'paper_2', 'paper_3'],
   'ib-economics': ['paper_1', 'paper_2'],
+  // "Section A—Core theme" (25), "Section B—Optional themes (first essay)" (25),
+  // "(second essay)" (25). Paper 1 HL is three essays; a student practising one
+  // has no business being marked out of 75.
+  'ib-philosophy': ['paper_1', 'paper_2', 'paper_3'],
+  // "Paper 3 HL part a" (12), "Paper 3 HL part b" (16).
+  'ib-geography': ['paper_3'],
 }
 
 /**

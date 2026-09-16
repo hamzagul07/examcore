@@ -52,10 +52,14 @@ const BASE_TABS: TabItem[] = [
     href: '/dashboard/progress',
     label: 'Progress',
     icon: <InkGlyphProgress className="ec-tabbar__svg" title="" />,
+    // The study plan has no tab of its own (NAV-01: four destinations); on
+    // a phone it is reached from Progress and the dashboard card, so the
+    // Progress tab lights up while it is open.
     match: (p) =>
       p.startsWith('/dashboard/progress') ||
       p.startsWith('/dashboard/attempt/') ||
-      p.startsWith('/dashboard/review'),
+      p.startsWith('/dashboard/review') ||
+      p.startsWith('/dashboard/plan'),
   },
 ]
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
 import { ErrorBox, SuccessBox } from '@/components/AuthFormBits'
@@ -404,6 +405,14 @@ function ExamDateCard({
                 : days === 0
                   ? 'Exam day is today'
                   : `${Math.abs(days)} days ago — set your next session?`}
+          </p>
+        )}
+
+        {days !== null && days > 0 && (
+          <p className="text-sm">
+            <Link href="/dashboard/plan" className="font-medium text-[var(--ec-brand)] underline underline-offset-4">
+              Build a day-by-day plan to it →
+            </Link>
           </p>
         )}
 

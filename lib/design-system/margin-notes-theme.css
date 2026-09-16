@@ -789,3 +789,17 @@ html[data-lesson-study='on'] .ec-ms-footer {
 .lesson-page[data-study='on']:focus:not(:focus-visible) {
   outline: none;
 }
+
+/* Progress page → study plan. The header nav collapses on a phone and the
+   plan has no tab, so this link is the way in from a page students open. */
+.dash-planlink {
+  margin: 10px 0 0;
+  font-size: 14px;
+}
+
+.dash-planlink__a {
+  color: var(--ec-brand);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

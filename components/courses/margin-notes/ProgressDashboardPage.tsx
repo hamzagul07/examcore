@@ -84,6 +84,13 @@ export function ProgressDashboardPage({
                 You&apos;re marking more than you&apos;re re-reading — that&apos;s exactly how the
                 marks come.
               </p>
+              {/* On a phone the header nav collapses and Plan has no tab, so
+                  this is the way in from the page students already open. */}
+              <p className="dash-planlink">
+                <Link href="/dashboard/plan" className="dash-planlink__a">
+                  Your day-by-day plan to the exam →
+                </Link>
+              </p>
             </div>
             <div className="dash-streakcard card">
               <p className="micro">STUDY STREAK</p>

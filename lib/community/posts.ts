@@ -103,6 +103,9 @@ const SELECT =
 export async function listPosts(params: {
   board?: Board
   subjectCode?: string
+  subjectCodes?: string[]
+  ids?: string[]
+  authorIds?: string[]
   topicCode?: string
   lessonSlug?: string
   questionId?: string
@@ -116,11 +119,14 @@ export async function listPosts(params: {
 
   if (params.board) q = q.eq('board', params.board)
   if (params.subjectCode) q = q.eq('subject_code', params.subjectCode)
+  if (params.subjectCodes?.length) q = q.in('subject_code', params.subjectCodes)
+  if (params.ids?.length) q = q.in('id', params.ids)
   if (params.topicCode) q = q.eq('topic_code', params.topicCode)
   if (params.lessonSlug) q = q.eq('lesson_slug', params.lessonSlug)
   if (params.questionId) q = q.eq('question_id', params.questionId)
   if (params.kind) q = q.eq('kind', params.kind)
   if (params.authorId) q = q.eq('author_id', params.authorId)
+  if (params.authorIds?.length) q = q.in('author_id', params.authorIds)
 
   const sort = params.sort ?? 'hot'
   if (sort === 'new') q = q.order('created_at', { ascending: false })

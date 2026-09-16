@@ -1,25 +1,25 @@
-import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase-server'
+import { NextRequest } from 'next/server'
+import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { computeBillingSummary } from '@/lib/billing/enforcement'
 import { shouldShowApproachingLimitBanner } from '@/lib/billing/enforcement-mode'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
-export async function GET() {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+// authenticateRouteRequest (not createClient) so the mobile app's
+// Authorization: Bearer token works — with cookie-only auth every native
+// client looked signed-out and was treated as free.
+export async function GET(req: NextRequest) {
+  const { user, pendingCookies } = await authenticateRouteRequest(req)
   if (!user) {
-    return NextResponse.json({ signedIn: false, access: 'free' })
+    return jsonWithAuthCookies({ signedIn: false, access: 'free' }, pendingCookies)
   }
 
   const summary = await computeBillingSummary(user.id)
   const showMetering = shouldShowApproachingLimitBanner()
   const enforce = summary.enforcement_mode === 'enforce'
 
-  return NextResponse.json({
+  return jsonWithAuthCookies({
     signedIn: true,
     tier: summary.tier,
     access: summary.access,
@@ -53,5 +53,5 @@ export async function GET() {
     marks_used: summary.questions.used,
     cap: summary.questions.cap,
     remaining: summary.questions.remaining,
-  })
+  }, pendingCookies)
 }

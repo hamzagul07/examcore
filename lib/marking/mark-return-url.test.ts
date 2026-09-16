@@ -20,6 +20,7 @@ check(
     '/courses/9709/1-1-quadratics?board=edexcel&unit=WMA11'
 )
 check('allows vault desk', parseMarkReturnPath('/dashboard/vault') === '/dashboard/vault')
+check('allows the study plan', parseMarkReturnPath('/dashboard/plan') === '/dashboard/plan')
 check(
   'allows progress desk',
   parseMarkReturnPath('/dashboard/progress?tab=insights') ===

@@ -781,3 +781,11 @@ html[data-lesson-study='on'] .ec-ms-footer {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* Study mode focuses the overlay so arrow keys scroll it (see
+   CourseLessonPage toggleStudy). A programmatic focus on a full-screen
+   container must not draw a ring around the whole viewport; keyboard users
+   who Tab into it still get :focus-visible. */
+.lesson-page[data-study='on']:focus:not(:focus-visible) {
+  outline: none;
+}

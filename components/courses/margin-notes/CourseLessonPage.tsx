@@ -409,7 +409,17 @@ export function CourseLessonPage({
           const root = document.querySelector<HTMLElement>(
             '.lesson-page[data-study="on"]'
           )
-          if (root) root.scrollTop = 0
+          if (!root) return
+          root.scrollTop = 0
+          // Study mode turns .lesson-page into a fixed, self-scrolling
+          // overlay, so the DOCUMENT no longer scrolls — the overlay does.
+          // Keyboard scrolling (arrows, PgUp/PgDn, Space) targets the
+          // focused element's nearest scrollable ancestor, and after the
+          // toggle focus is on the body, whose scroll container is the
+          // document. That is why the mouse wheel worked and the arrow keys
+          // did nothing. Putting focus on the overlay itself makes it the
+          // keyboard scroll target. preventScroll keeps the reset above.
+          root.focus({ preventScroll: true })
         })
       })
     }
@@ -418,6 +428,24 @@ export function CourseLessonPage({
     } catch {
       /* ignore */
     }
+  }, [study])
+
+  // Make the overlay the keyboard scroll target whenever study mode is ON —
+  // not only when the toggle is clicked. Study can also come on at mount
+  // (pref restored from localStorage, or the phone default), and on that path
+  // nothing inside the overlay ever receives focus, so arrow keys and PgDn go
+  // to the document, which no longer scrolls. Only claims focus from the body:
+  // a student already typing in a box keeps it.
+  useEffect(() => {
+    if (!study) return
+    const id = window.requestAnimationFrame(() => {
+      const root = document.querySelector<HTMLElement>('.lesson-page[data-study="on"]')
+      if (!root) return
+      const active = document.activeElement
+      if (active && active !== document.body && root.contains(active)) return
+      root.focus({ preventScroll: true })
+    })
+    return () => window.cancelAnimationFrame(id)
   }, [study])
 
   // Esc exits immersion — but never while typing in an input / teach-back box.
@@ -510,6 +538,10 @@ export function CourseLessonPage({
     <main
       className="lesson-page"
       data-study={study ? 'on' : 'off'}
+      // Focusable (not tabbable) so it can be the keyboard scroll target in
+      // study mode — see toggleStudy. Off-mode it is inert: focus() on it is
+      // only ever called when the overlay is on.
+      tabIndex={-1}
       data-visual-notes={visualNotes ? 'on' : 'off'}
       data-screen-label={`Lesson — ${L.name}`}
       // Both names: --acc-lesson is what the existing lesson CSS reads, --hub-acc

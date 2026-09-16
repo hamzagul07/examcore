@@ -4,8 +4,9 @@ import {
   checkinLine,
   findPlanDay,
   formatMinutes,
-  isoDate,
+  formatPlanDate,
   planProgress,
+  todayInZone,
   workBlocks,
   type DoneDays,
   type HydratedPlan,
@@ -22,10 +23,14 @@ type Props = {
  * plan page itself.
  */
 export function TodayPlanCard({ saved, examDate }: Props) {
-  const todayIso = isoDate(new Date())
+  // The student's date, not the server's: a plan built in Karachi is read in Karachi.
+  const todayIso = todayInZone(saved?.plan.timeZone)
   const today = saved ? findPlanDay(saved.plan, todayIso) : null
+  // The exam date lives on the profile; a plan built for another date is
+  // stale however many days it still has.
+  const examMoved = Boolean(saved && examDate && examDate !== saved.plan.examDate)
 
-  if (saved && today) {
+  if (saved && today && !examMoved) {
     const progress = planProgress(saved.plan, saved.done, todayIso)
     const blocks = workBlocks(today).slice(0, 4)
     const done = saved.done[String(today.day)] === true
@@ -92,9 +97,11 @@ export function TodayPlanCard({ saved, examDate }: Props) {
     <section className="ec-card ec-card--paper ms-plan-offer mb-6" aria-labelledby="dash-plan-offer-title">
       <p className="ec-eyebrow mb-1">{saved ? 'Study plan' : 'New'}</p>
       <h2 id="dash-plan-offer-title" className="text-title" style={{ margin: 0 }}>
-        {saved
-          ? 'Your plan needs rebuilding from today.'
-          : days && days > 0
+        {examMoved && examDate
+          ? `Your exam date moved to ${formatPlanDate(examDate)}. Rebuild your plan.`
+          : saved
+            ? 'Your plan needs rebuilding from today.'
+            : days && days > 0
             ? `${days} ${days === 1 ? 'day' : 'days'} to go. Get every one of them planned.`
             : 'Get every day to your exam planned.'}
       </h2>

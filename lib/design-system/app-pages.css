@@ -1720,6 +1720,13 @@
   color: var(--ec-text-secondary);
 }
 
+.ms-plan-note--warn {
+  padding: 10px 14px;
+  border-left: 3px solid var(--ec-ink-crimson, #9f1239);
+  background: color-mix(in srgb, var(--ec-ink-crimson, #9f1239) 6%, var(--ec-surface));
+  color: var(--ec-text-primary, var(--ec-ink));
+}
+
 /* progress */
 .ms-plan-progress {
   display: flex;

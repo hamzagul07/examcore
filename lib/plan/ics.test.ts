@@ -3,6 +3,7 @@ import { renderPlanIcs } from '@/lib/plan/ics'
 import type { HydratedPlan } from '@/lib/plan/plan-view'
 
 const plan: HydratedPlan = {
+  version: 2,
   examDate: '2026-10-05',
   preparedness: 'pass',
   minutesPerDay: 90,

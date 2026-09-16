@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { suggestedExamDates } from '@/lib/dashboard/exam-date'
 import { SegmentedControl } from '@/components/ui/SegmentedControl'
 import { Field } from '@/components/ui/Field'
@@ -108,7 +109,16 @@ export function PostMarkExamDateAsk({ onSaved, onDismiss }: Props) {
             />
           </div>
           {errorMsg ? <FormErrorAlert message={errorMsg} className="mt-3" /> : null}
-          {successMsg ? <FormSuccessStatus message={successMsg} className="mt-3" /> : null}
+          {successMsg ? (
+            <>
+              <FormSuccessStatus message={successMsg} className="mt-3" />
+              <p className="mt-2 text-sm">
+                <Link href="/dashboard/plan" className="font-medium text-[var(--ec-brand)] underline underline-offset-4">
+                  Build a day-by-day plan to it →
+                </Link>
+              </p>
+            </>
+          ) : null}
         </div>
       </div>
       <button

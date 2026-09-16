@@ -42,6 +42,16 @@ import { examEncouragement } from '@/lib/dashboard/exam-date'
 
 export type Preparedness = 'pass' | 'secure' | 'stretch'
 
+/**
+ * Bumped when a rebuild would give a student a materially better plan than
+ * the one they have — a plan carrying an older version (or none) is offered
+ * a rebuild, with its ticks carried over. History:
+ *   1  first plans (single exam date, no syllabus rotation)
+ *   2  syllabus rotation for subjects without frequency data, time zones,
+ *      days away, per-subject exam dates, real paper lengths
+ */
+export const PLAN_VERSION = 2
+
 export const PREPAREDNESS_LABEL: Record<Preparedness, string> = {
   pass: 'I need to pass',
   secure: 'I know it, but not well enough',
@@ -124,6 +134,8 @@ export type PlanDay = {
 }
 
 export type StudyPlan = {
+  /** PLAN_VERSION at build time; older plans are offered a rebuild. */
+  version: number
   /** The last exam; the plan ends the day before it. */
   examDate: string
   preparedness: Preparedness
@@ -303,6 +315,7 @@ export function buildStudyPlan(input: BuildStudyPlanInput): StudyPlan {
   const days: PlanDay[] = []
   if (length === 0 || subjects.length === 0) {
     return {
+      version: PLAN_VERSION,
       examDate,
       preparedness: input.preparedness,
       minutesPerDay,
@@ -610,6 +623,7 @@ export function buildStudyPlan(input: BuildStudyPlanInput): StudyPlan {
   const hours = Math.round((totalWork / 60) * 10) / 10
   const studyDayCount = days.filter((d) => d.workMinutes > 0).length
   return {
+    version: PLAN_VERSION,
     examDate,
     preparedness: input.preparedness,
     minutesPerDay,

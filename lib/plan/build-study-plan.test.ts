@@ -149,6 +149,11 @@ assert.equal(timedPaperCount('pass', 4), 1, 'never zero once there is room')
   const rests = plan.days.filter((d) => d.kind === 'rest')
   assert.ok(rests.length >= 2, `a rest day per 7-day window: ${rests.length}`)
   assert.ok(rests.every((d) => d.workMinutes === 0))
+  assert.notEqual(plan.days[0]!.kind, 'rest', 'day 1 is never an imposed rest day')
+  assert.ok(
+    rests.every((d) => weekdayIndex(d.date) >= 5),
+    `on a flat week the rest day is a weekend day: ${rests.map((d) => d.date).join(',')}`
+  )
 
   // Never over the budget; breaks are real blocks between work.
   for (const d of plan.days) {

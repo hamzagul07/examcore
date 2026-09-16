@@ -49,6 +49,8 @@ export const PLAN_RETURN_PATH = '/dashboard/plan'
 
 const HIGH_YIELD_LIMIT = 8
 const WEAK_LIMIT = 5
+/** Above this a leaf is not weak, whatever the recommendation list says. */
+const WEAK_MAX_PCT = 65
 /** Different questions for consecutive drills on the same topic. */
 const CANDIDATES_PER_TOPIC = 6
 const SCAN_PAGE = 1000
@@ -111,12 +113,19 @@ function weakTopicsFor(attempts: AttemptWithPaper[], subjectCode: string): PlanT
   if (filtered.length === 0) return []
   const masteries = flattenLeafMasteries(calculateParentMastery(filtered, subjectCode))
   const byCode = new Map(masteries.map((m) => [m.code, m]))
-  return topicTargetsFromMasteries(masteries, WEAK_LIMIT).map((t) => ({
-    code: t.code,
-    name: t.name,
-    source: 'weak' as const,
-    weight: Math.round(byCode.get(t.code)?.percentage ?? 0),
-  }))
+  return (
+    topicTargetsFromMasteries(masteries, WEAK_LIMIT)
+      // The recommendation list also carries under-sampled leaves the student
+      // did fine on ("confirm it"). A plan block that says "you lost marks
+      // here" has to mean it — the first real dry run offered a 100% topic.
+      .filter((t) => (byCode.get(t.code)?.percentage ?? 0) < WEAK_MAX_PCT)
+      .map((t) => ({
+        code: t.code,
+        name: t.name,
+        source: 'weak' as const,
+        weight: Math.round(byCode.get(t.code)?.percentage ?? 0),
+      }))
+  )
 }
 
 /** Topic lists and paper availability for each requested subject. */

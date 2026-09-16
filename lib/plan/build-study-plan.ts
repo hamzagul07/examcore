@@ -296,9 +296,16 @@ export function buildStudyPlan(input: BuildStudyPlanInput): StudyPlan {
       let best = -1
       let bestMin = Infinity
       for (let i = lo; i < hi; i++) {
+        // Never the day the plan was built: the student asked for a plan,
+        // not a day off. (Seen in the first real dry run.)
+        if (i === 0) continue
         if (available[i]! < MIN_USEFUL_MINUTES) continue // already a rest day
-        if (available[i]! < bestMin) {
-          bestMin = available[i]!
+        const m = available[i]!
+        const weekend = weekdayIndex(dates[i]!) >= 5
+        const bestWeekend = best >= 0 && weekdayIndex(dates[best]!) >= 5
+        // Lightest day wins; on a tie prefer a weekend day, then the later one.
+        if (m < bestMin || (m === bestMin && (weekend || !bestWeekend))) {
+          bestMin = m
           best = i
         }
       }

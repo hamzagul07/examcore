@@ -36,7 +36,7 @@ import type { DoneDays, HydratedBlock, HydratedDay, HydratedPlan } from '@/lib/p
 import { calculateParentMastery, flattenLeafMasteries, type AttemptLite } from '@/lib/mastery'
 import { topicTargetsFromMasteries } from '@/lib/insights/recommendations'
 import { getAttemptSubjectCode, type AttemptWithPaper } from '@/lib/syllabi/attempts'
-import { getSyllabusSubjectName, getSyllabusTopicByCode, hasSyllabusTree } from '@/lib/syllabi'
+import { getSyllabusByCode, getSyllabusSubjectName, getSyllabusTopicByCode, hasSyllabusTree } from '@/lib/syllabi'
 import type { SyllabusCode } from '@/lib/syllabus'
 import { getSubjectByCode } from '@/lib/profile-options'
 import { isIbSubjectCode } from '@/lib/ib/marking-config'
@@ -128,6 +128,20 @@ function weakTopicsFor(attempts: AttemptWithPaper[], subjectCode: string): PlanT
   )
 }
 
+/**
+ * The syllabus leaves in order — the rotation when there is no frequency
+ * data. Every IB subject has a tree (9–43 leaves); no IB mark scheme is
+ * tagged, so without this an IB plan would say "a question" all the way.
+ */
+function syllabusTopicsFor(subjectCode: string): PlanTopic[] {
+  return (getSyllabusByCode(subjectCode) ?? []).map((t) => ({
+    code: t.code,
+    name: t.name,
+    source: 'syllabus' as const,
+    weight: 0,
+  }))
+}
+
 /** Topic lists and paper availability for each requested subject. */
 export async function resolvePlanSubjects(
   admin: Admin,
@@ -154,6 +168,7 @@ export async function resolvePlanSubjects(
       label: subjectLabelFor(code),
       highYield: await fetchHighYieldTopics(admin, code),
       weak: weakTopicsFor(attempts, code),
+      syllabus: syllabusTopicsFor(code),
       hasTimedPaper: timedPaperSlots(code).length > 0,
     }))
   )
@@ -255,14 +270,20 @@ export async function hydrateStudyPlan(admin: Admin, plan: StudyPlan): Promise<H
         }
       }
     }
-    // Nothing banked for this topic (IB, or not tagged yet): /mark generates
-    // one for the topic, or opens the subject's desk.
+    // Nothing banked for this topic: /mark generates one. For IB that is the
+    // normal path — a cached, exam-style question per syllabus topic, marked
+    // to the subject's criteria. For a Cambridge topic nobody has tagged yet
+    // it is the fallback.
     const params = new URLSearchParams({ subject: code, return: PLAN_RETURN_PATH })
     if (block.topic) params.set('topic', block.topic.code)
     return {
       ...block,
       href: `/mark?${params.toString()}`,
-      resourceLabel: block.topic ? 'A fresh question on this topic' : 'Practice desk',
+      resourceLabel: block.topic
+        ? isIbSubjectCode(code)
+          ? 'Exam-style question on this topic, marked to the IB criteria'
+          : 'A fresh question on this topic'
+        : 'Practice desk',
     }
   }
 
@@ -298,6 +319,10 @@ export type BuildPlanRequest = {
   minutesPerDay: number
   availability: WeekAvailability
   subjectCodes: string[]
+  /** IANA zone the client reported; 'UTC' when it could not. */
+  timeZone: string
+  /** ISO dates the student is away. */
+  blockedDates: string[]
 }
 
 /** Build, hydrate and store — replacing any previous plan and its ticks. */
@@ -314,6 +339,8 @@ export async function buildAndSaveStudyPlan(
     minutesPerDay: req.minutesPerDay,
     availability: req.availability,
     subjects,
+    timeZone: req.timeZone,
+    blockedDates: req.blockedDates,
   })
   const hydrated = await hydrateStudyPlan(admin, plan)
   const now = hydrated.generatedAt
@@ -326,6 +353,8 @@ export async function buildAndSaveStudyPlan(
       minutes_per_day: hydrated.minutesPerDay,
       availability: hydrated.availability,
       subjects: hydrated.subjects,
+      time_zone: hydrated.timeZone,
+      blocked_dates: hydrated.blockedDates,
       plan: hydrated,
       done_days: {},
       generated_at: now,

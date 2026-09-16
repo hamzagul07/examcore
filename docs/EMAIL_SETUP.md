@@ -45,6 +45,8 @@ Redeploy after adding.
 
 Max drip + sprint cron: `/api/cron/max-lifecycle` daily 10:00 UTC. Tour/day-4 need `MAX_LIFECYCLE_EMAIL_SEND=true` (sprint gifts always run). Weekly coach needs `WEEKLY_REPORT_SEND=true`.
 
+Study-plan check-in: `/api/cron/plan-checkin` daily 06:30 UTC sends today's blocks from `/dashboard/plan` on study days only. Needs `PLAN_CHECKIN_SEND=true`; consent is the student's `email_exam_reminders` switch (off by default, offered when they build the plan); one-click unsubscribe kind `exam`. Dry-run counts candidates otherwise.
+
 Marketing blasts are **not** sent automatically. Students opt in under **Account → Preferences** (`email_product_updates`, `email_exam_reminders`). Use `sendProductUpdateEmail()` from code or a future script when you run a campaign.
 
 ## 4. Auth emails (magic link, password reset, confirm email)

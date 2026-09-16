@@ -28,6 +28,7 @@ export function parseMarkReturnPath(raw: string | null | undefined): string | nu
     const allowed =
       path.startsWith('/courses/') ||
       path === '/dashboard/vault' ||
+      path === '/dashboard/plan' ||
       path.startsWith('/dashboard/progress')
     if (!allowed) return null
     return `${url.pathname}${url.search}`

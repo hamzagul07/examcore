@@ -13,6 +13,8 @@ export type UnsubscribeKind =
   | 'activation'
   | 'updates'
   | 'mark_ready'
+  /** The morning study-plan check-in; rides on email_exam_reminders. */
+  | 'exam'
 
 function secret(): string {
   return (
@@ -48,7 +50,8 @@ export function verifyUnsubscribeToken(
         kind !== 'streak' &&
         kind !== 'activation' &&
         kind !== 'updates' &&
-        kind !== 'mark_ready') ||
+        kind !== 'mark_ready' &&
+        kind !== 'exam') ||
       !exp ||
       !sig
     )
@@ -134,6 +137,8 @@ export function unsubscribeColumnPatch(kind: UnsubscribeKind): Record<string, bo
       return { email_product_updates: false }
     case 'mark_ready':
       return { email_mark_ready: false }
+    case 'exam':
+      return { email_exam_reminders: false }
     default:
       return { email_community_digest: false }
   }
@@ -141,6 +146,8 @@ export function unsubscribeColumnPatch(kind: UnsubscribeKind): Record<string, bo
 
 export function unsubscribeLabel(kind: UnsubscribeKind): string {
   switch (kind) {
+    case 'exam':
+      return 'Study plan check-in emails'
     case 'replies':
       return 'Exam Room reply emails'
     case 'threads':

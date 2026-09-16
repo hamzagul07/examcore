@@ -72,6 +72,14 @@ export type FunnelEvent =
    * other 1,207 were missing.
    */
   | 'starter_question_taken'
+  /**
+   * A study plan was built. Asked for by a student with nineteen days left; the
+   * count against `plan_checkin_opened` says whether a plan, once built, gets
+   * used or just admired.
+   */
+  | 'plan_built'
+  /** A day on the plan was ticked off. */
+  | 'plan_day_done'
 
 export type FunnelProps = {
   subject?: string | null

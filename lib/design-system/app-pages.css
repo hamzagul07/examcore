@@ -1577,3 +1577,396 @@
     transition: none;
   }
 }
+
+/* ------------------------------------------------------------------
+   Study plan (/dashboard/plan + the dashboard "today" card)
+   ------------------------------------------------------------------ */
+
+.ms-plan-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 28px;
+  min-width: 0;
+}
+
+.ms-plan-fieldset > legend {
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.ec-pill.is-on {
+  border-color: color-mix(in srgb, var(--ec-brand) 50%, transparent);
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+}
+
+.ms-plan-countdown {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 35%, transparent);
+  border-radius: 3px;
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.ms-plan-segments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ms-plan-segment {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 3px;
+  background: var(--ec-surface);
+  color: var(--ec-text-primary, var(--ec-ink));
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.ms-plan-segment.on,
+.ms-plan-segment[aria-checked='true'] {
+  border-color: var(--ec-brand);
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+  font-weight: 600;
+}
+
+.ms-plan-segment:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+}
+
+.ms-plan-week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+
+@media (max-width: 560px) {
+  .ms-plan-week {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.ms-plan-week__day {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.ms-plan-week__name {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-plan-week__select {
+  min-height: 40px;
+  padding: 0 6px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 3px;
+  background: var(--ec-surface);
+  color: inherit;
+  font-size: 13px;
+}
+
+.ms-plan-week__min {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  color: var(--ec-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.ms-plan-check {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.ms-plan-check input {
+  margin-top: 4px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--ec-brand);
+}
+
+.ms-plan-linkbtn {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--ec-brand);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.ms-plan-note {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+/* progress */
+.ms-plan-progress {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 12px;
+  margin: 0 0 20px;
+  padding: 12px 0;
+  border-top: 1px solid var(--ec-border);
+  border-bottom: 1px solid var(--ec-border);
+}
+
+.ms-plan-progress__big {
+  font-family: var(--ec-font-display, Georgia, serif);
+  font-size: 28px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.ms-plan-progress__of {
+  font-size: 14px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-plan-progress__behind,
+.ms-plan-progress__ok {
+  margin-left: auto;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+}
+
+.ms-plan-progress__behind {
+  color: var(--ec-ink-crimson, #9f1239);
+}
+
+.ms-plan-progress__ok {
+  color: var(--ec-text-secondary);
+}
+
+/* the day list */
+.ms-plan-days {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ms-plan-day {
+  padding: 14px 16px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-surface);
+  scroll-margin-top: 84px;
+}
+
+.ms-plan-day.is-today {
+  border-color: var(--ec-brand);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
+}
+
+.ms-plan-day.is-past:not(.is-done) {
+  opacity: 0.72;
+}
+
+.ms-plan-day.is-done {
+  background: color-mix(in srgb, var(--ec-brand-muted) 55%, var(--ec-surface));
+}
+
+.ms-plan-day--rest {
+  border-style: dashed;
+}
+
+.ms-plan-day__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  font-size: 13px;
+}
+
+.ms-plan-day__num {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.ms-plan-day__date {
+  font-weight: 600;
+}
+
+.ms-plan-day__left,
+.ms-plan-day__mins {
+  color: var(--ec-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.ms-plan-day__head .ms-plan-tick {
+  margin-left: auto;
+}
+
+.ms-plan-day__focus {
+  margin: 6px 0 0;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+/* blocks */
+.ms-plan-blocks {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ms-plan-block__link {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 3px;
+  color: inherit;
+  text-decoration: none;
+  line-height: 1.35;
+}
+
+a.ms-plan-block__link:hover {
+  background: var(--ec-brand-muted);
+}
+
+.ms-plan-block__min {
+  flex: 0 0 auto;
+  min-width: 30px;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  color: var(--ec-text-secondary);
+  font-variant-numeric: tabular-nums;
+  padding-top: 2px;
+}
+
+.ms-plan-block__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.ms-plan-block__label {
+  font-size: 14px;
+}
+
+.ms-plan-block__res {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--ec-text-secondary);
+}
+
+.ms-plan-block__go {
+  flex: 0 0 auto;
+  color: var(--ec-brand);
+  padding-top: 2px;
+}
+
+.ms-plan-block--timed_paper .ms-plan-block__label {
+  font-weight: 600;
+}
+
+.ms-plan-block--break {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px 0 50px;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-plan-block--break::before,
+.ms-plan-block--break::after {
+  content: '';
+  flex: 1 1 auto;
+  border-top: 1px dashed var(--ec-border);
+}
+
+.ms-plan-block--rest {
+  padding: 6px 10px;
+  font-size: 14px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-plan-blocks--today .ms-plan-block__label {
+  font-size: 15px;
+}
+
+/* tick */
+.ms-plan-tick {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 3px;
+  background: var(--ec-surface);
+  color: var(--ec-text-secondary);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.ms-plan-tick:hover {
+  border-color: var(--ec-brand);
+  color: var(--ec-brand);
+}
+
+.ms-plan-tick.is-done {
+  border-color: var(--ec-brand);
+  background: var(--ec-brand);
+  color: #fff;
+}
+
+.ms-plan-tick--primary {
+  min-height: 44px;
+  padding: 0 18px;
+  font-weight: 600;
+}
+
+.ms-plan-tick:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+}
+
+.ms-plan-tick:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.ms-plan-card {
+  border-left: 4px solid var(--ec-brand);
+}
+
+.ms-plan-offer {
+  padding: 22px 24px;
+}

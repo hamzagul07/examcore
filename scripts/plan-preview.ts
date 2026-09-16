@@ -131,3 +131,6 @@ main().catch((err) => {
   console.error(err)
   process.exit(1)
 })
+
+// A module, not a script: keeps `main` out of the global scope shared by other scripts.
+export {}

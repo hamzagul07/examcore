@@ -10,6 +10,9 @@
  * Without --user it picks the account with the most attempts. Prints topic
  * sources and the first few days with their links, and a count of drill
  * blocks that could not be pointed at a banked question.
+ *
+ * --email <path> also renders the morning check-in for day 2 of that plan to
+ * an HTML file, for a look in a browser without sending anything.
  */
 
 process.loadEnvFile?.('.env.local')
@@ -103,6 +106,25 @@ async function main() {
   }
   const last = hydrated.days[hydrated.days.length - 1]
   if (last) console.log(`\nDay ${last.day} · ${last.date} · ${last.kind} — ${last.focus}`)
+
+  const emailPath = arg('email', '')
+  if (emailPath) {
+    const { renderPlanCheckinEmail } = await import('@/lib/email/plan-checkin')
+    const { planProgress, checkinLine } = await import('@/lib/plan/plan-view')
+    const { writeFileSync } = await import('node:fs')
+    const day = hydrated.days.find((d) => d.kind === 'study') ?? hydrated.days[0]!
+    const done = { '1': true }
+    const progress = planProgress(hydrated, done, day.date)
+    const rendered = renderPlanCheckinEmail({
+      recipientName: 'Aisha',
+      day,
+      line: checkinLine(day, progress),
+      progress,
+      unsubscribeHref: 'https://markscheme.app/email/unsubscribe?token=preview',
+    })
+    writeFileSync(emailPath, rendered.html)
+    console.log(`\nemail: "${rendered.subject}" → ${emailPath}`)
+  }
 }
 
 main().catch((err) => {

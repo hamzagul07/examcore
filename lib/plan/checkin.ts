@@ -9,8 +9,10 @@ import { isoDate, type DoneDays, type HydratedPlan } from '@/lib/plan/plan-view'
 /**
  * The morning plan check-in batch.
  *
- * One row per plan whose exam is still ahead; consent is the profile's
- * exam-reminder switch (off by default — the plan builder offers it);
+ * Runs hourly. One row per plan whose exam is still ahead; each plan carries
+ * its student's time zone, and the email goes in their morning (07:00–11:00
+ * local — see checkin-eligibility). Consent is the profile's exam-reminder
+ * switch (off by default — the plan builder offers it);
  * `checkin_last_sent_at` is the dedupe. Ships OFF like every other sender:
  * without PLAN_CHECKIN_SEND=true it counts and sends nothing, so the segment
  * can be read in production before a student receives anything.
@@ -36,14 +38,23 @@ export async function sendPlanCheckinBatch(now = new Date()): Promise<PlanChecki
   const result: PlanCheckinResult = {
     candidates: 0,
     sent: 0,
-    skipped: { no_consent: 0, exam_passed: 0, no_day: 0, rest_day: 0, recent: 0, no_email: 0, send_failed: 0 },
+    skipped: {
+      no_consent: 0,
+      exam_passed: 0,
+      not_morning: 0,
+      recent: 0,
+      no_day: 0,
+      rest_day: 0,
+      no_email: 0,
+      send_failed: 0,
+    },
     capped: false,
     dry_run: !emailsEnabled(),
   }
 
   const { data: rows, error } = await admin
     .from('study_plans')
-    .select('user_id, exam_date, plan, done_days, checkin_last_sent_at')
+    .select('user_id, exam_date, plan, done_days, checkin_last_sent_at, time_zone')
     .gt('exam_date', today)
     .limit(2000)
   if (error) throw new Error(`study_plans scan failed: ${error.message}`)
@@ -70,9 +81,9 @@ export async function sendPlanCheckinBatch(now = new Date()): Promise<PlanChecki
     const userId = row.user_id as string
     const profile = profileById.get(userId)
     const decision = decideCheckin({
-      plan: row.plan as HydratedPlan,
+      // The column is authoritative for the zone; the JSON copy is for the page.
+      plan: { ...(row.plan as HydratedPlan), timeZone: (row.time_zone as string | null) ?? 'UTC' },
       done: ((row.done_days as DoneDays | null) ?? {}) as DoneDays,
-      todayIso: today,
       consent: profile?.email_exam_reminders === true,
       lastSentAt: (row.checkin_last_sent_at as string | null) ?? null,
       now,

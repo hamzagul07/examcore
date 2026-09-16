@@ -5,7 +5,8 @@ export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 /**
- * Morning study-plan check-in — triggered by Vercel Cron.
+ * Study-plan check-in — triggered by Vercel Cron every hour; each plan is
+ * sent in its own student's morning (see lib/plan/checkin-eligibility.ts).
  *
  * Ships as a dry run: without PLAN_CHECKIN_SEND=true it counts who would get
  * today's blocks and sends nothing, so the segment can be checked against

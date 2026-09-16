@@ -1802,6 +1802,51 @@
   border-style: dashed;
 }
 
+.ms-plan-day--exam {
+  border-color: var(--ec-ink-crimson, #9f1239);
+  background: color-mix(in srgb, var(--ec-ink-crimson, #9f1239) 5%, var(--ec-surface));
+}
+
+.ms-plan-day--exam .ms-plan-day__focus {
+  font-weight: 600;
+}
+
+.ms-plan-schedule {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.ms-plan-schedule__item strong {
+  font-weight: 600;
+}
+
+.ms-plan-subject-dates {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ms-plan-subject-dates__row {
+  display: grid;
+  grid-template-columns: minmax(120px, 200px) minmax(0, 260px);
+  align-items: center;
+  gap: 12px;
+}
+
+@media (max-width: 480px) {
+  .ms-plan-subject-dates__row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+.ms-plan-subject-dates__name {
+  font-size: 14px;
+}
+
 .ms-plan-day__head {
   display: flex;
   flex-wrap: wrap;

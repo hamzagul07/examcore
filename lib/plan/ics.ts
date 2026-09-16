@@ -56,12 +56,20 @@ export function renderPlanIcs(plan: HydratedPlan, opts: { siteUrl: string; planU
     'X-WR-CALNAME:Study plan',
   ]
 
+  const examLabels = (date: string) =>
+    plan.subjects
+      .filter((s) => s.examDate === date)
+      .map((s) => s.label)
+      .join(', ')
+
   for (const day of plan.days) {
     const blocks = workBlocks(day)
     const summary =
-      day.kind === 'rest'
-        ? 'Rest day'
-        : `Day ${day.day} · ${day.kind === 'review' ? 'Review' : formatMinutes(day.workMinutes)} · ${day.daysLeft} ${day.daysLeft === 1 ? 'day' : 'days'} to go`
+      day.kind === 'exam'
+        ? `Exam day — ${examLabels(day.date) || 'exam'}`
+        : day.kind === 'rest'
+          ? 'Rest day'
+          : `Day ${day.day} · ${day.kind === 'review' ? 'Review' : formatMinutes(day.workMinutes)} · ${day.daysLeft} ${day.daysLeft === 1 ? 'day' : 'days'} to go`
     const description = [
       day.focus,
       ...blocks.map((b) => `• ${b.minutes} min — ${b.label}${b.href ? ` ${opts.siteUrl}${b.href}` : ''}`),
@@ -88,7 +96,7 @@ export function renderPlanIcs(plan: HydratedPlan, opts: { siteUrl: string; planU
     `DTSTAMP:${gen}`,
     `DTSTART;VALUE=DATE:${dateValue(plan.examDate)}`,
     `DTEND;VALUE=DATE:${dateValue(nextDay(plan.examDate))}`,
-    `SUMMARY:${escapeText(`Exam day — ${plan.subjects.map((s) => s.label).join(', ')}`)}`,
+    `SUMMARY:${escapeText(`Exam day — ${examLabels(plan.examDate) || plan.subjects.map((s) => s.label).join(', ')}`)}`,
     `DESCRIPTION:${escapeText('Sleep the night before. The plan stopped on purpose.')}`,
     'END:VEVENT',
     'END:VCALENDAR'

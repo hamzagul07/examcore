@@ -18,6 +18,7 @@ import {
 import {
   blockEvidenceKey,
   checkinLine,
+  examSchedule,
   findPlanDay,
   formatMinutes,
   formatPlanDate,
@@ -151,6 +152,12 @@ function Builder({
       : ['full', 'full', 'full', 'full', 'full', 'full', 'full']
   )
   const [blockedDates, setBlockedDates] = useState<string[]>(prior?.blockedDates ?? [])
+  // A subject's own paper date, only where it differs from the plan's.
+  const [subjectDates, setSubjectDates] = useState<Record<string, string>>(() => {
+    const out: Record<string, string> = {}
+    for (const s of prior?.subjects ?? []) if (s.examDate !== prior?.examDate) out[s.code] = s.examDate
+    return out
+  })
   const [blockInput, setBlockInput] = useState('')
   const [remindMe, setRemindMe] = useState(defaults.remindMe)
   const [busy, setBusy] = useState(false)
@@ -202,6 +209,9 @@ function Builder({
           subjects,
           timeZone: browserTimeZone(),
           blockedDates,
+          subjectExamDates: Object.fromEntries(
+            Object.entries(subjectDates).filter(([code, d]) => subjects.includes(code) && ISO_DATE.test(d))
+          ),
           remindMe,
         }),
       })
@@ -293,6 +303,41 @@ function Builder({
           })}
         </div>
       </fieldset>
+
+      {/* Per-subject paper dates */}
+      {subjects.length > 1 ? (
+        <fieldset className="ms-plan-fieldset">
+          <legend className="label-overline">Papers on different days?</legend>
+          <p className="text-caption mb-3">
+            Leave blank for the date above. A subject with an earlier date tapers before its own
+            paper, has a quiet exam day, and drops out of the plan after it.
+          </p>
+          <div className="ms-plan-subject-dates">
+            {subjects.map((code) => {
+              const label = subjectOptions.find((s) => s.code === code)?.label ?? code
+              return (
+                <label key={code} className="ms-plan-subject-dates__row">
+                  <span className="ms-plan-subject-dates__name">{label}</span>
+                  <input
+                    type="date"
+                    className="ec-input"
+                    value={subjectDates[code] ?? ''}
+                    min={todayIso}
+                    disabled={busy}
+                    aria-label={`${label} exam date`}
+                    onChange={(e) => {
+                      const next = { ...subjectDates }
+                      if (e.target.value) next[code] = e.target.value
+                      else delete next[code]
+                      setSubjectDates(next)
+                    }}
+                  />
+                </label>
+              )
+            })}
+          </div>
+        </fieldset>
+      ) : null}
 
       {/* Preparedness */}
       <fieldset className="ms-plan-fieldset">
@@ -487,6 +532,7 @@ function Roadmap({
   const examPassed = plan.examDate <= todayIso
   const examMoved = Boolean(profileExamDate && profileExamDate !== plan.examDate)
   const evidenceSet = useMemo(() => new Set(evidence), [evidence])
+  const schedule = examSchedule(plan)
   // Day 15 of 30 should not start with fourteen finished days.
   const [showPast, setShowPast] = useState(false)
   const pastDays = plan.days.filter((d) => d.date < todayIso)
@@ -541,6 +587,15 @@ function Roadmap({
               : plan.headline}
         </h1>
         <p className="text-body max-w-prose text-[var(--ec-text-secondary)]">{plan.headline}</p>
+        {schedule.length > 1 ? (
+          <p className="ms-plan-schedule mt-2" aria-label="Exam dates">
+            {schedule.map((e) => (
+              <span key={e.date} className="ms-plan-schedule__item">
+                <strong>{e.labels.join(' & ')}</strong> {formatPlanDate(e.date)}
+              </span>
+            ))}
+          </p>
+        ) : null}
         <p className="text-caption mt-2">
           {plan.subjects.map((s) => s.label).join(' · ')} · {prepLabel} · {formatMinutes(plan.minutesPerDay)} a
           day · built {formatPlanDate(plan.generatedAt.slice(0, 10))}
@@ -644,7 +699,7 @@ function Roadmap({
                 {d.workMinutes > 0 ? (
                   <span className="ms-plan-day__mins">{formatMinutes(d.workMinutes)}</span>
                 ) : (
-                  <span className="ms-plan-day__mins">rest</span>
+                  <span className="ms-plan-day__mins">{d.kind === 'exam' ? 'exam' : 'rest'}</span>
                 )}
                 {marks.marked > 0 ? (
                   <span className="ms-plan-day__marked">
@@ -663,8 +718,8 @@ function Roadmap({
       </ol>
 
       <p className="ms-plan-note mt-8">
-        Exam day: <strong>{formatPlanDate(plan.examDate)}</strong>. Sleep the night before; the plan stops on
-        purpose.
+        {schedule.length > 1 ? 'Last exam' : 'Exam day'}: <strong>{formatPlanDate(plan.examDate)}</strong>. Sleep the
+        night before; the plan stops on purpose.
       </p>
     </div>
   )

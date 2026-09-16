@@ -3,6 +3,7 @@ import {
   blockEvidenceKey,
   carryOverDone,
   checkinLine,
+  examSchedule,
   findPlanDay,
   markedBlocks,
   formatMinutes,
@@ -63,6 +64,12 @@ assert.equal(findPlanDay(plan, '2026-09-15'), null, 'before the plan started')
   assert.equal(p.scheduled, 1)
   assert.equal(p.behind, 1)
 }
+
+assert.deepEqual(
+  examSchedule({ subjects: [{ code: 'a', label: 'Physics', examDate: '2026-10-05' }, { code: 'b', label: 'Maths', examDate: '2026-09-25' }, { code: 'c', label: 'Chemistry', examDate: '2026-10-05' }] }),
+  [{ date: '2026-09-25', labels: ['Maths'] }, { date: '2026-10-05', labels: ['Physics', 'Chemistry'] }]
+)
+assert.match(checkinLine(day(3, '2026-09-25', 'exam', 0), { scheduled: 0, done: 0, behind: 0, totalWorkDays: 0, totalDone: 0 }), /Exam day/)
 
 // The line never scolds and is specific to where the student is.
 assert.match(checkinLine(plan.days[2]!, planProgress(plan, {}, '2026-09-18')), /Rest day/)

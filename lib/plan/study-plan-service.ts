@@ -146,7 +146,8 @@ function syllabusTopicsFor(subjectCode: string): PlanTopic[] {
 export async function resolvePlanSubjects(
   admin: Admin,
   userId: string,
-  codes: string[]
+  codes: string[],
+  examDates: Record<string, string> = {}
 ): Promise<PlanSubjectInput[]> {
   const { data } = await admin
     .from('attempts')
@@ -171,6 +172,7 @@ export async function resolvePlanSubjects(
       syllabus: syllabusTopicsFor(code),
       hasTimedPaper: timedPaperSlots(code).length > 0,
       paperMinutes: shortestPaper(code),
+      examDate: examDates[code],
     }))
   )
 }
@@ -335,6 +337,8 @@ export type BuildPlanRequest = {
   timeZone: string
   /** ISO dates the student is away. */
   blockedDates: string[]
+  /** A subject's own paper date when it differs from examDate. */
+  subjectExamDates?: Record<string, string>
 }
 
 /**
@@ -381,7 +385,7 @@ export async function buildAndSaveStudyPlan(
   req: BuildPlanRequest
 ): Promise<SavedPlan> {
   const [subjects, previous] = await Promise.all([
-    resolvePlanSubjects(admin, userId, req.subjectCodes),
+    resolvePlanSubjects(admin, userId, req.subjectCodes, req.subjectExamDates ?? {}),
     loadStudyPlan(admin, userId),
   ])
   const plan = buildStudyPlan({
@@ -401,7 +405,8 @@ export async function buildAndSaveStudyPlan(
   const { error } = await admin.from('study_plans').upsert(
     {
       user_id: userId,
-      exam_date: req.examDate,
+      // The last exam — a subject dated later than the form's date extends the plan.
+      exam_date: hydrated.examDate,
       preparedness: req.preparedness,
       minutes_per_day: hydrated.minutesPerDay,
       availability: hydrated.availability,

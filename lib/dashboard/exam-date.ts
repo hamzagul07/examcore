@@ -1,16 +1,20 @@
-/** Suggested default exam dates for onboarding (Cambridge session clusters). */
-export function suggestedExamDates(): { label: string; value: string }[] {
-  const now = new Date()
-  const year = now.getFullYear()
-  const month = now.getMonth()
+/**
+ * The next two Cambridge session clusters, in order, never one that has
+ * passed. (In September 2026 this offered "May/June 2026" — a session three
+ * months gone — on onboarding, settings and the plan builder alike.)
+ */
+export function suggestedExamDates(now = new Date()): { label: string; value: string }[] {
+  const y = now.getFullYear()
+  const m = String(now.getMonth() + 1).padStart(2, '0')
+  const d = String(now.getDate()).padStart(2, '0')
+  const today = `${y}-${m}-${d}`
 
-  const mayYear = month >= 10 ? year + 1 : year
-  const novYear = month >= 5 && month < 10 ? year : month >= 10 ? year + 1 : year
-
-  return [
-    { label: `May/June ${mayYear}`, value: `${mayYear}-06-15` },
-    { label: `Oct/Nov ${novYear}`, value: `${novYear}-11-15` },
-  ]
+  const candidates: { label: string; value: string }[] = []
+  for (const yr of [y, y + 1]) {
+    candidates.push({ label: `May/June ${yr}`, value: `${yr}-06-15` })
+    candidates.push({ label: `Oct/Nov ${yr}`, value: `${yr}-11-15` })
+  }
+  return candidates.filter((c) => c.value > today).slice(0, 2)
 }
 
 export type ExamCountdown =

@@ -14,6 +14,7 @@ import {
   hourInZone,
   isValidTimeZone,
   isoDate,
+  planOutdated,
   planProgress,
   todayInZone,
   workBlocks,
@@ -95,6 +96,10 @@ assert.match(checkinLine(day(3, '2026-09-25', 'exam', 0), { scheduled: 0, done: 
   assert.equal(nextBlock({ blocks }, new Set(['q:9709/12|ON2024|2']))?.label, 'b', 'skips the marked one')
   assert.equal(nextBlock({ blocks: [{ kind: 'rest', minutes: 0, label: 'r' }] }, new Set()), null)
 }
+
+assert.ok(planOutdated({}), 'a plan from before versions is outdated')
+assert.ok(planOutdated({ version: 1 }))
+assert.ok(!planOutdated({ version: 2 }))
 
 // Weeks of seven from day 1.
 {

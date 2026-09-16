@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import {
+  PLAN_VERSION,
   buildStudyPlan,
   layoutBlocks,
   planLength,
@@ -182,6 +183,7 @@ assert.equal(timedPaperCount('pass', 4), 1, 'never zero once there is room')
     'total is the sum of the days'
   )
   assert.match(plan.headline, /19 days to go/)
+  assert.equal(plan.version, PLAN_VERSION, 'a plan carries the version it was built with')
 }
 
 // --- commitments are hard ----------------------------------------------------------

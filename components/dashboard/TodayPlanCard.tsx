@@ -8,6 +8,7 @@ import {
   formatPlanDate,
   markedBlocks,
   nextBlock,
+  planOutdated,
   planProgress,
   todayInZone,
   workBlocks,
@@ -35,8 +36,9 @@ export function TodayPlanCard({ saved, examDate, evidence = [] }: Props) {
   // The exam date lives on the profile; a plan built for another date is
   // stale however many days it still has.
   const examMoved = Boolean(saved && examDate && examDate !== saved.plan.examDate)
+  const outdated = Boolean(saved && planOutdated(saved.plan))
 
-  if (saved && today && !examMoved) {
+  if (saved && today && !examMoved && !outdated) {
     const progress = planProgress(saved.plan, saved.done, todayIso)
     const blocks = workBlocks(today).slice(0, 4)
     const done = saved.done[String(today.day)] === true
@@ -127,7 +129,9 @@ export function TodayPlanCard({ saved, examDate, evidence = [] }: Props) {
       <h2 id="dash-plan-offer-title" className="text-title" style={{ margin: 0 }}>
         {examMoved && examDate
           ? `Your exam date moved to ${formatPlanDate(examDate)}. Rebuild your plan.`
-          : saved
+          : outdated
+            ? 'Your plan can now point at real topics. Rebuild it — your ticks stay.'
+            : saved
             ? 'Your plan needs rebuilding from today.'
             : days && days > 0
             ? `${days} ${days === 1 ? 'day' : 'days'} to go. Get every one of them planned.`

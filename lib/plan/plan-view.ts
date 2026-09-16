@@ -8,7 +8,7 @@
  */
 
 import { examEncouragement } from '@/lib/dashboard/exam-date'
-import type { PlanBlock, PlanDay, StudyPlan } from '@/lib/plan/build-study-plan'
+import { PLAN_VERSION, type PlanBlock, type PlanDay, type StudyPlan } from '@/lib/plan/build-study-plan'
 
 export type HydratedBlock = PlanBlock & {
   /** Where the block starts — a real question, a paper, the review queue. */
@@ -70,6 +70,11 @@ export type HydratedPlan = Omit<StudyPlan, 'days'> & {
   days: HydratedDay[]
   /** ISO timestamp the plan was generated — shown so a stale plan reads as one. */
   generatedAt: string
+}
+
+/** True when the planner has improved since this plan was built. */
+export function planOutdated(plan: Partial<Pick<HydratedPlan, 'version'>>): boolean {
+  return (plan.version ?? 1) < PLAN_VERSION
 }
 
 /** Day number (as a string key) → ticked off. */

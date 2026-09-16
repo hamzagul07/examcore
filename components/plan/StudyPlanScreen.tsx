@@ -27,6 +27,7 @@ import {
   isoDate,
   markedBlocks,
   nextBlock,
+  planOutdated,
   planProgress,
   planWeeks,
   todayInZone,
@@ -573,6 +574,7 @@ function Roadmap({
   const progress = planProgress(plan, done, todayIso)
   const examPassed = plan.examDate <= todayIso
   const examMoved = Boolean(profileExamDate && profileExamDate !== plan.examDate)
+  const outdated = planOutdated(plan)
   const evidenceSet = useMemo(() => new Set(evidence), [evidence])
   const schedule = examSchedule(plan)
   const streak = doneStreak(plan, done, todayIso)
@@ -683,6 +685,17 @@ function Roadmap({
       </div>
 
       {error ? <ErrorBox message={error} /> : null}
+
+      {outdated && !examMoved ? (
+        <p className="ms-plan-note ms-plan-note--warn mb-6" role="status">
+          The planner has improved since this plan was built — topic-by-topic blocks, your own time
+          zone, days away, a date per subject. The days you&apos;ve ticked stay ticked.{' '}
+          <button type="button" className="ms-plan-linkbtn" onClick={onAdjust}>
+            Rebuild it now
+          </button>
+          .
+        </p>
+      ) : null}
 
       {examMoved && profileExamDate ? (
         <p className="ms-plan-note ms-plan-note--warn mb-6" role="status">

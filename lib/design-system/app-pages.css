@@ -2061,6 +2061,204 @@ a.ms-plan-block__link:hover {
   border-left: 4px solid var(--ec-brand);
 }
 
+/* header chips + actions */
+.ms-plan-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+}
+
+.ms-plan-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ms-plan-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border: 1px solid var(--ec-border);
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--ec-text-secondary);
+  background: var(--ec-surface);
+}
+
+.ms-plan-chip--subject {
+  border-color: color-mix(in srgb, var(--ec-brand) 40%, transparent);
+  color: var(--ec-brand);
+  background: var(--ec-brand-muted);
+  font-weight: 600;
+}
+
+.ms-plan-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ms-plan-actions .ec-pill {
+  text-decoration: none;
+}
+
+/* progress bar + streak */
+.ms-plan-bar {
+  flex: 1 0 100%;
+  display: block;
+  height: 6px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--ec-border) 70%, transparent);
+  overflow: hidden;
+}
+
+.ms-plan-bar__fill {
+  display: block;
+  height: 100%;
+  background: var(--ec-brand);
+  transition: width 300ms ease;
+}
+
+.ms-plan-progress__streak {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  color: var(--ec-brand);
+}
+
+.ms-plan-progress__built {
+  flex: 1 0 100%;
+  font-size: 11px;
+  color: var(--ec-text-secondary);
+}
+
+/* tomorrow line under the today card */
+.ms-plan-tomorrow {
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px dashed color-mix(in srgb, var(--ec-border) 90%, transparent);
+  font-size: 13px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-plan-tomorrow__label {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-right: 6px;
+  color: var(--ec-text-secondary);
+}
+
+/* weeks */
+.ms-plan-week-group {
+  margin-bottom: 22px;
+}
+
+.ms-plan-week-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.ms-plan-week-head__name {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.ms-plan-week-head__range {
+  font-weight: 600;
+}
+
+.ms-plan-week-head__sum {
+  color: var(--ec-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* collapsed blocks */
+.ms-plan-day__details {
+  margin-top: 6px;
+}
+
+.ms-plan-day__summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 0 2px;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-plan-day__summary::-webkit-details-marker {
+  display: none;
+}
+
+.ms-plan-day__summary::before {
+  content: '▸';
+  font-size: 10px;
+  transition: transform 120ms ease;
+}
+
+.ms-plan-day__details[open] > .ms-plan-day__summary::before {
+  transform: rotate(90deg);
+}
+
+.ms-plan-day__summary:hover {
+  color: var(--ec-brand);
+}
+
+.ms-plan-day__summary:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* builder live preview */
+.ms-plan-preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 16px;
+  margin: 4px 0 0;
+  padding: 12px 14px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  font-size: 14px;
+}
+
+.ms-plan-preview__label {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-plan-preview__stat strong {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
 .ms-plan-offer {
   padding: 22px 24px;
 }

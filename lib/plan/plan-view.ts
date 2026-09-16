@@ -192,6 +192,49 @@ export function checkinLine(day: HydratedDay, progress: PlanProgress): string {
   return examEncouragement(day.daysLeft)
 }
 
+/**
+ * Consecutive ticked work days ending today or yesterday. Rest and exam days
+ * neither count nor break it; a work day left unticked does.
+ */
+export function doneStreak(plan: Pick<HydratedPlan, 'days'>, done: DoneDays, todayIso: string): number {
+  const work = plan.days.filter((d) => d.workMinutes > 0 && d.date <= todayIso)
+  let streak = 0
+  for (let i = work.length - 1; i >= 0; i--) {
+    const d = work[i]!
+    if (done[String(d.day)] === true) {
+      streak += 1
+      continue
+    }
+    // Today unticked is not a miss yet; anything earlier is.
+    if (d.date === todayIso) continue
+    break
+  }
+  return streak
+}
+
+/** The first work block with somewhere to go that has not been marked yet. */
+export function nextBlock(day: Pick<HydratedDay, 'blocks'>, evidence: ReadonlySet<string>): HydratedBlock | null {
+  for (const b of workBlocks(day)) {
+    if (!b.href) continue
+    const key = blockEvidenceKey(b)
+    if (key && evidence.has(key)) continue
+    return b
+  }
+  return null
+}
+
+export type PlanWeek = { index: number; from: string; to: string; days: HydratedDay[] }
+
+/** The plan in weeks of seven days from day 1. */
+export function planWeeks(plan: Pick<HydratedPlan, 'days'>): PlanWeek[] {
+  const weeks: PlanWeek[] = []
+  for (let i = 0; i < plan.days.length; i += 7) {
+    const days = plan.days.slice(i, i + 7)
+    weeks.push({ index: weeks.length + 1, from: days[0]!.date, to: days[days.length - 1]!.date, days })
+  }
+  return weeks
+}
+
 /** The distinct exam dates in a plan, earliest first, with who sits what. */
 export function examSchedule(plan: Pick<HydratedPlan, 'subjects'>): Array<{ date: string; labels: string[] }> {
   const byDate = new Map<string, string[]>()

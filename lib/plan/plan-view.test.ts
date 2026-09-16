@@ -3,7 +3,10 @@ import {
   blockEvidenceKey,
   carryOverDone,
   checkinLine,
+  doneStreak,
   examSchedule,
+  nextBlock,
+  planWeeks,
   findPlanDay,
   markedBlocks,
   formatMinutes,
@@ -70,6 +73,37 @@ assert.deepEqual(
   [{ date: '2026-09-25', labels: ['Maths'] }, { date: '2026-10-05', labels: ['Physics', 'Chemistry'] }]
 )
 assert.match(checkinLine(day(3, '2026-09-25', 'exam', 0), { scheduled: 0, done: 0, behind: 0, totalWorkDays: 0, totalDone: 0 }), /Exam day/)
+
+// Streak: ticked work days in a row; rest days pass through; today unticked is not a miss yet.
+{
+  const p = { days: [day(1, '2026-09-16', 'study', 50), day(2, '2026-09-17', 'study', 50), day(3, '2026-09-18', 'rest', 0), day(4, '2026-09-19', 'study', 50), day(5, '2026-09-20', 'study', 50)] }
+  assert.equal(doneStreak(p, { '1': true, '2': true, '4': true }, '2026-09-19'), 3, 'rest day in the middle does not break it')
+  assert.equal(doneStreak(p, { '1': true, '2': true, '4': true }, '2026-09-20'), 3, 'today unticked yet: streak stands')
+  assert.equal(doneStreak(p, { '1': true, '4': true }, '2026-09-20'), 1, 'a missed day 2 ends the run')
+  assert.equal(doneStreak(p, {}, '2026-09-20'), 0)
+  assert.equal(doneStreak(p, { '1': true, '2': true, '4': true, '5': true }, '2026-09-20'), 4)
+}
+
+// The next thing to start: first work block with a link that is not yet marked.
+{
+  const blocks: HydratedDay['blocks'] = [
+    { kind: 'drill', minutes: 25, label: 'a', href: '/mark?a', question: { paperCode: '9709/12', paperSession: 'ON2024', questionNumber: '2' } },
+    { kind: 'break', minutes: 5, label: '' },
+    { kind: 'drill', minutes: 25, label: 'b', href: '/mark?b' },
+  ]
+  assert.equal(nextBlock({ blocks }, new Set())?.label, 'a')
+  assert.equal(nextBlock({ blocks }, new Set(['q:9709/12|ON2024|2']))?.label, 'b', 'skips the marked one')
+  assert.equal(nextBlock({ blocks: [{ kind: 'rest', minutes: 0, label: 'r' }] }, new Set()), null)
+}
+
+// Weeks of seven from day 1.
+{
+  const p = { days: Array.from({ length: 16 }, (_, i) => day(i + 1, `2026-09-${String(16 + i).padStart(2, '0')}`, 'study', 50)) }
+  const w = planWeeks(p)
+  assert.equal(w.length, 3)
+  assert.deepEqual([w[0]!.from, w[0]!.to, w[0]!.days.length], ['2026-09-16', '2026-09-22', 7])
+  assert.deepEqual([w[2]!.index, w[2]!.from, w[2]!.days.length], [3, '2026-09-30', 2])
+}
 
 // The line never scolds and is specific to where the student is.
 assert.match(checkinLine(plan.days[2]!, planProgress(plan, {}, '2026-09-18')), /Rest day/)

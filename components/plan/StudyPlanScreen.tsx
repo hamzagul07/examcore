@@ -11,6 +11,7 @@ import {
   DEFAULT_MINUTES_PER_DAY,
   PREPAREDNESS_BLURB,
   PREPAREDNESS_LABEL,
+  buildStudyPlan,
   planLength,
   type Preparedness,
   type WeekAvailability,
@@ -18,13 +19,16 @@ import {
 import {
   blockEvidenceKey,
   checkinLine,
+  doneStreak,
   examSchedule,
   findPlanDay,
   formatMinutes,
   formatPlanDate,
   isoDate,
   markedBlocks,
+  nextBlock,
   planProgress,
+  planWeeks,
   todayInZone,
   type DoneDays,
   type HydratedBlock,
@@ -172,6 +176,33 @@ function Builder({
   }, [])
   const daysLeft = examDate ? planLength(todayIso, examDate) : 0
   const suggestions = useMemo(() => suggestedExamDates(), [])
+
+  // The engine is pure, so the shape of the plan can be shown as the inputs
+  // change — days, rest days, papers, hours — before anything is built.
+  const preview = useMemo(() => {
+    if (!examDate || daysLeft === 0 || subjects.length === 0) return null
+    const availability = loads.map((l) => loadToMinutes(l, minutesPerDay)) as WeekAvailability
+    const plan = buildStudyPlan({
+      startDate: todayIso,
+      examDate,
+      preparedness,
+      minutesPerDay,
+      availability,
+      blockedDates,
+      subjects: subjects.map((code) => ({
+        code,
+        label: subjectOptions.find((s) => s.code === code)?.label ?? code,
+        highYield: [],
+        weak: [],
+        hasTimedPaper: true,
+        examDate: subjectDates[code],
+      })),
+    })
+    const studyDays = plan.days.filter((d) => d.workMinutes > 0).length
+    const restDays = plan.days.filter((d) => d.kind === 'rest').length
+    const papers = plan.days.filter((d) => d.blocks.some((b) => b.kind === 'timed_paper')).length
+    return { days: plan.days.length, studyDays, restDays, papers, hours: Math.round(plan.totalWorkMinutes / 60) }
+  }, [examDate, daysLeft, subjects, loads, minutesPerDay, preparedness, blockedDates, subjectDates, todayIso, subjectOptions])
 
   function addBlockedDate() {
     const d = blockInput
@@ -481,6 +512,17 @@ function Builder({
 
       {error ? <ErrorBox message={error} /> : null}
 
+      {preview ? (
+        <p className="ms-plan-preview" aria-live="polite">
+          <span className="ms-plan-preview__label">What you&apos;ll get</span>
+          <span className="ms-plan-preview__stat"><strong>{preview.days}</strong> days</span>
+          <span className="ms-plan-preview__stat"><strong>{preview.studyDays}</strong> study days</span>
+          <span className="ms-plan-preview__stat"><strong>{preview.restDays}</strong> rest</span>
+          <span className="ms-plan-preview__stat"><strong>{preview.papers}</strong> timed {preview.papers === 1 ? 'paper' : 'papers'}</span>
+          <span className="ms-plan-preview__stat">about <strong>{preview.hours} h</strong></span>
+        </p>
+      ) : null}
+
       <div className="mt-6 flex flex-wrap items-center gap-3">
         <Button type="submit" variant="primary" size="md" isLoading={busy} loadingText="Building your plan…">
           {prior ? 'Rebuild my plan' : 'Build my plan'}
@@ -491,7 +533,7 @@ function Builder({
           </button>
         ) : null}
         {prior ? (
-          <p className="text-caption">Rebuilding replaces the current plan and clears the days you&apos;ve ticked.</p>
+          <p className="text-caption">Rebuilding replaces the current plan. The days you&apos;ve ticked stay ticked.</p>
         ) : null}
       </div>
     </form>
@@ -533,6 +575,11 @@ function Roadmap({
   const examMoved = Boolean(profileExamDate && profileExamDate !== plan.examDate)
   const evidenceSet = useMemo(() => new Set(evidence), [evidence])
   const schedule = examSchedule(plan)
+  const streak = doneStreak(plan, done, todayIso)
+  const weeks = planWeeks(plan)
+  const tomorrow = today ? plan.days[today.day] ?? null : null
+  const startBlock = today ? nextBlock(today, evidenceSet) : null
+  const pct = progress.totalWorkDays > 0 ? Math.round((progress.totalDone / progress.totalWorkDays) * 100) : 0
   // Day 15 of 30 should not start with fourteen finished days.
   const [showPast, setShowPast] = useState(false)
   const pastDays = plan.days.filter((d) => d.date < todayIso)
@@ -586,7 +633,10 @@ function Roadmap({
               ? `Day ${today.day}${firstName ? `, ${firstName}` : ''}. ${today.daysLeft} ${today.daysLeft === 1 ? 'day' : 'days'} to go.`
               : plan.headline}
         </h1>
-        <p className="text-body max-w-prose text-[var(--ec-text-secondary)]">{plan.headline}</p>
+        <p className="text-body max-w-prose text-[var(--ec-text-secondary)]">
+          {/* The heading already says how many days; don't say it twice. */}
+          {today ? plan.headline.replace(/^\d+ days? to go\.\s*/, '') : plan.headline}
+        </p>
         {schedule.length > 1 ? (
           <p className="ms-plan-schedule mt-2" aria-label="Exam dates">
             {schedule.map((e) => (
@@ -596,28 +646,40 @@ function Roadmap({
             ))}
           </p>
         ) : null}
-        <p className="text-caption mt-2">
-          {plan.subjects.map((s) => s.label).join(' · ')} · {prepLabel} · {formatMinutes(plan.minutesPerDay)} a
-          day · built {formatPlanDate(plan.generatedAt.slice(0, 10))}
-          {' · '}
-          <button type="button" className="ms-plan-linkbtn" onClick={onAdjust}>
-            Adjust
-          </button>
-          {' · '}
-          <a href="/api/plan/calendar" className="ms-plan-linkbtn" download="markscheme-study-plan.ics">
-            Add to calendar
-          </a>
-        </p>
+        <div className="ms-plan-meta mt-3">
+          <ul className="ms-plan-chips" aria-label="Plan settings">
+            {plan.subjects.map((s) => (
+              <li key={s.code} className="ms-plan-chip ms-plan-chip--subject">
+                {s.label}
+              </li>
+            ))}
+            <li className="ms-plan-chip">{prepLabel}</li>
+            <li className="ms-plan-chip">{formatMinutes(plan.minutesPerDay)} a day</li>
+          </ul>
+          <div className="ms-plan-actions">
+            <button type="button" className="ec-pill" onClick={onAdjust}>
+              Adjust plan
+            </button>
+            <a href="/api/plan/calendar" className="ec-pill" download="markscheme-study-plan.ics">
+              Add to calendar
+            </a>
+          </div>
+        </div>
       </header>
 
       <div className="ms-plan-progress" role="status">
         <span className="ms-plan-progress__big">{progress.totalDone}</span>
         <span className="ms-plan-progress__of">of {progress.totalWorkDays} study days done</span>
+        {streak >= 2 ? <span className="ms-plan-progress__streak">{streak} in a row</span> : null}
         {progress.behind > 0 ? (
           <span className="ms-plan-progress__behind">{progress.behind} slipped — that&apos;s fine, don&apos;t double up</span>
         ) : progress.done > 0 ? (
           <span className="ms-plan-progress__ok">none missed</span>
         ) : null}
+        <span className="ms-plan-bar" aria-hidden>
+          <span className="ms-plan-bar__fill" style={{ width: `${pct}%` }} />
+        </span>
+        <span className="ms-plan-progress__built">built {formatPlanDate(plan.generatedAt.slice(0, 10))}</span>
       </div>
 
       {error ? <ErrorBox message={error} /> : null}
@@ -649,10 +711,31 @@ function Roadmap({
           </p>
           <BlockList blocks={today.blocks} evidence={evidenceSet} emphasis />
           <div className="mt-4 flex flex-wrap items-center gap-3">
+            {startBlock?.href && done[String(today.day)] !== true ? (
+              <LoadingLink
+                href={startBlock.href}
+                variant="button"
+                loadingText="Opening…"
+                className="ec-btn-primary inline-flex min-h-[44px] items-center justify-center px-5 text-sm"
+              >
+                {startBlock.kind === 'timed_paper' ? 'Sit the paper →' : `Start: ${startBlock.topic?.name ?? startBlock.subjectLabel ?? 'first block'} →`}
+              </LoadingLink>
+            ) : null}
             {today.workMinutes > 0 ? (
-              <TickButton day={today} done={done[String(today.day)] === true} busy={ticking === today.day} onTick={tick} primary />
+              <TickButton
+                day={today}
+                done={done[String(today.day)] === true}
+                busy={ticking === today.day}
+                onTick={tick}
+                primary={!startBlock?.href || done[String(today.day)] === true}
+              />
             ) : null}
           </div>
+          {tomorrow ? (
+            <p className="ms-plan-tomorrow">
+              <span className="ms-plan-tomorrow__label">Tomorrow</span> {tomorrow.focus}
+            </p>
+          ) : null}
         </section>
       ) : !examPassed ? (
         <p className="ms-plan-note mb-6">
@@ -664,58 +747,84 @@ function Roadmap({
         </p>
       ) : null}
 
-      <ol className="ms-plan-days" aria-label="Every day to the exam">
-        {hidePast ? (
-          <li>
-            <button type="button" className="ms-plan-past-toggle" onClick={() => setShowPast(true)}>
-              Show the {pastDays.length} days before today
-            </button>
-          </li>
-        ) : null}
-        {plan.days.map((d) => {
-          const isToday = d.date === todayIso
-          const isPast = d.date < todayIso
-          const isDone = done[String(d.day)] === true
-          if (isPast && hidePast) return null
-          const marks = markedBlocks(d, evidenceSet)
-          return (
-            <li
-              key={d.day}
-              id={isToday ? 'plan-today' : undefined}
-              className={[
-                'ms-plan-day',
-                `ms-plan-day--${d.kind}`,
-                isToday ? 'is-today' : '',
-                isPast ? 'is-past' : '',
-                isDone ? 'is-done' : '',
-              ]
-                .filter(Boolean)
-                .join(' ')}
-            >
-              <div className="ms-plan-day__head">
-                <span className="ms-plan-day__num">Day {d.day}</span>
-                <span className="ms-plan-day__date">{formatPlanDate(d.date)}</span>
-                <span className="ms-plan-day__left">{d.daysLeft === 1 ? 'exam tomorrow' : `${d.daysLeft} days left`}</span>
-                {d.workMinutes > 0 ? (
-                  <span className="ms-plan-day__mins">{formatMinutes(d.workMinutes)}</span>
-                ) : (
-                  <span className="ms-plan-day__mins">{d.kind === 'exam' ? 'exam' : 'rest'}</span>
-                )}
-                {marks.marked > 0 ? (
-                  <span className="ms-plan-day__marked">
-                    {marks.marked}/{marks.total} marked
-                  </span>
-                ) : null}
-                {d.workMinutes > 0 ? (
-                  <TickButton day={d} done={isDone} busy={ticking === d.day} onTick={tick} />
-                ) : null}
-              </div>
-              <p className="ms-plan-day__focus">{d.focus}</p>
-              {d.workMinutes > 0 ? <BlockList blocks={d.blocks} evidence={evidenceSet} /> : null}
-            </li>
-          )
-        })}
-      </ol>
+      {hidePast ? (
+        <button type="button" className="ms-plan-past-toggle mb-4" onClick={() => setShowPast(true)}>
+          Show the {pastDays.length} days before today
+        </button>
+      ) : null}
+
+      {weeks.map((week) => {
+        const visible = week.days.filter((d) => !(d.date < todayIso && hidePast))
+        if (visible.length === 0) return null
+        const weekWork = week.days.reduce((n, d) => n + d.workMinutes, 0)
+        const weekStudyDays = week.days.filter((d) => d.workMinutes > 0).length
+        return (
+          <section key={week.index} className="ms-plan-week-group" aria-labelledby={`plan-week-${week.index}`}>
+            <h3 id={`plan-week-${week.index}`} className="ms-plan-week-head">
+              <span className="ms-plan-week-head__name">Week {week.index}</span>
+              <span className="ms-plan-week-head__range">
+                {formatPlanDate(week.from)} – {formatPlanDate(week.to)}
+              </span>
+              <span className="ms-plan-week-head__sum">
+                {weekStudyDays} study {weekStudyDays === 1 ? 'day' : 'days'} · {formatMinutes(weekWork)}
+              </span>
+            </h3>
+            <ol className="ms-plan-days" aria-label={`Week ${week.index}`}>
+              {visible.map((d) => {
+                const isToday = d.date === todayIso
+                const isPast = d.date < todayIso
+                const isDone = done[String(d.day)] === true
+                const isTomorrow = tomorrow?.day === d.day
+                const marks = markedBlocks(d, evidenceSet)
+                const blockCount = d.blocks.filter((b) => b.kind !== 'break' && b.kind !== 'rest').length
+                return (
+                  <li
+                    key={d.day}
+                    id={isToday ? 'plan-today' : undefined}
+                    className={[
+                      'ms-plan-day',
+                      `ms-plan-day--${d.kind}`,
+                      isToday ? 'is-today' : '',
+                      isPast ? 'is-past' : '',
+                      isDone ? 'is-done' : '',
+                    ]
+                      .filter(Boolean)
+                      .join(' ')}
+                  >
+                    <div className="ms-plan-day__head">
+                      <span className="ms-plan-day__num">Day {d.day}</span>
+                      <span className="ms-plan-day__date">{isToday ? 'Today' : isTomorrow ? 'Tomorrow' : formatPlanDate(d.date)}</span>
+                      <span className="ms-plan-day__left">{d.daysLeft === 1 ? 'exam tomorrow' : `${d.daysLeft} days left`}</span>
+                      {d.workMinutes > 0 ? (
+                        <span className="ms-plan-day__mins">{formatMinutes(d.workMinutes)}</span>
+                      ) : (
+                        <span className="ms-plan-day__mins">{d.kind === 'exam' ? 'exam' : 'rest'}</span>
+                      )}
+                      {marks.marked > 0 ? (
+                        <span className="ms-plan-day__marked">
+                          {marks.marked}/{marks.total} marked
+                        </span>
+                      ) : null}
+                      {d.workMinutes > 0 ? (
+                        <TickButton day={d} done={isDone} busy={ticking === d.day} onTick={tick} />
+                      ) : null}
+                    </div>
+                    <p className="ms-plan-day__focus">{d.focus}</p>
+                    {d.workMinutes > 0 ? (
+                      <details className="ms-plan-day__details" open={isToday || isTomorrow}>
+                        <summary className="ms-plan-day__summary">
+                          {blockCount} {blockCount === 1 ? 'block' : 'blocks'}
+                        </summary>
+                        <BlockList blocks={d.blocks} evidence={evidenceSet} />
+                      </details>
+                    ) : null}
+                  </li>
+                )
+              })}
+            </ol>
+          </section>
+        )
+      })}
 
       <p className="ms-plan-note mt-8">
         {schedule.length > 1 ? 'Last exam' : 'Exam day'}: <strong>{formatPlanDate(plan.examDate)}</strong>. Sleep the

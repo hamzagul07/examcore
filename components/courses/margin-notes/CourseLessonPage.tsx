@@ -16,6 +16,16 @@ import { CourseLessonDiagramShell } from '@/components/courses/margin-notes/Cour
 import { LessonComparisonTable } from '@/components/courses/margin-notes/LessonComparisonTable'
 import { LessonFigureBlock } from '@/components/courses/figures/LessonFigureBlock'
 import { CourseRichText } from '@/components/courses/CourseRichText'
+import {
+  DEFAULT_READING_PREFS,
+  READING_FONT_HINT,
+  isDefaultReading,
+  readReadingPrefs,
+  writeReadingPrefs,
+  type ReadingFont,
+  type ReadingPrefs,
+  type ReadingSize,
+} from '@/lib/courses/reading-prefs'
 import { ExplainBlock } from '@/components/courses/ExplainBlock'
 import { FeatureHint, markHintUsed } from '@/components/courses/FeatureHint'
 import { ResumeStrip } from '@/components/courses/ResumeStrip'
@@ -149,6 +159,77 @@ export function CourseLessonPage({
   const [simpler, setSimpler] = useState(false)
   /** Experiment: dual-code notes with a sketch panel beside the prose. */
   const [visualNotes, setVisualNotes] = useState(false)
+  // Reading typography — restored after mount so the server and the first
+  // client render agree (the same pattern as the study-mode preference).
+  const [readingPrefs, setReadingPrefs] = useState<ReadingPrefs>(DEFAULT_READING_PREFS)
+  useEffect(() => {
+    // This device's choice first, so the page settles without a swap; then,
+    // for a signed-in reader, the choice saved on the account — a phone and
+    // a laptop should agree. The auth cookie is the cheap signed-in hint;
+    // a stray 401 is simply ignored.
+    setReadingPrefs(readReadingPrefs())
+    let signedIn = false
+    try {
+      signedIn = document.cookie.includes('auth-token')
+    } catch {
+      /* ignore */
+    }
+    if (!signedIn) return
+    const ctrl = new AbortController()
+    fetch('/api/account/preferences', { signal: ctrl.signal })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: { reading_prefs?: ReadingPrefs | null } | null) => {
+        const saved = data?.reading_prefs
+        if (!saved) return
+        setReadingPrefs((cur) => {
+          if (cur.font === saved.font && cur.size === saved.size && cur.air === saved.air) return cur
+          writeReadingPrefs(saved)
+          return saved
+        })
+      })
+      .catch(() => {})
+    return () => ctrl.abort()
+  }, [])
+  const updateReading = useCallback((patch: Partial<ReadingPrefs>) => {
+    setReadingPrefs((cur) => {
+      const next = { ...cur, ...patch }
+      writeReadingPrefs(next)
+      try {
+        if (document.cookie.includes('auth-token')) {
+          void fetch('/api/account/preferences', {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ reading_prefs: next }),
+            keepalive: true,
+          }).catch(() => {})
+        }
+      } catch {
+        /* ignore */
+      }
+      return next
+    })
+  }, [])
+  // The Aa menu is a native <details>; it closes on a click elsewhere or Escape.
+  const readingMenuRef = useRef<HTMLDetailsElement | null>(null)
+  useEffect(() => {
+    const onPointer = (e: PointerEvent) => {
+      const el = readingMenuRef.current
+      if (el?.open && e.target instanceof Node && !el.contains(e.target)) el.open = false
+    }
+    const onKey = (e: KeyboardEvent) => {
+      const el = readingMenuRef.current
+      if (e.key === 'Escape' && el?.open) {
+        el.open = false
+        el.querySelector<HTMLElement>('summary')?.focus()
+      }
+    }
+    document.addEventListener('pointerdown', onPointer)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('pointerdown', onPointer)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [])
   const [step, setStep] = useState(1)
   const [active, setActive] = useState('')
 
@@ -543,6 +624,9 @@ export function CourseLessonPage({
       // only ever called when the overlay is on.
       tabIndex={-1}
       data-visual-notes={visualNotes ? 'on' : 'off'}
+      data-reading-font={readingPrefs.font}
+      data-reading-size={readingPrefs.size}
+      data-reading-air={readingPrefs.air ? 'on' : 'off'}
       data-screen-label={`Lesson — ${L.name}`}
       // Both names: --acc-lesson is what the existing lesson CSS reads, --hub-acc
       // is what the shared course components (hero wash, section rules, hints,
@@ -798,6 +882,83 @@ export function CourseLessonPage({
                 />
               </div>
             ) : null}
+            {/* Reading typography. A native disclosure: keyboard-operable,
+                closes on its own, no positioning library. */}
+            <details className="reading-menu" ref={readingMenuRef}>
+              <summary className="reading-menu__summary" aria-label="Reading settings: typeface, size, spacing">
+                <span className="reading-menu__aa" aria-hidden>
+                  Aa
+                </span>
+                <span className="micro">READING</span>
+              </summary>
+              <div className="reading-menu__panel">
+                <div className="reading-menu__row">
+                  <span className="micro" id="reading-font-label">
+                    TYPEFACE
+                  </span>
+                  <SegmentedControl<ReadingFont>
+                    className="ink-seg ink-seg--3"
+                    optionClassName="ink-seg-opt"
+                    aria-labelledby="reading-font-label"
+                    value={readingPrefs.font}
+                    onChange={(font) => updateReading({ font })}
+                    options={[
+                      { value: 'default', label: <span data-face="default">Sans</span> },
+                      { value: 'book', label: <span data-face="book">Book</span> },
+                      { value: 'clear', label: <span data-face="clear">Clear</span> },
+                    ]}
+                  />
+                  <p className="reading-menu__hint">{READING_FONT_HINT[readingPrefs.font]}</p>
+                </div>
+                <div className="reading-menu__row">
+                  <span className="micro" id="reading-size-label">
+                    SIZE
+                  </span>
+                  <SegmentedControl<ReadingSize>
+                    className="ink-seg ink-seg--4"
+                    optionClassName="ink-seg-opt"
+                    aria-labelledby="reading-size-label"
+                    value={readingPrefs.size}
+                    onChange={(size) => updateReading({ size })}
+                    options={[
+                      { value: 's', label: 'S' },
+                      { value: 'm', label: 'M' },
+                      { value: 'l', label: 'L' },
+                      { value: 'xl', label: 'XL' },
+                    ]}
+                  />
+                </div>
+                <div className="reading-menu__row">
+                  <span className="micro" id="reading-air-label">
+                    AIRY SPACING
+                  </span>
+                  <SegmentedControl
+                    className="ink-seg"
+                    optionClassName="ink-seg-opt"
+                    aria-labelledby="reading-air-label"
+                    value={readingPrefs.air ? 'on' : 'off'}
+                    onChange={(v) => updateReading({ air: v === 'on' })}
+                    options={[
+                      { value: 'off', label: 'OFF' },
+                      { value: 'on', label: 'ON' },
+                    ]}
+                  />
+                  <p className="reading-menu__hint">
+                    Wider letter and line spacing. The one change with solid evidence for readers who lose
+                    their place — worth a try whoever you are.
+                  </p>
+                </div>
+                <p className="reading-menu__hint">
+                  Pick whatever reads fastest for <em>you</em> — it differs from person to person, by up to a
+                  third.
+                </p>
+                {!isDefaultReading(readingPrefs) ? (
+                  <button type="button" className="reading-menu__reset" onClick={() => updateReading({ ...DEFAULT_READING_PREFS })}>
+                    Back to defaults
+                  </button>
+                ) : null}
+              </div>
+            </details>
           </div>
         </div>
       </div>

@@ -4245,3 +4245,247 @@ a.scard, a.continue, a.topic-row, a.pn-btn, a.related-card, a.subj-row, a.dash-c
 @media (max-width: 560px) {
   .resume-strip-actions { width: 100%; justify-content: space-between; }
 }
+/* ==========================================================================
+   Reading typography for lesson prose — docs/COURSE_TYPOGRAPHY.md
+   The prose was set in Instrument Sans, a UI face, at 16px/1.55. Lesson body
+   text now has its own family, size, leading and measure, and the reader can
+   change them (Aa menu in the mode bar); choices land as data attributes on
+   .lesson-page and everything below reads the variables.
+   ========================================================================== */
+
+.lesson-page {
+  --reading-family: var(--font-reading-sans, 'Noto Sans'), 'Instrument Sans', system-ui, sans-serif;
+  --reading-size: 17px;
+  --reading-scale: 1;
+  --reading-leading: 1.65;
+  --reading-tracking: 0;
+  --reading-word: normal;
+  --reading-para: 1.1em;
+  --reading-measure: 68ch;
+}
+
+@media (max-width: 640px) {
+  .lesson-page {
+    --reading-size: 16.5px;
+  }
+}
+
+/* A reading serif with an optical-size axis; a touch larger to match x-height. */
+.lesson-page[data-reading-font='book'] {
+  --reading-family: var(--font-reading-serif, 'Literata'), Georgia, 'Iowan Old Style', serif;
+  --reading-size: 17.5px;
+}
+
+/* Distinct letterforms; a little more tracking suits its wide fit. */
+.lesson-page[data-reading-font='clear'] {
+  --reading-family: var(--font-reading-clear, 'Atkinson Hyperlegible Next'), Verdana, system-ui, sans-serif;
+  --reading-tracking: 0.012em;
+}
+
+.lesson-page[data-reading-size='s'] { --reading-scale: 0.94; }
+.lesson-page[data-reading-size='l'] { --reading-scale: 1.12; }
+.lesson-page[data-reading-size='xl'] { --reading-scale: 1.28; }
+
+/* The spacing intervention with evidence behind it (Zorzi et al. 2012): wider
+   letter, word and line spacing reduces crowding. Not a special font. */
+.lesson-page[data-reading-air='on'] {
+  --reading-leading: 1.9;
+  --reading-tracking: 0.05em;
+  --reading-word: 0.12em;
+  --reading-para: 1.5em;
+  --reading-measure: 60ch;
+}
+
+.lesson-article .course-rich-text--prose,
+.lesson-article .course-rich-text--prose p,
+.lesson-article .course-rich-text--prose li,
+.lesson-article .course-rich-text--flashcard,
+.lesson-article .lesson-intro-rich,
+.lesson-article .lesson-obj-text,
+.lesson-article .lsec-sub,
+.lesson-article .worked-q,
+.lesson-article .worked-q-rich,
+.lesson-article .worked-step-rich,
+.lesson-article .gloss-d,
+.lesson-article .gloss-d-rich,
+.lesson-article .simple-step-rich,
+.lesson-article .qc-q-text,
+.lesson-article .faq-q-text,
+.lesson-article .faq-a,
+.lesson-article .fcard-text,
+.lesson-article .cmap-detail-body,
+.lesson-article .cmap-detail-rich,
+.lesson-article .lead {
+  font-family: var(--reading-family);
+  font-size: calc(var(--reading-size) * var(--reading-scale));
+  font-weight: var(--reading-weight, 400);
+  line-height: var(--reading-leading);
+  letter-spacing: var(--reading-tracking);
+  word-spacing: var(--reading-word);
+  font-kerning: normal;
+  font-variant-numeric: proportional-nums;
+  text-wrap: pretty;
+}
+
+/* Light text on a dark ground reads thinner than the same weight on paper;
+   the variable fonts allow a nudge. */
+html[data-ec-theme='late-night'] .lesson-page {
+  --reading-weight: 430;
+}
+
+/* Narrow screens at the larger sizes: let English hyphenate rather than
+   leave one long word alone on a line. The document is lang="en-GB". */
+@media (max-width: 480px) {
+  .lesson-page[data-reading-size='l'] .course-rich-text--prose,
+  .lesson-page[data-reading-size='xl'] .course-rich-text--prose,
+  .lesson-page[data-reading-air='on'] .course-rich-text--prose {
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    hyphenate-limit-chars: 8 4 4;
+  }
+}
+
+/* Each typeface option is set in its own face, so the reader sees the
+   difference before choosing. Fetches the two extra files only once the
+   menu is open. */
+.ink-seg-opt [data-face] { font-size: 12px; letter-spacing: 0; text-transform: none; }
+.ink-seg-opt [data-face='book'] { font-family: var(--font-reading-serif, 'Literata'), Georgia, serif; }
+.ink-seg-opt [data-face='clear'] { font-family: var(--font-reading-clear, 'Atkinson Hyperlegible Next'), Verdana, sans-serif; }
+.ink-seg-opt [data-face='default'] { font-family: var(--font-reading-sans, 'Noto Sans'), sans-serif; }
+
+/* Lesson prose reads in full ink, not the muted secondary tone. */
+.lesson-article .course-rich-text--prose,
+.lesson-article .lesson-intro-rich,
+.lesson-article .lead {
+  color: var(--text);
+}
+
+.lesson-article .course-rich-text--prose p + p {
+  margin-top: var(--reading-para);
+}
+
+/* 60–70 characters a line is where reading speed and comfort meet; the
+   760px article holds more than that at 17px, so prose gets its own measure
+   while worked examples and tables keep the full width. */
+.lesson-article .course-rich-text--prose,
+.lesson-article .lesson-intro-rich,
+.lesson-article .lead {
+  max-width: var(--reading-measure);
+}
+
+/* KaTeX sets itself at 1.21em to match Computer Modern's x-height against
+   typical text faces; beside Noto Sans's tall x-height that reads oversized. */
+.lesson-article .course-rich-text--prose .katex {
+  font-size: 1.1em;
+}
+
+/* Larger text needs the mobile overlay's paddings to hold. */
+.lesson-page[data-reading-size='xl'] .course-rich-text--prose {
+  overflow-wrap: anywhere;
+}
+
+/* ---- the Aa menu in the mode bar ---- */
+
+.reading-menu {
+  position: relative;
+}
+
+.reading-menu__summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1.5px solid var(--border-strong, var(--border));
+  border-radius: 4px;
+  background: var(--paper, var(--bg));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.06));
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.reading-menu__summary::-webkit-details-marker {
+  display: none;
+}
+
+.reading-menu__summary:hover {
+  border-color: var(--ink);
+}
+
+.reading-menu__summary:focus-visible {
+  outline: 2px solid var(--acc, var(--ink));
+  outline-offset: 2px;
+}
+
+.reading-menu__aa {
+  /* The brand serif, already loaded — using the Book face here would fetch
+     Literata on every lesson whether or not the reader ever picks it. */
+  font-family: var(--font-display, 'Newsreader'), Georgia, serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.reading-menu__panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 30;
+  width: min(320px, calc(100vw - 32px));
+  padding: 14px 16px 12px;
+  border: 1.5px solid var(--border-strong, var(--border));
+  border-radius: 4px;
+  background: var(--paper, var(--bg));
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reading-menu__row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.reading-menu__row .ink-seg {
+  width: 100%;
+}
+
+.ink-seg--3 { grid-template-columns: repeat(3, 1fr); }
+.ink-seg--4 { grid-template-columns: repeat(4, 1fr); }
+
+.reading-menu__hint {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--text-2);
+}
+
+.reading-menu__reset {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.reading-menu__reset:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .reading-menu__panel {
+    right: auto;
+    left: 0;
+  }
+}

@@ -24,6 +24,9 @@ import localFont from 'next/font/local'
  *
  * Only the default is preloaded. The others declare their @font-face and
  * the browser fetches a file the first time a page actually uses it.
+ * `adjustFontFallback` makes next/font generate a size-adjusted fallback
+ * face, so the lines a reader is already on do not reflow when the real
+ * file lands (display: swap).
  */
 
 export const readingSans = localFont({
@@ -33,6 +36,7 @@ export const readingSans = localFont({
   ],
   display: 'swap',
   preload: true,
+  adjustFontFallback: 'Arial',
   variable: '--font-reading-sans',
   fallback: ['Instrument Sans', 'system-ui', 'Segoe UI', 'Helvetica Neue', 'Arial', 'sans-serif'],
 })
@@ -44,6 +48,7 @@ export const readingSerif = localFont({
   ],
   display: 'swap',
   preload: false,
+  adjustFontFallback: 'Times New Roman',
   variable: '--font-reading-serif',
   fallback: ['Georgia', 'Iowan Old Style', 'Palatino', 'serif'],
 })
@@ -52,6 +57,7 @@ export const readingClear = localFont({
   src: [{ path: './files/atkinson-hyperlegible-next.woff2', weight: '400 700', style: 'normal' }],
   display: 'swap',
   preload: false,
+  adjustFontFallback: 'Arial',
   variable: '--font-reading-clear',
   fallback: ['Verdana', 'system-ui', 'sans-serif'],
 })

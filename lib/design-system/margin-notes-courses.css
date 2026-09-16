@@ -4299,17 +4299,26 @@ a.scard, a.continue, a.topic-row, a.pn-btn, a.related-card, a.subj-row, a.dash-c
 .lesson-article .course-rich-text--prose,
 .lesson-article .course-rich-text--prose p,
 .lesson-article .course-rich-text--prose li,
+.lesson-article .course-rich-text--flashcard,
 .lesson-article .lesson-intro-rich,
 .lesson-article .lesson-obj-text,
 .lesson-article .lsec-sub,
+.lesson-article .worked-q,
 .lesson-article .worked-q-rich,
 .lesson-article .worked-step-rich,
+.lesson-article .gloss-d,
 .lesson-article .gloss-d-rich,
 .lesson-article .simple-step-rich,
 .lesson-article .qc-q-text,
+.lesson-article .faq-q-text,
+.lesson-article .faq-a,
+.lesson-article .fcard-text,
+.lesson-article .cmap-detail-body,
+.lesson-article .cmap-detail-rich,
 .lesson-article .lead {
   font-family: var(--reading-family);
   font-size: calc(var(--reading-size) * var(--reading-scale));
+  font-weight: var(--reading-weight, 400);
   line-height: var(--reading-leading);
   letter-spacing: var(--reading-tracking);
   word-spacing: var(--reading-word);
@@ -4317,6 +4326,32 @@ a.scard, a.continue, a.topic-row, a.pn-btn, a.related-card, a.subj-row, a.dash-c
   font-variant-numeric: proportional-nums;
   text-wrap: pretty;
 }
+
+/* Light text on a dark ground reads thinner than the same weight on paper;
+   the variable fonts allow a nudge. */
+html[data-ec-theme='late-night'] .lesson-page {
+  --reading-weight: 430;
+}
+
+/* Narrow screens at the larger sizes: let English hyphenate rather than
+   leave one long word alone on a line. The document is lang="en-GB". */
+@media (max-width: 480px) {
+  .lesson-page[data-reading-size='l'] .course-rich-text--prose,
+  .lesson-page[data-reading-size='xl'] .course-rich-text--prose,
+  .lesson-page[data-reading-air='on'] .course-rich-text--prose {
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    hyphenate-limit-chars: 8 4 4;
+  }
+}
+
+/* Each typeface option is set in its own face, so the reader sees the
+   difference before choosing. Fetches the two extra files only once the
+   menu is open. */
+.ink-seg-opt [data-face] { font-size: 12px; letter-spacing: 0; text-transform: none; }
+.ink-seg-opt [data-face='book'] { font-family: var(--font-reading-serif, 'Literata'), Georgia, serif; }
+.ink-seg-opt [data-face='clear'] { font-family: var(--font-reading-clear, 'Atkinson Hyperlegible Next'), Verdana, sans-serif; }
+.ink-seg-opt [data-face='default'] { font-family: var(--font-reading-sans, 'Noto Sans'), sans-serif; }
 
 /* Lesson prose reads in full ink, not the muted secondary tone. */
 .lesson-article .course-rich-text--prose,

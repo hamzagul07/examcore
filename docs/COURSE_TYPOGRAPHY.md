@@ -37,12 +37,15 @@ Nothing here is dyslexia-specific in name. The menu says "Airy spacing" and "Cle
 
 - Fonts: `app/fonts/reading.ts` — `next/font/local`, self-hosted latin woff2 subsets from Google (35 + 38 KB Noto, 83 + 86 KB Literata, 33 KB Atkinson), OFL-licensed (`app/fonts/files/OFL.txt`). Only Noto Sans is preloaded; the others are fetched on first use. Loaded by the `courses` and `ib/courses` layouts only, so no other page pays for them.
 - CSS: end of `lib/design-system/margin-notes-courses.css` — variables on `.lesson-page`, overrides per `data-reading-font/size/air`, and the prose selectors (`.course-rich-text--prose`, intro, worked examples, glossary, quick-check questions, `.lead`).
-- Preference: `lib/courses/reading-prefs.ts` (localStorage, tolerant parser, tested); the **Aa** menu in the lesson mode bar (`CourseLessonPage.tsx`) writes it and the root `<main>` carries the data attributes.
+- Preference: `lib/courses/reading-prefs.ts` (localStorage, tolerant parser, tested); the **Aa** menu in the lesson mode bar (`CourseLessonPage.tsx`) writes it and the root `<main>` carries the data attributes. Each typeface option is set in its own face so the reader sees the difference before choosing; the menu closes on a click elsewhere or Escape.
+- **Across devices:** a signed-in reader's choice is also saved to `user_profiles.reading_prefs` (through `/api/account/preferences`, parsed on the way in) and read back on the next lesson open. The device's own copy applies first so nothing swaps on load; the account's copy wins if it differs.
+- **No reflow on load:** `adjustFontFallback` gives each face a size-adjusted system fallback, so text set before the woff2 arrives keeps its line breaks.
+- **Dark themes** nudge the variable weight to 430 (`late-night`); **phones** hyphenate at L, XL and airy so a long word does not sit alone on a line.
 
 ## How to check it
 
 - `pnpm exec next dev -p 3100`, open a maths lesson (`/courses/9709/1-1-quadratics`) and an essay subject, at 1280 and 390 wide; try each typeface, XL, airy. Only the chosen family's woff2 should be requested.
-- If a face is added or changed: add the latin woff2 to `app/fonts/files/`, a `localFont` in `reading.ts`, the OFL entry, a `data-reading-font` override, a label and a hint.
+- If a face is added or changed: add the latin woff2 to `app/fonts/files/`, a `localFont` in `reading.ts` (with `adjustFontFallback`), the OFL entry, a `data-reading-font` override, a `[data-face]` rule for the option label, a label and a hint.
 
 ## Not done, on purpose
 

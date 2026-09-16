@@ -163,14 +163,72 @@ export function CourseLessonPage({
   // client render agree (the same pattern as the study-mode preference).
   const [readingPrefs, setReadingPrefs] = useState<ReadingPrefs>(DEFAULT_READING_PREFS)
   useEffect(() => {
+    // This device's choice first, so the page settles without a swap; then,
+    // for a signed-in reader, the choice saved on the account — a phone and
+    // a laptop should agree. The auth cookie is the cheap signed-in hint;
+    // a stray 401 is simply ignored.
     setReadingPrefs(readReadingPrefs())
+    let signedIn = false
+    try {
+      signedIn = document.cookie.includes('auth-token')
+    } catch {
+      /* ignore */
+    }
+    if (!signedIn) return
+    const ctrl = new AbortController()
+    fetch('/api/account/preferences', { signal: ctrl.signal })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: { reading_prefs?: ReadingPrefs | null } | null) => {
+        const saved = data?.reading_prefs
+        if (!saved) return
+        setReadingPrefs((cur) => {
+          if (cur.font === saved.font && cur.size === saved.size && cur.air === saved.air) return cur
+          writeReadingPrefs(saved)
+          return saved
+        })
+      })
+      .catch(() => {})
+    return () => ctrl.abort()
   }, [])
   const updateReading = useCallback((patch: Partial<ReadingPrefs>) => {
     setReadingPrefs((cur) => {
       const next = { ...cur, ...patch }
       writeReadingPrefs(next)
+      try {
+        if (document.cookie.includes('auth-token')) {
+          void fetch('/api/account/preferences', {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ reading_prefs: next }),
+            keepalive: true,
+          }).catch(() => {})
+        }
+      } catch {
+        /* ignore */
+      }
       return next
     })
+  }, [])
+  // The Aa menu is a native <details>; it closes on a click elsewhere or Escape.
+  const readingMenuRef = useRef<HTMLDetailsElement | null>(null)
+  useEffect(() => {
+    const onPointer = (e: PointerEvent) => {
+      const el = readingMenuRef.current
+      if (el?.open && e.target instanceof Node && !el.contains(e.target)) el.open = false
+    }
+    const onKey = (e: KeyboardEvent) => {
+      const el = readingMenuRef.current
+      if (e.key === 'Escape' && el?.open) {
+        el.open = false
+        el.querySelector<HTMLElement>('summary')?.focus()
+      }
+    }
+    document.addEventListener('pointerdown', onPointer)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('pointerdown', onPointer)
+      document.removeEventListener('keydown', onKey)
+    }
   }, [])
   const [step, setStep] = useState(1)
   const [active, setActive] = useState('')
@@ -826,7 +884,7 @@ export function CourseLessonPage({
             ) : null}
             {/* Reading typography. A native disclosure: keyboard-operable,
                 closes on its own, no positioning library. */}
-            <details className="reading-menu">
+            <details className="reading-menu" ref={readingMenuRef}>
               <summary className="reading-menu__summary" aria-label="Reading settings: typeface, size, spacing">
                 <span className="reading-menu__aa" aria-hidden>
                   Aa
@@ -845,9 +903,9 @@ export function CourseLessonPage({
                     value={readingPrefs.font}
                     onChange={(font) => updateReading({ font })}
                     options={[
-                      { value: 'default', label: 'SANS' },
-                      { value: 'book', label: 'BOOK' },
-                      { value: 'clear', label: 'CLEAR' },
+                      { value: 'default', label: <span data-face="default">Sans</span> },
+                      { value: 'book', label: <span data-face="book">Book</span> },
+                      { value: 'clear', label: <span data-face="clear">Clear</span> },
                     ]}
                   />
                   <p className="reading-menu__hint">{READING_FONT_HINT[readingPrefs.font]}</p>

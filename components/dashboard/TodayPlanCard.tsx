@@ -7,6 +7,7 @@ import {
   formatMinutes,
   formatPlanDate,
   markedBlocks,
+  nextBlock,
   planProgress,
   todayInZone,
   workBlocks,
@@ -40,6 +41,8 @@ export function TodayPlanCard({ saved, examDate, evidence = [] }: Props) {
     const blocks = workBlocks(today).slice(0, 4)
     const done = saved.done[String(today.day)] === true
     const marked = markedBlocks(today, evidenceSet)
+    const start = done ? null : nextBlock(today, evidenceSet)
+    const tomorrow = saved.plan.days[today.day] ?? null
     return (
       <section className="ms-insight-hero ms-plan-card mb-6" aria-labelledby="dash-plan-title">
         <div className="ms-insight-hero__meta mb-3">
@@ -87,6 +90,16 @@ export function TodayPlanCard({ saved, examDate, evidence = [] }: Props) {
           </ul>
         ) : null}
         <div className="mt-4 flex flex-wrap items-center gap-3">
+          {start?.href ? (
+            <LoadingLink
+              href={start.href}
+              variant="button"
+              loadingText="Opening…"
+              className="ec-btn-primary inline-flex min-h-[44px] items-center justify-center px-5 text-sm"
+            >
+              {start.kind === 'timed_paper' ? 'Sit the paper →' : `Start: ${start.topic?.name ?? start.subjectLabel ?? 'first block'} →`}
+            </LoadingLink>
+          ) : null}
           <LoadingLink
             href="/dashboard/plan"
             variant="inline"
@@ -95,6 +108,11 @@ export function TodayPlanCard({ saved, examDate, evidence = [] }: Props) {
             {today.workMinutes > 0 ? `Open the full plan · ${formatMinutes(today.workMinutes)} today` : 'Open the full plan'}
           </LoadingLink>
         </div>
+        {tomorrow ? (
+          <p className="ms-plan-tomorrow">
+            <span className="ms-plan-tomorrow__label">Tomorrow</span> {tomorrow.focus}
+          </p>
+        ) : null}
       </section>
     )
   }

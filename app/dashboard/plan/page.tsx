@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { createClient as createServerClient, createServiceClient } from '@/lib/supabase-server'
-import { loadStudyPlan } from '@/lib/plan/study-plan-service'
+import { loadPlanEvidence, loadStudyPlan } from '@/lib/plan/study-plan-service'
 import {
   IB_SUBJECT_OPTIONS,
   SUBJECTS,
@@ -44,6 +44,8 @@ export default async function StudyPlanPage() {
     loadStudyPlan(admin, user.id),
   ])
 
+  const evidence = saved ? await loadPlanEvidence(admin, user.id, saved.plan) : []
+
   const board = (profile?.board as string | null) ?? 'Cambridge International'
   const level = (profile?.level as string | null) ?? 'A-Level'
   const profileSubjects: string[] = profile?.subjects?.length
@@ -71,6 +73,7 @@ export default async function StudyPlanPage() {
     <div className="mx-auto max-w-[var(--ec-content-max,860px)] px-4 py-10 sm:px-6">
       <StudyPlanScreen
         initial={saved}
+        evidence={evidence}
         firstName={firstName}
         subjectOptions={subjectOptions}
         defaults={{

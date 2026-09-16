@@ -216,6 +216,22 @@ assert.equal(timedPaperCount('pass', 4), 1, 'never zero once there is room')
   assert.equal(imposed.length, 0, 'natural rest days are enough')
 }
 
+// --- real paper lengths ----------------------------------------------------------------
+
+{
+  const withPaper: PlanSubjectInput = { ...MATHS, paperMinutes: 105 }
+  const roomy = buildStudyPlan({ startDate: START, examDate: EXAM_19, preparedness: 'stretch', minutesPerDay: 120, availability: [120, 120, 120, 120, 120, 120, 120], subjects: [withPaper] })
+  const full = roomy.days.flatMap((d) => d.blocks.filter((b) => b.kind === 'timed_paper'))
+  assert.ok(full.length > 0)
+  assert.ok(full.every((b) => b.minutes === 105), 'a 120-minute day sits the whole 105-minute paper')
+  assert.match(full[0]!.label, /105 min, no notes/)
+  const tight = buildStudyPlan({ startDate: START, examDate: EXAM_19, preparedness: 'stretch', minutesPerDay: 90, availability: EVERY_DAY, subjects: [withPaper] })
+  const part = tight.days.flatMap((d) => d.blocks.filter((b) => b.kind === 'timed_paper'))
+  assert.ok(part.every((b) => b.minutes === 90), 'a 90-minute day sits what fits')
+  assert.match(part[0]!.label, /first 90 min of a 105-min paper/)
+  assert.ok(tight.days.every((d) => d.workMinutes <= 90))
+}
+
 // --- specific dates the student is away ----------------------------------------------
 
 {

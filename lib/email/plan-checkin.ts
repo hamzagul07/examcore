@@ -37,7 +37,8 @@ export function renderPlanCheckinEmail(payload: PlanCheckinPayload): {
 } {
   const { day, progress } = payload
   const first = (payload.recipientName ?? '').trim().split(/\s+/)[0] || 'there'
-  const planHref = `${SITE_URL}/dashboard/plan`
+  // ?src=checkin: the page counts the open (plan_checkin_opened) and strips it.
+  const planHref = `${SITE_URL}/dashboard/plan?src=checkin`
   const blocks = workBlocks(day)
 
   const countdown = day.daysLeft === 1 ? 'Exam tomorrow' : `${day.daysLeft} days to go`

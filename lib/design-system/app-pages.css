@@ -1902,6 +1902,48 @@ a.ms-plan-block__link:hover {
   font-weight: 600;
 }
 
+/* A block the student has marked since the plan was built — evidence, not a tick. */
+.ms-plan-block.is-marked .ms-plan-block__link {
+  background: color-mix(in srgb, var(--ec-brand-muted) 60%, transparent);
+}
+
+.ms-plan-block.is-marked .ms-plan-block__label {
+  color: var(--ec-text-secondary);
+}
+
+.ms-plan-block__done {
+  flex: 0 0 auto;
+  padding-top: 2px;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ec-brand);
+  white-space: nowrap;
+}
+
+.ms-plan-day__marked {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ec-brand);
+}
+
+.ms-plan-past-toggle {
+  width: 100%;
+  min-height: 40px;
+  border: 1.5px dashed var(--ec-border);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--ec-text-secondary);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.ms-plan-past-toggle:hover {
+  border-color: var(--ec-brand);
+  color: var(--ec-brand);
+}
+
 .ms-plan-block--break {
   display: flex;
   align-items: center;

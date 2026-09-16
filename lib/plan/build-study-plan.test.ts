@@ -216,6 +216,82 @@ assert.equal(timedPaperCount('pass', 4), 1, 'never zero once there is room')
   assert.equal(imposed.length, 0, 'natural rest days are enough')
 }
 
+// --- specific dates the student is away ----------------------------------------------
+
+{
+  // Away Sat 19 – Sun 20 Sep (a trip) and Fri 25 (a wedding).
+  const plan = buildStudyPlan({
+    startDate: START,
+    examDate: EXAM_19,
+    preparedness: 'secure',
+    minutesPerDay: 90,
+    availability: EVERY_DAY,
+    subjects: [MATHS],
+    blockedDates: ['2026-09-19', '2026-09-20', '2026-09-25', 'not-a-date', '2026-12-25'],
+    timeZone: 'Asia/Karachi',
+  })
+  assert.deepEqual(plan.blockedDates, ['2026-09-19', '2026-09-20', '2026-09-25', '2026-12-25'], 'kept, sorted, junk dropped')
+  assert.equal(plan.timeZone, 'Asia/Karachi')
+  for (const date of ['2026-09-19', '2026-09-20', '2026-09-25']) {
+    const d = plan.days.find((x) => x.date === date)!
+    assert.equal(d.kind, 'rest', `${date} is a rest day`)
+    assert.match(d.focus, /away/, `${date} says why`)
+  }
+  // Those trips are natural rest days, so no extra one is imposed in those windows.
+  const imposed = plan.days.filter((d) => d.kind === 'rest' && /holds without it/.test(d.focus))
+  assert.equal(imposed.length, 0, `no imposed rest on top of trips: ${imposed.map((d) => d.date).join(',')}`)
+  // A timed paper never lands on a blocked date.
+  assert.ok(!plan.days.some((d) => plan.blockedDates.includes(d.date) && d.blocks.some((b) => b.kind === 'timed_paper')))
+}
+{
+  const plan = buildStudyPlan({
+    startDate: START,
+    examDate: EXAM_19,
+    preparedness: 'pass',
+    minutesPerDay: 90,
+    availability: EVERY_DAY,
+    subjects: [MATHS],
+  })
+  assert.deepEqual(plan.blockedDates, [])
+  assert.equal(plan.timeZone, 'UTC', 'defaults to UTC when the client sends nothing')
+}
+
+// --- IB: no frequency data, so the syllabus is the rotation -----------------------------
+
+{
+  const syl = (code: string, name: string): PlanTopic => ({ code, name, source: 'syllabus', weight: 0 })
+  const IB_PHYSICS: PlanSubjectInput = {
+    code: 'ib-physics-sl',
+    label: 'Physics SL',
+    highYield: [],
+    weak: [weak('B.2', 'Greenhouse effect', 30)],
+    syllabus: [syl('A.1', 'Kinematics'), syl('A.2', 'Forces and momentum'), syl('B.1', 'Thermal energy transfers'), syl('B.2', 'Greenhouse effect')],
+    hasTimedPaper: true,
+  }
+  assert.deepEqual(
+    topicRotation(IB_PHYSICS, 'pass').map((t) => t.code),
+    ['B.2', 'A.1', 'A.2', 'B.1'],
+    'pass with no frequency data: a weak topic on the syllabus first, then the syllabus in order'
+  )
+  assert.deepEqual(topicRotation(IB_PHYSICS, 'secure').map((t) => t.code), ['B.2', 'A.1', 'A.2', 'B.1'])
+  assert.deepEqual(topicRotation(IB_PHYSICS, 'stretch').map((t) => t.code), ['A.1', 'A.2', 'B.1', 'B.2'])
+
+  const plan = buildStudyPlan({
+    startDate: START,
+    examDate: EXAM_19,
+    preparedness: 'pass',
+    minutesPerDay: 60,
+    availability: EVERY_DAY,
+    subjects: [IB_PHYSICS],
+  })
+  const drills = plan.days.flatMap((d) => d.blocks.filter((b) => b.kind === 'drill'))
+  assert.ok(drills.length > 0)
+  assert.ok(drills.every((b) => b.topic), 'every IB drill names a syllabus topic')
+  assert.ok(drills.some((b) => b.label === 'Kinematics — one question, then mark it'), 'syllabus label carries no paper count')
+  // High-yield still wins when it exists.
+  assert.equal(topicRotation({ ...IB_PHYSICS, highYield: [hy('A.2', 'Forces and momentum', 9)] }, 'stretch')[0]!.code, 'A.2')
+}
+
 // --- two subjects share the day fairly -----------------------------------------------
 
 {

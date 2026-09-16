@@ -22,6 +22,7 @@ import {
   formatPlanDate,
   isoDate,
   planProgress,
+  todayInZone,
   type DoneDays,
   type HydratedBlock,
   type HydratedDay,
@@ -49,6 +50,16 @@ const DAY_LOAD_LABEL: Record<DayLoad, string> = {
 const WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] as const
 const MINUTE_OPTIONS = ['45', '60', '90', '120', '180'] as const
 const MAX_SUBJECTS = 4
+const MAX_BLOCKED_DATES = 60
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
+
+function browserTimeZone(): string {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'
+  } catch {
+    return 'UTC'
+  }
+}
 
 function loadToMinutes(load: DayLoad, minutesPerDay: number): number {
   if (load === 'none') return 0
@@ -72,6 +83,7 @@ export function StudyPlanScreen({ initial, firstName, subjectOptions, defaults }
     <Roadmap
       saved={saved}
       firstName={firstName}
+      profileExamDate={defaults.examDate}
       onTick={(done) => setSaved({ plan: saved.plan, done })}
       onAdjust={() => setMode('build')}
     />
@@ -119,14 +131,28 @@ function Builder({
       ? prior.availability.map((m) => minutesToLoad(m, prior.minutesPerDay))
       : ['full', 'full', 'full', 'full', 'full', 'full', 'full']
   )
+  const [blockedDates, setBlockedDates] = useState<string[]>(prior?.blockedDates ?? [])
+  const [blockInput, setBlockInput] = useState('')
   const [remindMe, setRemindMe] = useState(defaults.remindMe)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
 
   const minutesPerDay = Number(minutes)
-  const todayIso = isoDate(new Date(), true)
+  // Rendered on the server too, so start from the UTC date both sides agree
+  // on and switch to the browser's own date once mounted.
+  const [todayIso, setTodayIso] = useState(() => isoDate(new Date()))
+  useEffect(() => {
+    setTodayIso(isoDate(new Date(), true))
+  }, [])
   const daysLeft = examDate ? planLength(todayIso, examDate) : 0
   const suggestions = useMemo(() => suggestedExamDates(), [])
+
+  function addBlockedDate() {
+    const d = blockInput
+    if (!ISO_DATE.test(d) || blockedDates.includes(d) || blockedDates.length >= MAX_BLOCKED_DATES) return
+    setBlockedDates([...blockedDates, d].sort())
+    setBlockInput('')
+  }
 
   function toggleSubject(code: string) {
     setSubjects((cur) =>
@@ -155,6 +181,8 @@ function Builder({
           minutesPerDay,
           availability,
           subjects,
+          timeZone: browserTimeZone(),
+          blockedDates,
           remindMe,
         }),
       })
@@ -320,6 +348,54 @@ function Builder({
         </div>
       </fieldset>
 
+      {/* Days away */}
+      <fieldset className="ms-plan-fieldset">
+        <legend className="label-overline">Days you&apos;re away</legend>
+        <p className="text-caption mb-3">
+          A trip, a wedding, a school event. Nothing gets scheduled on those days and the plan
+          works around them.
+        </p>
+        <div className="flex flex-wrap items-center gap-2">
+          <input
+            type="date"
+            className="ec-input"
+            value={blockInput}
+            min={todayIso}
+            max={examDate || undefined}
+            onChange={(e) => setBlockInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault()
+                addBlockedDate()
+              }
+            }}
+            aria-label="A date you're away"
+            disabled={busy}
+          />
+          <button type="button" className="ec-pill" disabled={busy || !blockInput} onClick={addBlockedDate}>
+            Add day
+          </button>
+        </div>
+        {blockedDates.length > 0 ? (
+          <ul className="mt-3 flex flex-wrap gap-2" aria-label="Days away">
+            {blockedDates.map((d) => (
+              <li key={d}>
+                <button
+                  type="button"
+                  className="ec-pill is-on"
+                  disabled={busy}
+                  onClick={() => setBlockedDates(blockedDates.filter((x) => x !== d))}
+                  aria-label={`Remove ${formatPlanDate(d)}`}
+                  title="Remove"
+                >
+                  {formatPlanDate(d)} ×
+                </button>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </fieldset>
+
       {/* Check-ins */}
       <fieldset className="ms-plan-fieldset">
         <label className="ms-plan-check">
@@ -363,21 +439,24 @@ function Builder({
 function Roadmap({
   saved,
   firstName,
+  profileExamDate,
   onTick,
   onAdjust,
 }: {
   saved: Saved
   firstName: string
+  /** The exam date on the profile — the plan is stale when it differs. */
+  profileExamDate: string | null
   onTick: (done: DoneDays) => void
   onAdjust: () => void
 }) {
   const { plan, done } = saved
-  const [todayIso, setTodayIso] = useState(() => isoDate(new Date(), true))
+  // Server and client agree on the plan's own zone; once mounted, the
+  // browser's date wins so a travelling student sees the right day.
+  const [todayIso, setTodayIso] = useState(() => todayInZone(plan.timeZone))
   const [ticking, setTicking] = useState<number | null>(null)
   const [error, setError] = useState('')
 
-  // The date is the viewer's, not the server's — a plan opened after midnight
-  // should already show the new day.
   useEffect(() => {
     setTodayIso(isoDate(new Date(), true))
   }, [])
@@ -385,6 +464,7 @@ function Roadmap({
   const today = findPlanDay(plan, todayIso)
   const progress = planProgress(plan, done, todayIso)
   const examPassed = plan.examDate <= todayIso
+  const examMoved = Boolean(profileExamDate && profileExamDate !== plan.examDate)
 
   useEffect(() => {
     if (!today || today.day <= 3) return
@@ -456,6 +536,17 @@ function Roadmap({
       </div>
 
       {error ? <ErrorBox message={error} /> : null}
+
+      {examMoved && profileExamDate ? (
+        <p className="ms-plan-note ms-plan-note--warn mb-6" role="status">
+          Your exam date is now <strong>{formatPlanDate(profileExamDate)}</strong>, but this plan was built for{' '}
+          {formatPlanDate(plan.examDate)}.{' '}
+          <button type="button" className="ms-plan-linkbtn" onClick={onAdjust}>
+            Rebuild it for the new date
+          </button>
+          .
+        </p>
+      ) : null}
 
       {today ? (
         <section className="ms-insight-hero ms-action-card ms-plan-today mb-8" aria-labelledby="plan-today-title">

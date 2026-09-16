@@ -37,6 +37,39 @@ export function isoDate(d: Date, local = false): string {
   return `${y}-${m}-${day}`
 }
 
+/** True when Intl knows the zone. Anything else falls back to UTC. */
+export function isValidTimeZone(tz: string | null | undefined): tz is string {
+  if (!tz || tz.length > 64) return false
+  try {
+    new Intl.DateTimeFormat('en-US', { timeZone: tz })
+    return true
+  } catch {
+    return false
+  }
+}
+
+/**
+ * The calendar date in the student's zone. A student in Karachi opening the
+ * dashboard at 07:00 is still on yesterday's UTC date; their plan day is not.
+ */
+export function todayInZone(tz: string | null | undefined, now = new Date()): string {
+  if (!isValidTimeZone(tz)) return isoDate(now)
+  // en-CA formats as YYYY-MM-DD.
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: tz,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(now)
+}
+
+/** The hour (0–23) in the student's zone. */
+export function hourInZone(tz: string | null | undefined, now = new Date()): number {
+  if (!isValidTimeZone(tz)) return now.getUTCHours()
+  const h = new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', hour12: false }).format(now)
+  return Number(h) % 24
+}
+
 /**
  * The plan day that falls on `todayIso`, or null when today is outside the
  * plan. A plan built yesterday for tomorrow's exam has no day for the exam

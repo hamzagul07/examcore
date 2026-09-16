@@ -13,7 +13,7 @@ import {
   type BuildPlanRequest,
 } from '@/lib/plan/study-plan-service'
 import { PREPAREDNESS_LABEL, planLength, type Preparedness, type WeekAvailability } from '@/lib/plan/build-study-plan'
-import { isoDate } from '@/lib/plan/plan-view'
+import { isValidTimeZone, isoDate } from '@/lib/plan/plan-view'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -23,7 +23,8 @@ export const dynamic = 'force-dynamic'
  *
  *   GET    → { plan, done } (plan null when none)
  *   POST   → build from { examDate, preparedness, minutesPerDay, availability,
- *            subjects, startDate?, remindMe? }; replaces any existing plan
+ *            subjects, startDate?, timeZone?, blockedDates?, remindMe? };
+ *            replaces any existing plan
  *   PATCH  → { day, done } ticks a day off
  *   DELETE → removes the plan
  *
@@ -35,6 +36,7 @@ const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
 const MAX_SUBJECTS = 4
 const MIN_MINUTES = 25
 const MAX_MINUTES = 300
+const MAX_BLOCKED_DATES = 60
 
 function validIso(s: unknown): s is string {
   if (typeof s !== 'string' || !ISO_DATE.test(s)) return false
@@ -94,6 +96,16 @@ function parseBuildBody(body: unknown): { ok: true; value: ParsedBody } | { ok: 
     if (!isKnownPlanSubject(code)) return { ok: false, error: `Subject "${code}" isn't supported yet.` }
   }
 
+  // The browser's zone, so "today" on the plan is the student's. An unknown
+  // or missing zone reads as UTC rather than failing the build.
+  const timeZone = typeof b.timeZone === 'string' && isValidTimeZone(b.timeZone) ? b.timeZone : 'UTC'
+
+  const blockedRaw = Array.isArray(b.blockedDates) ? b.blockedDates : []
+  if (blockedRaw.length > MAX_BLOCKED_DATES) {
+    return { ok: false, error: `That's more than ${MAX_BLOCKED_DATES} days away — check the dates.` }
+  }
+  const blockedDates = [...new Set(blockedRaw.filter(validIso))].sort()
+
   return {
     ok: true,
     value: {
@@ -103,6 +115,8 @@ function parseBuildBody(body: unknown): { ok: true; value: ParsedBody } | { ok: 
       minutesPerDay: Math.round(minutesPerDay),
       availability: availability.map((m) => Math.round(Number(m))) as WeekAvailability,
       subjectCodes,
+      timeZone,
+      blockedDates,
       remindMe: typeof b.remindMe === 'boolean' ? b.remindMe : undefined,
     },
   }

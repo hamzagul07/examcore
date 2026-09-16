@@ -4,8 +4,11 @@ import {
   findPlanDay,
   formatMinutes,
   formatPlanDate,
+  hourInZone,
+  isValidTimeZone,
   isoDate,
   planProgress,
+  todayInZone,
   workBlocks,
   type HydratedDay,
 } from '@/lib/plan/plan-view'
@@ -82,5 +85,24 @@ assert.equal(formatMinutes(90), '1 h 30 min')
 assert.equal(workBlocks(plan.days[0]!).length, 2)
 assert.equal(workBlocks(plan.days[2]!).length, 0)
 assert.equal(isoDate(new Date(Date.UTC(2026, 8, 16, 23, 30))), '2026-09-16')
+
+// Time zones: "today" is the student's, not the server's.
+{
+  const t = new Date('2026-09-16T20:30:00Z')
+  assert.equal(todayInZone('Asia/Karachi', t), '2026-09-17', 'Karachi is already on the 17th')
+  assert.equal(todayInZone('Asia/Singapore', t), '2026-09-17')
+  assert.equal(todayInZone('Europe/London', t), '2026-09-16')
+  assert.equal(todayInZone('America/Los_Angeles', t), '2026-09-16')
+  assert.equal(todayInZone('Not/AZone', t), '2026-09-16', 'unknown zone falls back to UTC')
+  assert.equal(todayInZone(null, t), '2026-09-16')
+  assert.equal(hourInZone('Asia/Karachi', new Date('2026-09-16T02:00:00Z')), 7)
+  assert.equal(hourInZone('America/New_York', new Date('2026-09-16T11:30:00Z')), 7, 'EDT')
+  assert.equal(hourInZone('UTC', new Date('2026-09-16T00:10:00Z')), 0, 'midnight is 0, never 24')
+  assert.equal(hourInZone('Bad/Zone', new Date('2026-09-16T23:10:00Z')), 23)
+  assert.ok(isValidTimeZone('Asia/Karachi'))
+  assert.ok(!isValidTimeZone('Nope/Zone'))
+  assert.ok(!isValidTimeZone(''))
+  assert.ok(!isValidTimeZone('x'.repeat(65)))
+}
 
 console.log('plan-view.test.ts: ok')

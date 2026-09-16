@@ -63,9 +63,13 @@ export const DEFAULT_MINUTES_PER_DAY = 90
 export type PlanTopic = {
   code: string
   name: string
-  /** 'high_yield' from paper frequency, 'weak' from the student's own marks. */
-  source: 'high_yield' | 'weak'
-  /** Papers it appears in (high_yield) or the student's percentage (weak). */
+  /**
+   * 'high_yield' from paper frequency, 'weak' from the student's own marks,
+   * 'syllabus' when a subject has a topic tree but no frequency data (IB) —
+   * the plan then walks the syllabus in order rather than going generic.
+   */
+  source: 'high_yield' | 'weak' | 'syllabus'
+  /** Papers it appears in (high_yield), the student's percentage (weak), 0 (syllabus). */
   weight: number
 }
 
@@ -76,6 +80,8 @@ export type PlanSubjectInput = {
   highYield: PlanTopic[]
   /** The student's weak topics from marked work, weakest first. May be empty. */
   weak: PlanTopic[]
+  /** The syllabus leaves in order; the rotation when highYield is empty. */
+  syllabus?: PlanTopic[]
   /** Whether a timed paper exists to point at. */
   hasTimedPaper: boolean
 }
@@ -113,6 +119,10 @@ export type StudyPlan = {
   preparedness: Preparedness
   minutesPerDay: number
   availability: WeekAvailability
+  /** Specific dates the student said they are away. Rest days, no argument. */
+  blockedDates: string[]
+  /** IANA zone the plan's dates are read in — "today" is the student's, not the server's. */
+  timeZone: string
   subjects: Array<{ code: string; label: string }>
   days: PlanDay[]
   /** Total scheduled work across the plan, for the summary line. */
@@ -129,6 +139,9 @@ export type BuildStudyPlanInput = {
   minutesPerDay: number
   availability: WeekAvailability
   subjects: PlanSubjectInput[]
+  /** ISO dates that are off regardless of weekday. */
+  blockedDates?: string[]
+  timeZone?: string
 }
 
 // --- calendar helpers -----------------------------------------------------------
@@ -210,6 +223,10 @@ export function layoutBlocks(availableMinutes: number): Array<{ kind: 'work' | '
  * stretch: high-yield first (the questions that are certainly coming), then
  *          weak. Timed papers carry most of the load for this student.
  *
+ * Where there is no frequency data (IB — no mark schemes are tagged), the
+ * syllabus in order stands in for high-yield: a plan that walks the whole
+ * syllabus beats one that says "a question" nineteen times.
+ *
  * Always de-duplicated by code, and never empty when the subject has anything:
  * a subject with no topic data at all yields [] and the day falls back to a
  * timed paper or generic practice.
@@ -217,16 +234,17 @@ export function layoutBlocks(availableMinutes: number): Array<{ kind: 'work' | '
 export function topicRotation(subject: PlanSubjectInput, preparedness: Preparedness): PlanTopic[] {
   const seen = new Set<string>()
   const take = (list: PlanTopic[]) => list.filter((t) => (seen.has(t.code) ? false : (seen.add(t.code), true)))
+  const base = subject.highYield.length > 0 ? subject.highYield : (subject.syllabus ?? [])
 
   if (preparedness === 'pass') {
-    const hy = new Set(subject.highYield.map((t) => t.code))
-    const weakAndYield = subject.weak.filter((t) => hy.has(t.code))
-    return [...take(weakAndYield), ...take(subject.highYield)]
+    const inBase = new Set(base.map((t) => t.code))
+    const weakAndYield = subject.weak.filter((t) => inBase.has(t.code))
+    return [...take(weakAndYield), ...take(base)]
   }
   if (preparedness === 'secure') {
-    return [...take(subject.weak), ...take(subject.highYield)]
+    return [...take(subject.weak), ...take(base)]
   }
-  return [...take(subject.highYield), ...take(subject.weak)]
+  return [...take(base), ...take(subject.weak)]
 }
 
 /** How many timed papers the plan should contain, by preparedness and length. */
@@ -257,6 +275,8 @@ export function buildStudyPlan(input: BuildStudyPlanInput): StudyPlan {
   const availability = input.availability.map((m) =>
     Math.max(0, Math.min(minutesPerDay, Math.round(m)))
   ) as WeekAvailability
+  const timeZone = input.timeZone?.trim() || 'UTC'
+  const blocked = new Set((input.blockedDates ?? []).filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d)))
 
   const days: PlanDay[] = []
   if (length === 0 || subjects.length === 0) {
@@ -265,6 +285,8 @@ export function buildStudyPlan(input: BuildStudyPlanInput): StudyPlan {
       preparedness: input.preparedness,
       minutesPerDay,
       availability,
+      blockedDates: [...blocked].sort(),
+      timeZone,
       subjects: subjects.map((s) => ({ code: s.code, label: s.label })),
       days,
       totalWorkMinutes: 0,
@@ -279,7 +301,8 @@ export function buildStudyPlan(input: BuildStudyPlanInput): StudyPlan {
   // day a week on the lightest available weekday when the plan is long enough.
   const startMs = parseIsoDay(input.startDate)
   const dates = Array.from({ length }, (_, i) => isoDay(startMs + i * DAY_MS))
-  const available = dates.map((d) => availability[weekdayIndex(d)])
+  // A blocked date is a commitment like a 0-minute weekday: nothing is scheduled.
+  const available = dates.map((d) => (blocked.has(d) ? 0 : availability[weekdayIndex(d)]))
 
   // Review taper: the last two days before the exam (when the plan has room).
   // Four or more days: the last two. Two or three: the last one. A single day
@@ -391,7 +414,14 @@ export function buildStudyPlan(input: BuildStudyPlanInput): StudyPlan {
     }
 
     if (minutes < MIN_USEFUL_MINUTES) {
-      days.push(restDay(dayNum, date, daysLeft, 'Rest day — you told us this one is full.'))
+      days.push(
+        restDay(
+          dayNum,
+          date,
+          daysLeft,
+          blocked.has(date) ? "Rest day — you told us you're away." : 'Rest day — you told us this one is full.'
+        )
+      )
       continue
     }
     if (restIndexes.has(i)) {
@@ -468,7 +498,9 @@ export function buildStudyPlan(input: BuildStudyPlanInput): StudyPlan {
         label: topic
           ? topic.source === 'weak'
             ? `${topic.name} — you lost marks here; one question, then mark it`
-            : `${topic.name} — in ${topic.weight} recent papers; one question, then mark it`
+            : topic.source === 'high_yield'
+              ? `${topic.name} — in ${topic.weight} recent papers; one question, then mark it`
+              : `${topic.name} — one question, then mark it`
           : `A past-paper ${rot.subject.label} question — mark it, read the ink`,
       })
       work += b.minutes
@@ -500,6 +532,8 @@ export function buildStudyPlan(input: BuildStudyPlanInput): StudyPlan {
     preparedness: input.preparedness,
     minutesPerDay,
     availability,
+    blockedDates: [...blocked].sort(),
+    timeZone,
     subjects: subjects.map((s) => ({ code: s.code, label: s.label })),
     days,
     totalWorkMinutes: totalWork,

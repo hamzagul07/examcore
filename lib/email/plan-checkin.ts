@@ -16,22 +16,31 @@ import { formatMinutes, workBlocks, type HydratedDay, type PlanProgress } from '
  * The morning check-in: today's blocks from the student's own plan, with one
  * honest line about how they are doing against it. Sent by the plan-checkin
  * cron (lib/plan/checkin.ts) — awaited, so the batch can record the send.
+ *
+ * Rendering is separate from sending so the email can be previewed
+ * (scripts/plan-preview.ts --email) without an API key.
  */
-export async function sendPlanCheckinEmail(payload: {
-  to: string
+
+export type PlanCheckinPayload = {
   recipientName?: string | null
   day: HydratedDay
   line: string
   progress: PlanProgress
   unsubscribeHref: string
-}): Promise<boolean> {
+}
+
+export function renderPlanCheckinEmail(payload: PlanCheckinPayload): {
+  subject: string
+  preheader: string
+  html: string
+  text: string
+} {
   const { day, progress } = payload
   const first = (payload.recipientName ?? '').trim().split(/\s+/)[0] || 'there'
   const planHref = `${SITE_URL}/dashboard/plan`
   const blocks = workBlocks(day)
 
-  const countdown =
-    day.daysLeft === 1 ? 'Exam tomorrow' : `${day.daysLeft} days to go`
+  const countdown = day.daysLeft === 1 ? 'Exam tomorrow' : `${day.daysLeft} days to go`
   const subject =
     day.daysLeft === 1
       ? 'Tomorrow. Light review, then stop.'
@@ -85,18 +94,25 @@ export async function sendPlanCheckinEmail(payload: {
     .filter((l, i, arr) => !(l === '' && arr[i - 1] === ''))
     .join('\n')
 
+  const html = renderBrandedEmailHtml({
+    preheader,
+    kicker: 'Study plan',
+    bodyHtml,
+    cta: { label: "Open today's plan →", href: planHref },
+    unsubscribe: { label: 'Turn off plan check-ins', href: payload.unsubscribeHref },
+  })
+
+  return { subject, preheader, html, text }
+}
+
+export async function sendPlanCheckinEmail(payload: PlanCheckinPayload & { to: string }): Promise<boolean> {
+  const { subject, preheader, html, text } = renderPlanCheckinEmail(payload)
   return sendEmail({
     to: payload.to,
     subject,
     preheader,
     text,
-    html: renderBrandedEmailHtml({
-      preheader,
-      kicker: 'Study plan',
-      bodyHtml,
-      cta: { label: "Open today's plan →", href: planHref },
-      unsubscribe: { label: 'Turn off plan check-ins', href: payload.unsubscribeHref },
-    }),
+    html,
     unsubscribeHref: payload.unsubscribeHref,
   })
 }

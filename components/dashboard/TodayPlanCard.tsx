@@ -1,10 +1,12 @@
 import { LoadingLink } from '@/components/ui/LoadingLink'
 import { examCountdown } from '@/lib/dashboard/exam-date'
 import {
+  blockEvidenceKey,
   checkinLine,
   findPlanDay,
   formatMinutes,
   formatPlanDate,
+  markedBlocks,
   planProgress,
   todayInZone,
   workBlocks,
@@ -15,6 +17,8 @@ import {
 type Props = {
   saved: { plan: HydratedPlan; done: DoneDays } | null
   examDate: string | null
+  /** Evidence keys from loadPlanEvidence — blocks the student has marked. */
+  evidence?: string[]
 }
 
 /**
@@ -22,7 +26,8 @@ type Props = {
  * plan, the offer to build one. Server-rendered; the ticking happens on the
  * plan page itself.
  */
-export function TodayPlanCard({ saved, examDate }: Props) {
+export function TodayPlanCard({ saved, examDate, evidence = [] }: Props) {
+  const evidenceSet = new Set(evidence)
   // The student's date, not the server's: a plan built in Karachi is read in Karachi.
   const todayIso = todayInZone(saved?.plan.timeZone)
   const today = saved ? findPlanDay(saved.plan, todayIso) : null
@@ -34,6 +39,7 @@ export function TodayPlanCard({ saved, examDate }: Props) {
     const progress = planProgress(saved.plan, saved.done, todayIso)
     const blocks = workBlocks(today).slice(0, 4)
     const done = saved.done[String(today.day)] === true
+    const marked = markedBlocks(today, evidenceSet)
     return (
       <section className="ms-insight-hero ms-plan-card mb-6" aria-labelledby="dash-plan-title">
         <div className="ms-insight-hero__meta mb-3">
@@ -48,13 +54,16 @@ export function TodayPlanCard({ saved, examDate }: Props) {
           {today.focus}
         </h2>
         <p className="mt-2 max-w-xl text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-          {done ? 'Ticked off. ' : ''}
+          {done ? 'Ticked off. ' : marked.marked > 0 ? `${marked.marked} of ${marked.total} marked. ` : ''}
           {checkinLine(today, progress)}
         </p>
         {blocks.length > 0 ? (
           <ul className="ms-plan-blocks mt-4">
-            {blocks.map((b, i) => (
-              <li key={i} className={`ms-plan-block ms-plan-block--${b.kind}`}>
+            {blocks.map((b, i) => {
+              const key = blockEvidenceKey(b)
+              const isMarked = Boolean(key && evidenceSet.has(key))
+              return (
+              <li key={i} className={`ms-plan-block ms-plan-block--${b.kind} ${isMarked ? 'is-marked' : ''}`}>
                 {b.href ? (
                   <LoadingLink href={b.href} variant="inline" className="ms-plan-block__link">
                     <span className="ms-plan-block__min">{b.minutes}′</span>
@@ -62,7 +71,7 @@ export function TodayPlanCard({ saved, examDate }: Props) {
                       <span className="ms-plan-block__label">{b.label}</span>
                       {b.resourceLabel ? <span className="ms-plan-block__res">{b.resourceLabel}</span> : null}
                     </span>
-                    <span className="ms-plan-block__go" aria-hidden>→</span>
+                    {isMarked ? <span className="ms-plan-block__done">✓ marked</span> : <span className="ms-plan-block__go" aria-hidden>→</span>}
                   </LoadingLink>
                 ) : (
                   <span className="ms-plan-block__link">
@@ -73,7 +82,8 @@ export function TodayPlanCard({ saved, examDate }: Props) {
                   </span>
                 )}
               </li>
-            ))}
+              )
+            })}
           </ul>
         ) : null}
         <div className="mt-4 flex flex-wrap items-center gap-3">

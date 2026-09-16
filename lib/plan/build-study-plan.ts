@@ -84,6 +84,8 @@ export type PlanSubjectInput = {
   syllabus?: PlanTopic[]
   /** Whether a timed paper exists to point at. */
   hasTimedPaper: boolean
+  /** The shortest real paper's length in minutes, when known. */
+  paperMinutes?: number
 }
 
 export type PlanBlockKind = 'drill' | 'timed_paper' | 'review' | 'break' | 'rest'
@@ -177,6 +179,7 @@ export function planLength(startDate: string, examDate: string): number {
 export const FOCUS_BLOCK_MIN = 25
 export const SHORT_BREAK_MIN = 5
 export const LONG_BREAK_MIN = 15
+/** A timed sitting when the real paper length is unknown. */
 export const TIMED_PAPER_MIN = 50
 /** Below this a day is a rest day: one 25-minute block needs a break either side to be worth it. */
 export const MIN_USEFUL_MINUTES = 25
@@ -435,13 +438,19 @@ export function buildStudyPlan(input: BuildStudyPlanInput): StudyPlan {
     if (paperDays.has(i) && paperSubjects.length > 0) {
       const subject = paperSubjects[paperCursor % paperSubjects.length]!
       paperCursor += 1
-      const paperMin = Math.min(TIMED_PAPER_MIN, minutes)
+      // A real paper's length when the day has room for it; otherwise the
+      // day's budget, and the label says it is the first part of a paper.
+      const fullPaper = subject.paperMinutes ?? TIMED_PAPER_MIN
+      const paperMin = Math.min(fullPaper, minutes)
       blocks.push({
         kind: 'timed_paper',
         minutes: paperMin,
         subjectCode: subject.code,
         subjectLabel: subject.label,
-        label: `Timed ${subject.label} paper — ${paperMin} min, no notes, then mark it`,
+        label:
+          paperMin < fullPaper
+            ? `Timed ${subject.label} paper — the first ${paperMin} min of a ${fullPaper}-min paper, no notes, then mark it`
+            : `Timed ${subject.label} paper — ${paperMin} min, no notes, then mark it`,
       })
       work += paperMin
       const left = minutes - paperMin - LONG_BREAK_MIN

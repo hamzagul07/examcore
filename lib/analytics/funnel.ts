@@ -80,6 +80,8 @@ export type FunnelEvent =
   | 'plan_built'
   /** A day on the plan was ticked off. */
   | 'plan_day_done'
+  /** The plan page was opened from a check-in email (?src=checkin). */
+  | 'plan_checkin_opened'
 
 export type FunnelProps = {
   subject?: string | null

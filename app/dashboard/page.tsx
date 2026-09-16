@@ -30,7 +30,7 @@ import { ActiveSubjects } from '@/components/dashboard/ActiveSubjects'
 import { NewUserHome } from '@/components/dashboard/NewUserHome'
 import { NextActionCard } from '@/components/dashboard/NextActionCard'
 import { TodayPlanCard } from '@/components/dashboard/TodayPlanCard'
-import { loadStudyPlan } from '@/lib/plan/study-plan-service'
+import { loadPlanEvidence, loadStudyPlan } from '@/lib/plan/study-plan-service'
 import { MarksLeakingStrip } from '@/components/dashboard/MarksLeakingStrip'
 import { DashboardSection } from '@/components/dashboard/DashboardSection'
 import { computeStreak } from '@/lib/dashboard/streak'
@@ -114,6 +114,7 @@ export default async function DashboardPage() {
 
   const attemptsList = attempts || []
   const savedPlan = await savedPlanPromise
+  const planEvidence = savedPlan ? await loadPlanEvidence(supabaseAdmin, user.id, savedPlan.plan) : []
   const timestamps = attemptsList.map((a) => new Date(a.created_at))
   const streak = computeStreak(timestamps)
   const weeklyCount = attemptsThisWeek(timestamps)
@@ -272,7 +273,7 @@ export default async function DashboardPage() {
                   first-mark CTA keeps the top of the page otherwise. */}
               {savedPlan || examDate ? (
                 <div className="mt-6 px-4 sm:px-0">
-                  <TodayPlanCard saved={savedPlan} examDate={examDate} />
+                  <TodayPlanCard saved={savedPlan} examDate={examDate} evidence={planEvidence} />
                 </div>
               ) : null}
               <BillingLimitBanner className="mb-6 mt-6" />
@@ -293,7 +294,7 @@ export default async function DashboardPage() {
               />
               {/* DB-02: one server-computed next action, then weekly status. */}
               <NextActionCard action={nextAction} />
-              <TodayPlanCard saved={savedPlan} examDate={examDate} />
+              <TodayPlanCard saved={savedPlan} examDate={examDate} evidence={planEvidence} />
               {primaryCode ? (
                 <MarksLeakingStrip
                   subjectCode={primaryCode}

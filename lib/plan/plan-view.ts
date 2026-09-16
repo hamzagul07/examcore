@@ -15,6 +15,53 @@ export type HydratedBlock = PlanBlock & {
   href?: string
   /** What the link opens, e.g. "Q7 · 9709/12 May/June 2023". */
   resourceLabel?: string
+  /** The banked question a drill points at, so marking it can be recognised. */
+  question?: { paperCode: string; paperSession: string; questionNumber: string }
+}
+
+/**
+ * The key an attempt would carry if it were this block's work: a banked
+ * question by paper/session/number, or a generated topic question by
+ * subject/topic. Null for blocks with nothing to mark (breaks, rest, review).
+ */
+export function blockEvidenceKey(block: HydratedBlock): string | null {
+  if (block.question) {
+    return `q:${block.question.paperCode}|${block.question.paperSession}|${block.question.questionNumber}`
+  }
+  if (block.kind === 'drill' && block.subjectCode && block.topic) {
+    return `t:${block.subjectCode}|${block.topic.code}`
+  }
+  return null
+}
+
+/** Of a day's work blocks, how many the student has marked evidence for. */
+export function markedBlocks(day: Pick<HydratedDay, 'blocks'>, evidence: ReadonlySet<string>): { marked: number; total: number } {
+  const work = day.blocks.filter((b) => b.kind !== 'break' && b.kind !== 'rest')
+  let marked = 0
+  for (const b of work) {
+    const key = blockEvidenceKey(b)
+    if (key && evidence.has(key)) marked += 1
+  }
+  return { marked, total: work.length }
+}
+
+/**
+ * Ticks are keyed by day number, which a rebuild renumbers. Carry them over
+ * by date, so adjusting a plan for a trip does not erase the week already
+ * done. Only dates that still carry work in the new plan keep their tick.
+ */
+export function carryOverDone(
+  oldPlan: Pick<HydratedPlan, 'days'>,
+  oldDone: DoneDays,
+  newPlan: Pick<HydratedPlan, 'days'>
+): DoneDays {
+  const doneDates = new Set<string>()
+  for (const d of oldPlan.days) if (oldDone[String(d.day)] === true) doneDates.add(d.date)
+  const next: DoneDays = {}
+  for (const d of newPlan.days) {
+    if (d.workMinutes > 0 && doneDates.has(d.date)) next[String(d.day)] = true
+  }
+  return next
 }
 
 export type HydratedDay = Omit<PlanDay, 'blocks'> & { blocks: HydratedBlock[] }

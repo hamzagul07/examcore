@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict'
 import {
+  blockEvidenceKey,
+  carryOverDone,
   checkinLine,
   findPlanDay,
+  markedBlocks,
   formatMinutes,
   formatPlanDate,
   hourInZone,
@@ -103,6 +106,29 @@ assert.equal(isoDate(new Date(Date.UTC(2026, 8, 16, 23, 30))), '2026-09-16')
   assert.ok(!isValidTimeZone('Nope/Zone'))
   assert.ok(!isValidTimeZone(''))
   assert.ok(!isValidTimeZone('x'.repeat(65)))
+}
+
+// Evidence: a marked question is recognised by what it is, not by a tick.
+{
+  const q = { paperCode: '9709/12', paperSession: 'ON2024', questionNumber: '2(b)' }
+  const drill: HydratedDay['blocks'][number] = { kind: 'drill', minutes: 25, label: 'x', subjectCode: '9709', topic: { code: '1.6', name: 'Series', source: 'high_yield', weight: 15 }, question: q }
+  assert.equal(blockEvidenceKey(drill), 'q:9709/12|ON2024|2(b)')
+  const ib: HydratedDay['blocks'][number] = { kind: 'drill', minutes: 25, label: 'x', subjectCode: 'ib-physics-sl', topic: { code: 'A.1', name: 'Kinematics', source: 'syllabus', weight: 0 } }
+  assert.equal(blockEvidenceKey(ib), 't:ib-physics-sl|A.1')
+  assert.equal(blockEvidenceKey({ kind: 'break', minutes: 5, label: '5 min off' }), null)
+  assert.equal(blockEvidenceKey({ kind: 'review', minutes: 25, label: 'r', subjectCode: '9709' }), null)
+  const d = { blocks: [drill, { kind: 'break' as const, minutes: 5, label: '' }, ib] }
+  assert.deepEqual(markedBlocks(d, new Set(['q:9709/12|ON2024|2(b)'])), { marked: 1, total: 2 })
+  assert.deepEqual(markedBlocks(d, new Set()), { marked: 0, total: 2 })
+}
+
+// Rebuilding keeps ticks by date, not by day number.
+{
+  const oldPlan = { days: [day(1, '2026-09-16', 'study', 50), day(2, '2026-09-17', 'study', 50), day(3, '2026-09-18', 'study', 50)] }
+  // Rebuilt a day later from the 17th: yesterday's day 1 is gone; the 17th is now day 1.
+  const newPlan = { days: [day(1, '2026-09-17', 'study', 50), day(2, '2026-09-18', 'rest', 0), day(3, '2026-09-19', 'study', 50)] }
+  assert.deepEqual(carryOverDone(oldPlan, { '1': true, '2': true, '3': true }, newPlan), { '1': true }, 'the 17th keeps its tick; the 18th became a rest day; the 16th is not in the plan')
+  assert.deepEqual(carryOverDone(oldPlan, {}, newPlan), {})
 }
 
 console.log('plan-view.test.ts: ok')

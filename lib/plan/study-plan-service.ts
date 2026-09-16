@@ -32,7 +32,7 @@ import {
   type WeekAvailability,
 } from '@/lib/plan/build-study-plan'
 import { rankTagsByPaper, type TaggedSchemeRow } from '@/lib/plan/high-yield-rank'
-import type { DoneDays, HydratedBlock, HydratedDay, HydratedPlan } from '@/lib/plan/plan-view'
+import { carryOverDone, type DoneDays, type HydratedBlock, type HydratedDay, type HydratedPlan } from '@/lib/plan/plan-view'
 import { calculateParentMastery, flattenLeafMasteries, type AttemptLite } from '@/lib/mastery'
 import { topicTargetsFromMasteries } from '@/lib/insights/recommendations'
 import { getAttemptSubjectCode, type AttemptWithPaper } from '@/lib/syllabi/attempts'
@@ -170,8 +170,15 @@ export async function resolvePlanSubjects(
       weak: weakTopicsFor(attempts, code),
       syllabus: syllabusTopicsFor(code),
       hasTimedPaper: timedPaperSlots(code).length > 0,
+      paperMinutes: shortestPaper(code),
     }))
   )
+}
+
+function shortestPaper(code: string): number | undefined {
+  const slots = timedPaperSlots(code)
+  if (slots.length === 0) return undefined
+  return Math.min(...slots.map((s) => s.minutes))
 }
 
 // --- hydration -------------------------------------------------------------------
@@ -242,10 +249,14 @@ export async function hydrateStudyPlan(admin: Admin, plan: StudyPlan): Promise<H
     if (block.kind === 'timed_paper') {
       const slots = timedPaperSlots(code)
       if (slots.length === 0) return block
+      // Rotate through the papers that fit the block; if none fit, the
+      // shortest, and the label already says "the first N minutes".
+      const fitting = slots.filter((s) => s.minutes <= block.minutes)
+      const pool = fitting.length > 0 ? fitting : [slots.reduce((a, b) => (b.minutes < a.minutes ? b : a))]
       const i = paperCursor.get(code) ?? 0
       paperCursor.set(code, i + 1)
-      const slot = slots[i % slots.length]!
-      return { ...block, href: slot.href, resourceLabel: slot.label }
+      const slot = pool[i % pool.length]!
+      return { ...block, href: slot.href, resourceLabel: `${slot.label} · ${slot.minutes} min` }
     }
 
     // drill
@@ -267,6 +278,7 @@ export async function hydrateStudyPlan(admin: Admin, plan: StudyPlan): Promise<H
             returnTo: PLAN_RETURN_PATH,
           }),
           resourceLabel: `Q${c.questionNumber} · ${c.paperCode} ${sessionLabel(c.paperSession)}`,
+          question: { paperCode: c.paperCode, paperSession: c.paperSession, questionNumber: c.questionNumber },
         }
       }
     }
@@ -325,13 +337,53 @@ export type BuildPlanRequest = {
   blockedDates: string[]
 }
 
-/** Build, hydrate and store — replacing any previous plan and its ticks. */
+/**
+ * What the student has actually marked since the plan was built, as the
+ * keys blockEvidenceKey() produces — a banked question by paper/session/
+ * number, a generated topic question by subject/topic. The page and the
+ * dashboard card show a block as done on this evidence, tick or no tick.
+ */
+export async function loadPlanEvidence(admin: Admin, userId: string, plan: HydratedPlan): Promise<string[]> {
+  const since = plan.generatedAt || new Date(0).toISOString()
+  const { data } = await admin
+    .from('attempts')
+    .select('created_at, syllabus_tags, source_type, question_text, mark_schemes ( paper_code, paper_session, question_number )')
+    .eq('user_id', userId)
+    .gte('created_at', since)
+    .order('created_at', { ascending: false })
+    .limit(500)
+  const keys = new Set<string>()
+  for (const row of (data ?? []) as Array<Record<string, unknown>>) {
+    const ms = row.mark_schemes as
+      | { paper_code: string | null; paper_session: string | null; question_number: string | null }
+      | { paper_code: string | null; paper_session: string | null; question_number: string | null }[]
+      | null
+    const scheme = Array.isArray(ms) ? ms[0] : ms
+    if (scheme?.paper_code && scheme.paper_session && scheme.question_number) {
+      keys.add(`q:${scheme.paper_code}|${scheme.paper_session}|${scheme.question_number}`)
+    }
+    const tags = row.syllabus_tags as string[] | null
+    if (tags?.length) {
+      const subject = getAttemptSubjectCode(row as unknown as AttemptWithPaper)
+      if (subject) for (const tag of tags) keys.add(`t:${subject}|${tag}`)
+    }
+  }
+  return [...keys]
+}
+
+/**
+ * Build, hydrate and store — replacing any previous plan. Ticks carry over
+ * by date, so adjusting a plan for a trip does not erase the week done.
+ */
 export async function buildAndSaveStudyPlan(
   admin: Admin,
   userId: string,
   req: BuildPlanRequest
 ): Promise<SavedPlan> {
-  const subjects = await resolvePlanSubjects(admin, userId, req.subjectCodes)
+  const [subjects, previous] = await Promise.all([
+    resolvePlanSubjects(admin, userId, req.subjectCodes),
+    loadStudyPlan(admin, userId),
+  ])
   const plan = buildStudyPlan({
     startDate: req.startDate,
     examDate: req.examDate,
@@ -344,6 +396,7 @@ export async function buildAndSaveStudyPlan(
   })
   const hydrated = await hydrateStudyPlan(admin, plan)
   const now = hydrated.generatedAt
+  const done: DoneDays = previous ? carryOverDone(previous.plan, previous.done, hydrated) : {}
 
   const { error } = await admin.from('study_plans').upsert(
     {
@@ -356,7 +409,7 @@ export async function buildAndSaveStudyPlan(
       time_zone: hydrated.timeZone,
       blocked_dates: hydrated.blockedDates,
       plan: hydrated,
-      done_days: {},
+      done_days: done,
       generated_at: now,
       updated_at: now,
       checkin_last_sent_at: null,
@@ -364,7 +417,7 @@ export async function buildAndSaveStudyPlan(
     { onConflict: 'user_id' }
   )
   if (error) throw new Error(`study_plans upsert failed: ${error.message}`)
-  return { plan: hydrated, done: {} }
+  return { plan: hydrated, done }
 }
 
 /** Tick or untick one day. Null when there is no plan or no such day. */

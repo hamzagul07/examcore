@@ -16,11 +16,13 @@ import {
   type WeekAvailability,
 } from '@/lib/plan/build-study-plan'
 import {
+  blockEvidenceKey,
   checkinLine,
   findPlanDay,
   formatMinutes,
   formatPlanDate,
   isoDate,
+  markedBlocks,
   planProgress,
   todayInZone,
   type DoneDays,
@@ -34,6 +36,8 @@ type SubjectOption = { code: string; label: string }
 
 type Props = {
   initial: Saved | null
+  /** Evidence keys (see blockEvidenceKey) for questions marked since the plan was built. */
+  evidence: string[]
   firstName: string
   subjectOptions: SubjectOption[]
   defaults: { examDate: string | null; subjectCodes: string[]; remindMe: boolean }
@@ -75,13 +79,28 @@ function minutesToLoad(minutes: number, minutesPerDay: number): DayLoad {
   return 'full'
 }
 
-export function StudyPlanScreen({ initial, firstName, subjectOptions, defaults }: Props) {
+export function StudyPlanScreen({ initial, evidence, firstName, subjectOptions, defaults }: Props) {
   const [saved, setSaved] = useState<Saved | null>(initial)
   const [mode, setMode] = useState<'view' | 'build'>(initial ? 'view' : 'build')
+
+  // Opened from the morning email: count it, then drop the marker from the URL.
+  useEffect(() => {
+    try {
+      const sp = new URLSearchParams(window.location.search)
+      if (sp.get('src') !== 'checkin') return
+      trackFunnelEvent('plan_checkin_opened')
+      sp.delete('src')
+      const q = sp.toString()
+      window.history.replaceState(null, '', window.location.pathname + (q ? `?${q}` : ''))
+    } catch {
+      /* ignore */
+    }
+  }, [])
 
   return mode === 'view' && saved ? (
     <Roadmap
       saved={saved}
+      evidence={evidence}
       firstName={firstName}
       profileExamDate={defaults.examDate}
       onTick={(done) => setSaved({ plan: saved.plan, done })}
@@ -438,12 +457,14 @@ function Builder({
 
 function Roadmap({
   saved,
+  evidence,
   firstName,
   profileExamDate,
   onTick,
   onAdjust,
 }: {
   saved: Saved
+  evidence: string[]
   firstName: string
   /** The exam date on the profile — the plan is stale when it differs. */
   profileExamDate: string | null
@@ -465,6 +486,11 @@ function Roadmap({
   const progress = planProgress(plan, done, todayIso)
   const examPassed = plan.examDate <= todayIso
   const examMoved = Boolean(profileExamDate && profileExamDate !== plan.examDate)
+  const evidenceSet = useMemo(() => new Set(evidence), [evidence])
+  // Day 15 of 30 should not start with fourteen finished days.
+  const [showPast, setShowPast] = useState(false)
+  const pastDays = plan.days.filter((d) => d.date < todayIso)
+  const hidePast = !showPast && pastDays.length > 2
 
   useEffect(() => {
     if (!today || today.day <= 3) return
@@ -522,6 +548,10 @@ function Roadmap({
           <button type="button" className="ms-plan-linkbtn" onClick={onAdjust}>
             Adjust
           </button>
+          {' · '}
+          <a href="/api/plan/calendar" className="ms-plan-linkbtn" download="markscheme-study-plan.ics">
+            Add to calendar
+          </a>
         </p>
       </header>
 
@@ -562,7 +592,7 @@ function Roadmap({
           <p className="mt-2 max-w-xl text-sm leading-relaxed text-[var(--ec-text-secondary)]">
             {checkinLine(today, progress)}
           </p>
-          <BlockList blocks={today.blocks} emphasis />
+          <BlockList blocks={today.blocks} evidence={evidenceSet} emphasis />
           <div className="mt-4 flex flex-wrap items-center gap-3">
             {today.workMinutes > 0 ? (
               <TickButton day={today} done={done[String(today.day)] === true} busy={ticking === today.day} onTick={tick} primary />
@@ -580,10 +610,19 @@ function Roadmap({
       ) : null}
 
       <ol className="ms-plan-days" aria-label="Every day to the exam">
+        {hidePast ? (
+          <li>
+            <button type="button" className="ms-plan-past-toggle" onClick={() => setShowPast(true)}>
+              Show the {pastDays.length} days before today
+            </button>
+          </li>
+        ) : null}
         {plan.days.map((d) => {
           const isToday = d.date === todayIso
           const isPast = d.date < todayIso
           const isDone = done[String(d.day)] === true
+          if (isPast && hidePast) return null
+          const marks = markedBlocks(d, evidenceSet)
           return (
             <li
               key={d.day}
@@ -607,12 +646,17 @@ function Roadmap({
                 ) : (
                   <span className="ms-plan-day__mins">rest</span>
                 )}
+                {marks.marked > 0 ? (
+                  <span className="ms-plan-day__marked">
+                    {marks.marked}/{marks.total} marked
+                  </span>
+                ) : null}
                 {d.workMinutes > 0 ? (
                   <TickButton day={d} done={isDone} busy={ticking === d.day} onTick={tick} />
                 ) : null}
               </div>
               <p className="ms-plan-day__focus">{d.focus}</p>
-              {d.workMinutes > 0 ? <BlockList blocks={d.blocks} /> : null}
+              {d.workMinutes > 0 ? <BlockList blocks={d.blocks} evidence={evidenceSet} /> : null}
             </li>
           )
         })}
@@ -626,7 +670,15 @@ function Roadmap({
   )
 }
 
-function BlockList({ blocks, emphasis = false }: { blocks: HydratedBlock[]; emphasis?: boolean }) {
+function BlockList({
+  blocks,
+  evidence,
+  emphasis = false,
+}: {
+  blocks: HydratedBlock[]
+  evidence?: ReadonlySet<string>
+  emphasis?: boolean
+}) {
   return (
     <ul className={`ms-plan-blocks ${emphasis ? 'ms-plan-blocks--today' : ''}`}>
       {blocks.map((b, i) => {
@@ -644,6 +696,8 @@ function BlockList({ blocks, emphasis = false }: { blocks: HydratedBlock[]; emph
             </li>
           )
         }
+        const key = blockEvidenceKey(b)
+        const isMarked = Boolean(key && evidence?.has(key))
         const body = (
           <>
             <span className="ms-plan-block__min">{b.minutes}′</span>
@@ -651,11 +705,15 @@ function BlockList({ blocks, emphasis = false }: { blocks: HydratedBlock[]; emph
               <span className="ms-plan-block__label">{b.label}</span>
               {b.resourceLabel ? <span className="ms-plan-block__res">{b.resourceLabel}</span> : null}
             </span>
-            {b.href ? <span className="ms-plan-block__go" aria-hidden>→</span> : null}
+            {isMarked ? (
+              <span className="ms-plan-block__done">✓ marked</span>
+            ) : b.href ? (
+              <span className="ms-plan-block__go" aria-hidden>→</span>
+            ) : null}
           </>
         )
         return (
-          <li key={i} className={`ms-plan-block ms-plan-block--${b.kind}`}>
+          <li key={i} className={`ms-plan-block ms-plan-block--${b.kind} ${isMarked ? 'is-marked' : ''}`}>
             {b.href ? (
               <LoadingLink href={b.href} variant="inline" className="ms-plan-block__link">
                 {body}

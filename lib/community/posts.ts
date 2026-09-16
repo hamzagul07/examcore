@@ -7,7 +7,7 @@ import type { PostUrlParts } from '@/lib/community/post-url'
 import type { EffectiveAccess } from '@/lib/billing/access'
 
 export type Board = 'cambridge' | 'ib'
-export type PostKind = 'discussion' | 'question' | 'resource'
+export type PostKind = 'discussion' | 'question' | 'resource' | 'paper' | 'win'
 export type PostSort = 'hot' | 'new' | 'top' | 'rising'
 
 export type CommunityPost = {
@@ -34,6 +34,8 @@ export type CommunityPost = {
   isPinned: boolean
   isLocked: boolean
   createdAt: string
+  /** The comment the author accepted as the answer, when they have marked one. */
+  solvedCommentId: string | null
 }
 
 type Row = {
@@ -57,6 +59,7 @@ type Row = {
   is_pinned: boolean
   is_locked: boolean
   created_at: string
+  solved_comment_id?: string | null
 }
 
 type Admin = ReturnType<typeof createServiceClient>
@@ -94,11 +97,12 @@ function mapRow(r: Row, username: string | null, access: EffectiveAccess = 'free
     isPinned: r.is_pinned,
     isLocked: r.is_locked,
     createdAt: r.created_at,
+    solvedCommentId: r.solved_comment_id ?? null,
   }
 }
 
 const SELECT =
-  'id, author_id, board, subject_code, topic_code, lesson_slug, question_id, kind, flair, title, body_md, attachments, upvotes, downvotes, score, comment_count, status, is_pinned, is_locked, created_at'
+  'id, author_id, board, subject_code, topic_code, lesson_slug, question_id, kind, flair, title, body_md, attachments, upvotes, downvotes, score, comment_count, status, is_pinned, is_locked, created_at, solved_comment_id'
 
 export async function listPosts(params: {
   board?: Board

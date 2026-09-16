@@ -173,6 +173,7 @@ export function planProgress(
  * is a plan they are still opening.
  */
 export function checkinLine(day: HydratedDay, progress: PlanProgress): string {
+  if (day.kind === 'exam') return 'Exam day. Nothing else is scheduled — go and get it.'
   if (day.kind === 'rest') return 'Rest day. Nothing scheduled — that is the plan working, not slipping.'
   if (day.kind === 'review') {
     return day.daysLeft === 1
@@ -189,6 +190,13 @@ export function checkinLine(day: HydratedDay, progress: PlanProgress): string {
     return `${progress.done} days done, none missed. ${examEncouragement(day.daysLeft)}`
   }
   return examEncouragement(day.daysLeft)
+}
+
+/** The distinct exam dates in a plan, earliest first, with who sits what. */
+export function examSchedule(plan: Pick<HydratedPlan, 'subjects'>): Array<{ date: string; labels: string[] }> {
+  const byDate = new Map<string, string[]>()
+  for (const s of plan.subjects) byDate.set(s.examDate, [...(byDate.get(s.examDate) ?? []), s.label])
+  return [...byDate.entries()].sort(([a], [b]) => (a < b ? -1 : 1)).map(([date, labels]) => ({ date, labels }))
 }
 
 /** "Wed 16 Sep" from an ISO date, timezone-proof. */

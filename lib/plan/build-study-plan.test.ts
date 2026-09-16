@@ -333,6 +333,93 @@ assert.equal(timedPaperCount('pass', 4), 1, 'never zero once there is room')
   assert.ok(new Set(papers).size === 2, `papers cover both subjects: ${papers.join(',')}`)
 }
 
+// --- each subject sits its own paper ---------------------------------------------------
+
+{
+  // Maths on 25 Sep (inside the plan), Physics on 5 Oct (the last exam).
+  const MATHS_EARLY: PlanSubjectInput = { ...MATHS, examDate: '2026-09-25' }
+  const plan = buildStudyPlan({
+    startDate: START,
+    examDate: EXAM_19,
+    preparedness: 'secure',
+    minutesPerDay: 90,
+    availability: EVERY_DAY,
+    subjects: [MATHS_EARLY, PHYSICS],
+  })
+  assert.equal(plan.examDate, EXAM_19, 'the plan runs to the last exam')
+  assert.equal(plan.days.length, 19)
+  assert.deepEqual(
+    plan.subjects.map((s) => [s.code, s.examDate]),
+    [['9709', '2026-09-25'], ['9702', EXAM_19]]
+  )
+
+  const examDay = plan.days.find((d) => d.date === '2026-09-25')!
+  assert.equal(examDay.kind, 'exam')
+  assert.match(examDay.focus, /Mathematics exam today/)
+  assert.equal(examDay.workMinutes, 0)
+
+  // After its paper, no more Maths.
+  for (const d of plan.days.filter((d) => d.date > '2026-09-25')) {
+    assert.ok(!d.blocks.some((b) => b.subjectCode === '9709'), `${d.date} has no Maths`)
+  }
+
+  // The two days before: Maths reviews while Physics still drills — a study
+  // day, not the plan's taper.
+  const before = ['2026-09-23', '2026-09-24'].map((date) => plan.days.find((x) => x.date === date)!)
+  for (const d of before) {
+    assert.equal(d.kind, 'study', `${d.date} is mixed, not a full taper`)
+    const maths = d.blocks.filter((b) => b.subjectCode === '9709')
+    assert.ok(maths.every((b) => b.kind === 'review'), `${d.date}: any Maths block is review`)
+    assert.ok(!d.blocks.some((b) => b.kind === 'timed_paper' && b.subjectCode === '9709'), `${d.date}: no Maths paper in its taper`)
+  }
+  assert.ok(
+    before.some((d) => d.blocks.some((b) => b.subjectCode === '9709' && b.kind === 'review')),
+    'Maths gets at least one review block in its taper'
+  )
+  assert.ok(before.some((d) => /Mathematics review only/.test(d.focus)), 'the day says which subject is reviewing')
+
+  // Physics' own taper is the plan's last two days.
+  for (const d of plan.days.slice(-2)) assert.equal(d.kind, 'review')
+
+  // Timed papers: both subjects get one, one per day, never in a subject's taper or after.
+  const papers = plan.days.flatMap((d) =>
+    d.blocks.filter((b) => b.kind === 'timed_paper').map((b) => ({ date: d.date, code: b.subjectCode }))
+  )
+  assert.ok(papers.some((p) => p.code === '9709') && papers.some((p) => p.code === '9702'), `papers: ${JSON.stringify(papers)}`)
+  assert.ok(papers.filter((p) => p.code === '9709').every((p) => p.date < '2026-09-23'))
+  assert.equal(new Set(papers.map((p) => p.date)).size, papers.length, 'one paper per day')
+
+  // The exam day is already quiet, so no rest day is imposed on it or doubled next to it.
+  assert.ok(!/holds without it/.test(examDay.focus))
+  assert.ok(plan.days.every((d) => d.workMinutes <= 90))
+}
+{
+  // A subject whose exam has passed is not planned; one dated later than the plan's date extends it.
+  const gone = buildStudyPlan({
+    startDate: START,
+    examDate: EXAM_19,
+    preparedness: 'pass',
+    minutesPerDay: 90,
+    availability: EVERY_DAY,
+    subjects: [{ ...MATHS, examDate: '2026-09-10' }, PHYSICS],
+  })
+  assert.deepEqual(gone.subjects.map((s) => s.code), ['9702'])
+  assert.ok(!gone.days.some((d) => d.blocks.some((b) => b.subjectCode === '9709')))
+
+  const later = buildStudyPlan({
+    startDate: START,
+    examDate: EXAM_19,
+    preparedness: 'pass',
+    minutesPerDay: 90,
+    availability: EVERY_DAY,
+    subjects: [MATHS, { ...PHYSICS, examDate: '2026-10-12' }],
+  })
+  assert.equal(later.examDate, '2026-10-12', 'the latest subject date wins')
+  assert.equal(later.days.length, 26)
+  assert.equal(later.days.find((d) => d.date === EXAM_19)!.kind, 'exam', "Maths' exam day is inside the plan")
+  assert.ok(later.days.slice(-2).every((d) => d.kind === 'review'))
+}
+
 // --- edges -------------------------------------------------------------------------------
 
 {

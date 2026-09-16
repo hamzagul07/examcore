@@ -86,6 +86,12 @@ export type PlanSubjectInput = {
   hasTimedPaper: boolean
   /** The shortest real paper's length in minutes, when known. */
   paperMinutes?: number
+  /**
+   * This subject's own exam date, when it differs from the plan's. The
+   * subject tapers before it, drops out after it, and its exam day is a
+   * quiet day in the plan. Defaults to the plan's exam date.
+   */
+  examDate?: string
 }
 
 export type PlanBlockKind = 'drill' | 'timed_paper' | 'review' | 'break' | 'rest'
@@ -102,13 +108,14 @@ export type PlanBlock = {
 }
 
 export type PlanDay = {
-  /** 1-based; the exam itself is not a plan day. */
+  /** 1-based; the last exam itself is not a plan day. */
   day: number
   /** ISO date this day falls on. */
   date: string
-  /** Days remaining to the exam at the START of this day. */
+  /** Days remaining to the LAST exam at the START of this day. */
   daysLeft: number
-  kind: 'study' | 'rest' | 'review'
+  /** 'exam' is a day one subject's paper is sat — nothing else is scheduled. */
+  kind: 'study' | 'rest' | 'review' | 'exam'
   /** One line the student reads first. */
   focus: string
   blocks: PlanBlock[]
@@ -117,6 +124,7 @@ export type PlanDay = {
 }
 
 export type StudyPlan = {
+  /** The last exam; the plan ends the day before it. */
   examDate: string
   preparedness: Preparedness
   minutesPerDay: number
@@ -125,7 +133,8 @@ export type StudyPlan = {
   blockedDates: string[]
   /** IANA zone the plan's dates are read in — "today" is the student's, not the server's. */
   timeZone: string
-  subjects: Array<{ code: string; label: string }>
+  /** Each subject with the date of its own paper (the plan's when not set). */
+  subjects: Array<{ code: string; label: string; examDate: string }>
   days: PlanDay[]
   /** Total scheduled work across the plan, for the summary line. */
   totalWorkMinutes: number
@@ -136,6 +145,7 @@ export type StudyPlan = {
 export type BuildStudyPlanInput = {
   /** The day the plan starts, as ISO date. Usually today. */
   startDate: string
+  /** The exam date for every subject that has none of its own. */
   examDate: string
   preparedness: Preparedness
   minutesPerDay: number
@@ -149,6 +159,7 @@ export type BuildStudyPlanInput = {
 // --- calendar helpers -----------------------------------------------------------
 
 const DAY_MS = 86_400_000
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
 
 function parseIsoDay(iso: string): number {
   return Date.UTC(
@@ -272,45 +283,72 @@ function restDay(day: number, date: string, daysLeft: number, reason: string): P
 }
 
 export function buildStudyPlan(input: BuildStudyPlanInput): StudyPlan {
-  const length = planLength(input.startDate, input.examDate)
-  const subjects = input.subjects.filter((s) => s.code)
   const minutesPerDay = Math.max(0, Math.round(input.minutesPerDay))
   const availability = input.availability.map((m) =>
     Math.max(0, Math.min(minutesPerDay, Math.round(m)))
   ) as WeekAvailability
   const timeZone = input.timeZone?.trim() || 'UTC'
-  const blocked = new Set((input.blockedDates ?? []).filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d)))
+  const blocked = new Set((input.blockedDates ?? []).filter((d) => ISO_DATE.test(d)))
+
+  // Each subject sits its paper on its own date (the plan's by default).
+  // A subject whose exam has passed is not planned; the plan runs to the
+  // day before the LAST exam.
+  const subjects = input.subjects
+    .filter((s) => s.code)
+    .map((s) => ({ ...s, examDate: s.examDate && ISO_DATE.test(s.examDate) ? s.examDate : input.examDate }))
+    .filter((s) => planLength(input.startDate, s.examDate) > 0)
+  const examDate = subjects.reduce((max, s) => (s.examDate > max ? s.examDate : max), subjects[0]?.examDate ?? input.examDate)
+  const length = planLength(input.startDate, examDate)
 
   const days: PlanDay[] = []
   if (length === 0 || subjects.length === 0) {
     return {
-      examDate: input.examDate,
+      examDate,
       preparedness: input.preparedness,
       minutesPerDay,
       availability,
       blockedDates: [...blocked].sort(),
       timeZone,
-      subjects: subjects.map((s) => ({ code: s.code, label: s.label })),
+      subjects: subjects.map((s) => ({ code: s.code, label: s.label, examDate: s.examDate })),
       days,
       totalWorkMinutes: 0,
       headline:
-        length === 0
-          ? "Your exam is today or has passed — there's nothing to schedule."
-          : 'Add at least one subject to build a plan.',
+        input.subjects.length === 0
+          ? 'Add at least one subject to build a plan.'
+          : "Your exam is today or has passed — there's nothing to schedule.",
     }
   }
 
-  // Which calendar days are study days at all: commitments first, then one rest
-  // day a week on the lightest available weekday when the plan is long enough.
   const startMs = parseIsoDay(input.startDate)
   const dates = Array.from({ length }, (_, i) => isoDay(startMs + i * DAY_MS))
-  // A blocked date is a commitment like a 0-minute weekday: nothing is scheduled.
-  const available = dates.map((d) => (blocked.has(d) ? 0 : availability[weekdayIndex(d)]))
 
-  // Review taper: the last two days before the exam (when the plan has room).
-  // Four or more days: the last two. Two or three: the last one. A single day
-  // before the exam is review — there is nothing to learn tonight.
-  const reviewFrom = length >= 4 ? length - 2 : length >= 2 ? length - 1 : 0
+  // Exam days inside the plan (a subject's paper before the last one): a
+  // quiet day, nothing scheduled, like a blocked date.
+  const examOn = new Map<string, typeof subjects>()
+  for (const s of subjects) {
+    if (s.examDate < examDate) examOn.set(s.examDate, [...(examOn.get(s.examDate) ?? []), s])
+  }
+  const available = dates.map((d) =>
+    blocked.has(d) || examOn.has(d) ? 0 : availability[weekdayIndex(d)]
+  )
+
+  // Which subjects are still ahead of their paper on day i, and which of
+  // those are in their two-day taper.
+  const liveOn = (i: number) => subjects.filter((s) => dates[i]! < s.examDate)
+  const tapering = (i: number, s: (typeof subjects)[number]) => planLength(dates[i]!, s.examDate) <= 2
+  const allTaper = (i: number) => {
+    const live = liveOn(i)
+    return live.length > 0 && live.every((s) => tapering(i, s))
+  }
+  // Once every live subject is tapering it stays that way (subjects only
+  // leave), so the plan's own review taper starts at the first such day.
+  let reviewFrom = length
+  for (let i = 0; i < length; i++) {
+    if (allTaper(i)) {
+      reviewFrom = i
+      break
+    }
+  }
 
   // Weekly rest: pick the weekday with the least availability among study
   // days, and rest on it once per 7-day window — but never inside the taper.
@@ -345,34 +383,75 @@ export function buildStudyPlan(input: BuildStudyPlanInput): StudyPlan {
     .map((_, i) => i)
     .filter((i) => i < reviewFrom && available[i]! >= MIN_USEFUL_MINUTES && !restIndexes.has(i))
 
-  // Timed papers land on study days spread evenly, never the first day (a
-  // student should warm up on drills) and never in the taper.
-  const paperTotal = Math.min(
-    timedPaperCount(input.preparedness, studyIndexes.length),
-    subjects.filter((s) => s.hasTimedPaper).length > 0 ? Infinity : 0
-  )
-  const paperDays = new Set<number>()
-  if (paperTotal > 0 && studyIndexes.length > 1) {
-    const eligible = studyIndexes.slice(1).filter((i) => available[i]! >= TIMED_PAPER_MIN)
-    const step = eligible.length / paperTotal
-    for (let k = 0; k < paperTotal && eligible.length > 0; k++) {
-      const idx = eligible[Math.min(eligible.length - 1, Math.floor((k + 0.5) * step))]!
-      paperDays.add(idx)
-    }
+  // Timed papers: one budget for the plan, shared between subjects by how
+  // many study days each still has before its own taper. Spread evenly over
+  // a subject's own days, never the first study day, never in its taper,
+  // never two papers on one day.
+  const paperDays = new Map<number, (typeof subjects)[number]>()
+  const paperSubjects = subjects.filter((s) => s.hasTimedPaper)
+  if (paperSubjects.length > 0 && studyIndexes.length > 1) {
+    const budget = timedPaperCount(input.preparedness, studyIndexes.length)
+    const ownDays = (s: (typeof subjects)[number]) =>
+      studyIndexes.filter((i) => dates[i]! < s.examDate && !tapering(i, s))
+    const spans = paperSubjects.map((s) => ownDays(s).length)
+    const spanTotal = spans.reduce((a, b) => a + b, 0)
+    paperSubjects.forEach((s, si) => {
+      const share = spanTotal > 0 && spans[si]! > 0 ? Math.max(1, Math.round((budget * spans[si]!) / spanTotal)) : 0
+      // A sitting shorter than TIMED_PAPER_MIN is not a paper; a 45-minute
+      // Saturday gets a drill, not "the first 45 minutes of a paper".
+      const eligible = ownDays(s).filter(
+        (i) => i !== studyIndexes[0] && available[i]! >= TIMED_PAPER_MIN && !paperDays.has(i)
+      )
+      if (share === 0 || eligible.length === 0) return
+      const step = eligible.length / Math.min(share, eligible.length)
+      for (let k = 0; k < Math.min(share, eligible.length); k++) {
+        let pos = Math.min(eligible.length - 1, Math.floor((k + 0.5) * step))
+        while (pos < eligible.length && paperDays.has(eligible[pos]!)) pos += 1
+        if (pos >= eligible.length) break
+        paperDays.set(eligible[pos]!, s)
+      }
+    })
   }
 
   // Rotate subjects and, within each, their topics.
   const rotations = subjects.map((s) => ({ subject: s, topics: topicRotation(s, input.preparedness), cursor: 0 }))
-  const paperSubjects = subjects.filter((s) => s.hasTimedPaper)
   let subjectCursor = 0
-  let paperCursor = 0
   let totalWork = 0
+
+  const reviewBlock = (rot: (typeof rotations)[number], k: number, minutes: number): PlanBlock => {
+    const topic = rot.topics[k % Math.max(rot.topics.length, 1)]
+    return {
+      kind: 'review',
+      minutes,
+      subjectCode: rot.subject.code,
+      subjectLabel: rot.subject.label,
+      topic,
+      label: topic
+        ? `Re-read your marked answers on ${topic.name} — the ink, not the notes`
+        : `Re-read your marked ${rot.subject.label} answers — the ink, not the notes`,
+    }
+  }
 
   for (let i = 0; i < length; i++) {
     const date = dates[i]!
     const daysLeft = length - i
     const dayNum = i + 1
     const minutes = available[i]!
+
+    const exams = examOn.get(date)
+    if (exams) {
+      const names = exams.map((s) => s.label).join(' and ')
+      const reason = `${names} exam today. Nothing else is scheduled — you've done the work.`
+      days.push({ day: dayNum, date, daysLeft, kind: 'exam', focus: reason, blocks: [{ kind: 'rest', minutes: 0, label: reason }], workMinutes: 0 })
+      continue
+    }
+
+    const live = liveOn(i)
+    const liveRotations = rotations.filter((r) => live.includes(r.subject))
+    if (liveRotations.length === 0) {
+      days.push(restDay(dayNum, date, daysLeft, 'Rest day.'))
+      continue
+    }
 
     if (i >= reviewFrom) {
       // Taper: review only, at most two blocks, no new topics.
@@ -385,18 +464,7 @@ export function buildStudyPlan(input: BuildStudyPlanInput): StudyPlan {
           blocks.push({ kind: 'break', minutes: b.minutes, label: `${b.minutes} min off` })
           continue
         }
-        const rot = rotations[(subjectCursor + k) % rotations.length]!
-        const topic = rot.topics[k % Math.max(rot.topics.length, 1)]
-        blocks.push({
-          kind: 'review',
-          minutes: b.minutes,
-          subjectCode: rot.subject.code,
-          subjectLabel: rot.subject.label,
-          topic,
-          label: topic
-            ? `Re-read your marked answers on ${topic.name} — the ink, not the notes`
-            : `Re-read your marked ${rot.subject.label} answers — the ink, not the notes`,
-        })
+        blocks.push(reviewBlock(liveRotations[(subjectCursor + k) % liveRotations.length]!, k, b.minutes))
         work += b.minutes
         k += 1
       }
@@ -435,28 +503,27 @@ export function buildStudyPlan(input: BuildStudyPlanInput): StudyPlan {
     const blocks: PlanBlock[] = []
     let work = 0
 
-    if (paperDays.has(i) && paperSubjects.length > 0) {
-      const subject = paperSubjects[paperCursor % paperSubjects.length]!
-      paperCursor += 1
+    const paperSubject = paperDays.get(i)
+    if (paperSubject) {
       // A real paper's length when the day has room for it; otherwise the
       // day's budget, and the label says it is the first part of a paper.
-      const fullPaper = subject.paperMinutes ?? TIMED_PAPER_MIN
+      const fullPaper = paperSubject.paperMinutes ?? TIMED_PAPER_MIN
       const paperMin = Math.min(fullPaper, minutes)
       blocks.push({
         kind: 'timed_paper',
         minutes: paperMin,
-        subjectCode: subject.code,
-        subjectLabel: subject.label,
+        subjectCode: paperSubject.code,
+        subjectLabel: paperSubject.label,
         label:
           paperMin < fullPaper
-            ? `Timed ${subject.label} paper — the first ${paperMin} min of a ${fullPaper}-min paper, no notes, then mark it`
-            : `Timed ${subject.label} paper — ${paperMin} min, no notes, then mark it`,
+            ? `Timed ${paperSubject.label} paper — the first ${paperMin} min of a ${fullPaper}-min paper, no notes, then mark it`
+            : `Timed ${paperSubject.label} paper — ${paperMin} min, no notes, then mark it`,
       })
       work += paperMin
       const left = minutes - paperMin - LONG_BREAK_MIN
       if (left >= MIN_USEFUL_MINUTES) {
         blocks.push({ kind: 'break', minutes: LONG_BREAK_MIN, label: `${LONG_BREAK_MIN} min off` })
-        const rot = rotations.find((r) => r.subject.code === subject.code) ?? rotations[0]!
+        const rot = rotations.find((r) => r.subject.code === paperSubject.code) ?? liveRotations[0]!
         const topic = rot.topics[rot.cursor % Math.max(rot.topics.length, 1)]
         if (topic) rot.cursor += 1
         const drillMin = Math.min(FOCUS_BLOCK_MIN, left)
@@ -478,26 +545,35 @@ export function buildStudyPlan(input: BuildStudyPlanInput): StudyPlan {
         date,
         daysLeft,
         kind: 'study',
-        focus: `Timed paper day — ${subject.label} under exam conditions.`,
+        focus: `Timed paper day — ${paperSubject.label} under exam conditions.`,
         blocks,
         workMinutes: work,
       })
       continue
     }
 
-    // Drill day: alternate subjects across the day's blocks, one topic per block.
+    // Drill day: alternate live subjects across the day's blocks, one topic
+    // per block. A subject inside its own taper gets review blocks instead.
     const layout = layoutBlocks(minutes)
     let k = 0
-    const subjectsToday = new Set<string>()
+    const drillSubjects = new Set<string>()
+    const reviewSubjects = new Set<string>()
     for (const b of layout) {
       if (b.kind === 'break') {
         blocks.push({ kind: 'break', minutes: b.minutes, label: `${b.minutes} min off` })
         continue
       }
-      const rot = rotations[(subjectCursor + k) % rotations.length]!
+      const rot = liveRotations[(subjectCursor + k) % liveRotations.length]!
+      if (tapering(i, rot.subject)) {
+        blocks.push(reviewBlock(rot, k, b.minutes))
+        reviewSubjects.add(rot.subject.label)
+        work += b.minutes
+        k += 1
+        continue
+      }
       const topic = rot.topics.length ? rot.topics[rot.cursor % rot.topics.length] : undefined
       if (topic) rot.cursor += 1
-      subjectsToday.add(rot.subject.label)
+      drillSubjects.add(rot.subject.label)
       blocks.push({
         kind: 'drill',
         minutes: b.minutes,
@@ -516,34 +592,31 @@ export function buildStudyPlan(input: BuildStudyPlanInput): StudyPlan {
       k += 1
     }
     // Advance so tomorrow starts on the next subject, keeping rotation fair.
-    subjectCursor = (subjectCursor + Math.max(1, k)) % rotations.length
+    subjectCursor = (subjectCursor + Math.max(1, k)) % liveRotations.length
     totalWork += work
 
-    const list = [...subjectsToday]
-    days.push({
-      day: dayNum,
-      date,
-      daysLeft,
-      kind: 'study',
-      focus:
-        list.length === 1
-          ? `${list[0]} — ${blocks.filter((b) => b.kind === 'drill').length} focused ${blocks.filter((b) => b.kind === 'drill').length === 1 ? 'block' : 'blocks'}.`
-          : `${list.join(' and ')} — ${blocks.filter((b) => b.kind === 'drill').length} focused blocks.`,
-      blocks,
-      workMinutes: work,
-    })
+    const drillCount = blocks.filter((b) => b.kind === 'drill').length
+    const drillList = [...drillSubjects]
+    const reviewList = [...reviewSubjects]
+    const focus =
+      drillList.length > 0
+        ? `${drillList.join(' and ')} — ${drillCount} focused ${drillCount === 1 ? 'block' : 'blocks'}${
+            reviewList.length > 0 ? `; ${reviewList.join(' and ')} review only.` : '.'
+          }`
+        : `${reviewList.join(' and ')} — review only.`
+    days.push({ day: dayNum, date, daysLeft, kind: 'study', focus, blocks, workMinutes: work })
   }
 
   const hours = Math.round((totalWork / 60) * 10) / 10
-  const studyDayCount = days.filter((d) => d.kind !== 'rest').length
+  const studyDayCount = days.filter((d) => d.workMinutes > 0).length
   return {
-    examDate: input.examDate,
+    examDate,
     preparedness: input.preparedness,
     minutesPerDay,
     availability,
     blockedDates: [...blocked].sort(),
     timeZone,
-    subjects: subjects.map((s) => ({ code: s.code, label: s.label })),
+    subjects: subjects.map((s) => ({ code: s.code, label: s.label, examDate: s.examDate })),
     days,
     totalWorkMinutes: totalWork,
     headline: `${length} day${length === 1 ? '' : 's'} to go. ${examEncouragement(length)} ${hours} focused hours across ${studyDayCount} days, breaks included.`,

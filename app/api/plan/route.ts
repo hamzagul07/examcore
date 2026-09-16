@@ -23,8 +23,8 @@ export const dynamic = 'force-dynamic'
  *
  *   GET    → { plan, done } (plan null when none)
  *   POST   → build from { examDate, preparedness, minutesPerDay, availability,
- *            subjects, startDate?, timeZone?, blockedDates?, remindMe? };
- *            replaces any existing plan
+ *            subjects, startDate?, timeZone?, blockedDates?, subjectExamDates?,
+ *            remindMe? }; replaces any existing plan
  *   PATCH  → { day, done } ticks a day off
  *   DELETE → removes the plan
  *
@@ -106,6 +106,17 @@ function parseBuildBody(body: unknown): { ok: true; value: ParsedBody } | { ok: 
   }
   const blockedDates = [...new Set(blockedRaw.filter(validIso))].sort()
 
+  // A subject's own paper date. Only for subjects on the plan, only real
+  // future dates; anything else means "same as the plan's date".
+  const subjectExamDates: Record<string, string> = {}
+  if (b.subjectExamDates && typeof b.subjectExamDates === 'object') {
+    for (const [code, value] of Object.entries(b.subjectExamDates as Record<string, unknown>)) {
+      if (subjectCodes.includes(code) && validIso(value) && planLength(startDate, value) > 0) {
+        subjectExamDates[code] = value
+      }
+    }
+  }
+
   return {
     ok: true,
     value: {
@@ -117,6 +128,7 @@ function parseBuildBody(body: unknown): { ok: true; value: ParsedBody } | { ok: 
       subjectCodes,
       timeZone,
       blockedDates,
+      subjectExamDates,
       remindMe: typeof b.remindMe === 'boolean' ? b.remindMe : undefined,
     },
   }
@@ -151,7 +163,7 @@ export async function POST(request: NextRequest) {
     // reminders and the plan should never disagree. The morning check-in
     // rides on the existing exam-reminder consent, set here only when the
     // student ticked the box.
-    const profilePatch: Record<string, unknown> = { exam_date: parsed.value.examDate }
+    const profilePatch: Record<string, unknown> = { exam_date: saved.plan.examDate }
     if (typeof parsed.value.remindMe === 'boolean') {
       profilePatch.email_exam_reminders = parsed.value.remindMe
     }

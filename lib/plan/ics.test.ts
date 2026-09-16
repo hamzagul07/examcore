@@ -9,7 +9,10 @@ const plan: HydratedPlan = {
   availability: [90, 90, 90, 90, 90, 90, 90],
   blockedDates: [],
   timeZone: 'Asia/Karachi',
-  subjects: [{ code: '9709', label: 'Mathematics' }],
+  subjects: [
+    { code: '9709', label: 'Mathematics', examDate: '2026-10-05' },
+    { code: '9702', label: 'Physics', examDate: '2026-09-17' },
+  ],
   totalWorkMinutes: 75,
   headline: 'h',
   generatedAt: '2026-09-16T07:30:00.000Z',
@@ -27,7 +30,7 @@ const plan: HydratedPlan = {
         { kind: 'drill', minutes: 25, label: 'A very long label that will certainly need folding because iCalendar lines are limited to seventy-five octets and this one is longer than that by some margin', href: '/mark' },
       ],
     },
-    { day: 2, date: '2026-09-17', daysLeft: 18, kind: 'rest', focus: 'Rest day.', workMinutes: 0, blocks: [{ kind: 'rest', minutes: 0, label: 'Rest' }] },
+    { day: 2, date: '2026-09-17', daysLeft: 18, kind: 'exam', focus: 'Physics exam today.', workMinutes: 0, blocks: [{ kind: 'rest', minutes: 0, label: 'Rest' }] },
     { day: 3, date: '2026-10-04', daysLeft: 1, kind: 'review', focus: 'Light review, then stop.', workMinutes: 25, blocks: [{ kind: 'review', minutes: 25, label: 'Re-read', href: '/dashboard/review' }] },
   ],
 }
@@ -44,9 +47,9 @@ assert.equal((ics.match(/BEGIN:VEVENT/g) ?? []).length, 4, 'three days + the exa
 assert.ok(ics.includes('DTSTART;VALUE=DATE:20260916\r\nDTEND;VALUE=DATE:20260917'))
 assert.ok(ics.includes('DTSTART;VALUE=DATE:20261005\r\nDTEND;VALUE=DATE:20261006'), 'exam day')
 assert.ok(ics.includes('SUMMARY:Day 1 · 1 h 15 min · 19 days to go'))
-assert.ok(ics.includes('SUMMARY:Rest day'))
+assert.ok(ics.includes('SUMMARY:Exam day — Physics'), "a subject's own exam day inside the plan")
 assert.ok(ics.includes('SUMMARY:Day 3 · Review · 1 day to go'))
-assert.ok(ics.includes('SUMMARY:Exam day — Mathematics'))
+assert.ok(ics.includes('SUMMARY:Exam day — Mathematics'), 'the last exam names only the subjects sitting it')
 
 // Folding: no line over 75 octets, continuation lines start with a space.
 for (const l of lines) assert.ok(Buffer.byteLength(l, 'utf8') <= 75, `line too long (${Buffer.byteLength(l)}): ${l.slice(0, 40)}`)

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
+import { parseReadingPrefs, type ReadingPrefs } from '@/lib/courses/reading-prefs'
 
 type Body = {
   email_exam_reminders?: boolean
@@ -10,6 +11,24 @@ type Body = {
   email_review_digest?: boolean
   email_weekly_report?: boolean
   email_mark_ready?: boolean
+  /** Lesson typography (typeface, size, spacing) — synced across devices. */
+  reading_prefs?: unknown
+}
+
+/** The signed-in reader's saved lesson typography, for the lesson page to sync from. */
+export async function GET(request: NextRequest) {
+  const { supabase, user, pendingCookies } = await authenticateRouteRequest(request)
+  if (!user) {
+    return jsonWithAuthCookies({ error: 'Not signed in' }, pendingCookies, { status: 401 })
+  }
+  const { data } = await supabase
+    .from('user_profiles')
+    .select('reading_prefs')
+    .eq('id', user.id)
+    .maybeSingle()
+  const raw = data?.reading_prefs as unknown
+  const reading_prefs: ReadingPrefs | null = raw ? parseReadingPrefs(JSON.stringify(raw)) : null
+  return jsonWithAuthCookies({ reading_prefs }, pendingCookies)
 }
 
 export async function PATCH(request: NextRequest) {
@@ -28,7 +47,11 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
   }
 
-  const patch: Record<string, boolean> = {}
+  const patch: Record<string, boolean | ReadingPrefs> = {}
+  if (body.reading_prefs && typeof body.reading_prefs === 'object') {
+    // Parsed, not stored raw: only known typefaces, sizes and a boolean land.
+    patch.reading_prefs = parseReadingPrefs(JSON.stringify(body.reading_prefs))
+  }
   if (typeof body.email_exam_reminders === 'boolean') {
     patch.email_exam_reminders = body.email_exam_reminders
   }

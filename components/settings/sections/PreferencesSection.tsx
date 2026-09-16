@@ -127,10 +127,10 @@ export function PreferencesSection({
           <label className="ms-pref-toggle flex min-h-[56px] cursor-pointer items-start justify-between gap-4">
             <span>
               <span className="block text-sm font-semibold text-[var(--ec-text-primary)]">
-                Exam countdown reminders
+                Exam countdown and study-plan check-ins
               </span>
               <span className="mt-0.5 block text-sm text-[var(--ec-text-secondary)]">
-                Gentle nudges as your exam date approaches.
+                Gentle nudges as your exam date approaches — and, once you have a study plan, one short email on study mornings with the day&apos;s blocks.
               </span>
             </span>
             <span className="relative inline-flex shrink-0 items-center">

@@ -144,6 +144,16 @@ export const SITE_NAV_ITEMS: SiteNavItem[] = [
       p.startsWith('/dashboard/review'),
   },
   {
+    id: 'plan',
+    href: '/dashboard/plan',
+    label: 'Plan',
+    variants: ['app'],
+    // The day-by-day plan to the exam. Its own page, not a Progress tab: a
+    // student opens it every morning to see today, which is a different
+    // errand from reading how last week went.
+    isActive: (p) => p.startsWith('/dashboard/plan'),
+  },
+  {
     id: 'account',
     href: '/account',
     label: 'Account',

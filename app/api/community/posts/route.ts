@@ -1,6 +1,11 @@
 import { NextRequest, after } from 'next/server'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { createPost, listPosts, type Board, type PostKind, type PostSort } from '@/lib/community/posts'
+
+// Must stay in step with the check constraint in
+// supabase/migrations/20260916_post_kinds_paper_win.sql — a value accepted here
+// and rejected there is a 500 at insert time.
+const POST_KINDS: string[] = ['discussion', 'question', 'resource', 'paper', 'win']
 import { moderatePostAfterInsert } from '@/lib/community/moderate-async'
 import { notifyMentions } from '@/lib/community/notify'
 import { postsInLast24h } from '@/lib/community/require-username'
@@ -30,7 +35,7 @@ export async function GET(request: NextRequest) {
     authorIds: sp.get('authors')
       ? sp.get('authors')!.split(',').map((a) => a.trim()).filter(Boolean).slice(0, 100)
       : undefined,
-    kind: ['discussion', 'question', 'resource'].includes(kind || '') ? (kind as PostKind) : undefined,
+    kind: POST_KINDS.includes(kind || '') ? (kind as PostKind) : undefined,
     sort: ['hot', 'new', 'top', 'rising'].includes(sort || '') ? (sort as PostSort) : 'hot',
     limit: Math.min(Number(sp.get('limit')) || 25, 100),
   })
@@ -67,7 +72,7 @@ export async function POST(request: NextRequest) {
   if (!body.subjectCode) {
     return jsonWithAuthCookies({ error: 'Pick a subject.' }, pendingCookies, { status: 400 })
   }
-  const kind = ['discussion', 'question', 'resource'].includes(body.kind || '')
+  const kind = POST_KINDS.includes(body.kind || '')
     ? (body.kind as PostKind)
     : 'discussion'
 

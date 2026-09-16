@@ -7,7 +7,7 @@ import type { PostUrlParts } from '@/lib/community/post-url'
 import type { EffectiveAccess } from '@/lib/billing/access'
 
 export type Board = 'cambridge' | 'ib'
-export type PostKind = 'discussion' | 'question' | 'resource'
+export type PostKind = 'discussion' | 'question' | 'resource' | 'paper' | 'win'
 export type PostSort = 'hot' | 'new' | 'top' | 'rising'
 
 export type CommunityPost = {

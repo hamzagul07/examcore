@@ -239,6 +239,9 @@ async function syncSubscription(
   const { error } = await supabase.from('user_subscriptions').upsert(
     {
       user_id: userId,
+      // Claim ownership back from a store projection, so a later store event
+      // cannot reset a row that now describes a live Polar subscription.
+      provider: 'polar',
       polar_customer_id: sub.customerId,
       polar_subscription_id: sub.id,
       tier: resolved?.tier ?? 'free',
@@ -367,6 +370,10 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
           updated_at: new Date().toISOString(),
         })
         .eq('user_id', userId)
+        // A row projected from an in-app purchase also has a null
+        // polar_subscription_id, so the is.null clause above would match it and
+        // revoke a store subscriber's access over an unrelated Polar event.
+        .eq('provider', 'polar')
         .or(`polar_subscription_id.eq.${sub.id},polar_subscription_id.is.null`)
         .select('user_id')
       if (error) throw new Error(`subscription.revoked update failed: ${error.message}`)

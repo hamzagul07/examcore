@@ -15,6 +15,7 @@ import {
   TIER_MONTHLY_CAPS,
   TIER_OMNI_CAPS,
 } from './caps'
+import { resolveEntitlement } from '@/lib/billing/entitlement-source'
 import {
   ACTIVE_STATUSES,
   effectiveAccess,
@@ -92,9 +93,18 @@ async function loadBillingContext(
   userId: string,
   supabase: SupabaseClient
 ): Promise<BillingContext> {
-  const [{ data: sub }, { data: credits }, { data: profile }] = await Promise.all([
+  const [{ data: webSub }, { data: storeSub }, { data: credits }, { data: profile }] =
+    await Promise.all([
     supabase
       .from('user_subscriptions')
+      .select('tier, status, current_period_start, current_period_end')
+      .eq('user_id', userId)
+      .maybeSingle(),
+    // Entitlement can come from the phone stores too. Fetched in parallel so the
+    // gate still costs one round trip; resolveEntitlement decides which wins and
+    // returns the web row untouched when there is no store purchase.
+    supabase
+      .from('store_subscriptions')
       .select('tier, status, current_period_start, current_period_end')
       .eq('user_id', userId)
       .maybeSingle(),
@@ -108,8 +118,9 @@ async function loadBillingContext(
       .maybeSingle(),
   ])
 
-  const tier = (sub?.tier ?? 'free') as SubscriptionTier
-  const status = (sub?.status ?? 'active') as SubscriptionStatus
+  const sub = resolveEntitlement(webSub, storeSub)
+  const tier = sub.tier
+  const status = sub.status
   // The granted seat, not the self-declared `role` column.
   const is_teacher = isVerifiedTeacher(profile?.teacher_verified_at)
   const access = effectiveAccess({

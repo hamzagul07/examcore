@@ -16,6 +16,7 @@ import {
   wizardReducer,
   type SetupProfile,
   type WizardState,
+  startDateFor,
 } from '@/lib/plan/wizard-state'
 
 const TODAY = '2026-09-17'
@@ -311,7 +312,7 @@ assert.equal(isClockTime('8:00'), false)
   const req = toRequest(s, TODAY)
 
   assert.equal(req.examDate, '2026-11-20', 'the latest paper')
-  assert.equal(req.startDate, TODAY)
+  assert.equal(req.startDate, startDateFor(s.timeZone, TODAY))
   assert.equal(req.mode, 'foundation')
   assert.deepEqual(req.subjects, ['9709', '9702'])
   assert.deepEqual(req.subjectExamDates, { '9709': '2026-11-15', '9702': '2026-11-20' })
@@ -357,6 +358,14 @@ assert.equal(isClockTime('8:00'), false)
   assert.deepEqual(req.subjectExamTimes, {})
   assert.deepEqual(req.selfRatings, { '9709': 'getting_there' })
   assert.equal(req.targetGrade, null)
+}
+
+// The start date follows the chosen zone, not the device clock.
+{
+  const at = new Date('2026-09-17T19:30:00Z')
+  assert.equal(startDateFor('Asia/Karachi', '2026-09-17', at), '2026-09-18')
+  assert.equal(startDateFor('Europe/London', '2026-09-18', at), '2026-09-17')
+  assert.equal(startDateFor('Not/AZone', '2026-09-18', at), '2026-09-18')
 }
 
 console.log('lib/plan/wizard-state.test.ts: ok')

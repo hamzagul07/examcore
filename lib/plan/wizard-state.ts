@@ -20,7 +20,7 @@
  * what it is: time the student has said is not free.
  */
 
-import { isValidTimeZone } from '@/lib/plan/plan-view'
+import { isValidTimeZone, todayInZone } from '@/lib/plan/plan-view'
 import { clockOf, minuteOfDay, type RoadmapPlan } from '@/lib/plan/roadmap-view'
 import {
   DEFAULT_AVAILABILITY,
@@ -578,14 +578,25 @@ function pick<T>(record: Record<string, T>, keys: string[]): Record<string, T> {
   return out
 }
 
-/** The request the feasibility preview and the build both send. `todayIso` is the browser's date. */
+/**
+ * The date the plan starts on: today in the zone the student chose, not the
+ * device's. A student who types Europe/London on a laptop set to Karachi at
+ * half past midnight would otherwise get a plan that starts tomorrow and a
+ * roadmap that says today is not on it. An unknown zone falls back to the
+ * device's date.
+ */
+export function startDateFor(timeZone: string, deviceIso: string, now = new Date()): string {
+  return isValidTimeZone(timeZone) ? todayInZone(timeZone, now) : deviceIso
+}
+
+/** The request the feasibility preview and the build both send. `todayIso` is the device's date; the start date is today in the chosen zone. */
 export function toRequest(state: WizardState, todayIso: string): RoadmapBuildRequest {
   const subjects = [...state.subjects]
   const examDate = planExamDate(state) ?? ''
   const targetGrade = state.targetGrade.trim()
   return {
     examDate,
-    startDate: todayIso,
+    startDate: startDateFor(state.timeZone, todayIso),
     mode: state.mode,
     subjects,
     subjectExamDates: pick(state.examDates, subjects),

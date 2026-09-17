@@ -82,6 +82,37 @@ export type FunnelEvent =
   | 'plan_day_done'
   /** The plan page was opened from a check-in email (?src=checkin). */
   | 'plan_checkin_opened'
+  /**
+   * The Exam Roadmap (docs/EXAM_ROADMAP.md §6). The server keeps the full
+   * per-task record in study_plan_events; these mirror the activation and
+   * engagement moments so the funnel and the report agree on the counts.
+   */
+  /** The setup wizard was opened. */
+  | 'roadmap_started'
+  /** A roadmap was built (or previewed to the feasibility step). */
+  | 'roadmap_generated'
+  /** The student kept the plan the wizard showed. */
+  | 'roadmap_accepted'
+  /** The roadmap screen was opened. */
+  | 'roadmap_viewed'
+  /** Start was pressed on a task. */
+  | 'task_started'
+  /** A task was marked done. */
+  | 'task_completed'
+  /** A task was skipped. */
+  | 'task_skipped'
+  /** A task was swapped for another topic. */
+  | 'task_swapped'
+  /** Replan today was run. */
+  | 'roadmap_replanned'
+  /** The Why this? sheet was opened. */
+  | 'why_this_task_opened'
+  /** The plan was opened from a check-in email or push (?src=checkin). */
+  | 'reminder_clicked'
+  /** The feasibility step's "does this look realistic?" was answered yes. */
+  | 'plan_felt_realistic'
+  /** The Why this? sheet's "did this make sense?" was answered yes. */
+  | 'understood_why'
 
 export type FunnelProps = {
   subject?: string | null

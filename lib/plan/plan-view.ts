@@ -8,7 +8,8 @@
  */
 
 import { examEncouragement } from '@/lib/dashboard/exam-date'
-import { PLAN_VERSION, type PlanBlock, type PlanDay, type StudyPlan } from '@/lib/plan/build-study-plan'
+import { PLAN_VERSION, type PlanBlock, type PlanBlockKind, type PlanDay, type StudyPlan } from '@/lib/plan/build-study-plan'
+import type { TaskType } from '@/lib/plan/roadmap-types'
 
 export type HydratedBlock = PlanBlock & {
   /** Where the block starts — a real question, a paper, the review queue. */
@@ -19,24 +20,28 @@ export type HydratedBlock = PlanBlock & {
   question?: { paperCode: string; paperSession: string; questionNumber: string }
 }
 
+/** Task types whose work is a marked answer on a topic; a lesson or a review leaves no such evidence. */
+export const MARKING_TASK_TYPES: ReadonlySet<TaskType> = new Set<TaskType>(['diagnostic', 'question', 'timed_set', 'mixed'])
+
 /**
  * The key an attempt would carry if it were this block's work: a banked
  * question by paper/session/number, or a generated topic question by
- * subject/topic. Null for blocks with nothing to mark (breaks, rest, review).
+ * subject/topic. Null for blocks with nothing to mark (breaks, rest, review,
+ * lessons): a v2 drill or a v3 marking task type with a topic is keyed, a
+ * learn block never is.
  */
 export function blockEvidenceKey(block: HydratedBlock): string | null {
   if (block.question) {
     return `q:${block.question.paperCode}|${block.question.paperSession}|${block.question.questionNumber}`
   }
-  if (block.kind === 'drill' && block.subjectCode && block.topic) {
-    return `t:${block.subjectCode}|${block.topic.code}`
-  }
-  return null
+  if (!block.subjectCode || !block.topic) return null
+  const marking = block.taskType ? MARKING_TASK_TYPES.has(block.taskType) : block.kind === 'drill'
+  return marking ? `t:${block.subjectCode}|${block.topic.code}` : null
 }
 
 /** Of a day's work blocks, how many the student has marked evidence for. */
 export function markedBlocks(day: Pick<HydratedDay, 'blocks'>, evidence: ReadonlySet<string>): { marked: number; total: number } {
-  const work = day.blocks.filter((b) => b.kind !== 'break' && b.kind !== 'rest')
+  const work = day.blocks.filter(isWorkBlock)
   let marked = 0
   for (const b of work) {
     const key = blockEvidenceKey(b)
@@ -185,14 +190,16 @@ export function checkinLine(day: HydratedDay, progress: PlanProgress): string {
       ? 'Tomorrow. Light review, then stop — sleep is revision too.'
       : 'Review only from here. Nothing new; re-read the ink on your marked answers.'
   }
+  // Never a count of what did not happen. A student who is opening the plan
+  // after a few days away needs today sized for today, not a tally.
   if (progress.behind >= 3) {
-    return `You're ${progress.behind} days behind the plan. Don't catch up — today's blocks are the whole job.`
+    return "A few days went by without a tick — that's life, not a verdict. Today is sized for today; nothing was carried over."
   }
   if (progress.behind > 0) {
-    return `One or two days slipped. Today's blocks are enough; the plan already has slack in it.`
+    return "A day slipped. Today's plan already has room for that."
   }
   if (progress.done >= 3) {
-    return `${progress.done} days done, none missed. ${examEncouragement(day.daysLeft)}`
+    return `${progress.done} days done. ${examEncouragement(day.daysLeft)}`
   }
   return examEncouragement(day.daysLeft)
 }
@@ -266,7 +273,19 @@ export function formatMinutes(min: number): string {
   return m === 0 ? `${h} h` : `${h} h ${m} min`
 }
 
-/** The blocks a student actually does — breaks and rest lines excluded. */
+/**
+ * The kinds that are work. Classify by membership, never by exclusion: the
+ * roadmap added 'buffer' (time in hand) and 'learn', and a buffer counted
+ * as work would tell the check-in email a student has "20 min on the plan"
+ * they do not.
+ */
+export const WORK_KINDS: ReadonlySet<PlanBlockKind> = new Set<PlanBlockKind>(['drill', 'timed_paper', 'review', 'learn'])
+
+export function isWorkBlock(block: Pick<PlanBlock, 'kind'>): boolean {
+  return WORK_KINDS.has(block.kind)
+}
+
+/** The blocks a student actually does — breaks, rest lines and time in hand excluded. */
 export function workBlocks(day: Pick<HydratedDay, 'blocks'>): HydratedBlock[] {
-  return day.blocks.filter((b) => b.kind !== 'break' && b.kind !== 'rest')
+  return day.blocks.filter(isWorkBlock)
 }

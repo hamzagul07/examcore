@@ -48,7 +48,7 @@ export function timeGreeting(firstName: string): string {
 export function examEncouragement(daysLeft: number): string {
   if (daysLeft <= 0) return "Today is the day. You've got this."
   if (daysLeft <= 3) return 'Almost there. Stay calm.'
-  if (daysLeft <= 7) return 'Final week. Make it count.'
+  if (daysLeft <= 7) return 'Final week. Short sessions, then rest.'
   if (daysLeft <= 14) return 'Two weeks out. Trust your prep.'
   if (daysLeft <= 30) return 'The home stretch. Stay consistent.'
   return 'Plenty of time. Steady wins.'

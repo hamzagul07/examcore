@@ -29,9 +29,16 @@ import {
 import { ExplainBlock } from '@/components/courses/ExplainBlock'
 import { FeatureHint, markHintUsed } from '@/components/courses/FeatureHint'
 import { ResumeStrip } from '@/components/courses/ResumeStrip'
+import { RoadmapChip } from '@/components/plan/RoadmapChip'
 import { Highlighter, useHighlights } from '@/components/courses/Highlighter'
 import { HighlightRecap } from '@/components/courses/HighlightRecap'
 import { stagesPresent, stageForSection, STUDY_PREF_KEY } from '@/lib/courses/study-mode'
+import {
+  nextScrollTop,
+  scrollFrom,
+  studyScrollDecision,
+  type PendingTarget,
+} from '@/lib/courses/study-scroll'
 import {
   VISUAL_NOTES_PREF_KEY,
   buildNoteSketch,
@@ -846,6 +853,7 @@ export function CourseLessonPage({
               <p className="study-focus-title mono" id="lesson-study-focus">
                 <span className="study-focus-k">STUDY</span>
                 <span className="study-focus-name">{L.name}</span>
+                <RoadmapChip variant="modebar" />
               </p>
             ) : (
               <>

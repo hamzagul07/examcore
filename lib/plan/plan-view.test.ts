@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict'
+import { PLAN_VERSION } from '@/lib/plan/build-study-plan'
 import {
+  WORK_KINDS,
   blockEvidenceKey,
+  isWorkBlock,
   carryOverDone,
   checkinLine,
   doneStreak,
@@ -99,7 +102,8 @@ assert.match(checkinLine(day(3, '2026-09-25', 'exam', 0), { scheduled: 0, done: 
 
 assert.ok(planOutdated({}), 'a plan from before versions is outdated')
 assert.ok(planOutdated({ version: 1 }))
-assert.ok(!planOutdated({ version: 2 }))
+assert.ok(planOutdated({ version: 2 }), 'a v2 plan is offered the roadmap rebuild')
+assert.ok(!planOutdated({ version: PLAN_VERSION }))
 
 // Weeks of seven from day 1.
 {
@@ -115,7 +119,7 @@ assert.match(checkinLine(plan.days[2]!, planProgress(plan, {}, '2026-09-18')), /
 assert.match(checkinLine(plan.days[4]!, planProgress(plan, {}, '2026-09-20')), /sleep/i)
 assert.match(
   checkinLine(day(9, '2026-09-24', 'study', 50), { scheduled: 8, done: 4, behind: 4, totalWorkDays: 12, totalDone: 4 }),
-  /4 days behind.*Don't catch up/
+  /A few days went by without a tick/
 )
 assert.match(
   checkinLine(day(9, '2026-09-24', 'study', 50), { scheduled: 8, done: 7, behind: 1, totalWorkDays: 12, totalDone: 7 }),
@@ -123,7 +127,7 @@ assert.match(
 )
 assert.match(
   checkinLine(day(9, '2026-09-24', 'study', 50), { scheduled: 8, done: 8, behind: 0, totalWorkDays: 12, totalDone: 8 }),
-  /8 days done, none missed/
+  /8 days done\./
 )
 assert.ok(checkinLine(day(1, '2026-09-16', 'study', 50, 19), { scheduled: 0, done: 0, behind: 0, totalWorkDays: 12, totalDone: 0 }).length > 10)
 
@@ -166,6 +170,23 @@ assert.equal(isoDate(new Date(Date.UTC(2026, 8, 16, 23, 30))), '2026-09-16')
   const d = { blocks: [drill, { kind: 'break' as const, minutes: 5, label: '' }, ib] }
   assert.deepEqual(markedBlocks(d, new Set(['q:9709/12|ON2024|2(b)'])), { marked: 1, total: 2 })
   assert.deepEqual(markedBlocks(d, new Set()), { marked: 0, total: 2 })
+}
+
+// Work is classified by membership: a buffer is time in hand, a learn block is work, a marked-work key needs a marking task type.
+{
+  const buffer: HydratedDay['blocks'][number] = { kind: 'buffer', minutes: 25, label: 'In hand', taskType: 'buffer' }
+  const learn: HydratedDay['blocks'][number] = { kind: 'learn', minutes: 20, label: 'lesson', subjectCode: '9709', topic: { code: '1.6', name: 'Series', source: 'syllabus', weight: 0 }, taskType: 'concept' }
+  const diag: HydratedDay['blocks'][number] = { kind: 'drill', minutes: 10, label: 'check', subjectCode: '9709', topic: { code: '1.6', name: 'Series', source: 'syllabus', weight: 0 }, taskType: 'diagnostic' }
+  const rev: HydratedDay['blocks'][number] = { kind: 'review', minutes: 10, label: 'review', subjectCode: '9709', topic: { code: '1.6', name: 'Series', source: 'syllabus', weight: 0 }, taskType: 'review' }
+  assert.deepEqual([...WORK_KINDS].sort(), ['drill', 'learn', 'review', 'timed_paper'])
+  assert.ok(!isWorkBlock(buffer))
+  assert.ok(isWorkBlock(learn))
+  assert.equal(workBlocks({ blocks: [buffer] }).length, 0, 'a buffer is never work')
+  assert.deepEqual(markedBlocks({ blocks: [buffer] }, new Set(['t:9709|1.6'])), { marked: 0, total: 0 })
+  assert.equal(blockEvidenceKey(learn), null, 'a lesson leaves no marked answer')
+  assert.equal(blockEvidenceKey(diag), 't:9709|1.6', 'a diagnostic is marked work')
+  assert.equal(blockEvidenceKey(rev), null, 'a review is not keyed')
+  assert.deepEqual(markedBlocks({ blocks: [buffer, learn, diag] }, new Set(['t:9709|1.6'])), { marked: 1, total: 2 })
 }
 
 // Rebuilding keeps ticks by date, not by day number.

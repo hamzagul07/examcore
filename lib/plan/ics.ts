@@ -6,6 +6,10 @@
  * escaped, dates as VALUE=DATE with an exclusive DTEND. UIDs are stable
  * per plan generation and day, so re-importing the same file updates rather
  * than duplicates.
+ *
+ * Only work blocks become rows (workBlocks, by WORK_KINDS): a roadmap's
+ * learn block renders like a drill, with its link; breaks and time in hand
+ * are not events.
  */
 
 import { formatMinutes, workBlocks, type HydratedPlan } from '@/lib/plan/plan-view'

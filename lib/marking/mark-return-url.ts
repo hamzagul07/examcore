@@ -14,6 +14,22 @@ export function appendMarkReturnUrl(href: string, returnPath: string): string {
 }
 
 /**
+ * The roadmap's return path with the task the desk was opened for, so the
+ * plan page can offer that task's check-in. Only the plan page reads `task`;
+ * any other return path is left alone.
+ */
+export function withReturnTask(returnPath: string | null, taskId: string | null | undefined): string | null {
+  if (!returnPath || !taskId || !returnPath.startsWith('/dashboard/plan')) return returnPath
+  try {
+    const url = new URL(returnPath, 'https://markscheme.app')
+    url.searchParams.set('task', taskId)
+    return `${url.pathname}${url.search}`
+  } catch {
+    return returnPath
+  }
+}
+
+/**
  * Safe return from /mark. Allows lesson paths (`/courses/...`) and a small set of
  * dashboard desks so Vault / insights can deep-link students back after marking.
  */

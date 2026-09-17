@@ -5,15 +5,35 @@ import {
   jsonWithAuthCookies,
 } from '@/lib/supabase-server'
 import {
+  buildAndSaveRoadmap,
   buildAndSaveStudyPlan,
   deleteStudyPlan,
   isKnownPlanSubject,
-  loadStudyPlan,
+  loadRoadmapRolled,
+  markCheckinOpened,
+  previewRoadmap,
   setPlanDayDone,
   type BuildPlanRequest,
+  type RoadmapServiceRequest,
 } from '@/lib/plan/study-plan-service'
-import { PREPAREDNESS_LABEL, planLength, type Preparedness, type WeekAvailability } from '@/lib/plan/build-study-plan'
+import { recordRoadmapEvent } from '@/lib/plan/events'
+import { planLength, type WeekAvailability } from '@/lib/plan/build-study-plan'
 import { isValidTimeZone, isoDate } from '@/lib/plan/plan-view'
+import { isRoadmapMode, modeFromStored } from '@/lib/plan/modes'
+import { isClockTime } from '@/lib/plan/availability'
+import { minuteOfDay } from '@/lib/plan/roadmap-view'
+import {
+  COMMITMENT_KIND_LABEL,
+  MIN_DAY_MINUTES,
+  SELF_RATINGS,
+  SESSION_LENGTHS,
+  type Commitment,
+  type RoadmapAvailability,
+  type SelfRating,
+  type SessionLength,
+  type TimeWindow,
+  type Weekday,
+} from '@/lib/plan/roadmap-types'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -21,10 +41,16 @@ export const dynamic = 'force-dynamic'
 /**
  * The student's study plan.
  *
- *   GET    → { plan, done } (plan null when none)
- *   POST   → build from { examDate, preparedness, minutesPerDay, availability,
- *            subjects, startDate?, timeZone?, blockedDates?, subjectExamDates?,
- *            remindMe? }; replaces any existing plan
+ *   GET    → { plan, done, taskState, revision, evidence, canUndo } (plan
+ *            null when none). Runs the lazy rollover first, so the day the
+ *            student sees has already settled what happened since they last
+ *            looked; the plan carries lastDiff so "what changed" and Undo
+ *            survive the page load. ?src=checkin marks a check-in as opened;
+ *            so does any read within a day of a send.
+ *   POST   → build. A v3 body (mode, availabilityDetail, …) builds a
+ *            roadmap; preview: true returns { plan, feasibility } without
+ *            saving. A legacy body (preparedness, minutesPerDay,
+ *            availability) still builds a v2 plan. Replaces any existing plan.
  *   PATCH  → { day, done } ticks a day off
  *   DELETE → removes the plan
  *
@@ -34,9 +60,17 @@ export const dynamic = 'force-dynamic'
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
 const MAX_SUBJECTS = 4
-const MIN_MINUTES = 25
-const MAX_MINUTES = 300
+/** A 10-minute recall task is real work; below it nothing is. */
+const MIN_MINUTES = MIN_DAY_MINUTES
+const MAX_MINUTES = 600
 const MAX_BLOCKED_DATES = 60
+const MAX_WINDOWS = 4
+const MAX_COMMITMENTS = 20
+const MAX_LABEL = 40
+const MAX_COMPONENT = 40
+const MAX_TARGET_GRADE = 12
+/** Previews per minute per student; the wizard debounces, a loop does not. */
+const PREVIEW_PER_MINUTE = 20
 
 function validIso(s: unknown): s is string {
   if (typeof s !== 'string' || !ISO_DATE.test(s)) return false
@@ -44,12 +78,23 @@ function validIso(s: unknown): s is string {
   return !Number.isNaN(d.getTime()) && d.toISOString().slice(0, 10) === s
 }
 
-type ParsedBody = BuildPlanRequest & { remindMe?: boolean }
+type Parsed =
+  | { ok: true; kind: 'roadmap'; value: RoadmapServiceRequest }
+  | { ok: true; kind: 'legacy'; value: BuildPlanRequest & { remindMe?: boolean } }
+  | { ok: false; error: string }
 
-function parseBuildBody(body: unknown): { ok: true; value: ParsedBody } | { ok: false; error: string } {
-  if (!body || typeof body !== 'object') return { ok: false, error: 'Invalid body.' }
-  const b = body as Record<string, unknown>
+type Common = {
+  startDate: string
+  examDate: string
+  subjectCodes: string[]
+  timeZone: string
+  blockedDates: string[]
+  subjectExamDates: Record<string, string>
+  remindMe?: boolean
+}
 
+/** What every body shares: dates, subjects, zone, days away. */
+function parseCommon(b: Record<string, unknown>): { ok: true; value: Common } | { ok: false; error: string } {
   if (!validIso(b.examDate)) return { ok: false, error: 'Pick your exam date.' }
 
   // The client sends its local date so "Day 1" is the student's today, not
@@ -63,25 +108,6 @@ function parseBuildBody(body: unknown): { ok: true; value: ParsedBody } | { ok: 
   }
   if (planLength(startDate, b.examDate) === 0) {
     return { ok: false, error: 'Your exam date needs to be after today.' }
-  }
-
-  const preparedness = b.preparedness
-  if (typeof preparedness !== 'string' || !(preparedness in PREPAREDNESS_LABEL)) {
-    return { ok: false, error: 'Tell us how prepared you feel.' }
-  }
-
-  const minutesPerDay = Number(b.minutesPerDay)
-  if (!Number.isFinite(minutesPerDay) || minutesPerDay < MIN_MINUTES || minutesPerDay > MAX_MINUTES) {
-    return { ok: false, error: `Minutes per day should be between ${MIN_MINUTES} and ${MAX_MINUTES}.` }
-  }
-
-  const availability = b.availability
-  if (
-    !Array.isArray(availability) ||
-    availability.length !== 7 ||
-    !availability.every((m) => Number.isFinite(Number(m)) && Number(m) >= 0 && Number(m) <= MAX_MINUTES)
-  ) {
-    return { ok: false, error: 'Availability needs seven weekday values.' }
   }
 
   const subjects = b.subjects
@@ -122,9 +148,6 @@ function parseBuildBody(body: unknown): { ok: true; value: ParsedBody } | { ok: 
     value: {
       startDate,
       examDate: b.examDate,
-      preparedness: preparedness as Preparedness,
-      minutesPerDay: Math.round(minutesPerDay),
-      availability: availability.map((m) => Math.round(Number(m))) as WeekAvailability,
       subjectCodes,
       timeZone,
       blockedDates,
@@ -134,12 +157,224 @@ function parseBuildBody(body: unknown): { ok: true; value: ParsedBody } | { ok: 
   }
 }
 
+function minutesIn(v: unknown, lo: number, hi: number): number | null {
+  const n = Number(v)
+  if (!Number.isFinite(n) || n < lo || n > hi) return null
+  return Math.round(n)
+}
+
+/** A list of clock windows. Windows may not cross midnight; spans (no-study, quiet hours, commitments) may. */
+function parseWindows(v: unknown, opts: { allowCross: boolean; max: number }): TimeWindow[] | string {
+  if (!Array.isArray(v)) return 'Expected a list of times.'
+  if (v.length > opts.max) return `At most ${opts.max} windows.`
+  const out: TimeWindow[] = []
+  for (const w of v) {
+    const win = w as { start?: unknown; end?: unknown }
+    if (!win || !isClockTime(win.start) || !isClockTime(win.end)) return 'Times should look like 16:30.'
+    if (!opts.allowCross && minuteOfDay(win.end) <= minuteOfDay(win.start)) return 'Windows must end after they start'
+    if (win.start === win.end) return 'Windows must end after they start'
+    out.push({ start: win.start, end: win.end })
+  }
+  return out
+}
+
+function parseAvailability(v: unknown): { ok: true; value: RoadmapAvailability } | { ok: false; error: string } {
+  if (!v || typeof v !== 'object') return { ok: false, error: 'Tell us when you can study.' }
+  const a = v as Record<string, unknown>
+  const weekdayMinutes = minutesIn(a.weekdayMinutes, 0, MAX_MINUTES)
+  const weekendMinutes = minutesIn(a.weekendMinutes, 0, MAX_MINUTES)
+  if (weekdayMinutes === null || weekendMinutes === null) {
+    return { ok: false, error: `Minutes per day should be between 0 and ${MAX_MINUTES}.` }
+  }
+  if (Math.max(weekdayMinutes, weekendMinutes) < MIN_MINUTES) {
+    return { ok: false, error: `At least ${MIN_MINUTES} minutes on some day, or there is nothing to plan.` }
+  }
+  const windowsRaw = (a.windows ?? {}) as Record<string, unknown>
+  const weekday = parseWindows(windowsRaw.weekday ?? [], { allowCross: false, max: MAX_WINDOWS })
+  if (typeof weekday === 'string') return { ok: false, error: weekday }
+  const weekend = parseWindows(windowsRaw.weekend ?? [], { allowCross: false, max: MAX_WINDOWS })
+  if (typeof weekend === 'string') return { ok: false, error: weekend }
+
+  const sessionLength = Number(a.sessionLength)
+  if (!SESSION_LENGTHS.includes(sessionLength as SessionLength)) return { ok: false, error: 'Pick a session length.' }
+  const breakRhythm = a.breakRhythm
+  if (breakRhythm !== 'short' && breakRhythm !== 'standard' && breakRhythm !== 'generous') {
+    return { ok: false, error: 'Pick a break rhythm.' }
+  }
+
+  const commitmentsRaw = Array.isArray(a.commitments) ? a.commitments : []
+  if (commitmentsRaw.length > MAX_COMMITMENTS) return { ok: false, error: `At most ${MAX_COMMITMENTS} commitments.` }
+  const commitments: Commitment[] = []
+  for (const c of commitmentsRaw as Array<Record<string, unknown>>) {
+    if (!c || typeof c !== 'object') return { ok: false, error: 'A commitment needs a label and times.' }
+    const kind = typeof c.kind === 'string' && c.kind in COMMITMENT_KIND_LABEL ? (c.kind as Commitment['kind']) : 'other'
+    const label = typeof c.label === 'string' && c.label.trim() ? c.label.trim().slice(0, MAX_LABEL) : COMMITMENT_KIND_LABEL[kind]
+    if (!isClockTime(c.start) || !isClockTime(c.end) || c.start === c.end) return { ok: false, error: 'Commitment times should look like 16:30.' }
+    const daysRaw = Array.isArray(c.days) ? c.days : []
+    const days = [...new Set(daysRaw.map(Number).filter((d) => Number.isInteger(d) && d >= 0 && d <= 6))] as Weekday[]
+    if (days.length === 0) return { ok: false, error: `Pick at least one day for ${label}.` }
+    const id = typeof c.id === 'string' && c.id.trim() ? c.id.trim().slice(0, 40) : `c${commitments.length + 1}`
+    commitments.push({ id, label, kind, days: days.sort(), start: c.start, end: c.end })
+  }
+
+  const noStudy = parseWindows(a.noStudy ?? [], { allowCross: true, max: MAX_WINDOWS })
+  if (typeof noStudy === 'string') return { ok: false, error: noStudy }
+  const quiet = parseWindows(a.quietHours ? [a.quietHours] : [], { allowCross: true, max: 1 })
+  if (typeof quiet === 'string') return { ok: false, error: quiet }
+  const quietHours = quiet[0] ?? { start: '22:00', end: '07:00' }
+  const reminderTime = isClockTime(a.reminderTime) ? a.reminderTime : '08:00'
+
+  return {
+    ok: true,
+    value: {
+      weekdayMinutes,
+      weekendMinutes,
+      windows: { weekday, weekend },
+      sessionLength: sessionLength as SessionLength,
+      breakRhythm,
+      commitments,
+      noStudy,
+      quietHours,
+      reminderTime,
+    },
+  }
+}
+
+function parseBuildBody(body: unknown): Parsed {
+  if (!body || typeof body !== 'object') return { ok: false, error: 'Invalid body.' }
+  const b = body as Record<string, unknown>
+  const common = parseCommon(b)
+  if (!common.ok) return common
+  const { subjectCodes } = common.value
+
+  const modeRaw = b.mode ?? b.preparedness
+  if (typeof modeRaw !== 'string' || !(isRoadmapMode(modeRaw) || modeRaw === 'pass' || modeRaw === 'secure' || modeRaw === 'stretch')) {
+    return { ok: false, error: 'Tell us how prepared you feel.' }
+  }
+  const mode = modeFromStored(modeRaw)
+
+  // Legacy body: the seven-weekday form. Kept so the first plans' builder
+  // and any older client still build.
+  if (b.availabilityDetail === undefined || b.availabilityDetail === null) {
+    const minutesPerDay = Number(b.minutesPerDay)
+    if (!Number.isFinite(minutesPerDay) || minutesPerDay < MIN_MINUTES || minutesPerDay > MAX_MINUTES) {
+      return { ok: false, error: `Minutes per day should be between ${MIN_MINUTES} and ${MAX_MINUTES}.` }
+    }
+    const availability = b.availability
+    if (
+      !Array.isArray(availability) ||
+      availability.length !== 7 ||
+      !availability.every((m) => Number.isFinite(Number(m)) && Number(m) >= 0 && Number(m) <= MAX_MINUTES)
+    ) {
+      return { ok: false, error: 'Availability needs seven weekday values.' }
+    }
+    return {
+      ok: true,
+      kind: 'legacy',
+      value: {
+        ...common.value,
+        preparedness: modeRaw === 'pass' || modeRaw === 'secure' || modeRaw === 'stretch' ? modeRaw : 'secure',
+        minutesPerDay: Math.round(minutesPerDay),
+        availability: availability.map((m) => Math.round(Number(m))) as WeekAvailability,
+      },
+    }
+  }
+
+  // v3: availabilityDetail is the only capacity input; anything else sent
+  // about minutes is ignored.
+  const availability = parseAvailability(b.availabilityDetail)
+  if (!availability.ok) return availability
+
+  const subjectExamTimes: Record<string, string> = {}
+  if (b.subjectExamTimes && typeof b.subjectExamTimes === 'object') {
+    for (const [code, value] of Object.entries(b.subjectExamTimes as Record<string, unknown>)) {
+      if (!subjectCodes.includes(code)) continue
+      if (!isClockTime(value)) return { ok: false, error: 'Exam times should look like 09:00.' }
+      subjectExamTimes[code] = value
+    }
+  }
+  const subjectComponents: Record<string, string> = {}
+  if (b.subjectComponents && typeof b.subjectComponents === 'object') {
+    for (const [code, value] of Object.entries(b.subjectComponents as Record<string, unknown>)) {
+      if (!subjectCodes.includes(code) || typeof value !== 'string' || !value.trim()) continue
+      subjectComponents[code] = value.trim().slice(0, MAX_COMPONENT)
+    }
+  }
+  const selfRatings: Record<string, SelfRating> = {}
+  if (b.selfRatings && typeof b.selfRatings === 'object') {
+    for (const [code, value] of Object.entries(b.selfRatings as Record<string, unknown>)) {
+      if (!subjectCodes.includes(code)) continue
+      if (!SELF_RATINGS.includes(value as SelfRating)) return { ok: false, error: 'Pick where you stand in each subject.' }
+      selfRatings[code] = value as SelfRating
+    }
+  }
+  const targetGrade = typeof b.targetGrade === 'string' && b.targetGrade.trim() ? b.targetGrade.trim().slice(0, MAX_TARGET_GRADE) : null
+  const prioritySubject = typeof b.prioritySubject === 'string' && subjectCodes.includes(b.prioritySubject) ? b.prioritySubject : null
+
+  return {
+    ok: true,
+    kind: 'roadmap',
+    value: {
+      startDate: common.value.startDate,
+      examDate: common.value.examDate,
+      mode,
+      subjects: subjectCodes,
+      subjectExamDates: common.value.subjectExamDates,
+      subjectExamTimes,
+      subjectComponents,
+      selfRatings,
+      availabilityDetail: availability.value,
+      timeZone: common.value.timeZone,
+      blockedDates: common.value.blockedDates,
+      targetGrade,
+      prioritySubject,
+      remindMe: common.value.remindMe,
+      preview: b.preview === true,
+    },
+  }
+}
+
+// --- preview rate limit ------------------------------------------------------------
+
+const previewHits = new Map<string, number[]>()
+
+function previewAllowed(userId: string, now = Date.now()): boolean {
+  const windowStart = now - 60_000
+  const hits = (previewHits.get(userId) ?? []).filter((t) => t > windowStart)
+  if (hits.length >= PREVIEW_PER_MINUTE) {
+    previewHits.set(userId, hits)
+    return false
+  }
+  hits.push(now)
+  previewHits.set(userId, hits)
+  // Forget everyone else's stale buckets now and then.
+  if (previewHits.size > 500) {
+    for (const [k, v] of previewHits) if (!v.some((t) => t > windowStart)) previewHits.delete(k)
+  }
+  return true
+}
+
+// --- handlers -----------------------------------------------------------------------
+
 export async function GET(request: NextRequest) {
   const { user, pendingCookies } = await authenticateRouteRequest(request)
   if (!user) return jsonWithAuthCookies({ error: 'Not signed in' }, pendingCookies, { status: 401 })
 
-  const saved = await loadStudyPlan(createServiceClient(), user.id)
-  return jsonWithAuthCookies(saved ?? { plan: null, done: {} }, pendingCookies)
+  const admin = createServiceClient()
+  const rolled = await loadRoadmapRolled(admin, user.id)
+  if (!rolled) return jsonWithAuthCookies({ plan: null, done: {}, taskState: {}, revision: 0, evidence: [], canUndo: false }, pendingCookies)
+  const { loaded, ctx } = rolled
+
+  // Opened from a check-in email or push (or soon after one went out): the backoff counter starts again.
+  const explicit = request.nextUrl.searchParams.get('src') === 'checkin'
+  if (await markCheckinOpened(admin, user.id, loaded, { explicit, now: ctx.now })) {
+    await recordRoadmapEvent(admin, user.id, { eventType: 'reminder_clicked', planGeneratedAt: loaded.generatedAt, revision: loaded.revision })
+  }
+
+  return jsonWithAuthCookies(
+    { plan: loaded.plan, done: loaded.done, taskState: loaded.taskState, revision: loaded.revision, evidence: [...ctx.evidence], canUndo: loaded.undo !== null },
+    pendingCookies
+  )
 }
 
 export async function POST(request: NextRequest) {
@@ -157,7 +392,18 @@ export async function POST(request: NextRequest) {
 
   const admin = createServiceClient()
   try {
-    const saved = await buildAndSaveStudyPlan(admin, user.id, parsed.value)
+    if (parsed.kind === 'roadmap' && parsed.value.preview) {
+      if (!previewAllowed(user.id)) {
+        return jsonWithAuthCookies({ error: 'Too many previews. Give it a moment.' }, pendingCookies, { status: 429 })
+      }
+      const preview = await previewRoadmap(admin, user.id, parsed.value)
+      return jsonWithAuthCookies({ plan: preview.plan, feasibility: preview.feasibility, preview: true }, pendingCookies)
+    }
+
+    const saved =
+      parsed.kind === 'roadmap'
+        ? await buildAndSaveRoadmap(admin, user.id, parsed.value)
+        : { ...(await buildAndSaveStudyPlan(admin, user.id, parsed.value)), taskState: {}, revision: 1, feasibility: null }
 
     // The plan's exam date is the profile's exam date — the countdown, the
     // reminders and the plan should never disagree. The morning check-in
@@ -168,6 +414,15 @@ export async function POST(request: NextRequest) {
       profilePatch.email_exam_reminders = parsed.value.remindMe
     }
     await admin.from('user_profiles').update(profilePatch).eq('id', user.id)
+
+    if (parsed.kind === 'roadmap') {
+      await recordRoadmapEvent(admin, user.id, {
+        eventType: 'roadmap_generated',
+        planGeneratedAt: saved.plan.generatedAt,
+        revision: 1,
+        meta: { mode: parsed.value.mode, feasibility: saved.feasibility?.state ?? null, subjects: parsed.value.subjects.length },
+      })
+    }
 
     return jsonWithAuthCookies(saved, pendingCookies)
   } catch (err) {

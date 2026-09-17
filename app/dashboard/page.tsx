@@ -269,13 +269,12 @@ export default async function DashboardPage() {
                 firstName={greetingName}
               />
               {/* The student the planner was built for has not marked yet.
-                  Shown once they have a plan or an exam date, so DB-01's
-                  first-mark CTA keeps the top of the page otherwise. */}
-              {savedPlan || examDate ? (
-                <div className="mt-6 px-4 sm:px-0">
-                  <TodayPlanCard saved={savedPlan} examDate={examDate} evidence={planEvidence} />
-                </div>
-              ) : null}
+                  DB-01's first-mark CTA keeps the top of the page; the
+                  roadmap offer (or the plan's hero) sits under it, exam date
+                  or not — the wizard collects the dates. */}
+              <div className="mt-6 px-4 sm:px-0">
+                <TodayPlanCard saved={savedPlan} examDate={examDate} evidence={planEvidence} />
+              </div>
               <BillingLimitBanner className="mb-6 mt-6" />
               {showMax ? (
                 <div className="mt-6 space-y-4 px-4 sm:px-0">

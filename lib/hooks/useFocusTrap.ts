@@ -45,6 +45,23 @@ export function useFocusTrap(
 ) {
   const { restoreFocus = true } = options
 
+  // Where focus was before the trap took it. Most callers (every Sheet) pass
+  // no returnFocusRef, and closing then left focus on <body> because the
+  // focused close button had unmounted — from there the keyboard no longer
+  // reached a self-scrolling surface like the study-mode overlay.
+  //
+  // Its own effect, keyed on `active` alone: the trap effect below re-runs on
+  // every render (its extraRoots default is a fresh array), and restoring the
+  // opener from that cleanup pulled focus out of an open Sheet on every
+  // re-render — on a phone that closed the keyboard mid-word.
+  useEffect(() => {
+    if (!active || !restoreFocus || returnFocusRef) return
+    const opener = document.activeElement instanceof HTMLElement ? document.activeElement : null
+    return () => {
+      if (opener?.isConnected) focusWithoutScroll(opener)
+    }
+  }, [active, restoreFocus, returnFocusRef])
+
   useEffect(() => {
     if (!active) return
     const container = containerRef.current

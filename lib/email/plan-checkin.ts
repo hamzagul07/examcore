@@ -10,12 +10,18 @@ import {
   renderBrandedEmailHtml,
 } from '@/lib/email/templates'
 import { SITE_URL } from '@/lib/site-config'
-import { formatMinutes, workBlocks, type HydratedDay, type PlanProgress } from '@/lib/plan/plan-view'
+import { formatMinutes, workBlocks, type HydratedBlock, type HydratedDay, type PlanProgress } from '@/lib/plan/plan-view'
 
 /**
- * The morning check-in: today's blocks from the student's own plan, with one
+ * The morning check-in: today's tasks from the student's own plan, with one
  * honest line about how they are doing against it. Sent by the plan-checkin
  * cron (lib/plan/checkin.ts) — awaited, so the batch can record the send.
+ *
+ * Each row is the task's objective (what to do, from a template) and opens
+ * the task's own destination with its id, so the plan page can offer the
+ * check-in when the student comes back. The second line is a fact about
+ * recent days ("You've studied on 4 of the last 6 days"), never a tally of
+ * what did not happen.
  *
  * Rendering is separate from sending so the email can be previewed
  * (scripts/plan-preview.ts --email) without an API key.
@@ -25,8 +31,32 @@ export type PlanCheckinPayload = {
   recipientName?: string | null
   day: HydratedDay
   line: string
+  /** studiedDaysLine(): a fact about the last week. Optional for v2 callers. */
+  studiedLine?: string
   progress: PlanProgress
   unsubscribeHref: string
+}
+
+/**
+ * The task's link with its id, so the plan page knows which task came back,
+ * and with src=checkin, so opening a task straight from the email counts as
+ * opening the check-in (the reminder backoff would otherwise never reset).
+ * The return path carries src=checkin too, for the way back to the plan.
+ */
+function taskHref(block: HydratedBlock, planHref: string): string {
+  if (!block.href) return planHref
+  if (!block.href.startsWith('/')) return block.href
+  const hashAt = block.href.indexOf('#')
+  const base = hashAt >= 0 ? block.href.slice(0, hashAt) : block.href
+  const hash = hashAt >= 0 ? block.href.slice(hashAt) : ''
+  const qAt = base.indexOf('?')
+  const path = qAt >= 0 ? base.slice(0, qAt) : base
+  const params = new URLSearchParams(qAt >= 0 ? base.slice(qAt + 1) : '')
+  if (block.id && !params.has('task')) params.set('task', block.id)
+  params.set('src', 'checkin')
+  const back = params.get('return')
+  if (back && back.startsWith('/dashboard/plan') && !/[?&]src=/.test(back)) params.set('return', `${back}${back.includes('?') ? '&' : '?'}src=checkin`)
+  return `${SITE_URL}${path}?${params.toString()}${hash}`
 }
 
 export function renderPlanCheckinEmail(payload: PlanCheckinPayload): {
@@ -35,7 +65,7 @@ export function renderPlanCheckinEmail(payload: PlanCheckinPayload): {
   html: string
   text: string
 } {
-  const { day, progress } = payload
+  const { day } = payload
   const first = (payload.recipientName ?? '').trim().split(/\s+/)[0] || 'there'
   // ?src=checkin: the page counts the open (plan_checkin_opened) and strips it.
   const planHref = `${SITE_URL}/dashboard/plan?src=checkin`
@@ -51,26 +81,25 @@ export function renderPlanCheckinEmail(payload: PlanCheckinPayload): {
   const rows = blocks
     .map((b) =>
       linkRow({
-        titleHtml: `<div style="font-family:${EMAIL_SANS};font-size:14px;color:${EMAIL_INK};line-height:1.4">${esc(b.label)}</div>`,
+        titleHtml: `<div style="font-family:${EMAIL_SANS};font-size:14px;color:${EMAIL_INK};line-height:1.4">${esc(b.objective ?? b.label)}</div>`,
         metaHtml: [b.resourceLabel, `${b.minutes} min`]
           .filter((m): m is string => Boolean(m))
           .map(esc)
           .join(' · '),
-        href: b.href ? `${SITE_URL}${b.href}` : planHref,
+        href: taskHref(b, planHref),
         actionLabel: b.kind === 'timed_paper' ? 'Sit it →' : 'Open →',
       })
     )
     .join('')
 
-  const progressLine =
-    progress.scheduled > 0
-      ? `<p style="margin:0 0 6px;font-family:${EMAIL_SANS};font-size:12px;color:${EMAIL_MUTED}">${progress.done} of ${progress.scheduled} days done so far.</p>`
-      : ''
+  const studiedLine = payload.studiedLine
+    ? `<p style="margin:0 0 6px;font-family:${EMAIL_SANS};font-size:12px;color:${EMAIL_MUTED}">${esc(payload.studiedLine)}</p>`
+    : ''
 
   const bodyHtml =
     `<p style="margin:0 0 4px;font-size:16px;color:${EMAIL_INK}">Hi ${esc(first)},</p>` +
     `<p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#555">${esc(payload.line)}</p>` +
-    progressLine +
+    studiedLine +
     `<p style="margin:0 0 10px;font-family:${EMAIL_SANS};font-size:13px;font-weight:600;letter-spacing:.02em;text-transform:uppercase;color:${EMAIL_MUTED}">Day ${day.day} · ${esc(countdown)}</p>` +
     `<p style="margin:0 0 6px;font-size:15px;line-height:1.5;color:${EMAIL_INK}">${esc(day.focus)}</p>` +
     (rows ? linkRowTable(rows) : '') +
@@ -80,11 +109,11 @@ export function renderPlanCheckinEmail(payload: PlanCheckinPayload): {
     `Hi ${first},`,
     '',
     payload.line,
-    progress.scheduled > 0 ? `${progress.done} of ${progress.scheduled} days done so far.` : '',
+    payload.studiedLine ?? '',
     '',
     `Day ${day.day} · ${countdown}`,
     day.focus,
-    ...blocks.map((b) => `- ${b.label} (${b.minutes} min)${b.href ? ` ${SITE_URL}${b.href}` : ''}`),
+    ...blocks.map((b) => `- ${b.objective ?? b.label} (${b.minutes} min)${b.href ? ` ${taskHref(b, planHref)}` : ''}`),
     '',
     `Open today's plan: ${planHref}`,
     '',

@@ -1621,7 +1621,7 @@
 }
 
 .ms-plan-segment {
-  min-height: 40px;
+  min-height: 44px;
   padding: 0 14px;
   border: 1.5px solid var(--ec-border);
   border-radius: 3px;
@@ -2261,4 +2261,1219 @@ a.ms-plan-block__link:hover {
 
 .ms-plan-offer {
   padding: 22px 24px;
+}
+
+/* ------------------------------------------------------------------
+   Exam roadmap (.ms-rm-*)
+   /dashboard/plan (RoadmapScreen), the dashboard hero (TodayPlanCard),
+   the Study Mode chip and the /mark next card. Tokens only; rem so the
+   text scales; emerald for done and progress, crimson never — nothing on
+   the roadmap is an error. Appended as one block; the .ms-plan-* rules
+   above are untouched except the two block variants at the end.
+   ------------------------------------------------------------------ */
+
+/* header */
+.ms-rm-head__title {
+  margin-bottom: 0.5rem;
+}
+
+.ms-rm-head__line {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-head__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.ms-rm-head__name {
+  font-size: 0.8125rem;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-tabs {
+  gap: 0.375rem;
+}
+
+/* status chip: three tones, none of them crimson */
+.ms-rm-status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  padding: 0 0.625rem;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.ms-rm-status--on_track {
+  background: var(--ec-brand-muted);
+  border-color: color-mix(in srgb, var(--ec-brand) 35%, transparent);
+  color: var(--ec-chip-success-text);
+}
+
+.ms-rm-status--adjusted {
+  background: var(--ec-chip-warning-bg);
+  border-color: color-mix(in srgb, var(--ec-chip-warning-text) 35%, transparent);
+  color: var(--ec-chip-warning-text);
+}
+
+.ms-rm-status--reset {
+  background: var(--ec-chip-neutral-bg);
+  border-color: var(--ec-border);
+  color: var(--ec-chip-neutral-text);
+}
+
+.ms-rm-status--button {
+  min-height: 2.75rem;
+  cursor: pointer;
+}
+
+.ms-rm-status--button:hover,
+.ms-rm-status--button:focus-visible {
+  border-color: var(--ec-brand);
+  color: var(--ec-text-primary, var(--ec-ink));
+}
+
+.ms-rm-status--button:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+}
+
+/* hero */
+.ms-rm-hero {
+  margin-bottom: 1.5rem;
+}
+
+.ms-rm-hero__lead {
+  margin: 0 0 0.25rem;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-hero__title {
+  margin: 0;
+  font-family: var(--ec-font-display, Georgia, serif);
+  font-size: 1.375rem;
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--ec-text-primary, var(--ec-ink));
+}
+
+.ms-rm-hero__sub {
+  margin: 0.375rem 0 0;
+  font-size: 0.9375rem;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-hero--done .ms-rm-hero__title,
+.ms-rm-hero--no_time .ms-rm-hero__title {
+  font-size: 1.25rem;
+}
+
+.ms-rm-hero--rest {
+  border-style: dashed;
+}
+
+.ms-rm-hero__adjusted {
+  margin: 0.75rem 0 0;
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid var(--ec-chip-warning-text);
+  background: var(--ec-chip-warning-bg);
+  border-radius: 3px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ec-text-primary, var(--ec-ink));
+}
+
+.ms-rm-hero__actions {
+  margin-top: 1rem;
+}
+
+.ms-rm-hero__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+}
+
+.ms-rm-hero__open {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-weight: 500;
+  color: var(--ec-text-secondary);
+  text-underline-offset: 4px;
+}
+
+.ms-rm-hero__open:hover {
+  color: var(--ec-brand);
+  text-decoration: underline;
+}
+
+/* evidence chips */
+.ms-rm-chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin: 0.625rem 0 0;
+  padding: 0;
+}
+
+.ms-rm-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.625rem;
+  padding: 0 0.5rem;
+  border: 1px solid var(--ec-border);
+  border-radius: 3px;
+  background: var(--ec-chip-neutral-bg);
+  color: var(--ec-chip-neutral-text);
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+}
+
+/* buttons: 44px targets, three weights */
+.ms-rm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.ms-rm-actions--secondary {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--ec-border);
+}
+
+.ms-rm-actions--end {
+  justify-content: flex-end;
+}
+
+.ms-rm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 3px;
+  background: var(--ec-surface);
+  color: var(--ec-text-primary, var(--ec-ink));
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease, color 120ms ease;
+}
+
+.ms-rm-btn:hover:not(:disabled) {
+  border-color: var(--ec-brand);
+  color: var(--ec-brand);
+}
+
+.ms-rm-btn:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+}
+
+.ms-rm-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+/* The primary action keeps the brand fill and its on-brand text: .ms-rm-btn's
+   surface background and the global `a { color: inherit }` reset must not win
+   over .ec-btn-primary (which sits in a lower layer) — cream on white was
+   unreadable (1.05:1). */
+.ms-rm-btn--primary,
+a.ms-rm-btn--primary {
+  border-color: transparent;
+  background: var(--ec-brand);
+  color: var(--ec-on-brand-text);
+}
+
+.ms-rm-btn--primary:hover:not(:disabled),
+a.ms-rm-btn--primary:hover {
+  border-color: transparent;
+  background: var(--ec-brand-deep, var(--ec-brand));
+  color: var(--ec-on-brand-text);
+}
+
+.ms-rm-btn--quiet {
+  border-color: transparent;
+  background: transparent;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-btn--quiet:hover:not(:disabled) {
+  background: var(--ec-brand-muted);
+}
+
+.ms-rm-btn--quiet.is-on {
+  border-color: var(--ec-brand);
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+}
+
+.ms-rm-btn--link {
+  border-color: transparent;
+  background: transparent;
+  color: var(--ec-text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* the day and its timeline */
+.ms-rm-day {
+  margin-bottom: 1.5rem;
+}
+
+.ms-rm-day__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  margin: 0 0 0.5rem;
+  font-size: 0.8125rem;
+}
+
+.ms-rm-day__date {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ms-rm-day__sub,
+.ms-rm-day__mins {
+  color: var(--ec-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.ms-rm-day__hand {
+  margin-left: auto;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--ec-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.ms-rm-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ms-rm-rows--trailing {
+  margin-top: 0.5rem;
+}
+
+.ms-rm-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0.625rem;
+  min-width: 0;
+}
+
+/* the time gutter: mono, tabular, fixed width so the rows line up */
+.ms-rm-time {
+  flex: 0 0 auto;
+  width: 5.5rem;
+  padding-top: 0.75rem;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--ec-text-secondary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .ms-rm-time {
+    width: 4.75rem;
+    font-size: 0.6875rem;
+  }
+}
+
+.ms-rm-task {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 2.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  padding: 0.625rem 0.75rem;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-surface);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.ms-rm-task:hover {
+  border-color: var(--ec-brand);
+}
+
+.ms-rm-task:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+}
+
+.ms-rm-task__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem 0.625rem;
+  font-size: 0.75rem;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-task__min {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-variant-numeric: tabular-nums;
+}
+
+.ms-rm-task__pin {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-brand);
+}
+
+.ms-rm-task__objective {
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+.ms-rm-row--compact .ms-rm-task__objective {
+  font-size: 0.875rem;
+}
+
+.ms-rm-task__res {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+  color: var(--ec-text-secondary);
+}
+
+/* category tags: subtle tints from the chip tokens */
+.ms-rm-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.25rem;
+  padding: 0 0.375rem;
+  border-radius: 3px;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.ms-rm-tag--learn {
+  background: var(--ec-chip-info-bg);
+  color: var(--ec-chip-info-text);
+}
+
+.ms-rm-tag--practise {
+  background: var(--ec-chip-success-bg);
+  color: var(--ec-chip-success-text);
+}
+
+.ms-rm-tag--review {
+  background: var(--ec-chip-accent-bg);
+  color: var(--ec-chip-accent-text);
+}
+
+.ms-rm-tag--recover {
+  background: var(--ec-chip-neutral-bg);
+  color: var(--ec-chip-neutral-text);
+}
+
+/* standing: done is emerald, everything else neutral */
+.ms-rm-standing {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-standing.is-done {
+  color: var(--ec-chip-success-text);
+}
+
+.ms-rm-standing.is-started {
+  color: var(--ec-brand);
+}
+
+.ms-rm-row.is-done .ms-rm-task {
+  background: color-mix(in srgb, var(--ec-brand-muted) 70%, var(--ec-surface));
+  border-color: color-mix(in srgb, var(--ec-brand) 30%, var(--ec-border));
+}
+
+.ms-rm-row.is-done .ms-rm-task__objective,
+.ms-rm-row.is-skipped .ms-rm-task__objective,
+.ms-rm-row.is-deferred .ms-rm-task__objective,
+.ms-rm-row.is-dropped .ms-rm-task__objective {
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-row.is-skipped .ms-rm-task,
+.ms-rm-row.is-deferred .ms-rm-task,
+.ms-rm-row.is-dropped .ms-rm-task {
+  border-style: dashed;
+}
+
+.ms-rm-row.is-started .ms-rm-task {
+  border-color: var(--ec-brand);
+}
+
+.ms-rm-done {
+  flex: 0 0 auto;
+  align-self: center;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  padding: 0 0.75rem;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 3px;
+  background: var(--ec-surface);
+  color: var(--ec-text-secondary);
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: border-color 120ms ease, color 120ms ease, background-color 120ms ease;
+}
+
+.ms-rm-done:hover:not(:disabled) {
+  border-color: var(--ec-brand);
+  color: var(--ec-brand);
+  background: var(--ec-brand-muted);
+}
+
+.ms-rm-done:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+}
+
+.ms-rm-done:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+/* breaks and commitments */
+.ms-rm-row--break {
+  min-height: 1.75rem;
+  align-items: center;
+}
+
+.ms-rm-break {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-break::before,
+.ms-rm-break::after {
+  content: '';
+  flex: 1 1 auto;
+  border-top: 1px dashed var(--ec-border);
+}
+
+.ms-rm-commitment {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0.375rem 0.75rem;
+  border: 1.5px dashed var(--ec-border);
+  border-radius: 4px;
+  color: var(--ec-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.ms-rm-row--commitment.is-exam .ms-rm-commitment,
+.ms-rm-commitment.is-exam {
+  border-style: solid;
+  font-weight: 600;
+  color: var(--ec-text-primary, var(--ec-ink));
+}
+
+.ms-rm-commitment__when {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.ms-rm-more {
+  min-height: 2.75rem;
+  padding: 0 0.75rem;
+  border: 1.5px dashed var(--ec-border);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--ec-text-secondary);
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  flex: 1 1 auto;
+}
+
+.ms-rm-more:hover {
+  border-color: var(--ec-brand);
+  color: var(--ec-brand);
+}
+
+.ms-rm-more:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+}
+
+/* the dashboard hero's "then" rows */
+.ms-rm-next {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ms-rm-next__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem 0.625rem;
+  min-height: 2.25rem;
+  padding: 0.375rem 0.625rem;
+  border-radius: 3px;
+  border: 1px solid color-mix(in srgb, var(--ec-border) 70%, transparent);
+  font-size: 0.875rem;
+}
+
+.ms-rm-next__row .ms-rm-time {
+  width: auto;
+  padding-top: 0;
+}
+
+.ms-rm-next__objective {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.ms-rm-next__min {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  color: var(--ec-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* notes and sync line: never crimson */
+.ms-rm-note {
+  padding: 0.625rem 0.875rem;
+  border-left: 3px solid var(--ec-brand);
+  background: var(--ec-brand-muted);
+  border-radius: 3px;
+  color: var(--ec-text-primary, var(--ec-ink));
+}
+
+.ms-rm-sync {
+  margin: 0;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--ec-text-secondary);
+}
+
+/* sheets */
+.ms-rm-sheet {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-right: 2rem;
+}
+
+.ms-rm-sheet__title {
+  margin: 0;
+  font-family: var(--ec-font-display, Georgia, serif);
+  font-size: 1.25rem;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.ms-rm-sheet__sub {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-sheet__dest {
+  margin: 0.25rem 0 0;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-sheet__standing {
+  margin: 0.375rem 0 0;
+}
+
+.ms-rm-sheet__footer {
+  margin: 0.75rem 0 0;
+  padding-top: 0.625rem;
+  border-top: 1px dashed var(--ec-border);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-sheet__ok {
+  margin: 0.75rem 0 0;
+  padding: 0.625rem 0.75rem;
+  border-left: 3px solid var(--ec-brand);
+  background: var(--ec-brand-muted);
+  border-radius: 3px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.ms-rm-sheet__sync {
+  margin: 0.5rem 0 0;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-why {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.ms-rm-why--short {
+  gap: 0.375rem;
+}
+
+.ms-rm-why__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid color-mix(in srgb, var(--ec-brand) 45%, transparent);
+}
+
+.ms-rm-why__text {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.ms-rm-why__source {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-why__plain {
+  margin: 0.75rem 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+/* check-in feelings */
+.ms-rm-feels {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.ms-rm-feel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.125rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-surface);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.ms-rm-feel:hover:not(:disabled),
+.ms-rm-feel.is-on {
+  border-color: var(--ec-brand);
+}
+
+.ms-rm-feel.is-on {
+  background: var(--ec-brand-muted);
+}
+
+.ms-rm-feel:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+}
+
+.ms-rm-feel__label {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.ms-rm-feel__effect {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-feel__input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin-top: 0.5rem;
+  padding-left: 0.75rem;
+}
+
+.ms-rm-inline-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ms-rm-input {
+  width: 7rem;
+  min-height: 2.75rem;
+}
+
+.ms-rm-ratings {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--ec-border);
+}
+
+.ms-rm-rating {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.ms-rm-rating__opts {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+/* replan diff */
+.ms-rm-diff {
+  margin-top: 0.75rem;
+}
+
+.ms-rm-diff__head {
+  margin: 0 0 0.375rem;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-diff__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ms-rm-diff__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.ms-rm-diff__kind {
+  flex: 0 0 auto;
+  min-width: 4.5rem;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ec-chip-warning-text);
+}
+
+.ms-rm-diff--quiet .ms-rm-diff__kind {
+  color: var(--ec-chip-neutral-text);
+}
+
+.ms-rm-diff--quiet .ms-rm-diff__label {
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-diff__detail {
+  flex: 1 0 100%;
+  padding-left: 5rem;
+  font-size: 0.8125rem;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-diff__kept {
+  margin: 0.75rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--ec-text-secondary);
+}
+
+/* roadmap tab */
+.ms-rm-section {
+  margin: 0 0 0.625rem;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-daycards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.ms-rm-daycard {
+  padding: 0.875rem 1rem;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-surface);
+}
+
+.ms-rm-daycard--rest {
+  border-style: dashed;
+}
+
+.ms-rm-daycard--exam {
+  border-color: var(--ec-text-primary, var(--ec-ink));
+}
+
+.ms-rm-daycard__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  font-size: 0.8125rem;
+}
+
+.ms-rm-daycard__date {
+  font-weight: 600;
+}
+
+.ms-rm-daycard__num {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-daycard__mins {
+  color: var(--ec-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.ms-rm-daycard__focus {
+  margin: 0.375rem 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.ms-rm-daycard__commitments {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ms-rm-daycard .ms-rm-rows {
+  margin-top: 0.5rem;
+}
+
+.ms-rm-milestones {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ms-rm-milestone {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr) auto auto;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  min-height: 2.5rem;
+  padding: 0.5rem 0.25rem;
+  border-bottom: 1px dashed color-mix(in srgb, var(--ec-border) 80%, transparent);
+  font-size: 0.875rem;
+}
+
+.ms-rm-milestone--rest {
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-milestone--exam .ms-rm-milestone__focus {
+  font-weight: 600;
+}
+
+.ms-rm-milestone.is-done .ms-rm-milestone__focus {
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-milestone__date {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--ec-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.ms-rm-milestone__focus {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ms-rm-milestone__mins {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  color: var(--ec-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.ms-rm-milestone__exam {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.125rem 0.375rem;
+  border: 1px solid var(--ec-text-primary, var(--ec-ink));
+  border-radius: 3px;
+}
+
+.ms-rm-milestone__done {
+  color: var(--ec-chip-success-text);
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .ms-rm-milestone {
+    grid-template-columns: 5.25rem minmax(0, 1fr) auto;
+  }
+  .ms-rm-milestone__exam {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+.ms-rm-examlist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ms-rm-exam {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  min-height: 2.25rem;
+  padding: 0.375rem 0.25rem;
+  border-bottom: 1px dashed color-mix(in srgb, var(--ec-border) 80%, transparent);
+  font-size: 0.875rem;
+}
+
+.ms-rm-exam.is-past {
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-exam__date {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  min-width: 6.5rem;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-exam__label {
+  font-weight: 600;
+}
+
+.ms-rm-exam__time {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  color: var(--ec-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Study Mode chip: reserves its height (a 44px target) so the mode bar never
+   shifts, and truncates inside the bar rather than running off its edge. */
+.ms-rm-chipwrap {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 1 auto;
+  min-height: 2.75rem;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.ms-rm-chiplink {
+  display: inline-block;
+  box-sizing: border-box;
+  min-height: 2.75rem;
+  line-height: calc(2.75rem - 2px);
+  padding: 0 0.625rem;
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 35%, transparent);
+  border-radius: 3px;
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.ms-rm-chiplink:hover {
+  border-color: var(--ec-brand);
+}
+
+.ms-rm-chiplink:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+}
+
+/* /mark next card */
+.ms-rm-nextcard {
+  padding: 1.25rem 1.375rem;
+  border-left: 4px solid var(--ec-brand);
+}
+
+.ms-rm-nextcard__title {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.ms-rm-nextcard__task {
+  font-weight: 400;
+}
+
+.ms-rm-nextcard__meta {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--ec-text-secondary);
+}
+
+/* the two block kinds the roadmap added to the planner's lists */
+.ms-plan-block--learn .ms-plan-block__label {
+  font-style: italic;
+}
+
+.ms-plan-block--buffer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px 0 50px;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-plan-block--buffer::before,
+.ms-plan-block--buffer::after {
+  content: '';
+  flex: 1 1 auto;
+  border-top: 1px dashed var(--ec-border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-rm-btn,
+  .ms-rm-task,
+  .ms-rm-done,
+  .ms-rm-feel,
+  .ms-rm-more,
+  .ms-rm-chiplink {
+    transition: none;
+  }
 }

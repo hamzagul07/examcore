@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { renderPlanIcs } from '@/lib/plan/ics'
-import type { HydratedPlan } from '@/lib/plan/plan-view'
+import { workBlocks, type HydratedPlan } from '@/lib/plan/plan-view'
 
 const plan: HydratedPlan = {
   version: 2,
@@ -33,6 +33,20 @@ const plan: HydratedPlan = {
     },
     { day: 2, date: '2026-09-17', daysLeft: 18, kind: 'exam', focus: 'Physics exam today.', workMinutes: 0, blocks: [{ kind: 'rest', minutes: 0, label: 'Rest' }] },
     { day: 3, date: '2026-10-04', daysLeft: 1, kind: 'review', focus: 'Light review, then stop.', workMinutes: 25, blocks: [{ kind: 'review', minutes: 25, label: 'Re-read', href: '/dashboard/review' }] },
+    {
+      day: 4,
+      date: '2026-09-18',
+      daysLeft: 17,
+      kind: 'study',
+      focus: 'A roadmap day.',
+      workMinutes: 30,
+      blocks: [
+        { kind: 'learn', minutes: 20, label: 'Read the Series lesson', href: '/courses/9709/series#worked', taskType: 'concept' },
+        { kind: 'break', minutes: 5, label: '5 min off', taskType: 'break' },
+        { kind: 'drill', minutes: 10, label: 'Quick check on Series', href: '/mark?subject=9709', taskType: 'diagnostic' },
+        { kind: 'buffer', minutes: 25, label: 'In hand — use it if you need it, or stop early.', taskType: 'buffer' },
+      ],
+    },
   ],
 }
 
@@ -42,7 +56,7 @@ const lines = ics.split('\r\n')
 assert.equal(lines[0], 'BEGIN:VCALENDAR')
 assert.equal(lines[lines.length - 2], 'END:VCALENDAR', 'ends with END:VCALENDAR + CRLF')
 assert.equal(lines[lines.length - 1], '')
-assert.equal((ics.match(/BEGIN:VEVENT/g) ?? []).length, 4, 'three days + the exam')
+assert.equal((ics.match(/BEGIN:VEVENT/g) ?? []).length, 5, 'four days + the exam')
 
 // All-day events with an exclusive end.
 assert.ok(ics.includes('DTSTART;VALUE=DATE:20260916\r\nDTEND;VALUE=DATE:20260917'))
@@ -69,5 +83,16 @@ assert.ok(ics.includes('DTSTAMP:20260916T073000Z'))
 // Links in the description are absolute.
 assert.ok(unfolded.includes('https://markscheme.app/mark?practice=1&paper=9709%2F12&q=2(b)'))
 assert.ok(unfolded.includes('Open the plan: https://markscheme.app/dashboard/plan'))
+
+// A roadmap day: learn rows render like drills, buffers and breaks are not listed, and the summary counts work only.
+{
+  assert.ok(unfolded.includes('• 20 min — Read the Series lesson https://markscheme.app/courses/9709/series#worked'), 'a learn block is a row with its link')
+  assert.ok(unfolded.includes('• 10 min — Quick check on Series'), 'the drill follows')
+  assert.ok(!unfolded.includes('In hand'), 'time in hand is not an event row')
+  assert.ok(!unfolded.includes('5 min off'), 'breaks are not rows')
+  assert.ok(ics.includes('SUMMARY:Day 4 · 30 min · 17 days to go'), 'the buffer is not counted as work')
+  const roadmapDay = plan.days[3]!
+  assert.deepEqual(workBlocks(roadmapDay).map((b) => b.kind), ['learn', 'drill'], 'workBlocks excludes the buffer and the break')
+}
 
 console.log('ics.test.ts: ok')

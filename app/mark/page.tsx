@@ -51,6 +51,7 @@ import {
   PostMarkExamDateAsk,
   wasExamDateAskDismissed,
 } from '@/components/mark/PostMarkExamDateAsk'
+import { RoadmapNextCard } from '@/components/plan/RoadmapNextCard'
 import { SegmentedControl } from '@/components/ui/SegmentedControl'
 import { MARK_DURATION_SINGLE } from '@/lib/copy/product-lexicon'
 import {
@@ -110,7 +111,7 @@ import {
   subjectCandidates,
   takeHandoff,
 } from '@/lib/courses/mark-handoff'
-import { parseMarkReturnPath } from '@/lib/marking/mark-return-url'
+import { parseMarkReturnPath, withReturnTask } from '@/lib/marking/mark-return-url'
 import { takePracticeAnswer } from '@/lib/marking/practice-answer'
 import {
   questionTotalPromiseIsBroken,
@@ -807,7 +808,8 @@ export default function MarkPage() {
       }
     }
 
-    const returnTo = parseMarkReturnPath(sp.get('return'))
+    // The roadmap's task id rides back with the return path, so the plan can offer its check-in.
+    const returnTo = withReturnTask(parseMarkReturnPath(sp.get('return')), sp.get('task'))
 
     let cancelled = false
     fetch(
@@ -4069,6 +4071,8 @@ export default function MarkPage() {
                         onDismiss={() => setExamDateAskDismissed(true)}
                       />
                     ) : null}
+                    {/* The way back to the roadmap, when there is one. */}
+                    {billingSummary?.signedIn ? <RoadmapNextCard /> : null}
                     {/* Guests: signup ask while marks are still on screen. */}
                     {billingSummary && !billingSummary.signedIn ? (
                       <GuestConversionPrompt

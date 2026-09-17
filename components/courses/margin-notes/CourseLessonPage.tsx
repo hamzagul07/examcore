@@ -221,6 +221,10 @@ export function CourseLessonPage({
       if (e.key === 'Escape' && el?.open) {
         el.open = false
         el.querySelector<HTMLElement>('summary')?.focus()
+        // Escape closes the topmost thing only. The study-mode exit listens on
+        // window, after this one; without this the same press also threw the
+        // reader out of study mode.
+        e.stopPropagation()
       }
     }
     document.addEventListener('pointerdown', onPointer)
@@ -529,6 +533,68 @@ export function CourseLessonPage({
     return () => window.cancelAnimationFrame(id)
   }, [study])
 
+  // Scroll keys move the overlay. Focus alone is not enough: WebKit drops
+  // rapid arrow taps even with the overlay focused, and focus falls to <body>
+  // whenever the focused element unmounts (a "reveal" button, a closed
+  // dialog) — from there Firefox scrolls the overlay, WebKit nothing, and
+  // Chromium whatever was last clicked. See lib/courses/study-scroll.ts for
+  // the precedence (dialog → editable/widget → modifier → pane).
+  //
+  // The in-flight target lets held or rapid keys add up: each press measures
+  // from where the last one is heading, not from wherever the smooth scroll
+  // animation happens to be mid-way.
+  const pendingScrollRef = useRef<PendingTarget | null>(null)
+  const scrollOverlayForKey = useCallback((root: HTMLElement, e: KeyboardEvent) => {
+    // Editable and key-owning controls keep their keys — the caret moves,
+    // the quick-check arrows move between cards, the segmented radios
+    // change selection, Space presses a button. A dialog keeps them all.
+    const target = e.target instanceof Element ? e.target : null
+    const intent = studyScrollDecision(e, target, document)
+    if (!intent) return false
+    const now = performance.now()
+    const from = scrollFrom(pendingScrollRef.current, root.scrollTop, now)
+    const modebar = root.querySelector<HTMLElement>('.lesson-modebar-wrap')
+    const top = nextScrollTop(
+      intent,
+      {
+        scrollTop: root.scrollTop,
+        clientHeight: root.clientHeight,
+        scrollHeight: root.scrollHeight,
+        stickyTop: modebar?.offsetHeight ?? 0,
+      },
+      from
+    )
+    pendingScrollRef.current = { top, at: now }
+    e.preventDefault()
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    root.scrollTo({ top, behavior: reduced ? 'auto' : 'smooth' })
+    return true
+  }, [])
+
+  const onOverlayKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLElement>) => {
+      if (!study) return
+      scrollOverlayForKey(e.currentTarget, e.nativeEvent)
+    },
+    [study, scrollOverlayForKey]
+  )
+
+  // Focus lost to <body> (the focused element unmounted) — keys then never
+  // reach the overlay's own handler. Take only those: a key whose target is
+  // the body, with study on and no dialog open, and hand focus back to the
+  // overlay so the next press is a normal one.
+  useEffect(() => {
+    if (!study) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.target !== document.body && e.target !== document.documentElement) return
+      const root = document.querySelector<HTMLElement>('.lesson-page[data-study="on"]')
+      if (!root) return
+      if (scrollOverlayForKey(root, e)) root.focus({ preventScroll: true })
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [study, scrollOverlayForKey])
+
   // Esc exits immersion — but never while typing in an input / teach-back box.
   useEffect(() => {
     if (!study) return
@@ -621,8 +687,9 @@ export function CourseLessonPage({
       data-study={study ? 'on' : 'off'}
       // Focusable (not tabbable) so it can be the keyboard scroll target in
       // study mode — see toggleStudy. Off-mode it is inert: focus() on it is
-      // only ever called when the overlay is on.
+      // only ever called when the overlay is on, and the key handler bails.
       tabIndex={-1}
+      onKeyDown={onOverlayKeyDown}
       data-visual-notes={visualNotes ? 'on' : 'off'}
       data-reading-font={readingPrefs.font}
       data-reading-size={readingPrefs.size}

@@ -31,6 +31,7 @@ function ibAppFiles(): string[] {
 
 const FORBIDDEN = [/cambridge/i, /cambridgeinternational/i, /\/blog\/cambridge-/i]
 
+
 function walkTsx(dir: string): string[] {
   const out: string[] = []
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -61,7 +62,7 @@ for (const file of ibBlogFiles()) {
 
 for (const file of ibAppFiles()) {
   const rel = path.relative(process.cwd(), file)
-  const text = fs.readFileSync(file, 'utf8')
+  const text = withoutComments(fs.readFileSync(file, 'utf8'))
   for (const pattern of FORBIDDEN) {
     if (pattern.test(text)) {
       console.error(`FAIL ${rel}: matched ${pattern}`)

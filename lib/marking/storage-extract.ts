@@ -9,6 +9,7 @@ import {
   questionMarkingType,
 } from './extraction-prompts'
 import { questionNumbersMatch } from './question-number'
+import { normalizeExtractedQuestion } from './normalize-extracted-scheme'
 import { extractJSON } from './json'
 import { sessionNameToCode } from './session'
 import type { MarkSchemeRow, MarkingStyle } from './types'
@@ -98,7 +99,10 @@ export async function tryExtractFromStorage(
     const subject = SUBJECT_CODE_MAP[subject_code] || 'Unknown'
     const rows: Record<string, unknown>[] = []
 
-    for (const q of parsed.questions as Record<string, unknown>[]) {
+    for (const raw of parsed.questions as Record<string, unknown>[]) {
+      // Translate model-shaped output (prose allocations, "8-10" level strings,
+      // `type: "mixed"`) into the validator's shapes before judging it.
+      const q = normalizeExtractedQuestion(raw, paperMarkingType)
       if (
         !validateExtractedQuestion(
           q,
@@ -107,9 +111,14 @@ export async function tryExtractFromStorage(
         )
       ) {
         // A five-point extraction for an eight-mark question used to become a
-        // shared permanent rubric; name every rejected row in server telemetry.
+        // shared permanent rubric; name every rejected row in server telemetry,
+        // with the shape it came in, so the next rejection is diagnosable from
+        // the log line alone.
+        const ms = q.mark_scheme
+        const shape =
+          ms && typeof ms === 'object' ? Object.keys(ms as object).join(',') : typeof ms
         console.error(
-          `Rejected extracted mark scheme for question ${String(q.question_number ?? '(missing)')}`
+          `Rejected extracted mark scheme for question ${String(q.question_number ?? '(missing)')} (mark_scheme keys: ${shape})`
         )
         continue
       }

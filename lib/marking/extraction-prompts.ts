@@ -42,6 +42,51 @@ Common question table patterns to recognize and format properly:
 
 DO NOT use plain pipes without separator rows. DO NOT use ASCII-art tables. ALWAYS use proper markdown with --- separator and leading/trailing | on every row.`
 
+/**
+ * `mixed` components (9699/1x, 9609/1x, 9990/1x, 9084/1x…) hold point-marked
+ * and banded questions on the same paper. The old wording — "include the
+ * appropriate sub-structure" — left the shape to the model, which returned the
+ * mark allocation as prose (`marking_guidance`) and bands as `levels` with
+ * "8–10" strings. Both fail validation, so no mixed-paper scheme was cached
+ * from 2026-08-24 until this was spelled out. Keep every shape explicit here;
+ * `normalizeExtractedQuestion` catches drift but must not be the primary path.
+ */
+const MIXED_SCHEMA = `
+For mixed papers, EVERY question must be extracted in the FULL structure of its own style. Read the style off the mark scheme itself:
+
+- An answer key / one-letter answers → mcq:
+{
+  "type": "mcq",
+  "answer_key": { "1": "C" },
+  "notes": ""
+}
+
+- "1 mark for …" lines, "up to N marks for each …", tick-list points → point_based. One entry per creditable mark; "value" is an integer and the values MUST sum exactly to total_marks. When the scheme says "Reward a maximum of two ways. Up to 4 marks for each way: 1 mark for X, 1 mark for Y…", list the per-way marks for EACH way (2 × 4 = 8 entries, descriptions "Way 1: …", "Way 2: …"):
+{
+  "type": "point_based",
+  "marks": [
+    { "id": 1, "type": "B1", "value": 1, "description": "Way 1: making a point/giving a way (e.g. …)", "ecf_from": null, "acceptable_forms": [] }
+  ],
+  "indicative_content": ["Verbatim indicative content bullets"],
+  "acceptable_final_answers": [],
+  "common_errors": [],
+  "notes": "Other examiner guidance, verbatim"
+}
+
+- "Level 3: 8–10 marks" descriptors → level_of_response. "bands" with INTEGER marks_min / marks_max (never an "8-10" string, never a "levels" key), the verbatim descriptor, and the Level 0 band (marks_min 0, marks_max 0) when the scheme prints it:
+{
+  "type": "level_of_response",
+  "assessment_objectives": [],
+  "bands": [
+    { "level": 3, "marks_min": 8, "marks_max": 10, "descriptor": "Full verbatim band descriptor" },
+    { "level": 0, "marks_min": 0, "marks_max": 0, "descriptor": "No response worthy of credit." }
+  ],
+  "indicative_content": ["Verbatim indicative content bullets"],
+  "notes": ""
+}
+
+Set "type" to that concrete style ("mcq" | "point_based" | "level_of_response") — never "mixed" — and set the question's marking_type to the same value. All of the above lives INSIDE the question's "mark_scheme" object, never beside question_text at the question level. Never leave the mark allocation only as prose (for example a "marking_guidance" string): the marks or bands MUST be structured, with the prose kept in "notes".`
+
 export function buildExtractionPrompt(markingType: MarkingStyle): string {
   const base = `You are extracting Cambridge International A-Level mark schemes from official PDFs. You have been given:
 - The QUESTION PAPER (first PDF) — contains the actual problem statements
@@ -95,7 +140,7 @@ For point-based papers, mark_scheme structure:
   "common_errors": ["What students commonly get wrong"],
   "notes": "Examiner notes if any"
 }
-Mark types: B1, M1, A1, B2, M2, A2, DM1, C1 etc. (B = independent, M = method, A = accuracy, C = comprehension)`,
+Mark types: B1, M1, A1, B2, M2, A2, DM1, C1 etc. (B = independent, M = method, A = accuracy, C = comprehension). One entry per creditable mark; the values MUST sum exactly to total_marks.`,
 
     level_of_response: `
 For level-of-response (essay) questions, mark_scheme structure:
@@ -113,15 +158,9 @@ For level-of-response (essay) questions, mark_scheme structure:
   "indicative_content": ["Key points students may mention"],
   "notes": "Examiner notes, 'answers must include...' etc."
 }
-Extract ALL band levels with exact mark ranges and descriptors.`,
+Extract ALL band levels with exact mark ranges and descriptors. marks_min / marks_max are integers (never a "13-16" string) and the Level 0 band is included when the scheme prints it.`,
 
-    mixed: `
-For mixed papers, each question may differ. mark_scheme structure:
-{
-  "type": "mixed",
-  "question_style": "mcq" | "point_based" | "level_of_response",
-  ... include the appropriate sub-structure for that question's style ...
-}`,
+    mixed: MIXED_SCHEMA,
   }
 
   return `${base}\n${schemas[markingType]}`
@@ -186,7 +225,7 @@ For point-based, mark_scheme structure:
   "common_errors": [],
   "notes": ""
 }
-Mark types: B1, M1, A1, etc.`,
+Mark types: B1, M1, A1, etc. One entry per creditable mark; the values MUST sum exactly to total_marks.`,
 
     level_of_response: `
 For level-of-response, mark_scheme structure:
@@ -203,15 +242,10 @@ For level-of-response, mark_scheme structure:
   ],
   "indicative_content": [],
   "notes": ""
-}`,
+}
+marks_min / marks_max are integers (never a "13-16" string); include the Level 0 band when the scheme prints it.`,
 
-    mixed: `
-For mixed papers, mark_scheme structure:
-{
-  "type": "mixed",
-  "question_style": "mcq" | "point_based" | "level_of_response",
-  ... appropriate sub-structure for that question's style ...
-}`,
+    mixed: MIXED_SCHEMA,
   }
 
   return `${base}\n${schemas[markingType]}`

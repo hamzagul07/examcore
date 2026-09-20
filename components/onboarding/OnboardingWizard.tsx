@@ -35,8 +35,10 @@ import {
   isApBoard,
   levelsForBoard,
   MAX_PROFILE_SUBJECTS,
+  getSubjectById,
 } from '@/lib/profile-options'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
+import { buildFirstMarkHref } from '@/lib/marking/first-mark-link'
 import { postOnboardingHref, sanitizeNextPath } from '@/lib/auth-redirect'
 import {
   inferMinimalOnboardingForContentPath,
@@ -363,7 +365,13 @@ export function OnboardingWizard({
     setStep((s) => Math.max(s - 1, 1))
   }
 
-  const markHref = postOnboardingHref(nextParam, rerun ? '/account/study' : '/mark')
+  // First run ends on /mark with a real question already loaded for the first
+  // subject they picked — the guided first mark. A rerun goes back to settings.
+  const firstSubjectCode = getSubjectById(subjects[0] ?? '', level)?.code ?? null
+  const markHref = postOnboardingHref(
+    nextParam,
+    rerun ? '/account/study' : buildFirstMarkHref(firstSubjectCode)
+  )
   const signInAgainHref = `/auth/signin?next=${encodeURIComponent(
     nextParam && nextParam !== '/onboarding' ? nextParam : '/onboarding'
   )}`

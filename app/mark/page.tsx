@@ -119,7 +119,8 @@ import {
 } from '@/lib/marking/require-question-total'
 import { normalizePaperSession } from '@/lib/marking/normalize-paper-session'
 import { applyTopicQuestionToPaperSelection } from '@/lib/marking/topic-question'
-import { StarterQuestionInvite } from '@/components/mark/StarterQuestionInvite'
+import { StarterQuestionInvite, type StarterQuestionPayload } from '@/components/mark/StarterQuestionInvite'
+import { wantsFirstMark } from '@/lib/marking/first-mark-link'
 import { CinematicMarkingExperience } from '@/components/mark/CinematicMarkingExperienceLazy'
 import { MarkingWaitOverlay } from '@/components/mark/MarkingWaitOverlay'
 import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
@@ -413,6 +414,8 @@ export default function MarkPage() {
   // General per-question total-marks control, shown on every single-question
   // upload where the denominator would otherwise be guessed by the model.
   const [totalMarksInput, setTotalMarksInput] = useState('')
+  /** Set when ?starter=1 loaded a real question into the form on arrival. */
+  const [autoStarter, setAutoStarter] = useState<{ ref: string; marks: number } | null>(null)
   const [marksInQuestion, setMarksInQuestion] = useState(false)
 
   useEffect(() => {
@@ -916,6 +919,50 @@ export default function MarkPage() {
         setSelectedSession(m[1])
         setSelectedYear(Number(m[2]))
       }
+    }
+  }, [])
+
+  // Guided first mark — /mark?starter=1[&subject=9709]. Onboarding and the
+  // empty dashboard send new students here. 508 signups, 33 have ever uploaded
+  // a paper: an empty form with an *offer* of a question loses most of them to
+  // the courses. Loading a real banked question for their subject, with its
+  // official scheme and total, means the first session can end with ink.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const sp = new URLSearchParams(window.location.search)
+    if (!wantsFirstMark(sp) || sp.get('practice') === '1' || sp.get('topic')) return
+    const subject = sp.get('subject')?.trim() || null
+    let cancelled = false
+    const qs = subject ? `?subject=${encodeURIComponent(subject)}` : ''
+    fetch(`/api/mark/starter-question${qs}`)
+      .then((r) => r.json())
+      .then((data: { found?: boolean } & Partial<StarterQuestionPayload>) => {
+        if (cancelled) return
+        if (
+          !data.found ||
+          !data.paper_code ||
+          !data.paper_session ||
+          !data.question_number ||
+          !data.question_text ||
+          typeof data.total_marks !== 'number'
+        ) {
+          return
+        }
+        applyStarterQuestion(data as StarterQuestionPayload)
+        setAutoStarter({
+          ref: `${data.paper_code} Q${data.question_number}`,
+          marks: data.total_marks,
+        })
+        trackFunnelEvent('starter_question_taken', {
+          subject: data.paper_code.split('/')[0] ?? null,
+          source: 'first_mark_link',
+        })
+      })
+      .catch(() => {
+        /* The empty form with its own invitation is the fallback. */
+      })
+    return () => {
+      cancelled = true
     }
   }, [])
 
@@ -3139,7 +3186,19 @@ export default function MarkPage() {
                     step 1: 1,207 of 1,300 sessions last month opened this page
                     and typed nothing. It disappears the moment they have work
                     of their own in hand. */}
-                {formIsEmpty ? (
+                {autoStarter ? (
+                  <div className="ms-starter-invite is-next" role="status">
+                    <p className="ms-starter-invite-lead">
+                      <strong>Your first question is loaded.</strong>{' '}
+                      <span className="ms-starter-invite-ref">
+                        {autoStarter.ref}, {autoStarter.marks}{' '}
+                        {autoStarter.marks === 1 ? 'mark' : 'marks'}
+                      </span>{' '}
+                      — the paper and the question are filled in for you. Write or photograph
+                      your answer, then press Mark.
+                    </p>
+                  </div>
+                ) : formIsEmpty ? (
                   <StarterQuestionInvite
                     subject={selectedSubject || null}
                     onLoad={applyStarterQuestion}

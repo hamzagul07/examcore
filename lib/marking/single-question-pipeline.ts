@@ -1143,17 +1143,26 @@ export async function runSingleQuestionMark(
     resolvedIb?.assessmentModel === 'criteria' &&
     Array.isArray(resolvedIb.criteria) &&
     resolvedIb.criteria.length > 0
+  // Sources, in order of trust: the student's number, the question text, the
+  // transcript of the upload (a photographed page carries the printed "[4]";
+  // a typed answer often repeats the header). With none of those, mark against
+  // the total the derive step reads or estimates, and say so on the result —
+  // the old hard stop here was the single largest marking failure in
+  // production and nobody who hit it came back.
   const totalGate = resolveRequiredQuestionTotal({
     questionMarks,
     extractedTotal: extractTotalMarksForGate(questionText),
+    uploadExtractedTotal: extractTotalMarksForGate(ocrText),
     hasOfficialSchemeTotal,
     hasIbCatalogTotal,
     marksInQuestion,
+    allowEstimate: true,
   })
   if (!totalGate.ok) {
     throw new Error(totalGate.message)
   }
   const resolvedQuestionTotal = totalGate.total
+  const totalMarksSource = totalGate.source
 
   const {
     markingResult,
@@ -1203,6 +1212,12 @@ export async function runSingleQuestionMark(
         null,
       syllabus_tags: resolvedTags.length ? resolvedTags : null,
     })
+  }
+
+  // Where the denominator came from, on the stored and streamed result, so the
+  // UI can label an estimated total and telemetry can count read vs guessed.
+  if (totalMarksSource) {
+    markingResult.total_marks_source = totalMarksSource
   }
 
   const timeSpentSeconds = Math.max(

@@ -15,7 +15,7 @@ export function LandingFounder() {
             <br />
             half the loop —
           </p>
-          <p className="ms-founder-note__sign">— H.G.</p>
+          <p className="ms-founder-note__sign">— Hamza Gul Hassan</p>
           <span className="ms-founder-note__stamp">M1</span>
         </aside>
         <div>
@@ -24,7 +24,15 @@ export function LandingFounder() {
             Past papers without the examiner&apos;s eye are half the loop — this closes it.&rdquo;
           </p>
           <p className="ms-micro">
-            BUILT BY A STUDENT · HONEST ABOUT AI LIMITS · NOT ENDORSED BY CAMBRIDGE INTERNATIONAL ·{' '}
+            BUILT BY{' '}
+            <Link
+              href="/hamza-gul-hassan"
+              className="ec-btn-underline"
+              style={{ fontSize: 12, fontFamily: 'var(--font-mono)' }}
+            >
+              HAMZA GUL HASSAN, FOUNDER &amp; CEO
+            </Link>{' '}
+            · HONEST ABOUT AI LIMITS · NOT ENDORSED BY CAMBRIDGE INTERNATIONAL ·{' '}
             <Link
               href="/about"
               className="ec-btn-underline"

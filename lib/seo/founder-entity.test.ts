@@ -5,6 +5,9 @@ import { organizationNode, personNode, profilePageNode } from './structured-data
 import { PAGE_SEO } from './page-meta'
 import { FOOTER_COMPANY_LINKS } from '@/lib/site-nav'
 import { SITE_URL } from '@/lib/site-config'
+import { FOUNDER_FAQ, FOUNDER_AT_A_GLANCE } from './founder-faq'
+import { buildLlmsTxt } from './llms-document'
+import { readFileSync } from 'node:fs'
 
 // One person, one name, one title, one URL — the whole point of the entity work.
 const person = personNode(DEFAULT_BLOG_AUTHOR)
@@ -43,6 +46,26 @@ assert.ok(PAGE_SEO['/hamza-gul-hassan'].title.startsWith('Hamza Gul Hassan'))
 assert.ok(
   FOOTER_COMPANY_LINKS.some((l) => l.href === '/hamza-gul-hassan'),
   'sitewide footer links to the founder page'
+)
+
+// The Q&A that answer engines lift, on the page and in llms.txt.
+assert.ok(FOUNDER_FAQ.length >= 3)
+assert.ok(
+  FOUNDER_FAQ.every((f) => /hamza[ -]gul[ -]hassan|markscheme/i.test(f.a)),
+  'every answer ties back to the person or the company'
+)
+assert.ok(FOUNDER_FAQ.some((f) => /who founded/i.test(f.q)), 'the founding question is answered directly')
+assert.ok(FOUNDER_AT_A_GLANCE.some((r) => r.term === 'Role' && r.value.startsWith('Founder & CEO')))
+
+const llms = buildLlmsTxt()
+assert.ok(
+  llms.includes('Founder & CEO: Hamza Gul Hassan — https://markscheme.app/hamza-gul-hassan'),
+  'llms.txt names the founder in the entity block'
+)
+assert.ok(/Who founded MarkScheme\?/.test(llms), 'llms.txt carries the founding Q&A')
+assert.ok(
+  readFileSync('public/llms.txt', 'utf8').includes('Founder & CEO: Hamza Gul Hassan'),
+  'the committed public/llms.txt was regenerated (pnpm seo:generate-llms)'
 )
 
 console.log('founder-entity: all assertions passed')

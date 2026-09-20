@@ -5,8 +5,10 @@ import { CONTACT_EMAIL, SITE_NAME } from '@/lib/site-config'
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { DEFAULT_BLOG_AUTHOR } from '@/lib/seo/authors'
 import { getFounderSameAs } from '@/lib/seo/entity'
+import { FOUNDER_AT_A_GLANCE, FOUNDER_FAQ } from '@/lib/seo/founder-faq'
 import {
   breadcrumbList,
+  faqPageNode,
   organizationNode,
   personNode,
   profilePageNode,
@@ -59,6 +61,7 @@ export default function FounderPage() {
           websiteNode(),
           profilePageNode(founder),
           personNode(founder),
+          faqPageNode(FOUNDER_FAQ, { speakableSelectors: ['#founder-faq'] }),
           breadcrumbList([
             { name: 'Home', path: '/' },
             { name: 'About', path: '/about' },
@@ -74,6 +77,23 @@ export default function FounderPage() {
 
       <MarketingSection className="!pt-0">
         <div className="mx-auto max-w-3xl">
+          <section className="ms-sec-tight" aria-labelledby="founder-glance">
+            <p className="ms-overline">At a glance</p>
+            <h2 id="founder-glance" className="sr-only">
+              {founder.name} at a glance
+            </h2>
+            <dl className="ms-dash-card grid gap-x-6 gap-y-3 sm:grid-cols-[max-content_1fr]">
+              {FOUNDER_AT_A_GLANCE.map((row) => (
+                <div key={row.term} className="contents">
+                  <dt className="ms-micro" style={{ fontWeight: 600 }}>
+                    {row.term.toUpperCase()}
+                  </dt>
+                  <dd className="ms-body-2 m-0">{row.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+
           <section className="ms-sec-tight" aria-labelledby="founder-about">
             <p className="ms-overline">Who he is</p>
             <h2 id="founder-about" className="ms-h3">
@@ -158,6 +178,38 @@ export default function FounderPage() {
               </Link>
               .
             </p>
+          </section>
+
+          <section className="ms-sec-tight" aria-labelledby="founder-words">
+            <p className="ms-overline">In his words</p>
+            <h2 id="founder-words" className="sr-only">
+              In his words
+            </h2>
+            <blockquote className="ms-founder-quote" style={{ margin: 0 }}>
+              &ldquo;Past papers without the examiner&apos;s eye are half the loop. You practise, you
+              check the answer, you <em>think</em> you&apos;d have scored, and then results day
+              disagrees. I built {SITE_NAME} so the examiner&apos;s eye is there at midnight when you
+              are revising alone.&rdquo;
+            </blockquote>
+          </section>
+
+          <section id="founder-faq" className="ms-sec-tight" aria-labelledby="founder-faq-heading">
+            <p className="ms-overline">Questions people ask</p>
+            <h2 id="founder-faq-heading" className="ms-h3">
+              About {founder.name}
+            </h2>
+            <div className="mt-3 space-y-5">
+              {FOUNDER_FAQ.map((item) => (
+                <div key={item.q}>
+                  <h3 className="font-[family-name:var(--font-display)] text-[19px] font-semibold text-[var(--ec-text-primary)]">
+                    {item.q}
+                  </h3>
+                  <p className="ms-body-2" style={{ marginTop: 6 }}>
+                    {item.a}
+                  </p>
+                </div>
+              ))}
+            </div>
           </section>
 
           <section className="ms-sec-tight" aria-labelledby="founder-contact">

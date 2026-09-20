@@ -3194,8 +3194,8 @@ export default function MarkPage() {
                         {autoStarter.ref}, {autoStarter.marks}{' '}
                         {autoStarter.marks === 1 ? 'mark' : 'marks'}
                       </span>{' '}
-                      — it is in the question box below. Write or photograph your answer,
-                      then press Mark.
+                      — the paper and the question are filled in for you. Write or photograph
+                      your answer, then press Mark.
                     </p>
                   </div>
                 ) : formIsEmpty ? (

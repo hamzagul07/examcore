@@ -146,6 +146,7 @@ export const INDEXNOW_PRIORITY_URLS = [
   '/changelog',
   '/faq',
   '/about',
+  '/hamza-gul-hassan',
   '/contact',
   '/llms.txt',
   '/blog/best-online-tools-cambridge-ib-marking-courses-2026',

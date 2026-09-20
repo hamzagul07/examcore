@@ -55,8 +55,10 @@ export function organizationNode(): JsonLd {
     },
     founder: {
       '@type': 'Person',
-      '@id': `${SITE_URL}/about#${DEFAULT_BLOG_AUTHOR.id}`,
+      '@id': `${DEFAULT_BLOG_AUTHOR.url}#${DEFAULT_BLOG_AUTHOR.id}`,
       name: DEFAULT_BLOG_AUTHOR.name,
+      jobTitle: DEFAULT_BLOG_AUTHOR.role,
+      url: DEFAULT_BLOG_AUTHOR.url,
     },
     ...(wikidataUrl
       ? {
@@ -90,11 +92,16 @@ export function personNode(author: SiteAuthor): JsonLd {
     '@type': 'Person',
     '@id': `${author.url}#${author.id}`,
     name: author.name,
+    ...(author.alternateName?.length ? { alternateName: author.alternateName } : {}),
+    ...(author.givenName ? { givenName: author.givenName } : {}),
+    ...(author.familyName ? { familyName: author.familyName } : {}),
     jobTitle: author.role,
     description: author.bio,
     url: author.url,
+    mainEntityOfPage: author.url,
     ...(author.image ? { image: author.image } : {}),
     worksFor: { '@id': `${SITE_URL}/#organization` },
+    affiliation: { '@id': `${SITE_URL}/#organization` },
     knowsAbout: [
       'Cambridge International examinations',
       'International Baccalaureate Diploma Programme',
@@ -111,6 +118,25 @@ export function personNode(author: SiteAuthor): JsonLd {
         }
       : {}),
     ...(founderSameAs.length > 0 ? { sameAs: founderSameAs } : {}),
+  }
+}
+
+/**
+ * schema.org ProfilePage for the founder's own URL — the page type Google
+ * documents for "a page about one person". mainEntity is the same Person node
+ * that Organization.founder and every blog byline point at, so a name query
+ * resolves to one entity with one job title and one set of profiles.
+ */
+export function profilePageNode(author: SiteAuthor): JsonLd {
+  return {
+    '@type': 'ProfilePage',
+    '@id': `${author.url}#profilepage`,
+    url: author.url,
+    name: `${author.name} — ${author.role} of ${SITE_NAME}`,
+    description: author.bio,
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+    inLanguage: 'en-GB',
+    mainEntity: { '@id': `${author.url}#${author.id}` },
   }
 }
 

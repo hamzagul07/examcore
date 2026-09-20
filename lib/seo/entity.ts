@@ -11,6 +11,7 @@ const DEFAULT_BRAND_TIKTOK = 'https://www.tiktok.com/@markscheme'
 const DEFAULT_BRAND_CRUNCHBASE = 'https://www.crunchbase.com/organization/markscheme'
 const DEFAULT_WIKIDATA_ENTITY = 'https://www.wikidata.org/wiki/Q140455387'
 const DEFAULT_FOUNDER_LINKEDIN = 'https://www.linkedin.com/in/hamza-gul-hassan-0568b7367/'
+const DEFAULT_FOUNDER_GITHUB = 'https://github.com/hamzagul07'
 
 /** Wikidata Q-id for cross-referencing in press copy and schema identifiers. */
 export const WIKIDATA_QID = 'Q140455387'
@@ -37,6 +38,7 @@ export function getBrandSameAs(): string[] {
 export function getFounderSameAs(): string[] {
   return [
     process.env.NEXT_PUBLIC_FOUNDER_LINKEDIN_URL ?? DEFAULT_FOUNDER_LINKEDIN,
+    process.env.NEXT_PUBLIC_FOUNDER_GITHUB_URL ?? DEFAULT_FOUNDER_GITHUB,
     process.env.NEXT_PUBLIC_FOUNDER_TWITTER_URL,
   ].filter((u): u is string => Boolean(u?.trim()))
 }

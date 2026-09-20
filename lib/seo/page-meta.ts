@@ -73,6 +73,12 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     description:
       'MarkScheme was built by a Cambridge A-Level student for second-pass past-paper marking (Cambridge & IB), free syllabus courses, and Exam Room communities — honest about AI limits.',
   },
+  '/hamza-gul-hassan': {
+    title: 'Hamza Gul Hassan — Founder & CEO',
+    description:
+      'Hamza Gul Hassan is the founder and CEO of MarkScheme, the second-pass marking platform for Cambridge and IB past papers. Background, what he is building, and how to reach him.',
+    keywords: ['Hamza Gul Hassan', 'MarkScheme founder', 'MarkScheme CEO', 'who founded MarkScheme'],
+  },
   '/contact': {
     title: 'Contact — support, schools & press',
     description:

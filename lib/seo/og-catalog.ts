@@ -129,6 +129,7 @@ export function ogApiPathForPage(path: string): string {
     '/': 'home',
     '/faq': 'faq',
     '/about': 'about',
+    '/hamza-gul-hassan': 'about',
     '/pricing': 'pricing',
     '/how-it-works': 'how-it-works',
     '/contact': 'contact',

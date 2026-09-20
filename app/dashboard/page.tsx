@@ -39,6 +39,7 @@ import { buildMomentum } from '@/lib/dashboard/momentum'
 import { GradeTargetTrack } from '@/components/dashboard/GradeTargetTrack'
 import { buildGradeTarget } from '@/lib/dashboard/grade-target'
 import { buildNextAction } from '@/lib/dashboard/next-action'
+import { buildFirstMarkHref } from '@/lib/marking/first-mark-link'
 import { attemptsThisMonth, attemptsThisWeek, bestSubjectThisWeek } from '@/lib/dashboard/home-stats'
 import { displaySubjectName } from '@/lib/dashboard/subject-display'
 import { resolveDashboardState, type Recommendation } from '@/lib/insights/types'
@@ -267,6 +268,7 @@ export default async function DashboardPage() {
                 recommendations={recommendations}
                 board={profileBoard}
                 firstName={greetingName}
+                firstMarkHref={buildFirstMarkHref(primaryCode)}
               />
               {/* The student the planner was built for has not marked yet.
                   DB-01's first-mark CTA keeps the top of the page; the

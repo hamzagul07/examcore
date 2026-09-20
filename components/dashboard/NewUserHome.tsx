@@ -16,6 +16,8 @@ type Props = {
   recommendations: Recommendation[]
   board?: string | null
   firstName?: string | null
+  /** /mark with a real question preloaded for the student's subject. */
+  firstMarkHref?: string
 }
 
 /** Empty account home — one first-mark desk composition (no HomeHero stack). */
@@ -25,6 +27,7 @@ export function NewUserHome({
   recommendations,
   board = null,
   firstName = null,
+firstMarkHref,
 }: Props) {
   const greet = firstName?.trim() ? firstName.trim() : null
 
@@ -52,7 +55,11 @@ export function NewUserHome({
             one honest script beats a week of vague revision
           </p>
           <div className="mt-5">
-            <MarkQuestionCta className="w-full sm:w-auto" />
+            <MarkQuestionCta
+              className="w-full sm:w-auto"
+              href={firstMarkHref ?? '/mark'}
+              label={firstMarkHref ? 'Answer your first question →' : 'Mark a question →'}
+            />
           </div>
         </div>
 

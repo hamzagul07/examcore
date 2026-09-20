@@ -43,8 +43,24 @@ const nextConfig: NextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200],
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
   },
+  // Investor documents live in Supabase storage (bucket public-docs) but are
+  // handed out as markscheme.app links: a raw storage URL in a cold email reads
+  // as spam and says nothing about who sent it. Same bytes, our name on them.
+  async rewrites() {
+    const docs = 'https://mcnqxokprggjadtlloyr.supabase.co/storage/v1/object/public/public-docs'
+    return [
+      { source: '/investors/deck.pdf', destination: `${docs}/MarkScheme-Pitch-Deck.pdf` },
+      {
+        source: '/investors/business-model-canvas.pdf',
+        destination: `${docs}/MarkScheme-Business-Model-Canvas.pdf`,
+      },
+    ]
+  },
   async redirects() {
     return [
+      // Short forms for the investor documents above.
+      { source: '/deck', destination: '/investors/deck.pdf', permanent: false },
+      { source: '/canvas', destination: '/investors/business-model-canvas.pdf', permanent: false },
       // Next generateSitemaps serves shards at /sitemap/{id}.xml but leaves
       // /sitemap.xml as a 404 metadata route. GSC expects /sitemap.xml — send
       // crawlers to the explicit index (Google follows sitemap redirects).
@@ -121,6 +137,11 @@ const nextConfig: NextConfig = {
       {
         source: '/embed/:path*',
         headers: embedHeaders,
+      },
+      // Investor documents are shared by link, never meant to rank.
+      {
+        source: '/investors/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
       },
       {
         source: '/((?!embed/).*)',

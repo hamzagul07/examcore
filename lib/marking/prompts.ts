@@ -214,6 +214,19 @@ Return ONLY this JSON (no markdown):
 }`
 }
 
+/**
+ * "Explain two ways…" is not "explain as many ways as you can think of".
+ *
+ * Marked against the real 9699/12 scheme, a funding answer that gave one
+ * weak way and then two paragraphs of the same second way (both "insufficient
+ * money limits the method") was scored 8/8: the model treated the second
+ * paragraph as a new way instead of development of the first. An examiner
+ * gives that answer about 5/8. The scheme's "reward a maximum of two" is a
+ * rule about distinct items, and the model needs telling so.
+ */
+export const FIXED_COUNT_BLOCK = `FIXED-COUNT QUESTIONS:
+When the question asks for a set number of items ("Explain two ways…", "Describe two…", "State three…") or the scheme says "reward a maximum of N", credit only the best N DISTINCT items. Two examples of the same underlying point (for example two methods that are each "too expensive on a small budget") are ONE item: the second example is development of the first, never a new item. Marks belonging to a third or later item are never awarded, however good it is.`
+
 export function buildPointBasedMarkingPrompt(
   subjectName: string,
   questionText: string,
@@ -292,6 +305,8 @@ STUDENT'S TRANSCRIBED ANSWER:
 ${ocrText}
 
 ${awardLine}
+
+${FIXED_COUNT_BLOCK}
 
 ${TONE_BLOCK}
 ${taggingBlock}

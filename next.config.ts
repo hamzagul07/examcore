@@ -54,6 +54,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/founder',
+        destination: '/hamza-gul-hassan',
+        permanent: true,
+      },
+      {
         source: '/blog/why-i-built-examcore',
         destination: '/blog/why-i-built-markscheme',
         permanent: true,

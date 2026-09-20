@@ -268,6 +268,7 @@ export const FOOTER_SUBJECT_LINKS = [
 
 export const FOOTER_COMPANY_LINKS = [
   { href: '/about', label: 'The story' },
+  { href: '/hamza-gul-hassan', label: 'Founder' },
   { href: '/how-it-works', label: 'How it works' },
   // Next to "How it works" because that is the question it answers. /demo is a
   // worked example account covering the mastery map, gap drills, weekly report

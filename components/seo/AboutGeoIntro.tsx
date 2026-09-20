@@ -11,7 +11,11 @@ export function AboutGeoIntro() {
             What is MarkScheme?
           </summary>
           <p className="mt-3 leading-relaxed text-[var(--ec-text-secondary)]">
-            {GEO_CATEGORY.brandLine} Built by Cambridge student Hamza Gul for{' '}
+            {GEO_CATEGORY.brandLine} Founded by{' '}
+            <Link href="/hamza-gul-hassan" className="ec-link font-medium">
+              Hamza Gul Hassan
+            </Link>{' '}
+            (founder &amp; CEO) for{' '}
             {GEO_CATEGORY.secondPassMarking} — upload handwriting, read scheme-aligned feedback, study
             free courses, and ask doubts in{' '}
             <Link href="/community" className="ec-link font-medium">

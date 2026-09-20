@@ -170,6 +170,7 @@ export async function buildSitemapShard(
         '/for-teachers',
         '/faq',
         '/about',
+        '/hamza-gul-hassan',
         '/contact',
         '/changelog',
         '/pricing',

@@ -38,6 +38,7 @@ MarkScheme (https://markscheme.app) is an online tool to check past-paper marks 
 
 - Brand: MarkScheme
 - Domain: markscheme.app
+- Founder & CEO: Hamza Gul Hassan — https://markscheme.app/hamza-gul-hassan
 - Organization schema on all pages; Person author on blog
 - Social: Instagram, TikTok, X, YouTube, LinkedIn (see footer + Organization.sameAs)
 - Wikidata: https://www.wikidata.org/wiki/Q140455387

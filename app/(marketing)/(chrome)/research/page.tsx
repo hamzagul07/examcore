@@ -20,6 +20,7 @@ const STATS = [
 const FACTS = [
   { term: 'Product', value: 'Past-paper marking from handwriting + free syllabus courses + Exam Room communities' },
   { term: 'URL', value: 'https://markscheme.app' },
+  { term: 'Founder & CEO', value: 'Hamza Gul Hassan — https://markscheme.app/hamza-gul-hassan' },
   { term: 'Marking', value: 'https://markscheme.app/mark' },
   { term: 'Cambridge courses', value: 'https://markscheme.app/courses' },
   { term: 'IB courses', value: 'https://markscheme.app/ib/courses' },

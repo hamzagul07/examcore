@@ -19,6 +19,10 @@ export const PAGE_OG: Record<string, OgSlip> = {
     title: 'Built by a student, for students',
     subtitle: 'Real Cambridge schemes · Honest AI marking',
   },
+  founder: {
+    title: 'Hamza Gul Hassan',
+    subtitle: 'Founder & CEO of MarkScheme · Cambridge & IB past-paper marking',
+  },
   pricing: {
     title: 'Plans for every study pace',
     subtitle: 'Max — Vault, Cinema, Sunday coach',
@@ -129,6 +133,7 @@ export function ogApiPathForPage(path: string): string {
     '/': 'home',
     '/faq': 'faq',
     '/about': 'about',
+    '/hamza-gul-hassan': 'founder',
     '/pricing': 'pricing',
     '/how-it-works': 'how-it-works',
     '/contact': 'contact',

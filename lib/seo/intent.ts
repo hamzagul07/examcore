@@ -60,6 +60,11 @@ export const PAGE_SEO_PROFILES: Record<string, PageSeoProfile> = {
     format: 'guide',
     primaryKeyword: 'about MarkScheme',
   },
+  '/hamza-gul-hassan': {
+    intent: 'navigational',
+    format: 'guide',
+    primaryKeyword: 'Hamza Gul Hassan',
+  },
   '/contact': {
     intent: 'navigational',
     format: 'guide',

@@ -70,7 +70,7 @@ export default function AboutPage() {
                 <br />
                 are half the loop —
               </p>
-              <p className="ms-founder-note__sign">— Hamza Gul</p>
+              <p className="ms-founder-note__sign">— Hamza Gul Hassan</p>
               <span className="ms-founder-note__stamp">M1</span>
             </aside>
             <div>
@@ -80,7 +80,11 @@ export default function AboutPage() {
                 day disagrees.&rdquo;
               </p>
               <p className="ms-body-2" style={{ fontSize: 16 }}>
-                MarkScheme was built by Hamza Gul, an A-Level student who got tired of waiting weeks for
+                MarkScheme was built by{' '}
+                <Link href="/hamza-gul-hassan" className="ec-link font-medium">
+                  Hamza Gul Hassan
+                </Link>
+                , its founder and CEO, who started it as an A-Level student tired of waiting weeks for
                 marked papers and guessing what examiners actually wanted. It marks your work the way
                 Cambridge does — not a replacement for teachers, just faster, honest feedback when
                 you&apos;re revising alone at midnight.

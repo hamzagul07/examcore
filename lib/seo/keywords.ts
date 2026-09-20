@@ -261,6 +261,12 @@ export const PAGE_KEYWORDS: Record<string, readonly string[]> = {
     'student-built exam tool',
     'past paper feedback app',
   ],
+  '/hamza-gul-hassan': [
+    'Hamza Gul Hassan',
+    'MarkScheme founder',
+    'MarkScheme CEO',
+    'founder of MarkScheme',
+  ],
   '/changelog': [
     'MarkScheme updates',
     'MarkScheme features',

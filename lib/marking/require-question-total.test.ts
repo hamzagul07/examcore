@@ -39,7 +39,8 @@ import {
     hasOfficialSchemeTotal: false,
     hasIbCatalogTotal: false,
   })
-  assert.deepEqual(out, { ok: true, total: 18 })
+  assert.equal(out.ok, true)
+  if (out.ok) assert.equal(out.total, 18)
 }
 
 {
@@ -49,7 +50,8 @@ import {
     hasOfficialSchemeTotal: false,
     hasIbCatalogTotal: false,
   })
-  assert.deepEqual(out, { ok: true, total: 9 })
+  assert.equal(out.ok, true)
+  if (out.ok) assert.equal(out.total, 9)
 }
 
 {
@@ -145,3 +147,92 @@ for (const empty of ['', '   ', null, undefined]) {
 }
 
 console.log('require-question-total: all assertions passed')
+
+// --- fallbacks added 2026-09-20: upload transcript, then estimate -----------
+
+{
+  // The number was on the photographed page all along.
+  const out = resolveRequiredQuestionTotal({
+    questionMarks: null,
+    extractedTotal: null,
+    uploadExtractedTotal: 6,
+    hasOfficialSchemeTotal: false,
+    hasIbCatalogTotal: false,
+    marksInQuestion: true,
+  })
+  assert.deepEqual(out, { ok: true, total: 6, source: 'upload' })
+}
+
+{
+  // Trust order: student's number > question text > upload transcript.
+  assert.deepEqual(
+    resolveRequiredQuestionTotal({
+      questionMarks: 18,
+      extractedTotal: 12,
+      uploadExtractedTotal: 6,
+      hasOfficialSchemeTotal: false,
+      hasIbCatalogTotal: false,
+    }),
+    { ok: true, total: 18, source: 'user' }
+  )
+  assert.deepEqual(
+    resolveRequiredQuestionTotal({
+      questionMarks: null,
+      extractedTotal: 12,
+      uploadExtractedTotal: 6,
+      hasOfficialSchemeTotal: false,
+      hasIbCatalogTotal: false,
+    }),
+    { ok: true, total: 12, source: 'question' }
+  )
+}
+
+{
+  // Nothing to read and estimation allowed: the run proceeds, flagged.
+  const out = resolveRequiredQuestionTotal({
+    questionMarks: null,
+    extractedTotal: null,
+    uploadExtractedTotal: null,
+    hasOfficialSchemeTotal: false,
+    hasIbCatalogTotal: false,
+    allowEstimate: true,
+  })
+  assert.deepEqual(out, { ok: true, total: null, source: 'estimated' })
+}
+
+{
+  // Without the flag the gate still refuses, with the same message as before.
+  const out = resolveRequiredQuestionTotal({
+    questionMarks: null,
+    extractedTotal: null,
+    uploadExtractedTotal: null,
+    hasOfficialSchemeTotal: false,
+    hasIbCatalogTotal: false,
+  })
+  assert.equal(out.ok, false)
+}
+
+{
+  // A scheme total never gets overridden by an estimate, and reports its source.
+  assert.deepEqual(
+    resolveRequiredQuestionTotal({
+      questionMarks: null,
+      extractedTotal: null,
+      hasOfficialSchemeTotal: true,
+      hasIbCatalogTotal: false,
+      allowEstimate: true,
+    }),
+    { ok: true, total: null, source: 'scheme' }
+  )
+  assert.deepEqual(
+    resolveRequiredQuestionTotal({
+      questionMarks: null,
+      extractedTotal: null,
+      hasOfficialSchemeTotal: false,
+      hasIbCatalogTotal: true,
+    }),
+    { ok: true, total: null, source: 'ib_catalog' }
+  )
+}
+
+console.log('require-question-total: fallback assertions passed')

@@ -6,41 +6,73 @@ import { extractTotalMarksForGate } from '@/lib/marking/question-marks'
  * question text (never invented by the model).
  */
 
+/**
+ * Where the denominator came from. Recorded on the result so the UI can say
+ * "estimated" when it is, and so the failure taxonomy can tell a read total
+ * from a guessed one.
+ */
+export type TotalMarksSource =
+  | 'scheme'
+  | 'ib_catalog'
+  | 'user'
+  | 'question'
+  | 'upload'
+  | 'estimated'
+
 export type QuestionTotalGateInput = {
   questionMarks?: number | null
+  /** Read deterministically from the question text. */
   extractedTotal?: number | null
+  /**
+   * Read deterministically from the transcript of what the student uploaded.
+   * A photographed page usually carries the printed stem and its "[4]", and a
+   * typed answer often repeats the question header — the number was on screen
+   * the whole time while the gate asked for it.
+   */
+  uploadExtractedTotal?: number | null
   hasOfficialSchemeTotal: boolean
   hasIbCatalogTotal: boolean
   marksInQuestion?: boolean
+  /**
+   * With nothing to read, let the derive step read or estimate the total from
+   * the question and mark against that, flagged `estimated`, instead of
+   * stopping the run. A stop converted nobody: of the 18 runs that hit this
+   * gate in 30 days, 14 were guests and none came back with a total.
+   */
+  allowEstimate?: boolean
 }
 
 export type QuestionTotalGateResult =
-  | { ok: true; total: number | null }
+  | { ok: true; total: number | null; source: TotalMarksSource | null }
   | { ok: false; message: string }
+
+function positive(n: number | null | undefined): number | null {
+  return typeof n === 'number' && n > 0 ? n : null
+}
 
 export function resolveRequiredQuestionTotal(
   input: QuestionTotalGateInput
 ): QuestionTotalGateResult {
+  const user = positive(input.questionMarks)
+  const question = positive(input.extractedTotal)
+  const upload = positive(input.uploadExtractedTotal)
+
   if (input.hasOfficialSchemeTotal || input.hasIbCatalogTotal) {
-    const userOrExtracted =
-      (typeof input.questionMarks === 'number' && input.questionMarks > 0
-        ? input.questionMarks
-        : null) ??
-      (typeof input.extractedTotal === 'number' && input.extractedTotal > 0
-        ? input.extractedTotal
-        : null)
-    return { ok: true, total: userOrExtracted }
+    if (user) return { ok: true, total: user, source: 'user' }
+    if (question) return { ok: true, total: question, source: 'question' }
+    if (upload) return { ok: true, total: upload, source: 'upload' }
+    return {
+      ok: true,
+      total: null,
+      source: input.hasOfficialSchemeTotal ? 'scheme' : 'ib_catalog',
+    }
   }
 
-  const total =
-    (typeof input.questionMarks === 'number' && input.questionMarks > 0
-      ? input.questionMarks
-      : null) ??
-    (typeof input.extractedTotal === 'number' && input.extractedTotal > 0
-      ? input.extractedTotal
-      : null)
+  if (user) return { ok: true, total: user, source: 'user' }
+  if (question) return { ok: true, total: question, source: 'question' }
+  if (upload) return { ok: true, total: upload, source: 'upload' }
 
-  if (total) return { ok: true, total }
+  if (input.allowEstimate) return { ok: true, total: null, source: 'estimated' }
 
   return {
     ok: false,

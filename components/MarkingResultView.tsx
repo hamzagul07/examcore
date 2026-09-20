@@ -74,6 +74,8 @@ export type MarkingResultData = {
       rewritten_answer: string
       annotations: Array<{ text: string; earns: string }>
     }
+    /** Where the denominator came from; `estimated` gets a notice. */
+    total_marks_source?: 'scheme' | 'ib_catalog' | 'user' | 'question' | 'upload' | 'estimated'
   }
   ocr_text?: string | null
   question_text?: string | null
@@ -512,6 +514,19 @@ export function MarkingResultView({
           it every time is also the only way the claim is checkable from outside.
           The caution stays louder, because it is the part that changes what the
           student should do with the feedback. */}
+      {/* An estimated denominator is the one thing about a mark a student can
+          fix in ten seconds, so it is said plainly, next to the score. */}
+      {result.ai_marking.total_marks_source === 'estimated' && result.total_marks > 0 ? (
+        <p
+          className="mt-3 rounded-md border border-[var(--ec-border)] bg-[var(--ec-surface)] p-3 text-sm text-[var(--ec-text-secondary)]"
+          role="note"
+        >
+          Marked out of an <strong>estimated</strong> total of {result.total_marks}. The mark
+          total was not written in the question or your upload, so the examiner set it from
+          the question. If the paper says a different total, enter it under the question and
+          mark again.
+        </p>
+      ) : null}
       {result.ai_marking.guide_notice ? (
         <div className="mt-3">
           <p className="text-xs text-[var(--ec-text-secondary)]">

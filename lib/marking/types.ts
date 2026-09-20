@@ -155,7 +155,17 @@ export type IbCriterionResult = {
   improvements?: string[]
 }
 
+export type TotalMarksSource =
+  | 'scheme'
+  | 'ib_catalog'
+  | 'user'
+  | 'question'
+  | 'upload'
+  | 'estimated'
+
 export type MarkingAIResult = {
+  /** Where the denominator came from; `estimated` is surfaced to the student. */
+  total_marks_source?: TotalMarksSource
   marks_awarded?: MarkAwarded[]
   marks_earned: number
   total_marks: number

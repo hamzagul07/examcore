@@ -1484,16 +1484,13 @@ export default function MarkPage() {
     !!selectedSubject &&
     subjectLacksBankedScheme(availablePapers?.[selectedSubject])
 
-  const totalMarksSatisfied =
-    !showTotalMarksField ||
-    parsedTotalMarksInput !== null ||
-    // "The marks are shown in the question" is normally allowed to stand — a
-    // photo we have not read could carry the number. But when no structured
-    // scheme exists for the subject, reading it off the image is the ONLY route
-    // left, and that route is where half of all marking failures happen: 13 of
-    // 26 over 60 days, each after a wait of up to three minutes. Asking for a
-    // number the student can read off their own paper is the cheaper trade.
-    (marksInQuestion && !marksPromiseUnkeepable && !subjectHasNoBankedScheme)
+  // The total used to be required here whenever no scheme could supply it:
+  // that gate was the single largest marking failure in production (18 of 39
+  // failed runs in 30 days, 14 of them guests, none of whom came back). The
+  // server now reads the total from the question or the upload, or estimates
+  // it and labels the result, so a missing number is never a reason to refuse
+  // the mark. The field stays: a typed total is still the most trusted source.
+  const totalMarksSatisfied = true
 
   // Why the submit button is disabled, in words — shown under the button so a
   // greyed-out CTA never leaves the user guessing.
@@ -1722,7 +1719,10 @@ export default function MarkPage() {
         }
       }
 
-      if (showTotalMarksField && !marksInQuestion) {
+      // A missing total no longer blocks the mark: the server reads it from
+      // the question or the upload, or estimates it and labels the result.
+      // Only a typed number that is not a valid total is refused.
+      if (showTotalMarksField && !marksInQuestion && totalMarksInput.trim()) {
         const n = Number(totalMarksInput.trim())
         if (!Number.isFinite(n) || n <= 0 || n > 100) {
           setLoading(false)
@@ -3675,8 +3675,8 @@ export default function MarkPage() {
                         {marksPromiseBroken
                           ? QUESTION_TOTAL_PROMISE_BROKEN_MESSAGE
                           : marksInQuestion
-                            ? 'We’ll read the mark total from your question image or text. If we can’t find it, you’ll need to enter it.'
-                            : 'Enter the mark total so we mark out of the right number. Required when the question isn’t in our past-paper bank.'}
+                            ? 'We’ll read the mark total from your question image or text. If we can’t find it, we’ll estimate it and say so on the result.'
+                            : 'Optional. Enter it if you know it; otherwise we read it from the question or your upload, or estimate it and say so.'}
                       </p>
                     </div>
                   )}

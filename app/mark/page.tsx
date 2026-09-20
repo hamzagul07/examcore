@@ -964,7 +964,6 @@ export default function MarkPage() {
     return () => {
       cancelled = true
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Persist manual selection (without question number) whenever it changes

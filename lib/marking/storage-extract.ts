@@ -8,8 +8,11 @@ import {
   validateExtractedQuestion,
   questionMarkingType,
 } from './extraction-prompts'
-import { questionNumbersMatch } from './question-number'
-import { normalizeExtractedQuestion } from './normalize-extracted-scheme'
+import { belongsToQuestion } from './question-number'
+import {
+  mergeSubPartQuestions,
+  normalizeExtractedQuestion,
+} from './normalize-extracted-scheme'
 import { extractJSON } from './json'
 import { sessionNameToCode } from './session'
 import type { MarkSchemeRow, MarkingStyle } from './types'
@@ -99,17 +102,16 @@ export async function tryExtractFromStorage(
     const subject = SUBJECT_CODE_MAP[subject_code] || 'Unknown'
     const rows: Record<string, unknown>[] = []
 
-    for (const raw of parsed.questions as Record<string, unknown>[]) {
-      // Translate model-shaped output (prose allocations, "8-10" level strings,
-      // `type: "mixed"`) into the validator's shapes before judging it.
-      const q = normalizeExtractedQuestion(raw, paperMarkingType)
-      if (
-        !validateExtractedQuestion(
-          q,
-          paperMarkingType,
-          mode === 'targeted' ? targetQuestion : undefined
-        )
-      ) {
+    // Translate model-shaped output (prose allocations, "8-10" level strings,
+    // `type: "mixed"`, bare-array schemes) into the validator's shapes, then
+    // synthesise any parent question the model only returned as sub-parts.
+    const normalised = (parsed.questions as Record<string, unknown>[]).map((raw) =>
+      normalizeExtractedQuestion(raw, paperMarkingType)
+    )
+    const candidates = mergeSubPartQuestions(normalised, paperMarkingType)
+
+    for (const q of candidates) {
+      if (!validateExtractedQuestion(q, paperMarkingType)) {
         // A five-point extraction for an eight-mark question used to become a
         // shared permanent rubric; name every rejected row in server telemetry,
         // with the shape it came in, so the next rejection is diagnosable from
@@ -122,9 +124,11 @@ export async function tryExtractFromStorage(
         )
         continue
       }
+      // Targeted mode keeps the question asked for AND its sub-parts, so a
+      // later "3(a)" lookup hits the cache instead of extracting again.
       if (
         mode === 'targeted' &&
-        !questionNumbersMatch(String(q.question_number), targetQuestion)
+        !belongsToQuestion(String(q.question_number), targetQuestion)
       ) {
         continue
       }

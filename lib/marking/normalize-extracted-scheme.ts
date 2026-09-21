@@ -1,4 +1,5 @@
 import type { MarkingStyle } from './types'
+import { normalizeQuestionNumber } from './question-number'
 
 /**
  * Translate a freshly extracted question into the shapes the validator and the
@@ -298,6 +299,111 @@ export function marksFromGuidance(
   return marks
 }
 
+/**
+ * Mark entries arrive with their weight under several names (`value`, `marks`,
+ * `mark`, `points`); the validator and the marker read `value`. Returns null
+ * when any entry is not an object with an integer weight, so the caller can
+ * fall back to the guidance-text path.
+ */
+function normaliseMarks(raw: unknown): Obj[] | null {
+  if (!Array.isArray(raw) || raw.length === 0) return null
+  const out: Obj[] = []
+  for (const [index, entry] of raw.entries()) {
+    if (!isObj(entry)) return null
+    const value = toInt(entry.value ?? entry.marks ?? entry.mark ?? entry.points)
+    if (value === null) return null
+    out.push({ ...entry, id: toInt(entry.id) ?? index + 1, value })
+  }
+  return out
+}
+
+/**
+ * The model sometimes returns the scheme as a bare array — the inner marks (or
+ * bands) with no `{ type, marks }` wrapper. Seen on every sub-part of 9700/22
+ * May/June 2016 Q3 under the targeted prompt. Wrap it so the usual path applies.
+ */
+function wrapArrayScheme(arr: unknown[]): Obj | null {
+  const first = arr[0]
+  if (!isObj(first)) return null
+  const looksLikeBand =
+    'marks_min' in first || 'marks_max' in first || ('level' in first && 'descriptor' in first)
+  return looksLikeBand ? { bands: arr } : { marks: arr }
+}
+
+const SUB_PART = /^(\d+)(\(.+)$/
+
+/**
+ * A targeted extraction of "3" often comes back as 3(a)(i), 3(a)(ii), 3(b)…
+ * with no row for "3" itself, so a student who uploads the whole question
+ * finds no scheme. Synthesise the parent from its point-based sub-parts:
+ * total is the sum, every mark keeps its part label (and per-part cap) in its
+ * description, and the part totals are kept under `parts`. Sub-part rows are
+ * left in place so "3(a)" lookups still hit the cache. Parents that already
+ * have their own row, and essay (banded) parts, are never merged.
+ */
+export function mergeSubPartQuestions(
+  questions: Obj[],
+  paperMarkingType: MarkingStyle
+): Obj[] {
+  const numberOf = (q: Obj) => normalizeQuestionNumber(String(q.question_number ?? ''))
+  const present = new Set(questions.map(numberOf))
+  const groups = new Map<string, Obj[]>()
+  for (const q of questions) {
+    const match = numberOf(q).match(SUB_PART)
+    if (!match || present.has(match[1])) continue
+    groups.set(match[1], [...(groups.get(match[1]) ?? []), q])
+  }
+  const synthesised: Obj[] = []
+  for (const [parent, parts] of groups) {
+    const merged = mergeParts(parent, parts, paperMarkingType)
+    if (merged) synthesised.push(merged)
+  }
+  return synthesised.length ? [...questions, ...synthesised] : questions
+}
+
+function mergeParts(parent: string, parts: Obj[], paperMarkingType: MarkingStyle): Obj | null {
+  let total = 0
+  const marks: Obj[] = []
+  const texts: string[] = []
+  const notes: string[] = []
+  const partMeta: Obj[] = []
+  for (const part of parts) {
+    const ms = part.mark_scheme
+    if (!isObj(ms)) return null
+    const style = concrete(ms.type) ?? concrete(part.marking_type) ?? concrete(paperMarkingType)
+    if (style !== 'point_based') return null
+    const partMarks = normaliseMarks(ms.marks)
+    const partTotal = toInt(part.total_marks)
+    if (!partMarks || partTotal === null || partTotal <= 0) return null
+    const label = String(part.question_number).trim().slice(parent.length).trim() || `(${partMeta.length + 1})`
+    const cap = partMarks.length > partTotal ? ` [max ${partTotal}]` : ''
+    total += partTotal
+    for (const mark of partMarks) {
+      marks.push({
+        ...mark,
+        id: marks.length + 1,
+        description: `${label}${cap}: ${String(mark.description ?? '').trim()}`.trim(),
+      })
+    }
+    if (typeof part.question_text === 'string' && part.question_text.trim()) {
+      texts.push(`${label} ${part.question_text.trim()} [${partTotal}]`)
+    }
+    const guidance = guidanceText(ms)
+    if (guidance) notes.push(`${label}: ${guidance}`)
+    partMeta.push({ part: label, total_marks: partTotal, listed_marks: partMarks.length })
+  }
+  if (total <= 0 || marks.length === 0) return null
+  const scheme: Obj = { type: 'point_based', marks, parts: partMeta, synthesised_from_parts: true }
+  if (notes.length) scheme.notes = notes.join('\n')
+  return {
+    question_number: parent,
+    question_text: texts.join('\n\n'),
+    total_marks: total,
+    marking_type: 'point_based',
+    mark_scheme: scheme,
+  }
+}
+
 /** Rebuild `mark_scheme` from scheme fields the model left at the question level. */
 function liftQuestionLevelScheme(q: Obj): Obj | null {
   const lifted: Obj = {}
@@ -320,7 +426,11 @@ export function normalizeExtractedQuestion(
   q: Obj,
   paperMarkingType: MarkingStyle
 ): Obj {
-  const ms = isObj(q.mark_scheme) ? q.mark_scheme : liftQuestionLevelScheme(q)
+  const ms = isObj(q.mark_scheme)
+    ? q.mark_scheme
+    : Array.isArray(q.mark_scheme)
+      ? wrapArrayScheme(q.mark_scheme)
+      : liftQuestionLevelScheme(q)
   if (!ms) return q
   const scheme: Obj = { ...ms }
   const style = resolveExtractedStyle(q, scheme) ?? concrete(paperMarkingType)
@@ -337,8 +447,10 @@ export function normalizeExtractedQuestion(
   }
 
   if (style === 'point_based') {
-    const hasMarks = Array.isArray(scheme.marks) && scheme.marks.length > 0
-    if (!hasMarks) {
+    const listed = normaliseMarks(scheme.marks)
+    if (listed) {
+      scheme.marks = listed
+    } else {
       const total = toInt(q.total_marks)
       const marks = total ? marksFromGuidance(guidanceText(scheme), total) : null
       if (marks) scheme.marks = marks

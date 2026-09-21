@@ -351,7 +351,13 @@ function validatesAsPointBased(
     }
     weight += value
   }
-  return weight === totalMarks
+  // Fewer listed marks than the total would cap every strong answer (a
+  // five-point extraction for an eight-mark question), so that stays rejected.
+  // MORE listed marks than the total is how Cambridge science schemes work —
+  // "any 3 of the following" lists seven creditable points for a 3-mark part —
+  // and every cached 9700 row already carries that shape; the marker is told
+  // the real total and the reconciler clamps to it.
+  return weight >= totalMarks
 }
 
 export function questionMarkingType(

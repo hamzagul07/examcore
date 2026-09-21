@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict'
 import {
   marksFromGuidance,
+  mergeSubPartQuestions,
+  partsLookComplete,
   normaliseBands,
   normalizeExtractedQuestion,
   parseMarkRange,
@@ -252,6 +254,127 @@ assert.equal(
   'prose that does not resolve to the total is still rejected'
 )
 
+// --- bare-array schemes, "any N of" lists, sub-part-only extractions --------
+// Verbatim shape from 9700/22 May/June 2016 Q3 under the targeted prompt: one
+// row per sub-part, `mark_scheme` a bare array, and 7 creditable points for a
+// 3-mark part. Every row was rejected and the student got the total-marks gate.
+const bareArrayPart = {
+  question_number: '3(a)(ii)',
+  question_text: 'Explain the advantages of showing the data per 100000 people.',
+  total_marks: 3,
+  marking_type: 'point_based',
+  mark_scheme: [
+    { id: 1, type: 'B1', value: 1, description: 'proportion of population affected;', ecf_from: null, acceptable_forms: [] },
+    { id: 2, type: 'B1', value: 1, description: 'allows comparison between countries;', ecf_from: null, acceptable_forms: [] },
+    { id: 3, type: 'B1', value: 1, description: 'severity of disease;', ecf_from: null, acceptable_forms: [] },
+    { id: 4, type: 'B1', value: 1, description: 'standardised for population size;', ecf_from: null, acceptable_forms: [] },
+  ],
+  notes: 'Max 3 marks.',
+}
+const wrapped = normalizeExtractedQuestion(bareArrayPart, 'point_based')
+const wrappedScheme = wrapped.mark_scheme as { type: string; marks: Array<{ value: number }> }
+assert.equal(wrappedScheme.type, 'point_based', 'a bare-array scheme is wrapped and typed')
+assert.equal(wrappedScheme.marks.length, 4)
+assert.equal(validateExtractedQuestion(wrapped, 'point_based', '3(a)(ii)'), true,
+  'four creditable points for a 3-mark "max 3" part is a valid scheme')
+
+const underProvisioned = normalizeExtractedQuestion(
+  { ...bareArrayPart, total_marks: 5 },
+  'point_based'
+)
+assert.equal(validateExtractedQuestion(underProvisioned, 'point_based'), false,
+  'fewer listed marks than the total still caps strong answers and stays rejected')
+
+const weightUnderMarksKey = normalizeExtractedQuestion(
+  { question_number: '7', total_marks: 2, mark_scheme: { type: 'point_based', marks: [{ description: 'a', marks: 1 }, { description: 'b', marks: 1 }] } },
+  'point_based'
+)
+assert.deepEqual(
+  (weightUnderMarksKey.mark_scheme as { marks: Array<{ value: number; id: number }> }).marks.map((m) => [m.id, m.value]),
+  [[1, 1], [2, 1]],
+  'weights given as `marks` are read as `value` and ids are filled in'
+)
+
+const subParts = [
+  { question_number: '3(a)(i)', question_text: 'Calculate the number of cases per 100000.', total_marks: 2, marking_type: 'point_based',
+    mark_scheme: [{ id: 1, type: 'B1', value: 1, description: 'calculation shown;' }, { id: 2, type: 'B1', value: 1, description: '1179 or 1180;' }] },
+  bareArrayPart,
+  { question_number: '3(b)', question_text: 'Describe the trend.', total_marks: 4, marking_type: 'point_based',
+    mark_scheme: [1, 2, 3, 4, 5, 6].map((i) => ({ id: i, type: 'B1', value: 1, description: `trend point ${i};` })) },
+].map((q) => normalizeExtractedQuestion(q, 'point_based'))
+const merged = mergeSubPartQuestions(subParts, 'point_based')
+assert.equal(merged.length, 4, 'the three sub-parts are kept and a parent is added')
+const parent = merged.find((q) => q.question_number === '3')!
+assert.equal(parent.total_marks, 9, 'parent total is the sum of its parts')
+assert.equal(validateExtractedQuestion(parent, 'point_based', '3'), true, 'the synthesised parent validates for the targeted lookup')
+const parentMarks = (parent.mark_scheme as { marks: Array<{ description: string; id: number }>; parts: unknown[] }).marks
+assert.equal(parentMarks.length, 12)
+assert.equal(parentMarks[0].description, '(a)(i): calculation shown;')
+assert.equal(parentMarks[2].description, '(a)(ii) [max 3]: proportion of population affected;', 'over-provisioned parts carry their cap in the label')
+assert.deepEqual(parentMarks.map((m) => m.id), Array.from({ length: 12 }, (_, i) => i + 1), 'ids are renumbered across the merged list')
+assert.equal((parent.mark_scheme as { parts: unknown[] }).parts.length, 3)
+assert.match(String(parent.question_text), /^\(a\)\(i\) Calculate .* \[2\]\n\n\(a\)\(ii\)/)
+
+const withParent = mergeSubPartQuestions(
+  [...subParts, normalizeExtractedQuestion({ question_number: '3', total_marks: 9, marking_type: 'point_based', mark_scheme: { marks: Array.from({ length: 9 }, (_, i) => ({ id: i + 1, value: 1, description: `p${i}` })) } }, 'point_based')],
+  'point_based'
+)
+assert.equal(withParent.filter((q) => q.question_number === '3').length, 1, 'no synthesis when the model already returned the parent')
+
+const essayParts = [
+  { question_number: '4(a)', total_marks: 8, marking_type: 'level_of_response', mark_scheme: { bands: [{ level: 1, marks_min: 0, marks_max: 8, descriptor: 'x' }] } },
+  { question_number: '4(b)', total_marks: 12, marking_type: 'level_of_response', mark_scheme: { bands: [{ level: 1, marks_min: 0, marks_max: 12, descriptor: 'y' }] } },
+].map((q) => normalizeExtractedQuestion(q, 'mixed'))
+assert.equal(mergeSubPartQuestions(essayParts, 'mixed').length, 2, 'banded essay parts are never merged into a fake parent')
+
+assert.equal(partsLookComplete(['(a)(i)', '(a)(ii)', '(b)', '(c)', '(d)']), true)
+assert.equal(partsLookComplete(['(a)', '(b)(i)', '(b)(ii)']), true)
+assert.equal(partsLookComplete(['(a)(ii)', '(b)(ii)']), false, 'a subset with gaps is not a whole question')
+assert.equal(partsLookComplete(['(b)', '(c)']), false, 'parts must start at (a)')
+assert.equal(partsLookComplete(['(a)', '(c)']), false, 'a missing letter is a gap')
+assert.equal(partsLookComplete([]), false)
+const partialOnly = mergeSubPartQuestions(
+  [subParts[1], normalizeExtractedQuestion({ question_number: '3(c)', total_marks: 2, marking_type: 'point_based', mark_scheme: [{ id: 1, value: 1, description: 'x' }, { id: 2, value: 1, description: 'y' }] }, 'point_based')],
+  'point_based'
+)
+assert.equal(partialOnly.some((q) => q.question_number === '3'), false, 'no parent is synthesised from an incomplete set of parts')
+
+async function subPartsOnlyNowCaches(): Promise<void> {
+  const upserted: Record<string, unknown>[] = []
+  const found: string[] = []
+  const result = await tryExtractFromStorage(
+    '9700/22',
+    'May/June 2016',
+    '3',
+    {
+      downloadPdf: async () => new ArrayBuffer(8),
+      extractFromPdfs: async () => JSON.stringify({ paper_marking_type: 'point_based', questions: [
+        { question_number: '3(a)(i)', question_text: 'Calculate.', total_marks: 2, marking_type: 'point_based',
+          mark_scheme: [{ id: 1, type: 'B1', value: 1, description: 'calculation;' }, { id: 2, type: 'B1', value: 1, description: 'answer;' }] },
+        bareArrayPart,
+        { question_number: '4', question_text: 'Unrelated.', total_marks: 1, marking_type: 'point_based',
+          mark_scheme: [{ id: 1, type: 'B1', value: 1, description: 'x;' }] },
+      ] }),
+      upsertSchemes: async (rows) => { upserted.push(...rows) },
+      findScheme: async (paperCode, paperSession, questionNumber) => {
+        found.push(questionNumber)
+        return { id: 'row-3', paper_code: paperCode, paper_session: paperSession, question_number: questionNumber } as unknown as Awaited<ReturnType<typeof tryExtractFromStorage>>
+      },
+    },
+    { mode: 'targeted', targetQuestion: '3' }
+  )
+  assert.ok(result, 'a sub-parts-only extraction now yields a scheme for the question asked for')
+  assert.deepEqual(
+    upserted.map((r) => r.question_number).sort(),
+    ['3', '3(a)(i)', '3(a)(ii)'],
+    'the synthesised parent and its sub-parts are cached; the unrelated question is not'
+  )
+  const parentRow = upserted.find((r) => r.question_number === '3')!
+  assert.equal(parentRow.total_marks, 5)
+  assert.equal(parentRow.marking_type, 'point_based')
+  assert.deepEqual(found, ['3'])
+}
+
 // --- through tryExtractFromStorage ----------------------------------------
 
 async function rejectedShapeNowCaches(): Promise<void> {
@@ -285,7 +408,7 @@ async function rejectedShapeNowCaches(): Promise<void> {
   assert.equal(scheme.marks.reduce((s, m) => s + m.value, 0), 8)
 }
 
-rejectedShapeNowCaches()
+Promise.all([rejectedShapeNowCaches(), subPartsOnlyNowCaches()])
   .then(() => console.log('normalize-extracted-scheme: all assertions passed'))
   .catch((error: unknown) => {
     console.error(error)

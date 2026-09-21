@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import {
   marksFromGuidance,
   mergeSubPartQuestions,
+  partsLookComplete,
   normaliseBands,
   normalizeExtractedQuestion,
   parseMarkRange,
@@ -325,6 +326,18 @@ const essayParts = [
   { question_number: '4(b)', total_marks: 12, marking_type: 'level_of_response', mark_scheme: { bands: [{ level: 1, marks_min: 0, marks_max: 12, descriptor: 'y' }] } },
 ].map((q) => normalizeExtractedQuestion(q, 'mixed'))
 assert.equal(mergeSubPartQuestions(essayParts, 'mixed').length, 2, 'banded essay parts are never merged into a fake parent')
+
+assert.equal(partsLookComplete(['(a)(i)', '(a)(ii)', '(b)', '(c)', '(d)']), true)
+assert.equal(partsLookComplete(['(a)', '(b)(i)', '(b)(ii)']), true)
+assert.equal(partsLookComplete(['(a)(ii)', '(b)(ii)']), false, 'a subset with gaps is not a whole question')
+assert.equal(partsLookComplete(['(b)', '(c)']), false, 'parts must start at (a)')
+assert.equal(partsLookComplete(['(a)', '(c)']), false, 'a missing letter is a gap')
+assert.equal(partsLookComplete([]), false)
+const partialOnly = mergeSubPartQuestions(
+  [subParts[1], normalizeExtractedQuestion({ question_number: '3(c)', total_marks: 2, marking_type: 'point_based', mark_scheme: [{ id: 1, value: 1, description: 'x' }, { id: 2, value: 1, description: 'y' }] }, 'point_based')],
+  'point_based'
+)
+assert.equal(partialOnly.some((q) => q.question_number === '3'), false, 'no parent is synthesised from an incomplete set of parts')
 
 async function subPartsOnlyNowCaches(): Promise<void> {
   const upserted: Record<string, unknown>[] = []

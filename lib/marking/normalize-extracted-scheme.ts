@@ -361,7 +361,34 @@ export function mergeSubPartQuestions(
   return synthesised.length ? [...questions, ...synthesised] : questions
 }
 
+/**
+ * A targeted extraction can come back with only SOME of a question's parts
+ * (seen live: "1" returned as 1(a)(ii) and 1(b)(ii) alone). Summing those would
+ * cache a parent worth 6 marks for a 30-mark question, which is worse than no
+ * parent at all. Only merge when the labels form an unbroken run: letters from
+ * (a) with no gaps, and roman numerals from (i) with no gaps inside each letter.
+ */
+export function partsLookComplete(labels: string[]): boolean {
+  const ROMAN = ['i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii']
+  const byLetter = new Map<string, string[]>()
+  const letterOrder: string[] = []
+  for (const raw of labels) {
+    const m = raw.replace(/\s+/g, '').toLowerCase().match(/^\(([a-z])\)(?:\((i{1,3}|iv|v|vi{0,3})\))?$/)
+    if (!m) return false
+    if (!byLetter.has(m[1])) { byLetter.set(m[1], []); letterOrder.push(m[1]) }
+    if (m[2]) byLetter.get(m[1])!.push(m[2])
+  }
+  for (const [index, letter] of letterOrder.entries()) {
+    if (letter.charCodeAt(0) - 97 !== index) return false
+    const romans = byLetter.get(letter)!
+    for (const [i, r] of romans.entries()) if (ROMAN[i] !== r) return false
+  }
+  return letterOrder.length > 0
+}
+
 function mergeParts(parent: string, parts: Obj[], paperMarkingType: MarkingStyle): Obj | null {
+  const labels = parts.map((part) => String(part.question_number).trim().slice(parent.length).trim())
+  if (!partsLookComplete(labels)) return null
   let total = 0
   const marks: Obj[] = []
   const texts: string[] = []

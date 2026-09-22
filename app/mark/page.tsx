@@ -89,6 +89,9 @@ import {
   subjectMatchesMarkBoard,
   type MarkExamBoard,
 } from '@/components/mark/MarkBoardPicker'
+import { resolveMarkBoardLock } from '@/lib/marking/mark-board-lock'
+import { clearMarkBoardHint, writeMarkBoardHint } from '@/lib/marking/mark-board-hint'
+import { useMarkBoardHint } from '@/lib/hooks/useMarkBoardHint'
 import {
   getEdexcelMarkableUnitCodes,
   resolveEdexcelUnitLabel,
@@ -362,6 +365,10 @@ export default function MarkPage() {
   const [profileSubjectCodes, setProfileSubjectCodes] = useState<string[]>([])
   const [, setProfileLevel] = useState('A-Level')
   const [profileBoard, setProfileBoard] = useState('Cambridge International')
+  /** `user_profiles.board` as saved — null until a signed-in profile loads (guests stay null). */
+  const [profileBoardId, setProfileBoardId] = useState<string | null>(null)
+  /** Cached profile board so the locked line renders before the profile round-trip. */
+  const boardHint = useMarkBoardHint()
   /** undefined = not loaded yet; null = signed-in with no target. */
   const [targetGrade, setTargetGrade] = useState<string | null | undefined>(undefined)
   const [gradeAskDismissed, setGradeAskDismissed] = useState(false)
@@ -535,14 +542,21 @@ export default function MarkPage() {
         const {
           data: { user },
         } = await supabase.auth.getUser()
-        if (!user || cancelled) return
+        if (cancelled) return
+        if (!user) {
+          // Signed out on this device: never lock a guest to a stale board.
+          clearMarkBoardHint()
+          return
+        }
         const { data: profile } = await supabase
           .from('user_profiles')
           .select('subjects, level, board, target_grade, exam_date')
           .eq('id', user.id)
           .maybeSingle()
         const profileLevel = profile?.level ?? 'A-Level'
-        const boardName = profile?.board ?? 'Cambridge International'
+        const savedBoard =
+          typeof profile?.board === 'string' && profile.board.trim() ? profile.board.trim() : null
+        const boardName = savedBoard ?? 'Cambridge International'
         const subjectNames: string[] = profile?.subjects?.length
           ? profile.subjects
           : defaultSubjectsForProfile(boardName, profileLevel)
@@ -559,6 +573,8 @@ export default function MarkPage() {
         if (!cancelled) {
           setProfileLevel(profileLevel)
           setProfileBoard(boardName)
+          setProfileBoardId(savedBoard)
+          writeMarkBoardHint(savedBoard)
           setTargetGrade(
             typeof profile?.target_grade === 'string' && profile.target_grade.trim()
               ? profile.target_grade.trim()
@@ -1637,9 +1653,31 @@ export default function MarkPage() {
 
   useSetAIContext(omniContext, [result?.attempt_id, markingMode])
 
+  // Signed-in students mark on their profile board — one locked line, no grid.
+  // Until the profile round-trip lands, the cached hint stands in so the
+  // line renders straight after hydration instead of the grid collapsing.
+  const boardLock = useMemo(
+    () =>
+      resolveMarkBoardLock({
+        profileBoard: profileLoading ? boardHint : profileBoardId,
+        selectedBoard: selectedMarkBoard,
+      }),
+    [profileLoading, boardHint, profileBoardId, selectedMarkBoard]
+  )
+
   function handleMarkBoardChange(next: MarkExamBoard) {
     setSelectedMarkBoard(next)
     rememberFunnelBoard(next)
+    // A stale ?board= would resurrect the old board on refresh (and the
+    // profile load below re-reads the URL), so drop it once it disagrees.
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href)
+      const urlBoard = url.searchParams.get('board')?.trim().toLowerCase()
+      if (urlBoard && urlBoard !== next) {
+        url.searchParams.delete('board')
+        window.history.replaceState(window.history.state, '', url.toString())
+      }
+    }
     if (selectedSubject && !subjectMatchesMarkBoard(selectedSubject, next)) {
       setSelectedSubject('')
       setSelectedYear('')
@@ -2672,6 +2710,7 @@ export default function MarkPage() {
           <MarkFlow
             ref={markFlowRef}
             board={selectedMarkBoard}
+            boardLock={boardLock}
             subjectCode={selectedSubject || null}
             subjectOptions={markFlowSubjectOptions}
             pastPaperCatalog={{
@@ -2955,6 +2994,7 @@ export default function MarkPage() {
               value={selectedMarkBoard}
               onChange={handleMarkBoardChange}
               disabled={profileLoading}
+              lock={boardLock}
             />
 
             <div className="ms-mark-mode-panel">

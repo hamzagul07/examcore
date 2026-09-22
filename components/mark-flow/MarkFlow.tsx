@@ -12,6 +12,7 @@ import {
 } from 'react'
 import type { UploadPage } from '@/components/upload/PageUploader'
 import type { MarkExamBoard } from '@/components/mark/MarkBoardPicker'
+import type { MarkBoardLock } from '@/lib/marking/mark-board-lock'
 import { DraftGuard } from './DraftGuard'
 import {
   CaptureScreen,
@@ -46,6 +47,8 @@ type SubjectOption = { code: string; label: string }
 
 type Props = {
   board: MarkExamBoard
+  /** Signed-in students mark on their profile board — see lib/marking/mark-board-lock.ts. */
+  boardLock?: MarkBoardLock | null
   subjectCode: string | null
   subjectOptions: SubjectOption[]
   /** Cambridge past-paper catalog for Capture (optional). */
@@ -128,6 +131,7 @@ function canContinue(
 export const MarkFlow = forwardRef<MarkFlowHandle, Props>(function MarkFlow(
   {
     board,
+    boardLock = null,
     subjectCode,
     subjectOptions,
     pastPaperCatalog = null,
@@ -265,6 +269,7 @@ export const MarkFlow = forwardRef<MarkFlowHandle, Props>(function MarkFlow(
       {ctx.state === 'capture' ? (
         <CaptureScreen
           draft={ctx.draft}
+          boardLock={boardLock}
           pages={pages}
           pdfFile={pdfFile}
           questionPhoto={questionPhoto}

@@ -8,6 +8,7 @@ import { ErrorBox, SuccessBox } from '@/components/AuthFormBits'
 import { suggestedExamDates } from '@/lib/dashboard/exam-date'
 import { ProfileFormFields } from '@/components/ProfileFormFields'
 import { IB_DIPLOMA_LEVEL, isIbBoard } from '@/lib/profile-options'
+import { writeMarkBoardHint } from '@/lib/marking/mark-board-hint'
 import {
   targetGradeKindFromBoard,
   targetGradeOptions,
@@ -146,6 +147,8 @@ function SetupCard({
       return
     }
     setSuccessMsg('Exam setup saved.')
+    // /mark locks to the profile board; refresh the cached hint right away.
+    writeMarkBoardHint(board)
     onSaved()
   }
 

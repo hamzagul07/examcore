@@ -325,6 +325,16 @@ async function handleRun(request: NextRequest) {
     // score-and-link mail as a single question, once, at completion.
     // Per-question retries re-total the attempt but do not mail again.
     // Guests (user_id null) are dropped inside notifyMarkReady.
+    // Weak topics across the paper, most frequent first — the per-question
+    // study notes are too many to mail, the pattern across them is the point.
+    const topicCounts = new Map<string, number>()
+    for (const r of results) {
+      for (const t of r.ai_marking?.weak_topics ?? []) {
+        if (typeof t === 'string' && t.trim()) {
+          topicCounts.set(t.trim(), (topicCounts.get(t.trim()) ?? 0) + 1)
+        }
+      }
+    }
     const readyNotice = {
       userId: markUserId,
       attemptId,
@@ -332,6 +342,9 @@ async function handleRun(request: NextRequest) {
       totalMarks: wholePaper.total_marks,
       subjectLabel: namedSubjectOrNull(paperCode.split('/')[0] ?? null),
       paperRef: `${paperCode} ${paperSession}`.trim(),
+      weakTopics: [...topicCounts.entries()]
+        .sort((a, b) => b[1] - a[1])
+        .map(([topic]) => topic),
     }
     try {
       after(() => notifyMarkReady(readyNotice))

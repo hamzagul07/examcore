@@ -5,6 +5,7 @@ import {
   buildPointBasedMarkingPrompt,
   buildLorMarkingPrompt,
   buildLorCriteriaMarkingPrompt,
+  buildMixedQuestionMarkingPrompt,
   buildMcqMarkingPrompt,
   buildIbPointBasedMarkingPrompt,
   buildIbLorMarkingPrompt,
@@ -295,6 +296,9 @@ function buildMarkingPromptBody(params: BuildMarkingPromptParams): string {
   if (effectiveStyle === 'mcq') {
     return buildMcqMarkingPrompt(subjectName, msJson, ocrText, total, syllabusBlock)
   }
+  if (effectiveStyle === 'mixed' && hasSections(markScheme.mark_scheme)) {
+    return buildMixedQuestionMarkingPrompt(subjectName, qText, total, msJson, ocrText, syllabusBlock)
+  }
   if (effectiveStyle === 'level_of_response') {
     if (hasObjectiveGrid(markScheme.mark_scheme)) {
       return buildLorCriteriaMarkingPrompt(
@@ -355,6 +359,28 @@ export function objectiveGridMax(
   return out
 }
 
+/** A whole question synthesised from parts of different styles. */
+export function hasSections(markScheme: Record<string, unknown> | null | undefined): boolean {
+  const sections = markScheme?.sections
+  return Array.isArray(sections) && sections.length > 0
+}
+
+/**
+ * The marks carried by the point-based parts of a mixed question, so the
+ * reconciler can add the examiner's ticks to the essay part's objective marks.
+ * Null when the scheme has no sections.
+ */
+export function mixedPointsTotal(markScheme: Record<string, unknown> | null | undefined): number | null {
+  if (!hasSections(markScheme)) return null
+  let total = 0
+  for (const section of markScheme!.sections as unknown[]) {
+    if (!section || typeof section !== 'object') return null
+    const row = section as Record<string, unknown>
+    if (row.type === 'point_based' && typeof row.total_marks === 'number') total += row.total_marks
+  }
+  return total
+}
+
 export function maxTokensForStyle(style: MarkingStyle): number {
   // level_of_response covers IB criteria/markband marking, whose output is large
   // (per-criterion band descriptor + justification + strengths/improvements, plus
@@ -362,7 +388,7 @@ export function maxTokensForStyle(style: MarkingStyle): number {
   // Marking runs on Gemini Pro, whose thinking tokens draw from the same budget,
   // so a long multi-part answer (e.g. a 16-mark question with per-mark reasoning
   // + summary) needs generous headroom or the trailing summary truncates.
-  if (style === 'level_of_response') return 14000
+  if (style === 'level_of_response' || style === 'mixed') return 14000
   if (style === 'mcq') return 4096
   return 10000
 }

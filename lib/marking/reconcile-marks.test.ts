@@ -198,4 +198,44 @@ import { reconcileMarkResult } from './reconcile-marks'
   assert.equal(out.marks_earned, 14, 'earned recomputed from award ticks')
 }
 
+// --- mixed whole question: points + essay objectives are added -------------
+{
+  const mixed = reconcileMarkResult(
+    {
+      marks_awarded: [
+        { mark_id: 1, type: 'B1', earned: true, reasoning: 'a' },
+        { mark_id: 2, type: 'M1', earned: true, reasoning: 'b' },
+        { mark_id: 3, type: 'A1', earned: false, reasoning: 'c' },
+        { mark_id: 4, type: 'B1', earned: true, reasoning: 'd' },
+      ],
+      points_earned: 3,
+      criteria_results: [
+        { criterion: '(c) AO1', marks_awarded: 2, marks_available: 2 },
+        { criterion: '(c) AO4', marks_awarded: 9, marks_available: 6 },
+      ],
+      marks_earned: 99,
+      total_marks: 99,
+    },
+    { authoritativeTotal: 16, pointsTotal: 4, criterionMax: [{ letter: '(c) AO1', maxMarks: 2 }, { letter: '(c) AO2', maxMarks: 2 }, { letter: '(c) AO4', maxMarks: 6 }] }
+  )
+  assert.equal(mixed.total_marks, 14, 'total = point parts (4) + catalog criteria (2 + 2 + 6)')
+  assert.equal(mixed.points_earned, 3, 'points come from the earned flags')
+  assert.equal(mixed.marks_earned, 3 + 2 + 0 + 6, 'earned = points + criteria, each objective clamped to its max, omitted objectives zero-filled')
+  assert.equal((mixed.criteria_results as Array<{ criterion: string }>).length, 3)
+
+  const partial = reconcileMarkResult(
+    { marks_awarded: [{ mark_id: 1, type: 'B1', earned: true, reasoning: 'a' }], points_earned: 7, criteria_results: [{ criterion: '(c) AO1', marks_awarded: 1, marks_available: 2 }], marks_earned: 0, total_marks: 0 },
+    { pointsTotal: 4, criterionMax: [{ letter: '(c) AO1', maxMarks: 2 }] }
+  )
+  assert.equal(partial.points_earned, 4, 'a breakdown that does not cover the point total falls back to the model points_earned, clamped')
+  assert.equal(partial.marks_earned, 5)
+  assert.equal(partial.total_marks, 6)
+
+  const criteriaOnly = reconcileMarkResult(
+    { criteria_results: [{ criterion: 'A', marks_awarded: 3, marks_available: 4 }], marks_earned: 0, total_marks: 0 },
+    { pointsTotal: 4, criterionMax: [{ letter: 'A', maxMarks: 4 }] }
+  )
+  assert.equal(criteriaOnly.total_marks, 4, 'without point awards the ordinary criteria path is used')
+}
+
 console.log('reconcile-marks: all assertions passed')

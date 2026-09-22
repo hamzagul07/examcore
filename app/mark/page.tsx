@@ -367,6 +367,8 @@ export default function MarkPage() {
   const [profileBoard, setProfileBoard] = useState('Cambridge International')
   /** `user_profiles.board` as saved — null until a signed-in profile loads (guests stay null). */
   const [profileBoardId, setProfileBoardId] = useState<string | null>(null)
+  /** `user_profiles.role` — teachers keep the full board grid. */
+  const [profileRole, setProfileRole] = useState<string | null>(null)
   /** Cached profile board so the locked line renders before the profile round-trip. */
   const boardHint = useMarkBoardHint()
   /** undefined = not loaded yet; null = signed-in with no target. */
@@ -550,7 +552,7 @@ export default function MarkPage() {
         }
         const { data: profile } = await supabase
           .from('user_profiles')
-          .select('subjects, level, board, target_grade, exam_date')
+          .select('subjects, level, board, target_grade, exam_date, role')
           .eq('id', user.id)
           .maybeSingle()
         const profileLevel = profile?.level ?? 'A-Level'
@@ -574,7 +576,10 @@ export default function MarkPage() {
           setProfileLevel(profileLevel)
           setProfileBoard(boardName)
           setProfileBoardId(savedBoard)
-          writeMarkBoardHint(savedBoard)
+          setProfileRole(typeof profile?.role === 'string' ? profile.role : null)
+          // Teachers are never locked, so never cache a board for them —
+          // the boot placeholder would hide a grid that is about to show.
+          writeMarkBoardHint(profile?.role === 'teacher' ? null : savedBoard)
           setTargetGrade(
             typeof profile?.target_grade === 'string' && profile.target_grade.trim()
               ? profile.target_grade.trim()
@@ -1661,8 +1666,9 @@ export default function MarkPage() {
       resolveMarkBoardLock({
         profileBoard: profileLoading ? boardHint : profileBoardId,
         selectedBoard: selectedMarkBoard,
+        role: profileRole,
       }),
-    [profileLoading, boardHint, profileBoardId, selectedMarkBoard]
+    [profileLoading, boardHint, profileBoardId, profileRole, selectedMarkBoard]
   )
 
   function handleMarkBoardChange(next: MarkExamBoard) {

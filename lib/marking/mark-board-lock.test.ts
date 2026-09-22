@@ -72,6 +72,19 @@ async function main() {
     deepLinkOff.mode === 'locked' && deepLinkOff.board === 'cambridge' && !deepLinkOff.overridden
   )
 
+  const teacher = resolveMarkBoardLock({
+    profileBoard: 'Cambridge International',
+    selectedBoard: 'cambridge',
+    role: 'teacher',
+  })
+  check('teachers keep the grid', teacher.mode === 'picker')
+  const student = resolveMarkBoardLock({
+    profileBoard: 'Cambridge International',
+    selectedBoard: 'cambridge',
+    role: 'student',
+  })
+  check('students are locked', student.mode === 'locked')
+
   const padded = resolveMarkBoardLock({ profileBoard: ' Edexcel ', selectedBoard: 'edexcel' })
   check('profile board is trimmed before lookup', padded.mode === 'locked' && padded.board === 'edexcel')
 

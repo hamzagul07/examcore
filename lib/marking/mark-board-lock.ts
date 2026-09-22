@@ -14,6 +14,11 @@ import {
  * Deep links (`/mark?board=ib`) and in-app handoffs from another board's course
  * still move the desk programmatically — the locked line then says so and
  * offers the way back to the profile board, instead of re-opening the grid.
+ *
+ * Teachers keep the grid. A student sits one board; a teacher at an
+ * international school may mark Cambridge in the morning and IB after lunch,
+ * and a lock they can only escape through their own profile settings would
+ * trap the people most likely to bring the next twenty students.
  */
 export type MarkBoardLock =
   | { mode: 'picker' }
@@ -32,7 +37,10 @@ export function resolveMarkBoardLock(input: {
   profileBoard: string | null | undefined
   /** Board currently selected on the desk. */
   selectedBoard: ExamSystemId
+  /** `user_profiles.role` — teachers are never locked. */
+  role?: string | null
 }): MarkBoardLock {
+  if (input.role === 'teacher') return { mode: 'picker' }
   const raw = input.profileBoard?.trim()
   if (!raw) return { mode: 'picker' }
 

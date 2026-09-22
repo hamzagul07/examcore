@@ -29,6 +29,8 @@ export type MarkReadyNotifyInput = {
   subjectLabel?: string | null
   paperRef?: string | null
   predictedMarks?: number | null
+  weakTopics?: string[] | null
+  whatToStudyNext?: string | null
 }
 
 /**
@@ -87,6 +89,8 @@ export async function notifyMarkReady(
       subjectLabel: input.subjectLabel ?? null,
       paperRef: input.paperRef ?? null,
       predictedMarks: input.predictedMarks ?? null,
+      weakTopics: input.weakTopics ?? null,
+      whatToStudyNext: input.whatToStudyNext ?? null,
       unsubscribeHref: recipient.unsubscribeHref,
     })
     return true

@@ -63,6 +63,7 @@ import { MarkFeedbackPrompt } from '@/components/mark/MarkFeedbackPrompt'
 import { FirstMarkPremiumNote } from '@/components/billing/FirstMarkPremiumNote'
 import { PredictScorePrompt } from '@/components/mark/PredictScorePrompt'
 import { RunningElsewhereNotice } from '@/components/mark/RunningElsewhereNotice'
+import { MarkEmailedNote } from '@/components/mark/MarkEmailedNote'
 import {
   clearPendingMark,
   noteFinishedMark,
@@ -377,6 +378,9 @@ export default function MarkPage() {
    * re-pick from the grid, now the desk has to honour the link it was opened by.
    */
   const deepLinkBoardRef = useRef(false)
+  /** Where the mark-ready email goes; null for guests. */
+  const [profileEmail, setProfileEmail] = useState<string | null>(null)
+  const [emailMarkReady, setEmailMarkReady] = useState(true)
   /** undefined = not loaded yet; null = signed-in with no target. */
   const [targetGrade, setTargetGrade] = useState<string | null | undefined>(undefined)
   const [gradeAskDismissed, setGradeAskDismissed] = useState(false)
@@ -589,7 +593,7 @@ export default function MarkPage() {
         }
         const { data: profile } = await supabase
           .from('user_profiles')
-          .select('subjects, level, board, target_grade, exam_date, role')
+          .select('subjects, level, board, target_grade, exam_date, role, email_mark_ready')
           .eq('id', user.id)
           .maybeSingle()
         const profileLevel = profile?.level ?? 'A-Level'
@@ -621,6 +625,8 @@ export default function MarkPage() {
           // unknown one, or one whose marking pack is off) — the boot
           // placeholder must never hide a grid that is about to show.
           writeMarkBoardHint(lockableProfileBoard(savedBoard, profile?.role))
+          setProfileEmail(user.email ?? null)
+          setEmailMarkReady(profile?.email_mark_ready !== false)
           setTargetGrade(
             typeof profile?.target_grade === 'string' && profile.target_grade.trim()
               ? profile.target_grade.trim()
@@ -2619,6 +2625,18 @@ export default function MarkPage() {
    * it: predicting after seeing a number, even a provisional one, is not a
    * prediction.
    */
+  // The result says where the copy went. Mirrors notifyMarkReady's own gates:
+  // signed in, a usable total, and the preference still on. The example
+  // result is a fixture — nothing was marked, so nothing was sent.
+  const emailedTo =
+    billingSummary?.signedIn &&
+    emailMarkReady &&
+    !showingExample &&
+    result &&
+    (result.total_marks ?? 0) > 0
+      ? profileEmail
+      : null
+
   const waitExtras = (() => {
     if (markStreamError || pendingResult) return null
     // Guests have no inbox and no saved result, so they genuinely do have to
@@ -2693,6 +2711,7 @@ export default function MarkPage() {
             earned={result.marks_earned ?? null}
             total={result.total_marks ?? null}
           />
+          {emailedTo ? <MarkEmailedNote email={emailedTo} /> : null}
           <MarkingResultView
             result={result}
             attemptId={result.attempt_id ?? null}
@@ -4213,6 +4232,7 @@ export default function MarkPage() {
                   <MarkExampleFooter onDismiss={closeExample} />
                 ) : (
                   <>
+                    {emailedTo ? <MarkEmailedNote email={emailedTo} /> : null}
                     {/* ON-01 / R3: target grade after value, not before. */}
                     {billingSummary?.signedIn &&
                     targetGrade === null &&

@@ -3,9 +3,13 @@ import 'server-only'
 import { sendEmailAsync } from '@/lib/email/send'
 import {
   EMAIL_BODY,
+  EMAIL_BORDER,
   EMAIL_BRAND as BRAND,
   EMAIL_INK as INK,
+  EMAIL_MUTED,
+  EMAIL_SANS,
   EMAIL_SERIF,
+  EMAIL_SURFACE,
   escapeHtml as esc,
   renderBrandedEmailHtml,
   statCell,
@@ -39,7 +43,48 @@ export type MarkReadyPayload = {
   paperRef?: string | null
   /** What they predicted during the wait, when they answered the prompt. */
   predictedMarks?: number | null
+  /** The examiner's weak-topic tags for this answer, e.g. "Analysis (AO3)". */
+  weakTopics?: string[] | null
+  /** The examiner's "what to study next" paragraph. Never scheme text. */
+  whatToStudyNext?: string | null
   unsubscribeHref: string
+}
+
+const STUDY_NOTE_MAX = 320
+
+/**
+ * The study note is model prose about the student's own answer, which is
+ * fine to mail — but it occasionally paraphrases the scheme it marked against,
+ * and published scheme text must stay behind the app. Anything that names the
+ * scheme or reads like an award code is dropped rather than risked. The rest
+ * is cut to one inbox-sized paragraph, at a sentence end where possible.
+ */
+export function studyNoteForEmail(raw: string | null | undefined): string | null {
+  const text = raw?.replace(/\s+/g, ' ').trim()
+  if (!text) return null
+  if (/mark ?scheme|\b[BMA]\d\b|\bdep\b|\bcao\b|\boe\b/i.test(text)) return null
+  if (text.length <= STUDY_NOTE_MAX) return text
+  const head = text.slice(0, STUDY_NOTE_MAX)
+  const sentenceEnd = Math.max(head.lastIndexOf('. '), head.lastIndexOf('! '), head.lastIndexOf('? '))
+  if (sentenceEnd > STUDY_NOTE_MAX * 0.5) return head.slice(0, sentenceEnd + 1)
+  const wordEnd = head.lastIndexOf(' ')
+  return `${head.slice(0, wordEnd > 0 ? wordEnd : STUDY_NOTE_MAX).trimEnd()}…`
+}
+
+/** Up to three short tags; anything long or scheme-shaped is not a tag. */
+export function weakTopicsForEmail(raw: string[] | null | undefined): string[] {
+  if (!Array.isArray(raw)) return []
+  const seen = new Set<string>()
+  const out: string[] = []
+  for (const item of raw) {
+    const t = typeof item === 'string' ? item.replace(/\s+/g, ' ').trim() : ''
+    if (!t || t.length > 48 || seen.has(t.toLowerCase())) continue
+    if (/mark ?scheme|\b[BMA]\d\b/i.test(t)) continue
+    seen.add(t.toLowerCase())
+    out.push(t)
+    if (out.length === 3) break
+  }
+  return out
 }
 
 /** Short, honest read on the score. Never congratulatory about a low mark. */
@@ -65,6 +110,8 @@ export function buildMarkReadyEmail(payload: MarkReadyPayload): {
     predictedMarks,
     unsubscribeHref,
   } = payload
+  const weakTopics = weakTopicsForEmail(payload.weakTopics)
+  const studyNote = studyNoteForEmail(payload.whatToStudyNext)
 
   const href = `${SITE_URL}/dashboard/attempt/${attemptId}`
   const greeting = recipientName?.trim() || 'there'
@@ -95,6 +142,22 @@ export function buildMarkReadyEmail(payload: MarkReadyPayload): {
   const para = (inner: string) =>
     `<p style="margin:0 0 18px;font-family:${EMAIL_SERIF};font-size:16px;line-height:1.65;color:${EMAIL_BODY}">${inner}</p>`
 
+  // The two things worth carrying out of the app: where the marks went, and
+  // what to do about it. Both are the examiner's own words about this answer.
+  const label = (inner: string) =>
+    `<div style="font-family:${EMAIL_SANS};font-size:10px;color:${EMAIL_MUTED};text-transform:uppercase;letter-spacing:.12em;margin:0 0 8px">${inner}</div>`
+  const topicsBlock = weakTopics.length
+    ? `<div style="margin:0 0 18px">${label('Where the marks went')}${weakTopics
+        .map(
+          (t) =>
+            `<span style="display:inline-block;padding:5px 11px;margin:0 6px 6px 0;border:1px solid ${EMAIL_BORDER};border-radius:999px;font-family:${EMAIL_SANS};font-size:12px;line-height:1.3;color:${INK}">${esc(t)}</span>`
+        )
+        .join('')}</div>`
+    : ''
+  const studyBlock = studyNote
+    ? `<div style="margin:0 0 22px;padding:14px 16px;border-left:3px solid ${BRAND};background:${EMAIL_SURFACE}">${label('What to do next')}<div style="font-family:${EMAIL_SERIF};font-size:15px;line-height:1.6;color:${EMAIL_BODY}">${esc(studyNote)}</div></div>`
+    : ''
+
   const bodyHtml =
     para(`Hi ${esc(greeting)},`) +
     para(
@@ -102,6 +165,8 @@ export function buildMarkReadyEmail(payload: MarkReadyPayload): {
     ) +
     statsRow +
     predictionLine +
+    topicsBlock +
+    studyBlock +
     para(verdictLine(pct))
 
   const text = [
@@ -115,6 +180,9 @@ export function buildMarkReadyEmail(payload: MarkReadyPayload): {
       : gap === 0
         ? `You predicted ${predictedMarks} — exactly right.`
         : `You predicted ${predictedMarks} and scored ${marksEarned}.`,
+    '',
+    weakTopics.length ? `Where the marks went: ${weakTopics.join(', ')}` : '',
+    studyNote ? `What to do next: ${studyNote}` : '',
     '',
     verdictLine(pct),
     '',

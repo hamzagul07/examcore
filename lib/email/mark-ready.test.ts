@@ -2,6 +2,8 @@ import assert from 'node:assert/strict'
 import {
   buildMarkReadyEmail,
   buildMarkFailedEmail,
+  studyNoteForEmail,
+  weakTopicsForEmail,
 } from '@/lib/email/mark-ready'
 
 /**
@@ -110,6 +112,41 @@ function main() {
   const anonymous = buildMarkReadyEmail({ ...base, marksEarned: 3, totalMarks: 4 })
   assert.match(anonymous.html, /Marking for your answer is finished/, 'falls back to a neutral phrase')
   assert.doesNotMatch(anonymous.subject, /\(\)/, 'no empty parens in the subject')
+
+  // --- where the marks went + what to do next --------------------------------
+  const guided = buildMarkReadyEmail({
+    ...base,
+    marksEarned: 5,
+    totalMarks: 8,
+    weakTopics: ['Analysis (AO3)', 'Contextual evaluation (AO4)', 'Analysis (AO3)', 'Knowledge', 'Extra'],
+    whatToStudyNext:
+      "Practice writing paragraphs where you explain the chain of consequences. For each point, ask 'so what?' at least twice.",
+  })
+  assert.match(guided.html, /Where the marks went/)
+  assert.match(guided.html, /Analysis \(AO3\)/)
+  assert.doesNotMatch(guided.html, /Extra/, 'capped at three tags')
+  assert.equal((guided.html.match(/Analysis \(AO3\)/g) || []).length, 1, 'duplicates collapse')
+  assert.match(guided.html, /What to do next/)
+  assert.match(guided.html, /ask &#39;so what\?&#39; at least twice|ask 'so what\?' at least twice/)
+  assert.match(guided.text, /Where the marks went: Analysis \(AO3\), Contextual evaluation \(AO4\), Knowledge/)
+  assert.match(guided.text, /What to do next: Practice writing/)
+
+  // Absent when there is nothing to say — no empty heading, no 'null'.
+  assert.doesNotMatch(plain.html, /Where the marks went|What to do next/)
+
+  // The guard: anything that names the scheme or reads like an award code
+  // stays behind the app. Better a shorter email than scheme text in an inbox.
+  assert.equal(studyNoteForEmail('Revisit the mark scheme for Q3 and learn the M1 step.'), null)
+  assert.equal(studyNoteForEmail('You lost the A1 for rounding.'), null)
+  assert.equal(studyNoteForEmail('   '), null)
+  assert.equal(studyNoteForEmail('Show every step of working.'), 'Show every step of working.')
+  const long = studyNoteForEmail(
+    'First sentence about method. ' + 'Second sentence that is quite long and keeps going on about the working. '.repeat(6)
+  )
+  assert.ok(long && long.length <= 321, `cut to one inbox paragraph, got ${long?.length}`)
+  assert.match(long!, /[.…]$/, 'ends at a sentence or with an ellipsis')
+  assert.deepEqual(weakTopicsForEmail(['Vectors', 'Use the mark scheme', 'x'.repeat(60), 'Vectors ']), ['Vectors'])
+  assert.deepEqual(weakTopicsForEmail(null), [])
 
   // --- the failure twin -------------------------------------------------------
   const failed = buildMarkFailedEmail({

@@ -641,6 +641,9 @@ async function handleMarkRequest(request: NextRequest) {
               // down, and a bare await would race that teardown. This is the
               // one hop the notification cannot afford to lose.
               const finishedPayload = payload as Record<string, unknown>
+              const finishedAi = finishedPayload.ai_marking as
+                | { weak_topics?: unknown; what_to_study_next?: unknown }
+                | undefined
               const readyNotice = {
                 userId,
                 attemptId: (finishedPayload.attempt_id as string | null) ?? null,
@@ -651,6 +654,15 @@ async function handleMarkRequest(request: NextRequest) {
                 ),
                 paperRef: (finishedPayload.paper_code as string | null) ?? null,
                 predictedMarks: predictedMarks,
+                weakTopics: Array.isArray(finishedAi?.weak_topics)
+                  ? (finishedAi.weak_topics as unknown[]).filter(
+                      (t): t is string => typeof t === 'string'
+                    )
+                  : null,
+                whatToStudyNext:
+                  typeof finishedAi?.what_to_study_next === 'string'
+                    ? finishedAi.what_to_study_next
+                    : null,
               }
               try {
                 after(() => notifyMarkReady(readyNotice))

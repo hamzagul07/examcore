@@ -19,8 +19,8 @@ const OPTIONS = listMarkingExamSystems().map((sys) => ({
   hint: sys.markPickerHint,
 }))
 
-/** Where a signed-in student changes the board that /mark locks to. */
-export const CHANGE_BOARD_HREF = '/account/exam'
+/** Where a signed-in student changes the board that /mark locks to — and comes straight back. */
+export const CHANGE_BOARD_HREF = '/account/exam?next=/mark'
 
 type Props = {
   value: MarkExamBoard

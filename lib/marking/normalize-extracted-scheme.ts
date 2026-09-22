@@ -341,7 +341,9 @@ const SUB_PART = /^(\d+)(\(.+)$/
  * total is the sum, every mark keeps its part label (and per-part cap) in its
  * description, and the part totals are kept under `parts`. Sub-part rows are
  * left in place so "3(a)" lookups still hit the cache. Parents that already
- * have their own row, and essay (banded) parts, are never merged.
+ * have their own row are never merged. When a part is an essay, the parent is a
+ * `mixed` scheme: sections per part, the point marks flattened, the essay's
+ * objectives as criteria named by part.
  */
 export function mergeSubPartQuestions(
   questions: Obj[],
@@ -393,42 +395,77 @@ function mergeParts(parent: string, parts: Obj[], paperMarkingType: MarkingStyle
   if (!partsLookComplete(labels)) return null
   let total = 0
   const marks: Obj[] = []
+  const criteria: Obj[] = []
+  const sections: Obj[] = []
   const texts: string[] = []
   const notes: string[] = []
   const partMeta: Obj[] = []
-  for (const part of parts) {
+  let displayBands: NormalisedBand[] | null = null
+  for (const [index, part] of parts.entries()) {
     const ms = part.mark_scheme
     if (!isObj(ms)) return null
     const style = concrete(ms.type) ?? concrete(part.marking_type) ?? concrete(paperMarkingType)
-    if (style !== 'point_based') return null
-    const partMarks = normaliseMarks(ms.marks)
     const partTotal = toInt(part.total_marks)
-    if (!partMarks || partTotal === null || partTotal <= 0) return null
-    const label = String(part.question_number).trim().slice(parent.length).trim() || `(${partMeta.length + 1})`
-    const cap = partMarks.length > partTotal ? ` [max ${partTotal}]` : ''
-    total += partTotal
-    for (const mark of partMarks) {
-      marks.push({
-        ...mark,
-        id: marks.length + 1,
-        description: `${label}${cap}: ${String(mark.description ?? '').trim()}`.trim(),
-      })
-    }
+    if (partTotal === null || partTotal <= 0) return null
+    const label = labels[index] || `(${index + 1})`
     if (typeof part.question_text === 'string' && part.question_text.trim()) {
       texts.push(`${label} ${part.question_text.trim()} [${partTotal}]`)
     }
     const guidance = guidanceText(ms)
     if (guidance) notes.push(`${label}: ${guidance}`)
-    partMeta.push({ part: label, total_marks: partTotal, listed_marks: partMarks.length })
+    if (style === 'point_based') {
+      const partMarks = normaliseMarks(ms.marks)
+      if (!partMarks) return null
+      const cap = partMarks.length > partTotal ? ` [max ${partTotal}]` : ''
+      const labelled = partMarks.map((mark) => ({
+        ...mark,
+        id: marks.length + 1 + partMarks.indexOf(mark),
+        part: label,
+        description: `${label}${cap}: ${String(mark.description ?? '').trim()}`.trim(),
+      }))
+      marks.push(...labelled)
+      sections.push({ part: label, type: 'point_based', total_marks: partTotal, marks: labelled })
+      partMeta.push({ part: label, type: 'point_based', total_marks: partTotal, listed_marks: partMarks.length })
+    } else if (style === 'level_of_response') {
+      // An essay part: its objective grid becomes criteria named by part, so a
+      // 12-mark (c) with AO1–AO4 marks as "(c) AO1"…; a flat band scale becomes
+      // one criterion for the part. Either way the reconciler sums per criterion.
+      const grid = normaliseCriteria(ms.criteria)
+      const bands = normaliseBands(ms.bands ?? ms.levels ?? ms.level_descriptors)
+      let partCriteria: Obj[]
+      if (grid) {
+        partCriteria = grid.map((c) => ({ ...c, id: `${label} ${c.id}`, name: c.name ? `${label} ${c.name}` : label }))
+      } else if (bands) {
+        partCriteria = [{ id: label, name: `${label} level of response`, max_marks: partTotal, bands }]
+      } else {
+        return null
+      }
+      criteria.push(...partCriteria)
+      displayBands = displayBands ?? bands ?? (grid ? bandsFromCriteria(grid) : null)
+      const section: Obj = { part: label, type: 'level_of_response', total_marks: partTotal, criteria: partCriteria }
+      if (bands) section.bands = bands
+      if (Array.isArray(ms.indicative_content)) section.indicative_content = ms.indicative_content
+      if (guidance) section.notes = guidance
+      sections.push(section)
+      partMeta.push({ part: label, type: 'level_of_response', total_marks: partTotal, objectives: partCriteria.length })
+    } else {
+      // MCQ (or unknown) parts do not belong in a whole-question upload.
+      return null
+    }
+    total += partTotal
   }
-  if (total <= 0 || marks.length === 0) return null
-  const scheme: Obj = { type: 'point_based', marks, parts: partMeta, synthesised_from_parts: true }
+  if (total <= 0 || (marks.length === 0 && criteria.length === 0)) return null
+  const allPoints = criteria.length === 0
+  const scheme: Obj = allPoints
+    ? { type: 'point_based', marks, parts: partMeta, synthesised_from_parts: true }
+    : { type: 'mixed', sections, marks, criteria, parts: partMeta, synthesised_from_parts: true }
+  if (!allPoints && displayBands) scheme.bands = displayBands
   if (notes.length) scheme.notes = notes.join('\n')
   return {
     question_number: parent,
     question_text: texts.join('\n\n'),
     total_marks: total,
-    marking_type: 'point_based',
+    marking_type: allPoints ? 'point_based' : 'mixed',
     mark_scheme: scheme,
   }
 }

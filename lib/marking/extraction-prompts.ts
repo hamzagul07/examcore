@@ -295,6 +295,9 @@ export function validateExtractedQuestion(
       ? ms.question_style
       : declaredType
 
+  if (Array.isArray(ms.sections) && ms.sections.length > 0) {
+    return validatesAsSections(ms.sections, totalMarks)
+  }
   if (qType === 'mcq') return validatesAsMcq(ms)
   if (qType === 'level_of_response') return validatesAsLorScheme(ms, totalMarks)
   if (qType === 'point_based') return validatesAsPointBased(ms, totalMarks)
@@ -316,6 +319,30 @@ export function validateExtractedQuestion(
 function validatesAsMcq(ms: Record<string, unknown>): boolean {
   const key = ms.answer_key
   return !!(key && typeof key === 'object' && Object.keys(key as object).length > 0)
+}
+
+/**
+ * A whole question synthesised from parts of different styles (short point
+ * parts plus an essay part). Every section is held to its own style's checks
+ * against its own total, and the section totals must sum to the question's.
+ */
+function validatesAsSections(sections: unknown[], totalMarks: number): boolean {
+  let sum = 0
+  for (const section of sections) {
+    if (!section || typeof section !== 'object' || Array.isArray(section)) return false
+    const row = section as Record<string, unknown>
+    const sectionTotal = row.total_marks
+    if (typeof sectionTotal !== 'number' || !Number.isInteger(sectionTotal) || sectionTotal <= 0) return false
+    if (row.type === 'point_based') {
+      if (!validatesAsPointBased(row, sectionTotal)) return false
+    } else if (row.type === 'level_of_response') {
+      if (!validatesAsLorScheme(row, sectionTotal)) return false
+    } else {
+      return false
+    }
+    sum += sectionTotal
+  }
+  return sum === totalMarks
 }
 
 /**

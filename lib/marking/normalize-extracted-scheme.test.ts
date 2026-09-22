@@ -328,7 +328,43 @@ const essayParts = [
   { question_number: '4(a)', total_marks: 8, marking_type: 'level_of_response', mark_scheme: { bands: [{ level: 1, marks_min: 0, marks_max: 8, descriptor: 'x' }] } },
   { question_number: '4(b)', total_marks: 12, marking_type: 'level_of_response', mark_scheme: { bands: [{ level: 1, marks_min: 0, marks_max: 12, descriptor: 'y' }] } },
 ].map((q) => normalizeExtractedQuestion(q, 'mixed'))
-assert.equal(mergeSubPartQuestions(essayParts, 'mixed').length, 2, 'banded essay parts are never merged into a fake parent')
+const twoEssays = mergeSubPartQuestions(essayParts, 'mixed')
+assert.equal(twoEssays.length, 3, 'two essay parts synthesise a parent too')
+assert.equal(twoEssays[2].marking_type, 'mixed')
+assert.equal(twoEssays[2].total_marks, 20)
+
+// --- mixed whole question: point parts + an essay part (9609/32 Q3) ---------
+const mixedParts = [
+  { question_number: '3(a)', question_text: 'Identify one method.', total_marks: 1, marking_type: 'point_based',
+    mark_scheme: { type: 'point_based', marks: [{ id: 1, type: 'B1', value: 1, description: 'a valid method;' }] } },
+  { question_number: '3(b)', question_text: 'Calculate the change.', total_marks: 3, marking_type: 'point_based',
+    mark_scheme: { type: 'point_based', marks: [{ id: 1, type: 'M1', value: 1, description: 'method;' }, { id: 2, type: 'A1', value: 1, description: 'answer;' }, { id: 3, type: 'B1', value: 1, description: 'units;' }, { id: 4, type: 'B1', value: 1, description: 'alternative route;' }] } },
+  { question_number: '3(c)', question_text: 'Evaluate whether the business should expand.', total_marks: 12, marking_type: 'level_of_response',
+    mark_scheme: { type: 'level_of_response', criteria: [
+      { id: 'AO1', name: 'Knowledge', max_marks: 2, bands: [{ level: 1, marks_min: 1, marks_max: 2, descriptor: 'k' }, { level: 0, marks_min: 0, marks_max: 0, descriptor: 'n' }] },
+      { id: 'AO2', name: 'Application', max_marks: 2, bands: [{ level: 1, marks_min: 1, marks_max: 2, descriptor: 'a' }, { level: 0, marks_min: 0, marks_max: 0, descriptor: 'n' }] },
+      { id: 'AO3', name: 'Analysis', max_marks: 2, bands: [{ level: 1, marks_min: 1, marks_max: 2, descriptor: 'x' }, { level: 0, marks_min: 0, marks_max: 0, descriptor: 'n' }] },
+      { id: 'AO4', name: 'Evaluation', max_marks: 6, bands: [{ level: 3, marks_min: 5, marks_max: 6, descriptor: 'e3' }, { level: 2, marks_min: 3, marks_max: 4, descriptor: 'e2' }, { level: 1, marks_min: 1, marks_max: 2, descriptor: 'e1' }, { level: 0, marks_min: 0, marks_max: 0, descriptor: 'n' }] },
+    ], indicative_content: ['…'] } },
+].map((q) => normalizeExtractedQuestion(q, 'mixed'))
+const mixed = mergeSubPartQuestions(mixedParts, 'mixed')
+assert.equal(mixed.length, 4)
+const mixedParent = mixed.find((q) => q.question_number === '3')!
+assert.equal(mixedParent.marking_type, 'mixed')
+assert.equal(mixedParent.total_marks, 16, 'parent total = 1 + 3 + 12')
+const mixedScheme = mixedParent.mark_scheme as { type: string; sections: Array<{ part: string; type: string; total_marks: number }>; marks: Array<{ id: number; part: string; description: string }>; criteria: Array<{ id: string; max_marks: number }>; bands: unknown[] }
+assert.equal(mixedScheme.type, 'mixed')
+assert.deepEqual(mixedScheme.sections.map((s) => [s.part, s.type, s.total_marks]), [['(a)', 'point_based', 1], ['(b)', 'point_based', 3], ['(c)', 'level_of_response', 12]])
+assert.deepEqual(mixedScheme.marks.map((m) => m.id), [1, 2, 3, 4, 5], 'point marks are renumbered across parts')
+assert.equal(mixedScheme.marks[1].part, '(b)')
+assert.match(mixedScheme.marks[1].description, /^\(b\) \[max 3\]: method;/, 'an "any 3 of 4" part carries its cap')
+assert.deepEqual(mixedScheme.criteria.map((c) => [c.id, c.max_marks]), [['(c) AO1', 2], ['(c) AO2', 2], ['(c) AO3', 2], ['(c) AO4', 6]], 'the essay objectives are named by part')
+assert.ok(Array.isArray(mixedScheme.bands) && mixedScheme.bands.length > 0, 'a display scale is carried')
+assert.equal(validateExtractedQuestion(mixedParent, 'mixed', '3'), true, 'the mixed parent validates section by section')
+assert.equal(validateExtractedQuestion({ ...mixedParent, total_marks: 15 }, 'mixed', '3'), false, 'section totals must sum to the question total')
+
+const withMcq = mergeSubPartQuestions([mixedParts[0], normalizeExtractedQuestion({ question_number: '3(b)', total_marks: 1, marking_type: 'mcq', mark_scheme: { type: 'mcq', answer_key: { '3(b)': 'C' } } }, 'mixed')], 'mixed')
+assert.equal(withMcq.some((q) => q.question_number === '3'), false, 'an MCQ part blocks the synthesis')
 
 assert.equal(partsLookComplete(['(a)(i)', '(a)(ii)', '(b)', '(c)', '(d)']), true)
 assert.equal(partsLookComplete(['(a)', '(b)(i)', '(b)(ii)']), true)

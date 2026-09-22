@@ -25,7 +25,7 @@ import { normalizeErrorClassification } from '@/lib/error-classifications'
 import { isMathSubjectCode } from '@/lib/marking/math-subjects'
 import { markingBoardLabel } from '@/lib/marking/exam-board'
 import { parsePaperCode } from '@/lib/marking/component-types'
-import { buildMarkingPrompt, maxTokensForStyle, looksLikeMcq, objectiveGridMax } from '@/lib/marking/build-marking-prompt'
+import { buildMarkingPrompt, maxTokensForStyle, looksLikeMcq, objectiveGridMax, mixedPointsTotal } from '@/lib/marking/build-marking-prompt'
 import { resolveDerivedSchemeForMark } from '@/lib/marking/resolve-derived-scheme'
 import { extractJSON } from '@/lib/marking/json'
 import { normalizeQuestionNumber } from '@/lib/marking/question-number'
@@ -721,6 +721,9 @@ export async function markSingleQuestion(params: {
         ? objectiveGridMax(effectiveMarkScheme.mark_scheme)
         : null
 
+  // Mixed whole question: the point parts' marks, added to the essay objectives.
+  const pointsTotal =
+    isOfficial && effectiveMarkScheme ? mixedPointsTotal(effectiveMarkScheme.mark_scheme) : null
   const schemeTotal =
     effectiveMarkScheme &&
     typeof effectiveMarkScheme.total_marks === 'number' &&
@@ -747,7 +750,7 @@ export async function markSingleQuestion(params: {
     normalizeMarkingResult(
       await runGeminiMarking(markingPrompt, maxTokensForStyle(markingStyle))
     ),
-    { authoritativeTotal, criterionMax }
+    { authoritativeTotal, criterionMax, pointsTotal }
   )
 
   // Second-opinion verify pass — re-mark to correct under/over-marking (the main
@@ -761,7 +764,7 @@ export async function markSingleQuestion(params: {
   if (
     VERIFY_MARKING &&
     verify &&
-    (markingStyle === 'point_based' || markingStyle === 'level_of_response') &&
+    (markingStyle === 'point_based' || markingStyle === 'level_of_response' || markingStyle === 'mixed') &&
     hasBreakdown
   ) {
     // Hand over the number now. Verify can still move it — that is the whole
@@ -813,6 +816,7 @@ export async function markSingleQuestion(params: {
         const verified = reconcileMarkResult(normalizedVerified, {
           authoritativeTotal,
           criterionMax,
+          pointsTotal,
         })
 
         // On essays the second sample must not simply win. Measured across
@@ -843,7 +847,7 @@ export async function markSingleQuestion(params: {
               normalizeMarkingResult(
                 await runGeminiMarking(verifyPrompt, maxTokensForStyle(markingStyle))
               ),
-              { authoritativeTotal, criterionMax }
+              { authoritativeTotal, criterionMax, pointsTotal }
             )
             const chosen = pickMedianCandidate([
               { marks: Number(markingResult.marks_earned), payload: markingResult },
@@ -914,7 +918,7 @@ export async function markSingleQuestion(params: {
           normalizeMarkingResult(
             await runGeminiMarking(markingPrompt, maxTokensForStyle(markingStyle))
           ),
-          { authoritativeTotal, criterionMax }
+          { authoritativeTotal, criterionMax, pointsTotal }
         )
         const stillWrong = findBandContradiction({
           justification: bandJustificationText(

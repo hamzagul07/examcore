@@ -25,6 +25,12 @@ export type CriterionMax = { letter: string; maxMarks: number }
 
 export type ReconcileOptions = {
   /**
+   * Mixed whole question: the marks carried by its point-based parts. When set
+   * and the result has both marks_awarded and criteria_results, the total is
+   * points plus criteria and earned is the sum of both.
+   */
+  pointsTotal?: number | null
+  /**
    * The correct denominator when the system knows it: official scheme total,
    * catalogued IB component max, or student-supplied total. Null/0 = unknown,
    * in which case we fall back to the breakdown's own totals.
@@ -75,7 +81,12 @@ export function reconcileMarkResult<T extends AnyRecord>(
     ? (result.criteria_results as AnyRecord[])
     : null
 
-  if (criteria && criteria.length > 0) {
+  const pointAwards = Array.isArray(result.marks_awarded) ? (result.marks_awarded as AnyRecord[]) : null
+  const pointsTotal =
+    typeof opts.pointsTotal === 'number' && opts.pointsTotal > 0 ? opts.pointsTotal : null
+  if (criteria && criteria.length > 0 && pointAwards && pointAwards.length > 0 && pointsTotal !== null) {
+    reconcileMixed(result, criteria, pointAwards, pointsTotal, opts.criterionMax ?? null)
+  } else if (criteria && criteria.length > 0) {
     reconcileCriteria(result, criteria, authoritative, opts.criterionMax ?? null)
   } else if (result.band_result && typeof result.band_result === 'object') {
     reconcileBand(result, result.band_result as AnyRecord, authoritative)
@@ -94,6 +105,32 @@ export function reconcileMarkResult<T extends AnyRecord>(
   }
 
   return result
+}
+
+/**
+ * Mixed whole question: the point parts are reconciled like any point scheme
+ * against their own total, the essay part's objectives like any criteria, and
+ * the two are added. A breakdown that does not cover the point total falls
+ * back to the model's points_earned, clamped.
+ */
+function reconcileMixed(
+  result: AnyRecord,
+  criteria: AnyRecord[],
+  awards: AnyRecord[],
+  pointsTotal: number,
+  criterionMax: CriterionMax[] | null
+): void {
+  const fromAwards = sumPointAwards(awards, pointsTotal)
+  const pointsEarned =
+    fromAwards ?? clamp(Math.round(num(result.points_earned) ?? 0), 0, pointsTotal)
+  reconcileCriteria(result, criteria, null, criterionMax)
+  const criteriaTotal = num(result.total_marks) ?? 0
+  const criteriaEarned = num(result.marks_earned) ?? 0
+  result.points_earned = pointsEarned
+  result.points_total = pointsTotal
+  result.total_marks = pointsTotal + criteriaTotal
+  result.marks_earned = clamp(pointsEarned + criteriaEarned, 0, pointsTotal + criteriaTotal)
+  syncBand(result, result.marks_earned as number, result.total_marks as number)
 }
 
 /** IB / multi-criterion: per-criterion clamp, summed earned, exact total. */

@@ -40,7 +40,7 @@ export const TIEBREAK_MIN_DELTA = 2
 
 /** Styles whose marks are a judgment rather than a count of scheme points. */
 export function styleNeedsTiebreak(style: string | null | undefined): boolean {
-  return style === 'level_of_response'
+  return style === 'level_of_response' || style === 'mixed'
 }
 
 export type TiebreakDecision = {

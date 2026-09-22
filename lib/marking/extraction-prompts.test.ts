@@ -123,6 +123,24 @@ async function extractionDoesNotPersistInvalidRubric(): Promise<void> {
   }
 }
 
+// --- mixed whole question: sections validated by their own style ----------
+{
+  const lorBands = [{ level: 2, marks_min: 5, marks_max: 12, descriptor: 'x' }, { level: 1, marks_min: 1, marks_max: 4, descriptor: 'y' }, { level: 0, marks_min: 0, marks_max: 0, descriptor: 'z' }]
+  const sections = [
+    { part: '(a)', type: 'point_based', total_marks: 1, marks: [{ id: 1, type: 'B1', value: 1, description: 'a' }] },
+    { part: '(b)', type: 'point_based', total_marks: 3, marks: [1, 2, 3, 4].map((i) => ({ id: i, type: 'B1', value: 1, description: `p${i}` })) },
+    { part: '(c)', type: 'level_of_response', total_marks: 12, bands: lorBands },
+  ]
+  const ok = { question_number: '3', total_marks: 16, marking_type: 'mixed', mark_scheme: { type: 'mixed', sections } }
+  assert.equal(validateExtractedQuestion(ok, 'mixed', '3'), true, 'sections validate by style and sum to the total')
+  assert.equal(validateExtractedQuestion({ ...ok, total_marks: 15 }, 'mixed', '3'), false, 'section totals must sum to the total')
+  const partB = sections[1] as { marks: unknown[] }
+  const shortPart = { ...ok, mark_scheme: { type: 'mixed', sections: [{ ...sections[1], marks: partB.marks.slice(0, 2) }, sections[2]] }, total_marks: 15 }
+  assert.equal(validateExtractedQuestion(shortPart, 'mixed', '3'), false, 'a point section listing fewer marks than its total is rejected')
+  const badEssay = { ...ok, mark_scheme: { type: 'mixed', sections: [sections[0], sections[1], { ...sections[2], bands: lorBands.slice(0, 1) }] } }
+  assert.equal(validateExtractedQuestion(badEssay, 'mixed', '3'), false, 'an essay section whose bands do not tile is rejected')
+}
+
 extractionDoesNotPersistInvalidRubric()
   .then(() => console.log('extraction-prompts: all assertions passed'))
   .catch((error: unknown) => {

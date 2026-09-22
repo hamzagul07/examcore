@@ -671,6 +671,18 @@ Return ONLY this JSON:
 }
 
 /**
+ * How Cambridge examiners apply an assessment-objective grid, read from the
+ * examiner commentary in published candidate-response booklets. Shared by the
+ * per-objective essay prompt and the mixed whole-question prompt.
+ */
+export const CAMBRIDGE_AO_GUIDANCE = `HOW CAMBRIDGE EXAMINERS APPLY THE GRID (from published examiner-marked candidate responses; follow this, it is the standard):
+- Knowledge (AO1) is credited for any relevant, correct knowledge shown anywhere in the response: a definition, a named theory or concept, a correct explanation of a term. Breadth is not required. When the 'developed knowledge' statement is met, award the TOP of the AO1 range. If your justification would say the candidate "could have named more theories", "shown a wider range" or "discussed other styles", that is a comment for the improvements list, not a reason to withhold a mark: award the full AO1 marks. Examiners award full AO1 marks to almost every response, including weak ones; the only responses that lose AO1 marks show a single, thin or partly incorrect piece of knowledge.
+- Application (AO2) is credited whenever the response uses specific details of the case (names, figures, dates, events, quoted data) rather than the concept in general. Two or more pieces of specific application earn all the AO2 marks; examiners award full AO2 marks to almost every response.
+- Analysis (AO3): Level 1 is a simple consequence or a one-step reason, including a generic one ("this might make workers feel valued, which would increase their support"): the examiners' own words for that were "a very simple piece of Level 1 analysis". Level 2 needs a DEVELOPED chain about an individual element: at least two explicit links that end in a consequence for the business's performance or objectives (costs, revenue, growth, survival, productivity, quality), stated in the case context. A chain that stops at a feeling, an attitude or "helps the business" has not reached Level 2. A weak essay that only asserts effects earns 0–3 AO3 marks, and examiners do award 0. Level 3 is analysis of the strategy or situation as a whole: how the elements connect to the business's overall position or the question's whole period. Quality decides the level, not quantity: ONE developed chain reaches Level 2 and ONE piece of whole-strategy analysis reaches Level 3, however much Level 1 or Level 2 material surrounds it. In the published standard, three separate elements each analysed well was Level 2 AO3; Level 3 needed the candidate to analyse the effect on the strategy or business as a whole. Several strong element-by-element chains are the TOP of Level 2, never Level 3.
+- Evaluation (AO4), as examiners apply it: a judgement with little or no supporting comment, or a judgement that merely repeats an analytical point, is Level 1, however strong the analysis before it. A judgement followed by the reason it was made, or developed evaluative comments that balance some of the arguments, is Level 2; a developed and balanced evaluation with no case reference inside it is the TOP of Level 2, not Level 3. Level 3 needs the case context INSIDE the evaluative sentence or judgement itself ("for a small retailer…", "because Rohit…", "a coffee shop would…"); application elsewhere in the essay does not lift the evaluation. One clear judgement made in the case context is the BOTTOM of Level 3; the top of Level 3 only when the evaluative comments themselves are developed in the case context (a second contextual evaluative point or a contextual weighing). Weighing alternative factors is what makes the best evaluations better; it is NOT the condition for Level 3, so never withhold Level 3 for want of a counter-case the candidate never raised, and never treat "to what extent" as requiring one. Evaluative comments count wherever they appear, not only in the conclusion.
+- Within a level, examiners award the top of the range far more often than the bottom for developed responses; reserve the bottom for work that only just reaches the level statement. "Lower end of the level" is not a default.`
+
+/**
  * Cambridge essays whose scheme is a grid of assessment objectives (AO1
  * knowledge, AO2 application, AO3 analysis, AO4 evaluation), each with its own
  * levels and mark range. Examiners award each objective on its own scale and
@@ -698,12 +710,7 @@ For each objective in "criteria":
 4. Quote the descriptor wording the work meets or misses. Use the indicative content as examples of creditable material, not as a checklist: credit valid points that are not listed.
 5. Do not let one objective leak into another: a long analysis earns AO3 marks, not AO4 marks; evaluation marks need a judgement, not more analysis. Application marks need specific use of the case context, not the concept in general.
 
-HOW CAMBRIDGE EXAMINERS APPLY THE GRID (from published examiner-marked candidate responses; follow this, it is the standard):
-- Knowledge (AO1) is credited for any relevant, correct knowledge shown anywhere in the response: a definition, a named theory or concept, a correct explanation of a term. Breadth is not required. When the 'developed knowledge' statement is met, award the TOP of the AO1 range. If your justification would say the candidate "could have named more theories", "shown a wider range" or "discussed other styles", that is a comment for the improvements list, not a reason to withhold a mark: award the full AO1 marks. Examiners award full AO1 marks to almost every response, including weak ones; the only responses that lose AO1 marks show a single, thin or partly incorrect piece of knowledge.
-- Application (AO2) is credited whenever the response uses specific details of the case (names, figures, dates, events, quoted data) rather than the concept in general. Two or more pieces of specific application earn all the AO2 marks; examiners award full AO2 marks to almost every response.
-- Analysis (AO3): Level 1 is a simple consequence or a one-step reason, including a generic one ("this might make workers feel valued, which would increase their support"): the examiners' own words for that were "a very simple piece of Level 1 analysis". Level 2 needs a DEVELOPED chain about an individual element: at least two explicit links that end in a consequence for the business's performance or objectives (costs, revenue, growth, survival, productivity, quality), stated in the case context. A chain that stops at a feeling, an attitude or "helps the business" has not reached Level 2. A weak essay that only asserts effects earns 0–3 AO3 marks, and examiners do award 0. Level 3 is analysis of the strategy or situation as a whole: how the elements connect to the business's overall position or the question's whole period. Quality decides the level, not quantity: ONE developed chain reaches Level 2 and ONE piece of whole-strategy analysis reaches Level 3, however much Level 1 or Level 2 material surrounds it. In the published standard, three separate elements each analysed well was Level 2 AO3; Level 3 needed the candidate to analyse the effect on the strategy or business as a whole. Several strong element-by-element chains are the TOP of Level 2, never Level 3.
-- Evaluation (AO4), as examiners apply it: a judgement with little or no supporting comment, or a judgement that merely repeats an analytical point, is Level 1, however strong the analysis before it. A judgement followed by the reason it was made, or developed evaluative comments that balance some of the arguments, is Level 2; a developed and balanced evaluation with no case reference inside it is the TOP of Level 2, not Level 3. Level 3 needs the case context INSIDE the evaluative sentence or judgement itself ("for a small retailer…", "because Rohit…", "a coffee shop would…"); application elsewhere in the essay does not lift the evaluation. One clear judgement made in the case context is the BOTTOM of Level 3; the top of Level 3 only when the evaluative comments themselves are developed in the case context (a second contextual evaluative point or a contextual weighing). Weighing alternative factors is what makes the best evaluations better; it is NOT the condition for Level 3, so never withhold Level 3 for want of a counter-case the candidate never raised, and never treat "to what extent" as requiring one. Evaluative comments count wherever they appear, not only in the conclusion.
-- Within a level, examiners award the top of the range far more often than the bottom for developed responses; reserve the bottom for work that only just reaches the level statement. "Lower end of the level" is not a default.
+${CAMBRIDGE_AO_GUIDANCE}
 
 QUESTION:
 ${questionText}
@@ -752,6 +759,81 @@ Return ONLY this JSON:
   "marking_style": "level_of_response"${tagsField}
 }
 Include exactly one criteria_results entry per entry in "criteria", with "criterion" equal to its "id" and marks_available equal to its max_marks. Set band_result.marks_awarded and marks_earned to the SUM of the criteria marks.`
+}
+
+/**
+ * A whole question whose parts are marked in different styles: short
+ * point-based parts (a), (b) and an essay part (c) with its own objective
+ * grid. One pass awards the creditable points AND the essay's objectives, so
+ * a student who uploads the whole question gets the examiner's ticks on the
+ * short parts and a per-objective level on the essay. Emits both
+ * marks_awarded and criteria_results; the reconciler adds them.
+ */
+export function buildMixedQuestionMarkingPrompt(
+  subjectName: string,
+  questionText: string,
+  totalMarks: number,
+  markSchemeJson: string,
+  ocrText: string,
+  syllabusBlock?: string
+): string {
+  const taggingBlock = syllabusBlock ? `\n${syllabusBlock}\n` : ''
+  const tagsField = syllabusBlock ? ',\n  "syllabus_tags": ["code"]' : ''
+  return `You are a Cambridge International A-Level ${subjectName} senior examiner marking a whole question whose parts are marked differently. The mark scheme lists "sections", one per part:
+- a "point_based" section lists the creditable marks for that part. Award each mark only when the student's work for THAT PART clearly shows it; quote the words that earn it in line_reference; never award a mark for material written under a different part. A section that lists more marks than its total is an "any N of" list: award at most total_marks for it.
+- a "level_of_response" section is an essay part with a grid of assessment objectives in "criteria" (each named by the part, e.g. "(c) AO1"). Mark EACH OBJECTIVE SEPARATELY on its own scale: find the best-fit level statement, then the specific mark using Cambridge's rule (convincingly meets the statement → highest mark in the range; adequately → middle; just meets → lowest), quoting the descriptor wording the work meets or misses. Judge only the student's answer to that part.
+
+${CAMBRIDGE_AO_GUIDANCE}
+
+QUESTION (all parts):
+${questionText}
+
+TOTAL MARKS AVAILABLE: ${totalMarks}
+
+OFFICIAL MARK SCHEME (sections by part; "marks" and "criteria" at the top level are the same content flattened):
+${markSchemeJson}
+
+STUDENT'S TRANSCRIBED ANSWER (all parts):
+${ocrText}
+${TONE_BLOCK}
+${taggingBlock}
+${MATH_NOTATION_BLOCK}
+${JSON_RULES_BLOCK}
+Return ONLY this JSON:
+{
+  "marks_awarded": [
+    {
+      "mark_id": 1,
+      "type": "B1",
+      "earned": true,
+      "reasoning": "...",
+      "error_classification": "no_error",
+      "line_reference": "",
+      "margin_note": null
+    }
+  ],
+  "points_earned": 0,
+  "criteria_results": [
+    {
+      "criterion": "(c) AO1",
+      "criterion_name": "(c) Knowledge and understanding",
+      "level": 2,
+      "marks_awarded": 2,
+      "marks_available": 2,
+      "band_descriptor": "The level statement you placed them in, verbatim",
+      "justification": "Examiner justification quoting the statement and the evidence in the answer",
+      "strengths": ["..."],
+      "improvements": ["what would reach the next level for this objective"]
+    }
+  ],
+  "marks_earned": 0,
+  "total_marks": ${totalMarks},
+  "summary": "Overall examiner feedback to the student, part by part",
+  "weak_topics": ["..."],
+  "what_to_study_next": "...",
+  "marking_style": "mixed"${tagsField}
+}
+Include one marks_awarded entry per mark listed in the point-based sections (mark_id = its id) and exactly one criteria_results entry per entry in "criteria" (criterion = its id, marks_available = its max_marks). points_earned is the sum of the point marks you awarded, capped per section; marks_earned = points_earned + the sum of the criteria marks.`
 }
 
 /** IB multi-criterion marking (EE, TOK, Visual Arts comparative study, etc.). */
@@ -873,7 +955,7 @@ How to re-mark — go through the mark scheme ONE MARK AT A TIME (do not mark ho
 3. Award the mark only when you found that evidence IN THE STUDENT'S OWN WRITTEN WORK. If the evidence is there but imperfectly expressed, AWARD it — a student must never lose a mark over presentation, or for a valid alternative method. But where the mark requires the student to SHOW something (a justification, a test, a derivation, a reason), award it only if they actually wrote it: never supply the missing reasoning on their behalf, and never let a correct final answer earn a mark for working the student did not show. Scrutinise every mark in BOTH directions — withholding a mark the student earned and awarding one they did not are equally serious errors, and you must be equally willing to correct either.
 Then set marks_earned to the number of marks you awarded.
 - ${totalLine}
-- marks_earned must equal the sum of the individual marks (or criteria marks) you award.
+- marks_earned must equal the sum of the individual marks (or criteria marks) you award; when the result has both marks_awarded and criteria_results, it is the point marks plus the criteria marks.
 
 WRITING THE FEEDBACK — the student reads "summary", "reasoning" and "margin_note" verbatim; they never see this review process and do not know a first marker exists. Address the student directly ("you"). NEVER refer to the first marker, the initial/original marking, this review, or to marks being corrected or reinstated — a real observed failure was a summary opening "The initial marking was correct", which is meaningless to a student. Describe only their work and why each mark was or was not earned.
 

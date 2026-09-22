@@ -474,8 +474,18 @@ export function normaliseCriteria(raw: unknown): NormalisedCriterion[] | null {
   for (const [index, row] of raw.entries()) {
     if (!isObj(row)) return null
     const idRaw = row.id ?? row.code ?? row.ao ?? row.objective ?? row.criterion ?? row.letter
-    const id = typeof idRaw === 'string' && idRaw.trim() ? idRaw.trim().toUpperCase().replace(/\s+/g, '') : `AO${index + 1}`
-    const nameRaw = row.name ?? row.title ?? row.label ?? row.description
+    // "AO3", "A03 Analysis" (a zero for the O), "AO1 Knowledge and understanding":
+    // the code is the first token; what follows is the name when none was given.
+    const idText = typeof idRaw === 'string' ? idRaw.trim() : ''
+    const codeMatch = idText.match(/^A[O0]\s*(\d+)\b[\s:.-]*(.*)$/i)
+    const id = codeMatch
+      ? `AO${codeMatch[1]}`
+      : idText
+        ? idText.toUpperCase().replace(/\s+/g, '')
+        : `AO${index + 1}`
+    const nameRaw = [row.name, row.title, row.label, row.description, codeMatch?.[2]].find(
+      (v): v is string => typeof v === 'string' && v.trim().length > 0
+    )
     const raw = normaliseBands(row.bands ?? row.levels ?? row.level_descriptors)
     if (!raw) return null
     const bands = dropInventedRows(raw)

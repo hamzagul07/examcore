@@ -442,6 +442,13 @@ const carved = normaliseCriteria([{ id: 'AO1', name: 'Knowledge', max_marks: 3, 
   { level: 0, marks_min: 0, marks_max: 0, descriptor: 'None' } ] }])!
 assert.deepEqual(carved[0].bands.map((b) => [b.level, b.marks_min, b.marks_max]), [[0, 0, 0], [1, 1, 1], [2, 2, 3]], 'a level carved out of the range below is dropped and the printed range kept')
 
+const oddIds = normaliseCriteria([
+  { id: 'A01 Knowledge and understanding', max_marks: 2, bands: [{ level: 1, marks_min: 1, marks_max: 2, descriptor: 'k' }, { level: 0, marks_min: 0, marks_max: 0, descriptor: 'n' }] },
+  { id: 'AO2: Application', name: '', max_marks: 2, bands: [{ level: 1, marks_min: 1, marks_max: 2, descriptor: 'a' }, { level: 0, marks_min: 0, marks_max: 0, descriptor: 'n' }] },
+  { objective: 'ao3', name: 'Analysis', max_marks: 4, bands: [{ level: 1, marks_min: 1, marks_max: 4, descriptor: 'x' }, { level: 0, marks_min: 0, marks_max: 0, descriptor: 'n' }] },
+])!
+assert.deepEqual(oddIds.map((c) => [c.id, c.name]), [['AO1', 'Knowledge and understanding'], ['AO2', 'Application'], ['AO3', 'Analysis']], 'a zero for O, a trailing name and a bare code all canonicalise to AO<n>')
+
 const synthesised = bandsFromCriteria(gridScheme.criteria)
 assert.deepEqual(synthesised.map((b) => b.level), [0, 1, 2, 3])
 assert.equal(synthesised[3].marks_max, 20)

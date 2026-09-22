@@ -35,7 +35,9 @@ type Props = {
 
 export function MarkBoardPicker({ value, onChange, disabled, lock }: Props) {
   if (lock?.mode === 'locked') {
-    return <LockedBoard lock={lock} onChange={onChange} disabled={disabled} />
+    return (
+      <LockedBoard value={value} lock={lock} onChange={onChange} disabled={disabled} />
+    )
   }
 
   const labels = OPTIONS.map((o) => o.label)
@@ -88,16 +90,23 @@ export function MarkBoardPicker({ value, onChange, disabled, lock }: Props) {
 }
 
 function LockedBoard({
+  value,
   lock,
   onChange,
   disabled,
 }: {
+  value: MarkExamBoard
   lock: Extract<MarkBoardLock, { mode: 'locked' }>
   onChange: (board: MarkExamBoard) => void
   disabled?: boolean
 }) {
-  const active = getExamSystem(lock.board)
+  // The line describes what THIS picker's value is, not the host's idea of
+  // it: in MarkFlow v2 the picker edits a draft that only reaches the host on
+  // submit, so "Back to Cambridge" must flip the line the moment it is
+  // pressed, not after the mark is sent.
+  const active = getExamSystem(value)
   const profile = getExamSystem(lock.profileBoard)
+  const overridden = value !== lock.profileBoard
 
   return (
     <div className="ms-mark-board-picker ms-mark-board-picker--locked">
@@ -106,12 +115,12 @@ function LockedBoard({
         <div className="ms-mark-board-locked-main">
           <span className="ms-mark-board-option-label">{active.label}</span>
           <span className="ms-mark-board-option-hint">
-            {lock.overridden
+            {overridden
               ? `Opened from a link — your board is ${profile.label}.`
               : active.markPickerHint}
           </span>
         </div>
-        {lock.overridden ? (
+        {overridden ? (
           <button
             type="button"
             className="ms-mark-board-locked-action"

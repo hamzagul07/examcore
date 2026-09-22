@@ -4,6 +4,7 @@ import {
   build9709GeneralMarkingPrompt,
   buildPointBasedMarkingPrompt,
   buildLorMarkingPrompt,
+  buildLorCriteriaMarkingPrompt,
   buildMcqMarkingPrompt,
   buildIbPointBasedMarkingPrompt,
   buildIbLorMarkingPrompt,
@@ -295,6 +296,16 @@ function buildMarkingPromptBody(params: BuildMarkingPromptParams): string {
     return buildMcqMarkingPrompt(subjectName, msJson, ocrText, total, syllabusBlock)
   }
   if (effectiveStyle === 'level_of_response') {
+    if (hasObjectiveGrid(markScheme.mark_scheme)) {
+      return buildLorCriteriaMarkingPrompt(
+        subjectName,
+        qText,
+        total,
+        msJson,
+        ocrText,
+        syllabusBlock
+      )
+    }
     return buildLorMarkingPrompt(
       subjectName,
       qText,
@@ -313,6 +324,35 @@ function buildMarkingPromptBody(params: BuildMarkingPromptParams): string {
     syllabusBlock,
     { board: pointBoard, subjectCode }
   )
+}
+
+/**
+ * A level-of-response scheme that carries a per-assessment-objective grid
+ * (Cambridge essays: AO1–AO4 each with their own levels). Marked objective by
+ * objective and summed, like IB criteria.
+ */
+export function hasObjectiveGrid(markScheme: Record<string, unknown> | null | undefined): boolean {
+  const criteria = markScheme?.criteria
+  return Array.isArray(criteria) && criteria.length > 0
+}
+
+/**
+ * The grid's maxima, in the reconciler's shape, so every objective's award is
+ * clamped to its own range and the denominator is the grid's sum. Null when
+ * the scheme has no grid.
+ */
+export function objectiveGridMax(
+  markScheme: Record<string, unknown> | null | undefined
+): Array<{ letter: string; maxMarks: number }> | null {
+  if (!hasObjectiveGrid(markScheme)) return null
+  const out: Array<{ letter: string; maxMarks: number }> = []
+  for (const c of markScheme!.criteria as unknown[]) {
+    if (!c || typeof c !== 'object') return null
+    const row = c as Record<string, unknown>
+    if (typeof row.id !== 'string' || typeof row.max_marks !== 'number') return null
+    out.push({ letter: row.id, maxMarks: row.max_marks })
+  }
+  return out
 }
 
 export function maxTokensForStyle(style: MarkingStyle): number {

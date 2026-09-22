@@ -9,6 +9,7 @@ import { suggestedExamDates } from '@/lib/dashboard/exam-date'
 import { ProfileFormFields } from '@/components/ProfileFormFields'
 import { IB_DIPLOMA_LEVEL, isIbBoard } from '@/lib/profile-options'
 import { writeMarkBoardHint } from '@/lib/marking/mark-board-hint'
+import { lockableProfileBoard } from '@/lib/marking/mark-board-lock'
 import {
   targetGradeKindFromBoard,
   targetGradeOptions,
@@ -156,7 +157,7 @@ function SetupCard({
     setSuccessMsg('Exam setup saved.')
     setSaved(true)
     // /mark locks to the profile board; refresh the cached hint right away.
-    writeMarkBoardHint(board)
+    writeMarkBoardHint(lockableProfileBoard(board))
     onSaved()
   }
 

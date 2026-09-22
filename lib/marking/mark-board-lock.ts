@@ -32,6 +32,24 @@ export type MarkBoardLock =
       overridden: boolean
     }
 
+/**
+ * The profile board as something worth caching for the pre-paint hint — or
+ * null. Cache only what would actually lock: a board the registry does not
+ * know, or whose marking pack is switched off, or a teacher's board, would
+ * stamp the boot attribute and hide a grid that is about to show.
+ */
+export function lockableProfileBoard(
+  board: string | null | undefined,
+  role?: string | null
+): string | null {
+  const lock = resolveMarkBoardLock({
+    profileBoard: board,
+    selectedBoard: 'cambridge',
+    role,
+  })
+  return lock.mode === 'locked' ? (board ?? '').trim() : null
+}
+
 export function resolveMarkBoardLock(input: {
   /** `user_profiles.board` — e.g. "Cambridge International". Null for guests. */
   profileBoard: string | null | undefined

@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useId, useRef } from 'react'
 import Link from 'next/link'
 import { resolveBoard } from '@/lib/courses/board'
 import {
@@ -9,6 +10,7 @@ import {
   type ExamSystemId,
 } from '@/lib/exam-systems'
 import type { MarkBoardLock } from '@/lib/marking/mark-board-lock'
+import { releaseMarkBoardBoot } from '@/lib/marking/mark-board-hint'
 
 /** Boards that currently accept marks on /mark (driven by adapter.markingEnabled). */
 export type MarkExamBoard = ExamSystemId
@@ -39,6 +41,17 @@ export function MarkBoardPicker({ value, onChange, disabled, lock }: Props) {
       <LockedBoard value={value} lock={lock} onChange={onChange} disabled={disabled} />
     )
   }
+
+  return <BoardGrid value={value} onChange={onChange} disabled={disabled} />
+}
+
+function BoardGrid({ value, onChange, disabled }: Omit<Props, 'lock'>) {
+  // Backstop for the boot attribute: once the profile has loaded and the grid
+  // is what is being shown, nothing may keep it hidden — not a cached board the
+  // registry no longer locks, not a profile fetch that threw.
+  useEffect(() => {
+    if (!disabled) releaseMarkBoardBoot()
+  }, [disabled])
 
   const labels = OPTIONS.map((o) => o.label)
   const labelText =
@@ -107,11 +120,28 @@ function LockedBoard({
   const active = getExamSystem(value)
   const profile = getExamSystem(lock.profileBoard)
   const overridden = value !== lock.profileBoard
+  const labelId = useId()
+  const rowRef = useRef<HTMLDivElement>(null)
+  // "Back to X" unmounts the button it was pressed on; keyboard focus would
+  // fall to <body>. Land it on the link that takes its place instead.
+  const wasOverridden = useRef(overridden)
+  useEffect(() => {
+    if (wasOverridden.current && !overridden) {
+      rowRef.current?.querySelector<HTMLElement>('a, button')?.focus()
+    }
+    wasOverridden.current = overridden
+  }, [overridden])
 
   return (
-    <div className="ms-mark-board-picker ms-mark-board-picker--locked">
-      <p className="label-overline mb-2.5 block">Exam board</p>
-      <div className="ms-mark-board-locked">
+    <div
+      className="ms-mark-board-picker ms-mark-board-picker--locked"
+      role="group"
+      aria-labelledby={labelId}
+    >
+      <p id={labelId} className="label-overline mb-2.5 block">
+        Exam board
+      </p>
+      <div className="ms-mark-board-locked" ref={rowRef}>
         <div className="ms-mark-board-locked-main">
           <span className="ms-mark-board-option-label">{active.label}</span>
           <span className="ms-mark-board-option-hint">

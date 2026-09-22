@@ -21,7 +21,7 @@ function check(name: string, ok: boolean) {
 // tsx runs this as CJS (no top-level await) — the env above must land before
 // the registry module evaluates its markingEnabled flags, hence dynamic imports.
 async function main() {
-  const { resolveMarkBoardLock } = await import('@/lib/marking/mark-board-lock')
+  const { resolveMarkBoardLock, lockableProfileBoard } = await import('@/lib/marking/mark-board-lock')
   const hint = await import('@/lib/marking/mark-board-hint')
 
   // ── resolveMarkBoardLock ────────────────────────────────────────────────────
@@ -88,6 +88,14 @@ async function main() {
   const padded = resolveMarkBoardLock({ profileBoard: ' Edexcel ', selectedBoard: 'edexcel' })
   check('profile board is trimmed before lookup', padded.mode === 'locked' && padded.board === 'edexcel')
 
+  // ── lockableProfileBoard: cache only what will lock ─────────────────────────
+  check('lockable: Cambridge student', lockableProfileBoard('Cambridge International', 'student') === 'Cambridge International')
+  check('lockable: trims', lockableProfileBoard('  IB ') === 'IB')
+  check('not lockable: teacher', lockableProfileBoard('Cambridge International', 'teacher') === null)
+  check('not lockable: marking switched off', lockableProfileBoard('AP') === null)
+  check('not lockable: unknown board', lockableProfileBoard('Hogwarts') === null)
+  check('not lockable: null', lockableProfileBoard(null) === null)
+
   // ── mark-board-hint (pure helpers against a tiny fake window) ───────────────
 
   check('boot script reads the same key it writes', hint.MARK_BOARD_HINT_BOOT_SCRIPT.includes(hint.MARK_BOARD_HINT_KEY))
@@ -151,6 +159,13 @@ async function main() {
   check('legacy /mark passes the lock into MarkFlow', /<MarkFlow[\s\S]*?boardLock=\{boardLock\}/.test(page))
   check('/mark writes the hint from the loaded profile', page.includes('writeMarkBoardHint('))
   check('/mark clears the hint for guests', page.includes('clearMarkBoardHint()'))
+  check('/mark caches only a lockable board', page.includes('writeMarkBoardHint(lockableProfileBoard(savedBoard'))
+  check('/mark seeds the desk from the hint while loading', page.includes('profileBoard: boardHint,'))
+  check('/mark lets deep links keep their board past the profile load', page.includes('deepLinkBoardRef.current ? null : markBoardFromProfileBoard'))
+  check('/mark hands MarkFlow board changes to the page', page.includes('onBoardChange={handleMarkBoardChange}'))
+
+  const picker = readFileSync(resolve('components/mark/MarkBoardPicker.tsx'), 'utf8')
+  check('grid releases the boot attribute once loaded', picker.includes('releaseMarkBoardBoot()'))
 
   const capture = readFileSync(resolve('components/mark-flow/screens/CaptureScreen.tsx'), 'utf8')
   check('MarkFlow capture passes the lock to the picker', /<MarkBoardPicker[\s\S]*?lock=\{boardLock\}/.test(capture))

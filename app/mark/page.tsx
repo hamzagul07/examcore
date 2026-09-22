@@ -89,7 +89,7 @@ import {
   subjectMatchesMarkBoard,
   type MarkExamBoard,
 } from '@/components/mark/MarkBoardPicker'
-import { resolveMarkBoardLock } from '@/lib/marking/mark-board-lock'
+import { lockableProfileBoard, resolveMarkBoardLock } from '@/lib/marking/mark-board-lock'
 import { clearMarkBoardHint, writeMarkBoardHint } from '@/lib/marking/mark-board-hint'
 import { useMarkBoardHint } from '@/lib/hooks/useMarkBoardHint'
 import {
@@ -371,6 +371,12 @@ export default function MarkPage() {
   const [profileRole, setProfileRole] = useState<string | null>(null)
   /** Cached profile board so the locked line renders before the profile round-trip. */
   const boardHint = useMarkBoardHint()
+  /**
+   * A deep link chose the board at mount (?board=, a lesson handoff, ?subject=).
+   * The profile load must not overwrite that: before the lock a student could
+   * re-pick from the grid, now the desk has to honour the link it was opened by.
+   */
+  const deepLinkBoardRef = useRef(false)
   /** undefined = not loaded yet; null = signed-in with no target. */
   const [targetGrade, setTargetGrade] = useState<string | null | undefined>(undefined)
   const [gradeAskDismissed, setGradeAskDismissed] = useState(false)
@@ -527,6 +533,7 @@ export default function MarkPage() {
       ?.trim()
       .toLowerCase()
     if (!isUrlMarkBoard(urlBoard)) return
+    deepLinkBoardRef.current = true
     setSelectedMarkBoard(urlBoard)
     rememberFunnelBoard(urlBoard)
     if (!boardSupportsPastPaperLookup(urlBoard)) {
@@ -535,6 +542,36 @@ export default function MarkPage() {
       setShowManualPaper(false)
     }
   }, [])
+
+  // The cached profile board becomes the desk's board before the profile
+  // round-trip lands. Without this an IB student read "Cambridge International
+  // — Opened from a link — your board is IB Diploma" for the half second the
+  // desk still sat on its default. A deep link that chose a board keeps it.
+  useEffect(() => {
+    if (!profileLoading || !boardHint || deepLinkBoardRef.current) return
+    const seeded = resolveMarkBoardLock({
+      profileBoard: boardHint,
+      selectedBoard: selectedMarkBoard,
+    })
+    if (seeded.mode !== 'locked' || seeded.profileBoard === selectedMarkBoard) return
+    setSelectedMarkBoard(seeded.profileBoard)
+    rememberFunnelBoard(seeded.profileBoard)
+    if (!boardSupportsPastPaperLookup(seeded.profileBoard)) {
+      setUploadMode('single_question')
+      setMarkIntent('practice_question')
+      setShowManualPaper(false)
+    }
+    // Only the hint and the loading flag matter; selectedMarkBoard is read, not followed.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [boardHint, profileLoading])
+
+  // A board saved in another tab (exam settings) reaches this one through the
+  // hint; a sign-out elsewhere clears it. The resolver validates the value.
+  useEffect(() => {
+    if (profileLoading || profileBoardId === null) return
+    if (boardHint !== profileBoardId) setProfileBoardId(boardHint)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [boardHint])
 
   useEffect(() => {
     let cancelled = false
@@ -570,16 +607,20 @@ export default function MarkPage() {
           ?.trim()
           .toLowerCase()
         const fromUrl: MarkExamBoard | null = isUrlMarkBoard(urlBoard) ? urlBoard : null
-        const markBoard = fromUrl ?? markBoardFromProfileBoard(boardName)
+        // A lesson handoff or ?subject= already chose the board at mount; the
+        // profile fills in subjects and the lock, but does not move the desk.
+        const markBoard: MarkExamBoard | null =
+          fromUrl ?? (deepLinkBoardRef.current ? null : markBoardFromProfileBoard(boardName))
         const fallbackCode = defaultMarkSubjectCode(profileLevel, boardName)
         if (!cancelled) {
           setProfileLevel(profileLevel)
           setProfileBoard(boardName)
           setProfileBoardId(savedBoard)
           setProfileRole(typeof profile?.role === 'string' ? profile.role : null)
-          // Teachers are never locked, so never cache a board for them —
-          // the boot placeholder would hide a grid that is about to show.
-          writeMarkBoardHint(profile?.role === 'teacher' ? null : savedBoard)
+          // Cache only a board that will actually lock (never a teacher's, an
+          // unknown one, or one whose marking pack is off) — the boot
+          // placeholder must never hide a grid that is about to show.
+          writeMarkBoardHint(lockableProfileBoard(savedBoard, profile?.role))
           setTargetGrade(
             typeof profile?.target_grade === 'string' && profile.target_grade.trim()
               ? profile.target_grade.trim()
@@ -592,12 +633,14 @@ export default function MarkPage() {
               : null
           )
           setProfileSubjectCodes(codes.length ? codes : [fallbackCode])
-          setSelectedMarkBoard(markBoard)
-          rememberFunnelBoard(markBoard)
-          if (!boardSupportsPastPaperLookup(markBoard)) {
-            setUploadMode('single_question')
-            setMarkIntent('practice_question')
-            setShowManualPaper(false)
+          if (markBoard) {
+            setSelectedMarkBoard(markBoard)
+            rememberFunnelBoard(markBoard)
+            if (!boardSupportsPastPaperLookup(markBoard)) {
+              setUploadMode('single_question')
+              setMarkIntent('practice_question')
+              setShowManualPaper(false)
+            }
           }
         }
       } catch {
@@ -799,6 +842,7 @@ export default function MarkPage() {
     // below, which waits for the options to exist.
     if (handoff.subjectCode) {
       const markBoard = coerceMarkExamBoard(resolveBoard(handoff.subjectCode))
+      deepLinkBoardRef.current = true
       setSelectedMarkBoard(markBoard)
       setPendingHandoffSubject({
         codes: subjectCandidates(handoff.subjectCode),
@@ -825,6 +869,7 @@ export default function MarkPage() {
     setShowManualPaper(true)
     {
       const markBoard = coerceMarkExamBoard(resolveBoard(subject))
+      deepLinkBoardRef.current = true
       setSelectedMarkBoard(markBoard)
       if (!boardSupportsPastPaperLookup(markBoard)) {
         setMarkIntent('practice_question')
@@ -926,6 +971,7 @@ export default function MarkPage() {
     if (!subject) return
     setSelectedSubject(subject)
     const markBoard = coerceMarkExamBoard(resolveBoard(subject))
+    deepLinkBoardRef.current = true
     setSelectedMarkBoard(markBoard)
     if (!boardSupportsPastPaperLookup(markBoard)) {
       setUploadMode('single_question')
@@ -2717,6 +2763,7 @@ export default function MarkPage() {
             ref={markFlowRef}
             board={selectedMarkBoard}
             boardLock={boardLock}
+            onBoardChange={handleMarkBoardChange}
             subjectCode={selectedSubject || null}
             subjectOptions={markFlowSubjectOptions}
             pastPaperCatalog={{

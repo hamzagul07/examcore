@@ -61,6 +61,17 @@ export function clearMarkBoardHint(): void {
   window.dispatchEvent(new Event(CHANGE_EVENT))
 }
 
+/**
+ * Lift the pre-paint attribute without forgetting the cached board. The grid
+ * calls this once the profile has loaded and it is the thing being shown —
+ * the backstop that guarantees a stale or unlockable hint can never leave a
+ * student staring at the placeholder with no way to mark.
+ */
+export function releaseMarkBoardBoot(): void {
+  if (typeof document === 'undefined') return
+  document.documentElement.removeAttribute(MARK_BOARD_HINT_ATTR)
+}
+
 /** For useSyncExternalStore: same-tab writes plus cross-tab storage events. */
 export function subscribeMarkBoardHint(onChange: () => void): () => void {
   if (typeof window === 'undefined') return () => {}

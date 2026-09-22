@@ -39,6 +39,7 @@ export type PastPaperCatalogProps = {
 type Props = {
   draft: MarkFlowDraft
   boardLock?: MarkBoardLock | null
+  onBoardChange?: (board: MarkExamBoard) => void
   pages: UploadPage[]
   pdfFile: File | null
   questionPhoto: File | null
@@ -55,6 +56,7 @@ type Props = {
 export function CaptureScreen({
   draft,
   boardLock = null,
+  onBoardChange,
   pages,
   pdfFile,
   questionPhoto,
@@ -569,7 +571,8 @@ export function CaptureScreen({
         <MarkBoardPicker
           value={board}
           lock={boardLock}
-          onChange={(next) =>
+          onChange={(next) => {
+            onBoardChange?.(next)
             onPatchDraft({
               board: next,
               subjectCode: null,
@@ -585,7 +588,7 @@ export function CaptureScreen({
                     questionNumber: null,
                   }),
             })
-          }
+          }}
         />
         <div className="mt-5">
           <Field

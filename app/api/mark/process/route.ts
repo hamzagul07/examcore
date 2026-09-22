@@ -631,32 +631,32 @@ async function handleMarkRequest(request: NextRequest) {
                 (payload as { attempt_id?: string })?.attempt_id ?? null
               )
 
-              // Nobody there to read it. The mark is saved and the attempt page
-              // will show it in full — mail carries the score and the link.
+              // Every signed-in mark is emailed, watched or not. The screen is
+              // the fast path; the mail is the copy that outlives the tab —
+              // score and a link to the attempt page, never the scheme text.
+              // (Guests have no inbox; notifyMarkReady drops them.)
               //
-              // Handed to `after()` rather than awaited: the client has already
-              // gone, so the platform is free to start tearing this invocation
+              // Handed to `after()` rather than awaited: if the client has
+              // gone the platform is free to start tearing this invocation
               // down, and a bare await would race that teardown. This is the
               // one hop the notification cannot afford to lose.
-              if (clientGone) {
-                const done = payload as Record<string, unknown>
-                const notice = {
-                  userId,
-                  attemptId: (done.attempt_id as string | null) ?? null,
-                  marksEarned: (done.marks_earned as number | null) ?? null,
-                  totalMarks: (done.total_marks as number | null) ?? null,
-                  subjectLabel: namedSubjectOrNull(
-                    done.subject_code as string | null
-                  ),
-                  paperRef: (done.paper_code as string | null) ?? null,
-                  predictedMarks: predictedMarks,
-                }
-                try {
-                  after(() => notifyMarkReady(notice))
-                } catch {
-                  // No request scope to defer to (tests, scripts): send inline.
-                  await notifyMarkReady(notice)
-                }
+              const finishedPayload = payload as Record<string, unknown>
+              const readyNotice = {
+                userId,
+                attemptId: (finishedPayload.attempt_id as string | null) ?? null,
+                marksEarned: (finishedPayload.marks_earned as number | null) ?? null,
+                totalMarks: (finishedPayload.total_marks as number | null) ?? null,
+                subjectLabel: namedSubjectOrNull(
+                  finishedPayload.subject_code as string | null
+                ),
+                paperRef: (finishedPayload.paper_code as string | null) ?? null,
+                predictedMarks: predictedMarks,
+              }
+              try {
+                after(() => notifyMarkReady(readyNotice))
+              } catch {
+                // No request scope to defer to (tests, scripts): send inline.
+                await notifyMarkReady(readyNotice)
               }
 
               // Premium full-marks rewrite, generated only now that the score is
@@ -680,10 +680,10 @@ async function handleMarkRequest(request: NextRequest) {
                 retryable: classified.retryable,
                 status: classified.status,
               })
-              // They were told they could leave, so the promise has to be kept
-              // in both directions. Silence after "we'll email you" leaves them
-              // waiting on mail that is never coming, and we never find out
-              // because they never come back to see the error.
+              // Failure mail stays gated on the tab being gone: a student who
+              // watched it fail has the error and a retry button in front of
+              // them. One who left was promised mail either way, and silence
+              // would leave them waiting on a score that is never coming.
               if (clientGone) {
                 // Only what the request itself told us — a failed run has no
                 // detected paper or resolved subject to draw on.

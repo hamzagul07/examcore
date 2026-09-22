@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse, after } from 'next/server'
 import {
   aggregateWholePaperResults,
 } from '@/lib/marking/whole-paper'
@@ -28,6 +28,8 @@ import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-se
 import { requireTeacher } from '@/lib/teacher-auth'
 import { effectiveAccess } from '@/lib/billing/access'
 import { hasPriorityMarking } from '@/lib/billing/features'
+import { notifyMarkReady } from '@/lib/marking/notify-mark-ready'
+import { namedSubjectOrNull } from '@/lib/marking/subject-name'
 import { withRequestDeadline } from '@/lib/ai/request-deadline'
 
 // Marks up to 15 questions; give headroom like /mark/process. Kept in sync with
@@ -318,6 +320,25 @@ async function handleRun(request: NextRequest) {
         time_spent_seconds: timeSpentSeconds,
       })
       .eq('id', attemptId)
+
+    // Every signed-in mark is emailed, whole papers included — the same
+    // score-and-link mail as a single question, once, at completion.
+    // Per-question retries re-total the attempt but do not mail again.
+    // Guests (user_id null) are dropped inside notifyMarkReady.
+    const readyNotice = {
+      userId: markUserId,
+      attemptId,
+      marksEarned: wholePaper.marks_earned,
+      totalMarks: wholePaper.total_marks,
+      subjectLabel: namedSubjectOrNull(paperCode.split('/')[0] ?? null),
+      paperRef: `${paperCode} ${paperSession}`.trim(),
+    }
+    try {
+      after(() => notifyMarkReady(readyNotice))
+    } catch {
+      // No request scope to defer to (tests, scripts): send inline.
+      await notifyMarkReady(readyNotice)
+    }
 
     // Guests are charged at whole-paper/init, not here.
     //

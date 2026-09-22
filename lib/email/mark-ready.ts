@@ -13,12 +13,13 @@ import {
 import { SITE_URL } from '@/lib/site-config'
 
 /**
- * "Your mark is ready" — sent when a mark finishes after the student has left.
+ * "Your mark is ready" — sent for every mark a signed-in student runs.
  *
  * Marking a handwritten script against a real scheme costs 2–6 minutes and no
- * amount of tuning takes that to zero. What it does not have to cost is the
- * student's attention for the whole of it: the run now survives the tab closing,
- * and this is what turns a three-minute stare into a three-minute absence.
+ * amount of tuning takes that to zero. The run survives the tab closing, and
+ * this mail is the copy of the score that survives everything else — so the
+ * copy has to read just as well to someone who watched it land as to someone
+ * who went to make tea.
  *
  * Deliberately carries the score and nothing else of substance. Two reasons:
  * the mark is the one fact worth an inbox interruption, and the marking detail
@@ -97,7 +98,7 @@ export function buildMarkReadyEmail(payload: MarkReadyPayload): {
   const bodyHtml =
     para(`Hi ${esc(greeting)},`) +
     para(
-      `You closed the tab while ${esc(what)} was being marked, so here it is. Nothing was lost — the examiner finished the job without you.`
+      `Marking for ${esc(what)} is finished — here is your score, with every mark broken down on your result page.`
     ) +
     statsRow +
     predictionLine +
@@ -106,7 +107,7 @@ export function buildMarkReadyEmail(payload: MarkReadyPayload): {
   const text = [
     `Hi ${greeting},`,
     '',
-    `You closed the tab while ${what} was being marked, so here it is. Nothing was lost — the examiner finished the job without you.`,
+    `Marking for ${what} is finished — here is your score, with every mark broken down on your result page.`,
     '',
     `Marks awarded: ${marksEarned}/${totalMarks} (${pct}%)`,
     gap == null

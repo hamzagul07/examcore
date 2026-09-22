@@ -30,7 +30,11 @@ function main() {
   assert.match(plain.subject, /5\/8/, 'the score belongs in the subject line')
   assert.match(plain.subject, /9708\/22/)
   assert.match(plain.text, /Hi Amara,/)
-  assert.match(plain.html, /Economics 9708\/22/)
+  assert.match(plain.html, /Marking for Economics 9708\/22 is finished/)
+  // Sent to every student now, not only the ones who left — the copy must
+  // not tell someone who watched the whole thing that they closed the tab.
+  assert.doesNotMatch(plain.html, /closed the tab|without you/i)
+  assert.doesNotMatch(plain.text, /closed the tab|without you/i)
   assert.match(plain.text, /63%/, 'percentage is rounded from 5/8')
   assert.match(
     plain.html,
@@ -104,7 +108,7 @@ function main() {
 
   // --- unknown subject degrades, never prints a bare code ---------------------
   const anonymous = buildMarkReadyEmail({ ...base, marksEarned: 3, totalMarks: 4 })
-  assert.match(anonymous.html, /your answer/, 'falls back to a neutral phrase')
+  assert.match(anonymous.html, /Marking for your answer is finished/, 'falls back to a neutral phrase')
   assert.doesNotMatch(anonymous.subject, /\(\)/, 'no empty parens in the subject')
 
   // --- the failure twin -------------------------------------------------------

@@ -65,8 +65,8 @@ export function RunningElsewhereNotice({ liveHere }: RunningElsewhereNoticeProps
       </p>
       <p className="mt-1 text-sm text-[var(--ec-text-secondary)]">
         It kept going after you left this page. You&apos;ll get a message here the
-        moment it lands, and an email if you&apos;ve closed the tab by then. You can
-        start another mark in the meantime.
+        moment it lands, and the score by email as well. You can start another
+        mark in the meantime.
       </p>
     </section>
   )

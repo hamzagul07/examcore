@@ -6,12 +6,14 @@ import { sendMarkFailedEmail, sendMarkReadyEmail } from '@/lib/email/mark-ready'
 import { unsubscribeUrl } from '@/lib/community/email-unsubscribe'
 
 /**
- * Tell a student their mark finished after they left.
+ * Email a student their score.
  *
- * The gate is deliberately narrow. This only fires when the client had already
- * disconnected — a student watching the progress bar gets the result on screen
- * and must never also get mail about it. Everything here is best-effort: a
- * notification failure cannot be allowed to fail a mark that already succeeded.
+ * Every signed-in mark gets one, whether the student watched it land or had
+ * closed the tab — the screen is the fast path, the mail is the copy that
+ * outlives it. The only gates are the ones that make an email pointless:
+ * no account, no inbox, no usable total, or a student who switched these off
+ * (`email_mark_ready`). Everything here is best-effort: a notification
+ * failure cannot be allowed to fail a mark that already succeeded.
  */
 
 const supabaseAdmin = createClient(
@@ -62,8 +64,8 @@ export async function notifyMarkReady(
 ): Promise<boolean> {
   const { userId, attemptId } = input
   // Guests have no inbox we know of and no result page to send them to. They
-  // are the population this cannot help, and the reason the wait screen still
-  // tells signed-out students to stay put.
+  // are the population this cannot help, and the reason the wait screen only
+  // promises mail to signed-in students.
   if (!userId || !attemptId) return false
 
   const total = input.totalMarks ?? 0

@@ -1,9 +1,11 @@
 import 'server-only'
 
+import { after } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
 import { sendMarkFailedEmail, sendMarkReadyEmail } from '@/lib/email/mark-ready'
 import { unsubscribeUrl } from '@/lib/community/email-unsubscribe'
+import { SITE_URL } from '@/lib/site-config'
 
 /**
  * Email a student their score.
@@ -31,6 +33,22 @@ export type MarkReadyNotifyInput = {
   predictedMarks?: number | null
   weakTopics?: string[] | null
   whatToStudyNext?: string | null
+  /** Catalog code for the "mark another" link; omitted → plain /mark. */
+  subjectCode?: string | null
+}
+
+/**
+ * Hand the notification to `after()` so the platform keeps the invocation
+ * alive until it settles — the one hop a mark-ready mail cannot afford to
+ * lose once the response has gone. Outside a request scope (tests, scripts)
+ * there is nothing to defer to, so send inline.
+ */
+export async function queueMarkReady(input: MarkReadyNotifyInput): Promise<void> {
+  try {
+    after(() => notifyMarkReady(input))
+  } catch {
+    await notifyMarkReady(input)
+  }
 }
 
 /**
@@ -91,6 +109,9 @@ export async function notifyMarkReady(
       predictedMarks: input.predictedMarks ?? null,
       weakTopics: input.weakTopics ?? null,
       whatToStudyNext: input.whatToStudyNext ?? null,
+      nextMarkHref: input.subjectCode
+        ? `${SITE_URL}/mark?subject=${encodeURIComponent(input.subjectCode)}`
+        : `${SITE_URL}/mark`,
       unsubscribeHref: recipient.unsubscribeHref,
     })
     return true

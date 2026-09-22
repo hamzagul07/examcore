@@ -47,6 +47,8 @@ export type MarkReadyPayload = {
   weakTopics?: string[] | null
   /** The examiner's "what to study next" paragraph. Never scheme text. */
   whatToStudyNext?: string | null
+  /** Where the next mark starts — /mark with the subject already chosen. */
+  nextMarkHref?: string | null
   unsubscribeHref: string
 }
 
@@ -187,6 +189,7 @@ export function buildMarkReadyEmail(payload: MarkReadyPayload): {
     verdictLine(pct),
     '',
     `See every mark: ${href}`,
+    payload.nextMarkHref ? `Mark another question: ${payload.nextMarkHref}` : '',
   ]
     .filter((line, i, all) => !(line === '' && all[i - 1] === ''))
     .join('\n')
@@ -199,6 +202,16 @@ export function buildMarkReadyEmail(payload: MarkReadyPayload): {
       preheader: `${marksEarned}/${totalMarks} on ${what}. Every mark is broken down inside.`,
       bodyHtml,
       cta: { label: 'See every mark →', href },
+      // A receipt ends at the CTA; an entry point does not. The next mark,
+      // with the subject already chosen, sits one tap under the score.
+      secondaryLinks: payload.nextMarkHref
+        ? [
+            {
+              label: `Mark another ${subjectLabel?.trim() ? `${subjectLabel.trim()} ` : ''}question`,
+              href: payload.nextMarkHref,
+            },
+          ]
+        : undefined,
       unsubscribe: {
         label: 'Stop these mark notifications',
         href: unsubscribeHref,

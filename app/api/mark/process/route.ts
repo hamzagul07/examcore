@@ -72,7 +72,8 @@ import {
 } from '@/lib/marking/mark-run-log'
 import { namedSubjectOrNull } from '@/lib/marking/subject-name'
 import { resolveMarkRunExamSystem } from '@/lib/marking/resolve-exam-system'
-import { notifyMarkFailed, notifyMarkReady } from '@/lib/marking/notify-mark-ready'
+import { notifyMarkFailed, queueMarkReady } from '@/lib/marking/notify-mark-ready'
+import { markReadyNoticeFromPayload } from '@/lib/marking/mark-ready-notice'
 
 // Multi-question scanned scripts (derive → mark → verify per question) can run
 // 200–300s+; give generous headroom. NOTE: vercel.json's functions config for
@@ -636,40 +637,12 @@ async function handleMarkRequest(request: NextRequest) {
               // score and a link to the attempt page, never the scheme text.
               // (Guests have no inbox; notifyMarkReady drops them.)
               //
-              // Handed to `after()` rather than awaited: if the client has
-              // gone the platform is free to start tearing this invocation
-              // down, and a bare await would race that teardown. This is the
-              // one hop the notification cannot afford to lose.
-              const finishedPayload = payload as Record<string, unknown>
-              const finishedAi = finishedPayload.ai_marking as
-                | { weak_topics?: unknown; what_to_study_next?: unknown }
-                | undefined
-              const readyNotice = {
-                userId,
-                attemptId: (finishedPayload.attempt_id as string | null) ?? null,
-                marksEarned: (finishedPayload.marks_earned as number | null) ?? null,
-                totalMarks: (finishedPayload.total_marks as number | null) ?? null,
-                subjectLabel: namedSubjectOrNull(
-                  finishedPayload.subject_code as string | null
-                ),
-                paperRef: (finishedPayload.paper_code as string | null) ?? null,
-                predictedMarks: predictedMarks,
-                weakTopics: Array.isArray(finishedAi?.weak_topics)
-                  ? (finishedAi.weak_topics as unknown[]).filter(
-                      (t): t is string => typeof t === 'string'
-                    )
-                  : null,
-                whatToStudyNext:
-                  typeof finishedAi?.what_to_study_next === 'string'
-                    ? finishedAi.what_to_study_next
-                    : null,
-              }
-              try {
-                after(() => notifyMarkReady(readyNotice))
-              } catch {
-                // No request scope to defer to (tests, scripts): send inline.
-                await notifyMarkReady(readyNotice)
-              }
+              // queueMarkReady hands it to `after()`: if the client has gone the
+              // platform is free to start tearing this invocation down, and a
+              // bare await would race that teardown.
+              await queueMarkReady(
+                markReadyNoticeFromPayload(userId, payload, predictedMarks)
+              )
 
               // Premium full-marks rewrite, generated only now that the score is
               // on screen. Best-effort: any failure just means no rewrite panel.
@@ -744,6 +717,18 @@ async function handleMarkRequest(request: NextRequest) {
           (payload as { attempt_id?: string })?.attempt_id ?? null
         )
         const marksCharged = await chargeMultiQuestion(payload)
+        // Same mail as the streaming path — a mark is a mark whichever
+        // transport asked for it (the mobile app and scripts use this one).
+        await queueMarkReady(
+          markReadyNoticeFromPayload(
+            userId,
+            payload,
+            await settlePrediction(
+              markRun,
+              (payload as { attempt_id?: string })?.attempt_id ?? null
+            )
+          )
+        )
         return NextResponse.json(
           await signMarkPayloadForClient({
             ...payload,

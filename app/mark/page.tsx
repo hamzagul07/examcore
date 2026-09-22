@@ -2641,7 +2641,7 @@ export default function MarkPage() {
     if (markStreamError || pendingResult) return null
     // Guests have no inbox and no saved result, so they genuinely do have to
     // stay — the notice is only true for signed-in students.
-    const canEmail = !!billingSummary?.signedIn
+    const canEmail = !!billingSummary?.signedIn && emailMarkReady
 
     if (provisionalScore) {
       return (
@@ -2794,7 +2794,7 @@ export default function MarkPage() {
         <div
           className={`ms-mark-pg min-w-0 ${waitOpen || result ? '' : 'ms-mark-pg--narrow'}`}
         >
-          <RunningElsewhereNotice liveHere={waitOpen || !!result} />
+          <RunningElsewhereNotice liveHere={waitOpen || !!result} emailPromised={emailMarkReady} />
           <MarkFlow
             ref={markFlowRef}
             board={selectedMarkBoard}
@@ -2938,7 +2938,7 @@ export default function MarkPage() {
       <div
         className={`ms-mark-pg min-w-0 ${result ? '' : 'ms-mark-pg--narrow'}`}
       >
-        <RunningElsewhereNotice liveHere={waitOpen || !!result} />
+        <RunningElsewhereNotice liveHere={waitOpen || !!result} emailPromised={emailMarkReady} />
         {!result && (
           <header className="ms-mark-hero ms-fade-in">
             <div className="mb-2 flex items-center gap-2">

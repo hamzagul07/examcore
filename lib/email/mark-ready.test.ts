@@ -131,6 +131,19 @@ function main() {
   assert.match(guided.text, /Where the marks went: Analysis \(AO3\), Contextual evaluation \(AO4\), Knowledge/)
   assert.match(guided.text, /What to do next: Practice writing/)
 
+  // The next mark is one tap away, with the subject already chosen.
+  const entry = buildMarkReadyEmail({
+    ...base,
+    marksEarned: 5,
+    totalMarks: 8,
+    subjectLabel: 'Economics',
+    nextMarkHref: 'https://markscheme.app/mark?subject=9708',
+  })
+  assert.match(entry.html, /Mark another Economics question/)
+  assert.match(entry.html, /\/mark\?subject=9708/)
+  assert.match(entry.text, /Mark another question: https:\/\/markscheme\.app\/mark\?subject=9708/)
+  assert.doesNotMatch(plain.html, /Mark another/, 'no link when no href was given')
+
   // Absent when there is nothing to say — no empty heading, no 'null'.
   assert.doesNotMatch(plain.html, /Where the marks went|What to do next/)
 

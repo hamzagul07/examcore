@@ -25,7 +25,7 @@ import { normalizeErrorClassification } from '@/lib/error-classifications'
 import { isMathSubjectCode } from '@/lib/marking/math-subjects'
 import { markingBoardLabel } from '@/lib/marking/exam-board'
 import { parsePaperCode } from '@/lib/marking/component-types'
-import { buildMarkingPrompt, maxTokensForStyle, looksLikeMcq } from '@/lib/marking/build-marking-prompt'
+import { buildMarkingPrompt, maxTokensForStyle, looksLikeMcq, objectiveGridMax } from '@/lib/marking/build-marking-prompt'
 import { resolveDerivedSchemeForMark } from '@/lib/marking/resolve-derived-scheme'
 import { extractJSON } from '@/lib/marking/json'
 import { normalizeQuestionNumber } from '@/lib/marking/question-number'
@@ -714,7 +714,12 @@ export async function markSingleQuestion(params: {
   const criterionMax: CriterionMax[] | null =
     resolvedIb?.assessmentModel === 'criteria' && resolvedIb.criteria?.length
       ? resolvedIb.criteria.map((c) => ({ letter: c.letter, maxMarks: c.maxMarks }))
-      : null
+      : // Cambridge essay marked on its assessment-objective grid: each AO is
+        // clamped to its own max and the total is the grid's sum, exactly as
+        // for IB criteria.
+        isOfficial && effectiveMarkScheme
+        ? objectiveGridMax(effectiveMarkScheme.mark_scheme)
+        : null
 
   const schemeTotal =
     effectiveMarkScheme &&

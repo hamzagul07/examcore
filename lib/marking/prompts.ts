@@ -670,6 +670,83 @@ Return ONLY this JSON:
 }`
 }
 
+/**
+ * Cambridge essays whose scheme is a grid of assessment objectives (AO1
+ * knowledge, AO2 application, AO3 analysis, AO4 evaluation), each with its own
+ * levels and mark range. Examiners award each objective on its own scale and
+ * sum them; a single overall band placement compresses strong essays toward
+ * the middle (measured: −2 marks on examiner-"high" scripts, +1 on "low").
+ * Emits the same criteria_results contract as IB criterion marking so the
+ * reconciler, verify pass and result view need no new shape.
+ */
+export function buildLorCriteriaMarkingPrompt(
+  subjectName: string,
+  questionText: string,
+  totalMarks: number,
+  markSchemeJson: string,
+  ocrText: string,
+  syllabusBlock?: string
+): string {
+  const taggingBlock = syllabusBlock ? `\n${syllabusBlock}\n` : ''
+  const tagsField = syllabusBlock ? ',\n  "syllabus_tags": ["code"]' : ''
+  return `You are a Cambridge International A-Level ${subjectName} senior examiner marking an extended response. The mark scheme is a grid: one column per assessment objective, each with its own levels and mark range. Examiners mark EACH OBJECTIVE SEPARATELY on its own scale and add them up. Do the same; never place the whole essay in one overall band.
+
+For each objective in "criteria":
+1. Read the whole response looking only for evidence of that objective (knowledge, application to the context, analysis chains, evaluation and judgement).
+2. Find the best-fit level statement for that objective. Work does not always match one statement precisely; judge between two if needed.
+3. Then pick the specific mark inside the level using Cambridge's rule: convincingly meets the statement → the highest mark in the range; adequately meets it → the middle; just meets it → the lowest. If nothing creditable, level 0.
+4. Quote the descriptor wording the work meets or misses. Use the indicative content as examples of creditable material, not as a checklist: credit valid points that are not listed.
+5. Do not let one objective leak into another: a long analysis earns AO3 marks, not AO4 marks; evaluation marks need a judgement, not more analysis. Application marks need specific use of the case context, not the concept in general.
+
+QUESTION:
+${questionText}
+
+TOTAL MARKS AVAILABLE: ${totalMarks}
+
+OFFICIAL MARK SCHEME (assessment-objective grid in "criteria"; "bands" is the overall scale for reference only):
+${markSchemeJson}
+
+STUDENT'S TRANSCRIBED ANSWER:
+${ocrText}
+${TONE_BLOCK}
+${taggingBlock}
+${MATH_NOTATION_BLOCK}
+${JSON_RULES_BLOCK}
+Return ONLY this JSON:
+{
+  "criteria_results": [
+    {
+      "criterion": "AO1",
+      "criterion_name": "Knowledge and understanding",
+      "level": 2,
+      "marks_awarded": 2,
+      "marks_available": 3,
+      "band_descriptor": "The level statement you placed them in, verbatim",
+      "justification": "Examiner justification quoting the statement and the evidence in the answer",
+      "strengths": ["..."],
+      "improvements": ["what would reach the next level for this objective"]
+    }
+  ],
+  "band_result": {
+    "level": 2,
+    "marks_awarded": 0,
+    "marks_available": ${totalMarks},
+    "band_descriptor": "Overall standard, one sentence",
+    "justification": "Holistic summary across the objectives",
+    "strengths": ["..."],
+    "improvements": ["..."]
+  },
+  "marks_earned": 0,
+  "total_marks": ${totalMarks},
+  "marks_awarded": [],
+  "summary": "Overall examiner feedback to the student",
+  "weak_topics": ["..."],
+  "what_to_study_next": "...",
+  "marking_style": "level_of_response"${tagsField}
+}
+Include exactly one criteria_results entry per entry in "criteria", with "criterion" equal to its "id" and marks_available equal to its max_marks. Set band_result.marks_awarded and marks_earned to the SUM of the criteria marks.`
+}
+
 /** IB multi-criterion marking (EE, TOK, Visual Arts comparative study, etc.). */
 export function buildIbCriterionMarkingPrompt(
   subjectName: string,

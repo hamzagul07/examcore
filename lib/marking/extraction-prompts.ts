@@ -84,6 +84,22 @@ For mixed papers, EVERY question must be extracted in the FULL structure of its 
   "indicative_content": ["Verbatim indicative content bullets"],
   "notes": ""
 }
+  When the scheme prints the levels as a GRID with one column per assessment objective (e.g. "AO1 Knowledge 3 marks | AO2 Application 2 marks | AO3 Analysis 8 marks | AO4 Evaluation 7 marks", each column with its own mark ranges per level), the objectives are marked SEPARATELY and summed, so ALSO output "criteria": one entry per column, each with its own bands (integer marks_min / marks_max per level, the verbatim cell text as the descriptor, a Level 0 band when printed) and "max_marks" equal to the column's mark total. The "max_marks" values MUST sum to total_marks. A blank cell in the grid means that objective has NO row at that level: leave the level out for that objective; never split, repeat or invent a range to fill it. Keep "bands" as the overall scale as well:
+{
+  "type": "level_of_response",
+  "criteria": [
+    { "id": "AO1", "name": "Knowledge and understanding", "max_marks": 3,
+      "bands": [
+        { "level": 2, "marks_min": 2, "marks_max": 3, "descriptor": "Developed knowledge of relevant key term(s) and/or factor(s) is used to answer the question." },
+        { "level": 1, "marks_min": 1, "marks_max": 1, "descriptor": "Limited knowledge of relevant key term(s) and/or factor(s) is used to answer the question." },
+        { "level": 0, "marks_min": 0, "marks_max": 0, "descriptor": "No creditable response." }
+      ] },
+    { "id": "AO3", "name": "Analysis", "max_marks": 8, "bands": [ { "level": 3, "marks_min": 7, "marks_max": 8, "descriptor": "…" } ] }
+  ],
+  "bands": [ { "level": 3, "marks_min": 14, "marks_max": 20, "descriptor": "…" } ],
+  "indicative_content": ["Verbatim indicative content bullets, grouped under their AO headings"],
+  "notes": ""
+}
 
 Set "type" to that concrete style ("mcq" | "point_based" | "level_of_response") — never "mixed" — and set the question's marking_type to the same value. All of the above lives INSIDE the question's "mark_scheme" object, never beside question_text at the question level. Never leave the mark allocation only as prose (for example a "marking_guidance" string): the marks or bands MUST be structured, with the prose kept in "notes".`
 
@@ -243,7 +259,8 @@ For level-of-response, mark_scheme structure:
   "indicative_content": [],
   "notes": ""
 }
-marks_min / marks_max are integers (never a "13-16" string); include the Level 0 band when the scheme prints it.`,
+marks_min / marks_max are integers (never a "13-16" string); include the Level 0 band when the scheme prints it.
+When the scheme prints the levels as a GRID with one column per assessment objective (e.g. AO1 Knowledge 3 marks, AO2 Application 2 marks, AO3 Analysis 8 marks, AO4 Evaluation 7 marks, each column with its own mark range per level), the objectives are marked separately and summed. Then ALSO output "criteria": one entry per column — { "id": "AO3", "name": "Analysis", "max_marks": 8, "bands": [ { "level": 3, "marks_min": 7, "marks_max": 8, "descriptor": "verbatim cell text" }, … , { "level": 0, "marks_min": 0, "marks_max": 0, "descriptor": "No creditable response." } ] } — with the "max_marks" values summing to total_marks, and keep "bands" as the overall scale. A blank grid cell means that objective has no row at that level: leave it out, never split or repeat a range to fill it.`,
 
     mixed: MIXED_SCHEMA,
   }
@@ -279,7 +296,7 @@ export function validateExtractedQuestion(
       : declaredType
 
   if (qType === 'mcq') return validatesAsMcq(ms)
-  if (qType === 'level_of_response') return validatesAsLor(ms, totalMarks)
+  if (qType === 'level_of_response') return validatesAsLorScheme(ms, totalMarks)
   if (qType === 'point_based') return validatesAsPointBased(ms, totalMarks)
 
   // `mixed` with no declared question_style. The prompt asks for one, so its
@@ -289,7 +306,9 @@ export function validateExtractedQuestion(
   // from the structure present and hold it to that style's FULL checks. This is
   // stricter than the `return true` it replaces, which accepted any shape at all.
   if (validatesAsMcq(ms)) return true
-  if (Array.isArray(ms.bands)) return validatesAsLor(ms, totalMarks)
+  if (Array.isArray(ms.bands) || Array.isArray(ms.criteria)) {
+    return validatesAsLorScheme(ms, totalMarks)
+  }
   if (Array.isArray(ms.marks)) return validatesAsPointBased(ms, totalMarks)
   return false
 }
@@ -297,6 +316,33 @@ export function validateExtractedQuestion(
 function validatesAsMcq(ms: Record<string, unknown>): boolean {
   const key = ms.answer_key
   return !!(key && typeof key === 'object' && Object.keys(key as object).length > 0)
+}
+
+/**
+ * A level-of-response scheme is either one overall band scale, or (Cambridge
+ * essays) a grid of per-assessment-objective scales that are marked separately
+ * and summed. With a grid, every objective's bands must tile 0..its max and the
+ * maxima must sum to the question total; the overall `bands` are then optional.
+ */
+function validatesAsLorScheme(ms: Record<string, unknown>, totalMarks: number): boolean {
+  const criteria = ms.criteria
+  if (Array.isArray(criteria) && criteria.length > 0) {
+    let sum = 0
+    for (const c of criteria) {
+      if (!c || typeof c !== 'object' || Array.isArray(c)) return false
+      const row = c as Record<string, unknown>
+      const max = row.max_marks
+      if (typeof row.id !== 'string' || !row.id.trim()) return false
+      if (typeof max !== 'number' || !Number.isInteger(max) || max <= 0) return false
+      if (!validatesAsLor(row, max)) return false
+      sum += max
+    }
+    // The grid is what the marker uses; the overall `bands` are display-only
+    // once a grid exists (Cambridge's printed overall scale is a separate
+    // holistic reading, not a sum of the columns) and are not judged here.
+    return sum === totalMarks
+  }
+  return validatesAsLor(ms, totalMarks)
 }
 
 /**

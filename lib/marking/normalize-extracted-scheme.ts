@@ -60,6 +60,7 @@ const SCHEME_FIELDS = [
   'question_style',
   'marks',
   'bands',
+  'criteria',
   'levels',
   'level_descriptors',
   'answer_key',
@@ -102,7 +103,8 @@ function hasStructureFor(style: ConcreteMarkingStyle, ms: Obj): boolean {
     return (
       Array.isArray(ms.bands) ||
       Array.isArray(ms.levels) ||
-      Array.isArray(ms.level_descriptors)
+      Array.isArray(ms.level_descriptors) ||
+      Array.isArray(ms.criteria)
     )
   }
   return (
@@ -431,6 +433,102 @@ function mergeParts(parent: string, parts: Obj[], paperMarkingType: MarkingStyle
   }
 }
 
+export type NormalisedCriterion = {
+  id: string
+  name: string
+  max_marks: number
+  bands: NormalisedBand[]
+}
+
+/**
+ * Cambridge essay schemes print a grid: one column per assessment objective,
+ * each with its own mark range per level. The extractor returns that as
+ * `criteria`; the model varies the field names (`objective`, `ao`, `code`,
+ * `marks`, `total`, `levels`), so read each with its aliases. Null when any
+ * column cannot be read as a full scale — a half-read grid is worse than none,
+ * because the marker would then sum the wrong maxima.
+ */
+/**
+ * Where the printed grid leaves a level blank for an objective (AO1 goes up to
+ * Level 2 only), the model fills the cell anyway: it repeats the range below
+ * ("Level 3: 2–2" over "Level 2: 2–2") or carves a piece off it ("Level 3: 3–3"
+ * over "Level 2: 2–3"). Both leave a row whose range lies inside another row's
+ * range, which is never true of a real scale. Drop the contained row; on an
+ * identical pair keep the lower level, which is the one the scheme printed.
+ */
+function dropInventedRows(bands: NormalisedBand[]): NormalisedBand[] {
+  return bands.filter((b, i) =>
+    !bands.some((c, j) => {
+      if (i === j) return false
+      const inside = c.marks_min <= b.marks_min && b.marks_max <= c.marks_max
+      if (!inside) return false
+      const identical = c.marks_min === b.marks_min && c.marks_max === b.marks_max
+      return identical ? c.level < b.level : true
+    })
+  )
+}
+
+export function normaliseCriteria(raw: unknown): NormalisedCriterion[] | null {
+  if (!Array.isArray(raw) || raw.length === 0) return null
+  const out: NormalisedCriterion[] = []
+  for (const [index, row] of raw.entries()) {
+    if (!isObj(row)) return null
+    const idRaw = row.id ?? row.code ?? row.ao ?? row.objective ?? row.criterion ?? row.letter
+    const id = typeof idRaw === 'string' && idRaw.trim() ? idRaw.trim().toUpperCase().replace(/\s+/g, '') : `AO${index + 1}`
+    const nameRaw = row.name ?? row.title ?? row.label ?? row.description
+    const raw = normaliseBands(row.bands ?? row.levels ?? row.level_descriptors)
+    if (!raw) return null
+    const bands = dropInventedRows(raw)
+    const max =
+      toInt(row.max_marks ?? row.marks ?? row.total_marks ?? row.total ?? row.maximum) ??
+      Math.max(...bands.map((b) => b.marks_max))
+    if (max <= 0) return null
+    out.push({
+      id,
+      name: typeof nameRaw === 'string' ? nameRaw.trim() : '',
+      max_marks: max,
+      bands,
+    })
+  }
+  return out
+}
+
+/**
+ * An overall scale for display and for code that only knows `bands`, built so
+ * it tiles 0..total: each level's top is the sum of every objective's top at
+ * that level (an objective with no row at that level contributes its highest
+ * row below it), and each level starts where the previous one ended. Summing
+ * the mins as well leaves gaps between levels, and a gapped scale is rejected.
+ * Cambridge's own printed overall bands are used when the extractor returned
+ * them; this is the fallback when it returned only the grid.
+ */
+export function bandsFromCriteria(criteria: NormalisedCriterion[]): NormalisedBand[] {
+  const levels = [...new Set(criteria.flatMap((c) => c.bands.map((b) => b.level)))].sort((a, b) => a - b)
+  const out: NormalisedBand[] = []
+  let floor = 0
+  for (const level of levels) {
+    let top = 0
+    const parts: string[] = []
+    for (const c of criteria) {
+      const row =
+        c.bands.find((b) => b.level === level) ??
+        [...c.bands].sort((a, b) => b.level - a.level).find((b) => b.level < level)
+      if (!row) continue
+      top += row.marks_max
+      if (row.descriptor) parts.push(`${c.id}: ${row.descriptor}`)
+    }
+    if (level === 0) {
+      out.push({ level: 0, marks_min: 0, marks_max: 0, descriptor: parts.join(' ') })
+      floor = 1
+      continue
+    }
+    if (top < floor) continue
+    out.push({ level, marks_min: floor, marks_max: top, descriptor: parts.join(' ') })
+    floor = top + 1
+  }
+  return out
+}
+
 /** Rebuild `mark_scheme` from scheme fields the model left at the question level. */
 function liftQuestionLevelScheme(q: Obj): Obj | null {
   const lifted: Obj = {}
@@ -470,6 +568,19 @@ export function normalizeExtractedQuestion(
       scheme.bands = bands
       delete scheme.levels
       delete scheme.level_descriptors
+    }
+    const gridSource =
+      scheme.criteria ??
+      (Array.isArray(scheme.assessment_objectives) &&
+      scheme.assessment_objectives.some((o) => isObj(o) && (o.bands ?? o.levels))
+        ? scheme.assessment_objectives
+        : undefined)
+    const criteria = normaliseCriteria(gridSource)
+    if (criteria) {
+      scheme.criteria = criteria
+      if (!Array.isArray(scheme.bands)) scheme.bands = bandsFromCriteria(criteria)
+    } else if ('criteria' in scheme) {
+      delete scheme.criteria
     }
   }
 

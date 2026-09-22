@@ -1,11 +1,14 @@
 import assert from 'node:assert/strict'
 import {
+  bandsFromCriteria,
   marksFromGuidance,
   mergeSubPartQuestions,
-  partsLookComplete,
   normaliseBands,
+  normaliseCriteria,
   normalizeExtractedQuestion,
   parseMarkRange,
+  partsLookComplete,
+  type NormalisedCriterion,
 } from './normalize-extracted-scheme'
 import { validateExtractedQuestion, questionMarkingType } from './extraction-prompts'
 import { tryExtractFromStorage } from './storage-extract'
@@ -374,6 +377,79 @@ async function subPartsOnlyNowCaches(): Promise<void> {
   assert.equal(parentRow.marking_type, 'point_based')
   assert.deepEqual(found, ['3'])
 }
+
+// --- assessment-objective grids (Cambridge essays) -------------------------
+// Shape of 9609/42 May/June 2023 Q1: one column per AO, each with its own
+// levels; examiners award each AO and sum. Previously flattened to one scale.
+const gridQuestion = {
+  question_number: '1',
+  question_text: 'Evaluate the extent to which leadership contributed to BV\'s effective strategic management.',
+  total_marks: 20,
+  marking_type: 'level_of_response',
+  mark_scheme: {
+    type: 'level_of_response',
+    criteria: [
+      { id: 'AO1', name: 'Knowledge and understanding', max_marks: 3, bands: [
+        { level: 2, marks_min: 2, marks_max: 3, descriptor: 'Developed knowledge…' },
+        { level: 1, marks_min: 1, marks_max: 1, descriptor: 'Limited knowledge…' },
+        { level: 0, marks_min: 0, marks_max: 0, descriptor: 'No creditable response.' } ] },
+      { objective: 'ao2', name: 'Application', marks: 2, levels: [
+        { level: 2, marks: '2', descriptor: 'Developed application…' },
+        { level: 1, marks: '1', descriptor: 'Limited application…' } ] },
+      { id: 'AO3', name: 'Analysis', max_marks: 8, bands: [
+        { level: 3, marks_min: 7, marks_max: 8, descriptor: 'Developed analysis of the overall strategy…' },
+        { level: 2, marks_min: 4, marks_max: 6, descriptor: 'Developed analysis of individual elements…' },
+        { level: 1, marks_min: 1, marks_max: 3, descriptor: 'Limited analysis…' },
+        { level: 0, marks_min: 0, marks_max: 0, descriptor: 'No creditable response.' } ] },
+      { id: 'AO4', name: 'Evaluation', max_marks: 7, bands: [
+        { level: 3, marks_min: 6, marks_max: 7, descriptor: 'Effective evaluation…' },
+        { level: 2, marks_min: 3, marks_max: 5, descriptor: 'Developed evaluation…' },
+        { level: 1, marks_min: 1, marks_max: 2, descriptor: 'Limited evaluation…' },
+        { level: 0, marks_min: 0, marks_max: 0, descriptor: 'No creditable response.' } ] },
+    ],
+    indicative_content: ['AO1 Knowledge and understanding: …'],
+  },
+}
+const grid = normalizeExtractedQuestion(gridQuestion, 'level_of_response')
+const gridScheme = grid.mark_scheme as { criteria: NormalisedCriterion[]; bands: Array<{ level: number; marks_min: number; marks_max: number }> }
+assert.equal(gridScheme.criteria.length, 4)
+assert.deepEqual(gridScheme.criteria.map((c) => c.id), ['AO1', 'AO2', 'AO3', 'AO4'], 'objective ids are read from id/objective aliases and upper-cased')
+assert.equal(gridScheme.criteria[1].max_marks, 2, 'max read from the `marks` alias')
+assert.deepEqual(gridScheme.criteria[1].bands.map((b) => [b.level, b.marks_min, b.marks_max]), [[0, 0, 0], [1, 1, 1], [2, 2, 2]], 'string ranges and the missing Level 0 are normalised per objective')
+assert.equal(validateExtractedQuestion(grid, 'level_of_response', '1'), true, 'a complete grid whose maxima sum to the total validates')
+assert.ok(Array.isArray(gridScheme.bands) && gridScheme.bands.length > 0, 'an overall scale is synthesised when the extractor returned only the grid')
+assert.equal(gridScheme.bands.at(-1)!.marks_max, 20, 'the synthesised top band reaches the question total')
+
+const shortGrid = normalizeExtractedQuestion({ ...gridQuestion, total_marks: 25 }, 'level_of_response')
+assert.equal(validateExtractedQuestion(shortGrid, 'level_of_response', '1'), false, 'objective maxima that do not sum to the total are rejected')
+
+const brokenColumn = normalizeExtractedQuestion({ ...gridQuestion, mark_scheme: { ...gridQuestion.mark_scheme, criteria: [gridQuestion.mark_scheme.criteria[0], { id: 'AO3', max_marks: 8, bands: [{ level: 3, marks_min: 7, marks_max: 8, descriptor: 'x' }] }] } }, 'level_of_response')
+assert.equal(validateExtractedQuestion(brokenColumn, 'level_of_response', '1'), false, 'a column whose levels do not tile 0..max is rejected')
+assert.equal(normaliseCriteria([{ id: 'AO1', max_marks: 3, bands: 'not bands' }]), null, 'an unreadable column makes the whole grid null rather than a partial grid')
+
+const invented = normaliseCriteria([{ id: 'AO2', name: 'Application', max_marks: 2, bands: [
+  { level: 3, marks_min: 2, marks_max: 2, descriptor: 'Developed application' },
+  { level: 2, marks_min: 2, marks_max: 2, descriptor: 'Developed application' },
+  { level: 1, marks_min: 1, marks_max: 1, descriptor: 'Limited application' },
+  { level: 0, marks_min: 0, marks_max: 0, descriptor: 'None' } ] }])!
+assert.deepEqual(invented[0].bands.map((b) => [b.level, b.marks_min, b.marks_max]), [[0, 0, 0], [1, 1, 1], [2, 2, 2]], 'a level the model invented by repeating the range below is dropped')
+assert.equal(validateExtractedQuestion({ question_number: '1', total_marks: 2, marking_type: 'level_of_response', mark_scheme: { type: 'level_of_response', criteria: invented } }, 'level_of_response', '1'), true)
+
+const carved = normaliseCriteria([{ id: 'AO1', name: 'Knowledge', max_marks: 3, bands: [
+  { level: 3, marks_min: 3, marks_max: 3, descriptor: 'Developed knowledge' },
+  { level: 2, marks_min: 2, marks_max: 3, descriptor: 'Developed knowledge' },
+  { level: 1, marks_min: 1, marks_max: 1, descriptor: 'Limited knowledge' },
+  { level: 0, marks_min: 0, marks_max: 0, descriptor: 'None' } ] }])!
+assert.deepEqual(carved[0].bands.map((b) => [b.level, b.marks_min, b.marks_max]), [[0, 0, 0], [1, 1, 1], [2, 2, 3]], 'a level carved out of the range below is dropped and the printed range kept')
+
+const synthesised = bandsFromCriteria(gridScheme.criteria)
+assert.deepEqual(synthesised.map((b) => b.level), [0, 1, 2, 3])
+assert.equal(synthesised[3].marks_max, 20)
+
+const plainLor = normalizeExtractedQuestion({ question_number: '2', total_marks: 10, marking_type: 'level_of_response', mark_scheme: { type: 'level_of_response', bands: [
+  { level: 2, marks_min: 6, marks_max: 10, descriptor: 'a' }, { level: 1, marks_min: 1, marks_max: 5, descriptor: 'b' }, { level: 0, marks_min: 0, marks_max: 0, descriptor: 'c' } ] } }, 'level_of_response')
+assert.equal('criteria' in (plainLor.mark_scheme as object), false, 'a plain band scale gains no criteria field')
+assert.equal(validateExtractedQuestion(plainLor, 'level_of_response', '2'), true)
 
 // --- through tryExtractFromStorage ----------------------------------------
 

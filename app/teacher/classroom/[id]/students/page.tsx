@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { StudentCard } from '@/components/teacher/StudentCard'
+import { AppEmptyState } from '@/components/ui/AppEmptyState'
 import { SkeletonBlock } from '@/components/ui/PageSkeleton'
 import {
   TeacherBackLink,
@@ -63,10 +64,16 @@ export default function ClassroomStudentsPage() {
       <TeacherPageHeader label="STUDENTS" title="Class roster" />
 
       {loading && (
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3" aria-hidden>
-          <SkeletonBlock className="h-40 w-full" />
-          <SkeletonBlock className="h-40 w-full" />
-          <SkeletonBlock className="h-40 w-full" />
+        <div
+          className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
+          aria-busy
+          aria-label="Loading the class roster"
+        >
+          {/* A StudentCard is p-5 with a name, a summary line and a quadrant
+              label — about 116px tall. */}
+          <SkeletonBlock className="h-[116px] w-full" />
+          <SkeletonBlock className="h-[116px] w-full" />
+          <SkeletonBlock className="h-[116px] w-full" />
         </div>
       )}
 
@@ -93,30 +100,19 @@ export default function ClassroomStudentsPage() {
       ) : null}
 
       {!loading && !loadError && students.length === 0 && (
-        <div className="ec-card ec-card--paper relative overflow-hidden p-10 text-center">
-          <div className="relative">
-            <div
-              className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded border font-mono text-xs font-bold tracking-wide"
-              style={{
-                background: 'var(--ec-brand-muted)',
-                color: 'var(--ec-brand)',
-                borderColor: 'var(--ec-brand-border)',
-              }}
-              aria-hidden
-            >
-              #
-            </div>
-            <h2 className="text-h3 text-[var(--ec-text-primary)]">No students yet</h2>
-            <p className="text-body mx-auto mt-2 max-w-sm text-[var(--ec-text-secondary)]">
-              Share your classroom invite code and students will appear here as soon as
-              they join.
-            </p>
-          </div>
+        <div className="ec-land">
+          <AppEmptyState
+            variant="no-data"
+            title="No students yet"
+            body="Share your classroom invite code and students will appear here as soon as they join."
+            ctaLabel="Share the invite code"
+            ctaHref={`/teacher/classroom/${id}#classroom-invite`}
+          />
         </div>
       )}
 
-      {!loading && !loadError ? (
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {!loading && !loadError && students.length > 0 ? (
+        <div className="ec-land grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {students.map((s) => (
             <StudentCard
               key={s.id}

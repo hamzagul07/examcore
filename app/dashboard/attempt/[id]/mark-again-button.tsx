@@ -3,7 +3,6 @@
 import { useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
-import { motion } from 'framer-motion'
 import { triggerPrimaryHaptic } from '@/lib/hooks/useTapFeedback'
 import { STORAGE_KEYS, writeClientStorage } from '@/lib/client-storage'
 
@@ -53,16 +52,16 @@ export function MarkAgainButton({
   }
 
   return (
-    <motion.button
+    <button
       type="button"
       onClick={handleClick}
       disabled={pending}
       aria-busy={pending || undefined}
       data-loading={pending ? 'true' : undefined}
-      whileHover={pending ? undefined : { y: -2, scale: 1.02 }}
-      whileTap={pending ? undefined : { y: 0, scale: 0.97 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-      className="ec-btn-primary w-full justify-center px-7 py-4 text-base sm:w-auto"
+      // Hover lift and press come from the shared button rules (.ec-btn-motion);
+      // the framer spring that used to sit on top doubled the movement and
+      // pulled the animation library into this route for one button.
+      className="ec-btn-primary ec-btn-motion w-full justify-center px-7 py-4 text-base sm:w-auto"
     >
       {pending ? (
         <ButtonLoadingState mode="shimmer" loadingText="Opening…">
@@ -74,6 +73,6 @@ export function MarkAgainButton({
           Mark this question again
         </>
       )}
-    </motion.button>
+    </button>
   )
 }

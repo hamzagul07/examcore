@@ -35,17 +35,17 @@ export function StudentCard({
   return (
     <Link
       href={`/teacher/classroom/${classroomId}/students/${id}`}
-      className="ec-card ec-card--paper ec-card-interactive block min-h-[72px] p-5"
+      className="ec-card ec-card--paper ec-card-interactive ms-teacher-student-card block min-h-[72px] p-5"
     >
       <div className="flex items-start justify-between gap-3">
         <div>
           <h3 className="font-bold text-[var(--ec-text-primary)]">{name}</h3>
-          <p className="mt-1 text-sm text-[var(--ec-text-secondary)]">
+          <p className="mt-1 text-sm tabular-nums text-[var(--ec-text-secondary)]">
             {attemptSummary(attemptCount, accuracy)}
           </p>
         </div>
         <div className="flex shrink-0 flex-col items-end gap-1.5">
-          <span className="rounded-lg ec-tint-success-chip px-2 py-1 text-sm font-bold">
+          <span className="rounded ec-tint-success-chip px-2 py-1 text-sm font-bold">
             {predictedGrade}
           </span>
           {dueCount > 0 ? (

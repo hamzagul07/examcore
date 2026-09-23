@@ -10,6 +10,14 @@ const NAV = [
   { href: '/teacher/reviews', label: 'Reviews', stamp: 'RV' },
 ]
 
+/* Hover, press and keyboard focus for every control in the header — the same
+   three states the student app header has. Motion is transform/opacity only
+   and switched off under reduced motion. */
+const CONTROL_STATES =
+  'transition-[background-color,color,transform,opacity] duration-[120ms] ease-out ' +
+  'focus-visible:outline-none focus-visible:shadow-[var(--ec-focus-ring)] ' +
+  'active:translate-y-px active:opacity-80 motion-reduce:transition-none motion-reduce:active:translate-y-0'
+
 /**
  * `showNav: false` renders the teacher header without its links.
  *
@@ -27,12 +35,12 @@ export function TeacherNav({ showNav = true }: { showNav?: boolean } = {}) {
       <div className="mx-auto flex w-full min-w-0 max-w-7xl items-center gap-2 overflow-x-clip px-3 py-2.5 sm:gap-3 sm:px-6 sm:py-3">
         <Link
           href={showNav ? '/teacher/dashboard' : '/for-teachers'}
-          className="flex shrink-0 items-center gap-2 max-[420px]:gap-1.5"
+          className={cn(
+            'flex shrink-0 items-center gap-2 rounded max-[420px]:gap-1.5',
+            CONTROL_STATES
+          )}
         >
-          <span
-            className="inline-grid h-6 min-w-6 shrink-0 place-items-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1.5 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]"
-            aria-hidden
-          >
+          <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
             TCH
           </span>
           <span className="font-bold text-[var(--ec-text-primary)] max-[420px]:text-sm">
@@ -57,9 +65,10 @@ export function TeacherNav({ showNav = true }: { showNav?: boolean } = {}) {
                 key={href}
                 href={href}
                 className={cn(
-                  'flex min-h-[44px] shrink-0 items-center gap-2 rounded px-3 py-2 text-sm transition-colors',
+                  'flex min-h-[44px] shrink-0 items-center gap-2 rounded px-3 py-2 text-sm',
+                  CONTROL_STATES,
                   active
-                    ? 'border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] text-[var(--ec-text-primary)] shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.06))]'
+                    ? 'border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] text-[var(--ec-text-primary)] shadow-[var(--ec-shadow-hard)]'
                     : 'text-[var(--ec-text-secondary)] hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)]'
                 )}
                 aria-current={active ? 'page' : undefined}
@@ -78,7 +87,10 @@ export function TeacherNav({ showNav = true }: { showNav?: boolean } = {}) {
           <ThemeSwitcher />
           <Link
             href="/account"
-            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)]"
+            className={cn(
+              'flex min-h-[44px] min-w-[44px] items-center justify-center rounded text-[var(--ec-text-secondary)] hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)]',
+              CONTROL_STATES
+            )}
             aria-label="Account settings"
           >
             <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
@@ -88,7 +100,10 @@ export function TeacherNav({ showNav = true }: { showNav?: boolean } = {}) {
           <form action="/auth/signout" method="POST" className="inline">
             <button
               type="submit"
-              className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)]"
+              className={cn(
+                'flex min-h-[44px] min-w-[44px] items-center justify-center rounded text-[var(--ec-text-secondary)] hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)]',
+                CONTROL_STATES
+              )}
               aria-label="Sign out"
             >
               <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>

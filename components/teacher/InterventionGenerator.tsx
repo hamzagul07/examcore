@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { X, Check, Loader2 } from 'lucide-react'
+import { useEffect, useId, useState } from 'react'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
+import { SkeletonBlock } from '@/components/ui/PageSkeleton'
+import { Sheet } from '@/components/ui/Sheet'
 
 interface Question {
   id: string
@@ -18,13 +18,28 @@ interface Props {
   classroomId: string
   targetCodes: string[]
   onClose: () => void
+  /**
+   * Parents keep this mounted and flip `open`, so the sheet can slide out as
+   * well as in. Defaults to open for a caller that mounts it on demand.
+   */
+  open?: boolean
 }
 
+/**
+ * The intervention picker, on the shared Sheet (bottom sheet on a phone,
+ * centred paper on a desk) rather than its own hand-rolled modal — so it gets
+ * the focus trap, scroll lock, Escape and the one exit animation for free.
+ *
+ * Questions are fetched each time the sheet opens, which is what the previous
+ * mount-on-open behaviour did.
+ */
 export function InterventionGenerator({
   classroomId,
   targetCodes,
   onClose,
+  open = true,
 }: Props) {
+  const titleId = useId()
   const [questions, setQuestions] = useState<Question[]>([])
   const [selected, setSelected] = useState<Set<string>>(new Set())
   const [loading, setLoading] = useState(true)
@@ -35,9 +50,15 @@ export function InterventionGenerator({
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
+    if (!open) return
+    let active = true
+    setLoading(true)
+    setError(null)
+    setResult(null)
     fetch(`/api/teacher/classroom/${classroomId}/blindspots`)
       .then((r) => r.json())
       .then((d) => {
+        if (!active) return
         const all: Question[] = []
         for (const topic of d.topicsWithQuestions || []) {
           for (const q of topic.sampleQuestions || []) {
@@ -49,11 +70,15 @@ export function InterventionGenerator({
         setLoading(false)
       })
       .catch((err) => {
+        if (!active) return
         console.error('InterventionGenerator: failed to load questions', err)
         setError('Could not load questions. Please try again.')
         setLoading(false)
       })
-  }, [classroomId])
+    return () => {
+      active = false
+    }
+  }, [classroomId, open])
 
   function toggle(id: string) {
     setSelected((prev) => {
@@ -99,116 +124,112 @@ export function InterventionGenerator({
   }
 
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-end justify-center ec-modal-backdrop p-0 sm:items-center sm:p-4"
-        onClick={onClose}
-      >
-        <motion.div
-          initial={{ scale: 0.95, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.95, opacity: 0 }}
-          className="ms-teacher-intervention ec-card ec-card--paper max-h-[90dvh] w-full max-w-2xl overflow-y-auto rounded-t p-4 sm:max-h-[85vh] sm:rounded sm:p-8"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="mb-6 flex items-start justify-between">
-            <div>
-              <div className="ec-label-tech mb-2">INTERVENTION GENERATOR</div>
-              <h3 className="text-xl font-bold text-[var(--ec-text-primary)] sm:text-2xl">
-                Target failing topics
-              </h3>
-              <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">
-                Codes: {targetCodes.join(', ')} — select 3–8 questions
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={onClose}
-              className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)]"
-            >
-              <X className="h-5 w-5" />
-            </button>
+    <Sheet
+      open={open}
+      onClose={onClose}
+      labelledById={titleId}
+      className="ms-teacher-intervention sm:max-w-2xl"
+    >
+      <div className="mb-6 pr-10">
+        <div className="ec-label-tech mb-2">INTERVENTION GENERATOR</div>
+        <h3 id={titleId} className="text-title">
+          Target failing topics
+        </h3>
+        <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">
+          Codes: {targetCodes.join(', ')} — select 3–8 questions
+        </p>
+      </div>
+
+      {result ? (
+        <div className="ec-land text-center">
+          <div
+            className="ec-ink-stamp ec-ink-stamp--hero mx-auto mb-4"
+            aria-hidden
+          >
+            ✓
+          </div>
+          <h4 className="text-title">{result.title}</h4>
+          <p className="mt-2 tabular-nums text-[var(--ec-text-secondary)]">
+            Created with {result.count} questions. Share with your class via
+            your LMS or print for in-class use.
+          </p>
+          <button type="button" onClick={onClose} className="ec-btn-primary mt-6">
+            Done
+          </button>
+        </div>
+      ) : loading ? (
+        <div className="mb-6 space-y-2" aria-busy aria-label="Loading questions">
+          <p className="sr-only">Loading questions...</p>
+          <SkeletonBlock className="h-[76px] w-full" />
+          <SkeletonBlock className="h-[76px] w-full" />
+          <SkeletonBlock className="h-[76px] w-full" />
+          <SkeletonBlock className="h-[76px] w-full" />
+        </div>
+      ) : (
+        <>
+          {error && (
+            <p className="mb-4 text-sm text-[var(--ec-danger)]" role="alert">
+              {error}
+            </p>
+          )}
+          <div className="mb-6 max-h-80 space-y-2 overflow-y-auto">
+            {questions.length === 0 && !error && (
+              <div className="ms-teacher-empty ec-land">
+                <span className="ms-teacher-empty__icon" aria-hidden>
+                  <span className="font-mono text-sm font-bold tracking-wide">Q</span>
+                </span>
+                <p className="ms-teacher-empty__body">
+                  No past paper questions found for these topics in the
+                  database.
+                </p>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="ec-btn-secondary mt-1 inline-flex min-h-[44px] items-center"
+                >
+                  Done
+                </button>
+              </div>
+            )}
+            {questions.map((q) => (
+              <button
+                key={q.id}
+                type="button"
+                onClick={() => toggle(q.id)}
+                aria-pressed={selected.has(q.id)}
+                className="ec-card ec-card--paper ms-teacher-pick min-h-[56px] w-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4"
+              >
+                <div className="mb-1 text-xs tabular-nums text-[var(--ec-text-secondary)]">
+                  {q.paper_code} · {q.paper_session} · Q{q.question_number}{' '}
+                  · {q.total_marks} marks
+                </div>
+                <div className="line-clamp-2 text-sm text-[var(--ec-text-primary)]">
+                  {q.question_text ? (
+                    <RichTextRenderer
+                      text={q.question_text}
+                      contentKind="question"
+                      variant="light"
+                    />
+                  ) : null}
+                </div>
+              </button>
+            ))}
           </div>
 
-          {result ? (
-            <div className="text-center">
-              <div
-                className="ec-ink-stamp ec-ink-stamp--hero mx-auto mb-4"
-                aria-hidden
-              >
-                ✓
-              </div>
-              <h4 className="text-xl font-bold text-[var(--ec-text-primary)]">{result.title}</h4>
-              <p className="mt-2 text-[var(--ec-text-secondary)]">
-                Created with {result.count} questions. Share with your class via
-                your LMS or print for in-class use.
-              </p>
-              <button type="button" onClick={onClose} className="ec-btn-primary mt-6">
-                Done
-              </button>
-            </div>
-          ) : loading ? (
-            <div className="flex items-center justify-center py-12 text-[var(--ec-text-secondary)]">
-              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              Loading questions...
-            </div>
-          ) : (
-            <>
-              {error && (
-                <p className="mb-4 text-sm text-[var(--ec-danger,#b91c1c)]">{error}</p>
-              )}
-              <div className="mb-6 max-h-80 space-y-2 overflow-y-auto">
-                {questions.length === 0 && !error && (
-                  <p className="text-[var(--ec-text-secondary)]">
-                    No past paper questions found for these topics in the
-                    database.
-                  </p>
-                )}
-                {questions.map((q) => (
-                  <button
-                    key={q.id}
-                    type="button"
-                    onClick={() => toggle(q.id)}
-                    className={`ec-card ec-card--paper min-h-[56px] w-full border p-4 text-left transition-all ${
-                      selected.has(q.id)
-                        ? 'border-[color-mix(in_srgb,var(--ec-brand)_40%,transparent)] bg-[color-mix(in_srgb,var(--ec-brand)_5%,transparent)]'
-                        : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)] ec-hover-brand-border-mild hover:bg-[var(--ec-brand-muted)]'
-                    }`}
-                  >
-                    <div className="mb-1 text-xs text-[var(--ec-text-secondary)]">
-                      {q.paper_code} · {q.paper_session} · Q{q.question_number}{' '}
-                      · {q.total_marks} marks
-                    </div>
-                    <div className="line-clamp-2 text-sm text-[var(--ec-text-primary)]">
-                      {q.question_text ? (
-                        <RichTextRenderer
-                          text={q.question_text}
-                          contentKind="question"
-                          variant="light"
-                        />
-                      ) : null}
-                    </div>
-                  </button>
-                ))}
-              </div>
-
-              <button
-                type="button"
-                onClick={generate}
-                disabled={selected.size < 3 || generating}
-                className="ec-btn-primary min-h-[48px] w-full"
-              >
-                {generating
-                  ? 'Generating...'
-                  : `Generate test (${selected.size} questions)`}
-              </button>
-            </>
-          )}
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
+          <button
+            type="button"
+            onClick={generate}
+            disabled={selected.size < 3 || generating}
+            aria-busy={generating || undefined}
+            data-loading={generating ? 'true' : undefined}
+            className="ec-btn-primary min-h-[48px] w-full tabular-nums"
+          >
+            {generating
+              ? 'Generating...'
+              : `Generate test (${selected.size} questions)`}
+          </button>
+        </>
+      )}
+    </Sheet>
   )
 }

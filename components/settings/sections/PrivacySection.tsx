@@ -1,20 +1,57 @@
 'use client'
 
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
-import { ErrorBox, SuccessBox } from '@/components/AuthFormBits'
+import { Field } from '@/components/ui/Field'
+import { Sheet } from '@/components/ui/Sheet'
+import { ErrorBox } from '@/components/AuthFormBits'
 import { SettingsSectionCard } from '@/components/settings/SettingsSectionCard'
+import { SavedStamp, useSavedStamp } from '@/components/settings/SettingsShell'
 
 export function PrivacySection() {
+  const [exportOpen, setExportOpen] = useState(false)
   const [exportLoading, setExportLoading] = useState(false)
+  const [deleteOpen, setDeleteOpen] = useState(false)
   const [deleteConfirm, setDeleteConfirm] = useState('')
   const [deleteLoading, setDeleteLoading] = useState(false)
   // Errors render inside the card they belong to — a failed delete shown at
   // the page bottom is too easy to miss.
   const [exportError, setExportError] = useState('')
   const [exportSuccess, setExportSuccess] = useState('')
+  // "Type DELETE" is the field's own rule; a failed request is the form's.
+  const [deleteFieldError, setDeleteFieldError] = useState('')
   const [deleteError, setDeleteError] = useState('')
+  const exportStamp = useSavedStamp()
+  const exportTitleId = useId()
+  const deleteTitleId = useId()
+
+  function openExport() {
+    setExportError('')
+    setExportSuccess('')
+    exportStamp.clearSaved()
+    setExportOpen(true)
+  }
+
+  function closeExport() {
+    if (exportLoading) return
+    setExportOpen(false)
+  }
+
+  function openDelete() {
+    setDeleteConfirm('')
+    setDeleteFieldError('')
+    setDeleteError('')
+    setDeleteOpen(true)
+  }
+
+  function closeDelete() {
+    if (deleteLoading) return
+    setDeleteOpen(false)
+    setDeleteConfirm('')
+    setDeleteFieldError('')
+    setDeleteError('')
+  }
 
   async function handleExport() {
     setExportLoading(true)
@@ -37,6 +74,8 @@ export function PrivacySection() {
       a.click()
       URL.revokeObjectURL(url)
       setExportSuccess('Your data export has downloaded.')
+      setExportOpen(false)
+      exportStamp.showSaved()
     } catch (err) {
       setExportError(err instanceof Error ? err.message : 'Export failed')
     } finally {
@@ -46,10 +85,11 @@ export function PrivacySection() {
 
   async function handleDelete() {
     if (deleteConfirm !== 'DELETE') {
-      setDeleteError('Type DELETE in the box to confirm.')
+      setDeleteFieldError('Type DELETE in the box to confirm.')
       return
     }
     setDeleteLoading(true)
+    setDeleteFieldError('')
     setDeleteError('')
     try {
       const res = await fetch('/api/account/delete', {
@@ -78,64 +118,145 @@ export function PrivacySection() {
           Includes your profile, marking attempts, subscription status, and usage
           history (last 500 attempts).
         </p>
-        <Button
-          type="button"
-          variant="secondary"
-          size="md"
-          onClick={() => void handleExport()}
-          loading={exportLoading}
-          loadingMode="shimmer"
-          loadingText="Preparing export…"
-        >
+        <div className="flex flex-wrap items-center gap-3">
+          <Button type="button" variant="secondary" size="md" onClick={openExport}>
+            Download my data
+          </Button>
+          <SavedStamp state={exportStamp.stamp} label="✓ Downloaded" />
+        </div>
+        <span role="status" aria-live="polite" className="sr-only">
+          {exportSuccess}
+        </span>
+      </SettingsSectionCard>
+
+      {/* Confirm before the file leaves the server: it is personal data landing
+          on whatever device this is. */}
+      <Sheet open={exportOpen} onClose={closeExport} labelledById={exportTitleId}>
+        <span className="ec-ink-stamp ec-ink-stamp--hero mb-4" aria-hidden>
+          ↓
+        </span>
+        <h2 id={exportTitleId} className="text-headline text-[var(--ec-text-primary)]">
           Download my data
-        </Button>
+        </h2>
+        <p className="text-body mt-2 text-[var(--ec-text-secondary)]">
+          Includes your profile, marking attempts, subscription status, and usage
+          history (last 500 attempts).
+        </p>
+
         {exportError && (
           <div className="mt-4">
             <ErrorBox message={exportError} />
           </div>
         )}
-        {exportSuccess && (
-          <div className="mt-4">
-            <SuccessBox message={exportSuccess} />
-          </div>
-        )}
-      </SettingsSectionCard>
+
+        <div className="mt-6 flex flex-col gap-3">
+          <Button
+            type="button"
+            variant="primary"
+            size="md"
+            fullWidth
+            onClick={() => void handleExport()}
+            loading={exportLoading}
+            loadingMode="shimmer"
+            loadingText="Preparing export…"
+          >
+            Download my data
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            size="md"
+            fullWidth
+            disabled={exportLoading}
+            onClick={closeExport}
+          >
+            Cancel
+          </Button>
+        </div>
+      </Sheet>
 
       <SettingsSectionCard title="Delete account">
         <p className="text-body mb-4">
           Permanently removes your account, attempts, and uploads. This cannot be
           undone.
         </p>
-        <label className="label-overline mb-2 block" htmlFor="deleteConfirm">
-          Type DELETE to confirm
-        </label>
-        <input
-          id="deleteConfirm"
-          type="text"
-          value={deleteConfirm}
-          onChange={(e) => setDeleteConfirm(e.target.value)}
-          className="ec-input mb-4 max-w-xs"
-          autoComplete="off"
-        />
-        <Button
-          type="button"
-          variant="secondary"
-          size="md"
-          onClick={() => void handleDelete()}
-          disabled={deleteLoading || deleteConfirm !== 'DELETE'}
-          loading={deleteLoading}
-          loadingMode="morph"
-          loadingText="Deleting…"
-          className="ec-btn-secondary border-[color-mix(in_srgb,var(--ec-chip-critical-text)_40%,transparent)] ec-score-low hover:border-[color-mix(in_srgb,var(--ec-chip-critical-text)_60%,transparent)]"
-        >
+        <Button type="button" variant="danger" size="md" onClick={openDelete}>
           Delete my account
         </Button>
-        {deleteError && (
-          <div className="mt-4">
-            <ErrorBox message={deleteError} />
-          </div>
-        )}
       </SettingsSectionCard>
+
+      {/* The typed confirmation lives in the sheet, so a stray click on the
+          card can never delete anything. */}
+      <Sheet open={deleteOpen} onClose={closeDelete} labelledById={deleteTitleId}>
+        <span className="ec-ink-stamp ec-ink-stamp--hero ec-ink-stamp--crimson mb-4" aria-hidden>
+          !
+        </span>
+        <h2 id={deleteTitleId} className="text-headline text-[var(--ec-text-primary)]">
+          Delete account
+        </h2>
+        <p className="text-body mt-2 text-[var(--ec-text-secondary)]">
+          Permanently removes your account, attempts, and uploads. This cannot be
+          undone.
+        </p>
+
+        <form
+          className="mt-5"
+          onSubmit={(e) => {
+            e.preventDefault()
+            void handleDelete()
+          }}
+        >
+          <Field
+            label="Type DELETE to confirm"
+            labelClassName="label-overline mb-2 block"
+            error={deleteFieldError}
+            inputProps={{
+              id: 'deleteConfirm',
+              type: 'text',
+              value: deleteConfirm,
+              onChange: (e) => {
+                setDeleteConfirm(e.target.value)
+                if (deleteFieldError) setDeleteFieldError('')
+              },
+              autoComplete: 'off',
+              autoCapitalize: 'characters',
+              spellCheck: false,
+              disabled: deleteLoading,
+            }}
+          />
+
+          {deleteError && (
+            <div className="mt-4">
+              <ErrorBox message={deleteError} />
+            </div>
+          )}
+
+          <div className="mt-6 flex flex-col gap-3">
+            <Button
+              type="submit"
+              variant="danger"
+              size="md"
+              fullWidth
+              disabled={deleteLoading || deleteConfirm !== 'DELETE'}
+              loading={deleteLoading}
+              loadingMode="morph"
+              loadingText="Deleting…"
+            >
+              Delete my account
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="md"
+              fullWidth
+              disabled={deleteLoading}
+              onClick={closeDelete}
+            >
+              Cancel
+            </Button>
+          </div>
+        </form>
+      </Sheet>
 
       <SettingsSectionCard title="Legal">
         <ul className="space-y-2 text-body">

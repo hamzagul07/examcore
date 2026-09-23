@@ -93,7 +93,7 @@ export default function ReviewsPage() {
       ) : null}
 
       <div
-        className="ms-teacher-start__choices mb-6"
+        className="ms-teacher-start__choices ms-teacher-inbox-filters mb-6"
         role="tablist"
         aria-label="Filter submissions"
       >
@@ -113,15 +113,15 @@ export default function ReviewsPage() {
 
       {state.status === 'loading' ? (
         <div className="ms-teacher-class-list" aria-busy aria-label="Loading submissions">
-          <SkeletonBlock className="h-[72px] w-full" />
-          <SkeletonBlock className="h-[72px] w-full" />
-          <SkeletonBlock className="h-[72px] w-full" />
+          <SkeletonBlock className="h-[78px] w-full" />
+          <SkeletonBlock className="h-[78px] w-full" />
+          <SkeletonBlock className="h-[78px] w-full" />
         </div>
       ) : null}
 
       {(state.status === 'empty' ||
         (state.status === 'ready' && filtered.length === 0)) && (
-        <div className="ms-teacher-empty">
+        <div className="ms-teacher-empty ec-land">
           <span className="ms-teacher-empty__icon" aria-hidden>
             <span className="font-mono text-sm font-bold tracking-wide">IN</span>
           </span>
@@ -135,10 +135,29 @@ export default function ReviewsPage() {
               ? 'When your students mark work in a classroom, their submissions land here for review.'
               : 'No submissions match this filter. Try another one.'}
           </p>
+          {state.status === 'empty' || filter === 'all' ? (
+            <Link
+              href="/teacher/dashboard"
+              className="ec-btn-secondary mt-2 inline-flex min-h-[44px] items-center gap-2"
+            >
+              <span className="font-mono text-[11px] font-bold" aria-hidden>
+                CL
+              </span>
+              Your classrooms
+            </Link>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setFilter('all')}
+              className="ec-btn-secondary mt-2 inline-flex min-h-[44px] items-center"
+            >
+              Show all
+            </button>
+          )}
         </div>
       )}
 
-      <ul className="ms-teacher-class-list">
+      <ul className={`ms-teacher-class-list${filtered.length > 0 ? ' ec-land' : ''}`}>
         {filtered.map((r) => (
           <li key={r.id}>
             <Link href={`/teacher/reviews/${r.id}`} className="ms-teacher-class-slip">
@@ -153,7 +172,9 @@ export default function ReviewsPage() {
                 </p>
               </span>
               <span className="ms-teacher-class-slip__go">
-                {r.marksEarned}/{r.totalMarks}
+                <span className="tabular-nums">
+                  {r.marksEarned}/{r.totalMarks}
+                </span>
                 <span className="mt-1 block text-[10px] font-normal tracking-normal text-[var(--ec-text-secondary)]">
                   {new Date(r.createdAt).toLocaleDateString()}
                 </span>

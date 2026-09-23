@@ -3,7 +3,9 @@
 import type { StudentQuadrantMetric } from '@/lib/teacher-analytics'
 import { QuadrantTooltip } from './QuadrantTooltip'
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { motion, useReducedMotion } from 'framer-motion'
+import { CountUp } from '@/components/ui/CountUp'
 
 const QUADRANT_CONFIG = {
   safe: {
@@ -32,19 +34,41 @@ const QUADRANT_CONFIG = {
   },
 } as const
 
-export function GradeRiskMatrix({ students }: { students: StudentQuadrantMetric[] }) {
+export function GradeRiskMatrix({
+  students,
+  classroomId,
+}: {
+  students: StudentQuadrantMetric[]
+  /** When given, the empty state can point at the roster. */
+  classroomId?: string
+}) {
   const [activeStudent, setActiveStudent] = useState<StudentQuadrantMetric | null>(null)
+  const reduceMotion = useReducedMotion()
 
   if (students.length === 0) {
     return (
       <div className="ms-teacher-risk-matrix ms-teacher-roster">
         <div className="ec-label-tech mb-2">Risk matrix</div>
-        <h2 className="text-2xl font-bold text-[var(--ec-text-primary)] sm:text-3xl">
-          Grade boundary risk
-        </h2>
-        <p className="mt-4 text-[var(--ec-text-secondary)]">
-          Once students have marked work, each appears here by pace and accuracy.
-        </p>
+        <h2 className="text-title">Grade boundary risk</h2>
+        <div className="ms-teacher-empty mt-4">
+          <span className="ms-teacher-empty__icon" aria-hidden>
+            <span className="font-mono text-sm font-bold tracking-wide">UP</span>
+          </span>
+          <p className="ms-teacher-empty__body">
+            Once students have marked work, each appears here by pace and accuracy.
+          </p>
+          {classroomId ? (
+            <Link
+              href={`/teacher/classroom/${classroomId}/students`}
+              className="ec-btn-secondary mt-1 inline-flex min-h-[44px] items-center gap-2"
+            >
+              <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+                N
+              </span>
+              View all students
+            </Link>
+          ) : null}
+        </div>
       </div>
     )
   }
@@ -53,18 +77,13 @@ export function GradeRiskMatrix({ students }: { students: StudentQuadrantMetric[
     <div className="ms-teacher-risk-matrix ms-teacher-roster">
       <div className="mb-6">
         <div className="ec-label-tech mb-2">Risk matrix</div>
-        <h2 className="text-2xl font-bold text-[var(--ec-text-primary)] sm:text-3xl">
-          Grade boundary risk
-        </h2>
+        <h2 className="text-title">Grade boundary risk</h2>
         <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">
           Each mark is a student. Focus or hover for predicted grade and biggest deficit.
         </p>
       </div>
 
-      <div
-        className="ms-teacher-risk-plot relative h-64 overflow-hidden rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] sm:h-80 md:h-96"
-        style={{ boxShadow: 'var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08))' }}
-      >
+      <div className="ms-teacher-risk-plot relative h-64 overflow-hidden rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] sm:h-80 md:h-96">
         <div className="absolute inset-0 grid grid-cols-2 grid-rows-2">
           <QuadrantBg label={QUADRANT_CONFIG.careless_risk.label} />
           <QuadrantBg label={QUADRANT_CONFIG.safe.label} />
@@ -91,15 +110,21 @@ export function GradeRiskMatrix({ students }: { students: StudentQuadrantMetric[
             <motion.button
               key={student.studentId}
               type="button"
-              initial={{ scale: 0, opacity: 0 }}
+              // Marks pop onto the sheet one after another; with reduced motion
+              // they are simply there.
+              initial={reduceMotion ? false : { scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: (idx % 12) * 0.04 }}
-              whileHover={{ scale: 1.5, zIndex: 10 }}
+              transition={
+                reduceMotion
+                  ? { duration: 0 }
+                  : { delay: (idx % 12) * 0.04, duration: 0.32, ease: [0.23, 1, 0.32, 1] }
+              }
+              whileHover={reduceMotion ? undefined : { scale: 1.5, zIndex: 10 }}
               onMouseEnter={() => setActiveStudent(student)}
               onMouseLeave={() => setActiveStudent(null)}
               onFocus={() => setActiveStudent(student)}
               onBlur={() => setActiveStudent(null)}
-              className={`absolute h-4 w-4 rounded-[3px] ring-2 ring-current transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ec-brand)] ${cfg.dotClass}`}
+              className={`absolute h-4 w-4 rounded ring-2 ring-current transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ec-brand)] ${cfg.dotClass}`}
               style={{
                 left: `${xPercent}%`,
                 top: `${yPercent}%`,
@@ -127,8 +152,8 @@ export function GradeRiskMatrix({ students }: { students: StudentQuadrantMetric[
               </span>
               <div>
                 <div className="text-xs text-[var(--ec-text-secondary)]">{cfg.label}</div>
-                <div className="font-display text-lg font-medium text-[var(--ec-text-primary)]">
-                  {count}
+                <div className="font-display text-lg font-medium tabular-nums text-[var(--ec-text-primary)]">
+                  <CountUp value={count} />
                 </div>
               </div>
             </div>
@@ -142,7 +167,7 @@ export function GradeRiskMatrix({ students }: { students: StudentQuadrantMetric[
 function QuadrantBg({ label }: { label: string }) {
   return (
     <div className="relative p-3">
-      <div className="text-xs font-semibold uppercase tracking-wider text-[var(--ec-text-secondary)]">
+      <div className="font-mono text-[11px] font-semibold uppercase tracking-[var(--ec-track-label)] text-[var(--ec-text-secondary)]">
         {label}
       </div>
     </div>

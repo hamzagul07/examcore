@@ -7,7 +7,6 @@ import { createClient } from '@/lib/supabase'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/Button'
 import { PasswordInput } from '@/components/PasswordInput'
-import { SuccessBox } from '@/components/AuthFormBits'
 import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
 import {
@@ -22,6 +21,7 @@ import {
   SettingsStatTile,
   SettingsSubsection,
 } from '@/components/settings/SettingsSectionCard'
+import { SavedStamp, useSavedStamp } from '@/components/settings/SettingsShell'
 
 type StudyProfile = {
     full_name: string
@@ -76,11 +76,7 @@ export function StudyAccountSection({ initialProfile }: Props) {
               {initialProfile.subjects.map((id) => {
                 const subject = getSubjectById(id, initialProfile.level)
                 return (
-                  <li
-                    key={id}
-                    className="ec-chip ec-chip-neutral"
-                    style={{ fontSize: '13px' }}
-                  >
+                  <li key={id} className="ec-chip ec-chip-neutral text-[13px]">
                     {subject?.label ?? id}
                   </li>
                 )
@@ -103,6 +99,16 @@ export function StudyAccountSection({ initialProfile }: Props) {
   )
 }
 
+/** Field-level error in Field's own style — PasswordInput owns its input. */
+function FieldError({ id, message }: { id: string; message: string }) {
+  if (!message) return null
+  return (
+    <p id={id} className="mt-1.5 text-xs text-[var(--ec-danger,#b91c1c)]" role="alert">
+      {message}
+    </p>
+  )
+}
+
 function AccountSecuritySection() {
   const [open, setOpen] = useState(false)
   const [newPassword, setNewPassword] = useState('')
@@ -110,7 +116,18 @@ function AccountSecuritySection() {
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
+  const { stamp, showSaved, clearSaved } = useSavedStamp()
 
+  // The two rules the submit button gates on, shown beside the field they
+  // concern as soon as the student has typed something to check.
+  const newPasswordError =
+    newPassword.length > 0 && newPassword.length < 8
+      ? 'Password must be at least 8 characters.'
+      : ''
+  const confirmPasswordError =
+    confirmPassword.length > 0 && newPassword !== confirmPassword
+      ? 'Passwords do not match.'
+      : ''
   const valid = newPassword.length >= 8 && newPassword === confirmPassword
 
   async function handleSubmit(e: React.FormEvent) {
@@ -126,6 +143,7 @@ function AccountSecuritySection() {
     setLoading(true)
     setErrorMsg('')
     setSuccessMsg('')
+    clearSaved()
 
     const supabase = createClient()
     const { error } = await supabase.auth.updateUser({ password: newPassword })
@@ -136,6 +154,7 @@ function AccountSecuritySection() {
       return
     }
     setSuccessMsg('Password updated.')
+    showSaved()
     setNewPassword('')
     setConfirmPassword('')
     setOpen(false)
@@ -149,17 +168,23 @@ function AccountSecuritySection() {
             <p className="text-body">
               Use a password alongside (or instead of) magic links.
             </p>
-            <Button
-              variant="secondary"
-              size="md"
-              onClick={() => {
-                setOpen(true)
-                setSuccessMsg('')
-                setErrorMsg('')
-              }}
-            >
-              Set or change password
-            </Button>
+            <div className="flex flex-wrap items-center gap-3">
+              <Button
+                variant="secondary"
+                size="md"
+                onClick={() => {
+                  setOpen(true)
+                  setSuccessMsg('')
+                  setErrorMsg('')
+                  clearSaved()
+                }}
+              >
+                Set or change password
+              </Button>
+              {/* The form closes on success, so the stamp lands beside the
+                  button the student is returned to. */}
+              <SavedStamp state={stamp} />
+            </div>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -174,6 +199,7 @@ function AccountSecuritySection() {
                 autoComplete="new-password"
                 minLength={8}
               />
+              <FieldError id="newPassword-error" message={newPasswordError} />
             </div>
             <div>
               <Label htmlFor="confirmPassword" className="label-overline mb-2 inline-block">
@@ -185,6 +211,7 @@ function AccountSecuritySection() {
                 onChange={setConfirmPassword}
                 autoComplete="new-password"
               />
+              <FieldError id="confirmPassword-error" message={confirmPasswordError} />
             </div>
 
             {errorMsg && <FormErrorAlert message={errorMsg} />}
@@ -194,6 +221,7 @@ function AccountSecuritySection() {
                 variant="secondary"
                 size="md"
                 type="button"
+                disabled={loading}
                 onClick={() => {
                   setOpen(false)
                   setNewPassword('')
@@ -217,11 +245,9 @@ function AccountSecuritySection() {
           </form>
         )}
 
-        {successMsg && (
-          <div className="mt-4">
-            <SuccessBox message={successMsg} />
-          </div>
-        )}
+        <span role="status" aria-live="polite" className="sr-only">
+          {successMsg}
+        </span>
       </SettingsSubsection>
     </SettingsSectionCard>
   )

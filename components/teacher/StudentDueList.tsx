@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import type { StudentDueTopic } from '@/lib/teacher/cohort-due'
+import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
 
 const SOURCE_LABEL: Record<StudentDueTopic['source'], string> = {
   attempts: 'Needs a rematch',
@@ -60,21 +61,32 @@ export function StudentDueList({
 
   if (topics === null) {
     return (
-      <section className="ms-student-due ec-card ec-card--paper p-6" aria-busy>
+      <section
+        className="ms-student-due ec-card ec-card--paper p-6"
+        aria-busy
+        aria-label="Loading due topics"
+      >
         <div className="mb-2 flex items-center gap-2">
           <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
             DUE
           </span>
           <span className="ec-label-tech">Due now</span>
         </div>
-        <p className="text-sm text-[var(--ec-text-secondary)]">Loading…</p>
+        <p className="sr-only">Loading…</p>
+        {/* Title, sub, and two rows at the real 52px row height. */}
+        <SkeletonBlock className="h-7 w-64 max-w-full" />
+        <SkeletonLine className="mt-2 h-4 w-80 max-w-full" />
+        <div className="ms-teacher-skel-rows mt-4">
+          <SkeletonBlock className="h-[52px] w-full" />
+          <SkeletonBlock className="h-[52px] w-full" />
+        </div>
       </section>
     )
   }
 
   if (error) {
     return (
-      <div className="ms-teacher-error" role="alert">
+      <div className="ms-teacher-error ec-land" role="alert">
         <p className="font-semibold text-[var(--ec-text-primary)]">Due list unavailable</p>
         <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">{error}</p>
       </div>
@@ -83,7 +95,7 @@ export function StudentDueList({
 
   if (topics.length === 0) {
     return (
-      <section className="ms-student-due ec-card ec-card--paper p-6">
+      <section className="ms-student-due ec-card ec-card--paper ec-land p-6">
         <div className="mb-2 flex items-center gap-2">
           <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
             DUE
@@ -101,14 +113,14 @@ export function StudentDueList({
   const first = studentName.trim().split(/\s+/)[0] || studentName
 
   return (
-    <section className="ms-student-due ec-card ec-card--paper p-6">
+    <section className="ms-student-due ec-card ec-card--paper ec-land p-6">
       <div className="mb-3 flex items-center gap-2">
         <span className="ec-ink-stamp ec-ink-stamp--crimson" aria-hidden>
           DUE
         </span>
         <span className="ec-label-tech">Due now</span>
       </div>
-      <h2 className="ms-student-due__title">
+      <h2 className="ms-student-due__title tabular-nums">
         {topics.length} topic{topics.length === 1 ? '' : 's'} cooling for {first}
       </h2>
       <p className="ms-student-due__sub">
@@ -125,7 +137,7 @@ export function StudentDueList({
                   · {t.subjectLabel} · {t.topicCode}
                 </span>
               </p>
-              <p className="ms-student-due__meta">
+              <p className="ms-student-due__meta tabular-nums">
                 {SOURCE_LABEL[t.source]} · {daysOverdue(t.dueAt)}
               </p>
             </div>

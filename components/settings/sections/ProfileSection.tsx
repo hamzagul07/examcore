@@ -2,11 +2,13 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/ui/Button'
-import { ErrorBox, SuccessBox } from '@/components/AuthFormBits'
+import { Field } from '@/components/ui/Field'
+import { ErrorBox } from '@/components/AuthFormBits'
 import {
   SettingsFieldGroup,
   SettingsSectionCard,
 } from '@/components/settings/SettingsSectionCard'
+import { SavedStamp, useSavedStamp } from '@/components/settings/SettingsShell'
 import { UsernameField, type UsernameState } from '@/components/auth/UsernameField'
 
 type Props = {
@@ -30,6 +32,7 @@ export function ProfileSection({
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
+  const profileStamp = useSavedStamp()
 
   const [username, setUsername] = useState<UsernameState>({
     value: initialUsername,
@@ -37,15 +40,21 @@ export function ProfileSection({
   })
   const [savedUsername, setSavedUsername] = useState(initialUsername)
   const [usernameLoading, setUsernameLoading] = useState(false)
+  // A username problem belongs to the username field; only a failed request
+  // is a form-level error.
+  const [usernameFieldError, setUsernameFieldError] = useState('')
   const [usernameError, setUsernameError] = useState('')
   const [usernameSuccess, setUsernameSuccess] = useState('')
+  const usernameStamp = useSavedStamp()
 
   async function handleSaveUsername(e: React.FormEvent) {
     e.preventDefault()
+    setUsernameFieldError('')
     setUsernameError('')
     setUsernameSuccess('')
+    usernameStamp.clearSaved()
     if (!username.valid || username.value === savedUsername) {
-      setUsernameError(
+      setUsernameFieldError(
         username.value === savedUsername ? 'That is already your username.' : 'Pick an available username.'
       )
       return
@@ -64,6 +73,7 @@ export function ProfileSection({
     }
     setSavedUsername(data.username || username.value)
     setUsernameSuccess('Username updated.')
+    usernameStamp.showSaved()
   }
 
   async function handleSave(e: React.FormEvent) {
@@ -71,6 +81,7 @@ export function ProfileSection({
     setLoading(true)
     setErrorMsg('')
     setSuccessMsg('')
+    profileStamp.clearSaved()
 
     const res = await fetch('/api/account', {
       method: 'POST',
@@ -90,6 +101,7 @@ export function ProfileSection({
       return
     }
     setSuccessMsg('Profile updated.')
+    profileStamp.showSaved()
   }
 
   return (
@@ -119,20 +131,32 @@ export function ProfileSection({
             </p>
           )}
           <UsernameField value={username.value} onChange={setUsername} id="username" />
+          {/* UsernameField owns its input, so the field error sits directly
+              beneath it in Field's own error style. */}
+          {usernameFieldError && (
+            <p className="mt-1.5 text-xs text-[var(--ec-danger,#b91c1c)]" role="alert">
+              {usernameFieldError}
+            </p>
+          )}
         </SettingsFieldGroup>
 
         {usernameError && <ErrorBox message={usernameError} />}
-        {usernameSuccess && <SuccessBox message={usernameSuccess} />}
 
-        <Button
-          type="submit"
-          variant="primary"
-          size="md"
-          isLoading={usernameLoading}
-          loadingText="Saving..."
-        >
-          {savedUsername ? 'Change username' : 'Set username'}
-        </Button>
+        <div className="flex flex-wrap items-center gap-3">
+          <Button
+            type="submit"
+            variant="primary"
+            size="md"
+            isLoading={usernameLoading}
+            loadingText="Saving..."
+          >
+            {savedUsername ? 'Change username' : 'Set username'}
+          </Button>
+          <SavedStamp state={usernameStamp.stamp} />
+        </div>
+        <span role="status" aria-live="polite" className="sr-only">
+          {usernameSuccess}
+        </span>
       </form>
     </SettingsSectionCard>
 
@@ -141,29 +165,26 @@ export function ProfileSection({
       description="How you appear across MarkScheme."
     >
       <form onSubmit={handleSave} className="space-y-6">
-        <SettingsFieldGroup label="Display name" htmlFor="fullName">
-          <input
-            id="fullName"
-            type="text"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            maxLength={80}
-            placeholder="Hassan"
-            className="ec-input"
-            autoComplete="name"
-          />
-        </SettingsFieldGroup>
+        <Field
+          label="Display name"
+          labelClassName="label-overline mb-2 block"
+          inputProps={{
+            id: 'fullName',
+            type: 'text',
+            value: fullName,
+            onChange: (e) => setFullName(e.target.value),
+            maxLength: 80,
+            placeholder: 'Hassan',
+            autoComplete: 'name',
+          }}
+        />
 
         <SettingsFieldGroup
           label="Email"
           hint="Email cannot be changed yet. Contact support if you need to update it."
         >
           <div
-            className="ec-card ec-card--paper border px-4 py-3 font-mono text-body text-[var(--ec-text-primary)]"
-            style={{
-              borderColor: 'var(--ec-border)',
-              background: 'var(--ec-paper, var(--ec-surface-raised))',
-            }}
+            className="ec-card ec-card--paper border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] px-4 py-3 font-mono text-body text-[var(--ec-text-primary)]"
             aria-describedby="email-hint"
           >
             {email || '—'}
@@ -171,17 +192,22 @@ export function ProfileSection({
         </SettingsFieldGroup>
 
         {errorMsg && <ErrorBox message={errorMsg} />}
-        {successMsg && <SuccessBox message={successMsg} />}
 
-        <Button
-          type="submit"
-          variant="primary"
-          size="md"
-          isLoading={loading}
-          loadingText="Saving..."
-        >
-          Save changes
-        </Button>
+        <div className="flex flex-wrap items-center gap-3">
+          <Button
+            type="submit"
+            variant="primary"
+            size="md"
+            isLoading={loading}
+            loadingText="Saving..."
+          >
+            Save changes
+          </Button>
+          <SavedStamp state={profileStamp.stamp} />
+        </div>
+        <span role="status" aria-live="polite" className="sr-only">
+          {successMsg}
+        </span>
       </form>
     </SettingsSectionCard>
     </>

@@ -69,27 +69,28 @@ export function ReviewQueueList({ classroomId, limit = 5 }: Props) {
               RV
             </span>
           </div>
-          <h2 id="review-queue-heading" className="text-xl font-bold text-[var(--ec-text-primary)] sm:text-2xl">
+          <h2 id="review-queue-heading" className="text-title">
             Recent submissions
           </h2>
         </div>
         <Link
           href="/teacher/reviews"
-          className="inline-flex min-h-[44px] items-center font-mono text-[11px] font-bold tracking-wide ec-text-brand"
+          className="ms-teacher-textlink font-mono text-[11px] font-bold uppercase tracking-[var(--ec-track-label)] ec-text-brand"
         >
           View all -&gt;
         </Link>
       </div>
 
       {state.status === 'loading' ? (
-        <div className="ms-teacher-class-list" aria-busy aria-label="Loading submissions">
-          <SkeletonBlock className="h-[72px] w-full" />
-          <SkeletonBlock className="h-[72px] w-full" />
+        <div className="ms-teacher-roster__list" aria-busy aria-label="Loading submissions">
+          {/* A queue row is a name line, a two-line snippet and a score line. */}
+          <SkeletonBlock className="h-[92px] w-full" />
+          <SkeletonBlock className="h-[92px] w-full" />
         </div>
       ) : null}
 
       {state.status === 'error' ? (
-        <div className="ms-teacher-error" role="alert">
+        <div className="ms-teacher-error ec-land" role="alert">
           <p className="font-semibold text-[var(--ec-text-primary)]">Couldn’t load submissions</p>
           <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">{state.message}</p>
           <button
@@ -103,7 +104,7 @@ export function ReviewQueueList({ classroomId, limit = 5 }: Props) {
       ) : null}
 
       {state.status === 'empty' ? (
-        <div className="ms-teacher-empty">
+        <div className="ms-teacher-empty ec-land">
           <span className="ms-teacher-empty__icon" aria-hidden>
             <span className="font-mono text-sm font-bold tracking-wide">IN</span>
           </span>
@@ -112,11 +113,20 @@ export function ReviewQueueList({ classroomId, limit = 5 }: Props) {
             Students need to complete marked attempts with full marking data before they appear
             here.
           </p>
+          <Link
+            href="/teacher/reviews"
+            className="ec-btn-secondary mt-1 inline-flex min-h-[44px] items-center gap-2"
+          >
+            <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+              RV
+            </span>
+            View all -&gt;
+          </Link>
         </div>
       ) : null}
 
       {state.status === 'ready' ? (
-        <ul className="ms-teacher-roster__list">
+        <ul className="ms-teacher-roster__list ec-land">
           {state.data.map((r) => (
             <li key={r.id}>
               <Link href={`/teacher/reviews/${r.id}`} className="ms-teacher-roster__row">
@@ -132,7 +142,7 @@ export function ReviewQueueList({ classroomId, limit = 5 }: Props) {
                   <span className="mt-1 block line-clamp-2 text-sm text-[var(--ec-text-secondary)]">
                     <MarkSnippet text={r.questionPreview} />
                   </span>
-                  <span className="mt-1 block text-xs text-[var(--ec-text-secondary)]">
+                  <span className="mt-1 block text-xs tabular-nums text-[var(--ec-text-secondary)]">
                     AI score: {r.marksEarned}/{r.totalMarks}
                     {' · '}
                     {new Date(r.createdAt).toLocaleDateString()}

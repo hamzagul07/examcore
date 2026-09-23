@@ -4,7 +4,9 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
-import { ErrorBox, SuccessBox } from '@/components/AuthFormBits'
+import { Field } from '@/components/ui/Field'
+import { ErrorBox } from '@/components/AuthFormBits'
+import { InlineSavingPulse } from '@/components/ui/ButtonLoadingState'
 import { suggestedExamDates } from '@/lib/dashboard/exam-date'
 import { ProfileFormFields } from '@/components/ProfileFormFields'
 import { IB_DIPLOMA_LEVEL, isIbBoard } from '@/lib/profile-options'
@@ -17,7 +19,9 @@ import {
   SettingsFieldGroup,
   SettingsSectionCard,
 } from '@/components/settings/SettingsSectionCard'
+import { SavedStamp, useSavedStamp } from '@/components/settings/SettingsShell'
 import { SegmentedControl } from '@/components/ui/SegmentedControl'
+import { cn } from '@/lib/utils'
 
 type Props = {
   initialProfile: {
@@ -53,6 +57,15 @@ function daysUntil(dateStr: string): number | null {
   const today = new Date()
   today.setHours(0, 0, 0, 0)
   return Math.round((target.getTime() - today.getTime()) / 86_400_000)
+}
+
+/** Persistent polite live region — the visual stamp is decorative. */
+function SrStatus({ message }: { message: string }) {
+  return (
+    <span role="status" aria-live="polite" className="sr-only">
+      {message}
+    </span>
+  )
 }
 
 export function ExamSection({ initialProfile }: Props) {
@@ -133,12 +146,14 @@ function SetupCard({
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
+  const { stamp, showSaved, clearSaved } = useSavedStamp()
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
     setErrorMsg('')
     setSuccessMsg('')
+    clearSaved()
     const error = await post({})
     setLoading(false)
     if (error) {
@@ -146,6 +161,7 @@ function SetupCard({
       return
     }
     setSuccessMsg('Exam setup saved.')
+    showSaved()
     onSaved()
   }
 
@@ -168,18 +184,21 @@ function SetupCard({
         />
 
         {errorMsg && <ErrorBox message={errorMsg} />}
-        {successMsg && <SuccessBox message={successMsg} />}
 
-        <Button
-          type="submit"
-          variant="primary"
-          size="md"
-          isLoading={loading}
-          loadingText="Saving..."
-          disabled={subjects.length === 0}
-        >
-          Save exam setup
-        </Button>
+        <div className="flex flex-wrap items-center gap-3">
+          <Button
+            type="submit"
+            variant="primary"
+            size="md"
+            isLoading={loading}
+            loadingText="Saving..."
+            disabled={subjects.length === 0}
+          >
+            Save exam setup
+          </Button>
+          <SavedStamp state={stamp} />
+        </div>
+        <SrStatus message={successMsg} />
       </form>
     </SettingsSectionCard>
   )
@@ -201,6 +220,7 @@ function StageGoalCard({
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
+  const { stamp, showSaved, clearSaved } = useSavedStamp()
   const ib = isIbBoard(board)
 
   async function handleSave(e: React.FormEvent) {
@@ -208,6 +228,7 @@ function StageGoalCard({
     setLoading(true)
     setErrorMsg('')
     setSuccessMsg('')
+    clearSaved()
     const error = await post({ stage, primary_goal: goal })
     setLoading(false)
     if (error) {
@@ -215,6 +236,7 @@ function StageGoalCard({
       return
     }
     setSuccessMsg('Stage and goal saved.')
+    showSaved()
   }
 
   return (
@@ -254,17 +276,20 @@ function StageGoalCard({
         </SettingsFieldGroup>
 
         {errorMsg && <ErrorBox message={errorMsg} />}
-        {successMsg && <SuccessBox message={successMsg} />}
 
-        <Button
-          type="submit"
-          variant="primary"
-          size="md"
-          isLoading={loading}
-          loadingText="Saving..."
-        >
-          Save stage & goal
-        </Button>
+        <div className="flex flex-wrap items-center gap-3">
+          <Button
+            type="submit"
+            variant="primary"
+            size="md"
+            isLoading={loading}
+            loadingText="Saving..."
+          >
+            Save stage & goal
+          </Button>
+          <SavedStamp state={stamp} />
+        </div>
+        <SrStatus message={successMsg} />
       </form>
     </SettingsSectionCard>
   )
@@ -283,12 +308,14 @@ function TargetGradeCard({
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
+  const { stamp, showSaved, clearSaved } = useSavedStamp()
   const options = targetGradeOptions(targetGradeKindFromBoard(board))
 
   async function save(next: string) {
     setLoading(true)
     setErrorMsg('')
     setSuccessMsg('')
+    clearSaved()
     const error = await post({ target_grade: next || null })
     setLoading(false)
     if (error) {
@@ -296,6 +323,7 @@ function TargetGradeCard({
       return
     }
     setSuccessMsg(next ? `Target grade set to ${next}.` : 'Target grade cleared.')
+    showSaved()
   }
 
   return (
@@ -304,21 +332,33 @@ function TargetGradeCard({
       description="The grade you're aiming for. Powers your on-track trajectory on the progress dashboard."
     >
       <SettingsFieldGroup label="Target grade">
-        <SegmentedControl
-          className="ms-ob-stamp-pick flex flex-wrap gap-2"
-          optionClassName="ms-ob-stamp-pick__btn"
-          aria-label="Target grade"
-          value={targetGrade || null}
-          disabled={loading}
-          onChange={(g) => {
-            const next = targetGrade === g ? '' : g
-            setTargetGrade(next)
-            void save(next)
-          }}
-          options={options.map((g) => ({ value: g, label: g }))}
-        />
-        {errorMsg && <ErrorBox message={errorMsg} />}
-        {successMsg && <SuccessBox message={successMsg} />}
+        {/* The picker saves on tap, so its feedback sits on the same row:
+            a pulse while the request is out, the stamp once it lands. */}
+        <div className="flex flex-wrap items-center gap-3">
+          <SegmentedControl
+            className="ms-ob-stamp-pick flex flex-wrap gap-2"
+            optionClassName="ms-ob-stamp-pick__btn min-h-[44px]!"
+            aria-label="Target grade"
+            value={targetGrade || null}
+            disabled={loading}
+            onChange={(g) => {
+              const next = targetGrade === g ? '' : g
+              setTargetGrade(next)
+              void save(next)
+            }}
+            options={options.map((g) => ({ value: g, label: g }))}
+          />
+          <span className="inline-flex min-h-[22px] items-center" aria-hidden>
+            {loading && <InlineSavingPulse />}
+            <SavedStamp state={stamp} />
+          </span>
+        </div>
+        {errorMsg && (
+          <div className="mt-4">
+            <ErrorBox message={errorMsg} />
+          </div>
+        )}
+        <SrStatus message={successMsg} />
       </SettingsFieldGroup>
     </SettingsSectionCard>
   )
@@ -332,24 +372,30 @@ function ExamDateCard({
   post: (payload: SavePayload) => Promise<string | null>
 }) {
   const [examDate, setExamDate] = useState(initialDate)
-  const [loading, setLoading] = useState(false)
+  // Which button is out on the wire, so only that one shows loading and the
+  // other simply waits.
+  const [pending, setPending] = useState<'save' | 'clear' | null>(null)
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
+  const { stamp, showSaved, clearSaved } = useSavedStamp()
   const suggestions = suggestedExamDates()
   const days = daysUntil(examDate)
+  const loading = pending !== null
 
   async function save(nextDate: string | null) {
-    setLoading(true)
+    setPending(nextDate ? 'save' : 'clear')
     setErrorMsg('')
     setSuccessMsg('')
+    clearSaved()
     const error = await post({ exam_date: nextDate })
-    setLoading(false)
+    setPending(null)
     if (error) {
       setErrorMsg(error)
       return
     }
     setExamDate(nextDate ?? '')
     setSuccessMsg(nextDate ? 'Exam date saved.' : 'Exam date cleared.')
+    showSaved()
   }
 
   return (
@@ -364,39 +410,41 @@ function ExamDateCard({
         }}
         className="space-y-6"
       >
-        <div className="ms-exam-pills flex flex-wrap gap-2">
-          {suggestions.map((s) => (
-            <button
-              key={s.value}
-              type="button"
-              disabled={loading}
-              onClick={() => setExamDate(s.value)}
-              className={`ec-pill ${examDate === s.value ? 'border-[color-mix(in_srgb,var(--ec-brand)_50%,transparent)] bg-[var(--ec-brand-muted)] text-[var(--ec-brand)]' : ''}`}
-            >
-              {s.label}
-            </button>
-          ))}
+        <div className="ms-exam-pills flex flex-wrap gap-2" role="group" aria-label="Suggested exam sessions">
+          {suggestions.map((s) => {
+            const on = examDate === s.value
+            return (
+              <button
+                key={s.value}
+                type="button"
+                disabled={loading}
+                aria-pressed={on}
+                onClick={() => setExamDate(s.value)}
+                className={cn(
+                  'ec-pill',
+                  on &&
+                    'border-[color-mix(in_srgb,var(--ec-brand)_50%,transparent)] bg-[var(--ec-brand-muted)] text-[var(--ec-brand)]'
+                )}
+              >
+                {s.label}
+              </button>
+            )
+          })}
         </div>
 
-        <SettingsFieldGroup label="Specific date" htmlFor="examDate">
-          <input
-            id="examDate"
-            type="date"
-            value={examDate}
-            onChange={(e) => setExamDate(e.target.value)}
-            className="ec-input"
-          />
-        </SettingsFieldGroup>
+        <Field
+          label="Specific date"
+          labelClassName="label-overline mb-2 block"
+          inputProps={{
+            id: 'examDate',
+            type: 'date',
+            value: examDate,
+            onChange: (e) => setExamDate(e.target.value),
+          }}
+        />
 
         {days !== null && (
-          <p
-            className="inline-flex items-center gap-2 rounded border px-3.5 py-1.5 font-mono text-xs font-semibold tracking-wide"
-            style={{
-              borderColor: 'color-mix(in srgb, var(--ec-brand) 35%, transparent)',
-              background: 'var(--ec-brand-muted)',
-              color: 'var(--ec-brand)',
-            }}
-          >
+          <p className="inline-flex items-center gap-2 rounded border border-[color-mix(in_srgb,var(--ec-brand)_35%,transparent)] bg-[var(--ec-brand-muted)] px-3.5 py-1.5 font-mono text-xs font-semibold tracking-wide text-[var(--ec-brand)] tabular-nums">
             <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>T</span>
             {days > 1
               ? `${days} days to go`
@@ -417,15 +465,15 @@ function ExamDateCard({
         )}
 
         {errorMsg && <ErrorBox message={errorMsg} />}
-        {successMsg && <SuccessBox message={successMsg} />}
 
-        <div className="flex flex-col gap-3 sm:flex-row">
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
           <Button
             type="submit"
             variant="primary"
             size="md"
-            isLoading={loading}
+            isLoading={pending === 'save'}
             loadingText="Saving..."
+            disabled={loading}
           >
             Save exam date
           </Button>
@@ -434,13 +482,17 @@ function ExamDateCard({
               type="button"
               variant="secondary"
               size="md"
+              isLoading={pending === 'clear'}
+              loadingText="Clearing..."
               disabled={loading}
               onClick={() => void save(null)}
             >
               Clear date
             </Button>
           )}
+          <SavedStamp state={stamp} />
         </div>
+        <SrStatus message={successMsg} />
       </form>
     </SettingsSectionCard>
   )

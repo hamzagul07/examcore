@@ -86,7 +86,7 @@ export function MarkFeedbackPrompt({ attemptId }: { attemptId: string }) {
 
   if (done) {
     return (
-      <aside className="ms-mark-feedback flex items-center gap-3">
+      <aside className="ms-mark-feedback ec-land flex items-center gap-3">
         <span className="ec-ink-stamp" aria-hidden>
           M1
         </span>

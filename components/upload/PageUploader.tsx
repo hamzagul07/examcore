@@ -341,12 +341,12 @@ export function PageUploader({
               </div>
             </div>
           ) : (
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
               <button
                 type="button"
                 disabled={controlsDisabled}
                 onClick={() => fileInputRef.current?.click()}
-                className="ec-btn-secondary justify-center text-sm"
+                className="ec-btn-secondary justify-center whitespace-nowrap px-5 text-sm"
               >
                 <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
                   ↑
@@ -358,7 +358,7 @@ export function PageUploader({
                   type="button"
                   disabled={controlsDisabled}
                   onClick={() => pdfInputRef.current?.click()}
-                  className="ec-btn-secondary justify-center text-sm"
+                  className="ec-btn-secondary justify-center whitespace-nowrap px-5 text-sm"
                 >
                   Upload PDF
                 </button>
@@ -367,7 +367,7 @@ export function PageUploader({
                 type="button"
                 disabled={controlsDisabled}
                 onClick={openCamera}
-                className="ec-btn-secondary justify-center text-sm"
+                className="ec-btn-secondary justify-center whitespace-nowrap px-5 text-sm"
               >
                 <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
                   IMG

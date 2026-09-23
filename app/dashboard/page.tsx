@@ -294,8 +294,12 @@ export default async function DashboardPage() {
                 hideMarkCta
               />
               {/* DB-02: one server-computed next action, then weekly status. */}
-              <NextActionCard action={nextAction} />
-              <TodayPlanCard saved={savedPlan} examDate={examDate} evidence={planEvidence} />
+              <div className="ec-land ec-land--1">
+                <NextActionCard action={nextAction} />
+              </div>
+              <div className="ec-land ec-land--2">
+                <TodayPlanCard saved={savedPlan} examDate={examDate} evidence={planEvidence} />
+              </div>
               {primaryCode ? (
                 <MarksLeakingStrip
                   subjectCode={primaryCode}
@@ -319,7 +323,9 @@ export default async function DashboardPage() {
                   ) : null}
                 </div>
               ) : null}
-              <MomentumStrip summary={momentum} streak={streak} />
+              <div className="ec-land ec-land--3">
+                <MomentumStrip summary={momentum} streak={streak} />
+              </div>
 
               <DashboardSection title="Continue learning" defaultOpen>
                 <DashboardCoursesPanel catalog={continueCatalog} />

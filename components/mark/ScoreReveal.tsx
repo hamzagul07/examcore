@@ -284,7 +284,10 @@ export function ScoreReveal({
               {stampText}
             </span>
           </div>
-          <div className="ms-score-tally__figure">
+          <div
+            className="ms-score-tally__figure"
+            style={{ ['--ms-tally-digits' as string]: `${String(totalMarks).length}ch` }}
+          >
             <span className="ms-score-tally__earned">{Math.round(shownMarks)}</span>
             <span className="ms-score-tally__slash" aria-hidden>
               /
@@ -321,7 +324,7 @@ export function ScoreReveal({
                 onClick={() => void copySlip()}
               >
                 <span aria-hidden>{copied ? 'OK' : 'CP'}</span>
-                {copied ? 'Report link copied' : 'Copy report'}
+                {copied ? 'Link copied' : 'Copy report'}
               </button>
               <button
                 type="button"

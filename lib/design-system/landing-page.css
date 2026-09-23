@@ -418,7 +418,7 @@
 }
 
 [data-ec-theme='late-night'] .ms-platform-flow-dot {
-  color: #14120d;
+  color: var(--ec-on-brand-text);
 }
 
 .ms-platform-flow-desc {
@@ -606,7 +606,7 @@
 }
 
 [data-ec-theme='late-night'] .ms-pillar-band .ms-pillar-kicker {
-  color: #14120d;
+  color: var(--ec-on-brand-text);
 }
 
 .ms-step--1 {
@@ -1160,7 +1160,7 @@
 
 .ms-scard2:hover {
   transform: translate(-1px, -3px);
-  box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: var(--ec-card-hover-shadow);
 }
 
 /* Keyboard focus indicator — legacy cards that are still role="link" with tabIndex={0}. */

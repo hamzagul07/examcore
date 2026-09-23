@@ -494,7 +494,7 @@ export function MarkingResultView({
       {afterScore ?? null}
 
       {/* MK-05 outcome layer: score → verdict → recover → act → evidence. */}
-      <div className="ms-mark-verdict mt-5">
+      <div className="ms-mark-verdict ec-land ec-land--1 mt-5">
         <p className="ms-micro" style={{ marginBottom: 10 }}>
           VERDICT
         </p>
@@ -504,7 +504,7 @@ export function MarkingResultView({
         </div>
       </div>
 
-      <div className="ms-mark-authority mt-4">{markingModeBanner}</div>
+      <div className="ms-mark-authority ec-land ec-land--2 mt-4">{markingModeBanner}</div>
 
       {/* Which published guide this rubric came from.
           The label is always shown, quietly. It used to appear only alongside a
@@ -544,7 +544,7 @@ export function MarkingResultView({
       ) : null}
 
       {bandLadderShown && bandGap ? (
-        <div className="mt-6">
+        <div className="ec-land ec-land--3 mt-6">
           <MarkBandLadder
             gap={bandGap}
             justification={result.ai_marking.band_result?.justification}
@@ -553,7 +553,7 @@ export function MarkingResultView({
       ) : null}
 
       {hasStructuredResult ? (
-        <div className="mt-6">
+        <div className="ec-land ec-land--3 mt-6">
           <MarkGapPanel
             gap={markGap}
             activeMarkId={activeMarkId}
@@ -563,7 +563,7 @@ export function MarkingResultView({
       ) : null}
 
       {showRewriteTeaser ? (
-        <div className="mt-6">
+        <div className="ec-land ec-land--4 mt-6">
           <FullMarksRewriteTeaser
             diagnosis={postMarkDiagnosis}
             gradeStamp={peakGradeStamp(boardFull)}
@@ -572,7 +572,7 @@ export function MarkingResultView({
       ) : null}
 
       {result.ai_marking.full_marks_rewrite ? (
-        <div className="mt-6">
+        <div className="ec-land mt-6">
           <FullMarksRewritePanel
             rewrite={result.ai_marking.full_marks_rewrite}
             gradeStamp={peakGradeStamp(boardFull)}
@@ -581,7 +581,7 @@ export function MarkingResultView({
       ) : null}
 
       {primaryAction ? (
-        <div className="ms-mark-primary-action mt-7">{primaryAction}</div>
+        <div className="ms-mark-primary-action ec-land ec-land--5 mt-7">{primaryAction}</div>
       ) : null}
 
       {/* Soft Zeigarnik closer — real marks only, never sample/demo results. */}

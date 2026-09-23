@@ -30,6 +30,10 @@ function applyThemeAttributes(ec: EcTheme) {
   const apply = () => {
     root.setAttribute('data-ec-theme', ec)
     root.setAttribute('data-theme', marginNotesTheme(ec))
+    // Browser chrome (address bar, overscroll) follows the paper, not the OS.
+    document
+      .querySelector<HTMLMetaElement>('meta[name="theme-color"]')
+      ?.setAttribute('content', ec === 'late-night' ? '#14120d' : '#faf9f6')
   }
 
   // Soft cross-fade between themes via the View Transitions API. Skipped when

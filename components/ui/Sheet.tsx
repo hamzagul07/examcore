@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { useBodyScrollLock } from '@/lib/hooks/useBodyScrollLock'
 import { useFocusTrap } from '@/lib/hooks/useFocusTrap'
@@ -60,6 +60,10 @@ export function Sheet({
     return () => window.removeEventListener('keydown', onKey)
   }, [open, onClose])
 
+  const reduceMotion = useReducedMotion()
+  const lift = reduceMotion ? 0 : 24
+  const drop = reduceMotion ? 0 : 16
+
   const sheet = (
     <AnimatePresence>
       {open && (
@@ -76,10 +80,10 @@ export function Sheet({
             aria-hidden
           />
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: lift }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 16 }}
-            transition={{ duration: 0.2 }}
+            exit={{ opacity: 0, y: drop }}
+            transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
             ref={panelRef}
             role="dialog"
             aria-modal="true"

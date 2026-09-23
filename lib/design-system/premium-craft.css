@@ -1,0 +1,472 @@
+/* ============================================================
+   PREMIUM CRAFT LAYER
+   Loaded last from app/globals.css. It refines the surface sheets
+   above it and introduces no new visual language. Three ideas:
+
+   1. One motion vocabulary. Ease-out entrances, shorter exits,
+      transform/opacity only, hover lifts gated to pointers that
+      can actually hover (no sticky lift after a tap).
+   2. The typesetting details a printed paper has by default:
+      optical sizing, balanced headings, tabular figures.
+   3. Things that arrive should land, not pop: bars grow in,
+      sections rise, late content fades in instead of shoving.
+
+   Keep everything additive. Nothing here removes a state a
+   surface sheet defines; it tunes how the state is reached.
+   ============================================================ */
+
+:root {
+  /* Motion tokens — the only easings/durations new UI should use. */
+  --ec-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ec-ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
+  --ec-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ec-ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ec-dur-press: 120ms;
+  --ec-dur-pop: 160ms;
+  --ec-dur-menu: 200ms;
+  --ec-dur-sheet: 280ms;
+  --ec-dur-reveal: 420ms;
+  --ec-dur-grow: 640ms;
+  --ec-stagger: 60ms;
+  /* Uppercase tracking — two values, not five. */
+  --ec-track-eyebrow: 0.18em;
+  --ec-track-label: 0.08em;
+}
+
+/* ------------------------------------------------------------
+   Typesetting
+   ------------------------------------------------------------ */
+
+html {
+  /* Newsreader carries an opsz axis: display sizes get fine hairlines,
+     body sizes sturdier strokes. This is on by default in modern engines
+     but explicit here so a future `font-variation-settings` can't freeze it. */
+  font-optical-sizing: auto;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Headings: no orphaned last word. `balance` is capped at ~6 lines by the
+   engine, so long lede paragraphs are unaffected. */
+.text-hero,
+.text-headline,
+.text-title,
+.text-h3,
+.ms-h-display,
+.ms-h2,
+.ms-h3,
+.pricing-title,
+.ms-mark-hero-title,
+.ms-grade-target__headline,
+.ms-dash-countdown-desk__title,
+.ms-content-hero h1,
+.ec-card-title {
+  text-wrap: balance;
+}
+
+.text-body,
+.text-body-large,
+.text-caption,
+.ms-lead,
+.ms-body-2,
+.ms-mark-hero-lead {
+  text-wrap: pretty;
+}
+
+/* Figures that change (scores counting up, countdowns, prices, KPIs) must
+   not change width as they change value. */
+.ms-score-tally__earned,
+.ms-score-tally__total,
+.ms-score-tally__pct,
+.ms-momentum-kpi__value,
+.ms-momentum-bar__day,
+.ms-grade-target__days,
+.ms-dash-countdown-desk__number,
+.ms-grade-track__you-label,
+.plan-now,
+.plan-was,
+.ms-platform-stat b,
+.ms-scard2 .ms-stat-row b,
+.ec-exam-tally,
+.ec-stamp-score {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* The earned score counts up from 0. Reserve the width of the final total
+   so the slash never walks left as digits arrive (set by ScoreReveal). */
+.ms-score-tally__earned {
+  display: inline-block;
+  min-width: var(--ms-tally-digits, auto);
+  text-align: right;
+}
+
+/* Uppercase labels share two tracking values. */
+.ec-eyebrow,
+.ms-overline {
+  letter-spacing: var(--ec-track-eyebrow);
+}
+
+.ms-micro,
+.ms-momentum-kpi__label {
+  letter-spacing: var(--ec-track-label);
+}
+
+/* ------------------------------------------------------------
+   Interactive material — buttons and cards on paper
+   ------------------------------------------------------------ */
+
+/* No blue tap flash on iOS/Android; no double-tap zoom on controls. */
+a,
+button,
+[role='button'],
+summary,
+select,
+input,
+textarea,
+label {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a,
+button,
+[role='button'],
+summary,
+select {
+  touch-action: manipulation;
+}
+
+/* One transition list for every button. The previous `.ec-btn-motion` rule
+   animated transform only, so the paper shadow snapped while the button
+   eased — and its overshoot curve made hover bounce. Hover is a response,
+   not a spring. */
+.ec-btn-motion,
+.ec-btn-primary,
+.ec-btn-secondary,
+.ec-btn-ghost,
+.ec-btn-warm {
+  transition:
+    transform var(--ec-dur-pop) var(--ec-ease-out),
+    box-shadow var(--ec-dur-pop) var(--ec-ease-out),
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease,
+    opacity 120ms ease,
+    filter 120ms ease;
+}
+
+/* Lift only for pointers that can hover; a finger never leaves a button
+   stuck in its hover state. */
+.ec-btn-motion:not(:disabled):hover {
+  transform: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ec-btn-motion:not(:disabled):not([data-loading='true']):hover {
+    transform: translate(-1px, -2px);
+  }
+}
+
+@media (hover: none) {
+  .ec-btn-primary:hover,
+  .ec-btn-secondary:hover,
+  .ec-btn-ghost:hover,
+  .ec-btn-warm:hover,
+  .ec-card-interactive:hover,
+  .ec-card-lift:hover,
+  .ms-pillar:hover,
+  .ms-scard2:hover,
+  .ms-pp-card:hover,
+  .ms-guide-card:hover {
+    transform: none;
+  }
+}
+
+/* Press: the button goes down onto the paper (shadow shortens under it).
+   Faster than the lift — a press should feel like contact. */
+.ec-btn-motion:not(:disabled):not([data-loading='true']):active {
+  transform: translate(1px, 1px);
+  transition-duration: var(--ec-dur-press);
+}
+
+/* Disabled must read as disabled. It shared `opacity: .92; cursor: wait`
+   with the loading state, so a gated "Create account" looked live and
+   showed a wait cursor. Loading keeps its breathing glow; disabled goes flat. */
+.ec-btn-primary:disabled:not([data-loading='true']):not([aria-busy='true']),
+.ec-btn-warm:disabled:not([data-loading='true']):not([aria-busy='true']) {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Late-night: brand and brand-deep are the same green, so the primary
+   hover lost its colour step. Brighten instead of deepen on dark. */
+[data-ec-theme='late-night'] .ec-btn-primary:hover:not(:disabled):not([data-loading='true']) {
+  filter: brightness(1.07);
+}
+
+/* Late-night paper edge. A black offset on a #14120d canvas is invisible,
+   which flattened every card into the background. A faintly lighter slab
+   behind each sheet reads as stacked paper the way the zen shadow does. */
+[data-ec-theme='late-night'] {
+  --ec-night-slab: rgba(240, 234, 217, 0.06);
+  --ec-night-slab-strong: rgba(240, 234, 217, 0.09);
+  --ec-shadow-hard: 6px 6px 0 var(--ec-night-slab);
+  --ec-shadow-card: 6px 6px 0 var(--ec-night-slab);
+  --ec-card-shadow: 4px 4px 0 var(--ec-night-slab);
+  --ec-card-hover-shadow: 6px 6px 0 var(--ec-night-slab-strong);
+  --ec-card-shadow-warm: 4px 4px 0 var(--ec-night-slab);
+  --ec-card-hover-shadow-warm: 6px 6px 0 var(--ec-night-slab-strong);
+  --ec-btn-glow: 3px 3px 0 var(--ec-night-slab);
+  --ec-btn-glow-hover: 5px 5px 0 var(--ec-night-slab-strong);
+  --ec-shadow-elevation-1: 3px 3px 0 var(--ec-night-slab);
+  --ec-shadow-elevation-2: 5px 5px 0 var(--ec-night-slab);
+  --ec-shadow-elevation-3: 7px 7px 0 var(--ec-night-slab-strong);
+}
+
+/* Dashboard slips: rows are links but had no hover or press. */
+.ms-review-slip__row,
+.ms-leaking__row {
+  transition:
+    color 120ms ease,
+    opacity 120ms ease;
+}
+
+@media (hover: hover) {
+  .ms-review-slip__row:hover,
+  .ms-leaking__row:hover {
+    color: var(--ec-brand);
+  }
+}
+
+.ms-review-slip__row:active,
+.ms-leaking__row:active {
+  opacity: 0.72;
+}
+
+/* Header island: `--scrolled` changes padding, but padding was not in the
+   transition list, so the island jumped 2px at the 20px scroll mark. */
+.ec-nav {
+  transition:
+    box-shadow 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease,
+    padding 200ms ease;
+}
+
+/* Nav dropdown items snapped between states. */
+.nav-dd-item {
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+/* ------------------------------------------------------------
+   Arrivals — motion only when the OS allows it
+   ------------------------------------------------------------ */
+
+@keyframes ec-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ec-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes ec-details-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ec-grow-y {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes ec-grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes ec-fade-in-soft {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* The v2 mark flow screens referenced a keyframe that never existed
+     (`ms-fade-in`), so the marking and result screens cut in. */
+  .ms-mark-flow-marking,
+  .ms-mark-flow-result {
+    animation: ec-rise-in 280ms var(--ec-ease-out) both;
+  }
+
+  /* Anything that lands late (a rewrite panel arriving 20s after the
+     score, a "thanks" after feedback) rises in instead of shoving. */
+  .ec-land {
+    animation: ec-rise-in var(--ec-dur-reveal) var(--ec-ease-out) both;
+  }
+
+  .ec-land--1 { animation-delay: calc(var(--ec-stagger) * 1); }
+  .ec-land--2 { animation-delay: calc(var(--ec-stagger) * 2); }
+  .ec-land--3 { animation-delay: calc(var(--ec-stagger) * 3); }
+  .ec-land--4 { animation-delay: calc(var(--ec-stagger) * 4); }
+  .ec-land--5 { animation-delay: calc(var(--ec-stagger) * 5); }
+  .ec-land--6 { animation-delay: calc(var(--ec-stagger) * 6); }
+  .ec-land--7 { animation-delay: calc(var(--ec-stagger) * 7); }
+  .ec-land--8 { animation-delay: calc(var(--ec-stagger) * 8); }
+
+  /* Nav dropdown grows from its trigger rather than appearing whole. */
+  .nav-dd-menu {
+    transform-origin: top left;
+    animation: ec-menu-in var(--ec-dur-menu) var(--ec-ease-out) both;
+  }
+
+  /* Native disclosures (dashboard sections, FAQ, fine-tune folds) open
+     with a short settle instead of a cut. */
+  details[open] > :not(summary) {
+    animation: ec-details-in var(--ec-dur-menu) var(--ec-ease-out) both;
+  }
+
+  /* Dashboard figures draw themselves in on load. Inline widths/heights
+     stay authoritative; only the transform animates. */
+  .ms-momentum-bar__fill {
+    transform-origin: bottom;
+    animation: ec-grow-y var(--ec-dur-grow) var(--ec-ease-settle) both;
+  }
+
+  .ms-momentum-bar:nth-child(2) .ms-momentum-bar__fill { animation-delay: 40ms; }
+  .ms-momentum-bar:nth-child(3) .ms-momentum-bar__fill { animation-delay: 80ms; }
+  .ms-momentum-bar:nth-child(4) .ms-momentum-bar__fill { animation-delay: 120ms; }
+  .ms-momentum-bar:nth-child(5) .ms-momentum-bar__fill { animation-delay: 160ms; }
+  .ms-momentum-bar:nth-child(6) .ms-momentum-bar__fill { animation-delay: 200ms; }
+  .ms-momentum-bar:nth-child(7) .ms-momentum-bar__fill { animation-delay: 240ms; }
+  .ms-momentum-bar:nth-child(8) .ms-momentum-bar__fill { animation-delay: 280ms; }
+  .ms-momentum-bar:nth-child(9) .ms-momentum-bar__fill { animation-delay: 320ms; }
+  .ms-momentum-bar:nth-child(10) .ms-momentum-bar__fill { animation-delay: 360ms; }
+  .ms-momentum-bar:nth-child(11) .ms-momentum-bar__fill { animation-delay: 400ms; }
+  .ms-momentum-bar:nth-child(12) .ms-momentum-bar__fill { animation-delay: 440ms; }
+  .ms-momentum-bar:nth-child(13) .ms-momentum-bar__fill { animation-delay: 480ms; }
+  .ms-momentum-bar:nth-child(14) .ms-momentum-bar__fill { animation-delay: 520ms; }
+
+  .ms-grade-track__fill {
+    transform-origin: left;
+    animation: ec-grow-x var(--ec-dur-grow) var(--ec-ease-settle) both;
+  }
+
+  .ms-grade-track__you,
+  .ms-grade-track__target {
+    animation: ec-fade-in-soft 320ms var(--ec-ease-out) both;
+    animation-delay: 380ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ec-land,
+  .ms-mark-flow-marking,
+  .ms-mark-flow-result,
+  .nav-dd-menu,
+  details[open] > :not(summary),
+  .ms-momentum-bar__fill,
+  .ms-grade-track__fill,
+  .ms-grade-track__you,
+  .ms-grade-track__target {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------
+   Fit and finish
+   ------------------------------------------------------------ */
+
+/* A native select with `appearance: none` hard-clips a long option
+   ("Mathema"); truncate like text does. */
+select.ec-input {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* The wait screen headline swaps copy as stages advance; reserve two lines
+   so the card doesn't jump when one wraps. */
+.ms-mark-wait__headline {
+  min-height: 2.4em;
+}
+
+/* FAQ answers (the answer <p> sits in a padding-free wrapper: padding on the
+   grid item itself would hold the closed track open by its own padding).
+   They used `hidden` + an inline max-height, so nothing ever
+   transitioned and the answer text left the DOM. Height now animates via
+   grid rows (no magic max-height), the answer stays in the DOM for crawlers,
+   and the closed panel is `inert` so it is neither focusable nor read. */
+.ms-faq-a {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 240ms var(--ec-ease-out);
+}
+
+.ms-faq-a[data-open='true'] {
+  grid-template-rows: 1fr;
+}
+
+.ms-faq-a > * {
+  min-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  transition: visibility 0s 240ms;
+}
+
+.ms-faq-a[data-open='true'] > * {
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+/* The plus turns into a minus by rotating, not by swapping glyphs. */
+.ms-faq-q .ms-pm {
+  display: inline-block;
+  transition: transform var(--ec-dur-menu) var(--ec-ease-out);
+}
+
+.ms-faq-q[aria-expanded='true'] .ms-pm {
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-faq-a,
+  .ms-faq-a > *,
+  .ms-faq-q .ms-pm {
+    transition: none;
+  }
+}

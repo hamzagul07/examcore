@@ -936,6 +936,14 @@ export function buildVerifyMarkingPrompt(params: {
   schemeJson: string | null
   priorResultJson: string
   totalMarks: number | null
+  /**
+   * The examiner guidance the first pass marked with, for schemes with
+   * assessment objectives. Without it the verify pass re-marks each objective
+   * by its own reading: measured on an examiner-marked essay it moved
+   * evaluation from 5/7 to 3/7 against the examiner's 7/7, and a second verify
+   * agreed with it, so the median outvoted the calibrated first pass.
+   */
+  examinerGuidance?: string | null
 }): string {
   const {
     subjectName,
@@ -945,7 +953,14 @@ export function buildVerifyMarkingPrompt(params: {
     schemeJson,
     priorResultJson,
     totalMarks,
+    examinerGuidance,
   } = params
+  const objectivesBlock = examinerGuidance
+    ? `
+FOR THE ASSESSMENT OBJECTIVES (criteria_results): re-mark EACH objective independently on its own level scale, exactly as the first marker was instructed below. Find the best-fit level statement for that objective, then the specific mark (convincingly meets it → highest mark in the range; adequately → middle; just meets it → lowest), quoting the descriptor wording the work meets or misses. Do not mark holistically and do not require anything the guidance says is not required.
+${examinerGuidance}
+`
+    : ''
   const totalLine =
     totalMarks && totalMarks > 0
       ? `This question is worth EXACTLY ${totalMarks} marks — "total_marks" must equal ${totalMarks} and marks_earned must not exceed it.`
@@ -971,6 +986,7 @@ How to re-mark — go through the mark scheme ONE MARK AT A TIME (do not mark ho
 2. Find the specific line of the student's working that satisfies it and QUOTE that line as your evidence. Accept ANY mathematically/scientifically valid method and any equivalent correct form — never require the scheme's exact wording — and apply error-carried-forward from an earlier slip.
 3. Award the mark only when you found that evidence IN THE STUDENT'S OWN WRITTEN WORK. If the evidence is there but imperfectly expressed, AWARD it — a student must never lose a mark over presentation, or for a valid alternative method. But where the mark requires the student to SHOW something (a justification, a test, a derivation, a reason), award it only if they actually wrote it: never supply the missing reasoning on their behalf, and never let a correct final answer earn a mark for working the student did not show. Scrutinise every mark in BOTH directions — withholding a mark the student earned and awarding one they did not are equally serious errors, and you must be equally willing to correct either.
 Then set marks_earned to the number of marks you awarded.
+${objectivesBlock}
 - ${totalLine}
 - marks_earned must equal the sum of the individual marks (or criteria marks) you award; when the result has both marks_awarded and criteria_results, it is the point marks plus the criteria marks.
 

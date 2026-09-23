@@ -25,7 +25,7 @@ import { normalizeErrorClassification } from '@/lib/error-classifications'
 import { isMathSubjectCode } from '@/lib/marking/math-subjects'
 import { markingBoardLabel } from '@/lib/marking/exam-board'
 import { parsePaperCode } from '@/lib/marking/component-types'
-import { buildMarkingPrompt, maxTokensForStyle, looksLikeMcq, objectiveGridMax, mixedPointsTotal } from '@/lib/marking/build-marking-prompt'
+import { buildMarkingPrompt, maxTokensForStyle, looksLikeMcq, objectiveGridMax, mixedPointsTotal, hasObjectiveGrid, hasSections } from '@/lib/marking/build-marking-prompt'
 import { resolveDerivedSchemeForMark } from '@/lib/marking/resolve-derived-scheme'
 import { extractJSON } from '@/lib/marking/json'
 import { normalizeQuestionNumber } from '@/lib/marking/question-number'
@@ -47,7 +47,7 @@ import {
   parseOcrAnswer,
   questionPhotoOcrPrompt,
 } from '@/lib/marking/ocr'
-import { buildDetectionPrompt, buildVerifyMarkingPrompt } from '@/lib/marking/prompts'
+import { buildDetectionPrompt, buildVerifyMarkingPrompt, cambridgeAoGuidance } from '@/lib/marking/prompts'
 import {
   generateFullMarksRewrite,
   type FullMarksRewriteInput,
@@ -802,6 +802,20 @@ export async function markSingleQuestion(params: {
         schemeJson: verifySchemeJson,
         priorResultJson: JSON.stringify(markingResult),
         totalMarks: authoritativeTotal,
+        // A Cambridge scheme with assessment objectives: the verify pass must
+        // re-mark each objective by the same examiner guidance the first pass
+        // used, at the same question size.
+        examinerGuidance:
+          isOfficial &&
+          effectiveMarkScheme &&
+          !resolvedIb &&
+          (hasObjectiveGrid(effectiveMarkScheme.mark_scheme) || hasSections(effectiveMarkScheme.mark_scheme))
+            ? cambridgeAoGuidance({
+                shortStructured:
+                  hasSections(effectiveMarkScheme.mark_scheme) ||
+                  (authoritativeTotal !== null && authoritativeTotal <= 12),
+              })
+            : null,
       })
       const normalizedVerified = normalizeMarkingResult(
         await runGeminiMarking(verifyPrompt, maxTokensForStyle(markingStyle))
@@ -838,6 +852,12 @@ export async function markSingleQuestion(params: {
           firstCriteria: markingResult.criteria_results,
           verifyCriteria: verified.criteria_results,
         })
+        // Always logged: how far the second pass moved the first is the one
+        // number that says whether it is a check or a second draw.
+        console.warn(
+          `[mark] verify pass: ${markingResult.marks_earned} → ${verified.marks_earned}` +
+            ` (max objective delta ${tie.delta})`
+        )
 
         if (tie.needed) {
           try {
@@ -845,9 +865,16 @@ export async function markSingleQuestion(params: {
               `[mark] passes ${tie.delta} marks apart on an essay ` +
                 `(${markingResult.marks_earned} vs ${verified.marks_earned}) — third opinion`
             )
+            // An independent draw of the calibrated marking prompt, not a
+            // second verify. Measured on an examiner-marked essay: the verify
+            // prompt re-marked evaluation 5 → 3 by its own reading, and a
+            // second verify agreed with the first verify, so the median
+            // outvoted the calibrated pass two to one and settled on 13/20 for
+            // work the examiner gave 18. Three draws of the same standard is
+            // a median; two anchored re-reads of one draw is not.
             const third = reconcileMarkResult(
               normalizeMarkingResult(
-                await runGeminiMarking(verifyPrompt, maxTokensForStyle(markingStyle))
+                await runGeminiMarking(markingPrompt, maxTokensForStyle(markingStyle))
               ),
               { authoritativeTotal, criterionMax, pointsTotal }
             )

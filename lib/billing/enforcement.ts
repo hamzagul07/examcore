@@ -83,6 +83,8 @@ type BillingContext = {
   status: SubscriptionStatus
   /** Teacher seats are given away and metered on their own, larger allowance. */
   is_teacher: boolean
+  /** A granted creator seat; raises the marking allowance like a teacher seat. */
+  is_creator?: boolean
   credit_balance: number
   window: ReturnType<typeof currentPeriodWindow>
   enforcement_mode: EnforcementMode
@@ -92,7 +94,8 @@ async function loadBillingContext(
   userId: string,
   supabase: SupabaseClient
 ): Promise<BillingContext> {
-  const [{ data: sub }, { data: credits }, { data: profile }] = await Promise.all([
+  const [{ data: sub }, { data: credits }, { data: profile }, { data: creatorRow }] =
+    await Promise.all([
     supabase
       .from('user_subscriptions')
       .select('tier, status, current_period_start, current_period_end')
@@ -106,16 +109,20 @@ async function loadBillingContext(
       .select('teacher_verified_at')
       .eq('id', userId)
       .maybeSingle(),
+    // Creator seats (docs/CREATORS_PROGRAM.md) live in their own table.
+    supabase.from('creators').select('status').eq('user_id', userId).maybeSingle(),
   ])
 
   const tier = (sub?.tier ?? 'free') as SubscriptionTier
   const status = (sub?.status ?? 'active') as SubscriptionStatus
   // The granted seat, not the self-declared `role` column.
   const is_teacher = isVerifiedTeacher(profile?.teacher_verified_at)
+  const is_creator = creatorRow?.status === 'active'
   const access = effectiveAccess({
     tier,
     status,
     teacherVerified: is_teacher,
+    creatorVerified: is_creator,
     accessOverride: compedAccess(userId),
   })
   // Caps come from the ACTUAL paid tier now that Pro/Scholar/Max are distinct
@@ -134,6 +141,7 @@ async function loadBillingContext(
     access,
     status,
     is_teacher,
+    is_creator,
     credit_balance: credits?.balance ?? 0,
     window: currentPeriodWindow({
       tier,
@@ -233,7 +241,7 @@ async function computeQuestionAllowanceFromContext(
   )
   return buildQuotaAllowance(ctx, {
     used,
-    cap: capForAccess(ctx.access, ctx.cap_tier, ctx.is_teacher),
+    cap: capForAccess(ctx.access, ctx.cap_tier, ctx.is_teacher || !!ctx.is_creator),
   })
 }
 
@@ -252,7 +260,7 @@ async function computeOmniAllowanceFromContext(
   )
   return buildQuotaAllowance(ctx, {
     used,
-    cap: omniCapForAccess(ctx.access, ctx.cap_tier, ctx.is_teacher),
+    cap: omniCapForAccess(ctx.access, ctx.cap_tier, ctx.is_teacher || !!ctx.is_creator),
     omni: true,
   })
 }
@@ -477,7 +485,7 @@ export async function reserveMarkUsage(
   supabase: SupabaseClient = createServiceClient()
 ): Promise<MarkReservation> {
   const ctx = await loadBillingContext(userId, supabase)
-  const cap = capForAccess(ctx.access, ctx.cap_tier, ctx.is_teacher)
+  const cap = capForAccess(ctx.access, ctx.cap_tier, ctx.is_teacher || !!ctx.is_creator)
   const subscriptionInactive =
     ctx.tier !== 'free' && !ACTIVE_STATUSES.includes(ctx.status)
 

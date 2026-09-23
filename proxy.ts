@@ -14,6 +14,12 @@ import {
   resolvePostAuthPath,
   postOnboardingHref,
 } from '@/lib/auth-redirect'
+import {
+  CREATOR_REF_COOKIE,
+  CREATOR_REF_MAX_AGE_SECONDS,
+  creatorRefFromRequest,
+  serializeCreatorRef,
+} from '@/lib/creators/codes'
 
 const AUTH_ENTRY_PREFIXES = ['/auth/signin', '/auth/signup']
 
@@ -67,7 +73,7 @@ function redirectWithCookies(url: URL | string, supabaseResponse: NextResponse) 
   return response
 }
 
-export async function proxy(request: NextRequest) {
+async function proxyInner(request: NextRequest): Promise<NextResponse> {
   const { pathname } = request.nextUrl
 
   const seoRedirect = marketingSeoRedirect(request)
@@ -225,6 +231,32 @@ export async function proxy(request: NextRequest) {
   }
 
   return supabaseResponse
+}
+
+/**
+ * Creator attribution (docs/CREATORS_PROGRAM.md): a landing on /with/<handle>
+ * or any URL carrying ?code= leaves a 30-day cookie that signup reads back.
+ * Last touch wins — the code a follower most recently used is the one they
+ * meant. No database here; the ref is checked for shape only, and resolved
+ * (or dropped) when it is claimed.
+ */
+function withCreatorRef(request: NextRequest, response: NextResponse): NextResponse {
+  const ref = creatorRefFromRequest(request.nextUrl.pathname, request.nextUrl.searchParams)
+  if (!ref) return response
+  const value = serializeCreatorRef(ref)
+  if (request.cookies.get(CREATOR_REF_COOKIE)?.value === value) return response
+  response.cookies.set(CREATOR_REF_COOKIE, value, {
+    maxAge: CREATOR_REF_MAX_AGE_SECONDS,
+    path: '/',
+    sameSite: 'lax',
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+  })
+  return response
+}
+
+export async function proxy(request: NextRequest) {
+  return withCreatorRef(request, await proxyInner(request))
 }
 
 export const config = {

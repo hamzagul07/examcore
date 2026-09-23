@@ -51,6 +51,8 @@ import {
 import { truncateMarkingPreview } from '@/lib/rich-text/truncate-marking-preview'
 import { effectiveAccess } from '@/lib/billing/access'
 import { hasMaxResourceVault } from '@/lib/billing/features'
+import { getCreatorByUserId, getCreatorStats } from '@/lib/creators/service'
+import { CreatorStudioCard } from '@/components/creators/CreatorStudioCard'
 import { computeBillingSummary } from '@/lib/billing/enforcement'
 import { MaxVaultTile } from '@/components/max/MaxVaultTile'
 import { MaxUsageTheatre } from '@/components/max/MaxUsageTheatre'
@@ -223,6 +225,9 @@ export default async function DashboardPage() {
   // lessons whose quick check the student completed, and those students are
   // exactly the ones who used to see an empty review section forever.
   const reviewItems = await buildReviewQueue(user.id)
+  // Creator seats (docs/CREATORS_PROGRAM.md): one card, only for creators.
+  const creatorSeat = await getCreatorByUserId(user.id)
+  const creatorStats = creatorSeat ? await getCreatorStats(creatorSeat) : null
   // Recall-only students have real due work even with zero marks — show the
   // returning home (Due card) instead of the first-mark funnel.
   const showReturningHome = !isEmpty || reviewItems.length > 0
@@ -259,6 +264,15 @@ export default async function DashboardPage() {
     <main className="app-shell app-shell-tabbed ms-dash-home">
       <div className="mx-auto min-w-0 max-w-7xl rounded-none px-0 pb-8 pt-0 sm:rounded">
         <DashboardEntry>
+          {creatorSeat && creatorStats ? (
+            <div className="mb-6 mt-4 px-4 sm:px-0">
+              <CreatorStudioCard
+                handle={creatorSeat.handle}
+                code={creatorSeat.code}
+                marked={creatorStats.marked}
+              />
+            </div>
+          ) : null}
           {!showReturningHome ? (
             <>
               {/* DB-01: first-mark CTA before any billing/approaching chrome. */}

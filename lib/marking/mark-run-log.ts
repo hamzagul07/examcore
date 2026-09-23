@@ -54,6 +54,8 @@ export type MarkRunOpenInput = {
   /** Client-generated idempotency key — lets a retried upload find its
    * original run instead of starting (and charging) a second one. */
   clientRequestId?: string | null
+  /** Creator code the student marked with (docs/CREATORS_PROGRAM.md). */
+  creatorCode?: string | null
 }
 
 /** Open a run row. Returns a handle with a null id if logging is unavailable —
@@ -80,6 +82,7 @@ export async function openMarkRun(
     is_paid: input.isPaid,
     subject_code: input.subjectCode,
     client_request_id: input.clientRequestId ?? null,
+    creator_code: input.creatorCode ?? null,
   }
   try {
     // Prefer board-aware insert; fall back if migration not applied yet.

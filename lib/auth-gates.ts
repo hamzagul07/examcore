@@ -5,6 +5,7 @@ export const PROTECTED_ROUTE_PREFIXES = [
   '/onboarding',
   '/teacher',
   '/admin',
+  '/creator',
 ] as const
 
 export function matchesRoutePrefix(pathname: string, prefixes: readonly string[]): boolean {

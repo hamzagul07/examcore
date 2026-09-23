@@ -89,6 +89,7 @@ import {
   subjectMatchesMarkBoard,
   type MarkExamBoard,
 } from '@/components/mark/MarkBoardPicker'
+import { CreatorCodeChip } from '@/components/creators/CreatorCodeChip'
 import {
   getEdexcelMarkableUnitCodes,
   resolveEdexcelUnitLabel,
@@ -349,6 +350,8 @@ export default function MarkPage() {
   const [selectedSession, setSelectedSession] = useState('')
   const [selectedComponent, setSelectedComponent] = useState('')
   const [questionNumber, setQuestionNumber] = useState('')
+  // Creator code the student is marking with (docs/CREATORS_PROGRAM.md).
+  const [creatorCode, setCreatorCode] = useState<string | null>(null)
   const [uploadMode, setUploadMode] = useState<'single_question' | 'whole_paper'>(
     'single_question'
   )
@@ -1829,6 +1832,7 @@ export default function MarkPage() {
       formData.append('mark_intent', markIntent)
       formData.append('exam_system', selectedMarkBoard)
       formData.append('stream', '1')
+      if (creatorCode) formData.append('creator_code', creatorCode)
       // Always forward the chosen subject, even without a full paper selection,
       // so freeform marks get syllabus-tagged and feed mastery/review.
       if (selectedSubject) formData.append('subject_code', selectedSubject)
@@ -2956,6 +2960,7 @@ export default function MarkPage() {
               onChange={handleMarkBoardChange}
               disabled={profileLoading}
             />
+            <CreatorCodeChip onChange={setCreatorCode} />
 
             <div className="ms-mark-mode-panel">
               {/* MK-04: two student questions — one answer vs whole paper — not four pipelines. */}

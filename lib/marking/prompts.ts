@@ -683,6 +683,23 @@ export const CAMBRIDGE_AO_GUIDANCE = `HOW CAMBRIDGE EXAMINERS APPLY THE GRID (fr
 - Within a level, examiners award the top of the range far more often than the bottom for developed responses; reserve the bottom for work that only just reaches the level statement. "Lower end of the level" is not a default.`
 
 /**
+ * Rulings measured to help on short and medium structured questions (8–12
+ * marks, "explain two benefits…", a 12-mark essay part) and to hurt on 20-mark
+ * essays, where they sent the marker back to demanding balance in the
+ * evaluation. Appended to the guidance only where they were measured to help.
+ */
+export const CAMBRIDGE_SHORT_QUESTION_RULINGS = `- ANALYSIS RULINGS. Two further examiner rulings: when the effect a candidate names IS the point itself (the benefit "a reduction in labour turnover", the advantage "more motivated employees"), that is knowledge of the point, not analysis of it; analysis needs the consequence of that benefit for the business ("they do not develop this benefit into a consequence for OV such as increased productivity or an improvement in quality of output" earned 0 AO3). And material not linked to what the question asks about (annotated NAQ, "not answering the question") earns nothing under any objective, however well developed: "as the argument is not linked to communication methods no marks can be awarded for the paragraph".
+- SHORT STRUCTURED QUESTIONS that ask for a number of points ("Explain two benefits…", "Analyse two ways…") allocate every objective PER POINT. In the published standard for an 8-mark "explain two benefits" question: "for each benefit the mark allocation gives 1 mark for knowledge, 1 mark for application and 2 marks for analysis", and "there is only one application mark available for each benefit". So a response with only ONE valid point cannot earn more than half of any objective, however well that point is done; a second knowledge mark needs a second valid point, and a second application mark needs the case used for that second point. Application means using case information to make the point ("the context requires more than just the repeating of case material"); a general statement with no case use earns knowledge only. Analysis per point: one link is limited (1), a chain of two or more links to a business consequence is developed (2).`
+
+/** The examiner guidance for a question of the given size. */
+export function cambridgeAoGuidance(opts: { shortStructured: boolean }): string {
+  return opts.shortStructured
+    ? `${CAMBRIDGE_AO_GUIDANCE}\n${CAMBRIDGE_SHORT_QUESTION_RULINGS}`
+    : CAMBRIDGE_AO_GUIDANCE
+}
+
+
+/**
  * Cambridge essays whose scheme is a grid of assessment objectives (AO1
  * knowledge, AO2 application, AO3 analysis, AO4 evaluation), each with its own
  * levels and mark range. Examiners award each objective on its own scale and
@@ -710,7 +727,7 @@ For each objective in "criteria":
 4. Quote the descriptor wording the work meets or misses. Use the indicative content as examples of creditable material, not as a checklist: credit valid points that are not listed.
 5. Do not let one objective leak into another: a long analysis earns AO3 marks, not AO4 marks; evaluation marks need a judgement, not more analysis. Application marks need specific use of the case context, not the concept in general.
 
-${CAMBRIDGE_AO_GUIDANCE}
+${cambridgeAoGuidance({ shortStructured: totalMarks <= 12 })}
 
 QUESTION:
 ${questionText}
@@ -783,7 +800,7 @@ export function buildMixedQuestionMarkingPrompt(
 - a "point_based" section lists the creditable marks for that part. Award each mark only when the student's work for THAT PART clearly shows it; quote the words that earn it in line_reference; never award a mark for material written under a different part. A section that lists more marks than its total is an "any N of" list: award at most total_marks for it.
 - a "level_of_response" section is an essay part with a grid of assessment objectives in "criteria" (each named by the part, e.g. "(c) AO1"). Mark EACH OBJECTIVE SEPARATELY on its own scale: find the best-fit level statement, then the specific mark using Cambridge's rule (convincingly meets the statement → highest mark in the range; adequately → middle; just meets → lowest), quoting the descriptor wording the work meets or misses. Judge only the student's answer to that part.
 
-${CAMBRIDGE_AO_GUIDANCE}
+${cambridgeAoGuidance({ shortStructured: true })}
 
 QUESTION (all parts):
 ${questionText}

@@ -1,9 +1,13 @@
 import { resolvePostAuthPath } from '@/lib/auth-redirect'
+import { writeMarkBoardHint } from '@/lib/marking/mark-board-hint'
+import { lockableProfileBoard } from '@/lib/marking/mark-board-lock'
 
 type PostAuthCheckResponse = {
   user: { id: string } | null
   onboarded?: boolean
   destination?: string
+  role?: string
+  board?: string | null
 }
 
 /**
@@ -26,6 +30,9 @@ export async function fetchPostAuthDestination(
     }
 
     const data = (await res.json()) as PostAuthCheckResponse
+    // Cache the board /mark will lock to (students only) before the first
+    // visit on this device, so the grid never paints and then collapses.
+    if (data.user) writeMarkBoardHint(lockableProfileBoard(data.board, data.role))
     if (data.destination) return data.destination
     if (data.user) {
       return resolvePostAuthPath(data.onboarded === true, nextPath)

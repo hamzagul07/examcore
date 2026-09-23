@@ -8,6 +8,8 @@ import { ErrorBox, SuccessBox } from '@/components/AuthFormBits'
 import { suggestedExamDates } from '@/lib/dashboard/exam-date'
 import { ProfileFormFields } from '@/components/ProfileFormFields'
 import { IB_DIPLOMA_LEVEL, isIbBoard } from '@/lib/profile-options'
+import { writeMarkBoardHint } from '@/lib/marking/mark-board-hint'
+import { lockableProfileBoard } from '@/lib/marking/mark-board-lock'
 import {
   targetGradeKindFromBoard,
   targetGradeOptions,
@@ -30,6 +32,10 @@ type Props = {
     stage: UserStage | null
     primary_goal: PrimaryGoal | null
   }
+  /** Where to send them after saving, when a page (e.g. /mark) sent them here. */
+  returnTo?: string | null
+  /** `user_profiles.role` — a teacher's board is never cached for the /mark lock. */
+  role?: string | null
 }
 
 type SavePayload = Record<string, unknown>
@@ -55,7 +61,7 @@ function daysUntil(dateStr: string): number | null {
   return Math.round((target.getTime() - today.getTime()) / 86_400_000)
 }
 
-export function ExamSection({ initialProfile }: Props) {
+export function ExamSection({ initialProfile, returnTo = null, role = null }: Props) {
   const router = useRouter()
 
   // Board / level / subjects are shared state: every save posts the current
@@ -83,6 +89,8 @@ export function ExamSection({ initialProfile }: Props) {
   return (
     <div className="space-y-6">
       <SetupCard
+        returnTo={returnTo}
+        role={role}
         board={board}
         setBoard={setBoard}
         level={level}
@@ -110,6 +118,8 @@ export function ExamSection({ initialProfile }: Props) {
 }
 
 function SetupCard({
+  returnTo,
+  role,
   board,
   setBoard,
   level,
@@ -120,6 +130,8 @@ function SetupCard({
   post,
   onSaved,
 }: {
+  returnTo: string | null
+  role: string | null
   board: string
   setBoard: (s: string) => void
   level: string
@@ -133,6 +145,8 @@ function SetupCard({
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
+  const [saved, setSaved] = useState(false)
+  const returnLabel = returnTo?.startsWith('/mark') ? 'Back to marking' : 'Continue'
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault()
@@ -146,6 +160,9 @@ function SetupCard({
       return
     }
     setSuccessMsg('Exam setup saved.')
+    setSaved(true)
+    // /mark locks to the profile board; refresh the cached hint right away.
+    writeMarkBoardHint(lockableProfileBoard(board, role))
     onSaved()
   }
 
@@ -170,16 +187,32 @@ function SetupCard({
         {errorMsg && <ErrorBox message={errorMsg} />}
         {successMsg && <SuccessBox message={successMsg} />}
 
-        <Button
-          type="submit"
-          variant="primary"
-          size="md"
-          isLoading={loading}
-          loadingText="Saving..."
-          disabled={subjects.length === 0}
-        >
-          Save exam setup
-        </Button>
+        <div className="flex flex-wrap items-center gap-3">
+          <Button
+            type="submit"
+            variant="primary"
+            size="md"
+            isLoading={loading}
+            loadingText="Saving..."
+            disabled={subjects.length === 0}
+          >
+            Save exam setup
+          </Button>
+          {/* The way back to where they came from — the primary action once
+              the save has landed, a quiet link before it. */}
+          {returnTo ? (
+            <Link
+              href={returnTo}
+              className={
+                saved
+                  ? 'ec-btn-primary'
+                  : 'text-sm font-medium text-[var(--ec-brand)] underline underline-offset-4'
+              }
+            >
+              {returnLabel} →
+            </Link>
+          ) : null}
+        </div>
       </form>
     </SettingsSectionCard>
   )

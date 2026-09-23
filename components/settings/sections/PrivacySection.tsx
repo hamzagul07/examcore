@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { clearMarkBoardHint } from '@/lib/marking/mark-board-hint'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { ErrorBox, SuccessBox } from '@/components/AuthFormBits'
@@ -61,6 +62,7 @@ export function PrivacySection() {
       if (!res.ok) {
         throw new Error(data?.error || 'Could not delete account')
       }
+      clearMarkBoardHint()
       window.location.href = '/'
     } catch (err) {
       setDeleteError(err instanceof Error ? err.message : 'Delete failed')

@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useAuthenticatedAppChrome } from '@/lib/hooks/useAuthenticatedAppChrome'
+import { clearMarkBoardHint } from '@/lib/marking/mark-board-hint'
 
 export function AppFooter() {
   const tabbed = useAuthenticatedAppChrome()
@@ -29,7 +30,12 @@ export function AppFooter() {
           >
             Settings
           </Link>
-          <form action="/auth/signout" method="POST" className="inline">
+          <form
+            action="/auth/signout"
+            method="POST"
+            className="inline"
+            onSubmit={() => clearMarkBoardHint()}
+          >
             <button
               type="submit"
               className="inline-flex min-h-[44px] items-center transition-colors hover:text-[var(--ec-text-primary)]"

@@ -10,6 +10,8 @@ import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
 import { SegmentedControl } from '@/components/ui/SegmentedControl'
 import { completeOnboardingRequest } from '@/lib/onboarding/complete-onboarding-client'
+import { writeMarkBoardHint } from '@/lib/marking/mark-board-hint'
+import { lockableProfileBoard } from '@/lib/marking/mark-board-lock'
 import { lastFunnelBoard, profileBoardFromFunnelBoard } from '@/lib/analytics/funnel'
 import {
   SUBJECT_GROUPS,
@@ -269,6 +271,7 @@ export function OnboardingWizard({
         return
       }
       clearDraft()
+      writeMarkBoardHint(lockableProfileBoard(payload.board, payload.role))
       await navigateAfterOnboarding(postOnboardingHref(nextParam, nextParam))
     } catch (err) {
       console.error('[onboarding wizard] browse skip failed:', err)
@@ -318,6 +321,8 @@ export function OnboardingWizard({
       }
 
       clearDraft()
+      // /mark locks to this board — cache it so the first visit never flashes the grid.
+      writeMarkBoardHint(lockableProfileBoard(board, payload.role))
       // ON-01: no celebration modal — first value is a mark, not a confetti gate.
       void navigateAfterOnboarding(redirectHref)
     } catch (err) {

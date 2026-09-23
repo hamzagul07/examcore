@@ -12,6 +12,7 @@ export type SettingsProfile = {
   stage: UserStage | null
   primary_goal: PrimaryGoal | null
   created_at: string | null
+  role: string | null
 }
 
 export type SettingsUsageRow = {

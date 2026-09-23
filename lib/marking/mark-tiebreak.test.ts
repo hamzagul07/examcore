@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict'
 import {
   TIEBREAK_MIN_DELTA,
+  maxCriterionDelta,
   medianOfThree,
+  mergeMedianByCriterion,
   needsTiebreak,
   pickMedianCandidate,
   styleNeedsTiebreak,
@@ -100,5 +102,61 @@ const allDifferent = pickMedianCandidate([
 ])
 assert.equal(allDifferent.marks, 6)
 assert.equal(allDifferent.payload, 'c')
+
+// --- per objective ------------------------------------------------------------
+//
+// Measured on an examiner-marked 20-mark essay: seven runs of identical text
+// scored 12–17 because the evaluation objective flipped between 1/7 and 7/7.
+// Two passes can agree on the total while objectives swing in opposite
+// directions, so the trigger and the median both work per objective.
+const crit = (marks: Record<string, number>, note = '') =>
+  Object.entries(marks).map(([criterion, m]) => ({
+    criterion, criterion_name: criterion, level: m, marks_awarded: m, marks_available: 8,
+    band_descriptor: `${criterion} band`, justification: `${note}${criterion} argued for ${m}`,
+  }))
+
+assert.equal(maxCriterionDelta(crit({ AO1: 3, AO4: 7 }), crit({ AO1: 3, AO4: 1 })), 6)
+assert.equal(maxCriterionDelta(crit({ AO1: 3 }), crit({ ao1: 2 })), 1, 'criterion ids compare case-insensitively')
+assert.equal(maxCriterionDelta(crit({ AO1: 3 }), crit({ AO2: 3 })), null, 'different criterion sets are unreadable')
+assert.equal(maxCriterionDelta(undefined, crit({ AO1: 3 })), null)
+
+const swap = needsTiebreak({
+  style: 'level_of_response', firstMarks: 13, verifyMarks: 13,
+  firstCriteria: crit({ AO1: 3, AO2: 2, AO3: 7, AO4: 1 }), verifyCriteria: crit({ AO1: 3, AO2: 2, AO3: 3, AO4: 5 }),
+})
+assert.equal(swap.needed, true, 'equal totals with a 4-mark objective swing still need a third opinion')
+assert.equal(swap.delta, 4)
+assert.equal(
+  needsTiebreak({ style: 'level_of_response', firstMarks: 13, verifyMarks: 13, firstCriteria: crit({ AO1: 3, AO4: 6 }), verifyCriteria: crit({ AO1: 2, AO4: 7 }) }).needed,
+  false, 'one-mark wobbles per objective are tolerance'
+)
+
+const passes: [
+  { marks: number; payload: { criteria_results: ReturnType<typeof crit>; marks_earned: number; summary: string; band_result: { marks_awarded: number; level: number } } },
+  { marks: number; payload: { criteria_results: ReturnType<typeof crit>; marks_earned: number; summary: string; band_result: { marks_awarded: number; level: number } } },
+  { marks: number; payload: { criteria_results: ReturnType<typeof crit>; marks_earned: number; summary: string; band_result: { marks_awarded: number; level: number } } },
+] = [
+  { marks: 12, payload: { criteria_results: crit({ AO1: 2, AO2: 2, AO3: 6, AO4: 2 }, 'first '), marks_earned: 12, summary: 'first', band_result: { marks_awarded: 12, level: 2 } } },
+  { marks: 17, payload: { criteria_results: crit({ AO1: 3, AO2: 2, AO3: 6, AO4: 6 }, 'verify '), marks_earned: 17, summary: 'verify', band_result: { marks_awarded: 17, level: 3 } } },
+  { marks: 13, payload: { criteria_results: crit({ AO1: 2, AO2: 2, AO3: 7, AO4: 2 }, 'third '), marks_earned: 13, summary: 'third', band_result: { marks_awarded: 13, level: 2 } } },
+]
+const settled = mergeMedianByCriterion(passes)
+assert.equal(settled.merged, true)
+assert.deepEqual(settled.perCriterion, { AO1: [2, 3, 2], AO2: [2, 2, 2], AO3: [6, 6, 7], AO4: [2, 6, 2] })
+const rows = Object.fromEntries(settled.payload.criteria_results.map((r) => [r.criterion, r]))
+assert.equal(rows.AO1.marks_awarded, 2); assert.equal(rows.AO3.marks_awarded, 6); assert.equal(rows.AO4.marks_awarded, 2)
+assert.equal(settled.payload.marks_earned, 12, 'the total is the sum of per-objective medians')
+assert.match(rows.AO4.justification, /^first AO4 argued for 2/, "each objective keeps the justification that argued for its median mark")
+assert.match(rows.AO3.justification, /^first AO3 argued for 6/, 'ties go to the earliest pass holding the median')
+assert.equal(settled.payload.summary, 'first', 'the narrative comes from the pass whose total is nearest the merged sum')
+assert.equal(settled.payload.band_result.marks_awarded, 12, 'the band roll-up follows the merged sum')
+
+const unshared = mergeMedianByCriterion([
+  { marks: 8, payload: { criteria_results: crit({ A: 8 }), marks_earned: 8, summary: 'a', band_result: { marks_awarded: 8, level: 2 } } },
+  { marks: 6, payload: { criteria_results: crit({ B: 6 }), marks_earned: 6, summary: 'b', band_result: { marks_awarded: 6, level: 2 } } },
+  { marks: 7, payload: { criteria_results: crit({ A: 7 }), marks_earned: 7, summary: 'c', band_result: { marks_awarded: 7, level: 2 } } },
+])
+assert.equal(unshared.merged, false, 'different criterion sets fall back to the whole-candidate median')
+assert.equal(unshared.payload.summary, 'c')
 
 console.log('mark-tiebreak.test.ts: ok')

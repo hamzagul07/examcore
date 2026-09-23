@@ -278,6 +278,7 @@ export const FOOTER_COMPANY_LINKS = [
   // already the right size on a phone.
   { href: '/demo', label: 'See a worked example' },
   { href: '/for-teachers', label: 'For teachers' },
+  { href: '/creators', label: 'For creators' },
   { href: '/faq', label: 'FAQ' },
   { href: '/changelog', label: 'Changelog' },
   { href: '/guides', label: 'Guides & blog' },

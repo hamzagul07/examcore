@@ -234,6 +234,17 @@ is applied to production.
   `creator_stats` is the one grouped query behind the directory and the
   studio. A typed code also sets the cookie via `POST /api/creators/ref`, so
   a follower who heard the code in a video is credited at signup.
+- After the mark: `PostMarkCreatorCard` under the score ("Marked with
+  @handle", the code, the gift, a signup link that carries the code). The
+  whole-paper path stamps the attempt too. Studio gained a 30-day sparkline
+  (`CreatorSparkline`, attempts per UTC day) and the share card as a
+  downloadable image. `creator_stats` counts answers from `attempts`
+  (`20260923c`), so whole-paper and multi-question scripts count.
+- Referred students see `FromYourCreatorCard` on their dashboard (creator,
+  latest post, code); `/u/[username]` shows the creator badge and a link to
+  the space; `/creators` is in the footer and the sitemap; both public pages
+  carry breadcrumb JSON-LD. Verified end to end on 2026-09-23: a guest marked
+  a typed answer with code MAYA, saw the card, and the studio counted it.
 - Creator seat = Scholar access + the teacher marking cap
   (`effectiveAccess({ creatorVerified })`, `enforcement.ts`).
 - Grant with `pnpm creator:grant <email> <CODE> --handle h --name n --tagline t

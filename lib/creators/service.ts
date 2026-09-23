@@ -269,6 +269,36 @@ export async function listCreators(): Promise<CreatorWithStats[]> {
     .sort((a, b) => b.stats.marked - a.stats.marked)
 }
 
+export type DailyCount = { day: string; count: number }
+
+function startOfUtcDay(ms: number): Date {
+  const d = new Date(ms)
+  d.setUTCHours(0, 0, 0, 0)
+  return d
+}
+
+/** Answers marked per UTC day for the last `days` days, oldest first, zeros kept. */
+export async function listCreatorDailyMarked(code: string, days = 30): Promise<DailyCount[]> {
+  const admin = createServiceClient()
+  const since = startOfUtcDay(Date.now() - (days - 1) * 86_400_000)
+  const { data } = await admin
+    .from('attempts')
+    .select('created_at')
+    .eq('creator_code', code)
+    .gt('total_marks', 0)
+    .gte('created_at', since.toISOString())
+    .limit(5000)
+  const counts = new Map<string, number>()
+  for (let i = 0; i < days; i += 1) {
+    counts.set(new Date(since.getTime() + i * 86_400_000).toISOString().slice(0, 10), 0)
+  }
+  for (const row of data ?? []) {
+    const key = String(row.created_at).slice(0, 10)
+    if (counts.has(key)) counts.set(key, (counts.get(key) ?? 0) + 1)
+  }
+  return [...counts].map(([day, count]) => ({ day, count }))
+}
+
 // --- the audience gap report --------------------------------------------------------
 
 /**

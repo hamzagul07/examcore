@@ -7,7 +7,8 @@ import {
   validateCreatorCode,
 } from '@/lib/creators/codes'
 
-type CreatorLite = {
+/** What the mark page knows about the creator whose code is applied. */
+export type MarkCreator = {
   handle: string
   displayName: string
   code: string
@@ -27,8 +28,12 @@ type ClaimResponse = {
  *
  * Not a <form>: it lives inside the mark form, and nested forms are invalid.
  */
-export function CreatorCodeChip({ onChange }: { onChange: (code: string | null) => void }) {
-  const [creator, setCreator] = useState<CreatorLite | null>(null)
+export function CreatorCodeChip({
+  onChange,
+}: {
+  onChange: (creator: MarkCreator | null) => void
+}) {
+  const [creator, setCreator] = useState<MarkCreator | null>(null)
   const [open, setOpen] = useState(false)
   const [input, setInput] = useState('')
   const [status, setStatus] = useState<'idle' | 'checking' | 'invalid'>('idle')
@@ -79,7 +84,7 @@ export function CreatorCodeChip({ onChange }: { onChange: (code: string | null) 
           setStatus('invalid')
           return
         }
-        const data = (await res.json()) as { creator: CreatorLite | null }
+        const data = (await res.json()) as { creator: MarkCreator | null }
         if (!data.creator) {
           setStatus('invalid')
           return
@@ -92,7 +97,7 @@ export function CreatorCodeChip({ onChange }: { onChange: (code: string | null) 
         } catch {
           // private mode: the code still applies for this page
         }
-        onChange(data.creator.code)
+        onChange(data.creator)
         // The attribution cookie. A typed code never passes through a URL
         // the proxy sees, so signup would otherwise not credit this creator.
         void fetch('/api/creators/ref', {

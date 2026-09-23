@@ -24,6 +24,8 @@ type Props = {
   /** Whole-paper pages live in child state — surface dirty for beforeunload (MK-03). */
   onUnsavedChange?: (dirty: boolean) => void
   disabled?: boolean
+  /** Creator code the student is marking with (docs/CREATORS_PROGRAM.md). */
+  creatorCode?: string | null
   /**
    * R1 MarkFlow handoff — pages already captured; skip upload UI and start marking.
    * Catalog question count is still only structural (MK-03), never “detected”.
@@ -60,6 +62,7 @@ function toMarkContext(
 }
 
 export function WholePaperFlow({
+  creatorCode = null,
   paperCode,
   paperSession,
   questionOptions,
@@ -283,6 +286,7 @@ export function WholePaperFlow({
       const formData = new FormData()
       formData.append('manual_paper_code', paperCode)
       formData.append('manual_paper_session', paperSession)
+      if (creatorCode) formData.append('creator_code', creatorCode)
       formData.append(
         'page_assignments',
         JSON.stringify(

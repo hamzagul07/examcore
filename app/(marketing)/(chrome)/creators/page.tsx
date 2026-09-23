@@ -6,6 +6,7 @@ import { CONTACT_EMAIL } from '@/lib/site-config'
 import { CreatorAvatar } from '@/components/creators/CreatorAvatar'
 import { CreatorStatTiles } from '@/components/creators/CreatorStatTiles'
 import { CreatorTicket } from '@/components/creators/CreatorTicket'
+import { PageJsonLd } from '@/components/seo/PageJsonLd'
 
 export const dynamic = 'force-dynamic'
 
@@ -27,6 +28,15 @@ export default async function CreatorsPage() {
 
   return (
     <div className="ms-cr-page">
+      <PageJsonLd
+        path="/creators"
+        title="Creators on MarkScheme"
+        description="Study-tips creators with a space, a code and a live count of the answers their followers got marked."
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Creators', path: '/creators' },
+        ]}
+      />
       <section className="ms-cr-hero" aria-labelledby="creators-title">
         <div className="ms-cr-hero__copy">
           <div className="ms-cr-hero__kicker">

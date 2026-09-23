@@ -53,6 +53,10 @@ import { effectiveAccess } from '@/lib/billing/access'
 import { hasMaxResourceVault } from '@/lib/billing/features'
 import { getCreatorByUserId, getCreatorStats } from '@/lib/creators/service'
 import { CreatorStudioCard } from '@/components/creators/CreatorStudioCard'
+import { FromYourCreatorCard } from '@/components/creators/FromYourCreatorCard'
+import { listPosts } from '@/lib/community/posts'
+import { communityPostHref } from '@/lib/community/post-url'
+import { isCommunityEnabled } from '@/lib/community/enabled'
 import { computeBillingSummary } from '@/lib/billing/enforcement'
 import { MaxVaultTile } from '@/components/max/MaxVaultTile'
 import { MaxUsageTheatre } from '@/components/max/MaxUsageTheatre'
@@ -92,7 +96,7 @@ export default async function DashboardPage() {
 
   const { data: profile } = await supabase
     .from('user_profiles')
-    .select('full_name, level, subjects, exam_date, board, target_grade')
+    .select('full_name, level, subjects, exam_date, board, target_grade, referred_by')
     .eq('id', user.id)
     .maybeSingle()
 
@@ -228,6 +232,15 @@ export default async function DashboardPage() {
   // Creator seats (docs/CREATORS_PROGRAM.md): one card, only for creators.
   const creatorSeat = await getCreatorByUserId(user.id)
   const creatorStats = creatorSeat ? await getCreatorStats(creatorSeat) : null
+  // The creator this student joined through, if any — their name, their latest
+  // post and their code, on the desk the student actually uses.
+  const referredBy = (profile?.referred_by as string | null) ?? null
+  const myCreator =
+    referredBy && referredBy !== user.id ? await getCreatorByUserId(referredBy) : null
+  const myCreatorPost =
+    myCreator && myCreator.status === 'active' && isCommunityEnabled()
+      ? ((await listPosts({ authorId: myCreator.userId, sort: 'new', limit: 1 }))[0] ?? null)
+      : null
   // Recall-only students have real due work even with zero marks — show the
   // returning home (Due card) instead of the first-mark funnel.
   const showReturningHome = !isEmpty || reviewItems.length > 0
@@ -270,6 +283,20 @@ export default async function DashboardPage() {
                 handle={creatorSeat.handle}
                 code={creatorSeat.code}
                 marked={creatorStats.marked}
+              />
+            </div>
+          ) : null}
+          {myCreator && myCreator.status === 'active' ? (
+            <div className="mb-6 mt-4 px-4 sm:px-0">
+              <FromYourCreatorCard
+                handle={myCreator.handle}
+                displayName={myCreator.displayName}
+                code={myCreator.code}
+                latestPost={
+                  myCreatorPost
+                    ? { title: myCreatorPost.title, href: communityPostHref(myCreatorPost) }
+                    : null
+                }
               />
             </div>
           ) : null}

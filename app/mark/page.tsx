@@ -89,7 +89,8 @@ import {
   subjectMatchesMarkBoard,
   type MarkExamBoard,
 } from '@/components/mark/MarkBoardPicker'
-import { CreatorCodeChip } from '@/components/creators/CreatorCodeChip'
+import { CreatorCodeChip, type MarkCreator } from '@/components/creators/CreatorCodeChip'
+import { PostMarkCreatorCard } from '@/components/creators/PostMarkCreatorCard'
 import {
   getEdexcelMarkableUnitCodes,
   resolveEdexcelUnitLabel,
@@ -351,7 +352,7 @@ export default function MarkPage() {
   const [selectedComponent, setSelectedComponent] = useState('')
   const [questionNumber, setQuestionNumber] = useState('')
   // Creator code the student is marking with (docs/CREATORS_PROGRAM.md).
-  const [creatorCode, setCreatorCode] = useState<string | null>(null)
+  const [markCreator, setMarkCreator] = useState<MarkCreator | null>(null)
   const [uploadMode, setUploadMode] = useState<'single_question' | 'whole_paper'>(
     'single_question'
   )
@@ -1832,7 +1833,7 @@ export default function MarkPage() {
       formData.append('mark_intent', markIntent)
       formData.append('exam_system', selectedMarkBoard)
       formData.append('stream', '1')
-      if (creatorCode) formData.append('creator_code', creatorCode)
+      if (markCreator) formData.append('creator_code', markCreator.code)
       // Always forward the chosen subject, even without a full paper selection,
       // so freeform marks get syllabus-tagged and feed mastery/review.
       if (selectedSubject) formData.append('subject_code', selectedSubject)
@@ -2401,6 +2402,7 @@ export default function MarkPage() {
         key={`v2-wp-${v2WholePaperSeed.paperCode}-${v2WholePaperSeed.paperSession}`}
         paperCode={v2WholePaperSeed.paperCode}
         paperSession={v2WholePaperSeed.paperSession}
+        creatorCode={markCreator?.code ?? null}
         questionOptions={paperQuestionOptions}
         seed={{
           pages: v2WholePaperSeed.pages,
@@ -2960,7 +2962,7 @@ export default function MarkPage() {
               onChange={handleMarkBoardChange}
               disabled={profileLoading}
             />
-            <CreatorCodeChip onChange={setCreatorCode} />
+            <CreatorCodeChip onChange={setMarkCreator} />
 
             <div className="ms-mark-mode-panel">
               {/* MK-04: two student questions — one answer vs whole paper — not four pipelines. */}
@@ -3137,6 +3139,7 @@ export default function MarkPage() {
                     key={wholePaperKey}
                     paperCode={wholePaperCode}
                     paperSession={wholePaperSession}
+                    creatorCode={markCreator?.code ?? null}
                     questionOptions={paperQuestionOptions}
                     onError={(msg, retryable) => {
                       setErrorMsg(msg)
@@ -4137,6 +4140,15 @@ export default function MarkPage() {
                     ) : null}
                     {/* The way back to the roadmap, when there is one. */}
                     {billingSummary?.signedIn ? <RoadmapNextCard /> : null}
+                    {/* The creator whose code this was marked with (docs/CREATORS_PROGRAM.md). */}
+                    {markCreator ? (
+                      <PostMarkCreatorCard
+                        creator={markCreator}
+                        signedIn={!!billingSummary?.signedIn}
+                        markBoard={selectedMarkBoard}
+                        subjectCode={selectedSubject || null}
+                      />
+                    ) : null}
                     {/* Guests: signup ask while marks are still on screen. */}
                     {billingSummary && !billingSummary.signedIn ? (
                       <GuestConversionPrompt

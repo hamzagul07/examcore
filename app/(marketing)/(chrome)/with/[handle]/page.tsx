@@ -15,6 +15,7 @@ import { CreatorAvatar } from '@/components/creators/CreatorAvatar'
 import { CreatorLinks } from '@/components/creators/CreatorLinks'
 import { CreatorStatTiles } from '@/components/creators/CreatorStatTiles'
 import { CreatorTicket } from '@/components/creators/CreatorTicket'
+import { PageJsonLd } from '@/components/seo/PageJsonLd'
 
 export const dynamic = 'force-dynamic'
 
@@ -54,6 +55,16 @@ export default async function CreatorSpacePage({ params }: Props) {
 
   return (
     <div className="ms-cr-page">
+      <PageJsonLd
+        path={creatorSpacePath(creator.handle)}
+        title={`Study with ${creator.displayName}`}
+        description={`${creator.displayName}'s creator space on MarkScheme: code ${creator.code}, answers marked against real mark schemes.`}
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Creators', path: '/creators' },
+          { name: creator.displayName, path: creatorSpacePath(creator.handle) },
+        ]}
+      />
       <section className="ms-cr-hero" aria-labelledby="creator-name">
         <div className="ms-cr-hero__copy">
           <div className="ms-cr-hero__kicker">

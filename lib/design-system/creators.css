@@ -1051,3 +1051,253 @@
     flex-wrap: wrap;
   }
 }
+
+/* --- sparkline (one series: brand hue for the mark, text tokens for text) --- */
+
+.ms-cr-spark {
+  padding: 16px 18px 12px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.08));
+}
+
+.ms-cr-spark__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.ms-cr-spark__num {
+  font-family: var(--font-display);
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ec-text-primary);
+}
+
+.ms-cr-spark__label {
+  margin-left: 10px;
+  font-size: 14px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-cr-spark__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.ms-cr-spark__baseline {
+  stroke: var(--ec-border-strong, var(--ec-border));
+  stroke-width: 1;
+}
+
+.ms-cr-spark__guide {
+  stroke: var(--ec-border);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+.ms-cr-spark__area {
+  fill: color-mix(in srgb, var(--ec-brand) 12%, transparent);
+}
+
+.ms-cr-spark__line {
+  fill: none;
+  stroke: var(--ec-brand);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.ms-cr-spark__dot {
+  fill: var(--ec-brand);
+  stroke: var(--ec-paper, var(--ec-surface));
+  stroke-width: 2;
+}
+
+.ms-cr-spark__dot--last {
+  fill: var(--ec-text-primary);
+}
+
+.ms-cr-spark__value {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  fill: var(--ec-text-primary);
+}
+
+.ms-cr-spark__axis {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: var(--ec-text-faint);
+}
+
+.ms-cr-spark__hit {
+  fill: transparent;
+  cursor: crosshair;
+}
+
+.ms-cr-spark__hit:hover {
+  fill: color-mix(in srgb, var(--ec-brand) 8%, transparent);
+}
+
+.ms-cr-spark__table {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-cr-spark__table summary {
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.ms-cr-spark__table table {
+  width: 100%;
+  max-width: 360px;
+  margin-top: 8px;
+  border-collapse: collapse;
+}
+
+.ms-cr-spark__table th,
+.ms-cr-spark__table td {
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--ec-border-soft, var(--ec-border));
+  text-align: left;
+}
+
+.ms-cr-spark__table .is-num {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- share card preview -------------------------------------------------------- */
+
+.ms-cr-sharecard {
+  margin-top: 14px;
+  overflow: hidden;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-surface);
+}
+
+.ms-cr-sharecard__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ms-cr-sharecard__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--ec-border);
+}
+
+/* --- after the mark: the creator's name back on the result --------------------- */
+
+.ms-cr-postmark {
+  position: relative;
+  margin: 18px 0;
+  padding: 18px 20px 18px;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.09));
+}
+
+.ms-cr-postmark__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.ms-cr-postmark__head .ms-cr-card__code {
+  margin: 0 0 0 auto;
+}
+
+.ms-cr-postmark__overline {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ec-brand);
+}
+
+.ms-cr-postmark__title {
+  margin-top: 2px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ec-text-primary);
+}
+
+.ms-cr-postmark__body {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+.ms-cr-postmark__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+/* --- the referred student's desk ------------------------------------------------ */
+
+.ms-cr-mine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.07));
+}
+
+.ms-cr-mine__title {
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ec-text-primary);
+}
+
+.ms-cr-mine__tip {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-cr-mine__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}

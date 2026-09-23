@@ -30,6 +30,7 @@ import {
 import { rateLimitJson } from '@/lib/http/rate-limit-response'
 import { withRequestDeadline } from '@/lib/ai/request-deadline'
 import { createServiceClient } from '@/lib/supabase/service'
+import { resolveCreatorCodeForRun } from '@/lib/creators/service'
 import { wholePaperQuestionLimit, hasPriorityMarking } from '@/lib/billing/features'
 import { effectiveAccess, type EffectiveAccess } from '@/lib/billing/access'
 import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
@@ -118,6 +119,8 @@ async function handleInit(request: NextRequest) {
     const formData = await request.formData()
     const manualPaperCode = formData.get('manual_paper_code') as string | null
     const manualPaperSession = formData.get('manual_paper_session') as string | null
+    // Creator attribution (docs/CREATORS_PROGRAM.md); this path opens no mark run.
+    const creatorCode = await resolveCreatorCodeForRun(formData.get('creator_code'))
     const assignmentsRaw = formData.get('page_assignments') as string | null
 
     let pageAssignments: PageAssignment[] = []
@@ -263,6 +266,7 @@ async function handleInit(request: NextRequest) {
         mark_scheme_id: null,
         source_type: 'past_paper',
         user_id: userId,
+        creator_code: creatorCode,
         question_text: `Whole paper: ${manualPaperCode} ${manualPaperSession}`,
         ocr_text: combinedOcr,
         ai_marking: jobState,

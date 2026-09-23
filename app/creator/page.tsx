@@ -6,6 +6,7 @@ import {
   getAudienceGapReport,
   getCreatorByUserId,
   getCreatorStats,
+  listCreatorDailyMarked,
   listRecentCreatorRuns,
 } from '@/lib/creators/service'
 import {
@@ -18,6 +19,7 @@ import {
 import { CreatorAvatar } from '@/components/creators/CreatorAvatar'
 import { CreatorGapReport } from '@/components/creators/CreatorGapReport'
 import { CreatorShareKit } from '@/components/creators/CreatorShareKit'
+import { CreatorSparkline } from '@/components/creators/CreatorSparkline'
 import { CreatorStatTiles } from '@/components/creators/CreatorStatTiles'
 import { CreatorTicket } from '@/components/creators/CreatorTicket'
 
@@ -65,11 +67,13 @@ export default async function CreatorStudioPage() {
   const creator = await getCreatorByUserId(user.id)
   if (!creator) return <NotACreator />
 
-  const [stats, report, runs] = await Promise.all([
+  const [stats, report, runs, daily] = await Promise.all([
     getCreatorStats(creator),
     getAudienceGapReport(creator.code),
     listRecentCreatorRuns(creator.code, 12),
+    listCreatorDailyMarked(creator.code, 30),
   ])
+  const ogPath = `/api/og/creator/${encodeURIComponent(creator.handle)}`
   const kit = buildShareKit({
     handle: creator.handle,
     code: creator.code,
@@ -143,6 +147,16 @@ export default async function CreatorStudioPage() {
         ]}
       />
 
+      <section className="ms-cr-section" aria-labelledby="studio-daily">
+        <div className="ms-cr-section__head">
+          <h2 id="studio-daily" className="ms-cr-section__title">
+            Last 30 days
+          </h2>
+          <span className="ms-cr-section__note">answers marked with {creator.code}, per day</span>
+        </div>
+        <CreatorSparkline data={daily} handle={creator.handle} />
+      </section>
+
       <section className="ms-cr-section" aria-labelledby="studio-milestones">
         <div className="ms-cr-section__head">
           <h2 id="studio-milestones" className="ms-cr-section__title">
@@ -185,6 +199,24 @@ export default async function CreatorStudioPage() {
           <span className="ms-cr-section__note">paste as-is · the #ad stays in</span>
         </div>
         <CreatorShareKit kit={kit} />
+        <div className="ms-cr-sharecard">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="ms-cr-sharecard__img"
+            src={ogPath}
+            width={1200}
+            height={630}
+            alt={`Share card: study with @${creator.handle}, code ${creator.code}`}
+          />
+          <div className="ms-cr-sharecard__meta">
+            <span className="ms-cr-section__note">
+              Share card · 1200 × 630 · post it as an image, or it shows when you paste the link
+            </span>
+            <a className="ms-cr-copy" href={ogPath} download={`markscheme-${creator.handle}.png`}>
+              Download
+            </a>
+          </div>
+        </div>
       </section>
 
       <section className="ms-cr-section" aria-labelledby="studio-recent">

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { useCountUp } from '@/lib/hooks/useCountUp'
 import {
   examEncouragement,
   examSessionLabel,
@@ -24,6 +24,7 @@ export function ExamCountdownHero({
   weeklyAttempts,
 }: Props) {
   const [revealed, setRevealed] = useState(false)
+  const shownDays = useCountUp(daysLeft, 700)
   const greeting = timeGreeting(firstName)
   const encouragement = examEncouragement(daysLeft)
   const session = examSessionLabel(examDate)
@@ -48,7 +49,7 @@ export function ExamCountdownHero({
             className="ms-dash-countdown-desk__number"
             aria-label={`${daysLeft} days until your ${session}`}
           >
-            {daysLeft}
+            {Math.round(shownDays)}
           </p>
           <div className="ms-dash-countdown-desk__copy">
             <p className="ms-dash-countdown-desk__title">
@@ -62,10 +63,9 @@ export function ExamCountdownHero({
           </div>
         </div>
 
-        <motion.p
-          initial={false}
-          animate={{ opacity: revealed ? 1 : 0.55 }}
+        <p
           className="mt-3 font-mono text-[11px] font-bold uppercase tracking-wide"
+          style={{ opacity: revealed ? 1 : 0.55, transition: 'opacity 160ms ease' }}
         >
           <Link
             href="/account/exam"
@@ -73,13 +73,11 @@ export function ExamCountdownHero({
           >
             Change exam date -&gt;
           </Link>
-        </motion.p>
+        </p>
       </div>
 
       <div className="ms-dash-countdown-desk__actions">
-        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-          <MarkQuestionCta />
-        </motion.div>
+        <MarkQuestionCta />
         {weeklyAttempts > 0 && (
           <p className="text-caption m-0">
             {weeklyAttempts} question{weeklyAttempts === 1 ? '' : 's'} marked this

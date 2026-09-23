@@ -582,9 +582,12 @@
   transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
 }
 
-.ms-pillar:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--ec-card-hover-shadow);
+/* Hover lift only for pointers that can hover; a tap must not leave it stuck. */
+@media (hover: hover) {
+  .ms-pillar:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--ec-card-hover-shadow);
+  }
 }
 
 .ms-pillar--featured {
@@ -1158,9 +1161,12 @@
   background: var(--ec-paper, var(--ec-surface));
 }
 
-.ms-scard2:hover {
-  transform: translate(-1px, -3px);
-  box-shadow: var(--ec-card-hover-shadow);
+/* Hover lift only for pointers that can hover; a tap must not leave it stuck. */
+@media (hover: hover) {
+  .ms-scard2:hover {
+    transform: translate(-1px, -3px);
+    box-shadow: var(--ec-card-hover-shadow);
+  }
 }
 
 /* Keyboard focus indicator — legacy cards that are still role="link" with tabIndex={0}. */
@@ -1228,8 +1234,11 @@
   pointer-events: none;
 }
 
-.ms-scard2:hover .ms-tile::after {
-  transform: skewX(-18deg) translateX(340%);
+/* Hover lift only for pointers that can hover; a tap must not leave it stuck. */
+@media (hover: hover) {
+  .ms-scard2:hover .ms-tile::after {
+    transform: skewX(-18deg) translateX(340%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -404,10 +404,13 @@
   background: var(--acc, var(--ec-brand));
 }
 
-.ms-pp-card:hover {
-  border-color: color-mix(in srgb, var(--acc, var(--ec-brand)) 45%, var(--ec-border));
-  box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.1));
-  transform: translate(-1px, -2px);
+/* Hover lift only for pointers that can hover; a tap must not leave it stuck. */
+@media (hover: hover) {
+  .ms-pp-card:hover {
+    border-color: color-mix(in srgb, var(--acc, var(--ec-brand)) 45%, var(--ec-border));
+    box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.1));
+    transform: translate(-1px, -2px);
+  }
 }
 
 .ms-pp-glyph {

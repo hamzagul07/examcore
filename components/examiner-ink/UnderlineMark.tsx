@@ -41,7 +41,7 @@ export function UnderlineMark({ earned }: UnderlineMarkProps) {
         animate={{ pathLength: 1, opacity: 1 }}
         transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
         d="M 2 84 Q 25 76 50 86 T 98 80"
-        stroke="#dc2626"
+        stroke="var(--ec-ink-crimson)"
         strokeWidth="2.5"
         strokeLinecap="round"
         fill="none"

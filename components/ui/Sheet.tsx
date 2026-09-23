@@ -71,6 +71,7 @@ export function Sheet({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          transition={{ duration: reduceMotion ? 0 : 0.18 }}
           className="fixed inset-0 z-[var(--ec-z-modal,250)] flex items-end justify-center p-0 sm:items-center sm:p-4"
           style={{ zIndex: 250 }}
         >
@@ -83,7 +84,7 @@ export function Sheet({
             initial={{ opacity: 0, y: lift }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: drop }}
-            transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
+            transition={{ duration: reduceMotion ? 0 : 0.22, ease: [0.23, 1, 0.32, 1] }}
             ref={panelRef}
             role="dialog"
             aria-modal="true"

@@ -1047,8 +1047,11 @@
     transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .ec-btn-ghost:hover:not(:disabled) {
-    transform: translateY(-1px);
+  /* Hover lift only for pointers that can hover; a tap must not leave it stuck. */
+  @media (hover: hover) {
+    .ec-btn-ghost:hover:not(:disabled) {
+      transform: translateY(-1px);
+    }
   }
 
   .ec-btn-ghost--sm {

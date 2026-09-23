@@ -166,20 +166,6 @@ select {
   }
 }
 
-@media (hover: none) {
-  .ec-btn-primary:hover,
-  .ec-btn-secondary:hover,
-  .ec-btn-ghost:hover,
-  .ec-btn-warm:hover,
-  .ec-card-interactive:hover,
-  .ec-card-lift:hover,
-  .ms-pillar:hover,
-  .ms-scard2:hover,
-  .ms-pp-card:hover,
-  .ms-guide-card:hover {
-    transform: none;
-  }
-}
 
 /* Press: the button goes down onto the paper (shadow shortens under it).
    Faster than the lift — a press should feel like contact. */
@@ -201,8 +187,10 @@ select {
 
 /* Late-night: brand and brand-deep are the same green, so the primary
    hover lost its colour step. Brighten instead of deepen on dark. */
-[data-ec-theme='late-night'] .ec-btn-primary:hover:not(:disabled):not([data-loading='true']) {
-  filter: brightness(1.07);
+@media (hover: hover) {
+  [data-ec-theme='late-night'] .ec-btn-primary:hover:not(:disabled):not([data-loading='true']) {
+    filter: brightness(1.07);
+  }
 }
 
 /* Late-night paper edge. A black offset on a #14120d canvas is invisible,
@@ -468,5 +456,262 @@ select.ec-input {
   .ms-faq-a > *,
   .ms-faq-q .ms-pm {
     transition: none;
+  }
+}
+
+/* Mobile nav sheet: a perceptible slide in (the 8px original read as a
+   flicker) and, new, a slide out. The sheet used to unmount on close with
+   no exit at all. SiteHeader keeps it mounted for 200ms with
+   data-state="closing". */
+@keyframes ec-nav-sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ec-nav-sheet-out {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes ec-nav-backdrop-out {
+  to {
+    opacity: 0;
+  }
+}
+
+.ec-nav-mobile-sheet {
+  animation-duration: 260ms;
+  animation-timing-function: var(--ec-ease-out);
+}
+
+.ec-nav-mobile-sheet[data-state='closing'] {
+  animation: ec-nav-sheet-out 180ms var(--ec-ease-out) forwards;
+  pointer-events: none;
+}
+
+.ec-nav-mobile-backdrop[data-state='closing'] {
+  animation: ec-nav-backdrop-out 180ms ease forwards;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ec-nav-mobile-sheet[data-state='closing'],
+  .ec-nav-mobile-backdrop[data-state='closing'] {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* ------------------------------------------------------------
+   Pricing
+   ------------------------------------------------------------ */
+
+/* Monthly/Annual: a thumb that slides between the two options instead of a
+   background that snaps. Two equal columns so the thumb is always half the
+   track; the active button keeps its own colours, the thumb sits beneath. */
+.pricing-toggle {
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  isolation: isolate;
+}
+
+.pricing-toggle::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  border-radius: 4px;
+  background: var(--ink, var(--ec-brand));
+  z-index: 0;
+  transition: transform var(--ec-dur-menu) var(--ec-ease-out);
+}
+
+.pricing-toggle:has(.pricing-toggle-btn:nth-child(2).on)::before {
+  transform: translateX(100%);
+}
+
+.pricing-toggle .pricing-toggle-btn {
+  position: relative;
+  z-index: 1;
+  justify-content: center;
+}
+
+.pricing-toggle .pricing-toggle-btn.on {
+  background: transparent;
+}
+
+/* Browsers without :has() keep the original snapping background. */
+@supports not selector(:has(a)) {
+  .pricing-toggle::before {
+    display: none;
+  }
+  .pricing-toggle .pricing-toggle-btn.on {
+    background: var(--ink, var(--ec-brand));
+  }
+}
+
+/* The price figure fades to its new value when the period changes
+   (the span remounts per period). */
+@media (prefers-reduced-motion: no-preference) {
+  .plan-now {
+    animation: ec-fade-in-soft 220ms var(--ec-ease-out) both;
+  }
+}
+
+/* Header island: the scrolled state now visibly tightens (border deepens)
+   rather than only shaving 2px of padding. */
+.ec-nav-wrap--scrolled .ec-nav {
+  border-color: color-mix(in srgb, var(--ec-nav-accent, var(--ec-brand)) 45%, var(--ec-border));
+}
+
+/* ------------------------------------------------------------
+   Toast — one paper slip, shared (components/ui/PaperToast)
+   ------------------------------------------------------------ */
+
+.ec-toast {
+  --ec-toast-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+  position: fixed;
+  left: 50%;
+  bottom: var(--ec-toast-bottom);
+  z-index: var(--ec-z-toast, 100);
+  width: min(calc(100% - 2rem), 27rem);
+  transform: translateX(-50%);
+}
+
+@media (min-width: 1024px) {
+  .ec-toast {
+    --ec-toast-bottom: 1.5rem;
+  }
+}
+
+.ec-toast__slip {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 14px 14px 16px;
+  box-shadow: var(--ec-card-hover-shadow);
+}
+
+.ec-toast__stamp {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.ec-toast[data-tone='crimson'] .ec-toast__stamp {
+  color: var(--ec-ink-crimson);
+  border-color: color-mix(in srgb, var(--ec-ink-crimson) 45%, transparent);
+  background: color-mix(in srgb, var(--ec-ink-crimson) 8%, transparent);
+}
+
+.ec-toast__text {
+  min-width: 0;
+  flex: 1;
+}
+
+.ec-toast__title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ec-text-primary);
+  text-wrap: pretty;
+}
+
+.ec-toast__body {
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ec-text-secondary);
+  text-wrap: pretty;
+}
+
+.ec-toast__actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.ec-toast__action {
+  min-height: 36px;
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+.ec-toast__later {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  color: var(--ec-text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ec-toast__close {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  margin: -6px -6px -6px 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--ec-text-secondary);
+  border-radius: 4px;
+  transition: color 120ms ease, background-color 120ms ease;
+}
+
+.ec-toast__close:hover {
+  color: var(--ec-text-primary);
+  background: var(--ec-surface-muted);
+}
+
+@keyframes ec-toast-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 12px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes ec-toast-out {
+  to {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ec-toast[data-state='open'] {
+    animation: ec-toast-in 260ms var(--ec-ease-out) both;
+  }
+  .ec-toast[data-state='closing'] {
+    animation: ec-toast-out 180ms var(--ec-ease-out) forwards;
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ec-toast[data-state='closing'] {
+    opacity: 0;
+    pointer-events: none;
   }
 }

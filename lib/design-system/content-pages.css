@@ -427,10 +427,13 @@
   color: inherit;
 }
 
-.ms-guide-card:hover {
-  transform: translate(-1px, -2px);
-  box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.1));
-  border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border));
+/* Hover lift only for pointers that can hover; a tap must not leave it stuck. */
+@media (hover: hover) {
+  .ms-guide-card:hover {
+    transform: translate(-1px, -2px);
+    box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.1));
+    border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border));
+  }
 }
 
 .ms-guide-card .ms-gt {

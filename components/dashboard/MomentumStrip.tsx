@@ -1,3 +1,4 @@
+import { CountUp } from '@/components/ui/CountUp'
 import {
   weekdayInitial,
   type MomentumSummary,
@@ -78,7 +79,7 @@ export function MomentumStrip({
                 ✎
               </span>
             )}
-            {streak}
+            <CountUp value={streak} />
           </span>
           <span className="ms-momentum-kpi__label">
             day{streak === 1 ? '' : 's'} in a row
@@ -86,7 +87,9 @@ export function MomentumStrip({
         </div>
 
         <div className="ms-momentum-kpi">
-          <span className="ms-momentum-kpi__value">{marksInWindow}</span>
+          <span className="ms-momentum-kpi__value">
+            <CountUp value={marksInWindow} />
+          </span>
           <span className="ms-momentum-kpi__label">
             marks in {days.length} days
           </span>
@@ -95,7 +98,7 @@ export function MomentumStrip({
         {avgPct != null && (
           <div className="ms-momentum-kpi">
             <span className="ms-momentum-kpi__value">
-              {avgPct}%
+              <CountUp value={avgPct} />%
               {deltaPct != null && deltaPct !== 0 && (
                 <DeltaBadge delta={deltaPct} />
               )}

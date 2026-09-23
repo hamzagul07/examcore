@@ -162,8 +162,8 @@ export default async function ReviewPage() {
                       it.source === 'recall'
                         ? 'bg-[var(--ec-surface-muted)] text-[var(--ec-text-secondary)]'
                         : it.level === 'critical'
-                          ? 'bg-[color-mix(in_srgb,#e0575b_16%,var(--ec-surface))] text-[#c53a3f]'
-                          : 'bg-[color-mix(in_srgb,#e0a13a_18%,var(--ec-surface))] text-[#a06a11]'
+                          ? 'bg-[var(--ec-chip-critical-bg)] text-[var(--ec-chip-critical-text)]'
+                          : 'bg-[var(--ec-chip-warning-bg)] text-[var(--ec-chip-warning-text)]'
                     }`}
                   >
                     {it.source === 'recall'

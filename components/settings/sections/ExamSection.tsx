@@ -196,7 +196,7 @@ function SetupCard({
           >
             Save exam setup
           </Button>
-          <SavedStamp state={stamp} />
+          <SavedStamp state={stamp} label={<>✓ {successMsg || 'Saved'}</>} />
         </div>
         <SrStatus message={successMsg} />
       </form>
@@ -287,7 +287,7 @@ function StageGoalCard({
           >
             Save stage & goal
           </Button>
-          <SavedStamp state={stamp} />
+          <SavedStamp state={stamp} label={<>✓ {successMsg || 'Saved'}</>} />
         </div>
         <SrStatus message={successMsg} />
       </form>
@@ -350,7 +350,7 @@ function TargetGradeCard({
           />
           <span className="inline-flex min-h-[22px] items-center" aria-hidden>
             {loading && <InlineSavingPulse />}
-            <SavedStamp state={stamp} />
+            <SavedStamp state={stamp} label={<>✓ {successMsg || 'Saved'}</>} />
           </span>
         </div>
         {errorMsg && (
@@ -490,7 +490,7 @@ function ExamDateCard({
               Clear date
             </Button>
           )}
-          <SavedStamp state={stamp} />
+          <SavedStamp state={stamp} label={<>✓ {successMsg || 'Saved'}</>} />
         </div>
         <SrStatus message={successMsg} />
       </form>

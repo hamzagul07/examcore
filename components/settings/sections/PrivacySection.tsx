@@ -10,7 +10,6 @@ import { SettingsSectionCard } from '@/components/settings/SettingsSectionCard'
 import { SavedStamp, useSavedStamp } from '@/components/settings/SettingsShell'
 
 export function PrivacySection() {
-  const [exportOpen, setExportOpen] = useState(false)
   const [exportLoading, setExportLoading] = useState(false)
   const [deleteOpen, setDeleteOpen] = useState(false)
   const [deleteConfirm, setDeleteConfirm] = useState('')
@@ -23,20 +22,9 @@ export function PrivacySection() {
   const [deleteFieldError, setDeleteFieldError] = useState('')
   const [deleteError, setDeleteError] = useState('')
   const exportStamp = useSavedStamp()
-  const exportTitleId = useId()
   const deleteTitleId = useId()
 
-  function openExport() {
-    setExportError('')
-    setExportSuccess('')
-    exportStamp.clearSaved()
-    setExportOpen(true)
-  }
 
-  function closeExport() {
-    if (exportLoading) return
-    setExportOpen(false)
-  }
 
   function openDelete() {
     setDeleteConfirm('')
@@ -74,7 +62,6 @@ export function PrivacySection() {
       a.click()
       URL.revokeObjectURL(url)
       setExportSuccess('Your data export has downloaded.')
-      setExportOpen(false)
       exportStamp.showSaved()
     } catch (err) {
       setExportError(err instanceof Error ? err.message : 'Export failed')
@@ -119,42 +106,10 @@ export function PrivacySection() {
           history (last 500 attempts).
         </p>
         <div className="flex flex-wrap items-center gap-3">
-          <Button type="button" variant="secondary" size="md" onClick={openExport}>
-            Download my data
-          </Button>
-          <SavedStamp state={exportStamp.stamp} label="✓ Downloaded" />
-        </div>
-        <span role="status" aria-live="polite" className="sr-only">
-          {exportSuccess}
-        </span>
-      </SettingsSectionCard>
-
-      {/* Confirm before the file leaves the server: it is personal data landing
-          on whatever device this is. */}
-      <Sheet open={exportOpen} onClose={closeExport} labelledById={exportTitleId}>
-        <span className="ec-ink-stamp ec-ink-stamp--hero mb-4" aria-hidden>
-          ↓
-        </span>
-        <h2 id={exportTitleId} className="text-headline text-[var(--ec-text-primary)]">
-          Download my data
-        </h2>
-        <p className="text-body mt-2 text-[var(--ec-text-secondary)]">
-          Includes your profile, marking attempts, subscription status, and usage
-          history (last 500 attempts).
-        </p>
-
-        {exportError && (
-          <div className="mt-4">
-            <ErrorBox message={exportError} />
-          </div>
-        )}
-
-        <div className="mt-6 flex flex-col gap-3">
           <Button
             type="button"
-            variant="primary"
+            variant="secondary"
             size="md"
-            fullWidth
             onClick={() => void handleExport()}
             loading={exportLoading}
             loadingMode="shimmer"
@@ -162,18 +117,18 @@ export function PrivacySection() {
           >
             Download my data
           </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size="md"
-            fullWidth
-            disabled={exportLoading}
-            onClick={closeExport}
-          >
-            Cancel
-          </Button>
+          <SavedStamp state={exportStamp.stamp} label="✓ Downloaded" />
         </div>
-      </Sheet>
+        {exportError && (
+          <div className="mt-4">
+            <ErrorBox message={exportError} />
+          </div>
+        )}
+        <span role="status" aria-live="polite" className="sr-only">
+          {exportSuccess}
+        </span>
+      </SettingsSectionCard>
+
 
       <SettingsSectionCard title="Delete account">
         <p className="text-body mb-4">

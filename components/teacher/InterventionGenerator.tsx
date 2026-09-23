@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useId, useState } from 'react'
+import { useEffect, useId, useState, useRef } from 'react'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import { SkeletonBlock } from '@/components/ui/PageSkeleton'
 import { Sheet } from '@/components/ui/Sheet'
@@ -48,8 +48,13 @@ export function InterventionGenerator({
     null
   )
   const [error, setError] = useState<string | null>(null)
+  // Bumped every time the sheet opens or closes. A generate() that started
+  // under an earlier run is ignored when it resolves, so closing mid-request
+  // and reopening never lands a stale "Created" over the fresh picker.
+  const runId = useRef(0)
 
   useEffect(() => {
+    runId.current += 1
     if (!open) return
     let active = true
     setLoading(true)
@@ -91,6 +96,7 @@ export function InterventionGenerator({
 
   async function generate() {
     if (selected.size < 3) return
+    const run = runId.current
     setGenerating(true)
     setError(null)
     try {
@@ -107,6 +113,7 @@ export function InterventionGenerator({
         }
       )
       const data = await res.json()
+      if (run !== runId.current) return
       if (data.intervention) {
         setResult({
           title: data.intervention.title,
@@ -116,10 +123,11 @@ export function InterventionGenerator({
         setError(data?.error || 'Could not generate the test. Please try again.')
       }
     } catch (err) {
+      if (run !== runId.current) return
       console.error('InterventionGenerator: failed to generate test', err)
       setError('Could not generate the test. Please try again.')
     } finally {
-      setGenerating(false)
+      if (run === runId.current) setGenerating(false)
     }
   }
 

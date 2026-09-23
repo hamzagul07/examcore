@@ -183,7 +183,7 @@ function AccountSecuritySection() {
               </Button>
               {/* The form closes on success, so the stamp lands beside the
                   button the student is returned to. */}
-              <SavedStamp state={stamp} />
+              <SavedStamp state={stamp} label={<>✓ {successMsg || 'Saved'}</>} />
             </div>
           </div>
         ) : (

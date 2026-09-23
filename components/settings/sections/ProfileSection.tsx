@@ -152,7 +152,7 @@ export function ProfileSection({
           >
             {savedUsername ? 'Change username' : 'Set username'}
           </Button>
-          <SavedStamp state={usernameStamp.stamp} />
+          <SavedStamp state={usernameStamp.stamp} label={<>✓ {usernameSuccess || 'Saved'}</>} />
         </div>
         <span role="status" aria-live="polite" className="sr-only">
           {usernameSuccess}
@@ -203,7 +203,7 @@ export function ProfileSection({
           >
             Save changes
           </Button>
-          <SavedStamp state={profileStamp.stamp} />
+          <SavedStamp state={profileStamp.stamp} label={<>✓ {successMsg || 'Saved'}</>} />
         </div>
         <span role="status" aria-live="polite" className="sr-only">
           {successMsg}

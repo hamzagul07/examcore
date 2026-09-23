@@ -151,6 +151,16 @@ function main() {
   // stays behind the app. Better a shorter email than scheme text in an inbox.
   assert.equal(studyNoteForEmail('Revisit the mark scheme for Q3 and learn the M1 step.'), null)
   assert.equal(studyNoteForEmail('You lost the A1 for rounding.'), null)
+  // Scheme-speak without an award code — the dialect itself is the tell.
+  assert.equal(studyNoteForEmail('Award one mark for identifying the shift in demand.'), null)
+  assert.equal(studyNoteForEmail('Accept any correct method. Condone missing units.'), null)
+  assert.equal(studyNoteForEmail('Two marks for the correct substitution, cao.'), null)
+  assert.equal(studyNoteForEmail('Give the M 1 for rearranging first.'), null)
+  assert.equal(studyNoteForEmail('Max 3 if no working shown.'), null)
+  assert.equal(
+    studyNoteForEmail('Practice explaining the chain of consequences before you evaluate.'),
+    'Practice explaining the chain of consequences before you evaluate.'
+  )
   assert.equal(studyNoteForEmail('   '), null)
   assert.equal(studyNoteForEmail('Show every step of working.'), 'Show every step of working.')
   const long = studyNoteForEmail(
@@ -159,6 +169,11 @@ function main() {
   assert.ok(long && long.length <= 321, `cut to one inbox paragraph, got ${long?.length}`)
   assert.match(long!, /[.…]$/, 'ends at a sentence or with an ellipsis')
   assert.deepEqual(weakTopicsForEmail(['Vectors', 'Use the mark scheme', 'x'.repeat(60), 'Vectors ']), ['Vectors'])
+  // A marking point dressed as a tag is still a marking point.
+  assert.deepEqual(
+    weakTopicsForEmail(['State that demand shifts right', 'Analysis (AO3)', 'Accept a labelled diagram']),
+    ['Analysis (AO3)']
+  )
   assert.deepEqual(weakTopicsForEmail(null), [])
 
   // --- the failure twin -------------------------------------------------------

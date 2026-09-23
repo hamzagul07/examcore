@@ -55,6 +55,16 @@ export type MarkReadyPayload = {
 const STUDY_NOTE_MAX = 320
 
 /**
+ * Scheme-speak. Published mark schemes talk in a dialect — award codes,
+ * "accept", "condone", "one mark for", "cao", "ecf" — and model prose that
+ * paraphrases one tends to keep it. Anything in this dialect stays behind the
+ * app; a false positive costs a shorter email, a false negative costs scheme
+ * text in an inbox we cannot pull back. Conservative on purpose.
+ */
+const SCHEME_SPEAK =
+  /mark ?schemes?|\b[BMA] ?\d{1,2}[a-z]?\b|\b(?:award(?:ed|s|ing)?|condon(?:e|ed|es)|penali[sz](?:e|ed|es))\b|\b(?:accept|allow|ignore|reject)\b|\bmarks? (?:for|if|each|per)\b|\b(?:one|two|three|four|five|six|\d+) marks?\b|\b(?:cao|oe|ecf|isw|bod|dep|ft|www)\b|\bmax(?:imum)?\s*(?:of\s*)?\d/i
+
+/**
  * The study note is model prose about the student's own answer, which is
  * fine to mail — but it occasionally paraphrases the scheme it marked against,
  * and published scheme text must stay behind the app. Anything that names the
@@ -64,7 +74,7 @@ const STUDY_NOTE_MAX = 320
 export function studyNoteForEmail(raw: string | null | undefined): string | null {
   const text = raw?.replace(/\s+/g, ' ').trim()
   if (!text) return null
-  if (/mark ?scheme|\b[BMA]\d\b|\bdep\b|\bcao\b|\boe\b/i.test(text)) return null
+  if (SCHEME_SPEAK.test(text)) return null
   if (text.length <= STUDY_NOTE_MAX) return text
   const head = text.slice(0, STUDY_NOTE_MAX)
   const sentenceEnd = Math.max(head.lastIndexOf('. '), head.lastIndexOf('! '), head.lastIndexOf('? '))
@@ -73,7 +83,7 @@ export function studyNoteForEmail(raw: string | null | undefined): string | null
   return `${head.slice(0, wordEnd > 0 ? wordEnd : STUDY_NOTE_MAX).trimEnd()}…`
 }
 
-/** Up to three short tags; anything long or scheme-shaped is not a tag. */
+/** Up to three short tags; anything long, sentence-shaped or scheme-shaped is not a tag. */
 export function weakTopicsForEmail(raw: string[] | null | undefined): string[] {
   if (!Array.isArray(raw)) return []
   const seen = new Set<string>()
@@ -81,7 +91,9 @@ export function weakTopicsForEmail(raw: string[] | null | undefined): string[] {
   for (const item of raw) {
     const t = typeof item === 'string' ? item.replace(/\s+/g, ' ').trim() : ''
     if (!t || t.length > 48 || seen.has(t.toLowerCase())) continue
-    if (/mark ?scheme|\b[BMA]\d\b/i.test(t)) continue
+    // A tag is a topic name ("Analysis (AO3)"), not a marking point; a
+    // clause with a verb in it is the scheme's wording, not a topic.
+    if (t.split(' ').length > 6 || /[.!?]$/.test(t) || SCHEME_SPEAK.test(t)) continue
     seen.add(t.toLowerCase())
     out.push(t)
     if (out.length === 3) break

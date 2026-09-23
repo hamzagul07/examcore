@@ -162,17 +162,21 @@ async function handleRun(request: NextRequest) {
       priority: job.priority ?? 'standard',
     }
 
-    // Atomically claim the job: flip phase→'marking' only if it is not already
-    // 'marking'. Postgres serializes the row update, so of two near-simultaneous
-    // POSTs exactly one matches the guard and proceeds; the loser gets 0 rows
-    // and returns already_running. This closes the read-then-write (TOCTOU)
-    // window that previously let a duplicate request mark the paper — and
-    // reserve the quota — twice.
+    // Atomically claim the job: flip phase→'marking' only from a phase that is
+    // actually runnable. Postgres serializes the row update, so of two
+    // near-simultaneous POSTs exactly one matches the guard and proceeds; the
+    // loser gets 0 rows and returns already_running. This closes the
+    // read-then-write (TOCTOU) window that let a duplicate request mark the
+    // paper — and reserve the quota — twice.
+    //
+    // The guard used to be `!= 'marking'`, which let a request that had waited
+    // on the winner's row lock re-claim the now-*complete* job, mark it again
+    // and, since every mark is emailed, mail the student twice.
     const { data: claimed } = await supabaseAdmin
       .from('attempts')
       .update({ ai_marking: markingState, marks_earned: 0, total_marks: 0 })
       .eq('id', attemptId)
-      .neq('ai_marking->>phase', 'marking')
+      .in('ai_marking->>phase', ['queued', 'failed'])
       .select('id')
     if (!claimed || claimed.length === 0) {
       return NextResponse.json({ status: 'already_running' })
@@ -336,7 +340,10 @@ async function handleRun(request: NextRequest) {
       }
     }
     const readyNotice = {
-      userId: markUserId,
+      // Only the student who ran their own paper gets the mail. A teacher
+      // marking a pupil's script is watching the result; the pupil did not
+      // ask for a score in their inbox and the copy would not explain it.
+      userId: user?.id && user.id === markUserId ? markUserId : null,
       attemptId,
       marksEarned: wholePaper.marks_earned,
       totalMarks: wholePaper.total_marks,

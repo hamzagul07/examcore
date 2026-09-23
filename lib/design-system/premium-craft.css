@@ -882,3 +882,39 @@ select.ec-input {
     transition: none;
   }
 }
+
+/* ------------------------------------------------------------
+   Anchored headings clear the sticky header
+   ------------------------------------------------------------ */
+
+/* Jumping to #a-heading from a table of contents or a shared link used to
+   land it under the island header. Reading content and FAQ items reserve
+   the header's height. */
+.ec-reading-column :is(h2, h3, h4)[id],
+.ec-blog-prose :is(h2, h3, h4)[id],
+.ms-content-hero[id],
+.ms-faq-item[id],
+.rc-faq [id],
+.hub-seo-intro[id] {
+  scroll-margin-top: calc(var(--ec-nav-height, 72px) + 16px);
+}
+
+/* ------------------------------------------------------------
+   Two typographic defaults for the whole site
+   ------------------------------------------------------------ */
+
+/* Every heading balances its lines (the engine caps this at ~6 lines, so
+   long paragraphs are untouched; `body` already sets `pretty` for prose).
+   The class list above stays for headings that are not h1–h3. */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+/* Every data table — grade boundaries, PUM conversions, mastery matrices —
+   lines its digits up. */
+table :is(td, th) {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}

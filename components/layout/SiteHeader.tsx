@@ -409,6 +409,7 @@ export function SiteHeader({ variant }: Props) {
                 type="button"
                 className="ec-nav-mobile-backdrop"
                 data-state={mobileOpen ? 'open' : 'closing'}
+                inert={!mobileOpen || undefined}
                 aria-label="Close menu"
                 onClick={() => closeMobileMenu(true)}
               />
@@ -416,8 +417,9 @@ export function SiteHeader({ variant }: Props) {
                 ref={mobileSheetRef}
                 className="ec-nav-mobile-sheet"
                 data-state={mobileOpen ? 'open' : 'closing'}
+                inert={!mobileOpen || undefined}
                 role="dialog"
-                aria-modal="true"
+                aria-modal={mobileOpen ? 'true' : undefined}
                 aria-label="Navigation menu"
               >
                 <div className="ec-nav-mobile-sheet-head">

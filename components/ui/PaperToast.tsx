@@ -72,6 +72,7 @@ export function PaperToast({
       className={['ec-toast', className].filter(Boolean).join(' ')}
       data-state={open ? 'open' : 'closing'}
       data-tone={tone}
+      inert={!open || undefined}
       role="status"
       aria-live="polite"
     >

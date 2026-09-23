@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useId, useMemo, useState } from 'react'
+import { useId, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import {
   MASTERY_STYLES,
@@ -11,6 +11,7 @@ import {
 } from '@/lib/mastery'
 import { EmptyState } from './EmptyState'
 import { MasteryHeatmap } from './MasteryHeatmap'
+import { Sheet } from '@/components/ui/Sheet'
 
 type Props = {
   parentMasteries: ParentMastery[]
@@ -44,6 +45,10 @@ export function MasteryMatrix({
   emptyBanner = false,
 }: Props) {
   const [selected, setSelected] = useState<LeafMastery | null>(null)
+  // The sheet animates out after deselect, so it keeps rendering the last topic.
+  const lastSelected = useRef<LeafMastery | null>(null)
+  if (selected) lastSelected.current = selected
+  const detailTopic = selected ?? lastSelected.current
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set())
 
   const isMathFlat = subjectCode === '9709'
@@ -256,11 +261,12 @@ export function MasteryMatrix({
         </div>
       </section>
 
-      {selected && (
+      {detailTopic && (
         <TopicDetailModal
-          topic={selected}
+          topic={detailTopic}
+          open={!!selected}
           attempts={attempts.filter((a) =>
-            (a.syllabus_tags || []).includes(selected.code)
+            (a.syllabus_tags || []).includes(detailTopic.code)
           )}
           onClose={() => setSelected(null)}
         />
@@ -269,38 +275,24 @@ export function MasteryMatrix({
   )
 }
 
+/** Topic detail — the shared Sheet (focus trap, scroll lock, Escape, exit). */
 function TopicDetailModal({
   topic,
   attempts,
+  open,
   onClose,
 }: {
   topic: LeafMastery
   attempts: AttemptLite[]
+  open: boolean
   onClose: () => void
 }) {
   const style = MASTERY_STYLES[topic.level]
   const titleId = useId()
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [onClose])
-
   return (
-    <div
-      className="ms-mastery-modal fixed inset-0 z-50 flex items-end justify-center p-0 sm:items-center sm:p-4"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby={titleId}
-    >
-      <div
-        className="absolute inset-0 ec-modal-backdrop"
-        onClick={onClose}
-      />
-      <div className="ec-card ec-card--paper relative w-full max-w-lg overflow-hidden rounded-t p-4 sm:rounded sm:p-6">
+    <Sheet open={open} onClose={onClose} labelledById={titleId} className="sm:max-w-lg">
+      <div>
         <p className="ec-label-tech mb-2">{topic.code}</p>
         <h3 id={titleId} className="text-xl font-bold">{topic.name}</h3>
         <p className="mt-1 text-sm ec-text-secondary">
@@ -329,7 +321,7 @@ function TopicDetailModal({
             {attempts.slice(0, 8).map((a) => (
               <li
                 key={a.id}
-                className="flex items-center justify-between rounded-lg border ec-border-color px-3 py-2"
+                className="flex items-center justify-between rounded border ec-border-color px-3 py-2"
               >
                 <span className="ec-text-secondary">
                   {new Date(a.created_at).toLocaleDateString()}
@@ -354,7 +346,7 @@ function TopicDetailModal({
           Practice this topic
         </Link>
       </div>
-    </div>
+    </Sheet>
   )
 }
 

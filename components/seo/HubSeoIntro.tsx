@@ -107,10 +107,17 @@ export function HubSeoIntro({
         {heading}
       </Heading>
       {collapsibleOnMobile ? (
-        <details className="hub-seo-intro-details">
-          <summary className="hub-seo-intro-details-summary">About Exam Room</summary>
-          {body}
-        </details>
+        <>
+          {/* A closed <details> never renders its body, whatever CSS says, so
+              on wide screens (where the summary is hidden) the card used to be
+              a heading over nothing. Wide screens get the body plainly; phones
+              get the collapsible. Each is display:none at the other width. */}
+          <div className="hub-seo-intro-body--wide">{body}</div>
+          <details className="hub-seo-intro-details">
+            <summary className="hub-seo-intro-details-summary">About Exam Room</summary>
+            {body}
+          </details>
+        </>
       ) : (
         body
       )}

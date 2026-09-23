@@ -17,6 +17,7 @@ export default async function ExamSettingsPage({
   return (
     <ExamSection
       returnTo={returnTo}
+      role={profile.role}
       initialProfile={{
         full_name: profile.full_name,
         board: profile.board,

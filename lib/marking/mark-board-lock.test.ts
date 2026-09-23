@@ -163,6 +163,12 @@ async function main() {
   check('/mark seeds the desk from the hint while loading', page.includes('profileBoard: boardHint,'))
   check('/mark lets deep links keep their board past the profile load', page.includes('deepLinkBoardRef.current ? null : markBoardFromProfileBoard'))
   check('/mark hands MarkFlow board changes to the page', page.includes('onBoardChange={handleMarkBoardChange}'))
+  check('/mark retires a foreign-board deep link on a manual board change', page.includes("for (const key of ['subject', 'topic', 'session']) url.searchParams.delete(key)"))
+
+  const postLogin = readFileSync(resolve('lib/auth-post-login.ts'), 'utf8')
+  check('sign-in caches the lockable board', postLogin.includes('writeMarkBoardHint(lockableProfileBoard(data.board, data.role))'))
+  const exam = readFileSync(resolve('components/settings/sections/ExamSection.tsx'), 'utf8')
+  check('exam settings never cache a teacher board', exam.includes('lockableProfileBoard(board, role)'))
 
   const picker = readFileSync(resolve('components/mark/MarkBoardPicker.tsx'), 'utf8')
   check('grid releases the boot attribute once loaded', picker.includes('releaseMarkBoardBoot()'))

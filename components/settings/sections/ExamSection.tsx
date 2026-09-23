@@ -34,6 +34,8 @@ type Props = {
   }
   /** Where to send them after saving, when a page (e.g. /mark) sent them here. */
   returnTo?: string | null
+  /** `user_profiles.role` — a teacher's board is never cached for the /mark lock. */
+  role?: string | null
 }
 
 type SavePayload = Record<string, unknown>
@@ -59,7 +61,7 @@ function daysUntil(dateStr: string): number | null {
   return Math.round((target.getTime() - today.getTime()) / 86_400_000)
 }
 
-export function ExamSection({ initialProfile, returnTo = null }: Props) {
+export function ExamSection({ initialProfile, returnTo = null, role = null }: Props) {
   const router = useRouter()
 
   // Board / level / subjects are shared state: every save posts the current
@@ -88,6 +90,7 @@ export function ExamSection({ initialProfile, returnTo = null }: Props) {
     <div className="space-y-6">
       <SetupCard
         returnTo={returnTo}
+        role={role}
         board={board}
         setBoard={setBoard}
         level={level}
@@ -116,6 +119,7 @@ export function ExamSection({ initialProfile, returnTo = null }: Props) {
 
 function SetupCard({
   returnTo,
+  role,
   board,
   setBoard,
   level,
@@ -127,6 +131,7 @@ function SetupCard({
   onSaved,
 }: {
   returnTo: string | null
+  role: string | null
   board: string
   setBoard: (s: string) => void
   level: string
@@ -157,7 +162,7 @@ function SetupCard({
     setSuccessMsg('Exam setup saved.')
     setSaved(true)
     // /mark locks to the profile board; refresh the cached hint right away.
-    writeMarkBoardHint(lockableProfileBoard(board))
+    writeMarkBoardHint(lockableProfileBoard(board, role))
     onSaved()
   }
 

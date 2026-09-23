@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
 
   const { data: profile } = await supabase
     .from('user_profiles')
-    .select('onboarded, onboarding_completed, full_name, role')
+    .select('onboarded, onboarding_completed, full_name, role, board')
     .eq('id', user.id)
     .maybeSingle()
 
@@ -62,6 +62,9 @@ export async function GET(request: NextRequest) {
       // Surfaced so the header can offer a teacher the way back to their
       // classrooms; this select already ran, so it costs nothing.
       role,
+      // /mark locks to this; the client caches it at sign-in so the very
+      // first visit on a new device never flashes the board grid.
+      board: typeof profile?.board === 'string' ? profile.board : null,
       // Max Resource Vault nav — same probe, no extra round-trip.
       isMax: access === 'max',
       destination,

@@ -1724,12 +1724,29 @@ export default function MarkPage() {
     // profile load below re-reads the URL), so drop it once it disagrees.
     if (typeof window !== 'undefined') {
       const url = new URL(window.location.href)
+      let changed = false
       const urlBoard = url.searchParams.get('board')?.trim().toLowerCase()
       if (urlBoard && urlBoard !== next) {
         url.searchParams.delete('board')
+        changed = true
+      }
+      // A ?subject= / lesson handoff that chose the old board would re-apply
+      // it on refresh and undo "Back to Cambridge" — retire it with the board.
+      const urlSubject = url.searchParams.get('subject')?.trim()
+      if (urlSubject && !subjectMatchesMarkBoard(urlSubject, next)) {
+        for (const key of ['subject', 'topic', 'session']) url.searchParams.delete(key)
+        changed = true
+      }
+      if (url.searchParams.get(MARK_HANDOFF_PARAM) === MARK_HANDOFF_VALUE) {
+        url.searchParams.delete(MARK_HANDOFF_PARAM)
+        changed = true
+      }
+      if (changed) {
         window.history.replaceState(window.history.state, '', url.toString())
       }
     }
+    // The student has chosen; the mount-time deep link no longer speaks for them.
+    deepLinkBoardRef.current = false
     if (selectedSubject && !subjectMatchesMarkBoard(selectedSubject, next)) {
       setSelectedSubject('')
       setSelectedYear('')

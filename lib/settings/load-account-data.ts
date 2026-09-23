@@ -24,7 +24,7 @@ export async function loadAccountContext(): Promise<SettingsContext> {
   const { data: profile } = await supabase
     .from('user_profiles')
     .select(
-      'full_name, username, board, level, subjects, onboarded, onboarding_completed, exam_date, target_grade, stage, primary_goal, created_at, email_exam_reminders, email_product_updates, email_community_replies, email_community_digest, email_community_threads, email_review_digest, email_weekly_report, email_mark_ready'
+      'full_name, username, board, level, subjects, onboarded, onboarding_completed, exam_date, target_grade, stage, primary_goal, created_at, email_exam_reminders, email_product_updates, email_community_replies, email_community_digest, email_community_threads, email_review_digest, email_weekly_report, email_mark_ready, role'
     )
     .eq('id', user.id)
     .maybeSingle()
@@ -66,6 +66,7 @@ export async function loadAccountContext(): Promise<SettingsContext> {
       stage: (profile?.stage as SettingsContext['profile']['stage']) ?? null,
       primary_goal: (profile?.primary_goal as SettingsContext['profile']['primary_goal']) ?? null,
       created_at: (profile?.created_at as string | null) ?? user.created_at ?? null,
+      role: (profile?.role as string | null) ?? null,
     },
     billing: {
       tier: subscription?.tier ?? 'free',

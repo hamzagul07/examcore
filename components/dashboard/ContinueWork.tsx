@@ -21,7 +21,7 @@ export function ContinueWork({ recommendations, subjectLabel }: Props) {
             <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
               Q
             </span>
-            <h2 className="text-title" style={{ margin: 0 }}>
+            <h2 className="text-title m-0">
               Next scripts on the desk
             </h2>
           </div>

@@ -168,7 +168,9 @@ function TrajectoryChart({ series }: { series: Point[] }) {
       {areaPath && <path d={areaPath} fill={`url(#${gradientId})`} />}
       {linePath && (
         <path
+          className="ec-draw-in"
           d={linePath}
+          pathLength={1}
           fill="none"
           stroke="var(--ec-brand)"
           strokeWidth="2.5"
@@ -177,9 +179,11 @@ function TrajectoryChart({ series }: { series: Point[] }) {
         />
       )}
 
-      {series.map((p) => (
+      {series.map((p, i) => (
         <g key={p.attempt.id}>
           <circle
+            className="ec-point-in"
+            style={{ animationDelay: `${520 + i * 60}ms` }}
             cx={xScale(p.x)}
             cy={yScale(p.y)}
             r="5"

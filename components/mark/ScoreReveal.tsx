@@ -252,8 +252,8 @@ export function ScoreReveal({
           }. ${label}.${grade ? ` Predicted grade ${grade}.` : ''}`}
         >
           <div className="ms-score-tally__head">
-            <span className="ms-score-tally__kicker">
-              {paperRef ? paperRef : 'MARKED'}
+            <span className="ms-score-tally__kicker" title={paperRef || undefined}>
+              {paperRef ? paperRef.split(' · ')[0] : 'MARKED'}
             </span>
             <span className="ms-score-tally__stamp" aria-hidden>
               {stampText}

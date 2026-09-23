@@ -787,3 +787,92 @@ select.ec-input {
   opacity: 0;
   transform: scale(0.6);
 }
+
+/* ------------------------------------------------------------
+   Figures that draw themselves
+   ------------------------------------------------------------ */
+
+/* An SVG path with pathLength="1" draws from start to end. */
+@keyframes ec-draw-in {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ec-point-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* The marking-desk fallback bar sat at a static 8% until the cinematic
+   chunk arrived. It now creeps like ink soaking in — never claims a number
+   it does not have. */
+@keyframes ec-ink-seed {
+  from {
+    width: 6%;
+  }
+  to {
+    width: 16%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ec-draw-in {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: ec-draw-in 900ms var(--ec-ease-settle) 120ms forwards;
+  }
+
+  .ec-point-in {
+    transform-box: fill-box;
+    transform-origin: center;
+    opacity: 0;
+    animation: ec-point-in 320ms var(--ec-ease-out) forwards;
+  }
+
+  .ms-mark-wait__seed {
+    width: 6%;
+    animation: ec-ink-seed 4s var(--ec-ease-settle) forwards;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-mark-wait__seed {
+    width: 8%;
+  }
+}
+
+/* Inside a revealed landing section the three "how it works" steps arrive
+   one after another rather than as a block. Transform-only on the wrapper
+   stays as it was; the children add their own short offsets. */
+@media (prefers-reduced-motion: no-preference) {
+  .ms-reveal .ms-step {
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      opacity 420ms var(--ec-ease-out),
+      transform 420ms var(--ec-ease-out);
+  }
+
+  .ms-reveal[data-reveal='in'] .ms-step {
+    opacity: 1;
+    transform: none;
+  }
+
+  .ms-reveal[data-reveal='in'] .ms-step:nth-child(2) {
+    transition-delay: 90ms;
+  }
+
+  .ms-reveal[data-reveal='in'] .ms-step:nth-child(3) {
+    transition-delay: 180ms;
+  }
+}

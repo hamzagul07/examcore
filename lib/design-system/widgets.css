@@ -124,6 +124,43 @@
   min-height: 44px;
 }
 
+/* Header icon buttons (clear, close): one 44px hit area, a hover that shows
+   on paper, a press that goes down onto it, and the shared focus ring. */
+.ms-omni-head .ms-omni-iconbtn {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: var(--ec-text-secondary);
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease,
+    transform var(--ec-dur-press, 120ms) var(--ec-ease-out, ease-out);
+}
+
+@media (hover: hover) {
+  .ms-omni-head .ms-omni-iconbtn:hover {
+    color: var(--ec-text-primary);
+    background: var(--ec-brand-muted);
+    border-color: var(--ec-brand-border);
+  }
+}
+
+.ms-omni-head .ms-omni-iconbtn:active {
+  color: var(--ec-text-primary);
+  background: var(--ec-brand-muted);
+  transform: translateY(1px);
+}
+
+.ms-omni-head .ms-omni-iconbtn:focus-visible {
+  outline: none;
+  box-shadow: var(--ec-focus-ring);
+}
+
 .ms-omni-body {
   flex: 1;
   overflow-y: auto;
@@ -150,6 +187,13 @@
   border-bottom-right-radius: 4px;
 }
 
+/* RichTextRenderer paints its paragraphs --ec-text-secondary (a Tailwind
+   utility, so it beat the bubble's colour): dark grey on the brand green.
+   Inside the student's bubble the bubble's own on-brand colour wins. */
+.ms-omni-msg.user .ms-rich-text :where(p, li, span, strong, em, a, code, h1, h2, h3, h4) {
+  color: inherit;
+}
+
 .ms-omni-msg.bot {
   align-self: flex-start;
   background: var(--ec-bg-soft);
@@ -174,16 +218,95 @@
   gap: 7px;
 }
 
+/* Starter questions are paper slips: they sit on a hard shadow, lift their
+   ink on hover, and press down onto the page (shadow shortens to nothing). */
 .ms-omni-suggest button {
-  font-size: 12.5px;
-  color: var(--ec-brand);
-  background: var(--ec-brand-muted);
-  border: 1px solid var(--ec-brand-border);
-  border-radius: 4px;
-  padding: 6px 13px;
-  cursor: pointer;
   font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.3;
+  text-align: left;
+  color: var(--ec-text-primary);
+  background: var(--ec-paper, var(--ec-surface-raised));
+  border: 1px solid var(--ec-border);
+  border-radius: 4px;
+  padding: 8px 13px;
   min-height: 36px;
+  cursor: pointer;
+  box-shadow: var(--ec-shadow-elevation-1, var(--ec-card-shadow));
+  transition:
+    transform var(--ec-dur-pop, 160ms) var(--ec-ease-out, ease-out),
+    box-shadow var(--ec-dur-pop, 160ms) var(--ec-ease-out, ease-out),
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
+}
+
+@media (hover: hover) {
+  .ms-omni-suggest button:hover {
+    color: var(--ec-brand);
+    background: var(--ec-brand-muted);
+    border-color: var(--ec-brand-border);
+  }
+}
+
+.ms-omni-suggest button:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+  transition-duration: var(--ec-dur-press, 120ms);
+}
+
+.ms-omni-suggest button:focus-visible {
+  outline: none;
+  box-shadow: var(--ec-focus-ring);
+}
+
+/* The slips land with .ec-land (staggered). Its `both` fill would keep the
+   keyframe's translateY(0) applied after landing, and an animation's value
+   outranks the :active transform — so the press never moved. Fill backwards:
+   hidden during the stagger delay, free once landed. */
+.ms-omni-suggest button.ec-land {
+  animation-fill-mode: backwards;
+}
+
+/* Empty state — a paper moment: a small stamp, one Newsreader line, the
+   context hint as a handwritten margin note, then the slips above. */
+.ms-omni-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 16px 4px 6px;
+}
+
+.ms-omni-empty__stamp {
+  margin-bottom: 2px;
+}
+
+.ms-omni-empty__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ec-text-primary);
+  text-wrap: balance;
+}
+
+.ms-omni-empty__note {
+  margin: 0;
+  max-width: 34ch;
+  font-family: var(--ec-font-handwriting, 'Caveat', cursive);
+  font-size: 19px;
+  line-height: 1.3;
+  color: var(--ec-text-secondary);
+  transform: rotate(-0.6deg);
+  transform-origin: left center;
+  text-wrap: pretty;
+}
+
+.ms-omni-empty__suggest {
+  margin-top: 8px;
 }
 
 .ms-omni-input {
@@ -192,6 +315,87 @@
   padding: 12px 14px;
   border-top: 1px solid var(--ec-border);
   background: color-mix(in srgb, var(--ec-surface) 92%, transparent);
+}
+
+/* While an answer streams (or the meter is spent) the field is locked but
+   stays legible — no washed-out 50% opacity; the placeholder says why. */
+.ms-omni-input .ec-input:disabled {
+  color: var(--ec-text-secondary);
+  background: var(--ec-bg-soft);
+  cursor: not-allowed;
+}
+
+.ms-omni-input .ec-input:disabled::placeholder {
+  color: var(--ec-text-secondary);
+}
+
+.ms-omni-input .ec-input[data-streaming='true'] {
+  cursor: wait;
+}
+
+/* Stop while answering: swaps in for the send arrow; the square breathes so
+   the control reads as live. Press goes down onto the paper like the slips. */
+.ms-omni-stop {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: var(--ec-track-label, 0.08em);
+  text-transform: uppercase;
+  color: var(--ec-text-primary);
+  background: var(--ec-paper, var(--ec-surface-raised));
+  border: 1px solid var(--ec-border);
+  border-radius: 4px;
+  box-shadow: var(--ec-shadow-elevation-1, var(--ec-card-shadow));
+  cursor: pointer;
+  animation: ec-chat-enter 220ms var(--ec-ease-out, ease-out) both;
+  transition:
+    transform var(--ec-dur-pop, 160ms) var(--ec-ease-out, ease-out),
+    box-shadow var(--ec-dur-pop, 160ms) var(--ec-ease-out, ease-out),
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
+}
+
+.ms-omni-stop__glyph {
+  width: 9px;
+  height: 9px;
+  background: currentColor;
+  animation: ms-omni-stop-breathe 1.2s ease-in-out infinite;
+}
+
+@keyframes ms-omni-stop-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (hover: hover) {
+  .ms-omni-stop:hover {
+    color: var(--ec-ink-crimson, var(--ec-text-primary));
+    border-color: color-mix(in srgb, var(--ec-ink-crimson, var(--ec-text-primary)) 45%, var(--ec-border));
+    background: color-mix(in srgb, var(--ec-ink-crimson, var(--ec-text-primary)) 6%, var(--ec-paper, var(--ec-surface-raised)));
+  }
+}
+
+.ms-omni-stop:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+  transition-duration: var(--ec-dur-press, 120ms);
+}
+
+.ms-omni-stop:focus-visible {
+  outline: none;
+  box-shadow: var(--ec-focus-ring);
 }
 
 .ms-omni-typing {
@@ -363,16 +567,28 @@
   .ms-omni-answer--streaming,
   .ms-omni-answer--settled,
   .ms-omni-answer-body,
-  .ms-omni-action-enter {
+  .ms-omni-action-enter,
+  .ms-omni-stop,
+  .ms-omni-stop__glyph {
     animation: none !important;
   }
 
-  .ms-omni-answer {
+  .ms-omni-answer,
+  .ms-omni-head .ms-omni-iconbtn,
+  .ms-omni-suggest button,
+  .ms-omni-stop {
     transition: none;
   }
 
-  .ms-omni-answer--settled:hover {
+  .ms-omni-answer--settled:hover,
+  .ms-omni-head .ms-omni-iconbtn:active,
+  .ms-omni-suggest button:active,
+  .ms-omni-stop:active {
     transform: none;
+  }
+
+  .ms-omni-stop__glyph {
+    opacity: 1;
   }
 }
 

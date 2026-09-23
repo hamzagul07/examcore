@@ -26,7 +26,7 @@ export function MarksLeakingStrip({ subjectCode, subjectLabel, critical }: Props
           </span>
           <div>
             <p className="ec-eyebrow mb-0">Marks you&apos;re leaking</p>
-            <h2 id="marks-leaking-title" className="text-title" style={{ margin: 0 }}>
+            <h2 id="marks-leaking-title" className="text-title m-0">
               Fix these first
             </h2>
             <p className="text-caption mt-1">

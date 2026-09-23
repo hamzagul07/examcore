@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { useOmniAI } from '@/lib/omni-ai/context'
 import { ChatPanel } from './ChatPanel'
 
@@ -37,11 +37,18 @@ const CONTEXT_SUGGESTIONS: Record<string, string[]> = {
   ],
 }
 
+// The motion tokens from premium-craft.css, as framer needs the raw curves:
+// --ec-ease-out for fades and the landing sheet, --ec-ease-drawer for the
+// side drawer. Durations follow --ec-dur-menu (in) and shorter exits.
+const EASE_OUT: [number, number, number, number] = [0.23, 1, 0.32, 1]
+const EASE_DRAWER: [number, number, number, number] = [0.32, 0.72, 0, 1]
+
 /**
  * Global Omni-AI shell — opens from nav search (⌘K) or the Ask MarkScheme FAB.
  */
 export function OmniAI() {
   const { isOpen, setIsOpen, context } = useOmniAI()
+  const reduceMotion = useReducedMotion()
   const isLanding = context.type === 'landing'
   const suggestions = isLanding
     ? LANDING_SUGGESTIONS
@@ -56,20 +63,32 @@ export function OmniAI() {
     }
   }, [isOpen])
 
+  // Backdrops fade in under the panel and leave a touch faster than they came.
+  const fadeIn = { duration: reduceMotion ? 0 : 0.2, ease: EASE_OUT }
+  const fadeOut = { duration: reduceMotion ? 0 : 0.16, ease: EASE_OUT }
+
   return (
     <AnimatePresence>
       {isOpen ? (
         isLanding ? (
-          <div
+          <motion.div
             key="landing"
             className="ms-cmdk-overlay"
             onClick={() => setIsOpen(false)}
             role="presentation"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: fadeOut }}
+            transition={fadeIn}
           >
             <motion.div
-              initial={{ y: 16 }}
+              initial={{ y: reduceMotion ? 0 : 16 }}
               animate={{ y: 0 }}
-              exit={{ y: 16 }}
+              exit={{
+                y: reduceMotion ? 0 : 12,
+                transition: { duration: reduceMotion ? 0 : 0.16, ease: EASE_OUT },
+              }}
+              transition={{ duration: reduceMotion ? 0 : 0.28, ease: EASE_OUT }}
               className="ms-omni-panel ms-omni-panel--landing"
               onClick={(e) => e.stopPropagation()}
             >
@@ -81,19 +100,26 @@ export function OmniAI() {
                 onClose={() => setIsOpen(false)}
               />
             </motion.div>
-          </div>
+          </motion.div>
         ) : (
           <motion.div key="drawer" className="contents">
-            <div
+            <motion.div
               className="fixed inset-0 z-[60] ec-modal-backdrop md:hidden"
               onClick={() => setIsOpen(false)}
               aria-hidden
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, transition: fadeOut }}
+              transition={fadeIn}
             />
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              exit={{
+                x: '100%',
+                transition: { duration: reduceMotion ? 0 : 0.2, ease: EASE_DRAWER },
+              }}
+              transition={{ duration: reduceMotion ? 0 : 0.28, ease: EASE_DRAWER }}
               className="fixed inset-y-0 right-0 z-[61] w-full md:w-[440px]"
             >
               <div className="ms-omni-panel ms-omni-panel--drawer h-full">

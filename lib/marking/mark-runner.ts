@@ -60,7 +60,7 @@ import {
 } from '@/lib/marking/contradicted-band'
 import {
   needsTiebreak,
-  pickMedianCandidate,
+  mergeMedianByCriterion,
 } from '@/lib/marking/mark-tiebreak'
 
 /** Everything `generateFullMarksRewrite` needs, captured so the rewrite can be
@@ -835,6 +835,8 @@ export async function markSingleQuestion(params: {
           style: markingStyle,
           firstMarks: Number(markingResult.marks_earned),
           verifyMarks: Number(verified.marks_earned),
+          firstCriteria: markingResult.criteria_results,
+          verifyCriteria: verified.criteria_results,
         })
 
         if (tie.needed) {
@@ -849,14 +851,29 @@ export async function markSingleQuestion(params: {
               ),
               { authoritativeTotal, criterionMax, pointsTotal }
             )
-            const chosen = pickMedianCandidate([
+            // Per objective where the result is marked per objective (Cambridge
+            // grids, IB criteria, the essay part of a mixed question); whole
+            // candidate otherwise. Reconciled again so the totals are code's.
+            const settled = mergeMedianByCriterion([
               { marks: Number(markingResult.marks_earned), payload: markingResult },
               { marks: Number(verified.marks_earned), payload: verified },
               { marks: Number(third.marks_earned), payload: third },
             ])
+            const chosen = {
+              marks: Number(
+                reconcileMarkResult(settled.payload, { authoritativeTotal, criterionMax, pointsTotal })
+                  .marks_earned
+              ),
+              payload: settled.payload,
+              perObjective: settled.merged
+                ? ` (per objective: ${Object.entries(settled.perCriterion)
+                    .map(([k, v]) => `${k} ${v.join('/')}`)
+                    .join(', ')})`
+                : '',
+            }
             console.warn(
               `[mark] median of ${markingResult.marks_earned}/` +
-                `${verified.marks_earned}/${third.marks_earned} = ${chosen.marks}`
+                `${verified.marks_earned}/${third.marks_earned} = ${chosen.marks}${chosen.perObjective}`
             )
             // The payload travels with the number, so the justification the
             // student reads is the one that argued for the mark they got.

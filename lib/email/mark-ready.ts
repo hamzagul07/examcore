@@ -3,9 +3,13 @@ import 'server-only'
 import { sendEmailAsync } from '@/lib/email/send'
 import {
   EMAIL_BODY,
+  EMAIL_BORDER,
   EMAIL_BRAND as BRAND,
   EMAIL_INK as INK,
+  EMAIL_MUTED,
+  EMAIL_SANS,
   EMAIL_SERIF,
+  EMAIL_SURFACE,
   escapeHtml as esc,
   renderBrandedEmailHtml,
   statCell,
@@ -13,12 +17,13 @@ import {
 import { SITE_URL } from '@/lib/site-config'
 
 /**
- * "Your mark is ready" — sent when a mark finishes after the student has left.
+ * "Your mark is ready" — sent for every mark a signed-in student runs.
  *
  * Marking a handwritten script against a real scheme costs 2–6 minutes and no
- * amount of tuning takes that to zero. What it does not have to cost is the
- * student's attention for the whole of it: the run now survives the tab closing,
- * and this is what turns a three-minute stare into a three-minute absence.
+ * amount of tuning takes that to zero. The run survives the tab closing, and
+ * this mail is the copy of the score that survives everything else — so the
+ * copy has to read just as well to someone who watched it land as to someone
+ * who went to make tea.
  *
  * Deliberately carries the score and nothing else of substance. Two reasons:
  * the mark is the one fact worth an inbox interruption, and the marking detail
@@ -38,7 +43,75 @@ export type MarkReadyPayload = {
   paperRef?: string | null
   /** What they predicted during the wait, when they answered the prompt. */
   predictedMarks?: number | null
+  /** The examiner's weak-topic tags for this answer, e.g. "Analysis (AO3)". */
+  weakTopics?: string[] | null
+  /**
+   * The examiner's shareable takeaway — generated under its own rules (see
+   * SHAREABLE_TAKEAWAY_BLOCK) to be read outside the app. The in-app
+   * "what to study next" is deliberately not accepted here: it is written
+   * beside the scheme and may quote it.
+   */
+  shareableTakeaway?: string | null
+  /** Where the next mark starts — /mark with the subject already chosen. */
+  nextMarkHref?: string | null
   unsubscribeHref: string
+}
+
+const STUDY_NOTE_MAX = 320
+
+/**
+ * Scheme-speak. Published mark schemes talk in a dialect — award codes,
+ * "accept", "condone", "one mark for", "cao", "ecf" — and model prose that
+ * paraphrases one tends to keep it. Anything in this dialect stays behind the
+ * app; a false positive costs a shorter email, a false negative costs scheme
+ * text in an inbox we cannot pull back. Conservative on purpose.
+ */
+const SCHEME_SPEAK =
+  /mark ?schemes?|\b[BMA] ?\d{1,2}[a-z]?\b|\b(?:award(?:ed|s|ing)?|condon(?:e|ed|es)|penali[sz](?:e|ed|es))\b|\b(?:accept|allow|ignore|reject)\b|\bmarks? (?:for|if|each|per)\b|\b(?:one|two|three|four|five|six|\d+) marks?\b|\b(?:cao|oe|ecf|isw|bod|dep|ft|www)\b|\bmax(?:imum)?\s*(?:of\s*)?\d/i
+
+/**
+ * The takeaway is generated to be shareable, so this is the backstop, not
+ * the guard: if the model slipped into the scheme's dialect anyway, the
+ * note is dropped rather than risked, and published scheme text stays
+ * behind the app. The rest is cut to one inbox-sized paragraph, at a
+ * sentence end where possible.
+ */
+export function studyNoteForEmail(raw: string | null | undefined): string | null {
+  // Markdown emphasis shows up literally in mail; the model is told not to
+  // use it, and a stray pair of asterisks is not worth losing the note over.
+  const text = raw?.replace(/\*+/g, '').replace(/\s+/g, ' ').trim()
+  if (!text) return null
+  if (SCHEME_SPEAK.test(text)) return null
+  if (text.length <= STUDY_NOTE_MAX) return text
+  const head = text.slice(0, STUDY_NOTE_MAX)
+  const sentenceEnd = Math.max(head.lastIndexOf('. '), head.lastIndexOf('! '), head.lastIndexOf('? '))
+  if (sentenceEnd > STUDY_NOTE_MAX * 0.5) return head.slice(0, sentenceEnd + 1)
+  const wordEnd = head.lastIndexOf(' ')
+  return `${head.slice(0, wordEnd > 0 ? wordEnd : STUDY_NOTE_MAX).trimEnd()}…`
+}
+
+/** Imperatives and clause connectors: a marking point, not a topic name. */
+const TAG_IS_A_CLAUSE =
+  /^(?:state|explain|use|give|show|identify|describe|define|calculate|draw|label|write|include|mention|refer|must|should|need|needs|correctly)\b|\b(?:that|which|when|because|if|so|than|must|should|needs?)\b/i
+
+/** Up to three short tags; anything long, sentence-shaped or scheme-shaped is not a tag. */
+export function weakTopicsForEmail(raw: string[] | null | undefined): string[] {
+  if (!Array.isArray(raw)) return []
+  const seen = new Set<string>()
+  const out: string[] = []
+  for (const item of raw) {
+    const t = typeof item === 'string' ? item.replace(/\s+/g, ' ').trim() : ''
+    if (!t || t.length > 48 || seen.has(t.toLowerCase())) continue
+    // A tag is a topic name ("Analysis (AO3)"), not a marking point. A
+    // marking point reads as an instruction or a clause — "State that demand
+    // shifts right" — which is the scheme's wording, not a topic.
+    if (t.split(' ').length > 5 || /[.!?]$/.test(t) || SCHEME_SPEAK.test(t)) continue
+    if (TAG_IS_A_CLAUSE.test(t)) continue
+    seen.add(t.toLowerCase())
+    out.push(t)
+    if (out.length === 3) break
+  }
+  return out
 }
 
 /** Short, honest read on the score. Never congratulatory about a low mark. */
@@ -64,6 +137,8 @@ export function buildMarkReadyEmail(payload: MarkReadyPayload): {
     predictedMarks,
     unsubscribeHref,
   } = payload
+  const weakTopics = weakTopicsForEmail(payload.weakTopics)
+  const studyNote = studyNoteForEmail(payload.shareableTakeaway)
 
   const href = `${SITE_URL}/dashboard/attempt/${attemptId}`
   const greeting = recipientName?.trim() || 'there'
@@ -94,19 +169,37 @@ export function buildMarkReadyEmail(payload: MarkReadyPayload): {
   const para = (inner: string) =>
     `<p style="margin:0 0 18px;font-family:${EMAIL_SERIF};font-size:16px;line-height:1.65;color:${EMAIL_BODY}">${inner}</p>`
 
+  // The two things worth carrying out of the app: where the marks went, and
+  // what to do about it. Both are the examiner's own words about this answer.
+  const label = (inner: string) =>
+    `<div style="font-family:${EMAIL_SANS};font-size:10px;color:${EMAIL_MUTED};text-transform:uppercase;letter-spacing:.12em;margin:0 0 8px">${inner}</div>`
+  const topicsBlock = weakTopics.length
+    ? `<div style="margin:0 0 18px">${label('Where the marks went')}${weakTopics
+        .map(
+          (t) =>
+            `<span style="display:inline-block;padding:5px 11px;margin:0 6px 6px 0;border:1px solid ${EMAIL_BORDER};border-radius:999px;font-family:${EMAIL_SANS};font-size:12px;line-height:1.3;color:${INK}">${esc(t)}</span>`
+        )
+        .join('')}</div>`
+    : ''
+  const studyBlock = studyNote
+    ? `<div style="margin:0 0 22px;padding:14px 16px;border-left:3px solid ${BRAND};background:${EMAIL_SURFACE}">${label('What to do next')}<div style="font-family:${EMAIL_SERIF};font-size:15px;line-height:1.6;color:${EMAIL_BODY}">${esc(studyNote)}</div></div>`
+    : ''
+
   const bodyHtml =
     para(`Hi ${esc(greeting)},`) +
     para(
-      `You closed the tab while ${esc(what)} was being marked, so here it is. Nothing was lost — the examiner finished the job without you.`
+      `Marking for ${esc(what)} is finished — here is your score, with every mark broken down on your result page.`
     ) +
     statsRow +
     predictionLine +
+    topicsBlock +
+    studyBlock +
     para(verdictLine(pct))
 
   const text = [
     `Hi ${greeting},`,
     '',
-    `You closed the tab while ${what} was being marked, so here it is. Nothing was lost — the examiner finished the job without you.`,
+    `Marking for ${what} is finished — here is your score, with every mark broken down on your result page.`,
     '',
     `Marks awarded: ${marksEarned}/${totalMarks} (${pct}%)`,
     gap == null
@@ -115,9 +208,13 @@ export function buildMarkReadyEmail(payload: MarkReadyPayload): {
         ? `You predicted ${predictedMarks} — exactly right.`
         : `You predicted ${predictedMarks} and scored ${marksEarned}.`,
     '',
+    weakTopics.length ? `Where the marks went: ${weakTopics.join(', ')}` : '',
+    studyNote ? `What to do next: ${studyNote}` : '',
+    '',
     verdictLine(pct),
     '',
     `See every mark: ${href}`,
+    payload.nextMarkHref ? `Mark another question: ${payload.nextMarkHref}` : '',
   ]
     .filter((line, i, all) => !(line === '' && all[i - 1] === ''))
     .join('\n')
@@ -130,6 +227,16 @@ export function buildMarkReadyEmail(payload: MarkReadyPayload): {
       preheader: `${marksEarned}/${totalMarks} on ${what}. Every mark is broken down inside.`,
       bodyHtml,
       cta: { label: 'See every mark →', href },
+      // A receipt ends at the CTA; an entry point does not. The next mark,
+      // with the subject already chosen, sits one tap under the score.
+      secondaryLinks: payload.nextMarkHref
+        ? [
+            {
+              label: `Mark another ${subjectLabel?.trim() ? `${subjectLabel.trim()} ` : ''}question`,
+              href: payload.nextMarkHref,
+            },
+          ]
+        : undefined,
       unsubscribe: {
         label: 'Stop these mark notifications',
         href: unsubscribeHref,

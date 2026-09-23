@@ -7,11 +7,13 @@ import {
   useImperativeHandle,
   useMemo,
   useReducer,
+  useRef,
   useState,
   type ReactNode,
 } from 'react'
 import type { UploadPage } from '@/components/upload/PageUploader'
 import type { MarkExamBoard } from '@/components/mark/MarkBoardPicker'
+import type { MarkBoardLock } from '@/lib/marking/mark-board-lock'
 import { DraftGuard } from './DraftGuard'
 import {
   CaptureScreen,
@@ -46,6 +48,14 @@ type SubjectOption = { code: string; label: string }
 
 type Props = {
   board: MarkExamBoard
+  /** Signed-in students mark on their profile board — see lib/marking/mark-board-lock.ts. */
+  boardLock?: MarkBoardLock | null
+  /**
+   * A board picked inside the flow. The draft only reaches the host on submit,
+   * so without this the page's own board, funnel memory and ?board= would all
+   * sit on the old value until then.
+   */
+  onBoardChange?: (board: MarkExamBoard) => void
   subjectCode: string | null
   subjectOptions: SubjectOption[]
   /** Cambridge past-paper catalog for Capture (optional). */
@@ -128,6 +138,8 @@ function canContinue(
 export const MarkFlow = forwardRef<MarkFlowHandle, Props>(function MarkFlow(
   {
     board,
+    boardLock = null,
+    onBoardChange,
     subjectCode,
     subjectOptions,
     pastPaperCatalog = null,
@@ -168,11 +180,21 @@ export const MarkFlow = forwardRef<MarkFlowHandle, Props>(function MarkFlow(
   )
 
   // Seed board/subject from the host when the draft has not chosen them yet.
+  // A dirty draft keeps its own board choice — unless it is still sitting on
+  // the board the host used to have, in which case the host's late arrival
+  // (the profile load) is the real choice and typing first must not pin the
+  // default board under an IB student.
+  const prevHostBoard = useRef(board)
   useEffect(() => {
     const patch: Partial<MarkFlowDraft> = {}
-    if (board && ctx.draft.board !== board && !ctx.draft.dirty) {
+    if (
+      board &&
+      ctx.draft.board !== board &&
+      (!ctx.draft.dirty || ctx.draft.board === prevHostBoard.current)
+    ) {
       patch.board = board
     }
+    prevHostBoard.current = board
     if (subjectCode && !ctx.draft.subjectCode) {
       patch.subjectCode = subjectCode
     }
@@ -265,6 +287,8 @@ export const MarkFlow = forwardRef<MarkFlowHandle, Props>(function MarkFlow(
       {ctx.state === 'capture' ? (
         <CaptureScreen
           draft={ctx.draft}
+          boardLock={boardLock}
+          onBoardChange={onBoardChange}
           pages={pages}
           pdfFile={pdfFile}
           questionPhoto={questionPhoto}

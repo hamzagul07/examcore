@@ -447,8 +447,8 @@ export function PreferencesSection({
               </span>
               <span className="mt-0.5 block text-sm text-[var(--ec-text-secondary)]">
                 Marking takes a few minutes, so you can close the tab and get on
-                with something. We&apos;ll email your marks when they land — only
-                if you left before they were ready.
+                with something. We&apos;ll email your score every time a mark
+                lands, so you have a copy even if you watched it finish.
               </span>
             </span>
             <span className="relative inline-flex shrink-0 items-center">

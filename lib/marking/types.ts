@@ -172,6 +172,13 @@ export type MarkingAIResult = {
   summary: string
   weak_topics: string[]
   what_to_study_next: string
+  /**
+   * The one line written to leave the app (the mark-ready email). Generated
+   * under SHAREABLE_TAKEAWAY_BLOCK: the examiner's own words about the
+   * student's working, never scheme wording or award codes. "" when the
+   * model had nothing it could say within those rules.
+   */
+  shareable_takeaway?: string
   estimated_marks_explanation?: string
   syllabus_tags?: string[]
   marking_style?: MarkingStyle

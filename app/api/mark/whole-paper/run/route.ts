@@ -28,6 +28,8 @@ import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-se
 import { requireTeacher } from '@/lib/teacher-auth'
 import { effectiveAccess } from '@/lib/billing/access'
 import { hasPriorityMarking } from '@/lib/billing/features'
+import { queueMarkReady } from '@/lib/marking/notify-mark-ready'
+import { namedSubjectOrNull } from '@/lib/marking/subject-name'
 import { withRequestDeadline } from '@/lib/ai/request-deadline'
 
 // Marks up to 15 questions; give headroom like /mark/process. Kept in sync with
@@ -160,17 +162,21 @@ async function handleRun(request: NextRequest) {
       priority: job.priority ?? 'standard',
     }
 
-    // Atomically claim the job: flip phase→'marking' only if it is not already
-    // 'marking'. Postgres serializes the row update, so of two near-simultaneous
-    // POSTs exactly one matches the guard and proceeds; the loser gets 0 rows
-    // and returns already_running. This closes the read-then-write (TOCTOU)
-    // window that previously let a duplicate request mark the paper — and
-    // reserve the quota — twice.
+    // Atomically claim the job: flip phase→'marking' only from a phase that is
+    // actually runnable. Postgres serializes the row update, so of two
+    // near-simultaneous POSTs exactly one matches the guard and proceeds; the
+    // loser gets 0 rows and returns already_running. This closes the
+    // read-then-write (TOCTOU) window that let a duplicate request mark the
+    // paper — and reserve the quota — twice.
+    //
+    // The guard used to be `!= 'marking'`, which let a request that had waited
+    // on the winner's row lock re-claim the now-*complete* job, mark it again
+    // and, since every mark is emailed, mail the student twice.
     const { data: claimed } = await supabaseAdmin
       .from('attempts')
       .update({ ai_marking: markingState, marks_earned: 0, total_marks: 0 })
       .eq('id', attemptId)
-      .neq('ai_marking->>phase', 'marking')
+      .in('ai_marking->>phase', ['queued', 'failed'])
       .select('id')
     if (!claimed || claimed.length === 0) {
       return NextResponse.json({ status: 'already_running' })
@@ -319,6 +325,42 @@ async function handleRun(request: NextRequest) {
       })
       .eq('id', attemptId)
 
+    // Every signed-in mark is emailed, whole papers included — the same
+    // score-and-link mail as a single question, once, at completion.
+    // Per-question retries re-total the attempt but do not mail again.
+    // Guests (user_id null) are dropped inside notifyMarkReady.
+    // Weak topics across the paper, most frequent first — the per-question
+    // study notes are too many to mail, the pattern across them is the point.
+    const topicCounts = new Map<string, number>()
+    for (const r of results) {
+      for (const t of r.ai_marking?.weak_topics ?? []) {
+        if (typeof t === 'string' && t.trim()) {
+          topicCounts.set(t.trim(), (topicCounts.get(t.trim()) ?? 0) + 1)
+        }
+      }
+    }
+    // One takeaway for the whole paper: the question that lost the most marks
+    // is where the next hour of practice should go.
+    const costliest = [...results]
+      .filter((r) => typeof r.ai_marking?.shareable_takeaway === 'string' && r.ai_marking.shareable_takeaway.trim())
+      .sort((a, b) => (b.total_marks - b.marks_earned) - (a.total_marks - a.marks_earned))[0]
+    const readyNotice = {
+      // Only the student who ran their own paper gets the mail. A teacher
+      // marking a pupil's script is watching the result; the pupil did not
+      // ask for a score in their inbox and the copy would not explain it.
+      userId: user?.id && user.id === markUserId ? markUserId : null,
+      attemptId,
+      marksEarned: wholePaper.marks_earned,
+      totalMarks: wholePaper.total_marks,
+      subjectLabel: namedSubjectOrNull(paperCode.split('/')[0] ?? null),
+      subjectCode: paperCode.split('/')[0] ?? null,
+      paperRef: `${paperCode} ${paperSession}`.trim(),
+      weakTopics: [...topicCounts.entries()]
+        .sort((a, b) => b[1] - a[1])
+        .map(([topic]) => topic),
+      shareableTakeaway: costliest?.ai_marking?.shareable_takeaway ?? null,
+    }
+
     // Guests are charged at whole-paper/init, not here.
     //
     // This block used to increment the IP counter after the paper had already
@@ -338,6 +380,10 @@ async function handleRun(request: NextRequest) {
       }
       allowanceBlock = allowanceForResponse(await computeAllowance(markUserId))
     }
+
+    // Queued last: the reservation finalize above can still throw and flip
+    // this attempt to failed, and "your mark is ready" must not outrun that.
+    await queueMarkReady(readyNotice)
 
     return NextResponse.json(
       await signMarkPayloadForClient({

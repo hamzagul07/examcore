@@ -1,17 +1,21 @@
 import 'server-only'
 
+import { after } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
 import { sendMarkFailedEmail, sendMarkReadyEmail } from '@/lib/email/mark-ready'
 import { unsubscribeUrl } from '@/lib/community/email-unsubscribe'
+import { SITE_URL } from '@/lib/site-config'
 
 /**
- * Tell a student their mark finished after they left.
+ * Email a student their score.
  *
- * The gate is deliberately narrow. This only fires when the client had already
- * disconnected — a student watching the progress bar gets the result on screen
- * and must never also get mail about it. Everything here is best-effort: a
- * notification failure cannot be allowed to fail a mark that already succeeded.
+ * Every signed-in mark gets one, whether the student watched it land or had
+ * closed the tab — the screen is the fast path, the mail is the copy that
+ * outlives it. The only gates are the ones that make an email pointless:
+ * no account, no inbox, no usable total, or a student who switched these off
+ * (`email_mark_ready`). Everything here is best-effort: a notification
+ * failure cannot be allowed to fail a mark that already succeeded.
  */
 
 const supabaseAdmin = createClient(
@@ -27,6 +31,25 @@ export type MarkReadyNotifyInput = {
   subjectLabel?: string | null
   paperRef?: string | null
   predictedMarks?: number | null
+  weakTopics?: string[] | null
+  /** The examiner's shareable takeaway (generated to leave the app). */
+  shareableTakeaway?: string | null
+  /** Catalog code for the "mark another" link; omitted → plain /mark. */
+  subjectCode?: string | null
+}
+
+/**
+ * Hand the notification to `after()` so the platform keeps the invocation
+ * alive until it settles — the one hop a mark-ready mail cannot afford to
+ * lose once the response has gone. Outside a request scope (tests, scripts)
+ * there is nothing to defer to, so send inline.
+ */
+export async function queueMarkReady(input: MarkReadyNotifyInput): Promise<void> {
+  try {
+    after(() => notifyMarkReady(input))
+  } catch {
+    await notifyMarkReady(input)
+  }
 }
 
 /**
@@ -62,8 +85,8 @@ export async function notifyMarkReady(
 ): Promise<boolean> {
   const { userId, attemptId } = input
   // Guests have no inbox we know of and no result page to send them to. They
-  // are the population this cannot help, and the reason the wait screen still
-  // tells signed-out students to stay put.
+  // are the population this cannot help, and the reason the wait screen only
+  // promises mail to signed-in students.
   if (!userId || !attemptId) return false
 
   const total = input.totalMarks ?? 0
@@ -85,6 +108,11 @@ export async function notifyMarkReady(
       subjectLabel: input.subjectLabel ?? null,
       paperRef: input.paperRef ?? null,
       predictedMarks: input.predictedMarks ?? null,
+      weakTopics: input.weakTopics ?? null,
+      shareableTakeaway: input.shareableTakeaway ?? null,
+      nextMarkHref: input.subjectCode
+        ? `${SITE_URL}/mark?subject=${encodeURIComponent(input.subjectCode)}`
+        : `${SITE_URL}/mark`,
       unsubscribeHref: recipient.unsubscribeHref,
     })
     return true

@@ -63,6 +63,7 @@ import { MarkFeedbackPrompt } from '@/components/mark/MarkFeedbackPrompt'
 import { FirstMarkPremiumNote } from '@/components/billing/FirstMarkPremiumNote'
 import { PredictScorePrompt } from '@/components/mark/PredictScorePrompt'
 import { RunningElsewhereNotice } from '@/components/mark/RunningElsewhereNotice'
+import { MarkEmailedNote } from '@/components/mark/MarkEmailedNote'
 import {
   clearPendingMark,
   noteFinishedMark,
@@ -89,6 +90,9 @@ import {
   subjectMatchesMarkBoard,
   type MarkExamBoard,
 } from '@/components/mark/MarkBoardPicker'
+import { lockableProfileBoard, resolveMarkBoardLock } from '@/lib/marking/mark-board-lock'
+import { clearMarkBoardHint, writeMarkBoardHint } from '@/lib/marking/mark-board-hint'
+import { useMarkBoardHint } from '@/lib/hooks/useMarkBoardHint'
 import {
   getEdexcelMarkableUnitCodes,
   resolveEdexcelUnitLabel,
@@ -362,6 +366,21 @@ export default function MarkPage() {
   const [profileSubjectCodes, setProfileSubjectCodes] = useState<string[]>([])
   const [, setProfileLevel] = useState('A-Level')
   const [profileBoard, setProfileBoard] = useState('Cambridge International')
+  /** `user_profiles.board` as saved — null until a signed-in profile loads (guests stay null). */
+  const [profileBoardId, setProfileBoardId] = useState<string | null>(null)
+  /** `user_profiles.role` — teachers keep the full board grid. */
+  const [profileRole, setProfileRole] = useState<string | null>(null)
+  /** Cached profile board so the locked line renders before the profile round-trip. */
+  const boardHint = useMarkBoardHint()
+  /**
+   * A deep link chose the board at mount (?board=, a lesson handoff, ?subject=).
+   * The profile load must not overwrite that: before the lock a student could
+   * re-pick from the grid, now the desk has to honour the link it was opened by.
+   */
+  const deepLinkBoardRef = useRef(false)
+  /** Where the mark-ready email goes; null for guests. */
+  const [profileEmail, setProfileEmail] = useState<string | null>(null)
+  const [emailMarkReady, setEmailMarkReady] = useState(true)
   /** undefined = not loaded yet; null = signed-in with no target. */
   const [targetGrade, setTargetGrade] = useState<string | null | undefined>(undefined)
   const [gradeAskDismissed, setGradeAskDismissed] = useState(false)
@@ -518,6 +537,7 @@ export default function MarkPage() {
       ?.trim()
       .toLowerCase()
     if (!isUrlMarkBoard(urlBoard)) return
+    deepLinkBoardRef.current = true
     setSelectedMarkBoard(urlBoard)
     rememberFunnelBoard(urlBoard)
     if (!boardSupportsPastPaperLookup(urlBoard)) {
@@ -527,6 +547,36 @@ export default function MarkPage() {
     }
   }, [])
 
+  // The cached profile board becomes the desk's board before the profile
+  // round-trip lands. Without this an IB student read "Cambridge International
+  // — Opened from a link — your board is IB Diploma" for the half second the
+  // desk still sat on its default. A deep link that chose a board keeps it.
+  useEffect(() => {
+    if (!profileLoading || !boardHint || deepLinkBoardRef.current) return
+    const seeded = resolveMarkBoardLock({
+      profileBoard: boardHint,
+      selectedBoard: selectedMarkBoard,
+    })
+    if (seeded.mode !== 'locked' || seeded.profileBoard === selectedMarkBoard) return
+    setSelectedMarkBoard(seeded.profileBoard)
+    rememberFunnelBoard(seeded.profileBoard)
+    if (!boardSupportsPastPaperLookup(seeded.profileBoard)) {
+      setUploadMode('single_question')
+      setMarkIntent('practice_question')
+      setShowManualPaper(false)
+    }
+    // Only the hint and the loading flag matter; selectedMarkBoard is read, not followed.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [boardHint, profileLoading])
+
+  // A board saved in another tab (exam settings) reaches this one through the
+  // hint; a sign-out elsewhere clears it. The resolver validates the value.
+  useEffect(() => {
+    if (profileLoading || profileBoardId === null) return
+    if (boardHint !== profileBoardId) setProfileBoardId(boardHint)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [boardHint])
+
   useEffect(() => {
     let cancelled = false
     async function loadProfile() {
@@ -535,14 +585,21 @@ export default function MarkPage() {
         const {
           data: { user },
         } = await supabase.auth.getUser()
-        if (!user || cancelled) return
+        if (cancelled) return
+        if (!user) {
+          // Signed out on this device: never lock a guest to a stale board.
+          clearMarkBoardHint()
+          return
+        }
         const { data: profile } = await supabase
           .from('user_profiles')
-          .select('subjects, level, board, target_grade, exam_date')
+          .select('subjects, level, board, target_grade, exam_date, role, email_mark_ready')
           .eq('id', user.id)
           .maybeSingle()
         const profileLevel = profile?.level ?? 'A-Level'
-        const boardName = profile?.board ?? 'Cambridge International'
+        const savedBoard =
+          typeof profile?.board === 'string' && profile.board.trim() ? profile.board.trim() : null
+        const boardName = savedBoard ?? 'Cambridge International'
         const subjectNames: string[] = profile?.subjects?.length
           ? profile.subjects
           : defaultSubjectsForProfile(boardName, profileLevel)
@@ -554,11 +611,22 @@ export default function MarkPage() {
           ?.trim()
           .toLowerCase()
         const fromUrl: MarkExamBoard | null = isUrlMarkBoard(urlBoard) ? urlBoard : null
-        const markBoard = fromUrl ?? markBoardFromProfileBoard(boardName)
+        // A lesson handoff or ?subject= already chose the board at mount; the
+        // profile fills in subjects and the lock, but does not move the desk.
+        const markBoard: MarkExamBoard | null =
+          fromUrl ?? (deepLinkBoardRef.current ? null : markBoardFromProfileBoard(boardName))
         const fallbackCode = defaultMarkSubjectCode(profileLevel, boardName)
         if (!cancelled) {
           setProfileLevel(profileLevel)
           setProfileBoard(boardName)
+          setProfileBoardId(savedBoard)
+          setProfileRole(typeof profile?.role === 'string' ? profile.role : null)
+          // Cache only a board that will actually lock (never a teacher's, an
+          // unknown one, or one whose marking pack is off) — the boot
+          // placeholder must never hide a grid that is about to show.
+          writeMarkBoardHint(lockableProfileBoard(savedBoard, profile?.role))
+          setProfileEmail(user.email ?? null)
+          setEmailMarkReady(profile?.email_mark_ready !== false)
           setTargetGrade(
             typeof profile?.target_grade === 'string' && profile.target_grade.trim()
               ? profile.target_grade.trim()
@@ -571,12 +639,14 @@ export default function MarkPage() {
               : null
           )
           setProfileSubjectCodes(codes.length ? codes : [fallbackCode])
-          setSelectedMarkBoard(markBoard)
-          rememberFunnelBoard(markBoard)
-          if (!boardSupportsPastPaperLookup(markBoard)) {
-            setUploadMode('single_question')
-            setMarkIntent('practice_question')
-            setShowManualPaper(false)
+          if (markBoard) {
+            setSelectedMarkBoard(markBoard)
+            rememberFunnelBoard(markBoard)
+            if (!boardSupportsPastPaperLookup(markBoard)) {
+              setUploadMode('single_question')
+              setMarkIntent('practice_question')
+              setShowManualPaper(false)
+            }
           }
         }
       } catch {
@@ -778,6 +848,7 @@ export default function MarkPage() {
     // below, which waits for the options to exist.
     if (handoff.subjectCode) {
       const markBoard = coerceMarkExamBoard(resolveBoard(handoff.subjectCode))
+      deepLinkBoardRef.current = true
       setSelectedMarkBoard(markBoard)
       setPendingHandoffSubject({
         codes: subjectCandidates(handoff.subjectCode),
@@ -804,6 +875,7 @@ export default function MarkPage() {
     setShowManualPaper(true)
     {
       const markBoard = coerceMarkExamBoard(resolveBoard(subject))
+      deepLinkBoardRef.current = true
       setSelectedMarkBoard(markBoard)
       if (!boardSupportsPastPaperLookup(markBoard)) {
         setMarkIntent('practice_question')
@@ -905,6 +977,7 @@ export default function MarkPage() {
     if (!subject) return
     setSelectedSubject(subject)
     const markBoard = coerceMarkExamBoard(resolveBoard(subject))
+    deepLinkBoardRef.current = true
     setSelectedMarkBoard(markBoard)
     if (!boardSupportsPastPaperLookup(markBoard)) {
       setUploadMode('single_question')
@@ -1637,9 +1710,49 @@ export default function MarkPage() {
 
   useSetAIContext(omniContext, [result?.attempt_id, markingMode])
 
+  // Signed-in students mark on their profile board — one locked line, no grid.
+  // Until the profile round-trip lands, the cached hint stands in so the
+  // line renders straight after hydration instead of the grid collapsing.
+  const boardLock = useMemo(
+    () =>
+      resolveMarkBoardLock({
+        profileBoard: profileLoading ? boardHint : profileBoardId,
+        selectedBoard: selectedMarkBoard,
+        role: profileRole,
+      }),
+    [profileLoading, boardHint, profileBoardId, profileRole, selectedMarkBoard]
+  )
+
   function handleMarkBoardChange(next: MarkExamBoard) {
     setSelectedMarkBoard(next)
     rememberFunnelBoard(next)
+    // A stale ?board= would resurrect the old board on refresh (and the
+    // profile load below re-reads the URL), so drop it once it disagrees.
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href)
+      let changed = false
+      const urlBoard = url.searchParams.get('board')?.trim().toLowerCase()
+      if (urlBoard && urlBoard !== next) {
+        url.searchParams.delete('board')
+        changed = true
+      }
+      // A ?subject= / lesson handoff that chose the old board would re-apply
+      // it on refresh and undo "Back to Cambridge" — retire it with the board.
+      const urlSubject = url.searchParams.get('subject')?.trim()
+      if (urlSubject && !subjectMatchesMarkBoard(urlSubject, next)) {
+        for (const key of ['subject', 'topic', 'session']) url.searchParams.delete(key)
+        changed = true
+      }
+      if (url.searchParams.get(MARK_HANDOFF_PARAM) === MARK_HANDOFF_VALUE) {
+        url.searchParams.delete(MARK_HANDOFF_PARAM)
+        changed = true
+      }
+      if (changed) {
+        window.history.replaceState(window.history.state, '', url.toString())
+      }
+    }
+    // The student has chosen; the mount-time deep link no longer speaks for them.
+    deepLinkBoardRef.current = false
     if (selectedSubject && !subjectMatchesMarkBoard(selectedSubject, next)) {
       setSelectedSubject('')
       setSelectedYear('')
@@ -2512,11 +2625,23 @@ export default function MarkPage() {
    * it: predicting after seeing a number, even a provisional one, is not a
    * prediction.
    */
+  // The result says where the copy went. Mirrors notifyMarkReady's own gates:
+  // signed in, a usable total, and the preference still on. The example
+  // result is a fixture — nothing was marked, so nothing was sent.
+  const emailedTo =
+    billingSummary?.signedIn &&
+    emailMarkReady &&
+    !showingExample &&
+    result &&
+    (result.total_marks ?? 0) > 0
+      ? profileEmail
+      : null
+
   const waitExtras = (() => {
     if (markStreamError || pendingResult) return null
     // Guests have no inbox and no saved result, so they genuinely do have to
     // stay — the notice is only true for signed-in students.
-    const canEmail = !!billingSummary?.signedIn
+    const canEmail = !!billingSummary?.signedIn && emailMarkReady
 
     if (provisionalScore) {
       return (
@@ -2586,6 +2711,7 @@ export default function MarkPage() {
             earned={result.marks_earned ?? null}
             total={result.total_marks ?? null}
           />
+          {emailedTo ? <MarkEmailedNote email={emailedTo} /> : null}
           <MarkingResultView
             result={result}
             attemptId={result.attempt_id ?? null}
@@ -2668,10 +2794,12 @@ export default function MarkPage() {
         <div
           className={`ms-mark-pg min-w-0 ${waitOpen || result ? '' : 'ms-mark-pg--narrow'}`}
         >
-          <RunningElsewhereNotice liveHere={waitOpen || !!result} />
+          <RunningElsewhereNotice liveHere={waitOpen || !!result} emailPromised={emailMarkReady} />
           <MarkFlow
             ref={markFlowRef}
             board={selectedMarkBoard}
+            boardLock={boardLock}
+            onBoardChange={handleMarkBoardChange}
             subjectCode={selectedSubject || null}
             subjectOptions={markFlowSubjectOptions}
             pastPaperCatalog={{
@@ -2810,7 +2938,7 @@ export default function MarkPage() {
       <div
         className={`ms-mark-pg min-w-0 ${result ? '' : 'ms-mark-pg--narrow'}`}
       >
-        <RunningElsewhereNotice liveHere={waitOpen || !!result} />
+        <RunningElsewhereNotice liveHere={waitOpen || !!result} emailPromised={emailMarkReady} />
         {!result && (
           <header className="ms-mark-hero ms-fade-in">
             <div className="mb-2 flex items-center gap-2">
@@ -2955,6 +3083,7 @@ export default function MarkPage() {
               value={selectedMarkBoard}
               onChange={handleMarkBoardChange}
               disabled={profileLoading}
+              lock={boardLock}
             />
 
             <div className="ms-mark-mode-panel">
@@ -4103,6 +4232,7 @@ export default function MarkPage() {
                   <MarkExampleFooter onDismiss={closeExample} />
                 ) : (
                   <>
+                    {emailedTo ? <MarkEmailedNote email={emailedTo} /> : null}
                     {/* ON-01 / R3: target grade after value, not before. */}
                     {billingSummary?.signedIn &&
                     targetGrade === null &&

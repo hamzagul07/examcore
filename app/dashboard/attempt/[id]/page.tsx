@@ -141,7 +141,9 @@ export default async function AttemptDetailPage({
   } = await supabase.auth.getUser()
 
   if (!user) {
-    redirect('/auth/signin')
+    // The mark-ready email lands here on a phone that is often signed out;
+    // sign-in must come back to this result, not to the dashboard.
+    redirect(`/auth/signin?next=${encodeURIComponent(`/dashboard/attempt/${id}`)}`)
   }
 
   const { data: attempt } = await supabaseAdmin

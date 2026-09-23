@@ -21,13 +21,18 @@ import {
 export type RunningElsewhereNoticeProps = {
   /** True when this page has its own mark in flight — then say nothing. */
   liveHere: boolean
+  /** False when the student switched mark emails off — then do not promise one. */
+  emailPromised?: boolean
 }
 
 function minutesSince(startedAt: number): number {
   return Math.max(0, Math.floor((Date.now() - startedAt) / 60_000))
 }
 
-export function RunningElsewhereNotice({ liveHere }: RunningElsewhereNoticeProps) {
+export function RunningElsewhereNotice({
+  liveHere,
+  emailPromised = true,
+}: RunningElsewhereNoticeProps) {
   const [startedAt, setStartedAt] = useState<number | null>(null)
   const [, forceTick] = useState(0)
 
@@ -65,8 +70,8 @@ export function RunningElsewhereNotice({ liveHere }: RunningElsewhereNoticeProps
       </p>
       <p className="mt-1 text-sm text-[var(--ec-text-secondary)]">
         It kept going after you left this page. You&apos;ll get a message here the
-        moment it lands, and an email if you&apos;ve closed the tab by then. You can
-        start another mark in the meantime.
+        moment it lands{emailPromised ? ', and the score by email as well' : ''}. You
+        can start another mark in the meantime.
       </p>
     </section>
   )

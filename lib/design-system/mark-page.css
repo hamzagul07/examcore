@@ -1555,6 +1555,113 @@
   border: 0;
 }
 
+/* ── Locked board ─────────────────────────────────────────────────────────
+   A signed-in student chose their board in onboarding, so the desk marks on
+   it and shows one line — not a grid of six decisions — with "Change board"
+   into exam settings. A deep link to another board swaps the copy and offers
+   the way back. See lib/marking/mark-board-lock.ts. */
+.ms-mark-board-locked {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 16px;
+  padding: 10px 14px;
+  border-radius: 4px;
+  border: 1.5px solid color-mix(in srgb, var(--ec-brand) 55%, var(--ec-border));
+  background: var(--ec-brand-muted);
+  color: var(--ec-text-primary);
+  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.1));
+}
+
+.ms-mark-board-locked-main {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  flex: 1 1 220px;
+}
+
+.ms-mark-board-locked-action {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ec-brand);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ms-mark-board-locked-action:hover {
+  text-decoration-thickness: 2px;
+}
+
+.ms-mark-board-locked-action:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.ms-mark-board-locked-action:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+/* Pre-hydration: the boot script in app/layout.tsx stamps
+   <html data-ms-board-lock> when a profile board is cached, so the static
+   grid never paints for a student who already chose. React replaces the
+   whole picker with the locked line once it hydrates. */
+.ms-mark-board-boot {
+  display: none;
+  align-items: center;
+  min-height: 58px;
+  padding: 10px 14px;
+  border-radius: 4px;
+  border: 1.5px solid var(--ec-border);
+  background: var(--ec-paper, var(--ec-surface-raised));
+}
+
+.ms-mark-board-boot-bar {
+  width: 180px;
+  max-width: 60%;
+  height: 12px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--ec-text-secondary) 18%, transparent);
+  animation: ms-mark-board-boot-pulse 1.2s ease-in-out infinite;
+}
+
+html[data-ms-board-lock] .ms-mark-board-picker--grid .ms-mark-board-grid,
+html[data-ms-board-lock] .ms-mark-board-picker--grid .ms-mark-board-hint {
+  display: none;
+}
+
+html[data-ms-board-lock] .ms-mark-board-picker--grid .ms-mark-board-boot {
+  display: flex;
+}
+
+@keyframes ms-mark-board-boot-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-mark-board-boot-bar {
+    animation: none;
+  }
+}
+
 /* ── Score reveal ─────────────────────────────────────────────────────────
    Examiner’s tally slip — hard paper, hero earned/total, stamp corner.
    Ink from --ms-score-ink (set inline by the component). */

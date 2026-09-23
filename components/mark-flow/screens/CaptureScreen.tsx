@@ -14,6 +14,7 @@ import {
   boardSupportsWholePaper,
   type MarkExamBoard,
 } from '@/components/mark/MarkBoardPicker'
+import type { MarkBoardLock } from '@/lib/marking/mark-board-lock'
 import { SegmentedControl } from '@/components/ui/SegmentedControl'
 import { Sheet } from '@/components/ui/Sheet'
 import { Field } from '@/components/ui/Field'
@@ -37,6 +38,8 @@ export type PastPaperCatalogProps = {
 
 type Props = {
   draft: MarkFlowDraft
+  boardLock?: MarkBoardLock | null
+  onBoardChange?: (board: MarkExamBoard) => void
   pages: UploadPage[]
   pdfFile: File | null
   questionPhoto: File | null
@@ -52,6 +55,8 @@ type Props = {
 
 export function CaptureScreen({
   draft,
+  boardLock = null,
+  onBoardChange,
   pages,
   pdfFile,
   questionPhoto,
@@ -565,7 +570,9 @@ export function CaptureScreen({
         </h2>
         <MarkBoardPicker
           value={board}
-          onChange={(next) =>
+          lock={boardLock}
+          onChange={(next) => {
+            onBoardChange?.(next)
             onPatchDraft({
               board: next,
               subjectCode: null,
@@ -581,7 +588,7 @@ export function CaptureScreen({
                     questionNumber: null,
                   }),
             })
-          }
+          }}
         />
         <div className="mt-5">
           <Field

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { clearMarkBoardHint } from '@/lib/marking/mark-board-hint'
 import { usePathname } from 'next/navigation'
 import { ThemeSwitcher } from '@/components/design-system/ThemeSwitcher'
 import { cn } from '@/lib/utils'
@@ -85,7 +86,12 @@ export function TeacherNav({ showNav = true }: { showNav?: boolean } = {}) {
               ACC
             </span>
           </Link>
-          <form action="/auth/signout" method="POST" className="inline">
+          <form
+            action="/auth/signout"
+            method="POST"
+            className="inline"
+            onSubmit={() => clearMarkBoardHint()}
+          >
             <button
               type="submit"
               className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)]"

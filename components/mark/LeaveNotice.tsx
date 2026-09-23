@@ -24,7 +24,7 @@ export function LeaveNotice() {
           You don&apos;t have to watch it.
         </strong>{' '}
         It finishes without you — carry on somewhere else and we&apos;ll tell you
-        the moment it lands, or email you if you&apos;ve gone.
+        the moment it lands, and email you the score either way.
       </p>
       {/* The affordance, not just the reassurance. Telling someone they may
           leave and then leaving them on a progress bar is the same wait. */}

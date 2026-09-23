@@ -83,7 +83,24 @@ export const JSON_RULES_BLOCK = `CRITICAL JSON FORMATTING RULES:
   - Write "\\\\frac{dy}{dx}" NOT "\\frac{dy}{dx}"
   - Write "$\\\\sqrt{16}$" NOT "$\\sqrt{16}$"
   - Write "$x^2 + 2x$" (no backslashes needed, fine as-is)
-- This applies to EVERY field: reasoning, summary, weak_topics, what_to_study_next, estimated_marks_explanation, etc.`
+- This applies to EVERY field: reasoning, summary, weak_topics, what_to_study_next, shareable_takeaway, estimated_marks_explanation, etc.`
+
+/**
+ * The one field written to leave the app. "summary", "reasoning" and
+ * "what_to_study_next" are read next to the scheme, behind sign-in, and may
+ * quote it; the takeaway is emailed to the student's phone, where nothing
+ * can be pulled back — so it is generated under its own rules rather than
+ * filtered after the fact. lib/email/mark-ready.ts still checks it on the way
+ * out; the point of this block is that the check should never fire.
+ */
+export const SHAREABLE_TAKEAWAY_BLOCK = `SHAREABLE TAKEAWAY ("shareable_takeaway"):
+- One or two sentences, at most 45 words, telling the student the single most useful thing to practise before their next question of this kind.
+- It is emailed to them and read OUTSIDE the app, with no mark scheme beside it. Write it in your own words about THEIR working — plain English, addressed as "you".
+- It must NOT contain: any wording or paraphrase of the mark scheme or its marking points; award codes or marking shorthand (B1, M1, A1, C1, ECF, FT, oe, cao, dep); how many marks anything is worth or "marks for"; the words "scheme", "accept", "condone", "allow", "award"; the correct answer or any specific value from this question.
+- Plain text only — it is read in an email client: no Markdown (no *asterisks* or **bold**), no LaTeX or $...$; write any maths in words or plain symbols (dy/dx, x squared, 4/x).
+- Good: "Before you differentiate, rewrite the expression as a sum of powers of x — most of your slips came from rushing that step."
+- Bad: "Award M1 for rearranging; the scheme accepts either form."
+- If nothing useful can be said within these rules, return "".`
 
 // Prepended to every marking + verify prompt. The QUESTION and STUDENT ANSWER
 // are student-supplied and reach the model verbatim, so a student could embed
@@ -121,6 +138,8 @@ ${ERROR_CLASSIFICATION_BLOCK}
 
 ${MATH_NOTATION_BLOCK}
 
+${SHAREABLE_TAKEAWAY_BLOCK}
+
 ${JSON_RULES_BLOCK}
 
 Return ONLY this JSON (no markdown):
@@ -141,6 +160,7 @@ Return ONLY this JSON (no markdown):
   "summary": "...",
   "weak_topics": ["..."],
   "what_to_study_next": "...",
+  "shareable_takeaway": "...",
   "syllabus_tags": ["1.7"]
 }`
 }
@@ -180,6 +200,8 @@ ${ERROR_CLASSIFICATION_BLOCK}
 
 ${MATH_NOTATION_BLOCK}
 
+${SHAREABLE_TAKEAWAY_BLOCK}
+
 ${JSON_RULES_BLOCK}
 
 Return ONLY this JSON (no markdown):
@@ -210,6 +232,7 @@ Return ONLY this JSON (no markdown):
   "summary": "...",
   "weak_topics": ["..."],
   "what_to_study_next": "...",
+  "shareable_takeaway": "...",
   "syllabus_tags": ["1.7", "1.8"]
 }`
 }
@@ -314,6 +337,8 @@ ${ERROR_CLASSIFICATION_BLOCK}
 
 ${MATH_NOTATION_BLOCK}
 
+${SHAREABLE_TAKEAWAY_BLOCK}
+
 ${JSON_RULES_BLOCK}
 
 Return ONLY this JSON:
@@ -334,6 +359,7 @@ Return ONLY this JSON:
   "summary": "...",
   "weak_topics": ["..."],
   "what_to_study_next": "...",
+  "shareable_takeaway": "...",
   "marking_style": "point_based"${tagsField}
 }`
 }
@@ -376,6 +402,8 @@ ${TONE_BLOCK}
 ${taggingBlock}
 ${MATH_NOTATION_BLOCK}
 
+${SHAREABLE_TAKEAWAY_BLOCK}
+
 ${JSON_RULES_BLOCK}
 
 Return ONLY this JSON:
@@ -395,6 +423,7 @@ Return ONLY this JSON:
   "summary": "Overall examiner feedback to the student",
   "weak_topics": ["..."],
   "what_to_study_next": "...",
+  "shareable_takeaway": "...",
   "marking_style": "level_of_response"${tagsField}
 }`
 }
@@ -451,6 +480,8 @@ total_marks to the number of questions marked (each MCQ is worth 1 mark) unless 
 ${taggingBlock}
 ${MATH_NOTATION_BLOCK}
 
+${SHAREABLE_TAKEAWAY_BLOCK}
+
 ${JSON_RULES_BLOCK}
 
 Return ONLY this JSON:
@@ -464,6 +495,7 @@ Return ONLY this JSON:
   "summary": "...",
   "weak_topics": ["topics linked to wrong answers"],
   "what_to_study_next": "...",
+  "shareable_takeaway": "...",
   "marking_style": "mcq"${tagsField}
 }`
 }
@@ -503,6 +535,8 @@ ${ERROR_CLASSIFICATION_BLOCK}
 
 ${MATH_NOTATION_BLOCK}
 
+${SHAREABLE_TAKEAWAY_BLOCK}
+
 ${JSON_RULES_BLOCK}
 
 Return ONLY this JSON:
@@ -523,6 +557,7 @@ Return ONLY this JSON:
   "summary": "...",
   "weak_topics": ["..."],
   "what_to_study_next": "...",
+  "shareable_takeaway": "...",
   "marking_style": "point_based"
 }`
 }
@@ -593,6 +628,8 @@ ${ERROR_CLASSIFICATION_BLOCK}
 
 ${MATH_NOTATION_BLOCK}
 
+${SHAREABLE_TAKEAWAY_BLOCK}
+
 ${JSON_RULES_BLOCK}
 
 Return ONLY this JSON:
@@ -613,6 +650,7 @@ Return ONLY this JSON:
   "summary": "...",
   "weak_topics": ["..."],
   "what_to_study_next": "...",
+  "shareable_takeaway": "...",
   "marking_style": "point_based"
 }`
 }
@@ -647,6 +685,8 @@ ${TONE_BLOCK}
 
 ${MATH_NOTATION_BLOCK}
 
+${SHAREABLE_TAKEAWAY_BLOCK}
+
 ${JSON_RULES_BLOCK}
 
 Return ONLY this JSON:
@@ -666,6 +706,7 @@ Return ONLY this JSON:
   "summary": "Overall examiner feedback to the student",
   "weak_topics": ["..."],
   "what_to_study_next": "...",
+  "shareable_takeaway": "...",
   "marking_style": "level_of_response"
 }`
 }
@@ -742,6 +783,8 @@ ${ocrText}
 ${TONE_BLOCK}
 ${taggingBlock}
 ${MATH_NOTATION_BLOCK}
+${SHAREABLE_TAKEAWAY_BLOCK}
+
 ${JSON_RULES_BLOCK}
 Return ONLY this JSON:
 {
@@ -773,6 +816,7 @@ Return ONLY this JSON:
   "summary": "Overall examiner feedback to the student",
   "weak_topics": ["..."],
   "what_to_study_next": "...",
+  "shareable_takeaway": "...",
   "marking_style": "level_of_response"${tagsField}
 }
 Include exactly one criteria_results entry per entry in "criteria", with "criterion" equal to its "id" and marks_available equal to its max_marks. Set band_result.marks_awarded and marks_earned to the SUM of the criteria marks.`
@@ -815,6 +859,8 @@ ${ocrText}
 ${TONE_BLOCK}
 ${taggingBlock}
 ${MATH_NOTATION_BLOCK}
+${SHAREABLE_TAKEAWAY_BLOCK}
+
 ${JSON_RULES_BLOCK}
 Return ONLY this JSON:
 {
@@ -848,6 +894,7 @@ Return ONLY this JSON:
   "summary": "Overall examiner feedback to the student, part by part",
   "weak_topics": ["..."],
   "what_to_study_next": "...",
+  "shareable_takeaway": "...",
   "marking_style": "mixed"${tagsField}
 }
 Include one marks_awarded entry per mark listed in the point-based sections (mark_id = its id) and exactly one criteria_results entry per entry in "criteria" (criterion = its id, marks_available = its max_marks). points_earned is the sum of the point marks you awarded, capped per section; marks_earned = points_earned + the sum of the criteria marks.`
@@ -884,6 +931,8 @@ ${TONE_BLOCK}
 
 ${MATH_NOTATION_BLOCK}
 
+${SHAREABLE_TAKEAWAY_BLOCK}
+
 ${JSON_RULES_BLOCK}
 
 Return ONLY this JSON:
@@ -916,6 +965,7 @@ Return ONLY this JSON:
   "summary": "Encouraging examiner feedback to the student",
   "weak_topics": ["..."],
   "what_to_study_next": "...",
+  "shareable_takeaway": "...",
   "marking_style": "level_of_response"
 }
 
@@ -974,7 +1024,11 @@ Then set marks_earned to the number of marks you awarded.
 - ${totalLine}
 - marks_earned must equal the sum of the individual marks (or criteria marks) you award; when the result has both marks_awarded and criteria_results, it is the point marks plus the criteria marks.
 
+Keep "shareable_takeaway" from the first marker's result unless it breaks the rules below or no longer fits your corrected marking; if you rewrite it, it must still follow those rules.
+
 WRITING THE FEEDBACK — the student reads "summary", "reasoning" and "margin_note" verbatim; they never see this review process and do not know a first marker exists. Address the student directly ("you"). NEVER refer to the first marker, the initial/original marking, this review, or to marks being corrected or reinstated — a real observed failure was a summary opening "The initial marking was correct", which is meaningless to a student. Describe only their work and why each mark was or was not earned.
+
+${SHAREABLE_TAKEAWAY_BLOCK}
 
 ${JSON_RULES_BLOCK}
 

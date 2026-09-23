@@ -27,6 +27,7 @@ import {
   SITE_TAGLINE,
   SITE_URL,
 } from "@/lib/site-config";
+import { MARK_BOARD_HINT_BOOT_SCRIPT } from "@/lib/marking/mark-board-hint";
 
 // Also paints the root background inline: the pre-stylesheet frame otherwise
 // takes the UA's canvas color — dark for dark-OS visitors — which flashed a
@@ -138,6 +139,9 @@ export default function RootLayout({
     <html lang="en-GB" data-ec-theme="zen" data-theme="paper" className="h-full overflow-x-clip antialiased" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: EC_THEME_BOOT_SCRIPT }} />
+        {/* Hides the /mark board grid before first paint for a student whose
+            board is cached — see lib/marking/mark-board-hint.ts. */}
+        <script dangerouslySetInnerHTML={{ __html: MARK_BOARD_HINT_BOOT_SCRIPT }} />
       </head>
       <body
         className={`${newsreader.variable} ${instrumentSans.variable} ${ibmPlexMono.variable} ${caveat.variable} ${instrumentSans.className} relative flex min-h-full max-w-[100vw] flex-col overflow-x-clip text-base leading-[1.55]`}

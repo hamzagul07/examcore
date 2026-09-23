@@ -31,6 +31,8 @@ assert.match(prompt, /SHAREABLE TAKEAWAY/)
 assert.match(SHAREABLE_TAKEAWAY_BLOCK, /must NOT contain/)
 assert.match(SHAREABLE_TAKEAWAY_BLOCK, /B1, M1, A1/)
 assert.match(SHAREABLE_TAKEAWAY_BLOCK, /return ""/)
+assert.match(SHAREABLE_TAKEAWAY_BLOCK, /no Markdown/, 'it is read in an email client')
+assert.match(SHAREABLE_TAKEAWAY_BLOCK, /no LaTeX/)
 
 const verify = buildVerifyMarkingPrompt({
   subjectName: 'Mathematics',

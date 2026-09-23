@@ -77,7 +77,9 @@ const SCHEME_SPEAK =
  * sentence end where possible.
  */
 export function studyNoteForEmail(raw: string | null | undefined): string | null {
-  const text = raw?.replace(/\s+/g, ' ').trim()
+  // Markdown emphasis shows up literally in mail; the model is told not to
+  // use it, and a stray pair of asterisks is not worth losing the note over.
+  const text = raw?.replace(/\*+/g, '').replace(/\s+/g, ' ').trim()
   if (!text) return null
   if (SCHEME_SPEAK.test(text)) return null
   if (text.length <= STUDY_NOTE_MAX) return text

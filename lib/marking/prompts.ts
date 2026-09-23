@@ -97,6 +97,7 @@ export const SHAREABLE_TAKEAWAY_BLOCK = `SHAREABLE TAKEAWAY ("shareable_takeaway
 - One or two sentences, at most 45 words, telling the student the single most useful thing to practise before their next question of this kind.
 - It is emailed to them and read OUTSIDE the app, with no mark scheme beside it. Write it in your own words about THEIR working — plain English, addressed as "you".
 - It must NOT contain: any wording or paraphrase of the mark scheme or its marking points; award codes or marking shorthand (B1, M1, A1, C1, ECF, FT, oe, cao, dep); how many marks anything is worth or "marks for"; the words "scheme", "accept", "condone", "allow", "award"; the correct answer or any specific value from this question.
+- Plain text only — it is read in an email client: no Markdown (no *asterisks* or **bold**), no LaTeX or $...$; write any maths in words or plain symbols (dy/dx, x squared, 4/x).
 - Good: "Before you differentiate, rewrite the expression as a sum of powers of x — most of your slips came from rushing that step."
 - Bad: "Award M1 for rearranging; the scheme accepts either form."
 - If nothing useful can be said within these rules, return "".`

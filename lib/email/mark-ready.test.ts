@@ -171,6 +171,11 @@ function main() {
     'Practice explaining the chain of consequences before you evaluate.'
   )
   assert.equal(studyNoteForEmail('   '), null)
+  assert.equal(
+    studyNoteForEmail('Your explanations clearly state *why* a factor **matters**.'),
+    'Your explanations clearly state why a factor matters.',
+    'stray Markdown emphasis is stripped, not shown literally'
+  )
   assert.equal(studyNoteForEmail('Show every step of working.'), 'Show every step of working.')
   const long = studyNoteForEmail(
     'First sentence about method. ' + 'Second sentence that is quite long and keeps going on about the working. '.repeat(6)

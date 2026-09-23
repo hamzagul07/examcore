@@ -8,6 +8,7 @@ import { runAfterResponse } from '@/lib/after-response'
 import { tierMarketingName } from '@/lib/billing/caps'
 import { sendScholarVaultWelcome } from '@/lib/email/scholar-vault-welcome'
 import { grantMaxWelcomeGift } from '@/lib/max/gifts'
+import { recordCreatorConversion } from '@/lib/creators/conversions'
 import { refundedCreditShare } from '@/lib/billing/refund-share'
 import type { SubscriptionTier } from '@/lib/database.types'
 
@@ -277,6 +278,18 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
       const sub = event.data as unknown as PolarSubscription
       const { ok, userId, tier } = await syncSubscription(supabase, sub)
       // Purchase greeting only on activation — not on every update/cancel flag flip.
+      // Creator ledger (docs/CREATORS_PROGRAM.md): an attributed account went
+      // paid. Idempotent per (subscription, event); nothing pays out from it yet.
+      if (ok && userId && event.type === 'subscription.active') {
+        runAfterResponse('creator-conversion', () =>
+          recordCreatorConversion(supabase, {
+            userId,
+            polarSubscriptionId: sub.id,
+            tier,
+            event: event.type,
+          })
+        )
+      }
       if (ok && userId && event.type === 'subscription.active') {
         // Max gets grantMaxWelcomeGift (Vault + bonus) — one Day-0 student email.
         // Both paid tiers now send their own Day-0 email, so the generic

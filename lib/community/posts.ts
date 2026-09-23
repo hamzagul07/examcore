@@ -1,7 +1,7 @@
 import { createServiceClient } from '@/lib/supabase-server'
 import { clampNoteContent, stripRawHtml } from '@/lib/community/sanitize'
 import type { CommunityAttachment } from '@/lib/community/uploads'
-import { authorAccessMap } from '@/lib/community/author-access'
+import { authorAccessMap, authorCreatorSet } from '@/lib/community/author-access'
 import { rankHot } from '@/lib/community/rank'
 import type { PostUrlParts } from '@/lib/community/post-url'
 import type { EffectiveAccess } from '@/lib/billing/access'
@@ -16,6 +16,8 @@ export type CommunityPost = {
   authorUsername: string | null
   /** Subscription level, resolved live — drives the badge and the feed boost. */
   authorAccess: EffectiveAccess
+  /** Holds an active creator seat — the Creator badge beside the name. */
+  authorIsCreator: boolean
   board: Board
   subjectCode: string
   topicCode: string | null
@@ -73,12 +75,18 @@ async function usernameMap(admin: Admin, ids: string[]) {
   return new Map<string, string | null>((data ?? []).map((p) => [p.id, p.username]))
 }
 
-function mapRow(r: Row, username: string | null, access: EffectiveAccess = 'free'): CommunityPost {
+function mapRow(
+  r: Row,
+  username: string | null,
+  access: EffectiveAccess = 'free',
+  isCreator = false
+): CommunityPost {
   return {
     id: r.id,
     authorId: r.author_id,
     authorUsername: username,
     authorAccess: access,
+    authorIsCreator: isCreator,
     board: r.board,
     subjectCode: r.subject_code,
     topicCode: r.topic_code,
@@ -149,12 +157,18 @@ export async function listPosts(params: {
   const { data } = await q
   const rows = (data ?? []) as Row[]
   const authorIds = rows.map((r) => r.author_id)
-  const [names, access] = await Promise.all([
+  const [names, access, creators] = await Promise.all([
     usernameMap(admin, authorIds),
     authorAccessMap(admin, authorIds),
+    authorCreatorSet(admin, authorIds),
   ])
   const posts = rows.map((r) =>
-    mapRow(r, names.get(r.author_id) ?? null, access.get(r.author_id) ?? 'free')
+    mapRow(
+      r,
+      names.get(r.author_id) ?? null,
+      access.get(r.author_id) ?? 'free',
+      creators.has(r.author_id)
+    )
   )
 
   return isHot ? rankHot(posts).slice(0, limit) : posts
@@ -249,11 +263,17 @@ export async function getPostByShortId(shortId: string): Promise<CommunityPost |
   if (rows.length !== 1) return null
 
   const row = rows[0]
-  const [names, access] = await Promise.all([
+  const [names, access, creators] = await Promise.all([
     usernameMap(admin, [row.author_id]),
     authorAccessMap(admin, [row.author_id]),
+    authorCreatorSet(admin, [row.author_id]),
   ])
-  return mapRow(row, names.get(row.author_id) ?? null, access.get(row.author_id) ?? 'free')
+  return mapRow(
+    row,
+    names.get(row.author_id) ?? null,
+    access.get(row.author_id) ?? 'free',
+    creators.has(row.author_id)
+  )
 }
 
 export async function getPost(id: string): Promise<CommunityPost | null> {
@@ -261,11 +281,17 @@ export async function getPost(id: string): Promise<CommunityPost | null> {
   const { data } = await admin.from('community_posts').select(SELECT).eq('id', id).maybeSingle()
   if (!data) return null
   const row = data as Row
-  const [names, access] = await Promise.all([
+  const [names, access, creators] = await Promise.all([
     usernameMap(admin, [row.author_id]),
     authorAccessMap(admin, [row.author_id]),
+    authorCreatorSet(admin, [row.author_id]),
   ])
-  return mapRow(row, names.get(row.author_id) ?? null, access.get(row.author_id) ?? 'free')
+  return mapRow(
+    row,
+    names.get(row.author_id) ?? null,
+    access.get(row.author_id) ?? 'free',
+    creators.has(row.author_id)
+  )
 }
 
 export type CreatePostInput = {

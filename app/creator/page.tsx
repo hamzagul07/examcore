@@ -16,6 +16,8 @@ import {
   creatorSpacePath,
   nextMilestone,
 } from '@/lib/creators/codes'
+import { countCreatorConversions } from '@/lib/creators/conversions'
+import { createServiceClient } from '@/lib/supabase-server'
 import { CreatorAvatar } from '@/components/creators/CreatorAvatar'
 import { CreatorGapReport } from '@/components/creators/CreatorGapReport'
 import { CreatorShareKit } from '@/components/creators/CreatorShareKit'
@@ -67,11 +69,12 @@ export default async function CreatorStudioPage() {
   const creator = await getCreatorByUserId(user.id)
   if (!creator) return <NotACreator />
 
-  const [stats, report, runs, daily] = await Promise.all([
+  const [stats, report, runs, daily, paid] = await Promise.all([
     getCreatorStats(creator),
     getAudienceGapReport(creator.code),
     listRecentCreatorRuns(creator.code, 12),
     listCreatorDailyMarked(creator.code, 30),
+    countCreatorConversions(createServiceClient(), creator.userId),
   ])
   const ogPath = `/api/og/creator/${encodeURIComponent(creator.handle)}`
   const kit = buildShareKit({
@@ -138,7 +141,11 @@ export default async function CreatorStudioPage() {
           },
           { num: stats.guestAnswers, label: 'As guests', sub: 'no account, still counted' },
           { num: stats.students, label: 'Students', sub: 'signed in and marking' },
-          { num: stats.joined, label: 'Joined', sub: 'signed up through you' },
+          {
+            num: stats.joined,
+            label: 'Joined',
+            sub: paid > 0 ? `${paid} went paid` : 'signed up through you',
+          },
           {
             num: giftLeft,
             label: 'Gifts left',

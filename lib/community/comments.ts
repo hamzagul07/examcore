@@ -1,6 +1,6 @@
 import { createServiceClient } from '@/lib/supabase-server'
 import { clampNoteContent, stripRawHtml } from '@/lib/community/sanitize'
-import { authorAccessMap } from '@/lib/community/author-access'
+import { authorAccessMap, authorCreatorSet } from '@/lib/community/author-access'
 import type { EffectiveAccess } from '@/lib/billing/access'
 
 export type CommunityComment = {
@@ -11,6 +11,8 @@ export type CommunityComment = {
   authorUsername: string | null
   /** Subscription level, resolved live — drives the badge. */
   authorAccess: EffectiveAccess
+  /** Holds an active creator seat. */
+  authorIsCreator: boolean
   bodyMd: string
   upvotes: number
   downvotes: number
@@ -42,7 +44,8 @@ type Admin = ReturnType<typeof createServiceClient>
 function mapRow(
   r: Row,
   username: string | null,
-  access: EffectiveAccess = 'free'
+  access: EffectiveAccess = 'free',
+  isCreator = false
 ): CommunityComment {
   return {
     id: r.id,
@@ -51,6 +54,7 @@ function mapRow(
     authorId: r.author_id,
     authorUsername: username,
     authorAccess: access,
+    authorIsCreator: isCreator,
     bodyMd: r.body_md,
     upvotes: r.upvotes,
     downvotes: r.downvotes,
@@ -109,15 +113,21 @@ export async function getCommentTree(postId: string): Promise<CommentNode[]> {
     .order('created_at', { ascending: true })
   const rows = (data ?? []) as Row[]
   const authorIds = rows.map((r) => r.author_id)
-  const [names, access] = await Promise.all([
+  const [names, access, creators] = await Promise.all([
     usernameMap(admin, authorIds),
     authorAccessMap(admin, authorIds),
+    authorCreatorSet(admin, authorIds),
   ])
 
   const nodes = new Map<string, CommentNode>()
   rows.forEach((r) =>
     nodes.set(r.id, {
-      ...mapRow(r, names.get(r.author_id) ?? null, access.get(r.author_id) ?? 'free'),
+      ...mapRow(
+        r,
+        names.get(r.author_id) ?? null,
+        access.get(r.author_id) ?? 'free',
+        creators.has(r.author_id)
+      ),
       replies: [],
     })
   )

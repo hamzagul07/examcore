@@ -15,6 +15,8 @@ export type UnsubscribeKind =
   | 'mark_ready'
   /** The morning study-plan check-in; rides on email_exam_reminders. */
   | 'exam'
+  /** The weekly creator brief (lib/creators/brief.ts). */
+  | 'creator'
 
 function secret(): string {
   return (
@@ -51,7 +53,8 @@ export function verifyUnsubscribeToken(
         kind !== 'activation' &&
         kind !== 'updates' &&
         kind !== 'mark_ready' &&
-        kind !== 'exam') ||
+        kind !== 'exam' &&
+        kind !== 'creator') ||
       !exp ||
       !sig
     )
@@ -137,6 +140,8 @@ export function unsubscribeColumnPatch(kind: UnsubscribeKind): Record<string, bo
       return { email_product_updates: false }
     case 'mark_ready':
       return { email_mark_ready: false }
+    case 'creator':
+      return { email_creator_brief: false }
     case 'exam':
       return { email_exam_reminders: false }
     default:
@@ -164,6 +169,8 @@ export function unsubscribeLabel(kind: UnsubscribeKind): string {
       return 'product update emails'
     case 'mark_ready':
       return 'emails telling you a mark has finished'
+    case 'creator':
+      return 'the weekly creator brief'
     default:
       return 'Exam Room weekly digest'
   }

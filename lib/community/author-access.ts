@@ -69,3 +69,24 @@ export async function authorAccessMap(
 
   return out
 }
+
+/**
+ * Which of these authors hold an active creator seat (docs/CREATORS_PROGRAM.md).
+ * Resolved live for the same reason as access: a paused seat loses the badge
+ * at once. Chunked like `authorAccessMap`.
+ */
+export async function authorCreatorSet(admin: Admin, ids: string[]): Promise<Set<string>> {
+  const unique = [...new Set(ids)].filter(Boolean)
+  const out = new Set<string>()
+  if (!unique.length) return out
+  for (let i = 0; i < unique.length; i += ID_CHUNK) {
+    const batch = unique.slice(i, i + ID_CHUNK)
+    const { data } = await admin
+      .from('creators')
+      .select('user_id')
+      .eq('status', 'active')
+      .in('user_id', batch)
+    for (const row of data ?? []) out.add(row.user_id as string)
+  }
+  return out
+}

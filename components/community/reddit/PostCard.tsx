@@ -68,7 +68,7 @@ export function PostCard({
                 ✓ Official
               </span>
             ) : null}
-            <AuthorBadge access={post.authorAccess} />
+            <AuthorBadge access={post.authorAccess} creator={post.authorIsCreator} />
           </span>
           <span className="rc-dot">·</span>
           <span className="rc-meta-muted">{timeAgo(post.createdAt)}</span>

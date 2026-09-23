@@ -245,15 +245,27 @@ is applied to production.
   the space; `/creators` is in the footer and the sitemap; both public pages
   carry breadcrumb JSON-LD. Verified end to end on 2026-09-23: a guest marked
   a typed answer with code MAYA, saw the card, and the studio counted it.
+- **Weekly creator brief** (`lib/creators/brief.ts`, `lib/email/creator-brief.ts`,
+  cron `/api/cron/creator-brief` Mondays 08:30 UTC): this week's answers, all
+  time, joined; "your number" (the gap headline once 50 answers are in, else
+  distance to the next milestone); three hooks rotating by ISO week; gifts
+  left; #ad reminder. Ships dark — set `CREATOR_BRIEF_SEND=true` in Vercel to
+  send; until then the cron logs a dry run. Opt-out is
+  `user_profiles.email_creator_brief` (unsubscribe kind `creator`). Preview:
+  `pnpm email:preview` → `tmp/email-preview/creator-brief.html`.
+- **Creator badge** beside author names in Exam Room posts and comments
+  (`authorCreatorSet`, live like the tier badge). **Conversions ledger**
+  `creator_conversions`: the Polar webhook records `subscription.active` for
+  any account whose signup was attributed; the studio shows "N went paid".
 - Creator seat = Scholar access + the teacher marking cap
   (`effectiveAccess({ creatorVerified })`, `enforcement.ts`).
 - Grant with `pnpm creator:grant <email> <CODE> --handle h --name n --tagline t
   --tiktok @x [--adult]`; `--list`, `--pause`, `--resume`. Tests:
   `pnpm test:creators`, `pnpm test:grants`.
 
-Not built yet (slices 2–3): tip tests, weekly brief email, milestone badges
-on the community profile, follow feed / tip-of-the-week on students'
-dashboards, Polar metadata ledger, the paid tier.
+Not built yet: tip tests (a creator's tip as a marked question), a
+preferences-page toggle for the brief (the unsubscribe link covers it), the
+paid tier for 18+ creators (pays out of `creator_conversions`), follow feed.
 
 ## Sources (2026-09-23)
 

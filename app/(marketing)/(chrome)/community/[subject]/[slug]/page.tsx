@@ -160,7 +160,7 @@ export default async function PostDetailPage({ params }: PageProps) {
                     {isOfficialUsername(post.authorUsername) ? (
                       <span className="rc-official-badge" title="Official MarkScheme account">✓ Official</span>
                     ) : null}
-                    <AuthorBadge access={post.authorAccess} />
+                    <AuthorBadge access={post.authorAccess} creator={post.authorIsCreator} />
                   </span>
                   <span className="rc-dot">·</span>
                   <span className="rc-meta-muted">{timeAgo(post.createdAt)}</span>

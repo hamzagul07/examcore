@@ -25,7 +25,6 @@ import { BlogConversationalQueries } from '@/components/blog/BlogConversationalQ
 import { BlogInformationGain } from '@/components/blog/BlogInformationGain'
 import { BlogInContentLinks } from '@/components/blog/BlogInContentLinks'
 import { BlogSourcesBlock } from '@/components/blog/BlogSourcesBlock'
-import { BlogReadingProgress } from '@/components/blog/BlogReadingProgress'
 import { BlogChunkedArticle } from '@/components/blog/BlogChunkedArticle'
 import { BlogTableOfContents } from '@/components/blog/BlogTableOfContents'
 import { BlogRelatedGrid } from '@/components/blog/BlogRelatedGrid'
@@ -90,7 +89,6 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <MarketingPageShell className="ms-blog-post-shell">
       <BlogPostGraphJsonLd post={post} content={post.content} />
-      <BlogReadingProgress />
       <article className="ms-pg py-12 sm:py-16">
         <BlogBreadcrumbs slug={slug} title={post.title} />
         <BlogArticleHero post={enriched} />

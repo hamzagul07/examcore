@@ -153,7 +153,7 @@ export function SignUpForm({
 
   if (sent) {
     return (
-      <div className="ms-signup-desk space-y-3">
+      <div className="ms-signup-desk ec-land space-y-3">
         <span className="ec-ink-stamp ec-ink-stamp--hero mb-3" aria-hidden>
           @
         </span>
@@ -225,7 +225,7 @@ export function SignUpForm({
       <MethodTabs method={method} setMethod={setMethod} setError={setErrorMsg} />
 
       {method === 'magic' ? (
-        <form onSubmit={handleMagicLink} className="mt-6 space-y-4">
+        <form key="magic" onSubmit={handleMagicLink} className="ec-land mt-6 space-y-4">
           <Field
             label="Email"
             inputProps={{
@@ -248,7 +248,7 @@ export function SignUpForm({
           />
         </form>
       ) : (
-        <form onSubmit={handlePasswordSignUp} className="mt-6 space-y-4">
+        <form key="password" onSubmit={handlePasswordSignUp} className="ec-land mt-6 space-y-4">
           <Field
             label="Email"
             inputProps={{

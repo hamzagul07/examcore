@@ -1,6 +1,7 @@
 'use client'
 
 import { Suspense, useState } from 'react'
+import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import {
@@ -40,7 +41,11 @@ function ForgotPasswordSkeleton() {
         <p className="text-hero mb-3" aria-hidden="true">
           Reset your <em>password</em>
         </p>
-        <p className="leading-relaxed text-[var(--ec-text-secondary)]">Loading...</p>
+        <div className="space-y-4" aria-busy="true" aria-label="Loading">
+          <SkeletonLine className="h-4 w-full max-w-sm" />
+          <SkeletonBlock className="h-12 w-full" />
+          <SkeletonBlock className="h-12 w-full" />
+        </div>
       </div>
     </AuthShell>
   )

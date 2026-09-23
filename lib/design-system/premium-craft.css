@@ -715,3 +715,75 @@ select.ec-input {
     pointer-events: none;
   }
 }
+
+/* ------------------------------------------------------------
+   Theme flip icon — sun ⇄ moon morph (components/margin-notes/ThemeFlip)
+   ------------------------------------------------------------ */
+
+.ec-theme-flip__icon {
+  display: block;
+  width: 18px;
+  height: 18px;
+  overflow: visible;
+}
+
+/* Sun: the eclipse mask sits off the disc; rays out. */
+.ec-theme-flip__mask {
+  transform: translate(15px, -11px);
+  transition: transform 360ms var(--ec-ease-out);
+}
+
+.ec-theme-flip__disc {
+  transform-origin: 12px 12px;
+  transition: transform 360ms var(--ec-ease-out);
+}
+
+.ec-theme-flip__rays {
+  transform-origin: 12px 12px;
+  transition:
+    transform 360ms var(--ec-ease-out),
+    opacity 200ms ease;
+}
+
+/* Moon: the mask slides over the disc to carve a crescent; rays fold in. */
+.ec-theme-flip__icon[data-mode='moon'] .ec-theme-flip__mask {
+  transform: translate(4.5px, -4px);
+}
+
+.ec-theme-flip__icon[data-mode='moon'] .ec-theme-flip__disc {
+  transform: scale(1.2);
+}
+
+.ec-theme-flip__icon[data-mode='moon'] .ec-theme-flip__rays {
+  transform: scale(0.3) rotate(-60deg);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ec-theme-flip__mask,
+  .ec-theme-flip__disc,
+  .ec-theme-flip__rays {
+    transition: none;
+  }
+}
+
+/* Reading progress: one flat ink line. The multi-hue gradient read as a
+   generic SaaS flourish in a system that is otherwise green ink on paper. */
+.ec-scroll-progress {
+  background: var(--ec-brand);
+  border-radius: 0;
+}
+
+/* Exam-sheet stamps below the fold used to stamp on page load, so by the
+   time the section scrolled into view the moment had already happened.
+   Inside a reveal wrapper the stamp waits until the section is seen. */
+.ms-reveal[data-reveal='out'] .ec-mark-stamp {
+  animation-play-state: paused;
+}
+
+/* Before hydration the flip icon is a plain disc (no rays, no crescent);
+   it resolves into the sun or moon once the client knows the theme. */
+.ec-theme-flip__icon[data-mode='pending'] .ec-theme-flip__rays {
+  opacity: 0;
+  transform: scale(0.6);
+}

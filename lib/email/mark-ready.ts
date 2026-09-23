@@ -83,6 +83,10 @@ export function studyNoteForEmail(raw: string | null | undefined): string | null
   return `${head.slice(0, wordEnd > 0 ? wordEnd : STUDY_NOTE_MAX).trimEnd()}…`
 }
 
+/** Imperatives and clause connectors: a marking point, not a topic name. */
+const TAG_IS_A_CLAUSE =
+  /^(?:state|explain|use|give|show|identify|describe|define|calculate|draw|label|write|include|mention|refer|must|should|need|needs|correctly)\b|\b(?:that|which|when|because|if|so|than|must|should|needs?)\b/i
+
 /** Up to three short tags; anything long, sentence-shaped or scheme-shaped is not a tag. */
 export function weakTopicsForEmail(raw: string[] | null | undefined): string[] {
   if (!Array.isArray(raw)) return []
@@ -91,9 +95,11 @@ export function weakTopicsForEmail(raw: string[] | null | undefined): string[] {
   for (const item of raw) {
     const t = typeof item === 'string' ? item.replace(/\s+/g, ' ').trim() : ''
     if (!t || t.length > 48 || seen.has(t.toLowerCase())) continue
-    // A tag is a topic name ("Analysis (AO3)"), not a marking point; a
-    // clause with a verb in it is the scheme's wording, not a topic.
-    if (t.split(' ').length > 6 || /[.!?]$/.test(t) || SCHEME_SPEAK.test(t)) continue
+    // A tag is a topic name ("Analysis (AO3)"), not a marking point. A
+    // marking point reads as an instruction or a clause — "State that demand
+    // shifts right" — which is the scheme's wording, not a topic.
+    if (t.split(' ').length > 5 || /[.!?]$/.test(t) || SCHEME_SPEAK.test(t)) continue
+    if (TAG_IS_A_CLAUSE.test(t)) continue
     seen.add(t.toLowerCase())
     out.push(t)
     if (out.length === 3) break

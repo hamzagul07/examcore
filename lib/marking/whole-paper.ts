@@ -262,6 +262,8 @@ export function toMarkingAIResult(raw: Record<string, unknown>): MarkingAIResult
       : [],
     what_to_study_next:
       typeof raw.what_to_study_next === 'string' ? raw.what_to_study_next : '',
+    shareable_takeaway:
+      typeof raw.shareable_takeaway === 'string' ? raw.shareable_takeaway : undefined,
     estimated_marks_explanation:
       typeof raw.estimated_marks_explanation === 'string'
         ? raw.estimated_marks_explanation

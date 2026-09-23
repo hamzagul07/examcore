@@ -11,7 +11,11 @@ const notice = markReadyNoticeFromPayload(
     total_marks: 8,
     subject_code: '9708',
     paper_code: '9708/22',
-    ai_marking: { weak_topics: ['Analysis (AO3)', 7, null], what_to_study_next: 'Show working.' },
+    ai_marking: {
+      weak_topics: ['Analysis (AO3)', 7, null],
+      what_to_study_next: 'Award M1 for rearranging.',
+      shareable_takeaway: 'Show every step of your working.',
+    },
   },
   7
 )
@@ -24,7 +28,8 @@ assert.equal(notice.subjectLabel, 'Economics')
 assert.equal(notice.paperRef, '9708/22')
 assert.equal(notice.predictedMarks, 7)
 assert.deepEqual(notice.weakTopics, ['Analysis (AO3)'], 'non-strings are dropped, not mailed as "7"')
-assert.equal(notice.whatToStudyNext, 'Show working.')
+assert.equal(notice.shareableTakeaway, 'Show every step of your working.')
+assert.ok(!('whatToStudyNext' in notice), 'the in-app study note never reaches the email')
 
 const bare = markReadyNoticeFromPayload(null, undefined)
 assert.equal(bare.userId, null)
@@ -37,5 +42,7 @@ const odd = markReadyNoticeFromPayload('u', { marks_earned: '5', total_marks: Na
 assert.equal(odd.marksEarned, null, 'a string score is not a score')
 assert.equal(odd.subjectCode, null)
 assert.equal(odd.weakTopics, null)
+const blank = markReadyNoticeFromPayload('u', { ai_marking: { shareable_takeaway: '   ' } })
+assert.equal(blank.shareableTakeaway, null, 'the model said nothing shareable — send nothing')
 
 console.log('mark-ready-notice.test.ts: ok')

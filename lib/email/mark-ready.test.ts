@@ -119,7 +119,7 @@ function main() {
     marksEarned: 5,
     totalMarks: 8,
     weakTopics: ['Analysis (AO3)', 'Contextual evaluation (AO4)', 'Analysis (AO3)', 'Knowledge', 'Extra'],
-    whatToStudyNext:
+    shareableTakeaway:
       "Practice writing paragraphs where you explain the chain of consequences. For each point, ask 'so what?' at least twice.",
   })
   assert.match(guided.html, /Where the marks went/)
@@ -146,6 +146,15 @@ function main() {
 
   // Absent when there is nothing to say — no empty heading, no 'null'.
   assert.doesNotMatch(plain.html, /Where the marks went|What to do next/)
+  // Only the takeaway written to leave the app is accepted; the in-app study
+  // note has no way in, however safe it looks.
+  const inApp = buildMarkReadyEmail({
+    ...base,
+    marksEarned: 5,
+    totalMarks: 8,
+    ...({ whatToStudyNext: 'Practice explaining chains of consequence.' } as object),
+  })
+  assert.doesNotMatch(inApp.html, /What to do next/)
 
   // The guard: anything that names the scheme or reads like an award code
   // stays behind the app. Better a shorter email than scheme text in an inbox.

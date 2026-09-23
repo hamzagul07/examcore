@@ -16,7 +16,8 @@ export type MarkReadyNotice = {
   paperRef: string | null
   predictedMarks: number | null
   weakTopics: string[] | null
-  whatToStudyNext: string | null
+  /** The examiner's shareable takeaway — the only prose the email carries. */
+  shareableTakeaway: string | null
 }
 
 export function markReadyNoticeFromPayload(
@@ -27,7 +28,7 @@ export function markReadyNoticeFromPayload(
   const done = (payload && typeof payload === 'object' ? payload : {}) as Record<string, unknown>
   const ai = (done.ai_marking && typeof done.ai_marking === 'object' ? done.ai_marking : {}) as {
     weak_topics?: unknown
-    what_to_study_next?: unknown
+    shareable_takeaway?: unknown
   }
   const subjectCode =
     typeof done.subject_code === 'string' && done.subject_code.trim()
@@ -45,7 +46,9 @@ export function markReadyNoticeFromPayload(
     weakTopics: Array.isArray(ai.weak_topics)
       ? ai.weak_topics.filter((t): t is string => typeof t === 'string')
       : null,
-    whatToStudyNext:
-      typeof ai.what_to_study_next === 'string' ? ai.what_to_study_next : null,
+    shareableTakeaway:
+      typeof ai.shareable_takeaway === 'string' && ai.shareable_takeaway.trim()
+        ? ai.shareable_takeaway
+        : null,
   }
 }

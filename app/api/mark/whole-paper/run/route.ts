@@ -339,6 +339,11 @@ async function handleRun(request: NextRequest) {
         }
       }
     }
+    // One takeaway for the whole paper: the question that lost the most marks
+    // is where the next hour of practice should go.
+    const costliest = [...results]
+      .filter((r) => typeof r.ai_marking?.shareable_takeaway === 'string' && r.ai_marking.shareable_takeaway.trim())
+      .sort((a, b) => (b.total_marks - b.marks_earned) - (a.total_marks - a.marks_earned))[0]
     const readyNotice = {
       // Only the student who ran their own paper gets the mail. A teacher
       // marking a pupil's script is watching the result; the pupil did not
@@ -353,6 +358,7 @@ async function handleRun(request: NextRequest) {
       weakTopics: [...topicCounts.entries()]
         .sort((a, b) => b[1] - a[1])
         .map(([topic]) => topic),
+      shareableTakeaway: costliest?.ai_marking?.shareable_takeaway ?? null,
     }
 
     // Guests are charged at whole-paper/init, not here.

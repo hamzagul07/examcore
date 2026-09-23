@@ -221,6 +221,7 @@ type BandLike = {
 type MarkingResultLike = {
   summary?: unknown
   what_to_study_next?: unknown
+  shareable_takeaway?: unknown
   estimated_marks_explanation?: unknown
   weak_topics?: unknown
   marks_awarded?: unknown
@@ -256,6 +257,7 @@ export function normalizeMarkingResult<T extends MarkingResultLike>(result: T): 
 
   result.summary = normStr(result.summary)
   result.what_to_study_next = normStr(result.what_to_study_next)
+  result.shareable_takeaway = normStr(result.shareable_takeaway)
   result.estimated_marks_explanation = normStr(result.estimated_marks_explanation)
   result.weak_topics = normStrArray(result.weak_topics)
 

@@ -32,7 +32,8 @@ export type MarkReadyNotifyInput = {
   paperRef?: string | null
   predictedMarks?: number | null
   weakTopics?: string[] | null
-  whatToStudyNext?: string | null
+  /** The examiner's shareable takeaway (generated to leave the app). */
+  shareableTakeaway?: string | null
   /** Catalog code for the "mark another" link; omitted → plain /mark. */
   subjectCode?: string | null
 }
@@ -108,7 +109,7 @@ export async function notifyMarkReady(
       paperRef: input.paperRef ?? null,
       predictedMarks: input.predictedMarks ?? null,
       weakTopics: input.weakTopics ?? null,
-      whatToStudyNext: input.whatToStudyNext ?? null,
+      shareableTakeaway: input.shareableTakeaway ?? null,
       nextMarkHref: input.subjectCode
         ? `${SITE_URL}/mark?subject=${encodeURIComponent(input.subjectCode)}`
         : `${SITE_URL}/mark`,

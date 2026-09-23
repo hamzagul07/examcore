@@ -45,8 +45,13 @@ export type MarkReadyPayload = {
   predictedMarks?: number | null
   /** The examiner's weak-topic tags for this answer, e.g. "Analysis (AO3)". */
   weakTopics?: string[] | null
-  /** The examiner's "what to study next" paragraph. Never scheme text. */
-  whatToStudyNext?: string | null
+  /**
+   * The examiner's shareable takeaway — generated under its own rules (see
+   * SHAREABLE_TAKEAWAY_BLOCK) to be read outside the app. The in-app
+   * "what to study next" is deliberately not accepted here: it is written
+   * beside the scheme and may quote it.
+   */
+  shareableTakeaway?: string | null
   /** Where the next mark starts — /mark with the subject already chosen. */
   nextMarkHref?: string | null
   unsubscribeHref: string
@@ -65,11 +70,11 @@ const SCHEME_SPEAK =
   /mark ?schemes?|\b[BMA] ?\d{1,2}[a-z]?\b|\b(?:award(?:ed|s|ing)?|condon(?:e|ed|es)|penali[sz](?:e|ed|es))\b|\b(?:accept|allow|ignore|reject)\b|\bmarks? (?:for|if|each|per)\b|\b(?:one|two|three|four|five|six|\d+) marks?\b|\b(?:cao|oe|ecf|isw|bod|dep|ft|www)\b|\bmax(?:imum)?\s*(?:of\s*)?\d/i
 
 /**
- * The study note is model prose about the student's own answer, which is
- * fine to mail — but it occasionally paraphrases the scheme it marked against,
- * and published scheme text must stay behind the app. Anything that names the
- * scheme or reads like an award code is dropped rather than risked. The rest
- * is cut to one inbox-sized paragraph, at a sentence end where possible.
+ * The takeaway is generated to be shareable, so this is the backstop, not
+ * the guard: if the model slipped into the scheme's dialect anyway, the
+ * note is dropped rather than risked, and published scheme text stays
+ * behind the app. The rest is cut to one inbox-sized paragraph, at a
+ * sentence end where possible.
  */
 export function studyNoteForEmail(raw: string | null | undefined): string | null {
   const text = raw?.replace(/\s+/g, ' ').trim()
@@ -131,7 +136,7 @@ export function buildMarkReadyEmail(payload: MarkReadyPayload): {
     unsubscribeHref,
   } = payload
   const weakTopics = weakTopicsForEmail(payload.weakTopics)
-  const studyNote = studyNoteForEmail(payload.whatToStudyNext)
+  const studyNote = studyNoteForEmail(payload.shareableTakeaway)
 
   const href = `${SITE_URL}/dashboard/attempt/${attemptId}`
   const greeting = recipientName?.trim() || 'there'

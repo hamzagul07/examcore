@@ -228,6 +228,12 @@ is applied to production.
   `/api/mark/process`, so guest answers count. Stats and the audience gap
   report (`buildCohortGapReport` keyed to the code, locked under 50 answers)
   live in `lib/creators/service.ts`.
+- Two plain Postgres functions (`20260923b_creator_rpcs.sql`, applied):
+  `claim_creator_code` computes the pool and inserts the claim under a row
+  lock on the creator, so a burst cannot exceed `gift_pool_monthly`;
+  `creator_stats` is the one grouped query behind the directory and the
+  studio. A typed code also sets the cookie via `POST /api/creators/ref`, so
+  a follower who heard the code in a video is credited at signup.
 - Creator seat = Scholar access + the teacher marking cap
   (`effectiveAccess({ creatorVerified })`, `enforcement.ts`).
 - Grant with `pnpm creator:grant <email> <CODE> --handle h --name n --tagline t

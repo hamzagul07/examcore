@@ -48,6 +48,23 @@ export type CreatorRef = { kind: 'code'; value: string } | { kind: 'handle'; val
 
 const HANDLE_RE = /^[a-z0-9_]{3,20}$/
 
+/** Cookie attributes shared by the proxy and /api/creators/ref. */
+export function creatorRefCookieOptions(): {
+  maxAge: number
+  path: string
+  sameSite: 'lax'
+  httpOnly: boolean
+  secure: boolean
+} {
+  return {
+    maxAge: CREATOR_REF_MAX_AGE_SECONDS,
+    path: '/',
+    sameSite: 'lax',
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+  }
+}
+
 export function serializeCreatorRef(ref: CreatorRef): string {
   return `${ref.kind}:${ref.value}`
 }

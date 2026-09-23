@@ -200,97 +200,73 @@ export type CreatorStats = {
   giftPoolMonthly: number
 }
 
-function monthStartIso(now = new Date()): string {
-  return new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1)).toISOString()
+type StatsRow = {
+  user_id: string
+  code: string
+  runs: number | string | null
+  marked: number | string | null
+  marked_this_month: number | string | null
+  guest_answers: number | string | null
+  students: number | string | null
+  joined: number | string | null
+  gift_claimed_this_month: number | string | null
 }
 
+/** PostgREST hands bigint counts back as numbers or strings depending on size. */
+function num(v: number | string | null | undefined): number {
+  const n = Number(v ?? 0)
+  return Number.isFinite(n) ? n : 0
+}
+
+function toStats(row: StatsRow | undefined, giftPoolMonthly: number): CreatorStats {
+  return {
+    runs: num(row?.runs),
+    marked: num(row?.marked),
+    markedThisMonth: num(row?.marked_this_month),
+    guestAnswers: num(row?.guest_answers),
+    students: num(row?.students),
+    joined: num(row?.joined),
+    giftClaimedThisMonth: num(row?.gift_claimed_this_month),
+    giftPoolMonthly,
+  }
+}
+
+/** One grouped query (creator_stats) — the studio and the directory share it. */
 export async function getCreatorStats(creator: CreatorPublic): Promise<CreatorStats> {
   const admin = createServiceClient()
-  const since = monthStartIso()
-  const runsQ = admin
-    .from('mark_runs')
-    .select('id', { count: 'exact', head: true })
-    .eq('creator_code', creator.code)
-  const markedQ = admin
-    .from('mark_runs')
-    .select('id', { count: 'exact', head: true })
-    .eq('creator_code', creator.code)
-    .eq('status', 'success')
-  const monthQ = admin
-    .from('mark_runs')
-    .select('id', { count: 'exact', head: true })
-    .eq('creator_code', creator.code)
-    .eq('status', 'success')
-    .gte('started_at', since)
-  const guestQ = admin
-    .from('mark_runs')
-    .select('id', { count: 'exact', head: true })
-    .eq('creator_code', creator.code)
-    .eq('status', 'success')
-    .is('user_id', null)
-  const studentsQ = admin
-    .from('mark_runs')
-    .select('user_id')
-    .eq('creator_code', creator.code)
-    .eq('status', 'success')
-    .not('user_id', 'is', null)
-    .limit(5000)
-  const joinedQ = admin
-    .from('user_profiles')
-    .select('id', { count: 'exact', head: true })
-    .eq('referred_by', creator.userId)
-  const claimsQ = admin
-    .from('creator_code_claims')
-    .select('marks_granted')
-    .eq('creator_id', creator.userId)
-    .gte('claimed_at', since)
-
-  const [runs, marked, month, guest, students, joined, claims] = await Promise.all([
-    runsQ,
-    markedQ,
-    monthQ,
-    guestQ,
-    studentsQ,
-    joinedQ,
-    claimsQ,
-  ])
-
-  const distinctStudents = new Set(
-    (students.data ?? []).map((r) => r.user_id as string).filter(Boolean)
-  )
-  const giftClaimed = (claims.data ?? []).reduce(
-    (sum, r) => sum + ((r.marks_granted as number) || 0),
-    0
-  )
-
-  return {
-    runs: runs.count ?? 0,
-    marked: marked.count ?? 0,
-    markedThisMonth: month.count ?? 0,
-    guestAnswers: guest.count ?? 0,
-    students: distinctStudents.size,
-    joined: joined.count ?? 0,
-    giftClaimedThisMonth: giftClaimed,
-    giftPoolMonthly: creator.giftPoolMonthly,
+  const { data, error } = await admin.rpc('creator_stats', { p_creator_id: creator.userId })
+  if (error) {
+    console.error('[creators] creator_stats failed', error.message)
+    return toStats(undefined, creator.giftPoolMonthly)
   }
+  const rows = (data ?? []) as StatsRow[]
+  return toStats(rows[0], creator.giftPoolMonthly)
 }
 
 export type CreatorWithStats = CreatorPublic & { stats: CreatorStats }
 
-/** Active creators, most answers marked first. */
+/** Active creators, most answers marked first. Two queries, whatever the count. */
 export async function listCreators(): Promise<CreatorWithStats[]> {
   const admin = createServiceClient()
-  const { data } = await admin
-    .from('creators')
-    .select(CREATOR_COLUMNS)
-    .eq('status', 'active')
-    .order('verified_at', { ascending: true })
-    .limit(200)
-  const creators = await attachHandles(admin, (data ?? []) as CreatorRow[])
-  const withStats = await Promise.all(
-    creators.map(async (c) => ({ ...c, stats: await getCreatorStats(c) }))
+  const [creatorsRes, statsRes] = await Promise.all([
+    admin
+      .from('creators')
+      .select(CREATOR_COLUMNS)
+      .eq('status', 'active')
+      .order('verified_at', { ascending: true })
+      .limit(200),
+    admin.rpc('creator_stats'),
+  ])
+  if (statsRes.error) {
+    console.error('[creators] creator_stats failed', statsRes.error.message)
+  }
+  const creators = await attachHandles(admin, (creatorsRes.data ?? []) as CreatorRow[])
+  const byId = new Map(
+    ((statsRes.data ?? []) as StatsRow[]).map((r) => [r.user_id, r] as const)
   )
-  return withStats.sort((a, b) => b.stats.marked - a.stats.marked)
+  return creators
+    .map((c) => ({ ...c, stats: toStats(byId.get(c.userId), c.giftPoolMonthly) }))
+    .sort((a, b) => b.stats.marked - a.stats.marked)
 }
 
 // --- the audience gap report --------------------------------------------------------
@@ -401,33 +377,23 @@ export async function claimCreatorRef(opts: {
     .eq('id', opts.userId)
     .is('referred_by', null)
 
-  const since = monthStartIso()
-  const { data: claims } = await admin
-    .from('creator_code_claims')
-    .select('marks_granted')
-    .eq('creator_id', creator.userId)
-    .gte('claimed_at', since)
-  const claimedThisMonth = (claims ?? []).reduce(
-    (sum, r) => sum + ((r.marks_granted as number) || 0),
-    0
-  )
-  const poolLeft = Math.max(0, creator.giftPoolMonthly - claimedThisMonth)
-  const marks = Math.min(creator.giftMarks, poolLeft)
-
-  const { error: insertError } = await admin.from('creator_code_claims').insert({
-    creator_id: creator.userId,
-    code: creator.code,
-    user_id: opts.userId,
-    marks_granted: marks,
+  // The pool arithmetic and the claim row are one step under a row lock on
+  // the creator (claim_creator_code), so a burst of claims at the end of a
+  // month cannot each be paid in full.
+  const { data, error: claimError } = await admin.rpc('claim_creator_code', {
+    p_creator_id: creator.userId,
+    p_user_id: opts.userId,
   })
-  if (insertError) {
-    // 23505 = the unique (creator, user) row already exists.
-    if (insertError.code === '23505') return { status: 'already', creator }
-    console.error('[creators] claim insert failed', insertError.message)
-    return { status: 'already', creator }
+  if (claimError) {
+    console.error('[creators] claim_creator_code failed', claimError.message)
+    return { status: 'exhausted', creator }
   }
-
-  if (marks <= 0) return { status: 'exhausted', creator }
+  const row = ((data ?? []) as { status: string; marks_granted: number | string }[])[0]
+  if (!row || row.status === 'invalid') return { status: 'invalid' }
+  if (row.status === 'self') return { status: 'self', creator }
+  if (row.status === 'already') return { status: 'already', creator }
+  const marks = num(row.marks_granted)
+  if (row.status === 'exhausted' || marks <= 0) return { status: 'exhausted', creator }
 
   const metadata = {
     polar_order_id: `creator-${creator.code}-${opts.userId}`,

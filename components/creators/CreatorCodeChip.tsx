@@ -93,6 +93,13 @@ export function CreatorCodeChip({ onChange }: { onChange: (code: string | null) 
           // private mode: the code still applies for this page
         }
         onChange(data.creator.code)
+        // The attribution cookie. A typed code never passes through a URL
+        // the proxy sees, so signup would otherwise not credit this creator.
+        void fetch('/api/creators/ref', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code: data.creator.code }),
+        }).catch(() => undefined)
         void claim(data.creator.code)
       } catch {
         setStatus('invalid')
@@ -128,6 +135,7 @@ export function CreatorCodeChip({ onChange }: { onChange: (code: string | null) 
     } catch {
       // nothing to clear
     }
+    void fetch('/api/creators/ref', { method: 'DELETE' }).catch(() => undefined)
   }
 
   if (creator) {

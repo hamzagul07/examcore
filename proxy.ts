@@ -16,7 +16,7 @@ import {
 } from '@/lib/auth-redirect'
 import {
   CREATOR_REF_COOKIE,
-  CREATOR_REF_MAX_AGE_SECONDS,
+  creatorRefCookieOptions,
   creatorRefFromRequest,
   serializeCreatorRef,
 } from '@/lib/creators/codes'
@@ -245,13 +245,7 @@ function withCreatorRef(request: NextRequest, response: NextResponse): NextRespo
   if (!ref) return response
   const value = serializeCreatorRef(ref)
   if (request.cookies.get(CREATOR_REF_COOKIE)?.value === value) return response
-  response.cookies.set(CREATOR_REF_COOKIE, value, {
-    maxAge: CREATOR_REF_MAX_AGE_SECONDS,
-    path: '/',
-    sameSite: 'lax',
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-  })
+  response.cookies.set(CREATOR_REF_COOKIE, value, creatorRefCookieOptions())
   return response
 }
 

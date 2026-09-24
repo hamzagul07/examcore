@@ -56,5 +56,8 @@ export type SettingsContext = {
     emailReviewDigest: boolean
     emailWeeklyReport: boolean
     emailMarkReady: boolean
+    /** The Monday creator brief; only shown to accounts with a creator seat. */
+    emailCreatorBrief: boolean
+    isCreator: boolean
   }
 }

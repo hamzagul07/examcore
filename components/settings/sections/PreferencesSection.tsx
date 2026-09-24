@@ -15,6 +15,9 @@ type Props = {
   initialReviewDigest: boolean
   initialWeeklyReport: boolean
   initialMarkReady: boolean
+  initialCreatorBrief?: boolean
+  /** Only accounts with a creator seat see the brief toggle. */
+  showCreatorBrief?: boolean
 }
 
 export function PreferencesSection({
@@ -26,6 +29,8 @@ export function PreferencesSection({
   initialReviewDigest,
   initialWeeklyReport,
   initialMarkReady,
+  initialCreatorBrief = true,
+  showCreatorBrief = false,
 }: Props) {
   const [examReminders, setExamReminders] = useState(initialExamReminders)
   const [productUpdates, setProductUpdates] = useState(initialProductUpdates)
@@ -35,6 +40,7 @@ export function PreferencesSection({
   const [reviewDigest, setReviewDigest] = useState(initialReviewDigest)
   const [weeklyReport, setWeeklyReport] = useState(initialWeeklyReport)
   const [markReady, setMarkReady] = useState(initialMarkReady)
+  const [creatorBrief, setCreatorBrief] = useState(initialCreatorBrief)
   const [saving, setSaving] = useState<
     | 'exam'
     | 'product'
@@ -44,6 +50,7 @@ export function PreferencesSection({
     | 'reviewDigest'
     | 'weeklyReport'
     | 'markReady'
+    | 'creatorBrief'
     | null
   >(null)
   const [errorMsg, setErrorMsg] = useState('')
@@ -58,7 +65,8 @@ export function PreferencesSection({
       | 'email_community_threads'
       | 'email_review_digest'
       | 'email_weekly_report'
-      | 'email_mark_ready',
+      | 'email_mark_ready'
+      | 'email_creator_brief',
     value: boolean,
     savingKey:
       | 'exam'
@@ -69,6 +77,7 @@ export function PreferencesSection({
       | 'reviewDigest'
       | 'weeklyReport'
       | 'markReady'
+      | 'creatorBrief'
   ) {
     setSaving(savingKey)
     setErrorMsg('')
@@ -91,6 +100,7 @@ export function PreferencesSection({
       else if (field === 'email_community_threads') setCommunityThreads(!value)
       else if (field === 'email_review_digest') setReviewDigest(!value)
       else if (field === 'email_mark_ready') setMarkReady(!value)
+      else if (field === 'email_creator_brief') setCreatorBrief(!value)
       else setWeeklyReport(!value)
       return
     }
@@ -483,6 +493,51 @@ export function PreferencesSection({
               )}
             </span>
           </label>
+
+          {showCreatorBrief ? (
+            <label className="ms-pref-toggle flex min-h-[56px] cursor-pointer items-start justify-between gap-4">
+              <span>
+                <span className="block text-sm font-semibold text-[var(--ec-text-primary)]">
+                  Weekly creator brief
+                </span>
+                <span className="mt-0.5 block text-sm text-[var(--ec-text-secondary)]">
+                  Every Monday: answers marked with your code, where your followers lose
+                  marks, and three things to film. Your studio has the same numbers any time.
+                </span>
+              </span>
+              <span className="relative inline-flex shrink-0 items-center">
+                <input
+                  type="checkbox"
+                  checked={creatorBrief}
+                  onChange={(e) => {
+                    setCreatorBrief(e.target.checked)
+                    void savePreference('email_creator_brief', e.target.checked, 'creatorBrief')
+                  }}
+                  disabled={saving === 'creatorBrief'}
+                  className="sr-only"
+                  aria-label="Weekly creator brief"
+                />
+                <span
+                  className={`flex h-6 w-11 items-center rounded-full border px-0.5 transition-colors ${
+                    creatorBrief
+                      ? 'ec-select-active'
+                      : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)]'
+                  }`}
+                >
+                  <span
+                    className={`h-5 w-5 rounded-full transition-transform ${
+                      creatorBrief
+                        ? 'translate-x-5 bg-[var(--ec-brand)]'
+                        : 'translate-x-0 bg-[var(--ec-text-secondary)]'
+                    }`}
+                  />
+                </span>
+                {saving === 'creatorBrief' && (
+                  <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />
+                )}
+              </span>
+            </label>
+          ) : null}
         </div>
       </SettingsSectionCard>
 

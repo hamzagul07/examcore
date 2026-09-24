@@ -230,7 +230,9 @@ is applied to production.
   live in `lib/creators/service.ts`.
 - Two plain Postgres functions (`20260923b_creator_rpcs.sql`, applied):
   `claim_creator_code` computes the pool and inserts the claim under a row
-  lock on the creator, so a burst cannot exceed `gift_pool_monthly`;
+  lock on the creator, so a burst cannot exceed `gift_pool_monthly`, and pays
+  **one gift per account ever** (`20260925`) — the first creator's code pays,
+  later codes only stamp runs;
   `creator_stats` is the one grouped query behind the directory and the
   studio. A typed code also sets the cookie via `POST /api/creators/ref`, so
   a follower who heard the code in a video is credited at signup.
@@ -274,8 +276,11 @@ is applied to production.
   --tiktok @x [--adult]`; `--list`, `--pause`, `--resume`. Tests:
   `pnpm test:creators`, `pnpm test:grants`.
 
-Not built yet: a preferences-page toggle for the brief (the unsubscribe
-link covers it), the paid tier for 18+ creators (pays out of
+The brief has a toggle on /account/preferences (creators only). Outreach
+template for creators: docs/OUTREACH_DM_EMAILS.md row 12. Vercel preview
+builds for every commit on the branch are green.
+
+Not built yet: the paid tier for 18+ creators (pays out of
 `creator_conversions`), follow feed.
 
 ## Sources (2026-09-23)

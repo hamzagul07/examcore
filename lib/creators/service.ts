@@ -385,9 +385,10 @@ export type ClaimResult =
 
 /**
  * A signed-in student uses a creator's code (or arrives through the creator's
- * link). Writes the attribution once, pays the gift once, and is safe to call
- * from every path that might see the code — the (creator, user) unique row is
- * the lock.
+ * link). Writes the attribution once and pays the gift once per account, ever:
+ * the first creator's code pays; later codes still stamp the student's runs
+ * for that creator's counters but pay nothing. Safe to call from every path
+ * that might see a code — claim_creator_code decides under a row lock.
  */
 export async function claimCreatorRef(opts: {
   userId: string

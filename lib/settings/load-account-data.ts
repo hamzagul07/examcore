@@ -9,6 +9,7 @@ import { isOnboardingComplete } from '@/lib/onboarding'
 import { computeBillingSummary } from '@/lib/billing/enforcement'
 import { shouldShowApproachingLimitBanner } from '@/lib/billing/enforcement-mode'
 import type { SettingsContext } from './types'
+import { getCreatorByUserId } from '@/lib/creators/service'
 
 export async function loadAccountContext(): Promise<SettingsContext> {
   const supabase = await createClient()
@@ -24,10 +25,13 @@ export async function loadAccountContext(): Promise<SettingsContext> {
   const { data: profile } = await supabase
     .from('user_profiles')
     .select(
-      'full_name, username, board, level, subjects, onboarded, onboarding_completed, exam_date, target_grade, stage, primary_goal, created_at, email_exam_reminders, email_product_updates, email_community_replies, email_community_digest, email_community_threads, email_review_digest, email_weekly_report, email_mark_ready'
+      'full_name, username, board, level, subjects, onboarded, onboarding_completed, exam_date, target_grade, stage, primary_goal, created_at, email_exam_reminders, email_product_updates, email_community_replies, email_community_digest, email_community_threads, email_review_digest, email_weekly_report, email_mark_ready, email_creator_brief'
     )
     .eq('id', user.id)
     .maybeSingle()
+
+  // Creator seats (docs/CREATORS_PROGRAM.md) decide whether the brief toggle shows.
+  const creatorSeat = await getCreatorByUserId(user.id)
 
   if (profile && !isOnboardingComplete(profile)) {
     redirect('/onboarding')
@@ -112,6 +116,8 @@ export async function loadAccountContext(): Promise<SettingsContext> {
       // Defaults on, like the other transactional-ish ones: it only fires when
       // a mark finished after the student had already left the page.
       emailMarkReady: profile?.email_mark_ready !== false,
+      emailCreatorBrief: profile?.email_creator_brief !== false,
+      isCreator: !!creatorSeat,
     },
   }
 }

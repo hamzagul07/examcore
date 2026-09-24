@@ -63,6 +63,7 @@ import type { FullMarksRewritePlan } from '@/lib/marking/mark-runner'
 import {
   openMarkRun,
   noteMarkRunStage,
+  noteMarkRunPageCount,
   noteMarkRunVerify,
   noteMarkRunDisconnect,
   readMarkRunPrediction,
@@ -580,6 +581,7 @@ async function handleMarkRequest(request: NextRequest) {
                 deferRewrite: true,
                 onProgress: (ev) => {
                   if (ev.type === 'progress') noteMarkRunStage(markRun, ev.stage)
+                  if (ev.type === 'context' && typeof ev.pdf_pages === 'number') noteMarkRunPageCount(markRun, ev.pdf_pages)
                   // The first-pass score, before the verify pass can overwrite
                   // it. Recorded against the final mark so the two can be
                   // compared rather than only the survivor being kept.
@@ -721,6 +723,7 @@ async function handleMarkRequest(request: NextRequest) {
           ...pipelineInput,
           onProgress: (ev) => {
             if (ev.type === 'progress') noteMarkRunStage(markRun, ev.stage)
+            if (ev.type === 'context' && typeof ev.pdf_pages === 'number') noteMarkRunPageCount(markRun, ev.pdf_pages)
           },
         })
         await bumpRateLimit()

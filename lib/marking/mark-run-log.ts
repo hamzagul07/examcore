@@ -209,6 +209,22 @@ export function noteMarkRunStage(
 }
 
 /**
+ * A PDF's page count is only known once it is opened, which is after the run
+ * row was written with 0 — every PDF run logged page_count 0, which is how a
+ * 57% PDF failure rate hid behind "page_count 0" for a month.
+ */
+export function noteMarkRunPageCount(handle: MarkRunHandle | null, pageCount: number): void {
+  if (!handle?.id || !Number.isFinite(pageCount) || pageCount < 1) return
+  void supabaseAdmin
+    .from('mark_runs')
+    .update({ page_count: Math.round(pageCount) })
+    .eq('id', handle.id)
+    .then(undefined, (err: unknown) =>
+      console.warn('[mark-run] page count flush failed', err)
+    )
+}
+
+/**
  * The score the student predicted during the wait, if they answered.
  *
  * Read back at completion rather than held in memory: the prediction arrives on

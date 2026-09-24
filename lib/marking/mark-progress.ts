@@ -14,6 +14,8 @@ export type MarkContextPayload = {
   syllabus_tags?: string[] | null
   /** Scanned script split into several questions: how many were detected. */
   total_questions?: number | null
+  /** Pages in an uploaded PDF, once opened — photo uploads report theirs at open. */
+  pdf_pages?: number | null
 }
 
 export type MarkProgressEvent =

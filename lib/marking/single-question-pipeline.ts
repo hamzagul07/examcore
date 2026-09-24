@@ -835,7 +835,21 @@ export async function runSingleQuestionMark(
     // no photo to overlay them on.
     pageOcrResults.push({ full_text: typedAnswer, lines: [], photo_url: null })
   } else if (answerPdf?.size) {
-    const pdfPages = await ocrPdfToPages(await answerPdf.arrayBuffer())
+    // One page at a time, four in flight — the same read a photographed page
+    // gets. The whole-document read this replaced failed 16 of 28 PDF uploads
+    // in the 30 days to 2026-09-24 (see ocrPdfToPages).
+    const pdfPages = await ocrPdfToPages(await answerPdf.arrayBuffer(), {
+      ocrPage: (bytes) =>
+        ocrAnswerBufferWithBoxes(
+          Buffer.from(bytes),
+          'application/pdf',
+          isCombinedScript
+            ? practiceCode ?? undefined
+            : manualSubjectCode ?? fallbackSubjectCode ?? undefined,
+          captureQuestionInOcr
+        ),
+      onPageCount: (total) => emitContext(onProgress, { pdf_pages: total }),
+    })
     for (const p of pdfPages) {
       pageOcrResults.push({
         full_text: p.full_text,

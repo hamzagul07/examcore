@@ -33,17 +33,26 @@ export function isGeminiTimeoutError(err: unknown): boolean {
  * after the student had waited twelve minutes for it. A call that produced
  * nothing inside two whole timeouts is not going to on the third. The first
  * hang re-routes to the other backend when there is one (a genuinely
- * different path, no nap); the second stops the run, so the same message
- * reaches the student at ~4 minutes instead of ~12.
+ * different path, no nap); the second stops the run, so the timeout reaches
+ * the student at ~4 minutes instead of ~12 (as "Marking took too long", the
+ * same `timeout` code in telemetry).
  */
 export const MAX_HUNG_ATTEMPTS = 2
 
 const HUNG_CALL_PATTERN =
   /Headers Timeout|UND_ERR_HEADERS_TIMEOUT|UND_ERR_BODY_TIMEOUT|ETIMEDOUT/i
 
-/** The call produced nothing inside its whole timeout — as opposed to a fast "no". */
+const HUNG_CALL_CODES = ['UND_ERR_HEADERS_TIMEOUT', 'UND_ERR_BODY_TIMEOUT', 'ETIMEDOUT']
+
+/**
+ * The call produced nothing inside its whole timeout — as opposed to a fast
+ * "no". undici reports its own timeouts as `TypeError: fetch failed` with the
+ * code on `cause.code`, so the code is checked as well as the message.
+ */
 export function isHungCallError(err: unknown): boolean {
-  return isGeminiTimeoutError(err) || HUNG_CALL_PATTERN.test(errorMessage(err))
+  if (isGeminiTimeoutError(err)) return true
+  if (HUNG_CALL_CODES.includes(errorCode(err) ?? '')) return true
+  return HUNG_CALL_PATTERN.test(errorMessage(err))
 }
 
 const OVERLOAD_PATTERN =
@@ -221,6 +230,12 @@ async function withApiRetry<T>(
       if (isHungCallError(err)) {
         hungAttempts++
         if (hungAttempts >= MAX_HUNG_ATTEMPTS) {
+          // Once the request budget is spent, calls are clamped to a second
+          // or two, so a "hang" here is the deadline, not the provider — and
+          // it has to surface as the deadline so the caller settles the run.
+          if (!hasTimeForAnotherAttempt(0, 0)) {
+            throw new RequestDeadlineExceededError(remainingRequestMs() ?? 0, err)
+          }
           console.warn(
             `[${label}] ${hungAttempts} attempts hung for their whole timeout — stopping retries`
           )

@@ -69,7 +69,9 @@ async function main() {
       assert.ok(err instanceof GeminiTimeoutError, 'the timeout itself is what surfaces')
     })
     assert.equal(hung, MAX_HUNG_ATTEMPTS, `stopped after ${MAX_HUNG_ATTEMPTS} of 9 allowed attempts`)
-    assert.ok(Date.now() - t0 < MAX_RETRY_ELAPSED_MS, 'no backoff naps spent on it')
+    // Outside a request scope there is no backend to switch to, so the one
+    // retry takes the ordinary short nap; the point is the count, not the nap.
+    assert.ok(Date.now() - t0 < MAX_RETRY_ELAPSED_MS, `two attempts and one nap in ${Date.now() - t0}ms`)
   }
 
   // The first hang re-routes to the other backend when one is credentialed —
@@ -78,16 +80,69 @@ async function main() {
     process.env.GEMINI_API_KEY ??= 'test-key'
     process.env.GOOGLE_CLOUD_PROJECT ??= 'test-project'
     const { fallbackGeminiBackend } = await import('@/lib/ai/gemini-config')
+    const { geminiBackendLabel } = await import('@/lib/ai/gemini-config')
     await withRequestDeadline(60_000, async () => {
       const expected = fallbackGeminiBackend()
       assert.ok(expected, 'both backends credentialed for this check')
+      const seen: string[] = []
+      const t0 = Date.now()
+      let surfaced: unknown
+      await withGeminiRetry(() => {
+        seen.push(geminiBackendLabel())
+        return hungVertexCall()
+      }, { maxRetries: 8, baseDelayMs: 5, label: 'test-hung-failover' }).catch((err) => {
+        surfaced = err
+      })
+      assert.ok(surfaced instanceof GeminiTimeoutError, 'the timeout is what surfaces')
+      assert.equal(seen.length, MAX_HUNG_ATTEMPTS)
+      assert.notEqual(seen[0], seen[1], 'the second attempt ran on the other backend')
+      assert.equal(seen[1], expected)
+      assert.equal(requestBackendOverride(), expected)
+      // The re-route is the one path with no nap at all.
+      assert.ok(Date.now() - t0 < 2 * HUNG_CALL_MS + 100, `no backoff nap on the re-route (${Date.now() - t0}ms)`)
+    })
+
+    // The path this exists for: the hang was on one backend, the other serves.
+    await withRequestDeadline(60_000, async () => {
       let n = 0
+      const value = await withGeminiRetry(async () => {
+        n++
+        if (n === 1) return hungVertexCall()
+        return 'served'
+      }, { maxRetries: 8, baseDelayMs: 5, label: 'test-hung-recover' })
+      assert.equal(value, 'served')
+      assert.equal(n, 2, 'served on the re-routed attempt')
+    })
+
+    // A request that already spent its one switch on a 429 gets the plain
+    // retry for a later hang: one nap, one more go, then stop.
+    await withRequestDeadline(60_000, async () => {
+      let n = 0
+      await withGeminiRetry(async () => {
+        n++
+        if (n === 1) throw new Error('429 RESOURCE_EXHAUSTED: rate limit')
+        return hungVertexCall()
+      }, { maxRetries: 8, baseDelayMs: 5, label: 'test-switch-then-hang' }).catch(() => {})
+      assert.equal(n, 1 + MAX_HUNG_ATTEMPTS, 'the 429 re-route, then two hung attempts')
+    })
+  }
+
+  // With the budget gone, a "hang" is the deadline talking: surface it as the
+  // deadline so the route settles the run instead of placeholdering a question.
+  {
+    const { RequestDeadlineExceededError } = await import('@/lib/ai/request-deadline')
+    await withRequestDeadline(1, async () => {
+      await new Promise((r) => setTimeout(r, 5))
+      let n = 0
+      let surfaced: unknown
       await withGeminiRetry(() => {
         n++
         return hungVertexCall()
-      }, { maxRetries: 8, baseDelayMs: 5, label: 'test-hung-failover' }).catch(() => {})
-      assert.equal(n, MAX_HUNG_ATTEMPTS)
-      assert.equal(requestBackendOverride(), expected, 'second attempt ran on the other backend')
+      }, { maxRetries: 8, baseDelayMs: 5, label: 'test-hung-no-budget' }).catch((err) => {
+        surfaced = err
+      })
+      assert.ok(surfaced instanceof RequestDeadlineExceededError, `deadline error surfaces, got ${String(surfaced)}`)
+      assert.ok(n <= MAX_HUNG_ATTEMPTS)
     })
   }
 

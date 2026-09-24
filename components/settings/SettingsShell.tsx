@@ -1,5 +1,6 @@
 'use client'
 
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
@@ -79,14 +80,9 @@ export function SettingsShell({ children }: { children: React.ReactNode }) {
                     className={cn(
                       'flex min-h-[44px] items-center gap-2.5 rounded px-3 py-2.5 text-body font-medium transition-colors',
                       isActive
-                        ? 'text-[var(--ec-brand)]'
+                        ? 'bg-[var(--ec-brand-muted)] text-[var(--ec-brand)]'
                         : 'text-[var(--ec-text-secondary)] hover:bg-[var(--ec-brand-muted)] hover:text-[var(--ec-text-primary)]'
                     )}
-                    style={
-                      isActive
-                        ? { background: 'var(--ec-brand-muted)' }
-                        : undefined
-                    }
                     aria-current={isActive ? 'page' : undefined}
                   >
                     <Icon className="h-4 w-4 shrink-0" aria-hidden />
@@ -115,14 +111,7 @@ export function SettingsMobileIndex() {
             href={item.href}
             className="ms-acct-card flex min-h-[56px] items-center gap-3 transition-colors hover:border-[var(--ec-brand)]/40"
           >
-            <span
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded border"
-              style={{
-                background: 'var(--ec-brand-muted)',
-                color: 'var(--ec-brand)',
-                borderColor: 'var(--ec-brand-border)',
-              }}
-            >
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] text-[var(--ec-brand)]">
               <Icon className="h-5 w-5" aria-hidden />
             </span>
             <span className="min-w-0 flex-1 text-left">
@@ -144,5 +133,95 @@ export function SettingsMobileIndex() {
 
       <AppSupportStrip className="ms-acct-support" />
     </div>
+  )
+}
+
+/* ------------------------------------------------------------------
+   Save feedback shared by the settings sections.
+
+   A save is confirmed where it happened: a small "✓ Saved" stamp lands
+   beside the control that saved, holds for a beat, fades, and leaves the
+   DOM — the same rhythm PreferencesSection uses per row. Each section keeps
+   its own persistent sr-only role="status" for the spoken copy.
+   ------------------------------------------------------------------ */
+
+export type SavedStampState = { phase: 'shown' | 'leaving'; nonce: number } | null
+
+/** How long the stamp holds before it fades (ms). */
+const SAVED_HOLD_MS = 1800
+/** The fade itself — keep in step with `--ec-dur-menu`. */
+const SAVED_FADE_MS = 200
+
+function prefersReducedMotion() {
+  return (
+    typeof window !== 'undefined' &&
+    window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true
+  )
+}
+
+/**
+ * Timer-backed stamp state. `showSaved()` lands a fresh stamp (restarting the
+ * hold if one is already up); `clearSaved()` removes it at once, e.g. when a
+ * new save starts.
+ */
+export function useSavedStamp() {
+  const [stamp, setStamp] = useState<SavedStampState>(null)
+  const nonce = useRef(0)
+
+  const savedNonce = stamp?.nonce ?? null
+  useEffect(() => {
+    if (savedNonce === null) return
+    const fade = prefersReducedMotion() ? 0 : SAVED_FADE_MS
+    const leave = window.setTimeout(() => {
+      setStamp((s) => (s && s.nonce === savedNonce ? { ...s, phase: 'leaving' } : s))
+    }, SAVED_HOLD_MS)
+    const clear = window.setTimeout(() => {
+      setStamp((s) => (s && s.nonce === savedNonce ? null : s))
+    }, SAVED_HOLD_MS + fade)
+    return () => {
+      window.clearTimeout(leave)
+      window.clearTimeout(clear)
+    }
+  }, [savedNonce])
+
+  const showSaved = useCallback(() => {
+    nonce.current += 1
+    setStamp({ phase: 'shown', nonce: nonce.current })
+  }, [])
+
+  const clearSaved = useCallback(() => setStamp(null), [])
+
+  return { stamp, showSaved, clearSaved }
+}
+
+/**
+ * The visual stamp. Decorative — the section's sr-only status carries the
+ * announcement — so it is hidden from assistive tech.
+ */
+export function SavedStamp({
+  state,
+  label = '✓ Saved',
+  className,
+}: {
+  state: SavedStampState
+  label?: ReactNode
+  className?: string
+}) {
+  if (!state) return null
+  return (
+    <span
+      data-state={state.phase}
+      aria-hidden
+      className={cn(
+        'pointer-events-none inline-flex transition-opacity duration-[var(--ec-dur-menu)] ease-[var(--ec-ease-out)] data-[state=leaving]:opacity-0 motion-reduce:transition-none',
+        className
+      )}
+    >
+      {/* `.ec-land` animates transform, so it lives on its own layer:
+          the stamp underneath keeps its -3deg tilt. */}
+      <span className="ec-land inline-flex">
+        <span className="ec-ink-stamp ec-ink-stamp--inline">{label}</span>
+      </span>
+    </span>
   )
 }

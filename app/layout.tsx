@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import "./fonts/handwritten.css";
@@ -85,6 +85,11 @@ const caveat = localFont({
   preload: false,
   variable: "--font-caveat",
 });
+
+/** First paint is zen; ThemeProvider updates the tag when late-night applies. */
+export const viewport: Viewport = {
+  themeColor: "#faf9f6",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

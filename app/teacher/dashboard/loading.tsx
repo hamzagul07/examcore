@@ -1,18 +1,30 @@
 import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
 
-/** Matches the class-slip list geometry on the teacher dashboard. */
+/**
+ * Stands in for TeacherDashboardClient at the same column (max-w-7xl inside the
+ * layout's app-shell — no second <main>, which used to double the padding):
+ * desk head with its eyebrow row, headline, handwritten note and the "New class"
+ * button, then the class slips at their real height.
+ */
 export default function TeacherDashboardLoading() {
   return (
-    <main className="app-shell md:py-10">
-      <div className="mx-auto min-w-0 max-w-7xl">
-        <SkeletonLine className="mb-3 h-3 w-28" />
-        <SkeletonBlock className="mb-8 h-10 w-56 max-w-full" />
-        <div className="ms-teacher-class-list">
-          <SkeletonBlock className="h-20 w-full" />
-          <SkeletonBlock className="h-20 w-full" />
-          <SkeletonBlock className="h-20 w-full" />
+    <div className="mx-auto min-w-0 max-w-7xl" aria-busy aria-label="Loading classrooms">
+      <div className="ms-teacher-desk-head">
+        <div>
+          <div className="mb-2 flex items-center gap-2">
+            <SkeletonLine className="h-3 w-24" />
+            <SkeletonBlock className="h-[22px] w-9" />
+          </div>
+          <SkeletonBlock className="h-10 w-64 max-w-full sm:h-11" />
+          <SkeletonLine className="mt-2 h-4 w-52 max-w-full" />
         </div>
+        <SkeletonBlock className="h-11 w-32" />
       </div>
-    </main>
+      <div className="ms-teacher-class-list">
+        <SkeletonBlock className="h-[78px] w-full" />
+        <SkeletonBlock className="h-[78px] w-full" />
+        <SkeletonBlock className="h-[78px] w-full" />
+      </div>
+    </div>
   )
 }

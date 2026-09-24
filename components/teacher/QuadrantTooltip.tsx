@@ -3,9 +3,9 @@ import type { StudentQuadrantMetric } from '@/lib/teacher-analytics'
 
 export function QuadrantTooltip({ student }: { student: StudentQuadrantMetric }) {
   return (
-    <div className="absolute right-2 top-2 z-20 max-w-[calc(100%-1rem)] min-w-0 ec-card ec-card--paper border border-[var(--ec-border)] bg-[var(--ec-surface)] p-3 sm:min-w-[220px] sm:p-4">
+    <div className="ms-teacher-quadrant-tip absolute right-2 top-2 z-20 max-w-[calc(100%-1rem)] min-w-0 ec-card ec-card--paper border border-[var(--ec-border)] bg-[var(--ec-surface)] p-3 sm:min-w-[220px] sm:p-4">
       <h4 className="mb-1 font-bold text-[var(--ec-text-primary)]">{student.name}</h4>
-      <div className="mb-3 text-xs text-[var(--ec-text-secondary)]">
+      <div className="mb-3 text-xs tabular-nums text-[var(--ec-text-secondary)]">
         Accuracy {percentOrDash(student.accuracy, student.attemptCount)} ·{' '}
         {student.attemptCount > 0
           ? `${student.timePerMark.toFixed(1)} min/mark`
@@ -23,7 +23,7 @@ export function QuadrantTooltip({ student }: { student: StudentQuadrantMetric })
               {student.biggestDeficit.code}
             </div>
             <div className="text-sm text-[var(--ec-text-primary)]">{student.biggestDeficit.name}</div>
-            <div className="text-xs text-[var(--ec-text-secondary)]">
+            <div className="text-xs tabular-nums text-[var(--ec-text-secondary)]">
               {student.biggestDeficit.percentage.toFixed(0)}% mastery
             </div>
           </div>

@@ -161,8 +161,17 @@
   }
 }
 
+/* Wide: the plain body; the collapsible is for phones only. */
+.hub-seo-intro-body--wide {
+  display: none;
+}
+
 @media (min-width: 721px) {
-  .hub-seo-intro-details > summary {
+  .hub-seo-intro-body--wide {
+    display: block;
+  }
+
+  .hub-seo-intro-details {
     display: none;
   }
 }

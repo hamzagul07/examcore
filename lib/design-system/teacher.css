@@ -27,7 +27,7 @@
   background: var(--ec-paper, var(--ec-surface));
   border: 1.5px solid var(--ec-border);
   border-radius: 4px;
-  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
+  box-shadow: var(--ec-shadow-hard);
   overflow: hidden;
 }
 
@@ -107,23 +107,46 @@
   border-radius: 4px;
   border: 1.5px solid var(--ec-border);
   background: var(--ec-paper, var(--ec-surface));
-  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
+  box-shadow: var(--ec-shadow-hard);
   color: var(--ec-text-secondary);
   font-family: var(--font-mono, ui-monospace, monospace);
   font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.03em;
+  cursor: pointer;
   transition:
-    border-color 0.15s ease,
-    color 0.15s ease,
-    transform 0.14s ease,
-    box-shadow 0.14s ease;
+    border-color 120ms ease,
+    color 120ms ease,
+    transform var(--ec-dur-pop, 160ms) var(--ec-ease-out, ease-out),
+    box-shadow var(--ec-dur-pop, 160ms) var(--ec-ease-out, ease-out);
 }
 
-.ms-teacher-start__choice:hover {
-  transform: translate(-1px, -1px);
-  border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border));
-  color: var(--ec-text-primary);
+/* Lift only for pointers that can hover; a tap must not leave a chip stuck up. */
+@media (hover: hover) {
+  .ms-teacher-start__choice:hover:not(:disabled) {
+    transform: translate(-1px, -1px);
+    border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border));
+    color: var(--ec-text-primary);
+  }
+
+  /* A pressed chip keeps its tilt when hovered instead of snapping upright. */
+  .ms-teacher-start__choice[aria-pressed='true']:hover:not(:disabled),
+  .ms-teacher-start__choice[aria-checked='true']:hover:not(:disabled),
+  .ms-teacher-start__choice.on:hover:not(:disabled),
+  .ms-teacher-start__choice[aria-selected='true']:hover:not(:disabled) {
+    transform: rotate(-1.5deg) translate(-1px, -1px);
+  }
+}
+
+.ms-teacher-start__choice:active:not(:disabled) {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+  transition-duration: var(--ec-dur-press, 120ms);
+}
+
+.ms-teacher-start__choice:focus-visible {
+  outline: none;
+  box-shadow: var(--ec-focus-ring);
 }
 
 .ms-teacher-start__choice[aria-pressed='true'],
@@ -133,7 +156,7 @@
   border-color: var(--ec-brand);
   background: color-mix(in srgb, var(--ec-brand) 8%, var(--ec-paper, var(--ec-surface)));
   color: var(--ec-brand);
-  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.07));
+  box-shadow: var(--ec-shadow-hard);
   transform: rotate(-1.5deg);
 }
 
@@ -159,7 +182,7 @@
   font-size: 13.5px;
   line-height: 1.5;
   color: var(--ec-text-primary);
-  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
+  box-shadow: var(--ec-shadow-hard);
 }
 
 .ms-teacher-start__input {
@@ -203,7 +226,7 @@
   border-left: 4px solid var(--ec-brand);
   border-radius: 4px;
   background: var(--ec-paper, var(--ec-surface));
-  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
+  box-shadow: var(--ec-shadow-hard);
 }
 
 /* Class file slips on the dashboard */
@@ -225,19 +248,32 @@
   border: 1.5px solid var(--ec-border);
   border-radius: 4px;
   background: var(--ec-paper, var(--ec-surface));
-  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.07));
+  box-shadow: var(--ec-shadow-hard);
   text-decoration: none;
   color: inherit;
   transition:
-    transform 140ms ease,
-    box-shadow 140ms ease,
-    border-color 140ms ease;
+    transform var(--ec-dur-pop, 160ms) var(--ec-ease-out, ease-out),
+    box-shadow var(--ec-dur-pop, 160ms) var(--ec-ease-out, ease-out),
+    border-color 120ms ease;
 }
 
-.ms-teacher-class-slip:hover {
-  transform: translate(-1px, -2px);
-  border-color: color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border));
-  box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.1));
+@media (hover: hover) {
+  .ms-teacher-class-slip:hover {
+    transform: translate(-1px, -2px);
+    border-color: color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border));
+    box-shadow: var(--ec-card-hover-shadow, var(--ec-shadow-hard));
+  }
+}
+
+.ms-teacher-class-slip:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+  transition-duration: var(--ec-dur-press, 120ms);
+}
+
+.ms-teacher-class-slip:focus-visible {
+  outline: none;
+  box-shadow: var(--ec-focus-ring);
 }
 
 .ms-teacher-class-slip__stamp {
@@ -268,6 +304,7 @@
   margin: 4px 0 0;
   font-size: 13px;
   color: var(--ec-text-secondary);
+  font-variant-numeric: tabular-nums;
 }
 
 .ms-teacher-class-slip__code {
@@ -282,8 +319,10 @@
   font-family: var(--font-mono, ui-monospace, monospace);
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: var(--ec-track-label, 0.08em);
   text-transform: uppercase;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
   color: var(--ec-brand);
 }
 
@@ -300,7 +339,7 @@
   border: 1.5px solid var(--ec-border);
   border-radius: 4px;
   background: var(--ec-paper, var(--ec-surface));
-  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.06));
+  box-shadow: var(--ec-shadow-hard);
 }
 
 .ms-teacher-tally__label {
@@ -308,7 +347,7 @@
   font-family: var(--font-mono, ui-monospace, monospace);
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--ec-track-label, 0.08em);
   text-transform: uppercase;
   color: var(--ec-text-faint);
 }
@@ -320,6 +359,9 @@
   font-weight: 500;
   line-height: 1;
   color: var(--ec-text-primary);
+  /* These count up on landing; the cell must not breathe as digits arrive. */
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
 }
 
 /* Invite — green-spine filing slip */
@@ -332,7 +374,7 @@
   border-left: 4px solid var(--ec-brand);
   border-radius: 4px;
   background: var(--ec-paper, var(--ec-surface));
-  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.09));
+  box-shadow: var(--ec-shadow-hard);
 }
 
 .ms-teacher-invite::before {
@@ -357,7 +399,7 @@
   border: 1.5px solid var(--ec-border);
   border-radius: 4px;
   background: var(--ec-paper, var(--ec-surface));
-  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.07));
+  box-shadow: var(--ec-shadow-hard);
 }
 
 .ms-teacher-roster__list {
@@ -381,12 +423,29 @@
   background: var(--ec-paper, var(--ec-surface));
   text-decoration: none;
   color: inherit;
-  transition: border-color 140ms ease, transform 140ms ease;
+  transition:
+    border-color 120ms ease,
+    transform var(--ec-dur-pop, 160ms) var(--ec-ease-out, ease-out),
+    box-shadow var(--ec-dur-pop, 160ms) var(--ec-ease-out, ease-out);
 }
 
-.ms-teacher-roster__row:hover {
-  transform: translate(-1px, -1px);
-  border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border));
+@media (hover: hover) {
+  .ms-teacher-roster__row:hover {
+    transform: translate(-1px, -1px);
+    border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border));
+    box-shadow: var(--ec-card-shadow, var(--ec-shadow-hard));
+  }
+}
+
+.ms-teacher-roster__row:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+  transition-duration: var(--ec-dur-press, 120ms);
+}
+
+.ms-teacher-roster__row:focus-visible {
+  outline: none;
+  box-shadow: var(--ec-focus-ring);
 }
 
 .ms-teacher-desk-head {
@@ -417,7 +476,7 @@
     var(--ec-logo-crimson, var(--ec-ink-crimson)) 5%,
     var(--ec-paper, var(--ec-surface))
   );
-  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.06));
+  box-shadow: var(--ec-shadow-hard);
 }
 
 /* Demo / example-class banner — ink stamp, not an error */
@@ -427,7 +486,7 @@
   border-left: 4px solid var(--ec-brand);
   border-radius: 4px;
   background: color-mix(in srgb, var(--ec-brand) 6%, var(--ec-paper, var(--ec-surface)));
-  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
+  box-shadow: var(--ec-shadow-hard);
 }
 
 .ms-teacher-risk-legend__cell {
@@ -438,7 +497,7 @@
   border: 1.5px solid var(--ec-border);
   border-radius: 4px;
   background: var(--ec-paper, var(--ec-surface));
-  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
+  box-shadow: var(--ec-shadow-hard);
 }
 
 .ms-teacher-risk-legend__stamp {
@@ -518,6 +577,35 @@
   height: 100%;
   border-radius: 4px;
   transition: width 0.4s ease;
+}
+
+/* Bars grow in from the left when the report lands, one after another, so the
+ * page reads as being drawn rather than pasted. Inline widths stay authoritative;
+ * only the transform animates. `ec-grow-x` is the shared keyframe from the
+ * premium craft layer. */
+@media (prefers-reduced-motion: no-preference) {
+  .ms-gap-fill,
+  .ms-class-due__fill,
+  .ms-blindspots .ms-bs-row__fill {
+    transform-origin: left;
+    animation: ec-grow-x var(--ec-dur-grow, 640ms) var(--ec-ease-settle, ease-out) both;
+  }
+
+  .ms-gap-row:nth-child(2) .ms-gap-fill,
+  .ms-class-due__row:nth-child(2) .ms-class-due__fill,
+  .ms-blindspots .ms-bs-row:nth-child(2) .ms-bs-row__fill { animation-delay: 60ms; }
+  .ms-gap-row:nth-child(3) .ms-gap-fill,
+  .ms-class-due__row:nth-child(3) .ms-class-due__fill,
+  .ms-blindspots .ms-bs-row:nth-child(3) .ms-bs-row__fill { animation-delay: 120ms; }
+  .ms-gap-row:nth-child(4) .ms-gap-fill,
+  .ms-class-due__row:nth-child(4) .ms-class-due__fill,
+  .ms-blindspots .ms-bs-row:nth-child(4) .ms-bs-row__fill { animation-delay: 180ms; }
+  .ms-gap-row:nth-child(5) .ms-gap-fill,
+  .ms-class-due__row:nth-child(5) .ms-class-due__fill,
+  .ms-blindspots .ms-bs-row:nth-child(5) .ms-bs-row__fill { animation-delay: 240ms; }
+  .ms-gap-row:nth-child(n + 6) .ms-gap-fill,
+  .ms-class-due__row:nth-child(n + 6) .ms-class-due__fill,
+  .ms-blindspots .ms-bs-row:nth-child(n + 6) .ms-bs-row__fill { animation-delay: 300ms; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -633,9 +721,9 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ec-logo-crimson, var(--ec-ink-crimson, #c53a3f));
-  border: 1px solid color-mix(in srgb, var(--ec-logo-crimson, #c53a3f) 35%, transparent);
-  background: color-mix(in srgb, var(--ec-logo-crimson, #c53a3f) 10%, transparent);
+  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  border: 1px solid color-mix(in srgb, var(--ec-logo-crimson, var(--ec-ink-crimson)) 35%, transparent);
+  background: color-mix(in srgb, var(--ec-logo-crimson, var(--ec-ink-crimson)) 10%, transparent);
   border-radius: 2px;
   padding: 3px 7px;
   white-space: nowrap;
@@ -764,7 +852,7 @@
   border: 1.5px solid var(--ec-border);
   border-left: 4px solid var(--ec-logo-crimson, var(--ec-ink-crimson));
   border-radius: 4px;
-  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
+  box-shadow: var(--ec-shadow-hard);
 }
 
 /* Once the request is in, the urgency is gone — the crimson edge would keep
@@ -808,5 +896,172 @@
 @media (max-width: 640px) {
   .ms-teacher-seat {
     padding: 18px 16px 16px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Interaction states the teacher surfaces were missing
+ *
+ * Every link and toggle here has a hover (pointer-gated), a press, and a
+ * keyboard focus ring, in the shared motion vocabulary. Nothing new visually —
+ * these are the states the student pages already have.
+ * ------------------------------------------------------------------------ */
+
+/* Mono text links ("View all ->", "Mark-type gaps ->", back links). */
+.ms-teacher-textlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition:
+    color 120ms ease,
+    opacity 120ms ease;
+}
+
+@media (hover: hover) {
+  .ms-teacher-textlink:hover {
+    color: var(--ec-brand);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+  }
+}
+
+.ms-teacher-textlink:active {
+  opacity: 0.72;
+}
+
+.ms-teacher-textlink:focus-visible {
+  outline: none;
+  box-shadow: var(--ec-focus-ring);
+}
+
+/* Togglable paper rows — the override console's mark rows and the intervention
+ * question picker. `aria-pressed` carries the chosen state. */
+.ms-teacher-pick {
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color 120ms ease,
+    background-color 120ms ease,
+    transform var(--ec-dur-pop, 160ms) var(--ec-ease-out, ease-out),
+    box-shadow var(--ec-dur-pop, 160ms) var(--ec-ease-out, ease-out);
+}
+
+@media (hover: hover) {
+  .ms-teacher-pick:hover:not(:disabled) {
+    border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border));
+    transform: translate(-1px, -1px);
+  }
+}
+
+.ms-teacher-pick:active:not(:disabled) {
+  transform: translate(0, 0);
+  box-shadow: none;
+  transition-duration: var(--ec-dur-press, 120ms);
+}
+
+.ms-teacher-pick:focus-visible {
+  outline: none;
+  box-shadow: var(--ec-focus-ring);
+}
+
+.ms-teacher-pick[aria-pressed='true'] {
+  border-color: color-mix(in srgb, var(--ec-brand) 45%, var(--ec-border));
+  background: color-mix(in srgb, var(--ec-brand) 6%, var(--ec-paper, var(--ec-surface)));
+}
+
+/* Roster cards on the students page: ec-card-interactive gives hover and focus;
+ * this adds the press. */
+.ms-teacher-student-card:active {
+  transform: translate(0, 0);
+  box-shadow: var(--ec-shadow-hard);
+  transition-duration: var(--ec-dur-press, 120ms);
+}
+
+/* Inline "copied" / "sent" note that appears beside the control that caused it,
+ * holds, then fades before the state resets. */
+.ms-teacher-flash {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: var(--ec-track-label, 0.08em);
+  text-transform: uppercase;
+  color: var(--ec-brand);
+}
+
+@keyframes ms-teacher-flash {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  12% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  82% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ms-teacher-flash {
+    animation: ms-teacher-flash 2.4s var(--ec-ease-out, ease-out) both;
+  }
+}
+
+/* Risk matrix plot sheet and the tooltip that appears over it. */
+.ms-teacher-risk-plot {
+  box-shadow: var(--ec-shadow-hard);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ms-teacher-quadrant-tip {
+    animation: ec-fade-in-soft var(--ec-dur-pop, 160ms) var(--ec-ease-out, ease-out) both;
+  }
+}
+
+/* Skeleton rows that stand in for the roster, due list and review slips share
+ * the real rows' heights so the swap does not reflow. */
+.ms-teacher-skel-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-teacher-class-slip,
+  .ms-teacher-roster__row,
+  .ms-teacher-start__choice,
+  .ms-teacher-pick,
+  .ms-teacher-student-card {
+    transition: none;
+  }
+
+  .ms-teacher-class-slip:hover,
+  .ms-teacher-roster__row:hover,
+  .ms-teacher-pick:hover,
+  .ms-teacher-start__choice:hover,
+  .ms-teacher-class-slip:active,
+  .ms-teacher-roster__row:active,
+  .ms-teacher-pick:active,
+  .ms-teacher-start__choice:active {
+    transform: none;
+  }
+
+  .ms-teacher-start__choice[aria-pressed='true'],
+  .ms-teacher-start__choice[aria-checked='true'],
+  .ms-teacher-start__choice.on,
+  .ms-teacher-start__choice[aria-selected='true'] {
+    transform: rotate(-1.5deg);
   }
 }

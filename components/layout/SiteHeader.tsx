@@ -68,6 +68,23 @@ export function SiteHeader({ variant }: Props) {
   const config = getSiteHeaderConfig(pathname, variant)
   const baseNavItems = getNavItemsForConfig(variant, config)
   const [mobileOpen, setMobileOpen] = useState(false)
+  // The sheet stays mounted for one short beat after closing so it can
+  // animate out; the focus trap and body lock key off `mobileOpen` alone.
+  const [menuClosing, setMenuClosing] = useState(false)
+  const wasMobileOpen = useRef(false)
+  useEffect(() => {
+    if (wasMobileOpen.current && !mobileOpen) {
+      setMenuClosing(true)
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      const id = window.setTimeout(() => setMenuClosing(false), reduce ? 0 : 200)
+      wasMobileOpen.current = false
+      return () => window.clearTimeout(id)
+    }
+    if (mobileOpen) {
+      wasMobileOpen.current = true
+      setMenuClosing(false)
+    }
+  }, [mobileOpen])
   const [restoreMenuFocus, setRestoreMenuFocus] = useState(true)
   const [mounted, setMounted] = useState(false)
   const [mobileViewport, setMobileViewport] = useState(mobileViewportMatches)
@@ -385,20 +402,24 @@ export function SiteHeader({ variant }: Props) {
         </div>
       </header>
 
-      {mounted && showMobileMenu && mobileOpen
+      {mounted && showMobileMenu && (mobileOpen || menuClosing)
         ? createPortal(
             <>
               <button
                 type="button"
                 className="ec-nav-mobile-backdrop"
+                data-state={mobileOpen ? 'open' : 'closing'}
+                inert={!mobileOpen || undefined}
                 aria-label="Close menu"
                 onClick={() => closeMobileMenu(true)}
               />
               <div
                 ref={mobileSheetRef}
                 className="ec-nav-mobile-sheet"
+                data-state={mobileOpen ? 'open' : 'closing'}
+                inert={!mobileOpen || undefined}
                 role="dialog"
-                aria-modal="true"
+                aria-modal={mobileOpen ? 'true' : undefined}
                 aria-label="Navigation menu"
               >
                 <div className="ec-nav-mobile-sheet-head">

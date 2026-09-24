@@ -3,6 +3,7 @@
 import { useCallback, useState, type ReactNode } from 'react'
 import Link from 'next/link'
 import { TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
+import { StableLabel } from '@/components/ui/StableLabel'
 import { formatInviteCode } from '@/lib/teacher/invite-code'
 import { useSetAIContext } from '@/lib/omni-ai/context'
 import type { TeacherClassroomRow } from '@/lib/teacher/list-classrooms'
@@ -105,17 +106,19 @@ export function TeacherDashboardClient({ initial, seatCard }: Props) {
       {seatCard}
 
       {error ? (
-        <div className="ms-teacher-error mb-6" role="alert">
+        <div className="ms-teacher-error ec-land mb-6" role="alert">
           <p className="font-semibold text-[var(--ec-text-primary)]">Couldn’t load classrooms</p>
           <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">{error}</p>
           <div className="mt-4 flex flex-wrap gap-2">
             <button
               type="button"
               disabled={refreshing}
+              aria-busy={refreshing || undefined}
+              data-loading={refreshing ? 'true' : undefined}
               onClick={() => void refresh()}
               className="ec-btn-primary inline-flex min-h-[44px] items-center"
             >
-              {refreshing ? 'Retrying…' : 'Try again'}
+              <StableLabel active={refreshing ? 1 : 0} labels={['Try again', 'Retrying…']} />
             </button>
             <Link
               href="/contact"
@@ -128,7 +131,7 @@ export function TeacherDashboardClient({ initial, seatCard }: Props) {
       ) : null}
 
       {empty ? (
-        <div className="ms-teacher-empty">
+        <div className="ms-teacher-empty ec-land">
           <span className="ms-teacher-empty__icon" aria-hidden>
             <span className="font-mono text-sm font-bold tracking-wide">CL</span>
           </span>
@@ -151,19 +154,30 @@ export function TeacherDashboardClient({ initial, seatCard }: Props) {
               type="button"
               onClick={() => void seedDemo()}
               disabled={seeding}
-              className="ec-btn-secondary w-full justify-center disabled:opacity-50 sm:w-auto"
+              aria-busy={seeding || undefined}
+              data-loading={seeding ? 'true' : undefined}
+              className="ec-btn-secondary w-full justify-center sm:w-auto"
             >
-              <span className="mr-2 font-mono text-[11px] font-bold tracking-wide" aria-hidden>
-                DEMO
-              </span>
-              {seeding ? 'Building example…' : 'Show me an example class'}
+              {/* Two labels, one width: the button must not shrink while it builds. */}
+              <StableLabel
+                active={seeding ? 1 : 0}
+                labels={[
+                  <>
+                    <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+                      DEMO
+                    </span>
+                    Show me an example class
+                  </>,
+                  'Building example…',
+                ]}
+              />
             </button>
           </div>
         </div>
       ) : null}
 
       {!error && classrooms.length > 0 ? (
-        <ul className="ms-teacher-class-list">
+        <ul className="ms-teacher-class-list ec-land">
           {classrooms.map((c) => {
             const demo = isDemoClassroom(c)
             return (
@@ -176,7 +190,7 @@ export function TeacherDashboardClient({ initial, seatCard }: Props) {
                     <h2 className="ms-teacher-class-slip__name">
                       {c.name}
                       {demo ? (
-                        <span className="ml-2 font-mono text-[11px] font-bold tracking-wide text-[var(--ec-logo-crimson,var(--ec-ink-crimson))]">
+                        <span className="ec-ink-stamp ec-ink-stamp--inline ec-ink-stamp--crimson ml-2 align-middle">
                           EXAMPLE DATA
                         </span>
                       ) : null}

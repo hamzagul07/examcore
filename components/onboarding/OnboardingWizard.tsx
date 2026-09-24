@@ -1,14 +1,16 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { BusyLabel } from '@/components/ui/StableLabel'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
 import { createClient } from '@/lib/supabase'
 import { AuthShell } from '@/components/AuthShell'
+import { Button } from '@/components/ui/Button'
+import { Field } from '@/components/ui/Field'
 import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
-import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
 import { SegmentedControl } from '@/components/ui/SegmentedControl'
+import { cn } from '@/lib/utils'
 import { completeOnboardingRequest } from '@/lib/onboarding/complete-onboarding-client'
 import { lastFunnelBoard, profileBoardFromFunnelBoard } from '@/lib/analytics/funnel'
 import {
@@ -62,6 +64,17 @@ const DRAFT_KEY = 'ms-onboarding-draft'
 
 /** Shared with the emails so the two cannot disagree about the limit. */
 const MAX_SUBJECTS = MAX_PROFILE_SUBJECTS
+
+/* Selection controls. The sheets give each control its hover and selected
+   states; the press and the 44px target are added here. Press uses the
+   `translate` property (not `transform`), so it composes with the sheet's
+   hover lift and the stamp-pick's tilt instead of replacing them. The
+   stamp-pick sheet sets a 40px min-height outside any cascade layer, which
+   outranks a plain utility, so that one override carries `!`. */
+const PRESS_CLASS =
+  'active:translate-x-px active:translate-y-px motion-reduce:active:translate-none'
+const CHOICE_CLASS = `ms-ob-choice ${PRESS_CLASS}`
+const STAMP_PICK_CLASS = `ms-ob-stamp-pick__btn min-h-[44px]! ${PRESS_CLASS}`
 
 type WizardDraft = {
   step: number
@@ -404,90 +417,84 @@ export function OnboardingWizard({
           labels={rerun ? RERUN_STEP_LABELS : FIRST_RUN_STEP_LABELS}
         />
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={step}
-            className="ms-ob-step ms-ob-docket"
-            initial={{ y: 10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -8, opacity: 0 }}
-            transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
-          >
-            {!rerun ? (
-              <StepSubjects
-                board={board}
-                onBoardChange={handleBoardChange}
-                level={level}
-                onLevelChange={handleLevelChange}
-                selected={subjects}
-                onToggle={toggleSubject}
-                errorMsg={errorMsg}
-                onContinue={startMarking}
-                onBack={undefined}
-                continueLabel={loading ? 'Filing desk…' : 'Start marking'}
-                continueBusy={loading}
-                firstRun
-                showBrowseSkip={Boolean(nextParam && isContentGateReturnPath(nextParam))}
-                browseSkipLoading={loading}
-                onBrowseSkip={() => void skipOnboardingForBrowse()}
-                showOptionalPlanning={showOptionalPlanning}
-                onToggleOptionalPlanning={() => setShowOptionalPlanning((v) => !v)}
-                stage={stage}
-                onStageChange={setStage}
-                examDate={examDate}
-                onExamDateChange={setExamDate}
-                targetGrade={targetGrade}
-                onTargetGradeChange={setTargetGrade}
-                productUpdates={productUpdates}
-                onProductUpdatesChange={setProductUpdates}
-              />
-            ) : null}
+        {/* Keyed on the step so each one lands — `.ec-land` is the shared
+            rise-in (ease-out, off under reduced motion) — instead of cutting in. */}
+        <div key={step} className="ms-ob-step ms-ob-docket ec-land">
+          {!rerun ? (
+            <StepSubjects
+              board={board}
+              onBoardChange={handleBoardChange}
+              level={level}
+              onLevelChange={handleLevelChange}
+              selected={subjects}
+              onToggle={toggleSubject}
+              errorMsg={errorMsg}
+              onContinue={startMarking}
+              onBack={undefined}
+              continueLabel="Start marking"
+              continueBusyLabel="Filing desk…"
+              continueBusy={loading}
+              firstRun
+              showBrowseSkip={Boolean(nextParam && isContentGateReturnPath(nextParam))}
+              browseSkipLoading={loading}
+              onBrowseSkip={() => void skipOnboardingForBrowse()}
+              showOptionalPlanning={showOptionalPlanning}
+              onToggleOptionalPlanning={() => setShowOptionalPlanning((v) => !v)}
+              stage={stage}
+              onStageChange={setStage}
+              examDate={examDate}
+              onExamDateChange={setExamDate}
+              targetGrade={targetGrade}
+              onTargetGradeChange={setTargetGrade}
+              productUpdates={productUpdates}
+              onProductUpdatesChange={setProductUpdates}
+            />
+          ) : null}
 
-            {rerun && step === 1 ? (
-              <StepSubjects
-                board={board}
-                onBoardChange={handleBoardChange}
-                level={level}
-                onLevelChange={handleLevelChange}
-                selected={subjects}
-                onToggle={toggleSubject}
-                errorMsg={errorMsg}
-                onContinue={goNext}
-                onBack={undefined}
-              />
-            ) : null}
+          {rerun && step === 1 ? (
+            <StepSubjects
+              board={board}
+              onBoardChange={handleBoardChange}
+              level={level}
+              onLevelChange={handleLevelChange}
+              selected={subjects}
+              onToggle={toggleSubject}
+              errorMsg={errorMsg}
+              onContinue={goNext}
+              onBack={undefined}
+            />
+          ) : null}
 
-            {rerun && step === 2 ? (
-              <StepStage
-                board={board}
-                level={level}
-                selected={stage}
-                onSelect={setStage}
-                examDate={examDate}
-                onExamDateChange={setExamDate}
-                targetGrade={targetGrade}
-                onTargetGradeChange={setTargetGrade}
-                errorMsg={errorMsg}
-                onContinue={goNext}
-                onBack={goBack}
-              />
-            ) : null}
+          {rerun && step === 2 ? (
+            <StepStage
+              board={board}
+              level={level}
+              selected={stage}
+              onSelect={setStage}
+              examDate={examDate}
+              onExamDateChange={setExamDate}
+              targetGrade={targetGrade}
+              onTargetGradeChange={setTargetGrade}
+              errorMsg={errorMsg}
+              onContinue={goNext}
+              onBack={goBack}
+            />
+          ) : null}
 
-            {rerun && step === 3 ? (
-              <StepFirstMark
-                productUpdates={productUpdates}
-                onProductUpdatesChange={setProductUpdates}
-                loading={loading}
-                errorMsg={errorMsg}
-                signInAgainHref={signInAgainHref}
-                onBack={goBack}
-                onMark={() => void completeOnboarding(markHref)}
-                onDashboard={() => void completeOnboarding(markHref)}
-                rerun={rerun}
-              />
-            ) : null}
-          </motion.div>
-        </AnimatePresence>
+          {rerun && step === 3 ? (
+            <StepFirstMark
+              productUpdates={productUpdates}
+              onProductUpdatesChange={setProductUpdates}
+              loading={loading}
+              errorMsg={errorMsg}
+              signInAgainHref={signInAgainHref}
+              onBack={goBack}
+              onMark={() => void completeOnboarding(markHref)}
+              onDashboard={() => void completeOnboarding(markHref)}
+              rerun={rerun}
+            />
+          ) : null}
+        </div>
       </AuthShell>
     </>
   )
@@ -556,6 +563,7 @@ function StepSubjects({
   onContinue,
   onBack,
   continueLabel = 'Continue',
+  continueBusyLabel,
   continueBusy = false,
   firstRun = false,
   showBrowseSkip = false,
@@ -582,6 +590,7 @@ function StepSubjects({
   onContinue: () => void
   onBack?: () => void
   continueLabel?: string
+  continueBusyLabel?: string
   continueBusy?: boolean
   firstRun?: boolean
   showBrowseSkip?: boolean
@@ -668,7 +677,7 @@ function StepSubjects({
       </p>
       <SegmentedControl
         className="ms-ob-choices"
-        optionClassName="ms-ob-choice"
+        optionClassName={CHOICE_CLASS}
         aria-labelledby="ob-board-label"
         value={board}
         onChange={onBoardChange}
@@ -699,7 +708,7 @@ function StepSubjects({
           </p>
           <SegmentedControl
             className="ms-ob-choices"
-            optionClassName="ms-ob-choice"
+            optionClassName={CHOICE_CLASS}
             aria-labelledby="ob-level-label"
             value={level}
             onChange={onLevelChange}
@@ -765,7 +774,7 @@ function StepSubjects({
                         disabled={atLimit}
                         title={atLimit ? 'Deselect one to add another (max 4)' : undefined}
                         onClick={() => onToggle(subject.id)}
-                        className={`ms-ob-file-row${active ? ' on' : ''}`}
+                        className={cn('ms-ob-file-row', PRESS_CLASS, active && 'on')}
                         aria-pressed={active}
                       >
                         <span className="ms-ob-file-row__code">{codeLabel}</span>
@@ -813,7 +822,7 @@ function StepSubjects({
                 </p>
                 <SegmentedControl
                   className="ms-ob-choices ms-ob-choices--stack"
-                  optionClassName="ms-ob-choice"
+                  optionClassName={CHOICE_CLASS}
                   aria-labelledby="ob-stage-label"
                   value={stage}
                   onChange={(id) => onStageChange?.(id)}
@@ -837,7 +846,7 @@ function StepSubjects({
                 </p>
                 <SegmentedControl
                   className="ms-ob-stamp-pick"
-                  optionClassName="ms-ob-stamp-pick__btn"
+                  optionClassName={STAMP_PICK_CLASS}
                   aria-labelledby="ob-exam-label"
                   value={examDate}
                   onChange={(v) => onExamDateChange?.(v)}
@@ -853,7 +862,7 @@ function StepSubjects({
                 </p>
                 <SegmentedControl
                   className="ms-ob-stamp-pick"
-                  optionClassName="ms-ob-stamp-pick__btn"
+                  optionClassName={STAMP_PICK_CLASS}
                   aria-labelledby="ob-grade-label"
                   value={targetGrade}
                   onChange={(g) =>
@@ -896,7 +905,9 @@ function StepSubjects({
         onBack={onBack}
         onContinue={onContinue}
         continueLabel={continueLabel}
+        continueBusyLabel={continueBusyLabel}
         continueBusy={continueBusy}
+        continueDisabled={selected.length === 0}
       />
       {firstRun ? (
         <div className="mt-3 space-y-2">
@@ -905,7 +916,8 @@ function StepSubjects({
               type="button"
               onClick={onBrowseSkip}
               disabled={browseSkipLoading}
-              className="ec-guest-browse-skip w-full"
+              aria-busy={browseSkipLoading || undefined}
+              className="ec-guest-browse-skip w-full disabled:cursor-not-allowed disabled:opacity-60"
             >
               {browseSkipLoading ? 'Opening topic…' : 'Just browsing? Skip setup for now'}
             </button>
@@ -974,7 +986,7 @@ function StepStage({
       </p>
       <SegmentedControl
         className="ms-ob-choices ms-ob-choices--stack"
-        optionClassName="ms-ob-choice"
+        optionClassName={CHOICE_CLASS}
         aria-label="Study stage"
         value={selected}
         onChange={onSelect}
@@ -1001,7 +1013,7 @@ function StepStage({
         </p>
         <SegmentedControl
           className="ms-ob-stamp-pick"
-          optionClassName="ms-ob-stamp-pick__btn"
+          optionClassName={STAMP_PICK_CLASS}
           aria-label="Suggested exam sessions"
           value={examDate}
           onChange={onExamDateChange}
@@ -1010,15 +1022,16 @@ function StepStage({
             label: s.label,
           }))}
         />
-        <label className="mt-4 block">
-          <span className="text-caption mb-1.5 block">Or pick a specific date</span>
-          <input
-            type="date"
-            value={examDate ?? ''}
-            onChange={(e) => onExamDateChange(e.target.value || null)}
-            className="ec-input"
-          />
-        </label>
+        <Field
+          className="mt-4"
+          label="Or pick a specific date"
+          labelClassName="text-caption mb-1.5 block"
+          inputProps={{
+            type: 'date',
+            value: examDate ?? '',
+            onChange: (e) => onExamDateChange(e.target.value || null),
+          }}
+        />
         <button
           type="button"
           onClick={() => onExamDateChange(null)}
@@ -1044,7 +1057,7 @@ function StepStage({
         </p>
         <SegmentedControl
           className="ms-ob-stamp-pick"
-          optionClassName="ms-ob-stamp-pick__btn"
+          optionClassName={STAMP_PICK_CLASS}
           aria-label="Target grade"
           value={targetGrade}
           onChange={(g) => onTargetGradeChange(targetGrade === g ? null : g)}
@@ -1056,7 +1069,12 @@ function StepStage({
       </div>
 
       {errorMsg && <div className="mt-4"><FormErrorAlert message={errorMsg} /></div>}
-      <StepNav onBack={onBack} onContinue={onContinue} continueLabel="Continue" />
+      <StepNav
+        onBack={onBack}
+        onContinue={onContinue}
+        continueLabel="Continue"
+        continueDisabled={!selected}
+      />
     </div>
   )
 }
@@ -1141,32 +1159,35 @@ function StepFirstMark({
         </p>
       )}
       <div className="ms-ob-nav ms-ob-nav--stack">
-        <button
+        <Button
           type="button"
-          disabled={loading}
-          aria-busy={loading || undefined}
-          data-loading={loading ? 'true' : undefined}
+          variant="primary"
+          size="md"
+          fullWidth
+          className="justify-center"
+          isLoading={loading}
           onClick={onMark}
-          className="ec-btn-primary w-full justify-center inline-flex items-center gap-2"
         >
-          {loading ? (
-            <ButtonLoadingState mode="morph" loadingText="Saving profile…">
-              {rerun ? 'Save and return to settings' : 'Mark a question now'}
-            </ButtonLoadingState>
-          ) : rerun ? (
-            <>Save and return to settings</>
-          ) : (
-            <>
-              <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
-                M1
-              </span>
-              Mark a question now
-              <span className="font-mono text-[11px] font-bold" aria-hidden>
-                -&gt;
-              </span>
-            </>
-          )}
-        </button>
+          <BusyLabel
+            loading={loading}
+            busy="Saving profile…"
+            idle={
+              rerun ? (
+                'Save and return to settings'
+              ) : (
+                <>
+                  <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+                    M1
+                  </span>
+                  Mark a question now
+                  <span className="font-mono text-[11px] font-bold" aria-hidden>
+                    -&gt;
+                  </span>
+                </>
+              )
+            }
+          />
+        </Button>
         {!rerun && (
           <button
             type="button"
@@ -1197,12 +1218,18 @@ function StepNav({
   onBack,
   onContinue,
   continueLabel,
+  continueBusyLabel,
   continueBusy = false,
+  continueDisabled = false,
 }: {
   onBack?: () => void
   onContinue: () => void
   continueLabel: string
+  /** Label while the step is saving; defaults to the idle label. */
+  continueBusyLabel?: string
   continueBusy?: boolean
+  /** The step is incomplete: the button is truly disabled, not a no-op click. */
+  continueDisabled?: boolean
 }) {
   return (
     <div className="ms-ob-nav">
@@ -1220,20 +1247,27 @@ function StepNav({
       ) : (
         <span />
       )}
-      <button
+      <Button
         type="button"
+        variant="primary"
+        size="md"
         onClick={onContinue}
-        disabled={continueBusy}
-        aria-busy={continueBusy || undefined}
-        className="ec-btn-primary inline-flex items-center gap-2 disabled:opacity-55"
+        disabled={continueDisabled}
+        isLoading={continueBusy}
       >
-        {continueLabel}
-        {!continueBusy ? (
-          <span className="font-mono text-[11px] font-bold" aria-hidden>
-            -&gt;
-          </span>
-        ) : null}
-      </button>
+        <BusyLabel
+          loading={continueBusy}
+          busy={continueBusyLabel ?? continueLabel}
+          idle={
+            <>
+              {continueLabel}
+              <span className="font-mono text-[11px] font-bold" aria-hidden>
+                -&gt;
+              </span>
+            </>
+          }
+        />
+      </Button>
     </div>
   )
 }

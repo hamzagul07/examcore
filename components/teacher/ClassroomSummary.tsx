@@ -1,5 +1,7 @@
 'use client'
 
+import { CountUp } from '@/components/ui/CountUp'
+
 interface Props {
   studentCount: number
   totalAttempts: number
@@ -16,21 +18,29 @@ export function ClassroomSummary({ studentCount, totalAttempts, avgScore }: Prop
   // scored 0% should see 0%.
   const hasMarkedWork = totalAttempts > 0
 
+  // The tallies count up as the desk lands (tabular figures on the cell keep the
+  // width steady); the dash for an unknown average never animates.
   return (
     <dl className="ms-teacher-tally">
       <div className="ms-teacher-tally__cell">
         <dt className="ms-teacher-tally__label">Students</dt>
-        <dd className="ms-teacher-tally__value">{studentCount}</dd>
+        <dd className="ms-teacher-tally__value">
+          <CountUp value={studentCount} />
+        </dd>
       </div>
       <div className="ms-teacher-tally__cell">
         <dt className="ms-teacher-tally__label">Attempts</dt>
-        <dd className="ms-teacher-tally__value">{totalAttempts}</dd>
+        <dd className="ms-teacher-tally__value">
+          <CountUp value={totalAttempts} />
+        </dd>
       </div>
       <div className="ms-teacher-tally__cell">
         <dt className="ms-teacher-tally__label">Class average</dt>
         <dd className="ms-teacher-tally__value">
           {hasMarkedWork ? (
-            `${avgScore.toFixed(0)}%`
+            <>
+              <CountUp value={Math.round(avgScore)} />%
+            </>
           ) : (
             <span aria-label="No class average yet">—</span>
           )}

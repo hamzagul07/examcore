@@ -74,8 +74,10 @@ export function TeacherSeatRequestCard({
   }
 
   if (pending) {
+    // The confirmation replaces the form in place and lands (this is where the
+    // teacher just pressed Send), rather than a notice somewhere else.
     return (
-      <section className="ms-teacher-seat ms-teacher-seat--pending">
+      <section className="ms-teacher-seat ms-teacher-seat--pending ec-land" role="status">
         <p className="ec-eyebrow mb-1">Seat requested</p>
         <p className="ms-teacher-seat__lead">
           We&apos;re checking your school details. Seats are approved by a human, usually
@@ -108,6 +110,7 @@ export function TeacherSeatRequestCard({
         <button
           type="button"
           onClick={() => setOpen(true)}
+          aria-expanded={open}
           className="ec-btn-primary ms-teacher-seat__cta"
         >
           Request my seat
@@ -116,7 +119,7 @@ export function TeacherSeatRequestCard({
           </span>
         </button>
       ) : (
-        <form onSubmit={submit} className="ms-teacher-start ms-teacher-seat__form">
+        <form onSubmit={submit} className="ms-teacher-start ms-teacher-seat__form ec-land">
           <Field
             className="ms-teacher-start__field"
             labelClassName="ms-teacher-start__legend"
@@ -209,6 +212,7 @@ export function TeacherSeatRequestCard({
             type="submit"
             disabled={!ready || saving}
             aria-busy={saving || undefined}
+            data-loading={saving ? 'true' : undefined}
             className="ec-btn-primary ms-teacher-start__submit"
           >
             {saving ? 'Sending…' : 'Send request'}

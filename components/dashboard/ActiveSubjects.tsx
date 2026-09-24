@@ -23,7 +23,7 @@ export function ActiveSubjects({ subjects, title = 'Subjects active' }: Props) {
         <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
           ¶
         </span>
-        <h2 className="text-title" style={{ margin: 0 }}>
+        <h2 className="text-title m-0">
           {title}
         </h2>
       </div>

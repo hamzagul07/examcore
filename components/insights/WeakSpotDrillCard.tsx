@@ -63,7 +63,7 @@ export function WeakSpotDrillCard({
       : topicDrillHref(drill.subjectCode, drill.topicCode)
 
   return (
-    <div className={`ms-weak-spot ${className}`.trim()}>
+    <div className={`ms-weak-spot ec-land ${className}`.trim()}>
       <div className="ms-weak-spot__meta">
         <span className="ec-ink-stamp ec-ink-stamp--crimson" aria-hidden>
           DR

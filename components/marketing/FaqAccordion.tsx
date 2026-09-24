@@ -65,17 +65,20 @@ function FaqRow({
       >
         <span>{item.q}</span>
         <span className="ms-pm" aria-hidden>
-          {isOpen ? '−' : '+'}
+          +
         </span>
       </button>
       <div
         id={`faq-panel-${itemKey}`}
         role="region"
         aria-labelledby={`faq-btn-${itemKey}`}
-        hidden={!isOpen}
         className="ms-faq-a"
+        data-open={isOpen ? 'true' : 'false'}
+        inert={!isOpen}
       >
-        {isOpen && <p className="ms-body-2">{item.a}</p>}
+        <div>
+          <p className="ms-body-2">{item.a}</p>
+        </div>
       </div>
     </div>
   )

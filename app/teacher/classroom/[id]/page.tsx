@@ -142,13 +142,35 @@ export default function ClassroomPage() {
     return (
       <TeacherPageContainer className="ms-teacher-classroom">
         <div aria-busy aria-label="Loading classroom analytics">
-          <SkeletonLine className="mb-3 h-3 w-40" />
-          <SkeletonBlock className="mb-8 h-10 w-72 max-w-full" />
-          <SkeletonBlock className="mb-8 h-32 w-full" />
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            <SkeletonBlock className="h-64 w-full" />
-            <SkeletonBlock className="h-64 w-full" />
+          {/* Desk head: eyebrow, class name, note, three tally cells; two actions on
+              the right. Then the invite slip, the roster, and the first analytics
+              card — the shapes the real page paints in that order. */}
+          <div className="ms-teacher-desk-head">
+            <div className="min-w-0 flex-1">
+              <SkeletonLine className="mb-3 h-3 w-40" />
+              <SkeletonBlock className="h-10 w-72 max-w-full sm:h-11" />
+              <SkeletonLine className="mt-2 h-4 w-56 max-w-full" />
+              <div className="ms-teacher-tally">
+                <SkeletonBlock className="h-[74px] w-full" />
+                <SkeletonBlock className="h-[74px] w-full" />
+                <SkeletonBlock className="h-[74px] w-full" />
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <SkeletonBlock className="h-11 w-56" />
+              <SkeletonBlock className="h-11 w-40" />
+            </div>
           </div>
+          <SkeletonBlock className="mb-7 h-40 w-full" />
+          <div className="ms-teacher-roster">
+            <SkeletonBlock className="mb-4 h-7 w-40" />
+            <div className="ms-teacher-roster__list">
+              <SkeletonBlock className="h-[52px] w-full" />
+              <SkeletonBlock className="h-[52px] w-full" />
+              <SkeletonBlock className="h-[52px] w-full" />
+            </div>
+          </div>
+          <SkeletonBlock className="mb-8 h-64 w-full" />
         </div>
       </TeacherPageContainer>
     )
@@ -190,9 +212,9 @@ export default function ClassroomPage() {
   return (
     <TeacherPageContainer className="ms-teacher-classroom">
       {isDemo ? (
-        <aside className="ms-teacher-demo-flag mb-6" role="status">
-          <p className="font-semibold text-[var(--ec-text-primary)]">
-            <span className="mr-2 font-mono text-[11px] font-bold tracking-wide ec-text-brand">
+        <aside className="ms-teacher-demo-flag ec-land mb-6" role="status">
+          <p className="flex items-center gap-2 font-semibold text-[var(--ec-text-primary)]">
+            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
               DEMO
             </span>
             Example data
@@ -202,7 +224,7 @@ export default function ClassroomPage() {
           </p>
         </aside>
       ) : null}
-      <div className="ms-teacher-desk-head">
+      <div className="ms-teacher-desk-head ec-land">
         <div>
           <p className="ec-eyebrow mb-3">Classroom analytics</p>
           <h1 className="text-headline">{data.analytics.classroomName}</h1>
@@ -240,9 +262,13 @@ export default function ClassroomPage() {
         </div>
       </div>
 
-      {classroom?.invite_code ? <InviteCard classroom={classroom} /> : null}
+      {classroom?.invite_code ? (
+        <div id="classroom-invite" className="ec-land ec-land--1 scroll-mt-24">
+          <InviteCard classroom={classroom} />
+        </div>
+      ) : null}
       {inviteError ? (
-        <div className="ms-teacher-error mb-6" role="alert">
+        <div className="ms-teacher-error ec-land ec-land--1 mb-6" role="alert">
           <p className="font-semibold text-[var(--ec-text-primary)]">Invite code unavailable</p>
           <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">{inviteError}</p>
           <button
@@ -255,9 +281,12 @@ export default function ClassroomPage() {
         </div>
       ) : null}
 
-      <section className="ms-teacher-roster" aria-labelledby="classroom-roster-heading">
+      <section
+        className="ms-teacher-roster ec-land ec-land--2"
+        aria-labelledby="classroom-roster-heading"
+      >
         <div className="mb-4 flex items-center justify-between gap-3">
-          <h2 id="classroom-roster-heading" className="text-xl font-bold text-[var(--ec-text-primary)]">
+          <h2 id="classroom-roster-heading" className="text-title tabular-nums">
             Students ({students.length})
           </h2>
         </div>
@@ -275,6 +304,25 @@ export default function ClassroomPage() {
                 ? 'Load the invite code above first, then share it with your class. Their marked work appears here as they go.'
                 : 'Read the code above out in your next lesson, or send the share link. Their marked work appears here as they go.'}
             </p>
+            {inviteError ? (
+              <button
+                type="button"
+                onClick={() => void load()}
+                className="ec-btn-primary mt-2 inline-flex min-h-[44px] items-center"
+              >
+                Try again
+              </button>
+            ) : (
+              <a
+                href="#classroom-invite"
+                className="ec-btn-primary mt-2 inline-flex min-h-[44px] items-center gap-2"
+              >
+                <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+                  JOIN
+                </span>
+                Share the invite code
+              </a>
+            )}
           </div>
         ) : (
           <ul className="ms-teacher-roster__list">
@@ -286,7 +334,7 @@ export default function ClassroomPage() {
                 >
                   <span>
                     <span className="block font-medium text-[var(--ec-text-primary)]">{s.name}</span>
-                    <span className="block text-xs text-[var(--ec-text-secondary)]">
+                    <span className="block text-xs tabular-nums text-[var(--ec-text-secondary)]">
                       {attemptSummary(s.attemptCount, s.accuracy)}
                       {(s.dueCount ?? 0) > 0
                         ? ` · ${s.dueCount} due`
@@ -310,16 +358,18 @@ export default function ClassroomPage() {
         )}
       </section>
 
-      <div className="mb-8">
+      <div className="ec-land ec-land--3 mb-8">
         <ClassBlindspots classroomId={id} blindspots={data.blindspots.topics || []} />
       </div>
 
+      {/* The due list and review queue fetch on their own and land when they
+          arrive, so they are not staggered with the rest of the page. */}
       <div className="mb-8">
         <ClassDueList classroomId={id} />
       </div>
 
-      <div className="mb-8">
-        <GradeRiskMatrix students={data.quadrants.students || []} />
+      <div className="ec-land ec-land--4 mb-8">
+        <GradeRiskMatrix students={data.quadrants.students || []} classroomId={id} />
       </div>
 
       <ReviewQueueList classroomId={id} />

@@ -1,8 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-import { X } from 'lucide-react'
+import { PaperToast } from '@/components/ui/PaperToast'
 
 /**
  * Shown once when the student returns from a "Drill this" practice run
@@ -11,7 +10,6 @@ import { X } from 'lucide-react'
  */
 export function DrillToast() {
   const [show, setShow] = useState(false)
-  const reduce = useReducedMotion()
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -20,42 +18,15 @@ export function DrillToast() {
     setShow(true)
     url.searchParams.delete('drilled')
     window.history.replaceState(window.history.state, '', url.toString())
-    const t = setTimeout(() => setShow(false), 6000)
-    return () => clearTimeout(t)
   }, [])
 
   return (
-    <AnimatePresence>
-      {show && (
-        <motion.div
-          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16 }}
-          animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0 }}
-          exit={reduce ? { opacity: 0 } : { opacity: 0, y: 16 }}
-          transition={{ duration: 0.25 }}
-          className="fixed bottom-[calc(5rem+env(safe-area-inset-bottom,0px))] left-1/2 z-[var(--ec-z-toast,100)] -translate-x-1/2 px-4 lg:bottom-6"
-          role="status"
-        >
-          <div className="ec-card ec-card--paper flex items-center gap-3 px-4 py-3 shadow-[var(--ec-card-hover-shadow)]">
-            <div
-              className="flex h-8 min-w-8 shrink-0 items-center justify-center rounded border border-[var(--ec-brand-border)] bg-[var(--ec-brand-muted)] px-1 font-mono text-[10px] font-bold tracking-wide text-[var(--ec-brand)]"
-              aria-hidden
-            >
-              M1
-            </div>
-            <p className="text-sm font-medium text-[var(--ec-text-primary)]">
-              Updated insights based on your latest mark
-            </p>
-            <button
-              type="button"
-              onClick={() => setShow(false)}
-              aria-label="Dismiss"
-              className="ml-1 flex min-h-[44px] min-w-[44px] items-center justify-center text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)] active:scale-95"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <PaperToast
+      open={show}
+      onDismiss={() => setShow(false)}
+      stamp="M1"
+      title="Updated insights based on your latest mark"
+      autoHideMs={6000}
+    />
   )
 }

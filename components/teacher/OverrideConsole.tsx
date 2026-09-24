@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { Check, X, MessageSquare, Save } from 'lucide-react'
 import { MathText } from '@/components/MathText'
+import { CountUp } from '@/components/ui/CountUp'
 import type { MarkAwarded } from '@/components/MarkingResultView'
 
 interface AttemptForOverride {
@@ -67,21 +67,27 @@ export function OverrideConsole({ attempt, onSubmit }: Props) {
     <div className="ms-override-console ec-card flex h-full flex-col p-4 sm:p-6">
       <div className="mb-6">
         <div className="ec-label-tech mb-2">OVERRIDE CONSOLE</div>
-        <h3 className="text-xl font-bold text-[var(--ec-text-primary)] sm:text-2xl">Modify AI marking</h3>
+        <h3 className="text-title">Modify AI marking</h3>
       </div>
 
+      {/* Both scores are tabular: "your score" changes with every toggle and must
+          not shove its neighbour. The AI score counts up once, on landing. */}
       <div className="mb-6 grid grid-cols-2 gap-3">
         <div className="ec-card ec-card--paper p-4">
-          <div className="mb-1 text-xs text-[var(--ec-text-secondary)]">AI SCORE</div>
-          <div className="text-2xl font-bold text-[var(--ec-text-primary)] sm:text-3xl">
-            {aiTotal}/{attempt.total_marks}
+          <div className="mb-1 font-mono text-[10px] font-bold uppercase tracking-[var(--ec-track-label)] text-[var(--ec-text-secondary)]">
+            AI SCORE
+          </div>
+          <div className="text-2xl font-bold tabular-nums text-[var(--ec-text-primary)] sm:text-3xl">
+            <CountUp value={aiTotal} />/{attempt.total_marks}
           </div>
         </div>
         <div
           className={`ec-card ec-card--paper p-4 ${newTotal !== aiTotal ? 'border border-[color-mix(in_srgb,var(--ec-brand)_40%,transparent)]' : ''}`}
         >
-          <div className="mb-1 text-xs ec-text-brand">YOUR SCORE</div>
-          <div className="text-2xl font-bold ec-score-high sm:text-3xl">
+          <div className="mb-1 font-mono text-[10px] font-bold uppercase tracking-[var(--ec-track-label)] ec-text-brand">
+            YOUR SCORE
+          </div>
+          <div className="text-2xl font-bold tabular-nums ec-score-high sm:text-3xl">
             {newTotal}/{attempt.total_marks}
           </div>
         </div>
@@ -94,10 +100,11 @@ export function OverrideConsole({ attempt, onSubmit }: Props) {
             key={String(m.mark_id)}
             type="button"
             onClick={() => toggleMark(m.mark_id)}
-            className="flex min-h-[56px] w-full items-center justify-between ec-card ec-card--paper border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-3 transition-all hover:border-[color-mix(in_srgb,var(--ec-brand)_30%,transparent)]"
+            aria-pressed={Boolean(overrides[String(m.mark_id)])}
+            className="ms-teacher-pick flex min-h-[56px] w-full items-center justify-between ec-card ec-card--paper border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-3"
           >
             <div className="flex min-w-0 items-center gap-3">
-              <span className="shrink-0 rounded-md bg-[var(--ec-surface-raised)] px-2 py-1 font-mono text-sm ec-score-high">
+              <span className="shrink-0 rounded bg-[var(--ec-surface-raised)] px-2 py-1 font-mono text-sm ec-score-high">
                 {m.mark_id}
               </span>
               <span className="line-clamp-1 text-sm text-[var(--ec-text-primary)]">
@@ -139,6 +146,8 @@ export function OverrideConsole({ attempt, onSubmit }: Props) {
         type="button"
         onClick={submit}
         disabled={saving}
+        aria-busy={saving || undefined}
+        data-loading={saving ? 'true' : undefined}
         className="ec-btn-primary inline-flex min-h-[48px] w-full items-center justify-center gap-2"
       >
         <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>

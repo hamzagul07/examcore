@@ -1,8 +1,8 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { PaperToast } from '@/components/ui/PaperToast'
 
 import {
   clearFinishedMark,
@@ -138,7 +138,7 @@ export function PendingMarkWatcher() {
     }
   }, [pending, pathname, check])
 
-  if (!settled || dismissed) return null
+  if (!settled) return null
 
   const href = settled.attemptId ? `/dashboard/attempt/${settled.attemptId}` : '/mark'
   const scored =
@@ -147,39 +147,25 @@ export function PendingMarkWatcher() {
       : null
 
   return (
-    <div
-      role="status"
-      aria-live="polite"
-      className="fixed inset-x-3 bottom-3 z-[70] mx-auto max-w-md rounded-lg border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4 shadow-lg sm:inset-x-auto sm:right-4"
-    >
-      <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
-        {settled.ok
+    <PaperToast
+      open={!dismissed}
+      onDismiss={() => setDismissed(true)}
+      stamp={settled.ok ? 'OK' : 'A0'}
+      tone={settled.ok ? 'ink' : 'crimson'}
+      title={
+        settled.ok
           ? scored
             ? `Your mark is ready — ${scored}`
             : 'Your mark is ready'
-          : 'That mark did not finish'}
-      </p>
-      <p className="mt-1 text-sm text-[var(--ec-text-secondary)]">
-        {settled.ok
+          : 'That mark did not finish'
+      }
+      body={
+        settled.ok
           ? 'Finished while you were elsewhere.'
-          : 'Nothing was charged for it — worth trying again.'}
-      </p>
-      <div className="mt-3 flex items-center gap-3">
-        <Link
-          href={href}
-          onClick={() => setDismissed(true)}
-          className="rounded-md bg-[var(--ec-brand)] px-3 py-2 text-sm font-semibold text-[var(--ec-on-brand-text)]"
-        >
-          {settled.ok ? 'See every mark' : 'Try again'}
-        </Link>
-        <button
-          type="button"
-          onClick={() => setDismissed(true)}
-          className="text-sm text-[var(--ec-text-secondary)] underline underline-offset-2"
-        >
-          Later
-        </button>
-      </div>
-    </div>
+          : 'Nothing was charged for it — worth trying again.'
+      }
+      action={{ href, label: settled.ok ? 'See every mark' : 'Try again' }}
+      dismissLabel="Later"
+    />
   )
 }

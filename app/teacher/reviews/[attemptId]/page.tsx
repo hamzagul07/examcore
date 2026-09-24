@@ -47,11 +47,15 @@ export default function ReviewDetailPage() {
     return (
       <TeacherPageContainer className="ms-teacher-review-detail max-w-7xl">
         <div aria-busy aria-label="Loading submission">
-          <SkeletonLine className="mb-6 h-4 w-32" />
-          <SkeletonBlock className="mb-8 h-14 w-80 max-w-full" />
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <SkeletonBlock className="h-96 w-full" />
-            <SkeletonBlock className="h-96 w-full" />
+          {/* Back link (44px row), eyebrow, name, one-line question lead, then the
+              3/2 split the real page uses: script on the left, console on the right. */}
+          <SkeletonLine className="mb-6 h-4 w-28" />
+          <SkeletonLine className="mb-3 h-3 w-16" />
+          <SkeletonBlock className="h-10 w-72 max-w-full sm:h-11" />
+          <SkeletonLine className="mb-8 mt-3 h-4 w-96 max-w-full sm:mb-10" />
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
+            <SkeletonBlock className="aspect-[4/3] w-full lg:col-span-3" />
+            <SkeletonBlock className="h-96 w-full lg:col-span-2" />
           </div>
         </div>
       </TeacherPageContainer>
@@ -78,7 +82,7 @@ export default function ReviewDetailPage() {
         }
       />
 
-      <div className="grid flex-1 grid-cols-1 gap-6 lg:grid-cols-5">
+      <div className="ec-land grid flex-1 grid-cols-1 gap-6 lg:grid-cols-5">
         <div className="ec-card ec-card--paper overflow-hidden p-4 lg:col-span-3">
           {attempt.ink_pages && attempt.ink_pages.length > 0 ? (
             <ExaminerInkPerPage
@@ -99,14 +103,19 @@ export default function ReviewDetailPage() {
               animate={false}
             />
           ) : (
-            <div className="ec-card ec-card--paper flex aspect-[4/3] items-center justify-center bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)]">
-              No answer image for this demo submission. Mark overrides still
-              work via the console →
+            <div className="ec-card ec-card--paper flex aspect-[4/3] flex-col items-center justify-center gap-4 bg-[var(--ec-surface-raised)] p-6 text-center">
+              <span className="ec-ink-stamp ec-ink-stamp--hero" aria-hidden>
+                —
+              </span>
+              <p className="text-body mx-auto max-w-sm text-[var(--ec-text-secondary)]">
+                No answer image for this demo submission. Mark overrides still
+                work via the console →
+              </p>
             </div>
           )}
         </div>
 
-        <div className="lg:col-span-2">
+        <div className="ec-land ec-land--1 lg:col-span-2">
           <OverrideConsole
             attempt={{
               id: attempt.id,

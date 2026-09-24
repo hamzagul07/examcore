@@ -12,7 +12,7 @@ export function TeacherBackLink({
   return (
     <Link
       href={href}
-      className="mb-6 inline-flex min-h-[44px] items-center text-sm text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)]"
+      className="ms-teacher-textlink mb-6 text-sm text-[var(--ec-text-secondary)]"
     >
       {children}
     </Link>

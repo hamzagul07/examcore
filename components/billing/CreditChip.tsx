@@ -9,6 +9,9 @@ import { billingPortalButtonLabel, useBillingPortal } from '@/lib/hooks/useBilli
 
 type Summary = BillingSummaryClient
 
+/** Popover exit — keep in step with `--ec-dur-press`. */
+const POPOVER_EXIT_MS = 120
+
 /** Tiny circular gauge — fraction of allowance remaining. */
 function UsageRing({ fraction, tone }: { fraction: number; tone: string }) {
   const r = 6.5
@@ -79,6 +82,10 @@ export function CreditChip() {
   const [summary, setSummary] = useState<Summary | null>(null)
   const [loading, setLoading] = useState(true)
   const [open, setOpen] = useState(false)
+  // The popover stays mounted for one short beat after closing so it can
+  // animate out; `open` alone drives aria-expanded and the dismiss listeners.
+  const [closing, setClosing] = useState(false)
+  const wasOpen = useRef(false)
   const ref = useRef<HTMLDivElement>(null)
   const { state: portalState, openPortal } = useBillingPortal({
     returnUrl: '/account/billing',
@@ -111,8 +118,29 @@ export function CreditChip() {
     const onClick = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
     }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
     document.addEventListener('mousedown', onClick)
-    return () => document.removeEventListener('mousedown', onClick)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onClick)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [open])
+
+  useEffect(() => {
+    if (wasOpen.current && !open) {
+      setClosing(true)
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      const id = window.setTimeout(() => setClosing(false), reduce ? 0 : POPOVER_EXIT_MS)
+      wasOpen.current = false
+      return () => window.clearTimeout(id)
+    }
+    if (open) {
+      wasOpen.current = true
+      setClosing(false)
+    }
   }, [open])
 
   if (loading || !summary?.signedIn) return null
@@ -163,18 +191,25 @@ export function CreditChip() {
         <span className="whitespace-nowrap">{qLeft}</span>
       </button>
 
-      {open && (
+      {(open || closing) && (
         <>
+          {/* Mobile scrim + click-catcher. Ink-tinted so it reads as the same
+              paper going into shadow on both themes. */}
           <button
             type="button"
             aria-label="Close plan details"
-            className="fixed inset-0 z-[55] bg-black/20 sm:hidden"
+            data-state={open ? 'open' : 'closing'}
+            className="fixed inset-0 z-[55] bg-[color-mix(in_srgb,var(--ec-text-primary)_20%,transparent)] transition-opacity duration-[var(--ec-dur-pop)] ease-[var(--ec-ease-out)] starting:opacity-0 data-[state=closing]:pointer-events-none data-[state=closing]:opacity-0 data-[state=closing]:duration-[var(--ec-dur-press)] motion-reduce:transition-none sm:hidden"
             onClick={() => setOpen(false)}
           />
+          {/* Grows from the trigger (top edge on mobile, top-right on desktop):
+              4px + 2% scale in over --ec-dur-pop, back out over --ec-dur-press. */}
           <div
             role="dialog"
             aria-label="Plan usage"
-            className="ec-card ec-card--paper fixed left-3 right-3 top-[calc(3.25rem+env(safe-area-inset-top,0px))] z-[60] max-h-[min(70dvh,24rem)] overflow-y-auto p-4 text-sm sm:absolute sm:inset-auto sm:right-0 sm:top-full sm:mt-2 sm:w-72 sm:max-h-none"
+            data-state={open ? 'open' : 'closing'}
+            inert={!open || undefined}
+            className="ec-card ec-card--paper fixed left-3 right-3 top-[calc(3.25rem+env(safe-area-inset-top,0px))] z-[60] max-h-[min(70dvh,24rem)] origin-top overflow-y-auto p-4 text-sm transition-[opacity,translate,scale] duration-[var(--ec-dur-pop)] ease-[var(--ec-ease-out)] starting:-translate-y-1 starting:scale-[0.98] starting:opacity-0 data-[state=closing]:pointer-events-none data-[state=closing]:-translate-y-1 data-[state=closing]:scale-[0.98] data-[state=closing]:opacity-0 data-[state=closing]:duration-[var(--ec-dur-press)] motion-reduce:transition-none sm:absolute sm:inset-auto sm:right-0 sm:top-full sm:mt-2 sm:w-72 sm:max-h-none sm:origin-top-right"
           >
             <div className="flex items-baseline justify-between gap-3">
               <p className="font-semibold text-[var(--ec-text-primary)]">{tierLabel} plan</p>
@@ -232,16 +267,30 @@ export function CreditChip() {
                 type="button"
                 onClick={() => void openPortal()}
                 disabled={portalState === 'loading'}
+                aria-busy={portalState === 'loading' || undefined}
+                data-loading={portalState === 'loading' ? 'true' : undefined}
                 className="ec-btn-secondary w-full justify-center text-body"
               >
-                {portalState === 'loading' ? (
-                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                ) : (
-                  <>
+                {/* The label holds still while the portal opens; the trailing
+                    glyph slot swaps for a spinner of the same size, so the
+                    control never changes width or height. */}
+                <span>
+                  {portalState === 'loading'
+                    ? 'Manage plan'
+                    : billingPortalButtonLabel(portalState, 'Manage plan')}
+                </span>
+                {portalState === 'loading' && (
+                  <span className="sr-only">
                     {billingPortalButtonLabel(portalState, 'Manage plan')}
-                    <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>↗</span>
-                  </>
+                  </span>
                 )}
+                <span className="inline-grid h-3.5 w-3.5 shrink-0 place-items-center" aria-hidden>
+                  {portalState === 'loading' ? (
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                  ) : (
+                    <span className="font-mono text-[10px] font-bold tracking-wide">↗</span>
+                  )}
+                </span>
               </button>
               <Link
                 href="/pricing#credits"

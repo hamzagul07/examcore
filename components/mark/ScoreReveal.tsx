@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useCountUp } from '@/lib/hooks/useCountUp'
 import {
   buildParentScoreSlipText,
   openParentScoreSlip,
@@ -55,32 +56,6 @@ function usePrefersReducedMotion(): boolean {
     return () => mq.removeEventListener('change', onChange)
   }, [])
   return reduced
-}
-
-/** Ease-out count-up. Returns the final value immediately when motion is reduced. */
-function useCountUp(target: number, durationMs: number, enabled: boolean): number {
-  const [value, setValue] = useState(enabled ? 0 : target)
-  const frameRef = useRef<number | null>(null)
-
-  useEffect(() => {
-    if (!enabled) {
-      setValue(target)
-      return
-    }
-    const start = performance.now()
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / durationMs)
-      const eased = 1 - Math.pow(1 - t, 3)
-      setValue(target * eased)
-      if (t < 1) frameRef.current = requestAnimationFrame(tick)
-    }
-    frameRef.current = requestAnimationFrame(tick)
-    return () => {
-      if (frameRef.current != null) cancelAnimationFrame(frameRef.current)
-    }
-  }, [target, durationMs, enabled])
-
-  return value
 }
 
 export type ScoreRevealMark = {
@@ -277,14 +252,17 @@ export function ScoreReveal({
           }. ${label}.${grade ? ` Predicted grade ${grade}.` : ''}`}
         >
           <div className="ms-score-tally__head">
-            <span className="ms-score-tally__kicker">
-              {paperRef ? paperRef : 'MARKED'}
+            <span className="ms-score-tally__kicker" title={paperRef || undefined}>
+              {paperRef ? paperRef.split(' · ')[0] : 'MARKED'}
             </span>
             <span className="ms-score-tally__stamp" aria-hidden>
               {stampText}
             </span>
           </div>
-          <div className="ms-score-tally__figure">
+          <div
+            className="ms-score-tally__figure"
+            style={{ ['--ms-tally-digits' as string]: `${String(totalMarks).length}ch` }}
+          >
             <span className="ms-score-tally__earned">{Math.round(shownMarks)}</span>
             <span className="ms-score-tally__slash" aria-hidden>
               /
@@ -321,7 +299,7 @@ export function ScoreReveal({
                 onClick={() => void copySlip()}
               >
                 <span aria-hidden>{copied ? 'OK' : 'CP'}</span>
-                {copied ? 'Report link copied' : 'Copy report'}
+                {copied ? 'Link copied' : 'Copy report'}
               </button>
               <button
                 type="button"

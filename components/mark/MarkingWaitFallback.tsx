@@ -24,7 +24,7 @@ export function MarkingWaitFallback() {
         aria-label="Marking progress"
       >
         <div
-          className="h-full w-[8%] bg-[var(--ec-brand)]"
+          className="ms-mark-wait__seed h-full bg-[var(--ec-brand)]"
           style={{ boxShadow: 'var(--ec-shadow-hard, 2px 2px 0 rgba(0,0,0,0.08))' }}
         />
       </div>

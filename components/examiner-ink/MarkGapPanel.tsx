@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 
 import { MarkSnippet } from '@/components/mark/MarkSnippet'
 import type { MarkGap, MarkGapItem } from '@/lib/marking/mark-gap'
@@ -61,6 +61,7 @@ export function MarkGapPanel({
         {gap.items.map((item, i) => (
           <GapCard
             key={`${item.markId}-${i}`}
+            index={i}
             item={item}
             active={
               !!activeMarkId &&
@@ -88,16 +89,24 @@ function GapCard({
   item,
   active,
   onSelect,
+  index = 0,
 }: {
   item: MarkGapItem
   active: boolean
   onSelect?: () => void
+  index?: number
 }) {
+  const reduceMotion = useReducedMotion()
   const interactive = !!onSelect
   return (
     <motion.article
-      initial={{ opacity: 0, y: 6 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: reduceMotion ? 0 : 0.24,
+        delay: reduceMotion ? 0 : Math.min(index, 8) * 0.06,
+        ease: [0.23, 1, 0.32, 1],
+      }}
       className={`ec-card ec-card--paper flex flex-col gap-2.5 border bg-[var(--ec-paper,var(--ec-surface-raised))] p-4 transition-shadow ${
         active
           ? 'border-[var(--ec-chip-warning-text)]'

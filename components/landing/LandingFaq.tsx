@@ -30,7 +30,7 @@ export function LandingFaq() {
                 >
                   <span>{item.q}</span>
                   <span className="ms-pm" aria-hidden="true">
-                    {open ? '−' : '+'}
+                    +
                   </span>
                 </button>
                 <div
@@ -38,10 +38,12 @@ export function LandingFaq() {
                   role="region"
                   aria-labelledby={questionId}
                   className="ms-faq-a"
-                  style={{ maxHeight: open ? '320px' : '0px' }}
-                  hidden={!open}
+                  data-open={open ? 'true' : 'false'}
+                  inert={!open}
                 >
-                  {open ? <p className="ms-body-2">{item.a}</p> : null}
+                  <div>
+                    <p className="ms-body-2">{item.a}</p>
+                  </div>
                 </div>
               </div>
             )

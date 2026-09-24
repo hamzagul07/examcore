@@ -2,6 +2,7 @@ import { getPageMetadata } from '@/lib/seo/page-meta'
 import { HomeJsonLd } from '@/components/seo/HomeJsonLd'
 import { HomeGeoIntro } from '@/components/seo/HomeGeoIntro'
 import { LandingHero } from '@/components/landing/LandingHero'
+import { LandingSectionReveal } from '@/components/landing/LandingSectionReveal'
 import { LandingPillars } from '@/components/landing/LandingPillars'
 import { LandingMarkingSection } from '@/components/landing/LandingMarkingSection'
 import { LandingSubjects } from '@/components/landing/LandingSubjects'
@@ -33,13 +34,21 @@ export default function Home() {
         <div className="ms-pg">
           <InteractiveMarkDemoLazy />
         </div>
-        <LandingArtefactBeat />
-        <LandingMarkingSection />
+        <LandingSectionReveal>
+          <LandingArtefactBeat />
+        </LandingSectionReveal>
+        <LandingSectionReveal>
+          <LandingMarkingSection />
+        </LandingSectionReveal>
         <LandingSubjects />
         {/* Renders nothing until real, approved student feedback exists. */}
-        <LandingProof />
+        <LandingSectionReveal>
+          <LandingProof />
+        </LandingSectionReveal>
         <LandingFaq />
-        <LandingFinalCta markHref={markHref} />
+        <LandingSectionReveal>
+          <LandingFinalCta markHref={markHref} />
+        </LandingSectionReveal>
         <LandingMoreBand>
           <LandingEditorialSpotlight />
           <LandingPillars />

@@ -159,7 +159,7 @@ export function PastPaperSelectorFields({
 
       {!papersLoading && profileSelectableSubjects.length > 0 && (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div>
+          <div className="sm:col-span-2">
             <Label htmlFor="past-paper-subject" className="label-overline mb-2 inline-block">
               Subject
             </Label>

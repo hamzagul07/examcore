@@ -146,6 +146,12 @@ export function ChatPanel({
     clearChat()
   }
 
+  // Stop mid-answer. The fetch's AbortController rejects the read loop, and
+  // the aborted branch in sendMessage keeps whatever text has arrived.
+  function handleStop() {
+    abortRef.current?.abort()
+  }
+
   // Proactive opener when sidebar opens on context-rich pages.
   useEffect(() => {
     if (!proactiveOpener || messages.length > 0 || openerInjectedRef.current) {
@@ -457,7 +463,24 @@ export function ChatPanel({
       }
     } catch (error) {
       if (controller.signal.aborted) {
-        settleAssistant(assistantId)
+        // Stopped by the student (or the drawer closed): keep every token that
+        // arrived, including the chunk still waiting on the next frame, and
+        // drop the bubble only if nothing had arrived yet.
+        if (chunkRafRef.current != null) {
+          cancelAnimationFrame(chunkRafRef.current)
+          chunkRafRef.current = null
+        }
+        const trailing = pendingChunkRef.current
+        pendingChunkRef.current = ''
+        setMessages((prev) =>
+          prev.flatMap((m) => {
+            if (m.id !== assistantId) return [m]
+            const content = m.content + trailing
+            return content.trim()
+              ? [{ ...m, content, isStreaming: false, status: null }]
+              : []
+          })
+        )
         return
       }
       console.error('Omni-AI send failed:', error)
@@ -491,7 +514,7 @@ export function ChatPanel({
                 <button
                   type="button"
                   onClick={handleClearChat}
-                  className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)]"
+                  className="ms-omni-iconbtn"
                   title="Clear chat"
                   aria-label="Clear chat"
                 >
@@ -499,7 +522,12 @@ export function ChatPanel({
                 </button>
               )}
               {showClose ? (
-                <button type="button" onClick={onClose} aria-label="Close chat">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="ms-omni-iconbtn"
+                  aria-label="Close chat"
+                >
                   <X className="h-5 w-5" />
                 </button>
               ) : null}
@@ -509,15 +537,31 @@ export function ChatPanel({
 
         <div ref={messagesContainerRef} className="ms-omni-body">
           {messages.length === 0 && showSuggestions && (
-            <div className="py-6 text-center">
-              <p className="ms-body-2 mb-4">{getEmptyStateMessage(context.type)}</p>
-              <div className="ms-omni-suggest justify-center">
-                {starterSuggestions.map((s) => (
-                  <button key={s} type="button" onClick={() => sendMessage(s)}>
-                    {s}
-                  </button>
-                ))}
-              </div>
+            <div className="ms-omni-empty ec-land">
+              <span
+                className="ec-ink-stamp ec-ink-stamp--inline ms-omni-empty__stamp"
+                aria-hidden
+              >
+                MS
+              </span>
+              <h4 className="ms-omni-empty__title">Where shall we start?</h4>
+              <p className="ms-omni-empty__note">
+                {getEmptyStateMessage(context.type)}
+              </p>
+              {starterSuggestions.length > 0 && (
+                <div className="ms-omni-suggest ms-omni-empty__suggest">
+                  {starterSuggestions.map((s, i) => (
+                    <button
+                      key={s}
+                      type="button"
+                      onClick={() => sendMessage(s)}
+                      className={`ec-land ec-land--${Math.min(i + 1, 8)}`}
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 
@@ -533,19 +577,27 @@ export function ChatPanel({
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about your paper or scheme…"
+            placeholder={isStreaming ? 'Answering…' : 'Ask about your paper or scheme…'}
             maxLength={2000}
             disabled={isStreaming || (isMetered && omniSubmitBlocked)}
-            className="ec-input flex-1 disabled:opacity-50"
+            data-streaming={isStreaming ? 'true' : undefined}
+            className="ec-input flex-1"
           />
-          <button
-            type="submit"
-            disabled={!input.trim() || isStreaming || (isMetered && omniSubmitBlocked)}
-            className="ec-btn-primary ec-btn-primary--sm min-h-[44px] px-4"
-          >
-            <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>→</span>
-            <span className="sr-only">Send</span>
-          </button>
+          {isStreaming ? (
+            <button type="button" onClick={handleStop} className="ms-omni-stop">
+              <span className="ms-omni-stop__glyph" aria-hidden />
+              Stop
+            </button>
+          ) : (
+            <button
+              type="submit"
+              disabled={!input.trim() || (isMetered && omniSubmitBlocked)}
+              className="ec-btn-primary ec-btn-primary--sm min-h-[44px] px-4"
+            >
+              <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>→</span>
+              <span className="sr-only">Send</span>
+            </button>
+          )}
         </form>
       </div>
 

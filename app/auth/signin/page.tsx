@@ -188,7 +188,7 @@ function SignInForm() {
           <MethodTabs method={method} setMethod={setMethod} setError={setErrorMsg} />
 
           {method === 'magic' ? (
-            <form onSubmit={handleMagicLink} className="mt-6 space-y-4">
+            <form key="magic" onSubmit={handleMagicLink} className="ec-land mt-6 space-y-4">
               <Field
                 label="Email"
                 inputProps={{
@@ -211,7 +211,7 @@ function SignInForm() {
               />
             </form>
           ) : (
-            <form onSubmit={handlePasswordSignIn} className="mt-6 space-y-4">
+            <form key="password" onSubmit={handlePasswordSignIn} className="ec-land mt-6 space-y-4">
               <Field
                 label="Email"
                 inputProps={{
@@ -266,7 +266,7 @@ function SignInForm() {
           </p>
         </div>
       ) : (
-        <div className="ms-signup-desk space-y-3">
+        <div className="ms-signup-desk ec-land space-y-3">
           <div className="mb-2 flex items-center gap-2">
             <p className="ec-eyebrow mb-0">Inbox</p>
             <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>

@@ -613,7 +613,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier, testimo
                 </p>
                 <h3 className="plan-name serif">{p.name}</h3>
                 <div className="plan-price">
-                  <span className="plan-now serif">{p.now}</span>
+                  <span key={period} className="plan-now serif">{p.now}</span>
                   <span className="plan-per">{p.per}</span>
                 </div>
                 <p className="plan-eq">{p.sub ?? '\u00a0'}</p>

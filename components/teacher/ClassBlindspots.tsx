@@ -62,6 +62,15 @@ export function ClassBlindspots({
         <p className="ms-teacher-empty__body">
           Not enough data yet. Topics appear once a few students have been marked on them.
         </p>
+        <a
+          href="#classroom-invite"
+          className="ec-btn-secondary mt-1 inline-flex min-h-[44px] items-center gap-2"
+        >
+          <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+            JOIN
+          </span>
+          Share the invite code
+        </a>
       </div>
     )
   }
@@ -71,15 +80,12 @@ export function ClassBlindspots({
       <div className="ms-blindspots__head">
         <div>
           <div className="mb-2 flex items-center gap-2">
-            <span
-              className="inline-grid h-5 min-w-5 place-items-center rounded border border-[color-mix(in_srgb,var(--ec-chip-critical-text)_40%,transparent)] bg-[color-mix(in_srgb,var(--ec-chip-critical-text)_12%,transparent)] px-1 font-mono text-[10px] font-bold tracking-wide ec-score-low"
-              aria-hidden
-            >
+            <span className="ec-ink-stamp ec-ink-stamp--inline ec-ink-stamp--crimson" aria-hidden>
               !
             </span>
             <span className="ec-label-tech ec-score-low">Class blindspots</span>
           </div>
-          <h2 className="ms-blindspots__title">
+          <h2 className="ms-blindspots__title tabular-nums">
             Weakest first — {worst.name} at {Math.round(worst.avgMastery)}%
           </h2>
           <p className="ms-blindspots__sub">
@@ -117,7 +123,7 @@ export function ClassBlindspots({
             <p className="ms-bs-row__meta">
               <span className="ms-bs-row__level">{LEVEL_LABEL[t.level]}</span>
               <span aria-hidden="true">·</span>
-              <span>
+              <span className="tabular-nums">
                 {t.studentsAttempted} of {t.totalStudents} students
               </span>
               {t.thinEvidence && (
@@ -138,25 +144,26 @@ export function ClassBlindspots({
           type="button"
           onClick={() => setShowIntervention(true)}
           disabled={targets.length === 0}
+          aria-expanded={showIntervention}
           className="ec-btn-primary inline-flex min-h-[48px] items-center justify-center gap-2"
         >
           <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>M1</span>
           Generate targeted intervention
         </button>
-        <p className="ms-blindspots__foot-note">
+        <p className="ms-blindspots__foot-note tabular-nums">
           {targets.length > 0
             ? `Targets the ${Math.min(3, targets.length)} weakest topics with enough evidence to trust.`
             : 'Needs at least one weak topic with enough students marked on it.'}
         </p>
       </div>
 
-      {showIntervention && (
-        <InterventionGenerator
-          classroomId={classroomId}
-          targetCodes={targets.slice(0, 3).map((b) => b.code)}
-          onClose={() => setShowIntervention(false)}
-        />
-      )}
+      {/* Kept mounted so the sheet can slide out; it fetches only when opened. */}
+      <InterventionGenerator
+        open={showIntervention}
+        classroomId={classroomId}
+        targetCodes={targets.slice(0, 3).map((b) => b.code)}
+        onClose={() => setShowIntervention(false)}
+      />
     </section>
   )
 }

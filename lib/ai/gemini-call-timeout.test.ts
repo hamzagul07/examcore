@@ -2,8 +2,13 @@ import assert from 'node:assert/strict'
 import { withGeminiAbortTimeout } from './gemini-text'
 import {
   GeminiTimeoutError,
+  MAX_HUNG_ATTEMPTS,
   withGeminiRetry,
 } from '@/lib/marking/gemini-retry'
+import {
+  requestBackendOverride,
+  withRequestDeadline,
+} from '@/lib/ai/request-deadline'
 
 const HUNG_CALL_MS = 50
 const MAX_SINGLE_TIMEOUT_MS = 200
@@ -43,11 +48,61 @@ async function main() {
     assert.ok(err instanceof GeminiTimeoutError)
   }
   const retryElapsed = Date.now() - retryStart
-  assert.equal(calls, 3, 'initial attempt plus 2 retries on timeout')
+  // Not "initial attempt plus 2 retries": a call that hung for its whole
+  // timeout twice is stopped there, however many retries the caller allowed.
+  assert.equal(calls, MAX_HUNG_ATTEMPTS, 'a hung call gets exactly one more go')
   assert.ok(
     retryElapsed < MAX_RETRY_ELAPSED_MS,
     `retries completed in ${retryElapsed}ms`
   )
+
+  // The production shape (2026-08-30, 09-05, 09-21): a generous retry budget
+  // and a read that never comes back. Before, that was six 120s attempts and
+  // a twelve-minute wait for "try again"; now it is two.
+  {
+    let hung = 0
+    const t0 = Date.now()
+    await withGeminiRetry(() => {
+      hung++
+      return hungVertexCall()
+    }, { maxRetries: 8, baseDelayMs: 5, label: 'test-hung-budget' }).catch((err) => {
+      assert.ok(err instanceof GeminiTimeoutError, 'the timeout itself is what surfaces')
+    })
+    assert.equal(hung, MAX_HUNG_ATTEMPTS, `stopped after ${MAX_HUNG_ATTEMPTS} of 9 allowed attempts`)
+    assert.ok(Date.now() - t0 < MAX_RETRY_ELAPSED_MS, 'no backoff naps spent on it')
+  }
+
+  // The first hang re-routes to the other backend when one is credentialed —
+  // a different path is worth one more attempt; the same path is not.
+  {
+    process.env.GEMINI_API_KEY ??= 'test-key'
+    process.env.GOOGLE_CLOUD_PROJECT ??= 'test-project'
+    const { fallbackGeminiBackend } = await import('@/lib/ai/gemini-config')
+    await withRequestDeadline(60_000, async () => {
+      const expected = fallbackGeminiBackend()
+      assert.ok(expected, 'both backends credentialed for this check')
+      let n = 0
+      await withGeminiRetry(() => {
+        n++
+        return hungVertexCall()
+      }, { maxRetries: 8, baseDelayMs: 5, label: 'test-hung-failover' }).catch(() => {})
+      assert.equal(n, MAX_HUNG_ATTEMPTS)
+      assert.equal(requestBackendOverride(), expected, 'second attempt ran on the other backend')
+    })
+  }
+
+  // A fast retryable "no" is still retried the old way: three UNAVAILABLEs
+  // then a success is four calls, not a stopped run.
+  {
+    let n = 0
+    const value = await withGeminiRetry(async () => {
+      n++
+      if (n <= 3) throw new Error('503 UNAVAILABLE: The model is overloaded')
+      return 'served'
+    }, { maxRetries: 8, baseDelayMs: 5, label: 'test-overload-path' })
+    assert.equal(value, 'served')
+    assert.equal(n, 4, 'capacity errors keep their backoff retries')
+  }
 
   // A real (non-timeout) failure must pass through UNCHANGED — not be masked as a
   // GeminiTimeoutError. If it were wrapped, the retry classifier would treat a

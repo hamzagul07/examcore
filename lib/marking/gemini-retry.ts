@@ -24,6 +24,28 @@ export function isGeminiTimeoutError(err: unknown): boolean {
   return err instanceof GeminiTimeoutError
 }
 
+/**
+ * How many attempts of one call may hang before the loop gives up on it.
+ *
+ * Every timeout in 30 days of mark_runs had the same shape: reading_work
+ * ~736s, gemini_retries 5 — one read timing out at 120s, retried until the
+ * request budget was gone, then "under heavy load, try again in a minute"
+ * after the student had waited twelve minutes for it. A call that produced
+ * nothing inside two whole timeouts is not going to on the third. The first
+ * hang re-routes to the other backend when there is one (a genuinely
+ * different path, no nap); the second stops the run, so the same message
+ * reaches the student at ~4 minutes instead of ~12.
+ */
+export const MAX_HUNG_ATTEMPTS = 2
+
+const HUNG_CALL_PATTERN =
+  /Headers Timeout|UND_ERR_HEADERS_TIMEOUT|UND_ERR_BODY_TIMEOUT|ETIMEDOUT/i
+
+/** The call produced nothing inside its whole timeout — as opposed to a fast "no". */
+export function isHungCallError(err: unknown): boolean {
+  return isGeminiTimeoutError(err) || HUNG_CALL_PATTERN.test(errorMessage(err))
+}
+
 const OVERLOAD_PATTERN =
   /UNAVAILABLE|high demand|RESOURCE_EXHAUSTED|overloaded|rate.?limit/i
 
@@ -154,11 +176,11 @@ function isCapacityError(err: unknown, status: number | undefined): boolean {
  * switched, or when there is no request scope to carry the override — in every
  * one of those cases the caller falls through to the normal backoff.
  */
-function failOverGeminiBackend(label: string): boolean {
+function failOverGeminiBackend(label: string, reason = 'capacity error'): boolean {
   const fallback = fallbackGeminiBackend()
   if (!fallback) return false
   if (!setRequestBackendOverride(fallback)) return false
-  console.warn(`[${label}] capacity error — failing over to ${fallback}`)
+  console.warn(`[${label}] ${reason} — failing over to ${fallback}`)
   return true
 }
 
@@ -172,6 +194,8 @@ async function withApiRetry<T>(
   // Observed cost of the slowest attempt so far — the basis for deciding
   // whether another attempt can plausibly finish inside the request budget.
   let slowestAttemptMs = 0
+  // Attempts that hung for their whole timeout. See MAX_HUNG_ATTEMPTS.
+  let hungAttempts = 0
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     const attemptStartedAt = Date.now()
@@ -191,6 +215,24 @@ async function withApiRetry<T>(
       if (!isRetryable || attempt === maxRetries) break
 
       if (isGeminiQuotaExhausted(err)) break
+
+      // A hung call is a different animal from a fast "no": nothing about a
+      // nap makes the same request come back. Re-route it once, then stop.
+      if (isHungCallError(err)) {
+        hungAttempts++
+        if (hungAttempts >= MAX_HUNG_ATTEMPTS) {
+          console.warn(
+            `[${label}] ${hungAttempts} attempts hung for their whole timeout — stopping retries`
+          )
+          break
+        }
+        if (failOverGeminiBackend(label, 'hung call')) {
+          _totalRetries++
+          _lastRetryLabel = label
+          noteRequestRetry()
+          continue
+        }
+      }
 
       // Capacity failure: re-route rather than nap. Sleeping is the right answer
       // only when there is nowhere else to go — waiting out a 429 on one

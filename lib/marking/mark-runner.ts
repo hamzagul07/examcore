@@ -18,7 +18,7 @@ import { normalizeSyllabusTagsForSubject, type SyllabusCode } from '@/lib/syllab
 import {
   buildLineReferences,
   hasUnmatchedWithholding,
-  allReferencesUnmatched,
+  unmatchedCitationFailure,
   type OcrLine,
 } from '@/lib/examiner-ink-positioning'
 import { normalizeErrorClassification } from '@/lib/error-classifications'
@@ -1046,10 +1046,15 @@ export async function markSingleQuestion(params: {
   // a confident zero a student cannot argue with, because the thing it quotes
   // does not exist. The wording routes to the existing "we couldn't read your
   // handwriting" notice, which is the true thing to tell them.
-  if (hasUnmatchedWithholding(lineReferences)) {
-    throw new Error(
-      'No handwriting could be matched: a withheld mark cited a line absent from the transcript.'
-    )
+  // Both checks are gated on there being handwriting to check against — see
+  // unmatchedCitationFailure. On a typed answer the mark stands and the loose
+  // citation is flagged on the result instead of failing the run.
+  const citationFailure = unmatchedCitationFailure(lineReferences, ocrLines.length)
+  if (citationFailure) {
+    throw new Error(citationFailure)
+  }
+  if (ocrLines.length === 0 && hasUnmatchedWithholding(lineReferences)) {
+    markingResult.citation_warning = true
   }
 
   // Added later, and deliberately NOT the mirror of the rule above. An invented
@@ -1058,11 +1063,7 @@ export async function markSingleQuestion(params: {
   // mark would spend a student's re-upload to correct a mark in their favour.
   // Wholesale invention is the separable case: when every citation on the script
   // missed, the model was marking text it imagined, not quoting sloppily.
-  if (allReferencesUnmatched(lineReferences)) {
-    throw new Error(
-      'No handwriting could be matched: every mark cited a line absent from the transcript.'
-    )
-  }
+  // (The "every citation missed" rule is applied inside unmatchedCitationFailure.)
 
   const errorClassifications = Array.isArray(markingResult?.marks_awarded)
     ? markingResult.marks_awarded.map((m: Record<string, unknown>, idx: number) => {

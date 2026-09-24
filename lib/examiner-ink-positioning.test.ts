@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import {
   buildLineReferences,
   hasUnmatchedWithholding,
+  unmatchedCitationFailure,
   allReferencesUnmatched,
 } from '@/lib/examiner-ink-positioning'
 
@@ -186,3 +187,42 @@ function invented_line_references_are_not_echoed_back() {
 }
 
 invented_line_references_are_not_echoed_back()
+
+/**
+ * A typed answer has no handwriting to misread, so a loose citation must not
+ * fail the run — the student was being told to retake a photo of text they
+ * typed. With OCR lines present the guard still fires exactly as before.
+ */
+function typed_answers_never_fail_the_run_on_citations() {
+  const essay =
+    'Feminists argue that patriarchy shapes identity from birth. ' +
+    "Ann Oakley (1974) describes canalisation, where children's play is channelled into gender-specific activities. " +
+    'Marxists reply that class is the deeper structure of identity. '.repeat(60) +
+    'In conclusion, gender matters most in early socialisation.'
+  const refs = buildLineReferences(
+    [
+      { mark_id: 1, type: 'A1', earned: false, line_reference: "children's play is channelled into gender-specific activities", margin_note: 'Needs a second study.' },
+      { mark_id: 2, type: 'B1', earned: false, line_reference: "the student draws on Bourdieu's cultural capital", margin_note: 'Not developed.' },
+    ],
+    [],
+    essay
+  )
+  assert.equal(refs[0].unmatched_reference, false, 'a verbatim quote from a long typed essay is found')
+  assert.equal(refs[1].unmatched_reference, true, 'an invented citation is still flagged on the mark')
+  assert.equal(unmatchedCitationFailure(refs, 0), null, 'typed: the run proceeds with the flag')
+  assert.match(unmatchedCitationFailure(refs, 40) ?? '', /withheld mark cited a line absent/, 'photo: the guard is unchanged')
+
+  const allInvented = buildLineReferences(
+    [
+      { mark_id: 1, type: 'M1', earned: true, line_reference: 'k = 8' },
+      { mark_id: 2, type: 'M1', earned: true, line_reference: 'f(x) = 0' },
+    ],
+    [],
+    'The answer is forty-two.'
+  )
+  assert.equal(unmatchedCitationFailure(allInvented, 0), null, 'typed: wholesale invention is flagged, not fatal')
+  assert.match(unmatchedCitationFailure(allInvented, 3) ?? '', /every mark cited a line absent/, 'photo: wholesale invention still fails')
+  assert.equal(unmatchedCitationFailure([], 3), null, 'nothing cited, nothing to fail')
+}
+typed_answers_never_fail_the_run_on_citations()
+

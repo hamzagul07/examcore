@@ -197,6 +197,35 @@ export function hasUnmatchedWithholding(lineReferences: LineReference[]): boolea
  * invented evidence starts inflating a score rather than just decorating one.
  * Two citations minimum, so a single-mark question cannot trip it.
  */
+/**
+ * The run-failing citation checks, gated on there being handwriting to check.
+ *
+ * Both rules exist because OCR fails silently: a photo too blurry to read
+ * comes back as fluent nonsense, the model marks the nonsense, and a mark
+ * withheld against words the student never wrote is an injury a re-upload
+ * can fix. A TYPED answer has no OCR. Its transcript is exact, so a citation
+ * that does not match is the model quoting loosely, not marking an imagined
+ * page — and the fallback similarity divides by the longer side, so a short
+ * quote against a long typed essay can only ever pass as a verbatim
+ * substring. Failing the run there told two students to retake a photo of
+ * text they had typed (2026-09-07, 2026-09-11) and turned a 5,000-character
+ * Sociology essay into "We couldn't read your handwriting" (2026-09-24).
+ * Returns the failure message, or null to keep the mark.
+ */
+export function unmatchedCitationFailure(
+  lineReferences: LineReference[],
+  ocrLineCount: number
+): string | null {
+  if (ocrLineCount === 0) return null
+  if (hasUnmatchedWithholding(lineReferences)) {
+    return 'No handwriting could be matched: a withheld mark cited a line absent from the transcript.'
+  }
+  if (allReferencesUnmatched(lineReferences)) {
+    return 'No handwriting could be matched: every mark cited a line absent from the transcript.'
+  }
+  return null
+}
+
 export function allReferencesUnmatched(lineReferences: LineReference[]): boolean {
   const cited = lineReferences.filter(
     (reference) => !!reference.snippet || reference.unmatched_reference === true

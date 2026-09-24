@@ -14,11 +14,14 @@ import { CreatorAvatar } from '@/components/creators/CreatorAvatar'
  */
 export function PostMarkCreatorCard({
   creator,
+  tipTitle = null,
   signedIn,
   markBoard,
   subjectCode,
 }: {
   creator: MarkCreator
+  /** The tip test this answer was written for, when there was one. */
+  tipTitle?: string | null
   signedIn: boolean
   markBoard?: string | null
   subjectCode?: string | null
@@ -34,7 +37,14 @@ export function PostMarkCreatorCard({
         <div className="min-w-0">
           <p className="ms-cr-postmark__overline">Marked with @{creator.handle}</p>
           <p className="ms-cr-postmark__title">
-            This answer just counted for <strong>{creator.displayName}</strong>.
+            This answer just counted for <strong>{creator.displayName}</strong>
+            {tipTitle ? (
+              <>
+                {' '}
+                — and for the tip &ldquo;{tipTitle}&rdquo;
+              </>
+            ) : null}
+            .
           </p>
         </div>
         <span className="ms-cr-card__code" aria-hidden>

@@ -1301,3 +1301,197 @@
   gap: 12px;
   margin-left: auto;
 }
+
+/* --- tip tests ---------------------------------------------------------------- */
+
+.ms-cr-section__lead {
+  margin: 0 0 14px;
+  max-width: 62ch;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+.ms-cr-quote {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 18px 0 0;
+  padding: 16px 18px;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  background: var(--ec-surface);
+}
+
+.ms-cr-quote p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 19px;
+  line-height: 1.45;
+  color: var(--ec-text-primary);
+}
+
+.ms-cr-question {
+  padding: 18px 20px;
+  border: 1.5px solid var(--ec-border-strong, var(--ec-border));
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.08));
+}
+
+.ms-cr-question__text {
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ec-text-primary);
+}
+
+.ms-cr-tipcard {
+  padding: 14px 16px;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  background: var(--ec-surface);
+}
+
+.ms-cr-tipcard--paused {
+  border-left-color: var(--ec-border-strong, var(--ec-border));
+  opacity: 0.75;
+}
+
+.ms-cr-tipcard__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ms-cr-tipcard__title {
+  margin: 4px 0 0;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ec-text-primary);
+}
+
+.ms-cr-tipcard__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ms-cr-tipcard__title a:hover {
+  text-decoration: underline;
+}
+
+.ms-cr-tipcard__tip {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+.ms-cr-tipcard__stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-cr-tipcard__stats strong {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--ec-text-primary);
+}
+
+.ms-cr-tipcard__link {
+  flex-basis: 100%;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+/* --- forms (tip test, application, admin) -------------------------------------- */
+
+.ms-cr-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 16px 18px 18px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+}
+
+.ms-cr-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.ms-cr-form__grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ms-cr-form__grid--end {
+  align-items: end;
+  justify-content: space-between;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.ms-cr-form__field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.ms-cr-form__label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.ms-cr-form__check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.ms-cr-form__check input {
+  margin-top: 4px;
+}
+
+/* --- admin ---------------------------------------------------------------------- */
+
+.ms-cr-admin-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.ms-cr-admin-card {
+  padding: 16px 18px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-surface);
+  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.07));
+}
+
+@media (max-width: 720px) {
+  .ms-cr-form__grid,
+  .ms-cr-form__grid--three,
+  .ms-cr-form__grid--end {
+    grid-template-columns: 1fr;
+  }
+}

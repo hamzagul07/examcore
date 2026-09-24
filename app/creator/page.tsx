@@ -24,6 +24,10 @@ import { CreatorShareKit } from '@/components/creators/CreatorShareKit'
 import { CreatorSparkline } from '@/components/creators/CreatorSparkline'
 import { CreatorStatTiles } from '@/components/creators/CreatorStatTiles'
 import { CreatorTicket } from '@/components/creators/CreatorTicket'
+import { TipTestForm } from '@/components/creators/TipTestForm'
+import { TipTestList } from '@/components/creators/TipTestList'
+import { listTipTests } from '@/lib/creators/tips'
+import { SUBJECTS } from '@/lib/profile-options'
 
 export const dynamic = 'force-dynamic'
 
@@ -69,13 +73,18 @@ export default async function CreatorStudioPage() {
   const creator = await getCreatorByUserId(user.id)
   if (!creator) return <NotACreator />
 
-  const [stats, report, runs, daily, paid] = await Promise.all([
+  const [stats, report, runs, daily, paid, tips] = await Promise.all([
     getCreatorStats(creator),
     getAudienceGapReport(creator.code),
     listRecentCreatorRuns(creator.code, 12),
     listCreatorDailyMarked(creator.code, 30),
     countCreatorConversions(createServiceClient(), creator.userId),
+    listTipTests(creator.userId),
   ])
+  const seen = new Set<string>()
+  const subjects = SUBJECTS.filter((s) => s.markingEnabled && s.code && !seen.has(s.code) && seen.add(s.code)).map(
+    (s) => ({ code: s.code, label: `${s.label} (${s.code})` })
+  )
   const ogPath = `/api/og/creator/${encodeURIComponent(creator.handle)}`
   const kit = buildShareKit({
     handle: creator.handle,
@@ -196,6 +205,21 @@ export default async function CreatorStudioPage() {
           <span className="ms-cr-section__note">aggregate only · updates as they mark</span>
         </div>
         <CreatorGapReport report={report} handle={creator.handle} />
+      </section>
+
+      <section className="ms-cr-section" aria-labelledby="studio-tips">
+        <div className="ms-cr-section__head">
+          <h2 id="studio-tips" className="ms-cr-section__title">
+            Tip tests
+          </h2>
+          <span className="ms-cr-section__note">does the tip actually work?</span>
+        </div>
+        <p className="ms-cr-section__lead">
+          Turn a tip you already posted into a question your followers answer using it. They get
+          marked; you get the average score — proof your tip works, and a follow-up video.
+        </p>
+        <TipTestList tips={tips} handle={creator.handle} code={creator.code} manage />
+        <TipTestForm subjects={subjects} />
       </section>
 
       <section className="ms-cr-section" aria-labelledby="studio-kit">

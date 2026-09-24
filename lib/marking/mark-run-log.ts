@@ -56,6 +56,8 @@ export type MarkRunOpenInput = {
   clientRequestId?: string | null
   /** Creator code the student marked with (docs/CREATORS_PROGRAM.md). */
   creatorCode?: string | null
+  /** Creator tip test the answer was written for (docs/CREATORS_PROGRAM.md). */
+  tipTestId?: string | null
 }
 
 /** Open a run row. Returns a handle with a null id if logging is unavailable —
@@ -83,6 +85,7 @@ export async function openMarkRun(
     subject_code: input.subjectCode,
     client_request_id: input.clientRequestId ?? null,
     creator_code: input.creatorCode ?? null,
+    tip_test_id: input.tipTestId ?? null,
   }
   try {
     // Prefer board-aware insert; fall back if migration not applied yet.

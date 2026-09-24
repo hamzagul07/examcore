@@ -2,7 +2,10 @@ import Link from 'next/link'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { listCreators } from '@/lib/creators/service'
 import { creatorSpacePath } from '@/lib/creators/codes'
-import { CONTACT_EMAIL } from '@/lib/site-config'
+import { createClient, createServiceClient } from '@/lib/supabase-server'
+import { buildSignInHref } from '@/lib/auth-redirect'
+import { getCreatorByUserId } from '@/lib/creators/service'
+import { CreatorApplyForm, type ApplyState } from '@/components/creators/CreatorApplyForm'
 import { CreatorAvatar } from '@/components/creators/CreatorAvatar'
 import { CreatorStatTiles } from '@/components/creators/CreatorStatTiles'
 import { CreatorTicket } from '@/components/creators/CreatorTicket'
@@ -17,11 +20,27 @@ export const metadata = createPageMetadata({
   path: '/creators',
 })
 
-const APPLY_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Creator space on MarkScheme')}&body=${encodeURIComponent(
-  'Hi — I make study content and want a creator space.\n\nHandle(s):\nWhere I post (TikTok / Instagram / YouTube):\nExams my audience sits (IGCSE / A Level / IB / other):\nI am 18 or over: yes / no\n'
-)}`
-
 export default async function CreatorsPage() {
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  let applyState: ApplyState = 'none'
+  if (user) {
+    const seat = await getCreatorByUserId(user.id)
+    if (seat) applyState = 'seat'
+    else {
+      const { data: app } = await createServiceClient()
+        .from('creator_applications')
+        .select('status')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false })
+        .limit(1)
+        .maybeSingle()
+      const status = (app?.status as string | undefined) ?? null
+      applyState = status === 'pending' || status === 'approved' || status === 'declined' ? status : 'none'
+    }
+  }
   const creators = await listCreators()
   const totalMarked = creators.reduce((sum, c) => sum + c.stats.marked, 0)
   const totalJoined = creators.reduce((sum, c) => sum + c.stats.joined, 0)
@@ -154,20 +173,12 @@ export default async function CreatorsPage() {
             </p>
           </li>
         </ol>
-        <div className="mt-6 flex flex-wrap items-center gap-3">
-          <a
-            href={APPLY_HREF}
-            className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2 px-6"
-          >
-            Ask for a space
-            <span className="font-mono text-[11px] font-bold" aria-hidden>
-              -&gt;
-            </span>
-          </a>
-          <span className="ms-cr-section__note">
-            No follower minimum · under-18s welcome (product rewards only) · every post
-            carries #ad
-          </span>
+        <div className="mt-6">
+          <CreatorApplyForm
+            signedIn={!!user}
+            signInHref={buildSignInHref('/creators#become')}
+            state={applyState}
+          />
         </div>
       </section>
 

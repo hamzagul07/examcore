@@ -16,6 +16,8 @@ import { CreatorLinks } from '@/components/creators/CreatorLinks'
 import { CreatorStatTiles } from '@/components/creators/CreatorStatTiles'
 import { CreatorTicket } from '@/components/creators/CreatorTicket'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
+import { TipTestList } from '@/components/creators/TipTestList'
+import { listTipTests } from '@/lib/creators/tips'
 
 export const dynamic = 'force-dynamic'
 
@@ -40,12 +42,13 @@ export default async function CreatorSpacePage({ params }: Props) {
   const creator = await getCreatorByHandle(handle)
   if (!creator) notFound()
 
-  const [stats, report, posts] = await Promise.all([
+  const [stats, report, posts, tipTests] = await Promise.all([
     getCreatorStats(creator),
     getAudienceGapReport(creator.code),
     isCommunityEnabled()
       ? listPosts({ authorId: creator.userId, sort: 'new', limit: 6 })
       : Promise.resolve([]),
+    listTipTests(creator.userId, { activeOnly: true }),
   ])
   const gap = headlineGap(report)
   const since = new Date(creator.since).toLocaleDateString('en-GB', {
@@ -163,6 +166,18 @@ export default async function CreatorSpacePage({ params }: Props) {
           </li>
         </ol>
       </section>
+
+      {tipTests.length ? (
+        <section className="ms-cr-section" aria-labelledby="creator-tiptests">
+          <div className="ms-cr-section__head">
+            <h2 id="creator-tiptests" className="ms-cr-section__title">
+              Try @{creator.handle}&apos;s tips
+            </h2>
+            <span className="ms-cr-section__note">a tip, a real question, your mark</span>
+          </div>
+          <TipTestList tips={tipTests} handle={creator.handle} code={creator.code} />
+        </section>
+      ) : null}
 
       <section className="ms-cr-section" aria-labelledby="creator-tips">
         <div className="ms-cr-section__head">

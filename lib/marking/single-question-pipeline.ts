@@ -149,6 +149,8 @@ export type SingleQuestionMarkInput = {
   userId: string | null
   /** Creator code the run was stamped with (docs/CREATORS_PROGRAM.md). */
   creatorCode?: string | null
+  /** Creator tip test the answer was written for. */
+  tipTestId?: string | null
   /**
    * Paid entitlement for this mark. Drives premium marking depth — currently the
    * second-opinion verify pass runs on the FULL script for paid users, where free
@@ -342,6 +344,7 @@ async function markOneSplitQuestion(
     resolvedIb: ResolvedIbComponent | null
     userId: string | null
     creatorCode?: string | null
+    tipTestId?: string | null
     answerPhotoUrl: string | null
     startedAt: number
     fullScriptText: string
@@ -430,6 +433,7 @@ async function markOneSplitQuestion(
         source_type: 'other',
         user_id: ctx.userId,
         creator_code: ctx.creatorCode ?? null,
+        tip_test_id: ctx.tipTestId ?? null,
         question_text: q.question_text || null,
         ocr_text: answerText,
         ai_marking:
@@ -515,6 +519,7 @@ async function markSplitQuestions(params: {
   resolvedIb: ResolvedIbComponent | null
   userId: string | null
   creatorCode?: string | null
+  tipTestId?: string | null
   isPaid: boolean
   /** Max: higher concurrency while keeping full verify. */
   priorityDeepMarking?: boolean
@@ -533,6 +538,7 @@ async function markSplitQuestions(params: {
     resolvedIb,
     userId,
     creatorCode = null,
+    tipTestId = null,
     isPaid,
     priorityDeepMarking = false,
     answerPhotoUrl,
@@ -587,6 +593,7 @@ async function markSplitQuestions(params: {
       resolvedIb,
       userId,
       creatorCode,
+      tipTestId,
       answerPhotoUrl,
       startedAt,
       fullScriptText,
@@ -706,6 +713,7 @@ export async function runSingleQuestionMark(
     marksInQuestion = false,
     userId,
     creatorCode = null,
+    tipTestId = null,
     isPaid = false,
     enableRewrite = false,
     priorityDeepMarking = false,
@@ -976,6 +984,7 @@ export async function runSingleQuestionMark(
           resolvedIb: sharedIb,
           userId,
           creatorCode,
+          tipTestId,
           isPaid,
           priorityDeepMarking,
           answerPhotoUrl,
@@ -1255,6 +1264,7 @@ export async function runSingleQuestionMark(
       source_type: finalMode === 'official_mark_scheme' ? 'past_paper' : 'other',
       user_id: userId,
       creator_code: creatorCode ?? null,
+      tip_test_id: tipTestId ?? null,
       question_text: questionText || (markScheme?.question_text ?? null),
       ocr_text: ocrText,
       ai_marking:

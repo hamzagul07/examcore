@@ -257,15 +257,26 @@ is applied to production.
   (`authorCreatorSet`, live like the tier badge). **Conversions ledger**
   `creator_conversions`: the Polar webhook records `subscription.active` for
   any account whose signup was attributed; the studio shows "N went paid".
+- **Tip tests** (`lib/creators/tips.ts`): a creator's tip attached to a real
+  question. Created in the studio (paste a question or pull one from the bank
+  via `/api/mark/starter-question`), public at `/with/<handle>/<slug>`, the
+  button opens `/mark?code=CODE&tip=<id>` with question, subject and total
+  prefilled; attempts/runs carry `tip_test_id`; the card shows tried / average
+  % / full marks. The post-mark card names the tip.
+- **Applications** (`creator_applications`): the "ask for a space" form on
+  `/creators` (signed-in), admin queue at `/admin/creators` with approve
+  (grants through `lib/creators/grant.ts`, the same path as the CLI, and
+  emails the creator) / decline / pause / resume, plus the seats table and
+  the conversions ledger. Admin notified by email on each application.
 - Creator seat = Scholar access + the teacher marking cap
   (`effectiveAccess({ creatorVerified })`, `enforcement.ts`).
 - Grant with `pnpm creator:grant <email> <CODE> --handle h --name n --tagline t
   --tiktok @x [--adult]`; `--list`, `--pause`, `--resume`. Tests:
   `pnpm test:creators`, `pnpm test:grants`.
 
-Not built yet: tip tests (a creator's tip as a marked question), a
-preferences-page toggle for the brief (the unsubscribe link covers it), the
-paid tier for 18+ creators (pays out of `creator_conversions`), follow feed.
+Not built yet: a preferences-page toggle for the brief (the unsubscribe
+link covers it), the paid tier for 18+ creators (pays out of
+`creator_conversions`), follow feed.
 
 ## Sources (2026-09-23)
 

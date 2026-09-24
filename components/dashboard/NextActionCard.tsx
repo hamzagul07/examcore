@@ -5,9 +5,15 @@ type Props = {
   action: NextAction
 }
 
-/** Dominant “do this next” slip for returning dashboard home (DB-02). */
+/**
+ * Dominant “do this next” slip for returning dashboard home (DB-02). When
+ * the roadmap supplies the action the dashboard renders TodayPlanCard's
+ * hero instead of this card, so there is one next thing on the page; the
+ * eyebrow still names the source in case the slip is rendered elsewhere.
+ */
 export function NextActionCard({ action }: Props) {
   const showDueLoop = action.kind === 'review' && (action.dueCount ?? 0) > 1
+  const eyebrow = action.kind === 'roadmap_task' ? 'On your roadmap' : 'Do this next'
 
   return (
     <section
@@ -18,7 +24,7 @@ export function NextActionCard({ action }: Props) {
         <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
           {action.stamp}
         </span>
-        <p className="ec-eyebrow mb-0">Do this next</p>
+        <p className="ec-eyebrow mb-0">{eyebrow}</p>
       </div>
       <h2 id="dash-next-action-title" className="text-title" style={{ margin: 0 }}>
         {action.title}

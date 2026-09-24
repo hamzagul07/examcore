@@ -131,7 +131,7 @@ assert.ok(decideCheckin({ ...base, lastSentAt: 'not a date' }).send, 'a corrupt 
   }
   const first = decideCheckin({ ...base, now: new Date('2026-09-16T02:30:00Z') })
   assert.ok(first.send)
-  if (first.send) assert.equal(first.studiedLine, 'Day one. Everything starts today.')
+  if (first.send) assert.equal(first.studiedLine, 'Everything starts today.')
 
   // An exam day with work on it (another subject's review after the paper) still sends.
   const examPlan = {

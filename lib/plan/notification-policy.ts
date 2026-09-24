@@ -101,7 +101,7 @@ export const NOTIFICATION_COPY: Record<RoadmapNotificationKind, (ctx: Notificati
   }),
   milestone_close: (ctx) => ({
     title: ctx.subject ? `${ctx.subject}: nearly there` : 'Nearly there',
-    body: 'One must-cover topic left before your next milestone — open the plan to start it.',
+    body: 'One priority topic left before your next milestone — open the plan to start it.',
   }),
   morning_checkin: (ctx) => {
     const days = ctx.daysLeft

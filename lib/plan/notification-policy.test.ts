@@ -38,7 +38,7 @@ assert.equal(
   NOTIFICATION_COPY.adjusted_after_busy_day({}).body,
   'Yesterday was busy, so today was rebuilt around what matters most. Nothing stacked up — open today to see what changed.'
 )
-assert.equal(NOTIFICATION_COPY.milestone_close({}).body, 'One must-cover topic left before your next milestone — open the plan to start it.')
+assert.equal(NOTIFICATION_COPY.milestone_close({}).body, 'One priority topic left before your next milestone — open the plan to start it.')
 assert.match(NOTIFICATION_COPY.adjusted_after_busy_day({}).body, /open today to see what changed/, 'a fact and a next step')
 assert.equal(NOTIFICATION_COPY.morning_checkin({ daysLeft: 12, minutes: 90 }).title, '12 days to go')
 assert.equal(NOTIFICATION_COPY.morning_checkin({ daysLeft: 1 }).title, 'Tomorrow. Light review, then stop.')

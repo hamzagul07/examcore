@@ -16,6 +16,8 @@ type Props = {
   onDone: (task: RoadmapTask) => void
   busy?: boolean
   compact?: boolean
+  /** False on a future day: a tick today would hide tomorrow's task from tomorrow's hero. */
+  allowDone?: boolean
 }
 
 /**
@@ -23,8 +25,10 @@ type Props = {
  * sheet; the Done button is separate so a tick is one tap, not two. A done
  * task keeps its place and turns emerald; skipped, deferred and dropped
  * tasks stay in neutral so the day reads as a record, not a scorecard.
+ * Future days carry no Done button: nothing on the card says it is
+ * tomorrow's, and a tap would settle it before the day arrives.
  */
-export function TaskCard({ task, standing, entry, minutes, withTime, onOpen, onDone, busy = false, compact = false }: Props) {
+export function TaskCard({ task, standing, entry, minutes, withTime, onOpen, onDone, busy = false, compact = false, allowDone = true }: Props) {
   const label = standingLabel(standing, entry)
   const settled = standing === 'done' || standing === 'skipped' || standing === 'deferred' || standing === 'dropped'
   const subject = task.subjectLabel ?? ''
@@ -57,7 +61,7 @@ export function TaskCard({ task, standing, entry, minutes, withTime, onOpen, onD
           </span>
         ) : null}
       </button>
-      {!settled ? (
+      {!settled && allowDone ? (
         <button
           type="button"
           className="ms-rm-done"

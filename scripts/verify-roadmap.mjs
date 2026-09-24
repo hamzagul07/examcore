@@ -243,6 +243,12 @@ async function openWizard(page) {
   return 'adjust'
 }
 
+async function openFineTune(page) {
+  const fold = page.locator('details.ms-rm-setup-more')
+  if (!(await fold.evaluate((el) => el.open))) await fold.locator('summary').click()
+  await page.locator('#rm-nostudy-start').waitFor({ state: 'visible', timeout: 5000 })
+}
+
 async function clickNext(page) {
   await page.locator('.ms-rm-setup-nav button[type="submit"]', { hasText: 'Next' }).click()
 }
@@ -372,8 +378,19 @@ async function main() {
     await page.fill('#rm-exam-time-9709', '09:00')
     await page.fill('#rm-exam-time-9702', '09:00')
     const tz = page.locator('input[aria-label="Time zone"]')
+    // The zone field offers the browser's zone list and says where its value came from; a typo is caught on blur.
+    assert((await tz.getAttribute('list')) === 'rm-zones', 'zone input is backed by the #rm-zones datalist')
+    const zoneOptions = await page.locator('datalist#rm-zones option').count()
+    assert(zoneOptions > 50, `zone datalist lists ${zoneOptions} zones`)
+    await tz.fill('Nowhere/Town')
+    await tz.blur()
+    assert(/not one we recognise/.test(await tc(page.locator('#rm-issue-timeZone'))), 'a mistyped zone is flagged on blur, next to the field')
     await tz.fill(zone)
-    notes.push(`dates: Mathematics ${mathsDate} 09:00, Physics ${physicsDate} 09:00; zone ${zone}`)
+    await tz.blur()
+    assert((await page.locator('#rm-issue-timeZone').count()) === 0, 'a known zone clears the flag')
+    const zoneSource = await tc(page.locator('#rm-zone-source')).catch(() => '')
+    assert(/From your device|Use my device/.test(zoneSource), `zone source note: ${zoneSource}`)
+    notes.push(`dates: Mathematics ${mathsDate} 09:00, Physics ${physicsDate} 09:00; zone ${zone} (${zoneSource.replace(/\s+/g, ' ')})`)
     const runsTo = await page.locator('.ms-plan-fieldset', { hasText: 'Exam dates' }).locator('.ms-plan-note').innerText().catch(() => '')
     assert(/19 days from today/.test(runsTo), `plan length line: ${runsTo.replace(/\s+/g, ' ')}`)
     await shot(page, '02a-wizard-step1-finish-line', 'Wizard step 1: Finish line with subjects, Paper 1, dates, times and zone')
@@ -412,23 +429,37 @@ async function main() {
     const commitmentEnd = page.locator('input[id^="rm-commitment-"][id$="-end"]').last()
     await commitmentStart.fill('17:00')
     await commitmentEnd.fill('19:00')
+    // Break rhythm, the no-study span, quiet hours and days away sit under one closed fold on a fresh wizard;
+    // the reminder time is asked on step 4, under the check-in box, not here.
+    assert((await page.locator('#rm-reminder').count()) === 0, 'step 3 does not ask for a reminder time')
+    const fold = page.locator('details.ms-rm-setup-more')
+    assert((await fold.count()) === 1, 'step 3 has the fine-tune fold')
+    assert(!(await fold.evaluate((el) => el.open)), 'fine-tune fold is closed on a fresh wizard')
+    assert(!(await page.locator('#rm-nostudy-start').isVisible()), 'no-study span is hidden until the fold opens')
+    await shot(page, '02c-wizard-step3-collapsed', 'Wizard step 3: minutes, windows, session and commitments open; fine-tune folded')
+    await openFineTune(page)
     await page.fill('#rm-nostudy-start', '22:30')
     await page.fill('#rm-nostudy-end', '07:00')
     const quiet = `${await page.inputValue('#rm-quiet-start')}–${await page.inputValue('#rm-quiet-end')}`
-    await page.fill('#rm-reminder', '08:00')
     await page.locator('input[aria-label="A date you\'re away"]').fill(sunday)
     await page.locator('button', { hasText: /^Add day$/ }).click()
     const away = await page.locator('ul[aria-label="Days away"] li').allTextContents()
     assert(away.length === 1, `day away added: ${away.join(', ')} (${sunday})`)
-    notes.push(`session 40, breaks Standard, Tuition Tue 17:00–19:00, no study 22:30–07:00, quiet ${quiet} (default), reminder 08:00`)
-    await shot(page, '02c-wizard-step3-availability', 'Wizard step 3: availability with tuition, sleep span, reminder and a day away')
+    notes.push(`session 40, breaks Standard, Tuition Tue 17:00–19:00, no study 22:30–07:00, quiet ${quiet} (default)`)
+    await shot(page, '02c-wizard-step3-availability', 'Wizard step 3: availability with tuition, sleep span and a day away')
     await clickNext(page)
 
     await stepVisible(page, 4)
     await ensureChecked(radio(page, 'Balanced Revision'))
     const remind = page.locator('.ms-plan-check input[type="checkbox"]')
-    if (await remind.isChecked()) await remind.uncheck()
+    // The reminder time appears only while the check-in box is ticked, and the value travels with the request either way.
+    if (!(await remind.isChecked())) await remind.check()
+    await page.locator('#rm-reminder').waitFor({ timeout: 5000 })
+    await page.fill('#rm-reminder', '08:00')
+    await remind.uncheck()
     assert(!(await remind.isChecked()), 'morning check-in unchecked')
+    assert((await page.locator('#rm-reminder').count()) === 0, 'reminder time hides when the check-in box is off')
+    notes.push('reminder 08:00 (set while the check-in box was ticked, then unticked)')
     await shot(page, '02d-wizard-step4-goal', 'Wizard step 4: Balanced Revision, check-in off')
     await clickNext(page)
 
@@ -443,29 +474,36 @@ async function main() {
     assert(subjectRows === 2, `${subjectRows} per-subject rows`)
     const feasText = await feas.innerText()
     notes.push(`feasibility card: ${feasText.replace(/\s+/g, ' ').slice(0, 400)}`)
+    assert(!/must-cover/i.test(feasText), 'feasibility card never says "must-cover" (the student reads "priority")')
+    // The options fieldset appears only when there is a real choice; on track, the nav's Build button is the one build action.
     const optionButtons = await page.locator('.ms-rm-setup-option').allTextContents()
-    assert(optionButtons.some((t) => /Keep it realistic/.test(t)), `options: ${optionButtons.map((t) => t.replace(/\s+/g, ' ')).join(' | ')}`)
+    const buildButtons = await page.locator('.ms-rm-setup-nav button[type="submit"]', { hasText: /Build my roadmap/ }).count()
+    assert(!optionButtons.some((t) => /Keep it realistic/.test(t)), `no "Keep it realistic" option: ${optionButtons.map((t) => t.replace(/\s+/g, ' ')).join(' | ') || '(none)'}`)
+    if (chip.trim() === 'On track') {
+      assert(optionButtons.length === 0, `on track: no options fieldset (${optionButtons.length} options)`)
+      assert(buildButtons === 1, `on track: "Build my roadmap" is the only build button (${buildButtons})`)
+    } else {
+      assert(optionButtons.length > 1, `${chip.trim()}: ${optionButtons.length} options offered`)
+    }
     await shot(page, '02e-wizard-step5-feasibility', 'Wizard step 5: feasibility card with state chip, headline, per-subject rows and options')
 
     const previews = apiLog.filter((r) => r.method === 'POST' && r.path === '/api/plan')
     assert(previews.length > 0 && previews.every((r) => r.status === 200), `preview POST /api/plan statuses: ${previews.map((r) => r.status).join(',')}`)
 
-    const changeMode = page.locator('.ms-rm-setup-option', { hasText: 'Change roadmap mode' })
+    const changeMode = page.locator('.ms-rm-setup-option', { hasText: /Change roadmap mode|Choose a different style/ })
     if (await changeMode.count()) {
       await changeMode.click()
       await stepVisible(page, 4)
-      notes.push('"Change roadmap mode" returned to step 4')
+      notes.push('"Choose a different style" returned to step 4')
       await clickNext(page)
       await stepVisible(page, 5)
       await feas.waitFor({ timeout: 60000 })
       await page.locator('.ms-rm-setup-feas:not([aria-busy])').waitFor({ timeout: 60000 }).catch(() => {})
-    } else notes.push('"Change roadmap mode" not offered by this report')
+    } else notes.push('"Choose a different style" not offered by this report')
 
-    const keep = page.locator('.ms-rm-setup-option', { hasText: 'Keep it realistic' })
     const buildBtn = page.locator('.ms-rm-setup-nav button[type="submit"]')
     const wait = waitApi(page, 'POST', '/api/plan', 120000)
-    if (await keep.count()) await keep.click()
-    else await buildBtn.click()
+    await buildBtn.click()
     let build = await wait
     // The first POST seen may still be a preview; the build is the one without preview:true.
     while (build.body?.preview === true) build = await waitApi(page, 'POST', '/api/plan', 120000)
@@ -485,7 +523,8 @@ async function main() {
     assert(chip === 'On track', `status chip: ${chip}`)
     const hero = page.locator('.ms-rm-hero')
     const eyebrow = await tc(hero.locator('.ec-eyebrow'))
-    assert(/^Today's best use of \d+ minutes/.test(eyebrow), `hero eyebrow: ${eyebrow}`)
+    assert(/^Up next · .+ · \d+ min( · shortened to fit)?$/.test(eyebrow), `hero eyebrow: ${eyebrow}`)
+    assert(!/best use/i.test(eyebrow), 'no superlative in the eyebrow')
     // The primary CTA must be readable: computed text colour against its own background.
     const startLink = hero.locator('a', { hasText: 'Start focus block' })
     if (await startLink.count()) {
@@ -752,7 +791,8 @@ async function main() {
     await d.waitFor()
     // The sheet lists only the feelings the reducer will act on for this task (availableFeels), never all six blindly:
     // "About right" and "Took longer" always, the rest when there is something to repair, move or open.
-    // textContent joins the label and the effect spans with no separator, so match each button on its label prefix.
+    // textContent joins the label and the effect spans with no separator, so match each button on its label prefix —
+    // never on the effect text (CHECKIN_FEEL_EFFECT), which is copy the service may reword.
     const feels = await d.locator('.ms-rm-feel').allTextContents()
     const known = ['Too easy', 'About right', 'Too difficult', 'Took longer than expected', 'I was busy', 'I need help']
     const labels = feels.map((f) => known.find((k) => f.trim().startsWith(k)) ?? f.trim().slice(0, 30))
@@ -776,6 +816,8 @@ async function main() {
     if (await diffSheet.count()) {
       const text = await diffSheet.innerText()
       notes.push(`replan sheet: ${text.replace(/\s+/g, ' ').slice(0, 400)}`)
+      assert(!/protected/i.test(text), 'the sheet says "stayed put", not "protected"')
+      assert((text.match(/What changed/g) ?? []).length === 0, 'no "What changed" stacked over "What changed" (eyebrow is "Adjusted")')
       await shot(page, '06c-checkin-diff', 'After "Too difficult": what changed, with Undo', { fullPage: false })
       const undoBtn = diffSheet.locator('button', { hasText: /^Undo$/ })
       assert((await undoBtn.count()) > 0, 'Undo offered')
@@ -902,7 +944,9 @@ async function main() {
     await link.waitFor({ timeout: 30000 })
     const text = (await link.innerText()).trim()
     const href = await link.getAttribute('href')
-    assert(/^On your roadmap: .+, \d+ min/.test(text), `chip: ${text}`)
+    assert(/^Roadmap · .+ · \d+ min →$/.test(text), `chip: ${text}`)
+    assert(text.length <= 80, `chip is a label, not a sentence (${text.length} chars)`)
+    assert((await link.getAttribute('title') ?? '').length > 0, 'the full objective rides on the link title')
     assert(Boolean(href) && href !== '#', `chip href: ${href}`)
     const todayCalls = apiLog.filter((r) => r.path === '/api/plan/today')
     notes.push(`GET /api/plan/today so far: ${todayCalls.map((r) => r.status).join(',') || 'none (served from the session cache)'}`)
@@ -964,6 +1008,8 @@ async function main() {
     const commitments = await page.locator('input[aria-label="Commitment name"]').evaluateAll((els) => els.map((e) => e.value))
     assert(wk.trim() === '1 h 30 min', `weekday minutes prefilled: ${wk.trim()}`)
     assert(commitments.includes('Tuition'), `commitments prefilled: ${commitments.join(', ')}`)
+    // The day away differs from the defaults, so the fold opens by itself on a rebuild.
+    assert(await page.locator('details.ms-rm-setup-more').evaluate((el) => el.open), 'fine-tune fold opens when the prior plan differs from defaults')
     assert((await page.inputValue('#rm-nostudy-start')) === '22:30', `no-study prefilled ${await page.inputValue('#rm-nostudy-start')}–${await page.inputValue('#rm-nostudy-end')}`)
     await clickNext(page)
     await stepVisible(page, 4)

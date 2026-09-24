@@ -43,6 +43,11 @@ export const dynamic = 'force-dynamic'
  * subjects, reminder consent — plus what the student's marked work says per
  * subject, and each subject's papers and shortest timed paper from the
  * catalogue, so the finish-line step can offer a component to choose.
+ *
+ * Three reads, two round trips: the profile runs beside the plan read, and
+ * the evidence query starts the moment the plan is known rather than after
+ * the profile has also answered. The per-subject measure is the wizard's
+ * only, so a student with a plan never pays for it.
  */
 export default async function StudyPlanPage() {
   const supabase = await createServerClient()
@@ -52,16 +57,14 @@ export default async function StudyPlanPage() {
   if (!user) redirect('/auth/signin?next=/dashboard/plan')
 
   const admin = createServiceClient()
-  const [{ data: profile }, initial] = await Promise.all([
+  const [{ data: profile }, { initial, evidence }] = await Promise.all([
     supabase
       .from('user_profiles')
       .select('full_name, level, board, subjects, exam_date, email_exam_reminders')
       .eq('id', user.id)
       .maybeSingle(),
-    loadInitial(admin, user.id),
+    loadInitialWithEvidence(admin, user.id),
   ])
-
-  const evidence = initial ? (await loadRoadmapEvidence(admin, user.id, initial.plan)).keys : []
 
   const board = (profile?.board as string | null) ?? 'Cambridge International'
   const level = (profile?.level as string | null) ?? 'A-Level'
@@ -96,11 +99,14 @@ export default async function StudyPlanPage() {
       }
     })
 
-  const measured = await measuredBySubject(
-    admin,
-    user.id,
-    subjectOptions.map((s) => s.code)
-  )
+  // Only the wizard's position step reads it; the roadmap screen never does.
+  const measured = initial
+    ? {}
+    : await measuredBySubject(
+        admin,
+        user.id,
+        subjectOptions.map((s) => s.code)
+      )
 
   const firstName = ((profile?.full_name as string | null) ?? '').trim().split(/\s+/)[0] || ''
   // The profile has no zone of its own; a saved plan's zone is the best prior, and the wizard falls back to the browser.
@@ -126,6 +132,17 @@ export default async function StudyPlanPage() {
       />
     </div>
   )
+}
+
+/** The plan and, as soon as it is known, what has been marked since it was built. */
+async function loadInitialWithEvidence(
+  admin: ReturnType<typeof createServiceClient>,
+  userId: string
+): Promise<{ initial: RoadmapInitial | null; evidence: string[] }> {
+  const initial = await loadInitial(admin, userId)
+  if (!initial) return { initial: null, evidence: [] }
+  const evidence = (await loadRoadmapEvidence(admin, userId, initial.plan)).keys
+  return { initial, evidence }
 }
 
 /** The saved plan with its task state and revision; the v2 reader when the v3 columns are not there yet. */

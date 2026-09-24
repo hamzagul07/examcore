@@ -256,6 +256,21 @@ export const PAGE_KEYWORDS: Record<string, readonly string[]> = {
     'IB markbands explained',
     'IB free courses',
   ],
+  '/guides/grade-boundaries': [
+    'grade threshold a level 2026 may june',
+    'Cambridge grade boundaries 2026',
+    'May June 2026 thresholds',
+    '9702 threshold 2026',
+    '9709 threshold 2026',
+    '9701 threshold 2026',
+    'grade boundaries 2026 qs',
+  ],
+  '/results-2026': [
+    'Cambridge results day 2026',
+    'A Level grade threshold 2026',
+    'May June 2026 grade boundaries',
+    'will my grade hold',
+  ],
   '/about': [
     'Cambridge marking startup',
     'student-built exam tool',

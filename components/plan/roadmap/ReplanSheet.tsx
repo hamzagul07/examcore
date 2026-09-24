@@ -25,8 +25,12 @@ const CHANGED: ReadonlySet<ReplanChange['kind']> = new Set(['moved', 'shortened'
  * Two faces. 'confirm' asks before rebuilding the rest of today, with an
  * optional "minutes left" so the student can say what the clock cannot
  * know. 'diff' shows what a replan, a rollover or a check-in did — what
- * changed, why, and what was let go — with one Undo. The summary line is a
- * live region so a screen reader hears the outcome without hunting for it.
+ * moved, and what was let go — with one Undo. The summary line is a live
+ * region so a screen reader hears the outcome without hunting for it. The
+ * eyebrow is one word and the section headings say what is in them, so the
+ * sheet does not stack "What changed" over "What changed"; a kept task
+ * "stayed put" with the reason in brackets, because "protected" begged the
+ * question: from what?
  */
 export function ReplanSheet({ open, mode, diff, busy, canUndo, syncNote = null, onClose, onConfirm, onUndo }: Props) {
   const titleId = useId()
@@ -87,7 +91,7 @@ export function ReplanSheet({ open, mode, diff, busy, canUndo, syncNote = null, 
           </>
         ) : (
           <>
-            <p className="ec-eyebrow mb-1">What changed</p>
+            <p className="ec-eyebrow mb-1">Adjusted</p>
             <h2 id={titleId} className="ms-rm-sheet__title">
               Today was adjusted
             </h2>
@@ -96,14 +100,14 @@ export function ReplanSheet({ open, mode, diff, busy, canUndo, syncNote = null, 
             </p>
 
             {changed.length > 0 ? (
-              <DiffGroup heading="What changed" items={changed} />
+              <DiffGroup heading="Moved or added" items={changed} />
             ) : null}
             {dropped.length > 0 ? (
-              <DiffGroup heading="What was let go" items={dropped} quiet />
+              <DiffGroup heading="Let go for now" items={dropped} quiet />
             ) : null}
             {kept.length > 0 ? (
               <p className="ms-rm-diff__kept">
-                {kept.length === 1 ? '1 task was protected.' : `${kept.length} tasks were protected.`}
+                {kept.length === 1 ? '1 task stayed put (done, pinned or already started).' : `${kept.length} tasks stayed put (done, pinned or already started).`}
               </p>
             ) : null}
             {changed.length === 0 && dropped.length === 0 ? (

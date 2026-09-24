@@ -7,8 +7,9 @@
  * between steps, validates on the way forward, and talks to /api/plan.
  *
  * The feasibility step is the one place a request leaves the browser
- * before the build, and it never saves. The build itself returns the saved
- * plan, its task state and revision, handed to the screen through onBuilt.
+ * before the build, and it never saves. The build itself is the nav's one
+ * primary button on step five; it returns the saved plan, its task state
+ * and revision, handed to the screen through onBuilt.
  */
 
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react'
@@ -20,6 +21,7 @@ import type { RoadmapPlan } from '@/lib/plan/roadmap-view'
 import type { FeasibilityOption, FeasibilityReport, TaskState } from '@/lib/plan/roadmap-types'
 import {
   ADD_TIME_STEP,
+  browserTimeZone,
   initialWizardState,
   planExamDate,
   toRequest,
@@ -57,14 +59,6 @@ type Props = {
 
 const STARTED_KEY = 'ms_roadmap_started'
 const BUILD_ERROR = "We couldn't build your roadmap just now. Try again in a moment."
-
-function browserTimeZone(): string {
-  try {
-    return Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'
-  } catch {
-    return 'UTC'
-  }
-}
 
 export function RoadmapSetup({ subjectOptions, profile, prior, onBuilt, onCancel }: Props) {
   // Rendered on the server too: start from the UTC date both sides agree on
@@ -207,7 +201,6 @@ export function RoadmapSetup({ subjectOptions, profile, prior, onBuilt, onCancel
           subjectOptions={subjectOptions}
           building={building}
           buildError={buildError}
-          onBuild={() => void build()}
           onOption={onOption}
         />
       )}

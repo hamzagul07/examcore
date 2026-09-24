@@ -21,14 +21,18 @@ type Props = {
   onStart: (task: RoadmapTask) => void
   onAction: (task: RoadmapTask, action: TaskAction, extra?: { minutes?: number }) => void
   onWhy: (task: RoadmapTask) => void
+  /** False when the task sits on a day after today: Start, Pin, Swap and Defer stay; Done waits for the day. */
+  allowDone?: boolean
 }
 
 /**
  * A task in full: what to do, where it opens, why it is here, and the five
  * things the student can do about it. Every action is one tap and every one
- * is reversible from the plan's undo; none of them needs a reason.
+ * is reversible from the plan's undo; none of them needs a reason. A task
+ * on a future day can be started early, pinned, swapped or moved, but not
+ * ticked off before its day.
  */
-export function TaskDetailSheet({ task, standing, entry, minutes, open, busy, onClose, onStart, onAction, onWhy }: Props) {
+export function TaskDetailSheet({ task, standing, entry, minutes, open, busy, onClose, onStart, onAction, onWhy, allowDone = true }: Props) {
   const titleId = useId()
   if (!task) return <Sheet open={false} onClose={onClose}>{null}</Sheet>
   const settled = standing === 'done' || standing === 'skipped' || standing === 'deferred' || standing === 'dropped'
@@ -75,7 +79,7 @@ export function TaskDetailSheet({ task, standing, entry, minutes, open, busy, on
               {standing === 'started' ? 'Continue' : 'Start'}
             </LoadingLink>
           ) : null}
-          {!settled ? (
+          {!settled && allowDone ? (
             <button type="button" className="ms-rm-btn" disabled={busy} onClick={() => onAction(task, 'complete')}>
               Done
             </button>

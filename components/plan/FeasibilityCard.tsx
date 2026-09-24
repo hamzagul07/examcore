@@ -2,37 +2,26 @@
 
 /**
  * The feasibility report as the student reads it: one state chip, one
- * headline, a row per subject, the plain-sentence tradeoffs, and how much
- * time is in hand. It states what the engine found and nothing more — the
- * options that change the answer are buttons the wizard owns, so the same
- * card can sit on the roadmap screen later without a form around it.
+ * headline, a row per subject and the plain-sentence tradeoffs. It states
+ * what the engine found and nothing more — the options that change the
+ * answer are buttons the wizard owns, so the same card can sit on the
+ * roadmap screen later without a form around it.
+ *
+ * Each fact is printed once. A subject row says how many of its priority
+ * topics get their past-paper question in before the paper, and names the
+ * ones that are started or waiting; the tradeoffs below are the engine's
+ * sentences about the whole plan, never a repeat of the rows. The engine's
+ * own words for the priority band ("must") stay in the report's fields and
+ * never reach the page.
  */
 
 import { FEASIBILITY_LABEL, type FeasibilityReport, type FeasibilitySubject } from '@/lib/plan/roadmap-types'
 
 const LATER_SHOWN = 3
 
-export const LATER_LABEL = 'Left for later'
-export const STARTED_LABEL = 'Started, marked question still to come'
+export const LATER_LABEL = 'Waits until later'
+export const STARTED_LABEL = 'Started, past-paper question still to come'
 export const REVIEW_ONLY_LINE = 'Review only — nothing new is planned before this paper.'
-
-/**
- * Time in hand per study day, rounded to five: capacity minus what was laid
- * (work and breaks), over the study days. Falls back to the ratio when an
- * older report carries no capacity figures.
- */
-export function bufferMinutesPerDay(
-  report: Pick<FeasibilityReport, 'supplyMinutes' | 'utilisation' | 'subjects'> & Partial<Pick<FeasibilityReport, 'capacityMinutes' | 'laidMinutes' | 'studyDays'>>
-): number {
-  if (typeof report.capacityMinutes === 'number' && typeof report.laidMinutes === 'number' && typeof report.studyDays === 'number') {
-    if (report.studyDays <= 0) return 0
-    return Math.max(0, Math.round((report.capacityMinutes - report.laidMinutes) / report.studyDays / 5) * 5)
-  }
-  const days = Math.max(1, ...report.subjects.map((s) => s.daysToPaper))
-  if (report.utilisation <= 0 || report.utilisation >= 1) return 0
-  const capacity = report.supplyMinutes / report.utilisation
-  return Math.max(0, Math.round((capacity - report.supplyMinutes) / days / 5) * 5)
-}
 
 function NameList({ label, names }: { label: string; names: string[] }) {
   const shown = names.slice(0, LATER_SHOWN)
@@ -46,9 +35,17 @@ function NameList({ label, names }: { label: string; names: string[] }) {
   )
 }
 
+/** "about 11 h", or minutes under an hour, for the row's planned time. */
+function hoursLabel(minutes: number): string {
+  if (minutes < 60) return `about ${Math.max(5, Math.round(minutes / 5) * 5)} min`
+  return `about ${Math.round(minutes / 60)} h`
+}
+
 function SubjectRow({ s }: { s: FeasibilitySubject }) {
-  // "Reached" is measured against the must-cover loops that fit before the paper, not the whole band.
-  const reachable = typeof s.mustReachable === 'number' ? s.mustReachable : s.mustTopics
+  // What the calendar can hold before the taper, never fewer than it actually holds: an older report
+  // could under-count the reachable band, and "5 of 5" beside a row that lists seven would not be true.
+  const reachable = Math.max(typeof s.mustReachable === 'number' ? s.mustReachable : s.mustTopics, s.plannedTopics)
+  const proved = Math.min(s.plannedTopics, s.mustTopics)
   return (
     <li className="ms-rm-setup-feas__subject">
       <div className="ms-rm-setup-feas__subject-head">
@@ -62,14 +59,16 @@ function SubjectRow({ s }: { s: FeasibilitySubject }) {
       ) : (
         <>
           <p className="ms-rm-setup-feas__reach">
-            <strong>{Math.min(s.plannedTopics, reachable)}</strong> of <strong>{reachable}</strong> must-cover topics reached before the paper
-            {s.minutes > 0 ? <span className="ms-rm-setup-feas__minutes"> · about {Math.round(s.minutes / 60)} h planned</span> : null}
+            <strong>{proved}</strong> of {s.mustTopics} priority {s.mustTopics === 1 ? 'topic gets its' : 'topics get their'} past-paper question in before the
+            paper
+            {s.minutes > 0 ? <span className="ms-rm-setup-feas__minutes"> · {hoursLabel(s.minutes)}</span> : null}
+            {s.mustTopics > reachable ? (
+              <span className="ms-rm-setup-feas__clause">
+                {' '}
+                ({s.mustTopics} priority topics in this style; {reachable} fit in the time before the paper)
+              </span>
+            ) : null}
           </p>
-          {s.mustTopics > reachable ? (
-            <p className="ms-rm-setup-feas__later">
-              {s.mustTopics} topics are must-cover in this mode; {reachable} fit in the study days before the paper.
-            </p>
-          ) : null}
           <NameList label={STARTED_LABEL} names={s.started ?? []} />
           <NameList label={LATER_LABEL} names={s.later} />
         </>
@@ -79,7 +78,8 @@ function SubjectRow({ s }: { s: FeasibilitySubject }) {
 }
 
 export function FeasibilityCard({ report }: { report: FeasibilityReport }) {
-  const inHand = bufferMinutesPerDay(report)
+  // The same sentence never appears twice, whatever the report carries.
+  const tradeoffs = [...new Set(report.tradeoffs)]
   return (
     <section className={`ms-rm-setup-feas is-${report.state}`} aria-labelledby="rm-feas-headline">
       <p className="ms-rm-setup-feas__chip">{FEASIBILITY_LABEL[report.state]}</p>
@@ -93,16 +93,13 @@ export function FeasibilityCard({ report }: { report: FeasibilityReport }) {
           ))}
         </ul>
       ) : null}
-      {report.tradeoffs.length > 0 ? (
+      {tradeoffs.length > 0 ? (
         <ul className="ms-rm-setup-feas__tradeoffs">
-          {report.tradeoffs.map((t, i) => (
-            <li key={i}>{t}</li>
+          {tradeoffs.map((t) => (
+            <li key={t}>{t}</li>
           ))}
         </ul>
       ) : null}
-      <p className="ms-rm-setup-feas__util">
-        {inHand > 0 ? `About ${inHand} min a day in hand.` : 'Every study day is laid out to the edge of its windows.'}
-      </p>
     </section>
   )
 }

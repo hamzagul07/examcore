@@ -38,6 +38,7 @@ import {
   buildRoadmap,
   validateRoadmap,
   buildStudyPlan,
+  type BuildRoadmapInput,
   type PlanBlock,
   type PlanDay,
   type PlanSubjectInput,
@@ -263,6 +264,12 @@ export type RoadmapServiceRequest = RoadmapBuildRequest & {
   startDate: string
   availabilityDetail: RoadmapAvailability
   timeZone: string
+  /**
+   * Minute of day in the plan's zone when startDate is today, so day 1 is
+   * laid from now rather than from the first window (a plan built at 20:30
+   * must not schedule 16:00). Absent when the plan starts tomorrow.
+   */
+  startMinute?: number
 }
 
 /** Board and qualification come from the profile; the plan's exams carry them so the screen never has to look them up. */
@@ -326,9 +333,11 @@ async function resolveRoadmapSubjects(admin: Admin, userId: string, req: Roadmap
   return work
 }
 
-function roadmapInput(req: RoadmapServiceRequest, subjects: RoadmapSubjectInput[], previous: LoadedRoadmap | null) {
+/** The engine's input, with the request's startMinute so day 1 is laid from now when the plan starts today. */
+function roadmapInput(req: RoadmapServiceRequest, subjects: RoadmapSubjectInput[], previous: LoadedRoadmap | null): BuildRoadmapInput {
   return {
     startDate: req.startDate,
+    ...(typeof req.startMinute === 'number' ? { startMinute: req.startMinute } : {}),
     examDate: req.examDate,
     mode: req.mode,
     availabilityDetail: req.availabilityDetail,
@@ -842,6 +851,45 @@ export async function loadRoadmap(admin: Admin, userId: string): Promise<LoadedR
   }
 }
 
+/**
+ * The few columns GET /api/plan/today needs before it decides whether the
+ * stored summary can answer on its own: the plan column is ~140 KB and was
+ * loaded on every read (1.2 s warm on production) although only the clock
+ * moves between writes. Null when the student has no plan.
+ */
+export type RoadmapLight = {
+  userId: string
+  timeZone: string
+  revision: number
+  generatedAt: string
+  lastRolledDate: string | null
+  todaySummary: RoadmapTodaySummary | null
+  checkinsUnopened: number
+  checkinLastSentAt: string | null
+}
+
+const ROADMAP_LIGHT_COLUMNS = 'user_id, time_zone, revision, generated_at, last_rolled_date, today_summary, checkins_unopened, checkin_last_sent_at'
+
+export async function loadRoadmapLight(admin: Admin, userId: string): Promise<RoadmapLight | null> {
+  const { data, error } = await admin.from('study_plans').select(ROADMAP_LIGHT_COLUMNS).eq('user_id', userId).maybeSingle()
+  if (error) throw new Error(`study_plans read failed: ${error.message}`)
+  if (!data) return null
+  const row = data as unknown as Pick<
+    StudyPlanRow,
+    'user_id' | 'time_zone' | 'revision' | 'generated_at' | 'last_rolled_date' | 'today_summary' | 'checkins_unopened' | 'checkin_last_sent_at'
+  >
+  return {
+    userId: row.user_id,
+    timeZone: row.time_zone || 'UTC',
+    revision: typeof row.revision === 'number' ? row.revision : 1,
+    generatedAt: row.generated_at,
+    lastRolledDate: row.last_rolled_date ?? null,
+    todaySummary: row.today_summary ?? null,
+    checkinsUnopened: row.checkins_unopened ?? 0,
+    checkinLastSentAt: row.checkin_last_sent_at ?? null,
+  }
+}
+
 /** A check-in sent within this long of a plan read counts as opened, whichever link the student took. */
 const CHECKIN_OPEN_WINDOW_MS = 24 * 60 * 60 * 1000
 
@@ -852,7 +900,12 @@ const CHECKIN_OPEN_WINDOW_MS = 24 * 60 * 60 * 1000
  * on any signed-in roadmap read within a day of a send. Returns true when
  * the row was reset, so the caller can record the click.
  */
-export async function markCheckinOpened(admin: Admin, userId: string, loaded: LoadedRoadmap, opts: { explicit: boolean; now?: Date }): Promise<boolean> {
+export async function markCheckinOpened(
+  admin: Admin,
+  userId: string,
+  loaded: Pick<LoadedRoadmap, 'checkinsUnopened' | 'checkinLastSentAt'>,
+  opts: { explicit: boolean; now?: Date }
+): Promise<boolean> {
   if (loaded.checkinsUnopened <= 0) return false
   const now = opts.now ?? new Date()
   const sentAt = loaded.checkinLastSentAt ? Date.parse(loaded.checkinLastSentAt) : Number.NaN
@@ -1021,7 +1074,7 @@ export async function buildAndSaveRoadmap(admin: Admin, userId: string, req: Roa
   const normalised = normaliseRoadmap(hydrated)
   const taskState: TaskState = previous ? carryOverTaskState(previous.taskState, normalised) : {}
   const todayIso = todayInZone(req.timeZone)
-  const todaySummary = todaySummaryFor(normalised, taskState, new Set<string>(), done, todayIso, minuteOfDayInZone(req.timeZone))
+  const todaySummary = todaySummaryFor(normalised, taskState, new Set<string>(), done, todayIso, req.startMinute ?? minuteOfDayInZone(req.timeZone))
   const feasibility = hydrated.feasibility ?? null
   const { preview: _preview, ...snapshot } = req
 

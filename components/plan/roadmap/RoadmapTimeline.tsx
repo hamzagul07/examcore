@@ -33,7 +33,12 @@ type Props = {
  * one milestone row each, and the exam dates at the end. Past days hide
  * behind a toggle so day fifteen does not open on fourteen finished ones.
  * No progress bar and no tally: the day cards say what each day holds, and
- * a tick on a past row is a fact about that day, not a score.
+ * a tick on a past row is a fact about that day, not a score. A milestone
+ * row shows the shape of the run-in — the exam first on its own day, then
+ * the study subjects; "Timed paper" and "Review only" tags where the plan
+ * changes gear — so the student can see where the paper falls and when
+ * nothing new starts. Done buttons appear on today and before, never on a
+ * day that has not come.
  */
 export function RoadmapTimeline({ plan, state, evidence, done, todayIso, onAdjust, onOpen, onDone, busyId = null }: Props) {
   const [showPast, setShowPast] = useState(false)
@@ -41,7 +46,7 @@ export function RoadmapTimeline({ plan, state, evidence, done, todayIso, onAdjus
   const past = plan.days.filter((d) => d.date < todayIso)
   const outdated = planOutdated(plan)
   const exams = [...plan.exams].sort((a, b) => (a.examDate < b.examDate ? -1 : a.examDate > b.examDate ? 1 : 0))
-  const examDates = new Set(exams.map((e) => e.examDate))
+  const examsOn = (date: string) => exams.filter((e) => e.examDate === date).map((e) => e.label)
 
   return (
     <div className="ms-rm-roadmap">
@@ -78,7 +83,7 @@ export function RoadmapTimeline({ plan, state, evidence, done, todayIso, onAdjus
       {showPast ? (
         <ol id="rm-past-days" className="ms-rm-milestones mb-6" aria-label="Days before today">
           {past.map((d) => (
-            <MilestoneRow key={d.day} day={d} exam={examDates.has(d.date)} done={done[String(d.day)] === true || dayCompleteFromTasks(d, state, evidence)} />
+            <MilestoneRow key={d.day} day={d} examLabels={examsOn(d.date)} done={done[String(d.day)] === true || dayCompleteFromTasks(d, state, evidence)} />
           ))}
         </ol>
       ) : null}
@@ -94,6 +99,7 @@ export function RoadmapTimeline({ plan, state, evidence, done, todayIso, onAdjus
                 heading={i === 0 && isTomorrow(todayIso, d.date) ? 'Tomorrow' : formatPlanDate(d.date)}
                 state={state}
                 evidence={evidence}
+                todayIso={todayIso}
                 onOpen={onOpen}
                 onDone={onDone}
                 busyId={busyId}
@@ -109,7 +115,7 @@ export function RoadmapTimeline({ plan, state, evidence, done, todayIso, onAdjus
           <h3 className="ms-rm-section">Then</h3>
           <ol className="ms-rm-milestones">
             {later.map((d) => (
-              <MilestoneRow key={d.day} day={d} exam={examDates.has(d.date)} />
+              <MilestoneRow key={d.day} day={d} examLabels={examsOn(d.date)} />
             ))}
           </ol>
         </section>
@@ -141,11 +147,32 @@ function isTomorrow(todayIso: string, date: string): boolean {
   return next.toISOString().slice(0, 10) === date
 }
 
-function subjectFocus(day: RoadmapDay): string {
+/** The study subjects on a day, "Mathematics · Physics"; empty when there is no work. */
+function studySubjects(day: RoadmapDay): string {
   const work = workTasks(day)
-  if (work.length === 0) return day.kind === 'exam' ? 'Exam' : day.kind === 'rest' ? 'Rest day' : day.focus
+  if (work.length === 0) return ''
   const subjects = [...new Set(work.map((t) => t.subjectLabel).filter((s): s is string => Boolean(s)))]
   return subjects.length ? subjects.join(' · ') : day.focus
+}
+
+/**
+ * The focus column of a milestone row. On an exam day the exam comes first
+ * ("Physics exam · Mathematics"), so a short task in another subject never
+ * reads as that subject's exam.
+ */
+function milestoneFocus(day: RoadmapDay, examLabels: string[]): string {
+  const exam = examLabels.length > 0 ? `${examLabels.join(' and ')} exam` : day.kind === 'exam' ? 'Exam' : ''
+  const study = studySubjects(day)
+  if (exam) return study ? `${exam} · ${study}` : exam
+  if (study) return study
+  return day.kind === 'rest' ? 'Rest day' : day.focus
+}
+
+/** "Timed paper" when the day holds one; "Review only" once nothing new starts. */
+function phaseTag(day: RoadmapDay): string | null {
+  if (day.blocks.some((b) => b.kind === 'timed_paper' || b.taskType === 'timed_paper')) return 'Timed paper'
+  if (day.kind === 'review' || /^(Review only|Light review)/.test(day.focus)) return 'Review only'
+  return null
 }
 
 function DayCard({
@@ -153,6 +180,7 @@ function DayCard({
   heading,
   state,
   evidence,
+  todayIso,
   onOpen,
   onDone,
   busyId,
@@ -162,6 +190,7 @@ function DayCard({
   heading: string
   state: TaskState
   evidence: ReadonlySet<string>
+  todayIso: string
   onOpen: (task: RoadmapTask) => void
   onDone: (task: RoadmapTask) => void
   busyId: string | null
@@ -169,6 +198,8 @@ function DayCard({
 }) {
   const work = workTasks(day)
   const withTime = work.some((t) => Boolean(t.startsAt))
+  // The summary below owns the task count; the focus line names the subjects only.
+  const allowDone = day.date <= todayIso
   return (
     <li className={`ms-rm-daycard ms-rm-daycard--${day.kind}`}>
       <div className="ms-rm-daycard__head">
@@ -210,6 +241,7 @@ function DayCard({
                 onDone={onDone}
                 busy={busyId === t.id}
                 compact
+                allowDone={allowDone}
               />
             ))}
           </ol>
@@ -219,13 +251,18 @@ function DayCard({
   )
 }
 
-function MilestoneRow({ day, exam, done = false }: { day: RoadmapDay; exam: boolean; done?: boolean }) {
+function MilestoneRow({ day, examLabels, done = false }: { day: RoadmapDay; examLabels: string[]; done?: boolean }) {
+  const exam = examLabels.length > 0 || day.kind === 'exam'
+  const phase = phaseTag(day)
   return (
     <li className={`ms-rm-milestone ms-rm-milestone--${day.kind}${done ? ' is-done' : ''}`}>
       <span className="ms-rm-milestone__date">{formatPlanDate(day.date)}</span>
-      <span className="ms-rm-milestone__focus">{subjectFocus(day)}</span>
+      <span className="ms-rm-milestone__focus">{milestoneFocus(day, examLabels)}</span>
       <span className="ms-rm-milestone__mins">{day.workMinutes > 0 ? formatMinutes(day.workMinutes) : ''}</span>
-      {exam || day.kind === 'exam' ? <span className="ms-rm-milestone__exam">exam</span> : null}
+      <span className="ms-rm-milestone__tags">
+        {phase ? <span className="ms-rm-milestone__phase">{phase}</span> : null}
+        {exam ? <span className="ms-rm-milestone__exam">exam</span> : null}
+      </span>
       {done ? (
         <span className="ms-rm-milestone__done" aria-label="Studied">
           ✓

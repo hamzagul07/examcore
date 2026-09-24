@@ -6,6 +6,13 @@ import { createServiceClient } from '@/lib/supabase/service'
 import { caieLessonPath, getCaieSubjectRef } from '@/lib/seo/caie-graph'
 import { getCourseLessons } from '@/lib/courses'
 import { isIndexableLesson } from '@/lib/seo/caie-graph'
+import {
+  buildQuestionSlug,
+  normalizeQuestionNumber,
+  parseQuestionSlug,
+} from '@/lib/seo/question-slug'
+
+export { buildQuestionSlug, parseQuestionSlug } from '@/lib/seo/question-slug'
 
 export type QuestionObject = {
   slug: string
@@ -22,25 +29,6 @@ export type QuestionObject = {
 }
 
 const STEM_MAX = 160
-
-export function buildQuestionSlug(
-  paperCode: string,
-  paperSession: string,
-  questionNumber: string
-): string {
-  // Paper codes must be URL-segment safe — a slash (e.g. "9709/11") would make
-  // `/questions/${slug}` look like two path segments and 404 the [slug] route.
-  const paper = paperCode
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '')
-  const session = paperSession
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '')
-  const q = questionNumber.toLowerCase().replace(/[^a-z0-9]+/g, '')
-  return `${paper}-${session}-q${q}`
-}
 
 function excerpt(text: string | null | undefined): string {
   const t = (text || '').replace(/\s+/g, ' ').trim()
@@ -137,27 +125,23 @@ export async function listQuestionObjectSlugs(limitPerSubject = 40): Promise<str
 }
 
 export async function getQuestionObject(slug: string): Promise<QuestionObject | null> {
-  // slug: 9702-42-o-n-2024-q6 or 9702_s23_qp_22 style paper codes embedded
-  const m = slug.match(/^(\d{4})(.+)-q([a-z0-9]+)$/i)
-  if (!m) return null
-  const subject = m[1]
-  const qnum = m[3]
+  const parsed = parseQuestionSlug(slug)
+  if (!parsed) return null
 
   const admin = createServiceClient()
   const { data, error } = await admin
     .from('mark_schemes')
     .select('paper_code,paper_session,question_number,question_text,total_marks,syllabus_tags')
-    .like('paper_code', `${subject}%`)
-    .ilike('question_number', qnum)
+    .eq('paper_code', parsed.paperCode)
+    .eq('paper_session', parsed.paperSession)
     .not('question_text', 'is', null)
-    .limit(40)
 
   if (error || !data?.length) return null
 
-  const match =
-    (data as MarkSchemeRow[]).find(
-      (row) => buildQuestionSlug(row.paper_code, row.paper_session, row.question_number) === slug
-    ) ?? (data as MarkSchemeRow[])[0]
+  const match = (data as MarkSchemeRow[]).find(
+    (row) => normalizeQuestionNumber(row.question_number) === parsed.questionNumberNorm
+  )
+  if (!match) return null
 
   return rowToQuestionObject(match)
 }

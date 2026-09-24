@@ -2,14 +2,17 @@
 
 import { useEffect, useState } from 'react'
 import { LoadingLink } from '@/components/ui/LoadingLink'
-import type { RoadmapTodaySummary } from '@/lib/plan/roadmap-types'
+import { TASK_TYPE_LABEL, type RoadmapTodaySummary } from '@/lib/plan/roadmap-types'
 import { fetchTodaySummary } from '@/components/plan/roadmap-client'
 
 /**
  * After a marked result on /mark: the way back to the roadmap, with the
- * next task named so the student can go straight to it. Same fetch rules
- * as the chip (signed in only, cached per date); null when there is no
- * plan or nothing left today.
+ * next task named so the student can go straight to it. The title carries
+ * the task's type and topic ("Next on your roadmap: Quick diagnostic ·
+ * Equations of motion") and the objective sits under it as the meta line,
+ * the same shape as the Study Mode chip. Same fetch rules as the chip
+ * (signed in only, cached per date); null when there is no plan or nothing
+ * left today.
  */
 export function RoadmapNextCard() {
   const [summary, setSummary] = useState<RoadmapTodaySummary | null>(null)
@@ -34,12 +37,18 @@ export function RoadmapNextCard() {
   const task = summary?.nextTask ?? null
   if (!summary?.hasPlan) return null
   const backHref = fromTask ? `/dashboard/plan?task=${encodeURIComponent(fromTask)}` : '/dashboard/plan'
+  // A summary written before the type was on it keeps the objective in the title.
+  const what = task?.taskType ? `${TASK_TYPE_LABEL[task.taskType]}${task.topic ? ` · ${task.topic}` : ''}` : null
 
   return (
     <section className="ec-card ec-card--paper ms-rm-nextcard" aria-labelledby="rm-next-title">
       <p className="ec-eyebrow mb-1">Exam roadmap</p>
       <h2 id="rm-next-title" className="ms-rm-nextcard__title">
-        {task ? (
+        {task && what ? (
+          <>
+            Next on your roadmap: <span className="ms-rm-nextcard__task">{what}</span>
+          </>
+        ) : task ? (
           <>
             Back to your roadmap · next: <span className="ms-rm-nextcard__task">{task.objective}</span>
           </>
@@ -49,7 +58,7 @@ export function RoadmapNextCard() {
       </h2>
       {task ? (
         <p className="ms-rm-nextcard__meta">
-          {[task.subjectLabel, `${task.minutes} min`, task.startsAt ? `from ${task.startsAt}` : null].filter(Boolean).join(' · ')}
+          {[what ? task.objective.replace(/[.]+$/, '') : null, task.subjectLabel, `${task.minutes} min`, task.startsAt ? `from ${task.startsAt}` : null].filter(Boolean).join(' · ')}
         </p>
       ) : null}
       <div className="ms-rm-actions">

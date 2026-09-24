@@ -1,5 +1,10 @@
 import { notFound } from 'next/navigation'
 import { createBlogPostMetadata } from '@/lib/seo/metadata'
+import { buildGradeBoundaryBlogMetadata } from '@/lib/seo/threshold-seo'
+import {
+  buildSubjectPageCopy,
+  getGradeBoundaryCalculatorPages,
+} from '@/lib/seo/programmatic-subjects'
 import { getAllBlogSlugs, getBlogPost, getRelatedPosts } from '@/lib/blog'
 import { enrichPostMeta, extractHeadings } from '@/lib/blog/meta'
 import { getClusterForSlug } from '@/lib/seo/clusters'
@@ -58,6 +63,21 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params
   const post = getBlogPost(slug)
   if (!post) return {}
+  if (isGradeBoundaryGuideSlug(slug)) {
+    const code = subjectCodeFromBlogSlug(slug)
+    const subject = code
+      ? getGradeBoundaryCalculatorPages().find((s) => s.code === code)
+      : undefined
+    if (subject && code) {
+      const copy = buildSubjectPageCopy(subject)
+      return buildGradeBoundaryBlogMetadata(
+        { ...post, updated: post.updated },
+        code,
+        subject.label,
+        copy.level
+      )
+    }
+  }
   return createBlogPostMetadata({
     ...post,
     updated: post.updated,

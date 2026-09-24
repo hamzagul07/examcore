@@ -29,6 +29,24 @@
  *   one with a week left scores high. Urgency never drops below
  *   URGENCY_FLOOR, so a far paper is not forgotten.
  *
+ *   A measured gap outranks a frequent topic the student already has. The
+ *   score is
+ *
+ *     score = urgency × ( w.importance × importance × (1 + w.evidence × evidence)
+ *                           × (w.gap × gap) × (w.improvement × improvement)
+ *                       + w.prerequisite × prerequisite
+ *                       + w.review × review )
+ *
+ *   where evidence is the share of indexed sittings that set the topic.
+ *   Representation multiplies importance rather than standing alone as an
+ *   additive term: a topic the student scores 80% on has a product term
+ *   near zero, and an added 0.8 × 0.9 for frequency would lift it above
+ *   the topic they score 30% on. Multiplying keeps frequency as a lift —
+ *   an untested high-yield topic still ranks above an untested low-yield
+ *   one — while a gap of 0.7 is never behind a gap of 0.2, whatever the
+ *   papers say. Prerequisite and review stay additive: a review that is
+ *   due is due even on a mastered topic.
+ *
  * Pure and client-safe.
  */
 
@@ -129,6 +147,25 @@ function daysBetween(fromIso: string, toIso: string): number | null {
   return Math.max(0, Math.round((b - a) / 86_400_000))
 }
 
+/**
+ * The one line that is true of every topic — "On the Cambridge Mathematics
+ * syllabus for Paper 1" — as a single-item why. buildWhy opens with it and
+ * may cut it to make room; the scheduler uses it directly for a review of a
+ * topic the plan never opened, so that card still has one honest line.
+ */
+export function syllabusOnlyWhy(subjectLabel: string, board?: string, paperLabel?: string): EvidenceItem[] {
+  const b = (board ?? '').trim()
+  const paper = paperPhrase(paperLabel)
+  return [
+    {
+      type: 'on_syllabus',
+      source: 'syllabus',
+      confidence: 'high',
+      explanation: clip(`On the ${b ? `${b} ` : ''}${subjectLabel} syllabus${paper ? ` for ${paper}` : ''}`),
+    },
+  ]
+}
+
 function buildWhy(
   signal: TopicSignals,
   selfRating: SelfRating | undefined,
@@ -136,17 +173,8 @@ function buildWhy(
   laterCode: string | undefined,
   nameOf: ((code: string) => string | undefined) | undefined
 ): EvidenceItem[] {
-  const why: EvidenceItem[] = []
+  const why: EvidenceItem[] = [...syllabusOnlyWhy(ctx.subjectLabel, ctx.board, signal.paper)]
   const subject = ctx.subjectLabel
-  const board = (ctx.board ?? '').trim()
-
-  const paper = paperPhrase(signal.paper)
-  why.push({
-    type: 'on_syllabus',
-    source: 'syllabus',
-    confidence: 'high',
-    explanation: clip(`On the ${board ? `${board} ` : ''}${subject} syllabus${paper ? ` for ${paper}` : ''}`),
-  })
 
   const f = signal.frequency
   if (f) {
@@ -252,10 +280,12 @@ function buildWhy(
 /**
  * One topic's score, from the mode's weights:
  *
- *   score = urgency × (importance·gap·improvement + prerequisite + review + evidence)
+ *   score = urgency × (importance · (1 + evidence) · gap · improvement + prerequisite + review)
  *
- * with every term weighted by MODE_WEIGHTS[mode]. The band is set by
- * rankSubjectTopics once the subject is sorted; here it is 'should'.
+ * with every term weighted by MODE_WEIGHTS[mode] (the file-top comment has
+ * the weights written out). Evidence scales importance; it never adds on
+ * its own. The band is set by rankSubjectTopics once the subject is
+ * sorted; here it is 'should'.
  */
 export function scoreTopic(
   signal: TopicSignals,
@@ -281,12 +311,12 @@ export function scoreTopic(
   const review = signal.reviewDueAt && ctx.todayIso && signal.reviewDueAt.slice(0, 10) <= ctx.todayIso ? 1 : 0
   const evidence = signal.frequency ? Math.min(1, signal.frequency.papers / Math.max(1, signal.frequency.of)) : 0
 
+  const represented = importance * (1 + w.evidence * evidence)
   const score =
     urgency *
-    (w.importance * importance * (w.gap * gap) * (w.improvement * improvement) +
+    (w.importance * represented * (w.gap * gap) * (w.improvement * improvement) +
       w.prerequisite * prerequisite +
-      w.review * review +
-      w.evidence * evidence)
+      w.review * review)
 
   return {
     code: signal.code,

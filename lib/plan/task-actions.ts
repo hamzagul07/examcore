@@ -42,6 +42,7 @@ import {
   nextStudyDay,
   nextTupleOrdinal,
   normaliseRoadmap,
+  openTasks,
   remainingToday,
   roadmapStatus,
   taskIdFor,
@@ -730,14 +731,14 @@ export function applyTaskAction(
 function effectSummary(feel: CheckinFeel): string {
   switch (feel) {
     case 'too_easy':
-      return 'The repair steps on this topic are let go.'
+      return 'The refresh and recall on this topic are let go.'
     case 'too_hard':
     case 'need_help':
-      return 'A concept refresh goes first on your next study day.'
+      return 'A short refresh goes first on your next study day.'
     case 'took_longer':
-      return 'Tasks like this one get a little more time.'
+      return 'Tasks like this get a little more time.'
     case 'was_busy':
-      return 'The rest of this topic today moves to the next day with room.'
+      return 'The rest of this topic moves to the next day with room.'
     case 'about_right':
       return 'Nothing changes.'
   }
@@ -1040,6 +1041,14 @@ export function applyUndo(planIn: HydratedPlan | RoadmapPlan, taskState: TaskSta
 
 // --- the today summary ---------------------------------------------------------------------------
 
+/**
+ * The summary is written once per change and read many times, so it
+ * carries the two numbers the clock-dependent field is made of: the open
+ * tasks' minutes and the end of the day's last window. GET /api/plan/today
+ * can then answer from the stored row alone — remainingMinutesAt() redoes
+ * the one sum that moves with the clock — instead of loading the plan and
+ * the marked attempts on every read.
+ */
 export function todaySummaryFor(
   planIn: HydratedPlan | RoadmapPlan,
   taskState: TaskState,
@@ -1069,6 +1078,8 @@ export function todaySummaryFor(
     dayNumber: day.day,
     daysLeft: day.daysLeft,
     remainingMinutes: remainingToday(day, taskState, evidence, nowMinute),
+    openMinutes: openTasks(day, taskState, evidence).reduce((n, t) => n + taskMinutes(t, taskState), 0),
+    windowEndMinute: day.windows.length > 0 ? Math.max(...day.windows.map((w) => minuteOfDay(w.end))) : null,
   }
   if (hero.kind === 'task') {
     const t = hero.task
@@ -1080,8 +1091,49 @@ export function todaySummaryFor(
       href: hrefOf?.(t.id) ?? t.href,
       subjectLabel: t.subjectLabel,
       category: t.category,
+      taskType: t.taskType,
+      ...(t.topic?.name ? { topic: t.topic.name } : {}),
       startsAt: t.startsAt,
     }
   }
   return summary
+}
+
+/**
+ * Whether a stored summary can answer GET /api/plan/today on its own: it
+ * is today's, it carries the clock inputs (a summary written before they
+ * existed cannot be re-timed), and the lazy rollover has nothing to settle
+ * (last_rolled_date is on or after today). Anything else takes the full
+ * path, which also rewrites the stored summary.
+ */
+export function storedSummaryServes(
+  stored: RoadmapTodaySummary | null | undefined,
+  todayIso: string,
+  lastRolledDate: string | null | undefined,
+  revision?: number
+): stored is RoadmapTodaySummary & { openMinutes: number; windowEndMinute: number | null } {
+  if (!stored || !stored.hasPlan || stored.date !== todayIso) return false
+  if (typeof stored.openMinutes !== 'number' || stored.windowEndMinute === undefined) return false
+  if (!lastRolledDate || lastRolledDate < todayIso) return false
+  if (typeof revision === 'number' && stored.revision !== revision) return false
+  return true
+}
+
+/**
+ * The stored summary re-timed to now, the same arithmetic remainingToday()
+ * and heroFor() do on the plan: the open minutes capped by what is left of
+ * the last window (no windows → no cap); the next task shortened to the
+ * minutes left, and dropped when fewer than a real task's worth remain,
+ * just as the hero turns into "nothing more today".
+ */
+export function remainingMinutesAt(stored: RoadmapTodaySummary, nowMinute: number): RoadmapTodaySummary {
+  const open = Math.max(0, stored.openMinutes ?? stored.remainingMinutes ?? 0)
+  const end = stored.windowEndMinute
+  const left = typeof end === 'number' ? Math.max(0, end - nowMinute) : Number.POSITIVE_INFINITY
+  const out: RoadmapTodaySummary = { ...stored, remainingMinutes: Math.min(open, left) }
+  if (stored.nextTask) {
+    if (left < MIN_DAY_MINUTES) delete out.nextTask
+    else if (left < stored.nextTask.minutes) out.nextTask = { ...stored.nextTask, minutes: Math.floor(left) }
+  }
+  return out
 }

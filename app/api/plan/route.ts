@@ -18,9 +18,9 @@ import {
 } from '@/lib/plan/study-plan-service'
 import { recordRoadmapEvent } from '@/lib/plan/events'
 import { planLength, type WeekAvailability } from '@/lib/plan/build-study-plan'
-import { isValidTimeZone, isoDate } from '@/lib/plan/plan-view'
+import { isValidTimeZone, isoDate, todayInZone } from '@/lib/plan/plan-view'
 import { isRoadmapMode, modeFromStored } from '@/lib/plan/modes'
-import { isClockTime } from '@/lib/plan/availability'
+import { isClockTime, minuteOfDayInZone } from '@/lib/plan/availability'
 import { minuteOfDay } from '@/lib/plan/roadmap-view'
 import {
   COMMITMENT_KIND_LABEL,
@@ -49,7 +49,10 @@ export const dynamic = 'force-dynamic'
  *            so does any read within a day of a send.
  *   POST   → build. A v3 body (mode, availabilityDetail, …) builds a
  *            roadmap; preview: true returns { plan, feasibility } without
- *            saving. A legacy body (preparedness, minutesPerDay,
+ *            saving. When the plan starts today, the server's minute in the
+ *            student's zone rides along (startMinute) for both, so the
+ *            wizard's preview and the saved day 1 begin now rather than at
+ *            the first window. A legacy body (preparedness, minutesPerDay,
  *            availability) still builds a v2 plan. Replaces any existing plan.
  *   PATCH  → { day, done } ticks a day off
  *   DELETE → removes the plan
@@ -311,11 +314,17 @@ function parseBuildBody(body: unknown): Parsed {
   const targetGrade = typeof b.targetGrade === 'string' && b.targetGrade.trim() ? b.targetGrade.trim().slice(0, MAX_TARGET_GRADE) : null
   const prioritySubject = typeof b.prioritySubject === 'string' && subjectCodes.includes(b.prioritySubject) ? b.prioritySubject : null
 
+  // Day 1 from now. The server's clock in the student's zone, never the
+  // client's minute, so a wrong device clock cannot lay tasks in the past.
+  const { startDate, timeZone } = common.value
+  const startMinute = startDate === todayInZone(timeZone) ? minuteOfDayInZone(timeZone) : undefined
+
   return {
     ok: true,
     kind: 'roadmap',
     value: {
-      startDate: common.value.startDate,
+      startDate,
+      ...(startMinute !== undefined ? { startMinute } : {}),
       examDate: common.value.examDate,
       mode,
       subjects: subjectCodes,

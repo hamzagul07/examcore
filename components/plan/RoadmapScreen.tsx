@@ -10,6 +10,7 @@ import { formatPlanDate, todayInZone, type DoneDays, type HydratedPlan } from '@
 import { availableFeels } from '@/lib/plan/task-actions'
 import type { CheckinFeel, ReplanDiff, TaskAction, TaskState, TaskStateEntry } from '@/lib/plan/roadmap-types'
 import {
+  findTask,
   heroFor,
   nearestExam,
   normaliseDay,
@@ -428,6 +429,8 @@ export function RoadmapScreen({ initial, evidence: evidenceList, firstName, prof
   const copy = today && hero ? heroCopy(hero, { plan, day: today, todayIso, studiedLine }) : null
   const heroTask = hero?.kind === 'task' ? hero.task : null
   const detailStanding = detail ? taskStanding(detail, taskState, evidence) : 'todo'
+  // A task on a later day can be started, pinned, swapped or moved, but not ticked before its day.
+  const detailDate = detail ? (findTask(plan, detail.id)?.day.date ?? todayIso) : todayIso
 
   return (
     <div className="ms-plan ms-rm">
@@ -549,6 +552,7 @@ export function RoadmapScreen({ initial, evidence: evidenceList, firstName, prof
                 state={taskState}
                 evidence={evidence}
                 todayIso={todayIso}
+                nowMinute={nowMinute}
                 onOpen={setDetail}
                 onDone={complete}
                 busyId={busyId}
@@ -581,6 +585,7 @@ export function RoadmapScreen({ initial, evidence: evidenceList, firstName, prof
         minutes={detail ? taskMinutes(detail, taskState) : 0}
         open={Boolean(detail)}
         busy={Boolean(detail && busyId === detail.id)}
+        allowDone={detailDate <= todayIso}
         onClose={() => setDetail(null)}
         onStart={start}
         onWhy={openWhySheet}

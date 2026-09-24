@@ -10,7 +10,9 @@
  *
  * Pure and client-safe: it imports only its planner siblings, so it ships in
  * the client bundle and runs under `tsx` with no server condition. It never
- * reads the clock; today's date is passed in from the browser.
+ * reads the clock; today's date is passed in from the browser. The one
+ * thing it asks the runtime is Intl: the device's zone and the zones it
+ * knows, so the zone picker and its "from your device" note are honest.
  *
  * Availability is collected the way the student thinks about it (minutes on
  * a weekday, minutes at the weekend, when they would rather study, what is
@@ -59,6 +61,87 @@ export type SetupProfile = {
   firstName?: string
   /** Per subject, the student's marked work so far. Only trusted at three or more attempts. */
   measured?: Record<string, { pct: number; attempts: number }>
+}
+
+// --- time zone -----------------------------------------------------------------------
+
+/** The device's IANA zone, or UTC when the runtime cannot say. */
+export function browserTimeZone(): string {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'
+  } catch {
+    return 'UTC'
+  }
+}
+
+/**
+ * A short list for the zone picker when the runtime has no
+ * Intl.supportedValuesOf (older Safari and WebViews). The student can still
+ * type any IANA name; the list only saves typing.
+ */
+export const TIME_ZONE_FALLBACK: readonly string[] = [
+  'Africa/Cairo',
+  'Africa/Johannesburg',
+  'Africa/Lagos',
+  'Africa/Nairobi',
+  'America/Chicago',
+  'America/Los_Angeles',
+  'America/New_York',
+  'America/Sao_Paulo',
+  'America/Toronto',
+  'Asia/Dhaka',
+  'Asia/Dubai',
+  'Asia/Hong_Kong',
+  'Asia/Jakarta',
+  'Asia/Karachi',
+  'Asia/Kolkata',
+  'Asia/Kuala_Lumpur',
+  'Asia/Riyadh',
+  'Asia/Shanghai',
+  'Asia/Singapore',
+  'Asia/Tokyo',
+  'Australia/Sydney',
+  'Europe/Berlin',
+  'Europe/Istanbul',
+  'Europe/London',
+  'Europe/Paris',
+  'Pacific/Auckland',
+  'UTC',
+]
+
+/** Every zone the runtime knows, or the fallback list. Always includes `extra` so the current value is never missing from its own list. */
+export function supportedTimeZones(extra: string[] = []): string[] {
+  let zones: string[]
+  try {
+    zones = Intl.supportedValuesOf('timeZone')
+    if (zones.length === 0) zones = [...TIME_ZONE_FALLBACK]
+  } catch {
+    zones = [...TIME_ZONE_FALLBACK]
+  }
+  const set = new Set(zones)
+  for (const z of extra) if (z && !set.has(z)) set.add(z)
+  return [...set].sort()
+}
+
+export type TimeZoneSource = 'device' | 'account' | 'typed'
+
+/**
+ * Where the zone in the field came from, so the note beside it is true:
+ * the device's own zone, the one saved in account settings, or something
+ * the student typed. The device wins a tie because "from your device" is
+ * the more useful thing to know.
+ */
+export function timeZoneSource(value: string, deviceZone: string, accountZone: string | undefined): TimeZoneSource {
+  if (value && value === deviceZone) return 'device'
+  if (value && accountZone && value === accountZone) return 'account'
+  return 'typed'
+}
+
+export const TIME_ZONE_ISSUE = 'That time zone is not one we recognise. Pick one from the list, in the form Europe/London.'
+
+/** The zone field's message, or null when the zone is one Intl knows. Shown on blur and again on Next. */
+export function timeZoneIssue(timeZone: string): WizardIssue | null {
+  return isValidTimeZone(timeZone) ? null : { field: 'timeZone', message: TIME_ZONE_ISSUE }
 }
 
 // --- steps -------------------------------------------------------------------------
@@ -612,6 +695,29 @@ export function toRequest(state: WizardState, todayIso: string): RoadmapBuildReq
   }
 }
 
+// --- the fine-tune fold on step three ------------------------------------------------
+
+/** Fields step three keeps under "Fine-tune": a message on one of them opens the fold. */
+export const FINE_TUNE_FIELDS: readonly string[] = ['noStudy', 'quietHours']
+
+/**
+ * True when anything under the fold is not at its default — a prior plan
+ * with a generous break rhythm, a different sleep span or a day away. The
+ * fold opens on its own then, so what the student set last time is never
+ * hidden from them.
+ */
+export function fineTuneDiffersFromDefaults(
+  state: Pick<WizardState, 'breakRhythm' | 'noStudy' | 'quietHours' | 'blockedDates'>
+): boolean {
+  const d = DEFAULT_AVAILABILITY
+  return (
+    state.breakRhythm !== d.breakRhythm ||
+    !sameWindow(state.noStudy, d.noStudy[0]!) ||
+    !sameWindow(state.quietHours, d.quietHours) ||
+    state.blockedDates.length > 0
+  )
+}
+
 // --- validation -----------------------------------------------------------------------
 
 /** `field` names the input the message sits under; the step also lists them all. */
@@ -650,9 +756,8 @@ export function validateStep(
       const t = state.examTimes[code]
       if (t && !isClockTime(t)) issues.push({ field: `examTime:${code}`, message: `The ${name(code)} exam time should look like 09:00.` })
     }
-    if (!isValidTimeZone(state.timeZone)) {
-      issues.push({ field: 'timeZone', message: 'That time zone is not one we recognise. Try the form Europe/London.' })
-    }
+    const zone = timeZoneIssue(state.timeZone)
+    if (zone) issues.push(zone)
   }
 
   if (step === 2) {
@@ -683,12 +788,16 @@ export function validateStep(
     if (!isClockTime(state.quietHours.start) || !isClockTime(state.quietHours.end) || state.quietHours.start === state.quietHours.end) {
       issues.push({ field: 'quietHours', message: 'Quiet hours need a start and an end time.' })
     }
-    if (!isClockTime(state.reminderTime)) issues.push({ field: 'reminderTime', message: 'The reminder time should look like 08:00.' })
   }
 
   if (step === 4) {
     if (state.targetGrade.trim().length > TARGET_GRADE_MAX) {
       issues.push({ field: 'targetGrade', message: 'Keep the target grade short.' })
+    }
+    // The reminder time sits under the "email me each morning" box and is only shown when it is ticked,
+    // so it is only checked then: a message about a hidden field cannot be acted on.
+    if (state.remindMe && !isClockTime(state.reminderTime)) {
+      issues.push({ field: 'reminderTime', message: 'The reminder time should look like 08:00.' })
     }
   }
 

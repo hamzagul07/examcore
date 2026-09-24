@@ -4,7 +4,7 @@ import { isCalmCopy } from '@/lib/plan/feasibility'
 import { MIN_TASK_MINUTES } from '@/lib/plan/modes'
 import { WORK_KINDS, type HydratedPlan } from '@/lib/plan/plan-view'
 import { minuteOfDay, normaliseRoadmap, taskStanding, type RoadmapPlan, type RoadmapTask } from '@/lib/plan/roadmap-view'
-import { DEFAULT_AVAILABILITY, type TaskState, type TopicPriority, type TopicSignals } from '@/lib/plan/roadmap-types'
+import { DEFAULT_AVAILABILITY, MIN_DAY_MINUTES, type RoadmapTodaySummary, type TaskState, type TopicPriority, type TopicSignals } from '@/lib/plan/roadmap-types'
 import {
   DURATION_SCALE_MAX,
   REPLAN_NOTHING_LEFT,
@@ -14,8 +14,10 @@ import {
   applyUndo,
   availableFeels,
   letGoLine,
+  remainingMinutesAt,
   replanToday,
   rolloverDay,
+  storedSummaryServes,
   todaySummaryFor,
   undoDates,
   undoSnapshotFor,
@@ -515,6 +517,16 @@ const clockErrors = (plan: RoadmapPlan) => validateRoadmap(plan).filter((e) => !
   assert.equal(s.nextTask?.id, t1.id)
   assert.deepEqual([s.nextTask?.category, s.nextTask?.minutes, s.nextTask?.startsAt], [t1.category, t1.minutes, t1.startsAt])
   assert.ok(s.remainingMinutes! > 0)
+  // The chip's line: "Roadmap · Quick diagnostic · Maths 1.1 · 10 min" needs the type and the topic, not the objective.
+  assert.deepEqual([s.nextTask?.taskType, s.nextTask?.topic], [t1.taskType, t1.topic?.name])
+  assert.ok(s.nextTask?.topic, 'the first task has a topic')
+  // The clock inputs are stored beside the clock-dependent answer, so the today route can re-time the row.
+  assert.equal(s.openMinutes, work(day1).reduce((n, t) => n + t.minutes, 0), 'open minutes are the whole day before anything is done')
+  assert.equal(s.windowEndMinute, 21 * 60, 'the weekday window ends at 21:00')
+  assert.equal(s.remainingMinutes, Math.min(s.openMinutes!, 21 * 60 - 16 * 60))
+  const afterOne = todaySummaryFor(P0, { [t1.id]: { status: 'done', at: '2026-09-16T11:20:00.000Z' } }, none, {}, START, 16 * 60)
+  assert.equal(afterOne.openMinutes, s.openMinutes! - t1.minutes, 'a done task leaves the open minutes')
+  assert.equal(afterOne.nextTask?.id, t2.id)
   assert.equal(todaySummaryFor(P0, {}, none, {}, START, 16 * 60, (id) => `/go/${id}`).nextTask?.href, `/go/${t1.id}`)
   const out = todaySummaryFor(P0, {}, none, {}, '2026-10-05', 9 * 60)
   assert.deepEqual([out.hasPlan, out.nextTask, out.daysLeft], [true, undefined, 0], 'exam day is not a plan day')
@@ -530,7 +542,43 @@ const clockErrors = (plan: RoadmapPlan) => validateRoadmap(plan).filter((e) => !
   assert.equal(v.nextTask!.category, 'practise')
   assert.equal(v.nextTask!.startsAt, undefined)
   assert.equal(v.status, 'on_track')
+  assert.equal(v.windowEndMinute, null, 'a v2 plan has no windows, so the clock never caps it')
+  assert.equal(v.nextTask!.taskType, 'question')
   assert.equal(todaySummaryFor({ ...v2, days: [] }, {}, none, {}, START, 0).hasPlan, false)
+}
+
+// --- the today route's fast path: when the stored row can answer, and the re-timing --------------
+
+{
+  const stored = todaySummaryFor(P0, {}, none, {}, START, 16 * 60)
+  assert.equal(storedSummaryServes(stored, START, START, 1), true, "today's summary, rolled to today, at the row's revision")
+  assert.equal(storedSummaryServes(stored, START, '2026-09-17'), true, 'rolled past today still serves')
+  assert.equal(storedSummaryServes(stored, START, '2026-09-15'), false, 'a rollover is pending')
+  assert.equal(storedSummaryServes(stored, START, null), false, 'never rolled')
+  assert.equal(storedSummaryServes(stored, '2026-09-17', '2026-09-17'), false, "yesterday's summary")
+  assert.equal(storedSummaryServes(stored, START, START, 2), false, 'the plan moved on since the summary was written')
+  assert.equal(storedSummaryServes(null, START, START), false)
+  assert.equal(storedSummaryServes({ hasPlan: false }, START, START), false)
+  const { openMinutes: _o, windowEndMinute: _w, ...legacy } = stored
+  assert.equal(storedSummaryServes(legacy, START, START), false, 'a summary written before the clock inputs existed takes the full path')
+
+  // remainingMinutes = min(openMinutes, windowEnd − now); the next task shortens to what is left and goes when under the floor.
+  const open = stored.openMinutes!
+  assert.equal(remainingMinutesAt(stored, 16 * 60).remainingMinutes, Math.min(open, 300))
+  assert.equal(remainingMinutesAt(stored, 20 * 60 + 30).remainingMinutes, Math.min(open, 30))
+  assert.equal(remainingMinutesAt(stored, 21 * 60).remainingMinutes, 0, 'the window has closed')
+  assert.equal(remainingMinutesAt(stored, 22 * 60).remainingMinutes, 0, 'never negative after the window')
+  const late = remainingMinutesAt(stored, 21 * 60 - MIN_DAY_MINUTES + 1)
+  assert.equal(late.nextTask, undefined, 'under a real task of time left: nothing more today, as the hero says')
+  const squeezed = remainingMinutesAt(stored, 21 * 60 - MIN_DAY_MINUTES)
+  assert.deepEqual([squeezed.nextTask?.id, squeezed.nextTask?.minutes], [t1.id, Math.min(t1.minutes, MIN_DAY_MINUTES)])
+  const roomy = remainingMinutesAt(stored, 16 * 60)
+  assert.deepEqual([roomy.nextTask?.id, roomy.nextTask?.minutes], [t1.id, t1.minutes], 'plenty of time leaves the task whole')
+  assert.notEqual(roomy, stored, 'a copy, never the stored object')
+  const uncapped: RoadmapTodaySummary = { ...stored, windowEndMinute: null }
+  assert.equal(remainingMinutesAt(uncapped, 23 * 60 + 59).remainingMinutes, open, 'no windows: the open minutes stand at any hour')
+  assert.equal(remainingMinutesAt(uncapped, 23 * 60 + 59).nextTask?.minutes, t1.minutes)
+  assert.equal(remainingMinutesAt({ hasPlan: true, date: START, remainingMinutes: 25 }, 12 * 60).remainingMinutes, 25, 'a legacy row falls back to what it stored')
 }
 
 console.log('task-actions.test.ts: ok')

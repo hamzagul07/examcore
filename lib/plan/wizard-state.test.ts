@@ -2,13 +2,21 @@ import assert from 'node:assert/strict'
 import type { RoadmapPlan } from '@/lib/plan/roadmap-view'
 import { DEFAULT_AVAILABILITY } from '@/lib/plan/roadmap-types'
 import {
+  FINE_TUNE_FIELDS,
+  TIME_ZONE_FALLBACK,
+  TIME_ZONE_ISSUE,
+  browserTimeZone,
   dayMinutes,
   dayOverrideCommitments,
+  fineTuneDiffersFromDefaults,
   firstInvalidStep,
   initialWizardState,
   isClockTime,
   planExamDate,
   ratingFromMeasured,
+  supportedTimeZones,
+  timeZoneIssue,
+  timeZoneSource,
   toAvailability,
   toRequest,
   validateStep,
@@ -263,7 +271,36 @@ const prior = {
   assert.deepEqual(issues.map((i) => i.field), ['examDate:9709', 'examDate:9702', 'examTime:9702', 'timeZone'])
   assert.equal(issues[0]!.message, 'Set the exam date for Mathematics.')
   assert.equal(issues[1]!.message, 'The Physics exam date needs to be after today.')
+  assert.equal(issues[3]!.message, TIME_ZONE_ISSUE, 'the step and the blurred field say the same thing')
   assert.equal(validateStep(initialWizardState(profile, null), 1, TODAY).length, 0)
+}
+
+// --- the zone field: its list, its source note and its on-blur check --------------------
+
+{
+  assert.equal(timeZoneIssue('Europe/London'), null)
+  assert.equal(timeZoneIssue('UTC'), null)
+  assert.deepEqual(timeZoneIssue('Mars/Olympus'), { field: 'timeZone', message: TIME_ZONE_ISSUE })
+  assert.deepEqual(timeZoneIssue(''), { field: 'timeZone', message: TIME_ZONE_ISSUE })
+  assert.ok(!/[!]/.test(TIME_ZONE_ISSUE), 'no exclamation marks')
+}
+{
+  // The note beside the field is only ever one of three true things.
+  assert.equal(timeZoneSource('Asia/Karachi', 'Asia/Karachi', 'Asia/Karachi'), 'device', 'the device wins a tie')
+  assert.equal(timeZoneSource('Asia/Karachi', 'Europe/London', 'Asia/Karachi'), 'account')
+  assert.equal(timeZoneSource('Asia/Karachi', 'Europe/London', undefined), 'typed')
+  assert.equal(timeZoneSource('Asia/Tokyo', 'Europe/London', 'Asia/Karachi'), 'typed', 'an edited value is neither')
+  assert.equal(timeZoneSource('', 'Europe/London', ''), 'typed')
+}
+{
+  const zones = supportedTimeZones()
+  assert.ok(zones.includes('Europe/London') && zones.includes('Asia/Karachi'), 'the runtime list or the fallback, either way the common zones are there')
+  assert.deepEqual(zones, [...zones].sort(), 'sorted for the datalist')
+  assert.equal(new Set(zones).size, zones.length, 'no duplicates')
+  assert.ok(supportedTimeZones(['Etc/Nowhere']).includes('Etc/Nowhere'), 'the current value is always in its own list')
+  assert.ok(!supportedTimeZones(['']).includes(''), 'an empty value adds nothing')
+  assert.ok(TIME_ZONE_FALLBACK.every((z) => timeZoneIssue(z) === null), 'every fallback zone is one Intl knows')
+  assert.equal(timeZoneIssue(browserTimeZone()), null, 'the device zone always validates')
 }
 {
   const s = initialWizardState(profile, null)
@@ -281,10 +318,39 @@ const prior = {
   s = wizardReducer(s, { type: 'set_reminder_time', time: '8' })
   s = wizardReducer(s, { type: 'set_no_study', window: { start: '22:00', end: '22:00' } })
   const fields = validateStep(s, 3, TODAY).map((i) => i.field)
-  assert.deepEqual(fields, ['minutes', 'window:weekday', 'window:weekend', 'commitment:c1', 'commitment:c1', 'noStudy', 'reminderTime'])
+  // The reminder time is asked on step four now, beside the email it sets; step three never mentions it.
+  assert.deepEqual(fields, ['minutes', 'window:weekday', 'window:weekend', 'commitment:c1', 'commitment:c1', 'noStudy'])
   const messages = validateStep(s, 3, TODAY).map((i) => i.message)
   assert.ok(messages.includes('The custom weekends window must end after it starts.'))
   assert.ok(messages.includes('Tuition needs at least one day.'))
+  // Every field that can carry a message inside the fine-tune fold is one the fold opens for.
+  assert.ok(FINE_TUNE_FIELDS.includes('noStudy') && FINE_TUNE_FIELDS.includes('quietHours'))
+  assert.ok(!FINE_TUNE_FIELDS.includes('reminderTime'), 'the reminder is not in the fold')
+}
+{
+  // The reminder time is checked on step four, and only while the morning email is on: a hidden field never blocks Next.
+  let s = wizardReducer(initialWizardState(profile, null), { type: 'set_reminder_time', time: '8' })
+  assert.equal(s.remindMe, true)
+  assert.deepEqual(validateStep(s, 4, TODAY), [{ field: 'reminderTime', message: 'The reminder time should look like 08:00.' }])
+  assert.equal(validateStep(s, 3, TODAY).length, 0, 'step three does not repeat it')
+  s = wizardReducer(s, { type: 'set_remind_me', remindMe: false })
+  assert.equal(validateStep(s, 4, TODAY).length, 0)
+  s = wizardReducer(s, { type: 'set_remind_me', remindMe: true })
+  s = wizardReducer(s, { type: 'set_reminder_time', time: '07:15' })
+  assert.equal(validateStep(s, 4, TODAY).length, 0)
+  assert.equal(toRequest(s, TODAY).availabilityDetail?.reminderTime, '07:15', 'still travels with the availability the engine reads')
+}
+{
+  // The fine-tune fold opens itself only when something under it is not at its default.
+  const fresh = initialWizardState(profile, null)
+  assert.equal(fineTuneDiffersFromDefaults(fresh), false, 'a fresh wizard keeps the fold closed')
+  assert.equal(fineTuneDiffersFromDefaults({ ...fresh, breakRhythm: 'generous' }), true)
+  assert.equal(fineTuneDiffersFromDefaults({ ...fresh, noStudy: { start: '23:00', end: '06:00' } }), true)
+  assert.equal(fineTuneDiffersFromDefaults({ ...fresh, quietHours: { start: '22:00', end: '07:00' } }), true)
+  assert.equal(fineTuneDiffersFromDefaults({ ...fresh, blockedDates: ['2026-10-02'] }), true)
+  const outside: WizardState = { ...fresh, reminderTime: '07:15', sessionLength: 20 }
+  assert.equal(fineTuneDiffersFromDefaults(outside), false, 'session length and the reminder are outside the fold')
+  assert.equal(fineTuneDiffersFromDefaults(initialWizardState({ ...profile, measured: {} }, prior)), true, 'the prior plan above set a generous rhythm and a day away')
 }
 {
   const s = initialWizardState(profile, null)

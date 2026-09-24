@@ -2,7 +2,9 @@ import assert from 'node:assert/strict'
 import { buildStudyPlan, type PlanSubjectInput } from '@/lib/plan/build-study-plan'
 import type { HydratedPlan } from '@/lib/plan/plan-view'
 import {
+  DAY_ONE_LINE,
   clockOf,
+  evidenceChip,
   findTask,
   formatClock,
   heroFor,
@@ -15,6 +17,7 @@ import {
   openLoopsFor,
   remainingToday,
   roadmapStatus,
+  stripTaskCount,
   studiedDaysLine,
   tasksOnDate,
   taskIdFor,
@@ -158,12 +161,35 @@ const noEvidence = new Set<string>()
   const doneTask: TaskState = { [past[2]!.blocks.find((b) => b.kind === 'drill')!.id]: { status: 'done', at: 'x' } }
   assert.equal(roadmapStatus(plan, doneTask, noEvidence, {}, fourth), 'on_track', 'a done task counts like a tick')
 
-  assert.equal(studiedDaysLine(plan, {}, noEvidence, {}, d1), 'Day one. Everything starts today.')
+  assert.equal(studiedDaysLine(plan, {}, noEvidence, {}, d1), DAY_ONE_LINE)
+  assert.equal(DAY_ONE_LINE, 'Everything starts today.', 'the header already says "Day 1"; the line does not say it again')
   assert.equal(studiedDaysLine(plan, {}, noEvidence, { [String(past[0]!.day)]: true }, past[1]!.date), "You've studied on 1 of the last 1 day.")
   assert.match(studiedDaysLine(plan, {}, noEvidence, {}, fourth), /^You've studied on 0 of the last 3 days\.$/)
   for (const line of [studiedDaysLine(plan, {}, noEvidence, {}, fourth)]) {
     for (const banned of ['behind', 'missed', 'streak', 'catch up', 'failed', 'everyone else']) assert.ok(!line.toLowerCase().includes(banned), banned)
   }
+}
+
+// --- evidence chips --------------------------------------------------------------------------------
+
+{
+  assert.equal(evidenceChip({ type: 'self_rated', source: 'self_report', confidence: 'low', explanation: 'x' }), 'From your self-rating')
+  assert.equal(evidenceChip({ type: 'frequency', source: 'indexed_papers', confidence: 'medium', explanation: 'x', stat: { n: 9, of: 9 } }), 'In 9 of 9 indexed past papers', 'a count of the past, not a forecast')
+  assert.equal(evidenceChip({ type: 'frequency', source: 'indexed_papers', confidence: 'medium', explanation: 'x' }), 'Often in indexed past papers')
+  assert.equal(evidenceChip({ type: 'on_syllabus', source: 'syllabus', confidence: 'high', explanation: 'x' }), 'On the syllabus')
+}
+
+// --- the day's focus line --------------------------------------------------------------------------
+
+{
+  // Stored plans wrote the task count into the focus; the day card's summary owns the live count now.
+  assert.equal(stripTaskCount('Mathematics and Physics — 5 tasks.'), 'Mathematics and Physics.')
+  assert.equal(stripTaskCount('Mathematics — 1 task.'), 'Mathematics.')
+  assert.equal(stripTaskCount('Mathematics — 3 tasks; Physics review only.'), 'Mathematics; Physics review only.')
+  assert.equal(stripTaskCount('Review only — nothing new from here.'), 'Review only — nothing new from here.', 'other dashes are left alone')
+  assert.equal(stripTaskCount('Timed paper day — Mathematics under exam conditions.'), 'Timed paper day — Mathematics under exam conditions.')
+  const withCount = normaliseDay({ ...v2.days[0]!, focus: 'Mathematics and Physics — 4 tasks.' })
+  assert.equal(withCount.focus, 'Mathematics and Physics.', 'normaliseDay strips it on read')
 }
 
 // --- nearest exam ----------------------------------------------------------------------------------

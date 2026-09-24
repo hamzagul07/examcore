@@ -3,13 +3,18 @@
 /**
  * Step 3 — real-life availability. Minutes on a weekday and at the weekend,
  * a Full / Half / None override per day, the windows the student would rather
- * study in, how long a focused block should be and how often to stop, the
- * fixed things (tuition, sport, work), the span with no study at all, quiet
- * hours, the reminder time, and days away. Every one of these becomes a
- * hard fact for the engine; none of them is a suggestion.
+ * study in, how long a focused block should be, and the fixed things
+ * (tuition, sport, work) stay open: they change the plan most and differ
+ * for everyone. Break rhythm, the span with no study at all, quiet hours
+ * and days away sit under one "Fine-tune" fold — their defaults suit most
+ * students, and on a phone the open step was three screens tall. The fold
+ * opens itself when a prior plan set any of them or a message sits inside
+ * it, so nothing the student chose or needs to fix is ever hidden. Every
+ * answer here becomes a hard fact for the engine; none of them is a
+ * suggestion. The reminder time lives on step four with the email it sets.
  */
 
-import { useState } from 'react'
+import { useEffect, useState, type SyntheticEvent } from 'react'
 import { SegmentedControl } from '@/components/ui/SegmentedControl'
 import { formatMinutes, formatPlanDate } from '@/lib/plan/plan-view'
 import {
@@ -23,19 +28,21 @@ import {
 import {
   COMMITMENT_KINDS,
   DAY_LOAD_LABEL,
+  FINE_TUNE_FIELDS,
   MAX_BLOCKED_DATES,
   MINUTE_CHOICES,
   WEEKDAY_SHORT,
   WINDOW_PRESET,
   WINDOW_PRESETS,
   dayMinutes,
+  fineTuneDiffersFromDefaults,
   type DayType,
   type WindowPreset,
   type WizardAction,
   type WizardIssue,
   type WizardState,
 } from '@/lib/plan/wizard-state'
-import { Chips, FieldIssues, StepHeader, TimeInput, TimeSpan, hasIssue } from '@/components/plan/setup/bits'
+import { Chips, FieldIssues, StepHeader, TimeSpan, hasIssue } from '@/components/plan/setup/bits'
 
 type Props = {
   state: WizardState
@@ -121,10 +128,18 @@ function WindowPicker({
   )
 }
 
+export const FINE_TUNE_SUMMARY = 'Fine-tune (breaks, sleep, quiet hours, days away) — defaults are sensible'
+
 export function StepAvailability({ state, dispatch, issues, todayIso, examDate, disabled }: Props) {
   const [blockInput, setBlockInput] = useState('')
   const minutes = dayMinutes(state)
   const breaks = BREAK_MINUTES[state.breakRhythm]
+  // Open from the start when a prior plan changed something inside; opened again whenever a message lands there.
+  const [moreOpen, setMoreOpen] = useState(() => fineTuneDiffersFromDefaults(state))
+  const issueInside = issues.some((i) => FINE_TUNE_FIELDS.includes(i.field))
+  useEffect(() => {
+    if (issueInside) setMoreOpen(true)
+  }, [issueInside])
 
   function addBlocked() {
     if (!blockInput) return
@@ -137,7 +152,7 @@ export function StepAvailability({ state, dispatch, issues, todayIso, examDate, 
       <StepHeader
         eyebrow="Step 3 of 5 · Real-life availability"
         title="Build around your life — not an imaginary perfect week."
-        lead="What you say here is fixed. The plan fits inside it rather than pretending."
+        lead="The plan is built inside what you tell us here — nothing is scheduled where you can't be. You can change any of it later."
       />
 
       <fieldset className="ms-plan-fieldset" aria-describedby={hasIssue(issues, 'minutes') ? 'rm-issue-minutes' : undefined}>
@@ -209,27 +224,6 @@ export function StepAvailability({ state, dispatch, issues, todayIso, examDate, 
           options={SESSION_LENGTHS.map((s) => ({ value: `${s}` as `${SessionLength}`, label: `${s} min` }))}
         />
         <p className="text-caption mt-2 max-w-prose">{SESSION_MEANING[state.sessionLength]}</p>
-      </fieldset>
-
-      <fieldset className="ms-plan-fieldset">
-        <legend className="label-overline" id="rm-break-label">
-          Break rhythm
-        </legend>
-        <SegmentedControl<BreakRhythm>
-          value={state.breakRhythm}
-          onChange={(breakRhythm) => dispatch({ type: 'set_break_rhythm', breakRhythm })}
-          aria-labelledby="rm-break-label"
-          className="ms-plan-segments"
-          optionClassName="ms-plan-segment"
-          disabled={disabled}
-          options={(['short', 'standard', 'generous'] as BreakRhythm[]).map((b) => ({
-            value: b,
-            label: `${BREAK_LABEL[b]} · ${BREAK_MINUTES[b].short}/${BREAK_MINUTES[b].long}`,
-          }))}
-        />
-        <p className="text-caption mt-2">
-          {breaks.short} minutes off between blocks, {breaks.long} after a few in a row.
-        </p>
       </fieldset>
 
       <fieldset className="ms-plan-fieldset">
@@ -306,26 +300,52 @@ export function StepAvailability({ state, dispatch, issues, todayIso, examDate, 
         </button>
       </fieldset>
 
-      <fieldset className="ms-plan-fieldset">
-        <legend className="label-overline">No study at all</legend>
-        <p className="text-caption mb-2">Sleep, mostly. This span may cross midnight.</p>
-        <TimeSpan
-          idBase="rm-nostudy"
-          label="No-study span"
-          start={state.noStudy.start}
-          end={state.noStudy.end}
-          disabled={disabled}
-          invalid={hasIssue(issues, 'noStudy')}
-          onChange={(w) => dispatch({ type: 'set_no_study', window: w })}
-        />
-        <FieldIssues issues={issues} field="noStudy" />
-      </fieldset>
+      <details
+        className="ms-rm-setup-more"
+        open={moreOpen}
+        onToggle={(e: SyntheticEvent<HTMLDetailsElement>) => setMoreOpen(e.currentTarget.open)}
+      >
+        <summary className="ms-rm-setup-more__summary">{FINE_TUNE_SUMMARY}</summary>
 
-      <fieldset className="ms-plan-fieldset">
-        <legend className="label-overline">Quiet hours and reminders</legend>
-        <p className="text-caption mb-2">No nudges inside quiet hours. The morning check-in arrives at the reminder time, if you turn it on.</p>
-        <div className="ms-rm-setup-inline">
-          <span className="ms-rm-setup-sublabel">Quiet</span>
+        <fieldset className="ms-plan-fieldset">
+          <legend className="label-overline" id="rm-break-label">
+            Break rhythm
+          </legend>
+          <SegmentedControl<BreakRhythm>
+            value={state.breakRhythm}
+            onChange={(breakRhythm) => dispatch({ type: 'set_break_rhythm', breakRhythm })}
+            aria-labelledby="rm-break-label"
+            className="ms-plan-segments"
+            optionClassName="ms-plan-segment"
+            disabled={disabled}
+            options={(['short', 'standard', 'generous'] as BreakRhythm[]).map((b) => ({
+              value: b,
+              label: `${BREAK_LABEL[b]} · ${BREAK_MINUTES[b].short}/${BREAK_MINUTES[b].long}`,
+            }))}
+          />
+          <p className="text-caption mt-2">
+            {breaks.short} minutes off between blocks, {breaks.long} after a few in a row.
+          </p>
+        </fieldset>
+
+        <fieldset className="ms-plan-fieldset">
+          <legend className="label-overline">No study at all</legend>
+          <p className="text-caption mb-2">Sleep, mostly. This span may cross midnight.</p>
+          <TimeSpan
+            idBase="rm-nostudy"
+            label="No-study span"
+            start={state.noStudy.start}
+            end={state.noStudy.end}
+            disabled={disabled}
+            invalid={hasIssue(issues, 'noStudy')}
+            onChange={(w) => dispatch({ type: 'set_no_study', window: w })}
+          />
+          <FieldIssues issues={issues} field="noStudy" />
+        </fieldset>
+
+        <fieldset className="ms-plan-fieldset">
+          <legend className="label-overline">Quiet hours</legend>
+          <p className="text-caption mb-2">No nudges inside these hours.</p>
           <TimeSpan
             idBase="rm-quiet"
             label="Quiet hours"
@@ -335,66 +355,52 @@ export function StepAvailability({ state, dispatch, issues, todayIso, examDate, 
             invalid={hasIssue(issues, 'quietHours')}
             onChange={(w) => dispatch({ type: 'set_quiet_hours', window: w })}
           />
-        </div>
-        <FieldIssues issues={issues} field="quietHours" />
-        <div className="ms-rm-setup-inline mt-2">
-          <label htmlFor="rm-reminder" className="ms-rm-setup-sublabel">
-            Reminder
-          </label>
-          <TimeInput
-            id="rm-reminder"
-            label="Reminder time"
-            value={state.reminderTime}
-            disabled={disabled}
-            invalid={hasIssue(issues, 'reminderTime')}
-            onChange={(time) => dispatch({ type: 'set_reminder_time', time })}
-          />
-        </div>
-        <FieldIssues issues={issues} field="reminderTime" />
-      </fieldset>
+          <FieldIssues issues={issues} field="quietHours" />
+        </fieldset>
 
-      <fieldset className="ms-plan-fieldset">
-        <legend className="label-overline">Days you&apos;re away</legend>
-        <p className="text-caption mb-3">A trip, a wedding, a school event. Nothing is scheduled on those days.</p>
-        <div className="flex flex-wrap items-center gap-2">
-          <input
-            type="date"
-            className="ec-input ms-rm-setup-date"
-            value={blockInput}
-            min={todayIso}
-            max={examDate ?? undefined}
-            disabled={disabled || state.blockedDates.length >= MAX_BLOCKED_DATES}
-            aria-label="A date you're away"
-            onChange={(e) => setBlockInput(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                e.preventDefault()
-                addBlocked()
-              }
-            }}
-          />
-          <button type="button" className="ec-pill" disabled={disabled || !blockInput} onClick={addBlocked}>
-            Add day
-          </button>
-        </div>
-        {state.blockedDates.length > 0 ? (
-          <ul className="mt-3 flex flex-wrap gap-2" aria-label="Days away">
-            {state.blockedDates.map((d) => (
-              <li key={d}>
-                <button
-                  type="button"
-                  className="ec-pill is-on"
-                  disabled={disabled}
-                  aria-label={`Remove ${formatPlanDate(d)}`}
-                  onClick={() => dispatch({ type: 'remove_blocked_date', date: d })}
-                >
-                  {formatPlanDate(d)} ×
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : null}
-      </fieldset>
+        <fieldset className="ms-plan-fieldset">
+          <legend className="label-overline">Days you&apos;re away</legend>
+          <p className="text-caption mb-3">A trip, a wedding, a school event. Nothing is scheduled on those days.</p>
+          <div className="flex flex-wrap items-center gap-2">
+            <input
+              type="date"
+              className="ec-input ms-rm-setup-date"
+              value={blockInput}
+              min={todayIso}
+              max={examDate ?? undefined}
+              disabled={disabled || state.blockedDates.length >= MAX_BLOCKED_DATES}
+              aria-label="A date you're away"
+              onChange={(e) => setBlockInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault()
+                  addBlocked()
+                }
+              }}
+            />
+            <button type="button" className="ec-pill" disabled={disabled || !blockInput} onClick={addBlocked}>
+              Add day
+            </button>
+          </div>
+          {state.blockedDates.length > 0 ? (
+            <ul className="mt-3 flex flex-wrap gap-2" aria-label="Days away">
+              {state.blockedDates.map((d) => (
+                <li key={d}>
+                  <button
+                    type="button"
+                    className="ec-pill is-on"
+                    disabled={disabled}
+                    aria-label={`Remove ${formatPlanDate(d)}`}
+                    onClick={() => dispatch({ type: 'remove_blocked_date', date: d })}
+                  >
+                    {formatPlanDate(d)} ×
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </fieldset>
+      </details>
     </div>
   )
 }

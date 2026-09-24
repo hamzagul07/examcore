@@ -111,12 +111,23 @@ export function normaliseTask(block: HydratedBlock, date: string, seen: Map<stri
   }
 }
 
+/**
+ * Older plans wrote the task count into the day's focus ("Mathematics and
+ * Physics — 5 tasks."), which went stale the moment a task was deferred
+ * while the day card's own summary printed the live count beside it. The
+ * count comes off on read; the summary owns it.
+ */
+export function stripTaskCount(focus: string): string {
+  return focus.replace(/ — \d+ tasks?(?=[.;])/, '')
+}
+
 export function normaliseDay(day: HydratedDay): RoadmapDay {
   const seen = new Map<string, number>()
   const blocks = day.blocks.map((b) => normaliseTask(b, day.date, seen))
   const breaks = day.blocks.reduce((n, b) => n + (b.kind === 'break' ? b.minutes : 0), 0)
   return {
     ...day,
+    focus: stripTaskCount(day.focus),
     blocks,
     capacityMinutes: day.capacityMinutes ?? day.workMinutes + breaks,
     bufferMinutes: day.bufferMinutes ?? 0,
@@ -230,7 +241,7 @@ export function remainingToday(
 }
 
 export type Hero =
-  /** minutes: what the first task gets; dayMinutes: what today can still hold — the eyebrow's N. */
+  /** minutes: what the first task gets; dayMinutes: what today can still hold (the timeline header's "left today"). */
   | { kind: 'task'; task: RoadmapTask; minutes: number; shortened: boolean; dayMinutes?: number }
   | { kind: 'done' }
   | { kind: 'no_time'; nextDate: string | null }
@@ -259,6 +270,9 @@ export function heroFor(
 }
 
 // --- status ----------------------------------------------------------------------------
+
+/** The studied-days line on the first day, pinned so the hero can recognise it. */
+export const DAY_ONE_LINE = 'Everything starts today.'
 
 /** Study days before today, most recent first. */
 function pastStudyDays(plan: Pick<RoadmapPlan, 'days'>, todayIso: string): RoadmapDay[] {
@@ -289,7 +303,11 @@ export function roadmapStatus(
   return 'on_track'
 }
 
-/** "You've studied on 4 of the last 6 days." A fact and nothing else. */
+/**
+ * "You've studied on 4 of the last 6 days." A fact and nothing else. On the
+ * first day there is no last week to speak of; the header already says
+ * "Day 1", so the line says only what is true of today.
+ */
 export function studiedDaysLine(
   plan: Pick<RoadmapPlan, 'days'>,
   state: TaskState,
@@ -298,7 +316,7 @@ export function studiedDaysLine(
   todayIso: string
 ): string {
   const recent = pastStudyDays(plan, todayIso).slice(0, 7)
-  if (recent.length === 0) return 'Day one. Everything starts today.'
+  if (recent.length === 0) return DAY_ONE_LINE
   const n = recent.filter((d) => dayHadWork(d, state, evidence, done)).length
   return `You've studied on ${n} of the last ${recent.length} ${recent.length === 1 ? 'day' : 'days'}.`
 }
@@ -322,17 +340,23 @@ export function upcomingDays(plan: Pick<RoadmapPlan, 'days'>, todayIso: string, 
 
 // --- evidence chips ----------------------------------------------------------------------
 
-/** Short chip text for an evidence item; the sheet shows the full explanation. */
+/**
+ * Short chip text for an evidence item; the sheet shows the full explanation.
+ * A frequency chip counts the past ("In 9 of 9 indexed past papers"), never
+ * the paper ahead; the self-rating chip names its source, because the loop
+ * copies the topic's evidence onto every step and "checks where you stand"
+ * is only true of the diagnostic.
+ */
 export function evidenceChip(item: EvidenceItem): string {
   switch (item.type) {
     case 'frequency':
-      return item.stat ? `Set in ${item.stat.n} of ${item.stat.of} indexed papers` : 'Set often in indexed papers'
+      return item.stat ? `In ${item.stat.n} of ${item.stat.of} indexed past papers` : 'Often in indexed past papers'
     case 'weak_area':
       return 'Your weak area'
     case 'recent_practice':
       return 'From your recent practice'
     case 'self_rated':
-      return 'Checks where you stand'
+      return 'From your self-rating'
     case 'prerequisite':
       return 'Comes first in the syllabus'
     case 'review_due':

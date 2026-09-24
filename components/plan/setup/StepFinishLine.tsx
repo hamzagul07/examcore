@@ -5,16 +5,26 @@
  * profile and shown, not asked again; subjects, a paper per subject where
  * the catalogue knows them, a date and an optional start time per paper,
  * and the zone the plan's clock runs in.
+ *
+ * The zone is a text field with a datalist of every zone the browser knows,
+ * so a typo is caught the moment the field is left, not on Next. The note
+ * under it says where the value came from — the device or the account —
+ * and offers the device's zone back in one tap when they differ. Both are
+ * read after mount: the server does not know the student's device.
  */
 
 import Link from 'next/link'
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { suggestedExamDates } from '@/lib/dashboard/exam-date'
 import { planLength } from '@/lib/plan/build-study-plan'
 import { formatPlanDate } from '@/lib/plan/plan-view'
 import {
   MAX_SUBJECTS,
+  browserTimeZone,
   planExamDate,
+  supportedTimeZones,
+  timeZoneIssue,
+  timeZoneSource,
   type SetupProfile,
   type SetupSubjectOption,
   type WizardAction,
@@ -33,8 +43,26 @@ type Props = {
   disabled?: boolean
 }
 
+const ZONE_LIST_ID = 'rm-zones'
+
 export function StepFinishLine({ state, dispatch, issues, profile, subjectOptions, todayIso, disabled }: Props) {
   const suggestions = useMemo(() => suggestedExamDates(), [])
+  // Device zone and the datalist are the browser's answer, so they are read once mounted; the server renders neither.
+  const [deviceZone, setDeviceZone] = useState('')
+  const [zones, setZones] = useState<string[]>([])
+  const [zoneTouched, setZoneTouched] = useState(false)
+  useEffect(() => {
+    setDeviceZone(browserTimeZone())
+    setZones(supportedTimeZones([profile.timeZone ?? '']))
+  }, [profile.timeZone])
+  const zoneSource = deviceZone ? timeZoneSource(state.timeZone, deviceZone, profile.timeZone) : null
+  // The step's own list only fills once Next was tried; until then a blurred field checks itself.
+  const zoneIssues = useMemo(() => {
+    if (hasIssue(issues, 'timeZone') || !zoneTouched) return issues
+    const own = timeZoneIssue(state.timeZone)
+    return own ? [...issues, own] : issues
+  }, [issues, zoneTouched, state.timeZone])
+  const zoneInvalid = hasIssue(zoneIssues, 'timeZone')
   const optionFor = (code: string) => subjectOptions.find((o) => o.code === code)
   const latest = planExamDate(state)
   const daysLeft = latest ? planLength(todayIso, latest) : 0
@@ -169,20 +197,50 @@ export function StepFinishLine({ state, dispatch, issues, profile, subjectOption
 
       <fieldset className="ms-plan-fieldset">
         <legend className="label-overline">Time zone</legend>
-        <p className="text-caption mb-2">Read from your device. Change it if you study somewhere else.</p>
+        <p className="text-caption mb-2">Your plan&apos;s clock runs in this zone. Change it only if you&apos;ll be studying somewhere else.</p>
         <input
           type="text"
           className="ec-input ms-rm-setup-zone"
           value={state.timeZone}
+          list={ZONE_LIST_ID}
           disabled={disabled}
           autoComplete="off"
+          autoCapitalize="off"
           spellCheck={false}
           aria-label="Time zone"
-          aria-invalid={hasIssue(issues, 'timeZone') || undefined}
-          aria-describedby={hasIssue(issues, 'timeZone') ? 'rm-issue-timeZone' : undefined}
+          aria-invalid={zoneInvalid || undefined}
+          aria-describedby={zoneInvalid ? 'rm-issue-timeZone' : zoneSource ? 'rm-zone-source' : undefined}
           onChange={(e) => dispatch({ type: 'set_time_zone', timeZone: e.target.value.trim() })}
+          onBlur={() => setZoneTouched(true)}
         />
-        <FieldIssues issues={issues} field="timeZone" id="rm-issue-timeZone" />
+        <datalist id={ZONE_LIST_ID}>
+          {zones.map((z) => (
+            <option key={z} value={z} />
+          ))}
+        </datalist>
+        <FieldIssues issues={zoneIssues} field="timeZone" id="rm-issue-timeZone" />
+        {zoneSource ? (
+          <p id="rm-zone-source" className="ms-rm-setup-zone-source">
+            {zoneSource === 'device' ? (
+              'From your device'
+            ) : (
+              <>
+                {zoneSource === 'account' ? <span>From your account settings · </span> : null}
+                <button
+                  type="button"
+                  className="ms-rm-setup-linkbtn"
+                  disabled={disabled}
+                  onClick={() => {
+                    dispatch({ type: 'set_time_zone', timeZone: deviceZone })
+                    setZoneTouched(true)
+                  }}
+                >
+                  Use my device&apos;s zone ({deviceZone})
+                </button>
+              </>
+            )}
+          </p>
+        ) : null}
       </fieldset>
     </div>
   )

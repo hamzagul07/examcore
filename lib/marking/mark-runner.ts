@@ -525,6 +525,12 @@ export async function markSingleQuestion(params: {
   resolvedIb?: ResolvedIbComponent | null
   /** Optional student-supplied total marks for this question. */
   questionTotalMarks?: number | null
+  /**
+   * Length of the full transcript when `ocrText` is an extraction from it.
+   * The contradiction guard takes the larger of the two, so a truncated
+   * extraction cannot make a "single sentence" verdict look consistent.
+   */
+  sourceOcrChars?: number
   /** Run the second-opinion verify pass. Default true; large multi-question
    * batches pass false to stay under the function timeout. */
   verify?: boolean
@@ -570,6 +576,7 @@ export async function markSingleQuestion(params: {
     fallbackSubjectCode,
     resolvedIb,
     questionTotalMarks,
+    sourceOcrChars,
     verify = true,
     rewrite = false,
     deferRewrite = false,
@@ -885,6 +892,8 @@ export async function markSingleQuestion(params: {
     }
   }
 
+  const answerCharsForGuard = Math.max(ocrText.trim().length, sourceOcrChars ?? 0)
+
   // Reject a judgment that contradicts the answer we sent.
   //
   // Reconciliation makes the model's arithmetic trustworthy; nothing made its
@@ -903,14 +912,14 @@ export async function markSingleQuestion(params: {
         markingResult.band_result,
         markingResult.summary
       ),
-      answerChars: ocrText.trim().length,
+      answerChars: answerCharsForGuard,
       marksAwarded: Number(markingResult.marks_earned),
       marksAvailable: Number(markingResult.total_marks),
     })
 
     if (contradiction.contradicted) {
       console.warn(
-        `[mark] band result contradicts a ${ocrText.trim().length}-char answer ` +
+        `[mark] band result contradicts a ${answerCharsForGuard}-char answer ` +
           `(claimed: "${contradiction.claim}") — re-marking once`
       )
       try {
@@ -925,7 +934,7 @@ export async function markSingleQuestion(params: {
             reMarked.band_result,
             reMarked.summary
           ),
-          answerChars: ocrText.trim().length,
+          answerChars: answerCharsForGuard,
           marksAwarded: Number(reMarked.marks_earned),
           marksAvailable: Number(reMarked.total_marks),
         })

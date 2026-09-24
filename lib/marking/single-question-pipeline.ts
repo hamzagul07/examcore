@@ -38,7 +38,7 @@ import {
 import { extractMarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
 import { toMarkingAIResult, aggregateWholePaperResults } from '@/lib/marking/whole-paper'
 import { invalidateStudentMemoryCache } from '@/lib/omni-ai/student-memory'
-import { extractPracticeQuestionFromScript } from '@/lib/marking/practice-question-extract'
+import { chooseAnswerText, extractPracticeQuestionFromScript } from '@/lib/marking/practice-question-extract'
 import { splitUploadIntoQuestions, type SplitQuestion } from '@/lib/marking/split-questions'
 import { extractTotalMarksForGate } from '@/lib/marking/question-marks'
 import { stripNullBytes } from '@/lib/marking/strip-null-bytes'
@@ -998,8 +998,16 @@ export async function runSingleQuestionMark(
         "We couldn't find a question in your upload. Try a clearer scan, or use My question mode to add the question separately."
       )
     }
-    if (extracted.answer_text.trim().length >= 5) {
-      ocrTextForMarking = extracted.answer_text
+    {
+      // Never mark a fragment: a cut-off or summarised extraction hands the
+      // marker one sentence of a two-page essay (2026-09-24, 1/26 and 0/15).
+      const chosen = chooseAnswerText(ocrText, extracted)
+      if (chosen.source === 'transcript') {
+        console.warn(
+          `[mark] extracted answer unusable (${chosen.reason}: ${extracted.answer_text.trim().length} of ${ocrText.trim().length} chars) — marking the transcript`
+        )
+      }
+      ocrTextForMarking = chosen.text
     }
 
     // M1: if the upload carries an IB component + level and the subject is
@@ -1105,9 +1113,13 @@ export async function runSingleQuestionMark(
       )
       if (recovered.question_text.trim().length >= 10) {
         questionText = recovered.question_text
-        if (recovered.answer_text.trim().length >= 5) {
-          ocrTextForMarking = recovered.answer_text
+        const chosen = chooseAnswerText(ocrText, recovered)
+        if (chosen.source === 'transcript') {
+          console.warn(
+            `[mark] recovered answer unusable (${chosen.reason}: ${recovered.answer_text.trim().length} of ${ocrText.trim().length} chars) — marking the transcript`
+          )
         }
+        ocrTextForMarking = chosen.text
       }
     } catch (err) {
       // Best-effort: fall through to the error below with the original message.
@@ -1173,6 +1185,10 @@ export async function runSingleQuestionMark(
     rewritePlan,
   } = await markSingleQuestion({
     ocrText: ocrTextForMarking,
+    // What the student actually wrote, for the contradiction guard: it must
+    // judge the claim "a single sentence" against the transcript, not against
+    // whatever an extraction step handed on.
+    sourceOcrChars: ocrText.trim().length,
     ocrLines,
     questionText,
     markScheme,

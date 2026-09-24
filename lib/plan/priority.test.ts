@@ -8,6 +8,7 @@ import {
   masteryEstimate,
   rankSubjectTopics,
   scoreTopic,
+  syllabusOnlyWhy,
   type ScoreContext,
 } from '@/lib/plan/priority'
 import {
@@ -15,9 +16,14 @@ import {
   FORBIDDEN_NUDGE_WORDS,
   SELF_RATING_PRIOR,
   type EvidenceItem,
+  type RoadmapMode,
+  type SelfRating,
   type TopicPriority,
   type TopicSignals,
 } from '@/lib/plan/roadmap-types'
+
+const MODES: RoadmapMode[] = ['foundation', 'balanced', 'polish']
+const RATINGS: Array<SelfRating | undefined> = [undefined, 'not_started', 'rusty', 'confident']
 
 const NONE = new Set<string>()
 
@@ -268,6 +274,79 @@ assert.equal(loopFor(WEAK_BELOW_PCT / 100 - 0.001), 'weak')
   )
   assert.deepEqual(polish.map((t) => t.code), Array.from({ length: 10 }, (_, i) => `3.${i}`), 'ties keep syllabus order')
   assert.deepEqual(rankSubjectTopics([], 'rusty', ctx()), [])
+}
+
+// --- a measured gap outranks representation ----------------------------------------------------------
+
+{
+  // Representation scales importance, so it lifts a topic in proportion to what there is to gain there. Whatever the
+  // mode, the rating or the papers, a weak area (3+ marks under 65%) ranks above a strong topic with the same frequency.
+  const freq = { papers: 9, of: 9, taggedShare: 1, scope: 'subject' as const }
+  for (const mode of MODES) {
+    for (const rating of RATINGS) {
+      for (const f of [freq, { ...freq, papers: 5 }, undefined]) {
+        const prior = rating ? SELF_RATING_PRIOR[rating] : 0.5
+        const c = ctx({ mode })
+        const weak = score(signal({ code: 'w', order: 5, frequency: f, mastery: { percentage: 30, attempts: 4 } }), prior, rating, c)
+        const strong = score(signal({ code: 's', order: 0, frequency: f, mastery: { percentage: 80, attempts: 5 } }), prior, rating, c)
+        assert.ok(types(weak).includes('weak_area'))
+        assert.ok(!types(strong).includes('weak_area'))
+        assert.ok(weak.score > strong.score, `${mode}/${rating ?? 'unrated'}/${f?.papers ?? 'no'} papers: weak ${weak.score} > strong ${strong.score}`)
+        // A borderline weak area (just under the threshold) still beats a strong one with the same papers.
+        const edge = score(signal({ code: 'e', order: 6, frequency: f, mastery: { percentage: WEAK_BELOW_PCT - 1, attempts: 3 } }), prior, rating, c)
+        assert.ok(edge.score > strong.score, `${mode}: a 64% topic ranks above an 80% one with the same frequency`)
+      }
+    }
+  }
+
+  // The audit's case, in balanced mode: 80% on five marks with frequency 8/9 no longer outranks 30% on four marks
+  // with no frequency signal at all — the old additive term put the mastered topic first.
+  const c = ctx({ mode: 'balanced' })
+  const differentiation = score(signal({ code: 'd', order: 9, frequency: { papers: 8, of: 9, taggedShare: 1, scope: 'subject' }, mastery: { percentage: 80, attempts: 5 } }), 0.35, 'rusty', c)
+  const functions = score(signal({ code: 'f', order: 1, mastery: { percentage: 30, attempts: 4 } }), 0.35, 'rusty', c)
+  assert.ok(functions.score > differentiation.score, `Functions ${functions.score} above Differentiation ${differentiation.score}`)
+
+  // Against an untested topic whose only evidence is frequency, in balanced mode: a weak area with a gap of at least
+  // 0.5 wins when the subject is rated confident (the prior says the untested topic is fine; the marks say this one is
+  // not). The bound is arithmetic — gap_weak > gap_prior × √(1 + w.evidence × share) — so with a rusty or not-started
+  // prior the untested topic's own gap is large and frequency may still put it first; that is intended.
+  for (const pct of [50, 40, 30, 10]) {
+    const weak = score(signal({ code: 'w', order: 5, mastery: { percentage: pct, attempts: 3 } }), SELF_RATING_PRIOR.confident, 'confident', c)
+    const untested = score(signal({ code: 'u', order: 0, frequency: { papers: 9, of: 9, taggedShare: 1, scope: 'subject' } }), SELF_RATING_PRIOR.confident, 'confident', c)
+    assert.deepEqual(types(untested), ['on_syllabus', 'frequency', 'self_rated'])
+    assert.ok(types(weak).includes('weak_area'))
+    assert.ok(1 - weak.mastery >= 0.5)
+    assert.ok(weak.score > untested.score, `${pct}%: weak ${weak.score} > untested ${untested.score}`)
+  }
+  // And the general shape: a measured gap of 0.7 is never behind a measured gap of 0.2, whatever the frequency, in any mode.
+  for (const mode of MODES) {
+    const m = ctx({ mode })
+    const big = score(signal({ code: 'b', order: 5, mastery: { percentage: 30, attempts: 3 } }), 0.5, undefined, m)
+    const small = score(signal({ code: 's', order: 0, frequency: { papers: 9, of: 9, taggedShare: 1, scope: 'subject' }, mastery: { percentage: 80, attempts: 3 } }), 0.5, undefined, m)
+    assert.ok(big.score > small.score, `${mode}: gap 0.7 without papers above gap 0.2 set in every paper`)
+  }
+  // Frequency still lifts an untested high-yield topic above an untested low-yield one.
+  const high = score(signal({ code: 'h', order: 3, frequency: { papers: 9, of: 9, taggedShare: 1, scope: 'subject' } }), 0.5, undefined, c)
+  const low = score(signal({ code: 'l', order: 2, frequency: { papers: 3, of: 9, taggedShare: 1, scope: 'subject' } }), 0.5, undefined, c)
+  const none = score(signal({ code: 'n', order: 1 }), 0.5, undefined, c)
+  assert.ok(high.score > low.score && low.score > none.score)
+  assert.ok(Math.abs(high.score / none.score - (1 + MODE_WEIGHTS.balanced.evidence)) < 1e-9, 'set in every paper: importance × (1 + w.evidence)')
+  // Evidence multiplies the product term only: a mastered topic with frequency still scores 0, and a due review adds on top.
+  assert.equal(score(signal({ frequency: { papers: 9, of: 9, taggedShare: 1, scope: 'subject' }, mastery: { percentage: 100, attempts: 5 } })).score, 0)
+  const due = score(signal({ frequency: { papers: 9, of: 9, taggedShare: 1, scope: 'subject' }, mastery: { percentage: 100, attempts: 5 }, reviewDueAt: '2026-09-17' }))
+  assert.ok(Math.abs(due.score - MODE_WEIGHTS.balanced.review * (1 + MODE_WEIGHTS.balanced.urgency * 0)) < 1e-9, 'urgency 1 at planLength days out × w.review')
+}
+
+{
+  // The syllabus-only line the scheduler gives a review of a topic the plan never opened: the same template buildWhy opens with.
+  assert.deepEqual(syllabusOnlyWhy('Mathematics', 'Cambridge', 'P1/P2'), [
+    { type: 'on_syllabus', source: 'syllabus', confidence: 'high', explanation: 'On the Cambridge Mathematics syllabus for Papers 1 and 2' },
+  ])
+  assert.equal(syllabusOnlyWhy('Mathematics')[0]!.explanation, 'On the Mathematics syllabus')
+  assert.equal(syllabusOnlyWhy('Biology SL', 'IB', 'Paper 1')[0]!.explanation, 'On the IB Biology SL syllabus for Paper 1')
+  assert.equal(syllabusOnlyWhy('Mathematics', '  ', '')[0]!.explanation, 'On the Mathematics syllabus')
+  assert.deepEqual(syllabusOnlyWhy('Mathematics', 'Cambridge', 'P1/P2'), [score(signal({ paper: 'P1/P2' })).why[0]!], 'identical to what buildWhy opens with')
+  for (const why of [syllabusOnlyWhy('Mathematics', 'Cambridge', 'P1'), syllabusOnlyWhy('A'.repeat(200))]) allWhy.push(why)
 }
 
 {

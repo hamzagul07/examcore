@@ -214,7 +214,7 @@ async function main() {
     recipientName: 'Aisha',
     day: studyDay,
     line: 'Two weeks out. Trust your prep.',
-    studiedLine: 'Day one. Everything starts today.',
+    studiedLine: 'Everything starts today.',
     progress: { scheduled: 0, done: 0, behind: 0, totalWorkDays: 10, totalDone: 0 },
     unsubscribeHref: 'https://markscheme.app/email/unsubscribe?token=test',
   })
@@ -223,7 +223,7 @@ async function main() {
     assert.ok(!email.text.toLowerCase().includes(word), `email must not say "${word}"`)
   }
   assert.ok(!email.html.includes('days done so far'), 'the tally line is gone')
-  assert.ok(email.html.includes('Day one. Everything starts today.'), 'the studied line is in')
+  assert.ok(email.html.includes('Everything starts today.'), 'the studied line is in')
   const firstTask = studyDay.blocks.find((b) => b.href)
   if (firstTask?.id) {
     assert.ok(email.html.includes(`task=${encodeURIComponent(firstTask.id)}`) || email.html.includes(`task=${firstTask.id}`), 'task links carry the task id')

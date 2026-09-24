@@ -6,7 +6,8 @@ import { LoadingLink } from '@/components/ui/LoadingLink'
 import { WHY_SHEET_FOOTER } from '@/lib/plan/modes'
 import { TASK_CATEGORY_LABEL, TASK_TYPE_LABEL, type TaskAction, type TaskStateEntry } from '@/lib/plan/roadmap-types'
 import type { RoadmapTask, TaskStanding } from '@/lib/plan/roadmap-view'
-import { destinationLabel, shortenedMinutes, standingLabel } from '@/components/plan/roadmap/labels'
+import { carryable } from '@/lib/plan/roadmap-view'
+import { destinationLabel, historyLabel, shortenedMinutes, standingLabel } from '@/components/plan/roadmap/labels'
 import { taskSubtitle } from '@/components/plan/roadmap/hero-copy'
 
 type Props = {
@@ -21,20 +22,51 @@ type Props = {
   onStart: (task: RoadmapTask) => void
   onAction: (task: RoadmapTask, action: TaskAction, extra?: { minutes?: number }) => void
   onWhy: (task: RoadmapTask) => void
+  /** False when the task sits on a day after today: Start, Pin, Swap and Defer stay; Done waits for the day. */
+  allowDone?: boolean
+  /** Opens the carry-over sheet: offered for anything not done and not already moved. */
+  onCarry?: (task: RoadmapTask) => void
+  /** The task's day has passed: the standing reads as history, and only carrying it forward (or ticking it) makes sense. */
+  past?: boolean
+  /** The task belongs to a plan built before this one: nothing but Why and Carry over can act on it. */
+  archived?: boolean
+  /** The date the copy came from, when this task was carried over. */
+  carriedFromDate?: string | null
 }
 
 /**
  * A task in full: what to do, where it opens, why it is here, and the five
  * things the student can do about it. Every action is one tap and every one
- * is reversible from the plan's undo; none of them needs a reason.
+ * is reversible from the plan's undo; none of them needs a reason. A task
+ * on a future day can be started early, pinned, swapped or moved, but not
+ * ticked off before its day.
  */
-export function TaskDetailSheet({ task, standing, entry, minutes, open, busy, onClose, onStart, onAction, onWhy }: Props) {
+export function TaskDetailSheet({
+  task,
+  standing,
+  entry,
+  minutes,
+  open,
+  busy,
+  onClose,
+  onStart,
+  onAction,
+  onWhy,
+  allowDone = true,
+  onCarry,
+  past = false,
+  archived = false,
+  carriedFromDate = null,
+}: Props) {
   const titleId = useId()
   if (!task) return <Sheet open={false} onClose={onClose}>{null}</Sheet>
   const settled = standing === 'done' || standing === 'skipped' || standing === 'deferred' || standing === 'dropped'
   const shorter = shortenedMinutes(task.taskType, minutes)
-  const label = standingLabel(standing, entry)
+  const label = past ? historyLabel(standing, entry) : standingLabel(standing, entry)
   const sub = taskSubtitle(task)
+  const canCarry = Boolean(onCarry) && carryable(standing, entry)
+  // A past or archived task keeps only what still makes sense: its reasons, a tick for a past day, and a carry forward.
+  const live = !past && !archived
   return (
     <Sheet open={open} onClose={onClose} labelledById={titleId}>
       <div className="ms-rm-sheet">
@@ -51,6 +83,7 @@ export function TaskDetailSheet({ task, standing, entry, minutes, open, busy, on
         </p>
         <p className="ms-rm-sheet__dest">{destinationLabel(task)}</p>
         {label ? <p className={`ms-rm-standing is-${standing} ms-rm-sheet__standing`}>{label}</p> : null}
+        {carriedFromDate ? <p className="ms-rm-sheet__carried">Carried over from {carriedFromDate}.</p> : null}
 
         {task.why.length > 0 ? (
           <ul className="ms-rm-why ms-rm-why--short">
@@ -64,7 +97,7 @@ export function TaskDetailSheet({ task, standing, entry, minutes, open, busy, on
         <p className="ms-rm-sheet__footer">{WHY_SHEET_FOOTER}</p>
 
         <div className="ms-rm-actions">
-          {task.href && !settled ? (
+          {task.href && !settled && live ? (
             <LoadingLink
               href={task.href}
               variant="button"
@@ -75,9 +108,14 @@ export function TaskDetailSheet({ task, standing, entry, minutes, open, busy, on
               {standing === 'started' ? 'Continue' : 'Start'}
             </LoadingLink>
           ) : null}
-          {!settled ? (
+          {!settled && allowDone && !archived ? (
             <button type="button" className="ms-rm-btn" disabled={busy} onClick={() => onAction(task, 'complete')}>
               Done
+            </button>
+          ) : null}
+          {canCarry && !live ? (
+            <button type="button" className="ec-btn-primary ms-rm-btn ms-rm-btn--primary" disabled={busy} onClick={() => onCarry!(task)}>
+              Carry over to another day
             </button>
           ) : null}
           <button type="button" className="ms-rm-btn" onClick={() => onWhy(task)}>
@@ -85,7 +123,7 @@ export function TaskDetailSheet({ task, standing, entry, minutes, open, busy, on
           </button>
         </div>
 
-        {!settled ? (
+        {!settled && live ? (
           <div className="ms-rm-actions ms-rm-actions--secondary" aria-label="Change this task">
             <button
               type="button"
@@ -102,6 +140,11 @@ export function TaskDetailSheet({ task, standing, entry, minutes, open, busy, on
             <button type="button" className="ms-rm-btn ms-rm-btn--quiet" disabled={busy} onClick={() => onAction(task, 'defer')}>
               Defer to a day with room
             </button>
+            {canCarry ? (
+              <button type="button" className="ms-rm-btn ms-rm-btn--quiet" disabled={busy} onClick={() => onCarry!(task)}>
+                Carry over to a day I choose
+              </button>
+            ) : null}
             <button type="button" className="ms-rm-btn ms-rm-btn--quiet" disabled={busy} onClick={() => onAction(task, 'skip')}>
               Skip
             </button>
@@ -113,6 +156,13 @@ export function TaskDetailSheet({ task, standing, entry, minutes, open, busy, on
               onClick={() => onAction(task, task.pinned ? 'unpin' : 'pin')}
             >
               {task.pinned ? 'Unpin' : 'Pin — never moved by a replan'}
+            </button>
+          </div>
+        ) : null}
+        {settled && live && canCarry ? (
+          <div className="ms-rm-actions ms-rm-actions--secondary" aria-label="Change this task">
+            <button type="button" className="ms-rm-btn ms-rm-btn--quiet" disabled={busy} onClick={() => onCarry!(task)}>
+              Carry over to a day I choose
             </button>
           </div>
         ) : null}

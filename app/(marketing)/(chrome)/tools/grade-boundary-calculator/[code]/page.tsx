@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import { getPageMetadata } from '@/lib/seo/page-meta'
+import { buildGradeBoundaryCalculatorThresholdMetadata } from '@/lib/seo/threshold-seo'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode, softwareApplicationNode } from '@/lib/seo/structured-data'
@@ -34,17 +34,12 @@ export async function generateMetadata({ params }: Props) {
   const subject = getSubject(code)
   if (!subject) return {}
   const copy = buildSubjectPageCopy(subject)
-  return getPageMetadata(`/tools/grade-boundary-calculator/${code}`, {
-    ogImagePath: '/api/og/tools/grade-boundary-calculator',
-    title: `${code} ${subject.label} grade calculator (raw marks → grade)`,
-    description: `Convert your ${code} ${subject.label} (${copy.level}) raw marks into a Cambridge grade. Enter the official thresholds for your session to see your grade and the marks needed for the next.`,
-    keywords: [
-      `${code} grade calculator`,
-      `${code} grade boundaries`,
-      `Cambridge ${subject.label} grade calculator`,
-      `${code} raw marks to grade`,
-    ],
-  })
+  return buildGradeBoundaryCalculatorThresholdMetadata(
+    code,
+    subject.label,
+    copy.level,
+    `/tools/grade-boundary-calculator/${code}`
+  )
 }
 
 export default async function SubjectGradeCalculatorPage({ params }: Props) {

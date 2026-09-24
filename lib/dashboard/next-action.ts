@@ -2,7 +2,21 @@ import type { ReviewItem } from '@/lib/courses/review-queue'
 import type { Recommendation } from '@/lib/insights/types'
 import { drillHref } from '@/lib/insights/drill-link'
 
-export type NextActionKind = 'review' | 'drill' | 'mark'
+export type NextActionKind = 'roadmap_task' | 'review' | 'drill' | 'mark'
+
+/**
+ * The roadmap's next task, as the dashboard hands it in: enough to make it
+ * the top action without importing the plan types here. `whyHref` opens
+ * the roadmap with the Why sheet up; `dayNumber` is the stamp.
+ */
+export type RoadmapNextTask = {
+  id: string
+  objective: string
+  href: string
+  minutes: number
+  dayNumber?: number
+  whyHref?: string
+}
 
 export type NextAction = {
   kind: NextActionKind
@@ -21,6 +35,9 @@ export type NextAction = {
 
 /**
  * Single dominant home CTA (DB-02). Priority:
+ * 0. the roadmap's next task for today, when the student has a plan — the
+ *    plan already weighed the review queue, so the page offers one next
+ *    thing, not two
  * 1. due review (marked weak topics + lesson recall) — mark-first
  * 2. topic / paper drill from recommendations
  * 3. mark a new answer
@@ -28,7 +45,21 @@ export type NextAction = {
 export function buildNextAction(input: {
   reviewItems: ReviewItem[]
   recommendations: Recommendation[]
+  roadmapTask?: RoadmapNextTask | null
 }): NextAction {
+  const task = input.roadmapTask
+  if (task && task.href) {
+    return {
+      kind: 'roadmap_task',
+      stamp: task.dayNumber !== undefined ? String(task.dayNumber) : 'NEXT',
+      title: task.objective,
+      why: 'On your roadmap for today.',
+      ctaLabel: 'Start focus block',
+      href: task.href,
+      secondary: task.whyHref ? { label: 'Why this?', href: task.whyHref } : undefined,
+    }
+  }
+
   const due = input.reviewItems[0]
   if (due) {
     const secondary =

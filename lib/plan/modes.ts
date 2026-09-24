@@ -59,12 +59,16 @@ export function modeFromStored(value: string | null | undefined): RoadmapMode {
 /**
  * Weights on the priority model's terms:
  *
- *   priority = urgency × (importance × gap × improvement + prerequisite + review + evidence)
+ *   score = urgency × (importance × (1 + w.evidence × evidence) × (w.gap × gap) × (w.improvement × improvement)
+ *                      + w.prerequisite × prerequisite + w.review × review)
  *
  * where, per topic (priority.ts):
  *   gap         = 1 − mastery, mastery blended from marks and the self-rating prior
  *   improvement = (1 − mastery) × min(1, daysToPaper / daysTheLoopNeeds) — learnable in the time left,
  *                 so a fresh topic two days out scores ~0 and a rusty one scores high
+ *   evidence    = indexed representation (papers / of) — it MULTIPLIES importance rather than standing
+ *                 alone, so frequency lifts an untested high-yield topic above an untested low-yield one
+ *                 but a topic with a measured gap of 0.7 never ranks under one with a gap of 0.2
  *   urgency     = max(URGENCY_FLOOR, 1 + w.urgency × (1 − daysToPaper / planLength)) — a far paper
  *                 never drops below half weight; a near one rises
  *
@@ -202,8 +206,10 @@ export const TIMED_PAPER_MIN_SESSION: SessionLength = 40
  *
  * Steps are spaced, not massed: repair → recall waits for the next study
  * day (recall minutes after a refresh tests short-term memory); recall →
- * prove is the same day or the next; prove → review is set by the result
- * (reviewGapDays).
+ * prove is the same day or the next; prove → review waits a study day too
+ * (one timed set is not yet a pattern to read, and a night between the set
+ * and its error review is what makes the re-read a check rather than an
+ * echo); the spaced step after the loop is set by the result (reviewGapDays).
  */
 export const WEAK_TOPIC_LOOP: ReadonlyArray<{ step: LoopStep; taskType: TaskType }> = [
   { step: 'diagnose', taskType: 'diagnostic' },
@@ -224,7 +230,16 @@ export const STEP_GAP_DAYS: ReadonlyArray<{ from: LoopStep; to: LoopStep; minDay
   { from: 'diagnose', to: 'repair', minDays: 0 },
   { from: 'repair', to: 'recall', minDays: 1 },
   { from: 'recall', to: 'prove', minDays: 0 },
+  { from: 'prove', to: 'review', minDays: 1 },
 ]
+
+/**
+ * Spaced reviews keep coming after the loop, at gaps that double each time:
+ * the next review lands min(2 × the previous gap, this) study days after
+ * the last one. Two reviews and silence until the taper (the first shape)
+ * left most topics of a 90-day plan unseen for two months.
+ */
+export const REVIEW_GAP_MAX_STUDY_DAYS = 14
 
 /** Work minutes a full loop needs, from STEP_MINUTES — the number feasibility counts per topic. */
 export function loopMinutes(loop: 'weak' | 'strong'): number {
@@ -245,11 +260,12 @@ export function reviewGapDays(provePct: number | null, daysToPaper: number): num
   return Math.max(1, Math.min(gap, daysToPaper - 2))
 }
 
-/** A day's work is spread over this many subjects at most, by capacity: one short day is one subject. */
+/** A day's work is spread over this many subjects at most, by capacity: one short day is one subject; a five-hour day can carry four. */
 export function subjectsPerDay(capacityMinutes: number): number {
   if (capacityMinutes <= 60) return 1
   if (capacityMinutes <= 120) return 2
-  return 3
+  if (capacityMinutes <= 300) return 3
+  return 4
 }
 
 // --- copy --------------------------------------------------------------------------------

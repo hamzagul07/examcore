@@ -3,8 +3,11 @@
  *
  * Drives the wizard, the Today screen, every task action, the sheets, the
  * dashboard hero, the Study Mode chip, /api/plan/today, the rebuild path,
- * a few accessibility checks and the offline queue, in a real engine, and
- * prints a PASS/FAIL table. It is non-destructive in the sense that it only
+ * a few accessibility checks, the offline queue, a carry-over to a chosen
+ * day and a second paper for one subject, in a real engine, and prints a
+ * PASS/FAIL table. Run it on an account with no plan (delete its
+ * study_plans row between runs): with a plan already saved the wizard
+ * starts from "Adjust" and the fixture's tuition row doubles. It is non-destructive in the sense that it only
  * ever touches the plan of the account it is given: it never creates or
  * deletes users. Point it at a throwaway account.
  *
@@ -103,7 +106,7 @@ async function alertText(page) {
 
 /** Close a "what changed" sheet left open by an action (swap, check-in, replan) so the next click lands. */
 async function settleSheets(page) {
-  const diff = page.locator('[role="dialog"][aria-modal="true"]', { hasText: 'Today was adjusted' })
+  const diff = page.locator('[role="dialog"][aria-modal="true"]', { hasText: /was adjusted/ })
   if (await diff.count()) {
     await diff.locator('button', { hasText: 'Fine by me' }).click().catch(() => {})
   }
@@ -221,7 +224,12 @@ function bannedIn(text) {
 
 async function signIn(page) {
   await page.goto(`${BASE}/auth/signin`, { waitUntil: 'domcontentloaded', timeout: 120000 })
-  await radio(page, 'Password').click()
+  // The password field appears only once the "Password" toggle is clicked after hydration; a click that lands
+  // before React is listening is lost, so the toggle is pressed again until the field shows.
+  for (let attempt = 0; attempt < 8; attempt++) {
+    await radio(page, 'Password').click()
+    if (await page.locator('#password').waitFor({ timeout: 4000 }).then(() => true, () => false)) break
+  }
   await page.fill('#email', EMAIL)
   await page.fill('#password', PASSWORD)
   await page.locator('button[type="submit"]', { hasText: 'Sign in' }).click()
@@ -241,6 +249,12 @@ async function openWizard(page) {
   await page.locator('button', { hasText: 'Adjust plan' }).click()
   await page.locator('.ms-rm-setup').waitFor()
   return 'adjust'
+}
+
+async function openFineTune(page) {
+  const fold = page.locator('details.ms-rm-setup-more')
+  if (!(await fold.evaluate((el) => el.open))) await fold.locator('summary').click()
+  await page.locator('#rm-nostudy-start').waitFor({ state: 'visible', timeout: 5000 })
 }
 
 async function clickNext(page) {
@@ -372,8 +386,19 @@ async function main() {
     await page.fill('#rm-exam-time-9709', '09:00')
     await page.fill('#rm-exam-time-9702', '09:00')
     const tz = page.locator('input[aria-label="Time zone"]')
+    // The zone field offers the browser's zone list and says where its value came from; a typo is caught on blur.
+    assert((await tz.getAttribute('list')) === 'rm-zones', 'zone input is backed by the #rm-zones datalist')
+    const zoneOptions = await page.locator('datalist#rm-zones option').count()
+    assert(zoneOptions > 50, `zone datalist lists ${zoneOptions} zones`)
+    await tz.fill('Nowhere/Town')
+    await tz.blur()
+    assert(/not one we recognise/.test(await tc(page.locator('#rm-issue-timeZone'))), 'a mistyped zone is flagged on blur, next to the field')
     await tz.fill(zone)
-    notes.push(`dates: Mathematics ${mathsDate} 09:00, Physics ${physicsDate} 09:00; zone ${zone}`)
+    await tz.blur()
+    assert((await page.locator('#rm-issue-timeZone').count()) === 0, 'a known zone clears the flag')
+    const zoneSource = await tc(page.locator('#rm-zone-source')).catch(() => '')
+    assert(/From your device|Use my device/.test(zoneSource), `zone source note: ${zoneSource}`)
+    notes.push(`dates: Mathematics ${mathsDate} 09:00, Physics ${physicsDate} 09:00; zone ${zone} (${zoneSource.replace(/\s+/g, ' ')})`)
     const runsTo = await page.locator('.ms-plan-fieldset', { hasText: 'Exam dates' }).locator('.ms-plan-note').innerText().catch(() => '')
     assert(/19 days from today/.test(runsTo), `plan length line: ${runsTo.replace(/\s+/g, ' ')}`)
     await shot(page, '02a-wizard-step1-finish-line', 'Wizard step 1: Finish line with subjects, Paper 1, dates, times and zone')
@@ -412,23 +437,37 @@ async function main() {
     const commitmentEnd = page.locator('input[id^="rm-commitment-"][id$="-end"]').last()
     await commitmentStart.fill('17:00')
     await commitmentEnd.fill('19:00')
+    // Break rhythm, the no-study span, quiet hours and days away sit under one closed fold on a fresh wizard;
+    // the reminder time is asked on step 4, under the check-in box, not here.
+    assert((await page.locator('#rm-reminder').count()) === 0, 'step 3 does not ask for a reminder time')
+    const fold = page.locator('details.ms-rm-setup-more')
+    assert((await fold.count()) === 1, 'step 3 has the fine-tune fold')
+    assert(!(await fold.evaluate((el) => el.open)), 'fine-tune fold is closed on a fresh wizard')
+    assert(!(await page.locator('#rm-nostudy-start').isVisible()), 'no-study span is hidden until the fold opens')
+    await shot(page, '02c-wizard-step3-collapsed', 'Wizard step 3: minutes, windows, session and commitments open; fine-tune folded')
+    await openFineTune(page)
     await page.fill('#rm-nostudy-start', '22:30')
     await page.fill('#rm-nostudy-end', '07:00')
     const quiet = `${await page.inputValue('#rm-quiet-start')}–${await page.inputValue('#rm-quiet-end')}`
-    await page.fill('#rm-reminder', '08:00')
     await page.locator('input[aria-label="A date you\'re away"]').fill(sunday)
     await page.locator('button', { hasText: /^Add day$/ }).click()
     const away = await page.locator('ul[aria-label="Days away"] li').allTextContents()
     assert(away.length === 1, `day away added: ${away.join(', ')} (${sunday})`)
-    notes.push(`session 40, breaks Standard, Tuition Tue 17:00–19:00, no study 22:30–07:00, quiet ${quiet} (default), reminder 08:00`)
-    await shot(page, '02c-wizard-step3-availability', 'Wizard step 3: availability with tuition, sleep span, reminder and a day away')
+    notes.push(`session 40, breaks Standard, Tuition Tue 17:00–19:00, no study 22:30–07:00, quiet ${quiet} (default)`)
+    await shot(page, '02c-wizard-step3-availability', 'Wizard step 3: availability with tuition, sleep span and a day away')
     await clickNext(page)
 
     await stepVisible(page, 4)
     await ensureChecked(radio(page, 'Balanced Revision'))
     const remind = page.locator('.ms-plan-check input[type="checkbox"]')
-    if (await remind.isChecked()) await remind.uncheck()
+    // The reminder time appears only while the check-in box is ticked, and the value travels with the request either way.
+    if (!(await remind.isChecked())) await remind.check()
+    await page.locator('#rm-reminder').waitFor({ timeout: 5000 })
+    await page.fill('#rm-reminder', '08:00')
+    await remind.uncheck()
     assert(!(await remind.isChecked()), 'morning check-in unchecked')
+    assert((await page.locator('#rm-reminder').count()) === 0, 'reminder time hides when the check-in box is off')
+    notes.push('reminder 08:00 (set while the check-in box was ticked, then unticked)')
     await shot(page, '02d-wizard-step4-goal', 'Wizard step 4: Balanced Revision, check-in off')
     await clickNext(page)
 
@@ -443,29 +482,36 @@ async function main() {
     assert(subjectRows === 2, `${subjectRows} per-subject rows`)
     const feasText = await feas.innerText()
     notes.push(`feasibility card: ${feasText.replace(/\s+/g, ' ').slice(0, 400)}`)
+    assert(!/must-cover/i.test(feasText), 'feasibility card never says "must-cover" (the student reads "priority")')
+    // The options fieldset appears only when there is a real choice; on track, the nav's Build button is the one build action.
     const optionButtons = await page.locator('.ms-rm-setup-option').allTextContents()
-    assert(optionButtons.some((t) => /Keep it realistic/.test(t)), `options: ${optionButtons.map((t) => t.replace(/\s+/g, ' ')).join(' | ')}`)
+    const buildButtons = await page.locator('.ms-rm-setup-nav button[type="submit"]', { hasText: /Build my roadmap/ }).count()
+    assert(!optionButtons.some((t) => /Keep it realistic/.test(t)), `no "Keep it realistic" option: ${optionButtons.map((t) => t.replace(/\s+/g, ' ')).join(' | ') || '(none)'}`)
+    if (chip.trim() === 'On track') {
+      assert(optionButtons.length === 0, `on track: no options fieldset (${optionButtons.length} options)`)
+      assert(buildButtons === 1, `on track: "Build my roadmap" is the only build button (${buildButtons})`)
+    } else {
+      assert(optionButtons.length > 1, `${chip.trim()}: ${optionButtons.length} options offered`)
+    }
     await shot(page, '02e-wizard-step5-feasibility', 'Wizard step 5: feasibility card with state chip, headline, per-subject rows and options')
 
     const previews = apiLog.filter((r) => r.method === 'POST' && r.path === '/api/plan')
     assert(previews.length > 0 && previews.every((r) => r.status === 200), `preview POST /api/plan statuses: ${previews.map((r) => r.status).join(',')}`)
 
-    const changeMode = page.locator('.ms-rm-setup-option', { hasText: 'Change roadmap mode' })
+    const changeMode = page.locator('.ms-rm-setup-option', { hasText: /Change roadmap mode|Choose a different style/ })
     if (await changeMode.count()) {
       await changeMode.click()
       await stepVisible(page, 4)
-      notes.push('"Change roadmap mode" returned to step 4')
+      notes.push('"Choose a different style" returned to step 4')
       await clickNext(page)
       await stepVisible(page, 5)
       await feas.waitFor({ timeout: 60000 })
       await page.locator('.ms-rm-setup-feas:not([aria-busy])').waitFor({ timeout: 60000 }).catch(() => {})
-    } else notes.push('"Change roadmap mode" not offered by this report')
+    } else notes.push('"Choose a different style" not offered by this report')
 
-    const keep = page.locator('.ms-rm-setup-option', { hasText: 'Keep it realistic' })
     const buildBtn = page.locator('.ms-rm-setup-nav button[type="submit"]')
     const wait = waitApi(page, 'POST', '/api/plan', 120000)
-    if (await keep.count()) await keep.click()
-    else await buildBtn.click()
+    await buildBtn.click()
     let build = await wait
     // The first POST seen may still be a preview; the build is the one without preview:true.
     while (build.body?.preview === true) build = await waitApi(page, 'POST', '/api/plan', 120000)
@@ -485,7 +531,8 @@ async function main() {
     assert(chip === 'On track', `status chip: ${chip}`)
     const hero = page.locator('.ms-rm-hero')
     const eyebrow = await tc(hero.locator('.ec-eyebrow'))
-    assert(/^Today's best use of \d+ minutes/.test(eyebrow), `hero eyebrow: ${eyebrow}`)
+    assert(/^Up next · .+ · \d+ min( · shortened to fit)?$/.test(eyebrow), `hero eyebrow: ${eyebrow}`)
+    assert(!/best use/i.test(eyebrow), 'no superlative in the eyebrow')
     // The primary CTA must be readable: computed text colour against its own background.
     const startLink = hero.locator('a', { hasText: 'Start focus block' })
     if (await startLink.count()) {
@@ -601,7 +648,7 @@ async function main() {
   })
 
   // 5. task detail actions
-  await step(5, 'Task detail: five actions; Shorten halves; Skip; Swap resolves; Defer moves', async (notes, assert) => {
+  await step(5, 'Task detail: six actions; Shorten halves; Skip; Swap resolves; Defer moves', async (notes, assert) => {
     await gotoPlan(page)
     await radio(page, 'Today').click()
     const tasks = () => page.locator('.ms-rm-day .ms-rm-row--task')
@@ -626,7 +673,8 @@ async function main() {
       await d.waitFor()
       if (shortened === null && i === remaining[0]) {
         const actions = await d.locator('.ms-rm-actions--secondary button').allTextContents()
-        assert(actions.length === 5, `five actions: ${actions.map((a) => a.trim()).join(' | ')}`)
+        // Six since the carry-over: Shorten, Swap, Defer, Carry over to a day I choose, Skip, Pin.
+        assert(actions.length === 6 && actions.some((a) => /Carry over/.test(a)), `six actions: ${actions.map((a) => a.trim()).join(' | ')}`)
       }
       const shortenBtn = d.locator('button', { hasText: /^Shorten/ })
       const shortenLabel = (await shortenBtn.innerText()).trim()
@@ -681,7 +729,7 @@ async function main() {
       const res = await wait
       assert(res.status === 200, `swap PATCH → ${res.status}`)
       await page.waitForTimeout(400)
-      const diffSheet = page.locator('[role="dialog"][aria-modal="true"]', { hasText: 'Today was adjusted' })
+      const diffSheet = page.locator('[role="dialog"][aria-modal="true"]', { hasText: /was adjusted/ })
       if (await diffSheet.count()) notes.push(`swap opened a what-changed sheet: ${(await diffSheet.innerText()).replace(/\s+/g, ' ').slice(0, 200)}`)
       await settleSheets(page)
       const objectiveAfter = await objectiveAt(i)
@@ -752,7 +800,8 @@ async function main() {
     await d.waitFor()
     // The sheet lists only the feelings the reducer will act on for this task (availableFeels), never all six blindly:
     // "About right" and "Took longer" always, the rest when there is something to repair, move or open.
-    // textContent joins the label and the effect spans with no separator, so match each button on its label prefix.
+    // textContent joins the label and the effect spans with no separator, so match each button on its label prefix —
+    // never on the effect text (CHECKIN_FEEL_EFFECT), which is copy the service may reword.
     const feels = await d.locator('.ms-rm-feel').allTextContents()
     const known = ['Too easy', 'About right', 'Too difficult', 'Took longer than expected', 'I was busy', 'I need help']
     const labels = feels.map((f) => known.find((k) => f.trim().startsWith(k)) ?? f.trim().slice(0, 30))
@@ -771,11 +820,13 @@ async function main() {
     await d.locator('.ms-rm-feel', { hasText: 'Too difficult' }).click()
     const feel = await waitFeel
     assert(feel.status === 200, `check-in PATCH → ${feel.status}; diff changes: ${feel.body?.diff?.changes?.length ?? 0}; summary: ${feel.body?.diff?.summary ?? '(none)'}`)
-    const diffSheet = page.locator('[role="dialog"][aria-modal="true"]', { hasText: 'Today was adjusted' })
+    const diffSheet = page.locator('[role="dialog"][aria-modal="true"]', { hasText: /was adjusted/ })
     await diffSheet.waitFor({ timeout: 8000 }).catch(() => {})
     if (await diffSheet.count()) {
       const text = await diffSheet.innerText()
       notes.push(`replan sheet: ${text.replace(/\s+/g, ' ').slice(0, 400)}`)
+      assert(!/protected/i.test(text), 'the sheet says "stayed put", not "protected"')
+      assert((text.match(/What changed/g) ?? []).length === 0, 'no "What changed" stacked over "What changed" (eyebrow is "Adjusted")')
       await shot(page, '06c-checkin-diff', 'After "Too difficult": what changed, with Undo', { fullPage: false })
       const undoBtn = diffSheet.locator('button', { hasText: /^Undo$/ })
       assert((await undoBtn.count()) > 0, 'Undo offered')
@@ -825,7 +876,7 @@ async function main() {
     await d.locator('button', { hasText: 'Replan today' }).click()
     const res = await wait
     assert(res.status === 200, `replan POST → ${res.status}, changes ${res.body?.diff?.changes?.length ?? 0}, summary "${res.body?.diff?.summary ?? ''}"`)
-    const diffSheet = page.locator('[role="dialog"][aria-modal="true"]', { hasText: 'Today was adjusted' })
+    const diffSheet = page.locator('[role="dialog"][aria-modal="true"]', { hasText: /was adjusted/ })
     await diffSheet.waitFor({ timeout: 10000 })
     const text = await diffSheet.innerText()
     const summary = (await diffSheet.locator('.ms-rm-sheet__sub').innerText()).trim()
@@ -902,7 +953,9 @@ async function main() {
     await link.waitFor({ timeout: 30000 })
     const text = (await link.innerText()).trim()
     const href = await link.getAttribute('href')
-    assert(/^On your roadmap: .+, \d+ min/.test(text), `chip: ${text}`)
+    assert(/^Roadmap · .+ · \d+ min →$/.test(text), `chip: ${text}`)
+    assert(text.length <= 80, `chip is a label, not a sentence (${text.length} chars)`)
+    assert((await link.getAttribute('title') ?? '').length > 0, 'the full objective rides on the link title')
     assert(Boolean(href) && href !== '#', `chip href: ${href}`)
     const todayCalls = apiLog.filter((r) => r.path === '/api/plan/today')
     notes.push(`GET /api/plan/today so far: ${todayCalls.map((r) => r.status).join(',') || 'none (served from the session cache)'}`)
@@ -964,6 +1017,8 @@ async function main() {
     const commitments = await page.locator('input[aria-label="Commitment name"]').evaluateAll((els) => els.map((e) => e.value))
     assert(wk.trim() === '1 h 30 min', `weekday minutes prefilled: ${wk.trim()}`)
     assert(commitments.includes('Tuition'), `commitments prefilled: ${commitments.join(', ')}`)
+    // The day away differs from the defaults, so the fold opens by itself on a rebuild.
+    assert(await page.locator('details.ms-rm-setup-more').evaluate((el) => el.open), 'fine-tune fold opens when the prior plan differs from defaults')
     assert((await page.inputValue('#rm-nostudy-start')) === '22:30', `no-study prefilled ${await page.inputValue('#rm-nostudy-start')}–${await page.inputValue('#rm-nostudy-end')}`)
     await clickNext(page)
     await stepVisible(page, 4)
@@ -1071,6 +1126,129 @@ async function main() {
   })
 
   // 16. phone and late-night captures
+  // 17. Carry over: a task moves to a day the student chooses; the copy remembers where it came from.
+  await step(17, 'Carry over: the sheet lists days with their fit; the copy lands on the chosen day and says where it came from', async (notes, assert) => {
+    await gotoPlan(page)
+    await settleSheets(page)
+    await radio(page, 'Today').click()
+    let open = page.locator('.ms-rm-row--task:not(.is-done):not(.is-skipped):not(.is-deferred):not(.is-dropped) .ms-rm-task')
+    if (!(await open.count())) {
+      // Earlier steps settled every task of day one: carry one of tomorrow's instead (a future task may move too).
+      await radio(page, 'Roadmap').click()
+      await page.locator('.ms-rm-roadmap').waitFor()
+      const firstCard = page.locator('.ms-rm-daycard').first()
+      // An open <details> has an empty-string "open" attribute, so test the property, not the attribute.
+      if ((await firstCard.locator('details').count()) && !(await firstCard.locator('details').first().evaluate((el) => el.open))) {
+        await firstCard.locator('summary').click()
+      }
+      open = firstCard.locator('.ms-rm-row--task:not(.is-done):not(.is-skipped):not(.is-deferred):not(.is-dropped) .ms-rm-task')
+      if (!(await open.count())) {
+        notes.push('no open task today or tomorrow to carry')
+        return 'skip'
+      }
+      notes.push('today has no open task left; carrying one from the first day card')
+    }
+    const objective = await tc(open.first().locator('.ms-rm-task__objective'))
+    await open.first().click()
+    const d = dialog(page)
+    await d.waitFor()
+    const carryBtn = d.locator('button', { hasText: 'Carry over to a day I choose' })
+    assert((await carryBtn.count()) > 0, 'task sheet offers "Carry over to a day I choose"')
+    await carryBtn.click()
+    // The task sheet is still closing when the carry sheet opens; the day list is only ever in the carry sheet.
+    const sheet = page.locator('[role="dialog"][aria-modal="true"]', { has: page.locator('.ms-rm-carry') })
+    await sheet.waitFor()
+    const days = sheet.locator('.ms-rm-carry__day')
+    const n = await days.count()
+    assert(n >= 1 && n <= 7, `${n} days offered`)
+    const whens = await sheet.locator('.ms-rm-carry__when').allTextContents()
+    const fits = await sheet.locator('.ms-rm-carry__fit').allTextContents()
+    notes.push(`days: ${whens.map((w, i) => `${w.trim()} (${fits[i]?.trim()})`).join(' | ')}`)
+    assert(whens.every((w) => /^(Today|Tomorrow|[A-Z][a-z]{2} \d)/.test(w.trim())), 'each day is named')
+    assert(fits.every((f) => /min/.test(f)), 'each day says what the move means in minutes')
+    assert(bannedIn(await sheet.innerText()).length === 0, 'carry sheet copy is calm')
+    await shot(page, '17a-carry-sheet', 'Carry over: the days a task can move to, each with its fit', { fullPage: false })
+    // Tomorrow when it is offered, else the first day listed.
+    const pick = (await days.filter({ hasText: /^Tomorrow/ }).count()) ? days.filter({ hasText: /^Tomorrow/ }).first() : days.first()
+    const pickedWhen = (await tc(pick.locator('.ms-rm-carry__when'))).trim()
+    const wait = waitApi(page, 'PATCH', '/api/plan/task')
+    await pick.click()
+    const res = await wait
+    assert(res.status === 200, `carry PATCH → ${res.status}`)
+    assert(/Carried over to/.test(res.body?.diff?.summary ?? ''), `diff summary: ${res.body?.diff?.summary}`)
+    assert((res.body?.otherDays?.length ?? 0) >= 1 || res.body?.date, 'the response carries the target day')
+    const copy = [...(res.body?.otherDays ?? []).map((o) => o.day), res.body?.day].filter(Boolean).flatMap((day) => day.blocks).find((b) => b.carriedFrom)
+    assert(Boolean(copy), 'a copy with carriedFrom is on the target day')
+    notes.push(`carried to ${pickedWhen}: ${copy?.id} (${copy?.minutes} min, from ${copy?.carriedFrom})`)
+    await settleSheets(page)
+    // The original reads "Moved to …" now.
+    const moved = page.locator('.ms-rm-row--task.is-deferred .ms-rm-standing', { hasText: /^Moved to/ })
+    await moved.first().waitFor({ timeout: 10000 })
+    assert((await moved.count()) >= 1, 'the original says where it moved to')
+    // The copy's own sheet says where it came from: on the Today tab when it landed today, else on its day card.
+    if (pickedWhen === 'Today') {
+      await radio(page, 'Today').click()
+      // A full day folds its fifth task and beyond under "and n more"; the copy is the newest, so unfold.
+      const more = page.locator('.ms-rm-more')
+      if (await more.count()) await more.first().click()
+    } else {
+      await radio(page, 'Roadmap').click()
+      await page.locator('.ms-rm-roadmap').waitFor()
+      for (const d of await page.locator('.ms-rm-daycard details:not([open]) summary').all()) await d.click().catch(() => {})
+    }
+    const copyCard = page.locator('.ms-rm-row--task:not(.is-deferred) .ms-rm-task', { hasText: objective.slice(0, 40) }).first()
+    await copyCard.waitFor({ timeout: 10000 })
+    await copyCard.click()
+    const d2 = dialog(page)
+    await d2.waitFor()
+    const carriedLine = await d2.locator('.ms-rm-sheet__carried').innerText().catch(() => '')
+    assert(/Carried over from/.test(carriedLine), `copy sheet: ${carriedLine}`)
+    await shot(page, '17b-carried-copy', 'The carried copy on its new day, with where it came from', { fullPage: false })
+    await page.keyboard.press('Escape')
+    shared.carriedTo = pickedWhen
+  })
+
+  // 18. Several papers in one subject: a second row, its own date, validation, and removal.
+  await step(18, 'Wizard: a second paper for one subject gets its own row, date and validation; removed again', async (notes, assert) => {
+    await gotoPlan(page)
+    await settleSheets(page)
+    await radio(page, 'Roadmap').click()
+    await page.locator('button', { hasText: 'Adjust plan' }).click()
+    await stepVisible(page, 1)
+    const mathsRow = page.locator('.ms-rm-setup-exam', { has: page.locator('.ms-rm-setup-exam__name', { hasText: /^Mathematics/ }) })
+    const add = mathsRow.locator('button', { hasText: /Add it|Add another paper/ })
+    assert((await add.count()) > 0, 'Mathematics offers to add another paper')
+    await add.click()
+    assert((await mathsRow.locator('.ms-rm-setup-paper').count()) === 2, 'a second paper row appears')
+    // Next without a date on the new row is refused, and the message names the row.
+    await clickNext(page)
+    const issue = await tc(page.locator('.ms-rm-setup-summary'))
+    assert(/Set the exam date for Mathematics/.test(issue), `validation names the empty row: ${issue}`)
+    const second = mathsRow.locator('.ms-rm-setup-paper').nth(1)
+    const select = second.locator('select')
+    if (await select.count()) await select.selectOption('Paper 2')
+    const later = new Date(`${mathsDate}T00:00:00Z`)
+    later.setUTCDate(later.getUTCDate() + 3)
+    const secondDate = later.toISOString().slice(0, 10)
+    await second.locator('input[type="date"]').fill(secondDate)
+    const runs = await tc(mathsRow.locator('.ms-rm-setup-exam__runs'))
+    assert(/runs to/.test(runs), `the subject says where it runs to: ${runs}`)
+    const runsTo = await page.locator('.ms-plan-fieldset', { hasText: 'Exam dates' }).locator('.ms-plan-note').innerText().catch(() => '')
+    assert(/22 days from today/.test(runsTo), `the plan runs to the later paper: ${runsTo.replace(/\s+/g, ' ')}`)
+    await shot(page, '18a-second-paper', 'Finish line: Mathematics with Paper 1 and Paper 2 on their own dates')
+    await clickNext(page)
+    await stepVisible(page, 2)
+    notes.push('step 1 accepted two Mathematics papers')
+    await page.locator('button', { hasText: 'Back' }).click()
+    await stepVisible(page, 1)
+    await second.locator('button', { hasText: 'Remove' }).click()
+    assert((await mathsRow.locator('.ms-rm-setup-paper').count()) === 1, 'the second row is removed')
+    // Leave the wizard without rebuilding; the plan is untouched.
+    await page.locator('button', { hasText: 'Keep the current plan' }).click()
+    await page.locator('.ms-rm-head').waitFor()
+    assert(bannedIn(await bodyText(page)).length === 0, 'no banned words after the round trip')
+  })
+
   await step(16, 'Phone (390x844) and late-night captures of Today and the wizard', async (notes, assert) => {
     const phone = await browser.newContext({ viewport: PHONE, storageState: storage, isMobile: true, hasTouch: true })
     const p = await phone.newPage()

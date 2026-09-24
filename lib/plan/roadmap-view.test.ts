@@ -2,7 +2,19 @@ import assert from 'node:assert/strict'
 import { buildStudyPlan, type PlanSubjectInput } from '@/lib/plan/build-study-plan'
 import type { HydratedPlan } from '@/lib/plan/plan-view'
 import {
+  DAY_ONE_LINE,
+  MAX_ARCHIVE_DAYS,
+  archiveFor,
+  dayBefore,
+  yesterdayLine,
+  carryOverTaskState,
+  carryable,
   clockOf,
+  findArchivedTask,
+  historyDayDone,
+  historyDays,
+  historyTally,
+  evidenceChip,
   findTask,
   formatClock,
   heroFor,
@@ -15,6 +27,7 @@ import {
   openLoopsFor,
   remainingToday,
   roadmapStatus,
+  stripTaskCount,
   studiedDaysLine,
   tasksOnDate,
   taskIdFor,
@@ -158,12 +171,35 @@ const noEvidence = new Set<string>()
   const doneTask: TaskState = { [past[2]!.blocks.find((b) => b.kind === 'drill')!.id]: { status: 'done', at: 'x' } }
   assert.equal(roadmapStatus(plan, doneTask, noEvidence, {}, fourth), 'on_track', 'a done task counts like a tick')
 
-  assert.equal(studiedDaysLine(plan, {}, noEvidence, {}, d1), 'Day one. Everything starts today.')
+  assert.equal(studiedDaysLine(plan, {}, noEvidence, {}, d1), DAY_ONE_LINE)
+  assert.equal(DAY_ONE_LINE, 'Everything starts today.', 'the header already says "Day 1"; the line does not say it again')
   assert.equal(studiedDaysLine(plan, {}, noEvidence, { [String(past[0]!.day)]: true }, past[1]!.date), "You've studied on 1 of the last 1 day.")
   assert.match(studiedDaysLine(plan, {}, noEvidence, {}, fourth), /^You've studied on 0 of the last 3 days\.$/)
   for (const line of [studiedDaysLine(plan, {}, noEvidence, {}, fourth)]) {
     for (const banned of ['behind', 'missed', 'streak', 'catch up', 'failed', 'everyone else']) assert.ok(!line.toLowerCase().includes(banned), banned)
   }
+}
+
+// --- evidence chips --------------------------------------------------------------------------------
+
+{
+  assert.equal(evidenceChip({ type: 'self_rated', source: 'self_report', confidence: 'low', explanation: 'x' }), 'From your self-rating')
+  assert.equal(evidenceChip({ type: 'frequency', source: 'indexed_papers', confidence: 'medium', explanation: 'x', stat: { n: 9, of: 9 } }), 'In 9 of 9 indexed past papers', 'a count of the past, not a forecast')
+  assert.equal(evidenceChip({ type: 'frequency', source: 'indexed_papers', confidence: 'medium', explanation: 'x' }), 'Often in indexed past papers')
+  assert.equal(evidenceChip({ type: 'on_syllabus', source: 'syllabus', confidence: 'high', explanation: 'x' }), 'On the syllabus')
+}
+
+// --- the day's focus line --------------------------------------------------------------------------
+
+{
+  // Stored plans wrote the task count into the focus; the day card's summary owns the live count now.
+  assert.equal(stripTaskCount('Mathematics and Physics — 5 tasks.'), 'Mathematics and Physics.')
+  assert.equal(stripTaskCount('Mathematics — 1 task.'), 'Mathematics.')
+  assert.equal(stripTaskCount('Mathematics — 3 tasks; Physics review only.'), 'Mathematics; Physics review only.')
+  assert.equal(stripTaskCount('Review only — nothing new from here.'), 'Review only — nothing new from here.', 'other dashes are left alone')
+  assert.equal(stripTaskCount('Timed paper day — Mathematics under exam conditions.'), 'Timed paper day — Mathematics under exam conditions.')
+  const withCount = normaliseDay({ ...v2.days[0]!, focus: 'Mathematics and Physics — 4 tasks.' })
+  assert.equal(withCount.focus, 'Mathematics and Physics.', 'normaliseDay strips it on read')
 }
 
 // --- nearest exam ----------------------------------------------------------------------------------
@@ -205,6 +241,96 @@ const noEvidence = new Set<string>()
   assert.equal(openLoopsFor(p, {}, noEvidence, '9709', '2030-01-01').size, 0, 'nothing from a later date')
   assert.equal(openLoopsFor(plan, {}, noEvidence, '9709', day1.date).size, 0, 'v2 blocks carry no loop steps')
   assert.equal(normaliseDay(v2.days[0]!).blocks.length, v2.days[0]!.blocks.length)
+}
+
+// --- history: the days before today, kept across rebuilds ----------------------------------------
+
+{
+  const plan = normaliseRoadmap(v2)
+  const days = plan.days
+  const start = days[3]!.date
+  const done = { [String(days[0]!.day)]: true }
+  // Everything before the new start with work on it is kept, ticks come along, and a bare rest day is not a record.
+  const archive = archiveFor(v2, done, start)
+  assert.deepEqual(archive.map((d) => d.date), days.filter((d) => d.date < start && (d.workMinutes > 0 || d.kind === 'exam')).map((d) => d.date))
+  assert.ok(archive.every((d) => d.archived === true))
+  assert.equal(archive[0]!.ticked, true, 'the tick travels with the day')
+  assert.equal(archive[1]!.ticked, undefined)
+  // A day whose every task is done (or skipped, with one done) is ticked by its state too; one task of three is not.
+  const workOn = (d: RoadmapDay) => d.blocks.filter((b) => b.kind === 'drill' || b.kind === 'learn' || b.kind === 'review' || b.kind === 'timed_paper')
+  const allDone: TaskState = {}
+  for (const t of workOn(days[1]!)) allDone[t.id] = { status: 'done', at: 'x' }
+  assert.equal(archiveFor(v2, {}, start, new Set(), allDone).find((d) => d.date === days[1]!.date)!.ticked, true)
+  const oneDone: TaskState = { [workOn(days[1]!)[0]!.id]: { status: 'done', at: 'x' } }
+  assert.equal(archiveFor(v2, {}, start, new Set(), oneDone).find((d) => d.date === days[1]!.date)!.ticked, undefined)
+  // A second rebuild keeps the earlier archive and adds the days since; a date is never listed twice, and the list is capped.
+  const again = archiveFor({ days: days.slice(3), archive }, {}, days[6]!.date)
+  assert.deepEqual(again.map((d) => d.date), [...archive.map((d) => d.date), ...days.slice(3, 6).filter((d) => d.workMinutes > 0).map((d) => d.date)])
+  const many = Array.from({ length: MAX_ARCHIVE_DAYS + 10 }, (_, i) => ({ ...days[0]!, date: `2025-01-${String((i % 28) + 1).padStart(2, '0')}`, archived: true as const }))
+  assert.ok(archiveFor({ days: [], archive: many.map((d, i) => ({ ...d, date: `2025-${String(1 + Math.floor(i / 28)).padStart(2, '0')}-${String((i % 28) + 1).padStart(2, '0')}` })) }, {}, '2026-01-01').length <= MAX_ARCHIVE_DAYS)
+  assert.deepEqual(archiveFor(null, {}, start), [])
+  assert.deepEqual(archiveFor(v2, {}, days[0]!.date), [], 'nothing before the first day')
+
+  // The history view: archived days, then the plan's own past days, oldest first; the plan's copy of a date wins.
+  const withArchive = { ...plan, archive: [{ ...archive[0]!, blocks: normaliseDay(archive[0]!).blocks, capacityMinutes: 0, bufferMinutes: 0, commitments: [], windows: [] }] }
+  const history = historyDays(withArchive, days[5]!.date)
+  assert.equal(history[0]!.date, archive[0]!.date)
+  assert.ok(history.every((d, i) => i === 0 || d.date > history[i - 1]!.date))
+  assert.ok(history.every((d) => d.date < days[5]!.date))
+  assert.equal(history.filter((d) => d.date === archive[0]!.date).length, 1, 'no date twice')
+  assert.equal(historyDays(plan, days[0]!.date).length, 0)
+
+  // Tally and "studied": facts about the day, from state and marked work.
+  const day = days[1]!
+  const work = day.blocks.filter((b) => b.kind === 'drill' || b.kind === 'learn' || b.kind === 'review' || b.kind === 'timed_paper')
+  const state: TaskState = {
+    [work[0]!.id]: { status: 'done', at: 'x' },
+    [work[1]!.id]: { status: 'deferred', deferredTo: days[2]!.date, at: 'x' },
+    [work[2]!.id]: { status: 'dropped', at: 'x', auto: true },
+  }
+  const tally = historyTally(day, state, new Set())
+  assert.deepEqual(tally, { total: work.length, done: 1, skipped: 0, moved: 1, notDone: work.length - 2 })
+  assert.equal(historyDayDone(day, state, new Set(), {}), false, 'one of three done is not a ticked day; the tally says what happened')
+  const everyDone: TaskState = {}
+  for (const t of work) everyDone[t.id] = { status: 'done', at: 'x' }
+  assert.equal(historyDayDone(day, everyDone, new Set(), {}), true)
+  assert.equal(historyDayDone(day, {}, new Set(), {}), false)
+  assert.equal(historyDayDone(day, {}, new Set(), { [String(day.day)]: true }), true)
+  const archived = { ...day, archived: true as const, ticked: true }
+  assert.equal(historyDayDone(archived, {}, new Set(), { [String(day.day)]: false }), true, 'an archived day reads its own tick, never done_days')
+  assert.equal(historyDayDone({ ...archived, ticked: undefined }, {}, new Set(), { [String(day.day)]: true }), false)
+  assert.equal(historyDayDone({ ...archived, ticked: undefined }, everyDone, new Set(), {}), true, 'or its tasks')
+
+  // What may be carried: anything not done and not already moved.
+  assert.equal(carryable('todo', undefined), true)
+  assert.equal(carryable('started', { status: 'started', at: 'x' }), true)
+  assert.equal(carryable('skipped', { status: 'skipped', at: 'x' }), true)
+  assert.equal(carryable('dropped', { status: 'dropped', at: 'x', auto: true }), true)
+  assert.equal(carryable('done', { status: 'done', at: 'x' }), false)
+  assert.equal(carryable('deferred', { status: 'deferred', deferredTo: '2026-10-01', at: 'x' }), false)
+  assert.equal(carryable('todo', { status: 'shortened', deferredTo: '2026-10-01', at: 'x' }), false, 'a deferred copy has moved once already')
+
+  // Task state survives a rebuild for the days the archive keeps.
+  const oldState: TaskState = { [work[0]!.id]: { status: 'done', at: 'x' }, ['2020-01-01-9709-x-1']: { status: 'done', at: 'x' } }
+  const kept = carryOverTaskState(oldState, { days: [], archive: [{ ...day, archived: true }] })
+  assert.deepEqual(Object.keys(kept), [work[0]!.id], 'entries on archived days stay; the rest go')
+  assert.deepEqual(carryOverTaskState(oldState, { days: [] }), {})
+  assert.deepEqual(findArchivedTask({ archive: [{ ...day, archived: true }] }, work[0]!.id)?.task.id, work[0]!.id)
+  assert.equal(findArchivedTask({ archive: [] }, work[0]!.id), null)
+
+  // The dashboard's "yesterday" line: the last past study day with something not done, named "Yesterday" only when it was.
+  assert.equal(dayBefore('2026-10-01'), '2026-09-30')
+  const after = days[2]!.date
+  const line = yesterdayLine(plan, state, new Set(), after)
+  assert.ok(line && line.date === day.date && line.when === 'Yesterday' && line.done === 1 && line.total === work.length, JSON.stringify(line))
+  assert.equal(yesterdayLine(plan, everyDone, new Set(), after), null, 'a day fully done says nothing')
+  assert.equal(yesterdayLine(plan, {}, new Set(), days[0]!.date), null, 'a fresh plan says nothing')
+  // Two days on, the same day is named by its date, not "Yesterday" — unless the day between held work too.
+  const later = yesterdayLine({ days: days.map((d) => (d.date > day.date ? { ...d, workMinutes: 0, blocks: [] } : d)) }, state, new Set(), days[3]!.date)
+  assert.ok(later && later.date === day.date && later.when !== 'Yesterday', JSON.stringify(later))
+  // Marked work counts as done even without a tick.
+  const marked = new Set(work.map((t) => `t:${t.subjectCode}|${t.topic?.code}`))
+  assert.equal(yesterdayLine(plan, {}, marked, after), null, 'every question marked: nothing to say')
 }
 
 console.log('roadmap-view.test.ts: ok')

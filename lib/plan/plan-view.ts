@@ -71,10 +71,27 @@ export function carryOverDone(
 
 export type HydratedDay = Omit<PlanDay, 'blocks'> & { blocks: HydratedBlock[] }
 
+/**
+ * A day kept from an earlier build of the plan. A rebuild lays days from
+ * today, so without this the record of what was done before it would go
+ * with the old plan — and adding a paper or changing the hours is a
+ * rebuild. Its task state stays in study_plans.task_state (ids start with
+ * the date, and archived dates never collide with the new plan's). Its day
+ * number is the old plan's and means nothing now, so the tick is copied
+ * onto it instead of being read from done_days.
+ */
+export type ArchivedDay = HydratedDay & {
+  archived: true
+  /** The day was ticked off (by hand or by its tasks) before the rebuild. */
+  ticked?: boolean
+}
+
 export type HydratedPlan = Omit<StudyPlan, 'days'> & {
   days: HydratedDay[]
   /** ISO timestamp the plan was generated — shown so a stale plan reads as one. */
   generatedAt: string
+  /** Days before this build's start date, kept across rebuilds for the history view. Oldest first. */
+  archive?: ArchivedDay[]
 }
 
 /** True when the planner has improved since this plan was built. */
@@ -193,10 +210,10 @@ export function checkinLine(day: HydratedDay, progress: PlanProgress): string {
   // Never a count of what did not happen. A student who is opening the plan
   // after a few days away needs today sized for today, not a tally.
   if (progress.behind >= 3) {
-    return "A few days went by without a tick — that's life, not a verdict. Today is sized for today; nothing was carried over."
+    return "A few days went by without a tick — that's life, not a verdict. Today is sized for today; nothing was carried over, and the days before are in your history if you want any of it back."
   }
   if (progress.behind > 0) {
-    return "A day slipped. Today's plan already has room for that."
+    return "A day slipped. Today's plan already has room for that; what was left is in your history, and you can carry any of it over."
   }
   if (progress.done >= 3) {
     return `${progress.done} days done. ${examEncouragement(day.daysLeft)}`

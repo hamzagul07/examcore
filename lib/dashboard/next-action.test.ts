@@ -60,5 +60,19 @@ const empty = buildNextAction({ reviewItems: [], recommendations: [] })
 check('empty mark fallback', empty.kind === 'mark')
 check('empty why', empty.why.includes('Nothing due'))
 
+// The roadmap's task for today is the one next thing, ahead of the review queue and the drill.
+const roadmapTask = { id: '2026-09-18-9702-1.1-1', objective: 'Quick check on Forces: a few short questions, no notes.', href: '/mark?subject=9702&topic=1.1&return=%2Fdashboard%2Fplan', minutes: 10, dayNumber: 3, whyHref: '/dashboard/plan?task=2026-09-18-9702-1.1-1&why=1' }
+const fromRoadmap = buildNextAction({ reviewItems: [recall, marked], recommendations: [rec], roadmapTask })
+check('roadmap kind', fromRoadmap.kind === 'roadmap_task')
+check('roadmap title is the objective', fromRoadmap.title === roadmapTask.objective)
+check('roadmap href is the task href', fromRoadmap.href === roadmapTask.href)
+check('roadmap why', fromRoadmap.why === 'On your roadmap for today.')
+check('roadmap stamp is the day number', fromRoadmap.stamp === '3')
+check('roadmap secondary opens the Why sheet', fromRoadmap.secondary?.href === roadmapTask.whyHref)
+check('roadmap carries no due count', fromRoadmap.dueCount === undefined)
+check('no roadmap task falls through to review', buildNextAction({ reviewItems: [recall], recommendations: [], roadmapTask: null }).kind === 'review')
+check('a roadmap task without a destination falls through', buildNextAction({ reviewItems: [recall], recommendations: [], roadmapTask: { ...roadmapTask, href: '' } }).kind === 'review')
+for (const w of ['behind', 'missed', 'streak', 'catch up', 'failed', 'everyone else']) check(`roadmap copy avoids "${w}"`, !`${fromRoadmap.title} ${fromRoadmap.why} ${fromRoadmap.ctaLabel}`.toLowerCase().includes(w))
+
 if (failed > 0) process.exit(1)
 console.log('next-action.test.ts: all checks passed')

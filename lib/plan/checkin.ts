@@ -5,6 +5,7 @@ import { unsubscribeUrl } from '@/lib/community/email-unsubscribe'
 import { sendPlanCheckinEmail } from '@/lib/email/plan-checkin'
 import { decideCheckin, decideCheckinWindow, type CheckinSkip } from '@/lib/plan/checkin-eligibility'
 import { NOTIFICATION_COPY } from '@/lib/plan/notification-policy'
+import { nearestExam, normaliseRoadmap } from '@/lib/plan/roadmap-view'
 import { hasPushToken, pushToUser } from '@/lib/plan/notifications'
 import { isoDate, type DoneDays, type HydratedPlan } from '@/lib/plan/plan-view'
 import type { TaskState, TimeWindow } from '@/lib/plan/roadmap-types'
@@ -184,6 +185,8 @@ export async function sendPlanCheckinBatch(now = new Date()): Promise<PlanChecki
       continue
     }
 
+    // The paper the countdown names: the nearest one ahead of the plan day (a plan with one paper per subject reads as before).
+    const nearest = nearestExam(normaliseRoadmap(stored.plan), decision.day.date)
     const ok = await sendPlanCheckinEmail({
       to: email,
       recipientName: profile?.full_name ?? null,
@@ -192,6 +195,7 @@ export async function sendPlanCheckinBatch(now = new Date()): Promise<PlanChecki
       studiedLine: decision.studiedLine,
       progress: decision.progress,
       unsubscribeHref: unsubscribeUrl(userId, 'exam'),
+      nearest: nearest ? { label: nearest.label, component: nearest.component, daysLeft: nearest.daysLeft } : null,
     })
     if (!ok) {
       result.skipped.send_failed += 1
@@ -206,7 +210,11 @@ export async function sendPlanCheckinBatch(now = new Date()): Promise<PlanChecki
     // The same words to the phone, where there is one. Best-effort: the
     // email is the record; a push that fails changes nothing.
     if (await hasPushToken(admin, userId)) {
-      const copy = NOTIFICATION_COPY.morning_checkin({ daysLeft: decision.day.daysLeft, minutes: decision.day.workMinutes })
+      const copy = NOTIFICATION_COPY.morning_checkin({
+        daysLeft: nearest?.daysLeft ?? decision.day.daysLeft,
+        minutes: decision.day.workMinutes,
+        exam: nearest ? `${nearest.label}${nearest.component ? ` ${nearest.component}` : ''}` : undefined,
+      })
       if (await pushToUser(admin, userId, copy.title, copy.body)) result.pushed += 1
     }
   }

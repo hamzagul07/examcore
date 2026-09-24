@@ -1,10 +1,21 @@
+'use client'
+
+import { usePathname } from 'next/navigation'
+
 interface FABProps {
   onClick: () => void
   isOpen: boolean
 }
 
-/** Ask MarkScheme — prototype-style floating pill (all breakpoints on app routes). */
+/**
+ * Ask MarkScheme — prototype-style floating pill (all breakpoints on app
+ * routes). Not on the Exam Roadmap: the pill sits over the timeline's
+ * right-hand column, which is where the Done buttons are, and the roadmap
+ * has its own "I need help" path in the check-in sheet.
+ */
 export function FloatingActionButton({ onClick, isOpen }: FABProps) {
+  const pathname = usePathname()
+  if (pathname?.startsWith('/dashboard/plan')) return null
   return (
     <button
       type="button"

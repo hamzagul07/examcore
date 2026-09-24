@@ -1,5 +1,6 @@
 import { LoadingLink } from '@/components/ui/LoadingLink'
 import { examCountdown } from '@/lib/dashboard/exam-date'
+import type { RoadmapNextTask } from '@/lib/dashboard/next-action'
 import { formatMinutes, formatPlanDate, planOutdated, todayInZone, type DoneDays, type HydratedPlan } from '@/lib/plan/plan-view'
 import { MIN_BUFFER_MINUTES, TASK_CATEGORY_LABEL, type TaskState } from '@/lib/plan/roadmap-types'
 import {
@@ -9,18 +10,74 @@ import {
   openTasks,
   studiedDaysLine,
   taskMinutes,
+  type Hero,
+  type RoadmapDay,
+  type RoadmapPlan,
+  yesterdayLine,
 } from '@/lib/plan/roadmap-view'
 import { countdownLine, heroCopy } from '@/components/plan/roadmap/hero-copy'
 import { nowMinuteInZone } from '@/components/plan/roadmap/zone-clock'
 
+type Saved = { plan: HydratedPlan; done: DoneDays; taskState?: TaskState }
+
 type Props = {
-  saved: { plan: HydratedPlan; done: DoneDays; taskState?: TaskState } | null
+  saved: Saved | null
   examDate: string | null
   /** Evidence keys from loadPlanEvidence — blocks the student has marked. */
   evidence?: string[]
 }
 
 const NEXT_ROWS = 3
+
+type PlanReading = {
+  plan: RoadmapPlan
+  today: RoadmapDay
+  todayIso: string
+  nowMinute: number
+  state: TaskState
+  hero: Hero
+}
+
+/**
+ * The plan as the dashboard reads it: today in the plan's zone, the hero
+ * decision, the task state. Null when there is no plan, today is not on it,
+ * or the exam date moved (the card offers a rebuild instead). One reading
+ * serves both the card and the page's next-action, so they cannot disagree
+ * about which task is next.
+ */
+function readPlan(saved: Saved | null, examDate: string | null, evidence: ReadonlySet<string>): PlanReading | null {
+  if (!saved) return null
+  // The student's date and clock, not the server's: a plan built in Karachi is read in Karachi.
+  const todayIso = todayInZone(saved.plan.timeZone)
+  const plan = normaliseRoadmap(saved.plan)
+  const today = plan.days.find((d) => d.date === todayIso) ?? null
+  // The exam date lives on the profile; a plan built for another date is
+  // stale however many days it still has.
+  if (!today || (examDate && examDate !== saved.plan.examDate)) return null
+  const state = saved.taskState ?? {}
+  const nowMinute = nowMinuteInZone(plan.timeZone)
+  return { plan, today, todayIso, nowMinute, state, hero: heroFor(plan, today, state, evidence, nowMinute) }
+}
+
+function whyHrefFor(taskId: string): string {
+  return `/dashboard/plan?task=${encodeURIComponent(taskId)}&why=1`
+}
+
+
+/**
+ * The roadmap's next task for the dashboard's next-action, or null when the
+ * hero is not a task (no plan, day done, no time left, rest day) or the
+ * task has nowhere to open. The page feeds it to buildNextAction so the
+ * roadmap's task is the one next thing, and renders this card as the hero.
+ */
+export function roadmapNextTask(saved: Saved | null, examDate: string | null, evidence: string[] = []): RoadmapNextTask | null {
+  const read = readPlan(saved, examDate, new Set(evidence))
+  if (!read || read.hero.kind !== 'task') return null
+  const { task, minutes } = read.hero
+  const href = task.href
+  if (!href) return null
+  return { id: task.id, objective: task.objective, href, minutes, dayNumber: read.today.day, whyHref: whyHrefFor(task.id) }
+}
 
 /**
  * The roadmap's hero on the dashboard home — the same card the roadmap
@@ -35,19 +92,12 @@ const NEXT_ROWS = 3
  */
 export function TodayPlanCard({ saved, examDate, evidence = [] }: Props) {
   const evidenceSet = new Set(evidence)
-  // The student's date and clock, not the server's: a plan built in Karachi is read in Karachi.
-  const todayIso = todayInZone(saved?.plan.timeZone)
-  const plan = saved ? normaliseRoadmap(saved.plan) : null
-  const today = plan ? (plan.days.find((d) => d.date === todayIso) ?? null) : null
-  // The exam date lives on the profile; a plan built for another date is
-  // stale however many days it still has.
   const examMoved = Boolean(saved && examDate && examDate !== saved.plan.examDate)
   const outdated = Boolean(saved && planOutdated(saved.plan))
+  const read = readPlan(saved, examDate, evidenceSet)
 
-  if (saved && plan && today && !examMoved) {
-    const state = saved.taskState ?? {}
-    const nowMinute = nowMinuteInZone(plan.timeZone)
-    const hero = heroFor(plan, today, state, evidenceSet, nowMinute)
+  if (saved && read) {
+    const { plan, today, todayIso, state, hero } = read
     const studied = studiedDaysLine(plan, state, evidenceSet, saved.done, todayIso)
     const copy = heroCopy(hero, { plan, day: today, todayIso, studiedLine: studied })
     const nearest = nearestExam(plan, todayIso)
@@ -56,7 +106,8 @@ export function TodayPlanCard({ saved, examDate, evidence = [] }: Props) {
       .filter((t) => t.id !== heroTask?.id)
       .slice(0, NEXT_ROWS)
     const inHand = Math.max(today.bufferMinutes, today.blocks.find((b) => b.kind === 'buffer')?.minutes ?? 0)
-    const whyHref = heroTask ? `/dashboard/plan?task=${encodeURIComponent(heroTask.id)}&why=1` : null
+    const whyHref = heroTask ? whyHrefFor(heroTask.id) : null
+    const yesterday = yesterdayLine(plan, state, evidenceSet, todayIso)
 
     return (
       <section className={`ms-insight-hero ms-plan-card ms-rm-hero ms-rm-hero--${hero.kind} mb-6`} aria-labelledby="dash-plan-title">
@@ -109,6 +160,15 @@ export function TodayPlanCard({ saved, examDate, evidence = [] }: Props) {
           </ol>
         ) : null}
 
+        {yesterday ? (
+          <p className="ms-plan-note ms-rm-hero__yesterday">
+            {yesterday.when}: {yesterday.done} of {yesterday.total} done.{' '}
+            <LoadingLink href="/dashboard/plan?history=1" variant="inline" className="ms-plan-linkbtn">
+              The rest is in your history
+            </LoadingLink>
+            , ready to carry over.
+          </p>
+        ) : null}
         <div className="ms-rm-hero__foot">
           <LoadingLink href="/dashboard/plan" variant="inline" className="ms-rm-hero__open">
             {today.workMinutes > 0 ? `Open your roadmap · ${formatMinutes(today.workMinutes)} today` : 'Open your roadmap'}

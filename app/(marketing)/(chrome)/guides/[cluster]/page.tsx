@@ -23,6 +23,7 @@ import { enrichPostMeta } from '@/lib/blog/meta'
 import { SITE_URL } from '@/lib/site-config'
 import { groupIbClusterSpokes } from '@/lib/seo/ib-guide-groups'
 import { getFollowUpChain } from '@/lib/seo/follow-up-chain'
+import { gradeBoundariesHubTitle } from '@/lib/seo/threshold-seo'
 
 const IB_GUIDE_PREVIEW = 8
 
@@ -38,9 +39,11 @@ export async function generateMetadata({ params }: Props) {
   if (!cluster) return {}
   if (cluster.id === 'grade-boundaries') {
     return getPageMetadata(cluster.path, {
-      title: 'Cambridge Grade Boundaries 2026 — May/June Thresholds by Subject',
+      title: gradeBoundariesHubTitle(),
       description: cluster.description,
       keywords: [
+        'grade threshold a level 2026 may june',
+        'threshold 2026 may june',
         'grade boundaries 2026',
         'grade boundaries 2026 qs',
         '2026 grade boundaries',

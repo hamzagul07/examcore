@@ -60,11 +60,12 @@ export function renderPlanIcs(plan: HydratedPlan, opts: { siteUrl: string; planU
     'X-WR-CALNAME:Study plan',
   ]
 
+  // Every sitting on the date, by paper when the plan lists them ("Business Paper 1"); a v2 plan has only the subjects' dates.
   const examLabels = (date: string) =>
-    plan.subjects
-      .filter((s) => s.examDate === date)
-      .map((s) => s.label)
-      .join(', ')
+    (plan.exams?.length
+      ? plan.exams.filter((e) => e.examDate === date).map((e) => (e.component ? `${e.label} ${e.component}` : e.label))
+      : plan.subjects.filter((s) => s.examDate === date).map((s) => s.label)
+    ).join(', ')
 
   for (const day of plan.days) {
     const blocks = workBlocks(day)

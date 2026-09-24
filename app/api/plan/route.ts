@@ -18,12 +18,14 @@ import {
 } from '@/lib/plan/study-plan-service'
 import { recordRoadmapEvent } from '@/lib/plan/events'
 import { planLength, type WeekAvailability } from '@/lib/plan/build-study-plan'
-import { isValidTimeZone, isoDate } from '@/lib/plan/plan-view'
+import { isValidTimeZone, isoDate, todayInZone } from '@/lib/plan/plan-view'
 import { isRoadmapMode, modeFromStored } from '@/lib/plan/modes'
-import { isClockTime } from '@/lib/plan/availability'
+import { isClockTime, minuteOfDayInZone } from '@/lib/plan/availability'
 import { minuteOfDay } from '@/lib/plan/roadmap-view'
 import {
   COMMITMENT_KIND_LABEL,
+  MAX_PAPERS_PER_SUBJECT,
+  type RoadmapBuildRequest,
   MIN_DAY_MINUTES,
   SELF_RATINGS,
   SESSION_LENGTHS,
@@ -49,7 +51,10 @@ export const dynamic = 'force-dynamic'
  *            so does any read within a day of a send.
  *   POST   → build. A v3 body (mode, availabilityDetail, …) builds a
  *            roadmap; preview: true returns { plan, feasibility } without
- *            saving. A legacy body (preparedness, minutesPerDay,
+ *            saving. When the plan starts today, the server's minute in the
+ *            student's zone rides along (startMinute) for both, so the
+ *            wizard's preview and the saved day 1 begin now rather than at
+ *            the first window. A legacy body (preparedness, minutesPerDay,
  *            availability) still builds a v2 plan. Replaces any existing plan.
  *   PATCH  → { day, done } ticks a day off
  *   DELETE → removes the plan
@@ -311,17 +316,70 @@ function parseBuildBody(body: unknown): Parsed {
   const targetGrade = typeof b.targetGrade === 'string' && b.targetGrade.trim() ? b.targetGrade.trim().slice(0, MAX_TARGET_GRADE) : null
   const prioritySubject = typeof b.prioritySubject === 'string' && subjectCodes.includes(b.prioritySubject) ? b.prioritySubject : null
 
+  // Day 1 from now. The server's clock in the student's zone, never the
+  // client's minute, so a wrong device clock cannot lay tasks in the past.
+  const { startDate, timeZone } = common.value
+  const startMinute = startDate === todayInZone(timeZone) ? minuteOfDayInZone(timeZone) : undefined
+
+  // Every paper per subject, when the client lists them. Only subjects on
+  // the plan, only future dates, no paper listed twice, at most
+  // MAX_PAPERS_PER_SUBJECT each. The three per-subject maps are then
+  // derived from the list — the subject's date is its last paper, its
+  // component and time the nearest paper's — and the plan runs to the last
+  // paper of all, whatever the body's examDate said.
+  const exams: NonNullable<RoadmapBuildRequest['exams']> = []
+  if (Array.isArray(b.exams)) {
+    if (b.exams.length > MAX_SUBJECTS * MAX_PAPERS_PER_SUBJECT) return { ok: false, error: 'That is more papers than a plan can hold.' }
+    const seen = new Set<string>()
+    const perSubject = new Map<string, number>()
+    for (const raw of b.exams as unknown[]) {
+      if (!raw || typeof raw !== 'object') return { ok: false, error: 'Each paper needs a subject and a date.' }
+      const e = raw as Record<string, unknown>
+      const subjectCode = typeof e.subjectCode === 'string' ? e.subjectCode.trim() : ''
+      if (!subjectCodes.includes(subjectCode)) continue
+      if (!validIso(e.examDate) || planLength(startDate, e.examDate) <= 0) return { ok: false, error: 'Every paper date needs to be after today.' }
+      if (e.examTime !== undefined && e.examTime !== '' && !isClockTime(e.examTime)) return { ok: false, error: 'Exam times should look like 09:00.' }
+      const component = typeof e.component === 'string' && e.component.trim() ? e.component.trim().slice(0, MAX_COMPONENT) : undefined
+      const key = `${subjectCode}|${component ?? ''}|${e.examDate}`
+      if (seen.has(key)) continue
+      seen.add(key)
+      const n = (perSubject.get(subjectCode) ?? 0) + 1
+      if (n > MAX_PAPERS_PER_SUBJECT) return { ok: false, error: `At most ${MAX_PAPERS_PER_SUBJECT} papers per subject.` }
+      perSubject.set(subjectCode, n)
+      exams.push({ subjectCode, ...(component ? { component } : {}), examDate: e.examDate, ...(isClockTime(e.examTime) ? { examTime: e.examTime } : {}) })
+    }
+  }
+  const subjectExamDates = { ...common.value.subjectExamDates }
+  let examDate = common.value.examDate
+  if (exams.length > 0) {
+    exams.sort((x, y) => (x.examDate < y.examDate ? -1 : x.examDate > y.examDate ? 1 : 0))
+    for (const code of subjectCodes) {
+      const own = exams.filter((e) => e.subjectCode === code)
+      if (own.length === 0) continue
+      const first = own[0]!
+      const last = own[own.length - 1]!
+      subjectExamDates[code] = last.examDate
+      if (first.examTime) subjectExamTimes[code] = first.examTime
+      else delete subjectExamTimes[code]
+      if (first.component) subjectComponents[code] = first.component
+      else delete subjectComponents[code]
+      if (last.examDate > examDate) examDate = last.examDate
+    }
+  }
+
   return {
     ok: true,
     kind: 'roadmap',
     value: {
-      startDate: common.value.startDate,
-      examDate: common.value.examDate,
+      startDate,
+      ...(startMinute !== undefined ? { startMinute } : {}),
+      examDate,
       mode,
       subjects: subjectCodes,
-      subjectExamDates: common.value.subjectExamDates,
+      subjectExamDates,
       subjectExamTimes,
       subjectComponents,
+      ...(exams.length > 0 ? { exams } : {}),
       selfRatings,
       availabilityDetail: availability.value,
       timeZone: common.value.timeZone,

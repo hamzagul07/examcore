@@ -25,7 +25,7 @@ import { ERROR_LABELS } from '@/lib/error-classifications'
 import { makeTopicLessonResolver } from '@/lib/courses/topic-lesson'
 import { timedPaperSlots } from '@/lib/max/paper-practice-links'
 import { frequencyFor, paperFrequency } from '@/lib/plan/high-yield-rank'
-import { componentDigit, paperMatchesComponent } from '@/lib/plan/paper-match'
+import { componentDigit, slotPaperDigit, paperMatchesComponent } from '@/lib/plan/paper-match'
 import type { TopicSignals } from '@/lib/plan/roadmap-types'
 
 type Admin = SupabaseClient
@@ -141,6 +141,23 @@ function shortestPaper(code: string): number | undefined {
 }
 
 /**
+ * The length of one paper of a subject, when the catalogue's slot labels
+ * name it ("9706 Paper 1 · Multiple choice" is 60 minutes); the subject's
+ * shortest paper otherwise. A subject sitting Paper 1 and Paper 2 on
+ * different days gets each sitting's own length.
+ */
+export function paperMinutesFor(code: string, component: string | undefined): number | undefined {
+  const digit = componentDigit(component)
+  const slots = timedPaperSlots(code)
+  if (slots.length === 0) return undefined
+  if (digit) {
+    const named = slots.filter((s) => slotPaperDigit(s.label) === digit)
+    if (named.length > 0) return Math.min(...named.map((s) => s.minutes))
+  }
+  return Math.min(...slots.map((s) => s.minutes))
+}
+
+/**
  * Signals and destinations for one subject. Attempts are passed in (the
  * caller loads them once for every subject on the plan); everything else is
  * read here.
@@ -148,7 +165,14 @@ function shortestPaper(code: string): number | undefined {
 export async function gatherSubjectSignals(
   admin: Admin,
   userId: string,
-  opts: { code: string; component?: string; nearestExamDate?: string; attempts: AttemptWithPaper[] }
+  opts: {
+    code: string
+    component?: string
+    nearestExamDate?: string
+    attempts: AttemptWithPaper[]
+    /** 'subject' when the student sits more than one paper: the frequency table then counts every paper, not one component's. */
+    frequencyScope?: 'component' | 'subject'
+  }
 ): Promise<SubjectSignals> {
   const { code } = opts
   const paperMinutes = shortestPaper(code)
@@ -159,7 +183,7 @@ export async function gatherSubjectSignals(
   for (const g of tree) for (const l of g.leaves) leafName.set(l.code, l.name)
   const nameOf = (c: string) => leafName.get(c)
 
-  const digit = componentDigit(opts.component)
+  const digit = opts.frequencyScope === 'subject' ? null : componentDigit(opts.component)
   const [freq, rows, dueByTopic] = await Promise.all([
     frequencyTable(admin, code, digit, nameOf),
     scanSchemeRows(admin, code),

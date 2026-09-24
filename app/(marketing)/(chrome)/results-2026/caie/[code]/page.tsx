@@ -5,7 +5,7 @@ import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode } from '@/lib/seo/structured-data'
 import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
-import { getPageMetadata } from '@/lib/seo/page-meta'
+import { buildResultsCaieMetadata } from '@/lib/seo/threshold-seo'
 import {
   buildSubjectPageCopy,
   getGradeBoundaryCalculatorCodes,
@@ -35,18 +35,13 @@ export async function generateMetadata({ params }: Props) {
   const { code } = await params
   const subject = getSubject(code)
   if (!subject) return {}
-  return getPageMetadata(`/results-2026/caie/${code}`, {
-    title: `${code} ${subject.label} Results Day 2026 — Will My Grade Hold?`,
-    description: `Cambridge ${code} ${subject.label} Results Day 2026: check if your grade holds against May/June thresholds, plan remarks/retakes, mark weak topics free.`,
-    keywords: [
-      `${code} results 2026`,
-      `${code} grade boundaries`,
-      `${code} grade boundaries 2026`,
-      `${code} remark`,
-      `Cambridge ${subject.label} results`,
-      'will my grade hold',
-    ],
-  })
+  const copy = buildSubjectPageCopy(subject)
+  return buildResultsCaieMetadata(
+    code,
+    subject.label,
+    copy.level,
+    `/results-2026/caie/${code}`
+  )
 }
 
 export default async function Results2026CaiePage({ params }: Props) {
@@ -98,10 +93,10 @@ export default async function Results2026CaiePage({ params }: Props) {
         label={`${code} · ${copy.level} · June 2026`}
         title={
           <>
-            {code} {subject.label} — <em>Results Day</em>
+            {code} {subject.label} — <em>May/June 2026 grade threshold</em>
           </>
         }
-        lead={`Check how your ${code} raw marks sit against published thresholds, decide on remarks or retakes, then mark the topics that decide the next grade.`}
+        lead={`Check how your ${code} raw marks sit against May/June 2026 grade thresholds, decide on remarks or retakes, then mark the topics that decide the next grade.`}
         note="paste the thresholds — then decide on the remark"
         artefact={<ToolsDeskArtefact />}
         breadcrumbs={[

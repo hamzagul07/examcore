@@ -33,7 +33,9 @@ import { MIN_TASK_MINUTES, WEAK_BELOW_PCT } from '@/lib/plan/modes'
 import { WORK_KINDS, formatPlanDate, type DoneDays, type HydratedPlan } from '@/lib/plan/plan-view'
 import { eligibleTopics } from '@/lib/plan/priority'
 import {
+  carryable,
   clockOf,
+  findArchivedTask,
   findTask,
   heroFor,
   isSettled,
@@ -42,6 +44,7 @@ import {
   nextStudyDay,
   nextTupleOrdinal,
   normaliseRoadmap,
+  openTasks,
   remainingToday,
   roadmapStatus,
   taskIdFor,
@@ -114,6 +117,8 @@ export type ActionResult = {
 export const REPLAN_SUMMARY = 'Plans change. We protected the essentials and rebuilt today.'
 export const REPLAN_NOTHING_LEFT = 'Nothing more fits today — tomorrow is already sized.'
 export const ROLLOVER_SUMMARY = "Yesterday didn't happen — that's already accounted for."
+/** The most days a carry-over sheet lists; the reducer itself accepts any valid date. */
+export const CARRY_OPTIONS_MAX = 7
 /** took_longer: each one stretches that type of task by this factor, up to the cap. */
 export const DURATION_SCALE_STEP = 1.25
 export const DURATION_SCALE_MAX = 1.5
@@ -340,10 +345,12 @@ function deferTask(
   task: RoadmapTask,
   day: RoadmapDay,
   at: string,
-  opts: { onlyDate?: string } = {}
+  opts: { onlyDate?: string; auto?: boolean } = {}
 ): DeferOutcome {
   const exam = examDateOf(plan, task.subjectCode)
   const minutes = MIN_TASK_MINUTES[task.taskType]
+  // The rollover's entries say so, so the history view can tell them from the student's own moves.
+  const mark: Partial<TaskStateEntry> = opts.auto ? { auto: true } : {}
   const candidates = plan.days.filter(
     (d) =>
       d.date > day.date &&
@@ -367,9 +374,9 @@ function deferTask(
       copy = withClock({ ...bare, id, pinned: undefined }, free.start, minutes)
     }
     const nextState = entryFor(
-      entryFor(state, task.id, { status: 'deferred', deferredTo: target.date }, at),
+      entryFor(state, task.id, { status: 'deferred', deferredTo: target.date, ...mark }, at),
       copy.id,
-      { status: 'shortened', minutes, deferredTo: target.date },
+      { status: 'shortened', minutes, deferredTo: target.date, ...mark },
       at
     )
     const nextTarget = finishDay(target, [...others, copy], nextState)
@@ -383,9 +390,115 @@ function deferTask(
   }
   return {
     plan,
-    taskState: entryFor(state, task.id, { status: 'dropped' }, at),
+    taskState: entryFor(state, task.id, { status: 'dropped', ...mark }, at),
     change: { taskId: task.id, kind: 'dropped', label: task.label, detail: letGoLine(task.label) },
   }
+}
+
+// --- carry over ------------------------------------------------------------------------------
+
+export type CarryFit = 'full' | 'shortened' | 'over'
+
+/** One day the student may carry a task to, and what carrying it there would do. */
+export type CarryOption = {
+  date: string
+  /** The copy's length on that day. */
+  minutes: number
+  /** full: at its length in free time; shortened: cut to the room there is; over: runs past the day's last window. */
+  fit: CarryFit
+  /** Minutes past the last window an 'over' copy runs. */
+  over?: number
+  /** The day's time in hand before the copy. */
+  inHand: number
+}
+
+/**
+ * The dates a task may be carried to: today or later, never its own day,
+ * never an exam day, only days the plan lays into (windows or capacity),
+ * and before the subject's last paper — or, when the task is for one
+ * paper of several, before that paper.
+ */
+export function carryTargets(plan: RoadmapPlan, task: RoadmapTask, fromDate: string, todayIso: string): string[] {
+  // A task for a subject no longer on the plan (dropped at a rebuild) has nowhere to go: its topics are not this plan's.
+  if (task.subjectCode && !plan.subjects.some((s) => s.code === task.subjectCode)) return []
+  const subjectExam = examDateOf(plan, task.subjectCode)
+  const paperExam = task.component
+    ? plan.exams.find((e) => e.subjectCode === task.subjectCode && e.component === task.component)?.examDate
+    : undefined
+  const before = paperExam ?? subjectExam
+  return plan.days
+    .filter(
+      (d) =>
+        d.date >= todayIso &&
+        d.date !== fromDate &&
+        d.kind !== 'exam' &&
+        (before === undefined || d.date < before) &&
+        (d.windows.length > 0 || d.capacityMinutes > 0 || d.workMinutes > 0)
+    )
+    .map((d) => d.date)
+}
+
+type CarryPlacement = { copy: RoadmapTask; fit: CarryFit; over?: number }
+
+/**
+ * Where the copy lands on the chosen day. Full length in the first free
+ * interval that holds it; failing that, the longest free interval that
+ * clears the type's floor, shortened to it; failing that, straight after
+ * the day's last block, past the window — the option said so before the
+ * student picked. A day with no window data (v2) takes it at full length
+ * with no clock. Null only when the copy could not even reach its floor
+ * before midnight.
+ */
+function placeCarry(target: RoadmapDay, task: RoadmapTask, state: TaskState, wanted: number, from: number): CarryPlacement | null {
+  const others = target.blocks.filter((b) => b.kind !== 'buffer')
+  const key = task.topic?.code ?? task.taskType
+  const id = taskIdFor(target.date, task.subjectCode, key, nextTupleOrdinal(target, target.date, task.subjectCode, key))
+  const bare: RoadmapTask = { ...stripDestination(task), id, minutes: wanted, pinned: undefined, carriedFrom: task.id, provisional: undefined }
+  if (target.windows.length === 0) return { copy: bare, fit: 'full' }
+  const floor = MIN_TASK_MINUTES[task.taskType]
+  const free = freeIntervalsOn(target, others, state, from)
+  const whole = free.find((iv) => iv.end - iv.start >= wanted)
+  if (whole) return { copy: withClock(bare, whole.start, wanted), fit: 'full' }
+  const longest = free.reduce<Interval | null>((best, iv) => (iv.end - iv.start > (best ? best.end - best.start : 0) ? iv : best), null)
+  if (longest && longest.end - longest.start >= floor) {
+    const minutes = Math.floor((longest.end - longest.start) / 5) * 5
+    return { copy: withClock(bare, longest.start, minutes), fit: 'shortened' }
+  }
+  const windows = windowsOf(target)
+  const lastWindowEnd = windows.reduce((n, w) => Math.max(n, w.end), 0)
+  const lastBlockEnd = others.reduce((n, b) => Math.max(n, hasClock(b) ? minuteOfDay(b.startsAt) + taskMinutes(b, state) : 0), 0)
+  const start = Math.max(lastBlockEnd, lastWindowEnd, from)
+  const minutes = Math.min(wanted, 24 * 60 - start)
+  if (minutes < floor) return null
+  return { copy: withClock(bare, start, minutes), fit: 'over', over: start + minutes - lastWindowEnd }
+}
+
+/**
+ * The days a carry-over sheet offers for a task, nearest first, each with
+ * what carrying it there means. Today counts from now; later days from
+ * their first window.
+ */
+export function carryOptions(
+  planIn: HydratedPlan | RoadmapPlan,
+  state: TaskState,
+  task: RoadmapTask,
+  todayIso: string,
+  nowMinute: number
+): CarryOption[] {
+  const plan = asRoadmap(planIn)
+  // A task on a day kept from an earlier build lives in the archive, and may be carried like any other.
+  const found = findTask(plan, task.id) ?? findArchivedTask(plan, task.id)
+  if (!found) return []
+  const wanted = taskMinutes(task, state)
+  const out: CarryOption[] = []
+  for (const date of carryTargets(plan, task, found.day.date, todayIso)) {
+    const target = plan.days.find((d) => d.date === date)!
+    const placed = placeCarry(target, task, state, wanted, date === todayIso ? nowMinute : 0)
+    if (!placed) continue
+    out.push({ date, minutes: placed.copy.minutes, fit: placed.fit, ...(placed.over ? { over: placed.over } : {}), inHand: target.bufferMinutes })
+    if (out.length >= CARRY_OPTIONS_MAX) break
+  }
+  return out
 }
 
 // --- check-in effects ------------------------------------------------------------------------
@@ -511,7 +624,8 @@ export function applyTaskAction(
 ): ActionResult {
   const plan = asRoadmap(planIn)
   const noop = (reason: string): ActionResult => ({ plan, taskState, pools, changedDates: [], needsHydration: [], noop: true, structural: false, reason })
-  const found = findTask(plan, req.taskId)
+  // A task on a day kept from an earlier build can be carried forward; nothing else can act on it (its day is not laid any more).
+  const found = findTask(plan, req.taskId) ?? (req.action === 'carry' ? findArchivedTask(plan, req.taskId) : null)
   if (!found) return noop('no such task')
   const { day, task, index } = found
   if (!isWork(task) && req.action !== 'pin' && req.action !== 'unpin') return noop('not a work task')
@@ -598,6 +712,41 @@ export function applyTaskAction(
         noop: false,
         structural: true,
         event: { type: 'task_deferred', plannedMinutes: planned, meta: { to: out.toDate ?? null } },
+      }
+    }
+    case 'carry': {
+      if (!carryable(standing, entry)) return noop(`cannot carry a ${standing} task`)
+      const toDate = req.toDate
+      if (!toDate) return noop('no day given')
+      if (!carryTargets(plan, task, day.date, ctx.todayIso).includes(toDate)) return noop('not a day this task can move to')
+      const target = plan.days.find((d) => d.date === toDate)!
+      const placed = placeCarry(target, task, taskState, planned, toDate === ctx.todayIso ? ctx.nowMinute : 0)
+      if (!placed) return noop('no room before midnight')
+      const { copy, fit } = placed
+      // The student's own move: a rollover's "settled by the plan" mark on the original does not survive it.
+      const { auto: _auto, ...was } = taskState[task.id] ?? {}
+      let nextState: TaskState = { ...taskState, [task.id]: { ...was, status: 'deferred', deferredTo: toDate, at } }
+      if (fit === 'shortened') nextState = entryFor(nextState, copy.id, { status: 'shortened', minutes: copy.minutes }, at)
+      const others = target.blocks.filter((b) => b.kind !== 'buffer')
+      const nextTarget = finishDay(target, [...others, copy], nextState)
+      const fromLabel = formatPlanDate(day.date)
+      const detail =
+        fit === 'full'
+          ? `Carried over from ${fromLabel}.`
+          : fit === 'shortened'
+            ? `Carried over from ${fromLabel}, shortened to ${copy.minutes} min to fit.`
+            : `Carried over from ${fromLabel}; it runs ${placed.over} min past the day's last window.`
+      const diff = diffOf(toDate, [{ taskId: copy.id, kind: 'added', label: copy.label, detail }], [], `Carried over to ${formatPlanDate(toDate)}.`)
+      return {
+        plan: replaceDay(plan, nextTarget),
+        taskState: nextState,
+        pools,
+        diff,
+        changedDates: [day.date, toDate],
+        needsHydration: [copy.id],
+        noop: false,
+        structural: true,
+        event: { type: 'task_carried', plannedMinutes: planned, actualMinutes: copy.minutes, meta: { from: day.date, to: toDate, fit, was: standing } },
       }
     }
     case 'swap': {
@@ -730,14 +879,14 @@ export function applyTaskAction(
 function effectSummary(feel: CheckinFeel): string {
   switch (feel) {
     case 'too_easy':
-      return 'The repair steps on this topic are let go.'
+      return 'The refresh and recall on this topic are let go.'
     case 'too_hard':
     case 'need_help':
-      return 'A concept refresh goes first on your next study day.'
+      return 'A short refresh goes first on your next study day.'
     case 'took_longer':
-      return 'Tasks like this one get a little more time.'
+      return 'Tasks like this get a little more time.'
     case 'was_busy':
-      return 'The rest of this topic today moves to the next day with room.'
+      return 'The rest of this topic moves to the next day with room.'
     case 'about_right':
       return 'Nothing changes.'
   }
@@ -946,12 +1095,12 @@ export function rolloverDay(
 
   if (undone.length > 0) {
     const [first, ...rest] = undone
-    const out = deferTask(plan, state, first!, from, at, { onlyDate: opts.toDate })
+    const out = deferTask(plan, state, first!, from, at, { onlyDate: opts.toDate, auto: true })
     plan = out.plan
     state = out.taskState
     changes.push(out.change)
     if (out.copyId) needsHydration.push(out.copyId)
-    for (const t of rest) state = entryFor(state, t.id, { status: 'dropped' }, at)
+    for (const t of rest) state = entryFor(state, t.id, { status: 'dropped', auto: true }, at)
   }
 
   const kept = plan.days.find((d) => d.date === opts.toDate)?.blocks.filter((t) => t.pinned) ?? []
@@ -1040,6 +1189,14 @@ export function applyUndo(planIn: HydratedPlan | RoadmapPlan, taskState: TaskSta
 
 // --- the today summary ---------------------------------------------------------------------------
 
+/**
+ * The summary is written once per change and read many times, so it
+ * carries the two numbers the clock-dependent field is made of: the open
+ * tasks' minutes and the end of the day's last window. GET /api/plan/today
+ * can then answer from the stored row alone — remainingMinutesAt() redoes
+ * the one sum that moves with the clock — instead of loading the plan and
+ * the marked attempts on every read.
+ */
 export function todaySummaryFor(
   planIn: HydratedPlan | RoadmapPlan,
   taskState: TaskState,
@@ -1069,6 +1226,8 @@ export function todaySummaryFor(
     dayNumber: day.day,
     daysLeft: day.daysLeft,
     remainingMinutes: remainingToday(day, taskState, evidence, nowMinute),
+    openMinutes: openTasks(day, taskState, evidence).reduce((n, t) => n + taskMinutes(t, taskState), 0),
+    windowEndMinute: day.windows.length > 0 ? Math.max(...day.windows.map((w) => minuteOfDay(w.end))) : null,
   }
   if (hero.kind === 'task') {
     const t = hero.task
@@ -1080,8 +1239,49 @@ export function todaySummaryFor(
       href: hrefOf?.(t.id) ?? t.href,
       subjectLabel: t.subjectLabel,
       category: t.category,
+      taskType: t.taskType,
+      ...(t.topic?.name ? { topic: t.topic.name } : {}),
       startsAt: t.startsAt,
     }
   }
   return summary
+}
+
+/**
+ * Whether a stored summary can answer GET /api/plan/today on its own: it
+ * is today's, it carries the clock inputs (a summary written before they
+ * existed cannot be re-timed), and the lazy rollover has nothing to settle
+ * (last_rolled_date is on or after today). Anything else takes the full
+ * path, which also rewrites the stored summary.
+ */
+export function storedSummaryServes(
+  stored: RoadmapTodaySummary | null | undefined,
+  todayIso: string,
+  lastRolledDate: string | null | undefined,
+  revision?: number
+): stored is RoadmapTodaySummary & { openMinutes: number; windowEndMinute: number | null } {
+  if (!stored || !stored.hasPlan || stored.date !== todayIso) return false
+  if (typeof stored.openMinutes !== 'number' || stored.windowEndMinute === undefined) return false
+  if (!lastRolledDate || lastRolledDate < todayIso) return false
+  if (typeof revision === 'number' && stored.revision !== revision) return false
+  return true
+}
+
+/**
+ * The stored summary re-timed to now, the same arithmetic remainingToday()
+ * and heroFor() do on the plan: the open minutes capped by what is left of
+ * the last window (no windows → no cap); the next task shortened to the
+ * minutes left, and dropped when fewer than a real task's worth remain,
+ * just as the hero turns into "nothing more today".
+ */
+export function remainingMinutesAt(stored: RoadmapTodaySummary, nowMinute: number): RoadmapTodaySummary {
+  const open = Math.max(0, stored.openMinutes ?? stored.remainingMinutes ?? 0)
+  const end = stored.windowEndMinute
+  const left = typeof end === 'number' ? Math.max(0, end - nowMinute) : Number.POSITIVE_INFINITY
+  const out: RoadmapTodaySummary = { ...stored, remainingMinutes: Math.min(open, left) }
+  if (stored.nextTask) {
+    if (left < MIN_DAY_MINUTES) delete out.nextTask
+    else if (left < stored.nextTask.minutes) out.nextTask = { ...stored.nextTask, minutes: Math.floor(left) }
+  }
+  return out
 }

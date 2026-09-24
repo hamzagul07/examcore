@@ -10,7 +10,9 @@
  *
  * Pure and client-safe: it imports only its planner siblings, so it ships in
  * the client bundle and runs under `tsx` with no server condition. It never
- * reads the clock; today's date is passed in from the browser.
+ * reads the clock; today's date is passed in from the browser. The one
+ * thing it asks the runtime is Intl: the device's zone and the zones it
+ * knows, so the zone picker and its "from your device" note are honest.
  *
  * Availability is collected the way the student thinks about it (minutes on
  * a weekday, minutes at the weekend, when they would rather study, what is
@@ -24,6 +26,7 @@ import { isValidTimeZone, todayInZone } from '@/lib/plan/plan-view'
 import { clockOf, minuteOfDay, type RoadmapPlan } from '@/lib/plan/roadmap-view'
 import {
   DEFAULT_AVAILABILITY,
+  MAX_PAPERS_PER_SUBJECT,
   type BreakRhythm,
   type ClockTime,
   type Commitment,
@@ -61,6 +64,87 @@ export type SetupProfile = {
   measured?: Record<string, { pct: number; attempts: number }>
 }
 
+// --- time zone -----------------------------------------------------------------------
+
+/** The device's IANA zone, or UTC when the runtime cannot say. */
+export function browserTimeZone(): string {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'
+  } catch {
+    return 'UTC'
+  }
+}
+
+/**
+ * A short list for the zone picker when the runtime has no
+ * Intl.supportedValuesOf (older Safari and WebViews). The student can still
+ * type any IANA name; the list only saves typing.
+ */
+export const TIME_ZONE_FALLBACK: readonly string[] = [
+  'Africa/Cairo',
+  'Africa/Johannesburg',
+  'Africa/Lagos',
+  'Africa/Nairobi',
+  'America/Chicago',
+  'America/Los_Angeles',
+  'America/New_York',
+  'America/Sao_Paulo',
+  'America/Toronto',
+  'Asia/Dhaka',
+  'Asia/Dubai',
+  'Asia/Hong_Kong',
+  'Asia/Jakarta',
+  'Asia/Karachi',
+  'Asia/Kolkata',
+  'Asia/Kuala_Lumpur',
+  'Asia/Riyadh',
+  'Asia/Shanghai',
+  'Asia/Singapore',
+  'Asia/Tokyo',
+  'Australia/Sydney',
+  'Europe/Berlin',
+  'Europe/Istanbul',
+  'Europe/London',
+  'Europe/Paris',
+  'Pacific/Auckland',
+  'UTC',
+]
+
+/** Every zone the runtime knows, or the fallback list. Always includes `extra` so the current value is never missing from its own list. */
+export function supportedTimeZones(extra: string[] = []): string[] {
+  let zones: string[]
+  try {
+    zones = Intl.supportedValuesOf('timeZone')
+    if (zones.length === 0) zones = [...TIME_ZONE_FALLBACK]
+  } catch {
+    zones = [...TIME_ZONE_FALLBACK]
+  }
+  const set = new Set(zones)
+  for (const z of extra) if (z && !set.has(z)) set.add(z)
+  return [...set].sort()
+}
+
+export type TimeZoneSource = 'device' | 'account' | 'typed'
+
+/**
+ * Where the zone in the field came from, so the note beside it is true:
+ * the device's own zone, the one saved in account settings, or something
+ * the student typed. The device wins a tie because "from your device" is
+ * the more useful thing to know.
+ */
+export function timeZoneSource(value: string, deviceZone: string, accountZone: string | undefined): TimeZoneSource {
+  if (value && value === deviceZone) return 'device'
+  if (value && accountZone && value === accountZone) return 'account'
+  return 'typed'
+}
+
+export const TIME_ZONE_ISSUE = 'That time zone is not one we recognise. Pick one from the list, in the form Europe/London.'
+
+/** The zone field's message, or null when the zone is one Intl knows. Shown on blur and again on Next. */
+export function timeZoneIssue(timeZone: string): WizardIssue | null {
+  return isValidTimeZone(timeZone) ? null : { field: 'timeZone', message: TIME_ZONE_ISSUE }
+}
+
 // --- steps -------------------------------------------------------------------------
 
 export type SetupStep = 1 | 2 | 3 | 4 | 5
@@ -75,10 +159,20 @@ export const SETUP_STEPS: ReadonlyArray<{ step: SetupStep; name: string }> = [
 
 export const MAX_SUBJECTS = 4
 export const MAX_BLOCKED_DATES = 60
-export const MINUTE_CHOICES: readonly number[] = [30, 45, 60, 90, 120, 150, 180]
+/**
+ * Minutes a day the wizard offers. The first plans stopped at three hours;
+ * a student in the last fortnight before her papers asked for more, and
+ * the engine (which never had a ceiling) fills long days rather than
+ * leaving them in hand, so the list runs to eight hours. Anything above
+ * LONG_DAY_MINUTES gets the note about windows: capacity is the smaller of
+ * the stated minutes and the free time inside the chosen windows.
+ */
+export const MINUTE_CHOICES: readonly number[] = [30, 45, 60, 90, 120, 150, 180, 240, 300, 360, 480]
+export const LONG_DAY_MINUTES = 240
 /** What "Add more study time" adds to both weekday and weekend minutes. */
 export const ADD_TIME_STEP = 30
-export const MAX_DAY_MINUTES = 300
+/** The API's ceiling (app/api/plan/route.ts MAX_MINUTES); the reducer clamps to the same number. */
+export const MAX_DAY_MINUTES = 600
 export const TARGET_GRADE_MAX = 12
 
 /** How much of the stated minutes a weekday gets. Cycled by tapping the day. */
@@ -106,13 +200,20 @@ export type DayType = 'weekday' | 'weekend'
 
 // --- state --------------------------------------------------------------------------
 
+/**
+ * One paper on the finish-line step. A subject has at least one row; a
+ * student sitting Business Paper 1 on the 5th and Paper 2 on the 8th has
+ * two. The component is the catalogue's name ("Paper 1") or empty for
+ * "any paper"; date and time are the inputs' own strings.
+ */
+export type WizardPaper = { id: string; component: string; date: string; time: string }
+
 export type WizardState = {
   step: SetupStep
   // 1 Finish line
   subjects: string[]
-  components: Record<string, string>
-  examDates: Record<string, string>
-  examTimes: Record<string, string>
+  /** Per subject, the papers the student sits, earliest first as entered. */
+  papers: Record<string, WizardPaper[]>
   timeZone: string
   // 2 Current position
   selfRatings: Record<string, SelfRating>
@@ -186,6 +287,19 @@ function loadsFromCommitments(commitments: Commitment[]): DayLoad[] {
   return loads
 }
 
+function paperId(n: number): string {
+  return `p${n}`
+}
+
+function nextPaperId(rows: WizardPaper[]): string {
+  let max = 0
+  for (const r of rows) {
+    const m = /^p(\d+)$/.exec(r.id)
+    if (m) max = Math.max(max, Number(m[1]))
+  }
+  return paperId(max + 1)
+}
+
 export function initialWizardState(
   profile: SetupProfile,
   prior: RoadmapPlan | null,
@@ -193,15 +307,19 @@ export function initialWizardState(
 ): WizardState {
   const subjects = (prior?.subjects.map((s) => s.code) ?? profile.subjectCodes).slice(0, MAX_SUBJECTS)
 
-  const examDates: Record<string, string> = {}
-  const examTimes: Record<string, string> = {}
-  const components: Record<string, string> = {}
+  // A prior plan's sittings come back as rows, earliest first; otherwise one row on the profile's date.
+  const papers: Record<string, WizardPaper[]> = {}
   for (const code of subjects) {
-    const exam = prior?.exams.find((e) => e.subjectCode === code)
-    const date = exam?.examDate ?? prior?.subjects.find((s) => s.code === code)?.examDate ?? profile.examDate
-    if (date) examDates[code] = date
-    if (exam?.examTime) examTimes[code] = exam.examTime
-    if (exam?.component) components[code] = exam.component
+    const sat = (prior?.exams ?? [])
+      .filter((e) => e.subjectCode === code)
+      .sort((a, b) => (a.examDate < b.examDate ? -1 : a.examDate > b.examDate ? 1 : 0))
+      .slice(0, MAX_PAPERS_PER_SUBJECT)
+    if (sat.length > 0) {
+      papers[code] = sat.map((e, i) => ({ id: paperId(i + 1), component: e.component ?? '', date: e.examDate, time: e.examTime ?? '' }))
+    } else {
+      const date = prior?.subjects.find((s) => s.code === code)?.examDate ?? profile.examDate ?? ''
+      papers[code] = [{ id: paperId(1), component: '', date, time: '' }]
+    }
   }
 
   const selfRatings: Record<string, SelfRating> = {}
@@ -225,9 +343,7 @@ export function initialWizardState(
   return {
     step: 1,
     subjects,
-    components,
-    examDates,
-    examTimes,
+    papers,
     timeZone: options.timeZone ?? profile.timeZone ?? prior?.timeZone ?? 'UTC',
     selfRatings,
     weekdayMinutes,
@@ -254,10 +370,14 @@ export function initialWizardState(
 export type WizardAction =
   | { type: 'go'; step: SetupStep }
   | { type: 'toggle_subject'; code: string }
+  /** The three single-paper actions act on the subject's first row. */
   | { type: 'set_component'; code: string; component: string }
   | { type: 'set_exam_date'; code: string; date: string }
   | { type: 'set_all_exam_dates'; date: string }
   | { type: 'set_exam_time'; code: string; time: string }
+  | { type: 'add_paper'; code: string }
+  | { type: 'remove_paper'; code: string; id: string }
+  | { type: 'set_paper'; code: string; id: string; patch: Partial<Omit<WizardPaper, 'id'>> }
   | { type: 'set_time_zone'; timeZone: string }
   | { type: 'set_rating'; code: string; rating: SelfRating }
   | { type: 'set_minutes'; which: DayType; minutes: number }
@@ -303,46 +423,55 @@ export function wizardReducer(state: WizardState, action: WizardAction): WizardS
       const on = state.subjects.includes(action.code)
       if (on) {
         const subjects = state.subjects.filter((c) => c !== action.code)
+        const { [action.code]: _gone, ...papers } = state.papers
         return {
           ...state,
           subjects,
+          papers,
           prioritySubject: state.prioritySubject === action.code ? null : state.prioritySubject,
         }
       }
       if (state.subjects.length >= MAX_SUBJECTS) return state
       // A new subject starts on the plan's latest date, so one date typed once covers everyone.
-      const examDates = { ...state.examDates }
-      const latest = planExamDate(state)
-      if (latest && !examDates[action.code]) examDates[action.code] = latest
-      return { ...state, subjects: [...state.subjects, action.code], examDates }
+      const latest = planExamDate(state) ?? ''
+      const rows = state.papers[action.code]?.length ? state.papers[action.code]! : [{ id: paperId(1), component: '', date: latest, time: '' }]
+      return { ...state, subjects: [...state.subjects, action.code], papers: { ...state.papers, [action.code]: rows } }
     }
 
-    case 'set_component': {
-      const components = { ...state.components }
-      if (action.component) components[action.code] = action.component
-      else delete components[action.code]
-      return { ...state, components }
-    }
+    case 'set_component':
+      return patchPaper(state, action.code, firstPaperId(state, action.code), { component: action.component })
 
-    case 'set_exam_date': {
-      const examDates = { ...state.examDates }
-      if (action.date) examDates[action.code] = action.date
-      else delete examDates[action.code]
-      return { ...state, examDates }
-    }
+    case 'set_exam_date':
+      return patchPaper(state, action.code, firstPaperId(state, action.code), { date: action.date })
 
     case 'set_all_exam_dates': {
-      const examDates = { ...state.examDates }
-      for (const code of state.subjects) examDates[code] = action.date
-      return { ...state, examDates }
+      // One date for every subject's first paper, and for any later paper still without one.
+      const papers = { ...state.papers }
+      for (const code of state.subjects) {
+        const rows = papers[code]?.length ? papers[code]! : [{ id: paperId(1), component: '', date: '', time: '' }]
+        papers[code] = rows.map((p, i) => (i === 0 || !p.date ? { ...p, date: action.date } : p))
+      }
+      return { ...state, papers }
     }
 
-    case 'set_exam_time': {
-      const examTimes = { ...state.examTimes }
-      if (action.time) examTimes[action.code] = action.time
-      else delete examTimes[action.code]
-      return { ...state, examTimes }
+    case 'set_exam_time':
+      return patchPaper(state, action.code, firstPaperId(state, action.code), { time: action.time })
+
+    case 'add_paper': {
+      const rows = state.papers[action.code] ?? []
+      if (!state.subjects.includes(action.code) || rows.length >= MAX_PAPERS_PER_SUBJECT) return state
+      const row: WizardPaper = { id: nextPaperId(rows), component: '', date: '', time: '' }
+      return { ...state, papers: { ...state.papers, [action.code]: [...rows, row] } }
     }
+
+    case 'remove_paper': {
+      const rows = state.papers[action.code] ?? []
+      if (rows.length <= 1) return state
+      return { ...state, papers: { ...state.papers, [action.code]: rows.filter((p) => p.id !== action.id) } }
+    }
+
+    case 'set_paper':
+      return patchPaper(state, action.code, action.id, action.patch)
 
     case 'set_time_zone':
       return { ...state, timeZone: action.timeZone }
@@ -456,15 +585,46 @@ export function wizardReducer(state: WizardState, action: WizardAction): WizardS
 
 // --- derivations ---------------------------------------------------------------------
 
-/** The plan's exam date: the latest of the subjects' own. Null until every subject has one. */
-export function planExamDate(state: Pick<WizardState, 'subjects' | 'examDates'>): string | null {
+function firstPaperId(state: Pick<WizardState, 'papers'>, code: string): string {
+  return state.papers[code]?.[0]?.id ?? paperId(1)
+}
+
+function patchPaper(state: WizardState, code: string, id: string, patch: Partial<Omit<WizardPaper, 'id'>>): WizardState {
+  const rows = state.papers[code]?.length ? state.papers[code]! : [{ id, component: '', date: '', time: '' }]
+  if (!rows.some((p) => p.id === id)) return state
+  return { ...state, papers: { ...state.papers, [code]: rows.map((p) => (p.id === id ? { ...p, ...patch } : p)) } }
+}
+
+/** A subject's papers, earliest-entered first; one empty row when it has none yet. */
+export function papersOf(state: Pick<WizardState, 'papers'>, code: string): WizardPaper[] {
+  return state.papers[code]?.length ? state.papers[code]! : [{ id: paperId(1), component: '', date: '', time: '' }]
+}
+
+/** The subject's first paper — what the single-paper fields of a request read. */
+export function firstPaper(state: Pick<WizardState, 'papers'>, code: string): WizardPaper {
+  return papersOf(state, code)[0]!
+}
+
+/** A subject's papers in date order, dated ones only. */
+function datedPapers(state: Pick<WizardState, 'papers'>, code: string): WizardPaper[] {
+  return papersOf(state, code)
+    .filter((p) => ISO_DATE.test(p.date))
+    .sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0))
+}
+
+/** The plan's exam date: the latest paper of any subject. Null until some subject has a date. */
+export function planExamDate(state: Pick<WizardState, 'subjects' | 'papers'>): string | null {
   let latest: string | null = null
   for (const code of state.subjects) {
-    const d = state.examDates[code]
-    if (!d) continue
-    if (!latest || d > latest) latest = d
+    for (const p of datedPapers(state, code)) if (!latest || p.date > latest) latest = p.date
   }
   return latest
+}
+
+/** The latest paper of one subject, for the finish-line line and the legacy per-subject date. */
+export function subjectExamDate(state: Pick<WizardState, 'papers'>, code: string): string | null {
+  const dated = datedPapers(state, code)
+  return dated.length > 0 ? dated[dated.length - 1]!.date : null
 }
 
 /** Preset and custom windows as a sorted list, adjacent or overlapping ones merged. */
@@ -488,6 +648,40 @@ export function windowsFor(choice: WindowChoice): TimeWindow[] {
 
 function windowMinutes(windows: TimeWindow[]): number {
   return windows.reduce((n, w) => n + Math.max(0, minuteOfDay(w.end) - minuteOfDay(w.start)), 0)
+}
+
+/** A span that may cross midnight, as one or two same-day intervals in minutes. */
+function spanIntervals(span: TimeWindow): Array<{ start: number; end: number }> {
+  const start = minuteOfDay(span.start)
+  const end = minuteOfDay(span.end)
+  if (end > start) return [{ start, end }]
+  if (end === start) return []
+  return [
+    { start, end: 24 * 60 },
+    { start: 0, end },
+  ]
+}
+
+/**
+ * The most a day of this type can hold: the free minutes inside the chosen
+ * windows once the no-study span is taken out. The engine caps every day at
+ * the smaller of this and the stated minutes, so a student who picks six
+ * hours but keeps only the evening window gets five — the step says so
+ * rather than letting the plan quietly come out short. Commitments are per
+ * weekday and are not counted here.
+ */
+export function windowCapacityFor(state: Pick<WizardState, 'windows' | 'noStudy'>, which: DayType): number {
+  const windows = windowsFor(state.windows[which])
+  const off = isClockTime(state.noStudy.start) && isClockTime(state.noStudy.end) ? spanIntervals(state.noStudy) : []
+  let total = 0
+  for (const w of windows) {
+    const start = minuteOfDay(w.start)
+    const end = minuteOfDay(w.end)
+    let free = Math.max(0, end - start)
+    for (const o of off) free -= Math.max(0, Math.min(end, o.end) - Math.max(start, o.start))
+    total += Math.max(0, free)
+  }
+  return total
 }
 
 export function dayTypeOf(day: number): DayType {
@@ -594,14 +788,31 @@ export function toRequest(state: WizardState, todayIso: string): RoadmapBuildReq
   const subjects = [...state.subjects]
   const examDate = planExamDate(state) ?? ''
   const targetGrade = state.targetGrade.trim()
+  // Every dated paper, and the three per-subject maps older readers expect: the subject's last date, its nearest paper's time and component.
+  const exams: NonNullable<RoadmapBuildRequest['exams']> = []
+  const subjectExamDates: Record<string, string> = {}
+  const subjectExamTimes: Record<string, string> = {}
+  const subjectComponents: Record<string, string> = {}
+  for (const code of subjects) {
+    const dated = datedPapers(state, code)
+    for (const p of dated) {
+      exams.push({ subjectCode: code, ...(p.component ? { component: p.component } : {}), examDate: p.date, ...(p.time ? { examTime: p.time } : {}) })
+    }
+    const first = dated[0] ?? firstPaper(state, code)
+    const last = dated[dated.length - 1]
+    if (last) subjectExamDates[code] = last.date
+    if (first.time) subjectExamTimes[code] = first.time
+    if (first.component) subjectComponents[code] = first.component
+  }
   return {
     examDate,
     startDate: startDateFor(state.timeZone, todayIso),
     mode: state.mode,
     subjects,
-    subjectExamDates: pick(state.examDates, subjects),
-    subjectExamTimes: pick(state.examTimes, subjects),
-    subjectComponents: pick(state.components, subjects),
+    subjectExamDates,
+    subjectExamTimes,
+    subjectComponents,
+    exams,
     selfRatings: pick(state.selfRatings, subjects),
     availabilityDetail: toAvailability(state),
     timeZone: state.timeZone,
@@ -610,6 +821,29 @@ export function toRequest(state: WizardState, todayIso: string): RoadmapBuildReq
     prioritySubject: state.prioritySubject,
     remindMe: state.remindMe,
   }
+}
+
+// --- the fine-tune fold on step three ------------------------------------------------
+
+/** Fields step three keeps under "Fine-tune": a message on one of them opens the fold. */
+export const FINE_TUNE_FIELDS: readonly string[] = ['noStudy', 'quietHours']
+
+/**
+ * True when anything under the fold is not at its default — a prior plan
+ * with a generous break rhythm, a different sleep span or a day away. The
+ * fold opens on its own then, so what the student set last time is never
+ * hidden from them.
+ */
+export function fineTuneDiffersFromDefaults(
+  state: Pick<WizardState, 'breakRhythm' | 'noStudy' | 'quietHours' | 'blockedDates'>
+): boolean {
+  const d = DEFAULT_AVAILABILITY
+  return (
+    state.breakRhythm !== d.breakRhythm ||
+    !sameWindow(state.noStudy, d.noStudy[0]!) ||
+    !sameWindow(state.quietHours, d.quietHours) ||
+    state.blockedDates.length > 0
+  )
 }
 
 // --- validation -----------------------------------------------------------------------
@@ -644,15 +878,24 @@ export function validateStep(
   if (step === 1) {
     if (state.subjects.length === 0) issues.push({ field: 'subjects', message: 'Pick at least one subject.' })
     for (const code of state.subjects) {
-      const d = state.examDates[code]
-      if (!d || !ISO_DATE.test(d)) issues.push({ field: `examDate:${code}`, message: `Set the exam date for ${name(code)}.` })
-      else if (d <= todayIso) issues.push({ field: `examDate:${code}`, message: `The ${name(code)} exam date needs to be after today.` })
-      const t = state.examTimes[code]
-      if (t && !isClockTime(t)) issues.push({ field: `examTime:${code}`, message: `The ${name(code)} exam time should look like 09:00.` })
+      const rows = papersOf(state, code)
+      const seen = new Set<string>()
+      rows.forEach((p, i) => {
+        // "Mathematics" for a single paper; "Business Paper 2" (or "Business paper 2") when there are several.
+        const which = rows.length > 1 ? `${name(code)} ${p.component || `paper ${i + 1}`}` : name(code)
+        const dateField = `examDate:${code}:${p.id}`
+        if (!p.date || !ISO_DATE.test(p.date)) issues.push({ field: dateField, message: `Set the exam date for ${which}.` })
+        else if (p.date <= todayIso) issues.push({ field: dateField, message: `The ${which} exam date needs to be after today.` })
+        else {
+          const key = `${p.component}|${p.date}`
+          if (seen.has(key)) issues.push({ field: dateField, message: `${which} is listed twice on the same date.` })
+          seen.add(key)
+        }
+        if (p.time && !isClockTime(p.time)) issues.push({ field: `examTime:${code}:${p.id}`, message: `The ${which} exam time should look like 09:00.` })
+      })
     }
-    if (!isValidTimeZone(state.timeZone)) {
-      issues.push({ field: 'timeZone', message: 'That time zone is not one we recognise. Try the form Europe/London.' })
-    }
+    const zone = timeZoneIssue(state.timeZone)
+    if (zone) issues.push(zone)
   }
 
   if (step === 2) {
@@ -683,12 +926,16 @@ export function validateStep(
     if (!isClockTime(state.quietHours.start) || !isClockTime(state.quietHours.end) || state.quietHours.start === state.quietHours.end) {
       issues.push({ field: 'quietHours', message: 'Quiet hours need a start and an end time.' })
     }
-    if (!isClockTime(state.reminderTime)) issues.push({ field: 'reminderTime', message: 'The reminder time should look like 08:00.' })
   }
 
   if (step === 4) {
     if (state.targetGrade.trim().length > TARGET_GRADE_MAX) {
       issues.push({ field: 'targetGrade', message: 'Keep the target grade short.' })
+    }
+    // The reminder time sits under the "email me each morning" box and is only shown when it is ticked,
+    // so it is only checked then: a message about a hidden field cannot be acted on.
+    if (state.remindMe && !isClockTime(state.reminderTime)) {
+      issues.push({ field: 'reminderTime', message: 'The reminder time should look like 08:00.' })
     }
   }
 

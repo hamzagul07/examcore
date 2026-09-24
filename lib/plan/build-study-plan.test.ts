@@ -17,12 +17,15 @@ import {
   type PlanTopic,
   type WeekAvailability,
   BUFFER_LABEL,
+  NOT_STARTED_LESSON_LINE,
   NO_DIAGNOSTIC_QUESTION,
   NO_TOPIC_INDEX_LINE,
   TASK_KIND,
   buildRoadmap,
   loopStepsFor,
+  mixedCapFor,
   objectiveFor,
+  openingsCapFor,
   paperMarkingMinutes,
   stepMinutesFor,
   synthesiseSignals,
@@ -33,7 +36,7 @@ import {
   type StudyPlan,
 } from '@/lib/plan/build-study-plan'
 import { isCalmCopy } from '@/lib/plan/feasibility'
-import { MIN_TASK_MINUTES } from '@/lib/plan/modes'
+import { MIN_TASK_MINUTES, STEP_GAP_DAYS } from '@/lib/plan/modes'
 import { WORK_KINDS } from '@/lib/plan/plan-view'
 import { minuteOfDay } from '@/lib/plan/roadmap-view'
 import {
@@ -245,7 +248,7 @@ assert.equal(timedPaperCount('pass', 4), 1, 'never zero once there is room')
     assert.equal(d.blocks.filter((b) => b.kind === 'drill').length, 1)
   }
   // Two natural rest days a week means no extra one is imposed.
-  const imposed = plan.days.filter((d) => d.kind === 'rest' && /holds without it/.test(d.focus))
+  const imposed = plan.days.filter((d) => d.kind === 'rest' && /hold without it/.test(d.focus))
   assert.equal(imposed.length, 0, 'natural rest days are enough')
 }
 
@@ -287,7 +290,7 @@ assert.equal(timedPaperCount('pass', 4), 1, 'never zero once there is room')
     assert.match(d.focus, /away/, `${date} says why`)
   }
   // Those trips are natural rest days, so no extra one is imposed in those windows.
-  const imposed = plan.days.filter((d) => d.kind === 'rest' && /holds without it/.test(d.focus))
+  const imposed = plan.days.filter((d) => d.kind === 'rest' && /hold without it/.test(d.focus))
   assert.equal(imposed.length, 0, `no imposed rest on top of trips: ${imposed.map((d) => d.date).join(',')}`)
   // A timed paper never lands on a blocked date.
   assert.ok(!plan.days.some((d) => plan.blockedDates.includes(d.date) && d.blocks.some((b) => b.kind === 'timed_paper')))
@@ -423,7 +426,7 @@ assert.equal(timedPaperCount('pass', 4), 1, 'never zero once there is room')
   assert.equal(new Set(papers.map((p) => p.date)).size, papers.length, 'one paper per day')
 
   // The exam day is already quiet, so no rest day is imposed on it or doubled next to it.
-  assert.ok(!/holds without it/.test(examDay.focus))
+  assert.ok(!/hold without it/.test(examDay.focus))
   assert.ok(plan.days.every((d) => d.workMinutes <= 90))
 }
 {
@@ -686,7 +689,7 @@ const byTopic = (plan: StudyPlan, subject: string) => {
     if (repair && recall) assert.ok(recall.date > repair.date, 'recall waits for the next study day')
   }
   // Weekly rest: at least one imposed rest day, never day 1.
-  assert.ok(plan.days.some((d) => /holds without it/.test(d.focus)))
+  assert.ok(plan.days.some((d) => /hold without it/.test(d.focus)))
   assert.notEqual(plan.days[0]!.kind, 'rest')
 }
 
@@ -972,6 +975,455 @@ const byTopic = (plan: StudyPlan, subject: string) => {
   const tooShort: StudyPlan = { ...plan, days: plan.days.map((d) => (d === day ? { ...d, blocks: d.blocks.map((b) => (b === work[0] ? { ...b, minutes: 1 } : b)) } : d)) }
   assert.ok(validateRoadmap(tooShort).some((e) => /under the/.test(e)))
   assert.doesNotThrow(() => buildRoadmap({ startDate: START, examDate: EXAM_19, mode: 'balanced', availabilityDetail: AVAIL, subjects: [R_MATHS] }, { strict: true }), 'strict builds throw only on invalid plans')
+}
+
+// --- second pass: the audit's findings, pinned ----------------------------------------------------------
+//
+// Fixtures shaped like the audit's: a Cambridge subject with named leaves,
+// prerequisites, a few frequency lines and a couple of marked topics; an IB
+// subject with forty leaves in syllabus order and no short questions.
+
+const addDays = (iso: string, n: number) => new Date(Date.parse(`${iso}T00:00:00Z`) + n * 86_400_000).toISOString().slice(0, 10)
+const FREQ = { papers: 8, of: 9, from: 'May/June 2024', to: 'Oct/Nov 2025', taggedShare: 0.8, scope: 'component' as const }
+const MATHS_NAMES = ['Quadratics', 'Functions', 'Coordinate geometry', 'Circular measure', 'Trigonometry', 'Series', 'Differentiation', 'Integration', 'Binomial expansion', 'Vectors', 'Logarithms', 'Modulus']
+const PHYS_NAMES = ['Physical quantities', 'Kinematics', 'Dynamics', 'Forces and density', 'Work, energy and power', 'Deformation of solids', 'Waves', 'Superposition', 'Electricity', 'D.C. circuits']
+const cambridge = (
+  code: string,
+  label: string,
+  names: string[],
+  opts: { exam: string; rating: RoadmapSubjectInput['selfRating']; freqAt?: number[]; marksAt?: Record<number, { pct: number; attempts: number }>; paper?: string; component?: string; paperMinutes?: number }
+): RoadmapSubjectInput => {
+  const signals = names.map((name, i) => {
+    const extra: Partial<TopicSignals> = { paper: opts.paper ?? 'P1', onNearestPaper: Boolean(opts.component) }
+    extra.parentCode = i < names.length / 2 ? 'A' : 'B'
+    extra.parentName = i < names.length / 2 ? 'Part A' : 'Part B'
+    extra.prerequisiteOf = names.map((_, j) => `${j + 1}`).filter((_, j) => j > i && j < names.length / 2 === i < names.length / 2)
+    if (opts.freqAt?.includes(i)) extra.frequency = { ...FREQ, papers: 9 - (i % 3) }
+    const m = opts.marksAt?.[i]
+    if (m) extra.mastery = { percentage: m.pct, attempts: m.attempts, lastAt: '2026-09-12' }
+    return sig(`${i + 1}`, name, i, extra)
+  })
+  const codes = signals.map((s) => s.code)
+  return { code, label, highYield: [], weak: [], hasTimedPaper: true, paperMinutes: opts.paperMinutes ?? 110, examDate: opts.exam, component: opts.component, selfRating: opts.rating, board: 'Cambridge International', qualification: 'A Level', signals, destinations: everywhere(codes) }
+}
+const IB40 = Array.from({ length: 40 }, (_, i) => `Topic ${String.fromCharCode(65 + Math.floor(i / 8))}${(i % 8) + 1} ${['Water', 'Nucleic acids', 'Origins of cells', 'Cell structure', 'Viruses', 'Diversity', 'Classification', 'Evolution'][i % 8]}`)
+const ib = (exam: string): RoadmapSubjectInput => {
+  const signals = IB40.map((n, i) => sig(`${String.fromCharCode(65 + Math.floor(i / 8))}${Math.floor(i / 8) + 1}.${(i % 8) + 1}`, n, i, { paper: 'Paper 1' }))
+  const codes = signals.map((s) => s.code)
+  return { code: 'ib-biology-sl', label: 'Biology SL', highYield: [], weak: [], hasTimedPaper: true, paperMinutes: 90, examDate: exam, selfRating: 'getting_there', board: 'IB', qualification: 'IB Diploma', signals, destinations: { lesson: codes, shortQuestion: [], question: codes } }
+}
+// Evenings on weekdays, two windows at the weekend; no commitments.
+const EVENINGS: RoadmapAvailability = {
+  ...DEFAULT_AVAILABILITY,
+  weekdayMinutes: 90,
+  weekendMinutes: 150,
+  sessionLength: 40,
+  breakRhythm: 'standard',
+  windows: { weekday: [{ start: '16:00', end: '21:00' }], weekend: [{ start: '10:00', end: '13:00' }, { start: '15:00', end: '19:00' }] },
+  commitments: [],
+}
+const TODAY = '2026-09-18' // a Friday
+const studyDatesOf = (plan: StudyPlan) => plan.days.filter((d) => d.workMinutes > 0).map((d) => d.date)
+const paperDatesOf = (plan: StudyPlan) => plan.days.filter((d) => d.blocks.some((b) => b.taskType === 'timed_paper')).map((d) => d.date)
+const minutesOn = (day: StudyPlan['days'][number], subject: string) => day.blocks.filter((b) => b.subjectCode === subject && WORK_KINDS.has(b.kind))
+
+// 1. Single-subject plans fill the day: a leftover opens a topic when the loops cannot move, and mixed practice takes what is left.
+{
+  const exam = addDays(TODAY, 30)
+  const { plan } = buildRoadmap({ startDate: TODAY, examDate: exam, mode: 'balanced', availabilityDetail: { ...EVENINGS, weekendMinutes: 90 }, subjects: [ib(exam)] }, { strict: true })
+  assert.ok(plan.days[0]!.workMinutes >= 60, `one subject, 40 leaves, a 90-minute day: day 1 holds ${plan.days[0]!.workMinutes} minutes of work`)
+  const grid = buildRoadmap({ startDate: TODAY, examDate: exam, mode: 'balanced', availabilityDetail: EVENINGS, subjects: [ib(exam)] }, { strict: true }).plan
+  const capacity = grid.days.reduce((n, d) => n + (d.capacityMinutes ?? 0), 0)
+  assert.ok(grid.totalWorkMinutes / capacity >= 0.65, `balanced/40 over 30 days: work is ${(grid.totalWorkMinutes / capacity).toFixed(2)} of capacity`)
+  // Leftovers open topics, but never more than a few a day: a day is not five quick checks.
+  const firstDate = new Map<string, string>()
+  for (const t of workOf(grid)) if (t.topic && !firstDate.has(t.topic.code)) firstDate.set(t.topic.code, t.date)
+  for (const d of grid.days) {
+    const opened = [...firstDate.values()].filter((date) => date === d.date).length
+    assert.ok(opened <= 3, `${d.date} opens ${opened} topics`)
+  }
+}
+
+// 2. Built late: day 1 is laid from now, or becomes a quiet day that says what tomorrow opens with.
+{
+  const exam = addDays(TODAY, 19)
+  const input: BuildRoadmapInput = { startDate: TODAY, examDate: exam, mode: 'balanced', availabilityDetail: EVENINGS, subjects: [cambridge('9709', 'Mathematics', MATHS_NAMES, { exam, rating: 'rusty', freqAt: [0, 4, 6], marksAt: { 1: { pct: 30, attempts: 4 }, 6: { pct: 80, attempts: 5 } }, component: 'Paper 1' })] }
+  const plain = buildRoadmap(input, { strict: true }).plan
+  const at2030 = buildRoadmap({ ...input, startMinute: 20 * 60 + 30 }, { strict: true }).plan
+  const at2055 = buildRoadmap({ ...input, startMinute: 20 * 60 + 55 }, { strict: true }).plan
+  const morning = buildRoadmap({ ...input, startMinute: 8 * 60 }, { strict: true }).plan
+  const day1 = (p: StudyPlan) => p.days[0]!
+  assert.equal(day1(plain).blocks.find((b) => WORK_KINDS.has(b.kind))!.startsAt, '16:00', 'without a start minute day 1 is laid from the window')
+  assert.deepEqual(morning.days, plain.days, 'a start minute before the window changes nothing')
+  const late = minutesOn(day1(at2030), '9709')
+  assert.ok(late.length >= 1, 'built at 20:30 there is still a task tonight')
+  for (const b of late) assert.ok(minuteOfDay(b.startsAt) >= 20 * 60 + 35, `${b.id} starts at ${b.startsAt}, after 20:35`)
+  assert.equal(day1(at2030).kind, 'study')
+  assert.equal(day1(at2055).kind, 'rest', 'built at 20:55 day 1 is a quiet day')
+  assert.equal(day1(at2055).workMinutes, 0)
+  const first = at2055.days.find((d) => d.day > 1 && d.workMinutes > 0)!.blocks.find((b) => WORK_KINDS.has(b.kind))!
+  assert.equal(day1(at2055).focus, `Built this evening — tomorrow starts with ${first.objective!.replace(/[.]+$/, '')}.`)
+  assert.ok(calm(day1(at2055).focus) && !/Rest day/.test(day1(at2055).focus))
+  assert.deepEqual(at2055.days.slice(1).map((d) => d.date), plain.days.slice(1).map((d) => d.date), 'the rest of the calendar is unchanged')
+  assert.deepEqual(validateRoadmap(at2055), [])
+}
+
+// 3. Long plans: reviews keep coming at widening gaps, and mixed sets name the topics they rotate through.
+{
+  const exam = addDays(TODAY, 90)
+  const input: BuildRoadmapInput = {
+    startDate: TODAY,
+    examDate: exam,
+    mode: 'balanced',
+    availabilityDetail: { ...EVENINGS, weekdayMinutes: 120, weekendMinutes: 120 },
+    subjects: [
+      cambridge('9709', 'Mathematics', MATHS_NAMES, { exam, rating: 'rusty', freqAt: [0, 4, 6], marksAt: { 1: { pct: 30, attempts: 4 }, 6: { pct: 80, attempts: 5 } }, component: 'Paper 1' }),
+      cambridge('9702', 'Physics', PHYS_NAMES, { exam: addDays(exam, -3), rating: 'getting_there', paper: 'P1/P2', paperMinutes: 75 }),
+    ],
+  }
+  const { plan } = buildRoadmap(input, { strict: true })
+  const work = workOf(plan)
+  for (const s of plan.subjects) {
+    const own = work.filter((t) => t.subjectCode === s.code)
+    const provedAt = new Map<string, string>()
+    for (const t of own) if (t.loopStep === 'prove' && t.topic && !provedAt.has(t.topic.code)) provedAt.set(t.topic.code, t.date)
+    assert.ok(provedAt.size >= 8, `${s.label}: ${provedAt.size} topics proved in 90 days`)
+    const taperStart = addDays(s.examDate, -2)
+    for (const [code, proved] of provedAt) {
+      const name = own.find((t) => t.topic?.code === code)!.topic!.name
+      const seen = own.filter((t) => (t.topic?.code === code && t.date > proved) || (t.taskType === 'mixed' && t.objective!.includes(name))).map((t) => t.date)
+      const points = [proved, ...seen.filter((d) => d < taperStart), taperStart].sort()
+      for (let k = 1; k < points.length; k++) {
+        const gap = Math.round((Date.parse(points[k]!) - Date.parse(points[k - 1]!)) / 86_400_000)
+        assert.ok(gap <= 21, `${s.label} ${name}: ${gap} days without a review or a named mixed set (${points[k - 1]} → ${points[k]})`)
+      }
+      const reviews = own.filter((t) => t.topic?.code === code && t.taskType === 'review')
+      assert.ok(reviews.length >= 3, `${s.label} ${name} is reviewed ${reviews.length} times, not just twice`)
+    }
+  }
+  const mixed = work.filter((t) => t.taskType === 'mixed')
+  const bare = mixed.filter((t) => /across recent topics/.test(t.objective!))
+  assert.ok(bare.reduce((n, t) => n + t.minutes, 0) / plan.totalWorkMinutes < 0.3, 'fewer than 30% of work minutes are bare mixed cards')
+  const named = mixed.find((t) => !/across recent topics/.test(t.objective!))!
+  assert.match(named.objective!, /^Mixed (Mathematics|Physics): .+ and .+ — \d+ minutes, then mark\.$/, named.objective)
+  assert.ok(named.why!.length >= 2 && named.why!.some((w) => w.type !== 'mode'), 'a named set carries its topics\' reasons, not only the mode line')
+  assert.equal(objectiveFor('mixed', { subject: 'Mathematics', minutes: 25, topics: ['Series', 'Vectors', 'Logarithms'] }), 'Mixed Mathematics: Series, Vectors and Logarithms — 25 minutes, then mark.')
+  // 5. Timed papers never sit on consecutive study days, across subjects; the paper-day review is of the paper.
+  const studyDates = studyDatesOf(plan)
+  const ords = paperDatesOf(plan).map((d) => studyDates.indexOf(d))
+  assert.ok(ords.length >= 8, `${ords.length} papers in 90 days`)
+  for (let k = 1; k < ords.length; k++) assert.ok(ords[k]! - ords[k - 1]! >= 2, `papers on consecutive study days: ${paperDatesOf(plan)[k - 1]} / ${paperDatesOf(plan)[k]}`)
+  const afterPaper = work.filter((t) => t.taskType === 'error_review' && plan.days.find((d) => d.date === t.date)!.blocks.some((b) => b.taskType === 'timed_paper' && b.subjectCode === t.subjectCode))
+  assert.ok(afterPaper.length > 0, 'a paper day holds an error review when the day has room')
+  for (const t of afterPaper) {
+    assert.equal(t.topic, undefined, `${t.id} is about the paper, not a topic`)
+    assert.equal(t.objective, `Re-read today's marked ${t.subjectLabel} paper; note which step lost marks most often.`)
+    assert.ok(t.why!.every((w) => w.type === 'mode') && t.why!.length === 1, 'its evidence is the paper\'s own')
+    assert.match(t.why![0]!.explanation, /timed sittings? for/)
+  }
+  // 6. The strong loop sleeps on a timed set before reading it back.
+  for (const s of plan.subjects) {
+    for (const [code, list] of byTopic(plan, s.code)) {
+      const proveDates = list.filter((t) => t.loopStep === 'prove').map((t) => t.date)
+      const reviewDates = list.filter((t) => t.loopStep === 'review').map((t) => t.date)
+      for (const d of proveDates) assert.ok(!reviewDates.includes(d), `${s.label} ${code}: prove and review on ${d}`)
+    }
+  }
+  assert.ok(!JSON.stringify(plan).includes('keeps finding'), 'one set is not a pattern')
+  // 10/11. The focus names subjects only; the taper note is no longer a tradeoff.
+  for (const d of plan.days) if (d.kind === 'study') assert.ok(!/\d+ tasks?\b/.test(d.focus), `no task count in the focus: ${d.focus}`)
+  assert.ok(!plan.feasibility!.tradeoffs.some((l) => /inside a taper/.test(l)))
+  for (const t of work) assert.ok(t.why!.length > 0, `${t.id} has a reason`)
+}
+assert.equal(objectiveFor('error_review', { topic: 'Series', subject: 'Mathematics', minutes: 15 }), 'Re-read your marked Series answers; note which step lost marks.')
+assert.ok(STEP_GAP_DAYS.some((r) => r.from === 'prove' && r.to === 'review' && r.minDays === 1), 'prove → review waits a study day')
+{
+  // A confident subject on the 19-day fixture: a timed set and its error review never share a date.
+  const { plan } = roadmap()
+  for (const [code, list] of byTopic(plan, '9702')) {
+    const prove = list.find((t) => t.loopStep === 'prove')
+    const review = list.find((t) => t.loopStep === 'review')
+    if (prove && review) assert.ok(review.date > prove.date, `Physics ${code}: the error review waits a day`)
+  }
+}
+
+// 4. The taper: the eve is light whatever the session, weakest first, and not a copy of the day before.
+{
+  const eveOf = (plan: StudyPlan, subject: string) => plan.days.filter((d) => d.date < plan.subjects.find((s) => s.code === subject)!.examDate).slice(-2)
+  const check = (plan: StudyPlan, subject: string, session: number) => {
+    const [before, eve] = eveOf(plan, subject)
+    const eveTasks = minutesOn(eve!, subject)
+    const beforeTasks = minutesOn(before!, subject)
+    assert.ok(eveTasks.reduce((n, b) => n + b.minutes, 0) <= 45, `${subject} eve holds ${eveTasks.reduce((n, b) => n + b.minutes, 0)} minutes`)
+    assert.ok(eveTasks.length <= 4, `${subject} eve holds ${eveTasks.length} cards`)
+    assert.ok(beforeTasks.reduce((n, b) => n + b.minutes, 0) <= session, `${subject} the day before holds one session at most`)
+    assert.ok(eveTasks.every((b) => b.taskType === 'review') && beforeTasks.every((b) => b.taskType === 'review'))
+    const eveSet = new Set(eveTasks.map((b) => b.topic?.code))
+    const beforeSet = new Set(beforeTasks.map((b) => b.topic?.code))
+    assert.ok([...eveSet].some((c) => !beforeSet.has(c)), `${subject}: the eve (${[...eveSet].join(',')}) is not the day before (${[...beforeSet].join(',')}) again`)
+    for (const b of [...eveTasks, ...beforeTasks]) assert.ok(b.why!.length > 0, `${b.id} has a reason`)
+  }
+  const exam30 = addDays(TODAY, 30)
+  const polish = buildRoadmap({ startDate: TODAY, examDate: exam30, mode: 'polish', availabilityDetail: { ...EVENINGS, sessionLength: 60 }, subjects: [ib(exam30)] }, { strict: true }).plan
+  check(polish, 'ib-biology-sl', 60)
+  const { plan } = roadmap()
+  check(plan, '9709', AVAIL.sessionLength)
+  check(plan, '9702', AVAIL.sessionLength)
+  // Weakest first: on the eve the lowest-mastery proved topic comes before a stronger one.
+  const pools = buildRoadmap({ startDate: TODAY, examDate: addDays(TODAY, 19), mode: 'balanced', availabilityDetail: EVENINGS, subjects: [cambridge('9709', 'Mathematics', MATHS_NAMES, { exam: addDays(TODAY, 19), rating: 'rusty', freqAt: [0, 4, 6], marksAt: { 1: { pct: 30, attempts: 4 }, 6: { pct: 80, attempts: 5 } }, component: 'Paper 1' })] }, { strict: true })
+  const masteryOf = new Map(pools.pools['9709']!.map((t) => [t.code, t.mastery]))
+  const eve = eveOf(pools.plan, '9709')[1]!
+  const eveOrder = minutesOn(eve, '9709').map((b) => b.topic!.code)
+  const proved = new Set(workOf(pools.plan).filter((t) => t.loopStep === 'prove').map((t) => t.topic!.code))
+  const provedOnEve = eveOrder.filter((c) => proved.has(c))
+  for (let k = 1; k < provedOnEve.length; k++) assert.ok(masteryOf.get(provedOnEve[k - 1]!)! <= masteryOf.get(provedOnEve[k]!)! + 1e-9, `eve order is weakest first: ${provedOnEve.join(' → ')}`)
+  // Exam in two days, never-worked topics: every fresh review still has one honest line.
+  const two = buildRoadmap({ startDate: TODAY, examDate: addDays(TODAY, 2), mode: 'balanced', availabilityDetail: EVENINGS, subjects: [cambridge('9709', 'Mathematics', MATHS_NAMES, { exam: addDays(TODAY, 2), rating: 'getting_there', freqAt: [0, 4, 6], marksAt: { 1: { pct: 30, attempts: 4 }, 6: { pct: 80, attempts: 5 } }, component: 'Paper 1' })] }, { strict: true }).plan
+  const fresh = workOf(two).filter((t) => /check it against the mark scheme/.test(t.objective!))
+  assert.ok(fresh.length > 0, 'fresh reviews exist')
+  for (const t of fresh) {
+    assert.ok(t.why!.length > 0 && t.why!.every((w) => w.type === 'on_syllabus'), `${t.id}: ${JSON.stringify(t.why)}`)
+    assert.match(t.why![0]!.explanation, /^On the Cambridge International Mathematics syllabus/)
+  }
+  assert.deepEqual(validateRoadmap(two), [])
+}
+
+// 7. Weekdays off: the copy says so, and the taper is the last two study days, not two empty ones.
+{
+  const mathsExam = '2026-10-07' // a Wednesday; the two days before it are weekdays with no minutes
+  const physicsExam = '2026-10-02' // a Friday
+  const input: BuildRoadmapInput = {
+    startDate: TODAY,
+    examDate: mathsExam,
+    mode: 'polish',
+    availabilityDetail: { ...EVENINGS, weekdayMinutes: 0, weekendMinutes: 150 },
+    subjects: [
+      cambridge('9709', 'Mathematics', MATHS_NAMES, { exam: mathsExam, rating: 'getting_there', component: 'Paper 1' }),
+      cambridge('9702', 'Physics', PHYS_NAMES, { exam: physicsExam, rating: 'confident', paper: 'P1/P2', paperMinutes: 75 }),
+    ],
+    blockedDates: ['2026-09-26'],
+  }
+  const { plan } = buildRoadmap(input, { strict: true })
+  const weekdayOff = plan.days.filter((d) => weekdayIndex(d.date) < 5 && d.date !== physicsExam)
+  assert.ok(weekdayOff.length >= 10)
+  for (const d of weekdayOff) {
+    assert.equal(d.kind, 'rest')
+    assert.equal(d.focus, 'No study today — weekdays are off in your plan.', d.focus)
+  }
+  assert.equal(plan.days.find((d) => d.date === '2026-09-26')!.focus, "Rest day — you told us you're away.")
+  assert.equal(plan.days.find((d) => d.date === physicsExam)!.focus, 'Physics exam today. Nothing else is scheduled.')
+  // Maths sits on Wed 7 Oct: Sat 3 and Sun 4 are its last study days, and they are review only for Maths.
+  const lastTwo = ['2026-10-03', '2026-10-04'].map((date) => plan.days.find((d) => d.date === date)!)
+  assert.ok(lastTwo.some((d) => minutesOn(d, '9709').length > 0), 'Maths reviews on its last study days')
+  for (const d of lastTwo) for (const b of minutesOn(d, '9709')) assert.equal(b.taskType, 'review', `${b.id} is a review`)
+  const eve = minutesOn(lastTwo[1]!, '9709')
+  assert.ok(eve.length <= 4 && eve.reduce((n, b) => n + b.minutes, 0) <= 45, 'the last study day before the paper is light')
+  assert.ok(minutesOn(plan.days.find((d) => d.date === '2026-09-27')!, '9709').some((b) => b.taskType !== 'review'), 'the weekend before is still a study weekend')
+  // The two papers are not on consecutive study days even though only six study days exist.
+  const studyDates = studyDatesOf(plan)
+  const ords = paperDatesOf(plan).map((d) => studyDates.indexOf(d))
+  for (let k = 1; k < ords.length; k++) assert.ok(ords[k]! - ords[k - 1]! >= 2, `papers on consecutive study days: ${paperDatesOf(plan).join(', ')}`)
+  for (const d of plan.days) assert.ok(calm(d.focus), d.focus)
+}
+
+// 8. A subject rated "not started" opens on the lesson, settled, and says why.
+{
+  const exam = addDays(TODAY, 45)
+  const { plan } = buildRoadmap(
+    { startDate: TODAY, examDate: exam, mode: 'foundation', availabilityDetail: { ...EVENINGS, weekdayMinutes: 60, weekendMinutes: 120, sessionLength: 20 }, subjects: [cambridge('9702', 'Physics', PHYS_NAMES, { exam, rating: 'not_started', paper: 'P1/P2', paperMinutes: 75 })] },
+    { strict: true }
+  )
+  const physics = workOf(plan).filter((t) => t.subjectCode === '9702' && t.topic)
+  assert.ok(physics.length > 0)
+  assert.ok(!physics.some((t) => t.taskType === 'diagnostic'), 'no quick check on material never seen')
+  for (const [code, list] of byTopic(plan, '9702')) {
+    assert.deepEqual([list[0]!.taskType, list[0]!.loopStep], ['concept', 'repair'], `Physics ${code} starts with the lesson`)
+    for (const t of list) assert.ok(!t.provisional, `${t.id} is settled: there is no diagnostic to re-branch on`)
+    assert.ok(list[0]!.why!.some((w) => w.type === 'mode' && w.explanation === NOT_STARTED_LESSON_LINE), `${code} says why`)
+  }
+  const entry: TopicPriority = { code: '1', name: 'T', score: 1, why: [{ type: 'on_syllabus', source: 'syllabus', confidence: 'high', explanation: 'On the syllabus' }], band: 'must', mastery: 0.15, uncertainty: 1, loop: 'weak' }
+  const steps = loopStepsFor(entry, everywhere(['1']), { selfRating: 'not_started' })!
+  assert.deepEqual(steps.steps.map((s) => [s.step, s.provisional]), [['repair', false], ['recall', false], ['prove', false]])
+  // With a marked answer the rating no longer decides: the usual check applies.
+  assert.equal(loopStepsFor({ ...entry, uncertainty: 0.67 }, everywhere(['1']), { selfRating: 'not_started' })!.steps[0]!.step, 'diagnose')
+  // Without a lesson to open, the rule does not apply either.
+  assert.equal(loopStepsFor(entry, { lesson: [], shortQuestion: ['1'], question: ['1'] }, { selfRating: 'not_started' })!.steps[0]!.step, 'diagnose')
+}
+
+// 9. Exam-day and rest-day lines make no claims about the student.
+{
+  const { plan } = roadmap({ subjects: [{ ...R_MATHS, examDate: '2026-09-25', examTime: '15:00', paperMinutes: 90 }, { ...R_PHYSICS, examDate: '2026-09-26' }] })
+  const examDay = plan.days.find((d) => d.date === '2026-09-25')!
+  assert.equal(examDay.focus, 'Mathematics exam today. One short Physics review after the paper — only if you feel like it.')
+  const rest = plan.days.find((d) => /hold without it/.test(d.focus))
+  assert.ok(rest && rest.focus === 'Rest day. The plan is built to hold without it.')
+  const text = JSON.stringify(plan.days.map((d) => d.focus))
+  for (const claim of ["you've done the work", 'so will you', 'this one is full']) assert.ok(!text.includes(claim), `no "${claim}"`)
+  for (const d of plan.days) if (d.kind === 'study') assert.ok(!/\d+ tasks?\b/.test(d.focus), `the summary owns the count: ${d.focus}`)
+  assert.ok(plan.days.some((d) => d.focus === 'Mathematics and Physics' || d.focus === 'Physics and Mathematics' || d.focus === 'Mathematics' || d.focus === 'Physics'), 'a study day names its subjects and nothing else')
+}
+
+// --- long days: a student who set aside six hours gets six hours of work, not two and four in hand ---
+
+{
+  assert.equal(openingsCapFor(90, 'balanced', false), 3, 'an evening keeps the original cap')
+  assert.equal(openingsCapFor(180, 'balanced', true), 3)
+  assert.equal(openingsCapFor(360, 'balanced', false), 5, 'one more opening per extra ninety minutes')
+  assert.equal(openingsCapFor(480, 'polish', false), 6)
+  assert.equal(openingsCapFor(180, 'foundation', true), 1, 'Foundation still finishes a loop before widening on a short day')
+  assert.equal(openingsCapFor(270, 'foundation', true), 2, 'and climbs at the same slope as the other modes, from one')
+  assert.equal(openingsCapFor(360, 'foundation', true), 3)
+  assert.equal(openingsCapFor(360, 'foundation', false), 5)
+  assert.equal(mixedCapFor(120), 2)
+  assert.equal(mixedCapFor(360), 4)
+  // The timed share is a share of minutes: six-hour days hold twice the sittings of evenings, and never more than that.
+  assert.equal(timedPaperBudget('balanced', 17), timedPaperBudget('balanced', 17, 90), 'an evening plan keeps its count')
+  // Rounding happens once, on the doubled share: 17 × 0.2 × 2 = 6.8 → 7.
+  assert.equal(timedPaperBudget('balanced', 17, 360), Math.round(17 * 0.2 * 2), 'six-hour days double the share')
+  assert.ok(timedPaperBudget('balanced', 17, 360) > timedPaperBudget('balanced', 17))
+  assert.equal(timedPaperBudget('balanced', 17, 900), timedPaperBudget('balanced', 17, 360), 'and no further')
+  assert.equal(timedPaperBudget('balanced', 3, 360), 0, 'still nothing under four study days')
+}
+{
+  const allDay = {
+    weekday: [{ start: '08:00', end: '13:00' }, { start: '14:00', end: '22:00' }],
+    weekend: [{ start: '08:00', end: '13:00' }, { start: '14:00', end: '22:00' }],
+  }
+  const long: RoadmapAvailability = { ...DEFAULT_AVAILABILITY, weekdayMinutes: 360, weekendMinutes: 360, windows: allDay, commitments: [] }
+  const { plan } = roadmap({ availabilityDetail: long })
+  assert.deepEqual(validateRoadmap(plan), [])
+  const study = plan.days.filter((d) => d.kind === 'study' && (d.capacityMinutes ?? 0) >= 300)
+  assert.ok(study.length >= 8, `enough long study days to judge (${study.length})`)
+  const util = study.reduce((n, d) => n + d.workMinutes, 0) / study.reduce((n, d) => n + (d.capacityMinutes ?? 0), 0)
+  assert.ok(util >= 0.6, `long days are mostly laid, not left in hand (${util.toFixed(2)})`)
+  // Every long study day before the taper holds real work, and none of them stops at a third of the day.
+  const before = study.filter((d) => d.daysLeft > 3)
+  assert.ok(before.every((d) => d.workMinutes >= 0.5 * (d.capacityMinutes ?? 0)), 'no long day is half empty before the taper')
+  // A timed paper on a long day is followed by an ordinary study session, with the marking allowance still in hand.
+  const paperDays = plan.days.filter((d) => d.blocks.some((b) => b.taskType === 'timed_paper'))
+  assert.ok(paperDays.length >= 1, 'a paper was placed')
+  for (const d of paperDays) {
+    const paper = d.blocks.find((b) => b.taskType === 'timed_paper')!
+    const others = d.blocks.filter((b) => WORK_KINDS.has(b.kind) && b.taskType !== 'timed_paper' && b.taskType !== 'error_review')
+    assert.ok(others.length >= 2, `${d.date}: the rest of a paper day is a study day (${others.length} other tasks)`)
+    assert.ok((d.bufferMinutes ?? 0) >= paperMarkingMinutes(paper.minutes), `${d.date}: the marking allowance stays in hand`)
+    assert.match(d.focus, /^Timed paper day/)
+  }
+  // Day one of a long day is never padded with a "recent topics" set: nothing has been proved yet.
+  const dayOne = plan.days.find((d) => d.kind === 'study')!
+  assert.ok(!dayOne.blocks.some((b) => b.taskType === 'mixed'), 'no mixed set before anything is proved')
+  // The caps still bind: no subject opens more than five topics on one day.
+  for (const d of plan.days) {
+    const opened = new Map<string, number>()
+    for (const b of d.blocks) {
+      if (b.loopStep !== 'diagnose' && !(b.loopStep === 'repair' && b.taskType === 'concept' && !b.provisional)) continue
+      if (!b.subjectCode) continue
+      opened.set(b.subjectCode, (opened.get(b.subjectCode) ?? 0) + 1)
+    }
+    for (const [code, n] of opened) assert.ok(n <= 5 + 1, `${d.date}: ${code} opened ${n} topics`)
+  }
+  // Three-hour days are untouched by the long-day rules: the same fixture at 180 lays what it did before.
+  const evening = roadmap().plan
+  const eveningStudy = evening.days.filter((d) => d.kind === 'study')
+  assert.ok(eveningStudy.every((d) => d.workMinutes <= (d.capacityMinutes ?? 0)))
+}
+
+// --- several papers in one subject: Business Paper 1 on the 5th, Paper 2 on the 8th -------------
+
+{
+  const codes = codesOf(9, 'b')
+  // Three leaves for Paper 1 only, three for Paper 2 only, three on both.
+  const paperOf = (i: number) => (i < 3 ? 'P1' : i < 6 ? 'P2' : 'P1/P2')
+  const p1Only = new Set(codes.slice(0, 3))
+  const BUS: RoadmapSubjectInput = {
+    code: '9609',
+    label: 'Business',
+    highYield: [],
+    weak: [],
+    hasTimedPaper: true,
+    paperMinutes: 90,
+    signals: codes.map((c, i) => sig(c, `Business ${c}`, i, { paper: paperOf(i) })),
+    destinations: everywhere(codes),
+    selfRating: 'rusty',
+    papers: [
+      { component: 'Paper 2', examDate: '2026-10-08', examTime: '13:00', paperMinutes: 90 },
+      { component: 'Paper 1', examDate: '2026-10-05', examTime: '09:00', paperMinutes: 75 },
+    ],
+  }
+  const { plan } = buildRoadmap({ startDate: START, examDate: '2026-10-08', mode: 'balanced', availabilityDetail: AVAIL, subjects: [BUS, R_PHYSICS] }, { strict: true })
+  assert.deepEqual(validateRoadmap(plan), [])
+  assert.equal(plan.examDate, '2026-10-08', 'the plan runs to the last paper')
+
+  // One exam per paper, sorted, each with its own time and length; the subject row lists them and its date is the last.
+  const busExams = plan.exams!.filter((e) => e.subjectCode === '9609')
+  assert.deepEqual(
+    busExams.map((e) => [e.component, e.examDate, e.examTime, e.paperMinutes]),
+    [
+      ['Paper 1', '2026-10-05', '09:00', 75],
+      ['Paper 2', '2026-10-08', '13:00', 90],
+    ]
+  )
+  const busRow = plan.subjects.find((s) => s.code === '9609')!
+  assert.equal(busRow.examDate, '2026-10-08')
+  assert.deepEqual(busRow.papers!.map((p) => p.examDate), ['2026-10-05', '2026-10-08'])
+  assert.equal(plan.subjects.find((s) => s.code === '9702')!.papers, undefined, 'a single-paper subject lists none')
+
+  // Paper 1's day is an exam day for Business: a commitment named for the paper, and the line says which paper.
+  const oct5 = plan.days.find((d) => d.date === '2026-10-05')!
+  assert.ok(oct5.commitments!.some((c) => c.kind === 'exam' && /Business Paper 1/.test(c.label)), 'the sitting is a commitment')
+  assert.match(oct5.focus, /Business Paper 1 exam today/)
+  assert.ok(!oct5.blocks.some((b) => b.subjectCode === '9609' && b.taskType !== 'review'), 'nothing but a review for Business on its exam day')
+
+  // A Paper 1 topic is never scheduled once Paper 1 has been sat; Business keeps going for Paper 2 in between.
+  for (const d of plan.days) {
+    for (const b of d.blocks) {
+      if (b.subjectCode !== '9609' || !b.topic) continue
+      if (p1Only.has(b.topic.code)) assert.ok(d.date < '2026-10-05', `${b.id} is for Paper 1 but sits after it`)
+      assert.ok(d.date < '2026-10-08', `${b.id} sits after the last paper`)
+    }
+  }
+  const between = plan.days.filter((d) => d.date > '2026-10-05' && d.date < '2026-10-08')
+  assert.ok(between.some((d) => d.blocks.some((b) => b.subjectCode === '9609' && WORK_KINDS.has(b.kind))), 'Business work continues between its papers')
+  // Topics tagged for one paper carry it; shared and single-paper subjects carry nothing.
+  const p1Tasks = workOf(plan).filter((b) => b.subjectCode === '9609' && b.topic && p1Only.has(b.topic.code))
+  assert.ok(p1Tasks.length > 0 && p1Tasks.every((b) => b.component === 'Paper 1'), 'a Paper 1 topic says so')
+  assert.ok(workOf(plan).filter((b) => b.subjectCode === '9609' && b.topic && !p1Only.has(b.topic.code) && !codes.slice(3, 6).includes(b.topic.code)).every((b) => b.component === undefined))
+  assert.ok(workOf(plan).filter((b) => b.subjectCode === '9702').every((b) => b.component === undefined))
+
+  // The taper before Paper 1: on its eve Business holds review only, and the plan as a whole is not review-only yet.
+  const oct4 = plan.days.find((d) => d.date === '2026-10-04')!
+  const busOnEve = oct4.blocks.filter((b) => b.subjectCode === '9609' && WORK_KINDS.has(b.kind))
+  assert.ok(busOnEve.length > 0 && busOnEve.every((b) => b.taskType === 'review'), `review only on the eve of Paper 1 (${busOnEve.map((b) => b.taskType).join(',')})`)
+  assert.equal(oct4.kind, 'study', 'the eve of a first paper is not the plan\'s review-only run-in')
+  assert.ok(plan.days.filter((d) => d.date > '2026-10-05' && d.kind === 'review').length >= 1, 'the run-in to the last papers is')
+
+  // Timed papers are named for the sitting they practise, at that sitting's length, and never after it.
+  const timed = tasksOf(plan).filter((b) => b.subjectCode === '9609' && b.taskType === 'timed_paper')
+  assert.ok(timed.length >= 1, 'Business sits at least one timed paper')
+  for (const t of timed) {
+    assert.match(t.label, /^Timed Business Paper [12]/, t.label)
+    assert.ok(t.component === 'Paper 1' || t.component === 'Paper 2')
+    if (t.component === 'Paper 1') {
+      assert.ok(t.date < '2026-10-05')
+      assert.ok(t.minutes <= 75, `a Paper 1 sitting is at most 75 min (${t.minutes})`)
+    }
+  }
+  // The feasibility row carries both papers, nearest first.
+  const feas = plan.feasibility!.subjects.find((s) => s.code === '9609')!
+  assert.deepEqual(feas.papers, [
+    { component: 'Paper 1', examDate: '2026-10-05', daysToPaper: 19 },
+    { component: 'Paper 2', examDate: '2026-10-08', daysToPaper: 22 },
+  ])
+  assert.equal(feas.daysToPaper, 19)
+  assert.equal(plan.feasibility!.subjects.find((s) => s.code === '9702')!.papers, undefined)
+  // The validator catches a task for a paper that has been sat.
+  const late = plan.days.find((d) => d.date === '2026-10-06' && d.blocks.some((b) => b.subjectCode === '9609' && WORK_KINDS.has(b.kind)))
+  if (late) {
+    const broken = { ...plan, days: plan.days.map((d) => (d === late ? { ...d, blocks: d.blocks.map((b) => (b.subjectCode === '9609' && WORK_KINDS.has(b.kind) ? { ...b, component: 'Paper 1' } : b)) } : d)) }
+    assert.ok(validateRoadmap(broken).some((e) => /is for Paper 1 but falls on or after it/.test(e)))
+  }
+  // Calm copy throughout.
+  for (const d of plan.days) assert.ok(calm(d.focus), d.focus)
 }
 
 console.log('build-study-plan.test.ts: ok')

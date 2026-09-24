@@ -29,7 +29,7 @@ import { ContinueWork } from '@/components/dashboard/ContinueWork'
 import { ActiveSubjects } from '@/components/dashboard/ActiveSubjects'
 import { NewUserHome } from '@/components/dashboard/NewUserHome'
 import { NextActionCard } from '@/components/dashboard/NextActionCard'
-import { TodayPlanCard } from '@/components/dashboard/TodayPlanCard'
+import { TodayPlanCard, roadmapNextTask } from '@/components/dashboard/TodayPlanCard'
 import { loadPlanEvidence, loadStudyPlan } from '@/lib/plan/study-plan-service'
 import { MarksLeakingStrip } from '@/components/dashboard/MarksLeakingStrip'
 import { DashboardSection } from '@/components/dashboard/DashboardSection'
@@ -226,9 +226,14 @@ export default async function DashboardPage() {
   // Recall-only students have real due work even with zero marks — show the
   // returning home (Due card) instead of the first-mark funnel.
   const showReturningHome = !isEmpty || reviewItems.length > 0
-  const nextAction = buildNextAction({ reviewItems, recommendations })
-  // Extra due items beyond the one promoted into nextAction.
-  const moreReview = reviewItems.slice(1, 4)
+  // The roadmap's task for today, when there is one, is the page's one next
+  // thing: the plan already weighed the review queue, so the review card
+  // would only offer a second answer to the same question.
+  const roadmapTask = roadmapNextTask(savedPlan, examDate, planEvidence)
+  const nextAction = buildNextAction({ reviewItems, recommendations, roadmapTask })
+  const roadmapLeads = nextAction.kind === 'roadmap_task'
+  // Extra due items beyond the one promoted into nextAction (none is, when the roadmap leads).
+  const moreReview = nextAction.kind === 'review' ? reviewItems.slice(1, 4) : reviewItems.slice(0, 3)
 
   const { data: subRow } = await supabase
     .from('user_subscriptions')
@@ -261,7 +266,17 @@ export default async function DashboardPage() {
         <DashboardEntry>
           {!showReturningHome ? (
             <>
-              {/* DB-01: first-mark CTA before any billing/approaching chrome. */}
+              {/* A student with a plan and a task for today opens on it: the
+                  plan's first task IS this student's first mark, so the hero
+                  leads and DB-01's first-mark desk sits under it. Without a
+                  plan (or with nothing to do today) DB-01 keeps the top of
+                  the page and the roadmap offer sits under it, exam date or
+                  not — the wizard collects the dates. */}
+              {roadmapLeads ? (
+                <div className="mb-6 px-4 sm:px-0">
+                  <TodayPlanCard saved={savedPlan} examDate={examDate} evidence={planEvidence} />
+                </div>
+              ) : null}
               <NewUserHome
                 subjects={profileSubjectChips}
                 subjectLabel={continueSubjectLabel}
@@ -270,13 +285,11 @@ export default async function DashboardPage() {
                 firstName={greetingName}
                 firstMarkHref={buildFirstMarkHref(primaryCode)}
               />
-              {/* The student the planner was built for has not marked yet.
-                  DB-01's first-mark CTA keeps the top of the page; the
-                  roadmap offer (or the plan's hero) sits under it, exam date
-                  or not — the wizard collects the dates. */}
-              <div className="mt-6 px-4 sm:px-0">
-                <TodayPlanCard saved={savedPlan} examDate={examDate} evidence={planEvidence} />
-              </div>
+              {!roadmapLeads ? (
+                <div className="mt-6 px-4 sm:px-0">
+                  <TodayPlanCard saved={savedPlan} examDate={examDate} evidence={planEvidence} />
+                </div>
+              ) : null}
               <BillingLimitBanner className="mb-6 mt-6" />
               {showMax ? (
                 <div className="mt-6 space-y-4 px-4 sm:px-0">
@@ -293,8 +306,11 @@ export default async function DashboardPage() {
                 weeklyAttempts={weeklyCount}
                 hideMarkCta
               />
-              {/* DB-02: one server-computed next action, then weekly status. */}
-              <NextActionCard action={nextAction} />
+              {/* DB-02: one server-computed next action, then weekly status.
+                  When the roadmap supplies it, the plan's hero card is that
+                  action (Start, Why this?, then the rest of today), so the
+                  separate slip is not rendered: one next thing, not two. */}
+              {roadmapLeads ? null : <NextActionCard action={nextAction} />}
               <TodayPlanCard saved={savedPlan} examDate={examDate} evidence={planEvidence} />
               {primaryCode ? (
                 <MarksLeakingStrip

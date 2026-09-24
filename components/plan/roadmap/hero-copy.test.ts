@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { NEXT_IN_SYLLABUS } from '@/lib/plan/modes'
-import { normaliseDay, type RoadmapDay, type RoadmapTask } from '@/lib/plan/roadmap-view'
+import { DAY_ONE_LINE, normaliseDay, type RoadmapDay, type RoadmapTask } from '@/lib/plan/roadmap-view'
 import { FORBIDDEN_NUDGE_WORDS } from '@/lib/plan/roadmap-types'
 import { countdownLine, firstTaskOn, heroChips, heroCopy, taskSubtitle } from '@/components/plan/roadmap/hero-copy'
 import { nowMinuteInZone } from '@/components/plan/roadmap/zone-clock'
@@ -41,9 +41,22 @@ assert.deepEqual(
       { type: 'review_due', source: 'plan', confidence: 'high', explanation: 'x' },
     ],
   }),
-  ['Your weak area', 'Set in 7 of 9 indexed papers'],
+  ['Your weak area', 'In 7 of 9 indexed past papers'],
   'at most two, the specific ones first'
 )
+{
+  // The loop copies the topic's evidence onto every step; the self-rating chip belongs to the diagnostic alone.
+  const why = [
+    { type: 'self_rated' as const, source: 'self_report' as const, confidence: 'low' as const, explanation: 'x' },
+    { type: 'frequency' as const, source: 'indexed_papers' as const, confidence: 'medium' as const, explanation: 'x', stat: { n: 9, of: 9 } },
+  ]
+  assert.deepEqual(heroChips({ why, taskType: 'concept' }), ['In 9 of 9 indexed past papers'], 'a concept task drops the self-rating chip')
+  assert.deepEqual(heroChips({ why, taskType: 'diagnostic' }), ['From your self-rating', 'In 9 of 9 indexed past papers'], 'the diagnostic keeps it')
+  assert.deepEqual(heroChips({ why: [why[0]!], taskType: 'concept' }), [NEXT_IN_SYLLABUS], 'with nothing specific left it reads as the plain line, not a stale chip')
+  for (const type of ['concept', 'recall', 'worked_example', 'question', 'timed_set', 'review'] as const) {
+    assert.ok(!heroChips({ why, taskType: type }).some((c) => /checks where you stand/i.test(c)), `${type} never says "Checks where you stand"`)
+  }
+}
 
 assert.equal(taskSubtitle(t1), 'Mathematics · Differentiation')
 assert.equal(taskSubtitle({ subjectLabel: 'Physics' }), 'Physics')
@@ -53,26 +66,29 @@ assert.equal(taskSubtitle({}), undefined)
 
 {
   const c = heroCopy({ kind: 'task', task: today.blocks[0]!, minutes: 25, shortened: false }, ctx)
-  assert.equal(c.eyebrow, "Today's best use of 25 minutes")
+  assert.equal(c.eyebrow, 'Up next · Past-paper question · 25 min')
   assert.equal(c.title, 'Complete one chain-rule question and check the M1 step.')
   assert.equal(c.subtitle, 'Mathematics · Differentiation')
 }
 {
   const c = heroCopy({ kind: 'task', task: today.blocks[0]!, minutes: 12, shortened: true }, ctx)
-  assert.equal(c.eyebrow, "Today's best use of 12 minutes — shortened to fit")
+  assert.equal(c.eyebrow, 'Up next · Past-paper question · 12 min · shortened to fit')
 }
 {
-  // N is what today can still hold; a first task shorter than that says so rather than underselling the day.
+  // The day's total is the timeline header's, not the eyebrow's: the same words whatever today still holds.
   const c = heroCopy({ kind: 'task', task: today.blocks[0]!, minutes: 10, shortened: false, dayMinutes: 60 }, ctx)
-  assert.equal(c.eyebrow, "Today's best use of 60 minutes — starting with this 10-minute past-paper question")
-  const same = heroCopy({ kind: 'task', task: today.blocks[0]!, minutes: 25, shortened: false, dayMinutes: 25 }, ctx)
-  assert.equal(same.eyebrow, "Today's best use of 25 minutes")
+  assert.equal(c.eyebrow, 'Up next · Past-paper question · 10 min')
+  assert.ok(!/60/.test(c.eyebrow), 'the day total is not in the eyebrow')
+  assert.ok(!/best use/i.test(c.eyebrow), 'no superlative')
+  const diag = heroCopy({ kind: 'task', task: { ...today.blocks[0]!, taskType: 'diagnostic' }, minutes: 10, shortened: false }, ctx)
+  assert.equal(diag.eyebrow, 'Up next · Quick diagnostic · 10 min')
 }
 {
   const c = heroCopy({ kind: 'done' }, ctx)
   assert.equal(c.title, "Today is done. You've studied on 2 of the last 3 days.")
-  const first = heroCopy({ kind: 'done' }, { ...ctx, studiedLine: 'Day one. Everything starts today.' })
-  assert.equal(first.title, 'Today is done. A good first day.')
+  const first = heroCopy({ kind: 'done' }, { ...ctx, studiedLine: DAY_ONE_LINE })
+  assert.equal(first.title, 'Today is done.', 'day one: the fact, not a judgement')
+  assert.equal(first.note, 'Tomorrow starts with Open with the M1 step.', 'the tomorrow note stays on day one')
   assert.equal(c.note, 'Tomorrow starts with Open with the M1 step.')
 }
 {

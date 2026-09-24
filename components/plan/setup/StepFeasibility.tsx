@@ -4,8 +4,14 @@
  * Step 5 — does the work fit the time? The assembled request goes to
  * POST /api/plan with `preview: true` on mount and after every edit here
  * (debounced, the previous request aborted), and the answer is shown as a
- * FeasibilityCard with the engine's options as buttons. No build happens
- * until the student says so.
+ * FeasibilityCard. No build happens until the student says so.
+ *
+ * There is one way to build: the nav's primary button. The engine's other
+ * options — more time, one subject first, a different style — are offered
+ * as "change the plan first" buttons, and only when there is more than the
+ * one answer; a question with a single answer is not a question, and a
+ * "keep it" button beside "Build" made a stressed student wonder what the
+ * other answers were.
  *
  * Offline is a state, not an error: the step says it will build when the
  * connection is back and listens for it. While a preview or a build is in
@@ -26,11 +32,21 @@ export const LAYING_OUT_LINE = 'Laying out your days…'
 const PREVIEW_DEBOUNCE_MS = 400
 const GENERIC_ERROR = "We couldn't check the plan just now. Try again in a moment."
 
-const OPTION_LABEL: Record<FeasibilityOption, string> = {
-  keep: 'Keep it realistic',
-  add_time: 'Add more study time',
-  prioritise_subject: 'Prioritise one subject',
-  change_mode: 'Change roadmap mode',
+export const OPTION_LABEL: Record<Exclude<FeasibilityOption, 'keep'>, string> = {
+  add_time: 'Add 30 min a day',
+  prioritise_subject: 'Put one subject first',
+  change_mode: 'Choose a different style',
+}
+export const OPTIONS_LEGEND = 'Or change the plan first'
+export const HAPPY_LINE = 'Happy with it? Build it as it is.'
+const FALLBACK_OPTIONS: FeasibilityOption[] = ['add_time', 'prioritise_subject', 'change_mode']
+
+type Alternative = Exclude<FeasibilityOption, 'keep'>
+
+/** The report's options minus the one the nav already owns; nothing to show when only "keep" was offered. */
+export function alternativesFor(options: FeasibilityOption[] | undefined): Alternative[] {
+  const source = options?.length ? options : FALLBACK_OPTIONS
+  return source.filter((o): o is Alternative => o !== 'keep')
 }
 
 type PreviewState =
@@ -46,7 +62,6 @@ type Props = {
   subjectOptions: SetupSubjectOption[]
   building: boolean
   buildError: string
-  onBuild: () => void
   onOption: (option: FeasibilityOption) => void
 }
 
@@ -69,7 +84,7 @@ function isOffline(): boolean {
   return typeof navigator !== 'undefined' && navigator.onLine === false
 }
 
-export function StepFeasibility({ state, dispatch, request, subjectOptions, building, buildError, onBuild, onOption }: Props) {
+export function StepFeasibility({ state, dispatch, request, subjectOptions, building, buildError, onOption }: Props) {
   const [preview, setPreview] = useState<PreviewState>({ status: 'loading', report: null })
   const [pickingSubject, setPickingSubject] = useState(false)
   // Re-run when the connection returns, and after a failed attempt on request.
@@ -127,16 +142,12 @@ export function StepFeasibility({ state, dispatch, request, subjectOptions, buil
   }, [requestKey, attempt])
 
   const report = preview.report
-  const options: FeasibilityOption[] = report?.options?.length ? report.options : ['keep', 'add_time', 'prioritise_subject', 'change_mode']
+  const alternatives = alternativesFor(report?.options)
   const busy = building || preview.status === 'loading'
 
-  function choose(option: FeasibilityOption) {
+  function choose(option: Alternative) {
     if (option === 'prioritise_subject') {
       setPickingSubject((v) => !v)
-      return
-    }
-    if (option === 'keep') {
-      onBuild()
       return
     }
     onOption(option)
@@ -175,21 +186,21 @@ export function StepFeasibility({ state, dispatch, request, subjectOptions, buil
         </>
       )}
 
-      {report && !building ? (
+      {report && !building && alternatives.length > 0 ? (
         <fieldset className="ms-plan-fieldset mt-6">
-          <legend className="label-overline">What would you like to do?</legend>
+          <legend className="label-overline">{OPTIONS_LEGEND}</legend>
           <div className="ms-rm-setup-options">
-            {options.map((o) => (
+            {alternatives.map((o) => (
               <button
                 key={o}
                 type="button"
-                className={`ms-rm-setup-option ${o === 'keep' ? 'is-primary' : ''} ${o === 'prioritise_subject' && pickingSubject ? 'is-open' : ''}`.trim()}
+                className={`ms-rm-setup-option ${o === 'prioritise_subject' && pickingSubject ? 'is-open' : ''}`.trim()}
                 disabled={busy}
                 aria-expanded={o === 'prioritise_subject' ? pickingSubject : undefined}
                 onClick={() => choose(o)}
               >
                 {OPTION_LABEL[o]}
-                {o === 'add_time' ? <span className="ms-rm-setup-option__sub">+30 min on weekdays and weekends</span> : null}
+                {o === 'add_time' ? <span className="ms-rm-setup-option__sub">on weekdays and weekends</span> : null}
                 {o === 'prioritise_subject' && state.prioritySubject ? (
                   <span className="ms-rm-setup-option__sub">
                     {subjectOptions.find((s) => s.code === state.prioritySubject)?.label ?? state.prioritySubject} first
@@ -200,7 +211,7 @@ export function StepFeasibility({ state, dispatch, request, subjectOptions, buil
           </div>
           {pickingSubject ? (
             <div className="ms-rm-setup-priority" role="group" aria-label="Subject to prioritise">
-              <p className="text-caption mb-2">Its must-cover topics are admitted before the others&apos;.</p>
+              <p className="text-caption mb-2">Its priority topics are placed before the other subjects&apos;.</p>
               <div className="ms-rm-setup-chips">
                 {state.subjects.map((code) => {
                   const on = state.prioritySubject === code
@@ -222,6 +233,8 @@ export function StepFeasibility({ state, dispatch, request, subjectOptions, buil
           ) : null}
         </fieldset>
       ) : null}
+
+      {report && !building && report.state === 'on_track' ? <p className="ms-rm-setup-happy">{HAPPY_LINE}</p> : null}
 
       {buildError ? <ErrorBox message={buildError} /> : null}
     </div>

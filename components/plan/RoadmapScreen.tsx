@@ -7,9 +7,11 @@ import { Sheet } from '@/components/ui/Sheet'
 import { ErrorBox } from '@/components/AuthFormBits'
 import { trackFunnelEvent } from '@/lib/analytics/funnel'
 import { formatPlanDate, todayInZone, type DoneDays, type HydratedPlan } from '@/lib/plan/plan-view'
-import { availableFeels } from '@/lib/plan/task-actions'
+import { availableFeels, carryOptions } from '@/lib/plan/task-actions'
 import type { CheckinFeel, ReplanDiff, TaskAction, TaskState, TaskStateEntry } from '@/lib/plan/roadmap-types'
 import {
+  findArchivedTask,
+  findTask,
   heroFor,
   nearestExam,
   normaliseDay,
@@ -45,6 +47,7 @@ import { TaskDetailSheet } from '@/components/plan/roadmap/TaskDetailSheet'
 import { WhyThisSheet } from '@/components/plan/roadmap/WhyThisSheet'
 import { TaskCheckinSheet, type RatingKind } from '@/components/plan/roadmap/TaskCheckinSheet'
 import { ReplanSheet, type ReplanSheetMode } from '@/components/plan/roadmap/ReplanSheet'
+import { CarryOverSheet } from '@/components/plan/roadmap/CarryOverSheet'
 
 export type RoadmapInitial = {
   plan: HydratedPlan
@@ -68,6 +71,8 @@ type Props = {
   openTaskId?: string | null
   /** ?why=1 with ?task: open the Why sheet instead. */
   openWhy?: boolean
+  /** ?history=1 (the check-in email): the Roadmap tab with the days before today unfolded. */
+  openHistory?: boolean
   onAdjust: () => void
 }
 
@@ -108,6 +113,7 @@ const OPTIMISTIC: Partial<Record<TaskAction, TaskStateEntry['status']>> = {
   complete: 'done',
   skip: 'skipped',
   defer: 'deferred',
+  carry: 'deferred',
   shorten: 'shortened',
 }
 
@@ -124,7 +130,7 @@ const OPTIMISTIC: Partial<Record<TaskAction, TaskStateEntry['status']>> = {
  * streak or a count of what did not happen; the chip and the studied-days
  * line come from roadmap-view and say only what is true.
  */
-export function RoadmapScreen({ initial, evidence: evidenceList, firstName, profileExamDate = null, openTaskId = null, openWhy = false, onAdjust }: Props) {
+export function RoadmapScreen({ initial, evidence: evidenceList, firstName, profileExamDate = null, openTaskId = null, openWhy = false, openHistory = false, onAdjust }: Props) {
   const [plan, setPlan] = useState<RoadmapPlan>(() => normaliseRoadmap(initial.plan))
   const [done, setDone] = useState<DoneDays>(initial.done)
   const [taskState, setTaskState] = useState<TaskState>(initial.taskState)
@@ -144,11 +150,12 @@ export function RoadmapScreen({ initial, evidence: evidenceList, firstName, prof
     return () => window.clearInterval(id)
   }, [tz])
 
-  const [tab, setTab] = useState<Tab>('today')
+  const [tab, setTab] = useState<Tab>(openHistory ? 'roadmap' : 'today')
   useEffect(() => {
+    if (openHistory) return
     const saved = readSession(TAB_KEY)
     if (saved === 'roadmap' || saved === 'today') setTab(saved)
-  }, [])
+  }, [openHistory])
   const chooseTab = (t: Tab) => {
     setTab(t)
     try {
@@ -161,6 +168,10 @@ export function RoadmapScreen({ initial, evidence: evidenceList, firstName, prof
   const [detail, setDetail] = useState<RoadmapTask | null>(null)
   const [why, setWhy] = useState<RoadmapTask | null>(null)
   const [checkin, setCheckin] = useState<RoadmapTask | null>(null)
+  // One task, or every not-done task of a past day at once.
+  const [carry, setCarry] = useState<RoadmapTask[] | null>(null)
+  // Whether the Roadmap tab shows the days before today; a rollover's sheet and the email's link open it.
+  const [historyOpen, setHistoryOpen] = useState(openHistory)
   const [askRatings, setAskRatings] = useState(false)
   const [replan, setReplan] = useState<{ mode: ReplanSheetMode; diff: ReplanDiff | null } | null>(null)
   const [resetOpen, setResetOpen] = useState(false)
@@ -216,9 +227,13 @@ export function RoadmapScreen({ initial, evidence: evidenceList, firstName, prof
       const hasDiff = Boolean(m.diff && m.diff.changes.length > 0)
       // The server says where the "Adjusted today" mark now stands (an undo clears it); an older server leaves it to the diff.
       const knowsMarks = m.lastDiffDate !== undefined
+      // A day kept from an earlier build comes back marked; its tasks changed only in state, so it is never spliced into this plan's days.
+      const incoming = mutationDays(m)
+        .filter((d) => !(d as { archived?: boolean }).archived)
+        .map(normaliseDay)
       setPlan((prev) => ({
         ...prev,
-        days: spliceDays(prev.days, mutationDays(m).map(normaliseDay)),
+        days: spliceDays(prev.days, incoming),
         revision: m.revision,
         lastDiffDate: knowsMarks ? (m.lastDiffDate ?? undefined) : hasDiff ? m.date : prev.lastDiffDate,
         lastDiff: knowsMarks ? (m.lastDiff ?? undefined) : hasDiff && m.diff ? m.diff : prev.lastDiff,
@@ -291,7 +306,7 @@ export function RoadmapScreen({ initial, evidence: evidenceList, firstName, prof
   // --- actions ------------------------------------------------------------------------
 
   const act = useCallback(
-    async (task: RoadmapTask, action: TaskAction, extra: { minutes?: number; feel?: CheckinFeel; actualMinutes?: number } = {}) => {
+    async (task: RoadmapTask, action: TaskAction, extra: { minutes?: number; feel?: CheckinFeel; actualMinutes?: number; toDate?: string } = {}) => {
       setError('')
       const before = taskState
       const status = OPTIMISTIC[action]
@@ -336,6 +351,51 @@ export function RoadmapScreen({ initial, evidence: evidenceList, firstName, prof
       void act(task, 'start')
     },
     [act]
+  )
+
+  const openCarry = useCallback((task: RoadmapTask) => {
+    setDetail(null)
+    setCarry([task])
+  }, [])
+
+  const openCarryAll = useCallback((tasks: RoadmapTask[]) => {
+    if (tasks.length === 0) return
+    setDetail(null)
+    setCarry(tasks)
+  }, [])
+
+  // Several tasks go one PATCH at a time, each with the revision the last one returned, so no request is stale
+  // and a day's worth of carry-overs never races itself. The diff sheet is shown for a single task only.
+  const pickCarry = useCallback(
+    async (date: string) => {
+      if (!carry || carry.length === 0) return
+      const tasks = carry
+      setCarry(null)
+      if (tasks.length === 1) {
+        void act(tasks[0]!, 'carry', { toDate: date })
+        return
+      }
+      setError('')
+      setBusyId('carry')
+      let rev = revision
+      try {
+        for (const task of tasks) {
+          setTaskState((s) => ({ ...s, [task.id]: { ...s[task.id], status: 'deferred', at: new Date().toISOString() } }))
+          const outcome = await taskAction({ taskId: task.id, action: 'carry', revision: rev, toDate: date }, nowMinute)
+          if (outcome.kind === 'ok') {
+            if (outcome.refreshed) applyPayload(outcome.refreshed)
+            applyMutation(outcome.data, false)
+            rev = outcome.data.revision
+            continue
+          }
+          if (!settle(outcome, false)) break
+          if (outcome.kind === 'queued') break
+        }
+      } finally {
+        setBusyId(null)
+      }
+    },
+    [carry, act, revision, nowMinute, applyPayload, applyMutation, settle]
   )
 
   const openWhySheet = useCallback((task: RoadmapTask) => {
@@ -428,6 +488,12 @@ export function RoadmapScreen({ initial, evidence: evidenceList, firstName, prof
   const copy = today && hero ? heroCopy(hero, { plan, day: today, todayIso, studiedLine }) : null
   const heroTask = hero?.kind === 'task' ? hero.task : null
   const detailStanding = detail ? taskStanding(detail, taskState, evidence) : 'todo'
+  // A task on a later day can be started, pinned, swapped or moved, but not ticked before its day; one from an earlier build can only be carried forward.
+  const detailFound = detail ? findTask(plan, detail.id) : null
+  const detailArchived = Boolean(detail && !detailFound && findArchivedTask(plan, detail.id))
+  const detailDate = detail ? (detailFound?.day.date ?? findArchivedTask(plan, detail.id)?.day.date ?? todayIso) : todayIso
+  const carriedFromDate = detail?.carriedFrom ? formatPlanDate(detail.carriedFrom.slice(0, 10)) : null
+  const carryChoices = carry?.[0] ? carryOptions(plan, taskState, carry[0], todayIso, nowMinute) : []
 
   return (
     <div className="ms-plan ms-rm">
@@ -549,6 +615,7 @@ export function RoadmapScreen({ initial, evidence: evidenceList, firstName, prof
                 state={taskState}
                 evidence={evidence}
                 todayIso={todayIso}
+                nowMinute={nowMinute}
                 onOpen={setDetail}
                 onDone={complete}
                 busyId={busyId}
@@ -570,6 +637,10 @@ export function RoadmapScreen({ initial, evidence: evidenceList, firstName, prof
           onAdjust={onAdjust}
           onOpen={setDetail}
           onDone={complete}
+          onCarry={openCarry}
+          onCarryAll={openCarryAll}
+          showPast={historyOpen}
+          onShowPastChange={setHistoryOpen}
           busyId={busyId}
         />
       )}
@@ -581,6 +652,11 @@ export function RoadmapScreen({ initial, evidence: evidenceList, firstName, prof
         minutes={detail ? taskMinutes(detail, taskState) : 0}
         open={Boolean(detail)}
         busy={Boolean(detail && busyId === detail.id)}
+        allowDone={detailDate <= todayIso && !detailArchived}
+        past={detailDate < todayIso}
+        archived={detailArchived}
+        carriedFromDate={carriedFromDate}
+        onCarry={openCarry}
         onClose={() => setDetail(null)}
         onStart={start}
         onWhy={openWhySheet}
@@ -612,9 +688,24 @@ export function RoadmapScreen({ initial, evidence: evidenceList, firstName, prof
         busy={busyId === 'replan' || busyId === 'undo'}
         canUndo={canUndo}
         syncNote={syncNote}
+        todayIso={todayIso}
         onClose={() => setReplan(null)}
         onConfirm={confirmReplan}
         onUndo={undo}
+        onHistory={() => {
+          setReplan(null)
+          setHistoryOpen(true)
+          chooseTab('roadmap')
+        }}
+      />
+      <CarryOverSheet
+        tasks={carry ?? []}
+        options={carryChoices}
+        open={Boolean(carry)}
+        busy={Boolean(carry && (busyId === 'carry' || carry.some((t) => t.id === busyId)))}
+        todayIso={todayIso}
+        onClose={() => setCarry(null)}
+        onPick={pickCarry}
       />
       <ResetSheet open={resetOpen} onClose={() => setResetOpen(false)} onRebuild={onAdjust} />
     </div>

@@ -84,3 +84,9 @@ export function paperMatchesComponent(leafPaper: string | null | undefined, comp
   if (leaf.length === 0 || chosen.length === 0) return null
   return leaf.some((p) => chosen.includes(p))
 }
+
+/** The paper a timed-paper slot's label names ("9706 Paper 1 · Multiple choice", "9709 timed paper 2"), as its digit; null when it names none. */
+export function slotPaperDigit(label: string): string | null {
+  const m = /\bpaper\s*(\d)\b/i.exec(label)
+  return m ? m[1]! : null
+}

@@ -28,7 +28,8 @@ export const dynamic = 'force-dynamic'
 
 /**
  * PATCH /api/plan/task — one action on one task: start, complete, shorten,
- * skip, defer, swap, check in, pin, unpin (TaskActionRequest).
+ * skip, defer, carry (to a chosen day), swap, check in, pin, unpin
+ * (TaskActionRequest).
  *
  * The body carries the plan revision the client is looking at; a mismatch
  * is a 409 { error: 'stale', revision } so the client refetches instead of
@@ -44,7 +45,8 @@ export const dynamic = 'force-dynamic'
  * stale before their first tap.
  */
 
-const ACTIONS: ReadonlySet<TaskAction> = new Set(['start', 'complete', 'shorten', 'skip', 'defer', 'swap', 'checkin', 'pin', 'unpin'])
+const ACTIONS: ReadonlySet<TaskAction> = new Set(['start', 'complete', 'shorten', 'skip', 'defer', 'carry', 'swap', 'checkin', 'pin', 'unpin'])
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
 const MAX_REASON = 200
 const MAX_MINUTES = 600
 
@@ -55,6 +57,7 @@ const EVENT_FOR_ACTION: Partial<Record<TaskAction, RoadmapEventType>> = {
   swap: 'task_swapped',
   shorten: 'task_shortened',
   defer: 'task_deferred',
+  carry: 'task_carried',
   checkin: 'task_checkin',
 }
 
@@ -89,6 +92,11 @@ function parseBody(body: unknown): { ok: true; value: ParsedTask } | { ok: false
     if (typeof b.reason !== 'string') return { ok: false, error: 'Reason should be text.' }
     req.reason = b.reason.trim().slice(0, MAX_REASON)
   }
+  if (b.toDate !== undefined) {
+    if (typeof b.toDate !== 'string' || !ISO_DATE.test(b.toDate)) return { ok: false, error: 'Which day?' }
+    req.toDate = b.toDate
+  }
+  if (req.action === 'carry' && !req.toDate) return { ok: false, error: 'Which day?' }
   let nowMinute: number | undefined
   if (b.nowMinute !== undefined) {
     const n = Number(b.nowMinute)

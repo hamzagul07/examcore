@@ -9,13 +9,17 @@
  * Copy rules it enforces: minutes are what the clock allows, never what the
  * plan wished; a task with no evidence beyond the syllabus says "Next in the
  * syllabus" rather than dressing that up as a chip; a finished day states a
- * fact about the last week and nothing about a streak.
+ * fact about the last week and nothing about a streak. The eyebrow names
+ * the task ahead and its length only ("Up next · Quick diagnostic · 10
+ * min"): the day's total lives in the timeline header, once, and "best
+ * use" was a superlative the engine cannot back.
  */
 
 import { formatPlanDate } from '@/lib/plan/plan-view'
 import { NEXT_IN_SYLLABUS } from '@/lib/plan/modes'
 import { TASK_TYPE_LABEL } from '@/lib/plan/roadmap-types'
 import {
+  DAY_ONE_LINE,
   evidenceChip,
   formatClock,
   workTasks,
@@ -34,18 +38,24 @@ export type HeroCopy = {
   note?: string
 }
 
-/** Up to two chips; a task that is only "on the syllabus" gets the plain line instead. */
-export function heroChips(task: Pick<RoadmapTask, 'why'>): string[] {
+/**
+ * Up to two chips; a task that is only "on the syllabus" gets the plain line
+ * instead. The loop copies the topic's evidence onto every step, so the
+ * self-rating item is shown only on the diagnostic — the one step that
+ * actually checks it. A lesson read never claims to check where you stand.
+ */
+export function heroChips(task: Pick<RoadmapTask, 'why'> & Partial<Pick<RoadmapTask, 'taskType'>>): string[] {
   const why = task.why ?? []
   if (why.length === 0) return []
-  const specific = why.filter((w) => w.type !== 'on_syllabus')
+  const specific = why.filter((w) => w.type !== 'on_syllabus' && (w.type !== 'self_rated' || task.taskType === 'diagnostic'))
   if (specific.length === 0) return [NEXT_IN_SYLLABUS]
   return specific.slice(0, 2).map(evidenceChip)
 }
 
 /** "Mathematics · Differentiation" — whichever parts the task has. */
-export function taskSubtitle(task: Pick<RoadmapTask, 'subjectLabel' | 'topic'>): string | undefined {
-  const parts = [task.subjectLabel, task.topic?.name].filter((p): p is string => Boolean(p))
+export function taskSubtitle(task: Pick<RoadmapTask, 'subjectLabel' | 'topic'> & Partial<Pick<RoadmapTask, 'component'>>): string | undefined {
+  // "Business · Paper 1 · Break-even" when the subject sits several papers and this task is for one of them.
+  const parts = [task.subjectLabel, task.component, task.topic?.name].filter((p): p is string => Boolean(p))
   return parts.length ? parts.join(' · ') : undefined
 }
 
@@ -74,11 +84,9 @@ export function heroCopy(
   const { plan, day, todayIso, studiedLine } = ctx
   switch (hero.kind) {
     case 'task': {
-      // N is what today can still hold, not the first task's length; when the first task is shorter, say so.
-      const dayMinutes = hero.dayMinutes ?? hero.minutes
-      const opener = hero.minutes < dayMinutes ? ` — starting with this ${hero.minutes}-minute ${TASK_TYPE_LABEL[hero.task.taskType].toLowerCase()}` : ''
+      // The task and its minutes only; the day's total is the timeline header's, so it is printed once and stays live.
       return {
-        eyebrow: `Today's best use of ${dayMinutes} minutes${hero.shortened ? ' — shortened to fit' : opener}`,
+        eyebrow: `Up next · ${TASK_TYPE_LABEL[hero.task.taskType]} · ${hero.minutes} min${hero.shortened ? ' · shortened to fit' : ''}`,
         title: hero.task.objective,
         subtitle: taskSubtitle(hero.task),
         chips: heroChips(hero.task),
@@ -90,8 +98,9 @@ export function heroCopy(
       return {
         eyebrow: 'Today',
         // On day one the studied line says everything starts today, which is
-        // no longer true once it is done.
-        title: `Today is done. ${studiedLine.startsWith('Day one.') ? 'A good first day.' : studiedLine}`,
+        // no longer true once it is done; there is no week to report yet, so
+        // the title states the one fact it has.
+        title: studiedLine === DAY_ONE_LINE ? 'Today is done.' : `Today is done. ${studiedLine}`,
         chips: [],
         note: tomorrow && first ? `${nextDayLabel(tomorrow.date, todayIso)} starts with ${inline(first.objective)}.` : undefined,
       }

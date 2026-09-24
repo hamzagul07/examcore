@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { formatMinutes, formatPlanDate } from '@/lib/plan/plan-view'
 import { MIN_BUFFER_MINUTES, type TaskState } from '@/lib/plan/roadmap-types'
-import { minuteOfDay, taskMinutes, taskStanding, type RoadmapDay, type RoadmapTask } from '@/lib/plan/roadmap-view'
+import { minuteOfDay, remainingToday, taskMinutes, taskStanding, type RoadmapDay, type RoadmapTask } from '@/lib/plan/roadmap-view'
 import { TaskCard } from '@/components/plan/roadmap/TaskCard'
 
 const EXPANDED_WORK_TASKS = 4
@@ -18,6 +18,8 @@ type Props = {
   busyId?: string | null
   /** The day header's first word: "Today", "Tomorrow", or the date. */
   heading?: string
+  /** Minutes since midnight in the plan's zone. With it, today's header says how much is still to do. */
+  nowMinute?: number
 }
 
 type Row =
@@ -30,14 +32,19 @@ type Row =
  * light rows, commitments in their time position, the buffer as a number in
  * the header rather than a block (time in hand is not a task). More than
  * four work tasks collapse under "and n more": the card should fit a phone
- * screen with the hero above it.
+ * screen with the hero above it. The day's figure lives here, once: the
+ * planned total, and on today — once something is ticked — what is left,
+ * capped by the clock, so the hero never has to repeat it.
  */
-export function DayTimeline({ day, state, evidence, todayIso, onOpen, onDone, busyId = null, heading }: Props) {
+export function DayTimeline({ day, state, evidence, todayIso, onOpen, onDone, busyId = null, heading, nowMinute }: Props) {
   const [expanded, setExpanded] = useState(false)
 
   const withTime = day.blocks.some((b) => Boolean(b.startsAt))
   const bufferBlock = day.blocks.find((b) => b.kind === 'buffer')
   const inHand = Math.max(day.bufferMinutes, bufferBlock?.minutes ?? 0)
+  const isToday = day.date === todayIso
+  const left = isToday && nowMinute !== undefined ? remainingToday(day, state, evidence, nowMinute) : null
+  const showLeft = left !== null && left > 0 && left < day.workMinutes
 
   const rows: Row[] = []
   let workSeen = 0
@@ -82,6 +89,7 @@ export function DayTimeline({ day, state, evidence, todayIso, onOpen, onDone, bu
         <span className="ms-rm-day__date">{label}</span>
         {heading ? <span className="ms-rm-day__sub">{formatPlanDate(day.date)}</span> : null}
         {day.workMinutes > 0 ? <span className="ms-rm-day__mins">{formatMinutes(day.workMinutes)}</span> : null}
+        {showLeft ? <span className="ms-rm-day__left">{left} min left today</span> : null}
         {inHand >= MIN_BUFFER_MINUTES ? <span className="ms-rm-day__hand">about {inHand} min in hand</span> : null}
       </header>
       <ol className={`ms-rm-rows${withTime ? ' ms-rm-rows--timed' : ''}`}>
@@ -99,6 +107,7 @@ export function DayTimeline({ day, state, evidence, todayIso, onOpen, onDone, bu
                 onOpen={onOpen}
                 onDone={onDone}
                 busy={busyId === row.task.id}
+                allowDone={day.date <= todayIso}
               />
             )
           }

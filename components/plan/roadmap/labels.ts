@@ -10,7 +10,7 @@
 
 import { formatPlanDate } from '@/lib/plan/plan-view'
 import { MIN_TASK_MINUTES } from '@/lib/plan/modes'
-import type { RoadmapTask, TaskStanding } from '@/lib/plan/roadmap-view'
+import type { HistoryTally, RoadmapTask, TaskStanding } from '@/lib/plan/roadmap-view'
 import type { EvidenceSource, TaskStateEntry, TaskType } from '@/lib/plan/roadmap-types'
 
 export function standingLabel(standing: TaskStanding, entry?: TaskStateEntry): string | null {
@@ -28,6 +28,50 @@ export function standingLabel(standing: TaskStanding, entry?: TaskStateEntry): s
     default:
       return null
   }
+}
+
+/**
+ * The same task on a day that has passed. "Let go for now" promises a
+ * return that a past day cannot keep, and a task the rollover dropped was
+ * never the student's choice, so on the history view anything that did
+ * not happen is "Not done" — done, skipped and moved keep their words.
+ */
+export function historyLabel(standing: TaskStanding, entry?: TaskStateEntry): string {
+  switch (standing) {
+    case 'done':
+      return 'Done'
+    case 'skipped':
+      return 'Skipped'
+    case 'deferred':
+      return standingLabel(standing, entry) ?? 'Moved to another day'
+    default:
+      return 'Not done'
+  }
+}
+
+/** "3 of 5 done · 1 moved" for a past day's header. A count of facts, never a percentage. */
+export function historyTallyLine(t: HistoryTally): string {
+  if (t.total === 0) return ''
+  const parts = [`${t.done} of ${t.total} done`]
+  if (t.moved > 0) parts.push(`${t.moved} moved`)
+  if (t.skipped > 0) parts.push(`${t.skipped} skipped`)
+  return parts.join(' · ')
+}
+
+/** "Today", "Tomorrow" or the date, for a carry-over option and a day heading. */
+export function dayLabel(date: string, todayIso: string): string {
+  if (date === todayIso) return 'Today'
+  const next = new Date(`${todayIso}T00:00:00Z`)
+  next.setUTCDate(next.getUTCDate() + 1)
+  if (next.toISOString().slice(0, 10) === date) return 'Tomorrow'
+  return formatPlanDate(date)
+}
+
+/** The one line a carry-over option shows under its day. */
+export function carryFitLine(o: { minutes: number; fit: 'full' | 'shortened' | 'over'; over?: number; inHand: number }): string {
+  if (o.fit === 'full') return o.inHand > 0 ? `${o.minutes} min · about ${o.inHand} min in hand there` : `${o.minutes} min · fits`
+  if (o.fit === 'shortened') return `Shortened to ${o.minutes} min — the room that day has`
+  return `${o.minutes} min, running ${o.over ?? 0} min past that day's last window`
 }
 
 /** What opening the task does, from its href alone; the label never guesses at content. */

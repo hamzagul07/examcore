@@ -2567,9 +2567,19 @@ a.ms-rm-btn--primary:hover {
 }
 
 .ms-rm-day__sub,
-.ms-rm-day__mins {
+.ms-rm-day__mins,
+.ms-rm-day__left {
   color: var(--ec-text-secondary);
   font-variant-numeric: tabular-nums;
+}
+
+/* The tab bar and the phone's home indicator sit over the last row otherwise;
+   the Ask pill is not rendered on the roadmap, so this is the only cover. */
+@media (max-width: 1023px) {
+  .ms-rm-day:last-child,
+  .ms-rm-roadmap {
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+  }
 }
 
 .ms-rm-day__hand {
@@ -3270,7 +3280,7 @@ a.ms-rm-btn--primary:hover {
 
 .ms-rm-milestone {
   display: grid;
-  grid-template-columns: 6.5rem minmax(0, 1fr) auto auto;
+  grid-template-columns: 6.5rem minmax(0, 1fr) auto auto auto;
   align-items: baseline;
   gap: 0.25rem 0.75rem;
   min-height: 2.5rem;
@@ -3313,6 +3323,29 @@ a.ms-rm-btn--primary:hover {
   font-variant-numeric: tabular-nums;
 }
 
+.ms-rm-milestone__tags {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.ms-rm-milestone__tags:empty {
+  display: none;
+}
+
+.ms-rm-milestone__phase {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.125rem 0.375rem;
+  border: 1px dashed var(--ec-border);
+  border-radius: 3px;
+  color: var(--ec-text-secondary);
+  white-space: nowrap;
+}
+
 .ms-rm-milestone__exam {
   font-family: var(--ec-font-mono, ui-monospace, monospace);
   font-size: 0.625rem;
@@ -3331,12 +3364,184 @@ a.ms-rm-btn--primary:hover {
 
 @media (max-width: 480px) {
   .ms-rm-milestone {
-    grid-template-columns: 5.25rem minmax(0, 1fr) auto;
+    grid-template-columns: 5.25rem minmax(0, 1fr) auto auto;
   }
-  .ms-rm-milestone__exam {
+  .ms-rm-milestone__tags {
     grid-column: 2;
     justify-self: start;
   }
+}
+
+/* history: past days that unfold into their tasks */
+.ms-rm-history__day {
+  border-bottom: 1px dashed color-mix(in srgb, var(--ec-border) 80%, transparent);
+}
+
+.ms-rm-history__details {
+  margin: 0;
+}
+
+.ms-rm-history__summary {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr) auto auto;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.25rem 0.5rem 1.25rem;
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+.ms-rm-history__summary::-webkit-details-marker {
+  display: none;
+}
+
+.ms-rm-history__summary::before {
+  content: '';
+  position: absolute;
+  left: 0.25rem;
+  top: 50%;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 1.5px solid var(--ec-text-secondary);
+  border-bottom: 1.5px solid var(--ec-text-secondary);
+  transform: translateY(-60%) rotate(-45deg);
+  transition: transform 120ms ease;
+}
+
+.ms-rm-history__details[open] > .ms-rm-history__summary::before {
+  transform: translateY(-70%) rotate(45deg);
+}
+
+.ms-rm-history__summary:hover {
+  background: color-mix(in srgb, var(--ec-surface-muted, var(--ec-surface)) 60%, transparent);
+}
+
+.ms-rm-history__summary:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+}
+
+.ms-rm-history__focus {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ms-rm-history__day.is-done .ms-rm-history__focus {
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-history__tally {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  color: var(--ec-text-secondary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.ms-rm-history__details > .ms-rm-rows {
+  padding: 0 0 0.75rem 0.25rem;
+}
+
+.ms-rm-history__all {
+  padding: 0.25rem 0 0.5rem 0.25rem;
+}
+
+.ms-rm-hero__yesterday {
+  margin: 0.75rem 0 0;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 480px) {
+  .ms-rm-history__summary {
+    grid-template-columns: 5.25rem minmax(0, 1fr) auto;
+  }
+  .ms-rm-history__tally {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+/* a past task that did not happen reads as a record, not an open item */
+.ms-rm-row--past.is-not-done .ms-rm-task {
+  border-style: dashed;
+}
+
+.ms-rm-row--past.is-not-done .ms-rm-task__objective {
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-done--carry {
+  white-space: nowrap;
+}
+
+.ms-rm-sheet__carried {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--ec-text-secondary);
+}
+
+/* carry-over sheet: the days a task can move to */
+.ms-rm-carry {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ms-rm-carry__day {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.125rem;
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.625rem 0.875rem;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-surface);
+  color: var(--ec-text-primary, var(--ec-ink));
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.ms-rm-carry__day:hover:not(:disabled) {
+  border-color: var(--ec-brand);
+  background: var(--ec-brand-muted);
+}
+
+.ms-rm-carry__day:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+}
+
+.ms-rm-carry__day:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.ms-rm-carry__day.is-shortened,
+.ms-rm-carry__day.is-over {
+  border-style: dashed;
+}
+
+.ms-rm-carry__when {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.ms-rm-carry__fit {
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  color: var(--ec-text-secondary);
 }
 
 .ms-rm-examlist {

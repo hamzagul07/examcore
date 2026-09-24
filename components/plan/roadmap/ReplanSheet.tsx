@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useState } from 'react'
 import { Sheet } from '@/components/ui/Sheet'
+import { formatPlanDate } from '@/lib/plan/plan-view'
 import type { ReplanChange, ReplanDiff } from '@/lib/plan/roadmap-types'
 
 export type ReplanSheetMode = 'confirm' | 'diff'
@@ -14,9 +15,13 @@ type Props = {
   /** Whether an undo point exists for this diff. */
   canUndo: boolean
   syncNote?: string | null
+  /** The plan's today, so a diff on another day (a carry-over to Thursday) is titled with that day. */
+  todayIso?: string
   onClose: () => void
   onConfirm: (minutesLeft?: number) => void
   onUndo: () => void
+  /** After a rollover ("Yesterday didn't happen…"): open the days before today, where what was left can be carried over. */
+  onHistory?: () => void
 }
 
 const CHANGED: ReadonlySet<ReplanChange['kind']> = new Set(['moved', 'shortened', 'added', 'swapped', 'inserted', 'resized'])
@@ -25,10 +30,14 @@ const CHANGED: ReadonlySet<ReplanChange['kind']> = new Set(['moved', 'shortened'
  * Two faces. 'confirm' asks before rebuilding the rest of today, with an
  * optional "minutes left" so the student can say what the clock cannot
  * know. 'diff' shows what a replan, a rollover or a check-in did — what
- * changed, why, and what was let go — with one Undo. The summary line is a
- * live region so a screen reader hears the outcome without hunting for it.
+ * moved, and what was let go — with one Undo. The summary line is a live
+ * region so a screen reader hears the outcome without hunting for it. The
+ * eyebrow is one word and the section headings say what is in them, so the
+ * sheet does not stack "What changed" over "What changed"; a kept task
+ * "stayed put" with the reason in brackets, because "protected" begged the
+ * question: from what?
  */
-export function ReplanSheet({ open, mode, diff, busy, canUndo, syncNote = null, onClose, onConfirm, onUndo }: Props) {
+export function ReplanSheet({ open, mode, diff, busy, canUndo, syncNote = null, todayIso, onClose, onConfirm, onUndo, onHistory }: Props) {
   const titleId = useId()
   const [minutesLeft, setMinutesLeft] = useState('')
 
@@ -87,23 +96,23 @@ export function ReplanSheet({ open, mode, diff, busy, canUndo, syncNote = null, 
           </>
         ) : (
           <>
-            <p className="ec-eyebrow mb-1">What changed</p>
+            <p className="ec-eyebrow mb-1">Adjusted</p>
             <h2 id={titleId} className="ms-rm-sheet__title">
-              Today was adjusted
+              {diff && todayIso && diff.date !== todayIso ? `${formatPlanDate(diff.date)} was adjusted` : 'Today was adjusted'}
             </h2>
             <p className="ms-rm-sheet__sub" role="status" aria-live="polite">
               {diff?.summary ?? 'Plans change. We protected the essentials and rebuilt today.'}
             </p>
 
             {changed.length > 0 ? (
-              <DiffGroup heading="What changed" items={changed} />
+              <DiffGroup heading="Moved or added" items={changed} />
             ) : null}
             {dropped.length > 0 ? (
-              <DiffGroup heading="What was let go" items={dropped} quiet />
+              <DiffGroup heading="Let go for now" items={dropped} quiet />
             ) : null}
             {kept.length > 0 ? (
               <p className="ms-rm-diff__kept">
-                {kept.length === 1 ? '1 task was protected.' : `${kept.length} tasks were protected.`}
+                {kept.length === 1 ? '1 task stayed put (done, pinned or already started).' : `${kept.length} tasks stayed put (done, pinned or already started).`}
               </p>
             ) : null}
             {changed.length === 0 && dropped.length === 0 ? (
@@ -120,6 +129,11 @@ export function ReplanSheet({ open, mode, diff, busy, canUndo, syncNote = null, 
               {canUndo ? (
                 <button type="button" className="ms-rm-btn" disabled={busy} onClick={onUndo}>
                   {busy ? 'Undoing…' : 'Undo'}
+                </button>
+              ) : null}
+              {onHistory && diff && /didn't happen/.test(diff.summary) ? (
+                <button type="button" className="ms-rm-btn" disabled={busy} onClick={onHistory}>
+                  See what was left
                 </button>
               ) : null}
               <button type="button" className="ms-rm-btn ms-rm-btn--quiet" disabled={busy} onClick={onClose}>

@@ -185,6 +185,21 @@ export type RoadmapExam = {
   paperMinutes?: number
 }
 
+/**
+ * One sitting of one subject, as the engine and the wizard pass it around:
+ * the paper (when the catalogue names them), its date, its start time and
+ * its length. A subject with two papers on different days is two of these.
+ */
+export type PaperSitting = {
+  component?: string
+  examDate: string
+  examTime?: ClockTime
+  paperMinutes?: number
+}
+
+/** The most papers one subject may list. Cambridge sittings run to four components in a series; the IB to three. */
+export const MAX_PAPERS_PER_SUBJECT = 4
+
 // --- topic signals ---------------------------------------------------------------
 
 /**
@@ -269,7 +284,7 @@ export type RoadmapPlanExtras = {
   selfRatings: Record<string, SelfRating>
   /** The last date the lazy rollover ran for; it never runs twice for one date. */
   lastRolledDate?: string
-  /** The date of the last replan / rollover / check-in effect, for the "Adjusted today" chip. */
+  /** The date of the last replan / rollover / check-in effect, for the "Adjusted" chip. */
   lastDiffDate?: string
   /** The diff behind lastDiffDate, so "See what changed" and Undo survive a page load. Cleared by undo. */
   lastDiff?: ReplanDiff
@@ -405,6 +420,10 @@ export type RoadmapTaskFields = {
   pinned?: boolean
   /** Where "I need help" opens: the lesson's worked examples when it has them, its notes otherwise. Hydrated by the service. */
   helpHref?: string
+  /** The task this one is a carried-over copy of (task-actions.ts carry): its id, so the sheet can say which day it came from. */
+  carriedFrom?: string
+  /** The paper this task is for, as the catalogue names it ("Paper 2"), when the subject sits more than one. Timed papers and paper-specific topics carry it. */
+  component?: string
 }
 
 // --- task state ------------------------------------------------------------------
@@ -425,15 +444,18 @@ export const CHECKIN_FEEL_LABEL: Record<CheckinFeel, string> = {
 
 /**
  * What each feeling does — the contract task-actions.ts implements and the
- * check-in sheet promises. Every effect is a diff with an undo.
+ * check-in sheet promises. Every effect is a diff with an undo. Written in
+ * the student's words, not the loop's: "refresh", "recall" and "past-paper
+ * question" are things they can see on the timeline; "repair step" and
+ * "marked question" are engine vocabulary they never learned.
  */
 export const CHECKIN_FEEL_EFFECT: Record<CheckinFeel, string> = {
-  too_easy: "We'll skip the repair steps on this topic and keep the marked question.",
-  about_right: 'Nothing changes. Good.',
-  too_hard: "A short concept refresh on this topic goes first on your next study day.",
-  took_longer: "Tasks like this one get a little more time from now on.",
-  was_busy: "The rest of this topic today moves to the next day with room. Nothing stacks up.",
-  need_help: "We'll open the worked example and put a concept refresh next.",
+  too_easy: "We'll skip the refresh and recall on this topic and go straight to its past-paper question.",
+  about_right: 'Nothing changes — the plan is sized right for you.',
+  too_hard: 'A short refresh of this topic goes first on your next study day.',
+  took_longer: 'Tasks like this get a little more time from now on.',
+  was_busy: 'The rest of this topic moves to the next day with room. Nothing piles up.',
+  need_help: "We'll open a worked example now and put a short refresh next.",
 }
 
 export type TaskStateEntry = {
@@ -449,6 +471,13 @@ export type TaskStateEntry = {
   deferredTo?: string
   /** The topic code a swapped task replaced. */
   swappedFrom?: string
+  /**
+   * True when the plan settled this entry, not the student: the lazy
+   * rollover lets a day's unfinished tasks go (or moves one) after the day
+   * has passed. The history view reads a rollover-dropped task as "Not
+   * done" rather than something the student chose.
+   */
+  auto?: true
 }
 
 /** Task id → its state. Lives in study_plans.task_state. */
@@ -458,9 +487,11 @@ export type TaskState = Record<string, TaskStateEntry>
 
 /**
  * Whether the work fits the time. Three honest states, never a silent
- * impossible plan. on_track: supply ≥ full demand; focused: supply ≥ must
- * demand; tight: below that. A subject in its taper contributes review
- * demand only and is never "tight".
+ * impossible plan. on_track: every topic's loop is on the calendar and
+ * supply ≥ the whole pool's demand (no subject has topics waiting or
+ * opened-but-unproved); focused: supply ≥ the priority (must-band) demand;
+ * tight: below that. A subject in its taper contributes review demand only
+ * and is never "tight".
  */
 export type FeasibilityState = 'on_track' | 'focused' | 'tight'
 
@@ -474,10 +505,10 @@ export type FeasibilitySubject = {
   code: string
   label: string
   daysToPaper: number
-  /** Must-cover topics in this mode (the whole band), and how many topics the plan reaches — a topic is reached only when its marked question is on the calendar. */
+  /** Priority (must-band) topics in this mode, and how many topics the plan reaches — a topic is reached only when its marked question is on the calendar. */
   mustTopics: number
   plannedTopics: number
-  /** Must-cover topics whose loop fits in the study days before the taper. What "reached" is measured against. */
+  /** Priority topics whose loop fits in the study days before the taper, never below plannedTopics (so the card never says "N of N" while more are on the calendar). 0 for a review-only subject. */
   mustReachable?: number
   /** Topics opened (a diagnostic or a lesson placed) whose marked question is not on the calendar yet. */
   started?: string[]
@@ -487,6 +518,8 @@ export type FeasibilitySubject = {
   minutes: number
   /** The subject is in its taper: nothing new is planned before this paper. */
   reviewOnly?: boolean
+  /** Each paper the subject sits, when there is more than one, with the days to it; daysToPaper above is the nearest. */
+  papers?: Array<{ component?: string; examDate: string; daysToPaper: number }>
 }
 
 export type FeasibilityOption = 'keep' | 'add_time' | 'prioritise_subject' | 'change_mode'
@@ -497,7 +530,7 @@ export type FeasibilityReport = {
   supplyMinutes: number
   /** Work minutes the plan scheduled. */
   plannedMinutes: number
-  /** Work minutes the must-cover loops need in this mode, and everything the mode would like. */
+  /** Work minutes the priority (must-band) loops need in this mode, and the whole pool's loops — everything the mode would like. */
   demandMustMinutes: number
   demandFullMinutes: number
   /** Σ(work + breaks) / Σ capacity — the 75–85% rule made visible. */
@@ -580,9 +613,14 @@ export type UndoSnapshot = {
 /** The calm chip at the top of the roadmap. */
 export type RoadmapStatus = 'on_track' | 'adjusted' | 'reset'
 
+/**
+ * 'adjusted' says only that something changed: the hero line beneath the
+ * chip says what and when, and a too_hard check-in lands on the next study
+ * day, so "Adjusted today" was wrong half the time.
+ */
 export const ROADMAP_STATUS_LABEL: Record<RoadmapStatus, string> = {
   on_track: 'On track',
-  adjusted: 'Adjusted today',
+  adjusted: 'Adjusted',
   reset: "Let's reset",
 }
 
@@ -599,6 +637,14 @@ export type RoadmapBuildRequest = {
   subjectExamTimes?: Record<string, ClockTime>
   /** Paper / component per subject, where the student chose one. */
   subjectComponents?: Record<string, string>
+  /**
+   * Every paper the student sits, per subject (Business Paper 1 on the 5th
+   * and Paper 2 on the 8th). When present it is the source of truth and the
+   * three per-subject maps above are derived from it for older readers:
+   * the subject's date is its last paper, its component and time the
+   * nearest paper's.
+   */
+  exams?: Array<{ subjectCode: string; component?: string; examDate: string; examTime?: ClockTime }>
   selfRatings?: Record<string, SelfRating>
   /** When present, minutes per weekday and minutesPerDay are DERIVED from it; anything else sent is ignored. */
   availabilityDetail?: RoadmapAvailability
@@ -608,14 +654,22 @@ export type RoadmapBuildRequest = {
   blockedDates?: string[]
   /** Private motivation; never shown in copy as a promise. */
   targetGrade?: string | null
-  /** The feasibility option "prioritise one subject": its must-cover topics are admitted before the others'. */
+  /** The feasibility option "prioritise one subject": its priority topics are admitted before the others'. */
   prioritySubject?: string | null
   remindMe?: boolean
   /** Return the plan and its feasibility without hydrating or saving. */
   preview?: boolean
 }
 
-export type TaskAction = 'start' | 'complete' | 'shorten' | 'skip' | 'defer' | 'swap' | 'checkin' | 'pin' | 'unpin'
+/**
+ * carry: the student's own move — an unfinished task (today's, a past
+ * day's, or one the rollover let go) to a day they choose, at its full
+ * length where the day has room; where it does not, the copy is shortened
+ * to the room there is, or runs past the day's last window, and the option
+ * says which before they pick. Unlike defer it may act on a task the plan
+ * already settled, and the copy may be carried again.
+ */
+export type TaskAction = 'start' | 'complete' | 'shorten' | 'skip' | 'defer' | 'carry' | 'swap' | 'checkin' | 'pin' | 'unpin'
 
 /** PATCH /api/plan/task. Repeating a terminal action is a no-op that returns the current state. */
 export type TaskActionRequest = {
@@ -628,6 +682,8 @@ export type TaskActionRequest = {
   reason?: string
   /** Target length for shorten. */
   minutes?: number
+  /** ISO date for carry: the day the task moves to. */
+  toDate?: string
 }
 
 /** POST /api/plan/replan. The date is the one on screen; the server refuses (409) if it is not the plan's today. */
@@ -649,13 +705,25 @@ export type DayMutationResponse<Day> = {
   revision: number
   /** Effects on other days (a check-in inserting tomorrow's repair), by date. */
   otherDays?: Array<{ date: string; day: Day }>
-  /** The plan's "Adjusted today" marks as they now stand (null = cleared), and whether an undo point exists. */
+  /** The plan's "Adjusted" marks as they now stand (null = cleared), and whether an undo point exists. */
   lastDiffDate?: string | null
   lastDiff?: ReplanDiff | null
   canUndo?: boolean
 }
 
-/** GET /api/plan/today — what the lesson page, /mark and notifications need, nothing more. */
+/**
+ * GET /api/plan/today — what the lesson page, /mark and notifications need,
+ * nothing more.
+ *
+ * The summary is materialised into study_plans.today_summary on every
+ * write, and the today route serves it straight from that column when it
+ * is still today's and no rollover is pending (the fast path — no plan
+ * load, no evidence query). Only `remainingMinutes` depends on the clock,
+ * so the row also stores the two numbers it is derived from
+ * (`openMinutes`, `windowEndMinute`) and the route redoes that one sum
+ * (remainingMinutesAt in task-actions.ts). A summary written before these
+ * fields existed has neither, and the route takes the full path instead.
+ */
 export type RoadmapTodaySummary = {
   hasPlan: boolean
   date?: string
@@ -664,7 +732,12 @@ export type RoadmapTodaySummary = {
   daysLeft?: number
   nearestExam?: { label: string; date: string; daysLeft: number }
   status?: RoadmapStatus
+  /** min(openMinutes, minutes left in today's windows) at the moment the summary was computed. */
   remainingMinutes?: number
+  /** The day's open tasks' minutes at write time, before the clock caps them. */
+  openMinutes?: number
+  /** Minute of day the last window ends; null when the plan carries no windows (a v2 plan), so the clock never caps it. */
+  windowEndMinute?: number | null
   nextTask?: {
     id: string
     label: string
@@ -673,6 +746,10 @@ export type RoadmapTodaySummary = {
     href?: string
     subjectLabel?: string
     category: TaskCategory
+    /** For the chip: "Roadmap · Quick diagnostic · Equations of motion · 10 min". Absent on a summary written before v3.1. */
+    taskType?: TaskType
+    /** The topic's name, when the task has one. */
+    topic?: string
     startsAt?: ClockTime
   }
   feasibility?: FeasibilityState
@@ -692,6 +769,7 @@ export type RoadmapEventType =
   | 'task_swapped'
   | 'task_shortened'
   | 'task_deferred'
+  | 'task_carried'
   | 'task_checkin'
   | 'roadmap_replanned'
   | 'roadmap_rollover'

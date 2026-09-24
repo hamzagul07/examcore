@@ -9,6 +9,8 @@ import {
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import type { OcrLine } from '@/lib/examiner-ink-positioning'
 import { runSingleQuestionMark } from '@/lib/marking/single-question-pipeline'
+import { resolveCreatorCodeForRun } from '@/lib/creators/service'
+import { resolveTipTestIdForRun } from '@/lib/creators/tips'
 import { formatSseEvent, SSE_HEADERS } from '@/lib/marking/sse'
 import { questionPhotoOcrPrompt } from '@/lib/marking/ocr'
 import {
@@ -375,6 +377,10 @@ async function handleMarkRequest(request: NextRequest) {
       formData.get('marks_in_question') === 'true'
     const manualSubjectCode = manualPaperCode?.split('/')[0]
     const streamRequested = formData.get('stream') === '1'
+    // Creator attribution (docs/CREATORS_PROGRAM.md): stamped on the run and
+    // the attempt, so a guest's answer still counts for the creator.
+    const creatorCode = await resolveCreatorCodeForRun(formData.get('creator_code'))
+    const tipTestId = await resolveTipTestIdForRun(formData.get('tip_test_id'))
 
     // A typed answer counts as an answer, but only for single-question marking:
     // whole-paper mode exists to segment a scanned script into questions, which
@@ -463,6 +469,8 @@ async function handleMarkRequest(request: NextRequest) {
       (formData.get('exam_system') as string | null)?.trim() || null
     markRun = await openMarkRun({
       userId,
+      creatorCode,
+      tipTestId,
       uploadMode,
       markIntent,
       pageCount: pageFiles.length,
@@ -479,6 +487,8 @@ async function handleMarkRequest(request: NextRequest) {
     if (uploadMode === 'single_question') {
       const pipelineInput = {
         pageFiles,
+        creatorCode,
+        tipTestId,
         answerPdf: answerPdf?.size ? answerPdf : null,
         answerText: answerTextInput,
         questionPhoto: questionPhoto?.size ? questionPhoto : null,
@@ -909,6 +919,7 @@ async function handleMarkRequest(request: NextRequest) {
           mark_scheme_id: null,
           source_type: 'past_paper',
           user_id: userId,
+          creator_code: creatorCode,
           question_text: `Whole paper: ${paperCode} ${paperSession}`,
           ocr_text: ocrText,
           ai_marking: wholePaper,

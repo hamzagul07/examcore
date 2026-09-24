@@ -14,17 +14,35 @@ const BADGES: Record<Exclude<EffectiveAccess, 'free'>, { label: string; title: s
   pro: { label: 'Pro', title: 'MarkScheme Pro subscriber' },
 }
 
-export function AuthorBadge({ access }: { access: EffectiveAccess | undefined }) {
-  if (!access || access === 'free') return null
+export function AuthorBadge({
+  access,
+  creator = false,
+}: {
+  access: EffectiveAccess | undefined
+  /** An active creator seat (docs/CREATORS_PROGRAM.md): its own badge, beside the tier. */
+  creator?: boolean
+}) {
+  const creatorBadge = creator ? (
+    <span className="rc-tier-badge rc-tier-badge--creator" title="MarkScheme creator">
+      <span className="rc-tier-badge__gem" aria-hidden>
+        ✓
+      </span>
+      Creator
+    </span>
+  ) : null
+  if (!access || access === 'free') return creatorBadge
   const badge = BADGES[access]
-  if (!badge) return null
+  if (!badge) return creatorBadge
 
   return (
+    <>
+      {creatorBadge}
     <span className={`rc-tier-badge rc-tier-badge--${access}`} title={badge.title}>
       <span className="rc-tier-badge__gem" aria-hidden>
         ◆
       </span>
       {badge.label}
     </span>
+    </>
   )
 }

@@ -61,6 +61,7 @@ async function main() {
     sendFinishOnboardingEmail,
   } = await import('@/lib/email/activation')
   const { sendWeeklyReportEmail } = await import('@/lib/email/weekly-report')
+  const { sendCreatorBriefEmail } = await import('@/lib/email/creator-brief')
   const { sendMaxVaultTourEmail } = await import('@/lib/email/max-vault-tour')
   const { sendMaxWelcomeEmail } = await import('@/lib/email/max-welcome')
 
@@ -336,6 +337,33 @@ async function main() {
       markedThisWeek: 15,
       bestStreak: 9,
       unsubscribeHref,
+    })
+  )
+
+  await capture('creator-brief', () =>
+    sendCreatorBriefEmail({
+      to,
+      recipientName: 'Maya',
+      unsubscribeHref,
+      data: {
+        handle: 'maya_studies',
+        code: 'MAYA',
+        markedThisWeek: 38,
+        markedTotal: 214,
+        joinedTotal: 27,
+        giftLeft: 65,
+        giftPool: 200,
+        nextMilestone: { label: 'Certificate', remaining: 286 },
+        gap: { label: 'Evaluation', earnedPct: 31, scripts: 214 },
+        hooks: [
+          'I let an AI examiner mark my answer — screen-record the ink and react to every mark it takes off.',
+          'Guess the mark. Show the answer, let people comment a score, then reveal the examiner ink.',
+          'Follower challenge: a hundred of you get one answer marked with my code by Sunday.',
+        ],
+        spaceUrl: 'https://markscheme.app/with/maya_studies',
+        studioUrl: 'https://markscheme.app/creator',
+        markUrl: 'https://markscheme.app/mark?code=MAYA',
+      },
     })
   )
 

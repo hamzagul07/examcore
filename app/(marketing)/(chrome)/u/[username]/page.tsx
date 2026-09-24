@@ -8,6 +8,8 @@ import { badgesForReputation } from '@/lib/community/xp'
 import { ProfileContributions } from '@/components/community/ProfileContributions'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { createServiceClient } from '@/lib/supabase-server'
+import { getCreatorByUserId } from '@/lib/creators/service'
+import { creatorSpacePath } from '@/lib/creators/codes'
 
 export const dynamic = 'force-dynamic'
 
@@ -43,6 +45,8 @@ export default async function ProfilePage({ params }: Props) {
     .eq('status', 'published')
 
   const badges = badgesForReputation(profile.reputation, subjectReps)
+  const creator = await getCreatorByUserId(profile.id)
+  const isCreator = creator?.status === 'active'
 
   return (
     <div className="ms-pg" style={{ paddingTop: 48 }}>
@@ -61,6 +65,16 @@ export default async function ProfilePage({ params }: Props) {
           {profile.bio ? (
             <p className="ms-body-2" style={{ marginTop: 6 }}>
               {profile.bio}
+            </p>
+          ) : null}
+          {isCreator && creator ? (
+            <p className="ms-body-2" style={{ marginTop: 8 }}>
+              <span className="ms-cr-badge">
+                <span aria-hidden>✓</span> MarkScheme creator
+              </span>{' '}
+              <Link href={creatorSpacePath(creator.handle)} className="ec-btn-underline">
+                Study with @{creator.handle} →
+              </Link>
             </p>
           ) : null}
           {badges.length ? (

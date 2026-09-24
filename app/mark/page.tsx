@@ -89,6 +89,8 @@ import {
   subjectMatchesMarkBoard,
   type MarkExamBoard,
 } from '@/components/mark/MarkBoardPicker'
+import { CreatorCodeChip, type MarkCreator } from '@/components/creators/CreatorCodeChip'
+import { PostMarkCreatorCard } from '@/components/creators/PostMarkCreatorCard'
 import {
   getEdexcelMarkableUnitCodes,
   resolveEdexcelUnitLabel,
@@ -349,6 +351,10 @@ export default function MarkPage() {
   const [selectedSession, setSelectedSession] = useState('')
   const [selectedComponent, setSelectedComponent] = useState('')
   const [questionNumber, setQuestionNumber] = useState('')
+  // Creator code the student is marking with (docs/CREATORS_PROGRAM.md).
+  const [markCreator, setMarkCreator] = useState<MarkCreator | null>(null)
+  // A creator's tip test, when /mark was opened from one (docs/CREATORS_PROGRAM.md).
+  const [tipTest, setTipTest] = useState<{ id: string; title: string; creatorHandle: string } | null>(null)
   const [uploadMode, setUploadMode] = useState<'single_question' | 'whole_paper'>(
     'single_question'
   )
@@ -787,6 +793,45 @@ export default function MarkPage() {
     }
     setShowOptional(true)
     setLessonHandoff({ returnTo: handoff.returnPath ?? null })
+  }, [])
+
+  // A creator's tip test — /mark?tip=<id>: the question, subject and total
+  // prefilled; the student brings the answer, written using the tip.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const sp = new URLSearchParams(window.location.search)
+    const tipId = sp.get('tip')
+    if (!tipId) return
+    let cancelled = false
+    void (async () => {
+      try {
+        const res = await fetch(`/api/creators/tips/${encodeURIComponent(tipId)}`)
+        if (!res.ok) return
+        const data = (await res.json()) as {
+          tip: { id: string; title: string; subjectCode: string; questionText: string; totalMarks: number } | null
+          creator: { handle: string } | null
+        }
+        if (cancelled || !data.tip || !data.creator) return
+        setUploadMode('single_question')
+        setMarkIntent('practice_question')
+        setQuestionTextInput(data.tip.questionText)
+        setTotalMarksInput(String(data.tip.totalMarks))
+        const markBoard = coerceMarkExamBoard(resolveBoard(data.tip.subjectCode))
+        setSelectedMarkBoard(markBoard)
+        setPendingHandoffSubject({
+          codes: subjectCandidates(data.tip.subjectCode),
+          level: splitSubjectLevel(data.tip.subjectCode).ibLevel,
+          board: markBoard,
+        })
+        setShowOptional(true)
+        setTipTest({ id: data.tip.id, title: data.tip.title, creatorHandle: data.creator.handle })
+      } catch {
+        // The form stays empty; the code chip still applies.
+      }
+    })()
+    return () => {
+      cancelled = true
+    }
   }, [])
 
   // Course lesson "Mark this topic" deep-link — /mark?subject=9609&topic=5.4.4
@@ -1829,6 +1874,8 @@ export default function MarkPage() {
       formData.append('mark_intent', markIntent)
       formData.append('exam_system', selectedMarkBoard)
       formData.append('stream', '1')
+      if (markCreator) formData.append('creator_code', markCreator.code)
+      if (tipTest) formData.append('tip_test_id', tipTest.id)
       // Always forward the chosen subject, even without a full paper selection,
       // so freeform marks get syllabus-tagged and feed mastery/review.
       if (selectedSubject) formData.append('subject_code', selectedSubject)
@@ -2397,6 +2444,7 @@ export default function MarkPage() {
         key={`v2-wp-${v2WholePaperSeed.paperCode}-${v2WholePaperSeed.paperSession}`}
         paperCode={v2WholePaperSeed.paperCode}
         paperSession={v2WholePaperSeed.paperSession}
+        creatorCode={markCreator?.code ?? null}
         questionOptions={paperQuestionOptions}
         seed={{
           pages: v2WholePaperSeed.pages,
@@ -2956,6 +3004,13 @@ export default function MarkPage() {
               onChange={handleMarkBoardChange}
               disabled={profileLoading}
             />
+            <CreatorCodeChip onChange={setMarkCreator} />
+            {tipTest ? (
+              <p className="ms-cr-chip__note" style={{ marginTop: 8 }}>
+                Tip test from @{tipTest.creatorHandle}: <strong>{tipTest.title}</strong> — the
+                question is filled in below. Write your answer using the tip.
+              </p>
+            ) : null}
 
             <div className="ms-mark-mode-panel">
               {/* MK-04: two student questions — one answer vs whole paper — not four pipelines. */}
@@ -3132,6 +3187,7 @@ export default function MarkPage() {
                     key={wholePaperKey}
                     paperCode={wholePaperCode}
                     paperSession={wholePaperSession}
+                    creatorCode={markCreator?.code ?? null}
                     questionOptions={paperQuestionOptions}
                     onError={(msg, retryable) => {
                       setErrorMsg(msg)
@@ -4132,6 +4188,16 @@ export default function MarkPage() {
                     ) : null}
                     {/* The way back to the roadmap, when there is one. */}
                     {billingSummary?.signedIn ? <RoadmapNextCard /> : null}
+                    {/* The creator whose code this was marked with (docs/CREATORS_PROGRAM.md). */}
+                    {markCreator ? (
+                      <PostMarkCreatorCard
+                        creator={markCreator}
+                        tipTitle={tipTest?.title ?? null}
+                        signedIn={!!billingSummary?.signedIn}
+                        markBoard={selectedMarkBoard}
+                        subjectCode={selectedSubject || null}
+                      />
+                    ) : null}
                     {/* Guests: signup ask while marks are still on screen. */}
                     {billingSummary && !billingSummary.signedIn ? (
                       <GuestConversionPrompt

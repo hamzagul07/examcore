@@ -136,7 +136,7 @@ function CommentItem({
             {isOfficialUsername(node.authorUsername) ? (
               <span className="rc-official-badge" title="Official MarkScheme account">✓ Official</span>
             ) : null}
-            <AuthorBadge access={node.authorAccess} />
+            <AuthorBadge access={node.authorAccess} creator={node.authorIsCreator} />
             <span className="rc-dot">·</span>
             <span className="rc-meta-muted">{timeAgo(node.createdAt)}</span>
           </div>

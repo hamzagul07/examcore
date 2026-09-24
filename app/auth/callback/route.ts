@@ -9,6 +9,8 @@ import { isOnboardingComplete } from '@/lib/onboarding'
 import { handlePostAuthEmails } from '@/lib/email/notifications'
 import { runAfterResponse } from '@/lib/after-response'
 import { claimUsernameFromMetadata } from '@/lib/community/claim-username'
+import { CREATOR_REF_COOKIE, parseCreatorRef } from '@/lib/creators/codes'
+import { claimCreatorRef } from '@/lib/creators/service'
 
 /**
  * Lands here after a magic-link click, password-signup confirmation, or
@@ -74,6 +76,18 @@ export async function GET(request: NextRequest) {
     user.id,
     (user.user_metadata as { username?: string } | undefined)?.username
   )
+
+  // Creator attribution (docs/CREATORS_PROGRAM.md): the cookie the proxy set
+  // when this person landed on a creator's space or a ?code= link. Writes
+  // referred_by once and pays the gift once; a stale or unknown ref is silent.
+  const creatorRef = parseCreatorRef(request.cookies.get(CREATOR_REF_COOKIE)?.value)
+  if (creatorRef) {
+    try {
+      await claimCreatorRef({ userId: user.id, ref: creatorRef })
+    } catch (err) {
+      console.warn('[auth/callback] creator claim failed', err)
+    }
+  }
 
   const { data: profile } = await supabase
     .from('user_profiles')

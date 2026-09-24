@@ -168,6 +168,7 @@ export async function buildSitemapShard(
         '/research',
         '/insights',
         '/for-teachers',
+        '/creators',
         '/faq',
         '/about',
         '/hamza-gul-hassan',

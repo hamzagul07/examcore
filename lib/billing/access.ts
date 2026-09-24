@@ -43,6 +43,12 @@ export function effectiveAccess(opts: {
    */
   teacherVerified?: boolean
   /**
+   * A granted creator seat — `creators.status = 'active'`, service-role only
+   * (docs/CREATORS_PROGRAM.md). Same floor as a teacher seat, for the same
+   * reason: it is given away so that an audience arrives with it.
+   */
+  creatorVerified?: boolean
+  /**
    * A manual entitlement grant (see lib/billing/comp.ts). Floors access, never
    * lowers it, so comping someone can never take away what they pay for.
    */
@@ -65,7 +71,7 @@ export function effectiveAccess(opts: {
   // ever raises a teacher's access — and it costs nothing, because a teacher's
   // marking allowance is already its own number (teacherMarkCap).
   const earned: EffectiveAccess = !paidActive
-    ? opts.teacherVerified
+    ? opts.teacherVerified || opts.creatorVerified
       ? 'scholar'
       : 'free'
     : // mastery → Max; scholar → Scholar; legacy `student` → Pro.

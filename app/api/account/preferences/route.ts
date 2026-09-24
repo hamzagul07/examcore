@@ -11,6 +11,7 @@ type Body = {
   email_review_digest?: boolean
   email_weekly_report?: boolean
   email_mark_ready?: boolean
+  email_creator_brief?: boolean
   /** Lesson typography (typeface, size, spacing) — synced across devices. */
   reading_prefs?: unknown
 }
@@ -75,6 +76,9 @@ export async function PATCH(request: NextRequest) {
   }
   if (typeof body.email_mark_ready === 'boolean') {
     patch.email_mark_ready = body.email_mark_ready
+  }
+  if (typeof body.email_creator_brief === 'boolean') {
+    patch.email_creator_brief = body.email_creator_brief
   }
 
   if (Object.keys(patch).length === 0) {

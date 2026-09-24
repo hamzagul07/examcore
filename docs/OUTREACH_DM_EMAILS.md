@@ -112,6 +112,47 @@ Thanks,
 
 ---
 
+## Row 12 — Study-tips creator (TikTok / Instagram / Shorts DM)
+
+**Who:** small student accounts (1k–50k) posting exam tips, "how I got A*",
+brainrot revision, study-with-me. Find them on the discover pages for
+`igcse exam revision tips`, `studytok a levels`, `ib dp biology`. Not the big
+explainer channels — they sell their own thing. See docs/CREATORS_PROGRAM.md.
+
+**Before the DM:** grant nothing yet. Read three of their posts so the first
+line is about *their* video, not ours.
+
+**DM (lead with a gift, ask for nothing):**
+
+> Loved your "[video]" — the [tip] bit is exactly the mark people drop. I run
+> MarkScheme (it marks handwritten answers against the real mark scheme in
+> ~90s, no account needed). I can set you up a space at
+> markscheme.app/with/[handle] with your own code: your followers get 5 free
+> marks with it, you get a live count of everyone you've helped, and once 50
+> have tried it I'll send you the one mark most of them lose — usually a good
+> video. Nothing to sign; if you want it, reply with the handle you'd like.
+
+**If they reply yes:** they sign up (any method), then either they use the
+form at markscheme.app/creators or you grant from /admin/creators (or
+`pnpm creator:grant <email> <CODE> --handle <h> --name "<n>" --tiktok @x`).
+Approval emails them the space, the code and the studio.
+
+**Follow-up after 5 days (once, then stop):**
+
+> Still happy to do this whenever — the space takes me two minutes to set up.
+> No rush.
+
+**What to say if they ask about money:** product and recognition first
+(free seat, gift marks, certificate at 500 answers, features on our
+channels); paid video briefs later and only 18+. Every post carries #ad —
+the share kit in their studio has it written in. Under-18s: no cash, ever.
+UAE-based creators: no promotion (advertiser permit rule since Feb 2026).
+
+**Log it:** `pnpm outreach` with `utm_source=creator-<handle>` until they have
+a seat; after that the studio is the tracker.
+
+---
+
 ## After sending
 
 1. Log **Date** in [OUTREACH_TRACKER.md](./OUTREACH_TRACKER.md)  

@@ -142,6 +142,14 @@ export function SignUpForm({
     }
 
     trackFunnelEvent('signup_completed', { source: 'password_session' })
+    // Creator attribution (docs/CREATORS_PROGRAM.md): a session created here
+    // never passes through /auth/callback, so the cookie is claimed from the
+    // form. A miss is silent; the gift is a bonus, not a gate.
+    void fetch('/api/creators/claim', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: '{}',
+    }).catch(() => undefined)
 
     const afterSignup =
       intentDestination === '/onboarding'

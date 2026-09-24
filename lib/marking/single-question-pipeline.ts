@@ -991,12 +991,21 @@ export async function runSingleQuestionMark(
       ocrText,
       practiceCode
     )
-    if (extracted.question_text.trim().length >= 10) {
-      questionText = extracted.question_text
-    } else if (isCombinedScript) {
-      throw new Error(
-        "We couldn't find a question in your upload. Try a clearer scan, or use My question mode to add the question separately."
-      )
+    // The extractor's question is the question only when the student gave
+    // us none. On the practice path they typed or photographed it, and the
+    // guard above already insisted on that — yet this overwrote it with
+    // whatever the model took to be the question, which on 2026-09-20 was
+    // the first sentence of an IB Economics answer ("An increase in direct
+    // taxation ... act as a leakage"). The answer was then marked against
+    // itself, 0/10, "does not address the question".
+    if (isCombinedScript) {
+      if (extracted.question_text.trim().length >= 10) {
+        questionText = extracted.question_text
+      } else {
+        throw new Error(
+          "We couldn't find a question in your upload. Try a clearer scan, or use My question mode to add the question separately."
+        )
+      }
     }
     {
       // Never mark a fragment: a cut-off or summarised extraction hands the

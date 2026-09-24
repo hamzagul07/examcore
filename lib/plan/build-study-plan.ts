@@ -89,6 +89,7 @@ import {
   type LoopStep,
   type RoadmapAvailability,
   type RoadmapDayExtras,
+  type PaperSitting,
   type RoadmapExam,
   type RoadmapMode,
   type RoadmapPlanExtras,
@@ -219,8 +220,8 @@ export type StudyPlan = {
   blockedDates: string[]
   /** IANA zone the plan's dates are read in — "today" is the student's, not the server's. */
   timeZone: string
-  /** Each subject with the date of its own paper (the plan's when not set). */
-  subjects: Array<{ code: string; label: string; examDate: string }>
+  /** Each subject with the date of its own paper (the plan's when not set) — its LAST paper, with every sitting listed when there is more than one. */
+  subjects: Array<{ code: string; label: string; examDate: string; papers?: PaperSitting[] }>
   days: PlanDay[]
   /** Total scheduled work across the plan, for the summary line. */
   totalWorkMinutes: number
@@ -756,6 +757,15 @@ export type RoadmapSubjectInput = PlanSubjectInput & {
   qualification?: string
   /** Absent: every topic has a question destination (/mark generates one) and no lesson. */
   destinations?: RoadmapDestinations
+  /**
+   * Every paper the student sits in this subject, when there is more than
+   * one (Business Paper 1 on the 5th, Paper 2 on the 8th). Absent or empty:
+   * one sitting, read from examDate / component / examTime / paperMinutes.
+   * The subject's finish line is its last paper; each paper gets its own
+   * taper and its own exam-day commitment, and a topic tagged for one paper
+   * is not scheduled after that paper has been sat.
+   */
+  papers?: PaperSitting[]
 }
 
 export type BuildRoadmapInput = {
@@ -826,6 +836,31 @@ const EVE_REVIEW_TASKS = 4
 const MIXED_FALLBACK_PER_DAY = 2
 /** A subject opens at most this many new topics on one day (Foundation: one while any loop is open), so leftovers fill the day without fragmenting it. */
 const MAX_OPENINGS_PER_DAY = 3
+/**
+ * Long days. The per-day caps above were sized for evenings of up to three
+ * hours; a student who has set aside six needs the slots filled, not left
+ * in hand next to "waits until later". Above LONG_DAY_FROM minutes of
+ * capacity each cap grows by one per LONG_DAY_STEP, so a 6 h day opens up
+ * to five topics per subject and holds four mixed sets, and Foundation may
+ * open a second topic while one waits. A timed paper on a long day is
+ * followed by an ordinary study afternoon (the marking allowance stays in
+ * hand) rather than the rest of the day going quiet.
+ */
+export const LONG_DAY_FROM = 180
+const LONG_DAY_STEP = 90
+function longDayExtra(capacity: number): number {
+  return Math.floor(Math.max(0, capacity - LONG_DAY_FROM) / LONG_DAY_STEP)
+}
+/** How many new topics one subject may open on a day of this capacity. */
+export function openingsCapFor(capacity: number, mode: RoadmapMode, loopWaiting: boolean): number {
+  // Foundation opens one topic at a time on an evening; a six-hour day would sit half empty at that pace, so it climbs at the same slope from one.
+  if (mode === 'foundation' && loopWaiting) return 1 + longDayExtra(capacity)
+  return MAX_OPENINGS_PER_DAY + longDayExtra(capacity)
+}
+/** How many mixed sets one subject may fall back on in a day of this capacity. */
+export function mixedCapFor(capacity: number): number {
+  return MIXED_FALLBACK_PER_DAY + longDayExtra(capacity)
+}
 /** A mixed set names up to this many proved topics — the ones longest since their last review — so it is never a bare card. */
 const MIXED_FOCUS_TOPICS = 3
 /** Which of a topic's evidence lines a mixed set carries, most specific first; types not listed rank last. */
@@ -862,10 +897,17 @@ export function stepMinutesFor(type: TaskType, durationScale: Partial<Record<Tas
   return Math.max(MIN_TASK_MINUTES[type], round5(base * scale))
 }
 
-/** Timed papers the plan holds, from the mode's timed share: none under four study days, at least one otherwise. */
-export function timedPaperBudget(mode: RoadmapMode, studyDays: number): number {
+/**
+ * Timed papers the plan holds, from the mode's timed share: none under four
+ * study days, at least one otherwise. The share is a share of study
+ * minutes, so a plan of six-hour days holds more sittings than one of
+ * evenings: the count scales with the average study day up to twice an
+ * evening's worth (LONG_DAY_FROM), never beyond — still one sitting a day.
+ */
+export function timedPaperBudget(mode: RoadmapMode, studyDays: number, averageCapacity?: number): number {
   if (studyDays < 4) return 0
-  return Math.max(1, Math.round(studyDays * MODE_WEIGHTS[mode].timedShare))
+  const factor = typeof averageCapacity === 'number' && averageCapacity > 0 ? Math.min(2, Math.max(1, averageCapacity / LONG_DAY_FROM)) : 1
+  return Math.max(1, Math.round(studyDays * MODE_WEIGHTS[mode].timedShare * factor))
 }
 
 /** What the card says to do, from the topic name, the subject and the numbers — never marker output. */
@@ -1098,7 +1140,12 @@ function gapAllows(from: LoopStep | undefined, to: LoopStep, lastOrdinal: number
 /** A spaced review waiting for its day; gap is the study days it waited, doubled for the next one. */
 type PendingReview = { loop: TopicLoop; dueOrdinal: number; step: Step; gap: number }
 
-type Subject = RoadmapSubjectInput & { examDate: string }
+type Subject = RoadmapSubjectInput & { examDate: string; papers: PaperSitting[] }
+
+/** The papers a leaf's syllabus label puts it on, of the subject's sittings: every paper when it carries no label or the paper has no component. */
+function papersFor(s: Pick<Subject, 'papers'>, leafPaper: string | undefined): PaperSitting[] {
+  return s.papers.filter((p) => !p.component || paperMatchesComponent(leafPaper, p.component) !== false)
+}
 
 type SubjectState = {
   subject: Subject
@@ -1152,21 +1199,36 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
   // --- a. the calendar -------------------------------------------------------------
   const subjects: Subject[] = input.subjects
     .filter((s) => s.code)
-    .map((s) => ({ ...s, examDate: s.examDate && ISO_DATE.test(s.examDate) ? s.examDate : input.examDate }))
+    .map((s): Subject => {
+      const single: PaperSitting = {
+        component: s.component,
+        examDate: s.examDate && ISO_DATE.test(s.examDate) ? s.examDate : input.examDate,
+        examTime: s.examTime,
+        paperMinutes: s.paperMinutes,
+      }
+      const given = (s.papers ?? []).filter((p) => ISO_DATE.test(p.examDate) && planLength(input.startDate, p.examDate) > 0)
+      const papers = [...(given.length > 0 ? given : [single])].sort((a, b) => (a.examDate < b.examDate ? -1 : a.examDate > b.examDate ? 1 : 0))
+      const first = papers[0]!
+      const last = papers[papers.length - 1]!
+      // The finish line is the last paper; the single-paper fields read as the nearest paper's for everything that still reads them.
+      return { ...s, papers, examDate: last.examDate, component: first.component, examTime: first.examTime, paperMinutes: first.paperMinutes ?? s.paperMinutes }
+    })
     .filter((s) => planLength(input.startDate, s.examDate) > 0)
   const examDate = subjects.reduce((max, s) => (s.examDate > max ? s.examDate : max), subjects[0]?.examDate ?? input.examDate)
   const length = planLength(input.startDate, examDate)
 
-  const exams: RoadmapExam[] = subjects.map((s) => ({
-    subjectCode: s.code,
-    label: s.label,
-    board: s.board ?? '',
-    qualification: s.qualification ?? '',
-    component: s.component,
-    examDate: s.examDate,
-    examTime: s.examTime,
-    paperMinutes: s.paperMinutes,
-  }))
+  const exams: RoadmapExam[] = subjects.flatMap((s) =>
+    s.papers.map((p) => ({
+      subjectCode: s.code,
+      label: s.label,
+      board: s.board ?? '',
+      qualification: s.qualification ?? '',
+      component: p.component,
+      examDate: p.examDate,
+      examTime: p.examTime,
+      paperMinutes: p.paperMinutes,
+    }))
+  )
   const shell: Omit<StudyPlan, 'days' | 'totalWorkMinutes' | 'headline'> = {
     version: PLAN_VERSION,
     examDate,
@@ -1175,7 +1237,7 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
     availability: deriveWeekAvailability(detail),
     blockedDates: [...blocked].sort(),
     timeZone,
-    subjects: subjects.map((s) => ({ code: s.code, label: s.label, examDate: s.examDate })),
+    subjects: subjects.map((s) => ({ code: s.code, label: s.label, examDate: s.examDate, ...(s.papers.length > 1 ? { papers: s.papers.map((p) => ({ ...p })) } : {}) })),
     mode,
     algorithmVersion: PLAN_VERSION,
     revision: 1,
@@ -1203,10 +1265,14 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
 
   const startMs = parseIsoDay(input.startDate)
   const dates = Array.from({ length }, (_, i) => isoDay(startMs + i * DAY_MS))
-  const examsOn: ExamOnDate[] = subjects.map((s) => ({ date: s.examDate, label: s.label, examTime: s.examTime, paperMinutes: s.paperMinutes }))
+  const examsOn: ExamOnDate[] = subjects.flatMap((s) =>
+    s.papers.map((p) => ({ date: p.examDate, label: p.component ? `${s.label} ${p.component}` : s.label, examTime: p.examTime, paperMinutes: p.paperMinutes }))
+  )
   const caps = dates.map((d) => dayCapacity(d, detail, blocked, examsOn))
-  const examOn = new Map<string, Subject[]>()
-  for (const s of subjects) if (s.examDate < examDate) examOn.set(s.examDate, [...(examOn.get(s.examDate) ?? []), s])
+  type ExamOn = { subject: Subject; component?: string }
+  const examName = (e: ExamOn) => (e.component ? `${e.subject.label} ${e.component}` : e.subject.label)
+  const examOn = new Map<string, ExamOn[]>()
+  for (const s of subjects) for (const p of s.papers) if (p.examDate < examDate) examOn.set(p.examDate, [...(examOn.get(p.examDate) ?? []), { subject: s, component: p.component }])
 
   // Built mid-window: day 1 is laid from a few minutes after now, with the
   // same rules as every other day. What is left may be too little for a
@@ -1226,31 +1292,35 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
     emptiedByClock = wasUsable && !usable(0)
   }
   const liveOn = (i: number) => subjects.filter((s) => dates[i]! < s.examDate)
-  const daysToPaper = (i: number, s: Subject) => planLength(dates[i]!, s.examDate)
+  // The paper a subject is working towards on a date: the next one ahead. A subject with one paper has one answer.
+  const activePaper = (i: number, s: Subject): PaperSitting => s.papers.find((p) => dates[i]! < p.examDate) ?? s.papers[s.papers.length - 1]!
+  const daysToPaper = (i: number, s: Subject) => planLength(dates[i]!, activePaper(i, s).examDate)
   // Usable days from i (inclusive) to the paper. The taper is the last
   // TAPER_DAYS calendar days, or the last TAPER_DAYS usable days when the
   // calendar ones carry no capacity — so a paper on a Friday for a student
   // whose weekdays are off still gets its light last session, on the weekend.
   const usableSuffix = new Map<string, number[]>()
   const usableToPaper = (i: number, s: Subject): number => {
-    let suffix = usableSuffix.get(s.code)
+    const paperDate = activePaper(i, s).examDate
+    const key = `${s.code}|${paperDate}`
+    let suffix = usableSuffix.get(key)
     if (!suffix) {
       suffix = new Array<number>(length + 1).fill(0)
-      for (let j = length - 1; j >= 0; j--) suffix[j] = suffix[j + 1]! + (dates[j]! < s.examDate && usable(j) ? 1 : 0)
-      usableSuffix.set(s.code, suffix)
+      for (let j = length - 1; j >= 0; j--) suffix[j] = suffix[j + 1]! + (dates[j]! < paperDate && usable(j) ? 1 : 0)
+      usableSuffix.set(key, suffix)
     }
     return suffix[i] ?? 0
   }
   const tapering = (i: number, s: Subject) => daysToPaper(i, s) <= TAPER_DAYS || usableToPaper(i, s) <= TAPER_DAYS
   // 0 on the last usable day before the paper (the eve, or what stands in for it), 1 the day before, and so on.
   const taperPosition = (i: number, s: Subject) => Math.max(0, usableToPaper(i, s) - 1)
+  // Review only from the first day after which every live subject is in a taper for good — the run-in to the last
+  // papers, not the taper before a subject's first paper when a second one follows.
   let reviewFrom = length
-  for (let i = 0; i < length; i++) {
+  for (let i = length - 1; i >= 0; i--) {
     const live = liveOn(i)
-    if (live.length > 0 && live.every((s) => tapering(i, s))) {
-      reviewFrom = i
-      break
-    }
+    if (live.length > 0 && live.every((s) => tapering(i, s))) reviewFrom = i
+    else break
   }
 
   // Weekly rest, as v2: the lightest day of each 7-day window, never day 1,
@@ -1289,19 +1359,18 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
     const studyDays = studyDayIndexes.filter((i) => dates[i]! < s.examDate)
     const beforeTaper = studyDays.filter((i) => !tapering(i, s)).length
     // An empty signal list (a subject with no syllabus tree) is no list at all: the v2 lists stand in.
-    const signals = (s.signals?.length ? s.signals : synthesiseSignals(s)).filter(
-      (sig) => !s.component || paperMatchesComponent(sig.paper, s.component) !== false
-    )
+    const signals = (s.signals?.length ? s.signals : synthesiseSignals(s)).filter((sig) => papersFor(s, sig.paper).length > 0)
     const names = new Map(signals.map((sig) => [sig.code, sig.name]))
     const ctx: ScoreContext = {
       mode,
-      daysToPaper: planLength(input.startDate, s.examDate),
+      // Scored against the nearest paper: it sets the urgency for the whole subject.
+      daysToPaper: planLength(input.startDate, s.papers[0]!.examDate),
       planLength: length,
       studyDaysToPaper: beforeTaper,
       subjectLabel: s.label,
       board: s.board,
       component: s.component,
-      examDate: s.examDate,
+      examDate: s.papers[0]!.examDate,
       todayIso: input.startDate,
     }
     const selfRating = s.selfRating ?? input.selfRatings?.[s.code]
@@ -1327,6 +1396,18 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
   })
   const pools: Record<string, TopicPriority[]> = {}
   for (const st of states) pools[st.subject.code] = st.pool
+  // A topic is live on a date while a paper it is on still lies ahead: a Paper 1 topic is not scheduled after Paper 1 has been sat.
+  const topicLive = (st: SubjectState, code: string, i: number): boolean => {
+    const s = st.subject
+    if (s.papers.length <= 1) return dates[i]! < s.examDate
+    return papersFor(s, st.paperOf.get(code)).some((p) => dates[i]! < p.examDate)
+  }
+  // The one paper a topic is for, when the subject sits several and the leaf is tagged for exactly one; the card and a carry-over read it.
+  const componentFor = (st: SubjectState, code: string): string | undefined => {
+    if (st.subject.papers.length <= 1) return undefined
+    const on = papersFor(st.subject, st.paperOf.get(code))
+    return on.length === 1 ? on[0]!.component : undefined
+  }
   const priorityIndex = (st: SubjectState) => (input.prioritySubject && st.subject.code === input.prioritySubject ? 0 : 1)
 
   const topicOf = (st: SubjectState, code: string, name: string): PlanTopic => {
@@ -1346,7 +1427,7 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
   // paper, and the day keeps at least paperMarkingMinutes(full) unlaid.
   type PaperFit = { minutes: number; full: number; slot: Interval; marking: number }
   const paperFit = (i: number, s: Subject): PaperFit | null => {
-    const full = s.paperMinutes ?? TIMED_PAPER_MIN
+    const full = activePaper(i, s).paperMinutes ?? s.paperMinutes ?? TIMED_PAPER_MIN
     const marking = paperMarkingMinutes(full)
     const cap = caps[i]!
     const longest = cap.intervals.reduce((n, iv) => Math.max(n, iv.end - iv.start), 0)
@@ -1358,7 +1439,9 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
   const paperDays = new Map<number, { st: SubjectState; fit: PaperFit }>()
   const paperSubjects = states.filter((st) => st.subject.hasTimedPaper)
   if (session >= TIMED_PAPER_MIN_SESSION && paperSubjects.length > 0 && studyDayIndexes.length > 1) {
-    const budget = timedPaperBudget(mode, studyDayIndexes.filter((i) => i < reviewFrom).length)
+    const budgetDays = studyDayIndexes.filter((i) => i < reviewFrom)
+    const averageCapacity = budgetDays.length > 0 ? budgetDays.reduce((n, i) => n + caps[i]!.capacity, 0) / budgetDays.length : 0
+    const budget = timedPaperBudget(mode, budgetDays.length, averageCapacity)
     const ownDays = (st: SubjectState) => st.studyDays.filter((i) => !tapering(i, st.subject) && !examOn.has(dates[i]!))
     const spans = paperSubjects.map((st) => ownDays(st).length)
     const spanTotal = spans.reduce((a, b) => a + b, 0)
@@ -1458,7 +1541,7 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
   /** Set when day 1 was emptied by the clock; its focus is written once tomorrow's first task is known. */
   let builtLateDay: PlanDay | null = null
 
-  const examDayLine = (examsOn: Subject[]) => `${examsOn.map((s) => s.label).join(' and ')} exam today. Nothing else is scheduled.`
+  const examDayLine = (examsOn: ExamOn[]) => `${examsOn.map(examName).join(' and ')} exam today. Nothing else is scheduled.`
   const quietDayLine = (i: number): string => {
     const date = dates[i]!
     if (blocked.has(date)) return "Rest day — you told us you're away."
@@ -1531,9 +1614,10 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
       slot: Slot,
       type: TaskType,
       minutes: number,
-      extra: { topic?: PlanTopic; why?: EvidenceItem[]; priority?: number; loopStep?: LoopStep; provisional?: boolean; label?: string; fresh?: boolean }
+      extra: { topic?: PlanTopic; why?: EvidenceItem[]; priority?: number; loopStep?: LoopStep; provisional?: boolean; label?: string; fresh?: boolean; component?: string }
     ): PlanBlock => {
       const key = extra.topic?.code ?? type
+      const component = extra.component ?? (st && extra.topic ? componentFor(st, extra.topic.code) : undefined)
       const tupleKey = `${st?.subject.code ?? 'x'}|${key}`
       const n = (counters.get(tupleKey) ?? 0) + 1
       counters.set(tupleKey, n)
@@ -1557,6 +1641,7 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
         provisional: extra.provisional || undefined,
         startsAt: clockOf(slot.start),
         endsAt: clockOf(slot.start + minutes),
+        ...(component ? { component } : {}),
       }
       tasks.push({ block, start: slot.start, end: slot.start + minutes })
       if (WORK_KINDS.has(block.kind) && st) {
@@ -1574,15 +1659,24 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
     }
 
     const paper = paperDays.get(i)
+    // What the ordinary fill lays into: the whole day, or what a timed paper
+    // leaves of it once the sitting, its marking allowance, the break and the
+    // review are taken out. Before the second pass a paper day stopped there,
+    // which on a six-hour day left four hours in hand.
+    let fillIntervals: Interval[] = cap.intervals
+    let fillCapacity = cap.capacity
     if (paper) {
       // The paper takes its slot whole, outside the utilisation cap; a long
       // break and one error review follow when the interval and the capacity hold them.
       const { st, fit } = paper
       const paperSlot: Slot = { start: fit.slot.start, end: fit.slot.end, minutes: fit.minutes }
+      // The sitting this practice is for: "Timed Business Paper 1" when the subject sits several, "Timed Business paper" otherwise.
+      const sitting = activePaper(i, st.subject)
+      const paperName = st.subject.papers.length > 1 && sitting.component ? `${st.subject.label} ${sitting.component}` : `${st.subject.label} paper`
       const label =
         fit.minutes < fit.full
-          ? `Timed ${st.subject.label} paper — the first ${fit.minutes} min of a ${fit.full}-min paper, no notes; mark it in the ${fit.marking} min kept in hand after.`
-          : `Timed ${st.subject.label} paper — ${fit.minutes} min, no notes; mark it in the ${fit.marking} min kept in hand after.`
+          ? `Timed ${paperName} — the first ${fit.minutes} min of a ${fit.full}-min paper, no notes; mark it in the ${fit.marking} min kept in hand after.`
+          : `Timed ${paperName} — ${fit.minutes} min, no notes; mark it in the ${fit.marking} min kept in hand after.`
       const sittings = [...paperDays.values()].filter((p) => p.st === st).length
       const paperWhy: EvidenceItem[] = [
         {
@@ -1592,13 +1686,16 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
           explanation: `Your plan style puts about ${Math.round(weights.timedShare * 100)}% of study minutes under time; this is one of ${sittings} timed ${sittings === 1 ? 'sitting' : 'sittings'} for ${st.subject.label}.`,
         },
       ]
-      place(st, paperSlot, 'timed_paper', fit.minutes, { label, why: paperWhy, priority: st.pool[0]?.score ?? 0 })
+      place(st, paperSlot, 'timed_paper', fit.minutes, { label, why: paperWhy, priority: st.pool[0]?.score ?? 0, component: st.subject.papers.length > 1 ? sitting.component : undefined })
       supply += fit.minutes
       const longBreak = BREAK_MINUTES[rhythm].long
       const host = intervalAt(cap.intervals, fit.slot.end - 1)
       const errMin = stepMinutesFor('error_review', scale)
       const room = host ? host.end - fit.slot.end : 0
       const capLeft = cap.capacity - fit.minutes - fit.marking
+      // Where the sitting (and its review) ends, and what it cost of the day's capacity, marking allowance included.
+      let usedEnd = fit.slot.end
+      let spent = fit.minutes + fit.marking
       if (room >= longBreak + MIN_TASK_MINUTES.error_review && capLeft >= longBreak + MIN_TASK_MINUTES.error_review) {
         breakSlots.push({ kind: 'break', start: fit.slot.end, end: fit.slot.end + longBreak, minutes: longBreak })
         const start = fit.slot.end + longBreak
@@ -1608,11 +1705,19 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
           label: objectiveFor('error_review', { subject: st.subject.label, minutes, afterPaper: true }),
           why: paperWhy,
           priority: st.pool[0]?.score ?? 0,
+          component: st.subject.papers.length > 1 ? sitting.component : undefined,
         })
         supply += minutes
+        usedEnd = start + minutes
+        spent += longBreak + minutes
       }
-    } else {
-      const layout = layoutDay(cap.intervals, cap.capacity, session, rhythm)
+      fillIntervals = subtractIntervals(cap.intervals, [{ start: fit.slot.start, end: usedEnd }])
+      fillCapacity = Math.max(0, cap.capacity - spent)
+    }
+    // A paper day with nothing usable left, or a day too short for a task, lays nothing more.
+    const canFill = fillCapacity >= MIN_DAY_MINUTES && fillIntervals.some((iv) => iv.end - iv.start >= MIN_DAY_MINUTES)
+    if (canFill) {
+      const layout = layoutDay(fillIntervals, fillCapacity, session, rhythm)
       for (const s of layout.slots) {
         if (s.kind === 'work') queue.push({ start: s.start, end: s.end, minutes: s.minutes })
         else if (s.kind === 'break') breakSlots.push(s)
@@ -1667,7 +1772,7 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
       const scheduleSpaced = (st: SubjectState, loop: TopicLoop, fromOrdinal: number, step: Step, gap: number) => {
         const last = st.studyDays.length - 1
         let due = Math.min(fromOrdinal + Math.max(1, gap), last)
-        while (due > fromOrdinal && tapering(st.studyDays[due]!, st.subject)) due -= 1
+        while (due > fromOrdinal && (tapering(st.studyDays[due]!, st.subject) || !topicLive(st, loop.entry.code, st.studyDays[due]!))) due -= 1
         if (due <= fromOrdinal) return
         st.pending.push({ loop, dueOrdinal: due, step, gap: due - fromOrdinal })
       }
@@ -1677,6 +1782,8 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
       const syllabusLine = (st: SubjectState, code: string): EvidenceItem =>
         syllabusOnlyWhy(st.subject.label, st.subject.board, st.paperOf.get(code))[0]!
 
+      // The day's capacity, read before pick() shadows `cap` with the review cap.
+      const capacityToday = cap.capacity
       const pick = (st: SubjectState, slot: Slot): boolean => {
         const subjOrd = subjectOrdinal(st)
         const subjectReviewOnly = reviewOnlyDay || tapering(i, st.subject)
@@ -1699,7 +1806,7 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
         // 1. A spaced review that is due (its loop finished), oldest first.
         // Reviews due today respect the mode's review share; an overdue one never waits.
         const due = st.pending
-          .filter((p) => p.dueOrdinal <= subjOrd && p.loop.next >= p.loop.steps.length && !done.has(p.loop.entry.code))
+          .filter((p) => p.dueOrdinal <= subjOrd && p.loop.next >= p.loop.steps.length && !done.has(p.loop.entry.code) && topicLive(st, p.loop.entry.code, i))
           .filter((p) => MIN_TASK_MINUTES[p.step.taskType] <= slot.minutes)
           .filter((p) => subjectReviewOnly || p.dueOrdinal < subjOrd || rMin < weights.reviewShare * dayWork || rMin === 0)
           .sort((a, b) => a.dueOrdinal - b.dueOrdinal)[0]
@@ -1744,10 +1851,13 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
           if (!underCap || MIN_TASK_MINUTES.review > slot.minutes) return false
           const skip = taperSkip()
           const proved = st.open
-            .filter((l) => st.proved.has(l.entry.code) && !done.has(l.entry.code))
+            .filter((l) => st.proved.has(l.entry.code) && !done.has(l.entry.code) && topicLive(st, l.entry.code, i))
             .sort((a, b) => a.entry.mastery - b.entry.mastery || (b.provedOrdinal ?? -1) - (a.provedOrdinal ?? -1))
           const rotated = proved.filter((l) => !skip.has(l.entry.code))
-          const firstOf = (list: TopicPriority[]) => list.find((t) => !done.has(t.code) && !skip.has(t.code)) ?? list.find((t) => !done.has(t.code))
+          const firstOf = (list: TopicPriority[]) => {
+            const alive = list.filter((t) => topicLive(st, t.code, i))
+            return alive.find((t) => !done.has(t.code) && !skip.has(t.code)) ?? alive.find((t) => !done.has(t.code))
+          }
           // In the taper: what was proved, then what the student has marked before, then the rest of the pool.
           const worked = inTaper ? firstOf(st.pool.filter((t) => t.uncertainty < 1)) : undefined
           const candidate = (rotated[0] ?? proved[0])?.entry ?? worked ?? (inTaper ? firstOf(st.pool) : undefined)
@@ -1793,6 +1903,7 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
         const firstGap = () => reviewGapDays(null, daysToPaper(i, st.subject))
         for (const loop of st.open) {
           if (loop.next >= loop.steps.length) continue
+          if (!topicLive(st, loop.entry.code, i)) continue
           const step = loop.steps[loop.next]!
           if (!gapAllows(loop.lastStep, step.step, loop.lastOrdinal, today)) continue
           // A timed set that no slot today can hold proves with one question instead of waiting for a day that never comes.
@@ -1832,10 +1943,14 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
         // of every day in hand next to "31 topics left for later".)
         const waiting = st.open.some((l) => l.next < l.steps.length)
         const opened = openedToday.get(st) ?? 0
-        if (mode === 'foundation' && waiting && opened >= 1) return false
-        if (opened >= MAX_OPENINGS_PER_DAY) return false
-        const daysBeforeTaper = st.studyDays.filter((j) => j >= i && !tapering(j, st.subject)).length
-        for (const entry of eligibleTopics(st.pool, st.placed, st.dropped)) {
+        // At the cap the subject opens nothing more today, but a full session need not go idle: named mixed practice
+        // (step 5) may still take it. A bare set is not offered at the cap — before anything is proved, "recent
+        // topics" would be a fiction — so a capped day one stays honest and a capped day five stays full.
+        const capped = opened >= openingsCapFor(capacityToday, mode, waiting)
+        // Study days a topic still has: before the subject's taper, and only while a paper the topic is on lies ahead.
+        const daysLeftFor = (code: string) => st.studyDays.filter((j) => j >= i && !tapering(j, st.subject) && topicLive(st, code, j)).length
+        for (const entry of capped ? [] : eligibleTopics(st.pool, st.placed, st.dropped)) {
+          if (!topicLive(st, entry.code, i)) continue
           let loop = st.loops.get(entry.code)
           if (!loop) {
             const built = loopStepsFor(entry, st.dest, { sessionLength: session, selfRating: st.selfRating })
@@ -1846,7 +1961,7 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
             loop = { entry, ...built, next: 0, reviews: 0 }
             st.loops.set(entry.code, loop)
           }
-          if (loopDaysNeeded(loop.steps, 0) > daysBeforeTaper) continue
+          if (loopDaysNeeded(loop.steps, 0) > daysLeftFor(entry.code)) continue
           const step = loop.steps[0]!
           const type = fitStep(step.taskType, slot.minutes)
           if (MIN_TASK_MINUTES[type] > slot.minutes) continue
@@ -1880,14 +1995,15 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
         // reasons; a bare set only while fewer than two topics are proved, or
         // the subject has no topic index at all.
         const mixed = mixedToday.get(st) ?? 0
-        if (mixed < MIXED_FALLBACK_PER_DAY && MIN_TASK_MINUTES.mixed <= slot.minutes) {
+        if (mixed < mixedCapFor(capacityToday) && MIN_TASK_MINUTES.mixed <= slot.minutes) {
           // A mixed set fills its session rather than leaving the day half empty.
           const minutes = Math.min(slot.minutes, Math.max(stepMinutesFor('mixed', scale), session))
           const lastSeen = (l: TopicLoop) => l.lastSeenOrdinal ?? l.provedOrdinal ?? -1
           const focus = st.open
-            .filter((l) => st.proved.has(l.entry.code))
+            .filter((l) => st.proved.has(l.entry.code) && topicLive(st, l.entry.code, i))
             .sort((a, b) => lastSeen(a) - lastSeen(b) || a.entry.mastery - b.entry.mastery)
             .slice(0, MIXED_FOCUS_TOPICS)
+          if (focus.length < 2 && capped) return false
           if (focus.length >= 2) {
             // Each topic's most specific line: its own marks or its paper count before the shared self-rating or syllabus lines.
             const why: EvidenceItem[] = []
@@ -2020,7 +2136,7 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
     // a defer or a skip changes while a built-time count would not.
     let focus: string
     if (kind === 'exam') {
-      focus = `${examsToday!.map((s) => s.label).join(' and ')} exam today. One short ${[...workLabels, ...reviewLabels].join(' and ')} review after the paper — only if you feel like it.`
+      focus = `${examsToday!.map(examName).join(' and ')} exam today. One short ${[...workLabels, ...reviewLabels].join(' and ')} review after the paper — only if you feel like it.`
     } else if (kind === 'review') {
       focus = length - i === 1 ? 'Light review, then stop. Sleep is revision too.' : 'Review only — nothing new from here.'
     } else if (paper) {
@@ -2057,10 +2173,13 @@ export function buildRoadmap(input: BuildRoadmapInput, opts: { strict?: boolean 
     subjects: states.map((st) => ({
       code: st.subject.code,
       label: st.subject.label,
-      daysToPaper: planLength(input.startDate, st.subject.examDate),
+      daysToPaper: planLength(input.startDate, st.subject.papers[0]!.examDate),
       studyDaysToPaper: st.studyDays.length,
       pool: st.pool,
       inTaper: tapering(0, st.subject),
+      ...(st.subject.papers.length > 1
+        ? { papers: st.subject.papers.map((p) => ({ component: p.component, examDate: p.examDate, daysToPaper: planLength(input.startDate, p.examDate) })) }
+        : {}),
       prioritised: Boolean(input.prioritySubject) && st.subject.code === input.prioritySubject,
       // Reached means the marked question is on the calendar, not that a ten-minute check was.
       plannedTopics: st.proved.size,
@@ -2127,6 +2246,7 @@ function followsOrder(steps: LoopStep[], order: LoopStep[]): boolean {
 export function validateRoadmap(plan: Pick<StudyPlan, 'days' | 'subjects'>): string[] {
   const errors: string[] = []
   const examOf = new Map(plan.subjects.map((s) => [s.code, s.examDate]))
+  const papersOf = new Map(plan.subjects.map((s) => [s.code, s.papers ?? []]))
   const stepsByTopic = new Map<string, Array<{ date: string; start: number; step: LoopStep }>>()
 
   for (const day of plan.days) {
@@ -2162,6 +2282,8 @@ export function validateRoadmap(plan: Pick<StudyPlan, 'days' | 'subjects'>): str
       if (b.subjectCode) {
         const exam = examOf.get(b.subjectCode)
         if (exam !== undefined && !(day.date < exam)) errors.push(`${day.date}: ${b.id} falls on or after its paper (${exam})`)
+        const paper = b.component ? papersOf.get(b.subjectCode)?.find((p) => p.component === b.component)?.examDate : undefined
+        if (paper !== undefined && !(day.date < paper)) errors.push(`${day.date}: ${b.id} is for ${b.component} but falls on or after it (${paper})`)
       }
       if (b.loopStep && b.subjectCode && b.topic) {
         const key = `${b.subjectCode}|${b.topic.code}`

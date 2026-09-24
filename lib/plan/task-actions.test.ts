@@ -3,7 +3,7 @@ import { buildRoadmap, buildStudyPlan, validateRoadmap, type RoadmapSubjectInput
 import { isCalmCopy } from '@/lib/plan/feasibility'
 import { MIN_TASK_MINUTES } from '@/lib/plan/modes'
 import { WORK_KINDS, type HydratedPlan } from '@/lib/plan/plan-view'
-import { minuteOfDay, normaliseRoadmap, taskStanding, type RoadmapPlan, type RoadmapTask } from '@/lib/plan/roadmap-view'
+import { minuteOfDay, normaliseRoadmap, taskIdFor, taskStanding, type RoadmapDay, type RoadmapPlan, type RoadmapTask } from '@/lib/plan/roadmap-view'
 import { DEFAULT_AVAILABILITY, MIN_DAY_MINUTES, type RoadmapTodaySummary, type TaskState, type TopicPriority, type TopicSignals } from '@/lib/plan/roadmap-types'
 import {
   DURATION_SCALE_MAX,
@@ -13,6 +13,8 @@ import {
   applyTaskAction,
   applyUndo,
   availableFeels,
+  carryOptions,
+  carryTargets,
   letGoLine,
   remainingMinutesAt,
   replanToday,
@@ -424,6 +426,157 @@ const clockErrors = (plan: RoadmapPlan) => validateRoadmap(plan).filter((e) => !
   const lback = applyUndo(longer.plan, longer.taskState, lsnap)
   assert.equal(lback.plan.durationScale, undefined)
   assert.deepEqual(lback.plan.days, P0.days)
+}
+
+// --- carry over: the student's own move, to a day they choose ---------------------------------------
+
+{
+  const day2 = P0.days[1]!
+  const day3 = P0.days[2]!
+  // The options list the next study days nearest first, each with what the move would do.
+  const opts = carryOptions(P0, {}, t2, START, ctx.nowMinute)
+  assert.ok(opts.length >= 3 && opts.length <= 7, `a handful of days (${opts.length})`)
+  assert.ok(!opts.some((o) => o.date === day1.date), 'never its own day')
+  assert.ok(opts.every((o, i) => i === 0 || o.date > opts[i - 1]!.date), 'nearest first')
+  assert.ok(opts.every((o) => o.date < EXAM), 'never on or after the paper')
+  assert.ok(opts.every((o) => ['full', 'shortened', 'over'].includes(o.fit)))
+  const targets = carryTargets(P0, t2, day1.date, START)
+  assert.ok(targets.includes(day2.date) && targets.includes(day3.date))
+  assert.ok(!targets.includes(day1.date))
+
+  // Carry t2 to day 3: the original says where it went, the copy sits on day 3 at full length and remembers its origin.
+  const r = applyTaskAction(P0, {}, pools, req(t2.id, 'carry', { toDate: day3.date }), ctx)
+  assert.ok(!r.noop, r.reason)
+  assert.equal(r.structural, true)
+  assert.deepEqual(r.changedDates, [day1.date, day3.date])
+  assert.equal(r.taskState[t2.id]!.status, 'deferred')
+  assert.equal(r.taskState[t2.id]!.deferredTo, day3.date)
+  assert.equal(r.taskState[t2.id]!.auto, undefined, 'the student did this, not the rollover')
+  const target = r.plan.days.find((d) => d.date === day3.date)!
+  const copy = target.blocks.find((b) => b.carriedFrom === t2.id)!
+  assert.ok(copy, 'the copy is on the chosen day')
+  assert.equal(copy.minutes, t2.minutes, 'at its full length where the day has room')
+  assert.equal(copy.topic?.code, t2.topic?.code)
+  assert.equal(copy.href, undefined, 'the copy forgets the original link and is hydrated afresh')
+  assert.deepEqual(r.needsHydration, [copy.id])
+  assert.equal(r.taskState[copy.id], undefined, 'a full-length copy carries no state: it may be carried again')
+  assert.equal(r.diff!.date, day3.date)
+  assert.equal(r.diff!.changes[0]!.kind, 'added')
+  assert.match(r.diff!.changes[0]!.detail!, /Carried over from/)
+  assert.ok(calm(r.diff!.summary) && calm(r.diff!.changes[0]!.detail!))
+  assert.equal(r.event!.type, 'task_carried')
+  assert.deepEqual(r.event!.meta, { from: day1.date, to: day3.date, fit: 'full', was: 'todo' })
+  assert.deepEqual(clockErrors(r.plan), [], 'a full-length carry keeps the clock invariants')
+  assert.equal(target.workMinutes, day3.workMinutes + t2.minutes, 'the day grew by the copy')
+  assert.equal(day1.blocks.length, r.plan.days[0]!.blocks.length, 'the day it came from keeps its blocks; only its state changed')
+
+  // The copy can be carried on again; the original cannot (it has moved).
+  const again = applyTaskAction(r.plan, r.taskState, pools, req(copy.id, 'carry', { toDate: day2.date }), ctx)
+  assert.ok(!again.noop, 'the copy is carryable')
+  assert.ok(applyTaskAction(r.plan, r.taskState, pools, req(t2.id, 'carry', { toDate: day2.date }), ctx).noop, 'the original has moved already')
+
+  // Refusals: a done task, its own day, a day before today, a day on or after the paper, no day at all.
+  const done: TaskState = { [t2.id]: { status: 'done', at: 'x' } }
+  assert.ok(applyTaskAction(P0, done, pools, req(t2.id, 'carry', { toDate: day2.date }), ctx).noop)
+  assert.ok(applyTaskAction(P0, {}, pools, req(t2.id, 'carry', { toDate: day1.date }), ctx).noop)
+  assert.ok(applyTaskAction(P0, {}, pools, req(t2.id, 'carry'), ctx).noop)
+  assert.ok(applyTaskAction(P0, {}, pools, req(t2.id, 'carry', { toDate: EXAM }), ctx).noop)
+  const laterCtx: ActionContext = { ...ctx, todayIso: day3.date }
+  assert.ok(applyTaskAction(P0, {}, pools, req(t2.id, 'carry', { toDate: day2.date }), laterCtx).noop, 'a day before today is not a day')
+  // A skipped task today is still carryable: skipping was a choice about today, not about the topic.
+  const skipped: TaskState = { [t2.id]: { status: 'skipped', at: 'x' } }
+  assert.ok(!applyTaskAction(P0, skipped, pools, req(t2.id, 'carry', { toDate: day2.date }), ctx).noop)
+
+  // Undo puts both days back.
+  const snap = undoSnapshotFor(P0, {}, r.diff!.date, r.diff!.summary, r.changedDates)
+  const back = applyUndo(r.plan, r.taskState, snap)
+  assert.deepEqual(back.plan.days.find((d) => d.date === day3.date)!.blocks.map((b) => b.id), day3.blocks.map((b) => b.id))
+  assert.equal(back.taskState[t2.id], undefined, 'the original is open again')
+  assert.equal(back.taskState[copy.id], undefined)
+}
+{
+  // A day with no free time takes the copy after its last block, past the window, and the option says so.
+  const full = P0.days[1]!
+  const packed: RoadmapDay = {
+    ...full,
+    windows: [{ start: '16:00', end: '17:00' }],
+    capacityMinutes: 60,
+    bufferMinutes: 0,
+    workMinutes: 60,
+    blocks: [{ ...t3, id: taskIdFor(full.date, t3.subjectCode, t3.topic?.code ?? t3.taskType, 9), minutes: 60, startsAt: '16:00', endsAt: '17:00' }],
+  }
+  const plan: RoadmapPlan = { ...P0, days: P0.days.map((d) => (d.date === full.date ? packed : d)) }
+  const opt = carryOptions(plan, {}, t2, START, ctx.nowMinute).find((o) => o.date === full.date)!
+  assert.ok(opt, 'still offered')
+  assert.equal(opt.fit, 'over')
+  assert.equal(opt.minutes, t2.minutes)
+  assert.equal(opt.over, t2.minutes, 'it runs the whole task past 17:00')
+  const r = applyTaskAction(plan, {}, pools, req(t2.id, 'carry', { toDate: full.date }), ctx)
+  assert.ok(!r.noop)
+  const target = r.plan.days.find((d) => d.date === full.date)!
+  const copy = target.blocks.find((b) => b.carriedFrom === t2.id)!
+  assert.equal(copy.startsAt, '17:00')
+  assert.match(r.diff!.changes[0]!.detail!, /past the day's last window/)
+  assert.equal(r.event!.meta!.fit, 'over')
+  // A day with a little free time shortens the copy to it, and the state says so.
+  const tight: RoadmapDay = { ...packed, windows: [{ start: '16:00', end: '17:15' }], capacityMinutes: 75 }
+  const plan2: RoadmapPlan = { ...P0, days: P0.days.map((d) => (d.date === full.date ? tight : d)) }
+  const opt2 = carryOptions(plan2, {}, t2, START, ctx.nowMinute).find((o) => o.date === full.date)!
+  assert.equal(opt2.fit, t2.minutes > 15 ? 'shortened' : 'full')
+  if (opt2.fit === 'shortened') {
+    assert.equal(opt2.minutes, 15)
+    const r2 = applyTaskAction(plan2, {}, pools, req(t2.id, 'carry', { toDate: full.date }), ctx)
+    const copy2 = r2.plan.days.find((d) => d.date === full.date)!.blocks.find((b) => b.carriedFrom === t2.id)!
+    assert.equal(r2.taskState[copy2.id]!.status, 'shortened')
+    assert.equal(r2.taskState[copy2.id]!.minutes, 15)
+    assert.match(r2.diff!.changes[0]!.detail!, /shortened to 15 min/)
+  }
+}
+{
+  // What the rollover let go can be carried forward the next day; its entries say the plan settled them, not the student.
+  const day2 = P0.days[1]!
+  const rolled = rolloverDay(P0, {}, pools, { fromDate: day1.date, toDate: day2.date, evidence: none })!
+  const dropped = work(day1).filter((t) => rolled.taskState[t.id]?.status === 'dropped')
+  assert.ok(dropped.length >= 1, 'the rollover let some of day one go')
+  for (const t of dropped) assert.equal(rolled.taskState[t.id]!.auto, true, `${t.id} was settled by the plan`)
+  const moved = work(day1).find((t) => rolled.taskState[t.id]?.status === 'deferred')
+  if (moved) assert.equal(rolled.taskState[moved.id]!.auto, true)
+  const tomorrow: ActionContext = { ...ctx, todayIso: day2.date, nowMinute: 9 * 60 }
+  const pick = dropped[0]!
+  const opts = carryOptions(rolled.plan, rolled.taskState, pick, day2.date, tomorrow.nowMinute)
+  assert.ok(opts.length > 0 && opts[0]!.date === day2.date, 'today is the first option')
+  const r = applyTaskAction(rolled.plan, rolled.taskState, pools, req(pick.id, 'carry', { toDate: day2.date }), tomorrow)
+  assert.ok(!r.noop, r.reason)
+  assert.equal(r.taskState[pick.id]!.status, 'deferred')
+  assert.equal(r.taskState[pick.id]!.auto, undefined, 'carrying it forward is the student\'s own move')
+  assert.equal(r.event!.meta!.was, 'dropped')
+  const copy = r.plan.days.find((d) => d.date === day2.date)!.blocks.find((b) => b.carriedFrom === pick.id)!
+  assert.ok(copy && minuteOfDay(copy.startsAt) >= tomorrow.nowMinute, 'today\'s copy lands after now')
+}
+{
+  // A task on a day kept from an earlier build can be carried into this plan; nothing else can touch it.
+  const day2 = P0.days[1]!
+  const old = { ...day1, date: '2026-09-10', day: 3, archived: true as const, blocks: day1.blocks.map((b) => ({ ...b, id: b.id.replace(day1.date, '2026-09-10') })) }
+  const plan: RoadmapPlan = { ...P0, archive: [old] }
+  const oldTask = old.blocks.find((b) => WORK_KINDS.has(b.kind))!
+  const state: TaskState = { [oldTask.id]: { status: 'dropped', at: '2026-09-11T00:00:00.000Z', auto: true } }
+  assert.ok(applyTaskAction(plan, state, pools, req(oldTask.id, 'complete'), ctx).noop, 'an archived task cannot be ticked')
+  const archivedOpts = carryOptions(plan, state, oldTask, START, ctx.nowMinute)
+  assert.ok(archivedOpts.length > 0 && archivedOpts[0]!.date >= START, 'the sheet offers days for an archived task too')
+  // A subject that left the plan at the rebuild has no days to offer.
+  const gone: RoadmapPlan = { ...plan, subjects: plan.subjects.filter((s) => s.code !== oldTask.subjectCode) }
+  assert.deepEqual(carryOptions(gone, state, oldTask, START, ctx.nowMinute), [])
+  assert.ok(applyTaskAction(gone, state, pools, req(oldTask.id, 'carry', { toDate: day2.date }), ctx).noop)
+  const r = applyTaskAction(plan, state, pools, req(oldTask.id, 'carry', { toDate: day2.date }), ctx)
+  assert.ok(!r.noop, r.reason)
+  assert.deepEqual(r.changedDates, ['2026-09-10', day2.date])
+  assert.equal(r.taskState[oldTask.id]!.status, 'deferred')
+  assert.deepEqual(r.plan.archive, plan.archive, 'the archived day itself is never rewritten')
+  const copy = r.plan.days.find((d) => d.date === day2.date)!.blocks.find((b) => b.carriedFrom === oldTask.id)
+  assert.ok(copy, 'the copy is on a day this plan lays')
+  const snap = undoSnapshotFor(plan, state, r.diff!.date, r.diff!.summary, r.changedDates)
+  const back = applyUndo(r.plan, r.taskState, snap)
+  assert.equal(back.taskState[oldTask.id]!.status, 'dropped', 'undo restores the archived entry')
 }
 
 // --- rollover: re-branch, defer one, drop the rest, idempotent ------------------------------------

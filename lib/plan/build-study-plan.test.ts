@@ -23,7 +23,9 @@ import {
   TASK_KIND,
   buildRoadmap,
   loopStepsFor,
+  mixedCapFor,
   objectiveFor,
+  openingsCapFor,
   paperMarkingMinutes,
   stepMinutesFor,
   synthesiseSignals,
@@ -1259,6 +1261,169 @@ assert.ok(STEP_GAP_DAYS.some((r) => r.from === 'prove' && r.to === 'review' && r
   for (const claim of ["you've done the work", 'so will you', 'this one is full']) assert.ok(!text.includes(claim), `no "${claim}"`)
   for (const d of plan.days) if (d.kind === 'study') assert.ok(!/\d+ tasks?\b/.test(d.focus), `the summary owns the count: ${d.focus}`)
   assert.ok(plan.days.some((d) => d.focus === 'Mathematics and Physics' || d.focus === 'Physics and Mathematics' || d.focus === 'Mathematics' || d.focus === 'Physics'), 'a study day names its subjects and nothing else')
+}
+
+// --- long days: a student who set aside six hours gets six hours of work, not two and four in hand ---
+
+{
+  assert.equal(openingsCapFor(90, 'balanced', false), 3, 'an evening keeps the original cap')
+  assert.equal(openingsCapFor(180, 'balanced', true), 3)
+  assert.equal(openingsCapFor(360, 'balanced', false), 5, 'one more opening per extra ninety minutes')
+  assert.equal(openingsCapFor(480, 'polish', false), 6)
+  assert.equal(openingsCapFor(180, 'foundation', true), 1, 'Foundation still finishes a loop before widening on a short day')
+  assert.equal(openingsCapFor(270, 'foundation', true), 2, 'and climbs at the same slope as the other modes, from one')
+  assert.equal(openingsCapFor(360, 'foundation', true), 3)
+  assert.equal(openingsCapFor(360, 'foundation', false), 5)
+  assert.equal(mixedCapFor(120), 2)
+  assert.equal(mixedCapFor(360), 4)
+  // The timed share is a share of minutes: six-hour days hold twice the sittings of evenings, and never more than that.
+  assert.equal(timedPaperBudget('balanced', 17), timedPaperBudget('balanced', 17, 90), 'an evening plan keeps its count')
+  // Rounding happens once, on the doubled share: 17 × 0.2 × 2 = 6.8 → 7.
+  assert.equal(timedPaperBudget('balanced', 17, 360), Math.round(17 * 0.2 * 2), 'six-hour days double the share')
+  assert.ok(timedPaperBudget('balanced', 17, 360) > timedPaperBudget('balanced', 17))
+  assert.equal(timedPaperBudget('balanced', 17, 900), timedPaperBudget('balanced', 17, 360), 'and no further')
+  assert.equal(timedPaperBudget('balanced', 3, 360), 0, 'still nothing under four study days')
+}
+{
+  const allDay = {
+    weekday: [{ start: '08:00', end: '13:00' }, { start: '14:00', end: '22:00' }],
+    weekend: [{ start: '08:00', end: '13:00' }, { start: '14:00', end: '22:00' }],
+  }
+  const long: RoadmapAvailability = { ...DEFAULT_AVAILABILITY, weekdayMinutes: 360, weekendMinutes: 360, windows: allDay, commitments: [] }
+  const { plan } = roadmap({ availabilityDetail: long })
+  assert.deepEqual(validateRoadmap(plan), [])
+  const study = plan.days.filter((d) => d.kind === 'study' && (d.capacityMinutes ?? 0) >= 300)
+  assert.ok(study.length >= 8, `enough long study days to judge (${study.length})`)
+  const util = study.reduce((n, d) => n + d.workMinutes, 0) / study.reduce((n, d) => n + (d.capacityMinutes ?? 0), 0)
+  assert.ok(util >= 0.6, `long days are mostly laid, not left in hand (${util.toFixed(2)})`)
+  // Every long study day before the taper holds real work, and none of them stops at a third of the day.
+  const before = study.filter((d) => d.daysLeft > 3)
+  assert.ok(before.every((d) => d.workMinutes >= 0.5 * (d.capacityMinutes ?? 0)), 'no long day is half empty before the taper')
+  // A timed paper on a long day is followed by an ordinary study session, with the marking allowance still in hand.
+  const paperDays = plan.days.filter((d) => d.blocks.some((b) => b.taskType === 'timed_paper'))
+  assert.ok(paperDays.length >= 1, 'a paper was placed')
+  for (const d of paperDays) {
+    const paper = d.blocks.find((b) => b.taskType === 'timed_paper')!
+    const others = d.blocks.filter((b) => WORK_KINDS.has(b.kind) && b.taskType !== 'timed_paper' && b.taskType !== 'error_review')
+    assert.ok(others.length >= 2, `${d.date}: the rest of a paper day is a study day (${others.length} other tasks)`)
+    assert.ok((d.bufferMinutes ?? 0) >= paperMarkingMinutes(paper.minutes), `${d.date}: the marking allowance stays in hand`)
+    assert.match(d.focus, /^Timed paper day/)
+  }
+  // Day one of a long day is never padded with a "recent topics" set: nothing has been proved yet.
+  const dayOne = plan.days.find((d) => d.kind === 'study')!
+  assert.ok(!dayOne.blocks.some((b) => b.taskType === 'mixed'), 'no mixed set before anything is proved')
+  // The caps still bind: no subject opens more than five topics on one day.
+  for (const d of plan.days) {
+    const opened = new Map<string, number>()
+    for (const b of d.blocks) {
+      if (b.loopStep !== 'diagnose' && !(b.loopStep === 'repair' && b.taskType === 'concept' && !b.provisional)) continue
+      if (!b.subjectCode) continue
+      opened.set(b.subjectCode, (opened.get(b.subjectCode) ?? 0) + 1)
+    }
+    for (const [code, n] of opened) assert.ok(n <= 5 + 1, `${d.date}: ${code} opened ${n} topics`)
+  }
+  // Three-hour days are untouched by the long-day rules: the same fixture at 180 lays what it did before.
+  const evening = roadmap().plan
+  const eveningStudy = evening.days.filter((d) => d.kind === 'study')
+  assert.ok(eveningStudy.every((d) => d.workMinutes <= (d.capacityMinutes ?? 0)))
+}
+
+// --- several papers in one subject: Business Paper 1 on the 5th, Paper 2 on the 8th -------------
+
+{
+  const codes = codesOf(9, 'b')
+  // Three leaves for Paper 1 only, three for Paper 2 only, three on both.
+  const paperOf = (i: number) => (i < 3 ? 'P1' : i < 6 ? 'P2' : 'P1/P2')
+  const p1Only = new Set(codes.slice(0, 3))
+  const BUS: RoadmapSubjectInput = {
+    code: '9609',
+    label: 'Business',
+    highYield: [],
+    weak: [],
+    hasTimedPaper: true,
+    paperMinutes: 90,
+    signals: codes.map((c, i) => sig(c, `Business ${c}`, i, { paper: paperOf(i) })),
+    destinations: everywhere(codes),
+    selfRating: 'rusty',
+    papers: [
+      { component: 'Paper 2', examDate: '2026-10-08', examTime: '13:00', paperMinutes: 90 },
+      { component: 'Paper 1', examDate: '2026-10-05', examTime: '09:00', paperMinutes: 75 },
+    ],
+  }
+  const { plan } = buildRoadmap({ startDate: START, examDate: '2026-10-08', mode: 'balanced', availabilityDetail: AVAIL, subjects: [BUS, R_PHYSICS] }, { strict: true })
+  assert.deepEqual(validateRoadmap(plan), [])
+  assert.equal(plan.examDate, '2026-10-08', 'the plan runs to the last paper')
+
+  // One exam per paper, sorted, each with its own time and length; the subject row lists them and its date is the last.
+  const busExams = plan.exams!.filter((e) => e.subjectCode === '9609')
+  assert.deepEqual(
+    busExams.map((e) => [e.component, e.examDate, e.examTime, e.paperMinutes]),
+    [
+      ['Paper 1', '2026-10-05', '09:00', 75],
+      ['Paper 2', '2026-10-08', '13:00', 90],
+    ]
+  )
+  const busRow = plan.subjects.find((s) => s.code === '9609')!
+  assert.equal(busRow.examDate, '2026-10-08')
+  assert.deepEqual(busRow.papers!.map((p) => p.examDate), ['2026-10-05', '2026-10-08'])
+  assert.equal(plan.subjects.find((s) => s.code === '9702')!.papers, undefined, 'a single-paper subject lists none')
+
+  // Paper 1's day is an exam day for Business: a commitment named for the paper, and the line says which paper.
+  const oct5 = plan.days.find((d) => d.date === '2026-10-05')!
+  assert.ok(oct5.commitments!.some((c) => c.kind === 'exam' && /Business Paper 1/.test(c.label)), 'the sitting is a commitment')
+  assert.match(oct5.focus, /Business Paper 1 exam today/)
+  assert.ok(!oct5.blocks.some((b) => b.subjectCode === '9609' && b.taskType !== 'review'), 'nothing but a review for Business on its exam day')
+
+  // A Paper 1 topic is never scheduled once Paper 1 has been sat; Business keeps going for Paper 2 in between.
+  for (const d of plan.days) {
+    for (const b of d.blocks) {
+      if (b.subjectCode !== '9609' || !b.topic) continue
+      if (p1Only.has(b.topic.code)) assert.ok(d.date < '2026-10-05', `${b.id} is for Paper 1 but sits after it`)
+      assert.ok(d.date < '2026-10-08', `${b.id} sits after the last paper`)
+    }
+  }
+  const between = plan.days.filter((d) => d.date > '2026-10-05' && d.date < '2026-10-08')
+  assert.ok(between.some((d) => d.blocks.some((b) => b.subjectCode === '9609' && WORK_KINDS.has(b.kind))), 'Business work continues between its papers')
+  // Topics tagged for one paper carry it; shared and single-paper subjects carry nothing.
+  const p1Tasks = workOf(plan).filter((b) => b.subjectCode === '9609' && b.topic && p1Only.has(b.topic.code))
+  assert.ok(p1Tasks.length > 0 && p1Tasks.every((b) => b.component === 'Paper 1'), 'a Paper 1 topic says so')
+  assert.ok(workOf(plan).filter((b) => b.subjectCode === '9609' && b.topic && !p1Only.has(b.topic.code) && !codes.slice(3, 6).includes(b.topic.code)).every((b) => b.component === undefined))
+  assert.ok(workOf(plan).filter((b) => b.subjectCode === '9702').every((b) => b.component === undefined))
+
+  // The taper before Paper 1: on its eve Business holds review only, and the plan as a whole is not review-only yet.
+  const oct4 = plan.days.find((d) => d.date === '2026-10-04')!
+  const busOnEve = oct4.blocks.filter((b) => b.subjectCode === '9609' && WORK_KINDS.has(b.kind))
+  assert.ok(busOnEve.length > 0 && busOnEve.every((b) => b.taskType === 'review'), `review only on the eve of Paper 1 (${busOnEve.map((b) => b.taskType).join(',')})`)
+  assert.equal(oct4.kind, 'study', 'the eve of a first paper is not the plan\'s review-only run-in')
+  assert.ok(plan.days.filter((d) => d.date > '2026-10-05' && d.kind === 'review').length >= 1, 'the run-in to the last papers is')
+
+  // Timed papers are named for the sitting they practise, at that sitting's length, and never after it.
+  const timed = tasksOf(plan).filter((b) => b.subjectCode === '9609' && b.taskType === 'timed_paper')
+  assert.ok(timed.length >= 1, 'Business sits at least one timed paper')
+  for (const t of timed) {
+    assert.match(t.label, /^Timed Business Paper [12]/, t.label)
+    assert.ok(t.component === 'Paper 1' || t.component === 'Paper 2')
+    if (t.component === 'Paper 1') {
+      assert.ok(t.date < '2026-10-05')
+      assert.ok(t.minutes <= 75, `a Paper 1 sitting is at most 75 min (${t.minutes})`)
+    }
+  }
+  // The feasibility row carries both papers, nearest first.
+  const feas = plan.feasibility!.subjects.find((s) => s.code === '9609')!
+  assert.deepEqual(feas.papers, [
+    { component: 'Paper 1', examDate: '2026-10-05', daysToPaper: 19 },
+    { component: 'Paper 2', examDate: '2026-10-08', daysToPaper: 22 },
+  ])
+  assert.equal(feas.daysToPaper, 19)
+  assert.equal(plan.feasibility!.subjects.find((s) => s.code === '9702')!.papers, undefined)
+  // The validator catches a task for a paper that has been sat.
+  const late = plan.days.find((d) => d.date === '2026-10-06' && d.blocks.some((b) => b.subjectCode === '9609' && WORK_KINDS.has(b.kind)))
+  if (late) {
+    const broken = { ...plan, days: plan.days.map((d) => (d === late ? { ...d, blocks: d.blocks.map((b) => (b.subjectCode === '9609' && WORK_KINDS.has(b.kind) ? { ...b, component: 'Paper 1' } : b)) } : d)) }
+    assert.ok(validateRoadmap(broken).some((e) => /is for Paper 1 but falls on or after it/.test(e)))
+  }
+  // Calm copy throughout.
+  for (const d of plan.days) assert.ok(calm(d.focus), d.focus)
 }
 
 console.log('build-study-plan.test.ts: ok')

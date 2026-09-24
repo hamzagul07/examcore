@@ -260,11 +260,12 @@ export function reviewGapDays(provePct: number | null, daysToPaper: number): num
   return Math.max(1, Math.min(gap, daysToPaper - 2))
 }
 
-/** A day's work is spread over this many subjects at most, by capacity: one short day is one subject. */
+/** A day's work is spread over this many subjects at most, by capacity: one short day is one subject; a five-hour day can carry four. */
 export function subjectsPerDay(capacityMinutes: number): number {
   if (capacityMinutes <= 60) return 1
   if (capacityMinutes <= 120) return 2
-  return 3
+  if (capacityMinutes <= 300) return 3
+  return 4
 }
 
 // --- copy --------------------------------------------------------------------------------

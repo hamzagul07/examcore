@@ -58,6 +58,7 @@ import {
   type HydratedPlan,
 } from '@/lib/plan/plan-view'
 import {
+  archiveFor,
   carryOverTaskState,
   dayCompleteFromTasks,
   normaliseRoadmap,
@@ -67,14 +68,15 @@ import {
 } from '@/lib/plan/roadmap-view'
 import { rolloverDay, todaySummaryFor, undoSnapshotFor } from '@/lib/plan/task-actions'
 import { minuteOfDayInZone } from '@/lib/plan/availability'
-import { normalisePaperLabel } from '@/lib/plan/paper-match'
+import { componentDigit, normalisePaperLabel, slotPaperDigit } from '@/lib/plan/paper-match'
 import { LEGACY_PREPAREDNESS_TO_MODE, MODE_TO_LEGACY_PREPAREDNESS } from '@/lib/plan/modes'
-import { gatherSubjectSignals, QUESTION_MAX_MARKS, QUESTION_MIN_MARKS, SHORT_QUESTION_MAX_MARKS } from '@/lib/plan/signals'
+import { gatherSubjectSignals, paperMinutesFor, QUESTION_MAX_MARKS, QUESTION_MIN_MARKS, SHORT_QUESTION_MAX_MARKS } from '@/lib/plan/signals'
 import { recordRoadmapEvents, type RoadmapEventInput } from '@/lib/plan/events'
 import type {
   DayMutationResponse,
   FeasibilityReport,
   FeasibilityState,
+  PaperSitting,
   ReplanDiff,
   RoadmapAvailability,
   RoadmapBuildRequest,
@@ -287,7 +289,16 @@ function memoKey(userId: string, req: RoadmapServiceRequest): string {
   const codes = [...req.subjects].sort()
   const components = codes.map((c) => `${c}=${req.subjectComponents?.[c] ?? ''}`)
   const dates = codes.map((c) => `${c}@${req.subjectExamDates?.[c] ?? req.examDate}`)
-  return `${userId}|${codes.join(',')}|${components.join(',')}|${dates.join(',')}`
+  const papers = (req.exams ?? []).map((e) => `${e.subjectCode}:${e.component ?? ''}:${e.examDate}`).sort()
+  return `${userId}|${codes.join(',')}|${components.join(',')}|${dates.join(',')}|${papers.join(',')}`
+}
+
+/** The papers the request lists for one subject, earliest first; empty when it lists none (the single-date fields then apply). */
+function sittingsFor(req: Pick<RoadmapServiceRequest, 'exams'>, code: string): PaperSitting[] {
+  return (req.exams ?? [])
+    .filter((e) => e.subjectCode === code)
+    .map((e) => ({ component: e.component, examDate: e.examDate, examTime: e.examTime }))
+    .sort((a, b) => (a.examDate < b.examDate ? -1 : a.examDate > b.examDate ? 1 : 0))
 }
 
 /**
@@ -306,23 +317,36 @@ async function resolveRoadmapSubjects(admin: Admin, userId: string, req: Roadmap
     const [attempts, profile] = await Promise.all([fetchAttempts(admin, userId), profileBoard(admin, userId)])
     return Promise.all(
       req.subjects.map(async (code): Promise<RoadmapSubjectInput> => {
-        const examDate = req.subjectExamDates?.[code] ?? req.examDate
-        const component = req.subjectComponents?.[code]
+        // Several papers: the subject runs to the last one, the signals are read against the nearest, and the frequency
+        // table counts every paper when the sittings name more than one component.
+        const sittings = sittingsFor(req, code)
+        const nearest = sittings[0]
+        const examDate = sittings.length > 0 ? sittings[sittings.length - 1]!.examDate : (req.subjectExamDates?.[code] ?? req.examDate)
+        const component = nearest ? nearest.component : req.subjectComponents?.[code]
+        const distinct = new Set(sittings.map((p) => p.component ?? ''))
         const [base, gathered] = await Promise.all([
           planSubjectFrom(admin, attempts, code, examDate),
-          gatherSubjectSignals(admin, userId, { code, component, nearestExamDate: examDate, attempts }),
+          gatherSubjectSignals(admin, userId, {
+            code,
+            component,
+            nearestExamDate: nearest?.examDate ?? examDate,
+            attempts,
+            frequencyScope: distinct.size > 1 ? 'subject' : 'component',
+          }),
         ])
         const ib = isIbSubjectCode(code)
+        const fallbackMinutes = gathered.paperMinutes ?? base.paperMinutes
         return {
           ...base,
-          paperMinutes: gathered.paperMinutes ?? base.paperMinutes,
+          paperMinutes: fallbackMinutes,
           signals: gathered.signals,
           destinations: gathered.destinations,
           selfRating: req.selfRatings?.[code],
           component,
-          examTime: req.subjectExamTimes?.[code],
+          examTime: nearest ? nearest.examTime : req.subjectExamTimes?.[code],
           board: ib ? 'IB' : profile.board,
           qualification: ib ? 'IB Diploma' : profile.qualification,
+          ...(sittings.length > 0 ? { papers: sittings.map((p) => ({ ...p, paperMinutes: paperMinutesFor(code, p.component) ?? fallbackMinutes })) } : {}),
         }
       })
     )
@@ -565,8 +589,12 @@ function reviewDestination(block: PlanBlock): HydratedBlock {
 }
 
 function timedPaperDestination(ctx: HydrationContext, block: PlanBlock, code: string): HydratedBlock {
-  const slots = timedPaperSlots(code)
-  if (slots.length === 0) return block
+  const all = timedPaperSlots(code)
+  if (all.length === 0) return block
+  // A sitting for one paper of several points at that paper's slots when the catalogue names them.
+  const digit = componentDigit(block.component)
+  const named = digit ? all.filter((s) => slotPaperDigit(s.label) === digit) : []
+  const slots = named.length > 0 ? named : all
   // Rotate through the papers that fit the block; if none fit, the
   // shortest, and the label already says "the first N minutes".
   const fitting = slots.filter((s) => s.minutes <= block.minutes)
@@ -1068,7 +1096,11 @@ export async function buildAndSaveRoadmap(admin: Admin, userId: string, req: Roa
   const [subjects, previous] = await Promise.all([resolveRoadmapSubjects(admin, userId, req, false), loadRoadmap(admin, userId)])
   // Strict: a plan that breaks an invariant (an overlap, a task after its paper) is a 500 here, never a stored row.
   const { plan, pools } = buildRoadmap(roadmapInput(req, subjects, previous), { strict: true })
-  const hydrated = await hydrateStudyPlan(admin, plan)
+  const built = await hydrateStudyPlan(admin, plan)
+  // The days before this build stay with the plan, so the record of what was done survives adding a paper or changing the hours.
+  const previousEvidence = previous ? new Set((await loadRoadmapEvidence(admin, userId, previous.plan)).keys) : new Set<string>()
+  const archive = archiveFor(previous?.plan ?? null, previous?.done ?? {}, req.startDate, previousEvidence, previous?.taskState ?? {})
+  const hydrated: HydratedPlan = archive.length > 0 ? { ...built, archive } : built
   const now = hydrated.generatedAt
   const done: DoneDays = previous ? carryOverDone(previous.plan, previous.done, hydrated) : {}
   const normalised = normaliseRoadmap(hydrated)
@@ -1361,13 +1393,13 @@ export async function loadRoadmapRolled(admin: Admin, userId: string, now = new 
 
 // --- responses ---------------------------------------------------------------------
 
-/** The day a task lives on, in the normalised plan. */
-export function dayOfTask(plan: Pick<RoadmapPlan, 'days'>, taskId: string): RoadmapDay | null {
-  return plan.days.find((d) => d.blocks.some((b) => b.id === taskId)) ?? null
+/** The day a task lives on, in the normalised plan — a day kept from an earlier build included (a carry-over may start there). */
+export function dayOfTask(plan: Pick<RoadmapPlan, 'days' | 'archive'>, taskId: string): RoadmapDay | null {
+  return plan.days.find((d) => d.blocks.some((b) => b.id === taskId)) ?? (plan.archive ?? []).find((d) => d.blocks.some((b) => b.id === taskId)) ?? null
 }
 
-export function taskById(plan: Pick<RoadmapPlan, 'days'>, taskId: string): RoadmapTask | null {
-  for (const d of plan.days) for (const b of d.blocks) if (b.id === taskId) return b
+export function taskById(plan: Pick<RoadmapPlan, 'days' | 'archive'>, taskId: string): RoadmapTask | null {
+  for (const d of [...plan.days, ...(plan.archive ?? [])]) for (const b of d.blocks) if (b.id === taskId) return b
   return null
 }
 
@@ -1379,11 +1411,13 @@ export function dayMutationResponse(
   changedDates: string[] = []
 ): DayMutationResponse<RoadmapDay> | null {
   const plan = normaliseRoadmap(loaded.plan)
-  const day = plan.days.find((d) => d.date === date)
+  // A carry-over from a day kept before a rebuild answers with that archived day (marked, so the client does not splice it in).
+  const dayOn = (d: string): RoadmapDay | undefined => plan.days.find((x) => x.date === d) ?? plan.archive?.find((x) => x.date === d)
+  const day = dayOn(date)
   if (!day) return null
   const otherDays = changedDates
     .filter((d) => d !== date)
-    .map((d) => ({ date: d, day: plan.days.find((x) => x.date === d) }))
+    .map((d) => ({ date: d, day: dayOn(d) }))
     .filter((x): x is { date: string; day: RoadmapDay } => Boolean(x.day))
   return {
     date,

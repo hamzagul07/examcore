@@ -185,6 +185,21 @@ export type RoadmapExam = {
   paperMinutes?: number
 }
 
+/**
+ * One sitting of one subject, as the engine and the wizard pass it around:
+ * the paper (when the catalogue names them), its date, its start time and
+ * its length. A subject with two papers on different days is two of these.
+ */
+export type PaperSitting = {
+  component?: string
+  examDate: string
+  examTime?: ClockTime
+  paperMinutes?: number
+}
+
+/** The most papers one subject may list. Cambridge sittings run to four components in a series; the IB to three. */
+export const MAX_PAPERS_PER_SUBJECT = 4
+
 // --- topic signals ---------------------------------------------------------------
 
 /**
@@ -405,6 +420,10 @@ export type RoadmapTaskFields = {
   pinned?: boolean
   /** Where "I need help" opens: the lesson's worked examples when it has them, its notes otherwise. Hydrated by the service. */
   helpHref?: string
+  /** The task this one is a carried-over copy of (task-actions.ts carry): its id, so the sheet can say which day it came from. */
+  carriedFrom?: string
+  /** The paper this task is for, as the catalogue names it ("Paper 2"), when the subject sits more than one. Timed papers and paper-specific topics carry it. */
+  component?: string
 }
 
 // --- task state ------------------------------------------------------------------
@@ -452,6 +471,13 @@ export type TaskStateEntry = {
   deferredTo?: string
   /** The topic code a swapped task replaced. */
   swappedFrom?: string
+  /**
+   * True when the plan settled this entry, not the student: the lazy
+   * rollover lets a day's unfinished tasks go (or moves one) after the day
+   * has passed. The history view reads a rollover-dropped task as "Not
+   * done" rather than something the student chose.
+   */
+  auto?: true
 }
 
 /** Task id → its state. Lives in study_plans.task_state. */
@@ -492,6 +518,8 @@ export type FeasibilitySubject = {
   minutes: number
   /** The subject is in its taper: nothing new is planned before this paper. */
   reviewOnly?: boolean
+  /** Each paper the subject sits, when there is more than one, with the days to it; daysToPaper above is the nearest. */
+  papers?: Array<{ component?: string; examDate: string; daysToPaper: number }>
 }
 
 export type FeasibilityOption = 'keep' | 'add_time' | 'prioritise_subject' | 'change_mode'
@@ -609,6 +637,14 @@ export type RoadmapBuildRequest = {
   subjectExamTimes?: Record<string, ClockTime>
   /** Paper / component per subject, where the student chose one. */
   subjectComponents?: Record<string, string>
+  /**
+   * Every paper the student sits, per subject (Business Paper 1 on the 5th
+   * and Paper 2 on the 8th). When present it is the source of truth and the
+   * three per-subject maps above are derived from it for older readers:
+   * the subject's date is its last paper, its component and time the
+   * nearest paper's.
+   */
+  exams?: Array<{ subjectCode: string; component?: string; examDate: string; examTime?: ClockTime }>
   selfRatings?: Record<string, SelfRating>
   /** When present, minutes per weekday and minutesPerDay are DERIVED from it; anything else sent is ignored. */
   availabilityDetail?: RoadmapAvailability
@@ -625,7 +661,15 @@ export type RoadmapBuildRequest = {
   preview?: boolean
 }
 
-export type TaskAction = 'start' | 'complete' | 'shorten' | 'skip' | 'defer' | 'swap' | 'checkin' | 'pin' | 'unpin'
+/**
+ * carry: the student's own move — an unfinished task (today's, a past
+ * day's, or one the rollover let go) to a day they choose, at its full
+ * length where the day has room; where it does not, the copy is shortened
+ * to the room there is, or runs past the day's last window, and the option
+ * says which before they pick. Unlike defer it may act on a task the plan
+ * already settled, and the copy may be carried again.
+ */
+export type TaskAction = 'start' | 'complete' | 'shorten' | 'skip' | 'defer' | 'carry' | 'swap' | 'checkin' | 'pin' | 'unpin'
 
 /** PATCH /api/plan/task. Repeating a terminal action is a no-op that returns the current state. */
 export type TaskActionRequest = {
@@ -638,6 +682,8 @@ export type TaskActionRequest = {
   reason?: string
   /** Target length for shorten. */
   minutes?: number
+  /** ISO date for carry: the day the task moves to. */
+  toDate?: string
 }
 
 /** POST /api/plan/replan. The date is the one on screen; the server refuses (409) if it is not the plan's today. */
@@ -723,6 +769,7 @@ export type RoadmapEventType =
   | 'task_swapped'
   | 'task_shortened'
   | 'task_deferred'
+  | 'task_carried'
   | 'task_checkin'
   | 'roadmap_replanned'
   | 'roadmap_rollover'

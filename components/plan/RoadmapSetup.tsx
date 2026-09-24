@@ -221,7 +221,7 @@ export function RoadmapSetup({ subjectOptions, profile, prior, onBuilt, onCancel
           </Button>
         )}
         {step === 5 && prior ? (
-          <p className="text-caption">Rebuilding replaces the current plan. What you have done stays done.</p>
+          <p className="text-caption">Rebuilding replaces the current plan. What you have done stays done, and the days before today stay in your history.</p>
         ) : null}
       </div>
     </form>

@@ -29,6 +29,7 @@ import {
   COMMITMENT_KINDS,
   DAY_LOAD_LABEL,
   FINE_TUNE_FIELDS,
+  LONG_DAY_MINUTES,
   MAX_BLOCKED_DATES,
   MINUTE_CHOICES,
   WEEKDAY_SHORT,
@@ -36,6 +37,7 @@ import {
   WINDOW_PRESETS,
   dayMinutes,
   fineTuneDiffersFromDefaults,
+  windowCapacityFor,
   type DayType,
   type WindowPreset,
   type WizardAction,
@@ -130,10 +132,32 @@ function WindowPicker({
 
 export const FINE_TUNE_SUMMARY = 'Fine-tune (breaks, sleep, quiet hours, days away) — defaults are sensible'
 
+/**
+ * The line under the minute chips when the stated minutes are more than
+ * the chosen windows can hold. Capacity is the smaller of the two, so
+ * without this a student who picks six hours and keeps only "Evening"
+ * would get a five-hour plan and never learn why. Null when the windows
+ * hold the minutes, or when nothing is stated.
+ */
+export function windowShortfallLine(stated: number, held: number, which: DayType): string | null {
+  if (stated <= 0 || held >= stated) return null
+  const days = which === 'weekday' ? 'weekday' : 'weekend'
+  if (held <= 0) return `Your ${days} windows leave no time to study once sleep is taken out. Pick a window below.`
+  return `Your ${days} windows hold about ${formatMinutes(held)}, so ${formatMinutes(stated)} won't all fit. Add another window below to use it all.`
+}
+
+/** A long day is real work: the note says what makes it hold. */
+export const LONG_DAY_NOTE = 'Long days work best with 40- or 60-minute sessions, more than one window, and real breaks — the plan keeps them.'
+
 export function StepAvailability({ state, dispatch, issues, todayIso, examDate, disabled }: Props) {
   const [blockInput, setBlockInput] = useState('')
   const minutes = dayMinutes(state)
   const breaks = BREAK_MINUTES[state.breakRhythm]
+  const weekdayHeld = windowCapacityFor(state, 'weekday')
+  const weekendHeld = windowCapacityFor(state, 'weekend')
+  const weekdayShort = windowShortfallLine(state.weekdayMinutes, weekdayHeld, 'weekday')
+  const weekendShort = windowShortfallLine(state.weekendMinutes, weekendHeld, 'weekend')
+  const longDay = Math.max(state.weekdayMinutes, state.weekendMinutes) >= LONG_DAY_MINUTES
   // Open from the start when a prior plan changed something inside; opened again whenever a message lands there.
   const [moreOpen, setMoreOpen] = useState(() => fineTuneDiffersFromDefaults(state))
   const issueInside = issues.some((i) => FINE_TUNE_FIELDS.includes(i.field))
@@ -165,6 +189,11 @@ export function StepAvailability({ state, dispatch, issues, todayIso, examDate, 
           options={MINUTE_CHOICES.map((m) => ({ value: m, label: formatMinutes(m) }))}
           onToggle={(m) => dispatch({ type: 'set_minutes', which: 'weekday', minutes: m })}
         />
+        {weekdayShort ? (
+          <p className="ms-rm-setup-hint" role="status">
+            {weekdayShort}
+          </p>
+        ) : null}
         <p className="ms-rm-setup-sublabel mt-3">Weekend day</p>
         <Chips
           label="Weekend minutes"
@@ -173,6 +202,12 @@ export function StepAvailability({ state, dispatch, issues, todayIso, examDate, 
           options={MINUTE_CHOICES.map((m) => ({ value: m, label: formatMinutes(m) }))}
           onToggle={(m) => dispatch({ type: 'set_minutes', which: 'weekend', minutes: m })}
         />
+        {weekendShort ? (
+          <p className="ms-rm-setup-hint" role="status">
+            {weekendShort}
+          </p>
+        ) : null}
+        {longDay ? <p className="text-caption mt-2 max-w-prose">{LONG_DAY_NOTE}</p> : null}
 
         <p className="ms-rm-setup-sublabel mt-4">Days that differ</p>
         <p className="text-caption mb-2">Tap a day to cycle Full, Half, None.</p>

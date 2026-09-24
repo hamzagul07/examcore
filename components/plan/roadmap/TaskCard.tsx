@@ -18,6 +18,11 @@ type Props = {
   compact?: boolean
   /** False on a future day: a tick today would hide tomorrow's task from tomorrow's hero. */
   allowDone?: boolean
+  /** The standing's words when the day has passed (historyLabel); the default is the live label. */
+  label?: string | null
+  /** On a past day: offers "Carry over" in the Done button's place for a task that did not happen. */
+  onCarry?: (task: RoadmapTask) => void
+  past?: boolean
 }
 
 /**
@@ -28,12 +33,29 @@ type Props = {
  * Future days carry no Done button: nothing on the card says it is
  * tomorrow's, and a tap would settle it before the day arrives.
  */
-export function TaskCard({ task, standing, entry, minutes, withTime, onOpen, onDone, busy = false, compact = false, allowDone = true }: Props) {
-  const label = standingLabel(standing, entry)
+export function TaskCard({
+  task,
+  standing,
+  entry,
+  minutes,
+  withTime,
+  onOpen,
+  onDone,
+  busy = false,
+  compact = false,
+  allowDone = true,
+  label: labelOverride,
+  onCarry,
+  past = false,
+}: Props) {
+  const label = labelOverride !== undefined ? labelOverride : standingLabel(standing, entry)
   const settled = standing === 'done' || standing === 'skipped' || standing === 'deferred' || standing === 'dropped'
   const subject = task.subjectLabel ?? ''
+  const notDone = past && standing !== 'done' && standing !== 'deferred'
   return (
-    <li className={`ms-rm-row ms-rm-row--task ms-rm-row--${task.category} is-${standing}${compact ? ' ms-rm-row--compact' : ''}`}>
+    <li
+      className={`ms-rm-row ms-rm-row--task ms-rm-row--${task.category} is-${standing}${compact ? ' ms-rm-row--compact' : ''}${past ? ' ms-rm-row--past' : ''}${notDone ? ' is-not-done' : ''}`}
+    >
       {withTime ? (
         <span className="ms-rm-time" aria-hidden={!task.startsAt}>
           {timeSpan(task)}
@@ -61,7 +83,17 @@ export function TaskCard({ task, standing, entry, minutes, withTime, onOpen, onD
           </span>
         ) : null}
       </button>
-      {!settled && allowDone ? (
+      {onCarry ? (
+        <button
+          type="button"
+          className="ms-rm-done ms-rm-done--carry"
+          onClick={() => onCarry(task)}
+          disabled={busy}
+          aria-label={`Carry over to another day: ${task.objective}`}
+        >
+          Carry over
+        </button>
+      ) : !settled && allowDone ? (
         <button
           type="button"
           className="ms-rm-done"

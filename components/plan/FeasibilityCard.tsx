@@ -51,7 +51,9 @@ function SubjectRow({ s }: { s: FeasibilitySubject }) {
       <div className="ms-rm-setup-feas__subject-head">
         <span className="ms-rm-setup-feas__subject-name">{s.label}</span>
         <span className="ms-rm-setup-feas__subject-meta">
-          {s.daysToPaper} {s.daysToPaper === 1 ? 'day' : 'days'} to the paper
+          {s.papers && s.papers.length > 1
+            ? s.papers.map((p, i) => `${p.component ?? `Paper ${i + 1}`} in ${p.daysToPaper} ${p.daysToPaper === 1 ? 'day' : 'days'}`).join(' · ')
+            : `${s.daysToPaper} ${s.daysToPaper === 1 ? 'day' : 'days'} to the paper`}
         </span>
       </div>
       {s.reviewOnly ? (

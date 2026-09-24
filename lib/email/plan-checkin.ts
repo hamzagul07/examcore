@@ -35,6 +35,8 @@ export type PlanCheckinPayload = {
   studiedLine?: string
   progress: PlanProgress
   unsubscribeHref: string
+  /** The nearest paper still ahead, so a student with three papers on three dates counts down to the next one, not the last. */
+  nearest?: { label: string; component?: string; daysLeft: number } | null
 }
 
 /**
@@ -71,7 +73,17 @@ export function renderPlanCheckinEmail(payload: PlanCheckinPayload): {
   const planHref = `${SITE_URL}/dashboard/plan?src=checkin`
   const blocks = workBlocks(day)
 
-  const countdown = day.daysLeft === 1 ? 'Exam tomorrow' : `${day.daysLeft} days to go`
+  // With several papers ahead the countdown names the nearest one ("12 days to Business Paper 1"), not the plan's last date.
+  const what = payload.nearest ? `${payload.nearest.label}${payload.nearest.component ? ` ${payload.nearest.component}` : ''}` : ''
+  const countdown = payload.nearest
+    ? payload.nearest.daysLeft <= 0
+      ? `${what} today`
+      : payload.nearest.daysLeft === 1
+        ? `${what} tomorrow`
+        : `${payload.nearest.daysLeft} days to ${what}`
+    : day.daysLeft === 1
+      ? 'Exam tomorrow'
+      : `${day.daysLeft} days to go`
   const subject =
     day.daysLeft === 1
       ? 'Tomorrow. Light review, then stop.'
@@ -96,9 +108,16 @@ export function renderPlanCheckinEmail(payload: PlanCheckinPayload): {
     ? `<p style="margin:0 0 6px;font-family:${EMAIL_SANS};font-size:12px;color:${EMAIL_MUTED}">${esc(payload.studiedLine)}</p>`
     : ''
 
+  // A day that did not go to plan: one link to the days before today, where each task says what became of it and can be carried over.
+  const historyHref = `${SITE_URL}/dashboard/plan?history=1&src=checkin`
+  const historyLink =
+    payload.progress.behind > 0
+      ? `<p style="margin:0 0 16px;font-family:${EMAIL_SANS};font-size:13px"><a href="${historyHref}" style="color:${EMAIL_INK}">See the days before today →</a></p>`
+      : ''
   const bodyHtml =
     `<p style="margin:0 0 4px;font-size:16px;color:${EMAIL_INK}">Hi ${esc(first)},</p>` +
-    `<p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#555">${esc(payload.line)}</p>` +
+    `<p style="margin:0 0 ${payload.progress.behind > 0 ? 6 : 16}px;font-size:15px;line-height:1.6;color:#555">${esc(payload.line)}</p>` +
+    historyLink +
     studiedLine +
     `<p style="margin:0 0 10px;font-family:${EMAIL_SANS};font-size:13px;font-weight:600;letter-spacing:.02em;text-transform:uppercase;color:${EMAIL_MUTED}">Day ${day.day} · ${esc(countdown)}</p>` +
     `<p style="margin:0 0 6px;font-size:15px;line-height:1.5;color:${EMAIL_INK}">${esc(day.focus)}</p>` +
@@ -116,6 +135,7 @@ export function renderPlanCheckinEmail(payload: PlanCheckinPayload): {
     ...blocks.map((b) => `- ${b.objective ?? b.label} (${b.minutes} min)${b.href ? ` ${taskHref(b, planHref)}` : ''}`),
     '',
     `Open today's plan: ${planHref}`,
+    ...(payload.progress.behind > 0 ? [`See the days before today: ${historyHref}`] : []),
     '',
     `Turn off plan check-ins: ${payload.unsubscribeHref}`,
     '',

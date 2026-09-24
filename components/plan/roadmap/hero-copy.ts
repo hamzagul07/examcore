@@ -53,8 +53,9 @@ export function heroChips(task: Pick<RoadmapTask, 'why'> & Partial<Pick<RoadmapT
 }
 
 /** "Mathematics · Differentiation" — whichever parts the task has. */
-export function taskSubtitle(task: Pick<RoadmapTask, 'subjectLabel' | 'topic'>): string | undefined {
-  const parts = [task.subjectLabel, task.topic?.name].filter((p): p is string => Boolean(p))
+export function taskSubtitle(task: Pick<RoadmapTask, 'subjectLabel' | 'topic'> & Partial<Pick<RoadmapTask, 'component'>>): string | undefined {
+  // "Business · Paper 1 · Break-even" when the subject sits several papers and this task is for one of them.
+  const parts = [task.subjectLabel, task.component, task.topic?.name].filter((p): p is string => Boolean(p))
   return parts.length ? parts.join(' · ') : undefined
 }
 

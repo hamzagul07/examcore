@@ -3,6 +3,7 @@ import type { RoadmapPlan } from '@/lib/plan/roadmap-view'
 import { DEFAULT_AVAILABILITY } from '@/lib/plan/roadmap-types'
 import {
   FINE_TUNE_FIELDS,
+  MINUTE_CHOICES,
   TIME_ZONE_FALLBACK,
   TIME_ZONE_ISSUE,
   browserTimeZone,
@@ -10,7 +11,10 @@ import {
   dayOverrideCommitments,
   fineTuneDiffersFromDefaults,
   firstInvalidStep,
+  firstPaper,
   initialWizardState,
+  papersOf,
+  subjectExamDate,
   isClockTime,
   planExamDate,
   ratingFromMeasured,
@@ -20,6 +24,7 @@ import {
   toAvailability,
   toRequest,
   validateStep,
+  windowCapacityFor,
   windowsFor,
   wizardReducer,
   type SetupProfile,
@@ -47,7 +52,10 @@ const labels = { '9709': 'Mathematics', '9702': 'Physics', '9701': 'Chemistry' }
   const s = initialWizardState(profile, null)
   assert.equal(s.step, 1)
   assert.deepEqual(s.subjects, ['9709', '9702'])
-  assert.deepEqual(s.examDates, { '9709': '2026-11-15', '9702': '2026-11-15' })
+  assert.deepEqual(s.papers, {
+    '9709': [{ id: 'p1', component: '', date: '2026-11-15', time: '' }],
+    '9702': [{ id: 'p1', component: '', date: '2026-11-15', time: '' }],
+  })
   assert.equal(s.timeZone, 'Asia/Karachi')
   // Five marked attempts at 52% pre-select "getting there"; two attempts say nothing.
   assert.deepEqual(s.selfRatings, { '9709': 'getting_there' })
@@ -105,9 +113,10 @@ const prior = {
 {
   const s = initialWizardState({ ...profile, measured: {} }, prior)
   assert.deepEqual(s.subjects, ['9709', '9701'], 'subjects come from the prior plan, not the profile')
-  assert.deepEqual(s.examDates, { '9709': '2026-11-20', '9701': '2026-11-10' })
-  assert.deepEqual(s.examTimes, { '9709': '09:00' })
-  assert.deepEqual(s.components, { '9709': 'Paper 1' })
+  assert.deepEqual(s.papers, {
+    '9709': [{ id: 'p1', component: 'Paper 1', date: '2026-11-20', time: '09:00' }],
+    '9701': [{ id: 'p1', component: '', date: '2026-11-10', time: '' }],
+  })
   assert.deepEqual(s.selfRatings, { '9709': 'confident', '9701': 'rusty' })
   assert.equal(s.mode, 'polish')
   assert.equal(s.targetGrade, 'A*')
@@ -157,7 +166,7 @@ const prior = {
   let s = initialWizardState(profile, null)
   s = wizardReducer(s, { type: 'toggle_subject', code: '9701' })
   assert.deepEqual(s.subjects, ['9709', '9702', '9701'])
-  assert.equal(s.examDates['9701'], '2026-11-15', 'a new subject takes the latest date already set')
+  assert.equal(firstPaper(s, '9701').date, '2026-11-15', 'a new subject takes the latest date already set')
   s = wizardReducer(s, { type: 'toggle_subject', code: '9708' })
   s = wizardReducer(s, { type: 'toggle_subject', code: '9706' })
   assert.equal(s.subjects.length, 4, 'capped at four')
@@ -182,7 +191,11 @@ const prior = {
   assert.equal(s.weekdayMinutes, 120)
   assert.equal(s.weekendMinutes, 180)
   s = wizardReducer(s, { type: 'set_minutes', which: 'weekday', minutes: 900 })
-  assert.equal(s.weekdayMinutes, 300, 'clamped')
+  assert.equal(s.weekdayMinutes, 600, 'clamped to the API ceiling')
+  s = wizardReducer(s, { type: 'set_minutes', which: 'weekday', minutes: 360 })
+  assert.equal(s.weekdayMinutes, 360, 'six hours is a real choice now')
+  assert.ok(MINUTE_CHOICES.includes(360) && MINUTE_CHOICES.includes(480), 'the chips go past three hours')
+  assert.ok(MINUTE_CHOICES.every((m, i) => i === 0 || m > MINUTE_CHOICES[i - 1]!), 'ascending')
 
   s = wizardReducer(s, { type: 'toggle_window', which: 'weekday', preset: 'afternoon' })
   assert.deepEqual(windowsFor(s.windows.weekday), [{ start: '12:00', end: '22:00' }], 'adjacent presets merge')
@@ -255,6 +268,22 @@ const prior = {
   assert.deepEqual(a.noStudy, [DEFAULT_AVAILABILITY.noStudy[0]])
 }
 
+// --- what the windows can hold ----------------------------------------------------------------
+
+{
+  // The default evening window is 17:00–22:00 and sleep starts at 22:30: five hours on a weekday.
+  const s = initialWizardState(profile, null)
+  assert.equal(windowCapacityFor(s, 'weekday'), 300)
+  // Morning and afternoon merge into 07:00–17:00: ten hours at the weekend.
+  assert.equal(windowCapacityFor(s, 'weekend'), 600)
+  // A sleep span that crosses midnight into a morning window is taken out of it.
+  const late = { ...s, noStudy: { start: '23:00', end: '09:00' } }
+  assert.equal(windowCapacityFor(late, 'weekend'), 480, '07:00–09:00 is asleep')
+  // A custom window entirely inside the no-study span holds nothing.
+  const night: WizardState = { ...s, windows: { ...s.windows, weekday: { presets: [], custom: { start: '23:00', end: '23:59' } } } }
+  assert.equal(windowCapacityFor(night, 'weekday'), 0)
+}
+
 // --- validation ------------------------------------------------------------------------------
 
 {
@@ -268,7 +297,7 @@ const prior = {
   s = wizardReducer(s, { type: 'set_exam_time', code: '9702', time: '9am' })
   s = wizardReducer(s, { type: 'set_time_zone', timeZone: 'Mars/Olympus' })
   const issues = validateStep(s, 1, TODAY, labels)
-  assert.deepEqual(issues.map((i) => i.field), ['examDate:9709', 'examDate:9702', 'examTime:9702', 'timeZone'])
+  assert.deepEqual(issues.map((i) => i.field), ['examDate:9709:p1', 'examDate:9702:p1', 'examTime:9702:p1', 'timeZone'])
   assert.equal(issues[0]!.message, 'Set the exam date for Mathematics.')
   assert.equal(issues[1]!.message, 'The Physics exam date needs to be after today.')
   assert.equal(issues[3]!.message, TIME_ZONE_ISSUE, 'the step and the blurred field say the same thing')
@@ -384,6 +413,10 @@ assert.equal(isClockTime('8:00'), false)
   assert.deepEqual(req.subjectExamDates, { '9709': '2026-11-15', '9702': '2026-11-20' })
   assert.deepEqual(req.subjectExamTimes, { '9709': '09:00' })
   assert.deepEqual(req.subjectComponents, { '9709': 'Paper 1' })
+  assert.deepEqual(req.exams, [
+    { subjectCode: '9709', component: 'Paper 1', examDate: '2026-11-15', examTime: '09:00' },
+    { subjectCode: '9702', examDate: '2026-11-20' },
+  ])
   assert.deepEqual(req.selfRatings, { '9709': 'getting_there', '9702': 'rusty' })
   assert.equal(req.timeZone, 'Asia/Karachi')
   assert.deepEqual(req.blockedDates, ['2026-10-05'])
@@ -401,6 +434,7 @@ assert.equal(isClockTime('8:00'), false)
     'availabilityDetail',
     'blockedDates',
     'examDate',
+    'exams',
     'mode',
     'prioritySubject',
     'remindMe',
@@ -424,6 +458,76 @@ assert.equal(isClockTime('8:00'), false)
   assert.deepEqual(req.subjectExamTimes, {})
   assert.deepEqual(req.selfRatings, { '9709': 'getting_there' })
   assert.equal(req.targetGrade, null)
+}
+
+// --- several papers in one subject ------------------------------------------------------------
+
+{
+  let s = initialWizardState(profile, null)
+  s = wizardReducer(s, { type: 'set_rating', code: '9702', rating: 'rusty' })
+  s = wizardReducer(s, { type: 'set_component', code: '9709', component: 'Paper 1' })
+  s = wizardReducer(s, { type: 'add_paper', code: '9709' })
+  assert.deepEqual(papersOf(s, '9709').map((p) => p.id), ['p1', 'p2'])
+  assert.deepEqual(validateStep(s, 1, TODAY, labels), [{ field: 'examDate:9709:p2', message: 'Set the exam date for Mathematics paper 2.' }])
+  s = wizardReducer(s, { type: 'set_paper', code: '9709', id: 'p2', patch: { component: 'Paper 2', date: '2026-11-18', time: '13:00' } })
+  assert.equal(validateStep(s, 1, TODAY, labels).length, 0)
+  assert.equal(planExamDate(s), '2026-11-18', 'the plan runs to the latest paper of any subject')
+  assert.equal(subjectExamDate(s, '9709'), '2026-11-18')
+  assert.equal(subjectExamDate(s, '9702'), '2026-11-15')
+
+  const req = toRequest(s, TODAY)
+  assert.deepEqual(req.exams, [
+    { subjectCode: '9709', component: 'Paper 1', examDate: '2026-11-15' },
+    { subjectCode: '9709', component: 'Paper 2', examDate: '2026-11-18', examTime: '13:00' },
+    { subjectCode: '9702', examDate: '2026-11-15' },
+  ])
+  assert.equal(req.examDate, '2026-11-18')
+  assert.deepEqual(req.subjectExamDates, { '9709': '2026-11-18', '9702': '2026-11-15' }, "the legacy date is the subject's last paper")
+  assert.deepEqual(req.subjectComponents, { '9709': 'Paper 1' }, "the legacy component is the nearest paper's")
+  assert.deepEqual(req.subjectExamTimes, {}, 'the nearest paper has no time')
+
+  // The same paper twice on one date is flagged on the second row; a paper 2 dated before paper 1 is fine (the request sorts).
+  const dupe = wizardReducer(s, { type: 'set_paper', code: '9709', id: 'p2', patch: { component: 'Paper 1', date: '2026-11-15' } })
+  assert.deepEqual(validateStep(dupe, 1, TODAY, labels), [{ field: 'examDate:9709:p2', message: 'Mathematics Paper 1 is listed twice on the same date.' }])
+  const early = wizardReducer(s, { type: 'set_paper', code: '9709', id: 'p2', patch: { date: '2026-11-01' } })
+  assert.equal(validateStep(early, 1, TODAY, labels).length, 0)
+  assert.equal(toRequest(early, TODAY).exams![0]!.examDate, '2026-11-01', 'earliest first, whatever the row order')
+  assert.deepEqual(toRequest(early, TODAY).subjectComponents, { '9709': 'Paper 2' }, 'and the nearest paper is now Paper 2')
+
+  // The session chips set every subject's first paper and any later paper still without a date; a dated later paper keeps its own.
+  const chips = wizardReducer(wizardReducer(s, { type: 'add_paper', code: '9709' }), { type: 'set_all_exam_dates', date: '2026-11-25' })
+  assert.deepEqual(papersOf(chips, '9709').map((p) => p.date), ['2026-11-25', '2026-11-18', '2026-11-25'])
+
+  // Removing, the floor of one row, and the cap.
+  s = wizardReducer(s, { type: 'remove_paper', code: '9709', id: 'p2' })
+  assert.deepEqual(papersOf(s, '9709').map((p) => p.id), ['p1'])
+  s = wizardReducer(s, { type: 'remove_paper', code: '9709', id: 'p1' })
+  assert.equal(papersOf(s, '9709').length, 1, 'never below one row')
+  for (let i = 0; i < 6; i++) s = wizardReducer(s, { type: 'add_paper', code: '9709' })
+  assert.equal(papersOf(s, '9709').length, 4, 'capped at four papers')
+  assert.deepEqual(papersOf(s, '9709').map((p) => p.id), ['p1', 'p2', 'p3', 'p4'], 'ids never repeat')
+  s = wizardReducer(s, { type: 'toggle_subject', code: '9709' })
+  assert.equal(s.papers['9709'], undefined, 'a subject taken off the plan takes its papers with it')
+  s = wizardReducer(s, { type: 'toggle_subject', code: '9709' })
+  assert.equal(papersOf(s, '9709').length, 1, 'and comes back with one row')
+}
+{
+  // A prior plan with two Business sittings comes back as two rows, earliest first.
+  const twoPapers = {
+    ...prior,
+    subjects: [{ code: '9609', label: 'Business', examDate: '2026-11-18' }],
+    exams: [
+      { subjectCode: '9609', label: 'Business', board: 'Cambridge International', qualification: 'A Level', examDate: '2026-11-18', component: 'Paper 2', examTime: '13:00' },
+      { subjectCode: '9609', label: 'Business', board: 'Cambridge International', qualification: 'A Level', examDate: '2026-11-15', component: 'Paper 1' },
+    ],
+  } as unknown as RoadmapPlan
+  const s = initialWizardState({ ...profile, measured: {} }, twoPapers)
+  assert.deepEqual(s.papers, {
+    '9609': [
+      { id: 'p1', component: 'Paper 1', date: '2026-11-15', time: '' },
+      { id: 'p2', component: 'Paper 2', date: '2026-11-18', time: '13:00' },
+    ],
+  })
 }
 
 // The start date follows the chosen zone, not the device clock.

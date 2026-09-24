@@ -41,6 +41,9 @@ assert.equal(
 assert.equal(NOTIFICATION_COPY.milestone_close({}).body, 'One priority topic left before your next milestone — open the plan to start it.')
 assert.match(NOTIFICATION_COPY.adjusted_after_busy_day({}).body, /open today to see what changed/, 'a fact and a next step')
 assert.equal(NOTIFICATION_COPY.morning_checkin({ daysLeft: 12, minutes: 90 }).title, '12 days to go')
+// Several papers ahead: the countdown names the nearest one, not the plan's last date.
+assert.equal(NOTIFICATION_COPY.morning_checkin({ daysLeft: 12, minutes: 90, exam: 'Business Paper 1' }).title, '12 days to Business Paper 1')
+assert.equal(NOTIFICATION_COPY.morning_checkin({ daysLeft: 1, minutes: 30, exam: 'Business Paper 1' }).title, 'Tomorrow. Light review, then stop.')
 assert.equal(NOTIFICATION_COPY.morning_checkin({ daysLeft: 1 }).title, 'Tomorrow. Light review, then stop.')
 
 // --- quiet hours, including a span that crosses midnight ---

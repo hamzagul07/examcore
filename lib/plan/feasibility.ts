@@ -53,6 +53,8 @@ export type SubjectDemandInput = {
   inTaper: boolean
   /** The feasibility option "put one subject first": its priority topics are admitted before the others'. */
   prioritised?: boolean
+  /** The subject's papers when it sits more than one, for the card's row. */
+  papers?: Array<{ component?: string; examDate: string; daysToPaper: number }>
 }
 
 /** Study days a loop needs before the taper, its steps spaced: weak = diagnose+repair, recall, prove; strong = timed set, error review. */
@@ -219,6 +221,7 @@ export function assessFeasibility(input: AssessFeasibilityInput): FeasibilityRep
     later: [...s.later],
     minutes: s.plannedMinutes,
     reviewOnly: reviewOnly(s),
+    ...(s.papers && s.papers.length > 1 ? { papers: s.papers.map((p) => ({ ...p })) } : {}),
   }))
 
   // Only what the rows cannot say: the tight verdict, the cost of short sessions, and the time kept free.

@@ -16,7 +16,10 @@ import { planLength, type PlanBlockKind } from '@/lib/plan/build-study-plan'
 import { modeFromStored } from '@/lib/plan/modes'
 import {
   blockEvidenceKey,
+  formatPlanDate,
   isWorkBlock,
+  type ArchivedDay,
+  type DoneDays,
   type HydratedBlock,
   type HydratedDay,
   type HydratedPlan,
@@ -39,7 +42,10 @@ export type RoadmapTask = HydratedBlock & RoadmapTaskFields
 
 export type RoadmapDay = Omit<HydratedDay, 'blocks'> & RoadmapDayExtras & { blocks: RoadmapTask[] }
 
-export type RoadmapPlan = Omit<HydratedPlan, 'days'> & RoadmapPlanExtras & { days: RoadmapDay[] }
+/** An archived day as the roadmap reads it: normalised like any other, and marked. */
+export type ArchivedRoadmapDay = RoadmapDay & { archived: true; ticked?: boolean }
+
+export type RoadmapPlan = Omit<HydratedPlan, 'days' | 'archive'> & RoadmapPlanExtras & { days: RoadmapDay[]; archive?: ArchivedRoadmapDay[] }
 
 // --- clock -----------------------------------------------------------------------------
 
@@ -137,9 +143,12 @@ export function normaliseDay(day: HydratedDay): RoadmapDay {
 }
 
 export function normaliseRoadmap(plan: HydratedPlan): RoadmapPlan {
+  const { archive: rawArchive, ...rest } = plan
+  const archive = rawArchive?.length ? rawArchive.map((d) => ({ ...normaliseDay(d), archived: true as const, ...(d.ticked ? { ticked: true } : {}) })) : undefined
   return {
-    ...plan,
+    ...rest,
     days: plan.days.map(normaliseDay),
+    ...(archive ? { archive } : {}),
     mode: modeFromStored(plan.mode ?? plan.preparedness),
     algorithmVersion: plan.algorithmVersion ?? plan.version ?? 1,
     revision: plan.revision ?? 1,
@@ -375,13 +384,128 @@ export function evidenceChip(item: EvidenceItem): string {
   }
 }
 
-/** Carry task state across a rebuild: ids are tuple-based, so a task that still exists keeps its entry. */
-export function carryOverTaskState(oldState: TaskState, newPlan: Pick<RoadmapPlan, 'days'>): TaskState {
+/**
+ * Carry task state across a rebuild: ids are tuple-based, so a task that
+ * still exists keeps its entry, and an entry on an archived day (its id
+ * starts with that date) stays for the history view.
+ */
+export function carryOverTaskState(oldState: TaskState, newPlan: Pick<RoadmapPlan, 'days' | 'archive'>): TaskState {
   const ids = new Set<string>()
   for (const d of newPlan.days) for (const b of d.blocks) ids.add(b.id)
+  const archived = new Set((newPlan.archive ?? []).map((d) => d.date))
   const next: TaskState = {}
-  for (const [id, entry] of Object.entries(oldState)) if (ids.has(id)) next[id] = entry
+  for (const [id, entry] of Object.entries(oldState)) {
+    if (ids.has(id) || archived.has(id.slice(0, 10))) next[id] = entry
+  }
   return next
+}
+
+// --- history -------------------------------------------------------------------------------
+
+/** Archived days a plan keeps at most; older ones fall off the front. Four months of study days is more than any exam run. */
+export const MAX_ARCHIVE_DAYS = 120
+
+/**
+ * The days a rebuild keeps from the plan it replaces: the old archive, then
+ * every old day before the new start date that held work, an exam, or a
+ * tick — a rest day with nothing on it is not a record of anything. Each
+ * one carries its tick, because the new plan's done_days is keyed by day
+ * numbers the old days no longer have. Oldest first, at most
+ * MAX_ARCHIVE_DAYS, never a date the new plan lays itself.
+ */
+export function archiveFor(
+  previous: Pick<HydratedPlan, 'days' | 'archive'> | null,
+  previousDone: DoneDays,
+  startDate: string,
+  evidence: ReadonlySet<string> = new Set(),
+  taskState: TaskState = {}
+): ArchivedDay[] {
+  if (!previous) return []
+  const byDate = new Map<string, ArchivedDay>()
+  for (const d of previous.archive ?? []) if (d.date < startDate) byDate.set(d.date, d)
+  for (const d of previous.days) {
+    if (d.date >= startDate) continue
+    const day = normaliseDay(d)
+    const ticked = previousDone[String(d.day)] === true || dayCompleteFromTasks(day, taskState, evidence)
+    if (d.workMinutes <= 0 && d.kind !== 'exam' && !ticked) continue
+    byDate.set(d.date, { ...d, archived: true, ...(ticked ? { ticked: true } : {}) })
+  }
+  return [...byDate.values()].sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0)).slice(-MAX_ARCHIVE_DAYS)
+}
+
+/** One past day on the history view: the plan's own, or an archived one from before a rebuild. */
+export type HistoryDay = RoadmapDay & { archived?: true; ticked?: boolean }
+
+/**
+ * The days before today, oldest first: what this build laid and what was
+ * kept from the builds before it. A date the current plan lays wins over
+ * an archived copy of it.
+ */
+export function historyDays(plan: Pick<RoadmapPlan, 'days' | 'archive'>, todayIso: string): HistoryDay[] {
+  const byDate = new Map<string, HistoryDay>()
+  for (const d of plan.archive ?? []) if (d.date < todayIso) byDate.set(d.date, d)
+  for (const d of plan.days) if (d.date < todayIso) byDate.set(d.date, d)
+  return [...byDate.values()].sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0))
+}
+
+/** How a past day went, as numbers only: the work tasks by what became of them. */
+export type HistoryTally = { total: number; done: number; skipped: number; moved: number; notDone: number }
+
+/**
+ * The count a history row shows. Done by tick or by a marked answer;
+ * moved when it went to another day; skipped when the student said so;
+ * everything else — let go by the rollover, dropped by a replan, or
+ * simply never touched — is not done. A record, not a score.
+ */
+export function historyTally(day: Pick<RoadmapDay, 'blocks'>, state: TaskState, evidence: ReadonlySet<string>): HistoryTally {
+  const tally: HistoryTally = { total: 0, done: 0, skipped: 0, moved: 0, notDone: 0 }
+  for (const t of workTasks(day)) {
+    tally.total += 1
+    const s = taskStanding(t, state, evidence)
+    if (s === 'done') tally.done += 1
+    else if (s === 'skipped') tally.skipped += 1
+    else if (s === 'deferred') tally.moved += 1
+    else tally.notDone += 1
+  }
+  return tally
+}
+
+/** The tick on a past day's row, meaning what the milestone tick always meant: ticked off, or every task done or skipped with at least one done. */
+export function historyDayDone(day: HistoryDay, state: TaskState, evidence: ReadonlySet<string>, done: DoneDays): boolean {
+  if (day.archived) return day.ticked === true || dayCompleteFromTasks(day, state, evidence)
+  return done[String(day.day)] === true || dayCompleteFromTasks(day, state, evidence)
+}
+
+/** A past task that can still be carried to another day: anything not done and not already moved. */
+export function carryable(standing: TaskStanding, entry: TaskStateEntry | undefined): boolean {
+  if (standing === 'done' || standing === 'deferred') return false
+  return !entry?.deferredTo
+}
+
+/** ISO date of the day before. */
+export function dayBefore(iso: string): string {
+  return new Date(Date.parse(`${iso}T00:00:00Z`) - 86_400_000).toISOString().slice(0, 10)
+}
+
+/**
+ * The most recent past day with work on it, when something on it did not
+ * happen: "Yesterday: 2 of 5 done" with the rest in the history, ready to
+ * carry over. Facts only; a day where everything was done says nothing here
+ * (the studied-days line already covers the good news), and neither does a
+ * fresh plan. The dashboard reads the plan before the nightly rollover has
+ * settled it, so an untouched task counts as not done, which it is.
+ */
+export function yesterdayLine(
+  plan: Pick<RoadmapPlan, 'days' | 'archive'>,
+  state: TaskState,
+  evidence: ReadonlySet<string>,
+  todayIso: string
+): { when: string; date: string; done: number; total: number } | null {
+  const last = historyDays(plan, todayIso).filter((d) => d.workMinutes > 0).at(-1)
+  if (!last) return null
+  const tally = historyTally(last, state, evidence)
+  if (tally.total === 0 || tally.notDone + tally.skipped === 0) return null
+  return { when: last.date === dayBefore(todayIso) ? 'Yesterday' : formatPlanDate(last.date), date: last.date, done: tally.done, total: tally.total }
 }
 
 // --- lookups the reducers share ------------------------------------------------------------
@@ -394,6 +518,15 @@ export function tasksOnDate(plan: Pick<RoadmapPlan, 'days'>, date: string): Road
 /** The task with this id and the day it sits on. */
 export function findTask(plan: Pick<RoadmapPlan, 'days'>, taskId: string): { day: RoadmapDay; task: RoadmapTask; index: number } | null {
   for (const day of plan.days) {
+    const index = day.blocks.findIndex((b) => b.id === taskId)
+    if (index >= 0) return { day, task: day.blocks[index]!, index }
+  }
+  return null
+}
+
+/** The task with this id on a day kept from an earlier build, and that day. */
+export function findArchivedTask(plan: Pick<RoadmapPlan, 'archive'>, taskId: string): { day: RoadmapDay; task: RoadmapTask; index: number } | null {
+  for (const day of plan.archive ?? []) {
     const index = day.blocks.findIndex((b) => b.id === taskId)
     if (index >= 0) return { day, task: day.blocks[index]!, index }
   }

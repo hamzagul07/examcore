@@ -108,6 +108,52 @@ button.ms-rm-setup-step__btn:focus-visible {
   margin: 0 0 0.5rem;
 }
 
+/* A fact about the windows under the minute chips: what they hold, when the stated minutes are more. */
+.ms-rm-setup-hint {
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid var(--ec-brand);
+  background: color-mix(in srgb, var(--ec-brand-muted) 60%, var(--ec-surface));
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--ec-text-primary, var(--ec-ink));
+  max-width: 60ch;
+}
+
+/* several papers in one subject: one row each, the "add" pill under them */
+.ms-rm-setup-paper {
+  margin-top: 0.5rem;
+}
+
+.ms-rm-setup-paper + .ms-rm-setup-paper {
+  padding-top: 0.5rem;
+  border-top: 1px dashed color-mix(in srgb, var(--ec-border) 70%, transparent);
+}
+
+.ms-rm-setup-paper__n {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ms-rm-setup-paper__num {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--ec-font-mono, ui-monospace, monospace);
+  font-size: 0.875rem;
+}
+
+.ms-rm-setup-exam__runs {
+  font-weight: 400;
+  font-size: 0.8125rem;
+  color: var(--ec-text-secondary);
+}
+
+.ms-rm-setup-addpaper {
+  margin-top: 0.75rem;
+}
+
 .ms-rm-setup-sublabel {
   margin: 0 0 0.5rem;
   font-family: var(--ec-font-mono, ui-monospace, monospace);

@@ -5,16 +5,21 @@ import { PLAN_VERSION, PLAN_VERSION_NOTES } from '@/lib/plan/build-study-plan'
 import { formatMinutes, formatPlanDate, planOutdated, type DoneDays } from '@/lib/plan/plan-view'
 import { MIN_BUFFER_MINUTES, type TaskState } from '@/lib/plan/roadmap-types'
 import {
-  dayCompleteFromTasks,
+  carryable,
+  historyDayDone,
+  historyDays,
+  historyTally,
   taskMinutes,
   taskStanding,
   upcomingDays,
   workTasks,
+  type HistoryDay,
   type RoadmapDay,
   type RoadmapPlan,
   type RoadmapTask,
 } from '@/lib/plan/roadmap-view'
 import { TaskCard } from '@/components/plan/roadmap/TaskCard'
+import { historyLabel, historyTallyLine } from '@/components/plan/roadmap/labels'
 
 type Props = {
   plan: RoadmapPlan
@@ -25,25 +30,58 @@ type Props = {
   onAdjust: () => void
   onOpen: (task: RoadmapTask) => void
   onDone: (task: RoadmapTask) => void
+  /** Opens the carry-over sheet for a past task that did not happen. */
+  onCarry?: (task: RoadmapTask) => void
+  /** Opens the carry-over sheet for every not-done task of a past day at once. */
+  onCarryAll?: (tasks: RoadmapTask[]) => void
   busyId?: string | null
+  /** Start with the days before today unfolded (a link straight to the history). */
+  initialShowPast?: boolean
+  /** Controlled: whether the days before today are unfolded, and the toggle's callback. Absent, the timeline keeps its own state. */
+  showPast?: boolean
+  onShowPastChange?: (open: boolean) => void
 }
 
 /**
  * The Roadmap tab: the next four days in full, everything after them as
  * one milestone row each, and the exam dates at the end. Past days hide
- * behind a toggle so day fifteen does not open on fourteen finished ones.
- * No progress bar and no tally: the day cards say what each day holds, and
- * a tick on a past row is a fact about that day, not a score. A milestone
+ * behind a toggle so day fifteen does not open on fourteen finished ones;
+ * opened, each past day is a row that unfolds into its tasks — done,
+ * skipped, moved, not done — with "Carry over" on anything that did not
+ * happen, because "which ones did I miss" was the question students asked
+ * and the one thing the milestone rows could not answer. Days kept from
+ * before a rebuild sit in the same list. No progress bar: a day's count is
+ * a fact about that day, not a score. A milestone
  * row shows the shape of the run-in — the exam first on its own day, then
  * the study subjects; "Timed paper" and "Review only" tags where the plan
  * changes gear — so the student can see where the paper falls and when
  * nothing new starts. Done buttons appear on today and before, never on a
  * day that has not come.
  */
-export function RoadmapTimeline({ plan, state, evidence, done, todayIso, onAdjust, onOpen, onDone, busyId = null }: Props) {
-  const [showPast, setShowPast] = useState(false)
+export function RoadmapTimeline({
+  plan,
+  state,
+  evidence,
+  done,
+  todayIso,
+  onAdjust,
+  onOpen,
+  onDone,
+  onCarry,
+  onCarryAll,
+  busyId = null,
+  initialShowPast = false,
+  showPast: showPastProp,
+  onShowPastChange,
+}: Props) {
+  const [showPastOwn, setShowPastOwn] = useState(initialShowPast)
+  const showPast = showPastProp ?? showPastOwn
+  const setShowPast = (next: boolean) => {
+    setShowPastOwn(next)
+    onShowPastChange?.(next)
+  }
   const { detailed, later } = upcomingDays(plan, todayIso, 4)
-  const past = plan.days.filter((d) => d.date < todayIso)
+  const past = historyDays(plan, todayIso)
   const outdated = planOutdated(plan)
   const exams = [...plan.exams].sort((a, b) => (a.examDate < b.examDate ? -1 : a.examDate > b.examDate ? 1 : 0))
   const examsOn = (date: string) => exams.filter((e) => e.examDate === date).map((e) => e.label)
@@ -73,7 +111,7 @@ export function RoadmapTimeline({ plan, state, evidence, done, todayIso, onAdjus
         <button
           type="button"
           className="ms-plan-past-toggle mb-4"
-          onClick={() => setShowPast((s) => !s)}
+          onClick={() => setShowPast(!showPast)}
           aria-expanded={showPast}
           aria-controls="rm-past-days"
         >
@@ -81,10 +119,25 @@ export function RoadmapTimeline({ plan, state, evidence, done, todayIso, onAdjus
         </button>
       ) : null}
       {showPast ? (
-        <ol id="rm-past-days" className="ms-rm-milestones mb-6" aria-label="Days before today">
-          {past.map((d) => (
-            <MilestoneRow key={d.day} day={d} examLabels={examsOn(d.date)} done={done[String(d.day)] === true || dayCompleteFromTasks(d, state, evidence)} />
-          ))}
+        <ol id="rm-past-days" className="ms-rm-milestones ms-rm-history mb-6" aria-label="Days before today">
+          {past.map((d) =>
+            workTasks(d).length > 0 ? (
+              <HistoryRow
+                key={d.date}
+                day={d}
+                state={state}
+                evidence={evidence}
+                studied={historyDayDone(d, state, evidence, done)}
+                onOpen={onOpen}
+                onDone={onDone}
+                onCarry={onCarry}
+                onCarryAll={onCarryAll}
+                busyId={busyId}
+              />
+            ) : (
+              <MilestoneRow key={d.date} day={d} examLabels={examsOn(d.date)} done={historyDayDone(d, state, evidence, done)} />
+            )
+          )}
         </ol>
       ) : null}
 
@@ -247,6 +300,88 @@ function DayCard({
           </ol>
         </details>
       ) : null}
+    </li>
+  )
+}
+
+/**
+ * One past day, unfolding into its tasks. The header is the date, the
+ * subjects and "3 of 5 done · 1 moved"; inside, each task with what became
+ * of it and, on anything not done, a Carry over button. Done stays
+ * available from the task's own sheet for a day of this plan (a question
+ * marked offline yesterday is still done); a day kept from an earlier
+ * build can only be carried forward.
+ */
+function HistoryRow({
+  day,
+  state,
+  evidence,
+  studied,
+  onOpen,
+  onDone,
+  onCarry,
+  onCarryAll,
+  busyId,
+}: {
+  day: HistoryDay
+  state: TaskState
+  evidence: ReadonlySet<string>
+  studied: boolean
+  onOpen: (task: RoadmapTask) => void
+  onDone: (task: RoadmapTask) => void
+  onCarry?: (task: RoadmapTask) => void
+  onCarryAll?: (tasks: RoadmapTask[]) => void
+  busyId: string | null
+}) {
+  const work = workTasks(day)
+  const withTime = work.some((t) => Boolean(t.startsAt))
+  const tally = historyTally(day, state, evidence)
+  const leftover = work.filter((t) => carryable(taskStanding(t, state, evidence), state[t.id]))
+  return (
+    <li className={`ms-rm-history__day${studied ? ' is-done' : ''}${day.archived ? ' is-archived' : ''}`}>
+      <details className="ms-rm-history__details">
+        <summary className="ms-rm-history__summary">
+          <span className="ms-rm-milestone__date">{formatPlanDate(day.date)}</span>
+          <span className="ms-rm-history__focus">{studySubjects(day) || day.focus}</span>
+          <span className="ms-rm-history__tally">{historyTallyLine(tally)}</span>
+          {studied ? (
+            <span className="ms-rm-milestone__done" aria-label="Studied">
+              ✓
+            </span>
+          ) : null}
+        </summary>
+        {onCarryAll && leftover.length > 1 ? (
+          <div className="ms-rm-history__all">
+            <button type="button" className="ec-pill" disabled={busyId === 'carry'} onClick={() => onCarryAll(leftover)}>
+              Carry all {leftover.length} not done to another day
+            </button>
+          </div>
+        ) : null}
+        <ol className={`ms-rm-rows${withTime ? ' ms-rm-rows--timed' : ''}`}>
+          {work.map((t) => {
+            const standing = taskStanding(t, state, evidence)
+            const entry = state[t.id]
+            return (
+              <TaskCard
+                key={t.id}
+                task={t}
+                standing={standing}
+                entry={entry}
+                minutes={taskMinutes(t, state)}
+                withTime={withTime}
+                onOpen={onOpen}
+                onDone={onDone}
+                busy={busyId === t.id || busyId === 'carry'}
+                compact
+                past
+                allowDone={false}
+                label={historyLabel(standing, entry)}
+                onCarry={onCarry && carryable(standing, entry) ? onCarry : undefined}
+              />
+            )
+          })}
+        </ol>
+      </details>
     </li>
   )
 }

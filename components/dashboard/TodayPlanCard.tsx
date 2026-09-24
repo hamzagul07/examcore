@@ -13,6 +13,7 @@ import {
   type Hero,
   type RoadmapDay,
   type RoadmapPlan,
+  yesterdayLine,
 } from '@/lib/plan/roadmap-view'
 import { countdownLine, heroCopy } from '@/components/plan/roadmap/hero-copy'
 import { nowMinuteInZone } from '@/components/plan/roadmap/zone-clock'
@@ -62,6 +63,7 @@ function whyHrefFor(taskId: string): string {
   return `/dashboard/plan?task=${encodeURIComponent(taskId)}&why=1`
 }
 
+
 /**
  * The roadmap's next task for the dashboard's next-action, or null when the
  * hero is not a task (no plan, day done, no time left, rest day) or the
@@ -105,6 +107,7 @@ export function TodayPlanCard({ saved, examDate, evidence = [] }: Props) {
       .slice(0, NEXT_ROWS)
     const inHand = Math.max(today.bufferMinutes, today.blocks.find((b) => b.kind === 'buffer')?.minutes ?? 0)
     const whyHref = heroTask ? whyHrefFor(heroTask.id) : null
+    const yesterday = yesterdayLine(plan, state, evidenceSet, todayIso)
 
     return (
       <section className={`ms-insight-hero ms-plan-card ms-rm-hero ms-rm-hero--${hero.kind} mb-6`} aria-labelledby="dash-plan-title">
@@ -157,6 +160,15 @@ export function TodayPlanCard({ saved, examDate, evidence = [] }: Props) {
           </ol>
         ) : null}
 
+        {yesterday ? (
+          <p className="ms-plan-note ms-rm-hero__yesterday">
+            {yesterday.when}: {yesterday.done} of {yesterday.total} done.{' '}
+            <LoadingLink href="/dashboard/plan?history=1" variant="inline" className="ms-plan-linkbtn">
+              The rest is in your history
+            </LoadingLink>
+            , ready to carry over.
+          </p>
+        ) : null}
         <div className="ms-rm-hero__foot">
           <LoadingLink href="/dashboard/plan" variant="inline" className="ms-rm-hero__open">
             {today.workMinutes > 0 ? `Open your roadmap · ${formatMinutes(today.workMinutes)} today` : 'Open your roadmap'}

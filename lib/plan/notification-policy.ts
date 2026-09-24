@@ -66,6 +66,8 @@ export function backoffAllows(unopened: number, lastSentAt: string | null, now: 
 
 export type NotificationContext = {
   minutes?: number
+  /** The nearest paper's name ("Business Paper 1") for the morning countdown, when the plan has several ahead. */
+  exam?: string
   subject?: string
   /** For after_commitment: what just ended, e.g. "Tuition". */
   label?: string
@@ -105,7 +107,9 @@ export const NOTIFICATION_COPY: Record<RoadmapNotificationKind, (ctx: Notificati
   }),
   morning_checkin: (ctx) => {
     const days = ctx.daysLeft
-    const countdown = days === 1 ? 'Exam tomorrow' : days !== undefined ? `${days} days to go` : "Today's plan"
+    // With several papers ahead the countdown names the nearest one: "12 days to Business Paper 1", not "22 days to go".
+    const what = ctx.exam ? ` to ${ctx.exam}` : ' to go'
+    const countdown = days === 1 ? (ctx.exam ? `${ctx.exam} tomorrow` : 'Exam tomorrow') : days !== undefined ? `${days} days${what}` : "Today's plan"
     const onPlan = ctx.minutes && ctx.minutes > 0 ? `${Math.round(ctx.minutes)} min on the plan today.` : 'Open the plan when you are ready.'
     return {
       title: days === 1 ? 'Tomorrow. Light review, then stop.' : countdown,

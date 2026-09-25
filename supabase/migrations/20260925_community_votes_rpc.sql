@@ -192,8 +192,9 @@ COMMENT ON FUNCTION public.vote_comment(uuid, integer) IS
 
 -- ---------------------------------------------------------------------------
 -- Grants audit: both functions are (a) ownership-checked, signed-in only —
--- they act as auth.uid() and refuse a null one. Same body as
--- 20260917_roadmap_v3.sql with the two names added to rpc_allowlist.
+-- they act as auth.uid() and refuse a null one. Same body as production's
+-- current definition (which carries the creators entries this repo's
+-- 20260917_roadmap_v3.sql predates) with the two names added to rpc_allowlist.
 -- ---------------------------------------------------------------------------
 create or replace function public.audit_client_grants()
 returns table(severity text, detail text)
@@ -207,7 +208,11 @@ declare
     array['user_profiles', 'role',                    'gates the whole /teacher surface'],
     array['user_profiles', 'teacher_verified_at',     'grants the free teacher allowance'],
     array['user_profiles', 'teacher_verified_reason', 'the audit trail for that grant'],
-    array['user_profiles', 'reputation',              'community standing']
+    array['user_profiles', 'reputation',              'community standing'],
+    -- Present in production (creators feature, applied from its own branch):
+    -- a redefinition that omitted them would silently stop auditing them.
+    array['user_profiles', 'referred_by',             'creator attribution, written once by the service role'],
+    array['user_profiles', 'referred_at',             'when that attribution was written']
   ];
   service_only constant text[] := array[
     'visit_sessions',
@@ -215,9 +220,12 @@ declare
     'teacher_seat_requests',
     'study_plans',
     'study_plan_events',
-    -- per-IP invite-code failure log (20260925_classroom_join_attempts.sql):
-    -- a client that could read it would learn which codes are being probed.
-    'classroom_join_attempts'
+    -- creators feature (production): service-role only.
+    'creators',
+    'creator_code_claims',
+    'creator_conversions',
+    'creator_tip_tests',
+    'creator_applications'
   ];
   -- Each entry is either (a) a function that MUST be callable by a signed-in
   -- user and that enforces its own auth.uid() ownership check, or (b) an

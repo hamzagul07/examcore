@@ -70,6 +70,15 @@ import { isUniqueViolation } from '@/lib/marking/mark-run-errors'
 import { namedSubjectOrNull } from '@/lib/marking/subject-name'
 import { resolveMarkRunExamSystem } from '@/lib/marking/resolve-exam-system'
 import { notifyMarkFailed, notifyMarkReady } from '@/lib/marking/notify-mark-ready'
+import { isTeacherV2 } from '@/lib/teacher/flags'
+import { onAttemptsMarked, validateAssignmentItemForStudent } from '@/lib/teacher/assignments'
+import {
+  ASSIGNMENT_ITEM_FIELD,
+  markAssignmentLink,
+  parseAssignmentItemId,
+  planSingleQuestionLink,
+  type MarkAssignmentLink,
+} from '@/lib/teacher/assignments/link'
 
 // Multi-question scanned scripts (derive → mark → verify per question) have
 // been measured at up to ~480s (`attempts.time_spent_seconds`); give generous
@@ -106,6 +115,45 @@ const supabaseAdmin = createClient(
 
 const clientError = (message: string) =>
   NextResponse.json({ error: message }, { status: 400 })
+
+/** A set link the student may not use: 400 before anything is spent. */
+const assignmentLinkError = (message: string) =>
+  NextResponse.json(
+    { error: message, field: ASSIGNMENT_ITEM_FIELD, code: 'assignment_item_invalid' },
+    { status: 400 }
+  )
+
+/**
+ * Hand a finished mark in against the student's sets (lib/teacher/assignments
+ * onAttemptsMarked): the item it was stamped with, and any set in their classes
+ * holding the same banked question.
+ *
+ * Deliberately AFTER the result and outside its fate, like the ready email: the
+ * score is what the student is waiting for, and nothing on the teacher's side
+ * may be able to fail a mark that is saved and charged. Handed to after() so it
+ * does not hold the response; inline only where there is no request scope. The
+ * hook itself never throws, and whatever it misses the set's next reconcile
+ * picks up.
+ */
+async function scheduleAssignmentHandIn(userId: string | null, payload: unknown): Promise<void> {
+  try {
+    if (!userId || !isTeacherV2()) return
+    const p = payload as { attempt_id?: unknown; question_attempt_ids?: unknown }
+    const attemptIds = [
+      p?.attempt_id,
+      ...(Array.isArray(p?.question_attempt_ids) ? p.question_attempt_ids : []),
+    ].filter((id): id is string => typeof id === 'string' && id.length > 0)
+    if (attemptIds.length === 0) return
+    const task = () => onAttemptsMarked(supabaseAdmin, { userId, attemptIds })
+    try {
+      after(task)
+    } catch {
+      await task()
+    }
+  } catch (err) {
+    console.error('[mark/process] assignment hand-in scheduling failed (mark kept)', err)
+  }
+}
 
 function logMarkFailure(err: unknown, classified: ClassifiedMarkingError) {
   console.error('[mark/process] failed', {
@@ -446,7 +494,8 @@ async function handleMarkRequest(request: NextRequest) {
     // The answer typed instead of photographed.
     const answerTextInput = (formData.get('answer_text') as string | null) ?? null
     const questionPhotoRaw = formData.get('question_photo') as File | null
-    const questionTextInput = formData.get('question_text') as string | null
+    // `let`: a teacher's prompt replaces these below (see the set link).
+    let questionTextInput = formData.get('question_text') as string | null
     const manualPaperCode = formData.get('manual_paper_code') as string | null
     const manualPaperSession = formData.get('manual_paper_session') as string | null
     const manualQuestionNumber = formData.get('manual_question_number') as string | null
@@ -473,13 +522,13 @@ async function handleMarkRequest(request: NextRequest) {
       )
     }
     const markIntentRaw = formData.get('mark_intent') as string | null
-    const markIntent: MarkIntent =
+    let markIntent: MarkIntent =
       markIntentRaw === 'practice_question'
         ? 'practice_question'
         : markIntentRaw === 'combined_script'
           ? 'combined_script'
           : 'past_paper'
-    const practiceSubjectCode = (
+    let practiceSubjectCode = (
       formData.get('practice_subject_code') as string | null
     )?.trim() || null
     // Subject the user selected in the UI, sent even when they skip the full
@@ -489,7 +538,7 @@ async function handleMarkRequest(request: NextRequest) {
       formData.get('subject_code') as string | null
     )?.trim() || null
     // M1: optional IB selection axes. Absent for all current traffic (inert).
-    const ibComponentKey = (
+    let ibComponentKey = (
       formData.get('ib_component_key') as string | null
     )?.trim() || null
     const ibLevel = (formData.get('ib_level') as string | null)?.trim() || null
@@ -503,7 +552,7 @@ async function handleMarkRequest(request: NextRequest) {
     const totalMarksRaw = (
       formData.get('total_marks_available') as string | null
     )?.trim()
-    const totalMarksAvailable =
+    let totalMarksAvailable =
       totalMarksRaw &&
       Number.isFinite(Number(totalMarksRaw)) &&
       Number(totalMarksRaw) > 0
@@ -516,6 +565,11 @@ async function handleMarkRequest(request: NextRequest) {
       formData.get('marks_in_question') === 'true'
     const manualSubjectCode = manualPaperCode?.split('/')[0]
     const streamRequested = formData.get('stream') === '1'
+    // The teacher's set item this upload is for, when /mark was opened from
+    // a set (studentMarkHref). Ignored entirely with TEACHER_V2=0.
+    const assignmentItemRaw = isTeacherV2()
+      ? (formData.get(ASSIGNMENT_ITEM_FIELD) as string | null)?.trim() || null
+      : null
 
     const hasTypedAnswer = !!answerTextInput?.trim()
 
@@ -609,6 +663,52 @@ async function handleMarkRequest(request: NextRequest) {
         // error / abandoned: the earlier attempt produced nothing. Run again
         // on the same row rather than tripping the unique index.
         reusableRunId = existingRun.id
+      }
+    }
+
+    // ---- Teacher's set: checked before anything is spent ----------------------
+    //
+    // An item the student may not hand in against (not their class, not
+    // published, deleted, closed to late work) is a 400 with nothing
+    // consumed. A valid one is stamped on the attempt only when THIS upload is
+    // that item (planSingleQuestionLink): the item id rides in the URL for as
+    // long as the tab is open, and a student marking a different question from
+    // it gets an ordinary mark, told it was not added to the set. A prompt is
+    // always the teacher's prompt, so its text, subject and total replace the
+    // form's before the run is opened.
+    let assignmentLink: MarkAssignmentLink | null = null
+    let linkedItemId: string | null = null
+    if (assignmentItemRaw) {
+      const itemId = parseAssignmentItemId(assignmentItemRaw)
+      if (!itemId) {
+        return assignmentLinkError(
+          'That link to your teacher’s set is not valid. Open it again from your assignments.'
+        )
+      }
+      if (!userId) return assignmentLinkError('Sign in to hand work in for your class.')
+      const check = await validateAssignmentItemForStudent(supabaseAdmin, itemId, userId)
+      if (!check.ok) return assignmentLinkError(check.reason)
+      const plan = planSingleQuestionLink(check.item, check.assignment, {
+        markIntent,
+        manualPaperCode,
+        manualPaperSession,
+        manualQuestionNumber,
+        practiceSubjectCode,
+        ibComponentKey,
+        // What the pipeline would use as the total once on the practice path.
+        questionMarks: ibMarksAvailable ?? totalMarksAvailable,
+      })
+      assignmentLink = markAssignmentLink(check.assignment, itemId, plan)
+      if (plan.linked) {
+        linkedItemId = itemId
+        const o = plan.overrides
+        if (o.markIntent) markIntent = o.markIntent
+        if (o.questionText !== undefined) questionTextInput = o.questionText
+        if (o.practiceSubjectCode) practiceSubjectCode = o.practiceSubjectCode
+        if (o.ibComponentKey !== undefined) ibComponentKey = o.ibComponentKey
+        if (o.questionMarks != null && ibMarksAvailable == null && totalMarksAvailable == null) {
+          totalMarksAvailable = o.questionMarks
+        }
       }
     }
 
@@ -766,6 +866,8 @@ async function handleMarkRequest(request: NextRequest) {
       enableRewrite,
       priorityDeepMarking,
       maxQuestions,
+      // Stamped on the attempt row(s); null unless this upload is the set's item.
+      assignmentItemId: linkedItemId,
       startedAt: startTime,
     }
 
@@ -854,6 +956,8 @@ async function handleMarkRequest(request: NextRequest) {
                 // Only set on the one run it was true for, so the result can
                 // say what this mark got that the next one will not.
                 _first_mark_premium: firstMarkPremium || undefined,
+                // Where the mark went on the teacher's side, for /mark to say.
+                _assignment: assignmentLink ?? undefined,
               }),
             })
 
@@ -864,6 +968,9 @@ async function handleMarkRequest(request: NextRequest) {
             // be self-defeating. The page shows the gap from what it captured
             // locally; this write is for the attempt page and the email.
             const predictedMarks = await settlePrediction(markRun, attemptId)
+
+            // The teacher's side, after the result and never able to fail it.
+            await scheduleAssignmentHandIn(userId, payload)
 
             // Nobody there to read it. The mark is saved and the attempt page
             // will show it in full — mail carries the score and the link.
@@ -960,6 +1067,8 @@ async function handleMarkRequest(request: NextRequest) {
       await settleRunSuccess(attemptId)
       const extras = await recordExtraMarks(payload)
       const marksCharged = 1 + extras.recorded
+      // Runs after the response (after()); never able to fail the mark.
+      await scheduleAssignmentHandIn(userId, payload)
       return NextResponse.json(
         await signMarkPayloadForClient({
           ...payload,
@@ -970,6 +1079,7 @@ async function handleMarkRequest(request: NextRequest) {
               })
             : undefined,
           _first_mark_premium: firstMarkPremium || undefined,
+          _assignment: assignmentLink ?? undefined,
         })
       )
     } catch (err: unknown) {

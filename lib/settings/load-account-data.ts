@@ -1,5 +1,6 @@
+import { cache } from 'react'
 import { redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase-server'
+import { createClient, createServiceClient } from '@/lib/supabase-server'
 import {
   DEFAULT_BOARD,
   DEFAULT_LEVEL,
@@ -8,14 +9,24 @@ import {
 import { isOnboardingComplete } from '@/lib/onboarding'
 import { computeBillingSummary } from '@/lib/billing/enforcement'
 import { shouldShowApproachingLimitBanner } from '@/lib/billing/enforcement-mode'
+import { loadMyClasses, type MyClass } from '@/lib/student/assignments'
 import type { SettingsContext } from './types'
 
-export async function loadAccountContext(): Promise<SettingsContext> {
+/**
+ * One session lookup per request, shared by every account loader a page
+ * calls (React `cache` is request-scoped in server components), so adding a
+ * loader does not add an auth round trip.
+ */
+const getAccountSession = cache(async () => {
   const supabase = await createClient()
-
   const {
     data: { user },
   } = await supabase.auth.getUser()
+  return { supabase, user }
+})
+
+export async function loadAccountContext(): Promise<SettingsContext> {
+  const { supabase, user } = await getAccountSession()
 
   if (!user) {
     redirect('/auth/signin')
@@ -113,5 +124,24 @@ export async function loadAccountContext(): Promise<SettingsContext> {
       // a mark finished after the student had already left the page.
       emailMarkReady: profile?.email_mark_ready !== false,
     },
+  }
+}
+
+/**
+ * The classes the signed-in student is in, for Account → My classes
+ * (docs/TEACHER_SYSTEM_SPEC.md §4). Their own RLS client for the memberships
+ * and classes; the service client only for the teachers' display names and
+ * seat status (lib/student/assignments.ts loadMyClasses). An empty list — the
+ * card is then not shown — when signed out or when the read fails: the rest
+ * of the account page must not depend on it.
+ */
+export async function loadAccountClasses(): Promise<MyClass[]> {
+  const { supabase, user } = await getAccountSession()
+  if (!user) return []
+  try {
+    return await loadMyClasses(supabase, createServiceClient(), user.id)
+  } catch (err) {
+    console.error('[account] classes unavailable', err instanceof Error ? err.message : err)
+    return []
   }
 }

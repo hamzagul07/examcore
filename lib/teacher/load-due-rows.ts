@@ -1,94 +1,83 @@
 import 'server-only'
 
 import type { SupabaseClient } from '@supabase/supabase-js'
-import { selectDueRecall, type RecallRow } from '@/lib/courses/recall-schedule'
-import type { CohortDueRow } from '@/lib/teacher/cohort-due'
+import { chunk, fetchAllFiltered } from '@/lib/teacher-classroom-data'
+import {
+  dueRowsFromTables,
+  type CohortDueRow,
+  type RecallTableRow,
+  type ScheduleTableRow,
+} from '@/lib/teacher/cohort-due'
+
+export type LoadDueRowsOptions = {
+  /** The classroom's subject; null/omitted reads every subject. */
+  subjectCode?: string | null
+  /**
+   * student id → ISO joined_at. When given, only those students' rows are
+   * kept, and only for topics worked on since they joined (spec §8). Pass it
+   * for every classroom read; omit it only for a student's own view.
+   */
+  joinedAt?: ReadonlyMap<string, string>
+  nowMs?: number
+}
 
 /**
- * Load due review_schedule + lesson_recall rows for a set of students.
- * Caller must already have verified teacher ownership of the classroom.
- * Service-role client required (tables have zero RLS policies).
+ * Due review_schedule + lesson_recall rows for a set of students.
+ *
+ * The caller must already have verified that the teacher owns the classroom
+ * and that `studentIds` are its active members. Service-role client required:
+ * both tables are RLS-enabled with no policies. Reads page through every row
+ * (a class's due rows can pass PostgREST's silent 1,000-row cap), and a read
+ * error is returned rather than a partial list.
  */
 export async function loadDueRowsForStudents(
   service: SupabaseClient,
   studentIds: string[],
-  nowMs = Date.now()
+  opts: LoadDueRowsOptions = {}
 ): Promise<{ rows: CohortDueRow[]; error: string | null }> {
-  if (studentIds.length === 0) return { rows: [], error: null }
+  const ids = [...new Set(studentIds.filter(Boolean))]
+  if (ids.length === 0) return { rows: [], error: null }
 
+  const nowMs = opts.nowMs ?? Date.now()
   const nowIso = new Date(nowMs).toISOString()
+  const subjectCode = opts.subjectCode ?? null
 
-  const [schedRes, recallRes] = await Promise.all([
-    service
-      .from('review_schedule')
-      .select('user_id, subject_code, topic_code, due_at')
-      .in('user_id', studentIds)
-      .lte('due_at', nowIso)
-      .limit(2000),
-    service
-      .from('lesson_recall')
-      .select(
-        'user_id, subject_code, lesson_slug, topic_code, answered_count, total_count, due_at, last_worked_at'
-      )
-      .in('user_id', studentIds)
-      .lte('due_at', nowIso)
-      .limit(2000),
-  ])
-
-  if (schedRes.error) {
-    return { rows: [], error: schedRes.error.message }
-  }
-  if (recallRes.error) {
-    return { rows: [], error: recallRes.error.message }
-  }
-
-  const rows: CohortDueRow[] = []
-
-  for (const r of schedRes.data ?? []) {
-    rows.push({
-      userId: r.user_id as string,
-      subjectCode: r.subject_code as string,
-      topicCode: r.topic_code as string,
-      source: 'attempts',
-      dueAt: r.due_at as string,
-    })
-  }
-
-  const attemptKeys = new Set(
-    rows.map((r) => `${r.userId}::${r.subjectCode}::${r.topicCode}`)
-  )
-
-  const recallByUser = new Map<string, RecallRow[]>()
-  for (const r of recallRes.data ?? []) {
-    const uid = r.user_id as string
-    const list = recallByUser.get(uid) ?? []
-    list.push({
-      subject_code: r.subject_code as string,
-      lesson_slug: r.lesson_slug as string,
-      topic_code: r.topic_code as string,
-      answered_count: r.answered_count as number,
-      total_count: r.total_count as number,
-      due_at: r.due_at as string,
-      last_worked_at: r.last_worked_at as string,
-    })
-    recallByUser.set(uid, list)
-  }
-
-  for (const [uid, userRows] of recallByUser) {
-    const due = selectDueRecall(userRows, new Set(), nowMs)
-    for (const d of due) {
-      const k = `${uid}::${d.subjectCode}::${d.topicCode}`
-      if (attemptKeys.has(k)) continue
-      rows.push({
-        userId: uid,
-        subjectCode: d.subjectCode,
-        topicCode: d.topicCode,
-        source: 'recall',
-        dueAt:
-          userRows.find((x) => x.topic_code === d.topicCode)?.due_at ?? nowIso,
-      })
+  const schedule: ScheduleTableRow[] = []
+  const recall: RecallTableRow[] = []
+  try {
+    for (const part of chunk(ids)) {
+      const [schedRes, recallRes] = await Promise.all([
+        fetchAllFiltered<ScheduleTableRow>('review_schedule', (from, to) => {
+          let q = service
+            .from('review_schedule')
+            .select('user_id, subject_code, topic_code, due_at, last_reviewed_at')
+            .in('user_id', part)
+          // Not only due rows: one that is not due yet still suppresses the
+          // same topic's recall item (see dueRowsFromTables).
+          if (subjectCode) q = q.eq('subject_code', subjectCode)
+          return q.order('user_id').order('subject_code').order('topic_code').range(from, to)
+        }),
+        fetchAllFiltered<RecallTableRow>('lesson_recall', (from, to) => {
+          let q = service
+            .from('lesson_recall')
+            .select(
+              'user_id, subject_code, lesson_slug, topic_code, answered_count, total_count, due_at, last_worked_at'
+            )
+            .in('user_id', part)
+            .lte('due_at', nowIso)
+          if (subjectCode) q = q.eq('subject_code', subjectCode)
+          return q.order('user_id').order('subject_code').order('lesson_slug').range(from, to)
+        }),
+      ])
+      schedule.push(...schedRes.rows)
+      recall.push(...recallRes.rows)
     }
+  } catch (err) {
+    return { rows: [], error: err instanceof Error ? err.message : String(err) }
   }
 
-  return { rows, error: null }
+  return {
+    rows: dueRowsFromTables({ schedule, recall, nowMs, subjectCode, joinedAt: opts.joinedAt }),
+    error: null,
+  }
 }

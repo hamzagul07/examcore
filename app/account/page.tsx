@@ -1,6 +1,9 @@
 import { SettingsMobileIndex } from '@/components/settings/SettingsShell'
 import { ProfileSection } from '@/components/settings/sections/ProfileSection'
 import { loadAccountContext } from '@/lib/settings/load-account-data'
+import { MyClassesCard } from '@/components/account/MyClassesCard'
+import { loadAccountClasses } from '@/lib/settings/load-account-data'
+import { studentRequestTimeZone } from '@/lib/student/assignments'
 
 export const dynamic = 'force-dynamic'
 
@@ -11,6 +14,9 @@ export const dynamic = 'force-dynamic'
  */
 export default async function AccountIndexPage() {
   const { email, profile } = await loadAccountContext()
+  // Classes the student joined, with Leave. Hidden when they are in none.
+  const classes = await loadAccountClasses()
+  const classesTimeZone = classes.length > 0 ? await studentRequestTimeZone() : undefined
 
   return (
     <>
@@ -25,6 +31,11 @@ export default async function AccountIndexPage() {
           subjects={profile.subjects}
         />
       </div>
+      {classes.length > 0 ? (
+        <div className="mt-6">
+          <MyClassesCard classes={classes} timeZone={classesTimeZone} />
+        </div>
+      ) : null}
     </>
   )
 }

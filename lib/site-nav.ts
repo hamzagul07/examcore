@@ -174,9 +174,96 @@ export type SiteHeaderVariant = 'marketing' | 'app' | 'reading'
 export const TEACHER_NAV_ITEM: SiteNavItem = {
   id: 'teacher',
   href: '/teacher/dashboard',
-  label: 'Classrooms',
+  // One word for the same reason as "Teachers" above. "Teaching" rather than
+  // "Classrooms": it opens the teacher desk (sets, reviews, classes), and in a
+  // student header it has to say "the other side of your account".
+  label: 'Teaching',
   isActive: (pathname: string) => pathname.startsWith('/teacher'),
   variants: ['marketing', 'app', 'reading'],
+}
+
+/**
+ * One destination in the teacher frame (TeacherNav on desktop, TeacherTabBar
+ * at ≤900px). `stamp` is the two-letter ink stamp shown beside the label.
+ */
+export type TeacherNavItem = {
+  id: 'desk' | 'classes' | 'reviews' | 'account'
+  href: string
+  label: string
+  stamp: string
+  isActive: (pathname: string) => boolean
+}
+
+function isUnder(pathname: string, prefix: string): boolean {
+  return pathname === prefix || pathname.startsWith(`${prefix}/`)
+}
+
+/**
+ * The teacher frame's primary destinations (docs/TEACHER_SYSTEM_SPEC.md §4):
+ * Desk · Classes · Reviews. A single class (/teacher/classroom/[id]/…) lights
+ * up Classes — it is reached from the class list, and the desk is the
+ * cross-class overview, not the parent of one class.
+ */
+export const TEACHER_DESK_NAV: readonly TeacherNavItem[] = [
+  {
+    id: 'desk',
+    href: '/teacher/dashboard',
+    label: 'Desk',
+    stamp: 'DK',
+    isActive: (p) => isUnder(p, '/teacher/dashboard'),
+  },
+  {
+    id: 'classes',
+    href: '/teacher/classrooms',
+    label: 'Classes',
+    stamp: 'CL',
+    isActive: (p) => isUnder(p, '/teacher/classrooms') || isUnder(p, '/teacher/classroom'),
+  },
+  {
+    id: 'reviews',
+    href: '/teacher/reviews',
+    label: 'Reviews',
+    stamp: 'RV',
+    isActive: (p) => isUnder(p, '/teacher/reviews'),
+  },
+]
+
+/** Fourth tab on the phone bar only; the desktop header has ACC / OUT instead. */
+export const TEACHER_ACCOUNT_NAV: TeacherNavItem = {
+  id: 'account',
+  href: '/account',
+  label: 'Account',
+  stamp: 'ACC',
+  isActive: (p) => isUnder(p, '/account'),
+}
+
+/**
+ * The pre-v2 teacher nav, kept for the TEACHER_V2=0 kill switch: one
+ * "Classrooms" item (the old dashboard doubled as the class list) and Reviews.
+ */
+export const TEACHER_LEGACY_NAV: readonly TeacherNavItem[] = [
+  {
+    id: 'classes',
+    href: '/teacher/dashboard',
+    label: 'Classrooms',
+    stamp: 'CL',
+    isActive: (p) =>
+      isUnder(p, '/teacher/dashboard') ||
+      isUnder(p, '/teacher/classrooms') ||
+      isUnder(p, '/teacher/classroom'),
+  },
+  {
+    id: 'reviews',
+    href: '/teacher/reviews',
+    label: 'Reviews',
+    stamp: 'RV',
+    isActive: (p) => isUnder(p, '/teacher/reviews'),
+  },
+]
+
+/** The teacher nav for this deploy: v2 destinations unless the kill switch is on. */
+export function teacherNavItems(v2: boolean): readonly TeacherNavItem[] {
+  return v2 ? TEACHER_DESK_NAV : TEACHER_LEGACY_NAV
 }
 
 /**

@@ -180,8 +180,24 @@ export type SingleQuestionMarkInput = {
    * which case only the hard fan-out cap applies.
    */
   maxQuestions?: number | null
+  /**
+   * The teacher's set item this mark hands in (assignment_items.id), already
+   * checked by the route with validateAssignmentItemForStudent and matched to
+   * this upload. Stamped on the attempt row and nothing else; absent for every
+   * other mark, whose insert is unchanged.
+   */
+  assignmentItemId?: string | null
   startedAt?: number
   onProgress?: (event: MarkProgressEvent) => void
+}
+
+/**
+ * The attempts.assignment_item_id stamp, as a spread: empty unless this mark
+ * was started from a set, so ordinary marks never name the column (and keep
+ * working on a database the column has not reached yet).
+ */
+function assignmentStamp(assignmentItemId: string | null | undefined): { assignment_item_id?: string } {
+  return assignmentItemId ? { assignment_item_id: assignmentItemId } : {}
 }
 
 function emit(
@@ -361,6 +377,8 @@ async function markOneSplitQuestion(
      */
     fallbackQuestionMarks?: number | null
     singleQuestionSplit?: boolean
+    /** See SingleQuestionMarkInput.assignmentItemId. */
+    assignmentItemId?: string | null
   }
 ): Promise<SplitQuestionOutcome> {
   // H1: never mark the question STEM as the answer. When the per-question answer
@@ -450,6 +468,7 @@ async function markOneSplitQuestion(
         answer_photo_url: ctx.answerPhotoUrl,
         error_classifications: errorClassifications,
         line_references: lineReferences,
+        ...assignmentStamp(ctx.assignmentItemId),
       }))
       .select()
       .single()
@@ -534,6 +553,8 @@ async function markSplitQuestions(params: {
   questionMarks?: number | null
   /** Allowance bound on questions marked; see SingleQuestionMarkInput. */
   maxQuestions?: number | null
+  /** See SingleQuestionMarkInput.assignmentItemId. */
+  assignmentItemId?: string | null
 }): Promise<Record<string, unknown>> {
   const {
     split,
@@ -550,6 +571,7 @@ async function markSplitQuestions(params: {
     onProgress,
     questionMarks = null,
     maxQuestions = null,
+    assignmentItemId = null,
   } = params
 
   // H3/L2: cap the number of questions so one upload can't fan out into an
@@ -611,6 +633,7 @@ async function markSplitQuestions(params: {
       pageSources,
       fallbackQuestionMarks: questionMarks,
       singleQuestionSplit,
+      assignmentItemId,
     })
     completed += 1
     emit(onProgress, 'marking', Math.round(50 + (45 * completed) / capped.length))
@@ -736,6 +759,7 @@ export async function runSingleQuestionMark(
     priorityDeepMarking = false,
     deferRewrite = false,
     maxQuestions = null,
+    assignmentItemId = null,
     startedAt = Date.now(),
     onProgress,
   } = input
@@ -1030,6 +1054,7 @@ export async function runSingleQuestionMark(
           onProgress,
           questionMarks,
           maxQuestions,
+          assignmentItemId,
         })
       }
       // Exactly one question detected — keep its number so an ingested official
@@ -1337,6 +1362,7 @@ export async function runSingleQuestionMark(
       answer_photo_url: answerPhotoUrl,
       error_classifications: errorClassifications,
       line_references: lineReferences,
+      ...assignmentStamp(assignmentItemId),
     }))
     .select()
     .single()

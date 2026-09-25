@@ -5,7 +5,7 @@ import {
 } from '@/lib/supabase-server'
 import { resolvePostAuthPath, resolveSameOriginPath } from '@/lib/auth-redirect'
 import { isOnboardingComplete } from '@/lib/onboarding'
-import { loadEffectiveAccess } from '@/lib/billing/access'
+import { loadAccessState } from '@/lib/billing/access'
 
 export async function GET(request: NextRequest) {
   const { supabase, user, pendingCookies } =
@@ -47,8 +47,9 @@ export async function GET(request: NextRequest) {
   // Resolved the way the marking gate resolves it — subscription, verified
   // teacher seat and comp together — rather than from {tier, status} alone,
   // which is how a seat-holder came to see a different product in the header
-  // than at the gate (review §2, seat-aware feature gates).
-  const access = await loadEffectiveAccess(user.id)
+  // than at the gate (review §2, seat-aware feature gates). The same read
+  // answers whether the seat is granted, so `teacherVerified` costs nothing.
+  const { access, teacherVerified } = await loadAccessState(user.id)
 
   return jsonWithAuthCookies(
     {
@@ -61,6 +62,10 @@ export async function GET(request: NextRequest) {
       // Surfaced so the header can offer a teacher the way back to their
       // classrooms; this select already ran, so it costs nothing.
       role,
+      // The granted seat (`teacher_verified_at`), not the self-declared role:
+      // what decides the teacher allowance and the class bonus. Display only —
+      // every gate re-reads it on the server.
+      teacherVerified,
       // Max Resource Vault nav — same probe, no extra round-trip.
       isMax: access === 'max',
       destination,

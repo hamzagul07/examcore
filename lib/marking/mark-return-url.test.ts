@@ -26,6 +26,17 @@ check(
   parseMarkReturnPath('/dashboard/progress?tab=insights') ===
     '/dashboard/progress?tab=insights'
 )
+check(
+  'allows a teacher set',
+  parseMarkReturnPath('/dashboard/assignments/3f2b8c1e-9a4d-4e7b-8c2a-1d5e6f7a8b9c') ===
+    '/dashboard/assignments/3f2b8c1e-9a4d-4e7b-8c2a-1d5e6f7a8b9c'
+)
+check('allows the set list', parseMarkReturnPath('/dashboard/assignments') === '/dashboard/assignments')
+check('rejects a look-alike desk', parseMarkReturnPath('/dashboard/assignmentsx') === null)
+check(
+  'rejects traversal out of the sets',
+  parseMarkReturnPath('/dashboard/assignments/../../teacher/dashboard') === null
+)
 check('rejects external', parseMarkReturnPath('https://evil.com/courses/x') === null)
 check('rejects protocol-relative', parseMarkReturnPath('//evil.com/courses/x') === null)
 check('rejects non-courses', parseMarkReturnPath('/mark?board=edexcel') === null)

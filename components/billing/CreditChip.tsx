@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Loader2 } from 'lucide-react'
 import type { BillingSummaryClient } from '@/lib/billing/question-copy'
 import { tierMarketingName } from '@/lib/billing/caps'
+import { classBonusFromSummary, classBonusLabel } from '@/lib/billing/teacher-seat'
 import { billingPortalButtonLabel, useBillingPortal } from '@/lib/hooks/useBillingPortal'
 
 type Summary = BillingSummaryClient
@@ -130,6 +131,9 @@ export function CreditChip() {
     : null
 
   const qFraction = qCap > 0 ? qLeft / qCap : 0
+  // Marks the cap already includes from a verified teacher's class. Read
+  // defensively: a response without the field shows nothing extra.
+  const classBonus = classBonusFromSummary(summary)
   const blocked =
     summary.enforcement_mode === 'enforce' &&
     summary.questions.blocked &&
@@ -149,8 +153,12 @@ export function CreditChip() {
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="dialog"
         aria-expanded={open}
-        aria-label={`${tierLabel} plan — ${qLeft} questions and ${oLeft} chat messages left`}
-        title={`${tierLabel} · ${qLeft} questions · ${oLeft} chat left`}
+        aria-label={`${tierLabel} plan — ${qLeft} questions and ${oLeft} chat messages left${
+          classBonus > 0 ? `, including ${classBonusLabel(classBonus)}` : ''
+        }`}
+        title={`${tierLabel} · ${qLeft} questions · ${oLeft} chat left${
+          classBonus > 0 ? ` · ${classBonusLabel(classBonus)}` : ''
+        }`}
         className="relative flex h-8 max-w-full items-center gap-1 rounded border px-2 font-mono text-[11px] font-semibold tabular-nums transition-colors before:absolute before:-inset-1.5 before:content-[''] hover:border-[color-mix(in_srgb,var(--ec-brand)_35%,var(--ec-border))]"
         style={{
           borderColor: 'var(--ec-border)',
@@ -184,13 +192,21 @@ export function CreditChip() {
             </div>
 
             <div className="mt-4 space-y-4">
-              <UsageMeter
-                label="Marked questions"
-                used={Math.max(0, qCap - qLeft)}
-                cap={qCap}
-                remaining={qLeft}
-                tone={ringTone}
-              />
+              <div>
+                <UsageMeter
+                  label="Marked questions"
+                  used={Math.max(0, qCap - qLeft)}
+                  cap={qCap}
+                  remaining={qLeft}
+                  tone={ringTone}
+                />
+                {classBonus > 0 && (
+                  <p className="mt-2 flex flex-wrap items-center gap-2 text-xs text-[var(--ec-text-secondary)]">
+                    <span className="ec-chip ec-chip-success">{classBonusLabel(classBonus)}</span>
+                    <span>Already counted in the {qCap} above.</span>
+                  </p>
+                )}
+              </div>
               <UsageMeter
                 label="Study chat"
                 used={Math.max(0, oCap - oLeft)}

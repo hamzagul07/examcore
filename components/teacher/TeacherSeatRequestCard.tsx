@@ -1,34 +1,46 @@
 'use client'
 
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { Field } from '@/components/ui/Field'
 import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 import { HONEYPOT_FIELD } from '@/lib/honeypot'
 
+/** Mirrors SeatCardState in lib/teacher/seat-grant.ts (that module is server-only). */
+export type SeatCardView =
+  | { kind: 'none' }
+  | { kind: 'pending' }
+  | { kind: 'declined'; reason: string | null; reviewedAt: string | null }
+
 type Props = {
-  /** Whether this teacher already has an open request (from the server). */
-  initialPending: boolean
+  /** From seatCardState(): the page renders nothing at all for a verified teacher. */
+  state: SeatCardView
   /** Marks a month a verified seat is worth — passed in; the cap is env-tunable. */
   teacherCap: number
   /** Marks a month they get until then. */
   freeCap: number
 }
 
+function formatDay(iso: string | null): string | null {
+  if (!iso) return null
+  const d = new Date(iso)
+  if (Number.isNaN(d.getTime())) return null
+  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', timeZone: 'UTC' })
+}
+
 /**
- * The ask for a verified teacher seat.
+ * The ask for a verified teacher seat, in three states:
  *
- * Shown to a teacher who has set up a classroom but holds no seat — which,
- * before this existed, was every teacher on the product. They had been told
- * marking their class was free for them, and were silently on the 5-a-month
- * free tier. The card leads with that gap rather than with a form, because the
- * teacher does not know they have a problem yet.
+ *   none      — leads with the gap ("you're marking on the free allowance"),
+ *               because the teacher does not know they have a problem yet;
+ *   pending   — quiet: they have done the only thing they can do;
+ *   declined  — the reviewer's reason, verbatim, and "Apply again", because
+ *               a decline with no way forward loses the teacher and the class.
+ *
+ * Posts to /api/teacher/seat-request; a new request after a decline opens a
+ * fresh row (the unique index is on pending requests only).
  */
-export function TeacherSeatRequestCard({
-  initialPending,
-  teacherCap,
-  freeCap,
-}: Props) {
-  const [pending, setPending] = useState(initialPending)
+export function TeacherSeatRequestCard({ state, teacherCap, freeCap }: Props) {
+  const [view, setView] = useState<SeatCardView>(state)
   const [open, setOpen] = useState(false)
   const [schoolName, setSchoolName] = useState('')
   const [schoolEmail, setSchoolEmail] = useState('')
@@ -37,6 +49,8 @@ export function TeacherSeatRequestCard({
   const [honeypot, setHoneypot] = useState('')
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
+  const [announce, setAnnounce] = useState('')
+  const titleId = useId()
 
   const ready = schoolName.trim().length > 1 && schoolEmail.trim().includes('@')
 
@@ -58,14 +72,19 @@ export function TeacherSeatRequestCard({
           [HONEYPOT_FIELD]: honeypot,
         }),
       })
-      const data = await res.json().catch(() => ({}))
+      const data = (await res.json().catch(() => ({}))) as { error?: string; status?: string }
 
       if (!res.ok) {
         setError(data.error || 'Could not send your request. Try again.')
         return
       }
-      setPending(true)
+      setView({ kind: 'pending' })
       setOpen(false)
+      setAnnounce(
+        data.status === 'approved'
+          ? 'Your seat is already on — refresh the page.'
+          : 'Request sent. We will email you when your seat is on.'
+      )
     } catch {
       setError('Could not reach the server. Check your connection and try again.')
     } finally {
@@ -73,36 +92,72 @@ export function TeacherSeatRequestCard({
     }
   }
 
-  if (pending) {
+  const live = (
+    <p className="sr-only" role="status" aria-live="polite">
+      {announce}
+    </p>
+  )
+
+  if (view.kind === 'pending') {
     return (
-      <section className="ms-teacher-seat ms-teacher-seat--pending">
-        <p className="ec-eyebrow mb-1">Seat requested</p>
+      <section className="ms-teacher-seat ms-teacher-seat--pending" aria-labelledby={titleId}>
+        {live}
+        <p id={titleId} className="ec-eyebrow mb-1">
+          Seat requested
+        </p>
         <p className="ms-teacher-seat__lead">
-          We&apos;re checking your school details. Seats are approved by a human, usually
-          within a day — we&apos;ll email you the moment yours is on. Until then your
-          marking runs on the free allowance.
+          We&apos;re checking your school details. Seats are approved by a person, usually within a
+          day — we&apos;ll email you the moment yours is on. Until then your own marking runs on the
+          free allowance, and your classes work as normal.
         </p>
       </section>
     )
   }
 
+  const declined = view.kind === 'declined' ? view : null
+  const decidedOn = declined ? formatDay(declined.reviewedAt) : null
+
   return (
-    <section className="ms-teacher-seat">
+    <section
+      className={`ms-teacher-seat${declined ? ' ms-teacher-seat--declined' : ''}`}
+      aria-labelledby={titleId}
+    >
+      {live}
       <div className="mb-2 flex items-center gap-2">
         <p className="ec-eyebrow mb-0">Your teacher seat</p>
-        <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
+        <span className="ec-ink-stamp ec-ink-stamp--inline ec-ink-stamp--crimson" aria-hidden>
           SEAT
         </span>
       </div>
 
-      <h2 className="ms-teacher-seat__title">
-        You&apos;re marking on the <em>free</em> allowance
-      </h2>
-      <p className="ms-teacher-seat__lead">
-        That&apos;s {freeCap} marks a month — about a sixth of one class set. A verified
-        teacher seat gives you <strong>{teacherCap} a month, free, for as long as you
-        teach</strong>. No card, no trial. We just need to know where you teach.
-      </p>
+      {declined ? (
+        <>
+          <h2 id={titleId} className="ms-teacher-seat__title">
+            We couldn&apos;t verify your seat yet
+          </h2>
+          <blockquote className="ms-teacher-seat__reason">
+            <cite>From the reviewer{decidedOn ? `, ${decidedOn}` : ''}</cite>
+            {declined.reason?.trim() || 'We could not match the details to a school.'}
+          </blockquote>
+          <p className="ms-teacher-seat__lead">
+            Apply again with that in mind — a school email address on your school&apos;s own domain is
+            the quickest thing for us to check. Your classes and codes keep working meanwhile; your own
+            marking stays on {freeCap} a month until the seat is on.
+          </p>
+        </>
+      ) : (
+        <>
+          <h2 id={titleId} className="ms-teacher-seat__title">
+            You&apos;re marking on the <em>free</em> allowance
+          </h2>
+          <p className="ms-teacher-seat__lead">
+            That&apos;s {freeCap} marks a month — about a sixth of one class set. A verified teacher seat
+            gives you <strong>{teacherCap} a month, free, for as long as you teach</strong>, and every
+            student in your classes gets extra marks too. No card, no trial. We just need to know where
+            you teach.
+          </p>
+        </>
+      )}
 
       {!open ? (
         <button
@@ -110,13 +165,13 @@ export function TeacherSeatRequestCard({
           onClick={() => setOpen(true)}
           className="ec-btn-primary ms-teacher-seat__cta"
         >
-          Request my seat
+          {declined ? 'Apply again' : 'Request my seat'}
           <span className="font-mono text-[11px] font-bold" aria-hidden>
             -&gt;
           </span>
         </button>
       ) : (
-        <form onSubmit={submit} className="ms-teacher-start ms-teacher-seat__form">
+        <form onSubmit={submit} className="ms-teacher-start ms-teacher-seat__form" noValidate>
           <Field
             className="ms-teacher-start__field"
             labelClassName="ms-teacher-start__legend"
@@ -132,6 +187,8 @@ export function TeacherSeatRequestCard({
               className: 'ms-teacher-start__input',
               autoComplete: 'organization',
               required: true,
+              // The teacher just pressed the button that revealed this form.
+              autoFocus: true,
             }}
           />
 
@@ -201,18 +258,29 @@ export function TeacherSeatRequestCard({
             className="hidden"
           />
 
-          {error ? (
-            <FormErrorAlert message={error} className="ms-teacher-start__error" />
-          ) : null}
+          {error ? <FormErrorAlert message={error} className="ms-teacher-start__error" /> : null}
 
-          <button
-            type="submit"
-            disabled={!ready || saving}
-            aria-busy={saving || undefined}
-            className="ec-btn-primary ms-teacher-start__submit"
-          >
-            {saving ? 'Sending…' : 'Send request'}
-          </button>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <button
+              type="submit"
+              disabled={!ready || saving}
+              aria-busy={saving || undefined}
+              className="ec-btn-primary ms-teacher-start__submit sm:w-auto sm:px-8"
+            >
+              {saving ? 'Sending…' : 'Send request'}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false)
+                setError('')
+              }}
+              disabled={saving}
+              className="ec-btn-ghost inline-flex min-h-[44px] items-center justify-center"
+            >
+              Not now
+            </button>
+          </div>
         </form>
       )}
     </section>

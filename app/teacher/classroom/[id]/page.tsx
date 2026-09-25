@@ -1,328 +1,242 @@
-'use client'
-
-import { useCallback, useEffect, useState } from 'react'
-import { useParams } from 'next/navigation'
-import Link from 'next/link'
-
-import { ClassroomSummary } from '@/components/teacher/ClassroomSummary'
-import { ClassBlindspots } from '@/components/teacher/ClassBlindspots'
-import { ClassDueList } from '@/components/teacher/ClassDueList'
-import { GradeRiskMatrix } from '@/components/teacher/GradeRiskMatrix'
-import { ReviewQueueList } from '@/components/teacher/ReviewQueueList'
-import { InviteCard } from '@/components/teacher/InviteCard'
-import { TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
+import type { Metadata } from 'next'
+import { Suspense } from 'react'
+import { notFound } from 'next/navigation'
+import { getSyllabusTree } from '@/lib/syllabi'
+import { createServiceClient } from '@/lib/supabase/service'
+import { isTeacherV2 } from '@/lib/teacher/flags'
+import { parseIsoWeek } from '@/lib/teacher/week'
+import { LoadingLink } from '@/components/ui/LoadingLink'
 import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
-import { attemptSummary } from '@/lib/teacher/stat-display'
-import { useSetAIContext } from '@/lib/omni-ai/context'
-import type { StudentQuadrantMetric } from '@/lib/teacher-analytics'
+import { TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
+import { ClassDeskHead } from '@/components/teacher/ClassDeskHead'
+import { ClassTabs } from '@/components/teacher/ClassTabs'
+import { GradeRiskMatrix } from '@/components/teacher/GradeRiskMatrix'
+import { InviteCard } from '@/components/teacher/InviteCard'
+import { ErrorGroupsPanel } from '@/components/teacher/assignments/ErrorGroupsPanel'
+import { ReteachCard } from '@/components/teacher/assignments/ReteachCard'
+import { StudentsToWatch } from '@/components/teacher/assignments/StudentsToWatch'
+import { WeekStrip } from '@/components/teacher/assignments/WeekStrip'
+import { topicIndex, topicLabel, topicTree } from '@/components/teacher/assignments/composer-model'
+import { classHref, composerHref } from '@/components/teacher/assignments/links'
+import { dueThisWeekNote } from '@/components/teacher/assignments/set-display'
+import { firstParam, requestTimeZone, requireClassContext } from './assignments/_lib/context'
+import { loadClassWeekView } from './assignments/_lib/class-week-view'
+import { loadClassInsights, type ClassInsights } from './assignments/_lib/class-insights'
 
-interface ClassroomData {
-  analytics: {
-    classroomName: string
-    studentCount: number
-    totalAttempts: number
-    avgScore: number
-  }
-  blindspots: {
-    topics: Array<{
-      code: string
-      name: string
-      paper: string
-      avgMastery: number
-      studentsAttempted: number
-      totalStudents: number
-    }>
-  }
-  quadrants: {
-    students: StudentQuadrantMetric[]
-  }
+export const dynamic = 'force-dynamic'
+
+type Props = {
+  params: Promise<{ id: string }>
+  searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
-interface ClassroomInfo {
-  invite_code: string
-  name?: string
-  description?: string | null
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params
+  const { classroom } = await requireClassContext(id, `/teacher/classroom/${id}`)
+  return { title: classroom.name }
 }
 
-interface RosterStudent {
-  id: string
-  name: string
-  attemptCount: number
-  accuracy: number
-  dueCount?: number
-}
+type InsightsResult = { ok: true; value: ClassInsights } | { ok: false }
 
-async function fetchJson(url: string): Promise<{ ok: boolean; data: unknown }> {
-  try {
-    const r = await fetch(url, { cache: 'no-store' })
-    const data = await r.json().catch(() => ({}))
-    return { ok: r.ok, data }
-  } catch {
-    return { ok: false, data: null }
-  }
-}
-
-export default function ClassroomPage() {
-  const { id } = useParams<{ id: string }>()
-  const [data, setData] = useState<ClassroomData | null>(null)
-  const [classroom, setClassroom] = useState<ClassroomInfo | null>(null)
-  const [students, setStudents] = useState<RosterStudent[]>([])
-  const [loadError, setLoadError] = useState('')
-  const [inviteError, setInviteError] = useState('')
-  const [loading, setLoading] = useState(true)
-
-  const load = useCallback(async (signal?: { cancelled: boolean }) => {
-    setLoading(true)
-    setLoadError('')
-    setInviteError('')
-
-    const [analyticsRes, blindspotsRes, quadrantsRes, classroomRes, studentsRes] =
-      await Promise.all([
-        fetchJson(`/api/teacher/classroom/${id}/analytics`),
-        fetchJson(`/api/teacher/classroom/${id}/blindspots`),
-        fetchJson(`/api/teacher/classroom/${id}/quadrants`),
-        fetchJson(`/api/teacher/classroom/${id}`),
-        fetchJson(`/api/teacher/classroom/${id}/students`),
-      ])
-
-    if (signal?.cancelled) return
-
-    const analytics = analyticsRes.data as ClassroomData['analytics'] | null
-    if (!analyticsRes.ok || !analytics || typeof analytics.classroomName !== 'string') {
-      setLoadError('Could not load this classroom. Check the link or try again.')
-      setData(null)
-      setClassroom(null)
-      setInviteError('')
-      setLoading(false)
-      return
-    }
-
-    const blindspots = (blindspotsRes.data || { topics: [] }) as ClassroomData['blindspots']
-    const quadrants = (quadrantsRes.data || { students: [] }) as ClassroomData['quadrants']
-    const classroomPayload = classroomRes.data as { classroom?: ClassroomInfo } | null
-    const studentsPayload = studentsRes.data as { students?: RosterStudent[] } | null
-
-    setData({
-      analytics,
-      blindspots: { topics: blindspots.topics || [] },
-      quadrants: { students: quadrants.students || [] },
-    })
-    if (!classroomRes.ok || !classroomPayload?.classroom?.invite_code) {
-      setClassroom(null)
-      setInviteError(
-        classroomRes.ok
-          ? 'This classroom has no invite code yet. Refresh or try again.'
-          : 'Could not load the invite code. Try again to share it with your class.'
-      )
-    } else {
-      setClassroom(classroomPayload.classroom)
-      setInviteError('')
-    }
-    setStudents(studentsPayload?.students || [])
-    setLoading(false)
-  }, [id])
-
-  useEffect(() => {
-    const signal = { cancelled: false }
-    void load(signal)
-    return () => {
-      signal.cancelled = true
-    }
-  }, [load])
-
-  useSetAIContext(
-    {
-      type: 'teacher_dashboard',
-      data: { classMetrics: data },
-    },
-    [data]
-  )
-
-  if (loading) {
-    return (
-      <TeacherPageContainer className="ms-teacher-classroom">
-        <div aria-busy aria-label="Loading classroom analytics">
-          <SkeletonLine className="mb-3 h-3 w-40" />
-          <SkeletonBlock className="mb-8 h-10 w-72 max-w-full" />
-          <SkeletonBlock className="mb-8 h-32 w-full" />
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            <SkeletonBlock className="h-64 w-full" />
-            <SkeletonBlock className="h-64 w-full" />
-          </div>
-        </div>
-      </TeacherPageContainer>
-    )
-  }
-
-  if (loadError || !data) {
-    return (
-      <TeacherPageContainer className="ms-teacher-classroom">
-        <div className="ms-teacher-error" role="alert">
-          <p className="font-semibold text-[var(--ec-text-primary)]">Classroom unavailable</p>
-          <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">
-            {loadError || 'Could not load this classroom.'}
-          </p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={() => void load()}
-              className="ec-btn-primary inline-flex min-h-[44px] items-center"
-            >
-              Try again
-            </button>
-            <Link
-              href="/teacher/dashboard"
-              className="ec-btn-secondary inline-flex min-h-[44px] items-center"
-            >
-              &lt;- Back to classrooms
-            </Link>
-          </div>
-        </div>
-      </TeacherPageContainer>
-    )
-  }
-
-  const isDemo =
-    /demo|example class/i.test(
-      `${data.analytics.classroomName} ${classroom?.description ?? ''}`
-    )
-
+function InsightsSkeleton({ label, height }: { label: string; height: string }) {
   return (
-    <TeacherPageContainer className="ms-teacher-classroom">
-      {isDemo ? (
-        <aside className="ms-teacher-demo-flag mb-6" role="status">
-          <p className="font-semibold text-[var(--ec-text-primary)]">
-            <span className="mr-2 font-mono text-[11px] font-bold tracking-wide ec-text-brand">
-              DEMO
-            </span>
-            Example data
-          </p>
-          <p className="mt-1 text-sm text-[var(--ec-text-secondary)]">
-            This classroom is seeded with simulated students — not your real cohort.
-          </p>
-        </aside>
-      ) : null}
-      <div className="ms-teacher-desk-head">
-        <div>
-          <p className="ec-eyebrow mb-3">Classroom analytics</p>
-          <h1 className="text-headline">{data.analytics.classroomName}</h1>
-          <span className="ms-teacher-desk-head__note" aria-hidden>
-            {isDemo ? 'demo class — not your students' : 'marks the cohort actually drops'}
-          </span>
-          <ClassroomSummary
-            studentCount={data.analytics.studentCount}
-            totalAttempts={data.analytics.totalAttempts}
-            avgScore={data.analytics.avgScore}
-          />
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <Link
-            href={`/teacher/classroom/${id}/gaps`}
-            className="ec-btn-primary inline-flex min-h-[44px] items-center gap-2 text-sm"
-          >
-            <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
-              ¶
-            </span>
-            Where the class loses marks
-          </Link>
-          <Link
-            href={`/teacher/classroom/${id}/students`}
-            className="ec-btn-secondary inline-flex min-h-[44px] items-center gap-2 text-sm"
-          >
-            <span
-              className="font-mono text-[11px] font-bold tracking-wide text-[var(--ec-brand)]"
-              aria-hidden
-            >
-              N
-            </span>
-            View all students
-          </Link>
-        </div>
-      </div>
+    <div className="mb-8" role="status" aria-busy="true" aria-live="polite">
+      <span className="sr-only">Loading {label}…</span>
+      <SkeletonLine className="mb-3 h-5 w-48" />
+      <SkeletonBlock className={`${height} w-full`} />
+    </div>
+  )
+}
 
-      {classroom?.invite_code ? <InviteCard classroom={classroom} /> : null}
-      {inviteError ? (
-        <div className="ms-teacher-error mb-6" role="alert">
-          <p className="font-semibold text-[var(--ec-text-primary)]">Invite code unavailable</p>
-          <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">{inviteError}</p>
-          <button
-            type="button"
-            onClick={() => void load()}
-            className="ec-btn-secondary mt-4 inline-flex min-h-[44px] items-center"
+async function ErrorGroupsSection({
+  insights,
+  classroomId,
+  canSetWork,
+}: {
+  insights: Promise<InsightsResult>
+  classroomId: string
+  canSetWork: boolean
+}) {
+  const result = await insights
+  if (!result.ok) {
+    return (
+      <div className="ms-teacher-error mb-8" role="alert">
+        <p className="ms-teacher-error__title">Couldn&apos;t read the class&apos;s marked work</p>
+        <p className="ms-teacher-error__body">
+          The week above is up to date. Shared mistakes and the grade risk matrix will be back when the page loads
+          again.
+        </p>
+        <div className="mt-4">
+          <LoadingLink
+            href={classHref(classroomId)}
+            loadingText="Reloading…"
+            className="ec-btn-secondary inline-flex min-h-[44px] items-center"
           >
             Try again
-          </button>
+          </LoadingLink>
         </div>
+      </div>
+    )
+  }
+  return (
+    <ErrorGroupsPanel
+      classroomId={classroomId}
+      groups={result.value.groups}
+      names={result.value.names}
+      canSetWork={canSetWork}
+      truncated={result.value.truncated}
+      gapsHref={`/teacher/classroom/${encodeURIComponent(classroomId)}/gaps`}
+    />
+  )
+}
+
+async function RiskSection({ insights }: { insights: Promise<InsightsResult> }) {
+  const result = await insights
+  // The failure is reported once, by the error-groups section above.
+  if (!result.ok) return null
+  return (
+    <div className="mb-8">
+      <GradeRiskMatrix students={result.value.quadrants} />
+    </div>
+  )
+}
+
+/**
+ * The class week (docs/TEACHER_SYSTEM_SPEC.md §4 `/teacher/classroom/[id]`):
+ * head → tabs → the week's sets → the reteach card → students to watch →
+ * shared mistakes → invite → grade risk matrix.
+ *
+ * A server component. It proves ownership (requireClassContext), then makes
+ * one loader call for the week (loadClassWeekView over P1's loadClassWeek).
+ * The two panels built from the class's whole marked history — shared
+ * mistakes and the risk matrix — share one read that is streamed in behind
+ * <Suspense>, so the week never waits for it. `?week=YYYY-Www` shows an
+ * earlier week; anything unparseable shows this one.
+ *
+ * An archived class is read-only: its week shows retained hand-ins only, and
+ * the panels that read live work are not shown.
+ */
+export default async function ClassWeekPage({ params, searchParams }: Props) {
+  const [{ id }, sp] = await Promise.all([params, searchParams])
+  const { supabase, classroom } = await requireClassContext(id, `/teacher/classroom/${id}`)
+
+  const v2 = isTeacherV2()
+  const archived = classroom.archived_at !== null
+  const canSetWork = v2 && !archived
+  // Service client only now that the class is proven to be the caller's.
+  const admin = createServiceClient()
+  const week = parseIsoWeek(firstParam(sp.week))?.key ?? null
+
+  const [view, timeZone] = await Promise.all([
+    loadClassWeekView({ supabase, admin, classroom }, { week }),
+    requestTimeZone(),
+  ])
+  if (!view) notFound()
+
+  const insights: Promise<InsightsResult> | null = archived
+    ? null
+    : loadClassInsights(supabase, admin, classroom).then(
+        (value) => ({ ok: true as const, value }),
+        (err: unknown) => {
+          console.error('[teacher/class-week] insights failed', {
+            classroomId: classroom.id,
+            error: err instanceof Error ? err.message : String(err),
+          })
+          return { ok: false as const }
+        }
+      )
+
+  const names = topicIndex(topicTree(classroom.subject_code ? getSyllabusTree(classroom.subject_code) : null))
+  const reteach = view.reteach
+  const unreviewed = view.week.unreviewed
+  const invite =
+    !archived && classroom.invite_code ? <InviteCard classroom={{ invite_code: classroom.invite_code }} /> : null
+  const emptyClass = classroom.studentCount === 0
+
+  return (
+    <TeacherPageContainer className="ms-teacher-page">
+      <ClassDeskHead
+        classroom={classroom}
+        note={v2 && view.isCurrent ? dueThisWeekNote(view.week.assignments, view.range.start, view.range.end) : undefined}
+        actions={
+          canSetWork ? (
+            <LoadingLink
+              href={composerHref(classroom.id)}
+              loadingText="Opening…"
+              className="ec-btn-primary inline-flex min-h-[44px] items-center justify-center gap-2"
+            >
+              <span className="font-mono text-[11px] font-bold" aria-hidden>
+                +
+              </span>
+              Set work
+            </LoadingLink>
+          ) : undefined
+        }
+      />
+      <ClassTabs
+        classroomId={classroom.id}
+        current="week"
+        v2={v2}
+        counts={{
+          reviews: { value: unreviewed, label: `${unreviewed} ${unreviewed === 1 ? 'script' : 'scripts'} to review`, alert: true },
+        }}
+      />
+
+      {/* A class nobody has joined has one job: get the code to the students. */}
+      {emptyClass && invite ? <div className="mb-8">{invite}</div> : null}
+
+      {v2 ? (
+        <WeekStrip
+          classroomId={classroom.id}
+          weekKey={view.week.week}
+          rangeLabel={view.range.label}
+          isCurrent={view.isCurrent}
+          prev={view.prev}
+          next={view.next}
+          sets={view.sets}
+          submissionsDelta={view.week.submissions_delta}
+          unreviewed={unreviewed}
+          timeZone={timeZone}
+          now={view.now}
+          canSetWork={canSetWork}
+        />
       ) : null}
 
-      <section className="ms-teacher-roster" aria-labelledby="classroom-roster-heading">
-        <div className="mb-4 flex items-center justify-between gap-3">
-          <h2 id="classroom-roster-heading" className="text-xl font-bold text-[var(--ec-text-primary)]">
-            Students ({students.length})
-          </h2>
-        </div>
+      {v2 && reteach ? (
+        <ReteachCard
+          classroomId={classroom.id}
+          set={reteach.set}
+          gap={reteach.gap}
+          topics={reteach.codes.map((code) => ({ code, label: topicLabel(code, names) }))}
+          handedIn={reteach.handed_in}
+          totalStudents={reteach.total_students}
+          classMeanPct={reteach.class_mean_pct}
+          canSetWork={canSetWork}
+        />
+      ) : null}
 
-        {students.length === 0 ? (
-          <div className="ms-teacher-empty">
-            <span className="ms-teacher-empty__icon">
-              <span className="font-mono text-sm font-bold tracking-wide" aria-hidden>
-                N
-              </span>
-            </span>
-            <p className="ms-teacher-empty__title">No students yet</p>
-            <p className="ms-teacher-empty__body">
-              {inviteError
-                ? 'Load the invite code above first, then share it with your class. Their marked work appears here as they go.'
-                : 'Read the code above out in your next lesson, or send the share link. Their marked work appears here as they go.'}
-            </p>
-          </div>
-        ) : (
-          <ul className="ms-teacher-roster__list">
-            {students.map((s) => (
-              <li key={s.id}>
-                <Link
-                  href={`/teacher/classroom/${id}/students/${s.id}`}
-                  className="ms-teacher-roster__row"
-                >
-                  <span>
-                    <span className="block font-medium text-[var(--ec-text-primary)]">{s.name}</span>
-                    <span className="block text-xs text-[var(--ec-text-secondary)]">
-                      {attemptSummary(s.attemptCount, s.accuracy)}
-                      {(s.dueCount ?? 0) > 0
-                        ? ` · ${s.dueCount} due`
-                        : ''}
-                    </span>
-                  </span>
-                  <span className="ms-teacher-roster__trail">
-                    {(s.dueCount ?? 0) > 0 ? (
-                      <span className="ms-roster-due" aria-label={`${s.dueCount} topics due`}>
-                        {s.dueCount} due
-                      </span>
-                    ) : null}
-                    <span className="font-mono text-[11px] font-bold text-[var(--ec-brand)]" aria-hidden>
-                      →
-                    </span>
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
+      {!archived ? (
+        <StudentsToWatch
+          classroomId={classroom.id}
+          silent={view.week.silent_students}
+          struggling={view.week.struggling}
+          improving={view.week.improving}
+        />
+      ) : null}
 
-      <div className="mb-8">
-        <ClassBlindspots classroomId={id} blindspots={data.blindspots.topics || []} />
-      </div>
+      {insights ? (
+        <Suspense fallback={<InsightsSkeleton label="shared mistakes" height="h-40" />}>
+          <ErrorGroupsSection insights={insights} classroomId={classroom.id} canSetWork={canSetWork} />
+        </Suspense>
+      ) : null}
 
-      <div className="mb-8">
-        <ClassDueList classroomId={id} />
-      </div>
+      {!emptyClass && invite ? <div className="mb-8">{invite}</div> : null}
 
-      <div className="mb-8">
-        <GradeRiskMatrix students={data.quadrants.students || []} />
-      </div>
-
-      <ReviewQueueList classroomId={id} />
+      {insights ? (
+        <Suspense fallback={<InsightsSkeleton label="the grade risk matrix" height="h-80" />}>
+          <RiskSection insights={insights} />
+        </Suspense>
+      ) : null}
     </TeacherPageContainer>
   )
 }

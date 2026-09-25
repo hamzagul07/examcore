@@ -2,12 +2,15 @@ import assert from 'node:assert/strict'
 import {
   buildCohortGapReport,
   headlineGap,
+  headlineGapText,
+  HEADLINE_BELOW_PCT,
   markTypeCode,
   markTypeLabel,
   classificationLabel,
   type GapAttempt,
   type MarkPoint,
 } from '@/lib/teacher/cohort-gaps'
+import type { ClassroomAttempt } from '@/lib/teacher-analytics'
 
 function attempt(
   user: string,
@@ -368,5 +371,39 @@ assert.ok(weak, 'a real, well-evidenced weakness is named')
 // headline steps past it to the weakness that is actually evidenced. The raw
 // ranking above still shows EV first — the table reports, the headline commits.
 assert.equal(weak.code, 'AN', 'the headline names the worst *well-evidenced* gap')
+
+// --- the headline as copy ---------------------------------------------------------------
+
+assert.equal(headlineGapText(report), 'Analysis — 17% of marks earned', 'one formatter for week, desk and digest')
+assert.equal(headlineGapText(strong), null)
+assert.equal(headlineGapText(thin), null)
+assert.equal(headlineGapText(buildCohortGapReport([])), null, 'an empty class has no headline')
+assert.equal(HEADLINE_BELOW_PCT, 60)
+
+// A class's scoped attempts (lib/teacher-classroom-data.ts) go straight in: the
+// loader's ai_marking slice is a GapAttempt. Teacher overrides are already
+// folded into marks_awarded, so a re-marked point counts as the teacher left it.
+const scoped: ClassroomAttempt[] = ['s1', 's2', 's3'].map((user, i) => ({
+  id: `att-${i}`,
+  user_id: user,
+  marks_earned: 1,
+  total_marks: 5,
+  syllabus_tags: ['1.1'],
+  created_at: '2026-09-20T10:00:00Z',
+  ai_marking: {
+    marks_awarded: [
+      { mark_id: 'M1', type: 'M1', earned: true },
+      { mark_id: 'A1', type: 'A1', earned: false, margin_note: 'Final answer missing' },
+      { mark_id: 'A2', type: 'A2', earned: false, margin_note: 'Final answer missing' },
+      { mark_id: 'A3', type: 'A3', earned: i === 0, teacher_override: i === 0 ? true : null },
+      { mark_id: 'A4', type: 'A4', earned: false },
+    ],
+    marking_style: 'point_based',
+  },
+}))
+const fromClass = buildCohortGapReport(scoped)
+assert.equal(fromClass.scripts, 3)
+assert.equal(fromClass.markTypes.find((t) => t.code === 'A')!.earned, 1, "the teacher's re-mark counts")
+assert.equal(headlineGapText(fromClass), 'Accuracy — 8% of marks earned')
 
 console.log('cohort-gaps.test.ts — all assertions passed')

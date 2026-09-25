@@ -21,6 +21,11 @@ import {
   isVerifiedTeacher,
   type EffectiveAccess,
 } from './access'
+import {
+  classBonusFor,
+  classBonusLookupNeeded,
+  studentInVerifiedClassroom,
+} from './teacher-seat'
 import type {
   BillingPeriod,
   SubscriptionTier,
@@ -70,6 +75,14 @@ export type QuotaAllowance = {
   enforcement_mode: EnforcementMode
   /** True when the allowance came from a granted teacher seat, not a purchase. */
   teacher_seat: boolean
+  /**
+   * Marks a month `cap` includes from the class bonus — the student is an
+   * active member of a live class whose teacher holds a verified seat
+   * (./teacher-seat). Already counted in `cap`; reported separately so the
+   * chip and the banner can say where those marks came from. Always 0 for
+   * study chat, for teachers, and for anyone not in such a class.
+   */
+  class_bonus: number
 }
 
 /** Mark-specific alias — `marks_used` mirrors `used` for existing callers. */
@@ -86,7 +99,7 @@ export type BillingSummary = {
   omni: QuotaAllowance
 }
 
-type BillingContext = {
+export type BillingContext = {
   tier: SubscriptionTier
   /** Tier whose caps apply. */
   cap_tier: SubscriptionTier
@@ -95,10 +108,19 @@ type BillingContext = {
   /** Teacher seats are given away and metered on their own, larger allowance. */
   is_teacher: boolean
   /**
+   * Marks a month added to the mark cap by the class bonus (see
+   * ./teacher-seat). 0 unless the user is a student in a live class of a
+   * verified teacher.
+   */
+  class_bonus: number
+  /**
    * A paid tier whose subscription is no longer live AND nothing else (seat,
-   * comp) grants access. Such a user gets no allowance slot; a credit can still
-   * cover a mark. A verified teacher or a comp with a dead subscription is NOT
-   * inactive — they fall back to their seat, which is what the seat is for.
+   * comp, class bonus) grants access. Such a user gets no allowance slot; a
+   * credit can still cover a mark. A verified teacher or a comp with a dead
+   * subscription is NOT inactive — they fall back to their seat, which is what
+   * the seat is for — and neither is a lapsed subscriber in a verified
+   * teacher's class, who falls back to what every free classmate has (the free
+   * allowance plus the class bonus) rather than to nothing.
    */
   subscription_inactive: boolean
   credit_balance: number
@@ -106,36 +128,50 @@ type BillingContext = {
   enforcement_mode: EnforcementMode
 }
 
-async function loadBillingContext(
-  userId: string,
-  supabase: SupabaseClient
-): Promise<BillingContext> {
-  const [{ data: sub }, { data: credits }, { data: profile }] = await Promise.all([
-    supabase
-      .from('user_subscriptions')
-      .select('tier, status, billing_period, current_period_start, current_period_end')
-      .eq('user_id', userId)
-      .maybeSingle(),
-    supabase.from('user_credits').select('balance').eq('user_id', userId).maybeSingle(),
-    // Fetched alongside the others rather than in a follow-up query: this runs
-    // on the gate for every mark, so it must not add a round trip.
-    supabase
-      .from('user_profiles')
-      .select('teacher_verified_at')
-      .eq('id', userId)
-      .maybeSingle(),
-  ])
+/** The rows loadBillingContext reads, as the pure derivation below takes them. */
+export type BillingContextInput = {
+  userId: string
+  sub: {
+    tier?: string | null
+    status?: string | null
+    billing_period?: string | null
+    current_period_start?: string | null
+    current_period_end?: string | null
+  } | null
+  creditBalance: number | null
+  /** `user_profiles.teacher_verified_at` — the grant, never the role. */
+  teacherVerifiedAt: string | null
+  /** `student_in_verified_classroom(userId)`. */
+  inVerifiedClassroom: boolean
+  enforcementMode: EnforcementMode
+  /** Injectable for tests; production reads the environment. */
+  classBonus?: { bonus?: number; enabled?: boolean }
+  /** Injectable for tests only. */
+  now?: Date
+}
 
+/**
+ * Everything the gate decides from the four rows loadBillingContext reads.
+ * Pure, so the cap rules — seat, comp, class bonus, lapsed subscription —
+ * are testable without a database (lib/billing/teacher-seat.test.ts).
+ */
+export function deriveBillingContext(input: BillingContextInput): BillingContext {
+  const { userId, sub } = input
   const tier = (sub?.tier ?? 'free') as SubscriptionTier
   const status = (sub?.status ?? 'active') as SubscriptionStatus
   const billingPeriod = (sub?.billing_period ?? null) as BillingPeriod | null
   // The granted seat, not the self-declared `role` column.
-  const is_teacher = isVerifiedTeacher(profile?.teacher_verified_at)
+  const is_teacher = isVerifiedTeacher(input.teacherVerifiedAt)
   const access = effectiveAccessForUser({
     userId,
     tier,
     status,
-    teacherVerifiedAt: profile?.teacher_verified_at ?? null,
+    teacherVerifiedAt: input.teacherVerifiedAt,
+  })
+  const class_bonus = classBonusFor({
+    inVerifiedClassroom: input.inVerifiedClassroom,
+    isTeacher: is_teacher,
+    ...input.classBonus,
   })
   const paidActive = tier !== 'free' && ACTIVE_STATUSES.includes(status)
   // Caps come from the ACTUAL paid tier now that Pro/Scholar/Max are distinct
@@ -160,16 +196,67 @@ async function loadBillingContext(
     access,
     status,
     is_teacher,
-    subscription_inactive: tier !== 'free' && !paidActive && access === 'free',
-    credit_balance: credits?.balance ?? 0,
+    class_bonus,
+    subscription_inactive: tier !== 'free' && !paidActive && access === 'free' && class_bonus === 0,
+    credit_balance: input.creditBalance ?? 0,
     window: currentPeriodWindow({
       tier: paidActive ? tier : 'free',
       periodStart: sub?.current_period_start,
       periodEnd: sub?.current_period_end,
       billingPeriod,
+      now: input.now,
     }),
-    enforcement_mode: getEnforcementMode(),
+    enforcement_mode: input.enforcementMode,
   }
+}
+
+/**
+ * The monthly mark cap for a context: the tier's (or the seat's) cap plus the
+ * class bonus. The one expression every gate uses — the allowance read, the
+ * reservation and the extra-question backstop — so the cap the chip shows is
+ * the cap `reserve_mark_usage` enforces.
+ */
+export function markCapFor(
+  ctx: Pick<BillingContext, 'access' | 'cap_tier' | 'is_teacher' | 'class_bonus'>
+): number {
+  return capForAccess(ctx.access, ctx.cap_tier, ctx.is_teacher, ctx.class_bonus)
+}
+
+async function loadBillingContext(
+  userId: string,
+  supabase: SupabaseClient
+): Promise<BillingContext> {
+  const [{ data: sub }, { data: credits }, { data: profile }, inVerifiedClassroom] =
+    await Promise.all([
+      supabase
+        .from('user_subscriptions')
+        .select('tier, status, billing_period, current_period_start, current_period_end')
+        .eq('user_id', userId)
+        .maybeSingle(),
+      supabase.from('user_credits').select('balance').eq('user_id', userId).maybeSingle(),
+      // Fetched alongside the others rather than in a follow-up query: this runs
+      // on the gate for every mark, so it must not add a round trip.
+      supabase
+        .from('user_profiles')
+        .select('teacher_verified_at')
+        .eq('id', userId)
+        .maybeSingle(),
+      // The class bonus, in the same round trip for the same reason. Every
+      // caller passes the service client, which is the only role allowed to
+      // execute this function; it answers false (no bonus) on any error.
+      classBonusLookupNeeded()
+        ? studentInVerifiedClassroom(supabase, userId)
+        : Promise.resolve(false),
+    ])
+
+  return deriveBillingContext({
+    userId,
+    sub: sub ?? null,
+    creditBalance: (credits?.balance as number | null | undefined) ?? null,
+    teacherVerifiedAt: (profile?.teacher_verified_at as string | null | undefined) ?? null,
+    inVerifiedClassroom,
+    enforcementMode: getEnforcementMode(),
+  })
 }
 
 async function countUsageInWindow(
@@ -248,6 +335,8 @@ function buildQuotaAllowance(
     warning,
     enforcement_mode,
     teacher_seat: is_teacher,
+    // Study chat has no class bonus; the mark cap carries it.
+    class_bonus: opts.omni ? 0 : ctx.class_bonus,
   }
 }
 
@@ -270,7 +359,7 @@ async function computeQuestionAllowanceFromContext(
   )
   return buildQuotaAllowance(ctx, {
     used,
-    cap: capForAccess(ctx.access, ctx.cap_tier, ctx.is_teacher),
+    cap: markCapFor(ctx),
   })
 }
 
@@ -760,6 +849,7 @@ function reservationAllowance(
     warning,
     enforcement_mode: ctx.enforcement_mode,
     teacher_seat: ctx.is_teacher,
+    class_bonus: ctx.class_bonus,
   })
 }
 
@@ -794,7 +884,9 @@ export async function reserveMarkUsage(
   const supabase = opts.supabase ?? createServiceClient()
   const count = Math.max(1, Math.floor(opts.count ?? 1))
   const ctx = await loadBillingContext(userId, supabase)
-  const cap = capForAccess(ctx.access, ctx.cap_tier, ctx.is_teacher)
+  // Includes the class bonus: the raised cap is the only thing the bonus
+  // changes, and it reaches the atomic RPC as p_cap like any other cap.
+  const cap = markCapFor(ctx)
 
   const countUsed = () =>
     countUsageInWindow(
@@ -982,7 +1074,7 @@ export async function recordExtraMarkUsages(
 ): Promise<number> {
   if (attemptIds.length === 0) return 0
   const ctx = await loadBillingContext(userId, supabase)
-  const cap = ctx.subscription_inactive ? 0 : capForAccess(ctx.access, ctx.cap_tier, ctx.is_teacher)
+  const cap = ctx.subscription_inactive ? 0 : markCapFor(ctx)
   const meta = { recorded_at: new Date().toISOString(), extra_question: true }
   let recorded = 0
 
@@ -1165,6 +1257,9 @@ export function quotaExceededBody(allowance: MarkAllowance | QuotaAllowance) {
     cap: allowance.cap,
     period_resets_at: allowance.period_resets_at ?? null,
     credit_balance: allowance.credit_balance,
+    // How much of `cap` the student's class contributed, so the page can say
+    // the cap was already raised rather than implying 5 marks was the offer.
+    class_bonus: allowance.class_bonus,
     // Selling a teacher a plan smaller than the seat they were given is both
     // wrong and insulting; they are asked to get in touch instead.
     upgrade_url: allowance.teacher_seat ? '/contact' : '/pricing',

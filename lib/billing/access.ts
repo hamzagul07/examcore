@@ -141,8 +141,21 @@ export function effectiveAccessForUser(opts: {
   })
 }
 
+/** What a signed-in session needs to know about the account's entitlements. */
+export type AccessState = {
+  access: EffectiveAccess
+  /**
+   * The account holds a granted teacher seat (`teacher_verified_at`) — not
+   * merely `role = 'teacher'`, which the user picks during onboarding. The
+   * header and the teacher pages use it to show seat status; nothing may use
+   * it to grant anything client-side.
+   */
+  teacherVerified: boolean
+}
+
 /**
- * Server-only: the user's effective access, read with the service client.
+ * Server-only: the user's effective access and seat, read with the service
+ * client.
  *
  * The service client is imported lazily rather than at the top of the file.
  * This module is deliberately client-safe — `EffectiveAccess` is imported by
@@ -154,10 +167,10 @@ export function effectiveAccessForUser(opts: {
  * `supabase` is injectable so the enforcement path can share the request's
  * client; callers otherwise omit it.
  */
-export async function loadEffectiveAccess(
+export async function loadAccessState(
   userId: string,
   supabase?: SupabaseClient
-): Promise<EffectiveAccess> {
+): Promise<AccessState> {
   const client =
     supabase ?? (await import('@/lib/supabase/service')).createServiceClient()
   const [{ data: sub }, { data: profile }] = await Promise.all([
@@ -172,10 +185,22 @@ export async function loadEffectiveAccess(
       .eq('id', userId)
       .maybeSingle(),
   ])
-  return effectiveAccessForUser({
-    userId,
-    tier: (sub?.tier ?? null) as SubscriptionTier | null,
-    status: (sub?.status ?? null) as SubscriptionStatus | null,
-    teacherVerifiedAt: (profile?.teacher_verified_at ?? null) as string | null,
-  })
+  const teacherVerifiedAt = (profile?.teacher_verified_at ?? null) as string | null
+  return {
+    access: effectiveAccessForUser({
+      userId,
+      tier: (sub?.tier ?? null) as SubscriptionTier | null,
+      status: (sub?.status ?? null) as SubscriptionStatus | null,
+      teacherVerifiedAt,
+    }),
+    teacherVerified: isVerifiedTeacher(teacherVerifiedAt),
+  }
+}
+
+/** loadAccessState when only the access level is needed. */
+export async function loadEffectiveAccess(
+  userId: string,
+  supabase?: SupabaseClient
+): Promise<EffectiveAccess> {
+  return (await loadAccessState(userId, supabase)).access
 }

@@ -1,5 +1,34 @@
 import assert from 'node:assert/strict'
+import { readdirSync, readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import type { SupabaseClient } from '@supabase/supabase-js'
+
+/**
+ * The counter allowlist of `fn` as the LATEST migration that (re)defines it
+ * has it. Migrations replay in filename order, so the last definition is the
+ * one the database runs.
+ */
+function sqlCounterAllowlist(fn: 'bump_rate_limit' | 'refund_rate_limit'): { file: string; counters: string[] } {
+  const dir = join(process.cwd(), 'supabase', 'migrations')
+  const files = readdirSync(dir)
+    .filter((f) => f.endsWith('.sql'))
+    .sort()
+  const definition = new RegExp(`create\\s+or\\s+replace\\s+function\\s+public\\.${fn}\\s*\\(`, 'gi')
+  let found: { file: string; counters: string[] } | null = null
+  for (const file of files) {
+    const sql = readFileSync(join(dir, file), 'utf8')
+    const starts = [...sql.matchAll(definition)].map((m) => m.index ?? 0)
+    if (starts.length === 0) continue
+    // A file that redefines the function twice leaves the second in force.
+    const body = sql.slice(starts[starts.length - 1])
+    const list = /p_counter\s+NOT\s+IN\s*\(([^)]*)\)/i.exec(body)
+    assert.ok(list, `${file}: ${fn} has a counter allowlist`)
+    const counters = [...list[1].matchAll(/'([a-z_]+)'/g)].map((m) => m[1])
+    found = { file, counters }
+  }
+  assert.ok(found, `some migration defines ${fn}`)
+  return found
+}
 
 /**
  * A minimal stand-in for the service client: records RPC calls and answers
@@ -46,9 +75,14 @@ async function main() {
     ANON_DAILY_MARK_LIMIT,
     RATE_LIMIT_COUNTERS,
     RateLimitUnavailableError,
+    DAILY_INVITE_JOIN_LIMIT,
+    DAILY_INVITE_LOOKUP_MISS_LIMIT,
     bumpRateLimit,
     clientScopeKey,
     consumeAnonymousMarkSlot,
+    consumeInviteLookupSlot,
+    inviteLookupKey,
+    refundInviteLookupSlot,
     consumeTeachBackSlot,
     isRateLimitCounter,
     rateLimitKey,
@@ -71,6 +105,19 @@ async function main() {
     /unknown counter/,
     'an unlisted counter never reaches the database'
   )
+
+  // The TypeScript list and the SQL list must be the same set: a counter only
+  // in TS is refused by the RPC at run time (a 503 on every call), and one
+  // only in SQL is a column nothing meters.
+  for (const fn of ['bump_rate_limit', 'refund_rate_limit'] as const) {
+    const { file, counters } = sqlCounterAllowlist(fn)
+    assert.deepEqual(
+      [...counters].sort(),
+      [...RATE_LIMIT_COUNTERS].sort(),
+      `${fn} in ${file} allows exactly RATE_LIMIT_COUNTERS`
+    )
+  }
+  assert.ok(isRateLimitCounter('invite_lookup_count'), 'the invite bucket is a counter (20260926a)')
 
   // ── Keys ─────────────────────────────────────────────────────────────────
   assert.equal(userRateLimitKey('u1'), 'user:u1')
@@ -202,6 +249,59 @@ async function main() {
     const empty = fakeSupabase({ rpc: () => ({ data: [] }) })
     await assert.rejects(
       () => bumpRateLimit(empty.client, 'k', 'mark_count', 1),
+      (err: unknown) => err instanceof RateLimitUnavailableError
+    )
+  }
+
+  // ── Invite codes: per-address miss bucket and per-account join bucket ───
+  {
+    assert.equal(inviteLookupKey({ ip: '203.0.113.7' }), '203.0.113.7')
+    assert.equal(inviteLookupKey({ userId: 'u1' }), 'user:u1', 'never collides with an address row')
+
+    const fake = fakeSupabase({ rpc: () => ({ data: [{ allowed: true, count: 4 }] }) })
+    assert.deepEqual(await consumeInviteLookupSlot(fake.client, { ip: '203.0.113.7' }), {
+      allowed: true,
+      count: 4,
+    })
+    assert.deepEqual(fake.calls[0].args, {
+      p_ip: '203.0.113.7',
+      p_date: todayUtc(),
+      p_counter: 'invite_lookup_count',
+      p_limit: DAILY_INVITE_LOOKUP_MISS_LIMIT,
+    })
+    await consumeInviteLookupSlot(fake.client, { userId: 'u1' })
+    assert.deepEqual(fake.calls[1].args, {
+      p_ip: 'user:u1',
+      p_date: todayUtc(),
+      p_counter: 'invite_lookup_count',
+      p_limit: DAILY_INVITE_JOIN_LIMIT,
+    })
+    assert.equal(DAILY_INVITE_LOOKUP_MISS_LIMIT, 60, 'spec §3: 60 per address per day')
+    assert.equal(DAILY_INVITE_JOIN_LIMIT, 20, 'spec §3: 20 joins per account per day')
+
+    await refundInviteLookupSlot(fake.client, { ip: '203.0.113.7' })
+    assert.equal(fake.calls[2].fn, 'refund_rate_limit')
+    assert.deepEqual(fake.calls[2].args, {
+      p_ip: '203.0.113.7',
+      p_date: todayUtc(),
+      p_counter: 'invite_lookup_count',
+    })
+
+    // Denied: the copy names the bucket that ran out.
+    const denied = fakeSupabase({ rpc: () => ({ data: [{ allowed: false, count: 60 }] }) })
+    const perAddress = await consumeInviteLookupSlot(denied.client, { ip: '203.0.113.7' })
+    assert.equal(perAddress.allowed, false)
+    assert.match((perAddress as { message: string }).message, /from this network/)
+    const perAccount = await consumeInviteLookupSlot(denied.client, { userId: 'u1' })
+    assert.match((perAccount as { message: string }).message, /too many times today/)
+
+    // The RPC refusing the counter (20260926a not applied yet) is an outage,
+    // so the invite routes fail closed with a 503 — never an unmetered lookup.
+    const unmigrated = fakeSupabase({
+      rpc: () => ({ error: { code: 'P0001', message: 'bump_rate_limit: unknown counter invite_lookup_count' } }),
+    })
+    await assert.rejects(
+      () => consumeInviteLookupSlot(unmigrated.client, { ip: '203.0.113.7' }),
       (err: unknown) => err instanceof RateLimitUnavailableError
     )
   }

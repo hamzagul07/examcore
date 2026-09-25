@@ -130,6 +130,14 @@ import {
   takeHandoff,
 } from '@/lib/courses/mark-handoff'
 import { parseMarkReturnPath, withReturnTask } from '@/lib/marking/mark-return-url'
+import {
+  ASSIGNMENT_ITEM_FIELD,
+  markAssignmentNotice,
+  parseAssignmentDeepLink,
+  readMarkAssignmentLink,
+  type AssignmentDeepLink,
+  type MarkAssignmentLink,
+} from '@/lib/teacher/assignments/link'
 import { takePracticeAnswer } from '@/lib/marking/practice-answer'
 import {
   questionTotalPromiseIsBroken,
@@ -250,6 +258,8 @@ type MarkingResult = MarkingResultData & {
    * hasFirstMarkPremium.
    */
   _first_mark_premium?: boolean
+  /** Where the mark went on the teacher's side, when it was sent from a set. */
+  _assignment?: MarkAssignmentLink
 }
 
 type UpgradeModalState = {
@@ -385,6 +395,12 @@ export default function MarkPage() {
     ibPractice?: boolean
     criteriaSummary?: string | null
   } | null>(null)
+  /**
+   * The teacher's set item this page was opened for (/mark?assignment=…, from
+   * studentMarkHref). Sent with the upload; the server decides whether the
+   * mark hands it in and says so on the result (`_assignment`).
+   */
+  const [assignmentLink, setAssignmentLink] = useState<AssignmentDeepLink | null>(null)
   const [schemeInDb, setSchemeInDb] = useState<boolean | null>(null)
 
   const [availablePapers, setAvailablePapers] = useState<AvailablePapers | null>(
@@ -1053,6 +1069,35 @@ export default function MarkPage() {
       })
     return () => {
       cancelled = true
+    }
+  }, [])
+
+  // A teacher's set — /mark?assignment=<item>, from the student's set page.
+  // A past-paper item arrives as the practice link above with the item id
+  // added and needs nothing more; a whole paper and a written prompt are set
+  // up here. Declared after the other deep links so these set-ups win.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const link = parseAssignmentDeepLink(new URLSearchParams(window.location.search))
+    if (!link) return
+    setAssignmentLink(link)
+    if (link.mode === 'whole_paper' && link.paper) {
+      const [subjectCode, componentCode] = link.paper.split('/')
+      if (subjectCode) setSelectedSubject(subjectCode)
+      if (componentCode) setSelectedComponent(componentCode)
+      const normalized = normalizePaperSession(link.session ?? '')
+      if (normalized.season) setSelectedSession(normalized.season)
+      if (normalized.year != null) setSelectedYear(normalized.year)
+      setMarkIntent('past_paper')
+      setShowManualPaper(true)
+      setUploadMode('whole_paper')
+    } else if (link.mode === 'prompt') {
+      setUploadMode('single_question')
+      setMarkIntent('practice_question')
+      setShowManualPaper(false)
+      if (link.task) setQuestionTextInput(link.task)
+      if (link.marks !== null) setTotalMarksInput(String(link.marks))
+      setShowOptional(true)
     }
   }, [])
 
@@ -1986,6 +2031,10 @@ export default function MarkPage() {
           )
         }
       }
+
+      // The teacher's set this page was opened for. The server checks the
+      // student may hand in against it, and that this upload is that item.
+      if (assignmentLink) formData.append(ASSIGNMENT_ITEM_FIELD, assignmentLink.itemId)
 
       const res = await fetch('/api/mark/process', {
         method: 'POST',
@@ -4081,6 +4130,7 @@ export default function MarkPage() {
 
         {result && !result.whole_paper && (
           <div className="space-y-8">
+            <AssignmentLinkNotice value={result._assignment} />
             {showingExample && (
               <MarkExampleBanner
                 onDismiss={closeExample}
@@ -4380,6 +4430,47 @@ function StepLabel({
         <span className="ms-mark-step-label-title">{label}</span>
         {hint ? <span className="ms-mark-step-label-hint">{hint}</span> : null}
       </div>
+    </div>
+  )
+}
+
+/**
+ * Where a mark sent from a teacher's set went: "Linked to <set> — your
+ * teacher can see this mark", with the way back to the set; or, when the
+ * upload was not the set's item, why it was not added. Nothing when the mark
+ * was not sent from a set (or arrived without the server's answer, as on a
+ * reconnect) — it never claims a link the server did not confirm.
+ */
+function AssignmentLinkNotice({ value }: { value: unknown }) {
+  const link = readMarkAssignmentLink(value)
+  if (!link) return null
+  const notice = markAssignmentNotice(link)
+  const setHref = `/dashboard/assignments/${encodeURIComponent(link.assignment_id)}`
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      className={`ec-card flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between ${
+        notice.tone === 'linked'
+          ? 'border-[var(--ec-brand)]/30'
+          : 'border-[var(--ec-banner-warning-border)] bg-[var(--ec-banner-warning-bg)]'
+      }`}
+    >
+      <div className="flex min-w-0 items-start gap-3">
+        <span className="ec-ink-stamp ec-ink-stamp--inline shrink-0" aria-hidden>
+          {notice.tone === 'linked' ? 'SET' : 'NB'}
+        </span>
+        <p className="min-w-0 text-sm text-[var(--ec-text-primary)]">{notice.text}</p>
+      </div>
+      <Link
+        href={setHref}
+        className="inline-flex min-h-[44px] shrink-0 items-center gap-1.5 text-sm font-semibold text-[var(--ec-brand)]"
+      >
+        {notice.tone === 'linked' ? 'Back to the set' : 'Open the set'}
+        <span className="font-mono text-xs font-bold" aria-hidden>
+          -&gt;
+        </span>
+      </Link>
     </div>
   )
 }

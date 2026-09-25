@@ -95,6 +95,35 @@ export const DAILY_SEARCH_LOG_LIMIT = 200
 export const DAILY_QUESTION_DETAIL_LIMIT = 1000
 
 /**
+ * Invite-code guessing (docs/TEACHER_SYSTEM_SPEC.md §3, §8 enumeration).
+ *
+ * `/api/classrooms/by-code/[code]` and `/api/classrooms/join` both turn a
+ * code into a classroom. The code space is large (31^6, lib/teacher/
+ * invite-code.ts) but finite, so a script walking it would find live classes
+ * in the order of 10^5 requests; both routes spend one slot of
+ * `invite_lookup_count` before they look anything up.
+ *
+ * Two buckets share the counter, keyed apart:
+ *
+ *   - Per address (the IP row), DAILY_INVITE_LOOKUP_MISS_LIMIT. The slot is
+ *     taken before the lookup — so racing requests cannot all pass — and given
+ *     back when the code turns out to be real. What stays spent is exactly the
+ *     misses, which is what enumeration is made of. The invite code's own design
+ *     constraint is "a teacher writes the code on the whiteboard and thirty
+ *     students on the school Wi-Fi type it in at once", and a whole school sits
+ *     behind one NAT address in the first week of term: counting hits would
+ *     lock the fourth class of the day out of a code that works.
+ *   - Per account (`user:<id>`), DAILY_INVITE_JOIN_LIMIT, for joins only, and
+ *     kept whether or not the join succeeds: nobody joins twenty classes in a
+ *     day, and it bounds join/leave churn on a teacher's roster.
+ *
+ * Both are daily buckets, like every other cap in this file, so a blocked
+ * caller is told to come back tomorrow (Retry-After: next UTC midnight).
+ */
+export const DAILY_INVITE_LOOKUP_MISS_LIMIT = 60
+export const DAILY_INVITE_JOIN_LIMIT = 20
+
+/**
  * The counters the RPC will bump. Mirrors the allowlist inside
  * `bump_rate_limit`; a name outside it is rejected here before a round trip
  * and again in SQL, because the counter name is interpolated into a statement.
@@ -108,6 +137,7 @@ export const RATE_LIMIT_COUNTERS = [
   'explain_count',
   'search_count',
   'question_detail_count',
+  'invite_lookup_count',
 ] as const
 export type RateLimitCounter = (typeof RATE_LIMIT_COUNTERS)[number]
 
@@ -191,6 +221,12 @@ export function rateLimitMessage(
       return 'Too many searches from this network today.'
     case 'question_detail_count':
       return 'Too many question lookups from this network today. Try again tomorrow.'
+    case 'invite_lookup_count':
+      // signedIn here means "the per-account join bucket", not merely that a
+      // session exists: the preview is signed-in too but is metered per address.
+      return signedIn
+        ? 'You have tried to join a class too many times today. Check the code with your teacher and try again tomorrow.'
+        : 'Too many wrong invite codes have been tried from this network today. Check the code with your teacher, or try again tomorrow.'
   }
 }
 
@@ -517,4 +553,51 @@ export async function consumeQuestionDetailSlot(
     DAILY_QUESTION_DETAIL_LIMIT,
     false
   )
+}
+
+// ---------------------------------------------------------------------------
+// Invite codes — see DAILY_INVITE_LOOKUP_MISS_LIMIT for the two buckets
+// ---------------------------------------------------------------------------
+
+/**
+ * Which invite bucket a slot comes from: `{ ip }` for the per-address miss
+ * bucket (preview and join both), `{ userId }` for the per-account join bucket.
+ */
+export type InviteLookupScope = { ip: string } | { userId: string }
+
+/** The `rate_limits.ip` row a scope is counted in. */
+export function inviteLookupKey(scope: InviteLookupScope): string {
+  return 'userId' in scope ? userRateLimitKey(scope.userId) : scope.ip
+}
+
+/**
+ * Take one invite-lookup slot. The per-address bucket's slot should be handed
+ * back with refundInviteLookupSlot as soon as the code resolves to a real
+ * classroom (see above); the per-account join slot is kept.
+ *
+ * Throws RateLimitUnavailableError when the counter cannot be consulted —
+ * including before 20260926a_teacher_v2_classrooms.sql is applied, when the
+ * RPC refuses the counter name. The routes answer 503: the guard fails
+ * closed rather than letting a lookup through unmetered (spec §8).
+ */
+export async function consumeInviteLookupSlot(
+  supabase: SupabaseClient,
+  scope: InviteLookupScope
+): Promise<RateLimitDecision> {
+  const perAccount = 'userId' in scope
+  return consumeDailySlot(
+    supabase,
+    inviteLookupKey(scope),
+    'invite_lookup_count',
+    perAccount ? DAILY_INVITE_JOIN_LIMIT : DAILY_INVITE_LOOKUP_MISS_LIMIT,
+    perAccount
+  )
+}
+
+/** Give an invite-lookup slot back (the code was real). Never throws. */
+export async function refundInviteLookupSlot(
+  supabase: SupabaseClient,
+  scope: InviteLookupScope
+): Promise<void> {
+  await refundRateLimit(supabase, inviteLookupKey(scope), 'invite_lookup_count')
 }

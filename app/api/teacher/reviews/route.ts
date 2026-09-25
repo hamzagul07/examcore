@@ -1,99 +1,50 @@
-import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase-server'
-import { truncateMarkingPreview } from '@/lib/rich-text/truncate-marking-preview'
-import { requireTeacher, verifyTeacherOwnsClassroom } from '@/lib/teacher-auth'
-import { getClassroomStudentIds } from '@/lib/teacher-classroom-data'
+import { createServiceClient } from '@/lib/supabase/service'
+import {
+  decodeReviewCursor,
+  loadReviewQueue,
+  pageReviewItems,
+  parseReviewFilters,
+  parseReviewLimit,
+} from '@/lib/teacher/reviews-query'
+import { authorizeTeacher, jsonError, jsonOk, serverError } from '../attempt/_lib/http'
 
+export const dynamic = 'force-dynamic'
+
+/**
+ * GET `?classroom_id&student_id&assignment_id&status=pending|confirmed|overridden|flagged&cursor&limit≤50`
+ * → `{items: ReviewInboxItem[], next_cursor, counts, truncated, window_days}`.
+ *
+ * The teacher's review queue (spec §3): highest priority first, then newest,
+ * keyset-paginated on that order. `counts` are per status over the other
+ * filters, so a status picker can show them. Scope, scoring and names:
+ * lib/teacher/reviews-query.ts. A class or set that is not the teacher's is
+ * a 404; a malformed filter or cursor is a 400 naming the parameter.
+ */
 export async function GET(request: Request) {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const auth = await authorizeTeacher()
+  if ('response' in auth) return auth.response
 
-  if (!user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const params = new URL(request.url).searchParams
+  const filters = parseReviewFilters(params)
+  if (!filters.ok) return jsonError(400, filters.error, filters.field)
+
+  const rawCursor = params.get('cursor')
+  const cursor = rawCursor ? decodeReviewCursor(rawCursor) : null
+  if (rawCursor && !cursor) return jsonError(400, 'That page link has expired. Reload the list.', 'cursor')
+  const limit = parseReviewLimit(params.get('limit'))
+
+  try {
+    const queue = await loadReviewQueue(auth.supabase, createServiceClient(), auth.user.id, filters.value)
+    if (!queue.ok) return jsonError(queue.status, queue.error, queue.field)
+    const page = pageReviewItems(queue.items, cursor, limit)
+    return jsonOk({
+      items: page.items,
+      next_cursor: page.next_cursor,
+      counts: queue.counts,
+      truncated: queue.truncated,
+      window_days: queue.windowDays,
+    })
+  } catch (err) {
+    return serverError('reviews', { filters: filters.value }, err, 'Could not load the review queue.')
   }
-
-  const teacherCheck = await requireTeacher(supabase, user.id)
-  if (!teacherCheck.ok) {
-    return NextResponse.json({ error: 'Not a teacher' }, { status: 403 })
-  }
-
-  const { searchParams } = new URL(request.url)
-  const classroomId = searchParams.get('classroom_id')
-
-  // A supplied classroom_id must belong to the requesting teacher — otherwise
-  // a teacher could read another teacher's classroom roster.
-  if (classroomId) {
-    const owns = await verifyTeacherOwnsClassroom(supabase, user.id, classroomId)
-    if (!owns) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-    }
-  }
-
-  const { data: classrooms } = await supabase
-    .from('classrooms')
-    .select('id')
-    .eq('teacher_id', user.id)
-
-  const classroomIds = classroomId
-    ? [classroomId]
-    : (classrooms || []).map((c) => c.id)
-
-  if (classroomIds.length === 0) {
-    return NextResponse.json({ reviews: [] })
-  }
-
-  const allStudentIds: string[] = []
-  for (const cid of classroomIds) {
-    const ids = await getClassroomStudentIds(supabase, cid)
-    allStudentIds.push(...ids)
-  }
-
-  const uniqueStudentIds = [...new Set(allStudentIds)]
-  if (uniqueStudentIds.length === 0) {
-    return NextResponse.json({ reviews: [] })
-  }
-
-  const { data: attempts } = await supabase
-    .from('attempts')
-    .select(
-      'id, user_id, marks_earned, total_marks, question_text, created_at, ai_marking'
-    )
-    .in('user_id', uniqueStudentIds)
-    .not('ai_marking', 'is', null)
-    .order('created_at', { ascending: false })
-    .limit(30)
-
-  const { data: profiles } = await supabase
-    .from('user_profiles')
-    .select('id, full_name')
-    .in('id', uniqueStudentIds)
-
-  const nameById = new Map(
-    (profiles || []).map((p) => [p.id, p.full_name?.trim() || 'Student'])
-  )
-
-  const attemptIds = (attempts || []).map((a) => a.id)
-  const { data: overrides } = await supabase
-    .from('teacher_overrides')
-    .select('attempt_id')
-    .in(
-      'attempt_id',
-      attemptIds.length ? attemptIds : ['00000000-0000-0000-0000-000000000000']
-    )
-
-  const overriddenSet = new Set((overrides || []).map((o) => o.attempt_id))
-
-  const reviews = (attempts || []).map((a) => ({
-    id: a.id,
-    studentName: nameById.get(a.user_id) || 'Student',
-    questionPreview: truncateMarkingPreview(a.question_text),
-    marksEarned: a.marks_earned,
-    totalMarks: a.total_marks,
-    createdAt: a.created_at,
-    overridden: overriddenSet.has(a.id),
-  }))
-
-  return NextResponse.json({ reviews })
 }

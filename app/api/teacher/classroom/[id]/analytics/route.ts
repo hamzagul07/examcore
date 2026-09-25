@@ -1,47 +1,38 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase-server'
-import {
-  requireTeacher,
-  verifyTeacherOwnsClassroom,
-} from '@/lib/teacher-auth'
+import { createServiceClient } from '@/lib/supabase/service'
 import { summarizeClassAnalytics } from '@/lib/teacher-analytics'
-import { getClassroomAttempts } from '@/lib/teacher-classroom-data'
+import { NO_STORE, authorizeClassroomRoute, internalError, loadScopedClass } from '@/lib/teacher/insights/server'
 
-export async function GET(
-  _request: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export const dynamic = 'force-dynamic'
+
+type Params = { params: Promise<{ id: string }> }
+
+/**
+ * GET → `{ classroomName, archived, truncated, ...ClassSummary }` — the
+ * class's headline figures (students, students with work, marked scripts,
+ * marks-weighted average, syllabus coverage, per-topic rows) over its scoped
+ * work: active members, marked since joining, in the class subject. The
+ * average is null, not 0, when nothing has been marked.
+ */
+export async function GET(_request: Request, { params }: Params) {
   const { id } = await params
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const auth = await authorizeClassroomRoute(id)
+  if ('response' in auth) return auth.response
+  const { supabase, classroom } = auth
 
-  if (!user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  try {
+    // Service client only now that ownership is proven (spec §3).
+    const scoped = await loadScopedClass(supabase, createServiceClient(), classroom, { withMarking: false })
+    return NextResponse.json(
+      {
+        classroomName: classroom.name,
+        archived: classroom.archived_at !== null,
+        truncated: scoped.truncated,
+        ...summarizeClassAnalytics(scoped.attempts, scoped.studentIds, classroom.subject_code),
+      },
+      { headers: NO_STORE }
+    )
+  } catch (err) {
+    return internalError('analytics', err, 'Could not load the class analytics.')
   }
-
-  const teacherCheck = await requireTeacher(supabase, user.id)
-  if (!teacherCheck.ok) {
-    return NextResponse.json({ error: 'Not a teacher' }, { status: 403 })
-  }
-
-  const owns = await verifyTeacherOwnsClassroom(supabase, user.id, id)
-  if (!owns) {
-    return NextResponse.json({ error: 'Classroom not found' }, { status: 404 })
-  }
-
-  const { data: classroom } = await supabase
-    .from('classrooms')
-    .select('name')
-    .eq('id', id)
-    .single()
-
-  const { studentIds, attempts } = await getClassroomAttempts(supabase, id)
-  const summary = summarizeClassAnalytics(attempts, studentIds.length)
-
-  return NextResponse.json({
-    classroomName: classroom?.name ?? 'Classroom',
-    ...summary,
-  })
 }

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { ApproachingLimitBanner } from '@/components/billing/ApproachingLimitBanner'
 import { BillingBlockedBanner } from '@/components/billing/BillingBlockedBanner'
 import type { BillingSummaryClient } from '@/lib/billing/question-copy'
+import { classBonusFromSummary, classBonusNote } from '@/lib/billing/teacher-seat'
 
 const DISMISS_KEY = 'ec:billing-limit-banner-dismissed'
 
@@ -21,6 +22,24 @@ function approachingFocus(
   if (q && o) return 'both'
   if (o) return 'omni'
   return 'questions'
+}
+
+/**
+ * One line under the banner when the question cap includes a class bonus, so
+ * a student in a verified teacher's class is not left thinking their cap is
+ * the plain free allowance. Only for the question cap: study chat has no
+ * class bonus, so an omni-only banner says nothing about it.
+ */
+function ClassBonusLine({ bonus, state }: { bonus: number; state: 'blocked' | 'approaching' }) {
+  if (bonus <= 0) return null
+  // The approaching banner carries its own bottom margin; tuck the line into
+  // it so the note reads as part of the banner rather than a stray paragraph.
+  const spacing = state === 'approaching' ? '-mt-3 mb-5' : 'mt-2'
+  return (
+    <p className={`${spacing} px-1 text-xs leading-relaxed text-[var(--ec-text-secondary)]`}>
+      {classBonusNote(bonus, state)}
+    </p>
+  )
 }
 
 /**
@@ -45,7 +64,13 @@ export function BillingLimitBanner({ className = '' }: Props) {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setDismissed(sessionStorage.getItem(DISMISS_KEY) === '1')
+      // Storage can be blocked (private mode, site data off); the banner then
+      // just is not remembered as dismissed.
+      try {
+        setDismissed(sessionStorage.getItem(DISMISS_KEY) === '1')
+      } catch {
+        setDismissed(false)
+      }
     }
     void load()
     const onRefresh = () => void load()
@@ -59,10 +84,13 @@ export function BillingLimitBanner({ className = '' }: Props) {
     summary.enforcement_mode === 'enforce' &&
     (summary.questions.blocked || summary.omni.blocked)
 
+  const classBonus = classBonusFromSummary(summary)
+
   if (blocked) {
     return (
       <div className={className}>
         <BillingBlockedBanner summary={summary} />
+        {summary.questions.blocked && <ClassBonusLine bonus={classBonus} state="blocked" />}
       </div>
     )
   }
@@ -84,10 +112,15 @@ export function BillingLimitBanner({ className = '' }: Props) {
         omniCap={o.cap}
         focus={focus}
         onDismiss={() => {
-          sessionStorage.setItem(DISMISS_KEY, '1')
+          try {
+            sessionStorage.setItem(DISMISS_KEY, '1')
+          } catch {
+            // Not remembered past this page; dismissing still works.
+          }
           setDismissed(true)
         }}
       />
+      {focus !== 'omni' && <ClassBonusLine bonus={classBonus} state="approaching" />}
     </div>
   )
 }

@@ -1,64 +1,54 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase-server'
-import { createAdminClient } from '@/lib/supabase-admin'
+import { createServiceClient } from '@/lib/supabase/service'
 import {
-  requireTeacher,
-  verifyTeacherOwnsClassroom,
-} from '@/lib/teacher-auth'
-import {
-  computeBlindspots,
-  computeTopicAnalytics,
-} from '@/lib/teacher-analytics'
-import { getClassroomAttempts } from '@/lib/teacher-classroom-data'
+  NO_STORE,
+  authorizeClassroomRoute,
+  classBlindspots,
+  internalError,
+  loadBlindspotSamples,
+  loadScopedClass,
+} from '@/lib/teacher/insights/server'
 
-export async function GET(
-  _request: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export const dynamic = 'force-dynamic'
+
+type Params = { params: Promise<{ id: string }> }
+
+/** Topics that get sample questions — the ones a teacher acts on first. */
+const SAMPLED_TOPICS = 5
+
+/**
+ * GET → `{ topics: BlindspotInput[], topicsWithQuestions: Array<BlindspotInput & { sampleQuestions }>, truncated }`.
+ *
+ * `topics` are the class's weak syllabus topics in its own subject, weakest
+ * first, each with how many of the roster it rests on. The first few carry
+ * banked questions from the same subject (by paper code) as `sampleQuestions`
+ * — a ≤160-character preview of the question, never the mark scheme.
+ */
+export async function GET(_request: Request, { params }: Params) {
   const { id } = await params
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const auth = await authorizeClassroomRoute(id)
+  if ('response' in auth) return auth.response
+  const { supabase, classroom } = auth
 
-  if (!user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  try {
+    const admin = createServiceClient()
+    const scoped = await loadScopedClass(supabase, admin, classroom, { withMarking: false })
+    const topics = classBlindspots(scoped, classroom.subject_code)
+    const head = topics.slice(0, SAMPLED_TOPICS)
+    const samples = await loadBlindspotSamples(
+      admin,
+      classroom.subject_code,
+      head.map((t) => t.code)
+    )
+    return NextResponse.json(
+      {
+        topics,
+        topicsWithQuestions: head.map((t) => ({ ...t, sampleQuestions: samples[t.code] ?? [] })),
+        truncated: scoped.truncated,
+      },
+      { headers: NO_STORE }
+    )
+  } catch (err) {
+    return internalError('blindspots', err, 'Could not load the class blindspots.')
   }
-
-  const teacherCheck = await requireTeacher(supabase, user.id)
-  if (!teacherCheck.ok) {
-    return NextResponse.json({ error: 'Not a teacher' }, { status: 403 })
-  }
-
-  const owns = await verifyTeacherOwnsClassroom(supabase, user.id, id)
-  if (!owns) {
-    return NextResponse.json({ error: 'Classroom not found' }, { status: 404 })
-  }
-
-  const { studentIds, attempts } = await getClassroomAttempts(supabase, id)
-  const topicAnalytics = computeTopicAnalytics(attempts)
-  const blindspots = computeBlindspots(topicAnalytics, studentIds.length)
-
-  const admin = createAdminClient()
-  const topicsWithQuestions = await Promise.all(
-    blindspots.slice(0, 5).map(async (bs) => {
-      const { data: questions } = await admin
-        .from('mark_schemes')
-        .select('id, question_text, total_marks, paper_code, paper_session, question_number')
-        .contains('syllabus_tags', [bs.code])
-        .gte('total_marks', 2)
-        .lte('total_marks', 6)
-        .limit(5)
-
-      return {
-        ...bs,
-        sampleQuestions: questions || [],
-      }
-    })
-  )
-
-  return NextResponse.json({
-    topics: blindspots,
-    topicsWithQuestions,
-  })
 }

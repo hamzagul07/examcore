@@ -2,9 +2,17 @@
  * Cohort due list — which topics are cooling off across a classroom.
  *
  * Aggregates per-student review_schedule / lesson_recall rows into topic-level
- * counts a teacher can act on. Pure so ranking rules are testable without DB.
+ * counts a teacher can act on. Pure so ranking rules are testable without DB;
+ * lib/teacher/load-due-rows.ts reads the tables and hands the rows to
+ * `dueRowsFromTables`.
+ *
+ * Classroom scope applies here as it does to attempts (spec §8): a teacher
+ * sees due topics in the classroom's subject only, and only for topics the
+ * student worked on since joining — a schedule row last touched before they
+ * joined describes work the class was never shown.
  */
 
+import { selectDueRecall, type RecallRow } from '@/lib/courses/recall-schedule'
 import { getSubjectByCode } from '@/lib/profile-options'
 import { getSyllabusTopicByCode } from '@/lib/syllabi'
 
@@ -55,6 +63,113 @@ export type CohortDueInput = {
 
 function keyOf(subject: string, topic: string): string {
   return `${subject}::${topic}`
+}
+
+/** A `review_schedule` row (attempt-driven spaced review). */
+export type ScheduleTableRow = {
+  user_id: string
+  subject_code: string
+  topic_code: string
+  due_at: string
+  last_reviewed_at: string | null
+}
+
+/** A `lesson_recall` row (a completed lesson quick check coming back). */
+export type RecallTableRow = RecallRow & { user_id: string }
+
+function toMs(iso: string | null | undefined): number | null {
+  if (!iso) return null
+  const ms = Date.parse(iso)
+  return Number.isFinite(ms) ? ms : null
+}
+
+/**
+ * Due rows from the two schedule tables, scoped to a classroom.
+ *
+ *   - Only rows due by `nowMs`.
+ *   - `subjectCode`: only that subject (null/undefined: every subject).
+ *   - `joinedAt` (student → ISO join time): only students in the map, and only
+ *     topics last worked on or after that time. A row with no readable
+ *     last-activity time is dropped — the rule fails closed.
+ *   - A recall item is dropped for any topic the student has a schedule row
+ *     for — due or not, in scope or not — because a schedule row means they
+ *     have been marked on it, and marked work is strictly stronger evidence
+ *     than a self-assessed quick check (as in the student's own queue). So
+ *     pass every schedule row, not only due ones.
+ *   - A student with two lessons on the same topic yields one row, with the
+ *     earlier due date.
+ */
+export function dueRowsFromTables(input: {
+  schedule: readonly ScheduleTableRow[]
+  recall: readonly RecallTableRow[]
+  nowMs: number
+  subjectCode?: string | null
+  joinedAt?: ReadonlyMap<string, string>
+}): CohortDueRow[] {
+  const { nowMs, subjectCode, joinedAt } = input
+
+  function inScope(userId: string, subject: string, lastActivity: string | null): boolean {
+    if (!userId || !subject) return false
+    if (subjectCode && subject !== subjectCode) return false
+    if (!joinedAt) return true
+    const joined = toMs(joinedAt.get(userId))
+    const last = toMs(lastActivity)
+    return joined !== null && last !== null && last >= joined
+  }
+
+  const byKey = new Map<string, CohortDueRow>()
+  const keep = (row: CohortDueRow) => {
+    const k = `${row.userId}::${keyOf(row.subjectCode, row.topicCode)}`
+    const held = byKey.get(k)
+    if (!held || Date.parse(row.dueAt) < Date.parse(held.dueAt)) byKey.set(k, row)
+  }
+
+  // Every topic with marked work, whatever its due date or scope.
+  const marked = new Set(
+    input.schedule.map((r) => `${r.user_id}::${keyOf(r.subject_code, r.topic_code)}`)
+  )
+
+  for (const r of input.schedule) {
+    if (!r.topic_code) continue
+    const due = toMs(r.due_at)
+    if (due === null || due > nowMs) continue
+    if (!inScope(r.user_id, r.subject_code, r.last_reviewed_at)) continue
+    keep({
+      userId: r.user_id,
+      subjectCode: r.subject_code,
+      topicCode: r.topic_code,
+      source: 'attempts',
+      dueAt: r.due_at,
+    })
+  }
+
+  const recallByUser = new Map<string, RecallTableRow[]>()
+  for (const r of input.recall) {
+    if (!inScope(r.user_id, r.subject_code, r.last_worked_at)) continue
+    const list = recallByUser.get(r.user_id)
+    if (list) list.push(r)
+    else recallByUser.set(r.user_id, [r])
+  }
+  for (const [userId, rows] of recallByUser) {
+    for (const d of selectDueRecall(rows, new Set(), nowMs)) {
+      if (!d.topicCode) continue
+      const k = `${userId}::${keyOf(d.subjectCode, d.topicCode)}`
+      if (marked.has(k)) continue
+      // Matched on subject AND lesson: two subjects can share a topic code
+      // ("1.1"), and the due date must come from this lesson's own row.
+      const own = rows.find((x) => x.subject_code === d.subjectCode && x.lesson_slug === d.lessonSlug)
+      if (!own) continue
+      keep({
+        userId,
+        subjectCode: d.subjectCode,
+        topicCode: d.topicCode,
+        source: 'recall',
+        dueAt: own.due_at,
+      })
+    }
+  }
+
+  return [...byKey.values()]
 }
 
 /**

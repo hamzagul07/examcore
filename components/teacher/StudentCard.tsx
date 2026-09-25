@@ -1,66 +1,122 @@
-'use client'
-
 import Link from 'next/link'
-import { attemptSummary } from '@/lib/teacher/stat-display'
-import type { StudentQuadrantMetric } from '@/lib/teacher-analytics'
+import type { ReactNode } from 'react'
+import { studentHref } from '@/components/teacher/assignments/links'
+import { relativeDay } from '@/lib/teacher/insights/format'
+import { OUTCOME_CELL, OUTCOME_LABEL, type RosterSetCell } from '@/lib/teacher/insights/student-record'
+import type { RosterStudent } from '@/lib/teacher/types'
 
-const QUADRANT_LABELS: Record<StudentQuadrantMetric['quadrant'], string> = {
-  safe: 'Safe Zone',
-  pacing_risk: 'Pacing Risk',
-  careless_risk: 'Careless Risk',
-  under_prepared: 'Under-Prepared',
+/** The visible glyph for a latest-set outcome; the words are always there for screen readers. */
+function outcomeGlyph(cell: RosterSetCell): string {
+  switch (cell.outcome) {
+    case 'complete':
+      return cell.detail ? `✓ ${cell.detail}` : '✓'
+    case 'late':
+      return cell.detail ? `L ${cell.detail}` : 'L'
+    case 'partial':
+      return cell.detail
+    case 'to_do':
+      return 'To do'
+    case 'missing':
+      return '—'
+    case 'excused':
+      return 'EXC'
+    case 'before_joining':
+      return 'NEW'
+    case 'left':
+      return 'LEFT'
+  }
 }
 
-interface StudentCardProps {
-  id: string
-  name: string
-  accuracy: number
-  attemptCount: number
-  predictedGrade: string
-  quadrant: StudentQuadrantMetric['quadrant']
-  classroomId: string
-  dueCount?: number
+function nameOf(s: Pick<RosterStudent, 'full_name'>): string {
+  return s.full_name?.trim() || 'Unnamed student'
 }
 
+/**
+ * One row of the class roster (spec §4 `.../students`): name, when they
+ * joined and last marked work in this class, their state on the class's
+ * latest set, overdue sets and topics due for review, and a LEFT / REMOVED
+ * chip for anyone no longer in the class.
+ *
+ * Students who left or were removed stay listed — the record of who was in
+ * the class — but their work is no longer the teacher's to see, so their
+ * row has no link and no figures. Full names are fine here: this is the
+ * teacher's own screen (names reach prompts and emails only through
+ * displayName).
+ *
+ * A server component; `actions` is where the page puts the Remove island.
+ */
 export function StudentCard({
-  id,
-  name,
-  accuracy,
-  attemptCount,
-  predictedGrade,
-  quadrant,
   classroomId,
-  dueCount = 0,
-}: StudentCardProps) {
+  student,
+  latest,
+  nowMs,
+  actions,
+}: {
+  classroomId: string
+  student: RosterStudent
+  /** Their cell on the class's latest set, or null (no set yet, or it is not for them). */
+  latest: { title: string; cell: RosterSetCell } | null
+  /** When the page was computed. */
+  nowMs: number
+  actions?: ReactNode
+}) {
+  const active = student.status === 'active'
+  const name = nameOf(student)
+  const joined = relativeDay(student.joined_at, nowMs)
+  const last = relativeDay(student.last_attempt_at, nowMs)
+
   return (
-    <Link
-      href={`/teacher/classroom/${classroomId}/students/${id}`}
-      className="ec-card ec-card--paper ec-card-interactive block min-h-[72px] p-5"
-    >
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <h3 className="font-bold text-[var(--ec-text-primary)]">{name}</h3>
-          <p className="mt-1 text-sm text-[var(--ec-text-secondary)]">
-            {attemptSummary(attemptCount, accuracy)}
-          </p>
-        </div>
-        <div className="flex shrink-0 flex-col items-end gap-1.5">
-          <span className="rounded-lg ec-tint-success-chip px-2 py-1 text-sm font-bold">
-            {predictedGrade}
+    <li className={`ms-teacher-roster__row${active ? '' : ' ms-teacher-roster__row--inactive'}`}>
+      <div className="ms-teacher-roster__who">
+        {active ? (
+          <Link href={studentHref(classroomId, student.id)} className="ms-teacher-roster__name hover:underline">
+            {name}
+          </Link>
+        ) : (
+          <span className="ms-teacher-roster__name">{name}</span>
+        )}
+        <span className="ms-teacher-roster__meta">
+          {active
+            ? [joined ? `joined ${joined}` : null, last ? `last marked ${last}` : 'no marked work in this class yet']
+                .filter(Boolean)
+                .join(' · ')
+            : student.status === 'left'
+              ? 'Left the class — their work is no longer shown'
+              : 'Removed from the class — their work is no longer shown'}
+        </span>
+      </div>
+
+      <span className="ms-teacher-roster__trail">
+        {!active ? (
+          <span className={`ms-teacher-chip ms-teacher-chip--${student.status === 'left' ? 'left' : 'removed'}`}>
+            {student.status === 'left' ? 'Left' : 'Removed'}
           </span>
-          {dueCount > 0 ? (
-            <span
-              className="ms-roster-due"
-              title={`${dueCount} topic${dueCount === 1 ? '' : 's'} due`}
-            >
-              {dueCount} due
-            </span>
-          ) : null}
-        </div>
-      </div>
-      <div className="mt-3 text-xs text-[var(--ec-text-secondary)]">
-        {QUADRANT_LABELS[quadrant]}
-      </div>
-    </Link>
+        ) : (
+          <>
+            {latest ? (
+              <span
+                className={`ms-set-matrix__cell ms-set-matrix__cell--${OUTCOME_CELL[latest.cell.outcome]}`}
+                title={`${latest.title}: ${OUTCOME_LABEL[latest.cell.outcome]}`}
+              >
+                <span aria-hidden>{outcomeGlyph(latest.cell)}</span>
+                <span className="sr-only">
+                  Latest set, {latest.title}: {OUTCOME_LABEL[latest.cell.outcome]}
+                  {latest.cell.detail ? `, ${latest.cell.detail}` : ''}
+                </span>
+              </span>
+            ) : null}
+            {student.open_late > 0 ? (
+              <span className="ms-teacher-chip ms-teacher-chip--due">{student.open_late} overdue</span>
+            ) : null}
+            {student.due_count > 0 ? (
+              <span className="ms-roster-due">
+                {student.due_count} due<span className="sr-only"> for review</span>
+              </span>
+            ) : null}
+          </>
+        )}
+        {actions}
+      </span>
+    </li>
   )
 }

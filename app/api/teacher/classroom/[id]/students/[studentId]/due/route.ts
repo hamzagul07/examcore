@@ -1,56 +1,35 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase/service'
-import { requireTeacher, verifyTeacherOwnsClassroom } from '@/lib/teacher-auth'
-import { getClassroomStudentIds } from '@/lib/teacher-classroom-data'
-import { buildStudentDueTopics } from '@/lib/teacher/cohort-due'
-import { loadDueRowsForStudents } from '@/lib/teacher/load-due-rows'
+import {
+  NO_STORE,
+  authorizeClassroomRoute,
+  internalError,
+  jsonError,
+  loadStudentDue,
+  loadStudentInClass,
+} from '@/lib/teacher/insights/server'
+
+export const dynamic = 'force-dynamic'
+
+type Params = { params: Promise<{ id: string; studentId: string }> }
 
 /**
- * One student's due topics — for the teacher student profile.
- * Membership + classroom ownership verified before the service-role read.
+ * GET → `{ topics: StudentDueTopic[], count }` — one student's topics
+ * cooling off, in the class subject, since they joined. 404 unless they are
+ * an active member of this class: a student who left or was removed is no
+ * longer the teacher's to see.
  */
-
-export async function GET(
-  _request: Request,
-  { params }: { params: Promise<{ id: string; studentId: string }> }
-) {
+export async function GET(_request: Request, { params }: Params) {
   const { id, studentId } = await params
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const auth = await authorizeClassroomRoute(id)
+  if ('response' in auth) return auth.response
 
-  if (!user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  try {
+    const student = await loadStudentInClass(auth.supabase, auth.classroom.id, studentId)
+    if (!student || student.member.status !== 'active') return jsonError(404, 'Student not in this classroom')
+    const topics = await loadStudentDue(createServiceClient(), auth.classroom, student.member)
+    return NextResponse.json({ topics, count: topics.length }, { headers: NO_STORE })
+  } catch (err) {
+    return internalError('student due', err, 'Could not load due topics.')
   }
-
-  const teacherCheck = await requireTeacher(supabase, user.id)
-  if (!teacherCheck.ok) {
-    return NextResponse.json({ error: 'Not a teacher' }, { status: 403 })
-  }
-
-  const owns = await verifyTeacherOwnsClassroom(supabase, user.id, id)
-  if (!owns) {
-    return NextResponse.json({ error: 'Classroom not found' }, { status: 404 })
-  }
-
-  const studentIds = await getClassroomStudentIds(supabase, id)
-  if (!studentIds.includes(studentId)) {
-    return NextResponse.json({ error: 'Student not in this classroom' }, { status: 404 })
-  }
-
-  const service = createServiceClient()
-  const { rows, error } = await loadDueRowsForStudents(service, [studentId])
-  if (error) {
-    console.error('[teacher/student-due]', error)
-    return NextResponse.json({ error: 'Could not load due list' }, { status: 500 })
-  }
-
-  const topics = buildStudentDueTopics(
-    rows.filter((r) => r.userId === studentId),
-    10
-  )
-
-  return NextResponse.json({ topics, count: topics.length })
 }

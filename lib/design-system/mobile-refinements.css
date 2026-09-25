@@ -349,6 +349,13 @@
     padding: 1.25rem 1rem calc(2rem + env(safe-area-inset-bottom, 0px));
   }
 
+  /* With the teacher tab bar showing (TEACHER_V2), the last row of a page must
+     clear the fixed bar (~66px + the home indicator), or the final slip or a
+     Save button sits underneath it. */
+  .ms-teacher-layout.app-shell-tabbed {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
   .course-studio-topbar {
     top: calc(3.5rem + env(safe-area-inset-top, 0px));
   }

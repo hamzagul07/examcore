@@ -1,3 +1,15 @@
+import type {
+  Assignment,
+  AssignmentItem,
+  AssignmentStudentFlags,
+  AssignmentSubmission,
+  Classroom,
+  ClassroomSettings,
+  MembershipStatus,
+  ReviewDecision,
+  TeacherFeedback,
+} from '@/lib/teacher/types'
+
 export type UserRole = 'student' | 'teacher'
 
 export type UserStage = 'as_level' | 'a2_level' | 'other'
@@ -26,6 +38,15 @@ export interface UserProfile {
    */
   teacher_verified_at?: string | null
   teacher_verified_reason?: string | null
+  /** Student preference: emails when a teacher sets work or it is nearly due. */
+  email_assignments?: boolean
+  /** Teacher preference: the Sunday class digest email. */
+  email_teacher_digest?: boolean
+  /**
+   * The teacher digest cron's double-send guard. Service role only: clients
+   * hold no grant on this column (20260926c).
+   */
+  teacher_digest_last_sent_at?: string | null
   created_at?: string
   updated_at?: string
 }
@@ -37,18 +58,12 @@ export interface CourseProgressRow {
   updated_at: string
 }
 
-export interface Classroom {
-  id: string
-  teacher_id: string
-  name: string
-  description: string | null
-  invite_code: string
-  board: string
-  level: string
-  subject: string
-  created_at: string
-  updated_at: string
-}
+/**
+ * The classrooms row. Defined once, in lib/teacher/types.ts, because the
+ * teacher system codes against it (subject_code, archived_at, settings were
+ * added by 20260926a); re-exported here so row imports stay in one place.
+ */
+export type { Classroom, ClassroomSettings }
 
 /** One browsing session's first-touch attribution. Service-role only. */
 export interface VisitSession {
@@ -111,6 +126,12 @@ export interface ClassroomMembership {
   classroom_id: string
   student_id: string
   joined_at: string
+  /** Only 'active' rows count anywhere; removed/left keep the history. */
+  status: MembershipStatus
+  removed_at: string | null
+  /** The teacher who removed the student (audit value, not a foreign key). */
+  removed_by: string | null
+  left_at: string | null
 }
 
 export interface TeacherOverride {
@@ -121,6 +142,48 @@ export interface TeacherOverride {
   override_marks_awarded: unknown
   override_total_earned: number
   teacher_notes: string | null
+  created_at: string
+  /** 'override' for every row written before 20260926c. */
+  decision: ReviewDecision
+  /** False hides the row from the student and suppresses the notification. */
+  student_visible: boolean
+  /** The previous decision on the same attempt; the chain's first row holds the AI snapshot. */
+  supersedes_override_id: string | null
+  classroom_id: string | null
+  reasoning_note: string | null
+}
+
+// --- Teacher system v2 (supabase/migrations/20260926{a,b,c}) ---
+// The assignment and feedback rows are the shapes in lib/teacher/types.ts;
+// the aliases below name them as rows and add the columns the app never
+// reads back.
+
+export type AssignmentRow = Assignment
+export type AssignmentItemRow = AssignmentItem
+export type AssignmentStudentRow = AssignmentStudentFlags & { created_at: string }
+/** Clients may read; only the service role writes (audit_client_grants: write_service_only). */
+export type AssignmentSubmissionRow = AssignmentSubmission
+export type TeacherFeedbackRow = TeacherFeedback
+
+export type TeacherAuditAction =
+  | 'view_student'
+  | 'export_csv'
+  | 'override'
+  | 'feedback'
+  | 'remove_student'
+  | 'regenerate_code'
+  | 'archive_classroom'
+  | 'delete_classroom'
+
+/** Service-role only, append-only (no client grants; service_role has no UPDATE). */
+export interface TeacherAuditLogRow {
+  /** bigint identity; PostgREST returns it as a number. */
+  id: number
+  actor_id: string
+  classroom_id: string | null
+  student_id: string | null
+  action: TeacherAuditAction
+  meta: Record<string, unknown> | null
   created_at: string
 }
 

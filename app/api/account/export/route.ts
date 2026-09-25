@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { applyAuthCookies, authenticateRouteRequest } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase/service'
+import { loadClassroomPrivacyExport } from '@/lib/student/assignments'
 
 export async function GET(request: NextRequest) {
   const { user, pendingCookies } = await authenticateRouteRequest(request)
@@ -44,6 +45,18 @@ export async function GET(request: NextRequest) {
       .limit(200),
   ])
 
+  // Teacher system (docs/TEACHER_SYSTEM_SPEC.md §8): memberships, sets,
+  // hand-ins, the notes and decisions teachers shared, and audit rows about
+  // this student. A failure here must not cost the student the rest of their
+  // export, so it is reported inside the file instead.
+  let classrooms: Awaited<ReturnType<typeof loadClassroomPrivacyExport>> | { error: string }
+  try {
+    classrooms = await loadClassroomPrivacyExport(admin, user.id)
+  } catch (err) {
+    console.error('[account/export] classroom data failed', err instanceof Error ? err.message : err)
+    classrooms = { error: 'Class data could not be included. Try the export again, or contact support.' }
+  }
+
   const exportPayload = {
     exported_at: new Date().toISOString(),
     account: {
@@ -56,6 +69,7 @@ export async function GET(request: NextRequest) {
     credits: credits ?? null,
     attempts: attempts ?? [],
     usage_events: usage ?? [],
+    classrooms,
   }
 
   const filename = `markscheme-export-${user.id.slice(0, 8)}-${new Date().toISOString().slice(0, 10)}.json`

@@ -31,7 +31,9 @@ export function withReturnTask(returnPath: string | null, taskId: string | null 
 
 /**
  * Safe return from /mark. Allows lesson paths (`/courses/...`) and a small set of
- * dashboard desks so Vault / insights can deep-link students back after marking.
+ * dashboard desks so Vault / insights can deep-link students back after marking,
+ * and a teacher's set (`/dashboard/assignments[/<id>]`) so a student marking an
+ * item of it lands back on the set with the item ticked.
  */
 export function parseMarkReturnPath(raw: string | null | undefined): string | null {
   if (!raw?.trim()) return null
@@ -45,7 +47,9 @@ export function parseMarkReturnPath(raw: string | null | undefined): string | nu
       path.startsWith('/courses/') ||
       path === '/dashboard/vault' ||
       path === '/dashboard/plan' ||
-      path.startsWith('/dashboard/progress')
+      path.startsWith('/dashboard/progress') ||
+      path === '/dashboard/assignments' ||
+      path.startsWith('/dashboard/assignments/')
     if (!allowed) return null
     return `${url.pathname}${url.search}`
   } catch {

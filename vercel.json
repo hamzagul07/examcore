@@ -40,6 +40,12 @@
     },
     "app/api/admin/campaign/route.ts": {
       "maxDuration": 300
+    },
+    "app/api/cron/teacher-digest/route.ts": {
+      "maxDuration": 300
+    },
+    "app/api/cron/assignment-reminders/route.ts": {
+      "maxDuration": 300
     }
   },
   "crons": [
@@ -94,6 +100,14 @@
     {
       "path": "/api/cron/plan-checkin",
       "schedule": "15 * * * *"
+    },
+    {
+      "path": "/api/cron/teacher-digest",
+      "schedule": "0 16 * * 0"
+    },
+    {
+      "path": "/api/cron/assignment-reminders",
+      "schedule": "0 16 * * *"
     }
   ]
 }

@@ -56,6 +56,36 @@ export function teacherOmniCap(): number {
   return capFromEnv(process.env.TEACHER_OMNI_CAP, TEACHER_OMNI_CAP_DEFAULT)
 }
 
+/**
+ * The class bonus (docs/TEACHER_SYSTEM_SPEC.md §7): marks a month added to the
+ * cap of a student who is an active member of a live class whose teacher
+ * holds a verified seat.
+ *
+ * Why a bonus on the student's own cap rather than a pool the teacher
+ * sponsors: `reserve_mark_usage` already takes the cap as an argument, so the
+ * bonus rides the existing atomic reservation — no second lock path, no new
+ * usage event type — and a student's marks stay the student's, metered and
+ * refunded exactly as they are today.
+ *
+ * Unlike the teacher caps above, 0 is a valid setting: it switches the bonus
+ * off without a deploy. Anything that is not a non-negative integer falls back
+ * to the default rather than to 0, so a typo in the dashboard cannot quietly
+ * take twenty marks away from every class.
+ */
+export const TEACHER_CLASS_STUDENT_BONUS_DEFAULT = 20
+
+export function teacherClassStudentBonus(): number {
+  const raw = process.env.TEACHER_CLASS_STUDENT_BONUS?.trim()
+  if (!raw) return TEACHER_CLASS_STUDENT_BONUS_DEFAULT
+  const n = Number(raw)
+  return Number.isInteger(n) && n >= 0 ? n : TEACHER_CLASS_STUDENT_BONUS_DEFAULT
+}
+
+/** A bonus as a cap addend: whole, non-negative, finite — never a way to lower a cap. */
+function bonusAddend(bonus: number): number {
+  return Number.isFinite(bonus) && bonus > 0 ? Math.floor(bonus) : 0
+}
+
 export function capForTier(tier: SubscriptionTier): number {
   return TIER_MONTHLY_CAPS[tier] ?? TIER_MONTHLY_CAPS.free
 }
@@ -70,14 +100,22 @@ export function omniCapForTier(tier: SubscriptionTier): number {
  *
  * A teacher gets the teacher cap unless they are paying for something larger;
  * upgrading must never reduce what someone already has.
+ *
+ * `bonus` is the class bonus (see teacherClassStudentBonus), added on top of
+ * whatever the tier gives: an eligible free student marks 5 + 20, a Scholar
+ * 120 + 20. It is additive rather than a floor so that paying never makes the
+ * class worth less. Whether a user is eligible — and that a teacher never is —
+ * is decided by the caller (classBonusFor in ./teacher-seat); this function
+ * only refuses a negative or fractional bonus, so it can never lower a cap.
  */
 export function capForAccess(
   access: EffectiveAccess,
   capTier: SubscriptionTier,
-  isTeacher = false
+  isTeacher = false,
+  bonus = 0
 ): number {
   const base = access === 'free' ? capForTier('free') : capForTier(capTier)
-  return isTeacher ? Math.max(base, teacherMarkCap()) : base
+  return (isTeacher ? Math.max(base, teacherMarkCap()) : base) + bonusAddend(bonus)
 }
 
 export function omniCapForAccess(

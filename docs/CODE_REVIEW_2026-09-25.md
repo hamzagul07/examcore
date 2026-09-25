@@ -130,3 +130,23 @@ Severity key: **High** = exploitable, costs money, or breaks a paid promise toda
 5. Atomic guest rate-limit RPC consumed up front; auth or persisted limit on teach-back; delete the legacy whole-paper branch in `process` (half a day).
 6. Send `client_request_id` from the page, handle `duplicate:true`, scope the unique index by user (half a day).
 7. Then the Medium list, starting with credit reservation, leaked reservations, seat-aware feature gates, community attachment binding, override bounds, Omni caps.
+
+---
+
+## 6. Closure notes (teacher system v2)
+
+Three findings sit in code the teacher system build (`docs/TEACHER_SYSTEM_SPEC.md`) changes, so their status is recorded here as of that build:
+
+### §2 line 67 — "Teacher seats and comps are ignored by every feature gate in the mark path" — **closed**
+- Access is resolved once, with the verified seat (`teacher_verified_at`, never `role`) and any comp, in `lib/billing/enforcement.ts` (`deriveBillingContext` → `effectiveAccessForUser`) and carried on every allowance as `access`.
+- The five call sites read it rather than recomputing from `{tier, status}`: `app/api/mark/process/route.ts` (`reservation.allowance.access`), `whole-paper/init` (`allowance.access`), `whole-paper/run` (`reservation.allowance.access`), `app/api/omni-ai/route.ts` (`omniAllowance.access`), `app/dashboard/page.tsx` (`loadEffectiveAccess`). `app/api/auth/check/route.ts` reads the same state through `loadAccessState` and now also returns `teacherVerified`, so the header, the teacher pages and the gate agree on who holds a seat.
+- v2 adds the class bonus to the same context rather than a second path: `loadBillingContext` asks `student_in_verified_classroom` (service role only) in the same round trip, `classBonusFor` gives `TEACHER_CLASS_STUDENT_BONUS` (default 20) to students of a verified teacher's live class and never to a teacher, and `markCapFor` hands `reserve_mark_usage` the raised `p_cap` — no RPC change, no new lock path. `MarkAllowance.class_bonus` reports it to the credit chip and limit banner. A lapsed subscriber in such a class falls back to the free allowance plus the bonus, as a comp or seat already falls back, rather than to nothing.
+- Tests: `lib/billing/teacher-seat.test.ts` (seat, bonus eligibility, the gate's caps, RPC failure → no bonus), `lib/billing/caps.test.ts` (bonus matrix, env parsing, a bonus can only raise a cap), `lib/billing/scholar-access.test.ts`.
+
+### §2 line 82 — "Teacher override has no bounds" — **closed**
+- Closed for the existing route by `lib/teacher/override.ts`: total clamped to `0 ≤ total ≤ attempts.total_marks`, entries validated and stripped of raw HTML, reasoning length-capped, the AI original snapshotted once and kept.
+- v2 tightens it further (package P5 `reviews-feedback`): every decision (confirm / override / flag) is validated by `lib/teacher/override-validate.ts` against spec §6 (same `mark_id` set, per-mark input refused on banded scripts, `reasoning_note` plain text ≤ 1000), `teacher_overrides.supersedes_override_id` preserves the first AI snapshot across repeat overrides, and the table's WITH CHECK only accepts attempts of the teacher's *current* students (`20260926c`). Overridden text reaching the student's Omni context stays fenced as untrusted (`teacher_override: true`).
+
+### §2 line 88 — "Invite-code enumeration" — **closed**
+- Closed by requiring sign-in for the preview and a persisted per-address guard on lookups and joins (`lib/teacher/join-attempts.ts`), failing closed with a 503 when the guard cannot be read.
+- v2 (package P6 `student-side`) moves both routes onto the atomic `rate_limits.invite_lookup_count` bucket (`bump_rate_limit`, `20260926a`), which removes the check-then-increment window; the interim `classroom_join_attempts` table is dropped before it is ever applied. Teachers can regenerate a code instantly (`POST /api/teacher/classroom/[id]/invite`, audited as `regenerate_code`).

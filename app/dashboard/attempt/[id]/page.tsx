@@ -19,6 +19,8 @@ import { isCommunityEnabled } from '@/lib/community/enabled'
 import { boardForSubject } from '@/lib/community/subjects'
 import { resolveExtractedQuestionId } from '@/lib/community/anchor'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
+import { TeacherFeedbackNote } from '@/components/dashboard/TeacherFeedbackNote'
+import { loadAttemptTeacherNotes, studentRequestTimeZone } from '@/lib/student/assignments'
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
@@ -170,6 +172,18 @@ export default async function AttemptDetailPage({
     redirect('/dashboard')
   }
 
+  // The teacher's visible re-mark / confirmation and notes on this attempt
+  // (TEACHER_V2). Read with the student's own RLS client, so a decision the
+  // teacher kept private never arrives; null when there is nothing to show.
+  // Never throws. Started here, awaited at render.
+  const teacherNotesPromise = loadAttemptTeacherNotes(supabase, supabaseAdmin, {
+    attemptId: attempt.id,
+    userId: user.id,
+    marksEarned: attempt.marks_earned,
+    totalMarks: attempt.total_marks,
+    aiMarking: attempt.ai_marking,
+  })
+
   const result = toMarkingResult(attempt)
   // Prefer the full multi-page script persisted in ai_marking.ink_pages (every
   // page photo + its examiner ink). Older attempts only have the single
@@ -236,6 +250,9 @@ export default async function AttemptDetailPage({
       ? `/community/submit?board=${boardForSubject(subjectCode)}&subject=${subjectCode}&kind=question`
       : null
 
+  const teacherNotes = await teacherNotesPromise
+  const teacherNotesTimeZone = teacherNotes ? await studentRequestTimeZone() : 'UTC'
+
   return (
     <main className="app-shell app-shell-tabbed ms-attempt-page">
       <div className="mx-auto min-w-0 max-w-3xl">
@@ -280,6 +297,16 @@ export default async function AttemptDetailPage({
               )}
           </p>
         </div>
+
+        {teacherNotes ? (
+          <div className="animate-entry stagger-2">
+            <TeacherFeedbackNote
+              review={teacherNotes.review}
+              notes={teacherNotes.notes}
+              timeZone={teacherNotesTimeZone}
+            />
+          </div>
+        ) : null}
 
         {/* Predicted vs awarded, for the student who came here from the
             "your mark is ready" email and never saw the live reveal. */}

@@ -70,6 +70,15 @@ import {
   resolvePageUploadType,
   type WholePaperImageType,
 } from '@/lib/marking/whole-paper-upload'
+import { isTeacherV2 } from '@/lib/teacher/flags'
+import { validateAssignmentItemForStudent } from '@/lib/teacher/assignments'
+import {
+  ASSIGNMENT_ITEM_FIELD,
+  markAssignmentLink,
+  parseAssignmentItemId,
+  planWholePaperLink,
+  type MarkAssignmentLink,
+} from '@/lib/teacher/assignments/link'
 
 // OCR + segmentation of a full paper can be heavy; match the marking routes.
 // vercel.json lists only run/process, so this export is what applies here.
@@ -153,6 +162,12 @@ async function handleInit(request: NextRequest) {
     const manualPaperCode = formData.get('manual_paper_code') as string | null
     const manualPaperSession = formData.get('manual_paper_session') as string | null
     const assignmentsRaw = formData.get('page_assignments') as string | null
+    // The teacher's set item this paper is for, when /mark was opened from a
+    // set. (`page_assignments` above is unrelated: which page answers which
+    // question.) Ignored entirely with TEACHER_V2=0.
+    const assignmentItemRaw = isTeacherV2()
+      ? (formData.get(ASSIGNMENT_ITEM_FIELD) as string | null)?.trim() || null
+      : null
 
     let pageAssignments: PageAssignment[] = []
     if (assignmentsRaw) {
@@ -229,6 +244,35 @@ async function handleInit(request: NextRequest) {
         }
         photoPages.push({ clientIndex: upload.clientIndex, buf, type })
       }
+    }
+
+    // ---- Teacher's set: checked before anything is spent ----------------------
+    //
+    // Same gate as /api/mark/process: an item the student may not hand in
+    // against is a 400 with nothing consumed; a valid one is stamped on the
+    // attempt only when this upload is that whole paper. The reservation and
+    // the charge stay the student's, exactly as for any other paper.
+    let assignmentLink: MarkAssignmentLink | null = null
+    let linkedItemId: string | null = null
+    if (assignmentItemRaw) {
+      const itemId = parseAssignmentItemId(assignmentItemRaw)
+      const linkError = (error: string) =>
+        NextResponse.json(
+          { error, field: ASSIGNMENT_ITEM_FIELD, code: 'assignment_item_invalid' },
+          { status: 400 }
+        )
+      if (!itemId) {
+        return linkError('That link to your teacher’s set is not valid. Open it again from your assignments.')
+      }
+      if (!userId) return linkError('Sign in to hand work in for your class.')
+      const check = await validateAssignmentItemForStudent(supabaseAdmin, itemId, userId)
+      if (!check.ok) return linkError(check.reason)
+      const plan = planWholePaperLink(check.item, check.assignment, {
+        paperCode: manualPaperCode,
+        paperSession: manualPaperSession,
+      })
+      assignmentLink = markAssignmentLink(check.assignment, itemId, plan)
+      if (plan.linked) linkedItemId = itemId
     }
 
     // ---- Validation passed: consume the guest slot, then spend ---------------
@@ -496,6 +540,9 @@ async function handleInit(request: NextRequest) {
         answer_photo_url: pagePhotoUrls[0] || null,
         error_classifications: [],
         line_references: [],
+        // Only when this paper is the set's item, so every other insert is
+        // unchanged. The finished paper is handed in from this stamp.
+        ...(linkedItemId ? { assignment_item_id: linkedItemId } : {}),
       })
       .select('id')
       .single()
@@ -523,6 +570,7 @@ async function handleInit(request: NextRequest) {
       paper_code: manualPaperCode,
       paper_session: manualPaperSession,
       _allowance: allowance ? allowanceForResponse(allowance) : undefined,
+      _assignment: assignmentLink ?? undefined,
     })
   } catch (err) {
     console.error('whole-paper init error:', err)

@@ -1,209 +1,74 @@
 'use client'
 
-import { useCallback, useState, type ReactNode } from 'react'
-import Link from 'next/link'
-import { TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
-import { formatInviteCode } from '@/lib/teacher/invite-code'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useSetAIContext } from '@/lib/omni-ai/context'
-import type { TeacherClassroomRow } from '@/lib/teacher/list-classrooms'
+import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 
-type Props = {
-  initial: { classrooms: TeacherClassroomRow[] } | { error: string }
-  /**
-   * The seat notice, rendered by the server page (it needs the caps and the
-   * verified flag, neither of which this island should fetch). Null once the
-   * teacher holds a seat, which is the steady state.
-   */
-  seatCard?: ReactNode
-}
+/**
+ * The desk's client islands. The desk itself is a server component
+ * (app/teacher/dashboard/page.tsx) that loads TeacherOverview once; only the
+ * two things that need the browser live here.
+ */
 
-function isDemoClassroom(c: TeacherClassroomRow): boolean {
-  const hay = `${c.name} ${c.description ?? ''}`.toLowerCase()
-  return hay.includes('demo') || hay.includes('example class')
-}
-
-export function TeacherDashboardClient({ initial, seatCard }: Props) {
-  const [classrooms, setClassrooms] = useState(
-    'classrooms' in initial ? initial.classrooms : []
-  )
-  const [error, setError] = useState(
-    'error' in initial ? initial.error : null
-  )
-  const [seeding, setSeeding] = useState(false)
-  const [refreshing, setRefreshing] = useState(false)
-
+/**
+ * Tells the Omni assistant the teacher is on their desk. Renders nothing.
+ * Context data is deliberately empty: the server builds any class context
+ * itself and ignores what a client sends (spec §3, /api/omni-ai).
+ */
+export function TeacherDashboardClient() {
   useSetAIContext({ type: 'teacher_dashboard', data: {} }, [])
+  return null
+}
 
-  const refresh = useCallback(async () => {
-    setRefreshing(true)
-    setError(null)
-    try {
-      const r = await fetch('/api/teacher/classrooms', { cache: 'no-store' })
-      const d = await r.json().catch(() => ({}))
-      if (!r.ok) {
-        setError(d.error || 'Could not load classrooms.')
-        return
-      }
-      setClassrooms((d.classrooms || []) as TeacherClassroomRow[])
-    } catch {
-      setError('Could not reach the server.')
-    } finally {
-      setRefreshing(false)
-    }
-  }, [])
+/**
+ * "Show me an example class" — builds a demo class with simulated students
+ * and one set, then opens it. The page renders this only outside production
+ * (demoSeedingEnabled); the route refuses there too.
+ */
+export function DemoClassButton() {
+  const router = useRouter()
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState('')
 
-  async function seedDemo() {
-    setSeeding(true)
-    setError(null)
+  async function build() {
+    if (busy) return
+    setBusy(true)
+    setError('')
     try {
       const res = await fetch('/api/teacher/seed-demo', { method: 'POST' })
-      const data = await res.json().catch(() => ({}))
-      if (data.success && data.classroom_id) {
-        window.location.href = `/teacher/classroom/${data.classroom_id}`
+      const data = (await res.json().catch(() => ({}))) as { classroom_id?: string; error?: string }
+      if (res.ok && data.classroom_id) {
+        router.push(`/teacher/classroom/${data.classroom_id}`)
+        router.refresh()
         return
       }
       setError(data.error || 'Could not build the example class.')
     } catch {
-      setError('Could not reach the server.')
+      setError('Could not reach the server. Check your connection and try again.')
     } finally {
-      setSeeding(false)
+      setBusy(false)
     }
   }
 
-  const empty = !error && classrooms.length === 0
-
   return (
-    <TeacherPageContainer className="ms-teacher-page">
-      <header className="ms-teacher-desk-head">
-        <div>
-          <div className="mb-2 flex items-center gap-2">
-            <p className="ec-eyebrow mb-0">Teacher desk</p>
-            <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
-              CLS
-            </span>
-          </div>
-          <h1 className="text-headline">Your classrooms</h1>
-          <span className="ms-teacher-desk-head__note" aria-hidden>
-            one slip per class — code on the face
-          </span>
-        </div>
-        {!empty && !error ? (
-          <Link
-            href="/teacher/classrooms/new"
-            className="ec-btn-primary inline-flex min-h-[44px] items-center gap-2"
-          >
-            <span className="font-mono text-[11px] font-bold" aria-hidden>
-              +
-            </span>
-            New class
-          </Link>
-        ) : null}
-      </header>
-
-      {/* Before the classrooms: a teacher on the free allowance will hit the
-          wall on their sixth script, and that matters more than the list. */}
-      {seatCard}
-
-      {error ? (
-        <div className="ms-teacher-error mb-6" role="alert">
-          <p className="font-semibold text-[var(--ec-text-primary)]">Couldn’t load classrooms</p>
-          <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">{error}</p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <button
-              type="button"
-              disabled={refreshing}
-              onClick={() => void refresh()}
-              className="ec-btn-primary inline-flex min-h-[44px] items-center"
-            >
-              {refreshing ? 'Retrying…' : 'Try again'}
-            </button>
-            <Link
-              href="/contact"
-              className="ec-btn-ghost inline-flex min-h-[44px] items-center"
-            >
-              Contact support
-            </Link>
-          </div>
-        </div>
-      ) : null}
-
-      {empty ? (
-        <div className="ms-teacher-empty">
-          <span className="ms-teacher-empty__icon" aria-hidden>
-            <span className="font-mono text-sm font-bold tracking-wide">CL</span>
-          </span>
-          <h2 className="ms-teacher-empty__title">Make your first class</h2>
-          <p className="ms-teacher-empty__body">
-            You&apos;ll get a code to read out. Once a few students have marked something, this is
-            where you&apos;ll see what the class as a whole keeps dropping marks on.
-          </p>
-          <div className="ms-teacher-dash-actions mt-2 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <Link
-              href="/teacher/classrooms/new"
-              className="ec-btn-primary w-full justify-center sm:w-auto"
-            >
-              <span className="mr-2 font-mono text-[11px] font-bold tracking-wide" aria-hidden>
-                +
-              </span>
-              Create a class
-            </Link>
-            <button
-              type="button"
-              onClick={() => void seedDemo()}
-              disabled={seeding}
-              className="ec-btn-secondary w-full justify-center disabled:opacity-50 sm:w-auto"
-            >
-              <span className="mr-2 font-mono text-[11px] font-bold tracking-wide" aria-hidden>
-                DEMO
-              </span>
-              {seeding ? 'Building example…' : 'Show me an example class'}
-            </button>
-          </div>
-        </div>
-      ) : null}
-
-      {!error && classrooms.length > 0 ? (
-        <ul className="ms-teacher-class-list">
-          {classrooms.map((c) => {
-            const demo = isDemoClassroom(c)
-            return (
-              <li key={c.id}>
-                <Link href={`/teacher/classroom/${c.id}`} className="ms-teacher-class-slip">
-                  <span className="ms-teacher-class-slip__stamp" aria-hidden>
-                    {demo ? 'DEMO' : 'CL'}
-                  </span>
-                  <span>
-                    <h2 className="ms-teacher-class-slip__name">
-                      {c.name}
-                      {demo ? (
-                        <span className="ml-2 font-mono text-[11px] font-bold tracking-wide text-[var(--ec-logo-crimson,var(--ec-ink-crimson))]">
-                          EXAMPLE DATA
-                        </span>
-                      ) : null}
-                    </h2>
-                    <p className="ms-teacher-class-slip__meta">
-                      {[c.subject, c.level].filter(Boolean).join(' · ') || 'Class'}
-                      {' · '}
-                      {c.studentCount === 1 ? '1 student' : `${c.studentCount || 0} students`}
-                      {c.invite_code ? (
-                        <>
-                          {' · '}
-                          <span className="ms-teacher-class-slip__code">
-                            {formatInviteCode(c.invite_code)}
-                          </span>
-                        </>
-                      ) : null}
-                    </p>
-                  </span>
-                  <span className="ms-teacher-class-slip__go" aria-hidden>
-                    Open -&gt;
-                  </span>
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
-      ) : null}
-    </TeacherPageContainer>
+    <>
+      <button
+        type="button"
+        onClick={() => void build()}
+        disabled={busy}
+        aria-busy={busy || undefined}
+        className="ec-btn-secondary inline-flex min-h-[44px] items-center justify-center gap-2 disabled:opacity-60"
+      >
+        <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+          DEMO
+        </span>
+        {busy ? 'Building the example…' : 'Show me an example class'}
+      </button>
+      <p className="sr-only" role="status" aria-live="polite">
+        {busy ? 'Building the example class. This takes a few seconds.' : ''}
+      </p>
+      {error ? <FormErrorAlert message={error} className="w-full" /> : null}
+    </>
   )
 }

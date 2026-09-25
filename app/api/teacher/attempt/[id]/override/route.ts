@@ -1,241 +1,222 @@
-import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase-server'
-import { createAdminClient } from '@/lib/supabase-admin'
-import { requireTeacher } from '@/lib/teacher-auth'
+import { createServiceClient } from '@/lib/supabase/service'
 import { signAnswerPhotoUrl } from '@/lib/storage/answer-photos'
+import { auditLog, onOverrideSaved } from '@/lib/teacher/notify'
+import { buildDecisionWrite, validateDecision } from '@/lib/teacher/override-validate'
+import { loadAttemptReview, resolveReviewScope } from '@/lib/teacher/reviews-query'
 import {
-  mergeOverrideMarks,
-  resolveOriginalMarks,
-  validateOverride,
-} from '@/lib/teacher/override'
+  authorizeTeacher,
+  isCheckViolation,
+  isRlsViolation,
+  jsonError,
+  jsonOk,
+  readJson,
+  serverError,
+} from '../../_lib/http'
 
-/**
- * POST — apply a teacher's override to an attempt.
- *
- * The payload is validated against the attempt's own maximum before anything
- * is written (lib/teacher/override.ts): the previous `Array.isArray` +
- * `typeof number` check let a negative or over-maximum total and an
- * arbitrary marks array straight through to `attempts`, which feeds mastery,
- * the weekly report and the student's Omni prompt. Validation failures are
- * 422 with per-field errors; the success body is unchanged.
- */
-export async function POST(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  const { id: attemptId } = await params
-  const supabase = await createClient()
-  const admin = createAdminClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+export const dynamic = 'force-dynamic'
 
-  if (!user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
+type Params = { params: Promise<{ id: string }> }
 
-  const teacherCheck = await requireTeacher(supabase, user.id)
-  if (!teacherCheck.ok) {
-    return NextResponse.json({ error: 'Not a teacher' }, { status: 403 })
-  }
-
-  // RLS (teacher_read_student_attempts) scopes this read to the teacher's own
-  // students, so a hit here is also the authorisation check.
-  const { data: attempt } = await supabase
-    .from('attempts')
-    .select('id, user_id, marks_earned, total_marks, ai_marking')
-    .eq('id', attemptId)
-    .maybeSingle()
-
-  if (!attempt) {
-    return NextResponse.json({ error: 'Attempt not found' }, { status: 404 })
-  }
-
-  let body: unknown
-  try {
-    body = await request.json()
-  } catch {
-    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 })
-  }
-
-  const aiMarking = (
-    attempt.ai_marking && typeof attempt.ai_marking === 'object'
-      ? attempt.ai_marking
-      : {}
-  ) as Record<string, unknown>
-
-  // The stored entries go in with the payload so the validator can tell the
-  // marker's own (unbounded) reasoning, echoed back by the console, from text
-  // the teacher actually wrote. Without them a verbose marker made every
-  // override of that attempt a 422.
-  const validated = validateOverride(body, {
-    total_marks: attempt.total_marks,
-    marks_awarded: aiMarking.marks_awarded,
-  })
-  if (!validated.ok) {
-    return NextResponse.json(
-      { error: 'Invalid override payload', errors: validated.errors },
-      { status: 422 }
-    )
-  }
-  const { total: overrideTotal, marks: overrideMarks, notes: teacherNotes } = validated.value
-
-  // The audit row's "original" must be the marker's result, not the previous
-  // teacher's. It is snapshotted into ai_marking.original_marks_awarded on the
-  // first override; an attempt overridden before that snapshot existed still
-  // has the true original on its earliest audit row.
-  let earliestOriginal: unknown = null
-  if (aiMarking.teacher_override === true && !Array.isArray(aiMarking.original_marks_awarded)) {
-    const { data: earliest } = await supabase
-      .from('teacher_overrides')
-      .select('original_marks_awarded')
-      .eq('attempt_id', attemptId)
-      .order('created_at', { ascending: true })
-      .limit(1)
-      .maybeSingle()
-    earliestOriginal = earliest?.original_marks_awarded ?? null
-  }
-  const { original: originalMarks, persistSnapshot, firstOverride } = resolveOriginalMarks(
-    aiMarking,
-    earliestOriginal
-  )
-
-  // Stored entries keep the marker's own line references (the ink overlay
-  // needs them) under the teacher's validated fields; every entry carries
-  // teacher_override so the Omni prompt fences it as teacher-supplied data.
-  const storedMarks = mergeOverrideMarks(aiMarking.marks_awarded, overrideMarks)
-
-  const { error: overrideError } = await supabase.from('teacher_overrides').insert({
-    attempt_id: attemptId,
-    teacher_id: user.id,
-    original_marks_awarded: originalMarks,
-    override_marks_awarded: storedMarks,
-    override_total_earned: overrideTotal,
-    teacher_notes: teacherNotes,
-  })
-
-  if (overrideError) {
-    console.error('[teacher/override] insert failed:', overrideError)
-    return NextResponse.json({ error: 'Failed to save override' }, { status: 500 })
-  }
-
-  const updatedAiMarking: Record<string, unknown> = {
-    ...aiMarking,
-    marks_awarded: storedMarks,
-    teacher_override: true,
-    teacher_notes: teacherNotes,
-  }
-  if (persistSnapshot) {
-    updatedAiMarking.original_marks_awarded = originalMarks
-  }
-  if (firstOverride) {
-    // The marker's total, kept alongside its marks so the AI score survives
-    // the overwrite of marks_earned below.
-    updatedAiMarking.original_marks_earned = attempt.marks_earned
-  }
-
-  const { error: updateError } = await admin
-    .from('attempts')
-    .update({
-      marks_earned: overrideTotal,
-      ai_marking: updatedAiMarking,
-    })
-    .eq('id', attemptId)
-
-  if (updateError) {
-    console.error('[teacher/override] attempt update failed:', updateError)
-    return NextResponse.json(
-      { error: 'Override saved but attempt update failed' },
-      { status: 500 }
-    )
-  }
-
-  return NextResponse.json({
-    success: true,
-    marks_earned: overrideTotal,
-  })
+/** attempts numerics can arrive as strings (numeric columns); null for anything unreadable. */
+function toNumber(value: unknown): number | null {
+  const n = typeof value === 'string' && value.trim() !== '' ? Number(value) : value
+  return typeof n === 'number' && Number.isFinite(n) ? n : null
 }
 
-export async function GET(
-  _request: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  const { id: attemptId } = await params
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+/**
+ * GET → one script for review: the attempt (signed photos, every ink page,
+ * its per-mark list), the calling teacher's decisions and notes on it, and
+ * the student's name via teacher_student_profiles — never a direct read of
+ * another user's profile row (spec §8).
+ *
+ * 404 unless the script is one the teacher may review: an active member's
+ * work in one of their live classes, marked since joining, in the class's
+ * subject or handed in against its set (lib/teacher/reviews-query.ts).
+ */
+export async function GET(_request: Request, { params }: Params) {
+  const { id } = await params
+  const auth = await authorizeTeacher()
+  if ('response' in auth) return auth.response
 
-  if (!user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  try {
+    const admin = createServiceClient()
+    const review = await loadAttemptReview(auth.supabase, admin, auth.user.id, id, {
+      signPhoto: (stored) => signAnswerPhotoUrl(stored),
+    })
+    if (!review) return jsonError(404, 'Attempt not found')
+
+    const firstPage = review.ink[0] ?? null
+    return jsonOk({
+      attempt: {
+        id: review.attempt.id,
+        user_id: review.attempt.student_id,
+        created_at: review.attempt.created_at,
+        marks_earned: review.attempt.marks_earned,
+        total_marks: review.attempt.total_marks,
+        ai_marks_earned: review.attempt.ai_marks_earned,
+        teacher_override: review.attempt.teacher_override,
+        question_text: review.attempt.question_text,
+        answer_photo_url: firstPage?.photo_url ?? null,
+        line_references: firstPage?.line_references ?? [],
+        ink_pages: review.ink,
+        marking: review.attempt.marking,
+        marks_awarded: review.attempt.marks,
+        judgement: review.attempt.judgement,
+      },
+      display_name: review.student.display_name,
+      student_name: review.student.full_name,
+      classroom_id: review.classroom.id,
+      assignment_id: review.set?.id ?? null,
+      work_label: review.work_label,
+      overrides: review.decisions,
+      feedback: review.feedback,
+    })
+  } catch (err) {
+    return serverError('review', { attemptId: id }, err, 'Could not load this script.')
   }
+}
 
-  const teacherCheck = await requireTeacher(supabase, user.id)
-  if (!teacherCheck.ok) {
-    return NextResponse.json({ error: 'Not a teacher' }, { status: 403 })
+/**
+ * POST `{decision, override_marks_awarded?, override_total_earned?,
+ * reasoning_note?, student_visible?}` → `{marks_earned, decision, override_id}`.
+ *
+ * Validation is lib/teacher/override-validate.ts (spec §6); every refusal is
+ * `400 {error, field}`. Then, in order:
+ *
+ *   1. The AI snapshot and the chain: the attempt's earliest and latest
+ *      teacher_overrides rows, read with the service client because another
+ *      teacher's rows are invisible under RLS and the snapshot must be the
+ *      marker's result, not whoever decided first in THIS teacher's view.
+ *   2. The decision row, inserted with the teacher's own client so the
+ *      policy's WITH CHECK (an attempt of one of their CURRENT students)
+ *      still applies at the moment of writing.
+ *   3. Override only: the service update of `attempts` (clients hold no
+ *      UPDATE on it). If that fails the row is removed again, so the audit
+ *      trail never records a mark the student does not have.
+ *   4. onOverrideSaved (hand-in marked 'reviewed' with the new mark; the
+ *      student is told when the decision is student_visible) and the
+ *      `override` audit row. Both are awaited — neither throws — so the
+ *      set's matrix is right by the time the teacher gets back to it.
+ *
+ * confirm / flag never touch `attempts`.
+ */
+export async function POST(request: Request, { params }: Params) {
+  const { id } = await params
+  const auth = await authorizeTeacher()
+  if ('response' in auth) return auth.response
+  const { supabase, user } = auth
+
+  const read = await readJson(request)
+  if ('response' in read) return read.response
+
+  let admin: ReturnType<typeof createServiceClient>
+  let scope: Awaited<ReturnType<typeof resolveReviewScope>>
+  try {
+    admin = createServiceClient()
+    scope = await resolveReviewScope(supabase, admin, user.id, id)
+  } catch (err) {
+    return serverError('override', { attemptId: id }, err, 'Could not load this script.')
   }
+  if (!scope) return jsonError(404, 'Attempt not found')
+  const { row: attempt, classroom } = scope
 
-  const { data: attempt } = await supabase
-    .from('attempts')
-    .select(
-      'id, user_id, marks_earned, total_marks, question_text, ai_marking, answer_photo_url, line_references, syllabus_tags, created_at'
-    )
-    .eq('id', attemptId)
-    .maybeSingle()
-
-  if (!attempt) {
-    return NextResponse.json({ error: 'Attempt not found' }, { status: 404 })
-  }
-
-  const { data: profile } = await supabase
-    .from('user_profiles')
-    .select('full_name')
-    .eq('id', attempt.user_id)
-    .maybeSingle()
-
-  const { data: overrides } = await supabase
-    .from('teacher_overrides')
-    .select('*')
-    .eq('attempt_id', attemptId)
-    .order('created_at', { ascending: false })
-
-  const aiMarking = attempt.ai_marking as {
-    marks_awarded?: Array<{
-      mark_id: string | number
-      earned: boolean
-      reasoning?: string
-    }>
-    ink_pages?: Array<{ photo_url: string; line_references?: unknown[] }>
-  } | null
-
-  // The full multi-page script (all page photos + per-page ink) lives in
-  // ai_marking.ink_pages — sign each so the reviewer sees every page, not just
-  // page 1 (answer_photo_url).
-  const signedInkPages = Array.isArray(aiMarking?.ink_pages)
-    ? (
-        await Promise.all(
-          aiMarking.ink_pages.map(async (p) => {
-            const url = await signAnswerPhotoUrl(p.photo_url)
-            return url
-              ? { photo_url: url, line_references: p.line_references ?? [] }
-              : null
-          })
-        )
-      ).filter(
-        (p): p is { photo_url: string; line_references: unknown[] } => !!p
-      )
-    : []
-
-  return NextResponse.json({
-    attempt: {
-      ...attempt,
-      answer_photo_url: attempt.answer_photo_url
-        ? await signAnswerPhotoUrl(attempt.answer_photo_url)
-        : attempt.answer_photo_url,
-      ink_pages: signedInkPages,
-      marks_awarded: aiMarking?.marks_awarded ?? [],
-      user_profiles: profile,
-    },
-    overrides: overrides || [],
+  const validated = validateDecision(read.body, {
+    marks_earned: attempt.marks_earned,
+    total_marks: attempt.total_marks,
+    ai_marking: attempt.ai_marking,
   })
+  if (!validated.ok) return jsonError(400, validated.error, validated.field)
+  const decision = validated.value
+
+  const [earliestRes, latestRes] = await Promise.all([
+    admin
+      .from('teacher_overrides')
+      .select('original_marks_awarded')
+      .eq('attempt_id', attempt.id)
+      .order('created_at', { ascending: true })
+      .order('id', { ascending: true })
+      .limit(1)
+      .maybeSingle(),
+    admin
+      .from('teacher_overrides')
+      .select('id')
+      .eq('attempt_id', attempt.id)
+      .order('created_at', { ascending: false })
+      .order('id', { ascending: false })
+      .limit(1)
+      .maybeSingle(),
+  ])
+  if (earliestRes.error || latestRes.error) {
+    return serverError(
+      'override',
+      { attemptId: attempt.id, step: 'history' },
+      earliestRes.error ?? latestRes.error,
+      'Could not save the decision. Try again.'
+    )
+  }
+
+  const write = buildDecisionWrite({
+    decision,
+    attempt: { id: attempt.id, marks_earned: attempt.marks_earned, ai_marking: attempt.ai_marking },
+    teacherId: user.id,
+    classroomId: classroom.id,
+    earliestOriginal: (earliestRes.data as { original_marks_awarded?: unknown } | null)?.original_marks_awarded ?? null,
+    previousId: (latestRes.data as { id?: string } | null)?.id ?? null,
+  })
+
+  const { data: inserted, error: insertError } = await supabase
+    .from('teacher_overrides')
+    .insert(write.row)
+    .select('id')
+    .single()
+  if (insertError || !inserted) {
+    // The student left or was removed between the read and the write.
+    if (isRlsViolation(insertError)) return jsonError(404, 'Attempt not found')
+    if (isCheckViolation(insertError)) {
+      return jsonError(400, 'The note is too long — keep it to 1,000 characters.', 'reasoning_note')
+    }
+    return serverError('override', { attemptId: attempt.id, step: 'insert' }, insertError, 'Could not save the decision. Try again.')
+  }
+  const overrideId = (inserted as { id: string }).id
+
+  if (write.attemptUpdate) {
+    const { error: updateError } = await admin.from('attempts').update(write.attemptUpdate).eq('id', attempt.id)
+    if (updateError) {
+      const { error: undoError } = await supabase.from('teacher_overrides').delete().eq('id', overrideId)
+      if (undoError) {
+        console.error('[teacher/override] could not remove the row after a failed attempt update', {
+          overrideId,
+          error: undoError.message,
+        })
+      }
+      return serverError(
+        'override',
+        { attemptId: attempt.id, step: 'attempt-update' },
+        updateError,
+        'Could not save the new mark. Try again.'
+      )
+    }
+  }
+
+  await Promise.all([
+    onOverrideSaved(attempt.id),
+    auditLog({
+      actorId: user.id,
+      classroomId: classroom.id,
+      studentId: attempt.user_id,
+      action: 'override',
+      meta: {
+        attempt_id: attempt.id,
+        override_id: overrideId,
+        decision: decision.decision,
+        marks_before: toNumber(attempt.marks_earned),
+        marks_after: write.marksEarnedAfter,
+        total_marks: toNumber(attempt.total_marks),
+        student_visible: decision.student_visible,
+        ...(scope.set ? { assignment_id: scope.set.id } : {}),
+      },
+    }),
+  ])
+
+  return jsonOk({ marks_earned: write.marksEarnedAfter, decision: decision.decision, override_id: overrideId })
 }

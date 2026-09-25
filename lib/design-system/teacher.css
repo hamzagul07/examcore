@@ -1,17 +1,348 @@
 /*
- * Teacher surfaces.
+ * Teacher surfaces — the Examiner's Ink design system for /teacher/**.
  *
- * The teacher side was built early and never revisited, so its styling lived in
- * mobile-only media queries in mobile-refinements.css — which meant it had no
- * desktop design at all, only Tailwind defaults. This is the missing half.
+ * This file is the CSS contract of the teacher system v2
+ * (docs/TEACHER_SYSTEM_SPEC.md §2.6, lib/teacher/CONTRACTS.md §7). Every
+ * package builds its markup against the blocks below and none of them
+ * redefines a block: if you need a variation, ask for a modifier here.
  *
- * Everything uses the shared tokens so the teacher area inherits both themes
- * rather than needing its own light/dark handling.
+ * Rules every block follows (so both themes work without per-theme CSS):
+ *   - Colour comes from tokens only (--ec-*, --acc-*, --acc). No hex, no rgba
+ *     literals, no blur. Tints are color-mix() of a token with transparent or
+ *     with --ec-paper.
+ *   - 4px radius everywhere, hard offset shadows from the --ec-shadow-* tokens.
+ *   - Interactive targets are at least 44px (--ec-touch-min).
+ *   - Green (--ec-brand) is awarded / done / go; crimson (--ec-ink-crimson for
+ *     text, --ec-logo-crimson for spines) is late / missing / danger. That dual
+ *     ink is the brand story, so a state never borrows the other colour.
+ *   - Motion is transform/colour transitions only; the global
+ *     prefers-reduced-motion rule (app/globals.css) zeroes them.
+ *
+ * Each block below opens with a one-line comment and an example of the markup
+ * it expects. Elements are BEM (__element, --modifier).
  */
 
-/* ---------------------------------------------------------------------------
- * Teacher setup — the one screen that turns somebody into a teacher
- * ------------------------------------------------------------------------ */
+/* ===========================================================================
+ * 1. Frame — header, bottom tab bar, page heads
+ * ======================================================================== */
+
+/* Main column of every teacher page. <main class="app-shell ms-teacher-layout"> */
+.ms-teacher-layout {
+  min-width: 0;
+}
+
+/* Teacher header. <header class="ms-teacher-nav"><div class="ms-teacher-nav__inner">…</div></header> */
+.ms-teacher-nav {
+  position: sticky;
+  top: 0;
+  z-index: var(--ec-z-sticky);
+  border-bottom: 1px solid var(--ec-border);
+  background: var(--ec-paper);
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+/* Dual-ink rule along the top edge — the same green|crimson filing strip the
+   invite slip and reteach card carry, so the teacher frame reads as one desk. */
+.ms-teacher-nav::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ec-brand) 0%,
+    var(--ec-brand) 55%,
+    var(--ec-logo-crimson) 55%,
+    var(--ec-logo-crimson) 100%
+  );
+  pointer-events: none;
+}
+
+.ms-teacher-nav__inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 80rem;
+  min-width: 0;
+  margin: 0 auto;
+  padding: 10px 12px;
+  overflow-x: clip;
+}
+
+@media (min-width: 640px) {
+  .ms-teacher-nav__inner {
+    gap: 12px;
+    padding: 12px 24px;
+  }
+}
+
+/* Wordmark: <a class="ms-teacher-nav__brand"><span class="ms-teacher-nav__brand-stamp">TCH</span>…</a> */
+.ms-teacher-nav__brand {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--ec-touch-min);
+  color: var(--ec-text-primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.ms-teacher-nav__brand-stamp {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 6px;
+  border: 1px solid var(--ec-brand-border);
+  border-radius: 4px;
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.ms-teacher-nav__brand-sub {
+  color: var(--ec-text-secondary);
+  font-weight: 400;
+}
+
+/* Desktop link row. Hidden at ≤900px, where .ms-teacher-tabbar takes over. */
+.ms-teacher-nav__links {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  /* Just above the tab-bar breakpoint the row is tight; it scrolls rather
+     than pushing the utilities off the edge. */
+  overflow-x: auto;
+  scrollbar-width: none;
+  /* Room for the active link's offset shadow inside the scroll box. */
+  padding: 2px 4px 4px 0;
+}
+
+.ms-teacher-nav__links::-webkit-scrollbar {
+  display: none;
+}
+
+/* One destination: <a class="ms-teacher-nav__link" aria-current="page"><span class="ms-teacher-nav__stamp">DK</span>Desk</a> */
+.ms-teacher-nav__link {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--ec-touch-min);
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: var(--ec-text-secondary);
+  font-size: 0.875rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 140ms ease,
+    color 140ms ease,
+    border-color 140ms ease;
+}
+
+.ms-teacher-nav__link:hover {
+  background: var(--ec-surface-raised);
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-nav__link[aria-current='page'] {
+  border-color: var(--ec-brand-border);
+  background: var(--ec-brand-muted);
+  color: var(--ec-text-primary);
+  box-shadow: var(--ec-shadow-elevation-1);
+}
+
+.ms-teacher-nav__stamp {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ec-brand);
+}
+
+.ms-teacher-nav__spacer {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Right-hand utilities: bell, theme, account, sign out. */
+.ms-teacher-nav__utils {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Icon-only stamp button (ACC / OUT): <a class="ms-teacher-nav__util" aria-label="Account">ACC</a> */
+.ms-teacher-nav__util {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--ec-touch-min);
+  min-height: var(--ec-touch-min);
+  padding: 0 6px;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: var(--ec-text-secondary);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 140ms ease,
+    color 140ms ease;
+}
+
+.ms-teacher-nav__util:hover {
+  background: var(--ec-surface-raised);
+  color: var(--ec-text-primary);
+}
+
+/* The community bell renders a 28px glyph; the header gives it a full touch target. */
+.ms-teacher-nav .notif-bell {
+  display: inline-grid;
+  place-items: center;
+  min-width: var(--ec-touch-min);
+  min-height: var(--ec-touch-min);
+}
+
+@media (max-width: 900px) {
+  .ms-teacher-nav__links {
+    display: none;
+  }
+
+  /* Account and sign-out live in the tab bar / account page on a phone; the
+     header keeps only the bell and theme so the wordmark never truncates. */
+  .ms-teacher-nav__util--wide {
+    display: none;
+  }
+}
+
+/* The shared theme toggle is sized for marketing headers; in the teacher frame
+   each half gets a 36px square so, with the group's 4px padding, the whole
+   control is a 44px target. */
+.ms-teacher-nav .ms-theme-switcher button {
+  min-width: 36px;
+  min-height: 36px;
+  justify-content: center;
+}
+
+@media (max-width: 420px) {
+  .ms-teacher-nav__brand-sub {
+    display: none;
+  }
+}
+
+/* Phone bottom bar, on the shared .ec-tabbar: <nav class="ec-tabbar ms-teacher-tabbar">…</nav> */
+.ms-teacher-tabbar {
+  z-index: var(--ec-z-overlay);
+}
+
+@media (max-width: 900px) {
+  .ms-teacher-tabbar {
+    /* The shared bar already pads for the home indicator; the side insets
+       matter in landscape on notched phones, where the outer tabs sat under
+       the sensor housing. */
+    padding-left: max(4px, env(safe-area-inset-left, 0px));
+    padding-right: max(4px, env(safe-area-inset-right, 0px));
+  }
+
+  .ms-teacher-tabbar .ec-tabbar-link {
+    min-height: 52px;
+  }
+
+  /* Unread/queue count on a tab: <span class="ms-teacher-tabbar__count">3</span> */
+  .ms-teacher-tabbar__count {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    min-width: 18px;
+    padding: 0 5px;
+    border-radius: 4px;
+    background: var(--ec-ink-crimson);
+    color: var(--ec-paper);
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: center;
+  }
+
+  .ms-teacher-tabbar .ec-tabbar__glyph {
+    position: relative;
+  }
+}
+
+/* Page head: <header class="ms-teacher-desk-head"><div>eyebrow + h1 + __note</div><div class="ms-teacher-desk-head__actions">…</div></header> */
+.ms-teacher-desk-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px 20px;
+  margin-bottom: 28px;
+}
+
+.ms-teacher-desk-head__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+/* Handwritten Caveat aside under a page title ("3 sets due this week"). */
+.ms-teacher-desk-head__note {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--ec-font-handwriting);
+  font-size: 18px;
+  color: var(--ec-ink-crimson);
+  transform: rotate(-1deg);
+}
+
+.ms-teacher-desk-head__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 520px) {
+  .ms-teacher-desk-head__actions {
+    width: 100%;
+  }
+
+  .ms-teacher-desk-head__actions > * {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
+/* Section heading inside a teacher page: <h2 class="ms-teacher-section-title">Archived</h2> */
+.ms-teacher-section-title {
+  margin: 0 0 12px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+/* ===========================================================================
+ * 2. Teacher setup — /for-teachers/start and /teacher/classrooms/new
+ * ======================================================================== */
 
 .ms-teacher-start-shell {
   display: flex;
@@ -24,10 +355,10 @@
   width: 100%;
   max-width: 34rem;
   padding: 28px 24px 24px;
-  background: var(--ec-paper, var(--ec-surface));
+  background: var(--ec-paper);
   border: 1.5px solid var(--ec-border);
   border-radius: 4px;
-  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
+  box-shadow: var(--ec-shadow-hard);
   overflow: hidden;
 }
 
@@ -42,8 +373,8 @@
     90deg,
     var(--ec-brand) 0%,
     var(--ec-brand) 55%,
-    var(--ec-logo-crimson, var(--ec-ink-crimson)) 55%,
-    var(--ec-logo-crimson, var(--ec-ink-crimson)) 100%
+    var(--ec-logo-crimson) 55%,
+    var(--ec-logo-crimson) 100%
   );
   pointer-events: none;
 }
@@ -68,6 +399,36 @@
   line-height: 1.6;
 }
 
+/* What happens next, as three ruled lines: <ol class="ms-teacher-start__steps"><li>…</li></ol> */
+.ms-teacher-start__steps {
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: ms-start-step;
+  border-top: 1px solid var(--ec-paper-rule);
+}
+
+.ms-teacher-start__steps li {
+  display: grid;
+  grid-template-columns: 1.75rem 1fr;
+  gap: 10px;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--ec-paper-rule);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+  counter-increment: ms-start-step;
+}
+
+.ms-teacher-start__steps li::before {
+  content: counter(ms-start-step);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--ec-brand);
+}
+
 .ms-teacher-start {
   margin-top: 2rem;
   display: flex;
@@ -82,6 +443,7 @@
   border: 0;
   padding: 0;
   margin: 0;
+  min-width: 0;
 }
 
 .ms-teacher-start__legend {
@@ -102,17 +464,18 @@
   align-items: center;
   gap: 0.5rem;
   /* 44px minimum: this is filled on a phone in a staffroom as often as at a desk. */
-  min-height: 44px;
+  min-height: var(--ec-touch-min);
   padding: 0.625rem 1rem;
   border-radius: 4px;
   border: 1.5px solid var(--ec-border);
-  background: var(--ec-paper, var(--ec-surface));
-  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-elevation-1);
   color: var(--ec-text-secondary);
   font-family: var(--font-mono, ui-monospace, monospace);
   font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.03em;
+  cursor: pointer;
   transition:
     border-color 0.15s ease,
     color 0.15s ease,
@@ -131,35 +494,38 @@
 .ms-teacher-start__choice.on,
 .ms-teacher-start__choice[aria-selected='true'] {
   border-color: var(--ec-brand);
-  background: color-mix(in srgb, var(--ec-brand) 8%, var(--ec-paper, var(--ec-surface)));
+  background: color-mix(in srgb, var(--ec-brand) 8%, var(--ec-paper));
   color: var(--ec-brand);
-  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.07));
+  box-shadow: var(--ec-shadow-elevation-1);
   transform: rotate(-1.5deg);
+}
+
+.ms-teacher-start__choice:disabled,
+.ms-teacher-start__choice.is-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .ms-teacher-start__note {
   display: block;
   margin-top: 10px;
-  font-family: var(--ec-font-handwriting, var(--font-handwritten, 'Caveat', cursive));
+  font-family: var(--ec-font-handwriting);
   font-size: 18px;
-  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
+  color: var(--ec-ink-crimson);
   transform: rotate(-1deg);
 }
 
 .ms-teacher-start__error {
   padding: 12px 14px;
-  border: 1.5px solid color-mix(in srgb, var(--ec-logo-crimson, var(--ec-ink-crimson)) 40%, var(--ec-border));
-  border-left: 3px solid var(--ec-logo-crimson, var(--ec-ink-crimson));
+  border: 1.5px solid color-mix(in srgb, var(--ec-logo-crimson) 40%, var(--ec-border));
+  border-left: 3px solid var(--ec-logo-crimson);
   border-radius: 4px;
-  background: color-mix(
-    in srgb,
-    var(--ec-logo-crimson, var(--ec-ink-crimson)) 6%,
-    var(--ec-paper, var(--ec-surface))
-  );
+  background: color-mix(in srgb, var(--ec-logo-crimson) 6%, var(--ec-paper));
   font-size: 13.5px;
   line-height: 1.5;
   color: var(--ec-text-primary);
-  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
+  box-shadow: var(--ec-shadow-elevation-1);
 }
 
 .ms-teacher-start__input {
@@ -186,12 +552,11 @@
   cursor: not-allowed;
 }
 
-/* ---------------------------------------------------------------------------
- * Teacher dashboard and classroom
- * ------------------------------------------------------------------------ */
+/* ===========================================================================
+ * 3. States — empty, error, demo flag, archived banner, not-found, chips
+ * ======================================================================== */
 
-/* A classroom with no students yet is the state every new teacher sees first,
- * so it is designed rather than left as centred grey text. */
+/* Designed empty state: <div class="ms-teacher-empty"><span class="ms-teacher-empty__icon">CL</span><h2 class="ms-teacher-empty__title">…</h2><p class="ms-teacher-empty__body">…</p></div> */
 .ms-teacher-empty {
   display: flex;
   flex-direction: column;
@@ -202,11 +567,334 @@
   border: 1.5px solid var(--ec-border);
   border-left: 4px solid var(--ec-brand);
   border-radius: 4px;
-  background: var(--ec-paper, var(--ec-surface));
-  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-hard);
 }
 
-/* Class file slips on the dashboard */
+.ms-teacher-empty__icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 4px;
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.ms-teacher-empty__title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-empty__body {
+  max-width: 32rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ec-text-secondary);
+}
+
+.ms-teacher-empty__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 520px) {
+  .ms-teacher-empty__actions > * {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Inline failure, always with role="alert": <div class="ms-teacher-error" role="alert"><p class="ms-teacher-error__title">…</p>…</div> */
+.ms-teacher-error {
+  padding: 16px 18px;
+  border: 1.5px solid color-mix(in srgb, var(--ec-logo-crimson) 40%, var(--ec-border));
+  border-left: 4px solid var(--ec-logo-crimson);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ec-logo-crimson) 5%, var(--ec-paper));
+  box-shadow: var(--ec-shadow-elevation-1);
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-error__title {
+  margin: 0;
+  font-weight: 600;
+}
+
+.ms-teacher-error__body {
+  margin: 0.5rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+/* Example-data banner (settings.demo): <p class="ms-teacher-demo-flag">EXAMPLE DATA …</p> */
+.ms-teacher-demo-flag {
+  padding: 14px 16px;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ec-brand) 6%, var(--ec-paper));
+  box-shadow: var(--ec-shadow-elevation-1);
+}
+
+/* Read-only banner on an archived class: <div class="ms-teacher-archived-banner" role="status">…</div> */
+.ms-teacher-archived-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  border: 1.5px dashed var(--ec-border-strong);
+  border-radius: 4px;
+  background: var(--ec-surface-muted);
+  color: var(--ec-text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Page-level 404 inside the teacher frame: <section class="ms-teacher-notfound"><span class="ms-teacher-notfound__stamp">404</span>…</section> */
+.ms-teacher-notfound {
+  position: relative;
+  max-width: 34rem;
+  margin: clamp(1rem, 6vw, 4rem) auto;
+  padding: 32px 26px 26px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-hard);
+  overflow: hidden;
+}
+
+.ms-teacher-notfound::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ec-brand) 0%,
+    var(--ec-brand) 55%,
+    var(--ec-logo-crimson) 55%,
+    var(--ec-logo-crimson) 100%
+  );
+}
+
+.ms-teacher-notfound__stamp {
+  display: inline-grid;
+  place-items: center;
+  min-width: 4.5rem;
+  height: 2.75rem;
+  padding: 0 12px;
+  border: 2px solid color-mix(in srgb, var(--ec-ink-crimson) 60%, transparent);
+  border-radius: 4px;
+  background: var(--ec-chip-critical-bg);
+  color: var(--ec-ink-crimson);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  transform: rotate(-4deg);
+  animation: ec-stamp-in 520ms cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+
+.ms-teacher-notfound__title {
+  margin: 18px 0 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: clamp(1.6rem, 5vw, 2.1rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-notfound__body {
+  margin: 10px 0 0;
+  line-height: 1.6;
+  color: var(--ec-text-secondary);
+}
+
+.ms-teacher-notfound__note {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--ec-font-handwriting);
+  font-size: 19px;
+  color: var(--ec-ink-crimson);
+  transform: rotate(-1.5deg);
+}
+
+.ms-teacher-notfound__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+/* Small state chip: <span class="ms-teacher-chip ms-teacher-chip--left">LEFT</span>
+   Modifiers: --left, --removed, --demo, --mock, --due (crimson), --draft, --archived. */
+.ms-teacher-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border: 1px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-surface-raised);
+  color: var(--ec-text-secondary);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.ms-teacher-chip--left,
+.ms-teacher-chip--removed,
+.ms-teacher-chip--archived {
+  border-style: dashed;
+  background: transparent;
+  color: var(--ec-text-faint);
+}
+
+.ms-teacher-chip--demo,
+.ms-teacher-chip--draft {
+  border-color: var(--ec-brand-border);
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+}
+
+.ms-teacher-chip--mock {
+  border-color: color-mix(in srgb, var(--ec-pen) 45%, transparent);
+  background: color-mix(in srgb, var(--ec-pen) 8%, transparent);
+  color: var(--ec-pen);
+}
+
+.ms-teacher-chip--due {
+  border-color: color-mix(in srgb, var(--ec-ink-crimson) 45%, transparent);
+  background: var(--ec-chip-critical-bg);
+  color: var(--ec-ink-crimson);
+}
+
+/* ===========================================================================
+ * 4. Desk — needs-you strip, class slips, tallies
+ * ======================================================================== */
+
+/* What needs the teacher today, as spine tiles:
+   <nav class="ms-needs-you" aria-label="Needs you"><a class="ms-needs-you__tile ms-needs-you__tile--urgent" href><span class="ms-needs-you__count">4</span><span class="ms-needs-you__label">scripts to review</span><span class="ms-needs-you__hint">oldest 3 days</span></a>…</nav>
+   Modifiers on a tile: --urgent (crimson spine), --clear (nothing to do; muted). */
+.ms-needs-you {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 28px;
+  padding: 0;
+  list-style: none;
+}
+
+.ms-needs-you > li {
+  display: flex;
+  min-width: 0;
+}
+
+.ms-needs-you__tile {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    'count label'
+    'count hint';
+  align-items: center;
+  gap: 2px 12px;
+  width: 100%;
+  min-height: 72px;
+  padding: 14px 16px 14px 18px;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-elevation-1);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    border-color 140ms ease;
+}
+
+a.ms-needs-you__tile:hover {
+  transform: translate(-1px, -2px);
+  box-shadow: var(--ec-shadow-elevation-2);
+}
+
+.ms-needs-you__tile--urgent {
+  border-left-color: var(--ec-logo-crimson);
+}
+
+.ms-needs-you__tile--clear {
+  border-left-color: var(--ec-border);
+  box-shadow: none;
+}
+
+.ms-needs-you__count {
+  grid-area: count;
+  min-width: 2ch;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: clamp(1.75rem, 3vw, 2.15rem);
+  font-weight: 500;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--ec-text-primary);
+}
+
+.ms-needs-you__tile--urgent .ms-needs-you__count {
+  color: var(--ec-ink-crimson);
+}
+
+.ms-needs-you__tile--clear .ms-needs-you__count {
+  color: var(--ec-text-faint);
+}
+
+.ms-needs-you__label {
+  grid-area: label;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ec-text-primary);
+}
+
+.ms-needs-you__hint {
+  grid-area: hint;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+@media (max-width: 720px) {
+  .ms-needs-you {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .ms-needs-you__tile {
+    min-height: 60px;
+  }
+}
+
+/* Class slips: <ul class="ms-teacher-class-list"><li><a class="ms-teacher-class-slip" style="--acc: var(--acc-blue)">…</a></li></ul> */
 .ms-teacher-class-list {
   display: flex;
   flex-direction: column;
@@ -216,16 +904,19 @@
   list-style: none;
 }
 
+/* One class, filed as a slip. --acc is the subject accent (accentCssVar(getSubjectAccent(code))).
+   Elements: __stamp (subject), __body, __name, __meta, __code, __tally, __go. Modifier: --archived. */
 .ms-teacher-class-slip {
+  --acc: var(--ec-brand);
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 14px 16px;
   align-items: center;
   padding: 16px 18px;
   border: 1.5px solid var(--ec-border);
   border-radius: 4px;
-  background: var(--ec-paper, var(--ec-surface));
-  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.07));
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-elevation-1);
   text-decoration: none;
   color: inherit;
   transition:
@@ -234,26 +925,43 @@
     border-color 140ms ease;
 }
 
-.ms-teacher-class-slip:hover {
+a.ms-teacher-class-slip:hover {
   transform: translate(-1px, -2px);
-  border-color: color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border));
-  box-shadow: var(--ec-shadow-hard, 5px 5px 0 rgba(0, 0, 0, 0.1));
+  border-color: color-mix(in srgb, var(--acc) 35%, var(--ec-border));
+  box-shadow: var(--ec-shadow-elevation-2);
+}
+
+.ms-teacher-class-slip--archived {
+  border-style: dashed;
+  background: var(--ec-surface-muted);
+  box-shadow: none;
 }
 
 .ms-teacher-class-slip__stamp {
   display: inline-grid;
   place-items: center;
-  min-width: 2.5rem;
-  height: 2.5rem;
+  min-width: 2.75rem;
+  height: 2.75rem;
   padding: 0 0.5rem;
-  border: 1.5px solid var(--ec-brand-border);
+  border: 1.5px solid color-mix(in srgb, var(--acc) 45%, transparent);
   border-radius: 4px;
-  background: var(--ec-brand-muted);
+  background: color-mix(in srgb, var(--acc) 10%, var(--ec-paper));
   font-family: var(--font-mono, ui-monospace, monospace);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.06em;
-  color: var(--ec-brand);
+  color: var(--acc);
+  transform: rotate(-3deg);
+}
+
+.ms-teacher-class-slip--archived .ms-teacher-class-slip__stamp {
+  transform: none;
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+
+.ms-teacher-class-slip__body {
+  min-width: 0;
 }
 
 .ms-teacher-class-slip__name {
@@ -261,12 +969,15 @@
   font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-size: 1.2rem;
   font-weight: 500;
+  line-height: 1.25;
   color: var(--ec-text-primary);
+  overflow-wrap: anywhere;
 }
 
 .ms-teacher-class-slip__meta {
   margin: 4px 0 0;
   font-size: 13px;
+  line-height: 1.45;
   color: var(--ec-text-secondary);
 }
 
@@ -278,6 +989,55 @@
   font-weight: 700;
 }
 
+/* Mini tally row: <dl class="ms-teacher-class-slip__tally"><div><dt>late</dt><dd>3</dd></div>…</dl> */
+.ms-teacher-class-slip__tally {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0 0;
+  padding: 0;
+}
+
+.ms-teacher-class-slip__tally > div {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 2px 8px;
+  border: 1px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-surface-raised);
+}
+
+.ms-teacher-class-slip__tally dt {
+  order: 2;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.ms-teacher-class-slip__tally dd {
+  order: 1;
+  margin: 0;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-class-slip__tally > .is-alert {
+  border-color: color-mix(in srgb, var(--ec-ink-crimson) 40%, transparent);
+  background: var(--ec-chip-critical-bg);
+}
+
+.ms-teacher-class-slip__tally > .is-alert dd,
+.ms-teacher-class-slip__tally > .is-alert dt {
+  color: var(--ec-ink-crimson);
+}
+
 .ms-teacher-class-slip__go {
   font-family: var(--font-mono, ui-monospace, monospace);
   font-size: 11px;
@@ -285,9 +1045,62 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ec-brand);
+  white-space: nowrap;
 }
 
-/* Summary tallies — not three soft cards */
+@media (max-width: 640px) {
+  .ms-teacher-class-slip {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding: 14px;
+  }
+
+  .ms-teacher-class-slip__go {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Collapsed archive under the class list: <details class="ms-teacher-archive"><summary class="ms-teacher-archive__summary">Archived (2)</summary>…</details> */
+.ms-teacher-archive {
+  margin-top: 28px;
+  border-top: 1px dashed var(--ec-border);
+  padding-top: 16px;
+}
+
+.ms-teacher-archive__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: var(--ec-touch-min);
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-teacher-archive__summary::-webkit-details-marker {
+  display: none;
+}
+
+.ms-teacher-archive__summary::after {
+  content: '+';
+  font-size: 14px;
+  color: var(--ec-text-faint);
+}
+
+.ms-teacher-archive[open] > .ms-teacher-archive__summary::after {
+  content: '\2212';
+}
+
+.ms-teacher-archive .ms-disclosure__panel {
+  padding-top: 8px;
+}
+
+/* Summary tallies — not three soft cards: <div class="ms-teacher-tally"><div class="ms-teacher-tally__cell"><p class="ms-teacher-tally__label">…</p><p class="ms-teacher-tally__value">…</p></div></div> */
 .ms-teacher-tally {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -299,8 +1112,8 @@
   padding: 14px 14px 12px;
   border: 1.5px solid var(--ec-border);
   border-radius: 4px;
-  background: var(--ec-paper, var(--ec-surface));
-  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.06));
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-elevation-1);
 }
 
 .ms-teacher-tally__label {
@@ -319,214 +1132,246 @@
   font-size: clamp(1.75rem, 3vw, 2.15rem);
   font-weight: 500;
   line-height: 1;
+  font-variant-numeric: tabular-nums;
   color: var(--ec-text-primary);
-}
-
-/* Invite — green-spine filing slip */
-.ms-teacher-invite {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 28px;
-  padding: 20px 18px 18px;
-  border: 1.5px solid var(--ec-border);
-  border-left: 4px solid var(--ec-brand);
-  border-radius: 4px;
-  background: var(--ec-paper, var(--ec-surface));
-  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.09));
-}
-
-.ms-teacher-invite::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    var(--ec-brand) 0%,
-    var(--ec-brand) 55%,
-    var(--ec-logo-crimson, var(--ec-ink-crimson)) 55%,
-    var(--ec-logo-crimson, var(--ec-ink-crimson)) 100%
-  );
-}
-
-.ms-teacher-roster {
-  margin-bottom: 28px;
-  padding: 18px 16px;
-  border: 1.5px solid var(--ec-border);
-  border-radius: 4px;
-  background: var(--ec-paper, var(--ec-surface));
-  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.07));
-}
-
-.ms-teacher-roster__list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.ms-teacher-roster__row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  min-height: 52px;
-  padding: 10px 12px;
-  border: 1.5px solid var(--ec-border);
-  border-radius: 4px;
-  background: var(--ec-paper, var(--ec-surface));
-  text-decoration: none;
-  color: inherit;
-  transition: border-color 140ms ease, transform 140ms ease;
-}
-
-.ms-teacher-roster__row:hover {
-  transform: translate(-1px, -1px);
-  border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border));
-}
-
-.ms-teacher-desk-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 14px 20px;
-  margin-bottom: 28px;
-}
-
-.ms-teacher-desk-head__note {
-  display: block;
-  margin-top: 8px;
-  font-family: var(--ec-font-handwriting, var(--font-handwritten, 'Caveat', cursive));
-  font-size: 18px;
-  color: var(--ec-logo-crimson, var(--ec-ink-crimson));
-  transform: rotate(-1deg);
-}
-
-.ms-teacher-error {
-  padding: 16px 18px;
-  border: 1.5px solid color-mix(in srgb, var(--ec-logo-crimson, var(--ec-ink-crimson)) 40%, var(--ec-border));
-  border-left: 4px solid var(--ec-logo-crimson, var(--ec-ink-crimson));
-  border-radius: 4px;
-  background: color-mix(
-    in srgb,
-    var(--ec-logo-crimson, var(--ec-ink-crimson)) 5%,
-    var(--ec-paper, var(--ec-surface))
-  );
-  box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.06));
-}
-
-/* Demo / example-class banner — ink stamp, not an error */
-.ms-teacher-demo-flag {
-  padding: 14px 16px;
-  border: 1.5px solid var(--ec-border);
-  border-left: 4px solid var(--ec-brand);
-  border-radius: 4px;
-  background: color-mix(in srgb, var(--ec-brand) 6%, var(--ec-paper, var(--ec-surface)));
-  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
-}
-
-.ms-teacher-risk-legend__cell {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px;
-  border: 1.5px solid var(--ec-border);
-  border-radius: 4px;
-  background: var(--ec-paper, var(--ec-surface));
-  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
-}
-
-.ms-teacher-risk-legend__stamp {
-  display: inline-grid;
-  place-items: center;
-  min-width: 2rem;
-  height: 2rem;
-  padding: 0 0.35rem;
-  border: 1.5px solid var(--ec-brand-border);
-  border-radius: 4px;
-  background: var(--ec-brand-muted);
-  font-family: var(--font-mono, ui-monospace, monospace);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  color: var(--ec-brand);
 }
 
 @media (max-width: 640px) {
   .ms-teacher-tally {
     grid-template-columns: 1fr;
   }
-
-  .ms-teacher-class-slip {
-    grid-template-columns: auto 1fr;
-  }
-
-  .ms-teacher-class-slip__go {
-    grid-column: 1 / -1;
-  }
 }
 
-.ms-teacher-empty__icon {
-  display: grid;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 4px;
-  background: var(--ec-brand-muted);
-  color: var(--ec-brand);
+/* ===========================================================================
+ * 5. Class page — tabs, set slips, reteach, students to watch, error groups
+ * ======================================================================== */
+
+/* Class tabs (Week · Sets · Students · Gaps · Reviews · Settings), aria-current on the open one:
+   <nav class="ms-teacher-tabs" aria-label="Class sections"><a class="ms-teacher-tabs__tab" aria-current="page" href>Week<span class="ms-teacher-tabs__count">3</span></a>…</nav> */
+.ms-teacher-tabs {
+  display: flex;
+  gap: 2px;
+  margin: 0 0 24px;
+  padding: 0;
+  border-bottom: 1.5px solid var(--ec-border);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
-.ms-teacher-empty__title {
-  font-size: 1.0625rem;
-  font-weight: 600;
-  color: var(--ec-text-primary);
+.ms-teacher-tabs::-webkit-scrollbar {
+  display: none;
 }
 
-.ms-teacher-empty__body {
-  max-width: 32rem;
-  font-size: 0.9375rem;
-  line-height: 1.6;
+.ms-teacher-tabs__tab {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--ec-touch-min);
+  padding: 10px 14px;
+  border: 1.5px solid transparent;
+  border-bottom: 0;
+  border-radius: 4px 4px 0 0;
+  margin-bottom: -1.5px;
   color: var(--ec-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color 140ms ease,
+    background-color 140ms ease;
 }
 
-/* The invite code is read aloud to a room, so it is the loudest thing on the
- * page and set in a face where 8 and B cannot be confused. */
-.ms-teacher-invite code {
-  font-variant-numeric: tabular-nums slashed-zero;
-  letter-spacing: 0.12em;
-}
-
-/* Cohort gap report bars — the artifact a cold-emailed teacher is shown first. */
-.ms-gap-row + .ms-gap-row {
-  margin-top: 0.875rem;
-}
-
-.ms-gap-track {
-  height: 0.5rem;
-  width: 100%;
-  overflow: hidden;
-  border-radius: 4px;
+.ms-teacher-tabs__tab:hover {
+  color: var(--ec-text-primary);
   background: var(--ec-surface-raised);
 }
 
-.ms-gap-fill {
-  height: 100%;
-  border-radius: 4px;
-  transition: width 0.4s ease;
+.ms-teacher-tabs__tab[aria-current='page'] {
+  border-color: var(--ec-border);
+  background: var(--ec-paper);
+  color: var(--ec-text-primary);
+  font-weight: 600;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .ms-gap-fill {
-    transition: none;
+/* The open tab gets the examiner's green underline, so the strip reads as a
+   filed tab rather than a pill toggle. */
+.ms-teacher-tabs__tab[aria-current='page']::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 0;
+  height: 2px;
+  background: var(--ec-brand);
+}
+
+.ms-teacher-tabs__count {
+  min-width: 18px;
+  padding: 0 5px;
+  border-radius: 4px;
+  background: var(--ec-surface-raised);
+  color: var(--ec-text-secondary);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+}
+
+.ms-teacher-tabs__count--alert {
+  background: var(--ec-chip-critical-bg);
+  color: var(--ec-ink-crimson);
+}
+
+/* One set of work, filed as a slip (assignments list, WeekStrip):
+   <a class="ms-set-slip" href><span class="ms-set-slip__stamp">PPR</span><span class="ms-set-slip__body"><span class="ms-set-slip__title">…</span><span class="ms-set-slip__meta">…</span><span class="ms-class-due__bar"><span class="ms-class-due__fill ms-class-due__fill--done" style="width:60%"></span>…</span><span class="ms-set-slip__late">3 late: Amira, Ben, +1</span></span><span class="ms-set-slip__tally">18/24</span></a>
+   Modifiers: --draft (dashed), --closed (muted), --mock (pen spine). */
+.ms-set-slip {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 12px 16px;
+  align-items: center;
+  padding: 14px 16px;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-elevation-1);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease;
+}
+
+a.ms-set-slip:hover {
+  transform: translate(-1px, -2px);
+  box-shadow: var(--ec-shadow-elevation-2);
+}
+
+.ms-set-slip--draft {
+  border-style: dashed;
+  border-left-style: solid;
+  border-left-color: var(--ec-border-strong);
+  box-shadow: none;
+}
+
+.ms-set-slip--closed {
+  border-left-color: var(--ec-border);
+  background: var(--ec-surface-muted);
+  box-shadow: none;
+}
+
+.ms-set-slip--mock {
+  border-left-color: var(--ec-pen);
+}
+
+/* Kind stamp: Q · PPR · DRL · PRM */
+.ms-set-slip__stamp {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.75rem;
+  height: 2.25rem;
+  padding: 0 6px;
+  border: 1.5px solid var(--ec-brand-border);
+  border-radius: 4px;
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  transform: rotate(-3deg);
+}
+
+.ms-set-slip__body {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ms-set-slip__title {
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--ec-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.ms-set-slip__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  font-size: 0.8125rem;
+  color: var(--ec-text-secondary);
+}
+
+.ms-set-slip__due {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ec-text-secondary);
+}
+
+.ms-set-slip__due--late {
+  color: var(--ec-ink-crimson);
+}
+
+.ms-set-slip__late {
+  font-size: 0.8125rem;
+  color: var(--ec-ink-crimson);
+}
+
+.ms-set-slip__tally {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ec-text-primary);
+  white-space: nowrap;
+}
+
+.ms-set-slip__tally small {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: right;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.ms-set-slip .ms-class-due__bar {
+  display: flex;
+  height: 0.45rem;
+  margin-top: 2px;
+}
+
+@media (max-width: 640px) {
+  .ms-set-slip {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .ms-set-slip__tally {
+    grid-column: 2;
+  }
+
+  .ms-set-slip__tally small {
+    display: inline;
+    margin-left: 6px;
   }
 }
 
-/* Class due list — topics cooling off across the roster */
+/* Class due list and the done/late/missing bar the set slips reuse. */
 .ms-class-due__head {
   display: flex;
   flex-wrap: wrap;
@@ -580,24 +1425,33 @@
   padding-bottom: 0;
 }
 
-.ms-class-due__row-main { grid-area: main; min-width: 0; }
+.ms-class-due__row-main {
+  grid-area: main;
+  min-width: 0;
+}
+
 .ms-class-due__name {
   margin: 0;
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--ec-text-primary);
 }
+
 .ms-class-due__code {
   font-weight: 500;
   color: var(--ec-text-secondary);
   font-size: 0.85rem;
 }
+
 .ms-class-due__meta {
   margin: 0.2rem 0 0;
   font-size: 0.78rem;
   color: var(--ec-text-secondary);
   line-height: 1.4;
 }
+
+/* Progress bar: <span class="ms-class-due__bar"><span class="ms-class-due__fill" style="width:40%"></span></span>
+   Stacked done/late/missing: add ms-class-due__fill--done | --late | --missing to consecutive fills. */
 .ms-class-due__bar {
   grid-area: bar;
   height: 0.4rem;
@@ -605,12 +1459,37 @@
   background: var(--ec-surface-raised);
   overflow: hidden;
 }
+
 .ms-class-due__fill {
   display: block;
   height: 100%;
   border-radius: 4px;
-  background: var(--ec-logo-crimson, var(--ec-ink-crimson, var(--ec-brand)));
+  background: var(--ec-ink-crimson);
 }
+
+.ms-class-due__bar > .ms-class-due__fill--done,
+.ms-class-due__bar > .ms-class-due__fill--late,
+.ms-class-due__bar > .ms-class-due__fill--missing {
+  flex: none;
+  border-radius: 0;
+}
+
+.ms-class-due__fill--done {
+  background: var(--ec-brand);
+}
+
+.ms-class-due__fill--late {
+  background: var(--ec-ink-crimson);
+}
+
+.ms-class-due__fill--missing {
+  background: repeating-linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--ec-text-faint) 35%, transparent) 0 3px,
+    transparent 3px 6px
+  );
+}
+
 .ms-class-due__pct {
   grid-area: pct;
   font-family: var(--font-mono, ui-monospace, monospace);
@@ -619,12 +1498,1256 @@
   color: var(--ec-text-primary);
   font-variant-numeric: tabular-nums;
 }
+
 .ms-class-due__act {
   margin-top: 1.25rem;
   padding-top: 1rem;
   border-top: 1px solid var(--ec-border);
 }
 
+/* Reteach card — the headline gap of the last closed set, with a dual-ink rule:
+   <section class="ms-reteach"><p class="ms-reteach__eyebrow">Reteach</p><h2 class="ms-reteach__gap">…</h2><p class="ms-reteach__evidence">…</p><span class="ms-reteach__note">…</span><div class="ms-reteach__actions">…</div></section> */
+.ms-reteach {
+  position: relative;
+  margin-bottom: 28px;
+  padding: 22px 20px 18px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-hard);
+  overflow: hidden;
+}
+
+.ms-reteach::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ec-brand) 0%,
+    var(--ec-brand) 55%,
+    var(--ec-logo-crimson) 55%,
+    var(--ec-logo-crimson) 100%
+  );
+}
+
+.ms-reteach__eyebrow {
+  margin: 0 0 8px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ec-ink-crimson);
+}
+
+.ms-reteach__gap {
+  margin: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--ec-text-primary);
+}
+
+.ms-reteach__evidence {
+  margin: 8px 0 0;
+  max-width: 44rem;
+  font-size: 0.925rem;
+  line-height: 1.6;
+  color: var(--ec-text-secondary);
+}
+
+.ms-reteach__note {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--ec-font-handwriting);
+  font-size: 18px;
+  color: var(--ec-ink-crimson);
+  transform: rotate(-1deg);
+}
+
+.ms-reteach__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+@media (max-width: 520px) {
+  .ms-reteach__actions > * {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Students to watch — three short columns:
+   <section class="ms-students-watch"><div class="ms-students-watch__group ms-students-watch__group--silent"><h3 class="ms-students-watch__title">Silent 14 days</h3><ul class="ms-students-watch__list"><li><a class="ms-students-watch__row" href><span class="ms-students-watch__name">…</span><span class="ms-students-watch__meta">…</span></a></li></ul></div>…</section>
+   Group modifiers: --silent (faint spine), --struggling (crimson), --improving (green). */
+.ms-students-watch {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.ms-students-watch__group {
+  min-width: 0;
+  padding: 14px 14px 10px;
+  border: 1.5px solid var(--ec-border);
+  border-top: 3px solid var(--ec-text-faint);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-elevation-1);
+}
+
+.ms-students-watch__group--struggling {
+  border-top-color: var(--ec-logo-crimson);
+}
+
+.ms-students-watch__group--improving {
+  border-top-color: var(--ec-brand);
+}
+
+.ms-students-watch__title {
+  margin: 0 0 8px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-students-watch__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ms-students-watch__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: var(--ec-touch-min);
+  padding: 6px 0;
+  border-bottom: 1px dashed color-mix(in srgb, var(--ec-border) 85%, transparent);
+  color: inherit;
+  text-decoration: none;
+}
+
+.ms-students-watch__list li:last-child .ms-students-watch__row {
+  border-bottom: none;
+}
+
+a.ms-students-watch__row:hover .ms-students-watch__name {
+  color: var(--ec-brand);
+}
+
+.ms-students-watch__name {
+  min-width: 0;
+  font-size: 0.925rem;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.ms-students-watch__meta {
+  flex-shrink: 0;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ec-text-secondary);
+}
+
+.ms-students-watch__group--struggling .ms-students-watch__meta {
+  color: var(--ec-ink-crimson);
+}
+
+.ms-students-watch__group--improving .ms-students-watch__meta {
+  color: var(--ec-brand);
+}
+
+.ms-students-watch__empty {
+  margin: 0;
+  padding: 6px 0;
+  font-size: 0.85rem;
+  color: var(--ec-text-faint);
+}
+
+@media (max-width: 820px) {
+  .ms-students-watch {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Error group — students sharing one mistake:
+   <article class="ms-error-group"><span class="ms-error-group__stamp">M1</span><div class="ms-error-group__body"><h3 class="ms-error-group__label">…</h3><p class="ms-error-group__meta">…</p><p class="ms-error-group__students">…</p></div><div class="ms-error-group__action">…</div></article> */
+.ms-error-group {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px 14px;
+  align-items: start;
+  padding: 14px 16px;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-logo-crimson);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-elevation-1);
+}
+
+.ms-error-group + .ms-error-group {
+  margin-top: 10px;
+}
+
+.ms-error-group__stamp {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.5rem;
+  height: 2rem;
+  padding: 0 6px;
+  border: 1.5px solid color-mix(in srgb, var(--ec-ink-crimson) 55%, transparent);
+  border-radius: 4px;
+  background: var(--ec-chip-critical-bg);
+  color: var(--ec-ink-crimson);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  transform: rotate(-3deg);
+}
+
+.ms-error-group__body {
+  min-width: 0;
+}
+
+.ms-error-group__label {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ec-text-primary);
+}
+
+.ms-error-group__meta {
+  margin: 4px 0 0;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ec-text-faint);
+}
+
+.ms-error-group__students {
+  margin: 6px 0 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.ms-error-group__action {
+  align-self: center;
+}
+
+@media (max-width: 640px) {
+  .ms-error-group {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .ms-error-group__action {
+    grid-column: 1 / -1;
+  }
+
+  .ms-error-group__action > * {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ===========================================================================
+ * 6. Sets — composer and completion matrix
+ * ======================================================================== */
+
+/* Set-work composer: What · Who · When · Review, one numbered step each:
+   <form class="ms-set-composer"><section class="ms-set-composer__step"><header class="ms-set-composer__step-head"><span class="ms-set-composer__step-num">1</span><h2 class="ms-set-composer__legend">What</h2></header>…</section>…<div class="ms-set-composer__actions">…</div></form>
+   Pickers: <ul class="ms-set-composer__picker"><li><button class="ms-set-composer__pick" aria-pressed="true">…</button></li></ul>
+   Quick due chips: <div class="ms-set-composer__chips"><button class="ms-set-composer__chip" aria-pressed>Fri 4pm</button></div> */
+.ms-set-composer {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.ms-set-composer__step {
+  min-width: 0;
+  padding: 18px 18px 16px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-elevation-1);
+}
+
+.ms-set-composer__step-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.ms-set-composer__step-num {
+  display: inline-grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1.5px solid var(--ec-brand-border);
+  border-radius: 4px;
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.ms-set-composer__legend {
+  margin: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--ec-text-primary);
+}
+
+.ms-set-composer__hint {
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.ms-set-composer__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  margin: 0 0 14px;
+  padding: 0;
+  border: 0;
+}
+
+.ms-set-composer__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+}
+
+.ms-set-composer__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ms-set-composer__row > * {
+  flex: 1 1 10rem;
+  min-width: 0;
+}
+
+.ms-set-composer__choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ms-set-composer__picker {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: min(26rem, 60dvh);
+  margin: 0;
+  padding: 2px;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.ms-set-composer__pick {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: start;
+  width: 100%;
+  min-height: var(--ec-touch-min);
+  padding: 10px 12px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  color: var(--ec-text-primary);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    border-color 140ms ease,
+    background-color 140ms ease;
+}
+
+.ms-set-composer__pick:hover {
+  border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border));
+}
+
+.ms-set-composer__pick[aria-pressed='true'] {
+  border-color: var(--ec-brand);
+  background: color-mix(in srgb, var(--ec-brand) 7%, var(--ec-paper));
+}
+
+.ms-set-composer__pick-code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--ec-brand);
+  white-space: nowrap;
+}
+
+.ms-set-composer__pick-preview {
+  min-width: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--ec-text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.ms-set-composer__pick-marks {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ec-text-faint);
+  white-space: nowrap;
+}
+
+.ms-set-composer__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.ms-set-composer__chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--ec-touch-min);
+  padding: 6px 12px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  color: var(--ec-text-secondary);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ms-set-composer__chip[aria-pressed='true'] {
+  border-color: var(--ec-brand);
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+}
+
+/* The review slip before publishing — reads like an exam cover sheet. */
+.ms-set-composer__review {
+  padding: 16px 18px;
+  border: 1.5px solid var(--ec-border-strong);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-hard);
+}
+
+.ms-set-composer__review dl {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 6px 16px;
+  margin: 0;
+}
+
+.ms-set-composer__review dt {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.ms-set-composer__review dd {
+  margin: 0;
+  color: var(--ec-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.ms-set-composer__note {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--ec-font-handwriting);
+  font-size: 18px;
+  color: var(--ec-ink-crimson);
+  transform: rotate(-1deg);
+}
+
+/* Unverified teacher: "Your students use their own allowance until your seat is approved". */
+.ms-set-composer__allowance {
+  padding: 10px 12px;
+  border: 1px dashed var(--ec-border-strong);
+  border-radius: 4px;
+  background: var(--ec-surface-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+/* Publish / Save draft. Sticks to the bottom of the viewport on a phone so the
+   primary action is always one thumb away, clear of the tab bar. */
+.ms-set-composer__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+@media (max-width: 900px) {
+  .ms-set-composer__actions {
+    position: sticky;
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    z-index: 5;
+    padding: 10px;
+    border: 1.5px solid var(--ec-border);
+    border-radius: 4px;
+    background: var(--ec-paper);
+    box-shadow: var(--ec-shadow-elevation-2);
+  }
+
+  .ms-set-composer__actions > * {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
+/* Completion matrix — students × items. Wide table on desktop with a sticky
+   first column; ≤640px the component renders per-student slips instead:
+   <div class="ms-set-matrix"><div class="ms-set-matrix__scroll"><table class="ms-set-matrix__table">…<th scope="row" class="ms-set-matrix__student">…</th><td><span class="ms-set-matrix__cell ms-set-matrix__cell--done">✓ 7/9</span></td>…</table></div><ul class="ms-set-matrix__slips"><li class="ms-set-matrix__slip">…</li></ul></div> */
+.ms-set-matrix {
+  min-width: 0;
+  margin-bottom: 28px;
+}
+
+.ms-set-matrix__scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-elevation-1);
+  -webkit-overflow-scrolling: touch;
+}
+
+.ms-set-matrix__table {
+  width: 100%;
+  min-width: max-content;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.875rem;
+}
+
+.ms-set-matrix__table th,
+.ms-set-matrix__table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--ec-paper-rule);
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.ms-set-matrix__table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--ec-surface-raised);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--ec-text-secondary);
+}
+
+.ms-set-matrix__table tbody tr:last-child > * {
+  border-bottom: none;
+}
+
+/* First column (student name) stays put while the items scroll. */
+.ms-set-matrix__student {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  min-width: 9rem;
+  max-width: 14rem;
+  background: var(--ec-paper);
+  border-right: 1.5px solid var(--ec-border);
+  text-align: left !important;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ms-set-matrix__table thead .ms-set-matrix__student {
+  z-index: 3;
+  background: var(--ec-surface-raised);
+}
+
+.ms-set-matrix__student a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ms-set-matrix__student a:hover {
+  color: var(--ec-brand);
+  text-decoration: underline;
+}
+
+.ms-set-matrix__item-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.ms-set-matrix__item-head small {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--ec-text-faint);
+}
+
+/* One cell per StudentItemState. The glyph is part of the text, so the state
+   never depends on colour alone. */
+.ms-set-matrix__cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 3.75rem;
+  min-height: 1.75rem;
+  padding: 2px 8px;
+  border: 1.5px solid transparent;
+  border-radius: 4px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: inherit;
+  text-decoration: none;
+}
+
+a.ms-set-matrix__cell:hover {
+  box-shadow: var(--ec-shadow-elevation-1);
+}
+
+.ms-set-matrix__cell--done {
+  border-color: var(--ec-brand-border);
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+}
+
+.ms-set-matrix__cell--late {
+  border-color: color-mix(in srgb, var(--ec-ink-crimson) 60%, transparent);
+  background: transparent;
+  color: var(--ec-ink-crimson);
+}
+
+.ms-set-matrix__cell--reviewed {
+  border-color: var(--ec-brand);
+  background: var(--ec-brand);
+  color: var(--ec-on-brand-text);
+}
+
+.ms-set-matrix__cell--missing {
+  color: var(--ec-text-faint);
+}
+
+.ms-set-matrix__cell--excused {
+  border-color: var(--ec-border);
+  border-style: dashed;
+  color: var(--ec-text-secondary);
+}
+
+.ms-set-matrix__cell--left {
+  color: var(--ec-text-faint);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+/* Row of a student who has left: whole row greyed, still listed. */
+.ms-set-matrix__row--left > * {
+  color: var(--ec-text-faint);
+}
+
+/* Per-student slips (≤640px). */
+.ms-set-matrix__slips {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ms-set-matrix__slip {
+  padding: 12px 14px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-elevation-1);
+}
+
+.ms-set-matrix__slip-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+}
+
+.ms-set-matrix__slip-cells {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+@media (max-width: 640px) {
+  .ms-set-matrix__scroll {
+    display: none;
+  }
+
+  .ms-set-matrix__slips {
+    display: flex;
+  }
+}
+
+/* ===========================================================================
+ * 7. Reviews — filters, queue rows, console, feedback note
+ * ======================================================================== */
+
+/* Filters as a GET form of selects: <form class="ms-review-filters" method="get"><label class="ms-review-filters__field"><span class="ms-review-filters__label">Class</span><select class="ec-input">…</select></label>…<button class="ms-review-filters__submit">Filter</button></form> */
+.ms-review-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 10px 12px;
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-surface-raised);
+}
+
+.ms-review-filters__field {
+  display: flex;
+  flex: 1 1 10rem;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ms-review-filters__label {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.ms-review-filters select,
+.ms-review-filters .ec-input {
+  width: 100%;
+  min-height: var(--ec-touch-min);
+}
+
+.ms-review-filters__submit {
+  min-height: var(--ec-touch-min);
+}
+
+@media (max-width: 520px) {
+  .ms-review-filters__field {
+    flex-basis: calc(50% - 6px);
+  }
+
+  .ms-review-filters__submit {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Review queue row. .ms-review-slip is also the student dashboard's review card
+   (app-pages.css), so the teacher row is scoped to the teacher frame:
+   <ul class="ms-review-queue"><li><a class="ms-review-slip" href><span class="ms-review-slip__main"><span class="ms-review-slip__name">…</span><span class="ms-review-slip__meta">…</span><span class="ms-review-slip__reasons"><span class="ec-chip ec-chip-warning">…</span></span></span><span class="ms-review-slip__score">6/9</span></a></li></ul>
+   Modifier: --high (crimson spine for top-priority scripts). */
+.ms-review-queue {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ms-teacher-layout .ms-review-slip {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 14px;
+  align-items: center;
+  padding: 12px 14px 12px 16px;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-border-strong);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-elevation-1);
+  color: inherit;
+  text-decoration: none;
+  overflow: visible;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.ms-teacher-layout .ms-review-slip::before {
+  content: none;
+}
+
+.ms-teacher-layout a.ms-review-slip:hover {
+  transform: translate(-1px, -2px);
+  box-shadow: var(--ec-shadow-elevation-2);
+}
+
+.ms-teacher-layout .ms-review-slip--high {
+  border-left-color: var(--ec-logo-crimson);
+}
+
+.ms-review-slip__main {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ms-review-slip__name {
+  font-weight: 600;
+  color: var(--ec-text-primary);
+}
+
+.ms-review-slip__meta {
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--ec-text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.ms-review-slip__reasons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ms-review-slip__reasons .ec-chip {
+  font-size: 11px;
+  padding: 2px 8px;
+  box-shadow: none;
+}
+
+.ms-review-slip__score {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ec-text-primary);
+  white-space: nowrap;
+}
+
+/* Review console — OK / OV / FLG stamps, per-mark toggles, note, visibility:
+   <aside class="ms-review-console"><div class="ms-review-console__stamps" role="group"><button class="ms-review-console__stamp ms-review-console__stamp--confirm" aria-pressed="true">OK</button>…</div><ul class="ms-review-console__marks"><li><button class="ms-review-console__mark" aria-pressed="true">M1 …</button></li></ul><label class="ms-review-console__total">…</label><div class="ms-review-console__actions">…</div><nav class="ms-review-console__nav">prev/next</nav></aside> */
+.ms-review-console {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  padding: 18px 16px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-hard);
+}
+
+@media (min-width: 1024px) {
+  .ms-review-console {
+    position: sticky;
+    top: calc(76px + env(safe-area-inset-top, 0px));
+    max-height: calc(100dvh - 96px);
+    overflow-y: auto;
+  }
+}
+
+.ms-review-console__title {
+  margin: 0;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.ms-review-console__stamps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.ms-review-console__stamp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: 60px;
+  padding: 8px 6px;
+  border: 2px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  color: var(--ec-text-secondary);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition:
+    border-color 140ms ease,
+    color 140ms ease,
+    background-color 140ms ease,
+    transform 140ms ease;
+}
+
+.ms-review-console__stamp small {
+  font-family: var(--font-sans, inherit);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.ms-review-console__stamp:hover {
+  transform: translate(-1px, -1px);
+}
+
+.ms-review-console__stamp--confirm[aria-pressed='true'] {
+  border-color: var(--ec-brand);
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+  transform: rotate(-3deg);
+}
+
+.ms-review-console__stamp--override[aria-pressed='true'] {
+  border-color: var(--ec-pen);
+  background: color-mix(in srgb, var(--ec-pen) 9%, var(--ec-paper));
+  color: var(--ec-pen);
+  transform: rotate(-3deg);
+}
+
+.ms-review-console__stamp--flag[aria-pressed='true'] {
+  border-color: var(--ec-ink-crimson);
+  background: var(--ec-chip-critical-bg);
+  color: var(--ec-ink-crimson);
+  transform: rotate(-3deg);
+}
+
+/* The stamp lands with the shared ec-stamp-in keyframes once a decision is saved. */
+.ms-review-console__stamp.is-saved {
+  animation: ec-stamp-in 520ms cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+
+.ms-review-console__marks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ms-review-console__mark {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  min-height: var(--ec-touch-min);
+  padding: 8px 10px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  color: var(--ec-text-primary);
+  text-align: left;
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.ms-review-console__mark[aria-pressed='true'] {
+  border-color: var(--ec-brand-border);
+  background: var(--ec-brand-muted);
+}
+
+.ms-review-console__mark[aria-pressed='false'] {
+  border-color: color-mix(in srgb, var(--ec-ink-crimson) 40%, var(--ec-border));
+}
+
+.ms-review-console__mark-id {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--ec-text-secondary);
+}
+
+.ms-review-console__mark[aria-pressed='true'] .ms-review-console__mark-state {
+  color: var(--ec-brand);
+}
+
+.ms-review-console__mark[aria-pressed='false'] .ms-review-console__mark-state {
+  color: var(--ec-ink-crimson);
+}
+
+.ms-review-console__mark-state {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.ms-review-console__total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.ms-review-console__total input {
+  width: 6rem;
+  min-height: var(--ec-touch-min);
+  text-align: right;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-variant-numeric: tabular-nums;
+}
+
+.ms-review-console__visible {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: var(--ec-touch-min);
+  font-size: 0.875rem;
+  color: var(--ec-text-secondary);
+}
+
+.ms-review-console__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ms-review-console__actions > * {
+  flex: 1 1 auto;
+  justify-content: center;
+}
+
+.ms-review-console__nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--ec-border);
+}
+
+/* A teacher's handwritten note to a student (composer preview, student view):
+   <aside class="ms-feedback-note"><p class="ms-feedback-note__label">From your teacher</p><p class="ms-feedback-note__body">…</p><p class="ms-feedback-note__meta">…</p></aside> */
+.ms-feedback-note {
+  position: relative;
+  padding: 12px 16px 12px 18px;
+  border-left: 3px solid var(--ec-pen);
+  border-radius: 0 4px 4px 0;
+  background: color-mix(in srgb, var(--ec-pen) 6%, var(--ec-paper));
+}
+
+.ms-feedback-note__label {
+  margin: 0 0 4px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ec-pen);
+}
+
+.ms-feedback-note__body {
+  margin: 0;
+  font-family: var(--ec-font-handwriting);
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ec-pen);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.ms-feedback-note__meta {
+  margin: 6px 0 0;
+  font-size: 0.75rem;
+  color: var(--ec-text-faint);
+}
+
+/* ===========================================================================
+ * 8. Students, invite, roster, gaps
+ * ======================================================================== */
+
+/* Invite — green-spine filing slip: <div class="ms-teacher-invite">…<code>ABC-123</code>…</div> */
+.ms-teacher-invite {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 28px;
+  padding: 20px 18px 18px;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-hard);
+}
+
+.ms-teacher-invite::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ec-brand) 0%,
+    var(--ec-brand) 55%,
+    var(--ec-logo-crimson) 55%,
+    var(--ec-logo-crimson) 100%
+  );
+}
+
+/* The invite code is read aloud to a room, so it is the loudest thing on the
+ * page and set in a face where 8 and B cannot be confused. */
+.ms-teacher-invite code {
+  font-variant-numeric: tabular-nums slashed-zero;
+  letter-spacing: 0.12em;
+  overflow-wrap: anywhere;
+}
+
+/* Roster: <section class="ms-teacher-roster"><ul class="ms-teacher-roster__list"><li class="ms-teacher-roster__row">…<span class="ms-teacher-roster__trail">…</span></li></ul></section> */
+.ms-teacher-roster {
+  margin-bottom: 28px;
+  padding: 18px 16px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-elevation-1);
+}
+
+.ms-teacher-roster__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ms-teacher-roster__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 52px;
+  padding: 10px 12px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    border-color 140ms ease,
+    transform 140ms ease;
+}
+
+a.ms-teacher-roster__row:hover {
+  transform: translate(-1px, -1px);
+  border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border));
+}
+
+.ms-teacher-roster__row--inactive {
+  border-style: dashed;
+  background: var(--ec-surface-muted);
+}
+
+.ms-teacher-roster__who {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ms-teacher-roster__name {
+  font-weight: 600;
+  color: var(--ec-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.ms-teacher-roster__row--inactive .ms-teacher-roster__name {
+  color: var(--ec-text-secondary);
+}
+
+.ms-teacher-roster__meta {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--ec-text-secondary);
+}
+
+.ms-teacher-roster__trail {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 520px) {
+  .ms-teacher-roster {
+    padding: 14px 12px;
+  }
+
+  .ms-teacher-roster__row {
+    flex-wrap: wrap;
+  }
+
+  .ms-teacher-roster__trail {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* Due-topic badge on a roster row. */
 .ms-roster-due {
   display: inline-flex;
   align-items: center;
@@ -633,22 +2756,15 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ec-logo-crimson, var(--ec-ink-crimson, #c53a3f));
-  border: 1px solid color-mix(in srgb, var(--ec-logo-crimson, #c53a3f) 35%, transparent);
-  background: color-mix(in srgb, var(--ec-logo-crimson, #c53a3f) 10%, transparent);
-  border-radius: 2px;
+  color: var(--ec-ink-crimson);
+  border: 1px solid color-mix(in srgb, var(--ec-ink-crimson) 35%, transparent);
+  background: var(--ec-chip-critical-bg);
+  border-radius: 4px;
   padding: 3px 7px;
   white-space: nowrap;
 }
 
-.ms-teacher-roster__trail {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-}
-
-/* Per-student due on teacher profile */
+/* Per-student due list on the teacher's student page. */
 .ms-student-due__title {
   margin: 0;
   font-family: var(--font-display, 'Newsreader', Georgia, serif);
@@ -719,7 +2835,7 @@
   color: var(--ec-brand);
   border: 1px solid color-mix(in srgb, var(--ec-brand) 35%, transparent);
   background: color-mix(in srgb, var(--ec-brand) 10%, transparent);
-  border-radius: 2px;
+  border-radius: 4px;
   padding: 4px 8px;
 }
 
@@ -729,42 +2845,323 @@
   background: var(--ec-surface-raised);
 }
 
-/* Printed gap report: a head of department takes this into a department
-   * meeting, so it must not waste the page on app chrome. */
-@media print {
-  .ms-teacher-layout nav,
-  .ms-teacher-print-hide {
-    display: none !important;
+/* Cohort gap bars: <div class="ms-gap-row"><div class="ms-gap-track"><div class="ms-gap-fill" style="width:40%"></div></div></div> */
+.ms-gap-row + .ms-gap-row {
+  margin-top: 0.875rem;
+}
+
+.ms-gap-track {
+  height: 0.5rem;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--ec-surface-raised);
+}
+
+.ms-gap-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: var(--ec-ink-crimson);
+  transition: width 0.4s ease;
+}
+
+/* Grade risk legend (GradeRiskMatrix). */
+.ms-teacher-risk-legend__cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-elevation-1);
+}
+
+.ms-teacher-risk-legend__stamp {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 0.35rem;
+  border: 1.5px solid var(--ec-brand-border);
+  border-radius: 4px;
+  background: var(--ec-brand-muted);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--ec-brand);
+}
+
+/* ===========================================================================
+ * 9. Class settings — form sections, allowance slip, danger zone
+ * ======================================================================== */
+
+/* Settings page column: <div class="ms-teacher-settings"><section class="ms-teacher-settings__section" aria-labelledby>…</section>…</div> */
+.ms-teacher-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 48rem;
+}
+
+.ms-teacher-settings__section {
+  min-width: 0;
+  padding: 20px 18px 18px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-elevation-1);
+}
+
+.ms-teacher-settings__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-bottom: 14px;
+}
+
+.ms-teacher-settings__title {
+  margin: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-settings__lead {
+  margin: 4px 0 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+.ms-teacher-settings__form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.ms-teacher-settings__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+}
+
+@media (max-width: 640px) {
+  .ms-teacher-settings__grid {
+    grid-template-columns: 1fr;
   }
 
-  .ms-teacher-layout {
-    padding: 0 !important;
-  }
-
-  .ec-card {
-    break-inside: avoid;
-    box-shadow: none !important;
+  .ms-teacher-settings__section {
+    padding: 16px 14px;
   }
 }
 
-/* ---------------------------------------------------------------------------
- * Teacher seat request — the card that tells a teacher they have no seat
+/* Toggle row: <label class="ms-teacher-settings__toggle"><input type="checkbox" role="switch"><span>…<small>…</small></span></label> */
+.ms-teacher-settings__toggle {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  min-height: var(--ec-touch-min);
+  padding: 10px 12px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  cursor: pointer;
+}
+
+.ms-teacher-settings__toggle input {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 2px;
+  accent-color: var(--ec-brand);
+}
+
+.ms-teacher-settings__toggle span {
+  font-weight: 600;
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-settings__toggle small {
+  display: block;
+  margin-top: 2px;
+  font-weight: 400;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.ms-teacher-settings__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 520px) {
+  .ms-teacher-settings__actions > .ec-btn-primary,
+  .ms-teacher-settings__actions > .ec-btn-secondary,
+  .ms-teacher-settings__actions > button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Class-bonus allowance slip: <p class="ms-teacher-allowance"><span class="ms-teacher-allowance__figure">+20</span>…</p> */
+.ms-teacher-allowance {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  padding: 14px 16px;
+  border: 1.5px solid var(--ec-brand-border);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ec-brand) 6%, var(--ec-paper));
+  font-size: 0.925rem;
+  line-height: 1.5;
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-allowance__figure {
+  flex-shrink: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 1.9rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--ec-brand);
+}
+
+/* Danger zone — crimson spine, never a crimson fill: <section class="ms-teacher-danger">…</section> */
+.ms-teacher-danger {
+  min-width: 0;
+  padding: 20px 18px 18px;
+  border: 1.5px solid color-mix(in srgb, var(--ec-logo-crimson) 35%, var(--ec-border));
+  border-left: 4px solid var(--ec-logo-crimson);
+  border-radius: 4px;
+  background: var(--ec-paper);
+}
+
+.ms-teacher-danger__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  padding: 12px 0;
+  border-top: 1px dashed var(--ec-border);
+}
+
+.ms-teacher-danger__row:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.ms-teacher-danger__copy {
+  flex: 1 1 18rem;
+  min-width: 0;
+}
+
+.ms-teacher-danger__label {
+  margin: 0;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-danger__hint {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+/* Destructive button: <button class="ms-teacher-danger__btn">Delete class</button> */
+.ms-teacher-danger__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--ec-touch-min);
+  padding: 8px 16px;
+  border: 1.5px solid color-mix(in srgb, var(--ec-ink-crimson) 55%, transparent);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  color: var(--ec-ink-crimson);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 140ms ease,
+    transform 140ms ease;
+}
+
+.ms-teacher-danger__btn:hover:not(:disabled) {
+  background: var(--ec-chip-critical-bg);
+  transform: translate(-1px, -1px);
+}
+
+.ms-teacher-danger__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Confirm dialog body (inside the shared Dialog): <div class="ms-teacher-confirm">…</div> */
+.ms-teacher-confirm__title {
+  margin: 0 2.5rem 0 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-confirm__body {
+  margin: 10px 0 0;
+  line-height: 1.6;
+  color: var(--ec-text-secondary);
+}
+
+.ms-teacher-confirm__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+@media (max-width: 520px) {
+  .ms-teacher-confirm__actions {
+    flex-direction: column-reverse;
+  }
+
+  .ms-teacher-confirm__actions > * {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ===========================================================================
+ * 10. Seat — request card on the desk, admin review queue
  *
  * Sits at the top of the desk rather than in a settings page, because the
  * teacher does not know they have a problem: they were told marking their class
- * was free and are silently on the 5-a-month free allowance. It is styled as a
- * notice, not a promotion — there is nothing to sell here, the seat is free.
- * ------------------------------------------------------------------------ */
+ * was free and are silently on the free allowance. Styled as a notice, not a
+ * promotion — there is nothing to sell here, the seat is free.
+ * ======================================================================== */
 
+/* <section class="ms-teacher-seat">…</section>; modifiers --pending (brand spine, quiet), --declined (crimson spine + reason). */
 .ms-teacher-seat {
   position: relative;
   margin-bottom: 2rem;
   padding: 22px 22px 20px;
-  background: var(--ec-paper, var(--ec-surface));
+  background: var(--ec-paper);
   border: 1.5px solid var(--ec-border);
-  border-left: 4px solid var(--ec-logo-crimson, var(--ec-ink-crimson));
+  border-left: 4px solid var(--ec-logo-crimson);
   border-radius: 4px;
-  box-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.08));
+  box-shadow: var(--ec-shadow-hard);
 }
 
 /* Once the request is in, the urgency is gone — the crimson edge would keep
@@ -772,6 +3169,11 @@
 .ms-teacher-seat--pending {
   border-left-color: var(--ec-brand);
   box-shadow: none;
+}
+
+.ms-teacher-seat--declined {
+  border-left-color: var(--ec-logo-crimson);
+  box-shadow: var(--ec-shadow-elevation-1);
 }
 
 .ms-teacher-seat__title {
@@ -790,12 +3192,36 @@
   line-height: 1.6;
 }
 
+/* The reviewer's reason, quoted as a margin note. */
+.ms-teacher-seat__reason {
+  margin: 0.9rem 0 0;
+  max-width: 46rem;
+  padding: 10px 14px;
+  border-left: 3px solid var(--ec-ink-crimson);
+  background: var(--ec-chip-critical-bg);
+  color: var(--ec-text-primary);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.ms-teacher-seat__reason cite {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ec-ink-crimson);
+}
+
 .ms-teacher-seat__cta {
   margin-top: 1.25rem;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  min-height: 44px;
+  min-height: var(--ec-touch-min);
 }
 
 /* The shared form block already carries a 2rem top margin for the setup screen,
@@ -808,5 +3234,523 @@
 @media (max-width: 640px) {
   .ms-teacher-seat {
     padding: 18px 16px 16px;
+  }
+}
+
+/* Admin seat queue (/admin/teacher-seats): <ul class="ms-seat-queue"><li class="ms-seat-queue__slip">…</li></ul> */
+.ms-seat-queue {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ms-seat-queue__slip {
+  padding: 16px 18px;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-elevation-1);
+}
+
+.ms-seat-queue__slip--declined {
+  border-left-color: var(--ec-logo-crimson);
+}
+
+.ms-seat-queue__slip--approved {
+  border-left-color: var(--ec-border);
+  box-shadow: none;
+}
+
+.ms-seat-queue__school {
+  margin: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--ec-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.ms-seat-queue__facts {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 4px 14px;
+  margin: 10px 0 0;
+  font-size: 0.875rem;
+}
+
+.ms-seat-queue__facts dt {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.ms-seat-queue__facts dd {
+  margin: 0;
+  color: var(--ec-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.ms-seat-queue__decide {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--ec-border);
+}
+
+.ms-seat-queue__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 520px) {
+  .ms-seat-queue__buttons > * {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
+/* ===========================================================================
+ * 11. Student surfaces that belong to the teacher system
+ * ======================================================================== */
+
+/* "Set by your teacher" dashboard card:
+   <section class="ms-assign-card"><header class="ms-assign-card__head"><p class="ms-assign-card__eyebrow">Set by your teacher</p><span class="ms-assign-card__due">DUE</span></header><a class="ms-assign-card__next" href><span class="ms-assign-card__title">…</span><span class="ms-assign-card__meta">…</span></a><footer class="ms-assign-card__foot"><span class="ms-assign-card__count">2 open</span><a class="ms-assign-card__all">See all</a></footer></section> */
+.ms-assign-card {
+  position: relative;
+  padding: 18px 18px 14px;
+  border: 1.5px solid var(--ec-border);
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-hard);
+}
+
+.ms-assign-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.ms-assign-card__eyebrow {
+  margin: 0;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-assign-card__due {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.75rem;
+  height: 1.6rem;
+  padding: 0 8px;
+  border: 1.5px solid color-mix(in srgb, var(--ec-ink-crimson) 60%, transparent);
+  border-radius: 4px;
+  background: var(--ec-chip-critical-bg);
+  color: var(--ec-ink-crimson);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  transform: rotate(-4deg);
+}
+
+.ms-assign-card__next {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: var(--ec-touch-min);
+  padding: 10px 12px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 140ms ease,
+    border-color 140ms ease;
+}
+
+a.ms-assign-card__next:hover {
+  transform: translate(-1px, -1px);
+  border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border));
+}
+
+.ms-assign-card__title {
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--ec-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.ms-assign-card__meta {
+  font-size: 0.8125rem;
+  color: var(--ec-text-secondary);
+}
+
+.ms-assign-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.ms-assign-card__count {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.ms-assign-card__all {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--ec-touch-min);
+  font-weight: 600;
+  color: var(--ec-brand-deep);
+  text-decoration: none;
+}
+
+.ms-assign-card__all:hover {
+  text-decoration: underline;
+}
+
+/* Account → My classes:
+   <section class="ms-my-classes"><ul class="ms-my-classes__list"><li class="ms-my-classes__row"><div class="ms-my-classes__who"><p class="ms-my-classes__name">…</p><p class="ms-my-classes__meta">…</p><p class="ms-my-classes__bonus">+20 marks a month from this class</p></div><button class="ms-my-classes__leave">Leave</button></li></ul><p class="ms-my-classes__retention">…</p></section> */
+.ms-my-classes {
+  min-width: 0;
+}
+
+.ms-my-classes__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ms-my-classes__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper);
+}
+
+.ms-my-classes__who {
+  flex: 1 1 14rem;
+  min-width: 0;
+}
+
+.ms-my-classes__name {
+  margin: 0;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.ms-my-classes__meta {
+  margin: 2px 0 0;
+  font-size: 0.8125rem;
+  color: var(--ec-text-secondary);
+}
+
+.ms-my-classes__bonus {
+  margin: 6px 0 0;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ec-brand);
+}
+
+.ms-my-classes__leave {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--ec-touch-min);
+  padding: 6px 14px;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  color: var(--ec-text-secondary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ms-my-classes__leave:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--ec-ink-crimson) 50%, var(--ec-border));
+  color: var(--ec-ink-crimson);
+}
+
+.ms-my-classes__retention {
+  margin: 10px 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+/* ===========================================================================
+ * 12. Print — AssignmentPrintSheet and the printed gap report
+ * ======================================================================== */
+
+/* Print sheet on the shared exam sheet: <article class="ms-teacher-print ec-exam-sheet"><header class="ms-teacher-print__head">…</header><ol class="ms-teacher-print__items"><li class="ms-teacher-print__item">…</li></ol><footer class="ms-teacher-print__footer">Join code ABC-123</footer></article> */
+.ms-teacher-print {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.ms-teacher-print__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding-bottom: 10px;
+  border-bottom: 1.5px solid var(--ec-border-strong);
+}
+
+.ms-teacher-print__title {
+  margin: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-print__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ms-teacher-print__item {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--ec-paper-rule);
+  break-inside: avoid;
+}
+
+.ms-teacher-print__marks {
+  float: right;
+  margin-left: 12px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ms-teacher-print__footer {
+  margin-top: 16px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  color: var(--ec-text-secondary);
+}
+
+@media print {
+  /* A head of department takes the gap report or a set sheet into a meeting,
+     so the page must not waste paper on app chrome. */
+  .ms-teacher-nav,
+  .ms-teacher-tabbar,
+  .ms-teacher-tabs,
+  .ms-teacher-layout nav,
+  .ms-teacher-print-hide,
+  .ms-omni-fab {
+    display: none !important;
+  }
+
+  .ms-teacher-layout {
+    padding: 0 !important;
+  }
+
+  .ms-teacher-layout .ec-card,
+  .ms-teacher-print,
+  .ms-teacher-print.ec-exam-sheet {
+    break-inside: avoid;
+    box-shadow: none !important;
+  }
+
+  .ms-teacher-print.ec-exam-sheet {
+    border: 0;
+    padding: 0;
+  }
+
+  .ms-teacher-print__item {
+    border-bottom-color: currentColor;
+  }
+}
+
+/* ===========================================================================
+ * 13. Marketing — /for-teachers
+ * ======================================================================== */
+
+/* A teacher's week as ruled lines, not a feature grid:
+   <ol class="ms-teacher-week"><li class="ms-teacher-week__day"><span class="ms-teacher-week__when">MON</span><span class="ms-teacher-week__glyph"><svg class="ms-ink-glyph"/></span><div class="ms-teacher-week__copy"><h3 class="ms-teacher-week__title">…</h3><p class="ms-teacher-week__body">…</p></div></li></ol> */
+.ms-teacher-week {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1.5px solid var(--ec-border-strong);
+}
+
+.ms-teacher-week__day {
+  display: grid;
+  grid-template-columns: 3.25rem 2.5rem minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--ec-paper-rule);
+}
+
+.ms-teacher-week__when {
+  padding-top: 4px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--ec-ink-crimson);
+}
+
+.ms-teacher-week__glyph {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--ec-brand);
+}
+
+.ms-teacher-week__glyph svg {
+  width: 30px;
+  height: 30px;
+}
+
+.ms-teacher-week__title {
+  margin: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-week__body {
+  margin: 6px 0 0;
+  max-width: 40rem;
+  line-height: 1.6;
+  color: var(--ec-text-secondary);
+}
+
+@media (max-width: 520px) {
+  .ms-teacher-week__day {
+    grid-template-columns: 2.75rem minmax(0, 1fr);
+  }
+
+  .ms-teacher-week__glyph {
+    display: none;
+  }
+}
+
+/* The hero artefact: a miniature completion matrix, the one screen that sells
+   the product. <figure class="ms-teacher-artefact">…<table class="ms-teacher-artefact__grid">…</table>…</figure> */
+.ms-teacher-artefact {
+  position: relative;
+  margin: 0;
+  padding: 18px 18px 14px;
+  border: 1.5px solid var(--ec-border-strong);
+  border-radius: 4px;
+  background: var(--ec-paper);
+  box-shadow: var(--ec-shadow-hard);
+  transform: rotate(0.6deg);
+}
+
+.ms-teacher-artefact__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ec-paper-rule);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  color: var(--ec-text-faint);
+}
+
+.ms-teacher-artefact__title {
+  margin: 10px 0 8px;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-artefact__grid {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.ms-teacher-artefact__grid th,
+.ms-teacher-artefact__grid td {
+  padding: 5px 4px;
+  border-bottom: 1px solid var(--ec-paper-rule);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.ms-teacher-artefact__grid th[scope='row'] {
+  text-align: left;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+}
+
+.ms-teacher-artefact__grid thead th {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--ec-text-faint);
+}
+
+.ms-teacher-artefact__grid .ms-set-matrix__cell {
+  min-width: 3rem;
+  min-height: 1.5rem;
+  font-size: 11px;
+}
+
+.ms-teacher-artefact__note {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--ec-font-handwriting);
+  font-size: 18px;
+  color: var(--ec-ink-crimson);
+  transform: rotate(-1.5deg);
+}
+
+@media (max-width: 520px) {
+  .ms-teacher-artefact {
+    transform: none;
+    padding: 14px 12px 10px;
   }
 }

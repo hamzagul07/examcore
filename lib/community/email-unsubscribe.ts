@@ -15,6 +15,13 @@ export type UnsubscribeKind =
   | 'mark_ready'
   /** The morning study-plan check-in; rides on email_exam_reminders. */
   | 'exam'
+  /**
+   * Mail about work a teacher set: a new set, a due-soon reminder, a mark the
+   * teacher reviewed or feedback they left. Rides on email_assignments.
+   */
+  | 'assignments'
+  /** A teacher's Sunday digest of their classes; rides on email_teacher_digest. */
+  | 'teacher_digest'
 
 /**
  * The HMAC key every NEW unsubscribe link is signed with.
@@ -103,7 +110,9 @@ export function verifyUnsubscribeToken(
         kind !== 'activation' &&
         kind !== 'updates' &&
         kind !== 'mark_ready' &&
-        kind !== 'exam') ||
+        kind !== 'exam' &&
+        kind !== 'assignments' &&
+        kind !== 'teacher_digest') ||
       !exp ||
       !sig
     )
@@ -196,6 +205,10 @@ export function unsubscribeColumnPatch(kind: UnsubscribeKind): Record<string, bo
       return { email_mark_ready: false }
     case 'exam':
       return { email_exam_reminders: false }
+    case 'assignments':
+      return { email_assignments: false }
+    case 'teacher_digest':
+      return { email_teacher_digest: false }
     default:
       return { email_community_digest: false }
   }
@@ -221,6 +234,10 @@ export function unsubscribeLabel(kind: UnsubscribeKind): string {
       return 'product update emails'
     case 'mark_ready':
       return 'emails telling you a mark has finished'
+    case 'assignments':
+      return 'emails about work your teacher sets'
+    case 'teacher_digest':
+      return 'the Sunday digest of your classes'
     default:
       return 'Exam Room weekly digest'
   }

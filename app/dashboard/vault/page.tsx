@@ -8,8 +8,7 @@ import {
   getSubjectById,
 } from '@/lib/profile-options'
 import { hasSyllabusTree, getSyllabusSubjectName } from '@/lib/syllabi'
-import { effectiveAccess } from '@/lib/billing/access'
-import { compedAccess } from '@/lib/billing/comp'
+import { loadEffectiveAccess } from '@/lib/billing/access'
 import {
   hasResourceVault,
   hasMaxWeeklyCoach,
@@ -23,7 +22,6 @@ import { computeBillingSummary } from '@/lib/billing/enforcement'
 import { MaxVaultTeaser } from '@/components/max/MaxVaultTeaser'
 import { MaxVaultView } from '@/components/max/MaxVaultView'
 import { AppSupportStrip } from '@/components/marketing/AppSupportStrip'
-import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -49,24 +47,15 @@ export default async function MaxVaultPage({
   const params = searchParams ? await searchParams : {}
   const subjectOverride = params.subject?.trim() || null
 
-  const [{ data: profile }, { data: sub }] = await Promise.all([
+  const [{ data: profile }, access] = await Promise.all([
     supabase
       .from('user_profiles')
       .select('full_name, level, subjects, exam_date, board, target_grade')
       .eq('id', user.id)
       .maybeSingle(),
-    supabase
-      .from('user_subscriptions')
-      .select('tier, status')
-      .eq('user_id', user.id)
-      .maybeSingle(),
+    // Seat- and comp-aware, the same resolution as the marking gate.
+    loadEffectiveAccess(user.id),
   ])
-
-  const access = effectiveAccess({
-    tier: (sub?.tier as SubscriptionTier) ?? 'free',
-    status: (sub?.status as SubscriptionStatus) ?? 'canceled',
-    accessOverride: compedAccess(user.id),
-  })
 
   if (!hasResourceVault(access)) {
     return (

@@ -7,8 +7,14 @@ import { notifyPurchaseEmails } from '@/lib/email/notifications'
 import { runAfterResponse } from '@/lib/after-response'
 import { tierMarketingName } from '@/lib/billing/caps'
 import { sendScholarVaultWelcome } from '@/lib/email/scholar-vault-welcome'
-import { grantMaxWelcomeGift } from '@/lib/max/gifts'
+import { clawBackMaxWelcomeGift, grantMaxWelcomeGift } from '@/lib/max/gifts'
 import { refundedCreditShare } from '@/lib/billing/refund-share'
+import {
+  decideSubscriptionSync,
+  parseWebhookTimestamp,
+  subscriptionEventVersion,
+  syncedSubscriptionTier,
+} from '@/lib/billing/subscription-sync'
 import type { SubscriptionTier } from '@/lib/database.types'
 
 export const runtime = 'nodejs' // not edge — needs the raw body
@@ -129,8 +135,12 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  // Standard-webhooks delivery time: the fallback version for ordering
+  // subscription events when Polar's own modified_at is null (a fresh object).
+  const deliveredAt = parseWebhookTimestamp(headers['webhook-timestamp'])
+
   try {
-    await handlePolarEvent(event, supabase)
+    await handlePolarEvent(event, supabase, { deliveredAt })
     // Only now is the delivery genuinely done, and only now may a later
     // delivery of the same event be dismissed as a duplicate.
     await supabase
@@ -203,6 +213,8 @@ type PolarSubscription = {
   productId: string
   customerId: string
   customer?: { externalId?: string | null } | null
+  /** Polar's last-modification stamp; null on a freshly created object. */
+  modifiedAt?: Date | null
   currentPeriodStart?: Date | null
   currentPeriodEnd?: Date | null
   cancelAtPeriodEnd?: boolean
@@ -210,9 +222,26 @@ type PolarSubscription = {
   metadata?: Record<string, unknown> | null
 }
 
+type EventContext = {
+  /** When Polar delivered this event (webhook-timestamp), if parseable. */
+  deliveredAt: Date | null
+}
+
+/** Column added by 20260925_user_subscriptions_polar_modified_at.sql. */
+function isMissingModifiedAtColumn(message: string | null | undefined): boolean {
+  return /polar_modified_at/i.test(message ?? '')
+}
+
+/**
+ * Write the subscription row. Webhook ordering is not guaranteed, so a
+ * delivery may describe an older state than the row already holds, or a
+ * subscription the customer has since replaced; those are skipped (see
+ * lib/billing/subscription-sync.ts for the two cases this closes).
+ */
 async function syncSubscription(
   supabase: SupabaseClient,
-  sub: PolarSubscription
+  sub: PolarSubscription,
+  ctx: EventContext
 ): Promise<{ ok: boolean; userId: string | null; tier: SubscriptionTier | null }> {
   const userId = await resolveUserId(supabase, {
     externalId: sub.customer?.externalId,
@@ -236,22 +265,68 @@ async function syncSubscription(
     )
   }
 
-  const { error } = await supabase.from('user_subscriptions').upsert(
-    {
-      user_id: userId,
-      polar_customer_id: sub.customerId,
-      polar_subscription_id: sub.id,
-      tier: resolved?.tier ?? 'free',
-      status: sub.status,
-      billing_period: resolved?.billingPeriod ?? null,
-      current_period_start: isoOrNull(sub.currentPeriodStart),
-      current_period_end: isoOrNull(sub.currentPeriodEnd),
-      cancel_at_period_end: sub.cancelAtPeriodEnd ?? false,
-      canceled_at: isoOrNull(sub.canceledAt),
-      updated_at: new Date().toISOString(),
-    },
-    { onConflict: 'user_id' }
-  )
+  // Read before write. The upsert is keyed on user_id, so without this a late
+  // event for a subscription the customer has replaced — or an older state of
+  // this one — overwrote a paying customer's row.
+  let existingQuery = await supabase
+    .from('user_subscriptions')
+    .select('polar_subscription_id, status, polar_modified_at')
+    .eq('user_id', userId)
+    .maybeSingle()
+  if (existingQuery.error && isMissingModifiedAtColumn(existingQuery.error.message)) {
+    existingQuery = await supabase
+      .from('user_subscriptions')
+      .select('polar_subscription_id, status')
+      .eq('user_id', userId)
+      .maybeSingle()
+  }
+  if (existingQuery.error) {
+    throw new Error(`syncSubscription read failed: ${existingQuery.error.message}`)
+  }
+  const existing = existingQuery.data as {
+    polar_subscription_id: string | null
+    status: string | null
+    polar_modified_at?: string | null
+  } | null
+
+  const version = subscriptionEventVersion(sub.modifiedAt, ctx.deliveredAt)
+  const decision = decideSubscriptionSync(existing, {
+    id: sub.id,
+    status: sub.status,
+    version,
+  })
+  if (!decision.apply) {
+    console.warn(
+      `[polar-webhook] subscription ${sub.id} (${sub.status}) skipped as ${decision.reason}: row holds ${existing?.polar_subscription_id ?? 'none'} (${existing?.status ?? 'none'}, version ${existing?.polar_modified_at ?? 'unknown'}), event version ${version?.toISOString() ?? 'unknown'}`
+    )
+    return { ok: false, userId, tier: resolved?.tier ?? null }
+  }
+
+  const row = {
+    user_id: userId,
+    polar_customer_id: sub.customerId,
+    polar_subscription_id: sub.id,
+    // A dead status is written as a dead row (tier free), as the revoke
+    // handler writes it. The product's tier on a canceled status is the
+    // "paid but inactive" pair the gate reads as no-free-marks.
+    tier: syncedSubscriptionTier(sub.status, resolved?.tier ?? null),
+    status: sub.status,
+    billing_period: resolved?.billingPeriod ?? null,
+    current_period_start: isoOrNull(sub.currentPeriodStart),
+    current_period_end: isoOrNull(sub.currentPeriodEnd),
+    cancel_at_period_end: sub.cancelAtPeriodEnd ?? false,
+    canceled_at: isoOrNull(sub.canceledAt),
+    updated_at: new Date().toISOString(),
+  }
+  let { error } = await supabase
+    .from('user_subscriptions')
+    .upsert({ ...row, polar_modified_at: isoOrNull(version) }, { onConflict: 'user_id' })
+  if (error && isMissingModifiedAtColumn(error.message)) {
+    // Migration not applied yet: the row still syncs, only unversioned.
+    ;({ error } = await supabase
+      .from('user_subscriptions')
+      .upsert(row, { onConflict: 'user_id' }))
+  }
   if (error) throw new Error(`syncSubscription upsert failed: ${error.message}`)
 
   // null tier = unknown product. The confirmation email falls back to generic
@@ -259,7 +334,11 @@ async function syncSubscription(
   return { ok: true, userId, tier: resolved?.tier ?? null }
 }
 
-async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
+async function handlePolarEvent(
+  event: PolarEvent,
+  supabase: SupabaseClient,
+  ctx: EventContext
+) {
   switch (event.type) {
     // Sync group: every lifecycle change that KEEPS the subscription mapped to a
     // tier. Crucially `subscription.canceled` belongs here — for a cancel at
@@ -275,7 +354,7 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
     case 'subscription.uncanceled':
     case 'subscription.past_due': {
       const sub = event.data as unknown as PolarSubscription
-      const { ok, userId, tier } = await syncSubscription(supabase, sub)
+      const { ok, userId, tier } = await syncSubscription(supabase, sub, ctx)
       // Purchase greeting only on activation — not on every update/cancel flag flip.
       if (ok && userId && event.type === 'subscription.active') {
         // Max gets grantMaxWelcomeGift (Vault + bonus) — one Day-0 student email.
@@ -357,23 +436,50 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
       if (!/^[A-Za-z0-9_-]+$/.test(sub.id)) {
         throw new Error(`subscription.revoked: unexpected subscription id ${sub.id}`)
       }
-      const { data: revoked, error } = await supabase
-        .from('user_subscriptions')
-        .update({
-          tier: 'free',
-          status: 'canceled',
-          cancel_at_period_end: false,
-          canceled_at: isoOrNull(sub.canceledAt) ?? new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        })
-        .eq('user_id', userId)
-        .or(`polar_subscription_id.eq.${sub.id},polar_subscription_id.is.null`)
-        .select('user_id')
+      const revocation = {
+        tier: 'free',
+        status: 'canceled',
+        cancel_at_period_end: false,
+        canceled_at: isoOrNull(sub.canceledAt) ?? new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      }
+      // Stamp the version here too. Without it a late `subscription.updated`
+      // from BEFORE the revoke (older than the revoke, newer than whatever
+      // the row last synced) would pass the stale-event check and resurrect
+      // tier=scholar/status=canceled on a revoked row.
+      const version = subscriptionEventVersion(sub.modifiedAt, ctx.deliveredAt)
+      const revoke = (row: Record<string, unknown>) =>
+        supabase
+          .from('user_subscriptions')
+          .update(row)
+          .eq('user_id', userId)
+          .or(`polar_subscription_id.eq.${sub.id},polar_subscription_id.is.null`)
+          .select('user_id')
+      let result = await revoke({ ...revocation, polar_modified_at: isoOrNull(version) })
+      if (result.error && isMissingModifiedAtColumn(result.error.message)) {
+        result = await revoke(revocation)
+      }
+      const { data: revoked, error } = result
       if (error) throw new Error(`subscription.revoked update failed: ${error.message}`)
       if (!revoked || revoked.length === 0) {
         // Not an error: the customer holds a different, newer subscription.
         console.warn(
           `[polar-webhook] subscription.revoked ${sub.id}: superseded, access left intact.`
+        )
+        break
+      }
+      // A Max subscription revoked shortly after it was granted its welcome
+      // credits — a refund or chargeback, in practice — takes the gift back
+      // with it. Keyed on the gift's own ledger id, so a retry cannot claw
+      // back twice, and bounded by MAX_WELCOME_CLAWBACK_DAYS (measured to the
+      // revoke's delivery, not to `canceled_at`, which for a scheduled cancel
+      // is weeks earlier) so a genuine Max customer who leaves months later
+      // keeps what they were given.
+      if (resolvePolarProduct(sub.productId)?.tier === 'mastery') {
+        runAfterResponse('max-welcome-clawback', () =>
+          clawBackMaxWelcomeGift(supabase, userId, {
+            revokedAt: ctx.deliveredAt ?? new Date(),
+          })
         )
       }
       break
@@ -454,11 +560,18 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
       // Claw back credits when a one-time credit pack is refunded. Subscription
       // refunds are handled by subscription.revoked (access), not here.
       //
-      // The reversal is now proportional to the money actually returned. It used
+      // The reversal is proportional to the money actually returned. It used
       // to remove the whole pack on any refund, so a 10% goodwill refund on a
       // 500-credit pack took up to 500 credits — the customer paid for 450 and
       // kept none of them. Spent credits still can't be reclaimed; the RPC
       // floors the balance at zero.
+      //
+      // `refundedAmount` is CUMULATIVE per order, and so is the share passed
+      // to the RPC. The ledger used to key one row on the order id, which made
+      // every refund after the first a no-op: 10% goodwill then a full refund
+      // left the customer with 90% of the pack. apply_credit_refund now stores
+      // the cumulative reversal and deducts only the delta — and writes the
+      // row even when it arrives before order.paid, so the top-up lands net.
       const order = event.data as unknown as {
         id: string
         productId: string | null
@@ -501,7 +614,7 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
         break
       }
 
-      const { error } = await supabase.rpc('apply_credit_refund', {
+      const { data: reversal, error } = await supabase.rpc('apply_credit_refund', {
         p_user_id: userId,
         p_credits: creditsToReverse,
         p_metadata: {
@@ -514,6 +627,12 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
         },
       })
       if (error) throw new Error(`apply_credit_refund failed: ${error.message}`)
+      const r = (reversal ?? {}) as { reversed_now?: number; deducted_now?: number }
+      if (r.reversed_now === 0) {
+        console.warn(
+          `[polar-webhook] order.refunded ${order.id}: ${creditsToReverse} credit(s) already reversed, nothing new.`
+        )
+      }
       break
     }
 

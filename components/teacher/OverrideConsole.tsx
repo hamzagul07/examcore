@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Check, X, MessageSquare, Save } from 'lucide-react'
 import { MathText } from '@/components/MathText'
 import type { MarkAwarded } from '@/components/MarkingResultView'
 
@@ -17,6 +16,33 @@ interface Props {
   onSubmit?: () => void
 }
 
+/**
+ * One sentence for a refused override. A 422 carries per-field messages from
+ * lib/teacher/override.ts (`override_marks_awarded[3].reasoning: must be at
+ * most 500 characters`); the first is shown with its field so the teacher
+ * knows what to shorten rather than seeing "Invalid override payload".
+ */
+function describeOverrideFailure(
+  status: number,
+  data: { error?: string; errors?: Record<string, string> }
+): string {
+  const entries = data.errors ? Object.entries(data.errors) : []
+  if (status === 422 && entries.length > 0) {
+    const [field, message] = entries[0]
+    const label = field
+      .replace(/^override_marks_awarded\[(\d+)\]\.?/, (_m, i) => `mark ${Number(i) + 1} `)
+      .replace(/^override_total_earned$/, 'total')
+      .replace(/^teacher_notes$/, 'note')
+      .replace(/_/g, ' ')
+      .trim()
+    const more = entries.length > 1 ? ` (${entries.length - 1} more)` : ''
+    return `Not saved — ${label}: ${message}${more}.`
+  }
+  if (status === 401) return 'Not saved — your session has expired. Sign in again and retry.'
+  if (status === 403) return 'Not saved — this attempt is not in one of your classrooms.'
+  return `Not saved — ${data.error || 'something went wrong'}. Try again.`
+}
+
 export function OverrideConsole({ attempt, onSubmit }: Props) {
   const [overrides, setOverrides] = useState<Record<string, boolean>>(() =>
     Object.fromEntries(
@@ -25,6 +51,13 @@ export function OverrideConsole({ attempt, onSubmit }: Props) {
   )
   const [teacherNote, setTeacherNote] = useState('')
   const [saving, setSaving] = useState(false)
+  /**
+   * Why the last submit was refused, if it was. The console used to call
+   * onSubmit() without reading the response, so a 422 from the validator
+   * (or any failure) closed the panel and reported success while nothing
+   * had been written to the attempt.
+   */
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   function toggleMark(markId: string | number) {
     const key = String(markId)
@@ -40,24 +73,37 @@ export function OverrideConsole({ attempt, onSubmit }: Props) {
 
   async function submit() {
     setSaving(true)
+    setSubmitError(null)
     const newMarksAwarded = attempt.marks_awarded.map((m) => ({
       ...m,
       earned: overrides[String(m.mark_id)],
       teacher_overridden: overrides[String(m.mark_id)] !== m.earned,
     }))
 
-    await fetch(`/api/teacher/attempt/${attempt.id}/override`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        override_marks_awarded: newMarksAwarded,
-        override_total_earned: calculateNewTotal(),
-        teacher_notes: teacherNote,
-      }),
-    })
-
-    setSaving(false)
-    onSubmit?.()
+    try {
+      const res = await fetch(`/api/teacher/attempt/${attempt.id}/override`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          override_marks_awarded: newMarksAwarded,
+          override_total_earned: calculateNewTotal(),
+          teacher_notes: teacherNote,
+        }),
+      })
+      if (!res.ok) {
+        const data = (await res.json().catch(() => ({}))) as {
+          error?: string
+          errors?: Record<string, string>
+        }
+        setSubmitError(describeOverrideFailure(res.status, data))
+        return
+      }
+      onSubmit?.()
+    } catch {
+      setSubmitError('Could not reach the server. Check your connection and try again.')
+    } finally {
+      setSaving(false)
+    }
   }
 
   const aiTotal = attempt.marks_earned
@@ -134,6 +180,15 @@ export function OverrideConsole({ attempt, onSubmit }: Props) {
           rows={3}
         />
       </div>
+
+      {submitError ? (
+        <p
+          role="alert"
+          className="mb-3 rounded-md border border-[color-mix(in_srgb,var(--ec-critical,#b91c1c)_40%,transparent)] px-3 py-2 text-sm text-[var(--ec-text-primary)]"
+        >
+          {submitError}
+        </p>
+      ) : null}
 
       <button
         type="button"

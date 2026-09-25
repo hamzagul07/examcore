@@ -29,14 +29,28 @@ export function safeUrl(url?: string | null): string | undefined {
   return trimmed
 }
 
-/** Belt-and-braces: strip obvious raw-HTML injection markers from stored markdown. */
+const DANGEROUS_SCHEME = /(?:javascript|vbscript)\s*:/gi
+const DATA_HTML = /\bdata:\s*text\/html/gi
+
+/**
+ * Belt-and-braces: strip obvious raw-HTML injection markers from stored markdown.
+ *
+ * The scheme strip loops until nothing changes: a single pass turns
+ * `javajavascript:script:` into `javascript:` (code review 2026-09-25, §3).
+ * This is still not the gate — `safeUrl()` is, at render time — it only keeps
+ * the stored value from carrying an obviously hostile string.
+ */
 export function stripRawHtml(md: string): string {
   if (!md) return ''
-  return md
+  let out = md
     .replace(/<\s*\/?\s*(script|iframe|style|object|embed|link|meta|base|form|svg)\b[^>]*>/gi, '')
     .replace(/\son\w+\s*=/gi, ' data-x=')
-    .replace(/javascript:/gi, '')
-    .replace(/\bdata:\s*text\/html/gi, '')
+  let prev: string
+  do {
+    prev = out
+    out = out.replace(DANGEROUS_SCHEME, '').replace(DATA_HTML, '')
+  } while (out !== prev)
+  return out
 }
 
 /** Trim + cap stored markdown to a sane length (defence against payload bloat). */

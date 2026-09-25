@@ -1,25 +1,11 @@
 import 'server-only'
 
 import { createServiceClient } from '@/lib/supabase-server'
+import { extractMentionUsernames, MAX_MENTIONS_PER_BODY } from '@/lib/community/mention-extract'
 
-/** Reddit-style @user and u/user mentions in markdown text. */
-const MENTION_PATTERNS = [
-  /(?:^|[\s(,])@([a-zA-Z0-9_]{3,20})\b/g,
-  /(?:^|[\s(,])u\/([a-zA-Z0-9_]{3,20})\b/gi,
-]
-
-export function extractMentionUsernames(text: string): string[] {
-  const found = new Set<string>()
-  for (const re of MENTION_PATTERNS) {
-    re.lastIndex = 0
-    let m: RegExpExecArray | null
-    while ((m = re.exec(text)) !== null) {
-      const name = m[1]?.toLowerCase()
-      if (name) found.add(name)
-    }
-  }
-  return [...found]
-}
+// The parser (and its per-body cap) is pure and lives in mention-extract.ts so
+// it can be tested without a Supabase client.
+export { extractMentionUsernames, MAX_MENTIONS_PER_BODY }
 
 /** Map lowercase username → user id (excludes author). */
 export async function resolveMentionUserIds(

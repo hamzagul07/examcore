@@ -40,6 +40,7 @@ import { toMarkingAIResult, aggregateWholePaperResults } from '@/lib/marking/who
 import { invalidateStudentMemoryCache } from '@/lib/omni-ai/student-memory'
 import { chooseAnswerText, extractPracticeQuestionFromScript } from '@/lib/marking/practice-question-extract'
 import { splitUploadIntoQuestions, type SplitQuestion } from '@/lib/marking/split-questions'
+import { splitQuestionBudget } from '@/lib/marking/split-question-budget'
 import { extractTotalMarksForGate } from '@/lib/marking/question-marks'
 import { stripNullBytes } from '@/lib/marking/strip-null-bytes'
 import {
@@ -171,6 +172,14 @@ export type SingleQuestionMarkInput = {
    * immediately and then fills the rewrite in with a follow-up event.
    */
   deferRewrite?: boolean
+  /**
+   * Most questions of a multi-question script this caller's allowance
+   * covers (maxQuestionsForReservation). The split is CUT to it before any
+   * question is marked; questions beyond it are reported, not marked. Null
+   * or absent when the allowance does not bound (guests, warn/off mode), in
+   * which case only the hard fan-out cap applies.
+   */
+  maxQuestions?: number | null
   startedAt?: number
   onProgress?: (event: MarkProgressEvent) => void
 }
@@ -257,8 +266,9 @@ async function resolvePracticeIb(
 }
 
 /** Cap on questions marked from one scanned script — bounds cost, latency, and
- * the risk of blowing the 300s function timeout (each question is 2 Gemini Pro
- * calls). Kept in line with the whole-paper path's 15-question cap. */
+ * the risk of blowing the route's 800s maxDuration (Fluid Compute; each
+ * question is 2 Gemini Pro calls). Kept in line with the whole-paper path's
+ * 15-question cap. */
 const MAX_SPLIT_QUESTIONS = 15
 /** Tighter cap for signed-out users: a guest's whole upload only counts as one
  * anonymous rate-limit tick, so bound the Pro spend it can trigger (L2). */
@@ -267,10 +277,11 @@ const GUEST_MAX_SPLIT_QUESTIONS = 3
  * so keep this modest to respect model rate limits while cutting wall-clock. */
 const SPLIT_CONCURRENCY = 3
 /** Run the (expensive) second-opinion verify pass per question only when the
- * batch is small enough to finish within the function timeout. Larger scripts
- * skip verify — a full batch of 3 Pro calls/question would risk a 300s timeout;
- * completing every question reliably matters more than the last ~1 mark of
- * precision on a big script. Single-question marks always verify (not a batch). */
+ * batch is small enough to finish within the request budget. Larger scripts
+ * skip verify — a full batch of 3 Pro calls/question would risk the route's
+ * 800s maxDuration; completing every question reliably matters more than the
+ * last ~1 mark of precision on a big script. Single-question marks always
+ * verify (not a batch). */
 const VERIFY_MAX_BATCH = 3
 
 /** Run `fn` over `items` with a bounded number of concurrent workers, preserving
@@ -521,6 +532,8 @@ async function markSplitQuestions(params: {
   onProgress?: SingleQuestionMarkInput['onProgress']
   /** Student-entered total from the upload form (used when split length is 1). */
   questionMarks?: number | null
+  /** Allowance bound on questions marked; see SingleQuestionMarkInput. */
+  maxQuestions?: number | null
 }): Promise<Record<string, unknown>> {
   const {
     split,
@@ -536,17 +549,28 @@ async function markSplitQuestions(params: {
     pageSources,
     onProgress,
     questionMarks = null,
+    maxQuestions = null,
   } = params
 
   // H3/L2: cap the number of questions so one upload can't fan out into an
   // unbounded run of Pro calls (timeout risk) — and a tighter cap for guests,
-  // whose whole upload is a single anonymous rate-limit tick.
-  const cap = userId ? MAX_SPLIT_QUESTIONS : GUEST_MAX_SPLIT_QUESTIONS
-  const capped = split.slice(0, cap)
+  // whose whole upload is a single anonymous rate-limit tick. The caller's
+  // allowance is the second bound, applied HERE rather than at the ledger:
+  // every question past it used to be marked on Pro and then merely not
+  // charged (see lib/marking/split-question-budget.ts).
+  const hardCap = userId ? MAX_SPLIT_QUESTIONS : GUEST_MAX_SPLIT_QUESTIONS
+  const budget = splitQuestionBudget({
+    detected: split.length,
+    hardCap,
+    maxQuestions,
+  })
+  const capped = split.slice(0, budget.marked)
   const droppedCount = split.length - capped.length
   if (droppedCount > 0) {
     console.warn(
-      `[mark] scanned script had ${split.length} questions; marking first ${cap}`
+      `[mark] scanned script had ${split.length} questions; marking first ${capped.length}` +
+        (budget.allowanceCut > 0 ? ` (${budget.allowanceCut} beyond the allowance)` : '') +
+        (budget.sizeCut > 0 ? ` (${budget.sizeCut} beyond the ${hardCap}-question cap)` : '')
     )
   }
 
@@ -602,8 +626,14 @@ async function markSplitQuestions(params: {
   emit(onProgress, 'marking', 95)
 
   const whole = aggregateWholePaperResults(undefined, undefined, questionResults)
-  if (droppedCount > 0) {
-    whole.summary += ` Note: only the first ${cap} of ${split.length} detected questions were marked — re-upload the rest separately.`
+  if (budget.allowanceCut > 0) {
+    whole.summary += ` Note: only the first ${capped.length} of ${split.length} detected questions were marked — the other ${budget.allowanceCut} ${
+      budget.allowanceCut === 1 ? 'was' : 'were'
+    } beyond your marking allowance. Upload ${
+      budget.allowanceCut === 1 ? 'it' : 'them'
+    } again when it resets, or add credits.`
+  } else if (droppedCount > 0) {
+    whole.summary += ` Note: only the first ${capped.length} of ${split.length} detected questions were marked — re-upload the rest separately.`
   }
   const subject_code = resolveMarkResultSubjectCode({
     paper_code: `${practiceCode}/00`,
@@ -654,6 +684,9 @@ async function markSplitQuestions(params: {
     // per question using these.
     question_attempt_ids: attemptIds,
     question_count: capped.length,
+    // Questions cut by the allowance before marking: the route reports them on
+    // `_allowance.questions_not_marked` so the page can say which were left.
+    questions_over_allowance: budget.allowanceCut,
     answer_photo_url: answerPhotoUrl,
     page_photo_urls: pagePhotoUrls.length ? pagePhotoUrls : undefined,
     marking_mode: 'general_criteria_practice',
@@ -702,6 +735,7 @@ export async function runSingleQuestionMark(
     enableRewrite = false,
     priorityDeepMarking = false,
     deferRewrite = false,
+    maxQuestions = null,
     startedAt = Date.now(),
     onProgress,
   } = input
@@ -860,7 +894,8 @@ export async function runSingleQuestionMark(
   } else if (pageFiles.length > 0) {
     // OCR pages with bounded concurrency (was sequential) — a multi-page image
     // upload is a big chunk of wall-clock, and with the verify pass the whole
-    // mark must stay well under the 300s function limit. Order is preserved.
+    // mark must stay well under the route's 800s maxDuration. Order is
+    // preserved.
     const ocred = await mapWithConcurrency(pageFiles, 4, (file) => ocrOnePage(file))
     pageOcrResults.push(...ocred)
   } else {
@@ -994,6 +1029,7 @@ export async function runSingleQuestionMark(
             .map((p) => ({ photo_url: p.photo_url!, ocr_lines: p.lines })),
           onProgress,
           questionMarks,
+          maxQuestions,
         })
       }
       // Exactly one question detected — keep its number so an ingested official

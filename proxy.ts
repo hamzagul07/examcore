@@ -13,6 +13,7 @@ import {
   readPostAuthNextParam,
   resolvePostAuthPath,
   postOnboardingHref,
+  resolveSameOriginUrl,
 } from '@/lib/auth-redirect'
 
 const AUTH_ENTRY_PREFIXES = ['/auth/signin', '/auth/signup']
@@ -65,6 +66,32 @@ function redirectWithCookies(url: URL | string, supabaseResponse: NextResponse) 
     response.cookies.set(cookie)
   })
   return response
+}
+
+/**
+ * Redirect to a user-influenced destination, refusing to leave this origin.
+ *
+ * The sanitizers upstream (`resolvePostAuthPath`, `postOnboardingHref`) check
+ * the *shape* of a path; this is the sink, where `new URL(dest, request.url)`
+ * would happily turn `/\evil.com` into `https://evil.com/` (WHATWG treats `\`
+ * as `/`). A signed-in user hitting `/auth/signin?next=/\evil.com` was sent
+ * off-site with freshly refreshed auth cookies attached (review §1.1). Asking
+ * the URL parser itself, right here, is the check that cannot drift.
+ */
+function redirectSameOrigin(
+  destination: string,
+  request: NextRequest,
+  supabaseResponse: NextResponse,
+  fallback = '/dashboard'
+) {
+  // The absolute URL built ON the checked origin, not a path string
+  // re-resolved against request.url: a path that normalised to `//evil.com`
+  // (dot segments collapse before the origin check) once survived the
+  // string check and went off-site at exactly this second resolution.
+  const target =
+    resolveSameOriginUrl(destination, request.nextUrl.origin) ??
+    new URL(fallback, request.nextUrl.origin)
+  return redirectWithCookies(target, supabaseResponse)
 }
 
 export async function proxy(request: NextRequest) {
@@ -126,7 +153,7 @@ export async function proxy(request: NextRequest) {
       null,
       profile?.role === 'teacher' ? 'teacher' : 'student'
     )
-    return redirectWithCookies(new URL(destination, request.url), supabaseResponse)
+    return redirectSameOrigin(destination, request, supabaseResponse)
   }
 
   if (matchesRoutePrefix(pathname, AUTH_ENTRY_PREFIXES)) {
@@ -145,7 +172,7 @@ export async function proxy(request: NextRequest) {
         isOnboardingComplete(profile),
         nextParam
       )
-      return redirectWithCookies(new URL(destination, request.url), supabaseResponse)
+      return redirectSameOrigin(destination, request, supabaseResponse)
     }
     return supabaseResponse
   }
@@ -155,6 +182,10 @@ export async function proxy(request: NextRequest) {
   }
 
   if (!user) {
+    // The completion hop handles its own missing-session case: it sends the
+    // user to sign in with `completed=1` so the page can say the profile was
+    // saved. Bouncing here would lose that hint. It never restores a session
+    // on its own — that path was removed with the onboarding save token.
     if (pathname === '/onboarding/complete') {
       return supabaseResponse
     }
@@ -201,14 +232,16 @@ export async function proxy(request: NextRequest) {
       return supabaseResponse
     }
 
-    const redirectUrl = request.nextUrl.clone()
+    // `postOnboardingHref` rather than a bare shape check: it also refuses a
+    // `next` back to /onboarding or /auth/*, which for an already-onboarded
+    // user is a redirect loop, and it keeps the destination's query string
+    // (assigning the whole thing to `pathname` used to encode `?` as `%3F`).
     const next = request.nextUrl.searchParams.get('next')
-    redirectUrl.pathname =
-      next && next.startsWith('/') && !next.startsWith('//') && !next.includes('://')
-        ? next
-        : '/dashboard'
-    redirectUrl.search = ''
-    return redirectWithCookies(redirectUrl, supabaseResponse)
+    return redirectSameOrigin(
+      postOnboardingHref(next, '/dashboard'),
+      request,
+      supabaseResponse
+    )
   }
 
   if (

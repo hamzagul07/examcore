@@ -14,26 +14,18 @@ import {
   generateGeminiText,
   isGeminiConfigured,
 } from '@/lib/ai/gemini-text'
-import { hourlyRateLimitHeaders } from '@/lib/http/rate-limit-response'
+import {
+  authenticateRouteRequest,
+  createServiceClient,
+} from '@/lib/supabase-server'
+import {
+  clientIp,
+  consumeTeachBackSlot,
+  RateLimitUnavailableError,
+} from '@/lib/rate-limit'
+import { rateLimitJson } from '@/lib/http/rate-limit-response'
 
 export const maxDuration = 30
-
-const WINDOW_MS = 60 * 60 * 1000
-const MAX_PER_WINDOW = 30
-const buckets = new Map<string, number[]>()
-
-function allow(ip: string): boolean {
-  const now = Date.now()
-  const cutoff = now - WINDOW_MS
-  const bucket = (buckets.get(ip) || []).filter((ts) => ts > cutoff)
-  if (bucket.length >= MAX_PER_WINDOW) {
-    buckets.set(ip, bucket)
-    return false
-  }
-  bucket.push(now)
-  buckets.set(ip, bucket)
-  return true
-}
 
 type Body = {
   subjectCode?: string
@@ -85,17 +77,6 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  const ip =
-    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-    req.headers.get('x-real-ip') ||
-    'unknown'
-  if (!allow(ip)) {
-    return NextResponse.json(
-      { error: 'Too many teach-backs this hour. Try again shortly.' },
-      { status: 429, headers: hourlyRateLimitHeaders(3600) }
-    )
-  }
-
   if (!isGeminiConfigured()) {
     return NextResponse.json({ error: 'AI unavailable' }, { status: 503 })
   }
@@ -104,6 +85,31 @@ export async function POST(req: NextRequest) {
   const lesson = getCourseLesson(code, lessonSlug)
   if (!lesson) {
     return NextResponse.json({ error: 'Lesson not found' }, { status: 404 })
+  }
+
+  // Persisted daily cap — per user when signed in, per IP for a guest.
+  //
+  // This route is unauthenticated and every hit is up to two Pro-class calls
+  // with no cache. It was guarded by an in-process Map, which on Vercel is
+  // per-lambda and empty after every cold start, so the "30 an hour" it
+  // promised was closer to "30 per instance, and a new instance is free".
+  // (Code review 2026-09-25, §1.7.) Consumed only after the lesson resolves,
+  // so a typo in the slug does not spend a slot.
+  const { user } = await authenticateRouteRequest(req)
+  const ip = clientIp(req)
+  try {
+    const slot = await consumeTeachBackSlot(createServiceClient(), ip, user?.id ?? null)
+    if (!slot.allowed) {
+      return rateLimitJson(slot.message)
+    }
+  } catch (err) {
+    if (err instanceof RateLimitUnavailableError) {
+      return NextResponse.json(
+        { error: 'Teach-back is briefly unavailable. Try again in a minute.' },
+        { status: 503 }
+      )
+    }
+    throw err
   }
 
   const takeaways = extractKeyTakeaways(lesson)
@@ -116,7 +122,7 @@ export async function POST(req: NextRequest) {
     takeaways,
   })
 
-  const { system, user } = buildTeachBackPrompt({
+  const { system, user: userPrompt } = buildTeachBackPrompt({
     title: lesson.title,
     topicCode: lesson.topicCode,
     lessonBrief: brief,
@@ -124,13 +130,13 @@ export async function POST(req: NextRequest) {
   })
 
   try {
-    let result = await runTeachBack({ system, user, temperature: 0.2 })
+    let result = await runTeachBack({ system, user: userPrompt, temperature: 0.2 })
     // Full re-ask (with the lesson + student text), not a blind JSON "repair"
     // that invents commentary about missing fields.
     if (!result) {
       result = await runTeachBack({
         system: `${system} Emit one complete JSON object only. Judge the student explanation against the lesson brief — never mention JSON or fields.`,
-        user,
+        user: userPrompt,
         temperature: 0,
       })
     }

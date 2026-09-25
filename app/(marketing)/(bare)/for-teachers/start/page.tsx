@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase-server'
-import { createOnboardingSaveToken } from '@/lib/onboarding/save-token'
 import { TeacherStartForm } from '@/components/teacher/TeacherStartForm'
 import { TeacherNav } from '@/components/teacher/TeacherNav'
 
@@ -43,8 +42,6 @@ export default async function TeacherStartPage() {
     redirect('/teacher/dashboard')
   }
 
-  const saveToken = createOnboardingSaveToken(user.id)
-
   return (
     <>
       {/* The teacher header, without its links: this visitor is not a teacher
@@ -65,7 +62,7 @@ export default async function TeacherStartPage() {
             Four questions, then you get a code to give your students. Marking their work is free
             for you — no card, no trial.
           </p>
-          <TeacherStartForm saveToken={saveToken} />
+          <TeacherStartForm />
         </div>
       </div>
     </>

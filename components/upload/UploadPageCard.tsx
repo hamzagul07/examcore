@@ -22,6 +22,12 @@ export type UploadPage = {
   fileSizeBytes?: number
   /** Original size before compression, if compressed */
   originalSizeBytes?: number
+  /**
+   * The browser could not decode this image (HEIC outside Safari). The bytes
+   * are still sent — the server accepts image/heic — but there is no preview
+   * to draw, so the cards show a placeholder instead of a broken image.
+   */
+  previewUnavailable?: boolean
 }
 
 export function UploadPageCard({
@@ -128,12 +134,21 @@ export function UploadPageCard({
         className="relative h-24 w-[4.5rem] shrink-0 overflow-hidden rounded border border-[var(--ec-border)] bg-[var(--ec-bg-soft)] sm:h-28 sm:w-20 ms-upload-page-thumb"
         aria-label={`Preview page ${index + 1}`}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={page.previewUrl}
-          alt=""
-          className="h-full w-full"
-        />
+        {page.previewUnavailable ? (
+          <span
+            className="flex h-full w-full items-center justify-center px-1 text-center font-mono text-[10px] leading-tight text-[var(--ec-text-secondary)]"
+            aria-hidden
+          >
+            No preview
+          </span>
+        ) : (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={page.previewUrl}
+            alt=""
+            className="h-full w-full"
+          />
+        )}
       </button>
 
       <div className="min-w-0 flex-1">
@@ -155,6 +170,11 @@ export function UploadPageCard({
         )}
         {sizeLabel && page.status !== 'compressing' && (
           <p className="mt-1 font-mono text-[10px] text-[var(--ec-text-secondary)]">{sizeLabel}</p>
+        )}
+        {page.previewUnavailable && page.status !== 'compressing' && (
+          <p className="mt-1 text-xs text-[var(--ec-text-secondary)]">
+            This browser can&rsquo;t show HEIC photos, but the page will still be marked.
+          </p>
         )}
 
         {showQuestionAssign && (

@@ -109,6 +109,9 @@ const base = {
   credit_balance: 0,
   tier: 'free' as const,
   status: 'active' as const,
+  // The seat's access, resolved like the gate does — it now rides on the
+  // allowance so feature gates stop recomputing it from tier/status alone.
+  access: 'scholar' as const,
   warning: true,
   enforcement_mode: 'enforce' as const,
   marks_used: 300,

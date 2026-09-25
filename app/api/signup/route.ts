@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/service'
 import {
+  RateLimitUnavailableError,
   checkSignupRateLimit,
   clientIp,
-  incrementSignupRateLimit,
 } from '@/lib/rate-limit'
-import { rateLimitJson } from '@/lib/http/rate-limit-response'
+import { rateLimitJson, rateLimitUnavailableJson } from '@/lib/http/rate-limit-response'
 import { notifyAdminWaitlistSignup } from '@/lib/email/notifications'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -28,7 +28,15 @@ export async function POST(request: NextRequest) {
 
     const admin = createServiceClient()
     const ip = clientIp(request)
-    const rate = await checkSignupRateLimit(admin, ip)
+    let rate
+    try {
+      rate = await checkSignupRateLimit(admin, ip)
+    } catch (err) {
+      // Limiter outage: a retryable 503, not the generic 400 below.
+      if (!(err instanceof RateLimitUnavailableError)) throw err
+      console.error('[signup] rate limit unavailable:', err.message)
+      return rateLimitUnavailableJson()
+    }
     if (!rate.allowed) {
       return rateLimitJson(rate.message)
     }
@@ -44,7 +52,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Could not save signup' }, { status: 500 })
     }
 
-    await incrementSignupRateLimit(admin, ip, rate.count)
+    // The slot was consumed atomically by checkSignupRateLimit above.
 
     notifyAdminWaitlistSignup({
       email,

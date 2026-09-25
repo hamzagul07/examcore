@@ -23,7 +23,7 @@ import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
  * they have. Four fields is the whole of what the server needs to create their
  * account and their first class.
  */
-export function TeacherStartForm({ saveToken }: { saveToken: string }) {
+export function TeacherStartForm() {
   const [board, setBoard] = useState(BOARDS[0].id)
   const [level, setLevel] = useState('A-Level')
   const [subject, setSubject] = useState('')
@@ -63,7 +63,7 @@ export function TeacherStartForm({ saveToken }: { saveToken: string }) {
     setError('')
 
     try {
-      const result = await completeOnboardingRequest(saveToken, {
+      const result = await completeOnboardingRequest({
         board,
         level: effectiveLevel,
         subjects: [subject],

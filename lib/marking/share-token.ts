@@ -26,17 +26,96 @@ type TokenPayload = {
   k?: 'progress'
 }
 
+/**
+ * The HMAC key behind every NEW /r and /p link.
+ *
+ * In production this is MARK_SHARE_SECRET and nothing else. The fallbacks to
+ * CRON_SECRET and the service-role key (code review 2026-09-25, §3) meant a
+ * bearer credential for the whole database doubled as the signing key for
+ * public URLs — and that quietly rotating either of them would invalidate every
+ * report link a parent had been sent. Thrown at first use, not at import, so a
+ * misconfigured deploy still boots and fails only the share paths, loudly.
+ * Outside production the fallbacks stay so a preview or a local run needs no
+ * extra secret.
+ */
 function signingSecret(): string {
-  const secret =
-    process.env.MARK_SHARE_SECRET?.trim() ||
-    process.env.CRON_SECRET?.trim() ||
-    process.env.SUPABASE_SERVICE_ROLE_KEY?.trim()
-  if (!secret) {
+  const explicit = process.env.MARK_SHARE_SECRET?.trim()
+  if (explicit) return explicit
+  if (process.env.NODE_ENV === 'production') {
     throw new Error(
-      'MARK_SHARE_SECRET, CRON_SECRET, or SUPABASE_SERVICE_ROLE_KEY is required'
+      'MARK_SHARE_SECRET is required in production: mark and progress share links are signed with it. Set it to a long random string (openssl rand -base64 32); do not reuse CRON_SECRET or the service-role key.'
     )
   }
-  return secret
+  const fallback =
+    process.env.CRON_SECRET?.trim() ||
+    process.env.SUPABASE_SERVICE_ROLE_KEY?.trim()
+  if (!fallback) {
+    throw new Error(
+      'MARK_SHARE_SECRET is required (outside production CRON_SECRET or SUPABASE_SERVICE_ROLE_KEY is accepted as a fallback)'
+    )
+  }
+  return fallback
+}
+
+/**
+ * Keys a link may have been signed with, newest first — for VERIFICATION only.
+ *
+ * Every /r and /p link mailed to a parent before MARK_SHARE_SECRET existed
+ * was signed with CRON_SECRET or the service-role key. Requiring the new
+ * secret for signing is right; requiring it for verification would have
+ * turned all of those into "this link is invalid" the moment the variable
+ * was set — a regression for exactly the people the links were sent to.
+ * So the legacy keys stay accepted, verify-only, until every link signed
+ * with them has expired on its own: TOKEN_TTL_MS after the deploy that
+ * introduced MARK_SHARE_SECRET (2026-09-25), i.e. remove the two legacy
+ * entries after 2027-01-23. Nothing is ever SIGNED with them in production.
+ *
+ * Empty when no key is configured at all: the caller treats that as "cannot
+ * verify" and renders the invalid-link state rather than a 500 (see
+ * verifyWithAnyKey), and logs it once so the deploy fault is not silent.
+ */
+function verificationSecrets(): string[] {
+  const candidates = [
+    process.env.MARK_SHARE_SECRET?.trim(),
+    process.env.CRON_SECRET?.trim(),
+    process.env.SUPABASE_SERVICE_ROLE_KEY?.trim(),
+  ]
+  const unique: string[] = []
+  for (const c of candidates) {
+    if (c && !unique.includes(c)) unique.push(c)
+  }
+  return unique
+}
+
+let warnedNoVerificationSecret = false
+
+/**
+ * Constant-time check of `sig` over `payloadB64` against each accepted key.
+ * A missing key set is a deployment fault, reported once, and reads as
+ * "not verified": the two public pages then render their invalid-link state
+ * instead of throwing a 500 from inside a server component.
+ */
+function verifyWithAnyKey(payloadB64: string, sig: string): boolean {
+  const keys = verificationSecrets()
+  if (keys.length === 0) {
+    if (!warnedNoVerificationSecret) {
+      warnedNoVerificationSecret = true
+      console.error(
+        '[share-token] no signing secret configured (MARK_SHARE_SECRET); every share link reads as invalid until it is set'
+      )
+    }
+    return false
+  }
+  const sigBuf = Buffer.from(sig)
+  for (const key of keys) {
+    const expectedBuf = Buffer.from(
+      createHmac('sha256', key).update(payloadB64).digest('base64url')
+    )
+    if (sigBuf.length === expectedBuf.length && timingSafeEqual(sigBuf, expectedBuf)) {
+      return true
+    }
+  }
+  return false
 }
 
 /** Signed token for a public mark report page (`/r/[token]`). */
@@ -68,17 +147,10 @@ export function verifyMarkShareToken(
   const payloadB64 = token.slice(0, dot)
   const sig = token.slice(dot + 1)
   try {
-    const expected = createHmac('sha256', signingSecret())
-      .update(payloadB64)
-      .digest('base64url')
-    const sigBuf = Buffer.from(sig)
-    const expectedBuf = Buffer.from(expected)
-    if (
-      sigBuf.length !== expectedBuf.length ||
-      !timingSafeEqual(sigBuf, expectedBuf)
-    ) {
-      return null
-    }
+    // Inside the try, and never throwing on a missing secret: this runs in
+    // the /r page's render, where a throw is a 500 for the parent holding
+    // the link. The fault is logged once by verifyWithAnyKey instead.
+    if (!verifyWithAnyKey(payloadB64, sig)) return null
 
     const payload = JSON.parse(
       Buffer.from(payloadB64, 'base64url').toString('utf8')
@@ -146,17 +218,9 @@ export function verifyProgressShareToken(
   const payloadB64 = token.slice(0, dot)
   const sig = token.slice(dot + 1)
   try {
-    const expected = createHmac('sha256', signingSecret())
-      .update(payloadB64)
-      .digest('base64url')
-    const sigBuf = Buffer.from(sig)
-    const expectedBuf = Buffer.from(expected)
-    if (
-      sigBuf.length !== expectedBuf.length ||
-      !timingSafeEqual(sigBuf, expectedBuf)
-    ) {
-      return null
-    }
+    // Same as verifyMarkShareToken: legacy keys accepted for verification,
+    // a missing key reads as "not verified" rather than a 500 on /p.
+    if (!verifyWithAnyKey(payloadB64, sig)) return null
 
     const payload = JSON.parse(
       Buffer.from(payloadB64, 'base64url').toString('utf8')

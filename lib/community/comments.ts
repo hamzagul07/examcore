@@ -207,23 +207,8 @@ export async function createComment(input: CreateCommentInput): Promise<CreateCo
   }
 }
 
-export async function voteComment(commentId: string, userId: string, value: -1 | 1): Promise<number> {
-  const admin = createServiceClient()
-  const { data: existing } = await admin
-    .from('community_comment_votes')
-    .select('value')
-    .eq('comment_id', commentId)
-    .eq('user_id', userId)
-    .maybeSingle()
-  if (existing?.value === value) {
-    await admin.from('community_comment_votes').delete().eq('comment_id', commentId).eq('user_id', userId)
-    return 0
-  }
-  await admin
-    .from('community_comment_votes')
-    .upsert({ comment_id: commentId, user_id: userId, value }, { onConflict: 'comment_id,user_id' })
-  return value
-}
+// Voting lives in the `vote_comment` RPC (20260925_community_votes_rpc.sql);
+// see the note on posts.ts for why the read-then-upsert version went.
 
 export async function getUserCommentVotes(
   userId: string,

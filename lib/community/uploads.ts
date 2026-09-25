@@ -1,58 +1,38 @@
+import crypto from 'crypto'
 import { createServiceClient } from '@/lib/supabase-server'
+import {
+  MAX_ATTACHMENT_NAME,
+  attachmentKindForMime,
+  extForMime,
+  type AttachmentKind,
+  type CommunityAttachment,
+} from '@/lib/community/attachment-validate'
 
 /** Private bucket for community post attachments (PDFs, images, docs). */
 export const COMMUNITY_UPLOADS_BUCKET = 'community-uploads'
 
 const DEFAULT_TTL_SEC = 60 * 60
 
-export type AttachmentKind = 'image' | 'pdf' | 'doc'
+// The mime table and the path validator live in attachment-validate.ts so
+// they can be unit-tested without a Supabase client; re-exported here so
+// existing imports keep working.
+export { attachmentKindForMime }
+export type { AttachmentKind, CommunityAttachment }
 
-export type CommunityAttachment = {
-  path: string
-  name: string
-  kind: AttachmentKind
-  mime: string
-  size: number
-}
-
-const IMAGE_MIME = new Set(['image/png', 'image/jpeg', 'image/jpg', 'image/webp', 'image/gif'])
-const DOC_MIME = new Set([
-  'application/msword',
-  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-  'application/vnd.ms-powerpoint',
-  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-  'application/vnd.ms-excel',
-  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-  'text/plain',
-  'text/csv',
-])
-
-export function attachmentKindForMime(mime: string): AttachmentKind | null {
-  const m = mime.toLowerCase()
-  if (IMAGE_MIME.has(m)) return 'image'
-  if (m === 'application/pdf') return 'pdf'
-  if (DOC_MIME.has(m)) return 'doc'
-  return null
-}
-
-function extForMime(mime: string): string {
-  const map: Record<string, string> = {
-    'image/png': 'png',
-    'image/jpeg': 'jpg',
-    'image/jpg': 'jpg',
-    'image/webp': 'webp',
-    'image/gif': 'gif',
-    'application/pdf': 'pdf',
-    'application/msword': 'doc',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'docx',
-    'application/vnd.ms-powerpoint': 'ppt',
-    'application/vnd.openxmlformats-officedocument.presentationml.presentation': 'pptx',
-    'application/vnd.ms-excel': 'xls',
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': 'xlsx',
-    'text/plain': 'txt',
-    'text/csv': 'csv',
-  }
-  return map[mime.toLowerCase()] ?? 'bin'
+/**
+ * Object path for a new upload: `<uploader>/<ms>-<12 hex>.<ext>`.
+ *
+ * The uploader's id is the first folder on purpose — it is what the storage
+ * SELECT policy scopes on and what `isOwnedAttachmentPath` checks when the
+ * descriptor comes back from the client. The random segment comes from
+ * `crypto.randomBytes`: the earlier `Math.random().toString(36).slice(2, 8)`
+ * could come back shorter than six characters, which the validator's `{6,}`
+ * would then reject for a genuine upload.
+ */
+export function newAttachmentPath(userId: string, mime: string): string | null {
+  const ext = extForMime(mime)
+  if (!ext) return null
+  return `${userId}/${Date.now()}-${crypto.randomBytes(6).toString('hex')}.${ext}`
 }
 
 export async function uploadCommunityFile(input: {
@@ -61,24 +41,24 @@ export async function uploadCommunityFile(input: {
   originalName: string
   userId: string
 }): Promise<CommunityAttachment | null> {
-  const kind = attachmentKindForMime(input.mime)
-  if (!kind) return null
+  const mime = input.mime.toLowerCase()
+  const kind = attachmentKindForMime(mime)
+  const path = newAttachmentPath(input.userId, mime)
+  if (!kind || !path) return null
   try {
     const admin = createServiceClient()
-    const ext = extForMime(input.mime)
-    const path = `${input.userId}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`
     const { error } = await admin.storage
       .from(COMMUNITY_UPLOADS_BUCKET)
-      .upload(path, input.buffer, { contentType: input.mime, upsert: false })
+      .upload(path, input.buffer, { contentType: mime, upsert: false })
     if (error) {
       console.error('community upload error:', error)
       return null
     }
     return {
       path,
-      name: input.originalName.slice(0, 120),
+      name: input.originalName.slice(0, MAX_ATTACHMENT_NAME),
       kind,
-      mime: input.mime,
+      mime,
       size: input.buffer.byteLength,
     }
   } catch (err) {

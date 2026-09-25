@@ -1,4 +1,4 @@
-import type { SubscriptionTier } from '@/lib/database.types'
+import type { BillingPeriod, SubscriptionTier } from '@/lib/database.types'
 import type { EffectiveAccess } from './access'
 
 /**
@@ -116,22 +116,108 @@ export function tierMarketingName(tier: SubscriptionTier): string {
 }
 
 /**
- * Current usage window for a tier. Subscribers use their Stripe period;
- * free users use the calendar month.
+ * `date` plus `months` calendar months in UTC, with the day-of-month clamped to
+ * the target month's length. Always computed from the ORIGINAL anchor rather
+ * than by stepping month to month, so a Jan 31 anchor gives Feb 28, Mar 31,
+ * Apr 30 — stepping would collapse it to the 28th for good after February.
+ *
+ * UTC throughout: Polar's period timestamps are UTC instants, and a local-time
+ * calendar would move the boundary by an hour across a DST change, which for a
+ * mark at 00:30 on the boundary day is the difference between "this month" and
+ * "next month".
+ */
+export function addUtcMonths(date: Date, months: number): Date {
+  const targetMonth = date.getUTCMonth() + months
+  const lastDay = new Date(Date.UTC(date.getUTCFullYear(), targetMonth + 1, 0)).getUTCDate()
+  return new Date(
+    Date.UTC(
+      date.getUTCFullYear(),
+      targetMonth,
+      Math.min(date.getUTCDate(), lastDay),
+      date.getUTCHours(),
+      date.getUTCMinutes(),
+      date.getUTCSeconds(),
+      date.getUTCMilliseconds()
+    )
+  )
+}
+
+/**
+ * The calendar-month slice of a yearly billing period that contains `now`.
+ *
+ * Anchored on `periodStart`: the sub-windows are [start, start+1mo),
+ * [start+1mo, start+2mo), … so a subscriber who started on the 15th resets on
+ * the 15th every month, and the last slice ends where Polar's period ends.
+ *
+ * Yearly plans used to be metered against the WHOLE Polar period, so a Scholar
+ * yearly ($199) got the monthly cap — 120 marks — once for the entire year,
+ * while monthly got it twelve times. `TIER_MONTHLY_CAPS` are monthly numbers;
+ * this is the window that makes them mean that on a yearly plan.
+ *
+ * `end` is clamped to `periodEnd` when Polar's period ends inside the slice
+ * (the twelfth month is never quite a calendar month from the anchor). A `now`
+ * before `periodStart` gets the first slice; a `now` past `periodEnd` gets the
+ * slice it falls in, unclamped — that only happens on a stale row and the
+ * caller already treats a lapsed subscription on its own terms.
+ */
+export function monthlySubWindow(
+  periodStart: Date,
+  now: Date,
+  periodEnd?: Date | null
+): { start: Date; end: Date } {
+  let n = 0
+  // 1200 months is a century of anchors: a hard stop so a wildly wrong
+  // period_start (a year in 1970, a bad import) cannot spin the gate.
+  while (n < 1200 && addUtcMonths(periodStart, n + 1).getTime() <= now.getTime()) n += 1
+  const start = addUtcMonths(periodStart, n)
+  let end = addUtcMonths(periodStart, n + 1)
+  if (periodEnd && periodEnd.getTime() > start.getTime() && periodEnd.getTime() < end.getTime()) {
+    end = periodEnd
+  }
+  return { start, end }
+}
+
+function parseIso(value: string | null | undefined): Date | null {
+  if (!value) return null
+  const d = new Date(value)
+  return Number.isNaN(d.getTime()) ? null : d
+}
+
+/**
+ * Current usage window for a tier. Subscribers use their Polar period — the
+ * monthly slice of it for a yearly plan (see monthlySubWindow); free users use
+ * the calendar month.
+ *
+ * `now` is injectable for tests only.
  */
 export function currentPeriodWindow(opts: {
   tier: SubscriptionTier
   periodStart?: string | null
   periodEnd?: string | null
+  /**
+   * `user_subscriptions.billing_period`. Only 'yearly' changes anything; null
+   * (legacy rows written before the column, or a free row) means monthly.
+   */
+  billingPeriod?: BillingPeriod | null
+  now?: Date
 }): { start: string; end: string | null; source: 'subscription' | 'free_tier' } {
+  const now = opts.now ?? new Date()
   if (opts.tier !== 'free' && opts.periodStart) {
+    const periodStart = parseIso(opts.periodStart)
+    if (opts.billingPeriod === 'yearly' && periodStart) {
+      const slice = monthlySubWindow(periodStart, now, parseIso(opts.periodEnd))
+      return {
+        start: slice.start.toISOString(),
+        end: slice.end.toISOString(),
+        source: 'subscription',
+      }
+    }
     return {
       start: opts.periodStart,
       end: opts.periodEnd ?? null,
       source: 'subscription',
     }
   }
-  const now = new Date()
   const start = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1))
   const end = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 1))
   return {

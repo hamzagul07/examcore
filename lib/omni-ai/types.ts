@@ -66,6 +66,11 @@ export interface OmniAIMessage {
   status?: string | null
 }
 
+/**
+ * Wire shape for POST /api/omni-ai. The server validates and bounds it with
+ * `OmniRequestBodySchema` (lib/omni-ai/context-schema.ts) before anything is
+ * metered: query ≤ 2,000 chars, last 8 messages of ≤ 4,000 chars each.
+ */
 export interface OmniAIRequestBody {
   query: string
   context: AIContextType

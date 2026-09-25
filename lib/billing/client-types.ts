@@ -9,6 +9,21 @@ export type AllowanceBlock = {
   credit_balance: number
   period_resets_at: string | null
   enforcement_mode: 'off' | 'warn' | 'enforce'
+  /** Marks this upload counted as (1 + extra questions recorded). */
+  marks_charged?: number
+  /**
+   * Extra questions of a multi-question script that were marked but not
+   * charged because they sat beyond the cap ('enforce' mode). The mark is
+   * never failed for this; the page tells the student the script was bigger
+   * than what was left.
+   */
+  marks_refused?: number
+  /**
+   * Questions of a multi-question script that were NOT marked because the
+   * allowance could not cover them. Cut before marking, so nothing was spent
+   * on them and nothing is charged for them; the page says which were left.
+   */
+  questions_not_marked?: number
 }
 
 /** Body of a 402 mark_quota_exceeded response. */

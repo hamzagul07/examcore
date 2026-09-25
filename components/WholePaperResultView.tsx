@@ -256,6 +256,9 @@ export function WholePaperResultView({
           (q) =>
             q.status !== 'unattempted' &&
             q.status !== 'marking_failed' &&
+            // Beyond the free preview: answered but never marked, so there is
+            // nothing to "fix" and no 0/N to rank.
+            q.status !== 'not_marked_preview' &&
             q.marks_earned < q.total_marks
         )
         .map((q) => ({
@@ -382,25 +385,33 @@ export function WholePaperResultView({
             <span className="ms-micro">QUESTION BY QUESTION</span>
             <span className="ms-micro">TAP FOR EXAMINER&apos;S INK</span>
           </div>
-          {/* MK-05: highest lost opportunity first — skip blanks at the end. */}
+          {/* MK-05: highest lost opportunity first — skip blanks (and the
+              free preview's unmarked questions) at the end. */}
           {[...result.questions]
             .map((q) => ({
               q,
               lost:
-                q.status === 'unattempted' || q.total_marks <= 0
+                q.status === 'unattempted' ||
+                q.status === 'not_marked_preview' ||
+                q.total_marks <= 0
                   ? -1
                   : Math.max(0, q.total_marks - q.marks_earned),
             }))
             .sort((a, b) => b.lost - a.lost)
             .map(({ q }) => {
             const isUnattempted = q.status === 'unattempted'
+            // Answered, but past the free tier's question limit: never a
+            // zero, never "skipped" — the student wrote it, we did not read
+            // it. Rendered inert like a blank, labelled honestly.
+            const isPreview = q.status === 'not_marked_preview'
+            const isInert = isUnattempted || isPreview
             const isFailed = q.status === 'marking_failed'
             const isOpen = expanded === q.question_number
             const pct =
-              isUnattempted || q.total_marks <= 0
+              isInert || q.total_marks <= 0
                 ? 0
                 : (q.marks_earned / q.total_marks) * 100
-            const col = scoreBarColor(pct, isUnattempted)
+            const col = scoreBarColor(pct, isInert)
 
             const panelId = `wp-q-panel-${q.question_number}`
 
@@ -408,14 +419,14 @@ export function WholePaperResultView({
               <div key={q.question_number}>
                 <button
                   type="button"
-                  className={`ms-wp-qrow ${isUnattempted ? 'ms-wp-skipped' : ''}`}
+                  className={`ms-wp-qrow ${isInert ? 'ms-wp-skipped' : ''}`}
                   onClick={() =>
-                    !isUnattempted &&
+                    !isInert &&
                     setExpanded(isOpen ? null : q.question_number)
                   }
-                  disabled={isUnattempted}
-                  aria-expanded={isUnattempted ? undefined : isOpen}
-                  aria-controls={isUnattempted ? undefined : panelId}
+                  disabled={isInert}
+                  aria-expanded={isInert ? undefined : isOpen}
+                  aria-controls={isInert ? undefined : panelId}
                 >
                   <span className="qn" style={{ color: col }}>
                     Q{q.question_number}
@@ -441,9 +452,11 @@ export function WholePaperResultView({
                   <span className="qs" style={{ color: col }}>
                     {isUnattempted
                       ? 'skipped'
-                      : isFailed
-                        ? 'failed'
-                        : `${q.marks_earned}/${q.total_marks}`}
+                      : isPreview
+                        ? 'preview'
+                        : isFailed
+                          ? 'failed'
+                          : `${q.marks_earned}/${q.total_marks}`}
                   </span>
                 </button>
 
@@ -466,7 +479,7 @@ export function WholePaperResultView({
                 )}
 
                 <AnimatePresence>
-                  {isOpen && !isUnattempted && (
+                  {isOpen && !isInert && (
                     <motion.div
                       id={panelId}
                       role="region"

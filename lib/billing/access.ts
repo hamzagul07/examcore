@@ -1,4 +1,6 @@
+import type { SupabaseClient } from '@supabase/supabase-js'
 import type { SubscriptionTier, SubscriptionStatus } from '@/lib/database.types'
+import { compedAccess } from './comp'
 
 /**
  * Effective access level — the single concept the whole app gates on.
@@ -112,4 +114,68 @@ export function isVerifiedTeacher(teacherVerifiedAt?: string | null): boolean {
  */
 export function hasFullLessonAccess(access: EffectiveAccess): boolean {
   return access !== 'free'
+}
+
+/**
+ * Effective access from the two rows that decide it, resolved the way the
+ * marking gate resolves it: subscription tier/status, the *verified* teacher
+ * seat, and any comp for this user id.
+ *
+ * One function so that every caller agrees. The mark path used to recompute
+ * access from `{tier, status}` alone in five places, which is how a verified
+ * teacher came to hold a Scholar allowance at the gate and a free-tier
+ * whole-paper preview three lines later.
+ */
+export function effectiveAccessForUser(opts: {
+  userId: string
+  tier?: SubscriptionTier | null
+  status?: SubscriptionStatus | null
+  /** `user_profiles.teacher_verified_at` — the grant, never the role. */
+  teacherVerifiedAt?: string | null
+}): EffectiveAccess {
+  return effectiveAccess({
+    tier: opts.tier ?? 'free',
+    status: opts.status ?? 'active',
+    teacherVerified: isVerifiedTeacher(opts.teacherVerifiedAt),
+    accessOverride: compedAccess(opts.userId),
+  })
+}
+
+/**
+ * Server-only: the user's effective access, read with the service client.
+ *
+ * The service client is imported lazily rather than at the top of the file.
+ * This module is deliberately client-safe — `EffectiveAccess` is imported by
+ * client components and `effectiveAccess` by shared libs — and a static import
+ * of the service client would drag `next/headers` into any client bundle that
+ * ever pulled a value from here. Feature gates in the mark routes, Omni and
+ * the dashboard call this instead of recomputing access from `{tier, status}`.
+ *
+ * `supabase` is injectable so the enforcement path can share the request's
+ * client; callers otherwise omit it.
+ */
+export async function loadEffectiveAccess(
+  userId: string,
+  supabase?: SupabaseClient
+): Promise<EffectiveAccess> {
+  const client =
+    supabase ?? (await import('@/lib/supabase/service')).createServiceClient()
+  const [{ data: sub }, { data: profile }] = await Promise.all([
+    client
+      .from('user_subscriptions')
+      .select('tier, status')
+      .eq('user_id', userId)
+      .maybeSingle(),
+    client
+      .from('user_profiles')
+      .select('teacher_verified_at')
+      .eq('id', userId)
+      .maybeSingle(),
+  ])
+  return effectiveAccessForUser({
+    userId,
+    tier: (sub?.tier ?? null) as SubscriptionTier | null,
+    status: (sub?.status ?? null) as SubscriptionStatus | null,
+    teacherVerifiedAt: (profile?.teacher_verified_at ?? null) as string | null,
+  })
 }

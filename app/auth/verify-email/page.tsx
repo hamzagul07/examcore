@@ -6,7 +6,10 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 import { AuthShell } from '@/components/AuthShell'
 import { ErrorBox, SubmitButton, SuccessBox } from '@/components/AuthFormBits'
-import { buildSignUpHref } from '@/lib/auth-redirect'
+import {
+  buildSignUpHref,
+  resolveSameOriginPath,
+} from '@/lib/auth-redirect'
 import { fetchPostAuthDestination } from '@/lib/auth-post-login'
 import { formatAuthError } from '@/lib/auth-errors'
 
@@ -125,7 +128,10 @@ function VerifyEmailForm() {
     )
 
     const destination = await fetchPostAuthDestination(nextRaw)
-    router.push(destination)
+    // Sink guard — see app/auth/signin/page.tsx.
+    router.push(
+      resolveSameOriginPath(destination, window.location.origin) ?? '/dashboard'
+    )
     router.refresh()
   }
 

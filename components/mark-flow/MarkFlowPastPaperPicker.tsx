@@ -12,6 +12,13 @@ import {
   getYearsFromSessions,
 } from '@/lib/subject-papers'
 import { sessionCodeFromYearSeason } from '@/lib/marking/session'
+import {
+  formatPaperCode,
+  formatPaperSession,
+  parsePaperCode,
+  parsePaperSession,
+} from '@/lib/marking/paper-session-parse'
+import { usePaperQuestionOptions } from '@/lib/marking/paper-questions-client'
 
 export type AvailablePapersMap = Record<
   string,
@@ -45,26 +52,15 @@ function labelFor(code: string, papers: AvailablePapersMap | null) {
 }
 
 function seedFromInitial(initial: Partial<PastPaperPick> | null | undefined) {
-  const paperCode = initial?.paperCode?.trim() ?? ''
-  const slash = paperCode.indexOf('/')
-  const subject =
-    initial?.subjectCode?.trim() ||
-    (slash > 0 ? paperCode.slice(0, slash) : '') ||
-    ''
-  const component = slash > 0 ? paperCode.slice(slash + 1) : ''
-  let year: number | '' = ''
-  let session = ''
-  const sess = initial?.paperSession?.trim() ?? ''
-  const m = sess.match(/^(.*)\s+(\d{4})$/)
-  if (m) {
-    session = m[1].trim()
-    year = Number(m[2])
-  }
+  // The same parsers the host reads the draft back with, so a pick that
+  // round-trips through Confirm lands on exactly the fields it left.
+  const code = parsePaperCode(initial?.paperCode)
+  const sess = parsePaperSession(initial?.paperSession)
   return {
-    subject,
-    year,
-    session,
-    component,
+    subject: initial?.subjectCode?.trim() || code?.subject || '',
+    year: (sess?.year ?? '') as number | '',
+    session: sess?.season ?? '',
+    component: code?.component ?? '',
     questionNumber: initial?.questionNumber?.trim() ?? '',
   }
 }
@@ -86,7 +82,6 @@ export function MarkFlowPastPaperPicker({
   const [session, setSession] = useState(seed.session)
   const [component, setComponent] = useState(seed.component)
   const [questionNumber, setQuestionNumber] = useState(seed.questionNumber)
-  const [questionOptions, setQuestionOptions] = useState<string[]>([])
 
   const paperStructure = useMemo(
     () => (subject ? getSubjectPaperStructure(subject) : null),
@@ -167,30 +162,9 @@ export function MarkFlowPastPaperPicker({
     return (c: string) => labels.get(c) ?? `Component ${c}`
   }, [paperStructure])
 
-  const paperCode = subject && component ? `${subject}/${component}` : ''
-  const paperSession =
-    session && year !== '' ? `${session} ${year}` : ''
-
-  useEffect(() => {
-    if (!paperCode || !paperSession) {
-      setQuestionOptions([])
-      return
-    }
-    let cancelled = false
-    fetch(
-      `/api/mark/paper-questions?paper_code=${encodeURIComponent(paperCode)}&paper_session=${encodeURIComponent(paperSession)}`
-    )
-      .then((r) => r.json())
-      .then((d: { questions?: string[] }) => {
-        if (!cancelled) setQuestionOptions(Array.isArray(d.questions) ? d.questions : [])
-      })
-      .catch(() => {
-        if (!cancelled) setQuestionOptions([])
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [paperCode, paperSession])
+  const paperCode = formatPaperCode(subject, component)
+  const paperSession = formatPaperSession(session, year)
+  const questionOptions = usePaperQuestionOptions(paperCode, paperSession)
 
   useEffect(() => {
     if (
@@ -202,14 +176,14 @@ export function MarkFlowPastPaperPicker({
     ) {
       onChange({
         subjectCode: subject,
-        paperCode: `${subject}/${component}`,
-        paperSession: `${session} ${year}`,
+        paperCode,
+        paperSession,
         questionNumber: questionNumber.trim(),
       })
     } else {
       onChange(null)
     }
-  }, [subject, year, session, component, questionNumber, onChange])
+  }, [subject, year, session, component, paperCode, paperSession, questionNumber, onChange])
 
   if (papersLoading) {
     return (

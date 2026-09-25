@@ -50,6 +50,12 @@ export async function POST(request: NextRequest) {
     .from('user_profiles')
     .upsert({ id: user.id, username: check.username, updated_at: new Date().toISOString() }, { onConflict: 'id' })
   if (error) {
+    // The availability check above is not atomic with the write: two people
+    // claiming the same name in the same instant both pass it, and the loser
+    // hits the citext unique index. That is "taken", not a server fault.
+    if (error.code === '23505') {
+      return jsonWithAuthCookies({ error: 'That username is taken — try another.' }, pendingCookies, { status: 409 })
+    }
     console.error('[community/username] upsert failed:', error)
     return jsonWithAuthCookies({ error: 'Could not save your username.' }, pendingCookies, { status: 500 })
   }

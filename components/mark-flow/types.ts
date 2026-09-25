@@ -43,6 +43,12 @@ export type MarkFlowDraft = {
   typedAnswer: string
   /** Local file handles / preview URLs owned by the capture screen. */
   pageCount: number
+  /**
+   * An answer PDF is attached. Kept apart from pageCount: choosing a PDF
+   * clears the photographed pages, and folding it into the count left the
+   * reducer refusing Continue for a PDF the screen had already accepted.
+   */
+  hasPdf: boolean
   totalMarksHint: number | null
   dirty: boolean
 }
@@ -72,6 +78,7 @@ export function emptyDraft(
     inputKind: null,
     typedAnswer: '',
     pageCount: 0,
+    hasPdf: false,
     totalMarksHint: null,
     dirty: false,
   }

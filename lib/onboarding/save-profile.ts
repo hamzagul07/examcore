@@ -48,6 +48,13 @@ export async function saveOnboardingProfile(
   body: OnboardingInput
 ): Promise<SaveOnboardingResult> {
   try {
+    // Self-serve teacher role — by design (review §3). `role` only decides
+    // which UI a user sees and lets them own classrooms; it does NOT grant the
+    // free teacher marking allowance. That lives in `teacher_verified_at` /
+    // `teacher_verified_reason`, which this function never writes (grep it):
+    // those columns are revoked from `authenticated` and `anon`
+    // (20260807175133_teacher_seats.sql) and only set by hand through
+    // `pnpm teacher:grant`. Keep the two apart — anyone can tick "I teach".
     const role: UserRole = body.role === 'teacher' ? 'teacher' : 'student'
     const board = (body.board || '').trim() || 'Cambridge International'
     let level = (body.level || '').trim() || 'A-Level'

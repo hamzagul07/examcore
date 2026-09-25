@@ -12,6 +12,7 @@ import {
   MAX_SPRINT_BONUS_CREDITS,
   MAX_SPRINT_WINDOW_DAYS,
   MAX_WELCOME_BONUS_CREDITS,
+  withinMaxWelcomeClawbackWindow,
 } from '@/lib/billing/features'
 import { examCountdown } from '@/lib/dashboard/exam-date'
 import { sendMaxWelcomeEmail } from '@/lib/email/max-welcome'
@@ -102,7 +103,7 @@ export async function grantMaxWelcomeGift(
   supabase: SupabaseClient,
   userId: string
 ): Promise<void> {
-  const orderKey = `max-welcome-${userId}`
+  const orderKey = maxWelcomeOrderKey(userId)
   const granted = await grantBonusCredits(
     supabase,
     userId,
@@ -128,6 +129,64 @@ export async function grantMaxWelcomeGift(
     bonusCredits: MAX_WELCOME_BONUS_CREDITS,
     creditsGranted: true,
   })
+}
+
+/** The ledger key the welcome gift is granted (and clawed back) under. */
+function maxWelcomeOrderKey(userId: string): string {
+  return `max-welcome-${userId}`
+}
+
+/**
+ * Take the welcome credits back when the Max subscription is revoked soon
+ * after they were given (a refund or chargeback, in practice).
+ *
+ * The gift was never clawed back at all: buy Max, collect 25 credits, refund,
+ * keep the credits. Reversed through apply_credit_refund under the gift's own
+ * ledger key, which makes it idempotent — a redelivered `subscription.revoked`
+ * finds the reversal already recorded — and floors at the current balance, so
+ * credits already spent are simply gone. Only inside the clawback window (see
+ * MAX_WELCOME_CLAWBACK_DAYS); a longer-standing customer keeps the gift.
+ */
+export async function clawBackMaxWelcomeGift(
+  supabase: SupabaseClient,
+  userId: string,
+  opts: { revokedAt?: Date } = {}
+): Promise<{ clawedBack: boolean; reason?: 'never_granted' | 'outside_window' }> {
+  const orderKey = maxWelcomeOrderKey(userId)
+  const { data: grant, error: lookupErr } = await supabase
+    .from('usage_events')
+    .select('created_at')
+    .eq('event_type', 'credit_topup')
+    .eq('user_id', userId)
+    .contains('metadata', { polar_order_id: orderKey })
+    .maybeSingle()
+  if (lookupErr) {
+    console.error('[max-gifts] welcome clawback lookup failed:', lookupErr.message)
+    return { clawedBack: false }
+  }
+  if (!grant) return { clawedBack: false, reason: 'never_granted' }
+
+  const revokedAt = opts.revokedAt ?? new Date()
+  if (!withinMaxWelcomeClawbackWindow(grant.created_at as string, revokedAt)) {
+    return { clawedBack: false, reason: 'outside_window' }
+  }
+
+  const { error } = await supabase.rpc('apply_credit_refund', {
+    p_user_id: userId,
+    p_credits: MAX_WELCOME_BONUS_CREDITS,
+    p_metadata: {
+      polar_order_id: orderKey,
+      product: 'max_welcome_bonus',
+      source: 'max_gift',
+      reason: 'subscription_revoked',
+      revoked_at: revokedAt.toISOString(),
+    },
+  })
+  if (error) {
+    console.error('[max-gifts] welcome clawback failed:', error.message)
+    return { clawedBack: false }
+  }
+  return { clawedBack: true }
 }
 
 /**

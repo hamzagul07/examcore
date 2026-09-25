@@ -13,7 +13,11 @@ import {
   SubmitButton,
 } from '@/components/AuthFormBits'
 import { Field } from '@/components/ui/Field'
-import { buildSignUpHref, buildForgotPasswordHref } from '@/lib/auth-redirect'
+import {
+  buildSignUpHref,
+  buildForgotPasswordHref,
+  resolveSameOriginPath,
+} from '@/lib/auth-redirect'
 import { formatAuthError } from '@/lib/auth-errors'
 import { isContentGateReturnPath } from '@/lib/content-gate'
 import { fetchPostAuthDestination } from '@/lib/auth-post-login'
@@ -140,7 +144,11 @@ function SignInForm() {
     }
 
     const destination = await fetchPostAuthDestination(nextParam)
-    router.push(destination)
+    // `destination` comes back from /api/auth/check, which already validates
+    // it — but this is the sink, and a sink checks for itself (review §1.1).
+    router.push(
+      resolveSameOriginPath(destination, window.location.origin) ?? '/dashboard'
+    )
     router.refresh()
     // Keep the spinner while navigating, but recover if navigation stalls so
     // the user isn't stuck on a dead "Signing in…" button.

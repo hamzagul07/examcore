@@ -42,12 +42,12 @@ import { DrillToast } from '@/components/progress/insights/DrillToast'
 import { JourneyTimeline } from '@/components/progress/timeline/JourneyTimeline'
 import { AttemptsList, type AttemptListRow } from '@/components/progress/AttemptsList'
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
+import { OMNI_WEAK_TOPICS_MAX } from '@/lib/omni-ai/context-schema'
 import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
 import { MasteryDashboardTeaser } from '@/components/billing/MasteryDashboardTeaser'
 import { MasteryPreviewDemo } from '@/components/billing/MasteryPreviewDemo'
 import { hasScholarFeatures } from '@/lib/billing/features'
-import { effectiveAccess } from '@/lib/billing/access'
-import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
+import { loadEffectiveAccess } from '@/lib/billing/access'
 import { ProgressDashboardPage } from '@/components/courses/margin-notes/ProgressDashboardPage'
 import { ParentShareLink } from '@/components/reports/ParentShareLink'
 import { progressShareUrlForUser } from '@/lib/marking/share-token'
@@ -102,21 +102,12 @@ export default async function ProgressPage({ searchParams }: PageProps) {
     .eq('id', user.id)
     .maybeSingle()
 
-  const { data: subscription } = await supabase
-    .from('user_subscriptions')
-    .select('tier, status')
-    .eq('user_id', user.id)
-    .maybeSingle()
-
   // Scholar and above, not merely paid: the mastery matrix is one of the three
   // things the pricing page sells Scholar on, and Starter is shown it as
-  // excluded. Teacher seats resolve to scholar, so a teacher still sees it.
-  const masteryUnlocked = hasScholarFeatures(
-    effectiveAccess({
-      tier: (subscription?.tier ?? 'free') as SubscriptionTier,
-      status: (subscription?.status ?? 'canceled') as SubscriptionStatus,
-    })
-  )
+  // excluded. Teacher seats resolve to scholar, so a teacher still sees it —
+  // which only holds when access is read seat-aware, as here, and not from
+  // {tier, status} alone (a teacher has no subscription row at all).
+  const masteryUnlocked = hasScholarFeatures(await loadEffectiveAccess(user.id))
 
   const firstName = (profile?.full_name || '').trim().split(/\s+/)[0]
   const profileLevel = profile?.level ?? 'A-Level'
@@ -276,9 +267,14 @@ export default async function ProgressPage({ searchParams }: PageProps) {
     selectedCode
   )
 
+  // Weakest first, and only as many as the server accepts. The prompt reads
+  // the first three; the schema truncates at OMNI_WEAK_TOPICS_MAX, but there
+  // is no reason to send a student's whole critical list over the wire on
+  // every message.
   const weakTopicsForOmni = masteries
     .filter((m) => m.level === 'critical')
     .sort((a, b) => a.percentage - b.percentage)
+    .slice(0, OMNI_WEAK_TOPICS_MAX)
     .map((m) => ({ code: m.code, name: m.name, percentage: m.percentage }))
 
   const insightsNode = (

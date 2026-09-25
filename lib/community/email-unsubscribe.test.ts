@@ -63,6 +63,78 @@ for (const junk of ['', 'not-a-token', 'a.b.c', Buffer.from('x.y.z.w').toString(
   assert.equal(verifyUnsubscribeToken(junk), null, `junk token accepted: ${junk}`)
 }
 
+// Signature comparison: a wrong-length signature, a one-character change and
+// a prefix of the real signature are all refused. (The compare is
+// constant-time; this only pins down that it is still a compare.)
+{
+  const token = signUnsubscribeToken(USER, 'digest')
+  const [userId, kind, exp, sig] = Buffer.from(token, 'base64url').toString('utf8').split('.')
+  const rebuild = (s: string) => Buffer.from(`${userId}.${kind}.${exp}.${s}`, 'utf8').toString('base64url')
+
+  assert.equal(verifyUnsubscribeToken(rebuild(sig.slice(0, -1))), null, 'truncated signature rejected')
+  assert.equal(verifyUnsubscribeToken(rebuild(sig + 'A')), null, 'over-long signature rejected')
+  const flipped = (sig[0] === 'A' ? 'B' : 'A') + sig.slice(1)
+  assert.equal(verifyUnsubscribeToken(rebuild(flipped)), null, 'one flipped character rejected')
+  assert.equal(verifyUnsubscribeToken(rebuild('')), null, 'empty signature rejected')
+  assert.deepEqual(verifyUnsubscribeToken(rebuild(sig)), { userId: USER, kind: 'digest' }, 'rebuilt genuine token still verifies')
+}
+
+// Production refuses to sign without an EXPLICIT secret — the hard-coded
+// fallback let anyone mint a token that mutes any account, and CRON_SECRET
+// is the bearer credential for every cron route, not an HMAC key for public
+// one-year tokens.
+{
+  const env = process.env as Record<string, string | undefined>
+  const saved = { NODE_ENV: env.NODE_ENV, UNSUBSCRIBE_SECRET: env.UNSUBSCRIBE_SECRET, CRON_SECRET: env.CRON_SECRET }
+  try {
+    // Links already in mailboxes were signed with CRON_SECRET (the old
+    // production fallback). Mint one the way the old deploy did.
+    delete env.UNSUBSCRIBE_SECRET
+    env.NODE_ENV = 'development'
+    env.CRON_SECRET = 'cron-secret-for-test'
+    const legacy = signUnsubscribeToken(USER, 'weekly')
+
+    delete env.CRON_SECRET
+    env.NODE_ENV = 'production'
+    assert.throws(() => signUnsubscribeToken(USER, 'weekly'), /UNSUBSCRIBE_SECRET/, 'signing throws in production without a secret')
+    assert.equal(verifyUnsubscribeToken('anything'), null, 'verify fails closed rather than throwing')
+
+    env.CRON_SECRET = 'cron-secret-for-test'
+    assert.throws(
+      () => signUnsubscribeToken(USER, 'weekly'),
+      /UNSUBSCRIBE_SECRET/,
+      'CRON_SECRET alone is no longer a production signing key'
+    )
+    assert.deepEqual(
+      verifyUnsubscribeToken(legacy),
+      { userId: USER, kind: 'weekly' },
+      'a link signed with CRON_SECRET still verifies (verify-only legacy key)'
+    )
+
+    env.UNSUBSCRIBE_SECRET = 'explicit-secret-for-test'
+    const fresh = signUnsubscribeToken(USER, 'weekly')
+    assert.deepEqual(verifyUnsubscribeToken(fresh), { userId: USER, kind: 'weekly' })
+    assert.deepEqual(
+      verifyUnsubscribeToken(legacy),
+      { userId: USER, kind: 'weekly' },
+      'setting the explicit secret does not invalidate links already sent'
+    )
+    delete env.CRON_SECRET
+    assert.equal(verifyUnsubscribeToken(legacy), null, 'once the legacy key is gone, legacy links stop verifying')
+    assert.deepEqual(verifyUnsubscribeToken(fresh), { userId: USER, kind: 'weekly' })
+    // A fresh link is signed with the explicit secret only: swapping that
+    // secret out invalidates it even while CRON_SECRET is still present.
+    env.CRON_SECRET = 'cron-secret-for-test'
+    env.UNSUBSCRIBE_SECRET = 'rotated-secret'
+    assert.equal(verifyUnsubscribeToken(fresh), null, 'new links never fall back to CRON_SECRET for signing')
+  } finally {
+    for (const [k, v] of Object.entries(saved)) {
+      if (v === undefined) delete env[k]
+      else env[k] = v
+    }
+  }
+}
+
 // The header URL is derived from the body link, so the rewrite must keep the
 // token intact and land on the POST endpoint rather than the human page.
 for (const kind of KINDS) {

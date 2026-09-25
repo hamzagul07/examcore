@@ -1,12 +1,20 @@
 import { NextRequest, after } from 'next/server'
-import { authenticateRouteRequest, jsonWithAuthCookies, createServiceClient } from '@/lib/supabase-server'
-import { votePost } from '@/lib/community/posts'
-import { adjustAuthorSubjectRep, UPVOTE_REP } from '@/lib/community/vote-rep'
+import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { notifyPostUpvote, notifyPostScoreMilestone } from '@/lib/community/notify'
+import { voteErrorResponse, type VotePostRow } from '@/lib/community/vote-rpc'
 
-/** POST /api/community/posts/[id]/vote { value: 1 | -1 } — toggle/set vote. */
+/**
+ * POST /api/community/posts/[id]/vote { value: 1 | -1 } — toggle/set vote.
+ *
+ * The whole vote — read the previous value, upsert or delete, credit or
+ * debit the author's subject reputation — is one call to the `vote_post`
+ * RPC (20260925_community_votes_rpc.sql), run as the signed-in user so
+ * `auth.uid()` is the voter. It used to be three round trips from here, and
+ * two concurrent upvotes from one user both read "no previous vote" and
+ * credited the author twice (code review 2026-09-25, §2 Community).
+ */
 export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  const { user, pendingCookies } = await authenticateRouteRequest(request)
+  const { supabase, user, pendingCookies } = await authenticateRouteRequest(request)
   if (!user) return jsonWithAuthCookies({ error: 'Sign in to vote.' }, pendingCookies, { status: 401 })
   const { id } = await params
   let value: number
@@ -19,46 +27,26 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     return jsonWithAuthCookies({ error: 'Invalid vote.' }, pendingCookies, { status: 400 })
   }
 
-  const admin = createServiceClient()
-  // Previous vote value, so reputation can reverse when an upvote is toggled off
-  // or flipped to a downvote — not just added when a new upvote appears.
-  const { data: prevVote } = await admin
-    .from('community_post_votes')
-    .select('value')
-    .eq('post_id', id)
-    .eq('user_id', user.id)
-    .maybeSingle()
-  const wasUp = prevVote?.value === 1
-
-  const newValue = await votePost(id, user.id, value)
-  const isUp = newValue === 1
-
-  const { data } = await admin
-    .from('community_posts')
-    .select('score, author_id, subject_code')
-    .eq('id', id)
-    .maybeSingle()
-
-  const canRep = !!(data?.author_id && data.author_id !== user.id && data.subject_code)
-  const repDelta = (isUp ? UPVOTE_REP : 0) - (wasUp ? UPVOTE_REP : 0)
-  if (canRep && repDelta !== 0) {
-    await adjustAuthorSubjectRep(admin, {
-      authorId: data!.author_id as string,
-      subjectCode: data!.subject_code as string,
-      delta: repDelta,
-    })
+  const { data, error } = await supabase
+    .rpc('vote_post', { p_post: id, p_value: value })
+    .single<VotePostRow>()
+  if (error || !data) {
+    return voteErrorResponse(error, pendingCookies)
   }
+
+  const isUp = data.new_value === 1
+  const selfVote = data.post_author === user.id
   // Notify only on a NEW upvote (into the up state), never on toggle-off.
-  if (canRep && isUp && !wasUp) {
+  if (!selfVote && isUp && !data.was_upvote) {
     after(async () => {
       await notifyPostUpvote({ postId: id, voterId: user.id })
       await notifyPostScoreMilestone({
         postId: id,
-        score: (data!.score as number) ?? 0,
-        authorId: data!.author_id as string,
+        score: data.post_score ?? 0,
+        authorId: data.post_author,
       })
     })
   }
 
-  return jsonWithAuthCookies({ value: newValue, score: data?.score ?? 0 }, pendingCookies)
+  return jsonWithAuthCookies({ value: data.new_value, score: data.post_score ?? 0 }, pendingCookies)
 }

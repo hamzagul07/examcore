@@ -38,7 +38,8 @@ export async function POST(request: NextRequest) {
     questionId?: string
     title?: string
     contentMd?: string
-    imagePaths?: string[]
+    /** Validated in createNote against the signed-in user; never trusted here. */
+    imagePaths?: unknown
   }
   try {
     body = await request.json()
@@ -89,7 +90,7 @@ export async function POST(request: NextRequest) {
     questionId: body.questionId,
     title: body.title || '',
     contentMd: body.contentMd || '',
-    imagePaths: Array.isArray(body.imagePaths) ? body.imagePaths.slice(0, 8) : [],
+    imagePaths: body.imagePaths,
     subjectName: body.subjectName,
   })
   if (!result.ok) {

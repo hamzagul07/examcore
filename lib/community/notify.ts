@@ -16,6 +16,8 @@ type NotificationType =
   | 'milestone'
   | 'comment_upvote'
   | 'thread'
+  /** Your content was hidden pending review (reports or AI screen). */
+  | 'moderation'
 
 type RecipientPrefs = {
   email: string | null
@@ -65,6 +67,8 @@ async function pushNotification(input: {
   title: string
   body?: string
   href: string
+  /** Who caused it; keys the per-sender email cooldown. Absent for system notices. */
+  actorId?: string
   sendEmail?: boolean
   emailKind?: 'comment' | 'reply' | 'mention' | 'thread'
   actorUsername?: string
@@ -77,6 +81,7 @@ async function pushNotification(input: {
     title: input.title,
     body: input.body ?? null,
     href: input.href,
+    actor_id: input.actorId ?? null,
   })
 
   if (!input.sendEmail || !input.emailKind || !input.actorUsername || !input.postTitle) return
@@ -161,6 +166,7 @@ export async function notifyCommentActivity(input: {
           title: r.title,
           body: input.bodyPreview,
           href,
+          actorId: input.commentAuthorId,
           sendEmail: true,
           emailKind: r.type,
           actorUsername,
@@ -192,6 +198,7 @@ export async function notifyCommentActivity(input: {
           title: `New activity on "${postTitle.slice(0, 48)}"`,
           body: input.bodyPreview,
           href,
+          actorId: input.commentAuthorId,
           sendEmail: true,
           emailKind: 'thread',
           actorUsername,
@@ -236,6 +243,7 @@ export async function notifyPostUpvote(input: { postId: string; voterId: string 
       type: 'upvote',
       title: `u/${voterUsername} upvoted "${postTitle.slice(0, 48)}"`,
       href,
+      actorId: input.voterId,
       sendEmail: false,
     })
   } catch (err) {
@@ -280,6 +288,7 @@ export async function notifyCommentUpvote(input: {
       title: `u/${voterUsername} upvoted your comment`,
       body: preview || undefined,
       href,
+      actorId: input.voterId,
       sendEmail: false,
     })
   } catch (err) {
@@ -344,7 +353,36 @@ export async function notifyPostScoreMilestone(input: {
   }
 }
 
-/** Notify @mentioned users in post or comment text. */
+const MENTION_EMAIL_COOLDOWN_MS = 60 * 60 * 1000
+
+/**
+ * At most one mention EMAIL per (recipient, sender) per hour.
+ *
+ * The generic cooldown in `shouldSendEmail` is keyed on `href`, and for a
+ * comment the href carries `#comment-<id>` — unique per comment, so it never
+ * fired and every "@victim" comment in a loop was an email (code review
+ * 2026-09-25, §2 Community). Keying on who is mentioning whom is the thing
+ * that actually bounds it. The in-app row is still written; only the email
+ * is held back.
+ */
+async function mentionEmailAllowed(recipientId: string, actorId: string): Promise<boolean> {
+  const admin = createServiceClient()
+  const since = new Date(Date.now() - MENTION_EMAIL_COOLDOWN_MS).toISOString()
+  const { count } = await admin
+    .from('notifications')
+    .select('id', { count: 'exact', head: true })
+    .eq('user_id', recipientId)
+    .eq('actor_id', actorId)
+    .eq('type', 'mention')
+    .gte('created_at', since)
+  return (count ?? 0) === 0
+}
+
+/**
+ * Notify @mentioned users in post or comment text. `extractMentionUsernames`
+ * caps the distinct names per body (MAX_MENTIONS_PER_BODY), so one comment
+ * cannot fan out to the whole leaderboard.
+ */
 export async function notifyMentions(input: {
   authorId: string
   postId: string
@@ -367,21 +405,76 @@ export async function notifyMentions(input: {
     const preview = input.text.replace(/\s+/g, ' ').trim().slice(0, 200)
 
     await Promise.all(
-      [...resolved.values()].map((userId) =>
-        pushNotification({
+      [...resolved.values()].map(async (userId) => {
+        // Checked BEFORE the row for this mention is written, so the count is
+        // of earlier mentions only.
+        const emailAllowed = await mentionEmailAllowed(userId, input.authorId)
+        await pushNotification({
           userId,
           type: 'mention',
           title: `u/${actorUsername} mentioned you in "${postTitle.slice(0, 48)}"`,
           body: preview || undefined,
           href,
-          sendEmail: true,
+          actorId: input.authorId,
+          sendEmail: emailAllowed,
           emailKind: 'mention',
           actorUsername,
           postTitle,
         })
-      )
+      })
     )
   } catch (err) {
     console.error('[community/notify] mentions failed:', err)
+  }
+}
+
+export type HiddenContentKind = 'post' | 'comment' | 'note' | 'question' | 'answer'
+
+const HIDDEN_LABEL: Record<HiddenContentKind, string> = {
+  post: 'post',
+  comment: 'comment',
+  note: 'note',
+  question: 'question',
+  answer: 'answer',
+}
+
+/**
+ * In-app only: tell an author their content was hidden pending review.
+ *
+ * Auto-hiding on reports used to be silent — the author saw their post
+ * vanish with no explanation and no way to know it was under review rather
+ * than deleted. One notice per target: a second batch of reports on content
+ * that is already hidden adds nothing.
+ */
+export async function notifyContentHidden(input: {
+  authorId: string
+  kind: HiddenContentKind
+  targetId: string
+  href: string
+  title?: string | null
+}): Promise<void> {
+  try {
+    const admin = createServiceClient()
+    const { count } = await admin
+      .from('notifications')
+      .select('id', { count: 'exact', head: true })
+      .eq('user_id', input.authorId)
+      .eq('type', 'moderation')
+      .eq('body', input.targetId)
+    if ((count ?? 0) > 0) return
+
+    const label = HIDDEN_LABEL[input.kind]
+    const what = input.title?.trim() ? `"${input.title.trim().slice(0, 48)}"` : `your ${label}`
+    await pushNotification({
+      userId: input.authorId,
+      type: 'moderation',
+      title: `${what} was hidden pending review`,
+      // The target id doubles as the once-only key above.
+      body: input.targetId,
+      href: input.href,
+      sendEmail: false,
+    })
+  } catch (err) {
+    console.error('[community/notify] hidden-content notice failed:', err)
   }
 }

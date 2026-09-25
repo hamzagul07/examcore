@@ -192,3 +192,46 @@ export function omniUsageMessage(summary: BillingSummaryClient): {
 
   return { text: '', tone: 'normal', disableSubmit: false }
 }
+
+/**
+ * Post-mark note when a multi-question script ran past the allowance.
+ *
+ * Two outcomes, told apart honestly:
+ *
+ *  - `questions_not_marked` > 0: the script was CUT to the allowance before
+ *    marking (maxQuestionsForReservation). The first N questions were marked
+ *    and counted; the rest were not marked at all, so the note says how many
+ *    are still waiting and what unlocks them.
+ *  - `marks_refused` > 0 only: the older backstop — every question was
+ *    marked, the cap was found reached when the extras were recorded, and
+ *    the remainder were not charged. Nothing failed; the note says how the
+ *    upload was counted and that the next one this size will be refused.
+ *
+ * Null when neither applies, so callers render nothing.
+ */
+export function allowanceRefusedNote(
+  block:
+    | { marks_charged?: number; marks_refused?: number; questions_not_marked?: number }
+    | null
+    | undefined
+): string | null {
+  const charged = Math.max(1, Math.floor(block?.marks_charged ?? 1))
+  const notMarked = block?.questions_not_marked ?? 0
+  if (Number.isFinite(notMarked) && notMarked > 0) {
+    const questions = charged + Math.floor(notMarked)
+    const left = Math.floor(notMarked)
+    return `This script had ${questions} questions but only ${charged} mark${
+      charged === 1 ? '' : 's'
+    } ${charged === 1 ? 'was' : 'were'} left in your allowance, so the first ${charged} ${
+      charged === 1 ? 'was' : 'were'
+    } marked. The other ${left} ${left === 1 ? 'was' : 'were'} not — upload ${
+      left === 1 ? 'it' : 'them'
+    } again when your allowance resets, or add credits.`
+  }
+  const refused = block?.marks_refused ?? 0
+  if (!Number.isFinite(refused) || refused <= 0) return null
+  const questions = charged + refused
+  return `This script had ${questions} questions but only ${charged} mark${
+    charged === 1 ? '' : 's'
+  } ${charged === 1 ? 'was' : 'were'} left in your allowance — every question is marked this time, but the next upload this size will need more marks.`
+}

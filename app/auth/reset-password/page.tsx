@@ -7,6 +7,7 @@ import {
   buildForgotPasswordHref,
   buildSignInHref,
   readPostAuthNextParam,
+  resolveSameOriginPath,
 } from '@/lib/auth-redirect'
 import { createClient } from '@/lib/supabase'
 import { Label } from '@/components/ui/label'
@@ -113,7 +114,10 @@ function ResetPasswordForm() {
     setDone(true)
     const destination = await fetchPostAuthDestination(returnTo)
     setTimeout(() => {
-      router.push(destination)
+      // Sink guard — see app/auth/signin/page.tsx.
+      router.push(
+        resolveSameOriginPath(destination, window.location.origin) ?? '/dashboard'
+      )
       router.refresh()
     }, 1500)
   }

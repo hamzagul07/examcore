@@ -1,6 +1,10 @@
 import { createServiceClient } from '@/lib/supabase-server'
 import { clampNoteContent, stripRawHtml } from '@/lib/community/sanitize'
-import type { CommunityAttachment } from '@/lib/community/uploads'
+import {
+  MAX_ATTACHMENTS,
+  normalizeAttachments,
+  type CommunityAttachment,
+} from '@/lib/community/attachment-validate'
 import { authorAccessMap } from '@/lib/community/author-access'
 import { rankHot } from '@/lib/community/rank'
 import type { PostUrlParts } from '@/lib/community/post-url'
@@ -280,7 +284,8 @@ export type CreatePostInput = {
   flair?: string | null
   title: string
   bodyMd?: string
-  attachments?: CommunityAttachment[]
+  /** Raw client descriptors — validated against `authorId` here, not trusted. */
+  attachments?: unknown
 }
 
 export type CreatePostResult =
@@ -293,7 +298,13 @@ export async function createPost(input: CreatePostInput): Promise<CreatePostResu
   if (title.length > 200) return { ok: false, error: 'Title is too long (max 200 characters).' }
 
   const body = clampNoteContent(stripRawHtml(input.bodyMd ?? ''), 20000)
-  const attachments = (input.attachments ?? []).slice(0, 10)
+  // Attachment paths are bound to the author here, at the point they are
+  // stored: the post page signs every stored path with the service role for
+  // every visitor, so a path that is not this user's own upload must never
+  // reach the row (code review 2026-09-25, §2 Community).
+  const checked = normalizeAttachments(input.attachments, input.authorId, MAX_ATTACHMENTS)
+  if (!checked.ok) return { ok: false, error: checked.error }
+  const attachments = checked.attachments
 
   if (input.kind !== 'resource' && body.trim().length < 1 && attachments.length === 0) {
     return { ok: false, error: 'Add some text to your post.' }
@@ -328,25 +339,9 @@ export async function createPost(input: CreatePostInput): Promise<CreatePostResu
   return { ok: true, id: data.id, status: 'published' }
 }
 
-/** Toggle/set a user's vote on a post. Returns the new vote value (-1/0/1). */
-export async function votePost(postId: string, userId: string, value: -1 | 1): Promise<number> {
-  const admin = createServiceClient()
-  const { data: existing } = await admin
-    .from('community_post_votes')
-    .select('value')
-    .eq('post_id', postId)
-    .eq('user_id', userId)
-    .maybeSingle()
-
-  if (existing?.value === value) {
-    await admin.from('community_post_votes').delete().eq('post_id', postId).eq('user_id', userId)
-    return 0
-  }
-  await admin
-    .from('community_post_votes')
-    .upsert({ post_id: postId, user_id: userId, value }, { onConflict: 'post_id,user_id' })
-  return value
-}
+// Voting lives in the `vote_post` RPC (20260925_community_votes_rpc.sql): the
+// read-then-upsert-then-bump sequence that used to be here let two concurrent
+// upvotes from one user credit the author twice.
 
 /** Map of postId → the signed-in user's vote value. */
 export async function getUserPostVotes(userId: string, postIds: string[]): Promise<Record<string, number>> {

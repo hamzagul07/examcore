@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server'
-import type { Content } from '@google/genai'
+import type { Content, Part } from '@google/genai'
 import {
   generateGeminiWithContents,
   isGeminiConfigured,
@@ -9,7 +9,6 @@ import {
 import { createClient, createServiceClient } from '@/lib/supabase-server'
 import { buildSystemPrompt } from '@/lib/omni-ai/system-prompts'
 import { buildStudentMemoryBlock } from '@/lib/omni-ai/student-memory'
-import { effectiveAccess } from '@/lib/billing/access'
 import { hasPaidAccess } from '@/lib/billing/features'
 import {
   extractActionFromText,
@@ -20,45 +19,54 @@ import {
   hydrateOmniAction,
 } from '@/lib/omni-ai/hydrate-actions'
 import {
+  fetchAttemptDetailForUser,
   fetchRecentAttemptsForUser,
   formatAttemptForPrompt,
   loadAttemptForOmni,
 } from '@/lib/omni-ai/marking-context'
 import { OMNI_MARKING_TOOLS } from '@/lib/omni-ai/marking-tools'
 import { shouldRunMarkingToolLoop } from '@/lib/omni-ai/tool-gate'
-import type { AIContextType, OmniAIRequestBody } from '@/lib/omni-ai/types'
+import { parseOmniRequestBody } from '@/lib/omni-ai/context-schema'
+import {
+  MAX_TOOL_ROUNDS,
+  chargeToolResult,
+  createToolBudget,
+  type ToolPayload,
+} from '@/lib/omni-ai/tool-budget'
+import type { AIContextType } from '@/lib/omni-ai/types'
 import {
   checkOmniAllowance,
   omniQuotaExceededBody,
   recordOmniUsage,
 } from '@/lib/billing/enforcement'
-import { hourlyRateLimitHeaders } from '@/lib/http/rate-limit-response'
+import { secondsUntilUtcMidnight } from '@/lib/http/rate-limit-response'
 import {
+  RateLimitUnavailableError,
   checkAnonymousOmniRateLimit,
-  incrementAnonymousOmniRateLimit,
 } from '@/lib/rate-limit'
 
 export const maxDuration = 60
 
-const OMNI_WINDOW_MS = 60 * 60 * 1000
-const OMNI_MAX_PER_WINDOW = 40
-const ipBuckets = new Map<string, number[]>()
-
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now()
-  const cutoff = now - OMNI_WINDOW_MS
-  const bucket = (ipBuckets.get(ip) || []).filter((ts) => ts > cutoff)
-  if (bucket.length >= OMNI_MAX_PER_WINDOW) {
-    ipBuckets.set(ip, bucket)
-    return false
-  }
-  bucket.push(now)
-  ipBuckets.set(ip, bucket)
-  return true
-}
+const SSE_HEADERS = {
+  'Content-Type': 'text/event-stream',
+  'Cache-Control': 'no-cache',
+  Connection: 'keep-alive',
+} as const
 
 function sse(data: unknown): string {
   return `data: ${JSON.stringify(data)}\n\n`
+}
+
+/** One-frame SSE error. The client reads `data:` lines off non-2xx bodies too. */
+function sseError(
+  status: number,
+  payload: Record<string, unknown>,
+  extraHeaders: Record<string, string> = {}
+): Response {
+  return new Response(sse({ type: 'error', ...payload }), {
+    status,
+    headers: { ...SSE_HEADERS, ...extraHeaders },
+  })
 }
 
 export async function POST(req: NextRequest) {
@@ -67,48 +75,23 @@ export async function POST(req: NextRequest) {
     req.headers.get('x-real-ip') ||
     'unknown'
 
-  if (!checkRateLimit(ip)) {
-    return new Response(
-      sse({
-        type: 'error',
-        error: 'Rate limit reached (40 messages/hour). Try again later.',
-      }),
-      {
-        status: 429,
-        headers: {
-          'Content-Type': 'text/event-stream',
-          'Cache-Control': 'no-cache',
-          Connection: 'keep-alive',
-          ...hourlyRateLimitHeaders(),
-        },
-      }
-    )
-  }
-
-  let body: OmniAIRequestBody
+  // Order matters here: nothing below spends anything — no guest slot, no
+  // metered message, no model call — until the body has passed the schema.
+  // The shape check used to come after metering, so a body with
+  // `coverage: "abc"` was charged and then 500'd on `.toFixed`.
+  let raw: unknown
   try {
-    body = (await req.json()) as OmniAIRequestBody
+    raw = await req.json()
   } catch {
-    return new Response(sse({ type: 'error', error: 'Invalid JSON body' }), {
-      status: 400,
-      headers: { 'Content-Type': 'text/event-stream' },
-    })
+    return sseError(400, { error: 'Invalid JSON body' })
   }
 
-  const query = (body.query || '').trim()
-  if (!query) {
-    return new Response(sse({ type: 'error', error: 'Empty query' }), {
-      status: 400,
-      headers: { 'Content-Type': 'text/event-stream' },
-    })
+  const parsed = parseOmniRequestBody(raw)
+  if (!parsed.ok) {
+    return sseError(400, { error: parsed.error })
   }
-
-  const context = (body.context || { type: 'landing' }) as AIContextType
-  const history = Array.isArray(body.messages)
-    ? body.messages
-        .slice(-8)
-        .filter((m) => m && typeof m.content === 'string' && m.content.trim())
-    : []
+  const { query, messages: history, attemptId: attemptIdFromBody } = parsed.body
+  const context: AIContextType = parsed.body.context
 
   const supabaseAuth = await createClient()
   const {
@@ -117,43 +100,43 @@ export async function POST(req: NextRequest) {
 
   const supabaseAdmin = createSupabaseAdmin()
   const supabaseService = createServiceClient()
-  const attemptIdFromBody = body.attemptId?.trim()
-  const attemptIdFromContext =
-    context.type === 'marking_result' ? context.data.attemptId : undefined
-  const resolvedAttemptId = attemptIdFromBody || attemptIdFromContext
-
-  let focusedAttemptBlock: string | null = null
-  let studentMemoryBlock: string | null = null
-  if (user && resolvedAttemptId) {
-    const row = await loadAttemptForOmni(
-      supabaseService,
-      resolvedAttemptId,
-      user.id
-    )
-    if (row) {
-      focusedAttemptBlock = formatAttemptForPrompt(row)
-    }
-  }
 
   const markingAwareness = !!user && context.type !== 'teacher_dashboard'
 
-  // Guests get a persisted daily cap (survives deploys, shared across
-  // instances) on top of the in-memory hourly burst guard above.
+  // Guests: one persisted daily cap per IP, consumed atomically up front by
+  // the `bump_rate_limit` RPC (lib/rate-limit.ts). This used to sit behind an
+  // in-process Map that promised "40 an hour" — per lambda, empty on every
+  // cold start, and never evicted, so it was both porous and a slow leak. The
+  // persisted bucket is the only guard now; signed-in users are metered by
+  // their account quota below.
   if (!user) {
-    const guestCheck = await checkAnonymousOmniRateLimit(supabaseService, ip, null)
-    if (!guestCheck.allowed) {
-      return new Response(sse({ type: 'error', error: guestCheck.message }), {
-        status: 429,
-        headers: {
-          'Content-Type': 'text/event-stream',
-          'Cache-Control': 'no-cache',
-          Connection: 'keep-alive',
-        },
-      })
+    let guestCheck: Awaited<ReturnType<typeof checkAnonymousOmniRateLimit>>
+    try {
+      guestCheck = await checkAnonymousOmniRateLimit(supabaseService, ip, null)
+    } catch (err) {
+      // The limiter could not be consulted. Fail closed for guests: an
+      // unmetered model call is worse than a retryable error.
+      if (err instanceof RateLimitUnavailableError) {
+        console.error('[omni-ai] guest rate limit unavailable:', err.message)
+        return sseError(
+          503,
+          { error: 'Chat is briefly unavailable. Please try again in a moment.' },
+          { 'Retry-After': '30' }
+        )
+      }
+      throw err
     }
-    // Consume up front — same reasoning as signed-in metering below.
-    await incrementAnonymousOmniRateLimit(supabaseService, ip, null, guestCheck.count)
+    if (!guestCheck.allowed) {
+      return sseError(
+        429,
+        { error: guestCheck.message },
+        { 'Retry-After': String(secondsUntilUtcMidnight()) }
+      )
+    }
+    // The check consumed the slot atomically; nothing more to record.
   }
+
+  let studentMemoryBlock: string | null = null
 
   // Every signed-in message is metered, wherever it was sent from.
   //
@@ -168,27 +151,16 @@ export async function POST(req: NextRequest) {
     const omniAllowance = await checkOmniAllowance(user.id)
     if (omniAllowance.blocked_by_mode) {
       const body = omniQuotaExceededBody(omniAllowance)
-      return new Response(
-        sse({
-          type: 'error',
-          message:
-            'You\'ve used all your study chat messages this month. Upgrade or top up credits to continue.',
-          code: body.error,
-          tier: body.tier,
-          cap: body.cap,
-          period_resets_at: body.period_resets_at,
-          credit_balance: body.credit_balance,
-          upgrade_url: body.upgrade_url,
-        }),
-        {
-          status: 402,
-          headers: {
-            'Content-Type': 'text/event-stream',
-            'Cache-Control': 'no-cache',
-            Connection: 'keep-alive',
-          },
-        }
-      )
+      return sseError(402, {
+        message:
+          'You\'ve used all your study chat messages this month. Upgrade or top up credits to continue.',
+        code: body.error,
+        tier: body.tier,
+        cap: body.cap,
+        period_resets_at: body.period_resets_at,
+        credit_balance: body.credit_balance,
+        upgrade_url: body.upgrade_url,
+      })
     }
     // Meter at the gate, not after the stream: recording only on completion
     // left a stream-length window where parallel requests near the cap all
@@ -205,20 +177,33 @@ export async function POST(req: NextRequest) {
     // Premium: give the tutor memory of the student's marked work (weak topics,
     // grade trajectory, exam countdown) so it coaches with context. In-app
     // coaching chats only; best-effort — never block chat on it.
-    if (
-      markingAwareness &&
-      hasPaidAccess(
-        effectiveAccess({
-          tier: omniAllowance.tier,
-          status: omniAllowance.status,
-        })
-      )
-    ) {
+    //
+    // Gate on the allowance's resolved `access`, not on `{tier, status}`
+    // recomputed here: the recompute dropped teacher seats and comps, so a
+    // verified teacher on a Scholar allowance got the free-tier tutor
+    // (code review 2026-09-25, §2 "seats and comps ignored by feature gates").
+    if (markingAwareness && hasPaidAccess(omniAllowance.access)) {
       try {
         studentMemoryBlock = await buildStudentMemoryBlock(supabaseService, user.id)
       } catch (err) {
         console.error('[omni-ai] student memory build failed:', err)
       }
+    }
+  }
+
+  const attemptIdFromContext =
+    context.type === 'marking_result' ? context.data.attemptId : undefined
+  const resolvedAttemptId = attemptIdFromBody || attemptIdFromContext
+
+  let focusedAttemptBlock: string | null = null
+  if (user && resolvedAttemptId) {
+    const row = await loadAttemptForOmni(
+      supabaseService,
+      resolvedAttemptId,
+      user.id
+    )
+    if (row) {
+      focusedAttemptBlock = formatAttemptForPrompt(row)
     }
   }
 
@@ -259,7 +244,7 @@ export async function POST(req: NextRequest) {
         const contents: Content[] = [
           ...toGeminiContents(
             history.map((m) => ({
-              role: m.role as 'user' | 'assistant',
+              role: m.role,
               content: m.content,
             }))
           ),
@@ -270,12 +255,18 @@ export async function POST(req: NextRequest) {
         let sentLength = 0
         let reuseToolRoundText = false
 
-        if (toolsEnabled) {
+        if (toolsEnabled && user) {
           controller.enqueue(
             encode({ type: 'status', status: 'Looking up your marks…' })
           )
 
-          for (let round = 0; round < 3; round++) {
+          // Two bounds on the loop, both per turn: at most MAX_TOOL_ROUNDS
+          // model↔tool exchanges, and at most MAX_TOOL_RESULT_CHARS of tool
+          // output in total (see lib/omni-ai/tool-budget.ts). The listing
+          // tool returns excerpts; the detail tool returns one attempt.
+          const budget = createToolBudget()
+
+          for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
             const toolResponse = await generateGeminiWithContents(contents, {
               task: 'chat',
               system: systemPrompt,
@@ -296,7 +287,6 @@ export async function POST(req: NextRequest) {
               }
               break
             }
-            if (!user) break
 
             controller.enqueue(
               encode({ type: 'status', status: 'Looking up your marks…' })
@@ -307,35 +297,47 @@ export async function POST(req: NextRequest) {
               contents.push({ role: 'model', parts: modelParts })
             }
 
-            const functionResponseParts = []
+            const functionResponseParts: Part[] = []
             for (const call of toolUses) {
-              if (call.name === 'fetch_recent_attempts') {
-                const input = (call.args || {}) as {
-                  subject_code?: string
-                  topic_code?: string
-                  limit?: number
-                }
-                const { attempts, error } = await fetchRecentAttemptsForUser(
+              const name = call.name ?? 'unknown'
+              const args = (call.args || {}) as Record<string, unknown>
+              let payload: ToolPayload
+
+              if (name === 'fetch_recent_attempts') {
+                const { attempts, note, error } = await fetchRecentAttemptsForUser(
                   supabaseService,
                   user.id,
-                  input
+                  {
+                    subject_code:
+                      typeof args.subject_code === 'string'
+                        ? args.subject_code
+                        : undefined,
+                    topic_code:
+                      typeof args.topic_code === 'string'
+                        ? args.topic_code
+                        : undefined,
+                    limit: typeof args.limit === 'number' ? args.limit : undefined,
+                  }
                 )
-                functionResponseParts.push({
-                  functionResponse: {
-                    name: call.name,
-                    response: error
-                      ? { error, attempts: [] }
-                      : { attempts },
-                  },
-                })
+                payload = error ? { error, attempts: [] } : { attempts, note }
+              } else if (name === 'fetch_attempt_detail') {
+                // Owner-checked inside: an id that is not this student's
+                // comes back as "not found", never as someone else's work.
+                payload = await fetchAttemptDetailForUser(
+                  supabaseService,
+                  user.id,
+                  args.attempt_id
+                )
               } else {
-                functionResponseParts.push({
-                  functionResponse: {
-                    name: call.name ?? 'unknown',
-                    response: { error: 'Unknown tool' },
-                  },
-                })
+                payload = { error: 'Unknown tool' }
               }
+
+              functionResponseParts.push({
+                functionResponse: {
+                  name,
+                  response: chargeToolResult(budget, payload),
+                },
+              })
             }
 
             contents.push({ role: 'user', parts: functionResponseParts })
@@ -368,6 +370,9 @@ export async function POST(req: NextRequest) {
           }
         }
 
+        // extractActionFromText enforces the CTA href allowlist: a
+        // render_cta whose href is not a same-origin path comes back as
+        // `type: 'none'` and renders nothing.
         const { cleanText, action: rawAction } = extractActionFromText(fullText)
         let action = rawAction
 

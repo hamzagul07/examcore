@@ -17,9 +17,8 @@ import {
 } from '@/lib/insights/recommendations'
 import type { NextDrill } from '@/lib/insights/types'
 import { isIbSubjectCode } from '@/lib/ib/marking-config'
-import { effectiveAccess } from '@/lib/billing/access'
+import { loadEffectiveAccess } from '@/lib/billing/access'
 import { hasPaidAccess } from '@/lib/billing/features'
-import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
 
 export const dynamic = 'force-dynamic'
 
@@ -41,21 +40,13 @@ export async function GET(request: NextRequest) {
   const subject = request.nextUrl.searchParams.get('subject')?.trim() || null
 
   // Bearer-capable auth so the mobile app's drill card works too.
-  const { supabase, user } = await authenticateRouteRequest(request)
+  const { user } = await authenticateRouteRequest(request)
   if (!user) return NextResponse.json({ drill: null })
 
   // Premium gate (defense in depth — callers may also gate on isPaid).
-  const { data: subscription } = await supabase
-    .from('user_subscriptions')
-    .select('tier, status')
-    .eq('user_id', user.id)
-    .maybeSingle()
-  const paid = hasPaidAccess(
-    effectiveAccess({
-      tier: (subscription?.tier ?? 'free') as SubscriptionTier,
-      status: (subscription?.status ?? 'canceled') as SubscriptionStatus,
-    })
-  )
+  // Seat- and comp-aware: a verified teacher holds a Scholar seat and must
+  // get the drill their students' dashboards show them.
+  const paid = hasPaidAccess(await loadEffectiveAccess(user.id))
   if (!paid) return NextResponse.json({ drill: null })
 
   // A requested subject must have a syllabus tree; else nothing to rank.

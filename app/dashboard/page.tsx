@@ -49,14 +49,13 @@ import {
   topicTargetsFromMasteries,
 } from '@/lib/insights/recommendations'
 import { truncateMarkingPreview } from '@/lib/rich-text/truncate-marking-preview'
-import { effectiveAccess } from '@/lib/billing/access'
+import { loadEffectiveAccess } from '@/lib/billing/access'
 import { hasMaxResourceVault } from '@/lib/billing/features'
 import { computeBillingSummary } from '@/lib/billing/enforcement'
 import { MaxVaultTile } from '@/components/max/MaxVaultTile'
 import { MaxUsageTheatre } from '@/components/max/MaxUsageTheatre'
 import { MaxEarlyAccessBanner } from '@/components/max/MaxEarlyAccessBanner'
 import { maybeGrantMaxSprintGift } from '@/lib/max/gifts'
-import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -230,15 +229,9 @@ export default async function DashboardPage() {
   // Extra due items beyond the one promoted into nextAction.
   const moreReview = reviewItems.slice(1, 4)
 
-  const { data: subRow } = await supabase
-    .from('user_subscriptions')
-    .select('tier, status')
-    .eq('user_id', user.id)
-    .maybeSingle()
-  const access = effectiveAccess({
-    tier: (subRow?.tier as SubscriptionTier) ?? 'free',
-    status: (subRow?.status as SubscriptionStatus) ?? 'canceled',
-  })
+  // Seat- and comp-aware, like the marking gate: recomputing from
+  // {tier, status} here hid the Vault from comped Max users (review §2).
+  const access = await loadEffectiveAccess(user.id, supabaseAdmin)
   const showMax = hasMaxResourceVault(access)
   let maxUsage: { used: number; remaining: number; cap: number } | null = null
   if (showMax) {

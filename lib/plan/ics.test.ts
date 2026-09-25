@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { renderPlanIcs } from '@/lib/plan/ics'
+import { escapeText, renderPlanIcs } from '@/lib/plan/ics'
 import { workBlocks, type HydratedPlan } from '@/lib/plan/plan-view'
 
 const plan: HydratedPlan = {
@@ -93,6 +93,42 @@ assert.ok(unfolded.includes('Open the plan: https://markscheme.app/dashboard/pla
   assert.ok(ics.includes('SUMMARY:Day 4 · 30 min · 17 days to go'), 'the buffer is not counted as work')
   const roadmapDay = plan.days[3]!
   assert.deepEqual(workBlocks(roadmapDay).map((b) => b.kind), ['learn', 'drill'], 'workBlocks excludes the buffer and the break')
+}
+
+
+// --- escapeText: every kind of line break becomes the literal \n --------------------
+{
+  assert.equal(escapeText('a\nb'), 'a\\nb', 'LF')
+  assert.equal(escapeText('a\r\nb'), 'a\\nb', 'CRLF is one break, not two')
+  assert.equal(escapeText('a\rb'), 'a\\nb', 'a lone CR is a line break too')
+  assert.equal(escapeText('a\r\r\nb\r'), 'a\\n\\nb\\n', 'mixed and trailing breaks')
+  assert.equal(escapeText('x\\y;z,w'), 'x\\\\y\\;z\\,w', 'RFC 5545 specials')
+  assert.equal(escapeText('\\n'), '\\\\n', 'a literal backslash-n is escaped, not mistaken for a break')
+  assert.ok(!/[\r\n]/.test(escapeText('one\rtwo\nthree\r\nfour')), 'no raw line terminator survives')
+}
+
+// A lone CR inside plan text (pasted from a Windows editor, or left behind by a
+// form control) used to pass through raw and terminate the DESCRIPTION line
+// early, so the rest of it parsed as a property of its own.
+{
+  const withCr: HydratedPlan = {
+    ...plan,
+    days: [
+      {
+        ...plan.days[0]!,
+        focus: 'Line one\rline two',
+        blocks: [{ kind: 'drill', minutes: 25, label: 'Label with\rcarriage return', href: '/mark' }],
+      },
+    ],
+  }
+  const out = renderPlanIcs(withCr, { siteUrl: 'https://markscheme.app', planUrl: 'https://markscheme.app/dashboard/plan' })
+  for (const l of out.split('\r\n')) {
+    assert.ok(!l.includes('\r'), `a raw CR reached the output: ${JSON.stringify(l.slice(0, 60))}`)
+  }
+  const flat = out.replace(/\r\n /g, '')
+  assert.ok(flat.includes('Line one\\nline two'), 'the CR in the focus is an escaped break')
+  assert.ok(flat.includes('Label with\\ncarriage return'), 'the CR in a block label is an escaped break')
+  assert.ok(flat.split('\r\n').every((l) => /^[A-Z-]+[;:]|^(BEGIN|END):|^$/.test(l)), 'every line is still a property')
 }
 
 console.log('ics.test.ts: ok')

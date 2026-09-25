@@ -16,10 +16,7 @@ import {
 import { buildMarkingDisplayContext } from '@/lib/study-tips/display-context'
 import type { LineReference } from '@/components/examiner-ink/ExaminerInkOverlay'
 import { deriveSimulatedMarks } from '@/lib/marking/simulated-marks'
-import {
-  MarkingWaitExperience,
-  type MarkingWaitErrorActions,
-} from './MarkingWaitExperience'
+import { MarkingWaitExperience } from './MarkingWaitExperience'
 import { StageProgressBar } from './StageProgressBar'
 import { KineticField } from './cinematic/KineticField'
 import { HandwritingAnalysisOverlay } from './cinematic/HandwritingAnalysisOverlay'
@@ -38,8 +35,7 @@ export type CinematicMarkingExperienceProps = {
   lineReferences?: LineReference[] | null
   /** Called once the cinematic is ready to hand off to the real results page. */
   onReveal: () => void
-  error?: string | null
-} & MarkingWaitErrorActions
+}
 
 const READING_MS = 3800
 
@@ -53,7 +49,6 @@ export function CinematicMarkingExperience(
     resultReady,
     lineReferences,
     onReveal,
-    error,
   } = props
 
   const prefersReduced = useReducedMotion()
@@ -70,7 +65,7 @@ export function CinematicMarkingExperience(
 
   // Full motion only when we have an image and motion is allowed. The hook is
   // always called (rules of hooks); `enabled` gates its timers.
-  const useFullMotion = !prefersReduced && !!imageUrl && !error
+  const useFullMotion = !prefersReduced && !!imageUrl
   const { phase, intensity, notifyClimaxDone } = useCinematicPhases({
     stage,
     resultReady,
@@ -114,20 +109,12 @@ export function CinematicMarkingExperience(
     if (phase === 'reveal') fireReveal()
   }, [phase])
 
-  // --- Fallbacks (must come after all hooks) ---
-  if (error) {
-    return (
-      <MarkingWaitExperience
-        mode="single"
-        stage={stage}
-        error={error}
-        onRetry={props.onRetry}
-        onBackToUpload={props.onBackToUpload}
-        retryDisabled={props.retryDisabled}
-      />
-    )
-  }
-
+  // --- Fallback (must come after all hooks) ---
+  //
+  // No error branch: a failed mark never renders here. The page routes every
+  // stream error through its soft notice (uploads kept, "tap Mark again"), so
+  // the full-screen stopped card this once showed was unreachable and its
+  // Retry would have re-charged a run that may still be finishing.
   if (!useFullMotion) {
     // Reduced-motion (and the safety case of no image): Sprint 45 verbatim.
     return (

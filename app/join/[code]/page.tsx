@@ -70,6 +70,15 @@ function JoinClassroom() {
         )
         const data = await res.json()
 
+        // by-code needs a session now (it was an unauthenticated
+        // classroom-name oracle — review §2, invite-code enumeration). A
+        // signed-out student holding a real invite link must not see a dead
+        // end: offer sign-up / sign-in and come back with auto=1.
+        if (res.status === 401) {
+          setNeedsAuth(true)
+          return
+        }
+
         if (!res.ok) {
           setError(data.error || 'Something went wrong. Try again later.')
           return
@@ -193,15 +202,49 @@ function JoinClassroom() {
     )
   }
 
-  if (!classroom) {
-    return null
-  }
-
   // `auto=1` so the join completes on arrival back here, rather than asking a
   // student who has just signed up to press Join a second time.
   const joinPath = `/join/${code}?auto=1`
   const signUpHref = buildSignUpHref(joinPath)
   const signInHref = buildSignInHref(joinPath)
+
+  if (!classroom) {
+    if (!needsAuth) return null
+    // Signed out: the invitation cannot be previewed without a session, so
+    // the card asks for one under a neutral heading (no class name to show).
+    return (
+      <div className="ms-join-card ec-card ec-card--paper p-6 text-center sm:p-8">
+        <span
+          className="mx-auto mb-4 inline-grid h-16 min-w-16 place-items-center rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] px-3 font-mono text-xl font-bold tracking-wide ec-text-brand"
+          aria-hidden
+        >
+          CL
+        </span>
+        <div className="ec-label-tech mb-3">CLASSROOM INVITATION</div>
+        <h1 className="mb-2 text-2xl font-bold text-[var(--ec-text-primary)] sm:text-3xl">
+          Sign in to see this invitation
+        </h1>
+        <p className="mb-8 text-[var(--ec-text-secondary)]">
+          Your teacher has invited you to a class. Sign in, or create a free
+          account, and you will join it straight away.
+        </p>
+        <div className="space-y-3">
+          <a
+            href={signUpHref}
+            className="ec-btn-primary inline-flex w-full min-h-[48px] items-center justify-center gap-2"
+          >
+            Sign up to join
+          </a>
+          <a
+            href={signInHref}
+            className="ec-btn-secondary inline-flex w-full min-h-[48px] items-center justify-center"
+          >
+            Already have an account? Sign in
+          </a>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="ms-join-card ec-card ec-card--paper p-6 text-center sm:p-8">

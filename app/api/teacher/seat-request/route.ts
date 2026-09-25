@@ -2,12 +2,12 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase/service'
 import {
+  RateLimitUnavailableError,
   checkContactRateLimit,
   clientIp,
-  incrementContactRateLimit,
 } from '@/lib/rate-limit'
 import { HONEYPOT_FIELD, isHoneypotTripped } from '@/lib/honeypot'
-import { rateLimitJson } from '@/lib/http/rate-limit-response'
+import { rateLimitJson, rateLimitUnavailableJson } from '@/lib/http/rate-limit-response'
 import { notifyAdminTeacherSeatRequest } from '@/lib/email/notifications'
 
 export const runtime = 'nodejs'
@@ -76,7 +76,15 @@ export async function POST(request: NextRequest) {
 
   const admin = createServiceClient()
   const ip = clientIp(request)
-  const rate = await checkContactRateLimit(admin, ip, user.id)
+  let rate
+  try {
+    rate = await checkContactRateLimit(admin, ip, user.id)
+  } catch (err) {
+    // Limiter outage: say "try again" rather than dying as a 500.
+    if (!(err instanceof RateLimitUnavailableError)) throw err
+    console.error('[teacher/seat-request] rate limit unavailable:', err.message)
+    return rateLimitUnavailableJson()
+  }
   if (!rate.allowed) {
     return rateLimitJson(rate.message)
   }
@@ -128,7 +136,7 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  await incrementContactRateLimit(admin, ip, rate.count)
+  // The slot was consumed atomically by checkContactRateLimit above.
 
   notifyAdminTeacherSeatRequest({
     accountEmail: user.email ?? null,

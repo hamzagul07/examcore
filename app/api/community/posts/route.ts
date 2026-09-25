@@ -9,8 +9,6 @@ const POST_KINDS: string[] = ['discussion', 'question', 'resource', 'paper', 'wi
 import { moderatePostAfterInsert } from '@/lib/community/moderate-async'
 import { notifyMentions } from '@/lib/community/notify'
 import { postsInLast24h } from '@/lib/community/require-username'
-import type { CommunityAttachment } from '@/lib/community/uploads'
-import { attachmentKindForMime } from '@/lib/community/uploads'
 import { ensureUsername } from '@/lib/community/ensure-username'
 import { communityPostHref } from '@/lib/community/post-url'
 
@@ -59,7 +57,8 @@ export async function POST(request: NextRequest) {
     flair?: string
     title?: string
     bodyMd?: string
-    attachments?: CommunityAttachment[]
+    /** Validated in createPost against the signed-in user; never trusted here. */
+    attachments?: unknown
   }
   try {
     body = await request.json()
@@ -93,12 +92,6 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  const attachments = Array.isArray(body.attachments)
-    ? body.attachments
-        .filter((a) => a && typeof a.path === 'string' && attachmentKindForMime(a.mime))
-        .slice(0, 10)
-    : []
-
   const result = await createPost({
     authorId: user.id,
     board: body.board,
@@ -111,7 +104,7 @@ export async function POST(request: NextRequest) {
     flair: body.flair,
     title: body.title || '',
     bodyMd: body.bodyMd || '',
-    attachments,
+    attachments: body.attachments,
   })
   if (!result.ok) {
     return jsonWithAuthCookies({ error: result.error }, pendingCookies, { status: 400 })

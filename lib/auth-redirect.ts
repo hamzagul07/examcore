@@ -1,6 +1,137 @@
 /**
+ * Characters that must never appear in a redirect target.
+ *
+ * WHATWG URL parsing treats `\` as `/` for http(s), so
+ * `new URL('/\evil.com', 'https://markscheme.app').href === 'https://evil.com/'`
+ * — a "relative" path that only rejects `//` and `://` still walks off-site.
+ * Control characters are stripped by the parser (tab/newline anywhere, C0 at
+ * the ends), which makes the checked string and the navigated string differ;
+ * refuse them outright rather than reason about what survives.
+ */
+const FORBIDDEN_REDIRECT_CHARS = /[\\\u0000-\u001f\u007f]/
+
+/**
+ * Origin used only to *probe* whether a path stays relative. Any origin works:
+ * a path is same-origin-safe exactly when resolving it against a base leaves
+ * the base's origin unchanged, and that property does not depend on the host.
+ */
+const PROBE_ORIGIN = 'https://redirect-probe.invalid'
+
+function safeDecode(value: string): string {
+  try {
+    return decodeURIComponent(value)
+  } catch {
+    // Malformed percent-encoding — leave as-is; the raw check still applies.
+    return value
+  }
+}
+
+/**
+ * True when `value` (raw or after one round of percent-decoding) carries a
+ * backslash or control character. The decoded pass covers `%5C`: the string
+ * is safe as-is, but any consumer that decodes before re-resolving (routers,
+ * log viewers, a copy-pasted address bar) would see the backslash.
+ */
+function hasForbiddenRedirectChars(value: string): boolean {
+  return (
+    FORBIDDEN_REDIRECT_CHARS.test(value) ||
+    FORBIDDEN_REDIRECT_CHARS.test(safeDecode(value))
+  )
+}
+
+/**
+ * Resolve `raw` against `origin` and return `pathname + search + hash` only —
+ * or `null` when the result would leave that origin.
+ *
+ * This is the last line of defence at every redirect sink that does
+ * `new URL(dest, request.url)`: the sanitizers above it reason about string
+ * shape, this one asks the URL parser itself where the browser would end up.
+ * Absolute URLs on the same origin collapse to their path, which is what a
+ * `Location` header should carry anyway.
+ */
+export function resolveSameOriginPath(
+  raw: string | null | undefined,
+  origin: string
+): string | null {
+  if (!raw) return null
+  const trimmed = raw.trim()
+  if (!trimmed || hasForbiddenRedirectChars(trimmed)) return null
+
+  let base: URL
+  try {
+    base = new URL(origin)
+  } catch {
+    return null
+  }
+
+  let resolved: URL
+  try {
+    resolved = new URL(trimmed, base.origin)
+  } catch {
+    return null
+  }
+
+  if (resolved.origin !== base.origin) return null
+
+  // Dot segments are collapsed BEFORE the origin check, so `/..//evil.com`
+  // (also `/a/..//evil.com`, `/.//evil.com`, `/%2e%2e//evil.com`) is
+  // same-origin with pathname `//evil.com` — and that pathname, handed to a
+  // sink that does `new URL(path, request.url)`, is protocol-relative and
+  // walks off-site. The path we return must never begin that way.
+  if (resolved.pathname.startsWith('//')) return null
+
+  const candidate = `${resolved.pathname}${resolved.search}${resolved.hash}`
+
+  // What is returned is what every sink re-resolves. Prove, on the string
+  // actually handed back rather than on the input, that it lands on this
+  // origin; any future parser subtlety fails closed here.
+  try {
+    if (new URL(candidate, base.origin).origin !== base.origin) return null
+  } catch {
+    return null
+  }
+  return candidate
+}
+
+/**
+ * The same check, returning the absolute same-origin URL a redirect should
+ * carry — or `null`. Server sinks redirect to THIS rather than re-resolving
+ * the path string against `request.url`: the string form is safe (see
+ * above), but a URL that was built once, here, on the checked origin has no
+ * second resolution step in which to go wrong.
+ */
+export function resolveSameOriginUrl(
+  raw: string | null | undefined,
+  origin: string
+): URL | null {
+  const path = resolveSameOriginPath(raw, origin)
+  if (path === null) return null
+  try {
+    const base = new URL(origin)
+    const url = new URL(path, base.origin)
+    return url.origin === base.origin ? url : null
+  } catch {
+    return null
+  }
+}
+
+/**
+ * Shared shape check for an in-app path: leading `/`, not protocol-relative,
+ * no scheme, no backslash / control characters, and — decisive — the URL
+ * parser agrees it stays on the current origin.
+ */
+function isInAppPath(trimmed: string): boolean {
+  if (!trimmed.startsWith('/')) return false
+  if (trimmed.startsWith('//')) return false
+  if (trimmed.includes('://')) return false
+  if (hasForbiddenRedirectChars(trimmed)) return false
+  return resolveSameOriginPath(trimmed, PROBE_ORIGIN) !== null
+}
+
+/**
  * Validate a post-auth redirect target. Only same-origin relative paths are
- * allowed — rejects protocol-relative (`//evil.com`) and absolute URLs.
+ * allowed — rejects protocol-relative (`//evil.com`), absolute URLs, and the
+ * backslash / control-character forms the URL parser would turn into either.
  * The marketing homepage (`/`) is never a post-login destination — signed-in
  * users belong on the dashboard desk.
  */
@@ -11,13 +142,7 @@ export function sanitizeNextPath(
   if (!raw) return fallback
   const trimmed = raw.trim()
   if (trimmed === '/' || trimmed === '') return fallback
-  if (
-    !trimmed.startsWith('/') ||
-    trimmed.startsWith('//') ||
-    trimmed.includes('://')
-  ) {
-    return fallback
-  }
+  if (!isInAppPath(trimmed)) return fallback
   return trimmed
 }
 
@@ -27,11 +152,7 @@ export function isSafeNextPath(raw: string | null | undefined): raw is string {
   const trimmed = raw.trim()
   // Homepage is safe to *visit*, but not a meaningful post-auth `next` target.
   if (trimmed === '/') return false
-  return (
-    trimmed.startsWith('/') &&
-    !trimmed.startsWith('//') &&
-    !trimmed.includes('://')
-  )
+  return isInAppPath(trimmed)
 }
 
 /** `/auth/signup` preserving a post-auth destination (`redirect` query). */

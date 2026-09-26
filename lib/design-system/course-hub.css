@@ -1,9 +1,10 @@
 /* ============================================================
    Course hub — the syllabus spine as a printed contents page.
 
-   Loaded after margin-notes-courses.css. Every selector here is prefixed
-   with .hub-page so it outranks that file's bare .spine / .topic-row /
-   .paper-tab rules (and the .course-root contrast bridges) without editing
+   globals.css imports this before margin-notes-courses.css, so source order
+   is on that file's side. Every selector here is prefixed with .hub-page so
+   it outranks its bare .spine / .topic-row / .paper-tab rules (and the
+   .course-root contrast bridges) on specificity alone, without editing
    them: the old per-row cards, gradient rail and filled checkboxes are all
    overridden, not removed.
    ============================================================ */
@@ -280,6 +281,10 @@
   .hub-page .paper-tab-name--short { display: block; }
 
   .hub-page .spine { padding: 18px 18px 22px; }
+  /* "PAPER 1 · 32 TOPICS · 2 DONE" has to fit beside CONTENTS on a 390px sheet. */
+  .hub-page .spine-head { gap: 12px; }
+  .hub-page .spine-head-kicker,
+  .hub-page .spine-head-meta { font-size: 10.5px; letter-spacing: 0.12em; }
   .hub-page .spine-unit-title { font-size: 21px; }
   .hub-page .topic-row .topic-name { font-size: 16.5px; }
   .hub-page .topic-row.active,

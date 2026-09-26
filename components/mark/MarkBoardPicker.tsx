@@ -23,20 +23,15 @@ type Props = {
 }
 
 export function MarkBoardPicker({ value, onChange, disabled }: Props) {
-  const labels = OPTIONS.map((o) => o.label)
-  const labelText =
-    labels.length <= 1
-      ? labels[0] ?? 'your board'
-      : labels.length === 2
-        ? `${labels[0]} and ${labels[1]}`
-        : `${labels.slice(0, -1).join(', ')}, and ${labels[labels.length - 1]}`
+  const selected = OPTIONS.find((o) => o.id === value) ?? OPTIONS[0]
 
+  // The chips carry the board name only; the hint for whichever board is
+  // selected sits once under the row, so six chips stay one line tall instead
+  // of each stretching to the longest hint. Under 600px the chips give way to a
+  // native select (CSS swaps them), which is why both controls are rendered.
   return (
     <fieldset className="ms-mark-board-picker" disabled={disabled}>
       <legend className="label-overline mb-2.5 block">Exam board</legend>
-      <p className="ms-mark-board-hint mb-3 text-xs leading-relaxed text-[var(--ec-text-secondary)]">
-        Pick your board — {labelText} support photos, PDFs, and scanned worksheets.
-      </p>
       <div className="ms-mark-board-grid">
         {OPTIONS.map((opt) => {
           const inputId = `mark-board-${opt.id}`
@@ -57,13 +52,35 @@ export function MarkBoardPicker({ value, onChange, disabled }: Props) {
                 className="ms-mark-board-option-input"
               />
               <span className="ms-mark-board-option-label">{opt.label}</span>
-              <span className="ms-mark-board-option-hint">{opt.hint}</span>
             </label>
           )
         })}
       </div>
+      <select
+        id="mark-board-select"
+        aria-label="Exam board"
+        aria-describedby="mark-board-caption"
+        value={value}
+        disabled={disabled}
+        onChange={(e) => onChange(e.target.value as MarkExamBoard)}
+        className="ms-mark-board-select ec-input select-chevron appearance-none"
+      >
+        {OPTIONS.map((opt) => (
+          <option key={opt.id} value={opt.id}>
+            {opt.label}
+          </option>
+        ))}
+      </select>
+      <p id="mark-board-caption" className="ms-mark-board-caption">
+        {selected?.hint}
+      </p>
     </fieldset>
   )
+}
+
+/** Display name for a mark board — used by the phone setup summary chip. */
+export function markBoardLabel(board: MarkExamBoard): string {
+  return OPTIONS.find((o) => o.id === board)?.label ?? board
 }
 
 export function markBoardFromProfileBoard(board: string | null | undefined): MarkExamBoard {

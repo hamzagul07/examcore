@@ -104,6 +104,7 @@ import {
   coerceMarkExamBoard,
   isUrlMarkBoard,
   markBoardFromProfileBoard,
+  markBoardLabel,
   subjectMatchesMarkBoard,
   type MarkExamBoard,
 } from '@/components/mark/MarkBoardPicker'
@@ -433,6 +434,8 @@ export default function MarkPage() {
   const [examDate, setExamDate] = useState<string | null | undefined>(undefined)
   const [examDateAskDismissed, setExamDateAskDismissed] = useState(false)
   const [selectedMarkBoard, setSelectedMarkBoard] = useState<MarkExamBoard>('cambridge')
+  /** Phone only: board/mode/source fold into a one-line summary until tapped (desktop ignores this). */
+  const [setupOpen, setSetupOpen] = useState(false)
   const [profileLoading, setProfileLoading] = useState(true)
   /** R1 MarkFlow v2 — Capture/Confirm shell (`?flow=v2` or localStorage). */
   const [markFlowV2, setMarkFlowV2] = useState(false)
@@ -3185,13 +3188,37 @@ export default function MarkPage() {
         )}
 
         {!result && !loading && (
-          <form
-            onSubmit={handleSubmit}
-            className={`ms-mark-form-shell space-y-8${
-              uploadMode === 'single_question' ? ' ms-mark-form-shell--capture-first' : ''
-            }`}
-          >
-            <section className="ms-mark-setup-panel ms-fade-in ms-stag-1">
+          <form onSubmit={handleSubmit} className="ms-mark-form-shell space-y-8">
+            {/* Setup reads before capture in DOM order on every width, so the
+                choices come before the button that commits them. On phones the
+                panel starts folded into one line — the first viewport still
+                leads with the upload — and expands in place when tapped. */}
+            <section
+              className={`ms-mark-setup-panel ms-fade-in ms-stag-1${
+                setupOpen ? '' : ' is-collapsed'
+              }`}
+            >
+            <button
+              type="button"
+              className="ms-mark-setup-summary"
+              aria-expanded={setupOpen}
+              aria-controls="mark-setup-body"
+              onClick={() => setSetupOpen((open) => !open)}
+            >
+              <span className="ms-mark-setup-summary__kicker">Setup</span>
+              <span className="ms-mark-setup-summary__value">
+                {markBoardLabel(selectedMarkBoard)}
+                {' · '}
+                {uploadMode === 'whole_paper' ? 'Whole paper' : 'One answer'}
+                {uploadMode === 'single_question'
+                  ? ` · ${markIntent === 'past_paper' ? 'Past paper' : 'My own question'}`
+                  : ''}
+              </span>
+              <span className="ms-mark-setup-summary__action">
+                {setupOpen ? 'done' : 'change'}
+              </span>
+            </button>
+            <div id="mark-setup-body" className="ms-mark-setup-body">
             <MarkBoardPicker
               value={selectedMarkBoard}
               onChange={handleMarkBoardChange}
@@ -3291,6 +3318,7 @@ export default function MarkPage() {
                   {markLearnMoreLabel}
                 </Link>
               </p>
+            </div>
             </div>
             </section>
 
@@ -3980,65 +4008,72 @@ export default function MarkPage() {
                       </p>
                     </div>
                   )}
-                  <div className="ms-mark-submit-panel">
-                  <MarkUsageIndicator variant="single" summary={billingSummary} className="mb-3" />
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    size="lg"
-                    fullWidth
-                    loading={loading}
-                    loadingMode="progress"
-                    loadingText="Marking your answer…"
-                    disabled={
-                      !hasAnswer ||
-                      typedAnswerNeedsQuestion ||
-                      hasCompressingPages(answerPages) ||
-                      questionPhotoCompressing ||
-                      !!answerPdfError ||
-                      !!uploadPayloadError ||
-                      submitBlocked ||
-                      (isPracticeMode &&
-                        (!selectedSubject || !hasPracticeQuestion)) ||
-                      (isCombinedMode && !selectedSubject) ||
-                      !totalMarksSatisfied
-                    }
-                    pulse={
-                      hasAnswer &&
-                      !loading &&
-                      (isCombinedMode
-                        ? !!selectedSubject
-                        : !isPracticeMode ||
-                          (!!selectedSubject && hasPracticeQuestion))
-                    }
-                    className="mark-submit-btn justify-center text-base"
-                  >
-                    {isCombinedMode
-                      ? 'Mark my script'
-                      : isPracticeMode
-                        ? 'Mark my question'
-                        : 'Mark my answer →'}
-                  </Button>
-                  {!loading && submitDisabledReason && (
-                    <p
-                      className="mt-2.5 text-center text-xs text-[var(--ec-text-secondary)]"
-                      role="status"
-                    >
-                      {submitDisabledReason}
-                    </p>
-                  )}
-                  {!isPracticeMode && isManualFilled && (
-                    <p className="ms-micro text-center" style={{ marginTop: 10 }}>
-                      USES THE OFFICIAL {selectedSubject}/{selectedComponent} MARK SCHEME
-                    </p>
-                  )}
-                  </div>
                 </div>
               </div>
             </div>
             </>
             )}
             </div>
+
+            {/* The CTA is the form's last child on purpose: it follows the
+                board/mode setup and the capture in reading order, and on
+                phones it sticks to the bottom edge so it is reachable from
+                anywhere in the form. Whole paper submits from its own flow. */}
+            {uploadMode === 'single_question' && (
+              <div className="ms-mark-submit-block">
+                <MarkUsageIndicator variant="single" summary={billingSummary} className="mb-3" />
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  fullWidth
+                  loading={loading}
+                  loadingMode="progress"
+                  loadingText="Marking your answer…"
+                  disabled={
+                    !hasAnswer ||
+                    typedAnswerNeedsQuestion ||
+                    hasCompressingPages(answerPages) ||
+                    questionPhotoCompressing ||
+                    !!answerPdfError ||
+                    !!uploadPayloadError ||
+                    submitBlocked ||
+                    (isPracticeMode &&
+                      (!selectedSubject || !hasPracticeQuestion)) ||
+                    (isCombinedMode && !selectedSubject) ||
+                    !totalMarksSatisfied
+                  }
+                  pulse={
+                    hasAnswer &&
+                    !loading &&
+                    (isCombinedMode
+                      ? !!selectedSubject
+                      : !isPracticeMode ||
+                        (!!selectedSubject && hasPracticeQuestion))
+                  }
+                  className="mark-submit-btn justify-center text-base"
+                >
+                  {isCombinedMode
+                    ? 'Mark my script'
+                    : isPracticeMode
+                      ? 'Mark my question'
+                      : 'Mark my answer →'}
+                </Button>
+                {!loading && submitDisabledReason && (
+                  <p
+                    className="mt-2.5 text-center text-xs text-[var(--ec-text-secondary)]"
+                    role="status"
+                  >
+                    {submitDisabledReason}
+                  </p>
+                )}
+                {!isPracticeMode && isManualFilled && (
+                  <p className="ms-micro text-center" style={{ marginTop: 10 }}>
+                    USES THE OFFICIAL {selectedSubject}/{selectedComponent} MARK SCHEME
+                  </p>
+                )}
+              </div>
+            )}
 
             {softMarkNotice && !loading && (
               <p

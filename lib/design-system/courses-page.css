@@ -398,3 +398,314 @@ html[data-ec-theme='late-night'] .course-studio {
     transition: none;
   }
 }
+
+/* ── /courses catalog cards (Margin Notes) ──
+   This sheet is imported before margin-notes-courses.css, so every override
+   below carries an extra class to outrank the base .scard rules there. */
+
+/* "Free forever" is stamped once, in the hero, instead of on every tile. */
+.catalog-overline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.catalog-free-stamp {
+  display: inline-block;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  border-radius: 4px;
+  padding: 5px 8px 4px;
+  transform: rotate(-2deg);
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.08));
+}
+
+.catalog-count-jump {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong, var(--border));
+  text-underline-offset: 3px;
+}
+
+.catalog-count-jump:hover {
+  color: var(--ink);
+  text-decoration-color: var(--ink);
+}
+
+/* Card head: the code tab flows between the glyph chip and the side slot.
+   It used to be absolutely centred, which collided with both neighbours once
+   an IB code ran longer than a four-digit Cambridge one. */
+.scard .scard-tab {
+  position: static;
+  transform: none;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-top: 5px;
+  text-align: left;
+  letter-spacing: 0.06em;
+}
+
+.scard .scard-side {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.scard .scard-new {
+  position: static;
+}
+
+/* Lesson count where the FREE FOREVER stamp sat — same white chip on the band. */
+.scard-count {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  padding: 4px 8px;
+  min-width: 52px;
+}
+
+.scard-count b {
+  display: block;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+  margin-bottom: 2px;
+}
+
+.scard-row-meta {
+  display: none;
+}
+
+/* Tailwind's `ring` utility shares the class name with the mastery ring and
+   draws a 1px box around it; the card never wants that box. */
+.scard .ring {
+  box-shadow: none;
+}
+
+/* Merged HL · SL card: the name link stretches over the card, the level
+   segments sit above it so each keeps its own href. */
+.scard-name-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.scard-name-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.scard-multi:has(.scard-name-link:focus-visible) {
+  box-shadow: var(--ec-focus-ring);
+}
+
+.scard-levels {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.scard-lvl {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 5px 10px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-2);
+  text-decoration: none;
+  border-right: 1px solid var(--border);
+  transition: background 140ms ease, color 140ms ease;
+}
+
+.scard-lvl:last-child {
+  border-right: none;
+}
+
+.scard-lvl small {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+.scard-lvl.on {
+  color: var(--acc);
+  background: color-mix(in srgb, var(--acc) 10%, transparent);
+}
+
+.scard-lvl:hover,
+.scard-lvl:focus-visible {
+  color: var(--acc);
+  background: color-mix(in srgb, var(--acc) 16%, transparent);
+  outline: none;
+}
+
+.scard-lvl:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--acc);
+}
+
+/* Phones: 268px tiles × 45 cards made the page 23,000px tall. Each card
+   becomes an accent-tab row (code / name / level · lessons) like the
+   /subjects ledger; the wrappers go display: contents so the same DOM lays
+   out on one grid. */
+@media (max-width: 700px) {
+  .catalog-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .catalog-grid .scard {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr) auto 16px;
+    grid-template-rows: auto auto auto;
+    column-gap: 12px;
+    row-gap: 1px;
+    align-items: center;
+    padding: 12px 14px;
+    border-left: 3px solid var(--acc);
+    box-shadow: none;
+  }
+
+  .catalog-grid .scard:hover {
+    transform: translateX(3px);
+    box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.08));
+  }
+
+  .catalog-grid .scard::before,
+  .catalog-grid .scard .scard-top::after,
+  .catalog-grid .scard .scard-watermark,
+  .catalog-grid .scard .scard-meta,
+  .catalog-grid .scard .scard-stat,
+  .catalog-grid .scard .scard-rule,
+  .catalog-grid .scard .scard-go,
+  .catalog-grid .scard .scard-count {
+    display: none;
+  }
+
+  .catalog-grid .scard .scard-top,
+  .catalog-grid .scard .scard-body,
+  .catalog-grid .scard .scard-foot {
+    display: contents;
+  }
+
+  .catalog-grid .scard .scard-glyph {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    box-shadow: none;
+    background: color-mix(in srgb, var(--acc) 10%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--acc) 30%, var(--border));
+  }
+
+  .catalog-grid .scard:hover .scard-glyph {
+    transform: none;
+  }
+
+  /* Off the coloured band the tab is meta copy again — outranks the
+     ec-theme-contrast rule that pins it white on the band. */
+  .catalog-grid .scard .scard-top .scard-tab {
+    grid-column: 2;
+    grid-row: 1;
+    padding-top: 0;
+    font-size: 10.5px;
+    color: var(--text-2);
+    opacity: 1;
+  }
+
+  .catalog-grid .scard .scard-name {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.2;
+  }
+
+  .catalog-grid .scard .scard-row-meta {
+    display: block;
+    grid-column: 2;
+    grid-row: 3;
+    margin: 2px 0 0;
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    color: var(--text-2);
+  }
+
+  .catalog-grid .scard .scard-side {
+    grid-column: 3;
+    grid-row: 1 / span 3;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* The ring is drawn white for the band; on paper it takes the accent. */
+  .catalog-grid .scard .ring svg circle:last-child {
+    stroke: var(--acc);
+  }
+
+  .catalog-grid .scard .ring-label {
+    color: var(--text);
+  }
+
+  .catalog-grid .scard .scard-new {
+    color: var(--acc);
+    background: transparent;
+    border-color: color-mix(in srgb, var(--acc) 40%, transparent);
+  }
+
+  .catalog-grid .scard::after {
+    content: '→';
+    grid-column: 4;
+    grid-row: 1 / span 3;
+    align-self: center;
+    color: var(--muted);
+    font-size: 16px;
+  }
+
+  .catalog-grid .scard:hover::after {
+    color: var(--acc);
+  }
+
+  .catalog-grid .scard .scard-levels {
+    grid-column: 2 / span 3;
+    grid-row: 4;
+    justify-self: start;
+    margin-top: 8px;
+  }
+}

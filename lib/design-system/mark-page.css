@@ -232,22 +232,29 @@
     display: none;
   }
 
-  /* One-answer flow only — whole paper still needs paper identity first. */
-  .ms-mark-form-shell--capture-first {
-    display: flex;
-    flex-direction: column;
+  /* The setup used to be flex-ordered below the capture block here, which put
+     the board and mode choices under the submit button. Now it stays first in
+     DOM order and folds into one line instead, so the upload still leads. */
+  .ms-mark-setup-panel.is-collapsed .ms-mark-setup-body {
+    display: none;
   }
 
-  .ms-mark-form-shell--capture-first .ms-mark-capture-block {
-    order: 1;
+  /* Sticky bottom bar: the CTA is always one thumb away, whatever is on
+     screen. Bleeds to the page edge (18px gutter) and clears the home bar. */
+  .ms-mark-form-shell > .ms-mark-submit-block {
+    position: sticky;
+    bottom: 0;
+    z-index: 6;
+    margin: 0 -18px;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid var(--ec-border);
+    background: var(--ec-paper, var(--ec-surface));
   }
 
-  .ms-mark-form-shell--capture-first .ms-mark-setup-panel {
-    order: 2;
-  }
-
-  .ms-mark-form-shell--capture-first > [role='alert'] {
-    order: 3;
+  .ms-mark-submit-block .mark-submit-btn {
+    min-height: 48px;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 }
 
@@ -321,23 +328,108 @@
   gap: 22px;
 }
 
-.ms-mark-mode-panel {
+.ms-mark-setup-body {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 14px;
+  gap: 22px;
 }
 
-.ms-mark-mode-panel .ms-lvl-tabs-scroll {
+/* One-line summary of the setup, phone only — desktop always shows the panel. */
+.ms-mark-setup-summary {
+  display: none;
+  align-items: baseline;
+  gap: 8px;
   width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1.5px solid var(--ec-border);
+  border-left: 3px solid var(--ec-ink, var(--ec-brand));
+  border-radius: 4px;
+  background: var(--ec-paper, var(--ec-surface));
+  box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.06));
+  text-align: left;
+  cursor: pointer;
+}
+
+.ms-mark-setup-summary__kicker {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.ms-mark-setup-summary__value {
+  flex: 1;
+  min-width: 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ec-text-primary);
+}
+
+.ms-mark-setup-summary__action {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: var(--ec-brand);
+}
+
+.ms-mark-setup-summary:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .ms-mark-setup-summary {
+    display: flex;
+  }
+}
+
+/* Mode and source controls share one left-aligned row, like every other
+   label on the desk; the callout takes the full line beneath them. */
+.ms-mark-mode-panel {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+
+.ms-mark-mode-panel .ms-lvl-tabs {
+  margin-right: 8px;
+}
+
+.ms-mark-mode-panel .ms-lvl-tab {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* The source label, its chips and the "same page" checkbox wrap as items of
+   the row itself; boxed together they would drop to a line of their own as
+   soon as the checkbox appears. */
+.ms-mark-mode-panel .ms-mark-intent-row {
+  display: contents;
+}
+
+.ms-mark-mode-panel .ms-mark-intent-row > .label-overline {
+  margin-bottom: 0;
+}
+
+.ms-mark-mode-panel .ms-mark-intent-row > label {
+  flex-basis: 100%;
+  margin-top: 0;
 }
 
 .ms-mark-mode-callout {
+  flex-basis: 100%;
   margin: 0;
-  max-width: 40rem;
-  text-align: center;
   font-size: 13px;
   line-height: 1.55;
   color: var(--ec-text-secondary);
@@ -686,8 +778,8 @@
   margin-top: 18px;
 }
 
-.ms-mark-submit-panel {
-  margin-top: 8px;
+/* Submit lives outside the form card: the closing line under both columns. */
+.ms-mark-submit-block {
   padding-top: 18px;
   border-top: 1px solid var(--ec-border);
 }
@@ -1455,7 +1547,11 @@
   }
 }
 
-/* Exam board picker — Cambridge vs IB before subject selection */
+/* Exam board picker — one row of six name-only chips, all the same height,
+   with the selected board's hint set once beneath the row. Per-chip hints made
+   the row as tall as the wordiest board (nine lines of Edexcel in a 110px
+   column) and pushed the capture form down. Under 600px a native select
+   replaces the chips: six tappable rows are a form, not a picker. */
 .ms-mark-board-picker {
   margin: 0;
   padding: 0;
@@ -1464,41 +1560,55 @@
 
 .ms-mark-board-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 759px) {
   .ms-mark-board-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.ms-mark-board-select {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .ms-mark-board-grid {
+    display: none;
+  }
+
+  .ms-mark-board-select {
+    display: block;
   }
 }
 
 .ms-mark-board-option {
   display: flex;
   position: relative;
-  cursor: pointer;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  text-align: left;
-  padding: 14px 16px;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 6px 8px;
   border-radius: 4px;
   border: 1.5px solid var(--ec-border);
   background: var(--ec-paper, var(--ec-surface-raised));
   box-shadow: var(--ec-shadow-hard, 2px 2px 0 rgba(0, 0, 0, 0.05));
   color: var(--ec-text-secondary);
+  text-align: center;
   cursor: pointer;
   transition:
     border-color 160ms ease,
     background 160ms ease,
     box-shadow 160ms ease,
-    transform 160ms ease;
+    color 160ms ease;
 }
 
 .ms-mark-board-option:hover {
   border-color: color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border));
   background: var(--ec-brand-muted);
+  color: var(--ec-text-primary);
 }
 
 .ms-mark-board-picker:disabled .ms-mark-board-option {
@@ -1508,36 +1618,25 @@
 }
 
 .ms-mark-board-option.on {
-  border-color: color-mix(in srgb, var(--ec-brand) 55%, var(--ec-border));
+  border-color: var(--ec-ink, var(--ec-brand));
   background: var(--ec-brand-muted);
-  color: var(--ec-text-primary);
+  color: var(--ec-ink, var(--ec-brand));
   box-shadow: var(--ec-shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.1));
 }
 
 .ms-mark-board-option-label {
-  font-size: 14px;
-  font-weight: 650;
-  line-height: 1.3;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
 }
 
-.ms-mark-board-option-hint {
-  font-size: 11px;
-  line-height: 1.45;
-  opacity: 0.85;
-}
-
-/* Desktop: one compact row of six, not two rows of tall cards. The picker was
-   the first interaction on /mark and pushed the actual capture form below the
-   fold — a wall of board decisions before the thing the visitor came to do. */
-@media (min-width: 1024px) {
-  .ms-mark-board-grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 8px;
-  }
-  .ms-mark-board-option {
-    padding: 10px 12px;
-    gap: 3px;
-  }
+.ms-mark-board-caption {
+  margin: 8px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
 }
 
 .ms-mark-board-option:has(input:focus-visible) {

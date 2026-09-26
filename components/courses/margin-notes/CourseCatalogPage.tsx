@@ -11,7 +11,11 @@ import { InkScribble, MarginNote } from '@/components/courses/margin-notes/HandA
 import { FamilyFilterStrip, useFamilyFilterFromUrl } from '@/components/courses/FamilyFilterStrip'
 
 import type { IbCatalogCard } from '@/lib/courses/ib-catalog-display'
-import { IB_COURSES_CATALOG_BLURB, ibCatalogTrackSections } from '@/lib/courses/ib-catalog-display'
+import {
+  IB_COURSES_CATALOG_BLURB,
+  ibCatalogGroups,
+  ibCatalogTrackSections,
+} from '@/lib/courses/ib-catalog-display'
 import { preferSubjectsByCodeFirst } from '@/lib/subjects/prefer-codes'
 import { formatDisplayNumber } from '@/lib/format/display-date'
 
@@ -52,14 +56,22 @@ export function CourseCatalogPage({
     subjects.reduce((a, s) => a + s.lessons, 0) +
     ibSubjects.reduce((a, s) => a + s.lessons, 0)
   const totalQ = subjects.reduce((a, s) => a + s.q, 0)
-  const ibTrackSections = ibCatalogTrackSections(orderedIb)
+  // HL and SL of one subject share a card; the grouping runs after pinning so
+  // a student's subjects still lead their track.
+  const ibGroups = ibCatalogGroups(orderedIb)
+  const ibTrackSections = ibCatalogTrackSections(ibGroups)
 
   return (
     <main className="catalog-page ec-page-mesh" data-screen-label="Courses — catalog">
       <CourseProgressCloudSync />
       <header className="catalog-hero pg">
         <div className="catalog-hero-text">
-          <p className="overline">Courses · 100% free, forever</p>
+          <p className="overline catalog-overline">
+            Courses · Cambridge &amp; IB
+            <span className="catalog-free-stamp" aria-label="Free forever">
+              Free forever
+            </span>
+          </p>
           <h1 className="h-display">
             Premium courses,
             <br />
@@ -72,7 +84,7 @@ export function CourseCatalogPage({
         </div>
         <div className="catalog-hero-meta">
           <div className="hero-stat">
-            <b>{subjects.length + ibSubjects.length}</b>
+            <b>{subjects.length + ibGroups.length}</b>
             <span>subjects</span>
           </div>
           <div className="hero-stat">
@@ -100,7 +112,14 @@ export function CourseCatalogPage({
             tabClassName="fam-tab"
           />
           <span className="micro catalog-count">
-            {list.length} Cambridge · {orderedIb.length} IB
+            {list.length} Cambridge ·{' '}
+            {ibGroups.length ? (
+              <a className="catalog-count-jump" href="#catalog-ib-heading">
+                {ibGroups.length} IB ↓
+              </a>
+            ) : (
+              '0 IB'
+            )}
             {pinnedYours && fam === 'All' ? ' · yours first' : ''}
           </span>
         </div>
@@ -142,9 +161,12 @@ export function CourseCatalogPage({
                         key={s.code}
                         s={s}
                         href={s.href}
+                        codeLabel={s.codeLabel}
                         boardLabel={s.boardLabel}
                         accentHex={s.accentHex}
                         statSuffix="criterion practice tasks"
+                        isNew={s.isNew}
+                        levels={s.levels}
                       />
                     ))}
                   </div>

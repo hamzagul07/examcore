@@ -8,7 +8,7 @@ import { getSyllabusTree } from '@/lib/syllabi'
 import type { AccentToken } from '@/lib/courses/margin-notes/types'
 import { subjectAccent } from '@/lib/courses/margin-notes/subject-meta'
 import type { IbCatalogCard } from '@/lib/courses/ib-catalog-display'
-import { IB_NEW_COURSE_SLUGS } from '@/lib/courses/ib-catalog-display'
+import { IB_NEW_COURSE_SLUGS, ibDisplayCode } from '@/lib/courses/ib-catalog-display'
 import type { SubjectFamily } from '@/lib/courses/margin-notes/types'
 
 function ibSyllabusCode(slug: string): string {
@@ -52,6 +52,7 @@ export function adaptIbCatalogCard(slug: string, prog = 0): IbCatalogCard | null
 
   return {
     code: course.code,
+    codeLabel: ibDisplayCode(course.code),
     name: course.name,
     glyph: subject?.glyph ?? '◆',
     acc: token,

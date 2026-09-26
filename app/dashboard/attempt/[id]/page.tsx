@@ -21,6 +21,8 @@ import { resolveExtractedQuestionId } from '@/lib/community/anchor'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 import { TeacherFeedbackNote } from '@/components/dashboard/TeacherFeedbackNote'
 import { loadAttemptTeacherNotes, studentRequestTimeZone } from '@/lib/student/assignments'
+import { ExamPaperQuestion, ExamPaperSheet } from '@/components/exam-paper/ExamPaper'
+import { getSubjectByCode } from '@/lib/profile-options'
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
@@ -253,6 +255,27 @@ export default async function AttemptDetailPage({
   const teacherNotes = await teacherNotesPromise
   const teacherNotesTimeZone = teacherNotes ? await studentRequestTimeZone() : 'UTC'
 
+  // The header is the question itself, set as the paper printed it. The
+  // detected paper wins; the stored scheme fills in for a typed question that
+  // matched one.
+  const paperCode =
+    result.detected_paper?.paper_code ?? result.mark_scheme_meta?.paper_code ?? null
+  const paperSession =
+    result.detected_paper?.paper_session ?? result.mark_scheme_meta?.paper_session ?? null
+  const questionNumber =
+    result.detected_paper?.question_number ?? result.mark_scheme_meta?.question_number ?? null
+  const paperSubjectCode = paperCode?.split('/')[0] || null
+  const subjectName = paperSubjectCode ? getSubjectByCode(paperSubjectCode)?.label ?? null : null
+  const pageTitle = paperCode
+    ? `${paperCode}${questionNumber ? ` Question ${questionNumber}` : ''}`
+    : 'Custom question'
+  const markedOn = (
+    <p className="font-mono text-xs text-[var(--ec-text-secondary)]">
+      Marked on {dateStr}
+      {paperSession ? <> · {paperSession}</> : null}
+    </p>
+  )
+
   return (
     <main className="app-shell app-shell-tabbed ms-attempt-page">
       <div className="mx-auto min-w-0 max-w-3xl">
@@ -265,37 +288,34 @@ export default async function AttemptDetailPage({
           Back to dashboard
         </Link>
 
-        {/* Page header */}
+        {/* Page header: the question as the paper printed it, the way a
+            marked script opens. The h1 stays for the document outline. */}
         <div className="animate-entry stagger-1 mb-10">
           <p className="ms-overline mb-3">Attempt</p>
-          <h1 className="text-hero">
-            <span className="text-[var(--ec-text-primary)]">
-              {result.marking_mode === 'official_mark_scheme' && result.detected_paper
-                ? result.detected_paper.paper_code
-                : 'Custom'}
-            </span>
-            {result.marking_mode === 'official_mark_scheme' && result.detected_paper && (
-              <>
-                <br />
-                <span className="ec-text-gradient">
-                  Question {result.detected_paper.question_number}
-                </span>
-              </>
-            )}
-            {result.marking_mode !== 'official_mark_scheme' && (
-              <>
-                <br />
-                <span className="ec-text-gradient">question</span>
-              </>
-            )}
-          </h1>
-          <p className="mt-3 font-mono text-xs text-[var(--ec-text-secondary)]">
-            Marked on {dateStr}
-            {result.marking_mode === 'official_mark_scheme' &&
-              result.detected_paper && (
-                <> · {result.detected_paper.paper_session}</>
-              )}
-          </p>
+          <h1 className="sr-only">{pageTitle}</h1>
+          {result.question_text ? (
+            <ExamPaperSheet
+              compact
+              paperCode={paperCode}
+              session={paperSession}
+              subjectName={subjectName}
+              foot={markedOn}
+            >
+              <ExamPaperQuestion
+                questionNumber={questionNumber}
+                text={result.question_text}
+                totalMarks={result.mark_scheme_meta?.total_marks ?? result.total_marks}
+                first
+              />
+            </ExamPaperSheet>
+          ) : (
+            <>
+              <p className="ms-h3" aria-hidden>
+                {pageTitle}
+              </p>
+              <div className="mt-3">{markedOn}</div>
+            </>
+          )}
         </div>
 
         {teacherNotes ? (
@@ -324,6 +344,7 @@ export default async function AttemptDetailPage({
             result={result}
             attemptId={attempt.id}
             inkPages={inkPages}
+            hideQuestionSheet
           />
         </div>
 

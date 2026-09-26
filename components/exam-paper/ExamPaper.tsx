@@ -3,10 +3,13 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import {
+  mcqFitsOneRow,
   paperFooterCode,
   parseQuestionNumber,
   sessionCoverLabel,
+  splitMcqOptions,
   splitQuestionParts,
+  type McqOption,
   type QuestionPart,
 } from '@/lib/exam-paper/question-parts'
 
@@ -109,6 +112,10 @@ type QuestionProps = {
   parts?: QuestionPart[]
   /** Marks for the whole question, printed on the last line when parts state none. */
   totalMarks?: number | null
+  /** Multiple-choice responses, printed A–D under the stem. Wins over `mcq`. */
+  options?: McqOption[]
+  /** Paper 1 style: split the four A–D responses out of `text`. Falls back to prose when they are not there. */
+  mcq?: boolean
   /** Dotted answer lines under the question (0 = none). */
   answerLines?: number
   /** Something to print after the text, inside the question column. */
@@ -124,6 +131,8 @@ export function ExamPaperQuestion({
   text,
   parts: givenParts,
   totalMarks,
+  options: givenOptions,
+  mcq,
   answerLines = 0,
   after,
   render = defaultRender,
@@ -131,7 +140,12 @@ export function ExamPaperQuestion({
   className,
 }: QuestionProps) {
   const number = parseQuestionNumber(questionNumber)
-  const parts = givenParts ?? splitQuestionParts(text)
+  const split = mcq && !givenOptions && !givenParts ? splitMcqOptions(text) : null
+  const parts = givenParts ?? splitQuestionParts(split ? split.stem : text)
+  const options = givenOptions ?? split?.options ?? null
+  // The paper prints no bracket per response; a "[1]" typed after D belongs
+  // to the stem, and lands there through the whole-question fallback below.
+  const questionMarks = split?.marks ?? totalMarks
   const anyPartMarks = parts.some((p) => typeof p.marks === 'number')
   // A leaf sub-part ("3(b)(i)") stored flat: print its own label in the part
   // column, so the student sees "(b)(i)" beside the stem as they would on paper.
@@ -154,8 +168,8 @@ export function ExamPaperQuestion({
           const marks =
             typeof p.marks === 'number'
               ? p.marks
-              : isLast && !anyPartMarks && typeof totalMarks === 'number' && totalMarks > 0
-                ? totalMarks
+              : isLast && !anyPartMarks && typeof questionMarks === 'number' && questionMarks > 0
+                ? questionMarks
                 : null
           const label = p.label ?? (i === 0 ? leafLabel : null)
           return (
@@ -172,6 +186,17 @@ export function ExamPaperQuestion({
             </div>
           )
         })}
+        {options && options.length ? (
+          <ol className={`xp-mcq${mcqFitsOneRow(options) ? ' xp-mcq--row' : ''}`} aria-label="Responses">
+            {options.map((o) => (
+              <li key={o.letter} className="xp-mcq__opt">
+                <span className="xp-mcq__letter">{o.letter}</span>
+                {/* The same text cell as a part, so the renderer resets apply. */}
+                <div className="xp-part__text xp-mcq__text">{render(o.text)}</div>
+              </li>
+            ))}
+          </ol>
+        ) : null}
         {answerLines > 0 ? (
           <div className="xp-lines" aria-hidden="true">
             {Array.from({ length: answerLines }, (_, i) => (

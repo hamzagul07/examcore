@@ -39,6 +39,7 @@ import { QuestionContextCard } from '@/components/mark/QuestionContextCard'
 import { ScoreReveal } from '@/components/mark/ScoreReveal'
 import { Disclosure } from '@/components/ui/Disclosure'
 import type { MarkSchemeMeta } from '@/components/mark/QuestionContextCard'
+import { ExamPaperQuestion, ExamPaperSheet } from '@/components/exam-paper/ExamPaper'
 import type { MarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
 
 export type MarkAwarded = {
@@ -164,6 +165,7 @@ export function MarkingResultView({
   isSample = false,
   firstMarkPremium = false,
   afterScore,
+  hideQuestionSheet = false,
 }: {
   result: MarkingResultData
   attemptId?: string | null
@@ -194,6 +196,11 @@ export function MarkingResultView({
    * is already here) and the upsell for it must not appear.
    */
   firstMarkPremium?: boolean
+  /**
+   * The page already prints the question as its heading (the attempt page
+   * does), so don't set it a second time under the score.
+   */
+  hideQuestionSheet?: boolean
 }) {
   const [showOCR, setShowOCR] = useState(false)
   const marksAwarded = result.ai_marking?.marks_awarded
@@ -204,6 +211,16 @@ export function MarkingResultView({
     return lost >= 0 ? lost : 0
   }, [marks])
   const [selectedIndex, setSelectedIndex] = useState(defaultSelected)
+
+  // Where the question sits on the paper: the detected paper wins, the stored
+  // scheme fills in for a typed question that matched one.
+  const sheetPaperCode =
+    result.detected_paper?.paper_code ?? result.mark_scheme_meta?.paper_code ?? null
+  const sheetSession =
+    result.detected_paper?.paper_session ?? result.mark_scheme_meta?.paper_session ?? null
+  const sheetQuestionNumber =
+    result.detected_paper?.question_number ?? result.mark_scheme_meta?.question_number ?? null
+  const sheetTotalMarks = result.mark_scheme_meta?.total_marks ?? result.total_marks ?? null
 
   const badgeSubjectCode =
     resolveMarkResultSubjectCode({
@@ -485,6 +502,22 @@ export function MarkingResultView({
           />
         </div>
       </div>
+
+      {/* A real marked script has the question at the top, not filed away in a
+          disclosure at the bottom: the student reads their mark against the
+          thing they were asked. */}
+      {!hideQuestionSheet && result.question_text ? (
+        <div className="ms-mark-question">
+          <ExamPaperSheet compact paperCode={sheetPaperCode} session={sheetSession}>
+            <ExamPaperQuestion
+              questionNumber={sheetQuestionNumber}
+              text={result.question_text}
+              totalMarks={sheetTotalMarks}
+              first
+            />
+          </ExamPaperSheet>
+        </div>
+      ) : null}
 
       {/* Directly under the score, above the verdict. The feedback prompt used
           to mount at the very bottom of the page, below the breakdown, the ink

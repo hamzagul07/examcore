@@ -28,8 +28,16 @@ const JUMP_GAP = 14
  * pinned, so this is right regardless of scroll position, wrapping or safe-area
  * insets.
  */
-function stickyChromeHeight(): number {
+function stickyChromeHeight(opts: { scrollingUp: boolean }): number {
   let bottom = 0
+  // The site nav hides on scroll-down and publishes --ec-nav-height: 0 while
+  // hidden, so the bars beneath it report top: 0. A jump UP re-reveals it
+  // (useHeaderScroll), and the bars drop back under it — so an upward jump
+  // must budget for the nav even though it is off-screen at click time.
+  const hiddenNav = opts.scrollingUp
+    ? document.querySelector<HTMLElement>('.ec-nav-wrap--hidden')
+    : null
+  const navAllowance = hiddenNav ? hiddenNav.getBoundingClientRect().height : 0
   for (const el of document.querySelectorAll<HTMLElement>('body *')) {
     const cs = getComputedStyle(el)
     if (cs.position !== 'sticky' && cs.position !== 'fixed') continue
@@ -43,9 +51,10 @@ function stickyChromeHeight(): number {
     // top, but it sits beside the prose rather than over it — counting its
     // height sent every jump several hundred pixels too far.
     if (r.width < window.innerWidth * 0.6) continue
-    bottom = Math.max(bottom, top + r.height)
+    if (el === hiddenNav) continue
+    bottom = Math.max(bottom, top + navAllowance + r.height)
   }
-  return bottom
+  return Math.max(bottom, navAllowance)
 }
 
 /** Study immersion owns its own scrollport — jumps must use that, not the window. */
@@ -61,17 +70,14 @@ export function scrollToElement(el: Element) {
   const behavior: ScrollBehavior = smooth ? 'smooth' : 'instant'
   const root = studyScrollRoot()
   if (root && root.contains(el)) {
+    const offset = el.getBoundingClientRect().top - root.getBoundingClientRect().top
     const y =
-      el.getBoundingClientRect().top -
-      root.getBoundingClientRect().top +
-      root.scrollTop -
-      stickyChromeHeight() -
-      JUMP_GAP
+      offset + root.scrollTop - stickyChromeHeight({ scrollingUp: offset < 0 }) - JUMP_GAP
     root.scrollTo({ top: Math.max(0, y), behavior })
     return
   }
-  const y =
-    el.getBoundingClientRect().top + window.scrollY - stickyChromeHeight() - JUMP_GAP
+  const offset = el.getBoundingClientRect().top
+  const y = offset + window.scrollY - stickyChromeHeight({ scrollingUp: offset < 0 }) - JUMP_GAP
   window.scrollTo({ top: y, behavior })
 }
 

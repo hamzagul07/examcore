@@ -9,7 +9,6 @@ import { MARKING_TYPE_LABELS } from '@/components/mark/QuestionPreviewPanel'
 import { markingBoardLabel } from '@/lib/marking/exam-board'
 import type { MarkingStyle } from '@/lib/marking/types'
 import type { SyllabusCode } from '@/lib/syllabus'
-import { ExamPaperQuestion, ExamPaperSheet } from '@/components/exam-paper/ExamPaper'
 
 export type MarkSchemeMeta = {
   total_marks?: number | null
@@ -143,27 +142,6 @@ export function QuestionContextCard({ result, subjectCode }: Props) {
           </div>
         ) : null}
       </dl>
-
-      {result.question_text ? (
-        <div className="ms-question-context-body">
-          <p className="ms-micro" style={{ marginBottom: 10 }}>
-            <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>
-              Q
-            </span>{' '}
-            QUESTION
-          </p>
-          {/* The question as the paper printed it, so the student can hold
-              their marked script against the thing they were asked. */}
-          <ExamPaperSheet compact paperCode={paperCode} session={paperSession}>
-            <ExamPaperQuestion
-              questionNumber={questionNumber}
-              text={result.question_text}
-              totalMarks={schemeTotal}
-              first
-            />
-          </ExamPaperSheet>
-        </div>
-      ) : null}
 
       {tags.length > 0 ? (
         <div className="ms-question-context-tags">

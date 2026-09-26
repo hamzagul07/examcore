@@ -1,8 +1,10 @@
 import assert from 'node:assert/strict'
 import {
+  mcqFitsOneRow,
   paperFooterCode,
   parseQuestionNumber,
   sessionCoverLabel,
+  splitMcqOptions,
   splitQuestionParts,
   stripTrailingMarks,
   sumPartMarks,
@@ -77,5 +79,73 @@ assert.equal(paperFooterCode('9709/12', 'May/June 2024'), '9709/12/M/J/24')
 assert.equal(paperFooterCode('9701/42', 'w23'), '9701/42/O/N/23')
 assert.equal(paperFooterCode('9702', 's23'), null, 'needs a component')
 assert.equal(paperFooterCode('9702/22', 'Specimen'), null, 'unreadable session → no made-up code')
+
+// --- splitMcqOptions ---
+assert.deepEqual(
+  splitMcqOptions('A ball is dropped from rest. What is its speed after 2.0 s?\nA 4.9 m/s\nB 9.8 m/s\nC 19.6 m/s\nD 39.2 m/s'),
+  {
+    stem: 'A ball is dropped from rest. What is its speed after 2.0 s?',
+    options: [
+      { letter: 'A', text: '4.9 m/s' },
+      { letter: 'B', text: '9.8 m/s' },
+      { letter: 'C', text: '19.6 m/s' },
+      { letter: 'D', text: '39.2 m/s' },
+    ],
+  },
+  'a stem that itself opens with "A " does not steal the first option'
+)
+assert.deepEqual(
+  splitMcqOptions('Which quantity is a vector? [1]\nA. energy\nB) mass\n(C) momentum\n**D** speed'),
+  {
+    stem: 'Which quantity is a vector?',
+    options: [
+      { letter: 'A', text: 'energy' },
+      { letter: 'B', text: 'mass' },
+      { letter: 'C', text: 'momentum' },
+      { letter: 'D', text: 'speed' },
+    ],
+    marks: 1,
+  },
+  'tolerates "A." / "B)" / "(C)" / bold labels and strips the stem marks'
+)
+assert.deepEqual(
+  splitMcqOptions('What is the SI base unit of current?  A ampere  B coulomb  C volt  D watt [1]'),
+  {
+    stem: 'What is the SI base unit of current?',
+    options: [
+      { letter: 'A', text: 'ampere' },
+      { letter: 'B', text: 'coulomb' },
+      { letter: 'C', text: 'volt' },
+      { letter: 'D', text: 'watt' },
+    ],
+    marks: 1,
+  },
+  'options on one line split on two or more spaces; a bracket after D is the question mark'
+)
+assert.deepEqual(
+  splitMcqOptions('Which is a base quantity?\n- A: force\n- B: length\n* C: energy\n• D: power')?.options.map((o) => o.text),
+  ['force', 'length', 'energy', 'power'],
+  'a list bullet and a colon label, as extracted text often arrives, still read as options'
+)
+assert.deepEqual(
+  splitMcqOptions('The distance  A to B is 3 m.\nA 1 m\nB 2 m\nC 3 m\nD 4 m')?.stem,
+  'The distance  A to B is 3 m.',
+  'a stray letter mid-stem is not an option'
+)
+assert.equal(splitMcqOptions('Find the speed.\nA 1 m/s\nB 2 m/s\nC 3 m/s'), null, 'fewer than four → not an MCQ')
+assert.equal(splitMcqOptions('Find the speed. Given that A is at rest and B is moving, C and D collide.'), null)
+assert.equal(splitMcqOptions('Options:\nA\nB\nC\nD'), null, 'empty responses are not an MCQ')
+assert.equal(splitMcqOptions(''), null)
+assert.equal(splitMcqOptions(null), null)
+assert.deepEqual(
+  splitMcqOptions('(a) Define D.C. current.\n(b) A wire carries 2 A.')?.options,
+  undefined,
+  'part labels and abbreviations do not read as options'
+)
+
+// --- mcqFitsOneRow ---
+assert.equal(mcqFitsOneRow([{ letter: 'A', text: '2 m' }, { letter: 'B', text: '$4\\,\\text{m s}^{-1}$' }]), true)
+assert.equal(mcqFitsOneRow([{ letter: 'A', text: '2 m' }, { letter: 'B', text: 'the gravitational potential energy' }]), false)
+assert.equal(mcqFitsOneRow([]), false)
 
 console.log('exam-paper/question-parts.test.ts: ok')

@@ -849,154 +849,25 @@
 
 /* --------------------------------------------------------- exam paper --- */
 
-/* Set like a real Cambridge paper, because recognition is the point: serif
-   stems, numbers hanging in the margin, marks ranged right in brackets. The
-   crimson note under each question is the one thing a paper does not have —
-   and it is the actual product, so it gets the marking ink. */
+/* The sheet itself is the shared exam-paper renderer (exam-paper.css, xp-*):
+   Arial, white, flat — the same paper the marking desk prints. The wrapper only
+   holds the measure to a portrait page so the stems wrap the way they do in
+   print instead of running the full width of the stage. The crimson note under
+   each question is the one thing a paper does not have — and it is the actual
+   product, so it gets the marking ink and the site's own face, not the paper's. */
 .demo-paper {
-  background: var(--ec-paper, var(--ec-surface));
-  border: 1.5px solid var(--ec-border);
-  border-radius: 3px;
-  padding: 28px 30px 24px;
-}
-
-.demo-paper__head {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px 24px;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding-bottom: 16px;
-  border-bottom: 2px solid var(--ec-text-primary);
-}
-
-.demo-paper__level {
-  margin: 0 0 4px;
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ec-text-faint);
-}
-
-.demo-paper__subject {
-  margin: 0;
-  font-size: 1.3rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--ec-text-primary);
-}
-
-.demo-paper__codes {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 3px;
-  font-size: 0.76rem;
-  color: var(--ec-text-secondary);
-  text-align: right;
-}
-
-.demo-paper__code {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--ec-text-primary);
-  letter-spacing: 0.02em;
-}
-
-.demo-paper__rubric {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  align-items: baseline;
-  justify-content: space-between;
-  margin: 16px 0 4px;
-  font-size: 0.86rem;
-  line-height: 1.5;
-  color: var(--ec-text-secondary);
-}
-
-.demo-paper__total {
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ec-text-faint);
-  white-space: nowrap;
-}
-
-.demo-paper__questions {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-/* Question number hangs in its own margin column, as on the paper. */
-.demo-paper__q {
-  display: grid;
-  grid-template-columns: 2rem minmax(0, 1fr);
-  gap: 0 12px;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--ec-paper-rule);
-}
-
-.demo-paper__q:last-child {
-  border-bottom: 0;
-}
-
-.demo-paper__n {
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1.55;
-  color: var(--ec-text-primary);
-  font-variant-numeric: tabular-nums;
-}
-
-.demo-paper__part {
-  display: grid;
-  grid-template-columns: 2rem minmax(0, 1fr);
-  gap: 0 8px;
-  margin-bottom: 12px;
-}
-
-/* A single-part question has no (a) label — let the stem take the full width. */
-.demo-paper__part:has(> .demo-paper__text:first-child) {
-  grid-template-columns: minmax(0, 1fr);
-}
-
-.demo-paper__label {
-  font-size: 0.9rem;
-  font-weight: 600;
-  line-height: 1.6;
-  color: var(--ec-text-secondary);
-}
-
-.demo-paper__text {
-  margin: 0;
-  font-size: 1.02rem;
-  line-height: 1.62;
-  color: var(--ec-text-primary);
-  text-wrap: pretty;
-}
-
-/* Marks ranged right on the last line, the way the paper prints them. */
-.demo-paper__marks {
-  float: right;
-  margin-left: 14px;
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--ec-text-primary);
-  font-variant-numeric: tabular-nums;
+  max-width: 46rem;
 }
 
 .demo-paper__why {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  margin: 12px 0 0;
+  margin: 14px 0 0;
   padding: 10px 12px;
   border-left: 2px solid var(--ec-ink-crimson);
   background: color-mix(in srgb, var(--ec-ink-crimson) 5%, transparent);
+  font-family: var(--font-sans);
   font-size: 0.87rem;
   line-height: 1.55;
   color: var(--ec-text-secondary);
@@ -1017,15 +888,16 @@
   color: var(--ec-ink-crimson);
 }
 
+/* Sits in the sheet's foot slot, above the running footer code. */
 .demo-paper__foot {
   display: flex;
   flex-wrap: wrap;
   gap: 12px 20px;
   align-items: center;
   justify-content: space-between;
-  margin-top: 18px;
   padding-top: 16px;
-  border-top: 2px solid var(--ec-text-primary);
+  border-top: 1px solid var(--xp-rule);
+  font-family: var(--font-sans);
 }
 
 .demo-paper__foot-note {
@@ -1512,22 +1384,8 @@
     width: 100%;
   }
 
-  .demo-paper {
-    padding: 20px 16px 18px;
-  }
-
-  .demo-paper__codes {
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .demo-paper__q {
-    grid-template-columns: 1.4rem minmax(0, 1fr);
-    gap: 0 8px;
-  }
-
-  .demo-paper__part {
-    grid-template-columns: 1.6rem minmax(0, 1fr);
+  .demo-paper__foot-cta {
+    width: 100%;
   }
 }
 

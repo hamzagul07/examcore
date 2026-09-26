@@ -72,4 +72,27 @@ assert.ok(
   `prose not whole-wrapped: ${prose.slice(0, 40)}`
 )
 
+// A line of working whose only letter runs are differentials is not prose:
+// leaving it raw put a literal caret beside KaTeX-typeset neighbours.
+const derivative = prepareMarkingSnippet('dy/dx = 3x^2 - 12x + 9')
+assert.equal(derivative, '$dy/dx = 3x^2 - 12x + 9$', `derivative line whole-wrapped: ${derivative}`)
+
+const factorised = prepareMarkingSnippet('(x - 1)(x - 3) = 0')
+assert.equal(factorised, '$(x - 1)(x - 3) = 0$', `factorised line whole-wrapped: ${factorised}`)
+
+// A negative right-hand side is still an equation, same as "y = -3".
+const negative = prepareMarkingSnippet('dx = -3')
+assert.equal(negative, '$dx = -3$', `negative RHS whole-wrapped: ${negative}`)
+
+// Prose with coordinates has no operator, so it stays untouched.
+const points = 'So stationary points are (1, 5) and (3, 1)'
+assert.equal(prepareMarkingSnippet(points), points, 'coordinate prose untouched')
+
+const sentence = 'The candidate has shown clear working here.'
+assert.equal(prepareMarkingSnippet(sentence), sentence, 'plain sentence untouched')
+
+// Real words around an equation still mean prose: wrap the runs, not the line.
+const orLine = prepareMarkingSnippet('x = 1 or x = 3')
+assert.equal(orLine, '$x = 1$ or $x = 3$', `"or" keeps the line prose: ${orLine}`)
+
 console.log('normalize-marking-text.test.ts: ok')

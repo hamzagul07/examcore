@@ -113,6 +113,84 @@ export function splitQuestionParts(text: string | null | undefined): QuestionPar
   return parts
 }
 
+export type McqOption = {
+  /** "A" … "D". */
+  letter: string
+  /** Markdown/LaTeX body of the response. */
+  text: string
+}
+
+export type McqQuestion = {
+  /** Everything before the first option, with any trailing mark bracket removed. */
+  stem: string
+  options: McqOption[]
+  /** Marks printed for the question, when the text stated them (on the stem or after the last option). */
+  marks?: number
+}
+
+// "A text", "A. text", "A) text", "A: text", "(A) text", optionally bold or
+// behind a list bullet (extracted text often arrives as "- A text"), opening
+// a line or set off by two or more spaces when a typist put all four on one
+// line.
+const MCQ_LABEL = /(?:^|\n|[ \t]{2,})[ \t]*(?:[-*•][ \t]+)?(?:\*\*)?(?:\(([A-D])\)|([A-D])[.):]?)(?:\*\*)?[ \t]+(?=\S)/g
+
+/**
+ * Split a Paper 1 question into its stem and the four A–D responses.
+ *
+ * A capital letter opening a line is a weak signal on its own — "A ball is
+ * dropped…" opens half the physics paper — so we only accept a run of A, B,
+ * C, D in that order and take the last such run, which is where the options
+ * sit. Null when there is no such run: the caller prints the text as prose.
+ */
+export function splitMcqOptions(text: string | null | undefined): McqQuestion | null {
+  const src = (text ?? '').replace(/\r\n?/g, '\n').trim()
+  if (!src) return null
+
+  const hits = [...src.matchAll(MCQ_LABEL)].map((m) => ({
+    index: m.index ?? 0,
+    end: (m.index ?? 0) + m[0].length,
+    letter: m[1] ?? m[2],
+  }))
+
+  let start = -1
+  for (let i = 0; i + 3 < hits.length; i++) {
+    if (hits[i].letter === 'A' && hits[i + 1].letter === 'B' && hits[i + 2].letter === 'C' && hits[i + 3].letter === 'D') {
+      start = i
+    }
+  }
+  if (start < 0) return null
+
+  const run = hits.slice(start, start + 4)
+  const options = run.map((h, i) => ({
+    letter: h.letter,
+    text: src.slice(h.end, i + 1 < run.length ? run[i + 1].index : src.length).trim(),
+  }))
+  if (options.some((o) => !o.text)) return null
+
+  const stem = stripTrailingMarks(src.slice(0, run[0].index).trim())
+  const last = stripTrailingMarks(options[3].text)
+  options[3].text = last.text
+  const marks = stem.marks ?? last.marks
+  return marks ? { stem: stem.text, options, marks } : { stem: stem.text, options }
+}
+
+/**
+ * True when every response is short enough to set all four across one line,
+ * as the paper does for "A 2 m  B 4 m  C 6 m  D 8 m". Measured on the text as
+ * it prints, so a LaTeX-wrapped "2.0 m s⁻¹" counts its glyphs, not its markup.
+ */
+export function mcqFitsOneRow(options: readonly McqOption[], maxChars = 14): boolean {
+  if (!options.length) return false
+  return options.every((o) => printedLength(o.text) < maxChars)
+}
+
+function printedLength(text: string): number {
+  return text
+    .replace(/\\[a-zA-Z]+/g, '')
+    .replace(/[${}*_]/g, '')
+    .trim().length
+}
+
 /** Sum of the per-part marks, or null when no part stated any. */
 export function sumPartMarks(parts: readonly QuestionPart[]): number | null {
   let total = 0

@@ -187,6 +187,29 @@ export function normalizeMarkdownTables(text: string): string {
 }
 
 /**
+ * Letter runs that are notation, not English: differentials (dy, dx, dA) and
+ * function names. Case-sensitive so "Do" and "De" still read as words.
+ */
+const WORKING_LETTER_RUN =
+  /^(?:d[a-zA-Z]|sin|cos|tan|sec|cosec|csc|cot|ln|log|exp|lim|sinh|cosh|tanh|arcsin|arccos|arctan)$/
+
+/**
+ * True when the string is a line of working ("dy/dx = 3x^2 - 12x + 9"): it
+ * carries an operator (caret, `=` or `/` joining operands) and every letter
+ * run is notation rather than a word. "So stationary points are (1, 5)" has
+ * no operator; "Award M1 for x^2" has real words. Both stay prose.
+ */
+function isBareWorking(text: string): boolean {
+  const hasOperator =
+    text.includes('^') ||
+    /[a-zA-Z0-9)]\s*=\s*[-−+]?\s*[a-zA-Z0-9(]/.test(text) ||
+    /[a-zA-Z0-9)]\/[a-zA-Z0-9(]/.test(text)
+  if (!hasOperator) return false
+  const runs = text.match(/[a-zA-Z]{2,}/g) ?? []
+  return runs.every((r) => WORKING_LETTER_RUN.test(r))
+}
+
+/**
  * True when the string is examiner/prose narrative with embedded maths, not a
  * short OCR/math fragment. Whole-wrapping prose in `$...$` makes KaTeX drop
  * every space ("Youstatedthenature…").
@@ -195,7 +218,12 @@ function isMarkingProse(text: string): boolean {
   const words = text.split(/\s+/).filter(Boolean)
   // Two+ tokens with letters → examiner phrase ("Award M1 for x^2"), not a
   // lone OCR fragment like "= 240x^2". Whole-wrapping that in $…$ drops spaces.
-  if (words.length >= 2 && /[a-zA-Z]{2,}/.test(text)) return true
+  // The "dy" in "dy/dx = 3x^2 - 12x + 9" is a differential, not a word, so a
+  // line of working is exempt; otherwise the caret shows raw beside typeset
+  // neighbours on the marked sheet.
+  if (words.length >= 2 && /[a-zA-Z]{2,}/.test(text) && !isBareWorking(text)) {
+    return true
+  }
   if (text.length > 100) return true
   if (/[.!?]/.test(text) && words.length >= 6) return true
   if (/,\s+[a-z]/.test(text) && words.length >= 8) return true

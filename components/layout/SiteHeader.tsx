@@ -195,6 +195,34 @@ export function SiteHeader({ variant }: Props) {
   }
 
   useNavHeightVar(navWrapRef)
+
+  // The hidden header is only translated off-screen, so its measured height
+  // never changes and --ec-nav-height kept reserving a 60px slot: sticky
+  // dependants (lesson mode bar, TOC, scroll-margin rules) sat below an empty
+  // gap that prose scrolled through. Publish 0px while hidden and put the
+  // measured height back on reveal. useNavHeightVar re-syncs the measured
+  // value on resize / ResizeObserver, so the same events re-assert 0px here —
+  // the hook's listeners are registered first, so these run after them.
+  useEffect(() => {
+    const node = navWrapRef.current
+    if (!node || !hideHeader) return
+    const root = document.documentElement
+    const publish = (value: string) => {
+      node.style.setProperty('--ec-nav-height', value)
+      root.style.setProperty('--ec-nav-height', value)
+    }
+    const collapse = () => publish('0px')
+    collapse()
+    const ro = new ResizeObserver(collapse)
+    ro.observe(node)
+    window.addEventListener('resize', collapse)
+    return () => {
+      ro.disconnect()
+      window.removeEventListener('resize', collapse)
+      publish(`${Math.ceil(node.getBoundingClientRect().height)}px`)
+    }
+  }, [hideHeader])
+
   const menuFocusExtras = useMemo(() => [burgerRef], [])
   useFocusTrap(mobileOpen && mounted, mobileSheetRef, burgerRef, menuFocusExtras, {
     restoreFocus: restoreMenuFocus,

@@ -128,6 +128,7 @@ export function QuestionPreviewPanel({
                   questionNumber={detail.question_number ?? questionNumber}
                   text={detail.question_text}
                   totalMarks={detail.total_marks}
+                  mcq={detail.marking_type === 'mcq'}
                   first
                 />
               </ExamPaperSheet>

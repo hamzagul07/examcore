@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, MotionConfig, motion } from 'framer-motion'
-import { AlertCircle, Eye } from 'lucide-react'
+import { Eye } from 'lucide-react'
 import { MathText } from '@/components/MathText'
 import { MarginNote } from './MarginNote'
 import { MarkStamp } from './MarkStamp'
@@ -64,6 +64,137 @@ const lineRefKey = (line: LineReference): string =>
   line.ref_id ?? markCodeKey(line.mark_id)
 
 /**
+ * MarkStamp sets its own 20px type (a Tailwind utility, which outranks any
+ * layered rule from the design-system CSS), so the stamp is sized here by
+ * scaling it: the target is clamp(12px, 4.5% of the image height, 20px), which
+ * keeps stamps in proportion on a phone-sized script instead of dwarfing it.
+ */
+const STAMP_NATURAL_FONT_PX = 20
+const stampScaleFor = (imageHeight: number) =>
+  Math.min(20, Math.max(12, imageHeight * 0.045)) / STAMP_NATURAL_FONT_PX
+/** Height of the stamp's rotated bounding box at scale 1 (measured). */
+const STAMP_NATURAL_HEIGHT = 44
+/** Half the stamp's natural layout box — how far its centre sits below `top`. */
+const STAMP_NATURAL_HALF = 18
+const STAMP_GAP = 4
+
+interface StampSlot {
+  /** Centre of the stamp, in px from the image top. */
+  y: number
+  /** Where the line's centre is, in px. Differs from `y` when the stamp was
+   * pushed to clear a neighbour, and a leader line then joins the two. */
+  lineY: number
+  /** Column edge as a percentage of the image width: `left` for stamps in the
+   * right margin, `right` for ones flipped to the left. */
+  column: number
+  scale: number
+}
+
+/**
+ * Bounding boxes on a real script are often a line-height apart, so stamps
+ * centred on each box collide as soon as two consecutive lines earn marks.
+ * Instead the stamps are stacked like an examiner's margin column: sorted by
+ * line, each one is pushed down until it clears the one above, then the whole
+ * column is pulled back up if it ran off the bottom of the page.
+ *
+ * An anchored stamp stays on its line and the ones above it move up instead:
+ * a lost mark's margin note hangs just below its line at the same edge, so a
+ * stamp pushed down there would land on the examiner's own handwriting.
+ */
+function stackStamps(
+  desired: number[],
+  anchored: boolean[],
+  stampHeight: number,
+  imageHeight: number
+) {
+  const step = stampHeight + STAMP_GAP
+  const out: number[] = []
+  const raiseAbove = (index: number) => {
+    let ceiling = out[index] - step
+    for (let j = index - 1; j >= 0; j--) {
+      out[j] = Math.min(out[j], ceiling)
+      ceiling = out[j] - step
+    }
+  }
+  let floor = -Infinity
+  desired.forEach((d, i) => {
+    if (anchored[i] && d < floor) {
+      out.push(d)
+      raiseAbove(i)
+    } else {
+      out.push(Math.max(d, floor))
+    }
+    floor = out[i] + step
+  })
+  out.push(imageHeight - stampHeight / 2 + step)
+  raiseAbove(out.length - 1)
+  out.pop()
+  return out
+}
+
+/** Lines whose box reaches the right edge carry their stamp on the left. */
+const flipsToLeft = (bbox: NonNullable<LineReference['bbox']>) =>
+  bbox.left + bbox.width > 75
+
+function layoutStamps(
+  positioned: LineReference[],
+  imageHeight: number,
+  mobile: boolean
+): Map<number, StampSlot> {
+  const slots = new Map<number, StampSlot>()
+  if (imageHeight <= 0) return slots
+  const scale = stampScaleFor(imageHeight)
+  const stampHeight = STAMP_NATURAL_HEIGHT * scale
+
+  const right: number[] = []
+  const left: number[] = []
+  positioned.forEach((line, i) => {
+    if (!line.bbox) return
+    ;(flipsToLeft(line.bbox) ? left : right).push(i)
+  })
+  const centreOf = (i: number) => {
+    const bbox = positioned[i].bbox!
+    return ((bbox.top + bbox.height / 2) / 100) * imageHeight
+  }
+  const hasNote = (i: number) =>
+    !positioned[i].earned && Boolean(positioned[i].margin_note)
+
+  // One column per side, sitting just past the longest line on that side so no
+  // stamp lands on top of handwriting.
+  if (right.length > 0) {
+    right.sort((a, b) => centreOf(a) - centreOf(b))
+    const end = Math.max(
+      ...right.map((i) => positioned[i].bbox!.left + positioned[i].bbox!.width)
+    )
+    const column = Math.min(end + 1.5, mobile ? 82 : 88)
+    const ys = stackStamps(
+      right.map(centreOf),
+      right.map(hasNote),
+      stampHeight,
+      imageHeight
+    )
+    right.forEach((i, n) =>
+      slots.set(i, { y: ys[n], lineY: centreOf(i), column, scale })
+    )
+  }
+  if (left.length > 0) {
+    left.sort((a, b) => centreOf(a) - centreOf(b))
+    const start = Math.min(...left.map((i) => positioned[i].bbox!.left))
+    const column = Math.max(100 - start + 1.5, mobile ? 12 : 8)
+    const ys = stackStamps(
+      left.map(centreOf),
+      left.map(hasNote),
+      stampHeight,
+      imageHeight
+    )
+    left.forEach((i, n) =>
+      slots.set(i, { y: ys[n], lineY: centreOf(i), column, scale })
+    )
+  }
+  return slots
+}
+
+/**
  * The centerpiece of Sprint 21.
  *
  * Renders the student's original handwritten image with an examiner's red-pen
@@ -94,6 +225,7 @@ export function ExaminerInkOverlay({
   const [imageLoaded, setImageLoaded] = useState(false)
 
   const [isMobileInk, setIsMobileInk] = useState(false)
+  const [imageSize, setImageSize] = useState({ width: 0, height: 0 })
   const [revealedCount, setRevealedCount] = useState<number>(
     animate ? 0 : lineReferences.length
   )
@@ -137,6 +269,26 @@ export function ExaminerInkOverlay({
     img.addEventListener('load', onLoad)
     return () => img.removeEventListener('load', onLoad)
   }, [displayUrl])
+
+  // Stamp layout works in pixels of the rendered image, so track its size —
+  // it changes with the viewport and again when a refreshed URL loads.
+  useEffect(() => {
+    const img = imgRef.current
+    if (!img) return
+    const observer = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect
+      setImageSize((prev) =>
+        prev.width === width && prev.height === height ? prev : { width, height }
+      )
+    })
+    observer.observe(img)
+    return () => observer.disconnect()
+  }, [displayUrl])
+
+  const stampSlots = useMemo(
+    () => layoutStamps(positioned, imageSize.height, isMobileInk),
+    [positioned, imageSize.height, isMobileInk]
+  )
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 640px)')
@@ -235,6 +387,8 @@ export function ExaminerInkOverlay({
                     !line.earned ? ghostFixes[markCodeKey(line.mark_id)] : undefined
                   }
                   mobileLayout={isMobileInk}
+                  slot={stampSlots.get(idx)}
+                  imageSize={imageSize}
                   active={activeOnThisPage && key === activeRefId}
                   dimmed={activeOnThisPage && key !== activeRefId}
                   onSelect={
@@ -288,6 +442,8 @@ function ExaminerMark({
   line,
   ghostFix,
   mobileLayout = false,
+  slot,
+  imageSize,
   active = false,
   dimmed = false,
   onSelect,
@@ -295,6 +451,9 @@ function ExaminerMark({
   line: LineReference
   ghostFix?: { text: string; earns: string }
   mobileLayout?: boolean
+  /** Column position from `layoutStamps`; absent until the image is measured. */
+  slot?: StampSlot
+  imageSize: { width: number; height: number }
   active?: boolean
   dimmed?: boolean
   onSelect?: () => void
@@ -304,21 +463,59 @@ function ExaminerMark({
 
   // When the line is close to the right edge, flip the stamp/note to the
   // left side so they don't shoot off the image.
-  const flipToLeft = bbox.left + bbox.width > 75
-  const stampLeft = Math.min(bbox.left + bbox.width + 1, mobileLayout ? 82 : 88)
-  const stampRight = Math.max(100 - bbox.left + 1, mobileLayout ? 12 : 8)
-  const stampScale = active ? (mobileLayout ? 0.95 : 1.12) : mobileLayout ? 0.85 : 1
-  const stampStyle: React.CSSProperties = flipToLeft
-    ? {
-        right: `${stampRight}%`,
-        top: `${bbox.top + bbox.height / 2}%`,
-        transform: `translateY(-50%) scale(${stampScale})`,
-      }
-    : {
-        left: `${stampLeft}%`,
-        top: `${bbox.top + bbox.height / 2}%`,
-        transform: `translateY(-50%) scale(${stampScale})`,
-      }
+  const flipToLeft = flipsToLeft(bbox)
+  const activeBoost = active ? 1.12 : 1
+  let stampStyle: React.CSSProperties
+  if (slot) {
+    // Scale from the top corner nearest the column edge so the stamp's layout
+    // box and its visual box share `top` — that is what stackStamps measured.
+    const top = slot.y - STAMP_NATURAL_HALF * slot.scale
+    stampStyle = flipToLeft
+      ? {
+          right: `${slot.column}%`,
+          top,
+          transform: `scale(${slot.scale * activeBoost})`,
+          transformOrigin: 'top right',
+        }
+      : {
+          left: `${slot.column}%`,
+          top,
+          transform: `scale(${slot.scale * activeBoost})`,
+          transformOrigin: 'top left',
+        }
+  } else {
+    // Before the image has a size: centre on the line, as the sheet renders
+    // server-side and the measured column takes over on the first resize tick.
+    const stampLeft = Math.min(bbox.left + bbox.width + 1, mobileLayout ? 82 : 88)
+    const stampRight = Math.max(100 - bbox.left + 1, mobileLayout ? 12 : 8)
+    const stampScale = (mobileLayout ? 0.85 : 1) * activeBoost
+    stampStyle = {
+      ...(flipToLeft ? { right: `${stampRight}%` } : { left: `${stampLeft}%` }),
+      top: `${bbox.top + bbox.height / 2}%`,
+      transform: `translateY(-50%) scale(${stampScale})`,
+    }
+  }
+
+  // A stamp pushed off its line gets a leader stroke back to the box it marks,
+  // from the box's edge nearest the margin to the stamp's near edge. A nudge
+  // that keeps the stamp's centre within the line's own band needs none.
+  const displaced = slot
+    ? Math.abs(slot.y - slot.lineY) >
+      ((bbox.height / 100) * imageSize.height) / 2 + 4
+    : false
+  const leader =
+    slot && displaced && imageSize.width > 0
+      ? (() => {
+          const boxEdge = flipToLeft
+            ? (bbox.left / 100) * imageSize.width - 3
+            : ((bbox.left + bbox.width) / 100) * imageSize.width + 3
+          const stampEdge = flipToLeft
+            ? imageSize.width - (slot.column / 100) * imageSize.width + 2
+            : (slot.column / 100) * imageSize.width - 2
+          return { x1: boxEdge, y1: slot.lineY, x2: stampEdge, y2: slot.y }
+        })()
+      : null
+  const inkColor = earned ? 'var(--ec-brand)' : 'var(--ec-ink-crimson)'
 
   // Clamp bbox to keep underline inside the image when OCR overshoots.
   const safeBox = {
@@ -419,6 +616,28 @@ function ExaminerMark({
             </span>
           </div>
         </motion.div>
+      )}
+
+      {leader && (
+        <svg
+          className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
+          viewBox={`0 0 ${imageSize.width} ${imageSize.height}`}
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <motion.line
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 0.7 }}
+            transition={{ delay: 0.25, duration: 0.3, ease: 'easeOut' }}
+            x1={leader.x1}
+            y1={leader.y1}
+            x2={leader.x2}
+            y2={leader.y2}
+            stroke={inkColor}
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+        </svg>
       )}
 
       <div

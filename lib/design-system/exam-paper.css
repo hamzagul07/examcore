@@ -269,6 +269,44 @@ html[data-ec-theme='late-night'] .xp-sheet::before {
   align-self: end;
 }
 
+/* ---- multiple choice (Paper 1) ---- */
+/* The paper prints the four responses under the stem, each bold letter in
+   its own column at the part indent, or all four across one line when every
+   response is a short value. No bracket per response: the stem carries [1]. */
+.xp-mcq {
+  list-style: none;
+  margin: 0.85em 0 0;
+  padding: 0;
+  display: grid;
+  row-gap: 0.45em;
+}
+
+.xp-mcq__opt {
+  display: grid;
+  grid-template-columns: var(--xp-part) minmax(0, 1fr);
+  column-gap: 0.55em;
+  align-items: baseline;
+}
+
+.xp-mcq__letter {
+  font-weight: 700;
+  color: var(--xp-ink);
+  padding-top: 0.05em;
+}
+
+.xp-mcq--row {
+  /* Sized by the sheet, not the viewport: the compact sheet in the mark
+     page's preview panel is narrow on a wide screen, and four columns
+     there broke "128 000 N" over three lines. Each column holds the
+     longest one-row value; when four no longer fit the row folds to two. */
+  grid-template-columns: repeat(auto-fit, minmax(7.5em, 1fr));
+  column-gap: 1em;
+}
+
+.xp-mcq--row .xp-mcq__opt {
+  grid-template-columns: max-content minmax(0, 1fr);
+}
+
 /* ---- dotted answer lines ---- */
 .xp-lines {
   margin-top: 0.7em;
@@ -326,5 +364,24 @@ html[data-ec-theme='late-night'] .xp-sheet::before {
 @media (prefers-reduced-motion: no-preference) {
   .xp-sheet {
     transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1), transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Phone running head: subject and page on one line, the session beneath,
+   so a long paper name ("Pure Mathematics 3") never orphans its last word. */
+@media (max-width: 480px) {
+  .xp-head {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 2px;
+  }
+  .xp-head__left {
+    min-width: 0;
+  }
+  .xp-head__subject {
+    white-space: normal;
+  }
+  .xp-head__right {
+    grid-column: 1 / -1;
+    text-align: left;
   }
 }

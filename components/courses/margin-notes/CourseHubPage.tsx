@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, useSyncExternalStore } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import type { MarginNotesCourse } from '@/lib/courses/margin-notes/types'
@@ -32,6 +32,29 @@ function HowItWorks() {
       ))}
     </div>
   )
+}
+
+/* The hub's "How this course works" slip is a <details>: open as a sidebar
+   card on desktop, collapsed above the contents sheet on phones. The server
+   snapshot says "not a phone" so the HTML ships open and hydration matches. */
+const PHONE_QUERY = '(max-width: 860px)'
+function subscribePhone(onChange: () => void) {
+  const mq = window.matchMedia(PHONE_QUERY)
+  mq.addEventListener('change', onChange)
+  return () => mq.removeEventListener('change', onChange)
+}
+function usePhoneLayout(): boolean {
+  return useSyncExternalStore(
+    subscribePhone,
+    () => window.matchMedia(PHONE_QUERY).matches,
+    () => false
+  )
+}
+
+/** "4 · Forces, density and pressure" → chapter number and title for the contents page. */
+function splitUnit(unit: string): { code: string | null; title: string } {
+  const m = /^(\S+)\s+·\s+(.+)$/.exec(unit)
+  return m ? { code: m[1], title: m[2] } : { code: null, title: unit }
 }
 
 type Props = {
@@ -77,6 +100,9 @@ export function CourseHubPage({
   const [paper, setPaper] = useState(defaultPaper)
   const router = useRouter()
   const accVar = accentCssVar(acc)
+  const phone = usePhoneLayout()
+  // null = follow the layout default; set once the student toggles the slip.
+  const [howOpen, setHowOpen] = useState<boolean | null>(null)
 
   useEffect(() => {
     if (initialPaperId != null) setPaper(initialPaperId)
@@ -229,6 +255,9 @@ export function CourseHubPage({
                 {p.name.split('—')[0]?.trim().toUpperCase() ?? `PAPER ${p.id}`}
               </span>
               <span className="paper-tab-name">{p.name}</span>
+              <span className="paper-tab-name paper-tab-name--short">
+                {p.name.split('—')[1]?.trim() ?? p.name}
+              </span>
               <span className={`paper-tab-meta${isPaperComplete(p.id) ? ' is-complete' : ''}`}>
                 {formatPaperTabMeta(p)}
               </span>
@@ -239,38 +268,62 @@ export function CourseHubPage({
         <div className="hub-cols">
           <div className="spine">
             {groups?.length ? (
-              groups.map((g, gi) => (
-                <section key={gi} className="spine-unit">
-                  <div className="spine-unit-head">
-                    <span className="spine-node" />
-                    <h3 className="spine-unit-title">{g.unit}</h3>
-                  </div>
-                  <div className="spine-topics">
-                    {g.items.map((it) => (
-                      <Link
-                        key={it.n}
-                        href={topicHref(it.slug)}
-                        className={`topic-row${it.active ? ' active' : ''}${it.done ? ' done' : ''}`}
-                      >
-                        <span
-                          className={`topic-check${it.done ? ' on' : ''}${it.active ? ' cur' : ''}`}
-                        >
-                          {it.done ? '✓' : it.active ? '◆' : ''}
-                        </span>
-                        <span className="topic-name">{it.t}</span>
-                        {it.interactive ? (
-                          <span className="topic-interactive mono" title="Interactive diagram">◆ INTERACTIVE</span>
-                        ) : null}
-                        <span className="topic-n mono">{it.n}</span>
-                        {it.active ? (
-                          <span className="topic-flag mono">CONTINUE</span>
-                        ) : null}
-                        <span className="topic-arrow">→</span>
-                      </Link>
-                    ))}
-                  </div>
-                </section>
-              ))
+              <>
+                <div className="spine-head">
+                  <span className="spine-head-kicker mono">Contents</span>
+                  <span className="spine-head-meta mono">
+                    {paperMeta?.name.split('—')[0]?.trim() ?? `Paper ${paper}`} · {total} topics
+                    {doneCount ? ` · ${doneCount} done` : ''}
+                  </span>
+                </div>
+                {groups.map((g, gi) => {
+                  const unit = splitUnit(g.unit)
+                  return (
+                    <section key={gi} className="spine-unit">
+                      <div className="spine-unit-head">
+                        <p className="spine-unit-kicker mono">
+                          {unit.code ? `Unit ${unit.code}` : 'Section'} · {g.items.length}{' '}
+                          {g.items.length === 1 ? 'topic' : 'topics'}
+                        </p>
+                        <h3 className="spine-unit-title">{unit.title}</h3>
+                      </div>
+                      <div className="spine-topics">
+                        {g.items.map((it) => (
+                          <Link
+                            key={it.n}
+                            href={topicHref(it.slug)}
+                            className={`topic-row${it.active ? ' active' : ''}${it.done ? ' done' : ''}`}
+                          >
+                            <span
+                              className={`topic-check${it.done ? ' on' : ''}${it.active ? ' cur' : ''}`}
+                            >
+                              {it.done ? '✓' : it.active ? '◆' : ''}
+                            </span>
+                            <span className="topic-name">{it.t}</span>
+                            {it.interactive ? (
+                              <span className="topic-interactive mono" title="Interactive diagram">
+                                <span aria-hidden>◆</span>
+                                <span className="sr-only">Interactive diagram</span>
+                              </span>
+                            ) : null}
+                            <span className="topic-leader" aria-hidden />
+                            {it.done ? (
+                              <span className="topic-done hand" aria-hidden>
+                                done ✓
+                              </span>
+                            ) : null}
+                            <span className="topic-n mono">{it.n}</span>
+                            {it.active ? (
+                              <span className="topic-flag mono">CONTINUE</span>
+                            ) : null}
+                            <span className="topic-arrow" aria-hidden>→</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </section>
+                  )
+                })}
+              </>
             ) : (
               <div className="spine-empty card card-pad">
                 <p className="overline spine-empty-kicker">
@@ -289,10 +342,17 @@ export function CourseHubPage({
           </div>
 
           <aside className="hub-aside">
-            <div className="card card-pad">
-              <p className="overline hub-aside-kicker">How this course works</p>
+            <details
+              className="card card-pad hub-how"
+              open={howOpen ?? !phone}
+              onToggle={(e) => setHowOpen(e.currentTarget.open)}
+            >
+              <summary className="overline hub-aside-kicker hub-how-summary">
+                How this course works
+                <span className="hub-how-plus" aria-hidden>+</span>
+              </summary>
               <HowItWorks />
-            </div>
+            </details>
             <div className="card card-pad hub-tip">
               <p className="micro tip-kicker">WHY IT&apos;S DIFFERENT</p>
               <p className="body-2 tip-copy">

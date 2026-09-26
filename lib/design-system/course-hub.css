@@ -1,0 +1,294 @@
+/* ============================================================
+   Course hub — the syllabus spine as a printed contents page.
+
+   Loaded after margin-notes-courses.css. Every selector here is prefixed
+   with .hub-page so it outranks that file's bare .spine / .topic-row /
+   .paper-tab rules (and the .course-root contrast bridges) without editing
+   them: the old per-row cards, gradient rail and filled checkboxes are all
+   overridden, not removed.
+   ============================================================ */
+
+/* ---------- the sheet ---------- */
+.hub-page .spine {
+  background: var(--paper, var(--surface));
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  box-shadow: var(--shadow-card, 3px 3px 0 rgba(37, 34, 27, 0.08));
+  padding: 26px 34px 30px;
+  min-width: 0;
+}
+.hub-page .spine::before { display: none; }
+
+/* running head: CONTENTS ·············· PAPER 1 · 32 TOPICS */
+.hub-page .spine-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-strong);
+  margin-bottom: 8px;
+}
+.hub-page .spine-head-kicker,
+.hub-page .spine-head-meta {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.hub-page .spine-head-kicker { color: var(--text); }
+.hub-page .spine-head-meta { text-align: right; }
+
+/* ---------- chapter heads ---------- */
+.hub-page .spine-unit { margin: 0; }
+.hub-page .spine-unit + .spine-unit { margin-top: 26px; }
+.hub-page .spine-unit-head {
+  display: block;
+  margin: 0 0 4px;
+  padding-top: 18px;
+}
+.hub-page .spine-unit-kicker {
+  margin: 0 0 2px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hub-acc, var(--acc-violet));
+}
+.hub-page .spine-unit-title {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin: 0 0 8px;
+  color: var(--text);
+}
+
+/* ---------- topic lines ---------- */
+.hub-page .spine-topics {
+  display: block;
+  margin: 0;
+  border-bottom: 1px solid var(--paper-rule, var(--border));
+}
+.hub-page .topic-row,
+.hub-page a.topic-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0;
+  padding: 9px 0;
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--paper-rule, var(--border));
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--text);
+  text-decoration: none;
+  transition: background 120ms ease, color 120ms ease;
+}
+/* Hover is a change of ink, not a lifting card — the sheet stays flat. */
+.hub-page .topic-row:hover,
+.hub-page a.topic-row:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--paper-rule, var(--border));
+  background: var(--ink-soft);
+}
+.hub-page .topic-row:hover .topic-name { color: var(--ink); }
+.hub-page .topic-row:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -2px;
+}
+
+/* Printed tick box: hairline square, hand tick when done, accent lozenge when current. */
+.hub-page .topic-row .topic-check {
+  width: 15px;
+  height: 15px;
+  align-self: center;
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 11px;
+  line-height: 1;
+  opacity: 0.7;
+}
+.hub-page .topic-row .topic-check.on {
+  background: transparent;
+  border-color: var(--ink);
+  color: var(--ink);
+  opacity: 1;
+  font-family: var(--font-caveat), cursive;
+  font-size: 15px;
+  font-weight: 700;
+}
+.hub-page .topic-row .topic-check.cur {
+  border-color: var(--hub-acc, var(--acc-violet));
+  color: var(--hub-acc, var(--acc-violet));
+  font-size: 8px;
+  opacity: 1;
+}
+
+.hub-page .topic-row .topic-name {
+  flex: 0 1 auto;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 17px;
+  line-height: 1.35;
+  color: var(--text);
+  min-width: 0;
+}
+.hub-page .topic-row.done .topic-name { color: var(--text-2); }
+.hub-page .topic-row.done { opacity: 1; border-style: solid; }
+
+/* dotted leader — a flex spacer carrying a row of dots on its baseline */
+.hub-page .topic-leader {
+  flex: 1 1 24px;
+  min-width: 24px;
+  height: 0.7em;
+  background-image: radial-gradient(circle, var(--text-2) 0.9px, transparent 1.1px);
+  background-size: 6px 6px;
+  background-repeat: repeat-x;
+  background-position: 3px 100%;
+  opacity: 0.55;
+}
+
+/* Interactive diagram: a small marginal glyph, not a badge. */
+.hub-page .topic-row .topic-interactive {
+  flex-shrink: 0;
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 9px;
+  color: var(--ink);
+  letter-spacing: 0;
+}
+
+.hub-page .topic-row .topic-n {
+  flex-shrink: 0;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Examiner's hand: green "done ✓" instead of a filled box. */
+.hub-page .topic-done {
+  flex-shrink: 0;
+  font-family: var(--font-caveat), cursive;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--ink);
+  transform: rotate(-3deg) translateY(1px);
+  white-space: nowrap;
+}
+
+.hub-page .topic-row .topic-flag {
+  flex-shrink: 0;
+  font-size: 9.5px;
+  padding: 2px 7px;
+  background: none;
+  border: 1px solid var(--hub-acc, var(--acc-violet));
+  color: var(--hub-acc, var(--acc-violet));
+  align-self: center;
+}
+.hub-page .topic-row .topic-arrow { display: none; }
+
+/* Continue row: subject accent bleeding to the sheet edge, like a highlighter pass. */
+.hub-page .topic-row.active,
+.hub-page a.topic-row.active {
+  margin: 0 -16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  background: color-mix(in srgb, var(--hub-acc, var(--acc-violet)) 9%, transparent);
+  box-shadow: inset 3px 0 0 var(--hub-acc, var(--acc-violet));
+  border-top-color: transparent;
+}
+.hub-page .topic-row.active + .topic-row { border-top-color: transparent; }
+.hub-page .topic-row.active .topic-name { color: var(--text); font-weight: 500; }
+.hub-page .topic-row.active:hover { background: color-mix(in srgb, var(--hub-acc, var(--acc-violet)) 14%, transparent); }
+
+/* premium-paper placeholder sits on the sheet, not in a second card */
+.hub-page .spine-empty {
+  margin: 0;
+  border: 0;
+  box-shadow: none;
+  background: none;
+  padding: 6px 0 4px;
+}
+
+/* ---------- "How this course works" slip ---------- */
+.hub-page .hub-how-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: default;
+  list-style: none;
+}
+.hub-page .hub-how-summary::-webkit-details-marker { display: none; }
+.hub-page .hub-how-plus { display: none; }
+
+/* ---------- phones ---------- */
+@media (max-width: 860px) {
+  /* The aside dissolves so its slips become siblings of the sheet; the
+     "how" slip then reorders above the contents. */
+  .hub-page .hub-cols { display: flex; flex-direction: column; gap: 18px; }
+  .hub-page .hub-aside { display: contents; }
+  .hub-page .hub-how { order: -1; }
+
+  .hub-page .hub-how.card-pad { padding: 14px 18px; }
+  .hub-page .hub-how-summary { cursor: pointer; margin: 0; }
+  .hub-page .hub-how[open] .hub-how-summary { margin-bottom: 14px; }
+  .hub-page .hub-how-plus {
+    display: inline-block;
+    font-family: var(--font-display), Georgia, serif;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--ink);
+    transition: transform 140ms ease;
+  }
+  .hub-page .hub-how[open] .hub-how-plus { transform: rotate(45deg); }
+
+  /* Paper tabs: one snapping strip that bleeds to the screen edge, with a
+     fade telling the thumb there is more to the right. */
+  .hub-page .paper-tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    margin: 0 -18px 22px;
+    padding: 4px 18px 6px;
+    grid-template-columns: unset;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 18px;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 44px), transparent);
+    mask-image: linear-gradient(90deg, #000 calc(100% - 44px), transparent);
+  }
+  .hub-page .paper-tabs::-webkit-scrollbar { display: none; }
+  /* trailing spacer so the last tab can scroll clear of the fade */
+  .hub-page .paper-tabs::after { content: ''; flex: 0 0 30px; }
+  .hub-page .paper-tab {
+    flex: 0 0 auto;
+    min-width: 132px;
+    max-width: 180px;
+    scroll-snap-align: start;
+  }
+  .hub-page .paper-tab-name:not(.paper-tab-name--short) { display: none; }
+  .hub-page .paper-tab-name--short { display: block; }
+
+  .hub-page .spine { padding: 18px 18px 22px; }
+  .hub-page .spine-unit-title { font-size: 21px; }
+  .hub-page .topic-row .topic-name { font-size: 16.5px; }
+  .hub-page .topic-row.active,
+  .hub-page a.topic-row.active {
+    margin: 0 -18px;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+@media (min-width: 861px) {
+  .hub-page .paper-tab-name--short { display: none; }
+}

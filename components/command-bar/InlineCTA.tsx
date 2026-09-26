@@ -30,7 +30,7 @@ export function InlineCTA({ cta }: InlineCTAProps) {
           className="group relative flex w-full min-h-[44px] items-center justify-center gap-2 rounded ec-btn-send px-6 py-3.5 font-semibold"
         >
           <span>{cta.text}</span>
-          <span className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden>-&gt;</span>
+          <span className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden>→</span>
         </motion.span>
       </Link>
     )

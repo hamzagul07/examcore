@@ -154,7 +154,7 @@ export function ExamCountdown() {
               href="/mark"
               className="ec-btn-primary mt-5 inline-flex min-h-[44px] items-center gap-2"
             >
-              Mark a past paper free <span className="h-4 w-4" aria-hidden>-&gt;</span>
+              Mark a past paper free <span className="h-4 w-4" aria-hidden>→</span>
             </Link>
           </>
         )}

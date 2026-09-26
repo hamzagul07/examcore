@@ -274,7 +274,7 @@ export function ExaminerInkOverlay({
       )}
 
       <p className="flex items-center gap-2 text-xs text-[var(--ec-text-secondary)]">
-        <span className="font-mono text-[10px] font-bold tracking-wide" aria-hidden>EYE</span>
+        <Eye className="h-3.5 w-3.5 shrink-0" strokeWidth={2} aria-hidden />
         Stamps and notes are drawn from the AI examiner&rsquo;s reasoning.
         Positioning is approximate, but every annotation maps to a real mark
         decision below.

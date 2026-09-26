@@ -135,7 +135,7 @@ export default function ToolsHubPage() {
                 <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                   M1
                 </span>
-                Mark a paper free -&gt;
+                Mark a paper free →
               </Link>
               <Link
                 href="/tools/will-my-grade-hold"
@@ -175,11 +175,11 @@ export default function ToolsHubPage() {
                     <span className="ms-tools-instrument__name">{featured.title}</span>
                     <span className="ms-tools-instrument__job">{featured.job}</span>
                     <span className="ms-tools-instrument__cta">
-                      {featured.cta} <span aria-hidden>-&gt;</span>
+                      {featured.cta} <span aria-hidden>→</span>
                     </span>
                   </span>
                   <span className="ms-tools-instrument__go" aria-hidden>
-                    -&gt;
+                    →
                   </span>
                 </Link>
               </li>
@@ -193,14 +193,14 @@ export default function ToolsHubPage() {
                       {tool.stamp}
                     </span>
                     <span className="ms-tools-instrument__go" aria-hidden>
-                      -&gt;
+                      →
                     </span>
                   </div>
                   <span className="ms-tools-instrument__body">
                     <span className="ms-tools-instrument__name">{tool.title}</span>
                     <span className="ms-tools-instrument__job">{tool.job}</span>
                     <span className="ms-tools-instrument__cta">
-                      {tool.cta} <span aria-hidden>-&gt;</span>
+                      {tool.cta} <span aria-hidden>→</span>
                     </span>
                   </span>
                 </Link>
@@ -226,7 +226,7 @@ export default function ToolsHubPage() {
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 M1
               </span>
-              Mark a paper free -&gt;
+              Mark a paper free →
             </Link>
             <Link href="/guides" className="ec-btn-ghost inline-flex min-h-[48px]">
               Browse revision guides

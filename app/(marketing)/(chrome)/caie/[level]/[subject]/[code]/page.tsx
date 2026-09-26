@@ -79,7 +79,7 @@ export default async function CaieSubjectHubPage({ params }: Props) {
             <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
               M1
             </span>
-            Mark a {code} question -&gt;
+            Mark a {code} question →
           </Link>
           <Link href={`/courses/${code}`} className="ec-btn-ghost min-h-[48px]">
             Course studio
@@ -105,7 +105,7 @@ export default async function CaieSubjectHubPage({ params }: Props) {
                       <span className="ms-board-slip__name">Paper {p}</span>
                     </span>
                     <span className="ms-board-slip__go" aria-hidden>
-                      -&gt;
+                      →
                     </span>
                   </Link>
                 </li>
@@ -135,7 +135,7 @@ export default async function CaieSubjectHubPage({ params }: Props) {
                     </span>
                   </span>
                   <span className="ms-board-slip__go" aria-hidden>
-                    -&gt;
+                    →
                   </span>
                 </Link>
                 {surfaces.length ? (

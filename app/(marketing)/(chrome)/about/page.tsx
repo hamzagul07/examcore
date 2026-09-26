@@ -159,7 +159,7 @@ export default function AboutPage() {
               and what we should improve.
             </p>
             <Link href="/contact" className="ec-btn-primary mt-6 inline-flex min-h-[48px]">
-              Get in touch <span className="h-5 w-5" aria-hidden>-&gt;</span>
+              Get in touch <span className="h-5 w-5" aria-hidden>→</span>
             </Link>
           </div>
         </div>

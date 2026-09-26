@@ -37,7 +37,7 @@ export default async function SetPrintPage({ params }: Props) {
   return (
     <TeacherPageContainer className="ms-teacher-page">
       <div className="print:hidden">
-        <TeacherBackLink href={setHref(classroom.id, aid)}>&lt;- Back to the set</TeacherBackLink>
+        <TeacherBackLink href={setHref(classroom.id, aid)}>← Back to the set</TeacherBackLink>
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <p className="m-0 max-w-xl text-sm text-[var(--ec-text-secondary)]">
             Question text and marks only — never the mark scheme. The join code is at the foot of the sheet.

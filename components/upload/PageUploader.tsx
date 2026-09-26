@@ -8,6 +8,7 @@ import {
   type Dispatch,
   type SetStateAction,
 } from 'react'
+import { Camera } from 'lucide-react'
 import { compressImageDetailed } from '@/lib/upload/compress-image'
 import {
   MAX_UPLOAD_PAGES,
@@ -346,9 +347,7 @@ export function PageUploader({
                 onClick={openCamera}
                 className="ec-btn-primary w-full justify-center text-sm"
               >
-                <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
-                  IMG
-                </span>
+                <Camera className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
                 Take photos
               </button>
               <div className="relative">
@@ -396,7 +395,11 @@ export function PageUploader({
               </div>
             </div>
           ) : (
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            <div className="@container mt-6">
+            {/* Sized by the card, not the viewport: on desktop this sits in a narrow
+                column beside the paper picker, where a viewport breakpoint put three
+                buttons on one line and they spilled out of the dropzone. */}
+            <div className="flex flex-col gap-3 @md:flex-row @md:justify-center [&>button]:whitespace-nowrap">
               <button
                 type="button"
                 disabled={addDisabled}
@@ -424,11 +427,10 @@ export function PageUploader({
                 onClick={openCamera}
                 className="ec-btn-secondary justify-center text-sm"
               >
-                <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
-                  IMG
-                </span>
+                <Camera className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
                 Take a photo
               </button>
+            </div>
             </div>
           )}
           <input

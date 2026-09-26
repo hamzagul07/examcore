@@ -3,13 +3,18 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 
 /**
- * Section reveal — transform-only (content visible if animation fails).
+ * Section reveal — a fade-and-rise on first scroll into view.
  *
- * A fade-and-rise on first scroll into view. This used framer-motion, which put
- * ~50 KiB (gzipped) of animation library — plus its hydration cost — on the
- * homepage's critical path for a one-line transition. It's now CSS (`.ms-reveal`
- * in landing-page.css) driven by an IntersectionObserver: same behaviour, no
- * library, and the content stays in the server-rendered HTML.
+ * This used framer-motion, which put ~50 KiB (gzipped) of animation library —
+ * plus its hydration cost — on the homepage's critical path for a one-line
+ * transition. It's now CSS (`.ms-reveal` in landing-page.css) driven by an
+ * IntersectionObserver: same behaviour, no library, and the content stays in
+ * the server-rendered HTML.
+ *
+ * Progressive: the server renders the section visible ('idle'). Only after
+ * hydration, and only if it is still below the fold, is it hidden ('out') to be
+ * revealed on scroll ('in'). Hiding it from the first paint instead meant a
+ * slow or failed hydration left the whole section invisible.
  */
 export function LandingSectionReveal({
   children,
@@ -21,22 +26,24 @@ export function LandingSectionReveal({
   delay?: number
 }) {
   const ref = useRef<HTMLDivElement>(null)
-  const [shown, setShown] = useState(false)
+  const [state, setState] = useState<'idle' | 'out' | 'in'>('idle')
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
     if (
       typeof IntersectionObserver === 'undefined' ||
-      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ||
+      // Already on screen: animating it now would only make it flicker.
+      el.getBoundingClientRect().top < window.innerHeight
     ) {
-      setShown(true)
       return
     }
+    setState('out')
     const io = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
-          setShown(true)
+          setState('in')
           io.disconnect()
         }
       },
@@ -49,7 +56,7 @@ export function LandingSectionReveal({
   return (
     <div
       ref={ref}
-      data-reveal={shown ? 'in' : 'out'}
+      data-reveal={state}
       style={delay ? { transitionDelay: `${delay}s` } : undefined}
       className={`ms-reveal ${className}`}
     >

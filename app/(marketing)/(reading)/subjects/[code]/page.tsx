@@ -284,14 +284,14 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
                   href={`/blog/${copy.guideSlug}`}
                   className="ec-btn-underline mt-3 inline-block text-sm"
                 >
-                  {code} revision guide -&gt;
+                  {code} revision guide →
                 </Link>
               ) : null}
               <Link
                 href="/dashboard/progress"
                 className="ec-btn-underline mt-2 inline-block text-sm"
               >
-                Your {subject.label} progress -&gt;
+                Your {subject.label} progress →
               </Link>
             </div>
           </div>

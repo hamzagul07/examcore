@@ -92,7 +92,7 @@ export default function Results2026Page() {
             >
               Will my grade hold?
               <span className="font-mono text-[11px] font-bold" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
             <Link
@@ -177,10 +177,10 @@ export default function Results2026Page() {
         </p>
         <div className="ms-tool-instrument__links mt-5">
           <Link href="/results-2026/ib" className="ec-link">
-            IB Diploma results -&gt;
+            IB Diploma results →
           </Link>
           <Link href="/results-2026/edexcel" className="ec-link">
-            Edexcel International -&gt;
+            Edexcel International →
           </Link>
         </div>
         <EdexcelWrongBoardBridge className="!mt-6" />

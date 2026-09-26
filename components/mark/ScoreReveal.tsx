@@ -7,6 +7,7 @@ import {
   shareParentScoreSlipNative,
   shareParentScoreSlipWhatsApp,
 } from '@/lib/marking/parent-score-slip'
+import { pipGlyph } from '@/lib/marking/pip-glyph'
 
 /**
  * The score, as the moment it actually is.
@@ -296,9 +297,9 @@ export function ScoreReveal({
 
         <div className="ms-score-reveal__meta">
           <p className="ms-score-reveal__band">{label}</p>
-          <p className="ms-score-reveal__pct">
-            {pct}%{grade ? ` · predicted ${grade}` : ''}
-          </p>
+          {/* The percentage is already on the tally beside this; repeating it
+              here printed "80%" twice. Only the grade estimate adds anything. */}
+          {grade && <p className="ms-score-reveal__pct">predicted {grade}</p>}
           {nextGrade && nextGrade.marksNeeded > 0 && (
             <p className="ms-score-reveal__next">
               <span className="ms-score-reveal__next-ink" aria-hidden>
@@ -390,7 +391,7 @@ export function ScoreReveal({
                   title={`${m.label} — ${m.earned ? 'earned' : 'not earned'}`}
                 >
                   <span aria-hidden="true" className="ms-score-pip__stamp">
-                    {m.earned ? 'M' : 'X'}
+                    {pipGlyph(m.label, m.earned)}
                   </span>
                   <span className="sr-only">
                     {m.label} {m.earned ? 'earned' : 'not earned'}

@@ -80,7 +80,7 @@ export default async function OxfordaqaSubjectPage({ params }: Props) {
               href="#oxfordaqa-study-path-h"
               className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
             >
-              Start study path -&gt;
+              Start study path →
             </a>
           ) : null}
           {markingLive ? (
@@ -95,7 +95,7 @@ export default async function OxfordaqaSubjectPage({ params }: Props) {
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 M1
               </span>
-              Mark OxfordAQA {subject.name} -&gt;
+              Mark OxfordAQA {subject.name} →
             </Link>
           ) : null}
         </div>
@@ -128,7 +128,7 @@ export default async function OxfordaqaSubjectPage({ params }: Props) {
                   <span className="ms-board-slip__meta">Shell index</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -152,7 +152,7 @@ export default async function OxfordaqaSubjectPage({ params }: Props) {
                 </span>
               </span>
               <span className="ms-board-slip__go" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </li>
@@ -169,7 +169,7 @@ export default async function OxfordaqaSubjectPage({ params }: Props) {
                 </span>
               </span>
               <span className="ms-board-slip__go" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </li>
@@ -184,7 +184,7 @@ export default async function OxfordaqaSubjectPage({ params }: Props) {
                   </span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>

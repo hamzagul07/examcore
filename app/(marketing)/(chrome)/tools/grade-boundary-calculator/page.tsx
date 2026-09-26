@@ -107,13 +107,13 @@ export default function GradeCalculatorPage() {
 
         <div className="ms-tool-instrument__links mb-6">
           <Link href="/tools/will-my-grade-hold" className="ec-link">
-            Will my grade hold? -&gt;
+            Will my grade hold? →
           </Link>
           <Link href="/results-2026" className="ec-link">
-            Results Day hub -&gt;
+            Results Day hub →
           </Link>
           <Link href="/guides/grade-boundaries" className="ec-link">
-            All subject boundaries -&gt;
+            All subject boundaries →
           </Link>
         </div>
 
@@ -184,7 +184,7 @@ export default function GradeCalculatorPage() {
           >
             Mark a paper free
             <span className="font-mono text-[11px] font-bold" aria-hidden>
-              -&gt;
+              →
             </span>
           </Link>
         </aside>

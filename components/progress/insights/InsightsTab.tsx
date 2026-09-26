@@ -57,7 +57,7 @@ export function InsightsTab({
             </p>
             <Link href="/mark" className="ec-btn-primary inline-flex text-sm">
               Mark your first question
-              <span className="h-4 w-4" aria-hidden>-&gt;</span>
+              <span className="h-4 w-4" aria-hidden>→</span>
             </Link>
             <p
               className="font-[family-name:var(--font-handwritten,'Caveat',cursive)] text-[var(--ec-brand)]"

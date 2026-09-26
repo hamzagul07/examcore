@@ -762,7 +762,7 @@ export function PricingMarginNotesPage({ display, signedIn, currentTier, testimo
               }}
               disabled={ctaFor('max').disabled}
             >
-              {ctaFor('max').label} <span className="h-4 w-4" aria-hidden>-&gt;</span>
+              {ctaFor('max').label} <span className="h-4 w-4" aria-hidden>→</span>
             </button>
           </div>
         </section>

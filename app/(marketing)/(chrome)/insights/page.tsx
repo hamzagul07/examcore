@@ -109,7 +109,7 @@ export default function InsightsPage() {
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 M1
               </span>
-              Open marking desk -&gt;
+              Open marking desk →
             </Link>
             <Link href="/research" className="ec-btn-ghost inline-flex min-h-[48px]">
               Methodology

@@ -87,7 +87,7 @@ export function WeakSpotDrillCard({
         >
           Drill this
           <span className="font-mono text-[11px] font-bold" aria-hidden>
-            -&gt;
+            →
           </span>
         </Link>
       </div>

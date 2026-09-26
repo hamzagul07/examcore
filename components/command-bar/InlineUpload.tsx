@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import { Camera } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { STORAGE_KEYS, writeSessionStorage } from '@/lib/client-storage'
 
@@ -78,7 +79,7 @@ export function InlineUpload() {
             onClick={() => cameraInputRef.current?.click()}
             className="ec-btn-primary flex min-h-[44px] items-center justify-center gap-2"
           >
-            <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>IMG</span>
+            <Camera className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
             Use camera
           </button>
           <button

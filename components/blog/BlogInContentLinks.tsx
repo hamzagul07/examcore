@@ -73,7 +73,7 @@ export function BlogInContentLinks({ slug }: Props) {
         </div>
         <div className="flex flex-wrap gap-2">
           <Link href={primaryHref} className="ec-btn-primary inline-flex min-h-[44px] text-sm">
-            {primaryLabel} <span className="h-4 w-4" aria-hidden>-&gt;</span>
+            {primaryLabel} <span className="h-4 w-4" aria-hidden>→</span>
           </Link>
           {isGradeBoundaries && subjectCode ? (
             <Link

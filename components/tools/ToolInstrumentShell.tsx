@@ -46,7 +46,7 @@ export function ToolInstrumentShell({
         ) : (
           <p className="ms-tool-instrument__crumb">
             <Link href="/tools" className="ec-btn-underline">
-              &lt;- Instrument desk
+              ← Instrument desk
             </Link>
           </p>
         )}

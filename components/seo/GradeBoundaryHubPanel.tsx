@@ -156,7 +156,7 @@ export function GradeBoundaryHubPanel() {
 
         <div className="mt-6 flex flex-wrap gap-3">
           <Link href="/tools/will-my-grade-hold" className="ec-btn-primary ec-btn-primary--sm">
-            Will my grade hold? <span className="h-4 w-4" aria-hidden>-&gt;</span>
+            Will my grade hold? <span className="h-4 w-4" aria-hidden>→</span>
           </Link>
           <Link href="/tools/grade-boundary-calculator" className="ec-btn-ghost ec-btn-ghost--sm">
             Open calculator
@@ -186,7 +186,7 @@ export function GradeBoundaryHubPanel() {
               Edexcel UMS explainer
             </Link>
             <Link href="/mark?board=edexcel&subject=WMA11" className="ec-btn-primary ec-btn-primary--sm">
-              Mark WMA11 <span className="h-4 w-4" aria-hidden>-&gt;</span>
+              Mark WMA11 <span className="h-4 w-4" aria-hidden>→</span>
             </Link>
           </div>
         </aside>

@@ -95,7 +95,7 @@ export default function NewClassroomPage() {
 
   return (
     <TeacherPageContainer className="ms-teacher-form max-w-lg">
-      <TeacherBackLink href="/teacher/classrooms">&lt;- Back to classes</TeacherBackLink>
+      <TeacherBackLink href="/teacher/classrooms">← Back to classes</TeacherBackLink>
 
       <div className="ms-teacher-start-card mx-auto">
         <div className="mb-2 flex items-center gap-2">
@@ -243,7 +243,7 @@ export default function NewClassroomPage() {
               <>
                 Create class
                 <span className="font-mono text-[11px] font-bold" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </>
             )}

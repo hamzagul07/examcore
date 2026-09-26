@@ -158,7 +158,7 @@ export default async function ClusterGuidePage({ params }: Props) {
         {isGradeBoundaries && (
           <div className="mb-10 flex flex-wrap gap-3">
             <Link href="/tools/will-my-grade-hold" className="ec-btn-primary ec-btn-primary--sm">
-              Will my grade hold? <span className="h-4 w-4" aria-hidden>-&gt;</span>
+              Will my grade hold? <span className="h-4 w-4" aria-hidden>→</span>
             </Link>
             <Link href="/tools/grade-boundary-calculator" className="ec-btn-ghost ec-btn-ghost--sm">
               Grade calculator
@@ -181,7 +181,7 @@ export default async function ClusterGuidePage({ params }: Props) {
         {isCommandWords && (
           <div className="mb-10 flex flex-wrap gap-3">
             <Link href="/tools/command-words" className="ec-btn-primary ec-btn-primary--sm">
-              Command word tool <span className="h-4 w-4" aria-hidden>-&gt;</span>
+              Command word tool <span className="h-4 w-4" aria-hidden>→</span>
             </Link>
             <Link href="/blog/cambridge-command-words-explained" className="ec-btn-ghost ec-btn-ghost--sm">
               Full guide
@@ -306,7 +306,7 @@ export default async function ClusterGuidePage({ params }: Props) {
                   ? 'Practise criterion marking'
                   : 'Mark a paper free'
                 : 'Browse subjects'}
-            <span className="h-5 w-5" aria-hidden>-&gt;</span>
+            <span className="h-5 w-5" aria-hidden>→</span>
           </Link>
         </div>
         <PageHelpStrip />

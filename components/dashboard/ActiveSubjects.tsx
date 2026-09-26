@@ -48,7 +48,7 @@ export function ActiveSubjects({ subjects, title = 'Subjects active' }: Props) {
                 )}
                 <span className="ms-active-subjects__name">{meta?.label ?? name}</span>
                 <span className="ms-active-subjects__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </LoadingLink>
             </li>

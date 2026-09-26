@@ -175,7 +175,7 @@ export default function IbPointsCalculatorPage() {
           >
             Explore free IB courses
             <span className="font-mono text-[11px] font-bold" aria-hidden>
-              -&gt;
+              →
             </span>
           </Link>
         </aside>

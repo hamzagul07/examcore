@@ -14,7 +14,7 @@ export function BlogArticleHero({ post }: Props) {
         href="/blog"
         className="inline-flex min-h-[44px] items-center gap-1.5 font-mono text-[12px] font-semibold tracking-wide text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-brand)]"
       >
-        <span aria-hidden>&lt;-</span>
+        <span aria-hidden>←</span>
         Guides &amp; blog
       </Link>
 

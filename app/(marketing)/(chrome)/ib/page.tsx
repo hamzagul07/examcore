@@ -142,7 +142,7 @@ export default function IbHubPage() {
             <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
               M1
             </span>
-            Criterion marking -&gt;
+            Criterion marking →
           </Link>
           <Link href="/ib/courses" className="ec-btn-ghost inline-flex min-h-[48px]">
             Free IB courses
@@ -208,7 +208,7 @@ export default function IbHubPage() {
                               <span className="ms-pp-meta">{meta}</span>
                             </span>
                             <span className="ms-pp-cta" aria-hidden>
-                              -&gt;
+                              →
                             </span>
                           </Link>
                         </li>
@@ -241,7 +241,7 @@ export default function IbHubPage() {
                       <span className="ms-pp-meta">{s.papers.length} papers · {ibYearRange()}</span>
                     </span>
                     <span className="ms-pp-cta" aria-hidden>
-                      -&gt;
+                      →
                     </span>
                   </Link>
                 </li>
@@ -290,7 +290,7 @@ export default function IbHubPage() {
                   <span className="ms-board-slip__name">IB past papers</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -301,7 +301,7 @@ export default function IbHubPage() {
                   <span className="ms-board-slip__name">IB subjects</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -312,7 +312,7 @@ export default function IbHubPage() {
                   <span className="ms-board-slip__name">Free IB courses</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -323,7 +323,7 @@ export default function IbHubPage() {
                   <span className="ms-board-slip__name">IB revision guides</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>

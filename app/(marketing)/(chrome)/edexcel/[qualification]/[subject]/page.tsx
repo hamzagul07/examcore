@@ -96,7 +96,7 @@ export default async function EdexcelSubjectPage({ params }: Props) {
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 M1
               </span>
-              Mark {subject.name} -&gt;
+              Mark {subject.name} →
             </Link>
             <Link href={pastPapersPath} className="ec-btn-ghost inline-flex min-h-[48px]">
               Past papers
@@ -127,7 +127,7 @@ export default async function EdexcelSubjectPage({ params }: Props) {
                   <span className="ms-board-slip__meta">{u.short}</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -148,7 +148,7 @@ export default async function EdexcelSubjectPage({ params }: Props) {
                 </span>
               </span>
               <span className="ms-board-slip__go" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </li>
@@ -162,7 +162,7 @@ export default async function EdexcelSubjectPage({ params }: Props) {
                 </span>
               </span>
               <span className="ms-board-slip__go" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </li>
@@ -178,7 +178,7 @@ export default async function EdexcelSubjectPage({ params }: Props) {
                 </span>
               </span>
               <span className="ms-board-slip__go" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </li>
@@ -192,7 +192,7 @@ export default async function EdexcelSubjectPage({ params }: Props) {
                 </span>
               </span>
               <span className="ms-board-slip__go" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </li>

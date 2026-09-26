@@ -167,7 +167,7 @@ export function TeacherSeatRequestCard({ state, teacherCap, freeCap }: Props) {
         >
           {declined ? 'Apply again' : 'Request my seat'}
           <span className="font-mono text-[11px] font-bold" aria-hidden>
-            -&gt;
+            →
           </span>
         </button>
       ) : (

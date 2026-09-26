@@ -95,7 +95,7 @@ export function ResultsThreadCta({ source, subjectCode = null, className = '' }:
               metric and doing a write per reader who never clicked. */}
           <Link href={href} prefetch={false} className="ec-btn-primary ec-btn-primary--sm">
             Post in the thread
-            <span className="h-4 w-4" aria-hidden>-&gt;</span>
+            <span className="h-4 w-4" aria-hidden>→</span>
           </Link>
           <Link href="/community" className="ec-btn-ghost ec-btn-ghost--sm">
             Browse the community

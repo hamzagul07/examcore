@@ -37,14 +37,14 @@ export function DashboardCoursesPanel({ catalog }: Props) {
             </p>
           </div>
           <Link className="continue-cta btn-primary sm" href="/courses">
-            Browse courses -&gt;
+            Browse courses →
           </Link>
         </div>
       )}
       <p className="micro dash-courses-foot">
         Marking insights live on{' '}
         <Link className="hub-sync-link" href="/dashboard/progress">
-          your progress page -&gt;
+          your progress page →
         </Link>
       </p>
     </section>

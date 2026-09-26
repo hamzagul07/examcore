@@ -48,7 +48,7 @@ export default function AqaHubPage() {
             subject="aqa-mathematics"
             className="ec-btn-primary inline-flex min-h-[48px] items-center"
           >
-            Mark AQA Maths -&gt;
+            Mark AQA Maths →
           </FunnelMarkLink>
           <Link href="/edexcel/a-level" className="ec-btn-ghost inline-flex min-h-[48px] items-center">
             Edexcel UK A Level
@@ -65,7 +65,7 @@ export default function AqaHubPage() {
                   <span className="ms-board-slip__name">{g.label}</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -83,7 +83,7 @@ export default function AqaHubPage() {
                   <span className="ms-board-slip__blurb">{s.blurb}</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>

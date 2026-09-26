@@ -167,13 +167,13 @@ export default async function WillMyGradeHoldPage({ searchParams }: Props) {
             }
             className="ec-link"
           >
-            Grade boundary calculator -&gt;
+            Grade boundary calculator →
           </Link>
           <Link href="/results-2026" className="ec-link">
-            Results Day hub -&gt;
+            Results Day hub →
           </Link>
           <Link href="/guides/grade-boundaries" className="ec-link">
-            2026 boundaries -&gt;
+            2026 boundaries →
           </Link>
         </div>
 

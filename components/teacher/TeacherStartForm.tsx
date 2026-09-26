@@ -180,7 +180,7 @@ export function TeacherStartForm() {
           <>
             Create my classroom
             <span className="font-mono text-[11px] font-bold" aria-hidden>
-              -&gt;
+              →
             </span>
           </>
         )}

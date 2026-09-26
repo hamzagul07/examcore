@@ -43,7 +43,7 @@ export default function AqaALevelPage() {
             href={aqaMarkHref('aqa-mathematics')}
             className="ec-btn-primary inline-flex min-h-[48px] items-center"
           >
-            Mark AQA Maths -&gt;
+            Mark AQA Maths →
           </Link>
           <Link href={aqaRootPath()} className="ec-btn-ghost inline-flex min-h-[48px] items-center">
             AQA hub
@@ -62,7 +62,7 @@ export default function AqaALevelPage() {
                   <span className="ms-board-slip__blurb">{s.blurb}</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>

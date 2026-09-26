@@ -58,7 +58,7 @@
 .community-label { font-size: 13px; font-weight: 600; color: var(--ec-text-primary); }
 .community-hint { font-weight: 400; color: var(--ec-text-faint); }
 .community-input, .community-textarea { width: 100%; border: 1px solid var(--ec-border); border-radius: 4px; background: var(--ec-surface); color: var(--ec-text-primary); padding: 10px 12px; font: inherit; font-size: 14px; }
-.community-textarea { resize: vertical; min-height: 180px; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 13px; }
+.community-textarea { resize: vertical; min-height: 180px; font-family: var(--font-mono), ui-monospace, monospace; font-size: 13px; }
 .community-input:focus, .community-textarea:focus { outline: 2px solid color-mix(in srgb, var(--sc, var(--ec-brand)) 50%, transparent); outline-offset: 1px; }
 .community-preview { border: 1px solid var(--ec-border); border-radius: 4px; padding: 12px 14px; min-height: 180px; background: var(--ec-paper, var(--ec-surface)); }
 .community-editor-actions { display: flex; gap: 10px; justify-content: flex-end; }

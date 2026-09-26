@@ -127,7 +127,7 @@ export function GuestSavePrompt() {
         >
           Open a desk
           <span className="font-mono text-[11px] font-bold" aria-hidden>
-            -&gt;
+            →
           </span>
         </LoadingLink>
         <button type="button" className="ms-save-prompt-dismiss" onClick={dismiss}>

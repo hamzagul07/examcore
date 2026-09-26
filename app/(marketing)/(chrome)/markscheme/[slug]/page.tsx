@@ -109,7 +109,7 @@ export default async function MarkschemeObjectPage({ params }: Props) {
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href={q.markHref} className="ec-btn-primary min-h-[48px]">
-            Mark your attempt <span className="h-4 w-4" aria-hidden>-&gt;</span>
+            Mark your attempt <span className="h-4 w-4" aria-hidden>→</span>
           </Link>
           <Link href={`/questions/${slug}`} className="ec-btn-ghost min-h-[48px]">
             Question object (stem &amp; intent)

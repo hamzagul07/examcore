@@ -99,7 +99,7 @@ a { color: inherit; }
 .sec-tight { padding-top: 56px; }
 
 .overline {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -111,7 +111,7 @@ a { color: inherit; }
   margin: 0 0 16px;
 }
 .h-display {
-  font-family: 'Newsreader', serif;
+  font-family: var(--font-display), Georgia, serif;
   font-weight: 500;
   font-size: clamp(44px, 6vw, 76px);
   line-height: 1.04;
@@ -120,7 +120,7 @@ a { color: inherit; }
 }
 .h-display em { font-style: italic; font-weight: 400; }
 .h2 {
-  font-family: 'Newsreader', serif;
+  font-family: var(--font-display), Georgia, serif;
   font-weight: 500;
   font-size: clamp(30px, 4vw, 44px);
   line-height: 1.1;
@@ -129,7 +129,7 @@ a { color: inherit; }
 }
 .h2 em { font-style: italic; font-weight: 400; }
 .h3 {
-  font-family: 'Newsreader', serif;
+  font-family: var(--font-display), Georgia, serif;
   font-weight: 500;
   font-size: 23px;
   line-height: 1.2;
@@ -137,7 +137,7 @@ a { color: inherit; }
 }
 .lead { font-size: 18px; line-height: 1.65; color: var(--text-2); margin: 0; max-width: 56ch; }
 .body-2 { font-size: 15px; line-height: 1.6; color: var(--text-2); margin: 0; }
-.micro { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.08em; color: var(--text-2); }
+.micro { font-family: var(--font-mono), ui-monospace, monospace; font-size: 11.5px; letter-spacing: 0.08em; color: var(--text-2); }
 
 /* ============ nav ============ */
 .nav {
@@ -147,14 +147,14 @@ a { color: inherit; }
 }
 .nav-wrap { position: sticky; top: 0; z-index: 50; background: var(--paper, var(--bg)); backdrop-filter: none; border-bottom: 1px solid var(--border); box-shadow: var(--shadow-hard, 3px 3px 0 rgba(0, 0, 0, 0.08)); }
 .wordmark {
-  font-family: 'Newsreader', serif; font-size: 23px; font-weight: 600;
+  font-family: var(--font-display), Georgia, serif; font-size: 23px; font-weight: 600;
   letter-spacing: -0.02em; color: var(--text); text-decoration: none;
   background: none; border: none; cursor: pointer; padding: 0;
 }
 .wordmark i { font-style: normal; color: var(--ink); }
 .nav-links { display: flex; gap: 26px; align-items: center; }
 .nav-link {
-  font-family: 'Newsreader', serif; font-size: 16.5px; color: var(--text);
+  font-family: var(--font-display), Georgia, serif; font-size: 16.5px; color: var(--text);
   text-decoration: none; background: none; border: none; cursor: pointer; padding: 2px 0;
   border-bottom: 1.5px solid transparent;
 }
@@ -172,7 +172,7 @@ a { color: inherit; }
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--ink); color: var(--bg);
-  font-family: 'Instrument Sans', sans-serif; font-weight: 600; font-size: 16px;
+  font-family: var(--font-sans), system-ui, sans-serif; font-weight: 600; font-size: 16px;
   padding: 14px 28px; border-radius: 4px; text-decoration: none;
   border: none; cursor: pointer; box-shadow: var(--cta-shadow);
   transition: transform 150ms ease, box-shadow 150ms ease;
@@ -187,7 +187,7 @@ a { color: inherit; }
 .btn-ghost {
   display: inline-flex; align-items: center; gap: 8px;
   background: transparent; color: var(--text);
-  font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 16px;
+  font-family: var(--font-sans), system-ui, sans-serif; font-weight: 500; font-size: 16px;
   padding: 13px 26px; border-radius: 4px; text-decoration: none;
   border: 1.5px solid var(--border-strong); cursor: pointer;
   white-space: nowrap;
@@ -197,7 +197,7 @@ a { color: inherit; }
 .btn-ghost:active { transform: scale(0.97); }
 .btn-ghost.sm { padding: 8px 18px; font-size: 14.5px; }
 .btn-underline {
-  font-family: 'Newsreader', serif; font-size: 17px; color: var(--text);
+  font-family: var(--font-display), Georgia, serif; font-size: 17px; color: var(--text);
   text-decoration: none; border: none; background: none; cursor: pointer; padding: 0 0 2px;
   border-bottom: 1.5px solid var(--ink); 
 }
@@ -211,7 +211,7 @@ a { color: inherit; }
 .card-pad { padding: 24px 26px; }
 .chip {
   display: inline-flex; align-items: center; gap: 6px;
-  font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600;
+  font-family: var(--font-mono), ui-monospace, monospace; font-size: 12px; font-weight: 600;
   padding: 4px 12px; border-radius: 4px;
 }
 .chip.ok { color: var(--ink); background: var(--ink-soft); }
@@ -228,32 +228,32 @@ a { color: inherit; }
 }
 .sheet-head {
   display: flex; justify-content: space-between; gap: 12px;
-  font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--text-2);
+  font-family: var(--font-mono), ui-monospace, monospace; font-size: 11.5px; color: var(--text-2);
   border-bottom: 1px solid var(--paper-rule); padding-bottom: 9px; margin-bottom: 4px;
 }
 .sheet-line {
   position: relative; border-bottom: 1px solid var(--paper-rule);
   padding: 8px 0 7px; display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
 }
-.sheet-line .work { font-family: 'Caveat', cursive; font-size: 23px; line-height: 1.26; color: var(--pen); }
+.sheet-line .work { font-family: var(--font-caveat), cursive; font-size: 23px; line-height: 1.26; color: var(--pen); }
 .stamp {
-  font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; font-weight: 700;
+  font-family: var(--font-mono), ui-monospace, monospace; font-size: 12.5px; font-weight: 700;
   padding: 2px 9px; border-radius: 4px; transform: rotate(-3deg); white-space: nowrap;
   flex-shrink: 0;
 }
 .stamp.ok { color: var(--ink); border: 2px solid var(--ink-border); background: var(--ink-soft); }
 .stamp.no { color: var(--red); border: 2px solid color-mix(in srgb, var(--red) 55%, transparent); background: var(--red-soft); }
-.rednote { font-family: 'Caveat', cursive; font-size: 19px; color: var(--red); transform: rotate(-1.5deg); display: block; margin-top: 4px; }
-.greennote { font-family: 'Caveat', cursive; font-size: 19px; color: var(--ink); display: block; margin-top: 4px; }
+.rednote { font-family: var(--font-caveat), cursive; font-size: 19px; color: var(--red); transform: rotate(-1.5deg); display: block; margin-top: 4px; }
+.greennote { font-family: var(--font-caveat), cursive; font-size: 19px; color: var(--ink); display: block; margin-top: 4px; }
 .tally {
   position: absolute; top: -16px; right: -14px;
   background: var(--ink); color: var(--bg);
-  font-family: 'IBM Plex Mono', monospace; font-weight: 700; font-size: 14px;
+  font-family: var(--font-mono), ui-monospace, monospace; font-weight: 700; font-size: 14px;
   padding: 9px 13px; transform: rotate(4deg); box-shadow: 3px 3px 0 rgba(0,0,0,0.22);
 }
 [data-theme='night'] .tally { color: #07130d; }
 .scheme-cite {
-  margin-top: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  margin-top: 12px; font-family: var(--font-mono), ui-monospace, monospace; font-size: 11px;
   color: var(--text-2); background: var(--bg-soft); border: 1px dashed var(--border);
   padding: 9px 11px; line-height: 1.5;
 }
@@ -266,7 +266,7 @@ a { color: inherit; }
 .no-annot .circled svg, .no-annot .scribbled svg, .no-annot .margin-note { display: none !important; }
 
 .margin-note {
-  position: absolute; font-family: 'Caveat', cursive; color: var(--ink);
+  position: absolute; font-family: var(--font-caveat), cursive; color: var(--ink);
   font-size: 22px; line-height: 1.15; transform: rotate(-5deg); text-align: left;
 }
 
@@ -275,7 +275,7 @@ a { color: inherit; }
 .field label { font-size: 13.5px; font-weight: 600; color: var(--text-2); }
 .input, .select {
   background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
-  font-family: 'Instrument Sans', sans-serif; font-size: 15px; color: var(--text);
+  font-family: var(--font-sans), system-ui, sans-serif; font-size: 15px; color: var(--text);
   padding: 11px 14px; outline: none; width: 100%;
 }
 .input:focus, .select:focus { border-color: var(--ink); box-shadow: 0 0 0 3px var(--ink-soft); }
@@ -283,9 +283,9 @@ a { color: inherit; }
 /* ============ footer ============ */
 .footer { margin-top: 110px; border-top: 1px solid var(--border); background: var(--bg-soft); }
 .footer-inner { max-width: 1200px; margin: 0 auto; padding: 48px 32px 36px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; }
-.footer h4 { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; font-weight: 500; }
+.footer h4 { font-family: var(--font-mono), ui-monospace, monospace; font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; font-weight: 500; }
 .footer-col { display: flex; flex-direction: column; gap: 9px; }
-.footer-col a, .footer-col button { font-size: 14.5px; color: var(--text-2); text-decoration: none; background: none; border: none; padding: 0; cursor: pointer; text-align: left; font-family: 'Instrument Sans', sans-serif; }
+.footer-col a, .footer-col button { font-size: 14.5px; color: var(--text-2); text-decoration: none; background: none; border: none; padding: 0; cursor: pointer; text-align: left; font-family: var(--font-sans), system-ui, sans-serif; }
 .footer-col a:hover, .footer-col button:hover { color: var(--ink); }
 .footer-legal { max-width: 1200px; margin: 0 auto; padding: 0 32px 28px; display: flex; justify-content: space-between; gap: 16px; font-size: 12.5px; color: var(--muted); flex-wrap: wrap; }
 .footer-legal-links { display: flex; flex-wrap: wrap; gap: 16px; flex-basis: 100%; margin-bottom: 4px; padding-bottom: 14px; border-bottom: 1px solid var(--line, rgba(127,127,127,0.2)); }
@@ -570,7 +570,7 @@ html[data-lesson-study='on'] .ec-ms-footer {
 }
 .hl-recap-item:hover { background: rgb(0 0 0 / 4%); border-color: var(--rule); }
 .hl-recap-quote {
-  font-family: 'Newsreader', serif;
+  font-family: var(--font-display), Georgia, serif;
   font-size: 15.5px;
   line-height: 1.45;
   display: -webkit-box;

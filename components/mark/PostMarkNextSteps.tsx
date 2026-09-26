@@ -46,7 +46,7 @@ export function PostMarkNextSteps({
             href="/dashboard/review"
             className="ms-mark-example-slip__cta inline-flex min-h-[44px] items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-brand)]"
           >
-            See what&apos;s due -&gt;
+            See what&apos;s due →
           </Link>
         </aside>
       )}
@@ -68,7 +68,7 @@ export function PostMarkNextSteps({
           <span className="sm:hidden">New question</span>
           <span className="hidden sm:inline">Mark a new question</span>
           <span className="font-mono text-[11px] font-bold" aria-hidden>
-            -&gt;
+            →
           </span>
         </button>
       </div>

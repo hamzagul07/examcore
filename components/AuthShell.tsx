@@ -91,7 +91,7 @@ export function AuthShell({
           <form action={backAction} method="POST" className="inline">
             <button type="submit" className="ms-auth-desk__back">
               <span className="font-mono text-[11px] font-bold" aria-hidden>
-                &lt;-
+                ←
               </span>
               {backLabel}
             </button>
@@ -99,7 +99,7 @@ export function AuthShell({
         ) : (
           <Link href={backHref} className="ms-auth-desk__back">
             <span className="font-mono text-[11px] font-bold" aria-hidden>
-              &lt;-
+              ←
             </span>
             {backLabel}
           </Link>

@@ -238,13 +238,13 @@ export default function ComparePage() {
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 M1
               </span>
-              Mark a question free -&gt;
+              Mark a question free →
             </Link>
             <Link
               href="/mark?board=edexcel&subject=WMA11"
               className="ec-btn-ghost inline-flex min-h-[48px]"
             >
-              Edexcel IAL Maths -&gt;
+              Edexcel IAL Maths →
             </Link>
           </div>
         </div>

@@ -142,21 +142,21 @@ export default async function SubjectCommandWordsPage({ params }: Props) {
       >
         <div className="ms-tool-instrument__links mb-6">
           <Link href={`/mark?subject=${code}`} className="ec-link">
-            Mark {code} free -&gt;
+            Mark {code} free →
           </Link>
           {entry.guideSlug ? (
             <Link href={`/blog/${entry.guideSlug}`} className="ec-link">
-              Full {code} guide -&gt;
+              Full {code} guide →
             </Link>
           ) : null}
           <Link href={entry.subjectPath} className="ec-link">
-            {code} marking hub -&gt;
+            {code} marking hub →
           </Link>
           <Link href="/tools/command-words" className="ec-link">
-            All command words -&gt;
+            All command words →
           </Link>
           <Link href={`/past-papers/${code}`} className="ec-link">
-            {code} past papers -&gt;
+            {code} past papers →
           </Link>
         </div>
 

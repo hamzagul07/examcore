@@ -71,7 +71,7 @@ export function ExamCountdownHero({
             href="/account/exam"
             className="text-[var(--ec-text-secondary)] underline-offset-2 hover:text-[var(--ec-brand)] hover:underline"
           >
-            Change exam date -&gt;
+            Change exam date →
           </Link>
         </motion.p>
       </div>

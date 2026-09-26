@@ -164,7 +164,7 @@ function ActionCard({
       >
         {item.ctaText}
         <span className="font-mono text-[11px] font-bold" aria-hidden>
-          -&gt;
+          →
         </span>
       </LoadingLink>
     </div>

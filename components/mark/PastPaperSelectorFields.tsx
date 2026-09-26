@@ -131,14 +131,16 @@ export function PastPaperSelectorFields({
   }
 
   return (
-    <div className="space-y-4">
+    // Columns follow this card's width, not the viewport's: on desktop the card
+    // is a narrow column, and a viewport breakpoint cut "Mathematics" to "Mathema".
+    <div className="@container space-y-4">
       <p className="text-xs leading-relaxed text-[var(--ec-text-secondary)]">
         Select the exact Cambridge past paper and question — we load the official mark
         scheme when it&apos;s in our database.
       </p>
 
       {papersLoading && (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2" aria-busy aria-label="Loading available papers">
+        <div className="grid grid-cols-1 gap-4 @sm:grid-cols-2" aria-busy aria-label="Loading available papers">
           <div>
             <SkeletonLine className="mb-2 h-3 w-16" />
             <SkeletonBlock className="h-11 w-full" />
@@ -158,7 +160,7 @@ export function PastPaperSelectorFields({
       )}
 
       {!papersLoading && profileSelectableSubjects.length > 0 && (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 @sm:grid-cols-2">
           <div>
             <Label htmlFor="past-paper-subject" className="label-overline mb-2 inline-block">
               Subject
@@ -238,7 +240,7 @@ export function PastPaperSelectorFields({
             </select>
           </div>
 
-          <div className="sm:col-span-2">
+          <div className="@sm:col-span-2">
             <Label htmlFor="past-paper-question" className="label-overline mb-2 inline-block">
               Question number
             </Label>

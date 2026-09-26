@@ -120,7 +120,7 @@ export default function Results2026EdexcelPage() {
             >
               IAL Mathematics hub
               <span className="font-mono text-[11px] font-bold" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
             <Link
@@ -157,7 +157,7 @@ export default function Results2026EdexcelPage() {
                   </div>
                 </div>
                 <span className="font-mono text-[11px] font-bold text-[var(--ec-brand)]" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -187,10 +187,10 @@ export default function Results2026EdexcelPage() {
 
         <div className="ms-tool-instrument__links mt-10">
           <Link href="/results-2026" className="ec-link">
-            Cambridge Results Day hub -&gt;
+            Cambridge Results Day hub →
           </Link>
           <Link href="/results-2026/ib" className="ec-link">
-            IB Diploma results -&gt;
+            IB Diploma results →
           </Link>
         </div>
       </ToolInstrumentShell>

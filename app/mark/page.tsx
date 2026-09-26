@@ -3152,7 +3152,7 @@ export default function MarkPage() {
                   >
                     Back to lesson
                     <span className="font-mono text-xs font-bold" aria-hidden>
-                      -&gt;
+                      →
                     </span>
                   </Link>
                 ) : null}
@@ -3810,7 +3810,7 @@ export default function MarkPage() {
                     </span>
                   </span>
                   <span className="font-mono text-sm font-bold text-[var(--ec-brand)]" aria-hidden>
-                    -&gt;
+                    →
                   </span>
                 </button>
               )}
@@ -4166,7 +4166,7 @@ export default function MarkPage() {
                 </div>
                 <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-[var(--ec-brand)]">
                   See updated insights
-                  <span className="font-mono text-xs font-bold transition-transform group-hover:translate-x-0.5" aria-hidden>-&gt;</span>
+                  <span className="font-mono text-xs font-bold transition-transform group-hover:translate-x-0.5" aria-hidden>→</span>
                 </span>
               </Link>
             )}
@@ -4191,7 +4191,7 @@ export default function MarkPage() {
                 </div>
                 <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-[var(--ec-brand)]">
                   Open Vault
-                  <span className="font-mono text-xs font-bold transition-transform group-hover:translate-x-0.5" aria-hidden>-&gt;</span>
+                  <span className="font-mono text-xs font-bold transition-transform group-hover:translate-x-0.5" aria-hidden>→</span>
                 </span>
               </Link>
             )}
@@ -4216,7 +4216,7 @@ export default function MarkPage() {
                 </div>
                 <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-[var(--ec-brand)]">
                   Back to lesson
-                  <span className="font-mono text-xs font-bold transition-transform group-hover:translate-x-0.5" aria-hidden>-&gt;</span>
+                  <span className="font-mono text-xs font-bold transition-transform group-hover:translate-x-0.5" aria-hidden>→</span>
                 </span>
               </Link>
             ) : null}

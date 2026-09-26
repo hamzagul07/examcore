@@ -46,7 +46,7 @@ export function IbResultsSpotlight({ className = '' }: Props) {
         <div className="mt-4 flex flex-wrap gap-2">
           <Link href={copy.primaryHref} className="ec-btn-primary ec-btn-primary--sm">
             {copy.primaryLabel}
-            <span className="h-4 w-4" aria-hidden>-&gt;</span>
+            <span className="h-4 w-4" aria-hidden>→</span>
           </Link>
           <Link href={copy.secondaryHref} className="ec-btn-ghost ec-btn-ghost--sm">
             {copy.secondaryLabel}

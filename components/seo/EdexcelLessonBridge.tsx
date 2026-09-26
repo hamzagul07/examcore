@@ -53,7 +53,7 @@ export function EdexcelLessonBridge({
             href={markHref}
             className="ec-btn-ghost inline-flex min-h-[44px] items-center text-sm"
           >
-            Mark {unitCode} -&gt;
+            Mark {unitCode} →
           </Link>
           <Link
             href={unitHubHref}

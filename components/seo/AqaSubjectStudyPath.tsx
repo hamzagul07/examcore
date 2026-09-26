@@ -81,7 +81,7 @@ export function AqaSubjectStudyPath({
                   </span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -106,7 +106,7 @@ export function AqaSubjectStudyPath({
             <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
               M1
             </span>
-            Mark AQA {subjectName} -&gt;
+            Mark AQA {subjectName} →
           </Link>
           <Link
             href={`/courses/${syllabus}`}

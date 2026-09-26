@@ -126,14 +126,14 @@ export default async function TeacherClassroomsPage({
                 loadingText="Loading…"
                 className="ec-btn-secondary inline-flex min-h-[44px] items-center"
               >
-                Older classes -&gt;
+                Older classes →
               </LoadingLink>
             </p>
           ) : null}
           {cursor ? (
             <p className="mt-4">
               <LoadingLink href="/teacher/classrooms" variant="inline" className="ec-link inline-flex min-h-[44px] items-center">
-                &lt;- Back to the newest
+                ← Back to the newest
               </LoadingLink>
             </p>
           ) : null}

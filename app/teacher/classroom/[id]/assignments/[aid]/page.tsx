@@ -226,7 +226,7 @@ export default async function SetPage({ params }: Props) {
     <TeacherPageContainer className="ms-teacher-page">
       <OmniAIBridge context={teacherOmniContext({ classroomId: classroom.id, view: 'sets' })} />
       <TeacherBackLink href={setsHref(classroom.id, status === 'open' ? undefined : status)}>
-        &lt;- Sets · {classroom.name}
+        ← Sets · {classroom.name}
       </TeacherBackLink>
       <TeacherDeskHead eyebrow="Set" stamp={KIND_STAMP[assignment.kind]} title={assignment.title} lead={lead} note={note} />
 

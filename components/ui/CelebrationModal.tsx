@@ -39,7 +39,7 @@ export function CelebrationModal({
           </span>
           Open the desk
           <span className="font-mono text-[11px] font-bold" aria-hidden>
-            -&gt;
+            →
           </span>
         </button>
       </div>

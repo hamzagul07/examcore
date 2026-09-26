@@ -196,7 +196,7 @@ export default async function StudentPage({ params, searchParams }: Props) {
     <TeacherPageContainer className="ms-teacher-page max-w-5xl">
       <OmniAIBridge context={teacherOmniContext({ classroomId: classroom.id, view: 'student' })} />
       <TeacherBackLink href={`/teacher/classroom/${encodeURIComponent(classroom.id)}/students`}>
-        &lt;- Class roster
+        ← Class roster
       </TeacherBackLink>
 
       <StudentHead

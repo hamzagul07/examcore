@@ -1169,7 +1169,7 @@ function StepFirstMark({
               </span>
               Mark a question now
               <span className="font-mono text-[11px] font-bold" aria-hidden>
-                -&gt;
+                →
               </span>
             </>
           )}
@@ -1191,7 +1191,7 @@ function StepFirstMark({
           className="ec-btn-underline inline-flex items-center gap-1.5"
         >
           <span className="font-mono text-[11px] font-bold" aria-hidden>
-            &lt;-
+            ←
           </span>
           Back
         </button>
@@ -1220,7 +1220,7 @@ function StepNav({
           className="ec-btn-underline inline-flex items-center gap-1.5"
         >
           <span className="font-mono text-[11px] font-bold" aria-hidden>
-            &lt;-
+            ←
           </span>
           Back
         </button>
@@ -1237,7 +1237,7 @@ function StepNav({
         {continueLabel}
         {!continueBusy ? (
           <span className="font-mono text-[11px] font-bold" aria-hidden>
-            -&gt;
+            →
           </span>
         ) : null}
       </button>

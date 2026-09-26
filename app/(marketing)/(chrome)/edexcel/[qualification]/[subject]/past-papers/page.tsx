@@ -137,7 +137,7 @@ export default async function EdexcelPastPapersPage({ params }: Props) {
                     </span>
                   </span>
                   <span className="ms-board-slip__go" aria-hidden>
-                    -&gt;
+                    →
                   </span>
                 </Link>
               </li>
@@ -170,7 +170,7 @@ export default async function EdexcelPastPapersPage({ params }: Props) {
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 M1
               </span>
-              Mark an Edexcel answer -&gt;
+              Mark an Edexcel answer →
             </Link>
           </div>
         </div>

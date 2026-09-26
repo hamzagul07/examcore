@@ -161,7 +161,7 @@ export default async function TeacherSeatsAdminPage({
                 href={`/admin/teacher-seats?status=${status}&cursor=${encodeURIComponent(page.next_cursor)}`}
                 className="ec-btn-secondary inline-flex min-h-[44px] items-center"
               >
-                {status === 'pending' ? 'Newer requests' : 'Older requests'} -&gt;
+                {status === 'pending' ? 'Newer requests' : 'Older requests'} →
               </Link>
             </p>
           ) : null}

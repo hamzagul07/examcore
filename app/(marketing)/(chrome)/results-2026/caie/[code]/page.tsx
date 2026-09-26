@@ -117,7 +117,7 @@ export default async function Results2026CaiePage({ params }: Props) {
             >
               Will my {code} grade hold?
               <span className="font-mono text-[11px] font-bold" aria-hidden>
-                -&gt;
+                →
               </span>
             </a>
             <Link
@@ -211,7 +211,7 @@ export default async function Results2026CaiePage({ params }: Props) {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                Official source -&gt;
+                Official source →
               </a>
             ) : null}
           </aside>

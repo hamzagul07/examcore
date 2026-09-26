@@ -143,7 +143,7 @@ export default function ForTeachersPage() {
               </span>
               Set up your first class
               <span className="font-mono text-[11px] font-bold" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
             <Link href="/contact" className="ec-btn-ghost inline-flex min-h-[48px] items-center">
@@ -307,7 +307,7 @@ export default function ForTeachersPage() {
             <Link href="/for-teachers/start" className="ec-btn-primary inline-flex min-h-[44px] items-center gap-2">
               Set up your first class
               <span className="font-mono text-[11px] font-bold" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
             <Link href="/contact" className="ec-btn-ghost inline-flex min-h-[44px] items-center">

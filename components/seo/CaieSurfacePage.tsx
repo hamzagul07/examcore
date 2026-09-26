@@ -199,7 +199,7 @@ export function CaieSurfacePage({
                       </p>
                       <p className="ms-body-2 mt-2">{q.questionTextPreview}</p>
                       <Link href={q.markHref} className="ec-btn-primary mt-3 inline-flex min-h-[44px]">
-                        Attempt &amp; mark <span className="h-4 w-4" aria-hidden>-&gt;</span>
+                        Attempt &amp; mark <span className="h-4 w-4" aria-hidden>→</span>
                       </Link>
                     </article>
                   ))}

@@ -55,7 +55,7 @@ export function IbThreadCta({ subject, source, className = '' }: Props) {
               every reader who merely scrolled past. */}
           <Link href={href} prefetch={false} className="ec-btn-primary ec-btn-primary--sm">
             Post your question
-            <span className="h-4 w-4" aria-hidden>-&gt;</span>
+            <span className="h-4 w-4" aria-hidden>→</span>
           </Link>
           <Link href="/community" className="ec-btn-ghost ec-btn-ghost--sm">
             Browse the community

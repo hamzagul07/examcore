@@ -77,7 +77,7 @@ export default async function OxfordaqaBoundariesPage({ params }: Props) {
                   <span className="ms-board-slip__meta">Boundary pending</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -98,7 +98,7 @@ export default async function OxfordaqaBoundariesPage({ params }: Props) {
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 ∴
               </span>
-              Open calculator -&gt;
+              Open calculator →
             </Link>
           </div>
         </div>

@@ -78,7 +78,7 @@ export default async function OxfordaqaPastPapersPage({ params }: Props) {
                   <span className="ms-board-slip__meta">Shell index</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -99,7 +99,7 @@ export default async function OxfordaqaPastPapersPage({ params }: Props) {
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 M1
               </span>
-              Mark OxfordAQA {subject.name} -&gt;
+              Mark OxfordAQA {subject.name} →
             </Link>
           </div>
         </div>

@@ -140,7 +140,7 @@ export default async function QuestionObjectPage({ params }: Props) {
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href={q.markHref} className="ec-btn-primary min-h-[48px]">
-            Try it yourself — mark my answer <span className="h-4 w-4" aria-hidden>-&gt;</span>
+            Try it yourself — mark my answer <span className="h-4 w-4" aria-hidden>→</span>
           </Link>
           <Link href={`/markscheme/${slug}`} className="ec-btn-ghost min-h-[48px]">
             How marks are awarded (assessment page)

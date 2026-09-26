@@ -12,7 +12,7 @@ export function TopicHubStrip() {
         </Link>
       ))}
       <Link href="/guides" className="ec-btn-underline ms-hub-strip-more">
-        All hubs -&gt;
+        All hubs →
       </Link>
     </div>
   )

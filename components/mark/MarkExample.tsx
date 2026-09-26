@@ -57,7 +57,7 @@ export function MarkExampleInvite({
       >
         See a marked example
         <span className="font-mono text-[11px] font-bold" aria-hidden>
-          -&gt;
+          →
         </span>
       </button>
     </aside>
@@ -102,7 +102,7 @@ export function MarkExampleBanner({
       >
         Mark my own answer
         <span className="font-mono text-[11px] font-bold" aria-hidden>
-          -&gt;
+          →
         </span>
       </button>
     </aside>
@@ -117,7 +117,7 @@ export function MarkExampleFooter({ onDismiss }: { onDismiss: () => void }) {
       onClick={onDismiss}
       className="ec-btn-ghost inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wide"
     >
-      Close example and upload my own -&gt;
+      Close example and upload my own →
     </button>
   )
 }

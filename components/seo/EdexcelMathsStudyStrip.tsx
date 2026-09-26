@@ -71,7 +71,7 @@ export function EdexcelMathsStudyStrip({ qualification, subjectSlug }: Props) {
                         </span>
                       </span>
                       <span className="ms-board-slip__go" aria-hidden>
-                        -&gt;
+                        →
                       </span>
                     </Link>
                   </li>
@@ -89,7 +89,7 @@ export function EdexcelMathsStudyStrip({ qualification, subjectSlug }: Props) {
           <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
             M1
           </span>
-          Mark WMA11 now -&gt;
+          Mark WMA11 now →
         </Link>
       </div>
     </section>

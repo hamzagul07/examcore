@@ -133,7 +133,7 @@ export default async function EdexcelBoundariesPage({ params }: Props) {
                   </span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -157,8 +157,8 @@ export default async function EdexcelBoundariesPage({ params }: Props) {
                 M1
               </span>
               {markingLive
-                ? `Mark IAL ${subject.name} -&gt;`
-                : 'Open Edexcel marking -&gt;'}
+                ? `Mark IAL ${subject.name} →`
+                : 'Open Edexcel marking →'}
             </Link>
           </div>
         </div>

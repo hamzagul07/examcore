@@ -39,7 +39,7 @@ export function BlogRelatedGrid({ posts, title, clusterId }: Props) {
         {hub && hubLabel ? (
           <Link href={hub.path} className="ec-btn-underline inline-flex items-center gap-1 text-sm">
             {hubLabel}
-            <span className="h-4 w-4" aria-hidden>-&gt;</span>
+            <span className="h-4 w-4" aria-hidden>→</span>
           </Link>
         ) : null}
       </div>

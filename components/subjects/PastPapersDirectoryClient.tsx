@@ -40,7 +40,7 @@ function SubjectCard({ s }: { s: PastPaperSubject }) {
           </span>
         </span>
         <span className="ms-pp-cta" aria-hidden>
-          -&gt;
+          →
         </span>
       </Link>
     </li>

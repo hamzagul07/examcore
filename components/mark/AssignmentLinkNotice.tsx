@@ -43,7 +43,7 @@ export function AssignmentLinkNotice({ value }: { value: unknown }) {
       >
         {notice.tone === 'linked' ? 'Back to the set' : link.assignment_id ? 'Open the set' : 'Your sets'}
         <span className="font-mono text-xs font-bold" aria-hidden>
-          -&gt;
+          →
         </span>
       </Link>
     </div>

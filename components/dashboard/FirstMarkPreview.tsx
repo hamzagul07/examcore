@@ -42,7 +42,7 @@ export function FirstMarkPreview({ board = null }: Props) {
           href={ib ? '/mark?example=1&board=ib' : '/mark?example=1'}
           className="ms-first-mark__link"
         >
-          See the full example -&gt;
+          See the full example →
         </Link>
       </div>
 

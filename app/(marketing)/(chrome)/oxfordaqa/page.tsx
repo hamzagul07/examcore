@@ -67,7 +67,7 @@ export default function OxfordaqaHubPage() {
             <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
               M1
             </span>
-            Mark OxfordAQA Maths -&gt;
+            Mark OxfordAQA Maths →
           </FunnelMarkLink>
           <Link
             href="/oxfordaqa/international-a-level/mathematics"
@@ -91,7 +91,7 @@ export default function OxfordaqaHubPage() {
                   <span className="ms-board-slip__name">{g.label}</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -114,7 +114,7 @@ export default function OxfordaqaHubPage() {
                   <span className="ms-board-slip__meta">{q.blurb}</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -138,7 +138,7 @@ export default function OxfordaqaHubPage() {
                   <span className="ms-board-slip__blurb">{s.blurb}</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -165,7 +165,7 @@ export default function OxfordaqaHubPage() {
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 M1
               </span>
-              Mark OxfordAQA Maths -&gt;
+              Mark OxfordAQA Maths →
             </FunnelMarkLink>
             <FunnelMarkLink
               href={edexcelMarkHref('WMA11')}

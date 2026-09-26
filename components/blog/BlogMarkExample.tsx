@@ -103,7 +103,7 @@ export function BlogMarkExample({
         <p className="ms-blog-mark-example__cta">
           <Link href={href} className="ec-btn-primary inline-flex text-sm">
             Mark your own answer
-            <span className="ml-1 h-4 w-4" aria-hidden>-&gt;</span>
+            <span className="ml-1 h-4 w-4" aria-hidden>→</span>
           </Link>
           <span>Free — no account needed for your first one.</span>
         </p>

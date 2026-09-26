@@ -275,7 +275,7 @@ function ClassReviewWidget({ classroomId, limit = 5 }: { classroomId: string; li
           href={`/teacher/reviews?${query}`}
           className="inline-flex min-h-[44px] items-center font-mono text-[11px] font-bold tracking-wide ec-text-brand"
         >
-          All reviews -&gt;
+          All reviews →
         </Link>
       </div>
 

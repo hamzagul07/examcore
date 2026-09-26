@@ -47,7 +47,7 @@ export function HeroCTAs({ primary, secondary }: HeroCTAsProps) {
         >
           {primary.label}
           <motion.span className="inline-flex font-mono text-sm" variants={arrowVariants} aria-hidden>
-            -&gt;
+            →
           </motion.span>
         </Link>
       </motion.div>

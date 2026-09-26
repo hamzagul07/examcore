@@ -14,7 +14,11 @@
  *     the set's due date and the student's own extension. An extension only
  *     ever extends; a teacher who types an earlier date by mistake must not
  *     turn work that was on time into late work. Handing in exactly at the
- *     deadline is on time.
+ *     deadline is on time. A set with no due date has no deadline, extension
+ *     or not.
+ *   - A set closes for the class at effectiveCloseAt, but for a student with
+ *     an extension only once their extended deadline has also passed
+ *     (studentCloseAt / studentAssignmentStatus).
  *   - Lateness is derived from timestamps, not from the stored submission
  *     status, so granting an extension after the fact clears the late mark
  *     without rewriting any rows. The stored status matters only for
@@ -78,14 +82,19 @@ function isUsableMark(earned: number | null, total: number | null): total is num
 
 /**
  * The deadline a student is actually held to: the later of the set's due date
- * and their extension, or null when neither is a usable timestamp.
+ * and their extension, or null when the set has no usable due date.
+ *
+ * An extension only ever extends the set's deadline, so on a set with no due
+ * date it is ignored. Otherwise a teacher who cleared the due date after
+ * giving one student extra time would leave that student — and only that
+ * student — with a deadline: late after their "extension", shown overdue, and
+ * chased by the reminder cron.
  */
 export function effectiveDueAt(dueAt: string | null, extendedDueAt: string | null): string | null {
   const due = toMs(dueAt)
+  if (due === null) return null
   const extended = toMs(extendedDueAt)
-  if (due === null && extended === null) return null
-  const deadline = Math.max(due ?? -Infinity, extended ?? -Infinity)
-  return new Date(deadline).toISOString()
+  return new Date(Math.max(due, extended ?? -Infinity)).toISOString()
 }
 
 /**
@@ -261,15 +270,67 @@ export function effectiveCloseAt(a: Pick<Assignment, 'closed_at' | 'due_at'>): s
 }
 
 /**
+ * When a published set stops being open for ONE student: the set's effective
+ * close, or their extended deadline when that is later. Null when the set
+ * never closes.
+ *
+ * An extension is a promise that the student may still hand the work in, so
+ * neither the auto-close nor the teacher pressing Close takes it back: the
+ * set stays open for that student until their own deadline. After it, the
+ * set is closed for them as for everyone else (and late work is accepted or
+ * not by settings.allow_late, as for everyone else). An extension on a set
+ * with no due date is ignored (see effectiveDueAt).
+ */
+export function studentCloseAt(
+  a: Pick<Assignment, 'closed_at' | 'due_at'>,
+  extendedDueAt: string | null
+): string | null {
+  const close = toMs(effectiveCloseAt(a))
+  if (close === null) return null
+  // Only a real extension (past the set's due date) can move the close; the
+  // due date itself never reopens a set the teacher closed early.
+  const due = toMs(a.due_at)
+  const extended = toMs(extendedDueAt)
+  if (due === null || extended === null || extended <= due) return new Date(close).toISOString()
+  return new Date(Math.max(close, extended)).toISOString()
+}
+
+function nowMsOf(now: Date): number {
+  return Number.isFinite(now.getTime()) ? now.getTime() : Date.now()
+}
+
+/**
  * draft: never published. closed: archived, or past its effective close
  * (see effectiveCloseAt). open: everything else — including a set past its
  * due date but inside the grace window, which is where "late" lives.
+ *
+ * This is the set's status for the class as a whole (its tab, the week strip,
+ * the teacher's open-set counts). Whether one student can still hand work in
+ * is studentAssignmentStatus, which honours their extension.
  */
 export function assignmentStatus(a: StatusFields, now: Date = new Date()): 'draft' | 'open' | 'closed' {
   if (!a.published_at) return 'draft'
   if (a.archived_at) return 'closed'
   const closeAt = toMs(effectiveCloseAt(a))
-  const nowMs = Number.isFinite(now.getTime()) ? now.getTime() : Date.now()
-  if (closeAt !== null && closeAt <= nowMs) return 'closed'
+  if (closeAt !== null && closeAt <= nowMsOf(now)) return 'closed'
+  return 'open'
+}
+
+/**
+ * assignmentStatus for one student: the same, except that the set closes for
+ * them at studentCloseAt — so a student with an extension past the set's
+ * close still sees it open, can still hand in, and is still reminded, until
+ * their own deadline. Every student-facing rule (the marking gate, the
+ * student's list, reconciliation's window, reminders) uses this one.
+ */
+export function studentAssignmentStatus(
+  a: StatusFields,
+  extendedDueAt: string | null,
+  now: Date = new Date()
+): 'draft' | 'open' | 'closed' {
+  if (!a.published_at) return 'draft'
+  if (a.archived_at) return 'closed'
+  const closeAt = toMs(studentCloseAt(a, extendedDueAt))
+  if (closeAt !== null && closeAt <= nowMsOf(now)) return 'closed'
   return 'open'
 }

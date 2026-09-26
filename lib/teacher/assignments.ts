@@ -2,7 +2,7 @@ import 'server-only'
 
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { isUniqueViolation } from '@/lib/marking/mark-run-errors'
-import { assignmentStatus, effectiveCloseAt } from '@/lib/teacher/assignment-status'
+import { assignmentStatus, studentAssignmentStatus, studentCloseAt } from '@/lib/teacher/assignment-status'
 import { buildCohortGapReport, headlineGap, type CohortGapReport, type GapAttempt, type MarkPoint, type MarkTypeGap } from '@/lib/teacher/cohort-gaps'
 import { isTeacherV2 } from '@/lib/teacher/flags'
 import { notifyRemind, notifySubmission } from '@/lib/teacher/notify'
@@ -38,11 +38,16 @@ import {
 import {
   RECONCILE_ATTEMPT_COLUMNS,
   RECONCILE_MIN_INTERVAL_MS,
+  cellAttemptIds,
+  collectSubmissionCells,
   isNewOrImproved,
   mergeSubmission,
+  planSubmissionResync,
   planSubmissions,
   reconcileIsFresh,
+  reviewedAttemptIds,
   submissionChanged,
+  type DecisionRow,
   type ReconcileAttemptRow,
   type RosterEntry,
   type SubmissionPlan,
@@ -588,7 +593,18 @@ export async function remindAssignment(
 ): Promise<{ sent: number; eligible: number }> {
   const status = assignmentStatus(assignment, now)
   if (status === 'draft') throw new AssignmentInputError('Publish the set before reminding anyone.', 'assignment', 409)
-  if (status === 'closed') throw new AssignmentInputError('This set is closed.', 'assignment', 409)
+  // A set closed for the class is still open to a student whose extension
+  // runs past its close (studentAssignmentStatus); only they can be reminded.
+  let openTo: Set<string> | null = null
+  if (status === 'closed') {
+    const flags = await readFlags(supabase, assignment.id)
+    openTo = new Set(
+      flags
+        .filter((f) => !f.excused_at && studentAssignmentStatus(assignment, f.extended_due_at, now) === 'open')
+        .map((f) => f.student_id)
+    )
+    if (openTo.size === 0) throw new AssignmentInputError('This set is closed.', 'assignment', 409)
+  }
 
   const { data: last, error: lastError } = await supabase
     .from('assignment_students')
@@ -620,10 +636,12 @@ export async function remindAssignment(
   const loaded = await loadAssignment(supabase, admin, assignment.id)
   if (!loaded) throw new AssignmentInputError('Set not found', 'assignment', 404)
 
-  const { ids, unknown } = studentsToRemind(loaded.progress, requested)
+  const { ids: owing, unknown } = studentsToRemind(loaded.progress, requested)
   if (unknown.length > 0) {
     throw new AssignmentInputError('One of the picked students is not on this set.', 'student_ids')
   }
+  const ids = openTo ? owing.filter((id) => openTo.has(id)) : owing
+  // Never hand notifyRemind an empty list: to it, empty means "everyone".
   if (ids.length === 0) return { sent: 0, eligible: 0 }
 
   const sent = await notifyRemind(assignment.id, ids)
@@ -878,7 +896,8 @@ async function writeSubmission(
 async function writePlans(
   admin: SupabaseClient,
   assignment: Pick<Assignment, 'id' | 'due_at'>,
-  plans: readonly SubmissionPlan[]
+  plans: readonly SubmissionPlan[],
+  reviewed?: ReadonlySet<string>
 ): Promise<Array<{ previous: AssignmentSubmission | null; row: SubmissionWrite }>> {
   const written: Array<{ previous: AssignmentSubmission | null; row: SubmissionWrite }> = []
   for (const plan of plans) {
@@ -888,11 +907,53 @@ async function writePlans(
         item: plan.item,
         studentId: plan.studentId,
         extendedDueAt: plan.extendedDueAt,
+        reviewed,
       })
     )
     if (result) written.push(result)
   }
   return written
+}
+
+/**
+ * The attempts among `attemptIds` whose latest teacher decision is a confirm
+ * or an override (reviewedAttemptIds) — what makes a hand-in 'reviewed'.
+ */
+async function readReviewedAttempts(admin: SupabaseClient, attemptIds: readonly string[]): Promise<Set<string>> {
+  const rows: DecisionRow[] = []
+  for (const part of chunk([...new Set(attemptIds)])) {
+    const { rows: page } = await fetchAllFiltered<DecisionRow>('teacher_overrides', (from, to) =>
+      admin
+        .from('teacher_overrides')
+        .select('id, attempt_id, decision, created_at')
+        .in('attempt_id', part)
+        .order('id')
+        .range(from, to)
+    )
+    rows.push(...page)
+  }
+  return reviewedAttemptIds(rows)
+}
+
+/**
+ * The latest instant any student on `roster` can still hand work in when the
+ * set refuses late work: the set's close, or the latest extension past it
+ * (studentCloseAt). Null when the set accepts late work or never closes —
+ * then there is no upper bound.
+ */
+function latestRosterClose(
+  assignment: Pick<Assignment, 'closed_at' | 'due_at' | 'settings'>,
+  extensions: ReadonlyMap<string, string | null>,
+  roster: readonly RosterEntry[]
+): string | null {
+  if (assignment.settings.allow_late !== false) return null
+  let latest = studentCloseAt(assignment, null)
+  if (latest === null) return null
+  for (const r of roster) {
+    const close = studentCloseAt(assignment, extensions.get(r.student_id) ?? null)
+    if (close !== null && Date.parse(close) > Date.parse(latest)) latest = close
+  }
+  return latest
 }
 
 // ---------------------------------------------------------------------------
@@ -1051,7 +1112,10 @@ export async function reconcileAssignment(
       },
       laterIso(roster[0].joined_at, published)
     )
-    const toIso = assignment.settings.allow_late === false ? effectiveCloseAt(assignment) : null
+    const extensions = new Map(flags.map((f) => [f.student_id, f.extended_due_at]))
+    // The upper bound is the loosest too: a student with an extension past the
+    // set's close may still hand in (the planner applies each one's own).
+    const toIso = latestRosterClose(assignment, extensions, roster)
 
     const attempts = await loadReconcileAttempts(admin, {
       items,
@@ -1059,15 +1123,12 @@ export async function reconcileAssignment(
       fromIso,
       toIso,
     })
-    const plans = planSubmissions({
-      assignment,
-      items,
-      roster,
-      extensions: new Map(flags.map((f) => [f.student_id, f.extended_due_at])),
-      attempts,
-      existing,
-    })
-    const written = await writePlans(admin, assignment, plans)
+    const input = { assignment, items, roster, extensions, attempts, existing }
+    // 'reviewed' follows the counted attempt's latest decision, read here so a
+    // reconcile never drops a review a teacher made (or keeps one they took back).
+    const reviewed = await readReviewedAttempts(admin, cellAttemptIds(collectSubmissionCells(input)))
+    const plans = planSubmissions({ ...input, reviewed })
+    const written = await writePlans(admin, assignment, plans, reviewed)
     return { linked: written.length }
   } catch (err) {
     const { error: undoError } = await admin
@@ -1124,15 +1185,19 @@ async function activeClassMemberships(admin: SupabaseClient, userId: string): Pr
 }
 
 /**
- * Hand one freshly marked attempt in against every set item it answers for
- * its author: the item it was stamped with, and any published set in the
- * student's classes that holds the same banked question.
+ * The published set items in the student's live classes that `row` answers:
+ * the item it was stamped with, and every item on the same banked question.
+ * Each comes with its set and when the student joined that set's class.
  */
-async function linkAttempt(admin: SupabaseClient, row: ReconcileAttemptRow, memberships: readonly Membership[]) {
-  if (!row.user_id) return
+async function itemsAnsweredBy(
+  admin: SupabaseClient,
+  row: ReconcileAttemptRow,
+  memberships: readonly Membership[]
+): Promise<Array<{ assignment: Assignment; item: AssignmentItem; joinedAt: string }>> {
+  if (!row.user_id || memberships.length === 0) return []
   const stampedId = isUuid(row.assignment_item_id) ? row.assignment_item_id : null
   const schemeId = isUuid(row.mark_scheme_id) ? row.mark_scheme_id : null
-  if (!stampedId && !schemeId) return
+  if (!stampedId && !schemeId) return []
 
   const joinedAt = new Map(memberships.map((m) => [m.classroom_id, m.joined_at]))
   const { rows: setRows } = await fetchAllFiltered<Record<string, unknown>>('assignments', (from, to) =>
@@ -1146,12 +1211,12 @@ async function linkAttempt(admin: SupabaseClient, row: ReconcileAttemptRow, memb
       .range(from, to)
   )
   const sets = new Map(setRows.map((r) => [String(r.id), toAssignment(r)]))
-  if (sets.size === 0) return
+  if (sets.size === 0) return []
 
   const match = [stampedId ? `id.eq.${stampedId}` : null, schemeId ? `mark_scheme_id.eq.${schemeId}` : null]
     .filter(Boolean)
     .join(',')
-  const items: AssignmentItem[] = []
+  const out: Array<{ assignment: Assignment; item: AssignmentItem; joinedAt: string }> = []
   for (const part of chunk([...sets.keys()])) {
     const { data, error } = await admin
       .from('assignment_items')
@@ -1159,30 +1224,48 @@ async function linkAttempt(admin: SupabaseClient, row: ReconcileAttemptRow, memb
       .in('assignment_id', part)
       .or(match)
     if (error) throw new Error(`assignment_items: ${error.message}`)
-    items.push(...((data ?? []) as Record<string, unknown>[]).map(toItem))
+    for (const item of ((data ?? []) as Record<string, unknown>[]).map(toItem)) {
+      const assignment = sets.get(item.assignment_id)
+      const joined = assignment ? joinedAt.get(assignment.classroom_id) : undefined
+      if (assignment && joined) out.push({ assignment, item, joinedAt: joined })
+    }
   }
+  return out
+}
 
-  for (const item of items) {
-    const assignment = sets.get(item.assignment_id)
-    const joined = assignment ? joinedAt.get(assignment.classroom_id) : undefined
-    if (!assignment || !joined) continue
+async function readFlagsFor(
+  admin: SupabaseClient,
+  assignmentId: string,
+  studentId: string
+): Promise<AssignmentStudentFlags | null> {
+  const { data, error } = await admin
+    .from('assignment_students')
+    .select(FLAG_COLUMNS)
+    .eq('assignment_id', assignmentId)
+    .eq('student_id', studentId)
+    .maybeSingle()
+  if (error) throw new Error(`assignment_students: ${error.message}`)
+  return (data as AssignmentStudentFlags | null) ?? null
+}
 
-    const { data: flagRow, error: flagError } = await admin
-      .from('assignment_students')
-      .select(FLAG_COLUMNS)
-      .eq('assignment_id', assignment.id)
-      .eq('student_id', row.user_id)
-      .maybeSingle()
-    if (flagError) throw new Error(`assignment_students: ${flagError.message}`)
-    const flags = (flagRow as AssignmentStudentFlags | null) ?? null
+/**
+ * Hand one freshly marked attempt in against every set item it answers for
+ * its author: the item it was stamped with, and any published set in the
+ * student's classes that holds the same banked question.
+ */
+async function linkAttempt(admin: SupabaseClient, row: ReconcileAttemptRow, memberships: readonly Membership[]) {
+  if (!row.user_id) return
+  const studentId = row.user_id
+  for (const { assignment, item, joinedAt } of await itemsAnsweredBy(admin, row, memberships)) {
+    const flags = await readFlagsFor(admin, assignment.id, studentId)
     if (assignment.target === 'students' && !flags) continue
 
-    const existing = await readSubmission(admin, item.id, row.user_id)
+    const existing = await readSubmission(admin, item.id, studentId)
     const plans = planSubmissions({
       assignment,
       items: [item],
-      roster: [{ student_id: row.user_id, joined_at: joined }],
-      extensions: new Map([[row.user_id, flags?.extended_due_at ?? null]]),
+      roster: [{ student_id: studentId, joined_at: joinedAt }],
+      extensions: new Map([[studentId, flags?.extended_due_at ?? null]]),
       attempts: [row],
       existing: existing ? [existing] : [],
     })
@@ -1250,6 +1333,149 @@ export async function onAttemptsMarked(
 }
 
 // ---------------------------------------------------------------------------
+// After a teacher's decision
+// ---------------------------------------------------------------------------
+
+/** A hand-in as it stands after resyncSubmissionsForAttempt. */
+export type ResyncedSubmission = Pick<SubmissionWrite, 'assignment_id' | 'item_id' | 'student_id' | 'attempt_id' | 'status'>
+
+function resynced(row: Pick<SubmissionWrite, 'assignment_id' | 'item_id' | 'student_id' | 'attempt_id' | 'status'>): ResyncedSubmission {
+  return {
+    assignment_id: row.assignment_id,
+    item_id: row.item_id,
+    student_id: row.student_id,
+    attempt_id: row.attempt_id,
+    status: row.status,
+  }
+}
+
+async function readItem(admin: SupabaseClient, itemId: string): Promise<AssignmentItem | null> {
+  const { data, error } = await admin.from('assignment_items').select(ITEM_COLUMNS).eq('id', itemId).maybeSingle()
+  if (error) throw new Error(`assignment_items: ${error.message}`)
+  return data ? toItem(data as Record<string, unknown>) : null
+}
+
+/**
+ * Recompute one (item, student) hand-in from scratch (planSubmissionResync):
+ * every attempt of theirs that could hand the item in, at its current marks,
+ * judged exactly as reconcileAssignment judges them. `decided` is the attempt
+ * the teacher just decided on, as re-read after the decision.
+ */
+async function resyncSubmission(
+  admin: SupabaseClient,
+  itemOrId: AssignmentItem | string,
+  studentId: string,
+  decided: ReconcileAttemptRow
+): Promise<ResyncedSubmission | null> {
+  const item = typeof itemOrId === 'string' ? await readItem(admin, itemOrId) : itemOrId
+  if (!item) return null
+  const assignment = await readAssignment(admin, item.assignment_id)
+  if (!assignment) return null
+
+  const [existing, flags, classroom, membershipRes] = await Promise.all([
+    readSubmission(admin, item.id, studentId),
+    readFlagsFor(admin, assignment.id, studentId),
+    getClassroomScope(admin, assignment.classroom_id),
+    admin
+      .from('classroom_memberships')
+      .select('status, joined_at')
+      .eq('classroom_id', assignment.classroom_id)
+      .eq('student_id', studentId)
+      .maybeSingle(),
+  ])
+  if (membershipRes.error) throw new Error(`classroom_memberships: ${membershipRes.error.message}`)
+  const membership = membershipRes.data as { status: string; joined_at: string } | null
+  // On the set's roster exactly when reconcileAssignment would reconcile them;
+  // otherwise the row is history and only the attempt it holds is re-read.
+  const onRoster =
+    Boolean(assignment.published_at) &&
+    !assignment.archived_at &&
+    Boolean(classroom) &&
+    !classroom?.archived_at &&
+    membership?.status === 'active' &&
+    (assignment.target === 'all' || flags !== null)
+  const joinedAt = onRoster && membership ? membership.joined_at : null
+  const extendedDueAt = flags?.extended_due_at ?? null
+
+  const rows: ReconcileAttemptRow[] = [decided]
+  if (joinedAt && assignment.published_at) {
+    rows.push(
+      ...(await loadReconcileAttempts(admin, {
+        items: [item],
+        studentIds: [studentId],
+        fromIso: laterIso(joinedAt, assignment.published_at),
+        toIso: assignment.settings.allow_late === false ? studentCloseAt(assignment, extendedDueAt) : null,
+      }))
+    )
+  }
+  if (existing?.attempt_id && !rows.some((r) => r.id === existing.attempt_id)) {
+    const { data, error } = await admin
+      .from('attempts')
+      .select(RECONCILE_ATTEMPT_COLUMNS)
+      .eq('id', existing.attempt_id)
+      .maybeSingle()
+    if (error) throw new Error(`attempts: ${error.message}`)
+    if (data) rows.push(data as unknown as ReconcileAttemptRow)
+  }
+  const reviewed = await readReviewedAttempts(admin, rows.map((r) => r.id))
+
+  const plan = (fresh: AssignmentSubmission | null) =>
+    planSubmissionResync({ assignment, item, studentId, joinedAt, extendedDueAt, attempts: rows, existing: fresh, reviewed })
+  const next = plan(existing)
+  if (!next) return existing ? resynced(existing) : null
+  if (!submissionChanged(existing, next)) return resynced(next)
+  const written = await writeSubmission(admin, { existing, next }, plan)
+  return resynced(written?.row ?? next)
+}
+
+/**
+ * A teacher confirmed, re-marked or flagged `attemptId` (spec §6 onOverrideSaved):
+ * recompute every hand-in the decision bears on — the rows that count the
+ * attempt, and every live set item it answers, which a raised mark may now
+ * win — with reconciliation's own rules (planSubmissionResync), so the next
+ * reconcile of the set agrees and never flips the row back. Each row counts
+ * its best attempt at its current marks, and is 'reviewed' when that
+ * attempt's latest decision is a confirm or an override.
+ *
+ * Returns the rows as they now stand. Throws on a database error; the caller
+ * (lib/teacher/notify.ts) logs it, and the next reconcile repairs the rows.
+ */
+export async function resyncSubmissionsForAttempt(
+  admin: SupabaseClient,
+  attemptId: string
+): Promise<ResyncedSubmission[]> {
+  if (!isUuid(attemptId)) return []
+  const { data, error } = await admin
+    .from('attempts')
+    .select(RECONCILE_ATTEMPT_COLUMNS)
+    .eq('id', attemptId)
+    .maybeSingle()
+  if (error) throw new Error(`attempts: ${error.message}`)
+  const attempt = (data as unknown as ReconcileAttemptRow | null) ?? null
+  if (!attempt?.user_id) return []
+  const studentId = attempt.user_id
+
+  // Item id → the item when already read. A hand-in always belongs to the
+  // attempt's author, so every row here is this student's.
+  const targets = new Map<string, AssignmentItem | null>()
+  const { data: held, error: heldError } = await admin
+    .from('assignment_submissions')
+    .select('item_id')
+    .eq('attempt_id', attempt.id)
+  if (heldError) throw new Error(`assignment_submissions: ${heldError.message}`)
+  for (const r of (held ?? []) as Array<{ item_id: string }>) targets.set(r.item_id, null)
+  const memberships = await activeClassMemberships(admin, studentId)
+  for (const { item } of await itemsAnsweredBy(admin, attempt, memberships)) targets.set(item.id, item)
+
+  const out: ResyncedSubmission[] = []
+  for (const [itemId, item] of targets) {
+    const row = await resyncSubmission(admin, item ?? itemId, studentId, attempt)
+    if (row) out.push(row)
+  }
+  return out
+}
+
+// ---------------------------------------------------------------------------
 // The marking routes' gate
 // ---------------------------------------------------------------------------
 
@@ -1261,6 +1487,12 @@ const NOT_AVAILABLE = 'That set isn’t available to you. Open it again from you
  * work is allowed.) Anything a student should not learn about — a set of
  * another class, a draft, an id that does not exist — gets the same answer.
  * `reason` is shown to the student as the 400's error.
+ *
+ * "Closed" is closed FOR THIS STUDENT (studentAssignmentStatus): an extension
+ * past the set's close keeps it open to them until their own deadline.
+ *
+ * Throws on a database error. The marking routes treat a throw as "could not
+ * check" and mark anyway, unlinked — only a definite `{ ok: false }` refuses.
  */
 export async function validateAssignmentItemForStudent(
   admin: SupabaseClient,
@@ -1279,7 +1511,13 @@ export async function validateAssignmentItemForStudent(
   const assignment = await readAssignment(admin, item.assignment_id)
   if (!assignment || !assignment.published_at) return { ok: false, reason: NOT_AVAILABLE }
 
-  const [{ data: membership, error: memberError }, { data: classroom, error: classError }] = await Promise.all([
+  // One round trip for the rest: membership, the class, and the student's own
+  // row on the set (targeting and any extension).
+  const [
+    { data: membership, error: memberError },
+    { data: classroom, error: classError },
+    { data: flagRow, error: flagError },
+  ] = await Promise.all([
     admin
       .from('classroom_memberships')
       .select('status')
@@ -1287,29 +1525,30 @@ export async function validateAssignmentItemForStudent(
       .eq('student_id', studentId)
       .maybeSingle(),
     admin.from('classrooms').select('archived_at').eq('id', assignment.classroom_id).maybeSingle(),
+    admin
+      .from('assignment_students')
+      .select('student_id, extended_due_at')
+      .eq('assignment_id', assignment.id)
+      .eq('student_id', studentId)
+      .maybeSingle(),
   ])
   if (memberError) throw new Error(`classroom_memberships: ${memberError.message}`)
   if (classError) throw new Error(`classrooms: ${classError.message}`)
+  if (flagError) throw new Error(`assignment_students: ${flagError.message}`)
   if (!membership || (membership as { status: string }).status !== 'active' || !classroom) {
     return { ok: false, reason: NOT_AVAILABLE }
   }
-
-  if (assignment.target === 'students') {
-    const { data: target, error: targetError } = await admin
-      .from('assignment_students')
-      .select('student_id')
-      .eq('assignment_id', assignment.id)
-      .eq('student_id', studentId)
-      .maybeSingle()
-    if (targetError) throw new Error(`assignment_students: ${targetError.message}`)
-    if (!target) return { ok: false, reason: NOT_AVAILABLE }
-  }
+  const flags = (flagRow as { student_id: string; extended_due_at: string | null } | null) ?? null
+  if (assignment.target === 'students' && !flags) return { ok: false, reason: NOT_AVAILABLE }
 
   if ((classroom as { archived_at: string | null }).archived_at) {
     return { ok: false, reason: 'Your teacher has archived this class, so it isn’t taking work any more.' }
   }
   if (assignment.archived_at) return { ok: false, reason: 'Your teacher has removed this set.' }
-  if (assignmentStatus(assignment, now) === 'closed' && assignment.settings.allow_late === false) {
+  if (
+    assignment.settings.allow_late === false &&
+    studentAssignmentStatus(assignment, flags?.extended_due_at ?? null, now) === 'closed'
+  ) {
     return { ok: false, reason: 'This set is closed — your teacher isn’t accepting late work on it.' }
   }
   return { ok: true, item, assignment }

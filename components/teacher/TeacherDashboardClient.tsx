@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSetAIContext } from '@/lib/omni-ai/context'
+import { teacherOmniContext } from '@/lib/teacher/insights/omni'
 import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 
 /**
@@ -13,11 +14,12 @@ import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 
 /**
  * Tells the Omni assistant the teacher is on their desk. Renders nothing.
- * Context data is deliberately empty: the server builds any class context
- * itself and ignores what a client sends (spec §3, /api/omni-ai).
+ * The context is only an address (`view: 'desk'`): the server builds the
+ * desk's facts itself and ignores anything else a client sends (spec §3,
+ * /api/omni-ai).
  */
 export function TeacherDashboardClient() {
-  useSetAIContext({ type: 'teacher_dashboard', data: {} }, [])
+  useSetAIContext(teacherOmniContext({ classroomId: null, view: 'desk' }), [])
   return null
 }
 

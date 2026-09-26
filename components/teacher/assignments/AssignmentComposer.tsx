@@ -10,6 +10,7 @@ import {
   parseAssignmentDraft,
 } from '@/lib/teacher/assignments/validate'
 import type { AssignmentKind } from '@/lib/teacher/types'
+import { UNVERIFIED_SEAT_STUDENT_NOTE } from '@/lib/billing/teacher-seat'
 import { Button } from '@/components/ui/Button'
 import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 import { SegmentedControl } from '@/components/ui/SegmentedControl'
@@ -820,9 +821,7 @@ export function AssignmentComposer({
           students see it the moment you publish
         </span>
         {!teacherVerified ? (
-          <p className="ms-set-composer__allowance mt-3 mb-0">
-            Your students use their own allowance until your seat is approved.
-          </p>
+          <p className="ms-set-composer__allowance mt-3 mb-0">{UNVERIFIED_SEAT_STUDENT_NOTE}</p>
         ) : null}
       </section>
 

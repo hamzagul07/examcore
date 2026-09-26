@@ -126,6 +126,7 @@ const allowance = (over: Partial<MarkAllowance>): MarkAllowance => ({
   warning: false,
   enforcement_mode: 'enforce',
   teacher_seat: false,
+  class_bonus: 0,
   ...over,
 })
 // The bug: free user at 4/5 uploads a 15-question script. One reserved, one

@@ -7,6 +7,8 @@ import {
   effectiveCloseAt,
   effectiveDueAt,
   isLate,
+  studentAssignmentStatus,
+  studentCloseAt,
   summariseProgress,
 } from '@/lib/teacher/assignment-status'
 import type {
@@ -107,8 +109,12 @@ assert.equal(
   false,
   'an earlier extension cannot make on-time work late'
 )
-assert.equal(isLate(AFTER, null, EXTENSION), false, 'extension alone is a deadline')
-assert.equal(isLate('2026-10-06T00:00:00.000Z', null, EXTENSION), true, 'extension alone is a deadline')
+assert.equal(isLate(AFTER, null, EXTENSION), false, 'no due date: nothing is late')
+assert.equal(
+  isLate('2026-10-06T00:00:00.000Z', null, EXTENSION),
+  false,
+  'an extension on a set with no due date is not a deadline of its own'
+)
 assert.equal(isLate('not a date', DUE, null), false, 'unreadable hand-in time is not assumed late')
 assert.equal(isLate(AFTER, 'garbage', null), false, 'unreadable due date means no deadline')
 assert.equal(isLate(AFTER, DUE, 'garbage'), true, 'unreadable extension is ignored, due still applies')
@@ -116,6 +122,8 @@ assert.equal(isLate(AFTER, DUE, 'garbage'), true, 'unreadable extension is ignor
 assert.equal(effectiveDueAt(DUE, EXTENSION), EXTENSION)
 assert.equal(effectiveDueAt(null, null), null)
 assert.equal(effectiveDueAt(DUE, null), DUE)
+assert.equal(effectiveDueAt(null, EXTENSION), null, 'the due date was cleared after the extension: no deadline')
+assert.equal(effectiveDueAt('garbage', EXTENSION), null, 'an unreadable due date is no due date')
 
 // --- deriveStudentState: the late / extended / excused / left matrix ---------------
 
@@ -321,5 +329,47 @@ assert.equal(
   'closed',
   'an invalid clock falls back to the real one rather than comparing against NaN'
 )
+
+// --- studentCloseAt / studentAssignmentStatus: an extension keeps the set open for that student ---
+
+{
+  const graceEnds = new Date(Date.parse(DUE) + AUTO_CLOSE_AFTER_DUE_DAYS * 86_400_000).toISOString()
+  const tenDays = new Date(Date.parse(DUE) + 10 * 86_400_000).toISOString()
+  const day8 = new Date(Date.parse(DUE) + 8 * 86_400_000)
+  const day11 = new Date(Date.parse(DUE) + 11 * 86_400_000)
+
+  assert.equal(studentCloseAt(base, null), graceEnds, 'no extension: the set\'s own close')
+  assert.equal(studentCloseAt(base, EXTENSION), graceEnds, 'an extension inside the grace window changes nothing')
+  assert.equal(studentCloseAt(base, tenDays), tenDays, 'an extension past the auto-close keeps it open to the extension')
+  assert.equal(studentCloseAt({ closed_at: BEFORE, due_at: DUE }, EXTENSION), EXTENSION, 'a manual close does not take an extension back')
+  assert.equal(studentCloseAt({ closed_at: null, due_at: null }, EXTENSION), null, 'a set that never closes stays open')
+  assert.equal(studentCloseAt({ closed_at: BEFORE, due_at: null }, EXTENSION), BEFORE, 'no due date: the extension is ignored')
+  assert.equal(studentCloseAt(base, 'garbage'), graceEnds, 'an unreadable extension is ignored')
+  const earlyClose = '2026-10-01T00:00:00.000Z'
+  assert.equal(studentCloseAt({ closed_at: earlyClose, due_at: DUE }, null), earlyClose, 'closed before the due date: closed')
+  assert.equal(
+    studentCloseAt({ closed_at: earlyClose, due_at: DUE }, '2026-09-30T00:00:00.000Z'),
+    earlyClose,
+    'an "extension" earlier than the due date reopens nothing'
+  )
+  assert.equal(
+    studentAssignmentStatus({ ...base, closed_at: earlyClose }, null, new Date('2026-10-01T12:00:00.000Z')),
+    'closed',
+    'the due date alone never reopens a set the teacher closed early'
+  )
+
+  assert.equal(assignmentStatus(base, day8), 'closed', 'day 8: closed for the class')
+  assert.equal(studentAssignmentStatus(base, null, day8), 'closed', 'and for a student without an extension')
+  assert.equal(studentAssignmentStatus(base, tenDays, day8), 'open', 'but open for the student given ten days')
+  assert.equal(studentAssignmentStatus(base, tenDays, day11), 'closed', 'until their extension passes')
+  assert.equal(
+    studentAssignmentStatus({ ...base, closed_at: BEFORE }, EXTENSION, new Date('2026-10-04T00:00:00.000Z')),
+    'open',
+    'closed by the teacher, still open to the extended student'
+  )
+  assert.equal(studentAssignmentStatus({ ...base, published_at: null }, tenDays, day8), 'draft')
+  assert.equal(studentAssignmentStatus({ ...base, archived_at: BEFORE }, tenDays, day8), 'closed', 'deleted is deleted')
+  assert.equal(studentAssignmentStatus(base, null, NOW), assignmentStatus(base, NOW), 'no extension: identical to assignmentStatus')
+}
 
 console.log('assignment-status.test.ts — all assertions passed')

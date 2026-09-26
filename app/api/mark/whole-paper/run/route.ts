@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse, after } from 'next/server'
 import {
   aggregateWholePaperResults,
   buildPreviewCutResult,
@@ -49,6 +49,7 @@ import {
   type MarkingErrorCode,
 } from '@/lib/marking/classify-marking-error'
 import { resolveMarkRunExamSystem } from '@/lib/marking/resolve-exam-system'
+import { onAttemptsMarked } from '@/lib/teacher/assignments'
 
 // Marks up to 15 questions; give headroom like /mark/process. Kept in sync with
 // vercel.json (which overrides this in production). 800s needs Fluid Compute.
@@ -61,6 +62,28 @@ export const maxDuration = 800
  */
 const WHOLE_PAPER_BUDGET_RESERVE_MS = 20_000
 const WHOLE_PAPER_BUDGET_MS = maxDuration * 1000 - WHOLE_PAPER_BUDGET_RESERVE_MS
+
+/**
+ * Hand a finished whole paper in against the student's sets
+ * (lib/teacher/assignments onAttemptsMarked): the item init stamped it with,
+ * or a whole-paper item for the same paper and session. Without this a
+ * stamped paper only reached the set at the teacher's next view or the
+ * digest's reconcile.
+ *
+ * After the paper is saved and outside its fate, as in /api/mark/process: the
+ * hook never throws, and nothing on the teacher's side may fail a mark that is
+ * saved and charged. after() keeps it off the response; inline only where
+ * there is no request scope.
+ */
+async function scheduleAssignmentHandIn(userId: string | null, attemptId: string): Promise<void> {
+  if (!userId) return
+  const task = () => onAttemptsMarked(supabaseAdmin, { userId, attemptIds: [attemptId] })
+  try {
+    after(task)
+  } catch {
+    await task()
+  }
+}
 
 async function updateJob(attemptId: string, state: WholePaperJobState) {
   await supabaseAdmin
@@ -489,6 +512,7 @@ async function handleRun(request: NextRequest) {
       .eq('id', attemptId)
     if (finalWriteError) throw finalWriteError
     completed = true
+    await scheduleAssignmentHandIn(markUserId, attemptId)
 
     // Guests are charged at whole-paper/init, not here.
     //

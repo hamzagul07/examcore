@@ -11,6 +11,8 @@ import {
   planSingleQuestionLink,
   planWholePaperLink,
   readMarkAssignmentLink,
+  uncheckedAssignmentLink,
+  ASSIGNMENT_UNCHECKED_REASON,
   sameSubjectFamily,
   studentMarkHref,
   type SingleQuestionMarkRequest,
@@ -227,6 +229,24 @@ assert.equal(sameSubjectFamily(null, '9709'), false)
   const unlinked = markAssignmentLink({ id: SET, title: 'Week 3 algebra' }, ITEM, { linked: false, reason: 'Not this one.' })
   assert.equal(markAssignmentNotice(unlinked).tone, 'unlinked')
   assert.equal(markAssignmentNotice(unlinked).text, 'Not this one.')
+  assert.deepEqual(readMarkAssignmentLink(JSON.parse(JSON.stringify(unlinked))), unlinked, 'an unlinked result round-trips')
+
+  // The set could not be checked (a database error): the mark went ahead, unlinked, and says so.
+  const unchecked = uncheckedAssignmentLink(ITEM)
+  assert.equal(unchecked.linked, false)
+  assert.equal(unchecked.assignment_id, null, 'no set is named — the server does not know it')
+  assert.deepEqual(readMarkAssignmentLink(JSON.parse(JSON.stringify(unchecked))), unchecked, 'round-trips with nulls')
+  assert.equal(markAssignmentNotice(unchecked).text, ASSIGNMENT_UNCHECKED_REASON)
+  assert.equal(
+    readMarkAssignmentLink({ linked: true, assignment_id: null, item_id: ITEM, title: null }),
+    null,
+    'a link is never claimed without the set'
+  )
+  assert.equal(
+    readMarkAssignmentLink({ linked: false, assignment_id: null, item_id: ITEM, title: null }),
+    null,
+    'an unnamed, unexplained miss says nothing'
+  )
 }
 for (const junk of [null, 'linked', [], { linked: 'yes' }, { linked: true, assignment_id: 'x', item_id: ITEM, title: 't' }, { linked: true, assignment_id: SET, item_id: ITEM, title: '  ' }]) {
   assert.equal(readMarkAssignmentLink(junk), null, `junk is not a link: ${JSON.stringify(junk)}`)

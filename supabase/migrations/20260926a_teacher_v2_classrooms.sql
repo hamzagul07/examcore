@@ -265,6 +265,32 @@ create policy classroom_student_read on public.classrooms
   to authenticated
   using (id in (select public.user_classroom_ids((select auth.uid()))));
 
+-- The same for the policy every teacher read of a student's attempts goes
+-- through. Production's teacher_read_student_attempts already calls
+-- teacher_student_ids (20260714_grant_teacher_student_ids_authenticated.sql
+-- exists because of it), but the committed body is still the 20250527 inline
+-- join of classroom_memberships and classrooms, with no status or archive
+-- filter. On a database built by replay that left a teacher reading a
+-- removed or departed student's attempts, and every attempt of an archived
+-- class — the opposite of what teacher_student_ids is here to guarantee.
+-- Re-asserted so the helper really is the single gate everywhere.
+drop policy if exists teacher_read_student_attempts on public.attempts;
+create policy teacher_read_student_attempts on public.attempts
+  for select
+  to authenticated
+  using (user_id in (select public.teacher_student_ids((select auth.uid()))));
+
+-- intervention_tests is kept but no longer read (spec §3: the intervention
+-- routes are deleted). Its student policy still carries the 20250527 inline
+-- membership subquery, which would show a student who left or was removed
+-- (or whose class was archived) that class's old tests; it goes through
+-- user_classroom_ids like every other student read of a class.
+drop policy if exists intervention_student_read on public.intervention_tests;
+create policy intervention_student_read on public.intervention_tests
+  for select
+  to authenticated
+  using (classroom_id in (select public.user_classroom_ids((select auth.uid()))));
+
 -- ---------------------------------------------------------------------------
 -- Profile reads for teachers
 -- ---------------------------------------------------------------------------

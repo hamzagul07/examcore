@@ -5,6 +5,9 @@ import { createClient } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase/service'
 import { requireTeacher } from '@/lib/teacher-auth'
 import { capForTier, teacherMarkCap } from '@/lib/billing/caps'
+import { classBonusFor } from '@/lib/billing/teacher-seat'
+import { isTeacherV2 } from '@/lib/teacher/flags'
+import { teacherOmniContext } from '@/lib/teacher/insights/omni'
 import {
   isUuid,
   loadClassRoster,
@@ -14,7 +17,8 @@ import {
   suggestSubjectCodes,
 } from '@/lib/teacher/list-classrooms'
 import { loadSeatState, seatCardState } from '@/lib/teacher/seat-grant'
-import { TeacherBackLink, TeacherDeskHead, TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
+import { TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
+import { ClassDeskHead } from '@/components/teacher/ClassDeskHead'
 import {
   ClassExportButtons,
   ClassroomDangerZone,
@@ -23,20 +27,12 @@ import {
 import { InviteCard } from '@/components/teacher/InviteCard'
 import { RosterList } from '@/components/teacher/RosterList'
 import { TeacherSeatRequestCard } from '@/components/teacher/TeacherSeatRequestCard'
+import { ClassTabs } from '@/components/teacher/ClassTabs'
+import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = { title: 'Class settings' }
-
-/**
- * Marks a month each student gets from a verified teacher's class — the same
- * TEACHER_CLASS_STUDENT_BONUS variable (default 20) the billing caps read, so
- * the promise on this page is the allowance the student actually gets.
- */
-function classBonusMarks(): number {
-  const raw = Number.parseInt(process.env.TEACHER_CLASS_STUDENT_BONUS ?? '', 10)
-  return Number.isFinite(raw) && raw >= 0 ? raw : 20
-}
 
 function Section({
   id,
@@ -93,7 +89,13 @@ export default async function ClassroomSettingsPage({ params }: { params: Promis
   ])
 
   const archived = classroom.archived_at !== null
+  const v2 = isTeacherV2()
   const seatState = seatCardState(seat)
+  // Marks a month each student of a verified teacher's live class gets —
+  // computed by the same rule billing enforces (classBonusFor: the
+  // TEACHER_CLASS_STUDENT_BONUS variable, off with v2 off), so the promise on
+  // this page is the allowance the student actually gets.
+  const classBonus = classBonusFor({ inVerifiedClassroom: true, isTeacher: false })
   const suggested = suggestSubjectCodes({
     board: classroom.board,
     level: classroom.level,
@@ -110,13 +112,10 @@ export default async function ClassroomSettingsPage({ params }: { params: Promis
 
   return (
     <TeacherPageContainer className="ms-teacher-page">
-      <TeacherBackLink href={`/teacher/classroom/${classroom.id}`}>&lt;- {classroom.name}</TeacherBackLink>
-      <TeacherDeskHead
-        eyebrow="Class settings"
-        stamp="SET"
-        title={classroom.name}
-        lead={[subjectCodeLabel(classroom.subject_code), classroom.year_group].filter(Boolean).join(' · ')}
-      />
+      <OmniAIBridge context={teacherOmniContext({ classroomId: classroom.id, view: 'settings' })} />
+      {/* The same head as every other class tab (the tabs are the way back). */}
+      <ClassDeskHead classroom={{ ...classroom, studentCount: activeMembers }} eyebrow="Settings" banners={false} />
+      <ClassTabs classroomId={classroom.id} current="settings" v2={v2} />
 
       <div className="ms-teacher-settings">
         {archived ? (
@@ -135,15 +134,20 @@ export default async function ClassroomSettingsPage({ params }: { params: Promis
         ) : null}
 
         {seatState.kind === 'hidden' ? (
-          <p className="ms-teacher-allowance">
-            <span className="ms-teacher-allowance__figure" aria-hidden>
-              +{classBonusMarks()}
-            </span>
-            <span>
-              Your students get <strong>+{classBonusMarks()} marks a month</strong> from this class, on top
-              of their own allowance, while they are in it.
-            </span>
-          </p>
+          classBonus > 0 ? (
+            <p className="ms-teacher-allowance">
+              <span className="ms-teacher-allowance__figure" aria-hidden>
+                +{classBonus}
+              </span>
+              <span>
+                Your students get{' '}
+                <strong>
+                  +{classBonus} mark{classBonus === 1 ? '' : 's'} a month
+                </strong>{' '}
+                from this class, on top of their own allowance, while they are in it.
+              </span>
+            </p>
+          ) : null
         ) : (
           <TeacherSeatRequestCard state={seatState} teacherCap={teacherMarkCap()} freeCap={capForTier('free')} />
         )}

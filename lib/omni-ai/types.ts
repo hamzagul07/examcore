@@ -39,8 +39,14 @@ export type AIContextType =
       data: { attemptId: string }
     }
   | { type: 'marking'; data: { mode: 'past_paper' | 'general' } }
-  /** Scaffolded — activates when teacher dashboard pages ship. */
-  | { type: 'teacher_dashboard'; data: { classMetrics?: unknown } }
+  /**
+   * Teacher pages (lib/teacher/insights/omni.ts teacherOmniContext). Only an
+   * address — which class and which view — never figures: /api/omni-ai checks
+   * the teacher owns the class and loads the class facts itself
+   * (lib/omni-ai/teacher-context.ts), so nothing a client sends here reaches
+   * the prompt as data.
+   */
+  | { type: 'teacher_dashboard'; data: { classroom_id?: string; view?: string } }
 
 export type OmniAIActionType =
   | 'render_paper'

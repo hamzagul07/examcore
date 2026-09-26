@@ -1,7 +1,8 @@
 import 'server-only'
 
 import type { SupabaseClient } from '@supabase/supabase-js'
-import { summariseProgress } from '@/lib/teacher/assignment-status'
+import { AUTO_CLOSE_AFTER_DUE_DAYS, assignmentStatus, summariseProgress } from '@/lib/teacher/assignment-status'
+import { reconcileAssignment } from '@/lib/teacher/assignments'
 import type { TeacherClassroomRow } from '@/lib/teacher/list-classrooms'
 import type { AssignmentKind, AssignmentSummary, ClassWeek } from '@/lib/teacher/types'
 import {
@@ -94,6 +95,58 @@ function logDetailFailure(classroomId: string, err: unknown) {
   })
 }
 
+/** Open sets reconciled per class-week view; the rest wait for their own page or the digest. */
+const MAX_RECONCILED_SETS = 8
+
+/**
+ * Pick up hand-ins marked from plain /mark on the class's open sets before the
+ * week is read, so the strip's tallies agree with each set's matrix (whose
+ * page reconciles the same way). Only open sets: a closed set's hand-ins were
+ * settled while it was open, and the digest reconciles everything on Sunday.
+ * reconcileAssignment skips a set done in the last minute, so a refresh costs
+ * one claim query per set. Best-effort: a failure is logged and the week
+ * shows what is stored.
+ */
+async function reconcileOpenSets(admin: SupabaseClient, classroomId: string, now: Date): Promise<void> {
+  try {
+    // Narrow to sets that can still be open BEFORE the limit (the same
+    // pre-filter the student's list uses): ordering every published set by
+    // due date and filtering afterwards let a class's long-closed sets fill
+    // the page, so its current open sets were never reconciled here.
+    // assignmentStatus below is still the rule.
+    const nowIso = now.toISOString()
+    const dueCutoff = new Date(now.getTime() - AUTO_CLOSE_AFTER_DUE_DAYS * 86_400_000).toISOString()
+    const { data, error } = await admin
+      .from('assignments')
+      .select('id, published_at, closed_at, archived_at, due_at')
+      .eq('classroom_id', classroomId)
+      .not('published_at', 'is', null)
+      .is('archived_at', null)
+      .or(`closed_at.is.null,closed_at.gt."${nowIso}"`)
+      .or(`due_at.is.null,due_at.gt."${dueCutoff}"`)
+      .order('due_at', { ascending: true, nullsFirst: false })
+      .limit(50)
+    if (error) throw new Error(error.message)
+    type Row = { id: string; published_at: string | null; closed_at: string | null; archived_at: string | null; due_at: string | null }
+    const open = ((data ?? []) as Row[]).filter((a) => assignmentStatus(a, now) === 'open').slice(0, MAX_RECONCILED_SETS)
+    const results = await Promise.allSettled(open.map((a) => reconcileAssignment(admin, a.id, { now })))
+    results.forEach((r, i) => {
+      if (r.status === 'rejected') {
+        console.error('[teacher/class-week] reconcile failed (showing stored hand-ins)', {
+          classroomId,
+          assignmentId: open[i]?.id,
+          error: r.reason instanceof Error ? r.reason.message : String(r.reason),
+        })
+      }
+    })
+  } catch (err) {
+    console.error('[teacher/class-week] open sets read failed (showing stored hand-ins)', {
+      classroomId,
+      error: err instanceof Error ? err.message : String(err),
+    })
+  }
+}
+
 export async function loadClassWeekView(
   ctx: { supabase: SupabaseClient; admin: SupabaseClient; classroom: Pick<TeacherClassroomRow, 'id' | 'archived_at'> },
   opts: { week?: string | null; now?: Date } = {}
@@ -105,6 +158,9 @@ export async function loadClassWeekView(
   // An archived class's retained hand-ins are readable only as the service
   // role (ownership was proven before `admin` was created).
   const setsDb = archived ? admin : supabase
+
+  // An archived class shows retained hand-ins only, never live attempts.
+  if (!archived) await reconcileOpenSets(admin, classroom.id, now)
 
   const detailPromise: Promise<Detail | null> = Promise.all([
     loadPublishedSets(setsDb, [classroom.id]),

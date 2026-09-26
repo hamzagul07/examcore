@@ -13,6 +13,8 @@ import type { WholePaperAggregate } from '@/lib/marking/whole-paper'
 import type { MarkContextPayload } from '@/lib/marking/mark-progress'
 import { prepareWholePaperUpload } from '@/lib/upload/prepare-upload'
 import type { AllowanceBlock, QuotaExceeded } from '@/lib/billing/client-types'
+import { ASSIGNMENT_ITEM_FIELD } from '@/lib/teacher/assignments/link'
+import { AssignmentLinkNotice } from '@/components/mark/AssignmentLinkNotice'
 
 type Props = {
   paperCode: string
@@ -35,6 +37,12 @@ type Props = {
   onPhaseChange?: (phase: 'upload' | 'marking' | 'result') => void
   /** When host ResultScreen owns “Mark another”, hide the duplicate footer CTA. */
   hideMarkAnother?: boolean
+  /**
+   * The teacher's whole-paper set item this upload hands in (/mark?assignment=…
+   * &mode=whole_paper). Sent with init as `assignment_item_id`; the server
+   * validates it and answers with `_assignment`, shown on the result.
+   */
+  assignmentItemId?: string | null
 }
 
 type JobStatus = {
@@ -86,6 +94,7 @@ export function WholePaperFlow({
   seed = null,
   onPhaseChange,
   hideMarkAnother = false,
+  assignmentItemId = null,
 }: Props) {
   const [phase, setPhase] = useState<'upload' | 'marking' | 'result'>(
     seed ? 'marking' : 'upload'
@@ -107,6 +116,8 @@ export function WholePaperFlow({
   const [answerPhotoUrl, setAnswerPhotoUrl] = useState<string | null>(null)
   /** What init had to do to the upload (blank page, duplicate dropped…). */
   const [uploadWarnings, setUploadWarnings] = useState<string[]>([])
+  /** Init's `_assignment` block: where this paper went for the teacher's set. */
+  const [assignmentResult, setAssignmentResult] = useState<unknown>(null)
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const pollFailuresRef = useRef(0)
   const pollStartedAtRef = useRef(0)
@@ -280,6 +291,7 @@ export function WholePaperFlow({
     onError('')
     setMarkingError(null)
     setUploadWarnings([])
+    setAssignmentResult(null)
     setPhase('marking')
     setJobStatus({
       phase: 'ocr',
@@ -311,6 +323,7 @@ export function WholePaperFlow({
           }))
         )
       )
+      if (assignmentItemId) formData.append(ASSIGNMENT_ITEM_FIELD, assignmentItemId)
       if (readyPdf) {
         formData.append('pdf', readyPdf)
       } else {
@@ -344,6 +357,7 @@ export function WholePaperFlow({
 
       if (initData._allowance) onAllowance?.(initData._allowance as AllowanceBlock)
       if (Array.isArray(initData.warnings)) setUploadWarnings(initData.warnings)
+      if (initData._assignment) setAssignmentResult(initData._assignment)
 
       const id = initData.attempt_id as string
       setAttemptId(id)
@@ -403,6 +417,7 @@ export function WholePaperFlow({
 
     return (
       <div className="space-y-8">
+        <AssignmentLinkNotice value={assignmentResult} />
         {previewCut > 0 ? (
           <div className="ec-banner ec-banner-info" role="status">
             <p className="ec-banner__meta">

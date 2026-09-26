@@ -25,6 +25,7 @@ import {
   pageDoneSets,
   parseFeedbackReadBody,
   sortOpenSets,
+  studentSubmissionStatus,
   summariseTeacherReview,
   visibleToStudent,
   type StudentSetRow,
@@ -235,6 +236,24 @@ function view(opts: {
 }
 
 {
+  // A ten-day extension on a set that refuses late work: day 8 is still open for this student.
+  const strictSet = { due_at: at(-8 * DAY), published_at: at(-20 * DAY), settings: { allow_late: false } }
+  const extended = view({ set: strictSet, flags: { extended_due_at: at(2 * DAY) } })
+  assert.equal(extended.status, 'open', 'open for them until their own deadline')
+  assert.notEqual(extended.state, 'missed', 'never "missed" before their deadline')
+  assert.equal(extended.state, 'not_started')
+  assert.equal(extended.can_hand_in, true, 'and the gate would take their work')
+  assert.equal(extended.phase, 'open', 'it stays on their to-do list')
+  assert.equal(canHandIn(set(strictSet), NOW, at(2 * DAY)), true)
+  assert.equal(canHandIn(set(strictSet), NOW), false, 'without the extension the set is closed to late work')
+  const manual = view({ set: { closed_at: at(-HOUR), settings: { allow_late: false } }, flags: { extended_due_at: at(5 * DAY) } })
+  assert.equal(manual.status, 'open', 'a manual close does not take an extension back')
+  const past = view({ set: strictSet, flags: { extended_due_at: at(-HOUR) } })
+  assert.equal(past.state, 'missed', 'once the extension has passed, it is missed like any other')
+  assert.equal(past.can_hand_in, false)
+}
+
+{
   assert.equal(canHandIn(set({ archived_at: at(-HOUR) }), NOW), false, 'a deleted set takes nothing')
   assert.equal(canHandIn(set({ published_at: null }), NOW), false)
   const empty = view({ items: [] })
@@ -289,6 +308,11 @@ function view(opts: {
   const closedAfterJoining = set({ closed_at: at(-HOUR), published_at: at(-10 * DAY) })
   assert.equal(visibleToStudent(closedAfterJoining, at(-5 * DAY), false, NOW), true, 'missed while a member')
   assert.equal(visibleToStudent(set({ archived_at: at(-HOUR) }), joined, true, NOW), false)
+  assert.equal(
+    visibleToStudent(closedBeforeJoining, joined, false, NOW, at(DAY)),
+    true,
+    'closed for the class before they joined, but open to them through an extension'
+  )
 }
 
 // --- ordering and paging ------------------------------------------------------
@@ -345,6 +369,7 @@ function view(opts: {
     flags: null,
     canHandIn: true,
     previews: new Map([[SCHEME_1, 'Find the angle between…']]),
+    visibleReviews: new Set([ATTEMPT_1]),
   })
   assert.deepEqual(rows.map((r) => r.number), [1, 2], 'numbered in position order')
   assert.equal(rows[0].id, ITEM_1)
@@ -369,6 +394,41 @@ function view(opts: {
     canHandIn: false,
   })
   assert.equal(closed[0].mark_href, null, 'no "Mark this" once the set stops taking work')
+
+  // A decision the teacher kept private never shows as "Reviewed by your teacher".
+  const privateReview = (subs: AssignmentSubmission[], visibleReviews?: Set<string>) =>
+    buildStudentSetItems({
+      set: { id: SET_ID, title: 'Vectors homework', subject_code: '9709', due_at: at(-2 * HOUR) },
+      items: [item(ITEM_1, 0)],
+      submissions: subs,
+      flags: null,
+      canHandIn: true,
+      visibleReviews,
+    })[0]
+  const hidden = privateReview([submission(ITEM_1, { status: 'reviewed', first_submitted_at: at(-3 * HOUR) })], new Set())
+  assert.equal(hidden.state, 'done', 'private confirm: shown as handed in')
+  assert.equal(hidden.submission?.status, 'submitted', 'and the status field does not leak it either')
+  const hiddenLate = privateReview([submission(ITEM_1, { status: 'reviewed', first_submitted_at: at(-HOUR) })])
+  assert.equal(hiddenLate.state, 'late', 'private review of late work: late (no visible reviews known)')
+  assert.equal(hiddenLate.submission?.status, 'late')
+  const shown = privateReview([submission(ITEM_1, { status: 'reviewed' })], new Set([ATTEMPT_1]))
+  assert.equal(shown.state, 'reviewed', 'a visible confirm or re-mark is shown')
+  const otherAttempt = privateReview(
+    [submission(ITEM_1, { status: 'reviewed', first_submitted_at: at(-3 * HOUR) })],
+    new Set(['someone-else'])
+  )
+  assert.equal(otherAttempt.state, 'done', 'a visible review of another attempt does not count')
+
+  assert.equal(
+    studentSubmissionStatus({ status: 'late', attempt_id: ATTEMPT_1, first_submitted_at: at(-HOUR) }, null, at(-2 * HOUR), null),
+    'late',
+    'only "reviewed" is ever rewritten'
+  )
+  assert.equal(
+    studentSubmissionStatus({ status: 'reviewed', attempt_id: null, first_submitted_at: at(-HOUR) }, new Set([ATTEMPT_1]), at(-2 * HOUR), at(DAY)),
+    'submitted',
+    'an attempt that no longer exists has no visible review; the extension makes it on time'
+  )
 }
 
 // --- class average: only when allowed, only as an aggregate of enough students ---

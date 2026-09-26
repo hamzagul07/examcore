@@ -678,7 +678,16 @@ export function membershipLabel(status: MembershipStatus): string {
 /** Enough of the newest scoped attempts to place every active student's last activity. */
 const LAST_ACTIVE_ATTEMPT_LIMIT = 5000
 
-export type LoadRosterResult = { ok: true; students: RosterStudent[] } | { ok: false; error: string }
+/**
+ * Which best-effort enrichments failed to load (true = unknown, not "none").
+ * The roster still renders; the page says what is missing rather than
+ * showing every student as having done nothing.
+ */
+export type RosterIncomplete = { last_active: boolean; due: boolean; overdue: boolean }
+
+export type LoadRosterResult =
+  | { ok: true; students: RosterStudent[]; incomplete: RosterIncomplete }
+  | { ok: false; error: string }
 
 /**
  * Every member the class has had, active first. Names and profile fields come
@@ -712,7 +721,9 @@ export async function loadClassRoster(
   const live = !classroom.archived_at && activeIds.length > 0
 
   // Each enrichment is best-effort: the list itself is the point, and a
-  // failed badge must not blank it.
+  // failed badge must not blank it. A failure is reported in `incomplete`, so
+  // the page never presents "unknown" as "no marked work".
+  const incomplete: RosterIncomplete = { last_active: false, due: false, overdue: false }
   const [lastActive, due, overdue] = await Promise.all([
     live
       ? getClassroomAttempts(supabase, classroom.id, {
@@ -724,20 +735,25 @@ export async function loadClassRoster(
           .then(({ attempts }) => latestActivityByStudent(attempts))
           .catch((err) => {
             console.error('[teacher/roster] last active:', err instanceof Error ? err.message : err)
+            incomplete.last_active = true
             return new Map<string, string>()
           })
       : new Map<string, string>(),
     live
-      ? loadDueRowsForStudents(service, activeIds)
+      ? // Same scope as the class's due list and the student page (spec §8):
+        // the class subject, and only what fell due since each student joined.
+        loadDueRowsForStudents(service, activeIds, {
+          subjectCode: classroom.subject_code,
+          joinedAt: new Map(profiles.filter((p) => p.status === 'active').map((p) => [p.id, p.joined_at])),
+          nowMs: now.getTime(),
+        })
           .then(({ rows, error: dueError }) => {
             if (dueError) throw new Error(dueError)
-            const inSubject = classroom.subject_code
-              ? rows.filter((r) => r.subjectCode === classroom.subject_code)
-              : rows
-            return countDueByStudent(inSubject)
+            return countDueByStudent(rows)
           })
           .catch((err) => {
             console.error('[teacher/roster] due counts:', err instanceof Error ? err.message : err)
+            incomplete.due = true
             return {} as Record<string, number>
           })
       : ({} as Record<string, number>),
@@ -749,6 +765,7 @@ export async function loadClassRoster(
           })
           .catch((err) => {
             console.error('[teacher/roster] overdue:', err instanceof Error ? err.message : err)
+            incomplete.overdue = true
             return new Map<string, number>()
           })
       : new Map<string, number>(),
@@ -756,6 +773,7 @@ export async function loadClassRoster(
 
   return {
     ok: true,
+    incomplete,
     students: sortRoster(profiles).map((p) => {
       const isActive = p.status === 'active'
       return {

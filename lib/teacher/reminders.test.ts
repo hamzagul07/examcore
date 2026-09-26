@@ -192,6 +192,22 @@ const ids = (xs: { student_id: string }[]) => xs.map((x) => x.student_id)
   assert.deepEqual(selectReminderRecipients({ set: set({ archived_at: at(-1) }), members, now: NOW, mode: 'teacher' }), [], 'archived')
   assert.deepEqual(selectReminderRecipients({ set: set({ closed_at: at(-1) }), members, now: NOW, mode: 'teacher' }), [], 'closed')
   assert.deepEqual(selectReminderRecipients({ set: set({ items: [] }), members, now: NOW, mode: 'teacher' }), [], 'nothing to hand in')
+
+  // Closed for the class, but a student's extension runs past the close: they alone are still reminded.
+  const closedButExtended = set({ closed_at: at(-1), flags: [flags('ben', { extended_due_at: at(22) })] })
+  assert.deepEqual(
+    ids(selectReminderRecipients({ set: closedButExtended, members, now: NOW, mode: 'due_soon' })),
+    ['ben'],
+    'the cron reminds the extended student before their own deadline'
+  )
+  assert.deepEqual(
+    ids(selectReminderRecipients({ set: closedButExtended, members, now: NOW, mode: 'teacher' })),
+    ['ben'],
+    'and the teacher can still chase them'
+  )
+  // Auto-closed a week after the due date; an extension falling due tomorrow is still reminded.
+  const autoClosed = set({ due_at: at(-8 * 24), flags: [flags('amira', { extended_due_at: at(20) })] })
+  assert.deepEqual(ids(selectReminderRecipients({ set: autoClosed, members, now: NOW, mode: 'due_soon' })), ['amira'])
 }
 
 // --- the teacher's pick ------------------------------------------------------------

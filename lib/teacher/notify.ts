@@ -12,7 +12,6 @@ import {
   type TeacherFeedbackKind,
 } from '@/lib/email/teacher-feedback'
 import { createServiceClient } from '@/lib/supabase/service'
-import { isLate } from '@/lib/teacher/assignment-status'
 import { displayName } from '@/lib/teacher/display-name'
 import { isTeacherV2 } from '@/lib/teacher/flags'
 import { deferEmails, loadEmailRecipients, loadProfileNames } from '@/lib/teacher/email/recipients'
@@ -21,7 +20,6 @@ import type {
   Assignment,
   ClassroomSettings,
   ReviewDecision,
-  SubmissionStatus,
 } from '@/lib/teacher/types'
 import { chunk, fetchAllFiltered, getClassroomMembers } from '@/lib/teacher-classroom-data'
 
@@ -173,58 +171,6 @@ export function publishedNotificationCopy(input: {
       .filter((p): p is string => Boolean(p))
       .join(' · '),
   }
-}
-
-export type AttemptCandidate = { id: string; marks_earned: number | null; created_at: string | null }
-
-/**
- * The attempt a hand-in should count: the most marks (a teacher's override
- * included — it has already been written to attempts.marks_earned). A tie
- * keeps the attempt already counted, so a confirm never moves the row; among
- * other ties the earliest wins (the first time that mark was reached).
- */
-export function pickBestAttempt<T extends AttemptCandidate>(
-  candidates: readonly T[],
-  currentId: string | null
-): T | null {
-  const scored = candidates.filter(
-    (c): c is T & { marks_earned: number } => c.marks_earned !== null && Number.isFinite(c.marks_earned)
-  )
-  if (scored.length === 0) return candidates.find((c) => c.id === currentId) ?? candidates[0] ?? null
-  let best = scored[0]
-  for (const c of scored.slice(1)) {
-    if (c.marks_earned > best.marks_earned) {
-      best = c
-      continue
-    }
-    if (c.marks_earned < best.marks_earned || best.id === currentId) continue
-    if (c.id === currentId) {
-      best = c
-      continue
-    }
-    const ca = Date.parse(c.created_at ?? '')
-    const ba = Date.parse(best.created_at ?? '')
-    const earlier = Number.isFinite(ca) && (!Number.isFinite(ba) || ca < ba)
-    const sameTime = ca === ba || (!Number.isFinite(ca) && !Number.isFinite(ba))
-    if (earlier || (sameTime && c.id < best.id)) best = c
-  }
-  return best
-}
-
-/**
- * A hand-in's stored status once its counted attempt's latest decision is
- * known: 'reviewed' after a confirm or an override; otherwise back to what
- * the timestamps say ('late' / 'submitted') — a flag means "look again", so
- * it deliberately leaves the hand-in unreviewed.
- */
-export function reviewedSubmissionStatus(input: {
-  decision: ReviewDecision | null
-  firstSubmittedAt: string
-  dueAt: string | null
-  extendedDueAt: string | null
-}): SubmissionStatus {
-  if (input.decision === 'confirm' || input.decision === 'override') return 'reviewed'
-  return isLate(input.firstSubmittedAt, input.dueAt, input.extendedDueAt) ? 'late' : 'submitted'
 }
 
 /** "Algebra drill", "9709/12 Q3", or null — what a review or note is about. */
@@ -679,125 +625,21 @@ export async function notifyRemind(assignmentId: string, studentIds: string[]): 
 // onOverrideSaved
 // ---------------------------------------------------------------------------
 
-type SubmissionRow = {
-  id: string
-  assignment_id: string
-  item_id: string
-  student_id: string
-  attempt_id: string | null
-  marks_earned: number | null
-  total_marks: number | null
-  status: SubmissionStatus
-  first_submitted_at: string
-}
-
-type CandidateAttempt = AttemptCandidate & { total_marks: number | null }
-
-const SUBMISSION_COLUMNS =
-  'id, assignment_id, item_id, student_id, attempt_id, marks_earned, total_marks, status, first_submitted_at'
-
 /**
- * Recompute every hand-in the reviewed attempt bears on: the rows that count
- * it, and — when it was marked from a set item — that item's row for the
- * student, which it may now beat. Each row gets its best attempt (overrides
- * included), that attempt's marks, and 'reviewed' when that attempt's latest
- * decision is a confirm or an override. Returns the rows as they now stand.
+ * Recompute every hand-in the decided attempt bears on, with reconciliation's
+ * own rules (lib/teacher/assignments.ts resyncSubmissionsForAttempt): the
+ * rows that count it and every live set item it answers. Each row counts its
+ * best attempt at its current marks and is 'reviewed' when that attempt's
+ * latest decision is a confirm or an override — exactly what the next
+ * reconcile of the set will conclude, so the two never flip a hand-in back
+ * and forth. Imported lazily: lib/teacher/assignments imports this module.
  */
 async function syncReviewedSubmissions(
   admin: SupabaseClient,
-  attempt: { id: string; user_id: string; assignment_item_id: string | null }
-): Promise<SubmissionRow[]> {
-  const [byAttempt, byItem] = await Promise.all([
-    admin.from('assignment_submissions').select(SUBMISSION_COLUMNS).eq('attempt_id', attempt.id),
-    attempt.assignment_item_id
-      ? admin
-          .from('assignment_submissions')
-          .select(SUBMISSION_COLUMNS)
-          .eq('item_id', attempt.assignment_item_id)
-          .eq('student_id', attempt.user_id)
-      : Promise.resolve({ data: [] as SubmissionRow[], error: null }),
-  ])
-  if (byAttempt.error) throw new Error(`assignment_submissions: ${byAttempt.error.message}`)
-  if (byItem.error) throw new Error(`assignment_submissions: ${byItem.error.message}`)
-  const rows = new Map<string, SubmissionRow>()
-  for (const r of [...(byAttempt.data ?? []), ...(byItem.data ?? [])] as SubmissionRow[]) rows.set(r.id, r)
-
-  const out: SubmissionRow[] = []
-  for (const row of rows.values()) {
-    const { data: linked, error: linkedError } = await admin
-      .from('attempts')
-      .select('id, marks_earned, total_marks, created_at')
-      .eq('assignment_item_id', row.item_id)
-      .eq('user_id', row.student_id)
-    if (linkedError) throw new Error(`attempts: ${linkedError.message}`)
-
-    const byId = new Map<string, CandidateAttempt>()
-    for (const a of (linked ?? []) as CandidateAttempt[]) byId.set(a.id, a)
-    // The attempt already counted may be a reconciled one (not stamped with
-    // the item), and so may the reviewed one; both stay in the running.
-    const extra = [row.attempt_id, attempt.id].filter(
-      (id): id is string => Boolean(id) && !byId.has(id as string)
-    )
-    const bearsOnRow = row.attempt_id === attempt.id || row.item_id === attempt.assignment_item_id
-    const wanted = extra.filter((id) => id !== attempt.id || bearsOnRow)
-    if (wanted.length > 0) {
-      const { data: more, error } = await admin
-        .from('attempts')
-        .select('id, marks_earned, total_marks, created_at')
-        .in('id', wanted)
-      if (error) throw new Error(`attempts: ${error.message}`)
-      for (const a of (more ?? []) as CandidateAttempt[]) byId.set(a.id, a)
-    }
-    const candidates = [...byId.values()].map((a) => ({
-      ...a,
-      marks_earned: num(a.marks_earned),
-      total_marks: num(a.total_marks),
-    }))
-    const best = pickBestAttempt(candidates, row.attempt_id)
-    if (!best) continue
-
-    const [decisions, setRes, flagRes] = await Promise.all([
-      admin
-        .from('teacher_overrides')
-        .select('decision, created_at')
-        .eq('attempt_id', best.id)
-        .order('created_at', { ascending: false })
-        .limit(1),
-      admin.from('assignments').select('due_at').eq('id', row.assignment_id).maybeSingle(),
-      admin
-        .from('assignment_students')
-        .select('extended_due_at')
-        .eq('assignment_id', row.assignment_id)
-        .eq('student_id', row.student_id)
-        .maybeSingle(),
-    ])
-    if (decisions.error) throw new Error(`teacher_overrides: ${decisions.error.message}`)
-    const decision = ((decisions.data ?? [])[0] as { decision?: ReviewDecision } | undefined)?.decision ?? null
-
-    const status = reviewedSubmissionStatus({
-      decision,
-      firstSubmittedAt: row.first_submitted_at,
-      dueAt: (setRes.data as { due_at: string | null } | null)?.due_at ?? null,
-      extendedDueAt: (flagRes.data as { extended_due_at: string | null } | null)?.extended_due_at ?? null,
-    })
-    const patch = {
-      attempt_id: best.id,
-      marks_earned: best.marks_earned,
-      total_marks: best.total_marks ?? num(row.total_marks),
-      status,
-    }
-    const changed =
-      patch.attempt_id !== row.attempt_id ||
-      patch.marks_earned !== num(row.marks_earned) ||
-      patch.total_marks !== num(row.total_marks) ||
-      patch.status !== row.status
-    if (changed) {
-      const { error } = await admin.from('assignment_submissions').update(patch).eq('id', row.id)
-      if (error) throw new Error(`assignment_submissions: ${error.message}`)
-    }
-    out.push({ ...row, ...patch })
-  }
-  return out
+  attemptId: string
+): Promise<Array<{ assignment_id: string; attempt_id: string | null }>> {
+  const { resyncSubmissionsForAttempt } = await import('@/lib/teacher/assignments')
+  return resyncSubmissionsForAttempt(admin, attemptId)
 }
 
 type DecisionRow = {
@@ -873,11 +715,14 @@ export async function onOverrideSaved(attemptId: string): Promise<void> {
     const [latest, previous] = (decisionsRes.data ?? []) as DecisionRow[]
     if (!attempt || !latest) return
 
-    const rows = await syncReviewedSubmissions(admin, {
-      id: attempt.id,
-      user_id: attempt.user_id,
-      assignment_item_id: attempt.assignment_item_id,
-    })
+    // Bookkeeping first, but a failure here must not cost the student the
+    // news of the decision: the next reconcile of the set repairs the rows.
+    let rows: Array<{ assignment_id: string; attempt_id: string | null }> = []
+    try {
+      rows = await syncReviewedSubmissions(admin, attempt.id)
+    } catch (err) {
+      logFailure('onOverrideSaved (submission sync)', { attemptId }, err)
+    }
 
     const decision = latest.decision ?? 'override'
     if (!isTeacherV2() || decision === 'flag' || latest.student_visible === false) return

@@ -75,6 +75,7 @@ import { onAttemptsMarked, validateAssignmentItemForStudent } from '@/lib/teache
 import {
   ASSIGNMENT_ITEM_FIELD,
   markAssignmentLink,
+  uncheckedAssignmentLink,
   parseAssignmentItemId,
   planSingleQuestionLink,
   type MarkAssignmentLink,
@@ -676,6 +677,11 @@ async function handleMarkRequest(request: NextRequest) {
     // it gets an ordinary mark, told it was not added to the set. A prompt is
     // always the teacher's prompt, so its text, subject and total replace the
     // form's before the run is opened.
+    //
+    // Nothing on the teacher side may fail a mark (the post-mark hook's rule
+    // too): when the set cannot be checked at all — a database error — the
+    // mark goes ahead unlinked and says so, and reconciliation on the banked
+    // question can still count it later. Only a definite "no" is a 400.
     let assignmentLink: MarkAssignmentLink | null = null
     let linkedItemId: string | null = null
     if (assignmentItemRaw) {
@@ -686,28 +692,39 @@ async function handleMarkRequest(request: NextRequest) {
         )
       }
       if (!userId) return assignmentLinkError('Sign in to hand work in for your class.')
-      const check = await validateAssignmentItemForStudent(supabaseAdmin, itemId, userId)
-      if (!check.ok) return assignmentLinkError(check.reason)
-      const plan = planSingleQuestionLink(check.item, check.assignment, {
-        markIntent,
-        manualPaperCode,
-        manualPaperSession,
-        manualQuestionNumber,
-        practiceSubjectCode,
-        ibComponentKey,
-        // What the pipeline would use as the total once on the practice path.
-        questionMarks: ibMarksAvailable ?? totalMarksAvailable,
-      })
-      assignmentLink = markAssignmentLink(check.assignment, itemId, plan)
-      if (plan.linked) {
-        linkedItemId = itemId
-        const o = plan.overrides
-        if (o.markIntent) markIntent = o.markIntent
-        if (o.questionText !== undefined) questionTextInput = o.questionText
-        if (o.practiceSubjectCode) practiceSubjectCode = o.practiceSubjectCode
-        if (o.ibComponentKey !== undefined) ibComponentKey = o.ibComponentKey
-        if (o.questionMarks != null && ibMarksAvailable == null && totalMarksAvailable == null) {
-          totalMarksAvailable = o.questionMarks
+      let check: Awaited<ReturnType<typeof validateAssignmentItemForStudent>> | null = null
+      try {
+        check = await validateAssignmentItemForStudent(supabaseAdmin, itemId, userId)
+      } catch (err) {
+        console.error('[mark/process] could not check the set item; marking unlinked', {
+          itemId,
+          error: err instanceof Error ? err.message : String(err),
+        })
+        assignmentLink = uncheckedAssignmentLink(itemId)
+      }
+      if (check && !check.ok) return assignmentLinkError(check.reason)
+      if (check?.ok) {
+        const plan = planSingleQuestionLink(check.item, check.assignment, {
+          markIntent,
+          manualPaperCode,
+          manualPaperSession,
+          manualQuestionNumber,
+          practiceSubjectCode,
+          ibComponentKey,
+          // What the pipeline would use as the total once on the practice path.
+          questionMarks: ibMarksAvailable ?? totalMarksAvailable,
+        })
+        assignmentLink = markAssignmentLink(check.assignment, itemId, plan)
+        if (plan.linked) {
+          linkedItemId = itemId
+          const o = plan.overrides
+          if (o.markIntent) markIntent = o.markIntent
+          if (o.questionText !== undefined) questionTextInput = o.questionText
+          if (o.practiceSubjectCode) practiceSubjectCode = o.practiceSubjectCode
+          if (o.ibComponentKey !== undefined) ibComponentKey = o.ibComponentKey
+          if (o.questionMarks != null && ibMarksAvailable == null && totalMarksAvailable == null) {
+            totalMarksAvailable = o.questionMarks
+          }
         }
       }
     }

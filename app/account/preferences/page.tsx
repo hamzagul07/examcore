@@ -16,6 +16,9 @@ export default async function PreferencesSettingsPage() {
       initialReviewDigest={notifications.emailReviewDigest}
       initialWeeklyReport={notifications.emailWeeklyReport}
       initialMarkReady={notifications.emailMarkReady}
+      initialAssignments={notifications.emailAssignments}
+      initialTeacherDigest={notifications.emailTeacherDigest}
+      isTeacher={notifications.isTeacher}
     />
   )
 }

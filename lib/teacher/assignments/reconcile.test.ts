@@ -4,9 +4,12 @@ import {
   attemptMatchesItem,
   collectSubmissionCells,
   isNewOrImproved,
+  cellAttemptIds,
   mergeSubmission,
+  planSubmissionResync,
   planSubmissions,
   reconcileIsFresh,
+  reviewedAttemptIds,
   submissionChanged,
   submissionWindow,
   toCandidate,
@@ -192,6 +195,21 @@ assert.equal(
   Date.parse('2026-10-02T16:00:00.000Z'),
   'refusing late work closes the window at the effective close (due + 7 days)'
 )
+assert.equal(
+  submissionWindow({ ...set, settings: { allow_late: false } }, roster[0].joined_at, '2026-10-05T16:00:00.000Z')?.to,
+  Date.parse('2026-10-05T16:00:00.000Z'),
+  'an extension past the close keeps the window open to the extension'
+)
+assert.equal(
+  submissionWindow({ ...set, closed_at: '2026-09-24T00:00:00.000Z', settings: { allow_late: false } }, roster[0].joined_at, '2026-09-27T16:00:00.000Z')?.to,
+  Date.parse('2026-09-27T16:00:00.000Z'),
+  'a manual close does not cut an extended student off'
+)
+assert.equal(
+  submissionWindow({ ...set, settings: { allow_late: false } }, roster[0].joined_at, '2026-09-26T16:00:00.000Z')?.to,
+  Date.parse('2026-10-02T16:00:00.000Z'),
+  'an extension inside the grace window changes nothing'
+)
 
 // --- planSubmissions over a set -------------------------------------------------
 
@@ -245,6 +263,14 @@ const base = { assignment: set, items: [q3], roster, extensions: noExtensions, e
     0,
     'unless the set refuses late work'
   )
+  const tenDays = planSubmissions({
+    ...base,
+    assignment: { ...set, settings: { allow_late: false } },
+    extensions: new Map([[STUDENT, '2026-10-05T16:00:00.000Z']]),
+    attempts: [afterClose],
+  })
+  assert.equal(tenDays.length, 1, 'but work inside a ten-day extension is still handed in')
+  assert.equal(tenDays[0].next.status, 'submitted', 'and is on time for that student')
 }
 
 {
@@ -370,6 +396,192 @@ const ctx = { assignment: set, item: q3, studentId: STUDENT, extendedDueAt: null
 }
 
 assert.equal(mergeSubmission(stored(), [], ctx), null, 'no matching attempt: the stored row is left exactly as it is')
+
+// --- 'reviewed' follows the counted attempt's latest decision ------------------------
+
+{
+  const rows = [
+    { id: '1', attempt_id: 'a', decision: 'confirm' as const, created_at: '2026-09-23T10:00:00.000Z' },
+    { id: '2', attempt_id: 'b', decision: 'override' as const, created_at: '2026-09-23T10:00:00.000Z' },
+    { id: '3', attempt_id: 'b', decision: 'flag' as const, created_at: '2026-09-24T10:00:00.000Z' },
+    { id: '4', attempt_id: 'c', decision: 'flag' as const, created_at: '2026-09-23T10:00:00.000Z' },
+    { id: '5', attempt_id: 'c', decision: 'confirm' as const, created_at: '2026-09-24T10:00:00.000Z' },
+    { id: '6', attempt_id: 'd', decision: null, created_at: '2026-09-24T10:00:00.000Z' },
+    { id: '7', attempt_id: 'e', decision: 'confirm' as const, created_at: '2026-09-24T10:00:00.000Z' },
+    { id: '8', attempt_id: 'e', decision: 'flag' as const, created_at: '2026-09-24T10:00:00.000Z' },
+  ]
+  const reviewed = reviewedAttemptIds(rows)
+  assert.ok(reviewed.has('a'), 'a confirm reviews')
+  assert.ok(!reviewed.has('b'), 'a later flag takes the review back')
+  assert.ok(reviewed.has('c'), 'a later confirm restores it')
+  assert.ok(reviewed.has('d'), 'a historic row with no decision was an override')
+  assert.ok(!reviewed.has('e'), 'same instant: the later id is the latest')
+  assert.deepEqual([...reviewedAttemptIds([...rows].reverse())].sort(), [...reviewed].sort(), 'order-independent')
+  assert.equal(reviewedAttemptIds([]).size, 0)
+}
+
+{
+  // With decisions known, the stored status does not decide 'reviewed' — the counted attempt's does.
+  const a = toCandidate(attempt({ marks_earned: 4, created_at: '2026-09-22T10:00:00.000Z' }))!
+  const b = toCandidate(attempt({ marks_earned: 5, created_at: '2026-09-23T10:00:00.000Z' }))!
+  const heldA = stored({ attempt_id: a.id, marks_earned: 4, status: 'reviewed' })
+  const matches = [
+    { candidate: a, via: 'reconciled' as const },
+    { candidate: b, via: 'reconciled' as const },
+  ]
+  assert.equal(
+    mergeSubmission(heldA, matches, { ...ctx, reviewed: new Set([b.id]) })!.status,
+    'reviewed',
+    'reconcile keeps a review that belongs to the attempt it picks'
+  )
+  assert.equal(
+    mergeSubmission(stored({ attempt_id: b.id, marks_earned: 5, status: 'reviewed' }), matches, { ...ctx, reviewed: new Set() })!.status,
+    'submitted',
+    'and drops one the teacher took back'
+  )
+  const cells = collectSubmissionCells({ ...base, attempts: [attempt()], existing: [stored({ attempt_id: 'held-elsewhere' })] })
+  assert.ok(cellAttemptIds(cells).includes('held-elsewhere'), 'the held attempt is looked up too')
+}
+
+// --- planSubmissionResync: a teacher's decision and the next reconcile agree ----------
+
+{
+  // A = 6/8 (75%), B = 7/10 (70%): raw marks favour B, percentage favours A.
+  const itemNoTotal = item({ total_marks: null })
+  const a = attempt({ marks_earned: 6, total_marks: 8, created_at: '2026-09-22T10:00:00.000Z' })
+  const b = attempt({ marks_earned: 7, total_marks: 10, created_at: '2026-09-23T10:00:00.000Z' })
+  const rowA = stored({ item_id: itemNoTotal.id, attempt_id: a.id, marks_earned: 6, total_marks: 8, attempt_count: 2, last_submitted_at: '2026-09-23T10:00:00.000Z' })
+
+  // The teacher confirms B.
+  const synced = planSubmissionResync({
+    assignment: set,
+    item: itemNoTotal,
+    studentId: STUDENT,
+    joinedAt: roster[0].joined_at,
+    extendedDueAt: null,
+    attempts: [b, a],
+    existing: rowA,
+    reviewed: new Set([b.id]),
+  })!
+  assert.equal(synced.attempt_id, a.id, 'the decision path picks by the same comparator as reconcile (percentage)')
+  assert.equal(synced.status, 'submitted', 'the counted attempt was not reviewed')
+
+  // The next reconcile, from the row the sync wrote, changes nothing.
+  const written = { ...rowA, ...synced }
+  const again = planSubmissions({
+    ...base,
+    items: [itemNoTotal],
+    attempts: [a, b],
+    existing: [written],
+    reviewed: new Set([b.id]),
+  })
+  assert.equal(again.length, 0, 'reconcile agrees: nothing flips back')
+
+  // The teacher confirms A instead: reviewed, and reconcile keeps it reviewed.
+  const confirmedA = planSubmissionResync({
+    assignment: set,
+    item: itemNoTotal,
+    studentId: STUDENT,
+    joinedAt: roster[0].joined_at,
+    extendedDueAt: null,
+    attempts: [a, b],
+    existing: rowA,
+    reviewed: new Set([a.id]),
+  })!
+  assert.equal(confirmedA.status, 'reviewed')
+  assert.equal(
+    planSubmissions({ ...base, items: [itemNoTotal], attempts: [a, b], existing: [{ ...rowA, ...confirmedA }], reviewed: new Set([a.id]) }).length,
+    0,
+    'and the review survives the next reconcile'
+  )
+}
+
+{
+  // An override raises an unstamped attempt above the one held: picked up at once.
+  const held = attempt({ marks_earned: 4, created_at: '2026-09-22T10:00:00.000Z', assignment_item_id: q3.id })
+  const raised = attempt({ marks_earned: 6, created_at: '2026-09-23T10:00:00.000Z' })
+  const row = stored({ attempt_id: held.id, marks_earned: 4, source: 'linked', attempt_count: 2, last_submitted_at: '2026-09-23T10:00:00.000Z' })
+  const next = planSubmissionResync({
+    assignment: set,
+    item: q3,
+    studentId: STUDENT,
+    joinedAt: roster[0].joined_at,
+    extendedDueAt: null,
+    attempts: [raised, held],
+    existing: row,
+    reviewed: new Set([raised.id]),
+  })!
+  assert.equal(next.attempt_id, raised.id, 'the raised attempt now counts')
+  assert.equal(next.status, 'reviewed', 'with its review')
+  assert.equal(next.source, 'linked', 'a linked row stays linked')
+}
+
+{
+  // An override lowers the held attempt: the next best takes over, at current marks.
+  const held = attempt({ marks_earned: 1, created_at: '2026-09-22T10:00:00.000Z' })
+  const other = attempt({ marks_earned: 4, created_at: '2026-09-23T10:00:00.000Z' })
+  const row = stored({ attempt_id: held.id, marks_earned: 5, status: 'reviewed', attempt_count: 2, last_submitted_at: '2026-09-23T10:00:00.000Z' })
+  const next = planSubmissionResync({
+    assignment: set,
+    item: q3,
+    studentId: STUDENT,
+    joinedAt: roster[0].joined_at,
+    extendedDueAt: null,
+    attempts: [held, other],
+    existing: row,
+    reviewed: new Set([held.id]),
+  })!
+  assert.equal(next.attempt_id, other.id)
+  assert.equal(next.status, 'submitted', 'the new best was not reviewed')
+}
+
+{
+  // A student no longer on the roster: only the held attempt is re-read (at its new marks).
+  const held = attempt({ marks_earned: 5, created_at: '2026-09-22T10:00:00.000Z' })
+  const newer = attempt({ marks_earned: 6, created_at: '2026-09-23T10:00:00.000Z' })
+  const row = stored({ attempt_id: held.id, marks_earned: 3 })
+  const next = planSubmissionResync({
+    assignment: set,
+    item: q3,
+    studentId: STUDENT,
+    joinedAt: null,
+    extendedDueAt: null,
+    attempts: [held, newer],
+    existing: row,
+    reviewed: new Set([held.id]),
+  })!
+  assert.equal(next.attempt_id, held.id, 'history: nothing new is handed in')
+  assert.equal(next.marks_earned, 5, 'but the decided marks are recorded')
+  assert.equal(next.status, 'reviewed')
+  assert.equal(
+    planSubmissionResync({ assignment: set, item: q3, studentId: STUDENT, joinedAt: null, extendedDueAt: null, attempts: [newer], existing: null, reviewed: new Set() }),
+    null,
+    'no row and not on the roster: nothing to write'
+  )
+}
+
+{
+  // The held attempt was marked before a rejoin moved the window: it stays in the running at its current marks.
+  const held = attempt({ marks_earned: 5, created_at: '2026-09-22T10:00:00.000Z' })
+  const row = stored({ attempt_id: held.id, marks_earned: 2 })
+  const next = planSubmissionResync({
+    assignment: set,
+    item: q3,
+    studentId: STUDENT,
+    joinedAt: '2026-09-23T00:00:00.000Z',
+    extendedDueAt: null,
+    attempts: [held],
+    existing: row,
+    reviewed: new Set(),
+  })!
+  assert.equal(next.marks_earned, 5)
+  const stranger = attempt({ user_id: OTHER, marks_earned: 6 })
+  assert.equal(
+    planSubmissionResync({ assignment: set, item: q3, studentId: STUDENT, joinedAt: roster[0].joined_at, extendedDueAt: null, attempts: [stranger], existing: null, reviewed: new Set() }),
+    null,
+    'another student’s attempt never hands in for this one'
+  )
+}
 
 // --- change detection and freshness -------------------------------------------------
 

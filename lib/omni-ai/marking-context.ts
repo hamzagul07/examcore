@@ -57,7 +57,7 @@ const clean = (value: unknown, max?: number) => sanitizeUntrusted(value, max)
  * A mark a teacher overrode carries teacher-typed reasoning, not marker
  * output. It is fenced and labelled so the model reads it as data about the
  * mark rather than as an instruction — the override route bounds the shape
- * (lib/teacher/override.ts) but a teacher can still type anything into it,
+ * (lib/teacher/override-validate.ts) but a teacher can still type anything into it,
  * and this block ends up in the student's tutor context.
  */
 type OverridableMark = { teacher_override?: boolean; reasoning?: unknown; margin_note?: unknown }

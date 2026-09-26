@@ -17,7 +17,7 @@ put it in your handoffs.
 
 | File | What it is |
 |---|---|
-| `supabase/migrations/20260926a_teacher_v2_classrooms.sql` | classroom columns, membership `status` + service-only membership writes, the three RLS helpers, profile RPCs, `leave_classroom`, `student_in_verified_classroom`, `rate_limits.invite_lookup_count` |
+| `supabase/migrations/20260926a_teacher_v2_classrooms.sql` | classroom columns, membership `status` + service-only membership writes, the three RLS helpers, profile RPCs, `leave_classroom`, `student_in_verified_classroom`, `rate_limits.invite_lookup_count`; re-asserts `classroom_student_read`, `teacher_read_student_attempts` (via `teacher_student_ids`) and `intervention_student_read` (via `user_classroom_ids`) so a replayed database matches production |
 | `supabase/migrations/20260926b_teacher_v2_assignments.sql` | `assignments`, `assignment_items`, `assignment_students`, `assignment_submissions`, `attempts.assignment_item_id` (+ column-grant lockdown), `targeted_assignment_ids` |
 | `supabase/migrations/20260926c_teacher_v2_feedback_audit.sql` | `teacher_overrides` decision columns, `teacher_feedback`, `mark_teacher_feedback_read`, `teacher_audit_log`, `user_profiles` email prefs + digest guard, `audit_client_grants()` |
 | `lib/teacher/types.ts` | §2.1 verbatim. Types only; import it anywhere. |
@@ -26,7 +26,7 @@ put it in your handoffs.
 | `lib/teacher/display-name.ts` (+test) | `displayName` — dependency-free, safe in client components |
 | `lib/teacher/flags.ts` (+test) | `isTeacherV2()` |
 | `lib/teacher/reconcile-keys.ts` (+test) | attempt ↔ item fallback keys |
-| `lib/teacher/notify.ts` | §2.3 signatures; `auditLog` is **live**, the rest are no-ops P8 fills |
+| `lib/teacher/notify.ts` | §2.3 signatures; `auditLog` landed live with P0, the other five were filled by P8 |
 | `lib/database.types.ts` | row types for the new tables/columns (`Classroom` now comes from `lib/teacher/types.ts`) |
 | `scripts/backfill-classroom-subject.ts` | `npx tsx scripts/backfill-classroom-subject.ts [--apply]` after 20260926a |
 | `package.json` | `test:teacher` (see §9), appended to `test` |
@@ -149,18 +149,21 @@ unless noted.
 // lib/teacher/assignment-status.ts
 export const AUTO_CLOSE_AFTER_DUE_DAYS = 7
 export const HANDED_IN_STATES: ReadonlySet<StudentItemState>          // done | late | reviewed
-export function effectiveDueAt(dueAt: string | null, extendedDueAt: string | null): string | null
+export function effectiveDueAt(dueAt: string | null, extendedDueAt: string | null): string | null   // null when dueAt is null
 export function isLate(submittedAt: string, dueAt: string | null, extendedDueAt: string | null): boolean
 export function deriveStudentState(input: { membership: MembershipStatus; items: AssignmentItem[]; submissions: AssignmentSubmission[];
   flags: AssignmentStudentFlags | null; due_at: string | null }): Omit<StudentAssignmentState, 'student_id' | 'display_name'>
 export function summariseProgress(states: StudentAssignmentState[], items: AssignmentItem[]): Omit<AssignmentProgress, 'assignment_id' | 'students'>
 export function effectiveCloseAt(a: Pick<Assignment, 'closed_at' | 'due_at'>): string | null
 export function assignmentStatus(a: Pick<Assignment, 'published_at' | 'closed_at' | 'archived_at' | 'due_at'>, now?: Date): 'draft' | 'open' | 'closed'
+export function studentCloseAt(a: Pick<Assignment, 'closed_at' | 'due_at'>, extendedDueAt: string | null): string | null
+export function studentAssignmentStatus(a: Pick<Assignment, 'published_at' | 'closed_at' | 'archived_at' | 'due_at'>, extendedDueAt: string | null, now?: Date): 'draft' | 'open' | 'closed'
 ```
 
 Semantics every surface must share:
 
-- **Deadline** = the *later* of `due_at` and `extended_due_at` (an extension never shortens it).
+- **Deadline** = the *later* of `due_at` and `extended_due_at` (an extension never shortens it). A set with no
+  `due_at` has no deadline, extension or not (an extension only extends).
   **Late** = first hand-in strictly after the deadline; exactly on it is on time; no deadline → never late.
 - Lateness is derived from `first_submitted_at`, not the stored `status`, so an extension granted
   afterwards clears it. The stored status only matters for `'reviewed'`.
@@ -175,6 +178,16 @@ Semantics every surface must share:
   (= earlier of `closed_at` and `due_at + 7 days`); else `open`. A set past due but inside the 7 days
   is `open` — that is where "late" lives. Late hand-ins after close are still accepted when
   `settings.allow_late !== false`.
+- **Per student**, a set closes at `studentCloseAt` = the later of `effectiveCloseAt` and their extended
+  deadline (a real extension, past `due_at`): neither the auto-close nor the teacher's Close takes an
+  extension back. Everything that decides whether ONE student may still hand in uses
+  `studentAssignmentStatus` — the marking gate, reconciliation's window, the student's list and set page
+  (`canHandIn`, `deriveStudentAssignment`, `visibleToStudent`) and reminders. The set's own tab, the week
+  strip and the teacher's open-set counts stay on `assignmentStatus`.
+- **'reviewed'** is stored on a hand-in when the attempt it counts has a confirm or override as its latest
+  teacher decision (`reviewedAttemptIds` in `lib/teacher/assignments/reconcile.ts`), whichever path wrote the
+  row. The student is shown it only when a student-visible decision exists for that attempt
+  (`studentSubmissionStatus`); otherwise the hand-in reads as done / late.
 
 ```ts
 // lib/teacher/subject.ts   (server or client; pulls in the syllabus registry)
@@ -234,46 +247,108 @@ export async function auditLog(entry: TeacherAuditEntry): Promise<void>
 - **`auditLog` is live now** (service insert into `teacher_audit_log`). Call it for every §8 action:
   `view_student`, `export_csv`, `override`, `feedback`, `remove_student`, `regenerate_code`,
   `archive_classroom`, `delete_classroom`. `meta` must be a plain object (DB CHECK).
-- The other five are no-ops (`notifyRemind` returns 0) until P8 fills them; their doc comments in
-  the file are the behaviour P8 implements. P8: keep `auditLog` as is.
+- The other five are live (P8): in-app rows per spec §5 (`assignment_set`, `assignment_due`,
+  `submission_received` one per set per UTC day, `mark_reviewed`, `teacher_feedback`) and the matching
+  emails, honouring `email_assignments`, suppressions and the dry-run flags. `notifyRemind` returns
+  the number reminded. All are no-ops with `TEACHER_V2=0`.
 
 ---
 
 ## 4. Analytics / loader signatures (§2.4 — implemented by P1 `analytics-core`)
 
+As shipped. The spec's §2.4 shapes are superseded where they differ (every
+change below is additive or an optional argument, except that `opts` on
+`getClassroomAttempts` is optional and its result also carries `studentIds`).
+
 ```ts
-// lib/teacher-classroom-data.ts
-export async function getClassroomStudentIds(supabase, classroomId: string, opts?: { status?: MembershipStatus[] }): Promise<string[]>
-export async function getClassroomAttempts(supabase, classroomId: string, opts: { subjectCode: string | null; sinceJoin?: boolean; since?: string; limit?: number })
-  : Promise<{ attempts: ClassroomAttempt[]; truncated: boolean }>      // fetchAllRows; selects error_classifications, ai_marking, mark_scheme_id, assignment_item_id
-export async function getStudentProfiles(supabase, studentIds: string[]): Promise<Map<string, { full_name: string | null; board: string | null }>>  // via teacher_student_profiles RPC
-// lib/teacher-analytics.ts  (generic over lib/syllabi)
+// lib/teacher-classroom-data.ts   (server-only)
+export async function getClassroomAttempts(supabase, classroomId: string, opts?: {
+  subjectCode?: string | null   // omitted = classrooms.subject_code; null = no subject filter
+  sinceJoin?: boolean           // default true
+  since?: string; until?: string
+  limit?: number                // default 5000, max 20000
+  withMarking?: boolean         // default true
+  admin?: SupabaseClient        // service client, ONLY for the mark_schemes paper-code lookup; pass it after ownership is proven
+}): Promise<{ attempts: ClassroomAttempt[]; truncated: boolean; studentIds: string[] }>
+export async function getClassroomStudentIds(supabase, classroomId, opts?: { status?: MembershipStatus[] }): Promise<string[]>   // active by default
+export async function getClassroomMembers(supabase, classroomId, opts?): Promise<ClassroomMember[]>
+export async function getMembersForClassrooms(supabase, ids, opts?): Promise<Map<string, ClassroomMember[]>>
+export async function getClassroomScope(supabase, id): Promise<{ id; teacher_id; name; board; level; subject_code; archived_at } | null>
+export async function getStudentProfiles(supabase, studentIds): Promise<Map<string, { full_name; board; level }>>   // teacher_student_profiles; throws on error
+export async function getRosterProfiles(supabase, classroomId): Promise<Array<{ id; full_name; board; level; joined_at; status }>>   // teacher_roster_profiles (every status)
+export async function fetchAllFiltered<T>(label, (from, to) => query.range(from, to), { pageSize?, maxRows? }): Promise<{ rows: T[]; truncated: boolean }>
+export async function loadPublishedSets(db, classroomIds): Promise<SetRow[]>
+export async function hydrateSets(db, sets): Promise<ClassSet[]>          // + items, flags, submissions
+export async function countSubmissions(db, setIds, { unreviewed?, firstFrom?, firstTo? }): Promise<number>
+
+// lib/teacher-analytics.ts   (pure)
 export function computeTopicAnalytics(attempts, subjectCode): TopicAnalytics[]
 export function computeBlindspots(attempts, subjectCode): TopicAnalytics[]
-export function computeStudentQuadrants(attempts, studentIds, subjectCode, board): StudentQuadrantMetric[]
+export function computeStudentQuadrants(attempts, studentIds, subjectCode, board, profiles?): StudentQuadrantMetric[]
 export function summarizeClassAnalytics(attempts, studentIds, subjectCode): ClassSummary
-// lib/teacher/review-priority.ts
+export function paceDivider(metrics): number | null   // class median time-per-mark; null with fewer than 3 timed students
+
+// lib/teacher/week.ts, lib/teacher/overview.ts   (server via imports)
+export async function loadClassWeek(supabase, classroomId, { week?: 'YYYY-Www'; now?; admin? }): Promise<ClassWeek | null>   // RangeError on a bad week
+export async function loadTeacherOverview(supabase, teacherId, { now? }): Promise<TeacherOverview>
+// lib/teacher/load-due-rows.ts
+export async function loadDueRowsForStudents(service, studentIds, { subjectCode?, joinedAt?: Map<studentId, joined_at>, nowMs? }): Promise<{ rows; error }>
+// lib/teacher/review-priority.ts, lib/teacher/groups.ts
 export function scoreReviewPriority(a: AttemptForPriority): { priority: number; reasons: string[] }
-// lib/teacher/groups.ts
-export function buildErrorGroups(attempts: ClassroomAttempt[], subjectCode: string, minStudents = 2): ErrorGroup[]
+export function buildErrorGroups(attempts: GroupAttempt[], subjectCode: string, minStudents = 2): ErrorGroup[]
 ```
+
+Numbers that deliberately changed (changelog, spec §9): class averages and accuracy are
+marks-weighted (`avgScore` is `number | null`, null exactly when there are no attempts);
+blindspots use the `levelFor` bands (below 75% with 3+ attempts); analytics exclude pre-join
+and other-subject work. `StudentQuadrantMetric.timePerMark` and `.coverage` are `number | null`
+(null = untimed: drawn hollow and labelled, never called careless). `time_spent_seconds` measures
+the marking request, not the student, so pace is relative to the class median only.
 
 ---
 
 ## 5. `lib/teacher/assignments.ts` (§2.5 — server-only; implemented by P2 `assignments-backend`)
 
+As shipped:
+
 ```ts
-export async function listAssignments(supabase, classroomId, opts: { status?: 'open'|'closed'|'draft'; cursor?: string; limit?: number }): Promise<{ assignments: AssignmentSummary[]; next_cursor: string | null }>
-export async function resolveItems(admin, subjectCode: string, items: ItemInput[]): Promise<Omit<AssignmentItem,'id'|'assignment_id'>[]>  // findMarkSchemeRow / findQuestionForTopic; max 12 rows
+export async function listAssignments(supabase, classroomId, opts: { status?; cursor?; limit?; admin?; now? }): Promise<{ assignments: AssignmentSummary[]; next_cursor: string | null }>   // AssignmentInputError(field 'cursor') on a foreign or malformed cursor
 export async function createAssignment(supabase, admin, ctx: { classroomId; teacherId; subjectCode }, input: AssignmentDraftInput): Promise<Assignment>
-export async function loadAssignment(supabase, admin, assignmentId): Promise<{ assignment: Assignment; items: AssignmentItem[]; progress: AssignmentProgress } | null>
-export async function reconcileAssignment(admin, assignmentId, opts?: { force?: boolean }): Promise<{ linked: number }>  // skips if reconciled_at < 60s ago
-export async function onAttemptMarked(admin, attempt: { id; user_id; assignment_item_id: string | null; mark_scheme_id: string | null; marks_earned; total_marks; created_at }): Promise<void>
-export async function validateAssignmentItemForStudent(admin, itemId: string, studentId: string): Promise<{ ok: true; item: AssignmentItem; assignment: Assignment } | { ok: false; reason: string }>
-export async function studentMarkHref(item: AssignmentItem, assignmentId: string): string   // pastPaperMarkHref({..., assignmentItemId, returnTo:`/dashboard/assignments/${assignmentId}`}) or /mark?subject&task for prompts
+export async function createAssignmentWithItems(...): Promise<{ assignment; items }>
+export async function loadAssignment(supabase, admin, assignmentId): Promise<{ assignment; items; progress } | null>   // call reconcileAssignment first
+export async function updateAssignment / archiveAssignment / publishAssignment / remindAssignment / updateStudentFlags
+export async function loadAssignmentGaps(supabase, admin, assignmentId): Promise<{ report; headline; per_item; students; archived } | null>
+export async function loadAssignmentPrint(supabase, admin, assignmentId): Promise<AssignmentPrintModel | null>
+export async function reconcileAssignment(admin, assignmentId, opts?: { force?; now? }): Promise<{ linked: number }>   // skips if reconciled < 60s ago; throws on DB failure
+export async function resyncSubmissionsForAttempt(admin, attemptId): Promise<ResyncedSubmission[]>   // after a teacher decision; same matching, comparator and 'reviewed' rule as reconcile; throws on DB failure
+export async function onAttemptMarked(admin, attempt): Promise<void>                       // never throws; no-op with TEACHER_V2=0
+export async function onAttemptsMarked(admin, { userId, attemptIds }): Promise<void>      // never throws; used by /api/mark/process and whole-paper/run
+export async function validateAssignmentItemForStudent(admin, itemId, studentId): Promise<{ ok: true; item; assignment } | { ok: false; reason: string }>   // throws on DB failure — the marking routes then mark unlinked
+export class AssignmentInputError   // (message, field, status 400|404|409|429, retryAfterSeconds)
+
+// lib/teacher/assignments/link.ts   (client-safe)
+export function studentMarkHref(item: AssignmentItem, assignmentId: string, opts?: { setTitle?: string; subjectCode?: string }): string   // synchronous (ruling 13)
+export const ASSIGNMENT_ITEM_FIELD = 'assignment_item_id'
+export function readMarkAssignmentLink(value: unknown): MarkAssignmentLink | null
+export function markAssignmentNotice(link): { tone: 'linked' | 'unlinked'; text: string }
+export function uncheckedAssignmentLink(itemId: string): MarkAssignmentLink   // { linked: false, assignment_id: null, title: null, reason }
 ```
 
-(See ruling 13: `studentMarkHref` is synchronous.)
+- `/mark` query params: `assignment=<item id>`; `mode=whole_paper` + `paper` + `session`;
+  `task=<prompt text>` + `marks=<n>`; plus the existing `practice` / `subject` / `return`.
+  `/mark` sends the student back to `/dashboard/assignments/<id>` (allowed by `parseMarkReturnPath`).
+- The single-question result and the whole-paper init response carry
+  `_assignment = { linked, assignment_id, item_id, title, reason? }`, shown by
+  `components/mark/AssignmentLinkNotice.tsx` on both. `WholePaperFlow` takes
+  `assignmentItemId` and sends it with init; `whole-paper/run` hands the finished
+  paper in (`onAttemptsMarked`) as soon as it is saved.
+- An invalid item is `400 { error, field: 'assignment_item_id', code: 'assignment_item_invalid' }`.
+  A mark on the wrong question from a set page is kept, with `_assignment.linked = false`.
+  If the set cannot be checked at all (a database error), the mark goes ahead unlinked with
+  `_assignment = uncheckedAssignmentLink(itemId)` (`assignment_id`/`title` null) — nothing on the
+  teacher side may fail a student's mark.
+- Draft items resolve server-side; topic items give 2 questions per topic by default, at most 4;
+  12 items per set.
 
 ---
 
@@ -321,6 +396,49 @@ Teacher route shape: `createClient()` → `auth.getUser()` 401 `{error:'Unauthor
 | `/api/cron/teacher-digest`, `/api/cron/assignment-reminders` | GET | `CRON_SECRET` | §5 | notify-email-crons |
 
 Deleted: `T/intervention/**`, `T/students/route.ts`, `components/teacher/InterventionGenerator.tsx`. `intervention_tests` table kept, unread.
+
+As shipped (these supersede the table where they differ):
+
+- **Classroom (P4).** `PATCH T` also takes `{archived: false}` (restore; audited as
+  `archive_classroom` with `meta.restored`); 400 `{error, field}`, 409 on an archived class.
+  `DELETE T?mode=archive|delete` (409 when a delete is not allowed). `GET T` → `{classroom, studentCount}`.
+  `POST T/invite` 409 if archived. `DELETE T/students/[sid]` → `{ok, status:'removed'}`, 409 if not active.
+  `GET T/export` 409 if archived; `X-Export-Truncated` at the 20,000-row ceiling.
+  `GET /api/teacher/classrooms?scope=active|archived|all&cursor&limit` → `{classrooms, next_cursor}`.
+  Roster `open_late` = open sets the student is overdue on (the `overview.ts` rule); `due_count`
+  is scoped to the class subject and to what fell due since the student joined. `GET T/roster` also
+  returns `incomplete: { last_active, due, overdue }` — the badges that failed to load (their zeros
+  mean "unknown"; the roster page says so).
+- **Week (P3).** `GET T/week?week=YYYY-Www` → `ClassWeek`; 400 `{error:'Invalid week', field:'week'}`;
+  `Cache-Control: no-store`. The class week page reconciles the class's open sets (≤ 8, throttled per
+  set) before reading, so its tallies agree with each set's matrix.
+- **Insights (P7).** `GET T/groups` → `{groups, names: Record<studentId, displayName>, truncated}`.
+  `GET T/students/[sid]/history?cursor` → `{attempts, next_cursor}` (30/page; 404 unless an active
+  member; audits `view_student` once per hour per teacher and student). `analytics` adds
+  `{archived, truncated}`; `blindspots` → `{topics, topicsWithQuestions, truncated}`; `quadrants` →
+  `{students, truncated}`; `gaps` → `{report, headline, students, truncated}`; `due` → `{topics, students}`.
+- **Reviews (P5).** `GET /api/teacher/reviews` → `{items: ReviewInboxItem[], next_cursor, counts:
+  {pending, confirmed, overridden, flagged, total}, truncated, window_days: 90}` (limit 1–50, default 20;
+  90-day window capped at 3,000 scripts; a set filter includes every hand-in whatever its age).
+  `ReviewQueueItem.display_name` is `displayName()`. The override POST also returns `override_id`;
+  a flag with `student_visible: true` is a 400 (flags are private); confirm/flag rows store
+  `override_marks_awarded` = the marks currently on the attempt. GET override reads names through
+  `teacher_student_profiles` (no cross-user `user_profiles` read). Feedback DELETE retracts the
+  student's in-app notification itself.
+- **Student side (P6).** `/api/classrooms/by-code/[code]` stays **signed-in** (code-review fix, not
+  anon as §3 says). Its 60/day per-address bucket refunds the slot when the code is real (only misses
+  count); join spends both the per-account (20/day) and the per-address bucket. Both refuse archived
+  classes (410); a `removed` membership is 409 `{error:'Removed by teacher'}`. `GET /api/classrooms/mine`
+  adds `class_bonus`; `GET /api/assignments` adds `next_cursor`.
+- **Billing summary (P9).** `GET /api/billing/summary` → `questions.class_bonus` (read with
+  `classBonusFromSummary`; the usage copy says "25 questions (5 free + 20 from your class)").
+- **Omni (P7).** The `teacher_dashboard` context is an address only:
+  `data: { classroom_id?: string; view?: string }` (`lib/omni-ai/types.ts`, `context-schema.ts`).
+  Pages set it with `teacherOmniContext({ classroomId, view })` from `lib/teacher/insights/omni.ts`;
+  the desk sends `view: 'desk'`, the review inbox `view: 'reviews'` (with its class filter, if any).
+- **Desk "Needs you" vs the inbox.** The desk's *unreviewed* counts set hand-ins not yet marked
+  reviewed (flagged ones included); the inbox's *pending* counts scripts with no decision in the last
+  90 days (all work in the class subject). The tile links to the pending inbox; the two numbers can differ.
 
 ---
 
@@ -377,6 +495,35 @@ Component exports (named exports, one component per file):
 | `AssignmentsSetCard` | P6 | `components/dashboard/AssignmentsSetCard.tsx` |
 | `TeacherFeedbackNote` | P6 | `components/dashboard/TeacherFeedbackNote.tsx` |
 | `MyClassesCard` | P6 | `components/account/MyClassesCard.tsx` |
+
+Props as shipped (keep them stable; add new ones as optional):
+
+```ts
+ClassTabs({ classroomId, current: 'week'|'sets'|'students'|'gaps'|'reviews'|'settings',
+  counts?: Partial<Record<ClassTab, { value: number; label: string; alert?: boolean }>>, v2?: boolean })   // server component; every class page, settings included
+ClassDeskHead({ classroom: { id, name, subject_code, year_group, invite_code, settings, archived_at, studentCount },
+  eyebrow?, title?, note?, actions?, titleId? })   // server-only; archived banner + demo flag; hides actions when archived
+ErrorGroupsPanel({ classroomId, groups: ErrorGroup[], names: Record<string, string>, canSetWork?, limit? = 5,
+  truncated?, gapsHref?, headingId? })   // hook-free
+GradeRiskMatrix({ students: StudentQuadrantMetric[], classroomId?, truncated?, headingId? })   // dots link to students only with classroomId
+TeacherConfirmDialog({ open, onClose, title, children, confirmLabel, busyLabel, onConfirm, busy?, error?, tone?, confirmDisabled? })   // from ClassroomSettingsForm.tsx
+NotificationBell({ dismiss?, alwaysOn?, inboxHref? })   // alwaysOn: class notifications do not depend on the Exam Room flag (teacher nav; the app header); the teacher nav's inboxHref is /teacher/notifications
+ClassDeskHead(… , banners? = true)   // settings passes false: it shows its own archived / example-data notes
+RetryButton({ label?, pendingLabel?, className? })   // components/teacher/RetryButton.tsx — "Try again" for a failed server read (router.refresh; a same-path link does nothing)
+```
+
+Composer prefill URLs are built only by `composerHref()` in `components/teacher/assignments/links.ts`:
+`/teacher/classroom/[id]/assignments/new?source=reteach|error_group|blindspot&codes=5.4,5.5&students=<uuid>,<uuid>&group=<error group key>&set=<source set uuid>`
+(codes capped at 6, students at 150 — a larger group prefills nobody); `?draft=<aid>` edits a draft.
+Reviews links keep the filter names `classroom_id`, `student_id`, `assignment_id`, `status`.
+
+Helper selectors also defined in `teacher.css` (see `docs/teacher-system.md`): `.ms-teacher-chip--left/--removed/--demo/--mock/--due/--draft/--archived`,
+`.ms-teacher-archived-banner`, `.ms-teacher-section-title`, `.ms-teacher-notfound`, `.ms-teacher-empty__actions`,
+`.ms-teacher-error__title/__body`, `.ms-teacher-settings*`, `.ms-teacher-danger*`, `.ms-teacher-allowance`,
+`.ms-teacher-confirm` (+`__title/__body/__actions`), `.ms-seat-queue*`. `.ms-review-slip` / `.ms-review-queue`
+are scoped to `.ms-teacher-layout` (the student dashboard has its own `.ms-review-slip`). The legacy
+`ms-teacher-inbox*`, `ms-teacher-review`, `ms-override-console`, `ms-teacher-blindspot`,
+`ms-teacher-print-hide`, `ms-teacher-intervention` blocks are deleted; `.ms-teacher-review-detail` stays.
 
 ---
 
@@ -441,4 +588,24 @@ Order: P0 → P1 + P10 (day one) → P2, P4, P9 → P3, P5, P6, P7, P8. P3 and P
   (e.g. `components/teacher/assignments/matrix-cells.ts`) and test that. Tests must not need
   network or database credentials.
 - `pnpm test:grants` (live DB) must stay green; it fails on any row `audit_client_grants()` returns.
-- Env: `TEACHER_V2` — optional; `'0'` switches v2 off. (P8/P9 add their own: see the spec §5, §7.)
+  Every redefinition of `audit_client_grants()` must be a strict superset of the previous body
+  (20260925_community_votes_rpc.sql mirrors production's, creators entries included).
+- Known gap, by design of spec §8: the attempts SELECT policy for teachers
+  (`teacher_read_student_attempts` via `teacher_student_ids`) is not limited to `created_at >= joined_at`
+  or the class subject; the loaders apply both. A later migration could add a SECURITY DEFINER helper
+  returning `(student_id, joined_at)` for the caller and use it in that policy, after measuring its cost
+  on the attempts table (every student read of their own attempts evaluates it too).
+- Tests outside the `test:teacher` globs are wired into their area's script: `lib/site-nav.test.ts`
+  (`test:auth`), `lib/omni-ai/teacher-context.test.ts` (`test:omni`, react-server),
+  `lib/billing/caps.test.ts` (`test:billing`), `lib/marking/mark-return-url.test.ts` (`test:marking`),
+  `lib/community/notification-icon.test.ts` (`test:community`), `lib/rate-limit.test.ts`
+  (`test:security`, run from the repo root). `pnpm test` runs them all; run it as
+  `env -u NEXT_PUBLIC_SUPABASE_URL -u SUPABASE_SERVICE_ROLE_KEY pnpm test` to prove no test needs credentials.
+- Env (all documented in `.env.example`): `TEACHER_V2` — optional; `'0'` switches v2 off.
+  `TEACHER_CLASS_STUDENT_BONUS` (default 20; 0 = off; malformed → 20).
+  `TEACHER_DIGEST_SEND='true'` sends the Sunday digest (otherwise dry run, nothing stamped).
+  `ASSIGNMENT_REMINDER_SEND='true'` emails due-soon reminders (in-app reminders always go out).
+  `ADMIN_EMAILS` gates `/admin/teacher-seats`.
+- Email preferences: `email_assignments` (students: set / due / re-mark / feedback emails) and
+  `email_teacher_digest` (teachers) are toggles on `/account/preferences`
+  (`PATCH /api/account/preferences`), where both unsubscribe links send people to turn them back on.

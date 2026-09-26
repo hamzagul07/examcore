@@ -1,215 +1,355 @@
-'use client'
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import { createServiceClient } from '@/lib/supabase/service'
+import { loadAssignmentGaps, reconcileAssignment, type AssignmentGaps } from '@/lib/teacher/assignments'
+import { loadPublishedSets, type SetRow } from '@/lib/teacher-classroom-data'
+import { isTeacherV2 } from '@/lib/teacher/flags'
+import { teacherOmniContext } from '@/lib/teacher/insights/omni'
+import { loadClassDue, loadClassGaps, loadSetItems, type ClassDue, type ClassGaps } from '@/lib/teacher/insights/server'
+import type { AssignmentItem } from '@/lib/teacher/types'
+import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
+import { LoadingLink } from '@/components/ui/LoadingLink'
+import { StatusMessage } from '@/components/ui/StatusMessage'
+import { ClassBlindspots } from '@/components/teacher/ClassBlindspots'
+import { ClassDeskHead } from '@/components/teacher/ClassDeskHead'
+import { ClassDueList } from '@/components/teacher/ClassDueList'
+import { ClassTabs } from '@/components/teacher/ClassTabs'
+import { ClassroomSummary } from '@/components/teacher/ClassroomSummary'
+import { TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
+import { ErrorGroupsPanel } from '@/components/teacher/assignments/ErrorGroupsPanel'
+import { ItemGapList } from '@/components/teacher/assignments/ItemGapList'
+import { PrintButton } from '@/components/teacher/assignments/PrintButton'
+import { composerHref, setHref } from '@/components/teacher/assignments/links'
+import { setTopicCodes } from '@/components/teacher/assignments/set-display'
+import { firstParam, requireClassContext } from '../assignments/_lib/context'
+import { GapReport } from './_components/GapReport'
 
-import { useEffect, useState } from 'react'
-import { useParams } from 'next/navigation'
-import { Printer, Target } from 'lucide-react'
-import { MathText } from '@/components/MathText'
-import { SkeletonBlock } from '@/components/ui/PageSkeleton'
-import {
-  TeacherBackLink,
-  TeacherPageContainer,
-  TeacherPageHeader,
-} from '@/components/teacher/TeacherPageChrome'
-import type { CohortGapReport, MarkTypeGap } from '@/lib/teacher/cohort-gaps'
+export const dynamic = 'force-dynamic'
 
-type Payload = {
-  report: CohortGapReport
-  headline: MarkTypeGap | null
-  students: number
-  /** Set when the class has more marked work than one report will read. */
-  truncated: number | null
+type Props = {
+  params: Promise<{ id: string }>
+  searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
-/** Weak marks read as a warning, strong ones as reassurance. */
-function barTone(pct: number): string {
-  if (pct < 40) return 'var(--ec-score-low, #d9534f)'
-  if (pct < 75) return 'var(--ec-score-mid, #e0a458)'
-  return 'var(--ec-score-high, #4f9d69)'
+function pagePath(id: string): string {
+  return `/teacher/classroom/${encodeURIComponent(id)}/gaps`
 }
 
-export default function CohortGapsPage() {
-  const { id } = useParams<{ id: string }>()
-  const [data, setData] = useState<Payload | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState('')
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params
+  const { classroom } = await requireClassContext(id, pagePath(id))
+  return { title: `Gaps · ${classroom.name}` }
+}
 
-  useEffect(() => {
-    fetch(`/api/teacher/classroom/${id}/gaps`)
-      .then((r) => r.json())
-      .then((d) => {
-        if (d.error) setError(d.error)
-        else setData(d as Payload)
+type Loaded<T> = { ok: true; value: T } | { ok: false }
+
+function settle<T>(label: string, classroomId: string, work: Promise<T>): Promise<Loaded<T>> {
+  return work.then(
+    (value) => ({ ok: true as const, value }),
+    (err: unknown) => {
+      console.error(`[teacher/gaps] ${label} failed`, {
+        classroomId,
+        error: err instanceof Error ? err.message : String(err),
       })
-      .catch(() => setError('Could not load the report.'))
-      .finally(() => setLoading(false))
-  }, [id])
+      return { ok: false as const }
+    }
+  )
+}
 
-  if (loading) {
-    return (
-      <TeacherPageContainer>
-        <SkeletonBlock className="mb-4 h-10 w-72 max-w-full" />
-        <SkeletonBlock className="h-64 w-full" />
-      </TeacherPageContainer>
-    )
-  }
+const UNREADABLE = 'Reload the page to try again. Nothing in the class has changed.'
 
-  if (error || !data) {
-    return (
-      <TeacherPageContainer>
-        <TeacherBackLink href={`/teacher/classroom/${id}`}>
-          ← Back to classroom
-        </TeacherBackLink>
-        <p className="text-[var(--ec-text-secondary)]">{error || 'No report available.'}</p>
-      </TeacherPageContainer>
-    )
-  }
+/**
+ * The Gaps tab (docs/TEACHER_SYSTEM_SPEC.md §4 `.../gaps`): where the class
+ * loses marks, in its own subject, with the cohort gap report's existing
+ * layout — plus a set filter, "Set a drill" calls to action, and the shared
+ * mistakes panel.
+ *
+ * Whole class (default): the headline figures, the weakest syllabus topics,
+ * the mark-type report, error groups and topics due for review — all over
+ * the class's scoped work (active members, marked since joining, in the
+ * class subject), from one read with per-mark detail.
+ *
+ * `?set=<id>`: the same report over that set's hand-ins, with the item by
+ * item breakdown. Only a published set of THIS class is accepted.
+ *
+ * A server component: nothing about the class is fetched by the browser.
+ * An archived class has no live marked work to read (spec conflict
+ * rulings), so it says so rather than showing an empty report as a finding.
+ */
+export default async function ClassGapsPage({ params, searchParams }: Props) {
+  const [{ id }, sp] = await Promise.all([params, searchParams])
+  const { supabase, classroom } = await requireClassContext(id, pagePath(id))
 
-  const { report, headline } = data
+  const v2 = isTeacherV2()
+  const archived = classroom.archived_at !== null
+  const canSetWork = v2 && !archived
+  // Service client only now that the class is proven to be the caller's.
+  const admin = createServiceClient()
+
+  // Sets are the teacher's own rows, readable through RLS whether or not the class is archived.
+  const setsR = v2
+    ? await settle('sets', classroom.id, loadPublishedSets(supabase, [classroom.id]))
+    : ({ ok: true, value: [] } as Loaded<SetRow[]>)
+  const sets = setsR.ok
+    ? [...setsR.value].sort(
+        (a, b) => Date.parse(b.published_at ?? '') - Date.parse(a.published_at ?? '') || a.title.localeCompare(b.title)
+      )
+    : []
+  const requestedSet = firstParam(sp.set)?.toLowerCase() ?? null
+  const selected = requestedSet ? (sets.find((s) => s.id === requestedSet) ?? null) : null
+
+  // Everything the chosen view reads, in parallel, each part failing on its own.
+  const [setGaps, classGaps, classDue] = await Promise.all([
+    selected ? loadSetGaps(supabase, admin, selected.id, archived) : null,
+    !selected && !archived ? settle('class gaps', classroom.id, loadClassGaps(supabase, admin, classroom)) : null,
+    !selected && !archived ? settle('due topics', classroom.id, loadClassDue(supabase, admin, classroom)) : null,
+  ])
 
   return (
-    <TeacherPageContainer>
-      <div className="print:hidden">
-        <TeacherBackLink href={`/teacher/classroom/${id}`}>
-          ← Back to classroom
-        </TeacherBackLink>
-      </div>
+    <TeacherPageContainer className="ms-teacher-page">
+      <OmniAIBridge context={teacherOmniContext({ classroomId: classroom.id, view: 'gaps' })} />
+      <ClassDeskHead
+        classroom={classroom}
+        eyebrow="Gaps"
+        actions={<PrintButton label="Print report" />}
+      />
+      <ClassTabs classroomId={classroom.id} current="gaps" v2={v2} />
 
-      {report.bandedScriptsExcluded > 0 && (
-        <p className="mb-4 text-sm text-[var(--ec-text-secondary)]">
-          {report.bandedScriptsExcluded} essay-style script
-          {report.bandedScriptsExcluded === 1 ? ' is' : 's are'} included in the class
-          average but not in the mark-type breakdown below — those are marked
-          against bands rather than individual marks.
-        </p>
-      )}
+      {!classroom.subject_code ? (
+        <StatusMessage className="mb-6 print:hidden">
+          This class has no subject set, so its work isn&apos;t matched to a syllabus: topics, coverage and shared
+          mistakes stay empty.{' '}
+          <Link href={`/teacher/classroom/${encodeURIComponent(classroom.id)}/settings`} className="ec-link">
+            Set the subject in Settings
+          </Link>
+        </StatusMessage>
+      ) : null}
 
-      {data.truncated && (
-        <p className="mb-4 text-sm text-[var(--ec-text-secondary)]">
-          Showing the {data.truncated.toLocaleString()} most recent marked scripts.
-        </p>
-      )}
-
-      <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
-        <TeacherPageHeader
-          label="COHORT GAP REPORT"
-          title="Where the class loses marks"
-          lead={`${report.scripts} marked scripts from ${report.students} students · class average ${report.averagePct}%`}
-        />
-        <button
-          type="button"
-          onClick={() => window.print()}
-          className="ec-btn-secondary inline-flex min-h-[44px] items-center gap-2 print:hidden"
+      {v2 && sets.length > 0 ? (
+        <form
+          className="ms-review-filters print:hidden"
+          method="get"
+          action={pagePath(classroom.id)}
+          role="search"
+          aria-label="Choose what the report covers"
         >
-          <span className="font-mono text-[11px] font-bold" aria-hidden>PR</span> Print
-        </button>
-      </div>
-
-      {report.insufficientEvidence ? (
-        <div className="ec-card ec-card--paper p-6">
-          <p className="text-[var(--ec-text-primary)]">
-            Not enough marked work yet.
-          </p>
-          <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">
-            This report needs at least three marked scripts before it will say
-            anything about the class. Marking a set of mocks is the fastest way to
-            fill it.
-          </p>
-        </div>
-      ) : (
-        <>
-          {headline && (
-            <div className="ec-card ec-card--paper mb-6 p-6">
-              <div className="ec-label-tech mb-2 flex items-center gap-2">
-                <span className="font-mono text-[11px] font-bold tracking-wide text-[var(--ec-brand)]" aria-hidden>¶</span> THE HEADLINE
-              </div>
-              <p className="text-xl font-bold text-[var(--ec-text-primary)]">
-                The class earns only {headline.earnedPct}% of {headline.label} marks
-                <span className="font-normal text-[var(--ec-text-secondary)]">
-                  {' '}({headline.earned} of {headline.points} available)
-                </span>
-              </p>
-            </div>
-          )}
-
-          <div className="ec-card ec-card--paper mb-6 p-6">
-            <div className="ec-label-tech mb-4">BY MARK TYPE — WEAKEST FIRST</div>
-            <ul>
-              {report.markTypes.map((t) => (
-                <li key={t.code} className="ms-gap-row">
-                  <div className="mb-1 flex items-baseline justify-between gap-3 text-sm">
-                    <span className="font-medium text-[var(--ec-text-primary)]">
-                      {t.label}
-                      {t.thinEvidence && (
-                        <span
-                          className="ml-2 text-xs font-normal text-[var(--ec-text-secondary)]"
-                          title="Too few of these marks have been attempted to draw a conclusion"
-                        >
-                          thin evidence
-                        </span>
-                      )}
-                    </span>
-                    <span className="tabular-nums text-[var(--ec-text-secondary)]">
-                      {t.earned}/{t.points} · {t.earnedPct}%
-                    </span>
-                  </div>
-                  <div
-                    className="ms-gap-track"
-                    role="img"
-                    aria-label={`${t.label}: ${t.earnedPct} percent of marks earned`}
-                  >
-                    <div
-                      className="ms-gap-fill"
-                      style={{
-                        width: `${t.earnedPct}%`,
-                        // Thin rows are drawn faintly so the eye is not drawn to
-                        // a number the report has just said not to trust.
-                        background: barTone(t.earnedPct),
-                        opacity: t.thinEvidence ? 0.4 : 1,
-                      }}
-                    />
-                  </div>
-                </li>
+          <label className="ms-review-filters__field">
+            <span className="ms-review-filters__label">Report on</span>
+            <select name="set" className="ec-input" defaultValue={selected?.id ?? ''}>
+              <option value="">The whole class — all marked work</option>
+              {sets.map((s) => (
+                <option key={s.id} value={s.id}>
+                  {s.title}
+                  {s.is_mock ? ' (mock)' : ''}
+                </option>
               ))}
-            </ul>
-          </div>
+            </select>
+          </label>
+          <button type="submit" className="ms-review-filters__submit ec-btn-secondary inline-flex items-center">
+            Show
+          </button>
+        </form>
+      ) : null}
 
-          {report.mostMissed.length > 0 && (
-            <div className="ec-card ec-card--paper mb-6 p-6">
-              <div className="ec-label-tech mb-4">
-                THE SPECIFIC THINGS MOST STUDENTS MISSED
-              </div>
-              <ul className="space-y-2">
-                {report.mostMissed.map((m) => (
-                  <li key={m.note} className="flex gap-3 text-sm">
-                    <span className="min-w-[5.5rem] shrink-0 tabular-nums text-[var(--ec-text-secondary)]">
-                      {m.students} student{m.students === 1 ? '' : 's'}
-                    </span>
-                    <span className="text-[var(--ec-text-primary)]">
-                      <MathText text={m.note} />
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+      {!setsR.ok ? (
+        <p className="mb-6 text-sm text-[var(--ec-text-secondary)]" role="status">
+          The class&apos;s sets didn&apos;t load, so the report covers the whole class. Reload to filter by set.
+        </p>
+      ) : null}
+      {requestedSet && setsR.ok && !selected ? (
+        <p className="mb-6 text-sm text-[var(--ec-text-secondary)]" role="status">
+          That set isn&apos;t one of this class&apos;s published sets, so the report covers the whole class.
+        </p>
+      ) : null}
 
-          {report.errorBreakdown.length > 0 && (
-            <div className="ec-card ec-card--paper p-6">
-              <div className="ec-label-tech mb-4">WHY MARKS WERE DROPPED</div>
-              <ul className="flex flex-wrap gap-2">
-                {report.errorBreakdown.map((e) => (
-                  <li
-                    key={e.classification}
-                    className="rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] px-3 py-1 font-mono text-xs font-semibold text-[var(--ec-text-secondary)]"
-                  >
-                    {e.label} · {e.count}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </>
+      {selected && setGaps ? (
+        <SetGaps
+          classroomId={classroom.id}
+          set={selected}
+          archived={archived}
+          canSetWork={canSetWork}
+          gaps={setGaps}
+        />
+      ) : archived || !classGaps || !classDue ? (
+        <section className="ms-teacher-empty mb-8" aria-labelledby="gaps-archived-title">
+          <span className="ms-teacher-empty__icon" aria-hidden>
+            ARC
+          </span>
+          <h2 id="gaps-archived-title" className="ms-teacher-empty__title">
+            An archived class has no live report
+          </h2>
+          <p className="ms-teacher-empty__body">
+            Its students&apos; current work is no longer read.
+            {sets.length > 0 ? ' Choose a set above to see the marks it kept.' : ''}
+          </p>
+        </section>
+      ) : (
+        <ClassGapsView
+          classroomId={classroom.id}
+          subjectCode={classroom.subject_code}
+          canSetWork={canSetWork}
+          gaps={classGaps}
+          due={classDue}
+        />
       )}
     </TeacherPageContainer>
+  )
+}
+
+type SetGapsData = { gaps: AssignmentGaps; items: AssignmentItem[] } | null
+
+/**
+ * One set's report. Hand-ins are brought up to date first (at most once a
+ * minute — reconcileAssignment), best-effort: a failed reconcile still shows
+ * what was already linked.
+ */
+async function loadSetGaps(
+  supabase: Parameters<typeof loadAssignmentGaps>[0],
+  admin: Parameters<typeof loadAssignmentGaps>[1],
+  setId: string,
+  archived: boolean
+): Promise<Loaded<SetGapsData>> {
+  if (!archived) {
+    await reconcileAssignment(admin, setId).catch((err: unknown) => {
+      console.error('[teacher/gaps] reconcile before set report failed', {
+        assignmentId: setId,
+        error: err instanceof Error ? err.message : String(err),
+      })
+    })
+  }
+  return settle(
+    'set gaps',
+    setId,
+    Promise.all([loadAssignmentGaps(supabase, admin, setId), loadSetItems(supabase, setId)]).then(([gaps, items]) =>
+      gaps ? { gaps, items } : null
+    )
+  )
+}
+
+function SetGaps({
+  classroomId,
+  set,
+  archived,
+  canSetWork,
+  gaps,
+}: {
+  classroomId: string
+  set: SetRow
+  archived: boolean
+  canSetWork: boolean
+  gaps: Loaded<SetGapsData>
+}) {
+  if (!gaps.ok || !gaps.value) {
+    return (
+      <div className="ms-teacher-error mb-8" role="alert">
+        <p className="ms-teacher-error__title">The report on {set.title} didn&apos;t load</p>
+        <p className="ms-teacher-error__body">{UNREADABLE}</p>
+      </div>
+    )
+  }
+  const { gaps: data, items } = gaps.value
+  const codes = setTopicCodes(items)
+
+  return (
+    <>
+      <div className="mb-6 flex flex-wrap items-center gap-3 print:hidden">
+        <LoadingLink
+          href={setHref(classroomId, set.id)}
+          loadingText="Opening…"
+          className="ec-btn-secondary inline-flex min-h-[44px] items-center justify-center"
+        >
+          Open the set
+        </LoadingLink>
+        {canSetWork && codes.length > 0 && !data.report.insufficientEvidence ? (
+          <LoadingLink
+            href={composerHref(classroomId, { source: 'reteach', codes, set: set.id })}
+            loadingText="Opening…"
+            className="ec-btn-primary inline-flex min-h-[44px] items-center justify-center gap-2"
+          >
+            <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
+              DRL
+            </span>
+            Set a drill on this set&apos;s topics
+          </LoadingLink>
+        ) : null}
+      </div>
+
+      {data.archived ? (
+        <p className="mb-6 text-sm text-[var(--ec-text-secondary)]" role="status">
+          This class is archived: its marks are kept, but the scripts behind them are no longer read, so there is no
+          breakdown by kind of mark.
+        </p>
+      ) : null}
+
+      <GapReport
+        report={data.report}
+        headline={data.headline}
+        scope={`on ${set.title}`}
+        emptyHint="It fills in once three hand-ins on this set are marked."
+      />
+      <ItemGapList
+        classroomId={classroomId}
+        assignmentId={set.id}
+        items={items}
+        gaps={data.per_item}
+        headline={null}
+        archived={archived}
+      />
+    </>
+  )
+}
+
+function ClassGapsView({
+  classroomId,
+  subjectCode,
+  canSetWork,
+  gaps,
+  due,
+}: {
+  classroomId: string
+  subjectCode: string | null
+  canSetWork: boolean
+  gaps: Loaded<ClassGaps>
+  due: Loaded<ClassDue>
+}) {
+  return (
+    <>
+      {gaps.ok ? (
+        <>
+          <ClassroomSummary summary={gaps.value.summary} />
+          <ClassBlindspots classroomId={classroomId} blindspots={gaps.value.blindspots} canSetWork={canSetWork} />
+          <GapReport
+            report={gaps.value.report}
+            headline={gaps.value.headline}
+            scope="across the class"
+            emptyHint={canSetWork ? 'Setting a question set is the quickest way to fill it.' : null}
+            truncated={gaps.value.truncated}
+          />
+          <div className="print:hidden">
+            <ErrorGroupsPanel
+              classroomId={classroomId}
+              groups={gaps.value.groups}
+              names={gaps.value.names}
+              canSetWork={canSetWork}
+              truncated={gaps.value.truncated}
+            />
+          </div>
+        </>
+      ) : (
+        <div className="ms-teacher-error mb-8" role="alert">
+          <p className="ms-teacher-error__title">The class&apos;s marked work didn&apos;t load</p>
+          <p className="ms-teacher-error__body">{UNREADABLE}</p>
+        </div>
+      )}
+
+      <ClassDueList
+        classroomId={classroomId}
+        topics={due.ok ? due.value.topics : []}
+        students={due.ok ? due.value.students : 0}
+        error={due.ok ? null : UNREADABLE}
+        canSetWork={canSetWork}
+        showSubject={!subjectCode}
+      />
+    </>
   )
 }

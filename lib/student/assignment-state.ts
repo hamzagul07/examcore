@@ -5,7 +5,7 @@
  * The teacher's completion matrix and the student's "to do" list must never
  * disagree about whether something is late, missing or closed, so every rule
  * here is built on lib/teacher/assignment-status.ts (deriveStudentState,
- * effectiveDueAt, assignmentStatus) rather than restating it. What this module
+ * effectiveDueAt, studentAssignmentStatus) rather than restating it. What this module
  * adds is the student's framing of the same facts:
  *
  *   - which list a set belongs on (open = still to do, done = nothing more is
@@ -20,7 +20,13 @@
  * Pure and client-safe: no I/O and no clock except the `now` passed in.
  */
 
-import { HANDED_IN_STATES, assignmentStatus, deriveStudentState, effectiveDueAt } from '@/lib/teacher/assignment-status'
+import {
+  HANDED_IN_STATES,
+  deriveStudentState,
+  effectiveDueAt,
+  isLate,
+  studentAssignmentStatus,
+} from '@/lib/teacher/assignment-status'
 import { assignmentReturnPath, studentMarkHref } from '@/lib/teacher/assignments/link'
 import { itemReference } from '@/lib/teacher/assignments/print-model'
 import type {
@@ -84,7 +90,11 @@ export type StudentAssignment = {
   /** True when an extension moved this student's deadline past the set's. */
   extended: boolean
   published_at: string | null
-  /** The set's status for everyone (assignmentStatus); drafts never reach a student. */
+  /**
+   * The set's status for this student (studentAssignmentStatus): closed once
+   * it has closed for the class — or, with an extension past that, once their
+   * own deadline has passed. Drafts never reach a student.
+   */
   status: 'open' | 'closed'
   /** Which list it belongs on. */
   phase: 'open' | 'done'
@@ -127,13 +137,40 @@ function flagsRow(setId: string, flags: StudentFlags | null): AssignmentStudentF
 /**
  * Whether a hand-in would be accepted: the same rule as
  * validateAssignmentItemForStudent (published, not deleted, and — once the
- * set has closed — only when the teacher allows late work, which is the
- * default).
+ * set has closed for this student — only when the teacher allows late work,
+ * which is the default). An extension past the set's close keeps it open to
+ * the student until their own deadline.
  */
-export function canHandIn(set: Pick<StudentSetRow, 'published_at' | 'archived_at' | 'closed_at' | 'due_at' | 'settings'>, now: Date): boolean {
+export function canHandIn(
+  set: Pick<StudentSetRow, 'published_at' | 'archived_at' | 'closed_at' | 'due_at' | 'settings'>,
+  now: Date,
+  extendedDueAt: string | null = null
+): boolean {
   if (!set.published_at || set.archived_at) return false
-  if (assignmentStatus(set, now) === 'open') return true
+  if (studentAssignmentStatus(set, extendedDueAt, now) === 'open') return true
   return set.settings?.allow_late !== false
+}
+
+/**
+ * A hand-in's status as its student may see it. 'reviewed' is the teacher's
+ * confirm or re-mark of the counted attempt; a decision the teacher kept
+ * private (student_visible = false) must not show through it, so a
+ * 'reviewed' row whose attempt has no decision the student can see reads as
+ * what its timestamps say instead ('late' or 'submitted').
+ *
+ * `visibleReviews` is the set of attempt ids with a student-visible confirm
+ * or override (read through the student's own RLS client, which only returns
+ * visible rows). Missing means none are known to be visible.
+ */
+export function studentSubmissionStatus(
+  sub: Pick<AssignmentSubmission, 'status' | 'attempt_id' | 'first_submitted_at'>,
+  visibleReviews: ReadonlySet<string> | null | undefined,
+  dueAt: string | null,
+  extendedDueAt: string | null
+): AssignmentSubmission['status'] {
+  if (sub.status !== 'reviewed') return sub.status
+  if (sub.attempt_id && visibleReviews?.has(sub.attempt_id)) return 'reviewed'
+  return isLate(sub.first_submitted_at, dueAt, extendedDueAt) ? 'late' : 'submitted'
 }
 
 /**
@@ -168,8 +205,9 @@ export function deriveStudentAssignment(input: {
   // A set with nothing in it has nothing to hand in, so it is never "complete"
   // (the same rule summariseProgress applies for the teacher).
   const complete = total > 0 && handedIn === total
-  const status = assignmentStatus(set, now) === 'open' ? 'open' : 'closed'
-  const deadline = effectiveDueAt(set.due_at, flags?.extended_due_at ?? null)
+  const extendedDueAt = flags?.extended_due_at ?? null
+  const status = studentAssignmentStatus(set, extendedDueAt, now) === 'open' ? 'open' : 'closed'
+  const deadline = effectiveDueAt(set.due_at, extendedDueAt)
   const deadlineMs = toMs(deadline)
   const dueMs = toMs(set.due_at)
   const pastDeadline = deadlineMs !== null && deadlineMs < now.getTime()
@@ -205,7 +243,7 @@ export function deriveStudentAssignment(input: {
     is_late: derived.is_late,
     due_soon:
       phase === 'open' && !pastDeadline && deadlineMs !== null && deadlineMs - now.getTime() <= DUE_SOON_MS,
-    can_hand_in: canHandIn(set, now),
+    can_hand_in: canHandIn(set, now, extendedDueAt),
     has_teacher_note: Boolean(flags?.feedback?.trim()),
   }
 }
@@ -337,24 +375,25 @@ export function pageDoneSets<T extends Pick<StudentAssignment, 'id' | 'deadline'
 
 /**
  * Whether a set belongs on a student's list at all. A set that had already
- * closed before they joined the class could never have been done by them, so
- * it would sit on their list as "missed" forever; it is left off unless they
- * handed something in for it anyway (a student who left and rejoined keeps
- * the record of work they did).
+ * closed (for them — an extension counts) before they joined the class could
+ * never have been done by them, so it would sit on their list as "missed"
+ * forever; it is left off unless they handed something in for it anyway (a
+ * student who left and rejoined keeps the record of work they did).
  */
 export function visibleToStudent(
   set: Pick<StudentSetRow, 'published_at' | 'archived_at' | 'closed_at' | 'due_at' | 'settings'>,
   joinedAt: string | null,
   hasSubmission: boolean,
-  now: Date
+  now: Date,
+  extendedDueAt: string | null = null
 ): boolean {
   if (!set.published_at || set.archived_at) return false
   if (hasSubmission) return true
   const joined = toMs(joinedAt)
   if (joined === null) return true
-  if (assignmentStatus(set, now) === 'open') return true
+  if (studentAssignmentStatus(set, extendedDueAt, now) === 'open') return true
   // Closed: shown only if it was still open at some point after they joined.
-  return assignmentStatus(set, new Date(joined)) === 'open'
+  return studentAssignmentStatus(set, extendedDueAt, new Date(joined)) === 'open'
 }
 
 // ---------------------------------------------------------------------------
@@ -399,11 +438,22 @@ export function buildStudentSetItems(input: {
   canHandIn: boolean
   /** mark_schemes.id → a short preview of the question (never the scheme). */
   previews?: ReadonlyMap<string, string | null>
+  /**
+   * Attempt ids with a teacher decision the student may see (studentSubmissionStatus).
+   * A 'reviewed' hand-in whose attempt is not in it shows as done or late.
+   */
+  visibleReviews?: ReadonlySet<string> | null
 }): StudentSetItem[] {
   const items = input.items
     .filter((i) => i.assignment_id === input.set.id)
     .sort((a, b) => a.position - b.position)
-  const submissions = input.submissions.filter((s) => s.assignment_id === input.set.id)
+  const extendedDueAt = input.flags?.extended_due_at ?? null
+  const submissions = input.submissions
+    .filter((s) => s.assignment_id === input.set.id)
+    .map((s) => ({
+      ...s,
+      status: studentSubmissionStatus(s, input.visibleReviews, input.set.due_at, extendedDueAt),
+    }))
   const derived = deriveStudentState({
     membership: 'active',
     items,

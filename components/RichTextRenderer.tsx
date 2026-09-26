@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm'
 import rehypeKatex from 'rehype-katex'
 import {
   createMarkdownComponents,
+  type MarkdownLinkFilter,
   type RichTextVariant,
 } from '@/lib/rich-text/markdown-components'
 import { normalizeMarkingText } from '@/lib/rich-text/normalize-marking-text'
@@ -25,6 +26,11 @@ export type RichTextRendererProps = {
    * `marking` — default; Claude/Accounting currency normalization applies.
    */
   contentKind?: RichTextContentKind
+  /**
+   * Where links may point (see MarkdownLinkFilter); a refused link renders as
+   * plain text. Omit to render links as written.
+   */
+  linkFilter?: MarkdownLinkFilter
 }
 
 /**
@@ -36,6 +42,7 @@ export function RichTextRenderer({
   className = '',
   variant = 'dark',
   contentKind = 'marking',
+  linkFilter,
 }: RichTextRendererProps) {
   if (!text?.trim()) return null
 
@@ -45,7 +52,7 @@ export function RichTextRenderer({
       : contentKind === 'mark_scheme'
         ? normalizeMarkSchemeText(text)
         : normalizeMarkingText(text)
-  const components = createMarkdownComponents(variant)
+  const components = createMarkdownComponents(variant, { linkFilter })
   const proseClass = 'prose prose-sm max-w-none'
 
   return (

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { X } from 'lucide-react'
 import { useOmniAI } from '@/lib/omni-ai/context'
+import { teacherCtaHref } from '@/lib/teacher/insights/omni'
 import { StreamingMessage } from './StreamingMessage'
 import { UpgradeModal } from '@/components/billing/UpgradeModal'
 import { OmniUsageStrip, useOmniSubmitBlocked } from '@/components/billing/OmniUsageStrip'
@@ -522,7 +523,12 @@ export function ChatPanel({
           )}
 
           {messages.map((msg) => (
-            <StreamingMessage key={msg.id} message={msg} splitPaper={splitPaper} />
+            <StreamingMessage
+              key={msg.id}
+              message={msg}
+              splitPaper={splitPaper}
+              linkFilter={context.type === 'teacher_dashboard' ? teacherCtaHref : undefined}
+            />
           ))}
         </div>
 

@@ -228,6 +228,22 @@
   .ms-teacher-nav__util--wide {
     display: none;
   }
+
+  /* The bell sits mid-header here, so a panel anchored to its right edge
+     would hang off the left of the screen — and be cut off by the inner
+     row's overflow clip. Anchor it to the header itself instead (the wrap
+     stops being the containing block; the sticky header is), spanning the
+     width with the page gutter, just below the header's bottom edge. */
+  .ms-teacher-nav .notif-bell-wrap {
+    position: static;
+  }
+
+  .ms-teacher-nav .notif-dropdown {
+    top: calc(100% + 4px);
+    right: 12px;
+    left: 12px;
+    width: auto;
+  }
 }
 
 /* The shared theme toggle is sized for marketing headers; in the teacher frame
@@ -1603,6 +1619,10 @@ a.ms-set-slip:hover {
   box-shadow: var(--ec-shadow-elevation-1);
 }
 
+.ms-students-watch__group--silent {
+  border-top-color: var(--ec-text-faint);
+}
+
 .ms-students-watch__group--struggling {
   border-top-color: var(--ec-logo-crimson);
 }
@@ -2715,6 +2735,32 @@ a.ms-teacher-roster__row:hover {
   overflow-wrap: anywhere;
 }
 
+/* An active student's name + meta as one link to their page: <a class="ms-teacher-roster__who">…</a>.
+   Fills the row beside the trail so the whole block is a 44px+ target. */
+a.ms-teacher-roster__who {
+  flex: 1 1 auto;
+  justify-content: center;
+  min-height: var(--ec-touch-min);
+  border-radius: 4px;
+  color: inherit;
+  text-decoration: none;
+}
+
+a.ms-teacher-roster__who:hover .ms-teacher-roster__name {
+  text-decoration: underline;
+}
+
+a.ms-teacher-roster__who:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+}
+
+/* The row takes focus after a removal re-renders it (RosterAnnouncer). */
+.ms-teacher-roster__row:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+}
+
 .ms-teacher-roster__row--inactive .ms-teacher-roster__name {
   color: var(--ec-text-secondary);
 }
@@ -3109,6 +3155,11 @@ a.ms-teacher-roster__row:hover {
 }
 
 /* Confirm dialog body (inside the shared Dialog): <div class="ms-teacher-confirm">…</div> */
+.ms-teacher-confirm {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .ms-teacher-confirm__title {
   margin: 0 2.5rem 0 0;
   font-family: var(--font-display, 'Newsreader', Georgia, serif);
@@ -3577,7 +3628,6 @@ a.ms-assign-card__next:hover {
   .ms-teacher-tabbar,
   .ms-teacher-tabs,
   .ms-teacher-layout nav,
-  .ms-teacher-print-hide,
   .ms-omni-fab {
     display: none !important;
   }
@@ -3654,6 +3704,10 @@ a.ms-assign-card__next:hover {
   font-weight: 500;
   line-height: 1.25;
   color: var(--ec-text-primary);
+}
+
+.ms-teacher-week__copy {
+  min-width: 0;
 }
 
 .ms-teacher-week__body {

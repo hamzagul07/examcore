@@ -15,6 +15,7 @@ import { TeacherDeskHead, TeacherPageContainer } from '@/components/teacher/Teac
 import { NeedsYouStrip } from '@/components/teacher/NeedsYouStrip'
 import { ClassSlipList, type DeskClass } from '@/components/teacher/ClassSlipList'
 import { TeacherSeatRequestCard } from '@/components/teacher/TeacherSeatRequestCard'
+import { RetryButton } from '@/components/teacher/RetryButton'
 import { DemoClassButton, TeacherDashboardClient } from '@/components/teacher/TeacherDashboardClient'
 
 export const dynamic = 'force-dynamic'
@@ -94,13 +95,7 @@ export default async function TeacherDashboardPage() {
             again; if it keeps happening, your class pages are still reachable from Classes.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
-            <LoadingLink
-              href="/teacher/dashboard"
-              loadingText="Reloading…"
-              className="ec-btn-primary inline-flex min-h-[44px] items-center"
-            >
-              Try again
-            </LoadingLink>
+            <RetryButton className="ec-btn-primary inline-flex min-h-[44px] items-center" />
             <LoadingLink
               href="/teacher/classrooms"
               loadingText="Opening…"

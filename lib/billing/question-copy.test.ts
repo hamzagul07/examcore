@@ -1,5 +1,10 @@
 import assert from 'node:assert/strict'
-import { allowanceRefusedNote } from '@/lib/billing/question-copy'
+import {
+  allowanceRefusedNote,
+  questionPoolLabel,
+  questionUsageMessage,
+  type BillingSummaryClient,
+} from '@/lib/billing/question-copy'
 
 // Nothing refused → nothing to say. The common case must render nothing.
 assert.equal(allowanceRefusedNote(undefined), null)
@@ -57,5 +62,41 @@ assert.match(cutOne, /upload it again/)
 const both = allowanceRefusedNote({ marks_charged: 1, marks_refused: 1, questions_not_marked: 2 })
 assert.ok(both)
 assert.match(both, /other 2 were not/)
+
+// --- Class bonus in the usage copy (spec §7) ---------------------------------
+const summaryWith = (over: Partial<BillingSummaryClient['questions']>, tier: BillingSummaryClient['tier'] = 'free'): BillingSummaryClient => ({
+  signedIn: true,
+  tier,
+  access: 'free',
+  status: 'active',
+  credit_balance: 0,
+  period_resets_at: null,
+  enforcement_mode: 'enforce',
+  questions: { used: 0, cap: 5, remaining: 5, warning: false, blocked: false, ...over },
+  omni: { used: 0, cap: 10, remaining: 10, warning: false, blocked: false },
+})
+// No bonus: unchanged wording.
+assert.equal(questionPoolLabel(summaryWith({})), '5 free questions')
+assert.equal(questionPoolLabel(summaryWith({ cap: 300 }, 'scholar')), '300 monthly questions')
+// A free student in a verified teacher's class: the 25 is explained.
+assert.equal(
+  questionPoolLabel(summaryWith({ cap: 25, class_bonus: 20 })),
+  '25 questions (5 free + 20 from your class)'
+)
+assert.equal(
+  questionPoolLabel(summaryWith({ cap: 320, class_bonus: 20 }, 'scholar')),
+  '320 questions (300 monthly + 20 from your class)'
+)
+// Garbage or an older API never shows a bonus; a bonus that is the whole cap is not split.
+assert.equal(questionPoolLabel(summaryWith({ cap: 5, class_bonus: -2 })), '5 free questions')
+assert.equal(questionPoolLabel(summaryWith({ cap: 20, class_bonus: 20 })), '20 free questions')
+{
+  const m = questionUsageMessage(summaryWith({ cap: 25, used: 3, remaining: 22, class_bonus: 20 }))
+  assert.match(m.text, /1 of your 25 questions \(5 free \+ 20 from your class\)/)
+  assert.equal(m.disableSubmit, false)
+  const blocked = questionUsageMessage(summaryWith({ cap: 25, used: 25, remaining: 0, blocked: true, class_bonus: 20 }))
+  assert.match(blocked.text, /all your 25 questions \(5 free \+ 20 from your class\)/)
+  assert.equal(blocked.disableSubmit, true)
+}
 
 console.log('question-copy tests passed')

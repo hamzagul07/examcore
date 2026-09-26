@@ -94,6 +94,12 @@ export function csvFilename(className: string, scope: ExportScope, now: Date = n
     .slice(0, 10)}.csv`
 }
 
+/** One set's markbook: "y12-maths-vectors-drill-2026-09-25.csv". */
+export function csvSetFilename(className: string, setTitle: string, now: Date = new Date()): string {
+  const set = slugForFilename(setTitle)
+  return `${slugForFilename(className)}-${set === 'class' ? 'set' : set}-${now.toISOString().slice(0, 10)}.csv`
+}
+
 /** The header value. The filename is ASCII by construction, so no filename*. */
 export function contentDisposition(filename: string): string {
   const safe = filename.replace(/[^A-Za-z0-9._-]/g, '_')

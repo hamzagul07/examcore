@@ -37,6 +37,7 @@ export function ClassDeskHead({
   note,
   actions,
   titleId,
+  banners = true,
 }: {
   classroom: ClassDeskHeadClassroom
   eyebrow?: string
@@ -46,6 +47,12 @@ export function ClassDeskHead({
   note?: ReactNode
   actions?: ReactNode
   titleId?: string
+  /**
+   * The archived banner and the example-data flag under the head. The
+   * settings page turns them off: it says both itself, with what to do there
+   * (restore at the bottom of the page; archive and delete a demo class).
+   */
+  banners?: boolean
 }) {
   const archived = classroom.archived_at !== null
   const code = !archived && classroom.invite_code ? formatInviteCode(classroom.invite_code) : null
@@ -83,7 +90,7 @@ export function ClassDeskHead({
         actions={archived ? undefined : actions}
       />
 
-      {archived ? (
+      {banners && archived ? (
         <p className="ms-teacher-archived-banner" role="status">
           <span className="ms-teacher-chip ms-teacher-chip--archived">Archived</span>
           <span>
@@ -96,7 +103,7 @@ export function ClassDeskHead({
         </p>
       ) : null}
 
-      {classroom.settings.demo ? (
+      {banners && classroom.settings.demo ? (
         <p className="ms-teacher-demo-flag mb-6 text-sm text-[var(--ec-text-secondary)]">
           <span className="ms-teacher-chip ms-teacher-chip--demo mr-2">Example data</span>
           The students and marks in this class are simulated — not your real cohort.

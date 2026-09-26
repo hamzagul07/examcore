@@ -75,10 +75,11 @@ export function TeacherNav({ showNav = true, v2 = true }: Props = {}) {
         <div className="ms-teacher-nav__spacer" />
 
         <div className="ms-teacher-nav__utils">
-          {/* The bell is the community notification feed, which is also where
-              submissions, removals and seat decisions land for a teacher. It
-              renders nothing when the feed is switched off. */}
-          {showNav && v2 ? <NotificationBell /> : null}
+          {/* The bell reads the notification feed, which is where hand-ins,
+              removals and seat decisions land for a teacher. `alwaysOn`: it
+              shows whether or not the Exam Room is switched on, and "See all"
+              opens the inbox inside the teacher frame. */}
+          {showNav && v2 ? <NotificationBell alwaysOn inboxHref="/teacher/notifications" /> : null}
           <ThemeSwitcher />
           {showNav ? (
             <Link

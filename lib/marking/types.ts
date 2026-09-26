@@ -133,7 +133,7 @@ export type MarkAwarded = {
   margin_note?: string | null
   /**
    * Set when a teacher overrode this mark (POST /api/teacher/attempt/[id]/
-   * override; stored shape is lib/teacher/override.ts TeacherOverrideMark).
+   * override; stored shape is lib/teacher/override-validate.ts TeacherOverrideMark).
    * Its reasoning/margin_note are teacher-typed text, not marker output —
    * anything that puts them in a prompt must fence them as untrusted data.
    */

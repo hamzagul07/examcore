@@ -5,7 +5,7 @@ import { headers } from 'next/headers'
 import { classBonusFor } from '@/lib/billing/teacher-seat'
 import { getSyllabusSubjectName } from '@/lib/syllabi'
 import { chunk, fetchAllFiltered, type PageQuery } from '@/lib/teacher-classroom-data'
-import { assignmentStatus, effectiveDueAt } from '@/lib/teacher/assignment-status'
+import { effectiveDueAt, studentAssignmentStatus } from '@/lib/teacher/assignment-status'
 import { questionPreview } from '@/lib/teacher/assignments/resolve-items'
 import { displayName } from '@/lib/teacher/display-name'
 import { isTeacherV2 } from '@/lib/teacher/flags'
@@ -29,6 +29,7 @@ import {
   exportableAuditDetails,
   pageDoneSets,
   sortOpenSets,
+  studentSubmissionStatus,
   summariseTeacherReview,
   visibleToStudent,
   type StudentAssignment,
@@ -237,11 +238,15 @@ async function readClassrooms(supabase: SupabaseClient, ids: readonly string[]):
  * Every published, live set the student can see (assignment_student_read:
  * active member of a live class, and targeted when the set is for picked
  * students). `openOnly` narrows the query to sets that can still be open at
- * `now` — the dashboard card never needs the history.
+ * `now` for the class — the dashboard card never needs the history — plus
+ * `alsoIds`, the sets whose close the student's own extension has moved past
+ * `now`. The query is only a pre-filter: whether a set is open for the
+ * student is studentAssignmentStatus, which the caller applies with their
+ * flags.
  */
 async function readVisibleSets(
   supabase: SupabaseClient,
-  opts: { openOnly?: boolean; now: Date }
+  opts: { openOnly?: boolean; now: Date; alsoIds?: readonly string[] }
 ): Promise<StudentSetRow[]> {
   const nowIso = opts.now.toISOString()
   // A set auto-closes 7 days after its due date (AUTO_CLOSE_AFTER_DUE_DAYS);
@@ -263,8 +268,59 @@ async function readVisibleSets(
     { maxRows: MAX_OWN_ROWS }
   )
   const sets = rows.map(toSetRow)
-  // The query's window is only a pre-filter; assignmentStatus is the rule.
-  return opts.openOnly ? sets.filter((s) => assignmentStatus(s, opts.now) === 'open') : sets
+  if (!opts.openOnly || !opts.alsoIds?.length) return sets
+  const seen = new Set(sets.map((s) => s.id))
+  const extra = [...new Set(opts.alsoIds)].filter((id) => !seen.has(id))
+  for (const part of chunk(extra)) {
+    const { data, error } = await supabase
+      .from('assignments')
+      .select(SET_COLUMNS)
+      .in('id', part)
+      .not('published_at', 'is', null)
+      .is('archived_at', null)
+    if (error) throw new Error(`assignments: ${error.message}`)
+    sets.push(...((data ?? []) as Record<string, unknown>[]).map(toSetRow))
+  }
+  return sets
+}
+
+/** Sets on which the student's own extension runs past `now` (they may be open for them alone). */
+async function readOwnOpenExtensions(supabase: SupabaseClient, userId: string, now: Date): Promise<string[]> {
+  const { rows } = await fetchAllFiltered<{ assignment_id: string }>(
+    'assignment_students',
+    (from, to) =>
+      supabase
+        .from('assignment_students')
+        .select('assignment_id')
+        .eq('student_id', userId)
+        .gt('extended_due_at', now.toISOString())
+        .order('assignment_id')
+        .range(from, to),
+    { maxRows: MAX_OWN_ROWS }
+  )
+  return rows.map((r) => r.assignment_id)
+}
+
+/**
+ * The student's attempts among `attemptIds` that carry a teacher confirm or
+ * re-mark they may see. RLS (override_student_read) returns only their own
+ * attempts' student_visible rows; the filter is repeated so a policy
+ * regression cannot reveal a private decision as a "Reviewed" stamp.
+ */
+async function readVisibleReviews(supabase: SupabaseClient, attemptIds: readonly string[]): Promise<Set<string>> {
+  const out = new Set<string>()
+  for (const part of chunk([...new Set(attemptIds)])) {
+    const { data, error } = await supabase
+      .from('teacher_overrides')
+      .select('attempt_id, decision')
+      .in('attempt_id', part)
+      .eq('student_visible', true)
+    if (error) throw new Error(`teacher_overrides: ${error.message}`)
+    for (const r of (data ?? []) as Array<{ attempt_id: string; decision: string | null }>) {
+      if (r.decision === 'confirm' || r.decision === 'override' || r.decision == null) out.add(r.attempt_id)
+    }
+  }
+  return out
 }
 
 async function readItems(supabase: SupabaseClient, setIds: readonly string[]): Promise<AssignmentItem[]> {
@@ -403,7 +459,13 @@ export async function loadStudentAssignments(
     (s) =>
       classrooms.has(s.classroom_id) &&
       memberships.has(s.classroom_id) &&
-      visibleToStudent(s, memberships.get(s.classroom_id) ?? null, handedInSets.has(s.id), now)
+      visibleToStudent(
+        s,
+        memberships.get(s.classroom_id) ?? null,
+        handedInSets.has(s.id),
+        now,
+        flags.get(s.id)?.extended_due_at ?? null
+      )
   )
 
   const derive = (set: StudentSetRow, items: readonly AssignmentItem[]) => {
@@ -421,8 +483,10 @@ export async function loadStudentAssignments(
   // Which list an OPEN set belongs on depends on what was handed in, so those
   // need their items now. A closed set is done whatever it holds; its items
   // are read only if it lands on the requested page.
-  const statusOpen = listed.filter((s) => assignmentStatus(s, now) === 'open')
-  const statusClosed = listed.filter((s) => assignmentStatus(s, now) !== 'open')
+  const openFor = (s: StudentSetRow) =>
+    studentAssignmentStatus(s, flags.get(s.id)?.extended_due_at ?? null, now) === 'open'
+  const statusOpen = listed.filter(openFor)
+  const statusClosed = listed.filter((s) => !openFor(s))
   const openItems = await readItems(
     supabase,
     statusOpen.map((s) => s.id)
@@ -463,7 +527,8 @@ export async function loadAssignmentsSetCard(
 ): Promise<{ next: StudentAssignment; open_count: number } | null> {
   if (!isTeacherV2()) return null
   try {
-    const sets = await readVisibleSets(supabase, { openOnly: true, now })
+    const extended = await readOwnOpenExtensions(supabase, userId, now)
+    const sets = await readVisibleSets(supabase, { openOnly: true, now, alsoIds: extended })
     if (sets.length === 0) return null
     const ids = sets.map((s) => s.id)
     const [classrooms, items, submissions, flags] = await Promise.all([
@@ -560,9 +625,10 @@ export async function loadStudentAssignment(
   ])
   const classroom = classrooms.get(set.classroom_id)
   if (!classroom || !memberships.has(classroom.id)) return null
-  if (!visibleToStudent(set, memberships.get(classroom.id) ?? null, submissions.length > 0, now)) return null
-
   const flags = flagsMap.get(set.id) ?? null
+  const extendedDueAt = flags?.extended_due_at ?? null
+  if (!visibleToStudent(set, memberships.get(classroom.id) ?? null, submissions.length > 0, now, extendedDueAt)) return null
+
   const summary = deriveStudentAssignment({
     set,
     classroom: { id: classroom.id, name: classroom.name },
@@ -574,12 +640,13 @@ export async function loadStudentAssignment(
 
   const schemeIds = items.map((i) => i.mark_scheme_id).filter((s): s is string => !!s)
   const attemptIds = submissions.map((s) => s.attempt_id).filter((a): a is string => !!a)
-  const [previews, feedbackRows, classAverage] = await Promise.all([
+  const [previews, feedbackRows, classAverage, visibleReviews] = await Promise.all([
     readQuestionPreviews(admin, schemeIds),
     readOwnFeedback(supabase, userId, attemptIds),
     classAverageAllowed(classroom.settings)
       ? readClassAverage(admin, set.id, items, classroom.settings)
       : Promise.resolve(null),
+    readVisibleReviews(supabase, attemptIds),
   ])
   const names = await readDisplayNames(admin, [classroom.teacher_id, ...feedbackRows.map((f) => f.teacher_id)])
   const itemByAttempt = new Map(
@@ -612,8 +679,9 @@ export async function loadStudentAssignment(
       items,
       submissions,
       flags,
-      canHandIn: canHandIn(set, now),
+      canHandIn: canHandIn(set, now, extendedDueAt),
       previews,
+      visibleReviews,
     }),
     flags,
     feedback: feedbackRows
@@ -969,6 +1037,24 @@ export async function loadClassroomPrivacyExport(admin: SupabaseClient, userId: 
   }
 
   const visibleReviews = reviews.filter((r) => r.decision === 'confirm' || r.decision === 'override' || r.decision == null)
+  // A 'reviewed' hand-in whose decision the teacher kept private is exported
+  // as what its timestamps say, as the student's own pages show it.
+  const reviewedAttempts = new Set(visibleReviews.map((r) => String(r.attempt_id)))
+  const dueBySet = new Map(sets.map((a) => [a.id, a.due_at]))
+  const extensionBySet = new Map(flags.map((f) => [String(f.assignment_id), (f.extended_due_at as string | null) ?? null]))
+  const exportedSubmissions = submissions.map((sub) => ({
+    ...sub,
+    status: studentSubmissionStatus(
+      {
+        status: sub.status as AssignmentSubmission['status'],
+        attempt_id: (sub.attempt_id as string | null) ?? null,
+        first_submitted_at: String(sub.first_submitted_at),
+      },
+      reviewedAttempts,
+      dueBySet.get(String(sub.assignment_id)) ?? null,
+      extensionBySet.get(String(sub.assignment_id)) ?? null
+    ),
+  }))
   const names = await readDisplayNames(admin, [
     ...[...classNames.values()].map((c) => c.teacher_id),
     ...visibleReviews.map((r) => String(r.teacher_id)),
@@ -991,7 +1077,7 @@ export async function loadClassroomPrivacyExport(admin: SupabaseClient, userId: 
     }),
     assignments: sets,
     assignment_flags: flags,
-    submissions,
+    submissions: exportedSubmissions,
     teacher_reviews: visibleReviews.map((r) => ({
       attempt_id: String(r.attempt_id),
       decision: String(r.decision ?? 'override'),

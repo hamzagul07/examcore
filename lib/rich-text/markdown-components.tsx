@@ -25,10 +25,19 @@ const LIGHT = DARK
  * Shared react-markdown component map for marking feedback and Omni-AI.
  * `dark` uses design tokens (Zen + default); `light` is for solution panels.
  */
+/**
+ * Decides where a link in rendered prose may point: the href to use, or null
+ * to render the link's text without a link. Used where the prose can carry
+ * text someone else wrote (e.g. a teacher's Omni answers quote students).
+ */
+export type MarkdownLinkFilter = (href: string) => string | null
+
 export function createMarkdownComponents(
-  variant: RichTextVariant = 'dark'
+  variant: RichTextVariant = 'dark',
+  opts: { linkFilter?: MarkdownLinkFilter } = {}
 ): Components {
   const t = variant === 'dark' ? DARK : LIGHT
+  const { linkFilter } = opts
 
   return {
     p: ({ children }) => (
@@ -111,15 +120,21 @@ export function createMarkdownComponents(
     td: ({ children }) => (
       <td className={`border px-3 py-2 ${t.tableBorder}`}>{children}</td>
     ),
-    a: ({ href, children }) => (
-      <a
-        href={href}
-        className={t.link}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {children}
-      </a>
-    ),
+    a: ({ href, children }) => {
+      // With a filter, every link — markdown, autolinked URL or reference —
+      // must pass it; anything it refuses is shown as its text, not a link.
+      const target = linkFilter ? (typeof href === 'string' ? linkFilter(href) : null) : href
+      if (linkFilter && !target) return <span>{children}</span>
+      return (
+        <a
+          href={target ?? undefined}
+          className={t.link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {children}
+        </a>
+      )
+    },
   }
 }

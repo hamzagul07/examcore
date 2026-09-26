@@ -6,7 +6,8 @@ import { useRouter } from 'next/navigation'
 /** Everything the detail card shows for one dot, already formatted on the server. */
 export type QuadrantTooltipPoint = {
   id: string
-  href: string
+  /** The student's page; null where the matrix is drawn without links. */
+  href: string | null
   name: string
   stamp: string
   zone: string
@@ -48,7 +49,7 @@ export function QuadrantTooltip({ points, children }: { points: readonly Quadran
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
     const id = pointIdFrom(event.target)
     const point = id ? byId.get(id) : undefined
-    if (!point) return
+    if (!point?.href) return
     event.preventDefault()
     router.push(point.href)
   }
@@ -60,6 +61,11 @@ export function QuadrantTooltip({ points, children }: { points: readonly Quadran
       onPointerLeave={() => setActiveId(null)}
       onFocus={(e) => setActiveId(pointIdFrom(e.target))}
       onBlur={() => setActiveId(null)}
+      // Content shown on hover or focus must be dismissible without moving
+      // the pointer or focus (WCAG 1.4.13).
+      onKeyDown={(e) => {
+        if (e.key === 'Escape') setActiveId(null)
+      }}
       onClick={onClick}
     >
       {children}

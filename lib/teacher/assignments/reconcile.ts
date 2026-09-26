@@ -29,21 +29,26 @@
  *     after both joining the class and the set being published — homework set
  *     on Monday is not handed in by a practice run the week before;
  *   - when the set refuses late work (settings.allow_late === false), it was
- *     marked before the set closed (effectiveCloseAt).
+ *     marked before the set closed for that student (studentCloseAt: the
+ *     set's close, or their extended deadline when that is later).
  *
  * The row keeps the BEST attempt (highest percentage, then marks; the one
  * already held wins a tie, so a teacher's review is not thrown away by an
  * equal retry). Teacher overrides already live in attempts.marks_earned, so
  * they count. `first_submitted_at` only ever moves earlier and
  * `last_submitted_at` only later; lateness is judged on the first hand-in
- * (isLate). 'reviewed' survives only while the reviewed attempt is still the
- * best one. Rows are never deleted here: a mark captured while a student was
- * a member is theirs to keep (spec §4 join statement).
+ * (isLate). The row is 'reviewed' when the attempt it counts has a confirm or
+ * an override as its latest teacher decision (reviewedAttemptIds) — the same
+ * rule whether the row was written by the marking hook, a reconcile or a
+ * teacher's decision (planSubmissionResync), so the three never disagree
+ * about which attempt counts or whether it was reviewed. Rows are never
+ * deleted here: a mark captured while a student was a member is theirs to
+ * keep (spec §4 join statement).
  *
  * Pure: no I/O. lib/teacher/assignments.ts does the reading and writing.
  */
 
-import { effectiveCloseAt, isLate } from '@/lib/teacher/assignment-status'
+import { isLate, studentCloseAt } from '@/lib/teacher/assignment-status'
 import {
   legacyAttemptKey,
   legacyItemKey,
@@ -51,7 +56,7 @@ import {
   wholePaperItemKey,
   type SchemeRef,
 } from '@/lib/teacher/reconcile-keys'
-import type { Assignment, AssignmentItem, AssignmentSubmission } from '@/lib/teacher/types'
+import type { Assignment, AssignmentItem, AssignmentSubmission, ReviewDecision } from '@/lib/teacher/types'
 
 /** A set is reconciled at most this often unless forced (spec §3: "≤1/min"). */
 export const RECONCILE_MIN_INTERVAL_MS = 60_000
@@ -188,18 +193,22 @@ export function attemptMatchesItem(
 
 /**
  * The window in which a student's marks count for a set: from the later of
- * joining and publication, to the set's close when it refuses late work.
- * Null when the set is not published (nothing counts for a draft).
+ * joining and publication, to when the set closes for THEM when it refuses
+ * late work — the set's close, or their extended deadline when that is later
+ * (studentCloseAt), so work a student hands in inside their extension is
+ * never dropped. Null when the set is not published (nothing counts for a
+ * draft).
  */
 export function submissionWindow(
   set: Pick<SetForReconcile, 'published_at' | 'closed_at' | 'due_at' | 'settings'>,
-  joinedAt: string | null
+  joinedAt: string | null,
+  extendedDueAt: string | null = null
 ): { from: number; to: number | null } | null {
   const published = toMs(set.published_at)
   if (published === null) return null
   const joined = toMs(joinedAt)
   if (joined === null) return null
-  const to = set.settings?.allow_late === false ? toMs(effectiveCloseAt(set)) : null
+  const to = set.settings?.allow_late === false ? toMs(studentCloseAt(set, extendedDueAt)) : null
   return { from: Math.max(published, joined), to }
 }
 
@@ -246,6 +255,14 @@ export function mergeSubmission(
     item: Pick<AssignmentItem, 'id' | 'total_marks'>
     studentId: string
     extendedDueAt: string | null
+    /**
+     * Attempts whose latest teacher decision is a confirm or an override
+     * (reviewedAttemptIds). When given, the row is 'reviewed' exactly when the
+     * attempt it counts is in it. When omitted — the marking hook, whose new
+     * attempt cannot have been reviewed yet — a stored 'reviewed' is kept
+     * while the attempt it was stored for is still the one counted.
+     */
+    reviewed?: ReadonlySet<string>
   }
 ): SubmissionWrite | null {
   const unique = new Map<string, MatchedAttempt>()
@@ -292,12 +309,14 @@ export function mergeSubmission(
   if (existing?.attempt_id) distinct.add(existing.attempt_id)
   const attemptCount = Math.max(1, (existing?.attempt_count ?? 0) + newer, distinct.size)
 
-  const status: SubmissionWrite['status'] =
-    existing?.status === 'reviewed' && best.attempt_id !== null && best.attempt_id === existing.attempt_id
-      ? 'reviewed'
-      : isLate(firstIso, ctx.assignment.due_at, ctx.extendedDueAt)
-        ? 'late'
-        : 'submitted'
+  const reviewed = ctx.reviewed
+    ? best.attempt_id !== null && ctx.reviewed.has(best.attempt_id)
+    : existing?.status === 'reviewed' && best.attempt_id !== null && best.attempt_id === existing.attempt_id
+  const status: SubmissionWrite['status'] = reviewed
+    ? 'reviewed'
+    : isLate(firstIso, ctx.assignment.due_at, ctx.extendedDueAt)
+      ? 'late'
+      : 'submitted'
 
   const linked = existing?.source === 'linked' || [...unique.values()].some((m) => m.via === 'linked')
 
@@ -383,7 +402,7 @@ export function collectSubmissionCells(input: {
 }): SubmissionCell[] {
   const windows = new Map<string, { from: number; to: number | null }>()
   for (const r of input.roster) {
-    const w = submissionWindow(input.assignment, r.joined_at)
+    const w = submissionWindow(input.assignment, r.joined_at, input.extensions.get(r.student_id) ?? null)
     if (w) windows.set(r.student_id, w)
   }
   if (windows.size === 0 || input.items.length === 0) return []
@@ -426,8 +445,13 @@ export function collectSubmissionCells(input: {
   return cells
 }
 
-/** The rows to write for a set: only cells whose stored row would change. */
-export function planSubmissions(input: Parameters<typeof collectSubmissionCells>[0]): SubmissionPlan[] {
+/**
+ * The rows to write for a set: only cells whose stored row would change.
+ * `reviewed` is passed through to mergeSubmission (see there).
+ */
+export function planSubmissions(
+  input: Parameters<typeof collectSubmissionCells>[0] & { reviewed?: ReadonlySet<string> }
+): SubmissionPlan[] {
   const plans: SubmissionPlan[] = []
   for (const cell of collectSubmissionCells(input)) {
     const next = mergeSubmission(cell.existing, cell.matches, {
@@ -435,10 +459,119 @@ export function planSubmissions(input: Parameters<typeof collectSubmissionCells>
       item: cell.item,
       studentId: cell.studentId,
       extendedDueAt: cell.extendedDueAt,
+      reviewed: input.reviewed,
     })
     if (next && submissionChanged(cell.existing, next)) plans.push({ ...cell, next })
   }
   return plans
+}
+
+/** Every attempt id a set of cells could count: their matches and the rows they hold. */
+export function cellAttemptIds(cells: readonly Pick<SubmissionCell, 'matches' | 'existing'>[]): string[] {
+  const ids = new Set<string>()
+  for (const cell of cells) {
+    for (const m of cell.matches) ids.add(m.candidate.id)
+    if (cell.existing?.attempt_id) ids.add(cell.existing.attempt_id)
+  }
+  return [...ids]
+}
+
+// ---------------------------------------------------------------------------
+// Teacher decisions
+// ---------------------------------------------------------------------------
+
+export type DecisionRow = {
+  id?: string | null
+  attempt_id: string
+  decision: ReviewDecision | null
+  created_at: string
+}
+
+/**
+ * The attempts whose LATEST teacher decision is a confirm or an override —
+ * the ones a hand-in counting them shows as 'reviewed'. A later flag ("look
+ * again") takes the review away. A null decision is a row from before the
+ * decision column existed, which were all overrides (the column's default).
+ * Ties on created_at are broken by id, newest last, as the review console
+ * orders them.
+ */
+export function reviewedAttemptIds(rows: readonly DecisionRow[]): Set<string> {
+  const latest = new Map<string, DecisionRow>()
+  for (const r of rows) {
+    if (!r?.attempt_id) continue
+    const held = latest.get(r.attempt_id)
+    if (!held) {
+      latest.set(r.attempt_id, r)
+      continue
+    }
+    const a = toMs(r.created_at) ?? -Infinity
+    const b = toMs(held.created_at) ?? -Infinity
+    if (a > b || (a === b && String(r.id ?? '') > String(held.id ?? ''))) latest.set(r.attempt_id, r)
+  }
+  const out = new Set<string>()
+  for (const [attemptId, r] of latest) {
+    const decision = r.decision ?? 'override'
+    if (decision === 'confirm' || decision === 'override') out.add(attemptId)
+  }
+  return out
+}
+
+// ---------------------------------------------------------------------------
+// One row again, after a teacher's decision
+// ---------------------------------------------------------------------------
+
+/**
+ * The row for one (item, student) recomputed from scratch after a teacher
+ * confirmed, re-marked or flagged one of the student's attempts — with the
+ * same matching, window, comparator and 'reviewed' rule as reconciliation,
+ * so the next reconcile of the set agrees with it and never flips the hand-in
+ * back. Null when nothing hands the item in (the stored row, if any, stays).
+ *
+ * `attempts` are the student's attempts that might hand the item in (the
+ * same query reconciliation runs, plus the attempt the row holds). The held
+ * attempt always stays in the running at its CURRENT marks — an override may
+ * have just changed them — even when it falls outside today's window (marked
+ * before a rejoin); any other attempt must match the item and fall inside the
+ * student's window. `joinedAt` null means the student is not on the set's
+ * roster any more (left, removed, not targeted, set or class archived): the
+ * row is their history, so only the attempt it already holds is re-read.
+ */
+export function planSubmissionResync(input: {
+  assignment: SetForReconcile
+  item: AssignmentItem
+  studentId: string
+  joinedAt: string | null
+  extendedDueAt: string | null
+  attempts: readonly ReconcileAttemptRow[]
+  existing: AssignmentSubmission | null
+  reviewed: ReadonlySet<string>
+}): SubmissionWrite | null {
+  const { assignment, item, studentId, existing } = input
+  const window = input.joinedAt ? submissionWindow(assignment, input.joinedAt, input.extendedDueAt) : null
+  const heldId = existing?.attempt_id ?? null
+  const matches: MatchedAttempt[] = []
+  const seen = new Set<string>()
+  for (const row of input.attempts) {
+    if (seen.has(row.id)) continue
+    seen.add(row.id)
+    const c = toCandidate(row)
+    if (!c || c.user_id !== studentId) continue
+    const held = c.id === heldId
+    const via = attemptMatchesItem(c, item) ?? (held ? (existing?.source === 'linked' ? 'linked' : 'reconciled') : null)
+    if (!via) continue
+    if (!held) {
+      if (!window) continue
+      if (c.created_ms < window.from || (window.to !== null && c.created_ms > window.to)) continue
+    }
+    matches.push({ candidate: c, via })
+  }
+  return mergeSubmission(existing, matches, {
+    assignment,
+    item,
+    studentId,
+    extendedDueAt: input.extendedDueAt,
+    reviewed: input.reviewed,
+  })
 }
 
 /** Whether a set was reconciled too recently to do it again (unless forced). */

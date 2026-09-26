@@ -132,12 +132,11 @@ import {
 import { parseMarkReturnPath, withReturnTask } from '@/lib/marking/mark-return-url'
 import {
   ASSIGNMENT_ITEM_FIELD,
-  markAssignmentNotice,
   parseAssignmentDeepLink,
-  readMarkAssignmentLink,
   type AssignmentDeepLink,
   type MarkAssignmentLink,
 } from '@/lib/teacher/assignments/link'
+import { AssignmentLinkNotice } from '@/components/mark/AssignmentLinkNotice'
 import { takePracticeAnswer } from '@/lib/marking/practice-answer'
 import {
   questionTotalPromiseIsBroken,
@@ -2640,6 +2639,7 @@ export default function MarkPage() {
         key={`v2-wp-${v2WholePaperSeed.paperCode}-${v2WholePaperSeed.paperSession}`}
         paperCode={v2WholePaperSeed.paperCode}
         paperSession={v2WholePaperSeed.paperSession}
+        assignmentItemId={assignmentLink?.mode === 'whole_paper' ? assignmentLink.itemId : null}
         questionOptions={paperQuestionOptions}
         seed={{
           pages: v2WholePaperSeed.pages,
@@ -3373,6 +3373,7 @@ export default function MarkPage() {
                     key={wholePaperKey}
                     paperCode={wholePaperCode}
                     paperSession={wholePaperSession}
+                    assignmentItemId={assignmentLink?.mode === 'whole_paper' ? assignmentLink.itemId : null}
                     questionOptions={paperQuestionOptions}
                     onError={(msg) => {
                       setErrorMsg(msg)
@@ -4430,47 +4431,6 @@ function StepLabel({
         <span className="ms-mark-step-label-title">{label}</span>
         {hint ? <span className="ms-mark-step-label-hint">{hint}</span> : null}
       </div>
-    </div>
-  )
-}
-
-/**
- * Where a mark sent from a teacher's set went: "Linked to <set> — your
- * teacher can see this mark", with the way back to the set; or, when the
- * upload was not the set's item, why it was not added. Nothing when the mark
- * was not sent from a set (or arrived without the server's answer, as on a
- * reconnect) — it never claims a link the server did not confirm.
- */
-function AssignmentLinkNotice({ value }: { value: unknown }) {
-  const link = readMarkAssignmentLink(value)
-  if (!link) return null
-  const notice = markAssignmentNotice(link)
-  const setHref = `/dashboard/assignments/${encodeURIComponent(link.assignment_id)}`
-  return (
-    <div
-      role="status"
-      aria-live="polite"
-      className={`ec-card flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between ${
-        notice.tone === 'linked'
-          ? 'border-[var(--ec-brand)]/30'
-          : 'border-[var(--ec-banner-warning-border)] bg-[var(--ec-banner-warning-bg)]'
-      }`}
-    >
-      <div className="flex min-w-0 items-start gap-3">
-        <span className="ec-ink-stamp ec-ink-stamp--inline shrink-0" aria-hidden>
-          {notice.tone === 'linked' ? 'SET' : 'NB'}
-        </span>
-        <p className="min-w-0 text-sm text-[var(--ec-text-primary)]">{notice.text}</p>
-      </div>
-      <Link
-        href={setHref}
-        className="inline-flex min-h-[44px] shrink-0 items-center gap-1.5 text-sm font-semibold text-[var(--ec-brand)]"
-      >
-        {notice.tone === 'linked' ? 'Back to the set' : 'Open the set'}
-        <span className="font-mono text-xs font-bold" aria-hidden>
-          -&gt;
-        </span>
-      </Link>
     </div>
   )
 }

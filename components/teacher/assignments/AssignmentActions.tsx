@@ -1,6 +1,6 @@
 'use client'
 
-import { useId, useState, type ReactNode } from 'react'
+import { useId, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
@@ -8,6 +8,7 @@ import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 import { Sheet } from '@/components/ui/Sheet'
 import { StatusMessage } from '@/components/ui/StatusMessage'
 import { TeacherConfirmDialog } from '@/components/teacher/ClassroomSettingsForm'
+import { downloadExport } from '@/components/teacher/download-export'
 import { DueDatePicker } from '@/components/teacher/assignments/DueDatePicker'
 import { sameMinute } from '@/components/teacher/assignments/format'
 import { editDraftHref, exportHref, printHref, setsHref } from '@/components/teacher/assignments/links'
@@ -169,12 +170,19 @@ export function AssignmentActions({
       Print
     </Link>
   )
-  // A file download from a route handler: a plain link, never a client navigation.
-  const exportCsv: ReactNode = (
-    <a href={exportHref(classroomId)} download className={actionClass}>
-      Export CSV
-    </a>
-  )
+  // Fetched rather than linked, so a refused export shows its reason and a
+  // file cut at the row ceiling says so (downloadExport).
+  const exportCsv = () =>
+    run('export', async () => {
+      const r = await downloadExport(exportHref(classroomId, assignment.id), 'set-markbook.csv')
+      if (!r.ok) return { tone: 'error', text: r.error }
+      return {
+        tone: 'success',
+        text: r.truncated
+          ? 'Downloaded — the set has more rows than one file holds, so the oldest were left out.'
+          : 'Downloaded the set’s markbook.',
+      }
+    })
   const dueUnchanged = (due === null && assignment.due_at === null) || sameMinute(due, assignment.due_at)
 
   if (readOnly) {
@@ -242,7 +250,18 @@ export function AssignmentActions({
           </Button>
         ) : null}
         {print}
-        {!draft ? exportCsv : null}
+        {!draft ? (
+          <Button
+            variant="ghost"
+            onClick={exportCsv}
+            loading={busy === 'export'}
+            loadingText="Preparing…"
+            disabled={busy !== null}
+            className="text-sm"
+          >
+            Export CSV
+          </Button>
+        ) : null}
         <Button
           variant="danger"
           onClick={() => {

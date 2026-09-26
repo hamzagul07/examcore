@@ -13,7 +13,10 @@
  * lib/omni-ai/actions.ts already drops anything that is not a same-origin
  * path; `teacherCtaHref` narrows that to the teacher's own pages, because a
  * prompt that carries student-written text should never be able to send the
- * teacher to, say, /auth/signout or a student-facing flow.
+ * teacher to, say, /auth/signout or a student-facing flow. The same filter
+ * guards links in the answer's prose: the teacher chat renders it with
+ * teacherCtaHref as RichTextRenderer's `linkFilter` (ChatPanel), so a link the
+ * model was steered into writing shows as text, not as an anchor.
  *
  * Pure and dependency-light: safe in client components (the page islands
  * import `teacherOmniContext`) and on the server.

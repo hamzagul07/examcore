@@ -6,12 +6,14 @@ import { getSubjectPaperStructure } from '@/lib/subject-papers'
 import { createServiceClient } from '@/lib/supabase/service'
 import { loadAssignment } from '@/lib/teacher/assignments'
 import { isTeacherV2 } from '@/lib/teacher/flags'
+import { teacherOmniContext } from '@/lib/teacher/insights/omni'
 import { subjectCodeLabel } from '@/lib/teacher/list-classrooms'
 import { loadSeatState } from '@/lib/teacher/seat-grant'
 import { getRosterProfiles } from '@/lib/teacher-classroom-data'
 import { TeacherBackLink, TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
 import { ClassDeskHead } from '@/components/teacher/ClassDeskHead'
 import { ClassTabs } from '@/components/teacher/ClassTabs'
+import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 import { AssignmentComposer, type ComposerStudent } from '@/components/teacher/assignments/AssignmentComposer'
 import {
   draftToComposerState,
@@ -62,6 +64,7 @@ export default async function NewSetPage({ params, searchParams }: Props) {
   const draftId = firstParam(sp.draft)
   const head = (
     <>
+      <OmniAIBridge context={teacherOmniContext({ classroomId: classroom.id, view: 'sets' })} />
       <TeacherBackLink href={draftId ? setHref(classroom.id, draftId) : setsHref(classroom.id)}>
         {draftId ? '<- Back to the draft' : '<- Sets'}
       </TeacherBackLink>

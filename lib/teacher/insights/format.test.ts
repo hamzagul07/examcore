@@ -1,5 +1,15 @@
 import assert from 'node:assert/strict'
-import { dueAgeLabel, firstNameOf, formatMark, relativeDay, shortDate } from '@/lib/teacher/insights/format'
+import {
+  DECISION_BADGE,
+  dueAgeLabel,
+  firstNameOf,
+  formatMark,
+  marksLine,
+  relativeDay,
+  rosterIncompleteNote,
+  rosterRowId,
+  shortDate,
+} from '@/lib/teacher/insights/format'
 
 const NOW = Date.parse('2026-09-25T12:00:00Z')
 
@@ -35,5 +45,42 @@ assert.equal(formatMark(7), '7')
 assert.equal(formatMark(7.5), '7.5')
 assert.equal(formatMark(7.4999), '7.5')
 assert.equal(formatMark(0.04), '0')
+
+// --- decisions and marks ---------------------------------------------------------------------
+
+assert.deepEqual(
+  Object.fromEntries(Object.entries(DECISION_BADGE).map(([k, v]) => [k, v.stamp])),
+  { confirm: 'OK', override: 'OV', flag: 'FLG' },
+  'the review console\'s three stamps'
+)
+assert.equal(marksLine(7, 9, 77.8), '7/9 · 78%')
+assert.equal(marksLine(7.5, 9, null), '7.5/9 · 83%', 'the share is derived when not given')
+assert.equal(marksLine(0, 9, 0), '0/9 · 0%', 'zero is a real mark')
+assert.equal(marksLine(null, 9, null), null, 'no mark yet is not 0')
+assert.equal(marksLine(3, 0, null), null, 'no total, no line')
+assert.equal(marksLine(Number.NaN, 9, null), null)
+
+// --- roster row ids -----------------------------------------------------------------------
+
+assert.equal(
+  rosterRowId('30000000-0000-4000-8000-0000000000a1'),
+  'roster-student-30000000-0000-4000-8000-0000000000a1',
+  'a uuid is kept as it is'
+)
+assert.equal(rosterRowId('a"b c<d>'), 'roster-student-abcd', 'nothing that could break out of an id attribute or selector')
+
+assert.equal(rosterIncompleteNote({ last_active: false, due: false, overdue: false }), null, 'everything loaded: no note')
+assert.equal(
+  rosterIncompleteNote({ last_active: true, due: false, overdue: false }),
+  'Last activity didn’t load — reload the page to see them.'
+)
+assert.equal(
+  rosterIncompleteNote({ last_active: true, due: true, overdue: true }),
+  'Last activity, overdue sets and topics due for review didn’t load — reload the page to see them.'
+)
+assert.equal(
+  rosterIncompleteNote({ last_active: false, due: true, overdue: true }),
+  'Overdue sets and topics due for review didn’t load — reload the page to see them.'
+)
 
 console.log('lib/teacher/insights/format.test.ts — all assertions passed')

@@ -15,6 +15,11 @@ import {
 } from '@/lib/target-grade'
 import { handleOnboardingCompleteEmails } from '@/lib/email/notifications'
 import { runAfterResponse } from '@/lib/after-response'
+import { generateInviteCode } from '@/lib/teacher/invite-code'
+import { resolveClassroomSubjectCode } from '@/lib/teacher/subject'
+
+/** Fresh invite codes to try before giving up on a unique-index collision. */
+const INVITE_CODE_ATTEMPTS = 5
 
 export type OnboardingInput = {
   full_name?: string | null
@@ -235,13 +240,28 @@ export async function saveOnboardingProfile(
         return { ok: false, error: 'Pick the subject you teach.', status: 400 }
       }
 
-      const { error: classroomError } = await userClient.from('classrooms').insert({
-        teacher_id: userId,
-        name: classroomName.slice(0, 120),
-        board,
-        level,
-        subject: classroomSubject,
-      })
+      // Same invite-code and syllabus rules as POST /api/teacher/classrooms:
+      // a six-character code that reads aloud cleanly (the DB default is the
+      // legacy 8-hex fork), and subject_code resolved when unambiguous so the
+      // class's analytics are subject-scoped without the settings prompt. A
+      // collision on the unique invite index retries with a fresh code.
+      const subjectCode = resolveClassroomSubjectCode(board, level, classroomSubject)
+      let classroomError: { code?: string; message?: string } | null = null
+      for (let attempt = 1; attempt <= INVITE_CODE_ATTEMPTS; attempt++) {
+        const { error } = await userClient.from('classrooms').insert({
+          teacher_id: userId,
+          name: classroomName.slice(0, 120),
+          board,
+          level,
+          subject: classroomSubject,
+          subject_code: subjectCode,
+          invite_code: generateInviteCode(),
+        })
+        classroomError = error
+        if (!error) break
+        if (error.code === '23505' && (error.message ?? '').includes('invite_code')) continue
+        break
+      }
 
       if (classroomError) {
         console.error('[onboarding] classroom create failed:', classroomError)

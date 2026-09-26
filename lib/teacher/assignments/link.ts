@@ -297,14 +297,34 @@ export function planWholePaperLink(
 // The `_assignment` block on a mark result
 // ---------------------------------------------------------------------------
 
-/** Sent on the mark result so /mark can say where the mark went. */
-export type MarkAssignmentLink = {
-  linked: boolean
-  assignment_id: string
-  item_id: string
-  title: string
-  /** Why it was not linked; absent when linked. */
-  reason?: string
+/**
+ * Sent on the mark result so /mark can say where the mark went. When the set
+ * could not be checked at all (a database error — the mark went ahead,
+ * unlinked) the set is unknown, so `assignment_id` and `title` are null.
+ */
+export type MarkAssignmentLink =
+  | { linked: true; assignment_id: string; item_id: string; title: string }
+  | {
+      linked: false
+      assignment_id: string | null
+      item_id: string
+      title: string | null
+      /** Why it was not linked. */
+      reason?: string
+    }
+
+/** What the student is told when their set could not be checked and the mark went ahead unlinked. */
+export const ASSIGNMENT_UNCHECKED_REASON =
+  'We couldn’t check your teacher’s set just now, so this mark isn’t linked to it yet. Your mark is saved — open the set later to see whether it was counted.'
+
+/**
+ * The `_assignment` block when validateAssignmentItemForStudent could not
+ * answer (it threw): the student still gets their mark, told plainly that it
+ * is not linked. Reconciliation on the banked question or paper may still
+ * count it later; a prompt item can only be handed in from the set again.
+ */
+export function uncheckedAssignmentLink(itemId: string): MarkAssignmentLink {
+  return { linked: false, assignment_id: null, item_id: itemId, title: null, reason: ASSIGNMENT_UNCHECKED_REASON }
 }
 
 export function markAssignmentLink(
@@ -322,15 +342,23 @@ export function readMarkAssignmentLink(value: unknown): MarkAssignmentLink | nul
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null
   const v = value as Record<string, unknown>
   if (typeof v.linked !== 'boolean') return null
-  if (!parseAssignmentItemId(v.assignment_id) || !parseAssignmentItemId(v.item_id)) return null
-  if (typeof v.title !== 'string' || !v.title.trim()) return null
-  const out: MarkAssignmentLink = {
-    linked: v.linked,
-    assignment_id: String(v.assignment_id),
-    item_id: String(v.item_id),
-    title: v.title.trim().slice(0, 120),
+  const itemId = parseAssignmentItemId(v.item_id)
+  if (!itemId) return null
+  const assignmentId = v.assignment_id == null ? null : parseAssignmentItemId(v.assignment_id)
+  if (v.assignment_id != null && !assignmentId) return null
+  const title = typeof v.title === 'string' && v.title.trim() ? v.title.trim().slice(0, 120) : null
+  if (v.title != null && title === null) return null
+  const reason = typeof v.reason === 'string' && v.reason.trim() ? v.reason.trim().slice(0, 400) : undefined
+
+  if (v.linked) {
+    // A link is only ever claimed for a set the server named.
+    if (!assignmentId || !title) return null
+    return { linked: true, assignment_id: assignmentId, item_id: itemId, title }
   }
-  if (!v.linked && typeof v.reason === 'string' && v.reason.trim()) out.reason = v.reason.trim().slice(0, 400)
+  // Unlinked with no set named: only meaningful with the reason to show.
+  if ((!assignmentId || !title) && !reason) return null
+  const out: MarkAssignmentLink = { linked: false, assignment_id: assignmentId, item_id: itemId, title }
+  if (reason) out.reason = reason
   return out
 }
 
@@ -341,6 +369,6 @@ export function markAssignmentNotice(link: MarkAssignmentLink): { tone: 'linked'
   }
   return {
     tone: 'unlinked',
-    text: link.reason ?? `This mark was not added to “${link.title}”.`,
+    text: link.reason ?? (link.title ? `This mark was not added to “${link.title}”.` : 'This mark was not added to your teacher’s set.'),
   }
 }

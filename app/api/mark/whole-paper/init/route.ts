@@ -75,6 +75,7 @@ import { validateAssignmentItemForStudent } from '@/lib/teacher/assignments'
 import {
   ASSIGNMENT_ITEM_FIELD,
   markAssignmentLink,
+  uncheckedAssignmentLink,
   parseAssignmentItemId,
   planWholePaperLink,
   type MarkAssignmentLink,
@@ -265,14 +266,28 @@ async function handleInit(request: NextRequest) {
         return linkError('That link to your teacher’s set is not valid. Open it again from your assignments.')
       }
       if (!userId) return linkError('Sign in to hand work in for your class.')
-      const check = await validateAssignmentItemForStudent(supabaseAdmin, itemId, userId)
-      if (!check.ok) return linkError(check.reason)
-      const plan = planWholePaperLink(check.item, check.assignment, {
-        paperCode: manualPaperCode,
-        paperSession: manualPaperSession,
-      })
-      assignmentLink = markAssignmentLink(check.assignment, itemId, plan)
-      if (plan.linked) linkedItemId = itemId
+      // A database error while checking the set must not cost the student
+      // their paper: it is marked unlinked, and says so. Reconciliation on the
+      // paper can still count it later. Only a definite "no" is a 400.
+      let check: Awaited<ReturnType<typeof validateAssignmentItemForStudent>> | null = null
+      try {
+        check = await validateAssignmentItemForStudent(supabaseAdmin, itemId, userId)
+      } catch (err) {
+        console.error('[whole-paper/init] could not check the set item; marking unlinked', {
+          itemId,
+          error: err instanceof Error ? err.message : String(err),
+        })
+        assignmentLink = uncheckedAssignmentLink(itemId)
+      }
+      if (check && !check.ok) return linkError(check.reason)
+      if (check?.ok) {
+        const plan = planWholePaperLink(check.item, check.assignment, {
+          paperCode: manualPaperCode,
+          paperSession: manualPaperSession,
+        })
+        assignmentLink = markAssignmentLink(check.assignment, itemId, plan)
+        if (plan.linked) linkedItemId = itemId
+      }
     }
 
     // ---- Validation passed: consume the guest slot, then spend ---------------

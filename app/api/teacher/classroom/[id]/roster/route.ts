@@ -7,10 +7,11 @@ import { isUuid, loadClassRoster, loadTeacherClassroom } from '@/lib/teacher/lis
 export const dynamic = 'force-dynamic'
 
 /**
- * GET → `{ students: RosterStudent[] }` — every member the class has had,
- * active first (replaces the old `T/students` GET). Names come only from the
- * teacher_roster_profiles RPC; see loadClassRoster for what is computed and
- * for whom.
+ * GET → `{ students: RosterStudent[], incomplete }` — every member the class
+ * has had, active first (replaces the old `T/students` GET). Names come only
+ * from the teacher_roster_profiles RPC; see loadClassRoster for what is
+ * computed and for whom. `incomplete` flags the badges that failed to load
+ * (their zeros then mean "unknown", not "none").
  */
 export async function GET(_request: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -30,5 +31,8 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
   const result = await loadClassRoster(supabase, createServiceClient(), classroom)
   if (!result.ok) return NextResponse.json({ error: result.error }, { status: 500 })
 
-  return NextResponse.json({ students: result.students }, { headers: { 'Cache-Control': 'no-store' } })
+  return NextResponse.json(
+    { students: result.students, incomplete: result.incomplete },
+    { headers: { 'Cache-Control': 'no-store' } }
+  )
 }

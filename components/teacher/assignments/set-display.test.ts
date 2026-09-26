@@ -199,6 +199,7 @@ assert.equal(reviewHref(A), `/teacher/reviews/${A}`)
 assert.equal(reviewsHref(C), `/teacher/reviews?classroom_id=${C}`)
 assert.equal(reviewsHref(C, A), `/teacher/reviews?classroom_id=${C}&assignment_id=${A}`)
 assert.equal(exportHref(C), `/api/teacher/classroom/${C}/export?scope=assignments`)
+assert.equal(exportHref(C, A), `/api/teacher/classroom/${C}/export?scope=assignments&assignment_id=${A}`)
 
 assert.equal(composerHref(C), `/teacher/classroom/${C}/assignments/new`)
 assert.equal(composerHref(C, { source: 'manual' }), `/teacher/classroom/${C}/assignments/new`)

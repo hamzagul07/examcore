@@ -7,6 +7,7 @@ import { Field } from '@/components/ui/Field'
 import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 import { SegmentedControl } from '@/components/ui/SegmentedControl'
 import type { ClassroomSettings } from '@/lib/teacher/types'
+import { downloadExport } from '@/components/teacher/download-export'
 
 /*
  * Class settings islands (spec §4 ".../settings"): the details form, the CSV
@@ -402,11 +403,6 @@ export function ClassroomSettingsForm({
 // CSV export
 // ---------------------------------------------------------------------------
 
-function filenameFrom(disposition: string | null, fallback: string): string {
-  const match = disposition ? /filename="([^"]+)"/.exec(disposition) : null
-  return match?.[1] ?? fallback
-}
-
 /**
  * The class markbook as CSV — sets (one row per student per set) or every
  * marked attempt. Downloaded through fetch rather than a bare link so a
@@ -424,28 +420,19 @@ export function ClassExportButtons({ classroomId, disabled = false }: { classroo
     setError('')
     setStatus('')
     try {
-      const res = await fetch(`/api/teacher/classroom/${classroomId}/export?scope=${scope}`)
-      if (!res.ok) {
-        const data = (await res.json().catch(() => ({}))) as { error?: string }
-        setError(data.error || 'Could not build the export. Try again.')
+      const r = await downloadExport(
+        `/api/teacher/classroom/${encodeURIComponent(classroomId)}/export?scope=${scope}`,
+        `class-${scope}.csv`
+      )
+      if (!r.ok) {
+        setError(r.error)
         return
       }
-      const blob = await res.blob()
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = filenameFrom(res.headers.get('Content-Disposition'), `class-${scope}.csv`)
-      document.body.appendChild(a)
-      a.click()
-      a.remove()
-      window.setTimeout(() => URL.revokeObjectURL(url), 1000)
       setStatus(
-        res.headers.get('X-Export-Truncated')
+        r.truncated
           ? 'Downloaded — this class has more rows than one file holds, so the oldest were left out.'
           : 'Downloaded.'
       )
-    } catch {
-      setError('Could not reach the server. Check your connection and try again.')
     } finally {
       setBusy(null)
     }

@@ -59,9 +59,10 @@ export function reviewsHref(classroomId: string, assignmentId?: string): string 
   return `/teacher/reviews?${params.toString()}`
 }
 
-/** The class markbook CSV (desk-management's export route). */
-export function exportHref(classroomId: string): string {
-  return `/api/teacher/classroom/${enc(classroomId)}/export?scope=assignments`
+/** The markbook CSV (desk-management's export route): the class's sets, or just one. */
+export function exportHref(classroomId: string, assignmentId?: string): string {
+  const base = `/api/teacher/classroom/${enc(classroomId)}/export?scope=assignments`
+  return assignmentId ? `${base}&assignment_id=${enc(assignmentId)}` : base
 }
 
 export type ComposerPrefillLink = {

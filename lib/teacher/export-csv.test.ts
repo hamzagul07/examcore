@@ -9,6 +9,7 @@ import {
   csvCell,
   csvDate,
   csvFilename,
+  csvSetFilename,
   exportStudentLabels,
   parseExportScope,
   setStatusLabel,
@@ -62,6 +63,12 @@ assert.equal(slugForFilename('x'.repeat(100)).length, 60)
 
 assert.equal(csvFilename('Y12 Maths', 'assignments', new Date('2026-09-25T12:00:00Z')), 'y12-maths-sets-2026-09-25.csv')
 assert.equal(csvFilename('Y12 Maths', 'attempts', new Date('2026-09-25T12:00:00Z')), 'y12-maths-attempts-2026-09-25.csv')
+// One set's markbook names the set; a title with nothing sluggable still gives a name.
+assert.equal(
+  csvSetFilename('Y12 Maths', 'Vectors — drill 2', new Date('2026-09-25T12:00:00Z')),
+  'y12-maths-vectors-drill-2-2026-09-25.csv'
+)
+assert.equal(csvSetFilename('Y12 Maths', '——', new Date('2026-09-25T12:00:00Z')), 'y12-maths-set-2026-09-25.csv')
 assert.equal(contentDisposition('a b"c.csv'), 'attachment; filename="a_b_c.csv"', 'header-safe filename')
 
 assert.equal(csvDate('2026-09-25T16:00:00.000Z'), '2026-09-25 16:00')

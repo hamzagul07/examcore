@@ -35,7 +35,7 @@ export async function loadAccountContext(): Promise<SettingsContext> {
   const { data: profile } = await supabase
     .from('user_profiles')
     .select(
-      'full_name, username, board, level, subjects, onboarded, onboarding_completed, exam_date, target_grade, stage, primary_goal, created_at, email_exam_reminders, email_product_updates, email_community_replies, email_community_digest, email_community_threads, email_review_digest, email_weekly_report, email_mark_ready'
+      'full_name, username, board, level, subjects, onboarded, onboarding_completed, exam_date, target_grade, stage, primary_goal, created_at, email_exam_reminders, email_product_updates, email_community_replies, email_community_digest, email_community_threads, email_review_digest, email_weekly_report, email_mark_ready, email_assignments, email_teacher_digest, role'
     )
     .eq('id', user.id)
     .maybeSingle()
@@ -123,6 +123,11 @@ export async function loadAccountContext(): Promise<SettingsContext> {
       // Defaults on, like the other transactional-ish ones: it only fires when
       // a mark finished after the student had already left the page.
       emailMarkReady: profile?.email_mark_ready !== false,
+      // Both default on (20260926c): a set, its reminders and the teacher's
+      // re-marks are the student's own work; the digest is the teacher's.
+      emailAssignments: profile?.email_assignments !== false,
+      emailTeacherDigest: profile?.email_teacher_digest !== false,
+      isTeacher: profile?.role === 'teacher',
     },
   }
 }

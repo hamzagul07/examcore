@@ -11,6 +11,10 @@ type Body = {
   email_review_digest?: boolean
   email_weekly_report?: boolean
   email_mark_ready?: boolean
+  /** Emails about work a teacher sets (20260926c; client-writable column). */
+  email_assignments?: boolean
+  /** The teacher's Sunday class digest (20260926c; client-writable column). */
+  email_teacher_digest?: boolean
   /** Lesson typography (typeface, size, spacing) — synced across devices. */
   reading_prefs?: unknown
 }
@@ -75,6 +79,12 @@ export async function PATCH(request: NextRequest) {
   }
   if (typeof body.email_mark_ready === 'boolean') {
     patch.email_mark_ready = body.email_mark_ready
+  }
+  if (typeof body.email_assignments === 'boolean') {
+    patch.email_assignments = body.email_assignments
+  }
+  if (typeof body.email_teacher_digest === 'boolean') {
+    patch.email_teacher_digest = body.email_teacher_digest
   }
 
   if (Object.keys(patch).length === 0) {

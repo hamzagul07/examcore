@@ -11,6 +11,7 @@ import {
   buildAttemptsCsv,
   contentDisposition,
   csvFilename,
+  csvSetFilename,
   parseExportScope,
   toCsv,
   type ExportStudent,
@@ -27,19 +28,32 @@ export const dynamic = 'force-dynamic'
 
 type Built = { header: readonly string[]; rows: unknown[][]; truncated: boolean }
 
-/** One row per active student per published set, from the RLS client. */
-async function assignmentsCsv(supabase: SupabaseClient, classroomId: string, students: ExportStudent[]): Promise<Built> {
+/**
+ * One row per active student per published set, from the RLS client — every
+ * set, or just `onlySetId` (the set page's Export). Null when that set is not
+ * one of this class's published sets.
+ */
+async function assignmentsCsv(
+  supabase: SupabaseClient,
+  classroomId: string,
+  students: ExportStudent[],
+  onlySetId: string | null
+): Promise<(Built & { setTitle: string | null }) | null> {
   // Hand-ins are read under the teacher's RLS client on purpose: the policy
   // returns current (active) members' rows only — the same people `students`
   // holds — so nothing about a departed student can reach the file.
-  const sets = await hydrateSets(supabase, await loadPublishedSets(supabase, [classroomId]))
-  return buildAssignmentsCsv({
+  const published = await loadPublishedSets(supabase, [classroomId])
+  const chosen = onlySetId ? published.filter((s) => s.id === onlySetId) : published
+  if (onlySetId && chosen.length === 0) return null
+  const sets = await hydrateSets(supabase, chosen)
+  const built = buildAssignmentsCsv({
     students,
     assignments: sets,
     items: sets.flatMap((s) => s.items),
     submissions: sets.flatMap((s) => s.submissions),
     flags: sets.flatMap((s) => s.flags),
   })
+  return { ...built, setTitle: onlySetId ? (chosen[0]?.title ?? null) : null }
 }
 
 /** Every attempt in the class's view: active members, since joining, class subject. */
@@ -68,7 +82,8 @@ async function attemptsCsv(
 }
 
 /**
- * GET `?scope=assignments|attempts` → a CSV download of the class markbook.
+ * GET `?scope=assignments|attempts[&assignment_id=<set>]` → a CSV download of
+ * the class markbook (with `assignment_id`, just that set's rows).
  *
  * Active members only, display names only ("Amira K."), no emails — the file
  * leaves the platform (spec §8). `assignments` is one row per student per
@@ -80,9 +95,18 @@ async function attemptsCsv(
  */
 export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
-  const scope = parseExportScope(new URL(request.url).searchParams.get('scope'))
+  const search = new URL(request.url).searchParams
+  const scope = parseExportScope(search.get('scope'))
   if (!scope) {
     return NextResponse.json({ error: 'scope must be assignments or attempts', field: 'scope' }, { status: 400 })
+  }
+  const rawSetId = search.get('assignment_id')
+  const setId = rawSetId ? (isUuid(rawSetId) ? rawSetId.toLowerCase() : null) : null
+  if (rawSetId && (!setId || scope !== 'assignments')) {
+    return NextResponse.json(
+      { error: 'assignment_id must be a set id, with scope=assignments', field: 'assignment_id' },
+      { status: 400 }
+    )
   }
 
   const supabase = await createClient()
@@ -102,16 +126,21 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
   }
 
   let built: Built
+  let setTitle: string | null = null
   let students: ExportStudent[]
   try {
     // Names from the roster RPC only; non-active members never reach the file.
     students = (await getRosterProfiles(supabase, id))
       .filter((p) => p.status === 'active')
       .map((p) => ({ id: p.id, full_name: p.full_name, joined_at: p.joined_at }))
-    built =
-      scope === 'assignments'
-        ? await assignmentsCsv(supabase, id, students)
-        : await attemptsCsv(supabase, classroom, students)
+    if (scope === 'assignments') {
+      const one = await assignmentsCsv(supabase, id, students, setId)
+      if (!one) return NextResponse.json({ error: 'Set not found', field: 'assignment_id' }, { status: 404 })
+      built = one
+      setTitle = one.setTitle
+    } else {
+      built = await attemptsCsv(supabase, classroom, students)
+    }
   } catch (err) {
     console.error('[teacher/export] build failed:', err instanceof Error ? err.message : err)
     return NextResponse.json({ error: 'Could not build the export. Try again.' }, { status: 500 })
@@ -121,14 +150,22 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     actorId: user.id,
     classroomId: id,
     action: 'export_csv',
-    meta: { scope, rows: built.rows.length, students: students.length, truncated: built.truncated },
+    meta: {
+      scope,
+      ...(setId ? { assignment_id: setId } : {}),
+      rows: built.rows.length,
+      students: students.length,
+      truncated: built.truncated,
+    },
   })
 
   return new Response(toCsv(built.header, built.rows), {
     status: 200,
     headers: {
       'Content-Type': 'text/csv; charset=utf-8',
-      'Content-Disposition': contentDisposition(csvFilename(classroom.name, scope)),
+      'Content-Disposition': contentDisposition(
+        setTitle !== null ? csvSetFilename(classroom.name, setTitle) : csvFilename(classroom.name, scope)
+      ),
       'Cache-Control': 'no-store, private',
       'X-Content-Type-Options': 'nosniff',
       // Lets the page say the file hit the row ceiling.

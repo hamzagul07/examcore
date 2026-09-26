@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 import { studentHref } from '@/components/teacher/assignments/links'
-import { relativeDay } from '@/lib/teacher/insights/format'
+import { relativeDay, rosterRowId } from '@/lib/teacher/insights/format'
 import { OUTCOME_CELL, OUTCOME_LABEL, type RosterSetCell } from '@/lib/teacher/insights/student-record'
 import type { RosterStudent } from '@/lib/teacher/types'
 
@@ -44,6 +44,8 @@ function nameOf(s: Pick<RosterStudent, 'full_name'>): string {
  * displayName).
  *
  * A server component; `actions` is where the page puts the Remove island.
+ * The row carries rosterRowId(student.id) and is programmatically focusable,
+ * so the roster can put focus back on it after a removal re-renders it.
  */
 export function StudentCard({
   classroomId,
@@ -51,6 +53,7 @@ export function StudentCard({
   latest,
   nowMs,
   actions,
+  lastActiveUnknown = false,
 }: {
   classroomId: string
   student: RosterStudent
@@ -59,32 +62,44 @@ export function StudentCard({
   /** When the page was computed. */
   nowMs: number
   actions?: ReactNode
+  /** Last activity failed to load: say nothing about it rather than "no marked work". */
+  lastActiveUnknown?: boolean
 }) {
   const active = student.status === 'active'
   const name = nameOf(student)
   const joined = relativeDay(student.joined_at, nowMs)
   const last = relativeDay(student.last_attempt_at, nowMs)
+  const lastLine = last ? `last marked ${last}` : lastActiveUnknown ? null : 'no marked work in this class yet'
+
+  const meta = (
+    <span className="ms-teacher-roster__meta">
+      {active
+        ? [joined ? `joined ${joined}` : null, lastLine].filter(Boolean).join(' · ')
+        : student.status === 'left'
+          ? 'Left the class — their work is no longer shown'
+          : 'Removed from the class — their work is no longer shown'}
+    </span>
+  )
 
   return (
-    <li className={`ms-teacher-roster__row${active ? '' : ' ms-teacher-roster__row--inactive'}`}>
-      <div className="ms-teacher-roster__who">
-        {active ? (
-          <Link href={studentHref(classroomId, student.id)} className="ms-teacher-roster__name hover:underline">
-            {name}
-          </Link>
-        ) : (
+    <li
+      id={rosterRowId(student.id)}
+      tabIndex={-1}
+      className={`ms-teacher-roster__row${active ? '' : ' ms-teacher-roster__row--inactive'}`}
+    >
+      {/* An active student's name and meta together are the link to their
+          page: one full-height target rather than a 20px line of text. */}
+      {active ? (
+        <Link href={studentHref(classroomId, student.id)} className="ms-teacher-roster__who">
           <span className="ms-teacher-roster__name">{name}</span>
-        )}
-        <span className="ms-teacher-roster__meta">
-          {active
-            ? [joined ? `joined ${joined}` : null, last ? `last marked ${last}` : 'no marked work in this class yet']
-                .filter(Boolean)
-                .join(' · ')
-            : student.status === 'left'
-              ? 'Left the class — their work is no longer shown'
-              : 'Removed from the class — their work is no longer shown'}
-        </span>
-      </div>
+          {meta}
+        </Link>
+      ) : (
+        <div className="ms-teacher-roster__who">
+          <span className="ms-teacher-roster__name">{name}</span>
+          {meta}
+        </div>
+      )}
 
       <span className="ms-teacher-roster__trail">
         {!active ? (

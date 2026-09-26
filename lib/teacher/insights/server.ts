@@ -526,25 +526,33 @@ async function loadItemSets(
   return out
 }
 
-/** Whether `attemptId` is one of this student's in-scope attempts in this class. */
-export async function isStudentAttemptInScope(
+/**
+ * One of this student's in-scope attempts in this class, as a history row
+ * (for the note composer's "which script" line), or null when `attemptId`
+ * is not theirs, not in the class subject, from before they joined, or the
+ * student is no longer an active member. Read through the teacher's RLS
+ * client, so another teacher's student is null too.
+ */
+export async function findStudentAttemptInScope(
   supabase: SupabaseClient,
   admin: SupabaseClient,
   classroom: ClassScope,
   member: ClassroomMember,
   attemptId: string
-): Promise<boolean> {
-  if (!isUuid(attemptId) || classroom.archived_at || member.status !== 'active') return false
+): Promise<StudentHistoryRow | null> {
+  if (!isUuid(attemptId) || classroom.archived_at || member.status !== 'active') return null
   const { data, error } = await supabase
     .from('attempts')
     .select(attemptColumns(false))
     .eq('id', attemptId.toLowerCase())
     .eq('user_id', member.student_id)
     .maybeSingle()
-  if (error || !data) return false
+  if (error) throw new Error(`attempts: ${error.message}`)
+  if (!data) return null
   const attempt = toClassroomAttempt(data as unknown as AttemptRow)
   await attachSchemes(admin, [attempt])
-  return scopeClassroomAttempts([attempt], [member], { subjectCode: classroom.subject_code }).length === 1
+  const [scoped] = scopeClassroomAttempts([attempt], [member], { subjectCode: classroom.subject_code })
+  return scoped ? toHistoryRow(scoped) : null
 }
 
 // ---------------------------------------------------------------------------
@@ -640,6 +648,18 @@ export async function loadStudentSets(
     flags: flags.get(s.id) ?? [],
     submissions: submissions.get(s.id) ?? [],
   }))
+}
+
+/** One set's items in position order (RLS: the caller's own sets), for the Gaps page's set view. */
+export async function loadSetItems(supabase: SupabaseClient, setId: string): Promise<AssignmentItem[]> {
+  if (!isUuid(setId)) return []
+  const { data, error } = await supabase
+    .from('assignment_items')
+    .select(ITEM_COLUMNS)
+    .eq('assignment_id', setId.toLowerCase())
+    .order('position')
+  if (error) throw new Error(`assignment_items: ${error.message}`)
+  return ((data ?? []) as AssignmentItem[]).map((r) => ({ ...r, total_marks: num(r.total_marks) }))
 }
 
 // ---------------------------------------------------------------------------

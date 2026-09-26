@@ -35,6 +35,13 @@ import {
 } from '@/lib/omni-ai/tool-budget'
 import type { AIContextType } from '@/lib/omni-ai/types'
 import {
+  authorizeTeacherOmni,
+  buildOmniClassContext,
+  type OmniTeacherContext,
+  type TeacherOmniAccess,
+} from '@/lib/omni-ai/teacher-context'
+import { restrictTeacherAction } from '@/lib/teacher/insights/omni'
+import {
   checkOmniAllowance,
   omniQuotaExceededBody,
   recordOmniUsage,
@@ -102,6 +109,17 @@ export async function POST(req: NextRequest) {
   const supabaseService = createServiceClient()
 
   const markingAwareness = !!user && context.type !== 'teacher_dashboard'
+
+  // Teacher pages (spec §3 /api/omni-ai): the body carries only an address,
+  // `{ classroom_id, view }`. Prove who is asking and that the class is
+  // theirs BEFORE any guest slot or metered message is spent; the class data
+  // itself is loaded server-side below and `context.data` is never read.
+  let teacherAccess: Extract<TeacherOmniAccess, { ok: true }> | null = null
+  if (context.type === 'teacher_dashboard') {
+    const access = await authorizeTeacherOmni(raw, supabaseAuth, user?.id ?? null)
+    if (!access.ok) return sseError(access.status, { error: access.error })
+    teacherAccess = access
+  }
 
   // Guests: one persisted daily cap per IP, consumed atomically up front by
   // the `bump_rate_limit` RPC (lib/rate-limit.ts). This used to sit behind an
@@ -215,11 +233,25 @@ export async function POST(req: NextRequest) {
       hasFocusedAttempt: Boolean(focusedAttemptBlock),
     })
 
+  // Loaded after ownership was proven (authorizeTeacherOmni); never throws —
+  // a failed read gives the model an honest "can't see the class" instead.
+  let teacherContext: OmniTeacherContext | null = null
+  if (teacherAccess && user) {
+    teacherContext = await buildOmniClassContext({
+      supabase: supabaseAuth,
+      admin: supabaseService,
+      teacherId: user.id,
+      address: teacherAccess.address,
+      classroom: teacherAccess.classroom,
+    })
+  }
+
   const systemPrompt = buildSystemPrompt(context, {
     markingAwareness,
     toolsAvailable: toolsEnabled,
     focusedAttemptBlock,
     studentMemoryBlock,
+    teacherContext,
   })
 
   const stream = new ReadableStream({
@@ -234,7 +266,8 @@ export async function POST(req: NextRequest) {
               type: 'done',
               cleanText:
                 'Omni-AI is not configured. Set USE_VERTEX_AI + GOOGLE_CLOUD_PROJECT, or GEMINI_API_KEY. See docs/vertex-ai-migration.md',
-              action: { type: 'render_upload' },
+              // The upload card is a student flow; a teacher gets no card.
+              action: teacherAccess ? null : { type: 'render_upload' },
             })
           )
           controller.close()
@@ -374,7 +407,9 @@ export async function POST(req: NextRequest) {
         // render_cta whose href is not a same-origin path comes back as
         // `type: 'none'` and renders nothing.
         const { cleanText, action: rawAction } = extractActionFromText(fullText)
-        let action = rawAction
+        // A teacher is only ever offered teacher pages: a CTA must point
+        // under /teacher/ (normalised) and student-flow cards are dropped.
+        let action = teacherAccess ? restrictTeacherAction(rawAction) : rawAction
 
         if (action) {
           action = await hydrateOmniAction(action, query, supabaseAdmin)

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { TeacherConfirmDialog } from '@/components/teacher/ClassroomSettingsForm'
+import { useRosterAnnouncer } from './RosterAnnouncer'
 
 /**
  * Remove one student from the class, from their roster row (spec §4
@@ -11,8 +12,10 @@ import { TeacherConfirmDialog } from '@/components/teacher/ClassroomSettingsForm
  * the membership to `removed`, audits it and tells the student — and
  * refreshes the page so the row comes back from the server as Removed.
  *
- * Every failure is shown in the dialog with what to do; the outcome is
- * announced politely for screen readers.
+ * Every failure is shown in the dialog with what to do. On the roster the
+ * outcome is announced — and focus restored to the student's row — by
+ * RosterAnnouncer, because this button unmounts when the refreshed row comes
+ * back as Removed; anywhere else it announces and refreshes on its own.
  */
 export function RemoveStudentButton({
   classroomId,
@@ -25,6 +28,7 @@ export function RemoveStudentButton({
   name: string
 }) {
   const router = useRouter()
+  const roster = useRosterAnnouncer()
   const [open, setOpen] = useState(false)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
@@ -49,8 +53,13 @@ export function RemoveStudentButton({
         return
       }
       setOpen(false)
-      setAnnounce(`${name} was removed from the class.`)
-      router.refresh()
+      const message = `${name} was removed from the class.`
+      if (roster) {
+        roster.removed(studentId, message)
+      } else {
+        setAnnounce(message)
+        router.refresh()
+      }
     } catch {
       setError('Could not reach the server. Check your connection and try again.')
     } finally {

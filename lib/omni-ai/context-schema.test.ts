@@ -184,36 +184,36 @@ expectOk({ query: 'q', context: { type: 'marking_result', data: { attemptId: 'ab
 expectOk({ query: 'q', context: { type: 'marking', data: { mode: 'past_paper' } } })
 expectOk({ query: 'q', context: { type: 'teacher_dashboard', data: {} } })
 {
-  // Teacher metrics: only the fields the prompt reads survive; extra keys are
-  // dropped rather than forwarded.
+  // A teacher page sends only an address. Figures an old or crafted client
+  // adds (classMetrics, a roster) are dropped, never forwarded.
   const body = expectOk({
     query: 'q',
     context: {
       type: 'teacher_dashboard',
       data: {
-        classMetrics: {
-          analytics: { classroomName: '10B', studentCount: '24', avgScore: 61.25, junk: 'x' },
-          blindspots: { topics: [{ code: '3.1', name: 'Vectors', avgMastery: '40' }] },
-          quadrants: { students: [{ name: 'A', quadrant: 'risk', predictedGrade: 'C', accuracy: 50 }] },
-          hugeBlob: 'z'.repeat(50_000),
-        },
+        classroom_id: '0b8f7c1e-1111-4222-8333-444455556666',
+        view: 'gaps',
+        classMetrics: { analytics: { classroomName: '10B' }, hugeBlob: 'z'.repeat(50_000) },
       },
     },
   })
   if (body.context.type === 'teacher_dashboard') {
-    const metrics = body.context.data.classMetrics as Record<string, unknown>
-    assert.equal('hugeBlob' in metrics, false)
-    assert.equal((metrics.analytics as { studentCount: number }).studentCount, 24)
+    assert.deepEqual(body.context.data, { classroom_id: '0b8f7c1e-1111-4222-8333-444455556666', view: 'gaps' })
+    assert.equal('classMetrics' in body.context.data, false)
   }
 }
 {
-  // The teacher page passes `data: { classMetrics: null }` while loading.
-  const body = expectOk({
-    query: 'q',
-    context: { type: 'teacher_dashboard', data: { classMetrics: null } },
-  })
-  assert.equal(body.context.type, 'teacher_dashboard')
+  // No data at all (the desk) is an empty address.
+  const body = expectOk({ query: 'q', context: { type: 'teacher_dashboard' } })
+  if (body.context.type === 'teacher_dashboard') assert.deepEqual(body.context.data, {})
 }
+// The address is bounded: an oversized view or id is refused, not forwarded.
+expectReject({ query: 'q', context: { type: 'teacher_dashboard', data: { view: 'x'.repeat(33) } } }, 'oversize view')
+expectReject(
+  { query: 'q', context: { type: 'teacher_dashboard', data: { classroom_id: 'x'.repeat(65) } } },
+  'oversize classroom_id'
+)
+expectReject({ query: 'q', context: { type: 'teacher_dashboard', data: { view: 7 } } }, 'numeric view')
 
 // attemptId is a short id, not a payload carrier.
 expectOk({ query: 'q', attemptId: '0b8f7c1e-1111-4222-8333-444455556666' })

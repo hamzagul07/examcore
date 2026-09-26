@@ -5,9 +5,7 @@ import {
   collapseDailyRows,
   feedbackNotificationCopy,
   namesSummary,
-  pickBestAttempt,
   publishedNotificationCopy,
-  reviewedSubmissionStatus,
   reviewNotificationCopy,
   studentSetHref,
   submissionNotificationCopy,
@@ -98,47 +96,6 @@ assert.equal(namesSummary([], 4), '4 students')
     now: new Date('2026-09-25T12:00:00Z'),
   })
   assert.equal(noDue.body, 'Sarah K. · Year 13 Maths')
-}
-
-// --- best-of: an override counts ----------------------------------------------
-
-{
-  const a = { id: 'a', marks_earned: 6, created_at: '2026-09-20T10:00:00Z' }
-  const b = { id: 'b', marks_earned: 8, created_at: '2026-09-21T10:00:00Z' }
-  const c = { id: 'c', marks_earned: 8, created_at: '2026-09-19T10:00:00Z' }
-  assert.equal(pickBestAttempt([a, b], 'a')?.id, 'b', 'a higher mark takes over the hand-in')
-  assert.equal(pickBestAttempt([a, { ...b, marks_earned: 5 }], 'b')?.id, 'a', 'an override that lowers the best hands the row to the next best')
-  assert.equal(pickBestAttempt([b, c], 'b')?.id, 'b', 'a tie keeps the attempt already counted (a confirm never moves the row)')
-  assert.equal(pickBestAttempt([b, c], null)?.id, 'c', 'otherwise the earliest to reach that mark')
-  assert.equal(pickBestAttempt([b, c], null)?.id, pickBestAttempt([c, b], null)?.id, 'order-independent')
-  assert.equal(pickBestAttempt([{ id: 'x', marks_earned: null, created_at: null }], 'x')?.id, 'x', 'unmarked: keep what is counted')
-  assert.equal(pickBestAttempt([], null), null)
-  assert.equal(
-    pickBestAttempt([{ id: 'n', marks_earned: Number.NaN, created_at: null }, a], null)?.id,
-    'a',
-    'a non-numeric mark never wins'
-  )
-}
-
-// --- 'reviewed' for confirm / override; a flag re-opens -------------------------
-
-{
-  const due = '2026-09-25T16:00:00Z'
-  const onTime = '2026-09-25T15:00:00Z'
-  const late = '2026-09-25T17:00:00Z'
-  assert.equal(reviewedSubmissionStatus({ decision: 'confirm', firstSubmittedAt: late, dueAt: due, extendedDueAt: null }), 'reviewed')
-  assert.equal(reviewedSubmissionStatus({ decision: 'override', firstSubmittedAt: onTime, dueAt: due, extendedDueAt: null }), 'reviewed')
-  assert.equal(
-    reviewedSubmissionStatus({ decision: 'flag', firstSubmittedAt: late, dueAt: due, extendedDueAt: null }),
-    'late',
-    'a flag leaves the hand-in unreviewed on purpose'
-  )
-  assert.equal(reviewedSubmissionStatus({ decision: null, firstSubmittedAt: onTime, dueAt: due, extendedDueAt: null }), 'submitted')
-  assert.equal(
-    reviewedSubmissionStatus({ decision: 'flag', firstSubmittedAt: late, dueAt: due, extendedDueAt: '2026-09-26T16:00:00Z' }),
-    'submitted',
-    'lateness honours the extension'
-  )
 }
 
 // --- what the work is called ----------------------------------------------------

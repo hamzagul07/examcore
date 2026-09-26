@@ -7,8 +7,10 @@ import { AUTO_CLOSE_AFTER_DUE_DAYS, assignmentStatus } from '@/lib/teacher/assig
 import { loadAssignmentGaps } from '@/lib/teacher/assignments'
 import { owesWork } from '@/lib/teacher/assignments/progress'
 import { isTeacherV2 } from '@/lib/teacher/flags'
+import { teacherOmniContext } from '@/lib/teacher/insights/omni'
 import type { Assignment, AssignmentItem } from '@/lib/teacher/types'
 import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
+import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 import { TeacherBackLink, TeacherDeskHead, TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
 import { AssignmentActions } from '@/components/teacher/assignments/AssignmentActions'
 import { CompletionMatrix } from '@/components/teacher/assignments/CompletionMatrix'
@@ -222,6 +224,7 @@ export default async function SetPage({ params }: Props) {
 
   return (
     <TeacherPageContainer className="ms-teacher-page">
+      <OmniAIBridge context={teacherOmniContext({ classroomId: classroom.id, view: 'sets' })} />
       <TeacherBackLink href={setsHref(classroom.id, status === 'open' ? undefined : status)}>
         &lt;- Sets · {classroom.name}
       </TeacherBackLink>

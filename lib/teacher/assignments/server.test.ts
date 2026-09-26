@@ -17,6 +17,7 @@ import {
   publishAssignment,
   reconcileAssignment,
   remindAssignment,
+  resyncSubmissionsForAttempt,
   updateAssignment,
   updateStudentFlags,
   validateAssignmentItemForStudent,
@@ -491,6 +492,31 @@ async function gate() {
   const closed = { closed_at: '2026-09-24T00:00:00.000Z' }
   assert.equal(await reasonFor(world({ sets: [setRow(closed)] })), null, 'closed, but late work is allowed by default')
   assert.match((await reasonFor(world({ sets: [setRow({ ...closed, settings: { allow_late: false } })] })))!, /closed/)
+
+  // An extension past the close keeps the set open to that student only.
+  const strict = setRow({ settings: { allow_late: false } })
+  const day8 = new Date('2026-10-04T12:00:00.000Z')
+  const extended = world({
+    sets: [strict],
+    flags: [{ assignment_id: SET, student_id: AMIRA, excused_at: null, extended_due_at: '2026-10-06T16:00:00.000Z' }],
+  })
+  const onDay8 = async (student: string) => {
+    const r = await validateAssignmentItemForStudent(extended.client(), ITEM_Q3, student, day8)
+    return r.ok ? null : r.reason
+  }
+  assert.equal(await onDay8(AMIRA), null, 'day 8: the student given ten days may still hand in')
+  assert.match((await onDay8(BEN))!, /closed/, 'day 8: everyone else is refused')
+  const manual = world({
+    sets: [setRow({ ...closed, settings: { allow_late: false } })],
+    flags: [{ assignment_id: SET, student_id: AMIRA, excused_at: null, extended_due_at: '2026-09-28T16:00:00.000Z' }],
+  })
+  assert.equal(await reasonFor(manual), null, 'a manual close does not take an extension back')
+  assert.match((await reasonFor(manual, ITEM_Q3, BEN))!, /closed/)
+
+  // A database error is thrown, never read as "not allowed" (the routes mark anyway).
+  const broken = world()
+  broken.failing.add('select:assignment_students')
+  await assert.rejects(() => validateAssignmentItemForStudent(broken.client(), ITEM_Q3, AMIRA, NOW))
 }
 
 async function hook() {
@@ -651,11 +677,76 @@ async function reconcile() {
   })
   assert.deepEqual(await reconcileAssignment(legacy.client(), SET, { now: NOW }), { linked: 1 }, 'legacy null mark_scheme_id')
 
+  // A set that refuses late work still takes an extended student's work after its close.
+  {
+    const lateButExtended = attemptRow({ user_id: AMIRA, created_at: '2026-10-05T10:00:00.000Z' })
+    const lateNoExtension = attemptRow({ user_id: BEN, created_at: '2026-10-05T10:00:00.000Z' })
+    const strict = world({
+      sets: [setRow({ settings: { allow_late: false } })],
+      attempts: [lateButExtended, lateNoExtension],
+      flags: [{ assignment_id: SET, student_id: AMIRA, excused_at: null, extended_due_at: '2026-10-06T16:00:00.000Z', feedback: null, feedback_at: null, reminded_at: null }],
+    })
+    assert.deepEqual(await reconcileAssignment(strict.client(), SET, { now: new Date('2026-10-05T12:00:00.000Z') }), { linked: 1 })
+    assert.deepEqual(subs(strict).map((r) => [r.student_id, r.status]), [[AMIRA, 'submitted']], 'on time for her; nothing for Ben')
+  }
+
+  // Reconcile keeps a review that belongs to the attempt it picks.
+  {
+    const reviewedAttempt = attemptRow({ user_id: BEN, marks_earned: 5, created_at: '2026-09-23T10:00:00.000Z' })
+    const db2 = world({ attempts: [reviewedAttempt] })
+    db2.tables.teacher_overrides = [
+      { id: newId(), attempt_id: reviewedAttempt.id, decision: 'confirm', created_at: '2026-09-24T10:00:00.000Z' },
+    ]
+    await reconcileAssignment(db2.client(), SET, { now: NOW })
+    assert.equal(subs(db2)[0].status, 'reviewed', 'a confirmed attempt reconciled later is shown reviewed')
+  }
+
   // A failure gives the claim back so the next view retries.
   const broken = world({ attempts: [plain] })
   broken.failing.add('select:attempts')
   await assert.rejects(() => reconcileAssignment(broken.client(), SET, { now: NOW }))
   assert.equal(broken.tables.assignments[0].reconciled_at, null, 'claim released')
+}
+
+async function decisions() {
+  // A = 6/8 (75%) is held; B = 7/10 (70%) has more raw marks. The teacher confirms B.
+  const a = attemptRow({ marks_earned: 6, total_marks: 8, created_at: '2026-09-22T10:00:00.000Z' })
+  const b = attemptRow({ marks_earned: 7, total_marks: 10, created_at: '2026-09-23T10:00:00.000Z', assignment_item_id: ITEM_Q3 })
+  const db = world({ items: [itemRow({ total_marks: null })], attempts: [a, b] })
+  await reconcileAssignment(db.client(), SET, { now: NOW })
+  assert.equal(subs(db)[0].attempt_id, a.id, 'fixture: the row holds A')
+
+  db.tables.teacher_overrides = [{ id: newId(), attempt_id: b.id, decision: 'confirm', created_at: '2026-09-25T11:00:00.000Z' }]
+  const rows = await resyncSubmissionsForAttempt(db.client(), b.id as string)
+  assert.equal(rows.length, 1)
+  assert.equal(subs(db)[0].attempt_id, a.id, 'the decision path uses reconcile’s comparator: A still counts')
+  assert.equal(subs(db)[0].status, 'submitted', 'A was not the attempt reviewed')
+  const before = JSON.stringify(subs(db))
+  await reconcileAssignment(db.client(), SET, { now: new Date(NOW.getTime() + 120_000) })
+  assert.equal(JSON.stringify(subs(db)), before, 'the next reconcile agrees: nothing flips')
+
+  // The teacher re-marks B up to 9/10: B now counts, reviewed, and reconcile keeps it.
+  db.tables.attempts.find((r) => r.id === b.id)!.marks_earned = 9
+  db.tables.teacher_overrides.push({ id: newId(), attempt_id: b.id, decision: 'override', created_at: '2026-09-25T11:05:00.000Z' })
+  await resyncSubmissionsForAttempt(db.client(), b.id as string)
+  assert.equal(subs(db)[0].attempt_id, b.id, 'the raised attempt takes over at once')
+  assert.equal(subs(db)[0].marks_earned, 9)
+  assert.equal(subs(db)[0].status, 'reviewed')
+  const after = JSON.stringify(subs(db))
+  await reconcileAssignment(db.client(), SET, { now: new Date(NOW.getTime() + 240_000) })
+  assert.equal(JSON.stringify(subs(db)), after, 'and the review survives the next reconcile')
+
+  // An unstamped attempt raised above the held one is picked up by the decision itself.
+  const c = attemptRow({ marks_earned: 1, total_marks: 6, created_at: '2026-09-24T10:00:00.000Z' })
+  db.tables.attempts.push(c)
+  c.marks_earned = 6
+  c.total_marks = 6
+  db.tables.teacher_overrides.push({ id: newId(), attempt_id: c.id, decision: 'override', created_at: '2026-09-25T11:10:00.000Z' })
+  await resyncSubmissionsForAttempt(db.client(), c.id as string)
+  assert.equal(subs(db)[0].attempt_id, c.id, 'not held, not stamped — still found through the banked question')
+  assert.equal(subs(db)[0].status, 'reviewed')
+
+  assert.deepEqual(await resyncSubmissionsForAttempt(db.client(), 'not-a-uuid'), [])
 }
 
 async function writes() {
@@ -814,6 +905,22 @@ async function reads() {
     (err: unknown) => err instanceof AssignmentInputError && err.field === 'cursor'
   )
 
+  // A closed set can still be reminded for a student inside their extension, and only them.
+  {
+    const closedSet = world({
+      sets: [setRow({ closed_at: '2026-09-24T00:00:00.000Z' })],
+      flags: [{ assignment_id: SET, student_id: BEN, excused_at: null, extended_due_at: '2026-09-28T16:00:00.000Z', feedback: null, feedback_at: null, reminded_at: null }],
+    })
+    const closedLoaded = (await loadAssignment(closedSet.client(), closedSet.client(), SET))!.assignment as Assignment
+    assert.deepEqual(await remindAssignment(closedSet.client(), closedSet.client(), closedLoaded, null, NOW), { sent: 0, eligible: 1 })
+    const noExtension = world({ sets: [setRow({ closed_at: '2026-09-24T00:00:00.000Z' })] })
+    const plainClosed = (await loadAssignment(noExtension.client(), noExtension.client(), SET))!.assignment as Assignment
+    await assert.rejects(
+      () => remindAssignment(noExtension.client(), noExtension.client(), plainClosed, null, NOW),
+      (err: unknown) => err instanceof AssignmentInputError && err.status === 409
+    )
+  }
+
   // Remind: the students who owe work, then the six-hour throttle.
   const set = loaded.assignment as Assignment
   const sent = await remindAssignment(db.client(), db.client(), set, null, NOW)
@@ -842,6 +949,7 @@ async function main() {
   await gate()
   await hook()
   await reconcile()
+  await decisions()
   await writes()
   await reads()
   console.log('server.test.ts: all checks passed')

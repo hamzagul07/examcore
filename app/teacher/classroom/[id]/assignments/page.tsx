@@ -4,8 +4,10 @@ import { createServiceClient } from '@/lib/supabase/service'
 import { AssignmentInputError, listAssignments } from '@/lib/teacher/assignments'
 import { parseListStatus } from '@/lib/teacher/assignments/list'
 import { isTeacherV2 } from '@/lib/teacher/flags'
+import { teacherOmniContext } from '@/lib/teacher/insights/omni'
 import type { AssignmentSummary } from '@/lib/teacher/types'
 import { LoadingLink } from '@/components/ui/LoadingLink'
+import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 import { TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
 import { ClassDeskHead } from '@/components/teacher/ClassDeskHead'
 import { ClassTabs } from '@/components/teacher/ClassTabs'
@@ -76,6 +78,7 @@ export default async function ClassSetsPage({ params, searchParams }: Props) {
 
   return (
     <TeacherPageContainer className="ms-teacher-page">
+      <OmniAIBridge context={teacherOmniContext({ classroomId: classroom.id, view: 'sets' })} />
       <ClassDeskHead
         classroom={classroom}
         eyebrow="Sets"

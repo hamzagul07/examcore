@@ -68,48 +68,17 @@ const WeakTopicsSchema = z
   .transform((topics) => topics.slice(0, OMNI_WEAK_TOPICS_MAX))
 
 /**
- * Teacher dashboard metrics. Only the parts the prompt reads are declared; the
- * rest is dropped rather than forwarded, so a stray large field on the client
- * payload cannot inflate the prompt.
+ * A teacher page's Omni address: which class, which view. Deliberately no
+ * figures — the route loads the class's facts server-side after checking the
+ * caller teaches it (lib/omni-ai/teacher-context.ts), and the prompt never
+ * reads `context.data`. Unknown keys (an old client's `classMetrics`, a
+ * crafted roster) are dropped here. `classroom_id` is only length-bounded:
+ * parseTeacherOmniRequest validates it strictly and answers a malformed one
+ * with its own 400.
  */
-const ClassMetricsSchema = z.object({
-  analytics: z
-    .object({
-      studentCount: finiteNumber.optional(),
-      totalAttempts: finiteNumber.optional(),
-      avgScore: finiteNumber.optional(),
-      classroomName: shortText(120).optional(),
-    })
-    .optional(),
-  blindspots: z
-    .object({
-      topics: z
-        .array(
-          z.object({
-            code: shortText(32),
-            name: shortText(120),
-            avgMastery: finiteNumber,
-          })
-        )
-        .max(50)
-        .optional(),
-    })
-    .optional(),
-  quadrants: z
-    .object({
-      students: z
-        .array(
-          z.object({
-            name: shortText(80),
-            quadrant: shortText(32),
-            predictedGrade: shortText(8),
-            accuracy: finiteNumber,
-          })
-        )
-        .max(200)
-        .optional(),
-    })
-    .optional(),
+const TeacherAddressSchema = z.object({
+  classroom_id: z.string().max(64).optional(),
+  view: z.string().max(32).optional(),
 })
 
 export const AIContextSchema = z.discriminatedUnion('type', [
@@ -151,10 +120,7 @@ export const AIContextSchema = z.discriminatedUnion('type', [
   }),
   z.object({
     type: z.literal('teacher_dashboard'),
-    data: z
-      .object({ classMetrics: ClassMetricsSchema.nullable().optional() })
-      .optional()
-      .default({}),
+    data: TeacherAddressSchema.optional().default({}),
   }),
 ])
 

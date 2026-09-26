@@ -139,10 +139,48 @@ published set due two days ago with on-time, late, part-done, excused and
 missing hand-ins. A teacher with a live example class gets it back instead of
 a second one. Every page flags it from `settings.demo`, never from its name.
 
+## Sets and hand-ins
+
+A student opens a set item's link (`studentMarkHref`), which carries
+`/mark?assignment=<item id>`. `/api/mark/process` and
+`/api/mark/whole-paper/init` validate the item for that student and stamp
+`attempts.assignment_item_id` (service role only); the mark result (or the
+whole-paper init response) carries `_assignment`, which `/mark` shows as
+"Linked to <set> — your teacher can see this mark"
+(`components/mark/AssignmentLinkNotice.tsx`). The hand-in is written when the
+mark finishes (`onAttemptsMarked`, from `process` and `whole-paper/run`). A
+mark of the same question from plain `/mark` is matched later by
+`reconcileAssignment` — on the set page, the class week (open sets) and the
+Sunday digest. If the set cannot be checked when the mark starts (a database
+error), the mark still runs, unlinked, and says so. A student's extension
+keeps a set open to them past its close (`studentAssignmentStatus`), and a
+teacher's confirm or re-mark recomputes the hand-in with the reconcile rules
+(`resyncSubmissionsForAttempt`), so the two never disagree.
+
+## Notifications, email and Omni
+
+- In-app notifications go through `lib/teacher/notify.ts`; the bell shows
+  them with their own glyphs (`lib/community/notification-icon.ts`). The
+  teacher nav's bell and the signed-in app header's bell are `alwaysOn`, so
+  class notifications do not depend on the Exam Room flag. The teacher bell's
+  "See all" opens `/teacher/notifications`, inside the teacher frame. The
+  panel is a disclosure (Escape closes it and returns focus to the bell).
+- Students turn set emails off with `email_assignments`, teachers the Sunday
+  digest with `email_teacher_digest` — both on `/account/preferences`.
+- Omni on teacher pages gets only an address (`teacherOmniContext({ classroomId,
+  view })`); `/api/omni-ai` checks ownership and loads the class facts itself.
+  Links a teacher is offered — the `render_cta` and any link in the answer's
+  prose — must be `/teacher/` pages (`teacherCtaHref`); anything else renders
+  as text.
+
 ## Tests
 
-`pnpm test:teacher` runs every `lib/teacher/**/*.test.ts`. The desk-side ones:
+`pnpm test:teacher` runs every `lib/teacher/**/*.test.ts`,
+`components/teacher/**/*.test.ts` and `lib/student/**/*.test.ts`. The desk-side ones:
 `list-classrooms.test.ts` (PATCH validation, delete guard, cursors, plain
 text, subjects, roster helpers), `export-csv.test.ts` (quoting, formula
-injection, names, both scopes) and `seat-grant.test.ts` (parsing, the
-decision plan, the desk card). `lib/site-nav.test.ts` covers the teacher nav.
+injection, names, both scopes), `seat-grant.test.ts` (parsing, the
+decision plan, the desk card) and `start-subjects.test.ts` (every board's
+setup form offers subjects save-profile accepts). `lib/site-nav.test.ts`
+(in `test:auth`) covers the teacher nav; `lib/omni-ai/teacher-context.test.ts`
+(in `test:omni`) the teacher assistant.

@@ -18,7 +18,13 @@ import {
   type ReviewFilters as Filters,
   type ReviewQueueLoad,
 } from '@/lib/teacher/reviews-query'
+import { teacherOmniContext } from '@/lib/teacher/insights/omni'
+import { isTeacherV2 } from '@/lib/teacher/flags'
+import { loadTeacherClassroom, type TeacherClassroomRow } from '@/lib/teacher/list-classrooms'
 import { LoadingLink } from '@/components/ui/LoadingLink'
+import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
+import { ClassDeskHead } from '@/components/teacher/ClassDeskHead'
+import { ClassTabs } from '@/components/teacher/ClassTabs'
 import { TeacherDeskHead, TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
 import { ReviewFilters } from '@/components/teacher/ReviewFilters'
 import { ReviewQueueList } from '@/components/teacher/ReviewQueueList'
@@ -117,6 +123,10 @@ function EmptyQueue({ queue, filters }: { queue: Extract<ReviewQueueLoad, { ok: 
  * the filters in the URL — priority first, each slip saying why with warning
  * chips — and "Load more" follows the keyset cursor. Filters are a GET form,
  * so every view is a plain URL.
+ *
+ * Filtered to one class (the class pages' Reviews tab links here), it keeps
+ * the class frame — the class head and its tabs, with Reviews current — so
+ * the teacher can go straight back to the class's Week, Sets or Students.
  */
 export default async function TeacherReviewsPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
   const sp = await searchParams
@@ -139,27 +149,52 @@ export default async function TeacherReviewsPage({ searchParams }: { searchParam
   // A stale or mangled cursor starts from the top rather than erroring.
   const cursor = decodeReviewCursor(rawCursor ?? null)
 
-  let queue: ReviewQueueLoad | null = null
-  try {
-    queue = await loadReviewQueue(supabase, createServiceClient(), user.id, filters, { withOptions: true })
-  } catch (err) {
-    console.error('[teacher/reviews] queue failed:', err instanceof Error ? err.message : err)
-  }
+  const [queue, frame] = await Promise.all([
+    loadReviewQueue(supabase, createServiceClient(), user.id, filters, { withOptions: true }).catch(
+      (err: unknown): ReviewQueueLoad | null => {
+        console.error('[teacher/reviews] queue failed:', err instanceof Error ? err.message : err)
+        return null
+      }
+    ),
+    // The class frame is decoration: if it cannot be read the inbox still renders, without it.
+    filters.classroom_id
+      ? loadTeacherClassroom(supabase, user.id, filters.classroom_id).catch(
+          (err: unknown): TeacherClassroomRow | null => {
+            console.error('[teacher/reviews] class frame failed:', err instanceof Error ? err.message : err)
+            return null
+          }
+        )
+      : Promise.resolve<TeacherClassroomRow | null>(null),
+  ])
   if (queue && !queue.ok) notFound()
 
   const query = reviewFilterQuery(filters)
   const page = queue?.ok ? pageReviewItems(queue.items, cursor, DEFAULT_REVIEW_PAGE) : null
   const pending = queue?.ok ? queue.counts.pending : 0
 
+  const note = pending > 0 ? `${pending} waiting for you` : undefined
+
   return (
     <TeacherPageContainer className="ms-teacher-page">
-      <TeacherDeskHead
-        eyebrow="Reviews"
-        stamp="RV"
-        title="Scripts to check"
-        lead="Highest priority first — the chips say why. Confirm the AI mark, change it, or flag it to come back to."
-        note={pending > 0 ? `${pending} waiting for you` : undefined}
-      />
+      <OmniAIBridge context={teacherOmniContext({ classroomId: filters.classroom_id ?? null, view: 'reviews' })} />
+      {frame ? (
+        <>
+          <ClassDeskHead classroom={frame} eyebrow="Reviews" note={note} />
+          <ClassTabs classroomId={frame.id} current="reviews" v2={isTeacherV2()} />
+          <p className="mb-6 text-sm text-[var(--ec-text-secondary)]">
+            Scripts to check in this class, highest priority first — the chips say why. Confirm the AI mark, change
+            it, or flag it to come back to.
+          </p>
+        </>
+      ) : (
+        <TeacherDeskHead
+          eyebrow="Reviews"
+          stamp="RV"
+          title="Scripts to check"
+          lead="Highest priority first — the chips say why. Confirm the AI mark, change it, or flag it to come back to."
+          note={note}
+        />
+      )}
 
       {!queue?.ok ? (
         <div className="ms-teacher-error" role="alert">

@@ -7,10 +7,10 @@ import { formatDueUtc, itemNoun, oneLine } from '@/lib/email/assignment-set'
 import type { SendEmailParams } from '@/lib/email/send'
 import { createServiceClient } from '@/lib/supabase/service'
 import {
-  assignmentStatus,
   deriveStudentState,
   effectiveDueAt,
   HANDED_IN_STATES,
+  studentAssignmentStatus,
 } from '@/lib/teacher/assignment-status'
 import {
   deferEmails,
@@ -115,8 +115,9 @@ export type ReminderCandidate = {
 /**
  * Pure: who should be reminded about one set at `now`.
  *
- * Common rules: the set is published, not archived and still open
- * (assignmentStatus — a closed set is finished); the student is an active
+ * Common rules: the set is published, not archived and still open for the
+ * student (studentAssignmentStatus — a closed set is finished, except for a
+ * student whose extension runs past its close); the student is an active
  * member it is for (every member for target 'all', those with a row for
  * target 'students'), not excused, and has at least one item not handed in.
  *
@@ -133,7 +134,6 @@ export function selectReminderRecipients(input: {
 }): ReminderCandidate[] {
   const { set, members, now, mode } = input
   if (!set.published_at || set.archived_at) return []
-  if (assignmentStatus(set, now) !== 'open') return []
   if (set.items.length === 0) return []
 
   const nowMs = now.getTime()
@@ -152,6 +152,7 @@ export function selectReminderRecipients(input: {
 
     const flags = flagsByStudent.get(m.student_id) ?? null
     if (flags?.excused_at) continue
+    if (studentAssignmentStatus(set, flags?.extended_due_at ?? null, now) !== 'open') continue
 
     const deadline = effectiveDueAt(set.due_at, flags?.extended_due_at ?? null)
     if (mode === 'due_soon') {

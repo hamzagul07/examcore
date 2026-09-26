@@ -4,20 +4,23 @@ import { notFound } from 'next/navigation'
 import { getSyllabusTree } from '@/lib/syllabi'
 import { createServiceClient } from '@/lib/supabase/service'
 import { isTeacherV2 } from '@/lib/teacher/flags'
+import { teacherOmniContext } from '@/lib/teacher/insights/omni'
 import { parseIsoWeek } from '@/lib/teacher/week'
 import { LoadingLink } from '@/components/ui/LoadingLink'
+import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
 import { TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
 import { ClassDeskHead } from '@/components/teacher/ClassDeskHead'
 import { ClassTabs } from '@/components/teacher/ClassTabs'
 import { GradeRiskMatrix } from '@/components/teacher/GradeRiskMatrix'
 import { InviteCard } from '@/components/teacher/InviteCard'
+import { RetryButton } from '@/components/teacher/RetryButton'
 import { ErrorGroupsPanel } from '@/components/teacher/assignments/ErrorGroupsPanel'
 import { ReteachCard } from '@/components/teacher/assignments/ReteachCard'
 import { StudentsToWatch } from '@/components/teacher/assignments/StudentsToWatch'
 import { WeekStrip } from '@/components/teacher/assignments/WeekStrip'
 import { topicIndex, topicLabel, topicTree } from '@/components/teacher/assignments/composer-model'
-import { classHref, composerHref } from '@/components/teacher/assignments/links'
+import { composerHref } from '@/components/teacher/assignments/links'
 import { dueThisWeekNote } from '@/components/teacher/assignments/set-display'
 import { firstParam, requestTimeZone, requireClassContext } from './assignments/_lib/context'
 import { loadClassWeekView } from './assignments/_lib/class-week-view'
@@ -67,13 +70,7 @@ async function ErrorGroupsSection({
           again.
         </p>
         <div className="mt-4">
-          <LoadingLink
-            href={classHref(classroomId)}
-            loadingText="Reloading…"
-            className="ec-btn-secondary inline-flex min-h-[44px] items-center"
-          >
-            Try again
-          </LoadingLink>
+          <RetryButton />
         </div>
       </div>
     )
@@ -90,13 +87,13 @@ async function ErrorGroupsSection({
   )
 }
 
-async function RiskSection({ insights }: { insights: Promise<InsightsResult> }) {
+async function RiskSection({ insights, classroomId }: { insights: Promise<InsightsResult>; classroomId: string }) {
   const result = await insights
   // The failure is reported once, by the error-groups section above.
   if (!result.ok) return null
   return (
     <div className="mb-8">
-      <GradeRiskMatrix students={result.value.quadrants} />
+      <GradeRiskMatrix students={result.value.quadrants} classroomId={classroomId} truncated={result.value.truncated} />
     </div>
   )
 }
@@ -155,6 +152,7 @@ export default async function ClassWeekPage({ params, searchParams }: Props) {
 
   return (
     <TeacherPageContainer className="ms-teacher-page">
+      <OmniAIBridge context={teacherOmniContext({ classroomId: classroom.id, view: 'week' })} />
       <ClassDeskHead
         classroom={classroom}
         note={v2 && view.isCurrent ? dueThisWeekNote(view.week.assignments, view.range.start, view.range.end) : undefined}
@@ -234,7 +232,7 @@ export default async function ClassWeekPage({ params, searchParams }: Props) {
 
       {insights ? (
         <Suspense fallback={<InsightsSkeleton label="the grade risk matrix" height="h-80" />}>
-          <RiskSection insights={insights} />
+          <RiskSection insights={insights} classroomId={classroom.id} />
         </Suspense>
       ) : null}
     </TeacherPageContainer>

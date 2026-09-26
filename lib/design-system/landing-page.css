@@ -1558,8 +1558,10 @@
 }
 
 /* Wide enough for a real gutter: the label hangs in the margin to the left
-   of the column, so the note's text lines up with the FAQ heading below. */
-@media (min-width: 1160px) {
+   of the column, so the note's text lines up with the FAQ heading below.
+   The 170px hang needs a 1200px viewport to clear the edge once a classic
+   scrollbar has taken its share; at 1160 it sat a few pixels from it. */
+@media (min-width: 1200px) {
   .home-geo-note {
     display: grid;
     grid-template-columns: 150px minmax(0, 1fr);

@@ -22,6 +22,7 @@ import type {
 } from '@/lib/courses/margin-notes/types'
 import { topicNeighbors } from '@/lib/courses/margin-notes/adapt-spine'
 import { stepTitleFromCaption } from '@/lib/courses/margin-notes/step-title'
+import { glossaryFromBoldTerms } from '@/lib/courses/margin-notes/glossary-terms'
 
 function splitHeroTitle(title: string): { heroPre?: string; heroEm?: string } {
   const commaMatch = title.match(/^(.+?,\s*)([^,]+)$/)
@@ -366,10 +367,19 @@ export function adaptLesson(
     d: t.definition,
   }))
 
-  const glossaryFromCards = lesson.flashcards?.slice(0, 12).map((f) => ({
-    t: f.pillLabel ?? stripMarkdown(f.front).slice(0, 40),
-    d: f.back,
-  }))
+  // The terms the author bolded, with their sentences — a real glossary.
+  const glossaryFromBold = glossaryFromBoldTerms(lesson)
+
+  // Flashcards are a last resort, and only cards whose front is a label
+  // rather than a question: a question cut at 40 characters ("What are
+  // 'lost volts' in") is not a term.
+  const glossaryFromCards = lesson.flashcards
+    ?.filter((f) => f.pillLabel || !/\?\s*$/.test(f.front.trim()))
+    .slice(0, 12)
+    .map((f) => ({
+      t: f.pillLabel ?? stripMarkdown(f.front).slice(0, 40),
+      d: f.back,
+    }))
 
   const quizItems =
     lesson.quickCheck?.map((q) => ({ q: q.prompt, a: q.answer })) ??
@@ -379,8 +389,13 @@ export function adaptLesson(
     lesson.flashcards?.map((f) => ({ q: f.front, a: f.back })) ??
     partitioned.flashcards?.cards.map((f) => ({ q: f.front, a: f.back }))
 
-  const glossary =
-    glossaryFromTerms?.length ? glossaryFromTerms : glossaryFromCards?.length ? glossaryFromCards : undefined
+  const glossary = glossaryFromTerms?.length
+    ? glossaryFromTerms
+    : glossaryFromBold.length
+      ? glossaryFromBold
+      : glossaryFromCards?.length
+        ? glossaryFromCards
+        : undefined
 
   const conceptMap = buildConceptMap(lesson, partitioned, glossary)
 

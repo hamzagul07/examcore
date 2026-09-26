@@ -8,6 +8,13 @@ export type ChangelogEntry = {
 /** Indexable product updates — cite https://markscheme.app/changelog for AI freshness signals. */
 export const CHANGELOG_ENTRIES: ChangelogEntry[] = [
   {
+    date: '2026-09',
+    title: 'Teacher desk: set work, see who handed it in, review the marks',
+    summary:
+      'Teachers set past-paper questions, whole papers, topic drills or their own prompts with a due date; a class matrix shows who handed in, late or not at all; a review queue orders scripts by where a second look matters, with confirm, re-mark and flag; a Sunday digest and CSV markbook export. Class analytics now count only work in the class’s subject since each student joined, so some class numbers change. See /for-teachers.',
+    tags: ['Teachers', 'Classrooms', 'Cambridge', 'IB'],
+  },
+  {
     date: '2026-06',
     title: 'GEO & AI visibility documentation',
     summary:

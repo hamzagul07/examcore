@@ -104,7 +104,7 @@ export default async function OxfordaqaPaperPage({ params }: Props) {
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 M1
               </span>
-              Mark OxfordAQA {subject.name} -&gt;
+              Mark OxfordAQA {subject.name} →
             </Link>
             <Link
               href={oxfordaqaSubjectPath(qualification, subjectSlug)}
@@ -127,7 +127,7 @@ export default async function OxfordaqaPaperPage({ params }: Props) {
                 <span className="ms-board-slip__name">{subject.name} past papers</span>
               </span>
               <span className="ms-board-slip__go" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </li>
@@ -141,7 +141,7 @@ export default async function OxfordaqaPaperPage({ params }: Props) {
                 <span className="ms-board-slip__name">Grade boundaries</span>
               </span>
               <span className="ms-board-slip__go" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </li>
@@ -152,7 +152,7 @@ export default async function OxfordaqaPaperPage({ params }: Props) {
                 <span className="ms-board-slip__name">All {subject.name} papers</span>
               </span>
               <span className="ms-board-slip__go" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </li>
@@ -166,7 +166,7 @@ export default async function OxfordaqaPaperPage({ params }: Props) {
                 <span className="ms-board-slip__name">Mark an answer</span>
               </span>
               <span className="ms-board-slip__go" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </li>

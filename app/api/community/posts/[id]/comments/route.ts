@@ -6,6 +6,16 @@ import {
 } from '@/lib/community/moderate-async'
 import { notifyCommentActivity, notifyMentions } from '@/lib/community/notify'
 import { ensureUsername } from '@/lib/community/ensure-username'
+import { commentsInLast24h } from '@/lib/community/require-username'
+
+/**
+ * Comments per author per rolling day. Posts (25), questions (20) and notes
+ * (10) have always had one; comments did not, which made them the one
+ * unbounded source of mention notifications and emails. Sixty is well above
+ * what an active thread day looks like (the busiest genuine day on record
+ * is under twenty).
+ */
+const DAILY_COMMENT_CAP = 60
 
 /** GET /api/community/posts/[id]/comments — full comment tree. */
 export async function GET(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
@@ -32,6 +42,14 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
       { error: 'Could not set up your public name — try again.' },
       pendingCookies,
       { status: 500 }
+    )
+  }
+
+  if ((await commentsInLast24h(user.id)) >= DAILY_COMMENT_CAP) {
+    return jsonWithAuthCookies(
+      { error: `Daily limit reached — you can post ${DAILY_COMMENT_CAP} comments per day.` },
+      pendingCookies,
+      { status: 429 }
     )
   }
 

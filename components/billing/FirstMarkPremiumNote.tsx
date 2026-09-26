@@ -77,7 +77,7 @@ export function FirstMarkPremiumNote() {
       >
         Keep it from {starterPrice}/month
         <span className="font-mono text-[11px] font-bold" aria-hidden>
-          -&gt;
+          →
         </span>
       </Link>
     </aside>

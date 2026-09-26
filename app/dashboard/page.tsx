@@ -49,14 +49,15 @@ import {
   topicTargetsFromMasteries,
 } from '@/lib/insights/recommendations'
 import { truncateMarkingPreview } from '@/lib/rich-text/truncate-marking-preview'
-import { effectiveAccess } from '@/lib/billing/access'
+import { loadEffectiveAccess } from '@/lib/billing/access'
 import { hasMaxResourceVault } from '@/lib/billing/features'
 import { computeBillingSummary } from '@/lib/billing/enforcement'
 import { MaxVaultTile } from '@/components/max/MaxVaultTile'
 import { MaxUsageTheatre } from '@/components/max/MaxUsageTheatre'
 import { MaxEarlyAccessBanner } from '@/components/max/MaxEarlyAccessBanner'
 import { maybeGrantMaxSprintGift } from '@/lib/max/gifts'
-import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
+import { AssignmentsSetCard } from '@/components/dashboard/AssignmentsSetCard'
+import { loadAssignmentsSetCard, studentRequestTimeZone } from '@/lib/student/assignments'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -99,6 +100,11 @@ export default async function DashboardPage() {
   const examDate = (profile?.exam_date as string | null) ?? null
   // Started here, awaited after the attempts query so it costs no extra wait.
   const savedPlanPromise = loadStudyPlan(supabaseAdmin, user.id)
+  // Work set by the student's teachers (TEACHER_V2). The student's own RLS
+  // client, so only their classes' published sets; null (section hidden) when
+  // nothing is open. Never throws. Started here, awaited at render.
+  const setCardNow = new Date()
+  const setCardPromise = loadAssignmentsSetCard(supabase, user.id, setCardNow)
 
   const { data: attempts } = await supabaseAdmin
     .from('attempts')
@@ -230,15 +236,9 @@ export default async function DashboardPage() {
   // Extra due items beyond the one promoted into nextAction.
   const moreReview = reviewItems.slice(1, 4)
 
-  const { data: subRow } = await supabase
-    .from('user_subscriptions')
-    .select('tier, status')
-    .eq('user_id', user.id)
-    .maybeSingle()
-  const access = effectiveAccess({
-    tier: (subRow?.tier as SubscriptionTier) ?? 'free',
-    status: (subRow?.status as SubscriptionStatus) ?? 'canceled',
-  })
+  // Seat- and comp-aware, like the marking gate: recomputing from
+  // {tier, status} here hid the Vault from comped Max users (review §2).
+  const access = await loadEffectiveAccess(user.id, supabaseAdmin)
   const showMax = hasMaxResourceVault(access)
   let maxUsage: { used: number; remaining: number; cap: number } | null = null
   if (showMax) {
@@ -255,6 +255,19 @@ export default async function DashboardPage() {
     }
   }
 
+  const setCard = await setCardPromise
+  const setCardTimeZone = setCard ? await studentRequestTimeZone() : 'UTC'
+  const setCardSection = setCard ? (
+    <DashboardSection title="Set by your teacher" defaultOpen>
+      <AssignmentsSetCard
+        next={setCard.next}
+        openCount={setCard.open_count}
+        timeZone={setCardTimeZone}
+        now={setCardNow.toISOString()}
+      />
+    </DashboardSection>
+  ) : null
+
   return (
     <main className="app-shell app-shell-tabbed ms-dash-home">
       <div className="mx-auto min-w-0 max-w-7xl rounded-none px-0 pb-8 pt-0 sm:rounded">
@@ -270,6 +283,7 @@ export default async function DashboardPage() {
                 firstName={greetingName}
                 firstMarkHref={buildFirstMarkHref(primaryCode)}
               />
+              {setCardSection ? <div className="mt-6 px-4 sm:px-0">{setCardSection}</div> : null}
               {/* The student the planner was built for has not marked yet.
                   DB-01's first-mark CTA keeps the top of the page; the
                   roadmap offer (or the plan's hero) sits under it, exam date
@@ -295,6 +309,7 @@ export default async function DashboardPage() {
               />
               {/* DB-02: one server-computed next action, then weekly status. */}
               <NextActionCard action={nextAction} />
+              {setCardSection}
               <TodayPlanCard saved={savedPlan} examDate={examDate} evidence={planEvidence} />
               {primaryCode ? (
                 <MarksLeakingStrip

@@ -45,7 +45,7 @@ export function FeaturedGuideBlock({ post }: Props) {
           <Link href={`/blog/${post.slug}`} className="ec-btn-ghost ec-btn-ghost--sm inline-flex items-center gap-1.5">
             Read the guide
             <span className="font-mono text-[11px] font-bold" aria-hidden>
-              -&gt;
+              →
             </span>
           </Link>
           <span className="ms-micro font-mono">

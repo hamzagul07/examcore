@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import {
   WholePaperUploadSection,
   type WholePaperPage,
@@ -8,9 +9,12 @@ import {
 import { WholePaperMarkingProgress } from './WholePaperMarkingProgress'
 import { WholePaperResultView } from '@/components/WholePaperResultView'
 import type { WholePaperLoadingContext, WholePaperResult } from '@/lib/marking/types'
+import type { WholePaperAggregate } from '@/lib/marking/whole-paper'
 import type { MarkContextPayload } from '@/lib/marking/mark-progress'
 import { prepareWholePaperUpload } from '@/lib/upload/prepare-upload'
 import type { AllowanceBlock, QuotaExceeded } from '@/lib/billing/client-types'
+import { ASSIGNMENT_ITEM_FIELD } from '@/lib/teacher/assignments/link'
+import { AssignmentLinkNotice } from '@/components/mark/AssignmentLinkNotice'
 
 type Props = {
   paperCode: string
@@ -33,6 +37,12 @@ type Props = {
   onPhaseChange?: (phase: 'upload' | 'marking' | 'result') => void
   /** When host ResultScreen owns “Mark another”, hide the duplicate footer CTA. */
   hideMarkAnother?: boolean
+  /**
+   * The teacher's whole-paper set item this upload hands in (/mark?assignment=…
+   * &mode=whole_paper). Sent with init as `assignment_item_id`; the server
+   * validates it and answers with `_assignment`, shown on the result.
+   */
+  assignmentItemId?: string | null
 }
 
 type JobStatus = {
@@ -59,6 +69,17 @@ function toMarkContext(
   }
 }
 
+// ~24s of consecutive status failures (12 polls × 2s) before we give up.
+const MAX_POLL_FAILURES = 12
+const POLL_INTERVAL_MS = 2000
+/**
+ * Longest we keep polling a run that reports neither complete nor failed. The
+ * run route's budget is 800s and the server treats a claim older than 15
+ * minutes as dead, so at 20 minutes there is nothing left to wait for — the
+ * poll used to run until the tab was closed.
+ */
+const MAX_POLL_MS = 20 * 60_000
+
 export function WholePaperFlow({
   paperCode,
   paperSession,
@@ -73,6 +94,7 @@ export function WholePaperFlow({
   seed = null,
   onPhaseChange,
   hideMarkAnother = false,
+  assignmentItemId = null,
 }: Props) {
   const [phase, setPhase] = useState<'upload' | 'marking' | 'result'>(
     seed ? 'marking' : 'upload'
@@ -89,11 +111,16 @@ export function WholePaperFlow({
   )
   const [markingError, setMarkingError] = useState<string | null>(null)
   const [retrying, setRetrying] = useState(false)
-  const [result, setResult] = useState<WholePaperResult | null>(null)
+  const [result, setResult] = useState<WholePaperAggregate | null>(null)
   const [attemptId, setAttemptId] = useState<string | null>(null)
   const [answerPhotoUrl, setAnswerPhotoUrl] = useState<string | null>(null)
+  /** What init had to do to the upload (blank page, duplicate dropped…). */
+  const [uploadWarnings, setUploadWarnings] = useState<string[]>([])
+  /** Init's `_assignment` block: where this paper went for the teacher's set. */
+  const [assignmentResult, setAssignmentResult] = useState<unknown>(null)
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const pollFailuresRef = useRef(0)
+  const pollStartedAtRef = useRef(0)
   const seedStartedRef = useRef(false)
 
   const stopPolling = useCallback(() => {
@@ -114,28 +141,41 @@ export function WholePaperFlow({
     if (phase !== 'upload') onUnsavedChange?.(false)
   }, [phase, onUnsavedChange])
 
-  // ~24s of consecutive status failures (12 polls × 2s) before we give up.
-  const MAX_POLL_FAILURES = 12
+  const failWith = useCallback(
+    (error: string, message: string) => {
+      stopPolling()
+      setMarkingError(error)
+      setJobStatus((prev) => ({
+        phase: 'failed',
+        message,
+        questions_total: prev?.questions_total ?? 0,
+        questions_completed: prev?.questions_completed ?? 0,
+        loading_context: prev?.loading_context,
+      }))
+    },
+    [stopPolling]
+  )
 
   const pollStatus = useCallback(
     (id: string) => {
       stopPolling()
       pollFailuresRef.current = 0
+      pollStartedAtRef.current = Date.now()
       pollRef.current = setInterval(async () => {
+        if (Date.now() - pollStartedAtRef.current > MAX_POLL_MS) {
+          failWith(
+            'Marking is taking much longer than expected. It may still finish in the background — check your dashboard in a few minutes, or retry now to continue from where it stopped.',
+            'Taking too long'
+          )
+          return
+        }
         const registerFailure = () => {
           pollFailuresRef.current += 1
           if (pollFailuresRef.current >= MAX_POLL_FAILURES) {
-            stopPolling()
-            setMarkingError(
-              'We lost the connection while checking on your marking. It may still be running — retry to reconnect.'
+            failWith(
+              'We lost the connection while checking on your marking. It may still be running — retry to reconnect.',
+              'Connection lost'
             )
-            setJobStatus((prev) => ({
-              phase: 'failed',
-              message: 'Connection lost',
-              questions_total: prev?.questions_total ?? 0,
-              questions_completed: prev?.questions_completed ?? 0,
-              loading_context: prev?.loading_context,
-            }))
           }
         }
         try {
@@ -159,28 +199,31 @@ export function WholePaperFlow({
           })
           if (data.phase === 'complete' && data.result) {
             stopPolling()
-            setResult(data.result as WholePaperResult)
+            setResult(data.result as WholePaperAggregate)
             setAnswerPhotoUrl(data.answer_photo_url ?? null)
+            if (Array.isArray(data.warnings)) setUploadWarnings(data.warnings)
             setPhase('result')
+            return
           }
           if (data.phase === 'failed') {
-            stopPolling()
-            setMarkingError(data.error || 'Marking failed.')
-            setJobStatus((prev) => ({
-              phase: 'failed',
-              message: data.message || 'Marking failed',
-              questions_total: data.questions_total ?? prev?.questions_total ?? 0,
-              questions_completed:
-                data.questions_completed ?? prev?.questions_completed ?? 0,
-              loading_context: data.loading_context ?? prev?.loading_context,
-            }))
+            failWith(data.error || 'Marking failed.', data.message || 'Marking failed')
+            return
+          }
+          // The server's claim on this job is older than its stale window:
+          // the function that was marking it is gone. Retry takes it over and
+          // resumes from the questions it had finished.
+          if (data.stale) {
+            failWith(
+              'Marking stopped before it finished. Retry to continue from where it stopped — nothing extra is charged.',
+              'Marking stopped'
+            )
           }
         } catch {
           registerFailure()
         }
-      }, 2000)
+      }, POLL_INTERVAL_MS)
     },
-    [stopPolling]
+    [failWith, stopPolling]
   )
 
   const runWholePaperMarking = useCallback(
@@ -193,21 +236,13 @@ export function WholePaperFlow({
         .then(async (runRes) => {
           const runData = await runRes.json()
           if (!runRes.ok) {
-            stopPolling()
-            setMarkingError(runData.error || 'Marking failed.')
-            setJobStatus((prev) => ({
-              phase: 'failed',
-              message: 'Marking failed',
-              questions_total: prev?.questions_total ?? 0,
-              questions_completed: prev?.questions_completed ?? 0,
-              loading_context: prev?.loading_context,
-            }))
+            failWith(runData.error || 'Marking failed.', 'Marking failed')
             setRetrying(false)
             return
           }
           if (runData.whole_paper) {
             stopPolling()
-            setResult(runData.whole_paper as WholePaperResult)
+            setResult(runData.whole_paper as WholePaperAggregate)
             setAnswerPhotoUrl(runData.answer_photo_url ?? null)
             setPhase('result')
             setMarkingError(null)
@@ -216,21 +251,14 @@ export function WholePaperFlow({
           setRetrying(false)
         })
         .catch(() => {
-          stopPolling()
-          setMarkingError(
-            'Network problem while marking. Your pages are still uploaded — retry to continue.'
+          failWith(
+            'Network problem while marking. Your pages are still uploaded — retry to continue.',
+            'Connection lost'
           )
-          setJobStatus((prev) => ({
-            phase: 'failed',
-            message: 'Connection lost',
-            questions_total: prev?.questions_total ?? 0,
-            questions_completed: prev?.questions_completed ?? 0,
-            loading_context: prev?.loading_context,
-          }))
           setRetrying(false)
         })
     },
-    [onAllowance, stopPolling]
+    [failWith, onAllowance, stopPolling]
   )
 
   const handleRetryMarking = useCallback(() => {
@@ -254,6 +282,7 @@ export function WholePaperFlow({
     setRetrying(false)
     setAttemptId(null)
     setJobStatus(null)
+    setUploadWarnings([])
     setPhase('upload')
     onError('')
   }, [onError, stopPolling])
@@ -261,6 +290,8 @@ export function WholePaperFlow({
   const handleSubmit = async (pages: WholePaperPage[], pdf: File | null) => {
     onError('')
     setMarkingError(null)
+    setUploadWarnings([])
+    setAssignmentResult(null)
     setPhase('marking')
     setJobStatus({
       phase: 'ocr',
@@ -292,6 +323,7 @@ export function WholePaperFlow({
           }))
         )
       )
+      if (assignmentItemId) formData.append(ASSIGNMENT_ITEM_FIELD, assignmentItemId)
       if (readyPdf) {
         formData.append('pdf', readyPdf)
       } else {
@@ -318,12 +350,14 @@ export function WholePaperFlow({
           setPhase('upload')
           return
         }
-        onError(initData.error || 'Failed to start marking.')
+        onError(initData.error || 'Failed to start marking.', !!initData?.retryable)
         setPhase('upload')
         return
       }
 
       if (initData._allowance) onAllowance?.(initData._allowance as AllowanceBlock)
+      if (Array.isArray(initData.warnings)) setUploadWarnings(initData.warnings)
+      if (initData._assignment) setAssignmentResult(initData._assignment)
 
       const id = initData.attempt_id as string
       setAttemptId(id)
@@ -355,7 +389,7 @@ export function WholePaperFlow({
       onError(data.error || 'Retry failed.')
       return
     }
-    setResult(data.whole_paper as WholePaperResult)
+    setResult(data.whole_paper as WholePaperAggregate)
   }
 
   // R1: MarkFlow already collected pages — jump straight into init/run.
@@ -372,8 +406,44 @@ export function WholePaperFlow({
   }, [seed, paperCode, paperSession])
 
   if (phase === 'result' && result) {
+    // Free preview: answered questions the tier limit left unmarked. These
+    // are 'not_marked_preview' rows, not "Not attempted" — the student wrote
+    // them, and the paper's score above does not count them as zero.
+    const previewCut = result.questions.filter(
+      (q) => q.status === 'not_marked_preview'
+    ).length
+    const inPaper = result.questions_in_paper ?? result.questions.length
+    const limit = result.question_limit ?? inPaper - previewCut
+
     return (
       <div className="space-y-8">
+        <AssignmentLinkNotice value={assignmentResult} />
+        {previewCut > 0 ? (
+          <div className="ec-banner ec-banner-info" role="status">
+            <p className="ec-banner__meta">
+              <strong className="text-[var(--ec-text-primary)]">
+                {previewCut} more question{previewCut === 1 ? '' : 's'} in this paper{' '}
+                {previewCut === 1 ? 'is' : 'are'} marked on Scholar.
+              </strong>{' '}
+              You answered {inPaper}; the free preview marks the first {limit}.
+              Your score and grade are for the {limit} marked question
+              {limit === 1 ? '' : 's'} only.{' '}
+              <Link href="/pricing" className="ec-btn-underline">
+                See plans
+              </Link>
+            </p>
+          </div>
+        ) : null}
+        {uploadWarnings.length > 0 ? (
+          <ul
+            className="space-y-1 text-xs leading-relaxed text-[var(--ec-text-secondary)]"
+            aria-label="Notes about your upload"
+          >
+            {uploadWarnings.map((w) => (
+              <li key={w}>{w}</li>
+            ))}
+          </ul>
+        ) : null}
         <WholePaperResultView
           result={result}
           attemptId={attemptId}

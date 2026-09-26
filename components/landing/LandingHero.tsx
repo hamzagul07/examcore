@@ -51,6 +51,9 @@ export function LandingHero({ markHref }: LandingHeroProps) {
       <div className="ms-fade-in">
         <p className="ms-hero-kicker ec-kicker-accent">
           Cambridge · IB · the ink that tells the truth
+          {/* Anchored to the kicker, above its first line: positioned off the
+              h1 it landed on the kicker text, which wraps at narrower widths. */}
+          <MarginNote className="ms-hero-kicker__note">this step earns M1!</MarginNote>
         </p>
         <h1 className="ms-h-display">
           Watch your script get <InkCircle>stamped</InkCircle> like an{' '}
@@ -58,7 +61,6 @@ export function LandingHero({ markHref }: LandingHeroProps) {
             <InkScribble>examiner</InkScribble>
           </em>{' '}
           just left the room.
-          <MarginNote style={{ top: '-44px', right: '-10px' }}>this step earns M1!</MarginNote>
         </h1>
         {/* No tier names in the first sentences a stranger reads — "Max" meant
             nothing here before the product does. The benefit stays; the brand

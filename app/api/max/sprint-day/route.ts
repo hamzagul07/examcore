@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { setPackDayCompleted } from '@/lib/max/sprint-day-completion'
-import { effectiveAccess } from '@/lib/billing/access'
+import { loadEffectiveAccess } from '@/lib/billing/access'
 import { hasMaxResourceVault } from '@/lib/billing/features'
-import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
 
 /**
  * Toggle a Max Vault pack day complete/incomplete.
@@ -15,16 +14,9 @@ export async function POST(request: NextRequest) {
     return jsonWithAuthCookies({ error: 'Not signed in' }, pendingCookies, { status: 401 })
   }
 
-  const { data: sub } = await supabase
-    .from('user_subscriptions')
-    .select('tier, status')
-    .eq('user_id', user.id)
-    .maybeSingle()
-
-  const access = effectiveAccess({
-    tier: (sub?.tier as SubscriptionTier) ?? 'free',
-    status: (sub?.status as SubscriptionStatus) ?? 'canceled',
-  })
+  // Seat- and comp-aware (a comped Max user was refused here while the vault
+  // page itself let them in — the two gates disagreed on what "Max" meant).
+  const access = await loadEffectiveAccess(user.id)
   if (!hasMaxResourceVault(access)) {
     return jsonWithAuthCookies({ error: 'Max only' }, pendingCookies, { status: 403 })
   }

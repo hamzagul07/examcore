@@ -31,10 +31,29 @@ const CONTEXT_SUGGESTIONS: Record<string, string[]> = {
   ],
   marking: ['What does this question test?', 'Tips for this topic'],
   teacher_dashboard: [
-    'Draft parent email',
-    'Why are students struggling?',
-    'Generate practice set',
+    'What should I reteach this week?',
+    'Who needs a nudge?',
+    'Draft a progress note for parents',
   ],
+}
+
+/**
+ * Teacher chips by page (context.data.view — lib/teacher/insights/omni.ts).
+ * The view only picks the chips; the server loads the class itself.
+ */
+const TEACHER_SUGGESTIONS: Record<string, string[]> = {
+  desk: ['Which class needs me most this week?', 'Summarise my week across classes', 'Who is late on a set?'],
+  reviews: ['Which scripts should I review first?', 'Summarise my week across classes'],
+  gaps: ['Explain our weakest kind of mark', 'Plan a drill on the weakest topic', 'Why are marks being dropped?'],
+  students: ['Who is most at risk, and why?', 'Who has gone quiet?', 'Draft feedback for a struggling student'],
+  student: ['Who is most at risk, and why?', 'Draft feedback for a struggling student'],
+}
+
+function teacherSuggestions(data: unknown): string[] {
+  const view = data && typeof data === 'object' ? (data as { view?: unknown }).view : undefined
+  return typeof view === 'string' && Object.hasOwn(TEACHER_SUGGESTIONS, view)
+    ? TEACHER_SUGGESTIONS[view]
+    : CONTEXT_SUGGESTIONS.teacher_dashboard
 }
 
 /**
@@ -45,7 +64,9 @@ export function OmniAI() {
   const isLanding = context.type === 'landing'
   const suggestions = isLanding
     ? LANDING_SUGGESTIONS
-    : CONTEXT_SUGGESTIONS[context.type] || []
+    : context.type === 'teacher_dashboard'
+      ? teacherSuggestions(context.data)
+      : CONTEXT_SUGGESTIONS[context.type] || []
 
   useEffect(() => {
     if (!isOpen) return

@@ -14,8 +14,16 @@ import {
   toGeminiContents,
 } from '@/lib/ai/gemini-text'
 import { modelForTask } from '@/lib/ai/gemini-models'
-import { createServiceClient } from '@/lib/supabase-server'
-import { hourlyRateLimitHeaders } from '@/lib/http/rate-limit-response'
+import {
+  authenticateRouteRequest,
+  createServiceClient,
+} from '@/lib/supabase-server'
+import { secondsUntilUtcMidnight } from '@/lib/http/rate-limit-response'
+import {
+  clientIp,
+  consumeExplainMissSlot,
+  RateLimitUnavailableError,
+} from '@/lib/rate-limit'
 
 /**
  * Per-paragraph "Explain more" for course lessons.
@@ -32,24 +40,6 @@ import { hourlyRateLimitHeaders } from '@/lib/http/rate-limit-response'
  */
 
 export const maxDuration = 30
-
-const MISS_WINDOW_MS = 60 * 60 * 1000
-/** Generous, because cache hits never reach this — only cold paragraphs do. */
-const MISS_MAX_PER_WINDOW = 20
-const missBuckets = new Map<string, number[]>()
-
-function allowMiss(ip: string): boolean {
-  const now = Date.now()
-  const cutoff = now - MISS_WINDOW_MS
-  const bucket = (missBuckets.get(ip) || []).filter((ts) => ts > cutoff)
-  if (bucket.length >= MISS_MAX_PER_WINDOW) {
-    missBuckets.set(ip, bucket)
-    return false
-  }
-  bucket.push(now)
-  missBuckets.set(ip, bucket)
-  return true
-}
 
 function sse(data: unknown): string {
   return `data: ${JSON.stringify(data)}\n\n`
@@ -147,16 +137,26 @@ export async function POST(req: NextRequest) {
     return sseError('Unknown block for this lesson', 404)
   }
 
-  const ip =
-    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-    req.headers.get('x-real-ip') ||
-    'unknown'
-  if (!allowMiss(ip)) {
-    return sseError(
-      'Too many new explanations requested this hour. Try again later.',
-      429,
-      hourlyRateLimitHeaders()
-    )
+  // Persisted daily cap on MISSES — per user when signed in, per IP for a
+  // guest. Cache hits above never reach this, so it meters only the paragraphs
+  // that cost model time. The in-process Map it replaces was per-lambda and
+  // empty after every cold start, so it bounded nothing on Vercel. (Code
+  // review 2026-09-25, §1.7.) Consumed only after the block resolves, so a
+  // stale key does not spend a slot.
+  const { user } = await authenticateRouteRequest(req)
+  const ip = clientIp(req)
+  try {
+    const slot = await consumeExplainMissSlot(supabase, ip, user?.id ?? null)
+    if (!slot.allowed) {
+      return sseError(slot.message, 429, {
+        'Retry-After': String(secondsUntilUtcMidnight()),
+      })
+    }
+  } catch (err) {
+    if (err instanceof RateLimitUnavailableError) {
+      return sseError('Explanations are briefly unavailable. Try again in a minute.', 503)
+    }
+    throw err
   }
 
   if (!isGeminiConfigured()) {

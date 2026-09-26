@@ -49,11 +49,11 @@ export function MaxCoachBrief({ pack }: { pack: MaxExamPack | null }) {
       </div>
       {firstDrill ? (
         <Link href={drillHref(firstDrill, undefined, { returnTo: 'vault' })} className="ms-vault-slip__cta">
-          Start {firstDrill.paperCode} Q{firstDrill.questionNumber} -&gt;
+          Start {firstDrill.paperCode} Q{firstDrill.questionNumber} →
         </Link>
       ) : pack.timedPapers[0] ? (
         <Link href={pack.timedPapers[0].href} className="ms-vault-slip__cta">
-          Open timed paper hub -&gt;
+          Open timed paper hub →
         </Link>
       ) : null}
     </aside>

@@ -45,7 +45,7 @@ export default function ChangelogPage() {
           <aside className="ms-board-cross mb-10">
             <p className="ms-overline">Quick answer</p>
             <p className="ms-body-2 mt-2 text-[var(--ec-text-primary)]">
-              <strong>MarkScheme</strong> (markscheme.app) ships Cambridge &amp; IB past-paper marking from
+              <strong>MarkScheme</strong>{' '}(markscheme.app) ships Cambridge &amp; IB past-paper marking from
               handwriting, free syllabus courses, Exam Room communities, teacher classroom analytics, and
               open marking insights — this page lists major releases newest first.
             </p>
@@ -78,7 +78,7 @@ export default function ChangelogPage() {
                 <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                   M1
                 </span>
-                Open marking desk -&gt;
+                Open marking desk →
               </Link>
               <Link href="/research" className="ec-btn-ghost inline-flex min-h-[48px]">
                 Press &amp; methodology

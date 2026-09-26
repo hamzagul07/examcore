@@ -148,13 +148,13 @@ export default async function SubjectGradeCalculatorPage({ params }: Props) {
             href={`/tools/will-my-grade-hold?code=${encodeURIComponent(code)}`}
             className="ec-link"
           >
-            Will my grade hold? -&gt;
+            Will my grade hold? →
           </Link>
           <Link href="/tools/grade-boundary-calculator" className="ec-link">
-            All calculators -&gt;
+            All calculators →
           </Link>
           <Link href="/guides/grade-boundaries" className="ec-link">
-            Boundaries hub -&gt;
+            Boundaries hub →
           </Link>
         </div>
 
@@ -261,7 +261,7 @@ export default async function SubjectGradeCalculatorPage({ params }: Props) {
             >
               Mark {hasMarking ? `${code} ` : ''}free
               <span className="font-mono text-[11px] font-bold" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
             {hasMarking ? (

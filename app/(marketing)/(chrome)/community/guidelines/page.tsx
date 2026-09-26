@@ -69,7 +69,7 @@ export default function CommunityGuidelinesPage() {
             <h2 className="ms-h3">Reporting</h2>
             <p>
               Use the <strong>Report</strong> button on any note or answer, or email{' '}
-              <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> for anything urgent. If you&apos;re a
+              <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>{' '}for anything urgent. If you&apos;re a
               student in distress, please also reach out to a trusted adult or a local support service.
             </p>
           </section>

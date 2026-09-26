@@ -110,7 +110,6 @@ const IB_STAGE_OPTIONS: { id: UserStage; title: string; subtitle: string }[] = [
 export function OnboardingWizard({
   rerun = false,
   initialProfile = null,
-  saveToken,
 }: {
   rerun?: boolean
   initialProfile?: {
@@ -122,7 +121,6 @@ export function OnboardingWizard({
     exam_date: string | null
     target_grade?: string | null
   } | null
-  saveToken: string
 }) {
   const searchParams = useSearchParams()
   const nextParam = searchParams.get('next')
@@ -263,7 +261,7 @@ export function OnboardingWizard({
     setErrorMsg('')
 
     try {
-      const result = await completeOnboardingRequest(saveToken, payload)
+      const result = await completeOnboardingRequest(payload)
       if (!result.ok) {
         setErrorMsg(result.error || 'Could not save your profile. Try again.')
         return
@@ -306,7 +304,7 @@ export function OnboardingWizard({
     }
 
     try {
-      const result = await completeOnboardingRequest(saveToken, payload)
+      const result = await completeOnboardingRequest(payload)
 
       if (!result.ok) {
         if (result.status === 401) {
@@ -338,12 +336,17 @@ export function OnboardingWizard({
       const supabase = createClient()
       await supabase.auth.refreshSession()
     } catch {
-      // Session may already be stale — completion route restores via save token.
+      // Session may already be stale. The completion route re-reads the cookie
+      // session on a full navigation and, if it is really gone, sends the user
+      // to sign in with completed=1 — it never restores one by itself.
     }
 
+    // Full navigation, never a client push: /onboarding/complete refreshes the
+    // auth cookies on the way to the destination. Only the destination travels
+    // in the URL — the signed save token that used to ride along here was a
+    // 4-hour login credential in every history entry and proxy log (§1.2).
     const params = new URLSearchParams()
     params.set('next', destination)
-    params.set('token', saveToken)
     window.location.href = `/onboarding/complete?${params.toString()}`
   }
 
@@ -375,7 +378,13 @@ export function OnboardingWizard({
   const signInAgainHref = `/auth/signin?next=${encodeURIComponent(
     nextParam && nextParam !== '/onboarding' ? nextParam : '/onboarding'
   )}`
-  const backHref = rerun ? sanitizeNextPath(nextParam, '/account/study') : '/auth/signout'
+  // First run offers "Sign out" as a one-click POST form (AuthShell's
+  // `backAction`). A plain link to /auth/signout no longer signs anyone out:
+  // GET sign-out was a CSRF logout (`<img src=…/auth/signout>` from any page,
+  // review §3), so the GET now lands on a confirm page — one click too many
+  // for a student who only wants to switch accounts.
+  const backHref = rerun ? sanitizeNextPath(nextParam, '/account/study') : '/auth/signout/confirm'
+  const backAction = rerun ? undefined : '/auth/signout'
   const backLabel = rerun ? 'Back to settings' : 'Sign out'
 
   function startMarking() {
@@ -394,9 +403,7 @@ export function OnboardingWizard({
         showBetaBadge={false}
         backLabel={backLabel}
         backHref={backHref}
-        confirmBackMessage={
-          rerun ? undefined : 'Sign out? Your setup progress is saved and will be here when you return.'
-        }
+        backAction={backAction}
       >
         <ProgressSteps
           current={step}
@@ -1162,7 +1169,7 @@ function StepFirstMark({
               </span>
               Mark a question now
               <span className="font-mono text-[11px] font-bold" aria-hidden>
-                -&gt;
+                →
               </span>
             </>
           )}
@@ -1184,7 +1191,7 @@ function StepFirstMark({
           className="ec-btn-underline inline-flex items-center gap-1.5"
         >
           <span className="font-mono text-[11px] font-bold" aria-hidden>
-            &lt;-
+            ←
           </span>
           Back
         </button>
@@ -1213,7 +1220,7 @@ function StepNav({
           className="ec-btn-underline inline-flex items-center gap-1.5"
         >
           <span className="font-mono text-[11px] font-bold" aria-hidden>
-            &lt;-
+            ←
           </span>
           Back
         </button>
@@ -1230,7 +1237,7 @@ function StepNav({
         {continueLabel}
         {!continueBusy ? (
           <span className="font-mono text-[11px] font-bold" aria-hidden>
-            -&gt;
+            →
           </span>
         ) : null}
       </button>

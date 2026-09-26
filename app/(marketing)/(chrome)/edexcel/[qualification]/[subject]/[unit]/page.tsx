@@ -113,7 +113,7 @@ export default async function EdexcelUnitPage({ params }: Props) {
               href="#edexcel-study-path-h"
               className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
             >
-              Start study path -&gt;
+              Start study path →
             </a>
           ) : null}
           <Link
@@ -127,7 +127,7 @@ export default async function EdexcelUnitPage({ params }: Props) {
             <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
               M1
             </span>
-            {unitMarkable ? `Mark ${unitRow.code} -&gt;` : 'Open Edexcel marking -&gt;'}
+            {unitMarkable ? `Mark ${unitRow.code} →` : 'Open Edexcel marking →'}
           </Link>
         </div>
       </MarketingHero>
@@ -156,7 +156,7 @@ export default async function EdexcelUnitPage({ params }: Props) {
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 M1
               </span>
-              {unitMarkable ? `Mark ${unitRow.code} -&gt;` : 'Open Edexcel marking -&gt;'}
+              {unitMarkable ? `Mark ${unitRow.code} →` : 'Open Edexcel marking →'}
             </Link>
           </div>
         </div>
@@ -177,7 +177,7 @@ export default async function EdexcelUnitPage({ params }: Props) {
                       <span className="ms-board-slip__meta">Mark practice</span>
                     </span>
                     <span className="ms-board-slip__go" aria-hidden>
-                      -&gt;
+                      →
                     </span>
                   </Link>
                 </li>
@@ -196,7 +196,7 @@ export default async function EdexcelUnitPage({ params }: Props) {
                   <span className="ms-board-slip__name">{unitRow.code} revision guide</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -211,7 +211,7 @@ export default async function EdexcelUnitPage({ params }: Props) {
                 <span className="ms-board-slip__name">{subject.name} past papers</span>
               </span>
               <span className="ms-board-slip__go" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </li>
@@ -225,7 +225,7 @@ export default async function EdexcelUnitPage({ params }: Props) {
                 <span className="ms-board-slip__name">Grade boundaries</span>
               </span>
               <span className="ms-board-slip__go" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </li>
@@ -240,7 +240,7 @@ export default async function EdexcelUnitPage({ params }: Props) {
                   <span className="ms-board-slip__name">UMS &amp; cash-in guide</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -252,7 +252,7 @@ export default async function EdexcelUnitPage({ params }: Props) {
                 <span className="ms-board-slip__name">All {subject.name} units</span>
               </span>
               <span className="ms-board-slip__go" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </li>
@@ -263,7 +263,7 @@ export default async function EdexcelUnitPage({ params }: Props) {
                 <span className="ms-board-slip__name">Mark an answer</span>
               </span>
               <span className="ms-board-slip__go" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </li>

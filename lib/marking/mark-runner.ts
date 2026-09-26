@@ -1231,6 +1231,13 @@ export async function markWholePaperQuestionSafe(params: {
   try {
     return await markWholePaperQuestion(params)
   } catch (err) {
+    // A spent request budget is the run's failure, not this question's. The
+    // rethrows inside markSingleQuestion never reached the route because this
+    // wrapper caught them, so once the 780s budget was gone every remaining
+    // question "failed" in milliseconds as marking_failed and the paper was
+    // finalized — and charged — as if it had been marked. The route releases
+    // the reservation for a deadline; it can only do that if it sees one.
+    if (isRequestDeadlineError(err)) throw err
     console.error(`Marking failed for Q${params.questionNumber}:`, err)
     const { scheme } = await lookupMarkScheme(
       params.paperCode,

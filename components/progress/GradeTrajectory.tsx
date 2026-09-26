@@ -6,6 +6,8 @@ import { GRADE_BOUNDARIES } from '@/lib/grade-boundaries'
 import { gapToTargetGrade } from '@/lib/target-grade'
 import type { AttemptLite } from '@/lib/mastery'
 import type { GradePrediction } from '@/lib/prediction'
+import { formatDisplayDate } from '@/lib/format/display-date'
+import { useDisplayTimeZone } from '@/lib/hooks/useDisplayTimeZone'
 type Props = {
   attempts: AttemptLite[]
   prediction: GradePrediction
@@ -79,6 +81,7 @@ type Point = {
 
 function TrajectoryChart({ series }: { series: Point[] }) {
   const gradientId = useId()
+  const timeZone = useDisplayTimeZone()
   const width = 600
   const height = 260
   const padding = { top: 16, right: 56, bottom: 24, left: 32 }
@@ -187,13 +190,12 @@ function TrajectoryChart({ series }: { series: Point[] }) {
             stroke="var(--ec-brand)"
             strokeWidth="2.5"
           />
+          {/* One string child: React 19 expects <title> text as a single string,
+              and five sibling text nodes here did not hydrate cleanly. */}
           <title>
-            {new Date(p.attempt.created_at).toLocaleDateString('en-US', {
-              month: 'short',
-              day: 'numeric',
-            })}
-            {' \u2014 '}
-            {p.attempt.marks_earned}/{p.attempt.total_marks} ({Math.round(p.y)}%)
+            {`${formatDisplayDate(p.attempt.created_at, { year: false }, timeZone)} \u2014 ${
+              p.attempt.marks_earned
+            }/${p.attempt.total_marks} (${Math.round(p.y)}%)`}
           </title>
         </g>
       ))}

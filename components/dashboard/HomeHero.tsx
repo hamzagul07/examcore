@@ -59,7 +59,7 @@ export function HomeHero({
             href="/account/exam"
             className="ms-mark-example-slip__cta inline-flex min-h-[44px] items-center font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-brand)]"
           >
-            Update date -&gt;
+            Update date →
           </Link>
         </aside>
       ) : (
@@ -73,7 +73,7 @@ export function HomeHero({
                 href="/account/exam"
                 className="text-[var(--ec-text-secondary)] underline-offset-2 hover:text-[var(--ec-brand)] hover:underline"
               >
-                Set your exam date to track progress -&gt;
+                Set your exam date to track progress →
               </Link>
             </p>
           )}

@@ -13,6 +13,8 @@ import {
 } from '@/lib/hooks/useBillingPortal'
 import { DISPLAY_PRICES_USD } from '@/lib/polar/products'
 import type { SettingsBilling } from '@/lib/settings/types'
+import { formatDisplayDate } from '@/lib/format/display-date'
+import { useDisplayTimeZone } from '@/lib/hooks/useDisplayTimeZone'
 
 const TIER_LABELS: Record<string, string> = {
   free: 'Free',
@@ -54,15 +56,12 @@ function planPrice(tier: string, billingPeriod: string | null): string | null {
     : `${formatUsd(prices.monthly)} / month`
 }
 
-function longDate(iso: string): string {
-  return new Date(iso).toLocaleDateString(undefined, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
+function longDate(iso: string, timeZone: string): string {
+  return formatDisplayDate(iso, { month: 'long' }, timeZone)
 }
 
 export function BillingSection({ billing }: { billing: SettingsBilling }) {
+  const timeZone = useDisplayTimeZone()
   const { state, errorMessage, openPortal } = useBillingPortal({
     returnUrl: '/account/billing',
   })
@@ -90,12 +89,9 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
   const status = isPaid ? STATUS_META[billing.status] : null
   const isTrialing = isPaid && billing.status === 'trialing'
   const price = planPrice(billing.tier, billing.billingPeriod)
-  const periodEnd = billing.currentPeriodEnd ? longDate(billing.currentPeriodEnd) : null
+  const periodEnd = billing.currentPeriodEnd ? longDate(billing.currentPeriodEnd, timeZone) : null
   const resetDate = billing.periodResetsAt
-    ? new Date(billing.periodResetsAt).toLocaleDateString(undefined, {
-        month: 'short',
-        day: 'numeric',
-      })
+    ? formatDisplayDate(billing.periodResetsAt, { year: false }, timeZone)
     : null
 
   const renewalLine = !isPaid
@@ -365,10 +361,7 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
                   )}
                 </span>
                 <span className="text-caption shrink-0">
-                  {new Date(u.createdAt).toLocaleDateString(undefined, {
-                    month: 'short',
-                    day: 'numeric',
-                  })}
+                  {formatDisplayDate(u.createdAt, { year: false }, timeZone)}
                 </span>
               </li>
             ))}

@@ -35,7 +35,7 @@ export function ContinueWork({ recommendations, subjectLabel }: Props) {
           href="/dashboard/progress"
           className="inline-flex min-h-[44px] shrink-0 items-center font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-brand)]"
         >
-          Deeper insights -&gt;
+          Deeper insights →
         </Link>
       </div>
       <ul className="ms-continue-work__list">
@@ -60,7 +60,7 @@ export function ContinueWork({ recommendations, subjectLabel }: Props) {
                 </p>
               </div>
               <span className="ms-continue-work__go" aria-hidden>
-                Practise -&gt;
+                Practise →
               </span>
             </LoadingLink>
           </li>

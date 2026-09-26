@@ -4,15 +4,19 @@ import { motion } from 'framer-motion'
 import { PaperPreview } from '@/components/command-bar/PaperPreview'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import type { ChatPaperPayload } from '@/lib/chat-intents'
+import type { MarkdownLinkFilter } from '@/lib/rich-text/markdown-components'
 
 interface SplitScreenPreviewProps {
   paper: ChatPaperPayload
   messageContent: string
+  /** Passed through to the prose (see StreamingMessage). */
+  linkFilter?: MarkdownLinkFilter
 }
 
 export function SplitScreenPreview({
   paper,
   messageContent,
+  linkFilter,
 }: SplitScreenPreviewProps) {
   return (
     <motion.div
@@ -28,7 +32,7 @@ export function SplitScreenPreview({
             background: 'var(--ec-surface-raised)',
           }}
         >
-          <RichTextRenderer text={messageContent} variant="light" />
+          <RichTextRenderer text={messageContent} variant="light" linkFilter={linkFilter} />
         </div>
       )}
       <PaperPreview paper={paper} />

@@ -156,7 +156,7 @@ export function IbSurfacePage({
         ) : null}
 
         <Link href={markHref} className="ec-btn-primary mt-8 inline-flex min-h-[48px]">
-          Mark with IB criteria <span className="h-4 w-4" aria-hidden>-&gt;</span>
+          Mark with IB criteria <span className="h-4 w-4" aria-hidden>→</span>
         </Link>
       </MarketingSection>
     </MarketingPageShell>

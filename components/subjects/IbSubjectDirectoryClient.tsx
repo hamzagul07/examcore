@@ -57,7 +57,7 @@ export function IbSubjectDirectoryClient({
             {meta ? <span className="ms-pp-meta">{meta}</span> : null}
           </span>
           <span className="ms-pp-cta" aria-hidden>
-            -&gt;
+            →
           </span>
         </Link>
       </li>

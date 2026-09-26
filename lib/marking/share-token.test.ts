@@ -82,6 +82,99 @@ async function main() {
     'a mark link must not verify as a progress link'
   )
 
+  // ── Links already in the wild ─────────────────────────────────────────────
+  // Everything mailed before MARK_SHARE_SECRET existed was signed with
+  // CRON_SECRET or the service-role key. Setting the new secret must not turn
+  // those into "invalid link" for the parents holding them: legacy keys are
+  // accepted for VERIFICATION only, until those links expire on their own.
+  const env = process.env as Record<string, string | undefined>
+  const saved = {
+    NODE_ENV: env.NODE_ENV,
+    MARK_SHARE_SECRET: env.MARK_SHARE_SECRET,
+    CRON_SECRET: env.CRON_SECRET,
+    SUPABASE_SERVICE_ROLE_KEY: env.SUPABASE_SERVICE_ROLE_KEY,
+  }
+  const restore = () => {
+    for (const [k, v] of Object.entries(saved)) {
+      if (v === undefined) delete env[k]
+      else env[k] = v
+    }
+  }
+  try {
+    // Sign as the old deploy did: no MARK_SHARE_SECRET, CRON_SECRET fallback.
+    delete env.MARK_SHARE_SECRET
+    env.NODE_ENV = 'development'
+    env.CRON_SECRET = 'old-cron-secret'
+    delete env.SUPABASE_SERVICE_ROLE_KEY
+    const legacyMark = createMarkShareToken(attemptId, { subjectCode: '9706' })
+    const legacyProgress = createProgressShareToken(userId)
+
+    // …and the service-role fallback, which some deploys used.
+    delete env.CRON_SECRET
+    env.SUPABASE_SERVICE_ROLE_KEY = 'old-service-role-key'
+    const legacyMarkSrk = createMarkShareToken(attemptId)
+
+    // Now the new secret is set (production). Old links still verify.
+    env.NODE_ENV = 'production'
+    env.MARK_SHARE_SECRET = 'brand-new-share-secret'
+    env.CRON_SECRET = 'old-cron-secret'
+    assert.equal(
+      verifyMarkShareToken(legacyMark)?.attemptId,
+      attemptId,
+      'a mark link signed with CRON_SECRET still resolves after MARK_SHARE_SECRET is set'
+    )
+    assert.equal(
+      verifyProgressShareToken(legacyProgress)?.userId,
+      userId,
+      'a progress link signed with CRON_SECRET still resolves'
+    )
+    assert.equal(
+      verifyMarkShareToken(legacyMarkSrk)?.attemptId,
+      attemptId,
+      'a mark link signed with the service-role key still resolves'
+    )
+    // New links are signed with the new secret only — never with a legacy key.
+    const fresh = createMarkShareToken(attemptId)
+    assert.equal(verifyMarkShareToken(fresh)?.attemptId, attemptId)
+    delete env.CRON_SECRET
+    delete env.SUPABASE_SERVICE_ROLE_KEY
+    assert.equal(
+      verifyMarkShareToken(fresh)?.attemptId,
+      attemptId,
+      'a fresh link verifies with MARK_SHARE_SECRET alone'
+    )
+    assert.equal(
+      verifyMarkShareToken(legacyMark),
+      null,
+      'once the legacy key is gone, a legacy link no longer verifies'
+    )
+    // A legacy key that no longer signs anything is not silently trusted for
+    // signing: production without MARK_SHARE_SECRET refuses to mint links.
+    delete env.MARK_SHARE_SECRET
+    env.CRON_SECRET = 'old-cron-secret'
+    assert.throws(
+      () => createMarkShareToken(attemptId),
+      /MARK_SHARE_SECRET is required in production/,
+      'signing in production needs the explicit secret'
+    )
+    assert.equal(
+      verifyMarkShareToken(legacyMark)?.attemptId,
+      attemptId,
+      'verification of an old link does not need the explicit secret'
+    )
+
+    // No key at all: the /r and /p pages must render their invalid-link
+    // state, not throw a 500 from a server component.
+    delete env.CRON_SECRET
+    delete env.SUPABASE_SERVICE_ROLE_KEY
+    assert.doesNotThrow(() => verifyMarkShareToken(fresh))
+    assert.equal(verifyMarkShareToken(fresh), null)
+    assert.doesNotThrow(() => verifyProgressShareToken(legacyProgress))
+    assert.equal(verifyProgressShareToken(legacyProgress), null)
+  } finally {
+    restore()
+  }
+
   console.log('share-token: all assertions passed')
 }
 

@@ -349,6 +349,13 @@
     padding: 1.25rem 1rem calc(2rem + env(safe-area-inset-bottom, 0px));
   }
 
+  /* With the teacher tab bar showing (TEACHER_V2), the last row of a page must
+     clear the fixed bar (~66px + the home indicator), or the final slip or a
+     Save button sits underneath it. */
+  .ms-teacher-layout.app-shell-tabbed {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
   .course-studio-topbar {
     top: calc(3.5rem + env(safe-area-inset-top, 0px));
   }
@@ -498,11 +505,6 @@
     padding-bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
   }
 
-  .ms-teacher-classroom .ec-card.p-6,
-  .ms-teacher-classroom .ec-card.p-8 {
-    padding: 1.25rem;
-  }
-
   .ms-mark-form-card {
     padding: 18px 16px;
   }
@@ -547,15 +549,6 @@
   .ms-join-code-input {
     font-size: clamp(1.125rem, 5vw, 1.5rem);
     letter-spacing: 0.12em;
-  }
-
-  .ms-teacher-classroom header .text-headline {
-    font-size: clamp(1.375rem, 5vw, 1.875rem);
-  }
-
-  .ms-teacher-classroom .ec-card.mb-8.p-6 .flex.items-center.justify-between {
-    flex-wrap: wrap;
-    gap: 10px;
   }
 
   .ms-teacher-invite code {
@@ -744,25 +737,12 @@
     letter-spacing: 0.08em;
   }
 
-  .ms-teacher-student .text-headline {
-    font-size: clamp(1.375rem, 5vw, 1.875rem);
-  }
-
-  .ms-teacher-student .ec-card,
   .ms-teacher-roster .ec-card {
     padding: 1.125rem;
   }
 
-  .ms-teacher-student header .text-body {
-    overflow-wrap: anywhere;
-  }
-
   .ms-teacher-roster .text-headline {
     font-size: clamp(1.375rem, 5vw, 1.875rem);
-  }
-
-  .ms-teacher-review h2 {
-    font-size: clamp(1.125rem, 4.5vw, 1.375rem);
   }
 
   .ms-verify-digits input,
@@ -819,10 +799,6 @@
 
   .ms-teacher-review-detail header .text-body {
     overflow-wrap: anywhere;
-  }
-
-  .ms-override-console {
-    max-height: none;
   }
 
   .ms-pricing-client .ms-price-grid {
@@ -896,30 +872,8 @@
     max-width: 160px;
   }
 
-  .ms-teacher-inbox-filters {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 4px;
-    scrollbar-width: none;
-  }
-
-  .ms-teacher-inbox-filters::-webkit-scrollbar {
-    display: none;
-  }
-
-  .ms-teacher-inbox-filters button {
-    flex-shrink: 0;
-    white-space: nowrap;
-  }
-
-  .ms-teacher-inbox .text-headline,
   .ms-teacher-review-detail .text-headline {
     font-size: clamp(1.375rem, 5vw, 1.875rem);
-  }
-
-  .ms-override-console .truncate {
-    max-width: min(100%, 180px);
   }
 
   .ms-cmp-row > div {
@@ -942,13 +896,9 @@
   }
 }
 
-/* ---- Round 8: teacher dash, blindspot, FAQ, subjects, solutions, upgrade ---- */
+/* ---- Round 8: teacher forms, FAQ, subjects, solutions, upgrade ---- */
 
 @media (max-width: 900px) {
-  .ms-teacher-intervention {
-    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
-  }
-
   .ms-subjects-tabs .ms-lvl-tabs {
     margin-bottom: 0;
   }
@@ -965,20 +915,6 @@
 }
 
 @media (max-width: 520px) {
-  .ms-teacher-dash-actions .ec-btn-primary,
-  .ms-teacher-dash-actions .ec-btn-secondary {
-    min-height: var(--ec-touch-min, 44px);
-  }
-
-  .ms-teacher-blindspot h2 {
-    font-size: clamp(1.375rem, 5.5vw, 2rem);
-    overflow-wrap: anywhere;
-  }
-
-  .ms-teacher-blindspot .ec-chip {
-    font-size: 12px;
-  }
-
   .ms-teacher-form .text-headline {
     font-size: clamp(1.375rem, 5vw, 1.875rem);
   }

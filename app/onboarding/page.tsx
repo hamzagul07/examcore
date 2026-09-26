@@ -3,7 +3,6 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase-server'
 import { OnboardingWizard } from '@/components/onboarding/OnboardingWizard'
 import { OnboardingSkeleton } from '@/components/onboarding/OnboardingSkeleton'
-import { createOnboardingSaveToken } from '@/lib/onboarding/save-token'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
 
 export const dynamic = 'force-dynamic'
@@ -53,15 +52,7 @@ async function OnboardingContent({ searchParams }: { searchParams: SearchParams 
     }
   }
 
-  const saveToken = createOnboardingSaveToken(user.id)
-
-  return (
-    <OnboardingWizard
-      rerun={rerun}
-      initialProfile={initialProfile}
-      saveToken={saveToken}
-    />
-  )
+  return <OnboardingWizard rerun={rerun} initialProfile={initialProfile} />
 }
 
 export default function OnboardingPage({

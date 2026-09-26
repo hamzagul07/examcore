@@ -18,7 +18,7 @@ process.env.SUPABASE_SERVICE_ROLE_KEY ||= 'test-service-role-key'
 async function main() {
   // Imported here, not at module scope: tsx emits CJS, so top-level await is
   // unavailable and the env placeholders above must be set before these load.
-  const { classifyMarkingError } = await import(
+  const { classifyMarkingError, isUploadDecidedFailure } = await import(
     '@/lib/marking/classify-marking-error'
   )
   const { RequestDeadlineExceededError } = await import(
@@ -85,6 +85,18 @@ async function main() {
   assert.equal(unmoored.code, 'ocr_empty')
   assert.match(unmoored.message, /couldn't read your handwriting/i)
   assert.equal(unmoored.retryable, false, 'retrying the same unreadable photo cannot help')
+
+  // Which failures keep the guest's daily slot. A blank photo has already
+  // cost OCR on every page; refunding it made failed uploads free forever.
+  // Our own outages (timeouts, overload, parse failures, unknown) refund.
+  assert.equal(isUploadDecidedFailure('client'), true)
+  assert.equal(isUploadDecidedFailure('ocr_empty'), true)
+  for (const code of ['parse_failure', 'overload', 'timeout', 'unknown'] as const) {
+    assert.equal(isUploadDecidedFailure(code), false, `${code} is our fault, refundable`)
+  }
+  assert.equal(isUploadDecidedFailure(ocr.code), true)
+  assert.equal(isUploadDecidedFailure(deadline.code), false)
+  assert.equal(isUploadDecidedFailure(unknown.code), false)
 
   console.log('classify-marking-error.test.ts: ok')
 }

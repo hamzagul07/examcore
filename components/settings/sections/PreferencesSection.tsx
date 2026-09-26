@@ -15,6 +15,102 @@ type Props = {
   initialReviewDigest: boolean
   initialWeeklyReport: boolean
   initialMarkReady: boolean
+  initialAssignments: boolean
+  initialTeacherDigest: boolean
+  /** Teachers get the Sunday class digest toggle instead of the set emails. */
+  isTeacher: boolean
+}
+
+/** The user_profiles columns PATCH /api/account/preferences accepts. */
+type PrefField =
+  | 'email_exam_reminders'
+  | 'email_product_updates'
+  | 'email_community_replies'
+  | 'email_community_digest'
+  | 'email_community_threads'
+  | 'email_review_digest'
+  | 'email_weekly_report'
+  | 'email_mark_ready'
+  | 'email_assignments'
+  | 'email_teacher_digest'
+
+type PrefRow = {
+  field: PrefField
+  title: string
+  description: string
+  ariaLabel: string
+}
+
+const STUDY_ROWS: readonly PrefRow[] = [
+  {
+    field: 'email_exam_reminders',
+    title: 'Exam countdown and study-plan check-ins',
+    description:
+      'Gentle nudges as your exam date approaches — and, once you have a study plan, one short email on study mornings with the day’s blocks.',
+    ariaLabel: 'Exam countdown reminders',
+  },
+  {
+    field: 'email_product_updates',
+    title: 'Product updates',
+    description: 'New subjects, features, and usage-limit notices.',
+    ariaLabel: 'Product updates',
+  },
+  {
+    field: 'email_community_replies',
+    title: 'Exam Room replies',
+    description: 'Email when someone comments on your post, replies to you, or @mentions you.',
+    ariaLabel: 'Exam Room reply emails',
+  },
+  {
+    field: 'email_community_threads',
+    title: 'Exam Room thread activity',
+    description: 'Email when someone replies anywhere in a thread on your post (not just direct replies).',
+    ariaLabel: 'Exam Room thread activity emails',
+  },
+  {
+    field: 'email_community_digest',
+    title: 'Exam Room weekly digest',
+    description: 'Trending discussions in your subjects — sent on Mondays.',
+    ariaLabel: 'Exam Room weekly digest',
+  },
+  {
+    field: 'email_review_digest',
+    title: 'Review reminders',
+    description: 'A weekly nudge when your spaced-review topics are due — keeps your weak spots sharp.',
+    ariaLabel: 'Review reminders',
+  },
+  {
+    field: 'email_weekly_report',
+    title: 'Weekly progress report',
+    description:
+      'A private examiner-style summary each week — your marks, grade trajectory, and the topic to drill next. Premium.',
+    ariaLabel: 'Weekly progress report',
+  },
+  {
+    field: 'email_mark_ready',
+    title: 'Marking finished',
+    description:
+      'Marking takes a few minutes, so you can close the tab and get on with something. We’ll email your marks when they land — only if you left before they were ready.',
+    ariaLabel: 'Marking finished',
+  },
+]
+
+/** For students in a teacher's class (the unsubscribe link in those emails lands here). */
+const ASSIGNMENTS_ROW: PrefRow = {
+  field: 'email_assignments',
+  title: 'Emails about work your teacher sets',
+  description:
+    'When your teacher sets work, a reminder when it’s nearly due, and when they re-mark your work or leave you a note. You still see all of it in the app.',
+  ariaLabel: 'Emails about work your teacher sets',
+}
+
+/** Teachers only (the unsubscribe link in the digest lands here). */
+const TEACHER_DIGEST_ROW: PrefRow = {
+  field: 'email_teacher_digest',
+  title: 'Sunday class digest',
+  description:
+    'One email on Sunday afternoon: who handed in, who is late, the gap to reteach, and scripts waiting for review, class by class.',
+  ariaLabel: 'Sunday class digest',
 }
 
 export function PreferencesSection({
@@ -26,77 +122,64 @@ export function PreferencesSection({
   initialReviewDigest,
   initialWeeklyReport,
   initialMarkReady,
+  initialAssignments,
+  initialTeacherDigest,
+  isTeacher,
 }: Props) {
-  const [examReminders, setExamReminders] = useState(initialExamReminders)
-  const [productUpdates, setProductUpdates] = useState(initialProductUpdates)
-  const [communityReplies, setCommunityReplies] = useState(initialCommunityReplies)
-  const [communityDigest, setCommunityDigest] = useState(initialCommunityDigest)
-  const [communityThreads, setCommunityThreads] = useState(initialCommunityThreads)
-  const [reviewDigest, setReviewDigest] = useState(initialReviewDigest)
-  const [weeklyReport, setWeeklyReport] = useState(initialWeeklyReport)
-  const [markReady, setMarkReady] = useState(initialMarkReady)
-  const [saving, setSaving] = useState<
-    | 'exam'
-    | 'product'
-    | 'communityReplies'
-    | 'communityDigest'
-    | 'communityThreads'
-    | 'reviewDigest'
-    | 'weeklyReport'
-    | 'markReady'
-    | null
-  >(null)
+  const [values, setValues] = useState<Record<PrefField, boolean>>({
+    email_exam_reminders: initialExamReminders,
+    email_product_updates: initialProductUpdates,
+    email_community_replies: initialCommunityReplies,
+    email_community_digest: initialCommunityDigest,
+    email_community_threads: initialCommunityThreads,
+    email_review_digest: initialReviewDigest,
+    email_weekly_report: initialWeeklyReport,
+    email_mark_ready: initialMarkReady,
+    email_assignments: initialAssignments,
+    email_teacher_digest: initialTeacherDigest,
+  })
+  const [saving, setSaving] = useState<PrefField | null>(null)
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
 
-  async function savePreference(
-    field:
-      | 'email_exam_reminders'
-      | 'email_product_updates'
-      | 'email_community_replies'
-      | 'email_community_digest'
-      | 'email_community_threads'
-      | 'email_review_digest'
-      | 'email_weekly_report'
-      | 'email_mark_ready',
-    value: boolean,
-    savingKey:
-      | 'exam'
-      | 'product'
-      | 'communityReplies'
-      | 'communityDigest'
-      | 'communityThreads'
-      | 'reviewDigest'
-      | 'weeklyReport'
-      | 'markReady'
-  ) {
-    setSaving(savingKey)
+  function setValue(field: PrefField, value: boolean) {
+    setValues((prev) => ({ ...prev, [field]: value }))
+  }
+
+  async function savePreference(field: PrefField, value: boolean) {
+    setValue(field, value)
+    setSaving(field)
     setErrorMsg('')
     setSuccessMsg('')
 
-    const res = await fetch('/api/account/preferences', {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ [field]: value }),
-    })
-
-    setSaving(null)
-    if (!res.ok) {
-      const data = await res.json().catch(() => ({}))
-      setErrorMsg(data?.error || 'Could not save preference.')
-      if (field === 'email_exam_reminders') setExamReminders(!value)
-      else if (field === 'email_product_updates') setProductUpdates(!value)
-      else if (field === 'email_community_replies') setCommunityReplies(!value)
-      else if (field === 'email_community_digest') setCommunityDigest(!value)
-      else if (field === 'email_community_threads') setCommunityThreads(!value)
-      else if (field === 'email_review_digest') setReviewDigest(!value)
-      else if (field === 'email_mark_ready') setMarkReady(!value)
-      else setWeeklyReport(!value)
-      return
+    let ok = false
+    let message = 'Could not save preference.'
+    try {
+      const res = await fetch('/api/account/preferences', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ [field]: value }),
+      })
+      ok = res.ok
+      if (!ok) {
+        const data = await res.json().catch(() => ({}))
+        if (typeof data?.error === 'string' && data.error) message = data.error
+      }
+    } catch {
+      message = 'Could not reach the server. Check your connection and try again.'
     }
 
+    setSaving(null)
+    if (!ok) {
+      // Put the switch back: it must show what is stored, not what was asked.
+      setValue(field, !value)
+      setErrorMsg(message)
+      return
+    }
     setSuccessMsg('Preferences saved.')
   }
+
+  const rows: PrefRow[] = [...STUDY_ROWS, isTeacher ? TEACHER_DIGEST_ROW : ASSIGNMENTS_ROW]
 
   return (
     <div className="ms-prefs-section space-y-6">
@@ -124,370 +207,66 @@ export function PreferencesSection({
         description="Optional — we only email when you opt in."
       >
         <div className="space-y-4">
-          <label className="ms-pref-toggle flex min-h-[56px] cursor-pointer items-start justify-between gap-4">
-            <span>
-              <span className="block text-sm font-semibold text-[var(--ec-text-primary)]">
-                Exam countdown and study-plan check-ins
-              </span>
-              <span className="mt-0.5 block text-sm text-[var(--ec-text-secondary)]">
-                Gentle nudges as your exam date approaches — and, once you have a study plan, one short email on study mornings with the day&apos;s blocks.
-              </span>
-            </span>
-            <span className="relative inline-flex shrink-0 items-center">
-              <input
-                type="checkbox"
-                checked={examReminders}
-                onChange={(e) => {
-                  setExamReminders(e.target.checked)
-                  void savePreference(
-                    'email_exam_reminders',
-                    e.target.checked,
-                    'exam'
-                  )
-                }}
-                disabled={saving === 'exam'}
-                className="sr-only"
-                aria-label="Exam countdown reminders"
-              />
-              <span
-                className={`flex h-6 w-11 items-center rounded-full border px-0.5 transition-colors ${
-                  examReminders
-                    ? 'ec-select-active'
-                    : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)]'
-                }`}
-              >
-                <span
-                  className={`h-5 w-5 rounded-full transition-transform ${
-                    examReminders
-                      ? 'translate-x-5 bg-[var(--ec-brand)]'
-                      : 'translate-x-0 bg-[var(--ec-text-secondary)]'
-                  }`}
-                />
-              </span>
-              {saving === 'exam' && (
-                <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />
-              )}
-            </span>
-          </label>
-
-          <label className="ms-pref-toggle flex min-h-[56px] cursor-pointer items-start justify-between gap-4">
-            <span>
-              <span className="block text-sm font-semibold text-[var(--ec-text-primary)]">
-                Product updates
-              </span>
-              <span className="mt-0.5 block text-sm text-[var(--ec-text-secondary)]">
-                New subjects, features, and usage-limit notices.
-              </span>
-            </span>
-            <span className="relative inline-flex shrink-0 items-center">
-              <input
-                type="checkbox"
-                checked={productUpdates}
-                onChange={(e) => {
-                  setProductUpdates(e.target.checked)
-                  void savePreference(
-                    'email_product_updates',
-                    e.target.checked,
-                    'product'
-                  )
-                }}
-                disabled={saving === 'product'}
-                className="sr-only"
-                aria-label="Product updates"
-              />
-              <span
-                className={`flex h-6 w-11 items-center rounded-full border px-0.5 transition-colors ${
-                  productUpdates
-                    ? 'ec-select-active'
-                    : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)]'
-                }`}
-              >
-                <span
-                  className={`h-5 w-5 rounded-full transition-transform ${
-                    productUpdates
-                      ? 'translate-x-5 bg-[var(--ec-brand)]'
-                      : 'translate-x-0 bg-[var(--ec-text-secondary)]'
-                  }`}
-                />
-              </span>
-              {saving === 'product' && (
-                <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />
-              )}
-            </span>
-          </label>
-
-          <label className="ms-pref-toggle flex min-h-[56px] cursor-pointer items-start justify-between gap-4">
-            <span>
-              <span className="block text-sm font-semibold text-[var(--ec-text-primary)]">
-                Exam Room replies
-              </span>
-              <span className="mt-0.5 block text-sm text-[var(--ec-text-secondary)]">
-                Email when someone comments on your post, replies to you, or @mentions you.
-              </span>
-            </span>
-            <span className="relative inline-flex shrink-0 items-center">
-              <input
-                type="checkbox"
-                checked={communityReplies}
-                onChange={(e) => {
-                  setCommunityReplies(e.target.checked)
-                  void savePreference(
-                    'email_community_replies',
-                    e.target.checked,
-                    'communityReplies'
-                  )
-                }}
-                disabled={saving === 'communityReplies'}
-                className="sr-only"
-                aria-label="Exam Room reply emails"
-              />
-              <span
-                className={`flex h-6 w-11 items-center rounded-full border px-0.5 transition-colors ${
-                  communityReplies
-                    ? 'ec-select-active'
-                    : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)]'
-                }`}
-              >
-                <span
-                  className={`h-5 w-5 rounded-full transition-transform ${
-                    communityReplies
-                      ? 'translate-x-5 bg-[var(--ec-brand)]'
-                      : 'translate-x-0 bg-[var(--ec-text-secondary)]'
-                  }`}
-                />
-              </span>
-              {saving === 'communityReplies' && (
-                <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />
-              )}
-            </span>
-          </label>
-
-          <label className="ms-pref-toggle flex min-h-[56px] cursor-pointer items-start justify-between gap-4">
-            <span>
-              <span className="block text-sm font-semibold text-[var(--ec-text-primary)]">
-                Exam Room thread activity
-              </span>
-              <span className="mt-0.5 block text-sm text-[var(--ec-text-secondary)]">
-                Email when someone replies anywhere in a thread on your post (not just direct replies).
-              </span>
-            </span>
-            <span className="relative inline-flex shrink-0 items-center">
-              <input
-                type="checkbox"
-                checked={communityThreads}
-                onChange={(e) => {
-                  setCommunityThreads(e.target.checked)
-                  void savePreference(
-                    'email_community_threads',
-                    e.target.checked,
-                    'communityThreads'
-                  )
-                }}
-                disabled={saving === 'communityThreads'}
-                className="sr-only"
-                aria-label="Exam Room thread activity emails"
-              />
-              <span
-                className={`flex h-6 w-11 items-center rounded-full border px-0.5 transition-colors ${
-                  communityThreads
-                    ? 'ec-select-active'
-                    : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)]'
-                }`}
-              >
-                <span
-                  className={`h-5 w-5 rounded-full transition-transform ${
-                    communityThreads
-                      ? 'translate-x-5 bg-[var(--ec-brand)]'
-                      : 'translate-x-0 bg-[var(--ec-text-secondary)]'
-                  }`}
-                />
-              </span>
-              {saving === 'communityThreads' && (
-                <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />
-              )}
-            </span>
-          </label>
-
-          <label className="ms-pref-toggle flex min-h-[56px] cursor-pointer items-start justify-between gap-4">
-            <span>
-              <span className="block text-sm font-semibold text-[var(--ec-text-primary)]">
-                Exam Room weekly digest
-              </span>
-              <span className="mt-0.5 block text-sm text-[var(--ec-text-secondary)]">
-                Trending discussions in your subjects — sent on Mondays.
-              </span>
-            </span>
-            <span className="relative inline-flex shrink-0 items-center">
-              <input
-                type="checkbox"
-                checked={communityDigest}
-                onChange={(e) => {
-                  setCommunityDigest(e.target.checked)
-                  void savePreference(
-                    'email_community_digest',
-                    e.target.checked,
-                    'communityDigest'
-                  )
-                }}
-                disabled={saving === 'communityDigest'}
-                className="sr-only"
-                aria-label="Exam Room weekly digest"
-              />
-              <span
-                className={`flex h-6 w-11 items-center rounded-full border px-0.5 transition-colors ${
-                  communityDigest
-                    ? 'ec-select-active'
-                    : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)]'
-                }`}
-              >
-                <span
-                  className={`h-5 w-5 rounded-full transition-transform ${
-                    communityDigest
-                      ? 'translate-x-5 bg-[var(--ec-brand)]'
-                      : 'translate-x-0 bg-[var(--ec-text-secondary)]'
-                  }`}
-                />
-              </span>
-              {saving === 'communityDigest' && (
-                <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />
-              )}
-            </span>
-          </label>
-
-          <label className="ms-pref-toggle flex min-h-[56px] cursor-pointer items-start justify-between gap-4">
-            <span>
-              <span className="block text-sm font-semibold text-[var(--ec-text-primary)]">
-                Review reminders
-              </span>
-              <span className="mt-0.5 block text-sm text-[var(--ec-text-secondary)]">
-                A weekly nudge when your spaced-review topics are due — keeps your weak
-                spots sharp.
-              </span>
-            </span>
-            <span className="relative inline-flex shrink-0 items-center">
-              <input
-                type="checkbox"
-                checked={reviewDigest}
-                onChange={(e) => {
-                  setReviewDigest(e.target.checked)
-                  void savePreference('email_review_digest', e.target.checked, 'reviewDigest')
-                }}
-                disabled={saving === 'reviewDigest'}
-                className="sr-only"
-                aria-label="Review reminders"
-              />
-              <span
-                className={`flex h-6 w-11 items-center rounded-full border px-0.5 transition-colors ${
-                  reviewDigest
-                    ? 'ec-select-active'
-                    : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)]'
-                }`}
-              >
-                <span
-                  className={`h-5 w-5 rounded-full transition-transform ${
-                    reviewDigest
-                      ? 'translate-x-5 bg-[var(--ec-brand)]'
-                      : 'translate-x-0 bg-[var(--ec-text-secondary)]'
-                  }`}
-                />
-              </span>
-              {saving === 'reviewDigest' && (
-                <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />
-              )}
-            </span>
-          </label>
-
-          <label className="ms-pref-toggle flex min-h-[56px] cursor-pointer items-start justify-between gap-4">
-            <span>
-              <span className="block text-sm font-semibold text-[var(--ec-text-primary)]">
-                Weekly progress report
-              </span>
-              <span className="mt-0.5 block text-sm text-[var(--ec-text-secondary)]">
-                A private examiner-style summary each week — your marks, grade
-                trajectory, and the topic to drill next. Premium.
-              </span>
-            </span>
-            <span className="relative inline-flex shrink-0 items-center">
-              <input
-                type="checkbox"
-                checked={weeklyReport}
-                onChange={(e) => {
-                  setWeeklyReport(e.target.checked)
-                  void savePreference('email_weekly_report', e.target.checked, 'weeklyReport')
-                }}
-                disabled={saving === 'weeklyReport'}
-                className="sr-only"
-                aria-label="Weekly progress report"
-              />
-              <span
-                className={`flex h-6 w-11 items-center rounded-full border px-0.5 transition-colors ${
-                  weeklyReport
-                    ? 'ec-select-active'
-                    : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)]'
-                }`}
-              >
-                <span
-                  className={`h-5 w-5 rounded-full transition-transform ${
-                    weeklyReport
-                      ? 'translate-x-5 bg-[var(--ec-brand)]'
-                      : 'translate-x-0 bg-[var(--ec-text-secondary)]'
-                  }`}
-                />
-              </span>
-              {saving === 'weeklyReport' && (
-                <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />
-              )}
-            </span>
-          </label>
-
-          <label className="ms-pref-toggle flex min-h-[56px] cursor-pointer items-start justify-between gap-4">
-            <span>
-              <span className="block text-sm font-semibold text-[var(--ec-text-primary)]">
-                Marking finished
-              </span>
-              <span className="mt-0.5 block text-sm text-[var(--ec-text-secondary)]">
-                Marking takes a few minutes, so you can close the tab and get on
-                with something. We&apos;ll email your marks when they land — only
-                if you left before they were ready.
-              </span>
-            </span>
-            <span className="relative inline-flex shrink-0 items-center">
-              <input
-                type="checkbox"
-                checked={markReady}
-                onChange={(e) => {
-                  setMarkReady(e.target.checked)
-                  void savePreference('email_mark_ready', e.target.checked, 'markReady')
-                }}
-                disabled={saving === 'markReady'}
-                className="sr-only"
-                aria-label="Marking finished"
-              />
-              <span
-                className={`flex h-6 w-11 items-center rounded-full border px-0.5 transition-colors ${
-                  markReady
-                    ? 'ec-select-active'
-                    : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)]'
-                }`}
-              >
-                <span
-                  className={`h-5 w-5 rounded-full transition-transform ${
-                    markReady
-                      ? 'translate-x-5 bg-[var(--ec-brand)]'
-                      : 'translate-x-0 bg-[var(--ec-text-secondary)]'
-                  }`}
-                />
-              </span>
-              {saving === 'markReady' && (
-                <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />
-              )}
-            </span>
-          </label>
+          {rows.map((row) => (
+            <PreferenceToggle
+              key={row.field}
+              row={row}
+              checked={values[row.field]}
+              saving={saving === row.field}
+              onChange={(next) => void savePreference(row.field, next)}
+            />
+          ))}
         </div>
       </SettingsSectionCard>
 
-      {errorMsg && <ErrorBox message={errorMsg} />}
-      {successMsg && <SuccessBox message={successMsg} />}
+      <div aria-live="polite">
+        {errorMsg && <ErrorBox message={errorMsg} />}
+        {successMsg && <SuccessBox message={successMsg} />}
+      </div>
     </div>
+  )
+}
+
+function PreferenceToggle({
+  row,
+  checked,
+  saving,
+  onChange,
+}: {
+  row: PrefRow
+  checked: boolean
+  saving: boolean
+  onChange: (next: boolean) => void
+}) {
+  return (
+    <label className="ms-pref-toggle flex min-h-[56px] cursor-pointer items-start justify-between gap-4">
+      <span>
+        <span className="block text-sm font-semibold text-[var(--ec-text-primary)]">{row.title}</span>
+        <span className="mt-0.5 block text-sm text-[var(--ec-text-secondary)]">{row.description}</span>
+      </span>
+      <span className="relative inline-flex shrink-0 items-center">
+        <input
+          type="checkbox"
+          checked={checked}
+          onChange={(e) => onChange(e.target.checked)}
+          disabled={saving}
+          className="peer sr-only"
+          aria-label={row.ariaLabel}
+        />
+        {/* The checkbox is visually hidden, so the track shows its keyboard focus. */}
+        <span
+          className={`flex h-6 w-11 items-center rounded-full border px-0.5 transition-colors peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[var(--ec-brand)] ${
+            checked ? 'ec-select-active' : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)]'
+          }`}
+        >
+          <span
+            className={`h-5 w-5 rounded-full transition-transform ${
+              checked ? 'translate-x-5 bg-[var(--ec-brand)]' : 'translate-x-0 bg-[var(--ec-text-secondary)]'
+            }`}
+          />
+        </span>
+        {saving && <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />}
+      </span>
+    </label>
   )
 }

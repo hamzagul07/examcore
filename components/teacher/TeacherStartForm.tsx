@@ -2,14 +2,8 @@
 
 import { useMemo, useState } from 'react'
 import { completeOnboardingRequest } from '@/lib/onboarding/complete-onboarding-client'
-import {
-  BOARDS,
-  IB_BOARD_ID,
-  IB_DIPLOMA_LEVEL,
-  LEVELS,
-  isIbBoard,
-  subjectsForLevel,
-} from '@/lib/profile-options'
+import { BOARDS, isIbBoard } from '@/lib/profile-options'
+import { startLevelFor, startLevels, startSubjectGroups } from '@/lib/teacher/start-subjects'
 import { SegmentedControl } from '@/components/ui/SegmentedControl'
 import { Field } from '@/components/ui/Field'
 import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
@@ -23,7 +17,7 @@ import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
  * they have. Four fields is the whole of what the server needs to create their
  * account and their first class.
  */
-export function TeacherStartForm({ saveToken }: { saveToken: string }) {
+export function TeacherStartForm() {
   const [board, setBoard] = useState(BOARDS[0].id)
   const [level, setLevel] = useState('A-Level')
   const [subject, setSubject] = useState('')
@@ -32,21 +26,21 @@ export function TeacherStartForm({ saveToken }: { saveToken: string }) {
   const [error, setError] = useState('')
 
   const ib = isIbBoard(board)
-  const effectiveLevel = ib ? IB_DIPLOMA_LEVEL : level
+  // Each board keeps its subjects in its own catalogue (IB, Edexcel units,
+  // AQA/AP content codes), and not every board offers every level, so both
+  // lists come from lib/teacher/start-subjects — the same options
+  // save-profile accepts.
+  const effectiveLevel = startLevelFor(board, level)
 
-  const levelOptions = useMemo(
-    () => LEVELS.filter((l) => l.enabled && (ib ? l.id === IB_DIPLOMA_LEVEL : l.id !== IB_DIPLOMA_LEVEL)),
-    [ib]
-  )
-  const subjectOptions = useMemo(() => subjectsForLevel(effectiveLevel), [effectiveLevel])
+  const levelOptions = useMemo(() => startLevels(board), [board])
+  const subjectGroups = useMemo(() => startSubjectGroups(board, effectiveLevel), [board, effectiveLevel])
 
   // A subject chosen for one level often does not exist at another, so it is
   // cleared rather than silently submitted and rejected by the server.
   function changeBoard(next: string) {
     setBoard(next)
     setSubject('')
-    if (next === IB_BOARD_ID) setLevel(IB_DIPLOMA_LEVEL)
-    else if (level === IB_DIPLOMA_LEVEL) setLevel('A-Level')
+    setLevel(startLevelFor(next, level))
   }
 
   function changeLevel(next: string) {
@@ -63,7 +57,7 @@ export function TeacherStartForm({ saveToken }: { saveToken: string }) {
     setError('')
 
     try {
-      const result = await completeOnboardingRequest(saveToken, {
+      const result = await completeOnboardingRequest({
         board,
         level: effectiveLevel,
         subjects: [subject],
@@ -105,7 +99,7 @@ export function TeacherStartForm({ saveToken }: { saveToken: string }) {
         />
       </fieldset>
 
-      {!ib && (
+      {!ib && levelOptions.length > 1 && (
         <fieldset className="ms-teacher-start__field" disabled={saving}>
           <legend className="ms-teacher-start__legend" id="teacher-level-label">
             Which level?
@@ -114,7 +108,7 @@ export function TeacherStartForm({ saveToken }: { saveToken: string }) {
             className="ms-teacher-start__choices"
             optionClassName="ms-teacher-start__choice"
             aria-labelledby="teacher-level-label"
-            value={level}
+            value={effectiveLevel}
             onChange={changeLevel}
             disabled={saving}
             options={levelOptions.map((l) => ({
@@ -137,10 +131,14 @@ export function TeacherStartForm({ saveToken }: { saveToken: string }) {
           className="ec-input ms-teacher-start__input"
         >
           <option value="">Choose a subject…</option>
-          {subjectOptions.map((s) => (
-            <option key={s.id} value={s.id}>
-              {s.label ?? s.id}
-            </option>
+          {subjectGroups.map((g) => (
+            <optgroup key={g.group} label={g.group}>
+              {g.options.map((s) => (
+                <option key={s.id} value={s.id}>
+                  {s.label ?? s.id}
+                </option>
+              ))}
+            </optgroup>
           ))}
         </select>
       </div>
@@ -182,7 +180,7 @@ export function TeacherStartForm({ saveToken }: { saveToken: string }) {
           <>
             Create my classroom
             <span className="font-mono text-[11px] font-bold" aria-hidden>
-              -&gt;
+              →
             </span>
           </>
         )}

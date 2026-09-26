@@ -131,6 +131,13 @@ export type MarkAwarded = {
   error_classification?: string | null
   line_reference?: string | null
   margin_note?: string | null
+  /**
+   * Set when a teacher overrode this mark (POST /api/teacher/attempt/[id]/
+   * override; stored shape is lib/teacher/override-validate.ts TeacherOverrideMark).
+   * Its reasoning/margin_note are teacher-typed text, not marker output —
+   * anything that puts them in a prompt must fence them as untrusted data.
+   */
+  teacher_override?: true
 }
 
 export type LorBandResult = {
@@ -202,6 +209,12 @@ export type QuestionMarkStatus =
   | 'unattempted'
   | 'marking_failed'
   | 'pending'
+  /**
+   * The student answered it, but it sat beyond the free-tier question limit so
+   * it was never sent to the marker. Distinct from 'unattempted' (blank on the
+   * paper) so it is neither scored as zero nor shown as "Not attempted".
+   */
+  | 'not_marked_preview'
 
 export type QuestionMarkResult = {
   question_number: string
@@ -251,6 +264,16 @@ export type WholePaperResult = {
   /** A submitted question failed to mark, so percentage/grade are withheld. */
   is_incomplete?: boolean
   questions_excluded_count?: number
+  /**
+   * Free preview cut some answered questions (they carry status
+   * 'not_marked_preview'): the full-paper grade is withheld because it would
+   * treat unread answers as zeros.
+   */
+  is_truncated?: boolean
+  /** Questions the student answered (marked, failed or cut by the limit). */
+  questions_in_paper?: number
+  /** The whole-paper question limit that applied to this run. */
+  question_limit?: number
   questions: QuestionMarkResult[]
   summary: string
   paper_code?: string

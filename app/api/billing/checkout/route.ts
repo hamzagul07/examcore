@@ -11,6 +11,10 @@ import {
 import { polarProductId, subscriptionRank } from '@/lib/polar/products'
 import { sanitizeNextPath } from '@/lib/auth-redirect'
 import { resolveSiteUrl } from '@/lib/site-url'
+import {
+  checkoutAllowedOrigins,
+  checkoutOriginAllowed,
+} from '@/lib/billing/checkout-origin'
 import type { BillingPeriod } from '@/lib/database.types'
 
 // A customer can hold only one Polar subscription, so switching plans (upgrade /
@@ -35,10 +39,6 @@ type Body = {
   product?: string
   billing_period?: string
   return_url?: string
-}
-
-function appOrigin(req: NextRequest): string {
-  return req.headers.get('origin') || resolveSiteUrl() || new URL(req.url).origin
 }
 
 export async function POST(req: NextRequest) {
@@ -81,7 +81,26 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  const origin = appOrigin(req)
+  // The success URL is where Polar sends the customer back, session and all.
+  // It used to be built from the Origin header — caller-controlled — so it is
+  // now the configured site origin. Origin (when a browser sends one) has to
+  // be one of the origins this deployment is served on: the site origin, the
+  // origin this request arrived on, and the Vercel deployment/branch URLs —
+  // an exact match with the site origin alone refused every preview deploy
+  // and any www/apex twin. See lib/billing/checkout-origin.ts.
+  const origin = resolveSiteUrl()
+  const allowedOrigins = checkoutAllowedOrigins({
+    siteUrl: origin,
+    requestOrigin: req.nextUrl.origin,
+    vercelUrl: process.env.VERCEL_URL,
+    vercelBranchUrl: process.env.VERCEL_BRANCH_URL,
+  })
+  if (!checkoutOriginAllowed(req.headers.get('origin'), allowedOrigins)) {
+    console.warn(
+      `[billing/checkout] refused origin ${req.headers.get('origin')} (allowed ${allowedOrigins.join(', ')})`
+    )
+    return jsonWithAuthCookies({ error: 'Bad origin' }, pendingCookies, { status: 403 })
+  }
   const returnPath = sanitizeNextPath(body.return_url, '/account')
   const successUrl = `${origin}${returnPath}?checkout=success`
 

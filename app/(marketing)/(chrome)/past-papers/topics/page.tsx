@@ -99,7 +99,7 @@ export default function CambridgeTopicPracticeHubPage() {
       >
         <div className="mt-6 flex flex-wrap gap-3">
           <Link href="/past-papers" className="ec-btn-primary ec-btn-primary--sm">
-            All past papers <span className="h-4 w-4" aria-hidden>-&gt;</span>
+            All past papers <span className="h-4 w-4" aria-hidden>→</span>
           </Link>
           <Link href="/mark" className="ec-btn-ghost ec-btn-ghost--sm">
             Mark a question

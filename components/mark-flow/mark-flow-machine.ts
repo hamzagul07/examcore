@@ -1,3 +1,4 @@
+import { isValidTotalMarks } from '@/lib/marking/total-marks-input'
 import {
   emptyDraft,
   type MarkFlowContext,
@@ -32,27 +33,50 @@ function hasPastPaperContext(draft: MarkFlowDraft): boolean {
   )
 }
 
-function canEnterConfirm(draft: MarkFlowDraft): boolean {
+/** Photographed pages or an answer PDF — either is an uploaded answer. */
+export function hasUploadedAnswer(draft: MarkFlowDraft): boolean {
+  return draft.pageCount > 0 || draft.hasPdf
+}
+
+/**
+ * Whether Capture may hand over to Confirm.
+ *
+ * THE guard, used by the reducer for CONTINUE_TO_CONFIRM and by MarkFlow to
+ * enable the Continue button. It used to be two functions — this one and a
+ * `canContinue` in MarkFlow.tsx that also required a total-marks hint and
+ * counted a PDF as an answer — and they drifted: the button lit up for a PDF
+ * or without a total while the reducer refused the transition, so Continue
+ * did nothing (code review 2026-09-25, §3).
+ *
+ * The total is required for every one-answer source. When the scheme is
+ * missing from the bank the server would otherwise refuse without a total
+ * after a long wait; when a banked scheme exists it still wins over the hint.
+ */
+export function canEnterConfirm(draft: MarkFlowDraft): boolean {
   if (draft.scope === 'whole_paper') {
     return (
-      draft.pageCount > 0 &&
+      hasUploadedAnswer(draft) &&
       !!draft.paperCode?.trim() &&
       !!draft.paperSession?.trim()
     )
   }
   if (draft.questionSource === 'past_paper') {
     if (!hasPastPaperContext(draft)) return false
+    if (!isValidTotalMarks(draft.totalMarksHint)) return false
   } else if (draft.practiceKind === 'combined_script') {
     // Scanned script: question + working on the same upload — no separate stem.
     if (!draft.subjectCode?.trim()) return false
+    // Typed-only has no page to recover the printed question from.
     if (draft.inputKind === 'typed') return false
-    return draft.pageCount > 0
+    if (!isValidTotalMarks(draft.totalMarksHint)) return false
+    return hasUploadedAnswer(draft)
   } else {
     if (!draft.subjectCode?.trim()) return false
     if (!hasQuestionContext(draft)) return false
+    if (!isValidTotalMarks(draft.totalMarksHint)) return false
   }
   if (draft.inputKind === 'typed') return draft.typedAnswer.trim().length > 0
-  return draft.pageCount > 0
+  return hasUploadedAnswer(draft)
 }
 
 export function createInitialContext(

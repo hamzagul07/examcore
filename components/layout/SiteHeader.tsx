@@ -326,7 +326,12 @@ export function SiteHeader({ variant }: Props) {
               config.transparentShell && 'ec-nav-utils--frost'
             )}
           >
-            {showNotifications ? <NotificationBell dismiss={mobileOpen} /> : null}
+            {showNotifications ? (
+              // In the signed-in app the bell is also where a student's class
+              // notifications land (new sets, reminders, feedback), so it does
+              // not disappear with the Exam Room flag there.
+              <NotificationBell dismiss={mobileOpen} alwaysOn={variant === 'app'} />
+            ) : null}
             <ThemeFlip />
           </div>
           {showPageCtas ? (

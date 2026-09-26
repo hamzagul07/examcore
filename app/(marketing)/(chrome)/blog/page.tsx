@@ -312,7 +312,7 @@ export default function BlogIndexPage() {
             >
               Create free account
               <span className="font-mono text-[11px] font-bold" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </div>

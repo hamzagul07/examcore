@@ -6,10 +6,10 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { Label } from '@/components/ui/label'
-import {
-  MarkingResultView,
-  type MarkingResultData,
-} from '@/components/MarkingResultView'
+import type { MarkingResultData } from '@/components/MarkingResultView'
+// Result-only modules are loaded when there is a result: react-markdown,
+// rehype-katex and KaTeX used to ship with the uploader to every visitor.
+import { MarkingResultView } from '@/components/mark/MarkingResultViewLazy'
 import { SolutionSection } from '@/components/SolutionSection'
 import type { LineReference } from '@/components/examiner-ink/ExaminerInkOverlay'
 import { MarkStepsBar } from '@/components/mark/MarkStepsBar'
@@ -40,8 +40,10 @@ import {
 import { getIbMarkableSubjectCodes, resolveSubjectLabel, isIbSubjectCode } from '@/lib/ib/marking-config'
 import { subjectLacksBankedScheme } from '@/lib/marking/scheme-coverage'
 import { ibPracticeCriteriaSummary } from '@/lib/ib/practice-prompts'
-import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
-import { WholePaperResultView } from '@/components/WholePaperResultView'
+import {
+  WholePaperFlow,
+  WholePaperResultView,
+} from '@/components/mark/WholePaperFlowLazy'
 import { PostMarkNextSteps } from '@/components/mark/PostMarkNextSteps'
 import {
   PostMarkTargetGradeAsk,
@@ -65,9 +67,25 @@ import { PredictScorePrompt } from '@/components/mark/PredictScorePrompt'
 import { RunningElsewhereNotice } from '@/components/mark/RunningElsewhereNotice'
 import {
   clearPendingMark,
+  markOwnerFor,
   noteFinishedMark,
   notePendingMark,
 } from '@/lib/marking/pending-mark'
+import { newClientRequestId } from '@/lib/marking/client-request-id'
+import {
+  pollMarkRunUntilSettled,
+  type MarkRunOutcome,
+} from '@/lib/marking/mark-run-status-client'
+import { AttachedRunCard } from '@/components/mark/AttachedRunCard'
+import { revokePagePreviews } from '@/lib/upload/page-previews'
+import { getPayloadTooLargeError } from '@/lib/upload/upload-limits'
+import { usePaperQuestionOptions } from '@/lib/marking/paper-questions-client'
+import { parseTotalMarksInput } from '@/lib/marking/total-marks-input'
+import {
+  MARK_DEEP_LINK,
+  deepLinkQuestion,
+  isPracticeDeepLink,
+} from '@/lib/marking/mark-deep-link'
 import { LeaveNoticeCard } from '@/components/mark/LeaveNotice'
 import { PredictionGap } from '@/components/mark/PredictionGap'
 import { ExaminerAdjustmentNote } from '@/components/mark/ExaminerAdjustmentNote'
@@ -112,6 +130,13 @@ import {
   takeHandoff,
 } from '@/lib/courses/mark-handoff'
 import { parseMarkReturnPath, withReturnTask } from '@/lib/marking/mark-return-url'
+import {
+  ASSIGNMENT_ITEM_FIELD,
+  parseAssignmentDeepLink,
+  type AssignmentDeepLink,
+  type MarkAssignmentLink,
+} from '@/lib/teacher/assignments/link'
+import { AssignmentLinkNotice } from '@/components/mark/AssignmentLinkNotice'
 import { takePracticeAnswer } from '@/lib/marking/practice-answer'
 import {
   questionTotalPromiseIsBroken,
@@ -128,6 +153,7 @@ import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
 import { UpgradeModal } from '@/components/billing/UpgradeModal'
 import { PostMarkPremiumCard } from '@/components/billing/PostMarkPremiumCard'
+import { allowanceRefusedNote } from '@/lib/billing/question-copy'
 import {
   rememberFunnelBoard,
   trackAnswerInputStarted,
@@ -158,7 +184,9 @@ import {
 } from '@/lib/subject-papers'
 import { sessionCodeFromYearSeason } from '@/lib/marking/session'
 import {
+  MARK_LOST_TRACK_NOTICE,
   handleMarkStreamEvent,
+  isJsonResponse,
   parseMarkStreamPart,
   refreshBillingSummary,
   type FullMarksRewritePayload,
@@ -175,9 +203,16 @@ import { ResultScreen } from '@/components/mark-flow/screens/ResultScreen'
 import {
   parsePaperCode,
   parsePaperSession,
-} from '@/components/mark-flow/parse-paper-meta'
+} from '@/lib/marking/paper-session-parse'
 import type { AvailablePapersMap } from '@/components/mark-flow/MarkFlowPastPaperPicker'
 import { isMarkFlowV2Enabled } from '@/lib/marking/mark-flow-flag'
+
+/**
+ * How long /mark follows a run it lost the stream to before giving up. The
+ * process route's own budget is under 13 minutes; anything past that is the
+ * sweep's business, and the student is told to check the dashboard.
+ */
+const ATTACHED_RUN_MAX_WAIT_MS = 15 * 60_000
 
 type SessionInfo = {
   year: number
@@ -222,6 +257,8 @@ type MarkingResult = MarkingResultData & {
    * hasFirstMarkPremium.
    */
   _first_mark_premium?: boolean
+  /** Where the mark went on the teacher's side, when it was sent from a set. */
+  _assignment?: MarkAssignmentLink
 }
 
 type UpgradeModalState = {
@@ -291,7 +328,6 @@ export default function MarkPage() {
     marksEarned: number
     totalMarks: number
   } | null>(null)
-  const [markStreamError, setMarkStreamError] = useState<string | null>(null)
   const [result, setResult] = useState<MarkingResult | null>(null)
   // Sprint 46: the final payload is buffered here the instant marking finishes,
   // but the real results page is not shown until the cinematic wait signals it
@@ -311,10 +347,33 @@ export default function MarkPage() {
   // submit; otherwise mark #1's late error or late rewrite lands on mark #2.
   const markRunSeqRef = useRef(0)
   const markAbortRef = useRef<AbortController | null>(null)
+  /**
+   * Idempotency key for the upload in flight (review §1.8). One per submit;
+   * REUSED when the same upload is re-sent after a connection drop, so the
+   * server finds the run it already started instead of charging a second one.
+   * `reuseRequestIdRef` is armed only by the drop paths and disarmed by any
+   * change to what is being submitted.
+   */
+  const clientRequestIdRef = useRef<string | null>(null)
+  const reuseRequestIdRef = useRef(false)
+  /** Who the pending/finished mark records are written for (see pending-mark.ts). */
+  const markOwnerRef = useRef<string | null>(null)
+  /**
+   * A run this page lost the stream to but is still following. Set when the
+   * connection drops after the run id arrived, or when the server answers a
+   * retry with `duplicate: true`. While `outcome` is null the wait chrome stays
+   * up and run-status is polled; once settled the card shows the result.
+   */
+  const [attachedRun, setAttachedRun] = useState<{
+    markRunId: string
+    outcome: MarkRunOutcome | null
+  } | null>(null)
+  const attachAbortRef = useRef<AbortController | null>(null)
   const [errorMsg, setErrorMsg] = useState('')
-  const [errorRetryable, setErrorRetryable] = useState(false)
   /** Calm recovery after an unfinished mark — not framed as an error alert. */
   const [softMarkNotice, setSoftMarkNotice] = useState<string | null>(null)
+  /** "This script was bigger than what was left" — from `_allowance.marks_refused`. */
+  const [allowanceNote, setAllowanceNote] = useState<string | null>(null)
   const [firstMarkCelebration, setFirstMarkCelebration] = useState(false)
   const [upgradeModal, setUpgradeModal] = useState<UpgradeModalState | null>(null)
   const [billingSummary, setBillingSummary] = useState<BillingSummaryClient | null>(null)
@@ -335,6 +394,12 @@ export default function MarkPage() {
     ibPractice?: boolean
     criteriaSummary?: string | null
   } | null>(null)
+  /**
+   * The teacher's set item this page was opened for (/mark?assignment=…, from
+   * studentMarkHref). Sent with the upload; the server decides whether the
+   * mark hands it in and says so on the result (`_assignment`).
+   */
+  const [assignmentLink, setAssignmentLink] = useState<AssignmentDeepLink | null>(null)
   const [schemeInDb, setSchemeInDb] = useState<boolean | null>(null)
 
   const [availablePapers, setAvailablePapers] = useState<AvailablePapers | null>(
@@ -355,7 +420,6 @@ export default function MarkPage() {
   const [markIntent, setMarkIntent] = useState<
     'past_paper' | 'practice_question' | 'combined_script'
   >('past_paper')
-  const [paperQuestionOptions, setPaperQuestionOptions] = useState<string[]>([])
   const [wholePaperKey, setWholePaperKey] = useState(0)
   /** Whole-paper pages live inside WholePaperFlow — track dirty for beforeunload (MK-03). */
   const [wholePaperUnsaved, setWholePaperUnsaved] = useState(false)
@@ -465,11 +529,17 @@ export default function MarkPage() {
       : false
 
   const cinematicActive = loading && !!markProgress
+  // The cinematic draws the first page; a HEIC the browser cannot decode
+  // would render as a broken image, so it falls back to the plain wait.
+  const firstPagePreviewUrl =
+    answerPages[0] && !answerPages[0].previewUnavailable
+      ? answerPages[0].previewUrl
+      : null
   const markStage: 0 | 1 | 2 =
     result ? 2 : cinematicActive || loading ? 1 : 0
 
   useEffect(() => {
-    const waitOpen = cinematicActive || !!markStreamError
+    const waitOpen = cinematicActive || !!attachedRun
     if (!waitOpen || typeof window === 'undefined') return
     const mq = window.matchMedia('(max-width: 1023px)')
     if (!mq.matches) return
@@ -478,7 +548,40 @@ export default function MarkPage() {
     return () => {
       document.body.style.overflow = prev
     }
-  }, [cinematicActive, markStreamError])
+  }, [cinematicActive, attachedRun])
+
+  // Previews are blob URLs held for the life of the tab unless revoked. The
+  // uploader releases what it removes; the page releases what it clears and,
+  // here, whatever is still held when the page unmounts mid-mark.
+  const answerPagesRef = useRef<UploadPage[]>([])
+  answerPagesRef.current = answerPages
+  useEffect(() => {
+    return () => {
+      revokePagePreviews(answerPagesRef.current)
+      attachAbortRef.current?.abort()
+    }
+  }, [])
+
+  // Any change to what would be submitted is a new submission: the reuse of
+  // the idempotency key is only for re-sending the SAME upload after a drop.
+  useEffect(() => {
+    reuseRequestIdRef.current = false
+  }, [
+    answerPages,
+    answerPdf,
+    answerTextInput,
+    questionPhoto,
+    questionTextInput,
+    totalMarksInput,
+    marksInQuestion,
+    selectedSubject,
+    selectedComponent,
+    selectedSession,
+    selectedYear,
+    questionNumber,
+    uploadMode,
+    markIntent,
+  ])
 
   /**
    * A single-question mark already in flight for a signed-in student is no
@@ -535,7 +638,9 @@ export default function MarkPage() {
         const {
           data: { user },
         } = await supabase.auth.getUser()
-        if (!user || cancelled) return
+        if (cancelled) return
+        markOwnerRef.current = user?.id ?? null
+        if (!user) return
         const { data: profile } = await supabase
           .from('user_profiles')
           .select('subjects, level, board, target_grade, exam_date')
@@ -716,10 +821,10 @@ export default function MarkPage() {
   useEffect(() => {
     if (typeof window === 'undefined') return
     const sp = new URLSearchParams(window.location.search)
-    if (sp.get('practice') !== '1') return
-    const paper = sp.get('paper') || ''
-    const sessionRaw = sp.get('session') || ''
-    const q = sp.get('q') || sp.get('question') || ''
+    if (!isPracticeDeepLink(sp)) return
+    const paper = sp.get(MARK_DEEP_LINK.paper) || ''
+    const sessionRaw = sp.get(MARK_DEEP_LINK.session) || ''
+    const q = deepLinkQuestion(sp)
     const [subjectCode, componentCode] = paper.split('/')
     if (subjectCode) {
       setSelectedSubject(subjectCode)
@@ -741,14 +846,14 @@ export default function MarkPage() {
     // marks from your question" is the commonest recorded mark failure, and it
     // fires only AFTER the student has waited — so take the number when it is
     // offered. Ignored downstream when the banked scheme supplies its own.
-    const carriedMarks = Number(sp.get('marks'))
-    if (Number.isFinite(carriedMarks) && carriedMarks > 0 && carriedMarks <= 100) {
-      setTotalMarksInput(String(Math.round(carriedMarks)))
+    const carriedMarks = parseTotalMarksInput(sp.get(MARK_DEEP_LINK.marks))
+    if (carriedMarks !== null) {
+      setTotalMarksInput(String(carriedMarks))
     }
     setPracticeContext({
       pattern: sp.get('pattern') || 'this pattern',
       reason: sp.get('reason') || '',
-      returnTo: sp.get('return'),
+      returnTo: sp.get(MARK_DEEP_LINK.returnTo),
     })
   }, [])
 
@@ -793,9 +898,9 @@ export default function MarkPage() {
   useEffect(() => {
     if (typeof window === 'undefined') return
     const sp = new URLSearchParams(window.location.search)
-    if (sp.get('practice') === '1') return
-    const subject = sp.get('subject')?.trim()
-    const topic = sp.get('topic')?.trim()
+    if (isPracticeDeepLink(sp)) return
+    const subject = sp.get(MARK_DEEP_LINK.subject)?.trim()
+    const topic = sp.get(MARK_DEEP_LINK.topic)?.trim()
     if (!subject || !topic) return
 
     setUploadMode('single_question')
@@ -963,6 +1068,35 @@ export default function MarkPage() {
       })
     return () => {
       cancelled = true
+    }
+  }, [])
+
+  // A teacher's set — /mark?assignment=<item>, from the student's set page.
+  // A past-paper item arrives as the practice link above with the item id
+  // added and needs nothing more; a whole paper and a written prompt are set
+  // up here. Declared after the other deep links so these set-ups win.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const link = parseAssignmentDeepLink(new URLSearchParams(window.location.search))
+    if (!link) return
+    setAssignmentLink(link)
+    if (link.mode === 'whole_paper' && link.paper) {
+      const [subjectCode, componentCode] = link.paper.split('/')
+      if (subjectCode) setSelectedSubject(subjectCode)
+      if (componentCode) setSelectedComponent(componentCode)
+      const normalized = normalizePaperSession(link.session ?? '')
+      if (normalized.season) setSelectedSession(normalized.season)
+      if (normalized.year != null) setSelectedYear(normalized.year)
+      setMarkIntent('past_paper')
+      setShowManualPaper(true)
+      setUploadMode('whole_paper')
+    } else if (link.mode === 'prompt') {
+      setUploadMode('single_question')
+      setMarkIntent('practice_question')
+      setShowManualPaper(false)
+      if (link.task) setQuestionTextInput(link.task)
+      if (link.marks !== null) setTotalMarksInput(String(link.marks))
+      setShowOptional(true)
     }
   }, [])
 
@@ -1480,10 +1614,7 @@ export default function MarkPage() {
     uploadMode === 'single_question' &&
     !hasBankedSchemeTotal &&
     !ibPointsMarksShown
-  const parsedTotalMarksInput = (() => {
-    const n = Number(totalMarksInput.trim())
-    return Number.isFinite(n) && n > 0 && n <= 100 ? Math.round(n) : null
-  })()
+  const parsedTotalMarksInput = parseTotalMarksInput(totalMarksInput)
   // "The marks are shown in the question" is a promise, and whenever the
   // question is text in this form it is checkable right here — by the same
   // deterministic extractor the server runs at the gate.
@@ -1539,6 +1670,14 @@ export default function MarkPage() {
   // the mark. The field stays: a typed total is still the most trusted source.
   const totalMarksSatisfied = true
 
+  // The 4 MB payload cap, checked on what is held right now rather than only
+  // at submit — the uploader shows the running total; this keeps Mark honest.
+  const uploadPayloadError = getPayloadTooLargeError([
+    ...answerPages.map((p) => p.file),
+    ...(answerPdf ? [answerPdf] : []),
+    ...(questionPhoto ? [questionPhoto] : []),
+  ])
+
   // Why the submit button is disabled, in words — shown under the button so a
   // greyed-out CTA never leaves the user guessing.
   const submitDisabledReason = !hasAnswer
@@ -1549,6 +1688,8 @@ export default function MarkPage() {
       ? 'Preparing your files — just a moment…'
       : answerPdfError
         ? answerPdfError
+        : uploadPayloadError
+          ? uploadPayloadError
         : submitBlocked
           ? 'You\u2019ve used today\u2019s marking allowance — upgrade or come back tomorrow.'
           : isCombinedMode && !selectedSubject
@@ -1574,50 +1715,20 @@ export default function MarkPage() {
       ? `${selectedSession} ${selectedYear}`
       : ''
 
-  useEffect(() => {
-    const paperCode =
-      uploadMode === 'whole_paper'
-        ? wholePaperCode
-        : !isPracticeMode && selectedSubject && selectedComponent
-          ? `${selectedSubject}/${selectedComponent}`
-          : ''
-    const paperSession =
-      uploadMode === 'whole_paper'
-        ? wholePaperSession
-        : !isPracticeMode && selectedSession && selectedYear !== ''
-          ? `${selectedSession} ${selectedYear}`
-          : ''
-
-    if (!paperCode || !paperSession) {
-      setPaperQuestionOptions([])
-      return
-    }
-    let cancelled = false
-    fetch(
-      `/api/mark/paper-questions?paper_code=${encodeURIComponent(paperCode)}&paper_session=${encodeURIComponent(paperSession)}`
-    )
-      .then((r) => r.json())
-      .then((d) => {
-        if (!cancelled && Array.isArray(d.questions)) {
-          setPaperQuestionOptions(d.questions)
-        }
-      })
-      .catch(() => {
-        if (!cancelled) setPaperQuestionOptions([])
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [
-    uploadMode,
-    wholePaperCode,
-    wholePaperSession,
-    isPracticeMode,
-    selectedSubject,
-    selectedComponent,
-    selectedSession,
-    selectedYear,
-  ])
+  // Question numbers for the selected paper — the same hook the v2 picker
+  // uses, so the two cannot disagree about the endpoint or the response.
+  const paperQuestionOptions = usePaperQuestionOptions(
+    uploadMode === 'whole_paper'
+      ? wholePaperCode
+      : !isPracticeMode && selectedSubject && selectedComponent
+        ? `${selectedSubject}/${selectedComponent}`
+        : '',
+    uploadMode === 'whole_paper'
+      ? wholePaperSession
+      : !isPracticeMode && selectedSession && selectedYear !== ''
+        ? `${selectedSession} ${selectedYear}`
+        : ''
+  )
 
   const markingMode = isPracticeMode
     ? 'general'
@@ -1701,10 +1812,12 @@ export default function MarkPage() {
     const runId = ++markRunSeqRef.current
     const isCurrentRun = () => markRunSeqRef.current === runId
     markAbortRef.current?.abort()
+    attachAbortRef.current?.abort()
     const abortController = new AbortController()
     markAbortRef.current = abortController
     flushSync(() => {
       setLoading(true)
+      setAttachedRun(null)
     })
 
     const releaseSubmit = () => {
@@ -1769,14 +1882,16 @@ export default function MarkPage() {
       // A missing total no longer blocks the mark: the server reads it from
       // the question or the upload, or estimates it and labels the result.
       // Only a typed number that is not a valid total is refused.
-      if (showTotalMarksField && !marksInQuestion && totalMarksInput.trim()) {
-        const n = Number(totalMarksInput.trim())
-        if (!Number.isFinite(n) || n <= 0 || n > 100) {
-          setLoading(false)
-          releaseSubmit()
-          setSoftMarkNotice(SOFT_TOTAL_MARKS_NOTICE)
-          return
-        }
+      if (
+        showTotalMarksField &&
+        !marksInQuestion &&
+        totalMarksInput.trim() &&
+        parseTotalMarksInput(totalMarksInput) === null
+      ) {
+        setLoading(false)
+        releaseSubmit()
+        setSoftMarkNotice(SOFT_TOTAL_MARKS_NOTICE)
+        return
       }
 
       setMarkProgress({ percent: 5, stage: 'reading_work' })
@@ -1787,9 +1902,7 @@ export default function MarkPage() {
       setPredictedMarks(null)
       setPredictionDismissed(false)
       setProvisionalScore(null)
-      setMarkStreamError(null)
       setErrorMsg('')
-      setErrorRetryable(false)
       setSoftMarkNotice(null)
       setResult(null)
       setShowingExample(false)
@@ -1829,6 +1942,16 @@ export default function MarkPage() {
       formData.append('mark_intent', markIntent)
       formData.append('exam_system', selectedMarkBoard)
       formData.append('stream', '1')
+      // The idempotency key. Reused only when this is the same upload being
+      // re-sent after a drop; then the server answers with the run it already
+      // has (`duplicate: true`) and we attach to it below instead of paying twice.
+      const clientRequestId =
+        reuseRequestIdRef.current && clientRequestIdRef.current
+          ? clientRequestIdRef.current
+          : newClientRequestId()
+      clientRequestIdRef.current = clientRequestId
+      reuseRequestIdRef.current = false
+      formData.append('client_request_id', clientRequestId)
       // Always forward the chosen subject, even without a full paper selection,
       // so freeform marks get syllabus-tagged and feed mastery/review.
       if (selectedSubject) formData.append('subject_code', selectedSubject)
@@ -1908,6 +2031,10 @@ export default function MarkPage() {
         }
       }
 
+      // The teacher's set this page was opened for. The server checks the
+      // student may hand in against it, and that this upload is that item.
+      if (assignmentLink) formData.append(ASSIGNMENT_ITEM_FIELD, assignmentLink.itemId)
+
       const res = await fetch('/api/mark/process', {
         method: 'POST',
         body: formData,
@@ -1935,15 +2062,35 @@ export default function MarkPage() {
           setUpgradeModal({ variant: 'anonymous' })
           return
         }
-        setLoading(false)
-        releaseSubmit()
-        setMarkProgress(null)
-        setMarkStreamError(null)
         setErrorMsg('')
         showMarkFailure(
           data.error ||
             'Marking failed — please try again. If it keeps happening, re-upload a clearer photo or PDF.'
         )
+        return
+      }
+
+      // A 200 with a JSON body is not a stream. Either the same key is
+      // already running (attach to that run) or the server refused with a
+      // message. Reading JSON with the SSE reader parsed nothing and reported
+      // the function dead — with a Retry that would have started a second run.
+      if (isJsonResponse(res.headers.get('content-type'))) {
+        const data = (await res.json().catch(() => ({}))) as {
+          duplicate?: boolean
+          mark_run_id?: string | null
+          status?: string
+          error?: string
+        }
+        if (!isCurrentRun()) return
+        if (data?.duplicate && typeof data.mark_run_id === 'string') {
+          attachToRun(data.mark_run_id, isCurrentRun, releaseSubmit)
+          return
+        }
+        setLoading(false)
+        releaseSubmit()
+        setMarkProgress(null)
+        setErrorMsg('')
+        showMarkFailure(data?.error || SOFT_MARK_RETRY_NOTICE)
         return
       }
 
@@ -1957,21 +2104,26 @@ export default function MarkPage() {
           // Filed the moment the run exists, not when the student leaves —
           // there is no event for "about to navigate away" we can trust.
           //
-          // Signed-in only, for the same reason the leave notice is: a guest's
-          // result page redirects to sign-in, so announcing their finished mark
-          // would walk them into a login wall that did not exist when they
-          // started. Guests are told nothing and asked to stay.
-          if (typeof value === 'string' && billingSummary?.signedIn) {
+          // The run id is kept for everyone: it is what a dropped connection
+          // re-attaches to. The pending RECORD is signed-in only, for the same
+          // reason the leave notice is: a guest's result page redirects to
+          // sign-in, so announcing their finished mark would walk them into a
+          // login wall that did not exist when they started.
+          if (typeof value === 'string') {
             currentMarkRunIdRef.current = value
-            notePendingMark({ markRunId: value, startedAt: Date.now() })
+            if (billingSummary?.signedIn) {
+              notePendingMark({
+                markRunId: value,
+                startedAt: Date.now(),
+                owner: markOwnerFor(markOwnerRef.current),
+              })
+            }
           }
         }) as typeof setMarkRunId,
         setProvisionalScore,
         setMarkProgress,
         setMarkContext,
-        setMarkStreamError,
         setErrorMsg,
-        setErrorRetryable,
         setLoading,
         questionNumber,
         onSoftMarkFailure: (serverMessage: string) => {
@@ -2000,6 +2152,10 @@ export default function MarkPage() {
         // pending record here (as it first did) threw that away and the student
         // was told by nobody at all.
         if (outcome === 'error') {
+          // The server ended this run without a result. A retry of the same
+          // upload reuses the key, and the server reuses the row for it
+          // rather than tripping its unique index.
+          reuseRequestIdRef.current = true
           if (markPageMountedRef.current) clearPendingMark()
           else if (currentMarkRunIdRef.current) {
             noteFinishedMark({
@@ -2008,6 +2164,7 @@ export default function MarkPage() {
               marksEarned: null,
               totalMarks: null,
               ok: false,
+              owner: markOwnerFor(markOwnerRef.current),
             })
           }
           return true
@@ -2023,6 +2180,7 @@ export default function MarkPage() {
               marksEarned: landed.marks_earned ?? null,
               totalMarks: landed.total_marks ?? null,
               ok: true,
+              owner: markOwnerFor(markOwnerRef.current),
             })
           }
           finalPayload = event.payload as MarkingResult
@@ -2056,13 +2214,23 @@ export default function MarkPage() {
             releaseSubmit()
             return
           }
+          console.warn('[mark] stream failed before result', streamErr)
+          // The server does not stop when we do: the run keeps going, charges
+          // and emails. With a run id in hand, follow it rather than invite a
+          // second charged run with "tap Mark again" (review §1.8).
+          if (currentMarkRunIdRef.current) {
+            attachToRun(currentMarkRunIdRef.current, isCurrentRun, releaseSubmit)
+            return
+          }
+          // Dropped before the run id arrived. The server may or may not have
+          // started; re-sending the same upload with the same key lets it
+          // answer either way.
+          reuseRequestIdRef.current = true
           setLoading(false)
           releaseSubmit()
           setMarkProgress(null)
-          setMarkStreamError(null)
           setErrorMsg('')
           setSoftMarkNotice(SOFT_MARK_RETRY_NOTICE)
-          console.warn('[mark] stream failed before result', streamErr)
           return
         }
         const { done, value } = chunk
@@ -2088,11 +2256,14 @@ export default function MarkPage() {
       // onReveal commits it. Reaching the end of the stream with nothing means
       // the function died without sending a result.
       if (!finalPayload && isCurrentRun()) {
+        // Same key on the retry: if the row is still 'running' the server
+        // hands it back as a duplicate and we attach; if it errored, the
+        // server reuses the row rather than tripping its unique index.
+        reuseRequestIdRef.current = true
         setLoading(false)
         releaseSubmit()
         setMarkProgress(null)
         setMarkContext(null)
-        setMarkStreamError(null)
         setErrorMsg('')
         setSoftMarkNotice(SOFT_MARK_RETRY_NOTICE)
       }
@@ -2100,15 +2271,91 @@ export default function MarkPage() {
       // An abort means a newer mark took over (or the page tore down) — the
       // user is already looking at that run, so surfacing this would be a lie.
       if (!isCurrentRun() || abortController.signal.aborted) return
+      console.warn('[mark] mark request failed', err)
+      // Nothing came back at all; the upload may still have landed. Reuse
+      // the key so a retry cannot pay twice.
+      reuseRequestIdRef.current = true
       setLoading(false)
       submittingRef.current = false
       setMarkProgress(null)
-      console.warn('[mark] mark request failed', err)
-      setMarkStreamError(null)
       setErrorMsg('')
-      setErrorRetryable(false)
       setSoftMarkNotice(SOFT_MARK_RETRY_NOTICE)
     }
+  }
+
+  /**
+   * Follow a run whose stream this page no longer has.
+   *
+   * Keeps the wait chrome up, polls run-status until the row settles, and
+   * only then decides what to offer: the attempt page on success, or a fresh
+   * submit when the server itself says the run ended without a result. Never
+   * "Mark again" while the server may still be marking.
+   */
+  function attachToRun(
+    markRunId: string,
+    isCurrentRun: () => boolean,
+    releaseSubmit: () => void
+  ) {
+    attachAbortRef.current?.abort()
+    const controller = new AbortController()
+    attachAbortRef.current = controller
+    currentMarkRunIdRef.current = markRunId
+    setMarkRunId(markRunId)
+    if (billingSummary?.signedIn) {
+      notePendingMark({
+        markRunId,
+        startedAt: Date.now(),
+        owner: markOwnerFor(markOwnerRef.current),
+      })
+    }
+    setAttachedRun({ markRunId, outcome: null })
+    // The wait surface keys on `loading && markProgress`; a duplicate reply
+    // arrives before any progress event, so give it a stage to show.
+    setMarkProgress((prev) => prev ?? { percent: 5, stage: 'reading_work' })
+
+    void pollMarkRunUntilSettled(markRunId, {
+      signal: controller.signal,
+      maxWaitMs: ATTACHED_RUN_MAX_WAIT_MS,
+    })
+      .then((settled) => {
+        if (!isCurrentRun() || controller.signal.aborted) return
+        releaseSubmit()
+        setLoading(false)
+        setMarkProgress(null)
+        setMarkContext(null)
+        clearPendingMark()
+        if (settled.kind === 'gone') {
+          // Not ours to read any more, or nothing after the sweep horizon.
+          // A new upload gets a new key.
+          setAttachedRun(null)
+          reuseRequestIdRef.current = false
+          setSoftMarkNotice(MARK_LOST_TRACK_NOTICE)
+          return
+        }
+        const { outcome } = settled
+        if (outcome.ok) {
+          refreshBillingSummary()
+          setAttachedRun({ markRunId, outcome })
+          return
+        }
+        // error / abandoned: the server produced nothing, so a fresh submit
+        // is right. Same key — the server reuses the row for it.
+        setAttachedRun(null)
+        reuseRequestIdRef.current = true
+        showMarkFailure(SOFT_MARK_RETRY_NOTICE)
+      })
+      .catch(() => {
+        /* aborted by a newer submit or by leaving the page */
+      })
+  }
+
+  /** The settled card's "Mark another": back to a clean form. */
+  function dismissAttachedRun() {
+    attachAbortRef.current?.abort()
+    setAttachedRun(null)
+    setV2OneAnswerMarking(false)
+    markFlowRef.current?.markAnother()
+    handleMarkNewQuestion()
   }
 
   // The premium full-marks rewrite is generated after the score is delivered,
@@ -2154,7 +2401,6 @@ export default function MarkPage() {
     setResult(fixture as MarkingResult)
     setShowingExample(true)
     setErrorMsg('')
-    setMarkStreamError(null)
     // Keep deep-link / refresh in sync with the sample (and IB board).
     if (typeof window !== 'undefined') {
       const url = new URL(window.location.href)
@@ -2199,7 +2445,6 @@ export default function MarkPage() {
     submittingRef.current = false
     setMarkProgress(null)
     setMarkContext(null)
-    setMarkStreamError(null)
     setPendingResult(null)
     pendingResultRef.current = null
     markFlowRef.current?.markingDone()
@@ -2254,9 +2499,11 @@ export default function MarkPage() {
 
   function resetForm() {
     setResult(null)
+    setAllowanceNote(null)
     setPendingResult(null)
     pendingResultRef.current = null
     setMarkProgress(null)
+    revokePagePreviews(answerPages)
     setAnswerPages([])
     setQuestionPhoto(null)
     setQuestionTextInput('')
@@ -2265,7 +2512,6 @@ export default function MarkPage() {
     // doesn't require re-selecting. Only clear the per-question number.
     setQuestionNumber('')
     setErrorMsg('')
-    setErrorRetryable(false)
   }
 
   // After a result is shown: clear the photo + result, keep the question
@@ -2273,9 +2519,9 @@ export default function MarkPage() {
   // can immediately mark another attempt at the same question.
   function handleMarkAnotherAttempt() {
     setResult(null)
+    revokePagePreviews(answerPages)
     setAnswerPages([])
     setErrorMsg('')
-    setErrorRetryable(false)
     if (typeof window !== 'undefined') {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
@@ -2292,16 +2538,20 @@ export default function MarkPage() {
   // Apply the `_allowance` block from a successful mark: refresh the header chip,
   // set the approaching-limit banner (only set by the API in warn/enforce), and
   // nudge free users to explore plans (any mode).
-  function handleAllowance(_block?: AllowanceBlock) {
+  function handleAllowance(block?: AllowanceBlock) {
     // The refreshed summary is what PostMarkPremiumCard renders from — the
     // card itself decides free-meter vs paid-warning vs nothing.
     refreshBillingSummary()
+    // The one thing the summary cannot say: a multi-question script was
+    // marked in full but only partly charged because the cap ran out. Said
+    // once, with the result, so the chip not moving is not a mystery.
+    setAllowanceNote(allowanceRefusedNote(block))
   }
 
   // V2 treats any in-flight mark as wait (covers the gap before markProgress lands).
   const waitOpen =
     cinematicActive ||
-    !!markStreamError ||
+    !!attachedRun ||
     (markFlowV2 && (loading || v2OneAnswerMarking) && !result)
   const handleSubmitRef = useRef(handleSubmit)
   handleSubmitRef.current = handleSubmit
@@ -2315,7 +2565,7 @@ export default function MarkPage() {
 
   useEffect(() => {
     if (!markFlowV2 || !v2OneAnswerMarking || result) return
-    if (loading || markStreamError || cinematicActive) return
+    if (loading || attachedRun || cinematicActive) return
     const t = window.setTimeout(() => {
       setV2OneAnswerMarking((still) => {
         if (!still) return still
@@ -2328,34 +2578,26 @@ export default function MarkPage() {
     markFlowV2,
     v2OneAnswerMarking,
     loading,
-    markStreamError,
+    attachedRun,
     cinematicActive,
     result,
   ])
 
-  const retryV2Mark = () => {
-    setMarkStreamError(null)
-    setErrorMsg('')
-    setErrorRetryable(false)
-    setSoftMarkNotice(null)
-    setV2OneAnswerMarking(true)
-    void handleSubmit({
-      preventDefault: () => {},
-    } as React.FormEvent)
-  }
-
   const cancelV2Mark = () => {
     markAbortRef.current?.abort()
+    attachAbortRef.current?.abort()
+    // Cancelling here does not stop the server. Keep the key so re-submitting
+    // the same upload attaches to that run instead of starting another.
+    reuseRequestIdRef.current = true
     setLoading(false)
     submittingRef.current = false
     setV2OneAnswerMarking(false)
-    setMarkStreamError(null)
+    setAttachedRun(null)
     setMarkProgress(null)
     setMarkContext(null)
     setPendingResult(null)
     pendingResultRef.current = null
     setErrorMsg('')
-    setErrorRetryable(false)
     setSoftMarkNotice(null)
     markFlowRef.current?.cancelMarking()
   }
@@ -2397,6 +2639,7 @@ export default function MarkPage() {
         key={`v2-wp-${v2WholePaperSeed.paperCode}-${v2WholePaperSeed.paperSession}`}
         paperCode={v2WholePaperSeed.paperCode}
         paperSession={v2WholePaperSeed.paperSession}
+        assignmentItemId={assignmentLink?.mode === 'whole_paper' ? assignmentLink.itemId : null}
         questionOptions={paperQuestionOptions}
         seed={{
           pages: v2WholePaperSeed.pages,
@@ -2406,7 +2649,6 @@ export default function MarkPage() {
         onPhaseChange={setV2WpPhase}
         onError={(msg) => {
           setErrorMsg('')
-          setErrorRetryable(false)
           setSoftMarkNotice(softNoticeForMarkFailure(msg))
         }}
         onReset={() => {
@@ -2513,7 +2755,19 @@ export default function MarkPage() {
    * prediction.
    */
   const waitExtras = (() => {
-    if (markStreamError || pendingResult) return null
+    // A run followed after a drop replaces the prediction prompt: there is no
+    // stream to file a prediction against, and the card is the honest status.
+    if (attachedRun) {
+      return (
+        <AttachedRunCard
+          outcome={attachedRun.outcome}
+          signedIn={!!billingSummary?.signedIn}
+          onMarkAnother={attachedRun.outcome ? dismissAttachedRun : undefined}
+          headingId={attachedRun.outcome ? 'marking-wait-title' : undefined}
+        />
+      )
+    }
+    if (pendingResult) return null
     // Guests have no inbox and no saved result, so they genuinely do have to
     // stay — the notice is only true for signed-in students.
     const canEmail = !!billingSummary?.signedIn
@@ -2558,7 +2812,7 @@ export default function MarkPage() {
     !v2WholePaperSeed &&
     !(result?.whole_paper)
   ) {
-    const showWaitChrome = waitOpen && !cinematicActive && !markStreamError
+    const showWaitChrome = waitOpen && !cinematicActive
     const resultSlot =
       result && !result.whole_paper ? (
         <ResultScreen
@@ -2567,6 +2821,7 @@ export default function MarkPage() {
             setResult(null)
             setV2WholePaperSeed(null)
             setV2OneAnswerMarking(false)
+            revokePagePreviews(answerPages)
             setAnswerPages([])
             setAnswerPdf(null)
             setAnswerTextInput('')
@@ -2626,30 +2881,16 @@ export default function MarkPage() {
           </div>
         ) : null}
         {showWaitChrome ? <MarkingScreenHeader scope="one_answer" /> : null}
-        {cinematicActive || markStreamError ? (
+        {cinematicActive && !attachedRun?.outcome ? (
           <CinematicMarkingExperience
             stage={markProgress?.stage ?? 'reading_work'}
             context={markContext}
-            imageUrl={answerPages[0]?.previewUrl ?? null}
+            imageUrl={firstPagePreviewUrl}
             resultReady={!!pendingResult}
             lineReferences={pendingResult?.line_references ?? null}
             onReveal={handleReveal}
-            error={markStreamError}
-            onRetry={errorRetryable ? retryV2Mark : undefined}
-            onBackToUpload={cancelV2Mark}
-            retryDisabled={
-              loading ||
-              !(
-                answerPages.length > 0 ||
-                !!answerPdf ||
-                answerTextInput.trim().length > 0
-              ) ||
-              hasCompressingPages(answerPages) ||
-              questionPhotoCompressing ||
-              !!answerPdfError
-            }
           />
-        ) : (
+        ) : attachedRun ? null : (
           <p className="text-sm text-[var(--ec-text-secondary)]" role="status">
             {billingSummary && isMax(billingSummary.access)
               ? 'Max priority — starting deep mark…'
@@ -2911,7 +3152,7 @@ export default function MarkPage() {
                   >
                     Back to lesson
                     <span className="font-mono text-xs font-bold" aria-hidden>
-                      -&gt;
+                      →
                     </span>
                   </Link>
                 ) : null}
@@ -3132,10 +3373,10 @@ export default function MarkPage() {
                     key={wholePaperKey}
                     paperCode={wholePaperCode}
                     paperSession={wholePaperSession}
+                    assignmentItemId={assignmentLink?.mode === 'whole_paper' ? assignmentLink.itemId : null}
                     questionOptions={paperQuestionOptions}
-                    onError={(msg, retryable) => {
+                    onError={(msg) => {
                       setErrorMsg(msg)
-                      setErrorRetryable(!!retryable)
                     }}
                     onReset={() => {
                       setWholePaperKey((k) => k + 1)
@@ -3569,7 +3810,7 @@ export default function MarkPage() {
                     </span>
                   </span>
                   <span className="font-mono text-sm font-bold text-[var(--ec-brand)]" aria-hidden>
-                    -&gt;
+                    →
                   </span>
                 </button>
               )}
@@ -3755,6 +3996,7 @@ export default function MarkPage() {
                       hasCompressingPages(answerPages) ||
                       questionPhotoCompressing ||
                       !!answerPdfError ||
+                      !!uploadPayloadError ||
                       submitBlocked ||
                       (isPracticeMode &&
                         (!selectedSubject || !hasPracticeQuestion)) ||
@@ -3798,7 +4040,7 @@ export default function MarkPage() {
             )}
             </div>
 
-            {softMarkNotice && !loading && !markStreamError && (
+            {softMarkNotice && !loading && (
               <p
                 className="mt-4 text-center text-sm leading-relaxed text-[var(--ec-text-secondary)]"
                 role="status"
@@ -3806,35 +4048,8 @@ export default function MarkPage() {
                 {softMarkNotice}
               </p>
             )}
-            {errorMsg && !loading && !markStreamError && !softMarkNotice && (
-              <FormErrorAlert
-                message={errorMsg}
-                variant={errorRetryable ? 'warning' : 'error'}
-              >
-                {errorRetryable ? (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setErrorMsg('')
-                      setErrorRetryable(false)
-                      void handleSubmit({
-                        preventDefault: () => {},
-                      } as React.FormEvent)
-                    }}
-                    disabled={
-                      loading ||
-                      !hasAnswer ||
-                      typedAnswerNeedsQuestion ||
-                      hasCompressingPages(answerPages) ||
-                      questionPhotoCompressing ||
-                      !!answerPdfError
-                    }
-                    className="mt-3 rounded border border-[color-mix(in_srgb,var(--ec-chip-warning-text)_40%,transparent)] bg-[var(--ec-chip-warning-bg)] px-4 py-2 text-sm font-medium text-[var(--ec-banner-warning-title)] transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
-                  >
-                    Try again
-                  </button>
-                ) : null}
-              </FormErrorAlert>
+            {errorMsg && !loading && !softMarkNotice && (
+              <FormErrorAlert message={errorMsg} variant="error" />
             )}
           </form>
         )}
@@ -3865,42 +4080,16 @@ export default function MarkPage() {
                 open={waitOpen}
                 className="min-h-full outline-none lg:min-h-0"
               >
-                <CinematicMarkingExperience
-                  stage={markProgress?.stage ?? 'reading_work'}
-                  context={markContext}
-                  imageUrl={answerPages[0]?.previewUrl ?? null}
-                  resultReady={!!pendingResult}
-                  lineReferences={pendingResult?.line_references ?? null}
-                  onReveal={handleReveal}
-                  error={markStreamError}
-                  onRetry={
-                    errorRetryable
-                      ? () => {
-                          setMarkStreamError(null)
-                          setErrorMsg('')
-                          setErrorRetryable(false)
-                          void handleSubmit({
-                            preventDefault: () => {},
-                          } as React.FormEvent)
-                        }
-                      : undefined
-                  }
-                  onBackToUpload={() => {
-                    setLoading(false)
-                    setMarkStreamError(null)
-                    setMarkProgress(null)
-                    setMarkContext(null)
-                    setErrorMsg('')
-                    setErrorRetryable(false)
-                  }}
-                  retryDisabled={
-                    loading ||
-                    !hasAnswer ||
-                    hasCompressingPages(answerPages) ||
-                    questionPhotoCompressing ||
-                    !!answerPdfError
-                  }
-                />
+                {attachedRun?.outcome ? null : (
+                  <CinematicMarkingExperience
+                    stage={markProgress?.stage ?? 'reading_work'}
+                    context={markContext}
+                    imageUrl={firstPagePreviewUrl}
+                    resultReady={!!pendingResult}
+                    lineReferences={pendingResult?.line_references ?? null}
+                    onReveal={handleReveal}
+                  />
+                )}
                 {waitExtras}
               </MarkingWaitOverlay>
             </motion.div>
@@ -3942,6 +4131,7 @@ export default function MarkPage() {
 
         {result && !result.whole_paper && (
           <div className="space-y-8">
+            <AssignmentLinkNotice value={result._assignment} />
             {showingExample && (
               <MarkExampleBanner
                 onDismiss={closeExample}
@@ -3976,7 +4166,7 @@ export default function MarkPage() {
                 </div>
                 <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-[var(--ec-brand)]">
                   See updated insights
-                  <span className="font-mono text-xs font-bold transition-transform group-hover:translate-x-0.5" aria-hidden>-&gt;</span>
+                  <span className="font-mono text-xs font-bold transition-transform group-hover:translate-x-0.5" aria-hidden>→</span>
                 </span>
               </Link>
             )}
@@ -4001,7 +4191,7 @@ export default function MarkPage() {
                 </div>
                 <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-[var(--ec-brand)]">
                   Open Vault
-                  <span className="font-mono text-xs font-bold transition-transform group-hover:translate-x-0.5" aria-hidden>-&gt;</span>
+                  <span className="font-mono text-xs font-bold transition-transform group-hover:translate-x-0.5" aria-hidden>→</span>
                 </span>
               </Link>
             )}
@@ -4026,7 +4216,7 @@ export default function MarkPage() {
                 </div>
                 <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-[var(--ec-brand)]">
                   Back to lesson
-                  <span className="font-mono text-xs font-bold transition-transform group-hover:translate-x-0.5" aria-hidden>-&gt;</span>
+                  <span className="font-mono text-xs font-bold transition-transform group-hover:translate-x-0.5" aria-hidden>→</span>
                 </span>
               </Link>
             ) : null}
@@ -4173,6 +4363,14 @@ export default function MarkPage() {
                     {/* Premium, visible in the flow — meter + one concrete line,
                         replacing a bare "see plans" whisper. Guests get
                         GuestConversionPrompt above instead. */}
+                    {!showingExample && allowanceNote ? (
+                      <p
+                        className="mt-4 text-center text-sm leading-relaxed text-[var(--ec-text-secondary)]"
+                        role="status"
+                      >
+                        {allowanceNote}
+                      </p>
+                    ) : null}
                     {!showingExample ? (
                       <PostMarkPremiumCard summary={billingSummary} />
                     ) : null}

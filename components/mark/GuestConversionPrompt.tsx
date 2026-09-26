@@ -51,7 +51,7 @@ export function GuestConversionPrompt({
           <h2 className="ms-guest-slip__title">
             {scored ? (
               <>
-                You scored <em>{scored}</em> — but this ink isn&apos;t filed.
+                You scored <em>{scored}</em>{' '}— but this ink isn&apos;t filed.
               </>
             ) : (
               <>This mark isn&apos;t filed anywhere.</>
@@ -111,7 +111,7 @@ export function GuestConversionPrompt({
         <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
           M1
         </span>
-        Open your marking desk -&gt;
+        Open your marking desk →
       </Link>
       <p className="mt-3 text-center text-xs text-[var(--ec-text-secondary)]">
         Free — no card needed. You can keep marking as a guest if you&apos;d rather.

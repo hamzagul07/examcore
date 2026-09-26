@@ -101,7 +101,7 @@ export default async function HowItWorksPage() {
             >
               {user ? 'Open marking desk' : 'Create free account'}
               <span className="font-mono text-[11px] font-bold" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </>

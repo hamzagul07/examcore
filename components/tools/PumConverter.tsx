@@ -122,7 +122,7 @@ export function PumConverter() {
                 className="ec-btn-primary inline-flex min-h-[44px]"
                 style={{ marginTop: 12 }}
               >
-                See what each mark was worth <span className="h-4 w-4" aria-hidden>-&gt;</span>
+                See what each mark was worth <span className="h-4 w-4" aria-hidden>→</span>
               </Link>
             </>
           )}

@@ -115,7 +115,7 @@ function CaiePaperHub({
                     <span className="ms-board-slip__meta">Paper {paper}</span>
                   </span>
                   <span className="ms-board-slip__go" aria-hidden>
-                    -&gt;
+                    →
                   </span>
                 </Link>
               </li>
@@ -133,7 +133,7 @@ function CaiePaperHub({
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 M1
               </span>
-              Mark {code} -&gt;
+              Mark {code} →
             </Link>
           </div>
         </div>
@@ -227,7 +227,7 @@ export default async function CaieLessonHubPage({ params }: Props) {
             <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
               M1
             </span>
-            Mark this topic -&gt;
+            Mark this topic →
           </Link>
           <Link
             href={`/courses/${code}/${lesson.slug}`}

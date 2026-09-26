@@ -373,6 +373,45 @@ export async function sendTeacherSeatApprovedEmail(payload: {
   })
 }
 
+/**
+ * The seat request was declined. Awaited by both callers (the admin route and
+ * the grant script), for the same reason as the approval email.
+ *
+ * Carries the reviewer's reason verbatim, because it is the only way the
+ * teacher learns what to fix — "use your school address", "we couldn't find
+ * the school" — and the desk shows the same reason beside "Apply again".
+ * The reason is plain text; textToHtmlParagraphs escapes it for the HTML part.
+ * Their classes keep working either way, and the email says so, since a
+ * decline that reads like a lock-out would lose the teacher and the class.
+ */
+export async function sendTeacherSeatDeclinedEmail(payload: {
+  email: string
+  reason: string
+  freeCap: number
+}): Promise<boolean> {
+  const reason = payload.reason.trim()
+  return sendEmail({
+    to: payload.email,
+    subject: `About your ${SITE_NAME} teacher seat request`,
+    preheader: 'We could not verify it yet — here is why, and how to apply again.',
+    text: [
+      'We could not approve your teacher seat request yet.',
+      '',
+      'What the reviewer wrote:',
+      reason,
+      '',
+      'You can apply again from your teacher desk at any time — a school email address on ' +
+        "your school's own domain is the quickest thing for us to check.",
+      '',
+      `Nothing else changes: your classes, invite codes and sets keep working, and your own ` +
+        `marking stays on the free allowance (${payload.freeCap} marks a month) until a seat is on.`,
+      '',
+      `Questions? Reply to this email or write to ${CONTACT_EMAIL}.`,
+    ].join('\n'),
+    cta: { label: 'Open your teacher desk', href: `${SITE_URL}/teacher/dashboard` },
+  })
+}
+
 export function notifyAdminWaitlistSignup(payload: {
   email: string
   whatsapp: string

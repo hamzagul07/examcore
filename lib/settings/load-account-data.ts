@@ -1,5 +1,6 @@
+import { cache } from 'react'
 import { redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase-server'
+import { createClient, createServiceClient } from '@/lib/supabase-server'
 import {
   DEFAULT_BOARD,
   DEFAULT_LEVEL,
@@ -8,14 +9,24 @@ import {
 import { isOnboardingComplete } from '@/lib/onboarding'
 import { computeBillingSummary } from '@/lib/billing/enforcement'
 import { shouldShowApproachingLimitBanner } from '@/lib/billing/enforcement-mode'
+import { loadMyClasses, type MyClass } from '@/lib/student/assignments'
 import type { SettingsContext } from './types'
 
-export async function loadAccountContext(): Promise<SettingsContext> {
+/**
+ * One session lookup per request, shared by every account loader a page
+ * calls (React `cache` is request-scoped in server components), so adding a
+ * loader does not add an auth round trip.
+ */
+const getAccountSession = cache(async () => {
   const supabase = await createClient()
-
   const {
     data: { user },
   } = await supabase.auth.getUser()
+  return { supabase, user }
+})
+
+export async function loadAccountContext(): Promise<SettingsContext> {
+  const { supabase, user } = await getAccountSession()
 
   if (!user) {
     redirect('/auth/signin')
@@ -24,7 +35,7 @@ export async function loadAccountContext(): Promise<SettingsContext> {
   const { data: profile } = await supabase
     .from('user_profiles')
     .select(
-      'full_name, username, board, level, subjects, onboarded, onboarding_completed, exam_date, target_grade, stage, primary_goal, created_at, email_exam_reminders, email_product_updates, email_community_replies, email_community_digest, email_community_threads, email_review_digest, email_weekly_report, email_mark_ready'
+      'full_name, username, board, level, subjects, onboarded, onboarding_completed, exam_date, target_grade, stage, primary_goal, created_at, email_exam_reminders, email_product_updates, email_community_replies, email_community_digest, email_community_threads, email_review_digest, email_weekly_report, email_mark_ready, email_assignments, email_teacher_digest, role'
     )
     .eq('id', user.id)
     .maybeSingle()
@@ -112,6 +123,30 @@ export async function loadAccountContext(): Promise<SettingsContext> {
       // Defaults on, like the other transactional-ish ones: it only fires when
       // a mark finished after the student had already left the page.
       emailMarkReady: profile?.email_mark_ready !== false,
+      // Both default on (20260926c): a set, its reminders and the teacher's
+      // re-marks are the student's own work; the digest is the teacher's.
+      emailAssignments: profile?.email_assignments !== false,
+      emailTeacherDigest: profile?.email_teacher_digest !== false,
+      isTeacher: profile?.role === 'teacher',
     },
+  }
+}
+
+/**
+ * The classes the signed-in student is in, for Account → My classes
+ * (docs/TEACHER_SYSTEM_SPEC.md §4). Their own RLS client for the memberships
+ * and classes; the service client only for the teachers' display names and
+ * seat status (lib/student/assignments.ts loadMyClasses). An empty list — the
+ * card is then not shown — when signed out or when the read fails: the rest
+ * of the account page must not depend on it.
+ */
+export async function loadAccountClasses(): Promise<MyClass[]> {
+  const { supabase, user } = await getAccountSession()
+  if (!user) return []
+  try {
+    return await loadMyClasses(supabase, createServiceClient(), user.id)
+  } catch (err) {
+    console.error('[account] classes unavailable', err instanceof Error ? err.message : err)
+    return []
   }
 }

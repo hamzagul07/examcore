@@ -36,8 +36,34 @@ truthy(!/<script/i.test(stripRawHtml('<script>alert(1)</script>')), 'strip <scri
 truthy(!/<iframe/i.test(stripRawHtml('<iframe src=x>')), 'strip <iframe>')
 truthy(!/\sonerror=/i.test(stripRawHtml('<img onerror=alert(1)>')), 'neutralize onerror=')
 truthy(!/javascript:/i.test(stripRawHtml('[x](javascript:alert(1))')), 'strip javascript: in text')
+// A single pass leaves `javascript:` behind once the outer copy is removed —
+// the strip must loop until the string stops changing.
+truthy(!/javascript:/i.test(stripRawHtml('[x](javajavascript:script:alert(1))')), 'nested javascript: collapses')
+truthy(
+  !/javascript:/i.test(stripRawHtml('javajavajavascript:script:script:')),
+  'triply nested javascript: collapses'
+)
+truthy(!/vbscript:/i.test(stripRawHtml('[x](vbscript:msgbox)')), 'strip vbscript:')
+truthy(!/vbscript:/i.test(stripRawHtml('vbvbscript:script:')), 'nested vbscript: collapses')
+truthy(!/javascript\s*:/i.test(stripRawHtml('javascript :alert(1)')), 'space before the colon still stripped')
+truthy(!/data:\s*text\/html/i.test(stripRawHtml('[x](data:text/html,<b>)')), 'strip data:text/html')
+truthy(
+  !/data:\s*text\/html/i.test(stripRawHtml('data:text/data:text/htmlhtml')),
+  'nested data:text/html collapses'
+)
+truthy(
+  !/(javascript|vbscript)\s*:/i.test(stripRawHtml('vbjavascript:script:')),
+  'schemes nested inside each other collapse'
+)
+// safeUrl stays the real gate: what the stripper would let through in text
+// form is still refused as a link target.
+eq(safeUrl('java\nscript:alert(1)'), undefined, 'safeUrl rejects newline-split javascript:')
+eq(safeUrl('java\tscript:alert(1)'), undefined, 'safeUrl rejects tab-split javascript:')
+eq(safeUrl('data:image/png;base64,AAAA'), undefined, 'safeUrl rejects data: images too')
 // normal markdown preserved
 eq(stripRawHtml('# Hello **world**'), '# Hello **world**', 'preserve plain markdown')
+eq(stripRawHtml('The data: column shows x'), 'The data: column shows x', 'plain "data:" prose survives')
+eq(stripRawHtml(''), '', 'empty in, empty out')
 
 // --- clamp ---
 eq(clampNoteContent('a'.repeat(30000)).length, 20000, 'clamp to 20000')

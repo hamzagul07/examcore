@@ -100,7 +100,7 @@ export default async function OxfordaqaQualificationPage({ params }: Props) {
                     <span className="ms-board-slip__blurb">{s.blurb}</span>
                   </span>
                   <span className="ms-board-slip__go" aria-hidden>
-                    -&gt;
+                    →
                   </span>
                 </Link>
               </li>
@@ -126,7 +126,7 @@ export default async function OxfordaqaQualificationPage({ params }: Props) {
                     <span className="ms-board-slip__name">Browse {q.label} subjects</span>
                   </span>
                   <span className="ms-board-slip__go" aria-hidden>
-                    -&gt;
+                    →
                   </span>
                 </Link>
               </li>

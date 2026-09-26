@@ -47,7 +47,7 @@ export function EdexcelWrongBoardBridge({
           href="/mark?board=edexcel&subject=WMA11"
           className="ec-btn-primary ec-btn-primary--sm"
         >
-          Mark WMA11 <span className="h-4 w-4" aria-hidden>-&gt;</span>
+          Mark WMA11 <span className="h-4 w-4" aria-hidden>→</span>
         </Link>
       </div>
     </aside>

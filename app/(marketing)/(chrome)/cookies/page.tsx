@@ -36,7 +36,7 @@ export default function CookiesPage() {
                 provider, Supabase). The site cannot work without these.
               </li>
               <li>
-                <strong className="text-[var(--ec-text-primary)]">Preferences</strong> — to
+                <strong className="text-[var(--ec-text-primary)]">Preferences</strong>{' '}— to
                 remember choices such as your theme (light/dark) and exam board, stored in your
                 browser&apos;s <code>localStorage</code> so the app looks the way you left it.
                 We also store when you dismiss the optional blog signup popup (

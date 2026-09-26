@@ -1,4 +1,4 @@
-import type { SubscriptionTier } from '@/lib/database.types'
+import type { BillingPeriod, SubscriptionTier } from '@/lib/database.types'
 import type { EffectiveAccess } from './access'
 
 /**
@@ -56,6 +56,36 @@ export function teacherOmniCap(): number {
   return capFromEnv(process.env.TEACHER_OMNI_CAP, TEACHER_OMNI_CAP_DEFAULT)
 }
 
+/**
+ * The class bonus (docs/TEACHER_SYSTEM_SPEC.md §7): marks a month added to the
+ * cap of a student who is an active member of a live class whose teacher
+ * holds a verified seat.
+ *
+ * Why a bonus on the student's own cap rather than a pool the teacher
+ * sponsors: `reserve_mark_usage` already takes the cap as an argument, so the
+ * bonus rides the existing atomic reservation — no second lock path, no new
+ * usage event type — and a student's marks stay the student's, metered and
+ * refunded exactly as they are today.
+ *
+ * Unlike the teacher caps above, 0 is a valid setting: it switches the bonus
+ * off without a deploy. Anything that is not a non-negative integer falls back
+ * to the default rather than to 0, so a typo in the dashboard cannot quietly
+ * take twenty marks away from every class.
+ */
+export const TEACHER_CLASS_STUDENT_BONUS_DEFAULT = 20
+
+export function teacherClassStudentBonus(): number {
+  const raw = process.env.TEACHER_CLASS_STUDENT_BONUS?.trim()
+  if (!raw) return TEACHER_CLASS_STUDENT_BONUS_DEFAULT
+  const n = Number(raw)
+  return Number.isInteger(n) && n >= 0 ? n : TEACHER_CLASS_STUDENT_BONUS_DEFAULT
+}
+
+/** A bonus as a cap addend: whole, non-negative, finite — never a way to lower a cap. */
+function bonusAddend(bonus: number): number {
+  return Number.isFinite(bonus) && bonus > 0 ? Math.floor(bonus) : 0
+}
+
 export function capForTier(tier: SubscriptionTier): number {
   return TIER_MONTHLY_CAPS[tier] ?? TIER_MONTHLY_CAPS.free
 }
@@ -70,14 +100,22 @@ export function omniCapForTier(tier: SubscriptionTier): number {
  *
  * A teacher gets the teacher cap unless they are paying for something larger;
  * upgrading must never reduce what someone already has.
+ *
+ * `bonus` is the class bonus (see teacherClassStudentBonus), added on top of
+ * whatever the tier gives: an eligible free student marks 5 + 20, a Scholar
+ * 120 + 20. It is additive rather than a floor so that paying never makes the
+ * class worth less. Whether a user is eligible — and that a teacher never is —
+ * is decided by the caller (classBonusFor in ./teacher-seat); this function
+ * only refuses a negative or fractional bonus, so it can never lower a cap.
  */
 export function capForAccess(
   access: EffectiveAccess,
   capTier: SubscriptionTier,
-  isTeacher = false
+  isTeacher = false,
+  bonus = 0
 ): number {
   const base = access === 'free' ? capForTier('free') : capForTier(capTier)
-  return isTeacher ? Math.max(base, teacherMarkCap()) : base
+  return (isTeacher ? Math.max(base, teacherMarkCap()) : base) + bonusAddend(bonus)
 }
 
 export function omniCapForAccess(
@@ -116,22 +154,108 @@ export function tierMarketingName(tier: SubscriptionTier): string {
 }
 
 /**
- * Current usage window for a tier. Subscribers use their Stripe period;
- * free users use the calendar month.
+ * `date` plus `months` calendar months in UTC, with the day-of-month clamped to
+ * the target month's length. Always computed from the ORIGINAL anchor rather
+ * than by stepping month to month, so a Jan 31 anchor gives Feb 28, Mar 31,
+ * Apr 30 — stepping would collapse it to the 28th for good after February.
+ *
+ * UTC throughout: Polar's period timestamps are UTC instants, and a local-time
+ * calendar would move the boundary by an hour across a DST change, which for a
+ * mark at 00:30 on the boundary day is the difference between "this month" and
+ * "next month".
+ */
+export function addUtcMonths(date: Date, months: number): Date {
+  const targetMonth = date.getUTCMonth() + months
+  const lastDay = new Date(Date.UTC(date.getUTCFullYear(), targetMonth + 1, 0)).getUTCDate()
+  return new Date(
+    Date.UTC(
+      date.getUTCFullYear(),
+      targetMonth,
+      Math.min(date.getUTCDate(), lastDay),
+      date.getUTCHours(),
+      date.getUTCMinutes(),
+      date.getUTCSeconds(),
+      date.getUTCMilliseconds()
+    )
+  )
+}
+
+/**
+ * The calendar-month slice of a yearly billing period that contains `now`.
+ *
+ * Anchored on `periodStart`: the sub-windows are [start, start+1mo),
+ * [start+1mo, start+2mo), … so a subscriber who started on the 15th resets on
+ * the 15th every month, and the last slice ends where Polar's period ends.
+ *
+ * Yearly plans used to be metered against the WHOLE Polar period, so a Scholar
+ * yearly ($199) got the monthly cap — 120 marks — once for the entire year,
+ * while monthly got it twelve times. `TIER_MONTHLY_CAPS` are monthly numbers;
+ * this is the window that makes them mean that on a yearly plan.
+ *
+ * `end` is clamped to `periodEnd` when Polar's period ends inside the slice
+ * (the twelfth month is never quite a calendar month from the anchor). A `now`
+ * before `periodStart` gets the first slice; a `now` past `periodEnd` gets the
+ * slice it falls in, unclamped — that only happens on a stale row and the
+ * caller already treats a lapsed subscription on its own terms.
+ */
+export function monthlySubWindow(
+  periodStart: Date,
+  now: Date,
+  periodEnd?: Date | null
+): { start: Date; end: Date } {
+  let n = 0
+  // 1200 months is a century of anchors: a hard stop so a wildly wrong
+  // period_start (a year in 1970, a bad import) cannot spin the gate.
+  while (n < 1200 && addUtcMonths(periodStart, n + 1).getTime() <= now.getTime()) n += 1
+  const start = addUtcMonths(periodStart, n)
+  let end = addUtcMonths(periodStart, n + 1)
+  if (periodEnd && periodEnd.getTime() > start.getTime() && periodEnd.getTime() < end.getTime()) {
+    end = periodEnd
+  }
+  return { start, end }
+}
+
+function parseIso(value: string | null | undefined): Date | null {
+  if (!value) return null
+  const d = new Date(value)
+  return Number.isNaN(d.getTime()) ? null : d
+}
+
+/**
+ * Current usage window for a tier. Subscribers use their Polar period — the
+ * monthly slice of it for a yearly plan (see monthlySubWindow); free users use
+ * the calendar month.
+ *
+ * `now` is injectable for tests only.
  */
 export function currentPeriodWindow(opts: {
   tier: SubscriptionTier
   periodStart?: string | null
   periodEnd?: string | null
+  /**
+   * `user_subscriptions.billing_period`. Only 'yearly' changes anything; null
+   * (legacy rows written before the column, or a free row) means monthly.
+   */
+  billingPeriod?: BillingPeriod | null
+  now?: Date
 }): { start: string; end: string | null; source: 'subscription' | 'free_tier' } {
+  const now = opts.now ?? new Date()
   if (opts.tier !== 'free' && opts.periodStart) {
+    const periodStart = parseIso(opts.periodStart)
+    if (opts.billingPeriod === 'yearly' && periodStart) {
+      const slice = monthlySubWindow(periodStart, now, parseIso(opts.periodEnd))
+      return {
+        start: slice.start.toISOString(),
+        end: slice.end.toISOString(),
+        source: 'subscription',
+      }
+    }
     return {
       start: opts.periodStart,
       end: opts.periodEnd ?? null,
       source: 'subscription',
     }
   }
-  const now = new Date()
   const start = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1))
   const end = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 1))
   return {

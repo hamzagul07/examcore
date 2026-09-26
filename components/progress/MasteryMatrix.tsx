@@ -11,6 +11,8 @@ import {
 } from '@/lib/mastery'
 import { EmptyState } from './EmptyState'
 import { MasteryHeatmap } from './MasteryHeatmap'
+import { formatDisplayDate } from '@/lib/format/display-date'
+import { useDisplayTimeZone } from '@/lib/hooks/useDisplayTimeZone'
 
 type Props = {
   parentMasteries: ParentMastery[]
@@ -278,6 +280,7 @@ function TopicDetailModal({
   attempts: AttemptLite[]
   onClose: () => void
 }) {
+  const timeZone = useDisplayTimeZone()
   const style = MASTERY_STYLES[topic.level]
   const titleId = useId()
 
@@ -332,7 +335,7 @@ function TopicDetailModal({
                 className="flex items-center justify-between rounded-lg border ec-border-color px-3 py-2"
               >
                 <span className="ec-text-secondary">
-                  {new Date(a.created_at).toLocaleDateString()}
+                  {formatDisplayDate(a.created_at, {}, timeZone)}
                 </span>
                 <span className="font-semibold">
                   {a.marks_earned}/{a.total_marks}

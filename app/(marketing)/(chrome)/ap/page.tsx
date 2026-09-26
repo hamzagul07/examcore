@@ -47,7 +47,7 @@ export default function ApHubPage() {
             subject="ap-calculus-ab"
             className="ec-btn-primary inline-flex min-h-[48px] items-center"
           >
-            Mark Calculus AB FRQ -&gt;
+            Mark Calculus AB FRQ →
           </FunnelMarkLink>
           <Link href="/ap/calculus-ab" className="ec-btn-ghost inline-flex min-h-[48px] items-center">
             Calculus AB hub
@@ -64,7 +64,7 @@ export default function ApHubPage() {
                   <span className="ms-board-slip__name">{g.label}</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -82,7 +82,7 @@ export default function ApHubPage() {
                   <span className="ms-board-slip__blurb">{c.blurb}</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -97,7 +97,7 @@ export default function ApHubPage() {
                 </span>
               </span>
               <span className="ms-board-slip__go" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </li>

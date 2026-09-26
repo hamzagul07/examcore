@@ -56,5 +56,10 @@ export type SettingsContext = {
     emailReviewDigest: boolean
     emailWeeklyReport: boolean
     emailMarkReady: boolean
+    /** Work a teacher sets: new set, due-soon reminder, re-marks and notes. */
+    emailAssignments: boolean
+    /** The Sunday class digest — only offered to teachers (`isTeacher`). */
+    emailTeacherDigest: boolean
+    isTeacher: boolean
   }
 }

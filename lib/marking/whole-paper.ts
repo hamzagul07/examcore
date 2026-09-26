@@ -20,11 +20,41 @@ export type SegmentedQuestion = {
   answer_text: string
 }
 
-export function parseWholePaperSegment(raw: string): {
+export type WholePaperSegmentation = {
   paper_code?: string
   paper_session?: string
   questions: SegmentedQuestion[]
-} | null {
+  /**
+   * The model ran out of output before it finished the JSON, so the trailing
+   * questions may be missing from `questions`. The caller must fall back to a
+   * segmentation that cannot lose pages rather than mark what survived.
+   */
+  truncated: boolean
+}
+
+/**
+ * Output that the model never finished. Two signals: the API's own finish
+ * reason, and the raw text not closing its top-level object — `extractJSON`
+ * repairs an unterminated document into a shorter valid one, which is exactly
+ * how a 15-question paper was silently marked as 9.
+ *
+ * Segmentation must echo every answer's text, so this is not an edge case: at
+ * the old 4000-token cap a dense paper overran it routinely.
+ */
+export function isTruncatedSegmentOutput(
+  raw: string,
+  finishReason?: string | null
+): boolean {
+  if (finishReason && finishReason.toUpperCase() === 'MAX_TOKENS') return true
+  const body = raw.replace(/```json|```/gi, '').trim()
+  if (!body) return false
+  return body.startsWith('{') && !body.endsWith('}')
+}
+
+export function parseWholePaperSegment(
+  raw: string,
+  meta?: { finishReason?: string | null }
+): WholePaperSegmentation | null {
   try {
     const parsed = extractJSON(raw) as Record<string, unknown>
     if (!parsed || !Array.isArray(parsed.questions)) return null
@@ -42,10 +72,31 @@ export function parseWholePaperSegment(raw: string): {
           answer_text:
             typeof q.answer_text === 'string' ? q.answer_text : '',
         })),
+      truncated: isTruncatedSegmentOutput(raw, meta?.finishReason),
     }
   } catch {
     return null
   }
+}
+
+/**
+ * Union of two segmentations by question number, `primary` first. Used when
+ * the model's list was cut off: its questions keep their model-cleaned text,
+ * and anything it never reached comes from the page-label split.
+ */
+export function mergeSegmentations(
+  primary: SegmentedQuestion[],
+  fallback: SegmentedQuestion[]
+): SegmentedQuestion[] {
+  const seen = new Set(primary.map((q) => normalizeQKey(q.question_number)))
+  const merged = [...primary]
+  for (const q of fallback) {
+    const key = normalizeQKey(q.question_number)
+    if (seen.has(key)) continue
+    seen.add(key)
+    merged.push(q)
+  }
+  return merged
 }
 
 function buildScoreBlock(
@@ -72,7 +123,8 @@ function buildScoreBlock(
         parsed.component,
         percentage
       )
-      estimated_grade = est.grade
+      // '' means the board has no letter grades (IB, AP): percentage only.
+      estimated_grade = est.grade || undefined
       grade_note = est.note
     }
   }
@@ -82,6 +134,36 @@ function buildScoreBlock(
     percentage,
     estimated_grade,
     grade_note,
+  }
+}
+
+export const PREVIEW_CUT_SUMMARY =
+  'Not marked in the free preview — this question is marked on Scholar.'
+
+/**
+ * The row for a question the student answered but the tier limit cut. It
+ * carries the bank's total (so the paper's structure is intact) and no answer
+ * text, so nothing downstream can mark it without the upgrade.
+ */
+export function buildPreviewCutResult(
+  questionNumber: string,
+  totalMarks: number
+): QuestionMarkResult {
+  return {
+    question_number: questionNumber,
+    marks_earned: 0,
+    total_marks: totalMarks,
+    marking_style: 'point_based',
+    summary: PREVIEW_CUT_SUMMARY,
+    status: 'not_marked_preview',
+    ai_marking: {
+      marks_earned: 0,
+      total_marks: totalMarks,
+      summary: PREVIEW_CUT_SUMMARY,
+      weak_topics: [],
+      what_to_study_next: '',
+    },
+    mark_scheme_id: null,
   }
 }
 
@@ -128,16 +210,36 @@ function normalizeQKey(q: string): string {
   return q.trim().toLowerCase().replace(/\s+/g, '')
 }
 
+/**
+ * Alias kept for the routes that import it: `is_truncated`,
+ * `questions_in_paper` and `question_limit` now live on `WholePaperResult`
+ * itself (lib/marking/types.ts), so the aggregate is the shared type.
+ */
+export type WholePaperAggregate = WholePaperResult
+
+/** Rows that count towards a score: not failed, not cut by the tier limit. */
+function isScoreRow(r: QuestionMarkResult): boolean {
+  return r.status !== 'marking_failed' && r.status !== 'not_marked_preview'
+}
+
 export function aggregateWholePaperResults(
   paperCode: string | undefined,
   paperSession: string | undefined,
   results: QuestionMarkResult[],
-  paperQuestions: PaperQuestionMeta[] = []
-): WholePaperResult {
+  paperQuestions: PaperQuestionMeta[] = [],
+  opts: { questionLimit?: number } = {}
+): WholePaperAggregate {
   const failed = results.filter((r) => r.status === 'marking_failed')
   const excluded = failed.length
   const isIncomplete = excluded > 0
   const scorable = results.filter((r) => r.status !== 'marking_failed')
+
+  // Free preview: questions the student answered that the tier limit cut.
+  // They stay in the list (so the student sees what an upgrade would mark)
+  // but never in a denominator — treating them as zero, as the old
+  // 'unattempted' fill did, reported a 3-of-8 preview as a 30% paper.
+  const previewCut = results.filter((r) => r.status === 'not_marked_preview')
+  const isTruncated = previewCut.length > 0
 
   // Score only successfully marked / unattempted rows — never invent totals
   // from marking_failed (often total_marks = 0 bank-miss).
@@ -167,7 +269,7 @@ export function aggregateWholePaperResults(
     .map((qn) => byNum.get(normalizeQKey(qn)))
     .filter((q): q is QuestionMarkResult => !!q)
 
-  const scoreRows = fullList.filter((r) => r.status !== 'marking_failed')
+  const scoreRows = fullList.filter(isScoreRow)
   const fullEarned = scoreRows.reduce((s, r) => s + r.marks_earned, 0)
   const fullTotal = scoreRows.reduce((s, r) => s + r.total_marks, 0)
 
@@ -177,11 +279,13 @@ export function aggregateWholePaperResults(
     paperCode,
     !isIncomplete
   )
+  // A grade projected across a paper most of which was never marked is noise;
+  // the attempted block still projects, because that is what was marked.
   const full_paper_score = buildScoreBlock(
     fullEarned,
     fullTotal,
     paperCode,
-    !isIncomplete
+    !isIncomplete && !isTruncated
   )
 
   const show_dual_scores =
@@ -208,11 +312,23 @@ export function aggregateWholePaperResults(
       ? `Marking incomplete. Successfully marked questions you attempted: ${attemptedEarned}/${attemptedTotal}. Full paper score so far (unattempted = 0): ${fullEarned}/${fullTotal}. No percentage or grade is projected until every attempted question is marked.`
       : `Marking incomplete: ${fullEarned}/${fullTotal} across ${scoreRows.length} successfully marked question(s). No percentage or grade is projected until every attempted question is marked.`
     : show_dual_scores
-      ? `On questions you attempted: ${attemptedEarned}/${attemptedTotal} (${attempted_score.percentage}%). Full paper (unattempted = 0): ${fullEarned}/${fullTotal} (${full_paper_score.percentage}%).`
-      : `You scored ${fullEarned}/${fullTotal} (${full_paper_score.percentage}%) across ${scoreRows.length} question(s).`
+      ? `On questions you attempted: ${attemptedEarned}/${attemptedTotal} (${attempted_score.percentage}%). Full paper (unattempted = 0): ${fullEarned}/${fullTotal}${
+          full_paper_score.percentage !== undefined
+            ? ` (${full_paper_score.percentage}%)`
+            : ''
+        }.`
+      : `You scored ${fullEarned}/${fullTotal}${
+          full_paper_score.percentage !== undefined
+            ? ` (${full_paper_score.percentage}%)`
+            : ''
+        } across ${scoreRows.length} question(s).`
 
   if (excluded > 0) {
     summary += ` [${excluded} question${excluded > 1 ? 's' : ''} could not be marked — see details below]`
+  }
+  if (isTruncated) {
+    const marked = results.length - previewCut.length
+    summary = `Free preview: marked ${marked} of the ${results.length} questions you answered — ${previewCut.length} more ${previewCut.length === 1 ? 'is' : 'are'} marked on Scholar. ${summary}`
   }
   if (estimated_grade) {
     summary += ` Estimated grade: ${estimated_grade}.`
@@ -230,6 +346,11 @@ export function aggregateWholePaperResults(
     show_dual_scores,
     is_incomplete: isIncomplete || undefined,
     questions_excluded_count: excluded > 0 ? excluded : undefined,
+    is_truncated: isTruncated || undefined,
+    questions_in_paper: isTruncated ? results.length : undefined,
+    question_limit: isTruncated
+      ? opts.questionLimit ?? results.length - previewCut.length
+      : undefined,
     questions: fullList,
     summary,
     paper_code: paperCode,

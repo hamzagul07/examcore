@@ -57,7 +57,7 @@ export default function JoinPage() {
           className="ec-btn-primary inline-flex w-full min-h-[48px] items-center justify-center gap-2"
           disabled={!isValidInviteCode(normalized)}
         >
-          Continue <span className="h-5 w-5" aria-hidden>-&gt;</span>
+          Continue <span className="h-5 w-5" aria-hidden>→</span>
         </button>
       </form>
     </div>

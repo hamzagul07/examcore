@@ -173,7 +173,7 @@ export default function ExamCountdownPage() {
           >
             Mark a paper free
             <span className="font-mono text-[11px] font-bold" aria-hidden>
-              -&gt;
+              →
             </span>
           </Link>
         </aside>

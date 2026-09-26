@@ -31,6 +31,9 @@ export async function GET(req: NextRequest) {
       used: summary.questions.used,
       cap: summary.questions.cap,
       remaining: summary.questions.remaining,
+      // Marks a month added to the cap by a verified teacher's class (spec §7);
+      // the credit chip and limit banner read it via classBonusFromSummary().
+      class_bonus: summary.questions.class_bonus,
       warning: summary.questions.warning && showMetering,
       blocked:
         enforce &&

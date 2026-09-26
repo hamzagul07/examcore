@@ -68,7 +68,7 @@ export default async function ApCoursePage({ params }: Props) {
               href="#ap-study-path-h"
               className="ec-btn-primary inline-flex min-h-[48px] items-center gap-2"
             >
-              Start study path -&gt;
+              Start study path →
             </a>
           ) : null}
           {markingLive ? (
@@ -83,7 +83,7 @@ export default async function ApCoursePage({ params }: Props) {
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 FRQ
               </span>
-              Mark AP {course.name} -&gt;
+              Mark AP {course.name} →
             </Link>
           ) : null}
           <Link
@@ -123,7 +123,7 @@ export default async function ApCoursePage({ params }: Props) {
                   </span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>

@@ -49,7 +49,7 @@ export default function CaieHubPage() {
                   <span className="ms-board-slip__meta">{h.levelSlug}</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -74,7 +74,7 @@ export default function CaieHubPage() {
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 M1
               </span>
-              Mark Edexcel IAL -&gt;
+              Mark Edexcel IAL →
             </Link>
             <Link href="/edexcel" className="ec-btn-ghost inline-flex min-h-[48px]">
               Browse Edexcel hubs

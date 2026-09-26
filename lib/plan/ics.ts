@@ -14,8 +14,21 @@
 
 import { formatMinutes, workBlocks, type HydratedPlan } from '@/lib/plan/plan-view'
 
-function escapeText(s: string): string {
-  return s.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n')
+/**
+ * RFC 5545 §3.3.11 TEXT escaping. Every line break — CRLF, LF, and a lone CR
+ * — becomes the literal `\n`. The previous `/\r?\n/` left a bare `\r`
+ * through, and a CR is a line terminator in the output stream: a task label
+ * carrying one (pasted from a Windows editor, or a `\r` a form control left
+ * behind) broke the DESCRIPTION line mid-way and the rest of it parsed as a
+ * property of its own. Order matters: backslashes first, or the escapes
+ * introduced afterwards would be doubled.
+ */
+export function escapeText(s: string): string {
+  return s
+    .replace(/\\/g, '\\\\')
+    .replace(/;/g, '\\;')
+    .replace(/,/g, '\\,')
+    .replace(/\r\n|\r|\n/g, '\\n')
 }
 
 /** RFC 5545 §3.1: fold at 75 octets with CRLF + single space. */

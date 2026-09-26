@@ -3,13 +3,13 @@ import { createClient } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase/service'
 import { CONTACT_EMAIL } from '@/lib/site-config'
 import {
+  RateLimitUnavailableError,
   checkContactRateLimit,
   clientIp,
-  incrementContactRateLimit,
 } from '@/lib/rate-limit'
 import { notifyAdminContactMessage, sendContactConfirmationEmail } from '@/lib/email/notifications'
 import { HONEYPOT_FIELD, isHoneypotTripped } from '@/lib/honeypot'
-import { rateLimitJson } from '@/lib/http/rate-limit-response'
+import { rateLimitJson, rateLimitUnavailableJson } from '@/lib/http/rate-limit-response'
 
 type Body = {
   name?: string
@@ -56,7 +56,18 @@ export async function POST(request: Request) {
 
   const admin = createServiceClient()
   const ip = clientIp(request)
-  const rate = await checkContactRateLimit(admin, ip, user?.id ?? null)
+  let rate
+  try {
+    rate = await checkContactRateLimit(admin, ip, user?.id ?? null)
+  } catch (err) {
+    // Limiter outage: say "try again", never an unhandled 500 (and never
+    // wave the message through unmetered).
+    if (!(err instanceof RateLimitUnavailableError)) throw err
+    console.error('[contact] rate limit unavailable:', err.message)
+    return rateLimitUnavailableJson(
+      `Could not send your message just now. Try again in a moment, or email us at ${CONTACT_EMAIL}.`
+    )
+  }
   if (!rate.allowed) {
     return rateLimitJson(rate.message)
   }
@@ -78,7 +89,7 @@ export async function POST(request: Request) {
     )
   }
 
-  await incrementContactRateLimit(admin, ip, rate.count)
+  // The slot was consumed atomically by checkContactRateLimit above.
 
   void notifyAdminContactMessage({
     name,

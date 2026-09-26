@@ -21,7 +21,7 @@ export function MaxVaultTile() {
         </div>
       </div>
       <Link href="/dashboard/vault" className="ms-vault-slip__cta">
-        See what&apos;s in your Vault -&gt;
+        See what&apos;s in your Vault →
       </Link>
     </aside>
   )

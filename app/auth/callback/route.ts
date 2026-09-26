@@ -4,7 +4,7 @@ import {
   createServiceClient,
   redirectWithAuthCookies,
 } from '@/lib/supabase-server'
-import { resolvePostAuthPath } from '@/lib/auth-redirect'
+import { resolvePostAuthPath, resolveSameOriginUrl } from '@/lib/auth-redirect'
 import { isOnboardingComplete } from '@/lib/onboarding'
 import { handlePostAuthEmails } from '@/lib/email/notifications'
 import { runAfterResponse } from '@/lib/after-response'
@@ -82,10 +82,16 @@ export async function GET(request: NextRequest) {
     .maybeSingle()
 
   const onboarded = isOnboardingComplete(profile)
-  const destination = resolvePostAuthPath(onboarded, nextParam)
+  // Sink guard: the URL parser, not string prefixing, decides that the
+  // destination stays on this origin (review §1.1). The redirect carries the
+  // URL built on the checked origin — never a path string resolved a second
+  // time, which is where a dot-segment path that normalised to `//evil.com`
+  // used to leave the site.
+  const destination =
+    resolveSameOriginUrl(
+      resolvePostAuthPath(onboarded, nextParam),
+      requestUrl.origin
+    ) ?? new URL(resolvePostAuthPath(onboarded, null), requestUrl.origin)
 
-  return redirectWithAuthCookies(
-    `${requestUrl.origin}${destination}`,
-    pendingCookies
-  )
+  return redirectWithAuthCookies(destination, pendingCookies)
 }

@@ -12,6 +12,7 @@ import {
 } from 'react'
 import type { UploadPage } from '@/components/upload/PageUploader'
 import type { MarkExamBoard } from '@/components/mark/MarkBoardPicker'
+import { revokePagePreviews } from '@/lib/upload/page-previews'
 import { DraftGuard } from './DraftGuard'
 import {
   CaptureScreen,
@@ -19,6 +20,7 @@ import {
 } from './screens/CaptureScreen'
 import { ConfirmScreen } from './screens/ConfirmScreen'
 import {
+  canEnterConfirm,
   createInitialContext,
   markFlowReducer,
 } from './mark-flow-machine'
@@ -55,70 +57,6 @@ type Props = {
   submitError?: string | null
   /** Rendered while machine is in marking/result (host wait / result UI). */
   hostSlot?: ReactNode
-}
-
-function canContinue(
-  draft: MarkFlowDraft,
-  pages: UploadPage[],
-  pdf: File | null,
-  questionPhoto: File | null
-) {
-  if (draft.scope === 'whole_paper') {
-    return (
-      (pages.length > 0 || !!pdf) &&
-      !!draft.paperCode?.trim() &&
-      !!draft.paperSession?.trim()
-    )
-  }
-  if (draft.questionSource === 'past_paper') {
-    const hasPaper =
-      !!draft.paperCode?.trim() &&
-      !!draft.paperSession?.trim() &&
-      !!draft.questionNumber?.trim()
-    if (!hasPaper) return false
-    // Required even for past paper: if the scheme is missing from the bank the
-    // server rejects without a total after a long wait. When a banked scheme
-    // exists it still wins over this hint.
-    if (
-      !(
-        typeof draft.totalMarksHint === 'number' &&
-        draft.totalMarksHint > 0 &&
-        draft.totalMarksHint <= 100
-      )
-    ) {
-      return false
-    }
-  } else if (draft.practiceKind === 'combined_script') {
-    if (!draft.subjectCode?.trim()) return false
-    // Typed-only has no page to recover the printed question from.
-    if (draft.inputKind === 'typed') return false
-    if (
-      !(
-        typeof draft.totalMarksHint === 'number' &&
-        draft.totalMarksHint > 0 &&
-        draft.totalMarksHint <= 100
-      )
-    ) {
-      return false
-    }
-    return pages.length > 0 || !!pdf
-  } else if (draft.questionSource === 'practice') {
-    if (!draft.subjectCode?.trim()) return false
-    const hasQuestion =
-      draft.questionText.trim().length >= 10 || !!questionPhoto
-    if (!hasQuestion) return false
-    if (
-      !(
-        typeof draft.totalMarksHint === 'number' &&
-        draft.totalMarksHint > 0 &&
-        draft.totalMarksHint <= 100
-      )
-    ) {
-      return false
-    }
-  }
-  if (draft.inputKind === 'typed') return draft.typedAnswer.trim().length > 0
-  return pages.length > 0 || !!pdf
 }
 
 /**
@@ -158,7 +96,12 @@ export const MarkFlow = forwardRef<MarkFlowHandle, Props>(function MarkFlow(
       cancelMarking: () => dispatch({ type: 'CANCEL_MARKING' }),
       markingDone: () => dispatch({ type: 'MARKING_DONE' }),
       markAnother: () => {
-        setPages([])
+        // Release the previews with the pages, or every blob URL from every
+        // mark stays registered for the life of the tab.
+        setPages((prev) => {
+          revokePagePreviews(prev)
+          return []
+        })
         setPdfFile(null)
         setQuestionPhoto(null)
         dispatch({ type: 'MARK_ANOTHER' })
@@ -189,53 +132,50 @@ export const MarkFlow = forwardRef<MarkFlowHandle, Props>(function MarkFlow(
 
   const onPagesChange = useCallback(
     (next: UploadPage[] | ((prev: UploadPage[]) => UploadPage[])) => {
-      setPages((prev) => {
-        const resolved = typeof next === 'function' ? next(prev) : next
-        dispatch({
-          type: 'PATCH_DRAFT',
-          patch: {
-            pageCount: resolved.length,
-            inputKind: resolved.length
-              ? pdfFile
-                ? 'pdf'
-                : 'photos'
-              : ctx.draft.inputKind === 'typed'
-                ? 'typed'
-                : null,
-          },
-        })
-        return resolved
-      })
+      setPages((prev) => (typeof next === 'function' ? next(prev) : next))
     },
-    [ctx.draft.inputKind, pdfFile]
+    []
   )
 
-  const onPdfChange = useCallback(
-    (file: File | null) => {
-      setPdfFile(file)
-      dispatch({
-        type: 'PATCH_DRAFT',
-        patch: {
-          inputKind: file ? 'pdf' : pages.length ? 'photos' : null,
-          pageCount: file ? Math.max(pages.length, 1) : pages.length,
-        },
-      })
-    },
-    [pages.length]
-  )
+  const onPdfChange = useCallback((file: File | null) => {
+    setPdfFile(file)
+  }, [])
 
   const onQuestionPhotoChange = useCallback((file: File | null) => {
     setQuestionPhoto(file)
-    dispatch({
-      type: 'PATCH_DRAFT',
-      patch: { hasQuestionPhoto: !!file },
-    })
   }, [])
 
-  const ready = useMemo(
-    () => canContinue(ctx.draft, pages, pdfFile, questionPhoto),
-    [ctx.draft, pages, pdfFile, questionPhoto]
-  )
+  // The draft's view of the files is DERIVED from the files, in one place.
+  //
+  // It used to be patched from inside each setter, with whatever `pdfFile` or
+  // `pages.length` the closure held. Choosing a PDF runs "set pdf" then "clear
+  // pages" in the same tick, so the second patch saw the old (null) pdf and
+  // wrote pageCount 0 — leaving the reducer certain there was no answer while
+  // the screen showed one. Deriving after commit cannot see stale state.
+  const { pageCount, hasPdf, hasQuestionPhoto, inputKind } = ctx.draft
+  useEffect(() => {
+    // "Type it" is the student's explicit choice and stays until they switch
+    // back to photos (AnswerCapture patches the kind); the upload kinds are
+    // whatever the files say.
+    const nextKind =
+      inputKind === 'typed'
+        ? 'typed'
+        : pdfFile
+          ? 'pdf'
+          : pages.length
+            ? 'photos'
+            : null
+    const patch: Partial<MarkFlowDraft> = {}
+    if (pageCount !== pages.length) patch.pageCount = pages.length
+    if (hasPdf !== !!pdfFile) patch.hasPdf = !!pdfFile
+    if (hasQuestionPhoto !== !!questionPhoto) patch.hasQuestionPhoto = !!questionPhoto
+    if (inputKind !== nextKind) patch.inputKind = nextKind
+    if (Object.keys(patch).length > 0) dispatch({ type: 'PATCH_DRAFT', patch })
+  }, [pages.length, pdfFile, questionPhoto, pageCount, hasPdf, hasQuestionPhoto, inputKind])
+
+  // The same predicate the reducer applies to CONTINUE_TO_CONFIRM, so the
+  // button can never be enabled for a transition the reducer refuses.
+  const ready = useMemo(() => canEnterConfirm(ctx.draft), [ctx.draft])
 
   if (ctx.state === 'marking' || ctx.state === 'result') {
     return (

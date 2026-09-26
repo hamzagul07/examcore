@@ -196,7 +196,7 @@ export function SignUpForm({
         Open your <em>marking desk</em>
       </h1>
       <p className="mb-2 leading-relaxed text-[var(--ec-text-secondary)]">{signupSubhead}</p>
-      <p className="ms-signup-artefact__note mb-6" aria-hidden>
+      <p className="ms-signup-artefact__note ms-signup-artefact__note--lead" aria-hidden>
         file the account — then put ink on a script
       </p>
 

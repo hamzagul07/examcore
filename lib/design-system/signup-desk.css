@@ -83,6 +83,12 @@
   min-width: 0;
 }
 
+/* The slip is far shorter than the form beside it; top-aligned it left a
+   large empty block under it. Centred, it reads as the form's companion. */
+.ms-auth-desk__docket--spread > .ms-auth-desk__aside {
+  align-self: center;
+}
+
 .ms-auth-desk__aside::after {
   content: '';
   position: absolute;
@@ -226,6 +232,9 @@
   );
 }
 
+/* Bottom margin set here, not by a utility at the call site: this sheet is
+   unlayered, so it outranks Tailwind's layered `mb-*` and the note ended up
+   touching the "Fastest path" label below it. */
 .ms-signup-artefact__note {
   margin: 14px 0 0;
   font-family: var(--ec-font-handwriting, var(--font-handwritten, 'Caveat', cursive));
@@ -233,6 +242,10 @@
   line-height: 1.25;
   color: var(--ec-logo-crimson, var(--ec-ink-crimson));
   transform: rotate(-1deg);
+}
+
+.ms-signup-artefact__note--lead {
+  margin-bottom: 24px;
 }
 
 /* Filing tabs for email-link / password */

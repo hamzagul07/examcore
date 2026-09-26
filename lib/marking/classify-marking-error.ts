@@ -41,6 +41,24 @@ const CLIENT_HINTS = [
   'mark total is not written',
 ]
 
+/**
+ * Failures the UPLOAD decided, as opposed to ones we did: a blank or unreadable
+ * photo (`ocr_empty`) and a missing question, subject or total (`client`).
+ *
+ * The guest's one-a-day slot used to be refunded on every failure, these
+ * included. By the time a script is judged unreadable the route has already
+ * spent a Flash OCR call per page (up to twenty), a Pro escalation for every
+ * page whose read looked illegible — which a blank or noise image triggers by
+ * design — and, for a whole paper, the segmentation call. Handing the slot
+ * back meant an IP could POST twenty blank JPEGs in a loop forever and
+ * ANON_DAILY_MARK_LIMIT bounded nothing on the expensive failure path
+ * (code review 2026-09-25, §1.7 reopened). A failure the caller controls
+ * keeps the slot; only our own outages give it back.
+ */
+export function isUploadDecidedFailure(code: MarkingErrorCode): boolean {
+  return code === 'client' || code === 'ocr_empty'
+}
+
 export function classifyMarkingError(err: unknown): ClassifiedMarkingError {
   const message =
     err instanceof Error

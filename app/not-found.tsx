@@ -21,14 +21,17 @@ export default function NotFound() {
         <p className="text-body mb-8">
           That link may be broken, or the page may have moved. Try one of these
           instead — or search the site with{' '}
-          <kbd className="rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] px-1.5 py-0.5 font-mono text-xs font-semibold shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.05))]">
-            Ctrl
-          </kbd>{' '}
-          +{' '}
-          <kbd className="rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] px-1.5 py-0.5 font-mono text-xs font-semibold shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.05))]">
-            K
-          </kbd>
-          .
+          {/* One unit, so the shortcut never breaks across lines as "Ctrl" / "+ K." */}
+          <span className="whitespace-nowrap">
+            <kbd className="rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] px-1.5 py-0.5 font-mono text-xs font-semibold shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.05))]">
+              Ctrl
+            </kbd>{' '}
+            +{' '}
+            <kbd className="rounded border border-[var(--ec-border)] bg-[var(--ec-paper,var(--ec-surface-raised))] px-1.5 py-0.5 font-mono text-xs font-semibold shadow-[var(--ec-shadow-hard,2px_2px_0_rgba(0,0,0,0.05))]">
+              K
+            </kbd>
+            .
+          </span>
         </p>
         <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
           <LoadingLink

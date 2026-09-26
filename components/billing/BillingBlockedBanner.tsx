@@ -2,6 +2,8 @@
 
 import Link from 'next/link'
 import type { BillingSummaryClient } from '@/lib/billing/question-copy'
+import { formatDisplayDate } from '@/lib/format/display-date'
+import { useDisplayTimeZone } from '@/lib/hooks/useDisplayTimeZone'
 
 type Props = {
   summary: BillingSummaryClient
@@ -12,16 +14,14 @@ type Props = {
  * Non-dismissible banner when enforce mode blocks marking and/or Omni with no credits left.
  */
 export function BillingBlockedBanner({ summary, className = '' }: Props) {
+  const timeZone = useDisplayTimeZone()
   const qBlocked = summary.questions.blocked
   const oBlocked = summary.omni.blocked
 
   if (!qBlocked && !oBlocked) return null
 
   const reset = summary.period_resets_at
-    ? new Date(summary.period_resets_at).toLocaleDateString(undefined, {
-        month: 'long',
-        day: 'numeric',
-      })
+    ? formatDisplayDate(summary.period_resets_at, { month: 'long', year: false }, timeZone)
     : null
 
   let message: string

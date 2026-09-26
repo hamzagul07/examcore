@@ -131,13 +131,13 @@ export default function CommandWordsToolPage() {
       >
         <div className="ms-tool-instrument__links mb-6">
           <Link href="/mark" className="ec-link">
-            Mark your answer free -&gt;
+            Mark your answer free →
           </Link>
           <Link href="/blog/cambridge-command-words-explained" className="ec-link">
-            Full guide -&gt;
+            Full guide →
           </Link>
           <Link href="/guides/command-words" className="ec-link">
-            Per-subject pages -&gt;
+            Per-subject pages →
           </Link>
         </div>
 

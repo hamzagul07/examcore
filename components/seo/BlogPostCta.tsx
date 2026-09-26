@@ -144,7 +144,7 @@ export function BlogPostCta({
               </span>
               Discuss with other students
               <span className="font-mono text-xs font-bold opacity-90" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </div>

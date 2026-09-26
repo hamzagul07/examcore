@@ -15,20 +15,79 @@ export type UnsubscribeKind =
   | 'mark_ready'
   /** The morning study-plan check-in; rides on email_exam_reminders. */
   | 'exam'
+  /**
+   * Mail about work a teacher set: a new set, a due-soon reminder, a mark the
+   * teacher reviewed or feedback they left. Rides on email_assignments.
+   */
+  | 'assignments'
+  /** A teacher's Sunday digest of their classes; rides on email_teacher_digest. */
+  | 'teacher_digest'
 
-function secret(): string {
-  return (
-    process.env.UNSUBSCRIBE_SECRET?.trim() ||
-    process.env.CRON_SECRET?.trim() ||
-    'dev-unsubscribe-not-for-production'
-  )
+/**
+ * The HMAC key every NEW unsubscribe link is signed with.
+ *
+ * In production this is UNSUBSCRIBE_SECRET and nothing else — the same rule
+ * lib/marking/share-token.ts applies. The CRON_SECRET fallback this had
+ * reused the bearer credential that authorises all thirteen cron routes and
+ * the privileged /api/health body as the HMAC key for public, one-year
+ * tokens; and the hard-coded string before that let anyone mint a token
+ * that mutes any account (code review 2026-09-25, §3). Thrown at first use
+ * rather than import so a misconfigured deploy still boots and only the
+ * email paths fail, loudly. Outside production CRON_SECRET and a fixed dev
+ * string stay so a local run needs no extra secret.
+ */
+function signingSecret(): string {
+  const explicit = process.env.UNSUBSCRIBE_SECRET?.trim()
+  if (explicit) return explicit
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error(
+      'UNSUBSCRIBE_SECRET is required in production: unsubscribe links are signed with it. Set it to a long random string (openssl rand -base64 32); do not reuse CRON_SECRET.'
+    )
+  }
+  return process.env.CRON_SECRET?.trim() || 'dev-unsubscribe-not-for-production'
+}
+
+/**
+ * Keys a link may have been signed with, newest first — for VERIFICATION
+ * only. Every unsubscribe link in a mailbox today was signed with
+ * CRON_SECRET; refusing it would turn each of those into "this link is
+ * invalid", which for an unsubscribe link is a complaint to the mailbox
+ * provider. Kept until those links expire on their own (one year from the
+ * 2026-09-25 deploy: drop the CRON_SECRET entry after 2027-09-25). Nothing
+ * is ever SIGNED with a legacy key in production.
+ */
+function verificationSecrets(): string[] {
+  const candidates = [
+    process.env.UNSUBSCRIBE_SECRET?.trim(),
+    process.env.CRON_SECRET?.trim(),
+    process.env.NODE_ENV === 'production' ? null : 'dev-unsubscribe-not-for-production',
+  ]
+  const unique: string[] = []
+  for (const c of candidates) {
+    if (c && !unique.includes(c)) unique.push(c)
+  }
+  return unique
+}
+
+/**
+ * Constant-time signature check. `!==` short-circuits on the first differing
+ * byte, which leaks how much of a forged signature is right; with a one-year
+ * token lifetime that is a lot of guesses.
+ */
+function signatureMatches(actual: string, expected: string): boolean {
+  const a = Buffer.from(actual, 'utf8')
+  const b = Buffer.from(expected, 'utf8')
+  // Length is not secret (every valid signature is the same length), so a
+  // mismatch here reveals nothing an attacker does not already know.
+  if (a.length !== b.length) return false
+  return crypto.timingSafeEqual(a, b)
 }
 
 /** Signed token for one-click email unsubscribe (valid 1 year). */
 export function signUnsubscribeToken(userId: string, kind: UnsubscribeKind): string {
   const exp = String(Date.now() + 365 * 24 * 60 * 60 * 1000)
   const payload = `${userId}.${kind}.${exp}`
-  const sig = crypto.createHmac('sha256', secret()).update(payload).digest('base64url')
+  const sig = crypto.createHmac('sha256', signingSecret()).update(payload).digest('base64url')
   return Buffer.from(`${payload}.${sig}`, 'utf8').toString('base64url')
 }
 
@@ -51,15 +110,22 @@ export function verifyUnsubscribeToken(
         kind !== 'activation' &&
         kind !== 'updates' &&
         kind !== 'mark_ready' &&
-        kind !== 'exam') ||
+        kind !== 'exam' &&
+        kind !== 'assignments' &&
+        kind !== 'teacher_digest') ||
       !exp ||
       !sig
     )
       return null
     if (Date.now() > Number(exp)) return null
     const payload = `${userId}.${kind}.${exp}`
-    const expected = crypto.createHmac('sha256', secret()).update(payload).digest('base64url')
-    if (sig !== expected) return null
+    const matched = verificationSecrets().some((key) =>
+      signatureMatches(
+        sig,
+        crypto.createHmac('sha256', key).update(payload).digest('base64url')
+      )
+    )
+    if (!matched) return null
     return { userId, kind }
   } catch {
     return null
@@ -139,6 +205,10 @@ export function unsubscribeColumnPatch(kind: UnsubscribeKind): Record<string, bo
       return { email_mark_ready: false }
     case 'exam':
       return { email_exam_reminders: false }
+    case 'assignments':
+      return { email_assignments: false }
+    case 'teacher_digest':
+      return { email_teacher_digest: false }
     default:
       return { email_community_digest: false }
   }
@@ -164,6 +234,10 @@ export function unsubscribeLabel(kind: UnsubscribeKind): string {
       return 'product update emails'
     case 'mark_ready':
       return 'emails telling you a mark has finished'
+    case 'assignments':
+      return 'emails about work your teacher sets'
+    case 'teacher_digest':
+      return 'the Sunday digest of your classes'
     default:
       return 'Exam Room weekly digest'
   }

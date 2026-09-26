@@ -161,7 +161,7 @@ function GapCard({
 
       {interactive && (
         <span className="flex items-center gap-1 text-xs text-[var(--ec-text-secondary)]">
-          <span className="h-3 w-3" aria-hidden>-&gt;</span>
+          <span className="h-3 w-3" aria-hidden>→</span>
           Show on my script
         </span>
       )}

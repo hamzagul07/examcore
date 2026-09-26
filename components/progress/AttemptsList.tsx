@@ -106,7 +106,7 @@ export function AttemptsList({ attempts }: { attempts: AttemptListRow[] }) {
                   className="font-mono text-[11px] font-bold text-[var(--ec-text-secondary)] transition-colors group-hover:text-[var(--ec-brand)]"
                   aria-hidden
                 >
-                  -&gt;
+                  →
                 </span>
               </div>
             </div>

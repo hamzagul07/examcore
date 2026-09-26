@@ -1,6 +1,10 @@
 import { createServiceClient } from '@/lib/supabase-server'
 import { clampNoteContent } from '@/lib/community/sanitize'
 import { screenContribution } from '@/lib/community/ai-screen'
+import { normalizeImagePaths } from '@/lib/community/attachment-validate'
+
+/** Images per note; the same ceiling the route has always applied. */
+export const MAX_NOTE_IMAGES = 8
 
 export type Board = 'cambridge' | 'ib'
 
@@ -114,7 +118,8 @@ export type CreateNoteInput = {
   questionId?: string | null
   title: string
   contentMd: string
-  imagePaths?: string[]
+  /** Raw client paths — validated against `authorId` here, not trusted. */
+  imagePaths?: unknown
   subjectName?: string
 }
 
@@ -128,6 +133,10 @@ export async function createNote(input: CreateNoteInput): Promise<CreateNoteResu
   const content = clampNoteContent((input.contentMd || '').trim())
   if (title.length < 4) return { ok: false, error: 'Give your note a title (at least 4 characters).' }
   if (content.length < 20) return { ok: false, error: 'Add a bit more detail (at least 20 characters).' }
+  // Same rule as post attachments: only this author's own uploads, in the
+  // shape the uploader writes, and only images.
+  const images = normalizeImagePaths(input.imagePaths, input.authorId, MAX_NOTE_IMAGES)
+  if (!images.ok) return { ok: false, error: images.error }
 
   const verdict = await screenContribution({
     kind: 'note',
@@ -149,7 +158,7 @@ export async function createNote(input: CreateNoteInput): Promise<CreateNoteResu
       question_id: input.questionId ?? null,
       title,
       content_md: content,
-      image_paths: input.imagePaths ?? [],
+      image_paths: images.paths,
       status,
       moderation_reason: verdict.ok ? null : verdict.reason,
     })

@@ -12,13 +12,19 @@ export type SearchHit = {
   snippet: string
 }
 
+/**
+ * Longest query we will hand to the full-text planner. Every term becomes an
+ * AND-ed lexeme, so an unbounded `q` is an unbounded tsquery.
+ */
+export const MAX_SEARCH_QUERY_LENGTH = 200
+
 /** Full-text search over community posts (title weighted above body). */
 export async function searchCommunity(params: {
   query: string
   subjectCode?: string
   limit?: number
 }): Promise<SearchHit[]> {
-  const q = params.query.trim()
+  const q = params.query.slice(0, MAX_SEARCH_QUERY_LENGTH).trim()
   if (q.length < 2) return []
   const admin = createServiceClient()
   const limit = params.limit ?? 25

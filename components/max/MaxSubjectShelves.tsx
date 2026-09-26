@@ -96,7 +96,7 @@ export function MaxSubjectShelves({
                       href={`/dashboard/vault?subject=${encodeURIComponent(s.code)}`}
                       className="font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-brand)]"
                     >
-                      Open -&gt;
+                      Open →
                     </Link>
                   </li>
                 ))}

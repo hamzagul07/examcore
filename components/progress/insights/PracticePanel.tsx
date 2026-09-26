@@ -59,7 +59,7 @@ export function PracticePanel({ state, recommendations, generic }: Props) {
                     className="ec-btn-secondary mt-3 inline-flex text-sm"
                   >
                     Drill this
-                    <span className="h-3.5 w-3.5" aria-hidden>-&gt;</span>
+                    <span className="h-3.5 w-3.5" aria-hidden>→</span>
                   </LoadingLink>
                 </li>
               ))}

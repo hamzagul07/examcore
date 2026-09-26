@@ -103,7 +103,7 @@ export default function IbTopicPracticeHubPage() {
       >
         <div className="mt-6 flex flex-wrap gap-3">
           <Link href="/ib/courses" className="ec-btn-primary ec-btn-primary--sm">
-            Free IB courses <span className="h-4 w-4" aria-hidden>-&gt;</span>
+            Free IB courses <span className="h-4 w-4" aria-hidden>→</span>
           </Link>
           <Link href="/guides/ib" className="ec-btn-ghost ec-btn-ghost--sm">
             IB study guides

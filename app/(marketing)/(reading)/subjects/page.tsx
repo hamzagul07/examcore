@@ -49,7 +49,8 @@ export default function SubjectsPage() {
           })),
         })}
       />
-      <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pt-6 sm:px-6">
+      {/* Same container as the directory below (ms-pg), so the trail lines up with it. */}
+      <div className="ms-pg pt-6">
         <MarketingBreadcrumbs
           items={[
             { name: 'Home', path: '/' },

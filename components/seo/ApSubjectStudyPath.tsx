@@ -81,7 +81,7 @@ export function ApSubjectStudyPath({
                   </span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -106,7 +106,7 @@ export function ApSubjectStudyPath({
             <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
               FRQ
             </span>
-            Mark AP {courseName} -&gt;
+            Mark AP {courseName} →
           </Link>
           <Link
             href={`/courses/${syllabus}`}

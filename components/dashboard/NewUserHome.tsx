@@ -81,7 +81,7 @@ firstMarkHref,
               href="/dashboard/progress"
               className="inline-flex min-h-[44px] shrink-0 items-center font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-brand)]"
             >
-              Preview progress -&gt;
+              Preview progress →
             </Link>
           </div>
 

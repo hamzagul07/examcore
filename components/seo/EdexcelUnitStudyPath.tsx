@@ -86,7 +86,7 @@ export function EdexcelUnitStudyPath({
                   </span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -111,7 +111,7 @@ export function EdexcelUnitStudyPath({
             <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
               M1
             </span>
-            Mark {unitCode} -&gt;
+            Mark {unitCode} →
           </Link>
           <Link
             href={`/courses/${syllabus}`}

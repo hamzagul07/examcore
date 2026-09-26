@@ -1,12 +1,16 @@
 import { NextRequest, after } from 'next/server'
-import { authenticateRouteRequest, jsonWithAuthCookies, createServiceClient } from '@/lib/supabase-server'
-import { voteComment } from '@/lib/community/comments'
-import { adjustAuthorSubjectRep, UPVOTE_REP } from '@/lib/community/vote-rep'
+import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { notifyCommentUpvote } from '@/lib/community/notify'
+import { voteErrorResponse, type VoteCommentRow } from '@/lib/community/vote-rpc'
 
-/** POST /api/community/comments/[id]/vote { value: 1 | -1 } */
+/**
+ * POST /api/community/comments/[id]/vote { value: 1 | -1 }
+ *
+ * One call to the `vote_comment` RPC, run as the signed-in user — see the
+ * post vote route for why the previous read → upsert → bump sequence went.
+ */
 export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  const { user, pendingCookies } = await authenticateRouteRequest(request)
+  const { supabase, user, pendingCookies } = await authenticateRouteRequest(request)
   if (!user) return jsonWithAuthCookies({ error: 'Sign in to vote.' }, pendingCookies, { status: 401 })
   const { id } = await params
   let value: number
@@ -19,44 +23,24 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     return jsonWithAuthCookies({ error: 'Invalid vote.' }, pendingCookies, { status: 400 })
   }
 
-  const admin = createServiceClient()
-  // Previous vote value, so reputation reverses on toggle-off / flip to downvote.
-  const { data: prevVote } = await admin
-    .from('community_comment_votes')
-    .select('value')
-    .eq('comment_id', id)
-    .eq('user_id', user.id)
-    .maybeSingle()
-  const wasUp = prevVote?.value === 1
-
-  const newValue = await voteComment(id, user.id, value)
-  const isUp = newValue === 1
-
-  const { data } = await admin
-    .from('community_comments')
-    .select('score, author_id, post_id, community_posts(subject_code)')
-    .eq('id', id)
-    .maybeSingle()
-
-  const subjectCode = (data?.community_posts as { subject_code?: string } | null)?.subject_code
-  const canRep = !!(data?.author_id && data.author_id !== user.id && subjectCode)
-  const repDelta = (isUp ? UPVOTE_REP : 0) - (wasUp ? UPVOTE_REP : 0)
-  if (canRep && repDelta !== 0) {
-    await adjustAuthorSubjectRep(admin, {
-      authorId: data!.author_id as string,
-      subjectCode: subjectCode as string,
-      delta: repDelta,
-    })
+  const { data, error } = await supabase
+    .rpc('vote_comment', { p_comment: id, p_value: value })
+    .single<VoteCommentRow>()
+  if (error || !data) {
+    return voteErrorResponse(error, pendingCookies)
   }
-  if (canRep && isUp && !wasUp && data!.post_id) {
+
+  const isUp = data.new_value === 1
+  const selfVote = data.comment_author === user.id
+  if (!selfVote && isUp && !data.was_upvote && data.parent_post) {
     after(() =>
       notifyCommentUpvote({
         commentId: id,
-        postId: data!.post_id as string,
+        postId: data.parent_post,
         voterId: user.id,
       })
     )
   }
 
-  return jsonWithAuthCookies({ value: newValue, score: data?.score ?? 0 }, pendingCookies)
+  return jsonWithAuthCookies({ value: data.new_value, score: data.comment_score ?? 0 }, pendingCookies)
 }

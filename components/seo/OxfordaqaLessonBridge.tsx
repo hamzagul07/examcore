@@ -55,7 +55,7 @@ export function OxfordaqaLessonBridge({
             href={markHref}
             className="ec-btn-ghost inline-flex min-h-[44px] items-center text-sm"
           >
-            Mark {label} -&gt;
+            Mark {label} →
           </Link>
           <Link
             href={subjectHubHref}

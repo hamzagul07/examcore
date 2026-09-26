@@ -85,7 +85,7 @@ export function GoogleAuthButton({
           <GoogleIcon />
           <span>{label}</span>
           <span className="font-mono text-[11px] font-bold text-[var(--ec-text-secondary)]" aria-hidden>
-            -&gt;
+            →
           </span>
         </>
       )}

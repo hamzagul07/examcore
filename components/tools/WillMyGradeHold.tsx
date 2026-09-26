@@ -204,7 +204,7 @@ export function WillMyGradeHold({
                   >
                     Mark a {code} question
                     <span className="font-mono text-[11px] font-bold" aria-hidden>
-                      -&gt;
+                      →
                     </span>
                   </Link>
                   <Link href={`/courses/${code}`} className="ec-btn-ghost min-h-[44px]">
@@ -219,7 +219,7 @@ export function WillMyGradeHold({
                 >
                   Mark a paper free
                   <span className="font-mono text-[11px] font-bold" aria-hidden>
-                    -&gt;
+                    →
                   </span>
                 </Link>
               )}

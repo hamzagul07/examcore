@@ -75,7 +75,7 @@ export default async function CommunityUnsubscribePage({ searchParams }: PagePro
           Unsubscribe?
         </h1>
         <p className="ms-body-2" style={{ marginTop: 12 }}>
-          This turns off <strong>{label}</strong> for your account. You&apos;ll still get in-app
+          This turns off <strong>{label}</strong>{' '}for your account. You&apos;ll still get in-app
           notifications in the bell when you&apos;re signed in, and everything else stays as it is.
         </p>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 24 }}>
@@ -99,7 +99,7 @@ export default async function CommunityUnsubscribePage({ searchParams }: PagePro
         You&apos;re unsubscribed
       </h1>
       <p className="ms-body-2" style={{ marginTop: 12 }}>
-        We turned off <strong>{label}</strong> for your account. You&apos;ll still get in-app
+        We turned off <strong>{label}</strong>{' '}for your account. You&apos;ll still get in-app
         notifications in the bell when you&apos;re signed in.
       </p>
       <p className="ms-body-2" style={{ marginTop: 12 }}>

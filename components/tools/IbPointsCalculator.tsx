@@ -235,7 +235,7 @@ export function IbPointsCalculator() {
           href="/ib/courses"
           className="ec-btn-primary mt-4 inline-flex min-h-[44px] items-center gap-2"
         >
-          Revise free with IB courses <span className="h-4 w-4" aria-hidden>-&gt;</span>
+          Revise free with IB courses <span className="h-4 w-4" aria-hidden>→</span>
         </Link>
       </div>
     </div>

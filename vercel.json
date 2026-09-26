@@ -11,6 +11,12 @@
     "app/api/mark/process/route.ts": {
       "maxDuration": 800
     },
+    "app/api/mark/whole-paper/init/route.ts": {
+      "maxDuration": 800
+    },
+    "app/api/mark/whole-paper/retry/route.ts": {
+      "maxDuration": 800
+    },
     "app/api/omni-ai/route.ts": {
       "maxDuration": 120
     },
@@ -33,6 +39,12 @@
       "maxDuration": 300
     },
     "app/api/admin/campaign/route.ts": {
+      "maxDuration": 300
+    },
+    "app/api/cron/teacher-digest/route.ts": {
+      "maxDuration": 300
+    },
+    "app/api/cron/assignment-reminders/route.ts": {
       "maxDuration": 300
     }
   },
@@ -88,6 +100,14 @@
     {
       "path": "/api/cron/plan-checkin",
       "schedule": "15 * * * *"
+    },
+    {
+      "path": "/api/cron/teacher-digest",
+      "schedule": "0 16 * * 0"
+    },
+    {
+      "path": "/api/cron/assignment-reminders",
+      "schedule": "0 16 * * *"
     }
   ]
 }

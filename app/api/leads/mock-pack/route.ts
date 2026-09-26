@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/service'
 import {
+  RateLimitUnavailableError,
   checkSignupRateLimit,
   clientIp,
-  incrementSignupRateLimit,
 } from '@/lib/rate-limit'
 import { HONEYPOT_FIELD, isHoneypotTripped } from '@/lib/honeypot'
-import { rateLimitJson } from '@/lib/http/rate-limit-response'
+import { rateLimitJson, rateLimitUnavailableJson } from '@/lib/http/rate-limit-response'
 import { sendMockPackConfirmEmail } from '@/lib/email/mock-pack-confirm'
 
 export const runtime = 'nodejs'
@@ -58,7 +58,15 @@ export async function POST(request: Request) {
 
   const admin = createServiceClient()
   const ip = clientIp(request)
-  const rate = await checkSignupRateLimit(admin, ip)
+  let rate
+  try {
+    rate = await checkSignupRateLimit(admin, ip)
+  } catch (err) {
+    // Limiter outage: say "try again" rather than dying as a 500.
+    if (!(err instanceof RateLimitUnavailableError)) throw err
+    console.error('[leads/mock-pack] rate limit unavailable:', err.message)
+    return rateLimitUnavailableJson()
+  }
   if (!rate.allowed) {
     return rateLimitJson(rate.message)
   }
@@ -120,6 +128,6 @@ export async function POST(request: Request) {
     })
   }
 
-  await incrementSignupRateLimit(admin, ip, rate.count)
+  // The slot was consumed atomically by checkSignupRateLimit above.
   return NextResponse.json({ ok: true, isNew })
 }

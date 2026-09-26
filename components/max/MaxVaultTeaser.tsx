@@ -14,7 +14,7 @@ export function MaxVaultTeaser() {
         <p className="text-body mt-2 text-[var(--ec-text-secondary)]">
           Max listens to every stamp. Then it rebuilds a desk around the leak — Cinema that
           makes the idea move, a sprint pack from real past papers, full-marks rewrites of{' '}
-          <em>your</em> answers, priority depth when the paper is long, and a Sunday coach that
+          <em>your</em>{' '}answers, priority depth when the paper is long, and a Sunday coach that
           won&apos;t let the week go soft.
         </p>
         <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-[var(--ec-text-secondary)]">

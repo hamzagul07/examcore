@@ -425,6 +425,9 @@ function clusterMissedPoints(
     )
 }
 
+/** A mark type earned at or above this share is not a class weakness. */
+export const HEADLINE_BELOW_PCT = 60
+
 /**
  * The one line to lead a report with. Returns null when the evidence is too thin
  * to name a weakness — saying nothing is better than sending a teacher to
@@ -436,5 +439,15 @@ export function headlineGap(report: CohortGapReport): MarkTypeGap | null {
   if (!solid.length) return null
   const worst = solid[0]
   // A class earning most of a mark type is not failing at it.
-  return worst.earnedPct < 60 ? worst : null
+  return worst.earnedPct < HEADLINE_BELOW_PCT ? worst : null
+}
+
+/**
+ * The headline as the one line the week view, the desk and the digest print
+ * ("Analysis — 17% of marks earned"), or null under the same evidence rules
+ * as headlineGap. One formatter, so the three never word it differently.
+ */
+export function headlineGapText(report: CohortGapReport): string | null {
+  const gap = headlineGap(report)
+  return gap ? `${gap.label} — ${gap.earnedPct}% of marks earned` : null
 }

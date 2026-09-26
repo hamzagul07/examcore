@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/marking/mark-runner'
 import {
+  isWholePaperClaimStale,
   isWholePaperJob,
   jobToResult,
 } from '@/lib/marking/whole-paper-shared'
@@ -20,7 +21,7 @@ export async function GET(request: NextRequest) {
 
   const { data: attempt, error } = await supabaseAdmin
     .from('attempts')
-    .select('id, ai_marking, marks_earned, total_marks, answer_photo_url, user_id')
+    .select('id, ai_marking, marks_earned, total_marks, answer_photo_url, user_id, created_at')
     .eq('id', attemptId)
     .maybeSingle()
 
@@ -67,23 +68,39 @@ export async function GET(request: NextRequest) {
 
   if (isWholePaperJob(marking)) {
     const result = jobToResult(marking)
-    return NextResponse.json(
-      await signMarkPayloadForClient({
-        attempt_id: attempt.id,
-        phase: marking.phase,
-        message: marking.message,
-        questions_total: marking.questions_total,
-        questions_completed: marking.questions_completed,
-        current_question: marking.current_question,
-        estimated_seconds_remaining: marking.estimated_seconds_remaining,
-        loading_context: marking.loading_context,
-        partial_questions: marking.partial_questions,
-        result,
-        error: marking.error,
-        answer_photo_url: attempt.answer_photo_url,
-        upload_mode: 'whole_paper',
-      })
-    )
+    // Only the final result is signed. partial_questions used to go through
+    // the signer too, so every 2-second poll re-signed every photo of every
+    // question marked so far — a storage round-trip per photo, per poll, for
+    // URLs the progress screen never renders. They come back unsigned with a
+    // flag; the client does not need them until the result, which is signed.
+    const signed = await signMarkPayloadForClient({
+      attempt_id: attempt.id,
+      phase: marking.phase,
+      message: marking.message,
+      questions_total: marking.questions_total,
+      questions_completed: marking.questions_completed,
+      current_question: marking.current_question,
+      estimated_seconds_remaining: marking.estimated_seconds_remaining,
+      loading_context: marking.loading_context,
+      result,
+      error: marking.error,
+      answer_photo_url: attempt.answer_photo_url,
+      upload_mode: 'whole_paper',
+    })
+    return NextResponse.json({
+      ...signed,
+      partial_questions: marking.partial_questions,
+      partial_questions_unsigned: true,
+      warnings: marking.warnings,
+      // A 'marking' claim older than the stale window is a runner that died.
+      // The client stops waiting and offers a retry, which takes the job over.
+      // created_at stands in for a missing claim stamp (a run claimed by the
+      // pre-stamp deploy) so a paper in flight at deploy time is not reported
+      // dead two seconds later.
+      stale: isWholePaperClaimStale(marking, {
+        createdAt: (attempt as { created_at?: string | null }).created_at ?? null,
+      }),
+    })
   }
 
   if (marking && typeof marking === 'object' && 'upload_mode' in marking) {

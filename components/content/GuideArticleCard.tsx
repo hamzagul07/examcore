@@ -14,7 +14,7 @@ export function GuideArticleCard({ post }: Props) {
       <div className="ms-gmeta">
         <span className="ms-micro font-mono">{post.readingMinutes} min</span>
         <span className="ms-micro font-mono" style={{ marginLeft: 'auto', letterSpacing: '0.06em' }}>
-          READ -&gt;
+          READ →
         </span>
       </div>
     </Link>

@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
   const limit = Math.min(50, Math.max(1, Number.parseInt(sp.get('limit') || '25', 10) || 25))
 
   const admin = createServiceClient()
-  const [{ data }, { count: unreadCount }] = await Promise.all([
+  const [{ data, error }, { count: unreadCount, error: countError }] = await Promise.all([
     admin
       .from('notifications')
       .select('id, type, title, body, href, read, created_at')
@@ -28,6 +28,13 @@ export async function GET(request: NextRequest) {
       .eq('user_id', user.id)
       .eq('read', false),
   ])
+
+  // A failed read is an error, not an empty inbox: the inbox shows a retry
+  // rather than "No notifications yet" (the bell keeps what it had).
+  if (error || countError) {
+    console.error('[community/notifications] read failed:', (error ?? countError)?.message)
+    return jsonWithAuthCookies({ error: 'Could not load notifications' }, pendingCookies, { status: 500 })
+  }
 
   return jsonWithAuthCookies(
     { notifications: data ?? [], unread: unreadCount ?? 0 },

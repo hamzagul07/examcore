@@ -1,116 +1,95 @@
-'use client'
-
-import { useEffect, useState } from 'react'
-import Link from 'next/link'
+import { LoadingLink } from '@/components/ui/LoadingLink'
+import { composerHref } from '@/components/teacher/assignments/links'
 import type { CohortDueTopic } from '@/lib/teacher/cohort-due'
-import { InterventionGenerator } from './InterventionGenerator'
 
 const SOURCE_LABEL: Record<CohortDueTopic['source'], string> = {
-  attempts: 'From marked work',
-  recall: 'Checked, not marked',
-  both: 'Marked + unchecked',
+  attempts: 'from marked work',
+  recall: 'from lesson checks',
+  both: 'from marked work and lesson checks',
 }
 
+/** Topics a drill link carries: the three most-owed. */
+const DRILL_TOPICS = 3
+
 /**
- * Topics cooling off across the roster — the teacher Due brain.
- * Loaded lazily so the desk still paints if the schedule tables are empty.
+ * Topics cooling off across the class — where spaced review says students
+ * are due to be re-marked, most students first (spec §4, the Gaps tab). In
+ * the class subject only, for work each student did since joining
+ * (loadClassDue).
+ *
+ * Presentational and hook-free: the page loads the topics on the server and
+ * passes `topics`, or `error` when the schedule tables could not be read. A
+ * failed read is said in words, never shown as "nothing due".
  */
-export function ClassDueList({ classroomId }: { classroomId: string }) {
-  const [topics, setTopics] = useState<CohortDueTopic[] | null>(null)
-  const [students, setStudents] = useState(0)
-  const [error, setError] = useState('')
-  const [showIntervention, setShowIntervention] = useState(false)
-
-  useEffect(() => {
-    let active = true
-    fetch(`/api/teacher/classroom/${classroomId}/due`, { cache: 'no-store' })
-      .then(async (r) => {
-        const data = await r.json().catch(() => ({}))
-        if (!active) return
-        if (!r.ok) {
-          setError('Could not load the class due list.')
-          setTopics([])
-          return
-        }
-        setTopics((data.topics as CohortDueTopic[]) || [])
-        setStudents(typeof data.students === 'number' ? data.students : 0)
-        setError('')
-      })
-      .catch(() => {
-        if (!active) return
-        setError('Could not load the class due list.')
-        setTopics([])
-      })
-    return () => {
-      active = false
-    }
-  }, [classroomId])
-
-  if (topics === null) {
-    return (
-      <section className="ms-class-due ec-card ec-card--paper p-6 sm:p-8" aria-busy>
-        <div className="mb-2 flex items-center gap-2">
-          <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
-            DUE
-          </span>
-          <span className="ec-label-tech">Class due list</span>
-        </div>
-        <p className="text-sm text-[var(--ec-text-secondary)]">Loading topics that are cooling off…</p>
-      </section>
-    )
-  }
-
+export function ClassDueList({
+  classroomId,
+  topics,
+  students,
+  error = null,
+  canSetWork = true,
+  showSubject = false,
+  headingId = 'class-due-title',
+}: {
+  classroomId: string
+  topics: readonly CohortDueTopic[]
+  /** Active members the list is counted against. */
+  students: number
+  error?: string | null
+  canSetWork?: boolean
+  /** Name the subject on each row — for a class with no syllabus set, whose topics span subjects. */
+  showSubject?: boolean
+  headingId?: string
+}) {
   if (error) {
     return (
-      <div className="ms-teacher-error" role="alert">
-        <p className="font-semibold text-[var(--ec-text-primary)]">Due list unavailable</p>
-        <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">{error}</p>
-      </div>
+      <section className="ms-teacher-error mb-8" role="alert" aria-labelledby={headingId}>
+        <h2 id={headingId} className="ms-teacher-error__title">
+          The class due list didn&apos;t load
+        </h2>
+        <p className="ms-teacher-error__body">{error}</p>
+      </section>
     )
   }
 
   if (topics.length === 0) {
     return (
-      <div className="ms-teacher-empty">
+      <section className="ms-teacher-empty mb-8" aria-labelledby={headingId}>
         <span className="ms-teacher-empty__icon" aria-hidden>
-          <span className="font-mono text-sm font-bold tracking-wide">DUE</span>
+          DUE
         </span>
-        <h2 className="ms-teacher-empty__title">Class due list</h2>
+        <h2 id={headingId} className="ms-teacher-empty__title">
+          Nothing due across the class
+        </h2>
         <p className="ms-teacher-empty__body">
-          Nothing due across the roster yet. As students mark and check lessons, topics
-          that are cooling off land here.
+          {students === 0
+            ? 'Once students join and mark work, topics that are cooling off will gather here.'
+            : 'As students mark questions and finish lesson checks, topics that are due for another look will gather here.'}
         </p>
-      </div>
+      </section>
     )
   }
 
-  const topCodes = topics.slice(0, 3).map((t) => t.topicCode)
   const lead = topics[0]
+  const codes = topics.slice(0, DRILL_TOPICS).map((t) => t.topicCode)
 
   return (
-    <section className="ms-class-due ec-card ec-card--paper p-6 sm:p-8">
+    <section className="ms-class-due ec-card ec-card--paper mb-8 p-5 sm:p-8" aria-labelledby={headingId}>
       <div className="ms-class-due__head">
-        <div>
+        <div className="min-w-0">
           <div className="mb-2 flex items-center gap-2">
-            <span className="ec-ink-stamp ec-ink-stamp--crimson" aria-hidden>
+            <span className="ec-ink-stamp ec-ink-stamp--crimson ec-ink-stamp--inline" aria-hidden>
               DUE
             </span>
-            <span className="ec-label-tech">Class due list</span>
+            <span className="ec-label-tech">Due for review</span>
           </div>
-          <h2 className="ms-class-due__title">
+          <h2 id={headingId} className="ms-class-due__title">
             {lead.studentsDue} of {students} due on {lead.name}
           </h2>
           <p className="ms-class-due__sub">
-            Topics waiting for a marked question — oldest cooling spots first by how many
-            students owe them.
+            Topics students have not been re-marked on since spaced review said they were due — the most students
+            first.
           </p>
         </div>
-        <Link
-          href={`/teacher/classroom/${classroomId}/gaps`}
-          className="inline-flex min-h-[44px] items-center font-mono text-xs font-bold uppercase tracking-wide text-[var(--ec-brand)]"
-        >
-          Mark-type gaps →
-        </Link>
       </div>
 
       <ol className="ms-class-due__list" aria-label={`${topics.length} topics due across the class`}>
@@ -120,43 +99,37 @@ export function ClassDueList({ classroomId }: { classroomId: string }) {
               <p className="ms-class-due__name">
                 {t.name}
                 <span className="ms-class-due__code">
-                  {' '}
-                  · {t.subjectLabel} · {t.topicCode}
+                  {showSubject ? ` · ${t.subjectLabel}` : ''} · {t.topicCode}
                 </span>
               </p>
               <p className="ms-class-due__meta">
                 {t.studentsDue} of {t.totalStudents} students · {SOURCE_LABEL[t.source]}
-                {t.sampleNames.length > 0 ? ` · e.g. ${t.sampleNames.join(', ')}` : ''}
+                {t.sampleNames.length > 0 ? ` · ${t.sampleNames.join(', ')}` : ''}
+                {t.studentsDue > t.sampleNames.length && t.sampleNames.length > 0
+                  ? ` +${t.studentsDue - t.sampleNames.length}`
+                  : ''}
               </p>
             </div>
             <div className="ms-class-due__bar" aria-hidden>
-              <span
-                className="ms-class-due__fill"
-                style={{ width: `${Math.max(4, Math.min(100, t.duePct))}%` }}
-              />
+              <span className="ms-class-due__fill" style={{ width: `${Math.max(4, Math.min(100, t.duePct))}%` }} />
             </div>
             <span className="ms-class-due__pct">{t.duePct}%</span>
           </li>
         ))}
       </ol>
 
-      {topCodes.length > 0 ? (
+      {canSetWork ? (
         <div className="ms-class-due__act">
-          {!showIntervention ? (
-            <button
-              type="button"
-              className="ec-btn-secondary inline-flex min-h-[44px] items-center text-sm"
-              onClick={() => setShowIntervention(true)}
-            >
-              Generate intervention on top due topics
-            </button>
-          ) : (
-            <InterventionGenerator
-              classroomId={classroomId}
-              targetCodes={topCodes}
-              onClose={() => setShowIntervention(false)}
-            />
-          )}
+          <LoadingLink
+            href={composerHref(classroomId, { codes })}
+            loadingText="Opening…"
+            className="ec-btn-secondary inline-flex min-h-[44px] items-center justify-center gap-2"
+          >
+            <span className="font-mono text-[11px] font-bold" aria-hidden>
+              +
+            </span>
+            Set work on the top {codes.length === 1 ? 'topic' : `${codes.length} topics`}
+          </LoadingLink>
         </div>
       ) : null}
     </section>

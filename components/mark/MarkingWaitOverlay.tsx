@@ -18,6 +18,12 @@ type Props = {
 /**
  * Mobile marking wait shell: dialog semantics, initial focus, focus trap (MK-02).
  * Desktop keeps the in-flow layout (no modal) — trap only when the surface is fixed.
+ *
+ * Initial focus goes to the panel itself (tabIndex -1), not to the wait title
+ * and not to the first link: the title re-mounts on every headline change
+ * (AnimatePresence), and the first link, once the provisional card is up, is
+ * "Go and do something else" — which a stray Enter would follow mid-mark.
+ * With aria-labelledby the panel announces the title anyway.
  */
 export function MarkingWaitOverlay({ open, children, className = '' }: Props) {
   const panelRef = useRef<HTMLDivElement>(null)
@@ -37,28 +43,9 @@ export function MarkingWaitOverlay({ open, children, className = '' }: Props) {
     trapActive,
     panelRef as RefObject<HTMLElement | null>,
     undefined,
-    [],
-    { restoreFocus: false }
+    undefined,
+    { restoreFocus: false, initialFocus: 'container' }
   )
-
-  // Focus the wait title as soon as the overlay opens (including touch devices).
-  useEffect(() => {
-    if (!trapActive) return
-    const id = window.requestAnimationFrame(() => {
-      const title = panelRef.current?.querySelector<HTMLElement>('#marking-wait-title')
-      if (title) {
-        if (!title.hasAttribute('tabindex')) title.tabIndex = -1
-        try {
-          title.focus({ preventScroll: true })
-        } catch {
-          title.focus()
-        }
-        return
-      }
-      panelRef.current?.focus()
-    })
-    return () => window.cancelAnimationFrame(id)
-  }, [trapActive, open])
 
   // Keep persistent chrome out of the tab order while the mobile dialog is open.
   useEffect(() => {

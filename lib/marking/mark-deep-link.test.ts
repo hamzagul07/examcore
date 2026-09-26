@@ -1,35 +1,29 @@
 import assert from 'node:assert/strict'
 import { withTotalMarks } from './practice-answer'
+import {
+  MARK_DEEP_LINK,
+  MARK_DEEP_LINK_MAX_MARKS,
+  deepLinkQuestion,
+  isPracticeDeepLink,
+} from './mark-deep-link'
 
 /**
  * The contract between the pages that offer an answer box and /mark.
  *
- * Three page families now put a textarea in front of a student and send what
- * they write to /mark:
- *
- *   /past-papers/[code]/[topic]        →  /mark?practice=1&paper=…&q=…
- *   /ib/past-papers/[slug]/[topic]     →  /mark?subject=…&topic=…
- *   /ib/past-papers/[slug]             →  /mark?subject=…
- *
- * Each lands on a DIFFERENT branch of /mark, selected purely by which query
- * parameters are present. Nothing in the type system connects the two sides, so
- * renaming a parameter on either side would leave the student staring at a
- * blank marker with the answer they just typed silently dropped — and every
- * page would still build, typecheck and render.
- *
- * This asserts the real cached data satisfies the shapes /mark actually reads.
+ * The parameter names live in `mark-deep-link.ts`, which the /mark effects
+ * read through. This asserts the real cached link data satisfies the shapes
+ * those effects actually read — so renaming a parameter on either side fails
+ * here rather than dropping a student's typed answer in production.
  */
 
-// The parameter names read by the deep-link effects in app/mark/page.tsx.
-// Change one there and this list has to change with it — which is the point.
-const PRACTICE_FLAG = 'practice'
-const PAPER = 'paper'
-const QUESTION_KEYS = ['q', 'question'] as const
-const SUBJECT = 'subject'
-const TOPIC = 'topic'
-const MARKS = 'marks'
-/** parsedTotalMarksInput's bound in app/mark/page.tsx. */
-const MAX_MARKS = 100
+const PRACTICE_FLAG = MARK_DEEP_LINK.practiceFlag
+const PAPER = MARK_DEEP_LINK.paper
+const QUESTION_KEYS = MARK_DEEP_LINK.questionKeys
+const SUBJECT = MARK_DEEP_LINK.subject
+const TOPIC = MARK_DEEP_LINK.topic
+const MARKS = MARK_DEEP_LINK.marks
+/** parseTotalMarksInput's bound, which the marks field on /mark enforces. */
+const MAX_MARKS = MARK_DEEP_LINK_MAX_MARKS
 
 function params(href: string): URLSearchParams {
   assert.ok(href.startsWith('/mark'), `deep link must target /mark: ${href}`)
@@ -55,16 +49,11 @@ async function main() {
       // The practice branch is selected by this flag alone. Without it /mark
       // falls through to the subject/topic branch, which cannot resolve a
       // paper reference and shows an empty picker.
-      assert.equal(
-        sp.get(PRACTICE_FLAG),
-        '1',
-        `missing practice=1: ${q.markHref}`
-      )
+      assert.ok(isPracticeDeepLink(sp), `missing practice=1: ${q.markHref}`)
+      assert.equal(sp.get(PRACTICE_FLAG), '1')
       assert.ok(sp.get(PAPER), `missing paper reference: ${q.markHref}`)
-      assert.ok(
-        QUESTION_KEYS.some((k) => sp.get(k)),
-        `missing question number: ${q.markHref}`
-      )
+      assert.ok(deepLinkQuestion(sp), `missing question number: ${q.markHref}`)
+      assert.ok(QUESTION_KEYS.some((k) => sp.get(k)))
 
       // The whole point of carrying the total: "we could not read the total
       // marks" is the commonest recorded mark failure, and it fires only after
@@ -112,9 +101,8 @@ async function main() {
       assert.ok(sp.get(TOPIC), `IB topic link has no topic: ${page.markHref}`)
       // practice=1 would route it to the past-paper branch, which needs a
       // paper reference this link does not have.
-      assert.notEqual(
-        sp.get(PRACTICE_FLAG),
-        '1',
+      assert.ok(
+        !isPracticeDeepLink(sp),
         `IB topic link must not claim the practice branch: ${page.markHref}`
       )
     }

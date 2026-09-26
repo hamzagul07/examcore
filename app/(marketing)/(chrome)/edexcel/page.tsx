@@ -58,7 +58,7 @@ export default function EdexcelHubPage() {
             <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
               M1
             </span>
-            Mark IAL Maths (WMA11) -&gt;
+            Mark IAL Maths (WMA11) →
           </FunnelMarkLink>
           <Link
             href="/blog/edexcel-ial-vs-cambridge-a-level-2026"
@@ -82,7 +82,7 @@ export default function EdexcelHubPage() {
                   <span className="ms-board-slip__name">{g.label}</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -105,7 +105,7 @@ export default function EdexcelHubPage() {
                   <span className="ms-board-slip__meta">{q.blurb}</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -131,7 +131,7 @@ export default function EdexcelHubPage() {
                   <span className="ms-board-slip__blurb">{s.blurb}</span>
                 </span>
                 <span className="ms-board-slip__go" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>

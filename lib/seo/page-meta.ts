@@ -52,9 +52,9 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     ],
   },
   '/for-teachers': {
-    title: 'For teachers & schools — classroom marking analytics',
+    title: 'For teachers & schools — set work, review marks',
     description:
-      'MarkScheme classrooms: invite codes, class blindspot radar, grade-risk matrix, and review queue on top of Cambridge & IB past-paper marking from handwriting.',
+      'Free for teachers: set past-paper work, see who handed it in, review AI marks, and get a blindspot report for your class — on top of Cambridge & IB past-paper marking from handwriting.',
     keywords: [
       'Cambridge teacher marking tool',
       'IB classroom analytics',

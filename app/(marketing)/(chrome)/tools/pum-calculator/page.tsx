@@ -176,7 +176,7 @@ export default function PumCalculatorPage() {
             >
               Mark WMA11
               <span className="font-mono text-[11px] font-bold" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
           </div>
@@ -200,7 +200,7 @@ export default function PumCalculatorPage() {
           >
             Mark a paper free
             <span className="font-mono text-[11px] font-bold" aria-hidden>
-              -&gt;
+              →
             </span>
           </Link>
         </aside>

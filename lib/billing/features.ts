@@ -210,6 +210,33 @@ export function hasEarlyAccess(access: EffectiveAccess): boolean {
 /** One-time welcome gift granted on Max (mastery) activation. */
 export const MAX_WELCOME_BONUS_CREDITS = 25
 
+/**
+ * How long after the welcome gift a revoked Max subscription takes it back.
+ *
+ * A refund or chargeback inside this window is someone who bought Max, took
+ * the 25 credits, and left; the credits go with the subscription. Past it the
+ * gift stays — a customer who paid for months and then cancelled was given
+ * the credits in good faith, and clawing them back on the way out is exactly
+ * the kind of thing that ends up on Reddit.
+ */
+export const MAX_WELCOME_CLAWBACK_DAYS = 14
+
+/**
+ * Whether a welcome gift granted at `grantedAt` is still inside the clawback
+ * window at `revokedAt`. Null means it was never granted, so there is
+ * nothing to take.
+ */
+export function withinMaxWelcomeClawbackWindow(
+  grantedAt: string | Date | null | undefined,
+  revokedAt: Date
+): boolean {
+  if (!grantedAt) return false
+  const granted = grantedAt instanceof Date ? grantedAt : new Date(grantedAt)
+  if (Number.isNaN(granted.getTime())) return false
+  const elapsedMs = revokedAt.getTime() - granted.getTime()
+  return elapsedMs >= 0 && elapsedMs <= MAX_WELCOME_CLAWBACK_DAYS * 24 * 60 * 60 * 1000
+}
+
 /** One-time exam-sprint gift when exam_date is within 14 days. */
 export const MAX_SPRINT_BONUS_CREDITS = 15
 

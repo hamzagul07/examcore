@@ -8,8 +8,17 @@ import {
   type Dispatch,
   type SetStateAction,
 } from 'react'
-import { compressImage } from '@/lib/upload/compress-image'
-import { formatFileSize, getPdfSizeError } from '@/lib/upload/upload-limits'
+import { Camera } from 'lucide-react'
+import { compressImageDetailed } from '@/lib/upload/compress-image'
+import {
+  MAX_UPLOAD_PAGES,
+  MAX_UPLOAD_PAYLOAD_BYTES,
+  describeUploadTotal,
+  formatFileSize,
+  getPdfSizeError,
+  pagesRemainingUnderCap,
+} from '@/lib/upload/upload-limits'
+import { revokePagePreview, revokePagePreviews } from '@/lib/upload/page-previews'
 import { useCoarsePointer } from '@/lib/hooks/useCoarsePointer'
 import {
   UploadPageCard,
@@ -50,6 +59,12 @@ export type PageUploaderProps = {
   disabled?: boolean
   emptyLabel?: string
   emptyHint?: string
+  /**
+   * Pages this uploader will hold. Defaults to the server's per-mark cap so
+   * the 21st page is refused here, at the moment it is added, rather than as
+   * a 400 after the student has waited for the upload.
+   */
+  maxPages?: number
 }
 
 async function compressPageInPlace(
@@ -57,13 +72,13 @@ async function compressPageInPlace(
   sourceFile: File,
   onPagesChange: Dispatch<SetStateAction<UploadPage[]>>
 ) {
-  const compressed = await compressImage(sourceFile)
+  const { file: compressed, undecodable } = await compressImageDetailed(sourceFile)
   const needsNewPreview = compressed !== sourceFile
   onPagesChange((prev) =>
     prev.map((p) => {
       if (p.id !== pageId) return p
       if (needsNewPreview) {
-        URL.revokeObjectURL(p.previewUrl)
+        revokePagePreview(p.previewUrl)
       }
       return {
         ...p,
@@ -75,6 +90,8 @@ async function compressPageInPlace(
         fileSizeBytes: compressed.size,
         originalSizeBytes:
           sourceFile.size > compressed.size ? sourceFile.size : undefined,
+        // HEIC on a browser that cannot draw it: still sent, never previewed.
+        previewUnavailable: undecodable || undefined,
       }
     })
   )
@@ -92,6 +109,7 @@ export function PageUploader({
   disabled,
   emptyLabel = 'Drop files here, or choose files',
   emptyHint = 'Multiple JPEG, PNG, or WebP images',
+  maxPages = MAX_UPLOAD_PAGES,
 }: PageUploaderProps) {
   const touchPrimary = useCoarsePointer()
   const [dragIndex, setDragIndex] = useState<number | null>(null)
@@ -106,6 +124,16 @@ export function PageUploader({
 
   const isCompressing = pages.some((p) => p.status === 'compressing')
   const controlsDisabled = disabled || isCompressing
+  // Past the cap, every way of adding a page is off — the server would refuse
+  // the whole upload, so letting the 21st in only moves the failure later.
+  const atPageCap = pages.length >= maxPages
+  const addDisabled = controlsDisabled || atPageCap
+  // The 4 MB payload cap used to be checked only at submit, after compression;
+  // shown live so a student with six 1 MB photos sees it before Mark does nothing.
+  const uploadTotal = describeUploadTotal([
+    ...pages.map((p) => p.file),
+    ...(pdfFile ? [pdfFile] : []),
+  ])
 
   function openCamera() {
     retakeTargetRef.current = null
@@ -139,7 +167,20 @@ export function PageUploader({
       setPdfError(null)
       onPdfError?.(null)
 
-      const placeholders = images.map((file) => ({
+      // Cap applied to what is HELD, not what was picked: a 25-file selection
+      // on an empty uploader keeps the first 20 and says so, rather than being
+      // refused outright or handed to the server to refuse.
+      const room = pagesRemainingUnderCap(pages.length, images.length)
+      const accepted = images.slice(0, room)
+      const dropped = images.length - accepted.length
+      if (dropped > 0) {
+        setRejectedMsg(
+          `Up to ${maxPages} pages per mark — ${dropped} ${dropped === 1 ? 'photo was' : 'photos were'} left out. Split a longer answer across two marks.`
+        )
+      }
+      if (!accepted.length) return
+
+      const placeholders = accepted.map((file) => ({
         ...fileToUploadPage(file, 'compressing'),
         originalSizeBytes: file.size,
       }))
@@ -148,13 +189,22 @@ export function PageUploader({
       for (let i = 0; i < placeholders.length; i++) {
         void compressPageInPlace(
           placeholders[i].id,
-          images[i],
+          accepted[i],
           onPagesChange
         )
       }
     },
-    [onPdfChange, onPdfError, onPagesChange]
+    [onPdfChange, onPdfError, onPagesChange, pages.length, maxPages]
   )
+
+  // A PDF replaces every page: release their previews as they go, or each
+  // blob stays registered for the life of the tab.
+  const clearPagesForPdf = useCallback(() => {
+    onPagesChange((prev) => {
+      revokePagePreviews(prev)
+      return []
+    })
+  }, [onPagesChange])
 
   const addFiles = useCallback(
     (files: FileList | File[]) => {
@@ -167,10 +217,15 @@ export function PageUploader({
       if (allowPdf && pdf && list.length === 1 && onPdfChange) {
         setRejectedMsg(null)
         setPdf(pdf)
-        onPagesChange(() => [])
+        clearPagesForPdf()
         return
       }
-      const images = list.filter((f) => f.type.startsWith('image/'))
+      // An iPhone HEIC often arrives with an empty `type` (Android pickers,
+      // share sheets); it is still a photo the server accepts, so the name
+      // is allowed to vouch for it.
+      const images = list.filter(
+        (f) => f.type.startsWith('image/') || /\.hei[cf]$/i.test(f.name)
+      )
       const skipped = list.length - images.length
       if (skipped > 0) {
         setRejectedMsg(
@@ -183,7 +238,7 @@ export function PageUploader({
       }
       if (images.length) ingestImages(images)
     },
-    [allowPdf, onPdfChange, ingestImages, onPagesChange, setPdf]
+    [allowPdf, onPdfChange, ingestImages, clearPagesForPdf, setPdf]
   )
 
   const reorder = (from: number, to: number) => {
@@ -204,7 +259,7 @@ export function PageUploader({
       onPagesChange((prev) =>
         prev.map((p) => {
           if (p.id !== targetId) return p
-          URL.revokeObjectURL(p.previewUrl)
+          revokePagePreview(p.previewUrl)
           return {
             ...p,
             file,
@@ -212,6 +267,7 @@ export function PageUploader({
             status: 'compressing' as const,
             originalSizeBytes: file.size,
             fileSizeBytes: undefined,
+            previewUnavailable: undefined,
           }
         })
       )
@@ -287,19 +343,17 @@ export function PageUploader({
             <div className="mt-6 flex flex-col gap-3">
               <button
                 type="button"
-                disabled={controlsDisabled}
+                disabled={addDisabled}
                 onClick={openCamera}
                 className="ec-btn-primary w-full justify-center text-sm"
               >
-                <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
-                  IMG
-                </span>
+                <Camera className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
                 Take photos
               </button>
               <div className="relative">
                 <button
                   type="button"
-                  disabled={controlsDisabled}
+                  disabled={addDisabled}
                   aria-expanded={moreOpen}
                   onClick={() => setMoreOpen((o) => !o)}
                   className="ec-btn-secondary w-full justify-center text-sm"
@@ -314,7 +368,7 @@ export function PageUploader({
                   >
                     <button
                       type="button"
-                      disabled={controlsDisabled}
+                      disabled={addDisabled}
                       onClick={() => {
                         setMoreOpen(false)
                         fileInputRef.current?.click()
@@ -341,10 +395,14 @@ export function PageUploader({
               </div>
             </div>
           ) : (
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            <div className="@container mt-6">
+            {/* Sized by the card, not the viewport: on desktop this sits in a narrow
+                column beside the paper picker, where a viewport breakpoint put three
+                buttons on one line and they spilled out of the dropzone. */}
+            <div className="flex flex-col gap-3 @md:flex-row @md:justify-center [&>button]:whitespace-nowrap">
               <button
                 type="button"
-                disabled={controlsDisabled}
+                disabled={addDisabled}
                 onClick={() => fileInputRef.current?.click()}
                 className="ec-btn-secondary justify-center text-sm"
               >
@@ -365,21 +423,20 @@ export function PageUploader({
               ) : null}
               <button
                 type="button"
-                disabled={controlsDisabled}
+                disabled={addDisabled}
                 onClick={openCamera}
                 className="ec-btn-secondary justify-center text-sm"
               >
-                <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>
-                  IMG
-                </span>
+                <Camera className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
                 Take a photo
               </button>
+            </div>
             </div>
           )}
           <input
             ref={fileInputRef}
             type="file"
-            accept="image/jpeg,image/png,image/webp"
+            accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif"
             multiple
             className="hidden"
             onChange={(e) => {
@@ -397,7 +454,7 @@ export function PageUploader({
                 const f = e.target.files?.[0]
                 if (f) {
                   setPdf(f)
-                  onPagesChange(() => [])
+                  clearPagesForPdf()
                 }
                 e.target.value = ''
               }}
@@ -451,12 +508,22 @@ export function PageUploader({
       {pages.length > 0 && selectedPage && (
         <div>
           <div className="ms-upload-preview-wrap">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={selectedPage.previewUrl}
-              alt={`Preview page ${pages.findIndex((p) => p.id === selectedPage.id) + 1}`}
-              className="ms-upload-preview"
-            />
+            {selectedPage.previewUnavailable ? (
+              <p
+                className="ms-upload-preview flex items-center justify-center px-6 text-center text-sm text-[var(--ec-text-secondary)]"
+                role="status"
+              >
+                This browser can&rsquo;t show HEIC photos. The page is attached and will be
+                marked as normal.
+              </p>
+            ) : (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                src={selectedPage.previewUrl}
+                alt={`Preview page ${pages.findIndex((p) => p.id === selectedPage.id) + 1}`}
+                className="ms-upload-preview"
+              />
+            )}
           </div>
           {pages.length > 1 && (
             <div className="ms-upload-thumbs" role="tablist" aria-label="Uploaded pages">
@@ -470,8 +537,14 @@ export function PageUploader({
                   className={`ms-upload-thumb${page.id === selectedPage.id ? ' on' : ''}`}
                   onClick={() => setSelectedPageId(page.id)}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={page.previewUrl} alt="" />
+                  {page.previewUnavailable ? (
+                    <span className="font-mono text-[10px]" aria-hidden>
+                      {index + 1}
+                    </span>
+                  ) : (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img src={page.previewUrl} alt="" />
+                  )}
                 </button>
               ))}
             </div>
@@ -481,7 +554,29 @@ export function PageUploader({
 
       {pages.length > 0 && (
         <div className="space-y-3">
-          <p className="ec-label-tech">YOUR PAGES — REORDER</p>
+          <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <p className="ec-label-tech">YOUR PAGES — REORDER</p>
+            <p
+              className={`font-mono text-[11px] ${
+                uploadTotal.tone === 'over'
+                  ? 'text-[var(--ec-chip-critical-text)]'
+                  : uploadTotal.tone === 'warning'
+                    ? 'text-[var(--ec-chip-warning-text)]'
+                    : 'text-[var(--ec-text-secondary)]'
+              }`}
+              role="status"
+              aria-live="polite"
+            >
+              {pages.length} of {maxPages} pages · {uploadTotal.label}
+              {isCompressing ? ' (optimizing…)' : ''}
+            </p>
+          </div>
+          {uploadTotal.tone === 'over' && !isCompressing && (
+            <p className="ec-card ec-card--paper border ec-tint-critical-chip px-4 py-3 text-sm" role="alert">
+              That&rsquo;s over the {formatFileSize(MAX_UPLOAD_PAYLOAD_BYTES)} upload limit. Remove a page or retake
+              it at a lower resolution before marking.
+            </p>
+          )}
           {pages.map((page, index) => (
             <UploadPageCard
               key={page.id}
@@ -491,7 +586,11 @@ export function PageUploader({
               showQuestionAssign={showQuestionAssign}
               questionOptions={questionOptions}
               onRemove={() => {
-                onPagesChange((prev) => prev.filter((p) => p.id !== page.id))
+                onPagesChange((prev) => {
+                  const gone = prev.find((p) => p.id === page.id)
+                  revokePagePreview(gone?.previewUrl)
+                  return prev.filter((p) => p.id !== page.id)
+                })
               }}
               onQuestionChange={(q) =>
                 onPagesChange((prev) =>
@@ -521,12 +620,12 @@ export function PageUploader({
 
       <button
         type="button"
-        disabled={controlsDisabled}
+        disabled={addDisabled}
         onClick={() => fileInputRef.current?.click()}
         className="ec-btn-secondary w-full justify-center"
       >
         <span className="font-mono text-[11px] font-bold tracking-wide" aria-hidden>+</span>
-        Add another page
+        {atPageCap ? `${maxPages} pages is the limit per mark` : 'Add another page'}
       </button>
     </div>
   )

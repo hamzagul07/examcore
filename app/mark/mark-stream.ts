@@ -56,6 +56,25 @@ export function parseMarkStreamPart(part: string): MarkStreamEvent | null {
   }
 }
 
+/**
+ * The 200 reply to an upload is one of two things, and the body has to be
+ * read the right way for each: an SSE stream, or a JSON object — either
+ * `{ duplicate: true, mark_run_id }` when the same client_request_id is
+ * already running (attach to it), or an error. Reading JSON with the SSE
+ * reader parsed nothing and reported "the function died without a result".
+ */
+export function isJsonResponse(contentType: string | null | undefined): boolean {
+  return /^application\/json\b/i.test((contentType ?? '').trim())
+}
+
+/**
+ * Shown when a run the page was following can no longer be read: the row is
+ * gone, it is not ours any more, or the sweep horizon passed. Nothing is
+ * offered as "retry" because nothing is known — the dashboard is the truth.
+ */
+export const MARK_LOST_TRACK_NOTICE =
+  "We lost track of that mark. If it finished, it's on your dashboard within a few minutes — otherwise tap Mark again."
+
 export type MarkStreamContext = {
   setMarkRunId: Dispatch<SetStateAction<string | null>>
   setProvisionalScore: Dispatch<
@@ -69,16 +88,16 @@ export type MarkStreamContext = {
     } | null>
   >
   setMarkContext: Dispatch<SetStateAction<MarkContextPayload | null>>
-  setMarkStreamError: Dispatch<SetStateAction<string | null>>
   setErrorMsg: Dispatch<SetStateAction<string>>
-  setErrorRetryable: Dispatch<SetStateAction<boolean>>
   setLoading: Dispatch<SetStateAction<boolean>>
   questionNumber: string
   /**
-   * Soft recovery instead of the full-screen / FormErrorAlert failure path.
-   * When set, stream errors clear the wait chrome and surface a calm notice.
+   * The one failure path. Stream errors clear the wait chrome, keep the
+   * uploads, and surface a calm notice — never a full-screen stopped card with
+   * its own Retry (which, for a run the server may still be finishing, would
+   * have started a second charged one).
    */
-  onSoftMarkFailure?: (serverMessage: string) => void
+  onSoftMarkFailure: (serverMessage: string) => void
 }
 
 export function handleMarkStreamEvent(
@@ -129,17 +148,8 @@ export function handleMarkStreamEvent(
     ctx.setLoading(false)
     ctx.setMarkProgress(null)
     ctx.setMarkContext(null)
-    // Prefer soft recovery: close the wait chrome, keep uploads, no error alert.
-    if (ctx.onSoftMarkFailure) {
-      ctx.setMarkStreamError(null)
-      ctx.setErrorMsg('')
-      ctx.setErrorRetryable(false)
-      ctx.onSoftMarkFailure(msg)
-      return 'error'
-    }
-    ctx.setMarkStreamError(msg)
-    ctx.setErrorMsg(msg)
-    ctx.setErrorRetryable(!!event.retryable)
+    ctx.setErrorMsg('')
+    ctx.onSoftMarkFailure(msg)
     return 'error'
   }
   return 'continue'

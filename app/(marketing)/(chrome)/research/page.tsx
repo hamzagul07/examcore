@@ -128,7 +128,7 @@ export default function ResearchPage() {
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 M1
               </span>
-              Open the marking desk -&gt;
+              Open the marking desk →
             </Link>
             <Link href="/contact" className="ec-btn-ghost inline-flex min-h-[48px]">
               Press &amp; partnerships

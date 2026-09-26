@@ -126,7 +126,7 @@ export default function GuidesIndexPage() {
                     <span className="ms-board-slip__blurb">{cluster.description}</span>
                   </span>
                   <span className="ms-board-slip__go" aria-hidden>
-                    -&gt;
+                    →
                   </span>
                 </Link>
               </li>
@@ -147,7 +147,7 @@ export default function GuidesIndexPage() {
               <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                 M1
               </span>
-              Mark a question — free -&gt;
+              Mark a question — free →
             </Link>
             <Link href="/courses" className="ec-btn-ghost inline-flex min-h-[48px]">
               Cambridge courses

@@ -3,6 +3,15 @@ import { getGeminiRetryStats } from '@/lib/marking/gemini-retry'
 import { requestOcrEscalations, requestRetryCount } from '@/lib/ai/request-deadline'
 import type { MarkingErrorCode } from '@/lib/marking/classify-marking-error'
 import type { MarkProgressStage } from '@/lib/marking/mark-progress'
+import {
+  classifyMarkRunWriteError,
+  isMissingOptionalColumnError,
+  type MarkRunDbError,
+} from '@/lib/marking/mark-run-errors'
+
+// Re-exported for the route that reuses a run row; the classification lives
+// in mark-run-errors.ts so it can be unit-tested without a Supabase client.
+export { isMissingOptionalColumnError } from '@/lib/marking/mark-run-errors'
 
 /**
  * Marking reliability telemetry.
@@ -54,6 +63,43 @@ export type MarkRunOpenInput = {
   /** Client-generated idempotency key — lets a retried upload find its
    * original run instead of starting (and charging) a second one. */
   clientRequestId?: string | null
+  /**
+   * Who the key belongs to (lib/rate-limit clientScopeKey: user id, or a
+   * hashed IP for a guest). Written with the insert so the unique index on
+   * (client_scope, client_request_id) decides the race at the row itself;
+   * an UPDATE after the insert left a window in which two uploads with one
+   * key could both be running.
+   */
+  clientScope?: string | null
+  /**
+   * Whole-paper runs mark an attempt that already exists (created at init),
+   * so the link can be written at open rather than at settle.
+   */
+  attemptId?: string | null
+  /**
+   * The quota reservation this run is holding (MarkReservation.event_id), when
+   * it is known before the row is opened. Otherwise noteMarkRunReservation.
+   */
+  reservationEventId?: string | null
+}
+
+/**
+ * Thrown by openMarkRun when the insert trips the (client_scope,
+ * client_request_id) unique index: another upload with the same key is
+ * already on a row. The caller — not this module — knows how to answer that
+ * (release its reservation, refund the guest slot, return `duplicate: true`
+ * with the winner's run id). Telemetry failures of every other kind are
+ * swallowed as before; this one is not a telemetry failure but the
+ * idempotency contract doing its job.
+ */
+export class MarkRunDuplicateKeyError extends Error {
+  constructor(
+    readonly clientScope: string | null,
+    readonly clientRequestId: string
+  ) {
+    super('A marking run with this client_request_id already exists')
+    this.name = 'MarkRunDuplicateKeyError'
+  }
 }
 
 /** Open a run row. Returns a handle with a null id if logging is unavailable —
@@ -80,27 +126,126 @@ export async function openMarkRun(
     is_paid: input.isPaid,
     subject_code: input.subjectCode,
     client_request_id: input.clientRequestId ?? null,
+    attempt_id: input.attemptId ?? null,
   }
   try {
-    // Prefer board-aware insert; fall back if migration not applied yet.
+    // Prefer the full row; fall back to the original column set if a
+    // migration has not been applied yet (OPTIONAL_RUN_COLUMNS in
+    // mark-run-errors.ts).
+    //
+    // The unique violation is tested BEFORE the missing-column fallback, and
+    // again after it. The scoped index's name contains `client_scope`, so a
+    // same-second duplicate used to read as "column not migrated", the row
+    // was re-inserted without its scope, that insert succeeded, and the
+    // losing upload ran and charged anyway. See classifyMarkRunWriteError.
+    const duplicate = (error: MarkRunDbError) =>
+      !!input.clientRequestId && classifyMarkRunWriteError(error) === 'unique_violation'
     let result = await supabaseAdmin
       .from('mark_runs')
-      .insert({ ...baseRow, exam_system: input.examSystem ?? null })
+      .insert({
+        ...baseRow,
+        exam_system: input.examSystem ?? null,
+        reservation_event_id: input.reservationEventId ?? null,
+        client_scope: input.clientScope ?? null,
+      })
       .select('id')
       .single()
-    if (result.error && /exam_system/i.test(result.error.message ?? '')) {
+    if (result.error && duplicate(result.error)) {
+      // Two uploads with one key inside the same second: this one is the
+      // loser. Not swallowed.
+      throw new MarkRunDuplicateKeyError(input.clientScope ?? null, input.clientRequestId!)
+    }
+    if (result.error && classifyMarkRunWriteError(result.error) === 'missing_optional_column') {
       result = await supabaseAdmin
         .from('mark_runs')
         .insert(baseRow)
         .select('id')
         .single()
+      if (result.error && duplicate(result.error)) {
+        // Pre-migration: the old GLOBAL index on client_request_id.
+        throw new MarkRunDuplicateKeyError(input.clientScope ?? null, input.clientRequestId!)
+      }
     }
     if (result.error) throw result.error
     handle.id = result.data?.id ?? null
   } catch (err) {
+    if (err instanceof MarkRunDuplicateKeyError) throw err
     console.warn('[mark-run] open failed (marking continues)', err)
   }
   return handle
+}
+
+export type WholePaperMarkRunInput = {
+  userId: string | null
+  /** The attempt row created at whole-paper init. */
+  attemptId: string
+  pageCount: number
+  hasPdf: boolean
+  isPaid: boolean
+  subjectCode: string | null
+  examSystem?: string | null
+  reservationEventId?: string | null
+}
+
+/**
+ * Open a run row for a whole-paper job.
+ *
+ * Whole-paper marking never opened one, so a killed `run` was invisible: not
+ * to the sweep, not to run-status, not to PendingMarkWatcher. The attempt sat
+ * in phase 'marking' for good and the client polled until it gave up. Same
+ * row shape as a single-question run — `upload_mode` tells them apart in
+ * mark_run_daily_stats — with the attempt linked at open because it already
+ * exists. Settle with settleMarkRunSuccess / settleMarkRunError as usual.
+ */
+export async function openWholePaperMarkRun(
+  input: WholePaperMarkRunInput
+): Promise<MarkRunHandle> {
+  return openMarkRun({
+    userId: input.userId,
+    uploadMode: 'whole_paper',
+    // A whole paper is a past paper; `upload_mode` is the discriminator.
+    markIntent: 'past_paper',
+    pageCount: input.pageCount,
+    hasPdf: input.hasPdf,
+    isPaid: input.isPaid,
+    subjectCode: input.subjectCode,
+    examSystem: input.examSystem ?? null,
+    attemptId: input.attemptId,
+    reservationEventId: input.reservationEventId ?? null,
+  })
+}
+
+/**
+ * Record the quota reservation this run is holding, so the sweep can give it
+ * back if the function dies.
+ *
+ * A reservation is settled by the route — finalize on success, release on
+ * failure — and a killed function reaches neither. The sweep converts those
+ * runs to 'abandoned', but until now it had no idea what they were holding,
+ * so the student permanently lost a mark (or a credit) for a mark they never
+ * got. Flushed immediately, fire-and-forget, like the stage: it exists for
+ * exactly the runs that never settle.
+ *
+ * The reservation is usually made before the row is opened; pass it to
+ * openMarkRun instead when both are in hand. `null` is a no-op (guests).
+ */
+export function noteMarkRunReservation(
+  handle: MarkRunHandle | null,
+  eventId: string | null
+): void {
+  if (!handle?.id || !eventId) return
+  void supabaseAdmin
+    .from('mark_runs')
+    .update({ reservation_event_id: eventId })
+    .eq('id', handle.id)
+    .then(
+      ({ error }) => {
+        if (error && !isMissingOptionalColumnError(error)) {
+          console.warn('[mark-run] reservation flush failed', error.message)
+        }
+      },
+      (err: unknown) => console.warn('[mark-run] reservation flush failed', err)
+    )
 }
 
 /**
@@ -335,8 +480,10 @@ export async function settleMarkRunError(
 
 /**
  * Age past which a still-'running' row is treated as a killed function. Must
- * exceed the longest legitimate run (the route's maxDuration, clamped by the
- * plan to 300s) with headroom for the settling write itself.
+ * exceed the longest legitimate run — `process` and whole-paper `run` both
+ * export maxDuration = 800s — with headroom for the settling write itself.
+ * This is also the earliest a reservation can be given back, so it must never
+ * be shorter than a run that might still finalize.
  */
 export const MARK_RUN_STALE_MINUTES = 20
 
@@ -347,6 +494,20 @@ export type AbandonedMarkRun = {
   subject_code: string | null
   /** True when the student had already left — they were promised an email. */
   client_disconnected: boolean
+  /** The quota reservation the run died holding, if the route recorded one. */
+  reservation_event_id: string | null
+}
+
+const ABANDONED_COLUMNS = 'id, user_id, subject_code, client_disconnected'
+
+function toAbandoned(r: Record<string, unknown>): AbandonedMarkRun {
+  return {
+    id: r.id as string,
+    user_id: (r.user_id as string | null) ?? null,
+    subject_code: (r.subject_code as string | null) ?? null,
+    client_disconnected: r.client_disconnected === true,
+    reservation_event_id: (r.reservation_event_id as string | null) ?? null,
+  }
 }
 
 /**
@@ -363,8 +524,8 @@ export async function sweepStaleMarkRuns(): Promise<AbandonedMarkRun[]> {
   const cutoff = new Date(
     Date.now() - MARK_RUN_STALE_MINUTES * 60_000
   ).toISOString()
-  try {
-    const { data, error } = await supabaseAdmin
+  const abandon = (columns: string) =>
+    supabaseAdmin
       .from('mark_runs')
       .update({
         status: 'abandoned',
@@ -375,16 +536,59 @@ export async function sweepStaleMarkRuns(): Promise<AbandonedMarkRun[]> {
       })
       .eq('status', 'running')
       .lt('started_at', cutoff)
-      .select('id, user_id, subject_code, client_disconnected')
-    if (error) throw error
-    return (data ?? []).map((r) => ({
-      id: r.id as string,
-      user_id: (r.user_id as string | null) ?? null,
-      subject_code: (r.subject_code as string | null) ?? null,
-      client_disconnected: r.client_disconnected === true,
-    }))
+      .select(columns)
+  try {
+    // The conditional update is what makes each run returned exactly once:
+    // only rows this statement flipped come back, so two overlapping sweeps
+    // cannot both act on the same run.
+    let result = await abandon(`${ABANDONED_COLUMNS}, reservation_event_id`)
+    if (result.error && isMissingOptionalColumnError(result.error)) {
+      // Column not migrated yet: the statement failed at parse time, nothing
+      // was flipped, so re-running without it is safe.
+      result = await abandon(ABANDONED_COLUMNS)
+    }
+    if (result.error) throw result.error
+    return ((result.data ?? []) as unknown as Record<string, unknown>[]).map(toAbandoned)
   } catch (err) {
     console.warn('[mark-run] sweep failed', err)
     return []
+  }
+}
+
+/**
+ * Abandoned runs whose reservation is still outstanding. The sweep releases
+ * the reservation right after abandoning a run, but it can die in between;
+ * these are the ones it owes from earlier, picked up on the next pass. Bounded
+ * so a backlog cannot turn one cron invocation into a marathon.
+ */
+export async function listUnreleasedAbandonedRuns(limit = 200): Promise<AbandonedMarkRun[]> {
+  try {
+    const { data, error } = await supabaseAdmin
+      .from('mark_runs')
+      .select(`${ABANDONED_COLUMNS}, reservation_event_id`)
+      .eq('status', 'abandoned')
+      .not('reservation_event_id', 'is', null)
+      .is('reservation_released_at', null)
+      .order('started_at', { ascending: true })
+      .limit(limit)
+    if (error) {
+      if (!isMissingOptionalColumnError(error)) throw error
+      return []
+    }
+    return ((data ?? []) as unknown as Record<string, unknown>[]).map(toAbandoned)
+  } catch (err) {
+    console.warn('[mark-run] unreleased lookup failed', err)
+    return []
+  }
+}
+
+/** Stamp a swept run as having had its reservation released. */
+export async function markMarkRunReservationReleased(runId: string): Promise<void> {
+  const { error } = await supabaseAdmin
+    .from('mark_runs')
+    .update({ reservation_released_at: new Date().toISOString() })
+    .eq('id', runId)
+  if (error && !isMissingOptionalColumnError(error)) {
+    console.warn('[mark-run] release stamp failed', error.message)
   }
 }

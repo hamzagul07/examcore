@@ -1,11 +1,15 @@
 import { NextRequest } from 'next/server'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
-import { attachmentKindForMime, uploadCommunityFile } from '@/lib/community/uploads'
+import { uploadCommunityFile } from '@/lib/community/uploads'
+import {
+  MAX_ATTACHMENT_BYTES,
+  attachmentKindForMime,
+  cleanAttachmentName,
+  sniffMatchesMime,
+} from '@/lib/community/attachment-validate'
 import { ensureUsername } from '@/lib/community/ensure-username'
 
 export const maxDuration = 60
-
-const MAX_FILE_BYTES = 4 * 1024 * 1024 // 4MB — Vercel serverless body cap
 
 /** POST /api/community/upload (multipart) — upload one attachment, return its descriptor. */
 export async function POST(request: NextRequest) {
@@ -31,14 +35,15 @@ export async function POST(request: NextRequest) {
   if (!(file instanceof File) || file.size === 0) {
     return jsonWithAuthCookies({ error: 'No file received.' }, pendingCookies, { status: 400 })
   }
-  if (file.size > MAX_FILE_BYTES) {
+  if (file.size > MAX_ATTACHMENT_BYTES) {
     return jsonWithAuthCookies(
       { error: 'File too large — keep attachments under 4 MB.' },
       pendingCookies,
       { status: 413 }
     )
   }
-  if (!attachmentKindForMime(file.type)) {
+  const mime = (file.type || '').toLowerCase()
+  if (!attachmentKindForMime(mime)) {
     return jsonWithAuthCookies(
       { error: 'Unsupported file type. Use PDF, images, or office documents.' },
       pendingCookies,
@@ -47,10 +52,22 @@ export async function POST(request: NextRequest) {
   }
 
   const buffer = Buffer.from(await file.arrayBuffer())
+  // `file.type` is whatever the browser (or a hand-rolled request) claims.
+  // The object is stored under that content type and served from a signed
+  // URL, so the bytes have to agree with it — an HTML file renamed .png must
+  // not end up served as an image (code review 2026-09-25, §2 Community).
+  if (!sniffMatchesMime(buffer, mime)) {
+    return jsonWithAuthCookies(
+      { error: 'That file does not look like its declared type. Re-export it and try again.' },
+      pendingCookies,
+      { status: 415 }
+    )
+  }
+
   const attachment = await uploadCommunityFile({
     buffer,
-    mime: file.type,
-    originalName: file.name || 'attachment',
+    mime,
+    originalName: cleanAttachmentName(file.name, 'attachment'),
     userId: user.id,
   })
   if (!attachment) {

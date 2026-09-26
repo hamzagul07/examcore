@@ -1,6 +1,7 @@
 'use client'
 
 import { RichTextRenderer } from '@/components/RichTextRenderer'
+import type { MarkdownLinkFilter } from '@/lib/rich-text/markdown-components'
 import type { OmniAIMessage, OmniAIAction } from '@/lib/omni-ai/types'
 import { PaperPreview } from '@/components/command-bar/PaperPreview'
 import { DiagnosticPreview } from '@/components/command-bar/DiagnosticPreview'
@@ -13,9 +14,16 @@ import { ThinkingIndicator } from './ThinkingIndicator'
 interface StreamingMessageProps {
   message: OmniAIMessage
   splitPaper?: boolean
+  /**
+   * Where links in the assistant's prose may point. The teacher desk passes
+   * teacherCtaHref, the same allowlist as its CTAs (spec §8): a teacher's
+   * prompt quotes student-written text, and a link the model was steered
+   * into writing must not take the teacher off their own pages.
+   */
+  linkFilter?: MarkdownLinkFilter
 }
 
-export function StreamingMessage({ message, splitPaper = false }: StreamingMessageProps) {
+export function StreamingMessage({ message, splitPaper = false, linkFilter }: StreamingMessageProps) {
   if (message.role === 'user') {
     return (
       <div className="ms-omni-msg user ec-chat-message-enter">
@@ -64,7 +72,7 @@ export function StreamingMessage({ message, splitPaper = false }: StreamingMessa
               </div>
             ) : (
               <div className="ms-omni-answer-body">
-                <RichTextRenderer text={message.content} variant="light" />
+                <RichTextRenderer text={message.content} variant="light" linkFilter={linkFilter} />
               </div>
             )}
           </div>
@@ -73,11 +81,12 @@ export function StreamingMessage({ message, splitPaper = false }: StreamingMessa
         {showSplitPaper && message.action?.paper && (
           <>
             <div className="ec-card ec-card--paper ms-omni-answer ms-omni-answer--settled hidden border ec-border-color px-4 py-3 text-[var(--ec-text-primary)] lg:block">
-              <RichTextRenderer text={message.content} variant="light" />
+              <RichTextRenderer text={message.content} variant="light" linkFilter={linkFilter} />
             </div>
             <SplitScreenPreview
               paper={message.action.paper}
               messageContent={message.content}
+              linkFilter={linkFilter}
             />
           </>
         )}

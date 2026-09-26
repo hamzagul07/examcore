@@ -11,6 +11,12 @@ export const UPVOTE_REP = 2
  * -UPVOTE_REP when that upvote is toggled off or flipped to a downvote —
  * otherwise reputation only ever rises and a single voter can inflate an author
  * without bound by toggling a vote on and off.
+ *
+ * Only the note / question / answer vote routes still call this from the
+ * application layer. Post and comment votes moved into the `vote_post` /
+ * `vote_comment` RPCs (20260925_community_votes_rpc.sql), which apply the
+ * same UPVOTE_REP delta inside the vote's own transaction — the JS
+ * read → upsert → bump sequence let two concurrent upvotes credit twice.
  */
 export async function adjustAuthorSubjectRep(
   admin: Admin,

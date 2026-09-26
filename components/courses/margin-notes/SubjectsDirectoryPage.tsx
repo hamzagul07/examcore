@@ -92,7 +92,7 @@ export function SubjectsDirectoryPage({
                   </span>
                 </span>
                 <span className="ms-pp-cta" aria-hidden>
-                  -&gt;
+                  →
                 </span>
               </Link>
             </li>
@@ -113,7 +113,7 @@ export function SubjectsDirectoryPage({
             style={{ marginTop: 14 }}
             onClick={() => selectFam('All')}
           >
-            Show all subjects -&gt;
+            Show all subjects →
           </button>
         </div>
       )}

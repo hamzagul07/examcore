@@ -174,7 +174,7 @@ export default async function IbSubjectPage({ params }: Props) {
                 <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                   M1
                 </span>
-                Criterion mark -&gt;
+                Criterion mark →
               </Link>
               <Link
                 href={`/ib/past-papers/${subject.slug}`}
@@ -251,7 +251,7 @@ export default async function IbSubjectPage({ params }: Props) {
                 <span className="ec-ink-stamp ec-ink-stamp--inline" aria-hidden>
                   M1
                 </span>
-                Get feedback -&gt;
+                Get feedback →
               </Link>
             </div>
           </div>
@@ -329,14 +329,14 @@ export default async function IbSubjectPage({ params }: Props) {
                       <span className="ms-board-slip__name">{s.name}</span>
                     </span>
                     <span className="ms-board-slip__go" aria-hidden>
-                      -&gt;
+                      →
                     </span>
                   </Link>
                 </li>
               ))}
             </ul>
             <Link href="/ib" className="ec-btn-underline mt-4 inline-block text-sm">
-              All IB subjects -&gt;
+              All IB subjects →
             </Link>
           </nav>
         ) : null}

@@ -90,7 +90,7 @@ export default function Results2026IbPage() {
             >
               IB points calculator
               <span className="font-mono text-[11px] font-bold" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
             <Link
@@ -137,10 +137,10 @@ export default function Results2026IbPage() {
 
         <div className="ms-tool-instrument__links mt-10">
           <Link href="/results-2026" className="ec-link">
-            Cambridge Results Day hub -&gt;
+            Cambridge Results Day hub →
           </Link>
           <Link href="/results-2026/edexcel" className="ec-link">
-            Edexcel International -&gt;
+            Edexcel International →
           </Link>
         </div>
       </ToolInstrumentShell>

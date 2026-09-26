@@ -206,7 +206,7 @@ export function PremiumNudge({ surface }: { surface: Surface }) {
             >
               Mark one free
               <span className="font-mono text-[11px] font-bold" aria-hidden>
-                -&gt;
+                →
               </span>
             </Link>
             {showPlansLink ? (

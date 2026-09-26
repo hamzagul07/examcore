@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { trackFunnelEvent } from '@/lib/analytics/funnel'
 import { GLOSS_VAULT } from '@/lib/copy/product-lexicon'
 import type { BillingSummaryClient } from '@/lib/billing/question-copy'
+import { formatDisplayDate } from '@/lib/format/display-date'
+import { useDisplayTimeZone } from '@/lib/hooks/useDisplayTimeZone'
 
 /**
  * Premium, visible where the marking happens — not only at the wall.
@@ -25,6 +27,7 @@ import type { BillingSummaryClient } from '@/lib/billing/question-copy'
  * not argued.
  */
 export function PostMarkPremiumCard({ summary }: { summary: BillingSummaryClient | null }) {
+  const timeZone = useDisplayTimeZone()
   const seenRef = useRef(false)
 
   const variant: 'free' | 'exhausted' | 'paid-warning' | null = !summary?.signedIn
@@ -47,10 +50,7 @@ export function PostMarkPremiumCard({ summary }: { summary: BillingSummaryClient
 
   const { remaining, cap } = summary.questions
   const resetsAt = summary.period_resets_at
-    ? new Date(summary.period_resets_at).toLocaleDateString(undefined, {
-        day: 'numeric',
-        month: 'short',
-      })
+    ? formatDisplayDate(summary.period_resets_at, { year: false }, timeZone)
     : null
 
   /**

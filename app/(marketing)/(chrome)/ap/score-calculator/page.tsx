@@ -45,7 +45,7 @@ export default function ApScoreCalculatorPage() {
             href={apMarkHref('ap-calculus-ab')}
             className="ec-btn-primary inline-flex min-h-[48px] items-center"
           >
-            Mark a Calculus AB FRQ -&gt;
+            Mark a Calculus AB FRQ →
           </Link>
           <Link href={apRootPath()} className="ec-btn-ghost inline-flex min-h-[48px] items-center">
             AP hub

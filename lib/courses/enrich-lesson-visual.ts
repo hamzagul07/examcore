@@ -1,10 +1,11 @@
 import fs from 'fs'
 import { boardLabel } from '@/lib/courses/board'
 import path from 'path'
-import type { CourseLesson, LessonSection } from '@/lib/courses/types'
+import type { CourseLesson } from '@/lib/courses/types'
 import type { EnrichedVisualLesson, VisualBlock, VisualStep } from '@/lib/courses/visual-types'
 import { detectVisualTemplate, diagramPath } from '@/lib/courses/visual-profile'
 import { parseFormulaParts } from '@/lib/courses/formula-parts'
+import { glossaryFromBoldTerms } from '@/lib/courses/margin-notes/glossary-terms'
 import {
   ensureFullQuickCheckPrompt,
   glossaryLabelFromFlashcard,
@@ -42,16 +43,13 @@ function stepsFromLesson(lesson: CourseLesson): VisualStep[] {
   return [{ label: 'Start', detail: lesson.summary }]
 }
 
-function extractBoldTerms(sections: LessonSection[]): string[] {
-  const terms: string[] = []
-  for (const s of sections) {
-    if (s.type !== 'intro' && s.type !== 'text') continue
-    const matches = s.content.matchAll(/\*\*([^*]+)\*\*/g)
-    for (const m of matches) {
-      if (m[1] && !terms.includes(m[1])) terms.push(m[1])
-    }
-  }
-  return terms.slice(0, 8)
+/** "State Kirchhoff's First", "Under what condition is" — a question cut short, not a term. */
+function isTermLike(label: string): boolean {
+  const words = label.trim().split(/\s+/)
+  if (!words.length || words.length > 4) return false
+  if (/^(?:what|which|why|how|when|where|state|define|explain|describe|calculate|under|give|name)$/i.test(words[0]!)) return false
+  if (/^(?:a|an|the|of|in|is|are|for|to|and|or|between|from|with|by|on|at|as|you|your|it|its|this|that|when|if)$/i.test(words[words.length - 1]!)) return false
+  return true
 }
 
 function keyTermsFromLesson(lesson: CourseLesson): { term: string; definition: string }[] {
@@ -65,30 +63,30 @@ function keyTermsFromLesson(lesson: CourseLesson): { term: string; definition: s
     terms.push({ term: term.trim(), definition: definition.trim() })
   }
 
-  for (const fc of lesson.flashcards ?? []) {
-    add(
-      glossaryLabelFromFlashcard(fc.front, fc.back, fc.pillLabel),
-      fc.back
-    )
-  }
-
-  const bold = extractBoldTerms(lesson.sections)
-  const keyPoints = lesson.sections.find((x) => x.type === 'keyPoints')
-  const items = keyPoints?.type === 'keyPoints' ? keyPoints.items : []
-
-  bold.forEach((term, i) => {
-    add(term, items[i] ?? lesson.summary)
-  })
+  // The terms the author bolded, each with the sentence that defines it —
+  // the glossary a textbook would print.
+  for (const g of glossaryFromBoldTerms(lesson)) add(g.t, g.d)
 
   for (const s of lesson.sections) {
     if (s.type !== 'formula') continue
     const lines = s.content.split('\n').filter(Boolean)
     for (const line of lines) {
       const m = line.match(/\*\*([^*]+)\*\*/)
-      if (m) add(m[1], line.replace(/\*\*/g, ''))
+      if (m) add(m[1]!, line.replace(/\*\*/g, ''))
     }
   }
 
+  // Flashcards fill in only when the author bolded little, and only cards
+  // whose label reads as a term rather than as the start of a question.
+  if (terms.length < 4) {
+    for (const fc of lesson.flashcards ?? []) {
+      const label = glossaryLabelFromFlashcard(fc.front, fc.back, fc.pillLabel)
+      if (fc.pillLabel?.trim() || isTermLike(label)) add(label, fc.back)
+    }
+  }
+
+  const keyPoints = lesson.sections.find((x) => x.type === 'keyPoints')
+  const items = keyPoints?.type === 'keyPoints' ? keyPoints.items : []
   if (!terms.length) {
     items.slice(0, 8).forEach((item) => {
       const words = item.split(/\s+/).slice(0, 3).join(' ')

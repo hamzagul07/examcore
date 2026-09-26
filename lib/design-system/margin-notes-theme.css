@@ -54,11 +54,15 @@
   --border-strong: #f0ead9;
   --text: #f0ead9;
   --text-2: #c4bba1;
-  --muted: #b0a68c;
-  --ink: #00f5a0;
-  --ink-bright: #00f5a0;
-  --ink-soft: rgba(0, 245, 160, 0.1);
-  --ink-border: rgba(0, 245, 160, 0.38);
+  --muted: #bfb7a3;
+  /* Text-size ink is #5fd39a (10:1 on --bg); the neon #00f5a0 halated at
+     body sizes and is kept only as --ink-stamp for >=24px stamps. See the
+     late-night block in theme.css for the numbers. */
+  --ink: #5fd39a;
+  --ink-bright: #5fd39a;
+  --ink-stamp: #00f5a0;
+  --ink-soft: rgba(95, 211, 154, 0.12);
+  --ink-border: rgba(95, 211, 154, 0.42);
   --red: #e06c6c;
   --red-soft: rgba(224, 108, 108, 0.12);
   --pen: #9eb0f5;
@@ -71,10 +75,11 @@
   --acc-slate: #9aa5b4;
   --paper: #211e14;
   --paper-rule: #383223;
-  --shadow-card: 3px 3px 0 rgba(0, 0, 0, 0.35);
-  --shadow-pop: 5px 5px 0 rgba(0, 0, 0, 0.45);
-  --shadow-hard: 6px 6px 0 rgba(0, 0, 0, 0.45);
-  --cta-shadow: 4px 4px 0 rgba(0, 0, 0, 0.4);
+  /* Pale-ink shadows: black offsets vanish on #14120d (see theme.css). */
+  --shadow-card: 0 0 0 1px rgba(240, 234, 217, 0.06), 4px 4px 0 rgba(240, 234, 217, 0.05);
+  --shadow-pop: 0 0 0 1px rgba(240, 234, 217, 0.08), 6px 6px 0 rgba(240, 234, 217, 0.07);
+  --shadow-hard: 0 0 0 1px rgba(240, 234, 217, 0.06), 4px 4px 0 rgba(240, 234, 217, 0.05);
+  --cta-shadow: 0 0 0 1px rgba(240, 234, 217, 0.06), 4px 4px 0 rgba(240, 234, 217, 0.06);
   --on-ink-text: #07130d;
   color-scheme: dark;
 }

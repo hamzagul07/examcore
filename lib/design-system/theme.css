@@ -29,15 +29,26 @@
   --ec-border-strong: #f0ead9;
   --ec-text-primary: #f0ead9;
   --ec-text-secondary: #c4bba1;
-  /* AA normal-text floor on paper (~4.6:1). Decorative hairlines use border tokens (DS-02). */
-  --ec-text-faint: #b0a68c;
+  /* Muted copy at APCA Lc 63 on the canvas (~9.4:1). #b0a68c passed WCAG but
+     sat at Lc 54, under the Lc 60 reading floor for small metadata (DS-02).
+     Decorative hairlines use border tokens. */
+  --ec-text-faint: #bfb7a3;
   --ec-text-reading: #ece5d4;
-  --ec-brand: #00f5a0;
-  --ec-brand-deep: #00f5a0;
-  --ec-brand-muted: rgba(0, 245, 160, 0.1);
-  --ec-brand-border: rgba(0, 245, 160, 0.38);
+  /* Text-size ink. The old #00f5a0 was a ~100%-chroma neon that halated at
+     body sizes and read as gaming UI, not examiner ink. #5fd39a measures
+     10.0:1 on the canvas and 9.2:1 on sheets; --ec-on-brand-text stays dark
+     on it at 10.2:1. The neon survives only as --ec-brand-stamp for >=24px
+     stamps and tallies (consumers: var(--ec-brand-stamp, var(--ec-brand)) —
+     zen has no stamp tone because its green is not a neon). */
+  --ec-brand: #5fd39a;
+  --ec-brand-deep: #5fd39a;
+  --ec-brand-stamp: #00f5a0;
+  /* Tint alphas sit a touch higher than the neon needed: the calmer green
+     carries less luminance, so the same alpha washed out on dark paper. */
+  --ec-brand-muted: rgba(95, 211, 154, 0.12);
+  --ec-brand-border: rgba(95, 211, 154, 0.42);
   --ec-accent-light: #4fd1c5;
-  --ec-brand-gradient: linear-gradient(135deg, #00f5a0 0%, #1a7575 100%);
+  --ec-brand-gradient: linear-gradient(135deg, #5fd39a 0%, #1a7575 100%);
   --ec-ink-crimson: #e06c6c;
   --ec-ink-red: #e06c6c;
   /* Fixed logo tick — matches lib/brand/logo-mark.ts LOGO_COLORS.brand */
@@ -52,9 +63,9 @@
   --ec-error: #e06c6c;
   --ec-danger: #e06c6c;
   --ec-warning: #e8b563;
-  --ec-score-high: #00f5a0;
+  --ec-score-high: #5fd39a;
   --ec-score-mid: #e8b563;
-  --ec-brand-soft: rgba(0, 245, 160, 0.14);
+  --ec-brand-soft: rgba(95, 211, 154, 0.16);
   --ec-logo-crimson: #bb2a25;
   --ec-pen: #9eb0f5;
   --ec-on-brand-text: #07130d;
@@ -64,14 +75,14 @@
   --ec-notebook-pencil: var(--ec-pen);
   --ec-notebook-rule: var(--ec-paper-rule);
   --ec-paper-texture: none;
-  --ec-chip-success-bg: rgba(0, 245, 160, 0.1);
-  --ec-chip-success-text: #00f5a0;
+  --ec-chip-success-bg: rgba(95, 211, 154, 0.12);
+  --ec-chip-success-text: #5fd39a;
   --ec-chip-warning-bg: rgba(217, 179, 106, 0.14);
   --ec-chip-warning-text: #d9b36a;
   --ec-chip-critical-bg: rgba(224, 108, 108, 0.12);
   --ec-chip-critical-text: #e06c6c;
   --ec-chip-neutral-bg: rgba(131, 123, 100, 0.14);
-  --ec-chip-neutral-text: #b0a68c;
+  --ec-chip-neutral-text: #bfb7a3;
   --ec-chip-info-bg: rgba(143, 169, 247, 0.14);
   --ec-chip-info-text: #8fa9f7;
   --ec-chip-sampled-bg: rgba(79, 209, 197, 0.14);
@@ -91,10 +102,10 @@
   --ec-c-hum: #e788ad;
   --ec-c-comp: #8fa9f7;
   --ec-c-media: #e788ad;
-  --ec-banner-success-bg: rgba(0, 245, 160, 0.1);
-  --ec-banner-success-border: rgba(0, 245, 160, 0.35);
-  --ec-banner-success-title: #00f5a0;
-  --ec-banner-success-meta: #4fd1c5;
+  --ec-banner-success-bg: rgba(95, 211, 154, 0.12);
+  --ec-banner-success-border: rgba(95, 211, 154, 0.4);
+  --ec-banner-success-title: #5fd39a;
+  --ec-banner-success-meta: #9bd3b4;
   --ec-banner-warning-bg: rgba(217, 179, 106, 0.14);
   --ec-banner-warning-border: rgba(217, 179, 106, 0.35);
   --ec-banner-warning-title: #f0d49a;
@@ -108,16 +119,20 @@
   --ec-radius-lg: 4px;
   --ec-radius-pill: 4px; /* stamp — pills killed for Examiner's Ink */
   --ec-wireframe-opacity: 0;
-  --ec-wireframe-color: 0, 245, 160;
-  --ec-btn-glow: 3px 3px 0 rgba(0, 0, 0, 0.35);
-  --ec-btn-glow-hover: 5px 5px 0 rgba(0, 0, 0, 0.45);
-  --ec-card-shadow: var(--ec-shadow-hard, 4px 4px 0 rgba(0, 0, 0, 0.35));
-  --ec-card-hover-shadow: 6px 6px 0 rgba(0, 0, 0, 0.45);
-  --ec-shadow-hard: 6px 6px 0 rgba(0, 0, 0, 0.45);
+  --ec-wireframe-color: 95, 211, 154;
+  /* Night shadows are cast in pale ink, not black: a black offset on #14120d
+     is invisible, so sheets and cards had no edge. A 1px hairline gives the
+     sheet an outline and the pale offset reads as the sheet lifting off the
+     desk, same geometry as the zen shadows. */
+  --ec-btn-glow: 3px 3px 0 rgba(240, 234, 217, 0.08);
+  --ec-btn-glow-hover: 5px 5px 0 rgba(240, 234, 217, 0.1);
+  --ec-card-shadow: 0 0 0 1px rgba(240, 234, 217, 0.06), 4px 4px 0 rgba(240, 234, 217, 0.05);
+  --ec-card-hover-shadow: 0 0 0 1px rgba(240, 234, 217, 0.08), 6px 6px 0 rgba(240, 234, 217, 0.07);
+  --ec-shadow-hard: 0 0 0 1px rgba(240, 234, 217, 0.06), 4px 4px 0 rgba(240, 234, 217, 0.05);
   --ec-shadow-card: var(--ec-shadow-hard);
-  --ec-shadow-elevation-1: 3px 3px 0 rgba(0, 0, 0, 0.3);
-  --ec-shadow-elevation-2: 5px 5px 0 rgba(0, 0, 0, 0.4);
-  --ec-shadow-elevation-3: 7px 7px 0 rgba(0, 0, 0, 0.5);
+  --ec-shadow-elevation-1: 0 0 0 1px rgba(240, 234, 217, 0.05), 3px 3px 0 rgba(240, 234, 217, 0.04);
+  --ec-shadow-elevation-2: 0 0 0 1px rgba(240, 234, 217, 0.06), 5px 5px 0 rgba(240, 234, 217, 0.06);
+  --ec-shadow-elevation-3: 0 0 0 1px rgba(240, 234, 217, 0.08), 7px 7px 0 rgba(240, 234, 217, 0.08);
   --ec-touch-min: 44px;
   --ec-z-sticky: 50;
   --ec-z-overlay: 60;
@@ -130,9 +145,9 @@
   --ec-accent-warm-border: rgba(240, 180, 101, 0.42);
   --ec-accent-coral: #f08a72;
   --ec-surface-warm: #221d14;
-  --ec-card-shadow-warm: 4px 4px 0 rgba(0, 0, 0, 0.35);
-  --ec-card-hover-shadow-warm: 6px 6px 0 rgba(0, 0, 0, 0.45);
-  --ec-focus-ring: 0 0 0 3px rgba(0, 245, 160, 0.22), 0 0 0 1px var(--ec-brand);
+  --ec-card-shadow-warm: var(--ec-card-shadow);
+  --ec-card-hover-shadow-warm: var(--ec-card-hover-shadow);
+  --ec-focus-ring: 0 0 0 3px rgba(95, 211, 154, 0.28), 0 0 0 1px var(--ec-brand);
   --ec-radius-card-lg: 4px;
   color-scheme: dark;
 }

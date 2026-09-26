@@ -3,6 +3,11 @@
  * Keep values in lockstep with [data-ec-theme] rules (DS-01). When they diverge,
  * theme.css wins at runtime; update this file in the same change.
  * Margin Notes: zen (paper light) · late-night (warm dark)
+ *
+ * Late-night ink is #5fd39a at text sizes (10:1 on the canvas); the neon
+ * #00f5a0 halated in body copy and lives on only as brandStamp for >=24px
+ * stamps. Night shadows are pale-ink hairline + offset, since black offsets
+ * vanish on #14120d.
  */
 
 export type EcTheme = 'late-night' | 'zen'
@@ -18,22 +23,24 @@ export const ecThemes = {
     borderSoft: '#322d1f',
     textPrimary: '#f0ead9',
     textSecondary: '#c4bba1',
-    /** AA normal-text floor on paper (~4.6:1) — DS-02 */
-    textFaint: '#b0a68c',
-    brand: '#00f5a0',
-    brandMuted: 'rgba(0, 245, 160, 0.1)',
-    brandGradient: 'linear-gradient(135deg, #00f5a0 0%, #1a7575 100%)',
+    /** APCA Lc 63 on the canvas (~9.4:1) — DS-02 */
+    textFaint: '#bfb7a3',
+    brand: '#5fd39a',
+    /** Neon reserved for >=24px stamps; never text-size. */
+    brandStamp: '#00f5a0',
+    brandMuted: 'rgba(95, 211, 154, 0.12)',
+    brandGradient: 'linear-gradient(135deg, #5fd39a 0%, #1a7575 100%)',
     inkCrimson: '#e06c6c',
     logoCrimson: '#bb2a25',
     pen: '#9eb0f5',
     paper: '#211e14',
     paperRule: '#383223',
-    chipSuccess: { bg: 'rgba(0, 245, 160, 0.1)', text: '#00f5a0' },
+    chipSuccess: { bg: 'rgba(95, 211, 154, 0.12)', text: '#5fd39a' },
     chipWarning: { bg: 'rgba(217, 179, 106, 0.14)', text: '#d9b36a' },
     chipCritical: { bg: 'rgba(224, 108, 108, 0.12)', text: '#e06c6c' },
-    chipNeutral: { bg: 'rgba(131, 123, 100, 0.14)', text: '#b0a68c' },
+    chipNeutral: { bg: 'rgba(131, 123, 100, 0.14)', text: '#bfb7a3' },
     wireframeOpacity: 0,
-    wireframeColor: '#00f5a0',
+    wireframeColor: '#5fd39a',
   },
   zen: {
     canvas: '#faf9f6',

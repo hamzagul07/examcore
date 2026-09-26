@@ -13,12 +13,30 @@
   --ec-text-faint: color-mix(in oklch, var(--ec-text-primary) 70%, var(--ec-canvas));
 }
 
+/* Late-night uses the literal theme tokens. The oklch mixes that "strengthen"
+   zen do the opposite on dark paper: 62% of cream into #14120d resolved to
+   #948f83 (APCA Lc 42) for --muted and #aba699 (Lc 54) for --ec-text-faint,
+   both dimmer than the tokens they overrode, and the 78% secondary mix
+   (#b9b4a6, Lc 61) would have fallen below the new faint value and inverted
+   the hierarchy. #bfb7a3 is Lc 63 on the canvas, 62 on sheets. */
 [data-ec-theme='late-night'] {
-  --text-2: color-mix(in oklch, var(--text) 78%, var(--bg));
-  --muted: color-mix(in oklch, var(--text) 62%, var(--bg));
-  --ec-text-secondary: color-mix(in oklch, var(--ec-text-primary) 78%, var(--ec-canvas));
-  --ec-text-tertiary: color-mix(in oklch, var(--ec-text-primary) 72%, var(--ec-canvas));
-  --ec-text-faint: color-mix(in oklch, var(--ec-text-primary) 72%, var(--ec-canvas));
+  --text-2: #c4bba1;
+  --muted: #bfb7a3;
+  --ec-text-secondary: #c4bba1;
+  --ec-text-tertiary: #bfb7a3;
+  --ec-text-faint: #bfb7a3;
+  /* paper-theme.css loads after theme.css and re-pins the old night values
+     of these two; this file is the last layer, so hold them to the retune:
+     pale-ink sheet edge (black offsets vanish on #14120d) and the text-size
+     green rather than the neon. */
+  --ec-shadow-hard: 0 0 0 1px rgba(240, 234, 217, 0.06), 4px 4px 0 rgba(240, 234, 217, 0.05);
+  --ec-green: #5fd39a;
+}
+
+/* .course-root below re-derives faint copy as a 62% mix, which on late-night
+   lands at Lc 42; hold it at the theme token there too. */
+[data-ec-theme='late-night'] .course-root {
+  --ec-text-faint: #bfb7a3;
 }
 
 @media (prefers-contrast: more) {

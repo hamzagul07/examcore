@@ -24,7 +24,13 @@ export type ReadingPrefs = {
 
 export const READING_PREF_KEY = 'ms_reading_prefs'
 
-export const DEFAULT_READING_PREFS: ReadingPrefs = { font: 'default', size: 'm', air: false }
+/**
+ * Book is the default. Lessons are meant to read like a set textbook, and
+ * Literata was drawn for exactly that (Google Play Books' reading serif, with
+ * an optical-size axis). Noto Sans stays one tap away for the readers it
+ * suits better — the evidence says that is a real, personal difference.
+ */
+export const DEFAULT_READING_PREFS: ReadingPrefs = { font: 'book', size: 'm', air: false }
 
 export const READING_FONT_LABEL: Record<ReadingFont, string> = {
   default: 'Sans',
@@ -33,8 +39,8 @@ export const READING_FONT_LABEL: Record<ReadingFont, string> = {
 }
 
 export const READING_FONT_HINT: Record<ReadingFont, string> = {
-  default: 'Noto Sans — the typeface that scored best on speed and comprehension together.',
-  book: 'Literata — a reading serif made for e-books; sits well beside maths.',
+  default: 'Noto Sans — scored best on speed and comprehension together across sixteen faces.',
+  book: 'Literata — a reading serif made for e-books; set like a textbook, sits well beside maths.',
   clear: 'Atkinson Hyperlegible — every letter shaped to stay distinct (I, l, 1; O, 0).',
 }
 
@@ -75,5 +81,9 @@ export function writeReadingPrefs(prefs: ReadingPrefs): void {
 
 /** True when nothing differs from the defaults (so the menu can say so). */
 export function isDefaultReading(prefs: ReadingPrefs): boolean {
-  return prefs.font === 'default' && prefs.size === 'm' && !prefs.air
+  return (
+    prefs.font === DEFAULT_READING_PREFS.font &&
+    prefs.size === DEFAULT_READING_PREFS.size &&
+    prefs.air === DEFAULT_READING_PREFS.air
+  )
 }

@@ -388,6 +388,23 @@ export function CourseLessonPage({
     setActive((prev) => (toc.some((t) => t.id === prev) ? prev : toc[0]?.id ?? ''))
   }, [toc])
 
+  const activeLabel = useMemo(() => {
+    const i = toc.findIndex((t) => t.id === active)
+    return i >= 0 ? `${String(i + 1).padStart(2, '0')} · ${toc[i].label}` : null
+  }, [toc, active])
+
+  // Chapter numbers come from the contents list, so the kicker on a section
+  // always matches the number the reader clicked in the TOC. They used to be
+  // hard-coded per section and drifted ("04 Key formulas" in the TOC, "03" on
+  // the page) whenever a section was absent.
+  const secK = useCallback(
+    (id: string) => {
+      const i = toc.findIndex((t) => t.id === id)
+      return i >= 0 ? String(i + 1).padStart(2, '0') : '·'
+    },
+    [toc]
+  )
+
   // ── Study mode ────────────────────────────────────────────────────────────
   // Immersive full-screen reading of the SAME lesson as OFF — one continuous
   // scroll, no wizard, no stage chrome. Served HTML stays identical for SEO.
@@ -400,14 +417,12 @@ export function CourseLessonPage({
   useEffect(() => {
     try {
       const pref = window.localStorage.getItem(STUDY_PREF_KEY)
-      if (pref === '1') {
-        setStudy(true)
-      } else if (pref === '0') {
-        setStudy(false)
-      } else {
-        // Phone defaults to immersion; desktop stays the normal lesson shell.
-        setStudy(window.matchMedia('(max-width: 860px)').matches)
-      }
+      // Study mode is opt-in everywhere. Phones used to default into the
+      // overlay, which hid the title, the intro, the objectives, the site nav
+      // and the Past papers tab behind an OFF pill the reader had to discover
+      // — the first thing most students saw was "01 In simple terms" with no
+      // way back. The page opens as a page; immersion is one tap away.
+      setStudy(pref === '1')
     } catch {
       /* private mode: document view is the safe default */
     }
@@ -420,6 +435,24 @@ export function CourseLessonPage({
       delete document.documentElement.dataset.lessonStudy
     }
   }, [study])
+
+  // The sticky bar's real height, published for everything stacked beneath
+  // it (the contents rail, the phone section stepper, jump offsets). It was
+  // a hard-coded 52px; on a phone the bar wraps and the stepper that exists
+  // for phones sat fully behind it.
+  const modebarRef = useRef<HTMLDivElement | null>(null)
+  useEffect(() => {
+    const bar = modebarRef.current
+    const page = bar?.closest<HTMLElement>('.lesson-page')
+    if (!bar || !page || typeof ResizeObserver === 'undefined') return
+    const publish = () => {
+      page.style.setProperty('--lesson-modebar-height', `${Math.round(bar.getBoundingClientRect().height)}px`)
+    }
+    publish()
+    const ro = new ResizeObserver(publish)
+    ro.observe(bar)
+    return () => ro.disconnect()
+  }, [])
 
   useEffect(() => {
     try {
@@ -846,7 +879,7 @@ export function CourseLessonPage({
         </aside>
       </header>
 
-      <div className="lesson-modebar-wrap">
+      <div className="lesson-modebar-wrap" ref={modebarRef}>
         <div className="pg lesson-modebar">
           <div className="mode-tabs" role="tablist" aria-label="Lesson view">
             {study ? (
@@ -888,11 +921,19 @@ export function CourseLessonPage({
               </>
             )}
           </div>
+          {!study && mode === 'learn' ? (
+            <p className="mode-folio mono" aria-hidden>
+              <span className="mode-folio__topic">
+                {L.point} · {L.name}
+              </span>
+              {activeLabel ? <span className="mode-folio__section">{activeLabel}</span> : null}
+            </p>
+          ) : null}
           <div className="mode-right">
             {mode === 'learn' && stages.length > 1 ? (
               <div className="ink-toggle study-toggle">
                 <span className="micro" id="lesson-study-label">
-                  STUDY MODE
+                  STUDY<span className="study-label-word"> MODE</span>
                 </span>
                 <span id="lesson-study-hint" className="sr-only">
                   Full-screen reading of this lesson. Same content — just scroll.
@@ -914,51 +955,12 @@ export function CourseLessonPage({
                 />
               </div>
             ) : null}
-            {mode === 'learn' ? (
-              <div className="ink-toggle">
-                <span className="micro" id="lesson-simpler-label">
-                  EXPLAIN SIMPLER
-                </span>
-                <SegmentedControl
-                  className="ink-seg"
-                  optionClassName="ink-seg-opt"
-                  aria-labelledby="lesson-simpler-label"
-                  value={simpler ? 'on' : 'off'}
-                  onChange={(v) => setSimpler(v === 'on')}
-                  options={[
-                    { value: 'off', label: 'OFF' },
-                    { value: 'on', label: 'ON' },
-                  ]}
-                />
-              </div>
-            ) : null}
-            {mode === 'learn' && L.notes && L.notes.length > 0 ? (
-              <div className="ink-toggle">
-                <span className="micro" id="lesson-visual-notes-label">
-                  DIAGRAM NOTES
-                </span>
-                <span id="lesson-visual-notes-hint" className="sr-only">
-                  Experiment: put a sketch of each note beside the prose. Same
-                  words — dual coded. Tell us if it helps.
-                </span>
-                <SegmentedControl
-                  className="ink-seg"
-                  optionClassName="ink-seg-opt"
-                  aria-labelledby="lesson-visual-notes-label"
-                  aria-describedby="lesson-visual-notes-hint"
-                  value={visualNotes ? 'on' : 'off'}
-                  onChange={(v) => {
-                    if ((v === 'on') !== visualNotes) toggleVisualNotes()
-                  }}
-                  options={[
-                    { value: 'off', label: 'OFF' },
-                    { value: 'on', label: 'ON' },
-                  ]}
-                />
-              </div>
-            ) : null}
-            {/* Reading typography. A native disclosure: keyboard-operable,
-                closes on its own, no positioning library. */}
+            {/* Reading typography, plus the two reading aids (plain-English
+                and diagram notes) that used to be their own OFF/ON pills in
+                the bar. Four uppercase toggles read as an app toolbar, and on
+                a phone the last two sat off-screen in a hidden scroll row.
+                A native disclosure: keyboard-operable, closes on its own, no
+                positioning library. */}
             <details className="reading-menu" ref={readingMenuRef}>
               <summary className="reading-menu__summary" aria-label="Reading settings: typeface, size, spacing">
                 <span className="reading-menu__aa" aria-hidden>
@@ -1027,6 +1029,52 @@ export function CourseLessonPage({
                   Pick whatever reads fastest for <em>you</em> — it differs from person to person, by up to a
                   third.
                 </p>
+                {mode === 'learn' ? (
+                  <div className="reading-menu__row reading-menu__row--aid">
+                    <span className="micro" id="lesson-simpler-label">
+                      EXPLAIN SIMPLER
+                    </span>
+                    <SegmentedControl
+                      className="ink-seg"
+                      optionClassName="ink-seg-opt"
+                      aria-labelledby="lesson-simpler-label"
+                      value={simpler ? 'on' : 'off'}
+                      onChange={(v) => setSimpler(v === 'on')}
+                      options={[
+                        { value: 'off', label: 'OFF' },
+                        { value: 'on', label: 'ON' },
+                      ]}
+                    />
+                    <p className="reading-menu__hint">
+                      The same notes in plain English — no jargon. Key points and exam tips stay.
+                    </p>
+                  </div>
+                ) : null}
+                {mode === 'learn' && L.notes && L.notes.length > 0 ? (
+                  <div className="reading-menu__row reading-menu__row--aid">
+                    <span className="micro" id="lesson-visual-notes-label">
+                      DIAGRAM NOTES
+                    </span>
+                    <span id="lesson-visual-notes-hint" className="sr-only">
+                      Put a sketch of each note beside the prose. Same words — dual coded.
+                    </span>
+                    <SegmentedControl
+                      className="ink-seg"
+                      optionClassName="ink-seg-opt"
+                      aria-labelledby="lesson-visual-notes-label"
+                      aria-describedby="lesson-visual-notes-hint"
+                      value={visualNotes ? 'on' : 'off'}
+                      onChange={(v) => {
+                        if ((v === 'on') !== visualNotes) toggleVisualNotes()
+                      }}
+                      options={[
+                        { value: 'off', label: 'OFF' },
+                        { value: 'on', label: 'ON' },
+                      ]}
+                    />
+                    <p className="reading-menu__hint">A small sketch beside each block of notes.</p>
+                  </div>
+                ) : null}
                 {!isDefaultReading(readingPrefs) ? (
                   <button type="button" className="reading-menu__reset" onClick={() => updateReading({ ...DEFAULT_READING_PREFS })}>
                     Back to defaults
@@ -1224,7 +1272,7 @@ export function CourseLessonPage({
             {L.simple ? (
               <section {...lsecProps('simple')}>
                 <SecHead
-                  k="01"
+                  k={secK('simple')}
                   title="In simple terms"
                   sub="A friendly intro before the formal notes — no formulas yet."
                 />
@@ -1260,7 +1308,7 @@ export function CourseLessonPage({
             {L.subtopics?.length ? (
               <section {...lsecProps('syllabus')}>
                 <SecHead
-                  k="·"
+                  k={secK('syllabus')}
                   title="What this topic covers"
                   sub="The official Cambridge syllabus points this lesson works through."
                 />
@@ -1287,7 +1335,7 @@ export function CourseLessonPage({
             {criterionLadder ? (
               <section {...lsecProps('criteria')}>
                 <SecHead
-                  k="·"
+                  k={secK('criteria')}
                   title="How it’s marked"
                   sub="The official criteria for this component — descriptors word for word, not paraphrased."
                 />
@@ -1302,7 +1350,7 @@ export function CourseLessonPage({
             {L.hasDiagram ? (
               <section {...lsecProps('visual')}>
                 <SecHead
-                  k="02"
+                  k={secK('visual')}
                   title="Explore the concept"
                   sub={
                     L.lessonSlug === 'paper-5-planning-and-analysis'
@@ -1338,7 +1386,7 @@ export function CourseLessonPage({
             {L.figures?.length ? (
               <section {...lsecProps('figures')}>
                 <SecHead
-                  k="·"
+                  k={secK('figures')}
                   title="Figures"
                   sub="Diagrams, charts and structures for this topic."
                 />
@@ -1353,7 +1401,7 @@ export function CourseLessonPage({
             {L.formulas?.length ? (
               <section {...lsecProps('formulas')}>
                 <SecHead
-                  k="03"
+                  k={secK('formulas')}
                   title="Key formulas"
                   sub="Tap any symbol to reveal exactly what it means and its units."
                 />
@@ -1368,7 +1416,7 @@ export function CourseLessonPage({
             {L.comparisonTable ? (
               <section {...lsecProps('compare')}>
                 <SecHead
-                  k="·"
+                  k={secK('compare')}
                   title={L.comparisonTable.title}
                   sub="Compare key properties side by side — ideal for exam contrasts."
                 />
@@ -1380,7 +1428,7 @@ export function CourseLessonPage({
             {L.notes?.length ? (
               <section {...lsecProps('notes')}>
                 <SecHead
-                  k="04"
+                  k={secK('notes')}
                   title="Full topic notes"
                   sub={
                     simpler
@@ -1474,7 +1522,7 @@ export function CourseLessonPage({
             {L.worked?.length ? (
               <section {...lsecProps('worked')}>
                 <SecHead
-                  k="05"
+                  k={secK('worked')}
                   title="Worked examples"
                   sub="See the formulas applied — reveal one step at a time, like the exam."
                 />
@@ -1490,7 +1538,7 @@ export function CourseLessonPage({
             {L.conceptMap && !premiumHidden ? (
               <section {...lsecProps('cmap')}>
                 <SecHead
-                  k="06"
+                  k={secK('cmap')}
                   title="How it all connects"
                   sub="The big idea sits in the middle — tap a linked idea to explore the link."
                 />
@@ -1501,7 +1549,7 @@ export function CourseLessonPage({
             {L.glossary?.length ? (
               <section {...lsecProps('glossary')}>
                 <SecHead
-                  k="07"
+                  k={secK('glossary')}
                   title="Glossary"
                   sub="Key terms for this topic — skim now; the Check step will test them."
                 />
@@ -1512,7 +1560,7 @@ export function CourseLessonPage({
             {L.quiz?.length && !quizLocked ? (
               <section {...lsecProps('quiz')}>
                 <SecHead
-                  k="08"
+                  k={secK('quiz')}
                   title="Quick check"
                   sub="Write your answer first, then compare it with the model one — the gap is what you would have lost."
                   bloom={bloomLabelForSection('quiz')}
@@ -1534,7 +1582,7 @@ export function CourseLessonPage({
             {L.code && L.lessonSlug ? (
               <section {...lsecProps('teachback')}>
                 <SecHead
-                  k="09"
+                  k={secK('teachback')}
                   title="Teach it back"
                   sub="If you can explain it simply, you own it — gaps here are marks you’d lose."
                   bloom={bloomLabelForSection('teachback')}
@@ -1552,7 +1600,7 @@ export function CourseLessonPage({
             {L.flashcards?.length && !premiumHidden ? (
               <section {...lsecProps('cards')}>
                 <SecHead
-                  k="09b"
+                  k={secK('cards')}
                   title="Revision flashcards"
                   sub="Guess first, then flip — retrieval beats re-reading."
                   bloom={bloomLabelForSection('cards')}
@@ -1568,7 +1616,7 @@ export function CourseLessonPage({
             {L.takeaways?.length ? (
               <section {...lsecProps('takeaways')}>
                 <SecHead
-                  k="10"
+                  k={secK('takeaways')}
                   title="Key takeaways"
                   sub="Review these before you close the topic — retrieval beats re-reading."
                 />
@@ -1589,7 +1637,7 @@ export function CourseLessonPage({
             {L.practice ? (
               <section {...lsecProps('practice')}>
                 <SecHead
-                  k="11"
+                  k={secK('practice')}
                   title="Practice — then mark it"
                   sub={
                     boardStudyVisit
@@ -1613,7 +1661,7 @@ export function CourseLessonPage({
             {L.resources?.length ? (
               <section {...lsecProps('resources')}>
                 <SecHead
-                  k="·"
+                  k={secK('resources')}
                   title="Extra simulations & links"
                   sub="PhET, GeoGebra and other curated tools — open in a new tab."
                 />
@@ -1637,7 +1685,7 @@ export function CourseLessonPage({
 
             {L.faqs?.length ? (
               <section {...lsecProps('faqs')}>
-                <SecHead k="·" title="Frequently asked" />
+                <SecHead k={secK('faqs')} title="Frequently asked" />
                 <div className="faqs">
                   {L.faqs.map((f, i) => (
                     <Faq key={i} f={f} />
@@ -1655,7 +1703,7 @@ export function CourseLessonPage({
             {L.practiceQuestions?.length || L.practice ? (
               <section {...lsecProps('checkpoint')}>
                 <SecHead
-                  k="✓"
+                  k={secK('checkpoint')}
                   title="Checkpoint"
                   sub="One marked question is worth ten re-reads — close the loop before you move on."
                 />

@@ -13,17 +13,19 @@ import localFont from 'next/font/local'
  * the default is the one that scored best on speed and comprehension
  * together across sixteen candidates.
  *
- *   Noto Sans                 default — generous x-height, open apertures, low
+ *   Literata                  default, "Book" — Google Play Books' reading
+ *                             serif, with an optical-size axis so small text
+ *                             keeps its strokes; sits well beside KaTeX maths
+ *                             and makes a lesson read like a set textbook
+ *   Noto Sans                 "Sans" — generous x-height, open apertures, low
  *                             contrast; designed for small screens
- *   Literata                  "Book" — Google Play Books' reading serif, with
- *                             an optical-size axis so small text keeps its
- *                             strokes; sits well beside KaTeX maths
  *   Atkinson Hyperlegible Next "Clear" — letterforms designed to stay
  *                             distinct (Il1, O0, ce) for low vision and for
  *                             readers who lose their place
  *
- * Only the default is preloaded. The others declare their @font-face and
- * the browser fetches a file the first time a page actually uses it.
+ * Only the default (Literata, the book face) is preloaded. The others
+ * declare their @font-face and the browser fetches a file the first time a
+ * page actually uses it.
  * `adjustFontFallback` makes next/font generate a size-adjusted fallback
  * face, so the lines a reader is already on do not reflow when the real
  * file lands (display: swap).
@@ -35,7 +37,7 @@ export const readingSans = localFont({
     { path: './files/noto-sans-italic.woff2', weight: '400 700', style: 'italic' },
   ],
   display: 'swap',
-  preload: true,
+  preload: false,
   adjustFontFallback: 'Arial',
   variable: '--font-reading-sans',
   fallback: ['Instrument Sans', 'system-ui', 'Segoe UI', 'Helvetica Neue', 'Arial', 'sans-serif'],
@@ -47,7 +49,7 @@ export const readingSerif = localFont({
     { path: './files/literata-italic.woff2', weight: '400 700', style: 'italic' },
   ],
   display: 'swap',
-  preload: false,
+  preload: true,
   adjustFontFallback: 'Times New Roman',
   variable: '--font-reading-serif',
   fallback: ['Georgia', 'Iowan Old Style', 'Palatino', 'serif'],

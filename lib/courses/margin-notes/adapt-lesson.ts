@@ -21,6 +21,7 @@ import type {
   MarginNotesTopic,
 } from '@/lib/courses/margin-notes/types'
 import { topicNeighbors } from '@/lib/courses/margin-notes/adapt-spine'
+import { stepTitleFromCaption } from '@/lib/courses/margin-notes/step-title'
 
 function splitHeroTitle(title: string): { heroPre?: string; heroEm?: string } {
   const commaMatch = title.match(/^(.+?,\s*)([^,]+)$/)
@@ -168,7 +169,7 @@ function buildSteps(
   if (spec?.steps?.length) {
     return spec.steps.map((s, i) => ({
       n: i + 1,
-      title: s.caption?.split(/[.—]/)[0]?.trim() || `Step ${i + 1}`,
+      title: stepTitleFromCaption(s.caption, i),
       body: s.caption ?? s.embedHint ?? '',
     }))
   }
@@ -177,7 +178,12 @@ function buildSteps(
   if (partitioned.stepCarousel?.steps.length) {
     return partitioned.stepCarousel.steps.map((s, i) => ({
       n: i + 1,
-      title: s.label,
+      // A label that is just the opening of its own detail was cut by the
+      // generator ("Potential difference (p"); take the first clause instead.
+      title:
+        s.label && !(s.detail ?? '').startsWith(s.label.replace(/…$/, ''))
+          ? s.label
+          : stepTitleFromCaption(s.detail ?? s.label, i),
       body: s.detail,
     }))
   }

@@ -7,7 +7,8 @@ const kineticQuestion =
 const normalized = normalizeCourseText(kineticQuestion)
 assert.ok(!normalized.startsWith('$'), 'prose question must not be fully math-wrapped')
 assert.ok(normalized.includes('Show that the equation'), 'prose words keep spaces')
-assert.match(normalized, /\$E_k = \\frac\{1\}\{2\}mv²\$/, 'equation fragment is math-wrapped')
+// The superscript two is normalised to `^{2}` on the way through.
+assert.match(normalized, /\$E_k = \\frac\{1\}\{2\}mv(?:²|\^\{2\})\$/, 'equation fragment is math-wrapped')
 
 const standalone = normalizeCourseText('Q = mc\\Delta T')
 assert.match(standalone, /\$Q = mc\\Delta T\$/, 'standalone latex equation wraps')
@@ -48,7 +49,14 @@ assert.ok(rows.includes('$$'), `multi-row → display: ${rows}`)
 const mixed = normalizeCourseText(
   '\\Delta H = 1 \\text{ kJ} \\\\ \\Delta S = 2\n\nThis means the reaction proceeds forward.'
 )
-assert.ok(!mixed.startsWith('$$'), `prose not display-wrapped: ${mixed}`)
+// The formula rows may become a display block of their own; the prose must
+// never end up inside it (the block closes before the prose starts).
+const mixedOpen = mixed.indexOf('$$')
+const mixedClose = mixedOpen === -1 ? -1 : mixed.indexOf('$$', mixedOpen + 2)
+assert.ok(
+  mixedOpen === -1 || (mixedClose !== -1 && mixedClose < mixed.indexOf('This means')),
+  `prose not display-wrapped: ${mixed}`
+)
 assert.ok(
   mixed.includes('This means the reaction proceeds forward.'),
   `prose preserved: ${mixed}`
@@ -57,5 +65,17 @@ assert.ok(
 // Backtick code (`^Ptr`, `\\n`) is not mis-wrapped as broken math.
 const code = normalizeCourseText('Defined with `^List`, ending in `\\n`.')
 assert.ok(!code.includes('$^List$') && !code.includes('$\\n$'), `code not math: ${code}`)
+
+// A lone equation on its own line becomes display maths; prose with an
+// inline symbol does not.
+const lone = normalizeCourseText('$\\varepsilon = \\frac{W}{Q}$')
+assert.equal(lone, '$$\\varepsilon = \\frac{W}{Q}$$', `lone equation promoted: ${lone}`)
+const loneDot = normalizeCourseText('$V = IR$.')
+assert.equal(loneDot, '$$V = IR$$', `trailing full stop dropped: ${loneDot}`)
+const withProse = normalizeCourseText('Here $V = IR$ applies to the whole loop.')
+assert.ok(!withProse.includes('$$'), `inline maths inside prose stays inline: ${withProse}`)
+const multi = normalizeCourseText('Given the data:\n\n$Q = mc\\Delta T$\n\nfind Q.')
+assert.ok(multi.includes('$$Q = mc\\Delta T$$'), `own paragraph promoted: ${multi}`)
+assert.ok(multi.includes('find Q.'), 'prose paragraphs untouched')
 
 console.log('normalize-course-text.test.ts: ok')

@@ -53,9 +53,30 @@ export function normalizeCourseText(text: string): string {
   // Keep numbered steps in one <ol> (avoid blank lines resetting to "1.")
   s = s.replace(/\n\n+(?=\d+\.\s)/g, '\n')
 
+  // A paragraph that is nothing but one equation is display maths. Lessons
+  // store key relations as `$…$` on their own line; inline, they rendered as
+  // stacked fractions at the start of a paragraph — the least legible thing
+  // on the page. As `$$…$$` KaTeX sets them centred on their own line.
+  s = promoteLoneEquations(s)
+
   return sanitizeMathDelimitersInText(
     displayBlocksOnOwnLines(sanitizeCurrencyInMath(repairMathDelimiters(s)))
   )
+}
+
+/**
+ * `$…$` alone on a line (a paragraph of its own, optional trailing
+ * punctuation) → `$$…$$`. Anything with words beside the maths stays inline;
+ * list items and headings are left alone.
+ */
+function promoteLoneEquations(text: string): string {
+  return text
+    .split('\n')
+    .map((line) => {
+      const m = line.match(/^\s*\$(?!\$)([^$\n]+?)\$[.,;:]?\s*$/)
+      return m ? `$$${m[1].trim()}$$` : line
+    })
+    .join('\n')
 }
 
 /**

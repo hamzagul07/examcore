@@ -4500,3 +4500,342 @@ html[data-ec-theme='late-night'] .lesson-page {
     left: 0;
   }
 }
+
+/* ==========================================================================
+   The lesson as a page — docs/COURSE_TYPOGRAPHY.md ("Book setting")
+   Everything a printed textbook does that a web article does not: an 18px
+   serif on a 1.5 line at ~66 characters, paragraphs marked by an indent
+   rather than a gap, dictionary hyphenation with a tidy rag, display maths
+   on its own centred line, key points with a marker, prose in full ink.
+   ========================================================================== */
+
+.lesson-page[data-reading-font='book'] {
+  --reading-size: 18px;
+  --reading-leading: 1.5;
+  /* Measured in em rather than ch: 1ch is the width of "0", so 68ch of a
+     text face ran to ~80 characters. 34em of Literata is 66–70. */
+  --reading-measure: 34em;
+  --reading-para: 0px;
+}
+
+@media (max-width: 640px) {
+  .lesson-page[data-reading-font='book'] {
+    --reading-size: 17px;
+  }
+}
+
+/* Indent, no gap — the book convention (Butterick: "belts and suspenders"
+   is a mistake). The first paragraph after a heading or a block starts flush. */
+.lesson-page[data-reading-font='book'] .lesson-article .course-rich-text--prose p + p {
+  margin-top: 0;
+  text-indent: 1.4em;
+}
+
+.lesson-page[data-reading-font='book'] .lesson-article .course-rich-text--prose :is(ul, ol, blockquote, table, .katex-display) + p {
+  text-indent: 0;
+  margin-top: 0.75em;
+}
+
+/* Airy spacing keeps its gaps: the indent and the gap never both apply. */
+.lesson-page[data-reading-air='on'] .lesson-article .course-rich-text--prose p + p {
+  text-indent: 0;
+  margin-top: var(--reading-para);
+}
+
+/* Hyphenate the serif setting so the rag stays tight; limits stop stacks of
+   hyphens and two-letter stubs. lang="en-GB" on <html> supplies the dictionary. */
+.lesson-page[data-reading-font='book'] .lesson-article .course-rich-text--prose :is(p, li) {
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  hyphenate-limit-chars: 7 3 3;
+  -webkit-hyphenate-limit-lines: 2;
+  hyphenate-limit-lines: 2;
+}
+
+.lesson-article .course-rich-text--prose :is(code, .katex, .katex *, a) {
+  -webkit-hyphens: none;
+  hyphens: none;
+}
+
+/* Emphasis in book text is italic; bold stays for key terms. Body numerals
+   are lining, so "3.2" in prose matches "(3.2)" in KaTeX. */
+.lesson-page[data-reading-font='book'] .lesson-article .course-rich-text--prose {
+  font-variant-numeric: lining-nums proportional-nums;
+  font-optical-sizing: auto;
+  letter-spacing: 0;
+}
+
+/* Prose in full ink. The markdown renderer stamps every <p> with the muted
+   secondary colour (a utility class beats inheritance), so the one rule in
+   COURSE_TYPOGRAPHY.md that said "prose in full ink" never took effect. */
+.lesson-article .course-rich-text--prose :is(p, li),
+.lesson-article .note-p,
+.lesson-article .note-p .course-rich-text--prose :is(p, li),
+.lesson-article .note-bullets li {
+  color: var(--text);
+}
+
+/* The hero lives outside the article, so the intro and objectives switched
+   typeface at the first section — a jarring hand-off. Same face throughout. */
+.lesson-page .lesson-hero .lesson-intro-rich,
+.lesson-page .lesson-hero .lesson-intro-rich p,
+.lesson-page .lesson-hero .lesson-obj-text {
+  font-family: var(--reading-family);
+  font-weight: var(--reading-weight, 400);
+  line-height: var(--reading-leading);
+  letter-spacing: var(--reading-tracking);
+  text-wrap: pretty;
+}
+
+.lesson-page .lesson-hero .lesson-intro-rich,
+.lesson-page .lesson-hero .lesson-intro-rich p {
+  font-size: calc(var(--reading-size) * var(--reading-scale) * 1.12);
+  color: var(--text);
+}
+
+/* "In simple terms" is the pull-quote of the chapter; the generic prose
+   rule had flattened it to body size. */
+.lesson-article .simple-lead-text .course-rich-text--prose,
+.lesson-article .simple-lead-text .course-rich-text--prose p {
+  font-size: calc(var(--reading-size) * var(--reading-scale) * 1.2);
+  line-height: 1.45;
+  text-indent: 0;
+}
+
+/* A paragraph that is nothing but one equation is display maths: centred,
+   a little larger, with air above and below — the way a textbook sets a
+   key relation. The promotion happens in lib/courses/normalize-course-text
+   (a CSS :has() test cannot see text nodes, so it matched prose with one
+   inline symbol too); this only sets the result. */
+.lesson-article .course-rich-text--prose .katex-display {
+  font-size: 1.12em;
+  margin: 1em 0 1.1em;
+  padding: 0.35em 0.5em;
+  border: 0;
+  background: transparent;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Key points carry a marker again (the global reset strips list markers). */
+.lesson-article .note-bullets {
+  padding-left: 0;
+}
+
+.lesson-article .note-bullets li {
+  position: relative;
+  padding-left: 20px;
+  font-family: var(--reading-family);
+  font-size: calc(var(--reading-size) * var(--reading-scale) * 0.96);
+  line-height: var(--reading-leading);
+}
+
+.lesson-article .note-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: calc(0.72em - 3px);
+  width: 6px;
+  height: 6px;
+  background: var(--acc-lesson, var(--ink));
+  opacity: 0.85;
+}
+
+/* Sticky chrome glides when the site nav hides instead of jumping. */
+.lesson-modebar-wrap,
+.lesson-toc,
+.lesson-mobile-jump {
+  transition: top 320ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* At ≥1400px the article is widened so the diagram can pin beside the
+   prose. Blocks outside the pinned region were stretching to the full
+   1128px — worked sheets with empty right halves, headings a screen wide.
+   The measure holds everywhere; only the pinned region uses the width. */
+@media (min-width: 1400px) {
+  .lesson-layout:has(.lesson-sync-region[data-sync='on']) .lesson-article > :not(.lesson-sync-region) {
+    max-width: 760px;
+  }
+}
+
+/* A book that cannot be printed is not a book. */
+@media print {
+  .ec-nav-wrap,
+  .reading-progress,
+  .lesson-modebar-wrap,
+  .lesson-toc,
+  .lesson-mobile-jump,
+  .lesson-hero-side,
+  .feature-hint,
+  .resume-strip,
+  .explain-actions,
+  .ec-back-to-top,
+  .worked-reveal,
+  .lesson-end,
+  .practice-foot {
+    display: none !important;
+  }
+
+  .lesson-page[data-study='on'] {
+    position: static !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  .lesson-layout {
+    display: block;
+  }
+
+  .lesson-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .lsec {
+    break-inside: avoid-page;
+  }
+
+  .lesson-article {
+    max-width: none;
+  }
+
+  .lesson-article .course-rich-text--prose {
+    max-width: 66ch;
+  }
+}
+
+/* ---- running head in the mode bar (the folio) ---- */
+.mode-folio {
+  display: none;
+  flex: 1;
+  min-width: 0;
+  margin: 0 18px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.mode-folio__topic,
+.mode-folio__section {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mode-folio__section {
+  color: var(--text-2);
+}
+
+@media (min-width: 1180px) {
+  .mode-folio {
+    display: flex;
+  }
+}
+
+/* ---- the phone bar: one row of tabs, one of controls, nothing off-screen ---- */
+@media (max-width: 640px) {
+  .lesson-modebar {
+    padding: 6px 16px 8px;
+    gap: 6px 10px;
+  }
+
+  .mode-tab .mode-sub,
+  .study-label-word {
+    display: none;
+  }
+
+  .mode-tab {
+    padding: 8px 12px;
+  }
+
+  .mode-right {
+    overflow: visible;
+    flex-wrap: wrap;
+  }
+}
+
+/* ---- glossary as a definition list ---- */
+.gloss-wrap { display: flex; flex-direction: column; gap: 14px; }
+.gloss-tools { display: flex; justify-content: flex-end; }
+.gloss-quiz {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 7px 12px;
+  cursor: pointer;
+  transition: border-color 140ms ease, color 140ms ease;
+}
+.gloss-quiz:hover, .gloss-quiz.on { color: var(--ink); border-color: var(--ink-border); }
+.gloss-list {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 40px;
+  row-gap: 0;
+  border-top: 1px solid var(--border);
+}
+.gloss-item {
+  padding: 14px 0 15px;
+  border-bottom: 1px solid var(--paper-rule);
+  break-inside: avoid;
+}
+.gloss-list .gloss-t {
+  display: block;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 19px;
+  font-weight: 500;
+  margin: 0 0 4px;
+  color: var(--text);
+}
+.gloss-list .gloss-d {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+.gloss-list .gloss-d .course-rich-text--prose p { margin: 0 0 0.4em; }
+.gloss-list .gloss-d .course-rich-text--prose p:last-child { margin-bottom: 0; }
+.gloss-reveal {
+  font-family: var(--font-caveat), cursive;
+  font-size: 19px;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  border-bottom: 1.5px dashed var(--ink-border);
+  padding: 0 2px 1px;
+  cursor: pointer;
+}
+@media (max-width: 720px) {
+  .gloss-list { grid-template-columns: 1fr; }
+}
+
+/* ---- syllabus points as a numbered list, not a stack of cards ---- */
+.lesson-article .subtopics { gap: 0; border-top: 1px solid var(--border); }
+.lesson-article .subtopic.card {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--paper-rule);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 12px 4px 13px;
+}
+.lesson-article .subtopic-title { font-size: 16.5px; }
+
+/* ---- takeaways as one ruled list ---- */
+.lesson-article .takeaways { grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--border); }
+.lesson-article .takeaways li {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--paper-rule);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 12px 4px 13px;
+}

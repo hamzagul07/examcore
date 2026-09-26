@@ -31,7 +31,10 @@
   --acc-teal: #1a7575;
   --acc-rose: #ac5276;
   --acc-slate: #5c6470;
-  --paper: #ffffff;
+  /* Warm off-white, not pure white: a sheet a few percent below the canvas
+     reads as paper on a desk; pure white glared and made serif strokes look
+     thin. (Exam sheets keep --ec-paper white on purpose — exam paper is.) */
+  --paper: #fdfcf8;
   --paper-rule: #eae6dc;
   --shadow-card: 3px 3px 0 rgba(37, 34, 27, 0.08);
   --shadow-pop: 5px 5px 0 rgba(37, 34, 27, 0.12);

@@ -20,22 +20,29 @@ Lesson prose was set in **Instrument Sans at 16px / 1.55**, inherited from the p
 
 | | Choice | Why |
 |---|---|---|
-| **Default prose face** | **Noto Sans** (variable, 400–700, italic) | Best average on speed + comprehension; small-screen anatomy; young readers favour sans. |
-| **"Book"** | **Literata** (variable, optical size, italic) | The screen serif made for long reading; sits naturally beside KaTeX maths. |
+| **Default prose face** | **Literata** ("Book"; variable, optical size, italic) | Lessons are meant to read like a set textbook, and this is the serif drawn for on-screen books (Google Play Books' default). Sits naturally beside KaTeX maths. Changed from Noto Sans in September 2026 — see "Book setting" below. |
+| **"Sans"** | **Noto Sans** (variable, 400–700, italic) | Best average on speed + comprehension; small-screen anatomy. One tap away for the readers it suits. |
 | **"Clear"** | **Atkinson Hyperlegible Next** (variable) | Distinct letterforms for low vision and for readers who lose their place. |
-| **Size** | 17px desktop, 16.5px phone; S/M/L/XL = 0.94 / 1 / 1.12 / 1.28 | Size is the biggest lever; the default is a step up from 16 and the reader can go further. |
-| **Leading** | 1.65 (1.9 with airy spacing) | Long-form comfort; paragraphs breathe at 1.1em. |
-| **Measure** | 68ch (60ch with airy spacing) | 60–70 characters per line; the 760px article otherwise runs to ~80. Worked examples and tables keep full width. |
+| **Size** | Book 18px desktop / 17px phone; Sans and Clear 17px / 16.5px; S/M/L/XL = 0.94 / 1 / 1.12 / 1.28 | Size is the biggest lever (Rello et al.: comprehension improves at 18pt+). |
+| **Leading** | Book 1.5; Sans and Clear 1.65; 1.9 with airy spacing | Every serious reading product sits in the 1.4–1.55 band (Butterick 120–145%, iA 140%, Readwise 1.4). The sans faces keep a little more air. |
+| **Measure** | Book 34em (≈66 characters); Sans and Clear 68ch; 60ch with airy spacing | 1ch is the width of "0", so 68ch of a text face runs to ~80 characters; em is honest. Worked examples and tables keep full width. |
+| **Paragraphs** | Book: first-line indent 1.4em, no gap (flush after a heading or block); Sans and Clear: 1.1em gap | The gap is the single strongest "this is a website" cue (Butterick: indent *or* space, never both). |
+| **Rag** | Left-aligned, `text-wrap: pretty`; Book also hyphenates (`hyphens: auto`, limits 7 3 3, two lines) | A tight hyphenated rag is what separates a set page from a browser default; justified text on the web makes rivers. |
+| **Display maths** | A paragraph that is only one equation is centred at 1.12em with air above and below | A textbook sets a key relation on its own line; inline fractions at the start of a paragraph were the least legible thing on the page. |
 | **Airy spacing** | letter-spacing 0.05em, word-spacing 0.12em, line-height 1.9 | The dyslexia intervention with evidence, offered to everyone. |
 | **Headings, UI, mono** | unchanged | Brand. Newsreader over Noto Sans is a conventional serif-display / sans-text pairing. |
 | **KaTeX** | 1.1em inside prose (default 1.21em) | KaTeX scales up to match Computer Modern against low-x-height faces; next to Noto Sans it read oversized. |
 | **Colour** | prose in full ink (`--text`), not the muted secondary | Lesson intros and rich text were set in `--text-2`. |
 
+### Book setting (September 2026)
+
+The default moved from Noto Sans to Literata. The Wallace et al. finding still holds — the fastest face differs by reader — which is why the picker stays. What changed is the question being answered: not "which face reads fastest on average" but "what should a lesson feel like by default", and the answer is a book. The reference numbers came from a survey of the products that set long text well (Kindle, Apple Books, Readwise Reader, Medium, Tufte CSS, iA) and the reading research behind them (Bringhurst 45–75 characters, Dyson & Haselgrove ~55 for comprehension, Rello et al. 18pt+). The CSS lives at the end of `lib/design-system/margin-notes-courses.css` under "The lesson as a page".
+
 Nothing here is dyslexia-specific in name. The menu says "Airy spacing" and "Clear", and the hint tells the truth: it differs person to person, try what reads fastest.
 
 ## Implementation
 
-- Fonts: `app/fonts/reading.ts` — `next/font/local`, self-hosted latin woff2 subsets from Google (35 + 38 KB Noto, 83 + 86 KB Literata, 33 KB Atkinson), OFL-licensed (`app/fonts/files/OFL.txt`). Only Noto Sans is preloaded; the others are fetched on first use. Loaded by the `courses` and `ib/courses` layouts only, so no other page pays for them.
+- Fonts: `app/fonts/reading.ts` — `next/font/local`, self-hosted latin woff2 subsets from Google (35 + 38 KB Noto, 83 + 86 KB Literata, 33 KB Atkinson), OFL-licensed (`app/fonts/files/OFL.txt`). Only Literata (the default) is preloaded; the others are fetched on first use. Loaded by the `courses` and `ib/courses` layouts only, so no other page pays for them.
 - CSS: end of `lib/design-system/margin-notes-courses.css` — variables on `.lesson-page`, overrides per `data-reading-font/size/air`, and the prose selectors (`.course-rich-text--prose`, intro, worked examples, glossary, quick-check questions, `.lead`).
 - Preference: `lib/courses/reading-prefs.ts` (localStorage, tolerant parser, tested); the **Aa** menu in the lesson mode bar (`CourseLessonPage.tsx`) writes it and the root `<main>` carries the data attributes. Each typeface option is set in its own face so the reader sees the difference before choosing; the menu closes on a click elsewhere or Escape.
 - **Across devices:** a signed-in reader's choice is also saved to `user_profiles.reading_prefs` (through `/api/account/preferences`, parsed on the way in) and read back on the next lesson open. The device's own copy applies first so nothing swaps on load; the account's copy wins if it differs.

@@ -258,35 +258,56 @@ export function ConceptMapBlock({ lesson }: { lesson: MarginNotesLesson }) {
   )
 }
 
+/**
+ * Glossary as a book prints it: term, definition, visible. It used to be a
+ * grid of twelve "OPEN TO REVEAL DEFINITION" cards, which hid the one thing
+ * a glossary is for behind twelve clicks. Readers who want to test
+ * themselves can cover the definitions with one switch.
+ */
 export function Glossary({ items }: { items: NonNullable<MarginNotesLesson['glossary']> }) {
-  const [open, setOpen] = useState<number | null>(null)
+  const [quiz, setQuiz] = useState(false)
+  const [revealed, setRevealed] = useState<Set<number>>(() => new Set())
+  const toggleQuiz = () => {
+    setQuiz((q) => !q)
+    setRevealed(new Set())
+  }
   return (
-    <div className="gloss-grid">
-      {items.map((g, i) => {
-        const panelId = `gloss-panel-${i}`
-        const isOpen = open === i
-        return (
-          <button
-            key={i}
-            type="button"
-            className={`gloss${isOpen ? ' on' : ''}`}
-            aria-expanded={isOpen}
-            aria-controls={panelId}
-            onClick={() => setOpen(isOpen ? null : i)}
-          >
-            <span className="gloss-t">
-              <CourseRichText content={g.t} variant="inline" />
-            </span>
-            <span className="gloss-d" id={panelId} role="region">
-              {isOpen ? (
-                <CourseRichText content={g.d} variant="prose" className="gloss-d-rich" />
-              ) : (
-                'Open to reveal definition'
-              )}
-            </span>
-          </button>
-        )
-      })}
+    <div className="gloss-wrap">
+      <div className="gloss-tools">
+        <button
+          type="button"
+          className={`gloss-quiz${quiz ? ' on' : ''}`}
+          aria-pressed={quiz}
+          onClick={toggleQuiz}
+        >
+          {quiz ? 'Show definitions' : 'Quiz me — cover the definitions'}
+        </button>
+      </div>
+      <dl className={`gloss-list${quiz ? ' gloss-list--quiz' : ''}`}>
+        {items.map((g, i) => {
+          const hidden = quiz && !revealed.has(i)
+          return (
+            <div key={i} className="gloss-item">
+              <dt className="gloss-t">
+                <CourseRichText content={g.t} variant="inline" />
+              </dt>
+              <dd className="gloss-d">
+                {hidden ? (
+                  <button
+                    type="button"
+                    className="gloss-reveal"
+                    onClick={() => setRevealed((r) => new Set(r).add(i))}
+                  >
+                    Say it, then reveal
+                  </button>
+                ) : (
+                  <CourseRichText content={g.d} variant="prose" className="gloss-d-rich" />
+                )}
+              </dd>
+            </div>
+          )
+        })}
+      </dl>
     </div>
   )
 }

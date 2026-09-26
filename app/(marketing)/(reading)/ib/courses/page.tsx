@@ -124,6 +124,7 @@ export default function IbCoursesIndexPage() {
                       s={s}
                       href={s.href}
                       boardLabel={s.boardLabel}
+                      codeLabel={s.codeLabel}
                       accentHex={s.accentHex}
                       statSuffix="criterion practice tasks"
                       isNew={s.isNew}

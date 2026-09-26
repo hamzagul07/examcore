@@ -187,7 +187,7 @@ export default function FounderPage() {
             </h2>
             <blockquote className="ms-founder-quote" style={{ margin: 0 }}>
               &ldquo;Past papers without the examiner&apos;s eye are half the loop. You practise, you
-              check the answer, you <em>think</em> you&apos;d have scored, and then results day
+              check the answer, you <em>think</em>{' '}you&apos;d have scored, and then results day
               disagrees. I built {SITE_NAME} so the examiner&apos;s eye is there at midnight when you
               are revising alone.&rdquo;
             </blockquote>

@@ -170,7 +170,7 @@ export default function ForTeachersPage() {
         <aside className="mb-10">
           <Slip stamp="QA" title="Quick answer">
             <p className="ms-mark-example-slip__lead">
-              <strong>MarkScheme</strong> gives Cambridge and IB teachers a class desk: set work from
+              <strong>MarkScheme</strong>{' '}gives Cambridge and IB teachers a class desk: set work from
               past papers, see who handed it in and what they scored, confirm or re-mark the AI&apos;s
               marks, and reteach the gap the class shares — all on the same{' '}
               {GEO_CATEGORY.secondPassMarking} engine students use at /mark.

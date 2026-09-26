@@ -76,7 +76,7 @@ export default function AboutPage() {
             <div>
               <p className="ms-founder-quote">
                 &ldquo;Past papers without the examiner&apos;s eye are half the loop. You practise,
-                you check the answer, you <em>think</em> you&apos;d have scored — and then results
+                you check the answer, you <em>think</em>{' '}you&apos;d have scored — and then results
                 day disagrees.&rdquo;
               </p>
               <p className="ms-body-2" style={{ fontSize: 16 }}>

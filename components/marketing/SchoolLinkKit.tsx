@@ -79,10 +79,10 @@ function CopyButton({ value, label }: { value: string; label: string }) {
 export function SchoolLinkKit() {
   return (
     <section>
-      <h2 className="landing-h3 mb-2 text-[var(--ec-text-primary)]">
+      <h2 className="ms-h2">
         Add us to your department&apos;s resources page
       </h2>
-      <p className="mb-5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+      <p className="ms-body-2 mb-5 mt-3 max-w-2xl text-[var(--ec-text-secondary)]">
         If your students find this useful, the single most helpful thing you can do
         is list it wherever your department keeps its revision links. Copy whichever
         version fits.

@@ -51,7 +51,7 @@ export function GuestConversionPrompt({
           <h2 className="ms-guest-slip__title">
             {scored ? (
               <>
-                You scored <em>{scored}</em> — but this ink isn&apos;t filed.
+                You scored <em>{scored}</em>{' '}— but this ink isn&apos;t filed.
               </>
             ) : (
               <>This mark isn&apos;t filed anywhere.</>

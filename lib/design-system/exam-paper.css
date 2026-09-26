@@ -1,0 +1,330 @@
+/* ============================================================
+   EXAM PAPER — a question set the way the paper prints it
+   components/exam-paper/ExamPaper.tsx
+
+   Layout conventions only (no board marks): a bold number hanging in the
+   left margin, lettered parts in their own column, marks ranged right in
+   square brackets on the last line, dotted answer lines, a page label at
+   the top and the paper code in the footer. The typeface is the paper's —
+   an Arial/Helvetica grotesk — deliberately NOT the site's serif, because
+   the switch of face is part of what says "this is the real thing".
+   ============================================================ */
+
+.xp-sheet {
+  --xp-ink: var(--ec-text-primary);
+  --xp-ink-soft: var(--ec-text-secondary);
+  --xp-rule: color-mix(in srgb, var(--ec-text-primary) 28%, transparent);
+  --xp-dot: color-mix(in srgb, var(--ec-text-primary) 46%, transparent);
+  --xp-font: Arial, 'Helvetica Neue', Helvetica, 'Liberation Sans', 'Nimbus Sans', sans-serif;
+  --xp-size: 15.5px;
+  --xp-leading: 1.5;
+  --xp-gutter: 2.4rem;
+  --xp-part: 2.2rem;
+  --xp-line-gap: 2.1em;
+
+  position: relative;
+  background: var(--ec-paper, #fff);
+  color: var(--xp-ink);
+  font-family: var(--xp-font);
+  font-size: var(--xp-size);
+  line-height: var(--xp-leading);
+  border: 1px solid var(--ec-border);
+  border-radius: 2px;
+  box-shadow: var(--ec-shadow-hard, 6px 6px 0 rgba(37, 34, 27, 0.1));
+  padding: 22px 30px 18px;
+  max-width: 100%;
+  font-variant-numeric: tabular-nums;
+  /* Real papers set a slightly tighter word fit than a UI face. */
+  text-rendering: optimizeLegibility;
+}
+
+.xp-sheet--compact {
+  --xp-size: 14px;
+  --xp-gutter: 2rem;
+  --xp-part: 2rem;
+  padding: 16px 20px 12px;
+  box-shadow: var(--ec-shadow-card, 3px 3px 0 rgba(37, 34, 27, 0.08));
+}
+
+@media (max-width: 480px) {
+  .xp-sheet {
+    --xp-size: 15px;
+    --xp-gutter: 1.9rem;
+    --xp-part: 1.9rem;
+    padding: 18px 16px 14px;
+  }
+  /* The paper title is the one line the running head can lose on a phone. */
+  .xp-head__paper {
+    display: none;
+  }
+}
+
+/* A paper sits on paper: no extra texture, but a faint left-edge shadow so
+   the sheet reads as a physical page lying on the desk, not a card. */
+.xp-sheet::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.6);
+}
+
+html[data-ec-theme='late-night'] .xp-sheet::before {
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ---- running head: subject · page · session ---- */
+.xp-head {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 0.78em;
+  color: var(--xp-ink-soft);
+  margin-bottom: 18px;
+}
+
+.xp-head__left {
+  display: flex;
+  gap: 10px;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.xp-head__subject {
+  font-weight: 700;
+  color: var(--xp-ink);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.xp-head__paper {
+  color: var(--xp-ink-soft);
+}
+
+.xp-head__page {
+  font-weight: 700;
+  color: var(--xp-ink);
+  text-align: center;
+  min-width: 1.5em;
+}
+
+.xp-head__right {
+  text-align: right;
+}
+
+/* ---- rubric ---- */
+.xp-rubric {
+  border-top: 1px solid var(--xp-rule);
+  border-bottom: 1px solid var(--xp-rule);
+  padding: 10px 0;
+  margin: 0 0 18px;
+  font-size: 0.92em;
+  color: var(--xp-ink);
+}
+
+.xp-rubric__line {
+  margin: 0;
+}
+
+.xp-rubric__line + .xp-rubric__line {
+  margin-top: 4px;
+}
+
+/* ---- question ---- */
+.xp-q {
+  display: grid;
+  grid-template-columns: var(--xp-gutter) minmax(0, 1fr);
+  column-gap: 0;
+  padding: 16px 0 6px;
+  border-top: 1px solid var(--ec-paper-rule, #eae6dc);
+}
+
+.xp-q--first,
+.xp-body > .xp-q:first-child {
+  border-top: 0;
+  padding-top: 4px;
+}
+
+.xp-q__n {
+  font-weight: 700;
+  color: var(--xp-ink);
+  line-height: var(--xp-leading);
+  padding-top: 0.05em;
+}
+
+.xp-q__col {
+  min-width: 0;
+}
+
+.xp-part {
+  display: grid;
+  /* The label column grows for a leaf like "(b) (i)" but never shrinks
+     below the paper's indent, so single labels line up down the page. */
+  grid-template-columns: minmax(var(--xp-part), max-content) minmax(0, 1fr);
+  column-gap: 0.55em;
+  align-items: baseline;
+}
+
+.xp-part--stem {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.xp-part + .xp-part {
+  margin-top: 0.85em;
+}
+
+.xp-part__label {
+  font-weight: 700;
+  color: var(--xp-ink);
+  white-space: nowrap;
+  padding-top: 0.05em;
+}
+
+.xp-part__text {
+  /* Text column + a marks column whose bracket sits level with the last
+     line — the printed position — and never collides with a table or a
+     display equation the way a float would. */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  min-width: 0;
+  color: var(--xp-ink);
+}
+
+.xp-part__text > :first-child {
+  min-width: 0;
+}
+
+/* The renderer wraps text in a markdown container; keep the paper's face and
+   size, and let paragraphs breathe a little less than lesson prose does. */
+.xp-part__text .ms-rich-text,
+.xp-part__text .course-rich-text {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  overflow-x: visible;
+}
+
+.xp-part__text .ms-rich-text > :first-child,
+.xp-part__text .course-rich-text > :first-child {
+  margin-top: 0;
+}
+
+.xp-part__text .ms-rich-text > :last-child,
+.xp-part__text .course-rich-text > :last-child {
+  margin-bottom: 0;
+}
+
+.xp-part__text em {
+  color: inherit;
+  font-style: italic;
+}
+
+.xp-part__text strong {
+  color: inherit;
+}
+
+.xp-part__text .ms-rich-text p,
+.xp-part__text .course-rich-text p {
+  margin: 0 0 0.6em;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.xp-part__text .katex {
+  font-size: 1.04em;
+  color: inherit;
+}
+
+.xp-part__text .katex-display {
+  margin: 0.6em 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.xp-part__text table {
+  font-family: inherit;
+  font-size: 0.95em;
+  border-collapse: collapse;
+  margin: 0.6em 0;
+}
+
+.xp-part__text th,
+.xp-part__text td {
+  border: 1px solid var(--xp-rule);
+  padding: 4px 10px;
+}
+
+.xp-marks {
+  padding-left: 1.2em;
+  font-weight: 700;
+  color: var(--xp-ink);
+  white-space: nowrap;
+  line-height: inherit;
+  align-self: end;
+}
+
+/* ---- dotted answer lines ---- */
+.xp-lines {
+  margin-top: 0.7em;
+}
+
+.xp-line {
+  display: block;
+  height: var(--xp-line-gap);
+  background-image: radial-gradient(circle, var(--xp-dot) 0.95px, transparent 1.1px);
+  background-size: 6px 3px;
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+}
+
+/* ---- footer ---- */
+.xp-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 22px;
+  padding-top: 8px;
+  font-size: 0.74em;
+  color: var(--xp-ink-soft);
+  letter-spacing: 0.02em;
+}
+
+.xp-foot__code {
+  font-variant-numeric: tabular-nums;
+}
+
+.xp-foot__turn {
+  font-weight: 700;
+  color: var(--xp-ink);
+}
+
+.xp-foot:empty,
+.xp-foot:has(> .xp-foot__code:empty):has(> .xp-foot__turn:empty) {
+  display: none;
+}
+
+.xp-foot-slot {
+  margin-top: 18px;
+}
+
+/* ---- printing ---- */
+@media print {
+  .xp-sheet {
+    box-shadow: none;
+    border: 0;
+    padding: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .xp-sheet {
+    transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1), transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}

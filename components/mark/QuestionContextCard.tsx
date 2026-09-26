@@ -1,6 +1,5 @@
 'use client'
 
-import { RichTextRenderer } from '@/components/RichTextRenderer'
 import { SyllabusTopicBadge } from '@/components/SyllabusTopicBadge'
 import { formatPaperReference } from '@/lib/study-tips/display-context'
 import { getSubjectByCode } from '@/lib/profile-options'
@@ -10,6 +9,7 @@ import { MARKING_TYPE_LABELS } from '@/components/mark/QuestionPreviewPanel'
 import { markingBoardLabel } from '@/lib/marking/exam-board'
 import type { MarkingStyle } from '@/lib/marking/types'
 import type { SyllabusCode } from '@/lib/syllabus'
+import { ExamPaperQuestion, ExamPaperSheet } from '@/components/exam-paper/ExamPaper'
 
 export type MarkSchemeMeta = {
   total_marks?: number | null
@@ -152,12 +152,16 @@ export function QuestionContextCard({ result, subjectCode }: Props) {
             </span>{' '}
             QUESTION
           </p>
-          <div className="ec-question-text min-w-0 max-w-full overflow-x-auto break-words whitespace-pre-wrap text-base">
-            <RichTextRenderer
+          {/* The question as the paper printed it, so the student can hold
+              their marked script against the thing they were asked. */}
+          <ExamPaperSheet compact paperCode={paperCode} session={paperSession}>
+            <ExamPaperQuestion
+              questionNumber={questionNumber}
               text={result.question_text}
-              contentKind="question"
+              totalMarks={schemeTotal}
+              first
             />
-          </div>
+          </ExamPaperSheet>
         </div>
       ) : null}
 

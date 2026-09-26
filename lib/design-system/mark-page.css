@@ -1084,9 +1084,11 @@
   font-size: 14px;
   line-height: 1.55;
   color: var(--ec-text-primary);
-  max-height: 12rem;
+  max-height: 22rem;
   overflow-y: auto;
   min-width: 0;
+  /* The sheet's offset shadow needs a little room inside the scroll box. */
+  padding: 2px 8px 8px 2px;
 }
 
 .ms-question-preview-tags {

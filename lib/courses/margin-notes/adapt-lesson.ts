@@ -202,7 +202,8 @@ function lessonTag(status: CourseLesson['status']): string {
 
 function buildPracticeQuestions(
   lesson: CourseLesson,
-  pastPaperQuestions: PastPaperQuestionRef[]
+  pastPaperQuestions: PastPaperQuestionRef[],
+  subjectCode: string
 ): LessonPractice[] {
   const ppSection = lesson.sections.find((s) => s.type === 'pastPaperPractice')
   if (ppSection?.type === 'pastPaperPractice' && ppSection.questions.length) {
@@ -212,6 +213,11 @@ function buildPracticeQuestions(
       text: q.questionTextPreview,
       href: q.markHref,
       markPoints: q.markPoints,
+      // Authored lessons store the component alone ("52"); the paper code
+      // the footer prints is subject/component.
+      paperCode: q.paperVariant.includes('/') ? q.paperVariant : `${subjectCode}/${q.paperVariant}`,
+      session: `${q.session} ${q.year}`,
+      questionNumber: q.questionNumber,
     }))
   }
 
@@ -221,6 +227,9 @@ function buildPracticeQuestions(
       marks: q.totalMarks,
       text: q.questionText,
       href: q.markHref,
+      paperCode: q.paperCode,
+      session: q.paperSession,
+      questionNumber: q.questionNumber,
     }))
   }
 
@@ -404,7 +413,7 @@ export function adaptLesson(
     console.warn(`[figures] ${lesson.slug} figure ${i} rejected: ${reason}`)
   })
 
-  const practiceQuestions = buildPracticeQuestions(lesson, pastPaperQuestions)
+  const practiceQuestions = buildPracticeQuestions(lesson, pastPaperQuestions, subjectCode)
 
   return {
     code: subjectCode,

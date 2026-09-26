@@ -9,6 +9,7 @@ import { trackFunnelEvent } from '@/lib/analytics/funnel'
 import { useLessonMastery } from '@/lib/hooks/useLessonMastery'
 import type { MasteryLevel } from '@/lib/mastery'
 import { CourseRichText } from '@/components/courses/CourseRichText'
+import { ExamPaperQuestion, ExamPaperSheet } from '@/components/exam-paper/ExamPaper'
 import { isUsableHandoff, stashHandoff } from '@/lib/courses/mark-handoff'
 import { contentSubjectCode } from '@/lib/courses/board'
 import { GUEST_EARN_EVENT } from '@/components/auth/GuestSavePrompt'
@@ -895,6 +896,11 @@ function studyBoardFromHref(href: string | null | undefined): string | null {
   }
 }
 
+/** Lesson practice text is course markdown, not marking output. */
+const renderPracticeText = (text: string) => (
+  <CourseRichText content={text} variant="prose" breakAnywhere={false} />
+)
+
 function PracticeBlock({
   practice,
   lesson,
@@ -921,6 +927,91 @@ function PracticeBlock({
   const markHref =
     markHrefOverride ?? appendMarkReturn(p.href, returnPath, lesson.point)
   const [schemeOpen, setSchemeOpen] = useState(!collapseScheme)
+  // A real past-paper question is set like the paper it came from. The
+  // lesson's own "practice" placeholder (no marks, no text beyond a label)
+  // keeps the plain card.
+  const asPaper = p.marks > 0 && p.text.trim() !== p.ref.trim()
+
+  const cta = (
+    <div className="practice-foot">
+      <Link
+        className="btn-primary"
+        href={markHref}
+        onClick={() =>
+          trackFunnelEvent('mark_cta_clicked', {
+            source: markHrefOverride ? 'study_path_practice' : 'lesson_practice',
+            board: studyBoardFromHref(markHref),
+            subject: lesson.code,
+          })
+        }
+      >
+        {markCtaLabel ?? 'Do it on paper → mark it'}
+      </Link>
+      <span className="micro">MARKED MARK-BY-MARK · B1 / M1 / A1 · OFFICIAL SCHEME</span>
+    </div>
+  )
+
+  const scheme =
+    !lesson.outline && p.markPoints?.length ? (
+      <div className="practice-scheme">
+        {collapseScheme ? (
+          <button
+            type="button"
+            className="practice-scheme-toggle"
+            onClick={() => setSchemeOpen((o) => !o)}
+            aria-expanded={schemeOpen}
+          >
+            <span className="practice-scheme-tag mono">
+              Mark scheme preview
+              {p.markPoints?.length ? ` · ${p.markPoints.length} marks` : ''}
+            </span>
+            <span className="faq-plus">{schemeOpen ? '−' : '+'}</span>
+          </button>
+        ) : (
+          <span className="practice-scheme-tag mono">MARK SCHEME PREVIEW</span>
+        )}
+        {schemeOpen ? (
+          <div className="practice-scheme-body">
+            {p.markPoints.map((mp, i) => (
+              <div key={i} className="ms-line">
+                <CourseRichText content={mp.text} variant="prose" className="ms-line-text" />
+                <span className="stamp ok">+{mp.marks}</span>
+              </div>
+            ))}
+          </div>
+        ) : null}
+      </div>
+    ) : null
+
+  if (asPaper) {
+    return (
+      <div className={`practice practice--paper${big ? ' big' : ''}`} data-screen-label="Lesson — practice question">
+        <div className="practice-head">
+          <span className="practice-tag mono">
+            {total > 1 ? `Question ${index + 1} of ${total}` : 'Real past paper'}
+          </span>
+          <span className="practice-ref-mono mono">{p.ref}</span>
+        </div>
+        <ExamPaperSheet
+          paperCode={p.paperCode}
+          session={p.session}
+          subjectName={lesson.sub}
+          foot={cta}
+        >
+          <ExamPaperQuestion
+            questionNumber={p.questionNumber}
+            text={p.text}
+            totalMarks={p.marks}
+            answerLines={big ? 4 : 2}
+            render={renderPracticeText}
+            first
+          />
+        </ExamPaperSheet>
+        {scheme}
+      </div>
+    )
+  }
+
   return (
     <div className={`practice card${big ? ' big' : ''}`} data-screen-label="Lesson — practice question">
       <div className="practice-head">
@@ -933,52 +1024,8 @@ function PracticeBlock({
       <div className="body-2 practice-text">
         <CourseRichText content={p.text} variant="prose" breakAnywhere={false} />
       </div>
-      <div className="practice-foot">
-        <Link
-          className="btn-primary"
-          href={markHref}
-          onClick={() =>
-            trackFunnelEvent('mark_cta_clicked', {
-              source: markHrefOverride ? 'study_path_practice' : 'lesson_practice',
-              board: studyBoardFromHref(markHref),
-              subject: lesson.code,
-            })
-          }
-        >
-          {markCtaLabel ?? 'Do it on paper → mark it'}
-        </Link>
-        <span className="micro">MARKED MARK-BY-MARK · B1 / M1 / A1 · OFFICIAL SCHEME</span>
-      </div>
-      {!lesson.outline && p.markPoints?.length ? (
-        <div className="practice-scheme">
-          {collapseScheme ? (
-            <button
-              type="button"
-              className="practice-scheme-toggle"
-              onClick={() => setSchemeOpen((o) => !o)}
-              aria-expanded={schemeOpen}
-            >
-              <span className="practice-scheme-tag mono">
-                Mark scheme preview
-                {p.markPoints?.length ? ` · ${p.markPoints.length} marks` : ''}
-              </span>
-              <span className="faq-plus">{schemeOpen ? '−' : '+'}</span>
-            </button>
-          ) : (
-            <span className="practice-scheme-tag mono">MARK SCHEME PREVIEW</span>
-          )}
-          {schemeOpen ? (
-            <div className="practice-scheme-body">
-              {p.markPoints.map((mp, i) => (
-                <div key={i} className="ms-line">
-                  <CourseRichText content={mp.text} variant="prose" className="ms-line-text" />
-                  <span className="stamp ok">+{mp.marks}</span>
-                </div>
-              ))}
-            </div>
-          ) : null}
-        </div>
-      ) : null}
+      {cta}
+      {scheme}
     </div>
   )
 }

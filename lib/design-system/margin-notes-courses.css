@@ -2130,6 +2130,17 @@ button.note-sketch-fig:hover {
 .practice-scheme-body { margin-top: 2px; }
 .practice-stack { display: flex; flex-direction: column; gap: 16px; }
 
+/* A real past-paper question is set as the paper (components/exam-paper):
+   the wrapper loses its card chrome so the sheet is the object on the desk. */
+.practice--paper { padding: 0; border: 0; background: transparent; box-shadow: none; }
+.practice-stack .practice--paper:hover { transform: none; box-shadow: none; }
+.practice--paper .practice-head { margin-bottom: 10px; }
+.practice-ref-mono { font-size: 11px; letter-spacing: 0.06em; color: var(--muted); }
+.practice--paper .practice-foot { margin: 0; }
+.practice--paper .practice-scheme { margin-top: 14px; }
+.practice--paper .xp-sheet { --xp-size: 15px; }
+.practice--paper.big .xp-sheet { --xp-size: 16px; }
+
 /* End-of-lesson checkpoint — the "prove it" exit ticket that closes the loop. */
 .checkpoint {
   padding: 22px 24px;

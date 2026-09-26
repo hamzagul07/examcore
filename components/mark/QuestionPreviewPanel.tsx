@@ -7,6 +7,7 @@ import { SyllabusTopicBadge } from '@/components/SyllabusTopicBadge'
 import type { MarkingStyle } from '@/lib/marking/types'
 import type { SyllabusCode } from '@/lib/syllabus'
 import type { MarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
+import { ExamPaperQuestion, ExamPaperSheet } from '@/components/exam-paper/ExamPaper'
 
 type QuestionDetail = {
   found: boolean
@@ -116,10 +117,20 @@ export function QuestionPreviewPanel({
           </div>
           {detail.question_text ? (
             <div className="ms-question-preview-text">
-              <RichTextRenderer
-                text={detail.question_text}
-                contentKind="question"
-              />
+              {/* Set like the paper it came from — the cue that this is the
+                  real question, not a paraphrase. */}
+              <ExamPaperSheet
+                compact
+                paperCode={detail.paper_code ?? paperCode}
+                session={detail.paper_session ?? paperSession}
+              >
+                <ExamPaperQuestion
+                  questionNumber={detail.question_number ?? questionNumber}
+                  text={detail.question_text}
+                  totalMarks={detail.total_marks}
+                  first
+                />
+              </ExamPaperSheet>
             </div>
           ) : null}
           {detail.syllabus_tags && detail.syllabus_tags.length > 0 ? (

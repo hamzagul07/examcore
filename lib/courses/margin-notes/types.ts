@@ -80,6 +80,12 @@ export type LessonPractice = {
   text: string
   href: string
   markPoints?: { text: string; marks: number }[]
+  /** "9702/22" — lets the practice block set the question like the paper. */
+  paperCode?: string
+  /** "s23" or "May/June 2023". */
+  session?: string
+  /** "3(b)(i)" as printed. */
+  questionNumber?: string
 }
 
 export type ConceptMapNode = { id: string; t: string; d: string }

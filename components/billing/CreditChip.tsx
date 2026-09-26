@@ -7,6 +7,8 @@ import type { BillingSummaryClient } from '@/lib/billing/question-copy'
 import { tierMarketingName } from '@/lib/billing/caps'
 import { classBonusFromSummary, classBonusLabel } from '@/lib/billing/teacher-seat'
 import { billingPortalButtonLabel, useBillingPortal } from '@/lib/hooks/useBillingPortal'
+import { formatDisplayDate } from '@/lib/format/display-date'
+import { useDisplayTimeZone } from '@/lib/hooks/useDisplayTimeZone'
 
 type Summary = BillingSummaryClient
 
@@ -77,6 +79,7 @@ function UsageMeter({
 }
 
 export function CreditChip() {
+  const timeZone = useDisplayTimeZone()
   const [summary, setSummary] = useState<Summary | null>(null)
   const [loading, setLoading] = useState(true)
   const [open, setOpen] = useState(false)
@@ -124,10 +127,7 @@ export function CreditChip() {
   const qCap = summary.questions.cap
   const oCap = summary.omni.cap
   const resetDate = summary.period_resets_at
-    ? new Date(summary.period_resets_at).toLocaleDateString(undefined, {
-        month: 'short',
-        day: 'numeric',
-      })
+    ? formatDisplayDate(summary.period_resets_at, { year: false }, timeZone)
     : null
 
   const qFraction = qCap > 0 ? qLeft / qCap : 0

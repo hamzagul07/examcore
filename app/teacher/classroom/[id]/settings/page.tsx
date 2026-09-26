@@ -188,7 +188,12 @@ export default async function ClassroomSettingsPage({ params }: { params: Promis
           lead="Everyone who has been in the class. Removing a student takes their work off your desk at once."
         >
           {roster.ok ? (
-            <RosterList classroomId={classroom.id} students={roster.students} canRemove={!archived} />
+            <RosterList
+              classroomId={classroom.id}
+              students={roster.students}
+              canRemove={!archived}
+              nowMs={Date.now()}
+            />
           ) : (
             <div className="ms-teacher-error" role="alert">
               <p className="ms-teacher-error__title">Couldn&apos;t load the class list</p>

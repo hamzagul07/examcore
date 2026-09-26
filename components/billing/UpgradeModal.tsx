@@ -7,6 +7,8 @@ import { trackFunnelEvent } from '@/lib/analytics/funnel'
 import { capForTier, omniCapForTier, tierMarketingName } from '@/lib/billing/caps'
 import { Sheet } from '@/components/ui/Sheet'
 import type { SubscriptionTier } from '@/lib/database.types'
+import { formatDisplayDate } from '@/lib/format/display-date'
+import { useDisplayTimeZone } from '@/lib/hooks/useDisplayTimeZone'
 
 export type UpgradeModalProps = {
   open: boolean
@@ -53,6 +55,7 @@ export function UpgradeModal({
   creditBalance = 0,
   returnPath = '/mark',
 }: UpgradeModalProps) {
+  const timeZone = useDisplayTimeZone()
   useEffect(() => {
     if (!open) return
     trackFunnelEvent('upgrade_viewed', {
@@ -67,10 +70,7 @@ export function UpgradeModal({
   const isAnon = variant === 'anonymous'
   const title = isAnon ? 'Sign up to keep marking' : capCopy(variant, tier, cap)
   const resetDate = periodResetsAt
-    ? new Date(periodResetsAt).toLocaleDateString(undefined, {
-        month: 'short',
-        day: 'numeric',
-      })
+    ? formatDisplayDate(periodResetsAt, { year: false }, timeZone)
     : null
 
   return (

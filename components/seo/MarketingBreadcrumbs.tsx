@@ -34,7 +34,10 @@ export function MarketingBreadcrumbs({ items, className = '' }: Props) {
                   {item.name}
                 </span>
               ) : (
-                <Link href={item.path} className="ec-btn-underline truncate">
+                <Link
+                  href={item.path}
+                  className="truncate underline-offset-4 transition-colors hover:text-[var(--ec-text-primary)] hover:underline"
+                >
                   {item.name}
                 </Link>
               )}

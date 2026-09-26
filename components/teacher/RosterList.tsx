@@ -4,21 +4,9 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { TeacherConfirmDialog } from '@/components/teacher/ClassroomSettingsForm'
+import { relativeDay } from '@/lib/teacher/insights/format'
 import type { RosterStudent } from '@/lib/teacher/types'
 
-const DAY_MS = 86_400_000
-
-/** "today", "yesterday", "5 days ago", "12 Sep" — relative while it is recent. */
-function relativeDay(iso: string | null, now: number): string | null {
-  if (!iso) return null
-  const ms = Date.parse(iso)
-  if (!Number.isFinite(ms)) return null
-  const days = Math.floor((now - ms) / DAY_MS)
-  if (days <= 0) return 'today'
-  if (days === 1) return 'yesterday'
-  if (days < 14) return `${days} days ago`
-  return new Date(ms).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' })
-}
 
 function nameOf(s: Pick<RosterStudent, 'full_name'>): string {
   return s.full_name?.trim() || 'Unnamed student'
@@ -38,11 +26,18 @@ export function RosterList({
   classroomId,
   students,
   canRemove,
+  nowMs,
 }: {
   classroomId: string
   students: RosterStudent[]
   /** False for an archived class: its roster is a record, not a class. */
   canRemove: boolean
+  /**
+   * The instant the page was computed. "today" / "5 days ago" are counted in
+   * calendar days from it (lib/teacher/insights/format.relativeDay, as on the
+   * Students tab), and server and client use the same one.
+   */
+  nowMs: number
 }) {
   const router = useRouter()
   const [rows, setRows] = useState(students)
@@ -52,7 +47,6 @@ export function RosterList({
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const [announce, setAnnounce] = useState('')
-  const [now] = useState(() => Date.now())
 
   async function remove() {
     if (!removing || busy) return
@@ -106,8 +100,8 @@ export function RosterList({
       <ul className="ms-teacher-roster__list">
         {rows.map((s) => {
           const isActive = s.status === 'active'
-          const joined = relativeDay(s.joined_at, now)
-          const last = relativeDay(s.last_attempt_at, now)
+          const joined = relativeDay(s.joined_at, nowMs)
+          const last = relativeDay(s.last_attempt_at, nowMs)
           const name = nameOf(s)
           return (
             <li key={s.id} className={`ms-teacher-roster__row${isActive ? '' : ' ms-teacher-roster__row--inactive'}`}>

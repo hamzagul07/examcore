@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState, type MouseEvent } from 'react
 import { MarkSnippet } from '@/components/mark/MarkSnippet'
 import { SkeletonBlock } from '@/components/ui/PageSkeleton'
 import { DECISION_LABEL, DECISION_STAMP } from '@/lib/teacher/override-validate'
+import { formatDisplayDate } from '@/lib/format/display-date'
 import type { ReviewInboxItem } from '@/lib/teacher/reviews-query'
 
 /** Mirrors HIGH_REVIEW_PRIORITY in lib/teacher/reviews-query.ts (a server module). */
@@ -12,11 +13,9 @@ const HIGH_PRIORITY = 40
 /** Chips shown on a slip; the rest are summarised as "+n". */
 const MAX_CHIPS = 3
 
-const DATE_FORMAT = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' })
-
+/** "25 Sep" in UTC, from a fixed month table: Intl's month names differ between ICU versions ("Sep" / "Sept"), and this renders on the server and again on hydration. */
 function shortDate(iso: string): string {
-  const t = Date.parse(iso)
-  return Number.isFinite(t) ? DATE_FORMAT.format(t) : ''
+  return formatDisplayDate(iso, { year: false })
 }
 
 function detailHref(attemptId: string, query: string): string {

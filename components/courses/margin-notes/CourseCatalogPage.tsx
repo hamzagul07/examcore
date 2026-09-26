@@ -13,6 +13,7 @@ import { FamilyFilterStrip, useFamilyFilterFromUrl } from '@/components/courses/
 import type { IbCatalogCard } from '@/lib/courses/ib-catalog-display'
 import { IB_COURSES_CATALOG_BLURB, ibCatalogTrackSections } from '@/lib/courses/ib-catalog-display'
 import { preferSubjectsByCodeFirst } from '@/lib/subjects/prefer-codes'
+import { formatDisplayNumber } from '@/lib/format/display-date'
 
 type Props = {
   subjects: MarginNotesSubject[]
@@ -75,11 +76,11 @@ export function CourseCatalogPage({
             <span>subjects</span>
           </div>
           <div className="hero-stat">
-            <b>{totalLessons.toLocaleString()}</b>
+            <b>{formatDisplayNumber(totalLessons)}</b>
             <span>lessons</span>
           </div>
           <div className="hero-stat">
-            <b>{totalQ.toLocaleString()}</b>
+            <b>{formatDisplayNumber(totalQ)}</b>
             <span>past-paper Qs</span>
           </div>
           <MarginNote className="catalog-hero-note">all free — no card ↓</MarginNote>

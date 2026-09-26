@@ -22,6 +22,8 @@ import {
   SettingsStatTile,
   SettingsSubsection,
 } from '@/components/settings/SettingsSectionCard'
+import { formatDisplayDate } from '@/lib/format/display-date'
+import { useDisplayTimeZone } from '@/lib/hooks/useDisplayTimeZone'
 
 type StudyProfile = {
     full_name: string
@@ -38,12 +40,9 @@ type Props = {
 }
 
 export function StudyAccountSection({ initialProfile }: Props) {
+  const timeZone = useDisplayTimeZone()
   const createdLabel = initialProfile.created_at
-    ? new Date(initialProfile.created_at).toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })
+    ? formatDisplayDate(initialProfile.created_at, { month: 'long' }, timeZone)
     : '—'
 
   return (

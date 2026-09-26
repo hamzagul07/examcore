@@ -189,12 +189,31 @@
 }
 
 .ms-hero-kicker {
+  position: relative;
   font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-size: 15px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ec-text-faint);
   margin: 0 0 26px;
+}
+
+.ms-hero-kicker__note {
+  bottom: 100%;
+  right: 0;
+  margin-bottom: 4px;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+/* Below the container's full width the kicker wraps and the gap above it is too
+   small: the note would slide under the sticky header. It is decoration (and is
+   already hidden under 900px), so it simply stays out. */
+@media (max-width: 1199px) {
+  .ms-hero-kicker__note {
+    display: none;
+  }
 }
 
 .ms-hero h1 {

@@ -8,6 +8,8 @@ type SupabaseAuthError = {
   message: string
   code?: string
   status?: number
+  /** AuthWeakPasswordError: why the password was refused ('length' | 'characters' | 'pwned'). */
+  reasons?: string[]
 }
 
 export function formatAuthError(error: SupabaseAuthError): string {
@@ -23,6 +25,16 @@ export function formatAuthError(error: SupabaseAuthError): string {
   }
   if (code === 'user_already_exists' || lower.includes('already registered')) {
     return 'An account with this email already exists. Sign in instead, or reset your password.'
+  }
+  // Leaked-password protection answers with the same weak_password code as a
+  // short password. "Use 8 characters" would be wrong advice for a long
+  // password that simply appeared in a breach, so that case gets its own copy.
+  if (
+    error.reasons?.includes('pwned') ||
+    lower.includes('pwned') ||
+    lower.includes('known to be weak')
+  ) {
+    return 'That password has appeared in a data breach, so it is not safe to use. Choose a different one — ideally one you have never used anywhere else.'
   }
   if (code === 'weak_password' || lower.includes('password should')) {
     return 'That password is too weak. Use at least 8 characters with a mix of letters and numbers.'

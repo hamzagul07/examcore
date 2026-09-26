@@ -33,9 +33,9 @@
   --ec-green: #5fd39a;
 }
 
-/* .course-root below re-derives faint copy as a 62% mix, which on late-night
-   lands at Lc 42; hold it at the theme token there too. */
-[data-ec-theme='late-night'] .course-root {
+/* .course-root and .pricing-page below re-derive faint copy as a 62% mix,
+   which on late-night lands at Lc 42; hold it at the theme token there too. */
+[data-ec-theme='late-night'] :is(.course-root, .pricing-page) {
   --ec-text-faint: #bfb7a3;
 }
 

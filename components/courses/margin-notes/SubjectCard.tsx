@@ -81,8 +81,9 @@ export function SubjectCard({
         <p className="scard-stat">
           {s.lessons} lessons · {s.q} {statSuffix}
         </p>
-        {/* Phone rows collapse meta + stat into one line: level · lessons. */}
-        <p className="scard-row-meta" aria-hidden>
+        {/* Phone rows collapse meta + stat into one line: level · lessons. The CSS
+            shows exactly one of the two at any width, so neither is aria-hidden. */}
+        <p className="scard-row-meta">
           {s.level} · {s.lessons} lessons
         </p>
       </div>

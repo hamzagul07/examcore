@@ -4946,3 +4946,24 @@ html[data-ec-theme='late-night'] .lesson-page {
 .micro { font-size: 12px; }
 .practice-tag { font-size: 11.5px; }
 .practice-scheme-tag { font-size: 11px; }
+
+/* ---- phone chrome budget ----
+   Nav (60) + mode bar (~100, two rows) + section stepper (45) was a quarter
+   of an 844px screen, pinned. On a phone the bar's controls are read once
+   at the top of the lesson; the stepper is the thing a reader keeps using.
+   So the bar scrolls away and only nav + stepper stay (≈ 12%). */
+@media (max-width: 640px) {
+  .lesson-modebar-wrap {
+    position: static;
+    box-shadow: none;
+  }
+  .lesson-mobile-jump {
+    top: var(--ec-nav-height, calc(60px + env(safe-area-inset-top, 0px)));
+  }
+  .lesson-page {
+    scroll-padding-top: calc(var(--ec-nav-height, 60px) + 45px + 16px);
+  }
+  .lsec {
+    scroll-margin-top: calc(var(--ec-nav-height, 60px) + 45px + 20px);
+  }
+}

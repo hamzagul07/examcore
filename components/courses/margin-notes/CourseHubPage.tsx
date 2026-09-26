@@ -345,9 +345,22 @@ export function CourseHubPage({
             <details
               className="card card-pad hub-how"
               open={howOpen ?? !phone}
-              onToggle={(e) => setHowOpen(e.currentTarget.open)}
+              onToggle={(e) => {
+                // The browser also fires `toggle` when React flips `open` on a
+                // layout change; only a real change of mind is remembered.
+                const next = e.currentTarget.open
+                if (next !== (howOpen ?? !phone)) setHowOpen(next)
+              }}
             >
-              <summary className="overline hub-aside-kicker hub-how-summary">
+              <summary
+                className="overline hub-aside-kicker hub-how-summary"
+                // On desktop the slip is a plain card: the heading neither
+                // collapses it nor takes focus.
+                tabIndex={phone ? undefined : -1}
+                onClick={(e) => {
+                  if (!phone) e.preventDefault()
+                }}
+              >
                 How this course works
                 <span className="hub-how-plus" aria-hidden>+</span>
               </summary>

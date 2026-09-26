@@ -4,6 +4,7 @@ import { extractLatexSymbols, extractLatexEquations, parseFormulaParts } from '.
 type Case = { latex: string; expected: string[] }
 
 const CASES: Case[] = [
+  // Kirchhoff's second law goes through the KNOWN table (see parse checks below).
   { latex: 'p = mv', expected: ['p', 'm', 'v'] },
   { latex: 'F = \\frac{\\Delta p}{\\Delta t}', expected: ['F', 'Δp', 'Δt'] },
   { latex: 'Q = mc\\Delta T', expected: ['Q', 'm', 'c', 'ΔT'] },
@@ -14,6 +15,13 @@ const CASES: Case[] = [
   { latex: 'p_f = p_i', expected: ['p_f', 'p_i'] },
   { latex: 'F_{net} = ma', expected: ['F_net', 'm', 'a'] },
   { latex: 'p_f = p_i + Ft', expected: ['p_f', 'p_i', 'F', 't'] },
+  // Commands and subscripts are stripped BEFORE implicit products are split:
+  // "\\frac" must not shed a stray "c", "\\times" must not leave "mes", and
+  // "R_{total}" must stay one symbol.
+  { latex: '\\frac{1}{R_{total}} = \\frac{1}{R_1} + \\frac{1}{R_2} + ...', expected: ['R_total', 'R_1', 'R_2'] },
+  { latex: 'V_{out} = V_{in} \\times \\frac{R_{out}}{R_{total}}', expected: ['V_out', 'V_in', 'R_out', 'R_total'] },
+  { latex: '\\varepsilon = V + Ir', expected: ['ε', 'V', 'I', 'r'] },
+  { latex: '\\varepsilon = I(R + r)', expected: ['ε', 'I', 'R', 'r'] },
 ]
 
 let failed = 0

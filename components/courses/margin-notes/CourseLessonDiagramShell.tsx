@@ -74,12 +74,19 @@ export function CourseLessonDiagramShell({
   const currentStep = steps[activeIndex] ?? steps[0]
   const stepTitle = activeBeat?.label ?? currentStep?.title
   const stageCaption = activeBeat?.caption ?? stepState?.caption
+  // A step title that is just the opening of its own caption would print
+  // twice ("A power supply provides the e.m.f. that… A power supply…").
+  const captionTitle =
+    stepTitle && !(stageCaption ?? '').startsWith(stepTitle.replace(/…$/, '')) ? stepTitle : null
 
-  const embedForStep = useMemo(() => {
-    if (!interactiveEmbed) return null
-    const hint = stepState?.embedHint ?? interactiveEmbed.hint
-    return hint === interactiveEmbed.hint ? interactiveEmbed : { ...interactiveEmbed, hint }
-  }, [interactiveEmbed, stepState?.embedHint])
+  // No manual memo: the compiler memoises this itself, and it refused to
+  // preserve a hand-written one once the caption below also read the step.
+  const embedHint = stepState?.embedHint ?? interactiveEmbed?.hint
+  const embedForStep = !interactiveEmbed
+    ? null
+    : embedHint === interactiveEmbed.hint
+      ? interactiveEmbed
+      : { ...interactiveEmbed, hint: embedHint }
 
   const embedStepLabel =
     interactiveEmbed && resolvedSpec?.steps.length
@@ -92,9 +99,10 @@ export function CourseLessonDiagramShell({
       setPlaying(false)
       return
     }
+    // Long enough to read the caption before it changes (~250 ms a word).
     const id = setInterval(() => {
       setStep(step >= stepCount ? 1 : step + 1)
-    }, 2600)
+    }, 4200)
     return () => clearInterval(id)
   }, [playing, setStep, step, stepCount])
 
@@ -115,25 +123,37 @@ export function CourseLessonDiagramShell({
         ? 'PhET simulation'
         : 'Live interactive'
 
+  // A textbook plate: numbered ("Figure n", counted by CSS in page order),
+  // captioned beneath with what to notice, and — because this one can be
+  // touched — a small tag saying so. The step title used to be crammed into a
+  // two-line header; it belongs in the caption.
+  const kindTag = explorable
+    ? 'Interactive'
+    : interactiveEmbed && liveDiagram
+      ? 'Live + simulation'
+      : interactiveEmbed
+        ? providerLabel
+        : 'Live'
   return (
-    <div className="diagram-wrap" data-screen-label="Lesson — live diagram">
+    <figure className="diagram-wrap fig" data-screen-label="Lesson — live diagram">
       <div className="diagram-head">
-        <span className="micro diagram-live-label">
-          {explorable
-            ? 'INTERACTIVE'
-            : interactiveEmbed && liveDiagram
-              ? 'LIVE DIAGRAM + SIM'
-              : interactiveEmbed
-                ? providerLabel.toUpperCase()
-                : 'LIVE DIAGRAM'}
+        <span className="diagram-fig-label mono">
+          Figure <span className="fig-num" />
         </span>
-        <span className="diagram-step-label mono">
-          STEP {activeStep} / {stepCount}
-          {stepTitle ? ` · ${stepTitle}` : ''}
-        </span>
+        <span className="diagram-kind-tag mono">{kindTag}</span>
         {stepCount > 1 ? (
-          <button className="diagram-play" type="button" onClick={() => setPlaying((p) => !p)}>
-            {playing ? '❙❙ pause' : '▶ play'}
+          <span className="diagram-step-label mono" aria-live="polite">
+            {activeStep} / {stepCount}
+          </span>
+        ) : null}
+        {stepCount > 1 ? (
+          <button
+            className="diagram-play"
+            type="button"
+            aria-pressed={playing}
+            onClick={() => setPlaying((p) => !p)}
+          >
+            {playing ? 'Pause' : 'Play'}
           </button>
         ) : null}
       </div>
@@ -158,8 +178,12 @@ export function CourseLessonDiagramShell({
           <Suspense fallback={<div className="diagram-explorable-loading" aria-hidden />}>
             {renderLessonExplorable(lessonSlug, { step: activeIndex, stepCount })}
           </Suspense>
-          {stageCaption ? (
-            <p className="diagram-stage-caption body-2">{stageCaption}</p>
+          {stageCaption || captionTitle ? (
+            <figcaption className="diagram-stage-caption">
+              {captionTitle ? <b className="diagram-caption-title">{captionTitle}</b> : null}
+              {captionTitle && stageCaption ? ' ' : null}
+              {stageCaption}
+            </figcaption>
           ) : null}
         </div>
       ) : liveDiagram ? (
@@ -178,8 +202,12 @@ export function CourseLessonDiagramShell({
               onChange={handleParamChange}
             />
           ) : null}
-          {stageCaption ? (
-            <p className="diagram-stage-caption body-2">{stageCaption}</p>
+          {stageCaption || captionTitle ? (
+            <figcaption className="diagram-stage-caption">
+              {captionTitle ? <b className="diagram-caption-title">{captionTitle}</b> : null}
+              {captionTitle && stageCaption ? ' ' : null}
+              {stageCaption}
+            </figcaption>
           ) : null}
         </div>
       ) : null}
@@ -245,6 +273,6 @@ export function CourseLessonDiagramShell({
           ))}
         </ol>
       ) : null}
-    </div>
+    </figure>
   )
 }

@@ -3172,7 +3172,7 @@ button.note-sketch-fig:hover {
 .mn-skeleton-lesson-hero { height: 280px; margin-bottom: 20px; }
 .mn-skeleton-modebar { height: 52px; margin-bottom: 16px; }
 .mn-skeleton-toc { height: 320px; display: none; }
-.mn-skeleton-article { min-height: 480px; flex: 1; }
+.mn-skeleton-article { min-height: max(480px, calc(100dvh - 160px)); flex: 1; }
 .mn-skeleton-hub-hero { height: 240px; margin-bottom: 28px; }
 .mn-skeleton-paper-tab { min-height: 72px; }
 .pilot-banner-wrap { padding-top: 12px; }
@@ -3610,7 +3610,7 @@ button.note-sketch-fig:hover {
   accent-color: var(--ink);
 }
 
-.course-root .lesson-diagram-svg text {
+.course-root .lesson-diagram-svg text:not(.dgm-hue) {
   fill: var(--text);
 }
 
@@ -3618,7 +3618,7 @@ button.note-sketch-fig:hover {
   transition: opacity 0.38s ease;
 }
 
-.course-root .lesson-diagram-svg [stroke] {
+.course-root .lesson-diagram-svg [stroke]:not(.dgm-hue) {
   stroke: var(--ink);
 }
 
@@ -4839,3 +4839,110 @@ html[data-ec-theme='late-night'] .lesson-page {
   box-shadow: none;
   padding: 12px 4px 13px;
 }
+
+/* ==========================================================================
+   Figures as plates — numbered in page order, captioned beneath
+   ========================================================================== */
+.lesson-page { counter-reset: fig; }
+.lesson-page .fig { counter-increment: fig; }
+.fig-num::before { content: counter(fig); }
+
+.diagram-wrap.fig { margin: 0; }
+.diagram-head { gap: 10px; }
+.diagram-fig-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.diagram-kind-tag {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 1px solid var(--ink-border);
+  background: var(--ink-soft);
+  border-radius: 4px;
+  padding: 2px 7px;
+  margin-right: auto;
+}
+.diagram-step-label {
+  flex: 0 0 auto;
+  font-size: 11.5px;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.diagram-play { padding: 5px 12px; }
+
+/* The caption reads as a caption: number gone (it is in the head), the step
+   title in bold, then what to notice. */
+.diagram-stage-caption {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-2);
+  background: color-mix(in srgb, var(--paper) 92%, var(--ink-soft));
+  border-top: 1px solid var(--paper-rule);
+}
+.diagram-stage-caption::before { content: none; }
+.diagram-caption-title { color: var(--text); font-weight: 600; }
+
+/* Step dots keep their 9px mark but get a 28px target (WCAG 2.5.8). */
+.dg-dot {
+  width: 28px;
+  height: 28px;
+  padding: 9.5px;
+  background-clip: content-box;
+  border-radius: 14px;
+}
+.dg-dot.on { transform: none; background-clip: content-box; }
+.diagram-dots { gap: 0; padding: 4px 12px; }
+
+/* Data-authored figures: unboxed, caption below. */
+.lesson-page .lesson-figure.fig {
+  margin: 28px 0 32px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.lesson-page .lesson-figure-caption {
+  margin: 10px 0 0;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-2);
+  max-width: 60ch;
+}
+.lesson-page .lesson-figure-caption .fig-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-right: 8px;
+}
+.lesson-page .lesson-figure-caption .lesson-figure-title {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: inline;
+}
+
+/* Study mode keeps the paper texture (its overlay covered the body grain). */
+.lesson-page[data-study='on'] {
+  background-image: var(--ec-paper-texture, none);
+  background-size: 280px 280px;
+}
+
+/* Small labels never below 12px — the readability floor. */
+.micro { font-size: 12px; }
+.practice-tag { font-size: 11.5px; }
+.practice-scheme-tag { font-size: 11px; }

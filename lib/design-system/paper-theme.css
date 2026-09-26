@@ -59,28 +59,23 @@
   --ec-c-media: #e788ad;
 }
 
-/* Paper grain overlay — subtle texture on canvas */
+/* Paper grain — one layer, site-wide, zen only (--ec-paper-texture is
+   `none` in late-night, which stays flat by design). Plain alpha noise at
+   ~5%, not a blended layer: a fixed mix-blend-mode surface forced a full
+   recomposite on every scroll, and lesson pages painted a second copy of it
+   through .course-root::before. */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  /* Fibre, not texture: finer noise at a quarter of the old strength. At
-     100% zoom on a 1x display it should read as "not flat", never as dots. */
-  opacity: 0.22;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
-  background-size: 240px 240px;
-  mix-blend-mode: multiply;
-}
-
-[data-ec-theme='late-night'] body::before {
-  opacity: 0.16;
-  mix-blend-mode: overlay;
+  background-image: var(--ec-paper-texture, none);
+  background-size: 280px 280px;
 }
 
 body.ec-no-grain::before {
-  opacity: 0;
+  display: none;
 }
 
 /* Scroll progress bar */

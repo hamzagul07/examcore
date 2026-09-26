@@ -38,13 +38,20 @@ export function LessonFigureBlock({ figure }: { figure: LessonFigure }) {
   const Renderer = RENDERERS[figure.kind]
   if (!Renderer) return null
 
+  // Caption beneath the plate, as a coursebook prints it: number, title, then
+  // what to notice. The number comes from a CSS counter in page order.
   return (
-    <figure className="lesson-figure" data-figure-kind={figure.kind}>
-      <figcaption className="lesson-figure-title">{figure.title}</figcaption>
+    <figure className="lesson-figure fig" data-figure-kind={figure.kind}>
       <div className="lesson-figure-body">
         <Renderer figure={figure as never} />
       </div>
-      {figure.caption ? <p className="lesson-figure-caption">{figure.caption}</p> : null}
+      <figcaption className="lesson-figure-caption">
+        <span className="fig-label mono">
+          Figure <span className="fig-num" />
+        </span>
+        {figure.title ? <b className="lesson-figure-title">{figure.title}</b> : null}
+        {figure.caption ? <span className="lesson-figure-note"> {figure.caption}</span> : null}
+      </figcaption>
     </figure>
   )
 }

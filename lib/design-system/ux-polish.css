@@ -190,17 +190,8 @@
   }
 }
 
-/* ── Paper grain overlay — zen only (--ec-paper-texture is `none` in dark) ── */
-.ec-marketing-root::before,
-.course-root::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: var(--ec-paper-texture, none);
-  background-size: 280px 280px;
-}
+/* Paper grain lives on body::before (paper-theme.css); the copy that used to
+   sit here painted a second layer over every lesson and marketing page. */
 
 /* ── Inline-link touch target that doesn't inflate the line box ──
    (44px-min-height inline-flex links stretch paragraph lines; this keeps the

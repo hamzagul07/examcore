@@ -2870,7 +2870,7 @@ export function layerOpacity(
   stepIndex: number,
   layerId: string,
   active = 1,
-  dimmed = 0.22
+  dimmed = 0.5
 ): number {
   if (!spec?.steps.length) return active
   return isLayerFocused(spec, stepIndex, layerId) ? active : dimmed
@@ -2882,7 +2882,7 @@ export function layerOpacityAny(
   stepIndex: number,
   layerIds: string[],
   active = 1,
-  dimmed = 0.22
+  dimmed = 0.5
 ): number {
   if (!spec?.steps.length) return active
   const state = stepStateFor(spec, stepIndex)

@@ -58,6 +58,18 @@ const KNOWN: KnownFormula[] = [
   { test: /F\s*=\s*ma\b/i, latex: 'F = ma', symbols: ['F', 'm', 'a'] },
   { test: /K\s*=\s*C\s*\+\s*273/i, latex: 'K = C + 273.15', symbols: ['K', 'C'] },
   { test: /V\s*=\s*IR\b/i, latex: 'V = IR', symbols: ['V', 'I', 'R'] },
+  // Kirchhoff's laws — all-caps clusters read as one symbol in the generic
+  // tokenizer (PED, ROCE), so these two are named explicitly.
+  {
+    test: /\\sum\s*\\varepsilon\s*=\s*\\sum\s*IR\b/i,
+    latex: '\\sum \\varepsilon = \\sum IR',
+    symbols: ['ε', 'I', 'R'],
+  },
+  {
+    test: /\\sum\s*I_\{in\}\s*=\s*\\sum\s*I_\{out\}/i,
+    latex: '\\sum I_{in} = \\sum I_{out}',
+    symbols: ['I_in', 'I_out'],
+  },
   { test: /P\s*=\s*VI\b/i, latex: 'P = VI', symbols: ['P', 'V', 'I'] },
   { test: /p_f\s*=\s*p_i/i, latex: 'p_f = p_i', symbols: ['p_f', 'p_i'] },
   {
@@ -220,7 +232,7 @@ export function extractLatexSymbols(latex: string): string[] {
   }
 
   function splitImplicitMul(c: string): string {
-    const vars = 'pfmvtcgaqi'
+    const vars = 'pfmvtcgaqir'
     let out = c
       .replace(/([a-z])([A-Z])/g, '$1 $2')
       .replace(/([A-Z])([a-z])(?![a-z])/g, '$1 $2')
@@ -262,6 +274,29 @@ export function extractLatexSymbols(latex: string): string[] {
       add('θ')
       return ' '
     })
+    // Other Greek quantities a lesson formula uses as variables.
+    const greek: Record<string, string> = {
+      varepsilon: 'ε',
+      epsilon: 'ε',
+      rho: 'ρ',
+      omega: 'ω',
+      mu: 'μ',
+      phi: 'φ',
+      sigma: 'σ',
+      tau: 'τ',
+      alpha: 'α',
+      beta: 'β',
+      gamma: 'γ',
+      eta: 'η',
+      Omega: 'Ω',
+    }
+    out = out.replace(
+      /\\(varepsilon|epsilon|rho|omega|mu|phi|sigma|tau|alpha|beta|gamma|eta|Omega)(?![a-zA-Z])/g,
+      (_, name: string) => {
+        add(greek[name]!)
+        return ' '
+      }
+    )
 
     return out
   }
@@ -285,7 +320,6 @@ export function extractLatexSymbols(latex: string): string[] {
     }
 
     c = stripLatexSymbols(c)
-    c = splitImplicitMul(c)
 
     for (const m of [...c.matchAll(/([A-Za-z])_\{\\text\{([^}]+)\}\}/g)]) {
       add(`${m[1]}_${m[2]}`)
@@ -316,8 +350,14 @@ export function extractLatexSymbols(latex: string): string[] {
     c = c.replace(/\\(?:cos|sin|tan|log|ln|sqrt)[^a-zA-Z]*/gi, ' ')
     c = c.replace(/\\[a-zA-Z]+(\{[^}]*\})?/g, ' ')
 
+    // Only now split implicit products. This used to run before the command
+    // and subscript passes, so "\frac" shed a stray "c" (captioned "specific
+    // heat capacity" under a circuit formula), "\times" left "mes", and
+    // "R_{total}" came out as "R_tot al".
+    c = splitImplicitMul(c)
+
     for (const token of c.match(/[A-Za-z]+|λ|θ|ΔT|Δθ|Δ\([a-z]+\)|Δ[a-z]|I₀/g) ?? []) {
-      if (token.length === 1 && /^[a-z]$/.test(token) && !'pfmvtcgaqi'.includes(token)) continue
+      if (token.length === 1 && /^[a-z]$/.test(token) && !'pfmvtcgaqir'.includes(token)) continue
       add(token)
     }
   }

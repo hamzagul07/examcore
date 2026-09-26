@@ -114,6 +114,12 @@ const AREA_OVERRIDES: Partial<Record<SubjectArea, Record<string, string>>> = {
     V: 'potential difference, in volts (V)',
     R: 'resistance, in ohms (Ω)',
     P: 'electrical power, in watts (W)',
+    // In a circuits topic ε is the e.m.f. of the source, not permittivity.
+    '\u03b5': 'electromotive force (e.m.f.), in volts (V)',
+    r: 'internal resistance of the source, in ohms (Ω)',
+    Q: 'charge, in coulombs (C)',
+    W: 'energy transferred (work done), in joules (J)',
+    t: 'time, in seconds (s)',
   },
 }
 

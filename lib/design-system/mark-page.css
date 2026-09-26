@@ -240,7 +240,8 @@
   }
 
   /* Sticky bottom bar: the CTA is always one thumb away, whatever is on
-     screen. Bleeds to the page edge (18px gutter) and clears the home bar. */
+     screen. Cancels the page's 18px gutter (the app shell's own 1rem stays)
+     and clears the home bar. */
   .ms-mark-form-shell > .ms-mark-submit-block {
     position: sticky;
     bottom: 0;
@@ -249,6 +250,19 @@
     padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
     border-top: 1px solid var(--ec-border);
     background: var(--ec-paper, var(--ec-surface));
+  }
+
+  /* Signed-in phones carry the fixed tab bar (52px links + 12px padding):
+     the sticky bar sits above it instead of underneath it. */
+  body:has(.ec-tabbar) .ms-mark-form-shell > .ms-mark-submit-block {
+    bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: 10px;
+  }
+
+  /* The floating ask button would sit on the corner of the sticky button;
+     while the mark form is on screen the form is the action, so it rests. */
+  body:has(.ms-mark-form-shell > .ms-mark-submit-block) .ms-omni-fab {
+    display: none;
   }
 
   .ms-mark-submit-block .mark-submit-btn {

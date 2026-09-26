@@ -89,12 +89,20 @@ export function LandingHero({ markHref }: LandingHeroProps) {
               It was reachable only from /pricing, the post-mark result, and a
               Max teaser: all downstream of someone who has already marked or
               already priced. Pricing stays one tap away in the nav. */}
-          <LoadingLink href="/demo" prefetch={false} className="ec-btn-underline" loadingText="Loading demo…">
-            See the full product
-          </LoadingLink>
-          <LoadingLink href="/courses" prefetch={false} className="ec-btn-underline" loadingText="Loading courses…">
-            Free courses
-          </LoadingLink>
+          {/* The two quiet links share a row so that on a phone they sit
+              together under the primary instead of stacking as two more
+              full-width actions of equal weight. */}
+          <div className="ms-hero-ctas__quiet">
+            <LoadingLink href="/demo" prefetch={false} className="ec-btn-underline" loadingText="Loading demo…">
+              See the full product
+            </LoadingLink>
+            <span className="ms-hero-ctas__sep" aria-hidden="true">
+              ·
+            </span>
+            <LoadingLink href="/courses" prefetch={false} className="ec-btn-underline" loadingText="Loading courses…">
+              Free courses
+            </LoadingLink>
+          </div>
         </div>
         <p className="ms-micro ms-hero-micro">
           ONE QUESTION · REAL SCHEME · NO CARD · KEEP THE INK

@@ -73,8 +73,8 @@ export function InteractiveMarkDemo() {
     >
       <div className="ms-demo__intro">
         <p className="ms-overline">Worked example</p>
-        <h2 id="demo-h" className="ms-demo__title">
-          Marked like an examiner would
+        <h2 id="demo-h" className="ms-h2">
+          Marked like an <em>examiner</em> would
         </h2>
         <p className="ms-demo__lead">
           A real A-Level Maths answer. Tap any mark — on the script or in the
@@ -99,34 +99,10 @@ export function InteractiveMarkDemo() {
         </div>
 
         <div className="ms-demo__panel">
-          <ScoreReveal
-            marksEarned={r.marks_earned}
-            totalMarks={r.total_marks}
-            percentage={percentage}
-            grade={null}
-            nextGrade={null}
-            shareable={false}
-            activeMarkId={String(marks[selected]?.mark_id ?? selected)}
-            marks={marks.map((m, i) => ({
-              id: String(m.mark_id ?? i),
-              earned: !!m.earned,
-              label: m.type?.trim() || `Mark ${i + 1}`,
-            }))}
-            onSelectMark={(id) => {
-              const idx = marks.findIndex(
-                (m, i) => String(m.mark_id ?? i) === id
-              )
-              if (idx >= 0) setSelected(idx)
-            }}
-          />
-
-          <p className="ms-demo__hint">
-            <span className="ms-demo__hint-stamp" aria-hidden>
-              ✎
-            </span>
-            Tap a mark to see the examiner&apos;s reasoning
-          </p>
-
+          {/* Marks first, level with the script's first line, so the two
+              columns read as one ledger; the tally sits underneath as the
+              total at the foot of the column. With the tally on top the list
+              started a card-height below the handwriting it mirrors. */}
           <ul
             className="ms-demo__marks"
             role="radiogroup"
@@ -154,6 +130,34 @@ export function InteractiveMarkDemo() {
               </li>
             ))}
           </ul>
+
+          <p className="ms-demo__hint">
+            <span className="ms-demo__hint-stamp" aria-hidden>
+              ✎
+            </span>
+            Tap a mark to see the examiner&apos;s reasoning
+          </p>
+
+          <ScoreReveal
+            marksEarned={r.marks_earned}
+            totalMarks={r.total_marks}
+            percentage={percentage}
+            grade={null}
+            nextGrade={null}
+            shareable={false}
+            activeMarkId={String(marks[selected]?.mark_id ?? selected)}
+            marks={marks.map((m, i) => ({
+              id: String(m.mark_id ?? i),
+              earned: !!m.earned,
+              label: m.type?.trim() || `Mark ${i + 1}`,
+            }))}
+            onSelectMark={(id) => {
+              const idx = marks.findIndex(
+                (m, i) => String(m.mark_id ?? i) === id
+              )
+              if (idx >= 0) setSelected(idx)
+            }}
+          />
         </div>
       </div>
 

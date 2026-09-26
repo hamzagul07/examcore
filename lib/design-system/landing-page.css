@@ -231,6 +231,19 @@
   flex-wrap: wrap;
 }
 
+.ms-hero-ctas__quiet {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* The dot only earns its place when the two links share a centred row on a
+   phone; on desktop the gap is enough. */
+.ms-hero-ctas__sep {
+  display: none;
+}
+
 .ms-hero-micro {
   margin-top: 30px;
 }
@@ -1495,59 +1508,31 @@
   max-width: 70ch;
 }
 
-/* Homepage GEO blurb (below hero — crawlers still get full text in DOM) */
-.home-geo-intro {
-  margin-top: -8px;
-  margin-bottom: 8px;
-  padding-bottom: 4px;
+/* Homepage GEO blurb — a marginal note above the FAQ. Full text stays in the
+   DOM for crawlers; no accordion chrome, just a mono label and a short
+   paragraph on the reading measure, ruled off on the left like a note
+   pencilled beside the questions. Shares the FAQ's 860px column. */
+/* Doubled selector so the padding survives the .ms-pg shorthand resets in the
+   narrow-viewport blocks further down. */
+.home-geo-intro.ms-pg {
+  padding-top: 72px;
+  margin-bottom: -40px;
 }
 
-.home-geo-details {
-  border-top: 1px solid var(--ec-border);
-  border-bottom: 1px solid var(--ec-border);
-}
-
-.home-geo-summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 14px 4px;
-  cursor: pointer;
-  list-style: none;
-  font-family: var(--font-display, 'Newsreader', Georgia, serif);
-  font-size: 17px;
-  font-weight: 500;
-  color: var(--ec-text-secondary);
-  min-height: 44px;
-}
-
-.home-geo-summary::-webkit-details-marker {
-  display: none;
-}
-
-.home-geo-summary:hover {
-  color: var(--ec-brand);
-}
-
-.home-geo-pm {
+.home-geo-label {
+  margin: 0 0 8px;
   font-family: var(--font-mono);
-  font-size: 17px;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--ec-brand);
-  flex-shrink: 0;
-}
-
-.home-geo-pm::before {
-  content: '+';
-}
-
-.home-geo-details[open] .home-geo-pm::before {
-  content: '−';
 }
 
 .home-geo-body {
-  padding: 0 4px 16px;
-  max-width: 72ch;
+  padding-left: 16px;
+  border-left: 1px solid var(--ec-border);
+  max-width: 68ch;
   font-size: 14px;
   line-height: 1.65;
   color: var(--ec-text-secondary);
@@ -1558,23 +1543,41 @@
 }
 
 .home-geo-body p + p {
-  margin-top: 12px;
+  margin-top: 8px;
 }
 
 .home-geo-cta a {
-  color: var(--ec-brand);
-  font-weight: 600;
+  color: var(--ec-text-primary);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration-color: var(--ec-brand);
+  text-underline-offset: 3px;
 }
 
 .home-geo-cta a:hover {
-  color: var(--ec-text-primary);
+  color: var(--ec-brand);
 }
 
-@media (min-width: 768px) {
-  .home-geo-summary {
-    font-size: 18px;
+/* Wide enough for a real gutter: the label hangs in the margin to the left
+   of the column, so the note's text lines up with the FAQ heading below. */
+@media (min-width: 1160px) {
+  .home-geo-note {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    column-gap: 20px;
+    align-items: start;
+    margin-left: -170px;
+  }
+
+  .home-geo-label {
+    margin: 0;
+    padding-top: 2px;
+  }
+}
+
+@media (max-width: 900px) {
+  .home-geo-intro.ms-pg {
+    padding-top: 56px;
+    margin-bottom: -24px;
   }
 }
 
@@ -1674,11 +1677,38 @@
     min-height: var(--ec-touch-min, 44px);
   }
 
-  .ms-hero-ctas .ec-btn-underline {
+  /* Three stacked full-width actions read as three equal buttons. The
+     primary keeps the full width; the two quiet links share one centred row
+     beneath it, sized as text, with no per-link rule. */
+  .ms-hero-ctas__quiet {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 14px;
+  }
+
+  .ms-hero .ms-hero-ctas__quiet .ec-btn-underline {
+    width: auto;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
     min-height: var(--ec-touch-min, 44px);
+    padding: 0;
+    border-bottom: none;
+    font-size: 16px;
+    color: var(--ec-brand);
+  }
+
+  .ms-hero .ms-hero-ctas__quiet .ec-btn-underline:hover,
+  .ms-hero .ms-hero-ctas__quiet .ec-btn-underline:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .ms-hero-ctas__sep {
+    display: inline;
+    font-family: var(--font-display, 'Newsreader', Georgia, serif);
+    font-size: 16px;
+    color: var(--ec-text-faint);
   }
 
   .ms-trust {
@@ -1869,6 +1899,17 @@
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   gap: 48px;
   align-items: center;
+}
+
+/* Worked example (InteractiveMarkDemo, base styles in mark-page.css). The
+   heading was the one landing h2 set in bold Instrument Sans; it now uses
+   .ms-h2 like its neighbours, with the section's own spacing kept. */
+.ms-demo .ms-h2 {
+  margin: 8px 0 0;
+}
+
+.ms-demo .ms-demo__lead {
+  margin-top: 14px;
 }
 
 .ms-artefact-beat__copy .ms-h2 {

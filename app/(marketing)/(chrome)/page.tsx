@@ -29,7 +29,6 @@ export default function Home() {
       <HomeJsonLd />
       <main>
         <LandingHero markHref={markHref} />
-        <HomeGeoIntro />
         <div className="ms-pg">
           <InteractiveMarkDemoLazy />
         </div>
@@ -38,6 +37,9 @@ export default function Home() {
         <LandingSubjects />
         {/* Renders nothing until real, approved student feedback exists. */}
         <LandingProof />
+        {/* Crawler/GEO blurb, kept as a marginal note next to the questions
+            rather than a stray accordion under the hero. */}
+        <HomeGeoIntro />
         <LandingFaq />
         <LandingFinalCta markHref={markHref} />
         <LandingMoreBand>
